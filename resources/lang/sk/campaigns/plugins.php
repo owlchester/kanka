@@ -56,7 +56,6 @@ return [
     'title'         => 'Pluginy kampane :name',
     'types'         => [
         'attribute' => 'Šablóna atribútov',
-        'attributes'=> 'Šablóny atribútov',
         'pack'      => 'Balík s obsahom',
         'theme'     => 'Téma',
     ],

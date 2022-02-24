@@ -11,17 +11,15 @@ return [
         'success'   => 'La mention avancée de la note a été copiée au presse-papier.',
     ],
     'create'        => [
-        'description'   => 'Créer une nouvelle note',
-        'success'       => 'Note \':name\' ajoutée à :entity.',
-        'title'         => 'Nouvelle Note pour :name',
+        'success'   => 'Note \':name\' ajoutée à :entity.',
+        'title'     => 'Nouvelle Note pour :name',
     ],
     'destroy'       => [
         'success'   => 'La note \':name\' a été retirée.',
     ],
     'edit'          => [
-        'description'   => 'Modifier une note existante',
-        'success'       => 'La note \':name\' pour :entity a été modifiée.',
-        'title'         => 'Modifier la note pour :name',
+        'success'   => 'La note \':name\' pour :entity a été modifiée.',
+        'title'     => 'Modifier la note pour :name',
     ],
     'fields'        => [
         'collapsed' => 'Fermer la note d\'entité par défault',

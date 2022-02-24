@@ -2,13 +2,11 @@
 
 return [
     'characters'    => [
-        'description'   => 'דמויות השייכות לגזע',
-        'title'         => 'דמויות :race',
+        'title' => 'דמויות :race',
     ],
     'create'        => [
-        'description'   => 'צור גזע חדש',
-        'success'       => 'הגזע \':name\' נוצר.',
-        'title'         => 'גזע חדש',
+        'success'   => 'הגזע \':name\' נוצר.',
+        'title'     => 'גזע חדש',
     ],
     'destroy'       => [
         'success'   => 'הגזע \':name\' הוסר.',
@@ -24,30 +22,24 @@ return [
         'races'         => 'תתי-גזע',
         'type'          => 'סוג',
     ],
-    'helpers'       => [
-        'nested'    => 'בצפייה מקוננת, גזעים בלי גזע אב יופיעו בהתחלה. לחיצה על גזע עם תתי-גזעים תציג את הצאצאים. ניתן להמשיך עד שלא נשארים צאצאים לצפייה.',
-    ],
+    'helpers'       => [],
     'index'         => [
-        'add'           => 'גזע חדש',
-        'description'   => 'נהל את הגזעים של :name.',
-        'header'        => 'גזעים של :name',
-        'title'         => 'גזעים',
+        'add'       => 'גזע חדש',
+        'header'    => 'גזעים של :name',
+        'title'     => 'גזעים',
     ],
     'placeholders'  => [
         'name'  => 'שם הגזע',
         'type'  => 'בן אנוש, פיה, סייבורג',
     ],
     'races'         => [
-        'description'   => 'גזעים השייכים לגזע.',
-        'title'         => 'תתי-גזע של :name',
+        'title' => 'תתי-גזע של :name',
     ],
     'show'          => [
-        'description'   => 'מבט מפורט על הגזע',
-        'tabs'          => [
+        'tabs'  => [
             'characters'    => 'דמויות',
-            'menu'          => 'תפריט',
             'races'         => 'תתי-גזע',
         ],
-        'title'         => 'גזע :name',
+        'title' => 'גזע :name',
     ],
 ];

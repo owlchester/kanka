@@ -18,9 +18,7 @@ return [
     'helpers'       => [
         'delete_all'    => 'Weet je zeker dat je alle attributen van deze entiteit wilt verwijderen?',
     ],
-    'hints'         => [
-        'is_private'    => 'Je kunt alle kenmerken van een entiteit verbergen voor alle leden buiten de beheerder rol door deze privé te maken.',
-    ],
+    'hints'         => [],
     'index'         => [
         'success'   => 'Attributen voor :entity bijgewerkt.',
         'title'     => 'Attributen voor :name',

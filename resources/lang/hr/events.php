@@ -2,9 +2,8 @@
 
 return [
     'create'        => [
-        'description'   => 'Kreiraj novi događaj',
-        'success'       => 'Kreiran događaj ":name"',
-        'title'         => 'Novi događaj',
+        'success'   => 'Kreiran događaj ":name"',
+        'title'     => 'Novi događaj',
     ],
     'destroy'       => [
         'success'   => 'Uklonjen događaj ":name".',
@@ -31,10 +30,9 @@ return [
         'nested_without'=> 'Prikaz svih događaja koji nemaju događaj roditelj. Klikni redak da bi vidio/la događaje djecu.',
     ],
     'index'         => [
-        'add'           => 'Novi događaj',
-        'description'   => 'Upravljanje događajima u :name',
-        'header'        => 'Događaji :name',
-        'title'         => 'Događaji',
+        'add'       => 'Novi događaj',
+        'header'    => 'Događaji :name',
+        'title'     => 'Događaji',
     ],
     'placeholders'  => [
         'date'      => 'Datum za događaj',
@@ -43,11 +41,7 @@ return [
         'type'      => 'Ceremonija, Festival, Nesreća, Bitka, Rođenje',
     ],
     'show'          => [
-        'description'   => 'Detaljan opis događaja',
-        'tabs'          => [
-            'information'   => 'Informacije',
-        ],
-        'title'         => 'Događaj :name',
+        'title' => 'Događaj :name',
     ],
     'tabs'          => [
         'calendars' => 'Unosi kalendara',

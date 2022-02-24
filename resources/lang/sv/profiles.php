@@ -4,7 +4,6 @@ return [
     'avatar'        => [
         'success'   => 'Avatar uppdaterad.',
     ],
-    'description'   => 'Uppdatera dina profiluppgifter',
     'edit'          => [
         'success'   => 'Profil uppdaterad',
     ],
@@ -30,9 +29,7 @@ return [
             'news'              => 'Nyheter',
         ],
         'settings'  => [
-            'news'          => 'Nyheter - bli underrättad när det finns :news.',
-            'newsletter'    => 'Nyhetsbrev - få Kankas nyhetsbrev.',
-            'votes'         => 'Community Röstningar - bli underrättad så fort en ny :vote är tillgänglig',
+            'news'  => 'Nyheter - bli underrättad när det finns :news.',
         ],
         'title'     => 'Nyhetsbrev',
     ],

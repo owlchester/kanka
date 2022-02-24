@@ -2,9 +2,8 @@
 
 return [
     'create'        => [
-        'description'   => 'Új család létrehozása',
-        'success'       => '\':name\' családot létrehoztuk.',
-        'title'         => 'Új család',
+        'success'   => '\':name\' családot létrehoztuk.',
+        'title'     => 'Új család',
     ],
     'destroy'       => [
         'success'   => '\':name\' családot töröltük.',
@@ -28,7 +27,6 @@ return [
     ],
     'helpers'       => [
         'descendants'   => 'Ez a lista a család minden leszármazott családját tartalmazza, nem csak a közvetlenül alatta levőket.',
-        'nested'        => 'Hierarchikus nézetben a családjaidat alá-fölé rendeltségi viszonyukban láthatod. Alapesetben azokat a családokat látod, amelyek nem alcsaládjai másoknak. Az alcsaládokkal rendelkező családokra kattintva az alcsaládjai listáját láthatod, amelyek -  amennyiben vannak saját alcsaládjaik - szintén kattinthatóak.',
         'nested_parent' => ':parent családjainak megmutatása',
         'nested_without'=> 'Megmutat minden családot, amelynek nincs szülőcsaládja. Klikkelj egy sorra, hogy meglásd a gyermekcsaládokat.',
     ],
@@ -36,10 +34,9 @@ return [
         'members'   => 'Ez a lista a család tagjait tartalmazza. Ha hozzá akarsz adni egy karaktert, nyisd meg a kívánt karaktert szerkesztésre, és használd a "Család" legördülő menüt.',
     ],
     'index'         => [
-        'add'           => 'Új család',
-        'description'   => ':name családjainak kezelése',
-        'header'        => ':name családja',
-        'title'         => 'Családok',
+        'add'       => 'Új család',
+        'header'    => ':name családja',
+        'title'     => 'Családok',
     ],
     'members'       => [
         'helpers'   => [
@@ -54,13 +51,12 @@ return [
         'type'      => 'Uralkodói ház, Nemesi ház, Kihalt, stb.',
     ],
     'show'          => [
-        'description'   => 'Egy család részletes nézete',
-        'tabs'          => [
+        'tabs'  => [
             'all_members'   => 'Minden családtag',
             'families'      => 'Családok',
             'members'       => 'Családtagok',
             'relation'      => 'Viszonyok',
         ],
-        'title'         => ':name család',
+        'title' => ':name család',
     ],
 ];

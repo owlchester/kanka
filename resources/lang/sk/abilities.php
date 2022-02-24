@@ -38,15 +38,13 @@ return [
     ],
     'helpers'       => [
         'descendants'   => 'Tento zoznam obsahuje všetky schopnosti, ktoré sú pod touto schopnosťou a nielen tie, ktoré sú priradené len priamo nej.',
-        'nested'        => 'Vo vnorenom zobrazení vieš zoradiť tvoje schopnosti podľa nadradených schopností. Schopnosti bez nadradenej schopnosti sa zoradia štandardným spôsobom. Schopnosti s podradenými schopnosťami je možné rozkliknúť, dokiaľ nebudú existovať už žiadne ďalšie podradené schopnosti.',
         'nested_parent' => 'Zobraziť schopnosti :parent',
         'nested_without'=> 'Zobrazujú sa všetky schopnosti, ktoré nemajú nadradenú schopnosť. Kliknutím na riadok zobrazíš podradené schopnosti.',
     ],
     'index'         => [
-        'add'           => 'Nová schopnosť',
-        'description'   => 'Vytvor sily, kúzla, črty a omnoho viac pre tvoje objekty.',
-        'header'        => 'Schopnosti objektu :name',
-        'title'         => 'Schopnosti',
+        'add'       => 'Nová schopnosť',
+        'header'    => 'Schopnosti objektu :name',
+        'title'     => 'Schopnosti',
     ],
     'placeholders'  => [
         'charges'   => 'Počet nábojov. Prepoj atribúty cez {Úroveň}*{CHA}',

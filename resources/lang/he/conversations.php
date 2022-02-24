@@ -2,17 +2,15 @@
 
 return [
     'create'        => [
-        'description'   => 'צור שיחה חדשה',
-        'success'       => 'השיחה \':name\' נוצרה.',
-        'title'         => 'שיחה חדשה',
+        'success'   => 'השיחה \':name\' נוצרה.',
+        'title'     => 'שיחה חדשה',
     ],
     'destroy'       => [
         'success'   => 'השיחה \':name\' הוסרה.',
     ],
     'edit'          => [
-        'description'   => 'עדכן את השיחה',
-        'success'       => 'השיחה \':name\' עודכנה.',
-        'title'         => 'שיחה :name',
+        'success'   => 'השיחה \':name\' עודכנה.',
+        'title'     => 'שיחה :name',
     ],
     'fields'        => [
         'messages'      => 'הודעות',
@@ -25,10 +23,9 @@ return [
         'participants'  => 'הוסף משתתפים בלחיצה על האייקון :icon בצד שמאל למעלה.',
     ],
     'index'         => [
-        'add'           => 'שיחה חדשה',
-        'description'   => 'ניהול הקטגוריה של :name.',
-        'header'        => 'שיחות ב:name',
-        'title'         => 'שיחות',
+        'add'       => 'שיחה חדשה',
+        'header'    => 'שיחות ב:name',
+        'title'     => 'שיחות',
     ],
     'messages'      => [
         'destroy'       => [
@@ -41,23 +38,21 @@ return [
         ],
     ],
     'participants'  => [
-        'create'        => [
+        'create'    => [
             'success'   => ':entity הוסף לשיחה.',
         ],
-        'description'   => 'הוסף או הסר משתתפים',
-        'destroy'       => [
+        'destroy'   => [
             'success'   => ':entity הוסר מהשיחה.',
         ],
-        'modal'         => 'משתתפים',
-        'title'         => 'המשתתפים של :name',
+        'modal'     => 'משתתפים',
+        'title'     => 'המשתתפים של :name',
     ],
     'placeholders'  => [
         'name'  => 'שם השיחה',
         'type'  => 'בתוך המשחק, הכנה, עלילה',
     ],
     'show'          => [
-        'description'   => 'מבט מפורט על שיחה',
-        'title'         => 'שיחה :name',
+        'title' => 'שיחה :name',
     ],
     'tabs'          => [
         'conversation'  => 'שיחה',

@@ -2,20 +2,18 @@
 
 return [
     'children'      => [
-        'actions'       => [
+        'actions'   => [
             'add'   => 'Füge neue Kategorie hinzu',
         ],
-        'create'        => [
+        'create'    => [
             'success'   => 'Der Tag :name wurde dem Objekt hinzugefügt.',
             'title'     => 'Füge Kategorie zu :name hinzu',
         ],
-        'description'   => 'Objekte mit diesem Tag',
-        'title'         => 'Kategorie :name Unterkategorien',
+        'title'     => 'Kategorie :name Unterkategorien',
     ],
     'create'        => [
-        'description'   => 'Erstelle eine neue Kategorie',
-        'success'       => 'Kategorie \':name\' erstellt.',
-        'title'         => 'Neue Kategorie',
+        'success'   => 'Kategorie \':name\' erstellt.',
+        'title'     => 'Neue Kategorie',
     ],
     'destroy'       => [
         'success'   => 'Kategorie \':name\' entfernt.',
@@ -41,13 +39,12 @@ return [
         'tag'       => 'Unten dargestellt sind alle Kategorien, die direkt unter dieser eingeordnet sind.',
     ],
     'index'         => [
-        'actions'       => [
+        'actions'   => [
             'explore_view'  => 'Erkundungsansicht',
         ],
-        'add'           => 'Neue Kategorie',
-        'description'   => 'Verwalte die Kategorie von :name.',
-        'header'        => 'Kategorien von :name',
-        'title'         => 'Kategorien',
+        'add'       => 'Neue Kategorie',
+        'header'    => 'Kategorien von :name',
+        'title'     => 'Kategorien',
     ],
     'new_tag'       => 'Neue Kategorie',
     'placeholders'  => [
@@ -56,16 +53,13 @@ return [
         'type'  => 'Überlieferung, Geschichte, Kriege, Religion, Flaggenkunde',
     ],
     'show'          => [
-        'description'   => 'Eine Detailansicht einer Kategorie',
-        'tabs'          => [
-            'children'      => 'Kinder',
-            'information'   => 'Informationen',
-            'tags'          => 'Kategorien',
+        'tabs'  => [
+            'children'  => 'Kinder',
+            'tags'      => 'Kategorien',
         ],
-        'title'         => 'Kategorie :name',
+        'title' => 'Kategorie :name',
     ],
     'tags'          => [
-        'description'   => 'Unterkategorien',
-        'title'         => 'Kategorie :name Unterkategorien',
+        'title' => 'Kategorie :name Unterkategorien',
     ],
 ];

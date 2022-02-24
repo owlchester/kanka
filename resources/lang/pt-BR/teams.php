@@ -12,14 +12,7 @@ return [
         'title'         => 'Time',
         'translations'  => 'Traduções',
     ],
-    'patreon'       => [
-        'description'   => 'Essas pessoas incríveis ajudam e apoiam Kanka se inscrevendo.',
-        'learn_more'    => 'Lista completa de recursos desbloqueados por assinatura',
-    ],
     'people'        => [
-        'iz'        => [
-            'title' => 'Desenvolvimento de Produto',
-        ],
         'jay'       => [
             'text'  => <<<'TEXT'
 Eu criei o Kanka em outubro de 2017 porque não havia nenhuma ferramenta que me permitisse criar facilmente um mundo com meus amigos e ainda me permitir controlar quem pode ver ou fazer o quê.

@@ -23,7 +23,6 @@ return [
         'setup'         => 'Parametry jako životy či inteligence objektu se zadávají jako atributy daného objektu. Atributy lze přidávat jednotlivě klepnutím na tlačítko :manage nebo jako skupinu atributů pomocí šablony atributů.',
     ],
     'hints'         => [
-        'is_private'    => 'Pokud se nastaví jako soukromé, lze atributy objektu skrýt pro členy tažení mimo členy role Správců.',
         'is_private2'   => 'Je-li aktivováno, uvidí atributy tohoto pouze členové role :admin-role.',
     ],
     'index'         => [

@@ -7,8 +7,7 @@ return [
         'unfollow'  => 'Deixar de seguir',
     ],
     'campaigns'         => [
-        'manage'    => 'Gerencie suas campanhas',
-        'tabs'      => [
+        'tabs'  => [
             'modules'   => ':count Módulos',
             'roles'     => ':count Cargos',
             'users'     => ':count Usuários',
@@ -56,7 +55,6 @@ return [
             'visible'   => 'Visível',
         ],
     ],
-    'description'       => 'O lar de sua criatividade',
     'helpers'           => [
         'follow'    => 'Seguir uma campanha fará com que ela apareça no seletor de campanha (canto superior esquerdo) abaixo de suas campanhas.',
         'join'      => 'Essa campanha é aberta a novos membros. Clique para solicitar sua inscrição.',
@@ -70,21 +68,10 @@ return [
         ],
     ],
     'recent'            => [
-        'add'           => 'Criar nova :name',
-        'no_entries'    => 'Atualmente não há entidade desse tipo.',
-        'title'         => ':name Modificados(as) Recentemente',
-        'view'          => 'Ver Todos(as) :name',
+        'title' => ':name Modificados(as) Recentemente',
     ],
     'settings'          => [
-        'description'   => 'Customize o que você vê no seu dashboard',
-        'edit'          => [
-            'success'   => 'Suas modificações foram salvas.',
-        ],
-        'fields'        => [
-            'helper'        => 'Você pode facilmente mudar o que você vê no seu dashboard. Por favor note que isso será para todas as suas campanhas, independentemente das configurações de cada uma delas.',
-            'recent_count'  => 'Número de elementos recentes',
-        ],
-        'title'         => 'Configurações do Dashboard',
+        'title' => 'Configurações do Dashboard',
     ],
     'setup'             => [
         'actions'   => [

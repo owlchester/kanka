@@ -37,14 +37,9 @@ return [
     ],
     'header'            => 'Masz :count powiadomień.',
     'index'             => [
-        'description'   => 'Twoje ostatnie powiadomienia',
-        'title'         => 'Powiadommienia',
+        'title' => 'Powiadommienia',
     ],
     'no_notifications'  => 'Nie masz powiadomień',
-    'permissions'       => [
-        'body'  => 'Hej, chcemy dać ci znać, że całkowicie przebudowaliśmy system uprawnień w kampanii! </p><p>Kampanie mogą mieć własne role, a każda rola może posiadać własne uprawnienia dostępu, edycji i usuwania elementów. Można też ustawić indywidualne uprawnienia dla każdego gracza i elementu, dzięki czemu Tola i Bolek mogą teraz edytować własne postaci!</p><p>Jedynym minusem jest to, że w kampaniach posiadających wielu uczestników trzeba będzie ustawić uprawnienia na nowo. Jeżeli jesteś Administrator, możesz to zrobić na stronie zarządzania kampanią. Jeżeli jesteś uczestnikiem, nie zobaczysz niczego, póki admin się z tym nie upora.',
-        'title' => 'Zmiany w uprawnieniach',
-    ],
     'subscriptions'     => [
         'charge_fail'   => 'Wystąpił problem w czasie przetwarzania płatności. Odczekaj chwilę i spróbuj jeszcze raz. Jeżeli nic się nie zmieni, skontaktuj się z nami.',
         'deleted'       => 'Po zbyt wielu nieudanych próbach obciążenia twojej karty skasowaliśmy twoją subskrypcję Kanki. Wejdź do ustawień subskrypcji i uaktualnij metodę płatności.',

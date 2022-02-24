@@ -56,7 +56,6 @@ return [
     'title'         => 'Plug-ins da campanha :name',
     'types'         => [
         'attribute' => 'Modelo de Atributo',
-        'attributes'=> 'Modelos de Atributo',
         'pack'      => 'Pacote de Conteúdo',
         'theme'     => 'Tema',
     ],

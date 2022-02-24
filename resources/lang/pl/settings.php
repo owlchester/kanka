@@ -64,7 +64,6 @@ return [
                 'superboosted'  => 'Wszystkie funkcje turbodoładowanej kampanii',
             ],
             'recovery'          => 'Odzyskaj elementy usunięte do :amount dni temu',
-            'second'            => 'Doładowanie kampanii zapewnia następujące korzyści:',
             'superboost'        => 'Turbodoładowanie kampanii zużywa 3 doładowania i odblokowuje kolejne funkcje, w dodatku do wynikających z doładowania.',
             'theme'             => 'Inny motyw i styl dla każdej kampanii.',
             'third'             => 'By doładować kampanię, idź na jej stronę i kliknij ":boost_button" tuż nad ":edit_button".',
@@ -163,25 +162,15 @@ return [
         'subscription_status'   => 'Status subskrypcji',
     ],
     'patreon'       => [
-        'actions'           => [
-            'link'  => 'Połącz konto',
-            'view'  => 'Przejdź do Kanki na Patreonie',
-        ],
-        'benefits'          => 'Wspierając nas na :parteon pomagasz w tworzeniu :features dla swojej kampanii i pozwalasz nam spędzać więcej czasu na ulepszaniu Kanki.',
-        'benefits_features' => 'świetnych funkcji',
-        'deprecated'        => 'Przestarzała funkcja. Jeżeli chcesz wspierać Kankę, rozważ subskrypcję. Integracja z Patreonem jest dostępna tylko dla osób, które połączyły swoje konta Patren z Kanką zanim wycofaliśmy się z tego serwisu.',
-        'description'       => 'Sybchronizacja z Patreonem',
-        'linked'            => 'Dziękujmy za wspieranie Kanki na Patreonie! Twoje konto zostało dodane.',
-        'pledge'            => 'Deklaracja :name',
-        'remove'            => [
+        'deprecated'    => 'Przestarzała funkcja. Jeżeli chcesz wspierać Kankę, rozważ subskrypcję. Integracja z Patreonem jest dostępna tylko dla osób, które połączyły swoje konta Patren z Kanką zanim wycofaliśmy się z tego serwisu.',
+        'pledge'        => 'Deklaracja :name',
+        'remove'        => [
             'button'    => 'Odłącz konto Patreon',
             'success'   => 'Odłązcono twoje konto Patreon',
             'text'      => 'Dołączenie kontra Patreon spowoduje usunięcie z listy wspierających, utratę doładować kampanii i innych korzyści dostępnych dla wspierających. Treści związane z doładowaniem (na przykład nagłówki) nie zostają usunięte. Odnawiając subskrypcje odzyskasz dostęp do danych oraz możliwość ponownego doładowywania kampanii.',
             'title'     => 'Odłącz swoje konto Patreon od Kanki',
         ],
-        'success'           => 'Dziękujemy za wspierane Kanki na Patreonie!',
-        'title'             => 'Patreon',
-        'wrong_pledge'      => 'Twój poziom wsparcia jest przez nas ustawiany ręcznie, więc daj mu kilka dni na reakcję. Jeżeli nie zmieni się przez dłuższy czas, daj nam znać.',
+        'title'         => 'Patreon',
     ],
     'profile'       => [
         'actions'   => [

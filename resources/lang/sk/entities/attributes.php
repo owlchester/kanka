@@ -2,27 +2,10 @@
 
 return [
     'actions'       => [
-        'add'               => 'Pridať atribúť',
-        'add_block'         => 'Pridať blok',
-        'add_checkbox'      => 'Pridať zaškrtávacie políčko',
-        'add_text'          => 'Pridať text',
         'apply_template'    => 'Použiť šablónu atribútov',
         'manage'            => 'Spravovať',
         'more'              => 'Ďalšie možnosti',
         'remove_all'        => 'Odstrániť všetko',
-    ],
-    'create'        => [
-        'description'   => 'Vytvoriť nový atribút',
-        'success'       => 'Atribút :name pridaný k :entity.',
-        'title'         => 'Nový atribút pre :name',
-    ],
-    'destroy'       => [
-        'success'   => 'Atribút :name odstránený z :entity.',
-    ],
-    'edit'          => [
-        'description'   => 'Upraviť existujúci atribút',
-        'success'       => 'Atribút :name upravený pre :entity.',
-        'title'         => 'Upraviť atribút pre :name',
     ],
     'errors'        => [
         'loop'  => 'Vo výpočte atribútu sa vyskytuje nekonečná slučka!',
@@ -44,7 +27,6 @@ return [
         'setup'         => 'Prvky ako HP alebo Inteligenciu nejakého objektu s atribútmi je možné referencovať. Atribúty pridáš ručne kliknutím na tlačidlo :manage alebo aplikovaním niektorej zo šablón atribútov.',
     ],
     'hints'         => [
-        'is_private'    => 'Všetky atribúty objektu je možné skryť pred všetkými členmi okrem tých s rolou Admin, ak ho nastavíš ako súkromný.',
         'is_private2'   => 'Ak aktivované, iba členovia role :admin-role budú vidieť atribúty tohto objektu.',
     ],
     'index'         => [

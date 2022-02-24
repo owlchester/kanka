@@ -33,10 +33,6 @@ TEXT
         'answer'    => 'Kanka na to nie pozwala. Jeżeli prowadzisz wiele drużyn w tym samym świecie możesz jednak dodać wszystkich graczy do tej samej kampanii, a potem dzielić im dostęp za pomocą systemu misji, etykiet i uprawnień.',
         'question'  => 'Czy mogę synchronizować elementy pomiędzy kilkoma kampaniami?',
     ],
-    'conversations'         => [
-        'answer'    => 'Konwersacje służą do prowadzenia rozmów między postaciami albo między uczestnikami kampanii. Możesz użyć tej opcji by zarchiwizować ważną rozmowę między drużyną a BNem, albo jeżeli prowadzisz grę zdalnie, przez maile.',
-        'question'  => 'Czym są Konwersacje?',
-    ],
     'custom'                => [
         'answer'    => 'Kanka posiada zdefiniowany zestaw elementów, które wchodzą ze sobą w konkretne interakcje. Dopuszczenie rodzajów tworzonych przez użytkowników wymagałoby napisania aplikacji od nowa i stałoby w sprzeczności z naszym głównym celem - chcemy pomagać ludziom w tworzeniu światów, a nie zmuszać ich do główkowania, jak je katalogować. Możesz z łatwością odróżniać od siebie własne kategorie elementów dzięki systemowi etykiet.',
         'question'  => 'Czy mogę tworzyć własne rodzaje elementów?',

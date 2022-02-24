@@ -2,9 +2,8 @@
 
 return [
     'create'        => [
-        'description'   => 'Yeni bir günlük yarat',
-        'success'       => '\':name\' günlüğü yaratıldı.',
-        'title'         => 'Yeni Günlük',
+        'success'   => '\':name\' günlüğü yaratıldı.',
+        'title'     => 'Yeni Günlük',
     ],
     'destroy'       => [
         'success'   => '\':name\' günlüğü kaldırıldı.',
@@ -22,10 +21,9 @@ return [
         'type'      => 'Tür',
     ],
     'index'         => [
-        'add'           => 'Yeni Günlük',
-        'description'   => ':name günlüklerini yönet',
-        'header'        => ':name Günlükleri',
-        'title'         => 'Günlükler',
+        'add'       => 'Yeni Günlük',
+        'header'    => ':name Günlükleri',
+        'title'     => 'Günlükler',
     ],
     'placeholders'  => [
         'author'    => 'Günlüğü kim yazdı',
@@ -34,7 +32,6 @@ return [
         'type'      => 'Oturum, Tek Seferlik, Taslak',
     ],
     'show'          => [
-        'description'   => 'Günlüğe detaylı bir bakış',
-        'title'         => ':name Günlüğü',
+        'title' => ':name Günlüğü',
     ],
 ];

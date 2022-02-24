@@ -48,7 +48,6 @@ return [
         'max_zoom'          => 'Op een kaart kan maximaal worden ingezoomd. De standaardwaarde is :default, terwijl de hoogst toegestane waarde :max is.',
         'min_zoom'          => 'Op een kaart kan maximaal worden uitgezoomd. De standaardwaarde is :default, terwijl de laagst toegestane waarde :min is.',
         'missing_image'     => 'Sla de kaart met een afbeelding op voordat je lagen en markeringen kunt toevoegen.',
-        'nested'            => 'In geneste weergave kan je jouw kaarten op een geneste manier bekijken. Kaarten zonder bovenliggende kaart worden standaard weergegeven. Op kaarten met gerelateerden kan worden geklikt om die gerelateerden te bekijken. Je kunt blijven klikken totdat er geen gerelateerden meer te zien zijn.',
     ],
     'index'         => [
         'add'   => 'Nieuwe Kaart',

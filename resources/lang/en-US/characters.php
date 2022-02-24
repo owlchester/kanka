@@ -4,9 +4,7 @@ return [
     'actions'       => [
         'add_organisation'  => 'Add an organization',
     ],
-    'fields'        => [
-        'eye'   => 'Eye color',
-    ],
+    'fields'        => [],
     'organisations' => [
         'actions'       => [
             'add'   => 'Add organization',

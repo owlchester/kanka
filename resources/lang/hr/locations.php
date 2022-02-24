@@ -2,13 +2,11 @@
 
 return [
     'characters'    => [
-        'description'   => 'Likovi na lokaciji.',
-        'title'         => 'Lokacije lika :name',
+        'title' => 'Lokacije lika :name',
     ],
     'create'        => [
-        'description'   => 'Kreiraj novu lokaciju',
-        'success'       => 'Kreirana lokacija ":name".',
-        'title'         => 'Nova lokacija',
+        'success'   => 'Kreirana lokacija ":name".',
+        'title'     => 'Nova lokacija',
     ],
     'destroy'       => [
         'success'   => 'Uklonjena lokacija ":name".',
@@ -18,8 +16,7 @@ return [
         'title'     => 'Uredi lokaciju :name',
     ],
     'events'        => [
-        'description'   => 'Događaji koji su se zbili na lokaciji.',
-        'title'         => 'Događaji lokacije :name',
+        'title' => 'Događaji lokacije :name',
     ],
     'families'      => [
         'title' => 'Obitelji lokacije :name',
@@ -49,25 +46,21 @@ return [
         'is_map_private'    => 'Privatna karta je vidljiva samo članovima "Administrator" uloge u kampanji.',
     ],
     'index'         => [
-        'actions'       => [
+        'actions'   => [
             'explore_view'  => 'Ugniježđeni pregled',
         ],
-        'add'           => 'Nova lokacija',
-        'description'   => 'Upravljanje lokacijama u :name',
-        'header'        => 'Lokacije u :name',
-        'title'         => 'Lokacije',
+        'add'       => 'Nova lokacija',
+        'header'    => 'Lokacije u :name',
+        'title'     => 'Lokacije',
     ],
     'items'         => [
-        'description'   => 'Predmeti koji se nalaze u lokaciji ili su s lokacije.',
-        'title'         => 'Predmeti lokacije :name',
+        'title' => 'Predmeti lokacije :name',
     ],
     'journals'      => [
-        'description'   => 'Dnevnici napisani na lokaciji.',
-        'title'         => 'Dnevnici iz lokacije :name',
+        'title' => 'Dnevnici iz lokacije :name',
     ],
     'locations'     => [
-        'description'   => 'Lokacije unutar lokacije.',
-        'title'         => 'Lokacije unutar lokacije :name',
+        'title' => 'Lokacije unutar lokacije :name',
     ],
     'map'           => [
         'actions'   => [
@@ -211,26 +204,19 @@ return [
         'name'      => 'Naziv lokacije',
         'type'      => 'Grad, Kraljevstvo, Ruševina',
     ],
-    'quests'        => [
-        'description'   => 'Zadaci u koje je lokacija uključena.',
-        'title'         => 'Zadaci lokacije :name',
-    ],
     'show'          => [
-        'description'   => 'Detaljan pregled lokacije',
-        'tabs'          => [
+        'tabs'  => [
             'characters'    => 'Likovi',
             'events'        => 'Događaji',
             'families'      => 'Obitelji',
-            'information'   => 'Informacije',
             'items'         => 'Predmeti',
             'journals'      => 'Dnevnici',
             'locations'     => 'Lokacije',
             'map'           => 'Karta',
             'maps'          => 'Karte',
-            'menu'          => 'Izbornik',
             'organisations' => 'Organizacije',
             'quests'        => 'Zadaci',
         ],
-        'title'         => 'Lokacija :name',
+        'title' => 'Lokacija :name',
     ],
 ];

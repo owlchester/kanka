@@ -2,9 +2,8 @@
 
 return [
     'create'        => [
-        'description'   => 'Maak een nieuw voorwerp',
-        'success'       => 'Voorwerp \':name\' gemaakt.',
-        'title'         => 'Nieuw Voorwerp',
+        'success'   => 'Voorwerp \':name\' gemaakt.',
+        'title'     => 'Nieuw Voorwerp',
     ],
     'destroy'       => [
         'success'   => 'Voorwerp \':name\' verwijderd.',
@@ -24,14 +23,12 @@ return [
         'type'      => 'Type',
     ],
     'index'         => [
-        'add'           => 'Nieuw Voorwerp',
-        'description'   => 'Beheer de voorwerpen van :name',
-        'header'        => 'Voorwerpen van :name',
-        'title'         => 'Voorwerpen',
+        'add'       => 'Nieuw Voorwerp',
+        'header'    => 'Voorwerpen van :name',
+        'title'     => 'Voorwerpen',
     ],
     'inventories'   => [
-        'description'   => 'Entiteits Inventories waarin het voorwerp zich bevindt.',
-        'title'         => 'Voorwerp :name Inventories',
+        'title' => 'Voorwerp :name Inventories',
     ],
     'placeholders'  => [
         'character' => 'Kies een personage',
@@ -41,17 +38,10 @@ return [
         'size'      => 'Grootte, Gewicht, Afmeting',
         'type'      => 'Wapen, Potion, Artefact',
     ],
-    'quests'        => [
-        'description'   => 'Quests waarvan het item deel van uitmaakt.',
-        'title'         => 'Voorwerp :name Quests',
-    ],
     'show'          => [
-        'description'   => 'Een gedetailleerd overzicht van een voorwerp',
-        'tabs'          => [
-            'information'   => 'Informatie',
+        'tabs'  => [
             'inventories'   => 'Inventories',
-            'quests'        => 'Quests',
         ],
-        'title'         => 'Voorwerp :name',
+        'title' => 'Voorwerp :name',
     ],
 ];

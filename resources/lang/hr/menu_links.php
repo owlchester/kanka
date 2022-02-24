@@ -48,9 +48,6 @@ return [
         'any'   => 'Bilo koji entitet',
     ],
     'show'          => [
-        'tabs'  => [
-            'information'   => 'Informacije',
-        ],
         'title' => 'Poveznica izbornika :name',
     ],
 ];

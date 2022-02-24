@@ -110,7 +110,6 @@ return [
         'copy_attributes'       => 'Kopiera Egenskaper',
         'copy_inventory'        => 'Kopiera Inventarie',
         'copy_links'            => 'Kopiera Entitetslänkar',
-        'copy_notes'            => 'Kopiera Entitetsanteckningar',
         'creator'               => 'Skapare',
         'dice_roll'             => 'Tärningskast',
         'entity'                => 'Entitet',
@@ -194,18 +193,13 @@ return [
         'header_image'          => 'Denna bild är placerad över entiteten. För bästa resultat, använd en bred bild.',
         'image_limitations'     => 'Stöda format: :formats. Max filstorlek: :size.',
         'image_patreon'         => 'Utöka filstorleks gräns?',
-        'is_private'            => 'Om satt som privat, denna entitet kommer bara vara synlig för medlemmar i kampanjens "Admin" roll.',
         'is_star'               => 'Fastnålade element kommer bara visas på entitetens meny',
         'tooltip'               => 'Ersätt de automatiskt genererade inforutorna med följande innehåll.',
         'visibility'            => 'Att sätta synligheten till \'admin\' betyder att bara medlemmar i Admin rollen för kampanjen kan se detta. Att sätta den till \'Jag själv\' betyder att bara du själv kan se detta.',
     ],
     'history'                   => [
-        'created'       => 'Skapad av <strong>:name</strong> <span data-toggle="tooltip" title=":realdate">:date</span>',
-        'created_date'  => 'Skapad <span data-toggle="tooltip" title=":realdate">:date</span>',
-        'unknown'       => 'Okänd',
-        'updated'       => 'Senast ändrad av <strong>:name</strong> <span data-toggle="tooltip" title=":realdate">:date</span>',
-        'updated_date'  => 'Senast ändrad <span data-toggle="tooltip" title=":realdate">:date</span>',
-        'view'          => 'Visa entitets logg',
+        'unknown'   => 'Okänd',
+        'view'      => 'Visa entitets logg',
     ],
     'image'                     => [
         'error' => 'Vi kunde inte hämta bilden du begärde. Detta kan bero på att hemsidan inte tillåter oss att ladda ner bilden (vanligt för Squarespace och DeviantArt), eller att länken inte längre är giltig. Vänligen kontroller också att bilden inte är större än :size.',
@@ -214,30 +208,6 @@ return [
     'is_private'                => 'Denna entitet är privat och endast synlig för medlemmar med Admin rollen.',
     'linking_help'              => 'Hur kan ja hänvisa till andra entiteter?',
     'manage'                    => 'Hantera',
-    'move'                      => [
-        'errors'        => [
-            'permission'        => 'Du har inte behörighet att skapa entiteter av den typen i den valda kampanjen.',
-            'same_campaign'     => 'Du måste välja en annan kampanj att flytta entiteten till.',
-            'unknown_campaign'  => 'Okänd kampanj.',
-        ],
-        'fields'        => [
-            'campaign'  => 'Ny kampanj',
-            'copy'      => 'Skapa en kopia',
-            'target'    => 'Ny typ',
-        ],
-        'hints'         => [
-            'campaign'  => 'Du kan också försöka flytta denna entitet till en annan kampanj.',
-            'copy'      => 'Välj detta val om du vill skapa en kopia i den nya kampanjen.',
-            'target'    => 'Vänligen observera att viss data kan gå förlorad när ett element flyttas från en typ till en annan.',
-        ],
-        'panels'        => [
-            'change'    => 'Ändra entitets typ',
-            'move'      => 'Flytta till en annan kampanj',
-        ],
-        'success'       => 'Entitet \':name\' flyttad.',
-        'success_copy'  => 'Entitet \':name\' kopierad.',
-        'title'         => 'Ändra eller Flytta :name',
-    ],
     'new_entity'                => [
         'error' => 'Vänligen kontrollera dina värden.',
         'fields'=> [
@@ -245,7 +215,6 @@ return [
         ],
         'title' => 'Ny entitet',
     ],
-    'or_cancel'                 => 'eller <a href=":url">avbryt</a>',
     'panels'                    => [
         'appearance'            => 'Utseende',
         'attribute_template'    => 'Egenskapsmall',

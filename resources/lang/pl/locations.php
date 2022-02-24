@@ -2,13 +2,11 @@
 
 return [
     'characters'    => [
-        'description'   => 'Postaci znajdujące się w tym miejscu.',
-        'title'         => 'Postaci w miejscu :name',
+        'title' => 'Postaci w miejscu :name',
     ],
     'create'        => [
-        'description'   => 'Stwórz nowe miejsce',
-        'success'       => 'Stworzono miejsce \':name\'.',
-        'title'         => 'Nowe miejsce',
+        'success'   => 'Stworzono miejsce \':name\'.',
+        'title'     => 'Nowe miejsce',
     ],
     'destroy'       => [
         'success'   => 'Usunięto miejsce \':name\'.',
@@ -18,8 +16,7 @@ return [
         'title'     => 'Edycja miejsca :name',
     ],
     'events'        => [
-        'description'   => 'Wydarzenia rozgrywające się w tym miejscu.',
-        'title'         => 'Wydarzenia w miejscu :name',
+        'title' => 'Wydarzenia w miejscu :name',
     ],
     'families'      => [
         'title' => 'Rodziny w miejscu :name',
@@ -41,7 +38,6 @@ return [
         'families'          => 'Miejsce może być siedzibą potężnego rodu.',
         'map'               => 'Po dodaniu mapy do miejsca, będziesz mógł umieszczać na niej "Punkty", łącząc je z innymi elementami kampanii.',
         'map_deprecated_2'  => 'Mapy mają teraz własny moduł! Wciąż możesz aktualizować stare mapy, ale nowe umieszczaj w dedykowanym module.',
-        'nested'            => 'W widoku hierarchii najpierw  wyświetlane są miejsca, które nie mają źródła. Po kliknięciu na wiersz miejsca zobaczysz jego pochodne. Możesz schodzić niżej, póki nie skończą się poziomy hierarchii.',
         'nested_parent'     => 'Wyświetlono miejsca pochodzące od :parent.',
         'nested_without'    => 'Wyświetlono wszystkie miejsca nie posiadające źródła. Kliknij na rząd, by wyświetlić miejsca pochodne.',
         'organisations'     => 'Wyświetla organizacje rezydujące w tym miejscu i wszystkich miejscach pochodnych, albo wyłącznie tutaj.',
@@ -50,25 +46,21 @@ return [
         'is_map_private'    => 'Tajna mapa widoczna jest wyłącznie dla uczestników kampanii posiadających rolę "administrator".',
     ],
     'index'         => [
-        'actions'       => [
+        'actions'   => [
             'explore_view'  => 'Widok hierarchii',
         ],
-        'add'           => 'Nowe miejsce',
-        'description'   => 'Zarządzaj lokacjami elementu :name',
-        'header'        => 'Miejsca w :name',
-        'title'         => 'Miejsca',
+        'add'       => 'Nowe miejsce',
+        'header'    => 'Miejsca w :name',
+        'title'     => 'Miejsca',
     ],
     'items'         => [
-        'description'   => 'Przedmioty znajdujące się w tym miejscu lub z niego pochodzące.',
-        'title'         => 'Przedmioty miejsca :name',
+        'title' => 'Przedmioty miejsca :name',
     ],
     'journals'      => [
-        'description'   => 'Dzienniki napisane w tym miejscu',
-        'title'         => 'Dzienniki miejsca :name',
+        'title' => 'Dzienniki miejsca :name',
     ],
     'locations'     => [
-        'description'   => 'Miejsca mieszczące się w tym miejscu',
-        'title'         => 'Miejsca miejsca :name',
+        'title' => 'Miejsca miejsca :name',
     ],
     'map'           => [
         'actions'   => [
@@ -212,26 +204,19 @@ return [
         'name'      => 'Nazwa miejsca',
         'type'      => 'Miasto, królestwo, ruiny',
     ],
-    'quests'        => [
-        'description'   => 'Misje, w których pojawia się to miejsce.',
-        'title'         => 'Misje miejsca :name',
-    ],
     'show'          => [
-        'description'   => 'Szczegółowy widok miejsca',
-        'tabs'          => [
+        'tabs'  => [
             'characters'    => 'Postaci',
             'events'        => 'Wydarzenia',
             'families'      => 'Rodziny',
-            'information'   => 'Informacje',
             'items'         => 'Przedmioty',
             'journals'      => 'Dzienniki',
             'locations'     => 'Miejsca',
             'map'           => 'Mapa',
             'maps'          => 'Mapy',
-            'menu'          => 'Menu',
             'organisations' => 'Organizacje',
             'quests'        => 'Misje',
         ],
-        'title'         => 'Miejsce :name',
+        'title' => 'Miejsce :name',
     ],
 ];

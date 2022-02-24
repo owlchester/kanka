@@ -40,7 +40,6 @@ return [
         'title' => 'Notificaciones',
     ],
     'no_notifications'  => 'No tienes ninguna notificación.',
-    'permissions'       => [],
     'subscriptions'     => [
         'charge_fail'   => 'Ha habido un error procesando tu pago. Espera un momento mientras volvemos a intentarlo. Si no se producen cambios, contacta con nosotros.',
         'deleted'       => 'Tu suscripción a Kanka se ha cancelado tras demasiados intentos fallidos de hacer el cobro en tu tarjeta. Dirígete a la configuración de tu suscripción e intenta actualizar tus datos de pago.',

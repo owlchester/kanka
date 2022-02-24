@@ -7,17 +7,15 @@ return [
         'add_user'  => 'Añadir usuario',
     ],
     'create'        => [
-        'description'   => 'Crear nueva nota',
-        'success'       => 'Nota \':name\' añadida a :entity.',
-        'title'         => 'Nueva nota en :name',
+        'success'   => 'Nota \':name\' añadida a :entity.',
+        'title'     => 'Nueva nota en :name',
     ],
     'destroy'       => [
         'success'   => 'Nota \':name\' eliminada de :entity.',
     ],
     'edit'          => [
-        'description'   => 'Actualizar nota',
-        'success'       => 'Nota \':name\' actualizada en :entity.',
-        'title'         => 'Actualizar nota de :name',
+        'success'   => 'Nota \':name\' actualizada en :entity.',
+        'title'     => 'Actualizar nota de :name',
     ],
     'fields'        => [
         'collapsed' => 'Nota cerrada por defecto',

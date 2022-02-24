@@ -108,12 +108,10 @@ return [
             'title'         => 'Kalendari',
         ],
         'collaborative'     => [
-            'description'   => 'Nisi sam/a? Nema problema! Možeš pozvati svoje prijatelje i su-voditelja igre da ti pomognu u izgradnji kampanje!',
-            'title'         => 'Kolaborativno',
+            'title' => 'Kolaborativno',
         ],
         'dashboards'        => [
-            'description'   => 'Kontroliraj informacije vidljive tvojim igračima kad otvore Kanku.',
-            'title'         => 'Naslovne ploče',
+            'title' => 'Naslovne ploče',
         ],
         'description'       => 'Kanka ima veliki broj funkcionalnosti. Pratite likove svog svijeta i njihove odnose, lokacije i njihovu povijest, zadatke i njihove ciljeve, kalendare i njihove događaje i vremenske učinke, te još puno toga. Najbolje od svega je što Kanka dobiva nekoliko nadogradnji svakog mjeseca na temelju povratnih informacija korisnika.',
         'description_full'  => 'Neprestano dodajemo nove funkcionalnosti i poboljšanja Kanki, a sve temeljne funkcionalnosti su besplatne.',
@@ -122,9 +120,8 @@ return [
             'title'         => 'Flora i fauna',
         ],
         'free'              => [
-            'bonuses'       => 'bonuse',
-            'description'   => 'Sve temeljne funkcionalnosti Kanke su apsolutno besplatne, uz :bonuses za pretplatnike.',
-            'title'         => 'Besplatna za korištenje',
+            'bonuses'   => 'bonuse',
+            'title'     => 'Besplatna za korištenje',
         ],
         'landscape'         => 'Prebacite svoj uređaj u pejzažni način rada za prikaz popisa funkcionalnosti.',
         'layers'            => [
@@ -198,12 +195,10 @@ return [
         'title'             => 'Snažne funkcionalnosti s nevjerojatnom fleksibilnošću',
         'unlimited'         => 'Neograničeno',
         'updates'           => [
-            'description'   => 'Kanka prolazi kroz česta nadogradnje koje potiče zajednica.',
-            'title'         => 'Česte nadogradnje',
+            'title' => 'Česte nadogradnje',
         ],
         'worldbuilding'     => [
-            'description'   => 'Modulima koji pokrivaju sve, od Karti do Kronologija, od Kalendara do događaja, Kanka olakšava organizaciju složenih svjetova.',
-            'title'         => 'Izgradnja svijeta',
+            'title' => 'Izgradnja svijeta',
         ],
     ],
     'first_block'   => [

@@ -1,19 +1,16 @@
 <?php
 
 return [
-    'characters'    => [],
     'create'        => [
-        'description'   => 'Erstelle einen neuen Quest',
-        'success'       => 'Quest \':name\' erstellt.',
-        'title'         => 'Erstelle einen neuen Quest',
+        'success'   => 'Quest \':name\' erstellt.',
+        'title'     => 'Erstelle einen neuen Quest',
     ],
     'destroy'       => [
         'success'   => 'Quest \':name\' entfernt',
     ],
     'edit'          => [
-        'description'   => 'Bearbeite einen Quest',
-        'success'       => 'Quest \':name\' aktualisiert',
-        'title'         => 'Bearbeite Quest :name',
+        'success'   => 'Quest \':name\' aktualisiert',
+        'title'     => 'Bearbeite Quest :name',
     ],
     'elements'      => [
         'create'    => [
@@ -49,17 +46,17 @@ return [
         'type'          => 'Typ',
     ],
     'helpers'       => [
-        'nested_parent' => 'Anzeigen der Quests von :parent.',
-        'nested_without'=> 'Anzeigen aller Quests, die keine übergeordnete Quest haben. Klicken Sie auf eine Zeile, um die Quests für Kinder anzuzeigen.',
+        'is_completed'      => 'Wählen Sie aus, ob die Quest als abgeschlossen gilt.',
+        'nested_parent'     => 'Anzeigen der Quests von :parent.',
+        'nested_without'    => 'Anzeigen aller Quests, die keine übergeordnete Quest haben. Klicken Sie auf eine Zeile, um die Quests für Kinder anzuzeigen.',
     ],
     'hints'         => [
         'quests'    => 'Ein Netz aus verknüpften Quests kann mit dem Elternquest-Feld erstellt werden.',
     ],
     'index'         => [
-        'add'           => 'Neuer Quest',
-        'description'   => 'Verwalte die Quests von :name.',
-        'header'        => 'Quests von :name',
-        'title'         => 'Quests',
+        'add'       => 'Neuer Quest',
+        'header'    => 'Quests von :name',
+        'title'     => 'Quests',
     ],
     'items'         => [],
     'locations'     => [],
@@ -72,15 +69,12 @@ return [
         'type'  => 'Charakterentwicklung, Sidequest, Hauptquest',
     ],
     'show'          => [
-        'actions'       => [
+        'actions'   => [
             'add_element'   => 'Element hinzufügen',
         ],
-        'description'   => 'Eine detaillierte Ansicht eines Quests',
-        'tabs'          => [
-            'elements'      => 'Elemente',
-            'information'   => 'Informationen',
-            'quests'        => 'Quests',
+        'tabs'      => [
+            'elements'  => 'Elemente',
         ],
-        'title'         => 'Quest :name',
+        'title'     => 'Quest :name',
     ],
 ];

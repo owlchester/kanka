@@ -2,20 +2,18 @@
 
 return [
     'children'      => [
-        'actions'       => [
+        'actions'   => [
             'add'   => 'Dodaj novu oznaku',
         ],
-        'create'        => [
+        'create'    => [
             'success'   => 'Dodana oznaka :name entitetu.',
             'title'     => 'Dodaj oznaku na :name',
         ],
-        'description'   => 'Entiteti koji pripadaju oznaci',
-        'title'         => 'Djeca oznake :name',
+        'title'     => 'Djeca oznake :name',
     ],
     'create'        => [
-        'description'   => 'Kreiraj novu oznaku',
-        'success'       => 'Kreirana oznaka ":name".',
-        'title'         => 'Nova oznaka',
+        'success'   => 'Kreirana oznaka ":name".',
+        'title'     => 'Nova oznaka',
     ],
     'destroy'       => [
         'success'   => 'Uklonjena oznaka ":name".',
@@ -41,13 +39,12 @@ return [
         'tag'       => 'Ispod su prikazane sve oznake koje su izravno pod ovom oznakom.',
     ],
     'index'         => [
-        'actions'       => [
+        'actions'   => [
             'explore_view'  => 'Ugniježđeni pregled',
         ],
-        'add'           => 'Nova oznaka',
-        'description'   => 'Upravljanje oznakama u :name.',
-        'header'        => 'Oznake u :name',
-        'title'         => 'Oznake',
+        'add'       => 'Nova oznaka',
+        'header'    => 'Oznake u :name',
+        'title'     => 'Oznake',
     ],
     'new_tag'       => 'Nova oznaka',
     'placeholders'  => [
@@ -56,16 +53,13 @@ return [
         'type'  => 'Legende, Ratovi, Povijest, Religija, Veksologija',
     ],
     'show'          => [
-        'description'   => 'Detaljan prikaz oznake',
-        'tabs'          => [
-            'children'      => 'Djeca',
-            'information'   => 'Informacije',
-            'tags'          => 'Oznake',
+        'tabs'  => [
+            'children'  => 'Djeca',
+            'tags'      => 'Oznake',
         ],
-        'title'         => 'Oznaka :name',
+        'title' => 'Oznaka :name',
     ],
     'tags'          => [
-        'description'   => 'Oznake djeca',
-        'title'         => 'Djeca oznake :name',
+        'title' => 'Djeca oznake :name',
     ],
 ];

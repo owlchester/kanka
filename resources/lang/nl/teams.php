@@ -12,14 +12,7 @@ return [
         'title'         => 'Team',
         'translations'  => 'Vertalingen',
     ],
-    'patreon'       => [
-        'description'   => 'Deze geweldige mensen helpen en ondersteunen Kanka door zich in te schrijven.',
-        'learn_more'    => 'Volledige lijst met functies die worden ontgrendeld door een abonnement te nemen',
-    ],
     'people'        => [
-        'iz'        => [
-            'title' => 'Product ontwikkeling',
-        ],
         'jay'       => [
             'text'  => <<<'TEXT'
 Ik heb Kanka gemaakt in oktober 2017 omdat er geen tool was waarmee ik gemakkelijk een wereld kon creëren met mijn vrienden en toch kon bepalen wie wat kon zien of doen.

@@ -2,9 +2,8 @@
 
 return [
     'create'        => [
-        'description'   => 'Criar um novo jornal',
-        'success'       => 'Jornal criado.',
-        'title'         => 'Criar novo jornal',
+        'success'   => 'Jornal criado.',
+        'title'     => 'Criar novo jornal',
     ],
     'destroy'       => [
         'success'   => 'Jornal removido',
@@ -25,15 +24,13 @@ return [
     ],
     'helpers'       => [
         'journals'      => 'Mostrar todos ou somente os jornais secundários deste Jornal',
-        'nested'        => 'Mostrando Jornais sem jornais secundários primeiro. Clique em uma linha para explorar os jornais secundários de um Jornal.',
         'nested_parent' => 'Mostrando os jornais de :parent.',
         'nested_without'=> 'Mostrando todos os jornais que não tem um jornal-pai. Clique em uma linha para ver os jornais-filhos.',
     ],
     'index'         => [
-        'add'           => 'Novo Jornal',
-        'description'   => 'Gerencie os jornais de :name.',
-        'header'        => 'Jornais de :name',
-        'title'         => 'Jornais',
+        'add'       => 'Novo Jornal',
+        'header'    => 'Jornais de :name',
+        'title'     => 'Jornais',
     ],
     'journals'      => [
         'title' => 'Jornais secundários do Jornal :name',
@@ -46,10 +43,9 @@ return [
         'type'      => 'Sessão, One Shot, Rascunho',
     ],
     'show'          => [
-        'description'   => 'Uma visão detalhada de um jornal',
-        'tabs'          => [
+        'tabs'  => [
             'journals'  => 'Jornais',
         ],
-        'title'         => 'Jornal :name',
+        'title' => 'Jornal :name',
     ],
 ];

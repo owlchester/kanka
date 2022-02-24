@@ -2,9 +2,8 @@
 
 return [
     'create'        => [
-        'description'   => 'Skapa en ny händelse',
-        'success'       => 'Händelse \':name\' skapad.',
-        'title'         => 'Ny Händelse',
+        'success'   => 'Händelse \':name\' skapad.',
+        'title'     => 'Ny Händelse',
     ],
     'destroy'       => [
         'success'   => 'Händelse \':name\' borttagen.',
@@ -24,10 +23,9 @@ return [
         'date'  => 'Detta fält kan innehålla vad som helst och är inte länkat till kampanjens kalender. För att länka denna händelse med en kalender, gå och lägg till den på kalendern eller på påminnelser fliken för denna händelse.',
     ],
     'index'         => [
-        'add'           => 'Ny Händelse',
-        'description'   => 'Hantera händelserna för :name',
-        'header'        => 'Händelser för :name',
-        'title'         => 'Händelser',
+        'add'       => 'Ny Händelse',
+        'header'    => 'Händelser för :name',
+        'title'     => 'Händelser',
     ],
     'placeholders'  => [
         'date'      => 'Ett datum för din händelse',
@@ -36,11 +34,7 @@ return [
         'type'      => 'Ceremoni, Festival, Katastrof, Strid, Födelse',
     ],
     'show'          => [
-        'description'   => 'En detaljerad vy för en händelse',
-        'tabs'          => [
-            'information'   => 'Information',
-        ],
-        'title'         => 'Händelse :name',
+        'title' => 'Händelse :name',
     ],
     'tabs'          => [
         'calendars' => 'Kalender Noteringar',

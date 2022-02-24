@@ -40,9 +40,8 @@ return [
     ],
     'title'         => ':name Serüveninin Eklentileri',
     'types'         => [
-        'attributes'    => 'Varlık Şeması',
-        'pack'          => 'İçerik Paketi',
-        'theme'         => 'Tema',
+        'pack'  => 'İçerik Paketi',
+        'theme' => 'Tema',
     ],
     'update'        => [
         'success'   => ':plugin eklentisi güncellendi.',

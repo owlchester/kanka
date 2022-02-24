@@ -2,9 +2,8 @@
 
 return [
     'create'        => [
-        'description'   => 'Új szervezet létrehozása',
-        'success'       => 'A(z) :name szervezetet létrehoztuk.',
-        'title'         => 'Új szervezet',
+        'success'   => 'A(z) :name szervezetet létrehoztuk.',
+        'title'     => 'Új szervezet',
     ],
     'destroy'       => [
         'success'   => 'A(z) :name szervezetet töröltük.',
@@ -25,24 +24,21 @@ return [
     ],
     'helpers'       => [
         'descendants'   => 'Ez a lista a szervezet összes leszármazott szervezetét tartalmazza, nem csak a közvetlen alszervezeit.',
-        'nested'        => 'Hierarchikus nézetben a szervezeteidet alá-fölérendeltségi viszonyukban tekintheted meg. A legfelső szinten azokat a szervezeteket láthatod, amiknek nincs szülőszervezete, rájuk kattintva pedig megtekintheted alszervezeteiket. Amennyiben az egyes alszervezeteknek saját alszervezeteik vannak, azokra kattintva őket is megtekintheted.',
         'nested_parent' => ':parent szervezeteinek mutatása.',
         'nested_without'=> 'Mutass meg minden szervezetet, aminek nincs szülője. Klikkelj egy sorra, hogy lásd a gyermekszervezeteit.',
     ],
     'index'         => [
-        'add'           => 'Új szervezet',
-        'description'   => ':name szervezeteinek kezelése',
-        'header'        => ':name szervezetei',
-        'title'         => 'Szervezetek',
+        'add'       => 'Új szervezet',
+        'header'    => ':name szervezetei',
+        'title'     => 'Szervezetek',
     ],
     'members'       => [
         'actions'       => [
             'add'   => 'Tag hozzáadása',
         ],
         'create'        => [
-            'description'   => 'Egy tag hozzáadása a szervezethez',
-            'success'       => 'A tagot hozzáadtuk a szervezethez',
-            'title'         => 'Új tag a(z) :name szervezethez',
+            'success'   => 'A tagot hozzáadtuk a szervezethez',
+            'title'     => 'Új tag a(z) :name szervezethez',
         ],
         'destroy'       => [
             'success'   => 'A tagot eltávolítottuk a szervezetből',
@@ -74,17 +70,12 @@ return [
         'name'      => 'A szervezet neve',
         'type'      => 'Kultusz, banda, klán, fanklub',
     ],
-    'quests'        => [
-        'description'   => 'A szervezethez kapcsolódó küldetések',
-        'title'         => ':name küldetései',
-    ],
     'show'          => [
-        'description'   => 'A szervezet részletes nézete',
-        'tabs'          => [
+        'tabs'  => [
             'organisations' => 'Szervezetek',
             'quests'        => 'Küldetések',
             'relations'     => 'Kapcsolatok',
         ],
-        'title'         => ':name szervezet',
+        'title' => ':name szervezet',
     ],
 ];

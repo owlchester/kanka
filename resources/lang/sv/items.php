@@ -2,9 +2,8 @@
 
 return [
     'create'        => [
-        'description'   => 'Skapa ett nytt föremål',
-        'success'       => 'Föremål \':name\' skapat.',
-        'title'         => 'Nytt Föremål',
+        'success'   => 'Föremål \':name\' skapat.',
+        'title'     => 'Nytt Föremål',
     ],
     'destroy'       => [
         'success'   => 'Föremål \':name\' borttaget.',
@@ -24,14 +23,12 @@ return [
         'type'      => 'Typ',
     ],
     'index'         => [
-        'add'           => 'Nytt Föremål',
-        'description'   => 'Hantera föremålen för :name.',
-        'header'        => 'Föremål för :name',
-        'title'         => 'Föremål',
+        'add'       => 'Nytt Föremål',
+        'header'    => 'Föremål för :name',
+        'title'     => 'Föremål',
     ],
     'inventories'   => [
-        'description'   => 'Entitets Inventarier föremålet finns i.',
-        'title'         => 'Föremål :name Inventarier',
+        'title' => 'Föremål :name Inventarier',
     ],
     'placeholders'  => [
         'character' => 'Välj en karaktär',
@@ -41,17 +38,10 @@ return [
         'size'      => 'Storlek, Vikt, Dimensioner',
         'type'      => 'Vapen, Trolldryck, Artefakt',
     ],
-    'quests'        => [
-        'description'   => 'Uppdrag föremålet är en del av.',
-        'title'         => 'Föremål :name Uppdrag',
-    ],
     'show'          => [
-        'description'   => 'En detaljerad vy för ett föremål',
-        'tabs'          => [
-            'information'   => 'Information',
+        'tabs'  => [
             'inventories'   => 'Inventarier',
-            'quests'        => 'Uppdrag',
         ],
-        'title'         => 'Föremål :name',
+        'title' => 'Föremål :name',
     ],
 ];

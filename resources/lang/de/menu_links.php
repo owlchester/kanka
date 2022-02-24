@@ -54,9 +54,6 @@ return [
         'title'     => 'Menü Links neu anordnen',
     ],
     'show'              => [
-        'tabs'  => [
-            'information'   => 'Informationen',
-        ],
         'title' => 'Menü Link :name',
     ],
 ];

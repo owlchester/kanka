@@ -2,17 +2,15 @@
 
 return [
     'create'        => [
-        'description'   => 'Erstelle eine neue Unterhaltung',
-        'success'       => 'Unterhaltung :name erstellt.',
-        'title'         => 'Neue Unterhaltung',
+        'success'   => 'Unterhaltung :name erstellt.',
+        'title'     => 'Neue Unterhaltung',
     ],
     'destroy'       => [
         'success'   => 'Unterhaltung :name gelöscht.',
     ],
     'edit'          => [
-        'description'   => 'Aktualisiere die Unterhaltung',
-        'success'       => 'Unterhaltung \':name\' aktualisiert.',
-        'title'         => 'Unterhaltung :name',
+        'success'   => 'Unterhaltung \':name\' aktualisiert.',
+        'title'     => 'Unterhaltung :name',
     ],
     'fields'        => [
         'is_closed'     => 'geschlossen',
@@ -26,10 +24,9 @@ return [
         'participants'  => 'Bitte füge Teilnehmer zu deiner Unterhaltung hinzu, indem du das :icon Symbol oben rechts drückst.',
     ],
     'index'         => [
-        'add'           => 'Neue Unterhaltung',
-        'description'   => 'Verwalte die Kategorie von :name.',
-        'header'        => 'Unterhaltungen in :name',
-        'title'         => 'Unterhaltungen',
+        'add'       => 'Neue Unterhaltung',
+        'header'    => 'Unterhaltungen in :name',
+        'title'     => 'Unterhaltungen',
     ],
     'messages'      => [
         'destroy'       => [
@@ -42,24 +39,22 @@ return [
         ],
     ],
     'participants'  => [
-        'create'        => [
+        'create'    => [
             'success'   => 'Teilnehmer :entity zu Unterhaltung hinzugefügt.',
         ],
-        'description'   => 'Entferne oder füge Teilnehmer einer Unterhaltung hinzu',
-        'destroy'       => [
+        'destroy'   => [
             'success'   => 'Teilnehmer :entity von Unterhaltung entfernt.',
         ],
-        'modal'         => 'Teilnehmer',
-        'title'         => 'Teilnehmer von :name',
+        'modal'     => 'Teilnehmer',
+        'title'     => 'Teilnehmer von :name',
     ],
     'placeholders'  => [
         'name'  => 'Name der Unterhaltung',
         'type'  => 'Im Spiel, Vorbereitung, Handlung',
     ],
     'show'          => [
-        'description'   => 'Eine Detailansicht einer Unterhaltung',
-        'is_closed'     => 'Unterhaltung geschlossen',
-        'title'         => 'Unterhaltung :name',
+        'is_closed' => 'Unterhaltung geschlossen',
+        'title'     => 'Unterhaltung :name',
     ],
     'tabs'          => [
         'conversation'  => 'Unterhaltung',

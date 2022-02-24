@@ -2,18 +2,16 @@
 
 return [
     'create'        => [
-        'description'   => 'Stwórz nowy rzut kośćmi',
-        'success'       => 'Stworzono rzut kośćmi ":name\'.',
-        'title'         => 'Nowy rzut kośćmi',
+        'success'   => 'Stworzono rzut kośćmi ":name\'.',
+        'title'     => 'Nowy rzut kośćmi',
     ],
     'destroy'       => [
         'dice_roll' => 'Usunięto rzut kośćmi.',
         'success'   => 'Usunięto rzut kośćmi \':name\'.',
     ],
     'edit'          => [
-        'description'   => 'Edytuj rzut kośćmi',
-        'success'       => 'Zmieniono rzut kośćmi \':name\'.',
-        'title'         => 'Edycja rzutu kośćmi :name',
+        'success'   => 'Zmieniono rzut kośćmi \':name\'.',
+        'title'     => 'Edycja rzutu kośćmi :name',
     ],
     'fields'        => [
         'created_at'    => 'Rzucono w',
@@ -26,14 +24,13 @@ return [
         'parameters'    => 'Jak opisywać rzut kośćmi?',
     ],
     'index'         => [
-        'actions'       => [
+        'actions'   => [
             'dice'      => 'Rzuty kości',
             'results'   => 'Wyniki',
         ],
-        'add'           => 'Nowy rzut kośćmi',
-        'description'   => 'Zarządzaj rzutami kośćmi dla :name.',
-        'header'        => 'Rzuty kośćmi dla :name',
-        'title'         => 'Rzuty kośćmi',
+        'add'       => 'Nowy rzut kośćmi',
+        'header'    => 'Rzuty kośćmi dla :name',
+        'title'     => 'Rzuty kośćmi',
     ],
     'placeholders'  => [
         'dice_roll' => 'Rzut kośćmi',
@@ -54,10 +51,9 @@ return [
         'success'   => 'Kości zostały rzucone.',
     ],
     'show'          => [
-        'description'   => 'Szczegółowy opis rzutu kośćmi',
-        'tabs'          => [
+        'tabs'  => [
             'results'   => 'Wyniki',
         ],
-        'title'         => 'Rzut kośćmi :name',
+        'title' => 'Rzut kośćmi :name',
     ],
 ];

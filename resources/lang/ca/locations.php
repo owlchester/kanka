@@ -204,7 +204,6 @@ return [
         'name'      => 'Nom de l\'indret',
         'type'      => 'Ciutat, regne, ruïnes...',
     ],
-    'quests'        => [],
     'show'          => [
         'tabs'  => [
             'characters'    => 'Personatges',

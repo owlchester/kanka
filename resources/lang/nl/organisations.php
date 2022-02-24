@@ -2,9 +2,8 @@
 
 return [
     'create'        => [
-        'description'   => 'Maak een nieuwe organisatie',
-        'success'       => 'Organisatie \':name\' gemaakt.',
-        'title'         => 'Nieuwe Organisatie',
+        'success'   => 'Organisatie \':name\' gemaakt.',
+        'title'     => 'Nieuwe Organisatie',
     ],
     'destroy'       => [
         'success'   => 'Organisatie \':name\' verwijderd',
@@ -25,22 +24,19 @@ return [
     ],
     'helpers'       => [
         'descendants'   => 'Deze lijst bevat alle organisaties die afstammen van deze organisatie, en niet alleen de direct daaronder vallende organisaties.',
-        'nested'        => 'In geneste weergave kunt je jouw organisaties op een geneste manier bekijken. Organisaties zonder bovenliggende organisatie worden standaard weergegeven. Op organisaties met gerelateerde organisaties kan worden geklikt om die gerelateerden te bekijken. Je kunt blijven klikken totdat er geen gerelateerden meer te zien zijn.',
     ],
     'index'         => [
-        'add'           => 'Nieuwe Organisatie',
-        'description'   => 'Beheer de organisaties van :name',
-        'header'        => 'Organisaties van :name',
-        'title'         => 'Organisaties',
+        'add'       => 'Nieuwe Organisatie',
+        'header'    => 'Organisaties van :name',
+        'title'     => 'Organisaties',
     ],
     'members'       => [
         'actions'       => [
             'add'   => 'Voeg een lid toe',
         ],
         'create'        => [
-            'description'   => 'Voeg een lid toe aan de organisatie',
-            'success'       => 'Lid toegevoegd aan de organisatie.',
-            'title'         => 'Nieuw Organisatie Lid voor :name',
+            'success'   => 'Lid toegevoegd aan de organisatie.',
+            'title'     => 'Nieuw Organisatie Lid voor :name',
         ],
         'destroy'       => [
             'success'   => 'Lid verwijderd van de organisatie',
@@ -72,17 +68,12 @@ return [
         'name'      => 'Naam van de organisatie',
         'type'      => 'Sekte, Gang, Rebellie, Fandom',
     ],
-    'quests'        => [
-        'description'   => 'Quests waar de organisatie deel van uitmaakt.',
-        'title'         => 'Organisatie :name Quests',
-    ],
     'show'          => [
-        'description'   => 'Een gedetailleerd overzicht van een organisatie',
-        'tabs'          => [
+        'tabs'  => [
             'organisations' => 'Organisaties',
             'quests'        => 'Quests',
             'relations'     => 'Relaties',
         ],
-        'title'         => 'Organisatie :name',
+        'title' => 'Organisatie :name',
     ],
 ];

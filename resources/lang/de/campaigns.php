@@ -22,9 +22,8 @@ TEXT
         'success'   => 'Kampagne gelöscht',
     ],
     'edit'                              => [
-        'description'   => 'Bearbeite deine Kampagne',
-        'success'       => 'Kampagne aktualisiert',
-        'title'         => 'Kampagne :campaign bearbeiten',
+        'success'   => 'Kampagne aktualisiert',
+        'title'     => 'Kampagne :campaign bearbeiten',
     ],
     'entity_note_visibility'            => [],
     'entity_personality_visibilities'   => [
@@ -39,7 +38,6 @@ TEXT
         'unknown_id'    => 'Unbekannte Kampagne.',
     ],
     'export'                            => [
-        'description'       => 'Exportiere die Kampagne.',
         'errors'            => [
             'limit' => 'Du hast dein Limit von einem Export pro Tag erreicht. Bitte versuche es morgen wieder.',
         ],
@@ -117,7 +115,6 @@ TEXT
                 'create'    => 'Einladung erstellen',
                 'send'      => 'sende Einladung',
             ],
-            'description'   => 'Lade einen Freund zu deiner Kampagne ein',
             'success'       => 'Einladung verschickt.',
             'success_link'  => 'Link :link erstellt',
             'title'         => 'Lade jemanden zu deiner Kampagne ein',
@@ -142,7 +139,6 @@ TEXT
             'role'      => 'Rolle',
             'type'      => 'Typ',
             'usage'     => 'Maximale Anzahl von Verwendungen',
-            'validity'  => 'Gültigkeit',
         ],
         'helpers'               => [
             'email'     => 'Unsere E-Mails werden häufig als Spam gekennzeichnet und können sich bis zu einigen Stunden verzögern, bevor sie in Ihrem Posteingang angezeigt werden.',
@@ -178,10 +174,8 @@ TEXT
         'create'                => [
             'title' => 'Füge ein Mitglied zu deiner Kampagne hinzu.',
         ],
-        'description'           => 'Verwalte die Mitglieder deiner Kampagne',
         'edit'                  => [
-            'description'   => 'Bearbeite ein Mitglied deiner Kampagne',
-            'title'         => 'Bearbeite Mitglied :name',
+            'title' => 'Bearbeite Mitglied :name',
         ],
         'fields'                => [
             'joined'        => 'Beigetreten',
@@ -261,7 +255,6 @@ TEXT
             'success'   => 'Rolle erstellt.',
             'title'     => 'Erstelle eine neue Rolle für :name',
         ],
-        'description'   => 'Verwalte die Rollen deiner Kampagne',
         'destroy'       => [
             'success'   => 'Rolle entfernt.',
         ],
@@ -302,6 +295,7 @@ TEXT
                 'delete'        => 'Entfernen',
                 'edit'          => 'Bearbeiten',
                 'entity-note'   => 'Notizen',
+                'gallery'       => 'Gallerie',
                 'manage'        => 'Verwalten',
                 'members'       => 'Mitglieder',
                 'permission'    => 'Verwalte Berechtigungen',
@@ -314,6 +308,7 @@ TEXT
                 'delete'        => 'Erlauben Sie das Entfernen aller Objekte dieses Typs.',
                 'edit'          => 'Bearbeitung aller Objekte dieses Typs zulassen.',
                 'entity_note'   => 'Auf diese Weise können Benutzer ohne Bearbeitungsberechtigung für ein Objekt Objektsnotizen hinzufügen.',
+                'gallery'       => 'Verwalten der Galerie der supergeboosteten Kampagne zulassen.',
                 'manage'        => 'Erlauben Sie die Bearbeitung der Kampagne wie ein Kampagnenadministrator, ohne dass die Mitglieder die Kampagne löschen können.',
                 'members'       => 'Erlauben Sie, neue Mitglieder zur Kampagne einzuladen.',
                 'permission'    => 'Erlaube Einstellungsberechtigungen für Objekte dieses Typs, die sie bearbeiten können.',
@@ -325,8 +320,7 @@ TEXT
             'name'  => 'Name der Rolle',
         ],
         'show'          => [
-            'description'   => 'Mitglieder und Berechtigungen einer Rolle',
-            'title'         => 'Rolle \':role\' für Kampagne \':campaign\'',
+            'title' => 'Rolle \':role\' für Kampagne \':campaign\'',
         ],
         'title'         => 'Kampagne :name Rollen',
         'types'         => [
@@ -352,16 +346,15 @@ TEXT
         ],
     ],
     'settings'                          => [
-        'actions'       => [
+        'actions'   => [
             'enable'    => 'aktivieren',
         ],
-        'boosted'       => 'Diese Funktion befindet sich in der Beta-Phase und ist derzeit nur verfügbar für :boosted.',
-        'description'   => 'Aktiviere oder deaktiviere Module für diese Kampagne.',
-        'edit'          => [
+        'boosted'   => 'Diese Funktion befindet sich in der Beta-Phase und ist derzeit nur verfügbar für :boosted.',
+        'edit'      => [
             'success'   => 'Kampagnen Einstellungen aktualisiert.',
         ],
-        'helper'        => 'Du kannst einfach Elemente von deiner Kampagne abschalten, die dann versteckt werden. Wenn du bereits Objekte in dieser Kategorie angelegt hast, werden diese nicht gelöscht, nur versteckt.',
-        'helpers'       => [
+        'helper'    => 'Du kannst einfach Elemente von deiner Kampagne abschalten, die dann versteckt werden. Wenn du bereits Objekte in dieser Kategorie angelegt hast, werden diese nicht gelöscht, nur versteckt.',
+        'helpers'   => [
             'abilities'     => 'Erstellen Sie Fähigkeiten, seien es Talente, Zauber oder Kräfte, die Objekten zugewiesen werden können.',
             'calendars'     => 'Der Ort, um die Kalender deiner Welt zu erstellen.',
             'characters'    => 'Die Leute, die deine Welt bevölkern.',
@@ -382,21 +375,20 @@ TEXT
             'tags'          => 'Jedes Objekt kann eine Kategorie habe. Kategorien können zu anderen Kategorien gehören und Objekte können nach Kategorie gefiltert werden.',
             'timelines'     => 'Stellen Sie die Geschichte Ihrer Welt mit Zeitstrahlen dar.',
         ],
-        'title'         => 'Kampagne :name Module',
+        'title'     => 'Kampagne :name Module',
     ],
     'show'                              => [
-        'actions'       => [
+        'actions'   => [
             'boost' => 'Boost Kampagne',
             'edit'  => 'Kampagne editieren',
             'leave' => 'Kampagne verlassen',
         ],
-        'description'   => 'Eine detaillierte Ansicht der Kampagne',
-        'menus'         => [
+        'menus'     => [
             'configuration'     => 'Aufbau',
             'overview'          => 'Übersicht',
             'user_management'   => 'Benutzerverwaltung',
         ],
-        'tabs'          => [
+        'tabs'      => [
             'achievements'      => 'Erfolge',
             'applications'      => 'Bewerbungen',
             'campaign'          => 'Kampagne',
@@ -404,14 +396,13 @@ TEXT
             'export'            => 'Export',
             'information'       => 'Informationen',
             'members'           => 'Mitglieder',
-            'menu'              => 'Menü',
             'plugins'           => 'Plugins',
             'recovery'          => 'Wiederherstellen',
             'roles'             => 'Rollen',
             'settings'          => 'Einstellungen',
             'styles'            => 'Thematisierung',
         ],
-        'title'         => 'Kampagne :name',
+        'title'     => 'Kampagne :name',
     ],
     'superboosted'                      => [
         'gallery'   => [

@@ -204,7 +204,6 @@ return [
         'name'      => 'Nom du lieu',
         'type'      => 'Village, Royaume, Ruine',
     ],
-    'quests'        => [],
     'show'          => [
         'tabs'  => [
             'characters'    => 'Personnages',

@@ -4,7 +4,6 @@ return [
     'avatar'        => [
         'success'   => 'A profilképet frissítettük.',
     ],
-    'description'   => 'A profilod részleteinek módosítása',
     'edit'          => [
         'success'   => 'A profilodat frissítettük.',
     ],
@@ -42,9 +41,7 @@ return [
             'release'   => 'Új frissítés',
         ],
         'settings'  => [
-            'news'          => 'Hírek - értesíts, amikor vannak :news.',
-            'newsletter'    => 'Hírlevél - feliratkozás a Kanka hírlevelére.',
-            'votes'         => 'Közösségi szavazás - értesíts amint egy új :vote elérhető.',
+            'news'  => 'Hírek - értesíts, amikor vannak :news.',
         ],
         'title'     => 'Hírlevelek',
     ],
@@ -79,7 +76,6 @@ return [
             'pagination'            => 'Lapméret (elemek száma egy lapon)',
         ],
         'helpers'   => [
-            'editor'    => 'Az alapértelmezett szerkesztő (TinyMCE 4) régi, jól működik desktop környezetben, de a mobil eszközökön nem. A Summernote egy újabb szerkesztő, amely minden eszközön egyaránt működik, de egyelőre még próbafázisban van.',
             'editor_v2' => 'Az örökölt szövegszerkesztő (TinyMCE) használatát nem támogatjuk mobil eszközökn, és néhány lehetőséggel nem rendelkezik, mint például a kampánygaléria.',
         ],
         'hints'     => [

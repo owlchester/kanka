@@ -2,13 +2,11 @@
 
 return [
     'characters'    => [
-        'description'   => 'Postavy na tomto mieste.',
-        'title'         => 'Postavy miesta :name',
+        'title' => 'Postavy miesta :name',
     ],
     'create'        => [
-        'description'   => 'Vytvoriť nové miesto',
-        'success'       => 'Miesto :name vytvorené.',
-        'title'         => 'Nové miesto',
+        'success'   => 'Miesto :name vytvorené.',
+        'title'     => 'Nové miesto',
     ],
     'destroy'       => [
         'success'   => 'Miesto :name odstránené.',
@@ -18,8 +16,7 @@ return [
         'title'     => 'Upraviť miesto :name',
     ],
     'events'        => [
-        'description'   => 'Udalosti, ktoré sa udiali na tomto mieste.',
-        'title'         => 'Udalosti miesta :name',
+        'title' => 'Udalosti miesta :name',
     ],
     'families'      => [
         'title' => 'Rody miesta :name',
@@ -40,9 +37,7 @@ return [
         'descendants'       => 'Tento zoznam obsahuje miesta, ktoré sú tomuto miestu podriadené, nie iba tie priamo pod ním.',
         'families'          => 'Miesta môžu byť sídlami mocných rodov.',
         'map'               => 'Pridaním mapy k danému miestu na nej môžeš umiestniť body a prepojiť ich s inými objektami kampane.',
-        'map_deprecated'    => 'Mapy majú teraz vlastný modul! Táto nová funkcia je zatiaľ dostupná len pre :boosted. Toto aktuálne rozhranie nebude dostupné, akonáhle bude nová funkcia dostupná pre všetkých. Pôvodné mapy môžete teraz ale naďalej upravovať.',
         'map_deprecated_2'  => 'Mapy sú teraz samostatný modul! Staré mapy môžeš ešte stále upravovať, ale nové mapy sa zobrazia už v novom module Mapy.',
-        'nested'            => 'Miesta vieš zoradiť vo vnorenom zobrazení. Miesta bez nadradeného miesta sa zoradia štandardným spôsobom. Miesta s podradenými miestami je možné rozkliknúť, dokiaľ nebudú existovať už žiadne ďalšie podradené miesta.',
         'nested_parent'     => 'Zobraziť miesta :parent.',
         'nested_without'    => 'Zobraziť všetky miesta, ktoré nemajú nadradené miesto. Kliknutím na riadok zobrazíš podradené miesta.',
         'organisations'     => 'Zobraz všetky organizácie na tomto mieste a jemu podradených miestach, alebo iba tie nachádzajúce sa priamo na tomto mieste.',
@@ -51,25 +46,21 @@ return [
         'is_map_private'    => 'Súkromná mapa je viditeľná len pre členov kampane s rolou Admin.',
     ],
     'index'         => [
-        'actions'       => [
+        'actions'   => [
             'explore_view'  => 'Vnorené zobrazenie',
         ],
-        'add'           => 'Nové miesto',
-        'description'   => 'Spravuj miesta objektu :name.',
-        'header'        => 'Miesta objektu :name',
-        'title'         => 'Miesta',
+        'add'       => 'Nové miesto',
+        'header'    => 'Miesta objektu :name',
+        'title'     => 'Miesta',
     ],
     'items'         => [
-        'description'   => 'Predmety nachádzajúce na mieste alebo pochádzajúce z neho.',
-        'title'         => 'Predmety miesta :name',
+        'title' => 'Predmety miesta :name',
     ],
     'journals'      => [
-        'description'   => 'Záznamy v denníku napísané na tomto mieste.',
-        'title'         => 'Záznamy v denníku miesta :name',
+        'title' => 'Záznamy v denníku miesta :name',
     ],
     'locations'     => [
-        'description'   => 'Miesta nachádzajúce sa na mieste :name.',
-        'title'         => 'Miesta miesta :name',
+        'title' => 'Miesta miesta :name',
     ],
     'map'           => [
         'actions'   => [
@@ -203,8 +194,7 @@ return [
         'title' => 'Mapy miesta :name',
     ],
     'organisations' => [
-        'description'   => 'Organizácie na tomto mieste.',
-        'title'         => 'Organizácie miesta :name',
+        'title' => 'Organizácie miesta :name',
     ],
     'panels'        => [
         'map'   => 'Mapa',
@@ -214,26 +204,19 @@ return [
         'name'      => 'Názov miesta',
         'type'      => 'mesto, kráľovstvo, ruina',
     ],
-    'quests'        => [
-        'description'   => 'Úlohy spojené s týmto miestom',
-        'title'         => 'Úlohy miesta :name',
-    ],
     'show'          => [
-        'description'   => 'Detailný náhľad na miesto',
-        'tabs'          => [
+        'tabs'  => [
             'characters'    => 'Postavy',
             'events'        => 'Udalosti',
             'families'      => 'Rody',
-            'information'   => 'Informácie',
             'items'         => 'Predmety',
             'journals'      => 'Záznamy v denníku',
             'locations'     => 'Miesta',
             'map'           => 'Mapa',
             'maps'          => 'Mapy',
-            'menu'          => 'Menu',
             'organisations' => 'Organizácie',
             'quests'        => 'Úlohy',
         ],
-        'title'         => 'Miesto :name',
+        'title' => 'Miesto :name',
     ],
 ];

@@ -2,17 +2,15 @@
 
 return [
     'create'        => [
-        'description'   => 'Kreiraj novi razgovor',
-        'success'       => 'Kreiran razgovor ":name".',
-        'title'         => 'Novi razgovor',
+        'success'   => 'Kreiran razgovor ":name".',
+        'title'     => 'Novi razgovor',
     ],
     'destroy'       => [
         'success'   => 'Uklonjen razgovor ":name".',
     ],
     'edit'          => [
-        'description'   => 'Ažuriraj razgovor',
-        'success'       => 'Ažuriran razgovor ":name".',
-        'title'         => 'Razgovor :name',
+        'success'   => 'Ažuriran razgovor ":name".',
+        'title'     => 'Razgovor :name',
     ],
     'fields'        => [
         'is_closed'     => 'Zatvoreno',
@@ -26,10 +24,9 @@ return [
         'participants'  => 'Dodaj sudionike u razgovor pritiskom na ikonu :icon u gornjem desnom kutu.',
     ],
     'index'         => [
-        'add'           => 'Novi razgovor',
-        'description'   => 'Upravljanje kategorijom u :name.',
-        'header'        => 'Razgovori u :name',
-        'title'         => 'Razgovori',
+        'add'       => 'Novi razgovor',
+        'header'    => 'Razgovori u :name',
+        'title'     => 'Razgovori',
     ],
     'messages'      => [
         'destroy'       => [
@@ -42,24 +39,22 @@ return [
         ],
     ],
     'participants'  => [
-        'create'        => [
+        'create'    => [
             'success'   => 'Sudionik :entity dodan u razgovor.',
         ],
-        'description'   => 'Dodavaj ili ukloni sudionika razgovora',
-        'destroy'       => [
+        'destroy'   => [
             'success'   => 'Sudionik :entity uklonjen iz razgovora.',
         ],
-        'modal'         => 'Sudionici',
-        'title'         => 'Sudionici u :name',
+        'modal'     => 'Sudionici',
+        'title'     => 'Sudionici u :name',
     ],
     'placeholders'  => [
         'name'  => 'Naziv razgovora',
         'type'  => 'U igri, Priprema, Zaplet',
     ],
     'show'          => [
-        'description'   => 'Detaljan prikaz razgovora',
-        'is_closed'     => 'Razgovor je zatvoren.',
-        'title'         => 'Razgovor :name',
+        'is_closed' => 'Razgovor je zatvoren.',
+        'title'     => 'Razgovor :name',
     ],
     'tabs'          => [
         'conversation'  => 'Razgovor',

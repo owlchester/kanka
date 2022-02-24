@@ -67,15 +67,13 @@ return [
             'title'         => 'Calendari',
         ],
         'collaborative'     => [
-            'description'   => 'Non sei solo? Ci abbiamo pensato noi! Puoi invitare i tuoi amici e co-dungeon master per aiutarti a costruire la tua campagna assieme.',
-            'title'         => 'Collaborativo',
+            'title' => 'Collaborativo',
         ],
         'description'       => 'Qui ci sono alcune delle cose che noi pensiamo tu adorerai della nostra app!',
         'description_full'  => 'Una vetrina di alcune delle nostre migliori e più amate caratteristiche.',
         'free'              => [
-            'bonuses'       => 'Bonus',
-            'description'   => 'Le migliori cose nella vita sono quelle gratuite. Niente pubblicità, nessun costo nascosto, nessun paywall.',
-            'title'         => 'Utilizzo Gratuito',
+            'bonuses'   => 'Bonus',
+            'title'     => 'Utilizzo Gratuito',
         ],
         'landscape'         => 'Per favore passa alla modalità landscape per mostrare la lista delle funzionalità.',
         'layers'            => [
@@ -121,8 +119,7 @@ return [
         ],
         'title'             => 'Caratteristiche Infinite, Divertimento Infinito',
         'updates'           => [
-            'description'   => 'Kanka viene aggiornata frequentemente con updates che sono presentati dalla community.',
-            'title'         => 'Aggiornamenti Frequenti',
+            'title' => 'Aggiornamenti Frequenti',
         ],
     ],
     'first_block'   => [
@@ -135,7 +132,6 @@ return [
         'headings'  => [
             'app'           => 'App',
             'community'     => 'Community',
-            'friends'       => 'I Nostri Amici',
             'useful_links'  => 'Link Utili',
         ],
         'navigation'=> 'Navigazione',
@@ -204,7 +200,6 @@ return [
     ],
     'second_block'  => [
         'call_to_action'    => 'Allora Iniziamo!',
-        'title'             => 'Smetti di aspettare.<br />Inizia a costruire.',
     ],
     'team'          => [
         'coffee'    => 'Offrimi un caffè!',

@@ -13,7 +13,6 @@ return [
     'section_6'         => 'Lépj kapcsolatba velünk',
     'section_7'         => 'Ha nem találsz választ egy kérdésedre, vagy egyszerűen csak kapcsolatba akarsz lépni, megtalálsz minket a :facebook oldalon is, vagy levelet is tudsz küldeni ide: :email. Mi egy két barátból álló kis csapat vagyunk, de megbizonyosodunk róla, hogy minden levélre válaszolunk, úgyhogy ne hezitálj!',
     'section_8'         => 'Még egy utolsó dolog',
-    'section_9'         => 'Biztosnak kell lennünk benne, hogy a Kanka minden központi eleme ingyenes, és az is maradjon. Azonban, ha támogatni szeretnéd a projektünket, csatlakozhatsz hozzánk :patrons ranggal, és hozzáférhetsz újabb lehetőségekhez, ahogy az örrökké tartó hálánk is üldözni fog!',
     'section_9_v2'      => 'Meg kell bizonyosodnunk róla, hogy a Kanka alap szolgáltatásai ingyenesek, és mindig azok is fognak maradni. Ha szeretnéd támogatni ezt a projektet, iratkozz fel, és hozzáférést kapsz újabb lehetőségekhez, és persze örök hálánkat is érezni fogod. Tudj meg többet itt: :pricing',
     'social_account'    => 'Ha gondod van a belépéssel, van egy kis emlékeztető, amit használhatsz a :provider belépésnél. Megváltoztathatod ezt a beállításoknál.',
     'title'             => 'Kezdés a Kankával',

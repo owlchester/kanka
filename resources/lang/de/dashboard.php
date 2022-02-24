@@ -55,7 +55,6 @@ return [
             'visible'   => 'Sichtbar',
         ],
     ],
-    'description'       => 'Das Zuhause deiner Kreativität',
     'helpers'           => [
         'follow'    => 'Wenn du einer Kampagne folgst, wird sie im Kampagnenwähler (oben rechts) unter deinen Kampagnen angezeigt.',
         'join'      => 'Diese Kampagne steht neuen Mitgliedern offen. Klicken Sie, um sich zu bewerben, um daran teilzunehmen.',
@@ -122,12 +121,16 @@ return [
             'success'   => 'Widget vom Dashboard entfernt.',
         ],
         'fields'                    => [
+            'class'             => 'CSS-Klasse',
             'dashboard'         => 'Dashboard',
             'name'              => 'Benutzerdefinierter Widget-Name',
             'optional-entity'   => 'Link zum Objekt',
             'order'             => 'Bestellung',
             'text'              => 'Text',
             'width'             => 'Breite',
+        ],
+        'helpers'                   => [
+            'class' => 'Definieren Sie eine benutzerdefinierte CSS-Klasse, die dem Widget hinzugefügt wird.',
         ],
         'orders'                    => [
             'name_asc'  => 'Name aufsteigend',
@@ -163,6 +166,10 @@ return [
             'singular'          => 'Einzelnes Objekt',
             'tags'              => 'Filtern Sie die Liste der zuletzt geänderten Objekte nach bestimmten Tags.',
             'title'             => 'Vor kurzem aktualisiert',
+        ],
+        'tabs'                      => [
+            'advanced'  => 'Erweitert',
+            'setup'     => 'Setup',
         ],
         'unmentioned'               => [
             'title' => 'Unerwähnte Objekte',

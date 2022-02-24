@@ -2,9 +2,8 @@
 
 return [
     'create'        => [
-        'description'   => 'Vytvořit nový rod',
-        'success'       => 'Rod ":name" vytvořen.',
-        'title'         => 'Nový rod',
+        'success'   => 'Rod ":name" vytvořen.',
+        'title'     => 'Nový rod',
     ],
     'destroy'       => [
         'success'   => 'Rod ":name" odstraněn.',
@@ -35,10 +34,9 @@ return [
         'members'   => 'Zde se zobrazují členové rodu. Postavu lze přičlenit některému rodu na její kartě "Rod".',
     ],
     'index'         => [
-        'add'           => 'Nový rod',
-        'description'   => 'Spravovat rody :name',
-        'header'        => 'Rody :name',
-        'title'         => 'Rody',
+        'add'       => 'Nový rod',
+        'header'    => 'Rody :name',
+        'title'     => 'Rody',
     ],
     'members'       => [
         'helpers'   => [
@@ -53,13 +51,12 @@ return [
         'type'      => 'Královský, šlechtický, vymřelý,...',
     ],
     'show'          => [
-        'description'   => 'Podrobné zobrazení rodu',
-        'tabs'          => [
+        'tabs'  => [
             'all_members'   => 'Všichni členové',
             'families'      => 'Rody',
             'members'       => 'Členové',
             'relation'      => 'Vztahy',
         ],
-        'title'         => 'Rod :name',
+        'title' => 'Rod :name',
     ],
 ];

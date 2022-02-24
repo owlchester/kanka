@@ -18,31 +18,18 @@ return [
     'checkboxes'    => [
         'is_recurring'  => 'Coroczne',
     ],
-    'colours'       => [
-        'black'     => 'Czarny',
-        'blue'      => 'Niebieski',
-        'default'   => 'Domyślny',
-        'green'     => 'Zielony',
-        'maroon'    => 'Fuksja',
-        'navy'      => 'Granatowy',
-        'orange'    => 'Pomarańczowy',
-        'purple'    => 'Fioletowy',
-        'red'       => 'Czerwony',
-        'teal'      => 'Morski',
-    ],
+    'colours'       => [],
     'create'        => [
-        'description'   => 'Opis',
-        'success'       => 'Stworzono kalendarz :name.',
-        'title'         => 'Nowy kalendarz',
+        'success'   => 'Stworzono kalendarz :name.',
+        'title'     => 'Nowy kalendarz',
     ],
     'destroy'       => [
         'success'   => 'Usunięto kalendarz :name',
     ],
     'edit'          => [
-        'description'   => 'Opis',
-        'success'       => 'Zmieniono kalendarz \':nazwa\'',
-        'title'         => 'Edycja kalendarza :nazwa',
-        'today'         => 'Zmieniono datę kalendarza.',
+        'success'   => 'Zmieniono kalendarz \':nazwa\'',
+        'title'     => 'Edycja kalendarza :nazwa',
+        'today'     => 'Zmieniono datę kalendarza.',
     ],
     'event'         => [
         'actions'   => [
@@ -52,15 +39,13 @@ return [
             'switch'            => 'Zmień wybór',
         ],
         'create'    => [
-            'description'   => 'Opis',
-            'success'       => 'Utworzono wydarzenie.',
-            'title'         => 'Dodaj wydarzenie do :name',
+            'success'   => 'Utworzono wydarzenie.',
+            'title'     => 'Dodaj wydarzenie do :name',
         ],
         'destroy'   => 'Wydarzenie usunięto z kalendarza \':name\'.',
         'edit'      => [
-            'description'   => 'Opis',
-            'success'       => 'Zmieniono wydarzenie w kalendarzu.',
-            'title'         => 'Aktualizuj wydarzenie dla :name',
+            'success'   => 'Zmieniono wydarzenie w kalendarzu.',
+            'title'     => 'Aktualizuj wydarzenie dla :name',
         ],
         'helpers'   => [
             'add'               => 'Dodaj istniejące wydarzenie do tego kalendarza.',
@@ -73,8 +58,7 @@ return [
         'success'   => 'Dodano do kalendarza wydarzenie \':event\'.',
     ],
     'events'        => [
-        'description'   => 'Opis',
-        'title'         => 'Wydarzenia w kalendarzu :name',
+        'title' => 'Wydarzenia w kalendarzu :name',
     ],
     'fields'        => [
         'calendar'              => 'Kalendarz źródłowy',
@@ -111,7 +95,6 @@ return [
     ],
     'helpers'       => [
         'month_type'    => 'Miesiące dodatkowe nie mają dni tygodnia, ale wpływają na pory roku czy fazy księżyca.',
-        'nested'        => 'Widok hierarchii',
         'nested_parent' => 'Wyświetlono kalendarze pochodzące od :parent.',
         'nested_without'=> 'Wyświetlono wszystkie kalendarze nie posiadające źródła. Kliknij na rząd, by wyświetlić kalendarze pochodne.',
         'start_offset'  => 'Domyślnie kalendarz zaczyna się pierwszego dnia roku 0. Liczba w tym polu zmienia położenie pierwszego dnia kalendarza.',
@@ -131,10 +114,9 @@ return [
         'years'             => 'Niektóre lata są tak ważne, że posiadają własne nazwy.',
     ],
     'index'         => [
-        'add'           => 'Nowy kalendarz',
-        'description'   => 'Opis',
-        'header'        => 'Kalendarze elementu :name',
-        'title'         => 'Kalendarze',
+        'add'       => 'Nowy kalendarz',
+        'header'    => 'Kalendarze elementu :name',
+        'title'     => 'Kalendarze',
     ],
     'layouts'       => [
         'month' => 'Miesiąc',
@@ -224,7 +206,6 @@ return [
         'weekdays'          => 'Liczba dni w tygodniu',
     ],
     'show'          => [
-        'description'       => 'Opis',
         'missing_details'   => 'Nie można wyświetlić kalendarza. Do poprawnego wyświetlania niezbędne są przynajmniej 2 miesiące posiadające po 2 dni tygodnia.',
         'moon_full_moon'    => ':moon Pełnia',
         'moon_new_moon'     => ':moon Nów',

@@ -16,7 +16,6 @@ return [
     'creator'               => [
         'back'      => 'Zpět k výběru',
         'duplicate' => 'Pozor! Tento název už nese jiný objekt stejného typu.',
-        'error'     => 'Zadané hodnoty obsahují chybu. Zkontroluj je, prosím.',
         'helper'    => 'Vyber typ objektu, který chceš vytvořit. Pokud není žádný typ k dispozici, nemáš dostatečná oprávnění pro jejich tvorbu v tomto tažení.',
         'success'   => 'Nový objekt ":link" vytvořen.',
         'title'     => 'Nový objekt',

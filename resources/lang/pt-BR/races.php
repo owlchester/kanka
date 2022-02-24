@@ -2,17 +2,15 @@
 
 return [
     'characters'    => [
-        'description'   => 'Personagens desta raça',
-        'helpers'       => [
+        'helpers'   => [
             'all_characters'    => 'Mostrando todos os personagens relacionados a esta raça e suas sub-raças',
             'characters'        => 'Mostrando todos os personagens relacionados diretamente a esta raça.',
         ],
-        'title'         => 'Raça :name Personagens',
+        'title'     => 'Raça :name Personagens',
     ],
     'create'        => [
-        'description'   => 'Criar uma nova raça',
-        'success'       => 'Raça \':name\' criada',
-        'title'         => 'Nova Raça',
+        'success'   => 'Raça \':name\' criada',
+        'title'     => 'Nova Raça',
     ],
     'destroy'       => [
         'success'   => 'Raça \':name\' removida',
@@ -29,31 +27,26 @@ return [
         'type'          => 'Tipo',
     ],
     'helpers'       => [
-        'nested'        => 'Quando em Visão Aninhada, você pode ver suas Raças de maneira aninhada. Raças que não tenham Raças Ancestrais serão mostradas de modo padrão. Raças que contém Raças Descendentes podem ser clicadas para mostrar as \'crianças\'. Você pode continuar clicando até não haverem mais \'crianças\' para clicar.',
         'nested_parent' => 'Mostrando as raças de :parent.',
         'nested_without'=> 'Mostrando todas as raças que não tem uma raça-pai. Clique em uma linha para ver as raças-filhos.',
     ],
     'index'         => [
-        'add'           => 'Nova raça',
-        'description'   => 'Gerenciar as raças de :name',
-        'header'        => 'Raças de :name',
-        'title'         => 'Raças',
+        'add'       => 'Nova raça',
+        'header'    => 'Raças de :name',
+        'title'     => 'Raças',
     ],
     'placeholders'  => [
         'name'  => 'Nome da raça',
         'type'  => 'Humano, Fada, Ciborgue',
     ],
     'races'         => [
-        'description'   => 'Raças pertencentes à raça',
-        'title'         => 'Raça :name sub-raças',
+        'title' => 'Raça :name sub-raças',
     ],
     'show'          => [
-        'description'   => 'Visão detalhada de uma raça',
-        'tabs'          => [
+        'tabs'  => [
             'characters'    => 'Personagens',
-            'menu'          => 'Menu',
             'races'         => 'Sub-raças',
         ],
-        'title'         => 'Raça :name',
+        'title' => 'Raça :name',
     ],
 ];

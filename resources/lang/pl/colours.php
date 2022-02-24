@@ -5,7 +5,6 @@ return [
     'black'         => 'Czarny',
     'blue'          => 'Niebieski',
     'brown'         => 'Brązowy',
-    'default'       => 'Domyślny',
     'green'         => 'Zielony',
     'grey'          => 'Szary',
     'light-blue'    => 'Niebieski',

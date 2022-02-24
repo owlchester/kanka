@@ -2,24 +2,10 @@
 
 return [
     'actions'       => [
-        'add'               => 'Adicionar um atributo',
         'apply_template'    => 'Aplicar um Modelo de Atributo',
         'manage'            => 'Gerenciar',
         'more'              => 'Mais opções',
         'remove_all'        => 'Deletar tudo',
-    ],
-    'create'        => [
-        'description'   => 'Criar um novo atributo',
-        'success'       => 'Atributo :name adicionado a :entity',
-        'title'         => 'Novo Atributo para :name',
-    ],
-    'destroy'       => [
-        'success'   => 'Atributo :name para :entity removido',
-    ],
-    'edit'          => [
-        'description'   => 'Atualizar um atributo existente',
-        'success'       => 'Atributo :name para :entity atualizado',
-        'title'         => 'Atualizar atributo para :name',
     ],
     'errors'        => [
         'loop'  => 'Existe um loop infinito no cálculo desse atributo!',
@@ -37,7 +23,6 @@ return [
         'setup'         => 'Você pode representar elementos como PV ou inteligência de uma entidade com atributos. Adicione atributos manualmente clicando no botão :manage, ou aplique aqueles de um modelo de atributo.',
     ],
     'hints'         => [
-        'is_private'    => 'Você pode ocultar todos os atributos de uma entidade para todos os membros fora da função administrativa, tornando-a privada.',
         'is_private2'   => 'Se selecionado, apenas membros da função :admin-role podem ver os atributos dessa entidade.',
     ],
     'index'         => [

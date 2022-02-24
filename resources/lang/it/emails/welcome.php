@@ -12,6 +12,5 @@ return [
     'section_6'     => 'Contattaci',
     'section_7'     => 'Se non hai trovato una risposta alle tue domande, o desideri semplicemente contattarci, puoi trovarci su :facebook, o puoi inviarci una email a :email. Siamo un piccolo team di due amici, ma ci assicuriamo di rispondere a ciascuna email che riceviamo, quindi non esitare!',
     'section_8'     => 'Un\'ultima cosa',
-    'section_9'     => 'Ci siamo assicurati di fare in modo che tutte le funzionalità principali di Kanka siano gratuite, e rimarranno sempre così. In ogni caso, qualora tu volessi supportarci in questo progetto, puoi unirti alla nostra schiera di :patrons, e ottenere accesso a funzionalità aggiuntive, oltre che la nostra eterna gratitudine!',
     'title'         => 'Iniziare con Kanka',
 ];

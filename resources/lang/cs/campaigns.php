@@ -22,13 +22,10 @@ TEXT
         'success'   => 'Tažení odstraněno',
     ],
     'edit'                              => [
-        'description'   => 'Upravit tažení',
-        'success'       => 'Tažení upraveno',
-        'title'         => 'Upravit tažení :campaign',
+        'success'   => 'Tažení upraveno',
+        'title'     => 'Upravit tažení :campaign',
     ],
-    'entity_note_visibility'            => [
-        'pinned'    => 'Připnout nové poznámky objektů',
-    ],
+    'entity_note_visibility'            => [],
     'entity_personality_visibilities'   => [
         'private'   => 'Ve výchozím nastavení se popis osobností nových postav nastaví jako soukromý.',
     ],
@@ -41,7 +38,6 @@ TEXT
         'unknown_id'    => 'Neznámé tažení',
     ],
     'export'                            => [
-        'description'       => 'Exportovat tažení',
         'errors'            => [
             'limit' => 'Export lze provést pouze jednou denně. Zkus to, prosím, znovu zítra.',
         ],
@@ -55,62 +51,56 @@ TEXT
         'title'             => 'Export tažení :name',
     ],
     'fields'                            => [
-        'boosted'                       => 'Zvýhodnění ("boost") od',
-        'connections'                   => 'Zobrazit tabulku souvislostí (namísto průzkumníku souvislostí zvýhodněných tažení)',
-        'css'                           => 'CSS',
-        'description'                   => 'Popis',
-        'entity_count'                  => 'Počet objektů',
-        'entity_note_visibility'        => 'Připnuté poznámky objektů',
-        'entity_personality_visibility' => 'Viditelnost popisu osobnosti postavy',
-        'entity_visibility'             => 'Viditelnost objektu',
-        'entry'                         => 'Popis tažení',
-        'excerpt'                       => 'Stručný popis tažení',
-        'followers'                     => 'Sledující',
-        'header_image'                  => 'Obrázek pozadí nástěnky tažení',
-        'hide_history'                  => 'Skrýt historii objektu',
-        'hide_members'                  => 'Skrýt členy tažení',
-        'image'                         => 'Obrázek',
-        'locale'                        => 'Jazyk',
-        'name'                          => 'Název',
-        'nested'                        => 'Je-li to možné, zobrazí seznamy objektů ve vnořené podobě.',
-        'open'                          => 'Otevřené pro přihlášky',
-        'public_campaign_filters'       => 'Filtr veřejných tažení',
-        'related_visibility'            => 'Viditelnost příbuzných prvků',
-        'rpg_system'                    => 'Systémy her na hrdiny',
-        'superboosted'                  => '"Superboost" výhoda od',
-        'system'                        => 'Systém',
-        'theme'                         => 'Téma',
-        'tooltip_family'                => 'Nezobrazovat jména rodin v informačních bublinách',
-        'tooltip_image'                 => 'Zobrazovat obrázky objektů v informačních bublinách',
-        'visibility'                    => 'Viditelnost',
+        'boosted'                   => 'Zvýhodnění ("boost") od',
+        'connections'               => 'Zobrazit tabulku souvislostí (namísto průzkumníku souvislostí zvýhodněných tažení)',
+        'css'                       => 'CSS',
+        'description'               => 'Popis',
+        'entity_count'              => 'Počet objektů',
+        'entry'                     => 'Popis tažení',
+        'excerpt'                   => 'Stručný popis tažení',
+        'followers'                 => 'Sledující',
+        'header_image'              => 'Obrázek pozadí nástěnky tažení',
+        'hide_history'              => 'Skrýt historii objektu',
+        'hide_members'              => 'Skrýt členy tažení',
+        'image'                     => 'Obrázek',
+        'locale'                    => 'Jazyk',
+        'name'                      => 'Název',
+        'nested'                    => 'Je-li to možné, zobrazí seznamy objektů ve vnořené podobě.',
+        'open'                      => 'Otevřené pro přihlášky',
+        'public_campaign_filters'   => 'Filtr veřejných tažení',
+        'related_visibility'        => 'Viditelnost příbuzných prvků',
+        'rpg_system'                => 'Systémy her na hrdiny',
+        'superboosted'              => '"Superboost" výhoda od',
+        'system'                    => 'Systém',
+        'theme'                     => 'Téma',
+        'tooltip_family'            => 'Nezobrazovat jména rodin v informačních bublinách',
+        'tooltip_image'             => 'Zobrazovat obrázky objektů v informačních bublinách',
+        'visibility'                => 'Viditelnost',
     ],
     'following'                         => 'Sledující',
     'helpers'                           => [
-        'boost_required'                => 'Tato funkce vyžaduje zvýhodněné tažení pomocí "Boost". Další informace najdeš na stránce :settings',
-        'boosted'                       => 'Jsou dostupné některé bonusové funkce, protože tažení je zvýhodněné pomocí "Boost". Další informace najdeš na stránce :settings',
-        'css'                           => 'Pro své tažení můžeš vytvořit vlastní CSS definici. Jakékoli zneužití této funkce povede k odstranění CSS definice. Opakované nebo závažné porušení mohou vést k odstranění tvého tažení.',
-        'dashboard'                     => 'Vyplněním následujících polí ovlivníš vzhled nástěnky tažení.',
-        'entity_note_visibility'        => 'Při vytváření nové poznámky objektu se u ní automaticky zaškrtne políčko "Připnutá".',
-        'entity_personality_visibility' => 'Při vytváření nové postavy nebude pole "Viditelný popis osobnosti" automaticky zaškrtnuté.',
-        'entity_visibility'             => 'Při vytváření nového objektu bude automaticky zaškrtnuté políčko "Soukromý"',
-        'excerpt'                       => <<<'TEXT'
+        'boost_required'            => 'Tato funkce vyžaduje zvýhodněné tažení pomocí "Boost". Další informace najdeš na stránce :settings',
+        'boosted'                   => 'Jsou dostupné některé bonusové funkce, protože tažení je zvýhodněné pomocí "Boost". Další informace najdeš na stránce :settings',
+        'css'                       => 'Pro své tažení můžeš vytvořit vlastní CSS definici. Jakékoli zneužití této funkce povede k odstranění CSS definice. Opakované nebo závažné porušení mohou vést k odstranění tvého tažení.',
+        'dashboard'                 => 'Vyplněním následujících polí ovlivníš vzhled nástěnky tažení.',
+        'excerpt'                   => <<<'TEXT'
 Obsah tohoto pole se zobrazí v záhlaví nástěnky. Můžeš sem tedy napsat pár vět o svém světu.
 Necháš-li toto pole prázdné, použije se prvních až 1000 znaků popisu tažení.
 TEXT
 ,
-        'header_image'                  => 'Obrázek na pozadí záhlaví nástěnky',
-        'hide_history'                  => 'Tato možnost skryje historii změn objektů před běžnými uživateli (bez administrátorských oprávnění).',
-        'hide_members'                  => 'Tato možnost skryje seznam členů kampaně před běžnými uživateli (bez administrátorských oprávnění).',
-        'locale'                        => 'Jazyk, používaný v textech tažení. Používá se pro vytváření obsahu a seskupení veřejných tažení.',
-        'name'                          => 'Název tvého tažení a světa musí obsahovat alespoň 4 písmena či slova. Maximální délka není omezena.',
-        'public_campaign_filters'       => 'Zadáš-li následující informace, usnadníš vyhledání tvé veřejné kampaně mezi ostatními.',
-        'public_no_visibility'          => 'Pozor! Vaše tažení je veřejné, ale veřejná role kampaně nemá k ničemu přístup. :fix',
-        'related_visibility'            => 'Výchozí nastavení viditelnosti při vytváření nového objektu s tímto polem (poznámky objektů, souvislosti, schopnosti, atd.)',
-        'system'                        => 'Pokud je tvé tažení viditelné, systém se zobrazuje na stránce :link',
-        'systems'                       => 'Protože nechceme uživatele zahltit příliš mnoha funkcemi, jsou některé prvky systému dostupné jen pro vybraná pravidla Her na hrdiny (např. tabulka vlastností nestvůr dle pravidel D&D apod.). Pokud přidáš podporované systémy, zobrazí se i související funkce.',
-        'theme'                         => 'Vynutí téma tažení a přepíše předvolby uživatelů.',
-        'view_public'                   => 'Chceš-li si prohlédnout své tažení, jak jej vidí uživatelé, coby veřejné tažení, otevři následující odkaz v soukromém / privátním zobrazení prohlížeče: :link',
-        'visibility'                    => 'Zveřejnění tažení znamená, že kdokoli, kdo získá odkaz na toto tažení, si jej bude moci prohlédnout.',
+        'header_image'              => 'Obrázek na pozadí záhlaví nástěnky',
+        'hide_history'              => 'Tato možnost skryje historii změn objektů před běžnými uživateli (bez administrátorských oprávnění).',
+        'hide_members'              => 'Tato možnost skryje seznam členů kampaně před běžnými uživateli (bez administrátorských oprávnění).',
+        'locale'                    => 'Jazyk, používaný v textech tažení. Používá se pro vytváření obsahu a seskupení veřejných tažení.',
+        'name'                      => 'Název tvého tažení a světa musí obsahovat alespoň 4 písmena či slova. Maximální délka není omezena.',
+        'public_campaign_filters'   => 'Zadáš-li následující informace, usnadníš vyhledání tvé veřejné kampaně mezi ostatními.',
+        'public_no_visibility'      => 'Pozor! Vaše tažení je veřejné, ale veřejná role kampaně nemá k ničemu přístup. :fix',
+        'related_visibility'        => 'Výchozí nastavení viditelnosti při vytváření nového objektu s tímto polem (poznámky objektů, souvislosti, schopnosti, atd.)',
+        'system'                    => 'Pokud je tvé tažení viditelné, systém se zobrazuje na stránce :link',
+        'systems'                   => 'Protože nechceme uživatele zahltit příliš mnoha funkcemi, jsou některé prvky systému dostupné jen pro vybraná pravidla Her na hrdiny (např. tabulka vlastností nestvůr dle pravidel D&D apod.). Pokud přidáš podporované systémy, zobrazí se i související funkce.',
+        'theme'                     => 'Vynutí téma tažení a přepíše předvolby uživatelů.',
+        'view_public'               => 'Chceš-li si prohlédnout své tažení, jak jej vidí uživatelé, coby veřejné tažení, otevři následující odkaz v soukromém / privátním zobrazení prohlížeče: :link',
+        'visibility'                => 'Zveřejnění tažení znamená, že kdokoli, kdo získá odkaz na toto tažení, si jej bude moci prohlédnout.',
     ],
     'index'                             => [
         'actions'   => [
@@ -131,7 +121,6 @@ TEXT
                 'create'    => 'Vytvořit pozvánku',
                 'send'      => 'Zaslat pozvánku',
             ],
-            'description'   => 'Pozvat přítele ke tvému tažení',
             'success'       => 'Pozvánka odeslána',
             'success_link'  => 'Vytvořen odkaz: :link',
             'title'         => 'Pozvat někoho ke tvému tažení',
@@ -156,7 +145,6 @@ TEXT
             'role'      => 'Role',
             'type'      => 'Typ',
             'usage'     => 'Maximální počet použití',
-            'validity'  => 'Platnost',
         ],
         'helpers'               => [
             'email'     => 'Naše emailové zprávy často padají do spamu a někdy může jejich doručení trvat až několik hodin.',
@@ -192,10 +180,8 @@ TEXT
         'create'                => [
             'title' => 'Přidat člena kampaně',
         ],
-        'description'           => 'Spravovat členy kampaně',
         'edit'                  => [
-            'description'   => 'Upravit člena kampaně',
-            'title'         => 'Upravit člena :name',
+            'title' => 'Upravit člena :name',
         ],
         'fields'                => [
             'joined'        => 'Připojil se',
@@ -271,7 +257,6 @@ TEXT
             'success'   => 'Role vytvořena',
             'title'     => 'Vytvořena nová role :name',
         ],
-        'description'   => 'Spravovat role tažení',
         'destroy'       => [
             'success'   => 'Role odstraněna',
         ],
@@ -335,8 +320,7 @@ TEXT
             'name'  => 'Název role',
         ],
         'show'          => [
-            'description'   => 'Členové a oprávnění role tažení',
-            'title'         => 'Role ":role"',
+            'title' => 'Role ":role"',
         ],
         'title'         => 'Role tažení :name',
         'types'         => [
@@ -362,16 +346,15 @@ TEXT
         ],
     ],
     'settings'                          => [
-        'actions'       => [
+        'actions'   => [
             'enable'    => 'Zapnout',
         ],
-        'boosted'       => 'Tato funkce je součástí předběžného přístupu a je dostupná pouze zvýhodněným (:boosted) tažením.',
-        'description'   => 'Zapnout nebo vypnout moduly tažení',
-        'edit'          => [
+        'boosted'   => 'Tato funkce je součástí předběžného přístupu a je dostupná pouze zvýhodněným (:boosted) tažením.',
+        'edit'      => [
             'success'   => 'Nastavení tažení aktualizováno',
         ],
-        'helper'        => 'Všechny moduly tažení lze vypnout či zapnout. Vypnutí modulu pouze skryje související prvky rozhraní a přidružené objekty, aniž by se smazaly. Toto se projeví u všech členů tažení, včetně správců.',
-        'helpers'       => [
+        'helper'    => 'Všechny moduly tažení lze vypnout či zapnout. Vypnutí modulu pouze skryje související prvky rozhraní a přidružené objekty, aniž by se smazaly. Toto se projeví u všech členů tažení, včetně správců.',
+        'helpers'   => [
             'abilities'     => 'Tvorba schopností, kouzel či dovedností, které lze přiřadit objektům.',
             'calendars'     => 'Tvorba kalendářů, které se používají ve tvém světu.',
             'characters'    => 'Obyvatelé tvého světu.',
@@ -392,21 +375,20 @@ TEXT
             'tags'          => 'Každý objekt lze označit několika štítky. Štítky lze podřadit jiným štítkům a objekty lze pomocí štítků filtrovat.',
             'timelines'     => 'Zobraz dějiny světu pomocí časových os.',
         ],
-        'title'         => 'Moduly tažení :name',
+        'title'     => 'Moduly tažení :name',
     ],
     'show'                              => [
-        'actions'       => [
+        'actions'   => [
             'boost' => 'Zvýhodnit ("boost") tažení',
             'edit'  => 'Upravit tažení',
             'leave' => 'Opustit tažení',
         ],
-        'description'   => 'Detailní zobrazení tažení',
-        'menus'         => [
+        'menus'     => [
             'configuration'     => 'Konfigurace',
             'overview'          => 'Přehled',
             'user_management'   => 'Správa uživatelů',
         ],
-        'tabs'          => [
+        'tabs'      => [
             'achievements'      => 'Úspěchy',
             'applications'      => 'Přihlášky',
             'campaign'          => 'Tažení',
@@ -414,14 +396,13 @@ TEXT
             'export'            => 'Export',
             'information'       => 'Informace',
             'members'           => 'Členové',
-            'menu'              => 'Nabídka',
             'plugins'           => 'Přídavné moduly',
             'recovery'          => 'Obnova',
             'roles'             => 'Role',
             'settings'          => 'Moduly',
             'styles'            => 'Téma vzhledu',
         ],
-        'title'         => 'Tažení :name',
+        'title'     => 'Tažení :name',
     ],
     'superboosted'                      => [
         'gallery'   => [

@@ -40,7 +40,6 @@ return [
             'email'     => 'Email',
             'name'      => 'Nome Utente',
             'password'  => 'Password',
-            'tos'       => 'Accetto la <a href=":privacyUrl" target="_blank">Privacy Policy</a>.',
         ],
         'register_with_facebook'    => 'Registrati con Facebook',
         'register_with_google'      => 'Registrati con Google',

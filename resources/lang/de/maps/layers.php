@@ -23,6 +23,7 @@ return [
     'helper'        => [
         'amount'            => 'Sie können folgende :amount Ebenen auf einer Karte hinzufügen, um auf das unter Ihren Markierungen angezeigte Hintergrundbild zu wechseln.',
         'boosted_campaign'  => ':boosted kann bis zu  :amount Ebenen.',
+        'is_real'           => 'Ebenen sind bei Verwendung von OpenStreetMaps nicht verfügbar.',
     ],
     'placeholders'  => [
         'name'      => 'Untergrund, Ebene 2, Schiffbruch',

@@ -2,9 +2,8 @@
 
 return [
     'create'        => [
-        'description'   => 'Erstelle eine neue Organisation',
-        'success'       => 'Organisation \':name\' erstellt.',
-        'title'         => 'Erstelle eine neue Organisation',
+        'success'   => 'Organisation \':name\' erstellt.',
+        'title'     => 'Erstelle eine neue Organisation',
     ],
     'destroy'       => [
         'success'   => 'Organisation \':name\' entfernt.',
@@ -29,19 +28,17 @@ return [
         'nested_without'=> 'Anzeigen aller Organisationen, die keine übergeordnete Organisation haben. Klicken Sie auf eine Zeile, um die untergeordneten Organisationen anzuzeigen.',
     ],
     'index'         => [
-        'add'           => 'Neue Organisation',
-        'description'   => 'Verwalte die Organisationen von :name.',
-        'header'        => 'Organisationen von :name',
-        'title'         => 'Organisationen',
+        'add'       => 'Neue Organisation',
+        'header'    => 'Organisationen von :name',
+        'title'     => 'Organisationen',
     ],
     'members'       => [
         'actions'       => [
             'add'   => 'Füge ein Mitglied hinzu',
         ],
         'create'        => [
-            'description'   => 'Füge ein Mitglied zur Organisation hinzu',
-            'success'       => 'Mitglied zu Organisation hinzugefügt.',
-            'title'         => 'Neues Organisationsmitglied für :name',
+            'success'   => 'Mitglied zu Organisation hinzugefügt.',
+            'title'     => 'Neues Organisationsmitglied für :name',
         ],
         'destroy'       => [
             'success'   => 'Mitglied aus Organisation entfernt.',
@@ -89,17 +86,13 @@ return [
         'name'      => 'Name der Organisation',
         'type'      => 'Kult, Gang, Rebellion, Anhängerschaft',
     ],
-    'quests'        => [
-        'description'   => 'Quests der Organisation',
-        'title'         => 'Organisation :name Quests',
-    ],
+    'quests'        => [],
     'show'          => [
-        'description'   => 'Eine detaillierte Ansicht einer Organisation',
-        'tabs'          => [
+        'tabs'  => [
             'organisations' => 'Organisationen',
             'quests'        => 'Quests',
             'relations'     => 'Beziehungen',
         ],
-        'title'         => 'Organisation :name',
+        'title' => 'Organisation :name',
     ],
 ];

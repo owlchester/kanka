@@ -55,7 +55,6 @@ return [
         'max_zoom'          => 'O máximo que um mapa pode ser ampliado. O valor padrão é :default, enquanto o maior valor permitido é :max.',
         'min_zoom'          => 'O máximo que um mapa pode ser diminuído. O valor padrão é :default, enquanto o menor valor permitido é :max.',
         'missing_image'     => 'Você precisa salvar o mapa com uma imagem antes de poder adicionar camadas e marcadores.',
-        'nested'            => 'Quando na visualização aninhada, você pode visualizar seus mapas de uma maneira aninhada. Mapas sem mapas primários serão mostrados por padrão. Mapas comrelacionados podem ser clicados para ver esses mapas secundários. Você pode continuar clicando até que não haja mais mapas secundários para ver.',
         'nested_parent'     => 'Mostrando os mapas de :parent.',
         'nested_without'    => 'Mostrando todos os mapas que não tem um mapa-pai. Clique em uma linha para ver os mapas-filhos.',
     ],

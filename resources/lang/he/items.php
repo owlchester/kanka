@@ -2,9 +2,8 @@
 
 return [
     'create'        => [
-        'description'   => 'צור חפץ חדש',
-        'success'       => 'החפץ ":name" נוצר.',
-        'title'         => 'חפץ חדש',
+        'success'   => 'החפץ ":name" נוצר.',
+        'title'     => 'חפץ חדש',
     ],
     'destroy'       => [
         'success'   => 'החפץ ":name" הוסר.',
@@ -24,14 +23,12 @@ return [
         'type'      => 'סוג',
     ],
     'index'         => [
-        'add'           => 'חפץ חדש',
-        'description'   => 'ניהול החפצים של :name.',
-        'header'        => 'החפצים של :name',
-        'title'         => 'חפצים',
+        'add'       => 'חפץ חדש',
+        'header'    => 'החפצים של :name',
+        'title'     => 'חפצים',
     ],
     'inventories'   => [
-        'description'   => 'רשימות חפצים בהם חפץ זה נמצא.',
-        'title'         => 'רשימות חפצים של :name',
+        'title' => 'רשימות חפצים של :name',
     ],
     'placeholders'  => [
         'character' => 'בחר דמות',
@@ -41,17 +38,10 @@ return [
         'size'      => 'גודל, משקל, מידות',
         'type'      => 'נשק, שיקוי, ארטיפקט',
     ],
-    'quests'        => [
-        'description'   => 'משימות שהחפץ הזה משוייך אליהם.',
-        'title'         => 'משימות של החפץ :name',
-    ],
     'show'          => [
-        'description'   => 'מבט מפורט על חפץ',
-        'tabs'          => [
-            'information'   => 'מידע',
+        'tabs'  => [
             'inventories'   => 'רשימות ציוד',
-            'quests'        => 'משימות',
         ],
-        'title'         => ':name',
+        'title' => ':name',
     ],
 ];

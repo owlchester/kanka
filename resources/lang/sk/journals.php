@@ -2,9 +2,8 @@
 
 return [
     'create'        => [
-        'description'   => 'Vytvoriť nový záznam v denníku',
-        'success'       => 'Záznam :name vytvorený.',
-        'title'         => 'Nový záznam v denníku',
+        'success'   => 'Záznam :name vytvorený.',
+        'title'     => 'Nový záznam v denníku',
     ],
     'destroy'       => [
         'success'   => 'Záznam :name vytvorený.',
@@ -25,15 +24,13 @@ return [
     ],
     'helpers'       => [
         'journals'      => 'Zobrazí všetky alebo len priamo podradené denníky tohto denníka.',
-        'nested'        => 'Zobrazí najprv denníky bez nadradeného denníka. Kliknutie na riadok zobrazí podradené denníky daného denníka.',
         'nested_parent' => 'Zobraziť denníky :parent.',
         'nested_without'=> 'Zobraziť všetky denníky, ktoré nemajú nadradený denník. Kliknutím na riadok zobrazíš podradené denníky.',
     ],
     'index'         => [
-        'add'           => 'Nový záznam v denníku',
-        'description'   => 'Spravuj záznamy v denníku objektu :name',
-        'header'        => 'Záznamy v denníku objektu :name',
-        'title'         => 'Záznamy v denníku',
+        'add'       => 'Nový záznam v denníku',
+        'header'    => 'Záznamy v denníku objektu :name',
+        'title'     => 'Záznamy v denníku',
     ],
     'journals'      => [
         'title' => 'Podradené denníky denníka :name',
@@ -46,10 +43,9 @@ return [
         'type'      => 'sedenie, one shot, návrh',
     ],
     'show'          => [
-        'description'   => 'Detailný náhľad na záznam v denníku',
-        'tabs'          => [
+        'tabs'  => [
             'journals'  => 'Denníky',
         ],
-        'title'         => 'Záznam :name',
+        'title' => 'Záznam :name',
     ],
 ];

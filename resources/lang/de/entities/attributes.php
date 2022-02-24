@@ -21,12 +21,15 @@ return [
         'template'              => 'Vorlage',
         'value'                 => 'Wert',
     ],
+    'filters'       => [
+        'name'  => 'Attributname',
+        'value' => 'Attributwert',
+    ],
     'helpers'       => [
         'delete_all'    => 'Möchten Sie wirklich alle Attribute dieses Objekts löschen?',
         'setup'         => 'Sie können Elemente wie TP oder Intelligenz eines Objekts mittels Attributen darstellen. Attribute können Sie manuell hinzufügen, indem sie auf den :manage Button klicken oder Sie wenden eine Attributsvorlage an.',
     ],
     'hints'         => [
-        'is_private'    => 'Sie können alle Attribute eines Objekts für alle Mitglieder außerhalb der Administratorrolle ausblenden, indem Sie sie privat machen.',
         'is_private2'   => 'Wenn diese Option ausgewählt ist, können nur Mitglieder der Rolle :admin-role die Attribute dieses Objekts sehen.',
     ],
     'index'         => [

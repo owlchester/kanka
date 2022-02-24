@@ -2,17 +2,15 @@
 
 return [
     'create'            => [
-        'description'   => 'Vytvor nový menu link',
-        'success'       => 'Menu link :name vytvorený.',
-        'title'         => 'Nový menu link',
+        'success'   => 'Menu link :name vytvorený.',
+        'title'     => 'Nový menu link',
     ],
     'destroy'           => [
         'success'   => 'Menu link :name odstránený.',
     ],
     'edit'              => [
-        'description'   => 'Uprav menu link.',
-        'success'       => 'Menu link :name upravený.',
-        'title'         => 'Menu link :name',
+        'success'   => 'Menu link :name upravený.',
+        'title'     => 'Menu link :name',
     ],
     'fields'            => [
         'dashboard'     => 'Nástenka',
@@ -37,10 +35,8 @@ return [
         'type'      => 'Nastav tento menu link, aby sa po kliknutí naň zobrazil zoznam objektov. Skopíruj časť URL na filtrovanom zozname objektov, ktorá sa nachádza po :? a vlož ju do poľa :filter.',
     ],
     'index'             => [
-        'add'           => 'Nový menu link',
-        'description'   => 'Spravuj menu linky objektu :name',
-        'header'        => 'Menu link objektu :name',
-        'title'         => 'Menu linky',
+        'add'   => 'Nový menu link',
+        'title' => 'Menu linky',
     ],
     'placeholders'      => [
         'entity'    => 'Vyber objekt',
@@ -58,10 +54,6 @@ return [
         'title'     => 'Zmeniť poradie menu liniek',
     ],
     'show'              => [
-        'description'   => 'Detailný náhľad menu linku',
-        'tabs'          => [
-            'information'   => 'Informácie',
-        ],
-        'title'         => 'Menu link :name',
+        'title' => 'Menu link :name',
     ],
 ];

@@ -22,13 +22,10 @@ TEXT
         'success'   => 'Campaign verwijderd.',
     ],
     'edit'                              => [
-        'description'   => 'Campaign wijzigen',
-        'success'       => 'Campaign bijgewerkt.',
-        'title'         => 'Wijzig Campaign :campaign',
+        'success'   => 'Campaign bijgewerkt.',
+        'title'     => 'Wijzig Campaign :campaign',
     ],
-    'entity_note_visibility'            => [
-        'pinned'    => 'Zet nieuwe entiteit notities vast',
-    ],
+    'entity_note_visibility'            => [],
     'entity_personality_visibilities'   => [
         'private'   => 'Nieuwe personages hebben standaard hun persoonlijkheid privé.',
     ],
@@ -41,7 +38,6 @@ TEXT
         'unknown_id'    => 'Onbekende Campaign.',
     ],
     'export'                            => [
-        'description'       => 'Exporteer Campaign.',
         'errors'            => [
             'limit' => 'Je hebt je maximum van één export per dag overschreden. Probeer het morgen opnieuw.',
         ],
@@ -51,53 +47,47 @@ TEXT
         'title'             => 'Campaign :name Exporteren',
     ],
     'fields'                            => [
-        'boosted'                       => 'Boosted door',
-        'css'                           => 'CSS',
-        'description'                   => 'Omschrijving',
-        'entity_count'                  => 'Entiteit Telling',
-        'entity_note_visibility'        => 'Entiteit Notities Vastgemaakt',
-        'entity_personality_visibility' => 'Personage Persoonlijkheid Zichtbaarheid',
-        'entity_visibility'             => 'Entiteit Zichtbaarheid',
-        'entry'                         => 'Campaign beschrijving',
-        'excerpt'                       => 'Excerpt',
-        'followers'                     => 'Volgers',
-        'header_image'                  => 'Header Afbeelding',
-        'hide_history'                  => 'Verberg entiteit geschiedenis',
-        'hide_members'                  => 'Verberg campaign leden',
-        'image'                         => 'Afbeelding',
-        'locale'                        => 'Lokale',
-        'name'                          => 'Naam',
-        'open'                          => 'Open voor sollicitaties',
-        'public_campaign_filters'       => 'Openbare Campaign Filters',
-        'related_visibility'            => 'Gerelateerde Elementen Zichtbaarheid',
-        'rpg_system'                    => 'RPG Systemen',
-        'superboosted'                  => 'Superboosted door',
-        'system'                        => 'Systeem',
-        'theme'                         => 'Thema',
-        'tooltip_family'                => 'Schakel familie namen uit via tooltips',
-        'tooltip_image'                 => 'Toon de entiteit afbeelding in tooltips',
-        'visibility'                    => 'Zichtbaarheid',
+        'boosted'                   => 'Boosted door',
+        'css'                       => 'CSS',
+        'description'               => 'Omschrijving',
+        'entity_count'              => 'Entiteit Telling',
+        'entry'                     => 'Campaign beschrijving',
+        'excerpt'                   => 'Excerpt',
+        'followers'                 => 'Volgers',
+        'header_image'              => 'Header Afbeelding',
+        'hide_history'              => 'Verberg entiteit geschiedenis',
+        'hide_members'              => 'Verberg campaign leden',
+        'image'                     => 'Afbeelding',
+        'locale'                    => 'Lokale',
+        'name'                      => 'Naam',
+        'open'                      => 'Open voor sollicitaties',
+        'public_campaign_filters'   => 'Openbare Campaign Filters',
+        'related_visibility'        => 'Gerelateerde Elementen Zichtbaarheid',
+        'rpg_system'                => 'RPG Systemen',
+        'superboosted'              => 'Superboosted door',
+        'system'                    => 'Systeem',
+        'theme'                     => 'Thema',
+        'tooltip_family'            => 'Schakel familie namen uit via tooltips',
+        'tooltip_image'             => 'Toon de entiteit afbeelding in tooltips',
+        'visibility'                => 'Zichtbaarheid',
     ],
     'following'                         => 'Volgend',
     'helpers'                           => [
-        'boost_required'                => 'Deze functie vereist een boost van de campaign. Meer info op de :settings pagina.',
-        'boosted'                       => 'Sommige functies zijn ontgrendeld omdat deze campaign een boost krijgt. Lees meer op de :settings pagina.',
-        'css'                           => 'Schrijf je eigen CSS die in de pagina\'s van je campaign wordt geladen. Houd er rekening mee dat elk misbruik van deze functie kan leiden tot het verwijderen van je aangepaste CSS. Herhaalde of ernstige overtredingen kunnen ertoe leiden dat je campaign wordt verwijderd.',
-        'entity_note_visibility'        => 'Bij het aanmaken van een nieuwe entiteit notitie wordt automatisch de optie "Vastgezet" geselecteerd.',
-        'entity_personality_visibility' => 'Als je een nieuw personage aanmaakt, wordt de optie "Persoonlijkheid zichtbaar" automatisch uitgeschakeld.',
-        'entity_visibility'             => 'Bij het aanmaken van een nieuwe entiteit wordt automatisch de optie "Privé" geselecteerd.',
-        'excerpt'                       => 'Het campaign excerpt wordt op het dashboard weergegeven, dus schrijf een paar zinnen die je wereld introduceren. Houd het kort voor het beste resultaat.',
-        'hide_history'                  => 'Schakel deze optie in om de geschiedenis van entiteiten te verbergen voor niet-beheerders van de campaign.',
-        'hide_members'                  => 'Schakel deze optie in om de lijst met campaign leden te verbergen voor niet-beheerders.',
-        'locale'                        => 'De taal waarin je campaign is geschreven. Dit wordt gebruikt voor het genereren van inhoud en het groeperen van openbare campaigns.',
-        'name'                          => 'Je campaign / wereld kan elke naam hebben, zolang deze maar minimaal 4 letters of cijfers bevat.',
-        'public_campaign_filters'       => 'Help anderen de campaign te vinden naast andere openbare campaigns door de volgende informatie te verstrekken.',
-        'related_visibility'            => 'Standaard Zichtbaarheid waarde bij het maken van een nieuw element met dit veld (entiteit notities, relaties, vaardigheden, enz.)',
-        'system'                        => 'Als je campaign openbaar zichtbaar is, wordt het systeem weergegeven op de :link pagina.',
-        'systems'                       => 'Om te voorkomen dat gebruikers volgestopt raken met opties, zijn sommige functies van Kanka alleen beschikbaar met specifieke RPG-systemen (dwz het D & D 5e monster stat-blok). Als je hier ondersteunde systemen toevoegt, worden deze functies ingeschakeld.',
-        'theme'                         => 'Forceer het thema voor de campaign, waarbij de voorkeur van een gebruiker wordt overschreven.',
-        'view_public'                   => 'Om je campaign te bekijken zoals een openbare kijker dat zou doen, open je :link in een incognitovenster.',
-        'visibility'                    => 'Als je een campaign openbaar maakt, kan iedereen met een link ernaar de campaign zien.',
+        'boost_required'            => 'Deze functie vereist een boost van de campaign. Meer info op de :settings pagina.',
+        'boosted'                   => 'Sommige functies zijn ontgrendeld omdat deze campaign een boost krijgt. Lees meer op de :settings pagina.',
+        'css'                       => 'Schrijf je eigen CSS die in de pagina\'s van je campaign wordt geladen. Houd er rekening mee dat elk misbruik van deze functie kan leiden tot het verwijderen van je aangepaste CSS. Herhaalde of ernstige overtredingen kunnen ertoe leiden dat je campaign wordt verwijderd.',
+        'excerpt'                   => 'Het campaign excerpt wordt op het dashboard weergegeven, dus schrijf een paar zinnen die je wereld introduceren. Houd het kort voor het beste resultaat.',
+        'hide_history'              => 'Schakel deze optie in om de geschiedenis van entiteiten te verbergen voor niet-beheerders van de campaign.',
+        'hide_members'              => 'Schakel deze optie in om de lijst met campaign leden te verbergen voor niet-beheerders.',
+        'locale'                    => 'De taal waarin je campaign is geschreven. Dit wordt gebruikt voor het genereren van inhoud en het groeperen van openbare campaigns.',
+        'name'                      => 'Je campaign / wereld kan elke naam hebben, zolang deze maar minimaal 4 letters of cijfers bevat.',
+        'public_campaign_filters'   => 'Help anderen de campaign te vinden naast andere openbare campaigns door de volgende informatie te verstrekken.',
+        'related_visibility'        => 'Standaard Zichtbaarheid waarde bij het maken van een nieuw element met dit veld (entiteit notities, relaties, vaardigheden, enz.)',
+        'system'                    => 'Als je campaign openbaar zichtbaar is, wordt het systeem weergegeven op de :link pagina.',
+        'systems'                   => 'Om te voorkomen dat gebruikers volgestopt raken met opties, zijn sommige functies van Kanka alleen beschikbaar met specifieke RPG-systemen (dwz het D & D 5e monster stat-blok). Als je hier ondersteunde systemen toevoegt, worden deze functies ingeschakeld.',
+        'theme'                     => 'Forceer het thema voor de campaign, waarbij de voorkeur van een gebruiker wordt overschreven.',
+        'view_public'               => 'Om je campaign te bekijken zoals een openbare kijker dat zou doen, open je :link in een incognitovenster.',
+        'visibility'                => 'Als je een campaign openbaar maakt, kan iedereen met een link ernaar de campaign zien.',
     ],
     'index'                             => [
         'actions'   => [
@@ -114,21 +104,17 @@ TEXT
             'link'  => 'Nieuwe Link',
         ],
         'create'                => [
-            'button'        => 'Uitnodigen',
-            'buttons'       => [
+            'buttons'   => [
                 'create'    => 'Maak uitnodiging',
                 'send'      => 'Verstuur uitnodiging',
             ],
-            'description'   => 'Nodig een vriend uit voor je campaign',
-            'link'          => 'Link gemaakt: <a href=":url" target="_blank">:url</a>',
-            'success'       => 'Uitnodiging verstuurd.',
-            'title'         => 'Nodig iemand uit voor je campaign',
+            'success'   => 'Uitnodiging verstuurd.',
+            'title'     => 'Nodig iemand uit voor je campaign',
         ],
         'destroy'               => [
             'success'   => 'Uitnodiging verwijderd.',
         ],
         'email'                 => [
-            'link'      => '<a href=":link"> Lid worden van :name\'s campaign</a>',
             'subject'   => ':name heeft je uitgenodigd om deel te nemen aan hun campaign \':campaign\' op kanka.io! Gebruik de volgende link om hun uitnodiging te accepteren.',
             'title'     => 'Uitnodiging van :name',
         ],
@@ -143,7 +129,6 @@ TEXT
             'email'     => 'E-mail',
             'role'      => 'Rol',
             'type'      => 'Type',
-            'validity'  => 'Geldigheid',
         ],
         'helpers'               => [
             'email'     => 'Onze e-mails worden vaak gemarkeerd als spam en het kan enkele uren duren voordat ze in je inbox verschijnen.',
@@ -171,10 +156,8 @@ TEXT
         'create'                => [
             'title' => 'Voeg een lid toe aan je campaign',
         ],
-        'description'           => 'Beheer de leden van de campaign',
         'edit'                  => [
-            'description'   => 'Wijzig een lid van je campaign',
-            'title'         => 'Wijzig lid :name',
+            'title' => 'Wijzig lid :name',
         ],
         'fields'                => [
             'joined'        => 'Aangesloten',
@@ -238,7 +221,6 @@ TEXT
             'success'   => 'Rol gemaakt.',
             'title'     => 'Maak een nieuwe rol aan voor :name',
         ],
-        'description'   => 'Beheer de rollen van de campaign',
         'destroy'       => [
             'success'   => 'Rol verwijderd.',
         ],
@@ -285,8 +267,7 @@ TEXT
             'name'  => 'Naam van de rol',
         ],
         'show'          => [
-            'description'   => 'Leden en Machtigingen van een campaign rol',
-            'title'         => 'Campaign Rol \':role\'',
+            'title' => 'Campaign Rol \':role\'',
         ],
         'title'         => 'Campaign :name Rollen',
         'types'         => [
@@ -311,16 +292,15 @@ TEXT
         ],
     ],
     'settings'                          => [
-        'actions'       => [
+        'actions'   => [
             'enable'    => 'Inschakelen',
         ],
-        'boosted'       => 'Deze functie is in vroege toegang en momenteel alleen beschikbaar voor :boosted.',
-        'description'   => 'Schakel modules van de campaign in of uit.',
-        'edit'          => [
+        'boosted'   => 'Deze functie is in vroege toegang en momenteel alleen beschikbaar voor :boosted.',
+        'edit'      => [
             'success'   => 'Campaign instellingen bijgewerkt.',
         ],
-        'helper'        => 'Alle modules van een campaign kunnen naar believen worden in- of uitgeschakeld. Als je een module uitschakelt, worden de interface-elementen die eraan gerelateerd zijn eenvoudig verborgen, en reeds bestaande entiteiten zullen verborgen zijn maar nog steeds op de achtergrond bestaan, voor het geval je van gedachten verandert. Deze wijzigingen zijn van invloed op alle gebruikers van een campaign, inclusief beheerders.',
-        'helpers'       => [
+        'helper'    => 'Alle modules van een campaign kunnen naar believen worden in- of uitgeschakeld. Als je een module uitschakelt, worden de interface-elementen die eraan gerelateerd zijn eenvoudig verborgen, en reeds bestaande entiteiten zullen verborgen zijn maar nog steeds op de achtergrond bestaan, voor het geval je van gedachten verandert. Deze wijzigingen zijn van invloed op alle gebruikers van een campaign, inclusief beheerders.',
+        'helpers'   => [
             'abilities'     => 'Maak vaardigheden, of het nu gaat om prestaties, spreuken of krachten die aan entiteiten kunnen worden toegewezen.',
             'calendars'     => 'Een plek om de kalenders van je wereld te definiëren.',
             'characters'    => 'De mensen die jouw wereld bewonen.',
@@ -340,21 +320,20 @@ TEXT
             'tags'          => 'Elke entiteit kan meerdere tags hebben. Tags kunnen bij andere tags horen en invoeringen kunnen op tag worden gefilterd.',
             'timelines'     => 'Geef de geschiedenis van je wereld weer met tijdlijnen.',
         ],
-        'title'         => 'Campaign :name Modules',
+        'title'     => 'Campaign :name Modules',
     ],
     'show'                              => [
-        'actions'       => [
+        'actions'   => [
             'boost' => 'Boost campaign',
             'edit'  => 'Wijzig Campaign',
             'leave' => 'Verlaat campaign',
         ],
-        'description'   => 'Een gedetailleerd overzicht van een campaign',
-        'menus'         => [
+        'menus'     => [
             'configuration'     => 'Configuratie',
             'overview'          => 'Overzicht',
             'user_management'   => 'Gebruikersbeheer',
         ],
-        'tabs'          => [
+        'tabs'      => [
             'achievements'      => 'Prestaties',
             'applications'      => 'Sollicitaties',
             'campaign'          => 'Campaign',
@@ -362,13 +341,12 @@ TEXT
             'export'            => 'Exporteer',
             'information'       => 'Informatie',
             'members'           => 'Leden',
-            'menu'              => 'Menu',
             'plugins'           => 'Plugins',
             'recovery'          => 'Herstel',
             'roles'             => 'Rollen',
             'settings'          => 'Modules',
         ],
-        'title'         => 'Campaign :name',
+        'title'     => 'Campaign :name',
     ],
     'superboosted'                      => [
         'gallery'   => [

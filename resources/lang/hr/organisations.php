@@ -2,9 +2,8 @@
 
 return [
     'create'        => [
-        'description'   => 'Kreiraj novu organizaciju',
-        'success'       => 'Kreirana lokacija ":name"',
-        'title'         => 'Nova organizacija',
+        'success'   => 'Kreirana lokacija ":name"',
+        'title'     => 'Nova organizacija',
     ],
     'destroy'       => [
         'success'   => 'Obrisana organizacija ":name".',
@@ -29,19 +28,17 @@ return [
         'nested_without'=> 'Prikazuju se sve organizacije koje nemaju organizaciju roditelj. Klikni redak da bi vidio/la organizacije djecu.',
     ],
     'index'         => [
-        'add'           => 'Nova organizacija',
-        'description'   => 'Upravljanje organizacijama u :name',
-        'header'        => 'Organizacije u :name',
-        'title'         => 'Organizacije',
+        'add'       => 'Nova organizacija',
+        'header'    => 'Organizacije u :name',
+        'title'     => 'Organizacije',
     ],
     'members'       => [
         'actions'       => [
             'add'   => 'Dodaj člana',
         ],
         'create'        => [
-            'description'   => 'Dodaj člana u organizaciju',
-            'success'       => 'Član dodan u organizaciju.',
-            'title'         => 'Novi član organizacije za :name',
+            'success'   => 'Član dodan u organizaciju.',
+            'title'     => 'Novi član organizacije za :name',
         ],
         'destroy'       => [
             'success'   => 'Član uklonjen iz organizacije.',
@@ -73,17 +70,12 @@ return [
         'name'      => 'Naziv organizacije',
         'type'      => 'Kult, Banda, Pobuna, Klub obožavatelja',
     ],
-    'quests'        => [
-        'description'   => 'Zadaci kojih je organizacija dio.',
-        'title'         => 'Zadaci organizacije :name',
-    ],
     'show'          => [
-        'description'   => 'Detaljan pregled organizacije',
-        'tabs'          => [
+        'tabs'  => [
             'organisations' => 'Organizacije',
             'quests'        => 'Zadaci',
             'relations'     => 'Odnosi',
         ],
-        'title'         => 'Organizacija :name',
+        'title' => 'Organizacija :name',
     ],
 ];

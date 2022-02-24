@@ -41,7 +41,6 @@ return [
             'email'     => 'Email',
             'name'      => 'Nazwa użytkownika',
             'password'  => 'Hasło',
-            'tos'       => 'Zgadzam się na <a href=":privacyUrl" target="_blank">Privacy Policy</a>.',
             'tos_clean' => 'Akceptuję :privacy',
         ],
         'register_with_facebook'    => 'Zarejestruj przez Facebooka',

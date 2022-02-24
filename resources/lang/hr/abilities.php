@@ -42,10 +42,9 @@ return [
         'nested_without'=> 'Prikaz svih sposobnosti koje nemaju roditeljske sposobnosti. Klikni red da bi vidio/vidjela sposobnosti djecu.',
     ],
     'index'         => [
-        'add'           => 'Nova sposobnost',
-        'description'   => 'Kreiraj moći, čarolije, podvige i drugo za svoje entitete.',
-        'header'        => 'Sposobnosti :name',
-        'title'         => 'Sposobnosti',
+        'add'       => 'Nova sposobnost',
+        'header'    => 'Sposobnosti :name',
+        'title'     => 'Sposobnosti',
     ],
     'placeholders'  => [
         'charges'   => 'Broj punjenja. Referenciraj se na atribute s {Level}*{CHA}',

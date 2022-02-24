@@ -28,10 +28,6 @@ TEXT
         'answer'    => 'Kanka heeft deze functie niet. Als je echter meerdere speelgroepen in dezelfde wereld probeert te hebben, overweeg dan om dezelfde campaign te gebruiken en je groepen te scheiden door een combinatie van speurtochten, tags en permissies',
         'question'  => 'Kan ik entiteiten over meerdere campagnes synchroniseren?',
     ],
-    'conversations'         => [
-        'answer'    => 'Conversaties kunnen worden opgezet als gesprekken tussen Personages of tussen Campaign Leden. Als je bijvoorbeeld een belangrijk gesprek tussen NPC\'s en de PC\'s wilt documenteren, kun je dat doen met deze module. Je kunt ze ook gebruiken voor campaigns per post.',
-        'question'  => 'Wat zijn conversaties?',
-    ],
     'custom'                => [
         'answer'    => 'Kanka wordt geleverd met een set vooraf gedefinieerde entiteit typen die met elkaar communiceren. Om aangepaste entiteit typen toe te staan, zou de app helemaal opnieuw moeten worden opgebouwd en zou het doel van een tool met vooraf gedefinieerde typen om mensen te helpen met worldbuilding teniet doen, in plaats van uit te zoeken hoe ze dingen moeten organiseren. Bovendien is Kanka flexibel met Tags die de meeste scenario\'s van het type entiteit kunnen vertegenwoordigen.',
         'question'  => 'Kan ik aangepaste entiteit typen maken?',

@@ -163,7 +163,6 @@ return [
     ],
     'patreon'       => [
         'deprecated'    => 'Veraltete Funktion - Wenn Sie Kanka unterstützen möchten, tun Sie dies bitte mit einem :subscription. Die Patreon-Verknüpfung ist weiterhin für unsere Benutzer aktiv, die ihr Konto vor dem Umzug von Patreon verknüpft haben.',
-        'description'   => 'Synchronisierung mit Patreon',
         'pledge'        => 'Pledge :name',
         'remove'        => [
             'button'    => 'Trennen Sie die Verknüpfung Ihres Patreon-Kontos',

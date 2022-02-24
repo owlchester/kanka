@@ -55,7 +55,6 @@ return [
             'visible'   => 'Viditelné',
         ],
     ],
-    'description'       => 'Prostor pro tvé tvůrčí nadání',
     'helpers'           => [
         'follow'    => 'Tažení, která sleduješ, se budou zobrazovat v seznamu tažení (vlevo nahoře) pod vlastními taženími.',
         'join'      => 'Tažení přijímá pro nové členy. Klepnutím podáte přihlášku.',

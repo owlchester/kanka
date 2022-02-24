@@ -5,17 +5,15 @@ return [
         'add'   => 'Aggiungi una nota',
     ],
     'create'        => [
-        'description'   => 'Crea una nuova nota',
-        'success'       => 'La nota \':name\' è stata assegnata all\'entità :entity.',
-        'title'         => 'Nuova nota per :name',
+        'success'   => 'La nota \':name\' è stata assegnata all\'entità :entity.',
+        'title'     => 'Nuova nota per :name',
     ],
     'destroy'       => [
         'success'   => 'La nota \':name\' per :entity rimossa.',
     ],
     'edit'          => [
-        'description'   => 'Aggiorna una nota esistente',
-        'success'       => 'La nota \':name\' per :entity aggiornata.',
-        'title'         => 'Aggiorna la nota per :name',
+        'success'   => 'La nota \':name\' per :entity aggiornata.',
+        'title'     => 'Aggiorna la nota per :name',
     ],
     'fields'        => [
         'creator'   => 'Creatore',

@@ -6,17 +6,15 @@ return [
         'add_user'  => 'Dodaj korisnika',
     ],
     'create'        => [
-        'description'   => 'Kreiraj novu bilješku entiteta',
-        'success'       => 'Dodana bilješka entiteta ":name" na :entity.',
-        'title'         => 'Nova bilješka entiteta za :name',
+        'success'   => 'Dodana bilješka entiteta ":name" na :entity.',
+        'title'     => 'Nova bilješka entiteta za :name',
     ],
     'destroy'       => [
         'success'   => 'Uklonjena bilješka entiteta ":name" s :entity.',
     ],
     'edit'          => [
-        'description'   => 'Ažuriraj postojeću bilješku entiteta',
-        'success'       => 'Ažurirana bilješka entiteta ":name" za :entity.',
-        'title'         => 'Ažuriraj bilješku entiteta za :name',
+        'success'   => 'Ažurirana bilješka entiteta ":name" za :entity.',
+        'title'     => 'Ažuriraj bilješku entiteta za :name',
     ],
     'fields'        => [
         'collapsed' => 'Prema zadanim postavkama zatvori prikvačenu bilješku entiteta',

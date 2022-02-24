@@ -20,11 +20,8 @@ return [
         'title'             => 'Hesap',
     ],
     'api'           => [
-        'experimental'          => 'Kanka API\'larına hoşgeldiniz! Bu özellikler hala deneysel ancak sizin API\'lar ile bağ kurmanıza yetecek kadar stabil olmalılar. Kendi API istekleriniz için Şahsi Erişim Tokeni oluşturun, ya da uygulanmanızın kullanıcı verisine erişimi olması için İstemci tokeni oluşturun.',
-        'help'                  => 'Kanka yakın zamanda üçüncü parti uygulamaların uygulamaya bağlanabilmesi için bir RESTful API sağlayacak. API anahtarlarınızı nasıl yöneteceğinizin detayları aşağıda gösterilecek.',
-        'link'                  => 'API dokümentasyonunu okuyun',
-        'request_permission'    => 'Şu anda üçüncü parti uygulamalar uygulamaya bağlanabilsin diye güçlü bir RESTful API oluşturuyoruz. Ancak, biz API altyapısını düzenlerken, şu anda API ile etkileşebilecek kullanıcıların sayısını sınırlıyoruz. Eğer API erişimi kazanmak ve Kanka ile konuşan havalı uygulamalar yaratmak istiyorsanız, lütfen bizimle iletişime geçin ve biz de size ihtiyacınız olan tüm bilgiyi sağlayalım.',
-        'title'                 => 'API',
+        'link'  => 'API dokümentasyonunu okuyun',
+        'title' => 'API',
     ],
     'apps'          => [
         'actions'   => [
@@ -52,8 +49,6 @@ return [
             'first'             => 'Kanka\'da sürekli ilerlemenin güvence altına alınması için, bazı serüven özelliklerinin kilidi yalnızca bir serüveni destekleyerek açılır. Destekler abonelikler aracılığı ile açılır. Bir serüveni görüntüleyebilen herhangi biri serüveni destekleyebilir, böylece hesap yalnızca DM\'e kilitlenmemiş olur. Bir serüven bir kullanıcı onu desteklediği ve kullanıcı Kanka\'yı desteklediği sürece destekli kalır. Eğer bir serüven artık destekli değilse, veri kaybolmaz, yalnızca serüven tekrar desteklenene kadar saklı kalır.',
             'header'            => 'Varlık kapak görselleri.',
             'images'            => 'Özel varsayılan varlık görselleri.',
-            'more'              => 'Bütün özellikler hakkında daha fazla bilgi edinin.',
-            'second'            => 'Bir serüveni desteklemek aşağıdaki faydaları sağlar:',
             'superboost'        => 'Bir serüveni süperdesteklemek 3 desteğinizin tamamını harcar ve destekli serüvenlerin üstüne ek özelliklerin de kilidini açar.',
             'theme'             => 'Serüven seviyesinde tema ve özel tasarım.',
             'third'             => 'Bir serüveni desteklemek için, serüvenin sayfasına gidin, ve ":edit_button" butonunun üstündeki ":boost_button" butonuna tıklayın.',
@@ -139,25 +134,15 @@ return [
         'subscription_status'   => 'Abonelik Durumu',
     ],
     'patreon'       => [
-        'actions'           => [
-            'link'  => 'Hesabı Bağla',
-            'view'  => 'Kanka\'yı Patreon\'da Görüntüle',
-        ],
-        'benefits'          => 'Bizi :patreon üzerinde desteklemek sizin ve serüvenleriniz için her türlü :features kilidini açar, ve Kanka\'nın üstünde çalışmak ve onu geliştirmek için daha fazla zaman geçirmemize yardımcı olur.',
-        'benefits_features' => 'harika özellikler',
-        'deprecated'        => 'Artık kullanılmayan özellik - eğer Kanka\'yı desteklemek istiyorsanız, lütfen bunu :subscription ile yapın. Patreon bağlama biz Patreon\'dan ayrılmadan önce hesaplarını bağlamış Patron\'lar için hala aktiftir.',
-        'description'       => 'Patreon ile Senkronizasyon',
-        'linked'            => 'Kanka\'yı Patreon\'da desteklediğiniz için teşekkür ederiz! Hesabınız bağlandı.',
-        'pledge'            => ':name vaadi',
-        'remove'            => [
+        'deprecated'    => 'Artık kullanılmayan özellik - eğer Kanka\'yı desteklemek istiyorsanız, lütfen bunu :subscription ile yapın. Patreon bağlama biz Patreon\'dan ayrılmadan önce hesaplarını bağlamış Patron\'lar için hala aktiftir.',
+        'pledge'        => ':name vaadi',
+        'remove'        => [
             'button'    => 'Patreon hesabınızın bağlantısını kesin.',
             'success'   => 'Patreon hesabınızın bağlantısı kesildi.',
             'text'      => 'Patreon hesabınızın Kanka ile bağını koparmak bonuslarınızı, onur duvarından adınızı, serüven destekleriniz, ve Kanka\'yı desteklemek ile alakalı diğer özelliklerinizi kaldırır. Destekli hiçbir içeriğiniz kaybolmaz (örn. varlık kapakları). Tekrar abone olarak önceki serüvenlerinizi desteklemek dahil olmak üzere önceki verilerinizin tamamına erişim kazanacaksınız.',
             'title'     => 'Patreon hesabınızın Kanka ile olan bağını koparın.',
         ],
-        'success'           => 'Kanka\'yı Patreon\'da desteklediğiniz için teşekkür ederiz!',
-        'title'             => 'Patreon',
-        'wrong_pledge'      => 'Vaat seviyeniz bizim tarafımızdan elle ayarlanmıştır, bundan ötürü lütfen bize doğru şekilde ayarlamamız için birkaç güne kadar zaman tanıyın. Eğer bir süre boyunca yanlış kalırsa, lütfen bizimle iletişime geçin.',
+        'title'         => 'Patreon',
     ],
     'profile'       => [
         'actions'   => [

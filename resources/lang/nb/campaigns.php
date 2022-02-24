@@ -2,9 +2,7 @@
 
 return [
     'create'                            => [
-        'description'           => 'Opprett ny kampanje',
         'helper'                => [
-            'first'     => 'Takk for at du prøver appen vår! Før vi kan fortsette må du gi oss en enkel ting: ditt <b>kampanje navn</b>. Dette er det navnet til verden din som separerer den fra de andre, så den må være unik. Hvis du ikke kommer på et godt navn trenger du ikke bekymre deg, du kan <b>alltid endre det senere<b/>, eller lage flere kampanjer.',
             'title'     => 'Velkommen til :name',
             'welcome'   => <<<'TEXT'
 Før du fortsetter må du velge et navn til kampanjen din. Dette er det verdenen din kommer til å hete. Hvis du ikke kommer på et godt navn trenger du ikke bekymre deg. Du kan alltid forandre det senere eller opprette flere kampanjer.
@@ -21,9 +19,8 @@ TEXT
         'success'   => 'Kampanje fjernet.',
     ],
     'edit'                              => [
-        'description'   => 'Endre kampanje',
-        'success'       => 'Kampanje oppdatert.',
-        'title'         => 'Endre kampanje :campaign',
+        'success'   => 'Kampanje oppdatert.',
+        'title'     => 'Endre kampanje :campaign',
     ],
     'entity_personality_visibilities'   => [
         'private'   => 'Nye karakterers personlighet er privat som standard.',
@@ -37,55 +34,50 @@ TEXT
         'unknown_id'    => 'Ukjent kampanje.',
     ],
     'export'                            => [
-        'description'   => 'Eksporter kampanjen.',
-        'errors'        => [
+        'errors'    => [
             'limit' => 'Du har nådd grensen på maks èn eksport per dag. Vennligst prøv igjen i morgen.',
         ],
-        'helper'        => 'Eksporter kampanjen din. Et varsel med nedlastnings lenke vil bli gjort tilgjengelig.',
-        'success'       => 'Eksporten av din kampanje blir klargjort. Du vil få et varsel fra Kanka med nedlastbar zip-fil så snart den er ferdig.',
-        'title'         => 'Kampanje :name Eksport',
+        'helper'    => 'Eksporter kampanjen din. Et varsel med nedlastnings lenke vil bli gjort tilgjengelig.',
+        'success'   => 'Eksporten av din kampanje blir klargjort. Du vil få et varsel fra Kanka med nedlastbar zip-fil så snart den er ferdig.',
+        'title'     => 'Kampanje :name Eksport',
     ],
     'fields'                            => [
-        'boosted'                       => 'Boostet av',
-        'css'                           => 'CSS',
-        'description'                   => 'Beskrivelse',
-        'entity_count'                  => 'Objekt Antall',
-        'entity_personality_visibility' => 'Karakter Personliget Synlighet',
-        'entity_visibility'             => 'Objekt synlighet',
-        'excerpt'                       => 'Utdrag',
-        'followers'                     => 'Følgere',
-        'header_image'                  => 'Banner Bilde',
-        'hide_history'                  => 'Skjul objekts historie',
-        'hide_members'                  => 'Skjul kampanje medlemmer',
-        'image'                         => 'Bilde',
-        'locale'                        => 'Lokale',
-        'name'                          => 'Navn',
-        'public_campaign_filters'       => 'Offentlige Kampanje Filtere',
-        'rpg_system'                    => 'RPG systemer',
-        'system'                        => 'System',
-        'theme'                         => 'Tema',
-        'tooltip_family'                => 'Skjul familienavn fra verktøy tips.',
-        'tooltip_image'                 => 'Vis objekt bilde i verktøytips',
-        'visibility'                    => 'Synlighet',
+        'boosted'                   => 'Boostet av',
+        'css'                       => 'CSS',
+        'description'               => 'Beskrivelse',
+        'entity_count'              => 'Objekt Antall',
+        'excerpt'                   => 'Utdrag',
+        'followers'                 => 'Følgere',
+        'header_image'              => 'Banner Bilde',
+        'hide_history'              => 'Skjul objekts historie',
+        'hide_members'              => 'Skjul kampanje medlemmer',
+        'image'                     => 'Bilde',
+        'locale'                    => 'Lokale',
+        'name'                      => 'Navn',
+        'public_campaign_filters'   => 'Offentlige Kampanje Filtere',
+        'rpg_system'                => 'RPG systemer',
+        'system'                    => 'System',
+        'theme'                     => 'Tema',
+        'tooltip_family'            => 'Skjul familienavn fra verktøy tips.',
+        'tooltip_image'             => 'Vis objekt bilde i verktøytips',
+        'visibility'                => 'Synlighet',
     ],
     'following'                         => 'Følger',
     'helpers'                           => [
-        'boost_required'                => 'Denne funksjoner krever at kampanjen blir boosta. Mer info på :settings siden.',
-        'boosted'                       => 'Noen funskjoner er låst opp fordi denne kampanjen blir boosta. Finn ut mer på :settings siden.',
-        'css'                           => 'Skriv din egen CSS som lastet inn i sidene til din kampanje. Vennligst noter at all misbruk av denne funksjonen kan resultere i fjerningen av din tilpassede CSS. Gjentatte eller grove brudd kan føre til fjerningen av din kampanje.',
-        'entity_personality_visibility' => 'Når du skaper en ny karakter blir "Personlighet Synlig" valget automatisk ikke valgt.',
-        'entity_visibility'             => 'Når du lager et nytt objekt blir "Privat" valget automatisk ikke valgt.',
-        'excerpt'                       => 'Kampanje utdraget blir vist på dashbordet, så skriv et par setninger som introduserer verdenen din. Ikke gjør den for lang så du får best resultat.',
-        'hide_history'                  => 'Slå på dette for å skule objekters historie til ikke-administratorer i kampanjen.',
-        'hide_members'                  => 'Skru dette på for å skjule kampanjens medlems liste for ikke-administatorer.',
-        'locale'                        => 'Språket kampanjen din er skrevet i. Dette blir brukt for å generere innhold til og å gruppere offentlige kampanjer.',
-        'name'                          => 'Din kampanje/verden kan ha hvilken som helst navn så lenge det inneholder minst 4 bokstaver eller tall.',
-        'public_campaign_filters'       => 'Hjelp andre med å finne kampanjen iblant andre offentlige kampanjer ved å tilføye følgende informasjon.',
-        'system'                        => 'Hvis kampanjen din er offentlig synlig blir systemet vist i :link siden.',
-        'systems'                       => 'For ikke å belemre brukere med forskjellige valg, er noen funksjoner i Kanka kun tilgjengelige med spesifike rollespill systemer (dvs. D&D 5e monster stat blocken). Ved å legge til støttede systemer her vil muliggjøre noen av de funksjonene.',
-        'theme'                         => 'Påtving temaet til kampanjen som overstyrer brukerens preferanse.',
-        'view_public'                   => 'For å se kampanjen din som en offentlig bruker hadde sett den, åpne :link i en inkognito fane.',
-        'visibility'                    => 'Å gjøre en kampanje offentlig betyr at hvem som helst med en lenke til den kan se den.',
+        'boost_required'            => 'Denne funksjoner krever at kampanjen blir boosta. Mer info på :settings siden.',
+        'boosted'                   => 'Noen funskjoner er låst opp fordi denne kampanjen blir boosta. Finn ut mer på :settings siden.',
+        'css'                       => 'Skriv din egen CSS som lastet inn i sidene til din kampanje. Vennligst noter at all misbruk av denne funksjonen kan resultere i fjerningen av din tilpassede CSS. Gjentatte eller grove brudd kan føre til fjerningen av din kampanje.',
+        'excerpt'                   => 'Kampanje utdraget blir vist på dashbordet, så skriv et par setninger som introduserer verdenen din. Ikke gjør den for lang så du får best resultat.',
+        'hide_history'              => 'Slå på dette for å skule objekters historie til ikke-administratorer i kampanjen.',
+        'hide_members'              => 'Skru dette på for å skjule kampanjens medlems liste for ikke-administatorer.',
+        'locale'                    => 'Språket kampanjen din er skrevet i. Dette blir brukt for å generere innhold til og å gruppere offentlige kampanjer.',
+        'name'                      => 'Din kampanje/verden kan ha hvilken som helst navn så lenge det inneholder minst 4 bokstaver eller tall.',
+        'public_campaign_filters'   => 'Hjelp andre med å finne kampanjen iblant andre offentlige kampanjer ved å tilføye følgende informasjon.',
+        'system'                    => 'Hvis kampanjen din er offentlig synlig blir systemet vist i :link siden.',
+        'systems'                   => 'For ikke å belemre brukere med forskjellige valg, er noen funksjoner i Kanka kun tilgjengelige med spesifike rollespill systemer (dvs. D&D 5e monster stat blocken). Ved å legge til støttede systemer her vil muliggjøre noen av de funksjonene.',
+        'theme'                     => 'Påtving temaet til kampanjen som overstyrer brukerens preferanse.',
+        'view_public'               => 'For å se kampanjen din som en offentlig bruker hadde sett den, åpne :link i en inkognito fane.',
+        'visibility'                => 'Å gjøre en kampanje offentlig betyr at hvem som helst med en lenke til den kan se den.',
     ],
     'index'                             => [
         'actions'   => [
@@ -102,17 +94,13 @@ TEXT
             'link'  => 'Ny lenke',
         ],
         'create'                => [
-            'button'        => 'Inviter',
-            'description'   => 'Inviter en venn til kampanjen din',
-            'link'          => 'Link opprettet: <a href=":url" target="_blank">:url</a>',
-            'success'       => 'Invitasjon sendt.',
-            'title'         => 'Inviter noen til din kampanje',
+            'success'   => 'Invitasjon sendt.',
+            'title'     => 'Inviter noen til din kampanje',
         ],
         'destroy'               => [
             'success'   => 'Invitasjon fjernet.',
         ],
         'email'                 => [
-            'link'      => '<a href=":link">Bli med :name\'s kampanje</a>',
             'subject'   => ':name har invitert deg til sin kampanje på kanka.io! Bruk følgende lenke for å akseptere invitasjonen.',
             'title'     => 'Invitasjon fra :name',
         ],
@@ -127,7 +115,6 @@ TEXT
             'email'     => 'Epost',
             'role'      => 'Rolle',
             'type'      => 'Type',
-            'validity'  => 'Gyldighet',
         ],
         'helpers'               => [
             'email'     => 'Våre eposter er ofte markert som søppelpost og det kan ta opp til et par timer før den dukker opp i innboksen din.',
@@ -155,10 +142,8 @@ TEXT
         'create'                => [
             'title' => 'Legg til medlem til din kampanje',
         ],
-        'description'           => 'Ordne medlemmene i kampanjen din',
         'edit'                  => [
-            'description'   => 'Endre på et medlem i kampanjen din',
-            'title'         => 'Endre på medlem :name',
+            'title' => 'Endre på medlem :name',
         ],
         'fields'                => [
             'joined'        => 'Ble med',
@@ -177,7 +162,6 @@ TEXT
             'title'     => 'Etterligne :name',
         ],
         'invite'                => [
-            'description'   => 'Du kan invitere venner til å bli med i din kampanje ved å gi dem en Invitasjons Lenke. Når de aksepterer invitasjonen, blir de lagt til som medlem i den forespurte rollen. Du kan også sende invitasjonen via epost så lenge det ikke er en Hotmail addresse, som alltid blokkerer Kankas eposter.',
             'more'          => 'Du kan opprette flere roller på :link.',
             'roles_page'    => 'Roller siden',
             'title'         => 'Inviter',
@@ -215,7 +199,6 @@ TEXT
             'success'   => 'Rolle opprettet.',
             'title'     => 'Opprett en rolle til :name',
         ],
-        'description'   => 'Ordne rollene i kampanjen',
         'destroy'       => [
             'success'   => 'Role fjernet.',
         ],
@@ -259,8 +242,7 @@ TEXT
             'name'  => 'Rollens navn',
         ],
         'show'          => [
-            'description'   => 'Medlemmer og Tillatelser i en kampanje rolle',
-            'title'         => 'Kampanje Rolle \':role\'',
+            'title' => 'Kampanje Rolle \':role\'',
         ],
         'title'         => 'Kampanje :name Roller',
         'types'         => [
@@ -285,16 +267,15 @@ TEXT
         ],
     ],
     'settings'                          => [
-        'actions'       => [
+        'actions'   => [
             'enable'    => 'Skru på',
         ],
-        'boosted'       => 'Denne funksjonen er i tidlig tilgang og kun tilgjengelig for :boosted.',
-        'description'   => 'Skru moduler i kampanjen av eller på.',
-        'edit'          => [
+        'boosted'   => 'Denne funksjonen er i tidlig tilgang og kun tilgjengelig for :boosted.',
+        'edit'      => [
             'success'   => 'Kampanje innstillinger oppdatert.',
         ],
-        'helper'        => 'Alle moduler i en kampanje kan bli skrudd av eller på når man ønsker. Ved å slå av en modul skjuler man alle grensesnitts elementer relatert til det, og tidligere eksisterende objekter blir skjult men finnes enda i bakgrunnen i tilfelle du ombestemmer deg. Disse endringene påvirker alle brukere i kampanjen, inkludert Administratorer.',
-        'helpers'       => [
+        'helper'    => 'Alle moduler i en kampanje kan bli skrudd av eller på når man ønsker. Ved å slå av en modul skjuler man alle grensesnitts elementer relatert til det, og tidligere eksisterende objekter blir skjult men finnes enda i bakgrunnen i tilfelle du ombestemmer deg. Disse endringene påvirker alle brukere i kampanjen, inkludert Administratorer.',
+        'helpers'   => [
             'abilities'     => 'Opprett Egenskaper, om det er feats, spells, eller krefter som kan tildeles objekter.',
             'calendars'     => 'Et sted som definerer kalenderene i din verden.',
             'characters'    => 'Folkene som bor i din verden.',
@@ -314,28 +295,26 @@ TEXT
             'tags'          => 'Hvert objekt kan ha flere etiketter. Etiketter kan høre til andre etiketter og innlegg kan filtreres etter etiketter.',
             'timelines'     => 'Representer din verdens historie med tidslinjer.',
         ],
-        'title'         => 'Kampanje :name Moduler',
+        'title'     => 'Kampanje :name Moduler',
     ],
     'show'                              => [
-        'actions'       => [
+        'actions'   => [
             'boost' => 'Boost kampanje',
             'edit'  => 'Rediger Kampanje',
             'leave' => 'Forlat Kampanje',
         ],
-        'description'   => 'Et detaljert overblikk på en kampanje',
-        'tabs'          => [
+        'tabs'      => [
             'achievements'      => 'Prestasjoner',
             'default-images'    => 'Standard Bilder',
             'export'            => 'Eksport',
             'information'       => 'Informasjon',
             'members'           => 'Medlemmer',
-            'menu'              => 'Meny',
             'plugins'           => 'Plugins',
             'recovery'          => 'Gjenopprettelse',
             'roles'             => 'Roller',
             'settings'          => 'Moduler',
         ],
-        'title'         => 'Kampanje :name',
+        'title'     => 'Kampanje :name',
     ],
     'superboosted'                      => [
         'gallery'   => [

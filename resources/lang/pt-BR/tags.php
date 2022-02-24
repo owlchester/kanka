@@ -2,20 +2,18 @@
 
 return [
     'children'      => [
-        'actions'       => [
+        'actions'   => [
             'add'   => 'Adicionar à tag',
         ],
-        'create'        => [
+        'create'    => [
             'success'   => 'Adicionada a tag :name a entidade.',
             'title'     => 'Adicionar uma tag a :name',
         ],
-        'description'   => 'Entidades que pertencem à tag',
-        'title'         => 'Filhos da tag :name',
+        'title'     => 'Filhos da tag :name',
     ],
     'create'        => [
-        'description'   => 'Criar nova tag',
-        'success'       => 'Tag \':name\' criada.',
-        'title'         => 'Nova tag',
+        'success'   => 'Tag \':name\' criada.',
+        'title'     => 'Nova tag',
     ],
     'destroy'       => [
         'success'   => 'Tag \':name\' removida',
@@ -33,7 +31,6 @@ return [
         'type'          => 'Tipo',
     ],
     'helpers'       => [
-        'nested'        => 'Quando em visualização aninhada, você pode visualizar suas tags de uma maneira aninhada. Tags que não estão relacionadas a uma tag primária serão mostradas por padrão. As tags com filhos podem ser clicadas para visualizar essas tags. Você pode continuar clicando até que não haja mais tags secundárias para ver.',
         'nested_parent' => 'Mostrando as tags de :parent.',
         'nested_without'=> 'Mostrando todas as tags que não tem uma tag-pai. Clique em uma linha para ver as tags-filhos.',
     ],
@@ -42,13 +39,12 @@ return [
         'tag'       => 'Exibidas abaixo estão todas as tags diretamente relacionadas a ela.',
     ],
     'index'         => [
-        'actions'       => [
+        'actions'   => [
             'explore_view'  => 'Visão Aninhada',
         ],
-        'add'           => 'Nova tag',
-        'description'   => 'Gerenciar a tag de :name',
-        'header'        => 'Tags em :name',
-        'title'         => 'Tags',
+        'add'       => 'Nova tag',
+        'header'    => 'Tags em :name',
+        'title'     => 'Tags',
     ],
     'new_tag'       => 'Nova tag',
     'placeholders'  => [
@@ -57,16 +53,13 @@ return [
         'type'  => 'Tradições, Guerras, História, Religião, Vexilologia',
     ],
     'show'          => [
-        'description'   => 'Uma visão detalhada da tag',
-        'tabs'          => [
-            'children'      => 'Filhos',
-            'information'   => 'Informação',
-            'tags'          => 'Tags',
+        'tabs'  => [
+            'children'  => 'Filhos',
+            'tags'      => 'Tags',
         ],
-        'title'         => 'Tag :name',
+        'title' => 'Tag :name',
     ],
     'tags'          => [
-        'description'   => 'Filhos das Tags',
-        'title'         => 'Filhos da tag :name',
+        'title' => 'Filhos da tag :name',
     ],
 ];

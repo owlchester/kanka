@@ -2,18 +2,16 @@
 
 return [
     'create'        => [
-        'description'   => 'Erstelle einen neuen Würfelwurf',
-        'success'       => 'Würfelwurf \':name\' erstellt.',
-        'title'         => 'Neuer Würfelwurf',
+        'success'   => 'Würfelwurf \':name\' erstellt.',
+        'title'     => 'Neuer Würfelwurf',
     ],
     'destroy'       => [
         'dice_roll' => 'Würfelwurf entfernt.',
         'success'   => 'Würfelwurf \':name\' entfernt.',
     ],
     'edit'          => [
-        'description'   => 'Bearbeite einen Würfelwurf',
-        'success'       => 'Würfelwurf \':name\' aktualisiert.',
-        'title'         => 'Bearbeite Würfelwurf \':name\'',
+        'success'   => 'Würfelwurf \':name\' aktualisiert.',
+        'title'     => 'Bearbeite Würfelwurf \':name\'',
     ],
     'fields'        => [
         'created_at'    => 'Gewürfelt am',
@@ -26,14 +24,13 @@ return [
         'parameters'    => 'Was sind meine Würfeloptionen?',
     ],
     'index'         => [
-        'actions'       => [
+        'actions'   => [
             'dice'      => 'Würfelwürfe',
             'results'   => 'Ergebnisse',
         ],
-        'add'           => 'Neuer Würfelwurf',
-        'description'   => 'Verwalte die Würfelwürfe von :name',
-        'header'        => 'Würfelwürfe von :name',
-        'title'         => 'Würfelwürfe',
+        'add'       => 'Neuer Würfelwurf',
+        'header'    => 'Würfelwürfe von :name',
+        'title'     => 'Würfelwürfe',
     ],
     'placeholders'  => [
         'dice_roll' => 'Würfelwurf',
@@ -54,10 +51,9 @@ return [
         'success'   => 'Würfel gewürfelt.',
     ],
     'show'          => [
-        'description'   => 'Eine detaillierte Ansicht eines Würfelwurfs',
-        'tabs'          => [
+        'tabs'  => [
             'results'   => 'Ergebnisse',
         ],
-        'title'         => 'Würfelwurf :name',
+        'title' => 'Würfelwurf :name',
     ],
 ];

@@ -2,18 +2,16 @@
 
 return [
     'create'        => [
-        'description'   => 'Vytvořit nový hod kostkami',
-        'success'       => 'Hod kostkami ":name" vytvořen.',
-        'title'         => 'Nový hod kostami',
+        'success'   => 'Hod kostkami ":name" vytvořen.',
+        'title'     => 'Nový hod kostami',
     ],
     'destroy'       => [
         'dice_roll' => 'Hod kostkami odstraněn.',
         'success'   => 'Hod kostkami ":name" odstraněn.',
     ],
     'edit'          => [
-        'description'   => 'Upravit hod kostkami',
-        'success'       => 'Hod kostkami ":name" upraven.',
-        'title'         => 'Upravit hod kostkami :name',
+        'success'   => 'Hod kostkami ":name" upraven.',
+        'title'     => 'Upravit hod kostkami :name',
     ],
     'fields'        => [
         'created_at'    => 'Hozeno v',
@@ -26,14 +24,13 @@ return [
         'parameters'    => 'Možnosti hodu',
     ],
     'index'         => [
-        'actions'       => [
+        'actions'   => [
             'dice'      => 'Hody kostkou',
             'results'   => 'Výsledky',
         ],
-        'add'           => 'Nový hod kostkou',
-        'description'   => 'Spravovat hody kostkou :name.',
-        'header'        => 'Hody kostkou :name',
-        'title'         => 'Hody kostkou',
+        'add'       => 'Nový hod kostkou',
+        'header'    => 'Hody kostkou :name',
+        'title'     => 'Hody kostkou',
     ],
     'placeholders'  => [
         'dice_roll' => 'Hod kostkou',
@@ -54,10 +51,9 @@ return [
         'success'   => 'Kostky vrženy.',
     ],
     'show'          => [
-        'description'   => 'Podrobný pohled na vrh kostkou',
-        'tabs'          => [
+        'tabs'  => [
             'results'   => 'Výsledky',
         ],
-        'title'         => 'Hod kostkou :name',
+        'title' => 'Hod kostkou :name',
     ],
 ];

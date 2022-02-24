@@ -11,7 +11,6 @@ return [
         'link'  => 'Tulajdonságokkal kapcsolatos lehetőségek',
         'title' => 'Tulajdonságok',
     ],
-    'description'       => 'Tippek és trükkök, amik jól jöhetnek.',
     'dice'              => [
         'description'               => 'Az általános kockadobási kódokat használjuk. Egyaránt érvényes a "d20" és a "4d4+4" képlet is, valamint használhatod a "d%"-at százalékos, a "df"-et pedig fudge kockákhoz. A [ ] zárójeleket pedig, ha nem akarod összeadni az eredményt (pl. 6[d10] Storyteller rendszerben).',
         'description_attributes'    => 'Felhasználhatod a karakterek attribútumainak értékét is a {character.attribútum_neve} szintaxis használatával. Például: {character.szint}d6+{character.bölcsesség}',

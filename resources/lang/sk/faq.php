@@ -33,10 +33,6 @@ TEXT
         'answer'    => 'Túto funkcionalitu Kanka nepodporuje. Môžeš ale manažovať viacero herných skupín v rovnakom svete. Ak používajú rovnakú kampaň, vieš ich prístupy kontrolovať cez kombináciu Úloh, Kategórií a Oprávnení.',
         'question'  => 'Môžem synchronizovať objekty vo viacerých kampaniach naraz?',
     ],
-    'conversations'         => [
-        'answer'    => 'Diskusie môžu byť využívané pre rozhovory medzi postavami alebo členmi kampane. Ak napr. chceš zdokumentovať nejaký dôležitý rozhovor medzie NPC-čkami a postavami hráčov a hráčiek, môžeš tak urobiť v tomto module. Tiež ich môžeš použiť na play-by-post kampane.',
-        'question'  => 'Čo sú Diskusie?',
-    ],
     'custom'                => [
         'answer'    => 'Kanka ponúka preddefinované typy navzájom integrovaných objektov. Ak by sme povolili vytváranie vlastných typov objektov, museli by sme aplikáciu úplne prerobiť a zároveň by sme prišli o zjednodušenie práce a namiesto tvorby svetov by sme riešili, ako ich organizovať. Okrem toho je Kanka dostatočne flexibilná pomocou objektu kategórií.',
         'question'  => 'Môžem vytvoriť mnou definované typy objektov?',

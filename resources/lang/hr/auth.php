@@ -41,7 +41,6 @@ return [
             'email'     => 'Email',
             'name'      => 'Korisničko ime',
             'password'  => 'Lozinka',
-            'tos'       => 'Pristajem na <a href=":privacyUrl" target="_blank">Policu privatnosti</a>.',
         ],
         'register_with_facebook'    => 'Registriraj se pomoću Facebook računa',
         'register_with_google'      => 'Registriraj se pomoću Google računa',

@@ -12,15 +12,7 @@ return [
         'title'         => 'Team',
         'translations'  => 'Traduzioni',
     ],
-    'patreon'       => [
-        'description'   => 'Queste fantastiche persone che hanno aiutato e supportato Kanka su Patreon.',
-        'learn_more'    => 'Scopri di più sui benefici dei Patreon',
-        'title'         => 'Patreon',
-    ],
     'people'        => [
-        'iz'    => [
-            'title' => 'Sviluppo del Prodotto',
-        ],
         'jay'   => [
             'text'  => <<<'TEXT'
 Ho creato Kanka nell'Ottobre del 2017 poiché non c'era alcuno strumento che mi permettesse di creare facilmente un mondo con i miei amici, e che mi fornisse anche la possibilità di controllare chi potesse vedere o fare cose.

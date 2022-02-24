@@ -67,7 +67,6 @@ return [
         'current_day'           => 'Current Day',
         'current_month'         => 'Current Month',
         'current_year'          => 'Current Year',
-        'day'                   => 'Day',
         'date'                  => 'Current Date',
         'has_leap_year'         => 'Has leap years',
         'intercalary'           => 'Intercalary Days',
@@ -79,7 +78,6 @@ return [
         'leap_year_start'       => 'Leap Year',
         'length'                => 'Event Length',
         'length_days'           => ':count day|:count days',
-        'month'                 => 'Month',
         'months'                => 'Months',
         'moons'                 => 'Moons',
         'name'                  => 'Name',
@@ -93,7 +91,6 @@ return [
         'type'                  => 'Type',
         'week_names'            => 'Week Names',
         'weekdays'              => 'Week Days',
-        'year'                  => 'Year',
     ],
     'helpers'       => [
         'month_type'    => 'Intercalary months don\'t use week days, but still influence moons and seasons.',

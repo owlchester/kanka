@@ -48,7 +48,6 @@ return [
         'max_zoom'          => 'Så mycket en karta kan zoomas in. Standard värdet är :default, medans det högsta värdet tillåtet är :max.',
         'min_zoom'          => 'Så mycket en karta kan zoomas ut. Standard värdet är :default, medans det lägsta värdet tillåtet är :min.',
         'missing_image'     => 'Spara kartan med en bild innan det är möjligt att lägga till lager och markeringar.',
-        'nested'            => 'I Hierarkisk Vy kan du se dina kartor i hierarkisk ordning. Kartor utan någon huvudkarta kommer visas som standard. Kartor med underkartor kan klickas på för att visa dessa. Du kan fortsätta klicka tills det inte finns några fler underkartor att visa.',
     ],
     'index'         => [
         'add'   => 'Ny Karta',

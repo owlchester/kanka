@@ -19,14 +19,9 @@ return [
     ],
     'header'            => 'Du har :count notifikationer',
     'index'             => [
-        'description'   => 'Dina senaste notifikationer.',
-        'title'         => 'Notifikationer',
+        'title' => 'Notifikationer',
     ],
     'no_notifications'  => 'Du har för tillfället inga notifikationer.',
-    'permissions'       => [
-        'body'  => 'Hallå, vi vill informera dig att vi har helt ändrat behörighetssystemet för alla kampanjer! </p><p>Kampanjer kan nu ha roller och varje roll kan ha behörigheter för att komma åt, redigera eller ta bort entiteter. Varje entitet kan också finjusteras med användarspecifika behörigheter, vilket betyder att Becky och Alfred kan redigera sina egna karaktärer!</p><p>Den enda nackdelen med detta är att många användare måste ställa in nya behörigheter. Om du är Adminen för en kampanj så kan du göra det på kampanjhanterings sidan. Om du är med i en kampanj så kommer du inte kunna se något förens en kampanj Admin har fixat det.',
-        'title' => 'Behörighetsändringar',
-    ],
     'subscriptions'     => [
         'charge_fail'   => 'Ett fel inträffade medans vi hanterade din betalning. Vänligen vänta ett ögonblick medans vi försöker igen. Om inget ändras, vänligen kontakta oss.',
         'deleted'       => 'Din prenumeration på Kanka har avbrutits efter för många misslyckade försök att ta betalt från ditt kort. Vänligen gå till dina Prenumerations inställningar och försök uppdatera dina betalningsuppgifter.',

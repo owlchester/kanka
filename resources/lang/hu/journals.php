@@ -2,9 +2,8 @@
 
 return [
     'create'        => [
-        'description'   => 'Új naplóbejegyzés létrehozása',
-        'success'       => '\':name\' naplóbejegyzést létrehoztuk.',
-        'title'         => 'Új naplóbejegyzést',
+        'success'   => '\':name\' naplóbejegyzést létrehoztuk.',
+        'title'     => 'Új naplóbejegyzést',
     ],
     'destroy'       => [
         'success'   => '\':name\' naplóbejegyzést eltávolítottuk.',
@@ -29,10 +28,9 @@ return [
         'nested_without'=> 'Minden olyan napló megmutatása, amelynek nincs szülőnaplója. Klikkelj egy sorra, hogy lásd a gyermeknaplókat.',
     ],
     'index'         => [
-        'add'           => 'Új naplóbejegyzés',
-        'description'   => ':name naplóbejegyzéseinek kezelése',
-        'header'        => ':name naplóbejegyzései',
-        'title'         => 'Naplók',
+        'add'       => 'Új naplóbejegyzés',
+        'header'    => ':name naplóbejegyzései',
+        'title'     => 'Naplók',
     ],
     'journals'      => [
         'title' => ':name napló alnaplói',
@@ -45,10 +43,9 @@ return [
         'type'      => 'Játékalkalom, egylövetű, vázlat',
     ],
     'show'          => [
-        'description'   => 'A naplóbejegyzés részletes nézete',
-        'tabs'          => [
+        'tabs'  => [
             'journals'  => 'Naplók',
         ],
-        'title'         => ':name',
+        'title' => ':name',
     ],
 ];

@@ -2,18 +2,16 @@
 
 return [
     'create'        => [
-        'description'   => 'Yeni bir zar ekle',
-        'success'       => '\':name\' zarı yaratıldı.',
-        'title'         => 'Yeni Zar',
+        'success'   => '\':name\' zarı yaratıldı.',
+        'title'     => 'Yeni Zar',
     ],
     'destroy'       => [
         'dice_roll' => 'Zar kaldırıldı',
         'success'   => '\':name\' zarı kaldırıldı.',
     ],
     'edit'          => [
-        'description'   => 'Bir zarı düzenle',
-        'success'       => '\':name\' zarı güncellendi.',
-        'title'         => ':name Zarını Düzenle',
+        'success'   => '\':name\' zarı güncellendi.',
+        'title'     => ':name Zarını Düzenle',
     ],
     'fields'        => [
         'created_at'    => 'Atıldığı An',
@@ -26,14 +24,13 @@ return [
         'parameters'    => 'Zar seçeneklerim nelerdir?',
     ],
     'index'         => [
-        'actions'       => [
+        'actions'   => [
             'dice'      => 'Zarlar',
             'results'   => 'Sonuçlar',
         ],
-        'add'           => 'Yeni Zar',
-        'description'   => ':name Zarlarını Düzenle',
-        'header'        => ':name Zarları',
-        'title'         => ':Zarlar',
+        'add'       => 'Yeni Zar',
+        'header'    => ':name Zarları',
+        'title'     => ':Zarlar',
     ],
     'placeholders'  => [
         'dice_roll' => 'Zar atışı',
@@ -54,10 +51,9 @@ return [
         'success'   => 'Zar atıldı.',
     ],
     'show'          => [
-        'description'   => 'Zara detaylı bir bakış',
-        'tabs'          => [
+        'tabs'  => [
             'results'   => 'Sonuçlar',
         ],
-        'title'         => ':name Zarı',
+        'title' => ':name Zarı',
     ],
 ];

@@ -5,7 +5,6 @@ return [
     'black'         => 'Čierna',
     'blue'          => 'Modrá',
     'brown'         => 'Hnedá',
-    'default'       => 'Štandardná',
     'green'         => 'Zelená',
     'grey'          => 'Sivá',
     'light-blue'    => 'Svetlomodrá',

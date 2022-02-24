@@ -2,9 +2,8 @@
 
 return [
     'create'        => [
-        'description'   => 'Maak een nieuwe notitie',
-        'success'       => 'Notitie \':name\' gemaakt.',
-        'title'         => 'Nieuwe Notitie',
+        'success'   => 'Notitie \':name\' gemaakt.',
+        'title'     => 'Nieuwe Notitie',
     ],
     'destroy'       => [
         'success'   => 'Notitie \':name\' verwijderd.',
@@ -22,17 +21,14 @@ return [
         'notes'         => 'Sub Notities',
         'type'          => 'Type',
     ],
-    'helpers'       => [
-        'nested'    => 'Toon eerst notities die geen bovenliggende notitie hebben. Klik op een notitie om de subnotities ervan te bekijken.',
-    ],
+    'helpers'       => [],
     'hints'         => [
         'is_pinned' => 'Er kunnen maximaal 3 notities worden vastgemaakt om op het dashboard te worden weergegeven.',
     ],
     'index'         => [
-        'add'           => 'Nieuwe Notitie',
-        'description'   => 'Beheer de notities van :name.',
-        'header'        => 'Notities van :name',
-        'title'         => 'Notities',
+        'add'       => 'Nieuwe Notitie',
+        'header'    => 'Notities van :name',
+        'title'     => 'Notities',
     ],
     'placeholders'  => [
         'name'  => 'Naam van de notitie',
@@ -40,10 +36,6 @@ return [
         'type'  => 'Religie, Ras, Politiek systeem',
     ],
     'show'          => [
-        'description'   => 'Een gedetaileerd overzicht van een notitie',
-        'tabs'          => [
-            'description'   => 'Beschrijving',
-        ],
-        'title'         => 'Notitie :name',
+        'title' => 'Notitie :name',
     ],
 ];

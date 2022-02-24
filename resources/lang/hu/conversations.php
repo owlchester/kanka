@@ -2,17 +2,15 @@
 
 return [
     'create'        => [
-        'description'   => 'Új beszélgetés létrehozása',
-        'success'       => '\':name\' beszélgetést létrehoztuk.',
-        'title'         => 'Új beszélgetés',
+        'success'   => '\':name\' beszélgetést létrehoztuk.',
+        'title'     => 'Új beszélgetés',
     ],
     'destroy'       => [
         'success'   => '\':name\' beszélgetést eltávolítottuk.',
     ],
     'edit'          => [
-        'description'   => 'A beszélgetés frissítése',
-        'success'       => '\':name\' beszélgetést frissítettük.',
-        'title'         => ':name beszélgetés',
+        'success'   => '\':name\' beszélgetést frissítettük.',
+        'title'     => ':name beszélgetés',
     ],
     'fields'        => [
         'is_closed'     => 'Lezárva',
@@ -26,10 +24,9 @@ return [
         'participants'  => 'Kérjük, adj résztvevőket a beszélgetésedhez az :icon ikonra kattintva a jobb felső részen.',
     ],
     'index'         => [
-        'add'           => 'Új beszélgetés',
-        'description'   => ':name kategória kezelése',
-        'header'        => 'Beszélgetés itt: :name',
-        'title'         => 'Beszélgetés',
+        'add'       => 'Új beszélgetés',
+        'header'    => 'Beszélgetés itt: :name',
+        'title'     => 'Beszélgetés',
     ],
     'messages'      => [
         'destroy'       => [
@@ -42,24 +39,22 @@ return [
         ],
     ],
     'participants'  => [
-        'create'        => [
+        'create'    => [
             'success'   => ':entity résztvevőt hozzáadtuk a beszélgetéshez.',
         ],
-        'description'   => 'Résztvevők hozzáadása vagy eltávolítása a beszélgetésből',
-        'destroy'       => [
+        'destroy'   => [
             'success'   => ':entity résztvevőt eltávolítottuk a beszélgetésből.',
         ],
-        'modal'         => 'Résztvevők',
-        'title'         => ':name résztvevői',
+        'modal'     => 'Résztvevők',
+        'title'     => ':name résztvevői',
     ],
     'placeholders'  => [
         'name'  => 'A beszélgetés megnevezése',
         'type'  => 'Játékbeli, előkészület, cselekmény',
     ],
     'show'          => [
-        'description'   => 'Egy beszélgetés részletes megjelenítése',
-        'is_closed'     => 'A beszélgetést lezártuk.',
-        'title'         => ':name beszélgetés',
+        'is_closed' => 'A beszélgetést lezártuk.',
+        'title'     => ':name beszélgetés',
     ],
     'tabs'          => [
         'conversation'  => 'Beszélgetés',

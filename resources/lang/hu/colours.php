@@ -5,7 +5,6 @@ return [
     'black'         => 'Fekete',
     'blue'          => 'Kék',
     'brown'         => 'Barna',
-    'default'       => 'Alapértelmezett',
     'green'         => 'Zöld',
     'grey'          => 'Szürke',
     'light-blue'    => 'Világoskék',

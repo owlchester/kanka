@@ -2,9 +2,8 @@
 
 return [
     'create'        => [
-        'description'   => 'Skapa en ny organisation',
-        'success'       => 'Organisation \':name\' skapad.',
-        'title'         => 'Ny Organisation',
+        'success'   => 'Organisation \':name\' skapad.',
+        'title'     => 'Ny Organisation',
     ],
     'destroy'       => [
         'success'   => 'Organisation \':name\' borttagen.',
@@ -25,22 +24,19 @@ return [
     ],
     'helpers'       => [
         'descendants'   => 'Denna lista innehåller organisationer under denna organisation, och inte bara dem direkt under den.',
-        'nested'        => 'I Hierarkisk Vy kan du se dina organisationer i hierarkisk ordning. Organisationer utan en huvudorganisation kommer visas som standard. Organisationer med underorganisationer kan klickas på för att visa dessa. Du kan fortsätta klicka tills det inte finns fler underorganisationer.',
     ],
     'index'         => [
-        'add'           => 'Ny Organisation',
-        'description'   => 'Hantera organisationerna för :name.',
-        'header'        => 'Organisationer för :name',
-        'title'         => 'Organisationer',
+        'add'       => 'Ny Organisation',
+        'header'    => 'Organisationer för :name',
+        'title'     => 'Organisationer',
     ],
     'members'       => [
         'actions'       => [
             'add'   => 'Lägg till en medlem',
         ],
         'create'        => [
-            'description'   => 'Lägg till en medlem till organisationen',
-            'success'       => 'Medlem tillagd till organisationen.',
-            'title'         => 'Ny Organisationsmedlem för :name',
+            'success'   => 'Medlem tillagd till organisationen.',
+            'title'     => 'Ny Organisationsmedlem för :name',
         ],
         'destroy'       => [
             'success'   => 'Medlem borttagen från organisationen.',
@@ -72,17 +68,12 @@ return [
         'name'      => 'Namn på organisationen',
         'type'      => 'Kult, Gäng, Rebellgrupp, Beundrarklubb',
     ],
-    'quests'        => [
-        'description'   => 'Uppdrag organisationen är en del av.',
-        'title'         => 'Organisation :name Uppdrag',
-    ],
     'show'          => [
-        'description'   => 'En detaljerad vy för en organisation',
-        'tabs'          => [
+        'tabs'  => [
             'organisations' => 'Organisationer',
             'quests'        => 'Uppdrag',
             'relations'     => 'Förbindelser',
         ],
-        'title'         => 'Organisation :name',
+        'title' => 'Organisation :name',
     ],
 ];

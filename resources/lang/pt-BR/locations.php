@@ -2,13 +2,11 @@
 
 return [
     'characters'    => [
-        'description'   => 'Personagens presentes no local',
-        'title'         => 'Personagens em :name',
+        'title' => 'Personagens em :name',
     ],
     'create'        => [
-        'description'   => 'Criar um novo local',
-        'success'       => 'Local \':name\' criado.',
-        'title'         => 'Criar um novo local',
+        'success'   => 'Local \':name\' criado.',
+        'title'     => 'Criar um novo local',
     ],
     'destroy'       => [
         'success'   => 'Local \':name\' removido',
@@ -18,8 +16,7 @@ return [
         'title'     => 'Editar Local :name',
     ],
     'events'        => [
-        'description'   => 'Eventos que ocorreram no local',
-        'title'         => 'Eventos em :name',
+        'title' => 'Eventos em :name',
     ],
     'families'      => [
         'title' => 'Famílias de :name',
@@ -41,7 +38,6 @@ return [
         'families'          => 'Locais podem ser a sede de famílias poderosas.',
         'map'               => 'Adicionar um mapa a um local permitirá colocar "pontos" no mapa, vinculando-os a outras entidades na campanha.',
         'map_deprecated_2'  => 'Os mapas agora são seu próprio módulo! Os mapas antigos ainda podem ser atualizados, mas todos os novos mapas vão para o novo módulo Mapas.',
-        'nested'            => 'Quando em Visualização aninhada, você pode visualizar seus locais de maneira aninhada. Locais que não são relacionados a uma localização principal serão mostrados por padrão. Locais que contém locais relacionados podem ser clicados para ver esses locais secundários. Você pode continuar clicando até que não haja mais locais secundários para ver.',
         'nested_parent'     => 'Mostrando os locais de :parent.',
         'nested_without'    => 'Mostrando todos os locais que não tem um local-pai. Clique em uma linha para ver os locais-filhos.',
         'organisations'     => 'Ver todas Organizações nesta localização e locais relacionados a ela, ou apenas aquelas localizadas  diretamente nela.',
@@ -50,25 +46,21 @@ return [
         'is_map_private'    => 'Um mapa Privado é visível apenas para membros com o cargo de "Admnistrador".',
     ],
     'index'         => [
-        'actions'       => [
+        'actions'   => [
             'explore_view'  => 'Visualização de Exploração',
         ],
-        'add'           => 'Novo Local',
-        'description'   => 'Gerencie os locais de :name.',
-        'header'        => 'Locais em :name',
-        'title'         => 'Locais',
+        'add'       => 'Novo Local',
+        'header'    => 'Locais em :name',
+        'title'     => 'Locais',
     ],
     'items'         => [
-        'description'   => 'Itens que estão na localização, ou que vem dela.',
-        'title'         => 'Itens do local :name',
+        'title' => 'Itens do local :name',
     ],
     'journals'      => [
-        'description'   => 'Jornais que foram escritos neste local.',
-        'title'         => 'Jornais do local :name',
+        'title' => 'Jornais do local :name',
     ],
     'locations'     => [
-        'description'   => 'Lugares que fazem parte da localização atual',
-        'title'         => 'Lugares localizados em :name',
+        'title' => 'Lugares localizados em :name',
     ],
     'map'           => [
         'actions'   => [
@@ -212,26 +204,19 @@ return [
         'name'      => 'Nome do local',
         'type'      => 'Cidade, Reino, Ruína',
     ],
-    'quests'        => [
-        'description'   => 'Missões das quais o local é parte.',
-        'title'         => 'Missões no local :quests',
-    ],
     'show'          => [
-        'description'   => 'Uma visão detalhada de um local',
-        'tabs'          => [
+        'tabs'  => [
             'characters'    => 'Personagens',
             'events'        => 'Eventos',
             'families'      => 'Famílias',
-            'information'   => 'Informações',
             'items'         => 'Itens',
             'journals'      => 'Jornal',
             'locations'     => 'Locais',
             'map'           => 'Mapa',
             'maps'          => 'Mapas',
-            'menu'          => 'Menu',
             'organisations' => 'Organizações',
             'quests'        => 'Missões',
         ],
-        'title'         => 'Local :name',
+        'title' => 'Local :name',
     ],
 ];

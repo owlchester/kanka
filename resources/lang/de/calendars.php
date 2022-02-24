@@ -19,18 +19,16 @@ return [
         'is_recurring'  => 'Wiederholt sich jedes Jahr',
     ],
     'create'        => [
-        'description'   => 'Einen neuen Kalender erstellen',
-        'success'       => 'Kalender \':name\' erstellt.',
-        'title'         => 'Neuer Kalender',
+        'success'   => 'Kalender \':name\' erstellt.',
+        'title'     => 'Neuer Kalender',
     ],
     'destroy'       => [
         'success'   => 'Kalender \':name\' gelöscht',
     ],
     'edit'          => [
-        'description'   => 'Kalender aktualisieren',
-        'success'       => 'Kalender \':name\' aktualisiert',
-        'title'         => 'Kalender :name bearbeiten',
-        'today'         => 'Kalenderdatum aktualisiert.',
+        'success'   => 'Kalender \':name\' aktualisiert',
+        'title'     => 'Kalender :name bearbeiten',
+        'today'     => 'Kalenderdatum aktualisiert.',
     ],
     'event'         => [
         'actions'   => [
@@ -40,15 +38,13 @@ return [
             'switch'            => 'Auswahl ändern',
         ],
         'create'    => [
-            'description'   => 'Erstelle ein Kalender Ereignis',
-            'success'       => 'Kalender Ereignis wurde erstellt',
-            'title'         => 'Kalender Ereignis zu :name hinzufügen',
+            'success'   => 'Kalender Ereignis wurde erstellt',
+            'title'     => 'Kalender Ereignis zu :name hinzufügen',
         ],
         'destroy'   => 'Ereignis aus Kalender :name entfernt',
         'edit'      => [
-            'description'   => 'Aktualisiere ein Kalender Ereignis',
-            'success'       => 'Kalender Ereignis wurde aktualisiert',
-            'title'         => 'Aktualisiere das Kalender Ereignis in :name',
+            'success'   => 'Kalender Ereignis wurde aktualisiert',
+            'title'     => 'Aktualisiere das Kalender Ereignis in :name',
         ],
         'helpers'   => [
             'add'               => 'Füge ein bestehendes Ereignis aus der Liste hinzu.',
@@ -61,8 +57,7 @@ return [
         'success'   => 'Event \':event\' zum Kalender hinzugefügt.',
     ],
     'events'        => [
-        'description'   => 'Events in diesem Kalender.',
-        'title'         => 'Kalender :name Events',
+        'title' => 'Kalender :name Events',
     ],
     'fields'        => [
         'calendar'              => 'Übergeordneter Kalender',
@@ -118,10 +113,9 @@ return [
         'years'             => 'Manche Jahre sind so wichtig, dass sie ihren eigenen Namen haben.',
     ],
     'index'         => [
-        'add'           => 'Neuer Kalender',
-        'description'   => 'Verwalte die Kalender von :name',
-        'header'        => 'Kalender von :name',
-        'title'         => 'Kalender',
+        'add'       => 'Neuer Kalender',
+        'header'    => 'Kalender von :name',
+        'title'     => 'Kalender',
     ],
     'layouts'       => [
         'month' => 'Monat',
@@ -211,7 +205,6 @@ return [
         'weekdays'          => 'Anzahl der Tage in einer Woche',
     ],
     'show'          => [
-        'description'       => 'Eine Detailansicht eines Kalenders',
         'missing_details'   => 'Dieser Kalender konnte nicht angezeigt werden. Kalender brauchen mindestens 2 Monate und 2 Wochentage um korrekt generiert zu werden.',
         'moon_full_moon'    => ':moon Vollmond',
         'moon_new_moon'     => ':moon Neumond',

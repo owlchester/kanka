@@ -2,13 +2,11 @@
 
 return [
     'characters'    => [
-        'description'   => 'Personages op de locatie.',
-        'title'         => 'Locatie :name Personages',
+        'title' => 'Locatie :name Personages',
     ],
     'create'        => [
-        'description'   => 'Maak een nieuwe locatie',
-        'success'       => 'Locatie \':name\' gemaakt.',
-        'title'         => 'Nieuwe Locatie',
+        'success'   => 'Locatie \':name\' gemaakt.',
+        'title'     => 'Nieuwe Locatie',
     ],
     'destroy'       => [
         'success'   => 'Locatie \':name\' verwijderd.',
@@ -18,8 +16,7 @@ return [
         'title'     => 'Wijzig Locatie :name',
     ],
     'events'        => [
-        'description'   => 'Gebeurtenissen die op de locatie hebben plaatsgevonden.',
-        'title'         => 'Locatie :name Gebeurtenissen',
+        'title' => 'Locatie :name Gebeurtenissen',
     ],
     'families'      => [
         'title' => 'Locatie :name Families',
@@ -41,32 +38,27 @@ return [
         'families'          => 'Locaties kunnen de zetel zijn van machtige families.',
         'map'               => 'Door een kaart aan een locatie toe te voegen, kan je "Punten" op de kaart plaatsen, zodat je kunt linken naar andere entiteiten in de campaign.',
         'map_deprecated_2'  => 'Kaarten zijn nu hun eigen module! Oude kaarten kunnen nog steeds worden bijgewerkt, maar alle nieuwe kaarten gaan naar de nieuwe Kaarten module.',
-        'nested'            => 'In geneste weergave kun je jouw locaties op een geneste manier bekijken. Locaties zonder bovenliggende locatie worden standaard weergegeven. Locaties met gerelateerden kan op geklikt worden om die gerelateerden te bekijken. Je kunt blijven klikken totdat er geen gerelateerden meer te zien zijn.',
         'organisations'     => 'Bekijk alle organisaties op deze locatie en de bijbehorende gerelateerde locaties, of alleen die direct hier zijn gevestigd.',
     ],
     'hints'         => [
         'is_map_private'    => 'Een privékaart is alleen zichtbaar voor leden van de campaign\'s \'Beheerder\'.',
     ],
     'index'         => [
-        'actions'       => [
+        'actions'   => [
             'explore_view'  => 'Geneste Weergave',
         ],
-        'add'           => 'Nieuwe Locatie',
-        'description'   => 'Beheer de locaties van :name',
-        'header'        => 'Locaties in :name',
-        'title'         => 'Locaties',
+        'add'       => 'Nieuwe Locatie',
+        'header'    => 'Locaties in :name',
+        'title'     => 'Locaties',
     ],
     'items'         => [
-        'description'   => 'Voorwerpen die zich op of vanaf de locatie bevinden.',
-        'title'         => 'Locatie :name Voorwerpen',
+        'title' => 'Locatie :name Voorwerpen',
     ],
     'journals'      => [
-        'description'   => 'Logboeken die op de locatie zijn geschreven.',
-        'title'         => 'Locatie :name Logboeken',
+        'title' => 'Locatie :name Logboeken',
     ],
     'locations'     => [
-        'description'   => 'Locaties op de locatie.',
-        'title'         => 'Locatie :name Locaties',
+        'title' => 'Locatie :name Locaties',
     ],
     'map'           => [
         'actions'   => [
@@ -210,26 +202,19 @@ return [
         'name'      => 'Naam van de locatie',
         'type'      => 'Stad, Koninkrijk, Ruïne',
     ],
-    'quests'        => [
-        'description'   => 'Quests waarvan de locatie deel uitmaakt.',
-        'title'         => 'Locatie :name Quests',
-    ],
     'show'          => [
-        'description'   => 'Een gedetailleerd overzicht van een locatie',
-        'tabs'          => [
+        'tabs'  => [
             'characters'    => 'Personages',
             'events'        => 'Gebeurtenissen',
             'families'      => 'Families',
-            'information'   => 'Informatie',
             'items'         => 'Voorwerpen',
             'journals'      => 'Logboeken',
             'locations'     => 'Locaties',
             'map'           => 'Kaart',
             'maps'          => 'Kaarten',
-            'menu'          => 'Menu',
             'organisations' => 'Organisaties',
             'quests'        => 'Quests',
         ],
-        'title'         => 'Locatie :name',
+        'title' => 'Locatie :name',
     ],
 ];

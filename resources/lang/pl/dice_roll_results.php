@@ -2,7 +2,6 @@
 
 return [
     'index' => [
-        'description'   => 'Wynik rzutu kośćmi dla :name',
-        'title'         => 'Wyniki rzutów kośćmi',
+        'title' => 'Wyniki rzutów kośćmi',
     ],
 ];

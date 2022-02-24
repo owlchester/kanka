@@ -86,7 +86,6 @@ return [
             'css'                   => 'CSS personalizados para a campanha',
             'dashboards'            => 'Definir dashboards personalizados para cargos da campanha',
             'description'           => 'Certos níveis de pledge fornecem aos usuários boosters, que podem ser usados para impulsionar campanhas. Eles fornecem os seguintes benefícios.',
-            'entity_files'          => 'Aumento da quantidade máxima de arquivos enviados por entidade (até 5 em vez de 3)',
             'entity_files_v2'       => 'Máximo de arquivos atualizados por entidade',
             'entity_links'          => 'Configure links em entidades para websites e fontes externas.',
             'header_image'          => 'Imagem do cabeçalho da entidade',
@@ -111,12 +110,10 @@ return [
             'title'         => 'Calendários',
         ],
         'collaborative'     => [
-            'description'   => 'Não está sozinho? Nós te ajudamos! Você pode convidar amigos e co-criadores para te ajudar a criar sua campanha juntos!',
-            'title'         => 'Colaborativo',
+            'title' => 'Colaborativo',
         ],
         'dashboards'        => [
-            'description'   => 'Controle a informação visível aos seus jogadores quando eles abrirem o Kanka.',
-            'title'         => 'Dashboards',
+            'title' => 'Dashboards',
         ],
         'description'       => 'Aqui estão algumas coisas que nós acreditamos que você amará em nosso app!',
         'description_full'  => 'Kanka é constantemente atualizado com novos recursos e melhorias, mas aqui estão alguns dos mais importantes que achamos que você vai adorar.',
@@ -125,9 +122,8 @@ return [
             'title'         => 'Fauna e flora',
         ],
         'free'              => [
-            'bonuses'       => 'Bônus para nossos assinantes',
-            'description'   => 'As melhores coisas da vida são aquelas que são de graça.',
-            'title'         => 'Uso gratuito',
+            'bonuses'   => 'Bônus para nossos assinantes',
+            'title'     => 'Uso gratuito',
         ],
         'landscape'         => 'Mude o seu dispositivo para o modo paisagem para exibir a lista de recursos.',
         'layers'            => [
@@ -147,10 +143,6 @@ return [
         'notebook'          => [
             'description'   => 'Prepare sua próxima sessão ou registre o que aconteceu com o nosso recurso jornal!',
             'title'         => 'Jornais',
-        ],
-        'notes'             => [
-            'description'   => '...',
-            'title'         => 'Notas',
         ],
         'patreon'           => [
             'api_calls'         => 'Aumento de chamadas de API (90 por minuto)',
@@ -193,13 +185,10 @@ return [
             'title'         => 'Gerenciar Segredos',
         ],
         'superboosts'       => [
-            'boosted'       => 'Super impulsionada',
-            'description'   => 'Usar três impulsionadores de campanha em uma campanha irá torná-la Super Impulsionada, desbloqueando os seguintes recursos.',
-            'files'         => 'Até 10 arquivos adicionadas a cada entidade',
-            'gallery'       => 'Galeria de campanhas e integrações com o editor de texto Summernote',
-            'logs'          => 'Relatórios completos de mudanças em entidades (por até 30 dias).',
-            'stats'         => 'Página de Conquistas da campanha',
-            'title'         => 'Campanhas super impulsionadas',
+            'boosted'   => 'Super impulsionada',
+            'gallery'   => 'Galeria de campanhas e integrações com o editor de texto Summernote',
+            'logs'      => 'Relatórios completos de mudanças em entidades (por até 30 dias).',
+            'stats'     => 'Página de Conquistas da campanha',
         ],
         'timelines'         => [
             'description'   => 'Represente visualmente as linhas do tempo de seus mundos, impérios, famílias nobres ou até mesmo de um único personagem.',
@@ -208,12 +197,10 @@ return [
         'title'             => 'Recursos Ilimitados, Diversão Ilimitada',
         'unlimited'         => 'Ilimitadas',
         'updates'           => [
-            'description'   => 'Kanka passa por atualizações freqüentes conduzidas pela comunidade, com novos recursos adicionados a cada mês. Entramos em detalhes sobre essas atualizações em nosso :discord.',
-            'title'         => 'Atualizações frequentes baseadas na comunidade',
+            'title' => 'Atualizações frequentes baseadas na comunidade',
         ],
         'worldbuilding'     => [
-            'description'   => 'Com módulos que abrangem tudo, de mapas a linhas do tempo, e calendários a eventos, o Kanka facilita a organização de mundos complexos.',
-            'title'         => 'Criação de Mundos',
+            'title' => 'Criação de Mundos',
         ],
     ],
     'first_block'   => [
@@ -226,7 +213,6 @@ return [
         'headings'  => [
             'app'           => 'Aplicativo',
             'community'     => 'Comunidade',
-            'friends'       => 'Nossos parceiros',
             'other'         => 'Outro',
             'useful_links'  => 'Links úteis',
         ],
@@ -305,16 +291,15 @@ return [
             'support'   => 'Suporte',
         ],
         'benefits'      => [
-            'big_maps'          => 'Tamanho grande do mapa (:size)',
-            'bigger_maps'       => 'Tamanho maior do mapa (:size)',
-            'boosters'          => 'Impulsos de campanha',
-            'core'              => 'Acesso a todos os recursos principais',
-            'higher_uploads'    => 'Tamanhos maiores de upload de arquivo',
-            'huge_maps'         => 'Tamanho enorme do mapa (:size)',
-            'huge_uploads'      => 'Tamanhos enormes de upload de arquivo',
-            'no_boosters'       => 'Nenhum impulso de campanha',
-            'unlimited'         => 'Campanhas e uploads ilimitados',
-            'updates'           => 'Atualizações e melhorias frequentes',
+            'big_maps'      => 'Tamanho grande do mapa (:size)',
+            'bigger_maps'   => 'Tamanho maior do mapa (:size)',
+            'boosters'      => 'Impulsos de campanha',
+            'core'          => 'Acesso a todos os recursos principais',
+            'huge_maps'     => 'Tamanho enorme do mapa (:size)',
+            'huge_uploads'  => 'Tamanhos enormes de upload de arquivo',
+            'no_boosters'   => 'Nenhum impulso de campanha',
+            'unlimited'     => 'Campanhas e uploads ilimitados',
+            'updates'       => 'Atualizações e melhorias frequentes',
         ],
         'description'   => 'Todos os recursos básicos são gratuitos, mas o suporte ao Kanka nos ajuda a fornecer atualizações e melhorias frequentes para todos os usuários.',
         'tier'          => [
@@ -355,7 +340,6 @@ return [
     ],
     'second_block'  => [
         'call_to_action'    => 'Vamos Começar!',
-        'title'             => 'Pare de esperar.<br />Comece a construir.',
     ],
     'seo'           => [
         'keywords'  => 'Worldbuilding, Tabletop RPG, e RPG Campaign Manager',

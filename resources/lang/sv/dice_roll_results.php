@@ -2,7 +2,6 @@
 
 return [
     'index' => [
-        'description'   => 'Tärningskasts resultat för :name',
-        'title'         => 'Tärningskast Resultat',
+        'title' => 'Tärningskast Resultat',
     ],
 ];

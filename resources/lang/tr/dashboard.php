@@ -50,7 +50,6 @@ return [
             'visible'   => 'Görünür',
         ],
     ],
-    'description'       => 'Yaratıcılığınızın yuvası',
     'helpers'           => [
         'follow'    => 'Bir serüveni takip etmek o serüvenin serüven değiştiricide (sol üstte) sizin serüvenlerinizin altında belirmesini sağlar.',
         'setup'     => 'Serüveninizin ana panelini ayarlayın.',

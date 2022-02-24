@@ -7,7 +7,6 @@ return [
             'update_email'      => 'E-mail megváltoztatása',
             'update_password'   => 'Jelszó megváltoztatása',
         ],
-        'description'       => 'Fiók szerkesztése',
         'email'             => 'Email-cím megváltoztatása',
         'email_success'     => 'Az email-címet sikeresen megváltoztattuk',
         'password'          => 'Jelszó megváltoztatása',
@@ -21,13 +20,9 @@ return [
         'title'             => 'Fiók',
     ],
     'api'           => [
-        'description'           => 'API beállítások frissítése',
-        'experimental'          => 'Üdvözlünk a Kanka APIkban! Ezek a funkciók még kísérleti állapotban vannak, de elég stabilak kell, hogy legyenek ahhoz, hogy elkezdhess kommunikálni a Kanka APIval. Hozz létre egy Személyes Hozzáférés Tokent, amit az api hívásaidban használhatsz, vagy használd a Kliens Tokent, ha azt szeretnéd, hogy az alkalmazásod hozzáférjen a felhasználó adataihoz.',
-        'help'                  => 'A Kanka rövidesen egy teljes REST API-t fog biztosítani, hogy harmadik féltől származó alkalmazások tudjanak csatlakozni hozzá. Az API kulcsok kezelésének részleteiről rövidesen itt olvashatsz.',
-        'helper'                => 'Üdvözlünk a Kankai API-ban. Hozz létre egy Személyes Hozzáférés Tokent, amit az API-kéréseidben használhatsz az információgyűjtésre azokról a kampányokról, amelyekben részt veszel.',
-        'link'                  => 'Olvasd el az API dokumentációt',
-        'request_permission'    => 'Jelenleg is dolgozunk egy REST API-n amivel harmadik féltől származó alkalmazások is csatlakozhatnak a Kankához, azonban amíg az utolsó simításokat végezzük rajta, addig korlátozzuk a hozzáférések számát. Ha szeretnél hozzáférni az APIhoz és király alkalmazásokat fejleszteni, amelyek a Kankával kommunikálnak, kérjük, hogy lépj kapcsolatba velünk, és elküldünk minden információt, amire szükséged lehet.',
-        'title'                 => 'API',
+        'helper'    => 'Üdvözlünk a Kankai API-ban. Hozz létre egy Személyes Hozzáférés Tokent, amit az API-kéréseidben használhatsz az információgyűjtésre azokról a kampányokról, amelyekben részt veszel.',
+        'link'      => 'Olvasd el az API dokumentációt',
+        'title'     => 'API',
     ],
     'apps'          => [
         'actions'   => [
@@ -37,7 +32,6 @@ return [
         'benefits'  => 'A Kanka integrációt nyújt néhány harmadik fél szolgáltatásához. További ilyen integrációkra lehet számítani a jövőben.',
         'discord'   => [
             'errors'    => [
-                '0'     => '1',
                 'add'   => 'Hiba történt a Kanka és a Discord fiókod összekapcsolása során. Kérlek próbáld meg ismét.',
             ],
             'success'   => [
@@ -70,7 +64,6 @@ return [
                 'superboosted'  => 'Minden szupererősített kampány lehetőség',
             ],
             'recovery'          => 'A törölt entitások visszaállításának lehetősége :amount napon belül.',
-            'second'            => 'Egy kampány Boost-olása az alábbi előnyöket biztosítja:',
             'superboost'        => 'A szupererősített kampányok 3 megerősítést használnak el, és újabb lehetőségeket adnak a megerősített kampányok lehetőségein felül.',
             'theme'             => 'Kampány-szintű téma, és egyedi megjelenítési stílus.',
             'third'             => 'A kampány boost-olásához keresd fel a kampány oldalát, kattints a ":boost_button" gombra, amely a ":edit_button" felett helyezkedik el.',
@@ -139,9 +132,8 @@ return [
         'title'     => 'Számlák',
     ],
     'layout'        => [
-        'description'   => 'Elrendezési beállítások frissítése',
-        'success'       => 'Az elrendezési beállításokat frissítettük.',
-        'title'         => 'Elrendezés',
+        'success'   => 'Az elrendezési beállításokat frissítettük.',
+        'title'     => 'Elrendezés',
     ],
     'marketplace'   => [
         'fields'    => [
@@ -170,40 +162,23 @@ return [
         'subscription_status'   => 'Előfizetés állapota',
     ],
     'patreon'       => [
-        'actions'           => [
-            'link'  => 'Fiókok összekapcsolása',
-            'view'  => 'Látogasd meg a Kankát a Patreonon!',
-        ],
-        'benefits'          => 'A Patreon támogatóink nagyobb képeket tölthetnek fel, segítenek nekünk fedezni a szerverköltségeket, valamint lehetővé teszik, hogy több időt fordíthassunk a Kankán végzett munkánkra.',
-        'benefits_features' => 'csodálatos képességek',
-        'deprecated'        => 'Elavult funkció - ha támogatni szeretnéd a Kankát, kérlek tedd az :subscription segítségével. A Patreon-on keresztüli fizetés természetesen aktív marad azon támogatóinknak, akik még az új előfizetési rendszer élesbe állítása előtt kezdték a támogatást.',
-        'description'       => 'Szinkronizálás a Patreonnal',
-        'errors'            => [
-            'invalid_token' => 'Érvénytelen token! A Patreon nem tudta érvényesíteni a kérésed.',
-            'missing_code'  => 'Hiányzó kód! A Patreon nem küldött vissza kódot, amely a fiókodat azonosítja.',
-            'no_pledge'     => 'Nincs támogatás! A Patreon azonosította a fiókodat, de nem tud aktív támogatásról.',
-        ],
-        'link'              => 'Nyomd meg ezt a gombot, ha jelenleg támogatod a Kankát a Patreonon, aktiválva a bónuszaid.',
-        'linked'            => 'Köszönjük, hogy támogatsz minket a Patreonon! A fiókjaid összekapcsoltuk.',
-        'pledge'            => ':name támogatási szint',
-        'remove'            => [
+        'deprecated'    => 'Elavult funkció - ha támogatni szeretnéd a Kankát, kérlek tedd az :subscription segítségével. A Patreon-on keresztüli fizetés természetesen aktív marad azon támogatóinknak, akik még az új előfizetési rendszer élesbe állítása előtt kezdték a támogatást.',
+        'pledge'        => ':name támogatási szint',
+        'remove'        => [
             'button'    => 'Patreon fiók leválasztása',
             'success'   => 'A Patreon fiókod le lett választva.',
             'text'      => 'A Patreon fiók leválasztása megszűntet minden bónuszt, a Dicsőségcsarnokbeli jelenléted, kampány boost-ot, és egyéb, a támogatással szerzett funkciókat a Kankán. Fontos megjegyezni, hogy egyik boost-tal kihelyezett tartalmad sem fog elveszni (pl. entitás fejlécek). Amint ismét előfizetővé válasz, újra hozzá fogsz férni ezekhez az adatokhoz, beleértve a lehetőségét, hogy boost-olj, egy korábban boostolt kampányodat.',
             'title'     => 'A Patreon fiókod leválasztása a Kankáról',
         ],
-        'success'           => 'Köszönjük, hogy támogatsz minket a Patreonon!',
-        'title'             => 'Patreon',
-        'wrong_pledge'      => 'A támogatási szintedet manuálisan állítjuk be, így kérjük, adj nekünk pár napot, hogy megfelelően beállíthassuk. Ha továbbra is helytelennek látod, lépj velünk kapcsolatba.',
+        'title'         => 'Patreon',
     ],
     'profile'       => [
-        'actions'       => [
+        'actions'   => [
             'update_profile'    => 'Profil módosítása',
         ],
-        'avatar'        => 'Profilkép',
-        'description'   => 'Profil módosítása',
-        'success'       => 'A profilodat sikeresen módosítottuk.',
-        'title'         => 'Személyes profil',
+        'avatar'    => 'Profilkép',
+        'success'   => 'A profilodat sikeresen módosítottuk.',
+        'title'     => 'Személyes profil',
     ],
     'subscription'  => [
         'actions'               => [
@@ -242,7 +217,6 @@ return [
         'fields'                => [
             'active_since'      => 'Előfizetés kezdete',
             'active_until'      => 'Előfizetés vége',
-            'billed_monthly'    => 'Havonta számlázva',
             'billing'           => 'Számlázás',
             'currency'          => 'Számlázott összeg pénzneme',
             'payment_method'    => 'Fizetési mód',

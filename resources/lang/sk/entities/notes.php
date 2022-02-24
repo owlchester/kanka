@@ -6,26 +6,26 @@ return [
         'add_role'  => 'Pridať rolu',
         'add_user'  => 'Pridať užívateľa',
     ],
+    'copy_mention'  => [
+        'copy'      => 'Kopírovať rozšírenú referenciu',
+        'success'   => 'Rozšírená referencia bola skopírovaná do schránky.',
+    ],
     'create'        => [
-        'description'   => 'Vytvor novú Poznámku k Objektu',
-        'success'       => 'Poznámka :name pridaná k objektu :entity.',
-        'title'         => 'Nová Poznámka pre :name',
+        'success'   => 'Poznámka :name pridaná k objektu :entity.',
+        'title'     => 'Nová Poznámka pre :name',
     ],
     'destroy'       => [
         'success'   => 'Poznámka :name odstránená z :entity.',
     ],
     'edit'          => [
-        'description'   => 'Upraviť existujúcu Poznámku',
-        'success'       => 'Poznámka :name pre :entity upravená.',
-        'title'         => 'Upraviť poznámku pre :name',
+        'success'   => 'Poznámka :name pre :entity upravená.',
+        'title'     => 'Upraviť poznámku pre :name',
     ],
     'fields'        => [
         'collapsed' => 'Zatvoriť pripnutú poznámku objektu štandardne',
         'creator'   => 'Autor/ka',
         'entry'     => 'Hodnota',
-        'is_pinned' => 'Pripnutá',
         'name'      => 'Názov',
-        'position'  => 'Pozícia pripnutia',
     ],
     'footer'        => [
         'created'   => 'Vytvorené :user dňa :date',
@@ -33,8 +33,7 @@ return [
     ],
     'hint'          => 'Informácie, ktoré nepasujú do štandardných polí objektu alebo by mali byť súkromné, môžu byť pridané v podobe poznámok.',
     'hints'         => [
-        'is_pinned' => 'Pripnuté poznámky objektov sú zobrazené pod textom objektu v primárnom zobrazení objektu. Kombinovať ich môžeš s pozíciou kvôli ich usporiadaniu.',
-        'reorder'   => 'Môžeš zmeniť poradie poznámok daného objektu kliknutím na ikonku :icon vedľa Príbehu v menu objektu.',
+        'reorder'   => 'Môžeš zmeniť poradie poznámok daného objektu kliknutím na ikonku :icon vedľa Prehľadu v menu objektu.',
     ],
     'index'         => [
         'title' => 'Poznámky pre :name',

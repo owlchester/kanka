@@ -86,7 +86,6 @@ return [
             'css'                   => 'Kampány-függő egyedi CSS',
             'dashboards'            => 'Egyéni főoldal beállítása a kampány különböző szerepeinek',
             'description'           => 'Bizonyos adományozási szintek adott számú boosterrel látják el a felhasználót, amellyel kampányt tud boostolni. Ezek az alábbi előnyöket biztosítják.',
-            'entity_files'          => 'Megemelt entitáshoz feltölthető fájl darabszám (5 db az eredeti 3 db helyett).',
             'entity_files_v2'       => 'Max feltöltött állomány entitásonként',
             'entity_links'          => 'Külső forrásokra és oldalakra mutató linkek beállítása az entitásokon',
             'header_image'          => 'Entitás fejléc kép',
@@ -110,12 +109,10 @@ return [
             'title'         => 'Naptárak',
         ],
         'collaborative'     => [
-            'description'   => 'Nem vagy egyedül? Megoldjuk ezt is! Meghívhatod a barátaidat és mesélőtársaidat, hogy segítsenek neked közösen felépíteni a kampányotokat!',
-            'title'         => 'Közösségi',
+            'title' => 'Közösségi',
         ],
         'dashboards'        => [
-            'description'   => 'Kezeld az információk láthatóságát a játékosaid számára, amikor a Kankát használják',
-            'title'         => 'Főoldalak',
+            'title' => 'Főoldalak',
         ],
         'description'       => 'Néhány dolog, ami szerintünk tetszene neked az alkalmazásunkban!',
         'description_full'  => 'A legjobb és legkedveltebb funkcióink bemutatása',
@@ -124,9 +121,8 @@ return [
             'title'         => 'Flóra és fauna',
         ],
         'free'              => [
-            'bonuses'       => 'bónuszok',
-            'description'   => 'Az életben a legjobb dolgok ingyen vannak. Nincsenek hirdetések, nincsenek rejtett költségek, nincs pay wall.',
-            'title'         => 'Ingyenes használat',
+            'bonuses'   => 'bónuszok',
+            'title'     => 'Ingyenes használat',
         ],
         'landscape'         => 'Kérlek állítsd a képernyőd fekvő tájolásúra, hogy megjelenjen a funkciók listája.',
         'layers'            => [
@@ -200,12 +196,10 @@ return [
         'title'             => 'Korlátlan lehetőségek, korlátlan móka',
         'unlimited'         => 'Végtelen',
         'updates'           => [
-            'description'   => 'A Kankát rendszeresen frissítjük a közösség ötleteinek megvalósításaival.',
-            'title'         => 'Gyakori frissítések',
+            'title' => 'Gyakori frissítések',
         ],
         'worldbuilding'     => [
-            'description'   => 'A mindent lefedő modulokkal - mint a Térkép, Idővonalak, Naptárak, Események - a Kanka könnyebbé teszi a komplex világok kezelését.',
-            'title'         => 'Világépítés',
+            'title' => 'Világépítés',
         ],
     ],
     'first_block'   => [
@@ -218,7 +212,6 @@ return [
         'headings'  => [
             'app'           => 'App',
             'community'     => 'Közösség',
-            'friends'       => 'Barátaink',
             'other'         => 'Egyéb',
             'useful_links'  => 'Hasznos linkek',
         ],
@@ -295,16 +288,15 @@ return [
             'support'   => 'Támogatás',
         ],
         'benefits'      => [
-            'big_maps'          => 'Nagy térkép méret (:size)',
-            'bigger_maps'       => 'Nagyobb térkép méret (:size)',
-            'boosters'          => 'Kampány Boosterek',
-            'core'              => 'Hozzáférés az összes alapfunkcióhoz',
-            'higher_uploads'    => 'Nagyobb fájlfeltöltési limit',
-            'huge_maps'         => 'Hatalmas térkép méret (:size)',
-            'huge_uploads'      => 'Nagy fájlfeltöltési limit',
-            'no_boosters'       => 'Nincs kampány booster',
-            'unlimited'         => 'Korlátlan kampány & feltöltés',
-            'updates'           => 'Rendszeres frissítés és fejlesztések',
+            'big_maps'      => 'Nagy térkép méret (:size)',
+            'bigger_maps'   => 'Nagyobb térkép méret (:size)',
+            'boosters'      => 'Kampány Boosterek',
+            'core'          => 'Hozzáférés az összes alapfunkcióhoz',
+            'huge_maps'     => 'Hatalmas térkép méret (:size)',
+            'huge_uploads'  => 'Nagy fájlfeltöltési limit',
+            'no_boosters'   => 'Nincs kampány booster',
+            'unlimited'     => 'Korlátlan kampány & feltöltés',
+            'updates'       => 'Rendszeres frissítés és fejlesztések',
         ],
         'description'   => 'Habár minden alapfunkció elérhető ingyen, a Kanka támogatása segít a rendszeres frissítések, és fejlesztések létrejöttében az egész közösség számára.',
         'tier'          => [
@@ -345,7 +337,6 @@ return [
     ],
     'second_block'  => [
         'call_to_action'    => 'Kezdjük el!',
-        'title'             => 'Hagyd abba a várakozást! Kezdd el az építést!',
     ],
     'seo'           => [
         'keywords'  => 'Világépítés, Asztali szerepjáték, Szerepjátékos kampány kezelő',

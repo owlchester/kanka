@@ -4,7 +4,6 @@ return [
     'avatar'        => [
         'success'   => 'Avatar bijgewerkt.',
     ],
-    'description'   => 'Werk je profielgegevens bij',
     'edit'          => [
         'success'   => 'Profiel bijgewerkt',
     ],
@@ -31,9 +30,7 @@ return [
             'news'              => 'Nieuws',
         ],
         'settings'  => [
-            'news'          => 'Nieuws - ontvang een melding wanneer er :news is.',
-            'newsletter'    => 'Nieuwsbrief - ontvang de Kanka nieuwsbrief.',
-            'votes'         => 'Community Stemmingen - ontvang een melding zodra er een nieuwe :vote beschikbaar is.',
+            'news'  => 'Nieuws - ontvang een melding wanneer er :news is.',
         ],
         'title'     => 'Nieuwsbrieven',
     ],

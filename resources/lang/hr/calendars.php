@@ -19,18 +19,16 @@ return [
         'is_recurring'  => 'Ponavlja se svake godine',
     ],
     'create'        => [
-        'description'   => 'Kreiraj novi kalendar',
-        'success'       => 'Kreiran kalendar ":name"',
-        'title'         => 'Novi kalendar',
+        'success'   => 'Kreiran kalendar ":name"',
+        'title'     => 'Novi kalendar',
     ],
     'destroy'       => [
         'success'   => 'Ukljonjen kalendar ":name".',
     ],
     'edit'          => [
-        'description'   => 'Ažuriraj kalendar',
-        'success'       => 'Ažuriran kalendar ":name".',
-        'title'         => 'Uredi kalendar :name',
-        'today'         => 'Ažuriran datum kalendara.',
+        'success'   => 'Ažuriran kalendar ":name".',
+        'title'     => 'Uredi kalendar :name',
+        'today'     => 'Ažuriran datum kalendara.',
     ],
     'event'         => [
         'actions'   => [
@@ -39,15 +37,13 @@ return [
             'switch'    => 'Promjeni odabir',
         ],
         'create'    => [
-            'description'   => 'Kreiraj događaj u kalendaru',
-            'success'       => 'Kreiran događaj u kalendaru.',
-            'title'         => 'Dodaj događaj u kalendaru na :name',
+            'success'   => 'Kreiran događaj u kalendaru.',
+            'title'     => 'Dodaj događaj u kalendaru na :name',
         ],
         'destroy'   => 'Uklonjen događaj iz kalendara ":name".',
         'edit'      => [
-            'description'   => 'Ažuriraj događaj u kalendaru',
-            'success'       => 'Ažuriran događaj u kalendaru.',
-            'title'         => 'Ažuriraj događaj kalendara u :name',
+            'success'   => 'Ažuriran događaj u kalendaru.',
+            'title'     => 'Ažuriraj događaj kalendara u :name',
         ],
         'helpers'   => [
             'add'               => 'Dodaj postojeći događaj na ovaj kalendar.',
@@ -60,8 +56,7 @@ return [
         'success'   => 'Događaj ":event" dodan u kalendar.',
     ],
     'events'        => [
-        'description'   => 'Događaji u ovom kalendaru.',
-        'title'         => 'Događaji kalendara :name',
+        'title' => 'Događaji kalendara :name',
     ],
     'fields'        => [
         'calendar'              => 'Kalendar roditelj',
@@ -117,10 +112,9 @@ return [
         'years'             => 'Neke godine su toliko važne da imaju svoj naziv.',
     ],
     'index'         => [
-        'add'           => 'Novi kalendar',
-        'description'   => 'Upravljanje kalendarima u :name.',
-        'header'        => 'Kalendari u :name',
-        'title'         => 'Kalendari',
+        'add'       => 'Novi kalendar',
+        'header'    => 'Kalendari u :name',
+        'title'     => 'Kalendari',
     ],
     'layouts'       => [
         'month' => 'Mjesec',
@@ -210,7 +204,6 @@ return [
         'weekdays'          => 'Broj dana u tjednu',
     ],
     'show'          => [
-        'description'       => 'Detaljan pregled kalendara',
         'missing_details'   => 'Ovaj se kalendar nije mogao prikazati. Kalendari trebaju imati barem 2 kalendarska mjeseca i barem 2 dana u tjednu da bi se pravilno prikazali.',
         'moon_full_moon'    => ':moon Puni mjesec',
         'moon_new_moon'     => ':moon Mladi mjesec',

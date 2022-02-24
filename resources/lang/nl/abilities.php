@@ -24,13 +24,11 @@ return [
     ],
     'helpers'       => [
         'descendants'   => 'Deze lijst bevat alle vaardigheden die afstammen van deze vaardigheid, en niet alleen die er direct onder hangen.',
-        'nested'        => 'In de Geneste Weergave kan je je Vaardigheden op een geneste manier bekijken. Vaardigheden zonder bovenliggende vaardigheid worden standaard weergegeven. Op Vaardigheden met subvaardigheden kan worden geklikt om die gerelateerden te bekijken. Je kunt blijven klikken totdat er geen gerelateerden meer te zien zijn.',
     ],
     'index'         => [
-        'add'           => 'Nieuwe Vaardigheid',
-        'description'   => 'Maak Krachten, Spreuken, Prestaties en meer voor je entiteiten.',
-        'header'        => 'Vaardigheden van :name',
-        'title'         => 'Vaardigheden',
+        'add'       => 'Nieuwe Vaardigheid',
+        'header'    => 'Vaardigheden van :name',
+        'title'     => 'Vaardigheden',
     ],
     'placeholders'  => [
         'charges'   => 'Hoeveelheid ladingen. Referentie kenmerken met {Level}*{CHA}',

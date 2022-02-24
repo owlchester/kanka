@@ -13,7 +13,6 @@ return [
         'r_date_created'    => 'Data de Criação Invertida',
         'r_date_joined'     => 'Data em que Entrou Invertido',
     ],
-    'description'                   => 'Atualize os detalhes da sua conta',
     'edit'                          => [
         'success'   => 'Perfil atualizado',
     ],
@@ -51,10 +50,7 @@ return [
             'release'   => 'Novo lançamento',
         ],
         'settings'  => [
-            'news'          => 'Novidades - Seja notificado(a) quando houver novidades.',
-            'newsletter'    => 'Boletim de Notícias - receber o Boletim de Notícias do Kanka.',
-            'updates'       => 'Atualizações - seja notificado(a) quando houve uma atualização em Kanka.',
-            'votes'         => 'Votos da Comunidade - Ser notificado(a) assim que um novo :vote estiver disponível',
+            'news'  => 'Novidades - Seja notificado(a) quando houver novidades.',
         ],
         'title'     => 'Boletim de Notícias',
     ],
@@ -90,11 +86,6 @@ return [
             'pagination'                    => 'Paginação (elementos por página)',
         ],
         'helpers'   => [
-            'editor'    => <<<'TEXT'
-O editor de texto padrão (TinyMCE 4) é antigo e funciona bem no computador, mas não funciona no celular.
-Summernote é um novo editor de texto que funciona em todos dispositivos mas ainda estamos testando ele.
-TEXT
-,
             'editor_v2' => 'O uso do editor de texto legado (TinyMCE) não oferece suporte a menções em dispositivos móveis e não oferece suporte a alguns recursos como a galeria da campanha.',
         ],
         'hints'     => [

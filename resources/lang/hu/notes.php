@@ -2,9 +2,8 @@
 
 return [
     'create'        => [
-        'description'   => 'Új jegyzet létrehozása',
-        'success'       => 'A(z) :name jegyzetet létrehoztuk.',
-        'title'         => 'Új jegyzet',
+        'success'   => 'A(z) :name jegyzetet létrehoztuk.',
+        'title'     => 'Új jegyzet',
     ],
     'destroy'       => [
         'success'   => 'A(z) :name jegyzetet töröltük.',
@@ -30,10 +29,9 @@ return [
         'is_pinned' => 'A vezérlőpultra legfeljebb három jegyzetet emelhetsz ki.',
     ],
     'index'         => [
-        'add'           => 'Új jegyzet',
-        'description'   => ':name jegyzeteinek kezelése',
-        'header'        => ':name jegyzetei',
-        'title'         => 'Jegyzetek',
+        'add'       => 'Új jegyzet',
+        'header'    => ':name jegyzetei',
+        'title'     => 'Jegyzetek',
     ],
     'placeholders'  => [
         'name'  => 'A jegyzet neve',
@@ -41,10 +39,6 @@ return [
         'type'  => 'Vallás, faj, politikai rendszer',
     ],
     'show'          => [
-        'description'   => 'A jegyzet részletes nézete',
-        'tabs'          => [
-            'description'   => 'Leírás',
-        ],
-        'title'         => ':name',
+        'title' => ':name',
     ],
 ];

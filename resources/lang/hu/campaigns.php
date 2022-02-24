@@ -4,8 +4,6 @@ return [
     'create'                            => [
         'description'           => 'Új kampány létrehozása',
         'helper'                => [
-            'first'     => 'Köszi, hogy kipróbálod az alkalmazást! Mielőtt bármit csinálhatnál, egy egyszerű dologra szükségünk van tőled: a <b>kampányod nevére</b>. Ez a világod neve, ami megkülönbözteti a többitől. Ha most nem tudsz egy jó nevet kitalálni, ne aggódj, <b>később megváltoztathatod</b>, vagy több kampányt is létrehozhatsz.',
-            'second'    => 'De elég a dumából, mihez kezdjünk?',
             'title'     => 'Üdvözöllek :name világában!',
             'welcome'   => <<<'TEXT'
 Mielőtt tovább lépnénk, ki kell választanod a kampányod nevét. Ez lesz a világod neve. Ha még nincs meg a tökéletes név, ne aggódj, később bármikor megváltoztathatod, vagy új kampányokat is készíthetsz.
@@ -24,13 +22,10 @@ TEXT
         'success'   => 'A kampányt eltávolítottuk.',
     ],
     'edit'                              => [
-        'description'   => 'A kampányod szerkesztése',
-        'success'       => 'A kampányt frissítettük.',
-        'title'         => ':campaign kampány szerkesztése',
+        'success'   => 'A kampányt frissítettük.',
+        'title'     => ':campaign kampány szerkesztése',
     ],
-    'entity_note_visibility'            => [
-        'pinned'    => 'Új entitás jegyzet kitűzése',
-    ],
+    'entity_note_visibility'            => [],
     'entity_personality_visibilities'   => [
         'private'   => 'Az új karakterek személyisége legyen alapértelmezetten privát.',
     ],
@@ -43,7 +38,6 @@ TEXT
         'unknown_id'    => 'Ismeretlen kampány.',
     ],
     'export'                            => [
-        'description'       => 'Kampány exportálása.',
         'errors'            => [
             'limit' => 'Elérted a napi exportálási lehetőségeid számát. Kérjük, holnap próbáld meg újra.',
         ],
@@ -53,58 +47,52 @@ TEXT
         'title'             => ':name kampány exportálása',
     ],
     'fields'                            => [
-        'boosted'                       => 'A kampány megerősítője',
-        'connections'                   => 'Mutasd meg egy entitás kapcsolati tábláját az alapértelmezettek szerint (a megerősített kampányok viszonyfelfedezője helyett)',
-        'css'                           => 'CSS',
-        'description'                   => 'Leírás',
-        'entity_count'                  => 'Entitások száma',
-        'entity_note_visibility'        => 'Entitás jegyzetek kitűzése',
-        'entity_personality_visibility' => 'Karakter személyiségének láthatósága',
-        'entity_visibility'             => 'Entitás láthatósága',
-        'entry'                         => 'Kampány leírása',
-        'excerpt'                       => 'Kivonat',
-        'followers'                     => 'Követők',
-        'header_image'                  => 'Fejléc képe',
-        'hide_history'                  => 'Az entitások változási naplójának elrejtése',
-        'hide_members'                  => 'A kampányban résztvevő tagok elrejtése',
-        'image'                         => 'Kép',
-        'locale'                        => 'Nyelv',
-        'name'                          => 'Név',
-        'nested'                        => 'Az alapértelmezett entitás lista összevonása, ha elérhető',
-        'open'                          => 'Megnyitás az alkalmazások számára',
-        'public_campaign_filters'       => 'Publikus kampány szűrők',
-        'related_visibility'            => 'Kapcsolódó elemek láthatósága',
-        'rpg_system'                    => 'Szerepjáték rendszerek',
-        'superboosted'                  => 'Szupererősítette',
-        'system'                        => 'Rendszer',
-        'theme'                         => 'Téma',
-        'tooltip_family'                => 'Családnevek elrejtése a tooltip-ekből',
-        'tooltip_image'                 => 'Entitás képének mutatása a tooltip-ben.',
-        'visibility'                    => 'Láthatóság',
+        'boosted'                   => 'A kampány megerősítője',
+        'connections'               => 'Mutasd meg egy entitás kapcsolati tábláját az alapértelmezettek szerint (a megerősített kampányok viszonyfelfedezője helyett)',
+        'css'                       => 'CSS',
+        'description'               => 'Leírás',
+        'entity_count'              => 'Entitások száma',
+        'entry'                     => 'Kampány leírása',
+        'excerpt'                   => 'Kivonat',
+        'followers'                 => 'Követők',
+        'header_image'              => 'Fejléc képe',
+        'hide_history'              => 'Az entitások változási naplójának elrejtése',
+        'hide_members'              => 'A kampányban résztvevő tagok elrejtése',
+        'image'                     => 'Kép',
+        'locale'                    => 'Nyelv',
+        'name'                      => 'Név',
+        'nested'                    => 'Az alapértelmezett entitás lista összevonása, ha elérhető',
+        'open'                      => 'Megnyitás az alkalmazások számára',
+        'public_campaign_filters'   => 'Publikus kampány szűrők',
+        'related_visibility'        => 'Kapcsolódó elemek láthatósága',
+        'rpg_system'                => 'Szerepjáték rendszerek',
+        'superboosted'              => 'Szupererősítette',
+        'system'                    => 'Rendszer',
+        'theme'                     => 'Téma',
+        'tooltip_family'            => 'Családnevek elrejtése a tooltip-ekből',
+        'tooltip_image'             => 'Entitás képének mutatása a tooltip-ben.',
+        'visibility'                => 'Láthatóság',
     ],
     'following'                         => 'Követve',
     'helpers'                           => [
-        'boost_required'                => 'Ez a funkció a kampány boost-olását igényli. További információ a :settings oldalon.',
-        'boosted'                       => 'Néhány funkció elérhetővé vált, mivel a kampány boost-olva van. További információk a :settings oldalon olvashatóak.',
-        'css'                           => 'Írj saját CSS kódot, amely a kampányod oldalaira applikálódik majd. Kérlek vedd figyelembe, hogy az ezzel a funkcióval kapcsolatos bármiféle visszaélés az egyedi CSS törléséhez vezethet! Többszöri, vagy súlyos visszaélés esetén a teljes kampányod törlésre kerülhet.',
-        'dashboard'                     => 'A következő mezők kitöltésével személyre szabhatod a kampányod főoldalán a widgeteket.',
-        'entity_note_visibility'        => 'Egy új entitásjegyzet létrehozásakor a "Kitűzve" opció alapértelmezetten ki lesz választva.',
-        'entity_personality_visibility' => 'Amikor új karaktert hozol létre, a "személyiség látható" opciót automatikusan kikapcsoljuk.',
-        'entity_visibility'             => 'Amikor új entitást hozol létre, a "Privát" opciót automatikusan kiválasztjuk.',
-        'excerpt'                       => 'A kampány kivonata a főoldalon jelenik meg, írj hát pár mondatot, világod bemutatására! Fogalmazz tömören a legjobb eredmény érdekében.',
-        'header_image'                  => 'A kampány főoldalának háttereként megjelenő kép.',
-        'hide_history'                  => 'Az entitások változás naplójának elrejtése minden nem admin szerepű felhasználó számára.',
-        'hide_members'                  => 'A kampány résztvevőinek listája elrejtésre kerül minden nem admin szerepű felhasználó elől.',
-        'locale'                        => 'Amilyen nyelven írod a kampányodat. Ezt a tartalom-generáláshoz és a nyilvános kampányok csoportosításához használjuk.',
-        'name'                          => 'A kampányod/világod neve bármi lehet, ami legalább 4 számot vagy betűt tartalmaz.',
-        'public_campaign_filters'       => 'Segíts másoknak a kampány könnyebb megtalálásában az alábbi adatok kitöltésével.',
-        'public_no_visibility'          => 'Fel a fejjel! A kampányod publikus, de a kampány public szerepe nem fér hozzá semmihez. :fix.',
-        'related_visibility'            => 'Az alapértelmezett láthatóság érték, amikor új példány jön létre ezzel a mezővel (entitás jegyzet, kapcsolatok, képességek, stb.)',
-        'system'                        => 'Ha a kampányod nyilvánosan látható, a rendszer a :link oldalon látható.',
-        'systems'                       => 'Hogy elkerüljük a felhasználók elárasztását szükségtelen opciókkal, néhány funkció csak adott szerepjáték rendszerek esetén érhető el (ilyen például a D&D 5e szörny harcérték blokk, a tulajdonságblokkok között). Támogatott rendszerek hozzáadásával engedélyezheted ezeket a funkciókat.',
-        'theme'                         => 'Adott téma rögzítése a kampányhoz, amely minden esetben felülbírálja a felhasználók saját preferenciáját.',
-        'view_public'                   => 'Hogy lásd, hogy mi mindent látszik a kampányodból egy olvasó számára, nyisd meg az alábbi linket: :link a böngésződ Inkognitó módjában.',
-        'visibility'                    => 'Ha egy kampányt nyilvánossá teszel, bárki egy link segítségével meg tudja nézni.',
+        'boost_required'            => 'Ez a funkció a kampány boost-olását igényli. További információ a :settings oldalon.',
+        'boosted'                   => 'Néhány funkció elérhetővé vált, mivel a kampány boost-olva van. További információk a :settings oldalon olvashatóak.',
+        'css'                       => 'Írj saját CSS kódot, amely a kampányod oldalaira applikálódik majd. Kérlek vedd figyelembe, hogy az ezzel a funkcióval kapcsolatos bármiféle visszaélés az egyedi CSS törléséhez vezethet! Többszöri, vagy súlyos visszaélés esetén a teljes kampányod törlésre kerülhet.',
+        'dashboard'                 => 'A következő mezők kitöltésével személyre szabhatod a kampányod főoldalán a widgeteket.',
+        'excerpt'                   => 'A kampány kivonata a főoldalon jelenik meg, írj hát pár mondatot, világod bemutatására! Fogalmazz tömören a legjobb eredmény érdekében.',
+        'header_image'              => 'A kampány főoldalának háttereként megjelenő kép.',
+        'hide_history'              => 'Az entitások változás naplójának elrejtése minden nem admin szerepű felhasználó számára.',
+        'hide_members'              => 'A kampány résztvevőinek listája elrejtésre kerül minden nem admin szerepű felhasználó elől.',
+        'locale'                    => 'Amilyen nyelven írod a kampányodat. Ezt a tartalom-generáláshoz és a nyilvános kampányok csoportosításához használjuk.',
+        'name'                      => 'A kampányod/világod neve bármi lehet, ami legalább 4 számot vagy betűt tartalmaz.',
+        'public_campaign_filters'   => 'Segíts másoknak a kampány könnyebb megtalálásában az alábbi adatok kitöltésével.',
+        'public_no_visibility'      => 'Fel a fejjel! A kampányod publikus, de a kampány public szerepe nem fér hozzá semmihez. :fix.',
+        'related_visibility'        => 'Az alapértelmezett láthatóság érték, amikor új példány jön létre ezzel a mezővel (entitás jegyzet, kapcsolatok, képességek, stb.)',
+        'system'                    => 'Ha a kampányod nyilvánosan látható, a rendszer a :link oldalon látható.',
+        'systems'                   => 'Hogy elkerüljük a felhasználók elárasztását szükségtelen opciókkal, néhány funkció csak adott szerepjáték rendszerek esetén érhető el (ilyen például a D&D 5e szörny harcérték blokk, a tulajdonságblokkok között). Támogatott rendszerek hozzáadásával engedélyezheted ezeket a funkciókat.',
+        'theme'                     => 'Adott téma rögzítése a kampányhoz, amely minden esetben felülbírálja a felhasználók saját preferenciáját.',
+        'view_public'               => 'Hogy lásd, hogy mi mindent látszik a kampányodból egy olvasó számára, nyisd meg az alábbi linket: :link a böngésződ Inkognitó módjában.',
+        'visibility'                => 'Ha egy kampányt nyilvánossá teszel, bárki egy link segítségével meg tudja nézni.',
     ],
     'index'                             => [
         'actions'   => [
@@ -121,13 +109,10 @@ TEXT
             'link'  => 'Új link',
         ],
         'create'                => [
-            'button'        => 'Meghívó',
             'buttons'       => [
                 'create'    => 'Meghívó létrehozása',
                 'send'      => 'Meghívó küldése',
             ],
-            'description'   => 'Hívd meg egy barátodat a kampányodba!',
-            'link'          => 'A linket létrehoztuk: : <a href=":url" target="_blank">:url</a>',
             'success'       => 'A meghívót elküldtük.',
             'success_link'  => 'Link létrehozva: :link',
             'title'         => 'Hívj meg valakit a kampányodba!',
@@ -136,7 +121,6 @@ TEXT
             'success'   => 'A meghívót eltávolítottuk.',
         ],
         'email'                 => [
-            'link'      => '<a href=":link">Csatlakozás :name kampányhoz</a>',
             'link_text' => 'Csatlakozz :name kampányához',
             'subject'   => ':name meghívott, hogy csatlakozz a \':campaign\' nevű kampányához a kanka.io oldalon! Használd az alábbi linket a csatlakozkáshoz!',
             'title'     => 'Meghívó :name nevű felhasználótól',
@@ -152,7 +136,6 @@ TEXT
             'email'     => 'Email',
             'role'      => 'Szerep',
             'type'      => 'Típus',
-            'validity'  => 'Érvényesség',
         ],
         'helpers'               => [
             'email'     => 'A leveleinket gyakran spamként (szemétként) azonosítják, és eltelhet pár óra, amíg megjelenik a bejövő üzenetek között.',
@@ -188,10 +171,8 @@ TEXT
         'create'                => [
             'title' => 'Új tag hozzáadása a kapmányhoz.',
         ],
-        'description'           => 'A kapmány tagjainak kezelése',
         'edit'                  => [
-            'description'   => 'A kampányod tagjainak kezelése',
-            'title'         => ':name nevű tag kezelése',
+            'title' => ':name nevű tag kezelése',
         ],
         'fields'                => [
             'joined'        => 'Csalatkozott',
@@ -263,7 +244,6 @@ TEXT
             'success'   => 'A szerepet létrehoztuk.',
             'title'     => ':name számára új szerep létrehozása',
         ],
-        'description'   => 'A kampány szerepeinek kezelése',
         'destroy'       => [
             'success'   => 'A szerepet eltávolítottuk.',
         ],
@@ -327,8 +307,7 @@ TEXT
             'name'  => 'A szerep neve.',
         ],
         'show'          => [
-            'description'   => 'Egy kampányszerep tagjai és engedélyei.',
-            'title'         => '\':role\' kampányszerep',
+            'title' => '\':role\' kampányszerep',
         ],
         'title'         => ':name kampány szerepei',
         'types'         => [
@@ -354,16 +333,15 @@ TEXT
         ],
     ],
     'settings'                          => [
-        'actions'       => [
+        'actions'   => [
             'enable'    => 'Engedélyezés',
         ],
-        'boosted'       => 'Ez a lehetőség egyelőre béta állapotban van, így csak :boosted számára elérhető.',
-        'description'   => 'A kampány moduljainak ki- és bekapcsolása.',
-        'edit'          => [
+        'boosted'   => 'Ez a lehetőség egyelőre béta állapotban van, így csak :boosted számára elérhető.',
+        'edit'      => [
             'success'   => 'A kampány beállításait frissítettük.',
         ],
-        'helper'        => 'A kampány minden modulját lehet ki-be kapcsolgatni. Ha kikapcsolod, egyszerűen csak eltűnik a hozzátartozó felület, de a létrehozott entitások megmaradnak a háttérben, ha esetleg meggondolnád magadat. Ez a változás a kampány minden felhasználóját érinti, beleértve az Admin felhasználókat is.',
-        'helpers'       => [
+        'helper'    => 'A kampány minden modulját lehet ki-be kapcsolgatni. Ha kikapcsolod, egyszerűen csak eltűnik a hozzátartozó felület, de a létrehozott entitások megmaradnak a háttérben, ha esetleg meggondolnád magadat. Ez a változás a kampány minden felhasználóját érinti, beleértve az Admin felhasználókat is.',
+        'helpers'   => [
             'abilities'     => 'Entitásokhoz kapcsolható képességek létrehozása, legyen akár különleges képesség, varázslat vagy varázsaltos erő.',
             'calendars'     => 'Egy hely, ahol a világod naptárát alkothatod meg.',
             'characters'    => 'Az emberek, akik benépesítik a világodat.',
@@ -384,21 +362,20 @@ TEXT
             'tags'          => 'Minden entitásnak lehet több címkéje is. A címkék más címkékhez is tartozhatnak, és az entitásokat szűrni lehet a címkék alapján.',
             'timelines'     => 'Mutasd be a világod történelmét idővonalak segítségével.',
         ],
-        'title'         => ':name kampány moduljai',
+        'title'     => ':name kampány moduljai',
     ],
     'show'                              => [
-        'actions'       => [
+        'actions'   => [
             'boost' => 'Kampány megerősítése',
             'edit'  => 'Kampány szerkesztése',
             'leave' => 'Kilépés a kampányból',
         ],
-        'description'   => 'Egy kampány részleteinek megjelenítése',
-        'menus'         => [
+        'menus'     => [
             'configuration'     => 'Konfiguráció',
             'overview'          => 'Áttekintés',
             'user_management'   => 'Felhasználók kezelése',
         ],
-        'tabs'          => [
+        'tabs'      => [
             'achievements'      => 'Teljesítmények',
             'applications'      => 'Alkalmazások',
             'campaign'          => 'Kampány',
@@ -406,14 +383,13 @@ TEXT
             'export'            => 'Export',
             'information'       => 'Információ',
             'members'           => 'Tagok',
-            'menu'              => 'Menü',
             'plugins'           => 'Pluginok',
             'recovery'          => 'Visszaállítás',
             'roles'             => 'Szerepek',
             'settings'          => 'Modulok',
             'styles'            => 'Témázás',
         ],
-        'title'         => ':name kampány',
+        'title'     => ':name kampány',
     ],
     'superboosted'                      => [
         'gallery'   => [

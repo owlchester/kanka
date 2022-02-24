@@ -2,9 +2,8 @@
 
 return [
     'create'        => [
-        'description'   => 'Yeni bir not oluştur',
-        'success'       => '\':name\' notu oluşturuldu.',
-        'title'         => 'Yeni not',
+        'success'   => '\':name\' notu oluşturuldu.',
+        'title'     => 'Yeni not',
     ],
     'destroy'       => [
         'success'   => '\':name\' notu kaldırıldı.',
@@ -22,17 +21,14 @@ return [
         'notes'         => 'Alt Notlar',
         'type'          => 'Tür',
     ],
-    'helpers'       => [
-        'nested'    => 'Önce ana notu olmayan notları gösteriyor. Bir notun alt notlarını keşfetmek için nota tıklayın.',
-    ],
+    'helpers'       => [],
     'hints'         => [
         'is_pinned' => '3 taneye kadar not kontrol panelinde sergilenmek üzere sabitlenebilir.',
     ],
     'index'         => [
-        'add'           => 'Yeni Not',
-        'description'   => ':name notlarını yönet.',
-        'header'        => ':note Notları',
-        'title'         => 'Notlar',
+        'add'       => 'Yeni Not',
+        'header'    => ':note Notları',
+        'title'     => 'Notlar',
     ],
     'placeholders'  => [
         'name'  => 'Notun adı',
@@ -40,10 +36,6 @@ return [
         'type'  => 'Din, Irk, Politika sistemi',
     ],
     'show'          => [
-        'description'   => 'Nota detaylı bir bakış',
-        'tabs'          => [
-            'description'   => 'Açıklama',
-        ],
-        'title'         => ':name Notu',
+        'title' => ':name Notu',
     ],
 ];

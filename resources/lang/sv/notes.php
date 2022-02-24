@@ -2,9 +2,8 @@
 
 return [
     'create'        => [
-        'description'   => 'Skapa en anteckning',
-        'success'       => 'Anteckning \':name\' skapad.',
-        'title'         => 'Ny Anteckning',
+        'success'   => 'Anteckning \':name\' skapad.',
+        'title'     => 'Ny Anteckning',
     ],
     'destroy'       => [
         'success'   => 'Anteckning \':name\' borttagen.',
@@ -22,17 +21,14 @@ return [
         'notes'         => 'Underanteckning',
         'type'          => 'Typ',
     ],
-    'helpers'       => [
-        'nested'    => 'Visar anteckningar som inte har några huvudanteckningar först. Klicka på en anteckning för att visa dennes underanteckningar.',
-    ],
+    'helpers'       => [],
     'hints'         => [
         'is_pinned' => 'Upp till 3 anteckningar kan vara fastnålade för att visas på dashborden.',
     ],
     'index'         => [
-        'add'           => 'Ny Anteckning',
-        'description'   => 'Hantera anteckningarna för :name',
-        'header'        => 'Anteckningar för :name',
-        'title'         => 'Anteckningar',
+        'add'       => 'Ny Anteckning',
+        'header'    => 'Anteckningar för :name',
+        'title'     => 'Anteckningar',
     ],
     'placeholders'  => [
         'name'  => 'Namn på anteckningen',
@@ -40,10 +36,6 @@ return [
         'type'  => 'Religion, Ras, Politiskt System',
     ],
     'show'          => [
-        'description'   => 'En detaljerad vy för en anteckning',
-        'tabs'          => [
-            'description'   => 'Beskrivning',
-        ],
-        'title'         => 'Anteckning :name',
+        'title' => 'Anteckning :name',
     ],
 ];
