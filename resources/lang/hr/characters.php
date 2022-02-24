@@ -7,11 +7,9 @@ return [
         'add_personality'   => 'Dodaj osobnost',
     ],
     'conversations' => [
-        'description'   => 'Razgovori u kojima lik sudjeluje.',
         'title'         => 'Razgovori s likom :name',
     ],
     'create'        => [
-        'description'   => 'Kreiraj novog lika',
         'success'       => 'Kreiran lik ":name"',
         'title'         => 'Novi lik',
     ],
@@ -19,12 +17,10 @@ return [
         'success'   => 'Uklonjen lik ":name"',
     ],
     'dice_rolls'    => [
-        'description'   => 'Rezultati bacanja kockica dodijeljeni liku',
         'hint'          => 'Rezultati bacanja kockica se mogu dodijeliti liku za korištenje unutar igre.',
         'title'         => 'Rezultati bacanja kockica lika :name',
     ],
     'edit'          => [
-        'description'   => 'Uredi lika',
         'success'       => 'Ažuriran lik ":name".',
         'title'         => 'Uredi lika :name',
     ],
@@ -60,21 +56,17 @@ return [
             'random'    => 'Novi nasumički lik',
         ],
         'add'           => 'Novi lik',
-        'description'   => 'Upravljanje likovima u :name',
         'header'        => 'Likovi u :name',
         'title'         => 'Likovi',
     ],
     'items'         => [
-        'description'   => 'Predmeti koji lik nosi ili posjeduje.',
         'hint'          => 'Predmeti se mogu dodijeliti na likove i bit će prikazani ovdje.',
         'title'         => 'Predmeti lika :name',
     ],
     'journals'      => [
-        'description'   => 'Dnevnici čiji je lik autor.',
         'title'         => 'Dnevnici lika :name',
     ],
     'maps'          => [
-        'description'   => 'Mapa odnosa lika.',
         'title'         => 'Mapa odnosa za lika :name',
     ],
     'organisations' => [
@@ -82,16 +74,13 @@ return [
             'add'   => 'Dodaj organizaciju',
         ],
         'create'        => [
-            'description'   => 'Poveži organizaciju s likom',
             'success'       => 'Lik je dodan u organizaciju.',
             'title'         => 'Nova organizacija za :name',
         ],
-        'description'   => 'Organizacije kojih je lik član.',
         'destroy'       => [
             'success'   => 'Organizacija lika uklonjena.',
         ],
         'edit'          => [
-            'description'   => 'Ažuriraj organizaciju lika',
             'success'       => 'Organizacija lika ažurirana.',
             'title'         => 'Ažuriraj organizaciju za :name',
         ],
@@ -124,7 +113,6 @@ return [
         'type'              => 'Lik igrača, Lik kojim upravlja voditelj igre, Božanstvo',
     ],
     'quests'        => [
-        'description'   => 'Zadaci u koje je lik uključen.',
         'helpers'       => [
             'quest_giver'   => 'Zadaci kojima je lik zadavatelj.',
             'quest_member'  => 'Zadaci kojih je lik član.',
@@ -137,7 +125,6 @@ return [
         'personality'   => 'Osobnost',
     ],
     'show'          => [
-        'description'   => 'Detaljan pregled lika',
         'tabs'          => [
             'conversations' => 'Razgovori',
             'dice_rolls'    => 'Rezultati bacanja kockica',

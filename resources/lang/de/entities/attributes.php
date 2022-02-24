@@ -21,6 +21,10 @@ return [
         'template'              => 'Vorlage',
         'value'                 => 'Wert',
     ],
+    'filters'       => [
+        'name'  => 'Attributname',
+        'value' => 'Attributwert',
+    ],
     'helpers'       => [
         'delete_all'    => 'Möchten Sie wirklich alle Attribute dieses Objekts löschen?',
         'setup'         => 'Sie können Elemente wie TP oder Intelligenz eines Objekts mittels Attributen darstellen. Attribute können Sie manuell hinzufügen, indem sie auf den :manage Button klicken oder Sie wenden eine Attributsvorlage an.',

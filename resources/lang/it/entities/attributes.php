@@ -2,26 +2,9 @@
 
 return [
     'actions'       => [
-        'add'               => 'Aggiungi un attributo',
-        'add_block'         => 'Aggiungi un blocco',
-        'add_checkbox'      => 'Aggiungi un checkbox',
-        'add_text'          => 'Aggiungi un testo',
         'apply_template'    => 'Applica un Template per gli Attributi',
         'manage'            => 'Gestisci',
         'remove_all'        => 'Cancella tutti',
-    ],
-    'create'        => [
-        'description'   => 'Crea un nuovo attributo',
-        'success'       => 'L\'Attributo :name è stato aggiunto a :entity',
-        'title'         => 'Nuovo Attributo per :name',
-    ],
-    'destroy'       => [
-        'success'   => 'L\'attributo :name è stato rimosso da :entity',
-    ],
-    'edit'          => [
-        'description'   => 'Aggiorna un attributo esistente',
-        'success'       => 'L\'attributo :name per :entity è stato aggiornato.',
-        'title'         => 'Aggiorna l\'attributo per :name',
     ],
     'fields'        => [
         'attribute'             => 'Attributo',

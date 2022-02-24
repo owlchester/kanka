@@ -2,7 +2,6 @@
 
 return [
     'create'        => [
-        'description'   => 'Új naplóbejegyzés létrehozása',
         'success'       => '\':name\' naplóbejegyzést létrehoztuk.',
         'title'         => 'Új naplóbejegyzést',
     ],
@@ -30,7 +29,6 @@ return [
     ],
     'index'         => [
         'add'           => 'Új naplóbejegyzés',
-        'description'   => ':name naplóbejegyzéseinek kezelése',
         'header'        => ':name naplóbejegyzései',
         'title'         => 'Naplók',
     ],
@@ -45,7 +43,6 @@ return [
         'type'      => 'Játékalkalom, egylövetű, vázlat',
     ],
     'show'          => [
-        'description'   => 'A naplóbejegyzés részletes nézete',
         'tabs'          => [
             'journals'  => 'Naplók',
         ],

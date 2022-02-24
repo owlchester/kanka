@@ -2,7 +2,6 @@
 
 return [
     'create'        => [
-        'description'   => 'Stvori novu bilješku',
         'success'       => 'Kreirana bilješka ":name".',
         'title'         => 'Nova bilješka',
     ],
@@ -31,7 +30,6 @@ return [
     ],
     'index'         => [
         'add'           => 'Nova bilješka',
-        'description'   => 'Upravljanje bilješkama u :name',
         'header'        => 'Bilješke od :name',
         'title'         => 'Bilješke',
     ],
@@ -41,10 +39,6 @@ return [
         'type'  => 'Religija, Rasa, Politički sustav',
     ],
     'show'          => [
-        'description'   => 'Detaljan pregled bilješke',
-        'tabs'          => [
-            'description'   => 'Opis',
-        ],
         'title'         => 'Bilješka :name',
     ],
 ];

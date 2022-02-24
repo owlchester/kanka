@@ -406,7 +406,6 @@ TEXT
             'export'            => 'Export',
             'information'       => 'Információ',
             'members'           => 'Tagok',
-            'menu'              => 'Menü',
             'plugins'           => 'Pluginok',
             'recovery'          => 'Visszaállítás',
             'roles'             => 'Szerepek',

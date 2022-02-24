@@ -2,7 +2,6 @@
 
 return [
     'create'        => [
-        'description'   => 'Crea un nuovo oggetto',
         'success'       => 'Oggetto \':name\' creato.',
         'title'         => 'Nuovo Oggetto',
     ],
@@ -25,12 +24,10 @@ return [
     ],
     'index'         => [
         'add'           => 'Nuovo Oggetto',
-        'description'   => 'Gestisci gli oggetti di :name.',
         'header'        => 'Oggetti di :name',
         'title'         => 'Oggetti',
     ],
     'inventories'   => [
-        'description'   => 'Inventari delle entità in cui si trova l\'oggetto.',
         'title'         => 'Inventari dell\'oggetto :name',
     ],
     'placeholders'  => [
@@ -41,12 +38,7 @@ return [
         'size'      => 'Taglia, Peso, Dimensioni',
         'type'      => 'Arma, Pozione, Artefatto',
     ],
-    'quests'        => [
-        'description'   => 'Missioni delle quali l\'oggetto fa parte',
-        'title'         => 'Missioni per l\'oggetto :name',
-    ],
     'show'          => [
-        'description'   => 'Una vista dettagliata dell\'oggetto',
         'tabs'          => [
             'information'   => 'Informazioni',
             'inventories'   => 'Inventari',

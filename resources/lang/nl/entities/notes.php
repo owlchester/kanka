@@ -6,7 +6,6 @@ return [
         'add_user'  => 'Voeg gebruiker toe',
     ],
     'create'        => [
-        'description'   => 'Maak een nieuwe Entiteit Notitie',
         'success'       => 'Entiteit Notitie \':name\' toegevoegd aan :entity',
         'title'         => 'Nieuwe Entiteit Notitie voor :name',
     ],
@@ -14,7 +13,6 @@ return [
         'success'   => 'Entiteit Notitie \':name\' voor :entity verwijderd.',
     ],
     'edit'          => [
-        'description'   => 'Werk een bestaande entiteit notitie bij',
         'success'       => 'Entiteit Notitie \':name\' voor :entity bijgewerkt.',
         'title'         => 'Werk entiteit notitie bij voor :name',
     ],

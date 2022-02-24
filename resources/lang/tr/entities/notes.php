@@ -5,7 +5,6 @@ return [
         'add'   => 'Yeni Varlık Notu',
     ],
     'create'        => [
-        'description'   => 'Yeni bir Varlık Notu yarat',
         'success'       => '\':name\' Varlık Notu :entity varlığına eklendi.',
         'title'         => ':name için Yeni Varlık Notu',
     ],
@@ -13,7 +12,6 @@ return [
         'success'   => ':entity için \':name\' Varlık Notu kaldırıldı.',
     ],
     'edit'          => [
-        'description'   => 'Varolan bir varlık notunu güncelle',
         'success'       => ':entity için \':name\' Varlık Notu güncellendi.',
         'title'         => ':name için varlık notunu güncelle',
     ],

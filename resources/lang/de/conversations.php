@@ -2,7 +2,6 @@
 
 return [
     'create'        => [
-        'description'   => 'Erstelle eine neue Unterhaltung',
         'success'       => 'Unterhaltung :name erstellt.',
         'title'         => 'Neue Unterhaltung',
     ],
@@ -10,7 +9,6 @@ return [
         'success'   => 'Unterhaltung :name gelöscht.',
     ],
     'edit'          => [
-        'description'   => 'Aktualisiere die Unterhaltung',
         'success'       => 'Unterhaltung \':name\' aktualisiert.',
         'title'         => 'Unterhaltung :name',
     ],
@@ -27,7 +25,6 @@ return [
     ],
     'index'         => [
         'add'           => 'Neue Unterhaltung',
-        'description'   => 'Verwalte die Kategorie von :name.',
         'header'        => 'Unterhaltungen in :name',
         'title'         => 'Unterhaltungen',
     ],
@@ -45,7 +42,6 @@ return [
         'create'        => [
             'success'   => 'Teilnehmer :entity zu Unterhaltung hinzugefügt.',
         ],
-        'description'   => 'Entferne oder füge Teilnehmer einer Unterhaltung hinzu',
         'destroy'       => [
             'success'   => 'Teilnehmer :entity von Unterhaltung entfernt.',
         ],
@@ -57,7 +53,6 @@ return [
         'type'  => 'Im Spiel, Vorbereitung, Handlung',
     ],
     'show'          => [
-        'description'   => 'Eine Detailansicht einer Unterhaltung',
         'is_closed'     => 'Unterhaltung geschlossen',
         'title'         => 'Unterhaltung :name',
     ],

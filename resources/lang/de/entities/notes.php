@@ -6,8 +6,11 @@ return [
         'add_role'  => 'Rolle hinzufügen',
         'add_user'  => 'Benutzer hinzufügen',
     ],
+    'copy_mention'  => [
+        'copy'      => 'Erweiterte Erwähnung kopieren',
+        'success'   => 'Erweiterte Erwähnung zum Posten in die Zwischenablage kopiert.',
+    ],
     'create'        => [
-        'description'   => 'Erstelle eine neue Notiz',
         'success'       => 'Notiz \':name\' zu :entity hinzugefügt.',
         'title'         => 'Neue Notiz für :name',
     ],
@@ -15,7 +18,6 @@ return [
         'success'   => 'Notiz \':name\' von :entity entfernt.',
     ],
     'edit'          => [
-        'description'   => 'Aktualisiere eine bestehende Notiz',
         'success'       => 'Notiz \':name\' für :entity aktualisiert.',
         'title'         => 'Aktualisiere Notiz für :name',
     ],

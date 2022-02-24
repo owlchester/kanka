@@ -2,7 +2,6 @@
 
 return [
     'create'        => [
-        'description'   => 'Skapa en anteckning',
         'success'       => 'Anteckning \':name\' skapad.',
         'title'         => 'Ny Anteckning',
     ],
@@ -30,7 +29,6 @@ return [
     ],
     'index'         => [
         'add'           => 'Ny Anteckning',
-        'description'   => 'Hantera anteckningarna för :name',
         'header'        => 'Anteckningar för :name',
         'title'         => 'Anteckningar',
     ],
@@ -40,10 +38,6 @@ return [
         'type'  => 'Religion, Ras, Politiskt System',
     ],
     'show'          => [
-        'description'   => 'En detaljerad vy för en anteckning',
-        'tabs'          => [
-            'description'   => 'Beskrivning',
-        ],
         'title'         => 'Anteckning :name',
     ],
 ];

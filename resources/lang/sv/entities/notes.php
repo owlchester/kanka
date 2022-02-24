@@ -6,7 +6,6 @@ return [
         'add_user'  => 'Lägg till Användare',
     ],
     'create'        => [
-        'description'   => 'Skapa en ny Entitetsanteckning',
         'success'       => 'Entitetsanteckning \':name\' tillagd till :entity.',
         'title'         => 'Ny Entitetsanteckning för :name',
     ],
@@ -14,7 +13,6 @@ return [
         'success'   => 'Entitetsanteckning \':name\' för :entity borttagen.',
     ],
     'edit'          => [
-        'description'   => 'Uppdatera en existerande entitetsanteckning',
         'success'       => 'Entitetsanteckning \':name\' för :entity uppdaterad.',
         'title'         => 'Uppdatera entitetsanteckning för :name',
     ],

@@ -7,11 +7,9 @@ return [
         'add_personality'   => 'הוסף אישיות',
     ],
     'conversations' => [
-        'description'   => 'שיחות בהן הדמות משתתפת.',
         'title'         => 'השיחות של :name',
     ],
     'create'        => [
-        'description'   => 'צור דמות חדשה',
         'success'       => 'הדמות \':name\' נוצרה.',
         'title'         => 'דמות חדשה',
     ],
@@ -19,12 +17,10 @@ return [
         'success'   => 'הדמות \':name\' הוסרה.',
     ],
     'dice_rolls'    => [
-        'description'   => 'גלגולים משוייכים לדמות.',
         'hint'          => 'גלגולים יכולים להיות משוייכים לדמות לשימוש בעת משחק.',
         'title'         => 'הגלגולים של :name',
     ],
     'edit'          => [
-        'description'   => 'ערוך דמות',
         'success'       => 'הדמות \':name\' עודכנה',
         'title'         => 'ערוך דמות :name',
     ],
@@ -59,21 +55,17 @@ return [
             'random'    => 'דמות אקראית חדשה',
         ],
         'add'           => 'דמות חדשה',
-        'description'   => 'ניהול הדמויות של :name.',
         'header'        => 'דמויות ב:name',
         'title'         => 'דמויות',
     ],
     'items'         => [
-        'description'   => 'חפצים השייכים לדמות.',
         'hint'          => 'ניתן לשייך חפצים לדמויות, והם יופיעו כאן.',
         'title'         => 'החפצים של :name',
     ],
     'journals'      => [
-        'description'   => 'יומנים שהדמות כתבה.',
         'title'         => 'היומנים של :name',
     ],
     'maps'          => [
-        'description'   => 'מפת קשרים של הדמות.',
         'title'         => 'מפת יחסים של הדמות :name',
     ],
     'organisations' => [
@@ -81,16 +73,13 @@ return [
             'add'   => 'הוסף אירגון',
         ],
         'create'        => [
-            'description'   => 'שייך דמות לאירגון',
             'success'       => 'הדמות הוספה לאירגון.',
             'title'         => 'אירגון חדש ל:name',
         ],
-        'description'   => 'אירגונים שהדמות שייכת אליהם.',
         'destroy'       => [
             'success'   => 'האירגון הוסר.',
         ],
         'edit'          => [
-            'description'   => 'עדכן את האירגונים של הדמות.',
             'success'       => 'האירגון של הדמות עודכן.',
             'title'         => 'עדכן אירגון ל:name.',
         ],
@@ -122,7 +111,6 @@ return [
         'type'              => 'דמות שחקן, דב"ש, סוחר, מלאך',
     ],
     'quests'        => [
-        'description'   => 'משימות שהדמות משתתפת בהן',
         'helpers'       => [
             'quest_giver'   => 'משימות שהדמות היא המעניקה שלהן.',
             'quest_member'  => 'משימות שהדמות לוקחת בהן חלק',
@@ -135,7 +123,6 @@ return [
         'personality'   => 'אישיות',
     ],
     'show'          => [
-        'description'   => 'מבט מפורט של דמות',
         'tabs'          => [
             'conversations' => 'שיחות',
             'dice_rolls'    => 'גלגולי קוביה',

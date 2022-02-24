@@ -2,7 +2,6 @@
 
 return [
     'create'        => [
-        'description'   => 'Maak een nieuwe dobbelsteen worp',
         'success'       => 'Dobbelsteen Worp \':name\' gemaakt.',
         'title'         => 'Nieuwe Dobbelsteen Worp',
     ],
@@ -11,7 +10,6 @@ return [
         'success'   => 'Dobbelsteen Worp \':name\' verwijderd.',
     ],
     'edit'          => [
-        'description'   => 'Wijzig een dobbelsteen Worp',
         'success'       => 'Dobbelsteen Worp \':name\' bijgewerkt.',
         'title'         => 'Wijzig Dobbelsteen Worp :name',
     ],
@@ -31,7 +29,6 @@ return [
             'results'   => 'Resultaten',
         ],
         'add'           => 'Nieuwe Dobbelsteen Worp',
-        'description'   => 'Beheer de dobbelsteen worpen van :name',
         'header'        => 'Dobbelsteen Worpen van :name',
         'title'         => 'Dobbelsteen Worpen van :name',
     ],
@@ -54,7 +51,6 @@ return [
         'success'   => 'Dobbelstenen gegooid.',
     ],
     'show'          => [
-        'description'   => 'Een gedetailleerd overzicht van een Dobbelsteen Worp',
         'tabs'          => [
             'results'   => 'Resultaten',
         ],

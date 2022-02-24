@@ -9,11 +9,9 @@ return [
             'success'   => ':name cédulát hozzáadtuk az entitáshoz.',
             'title'     => 'Új címke hozzárendelése ehhez: :name',
         ],
-        'description'   => 'A címkéhez tartozó entitások',
         'title'         => ':name címke entitásai',
     ],
     'create'        => [
-        'description'   => 'Új címke létrehozása',
         'success'       => 'A \':name\' címkét létrehoztuk',
         'title'         => 'Új címke',
     ],
@@ -33,7 +31,6 @@ return [
         'type'          => 'Típus',
     ],
     'helpers'       => [
-        'nested'        => 'Hierarchikus nézetben a címkéidet azok alá-fölérendeltségi viszonya szerint láthatod. Az első oldalon azok a címkék jelennek meg, melyek nem alcímkéi másoknak. Az alcímkékkel rendelkező címkékre kattintva megtekintheted azok alcímkéit, lefelé haladva amíg nincs több megtekinthető alcímke.',
         'nested_parent' => ':parent céduláinak megmutatása.',
         'nested_without'=> 'Minden céldulát megmutat, aminek nincs szülője. Klikkelj egy sorra, hogy lásd a gyermekcéduláit.',
     ],
@@ -46,7 +43,6 @@ return [
             'explore_view'  => 'Hierarchikus nézet',
         ],
         'add'           => 'Új címke',
-        'description'   => ':name címkéinek kezelése',
         'header'        => ':name címkéi',
         'title'         => 'Címkék',
     ],
@@ -57,16 +53,13 @@ return [
         'type'  => 'Legendák, háborúk, történelem, vallás, címertan',
     ],
     'show'          => [
-        'description'   => 'Egy címke részletes nézete',
         'tabs'          => [
             'children'      => 'Alcímkék',
-            'information'   => 'Információ',
             'tags'          => 'Címkék',
         ],
         'title'         => ':name címke',
     ],
     'tags'          => [
-        'description'   => 'Alcímkék',
         'title'         => ':name címke alcímkéi',
     ],
 ];

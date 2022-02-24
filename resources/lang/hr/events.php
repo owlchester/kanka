@@ -2,7 +2,6 @@
 
 return [
     'create'        => [
-        'description'   => 'Kreiraj novi događaj',
         'success'       => 'Kreiran događaj ":name"',
         'title'         => 'Novi događaj',
     ],
@@ -32,7 +31,6 @@ return [
     ],
     'index'         => [
         'add'           => 'Novi događaj',
-        'description'   => 'Upravljanje događajima u :name',
         'header'        => 'Događaji :name',
         'title'         => 'Događaji',
     ],
@@ -43,7 +41,6 @@ return [
         'type'      => 'Ceremonija, Festival, Nesreća, Bitka, Rođenje',
     ],
     'show'          => [
-        'description'   => 'Detaljan opis događaja',
         'tabs'          => [
             'information'   => 'Informacije',
         ],

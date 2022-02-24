@@ -7,11 +7,9 @@ return [
         'add_personality'   => 'Lägg till en personlighet',
     ],
     'conversations' => [
-        'description'   => 'Konversationer karaktären deltar i.',
         'title'         => 'Karaktär :name Konversationer',
     ],
     'create'        => [
-        'description'   => 'Skapa en ny karaktär',
         'success'       => 'Karaktär \':name\' skapad.',
         'title'         => 'Ny Karaktär',
     ],
@@ -19,12 +17,10 @@ return [
         'success'   => 'Karaktär \':name\' borttagen.',
     ],
     'dice_rolls'    => [
-        'description'   => 'Tärningskast tilldelade till karaktären.',
         'hint'          => 'Tärningskast kan tilldelas till en karaktär för användning i spel.',
         'title'         => 'Karaktär :name Tärningskast',
     ],
     'edit'          => [
-        'description'   => 'Redigera en karaktär',
         'success'       => 'Karaktär \':name\' uppdaterad.',
         'title'         => 'Redigera Karaktär :name',
     ],
@@ -59,21 +55,17 @@ return [
             'random'    => 'Ny Slumpad Karaktär',
         ],
         'add'           => 'Ny Karaktär',
-        'description'   => 'Hantera karaktärerna av :name.',
         'header'        => 'Karaktärer i :name',
         'title'         => 'Karktärer',
     ],
     'items'         => [
-        'description'   => 'Föremål ägda eller hållna av karaktären.',
         'hint'          => 'Föremål kan tilldelas till karaktärer och kommer visas här.',
         'title'         => 'Karaktär :name Föremål',
     ],
     'journals'      => [
-        'description'   => 'Journaler som karaktären är en författare av.',
         'title'         => 'Karaktär :name Journaler',
     ],
     'maps'          => [
-        'description'   => 'Förbindelse karta för en karaktär.',
         'title'         => 'Karaktär :name Förbindelse Karta',
     ],
     'organisations' => [
@@ -81,16 +73,13 @@ return [
             'add'   => 'Lägg till organisation',
         ],
         'create'        => [
-            'description'   => 'Associera en organisation till en karaktär',
             'success'       => 'Karaktär tillagd till organisation.',
             'title'         => 'Ny Organisation för :name',
         ],
-        'description'   => 'Organisationer karaktären är en del av.',
         'destroy'       => [
             'success'   => 'Karaktär organisation borttagen.',
         ],
         'edit'          => [
-            'description'   => 'Uppdatera en karaktärs organisation',
             'success'       => 'Karaktär organisation uppdaterad.',
             'title'         => 'Uppdatera Organisation för :name',
         ],
@@ -122,7 +111,6 @@ return [
         'type'              => 'SLP, Spelarkaraktär, Gudomlighet',
     ],
     'quests'        => [
-        'description'   => 'Uppdrag en karaktär är del av.',
         'helpers'       => [
             'quest_giver'   => 'Uppdrag som karaktären är en uppdragsgivare för.',
             'quest_member'  => 'Uppdrag som karaktären är en medlem av.',
@@ -135,7 +123,6 @@ return [
         'personality'   => 'Personlighet',
     ],
     'show'          => [
-        'description'   => 'En detaljerad vy av en karaktär',
         'tabs'          => [
             'conversations' => 'Konversationer',
             'dice_rolls'    => 'Tärningskast',

@@ -2,7 +2,6 @@
 
 return [
     'create'        => [
-        'description'   => 'Criar nova conversa',
         'success'       => 'Conversa \':name\' criada',
         'title'         => 'Nova conversa',
     ],
@@ -10,7 +9,6 @@ return [
         'success'   => 'Conversa \':name\' apagada',
     ],
     'edit'          => [
-        'description'   => 'Atualizar conversa',
         'success'       => 'Conversa \':name\' atualizada',
         'title'         => 'Conversa :name',
     ],
@@ -27,7 +25,6 @@ return [
     ],
     'index'         => [
         'add'           => 'Nova conversa',
-        'description'   => 'Gerenciar categoria de :name',
         'header'        => 'Conversas em :name',
         'title'         => 'Conversas',
     ],
@@ -45,7 +42,6 @@ return [
         'create'        => [
             'success'   => 'Participante :entity adicionado(a) à conversa',
         ],
-        'description'   => 'Adicionar ou remover participantes da conversa',
         'destroy'       => [
             'success'   => 'Participante :entity removido(a) da conversa',
         ],
@@ -57,7 +53,6 @@ return [
         'type'  => 'Dentro do jogo, Pré-mesa, Plot',
     ],
     'show'          => [
-        'description'   => 'Uma vista detalhada da conversa',
         'is_closed'     => 'Conversa está fechada.',
         'title'         => 'Conversa :name',
     ],

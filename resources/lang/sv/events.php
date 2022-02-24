@@ -2,7 +2,6 @@
 
 return [
     'create'        => [
-        'description'   => 'Skapa en ny händelse',
         'success'       => 'Händelse \':name\' skapad.',
         'title'         => 'Ny Händelse',
     ],
@@ -25,7 +24,6 @@ return [
     ],
     'index'         => [
         'add'           => 'Ny Händelse',
-        'description'   => 'Hantera händelserna för :name',
         'header'        => 'Händelser för :name',
         'title'         => 'Händelser',
     ],
@@ -36,9 +34,7 @@ return [
         'type'      => 'Ceremoni, Festival, Katastrof, Strid, Födelse',
     ],
     'show'          => [
-        'description'   => 'En detaljerad vy för en händelse',
         'tabs'          => [
-            'information'   => 'Information',
         ],
         'title'         => 'Händelse :name',
     ],

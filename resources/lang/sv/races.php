@@ -2,7 +2,6 @@
 
 return [
     'characters'    => [
-        'description'   => 'Karaktärer som tillhör rasen.',
         'helpers'       => [
             'all_characters'    => 'Visar alla karaktärer tillhörande denna ras eller dess underraser.',
             'characters'        => 'Visar alla karaktärer som direkt tillhör denna ras.',
@@ -10,7 +9,6 @@ return [
         'title'         => 'Ras :name Karaktärer',
     ],
     'create'        => [
-        'description'   => 'Skapa en ny ras',
         'success'       => 'Ras \':name\' skapad.',
         'title'         => 'Ny Ras',
     ],
@@ -29,11 +27,9 @@ return [
         'type'          => 'Typ',
     ],
     'helpers'       => [
-        'nested'    => 'I Hierarkisk Vy kan du se dina raser i hierarkisk ordning. Raser utan en huvudras kommer visas som standard. Raser med underraser kan klickas på för att visa dessa. Du kan fortsätta klicka tills det inte finns fler underraser.',
     ],
     'index'         => [
         'add'           => 'Ny Ras',
-        'description'   => 'Hantera raser av :name.',
         'header'        => 'Raser av :name',
         'title'         => 'Raser',
     ],
@@ -42,14 +38,11 @@ return [
         'type'  => 'Människa, Väsen, Borg',
     ],
     'races'         => [
-        'description'   => 'Raser som tillhör rasen.',
         'title'         => 'Ras :name Underraser',
     ],
     'show'          => [
-        'description'   => 'En detaljerad vy för en ras',
         'tabs'          => [
             'characters'    => 'Karaktärer',
-            'menu'          => 'Meny',
             'races'         => 'Underraser',
         ],
         'title'         => 'Ras :name',

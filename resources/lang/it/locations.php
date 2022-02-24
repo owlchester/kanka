@@ -2,11 +2,9 @@
 
 return [
     'characters'    => [
-        'description'   => 'Personaggi presenti nel luogo.',
         'title'         => 'Personaggi del Luogo :name',
     ],
     'create'        => [
-        'description'   => 'Crea un nuovo luogo',
         'success'       => 'Luogo \':name\' creato.',
         'title'         => 'Nuovo Luogo',
     ],
@@ -18,7 +16,6 @@ return [
         'title'     => 'Modifica Luogo :name',
     ],
     'events'        => [
-        'description'   => 'Eventi accaduti nel luogo',
         'title'         => 'Eventi del Luogo :name',
     ],
     'families'      => [
@@ -52,20 +49,16 @@ return [
             'explore_view'  => 'Vista Annidata',
         ],
         'add'           => 'Nuovo Luogo',
-        'description'   => 'Gestisci i luoghi di :name',
         'header'        => 'Luoghi di :name',
         'title'         => 'Luoghi',
     ],
     'items'         => [
-        'description'   => 'Oggetti presenti o originari del luogo',
         'title'         => 'Oggetti del Luogo :name',
     ],
     'journals'      => [
-        'description'   => 'Pagine del diario che sono state scritte in questo luogo.',
         'title'         => 'Pagine del diario per il Luogo :name',
     ],
     'locations'     => [
-        'description'   => 'Luoghi presenti nel luogo',
         'title'         => 'Luoghi del Luogo :name',
     ],
     'map'           => [
@@ -199,7 +192,6 @@ return [
         'title' => 'Mappe del luogo :name',
     ],
     'organisations' => [
-        'description'   => 'Organizzazioni situate nel luogo.',
         'title'         => 'Organizzazioni del Luogo :name',
     ],
     'panels'        => [
@@ -210,23 +202,16 @@ return [
         'name'      => 'Nome del luogo',
         'type'      => 'Città, Regno, Rovina',
     ],
-    'quests'        => [
-        'description'   => 'Missione di cui fa parte il luogo.',
-        'title'         => 'Missioni del Luogo :name',
-    ],
     'show'          => [
-        'description'   => 'Una vista dettagliata del luogo',
         'tabs'          => [
             'characters'    => 'Personaggi',
             'events'        => 'Eventi',
             'families'      => 'Famiglie',
-            'information'   => 'Informazioni',
             'items'         => 'Oggetti',
             'journals'      => 'Pagine del diario',
             'locations'     => 'Luoghi',
             'map'           => 'Mappa',
             'maps'          => 'Mappe',
-            'menu'          => 'Menu',
             'organisations' => 'Organizzazioni',
             'quests'        => 'Missioni',
         ],

@@ -2,7 +2,6 @@
 
 return [
     'create'        => [
-        'description'   => 'Yeni bir muhabbet yarat',
         'success'       => '\':name\' muhabbeti yaratıldı.',
         'title'         => 'Yeni Muhabbet',
     ],
@@ -10,7 +9,6 @@ return [
         'success'   => '\':name\' muahbbeti kaldırıldı.',
     ],
     'edit'          => [
-        'description'   => 'Muhabbeti güncelle',
         'success'       => '\':name\' muhabbeti güncellendi.',
         'title'         => ':name Muhabbeti',
     ],
@@ -26,7 +24,6 @@ return [
     ],
     'index'         => [
         'add'           => 'Yeni Muhabbet',
-        'description'   => ':name kategorisini yönet.',
         'header'        => ':name Muhabbetleri',
         'title'         => 'Muhabbetler',
     ],
@@ -44,7 +41,6 @@ return [
         'create'        => [
             'success'   => ':entity katılımcısı muhabbete eklendi.',
         ],
-        'description'   => 'Bir muhabbetin katılımcılarını ekle veya kaldır',
         'destroy'       => [
             'success'   => ':name katılımcısı muhabbetten kaldırıldı.',
         ],
@@ -56,7 +52,6 @@ return [
         'type'  => 'Oyun İçi, Hazırlık, Plan',
     ],
     'show'          => [
-        'description'   => 'Muhabbete detaylı bir bakış',
         'title'         => ':name Muhabbeti',
     ],
     'tabs'          => [

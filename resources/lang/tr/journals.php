@@ -2,7 +2,6 @@
 
 return [
     'create'        => [
-        'description'   => 'Yeni bir günlük yarat',
         'success'       => '\':name\' günlüğü yaratıldı.',
         'title'         => 'Yeni Günlük',
     ],
@@ -23,7 +22,6 @@ return [
     ],
     'index'         => [
         'add'           => 'Yeni Günlük',
-        'description'   => ':name günlüklerini yönet',
         'header'        => ':name Günlükleri',
         'title'         => 'Günlükler',
     ],
@@ -34,7 +32,6 @@ return [
         'type'      => 'Oturum, Tek Seferlik, Taslak',
     ],
     'show'          => [
-        'description'   => 'Günlüğe detaylı bir bakış',
         'title'         => ':name Günlüğü',
     ],
 ];

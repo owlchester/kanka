@@ -126,7 +126,6 @@ return [
         'copy_attributes'       => 'Tulajdonságok másolása',
         'copy_inventory'        => 'Felszerelés másolása',
         'copy_links'            => 'Entitás linkjeinek másolása',
-        'copy_notes'            => 'Entitásjegyzetek másolása',
         'creator'               => 'Létrehozó',
         'dice_roll'             => 'Dobás',
         'entity'                => 'Entitás',
@@ -242,11 +241,7 @@ return [
         'visibility'            => 'Ha a láthatóságot Admin-ra állítod, akkor csak az Admin jogú felhasználók tudják megnézni ezt. \'Magam\'-ra állítva csak te láthatod.',
     ],
     'history'                   => [
-        'created'       => 'Létrehozta <strong>:name</strong> <span data-toggle="tooltip" title=":realdate">:date</span>',
-        'created_date'  => 'Létrejött <span data-toggle="tooltip" title=":realdate">:date</span>',
         'unknown'       => 'Ismeretlen',
-        'updated'       => 'Utolsó módosítás: <strong>:name</strong> <span data-toggle="tooltip" title=":realdate">:date</span>',
-        'updated_date'  => 'Uoljára módosítva <span data-toggle="tooltip" title=":realdate">:date</span>',
         'view'          => 'Entitásnapló megtekintése',
     ],
     'image'                     => [

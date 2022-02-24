@@ -2,7 +2,6 @@
 
 return [
     'create'        => [
-        'description'   => 'Stwórz nowe wydarzenie',
         'success'       => 'Stworzono wydarzenie \':name\'.',
         'title'         => 'Nowe wydarzenie',
     ],
@@ -34,7 +33,6 @@ return [
     ],
     'index'         => [
         'add'           => 'Nowe wydarzenie',
-        'description'   => 'Zarządzaj wydarzeniami elementu :name.',
         'header'        => 'Wydarzenia elementu :name',
         'title'         => 'Wydarzenia',
     ],
@@ -45,7 +43,6 @@ return [
         'type'      => 'Uroczystość, festiwal, katastrofa, bitwa, narodziny',
     ],
     'show'          => [
-        'description'   => 'Szczegółowy opis wydarzenia',
         'tabs'          => [
             'events'        => 'Wydarzenia',
             'information'   => 'Informacje',

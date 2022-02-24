@@ -7,7 +7,6 @@ return [
         'add_user'  => 'Engadir integrante',
     ],
     'create'        => [
-        'description'   => 'Crear unha nova entrada',
         'success'       => 'Entrada ":name" engadida a ":entity".',
         'title'         => 'Nova entrada en ":name"',
     ],
@@ -15,7 +14,6 @@ return [
         'success'   => 'Entrada ":name" de ":entity" eliminada.',
     ],
     'edit'          => [
-        'description'   => 'Actualizar unha entrada existente.',
         'success'       => 'Entrada ":name" de ":entity" actualizada.',
         'title'         => 'Actualizar entrada de ":name"',
     ],

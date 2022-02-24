@@ -2,7 +2,6 @@
 
 return [
     'create'        => [
-        'description'   => 'Crea un nuovo evento',
         'success'       => 'Evento \':name\' creato.',
         'title'         => 'Nuovo Evento',
     ],
@@ -22,7 +21,6 @@ return [
     ],
     'index'         => [
         'add'           => 'Nuovo Evento',
-        'description'   => 'Gestisci gli eventi di :name',
         'header'        => 'Eventi di :name',
         'title'         => 'Eventi',
     ],
@@ -33,7 +31,6 @@ return [
         'type'      => 'Cerimonia, Festival, Disastro, Battaglia, Nascita',
     ],
     'show'          => [
-        'description'   => 'Una vista dettagliata dell\'evento',
         'tabs'          => [
             'information'   => 'Informazioni',
         ],

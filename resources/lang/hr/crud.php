@@ -122,7 +122,6 @@ return [
         'copy_attributes'       => 'Kopiraj atribute',
         'copy_inventory'        => 'Kopiraj Inventar',
         'copy_links'            => 'Kopiraj Poveznice entiteta',
-        'copy_notes'            => 'Kopiraj entitetske bilješke',
         'creator'               => 'Tvorac',
         'dice_roll'             => 'Bacanje kockica',
         'entity'                => 'Entitet',
@@ -228,11 +227,7 @@ return [
         'visibility'            => 'Postavljanje vidljivosti na "Administratori" znači da će samo članovi kampanje u ulozi Administrator vidjeti ovo. Postavljanje vidljivosti na "Samo ja" znači da samo ti vidiš ovo.',
     ],
     'history'                   => [
-        'created'       => 'Kreirao/la <strong>:name</strong> <span data-toggle="tooltip" title=":realdate">:date</span>',
-        'created_date'  => 'Kreirano <span data-toggle="tooltip" title=":realdate">:date</span>',
         'unknown'       => 'Nepoznato',
-        'updated'       => 'Zadnji/a promijenio/la <strong>:name</strong> <span data-toggle="tooltip" title=":realdate">:date</span>',
-        'updated_date'  => 'Zadnji puta ažurirano <span data-toggle="tooltip" title=":realdate">:date</span>',
         'view'          => 'Pogledaj zapisnik entiteta',
     ],
     'image'                     => [

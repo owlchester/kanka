@@ -19,7 +19,6 @@ return [
         'is_recurring'  => 'Ponavlja se svake godine',
     ],
     'create'        => [
-        'description'   => 'Kreiraj novi kalendar',
         'success'       => 'Kreiran kalendar ":name"',
         'title'         => 'Novi kalendar',
     ],
@@ -27,7 +26,6 @@ return [
         'success'   => 'Ukljonjen kalendar ":name".',
     ],
     'edit'          => [
-        'description'   => 'Ažuriraj kalendar',
         'success'       => 'Ažuriran kalendar ":name".',
         'title'         => 'Uredi kalendar :name',
         'today'         => 'Ažuriran datum kalendara.',
@@ -39,13 +37,11 @@ return [
             'switch'    => 'Promjeni odabir',
         ],
         'create'    => [
-            'description'   => 'Kreiraj događaj u kalendaru',
             'success'       => 'Kreiran događaj u kalendaru.',
             'title'         => 'Dodaj događaj u kalendaru na :name',
         ],
         'destroy'   => 'Uklonjen događaj iz kalendara ":name".',
         'edit'      => [
-            'description'   => 'Ažuriraj događaj u kalendaru',
             'success'       => 'Ažuriran događaj u kalendaru.',
             'title'         => 'Ažuriraj događaj kalendara u :name',
         ],
@@ -60,7 +56,6 @@ return [
         'success'   => 'Događaj ":event" dodan u kalendar.',
     ],
     'events'        => [
-        'description'   => 'Događaji u ovom kalendaru.',
         'title'         => 'Događaji kalendara :name',
     ],
     'fields'        => [
@@ -118,7 +113,6 @@ return [
     ],
     'index'         => [
         'add'           => 'Novi kalendar',
-        'description'   => 'Upravljanje kalendarima u :name.',
         'header'        => 'Kalendari u :name',
         'title'         => 'Kalendari',
     ],
@@ -210,7 +204,6 @@ return [
         'weekdays'          => 'Broj dana u tjednu',
     ],
     'show'          => [
-        'description'       => 'Detaljan pregled kalendara',
         'missing_details'   => 'Ovaj se kalendar nije mogao prikazati. Kalendari trebaju imati barem 2 kalendarska mjeseca i barem 2 dana u tjednu da bi se pravilno prikazali.',
         'moon_full_moon'    => ':moon Puni mjesec',
         'moon_new_moon'     => ':moon Mladi mjesec',

@@ -4,7 +4,6 @@ return [
     'avatar'        => [
         'success'   => 'Avatar aggiornato.',
     ],
-    'description'   => 'Aggiorna i dettagli del tuo profilo',
     'edit'          => [
         'success'   => 'Profilo aggiornato',
     ],

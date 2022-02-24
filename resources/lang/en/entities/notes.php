@@ -11,7 +11,6 @@ return [
         'success'   => 'Advanced mention to post copied to the clipboard.',
     ],
     'create'        => [
-        'description'   => 'Create a new post',
         'success'       => 'Post \':name\' added to :entity.',
         'title'         => 'New post for :name',
     ],
@@ -19,7 +18,6 @@ return [
         'success'   => 'Post \':name\' for :entity removed.',
     ],
     'edit'          => [
-        'description'   => 'Update an existing post',
         'success'       => 'Post \':name\' for :entity updated.',
         'title'         => 'Update post for :name',
     ],

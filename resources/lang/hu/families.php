@@ -2,7 +2,6 @@
 
 return [
     'create'        => [
-        'description'   => 'Új család létrehozása',
         'success'       => '\':name\' családot létrehoztuk.',
         'title'         => 'Új család',
     ],
@@ -37,7 +36,6 @@ return [
     ],
     'index'         => [
         'add'           => 'Új család',
-        'description'   => ':name családjainak kezelése',
         'header'        => ':name családja',
         'title'         => 'Családok',
     ],
@@ -54,7 +52,6 @@ return [
         'type'      => 'Uralkodói ház, Nemesi ház, Kihalt, stb.',
     ],
     'show'          => [
-        'description'   => 'Egy család részletes nézete',
         'tabs'          => [
             'all_members'   => 'Minden családtag',
             'families'      => 'Családok',

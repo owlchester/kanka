@@ -45,7 +45,6 @@ return [
     ],
     'show'          => [
         'tabs'  => [
-            'information'   => 'Information',
         ],
         'title' => 'Snabblänk :name',
     ],

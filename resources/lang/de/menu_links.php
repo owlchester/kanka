@@ -55,7 +55,6 @@ return [
     ],
     'show'              => [
         'tabs'  => [
-            'information'   => 'Informationen',
         ],
         'title' => 'Menü Link :name',
     ],

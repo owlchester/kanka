@@ -22,7 +22,6 @@ TEXT
         'success'   => 'Tažení odstraněno',
     ],
     'edit'                              => [
-        'description'   => 'Upravit tažení',
         'success'       => 'Tažení upraveno',
         'title'         => 'Upravit tažení :campaign',
     ],
@@ -41,7 +40,6 @@ TEXT
         'unknown_id'    => 'Neznámé tažení',
     ],
     'export'                            => [
-        'description'       => 'Exportovat tažení',
         'errors'            => [
             'limit' => 'Export lze provést pouze jednou denně. Zkus to, prosím, znovu zítra.',
         ],
@@ -131,7 +129,6 @@ TEXT
                 'create'    => 'Vytvořit pozvánku',
                 'send'      => 'Zaslat pozvánku',
             ],
-            'description'   => 'Pozvat přítele ke tvému tažení',
             'success'       => 'Pozvánka odeslána',
             'success_link'  => 'Vytvořen odkaz: :link',
             'title'         => 'Pozvat někoho ke tvému tažení',
@@ -194,7 +191,6 @@ TEXT
         ],
         'description'           => 'Spravovat členy kampaně',
         'edit'                  => [
-            'description'   => 'Upravit člena kampaně',
             'title'         => 'Upravit člena :name',
         ],
         'fields'                => [
@@ -335,7 +331,6 @@ TEXT
             'name'  => 'Název role',
         ],
         'show'          => [
-            'description'   => 'Členové a oprávnění role tažení',
             'title'         => 'Role ":role"',
         ],
         'title'         => 'Role tažení :name',
@@ -400,7 +395,6 @@ TEXT
             'edit'  => 'Upravit tažení',
             'leave' => 'Opustit tažení',
         ],
-        'description'   => 'Detailní zobrazení tažení',
         'menus'         => [
             'configuration'     => 'Konfigurace',
             'overview'          => 'Přehled',
@@ -414,7 +408,6 @@ TEXT
             'export'            => 'Export',
             'information'       => 'Informace',
             'members'           => 'Členové',
-            'menu'              => 'Nabídka',
             'plugins'           => 'Přídavné moduly',
             'recovery'          => 'Obnova',
             'roles'             => 'Role',

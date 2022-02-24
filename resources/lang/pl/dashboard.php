@@ -121,12 +121,16 @@ return [
             'success'   => 'Usunięto widżet z pulpitu.',
         ],
         'fields'                    => [
+            'class'             => 'Klasa CSS',
             'dashboard'         => 'Pulpit',
             'name'              => 'Własna nazwa widżetu',
             'optional-entity'   => 'Odnośnik do elementu',
             'order'             => 'Kolejność',
             'text'              => 'Tekst',
             'width'             => 'Szerokość',
+        ],
+        'helpers'                   => [
+            'class' => 'Określ własną klasę css dodaną do widżetu',
         ],
         'orders'                    => [
             'name_asc'  => 'Nazwa rosnąco',
@@ -162,6 +166,10 @@ return [
             'singular'          => 'Pojedynczy',
             'tags'              => 'Filtruj listę niedawno zmienianych elementów według konkretnych etykiet.',
             'title'             => 'Ostatnie zmiany',
+        ],
+        'tabs'                      => [
+            'advanced'  => 'Zaawanowane',
+            'setup'     => 'Ustawienia',
         ],
         'unmentioned'               => [
             'title' => 'Elementy bez wzmianki',

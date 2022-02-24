@@ -4,7 +4,6 @@ return [
     'avatar'        => [
         'success'   => 'Avatar bijgewerkt.',
     ],
-    'description'   => 'Werk je profielgegevens bij',
     'edit'          => [
         'success'   => 'Profiel bijgewerkt',
     ],

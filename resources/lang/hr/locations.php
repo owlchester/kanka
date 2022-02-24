@@ -2,11 +2,9 @@
 
 return [
     'characters'    => [
-        'description'   => 'Likovi na lokaciji.',
         'title'         => 'Lokacije lika :name',
     ],
     'create'        => [
-        'description'   => 'Kreiraj novu lokaciju',
         'success'       => 'Kreirana lokacija ":name".',
         'title'         => 'Nova lokacija',
     ],
@@ -18,7 +16,6 @@ return [
         'title'     => 'Uredi lokaciju :name',
     ],
     'events'        => [
-        'description'   => 'Događaji koji su se zbili na lokaciji.',
         'title'         => 'Događaji lokacije :name',
     ],
     'families'      => [
@@ -53,20 +50,16 @@ return [
             'explore_view'  => 'Ugniježđeni pregled',
         ],
         'add'           => 'Nova lokacija',
-        'description'   => 'Upravljanje lokacijama u :name',
         'header'        => 'Lokacije u :name',
         'title'         => 'Lokacije',
     ],
     'items'         => [
-        'description'   => 'Predmeti koji se nalaze u lokaciji ili su s lokacije.',
         'title'         => 'Predmeti lokacije :name',
     ],
     'journals'      => [
-        'description'   => 'Dnevnici napisani na lokaciji.',
         'title'         => 'Dnevnici iz lokacije :name',
     ],
     'locations'     => [
-        'description'   => 'Lokacije unutar lokacije.',
         'title'         => 'Lokacije unutar lokacije :name',
     ],
     'map'           => [
@@ -211,23 +204,16 @@ return [
         'name'      => 'Naziv lokacije',
         'type'      => 'Grad, Kraljevstvo, Ruševina',
     ],
-    'quests'        => [
-        'description'   => 'Zadaci u koje je lokacija uključena.',
-        'title'         => 'Zadaci lokacije :name',
-    ],
     'show'          => [
-        'description'   => 'Detaljan pregled lokacije',
         'tabs'          => [
             'characters'    => 'Likovi',
             'events'        => 'Događaji',
             'families'      => 'Obitelji',
-            'information'   => 'Informacije',
             'items'         => 'Predmeti',
             'journals'      => 'Dnevnici',
             'locations'     => 'Lokacije',
             'map'           => 'Karta',
             'maps'          => 'Karte',
-            'menu'          => 'Izbornik',
             'organisations' => 'Organizacije',
             'quests'        => 'Zadaci',
         ],

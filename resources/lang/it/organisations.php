@@ -2,7 +2,6 @@
 
 return [
     'create'        => [
-        'description'   => 'Crea una nuova organizzazione',
         'success'       => 'Organizzazione \':name\' creata.',
         'title'         => 'Nuova Organizzazione',
     ],
@@ -29,7 +28,6 @@ return [
     ],
     'index'         => [
         'add'           => 'Nuova Organizzazione',
-        'description'   => 'Gestisci le organizzazioni di :name.',
         'header'        => 'Organizzazioni di :name',
         'title'         => 'Organizzazioni',
     ],
@@ -38,7 +36,6 @@ return [
             'add'   => 'Aggiungi un membro',
         ],
         'create'        => [
-            'description'   => 'Aggiungi un membro all\'organizzazione',
             'success'       => 'Membro aggiunto all\'organizzazione',
             'title'         => 'Nuovo Membro dell\'Organizzazione :name',
         ],
@@ -71,12 +68,7 @@ return [
         'name'      => 'Nome dell\'organizzazione',
         'type'      => 'Culto, Banda, Ribellione, Fandom',
     ],
-    'quests'        => [
-        'description'   => 'Missioni delle quali fa parte l\'organizzazione.',
-        'title'         => 'Missioni dell\'organizzazione :name',
-    ],
     'show'          => [
-        'description'   => 'Una vista dettagliata di un\'organizzazione',
         'tabs'          => [
             'organisations' => 'Organizzazioni',
             'quests'        => 'Missioni',

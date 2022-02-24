@@ -2,11 +2,9 @@
 
 return [
     'characters'    => [
-        'description'   => 'Postaci znajdujące się w tym miejscu.',
         'title'         => 'Postaci w miejscu :name',
     ],
     'create'        => [
-        'description'   => 'Stwórz nowe miejsce',
         'success'       => 'Stworzono miejsce \':name\'.',
         'title'         => 'Nowe miejsce',
     ],
@@ -18,7 +16,6 @@ return [
         'title'     => 'Edycja miejsca :name',
     ],
     'events'        => [
-        'description'   => 'Wydarzenia rozgrywające się w tym miejscu.',
         'title'         => 'Wydarzenia w miejscu :name',
     ],
     'families'      => [
@@ -54,20 +51,16 @@ return [
             'explore_view'  => 'Widok hierarchii',
         ],
         'add'           => 'Nowe miejsce',
-        'description'   => 'Zarządzaj lokacjami elementu :name',
         'header'        => 'Miejsca w :name',
         'title'         => 'Miejsca',
     ],
     'items'         => [
-        'description'   => 'Przedmioty znajdujące się w tym miejscu lub z niego pochodzące.',
         'title'         => 'Przedmioty miejsca :name',
     ],
     'journals'      => [
-        'description'   => 'Dzienniki napisane w tym miejscu',
         'title'         => 'Dzienniki miejsca :name',
     ],
     'locations'     => [
-        'description'   => 'Miejsca mieszczące się w tym miejscu',
         'title'         => 'Miejsca miejsca :name',
     ],
     'map'           => [
@@ -212,23 +205,16 @@ return [
         'name'      => 'Nazwa miejsca',
         'type'      => 'Miasto, królestwo, ruiny',
     ],
-    'quests'        => [
-        'description'   => 'Misje, w których pojawia się to miejsce.',
-        'title'         => 'Misje miejsca :name',
-    ],
     'show'          => [
-        'description'   => 'Szczegółowy widok miejsca',
         'tabs'          => [
             'characters'    => 'Postaci',
             'events'        => 'Wydarzenia',
             'families'      => 'Rodziny',
-            'information'   => 'Informacje',
             'items'         => 'Przedmioty',
             'journals'      => 'Dzienniki',
             'locations'     => 'Miejsca',
             'map'           => 'Mapa',
             'maps'          => 'Mapy',
-            'menu'          => 'Menu',
             'organisations' => 'Organizacje',
             'quests'        => 'Misje',
         ],

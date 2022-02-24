@@ -2,11 +2,9 @@
 
 return [
     'characters'    => [
-        'description'   => 'Bu konumdaki karakterler.',
         'title'         => ':name Konumu Karakterleri',
     ],
     'create'        => [
-        'description'   => 'Yeni bir konum yarat',
         'success'       => ':name konumu yaratıldı.',
         'title'         => 'Yeni Konum',
     ],
@@ -18,7 +16,6 @@ return [
         'title'     => ':name Konumunu Güncelle',
     ],
     'events'        => [
-        'description'   => 'Konumda gerçekleşmiş olaylar.',
         'title'         => ':name Konumu Olayları',
     ],
     'families'      => [
@@ -52,20 +49,16 @@ return [
             'explore_view'  => 'İç İçe Görünüm',
         ],
         'add'           => 'Yeni Konum',
-        'description'   => ':name konumunun konumlarını yönet.',
         'header'        => ':name konumundaki konumlar',
         'title'         => 'Konumlar',
     ],
     'items'         => [
-        'description'   => 'Konumda bulunan ya da oradan gelen eşyalar.',
         'title'         => ':name Eşyaları',
     ],
     'journals'      => [
-        'description'   => 'Bu konumda yazılmış günlükler.',
         'title'         => ':name Günlükleri',
     ],
     'locations'     => [
-        'description'   => 'Konumda konuşlanmış konumlar.',
         'title'         => ':name Konumu Konumları',
     ],
     'map'           => [
@@ -209,23 +202,16 @@ return [
         'name'      => 'Konumun adı',
         'type'      => 'Şehir, Krallık, Harabe',
     ],
-    'quests'        => [
-        'description'   => 'Konumun bir parçası olduğu görevler.',
-        'title'         => ':name Konumundaki Görevler',
-    ],
     'show'          => [
-        'description'   => 'Konuma detaylı bir bakış',
         'tabs'          => [
             'characters'    => 'Karakterler',
             'events'        => 'Olaylar',
             'families'      => 'Aileler',
-            'information'   => 'Bilgi',
             'items'         => 'Eşyalar',
             'journals'      => 'Günlükler',
             'locations'     => 'Konumlar',
             'map'           => 'Harita',
             'maps'          => 'Haritalar',
-            'menu'          => 'Menü',
             'organisations' => 'Organizasyonlar',
             'quests'        => 'Görevler',
         ],

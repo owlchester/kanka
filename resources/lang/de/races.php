@@ -2,7 +2,6 @@
 
 return [
     'characters'    => [
-        'description'   => 'Charaktere, die der Spezies angehören.',
         'helpers'       => [
             'all_characters'    => 'Anzeige aller Charaktere, die sich auf diese Spezies und seine Unterspezies beziehen.',
             'characters'        => 'Anzeige aller Charaktere, die in direktem Zusammenhang mit dieser Spezies stehen.',
@@ -10,7 +9,6 @@ return [
         'title'         => 'Spezies :name Charaktere',
     ],
     'create'        => [
-        'description'   => 'Erstelle eine neue Spezies',
         'success'       => 'Spezies \':name\' erstellt.',
         'title'         => 'Neue Spezies',
     ],
@@ -34,7 +32,6 @@ return [
     ],
     'index'         => [
         'add'           => 'Neue Spezies',
-        'description'   => 'Verwalte die Spezies von :name.',
         'header'        => 'Spezies von :name',
         'title'         => 'Spezies',
     ],
@@ -43,14 +40,11 @@ return [
         'type'  => 'Mensch, Fee, Borg',
     ],
     'races'         => [
-        'description'   => 'Spezies, die zu dieser Spezies gehören.',
         'title'         => 'Spezies :name Unterspezies',
     ],
     'show'          => [
-        'description'   => 'Eine Detailansicht einer Spezies',
         'tabs'          => [
             'characters'    => 'Charaktere',
-            'menu'          => 'Menü',
             'races'         => 'Unterspezies',
         ],
         'title'         => 'Spezies :name',

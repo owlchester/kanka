@@ -2,7 +2,6 @@
 
 return [
     'create'        => [
-        'description'   => 'Vytvořit nový hod kostkami',
         'success'       => 'Hod kostkami ":name" vytvořen.',
         'title'         => 'Nový hod kostami',
     ],
@@ -11,7 +10,6 @@ return [
         'success'   => 'Hod kostkami ":name" odstraněn.',
     ],
     'edit'          => [
-        'description'   => 'Upravit hod kostkami',
         'success'       => 'Hod kostkami ":name" upraven.',
         'title'         => 'Upravit hod kostkami :name',
     ],
@@ -31,7 +29,6 @@ return [
             'results'   => 'Výsledky',
         ],
         'add'           => 'Nový hod kostkou',
-        'description'   => 'Spravovat hody kostkou :name.',
         'header'        => 'Hody kostkou :name',
         'title'         => 'Hody kostkou',
     ],
@@ -54,7 +51,6 @@ return [
         'success'   => 'Kostky vrženy.',
     ],
     'show'          => [
-        'description'   => 'Podrobný pohled na vrh kostkou',
         'tabs'          => [
             'results'   => 'Výsledky',
         ],

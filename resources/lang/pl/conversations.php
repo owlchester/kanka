@@ -2,7 +2,6 @@
 
 return [
     'create'        => [
-        'description'   => 'Stwórz nową konwersację',
         'success'       => 'Stworzono konwersację \':name\'',
         'title'         => 'Nowa konwersacja',
     ],
@@ -10,7 +9,6 @@ return [
         'success'   => 'Usunięto konwersację \':name\'.',
     ],
     'edit'          => [
-        'description'   => 'Aktualizuj konwersację',
         'success'       => 'Zmieniono konwersację \':name\'.',
         'title'         => 'Konwersacja :name',
     ],
@@ -27,7 +25,6 @@ return [
     ],
     'index'         => [
         'add'           => 'Nowa konwersacja',
-        'description'   => 'Zarządzaj kategorią :name.',
         'header'        => 'Konwersacje w :name',
         'title'         => 'Konwersacje',
     ],
@@ -45,7 +42,6 @@ return [
         'create'        => [
             'success'   => 'Uczestnik :entity wypowiedział się w konwersacji.',
         ],
-        'description'   => 'Dodaj albo usuń uczestników konwersacji',
         'destroy'       => [
             'success'   => 'Usunięto uczestnika :entity z konwersacji.',
         ],
@@ -57,7 +53,6 @@ return [
         'type'  => 'W grze, przygotowanie, omawianie intrygi',
     ],
     'show'          => [
-        'description'   => 'Szczegóły konwersacji',
         'is_closed'     => 'Konwersacja jest zamknięta.',
         'title'         => 'Konwersacja :name',
     ],

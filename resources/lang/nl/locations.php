@@ -2,11 +2,9 @@
 
 return [
     'characters'    => [
-        'description'   => 'Personages op de locatie.',
         'title'         => 'Locatie :name Personages',
     ],
     'create'        => [
-        'description'   => 'Maak een nieuwe locatie',
         'success'       => 'Locatie \':name\' gemaakt.',
         'title'         => 'Nieuwe Locatie',
     ],
@@ -18,7 +16,6 @@ return [
         'title'     => 'Wijzig Locatie :name',
     ],
     'events'        => [
-        'description'   => 'Gebeurtenissen die op de locatie hebben plaatsgevonden.',
         'title'         => 'Locatie :name Gebeurtenissen',
     ],
     'families'      => [
@@ -52,20 +49,16 @@ return [
             'explore_view'  => 'Geneste Weergave',
         ],
         'add'           => 'Nieuwe Locatie',
-        'description'   => 'Beheer de locaties van :name',
         'header'        => 'Locaties in :name',
         'title'         => 'Locaties',
     ],
     'items'         => [
-        'description'   => 'Voorwerpen die zich op of vanaf de locatie bevinden.',
         'title'         => 'Locatie :name Voorwerpen',
     ],
     'journals'      => [
-        'description'   => 'Logboeken die op de locatie zijn geschreven.',
         'title'         => 'Locatie :name Logboeken',
     ],
     'locations'     => [
-        'description'   => 'Locaties op de locatie.',
         'title'         => 'Locatie :name Locaties',
     ],
     'map'           => [
@@ -210,23 +203,16 @@ return [
         'name'      => 'Naam van de locatie',
         'type'      => 'Stad, Koninkrijk, Ruïne',
     ],
-    'quests'        => [
-        'description'   => 'Quests waarvan de locatie deel uitmaakt.',
-        'title'         => 'Locatie :name Quests',
-    ],
     'show'          => [
-        'description'   => 'Een gedetailleerd overzicht van een locatie',
         'tabs'          => [
             'characters'    => 'Personages',
             'events'        => 'Gebeurtenissen',
             'families'      => 'Families',
-            'information'   => 'Informatie',
             'items'         => 'Voorwerpen',
             'journals'      => 'Logboeken',
             'locations'     => 'Locaties',
             'map'           => 'Kaart',
             'maps'          => 'Kaarten',
-            'menu'          => 'Menu',
             'organisations' => 'Organisaties',
             'quests'        => 'Quests',
         ],

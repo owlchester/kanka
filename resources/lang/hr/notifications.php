@@ -27,11 +27,9 @@ return [
     ],
     'header'            => 'Imate :count obavijesti',
     'index'             => [
-        'description'   => 'Tvoje posljednje obavijesti.',
         'title'         => 'Obavijesti',
     ],
     'no_notifications'  => 'Trenutno nema obavijesti.',
-    'permissions'       => [],
     'subscriptions'     => [
         'charge_fail'   => 'Došlo je do pogreške tijekom obrade tvoje uplate. Pričekaj trenutak dok pokušavamo ponovo. Ako se ništa ne promijeni, kontaktiraj nas.',
         'deleted'       => 'Tvoja pretplata na Kanku je otkazana nakon previše neuspjelih pokušaja naplate tvoje kartice. Idi u postavke pretplate i pokušaj ažurirati svoje podatke o plaćanju.',

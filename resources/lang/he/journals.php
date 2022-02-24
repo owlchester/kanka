@@ -2,7 +2,6 @@
 
 return [
     'create'        => [
-        'description'   => 'צור יומן חדש',
         'success'       => 'יומן ":name" נוצר.',
         'title'         => 'יומן חדש',
     ],
@@ -23,7 +22,6 @@ return [
     ],
     'index'         => [
         'add'           => 'יומן חדש',
-        'description'   => 'נהל יומנים של :name',
         'header'        => 'היומנים של :name',
         'title'         => 'יומנים',
     ],
@@ -34,7 +32,6 @@ return [
         'type'      => 'מפגש, חד"פ, טיוטה',
     ],
     'show'          => [
-        'description'   => 'מבט מפורט על יומן',
         'title'         => 'יומן :name',
     ],
 ];

@@ -12,15 +12,7 @@ return [
         'title'         => 'A csapat',
         'translations'  => 'Fordítások',
     ],
-    'patreon'       => [
-        'description'   => 'Támogatóink a Patreonon:',
-        'learn_more'    => 'További információk a Patreon tagság előnyeiről',
-        'title'         => 'Patreon',
-    ],
     'people'        => [
-        'iz'        => [
-            'title' => 'Termékfejlesztés',
-        ],
         'jay'       => [
             'text'  => <<<'TEXT'
 2017 októberében hoztam létre a Kankát, mert előtte nem volt olyan eszköz a kezemben, amellyel könnyedén alkothattam volna meg közös világokat barátaimmal, úgy, hogy meghatározhassam, hogy ki mit lát, és mit tehet mindebből.

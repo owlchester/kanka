@@ -55,7 +55,6 @@ return [
     ],
     'show'              => [
         'tabs'  => [
-            'information'   => 'Informacje',
         ],
         'title' => 'Skrót :name',
     ],

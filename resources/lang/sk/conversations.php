@@ -2,7 +2,6 @@
 
 return [
     'create'        => [
-        'description'   => 'Vytvoriť novú diskusiu',
         'success'       => 'Diskusia :name vytvorená.',
         'title'         => 'Nová diskusia',
     ],
@@ -10,7 +9,6 @@ return [
         'success'   => 'Diskusia :name odstránená.',
     ],
     'edit'          => [
-        'description'   => 'Upraviť diskusiu',
         'success'       => 'Diskusia :name upravená.',
         'title'         => 'Diskusia :name',
     ],
@@ -27,7 +25,6 @@ return [
     ],
     'index'         => [
         'add'           => 'Nová diskusia',
-        'description'   => 'Spravovať kategóriu :name.',
         'header'        => 'Diskusie v :name',
         'title'         => 'Diskusie',
     ],
@@ -45,7 +42,6 @@ return [
         'create'        => [
             'success'   => 'Účastník :entity pridaný do diskusie.',
         ],
-        'description'   => 'Pridať alebo odstrániť účastníkov z diskusie',
         'destroy'       => [
             'success'   => 'Účastník :entity odstránený z diskusie.',
         ],
@@ -57,7 +53,6 @@ return [
         'type'  => 'V hre, príprave, deji',
     ],
     'show'          => [
-        'description'   => 'Detailné zobrazenie diskusie',
         'is_closed'     => 'Diskusia je uzavretá.',
         'title'         => 'Diskusia :name',
     ],

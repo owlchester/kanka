@@ -7,11 +7,9 @@ return [
         'add_personality'   => 'Dodaj cechę osobowości',
     ],
     'conversations' => [
-        'description'   => 'Konwersacje, w których uczestniczy ta postać.',
         'title'         => 'Konwersacje postaci :name',
     ],
     'create'        => [
-        'description'   => 'Dodaj nową postać',
         'success'       => 'Stworzono postać \':name\'.',
         'title'         => 'Nowa postać',
     ],
@@ -19,12 +17,10 @@ return [
         'success'   => 'Usunięto postać \':name\'.',
     ],
     'dice_rolls'    => [
-        'description'   => 'Rzuty kośćmi, przypisane tej postaci.',
         'hint'          => 'Postaci można przypisać rodzaj rzutów kośćmi, wykonywanych w grze.',
         'title'         => 'Rzuty kośćmi postaci :name',
     ],
     'edit'          => [
-        'description'   => 'Edytuj postać',
         'success'       => 'Zmieniono postać \':name\'.',
         'title'         => 'Edycja postaci :name',
     ],
@@ -33,7 +29,9 @@ return [
         'families'                  => 'Rodziny',
         'family'                    => 'Rodzina',
         'image'                     => 'Portret',
+        'is_appearance_pinned'      => 'Przypnij wygląd',
         'is_dead'                   => 'Nie żyje',
+        'is_personality_pinned'     => 'Przypnij osobowość',
         'is_personality_visible'    => 'Osobowość jawna',
         'life'                      => 'Życie',
         'location'                  => 'Miejsce',
@@ -53,7 +51,9 @@ return [
     ],
     'hints'         => [
         'hide_personality'          => 'Ukryj osobowość',
+        'is_appearance_pinned'      => 'Zaznacz, by cechy wyglądu postaci wyświetlane były w widoku podstawowym.',
         'is_dead'                   => 'Ta postać jest martwa',
+        'is_personality_pinned'     => 'Zaznacz, by cechy osobowości postaci wyświetlane były w widoku podstawowym.',
         'is_personality_visible'    => 'Odznacz by ukryć cały opis osobowości przed użytkownikami niebędących administratorami.',
         'personality_not_visible'   => 'Opis osobowości widoczny wyłącznie dla administratorów.',
         'personality_visible'       => 'Opis osobowości widoczny dla wszystkich.',
@@ -63,21 +63,17 @@ return [
             'random'    => 'Nowa losowa postać',
         ],
         'add'           => 'Nowa postać',
-        'description'   => 'Zarządzaj postaciami elementu :name',
         'header'        => 'Postaci w :name',
         'title'         => 'Postaci',
     ],
     'items'         => [
-        'description'   => 'Przedmioty w posiadaniu postaci.',
         'hint'          => 'Postaci można przypisać przedmioty - będą wyświetlane tutaj.',
         'title'         => 'Przedmioty postaci :name',
     ],
     'journals'      => [
-        'description'   => 'Dzienniki autorstwa tej postaci.',
         'title'         => 'Dzienniki postaci :name',
     ],
     'maps'          => [
-        'description'   => 'Mapa relacji tej postaci.',
         'title'         => 'Mapa relacji postaci :name',
     ],
     'organisations' => [
@@ -85,16 +81,13 @@ return [
             'add'   => 'Dodaj organizację',
         ],
         'create'        => [
-            'description'   => 'Powiąż postać z organizacją',
             'success'       => 'Postać dodana do organizacji',
             'title'         => 'Nowa organizacja dla :name',
         ],
-        'description'   => 'Organizacje, do których należy postać.',
         'destroy'       => [
             'success'   => 'Postać usunięta z organizacji',
         ],
         'edit'          => [
-            'description'   => 'Aktualizuj przynależność do organizacji',
             'success'       => 'Zaktualizowano organizacje postaci.',
             'title'         => 'Aktualizuj organizacje dla :name',
         ],
@@ -128,7 +121,6 @@ return [
         'type'              => 'Bohater Niezależny, Postać Gracza, bóstwo',
     ],
     'quests'        => [
-        'description'   => 'Misje, które postać wykonuje.',
         'helpers'       => [
             'quest_giver'   => 'Misje, które postać zleciła.',
             'quest_member'  => 'Misje, w których postać się pojawia.',
@@ -141,7 +133,6 @@ return [
         'personality'   => 'Osobowość',
     ],
     'show'          => [
-        'description'   => 'Szczegółowy opis postaci',
         'tabs'          => [
             'conversations' => 'Konwersacje',
             'dice_rolls'    => 'Rzuty kośćmi',

@@ -19,7 +19,6 @@ return [
         'is_recurring'  => 'Opakuje se ročně',
     ],
     'create'        => [
-        'description'   => 'Vytvořit nový kalendář',
         'success'       => 'Kalendář \':name\' vytvořen',
         'title'         => 'Nový kalendář',
     ],
@@ -27,7 +26,6 @@ return [
         'success'   => 'Kalendář \':name\' odstraněn',
     ],
     'edit'          => [
-        'description'   => 'Upravit kalendář',
         'success'       => 'Kalendář \':name\' upraven',
         'title'         => 'Upravit kalendář \':name\'',
         'today'         => 'Datum kalendáře upraveno',
@@ -40,13 +38,11 @@ return [
             'switch'            => 'Změnit výběr',
         ],
         'create'    => [
-            'description'   => 'Vytvořit novou událost',
             'success'       => 'Nová událost vytvořena',
             'title'         => 'Přidat událost do :name',
         ],
         'destroy'   => 'Událost z kalendáře \':name\' odstraněna',
         'edit'      => [
-            'description'   => 'Upravit událost',
             'success'       => 'Událost upravena',
             'title'         => 'Upravit událost kalendáře :name',
         ],
@@ -61,7 +57,6 @@ return [
         'success'   => 'Událost \':event\' přidána do kalendáře',
     ],
     'events'        => [
-        'description'   => 'Události v tomto kalendáři',
         'title'         => 'Události kalendáře :name',
     ],
     'fields'        => [
@@ -119,7 +114,6 @@ return [
     ],
     'index'         => [
         'add'           => 'Nový kalendář',
-        'description'   => 'Upravit kalendáře :name.',
         'header'        => 'Kalendáře :name',
         'title'         => 'Kalendáře',
     ],
@@ -211,7 +205,6 @@ return [
         'weekdays'          => 'Počet dní v týdnu',
     ],
     'show'          => [
-        'description'       => 'Detailní zobrazení kalendáře',
         'missing_details'   => 'Kalendář nelze použít. Kalendář musí obsahovat alespoň 2 měsíce a každý týden musí zahrnovat alespoň 2 dny.',
         'moon_full_moon'    => 'Úplněk měsíce :moon',
         'moon_new_moon'     => 'Nov měsíce :moon',

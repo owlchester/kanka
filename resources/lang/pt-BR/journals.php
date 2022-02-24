@@ -2,7 +2,6 @@
 
 return [
     'create'        => [
-        'description'   => 'Criar um novo jornal',
         'success'       => 'Jornal criado.',
         'title'         => 'Criar novo jornal',
     ],
@@ -31,7 +30,6 @@ return [
     ],
     'index'         => [
         'add'           => 'Novo Jornal',
-        'description'   => 'Gerencie os jornais de :name.',
         'header'        => 'Jornais de :name',
         'title'         => 'Jornais',
     ],
@@ -46,7 +44,6 @@ return [
         'type'      => 'Sessão, One Shot, Rascunho',
     ],
     'show'          => [
-        'description'   => 'Uma visão detalhada de um jornal',
         'tabs'          => [
             'journals'  => 'Jornais',
         ],

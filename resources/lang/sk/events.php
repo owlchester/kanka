@@ -2,7 +2,6 @@
 
 return [
     'create'        => [
-        'description'   => 'Vytvoriť novú udalosť',
         'success'       => 'Udalosť :name vytvorená.',
         'title'         => 'Nová udalosť',
     ],
@@ -34,7 +33,6 @@ return [
     ],
     'index'         => [
         'add'           => 'Nová udalosť',
-        'description'   => 'Spravuj udalosti objektu :name.',
         'header'        => 'Udalosti objektu :name',
         'title'         => 'Udalosti',
     ],
@@ -45,10 +43,8 @@ return [
         'type'      => 'ceremónia, festival, katastrofa, bitva, narodenie',
     ],
     'show'          => [
-        'description'   => 'Detailný popis udalosti',
         'tabs'          => [
             'events'        => 'Udalosti',
-            'information'   => 'Informácie',
         ],
         'title'         => 'Udalosť :name',
     ],

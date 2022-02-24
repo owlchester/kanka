@@ -125,7 +125,6 @@ return [
         'copy_attributes'       => 'Kopírovat atributy',
         'copy_inventory'        => 'Kopírovat inventář',
         'copy_links'            => 'Kopírovat odkazy na objekty',
-        'copy_notes'            => 'Kopírovat poznámky objektu',
         'creator'               => 'Autor',
         'dice_roll'             => 'Hod kostkou',
         'entity'                => 'Objekt',
@@ -241,11 +240,7 @@ return [
         'visibility'            => 'Nastavení viditelnosti pouze pro "správce" znamená, že pouze členové role "Správce" si jej budou moci zobrazit. Při nastavení viditelnosti na "Vlastník" bude objekt viditelný jen pro tebe.',
     ],
     'history'                   => [
-        'created'       => 'Vytvořeno uživatelem <strong>:name</strong> <span data-toggle="tooltip" title=":realdate">:date</span>',
-        'created_date'  => 'Vytvořeno dne <span data-toggle="tooltip" title=":realdate">:date</span>',
         'unknown'       => 'Neznámé',
-        'updated'       => 'Naposledy upraveno uživatelem <strong>:name</strong> <span data-toggle="tooltip" title=":realdate">:date</span>',
-        'updated_date'  => 'Naposledy upraveno dne <span data-toggle="tooltip" title=":realdate">:date</span>',
         'view'          => 'Zobrazit protokol objektu',
     ],
     'image'                     => [

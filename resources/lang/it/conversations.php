@@ -2,7 +2,6 @@
 
 return [
     'create'        => [
-        'description'   => 'Crea una nuova conversazione',
         'success'       => 'Conversazione \':name\' creata.',
         'title'         => 'Nuova conversazione',
     ],
@@ -10,7 +9,6 @@ return [
         'success'   => 'Conversazione \':name\' rimossa.',
     ],
     'edit'          => [
-        'description'   => 'Aggiorna la conversazione',
         'success'       => 'Conversazione \':name\' aggiornata.',
         'title'         => 'Conversazione :name',
     ],
@@ -26,7 +24,6 @@ return [
     ],
     'index'         => [
         'add'           => 'Nuova conversazione',
-        'description'   => 'Gestisci la categoria di :name.',
         'header'        => 'Conversazioni in :name',
         'title'         => 'Conversazioni',
     ],
@@ -44,7 +41,6 @@ return [
         'create'        => [
             'success'   => 'Partecipante :entity aggiunto alla conversazione.',
         ],
-        'description'   => 'Aggiungi o rimuovi partecipanti di una conversazione',
         'destroy'       => [
             'success'   => 'Partecipante :entity rimosso dalla conversazione.',
         ],
@@ -56,7 +52,6 @@ return [
         'type'  => 'In Gioco, Preparazione, Trama',
     ],
     'show'          => [
-        'description'   => 'Una vista dettagliata della conversazione',
         'title'         => 'Conversazione :name',
     ],
     'tabs'          => [

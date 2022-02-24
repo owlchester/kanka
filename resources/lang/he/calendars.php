@@ -17,7 +17,6 @@ return [
         'is_recurring'  => 'מתרחש כל שנה',
     ],
     'create'        => [
-        'description'   => 'צור לוח שנה חדש',
         'success'       => 'לוח שנה \':name\' נוצר',
         'title'         => 'לוח שנה חדש',
     ],
@@ -25,7 +24,6 @@ return [
         'success'   => 'לוח שנה \':name\' הוסר',
     ],
     'edit'          => [
-        'description'   => 'עדכן לוח שנה',
         'success'       => 'לוח שנה \':name\' עודכן',
         'title'         => 'ערוך לוח שנה :name',
         'today'         => 'התאריך עודכן',
@@ -37,13 +35,11 @@ return [
             'switch'    => 'ערוך בחירה',
         ],
         'create'    => [
-            'description'   => 'צור אירוע בלוח השנה',
             'success'       => 'האירוע נוצר בהצלחה',
             'title'         => 'הוסף אירוע ללוח השנה \':name\'',
         ],
         'destroy'   => 'האירוע הוסר מלוח השנה \':name\'',
         'edit'      => [
-            'description'   => 'עדכן אירוע',
             'success'       => 'האירוע הודכן',
             'title'         => 'עדכן אירוע ל:name',
         ],
@@ -57,7 +53,6 @@ return [
         'success'   => 'האירוע \':event\' נוסף ללוח השנה',
     ],
     'events'        => [
-        'description'   => 'אירועים בלוח השנה הזה',
         'title'         => 'אירועים בלוח השנה :name',
     ],
     'fields'        => [
@@ -109,7 +104,6 @@ return [
     ],
     'index'         => [
         'add'           => 'לוח שנה חדש',
-        'description'   => 'נהל את לוחות השנה של :name.',
         'header'        => 'לוחות השנה של :name',
         'title'         => 'לוחות שנה',
     ],
@@ -195,7 +189,6 @@ return [
         'weekdays'          => 'מספר הימים בשבוע',
     ],
     'show'          => [
-        'description'       => 'מבט מפורט על לוח השנה',
         'missing_details'   => 'לא ניתן להציג את לוח השנה הזה. לוח שנה חייב להכיל לפחות 2 חודשים ו2 ימים.',
         'moon_full_moon'    => 'ירח מלא :moon',
         'moon_new_moon'     => 'ירח מולד :moon',

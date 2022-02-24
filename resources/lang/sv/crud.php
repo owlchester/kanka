@@ -110,7 +110,6 @@ return [
         'copy_attributes'       => 'Kopiera Egenskaper',
         'copy_inventory'        => 'Kopiera Inventarie',
         'copy_links'            => 'Kopiera Entitetslänkar',
-        'copy_notes'            => 'Kopiera Entitetsanteckningar',
         'creator'               => 'Skapare',
         'dice_roll'             => 'Tärningskast',
         'entity'                => 'Entitet',
@@ -200,11 +199,7 @@ return [
         'visibility'            => 'Att sätta synligheten till \'admin\' betyder att bara medlemmar i Admin rollen för kampanjen kan se detta. Att sätta den till \'Jag själv\' betyder att bara du själv kan se detta.',
     ],
     'history'                   => [
-        'created'       => 'Skapad av <strong>:name</strong> <span data-toggle="tooltip" title=":realdate">:date</span>',
-        'created_date'  => 'Skapad <span data-toggle="tooltip" title=":realdate">:date</span>',
         'unknown'       => 'Okänd',
-        'updated'       => 'Senast ändrad av <strong>:name</strong> <span data-toggle="tooltip" title=":realdate">:date</span>',
-        'updated_date'  => 'Senast ändrad <span data-toggle="tooltip" title=":realdate">:date</span>',
         'view'          => 'Visa entitets logg',
     ],
     'image'                     => [

@@ -156,7 +156,6 @@ return [
     ],
     'patreon'       => [
         'deprecated'    => 'Zastarjela značajka - ako želite podržati Kanku, učinite to putem :subscription. Patreon povezivanje je i dalje aktivno za one koji su povezali svoj račun prije našeg odlaska iz Patreona.',
-        'description'   => 'Sinkroniziranje s Patreonom',
         'pledge'        => 'Zalog: :name',
         'remove'        => [
             'button'    => 'Prekini vezu s Patreon računom',

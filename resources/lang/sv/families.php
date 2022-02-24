@@ -2,7 +2,6 @@
 
 return [
     'create'        => [
-        'description'   => 'Skapa en ny familj',
         'success'       => 'Familj \':name\' skapad.',
         'title'         => 'Ny Familj',
     ],
@@ -35,7 +34,6 @@ return [
     ],
     'index'         => [
         'add'           => 'Ny Familj',
-        'description'   => 'Hantera familjerna för :name.',
         'header'        => 'Familjer för :name',
         'title'         => 'Familjer',
     ],
@@ -52,7 +50,6 @@ return [
         'type'      => 'Kunglig, Adlig, Utdöd',
     ],
     'show'          => [
-        'description'   => 'En detaljerad vy för en familj',
         'tabs'          => [
             'all_members'   => 'Alla Medlemmar',
             'families'      => 'Familjer',

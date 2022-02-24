@@ -2,7 +2,6 @@
 
 return [
     'create'        => [
-        'description'   => 'Új beszélgetés létrehozása',
         'success'       => '\':name\' beszélgetést létrehoztuk.',
         'title'         => 'Új beszélgetés',
     ],
@@ -10,7 +9,6 @@ return [
         'success'   => '\':name\' beszélgetést eltávolítottuk.',
     ],
     'edit'          => [
-        'description'   => 'A beszélgetés frissítése',
         'success'       => '\':name\' beszélgetést frissítettük.',
         'title'         => ':name beszélgetés',
     ],
@@ -27,7 +25,6 @@ return [
     ],
     'index'         => [
         'add'           => 'Új beszélgetés',
-        'description'   => ':name kategória kezelése',
         'header'        => 'Beszélgetés itt: :name',
         'title'         => 'Beszélgetés',
     ],
@@ -45,7 +42,6 @@ return [
         'create'        => [
             'success'   => ':entity résztvevőt hozzáadtuk a beszélgetéshez.',
         ],
-        'description'   => 'Résztvevők hozzáadása vagy eltávolítása a beszélgetésből',
         'destroy'       => [
             'success'   => ':entity résztvevőt eltávolítottuk a beszélgetésből.',
         ],
@@ -57,7 +53,6 @@ return [
         'type'  => 'Játékbeli, előkészület, cselekmény',
     ],
     'show'          => [
-        'description'   => 'Egy beszélgetés részletes megjelenítése',
         'is_closed'     => 'A beszélgetést lezártuk.',
         'title'         => ':name beszélgetés',
     ],

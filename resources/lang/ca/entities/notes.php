@@ -7,7 +7,6 @@ return [
         'add_user'  => 'Afegeix un usuari',
     ],
     'create'        => [
-        'description'   => 'Crea una nova anotació',
         'success'       => 'S\'ha afegit l\'anotació «:name» a :entity.',
         'title'         => 'Nova anotació a :name',
     ],
@@ -15,7 +14,6 @@ return [
         'success'   => 'S\'ha eliminat l\'anotació «:name» de :entity.',
     ],
     'edit'          => [
-        'description'   => 'Actualiza l\'anotació',
         'success'       => 'S\'ha actualitzat l\'anotació «:name» de :entity.',
         'title'         => 'Actualiza l\'anotació de :name',
     ],

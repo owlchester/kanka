@@ -24,11 +24,9 @@ return [
     ],
     'helpers'       => [
         'descendants'   => 'Denne listen inneholder alle egenskaper som er etterkommere av denne egenskapen, ikke bare de som stammer direkte fra den.',
-        'nested'        => 'I Rede Visning kan man se dine Egenskaper som i et rede. Egenskaper uten forelder egenskap blir vist som standard. Egenskaper med datter-egenskaper kan klikkes for å vise dets datter-egenskaper. Du kan klikke helt til det ikke er flere datter-egenskaper å se.',
     ],
     'index'         => [
         'add'           => 'Ny egenskap',
-        'description'   => 'Opprett krefter, Spells, Feats og mer til dine Objekter.',
         'header'        => 'Egenskaper til :name',
         'title'         => 'Egenskaper',
     ],

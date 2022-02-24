@@ -2,7 +2,6 @@
 
 return [
     'create'        => [
-        'description'   => 'Maak een nieuwe notitie',
         'success'       => 'Notitie \':name\' gemaakt.',
         'title'         => 'Nieuwe Notitie',
     ],
@@ -30,7 +29,6 @@ return [
     ],
     'index'         => [
         'add'           => 'Nieuwe Notitie',
-        'description'   => 'Beheer de notities van :name.',
         'header'        => 'Notities van :name',
         'title'         => 'Notities',
     ],
@@ -40,10 +38,6 @@ return [
         'type'  => 'Religie, Ras, Politiek systeem',
     ],
     'show'          => [
-        'description'   => 'Een gedetaileerd overzicht van een notitie',
-        'tabs'          => [
-            'description'   => 'Beschrijving',
-        ],
         'title'         => 'Notitie :name',
     ],
 ];

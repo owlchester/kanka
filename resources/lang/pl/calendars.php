@@ -31,7 +31,6 @@ return [
         'teal'      => 'Morski',
     ],
     'create'        => [
-        'description'   => 'Opis',
         'success'       => 'Stworzono kalendarz :name.',
         'title'         => 'Nowy kalendarz',
     ],
@@ -39,7 +38,6 @@ return [
         'success'   => 'Usunięto kalendarz :name',
     ],
     'edit'          => [
-        'description'   => 'Opis',
         'success'       => 'Zmieniono kalendarz \':nazwa\'',
         'title'         => 'Edycja kalendarza :nazwa',
         'today'         => 'Zmieniono datę kalendarza.',
@@ -52,13 +50,11 @@ return [
             'switch'            => 'Zmień wybór',
         ],
         'create'    => [
-            'description'   => 'Opis',
             'success'       => 'Utworzono wydarzenie.',
             'title'         => 'Dodaj wydarzenie do :name',
         ],
         'destroy'   => 'Wydarzenie usunięto z kalendarza \':name\'.',
         'edit'      => [
-            'description'   => 'Opis',
             'success'       => 'Zmieniono wydarzenie w kalendarzu.',
             'title'         => 'Aktualizuj wydarzenie dla :name',
         ],
@@ -73,7 +69,6 @@ return [
         'success'   => 'Dodano do kalendarza wydarzenie \':event\'.',
     ],
     'events'        => [
-        'description'   => 'Opis',
         'title'         => 'Wydarzenia w kalendarzu :name',
     ],
     'fields'        => [
@@ -132,7 +127,6 @@ return [
     ],
     'index'         => [
         'add'           => 'Nowy kalendarz',
-        'description'   => 'Opis',
         'header'        => 'Kalendarze elementu :name',
         'title'         => 'Kalendarze',
     ],
@@ -224,7 +218,6 @@ return [
         'weekdays'          => 'Liczba dni w tygodniu',
     ],
     'show'          => [
-        'description'       => 'Opis',
         'missing_details'   => 'Nie można wyświetlić kalendarza. Do poprawnego wyświetlania niezbędne są przynajmniej 2 miesiące posiadające po 2 dni tygodnia.',
         'moon_full_moon'    => ':moon Pełnia',
         'moon_new_moon'     => ':moon Nów',

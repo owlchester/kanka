@@ -2,7 +2,6 @@
 
 return [
     'create'            => [
-        'description'   => 'Vytvor nový menu link',
         'success'       => 'Menu link :name vytvorený.',
         'title'         => 'Nový menu link',
     ],
@@ -10,7 +9,6 @@ return [
         'success'   => 'Menu link :name odstránený.',
     ],
     'edit'              => [
-        'description'   => 'Uprav menu link.',
         'success'       => 'Menu link :name upravený.',
         'title'         => 'Menu link :name',
     ],
@@ -38,8 +36,6 @@ return [
     ],
     'index'             => [
         'add'           => 'Nový menu link',
-        'description'   => 'Spravuj menu linky objektu :name',
-        'header'        => 'Menu link objektu :name',
         'title'         => 'Menu linky',
     ],
     'placeholders'      => [
@@ -58,9 +54,7 @@ return [
         'title'     => 'Zmeniť poradie menu liniek',
     ],
     'show'              => [
-        'description'   => 'Detailný náhľad menu linku',
         'tabs'          => [
-            'information'   => 'Informácie',
         ],
         'title'         => 'Menu link :name',
     ],

@@ -2,7 +2,6 @@
 
 return [
     'create'        => [
-        'description'   => 'Stwórz nową notatkę',
         'success'       => 'Stworzono notatkę \':name\'',
         'title'         => 'Nowa notatka',
     ],
@@ -32,7 +31,6 @@ return [
     ],
     'index'         => [
         'add'           => 'Nowa notatka',
-        'description'   => 'Zarządzaj notatkami elementu :name',
         'header'        => 'Notatki elementu :name',
         'title'         => 'Notatki',
     ],
@@ -42,10 +40,6 @@ return [
         'type'  => 'Religia, rasa, system polityczny',
     ],
     'show'          => [
-        'description'   => 'Szczegółowy widok notatki',
-        'tabs'          => [
-            'description'   => 'Opis',
-        ],
         'title'         => 'Notatka :name',
     ],
 ];

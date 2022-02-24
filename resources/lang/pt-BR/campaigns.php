@@ -414,7 +414,6 @@ TEXT
             'export'            => 'Exportar',
             'information'       => 'Informações',
             'members'           => 'Membros',
-            'menu'              => 'menu',
             'plugins'           => 'Plug-ins',
             'recovery'          => 'Recuperação',
             'roles'             => 'Cargos',

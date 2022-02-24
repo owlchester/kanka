@@ -7,11 +7,9 @@ return [
         'add_personality'   => 'Adicionar uma personalidade',
     ],
     'conversations' => [
-        'description'   => 'Conversas das quais o personagem está participando',
         'title'         => 'Conversas de :name',
     ],
     'create'        => [
-        'description'   => 'Criar um novo personagem',
         'success'       => 'Personagem \':name\' criado.',
         'title'         => 'Criar um novo personagem',
     ],
@@ -19,12 +17,10 @@ return [
         'success'   => 'Personagem \':name\' removido.',
     ],
     'dice_rolls'    => [
-        'description'   => 'Rolagens de dado atribuídas ao personagem',
         'hint'          => 'Rolagens de dados podem ser vinculadas a um personagem para uso no jogo.',
         'title'         => 'Rolagens de dado de :name',
     ],
     'edit'          => [
-        'description'   => 'Editar um personagem',
         'success'       => 'Personagem \':name\' atualizado.',
         'title'         => 'Editar Personagem :name',
     ],
@@ -64,21 +60,17 @@ return [
             'random'    => 'Novo Personagem Aleatório',
         ],
         'add'           => 'Novo Personagem',
-        'description'   => 'Gerencie os personagens de :name.',
         'header'        => 'Personagens em :name',
         'title'         => 'Personagens',
     ],
     'items'         => [
-        'description'   => 'Itens carregados ou que pertencem ao personagem',
         'hint'          => 'Itens podem ser vinculados a personagens e serão mostrados aqui.',
         'title'         => 'Itens de :name',
     ],
     'journals'      => [
-        'description'   => 'Jornais dos quais o(a) personagem é autor(a)',
         'title'         => 'Jornais de :name',
     ],
     'maps'          => [
-        'description'   => 'Mapa de relações de um personagem',
         'title'         => 'Mapa de relações de :name',
     ],
     'organisations' => [
@@ -86,16 +78,13 @@ return [
             'add'   => 'Adicionar organização',
         ],
         'create'        => [
-            'description'   => 'Associar uma organização a um personagem',
             'success'       => 'Personagem adicionado à organização',
             'title'         => 'Nova Organização para :name',
         ],
-        'description'   => 'Organizações das queis o personagem é parte.',
         'destroy'       => [
             'success'   => 'Organização do personagem removida.',
         ],
         'edit'          => [
-            'description'   => 'Atualize a organização de um personagem',
             'success'       => 'Organização do personagem atualizada.',
             'title'         => 'Atualizar Organização para :name',
         ],
@@ -129,7 +118,6 @@ return [
         'type'              => 'NPC, Personagem de Jogador, Divindade',
     ],
     'quests'        => [
-        'description'   => 'Missões das quais o personagem faz parte',
         'helpers'       => [
             'quest_giver'   => 'Missões que o personagem deu.',
             'quest_member'  => 'Missões das quais o personagem é membro.',
@@ -142,7 +130,6 @@ return [
         'personality'   => 'Personalidade',
     ],
     'show'          => [
-        'description'   => 'Uma visão geral do personagem',
         'tabs'          => [
             'conversations' => 'Conversas',
             'dice_rolls'    => 'Rolagem de Dados',

@@ -117,7 +117,6 @@ return [
         'copy_attributes'       => 'Kopieer Attributen',
         'copy_inventory'        => 'Kopieer Inventory',
         'copy_links'            => 'Kopieer Entiteit Links',
-        'copy_notes'            => 'Kopieer Entiteit Notities',
         'creator'               => 'Maker',
         'dice_roll'             => 'Dobbelsteen Worp',
         'entity'                => 'Entiteit',
@@ -210,11 +209,7 @@ return [
         'visibility'            => 'Als je de zichtbaarheid instelt op beheerder, kunnen alleen leden met de campaign rol Beheerder dit zien. Als je het op zichzelf instelt, betekent dit dat alleen jij dit kunt zien.',
     ],
     'history'                   => [
-        'created'       => 'Gemaakt door <strong>:name</strong> <span data-toggle="tooltip" title=":realdate">:date</span>',
-        'created_date'  => '<span data-toggle="tooltip" title=":realdate">:date</span> gemaakt',
         'unknown'       => 'Onbekend',
-        'updated'       => 'Laatst gewijzigd door <strong>:name</strong> <span data-toggle="tooltip" title=":realdate">:date</span>',
-        'updated_date'  => 'Laatst gewijzigd <span data-toggle="tooltip" title=":realdate">:date</span>',
         'view'          => 'Bekijk entiteit log',
     ],
     'image'                     => [

@@ -2,7 +2,6 @@
 
 return [
     'create'        => [
-        'description'   => 'Vytvořit nový rozhovor',
         'success'       => 'Rozhovor ":name" vytvořen',
         'title'         => 'Nový rozhovor',
     ],
@@ -10,7 +9,6 @@ return [
         'success'   => 'Rozhovor ":name" smazán.',
     ],
     'edit'          => [
-        'description'   => 'Aktualizovat rozhovor',
         'success'       => 'Rozhovor ":name" aktualizován.',
         'title'         => 'Rozhovor ":name"',
     ],
@@ -27,7 +25,6 @@ return [
     ],
     'index'         => [
         'add'           => 'Nový rozhovor',
-        'description'   => 'Spravovat kategorii :name',
         'header'        => 'Rozhovory v :name',
         'title'         => 'Rozhovory',
     ],
@@ -45,7 +42,6 @@ return [
         'create'        => [
             'success'   => 'Postava :entity se nyní účastní rozhovoru.',
         ],
-        'description'   => 'Přidat nebo odstranit účastníky rozhovoru',
         'destroy'       => [
             'success'   => 'Postava :entity se nadále neúčastní rozhovoru.',
         ],
@@ -57,7 +53,6 @@ return [
         'type'  => 'Ve hře, příprava, námět',
     ],
     'show'          => [
-        'description'   => 'Podrobné zobrazení rozhovoru',
         'is_closed'     => 'Rozhovor skončil',
         'title'         => 'Rozhovor :name',
     ],

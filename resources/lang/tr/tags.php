@@ -8,11 +8,9 @@ return [
         'create'        => [
             'title' => ':name için etiket ekle',
         ],
-        'description'   => 'Etikete ait varlıklar',
         'title'         => ':name Etiketine Bağlı Notlar',
     ],
     'create'        => [
-        'description'   => 'Yeni bir etiket yarat',
         'success'       => '\':name\' etiketi yaratıldı.',
         'title'         => 'Yeni Etiket',
     ],
@@ -32,7 +30,6 @@ return [
         'type'          => 'Tür',
     ],
     'helpers'       => [
-        'nested'    => 'İç İçe Görünüm\'de, etiketlerinizi iç içe olacak şekilde görebilirsiniz. Ana etiketi olmayan etiketler varsayılan olarak gösterilecektir. Alt etiketi olan etiketler o alt etiketleri göstermek için tıklanabilir. Daha fazla alt etiket kalmayana kadar tıklamaya devam edebilirsiniz.',
     ],
     'hints'         => [
         'children'  => 'Bu liste bu etiketteki ve tüm iç içe etiketlerdeki varlıkları içerir.',
@@ -43,7 +40,6 @@ return [
             'explore_view'  => 'İç İçe Görünüm',
         ],
         'add'           => 'Yeni Etiket',
-        'description'   => ':name etiketlerini yönet.',
         'header'        => ':name içindeki etiketler',
         'title'         => 'Etiketler',
     ],
@@ -54,16 +50,13 @@ return [
         'type'  => 'Bilgi, Savaşlar, Tarih, Din, Bayrakbilim',
     ],
     'show'          => [
-        'description'   => 'Etikete detaylı bir bakış',
         'tabs'          => [
             'children'      => 'Alt etiketler',
-            'information'   => 'Bilgi',
             'tags'          => 'Etiketler',
         ],
         'title'         => ':name Etiketi',
     ],
     'tags'          => [
-        'description'   => 'Alt Etiketler',
         'title'         => ':name Alt Etiketleri',
     ],
 ];

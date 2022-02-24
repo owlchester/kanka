@@ -2,7 +2,6 @@
 
 return [
     'create'        => [
-        'description'   => 'צור שיחה חדשה',
         'success'       => 'השיחה \':name\' נוצרה.',
         'title'         => 'שיחה חדשה',
     ],
@@ -10,7 +9,6 @@ return [
         'success'   => 'השיחה \':name\' הוסרה.',
     ],
     'edit'          => [
-        'description'   => 'עדכן את השיחה',
         'success'       => 'השיחה \':name\' עודכנה.',
         'title'         => 'שיחה :name',
     ],
@@ -26,7 +24,6 @@ return [
     ],
     'index'         => [
         'add'           => 'שיחה חדשה',
-        'description'   => 'ניהול הקטגוריה של :name.',
         'header'        => 'שיחות ב:name',
         'title'         => 'שיחות',
     ],
@@ -44,7 +41,6 @@ return [
         'create'        => [
             'success'   => ':entity הוסף לשיחה.',
         ],
-        'description'   => 'הוסף או הסר משתתפים',
         'destroy'       => [
             'success'   => ':entity הוסר מהשיחה.',
         ],
@@ -56,7 +52,6 @@ return [
         'type'  => 'בתוך המשחק, הכנה, עלילה',
     ],
     'show'          => [
-        'description'   => 'מבט מפורט על שיחה',
         'title'         => 'שיחה :name',
     ],
     'tabs'          => [

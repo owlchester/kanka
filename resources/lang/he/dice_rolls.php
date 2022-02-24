@@ -2,7 +2,6 @@
 
 return [
     'create'        => [
-        'description'   => 'צור גלגול חדש',
         'success'       => 'גלגול \':name\' נוצר.',
         'title'         => 'גלגול חדש',
     ],
@@ -11,7 +10,6 @@ return [
         'success'   => 'הגלגול \':name\' הוסר.',
     ],
     'edit'          => [
-        'description'   => 'ערוך גלגול',
         'success'       => 'הגלגול \':name\' עודכן.',
         'title'         => 'ערוך גלגול :name',
     ],
@@ -31,7 +29,6 @@ return [
             'results'   => 'תוצאות',
         ],
         'add'           => 'גלגול חדש',
-        'description'   => 'נהל את הגלגולים של :name',
         'header'        => 'גלגולים של :name',
         'title'         => 'גלגולי קוביות',
     ],
@@ -54,7 +51,6 @@ return [
         'success'   => 'ההטלה בוצעה.',
     ],
     'show'          => [
-        'description'   => 'מבט מפורט על גלגול.',
         'tabs'          => [
             'results'   => 'תוצאה',
         ],

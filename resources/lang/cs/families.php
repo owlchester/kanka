@@ -2,7 +2,6 @@
 
 return [
     'create'        => [
-        'description'   => 'Vytvořit nový rod',
         'success'       => 'Rod ":name" vytvořen.',
         'title'         => 'Nový rod',
     ],
@@ -36,7 +35,6 @@ return [
     ],
     'index'         => [
         'add'           => 'Nový rod',
-        'description'   => 'Spravovat rody :name',
         'header'        => 'Rody :name',
         'title'         => 'Rody',
     ],
@@ -53,7 +51,6 @@ return [
         'type'      => 'Královský, šlechtický, vymřelý,...',
     ],
     'show'          => [
-        'description'   => 'Podrobné zobrazení rodu',
         'tabs'          => [
             'all_members'   => 'Všichni členové',
             'families'      => 'Rody',

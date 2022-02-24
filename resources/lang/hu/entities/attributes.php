@@ -2,27 +2,10 @@
 
 return [
     'actions'       => [
-        'add'               => 'Tulajdonság hozzáadása',
-        'add_block'         => 'Blokk hozzáadása',
-        'add_checkbox'      => 'Jelölőnégyzet hozzáadása',
-        'add_text'          => 'Szöveg hozzáadása',
         'apply_template'    => 'Tulajdonságsablon alkalmazása',
         'manage'            => 'Kezelés',
         'more'              => 'Több lehetőség',
         'remove_all'        => 'Összes törlése',
-    ],
-    'create'        => [
-        'description'   => 'Új tulajdonság létrehozása',
-        'success'       => ':name tulajdonságot hozzáadtuk :entity entitáshoz.',
-        'title'         => ':name entitáshoz új tulajdonság hozzáadása',
-    ],
-    'destroy'       => [
-        'success'   => ':entity :name tulajdonságát eltávolítottuk.',
-    ],
-    'edit'          => [
-        'description'   => 'Létező entitás frissítése',
-        'success'       => ':entity :name tulajdonságát frissítettük.',
-        'title'         => ':name tulajdonságnak frissítése',
     ],
     'errors'        => [
         'loop'  => 'Végtelen hurok van ennek a tulajdonságnak a számításában!',

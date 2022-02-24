@@ -362,7 +362,6 @@ TEXT
             'export'            => 'Exporteer',
             'information'       => 'Informatie',
             'members'           => 'Leden',
-            'menu'              => 'Menu',
             'plugins'           => 'Plugins',
             'recovery'          => 'Herstel',
             'roles'             => 'Rollen',

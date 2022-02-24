@@ -226,7 +226,6 @@ return [
         'headings'  => [
             'app'           => 'Aplicativo',
             'community'     => 'Comunidade',
-            'friends'       => 'Nossos parceiros',
             'other'         => 'Outro',
             'useful_links'  => 'Links úteis',
         ],
@@ -355,7 +354,6 @@ return [
     ],
     'second_block'  => [
         'call_to_action'    => 'Vamos Começar!',
-        'title'             => 'Pare de esperar.<br />Comece a construir.',
     ],
     'seo'           => [
         'keywords'  => 'Worldbuilding, Tabletop RPG, e RPG Campaign Manager',

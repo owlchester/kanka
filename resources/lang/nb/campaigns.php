@@ -329,7 +329,6 @@ TEXT
             'export'            => 'Eksport',
             'information'       => 'Informasjon',
             'members'           => 'Medlemmer',
-            'menu'              => 'Meny',
             'plugins'           => 'Plugins',
             'recovery'          => 'Gjenopprettelse',
             'roles'             => 'Roller',

@@ -13,7 +13,6 @@ return [
         'r_date_created'    => 'Data de Criação Invertida',
         'r_date_joined'     => 'Data em que Entrou Invertido',
     ],
-    'description'                   => 'Atualize os detalhes da sua conta',
     'edit'                          => [
         'success'   => 'Perfil atualizado',
     ],

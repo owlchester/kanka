@@ -2,28 +2,12 @@
 
 return [
     'actions'       => [
-        'add'               => 'Pridať atribúť',
-        'add_block'         => 'Pridať blok',
-        'add_checkbox'      => 'Pridať zaškrtávacie políčko',
-        'add_text'          => 'Pridať text',
         'apply_template'    => 'Použiť šablónu atribútov',
         'manage'            => 'Spravovať',
         'more'              => 'Ďalšie možnosti',
         'remove_all'        => 'Odstrániť všetko',
     ],
-    'create'        => [
-        'description'   => 'Vytvoriť nový atribút',
-        'success'       => 'Atribút :name pridaný k :entity.',
-        'title'         => 'Nový atribút pre :name',
-    ],
-    'destroy'       => [
-        'success'   => 'Atribút :name odstránený z :entity.',
-    ],
-    'edit'          => [
-        'description'   => 'Upraviť existujúci atribút',
-        'success'       => 'Atribút :name upravený pre :entity.',
-        'title'         => 'Upraviť atribút pre :name',
-    ],
+
     'errors'        => [
         'loop'  => 'Vo výpočte atribútu sa vyskytuje nekonečná slučka!',
     ],

@@ -17,7 +17,6 @@ return [
         'is_recurring'  => 'Her yıl gerçekleşir',
     ],
     'create'        => [
-        'description'   => 'Yeni bir takvim ekle',
         'success'       => '\':name\' takvimi oluşturuldu.',
         'title'         => 'Yeni Takvim',
     ],
@@ -25,7 +24,6 @@ return [
         'success'   => '\':name\' takvimi kaldırıldı.',
     ],
     'edit'          => [
-        'description'   => 'Takvimi Güncelle',
         'success'       => '\':name\' takvimi güncellendi.',
         'title'         => ':name Takvimini Düzenle',
         'today'         => 'Takvim tarihi güncellendi.',
@@ -37,13 +35,11 @@ return [
             'switch'    => 'Seçimi değiştir',
         ],
         'create'    => [
-            'description'   => 'Bir takvim olayı yarat',
             'success'       => 'Takvim olayı yaratıldı.',
             'title'         => ':name için Takvim Olayı Ekle',
         ],
         'destroy'   => '\':name\' takviminden olay kaldırıldı.',
         'edit'      => [
-            'description'   => 'Bir takvim olayını güncelle',
             'success'       => 'Takvim olayı güncellendi.',
             'title'         => ':name için Takvim Olayını Güncelle',
         ],
@@ -58,7 +54,6 @@ return [
         'success'   => '\':event\' olayı takvime eklendi.',
     ],
     'events'        => [
-        'description'   => 'Bu takvimdeki olaylar.',
         'title'         => ':name Takvimi Olayları',
     ],
     'fields'        => [
@@ -114,7 +109,6 @@ return [
     ],
     'index'         => [
         'add'           => 'Yeni Takvim',
-        'description'   => ':name takvimlerini yönet.',
         'header'        => ':name Tavkimleri',
         'title'         => 'Takvimler',
     ],
@@ -200,7 +194,6 @@ return [
         'weekdays'          => 'Bir haftadaki gün sayısı',
     ],
     'show'          => [
-        'description'       => 'Takvime detaylı bir bakış',
         'missing_details'   => 'Bu takvim görüntülenemedi. Takvimlerin doğru görüntülenebilmesi için en az 2 aya ve 2 hafta gününe ihtiyacı vardır.',
         'moon_full_moon'    => ':moon Dolunay',
         'moon_new_moon'     => ':moon Yeniay',

@@ -2,7 +2,6 @@
 
 return [
     'create'        => [
-        'description'   => 'Crea una nuova famiglia',
         'success'       => 'Famiglia \':name\' creata.',
         'title'         => 'Nuova Famiglia',
     ],
@@ -35,7 +34,6 @@ return [
     ],
     'index'         => [
         'add'           => 'Nuova Famiglia',
-        'description'   => 'Gestisci le famiglie di :name',
         'header'        => 'Famiglie di :name',
         'title'         => 'Famiglie',
     ],
@@ -52,7 +50,6 @@ return [
         'type'      => 'Famiglia Reale, Nobile, Estinta',
     ],
     'show'          => [
-        'description'   => 'Una vista dettagliata della famiglia',
         'tabs'          => [
             'all_members'   => 'Tutti i Membri',
             'families'      => 'Famiglie',

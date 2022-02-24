@@ -13,13 +13,15 @@ return [
         'title'     => 'Zeitstrahlelement editieren',
     ],
     'fields'        => [
-        'date'  => 'Datum',
-        'era'   => 'Epoche',
-        'icon'  => 'Icon',
+        'date'              => 'Datum',
+        'era'               => 'Epoche',
+        'icon'              => 'Icon',
+        'use_entity_entry'  => 'Zeigen Sie den Eintrag des angehängten Objekts unten an. Der Text dieses Elements wird zuerst angezeigt, falls vorhanden.',
     ],
     'helpers'       => [
         'entity_is_private' => 'Das Element des Objekts ist privat.',
         'icon'              => 'Kopieren Sie den HTML-Code eines Symbols von :fontawesome oder :rpgawesome.',
+        'is_collapsed'      => 'Das Element wird standardmäßig reduziert angezeigt.',
     ],
     'placeholders'  => [
         'date'      => 'z.B. 42. März oder 1332-1337',

@@ -7,11 +7,9 @@ return [
         'add_personality'   => 'Személyiség hozzáadása',
     ],
     'conversations' => [
-        'description'   => 'Beszélgetések, amelyekben a karakter részt vesz.',
         'title'         => ':name karakter beszélgetései',
     ],
     'create'        => [
-        'description'   => 'Új karakter létrehozása',
         'success'       => ':name karaktert létrehoztuk.',
         'title'         => 'Új karakter',
     ],
@@ -19,12 +17,10 @@ return [
         'success'   => '\':name\' karaktert eltávolítottuk.',
     ],
     'dice_rolls'    => [
-        'description'   => 'A dobásokat a karakterhez rendeltük.',
         'hint'          => 'A dobásokat egy karakterhez lehet rendelni a játék közbeni használat érdekében.',
         'title'         => ':name karakter dobásai',
     ],
     'edit'          => [
-        'description'   => 'Karakter szerkesztése',
         'success'       => '\':name\' karaktert frissítettük.',
         'title'         => ':name karakter szerkesztése',
     ],
@@ -62,21 +58,17 @@ return [
             'random'    => 'Új véletlen karakter',
         ],
         'add'           => 'Új karakter',
-        'description'   => ':name karakter kezelése',
         'header'        => 'Karakterek itt: :name',
         'title'         => 'Karakterek',
     ],
     'items'         => [
-        'description'   => 'A karakter tárgyai.',
         'hint'          => 'A tárgyakat a karakterekhez rendelheted, és azokat itt mutatjuk meg.',
         'title'         => ':name karakter tárgyai',
     ],
     'journals'      => [
-        'description'   => 'Irományok, amelyeknek a karakter a szerzője.',
         'title'         => ':name karakter irományai',
     ],
     'maps'          => [
-        'description'   => 'Egy karakter kapcsolati térképe.',
         'title'         => ':name karakter kapcsolati térképe',
     ],
     'organisations' => [
@@ -84,16 +76,13 @@ return [
             'add'   => 'Szervezet hozzáadása',
         ],
         'create'        => [
-            'description'   => 'Egy szervezet és egy karakter összekapcsolása',
             'success'       => 'A karaktert hozzáadtuk a szervezethez.',
             'title'         => ':name számára új szervezet',
         ],
-        'description'   => 'Szervezetek, amelynek a karakter tagja.',
         'destroy'       => [
             'success'   => 'A karakter szervezetét eltávolítottuk.',
         ],
         'edit'          => [
-            'description'   => 'Egy karakter szervezetének frissítése',
             'success'       => 'A karakter szervezetét frissítettük.',
             'title'         => 'Szervezet frissítése :name számára',
         ],
@@ -126,7 +115,6 @@ return [
         'type'              => 'NJK, játékos karakter, istenség',
     ],
     'quests'        => [
-        'description'   => 'Küldetések, amelyeknek része a karakter.',
         'helpers'       => [
             'quest_giver'   => 'Küldetések, amelyeket a karakter ad.',
             'quest_member'  => 'Küldetések, amelyekben a karakter részt vesz.',
@@ -139,7 +127,6 @@ return [
         'personality'   => 'Személyiség',
     ],
     'show'          => [
-        'description'   => 'Egy karakter részletes megjelenítése',
         'tabs'          => [
             'conversations' => 'Beszélgetések',
             'dice_rolls'    => 'Dobások',

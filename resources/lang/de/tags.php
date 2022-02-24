@@ -9,11 +9,9 @@ return [
             'success'   => 'Der Tag :name wurde dem Objekt hinzugefügt.',
             'title'     => 'Füge Kategorie zu :name hinzu',
         ],
-        'description'   => 'Objekte mit diesem Tag',
         'title'         => 'Kategorie :name Unterkategorien',
     ],
     'create'        => [
-        'description'   => 'Erstelle eine neue Kategorie',
         'success'       => 'Kategorie \':name\' erstellt.',
         'title'         => 'Neue Kategorie',
     ],
@@ -45,7 +43,6 @@ return [
             'explore_view'  => 'Erkundungsansicht',
         ],
         'add'           => 'Neue Kategorie',
-        'description'   => 'Verwalte die Kategorie von :name.',
         'header'        => 'Kategorien von :name',
         'title'         => 'Kategorien',
     ],
@@ -56,16 +53,13 @@ return [
         'type'  => 'Überlieferung, Geschichte, Kriege, Religion, Flaggenkunde',
     ],
     'show'          => [
-        'description'   => 'Eine Detailansicht einer Kategorie',
         'tabs'          => [
             'children'      => 'Kinder',
-            'information'   => 'Informationen',
             'tags'          => 'Kategorien',
         ],
         'title'         => 'Kategorie :name',
     ],
     'tags'          => [
-        'description'   => 'Unterkategorien',
         'title'         => 'Kategorie :name Unterkategorien',
     ],
 ];

@@ -2,7 +2,6 @@
 
 return [
     'create'        => [
-        'description'   => 'Erstelle ein neues Item',
         'success'       => 'Gegenstand \':name\' erstellt',
         'title'         => 'Neuen Gegenstand erstellen',
     ],
@@ -25,12 +24,10 @@ return [
     ],
     'index'         => [
         'add'           => 'Neuer Gegenstand',
-        'description'   => 'Verwalte die Gegenstände von :name.',
         'header'        => 'Gegenstände von :name',
         'title'         => 'Gegenstände',
     ],
     'inventories'   => [
-        'description'   => 'Objekte, in denen sich der Artikel befindet.',
         'title'         => 'Gegenstand :name Objekte',
     ],
     'placeholders'  => [
@@ -41,12 +38,7 @@ return [
         'size'      => 'Größe, Gewicht, Maße',
         'type'      => 'Waffe, Trank, Artefakt',
     ],
-    'quests'        => [
-        'description'   => 'Quests des Gegenstands.',
-        'title'         => 'Gegenstand :name Quests',
-    ],
     'show'          => [
-        'description'   => 'Eine detaillierte Ansicht eines Gegenstands',
         'tabs'          => [
             'information'   => 'Informationen',
             'inventories'   => 'Objekte',

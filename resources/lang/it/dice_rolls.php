@@ -2,7 +2,6 @@
 
 return [
     'create'        => [
-        'description'   => 'Crea un nuovo tiro di dado',
         'success'       => 'Tiro di Dado \':name\' creato.',
         'title'         => 'Nuovo Tiro di Dado',
     ],
@@ -11,7 +10,6 @@ return [
         'success'   => 'Tiro di Dado \':name\' rimosso.',
     ],
     'edit'          => [
-        'description'   => 'Modifica un Tiro di Dado',
         'success'       => 'Tiro di Dado \':name\' aggiornato.',
         'title'         => 'Modifica il Tiro di Dadi :name',
     ],
@@ -31,7 +29,6 @@ return [
             'results'   => 'Risultati',
         ],
         'add'           => 'Nuovo Tiro di Dado',
-        'description'   => 'Gestisci i Tiri di Dado di :name',
         'header'        => 'Tiri di Dado di :name',
         'title'         => 'Tiri di Dado',
     ],
@@ -54,7 +51,6 @@ return [
         'success'   => 'Dado tirato.',
     ],
     'show'          => [
-        'description'   => 'Una vista dettagliata di un Tiro di Dado',
         'tabs'          => [
             'results'   => 'Risultati',
         ],

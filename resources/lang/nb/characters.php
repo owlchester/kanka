@@ -9,7 +9,6 @@ return [
             'add'   => 'Legg til organisasjon',
         ],
         'create'        => [
-            'description'   => 'Assosier en organisasjon med en karakter.',
             'success'       => 'Karakter lagt til i organisasjon',
             'title'         => 'Ny organisasjon for :name',
         ],

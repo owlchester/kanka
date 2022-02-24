@@ -6,8 +6,11 @@ return [
         'add_role'  => 'Dodaj rolę',
         'add_user'  => 'Dodaj użytkownika',
     ],
+    'copy_mention'  => [
+        'copy'      => 'Kopiuj wzmiankę zaawansowaną',
+        'success'   => 'Wzmianka zaawansowana skopiowana do schowka',
+    ],
     'create'        => [
-        'description'   => 'Stwórz nowy komentarz',
         'success'       => 'Dodano komentarz :name do elementu :entity.',
         'title'         => 'Nowy komentarz do elementu :name.',
     ],
@@ -15,7 +18,6 @@ return [
         'success'   => 'Usunięto komentarz :name do elementu :entity.',
     ],
     'edit'          => [
-        'description'   => 'Aktualizuj komentarz do elementu.',
         'success'       => 'Zmieniono komentarz :name do elementu :entity.',
         'title'         => 'Edycja komentarza do elementu :name',
     ],

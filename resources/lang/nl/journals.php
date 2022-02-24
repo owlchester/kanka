@@ -2,7 +2,6 @@
 
 return [
     'create'        => [
-        'description'   => 'Maak een nieuw logboek',
         'success'       => 'Logboek \':name\' gemaakt.',
         'title'         => 'Nieuw Logboek',
     ],
@@ -29,7 +28,6 @@ return [
     ],
     'index'         => [
         'add'           => 'Nieuw Logboek',
-        'description'   => 'Beheer de logboeken van :name',
         'header'        => 'Logboeken van :name',
         'title'         => 'Logboeken',
     ],
@@ -44,7 +42,6 @@ return [
         'type'      => 'Sessie, One Shot, Concept',
     ],
     'show'          => [
-        'description'   => 'Een gedetailleerd overzicht van een logboek',
         'tabs'          => [
             'journals'  => 'Logboeken',
         ],

@@ -12,15 +12,7 @@ return [
         'title'         => 'Tím',
         'translations'  => 'Preklady',
     ],
-    'patreon'       => [
-        'description'   => 'Títo úžasní ľudia pomáhajú a podporujú Kanku na Patreone.',
-        'learn_more'    => 'Dozveď sa viac o výhodách predplatného',
-        'title'         => 'Patreon',
-    ],
     'people'        => [
-        'iz'        => [
-            'title' => 'Vývoj produktu',
-        ],
         'jay'       => [
             'text'  => <<<'TEXT'
 Kanku som vytvoril v októbri 2017, pretože neexistoval nástroj, ktorý by mi dovoľoval vytvoriť svet spolu s mojimi priateľmi a zároveň mi poskytoval kontrolu nad tým, kto čo uvidí.

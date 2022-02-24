@@ -2,7 +2,6 @@
 
 return [
     'create'        => [
-        'description'   => 'Maak een nieuwe organisatie',
         'success'       => 'Organisatie \':name\' gemaakt.',
         'title'         => 'Nieuwe Organisatie',
     ],
@@ -29,7 +28,6 @@ return [
     ],
     'index'         => [
         'add'           => 'Nieuwe Organisatie',
-        'description'   => 'Beheer de organisaties van :name',
         'header'        => 'Organisaties van :name',
         'title'         => 'Organisaties',
     ],
@@ -38,7 +36,6 @@ return [
             'add'   => 'Voeg een lid toe',
         ],
         'create'        => [
-            'description'   => 'Voeg een lid toe aan de organisatie',
             'success'       => 'Lid toegevoegd aan de organisatie.',
             'title'         => 'Nieuw Organisatie Lid voor :name',
         ],
@@ -72,12 +69,7 @@ return [
         'name'      => 'Naam van de organisatie',
         'type'      => 'Sekte, Gang, Rebellie, Fandom',
     ],
-    'quests'        => [
-        'description'   => 'Quests waar de organisatie deel van uitmaakt.',
-        'title'         => 'Organisatie :name Quests',
-    ],
     'show'          => [
-        'description'   => 'Een gedetailleerd overzicht van een organisatie',
         'tabs'          => [
             'organisations' => 'Organisaties',
             'quests'        => 'Quests',

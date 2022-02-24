@@ -2,7 +2,6 @@
 
 return [
     'create'        => [
-        'description'   => 'Yeni bir not oluştur',
         'success'       => '\':name\' notu oluşturuldu.',
         'title'         => 'Yeni not',
     ],
@@ -30,7 +29,6 @@ return [
     ],
     'index'         => [
         'add'           => 'Yeni Not',
-        'description'   => ':name notlarını yönet.',
         'header'        => ':note Notları',
         'title'         => 'Notlar',
     ],
@@ -40,10 +38,6 @@ return [
         'type'  => 'Din, Irk, Politika sistemi',
     ],
     'show'          => [
-        'description'   => 'Nota detaylı bir bakış',
-        'tabs'          => [
-            'description'   => 'Açıklama',
-        ],
         'title'         => ':name Notu',
     ],
 ];

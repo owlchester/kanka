@@ -2,7 +2,6 @@
 
 return [
     'create'        => [
-        'description'   => 'Kreiraj novu organizaciju',
         'success'       => 'Kreirana lokacija ":name"',
         'title'         => 'Nova organizacija',
     ],
@@ -30,7 +29,6 @@ return [
     ],
     'index'         => [
         'add'           => 'Nova organizacija',
-        'description'   => 'Upravljanje organizacijama u :name',
         'header'        => 'Organizacije u :name',
         'title'         => 'Organizacije',
     ],
@@ -39,7 +37,6 @@ return [
             'add'   => 'Dodaj člana',
         ],
         'create'        => [
-            'description'   => 'Dodaj člana u organizaciju',
             'success'       => 'Član dodan u organizaciju.',
             'title'         => 'Novi član organizacije za :name',
         ],
@@ -73,12 +70,7 @@ return [
         'name'      => 'Naziv organizacije',
         'type'      => 'Kult, Banda, Pobuna, Klub obožavatelja',
     ],
-    'quests'        => [
-        'description'   => 'Zadaci kojih je organizacija dio.',
-        'title'         => 'Zadaci organizacije :name',
-    ],
     'show'          => [
-        'description'   => 'Detaljan pregled organizacije',
         'tabs'          => [
             'organisations' => 'Organizacije',
             'quests'        => 'Zadaci',

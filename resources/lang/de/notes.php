@@ -2,7 +2,6 @@
 
 return [
     'create'        => [
-        'description'   => 'Eine neue Notiz erstellen',
         'success'       => 'Notiz \':name\' erstellt.',
         'title'         => 'Erstelle eine neue Notiz',
     ],
@@ -31,7 +30,6 @@ return [
     ],
     'index'         => [
         'add'           => 'Neue Notiz',
-        'description'   => 'Verwalte die Notizen von :name.',
         'header'        => 'Notizen von :name',
         'title'         => 'Notizen',
     ],
@@ -41,10 +39,6 @@ return [
         'type'  => 'Religion, Spezies, Politisches System',
     ],
     'show'          => [
-        'description'   => 'Eine detaillierte Ansicht einer Notiz',
-        'tabs'          => [
-            'description'   => 'Beschreibung',
-        ],
         'title'         => 'Notiz :name',
     ],
 ];

@@ -9,11 +9,9 @@ return [
             'success'   => 'Kategória :name bola priradená objektu.',
             'title'     => 'Pridaj kategóriu k :name',
         ],
-        'description'   => 'Objekty priradené kategórii',
         'title'         => 'Podradené kategórie :name',
     ],
     'create'        => [
-        'description'   => 'Vytvor novú kategóriu',
         'success'       => 'Kategória :name vytvorená.',
         'title'         => 'Nová kategória',
     ],
@@ -33,7 +31,6 @@ return [
         'type'          => 'Typ',
     ],
     'helpers'       => [
-        'nested'        => 'Kategórie vieš zoradiť vo vnorenom zobrazení. Kategórie bez nadradenej kategórie sa zobrazia štandardným spôsobom. Kategórie s podradenými kategóriami je možné rozkliknúť, dokiaľ nebudú existovať pod nimi už žiadne ďalšie podradené kategórie.',
         'nested_parent' => 'Zobraziť kategórie :parent.',
         'nested_without'=> 'Zobrazujú sa všetky kategórie, ktoré nemajú nadradenú kategóriu. Kliknutím na riadok zobrazíš podradené kategórie.',
     ],
@@ -46,7 +43,6 @@ return [
             'explore_view'  => 'Vnorené zobrazenie',
         ],
         'add'           => 'Nová kategória',
-        'description'   => 'Spravuj kategóriu :name.',
         'header'        => 'Kategórie podradené :name',
         'title'         => 'Kategórie',
     ],
@@ -57,16 +53,13 @@ return [
         'type'  => 'mýtus, vojna, historická udalosť, náboženstvo, vexilológia',
     ],
     'show'          => [
-        'description'   => 'Detailný náhľad na kategóriu',
         'tabs'          => [
             'children'      => 'Podradené kategórie',
-            'information'   => 'Informácie',
             'tags'          => 'Kategórie',
         ],
         'title'         => 'Kategória :name',
     ],
     'tags'          => [
-        'description'   => 'Podradené kategórie',
         'title'         => 'Kategórie podradené :name',
     ],
 ];

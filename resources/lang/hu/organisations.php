@@ -2,7 +2,6 @@
 
 return [
     'create'        => [
-        'description'   => 'Új szervezet létrehozása',
         'success'       => 'A(z) :name szervezetet létrehoztuk.',
         'title'         => 'Új szervezet',
     ],
@@ -31,7 +30,6 @@ return [
     ],
     'index'         => [
         'add'           => 'Új szervezet',
-        'description'   => ':name szervezeteinek kezelése',
         'header'        => ':name szervezetei',
         'title'         => 'Szervezetek',
     ],
@@ -40,7 +38,6 @@ return [
             'add'   => 'Tag hozzáadása',
         ],
         'create'        => [
-            'description'   => 'Egy tag hozzáadása a szervezethez',
             'success'       => 'A tagot hozzáadtuk a szervezethez',
             'title'         => 'Új tag a(z) :name szervezethez',
         ],
@@ -74,12 +71,7 @@ return [
         'name'      => 'A szervezet neve',
         'type'      => 'Kultusz, banda, klán, fanklub',
     ],
-    'quests'        => [
-        'description'   => 'A szervezethez kapcsolódó küldetések',
-        'title'         => ':name küldetései',
-    ],
     'show'          => [
-        'description'   => 'A szervezet részletes nézete',
         'tabs'          => [
             'organisations' => 'Szervezetek',
             'quests'        => 'Küldetések',

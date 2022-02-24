@@ -154,15 +154,7 @@ return [
         'subscription_status'   => 'Abbonement Status',
     ],
     'patreon'       => [
-        'actions'           => [
-            'link'  => 'Account koppelen',
-            'view'  => 'Bezoek Kanka op Patreon',
-        ],
-        'benefits'          => 'Door ons te steunen op :patreon ontgrendel je allerlei :features voor jou en jouw campaigns, en helpt het ons ook meer tijd te besteden aan het verbeteren van Kanka.',
-        'benefits_features' => 'geweldige functies',
         'deprecated'        => 'Verouderde functie - als je Kanka wilt steunen, doe dit dan met een :subscription. Patreon-koppeling is nog steeds actief voor onze klanten die hun account hebben gekoppeld voordat ze weggingen van Patreon.',
-        'description'       => 'Synchroniseren met Patreon',
-        'linked'            => 'Bedankt voor het steunen van Kanka op Patreon! Je account is gekoppeld.',
         'pledge'            => 'Toezegging: :name',
         'remove'            => [
             'button'    => 'Ontkoppel je Patreon-account',
@@ -170,9 +162,7 @@ return [
             'text'      => 'Als je je Patreon-account met Kanka ontkoppelt, worden je bonussen, naam in de hall of fame, campaign boosts en andere functies verwijderd die zijn gekoppeld aan het ondersteunen van Kanka. Geen van je boosted inhoud gaat verloren (bijv. entiteit headers). Door je opnieuw te abonneren, heb je toegang tot al je eerdere gegevens, inclusief de mogelijkheid om je eerder boosted campaigns een boost te geven.',
             'title'     => 'Ontkoppel je Patreon-account met Kanka',
         ],
-        'success'           => 'Bedankt voor het steunen van Kanka op Patreon!',
         'title'             => 'Patreon',
-        'wrong_pledge'      => 'Je toezegging niveau wordt handmatig door ons ingesteld, dus het kan een paar dagen duren voordat we het correct hebben ingesteld. Mocht het een tijdje fout blijven, neem dan contact met ons op.',
     ],
     'profile'       => [
         'actions'   => [

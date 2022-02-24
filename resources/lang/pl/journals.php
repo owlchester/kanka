@@ -2,7 +2,6 @@
 
 return [
     'create'        => [
-        'description'   => 'Stwórz nowy dziennik',
         'success'       => 'Stworzono dziennik \':name\'.',
         'title'         => 'Nowy dziennik',
     ],
@@ -31,7 +30,6 @@ return [
     ],
     'index'         => [
         'add'           => 'Nowy dziennik',
-        'description'   => 'Zarządzaj dziennikami elementu :nazwa.',
         'header'        => 'Dzienniki elementu :name',
         'title'         => 'Dzienniki',
     ],
@@ -46,7 +44,6 @@ return [
         'type'      => 'Sesja, jednostrzał, szkic',
     ],
     'show'          => [
-        'description'   => 'Szczególowy widok dziennika',
         'tabs'          => [
             'journals'  => 'Dzienniki',
         ],

@@ -2,7 +2,6 @@
 
 return [
     'create'        => [
-        'description'   => 'Yeni bir organizasyon yarat',
         'success'       => '\':name\' organizasyonu yaratıldı.',
         'title'         => 'Yeni Organizasyon',
     ],
@@ -29,7 +28,6 @@ return [
     ],
     'index'         => [
         'add'           => 'Yeni Organizasyon',
-        'description'   => ':name organizasyonlarını yönet.',
         'header'        => ':name Organizasyonları',
         'title'         => 'Organizasyonlar',
     ],
@@ -38,7 +36,6 @@ return [
             'add'   => 'Bir üye ekle',
         ],
         'create'        => [
-            'description'   => 'Organizasyona bir üye ekle',
             'success'       => 'Üye organizasyona eklendi.',
             'title'         => ':name için Yeni Organizasyon Üyesi',
         ],
@@ -72,12 +69,7 @@ return [
         'name'      => 'Organizasyonun adı',
         'type'      => 'Kült, Çete, Ayaklanma, Hayran Kulübü',
     ],
-    'quests'        => [
-        'description'   => 'Organizasyonun bir parçası olduğu görevler.',
-        'title'         => ':name Görevleri',
-    ],
     'show'          => [
-        'description'   => 'Organizasyona detaylı bir bakış.',
         'tabs'          => [
             'organisations' => 'Organizasyonlar',
             'quests'        => 'Görevler',

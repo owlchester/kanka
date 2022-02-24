@@ -2,11 +2,9 @@
 
 return [
     'characters'    => [
-        'description'   => 'Postavy na tomto mieste.',
         'title'         => 'Postavy miesta :name',
     ],
     'create'        => [
-        'description'   => 'Vytvoriť nové miesto',
         'success'       => 'Miesto :name vytvorené.',
         'title'         => 'Nové miesto',
     ],
@@ -18,7 +16,6 @@ return [
         'title'     => 'Upraviť miesto :name',
     ],
     'events'        => [
-        'description'   => 'Udalosti, ktoré sa udiali na tomto mieste.',
         'title'         => 'Udalosti miesta :name',
     ],
     'families'      => [
@@ -55,20 +52,16 @@ return [
             'explore_view'  => 'Vnorené zobrazenie',
         ],
         'add'           => 'Nové miesto',
-        'description'   => 'Spravuj miesta objektu :name.',
         'header'        => 'Miesta objektu :name',
         'title'         => 'Miesta',
     ],
     'items'         => [
-        'description'   => 'Predmety nachádzajúce na mieste alebo pochádzajúce z neho.',
         'title'         => 'Predmety miesta :name',
     ],
     'journals'      => [
-        'description'   => 'Záznamy v denníku napísané na tomto mieste.',
         'title'         => 'Záznamy v denníku miesta :name',
     ],
     'locations'     => [
-        'description'   => 'Miesta nachádzajúce sa na mieste :name.',
         'title'         => 'Miesta miesta :name',
     ],
     'map'           => [
@@ -203,7 +196,6 @@ return [
         'title' => 'Mapy miesta :name',
     ],
     'organisations' => [
-        'description'   => 'Organizácie na tomto mieste.',
         'title'         => 'Organizácie miesta :name',
     ],
     'panels'        => [
@@ -214,23 +206,16 @@ return [
         'name'      => 'Názov miesta',
         'type'      => 'mesto, kráľovstvo, ruina',
     ],
-    'quests'        => [
-        'description'   => 'Úlohy spojené s týmto miestom',
-        'title'         => 'Úlohy miesta :name',
-    ],
     'show'          => [
-        'description'   => 'Detailný náhľad na miesto',
         'tabs'          => [
             'characters'    => 'Postavy',
             'events'        => 'Udalosti',
             'families'      => 'Rody',
-            'information'   => 'Informácie',
             'items'         => 'Predmety',
             'journals'      => 'Záznamy v denníku',
             'locations'     => 'Miesta',
             'map'           => 'Mapa',
             'maps'          => 'Mapy',
-            'menu'          => 'Menu',
             'organisations' => 'Organizácie',
             'quests'        => 'Úlohy',
         ],

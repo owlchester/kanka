@@ -13,7 +13,6 @@ return [
         'r_date_created'    => 'umgekehrt Erstellungsdatum',
         'r_date_joined'     => 'umgekehrt Beitrittsdatum',
     ],
-    'description'                   => 'Aktualisiere deine Profildetails',
     'edit'                          => [
         'success'   => 'Profil aktualisert',
     ],

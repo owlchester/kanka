@@ -2,7 +2,6 @@
 
 return [
     'create'        => [
-        'description'   => 'Erstelle eine neue Familie',
         'success'       => 'Familie \':name\' erstellt.',
         'title'         => 'Erstelle eine neue Familie',
     ],
@@ -36,7 +35,6 @@ return [
     ],
     'index'         => [
         'add'           => 'Neue Familie',
-        'description'   => 'Verwalte die Familien von :name',
         'header'        => 'Familien von :name',
         'title'         => 'Familien',
     ],
@@ -53,7 +51,6 @@ return [
         'type'      => 'königlich, edel, ausgestorben',
     ],
     'show'          => [
-        'description'   => 'Eine detaillierte Ansicht der Familie',
         'tabs'          => [
             'all_members'   => 'Alle Mitglieder',
             'families'      => 'Familien',

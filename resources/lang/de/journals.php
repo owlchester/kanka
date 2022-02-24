@@ -2,7 +2,6 @@
 
 return [
     'create'        => [
-        'description'   => 'Erstelle ein neues Logbuch',
         'success'       => 'Logbuch erstellt.',
         'title'         => 'Erstelle ein neues Logbuch',
     ],
@@ -30,7 +29,6 @@ return [
     ],
     'index'         => [
         'add'           => 'Neues Logbuch',
-        'description'   => 'Verwalte die Logbücher von :name',
         'header'        => 'Logbücher von :name',
         'title'         => 'Logbücher',
     ],
@@ -45,7 +43,6 @@ return [
         'type'      => 'Session, One Shot, Entwurf',
     ],
     'show'          => [
-        'description'   => 'Eine detaillierte Ansicht eines Logbuchs',
         'tabs'          => [
             'journals'  => 'Logbücher',
         ],

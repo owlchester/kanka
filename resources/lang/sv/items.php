@@ -2,7 +2,6 @@
 
 return [
     'create'        => [
-        'description'   => 'Skapa ett nytt föremål',
         'success'       => 'Föremål \':name\' skapat.',
         'title'         => 'Nytt Föremål',
     ],
@@ -25,12 +24,10 @@ return [
     ],
     'index'         => [
         'add'           => 'Nytt Föremål',
-        'description'   => 'Hantera föremålen för :name.',
         'header'        => 'Föremål för :name',
         'title'         => 'Föremål',
     ],
     'inventories'   => [
-        'description'   => 'Entitets Inventarier föremålet finns i.',
         'title'         => 'Föremål :name Inventarier',
     ],
     'placeholders'  => [
@@ -41,12 +38,7 @@ return [
         'size'      => 'Storlek, Vikt, Dimensioner',
         'type'      => 'Vapen, Trolldryck, Artefakt',
     ],
-    'quests'        => [
-        'description'   => 'Uppdrag föremålet är en del av.',
-        'title'         => 'Föremål :name Uppdrag',
-    ],
     'show'          => [
-        'description'   => 'En detaljerad vy för ett föremål',
         'tabs'          => [
             'information'   => 'Information',
             'inventories'   => 'Inventarier',

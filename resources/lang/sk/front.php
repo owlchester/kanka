@@ -227,7 +227,6 @@ return [
         'headings'  => [
             'app'           => 'Aplikácia',
             'community'     => 'Komunita',
-            'friends'       => 'Naši priatelia',
             'other'         => 'Iné',
             'useful_links'  => 'Užitočné linky',
         ],
@@ -356,7 +355,6 @@ return [
     ],
     'second_block'  => [
         'call_to_action'    => 'Zaregistruj sa zadarmo!',
-        'title'             => 'Neplytvaj časom, využi ho na tvorbu tvojho sveta.',
     ],
     'seo'           => [
         'keywords'  => 'Tvorba svetov, Hry na hrdinov, Správa RPG kampaní',

@@ -7,7 +7,6 @@ return [
         'add_user'  => 'Felhasználó hozzáadása',
     ],
     'create'        => [
-        'description'   => 'Új jegyzet létrehozása',
         'success'       => '\':name\' jegyzetet hozzáadtuk :entity entitáshoz.',
         'title'         => 'Új jegyzet :name számára',
     ],
@@ -15,7 +14,6 @@ return [
         'success'   => '\':name\' jegyeztet eltávolítottuk :entity entitásból.',
     ],
     'edit'          => [
-        'description'   => 'Létező jegyzet frissítése',
         'success'       => '\':name\' jegyzetet frissítettük :entity entitás számára.',
         'title'         => 'Jegyzet frissítése :name számára',
     ],

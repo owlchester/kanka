@@ -31,7 +31,6 @@ return [
         'teal'      => 'Kékeszöld',
     ],
     'create'        => [
-        'description'   => 'Új naptár létrehozása',
         'success'       => '\':name\' naptárat létrehoztuk',
         'title'         => 'Új naptár',
     ],
@@ -39,7 +38,6 @@ return [
         'success'   => '\':name\' naptárat eltávolítottuk',
     ],
     'edit'          => [
-        'description'   => 'Naptár frissítése',
         'success'       => '\':name\' naptárat frissítettük',
         'title'         => ':name naptár szerkesztése',
         'today'         => 'Naptár dátum frissítve.',
@@ -52,13 +50,11 @@ return [
             'switch'            => 'Választás megváltoztatása',
         ],
         'create'    => [
-            'description'   => 'Esemény létrehozása a naptárban',
             'success'       => 'A naptári eseményt létrehoztuk',
             'title'         => 'Esemény hozzáadása a \':name\' naptárhoz',
         ],
         'destroy'   => '\':name\' naptárból az eseményt eltávolítottuk',
         'edit'      => [
-            'description'   => 'Egy naptári esemény frissítése',
             'success'       => 'A naptári eseményt frissítettük',
             'title'         => ':name naptár eseményének frissítése',
         ],
@@ -73,7 +69,6 @@ return [
         'success'   => '\':event\' eseményt hozzáadtuk a naptárhoz.',
     ],
     'events'        => [
-        'description'   => 'Események ebben a naptárban',
         'title'         => ':name naptár eseményei',
     ],
     'fields'        => [
@@ -132,7 +127,6 @@ return [
     ],
     'index'         => [
         'add'           => 'Új naptár',
-        'description'   => ':name naptár kezelése',
         'header'        => ':name naptár',
         'title'         => 'Naptárak',
     ],
@@ -224,7 +218,6 @@ return [
         'weekdays'          => 'Napok száma egy héten',
     ],
     'show'          => [
-        'description'       => 'Egy naptár részletes megjelenítése',
         'missing_details'   => 'A naptár nem jeleníthető meg - legalább két hónapot és kétnapos heteket kell tartalmazzon.',
         'moon_full_moon'    => ':moon telihold',
         'moon_new_moon'     => ':moon újhold',

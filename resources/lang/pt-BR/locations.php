@@ -2,11 +2,9 @@
 
 return [
     'characters'    => [
-        'description'   => 'Personagens presentes no local',
         'title'         => 'Personagens em :name',
     ],
     'create'        => [
-        'description'   => 'Criar um novo local',
         'success'       => 'Local \':name\' criado.',
         'title'         => 'Criar um novo local',
     ],
@@ -18,7 +16,6 @@ return [
         'title'     => 'Editar Local :name',
     ],
     'events'        => [
-        'description'   => 'Eventos que ocorreram no local',
         'title'         => 'Eventos em :name',
     ],
     'families'      => [
@@ -54,20 +51,16 @@ return [
             'explore_view'  => 'Visualização de Exploração',
         ],
         'add'           => 'Novo Local',
-        'description'   => 'Gerencie os locais de :name.',
         'header'        => 'Locais em :name',
         'title'         => 'Locais',
     ],
     'items'         => [
-        'description'   => 'Itens que estão na localização, ou que vem dela.',
         'title'         => 'Itens do local :name',
     ],
     'journals'      => [
-        'description'   => 'Jornais que foram escritos neste local.',
         'title'         => 'Jornais do local :name',
     ],
     'locations'     => [
-        'description'   => 'Lugares que fazem parte da localização atual',
         'title'         => 'Lugares localizados em :name',
     ],
     'map'           => [
@@ -212,23 +205,16 @@ return [
         'name'      => 'Nome do local',
         'type'      => 'Cidade, Reino, Ruína',
     ],
-    'quests'        => [
-        'description'   => 'Missões das quais o local é parte.',
-        'title'         => 'Missões no local :quests',
-    ],
     'show'          => [
-        'description'   => 'Uma visão detalhada de um local',
         'tabs'          => [
             'characters'    => 'Personagens',
             'events'        => 'Eventos',
             'families'      => 'Famílias',
-            'information'   => 'Informações',
             'items'         => 'Itens',
             'journals'      => 'Jornal',
             'locations'     => 'Locais',
             'map'           => 'Mapa',
             'maps'          => 'Mapas',
-            'menu'          => 'Menu',
             'organisations' => 'Organizações',
             'quests'        => 'Missões',
         ],

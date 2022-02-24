@@ -218,7 +218,6 @@ return [
         'headings'  => [
             'app'           => 'App',
             'community'     => 'Közösség',
-            'friends'       => 'Barátaink',
             'other'         => 'Egyéb',
             'useful_links'  => 'Hasznos linkek',
         ],
@@ -345,7 +344,6 @@ return [
     ],
     'second_block'  => [
         'call_to_action'    => 'Kezdjük el!',
-        'title'             => 'Hagyd abba a várakozást! Kezdd el az építést!',
     ],
     'seo'           => [
         'keywords'  => 'Világépítés, Asztali szerepjáték, Szerepjátékos kampány kezelő',

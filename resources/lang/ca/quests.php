@@ -1,7 +1,6 @@
 <?php
 
 return [
-    'characters'    => [],
     'create'        => [
         'success'   => 'S\'ha creat la missió «:name».',
         'title'     => 'Nova missió',

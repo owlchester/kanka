@@ -19,7 +19,6 @@ return [
         'is_recurring'  => 'Acontece todos os anos',
     ],
     'create'        => [
-        'description'   => 'Criar um novo calendário',
         'success'       => 'Calendário \':name\' criado.',
         'title'         => 'Novo Calendário',
     ],
@@ -27,7 +26,6 @@ return [
         'success'   => 'Calendário \':name\' removido',
     ],
     'edit'          => [
-        'description'   => 'Atualize o calendário',
         'success'       => 'Calendário \':name\' atualizado.',
         'title'         => 'Editar Calendário :name',
         'today'         => 'Data do calendário atualizada.',
@@ -40,13 +38,11 @@ return [
             'switch'            => 'Escolha de mudança',
         ],
         'create'    => [
-            'description'   => 'Crie um evento de calendário',
             'success'       => 'Evento de calendário criado.',
             'title'         => 'Adicionar um evento de calendário para :name',
         ],
         'destroy'   => 'Evento removido do calendário \':name\'',
         'edit'      => [
-            'description'   => 'Atualizar um evento da agenda',
             'success'       => 'Atualização de evento de calendário.',
             'title'         => 'Atualizar evento do calendário para :name',
         ],
@@ -61,7 +57,6 @@ return [
         'success'   => 'Evento \':event\' adicionado ao calendário.',
     ],
     'events'        => [
-        'description'   => 'Eventos neste calendário.',
         'title'         => 'Calendário :name Eventos',
     ],
     'fields'        => [
@@ -120,7 +115,6 @@ return [
     ],
     'index'         => [
         'add'           => 'Novo Calendário',
-        'description'   => 'Gerencie os calendários de :name.',
         'header'        => 'Calendários de :name',
         'title'         => 'Calendários',
     ],
@@ -212,7 +206,6 @@ return [
         'weekdays'          => 'Número de dias na semana',
     ],
     'show'          => [
-        'description'       => 'Uma visão detalhada de um calendário',
         'missing_details'   => 'Este calendário não pôde ser exibido. Os calendários precisam de pelo menos 2 meses e 2 dias da semana para serem renderizados corretamente.',
         'moon_full_moon'    => ':moon Lua cheia',
         'moon_new_moon'     => ':moon Lua Nova',

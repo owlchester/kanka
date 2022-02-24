@@ -4,7 +4,6 @@ return [
     'avatar'        => [
         'success'   => 'Avatar ažuriran.',
     ],
-    'description'   => 'Ažuriraj podatke svog profila',
     'edit'          => [
         'success'   => 'Profil ažuriran',
     ],

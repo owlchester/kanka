@@ -2,7 +2,6 @@
 
 return [
     'create'        => [
-        'description'   => 'Kreiraj novu obitelj',
         'success'       => 'Kreirana obitelj ":name".',
         'title'         => 'Nova obitelj',
     ],
@@ -36,7 +35,6 @@ return [
     ],
     'index'         => [
         'add'           => 'Nova obitelj',
-        'description'   => 'Upravljanje obiteljima u :name.',
         'header'        => 'Obitelji od :name',
         'title'         => 'Obitelji',
     ],
@@ -53,7 +51,6 @@ return [
         'type'      => 'Kraljevska, plemenita, izumrla',
     ],
     'show'          => [
-        'description'   => 'Detaljan pregled obitelji',
         'tabs'          => [
             'all_members'   => 'Svi članovi',
             'families'      => 'Obitelji',

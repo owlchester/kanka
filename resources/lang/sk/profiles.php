@@ -13,7 +13,6 @@ return [
         'r_date_created'    => 'Dátum vytvorenia obrátene',
         'r_date_joined'     => 'Dátum členstva obrátene',
     ],
-    'description'                   => 'Uprav detaily tvojho profilu',
     'edit'                          => [
         'success'   => 'Profil upravený',
     ],

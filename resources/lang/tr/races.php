@@ -2,11 +2,9 @@
 
 return [
     'characters'    => [
-        'description'   => 'Irka bağlı karakterler.',
         'title'         => ':name Irkı Karakterler',
     ],
     'create'        => [
-        'description'   => 'Yeni bir ırk yarat',
         'success'       => '\':name\' ırkı yaratıldı.',
         'title'         => 'Yeni Irk',
     ],
@@ -25,11 +23,9 @@ return [
         'type'          => 'Tür',
     ],
     'helpers'       => [
-        'nested'    => 'İç İçe Görünüm\'de, Irklarınızı iç içe olacak şekilde görebilirsiniz. Ana Irkları olmayan Irklar varsayılan olarak gösterilecektir. Alt Irkları olan Irklar o alt Irkları göstermek için tıklanabilir. Daha fazla alt Irk kalmayana kadar tıklamaya devam edebilirsiniz.',
     ],
     'index'         => [
         'add'           => 'Yeni Irk',
-        'description'   => ':name ırklarını yönet.',
         'header'        => ':name ırkları',
         'title'         => 'Irklar',
     ],
@@ -38,14 +34,11 @@ return [
         'type'  => 'İnsan, Fey, Borg',
     ],
     'races'         => [
-        'description'   => 'Irka ait ırklar.',
         'title'         => ':name Irkı Altırkları',
     ],
     'show'          => [
-        'description'   => 'Irka detaylı bir bakış',
         'tabs'          => [
             'characters'    => 'Karakterler',
-            'menu'          => 'Menü',
             'races'         => 'Altırklar',
         ],
         'title'         => ':name Irkı',

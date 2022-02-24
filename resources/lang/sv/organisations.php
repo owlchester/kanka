@@ -2,7 +2,6 @@
 
 return [
     'create'        => [
-        'description'   => 'Skapa en ny organisation',
         'success'       => 'Organisation \':name\' skapad.',
         'title'         => 'Ny Organisation',
     ],
@@ -29,7 +28,6 @@ return [
     ],
     'index'         => [
         'add'           => 'Ny Organisation',
-        'description'   => 'Hantera organisationerna för :name.',
         'header'        => 'Organisationer för :name',
         'title'         => 'Organisationer',
     ],
@@ -38,7 +36,6 @@ return [
             'add'   => 'Lägg till en medlem',
         ],
         'create'        => [
-            'description'   => 'Lägg till en medlem till organisationen',
             'success'       => 'Medlem tillagd till organisationen.',
             'title'         => 'Ny Organisationsmedlem för :name',
         ],
@@ -72,12 +69,7 @@ return [
         'name'      => 'Namn på organisationen',
         'type'      => 'Kult, Gäng, Rebellgrupp, Beundrarklubb',
     ],
-    'quests'        => [
-        'description'   => 'Uppdrag organisationen är en del av.',
-        'title'         => 'Organisation :name Uppdrag',
-    ],
     'show'          => [
-        'description'   => 'En detaljerad vy för en organisation',
         'tabs'          => [
             'organisations' => 'Organisationer',
             'quests'        => 'Uppdrag',

@@ -135,7 +135,6 @@ return [
         'headings'  => [
             'app'           => 'App',
             'community'     => 'Community',
-            'friends'       => 'I Nostri Amici',
             'useful_links'  => 'Link Utili',
         ],
         'navigation'=> 'Navigazione',
@@ -204,7 +203,6 @@ return [
     ],
     'second_block'  => [
         'call_to_action'    => 'Allora Iniziamo!',
-        'title'             => 'Smetti di aspettare.<br />Inizia a costruire.',
     ],
     'team'          => [
         'coffee'    => 'Offrimi un caffè!',

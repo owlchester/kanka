@@ -7,7 +7,6 @@ return [
         'add_user'  => 'Adicionar usuário',
     ],
     'create'        => [
-        'description'   => 'Criar uma nova Nota de entidade',
         'success'       => 'Nota de entidade :name adicionada a :entity',
         'title'         => 'Nova nota de entidade de :name',
     ],
@@ -15,7 +14,6 @@ return [
         'success'   => 'Nota de entidade :name de :entity removida',
     ],
     'edit'          => [
-        'description'   => 'Atualize uma Nota existente',
         'success'       => 'Nota de entidade :name de :entity atualizada',
         'title'         => 'Atualizar Nota de :name',
     ],

@@ -2,7 +2,6 @@
 
 return [
     'create'        => [
-        'description'   => 'Új dobás létrehozása',
         'success'       => ':name dobást létrehoztuk.',
         'title'         => 'Új dobás',
     ],
@@ -11,7 +10,6 @@ return [
         'success'   => '\':name\' dobást eltávolítottuk.',
     ],
     'edit'          => [
-        'description'   => 'Dobás szerkesztése',
         'success'       => '\':name\' dobást frissítettük.',
         'title'         => ':name dobás szerkesztése',
     ],
@@ -31,7 +29,6 @@ return [
             'results'   => 'Eredmények',
         ],
         'add'           => 'Új dobás',
-        'description'   => ':name dobás kezelése',
         'header'        => ':name dobásai',
         'title'         => 'Dobások',
     ],
@@ -54,7 +51,6 @@ return [
         'success'   => 'Elgurítottad a kockákat.',
     ],
     'show'          => [
-        'description'   => 'Egy dobás részleteinek megtekintése',
         'tabs'          => [
             'results'   => 'Eredmények',
         ],

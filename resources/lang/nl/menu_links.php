@@ -49,7 +49,6 @@ return [
     ],
     'show'          => [
         'tabs'  => [
-            'information'   => 'Informatie',
         ],
         'title' => 'Snelle Link :name',
     ],

@@ -2,7 +2,6 @@
 
 return [
     'create'        => [
-        'description'   => 'Erstelle einen neuen Würfelwurf',
         'success'       => 'Würfelwurf \':name\' erstellt.',
         'title'         => 'Neuer Würfelwurf',
     ],
@@ -11,7 +10,6 @@ return [
         'success'   => 'Würfelwurf \':name\' entfernt.',
     ],
     'edit'          => [
-        'description'   => 'Bearbeite einen Würfelwurf',
         'success'       => 'Würfelwurf \':name\' aktualisiert.',
         'title'         => 'Bearbeite Würfelwurf \':name\'',
     ],
@@ -31,7 +29,6 @@ return [
             'results'   => 'Ergebnisse',
         ],
         'add'           => 'Neuer Würfelwurf',
-        'description'   => 'Verwalte die Würfelwürfe von :name',
         'header'        => 'Würfelwürfe von :name',
         'title'         => 'Würfelwürfe',
     ],
@@ -54,7 +51,6 @@ return [
         'success'   => 'Würfel gewürfelt.',
     ],
     'show'          => [
-        'description'   => 'Eine detaillierte Ansicht eines Würfelwurfs',
         'tabs'          => [
             'results'   => 'Ergebnisse',
         ],

@@ -2,7 +2,6 @@
 
 return [
     'create'        => [
-        'description'   => 'צור משפחה חדשה',
         'success'       => 'משפחת \':name\' נוצרה.',
         'title'         => 'משפחה חדשה',
     ],
@@ -35,7 +34,6 @@ return [
     ],
     'index'         => [
         'add'           => 'משפחה חדשה',
-        'description'   => 'נהל את המשפחות של :name.',
         'header'        => 'המשפחות של :name',
         'title'         => 'משפחות',
     ],
@@ -52,7 +50,6 @@ return [
         'type'      => 'מלוכה, אצולה, נכחדת',
     ],
     'show'          => [
-        'description'   => 'מבט מפורט על משפחה',
         'tabs'          => [
             'all_members'   => 'כל בני המשפחה',
             'families'      => 'משפחות',

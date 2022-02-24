@@ -20,11 +20,8 @@ return [
         'title'             => 'Conta',
     ],
     'api'           => [
-        'experimental'          => 'Bem-vindo às APIs Kanka! Esses recursos ainda são experimentais, mas devem ser estáveis o suficiente para que você comece a se comunicar com as APIs. Crie um token de acesso pessoal para usar em suas solicitações de API ou use o token de cliente se desejar que seu aplicativo tenha acesso aos dados do usuário.',
-        'help'                  => 'Em breve, Kanka fornecerá uma API RESTful para que aplicativos de terceiros possam se conectar ao aplicativo. Detalhes sobre como gerenciar suas chaves de API serão mostrados aqui.',
         'helper'                => 'Bem vindo(a) as APIs do Kanka. Gere um token de acesso pessoal para usar em sua solicitação de API, para coletar informações sobre as campanhas das quais você faz parte.',
         'link'                  => 'Leia a documentação da API',
-        'request_permission'    => 'No momento, estamos construindo uma API RESTful poderosa para que aplicativos de terceiros possam se conectar ao aplicativo. No entanto, atualmente estamos limitando o número de usuários que podem interagir com a API enquanto a aperfeiçoamos. Se você deseja acessar a API e construir aplicativos maneiros que se comunicam com o Kanka, entre em contato conosco e enviaremos todas as informações de que você precisa.',
         'title'                 => 'API',
     ],
     'apps'          => [
@@ -166,15 +163,7 @@ return [
         'subscription_status'   => 'Status da assinatura',
     ],
     'patreon'       => [
-        'actions'           => [
-            'link'  => 'Vincular conta',
-            'view'  => 'Visite Kanka no Patreon',
-        ],
-        'benefits'          => 'Apoiando-nos em :patreon desbloqueia todos os tipos de :features para você e suas campanhas, e também nos ajuda a passar mais tempo trabalhando para melhorar o Kanka.',
-        'benefits_features' => 'Recursos incríveis',
         'deprecated'        => 'Recurso obsoleto - se você deseja oferecer suporte ao Kanka, faça-o com uma :subscription. A vinculação do Patreon ainda está ativa para nossos clientes que vincularam suas contas antes de termos deixado o Patreon.',
-        'description'       => 'Sincronizando com o Patreon',
-        'linked'            => 'Obrigado por apoiar o Kanka no Patreon! Sua conta está vinculada.',
         'pledge'            => 'Pledge :name',
         'remove'            => [
             'button'    => 'Desvincular sua conta Patreon',
@@ -182,9 +171,7 @@ return [
             'text'      => 'Desvincular sua conta do Patreon com Kanka removerá seus bônus, nome no Hall da fama, impulsionamentos de campanha e outros recursos vinculados ao suporte de Kanka. Nenhum de seus conteúdos impulsionados serão perdidos (por exemplo, cabeçalhos de entidade). Ao se inscrever novamente, você terá acesso a todos os seus dados anteriores, incluindo a capacidade de impulsionar suas campanhas previamente impulsionadas.',
             'title'     => 'Desvincule sua conta Patreon com Kanka',
         ],
-        'success'           => 'Obrigado por apoiar Kanka no Patreon!',
         'title'             => 'Patreon',
-        'wrong_pledge'      => 'Seu nível de pledge é definido manualmente por nós, portanto, espere alguns dias para que possamos defini-lo corretamente. Se continuar errado por muito tempo, entre em contato conosco.',
     ],
     'profile'       => [
         'actions'   => [

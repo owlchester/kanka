@@ -2,7 +2,6 @@
 
 return [
     'create'        => [
-        'description'   => 'Kreiraj novo bacanje kockica',
         'success'       => 'Kreirano bacanje kockice ":name".',
         'title'         => 'Novo bacanje kockica',
     ],
@@ -11,7 +10,6 @@ return [
         'success'   => 'Uklonjeno bacanje kockica ":name".',
     ],
     'edit'          => [
-        'description'   => 'Uredi bacanje kockica',
         'success'       => 'Ažurirano bacanje kockica ":name".',
         'title'         => 'Uredi bacanje kockica :name',
     ],
@@ -31,7 +29,6 @@ return [
             'results'   => 'Rezultati',
         ],
         'add'           => 'Novo bacanje kockica',
-        'description'   => 'Upravljanje bacanjem kockica u :name.',
         'header'        => 'Bacanje kockica za :name',
         'title'         => 'Bacanja kockica',
     ],
@@ -54,7 +51,6 @@ return [
         'success'   => 'Kockice bačene.',
     ],
     'show'          => [
-        'description'   => 'Detaljan pregled bacanja kockica',
         'tabs'          => [
             'results'   => 'Rezultati',
         ],

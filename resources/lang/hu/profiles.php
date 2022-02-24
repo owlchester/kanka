@@ -4,7 +4,6 @@ return [
     'avatar'        => [
         'success'   => 'A profilképet frissítettük.',
     ],
-    'description'   => 'A profilod részleteinek módosítása',
     'edit'          => [
         'success'   => 'A profilodat frissítettük.',
     ],

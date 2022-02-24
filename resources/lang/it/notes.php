@@ -2,7 +2,6 @@
 
 return [
     'create'        => [
-        'description'   => 'Crea unan uova nota',
         'success'       => 'Nota \':name\' creata.',
         'title'         => 'Nuova Nota',
     ],
@@ -25,7 +24,6 @@ return [
     ],
     'index'         => [
         'add'           => 'Nuova Nota',
-        'description'   => 'Gestisci le note di :name.',
         'header'        => 'Note di :name',
         'title'         => 'Note',
     ],
@@ -34,10 +32,6 @@ return [
         'type'  => 'Religione, Razza, Systema Politico',
     ],
     'show'          => [
-        'description'   => 'Una vista dettagliata di una nota',
-        'tabs'          => [
-            'description'   => 'Descrizione',
-        ],
         'title'         => 'Nota :name',
     ],
 ];

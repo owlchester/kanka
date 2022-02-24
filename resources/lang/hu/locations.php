@@ -2,11 +2,9 @@
 
 return [
     'characters'    => [
-        'description'   => 'Karakterek ezen a helyszínen',
         'title'         => ':name helyszín karakterei',
     ],
     'create'        => [
-        'description'   => 'Új helyszín létrehozása',
         'success'       => ':name helyszínt létrehoztuk.',
         'title'         => 'Új helyszín',
     ],
@@ -18,7 +16,6 @@ return [
         'title'     => ':name helyszín szerkesztése',
     ],
     'events'        => [
-        'description'   => 'Események ezen a helyszínen',
         'title'         => ':name helyszín eseményei',
     ],
     'families'      => [
@@ -55,20 +52,16 @@ return [
             'explore_view'  => 'Hierarchikus nézet',
         ],
         'add'           => 'Új helyszín',
-        'description'   => ':name helyszín kezelése',
         'header'        => ':name helyszínei',
         'title'         => 'Helyszínek',
     ],
     'items'         => [
-        'description'   => 'Tárgyak ezen a helyszínen vagy erről a helyszínről',
         'title'         => ':name helyszín tárgyai',
     ],
     'journals'      => [
-        'description'   => 'Naplóbejegyzések a helyszínről',
         'title'         => ':name helyszín naplóbejegyzései',
     ],
     'locations'     => [
-        'description'   => 'A helyszín alhelyszínei',
         'title'         => ':name helyszín alhelyszínei',
     ],
     'map'           => [
@@ -203,7 +196,6 @@ return [
         'title' => 'Helyszín :name Térképei',
     ],
     'organisations' => [
-        'description'   => 'Szervezetek ezen a helyszínen',
         'title'         => ':name helyszín szervezetei',
     ],
     'panels'        => [
@@ -214,23 +206,16 @@ return [
         'name'      => 'A helyszín neve',
         'type'      => 'Város, királyság, rom, táncklub',
     ],
-    'quests'        => [
-        'description'   => 'A helyszínhez tartozó küldetések',
-        'title'         => ':name helyszín küldetései',
-    ],
     'show'          => [
-        'description'   => 'A helyszín részletes nézete',
         'tabs'          => [
             'characters'    => 'Karakterek',
             'events'        => 'Események',
             'families'      => 'Családok',
-            'information'   => 'Információ',
             'items'         => 'Tárgyak',
             'journals'      => 'Naplóbejegyzések',
             'locations'     => 'Helyszínek',
             'map'           => 'Térkép',
             'maps'          => 'Térképek',
-            'menu'          => 'Menü',
             'organisations' => 'Szervezetek',
             'quests'        => 'Küldetések',
         ],

@@ -1,9 +1,7 @@
 <?php
 
 return [
-    'characters'    => [],
     'create'        => [
-        'description'   => 'Kreiraj novi zadatak',
         'success'       => 'Kreiran zadatak ":name".',
         'title'         => 'Novi zadatak',
     ],
@@ -11,7 +9,6 @@ return [
         'success'   => 'Uklonjen zadatak ":name".',
     ],
     'edit'          => [
-        'description'   => 'Uredi zadatak',
         'success'       => 'Ažuriran zadatak ":name".',
         'title'         => 'Uredi zadatak :name',
     ],
@@ -55,13 +52,9 @@ return [
     ],
     'index'         => [
         'add'           => 'Novi zadatak',
-        'description'   => 'Upravljanje zadacima u :name.',
         'header'        => 'Zadaci od :name',
         'title'         => 'Zadaci',
     ],
-    'items'         => [],
-    'locations'     => [],
-    'organisations' => [],
     'placeholders'  => [
         'date'  => 'Stvarni datum zadatka',
         'name'  => 'Naziv zadatka',
@@ -73,7 +66,6 @@ return [
         'actions'       => [
             'add_element'   => 'Dodaj element',
         ],
-        'description'   => 'Detaljan pregled zadatka',
         'tabs'          => [
             'elements'      => 'Elementi',
             'information'   => 'Informacije',

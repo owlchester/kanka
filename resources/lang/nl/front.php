@@ -205,7 +205,6 @@ return [
         'headings'  => [
             'app'           => 'App',
             'community'     => 'Community',
-            'friends'       => 'Onze Vrienden',
             'other'         => 'Andere',
             'useful_links'  => 'Handige links',
         ],

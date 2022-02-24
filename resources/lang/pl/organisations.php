@@ -2,7 +2,6 @@
 
 return [
     'create'        => [
-        'description'   => 'Stwórz nową organizację',
         'success'       => 'Stworzono organizację \':name\'.',
         'title'         => 'Nowa organizacja',
     ],
@@ -31,7 +30,6 @@ return [
     ],
     'index'         => [
         'add'           => 'Nowa organizacja',
-        'description'   => 'Zarządzaj organizacjami elementu :name',
         'header'        => 'Organizacje elementu :name',
         'title'         => 'Organizacje',
     ],
@@ -40,7 +38,6 @@ return [
             'add'   => 'Dodaj członka',
         ],
         'create'        => [
-            'description'   => 'Dodaj członka organizacji',
             'success'       => 'Dodano członka organizacji.',
             'title'         => 'Nowy członek organizacji :name',
         ],
@@ -90,12 +87,7 @@ return [
         'name'      => 'Nazwa organizacji',
         'type'      => 'Kult, gang, podziemie niepodległościowe, fandom',
     ],
-    'quests'        => [
-        'description'   => 'Misje, których częścią jest ta organizacja.',
-        'title'         => 'Misje organizacji :name',
-    ],
     'show'          => [
-        'description'   => 'Szczegółowy widok organizacji',
         'tabs'          => [
             'organisations' => 'Organizacje',
             'quests'        => 'Misje',

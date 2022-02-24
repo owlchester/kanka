@@ -43,7 +43,6 @@ return [
     ],
     'index'         => [
         'add'           => 'Nova sposobnost',
-        'description'   => 'Kreiraj moći, čarolije, podvige i drugo za svoje entitete.',
         'header'        => 'Sposobnosti :name',
         'title'         => 'Sposobnosti',
     ],

@@ -40,7 +40,6 @@ return [
         'title' => 'Benachrichtigungen',
     ],
     'no_notifications'  => 'Es gibt aktuell keine Benachrichtigungen.',
-    'permissions'       => [],
     'subscriptions'     => [
         'charge_fail'   => 'Bei der Verarbeitung Ihrer Zahlungsmethode ist ein Fehler aufgetreten. Bitte warten Sie einen Moment, während wir es erneut versuchen. Wenn sich nichts ändert, kontaktieren Sie uns bitte.',
         'deleted'       => 'Ihr Abonnement für Kanka wurde nach zu vielen fehlgeschlagenen Versuchen, Ihre Karte zu belasten, gekündigt. Bitte gehen Sie zu Ihren Abonnementeinstellungen und versuchen Sie, Ihre Zahlungsdetails zu aktualisieren.',

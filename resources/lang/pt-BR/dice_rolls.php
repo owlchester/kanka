@@ -2,7 +2,6 @@
 
 return [
     'create'        => [
-        'description'   => 'Criar uma nova rolagem de dados',
         'success'       => 'Rolagem de dados :name: criada',
         'title'         => 'Nova rolagem de dados',
     ],
@@ -11,7 +10,6 @@ return [
         'success'   => 'Rolagem de dados :name removida',
     ],
     'edit'          => [
-        'description'   => 'Editar uma rolagem de dados',
         'success'       => 'Rolagem de dados :name atualizada',
         'title'         => 'Editar rolagem de dados :name',
     ],
@@ -31,7 +29,6 @@ return [
             'results'   => 'Resultados',
         ],
         'add'           => 'Nova rolagem de dados',
-        'description'   => 'Gerenciar rolagens de dado de :name',
         'header'        => 'Rolagens de dado de :name',
         'title'         => 'Rolagens de dado',
     ],
@@ -54,7 +51,6 @@ return [
         'success'   => 'Dados rolados',
     ],
     'show'          => [
-        'description'   => 'Uma vista detalhada de uma rolagem de dados',
         'tabs'          => [
             'results'   => 'Resultados',
         ],

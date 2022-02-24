@@ -19,7 +19,6 @@ return [
         'is_recurring'  => 'Wiederholt sich jedes Jahr',
     ],
     'create'        => [
-        'description'   => 'Einen neuen Kalender erstellen',
         'success'       => 'Kalender \':name\' erstellt.',
         'title'         => 'Neuer Kalender',
     ],
@@ -27,7 +26,6 @@ return [
         'success'   => 'Kalender \':name\' gelöscht',
     ],
     'edit'          => [
-        'description'   => 'Kalender aktualisieren',
         'success'       => 'Kalender \':name\' aktualisiert',
         'title'         => 'Kalender :name bearbeiten',
         'today'         => 'Kalenderdatum aktualisiert.',
@@ -40,13 +38,11 @@ return [
             'switch'            => 'Auswahl ändern',
         ],
         'create'    => [
-            'description'   => 'Erstelle ein Kalender Ereignis',
             'success'       => 'Kalender Ereignis wurde erstellt',
             'title'         => 'Kalender Ereignis zu :name hinzufügen',
         ],
         'destroy'   => 'Ereignis aus Kalender :name entfernt',
         'edit'      => [
-            'description'   => 'Aktualisiere ein Kalender Ereignis',
             'success'       => 'Kalender Ereignis wurde aktualisiert',
             'title'         => 'Aktualisiere das Kalender Ereignis in :name',
         ],
@@ -61,7 +57,6 @@ return [
         'success'   => 'Event \':event\' zum Kalender hinzugefügt.',
     ],
     'events'        => [
-        'description'   => 'Events in diesem Kalender.',
         'title'         => 'Kalender :name Events',
     ],
     'fields'        => [
@@ -119,7 +114,6 @@ return [
     ],
     'index'         => [
         'add'           => 'Neuer Kalender',
-        'description'   => 'Verwalte die Kalender von :name',
         'header'        => 'Kalender von :name',
         'title'         => 'Kalender',
     ],
@@ -211,7 +205,6 @@ return [
         'weekdays'          => 'Anzahl der Tage in einer Woche',
     ],
     'show'          => [
-        'description'       => 'Eine Detailansicht eines Kalenders',
         'missing_details'   => 'Dieser Kalender konnte nicht angezeigt werden. Kalender brauchen mindestens 2 Monate und 2 Wochentage um korrekt generiert zu werden.',
         'moon_full_moon'    => ':moon Vollmond',
         'moon_new_moon'     => ':moon Neumond',

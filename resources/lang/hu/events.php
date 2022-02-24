@@ -2,7 +2,6 @@
 
 return [
     'create'        => [
-        'description'   => 'Új esemény létrehozása',
         'success'       => '\':name\' eseményt létrehoztuk',
         'title'         => 'Új esemény',
     ],
@@ -32,7 +31,6 @@ return [
     ],
     'index'         => [
         'add'           => 'Új esemény',
-        'description'   => ':name eseményeinek kezelése',
         'header'        => ':name eseményei',
         'title'         => 'Események',
     ],
@@ -43,7 +41,6 @@ return [
         'type'      => 'Szertartás, ünnepség, katasztrófa, csata, születés',
     ],
     'show'          => [
-        'description'   => 'Egy esemény részletes nézete',
         'tabs'          => [
             'information'   => 'Információ',
         ],

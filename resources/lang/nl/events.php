@@ -2,7 +2,6 @@
 
 return [
     'create'        => [
-        'description'   => 'Maak een nieuwe gebeurtenis',
         'success'       => 'Gebeurtenis \':name\' gemaakt.',
         'title'         => 'Nieuwe gebeurtenis',
     ],
@@ -31,7 +30,6 @@ return [
     ],
     'index'         => [
         'add'           => 'Nieuwe gebeurtenis',
-        'description'   => 'Beheer de gebeurtenissen van :name',
         'header'        => 'Gebeurtenissen van :name',
         'title'         => 'Gebeurtenissen',
     ],
@@ -42,7 +40,6 @@ return [
         'type'      => 'Ceremonie, Festival, Ramp, Veldslag, Geboorte',
     ],
     'show'          => [
-        'description'   => 'Een gedetailleerd overzicht van een gebeurtenis',
         'tabs'          => [
             'information'   => 'Informatie',
         ],

@@ -2,7 +2,6 @@
 
 return [
     'characters'    => [
-        'description'   => 'Likovi koji pripadaju toj rasi.',
         'helpers'       => [
             'all_characters'    => 'Prikaz svih likova povezanih s ovom rasom i njenim podrasama.',
             'characters'        => 'Prikazuju se svi likovi izravno povezani s ovom rasom.',
@@ -10,7 +9,6 @@ return [
         'title'         => 'Likovi rase :name',
     ],
     'create'        => [
-        'description'   => 'Kreiraj novu rasu',
         'success'       => 'Kreirana rasa ":name".',
         'title'         => 'Nova rasa',
     ],
@@ -34,7 +32,6 @@ return [
     ],
     'index'         => [
         'add'           => 'Nova rasa',
-        'description'   => 'Upravljanje rasama u :name',
         'header'        => 'Rase od :name',
         'title'         => 'Rase',
     ],
@@ -43,14 +40,11 @@ return [
         'type'  => 'Čovjek, Vila, Borg',
     ],
     'races'         => [
-        'description'   => 'Rase koje pripadaju rasi.',
         'title'         => 'Podrase rase :name',
     ],
     'show'          => [
-        'description'   => 'Detaljan pregled rase',
         'tabs'          => [
             'characters'    => 'Likovi',
-            'menu'          => 'Izbornik',
             'races'         => 'Podrase',
         ],
         'title'         => 'Rasa :name',

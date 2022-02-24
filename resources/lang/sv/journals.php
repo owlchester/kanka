@@ -2,7 +2,6 @@
 
 return [
     'create'        => [
-        'description'   => 'Skapa en ny journal',
         'success'       => 'Journal \':name\' skapad.',
         'title'         => 'Ny Journal',
     ],
@@ -29,7 +28,6 @@ return [
     ],
     'index'         => [
         'add'           => 'Ny Journal',
-        'description'   => 'Hantera journalerna för :name.',
         'header'        => 'Journalerna för :name',
         'title'         => 'Journaler',
     ],
@@ -44,7 +42,6 @@ return [
         'type'      => 'Speltillfälle, Engångs, Utkast',
     ],
     'show'          => [
-        'description'   => 'En detaljerad vy för en journal',
         'tabs'          => [
             'journals'  => 'Journaler',
         ],

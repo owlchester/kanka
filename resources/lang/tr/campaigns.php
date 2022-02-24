@@ -328,7 +328,6 @@ TEXT
             'export'            => 'Dışa Aktar',
             'information'       => 'Bilgi',
             'members'           => 'Üyeler',
-            'menu'              => 'Menü',
             'plugins'           => 'Eklentiler',
             'recovery'          => 'Kurtarma',
             'roles'             => 'Roller',

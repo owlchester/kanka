@@ -125,7 +125,6 @@ return [
         'copy_attributes'       => 'Copia els atributs',
         'copy_inventory'        => 'Copia l\'inventori',
         'copy_links'            => 'Copia els enllaços',
-        'copy_notes'            => 'Copia les anotacions de l\'entitat',
         'creator'               => 'Creador',
         'dice_roll'             => 'Tirada de daus',
         'entity'                => 'Entitat',
@@ -241,11 +240,7 @@ return [
         'visibility'            => 'En seleccionar "Administrador", només els membres amb el rol d\'administrador podran veure això. "Només jo" vol dir que només vós podeu veure això.',
     ],
     'history'                   => [
-        'created'       => 'Creada per <strong>:name</strong> el <span data-toggle="tooltip" title=":realdate">:date</span>',
-        'created_date'  => 'Creada el <span data-toggle="tooltip" title=":realdate">:date</span>',
         'unknown'       => 'Desconegut',
-        'updated'       => 'Última modificació per <strong>:name</strong> el <span data-toggle="tooltip" title=":realdate">:date</span>',
-        'updated_date'  => 'Última modificació el <span data-toggle="tooltip" title=":realdate">:date</span>',
         'view'          => 'Historial de canvis de l\'entitat',
     ],
     'image'                     => [

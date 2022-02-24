@@ -21,6 +21,5 @@ return [
     ],
     'index'     => [
         'add'           => 'Legg til Organisasjon',
-        'description'   => 'Ordne organisasjonene til :name.',
     ],
 ];

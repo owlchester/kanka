@@ -1,7 +1,6 @@
 <?php
 
 return [
-    'characters'    => [],
     'create'        => [
         'success'   => 'Quête \':name\' créée.',
         'title'     => 'Ajouter une quête',

@@ -109,7 +109,6 @@ return [
         'character'             => 'Personaggio',
         'colour'                => 'Colore',
         'copy_attributes'       => 'Copia Attributo',
-        'copy_notes'            => 'Copia le Note dell\'Entità',
         'creator'               => 'Creatore',
         'dice_roll'             => 'Tiro di dado',
         'entity'                => 'Entità',
@@ -185,11 +184,7 @@ return [
         'visibility'            => 'Impostare la visibilità agli amministratori significa che solamente i membri del ruolo "Proprietario" della campagna potranno visualizzarlo. Impostarlo a "Te stesso" significa che solo tu potrai vederlo.',
     ],
     'history'           => [
-        'created'       => 'Creato da <strong>:name</strong> <span data-toggle="tooltip" title=":realdate">:date</span>',
-        'created_date'  => 'Creato <span data-toggle="tooltip" title=":realdate">:date</span>',
         'unknown'       => 'Sconosciuto',
-        'updated'       => 'Modificato l\'ultima volta da <strong>:name</strong> <span data-toggle="tooltip" title=":realdate">:date</span>',
-        'updated_date'  => 'Ultima modifica <span data-toggle="tooltip" title=":realdate">:date</span>',
         'view'          => 'Visualizza i log dell\'entità',
     ],
     'image'             => [

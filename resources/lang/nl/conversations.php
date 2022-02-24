@@ -2,7 +2,6 @@
 
 return [
     'create'        => [
-        'description'   => 'Maak een nieuwe conversatie',
         'success'       => 'Conversatie \':name\' gemaakt.',
         'title'         => 'Nieuwe Conversatie',
     ],
@@ -10,7 +9,6 @@ return [
         'success'   => 'Conversatie \':name\' verwijderd.',
     ],
     'edit'          => [
-        'description'   => 'Werk de conversatie bij',
         'success'       => 'Conversatie \':name\' bijgewerkt.',
         'title'         => 'Conversatie :name',
     ],
@@ -26,7 +24,6 @@ return [
     ],
     'index'         => [
         'add'           => 'Nieuwe Conversatie',
-        'description'   => 'Beheer de categorie van :name',
         'header'        => 'Conversaties in :name',
         'title'         => 'Conversaties',
     ],
@@ -44,7 +41,6 @@ return [
         'create'        => [
             'success'   => 'Deelnemer :entity toegevoegd aan de conversatie.',
         ],
-        'description'   => 'Deelnemers aan een conversatie toevoegen of verwijderen',
         'destroy'       => [
             'success'   => 'Deelnemer :entity verwijderd uit de conversatie.',
         ],
@@ -56,7 +52,6 @@ return [
         'type'  => 'In Game, Prep, Plot',
     ],
     'show'          => [
-        'description'   => 'Een gedetailleerd overzicht van een conversatie',
         'title'         => 'Conversatie :name',
     ],
     'tabs'          => [

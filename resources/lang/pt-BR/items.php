@@ -2,7 +2,6 @@
 
 return [
     'create'        => [
-        'description'   => 'Criar um novo item',
         'success'       => 'Item \':name\' criado',
         'title'         => 'Criar um novo item',
     ],
@@ -25,12 +24,10 @@ return [
     ],
     'index'         => [
         'add'           => 'Novo Item',
-        'description'   => 'Gerencie os itens de :name.',
         'header'        => 'Itens de :name',
         'title'         => 'Itens',
     ],
     'inventories'   => [
-        'description'   => 'Inventários da entidade na qual o item está.',
         'title'         => 'Item :name inventários',
     ],
     'placeholders'  => [
@@ -41,12 +38,7 @@ return [
         'size'      => 'Tamanho, Peso, Dimensões',
         'type'      => 'Arma, Poção, Artefato',
     ],
-    'quests'        => [
-        'description'   => 'Missões das quais este item faz parte',
-        'title'         => 'Missões do item :name',
-    ],
     'show'          => [
-        'description'   => 'Uma visão detalhada de um item',
         'tabs'          => [
             'information'   => 'Informações',
             'inventories'   => 'Inventários',

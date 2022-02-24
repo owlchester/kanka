@@ -7,11 +7,9 @@ return [
         'add_personality'   => 'Pridať osobnosť',
     ],
     'conversations' => [
-        'description'   => 'Diskusie, v ktorých sa postava účastní.',
         'title'         => 'Diskusie s postavou :name',
     ],
     'create'        => [
-        'description'   => 'Vytvoriť novú postavu',
         'success'       => 'Postava :name vytvorená.',
         'title'         => 'Nová postava',
     ],
@@ -19,12 +17,10 @@ return [
         'success'   => 'Postava :name odstránená.',
     ],
     'dice_rolls'    => [
-        'description'   => 'Hody kockami priradené tejto postave.',
         'hint'          => 'Hody kockami môžu byť priradené postavy, aby ich mohla v hre používať.',
         'title'         => 'Hody kockami postavy :name',
     ],
     'edit'          => [
-        'description'   => 'Upraviť postavu',
         'success'       => 'Postava :name upravená.',
         'title'         => 'Upraviť postavu :name',
     ],
@@ -33,7 +29,9 @@ return [
         'families'                  => 'Rody',
         'family'                    => 'Rod',
         'image'                     => 'Obrázok',
+        'is_appearance_pinned'      => 'Pripnutý výzor',
         'is_dead'                   => 'Po smrti',
+        'is_personality_pinned'     => 'Pripnutá osobnosť',
         'is_personality_visible'    => 'Osobnosť viditeľná',
         'life'                      => 'Život',
         'location'                  => 'Umiestnenie',
@@ -54,7 +52,9 @@ return [
     ],
     'hints'         => [
         'hide_personality'          => 'Túto kartu môžeš ukryť pred užívateľmi, ktorí nemajú rolu Admin, deaktivovaním nastavenia "Osobnosť viditeľná".',
+        'is_appearance_pinned'      => 'Ak aktívne, črty výzoru postavy sa zobrazia pod záznamom na stránke prehľadu.',
         'is_dead'                   => 'Táto postava je mŕtva.',
+        'is_personality_pinned'     => 'Ak aktívne, črty osobnosti postavy sa zobrazia pod záznamom na stránke prehľadu.',
         'is_personality_visible'    => 'Celú sekciu o osobnosti vieš skryť pred užívateľmi, ktorí nemajú rolu Admin.',
         'personality_not_visible'   => 'Osobnostné črty tejto postavy sú aktuálne viditeľné len pre užívateľov s rolou Admin.',
         'personality_visible'       => 'Osobnostné črty tejto postavy sú viditeľné pre všetkých.',
@@ -64,21 +64,17 @@ return [
             'random'    => 'Nová náhodná postava',
         ],
         'add'           => 'Nová postava',
-        'description'   => 'Upraviť postavy :name.',
         'header'        => 'Postavy v :name',
         'title'         => 'Postavy',
     ],
     'items'         => [
-        'description'   => 'Predmety, ktoré nosí alebo vlastní daná postava.',
         'hint'          => 'Predmety môžu byť pridelené postavám a zobrazia sa na tomto mieste.',
         'title'         => 'Predmety postavy :name',
     ],
     'journals'      => [
-        'description'   => 'Denníky, ktoré spísala postava.',
         'title'         => 'Denníky postavy :name',
     ],
     'maps'          => [
-        'description'   => 'Mapa vzťahov postavy.',
         'title'         => 'Mapa vzťahov postavy :name',
     ],
     'organisations' => [
@@ -86,16 +82,13 @@ return [
             'add'   => 'Pridať organizáciu',
         ],
         'create'        => [
-            'description'   => 'Priradiť organizáciu postave',
             'success'       => 'Postava priradená organizácii.',
             'title'         => 'Nová organizácia pre :name',
         ],
-        'description'   => 'Organizácie, ku ktorým postava patrí.',
         'destroy'       => [
             'success'   => 'Postava odstránená z organizácie.',
         ],
         'edit'          => [
-            'description'   => 'Upraviť organizácie postavy',
             'success'       => 'Organizácia postavy upravená.',
             'title'         => 'Upraviť organizáciu :name',
         ],
@@ -129,7 +122,6 @@ return [
         'type'              => 'NPC, postava hráča, božstvo',
     ],
     'quests'        => [
-        'description'   => 'Úlohy priradené postave.',
         'helpers'       => [
             'quest_giver'   => 'Úlohy, ktorých zadávateľom je táto postava.',
             'quest_member'  => 'Úlohy, ktorých členom je táto postava.',
@@ -142,7 +134,6 @@ return [
         'personality'   => 'Osobnosť',
     ],
     'show'          => [
-        'description'   => 'Detailné zobrazenie postavy',
         'tabs'          => [
             'conversations' => 'Diskusie',
             'dice_rolls'    => 'Hody kockami',

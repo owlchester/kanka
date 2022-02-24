@@ -50,6 +50,7 @@ return [
         'title'         => 'Ako používať filtre',
     ],
     'link'              => [
+        'anchor'            => 'Rozšírené referencie môžu tiež špecifikovať ukotvenie v HTML, kam daný link má smerovať pomocou :example.',
         'attributes'        => 'Atribúty objektu môžeš referencovať pomocou vpísania :code. Toto funguje len pre existujúce atribúty objektu.',
         'auto_update'       => 'Prepojenia na iné objekty budú automaticky aktualizované, keď sa zmení názov alebo popis cieľa.',
         'description'       => 'Prepojenia medzi objektami tvojej kampane môžeš vytvoriť jednoducho pomocou nasledujúcich skratiek.',
@@ -72,7 +73,7 @@ return [
         'title'         => 'Mapy miest',
     ],
     'pins'              => [
-        'description'   => 'Objekty môžu mať vzťahy a atribúty pripnuté vpravo v prehľade príbehu. Úpravou vzťahu alebo atribútu a nastavením pripináčika, ich na toto miesto pripneš.',
+        'description'   => 'Objekty môžu mať vzťahy a atribúty pripnuté vpravo v prehľade. Úpravou vzťahu alebo atribútu a nastavením pripináčika, ich na toto miesto pripneš.',
         'title'         => 'Pripnutia objektu',
     ],
     'public'            => 'Pozri si video, ktoré vysvetľuje verejné kampane, na YouTube.',

@@ -2,7 +2,6 @@
 
 return [
     'create'        => [
-        'description'   => 'Vytvoriť novú organizáciu',
         'success'       => 'Organizácia :name vytvorená.',
         'title'         => 'Nová organizácia',
     ],
@@ -31,7 +30,6 @@ return [
     ],
     'index'         => [
         'add'           => 'Nová organizácia',
-        'description'   => 'Spravuj organizácie objektu :name.',
         'header'        => 'Organizácie objektu :name',
         'title'         => 'Organizácie',
     ],
@@ -40,7 +38,6 @@ return [
             'add'   => 'Pridať člena',
         ],
         'create'        => [
-            'description'   => 'Pridaj člena do organizácie',
             'success'       => 'Člen pridaný do organizácie.',
             'title'         => 'Nový člen organizácie :name',
         ],
@@ -90,12 +87,7 @@ return [
         'name'      => 'Názov organizácie',
         'type'      => 'kult, gang, bunka revolúcie, fandom',
     ],
-    'quests'        => [
-        'description'   => 'Úlohy organizácie',
-        'title'         => 'Úlohy organizácie :name',
-    ],
     'show'          => [
-        'description'   => 'Detailný náhľad organizácie',
         'tabs'          => [
             'organisations' => 'Organizácie',
             'quests'        => 'Úlohy',

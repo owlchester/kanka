@@ -86,6 +86,7 @@ return [
             'css'                   => 'Benutzerdefinierte Kampagne CSS',
             'dashboards'            => 'Legen Sie benutzerdefinierte Dashboards für die Rollen der Kampagne fest',
             'description'           => 'Bestimmte Versprechen bieten Benutzern mit Booster, mit denen sie Kampagnen steigern können. Diese bieten die folgenden Vorteile.',
+            'entity-aliases'        => 'Legen Sie Aliase für Objekte fest, um eine flexiblere Suche und Erwähnung zu ermöglichen',
             'entity_files_v2'       => 'Maximal hochgeladene Dateien pro Objekt',
             'entity_links'          => 'Setzen Sie Links auf Objekten zu externen Ressourcen und Webseiten',
             'header_image'          => 'Objekt-Header-Bild',

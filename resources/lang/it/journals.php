@@ -2,7 +2,6 @@
 
 return [
     'create'        => [
-        'description'   => 'Crea un nuovo diario',
         'success'       => 'Diario \':name\' creato.',
         'title'         => 'Nuovo Diario',
     ],
@@ -23,7 +22,6 @@ return [
     ],
     'index'         => [
         'add'           => 'Nuovo Diario',
-        'description'   => 'Gestisci i diari di :name.',
         'header'        => 'Diari di :name',
         'title'         => 'Diari',
     ],
@@ -34,7 +32,6 @@ return [
         'type'      => 'Sessione, One Shot, Bozza',
     ],
     'show'          => [
-        'description'   => 'Una vista dettagliata di un diario',
         'title'         => 'Diario :name',
     ],
 ];

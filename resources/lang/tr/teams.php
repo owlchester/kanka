@@ -12,14 +12,7 @@ return [
         'title'         => 'Ekip',
         'translations'  => 'Çeviriler',
     ],
-    'patreon'       => [
-        'description'   => 'Bu harika insanlar Kanka\'ya abone olarak yardım eden ve destekleyenlerdir.',
-        'learn_more'    => 'Tüm özellikler abone olarak açılır.',
-    ],
     'people'        => [
-        'iz'        => [
-            'title' => 'Ürün Geliştirme',
-        ],
         'jay'       => [
             'text'  => <<<'TEXT'
 Kanka'yı Ekim 2017'de arkdaşlarımla birlikte bir dünya yaratmama ve hala kimin neyi görebileceğine izin veren bir araç olmadığı için kurdum.

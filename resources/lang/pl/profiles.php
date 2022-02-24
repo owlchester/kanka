@@ -13,7 +13,6 @@ return [
         'r_date_created'    => 'Odwrócona data stworzenia',
         'r_date_joined'     => 'Odwócona data dołączenia',
     ],
-    'description'                   => 'Opis',
     'edit'                          => [
         'success'   => 'Zmieniono profil',
     ],

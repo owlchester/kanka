@@ -2,7 +2,6 @@
 
 return [
     'create'        => [
-        'description'   => 'Kreiraj novi dnevnik',
         'success'       => 'Kreiran dnevnik ":name".',
         'title'         => 'Novi dnevnik',
     ],
@@ -30,7 +29,6 @@ return [
     ],
     'index'         => [
         'add'           => 'Novi dnevnik',
-        'description'   => 'Upravljanje dnevnicima u :name.',
         'header'        => 'Dnevnici :name',
         'title'         => 'Dnevnici',
     ],
@@ -45,7 +43,6 @@ return [
         'type'      => 'Sesija, Jednokratna kampanja, Nacrt',
     ],
     'show'          => [
-        'description'   => 'Detaljni pregled dnevnika',
         'tabs'          => [
             'journals'  => 'Dnevnici',
         ],

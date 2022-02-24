@@ -2,7 +2,6 @@
 
 return [
     'create'        => [
-        'description'   => 'Yeni bir zar ekle',
         'success'       => '\':name\' zarı yaratıldı.',
         'title'         => 'Yeni Zar',
     ],
@@ -11,7 +10,6 @@ return [
         'success'   => '\':name\' zarı kaldırıldı.',
     ],
     'edit'          => [
-        'description'   => 'Bir zarı düzenle',
         'success'       => '\':name\' zarı güncellendi.',
         'title'         => ':name Zarını Düzenle',
     ],
@@ -31,7 +29,6 @@ return [
             'results'   => 'Sonuçlar',
         ],
         'add'           => 'Yeni Zar',
-        'description'   => ':name Zarlarını Düzenle',
         'header'        => ':name Zarları',
         'title'         => ':Zarlar',
     ],
@@ -54,7 +51,6 @@ return [
         'success'   => 'Zar atıldı.',
     ],
     'show'          => [
-        'description'   => 'Zara detaylı bir bakış',
         'tabs'          => [
             'results'   => 'Sonuçlar',
         ],

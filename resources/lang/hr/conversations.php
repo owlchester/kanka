@@ -2,7 +2,6 @@
 
 return [
     'create'        => [
-        'description'   => 'Kreiraj novi razgovor',
         'success'       => 'Kreiran razgovor ":name".',
         'title'         => 'Novi razgovor',
     ],
@@ -10,7 +9,6 @@ return [
         'success'   => 'Uklonjen razgovor ":name".',
     ],
     'edit'          => [
-        'description'   => 'Ažuriraj razgovor',
         'success'       => 'Ažuriran razgovor ":name".',
         'title'         => 'Razgovor :name',
     ],
@@ -27,7 +25,6 @@ return [
     ],
     'index'         => [
         'add'           => 'Novi razgovor',
-        'description'   => 'Upravljanje kategorijom u :name.',
         'header'        => 'Razgovori u :name',
         'title'         => 'Razgovori',
     ],
@@ -45,7 +42,6 @@ return [
         'create'        => [
             'success'   => 'Sudionik :entity dodan u razgovor.',
         ],
-        'description'   => 'Dodavaj ili ukloni sudionika razgovora',
         'destroy'       => [
             'success'   => 'Sudionik :entity uklonjen iz razgovora.',
         ],
@@ -57,7 +53,6 @@ return [
         'type'  => 'U igri, Priprema, Zaplet',
     ],
     'show'          => [
-        'description'   => 'Detaljan prikaz razgovora',
         'is_closed'     => 'Razgovor je zatvoren.',
         'title'         => 'Razgovor :name',
     ],

@@ -223,7 +223,6 @@ return [
         'headings'  => [
             'app'           => 'Aplikacja',
             'community'     => 'Społeczność',
-            'friends'       => 'Nasi przyjaciele',
             'other'         => 'Pozostałe',
             'useful_links'  => 'Pożyteczne strony',
         ],

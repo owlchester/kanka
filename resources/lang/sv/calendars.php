@@ -17,7 +17,6 @@ return [
         'is_recurring'  => 'Inträffar varje år',
     ],
     'create'        => [
-        'description'   => 'Skapa en ny kalender',
         'success'       => 'Kalender \':name\' skapad.',
         'title'         => 'Ny Kalender',
     ],
@@ -25,7 +24,6 @@ return [
         'success'   => 'Kalender \':name\' borttagen.',
     ],
     'edit'          => [
-        'description'   => 'Uppdatera kalendern',
         'success'       => 'Kalender \':name\' uppdaterad.',
         'title'         => 'Redigera Kalender :name',
         'today'         => 'Kalender datum uppdaterat.',
@@ -37,13 +35,11 @@ return [
             'switch'    => 'Ändra val',
         ],
         'create'    => [
-            'description'   => 'Skapa en kalender händelse',
             'success'       => 'Kalender händelse skapad.',
             'title'         => 'Lägg till en Kalender Händelse till :name',
         ],
         'destroy'   => 'Händelse borttagen från kalender \':name\'.',
         'edit'      => [
-            'description'   => 'Uppdatera en kalender händelse',
             'success'       => 'Kalender händelse uppdaterad.',
             'title'         => 'Uppdatera Kalender Händelse för :name',
         ],
@@ -58,7 +54,6 @@ return [
         'success'   => 'Händelse \':event\' tillagd i kalendern.',
     ],
     'events'        => [
-        'description'   => 'Händelser i denna kalender.',
         'title'         => 'Kalender :name Händelser',
     ],
     'fields'        => [
@@ -114,7 +109,6 @@ return [
     ],
     'index'         => [
         'add'           => 'Ny Kalender',
-        'description'   => 'Hantera kalendrarna under :name.',
         'header'        => 'Kalendrarna under :name',
         'title'         => 'Kalendrar',
     ],
@@ -200,7 +194,6 @@ return [
         'weekdays'          => 'Antal dagar på en vecka',
     ],
     'show'          => [
-        'description'       => 'En detaljerad vy av en kalender',
         'missing_details'   => 'Den här kalendern kunde inte visas. Kalendrar måste ha minst 2 månader och 2 veckodagar för att renderas korrekt.',
         'moon_full_moon'    => ':moon Fullmåne',
         'moon_new_moon'     => ':moon Nymåne',

@@ -2,11 +2,9 @@
 
 return [
     'characters'    => [
-        'description'   => 'Charakter an diesem Ort.',
         'title'         => 'Ort :name Charaktere',
     ],
     'create'        => [
-        'description'   => 'Erstelle einen neuen Ort',
         'success'       => 'Ort \':name\' erstellt.',
         'title'         => 'Erstelle einen neuen Ort',
     ],
@@ -18,7 +16,6 @@ return [
         'title'     => 'Bearbeite Ort :name',
     ],
     'events'        => [
-        'description'   => 'Ereignisse, die an diesem Ort stattgefunden haben.',
         'title'         => 'Ort :name Ereignisse',
     ],
     'families'      => [
@@ -53,20 +50,16 @@ return [
             'explore_view'  => 'Erkundungsansicht',
         ],
         'add'           => 'Neuer Ort',
-        'description'   => 'Verwalte die Orte von :name',
         'header'        => 'Orte in :name',
         'title'         => 'Orte',
     ],
     'items'         => [
-        'description'   => 'Gegenstände an oder von diesem Ort.',
         'title'         => 'Ort :name Gegenstände',
     ],
     'journals'      => [
-        'description'   => 'Logbücher, die im Ort geschrieben wurden.',
         'title'         => 'Ort :name Logbücher',
     ],
     'locations'     => [
-        'description'   => 'Orte, die sich an diesem Ort befinden.',
         'title'         => 'Ort :name Orte',
     ],
     'map'           => [
@@ -211,23 +204,16 @@ return [
         'name'      => 'Name des Ortes',
         'type'      => 'Stadt, Königreich, Ruine',
     ],
-    'quests'        => [
-        'description'   => 'Quests des Orts.',
-        'title'         => 'Ort :name Quests',
-    ],
     'show'          => [
-        'description'   => 'Eine detaillierte Ansicht eines Ortes',
         'tabs'          => [
             'characters'    => 'Charaktere',
             'events'        => 'Ereignisse',
             'families'      => 'Familien',
-            'information'   => 'Informationen',
             'items'         => 'Gegenstände',
             'journals'      => 'Logbücher',
             'locations'     => 'Orte',
             'map'           => 'Karte',
             'maps'          => 'Karten',
-            'menu'          => 'Menü',
             'organisations' => 'Organisationen',
             'quests'        => 'Quests',
         ],

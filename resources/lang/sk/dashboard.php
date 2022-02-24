@@ -147,12 +147,16 @@ TEXT
             'success'   => 'Widget bol odstránený z nástenky.',
         ],
         'fields'                    => [
+            'class'             => 'Trieda CSS',
             'dashboard'         => 'Nástenka',
             'name'              => 'Vlastný názov widgetu',
             'optional-entity'   => 'Link k objektu',
             'order'             => 'Zoradenie',
             'text'              => 'Text',
             'width'             => 'Šírka',
+        ],
+        'helpers'                   => [
+            'class' => 'Definuj vlastnú triedu CSS priradenú widgetu.',
         ],
         'orders'                    => [
             'name_asc'  => 'Názov vzostupne',
@@ -188,6 +192,10 @@ TEXT
             'singular'          => 'Jednotlivý objekt',
             'tags'              => 'Filtrovať zoznam nedávno upravených objektov podľa určitých tagov.',
             'title'             => 'Nedávno upravené',
+        ],
+        'tabs'                      => [
+            'advanced'  => 'Rozšírené',
+            'setup'     => 'Nastavenie',
         ],
         'unmentioned'               => [
             'title' => 'Objekty bez referencií',

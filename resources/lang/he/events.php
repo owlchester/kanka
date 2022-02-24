@@ -2,7 +2,6 @@
 
 return [
     'create'        => [
-        'description'   => 'צור אירוע חדש',
         'success'       => 'האירוע \':name\' נוצר.',
         'title'         => 'אירוע חדש',
     ],
@@ -22,7 +21,6 @@ return [
     ],
     'index'         => [
         'add'           => 'אירוע חדש',
-        'description'   => 'נהל את האירועים של :name.',
         'header'        => 'האירועים של :name',
         'title'         => 'אירועים',
     ],
@@ -33,7 +31,6 @@ return [
         'type'      => 'טקס, חג, אסון, קרב, לידה',
     ],
     'show'          => [
-        'description'   => 'מבט מפורט על אירוע',
         'tabs'          => [
             'information'   => 'מידע',
         ],

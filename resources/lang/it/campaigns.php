@@ -320,7 +320,6 @@ TEXT
             'export'            => 'Esporta',
             'information'       => 'Informazioni',
             'members'           => 'Membri',
-            'menu'              => 'Menù',
             'recovery'          => 'Recupero',
             'roles'             => 'Ruoli',
             'settings'          => 'Moduli',

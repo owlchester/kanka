@@ -341,7 +341,6 @@ TEXT
             'export'            => 'Exportera',
             'information'       => 'Information',
             'members'           => 'Medlemar',
-            'menu'              => 'Meny',
             'plugins'           => 'Pluginer',
             'recovery'          => 'Återställning',
             'roles'             => 'Roller',

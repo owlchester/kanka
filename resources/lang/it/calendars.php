@@ -17,7 +17,6 @@ return [
         'is_recurring'  => 'Accade ogni anno',
     ],
     'create'        => [
-        'description'   => 'Crea un nuovo calendario',
         'success'       => 'Calendario \':name\' creato.',
         'title'         => 'Nuovo Calendario',
     ],
@@ -25,7 +24,6 @@ return [
         'success'   => 'Calendario \':name\' rimosso.',
     ],
     'edit'          => [
-        'description'   => 'Aggiorna il calendario',
         'success'       => 'Calendario \':name\' aggiornato.',
         'title'         => 'Modifica Calendario :name',
         'today'         => 'Data del calendario aggiornata.',
@@ -37,13 +35,11 @@ return [
             'switch'    => 'Cambia scelta',
         ],
         'create'    => [
-            'description'   => 'Crea un evento del calendario',
             'success'       => 'Evento del calendario creato',
             'title'         => 'Aggiungi un Evento del Calendario su :name',
         ],
         'destroy'   => 'Evento rimosso dal calendario \':name\'',
         'edit'      => [
-            'description'   => 'Aggiorna un evento del calendario',
             'success'       => 'Evento del calendario aggiornato.',
             'title'         => 'Aggiorna un Evento del Calendario per :name',
         ],
@@ -57,7 +53,6 @@ return [
         'success'   => 'Evento \':event\' aggiunto al calendario.',
     ],
     'events'        => [
-        'description'   => 'Eventi in questo calendario',
         'title'         => 'Eventi del Calendario :name',
     ],
     'fields'        => [
@@ -109,7 +104,6 @@ return [
     ],
     'index'         => [
         'add'           => 'Nuovo Calendario',
-        'description'   => 'Gestisci i calendari di :name.',
         'header'        => 'Calendari di :name',
         'title'         => 'Calendari',
     ],
@@ -195,7 +189,6 @@ return [
         'weekdays'          => 'Numero di giorni in una settimana',
     ],
     'show'          => [
-        'description'       => 'Una vista dettagliata del calendario',
         'missing_details'   => 'Questo calendario non può essere visualizzato. I Calendari necessitano almeno di 2 mesi e 2 giorni della settimana per essere visualizzati correttamente.',
         'moon_full_moon'    => ':moon Luna Piena',
         'moon_new_moon'     => ':moon Luna Nuova',

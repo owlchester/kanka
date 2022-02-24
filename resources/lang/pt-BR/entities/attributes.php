@@ -8,19 +8,6 @@ return [
         'more'              => 'Mais opções',
         'remove_all'        => 'Deletar tudo',
     ],
-    'create'        => [
-        'description'   => 'Criar um novo atributo',
-        'success'       => 'Atributo :name adicionado a :entity',
-        'title'         => 'Novo Atributo para :name',
-    ],
-    'destroy'       => [
-        'success'   => 'Atributo :name para :entity removido',
-    ],
-    'edit'          => [
-        'description'   => 'Atualizar um atributo existente',
-        'success'       => 'Atributo :name para :entity atualizado',
-        'title'         => 'Atualizar atributo para :name',
-    ],
     'errors'        => [
         'loop'  => 'Existe um loop infinito no cálculo desse atributo!',
     ],

@@ -7,11 +7,9 @@ return [
         'add_personality'   => 'Přidat povahovou vlastnost',
     ],
     'conversations' => [
-        'description'   => 'Rozhovory, kterých se postava účastní.',
         'title'         => 'Rozhovory s postavou :name',
     ],
     'create'        => [
-        'description'   => 'Vytvořit novou postavu',
         'success'       => 'Postava ":name" vytvořena',
         'title'         => 'Nová postava',
     ],
@@ -19,12 +17,10 @@ return [
         'success'   => 'Postava ":name" odstraněna',
     ],
     'dice_rolls'    => [
-        'description'   => 'Hody kostkami, přiřazené postavě.',
         'hint'          => 'Hody kostkami lze pro herní účely přiřadit postavě.',
         'title'         => 'Hody kostkami postavy :name',
     ],
     'edit'          => [
-        'description'   => 'Upravit postavu',
         'success'       => 'Postava ":name" aktualizována',
         'title'         => 'Upravit postavu :name',
     ],
@@ -60,21 +56,17 @@ return [
             'random'    => 'Nová náhodná postava',
         ],
         'add'           => 'Nová postava',
-        'description'   => 'Upravit postavy :name',
         'header'        => 'Postavy v :name',
         'title'         => 'Postavy',
     ],
     'items'         => [
-        'description'   => 'Předměty ve vlastnictví postavy.',
         'hint'          => 'Předměty přiřazené postavám se zobrazí zde.',
         'title'         => 'Předměty postavy :name',
     ],
     'journals'      => [
-        'description'   => 'Deníky, sepsané touto postavou.',
         'title'         => 'Deníky postavy :name',
     ],
     'maps'          => [
-        'description'   => 'Mapa souvislostí postavy',
         'title'         => 'Mapa souvislostí postavy :name',
     ],
     'organisations' => [
@@ -82,16 +74,13 @@ return [
             'add'   => 'Přidat organizaci',
         ],
         'create'        => [
-            'description'   => 'Přidat postavu za člena organizace',
             'success'       => 'Postava přidána za člena organizace.',
             'title'         => 'Nová organizace pro :name',
         ],
-        'description'   => 'Organizace, jejichž je postava članem.',
         'destroy'       => [
             'success'   => 'Členství postavy v organizaci zrušeno',
         ],
         'edit'          => [
-            'description'   => 'Aktualizovat členství postavy v organizacích',
             'success'       => 'Členství postavy v organizaci aktualizováno',
             'title'         => 'Upravit členství postavy :name v organizaci',
         ],
@@ -124,7 +113,6 @@ return [
         'type'              => 'NPC, hráčská postava, božstvo...',
     ],
     'quests'        => [
-        'description'   => 'Dobrodružství, jichž je postava součástí.',
         'helpers'       => [
             'quest_giver'   => 'Dobrodružství, jejichž zadavatelem je tato postava.',
             'quest_member'  => 'Dobrodružství, jichž je postava členem.',
@@ -137,7 +125,6 @@ return [
         'personality'   => 'Povahové rysy',
     ],
     'show'          => [
-        'description'   => 'Podrobné zobrazení postavy',
         'tabs'          => [
             'conversations' => 'Rozhovory',
             'dice_rolls'    => 'Hody kostkami',

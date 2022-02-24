@@ -15,7 +15,6 @@ return [
         'character'             => 'דמות',
         'colour'                => 'צבע',
         'copy_attributes'       => 'העתק מאפיינים',
-        'copy_notes'            => 'העתק פתקי אובייקט',
         'creator'               => 'יוצר',
         'dice_roll'             => 'הטלת קוביה',
         'entity'                => 'אובייקט',
@@ -87,10 +86,6 @@ return [
     ],
     'hidden'            => 'מוסתר',
     'history'           => [
-        'created'       => 'נוצר על ידי <strong>:name</strong> <span data-toggle="tooltip" title=":realdate">:date</span>',
-        'created_date'  => 'נוצר <span data-toggle="tooltip" title=":realdate">:date</span>',
-        'updated'       => 'עדכון אחרון על ידי <strong>:name</strong> <span data-toggle="tooltip" title=":realdate">:date</span>',
-        'updated_date'  => 'עדכון אחרון <span data-toggle="tooltip" title=":realdate">:date</span>',
     ],
     'remove'            => 'הסר',
     'rename'            => 'שנה שם',

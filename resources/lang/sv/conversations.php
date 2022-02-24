@@ -2,7 +2,6 @@
 
 return [
     'create'        => [
-        'description'   => 'Skapa en ny konversation',
         'success'       => 'Konversation \':name\' skapad.',
         'title'         => 'Ny Konversation',
     ],
@@ -10,7 +9,6 @@ return [
         'success'   => 'Konversation \':name\' borttagen.',
     ],
     'edit'          => [
-        'description'   => 'Uppdatera konversationen.',
         'success'       => 'Konversation \':name\' uppdaterad.',
         'title'         => 'Konversation :name',
     ],
@@ -26,7 +24,6 @@ return [
     ],
     'index'         => [
         'add'           => 'Ny Konversation',
-        'description'   => 'Hantera kategorin av :name',
         'header'        => 'Konversationer i :name',
         'title'         => 'Konversationer',
     ],
@@ -44,7 +41,6 @@ return [
         'create'        => [
             'success'   => 'Deltagare :entity tillagd till konversationen.',
         ],
-        'description'   => 'Lägg till eller ta bort deltagare i en konversation',
         'destroy'       => [
             'success'   => 'Deltagare :entity borttagen från konversationen.',
         ],
@@ -56,7 +52,6 @@ return [
         'type'  => 'I Spelet, Förberedande, Handling',
     ],
     'show'          => [
-        'description'   => 'En detaljerad vy för en konversation',
         'title'         => 'Konversation :name',
     ],
     'tabs'          => [

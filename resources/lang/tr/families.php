@@ -2,7 +2,6 @@
 
 return [
     'create'        => [
-        'description'   => 'Yeni bir aile yarat',
         'success'       => ':name ailesi oluşturuldu.',
         'title'         => 'Yeni Aile',
     ],
@@ -35,7 +34,6 @@ return [
     ],
     'index'         => [
         'add'           => 'Yeni Aile',
-        'description'   => ':name ailelerini yönet.',
         'header'        => ':name Aileleri',
         'title'         => 'Aileler',
     ],
@@ -52,7 +50,6 @@ return [
         'type'      => 'Asil, Soylu, Soyu Kurumuş',
     ],
     'show'          => [
-        'description'   => 'Aileye detaylı bir bakış',
         'tabs'          => [
             'all_members'   => 'Tüm Üyeler',
             'families'      => 'Aileler',

@@ -2,7 +2,6 @@
 
 return [
     'create'        => [
-        'description'   => 'Vytvoriť nový záznam v denníku',
         'success'       => 'Záznam :name vytvorený.',
         'title'         => 'Nový záznam v denníku',
     ],
@@ -31,7 +30,6 @@ return [
     ],
     'index'         => [
         'add'           => 'Nový záznam v denníku',
-        'description'   => 'Spravuj záznamy v denníku objektu :name',
         'header'        => 'Záznamy v denníku objektu :name',
         'title'         => 'Záznamy v denníku',
     ],
@@ -46,7 +44,6 @@ return [
         'type'      => 'sedenie, one shot, návrh',
     ],
     'show'          => [
-        'description'   => 'Detailný náhľad na záznam v denníku',
         'tabs'          => [
             'journals'  => 'Denníky',
         ],

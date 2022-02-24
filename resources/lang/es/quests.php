@@ -1,7 +1,6 @@
 <?php
 
 return [
-    'characters'    => [],
     'create'        => [
         'success'   => 'Misión ":name" creada.',
         'title'     => 'Nueva misión',
@@ -58,9 +57,6 @@ return [
         'header'    => 'Misiones de :name',
         'title'     => 'Misiones',
     ],
-    'items'         => [],
-    'locations'     => [],
-    'organisations' => [],
     'placeholders'  => [
         'date'  => 'Fecha real de la misión',
         'name'  => 'Nombre de la misión',

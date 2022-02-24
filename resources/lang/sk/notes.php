@@ -2,7 +2,6 @@
 
 return [
     'create'        => [
-        'description'   => 'Vytvoriť novú poznámku',
         'success'       => 'Poznámka :name vytvorená.',
         'title'         => 'Nová poznámka',
     ],
@@ -32,7 +31,6 @@ return [
     ],
     'index'         => [
         'add'           => 'Nová poznámka',
-        'description'   => 'Spravuj poznámky objektu :name.',
         'header'        => 'Poznámky objektu :name',
         'title'         => 'Poznámky',
     ],
@@ -42,10 +40,6 @@ return [
         'type'  => 'náboženstvo, rasa, politický systém',
     ],
     'show'          => [
-        'description'   => 'Detailný náhľad poznámky',
-        'tabs'          => [
-            'description'   => 'Popis',
-        ],
         'title'         => 'Poznámka :name',
     ],
 ];

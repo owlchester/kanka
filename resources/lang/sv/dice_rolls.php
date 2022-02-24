@@ -2,7 +2,6 @@
 
 return [
     'create'        => [
-        'description'   => 'Skapa ett nytt tärningskast',
         'success'       => 'Tärningskast \':name\' skapat.',
         'title'         => 'Nytt Tärningskast',
     ],
@@ -11,7 +10,6 @@ return [
         'success'   => 'Tärningskast \':name\' borttaget.',
     ],
     'edit'          => [
-        'description'   => 'Redigera tärningskast',
         'success'       => 'Tärningskast \':name\' uppdaterat.',
         'title'         => 'Redigera Tärningskast :name',
     ],
@@ -31,7 +29,6 @@ return [
             'results'   => 'Resultat',
         ],
         'add'           => 'Nytt Tärningskast',
-        'description'   => 'Hantera tärningskast för :name',
         'header'        => 'Tärningskast för :name',
         'title'         => 'Tärningskast',
     ],
@@ -54,7 +51,6 @@ return [
         'success'   => 'Tärningarna är kastade.',
     ],
     'show'          => [
-        'description'   => 'En detaljerad vy för ett Tärningskast',
         'tabs'          => [
             'results'   => 'Resultat',
         ],

@@ -2,7 +2,6 @@
 
 return [
     'create'        => [
-        'description'   => 'Stwórz nową rodzinę',
         'success'       => 'Stworzono rodzinę \':name\'.',
         'title'         => 'Nowa rodzina',
     ],
@@ -37,7 +36,6 @@ return [
     ],
     'index'         => [
         'add'           => 'Nowa rodzina',
-        'description'   => 'Zarządzaj rodzinami elementu :name',
         'header'        => 'Rodziny elementu :name',
         'title'         => 'Rodziny',
     ],
@@ -54,7 +52,6 @@ return [
         'type'      => 'Królewska, szlachecka, wymarła',
     ],
     'show'          => [
-        'description'   => 'Szczegółowy opis rodziny',
         'tabs'          => [
             'all_members'   => 'Wszyscy członkowie',
             'families'      => 'Rodziny',

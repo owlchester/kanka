@@ -17,7 +17,6 @@ return [
         'is_recurring'  => 'Vindt elk jaar plaats',
     ],
     'create'        => [
-        'description'   => 'Maak een nieuwe kalender',
         'success'       => 'Kalender \':name\' gemaakt',
         'title'         => 'Nieuwe Kalender',
     ],
@@ -25,7 +24,6 @@ return [
         'success'   => 'Kalender \':name\' verwijderd',
     ],
     'edit'          => [
-        'description'   => 'Werk de kalender bij',
         'success'       => 'Kalender \':name\' bijgewerkt',
         'title'         => 'Wijzig Kalender :name',
         'today'         => 'Kalender datum bijgewerkt',
@@ -37,13 +35,11 @@ return [
             'switch'    => 'Wijzig keuze',
         ],
         'create'    => [
-            'description'   => 'Maak een kalender gebeurtenis',
             'success'       => 'Kalender gebeurtenis gemaakt.',
             'title'         => 'Voeg een Kalender Gebeurtenis toe aan :name',
         ],
         'destroy'   => 'Gebeurtenis verwijderd uit kalender \':name\'.',
         'edit'      => [
-            'description'   => 'Werk een kalender gebeurtenis bij',
             'success'       => 'Kalender gebeurtenis bijgewerkt.',
             'title'         => 'Werk Kalender Gebeurtenis bij voor :naam',
         ],
@@ -58,7 +54,6 @@ return [
         'success'   => 'Gebeurtenis \':event\' toegevoegd aan de kalender',
     ],
     'events'        => [
-        'description'   => 'Gebeurtenissen in deze kalender',
         'title'         => 'Kalender :name Gebeurtenissen',
     ],
     'fields'        => [
@@ -114,7 +109,6 @@ return [
     ],
     'index'         => [
         'add'           => 'Nieuwe kalender',
-        'description'   => 'Beheer de kalenders van :name',
         'header'        => 'Kalenders van :name',
         'title'         => 'Kalenders',
     ],
@@ -200,7 +194,6 @@ return [
         'weekdays'          => 'Aantal dagen in een week',
     ],
     'show'          => [
-        'description'       => 'Een gedetailleerd overzicht van een kalender',
         'missing_details'   => 'Deze kalender kan niet worden weergegeven. Kalenders hebben minimaal 2 maanden en 2 weekdagen nodig om correct te worden weergegeven.',
         'moon_full_moon'    => ':moon Volle Maan',
         'moon_new_moon'     => ':moon Nieuwe Maan',

@@ -2,7 +2,6 @@
 
 return [
     'create'        => [
-        'description'   => 'Új tárgy létrehozása',
         'success'       => '\':name\' tárgyat létrehoztuk.',
         'title'         => 'Új tárgy',
     ],
@@ -25,12 +24,10 @@ return [
     ],
     'index'         => [
         'add'           => 'Új tárgy',
-        'description'   => ':name tárgyainak kezelése',
         'header'        => ':name tárgyai',
         'title'         => 'Tárgyak',
     ],
     'inventories'   => [
-        'description'   => 'Entitás Felszerelések, amelyben ez a tárgy szerepel',
         'title'         => ':name tárgy Felszerelései',
     ],
     'placeholders'  => [
@@ -41,12 +38,7 @@ return [
         'size'      => 'Méret, Súly, Térfogat',
         'type'      => 'Fegyver, bájital, ereklye',
     ],
-    'quests'        => [
-        'description'   => 'Küldetések, amelyeknek a tárgy része',
-        'title'         => ':name tárgy küldetései',
-    ],
     'show'          => [
-        'description'   => 'Egy tárgy részletei',
         'tabs'          => [
             'information'   => 'Információ',
             'inventories'   => 'Felszerelések',

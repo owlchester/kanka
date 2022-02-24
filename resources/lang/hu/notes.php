@@ -2,7 +2,6 @@
 
 return [
     'create'        => [
-        'description'   => 'Új jegyzet létrehozása',
         'success'       => 'A(z) :name jegyzetet létrehoztuk.',
         'title'         => 'Új jegyzet',
     ],
@@ -31,7 +30,6 @@ return [
     ],
     'index'         => [
         'add'           => 'Új jegyzet',
-        'description'   => ':name jegyzeteinek kezelése',
         'header'        => ':name jegyzetei',
         'title'         => 'Jegyzetek',
     ],
@@ -41,10 +39,6 @@ return [
         'type'  => 'Vallás, faj, politikai rendszer',
     ],
     'show'          => [
-        'description'   => 'A jegyzet részletes nézete',
-        'tabs'          => [
-            'description'   => 'Leírás',
-        ],
         'title'         => ':name',
     ],
 ];

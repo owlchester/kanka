@@ -2,7 +2,6 @@
 
 return [
     'create'        => [
-        'description'   => 'Yeni bir eşya yarat',
         'success'       => '\':name\' eşyası yaratıldı.',
         'title'         => 'Yeni Eşya',
     ],
@@ -25,12 +24,10 @@ return [
     ],
     'index'         => [
         'add'           => 'Yeni Eşya',
-        'description'   => ':name eşyalarını yönet',
         'header'        => ':name Eşyaları',
         'title'         => 'Eşyalar',
     ],
     'inventories'   => [
-        'description'   => 'Eşyanın içinde bulunduğu Varlık Envanterleri',
         'title'         => ':name Eşyası Envanterleri',
     ],
     'placeholders'  => [
@@ -41,12 +38,7 @@ return [
         'size'      => 'Boyut, Ağırlık, Ölçüler',
         'type'      => 'Silah, İksir, Artifakt',
     ],
-    'quests'        => [
-        'description'   => 'Eşyanın bir parçası olduğu görevler.',
-        'title'         => ':name Eşyasının Görevleri',
-    ],
     'show'          => [
-        'description'   => 'Eşyaya detaylı bir bakış',
         'tabs'          => [
             'information'   => 'Bilgi',
             'inventories'   => 'Envanterler',

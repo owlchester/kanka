@@ -31,7 +31,6 @@ return [
         'teal'      => 'Tyrkysová',
     ],
     'create'        => [
-        'description'   => 'Vytvoriť nový kalendár',
         'success'       => 'Kalendár ":name" vytvorený.',
         'title'         => 'Nový kalendár',
     ],
@@ -39,7 +38,6 @@ return [
         'success'   => 'Kalendár ":name" odstránený.',
     ],
     'edit'          => [
-        'description'   => 'Upraviť kalendár',
         'success'       => 'Kalendár ":name" upravený.',
         'title'         => 'Upraviť kalendár :name',
         'today'         => 'Kalendárny dátum upravený.',
@@ -52,13 +50,11 @@ return [
             'switch'            => 'Zmeniť výber',
         ],
         'create'    => [
-            'description'   => 'Vytvoriť novú udalosť',
             'success'       => 'Nová udalosť vytvorená',
             'title'         => 'Pridať udalosť do :name',
         ],
         'destroy'   => 'Pripomienka z kalendára ":name" odstránená.',
         'edit'      => [
-            'description'   => 'Upraviť udalosť',
             'success'       => 'Pripomienka upravená.',
             'title'         => 'Upraviť pripomienku v :name',
         ],
@@ -73,7 +69,6 @@ return [
         'success'   => 'Udalosť ":event" pridaná do kalendára.',
     ],
     'events'        => [
-        'description'   => 'Udalosti v tomto kalendári.',
         'title'         => 'Udalosti kalendára :name',
     ],
     'fields'        => [
@@ -132,7 +127,6 @@ return [
     ],
     'index'         => [
         'add'           => 'Nový kalendár',
-        'description'   => 'Spravovať kalendár :name.',
         'header'        => 'Kalendár :name',
         'title'         => 'Kalendáre',
     ],
@@ -224,7 +218,6 @@ return [
         'weekdays'          => 'Počet dní v týždni',
     ],
     'show'          => [
-        'description'       => 'Detailné zobrazenie kalendára',
         'missing_details'   => 'Tento kalendár nie je možné zobraziť. Kalendár vyžaduje min. 2 mesiace a min. 2 dni v týždni, aby bol vytvorený.',
         'moon_full_moon'    => 'Spln :moon',
         'moon_new_moon'     => 'Nov :moon',

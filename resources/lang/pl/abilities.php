@@ -38,13 +38,11 @@ return [
     ],
     'helpers'       => [
         'descendants'   => 'Na liście znajdują się wszystkie zdolności pochodzące od tej zdolności, nie tylko bezpośrednio.',
-        'nested'        => 'Widok hierarchii',
         'nested_parent' => 'Wyświetlono zdolności pochodzące od :parent.',
         'nested_without'=> 'Wyświetlono wszystkie zdolności nie posiadające źródła. Kliknij na rząd, by wyświetlić zdolności pochodne.',
     ],
     'index'         => [
         'add'           => 'Nowa zdolność',
-        'description'   => 'Opis',
         'header'        => 'Zdolności elementu :nazwa',
         'title'         => 'Zdolności',
     ],

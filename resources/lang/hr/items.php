@@ -2,7 +2,6 @@
 
 return [
     'create'        => [
-        'description'   => 'Kreiraj novi predmet',
         'success'       => 'Kreiran predmet ":name".',
         'title'         => 'Novi predmet',
     ],
@@ -25,12 +24,10 @@ return [
     ],
     'index'         => [
         'add'           => 'Novi predmet',
-        'description'   => 'Upravljanje predmetima u :name.',
         'header'        => 'Predmeti u :name',
         'title'         => 'Predmeti',
     ],
     'inventories'   => [
-        'description'   => 'Inventar entiteta u kojem se predmet nalazi.',
         'title'         => 'Inventar predmeta :name',
     ],
     'placeholders'  => [
@@ -41,12 +38,7 @@ return [
         'size'      => 'Veličina, težina, dimenzije',
         'type'      => 'Oružje, napitak, artefakt',
     ],
-    'quests'        => [
-        'description'   => 'Zadaci kojih je predmet dio.',
-        'title'         => 'Zadaci predmeta :name',
-    ],
     'show'          => [
-        'description'   => 'Detaljan pregled predmeta',
         'tabs'          => [
             'information'   => 'Informacija',
             'inventories'   => 'Informacije',

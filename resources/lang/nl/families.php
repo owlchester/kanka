@@ -2,7 +2,6 @@
 
 return [
     'create'        => [
-        'description'   => 'Maak een nieuwe familie',
         'success'       => 'Familie \':name\' gemaakt.',
         'title'         => 'Nieuwe Familie',
     ],
@@ -35,7 +34,6 @@ return [
     ],
     'index'         => [
         'add'           => 'Nieuwe Familie',
-        'description'   => 'Beheer de families van :name.',
         'header'        => 'Families van :name',
         'title'         => 'Families',
     ],
@@ -52,7 +50,6 @@ return [
         'type'      => 'Koninklijk, Adel, Uitgestorven',
     ],
     'show'          => [
-        'description'   => 'Een gedetailleerd overzicht van een familie',
         'tabs'          => [
             'all_members'   => 'Alle Leden',
             'families'      => 'Families',

@@ -371,7 +371,6 @@ TEXT
             'export'            => 'Izvoz',
             'information'       => 'Informacije',
             'members'           => 'Članovi',
-            'menu'              => 'Izbornik',
             'plugins'           => 'Dodaci',
             'recovery'          => 'Oporavak',
             'roles'             => 'Uloge',

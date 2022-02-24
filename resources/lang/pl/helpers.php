@@ -50,6 +50,7 @@ return [
         'title'         => 'Jak używać filtrów',
     ],
     'link'              => [
+        'anchor'            => 'Wzmianka zaawansowana może określać kotwicę HTML, do której odsyłać powinien odnośnik :example.',
         'attributes'        => 'Możesz stworzyć odnośnik do cechy elementy pisząc :code. Funkcja działa wyłącznie z już istniejącymi cechami tego elementu.',
         'auto_update'       => 'Odnośniki do innych elementów aktualizują się automatycznie, kiedy zmienia się nazwa albo opis celu.',
         'description'       => 'Możesz z łatwością tworzyć odnośniki do innych elementów kampanii przy pomocy następującego zapisu.',

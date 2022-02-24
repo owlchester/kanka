@@ -9,11 +9,9 @@ return [
             'success'   => 'Dodano do elementu etykietę :name.',
             'title'     => 'Dodaj etykietę do elementu :name',
         ],
-        'description'   => 'Elementy posiadające etykietę',
         'title'         => 'Etykiety pochodne od :name',
     ],
     'create'        => [
-        'description'   => 'Stwórz nową etykietę',
         'success'       => 'Stworzono etykietę \':name\'.',
         'title'         => 'Nowa etykieta',
     ],
@@ -33,7 +31,6 @@ return [
         'type'          => 'Rodzaj',
     ],
     'helpers'       => [
-        'nested'        => 'W widoku hierarchii najpierw wyświetlane są etykiety, które nie mają źródła. Po kliknięciu na wiersz etykiety zobaczysz jej pochodne. Możesz schodzić niżej, póki nie skończą się poziomy hierarchii.',
         'nested_parent' => 'Wyświetlono etykiety pochodzące od :parent.',
         'nested_without'=> 'Wyświetlono wszystkie etykiety nie posiadające źródła. Kliknij na rząd, by wyświetlić etykiety pochodne.',
     ],
@@ -46,7 +43,6 @@ return [
             'explore_view'  => 'Widok hierarchii',
         ],
         'add'           => 'Nowa etykieta',
-        'description'   => 'Zarządzaj etykietami elementu :name.',
         'header'        => 'Etykiety w :name',
         'title'         => 'Etykiety',
     ],
@@ -57,16 +53,13 @@ return [
         'type'  => 'Wiedza tajemna, wojna, historia, religia, weksylologia',
     ],
     'show'          => [
-        'description'   => 'Szczegółowy widok etykiety',
         'tabs'          => [
             'children'      => 'Pochodne',
-            'information'   => 'Informacje',
             'tags'          => 'Etykiety',
         ],
         'title'         => 'Etykieta :name',
     ],
     'tags'          => [
-        'description'   => 'Etykiety pochodne',
         'title'         => 'Etykiety pochodzące od :name',
     ],
 ];
