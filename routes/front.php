@@ -46,3 +46,7 @@ Route::resources([
     'community-events.community-event-entries' => 'Front\CommunityEventEntryController',
 ]);
 
+// Documentation catch all
+Route::get('/documentation', 'FrontController@documentation')->name('documentation');
+Route::get('/docs', 'FrontController@documentation');
+

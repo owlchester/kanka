@@ -179,6 +179,16 @@ class FrontController extends Controller
             ->with('campaigns', $campaigns);
     }
 
+    /**
+     * Redirect to the kanka documentation campaign
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function documentation()
+    {
+        return redirect()
+            ->to(app()->getLocale() . '/campaign/' . 20000);
+    }
+
     protected function cachedResponse(string $view, int $days = 7)
     {
         return response(view($view))

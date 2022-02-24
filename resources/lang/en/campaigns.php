@@ -80,6 +80,7 @@ TEXT
         'boosted'                   => 'Some features are unlocked because this campaign is being boosted. Find out more on the :settings page.',
         'css'                       => 'Write your own CSS that will be loaded into the pages of your campaign. Please note that any abuse of this feature can lead to a removal of your custom CSS. Repeated or grave offenses can lead to a removal of your campaign.',
         'dashboard'                 => 'Customise the way the campaign dashboard widget is displayed by filling out the following fields.',
+        'entity_count'              => 'This number updates every six hours.',
         'excerpt'                   => 'The contents of this field will be displayed on the dashboard in the campaign header widget, so write a few sentences introducing your world. If this field is empty, the first 1000 characters of the campaign\'s entry field will be used instead.',
         'header_image'              => 'Image displayed as a background in the campaign header dashboard widget.',
         'hide_history'              => 'If enabled, only members of the campaign\'s :admin role will have access to an entity\'s history (log of changes).',

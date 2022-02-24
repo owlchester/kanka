@@ -41,9 +41,12 @@
                                 <dt>{{ __('campaigns.fields.visibility') }}</dt>
                                 <dd>{{ __('campaigns.visibilities.' . ($campaign->isPublic() ? 'public' : 'private')) }}</dd>
 
-                                <dt>{{ __('campaigns.fields.entity_count') }}</dt>
+                                <dt>
+                                    {{ __('campaigns.fields.entity_count') }}
+                                </dt>
                                 <dd>
                                     {{ number_format(\App\Facades\CampaignCache::entityCount()) }}
+                                    <i class="fas fa-question-circle" data-toggle="tooltip" title="{{ __('campaigns.helpers.entity_count') }}"></i>
                                 </dd>
 
                                 @if ($campaign->isPublic())

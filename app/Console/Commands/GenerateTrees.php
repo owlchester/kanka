@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Services\EntityService;
+use Carbon\Carbon;
 use Illuminate\Console\Command;
 
 class GenerateTrees extends Command
@@ -35,6 +36,7 @@ class GenerateTrees extends Command
      */
     public function handle()
     {
+        $this->info(Carbon::now());
         $models = explode(',', $this->argument('models'));
 
         if ($this->argument('models') === 'all') {
@@ -45,7 +47,7 @@ class GenerateTrees extends Command
 
         foreach ($models as $model) {
             $class = $this->service->getClass($model);
-            if ($class === false && method_exists($model, 'fixTree')) {
+            if ($class === false || !method_exists($model, 'fixTree')) {
                 $this->warn('Skipping ' . $model);
                 continue;
             }
@@ -53,7 +55,7 @@ class GenerateTrees extends Command
             $class::fixTree();
 
         }
-        $this->info('Finished');
+        $this->info('Finished ' . Carbon::now());
     }
 
     /**
