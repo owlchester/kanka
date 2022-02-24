@@ -2,8 +2,8 @@
 
 return [
     'create'        => [
-        'success'       => '\':name\' eseményt létrehoztuk',
-        'title'         => 'Új esemény',
+        'success'   => '\':name\' eseményt létrehoztuk',
+        'title'     => 'Új esemény',
     ],
     'destroy'       => [
         'success'   => '\':name\' eseményt töröltük.',
@@ -30,9 +30,9 @@ return [
         'nested_without'=> 'Minden eseményt megmutat, amelyeknek nincs szülőeseménye. Klikkelj egy sorra, hogy meglásd a gyermekeseményeket.',
     ],
     'index'         => [
-        'add'           => 'Új esemény',
-        'header'        => ':name eseményei',
-        'title'         => 'Események',
+        'add'       => 'Új esemény',
+        'header'    => ':name eseményei',
+        'title'     => 'Események',
     ],
     'placeholders'  => [
         'date'      => 'Az eseményed dátuma',
@@ -41,10 +41,7 @@ return [
         'type'      => 'Szertartás, ünnepség, katasztrófa, csata, születés',
     ],
     'show'          => [
-        'tabs'          => [
-            'information'   => 'Információ',
-        ],
-        'title'         => ':name esemény',
+        'title' => ':name esemény',
     ],
     'tabs'          => [
         'calendars' => 'Naptári bejegyzések',

@@ -2,6 +2,6 @@
 
 return [
     'index' => [
-        'title'         => 'Dobbelsteen Worp Resultaten',
+        'title' => 'Dobbelsteen Worp Resultaten',
     ],
 ];

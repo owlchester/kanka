@@ -17,9 +17,7 @@ return [
     'helpers'       => [
         'delete_all'    => 'Sei sicuro di voler cancellare tutti gli attributi di questa entità?',
     ],
-    'hints'         => [
-        'is_private'    => 'Puoi nascondere tutti gli attributi di un\'entità per tutti i membri al di fuori del gruppo degli amministratori rendendoli privati.',
-    ],
+    'hints'         => [],
     'index'         => [
         'success'   => 'Attributo aggiornato per :entity.',
         'title'     => 'Attributi per :name',

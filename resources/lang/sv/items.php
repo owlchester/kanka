@@ -2,8 +2,8 @@
 
 return [
     'create'        => [
-        'success'       => 'Föremål \':name\' skapat.',
-        'title'         => 'Nytt Föremål',
+        'success'   => 'Föremål \':name\' skapat.',
+        'title'     => 'Nytt Föremål',
     ],
     'destroy'       => [
         'success'   => 'Föremål \':name\' borttaget.',
@@ -23,12 +23,12 @@ return [
         'type'      => 'Typ',
     ],
     'index'         => [
-        'add'           => 'Nytt Föremål',
-        'header'        => 'Föremål för :name',
-        'title'         => 'Föremål',
+        'add'       => 'Nytt Föremål',
+        'header'    => 'Föremål för :name',
+        'title'     => 'Föremål',
     ],
     'inventories'   => [
-        'title'         => 'Föremål :name Inventarier',
+        'title' => 'Föremål :name Inventarier',
     ],
     'placeholders'  => [
         'character' => 'Välj en karaktär',
@@ -39,11 +39,9 @@ return [
         'type'      => 'Vapen, Trolldryck, Artefakt',
     ],
     'show'          => [
-        'tabs'          => [
-            'information'   => 'Information',
+        'tabs'  => [
             'inventories'   => 'Inventarier',
-            'quests'        => 'Uppdrag',
         ],
-        'title'         => 'Föremål :name',
+        'title' => 'Föremål :name',
     ],
 ];

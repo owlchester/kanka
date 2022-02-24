@@ -2,15 +2,15 @@
 
 return [
     'create'        => [
-        'success'       => 'Stworzono misję \':name\'.',
-        'title'         => 'Nowa misja',
+        'success'   => 'Stworzono misję \':name\'.',
+        'title'     => 'Nowa misja',
     ],
     'destroy'       => [
         'success'   => 'Usunięto misję \':name\'.',
     ],
     'edit'          => [
-        'success'       => 'Zmieniono misję \':name\'.',
-        'title'         => 'Edycja misji :name',
+        'success'   => 'Zmieniono misję \':name\'.',
+        'title'     => 'Edycja misji :name',
     ],
     'elements'      => [
         'create'    => [
@@ -47,7 +47,6 @@ return [
     ],
     'helpers'       => [
         'is_completed'      => 'Wybierz, jeżeli misję można uznać za ukończoną.',
-        'nested'            => 'W widoku hierarchii najpierw wyświetlane są misje, które nie mają źródła. Po kliknięciu na wiersz misji zobaczysz jej pochodne. Możesz schodzić niżej, póki nie skończą się poziomy hierarchii.',
         'nested_parent'     => 'Wyświetlono misje pochodzące od :parent.',
         'nested_without'    => 'Wyświetlono wszystkie misje nie posiadające źródła. Kliknij na rząd, by wyświetlić misje pochodne.',
     ],
@@ -55,9 +54,9 @@ return [
         'quests'    => 'Przy użyciu pola Misji źródłowej można stworzyć sieć zazębiających się misji.',
     ],
     'index'         => [
-        'add'           => 'Nowa misja',
-        'header'        => 'Misje elementu :name.',
-        'title'         => 'Misje',
+        'add'       => 'Nowa misja',
+        'header'    => 'Misje elementu :name.',
+        'title'     => 'Misje',
     ],
     'placeholders'  => [
         'date'  => 'Data misji w prawdziwym świecie',
@@ -67,13 +66,12 @@ return [
         'type'  => 'Wątek osobisty, misja poboczna, misja główna',
     ],
     'show'          => [
-        'actions'       => [
-            'add_element'       => 'Dodaj element',
+        'actions'   => [
+            'add_element'   => 'Dodaj element',
         ],
-        'tabs'          => [
-            'elements'      => 'Elementy',
-            'quests'        => 'Misje',
+        'tabs'      => [
+            'elements'  => 'Elementy',
         ],
-        'title'         => 'Misja :name',
+        'title'     => 'Misja :name',
     ],
 ];

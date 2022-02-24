@@ -30,7 +30,6 @@ return [
             'email'     => 'Email',
             'name'      => 'Usuário',
             'password'  => 'Senha',
-            'tos'       => 'Eu concordo com <a href=":privacyUrl" target="_blank">Privacy Policy</a>.',
             'tos_clean' => 'Eu concordo com :privacy',
         ],
         'register_with_facebook'    => 'Cadastrar com o Facebook',

@@ -17,7 +17,7 @@ return [
     ],
     'header'            => 'Hai :count notifiche',
     'index'             => [
-        'title'         => 'Notifiche',
+        'title' => 'Notifiche',
     ],
     'no_notifications'  => 'Attualmente non ci sono notifiche',
     'subscriptions'     => [

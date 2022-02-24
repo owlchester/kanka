@@ -63,7 +63,6 @@ return [
                 'superboosted'  => 'Alle superboosted campaign functies',
             ],
             'recovery'          => 'Herstel verwijderde entiteiten voor maximaal :amount dagen.',
-            'second'            => 'Het boosten van een campaign levert de volgende voordelen op:',
             'superboost'        => 'Het superboosten van een campaign gebruikt 3 van je boosts en ontgrendelt extra functies bovenop die voor boosted campaigns.',
             'theme'             => 'Campaign level thema en custom stijl.',
             'third'             => 'Om een campaign een boost te geven, ga je naar de campaign pagina en klik je op de knop :boost_button boven de knop :edit_button.',
@@ -154,15 +153,15 @@ return [
         'subscription_status'   => 'Abbonement Status',
     ],
     'patreon'       => [
-        'deprecated'        => 'Verouderde functie - als je Kanka wilt steunen, doe dit dan met een :subscription. Patreon-koppeling is nog steeds actief voor onze klanten die hun account hebben gekoppeld voordat ze weggingen van Patreon.',
-        'pledge'            => 'Toezegging: :name',
-        'remove'            => [
+        'deprecated'    => 'Verouderde functie - als je Kanka wilt steunen, doe dit dan met een :subscription. Patreon-koppeling is nog steeds actief voor onze klanten die hun account hebben gekoppeld voordat ze weggingen van Patreon.',
+        'pledge'        => 'Toezegging: :name',
+        'remove'        => [
             'button'    => 'Ontkoppel je Patreon-account',
             'success'   => 'Je Patreon-account is ontkoppeld.',
             'text'      => 'Als je je Patreon-account met Kanka ontkoppelt, worden je bonussen, naam in de hall of fame, campaign boosts en andere functies verwijderd die zijn gekoppeld aan het ondersteunen van Kanka. Geen van je boosted inhoud gaat verloren (bijv. entiteit headers). Door je opnieuw te abonneren, heb je toegang tot al je eerdere gegevens, inclusief de mogelijkheid om je eerder boosted campaigns een boost te geven.',
             'title'     => 'Ontkoppel je Patreon-account met Kanka',
         ],
-        'title'             => 'Patreon',
+        'title'         => 'Patreon',
     ],
     'profile'       => [
         'actions'   => [

@@ -2,17 +2,17 @@
 
 return [
     'children'      => [
-        'actions'       => [
+        'actions'   => [
             'add'   => 'Lägg till en ny tagg',
         ],
-        'create'        => [
+        'create'    => [
             'title' => 'Lägg till en tagg på :name',
         ],
-        'title'         => 'Tagg :name undertaggar',
+        'title'     => 'Tagg :name undertaggar',
     ],
     'create'        => [
-        'success'       => 'Tagg \':name\' skapad.',
-        'title'         => 'Ny Tagg',
+        'success'   => 'Tagg \':name\' skapad.',
+        'title'     => 'Ny Tagg',
     ],
     'destroy'       => [
         'success'   => 'Tagg \':name\' borttagen.',
@@ -29,19 +29,18 @@ return [
         'tags'          => 'Undertaggar',
         'type'          => 'Typ',
     ],
-    'helpers'       => [
-    ],
+    'helpers'       => [],
     'hints'         => [
         'children'  => 'Denna lista innehåller alla entiteter som har denna tag eller någon av dess undertaggar.',
         'tag'       => 'Visad nedan är alla taggar direkt under denna tagg.',
     ],
     'index'         => [
-        'actions'       => [
+        'actions'   => [
             'explore_view'  => 'Hierarkisk Vy',
         ],
-        'add'           => 'Ny Tagg',
-        'header'        => 'Taggar i :name',
-        'title'         => 'Taggar',
+        'add'       => 'Ny Tagg',
+        'header'    => 'Taggar i :name',
+        'title'     => 'Taggar',
     ],
     'new_tag'       => 'Ny Tagg',
     'placeholders'  => [
@@ -50,13 +49,13 @@ return [
         'type'  => 'Kunskap, Krig, Historia, Religion, Vexillologi',
     ],
     'show'          => [
-        'tabs'          => [
-            'children'      => 'Undertaggar',
-            'tags'          => 'Taggar',
+        'tabs'  => [
+            'children'  => 'Undertaggar',
+            'tags'      => 'Taggar',
         ],
-        'title'         => 'Tagg :name',
+        'title' => 'Tagg :name',
     ],
     'tags'          => [
-        'title'         => 'Tag :name undertaggar',
+        'title' => 'Tag :name undertaggar',
     ],
 ];

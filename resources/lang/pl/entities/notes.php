@@ -11,23 +11,21 @@ return [
         'success'   => 'Wzmianka zaawansowana skopiowana do schowka',
     ],
     'create'        => [
-        'success'       => 'Dodano komentarz :name do elementu :entity.',
-        'title'         => 'Nowy komentarz do elementu :name.',
+        'success'   => 'Dodano komentarz :name do elementu :entity.',
+        'title'     => 'Nowy komentarz do elementu :name.',
     ],
     'destroy'       => [
         'success'   => 'Usunięto komentarz :name do elementu :entity.',
     ],
     'edit'          => [
-        'success'       => 'Zmieniono komentarz :name do elementu :entity.',
-        'title'         => 'Edycja komentarza do elementu :name',
+        'success'   => 'Zmieniono komentarz :name do elementu :entity.',
+        'title'     => 'Edycja komentarza do elementu :name',
     ],
     'fields'        => [
         'collapsed' => 'Domyślnie zamykaj przypięte komentarze',
         'creator'   => 'Twórca',
         'entry'     => 'Szczegóły',
-        'is_pinned' => 'Przypięta',
         'name'      => 'Nazwa',
-        'position'  => 'Kolejność przypięcia',
     ],
     'footer'        => [
         'created'   => 'Stworzony przez :user dnia :date',
@@ -35,7 +33,6 @@ return [
     ],
     'hint'          => 'Komentarze to informacje, które nie mieszczą się w zwykłych polach opisu elementu albo które powinny pozostać tajne.',
     'hints'         => [
-        'is_pinned' => 'Przypięte komentarze zostają wyświetlone pod polem opisu w głównym widoku elementu. Używaj pozycji "Kolejność przypięcia" by ustalić porządek ich wyświetlania.',
         'reorder'   => 'Możesz zmieniać kolejność komentarzy po kliknięciu na ikonę :icon obok pozycji "historia" w menu elementu',
     ],
     'index'         => [

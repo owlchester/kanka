@@ -2,8 +2,8 @@
 
 return [
     'create'        => [
-        'success'       => 'Stworzono wydarzenie \':name\'.',
-        'title'         => 'Nowe wydarzenie',
+        'success'   => 'Stworzono wydarzenie \':name\'.',
+        'title'     => 'Nowe wydarzenie',
     ],
     'destroy'       => [
         'success'   => 'Usunięto wydarzenie \':name\'.',
@@ -27,14 +27,13 @@ return [
     ],
     'helpers'       => [
         'date'          => 'W tym polu można umieścić wszystko - nie jest związane z kalendarzami kampanii. By umieścić je w kalendarzu, dodaj je ręcznie w menu kalendarza albo zakładce "Ważne daty" wydarzenia.',
-        'nested'        => 'W widoku hierarchii najpierw wyświetlane są wydarzenia, które nie mają źródła. Po kliknięciu na wiersz wydarzenia zobaczysz jego pochodne. Możesz schodzić niżej, póki nie skończą się poziomy hierarchii.',
         'nested_parent' => 'Wyświetlono wydarzenia pochodzące od :parent.',
         'nested_without'=> 'Wyświetlono wszystkie wydarzenia nie posiadające źródła. Kliknij na rząd, by wyświetlić wydarzenia pochodne.',
     ],
     'index'         => [
-        'add'           => 'Nowe wydarzenie',
-        'header'        => 'Wydarzenia elementu :name',
-        'title'         => 'Wydarzenia',
+        'add'       => 'Nowe wydarzenie',
+        'header'    => 'Wydarzenia elementu :name',
+        'title'     => 'Wydarzenia',
     ],
     'placeholders'  => [
         'date'      => 'Data tego wydarzenia',
@@ -43,11 +42,10 @@ return [
         'type'      => 'Uroczystość, festiwal, katastrofa, bitwa, narodziny',
     ],
     'show'          => [
-        'tabs'          => [
-            'events'        => 'Wydarzenia',
-            'information'   => 'Informacje',
+        'tabs'  => [
+            'events'    => 'Wydarzenia',
         ],
-        'title'         => 'Wydarzenie :name',
+        'title' => 'Wydarzenie :name',
     ],
     'tabs'          => [
         'calendars' => 'Wpisy w kalendarzu',

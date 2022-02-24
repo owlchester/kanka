@@ -2,15 +2,15 @@
 
 return [
     'create'        => [
-        'success'       => 'Elemento del menù \':name\' aggiornato.',
-        'title'         => 'Nuovo Elemento del Menù',
+        'success'   => 'Elemento del menù \':name\' aggiornato.',
+        'title'     => 'Nuovo Elemento del Menù',
     ],
     'destroy'       => [
         'success'   => 'Elemento del menù \':name\' rimosso.',
     ],
     'edit'          => [
-        'success'       => 'Elemento del menù \':name\' aggiornato.',
-        'title'         => 'Elemento del menù \':name\'',
+        'success'   => 'Elemento del menù \':name\' aggiornato.',
+        'title'     => 'Elemento del menù \':name\'',
     ],
     'fields'        => [
         'entity'    => 'Entità',
@@ -27,8 +27,8 @@ return [
         'type'      => 'Configura questo collegamento nel menù per poter accedere direttamente ad una lista di entità. Per filtrare i risultati, copia parti dell\'URL sulla lista filtrata delle entità dopo il segno :? nel campo :filter.',
     ],
     'index'         => [
-        'add'           => 'Nuovo Elemento del Menù',
-        'title'         => 'Elementi del Menù',
+        'add'   => 'Nuovo Elemento del Menù',
+        'title' => 'Elementi del Menù',
     ],
     'placeholders'  => [
         'entity'    => 'Seleziona un\'entità',
@@ -38,8 +38,6 @@ return [
         'tab'       => 'entità, relazioni, note',
     ],
     'show'          => [
-        'tabs'          => [
-        ],
-        'title'         => 'Elemento del menù \':name\'',
+        'title' => 'Elemento del menù \':name\'',
     ],
 ];

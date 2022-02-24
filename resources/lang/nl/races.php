@@ -2,15 +2,15 @@
 
 return [
     'characters'    => [
-        'helpers'       => [
+        'helpers'   => [
             'all_characters'    => 'Alle personages weergeven die verband houden met dit ras en zijn sub rassen.',
             'characters'        => 'Alle personages weergeven die rechtstreeks verband houden met dit ras.',
         ],
-        'title'         => 'Ras :name Personages',
+        'title'     => 'Ras :name Personages',
     ],
     'create'        => [
-        'success'       => 'Ras \':name\' gemaakt.',
-        'title'         => 'Nieuw Ras',
+        'success'   => 'Ras \':name\' gemaakt.',
+        'title'     => 'Nieuw Ras',
     ],
     'destroy'       => [
         'success'   => 'Ras \':name\' verwijderd.',
@@ -26,25 +26,24 @@ return [
         'races'         => 'Sub Rassen',
         'type'          => 'Type',
     ],
-    'helpers'       => [
-    ],
+    'helpers'       => [],
     'index'         => [
-        'add'           => 'Nieuw Ras',
-        'header'        => 'Rassen van :name',
-        'title'         => 'Rassen',
+        'add'       => 'Nieuw Ras',
+        'header'    => 'Rassen van :name',
+        'title'     => 'Rassen',
     ],
     'placeholders'  => [
         'name'  => 'Naam van het ras',
         'type'  => 'Mens, Fey, Borg',
     ],
     'races'         => [
-        'title'         => 'Ras :name Subrassen',
+        'title' => 'Ras :name Subrassen',
     ],
     'show'          => [
-        'tabs'          => [
+        'tabs'  => [
             'characters'    => 'Personages',
             'races'         => 'Subrassen',
         ],
-        'title'         => 'Ras :name',
+        'title' => 'Ras :name',
     ],
 ];

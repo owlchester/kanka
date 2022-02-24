@@ -26,9 +26,9 @@ return [
         'descendants'   => 'Denne listen inneholder alle egenskaper som er etterkommere av denne egenskapen, ikke bare de som stammer direkte fra den.',
     ],
     'index'         => [
-        'add'           => 'Ny egenskap',
-        'header'        => 'Egenskaper til :name',
-        'title'         => 'Egenskaper',
+        'add'       => 'Ny egenskap',
+        'header'    => 'Egenskaper til :name',
+        'title'     => 'Egenskaper',
     ],
     'placeholders'  => [
         'charges'   => 'Antall ladninger. Referer atributt med {Level}*{CHA}',

@@ -7,8 +7,7 @@ return [
         'unfollow'  => 'Zrušiť sledovanie',
     ],
     'campaigns'         => [
-        'manage'    => 'Spravovať kampaň',
-        'tabs'      => [
+        'tabs'  => [
             'modules'   => '{1} :count modul|[2,4] :count moduly|[5,*] :count modulov',
             'roles'     => '{1} :count rola|[2,4] :count role|[5,*] :count rolí',
             'users'     => '{1} :count užívateľ|[2,4] :count užívatelia|[5,*] :count užívateľov',
@@ -56,7 +55,6 @@ return [
             'visible'   => 'Viditeľná',
         ],
     ],
-    'description'       => 'Domov tvojej kreativity',
     'helpers'           => [
         'follow'    => 'Keď sleduješ nejakú kampaň, bude sa ti zobrazovať v prepínači kampaní (vpravo hore) pod tvojimi kampaňami.',
         'join'      => 'Táto kampaň je otvorená pre nových členov. Klikni sem na pridanie sa do nej.',
@@ -70,21 +68,10 @@ return [
         ],
     ],
     'recent'            => [
-        'add'           => 'Vytvoriť :name',
-        'no_entries'    => 'Z daného typu neexistujú žiadne objekty.',
-        'title'         => 'Nedávno zmenené :name',
-        'view'          => 'Zobraziť všetky :name',
+        'title' => 'Nedávno zmenené :name',
     ],
     'settings'          => [
-        'description'   => 'Uprav, čo sa zobrazuje na nástenke',
-        'edit'          => [
-            'success'   => 'Zmeny boli uložené.',
-        ],
-        'fields'        => [
-            'helper'        => 'Jednoducho môžeš zmeniť, čo sa zobrazuje na nástenke. Uvedom si, že toto platí pre všetky tvoje kampane, bez ohľadu na nastavenia v kampani.',
-            'recent_count'  => 'Počet nedávno pridaných objektov',
-        ],
-        'title'         => 'Nastavenia nástenky',
+        'title' => 'Nastavenia nástenky',
     ],
     'setup'             => [
         'actions'   => [
@@ -108,20 +95,6 @@ return [
         ],
     ],
     'title'             => 'Nástenka',
-    'welcome'           => [
-        'body'  => <<<'TEXT'
-Vitaj v Kanke! Tvoju prvú kampaň je vytvorená a pre inšpiráciu sme do nej vložili pár objektov ako príklad (tie môžeš hocikedy odstrániť).
-
-Chceš asi začať zakladať vlastné objekty, tak si vyber niektorú z kategórií v menu! Kategórie, ktoré nepotrebuješ, môžeš vypnúť v nastavení tvojej kampane.
-
-Na začiatok pár tipov:
-- Zadaním @menoobjektu môžeš vytvoriť linku na daný objekt. Zobrazovaný text linky sa automaticky aktualizuje, ak upravíš meno daného objektu alebo jeho popis.
-- V nastavení tvojho profilového konta vpravo hore vieš upraviť dizajn a zobrazenie objektov.
-- Na :youtube sa nachádza stále narastajúci počet návodov. Mimo iných aj o atribútoch a ako zdieľať kampaň s ostatnými. Na pomoc tu máme aj :faq.
-- Keď budeš mať otázky alebo návrhy - alebo si chceš len pokecať - ukáž sa v našom :discord.
-TEXT
-,
-    ],
     'widgets'           => [
         'actions'                   => [
             'advanced-options'  => 'Rozšírené možnosti',

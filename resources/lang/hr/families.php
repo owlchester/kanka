@@ -2,8 +2,8 @@
 
 return [
     'create'        => [
-        'success'       => 'Kreirana obitelj ":name".',
-        'title'         => 'Nova obitelj',
+        'success'   => 'Kreirana obitelj ":name".',
+        'title'     => 'Nova obitelj',
     ],
     'destroy'       => [
         'success'   => 'Uklonjena obitelj ":name".',
@@ -34,9 +34,9 @@ return [
         'members'   => 'Ovdje su navedeni članovi obitelji. Lik se može dodati u obitelj uređivanjem željenog lika, upotrebom padajućeg izbornika "Obitelj".',
     ],
     'index'         => [
-        'add'           => 'Nova obitelj',
-        'header'        => 'Obitelji od :name',
-        'title'         => 'Obitelji',
+        'add'       => 'Nova obitelj',
+        'header'    => 'Obitelji od :name',
+        'title'     => 'Obitelji',
     ],
     'members'       => [
         'helpers'   => [
@@ -51,12 +51,12 @@ return [
         'type'      => 'Kraljevska, plemenita, izumrla',
     ],
     'show'          => [
-        'tabs'          => [
+        'tabs'  => [
             'all_members'   => 'Svi članovi',
             'families'      => 'Obitelji',
             'members'       => 'Članovi',
             'relation'      => 'Odnosi',
         ],
-        'title'         => 'Obitelj :name',
+        'title' => 'Obitelj :name',
     ],
 ];

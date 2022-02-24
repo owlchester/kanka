@@ -11,15 +11,15 @@ return [
         'success'   => 'Erweiterte Erwähnung zum Posten in die Zwischenablage kopiert.',
     ],
     'create'        => [
-        'success'       => 'Notiz \':name\' zu :entity hinzugefügt.',
-        'title'         => 'Neue Notiz für :name',
+        'success'   => 'Notiz \':name\' zu :entity hinzugefügt.',
+        'title'     => 'Neue Notiz für :name',
     ],
     'destroy'       => [
         'success'   => 'Notiz \':name\' von :entity entfernt.',
     ],
     'edit'          => [
-        'success'       => 'Notiz \':name\' für :entity aktualisiert.',
-        'title'         => 'Aktualisiere Notiz für :name',
+        'success'   => 'Notiz \':name\' für :entity aktualisiert.',
+        'title'     => 'Aktualisiere Notiz für :name',
     ],
     'fields'        => [
         'collapsed' => 'Schließen Sie die angeheftete Objektnotiz standardmäßig',

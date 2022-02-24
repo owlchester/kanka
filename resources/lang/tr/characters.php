@@ -7,22 +7,22 @@ return [
         'add_personality'   => 'Bir kişilik ekle',
     ],
     'conversations' => [
-        'title'         => ':name Karakterinin Muhabbetleri',
+        'title' => ':name Karakterinin Muhabbetleri',
     ],
     'create'        => [
-        'success'       => '\':name\' karakteri yaratıldı.',
-        'title'         => 'Yeni Karakter',
+        'success'   => '\':name\' karakteri yaratıldı.',
+        'title'     => 'Yeni Karakter',
     ],
     'destroy'       => [
         'success'   => '\':name\' karakteri kaldırıldı.',
     ],
     'dice_rolls'    => [
-        'hint'          => 'Zarlar oyun içi kullanım için karakterlere bağlanabilir.',
-        'title'         => ':name Karakteri Zarları',
+        'hint'  => 'Zarlar oyun içi kullanım için karakterlere bağlanabilir.',
+        'title' => ':name Karakteri Zarları',
     ],
     'edit'          => [
-        'success'       => '\':name\' karakteri güncellendi.',
-        'title'         => ':name Karakterini Düzenle',
+        'success'   => '\':name\' karakteri güncellendi.',
+        'title'     => ':name Karakterini Düzenle',
     ],
     'fields'        => [
         'age'                       => 'Yaş',
@@ -45,44 +45,43 @@ return [
         'age'   => 'Bu varlığın yaşını serüveninizin bir takvimine bağlayarak da yaşını hesaplayabilirsiniz. :more.',
     ],
     'hints'         => [
-        'hide_personality'          => 'Bu sekme "Yönetici" olmayan kullanıcılardan "Kişiliği Görünür" seçeneği karakteri düzenlerken kaldırılarak saklanabilir.',
         'is_dead'                   => 'Bu karakter ölü',
         'is_personality_visible'    => 'Bütün kişilik sekmesini "Yönetici" olmayan kullanıcılardan saklayabilirsiniz.',
         'personality_not_visible'   => 'Bu karakterin kişilik özellikleri şu anda yalnızca Yönetici kullanıcılara görünür.',
         'personality_visible'       => 'Bu karakterin kişilik özelliklere herkese görünür.',
     ],
     'index'         => [
-        'actions'       => [
+        'actions'   => [
             'random'    => 'Yeni Rastgele Karakter',
         ],
-        'add'           => 'Yeni Karakter',
-        'header'        => ':name karakterleri',
-        'title'         => 'Karakterler',
+        'add'       => 'Yeni Karakter',
+        'header'    => ':name karakterleri',
+        'title'     => 'Karakterler',
     ],
     'items'         => [
-        'hint'          => 'Eşyalar karakterlere atanabilir ve burada görüntülenebilir.',
-        'title'         => ':name Karakterinin Eşyaları',
+        'hint'  => 'Eşyalar karakterlere atanabilir ve burada görüntülenebilir.',
+        'title' => ':name Karakterinin Eşyaları',
     ],
     'journals'      => [
-        'title'         => ':name Karakterinin Günlükleri',
+        'title' => ':name Karakterinin Günlükleri',
     ],
     'maps'          => [
-        'title'         => ':name Karakter İlişki Haritası',
+        'title' => ':name Karakter İlişki Haritası',
     ],
     'organisations' => [
         'actions'       => [
             'add'   => 'Organizasyon ekle',
         ],
         'create'        => [
-            'success'       => 'Karakter organizasyona eklendi.',
-            'title'         => ':name için Yeni Organizasyon',
+            'success'   => 'Karakter organizasyona eklendi.',
+            'title'     => ':name için Yeni Organizasyon',
         ],
         'destroy'       => [
             'success'   => 'Karakter organizasyonu kaldırıldı.',
         ],
         'edit'          => [
-            'success'       => 'Karakter organizasyonu güncellendi.',
-            'title'         => ':name için Organizasyonu Güncelle',
+            'success'   => 'Karakter organizasyonu güncellendi.',
+            'title'     => ':name için Organizasyonu Güncelle',
         ],
         'fields'        => [
             'organisation'  => 'Organizasyon',
@@ -112,11 +111,10 @@ return [
         'type'              => 'NPC, Oyuncu Karakteri, Tanrı',
     ],
     'quests'        => [
-        'helpers'       => [
+        'helpers'   => [
             'quest_giver'   => 'Karakterin görev verici olduğu görevler.',
             'quest_member'  => 'Karakterin bir üyesi olduğu görevler.',
         ],
-        'title'         => ':name Karakterinin Görevleri',
     ],
     'sections'      => [
         'appearance'    => 'Görünüm',
@@ -124,17 +122,12 @@ return [
         'personality'   => 'Kişilik',
     ],
     'show'          => [
-        'tabs'          => [
-            'conversations' => 'Muhabbetler',
-            'dice_rolls'    => 'Zarlar',
-            'items'         => 'Eşyalar',
-            'journals'      => 'Günlükler',
+        'tabs'  => [
             'map'           => 'İlişki Haritası',
             'organisations' => 'Organizasyonlar',
             'personality'   => 'Kişilik',
-            'quests'        => 'Görevler',
         ],
-        'title'         => ':name Karakteri',
+        'title' => ':name Karakteri',
     ],
     'warnings'      => [
         'personality_hidden'    => 'Bu karakterde kişilik özelliklerini düzenleme izniniz yok.',

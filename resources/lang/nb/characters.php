@@ -1,16 +1,14 @@
 <?php
 
 return [
-    'fields'        => [
-        'eye'   => 'Øyenfarge',
-    ],
+    'fields'        => [],
     'organisations' => [
         'actions'       => [
             'add'   => 'Legg til organisasjon',
         ],
         'create'        => [
-            'success'       => 'Karakter lagt til i organisasjon',
-            'title'         => 'Ny organisasjon for :name',
+            'success'   => 'Karakter lagt til i organisasjon',
+            'title'     => 'Ny organisasjon for :name',
         ],
         'destroy'       => [
             'success'   => 'Karakter organisasjon fjernet.',
@@ -26,9 +24,7 @@ return [
             'organisation'  => 'Velg en organisasjon...',
         ],
     ],
-    'placeholders'  => [
-        'eye'   => 'Øyenfarge',
-    ],
+    'placeholders'  => [],
     'show'          => [
         'tabs'  => [
             'organisations' => 'Organisasjoner',

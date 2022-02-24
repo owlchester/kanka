@@ -2,6 +2,6 @@
 
 return [
     'index' => [
-        'title'         => 'Ergebnisse des Würfelwurfs',
+        'title' => 'Ergebnisse des Würfelwurfs',
     ],
 ];

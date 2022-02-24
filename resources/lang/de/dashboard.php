@@ -55,7 +55,6 @@ return [
             'visible'   => 'Sichtbar',
         ],
     ],
-    'description'       => 'Das Zuhause deiner Kreativität',
     'helpers'           => [
         'follow'    => 'Wenn du einer Kampagne folgst, wird sie im Kampagnenwähler (oben rechts) unter deinen Kampagnen angezeigt.',
         'join'      => 'Diese Kampagne steht neuen Mitgliedern offen. Klicken Sie, um sich zu bewerben, um daran teilzunehmen.',

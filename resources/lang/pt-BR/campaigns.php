@@ -4,8 +4,6 @@ return [
     'create'                            => [
         'description'           => 'Criar uma nova Campanha',
         'helper'                => [
-            'first'     => 'Muito obrigado por testar o nosso app! Antes de continuarmos, nós precisamos que você nos informe uma coisa: O nome da sua <b>Campanha</b>. Esse será o nome do seu mundo que o diferencia dos outros, então precisa ser único. Se você não pensou em um bom nome ainda, não se preocupe, você <b>sempre pode mudar depois</b>, ou criar mais campanhas.',
-            'second'    => 'Mas chega de conversinha! E então, qual será?',
             'title'     => 'Bem vindo a :name!',
             'welcome'   => <<<'TEXT'
 Antes de prosseguir, você precisa escolher um nome de campanha. Este é o nome do seu mundo. Se você ainda não tem um bom nome, não se preocupe, você sempre pode alterá-lo mais tarde ou criar mais campanhas.
@@ -24,13 +22,10 @@ TEXT
         'success'   => 'Campanha removida',
     ],
     'edit'                              => [
-        'description'   => 'Edite sua campanha',
-        'success'       => 'Campanha atualizada',
-        'title'         => 'Editar Campanha :campaign',
+        'success'   => 'Campanha atualizada',
+        'title'     => 'Editar Campanha :campaign',
     ],
-    'entity_note_visibility'            => [
-        'pinned'    => 'Fixar novas notas de entidade',
-    ],
+    'entity_note_visibility'            => [],
     'entity_personality_visibilities'   => [
         'private'   => 'Como padrão, novos personagens tem sua personalidade privada.',
     ],
@@ -43,7 +38,6 @@ TEXT
         'unknown_id'    => 'Campanha desconhecida',
     ],
     'export'                            => [
-        'description'       => 'Exportar a campanha.',
         'errors'            => [
             'limit' => 'Você excedeu o máximo de uma exportação por dia. Por favor, tente novamente amanhã.',
         ],
@@ -54,59 +48,53 @@ TEXT
         'title'             => 'Exportação da campanha :name',
     ],
     'fields'                            => [
-        'boosted'                       => 'Impulsionada por',
-        'connections'                   => 'Mostra a tabela de conexão de uma entidade por padrão (em vez do explorador de relação para campanhas impulsionadas)',
-        'css'                           => 'CSS',
-        'description'                   => 'Descrição',
-        'entity_count'                  => 'Número de entidades',
-        'entity_note_visibility'        => 'Notas de entidade fixadas',
-        'entity_personality_visibility' => 'Visibilidade da personalidade do personagem',
-        'entity_visibility'             => 'Visibilidade da entidade',
-        'entry'                         => 'Descrição da campanha',
-        'excerpt'                       => 'Resumo',
-        'followers'                     => 'Seguidores',
-        'header_image'                  => 'Cabeçalho',
-        'hide_history'                  => 'Esconder histórico da entidade',
-        'hide_members'                  => 'Esconder membros da campanha',
-        'image'                         => 'Imagem',
-        'locale'                        => 'Local',
-        'name'                          => 'Nome',
-        'nested'                        => 'Listas de entidades padrão para aninhadas quando disponíveis',
-        'open'                          => 'Aberta a inscrições',
-        'post_collapsed'                => 'Novas notas em entidades são colapsadas por padrão.',
-        'public_campaign_filters'       => 'Filtros de Campanhas públicas',
-        'related_visibility'            => 'Visibilidade dos elementos relacionados',
-        'rpg_system'                    => 'SIstemas de RPG',
-        'superboosted'                  => 'Super Impulsionada por:',
-        'system'                        => 'Sistema',
-        'theme'                         => 'Tema',
-        'tooltip_family'                => 'Desativar nomes de família das dicas',
-        'tooltip_image'                 => 'Mostrar imagens da entidade nas dicas',
-        'visibility'                    => 'Visibilidade',
+        'boosted'                   => 'Impulsionada por',
+        'connections'               => 'Mostra a tabela de conexão de uma entidade por padrão (em vez do explorador de relação para campanhas impulsionadas)',
+        'css'                       => 'CSS',
+        'description'               => 'Descrição',
+        'entity_count'              => 'Número de entidades',
+        'entry'                     => 'Descrição da campanha',
+        'excerpt'                   => 'Resumo',
+        'followers'                 => 'Seguidores',
+        'header_image'              => 'Cabeçalho',
+        'hide_history'              => 'Esconder histórico da entidade',
+        'hide_members'              => 'Esconder membros da campanha',
+        'image'                     => 'Imagem',
+        'locale'                    => 'Local',
+        'name'                      => 'Nome',
+        'nested'                    => 'Listas de entidades padrão para aninhadas quando disponíveis',
+        'open'                      => 'Aberta a inscrições',
+        'post_collapsed'            => 'Novas notas em entidades são colapsadas por padrão.',
+        'public_campaign_filters'   => 'Filtros de Campanhas públicas',
+        'related_visibility'        => 'Visibilidade dos elementos relacionados',
+        'rpg_system'                => 'SIstemas de RPG',
+        'superboosted'              => 'Super Impulsionada por:',
+        'system'                    => 'Sistema',
+        'theme'                     => 'Tema',
+        'tooltip_family'            => 'Desativar nomes de família das dicas',
+        'tooltip_image'             => 'Mostrar imagens da entidade nas dicas',
+        'visibility'                => 'Visibilidade',
     ],
     'following'                         => 'Seguindo',
     'helpers'                           => [
-        'boost_required'                => 'Este recurso requer que a campanha seja impulsionada. Mais informações na página :settings.',
-        'boosted'                       => 'Alguns recursos requerem que a campanha esteja sendo impulsionada. Mais informações na página :settings.',
-        'css'                           => 'Escreva seu próprio CSS que será carregado nas páginas de sua campanha. Observe que qualquer abuso desse recurso pode levar à remoção do seu CSS personalizado. Ofensas repetidas ou graves podem levar à remoção de sua campanha.',
-        'dashboard'                     => 'Personalize a forma como o widget do dashboard da campanha é exibido preenchendo os campos a seguir.',
-        'entity_note_visibility'        => 'Quando você criar uma nova nota de entidade, a opção "Fixada" será selecionada automaticamente',
-        'entity_personality_visibility' => 'Ao criar um novo personagem, a opção "Personalidade Visível" será automaticamente desmarcada.',
-        'entity_visibility'             => 'Ao criar uma nova entidade, a opção "Privada" será automaticamente selecionada.',
-        'excerpt'                       => 'O resumo da campanha será exibido no painel, então escreva algumas frases apresentando o seu mundo. Mantenha-o curto para obter os melhores resultados.',
-        'header_image'                  => 'Imagem exibida como plano de fundo no widget cabeçalho da campanha do dashboard.',
-        'hide_history'                  => 'Habilite esta opção para ocultar o histórico de entidades para membros não administradores da campanha.',
-        'hide_members'                  => 'Habilite esta opção para ocultar a lista de membros da campanha para membros não administradores.',
-        'locale'                        => 'O idioma em que sua campanha está escrita. É usado para gerar conteúdo e agrupar campanhas públicas.',
-        'name'                          => 'Sua campanha/mundo pode ter qualquer nome, desde que contenha pelo menos 4 letras ou números.',
-        'public_campaign_filters'       => 'Ajude outras pessoas a encontrar a campanha entre outras campanhas públicas, fornecendo as seguintes informações.',
-        'public_no_visibility'          => 'Atenção! Sua campanha é pública, mas a função pública da campanha não pode acessar nada. :fix.',
-        'related_visibility'            => 'Visibilidade padrão ao criar um novo elemento com este campo (notas de entidade, relações, habilidades, etc)',
-        'system'                        => 'Se a sua campanha estiver publicamente visível, o sistema será mostrado na página :link.',
-        'systems'                       => 'Para evitar sobrecarregar os usuários com opções, alguns recursos do Kanka estão disponíveis apenas com sistemas de RPG específicos (ou seja, o bloco de estatísticas do monstro D&D 5e). Adicionar sistemas suportados aqui habilitará esses recursos.',
-        'theme'                         => 'Force o tema da campanha, substituindo a preferência do usuário.',
-        'view_public'                   => 'Para visualizar sua campanha como um visualizador público faria, abra :link em uma janela anônima.',
-        'visibility'                    => 'Tornar uma campanha pública significa que qualquer pessoa com um link para ela poderá vê-la.',
+        'boost_required'            => 'Este recurso requer que a campanha seja impulsionada. Mais informações na página :settings.',
+        'boosted'                   => 'Alguns recursos requerem que a campanha esteja sendo impulsionada. Mais informações na página :settings.',
+        'css'                       => 'Escreva seu próprio CSS que será carregado nas páginas de sua campanha. Observe que qualquer abuso desse recurso pode levar à remoção do seu CSS personalizado. Ofensas repetidas ou graves podem levar à remoção de sua campanha.',
+        'dashboard'                 => 'Personalize a forma como o widget do dashboard da campanha é exibido preenchendo os campos a seguir.',
+        'excerpt'                   => 'O resumo da campanha será exibido no painel, então escreva algumas frases apresentando o seu mundo. Mantenha-o curto para obter os melhores resultados.',
+        'header_image'              => 'Imagem exibida como plano de fundo no widget cabeçalho da campanha do dashboard.',
+        'hide_history'              => 'Habilite esta opção para ocultar o histórico de entidades para membros não administradores da campanha.',
+        'hide_members'              => 'Habilite esta opção para ocultar a lista de membros da campanha para membros não administradores.',
+        'locale'                    => 'O idioma em que sua campanha está escrita. É usado para gerar conteúdo e agrupar campanhas públicas.',
+        'name'                      => 'Sua campanha/mundo pode ter qualquer nome, desde que contenha pelo menos 4 letras ou números.',
+        'public_campaign_filters'   => 'Ajude outras pessoas a encontrar a campanha entre outras campanhas públicas, fornecendo as seguintes informações.',
+        'public_no_visibility'      => 'Atenção! Sua campanha é pública, mas a função pública da campanha não pode acessar nada. :fix.',
+        'related_visibility'        => 'Visibilidade padrão ao criar um novo elemento com este campo (notas de entidade, relações, habilidades, etc)',
+        'system'                    => 'Se a sua campanha estiver publicamente visível, o sistema será mostrado na página :link.',
+        'systems'                   => 'Para evitar sobrecarregar os usuários com opções, alguns recursos do Kanka estão disponíveis apenas com sistemas de RPG específicos (ou seja, o bloco de estatísticas do monstro D&D 5e). Adicionar sistemas suportados aqui habilitará esses recursos.',
+        'theme'                     => 'Force o tema da campanha, substituindo a preferência do usuário.',
+        'view_public'               => 'Para visualizar sua campanha como um visualizador público faria, abra :link em uma janela anônima.',
+        'visibility'                => 'Tornar uma campanha pública significa que qualquer pessoa com um link para ela poderá vê-la.',
     ],
     'index'                             => [
         'actions'   => [
@@ -123,13 +111,10 @@ TEXT
             'link'  => 'Novo Link',
         ],
         'create'                => [
-            'button'        => 'Convidar',
             'buttons'       => [
                 'create'    => 'Criar convite',
                 'send'      => 'Enviar convite',
             ],
-            'description'   => 'Convide um amigo para a sua campanha',
-            'link'          => 'Link criado: <a href=":url" target="_blank">:url</a>',
             'success'       => 'Convite enviado.',
             'success_link'  => 'Link criado :link',
             'title'         => 'Convide alguém para sua campanha',
@@ -138,7 +123,6 @@ TEXT
             'success'   => 'Convite removido',
         ],
         'email'                 => [
-            'link'      => '<a href=":link">Juntar-se a campanha de :name\'s </a>',
             'link_text' => 'Entrar na campanha :name',
             'subject'   => ':name convidou você para juntar-se a sua campanha \':campaign\' no kanka.io! Use o link a seguir para aceitar o seu convite.',
             'title'     => 'Convite de :name',
@@ -155,7 +139,6 @@ TEXT
             'role'      => 'Cargo',
             'type'      => 'Tipo',
             'usage'     => 'Número máximo de usos',
-            'validity'  => 'Validade',
         ],
         'helpers'               => [
             'email'     => 'Nossos e-mails são frequentemente sinalizados como spam e podem levar algumas horas antes de aparecerem na sua caixa de entrada.',
@@ -191,10 +174,8 @@ TEXT
         'create'                => [
             'title' => 'Adicionar um membro a sua campanha',
         ],
-        'description'           => 'Gerenciar os membros da campanha',
         'edit'                  => [
-            'description'   => 'Edite um membro da sua campanha',
-            'title'         => 'Editar membro :name',
+            'title' => 'Editar membro :name',
         ],
         'fields'                => [
             'joined'        => 'Juntou-se em',
@@ -270,7 +251,6 @@ TEXT
             'success'   => 'Cargo criado',
             'title'     => 'Criar um novo cargo para :name',
         ],
-        'description'   => 'Gerencie os cargos da campanha',
         'destroy'       => [
             'success'   => 'Cargo removido.',
         ],
@@ -334,8 +314,7 @@ TEXT
             'name'  => 'Nome do cargo',
         ],
         'show'          => [
-            'description'   => 'Membros e Permissões do cargo da campanha',
-            'title'         => 'Cargo \':role\' para a campanha \':campaign\'',
+            'title' => 'Cargo \':role\' para a campanha \':campaign\'',
         ],
         'title'         => 'Cargos da campanha :name',
         'types'         => [
@@ -361,19 +340,17 @@ TEXT
         ],
     ],
     'settings'                          => [
-        'actions'       => [
+        'actions'   => [
             'enable'    => 'Habilitar',
         ],
-        'boosted'       => 'Este recurso está em acesso antecipado e atualmente disponível apenas para :boosted.',
-        'description'   => 'Ativar ou desativar módulos da campanha',
-        'edit'          => [
+        'boosted'   => 'Este recurso está em acesso antecipado e atualmente disponível apenas para :boosted.',
+        'edit'      => [
             'success'   => 'Configurações da campanha atualizadas.',
         ],
-        'helper'        => 'Você pode facilmente desabilitar elementos da sua campanha que serão escondidos. Se você já havia criado elementos nas categorias que desabilitar, eles não serão deletados, apenas ocultados.',
-        'helpers'       => [
+        'helper'    => 'Você pode facilmente desabilitar elementos da sua campanha que serão escondidos. Se você já havia criado elementos nas categorias que desabilitar, eles não serão deletados, apenas ocultados.',
+        'helpers'   => [
             'abilities'     => 'Crie habilidades, sejam talentos, feitiços ou poderes que podem ser atribuídos a entidades.',
             'calendars'     => 'Um lugar para definir todos os calendários do seu mundo.',
-            'categories'    => 'Cada entidade pode ter uma categoria. Categorias podem pertencer a outras categorias, e entidades podem ser filtradas por categorias.',
             'characters'    => 'O povo que habita seu mundo.',
             'conversations' => 'Conversas fictícias entre personagens ou entre usuários da campanha. Este módulo está obsoleto.',
             'dice_rolls'    => 'Para aqueles que usam Kanka para campanhas de RPG, uma maneira de cuidar das rolagens de dados.',
@@ -392,21 +369,20 @@ TEXT
             'tags'          => 'Cada entidade pode ter várias tags. As tags podem pertencer a outras tags e as entradas podem ser filtradas por tag.',
             'timelines'     => 'Represente a história do seu mundo com Linhas do Tempo.',
         ],
-        'title'         => 'Módulos da campanha :name',
+        'title'     => 'Módulos da campanha :name',
     ],
     'show'                              => [
-        'actions'       => [
+        'actions'   => [
             'boost' => 'Impulsionar campanha.',
             'edit'  => 'Editar campanha',
             'leave' => 'Deixar campanha',
         ],
-        'description'   => 'Uma visão detalhada da campanha',
-        'menus'         => [
+        'menus'     => [
             'configuration'     => 'Configurações',
             'overview'          => 'Visão Geral',
             'user_management'   => 'Gerenciar usuários',
         ],
-        'tabs'          => [
+        'tabs'      => [
             'achievements'      => 'Conquistas',
             'applications'      => 'Solicitações',
             'campaign'          => 'Campanha',
@@ -420,7 +396,7 @@ TEXT
             'settings'          => 'Configurações',
             'styles'            => 'Temas',
         ],
-        'title'         => 'Campanha :name',
+        'title'     => 'Campanha :name',
     ],
     'superboosted'                      => [
         'gallery'   => [

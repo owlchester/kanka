@@ -2,8 +2,8 @@
 
 return [
     'create'        => [
-        'success'       => 'Journal \':name\' skapad.',
-        'title'         => 'Ny Journal',
+        'success'   => 'Journal \':name\' skapad.',
+        'title'     => 'Ny Journal',
     ],
     'destroy'       => [
         'success'   => 'Journal \':name\' borttagen.',
@@ -24,12 +24,11 @@ return [
     ],
     'helpers'       => [
         'journals'  => 'Visa alla eller bara underjournalerna direkt under denna journal.',
-        'nested'    => 'Visa journaler utan någon huvudjournal först. Klicka på en rad för att utforska journalens underjournaler.',
     ],
     'index'         => [
-        'add'           => 'Ny Journal',
-        'header'        => 'Journalerna för :name',
-        'title'         => 'Journaler',
+        'add'       => 'Ny Journal',
+        'header'    => 'Journalerna för :name',
+        'title'     => 'Journaler',
     ],
     'journals'      => [
         'title' => 'Journal :name underjournaler',
@@ -42,9 +41,9 @@ return [
         'type'      => 'Speltillfälle, Engångs, Utkast',
     ],
     'show'          => [
-        'tabs'          => [
+        'tabs'  => [
             'journals'  => 'Journaler',
         ],
-        'title'         => 'Journal :name',
+        'title' => 'Journal :name',
     ],
 ];

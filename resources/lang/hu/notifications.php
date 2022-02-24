@@ -27,7 +27,7 @@ return [
     ],
     'header'            => ':count értesítésed van.',
     'index'             => [
-        'title'         => 'Értesítések',
+        'title' => 'Értesítések',
     ],
     'no_notifications'  => 'Jelenleg nincs értesítésed.',
     'subscriptions'     => [

@@ -42,9 +42,9 @@ return [
         'nested_without'=> 'Wyświetlono wszystkie zdolności nie posiadające źródła. Kliknij na rząd, by wyświetlić zdolności pochodne.',
     ],
     'index'         => [
-        'add'           => 'Nowa zdolność',
-        'header'        => 'Zdolności elementu :nazwa',
-        'title'         => 'Zdolności',
+        'add'       => 'Nowa zdolność',
+        'header'    => 'Zdolności elementu :nazwa',
+        'title'     => 'Zdolności',
     ],
     'placeholders'  => [
         'charges'   => 'Liczba ładunków zdolności. Możesz wpisać wartość cechy jako {Level}*{CHA}',

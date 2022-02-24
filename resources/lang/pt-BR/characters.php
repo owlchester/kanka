@@ -7,22 +7,22 @@ return [
         'add_personality'   => 'Adicionar uma personalidade',
     ],
     'conversations' => [
-        'title'         => 'Conversas de :name',
+        'title' => 'Conversas de :name',
     ],
     'create'        => [
-        'success'       => 'Personagem \':name\' criado.',
-        'title'         => 'Criar um novo personagem',
+        'success'   => 'Personagem \':name\' criado.',
+        'title'     => 'Criar um novo personagem',
     ],
     'destroy'       => [
         'success'   => 'Personagem \':name\' removido.',
     ],
     'dice_rolls'    => [
-        'hint'          => 'Rolagens de dados podem ser vinculadas a um personagem para uso no jogo.',
-        'title'         => 'Rolagens de dado de :name',
+        'hint'  => 'Rolagens de dados podem ser vinculadas a um personagem para uso no jogo.',
+        'title' => 'Rolagens de dado de :name',
     ],
     'edit'          => [
-        'success'       => 'Personagem \':name\' atualizado.',
-        'title'         => 'Editar Personagem :name',
+        'success'   => 'Personagem \':name\' atualizado.',
+        'title'     => 'Editar Personagem :name',
     ],
     'fields'        => [
         'age'                       => 'Idade',
@@ -46,47 +46,45 @@ return [
     ],
     'helpers'       => [
         'age'   => 'Você pode vincular essa entidade a um calendário de sua campanha para calcular automaticamente sua idade. :more.',
-        'free'  => 'Onde o campo "Livre" foi parar? Se esse personagem possuía um, ele foi movido para a nova aba Anotações!',
     ],
     'hints'         => [
-        'hide_personality'          => 'Essa aba pode ser escondida de usuários não "Administradores"  desabilitando a opção "Personalidade Visível" quando editando esse personagem.',
         'is_dead'                   => 'Esse personagem está morto',
         'is_personality_visible'    => 'Você pode ocultar toda a seção de personalidade dos seus Espectadores.',
         'personality_not_visible'   => 'Os traços de personalidade deste personagem estão visíveis apenas para os Administradores.',
         'personality_visible'       => 'Os traços de personalidade deste personagem estão visíveis para todos.',
     ],
     'index'         => [
-        'actions'       => [
+        'actions'   => [
             'random'    => 'Novo Personagem Aleatório',
         ],
-        'add'           => 'Novo Personagem',
-        'header'        => 'Personagens em :name',
-        'title'         => 'Personagens',
+        'add'       => 'Novo Personagem',
+        'header'    => 'Personagens em :name',
+        'title'     => 'Personagens',
     ],
     'items'         => [
-        'hint'          => 'Itens podem ser vinculados a personagens e serão mostrados aqui.',
-        'title'         => 'Itens de :name',
+        'hint'  => 'Itens podem ser vinculados a personagens e serão mostrados aqui.',
+        'title' => 'Itens de :name',
     ],
     'journals'      => [
-        'title'         => 'Jornais de :name',
+        'title' => 'Jornais de :name',
     ],
     'maps'          => [
-        'title'         => 'Mapa de relações de :name',
+        'title' => 'Mapa de relações de :name',
     ],
     'organisations' => [
         'actions'       => [
             'add'   => 'Adicionar organização',
         ],
         'create'        => [
-            'success'       => 'Personagem adicionado à organização',
-            'title'         => 'Nova Organização para :name',
+            'success'   => 'Personagem adicionado à organização',
+            'title'     => 'Nova Organização para :name',
         ],
         'destroy'       => [
             'success'   => 'Organização do personagem removida.',
         ],
         'edit'          => [
-            'success'       => 'Organização do personagem atualizada.',
-            'title'         => 'Atualizar Organização para :name',
+            'success'   => 'Organização do personagem atualizada.',
+            'title'     => 'Atualizar Organização para :name',
         ],
         'fields'        => [
             'organisation'  => 'Organização',
@@ -118,11 +116,10 @@ return [
         'type'              => 'NPC, Personagem de Jogador, Divindade',
     ],
     'quests'        => [
-        'helpers'       => [
+        'helpers'   => [
             'quest_giver'   => 'Missões que o personagem deu.',
             'quest_member'  => 'Missões das quais o personagem é membro.',
         ],
-        'title'         => 'Missões de :name',
     ],
     'sections'      => [
         'appearance'    => 'Aparência',
@@ -130,18 +127,11 @@ return [
         'personality'   => 'Personalidade',
     ],
     'show'          => [
-        'tabs'          => [
-            'conversations' => 'Conversas',
-            'dice_rolls'    => 'Rolagem de Dados',
-            'free'          => 'Texto Livre',
-            'items'         => 'Itens',
-            'journals'      => 'Jornais',
+        'tabs'  => [
             'map'           => 'Mapa de relações',
             'organisations' => 'Organizações',
             'personality'   => 'Personalidade',
-            'quests'        => 'Missões',
         ],
-        'title'         => 'Personagem :name',
     ],
     'warnings'      => [
         'personality_hidden'    => 'Você não tem permissão para editar traços de personalidade neste personagem.',

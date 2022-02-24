@@ -37,7 +37,7 @@ return [
     ],
     'header'            => 'Masz :count powiadomień.',
     'index'             => [
-        'title'         => 'Powiadommienia',
+        'title' => 'Powiadommienia',
     ],
     'no_notifications'  => 'Nie masz powiadomień',
     'subscriptions'     => [

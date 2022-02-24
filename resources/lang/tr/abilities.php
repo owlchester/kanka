@@ -26,9 +26,9 @@ return [
         'descendants'   => 'Bu liste bu yetenekten gelen tüm yetenekleri içerir, yalnızca doğrudan altında olanları değil.',
     ],
     'index'         => [
-        'add'           => 'Yeni Yetenek',
-        'header'        => ':name Yetenekleri',
-        'title'         => 'Yetenekler',
+        'add'       => 'Yeni Yetenek',
+        'header'    => ':name Yetenekleri',
+        'title'     => 'Yetenekler',
     ],
     'placeholders'  => [
         'charges'   => 'Yük miktarı. {Level}*{CHA} aracılığı ile özelliklere gönderme yapabilirsiniz.',

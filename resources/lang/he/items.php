@@ -2,8 +2,8 @@
 
 return [
     'create'        => [
-        'success'       => 'החפץ ":name" נוצר.',
-        'title'         => 'חפץ חדש',
+        'success'   => 'החפץ ":name" נוצר.',
+        'title'     => 'חפץ חדש',
     ],
     'destroy'       => [
         'success'   => 'החפץ ":name" הוסר.',
@@ -23,12 +23,12 @@ return [
         'type'      => 'סוג',
     ],
     'index'         => [
-        'add'           => 'חפץ חדש',
-        'header'        => 'החפצים של :name',
-        'title'         => 'חפצים',
+        'add'       => 'חפץ חדש',
+        'header'    => 'החפצים של :name',
+        'title'     => 'חפצים',
     ],
     'inventories'   => [
-        'title'         => 'רשימות חפצים של :name',
+        'title' => 'רשימות חפצים של :name',
     ],
     'placeholders'  => [
         'character' => 'בחר דמות',
@@ -39,11 +39,9 @@ return [
         'type'      => 'נשק, שיקוי, ארטיפקט',
     ],
     'show'          => [
-        'tabs'          => [
-            'information'   => 'מידע',
+        'tabs'  => [
             'inventories'   => 'רשימות ציוד',
-            'quests'        => 'משימות',
         ],
-        'title'         => ':name',
+        'title' => ':name',
     ],
 ];

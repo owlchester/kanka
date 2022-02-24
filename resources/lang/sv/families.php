@@ -2,8 +2,8 @@
 
 return [
     'create'        => [
-        'success'       => 'Familj \':name\' skapad.',
-        'title'         => 'Ny Familj',
+        'success'   => 'Familj \':name\' skapad.',
+        'title'     => 'Ny Familj',
     ],
     'destroy'       => [
         'success'   => 'Familj \':name\' borttagen.',
@@ -27,15 +27,14 @@ return [
     ],
     'helpers'       => [
         'descendants'   => 'Denna lista innehåller alla familjer som härstammar från denna familj och inte bara dom direkt under den.',
-        'nested'        => 'I Hierarkisk Vy så kan du se Familjer på ett hierarkiskt sätt. Familjer utan någon huvudfamilj visas som standard. Familjer med underfamiljer kan klickas på för att visa dem. Du kan fortsätta klicka tills det inte finns några fler underfamiljer att visa.',
     ],
     'hints'         => [
         'members'   => 'Medlemmar av en familj är listade här. En karaktär kan läggas till i en familj genom att redigera karaktären och använda "Familj" nedrullningsmenyn.',
     ],
     'index'         => [
-        'add'           => 'Ny Familj',
-        'header'        => 'Familjer för :name',
-        'title'         => 'Familjer',
+        'add'       => 'Ny Familj',
+        'header'    => 'Familjer för :name',
+        'title'     => 'Familjer',
     ],
     'members'       => [
         'helpers'   => [
@@ -50,12 +49,12 @@ return [
         'type'      => 'Kunglig, Adlig, Utdöd',
     ],
     'show'          => [
-        'tabs'          => [
+        'tabs'  => [
             'all_members'   => 'Alla Medlemmar',
             'families'      => 'Familjer',
             'members'       => 'Medlemmar',
             'relation'      => 'Förbindelser',
         ],
-        'title'         => 'Familj :name',
+        'title' => 'Familj :name',
     ],
 ];

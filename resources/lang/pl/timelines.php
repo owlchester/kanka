@@ -30,7 +30,6 @@ return [
         'type'          => 'Rodzaj',
     ],
     'helpers'       => [
-        'nested'            => 'W widoku hierarchii najpierw wyświetlane są historie, które nie mają źródła. Po kliknięciu na wiersz historii zobaczysz jej pochodne. Możesz schodzić niżej, póki nie skończą się poziomy hierarchii.',
         'nested_parent'     => 'Wyświetlono historie pochodzące od :parent.',
         'nested_without'    => 'Wyświetlono wszystkie historie nie posiadające źródła. Kliknij na rząd, by wyświetlić historie pochodne.',
         'reorder'           => 'Przeciągaj elementy epoki by zmieniać ich kolejność',

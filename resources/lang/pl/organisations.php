@@ -2,8 +2,8 @@
 
 return [
     'create'        => [
-        'success'       => 'Stworzono organizację \':name\'.',
-        'title'         => 'Nowa organizacja',
+        'success'   => 'Stworzono organizację \':name\'.',
+        'title'     => 'Nowa organizacja',
     ],
     'destroy'       => [
         'success'   => 'Usunięto organizację \':name\'.',
@@ -24,22 +24,21 @@ return [
     ],
     'helpers'       => [
         'descendants'   => 'Na liście znajdują się wszystkie organizacje wywodzące się od tej, nie tylko bezpośrednio.',
-        'nested'        => 'W widoku hierarchii najpierw wyświetlane są organizacje, które nie mają źródła. Po kliknięciu na wiersz organizacji zobaczysz jej pochodne. Możesz schodzić niżej, póki nie skończą się poziomy hierarchii.',
         'nested_parent' => 'Wyświetlono organizacje pochodzące od :parent.',
         'nested_without'=> 'Wyświetlono wszystkie organizacje nie posiadające źródła. Kliknij na rząd, by wyświetlić organizacje pochodne.',
     ],
     'index'         => [
-        'add'           => 'Nowa organizacja',
-        'header'        => 'Organizacje elementu :name',
-        'title'         => 'Organizacje',
+        'add'       => 'Nowa organizacja',
+        'header'    => 'Organizacje elementu :name',
+        'title'     => 'Organizacje',
     ],
     'members'       => [
         'actions'       => [
             'add'   => 'Dodaj członka',
         ],
         'create'        => [
-            'success'       => 'Dodano członka organizacji.',
-            'title'         => 'Nowy członek organizacji :name',
+            'success'   => 'Dodano członka organizacji.',
+            'title'     => 'Nowy członek organizacji :name',
         ],
         'destroy'       => [
             'success'   => 'Usunięto członka organizacji.',
@@ -88,11 +87,11 @@ return [
         'type'      => 'Kult, gang, podziemie niepodległościowe, fandom',
     ],
     'show'          => [
-        'tabs'          => [
+        'tabs'  => [
             'organisations' => 'Organizacje',
             'quests'        => 'Misje',
             'relations'     => 'Relacje',
         ],
-        'title'         => 'Organizacja :name',
+        'title' => 'Organizacja :name',
     ],
 ];

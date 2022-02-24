@@ -2,15 +2,15 @@
 
 return [
     'create'        => [
-        'success'       => 'השיחה \':name\' נוצרה.',
-        'title'         => 'שיחה חדשה',
+        'success'   => 'השיחה \':name\' נוצרה.',
+        'title'     => 'שיחה חדשה',
     ],
     'destroy'       => [
         'success'   => 'השיחה \':name\' הוסרה.',
     ],
     'edit'          => [
-        'success'       => 'השיחה \':name\' עודכנה.',
-        'title'         => 'שיחה :name',
+        'success'   => 'השיחה \':name\' עודכנה.',
+        'title'     => 'שיחה :name',
     ],
     'fields'        => [
         'messages'      => 'הודעות',
@@ -23,9 +23,9 @@ return [
         'participants'  => 'הוסף משתתפים בלחיצה על האייקון :icon בצד שמאל למעלה.',
     ],
     'index'         => [
-        'add'           => 'שיחה חדשה',
-        'header'        => 'שיחות ב:name',
-        'title'         => 'שיחות',
+        'add'       => 'שיחה חדשה',
+        'header'    => 'שיחות ב:name',
+        'title'     => 'שיחות',
     ],
     'messages'      => [
         'destroy'       => [
@@ -38,21 +38,21 @@ return [
         ],
     ],
     'participants'  => [
-        'create'        => [
+        'create'    => [
             'success'   => ':entity הוסף לשיחה.',
         ],
-        'destroy'       => [
+        'destroy'   => [
             'success'   => ':entity הוסר מהשיחה.',
         ],
-        'modal'         => 'משתתפים',
-        'title'         => 'המשתתפים של :name',
+        'modal'     => 'משתתפים',
+        'title'     => 'המשתתפים של :name',
     ],
     'placeholders'  => [
         'name'  => 'שם השיחה',
         'type'  => 'בתוך המשחק, הכנה, עלילה',
     ],
     'show'          => [
-        'title'         => 'שיחה :name',
+        'title' => 'שיחה :name',
     ],
     'tabs'          => [
         'conversation'  => 'שיחה',

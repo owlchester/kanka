@@ -7,15 +7,15 @@ return [
         'add_user'  => 'Přidat uživatele',
     ],
     'create'        => [
-        'success'       => 'Poznámka ":name" přidána objektu :entity.',
-        'title'         => 'Nová poznámka objektu :name',
+        'success'   => 'Poznámka ":name" přidána objektu :entity.',
+        'title'     => 'Nová poznámka objektu :name',
     ],
     'destroy'       => [
         'success'   => 'Poznámka ":name" objektu :entity odstraněna.',
     ],
     'edit'          => [
-        'success'       => 'Poznámka ":name" objektu :entity aktualizována.',
-        'title'         => 'Upravit poznámku objektu :name',
+        'success'   => 'Poznámka ":name" objektu :entity aktualizována.',
+        'title'     => 'Upravit poznámku objektu :name',
     ],
     'fields'        => [
         'collapsed' => 'Zobrazovat poznámku sbalenou',

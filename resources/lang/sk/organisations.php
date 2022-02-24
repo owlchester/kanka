@@ -2,8 +2,8 @@
 
 return [
     'create'        => [
-        'success'       => 'Organizácia :name vytvorená.',
-        'title'         => 'Nová organizácia',
+        'success'   => 'Organizácia :name vytvorená.',
+        'title'     => 'Nová organizácia',
     ],
     'destroy'       => [
         'success'   => 'Organizácia :name odstránená.',
@@ -24,22 +24,21 @@ return [
     ],
     'helpers'       => [
         'descendants'   => 'Tento zoznam obsahuje všetky organizácie, ktoré sú podradené tejto a všetkým podradeným organizáciám.',
-        'nested'        => 'Vo vnorenom zobrazení vieš zoradiť tvoje organizácie podľa nadradených organizácií. Organizácie bez nadradenej sa zoradia štandardným spôsobom. Organizácie s podradenými je možné rozkliknúť, dokiaľ nebudú existovať už žiadne ďalšie podradené organizácie.',
         'nested_parent' => 'Zobraziť organizácie :parent.',
         'nested_without'=> 'Zobraziť všetky organizácie, ktoré nemajú nadradenú organizáciu. Kliknutím na riadok zobrazíš podradené organizácie.',
     ],
     'index'         => [
-        'add'           => 'Nová organizácia',
-        'header'        => 'Organizácie objektu :name',
-        'title'         => 'Organizácie',
+        'add'       => 'Nová organizácia',
+        'header'    => 'Organizácie objektu :name',
+        'title'     => 'Organizácie',
     ],
     'members'       => [
         'actions'       => [
             'add'   => 'Pridať člena',
         ],
         'create'        => [
-            'success'       => 'Člen pridaný do organizácie.',
-            'title'         => 'Nový člen organizácie :name',
+            'success'   => 'Člen pridaný do organizácie.',
+            'title'     => 'Nový člen organizácie :name',
         ],
         'destroy'       => [
             'success'   => 'Člen odstránený z organizácie.',
@@ -88,11 +87,11 @@ return [
         'type'      => 'kult, gang, bunka revolúcie, fandom',
     ],
     'show'          => [
-        'tabs'          => [
+        'tabs'  => [
             'organisations' => 'Organizácie',
             'quests'        => 'Úlohy',
             'relations'     => 'Prepojenia',
         ],
-        'title'         => 'Organizácia :name',
+        'title' => 'Organizácia :name',
     ],
 ];

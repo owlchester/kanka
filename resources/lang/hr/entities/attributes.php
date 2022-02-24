@@ -21,9 +21,7 @@ return [
     'helpers'       => [
         'delete_all'    => 'Jesi li siguran/a da želiš izbrisati sve atribute ovog entiteta?',
     ],
-    'hints'         => [
-        'is_private'    => 'Možeš sakriti sve atribute entiteta od svih članova koji nisu administratori tako što ćeš ga učiniti privatnim.',
-    ],
+    'hints'         => [],
     'index'         => [
         'success'   => 'Ažurirani atributi za :entity.',
         'title'     => 'Atributi za :name',

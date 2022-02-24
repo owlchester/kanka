@@ -19,16 +19,16 @@ return [
         'is_recurring'  => 'Ponavlja se svake godine',
     ],
     'create'        => [
-        'success'       => 'Kreiran kalendar ":name"',
-        'title'         => 'Novi kalendar',
+        'success'   => 'Kreiran kalendar ":name"',
+        'title'     => 'Novi kalendar',
     ],
     'destroy'       => [
         'success'   => 'Ukljonjen kalendar ":name".',
     ],
     'edit'          => [
-        'success'       => 'Ažuriran kalendar ":name".',
-        'title'         => 'Uredi kalendar :name',
-        'today'         => 'Ažuriran datum kalendara.',
+        'success'   => 'Ažuriran kalendar ":name".',
+        'title'     => 'Uredi kalendar :name',
+        'today'     => 'Ažuriran datum kalendara.',
     ],
     'event'         => [
         'actions'   => [
@@ -37,13 +37,13 @@ return [
             'switch'    => 'Promjeni odabir',
         ],
         'create'    => [
-            'success'       => 'Kreiran događaj u kalendaru.',
-            'title'         => 'Dodaj događaj u kalendaru na :name',
+            'success'   => 'Kreiran događaj u kalendaru.',
+            'title'     => 'Dodaj događaj u kalendaru na :name',
         ],
         'destroy'   => 'Uklonjen događaj iz kalendara ":name".',
         'edit'      => [
-            'success'       => 'Ažuriran događaj u kalendaru.',
-            'title'         => 'Ažuriraj događaj kalendara u :name',
+            'success'   => 'Ažuriran događaj u kalendaru.',
+            'title'     => 'Ažuriraj događaj kalendara u :name',
         ],
         'helpers'   => [
             'add'               => 'Dodaj postojeći događaj na ovaj kalendar.',
@@ -56,7 +56,7 @@ return [
         'success'   => 'Događaj ":event" dodan u kalendar.',
     ],
     'events'        => [
-        'title'         => 'Događaji kalendara :name',
+        'title' => 'Događaji kalendara :name',
     ],
     'fields'        => [
         'calendar'              => 'Kalendar roditelj',
@@ -112,9 +112,9 @@ return [
         'years'             => 'Neke godine su toliko važne da imaju svoj naziv.',
     ],
     'index'         => [
-        'add'           => 'Novi kalendar',
-        'header'        => 'Kalendari u :name',
-        'title'         => 'Kalendari',
+        'add'       => 'Novi kalendar',
+        'header'    => 'Kalendari u :name',
+        'title'     => 'Kalendari',
     ],
     'layouts'       => [
         'month' => 'Mjesec',

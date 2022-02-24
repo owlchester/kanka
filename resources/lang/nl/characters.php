@@ -7,22 +7,22 @@ return [
         'add_personality'   => 'Voeg een persoonlijkheid toe',
     ],
     'conversations' => [
-        'title'         => 'Personage :name Conversaties',
+        'title' => 'Personage :name Conversaties',
     ],
     'create'        => [
-        'success'       => 'Personage \':name\' gemaakt.',
-        'title'         => 'Nieuw Personage',
+        'success'   => 'Personage \':name\' gemaakt.',
+        'title'     => 'Nieuw Personage',
     ],
     'destroy'       => [
         'success'   => 'Personage \':name\' verwijderd',
     ],
     'dice_rolls'    => [
-        'hint'          => 'Dobbelsteen worpen kunnen worden toegewezen aan een personage voor in het spel.',
-        'title'         => 'Personage :name Dobbelsteen Worpen',
+        'hint'  => 'Dobbelsteen worpen kunnen worden toegewezen aan een personage voor in het spel.',
+        'title' => 'Personage :name Dobbelsteen Worpen',
     ],
     'edit'          => [
-        'success'       => 'Personage \':name\' bijgewerkt.',
-        'title'         => 'Wijzig Personage :name',
+        'success'   => 'Personage \':name\' bijgewerkt.',
+        'title'     => 'Wijzig Personage :name',
     ],
     'fields'        => [
         'age'                       => 'Leeftijd',
@@ -51,37 +51,37 @@ return [
         'personality_visible'       => 'Persoonlijkheidskenmerken van dit personage zijn voor iedereen zichtbaar.',
     ],
     'index'         => [
-        'actions'       => [
+        'actions'   => [
             'random'    => 'Nieuw Willekeurig Personage',
         ],
-        'add'           => 'Nieuw Personage',
-        'header'        => 'Personages in :name',
-        'title'         => 'Personages',
+        'add'       => 'Nieuw Personage',
+        'header'    => 'Personages in :name',
+        'title'     => 'Personages',
     ],
     'items'         => [
-        'hint'          => 'Voorwerpen kunnen worden toegewezen aan personages en worden hier weergegeven.',
-        'title'         => 'Personage :name Voorwerpen',
+        'hint'  => 'Voorwerpen kunnen worden toegewezen aan personages en worden hier weergegeven.',
+        'title' => 'Personage :name Voorwerpen',
     ],
     'journals'      => [
-        'title'         => 'Personage :name Logboeken',
+        'title' => 'Personage :name Logboeken',
     ],
     'maps'          => [
-        'title'         => 'Personage :name Relatie Kaart',
+        'title' => 'Personage :name Relatie Kaart',
     ],
     'organisations' => [
         'actions'       => [
             'add'   => 'Voeg organisatie toe',
         ],
         'create'        => [
-            'success'       => 'Personage toegevoegd aan organisatie.',
-            'title'         => 'Nieuwe Organisatie voor :name',
+            'success'   => 'Personage toegevoegd aan organisatie.',
+            'title'     => 'Nieuwe Organisatie voor :name',
         ],
         'destroy'       => [
             'success'   => 'Personage organisatie verwijderd.',
         ],
         'edit'          => [
-            'success'       => 'Personage organisatie bijgewerkt.',
-            'title'         => 'Werk organisatie voor :name bij',
+            'success'   => 'Personage organisatie bijgewerkt.',
+            'title'     => 'Werk organisatie voor :name bij',
         ],
         'fields'        => [
             'organisation'  => 'Organisatie',
@@ -111,11 +111,10 @@ return [
         'type'              => 'NPC, Speler Personage, Godheid',
     ],
     'quests'        => [
-        'helpers'       => [
+        'helpers'   => [
             'quest_giver'   => 'Quests waarvan het personage een quest gever is.',
             'quest_member'  => 'Quests waarvan het personage lid is.',
         ],
-        'title'         => 'Personage :name Quests',
     ],
     'sections'      => [
         'appearance'    => 'Uiterlijk',
@@ -123,17 +122,12 @@ return [
         'personality'   => 'Persoonlijkheid',
     ],
     'show'          => [
-        'tabs'          => [
-            'conversations' => 'Conversaties',
-            'dice_rolls'    => 'Dobbelsteen Worpen',
-            'items'         => 'Voorwerpen',
-            'journals'      => 'Logboeken',
+        'tabs'  => [
             'map'           => 'Relatie Kaart',
             'organisations' => 'Organisaties',
             'personality'   => 'Persoonlijkheid',
-            'quests'        => 'Quests',
         ],
-        'title'         => 'Personage :name',
+        'title' => 'Personage :name',
     ],
     'warnings'      => [
         'personality_hidden'    => 'Het is niet toegestaan om persoonlijkheidskenmerken van dit personage te bewerken.',

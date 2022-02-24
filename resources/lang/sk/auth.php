@@ -41,7 +41,6 @@ return [
             'email'     => 'E-mail',
             'name'      => 'Meno užívateľa',
             'password'  => 'Heslo',
-            'tos'       => 'Súhlasím s <a href=":privacyUrl" target="_blank">Ochranou osobných údajov</a>.',
             'tos_clean' => 'Súhlasím s :privacy',
         ],
         'register_with_facebook'    => 'Registrácia cez Facebook',

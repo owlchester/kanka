@@ -2,8 +2,8 @@
 
 return [
     'create'        => [
-        'success'       => 'Organisation \':name\' skapad.',
-        'title'         => 'Ny Organisation',
+        'success'   => 'Organisation \':name\' skapad.',
+        'title'     => 'Ny Organisation',
     ],
     'destroy'       => [
         'success'   => 'Organisation \':name\' borttagen.',
@@ -24,20 +24,19 @@ return [
     ],
     'helpers'       => [
         'descendants'   => 'Denna lista innehåller organisationer under denna organisation, och inte bara dem direkt under den.',
-        'nested'        => 'I Hierarkisk Vy kan du se dina organisationer i hierarkisk ordning. Organisationer utan en huvudorganisation kommer visas som standard. Organisationer med underorganisationer kan klickas på för att visa dessa. Du kan fortsätta klicka tills det inte finns fler underorganisationer.',
     ],
     'index'         => [
-        'add'           => 'Ny Organisation',
-        'header'        => 'Organisationer för :name',
-        'title'         => 'Organisationer',
+        'add'       => 'Ny Organisation',
+        'header'    => 'Organisationer för :name',
+        'title'     => 'Organisationer',
     ],
     'members'       => [
         'actions'       => [
             'add'   => 'Lägg till en medlem',
         ],
         'create'        => [
-            'success'       => 'Medlem tillagd till organisationen.',
-            'title'         => 'Ny Organisationsmedlem för :name',
+            'success'   => 'Medlem tillagd till organisationen.',
+            'title'     => 'Ny Organisationsmedlem för :name',
         ],
         'destroy'       => [
             'success'   => 'Medlem borttagen från organisationen.',
@@ -70,11 +69,11 @@ return [
         'type'      => 'Kult, Gäng, Rebellgrupp, Beundrarklubb',
     ],
     'show'          => [
-        'tabs'          => [
+        'tabs'  => [
             'organisations' => 'Organisationer',
             'quests'        => 'Uppdrag',
             'relations'     => 'Förbindelser',
         ],
-        'title'         => 'Organisation :name',
+        'title' => 'Organisation :name',
     ],
 ];

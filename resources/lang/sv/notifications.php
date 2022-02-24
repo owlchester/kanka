@@ -19,7 +19,7 @@ return [
     ],
     'header'            => 'Du har :count notifikationer',
     'index'             => [
-        'title'         => 'Notifikationer',
+        'title' => 'Notifikationer',
     ],
     'no_notifications'  => 'Du har för tillfället inga notifikationer.',
     'subscriptions'     => [

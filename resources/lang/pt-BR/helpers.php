@@ -22,7 +22,6 @@ return [
         'random_examples'   => 'Por exemplo, se você quiser um número entre 1 e 100, use :number. Se você quiser um valor de uma lista de opções, use :list.',
         'title'             => 'Atributos',
     ],
-    'description'       => 'Algumas dicas e truques para te ajudar com o Kanka',
     'dice'              => [
         'description'               => 'O lançamento de dados genéricos é possível escrevendo "d20", "4d4 + 4", "d%" para porcentagem e "df" para fudge.',
         'description_attributes'    => 'Também é possível obter o atributo de um personagem usando a sintaxe {character.attribute_name}. Por exemplo, {character.level}d6+{character.wisdom}.',

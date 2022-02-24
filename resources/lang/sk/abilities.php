@@ -42,9 +42,9 @@ return [
         'nested_without'=> 'Zobrazujú sa všetky schopnosti, ktoré nemajú nadradenú schopnosť. Kliknutím na riadok zobrazíš podradené schopnosti.',
     ],
     'index'         => [
-        'add'           => 'Nová schopnosť',
-        'header'        => 'Schopnosti objektu :name',
-        'title'         => 'Schopnosti',
+        'add'       => 'Nová schopnosť',
+        'header'    => 'Schopnosti objektu :name',
+        'title'     => 'Schopnosti',
     ],
     'placeholders'  => [
         'charges'   => 'Počet nábojov. Prepoj atribúty cez {Úroveň}*{CHA}',

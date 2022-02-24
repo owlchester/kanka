@@ -19,16 +19,16 @@ return [
         'is_recurring'  => 'Wiederholt sich jedes Jahr',
     ],
     'create'        => [
-        'success'       => 'Kalender \':name\' erstellt.',
-        'title'         => 'Neuer Kalender',
+        'success'   => 'Kalender \':name\' erstellt.',
+        'title'     => 'Neuer Kalender',
     ],
     'destroy'       => [
         'success'   => 'Kalender \':name\' gelöscht',
     ],
     'edit'          => [
-        'success'       => 'Kalender \':name\' aktualisiert',
-        'title'         => 'Kalender :name bearbeiten',
-        'today'         => 'Kalenderdatum aktualisiert.',
+        'success'   => 'Kalender \':name\' aktualisiert',
+        'title'     => 'Kalender :name bearbeiten',
+        'today'     => 'Kalenderdatum aktualisiert.',
     ],
     'event'         => [
         'actions'   => [
@@ -38,13 +38,13 @@ return [
             'switch'            => 'Auswahl ändern',
         ],
         'create'    => [
-            'success'       => 'Kalender Ereignis wurde erstellt',
-            'title'         => 'Kalender Ereignis zu :name hinzufügen',
+            'success'   => 'Kalender Ereignis wurde erstellt',
+            'title'     => 'Kalender Ereignis zu :name hinzufügen',
         ],
         'destroy'   => 'Ereignis aus Kalender :name entfernt',
         'edit'      => [
-            'success'       => 'Kalender Ereignis wurde aktualisiert',
-            'title'         => 'Aktualisiere das Kalender Ereignis in :name',
+            'success'   => 'Kalender Ereignis wurde aktualisiert',
+            'title'     => 'Aktualisiere das Kalender Ereignis in :name',
         ],
         'helpers'   => [
             'add'               => 'Füge ein bestehendes Ereignis aus der Liste hinzu.',
@@ -57,7 +57,7 @@ return [
         'success'   => 'Event \':event\' zum Kalender hinzugefügt.',
     ],
     'events'        => [
-        'title'         => 'Kalender :name Events',
+        'title' => 'Kalender :name Events',
     ],
     'fields'        => [
         'calendar'              => 'Übergeordneter Kalender',
@@ -113,9 +113,9 @@ return [
         'years'             => 'Manche Jahre sind so wichtig, dass sie ihren eigenen Namen haben.',
     ],
     'index'         => [
-        'add'           => 'Neuer Kalender',
-        'header'        => 'Kalender von :name',
-        'title'         => 'Kalender',
+        'add'       => 'Neuer Kalender',
+        'header'    => 'Kalender von :name',
+        'title'     => 'Kalender',
     ],
     'layouts'       => [
         'month' => 'Monat',

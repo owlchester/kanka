@@ -2,15 +2,15 @@
 
 return [
     'create'        => [
-        'success'       => 'Unterhaltung :name erstellt.',
-        'title'         => 'Neue Unterhaltung',
+        'success'   => 'Unterhaltung :name erstellt.',
+        'title'     => 'Neue Unterhaltung',
     ],
     'destroy'       => [
         'success'   => 'Unterhaltung :name gelöscht.',
     ],
     'edit'          => [
-        'success'       => 'Unterhaltung \':name\' aktualisiert.',
-        'title'         => 'Unterhaltung :name',
+        'success'   => 'Unterhaltung \':name\' aktualisiert.',
+        'title'     => 'Unterhaltung :name',
     ],
     'fields'        => [
         'is_closed'     => 'geschlossen',
@@ -24,9 +24,9 @@ return [
         'participants'  => 'Bitte füge Teilnehmer zu deiner Unterhaltung hinzu, indem du das :icon Symbol oben rechts drückst.',
     ],
     'index'         => [
-        'add'           => 'Neue Unterhaltung',
-        'header'        => 'Unterhaltungen in :name',
-        'title'         => 'Unterhaltungen',
+        'add'       => 'Neue Unterhaltung',
+        'header'    => 'Unterhaltungen in :name',
+        'title'     => 'Unterhaltungen',
     ],
     'messages'      => [
         'destroy'       => [
@@ -39,22 +39,22 @@ return [
         ],
     ],
     'participants'  => [
-        'create'        => [
+        'create'    => [
             'success'   => 'Teilnehmer :entity zu Unterhaltung hinzugefügt.',
         ],
-        'destroy'       => [
+        'destroy'   => [
             'success'   => 'Teilnehmer :entity von Unterhaltung entfernt.',
         ],
-        'modal'         => 'Teilnehmer',
-        'title'         => 'Teilnehmer von :name',
+        'modal'     => 'Teilnehmer',
+        'title'     => 'Teilnehmer von :name',
     ],
     'placeholders'  => [
         'name'  => 'Name der Unterhaltung',
         'type'  => 'Im Spiel, Vorbereitung, Handlung',
     ],
     'show'          => [
-        'is_closed'     => 'Unterhaltung geschlossen',
-        'title'         => 'Unterhaltung :name',
+        'is_closed' => 'Unterhaltung geschlossen',
+        'title'     => 'Unterhaltung :name',
     ],
     'tabs'          => [
         'conversation'  => 'Unterhaltung',

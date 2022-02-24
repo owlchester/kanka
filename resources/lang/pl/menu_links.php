@@ -54,8 +54,6 @@ return [
         'title'     => 'Zmiana kolejności skrótów',
     ],
     'show'              => [
-        'tabs'  => [
-        ],
         'title' => 'Skrót :name',
     ],
 ];

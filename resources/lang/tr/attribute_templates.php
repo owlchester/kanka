@@ -5,17 +5,15 @@ return [
         'title' => ':name özellik taslakları',
     ],
     'create'                => [
-        'description'   => 'Yeni bir özellik taslağı yarat',
-        'success'       => '\':name\' Özellik Taslağı yaratıldı.',
-        'title'         => 'Yeni Özellik Taslağı',
+        'success'   => '\':name\' Özellik Taslağı yaratıldı.',
+        'title'     => 'Yeni Özellik Taslağı',
     ],
     'destroy'               => [
         'success'   => '\':name\' Özellik Taslağı kaldırıldı.',
     ],
     'edit'                  => [
-        'description'   => 'Bir özellik taslağını düzenle',
-        'success'       => '\':name\' Özellik Taslağı güncellendi.',
-        'title'         => ':name Özellik Taslağını Düzenle',
+        'success'   => '\':name\' Özellik Taslağı güncellendi.',
+        'title'     => ':name Özellik Taslağını Düzenle',
     ],
     'fields'                => [
         'attribute_template'    => 'Ana Özellik Taslağı',
@@ -28,21 +26,19 @@ return [
         'parent_attribute_template' => 'Bu özellik taslağı başka bir özellik taslağının alt taslağı olabilir. Bu özellik taslağı uygulanırken, kendisi ve bütün üst taslakları uygulanacak.',
     ],
     'index'                 => [
-        'add'           => 'Yeni Özellik Taslağı',
-        'description'   => ':name Taslaklarını yönet',
-        'header'        => ':name Özellik Taslakları',
-        'title'         => 'Özellik Taslakları',
+        'add'       => 'Yeni Özellik Taslağı',
+        'header'    => ':name Özellik Taslakları',
+        'title'     => 'Özellik Taslakları',
     ],
     'placeholders'          => [
         'attribute_template'    => 'Bir özellik taslağı seçin',
         'name'                  => 'Özellik Taslağının adı',
     ],
     'show'                  => [
-        'description'   => 'Özellik Taslağına detaylı bir bakış',
-        'tabs'          => [
+        'tabs'  => [
             'attribute_templates'   => 'Özellik Taslakları',
             'attributes'            => 'Özellikler',
         ],
-        'title'         => ':name Özellik Taslağı',
+        'title' => ':name Özellik Taslağı',
     ],
 ];

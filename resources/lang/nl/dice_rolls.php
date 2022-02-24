@@ -2,16 +2,16 @@
 
 return [
     'create'        => [
-        'success'       => 'Dobbelsteen Worp \':name\' gemaakt.',
-        'title'         => 'Nieuwe Dobbelsteen Worp',
+        'success'   => 'Dobbelsteen Worp \':name\' gemaakt.',
+        'title'     => 'Nieuwe Dobbelsteen Worp',
     ],
     'destroy'       => [
         'dice_roll' => 'Dobbelsteen worp verwijderd.',
         'success'   => 'Dobbelsteen Worp \':name\' verwijderd.',
     ],
     'edit'          => [
-        'success'       => 'Dobbelsteen Worp \':name\' bijgewerkt.',
-        'title'         => 'Wijzig Dobbelsteen Worp :name',
+        'success'   => 'Dobbelsteen Worp \':name\' bijgewerkt.',
+        'title'     => 'Wijzig Dobbelsteen Worp :name',
     ],
     'fields'        => [
         'created_at'    => 'Gerold Bij',
@@ -24,13 +24,13 @@ return [
         'parameters'    => 'Wat zijn mijn dobbelsteen opties?',
     ],
     'index'         => [
-        'actions'       => [
+        'actions'   => [
             'dice'      => 'Dobbelsteen Worpen',
             'results'   => 'Resultaten',
         ],
-        'add'           => 'Nieuwe Dobbelsteen Worp',
-        'header'        => 'Dobbelsteen Worpen van :name',
-        'title'         => 'Dobbelsteen Worpen van :name',
+        'add'       => 'Nieuwe Dobbelsteen Worp',
+        'header'    => 'Dobbelsteen Worpen van :name',
+        'title'     => 'Dobbelsteen Worpen van :name',
     ],
     'placeholders'  => [
         'dice_roll' => 'Dobbelsteen Worp',
@@ -51,9 +51,9 @@ return [
         'success'   => 'Dobbelstenen gegooid.',
     ],
     'show'          => [
-        'tabs'          => [
+        'tabs'  => [
             'results'   => 'Resultaten',
         ],
-        'title'         => 'Dobbelsteen Worp :name',
+        'title' => 'Dobbelsteen Worp :name',
     ],
 ];

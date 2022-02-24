@@ -2,11 +2,11 @@
 
 return [
     'characters'    => [
-        'title'         => 'Personaggi appartenenti alla Razza \':name\'',
+        'title' => 'Personaggi appartenenti alla Razza \':name\'',
     ],
     'create'        => [
-        'success'       => 'Razza \':name\' creata.',
-        'title'         => 'Nuova Razza',
+        'success'   => 'Razza \':name\' creata.',
+        'title'     => 'Nuova Razza',
     ],
     'destroy'       => [
         'success'   => 'Razza \':name\' rimossa.',
@@ -22,25 +22,24 @@ return [
         'races'         => 'Sotto-Razze',
         'type'          => 'Tipo',
     ],
-    'helpers'       => [
-    ],
+    'helpers'       => [],
     'index'         => [
-        'add'           => 'Nuova Razza',
-        'header'        => 'Razze per :name',
-        'title'         => 'Razze',
+        'add'       => 'Nuova Razza',
+        'header'    => 'Razze per :name',
+        'title'     => 'Razze',
     ],
     'placeholders'  => [
         'name'  => 'Nome della razza',
         'type'  => 'Umano, Fata, Borg',
     ],
     'races'         => [
-        'title'         => 'Sottorazze per la Razza :name',
+        'title' => 'Sottorazze per la Razza :name',
     ],
     'show'          => [
-        'tabs'          => [
+        'tabs'  => [
             'characters'    => 'Personaggi',
             'races'         => 'Sottorazze',
         ],
-        'title'         => 'Razza :name',
+        'title' => 'Razza :name',
     ],
 ];

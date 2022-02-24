@@ -20,9 +20,9 @@ return [
         'title'             => 'Konto',
     ],
     'api'           => [
-        'helper'                => 'Vitaj v API Kanky. Vytvor si Osobný prístupový žetón, ktorý budeš používať v tvojich požiadavkách na API s cieľom získať informácie o kampaniach, ku ktorým patríš.',
-        'link'                  => 'Čítať API dokumentáciu',
-        'title'                 => 'API',
+        'helper'    => 'Vitaj v API Kanky. Vytvor si Osobný prístupový žetón, ktorý budeš používať v tvojich požiadavkách na API s cieľom získať informácie o kampaniach, ku ktorým patríš.',
+        'link'      => 'Čítať API dokumentáciu',
+        'title'     => 'API',
     ],
     'apps'          => [
         'actions'   => [
@@ -64,7 +64,6 @@ return [
                 'superboosted'  => 'Všetky výhody superboostnutej kampane',
             ],
             'recovery'          => 'Obnovenie odstránených objektov do :amount dní.',
-            'second'            => 'Boostnutie kampane odomkne nasledujúce výhody:',
             'superboost'        => 'Superboostnutie kampane použije 3 z tvojich boostov a odomkne ďalšie výhody nadmieru tých z boostnutej kampane.',
             'theme'             => 'Nastaviteľnú tému a vizuálny štýl kampane.',
             'third'             => 'Ak chceš boostnuť kampaň, prejdi na stránku kampane a klikni na tlačidlo ":boost_button" nad tlačidlom ":edit_button".',
@@ -163,15 +162,15 @@ return [
         'subscription_status'   => 'Stav predplatného',
     ],
     'patreon'       => [
-        'deprecated'        => 'Zastaralá funkcionalita - Ak chceš podporiť Kanku, urob tak cez :subscription. Prepojenie na Patreon je ešte stále aktívne pre osoby, ktoré nás podporili predtým, než sme z neho odišli.',
-        'pledge'            => 'Úroveň: :name',
-        'remove'            => [
+        'deprecated'    => 'Zastaralá funkcionalita - Ak chceš podporiť Kanku, urob tak cez :subscription. Prepojenie na Patreon je ešte stále aktívne pre osoby, ktoré nás podporili predtým, než sme z neho odišli.',
+        'pledge'        => 'Úroveň: :name',
+        'remove'        => [
             'button'    => 'Zrušiť prepojenie s Patreonom',
             'success'   => 'Prepojenie s tvojím Patreon kontom bolo zrušené.',
             'text'      => 'Ak zrušíš prepojenie tvojho Patreon konta s Kankou, stratíš tvoje bonusy, meno v sieni slávy, boosty pre kampane a iné funkcionality získané vďaka podpore Kanky. Nestratíš ale žiaden obsah (napr. záhlavia objektov). Ak si nás neskôr zasa predplatíš, prístup k dátam sa ti obnoví, vrátane možnosti boostnuť predtým boostnuté kampane.',
             'title'     => 'Zrušiť prepojenie Patreon konta s Kankou',
         ],
-        'title'             => 'Patreon',
+        'title'         => 'Patreon',
     ],
     'profile'       => [
         'actions'   => [

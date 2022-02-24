@@ -2,15 +2,15 @@
 
 return [
     'create'        => [
-        'success'       => 'Missão \':name\' criada.',
-        'title'         => 'Criar nova missão',
+        'success'   => 'Missão \':name\' criada.',
+        'title'     => 'Criar nova missão',
     ],
     'destroy'       => [
         'success'   => 'Missão \':name\' removida.',
     ],
     'edit'          => [
-        'success'       => 'Missão \':name\' atualizada.',
-        'title'         => 'Editar Missão :name',
+        'success'   => 'Missão \':name\' atualizada.',
+        'title'     => 'Editar Missão :name',
     ],
     'elements'      => [
         'create'    => [
@@ -46,7 +46,6 @@ return [
         'type'          => 'Tipo',
     ],
     'helpers'       => [
-        'nested'        => 'Quando em Visão Aninhada, você pode ver suas missões de maneira aninhada. Missões que não tenham uma Missão Primária serão mostradas de modo padrão. Missões que contém Missões Secundárias podem ser clicadas para mostrar as \'crianças\'. Você pode continuar clicando até não haverem mais \'crianças\' para clicar.',
         'nested_parent' => 'Mostrando as missões de :parent.',
         'nested_without'=> 'Mostrando todas as missões que não tem uma missão-pai. Clique em uma linha para ver as missões-filhos.',
     ],
@@ -54,9 +53,9 @@ return [
         'quests'    => 'Uma "teia" de missões interligadas pode ser construída usando o campo de Missão Principal',
     ],
     'index'         => [
-        'add'           => 'Nova Missão',
-        'header'        => 'Missões de :name',
-        'title'         => 'Missões',
+        'add'       => 'Nova Missão',
+        'header'    => 'Missões de :name',
+        'title'     => 'Missões',
     ],
     'placeholders'  => [
         'date'  => 'Data (mundo real) para a missão',
@@ -66,13 +65,12 @@ return [
         'type'  => 'Arco de Personagem, Missão Secundária, Missão Principal',
     ],
     'show'          => [
-        'actions'       => [
-            'add_element'       => 'Adicionar um elemento',
+        'actions'   => [
+            'add_element'   => 'Adicionar um elemento',
         ],
-        'tabs'          => [
-            'elements'      => 'Elementos',
-            'quests'        => 'Missões',
+        'tabs'      => [
+            'elements'  => 'Elementos',
         ],
-        'title'         => 'Missão :name',
+        'title'     => 'Missão :name',
     ],
 ];

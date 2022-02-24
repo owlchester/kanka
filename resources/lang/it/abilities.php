@@ -26,9 +26,9 @@ return [
         'descendants'   => 'Questa lista contiene tutte le abilità che sono discendenti di questa abilità e non solamente quelle direttamente sotto di essa.',
     ],
     'index'         => [
-        'add'           => 'Nuova Abilità',
-        'header'        => 'Abilità di :name',
-        'title'         => 'Abilità',
+        'add'       => 'Nuova Abilità',
+        'header'    => 'Abilità di :name',
+        'title'     => 'Abilità',
     ],
     'placeholders'  => [
         'charges'   => 'Quantità di cariche. Fai riferimento agli attributi con {Level}*{CHA}',

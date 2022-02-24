@@ -2,11 +2,11 @@
 
 return [
     'characters'    => [
-        'title'         => 'Lokacije lika :name',
+        'title' => 'Lokacije lika :name',
     ],
     'create'        => [
-        'success'       => 'Kreirana lokacija ":name".',
-        'title'         => 'Nova lokacija',
+        'success'   => 'Kreirana lokacija ":name".',
+        'title'     => 'Nova lokacija',
     ],
     'destroy'       => [
         'success'   => 'Uklonjena lokacija ":name".',
@@ -16,7 +16,7 @@ return [
         'title'     => 'Uredi lokaciju :name',
     ],
     'events'        => [
-        'title'         => 'Događaji lokacije :name',
+        'title' => 'Događaji lokacije :name',
     ],
     'families'      => [
         'title' => 'Obitelji lokacije :name',
@@ -46,21 +46,21 @@ return [
         'is_map_private'    => 'Privatna karta je vidljiva samo članovima "Administrator" uloge u kampanji.',
     ],
     'index'         => [
-        'actions'       => [
+        'actions'   => [
             'explore_view'  => 'Ugniježđeni pregled',
         ],
-        'add'           => 'Nova lokacija',
-        'header'        => 'Lokacije u :name',
-        'title'         => 'Lokacije',
+        'add'       => 'Nova lokacija',
+        'header'    => 'Lokacije u :name',
+        'title'     => 'Lokacije',
     ],
     'items'         => [
-        'title'         => 'Predmeti lokacije :name',
+        'title' => 'Predmeti lokacije :name',
     ],
     'journals'      => [
-        'title'         => 'Dnevnici iz lokacije :name',
+        'title' => 'Dnevnici iz lokacije :name',
     ],
     'locations'     => [
-        'title'         => 'Lokacije unutar lokacije :name',
+        'title' => 'Lokacije unutar lokacije :name',
     ],
     'map'           => [
         'actions'   => [
@@ -205,7 +205,7 @@ return [
         'type'      => 'Grad, Kraljevstvo, Ruševina',
     ],
     'show'          => [
-        'tabs'          => [
+        'tabs'  => [
             'characters'    => 'Likovi',
             'events'        => 'Događaji',
             'families'      => 'Obitelji',
@@ -217,6 +217,6 @@ return [
             'organisations' => 'Organizacije',
             'quests'        => 'Zadaci',
         ],
-        'title'         => 'Lokacija :name',
+        'title' => 'Lokacija :name',
     ],
 ];

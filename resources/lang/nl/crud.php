@@ -133,7 +133,6 @@ return [
         'header_image'          => 'Header Afbeeldingen',
         'image'                 => 'Afbeelding',
         'is_private'            => 'Privé',
-        'is_private_v2'         => 'Laat dit alleen zien aan leden van de campaign\'s :admin-role. Dit heft elke andere permissie op.',
         'is_star'               => 'Vastgemaakt',
         'item'                  => 'Voorwerp',
         'location'              => 'Locatie',
@@ -203,14 +202,13 @@ return [
         'header_image'          => 'Deze afbeelding wordt boven de entiteit geplaatst. Gebruik een brede afbeelding voor de beste resultaten.',
         'image_limitations'     => 'Ondersteunde formaten: :formats. Max Bestandsgrootte: :size.',
         'image_patreon'         => 'Limiet voor bestandsgrootte verhogen?',
-        'is_private'            => 'Indien ingesteld op privé, is deze entiteit alleen zichtbaar voor leden die de rol "Beheerder" van de campaign hebben.',
         'is_star'               => 'Vastgezette elementen verschijnen in het menu van de entiteit',
         'tooltip'               => 'Vervang de automatisch gegenereerde tooltip door de volgende inhoud.',
         'visibility'            => 'Als je de zichtbaarheid instelt op beheerder, kunnen alleen leden met de campaign rol Beheerder dit zien. Als je het op zichzelf instelt, betekent dit dat alleen jij dit kunt zien.',
     ],
     'history'                   => [
-        'unknown'       => 'Onbekend',
-        'view'          => 'Bekijk entiteit log',
+        'unknown'   => 'Onbekend',
+        'view'      => 'Bekijk entiteit log',
     ],
     'image'                     => [
         'error' => 'We kunnen de door jou aangevraagde afbeelding niet ophalen. Het kan zijn dat de website ons niet toestaat om de afbeelding te downloaden (meestal voor Squarespace en DeviantArt), of dat de link niet langer geldig is. Let er ook op dat de afbeelding niet groter is dan :size.',
@@ -220,30 +218,6 @@ return [
     'legacy'                    => 'Legacy',
     'linking_help'              => 'Hoe kan ik linken naar andere invoeren?',
     'manage'                    => 'Beheer',
-    'move'                      => [
-        'errors'        => [
-            'permission'        => 'Je mag geen entiteiten van dat type maken in de doel campaign.',
-            'same_campaign'     => 'Je moet een andere campaign selecteren om de entiteit naar te verplaatsen.',
-            'unknown_campaign'  => 'Onbekende campaign.',
-        ],
-        'fields'        => [
-            'campaign'  => 'Nieuwe campaign',
-            'copy'      => 'Maak een kopie',
-            'target'    => 'Nieuwe type',
-        ],
-        'hints'         => [
-            'campaign'  => 'Je kunt ook proberen deze entiteit naar een andere campaign te verplaatsen.',
-            'copy'      => 'Selecteer deze optie als je een kopie in de nieuwe campaign wilt maken.',
-            'target'    => 'Houd er rekening mee dat sommige gegevens verloren kunnen gaan bij het verplaatsen van een element van het ene type naar het andere.',
-        ],
-        'panels'        => [
-            'change'    => 'Verander entiteit type',
-            'move'      => 'Verplaats naar andere campaign',
-        ],
-        'success'       => 'Entiteit \':name\' verplaatst.',
-        'success_copy'  => 'Entiteit \':name\' gekopieerd.',
-        'title'         => 'Wijzig of Verplaats :name',
-    ],
     'new_entity'                => [
         'error' => 'Controleer je waarden.',
         'fields'=> [
@@ -251,7 +225,6 @@ return [
         ],
         'title' => 'Nieuwe entiteit',
     ],
-    'or_cancel'                 => 'of <a href=":url">annuleer</a>',
     'panels'                    => [
         'appearance'            => 'Uiterlijk',
         'attribute_template'    => 'Attribuutsjabloon',

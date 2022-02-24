@@ -2,8 +2,8 @@
 
 return [
     'create'        => [
-        'success'       => 'Predmet :name vytvorený.',
-        'title'         => 'Nový predmet',
+        'success'   => 'Predmet :name vytvorený.',
+        'title'     => 'Nový predmet',
     ],
     'destroy'       => [
         'success'   => 'Predmet :name odstránený.',
@@ -23,12 +23,12 @@ return [
         'type'      => 'Typ',
     ],
     'index'         => [
-        'add'           => 'Nový predmet',
-        'header'        => 'Predmety objektu :name',
-        'title'         => 'Predmety',
+        'add'       => 'Nový predmet',
+        'header'    => 'Predmety objektu :name',
+        'title'     => 'Predmety',
     ],
     'inventories'   => [
-        'title'         => 'Objekty s predmetom :name',
+        'title' => 'Objekty s predmetom :name',
     ],
     'placeholders'  => [
         'character' => 'Vyber postavu',
@@ -39,11 +39,9 @@ return [
         'type'      => 'zbraň, elixír, artefakt',
     ],
     'show'          => [
-        'tabs'          => [
-            'information'   => 'Informácie',
+        'tabs'  => [
             'inventories'   => 'Objekty',
-            'quests'        => 'Úlohy',
         ],
-        'title'         => 'Predmet :name',
+        'title' => 'Predmet :name',
     ],
 ];

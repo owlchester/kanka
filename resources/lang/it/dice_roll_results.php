@@ -2,6 +2,6 @@
 
 return [
     'index' => [
-        'title'         => 'Risultato del tiro di dado',
+        'title' => 'Risultato del tiro di dado',
     ],
 ];

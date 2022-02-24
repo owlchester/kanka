@@ -17,16 +17,16 @@ return [
         'is_recurring'  => 'Her yıl gerçekleşir',
     ],
     'create'        => [
-        'success'       => '\':name\' takvimi oluşturuldu.',
-        'title'         => 'Yeni Takvim',
+        'success'   => '\':name\' takvimi oluşturuldu.',
+        'title'     => 'Yeni Takvim',
     ],
     'destroy'       => [
         'success'   => '\':name\' takvimi kaldırıldı.',
     ],
     'edit'          => [
-        'success'       => '\':name\' takvimi güncellendi.',
-        'title'         => ':name Takvimini Düzenle',
-        'today'         => 'Takvim tarihi güncellendi.',
+        'success'   => '\':name\' takvimi güncellendi.',
+        'title'     => ':name Takvimini Düzenle',
+        'today'     => 'Takvim tarihi güncellendi.',
     ],
     'event'         => [
         'actions'   => [
@@ -35,13 +35,13 @@ return [
             'switch'    => 'Seçimi değiştir',
         ],
         'create'    => [
-            'success'       => 'Takvim olayı yaratıldı.',
-            'title'         => ':name için Takvim Olayı Ekle',
+            'success'   => 'Takvim olayı yaratıldı.',
+            'title'     => ':name için Takvim Olayı Ekle',
         ],
         'destroy'   => '\':name\' takviminden olay kaldırıldı.',
         'edit'      => [
-            'success'       => 'Takvim olayı güncellendi.',
-            'title'         => ':name için Takvim Olayını Güncelle',
+            'success'   => 'Takvim olayı güncellendi.',
+            'title'     => ':name için Takvim Olayını Güncelle',
         ],
         'helpers'   => [
             'add'               => 'Bu takvime mevcut bir olayı ekle.',
@@ -54,7 +54,7 @@ return [
         'success'   => '\':event\' olayı takvime eklendi.',
     ],
     'events'        => [
-        'title'         => ':name Takvimi Olayları',
+        'title' => ':name Takvimi Olayları',
     ],
     'fields'        => [
         'calendar'              => 'Ana Takvim',
@@ -91,7 +91,6 @@ return [
     ],
     'helpers'       => [
         'month_type'    => 'Artık aylar hafta günlerini kullanmaz, ancak hala ayları ve mevsimleri etkiler.',
-        'nested'        => 'Öncelikle ana takvimi olmayan karakterleri gösterir. Bir takvimin alt takvimlerini keşfetmek için takvime tıklayın.',
         'start_offset'  => 'Varsayılan olarak, takvim 0. yılın ilk hafta gününde başlar. Bu alanı değiştirmek takvimin ilk gününün nereye denk geldiğini etkiler.',
     ],
     'hints'         => [
@@ -108,9 +107,9 @@ return [
         'years'             => 'Bazi yıllar o kadar önemlidir ki kendi adları vardır.',
     ],
     'index'         => [
-        'add'           => 'Yeni Takvim',
-        'header'        => ':name Tavkimleri',
-        'title'         => 'Takvimler',
+        'add'       => 'Yeni Takvim',
+        'header'    => ':name Tavkimleri',
+        'title'     => 'Takvimler',
     ],
     'layouts'       => [
         'month' => 'Ay',

@@ -2,16 +2,16 @@
 
 return [
     'create'        => [
-        'success'       => 'Kreirano bacanje kockice ":name".',
-        'title'         => 'Novo bacanje kockica',
+        'success'   => 'Kreirano bacanje kockice ":name".',
+        'title'     => 'Novo bacanje kockica',
     ],
     'destroy'       => [
         'dice_roll' => 'Uklonjeno bacanje kockica.',
         'success'   => 'Uklonjeno bacanje kockica ":name".',
     ],
     'edit'          => [
-        'success'       => 'Ažurirano bacanje kockica ":name".',
-        'title'         => 'Uredi bacanje kockica :name',
+        'success'   => 'Ažurirano bacanje kockica ":name".',
+        'title'     => 'Uredi bacanje kockica :name',
     ],
     'fields'        => [
         'created_at'    => 'Kockice bačene u',
@@ -24,13 +24,13 @@ return [
         'parameters'    => 'Koje su moje opcije kockica?',
     ],
     'index'         => [
-        'actions'       => [
+        'actions'   => [
             'dice'      => 'Bacanja kockica',
             'results'   => 'Rezultati',
         ],
-        'add'           => 'Novo bacanje kockica',
-        'header'        => 'Bacanje kockica za :name',
-        'title'         => 'Bacanja kockica',
+        'add'       => 'Novo bacanje kockica',
+        'header'    => 'Bacanje kockica za :name',
+        'title'     => 'Bacanja kockica',
     ],
     'placeholders'  => [
         'dice_roll' => 'Bacanje kockica',
@@ -51,9 +51,9 @@ return [
         'success'   => 'Kockice bačene.',
     ],
     'show'          => [
-        'tabs'          => [
+        'tabs'  => [
             'results'   => 'Rezultati',
         ],
-        'title'         => 'Bacanje kockica :name',
+        'title' => 'Bacanje kockica :name',
     ],
 ];

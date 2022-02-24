@@ -55,7 +55,6 @@ return [
             'visible'   => 'Widoczny',
         ],
     ],
-    'description'       => 'Dowód twojej kreatywności',
     'helpers'           => [
         'follow'    => 'Śledzenie kampanii sprawi, że pojawi się w menu przełączania kampanii (lewy górny róg), pod twoimi własnymi kampaniami.',
         'join'      => 'Kampania jest otwarta na nowych członków. Kliknij, by do niej dołączyć.',

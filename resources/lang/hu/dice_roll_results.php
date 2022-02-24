@@ -2,6 +2,6 @@
 
 return [
     'index' => [
-        'title'         => 'Dobás eredménye',
+        'title' => 'Dobás eredménye',
     ],
 ];

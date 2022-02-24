@@ -2,15 +2,15 @@
 
 return [
     'create'        => [
-        'success'       => 'Konversation \':name\' skapad.',
-        'title'         => 'Ny Konversation',
+        'success'   => 'Konversation \':name\' skapad.',
+        'title'     => 'Ny Konversation',
     ],
     'destroy'       => [
         'success'   => 'Konversation \':name\' borttagen.',
     ],
     'edit'          => [
-        'success'       => 'Konversation \':name\' uppdaterad.',
-        'title'         => 'Konversation :name',
+        'success'   => 'Konversation \':name\' uppdaterad.',
+        'title'     => 'Konversation :name',
     ],
     'fields'        => [
         'messages'      => 'Meddelanden',
@@ -23,9 +23,9 @@ return [
         'participants'  => 'Vänligen lägg till deltagare till din konversation genom att trycka på :icon ikonen uppe till höger.',
     ],
     'index'         => [
-        'add'           => 'Ny Konversation',
-        'header'        => 'Konversationer i :name',
-        'title'         => 'Konversationer',
+        'add'       => 'Ny Konversation',
+        'header'    => 'Konversationer i :name',
+        'title'     => 'Konversationer',
     ],
     'messages'      => [
         'destroy'       => [
@@ -38,21 +38,21 @@ return [
         ],
     ],
     'participants'  => [
-        'create'        => [
+        'create'    => [
             'success'   => 'Deltagare :entity tillagd till konversationen.',
         ],
-        'destroy'       => [
+        'destroy'   => [
             'success'   => 'Deltagare :entity borttagen från konversationen.',
         ],
-        'modal'         => 'Deltagare',
-        'title'         => 'Deltagare i :name',
+        'modal'     => 'Deltagare',
+        'title'     => 'Deltagare i :name',
     ],
     'placeholders'  => [
         'name'  => 'Name of the conversation',
         'type'  => 'I Spelet, Förberedande, Handling',
     ],
     'show'          => [
-        'title'         => 'Konversation :name',
+        'title' => 'Konversation :name',
     ],
     'tabs'          => [
         'conversation'  => 'Konversation',

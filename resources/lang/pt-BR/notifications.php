@@ -37,7 +37,7 @@ return [
     ],
     'header'            => 'Você tem :count notificações.',
     'index'             => [
-        'title'         => 'Notificações',
+        'title' => 'Notificações',
     ],
     'no_notifications'  => 'Não há notificações no momento.',
     'subscriptions'     => [

@@ -2,9 +2,8 @@
 
 return [
     'create'        => [
-        'description'   => 'Yeni bir olay oluştur',
-        'success'       => '\':name\' olayı oluşturuldu.',
-        'title'         => 'Yeni Olay',
+        'success'   => '\':name\' olayı oluşturuldu.',
+        'title'     => 'Yeni Olay',
     ],
     'destroy'       => [
         'success'   => '\':name\' olayı kaldırıldı.',
@@ -24,10 +23,9 @@ return [
         'date'  => 'Bu alan her şeyi içinde bulundurabilir ve serüvenin takvimlerine bağlı değildir. Bu olayı bir takvime bağlamak için, olayı takvimde ya da bu olayın hatırlatıcılar sekmesinde ekleyin.',
     ],
     'index'         => [
-        'add'           => 'Yeni Olay',
-        'description'   => ':name olaylarını yönet.',
-        'header'        => ':name Olayları',
-        'title'         => 'Olaylar',
+        'add'       => 'Yeni Olay',
+        'header'    => ':name Olayları',
+        'title'     => 'Olaylar',
     ],
     'placeholders'  => [
         'date'      => 'Olayınız için bir tarih',
@@ -36,11 +34,7 @@ return [
         'type'      => 'Seremoni, Festival, Felaket, Savaş, Doğum',
     ],
     'show'          => [
-        'description'   => 'Olaya detaylı bir bakış',
-        'tabs'          => [
-            'information'   => 'Bilgi',
-        ],
-        'title'         => ':name Olayı',
+        'title' => ':name Olayı',
     ],
     'tabs'          => [
         'calendars' => 'Takvim Girdileri',

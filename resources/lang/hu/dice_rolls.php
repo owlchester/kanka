@@ -2,16 +2,16 @@
 
 return [
     'create'        => [
-        'success'       => ':name dobást létrehoztuk.',
-        'title'         => 'Új dobás',
+        'success'   => ':name dobást létrehoztuk.',
+        'title'     => 'Új dobás',
     ],
     'destroy'       => [
         'dice_roll' => 'A dobást eltávolítottuk.',
         'success'   => '\':name\' dobást eltávolítottuk.',
     ],
     'edit'          => [
-        'success'       => '\':name\' dobást frissítettük.',
-        'title'         => ':name dobás szerkesztése',
+        'success'   => '\':name\' dobást frissítettük.',
+        'title'     => ':name dobás szerkesztése',
     ],
     'fields'        => [
         'created_at'    => 'Dobott',
@@ -24,13 +24,13 @@ return [
         'parameters'    => 'Milyen kockákat használhatok?',
     ],
     'index'         => [
-        'actions'       => [
+        'actions'   => [
             'dice'      => 'Dobások',
             'results'   => 'Eredmények',
         ],
-        'add'           => 'Új dobás',
-        'header'        => ':name dobásai',
-        'title'         => 'Dobások',
+        'add'       => 'Új dobás',
+        'header'    => ':name dobásai',
+        'title'     => 'Dobások',
     ],
     'placeholders'  => [
         'dice_roll' => 'Dobás',
@@ -51,9 +51,9 @@ return [
         'success'   => 'Elgurítottad a kockákat.',
     ],
     'show'          => [
-        'tabs'          => [
+        'tabs'  => [
             'results'   => 'Eredmények',
         ],
-        'title'         => ':name dobás',
+        'title' => ':name dobás',
     ],
 ];

@@ -2,15 +2,15 @@
 
 return [
     'characters'    => [
-        'helpers'       => [
+        'helpers'   => [
             'all_characters'    => 'Visar alla karaktärer tillhörande denna ras eller dess underraser.',
             'characters'        => 'Visar alla karaktärer som direkt tillhör denna ras.',
         ],
-        'title'         => 'Ras :name Karaktärer',
+        'title'     => 'Ras :name Karaktärer',
     ],
     'create'        => [
-        'success'       => 'Ras \':name\' skapad.',
-        'title'         => 'Ny Ras',
+        'success'   => 'Ras \':name\' skapad.',
+        'title'     => 'Ny Ras',
     ],
     'destroy'       => [
         'success'   => 'Ras \':name\' borttagen.',
@@ -26,25 +26,24 @@ return [
         'races'         => 'Underras',
         'type'          => 'Typ',
     ],
-    'helpers'       => [
-    ],
+    'helpers'       => [],
     'index'         => [
-        'add'           => 'Ny Ras',
-        'header'        => 'Raser av :name',
-        'title'         => 'Raser',
+        'add'       => 'Ny Ras',
+        'header'    => 'Raser av :name',
+        'title'     => 'Raser',
     ],
     'placeholders'  => [
         'name'  => 'Namn på rasen',
         'type'  => 'Människa, Väsen, Borg',
     ],
     'races'         => [
-        'title'         => 'Ras :name Underraser',
+        'title' => 'Ras :name Underraser',
     ],
     'show'          => [
-        'tabs'          => [
+        'tabs'  => [
             'characters'    => 'Karaktärer',
             'races'         => 'Underraser',
         ],
-        'title'         => 'Ras :name',
+        'title' => 'Ras :name',
     ],
 ];

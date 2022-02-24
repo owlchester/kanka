@@ -41,7 +41,6 @@ return [
             'email'     => 'E-mail',
             'name'      => 'Uživatelské jméno',
             'password'  => 'Heslo',
-            'tos'       => 'Souhlasím se <a href=":privacyUrl" target="_blank">Zásadami ochrany soukromí</a>.',
         ],
         'register_with_facebook'    => 'Registrace přes Facebook',
         'register_with_google'      => 'Registrace přes Google',

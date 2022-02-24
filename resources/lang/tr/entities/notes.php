@@ -5,15 +5,15 @@ return [
         'add'   => 'Yeni Varlık Notu',
     ],
     'create'        => [
-        'success'       => '\':name\' Varlık Notu :entity varlığına eklendi.',
-        'title'         => ':name için Yeni Varlık Notu',
+        'success'   => '\':name\' Varlık Notu :entity varlığına eklendi.',
+        'title'     => ':name için Yeni Varlık Notu',
     ],
     'destroy'       => [
         'success'   => ':entity için \':name\' Varlık Notu kaldırıldı.',
     ],
     'edit'          => [
-        'success'       => ':entity için \':name\' Varlık Notu güncellendi.',
-        'title'         => ':name için varlık notunu güncelle',
+        'success'   => ':entity için \':name\' Varlık Notu güncellendi.',
+        'title'     => ':name için varlık notunu güncelle',
     ],
     'fields'        => [
         'creator'   => 'Yaratan',

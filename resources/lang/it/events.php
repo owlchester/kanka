@@ -2,8 +2,8 @@
 
 return [
     'create'        => [
-        'success'       => 'Evento \':name\' creato.',
-        'title'         => 'Nuovo Evento',
+        'success'   => 'Evento \':name\' creato.',
+        'title'     => 'Nuovo Evento',
     ],
     'destroy'       => [
         'success'   => 'Evento \':name\' rimosso.',
@@ -20,9 +20,9 @@ return [
         'type'      => 'Tipo',
     ],
     'index'         => [
-        'add'           => 'Nuovo Evento',
-        'header'        => 'Eventi di :name',
-        'title'         => 'Eventi',
+        'add'       => 'Nuovo Evento',
+        'header'    => 'Eventi di :name',
+        'title'     => 'Eventi',
     ],
     'placeholders'  => [
         'date'      => 'Una data per il tuo evento',
@@ -31,10 +31,7 @@ return [
         'type'      => 'Cerimonia, Festival, Disastro, Battaglia, Nascita',
     ],
     'show'          => [
-        'tabs'          => [
-            'information'   => 'Informazioni',
-        ],
-        'title'         => 'Evento :name',
+        'title' => 'Evento :name',
     ],
     'tabs'          => [
         'calendars' => 'Elementi del Calendario',

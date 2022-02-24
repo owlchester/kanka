@@ -2,16 +2,16 @@
 
 return [
     'create'        => [
-        'success'       => 'Tiro di Dado \':name\' creato.',
-        'title'         => 'Nuovo Tiro di Dado',
+        'success'   => 'Tiro di Dado \':name\' creato.',
+        'title'     => 'Nuovo Tiro di Dado',
     ],
     'destroy'       => [
         'dice_roll' => 'Tiro di dado rimosso.',
         'success'   => 'Tiro di Dado \':name\' rimosso.',
     ],
     'edit'          => [
-        'success'       => 'Tiro di Dado \':name\' aggiornato.',
-        'title'         => 'Modifica il Tiro di Dadi :name',
+        'success'   => 'Tiro di Dado \':name\' aggiornato.',
+        'title'     => 'Modifica il Tiro di Dadi :name',
     ],
     'fields'        => [
         'created_at'    => 'Tirato il',
@@ -24,13 +24,13 @@ return [
         'parameters'    => 'Quali sono le opzioni per i miei dadi?',
     ],
     'index'         => [
-        'actions'       => [
+        'actions'   => [
             'dice'      => 'Titi di Dado',
             'results'   => 'Risultati',
         ],
-        'add'           => 'Nuovo Tiro di Dado',
-        'header'        => 'Tiri di Dado di :name',
-        'title'         => 'Tiri di Dado',
+        'add'       => 'Nuovo Tiro di Dado',
+        'header'    => 'Tiri di Dado di :name',
+        'title'     => 'Tiri di Dado',
     ],
     'placeholders'  => [
         'dice_roll' => 'Tiro di Dado',
@@ -51,9 +51,9 @@ return [
         'success'   => 'Dado tirato.',
     ],
     'show'          => [
-        'tabs'          => [
+        'tabs'  => [
             'results'   => 'Risultati',
         ],
-        'title'         => 'Tiro di Dado :name',
+        'title' => 'Tiro di Dado :name',
     ],
 ];

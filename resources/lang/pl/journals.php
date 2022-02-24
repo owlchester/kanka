@@ -2,8 +2,8 @@
 
 return [
     'create'        => [
-        'success'       => 'Stworzono dziennik \':name\'.',
-        'title'         => 'Nowy dziennik',
+        'success'   => 'Stworzono dziennik \':name\'.',
+        'title'     => 'Nowy dziennik',
     ],
     'destroy'       => [
         'success'   => 'Usunięto dziennik \':name\'.',
@@ -24,14 +24,13 @@ return [
     ],
     'helpers'       => [
         'journals'      => 'Wyświetla wszystkie dzienniki pochodne, albo tylko pochodzące bezpośrednio od tego.',
-        'nested'        => 'W widoku hierarchii najpierw wyświetlane są dzienniki, które nie mają źródła. Po kliknięciu na wiersz dziennika zobaczysz jego pochodne. Możesz schodzić niżej, póki nie skończą się poziomy hierarchii.',
         'nested_parent' => 'Wyświetlono dzienniki pochodzące od :parent.',
         'nested_without'=> 'Wyświetlono wszystkie dzienniki nie posiadające źródła. Kliknij na rząd, by wyświetlić dzienniki pochodne.',
     ],
     'index'         => [
-        'add'           => 'Nowy dziennik',
-        'header'        => 'Dzienniki elementu :name',
-        'title'         => 'Dzienniki',
+        'add'       => 'Nowy dziennik',
+        'header'    => 'Dzienniki elementu :name',
+        'title'     => 'Dzienniki',
     ],
     'journals'      => [
         'title' => 'Dzienniki pochodne dziennika :name',
@@ -44,9 +43,9 @@ return [
         'type'      => 'Sesja, jednostrzał, szkic',
     ],
     'show'          => [
-        'tabs'          => [
+        'tabs'  => [
             'journals'  => 'Dzienniki',
         ],
-        'title'         => 'Dziennik :name',
+        'title' => 'Dziennik :name',
     ],
 ];

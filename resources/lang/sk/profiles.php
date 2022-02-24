@@ -50,10 +50,7 @@ return [
             'release'   => 'Nová verzia',
         ],
         'settings'  => [
-            'news'          => 'Novinky - oznámenie pri publikovaní nových :news.',
-            'newsletter'    => 'Newsletter - zaslanie newslettra Kanky.',
-            'updates'       => 'Aktualizácie - informácie o aktualizáciách v Kanke.',
-            'votes'         => 'Komunitné hlasovania - oznámenie o novom :vote.',
+            'news'  => 'Novinky - oznámenie pri publikovaní nových :news.',
         ],
         'title'     => 'Newsletter',
     ],
@@ -89,7 +86,6 @@ return [
             'pagination'                    => 'Stránkovanie (počet objektov na stránke)',
         ],
         'helpers'   => [
-            'editor'    => 'Štandardný editor (TinyMCE 4) je starší ale funguje dobre na desktope, nie však na mobile. Summernote je novší editor, ktorý správne funguje na všetkých zariadeniach, ale ešte stále ho testujeme.',
             'editor_v2' => 'Používanie pôvodného textového editoru (TinyMCE) nebude podporovať vytváranie referencií na mobilných zariadeniach alebo funkcionality ako galéria kampane.',
         ],
         'hints'     => [

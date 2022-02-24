@@ -2,15 +2,15 @@
 
 return [
     'create'        => [
-        'success'       => '\':name\' küldetést létrehoztuk.',
-        'title'         => 'Új küldetés',
+        'success'   => '\':name\' küldetést létrehoztuk.',
+        'title'     => 'Új küldetés',
     ],
     'destroy'       => [
         'success'   => '\':name\' küldetést eltávolítottuk.',
     ],
     'edit'          => [
-        'success'       => '\':name\' küldetést frissítettük.',
-        'title'         => ':name küldetés szerkesztése',
+        'success'   => '\':name\' küldetést frissítettük.',
+        'title'     => ':name küldetés szerkesztése',
     ],
     'elements'      => [
         'create'    => [
@@ -44,7 +44,6 @@ return [
         'type'          => 'Típus',
     ],
     'helpers'       => [
-        'nested'        => 'Hierarchikus nézetben a küldetéseidet alá-fölérendeltségi viszonyukban tekintheted meg. A legfelső szinten azokat a küldetéseket láthatod, amiknek nincs főküldetése, rájuk kattintva pedig megtekintheted alküldetéseiket. Amennyiben az egyes alküldetéseknek saját alküldetéseik vannak, azokra kattintva őket is megtekintheted.',
         'nested_parent' => ':parent küldetéseinek mutatása',
         'nested_without'=> 'Minden küldetést megmutat, aminek nincs szülője. Klikkelj egy sorra, hogy lásd a gyermekküldetéseit.',
     ],
@@ -52,9 +51,9 @@ return [
         'quests'    => 'A főküldetés és az alküldetések mezők használatával összefüggő küldetések hálóját építheted fel.',
     ],
     'index'         => [
-        'add'           => 'Új küldetés',
-        'header'        => ':name küldetései',
-        'title'         => 'Küldetések',
+        'add'       => 'Új küldetés',
+        'header'    => ':name küldetései',
+        'title'     => 'Küldetések',
     ],
     'placeholders'  => [
         'date'  => 'A küldetés valós világbéli dátuma',
@@ -64,13 +63,12 @@ return [
         'type'  => 'Karaktertörténet, mellékszál, főszál',
     ],
     'show'          => [
-        'actions'       => [
-            'add_element'       => 'Elem hozzáadása',
+        'actions'   => [
+            'add_element'   => 'Elem hozzáadása',
         ],
-        'tabs'          => [
-            'elements'      => 'Elemek',
-            'quests'        => 'Küldetések',
+        'tabs'      => [
+            'elements'  => 'Elemek',
         ],
-        'title'         => ':name küldetés',
+        'title'     => ':name küldetés',
     ],
 ];

@@ -7,22 +7,22 @@ return [
         'add_personality'   => 'Füge eine Persönlichkeit hinzu',
     ],
     'conversations' => [
-        'title'         => 'Charakter :name Unterhaltungen',
+        'title' => 'Charakter :name Unterhaltungen',
     ],
     'create'        => [
-        'success'       => 'Charakter \':name\' erstellt.',
-        'title'         => 'Erstelle einen neuen Charakter',
+        'success'   => 'Charakter \':name\' erstellt.',
+        'title'     => 'Erstelle einen neuen Charakter',
     ],
     'destroy'       => [
         'success'   => 'Charakter \':name\' entfernt.',
     ],
     'dice_rolls'    => [
-        'hint'          => 'Würfelwürfe können einem Charakter zugewiesen werden, um in einem Spiel verwendet zu werden.',
-        'title'         => 'Charakter :name Würfelwürfe',
+        'hint'  => 'Würfelwürfe können einem Charakter zugewiesen werden, um in einem Spiel verwendet zu werden.',
+        'title' => 'Charakter :name Würfelwürfe',
     ],
     'edit'          => [
-        'success'       => 'Charakter \':name\' aktualisiert',
-        'title'         => 'Bearbeite Charakter :name',
+        'success'   => 'Charakter \':name\' aktualisiert',
+        'title'     => 'Bearbeite Charakter :name',
     ],
     'fields'        => [
         'age'                       => 'Alter',
@@ -58,37 +58,37 @@ return [
         'personality_visible'       => 'Persönlichkeitsmerkmale dieses Charakters sind für alle sichtbar.',
     ],
     'index'         => [
-        'actions'       => [
+        'actions'   => [
             'random'    => 'Neuen zufälligen Charakter',
         ],
-        'add'           => 'Neuer Charakter',
-        'header'        => 'Charakter in :name',
-        'title'         => 'Charaktere',
+        'add'       => 'Neuer Charakter',
+        'header'    => 'Charakter in :name',
+        'title'     => 'Charaktere',
     ],
     'items'         => [
-        'hint'          => 'Items können einem Charakter hinzugefügt werden und werden dann hier dargestellt.',
-        'title'         => 'Charakter :name Gegenstände',
+        'hint'  => 'Items können einem Charakter hinzugefügt werden und werden dann hier dargestellt.',
+        'title' => 'Charakter :name Gegenstände',
     ],
     'journals'      => [
-        'title'         => 'Charakter :name Logbücher',
+        'title' => 'Charakter :name Logbücher',
     ],
     'maps'          => [
-        'title'         => 'Charakter :name Beziehungskarte',
+        'title' => 'Charakter :name Beziehungskarte',
     ],
     'organisations' => [
         'actions'       => [
             'add'   => 'Organisation hinzufügen',
         ],
         'create'        => [
-            'success'       => 'Charakter wurde der Organisation hinzugefügt.',
-            'title'         => 'Neue Organisation für :name',
+            'success'   => 'Charakter wurde der Organisation hinzugefügt.',
+            'title'     => 'Neue Organisation für :name',
         ],
         'destroy'       => [
             'success'   => 'Character aus Organisation entfernt.',
         ],
         'edit'          => [
-            'success'       => 'Organisation des Charakters aktualisiert',
-            'title'         => 'Aktualisiere Organisation für :name',
+            'success'   => 'Organisation des Charakters aktualisiert',
+            'title'     => 'Aktualisiere Organisation für :name',
         ],
         'fields'        => [
             'organisation'  => 'Organisation',
@@ -120,11 +120,10 @@ return [
         'type'              => 'NSC, Spieler Charakter, Gottheit',
     ],
     'quests'        => [
-        'helpers'       => [
+        'helpers'   => [
             'quest_giver'   => 'Quests bei denen der Charakter Auftraggeber war.',
             'quest_member'  => 'Quests an denen der Charakter teilgenommen hat.',
         ],
-        'title'         => 'Charakter :name Quests',
     ],
     'sections'      => [
         'appearance'    => 'Aussehen',
@@ -132,17 +131,12 @@ return [
         'personality'   => 'Persönlichkeit',
     ],
     'show'          => [
-        'tabs'          => [
-            'conversations' => 'Unterhaltungen',
-            'dice_rolls'    => 'Würfelwürfe',
-            'items'         => 'Items',
-            'journals'      => 'Logbücher',
+        'tabs'  => [
             'map'           => 'Beziehungskarte',
             'organisations' => 'Organisationen',
             'personality'   => 'Persönlichkeit',
-            'quests'        => 'Quests',
         ],
-        'title'         => 'Charakter :name',
+        'title' => 'Charakter :name',
     ],
     'warnings'      => [
         'personality_hidden'    => 'Es ist dir nicht erlaubt, die Persönlichkeit dieses Charakters zu bearbeiten.',

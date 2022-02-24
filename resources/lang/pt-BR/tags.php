@@ -2,18 +2,18 @@
 
 return [
     'children'      => [
-        'actions'       => [
+        'actions'   => [
             'add'   => 'Adicionar à tag',
         ],
-        'create'        => [
+        'create'    => [
             'success'   => 'Adicionada a tag :name a entidade.',
             'title'     => 'Adicionar uma tag a :name',
         ],
-        'title'         => 'Filhos da tag :name',
+        'title'     => 'Filhos da tag :name',
     ],
     'create'        => [
-        'success'       => 'Tag \':name\' criada.',
-        'title'         => 'Nova tag',
+        'success'   => 'Tag \':name\' criada.',
+        'title'     => 'Nova tag',
     ],
     'destroy'       => [
         'success'   => 'Tag \':name\' removida',
@@ -39,12 +39,12 @@ return [
         'tag'       => 'Exibidas abaixo estão todas as tags diretamente relacionadas a ela.',
     ],
     'index'         => [
-        'actions'       => [
+        'actions'   => [
             'explore_view'  => 'Visão Aninhada',
         ],
-        'add'           => 'Nova tag',
-        'header'        => 'Tags em :name',
-        'title'         => 'Tags',
+        'add'       => 'Nova tag',
+        'header'    => 'Tags em :name',
+        'title'     => 'Tags',
     ],
     'new_tag'       => 'Nova tag',
     'placeholders'  => [
@@ -53,13 +53,13 @@ return [
         'type'  => 'Tradições, Guerras, História, Religião, Vexilologia',
     ],
     'show'          => [
-        'tabs'          => [
-            'children'      => 'Filhos',
-            'tags'          => 'Tags',
+        'tabs'  => [
+            'children'  => 'Filhos',
+            'tags'      => 'Tags',
         ],
-        'title'         => 'Tag :name',
+        'title' => 'Tag :name',
     ],
     'tags'          => [
-        'title'         => 'Filhos da tag :name',
+        'title' => 'Filhos da tag :name',
     ],
 ];

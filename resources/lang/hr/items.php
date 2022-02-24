@@ -2,8 +2,8 @@
 
 return [
     'create'        => [
-        'success'       => 'Kreiran predmet ":name".',
-        'title'         => 'Novi predmet',
+        'success'   => 'Kreiran predmet ":name".',
+        'title'     => 'Novi predmet',
     ],
     'destroy'       => [
         'success'   => 'Uklonjen predmet ":name".',
@@ -23,12 +23,12 @@ return [
         'type'      => 'Tip',
     ],
     'index'         => [
-        'add'           => 'Novi predmet',
-        'header'        => 'Predmeti u :name',
-        'title'         => 'Predmeti',
+        'add'       => 'Novi predmet',
+        'header'    => 'Predmeti u :name',
+        'title'     => 'Predmeti',
     ],
     'inventories'   => [
-        'title'         => 'Inventar predmeta :name',
+        'title' => 'Inventar predmeta :name',
     ],
     'placeholders'  => [
         'character' => 'Izaberi lika',
@@ -39,11 +39,9 @@ return [
         'type'      => 'Oružje, napitak, artefakt',
     ],
     'show'          => [
-        'tabs'          => [
-            'information'   => 'Informacija',
+        'tabs'  => [
             'inventories'   => 'Informacije',
-            'quests'        => 'Zadaci',
         ],
-        'title'         => 'Predmet :name',
+        'title' => 'Predmet :name',
     ],
 ];

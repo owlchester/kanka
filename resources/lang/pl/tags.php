@@ -2,18 +2,18 @@
 
 return [
     'children'      => [
-        'actions'       => [
+        'actions'   => [
             'add'   => 'Dodaj nową etykietę',
         ],
-        'create'        => [
+        'create'    => [
             'success'   => 'Dodano do elementu etykietę :name.',
             'title'     => 'Dodaj etykietę do elementu :name',
         ],
-        'title'         => 'Etykiety pochodne od :name',
+        'title'     => 'Etykiety pochodne od :name',
     ],
     'create'        => [
-        'success'       => 'Stworzono etykietę \':name\'.',
-        'title'         => 'Nowa etykieta',
+        'success'   => 'Stworzono etykietę \':name\'.',
+        'title'     => 'Nowa etykieta',
     ],
     'destroy'       => [
         'success'   => 'Usunięto etykietę \':name\'.',
@@ -39,12 +39,12 @@ return [
         'tag'       => 'Na liście znajdują się wszystkie elementy posiadające tę etykietę.',
     ],
     'index'         => [
-        'actions'       => [
+        'actions'   => [
             'explore_view'  => 'Widok hierarchii',
         ],
-        'add'           => 'Nowa etykieta',
-        'header'        => 'Etykiety w :name',
-        'title'         => 'Etykiety',
+        'add'       => 'Nowa etykieta',
+        'header'    => 'Etykiety w :name',
+        'title'     => 'Etykiety',
     ],
     'new_tag'       => 'Nowa etykieta',
     'placeholders'  => [
@@ -53,13 +53,13 @@ return [
         'type'  => 'Wiedza tajemna, wojna, historia, religia, weksylologia',
     ],
     'show'          => [
-        'tabs'          => [
-            'children'      => 'Pochodne',
-            'tags'          => 'Etykiety',
+        'tabs'  => [
+            'children'  => 'Pochodne',
+            'tags'      => 'Etykiety',
         ],
-        'title'         => 'Etykieta :name',
+        'title' => 'Etykieta :name',
     ],
     'tags'          => [
-        'title'         => 'Etykiety pochodzące od :name',
+        'title' => 'Etykiety pochodzące od :name',
     ],
 ];

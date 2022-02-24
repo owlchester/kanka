@@ -2,8 +2,8 @@
 
 return [
     'create'        => [
-        'success'       => 'Stworzono przedmiot \':name\'.',
-        'title'         => 'Nowy przedmiot',
+        'success'   => 'Stworzono przedmiot \':name\'.',
+        'title'     => 'Nowy przedmiot',
     ],
     'destroy'       => [
         'success'   => 'Usunięto przedmiot \':name\'.',
@@ -23,12 +23,12 @@ return [
         'type'      => 'Rodzaj',
     ],
     'index'         => [
-        'add'           => 'Nowy przedmiot',
-        'header'        => 'Przedmioty elementu :name.',
-        'title'         => 'Przedmioty',
+        'add'       => 'Nowy przedmiot',
+        'header'    => 'Przedmioty elementu :name.',
+        'title'     => 'Przedmioty',
     ],
     'inventories'   => [
-        'title'         => 'Ekwipunki przedmiotu :name',
+        'title' => 'Ekwipunki przedmiotu :name',
     ],
     'placeholders'  => [
         'character' => 'Wybierz postać',
@@ -39,11 +39,9 @@ return [
         'type'      => 'Broń, eliksir, artefakt',
     ],
     'show'          => [
-        'tabs'          => [
-            'information'   => 'Informacje',
+        'tabs'  => [
             'inventories'   => 'Ekwipunki',
-            'quests'        => 'Misje',
         ],
-        'title'         => 'Przedmiot :name',
+        'title' => 'Przedmiot :name',
     ],
 ];

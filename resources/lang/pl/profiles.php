@@ -50,10 +50,7 @@ return [
             'release'   => 'Nowe wydanie',
         ],
         'settings'  => [
-            'news'          => 'Aktualności - otrzymuj powiadomienia, gdy mamy :news.',
-            'newsletter'    => 'Newsletter',
-            'updates'       => 'Aktualizacje - otrzymasz wiadomość kiedy Kanka zostanie zaktualizowana',
-            'votes'         => 'Głosowania',
+            'news'  => 'Aktualności - otrzymuj powiadomienia, gdy mamy :news.',
         ],
         'title'     => 'Newslettery',
     ],
@@ -89,7 +86,6 @@ return [
             'pagination'                    => 'Elementy na stronie',
         ],
         'helpers'   => [
-            'editor'    => 'Edytor',
             'editor_v2' => 'Jeżeli używasz poprzedniego edytora tekstu (TinyMCE) nie będziesz mieć dostępu do powiadomień na urządzeniach mobilnych oraz niektórych funkcji, na przykład galerii kampanii.',
         ],
         'hints'     => [

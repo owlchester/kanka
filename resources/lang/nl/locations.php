@@ -2,11 +2,11 @@
 
 return [
     'characters'    => [
-        'title'         => 'Locatie :name Personages',
+        'title' => 'Locatie :name Personages',
     ],
     'create'        => [
-        'success'       => 'Locatie \':name\' gemaakt.',
-        'title'         => 'Nieuwe Locatie',
+        'success'   => 'Locatie \':name\' gemaakt.',
+        'title'     => 'Nieuwe Locatie',
     ],
     'destroy'       => [
         'success'   => 'Locatie \':name\' verwijderd.',
@@ -16,7 +16,7 @@ return [
         'title'     => 'Wijzig Locatie :name',
     ],
     'events'        => [
-        'title'         => 'Locatie :name Gebeurtenissen',
+        'title' => 'Locatie :name Gebeurtenissen',
     ],
     'families'      => [
         'title' => 'Locatie :name Families',
@@ -38,28 +38,27 @@ return [
         'families'          => 'Locaties kunnen de zetel zijn van machtige families.',
         'map'               => 'Door een kaart aan een locatie toe te voegen, kan je "Punten" op de kaart plaatsen, zodat je kunt linken naar andere entiteiten in de campaign.',
         'map_deprecated_2'  => 'Kaarten zijn nu hun eigen module! Oude kaarten kunnen nog steeds worden bijgewerkt, maar alle nieuwe kaarten gaan naar de nieuwe Kaarten module.',
-        'nested'            => 'In geneste weergave kun je jouw locaties op een geneste manier bekijken. Locaties zonder bovenliggende locatie worden standaard weergegeven. Locaties met gerelateerden kan op geklikt worden om die gerelateerden te bekijken. Je kunt blijven klikken totdat er geen gerelateerden meer te zien zijn.',
         'organisations'     => 'Bekijk alle organisaties op deze locatie en de bijbehorende gerelateerde locaties, of alleen die direct hier zijn gevestigd.',
     ],
     'hints'         => [
         'is_map_private'    => 'Een privékaart is alleen zichtbaar voor leden van de campaign\'s \'Beheerder\'.',
     ],
     'index'         => [
-        'actions'       => [
+        'actions'   => [
             'explore_view'  => 'Geneste Weergave',
         ],
-        'add'           => 'Nieuwe Locatie',
-        'header'        => 'Locaties in :name',
-        'title'         => 'Locaties',
+        'add'       => 'Nieuwe Locatie',
+        'header'    => 'Locaties in :name',
+        'title'     => 'Locaties',
     ],
     'items'         => [
-        'title'         => 'Locatie :name Voorwerpen',
+        'title' => 'Locatie :name Voorwerpen',
     ],
     'journals'      => [
-        'title'         => 'Locatie :name Logboeken',
+        'title' => 'Locatie :name Logboeken',
     ],
     'locations'     => [
-        'title'         => 'Locatie :name Locaties',
+        'title' => 'Locatie :name Locaties',
     ],
     'map'           => [
         'actions'   => [
@@ -204,7 +203,7 @@ return [
         'type'      => 'Stad, Koninkrijk, Ruïne',
     ],
     'show'          => [
-        'tabs'          => [
+        'tabs'  => [
             'characters'    => 'Personages',
             'events'        => 'Gebeurtenissen',
             'families'      => 'Families',
@@ -216,6 +215,6 @@ return [
             'organisations' => 'Organisaties',
             'quests'        => 'Quests',
         ],
-        'title'         => 'Locatie :name',
+        'title' => 'Locatie :name',
     ],
 ];

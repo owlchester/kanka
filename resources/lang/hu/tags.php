@@ -2,18 +2,18 @@
 
 return [
     'children'      => [
-        'actions'       => [
+        'actions'   => [
             'add'   => 'Új címke hozzáadása',
         ],
-        'create'        => [
+        'create'    => [
             'success'   => ':name cédulát hozzáadtuk az entitáshoz.',
             'title'     => 'Új címke hozzárendelése ehhez: :name',
         ],
-        'title'         => ':name címke entitásai',
+        'title'     => ':name címke entitásai',
     ],
     'create'        => [
-        'success'       => 'A \':name\' címkét létrehoztuk',
-        'title'         => 'Új címke',
+        'success'   => 'A \':name\' címkét létrehoztuk',
+        'title'     => 'Új címke',
     ],
     'destroy'       => [
         'success'   => 'A \':name\' címkét eltávolítottuk',
@@ -39,12 +39,12 @@ return [
         'tag'       => 'Minden címke, mely közvetlenül ezen címke alatt van.',
     ],
     'index'         => [
-        'actions'       => [
+        'actions'   => [
             'explore_view'  => 'Hierarchikus nézet',
         ],
-        'add'           => 'Új címke',
-        'header'        => ':name címkéi',
-        'title'         => 'Címkék',
+        'add'       => 'Új címke',
+        'header'    => ':name címkéi',
+        'title'     => 'Címkék',
     ],
     'new_tag'       => 'Új címke',
     'placeholders'  => [
@@ -53,13 +53,13 @@ return [
         'type'  => 'Legendák, háborúk, történelem, vallás, címertan',
     ],
     'show'          => [
-        'tabs'          => [
-            'children'      => 'Alcímkék',
-            'tags'          => 'Címkék',
+        'tabs'  => [
+            'children'  => 'Alcímkék',
+            'tags'      => 'Címkék',
         ],
-        'title'         => ':name címke',
+        'title' => ':name címke',
     ],
     'tags'          => [
-        'title'         => ':name címke alcímkéi',
+        'title' => ':name címke alcímkéi',
     ],
 ];

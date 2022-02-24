@@ -27,7 +27,7 @@ return [
     ],
     'header'            => 'Imate :count obavijesti',
     'index'             => [
-        'title'         => 'Obavijesti',
+        'title' => 'Obavijesti',
     ],
     'no_notifications'  => 'Trenutno nema obavijesti.',
     'subscriptions'     => [

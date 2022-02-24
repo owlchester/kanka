@@ -2,6 +2,6 @@
 
 return [
     'index' => [
-        'title'         => 'Tärningskast Resultat',
+        'title' => 'Tärningskast Resultat',
     ],
 ];

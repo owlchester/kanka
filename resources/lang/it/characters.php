@@ -7,22 +7,22 @@ return [
         'add_personality'   => 'Aggiungi un tratto della personalità',
     ],
     'conversations' => [
-        'title'         => 'Conversazioni del Personaggio :name',
+        'title' => 'Conversazioni del Personaggio :name',
     ],
     'create'        => [
-        'success'       => 'Personaggio \':name\' creato.',
-        'title'         => 'Nuovo Personaggio',
+        'success'   => 'Personaggio \':name\' creato.',
+        'title'     => 'Nuovo Personaggio',
     ],
     'destroy'       => [
         'success'   => 'Personaggio \':name\' rimosso.',
     ],
     'dice_rolls'    => [
-        'hint'          => 'I tiri di dado possono essere assegnati ad un personaggio per essere utilizzati durante la partita.',
-        'title'         => 'Tiri di dado del Personaggio :name',
+        'hint'  => 'I tiri di dado possono essere assegnati ad un personaggio per essere utilizzati durante la partita.',
+        'title' => 'Tiri di dado del Personaggio :name',
     ],
     'edit'          => [
-        'success'       => 'Personaggio \':name\' aggiornato.',
-        'title'         => 'Modifica del Personaggio :name',
+        'success'   => 'Personaggio \':name\' aggiornato.',
+        'title'     => 'Modifica del Personaggio :name',
     ],
     'fields'        => [
         'age'                       => 'Età',
@@ -40,46 +40,43 @@ return [
         'traits'                    => 'Tratti',
         'type'                      => 'Tipologia',
     ],
-    'helpers'       => [
-        'free'  => 'Dov\'è finito il campo "Libero"? Se questo personaggio ne aveva uno è stato mosso in alto all\'interno della nuova tab "Note"!',
-    ],
+    'helpers'       => [],
     'hints'         => [
-        'hide_personality'          => 'Questa tab può essere invisibile alle utenze non "Admin" disabilitando l\'opzione "Personalità Visibile" quando si modifica questo personaggio.',
         'is_dead'                   => 'Questo personaggio è morto',
         'is_personality_visible'    => 'Puoi nascondere l\'intera sezione inerente la personalità per le utenze non "Admin".',
     ],
     'index'         => [
-        'actions'       => [
+        'actions'   => [
             'random'    => 'Nuovo Personaggio Casuale',
         ],
-        'add'           => 'Nuovo Personaggio',
-        'header'        => 'Personaggi che si trovano a \':name\'',
-        'title'         => 'Personaggi',
+        'add'       => 'Nuovo Personaggio',
+        'header'    => 'Personaggi che si trovano a \':name\'',
+        'title'     => 'Personaggi',
     ],
     'items'         => [
-        'hint'          => 'Gli oggetti possono essere assegnati ai personaggi e risulteranno essere visibili nei loro dettagli.',
-        'title'         => 'Oggetti del Personaggio :name',
+        'hint'  => 'Gli oggetti possono essere assegnati ai personaggi e risulteranno essere visibili nei loro dettagli.',
+        'title' => 'Oggetti del Personaggio :name',
     ],
     'journals'      => [
-        'title'         => 'Pagine del Diario del Personaggio :name.',
+        'title' => 'Pagine del Diario del Personaggio :name.',
     ],
     'maps'          => [
-        'title'         => 'Mappa delle Relazioni del Personaggio :name',
+        'title' => 'Mappa delle Relazioni del Personaggio :name',
     ],
     'organisations' => [
         'actions'       => [
             'add'   => 'Aggiungi organizzazione',
         ],
         'create'        => [
-            'success'       => 'Personaggio aggiunto all\'organizzazione.',
-            'title'         => 'Nuova organizzazione per :name',
+            'success'   => 'Personaggio aggiunto all\'organizzazione.',
+            'title'     => 'Nuova organizzazione per :name',
         ],
         'destroy'       => [
             'success'   => 'Organizzazione del personaggio rimossa.',
         ],
         'edit'          => [
-            'success'       => 'Organizzazione del personaggio aggiornata.',
-            'title'         => 'Organizzazione aggiornata per :name',
+            'success'   => 'Organizzazione del personaggio aggiornata.',
+            'title'     => 'Organizzazione aggiornata per :name',
         ],
         'fields'        => [
             'organisation'  => 'Organizzazione',
@@ -109,11 +106,10 @@ return [
         'type'              => 'NPC, Personaggio Giocante, Divinità',
     ],
     'quests'        => [
-        'helpers'       => [
+        'helpers'   => [
             'quest_giver'   => 'Missioni per cui il personaggio è il committente.',
             'quest_member'  => 'Missioni di cui il personaggio fa parte.',
         ],
-        'title'         => 'Missioni del Personaggio :name',
     ],
     'sections'      => [
         'appearance'    => 'Aspetto',
@@ -121,17 +117,12 @@ return [
         'personality'   => 'Personalità',
     ],
     'show'          => [
-        'tabs'          => [
-            'conversations' => 'Conversazioni',
-            'dice_rolls'    => 'Tiri di dado',
-            'items'         => 'Oggetti',
-            'journals'      => 'Pagine del diario',
+        'tabs'  => [
             'map'           => 'Mappa delle relazioni',
             'organisations' => 'Organizzazioni',
             'personality'   => 'Personalità',
-            'quests'        => 'Missioni',
         ],
-        'title'         => 'Personaggio :name',
+        'title' => 'Personaggio :name',
     ],
     'warnings'      => [
         'personality_hidden'    => 'Non ti è consentito modificare i tratti della personalità di questo personaggio.',

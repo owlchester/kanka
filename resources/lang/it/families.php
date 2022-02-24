@@ -2,8 +2,8 @@
 
 return [
     'create'        => [
-        'success'       => 'Famiglia \':name\' creata.',
-        'title'         => 'Nuova Famiglia',
+        'success'   => 'Famiglia \':name\' creata.',
+        'title'     => 'Nuova Famiglia',
     ],
     'destroy'       => [
         'success'   => 'Famiglia \':name\' rimossa.',
@@ -27,15 +27,14 @@ return [
     ],
     'helpers'       => [
         'descendants'   => 'Questa lista contiene tutte le famiglie che sono discendenti di questa famiglia e non solamente quelle direttamente sotto di essa.',
-        'nested'        => 'Quando ci si trova nella vista annidata puoi vedere le tue Famiglie in maniera annidata. Famiglie senza genitori saranno mostrate in maniera predefinita. Famiglie con discendenti potranno essere premute per vederne i figli. Potrai continuare ad espandere le famiglie fino a quando non ci saranno più figli da mostrare.',
     ],
     'hints'         => [
         'members'   => 'I membri di una famiglia sono mostrati qui. Un personaggio può essere aggiunto alla famiglia modificando il personaggio, usando il selettore "Famiglia".',
     ],
     'index'         => [
-        'add'           => 'Nuova Famiglia',
-        'header'        => 'Famiglie di :name',
-        'title'         => 'Famiglie',
+        'add'       => 'Nuova Famiglia',
+        'header'    => 'Famiglie di :name',
+        'title'     => 'Famiglie',
     ],
     'members'       => [
         'helpers'   => [
@@ -50,12 +49,12 @@ return [
         'type'      => 'Famiglia Reale, Nobile, Estinta',
     ],
     'show'          => [
-        'tabs'          => [
+        'tabs'  => [
             'all_members'   => 'Tutti i Membri',
             'families'      => 'Famiglie',
             'members'       => 'Membri',
             'relation'      => 'Relazioni',
         ],
-        'title'         => 'Famiglia :name',
+        'title' => 'Famiglia :name',
     ],
 ];

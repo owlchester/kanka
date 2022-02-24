@@ -2,8 +2,8 @@
 
 return [
     'create'        => [
-        'success'       => 'Diario \':name\' creato.',
-        'title'         => 'Nuovo Diario',
+        'success'   => 'Diario \':name\' creato.',
+        'title'     => 'Nuovo Diario',
     ],
     'destroy'       => [
         'success'   => 'Diario \':name\' rimosso.',
@@ -21,9 +21,9 @@ return [
         'type'      => 'Tipo',
     ],
     'index'         => [
-        'add'           => 'Nuovo Diario',
-        'header'        => 'Diari di :name',
-        'title'         => 'Diari',
+        'add'       => 'Nuovo Diario',
+        'header'    => 'Diari di :name',
+        'title'     => 'Diari',
     ],
     'placeholders'  => [
         'author'    => 'Chi ha scritto il diario',
@@ -32,6 +32,6 @@ return [
         'type'      => 'Sessione, One Shot, Bozza',
     ],
     'show'          => [
-        'title'         => 'Diario :name',
+        'title' => 'Diario :name',
     ],
 ];

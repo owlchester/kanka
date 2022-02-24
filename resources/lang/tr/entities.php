@@ -16,7 +16,6 @@ return [
     'creator'               => [
         'back'      => 'Seçime geri dön',
         'duplicate' => 'Aynı türde aynı ada sahip başka varlıklar var.',
-        'error'     => 'Girdiğiniz değerler hatalı. Lütfen onları tekrar kontrol edin.',
         'helper'    => 'Yaratmak istediğiniz varlık türünü seçin. Eğer varlıklar görünmüyorsa, bu serüvende hiçbir tür varlık yaratma izniniz olmadığı anlamına gelir.',
         'success'   => '\':link\' varlığı yaratıldı.',
         'title'     => 'Yeni Varlık',

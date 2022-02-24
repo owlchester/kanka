@@ -2,11 +2,11 @@
 
 return [
     'characters'    => [
-        'title'         => ':name Irkı Karakterler',
+        'title' => ':name Irkı Karakterler',
     ],
     'create'        => [
-        'success'       => '\':name\' ırkı yaratıldı.',
-        'title'         => 'Yeni Irk',
+        'success'   => '\':name\' ırkı yaratıldı.',
+        'title'     => 'Yeni Irk',
     ],
     'destroy'       => [
         'success'   => '\':name\' ırkı kaldırıldı.',
@@ -22,25 +22,24 @@ return [
         'races'         => 'Alt Irklar',
         'type'          => 'Tür',
     ],
-    'helpers'       => [
-    ],
+    'helpers'       => [],
     'index'         => [
-        'add'           => 'Yeni Irk',
-        'header'        => ':name ırkları',
-        'title'         => 'Irklar',
+        'add'       => 'Yeni Irk',
+        'header'    => ':name ırkları',
+        'title'     => 'Irklar',
     ],
     'placeholders'  => [
         'name'  => 'Irkın Adı',
         'type'  => 'İnsan, Fey, Borg',
     ],
     'races'         => [
-        'title'         => ':name Irkı Altırkları',
+        'title' => ':name Irkı Altırkları',
     ],
     'show'          => [
-        'tabs'          => [
+        'tabs'  => [
             'characters'    => 'Karakterler',
             'races'         => 'Altırklar',
         ],
-        'title'         => ':name Irkı',
+        'title' => ':name Irkı',
     ],
 ];

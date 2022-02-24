@@ -81,7 +81,6 @@ return [
             'css'                   => 'Custom campaign css',
             'dashboards'            => 'Stel custom dashboards in voor rollen van de campaign',
             'description'           => 'Bepaalde toezeggingsniveaus bieden gebruikers boosters die ze kunnen gebruiken om campaigns te boosten. Deze bieden de volgende voordelen.',
-            'entity_files'          => 'Maximaal aantal geüploade bestanden per entiteit verhoogd (tot 5 in plaats van 3)',
             'entity_links'          => 'Zet links op entiteiten naar externe bronnen en websites',
             'header_image'          => 'Entiteit header afbeelding',
             'images'                => 'Stel custom standaard entiteit afbeeldingen in',
@@ -98,8 +97,7 @@ return [
             'title'         => 'Kalenders',
         ],
         'collaborative'     => [
-            'description'   => 'Niet alleen? We hebben je gedekt! Je kunt je vrienden en co-dungeon master uitnodigen om je te helpen bij het bouwen van je campaign!',
-            'title'         => 'Samenwerkend',
+            'title' => 'Samenwerkend',
         ],
         'description'       => 'Met onze @mentions, onze tags en ons diepgaande permisies systeem maakt Kanka het gemakkelijk om jouw wereld of campaign bij te houden. Dit omvat personages en hun relaties, locaties en hun geschiedenis, missies en hun doelstellingen, tijdlijnen en hun tijdperken, en kalenders met zowel gebeurtenissen als weerseffecten. Het beste van alles is dat Kanka\'s gebruikers inspraak hebben in de nieuwe functies die worden ontwikkeld door middel van regelmatige stemmen voor de community.',
         'description_full'  => 'Kanka wordt voortdurend bijgewerkt met nieuwe functies en verbeteringen, maar hier zijn enkele van de belangrijkste waarvan we denken dat je ze leuk zult vinden.',
@@ -108,9 +106,8 @@ return [
             'title'         => 'Flora & Fauna',
         ],
         'free'              => [
-            'bonuses'       => 'bonussen voor onze abonnees',
-            'description'   => 'Alle kernfuncties van Kanka zijn helemaal gratis, met :bonuses.',
-            'title'         => 'Gratis te Gebruiken',
+            'bonuses'   => 'bonussen voor onze abonnees',
+            'title'     => 'Gratis te Gebruiken',
         ],
         'landscape'         => 'Schakel je apparaat naar de liggende modus om de lijst met functies weer te geven.',
         'layers'            => [
@@ -172,13 +169,10 @@ return [
             'title'         => 'Beheer Geheimen',
         ],
         'superboosts'       => [
-            'boosted'       => 'Superboosted',
-            'description'   => 'Als je drie campaignboosters gebruikt voor een campaign, wordt deze Superboosted en worden de volgende functies ontgrendeld.',
-            'files'         => 'Maximaal 10 bestanden geüpload naar elke entiteit',
-            'gallery'       => 'Campaign galerij en integraties met de Summernote teksteditor',
-            'logs'          => 'Volledige wijzigingslogboeken op entiteiten (tot 30 dagen)',
-            'stats'         => 'Pagina met campaign prestaties',
-            'title'         => 'Superboosted Campaigns',
+            'boosted'   => 'Superboosted',
+            'gallery'   => 'Campaign galerij en integraties met de Summernote teksteditor',
+            'logs'      => 'Volledige wijzigingslogboeken op entiteiten (tot 30 dagen)',
+            'stats'     => 'Pagina met campaign prestaties',
         ],
         'timelines'         => [
             'description'   => 'Geef visueel de tijdlijnen weer van je werelden, rijken, adellijke families of zelfs een enkel personage.',
@@ -187,12 +181,10 @@ return [
         'title'             => 'Krachtige functies met ongelooflijke flexibiliteit',
         'unlimited'         => 'Onbeperkt',
         'updates'           => [
-            'description'   => 'Kanka ondergaat regelmatig community gestuurde updates, met elke maand nieuwe functies. We gaan in op details over deze updates op onze :discord.',
-            'title'         => 'Regelmatige door de community aangestuurde updates',
+            'title' => 'Regelmatige door de community aangestuurde updates',
         ],
         'worldbuilding'     => [
-            'description'   => 'Met modules die alles beslaan, van kaarten tot tijdlijnen en kalenders tot gebeurtenissen, maakt Kanka het gemakkelijk om complexe werelden te organiseren.',
-            'title'         => 'Worldbuilding',
+            'title' => 'Worldbuilding',
         ],
     ],
     'first_block'   => [

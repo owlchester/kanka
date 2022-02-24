@@ -2,11 +2,11 @@
 
 return [
     'characters'    => [
-        'title'         => 'Postaci w miejscu :name',
+        'title' => 'Postaci w miejscu :name',
     ],
     'create'        => [
-        'success'       => 'Stworzono miejsce \':name\'.',
-        'title'         => 'Nowe miejsce',
+        'success'   => 'Stworzono miejsce \':name\'.',
+        'title'     => 'Nowe miejsce',
     ],
     'destroy'       => [
         'success'   => 'Usunięto miejsce \':name\'.',
@@ -16,7 +16,7 @@ return [
         'title'     => 'Edycja miejsca :name',
     ],
     'events'        => [
-        'title'         => 'Wydarzenia w miejscu :name',
+        'title' => 'Wydarzenia w miejscu :name',
     ],
     'families'      => [
         'title' => 'Rodziny w miejscu :name',
@@ -38,7 +38,6 @@ return [
         'families'          => 'Miejsce może być siedzibą potężnego rodu.',
         'map'               => 'Po dodaniu mapy do miejsca, będziesz mógł umieszczać na niej "Punkty", łącząc je z innymi elementami kampanii.',
         'map_deprecated_2'  => 'Mapy mają teraz własny moduł! Wciąż możesz aktualizować stare mapy, ale nowe umieszczaj w dedykowanym module.',
-        'nested'            => 'W widoku hierarchii najpierw  wyświetlane są miejsca, które nie mają źródła. Po kliknięciu na wiersz miejsca zobaczysz jego pochodne. Możesz schodzić niżej, póki nie skończą się poziomy hierarchii.',
         'nested_parent'     => 'Wyświetlono miejsca pochodzące od :parent.',
         'nested_without'    => 'Wyświetlono wszystkie miejsca nie posiadające źródła. Kliknij na rząd, by wyświetlić miejsca pochodne.',
         'organisations'     => 'Wyświetla organizacje rezydujące w tym miejscu i wszystkich miejscach pochodnych, albo wyłącznie tutaj.',
@@ -47,21 +46,21 @@ return [
         'is_map_private'    => 'Tajna mapa widoczna jest wyłącznie dla uczestników kampanii posiadających rolę "administrator".',
     ],
     'index'         => [
-        'actions'       => [
+        'actions'   => [
             'explore_view'  => 'Widok hierarchii',
         ],
-        'add'           => 'Nowe miejsce',
-        'header'        => 'Miejsca w :name',
-        'title'         => 'Miejsca',
+        'add'       => 'Nowe miejsce',
+        'header'    => 'Miejsca w :name',
+        'title'     => 'Miejsca',
     ],
     'items'         => [
-        'title'         => 'Przedmioty miejsca :name',
+        'title' => 'Przedmioty miejsca :name',
     ],
     'journals'      => [
-        'title'         => 'Dzienniki miejsca :name',
+        'title' => 'Dzienniki miejsca :name',
     ],
     'locations'     => [
-        'title'         => 'Miejsca miejsca :name',
+        'title' => 'Miejsca miejsca :name',
     ],
     'map'           => [
         'actions'   => [
@@ -206,7 +205,7 @@ return [
         'type'      => 'Miasto, królestwo, ruiny',
     ],
     'show'          => [
-        'tabs'          => [
+        'tabs'  => [
             'characters'    => 'Postaci',
             'events'        => 'Wydarzenia',
             'families'      => 'Rodziny',
@@ -218,6 +217,6 @@ return [
             'organisations' => 'Organizacje',
             'quests'        => 'Misje',
         ],
-        'title'         => 'Miejsce :name',
+        'title' => 'Miejsce :name',
     ],
 ];

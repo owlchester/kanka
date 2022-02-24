@@ -18,9 +18,7 @@ return [
     'helpers'       => [
         'delete_all'    => 'Är du säker på att du vill ta bort alla egenskaper från den här entiteten?',
     ],
-    'hints'         => [
-        'is_private'    => 'Du kan dölja alla egenskaper för en entitet för alla medlemmar utom de i admin rollen genom att göra den privat.',
-    ],
+    'hints'         => [],
     'index'         => [
         'success'   => 'Egenskaper för :entity uppdaterade.',
         'title'     => 'Egenskaper för :name',

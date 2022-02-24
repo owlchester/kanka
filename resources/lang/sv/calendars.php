@@ -17,16 +17,16 @@ return [
         'is_recurring'  => 'Inträffar varje år',
     ],
     'create'        => [
-        'success'       => 'Kalender \':name\' skapad.',
-        'title'         => 'Ny Kalender',
+        'success'   => 'Kalender \':name\' skapad.',
+        'title'     => 'Ny Kalender',
     ],
     'destroy'       => [
         'success'   => 'Kalender \':name\' borttagen.',
     ],
     'edit'          => [
-        'success'       => 'Kalender \':name\' uppdaterad.',
-        'title'         => 'Redigera Kalender :name',
-        'today'         => 'Kalender datum uppdaterat.',
+        'success'   => 'Kalender \':name\' uppdaterad.',
+        'title'     => 'Redigera Kalender :name',
+        'today'     => 'Kalender datum uppdaterat.',
     ],
     'event'         => [
         'actions'   => [
@@ -35,13 +35,13 @@ return [
             'switch'    => 'Ändra val',
         ],
         'create'    => [
-            'success'       => 'Kalender händelse skapad.',
-            'title'         => 'Lägg till en Kalender Händelse till :name',
+            'success'   => 'Kalender händelse skapad.',
+            'title'     => 'Lägg till en Kalender Händelse till :name',
         ],
         'destroy'   => 'Händelse borttagen från kalender \':name\'.',
         'edit'      => [
-            'success'       => 'Kalender händelse uppdaterad.',
-            'title'         => 'Uppdatera Kalender Händelse för :name',
+            'success'   => 'Kalender händelse uppdaterad.',
+            'title'     => 'Uppdatera Kalender Händelse för :name',
         ],
         'helpers'   => [
             'add'               => 'Lägg till en befintlig händelse till denna kalender.',
@@ -54,7 +54,7 @@ return [
         'success'   => 'Händelse \':event\' tillagd i kalendern.',
     ],
     'events'        => [
-        'title'         => 'Kalender :name Händelser',
+        'title' => 'Kalender :name Händelser',
     ],
     'fields'        => [
         'calendar'              => 'Huvudkalender',
@@ -91,7 +91,6 @@ return [
     ],
     'helpers'       => [
         'month_type'    => 'Infogade månader använder inte veckodagar, men påverkar fortfarande månar och årstider.',
-        'nested'        => 'Visar kalendrar som inte har någon Huvudkalender först. Klicka på en kalender för att visa dess underkalendrar.',
         'start_offset'  => 'Som standard börjar kalendern på första veckodagen av år 0. Genom att ändra detta fält påverkas var kalenderns första dag blir placerad.',
     ],
     'hints'         => [
@@ -108,9 +107,9 @@ return [
         'years'             => 'Vissa år är så viktiga att dom har sitt eget namn.',
     ],
     'index'         => [
-        'add'           => 'Ny Kalender',
-        'header'        => 'Kalendrarna under :name',
-        'title'         => 'Kalendrar',
+        'add'       => 'Ny Kalender',
+        'header'    => 'Kalendrarna under :name',
+        'title'     => 'Kalendrar',
     ],
     'layouts'       => [
         'month' => 'Månad',

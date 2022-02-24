@@ -48,7 +48,6 @@ return [
         'max_zoom'          => 'Bir haritanın en fazla ne kadar yakınlaştırılabileceği. Varsayılan değer :default, izin verilen en yüksek değer ise :max',
         'min_zoom'          => 'Bir haritanın en fazla ne kadar uzaklaştırılabileceği. Varsayılan değer :default, izin verilen en yüksek değer ise :max',
         'missing_image'     => 'Katmanlar ve işaretler ekleyebilmek için önce haritayı bir görsel ile birlikte kaydedin.',
-        'nested'            => 'İç İçe Görünüm\'de, Haritalarınızı iç içe olacak şekilde görebilirsiniz. Ana Haritası olmayan Haritalar varsayılan olarak gösterilecektir. Alt Haritaları olan Haritalar o alt Haritaları göstermek için tıklanabilir. Daha fazla alt Harita kalmayana kadar tıklamaya devam edebilirsiniz.',
     ],
     'index'         => [
         'add'   => 'Yeni Harita',

@@ -2,15 +2,15 @@
 
 return [
     'create'        => [
-        'success'       => '\':name\' muhabbeti yaratıldı.',
-        'title'         => 'Yeni Muhabbet',
+        'success'   => '\':name\' muhabbeti yaratıldı.',
+        'title'     => 'Yeni Muhabbet',
     ],
     'destroy'       => [
         'success'   => '\':name\' muahbbeti kaldırıldı.',
     ],
     'edit'          => [
-        'success'       => '\':name\' muhabbeti güncellendi.',
-        'title'         => ':name Muhabbeti',
+        'success'   => '\':name\' muhabbeti güncellendi.',
+        'title'     => ':name Muhabbeti',
     ],
     'fields'        => [
         'messages'      => 'Mesajlar',
@@ -23,9 +23,9 @@ return [
         'participants'  => 'Lütfen sağ-üstteki :icon ikonuna tıklayarak muhabbetinize katılımcılar ekleyin.',
     ],
     'index'         => [
-        'add'           => 'Yeni Muhabbet',
-        'header'        => ':name Muhabbetleri',
-        'title'         => 'Muhabbetler',
+        'add'       => 'Yeni Muhabbet',
+        'header'    => ':name Muhabbetleri',
+        'title'     => 'Muhabbetler',
     ],
     'messages'      => [
         'destroy'       => [
@@ -38,21 +38,21 @@ return [
         ],
     ],
     'participants'  => [
-        'create'        => [
+        'create'    => [
             'success'   => ':entity katılımcısı muhabbete eklendi.',
         ],
-        'destroy'       => [
+        'destroy'   => [
             'success'   => ':name katılımcısı muhabbetten kaldırıldı.',
         ],
-        'modal'         => 'Katılımcılar',
-        'title'         => ':name Katılımcıları',
+        'modal'     => 'Katılımcılar',
+        'title'     => ':name Katılımcıları',
     ],
     'placeholders'  => [
         'name'  => 'Muhabbetin adı',
         'type'  => 'Oyun İçi, Hazırlık, Plan',
     ],
     'show'          => [
-        'title'         => ':name Muhabbeti',
+        'title' => ':name Muhabbeti',
     ],
     'tabs'          => [
         'conversation'  => 'Muhabbet',

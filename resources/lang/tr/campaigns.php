@@ -20,9 +20,8 @@ TEXT
         'success'   => 'Serüven kaldırıldı',
     ],
     'edit'                              => [
-        'description'   => 'Serüveninizi düzenleyin',
-        'success'       => 'Serüven güncellendi.',
-        'title'         => ':campaign Serüvenini Düzenle',
+        'success'   => 'Serüven güncellendi.',
+        'title'     => ':campaign Serüvenini Düzenle',
     ],
     'entity_personality_visibilities'   => [
         'private'   => 'Yeni karakterlerin kişilikleri varsayılan olarak özeldir.',
@@ -36,55 +35,50 @@ TEXT
         'unknown_id'    => 'Bilinmeyen Serüven.',
     ],
     'export'                            => [
-        'description'   => 'Serüveni dışa aktar.',
-        'errors'        => [
+        'errors'    => [
             'limit' => 'Günlük maksimum bir dışa akarma hakkınızı tükettiniz. Lütfen yarın tekrar deneyin.',
         ],
-        'helper'        => 'Serüveninizi dışa aktarın. Bir indirme linki ile beraber bir bildirim gelecek.',
-        'success'       => 'Serüven dışa aktarmanız hazırlanıyor. İndirilebilir bir sıkıştırılmış dosya',
-        'title'         => ':name Serüvenini Dışa Aktarma',
+        'helper'    => 'Serüveninizi dışa aktarın. Bir indirme linki ile beraber bir bildirim gelecek.',
+        'success'   => 'Serüven dışa aktarmanız hazırlanıyor. İndirilebilir bir sıkıştırılmış dosya',
+        'title'     => ':name Serüvenini Dışa Aktarma',
     ],
     'fields'                            => [
-        'boosted'                       => 'Destekleyen',
-        'css'                           => 'CSS',
-        'description'                   => 'Açıklama',
-        'entity_count'                  => 'Varlık Sayısı',
-        'entity_personality_visibility' => 'Karakter Kişiliği Görünürlüğü',
-        'entity_visibility'             => 'Varlık Görünürlüğü',
-        'excerpt'                       => 'Özet',
-        'followers'                     => 'Takipçiler',
-        'header_image'                  => 'Başlık Görseli',
-        'hide_history'                  => 'Varlık geçmişini gizle',
-        'hide_members'                  => 'Serüven üyelerini gizle',
-        'image'                         => 'Görsel',
-        'locale'                        => 'Dil',
-        'name'                          => 'Ad',
-        'public_campaign_filters'       => 'Açık Serüven Filtreleri',
-        'rpg_system'                    => 'RYO Sistemleri',
-        'system'                        => 'Sistem',
-        'theme'                         => 'Tema',
-        'tooltip_family'                => 'Bilgi çubuklarında aile adlarını engelle.',
-        'tooltip_image'                 => 'Bilgi çubuklarında varlık görselini göster',
-        'visibility'                    => 'Görünürlük',
+        'boosted'                   => 'Destekleyen',
+        'css'                       => 'CSS',
+        'description'               => 'Açıklama',
+        'entity_count'              => 'Varlık Sayısı',
+        'excerpt'                   => 'Özet',
+        'followers'                 => 'Takipçiler',
+        'header_image'              => 'Başlık Görseli',
+        'hide_history'              => 'Varlık geçmişini gizle',
+        'hide_members'              => 'Serüven üyelerini gizle',
+        'image'                     => 'Görsel',
+        'locale'                    => 'Dil',
+        'name'                      => 'Ad',
+        'public_campaign_filters'   => 'Açık Serüven Filtreleri',
+        'rpg_system'                => 'RYO Sistemleri',
+        'system'                    => 'Sistem',
+        'theme'                     => 'Tema',
+        'tooltip_family'            => 'Bilgi çubuklarında aile adlarını engelle.',
+        'tooltip_image'             => 'Bilgi çubuklarında varlık görselini göster',
+        'visibility'                => 'Görünürlük',
     ],
     'following'                         => 'Takip ediyor',
     'helpers'                           => [
-        'boost_required'                => 'Bu özellik serüvenin desteklenmesini gerektirir. Daha fazla bilgi :settings sayfasında mevcuttur.',
-        'boosted'                       => 'Bazı özelliklerin kilidi bu serüven desteklendiği için açıktır. :settings sayfasında daha fazlasını bulabilirsiniz.',
-        'css'                           => 'Serüven sayfalarınızla beraber yüklenecek kendi CSS\'inizi yazın. Lütfen bu özelliğin istismarının özel CSS\'inizin kaldırılmasına yol açabileceğini unutmayın. Sürekli ya da aşırı ağır ihlaller serüveninizin kaldırılmasına yol açabilir.',
-        'entity_personality_visibility' => 'Yeni bir karakter yaratırken, "Kişiliği Görünür" seçeneği otomatik olarak seçimi kaldırılmış olarak gelecek.',
-        'entity_visibility'             => 'Yeni bir varlık yaratırken, "Özel" seçeneği otomatik olarak işaretlenecek.',
-        'excerpt'                       => 'Serüven özeti ana sayfanızda görüntülenecek, o yüzden dünyanızı tanıtan birkaç cümle yazın. En iyi sonuç için kısa tutun.',
-        'hide_history'                  => 'Serüvenin yönetici olmayan üyelerinden varlıkların geçmişini saklamak için bu seçeneği aktifleştirin.',
-        'hide_members'                  => 'Bu serüvenin serüven üye listesini yönetici olmayan üyelerden saklamak için bu seçeneği aktifleştirin.',
-        'locale'                        => 'Serüvenin yazıldığı dil. Bu içerik üretmek ve açık serüvenleri gruplandırmak için kullanılır.',
-        'name'                          => 'Serüveniniz/Dünyanız en az 4 harf ya da sayı içerdiği sürece istediğiniz ada sahip olabilir.',
-        'public_campaign_filters'       => 'Diğerlerinin serüveninizi diğer serüvenlerin arasında bulabilmesi için aşağıdaki bilgileri doldurun.',
-        'system'                        => 'Eğer serüveniniz herkese görünür ise, sistem onu :link sayfasında görüntüler.',
-        'systems'                       => 'Kullanıcıları seçeneklerle boğmamak için Kanka\'nın bazı özellikleri sadece belirli RYO sistemleri ile beraber (örn. D&D 5e canavar kağıtları) mevcuttur. Desteklenen sistemler eklemek bu özellikleri devreye sokar.',
-        'theme'                         => 'Serüven için bir kullanıcının seçeneği yerine bir temayı zorunlu tutun.',
-        'view_public'                   => 'Serüveninizi dışarıdan bir kullanıcının gözünden görmek için :link linkini gizli sekmede açın.',
-        'visibility'                    => 'Bir serüveni açık yapmak linkine sahip olan herkesin onu görebileceği anlamına gelir.',
+        'boost_required'            => 'Bu özellik serüvenin desteklenmesini gerektirir. Daha fazla bilgi :settings sayfasında mevcuttur.',
+        'boosted'                   => 'Bazı özelliklerin kilidi bu serüven desteklendiği için açıktır. :settings sayfasında daha fazlasını bulabilirsiniz.',
+        'css'                       => 'Serüven sayfalarınızla beraber yüklenecek kendi CSS\'inizi yazın. Lütfen bu özelliğin istismarının özel CSS\'inizin kaldırılmasına yol açabileceğini unutmayın. Sürekli ya da aşırı ağır ihlaller serüveninizin kaldırılmasına yol açabilir.',
+        'excerpt'                   => 'Serüven özeti ana sayfanızda görüntülenecek, o yüzden dünyanızı tanıtan birkaç cümle yazın. En iyi sonuç için kısa tutun.',
+        'hide_history'              => 'Serüvenin yönetici olmayan üyelerinden varlıkların geçmişini saklamak için bu seçeneği aktifleştirin.',
+        'hide_members'              => 'Bu serüvenin serüven üye listesini yönetici olmayan üyelerden saklamak için bu seçeneği aktifleştirin.',
+        'locale'                    => 'Serüvenin yazıldığı dil. Bu içerik üretmek ve açık serüvenleri gruplandırmak için kullanılır.',
+        'name'                      => 'Serüveniniz/Dünyanız en az 4 harf ya da sayı içerdiği sürece istediğiniz ada sahip olabilir.',
+        'public_campaign_filters'   => 'Diğerlerinin serüveninizi diğer serüvenlerin arasında bulabilmesi için aşağıdaki bilgileri doldurun.',
+        'system'                    => 'Eğer serüveniniz herkese görünür ise, sistem onu :link sayfasında görüntüler.',
+        'systems'                   => 'Kullanıcıları seçeneklerle boğmamak için Kanka\'nın bazı özellikleri sadece belirli RYO sistemleri ile beraber (örn. D&D 5e canavar kağıtları) mevcuttur. Desteklenen sistemler eklemek bu özellikleri devreye sokar.',
+        'theme'                     => 'Serüven için bir kullanıcının seçeneği yerine bir temayı zorunlu tutun.',
+        'view_public'               => 'Serüveninizi dışarıdan bir kullanıcının gözünden görmek için :link linkini gizli sekmede açın.',
+        'visibility'                => 'Bir serüveni açık yapmak linkine sahip olan herkesin onu görebileceği anlamına gelir.',
     ],
     'index'                             => [
         'actions'   => [
@@ -101,17 +95,13 @@ TEXT
             'link'  => 'Yeni Link',
         ],
         'create'                => [
-            'button'        => 'Davet Et',
-            'description'   => 'Bir arkadaşınızı serüveninize davet edin',
-            'link'          => 'Link yaratıldı: <a href=":url" target="_blank">:url</a>',
-            'success'       => 'Davet gönderildi.',
-            'title'         => 'Birini serüveninize davet edin',
+            'success'   => 'Davet gönderildi.',
+            'title'     => 'Birini serüveninize davet edin',
         ],
         'destroy'               => [
             'success'   => 'Davet kaldırıldı.',
         ],
         'email'                 => [
-            'link'      => '<a href=":link">:name kullanıcısının serüvenine katıl</a>',
             'subject'   => ':name sizi kanka.io\'daki \':campaign\' serüvenine katılmanız için davet etti! Kabul etmek için aşağıdaki linke tıklayın.',
             'title'     => ':name tarafından davet',
         ],
@@ -126,7 +116,6 @@ TEXT
             'email'     => 'E-posta',
             'role'      => 'Rol',
             'type'      => 'Tür',
-            'validity'  => 'Geçerlilik',
         ],
         'helpers'               => [
             'email'     => 'E-postalarımız sık sık spam olarak işaretlenir ve gelen kutunuzda belirmesi birkaç saati bulabilir.',
@@ -154,10 +143,8 @@ TEXT
         'create'                => [
             'title' => 'Serüveninize bir üye ekleyin',
         ],
-        'description'           => 'Serüveninizin üyelerini yönetin',
         'edit'                  => [
-            'description'   => 'Serüveninin bir üyesini düzenle',
-            'title'         => ':name üyesini düzenle',
+            'title' => ':name üyesini düzenle',
         ],
         'fields'                => [
             'joined'        => 'Katıldı',
@@ -214,7 +201,6 @@ TEXT
             'success'   => 'Rol yaratıldı.',
             'title'     => ':name için bir rol yarat',
         ],
-        'description'   => 'Serüvenin rollerini yönet',
         'destroy'       => [
             'success'   => 'Rol kaldırıldı',
         ],
@@ -258,8 +244,7 @@ TEXT
             'name'  => 'Rolün adı',
         ],
         'show'          => [
-            'description'   => 'Bir serüven rolünün Üyeleri ve İzinleri',
-            'title'         => '\':name\' Serüven Rolü',
+            'title' => '\':name\' Serüven Rolü',
         ],
         'title'         => ':name Serüveni Rolleri',
         'types'         => [
@@ -284,16 +269,15 @@ TEXT
         ],
     ],
     'settings'                          => [
-        'actions'       => [
+        'actions'   => [
             'enable'    => 'Etkinleştir',
         ],
-        'boosted'       => 'Bu özellik şu anda erken erişimde ve yalnızca :boosted aracılığı ile mevcut.',
-        'description'   => 'Serüvenin modüllerini etkinleştirin ya da devre dışı bırakın.',
-        'edit'          => [
+        'boosted'   => 'Bu özellik şu anda erken erişimde ve yalnızca :boosted aracılığı ile mevcut.',
+        'edit'      => [
             'success'   => 'Serüven seçenekleri güncellendi.',
         ],
-        'helper'        => 'Bir serüvenin tüm modülleri istediğiniz zaman etkinletirilebilir ya da devre dışı bırakılabilir. Bir modülü devre dışı bırakmak onunla alakalı bütün arayüz ögelerini saklar, ve halihazırda mevcut varlıklar ileride fikrinizi değiştirmeniz durumuna karşı arka planda varlıklarını korur ama saklanır. Bu değişiklikler serüveninizin tüm üyelerini, Yöneticiler dahil olmak üzere, etkiler.',
-        'helpers'       => [
+        'helper'    => 'Bir serüvenin tüm modülleri istediğiniz zaman etkinletirilebilir ya da devre dışı bırakılabilir. Bir modülü devre dışı bırakmak onunla alakalı bütün arayüz ögelerini saklar, ve halihazırda mevcut varlıklar ileride fikrinizi değiştirmeniz durumuna karşı arka planda varlıklarını korur ama saklanır. Bu değişiklikler serüveninizin tüm üyelerini, Yöneticiler dahil olmak üzere, etkiler.',
+        'helpers'   => [
             'abilities'     => 'Varlıklara atayabileceğiniz yetenekler oluşturun; hünerler, büyüler, ya da güçler gibi.',
             'calendars'     => 'Dünyanızın takvimlerini tanımlayabileceğiniz bir yer.',
             'characters'    => 'Dünyanızda yaşayan kişiler.',
@@ -313,16 +297,15 @@ TEXT
             'tags'          => 'Her bir varlık birden fazla etikete sahip olabilir. Etiketler diğer etiketlere ait olabilir, ve varlıklar etiketlerine göre filtrelenebilir.',
             'timelines'     => 'Dünyanızın tarihçesini zaman çizgileri ile temsil edin.',
         ],
-        'title'         => ':name Serüven Modülleri',
+        'title'     => ':name Serüven Modülleri',
     ],
     'show'                              => [
-        'actions'       => [
+        'actions'   => [
             'boost' => 'Serüveni destekle',
             'edit'  => 'Serüveni Düzenle',
             'leave' => 'Serüvenden ayrıl',
         ],
-        'description'   => 'Bir serüvene detaylı bir bakış',
-        'tabs'          => [
+        'tabs'      => [
             'achievements'      => 'Başarımlar',
             'default-images'    => 'Varsayılan Görseller',
             'export'            => 'Dışa Aktar',
@@ -333,7 +316,7 @@ TEXT
             'roles'             => 'Roller',
             'settings'          => 'Modüller',
         ],
-        'title'         => ':name Serüveni',
+        'title'     => ':name Serüveni',
     ],
     'superboosted'                      => [
         'gallery'   => [

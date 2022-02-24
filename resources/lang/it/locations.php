@@ -2,11 +2,11 @@
 
 return [
     'characters'    => [
-        'title'         => 'Personaggi del Luogo :name',
+        'title' => 'Personaggi del Luogo :name',
     ],
     'create'        => [
-        'success'       => 'Luogo \':name\' creato.',
-        'title'         => 'Nuovo Luogo',
+        'success'   => 'Luogo \':name\' creato.',
+        'title'     => 'Nuovo Luogo',
     ],
     'destroy'       => [
         'success'   => 'Luogo \':name\' rimosso.',
@@ -16,7 +16,7 @@ return [
         'title'     => 'Modifica Luogo :name',
     ],
     'events'        => [
-        'title'         => 'Eventi del Luogo :name',
+        'title' => 'Eventi del Luogo :name',
     ],
     'families'      => [
         'title' => 'Famiglie del Luogo :name',
@@ -33,33 +33,31 @@ return [
         'type'              => 'Tipo',
     ],
     'helpers'       => [
-        'characters'        => 'Visualizza tutti i personaggi in questo luogo e nei luoghi discendenti, o semplicemente quelli che si trovano qui.',
-        'descendants'       => 'La lista contiene tutti i luoghi discendenti di questo luogo, non solo quelli direttamente sotto di esso.',
-        'families'          => 'I luoghi possono essere dimora di potenti famiglie.',
-        'map'               => 'Aggiungere una mappa ad un luogo ti permetterà di aggiungere "Punti" sulla mappa collecandoli ad altre Entità nella campagna.',
-        'map_deprecated'    => 'Le mappe sono ora una categoria a sé stante! Questa nuova funzionalità è attualmente disponibile in accesso anticipato a :boosted. Questa interfaccia non sarà più disponibile quando la nuova categoria sarà disponibile per tutti, ma sarai ancora in grado di modificare vecchie mappe in questa interfaccia.',
-        'nested'            => 'Quando ci si trova nella Vista Nidificata puoi visualizzare la gerarchia dei tuoi luoghi. I luoghi senza padri saranno mostrati per impostazione predefinita. I luoghi con dei figli invece potranno essere premuti per mostrare questi figli. Si potrà continuare ad espandere la gerarchia fino a quando non ci saranno più luoghi da mostrare.',
-        'organisations'     => 'Visualizza tutte le organizzazioni in questo luogo e nei suoi luoghi figlio o solamente quelle direttamente presenti qui.',
+        'characters'    => 'Visualizza tutti i personaggi in questo luogo e nei luoghi discendenti, o semplicemente quelli che si trovano qui.',
+        'descendants'   => 'La lista contiene tutti i luoghi discendenti di questo luogo, non solo quelli direttamente sotto di esso.',
+        'families'      => 'I luoghi possono essere dimora di potenti famiglie.',
+        'map'           => 'Aggiungere una mappa ad un luogo ti permetterà di aggiungere "Punti" sulla mappa collecandoli ad altre Entità nella campagna.',
+        'organisations' => 'Visualizza tutte le organizzazioni in questo luogo e nei suoi luoghi figlio o solamente quelle direttamente presenti qui.',
     ],
     'hints'         => [
         'is_map_private'    => 'Una mappa privata sarà visibile solamente ai membri del ruolo "Proprietario" della campagna.',
     ],
     'index'         => [
-        'actions'       => [
+        'actions'   => [
             'explore_view'  => 'Vista Annidata',
         ],
-        'add'           => 'Nuovo Luogo',
-        'header'        => 'Luoghi di :name',
-        'title'         => 'Luoghi',
+        'add'       => 'Nuovo Luogo',
+        'header'    => 'Luoghi di :name',
+        'title'     => 'Luoghi',
     ],
     'items'         => [
-        'title'         => 'Oggetti del Luogo :name',
+        'title' => 'Oggetti del Luogo :name',
     ],
     'journals'      => [
-        'title'         => 'Pagine del diario per il Luogo :name',
+        'title' => 'Pagine del diario per il Luogo :name',
     ],
     'locations'     => [
-        'title'         => 'Luoghi del Luogo :name',
+        'title' => 'Luoghi del Luogo :name',
     ],
     'map'           => [
         'actions'   => [
@@ -192,7 +190,7 @@ return [
         'title' => 'Mappe del luogo :name',
     ],
     'organisations' => [
-        'title'         => 'Organizzazioni del Luogo :name',
+        'title' => 'Organizzazioni del Luogo :name',
     ],
     'panels'        => [
         'map'   => 'Mappa',
@@ -203,7 +201,7 @@ return [
         'type'      => 'Città, Regno, Rovina',
     ],
     'show'          => [
-        'tabs'          => [
+        'tabs'  => [
             'characters'    => 'Personaggi',
             'events'        => 'Eventi',
             'families'      => 'Famiglie',
@@ -215,6 +213,6 @@ return [
             'organisations' => 'Organizzazioni',
             'quests'        => 'Missioni',
         ],
-        'title'         => 'Luogo :name',
+        'title' => 'Luogo :name',
     ],
 ];

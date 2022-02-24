@@ -2,8 +2,8 @@
 
 return [
     'create'        => [
-        'success'       => '\':name\' eşyası yaratıldı.',
-        'title'         => 'Yeni Eşya',
+        'success'   => '\':name\' eşyası yaratıldı.',
+        'title'     => 'Yeni Eşya',
     ],
     'destroy'       => [
         'success'   => '\':name\' eşyası kaldırıldı.',
@@ -23,12 +23,12 @@ return [
         'type'      => 'Tür',
     ],
     'index'         => [
-        'add'           => 'Yeni Eşya',
-        'header'        => ':name Eşyaları',
-        'title'         => 'Eşyalar',
+        'add'       => 'Yeni Eşya',
+        'header'    => ':name Eşyaları',
+        'title'     => 'Eşyalar',
     ],
     'inventories'   => [
-        'title'         => ':name Eşyası Envanterleri',
+        'title' => ':name Eşyası Envanterleri',
     ],
     'placeholders'  => [
         'character' => 'Bir karakter seçin',
@@ -39,11 +39,9 @@ return [
         'type'      => 'Silah, İksir, Artifakt',
     ],
     'show'          => [
-        'tabs'          => [
-            'information'   => 'Bilgi',
+        'tabs'  => [
             'inventories'   => 'Envanterler',
-            'quests'        => 'Görevler',
         ],
-        'title'         => ':name Eşyası',
+        'title' => ':name Eşyası',
     ],
 ];

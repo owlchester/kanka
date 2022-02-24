@@ -2,11 +2,11 @@
 
 return [
     'characters'    => [
-        'title'         => 'Ort :name Charaktere',
+        'title' => 'Ort :name Charaktere',
     ],
     'create'        => [
-        'success'       => 'Ort \':name\' erstellt.',
-        'title'         => 'Erstelle einen neuen Ort',
+        'success'   => 'Ort \':name\' erstellt.',
+        'title'     => 'Erstelle einen neuen Ort',
     ],
     'destroy'       => [
         'success'   => 'Ort \':name\' entfernt.',
@@ -16,7 +16,7 @@ return [
         'title'     => 'Bearbeite Ort :name',
     ],
     'events'        => [
-        'title'         => 'Ort :name Ereignisse',
+        'title' => 'Ort :name Ereignisse',
     ],
     'families'      => [
         'title' => 'Ort :name Familien',
@@ -46,21 +46,21 @@ return [
         'is_map_private'    => 'Eine private Karte ist nur für Mitglieder der "Admin" -Rolle der Kampagne sichtbar.',
     ],
     'index'         => [
-        'actions'       => [
+        'actions'   => [
             'explore_view'  => 'Erkundungsansicht',
         ],
-        'add'           => 'Neuer Ort',
-        'header'        => 'Orte in :name',
-        'title'         => 'Orte',
+        'add'       => 'Neuer Ort',
+        'header'    => 'Orte in :name',
+        'title'     => 'Orte',
     ],
     'items'         => [
-        'title'         => 'Ort :name Gegenstände',
+        'title' => 'Ort :name Gegenstände',
     ],
     'journals'      => [
-        'title'         => 'Ort :name Logbücher',
+        'title' => 'Ort :name Logbücher',
     ],
     'locations'     => [
-        'title'         => 'Ort :name Orte',
+        'title' => 'Ort :name Orte',
     ],
     'map'           => [
         'actions'   => [
@@ -205,7 +205,7 @@ return [
         'type'      => 'Stadt, Königreich, Ruine',
     ],
     'show'          => [
-        'tabs'          => [
+        'tabs'  => [
             'characters'    => 'Charaktere',
             'events'        => 'Ereignisse',
             'families'      => 'Familien',
@@ -217,6 +217,6 @@ return [
             'organisations' => 'Organisationen',
             'quests'        => 'Quests',
         ],
-        'title'         => 'Ort :name',
+        'title' => 'Ort :name',
     ],
 ];

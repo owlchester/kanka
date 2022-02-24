@@ -7,15 +7,15 @@ return [
         'add_user'  => 'Afegeix un usuari',
     ],
     'create'        => [
-        'success'       => 'S\'ha afegit l\'anotació «:name» a :entity.',
-        'title'         => 'Nova anotació a :name',
+        'success'   => 'S\'ha afegit l\'anotació «:name» a :entity.',
+        'title'     => 'Nova anotació a :name',
     ],
     'destroy'       => [
         'success'   => 'S\'ha eliminat l\'anotació «:name» de :entity.',
     ],
     'edit'          => [
-        'success'       => 'S\'ha actualitzat l\'anotació «:name» de :entity.',
-        'title'         => 'Actualiza l\'anotació de :name',
+        'success'   => 'S\'ha actualitzat l\'anotació «:name» de :entity.',
+        'title'     => 'Actualiza l\'anotació de :name',
     ],
     'fields'        => [
         'collapsed' => 'Tanca l\'anotació fixada per defecte',

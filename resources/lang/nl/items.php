@@ -2,8 +2,8 @@
 
 return [
     'create'        => [
-        'success'       => 'Voorwerp \':name\' gemaakt.',
-        'title'         => 'Nieuw Voorwerp',
+        'success'   => 'Voorwerp \':name\' gemaakt.',
+        'title'     => 'Nieuw Voorwerp',
     ],
     'destroy'       => [
         'success'   => 'Voorwerp \':name\' verwijderd.',
@@ -23,12 +23,12 @@ return [
         'type'      => 'Type',
     ],
     'index'         => [
-        'add'           => 'Nieuw Voorwerp',
-        'header'        => 'Voorwerpen van :name',
-        'title'         => 'Voorwerpen',
+        'add'       => 'Nieuw Voorwerp',
+        'header'    => 'Voorwerpen van :name',
+        'title'     => 'Voorwerpen',
     ],
     'inventories'   => [
-        'title'         => 'Voorwerp :name Inventories',
+        'title' => 'Voorwerp :name Inventories',
     ],
     'placeholders'  => [
         'character' => 'Kies een personage',
@@ -39,11 +39,9 @@ return [
         'type'      => 'Wapen, Potion, Artefact',
     ],
     'show'          => [
-        'tabs'          => [
-            'information'   => 'Informatie',
+        'tabs'  => [
             'inventories'   => 'Inventories',
-            'quests'        => 'Quests',
         ],
-        'title'         => 'Voorwerp :name',
+        'title' => 'Voorwerp :name',
     ],
 ];

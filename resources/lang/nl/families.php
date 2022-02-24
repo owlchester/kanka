@@ -2,8 +2,8 @@
 
 return [
     'create'        => [
-        'success'       => 'Familie \':name\' gemaakt.',
-        'title'         => 'Nieuwe Familie',
+        'success'   => 'Familie \':name\' gemaakt.',
+        'title'     => 'Nieuwe Familie',
     ],
     'destroy'       => [
         'success'   => 'Familie \':name\' verwijderd.',
@@ -27,15 +27,14 @@ return [
     ],
     'helpers'       => [
         'descendants'   => 'Deze lijst bevat alle families die afstammen van deze familie, en niet alleen de families er direct onder.',
-        'nested'        => 'In geneste weergave kunt je jouw families op een geneste manier bekijken. Families zonder bovenliggende familie worden standaard weergegeven. Op families met sub families kan worden geklikt om die gerelateerden te bekijken. Je kunt blijven klikken totdat er geen gerelateerden meer te zien zijn.',
     ],
     'hints'         => [
         'members'   => 'Leden van een familie worden hier vermeld. Een personage kan aan een familie worden toegevoegd door het gewenste personage te bewerken en de vervolgkeuzelijst "Familie" te gebruiken.',
     ],
     'index'         => [
-        'add'           => 'Nieuwe Familie',
-        'header'        => 'Families van :name',
-        'title'         => 'Families',
+        'add'       => 'Nieuwe Familie',
+        'header'    => 'Families van :name',
+        'title'     => 'Families',
     ],
     'members'       => [
         'helpers'   => [
@@ -50,12 +49,12 @@ return [
         'type'      => 'Koninklijk, Adel, Uitgestorven',
     ],
     'show'          => [
-        'tabs'          => [
+        'tabs'  => [
             'all_members'   => 'Alle Leden',
             'families'      => 'Families',
             'members'       => 'Leden',
             'relation'      => 'Relaties',
         ],
-        'title'         => 'Familie :name',
+        'title' => 'Familie :name',
     ],
 ];

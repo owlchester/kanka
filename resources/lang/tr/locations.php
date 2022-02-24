@@ -2,11 +2,11 @@
 
 return [
     'characters'    => [
-        'title'         => ':name Konumu Karakterleri',
+        'title' => ':name Konumu Karakterleri',
     ],
     'create'        => [
-        'success'       => ':name konumu yaratıldı.',
-        'title'         => 'Yeni Konum',
+        'success'   => ':name konumu yaratıldı.',
+        'title'     => 'Yeni Konum',
     ],
     'destroy'       => [
         'success'   => '\':name\' konumu kaldırıldı.',
@@ -16,7 +16,7 @@ return [
         'title'     => ':name Konumunu Güncelle',
     ],
     'events'        => [
-        'title'         => ':name Konumu Olayları',
+        'title' => ':name Konumu Olayları',
     ],
     'families'      => [
         'title' => ':name Konumu Aileleri',
@@ -38,28 +38,27 @@ return [
         'families'          => 'Konumlar güçlü ailelerin merkezleri olabilir.',
         'map'               => 'Bir konuma harita eklemek o konuma serüvendeki diğer Varlıkları ilişkilendirmenize olanak sağlayan "Noktalar" eklemenize olanak sağlar.',
         'map_deprecated_2'  => 'Haritalar artık kendi modülü! Eski haritalar hala güncellenebilir ancak tüm yeni haritalar yeni Haritalar modülüne gider.',
-        'nested'            => 'İç İçe Görünüm\'de, konumlarınızı iç içe olacak şekilde görebilirsiniz. Ana konumu olmayan konumlar varsayılan olarak gösterilecektir. Alt konumları olan konumlar o alt konumları göstermek için tıklanabilir. Daha fazla alt konum kalmayana kadar tıklamaya devam edebilirsiniz.',
         'organisations'     => 'Bu konumdaki ve onun alt konumlarındaki tüm organizasyonları, ya da sadece doğrudan burada olanları göster.',
     ],
     'hints'         => [
         'is_map_private'    => 'Özel bir harita yalnızca serüvenin "Yönetici" rolüne sahip üyeleri tarafından görüntülenebilir.',
     ],
     'index'         => [
-        'actions'       => [
+        'actions'   => [
             'explore_view'  => 'İç İçe Görünüm',
         ],
-        'add'           => 'Yeni Konum',
-        'header'        => ':name konumundaki konumlar',
-        'title'         => 'Konumlar',
+        'add'       => 'Yeni Konum',
+        'header'    => ':name konumundaki konumlar',
+        'title'     => 'Konumlar',
     ],
     'items'         => [
-        'title'         => ':name Eşyaları',
+        'title' => ':name Eşyaları',
     ],
     'journals'      => [
-        'title'         => ':name Günlükleri',
+        'title' => ':name Günlükleri',
     ],
     'locations'     => [
-        'title'         => ':name Konumu Konumları',
+        'title' => ':name Konumu Konumları',
     ],
     'map'           => [
         'actions'   => [
@@ -203,7 +202,7 @@ return [
         'type'      => 'Şehir, Krallık, Harabe',
     ],
     'show'          => [
-        'tabs'          => [
+        'tabs'  => [
             'characters'    => 'Karakterler',
             'events'        => 'Olaylar',
             'families'      => 'Aileler',
@@ -215,6 +214,6 @@ return [
             'organisations' => 'Organizasyonlar',
             'quests'        => 'Görevler',
         ],
-        'title'         => ':name Konumu',
+        'title' => ':name Konumu',
     ],
 ];

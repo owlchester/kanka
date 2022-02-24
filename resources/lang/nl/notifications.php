@@ -24,7 +24,7 @@ return [
     ],
     'header'            => 'Je hebt :count notificaties',
     'index'             => [
-        'title'         => 'Notificaties',
+        'title' => 'Notificaties',
     ],
     'no_notifications'  => 'Er zijn momenteel geen notificaties.',
     'subscriptions'     => [

@@ -2,8 +2,8 @@
 
 return [
     'create'        => [
-        'success'       => 'Událost ":name" vytvořena.',
-        'title'         => 'Nová událost',
+        'success'   => 'Událost ":name" vytvořena.',
+        'title'     => 'Nová událost',
     ],
     'destroy'       => [
         'success'   => 'Událost ":name" odstraněna.',
@@ -30,9 +30,9 @@ return [
         'nested_without'=> 'Zobrazit všechny události, které nemají nadřazenou událost. Klepnutím na danou událost zobrazíš podřízené události.',
     ],
     'index'         => [
-        'add'           => 'Nová událost',
-        'header'        => 'Události objektu :name',
-        'title'         => 'Události',
+        'add'       => 'Nová událost',
+        'header'    => 'Události objektu :name',
+        'title'     => 'Události',
     ],
     'placeholders'  => [
         'date'      => 'Kalendářní datum události',
@@ -41,9 +41,7 @@ return [
         'type'      => 'Oslava, festival, pohroma, bitva, narozeniny',
     ],
     'show'          => [
-        'tabs'          => [
-        ],
-        'title'         => 'Událost :name',
+        'title' => 'Událost :name',
     ],
     'tabs'          => [
         'calendars' => 'Položky kalendáře',

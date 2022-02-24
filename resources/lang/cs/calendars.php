@@ -19,16 +19,16 @@ return [
         'is_recurring'  => 'Opakuje se ročně',
     ],
     'create'        => [
-        'success'       => 'Kalendář \':name\' vytvořen',
-        'title'         => 'Nový kalendář',
+        'success'   => 'Kalendář \':name\' vytvořen',
+        'title'     => 'Nový kalendář',
     ],
     'destroy'       => [
         'success'   => 'Kalendář \':name\' odstraněn',
     ],
     'edit'          => [
-        'success'       => 'Kalendář \':name\' upraven',
-        'title'         => 'Upravit kalendář \':name\'',
-        'today'         => 'Datum kalendáře upraveno',
+        'success'   => 'Kalendář \':name\' upraven',
+        'title'     => 'Upravit kalendář \':name\'',
+        'today'     => 'Datum kalendáře upraveno',
     ],
     'event'         => [
         'actions'   => [
@@ -38,13 +38,13 @@ return [
             'switch'            => 'Změnit výběr',
         ],
         'create'    => [
-            'success'       => 'Nová událost vytvořena',
-            'title'         => 'Přidat událost do :name',
+            'success'   => 'Nová událost vytvořena',
+            'title'     => 'Přidat událost do :name',
         ],
         'destroy'   => 'Událost z kalendáře \':name\' odstraněna',
         'edit'      => [
-            'success'       => 'Událost upravena',
-            'title'         => 'Upravit událost kalendáře :name',
+            'success'   => 'Událost upravena',
+            'title'     => 'Upravit událost kalendáře :name',
         ],
         'helpers'   => [
             'add'               => 'Přidat existující událost do tohoto kalendáře',
@@ -57,7 +57,7 @@ return [
         'success'   => 'Událost \':event\' přidána do kalendáře',
     ],
     'events'        => [
-        'title'         => 'Události kalendáře :name',
+        'title' => 'Události kalendáře :name',
     ],
     'fields'        => [
         'calendar'              => 'Nadřazený kalendář',
@@ -113,9 +113,9 @@ return [
         'years'             => 'Názvy důležitých roků kalendáře.',
     ],
     'index'         => [
-        'add'           => 'Nový kalendář',
-        'header'        => 'Kalendáře :name',
-        'title'         => 'Kalendáře',
+        'add'       => 'Nový kalendář',
+        'header'    => 'Kalendáře :name',
+        'title'     => 'Kalendáře',
     ],
     'layouts'       => [
         'month' => 'Kalendářní měsíc',

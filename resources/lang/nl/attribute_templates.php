@@ -5,17 +5,15 @@ return [
         'title' => ':name attribuutsjablonen',
     ],
     'create'                => [
-        'description'   => 'Maak een nieuwe attribuutsjabloon',
-        'success'       => 'Attribuutsjabloon \':naam\' gemaakt.',
-        'title'         => 'Nieuw attribuutsjabloon',
+        'success'   => 'Attribuutsjabloon \':naam\' gemaakt.',
+        'title'     => 'Nieuw attribuutsjabloon',
     ],
     'destroy'               => [
         'success'   => 'Attribuutsjabloon \':naam\' verwijderd.',
     ],
     'edit'                  => [
-        'description'   => 'Wijzig een attribuutsjabloon',
-        'success'       => 'Attribuutsjabloon \':naam\' bijgewerkt.',
-        'title'         => 'Wijzig attribuutsjabloon :name',
+        'success'   => 'Attribuutsjabloon \':naam\' bijgewerkt.',
+        'title'     => 'Wijzig attribuutsjabloon :name',
     ],
     'fields'                => [
         'attribute_template'    => 'Bovenliggende Attribuutsjabloon',
@@ -28,21 +26,19 @@ return [
         'parent_attribute_template' => 'Dit attribuutsjabloon kan gerelateerd zijn aan een ander attribuutsjabloon. Bij het toepassen van deze attribuutsjabloon worden deze en al zijn bovenliggende entiteiten toegepast.',
     ],
     'index'                 => [
-        'add'           => 'Nieuw attribuutsjabloon',
-        'description'   => 'Beheer de Attribuutsjablonen van :naam.',
-        'header'        => 'Attribuutsjablonen van :naam',
-        'title'         => 'Attribuutsjablonen',
+        'add'       => 'Nieuw attribuutsjabloon',
+        'header'    => 'Attribuutsjablonen van :naam',
+        'title'     => 'Attribuutsjablonen',
     ],
     'placeholders'          => [
         'attribute_template'    => 'Kies een attribuutsjabloon',
         'name'                  => 'Naam van de attribuutsjabloon',
     ],
     'show'                  => [
-        'description'   => 'Een gedetailleerd overzicht van een attribuutsjabloon',
-        'tabs'          => [
+        'tabs'  => [
             'attribute_templates'   => 'Attribuutsjablonen',
             'attributes'            => 'Attributen',
         ],
-        'title'         => 'Attribuutsjabloon :name',
+        'title' => 'Attribuutsjabloon :name',
     ],
 ];

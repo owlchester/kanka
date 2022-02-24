@@ -28,7 +28,6 @@ return [
         'distance_measure'  => 'Fornire alla mappa una misurazione della distanza attiverà lo strumento di misurazione nella modalità Esplora.',
         'grid'              => 'Definisci la dimensione della griglia che sarà mostrata nella modalità Esplora.',
         'missing_image'     => 'Devi salvare la mappa fornendo un\'immagine prima di poter essere in grado di aggiungere livelli e marcatori.',
-        'nested'            => 'Quando ti trovi nella vista annidata puoi vedere le tue mappe in maniera annidata. Mappe senza genitori saranno mostrate in maniera predefinita. Mappe con discendenti potranno essere premute per vederne i figli. Potrai continuare ad espandere le mappe fino a quando non ci saranno più figli da mostrare.',
     ],
     'index'         => [
         'add'   => 'Nuova Mappa',

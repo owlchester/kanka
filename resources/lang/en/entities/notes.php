@@ -11,15 +11,15 @@ return [
         'success'   => 'Advanced mention to post copied to the clipboard.',
     ],
     'create'        => [
-        'success'       => 'Post \':name\' added to :entity.',
-        'title'         => 'New post for :name',
+        'success'   => 'Post \':name\' added to :entity.',
+        'title'     => 'New post for :name',
     ],
     'destroy'       => [
         'success'   => 'Post \':name\' for :entity removed.',
     ],
     'edit'          => [
-        'success'       => 'Post \':name\' for :entity updated.',
-        'title'         => 'Update post for :name',
+        'success'   => 'Post \':name\' for :entity updated.',
+        'title'     => 'Update post for :name',
     ],
     'fields'        => [
         'collapsed' => 'Collapse post by default',

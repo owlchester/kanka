@@ -2,8 +2,8 @@
 
 return [
     'create'        => [
-        'success'       => 'האירוע \':name\' נוצר.',
-        'title'         => 'אירוע חדש',
+        'success'   => 'האירוע \':name\' נוצר.',
+        'title'     => 'אירוע חדש',
     ],
     'destroy'       => [
         'success'   => 'האירוע \':name\' הוסר.',
@@ -20,9 +20,9 @@ return [
         'type'      => 'סוג',
     ],
     'index'         => [
-        'add'           => 'אירוע חדש',
-        'header'        => 'האירועים של :name',
-        'title'         => 'אירועים',
+        'add'       => 'אירוע חדש',
+        'header'    => 'האירועים של :name',
+        'title'     => 'אירועים',
     ],
     'placeholders'  => [
         'date'      => 'התאריך של האירוע',
@@ -31,10 +31,7 @@ return [
         'type'      => 'טקס, חג, אסון, קרב, לידה',
     ],
     'show'          => [
-        'tabs'          => [
-            'information'   => 'מידע',
-        ],
-        'title'         => 'אירוע :name',
+        'title' => 'אירוע :name',
     ],
     'tabs'          => [
         'calendars' => 'מופעים בלוחות שנה',

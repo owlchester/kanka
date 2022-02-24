@@ -2,11 +2,11 @@
 
 return [
     'characters'    => [
-        'title'         => 'דמויות :race',
+        'title' => 'דמויות :race',
     ],
     'create'        => [
-        'success'       => 'הגזע \':name\' נוצר.',
-        'title'         => 'גזע חדש',
+        'success'   => 'הגזע \':name\' נוצר.',
+        'title'     => 'גזע חדש',
     ],
     'destroy'       => [
         'success'   => 'הגזע \':name\' הוסר.',
@@ -22,25 +22,24 @@ return [
         'races'         => 'תתי-גזע',
         'type'          => 'סוג',
     ],
-    'helpers'       => [
-    ],
+    'helpers'       => [],
     'index'         => [
-        'add'           => 'גזע חדש',
-        'header'        => 'גזעים של :name',
-        'title'         => 'גזעים',
+        'add'       => 'גזע חדש',
+        'header'    => 'גזעים של :name',
+        'title'     => 'גזעים',
     ],
     'placeholders'  => [
         'name'  => 'שם הגזע',
         'type'  => 'בן אנוש, פיה, סייבורג',
     ],
     'races'         => [
-        'title'         => 'תתי-גזע של :name',
+        'title' => 'תתי-גזע של :name',
     ],
     'show'          => [
-        'tabs'          => [
+        'tabs'  => [
             'characters'    => 'דמויות',
             'races'         => 'תתי-גזע',
         ],
-        'title'         => 'גזע :name',
+        'title' => 'גזע :name',
     ],
 ];

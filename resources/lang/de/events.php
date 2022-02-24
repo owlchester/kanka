@@ -2,8 +2,8 @@
 
 return [
     'create'        => [
-        'success'       => 'Ereignis \':name\' erstellt',
-        'title'         => 'Neues Ereignis erstellen',
+        'success'   => 'Ereignis \':name\' erstellt',
+        'title'     => 'Neues Ereignis erstellen',
     ],
     'destroy'       => [
         'success'   => 'Ereignis \':name\' entfernt.',
@@ -31,9 +31,9 @@ return [
         'nested_without'=> 'Anzeigen aller Ereignisse ohne übergeordnetes Ereignis. Klicken Sie auf eine Zeile, um die untergeordneten Ereignisse anzuzeigen.',
     ],
     'index'         => [
-        'add'           => 'Neues Ereignis',
-        'header'        => 'Ereignisse von :name',
-        'title'         => 'Ereignisse',
+        'add'       => 'Neues Ereignis',
+        'header'    => 'Ereignisse von :name',
+        'title'     => 'Ereignisse',
     ],
     'placeholders'  => [
         'date'      => 'Ein Datum für dein Ereginis',
@@ -42,10 +42,10 @@ return [
         'type'      => 'Zeremonie, Fest, Katastrophe, Schlacht, Geburt',
     ],
     'show'          => [
-        'tabs'          => [
+        'tabs'  => [
             'events'    => 'Ereignisse',
         ],
-        'title'         => 'Ereignis :name',
+        'title' => 'Ereignis :name',
     ],
     'tabs'          => [
         'calendars' => 'Kalendereinträge',

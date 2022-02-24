@@ -22,13 +22,10 @@ TEXT
         'success'   => 'Kampanj borttagen.',
     ],
     'edit'                              => [
-        'description'   => 'Redigera din kampanj',
-        'success'       => 'Kampanj uppdaterad',
-        'title'         => 'Redigera Kampanj :campaign',
+        'success'   => 'Kampanj uppdaterad',
+        'title'     => 'Redigera Kampanj :campaign',
     ],
-    'entity_note_visibility'            => [
-        'pinned'    => 'Nåla fast entitetsanteckningar',
-    ],
+    'entity_note_visibility'            => [],
     'entity_personality_visibilities'   => [
         'private'   => 'Nya karaktärers personligheter är privata som standard.',
     ],
@@ -41,7 +38,6 @@ TEXT
         'unknown_id'    => 'Okänd Kampanj.',
     ],
     'export'                            => [
-        'description'       => 'Exportera kampanjen.',
         'errors'            => [
             'limit' => 'Du har nått gränsen på max en export per dag. Vänligen försök igen imorgon.',
         ],
@@ -51,50 +47,44 @@ TEXT
         'title'             => 'Kampanj :name Exporterad',
     ],
     'fields'                            => [
-        'boosted'                       => 'Boostad av',
-        'css'                           => 'CSS',
-        'description'                   => 'Beskrivning',
-        'entity_count'                  => 'Entitet Antal',
-        'entity_note_visibility'        => 'Entitetsanteckningar Fastnålade',
-        'entity_personality_visibility' => 'Karaktärers Personlighets Synlighet',
-        'entity_visibility'             => 'Entiteters Synlighet',
-        'excerpt'                       => 'Utdrag',
-        'followers'                     => 'Följare',
-        'header_image'                  => 'Titelbild',
-        'hide_history'                  => 'Dölj entitet-historia',
-        'hide_members'                  => 'Dölj kampanj-medlemmar',
-        'image'                         => 'Bild',
-        'locale'                        => 'Språk',
-        'name'                          => 'Namn',
-        'public_campaign_filters'       => 'Offentlig Kampanj Filter',
-        'related_visibility'            => 'Relaterade Elements Synlighet',
-        'rpg_system'                    => 'RPG System',
-        'system'                        => 'System',
-        'theme'                         => 'Tema',
-        'tooltip_family'                => 'Dölj familjenamn från inforutor.',
-        'tooltip_image'                 => 'Visa entitetsbilder i inforutor',
-        'visibility'                    => 'Synlighet',
+        'boosted'                   => 'Boostad av',
+        'css'                       => 'CSS',
+        'description'               => 'Beskrivning',
+        'entity_count'              => 'Entitet Antal',
+        'excerpt'                   => 'Utdrag',
+        'followers'                 => 'Följare',
+        'header_image'              => 'Titelbild',
+        'hide_history'              => 'Dölj entitet-historia',
+        'hide_members'              => 'Dölj kampanj-medlemmar',
+        'image'                     => 'Bild',
+        'locale'                    => 'Språk',
+        'name'                      => 'Namn',
+        'public_campaign_filters'   => 'Offentlig Kampanj Filter',
+        'related_visibility'        => 'Relaterade Elements Synlighet',
+        'rpg_system'                => 'RPG System',
+        'system'                    => 'System',
+        'theme'                     => 'Tema',
+        'tooltip_family'            => 'Dölj familjenamn från inforutor.',
+        'tooltip_image'             => 'Visa entitetsbilder i inforutor',
+        'visibility'                => 'Synlighet',
     ],
     'following'                         => 'Följer',
     'helpers'                           => [
-        'boost_required'                => 'Denna funktion kräver att kampanjen är boostad. Mer info på :settings sidan.',
-        'boosted'                       => 'Några funktioner är upplåsta för att denna kampanj är boostad. Läs mer på :settings sidan.',
-        'css'                           => 'Skriv din egen CSS som kommer laddas in på sidorna för din kampanj. Vänligen notera att allt missbruk av denna funktion kan leda till borttagandet av din anpassade CSS. Upprepade eller grova överträdelser kan leda till borttagandet av din kampanj.',
-        'entity_note_visibility'        => 'Vid skapandet av en ny entitetsanteckning kommer "Fastnålad" alternativet automatiskt att väljas.',
-        'entity_personality_visibility' => 'När du skapar en ny karaktär så kommer "Personlighet Synlig" valet inte automatiskt väljas.',
-        'entity_visibility'             => 'När du skapar en ny entitet så kommer "Privat" valet automatiskt väljas.',
-        'excerpt'                       => 'Kampanjutdraget kommer att visas på dashboarden, så skriv några meningar som introducerar din värld. Håll det kortfattat för bästa resultat.',
-        'hide_history'                  => 'Välj detta för att dölja entiteters historia från icke-admin medlemmar i kampanjen.',
-        'hide_members'                  => 'Välj detta för att dölja kampanjens medlemslista från icke-admin medlemmar.',
-        'locale'                        => 'Språket din kampanj är skriven på. Detta används för att generera innehåll och gruppera publika kampanjer.',
-        'name'                          => 'Din kampanj/värld kan ha vilket namn som helst så länge det innehåller minst 4 bokstäver eller siffror.',
-        'public_campaign_filters'       => 'Hjälp andra hitta kampanjen bland andra offentliga kampanjer genom att ge följande information.',
-        'related_visibility'            => 'Standard Synlighetsvärde när ett nytt element skapas genom detta fält (entitetsanteckningar, förbindelser, förmågor, osv.)',
-        'system'                        => 'Om din kampanj är offentligt synlig så visas systemet på :link sidan.',
-        'systems'                       => 'För att undvika att överväldiga användare med val så är några funktioner i Kanka bara tillgängliga med visa RPG system (dvs. D&D 5e monster stat blocken). Genom att lägga till stödda system aktiveras dessa funktioner',
-        'theme'                         => 'Tvinga temat för kampanjen och ignorera en användares preferens.',
-        'view_public'                   => 'För att se kampanjen som en offentlig användare gör, öppna :link i ett inkognito fönster.',
-        'visibility'                    => 'Att göra en kampanj offentlig innebär att vem som helst med länken kan se den.',
+        'boost_required'            => 'Denna funktion kräver att kampanjen är boostad. Mer info på :settings sidan.',
+        'boosted'                   => 'Några funktioner är upplåsta för att denna kampanj är boostad. Läs mer på :settings sidan.',
+        'css'                       => 'Skriv din egen CSS som kommer laddas in på sidorna för din kampanj. Vänligen notera att allt missbruk av denna funktion kan leda till borttagandet av din anpassade CSS. Upprepade eller grova överträdelser kan leda till borttagandet av din kampanj.',
+        'excerpt'                   => 'Kampanjutdraget kommer att visas på dashboarden, så skriv några meningar som introducerar din värld. Håll det kortfattat för bästa resultat.',
+        'hide_history'              => 'Välj detta för att dölja entiteters historia från icke-admin medlemmar i kampanjen.',
+        'hide_members'              => 'Välj detta för att dölja kampanjens medlemslista från icke-admin medlemmar.',
+        'locale'                    => 'Språket din kampanj är skriven på. Detta används för att generera innehåll och gruppera publika kampanjer.',
+        'name'                      => 'Din kampanj/värld kan ha vilket namn som helst så länge det innehåller minst 4 bokstäver eller siffror.',
+        'public_campaign_filters'   => 'Hjälp andra hitta kampanjen bland andra offentliga kampanjer genom att ge följande information.',
+        'related_visibility'        => 'Standard Synlighetsvärde när ett nytt element skapas genom detta fält (entitetsanteckningar, förbindelser, förmågor, osv.)',
+        'system'                    => 'Om din kampanj är offentligt synlig så visas systemet på :link sidan.',
+        'systems'                   => 'För att undvika att överväldiga användare med val så är några funktioner i Kanka bara tillgängliga med visa RPG system (dvs. D&D 5e monster stat blocken). Genom att lägga till stödda system aktiveras dessa funktioner',
+        'theme'                     => 'Tvinga temat för kampanjen och ignorera en användares preferens.',
+        'view_public'               => 'För att se kampanjen som en offentlig användare gör, öppna :link i ett inkognito fönster.',
+        'visibility'                => 'Att göra en kampanj offentlig innebär att vem som helst med länken kan se den.',
     ],
     'index'                             => [
         'actions'   => [
@@ -111,17 +101,13 @@ TEXT
             'link'  => 'Ny länk',
         ],
         'create'                => [
-            'button'        => 'Bjud in',
-            'description'   => 'Bjud in en vän till din kampanj',
-            'link'          => 'Länk skapad: <a href=":url" target="_blank">:url</a>',
-            'success'       => 'Inbjudan skickad.',
-            'title'         => 'Bjud in någon till din kampanj',
+            'success'   => 'Inbjudan skickad.',
+            'title'     => 'Bjud in någon till din kampanj',
         ],
         'destroy'               => [
             'success'   => 'Inbjudan borttagen.',
         ],
         'email'                 => [
-            'link'      => '<a href=":link">Gå med i :name\'s kampanj</a>',
             'subject'   => ':name har bjudit in dig till sin kampanj \':campaign\' på kanka.io! Använd följande länk för att acceptera deras inbjudan.',
             'title'     => 'Inbjudan från :name',
         ],
@@ -136,7 +122,6 @@ TEXT
             'email'     => 'Epost',
             'role'      => 'Roll',
             'type'      => 'Typ',
-            'validity'  => 'Giltighet',
         ],
         'helpers'               => [
             'email'     => 'Våra mail blir ofta flaggade som skräppost och kan ta upp till några timmar att dyka upp i din inkorg.',
@@ -164,10 +149,8 @@ TEXT
         'create'                => [
             'title' => 'Lägg till en medlem i din kampanj',
         ],
-        'description'           => 'Hantera medlemmarna i din kampanj',
         'edit'                  => [
-            'description'   => 'Redigera en medlem i din kampanj',
-            'title'         => 'Redigera medlem :name',
+            'title' => 'Redigera medlem :name',
         ],
         'fields'                => [
             'joined'        => 'Gått med',
@@ -224,7 +207,6 @@ TEXT
             'success'   => 'Roll skapad.',
             'title'     => 'Skapa en ny roll för :name',
         ],
-        'description'   => 'Hantera rollerna för kampanjen',
         'destroy'       => [
             'success'   => 'Roll borttagen.',
         ],
@@ -271,8 +253,7 @@ TEXT
             'name'  => 'Rollens namn',
         ],
         'show'          => [
-            'description'   => 'Medlemmar och Behörigheter för en kampanj roll',
-            'title'         => 'Kampanj Roll \':role\'',
+            'title' => 'Kampanj Roll \':role\'',
         ],
         'title'         => 'Kampanj :name Roller',
         'types'         => [
@@ -297,16 +278,15 @@ TEXT
         ],
     ],
     'settings'                          => [
-        'actions'       => [
+        'actions'   => [
             'enable'    => 'Lägg till',
         ],
-        'boosted'       => 'Denna funktion är i early access och endast tillgänglig för :boosted.',
-        'description'   => 'Aktivera eller inaktivera moduler för kampanjen.',
-        'edit'          => [
+        'boosted'   => 'Denna funktion är i early access och endast tillgänglig för :boosted.',
+        'edit'      => [
             'success'   => 'Kampanj inställningar uppdaterade.',
         ],
-        'helper'        => 'Alla moduler i en kampanj kan aktiveras och inaktiveras när man vill. Inaktivera en modul kommer bara dölja gränssnitts elementen relaterade till den och redan existerande entiteter kommer döljas men dom existerar fortfarande i bakgrunden, utifall du ändrar dig. Dessa ändringar påverkar alla användare i kampanjen, även Admin användare.',
-        'helpers'       => [
+        'helper'    => 'Alla moduler i en kampanj kan aktiveras och inaktiveras när man vill. Inaktivera en modul kommer bara dölja gränssnitts elementen relaterade till den och redan existerande entiteter kommer döljas men dom existerar fortfarande i bakgrunden, utifall du ändrar dig. Dessa ändringar påverkar alla användare i kampanjen, även Admin användare.',
+        'helpers'   => [
             'abilities'     => 'Skapa förmågor, det kan vara bedrifter, trollformler eller krafter som kan tilldelas till entiteter.',
             'calendars'     => 'En plats att definiera kalendrarna från din värld.',
             'characters'    => 'Folket som bor i din värld.',
@@ -326,16 +306,15 @@ TEXT
             'tags'          => 'Varje entitet kan ha flera taggar. Taggar kan tillhöra andra taggar och entiteter kan filtreras efter taggar.',
             'timelines'     => 'Representera din världs historia med tidslinjer.',
         ],
-        'title'         => 'Kampanj :name Modules',
+        'title'     => 'Kampanj :name Modules',
     ],
     'show'                              => [
-        'actions'       => [
+        'actions'   => [
             'boost' => 'Boosta kampanj',
             'edit'  => 'Redigera kampanj',
             'leave' => 'Lämna kampanj',
         ],
-        'description'   => 'En detaljerad vy för en kampanj',
-        'tabs'          => [
+        'tabs'      => [
             'achievements'      => 'Achievements',
             'default-images'    => 'Standard Bilder',
             'export'            => 'Exportera',
@@ -346,7 +325,7 @@ TEXT
             'roles'             => 'Roller',
             'settings'          => 'Moduler',
         ],
-        'title'         => 'Kampanj :namn',
+        'title'     => 'Kampanj :namn',
     ],
     'superboosted'                      => [
         'gallery'   => [

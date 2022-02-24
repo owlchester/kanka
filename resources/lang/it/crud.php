@@ -13,12 +13,9 @@ return [
         'find_out_more'     => 'Scopri di più',
         'go_to'             => 'Vai a :name',
         'json-export'       => 'Esporta (JSON)',
-        'more'              => 'Più Azioni',
         'move'              => 'Sposta',
         'new'               => 'Nuovo',
         'next'              => 'Prossimo',
-        'private'           => 'Privato',
-        'public'            => 'Pubblico',
         'reset'             => 'Resetta',
     ],
     'add'               => 'Aggiungi',
@@ -178,14 +175,13 @@ return [
         'header_image'          => 'Questa immagine è posizionata sopra all\' entità. Per un miglior risultato, utilizza un\'immagine larga.',
         'image_limitations'     => 'Formati supportati: :formats. Dimensione massima del file: :size.',
         'image_patreon'         => 'Aumentare la dimensione massima dei file?',
-        'is_private'            => 'Se impostata come privata, questa entità sarà visibile solamente ai membri appartenenti al ruolo "Proprietario" della campagna.',
         'is_star'               => 'Gli elementi fissati appariranno nel menù dell\'entità',
         'tooltip'               => 'Sostituisci il tooltip generato automaticamente con il seguente contenuto.',
         'visibility'            => 'Impostare la visibilità agli amministratori significa che solamente i membri del ruolo "Proprietario" della campagna potranno visualizzarlo. Impostarlo a "Te stesso" significa che solo tu potrai vederlo.',
     ],
     'history'           => [
-        'unknown'       => 'Sconosciuto',
-        'view'          => 'Visualizza i log dell\'entità',
+        'unknown'   => 'Sconosciuto',
+        'view'      => 'Visualizza i log dell\'entità',
     ],
     'image'             => [
         'error' => 'Non siamo stati in gradi di recuperare l\'immagine richiesta. Potrebbe essere che il sito web non ci permetta di scaricare l\'immagine (solitamente ciò riguarda Squarespace e DeviantArt) o che il link non sia più valido. Per favore controlla anche che la dimensione dell\'immagine non sia maggiore di :size.',
@@ -193,27 +189,6 @@ return [
     'is_private'        => 'Questa entità è privata e visibile solamente ai membri del ruolo "Proprietario".',
     'linking_help'      => 'Come posso creare un collegamento ad altre entità?',
     'manage'            => 'Gestisci',
-    'move'              => [
-        'description'   => 'Sposta questa entità in un altro posto',
-        'errors'        => [
-            'permission'        => 'Non sei autorizzato a creare entità di questo tipo nella campagna selezionata.',
-            'same_campaign'     => 'Devi selezionare un\'altra campagna verso cui spostare l\'entità.',
-            'unknown_campaign'  => 'Campagna sconosciuta',
-        ],
-        'fields'        => [
-            'campaign'  => 'Nuova campagna',
-            'copy'      => 'Crea una copia',
-            'target'    => 'Nuovo tipo',
-        ],
-        'hints'         => [
-            'campaign'  => 'Puoi anche provare a spostare questa entità in un\'altra campagna',
-            'copy'      => 'Seleziona questa opzione se vuoi crearne una copia nella nuova campagna.',
-            'target'    => 'Per favore considera che alcuni dati potrebbero andare persi nel caso si spostasse un elemento da un tipo ad un altro.',
-        ],
-        'success'       => 'Entità \':name\' spostata.',
-        'success_copy'  => 'Entità \':name\' copiata.',
-        'title'         => 'Sposta :name',
-    ],
     'new_entity'        => [
         'error' => 'Per favore controlla i tuoi valori.',
         'fields'=> [
@@ -221,7 +196,6 @@ return [
         ],
         'title' => 'Nuova entità',
     ],
-    'or_cancel'         => 'o <a href=":url">annulla</a>',
     'panels'            => [
         'appearance'            => 'Aspetto',
         'attribute_template'    => 'Template di attributi',
@@ -258,8 +232,7 @@ return [
         ],
         'helper'            => 'Utilizza questa interfaccia per rifinire e specificare quali utenti e ruoli possono interagire con questa entità.',
         'helpers'           => [
-            'entity_note'   => 'Permetti agli utenti di creare Note per questa Entità. Senza questo permesso, essi saranno ancora in grado di vedere le note dell\'entità impostate come visibili per Tutti.',
-            'setup'         => 'Utilizza questa interfaccia per rifinire e specificare come utenti e ruoli possono interagire con questa entità. :allow permetterà all\'utente o al ruolo di fare questa azione. :deny negherà loro tale azione. :inherit farà riferimento al ruolo dell\'utente o al permesso del ruolo. Un utente impostato come :allow sarà in grado di fare l\'azione anche se il suo ruolo sarà invece impostato su :deny.',
+            'setup' => 'Utilizza questa interfaccia per rifinire e specificare come utenti e ruoli possono interagire con questa entità. :allow permetterà all\'utente o al ruolo di fare questa azione. :deny negherà loro tale azione. :inherit farà riferimento al ruolo dell\'utente o al permesso del ruolo. Un utente impostato come :allow sarà in grado di fare l\'azione anche se il suo ruolo sarà invece impostato su :deny.',
         ],
         'inherited'         => 'Questo ruolo ha già questo permesso impostato per questa tipologia di entità.',
         'inherited_by'      => 'Questo utente fa parte del ruolo \':role\' che gli conferisce questo permesso su questa tipologia di entità.',

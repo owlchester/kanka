@@ -2,18 +2,18 @@
 
 return [
     'children'      => [
-        'actions'       => [
+        'actions'   => [
             'add'   => 'Dodaj novu oznaku',
         ],
-        'create'        => [
+        'create'    => [
             'success'   => 'Dodana oznaka :name entitetu.',
             'title'     => 'Dodaj oznaku na :name',
         ],
-        'title'         => 'Djeca oznake :name',
+        'title'     => 'Djeca oznake :name',
     ],
     'create'        => [
-        'success'       => 'Kreirana oznaka ":name".',
-        'title'         => 'Nova oznaka',
+        'success'   => 'Kreirana oznaka ":name".',
+        'title'     => 'Nova oznaka',
     ],
     'destroy'       => [
         'success'   => 'Uklonjena oznaka ":name".',
@@ -39,12 +39,12 @@ return [
         'tag'       => 'Ispod su prikazane sve oznake koje su izravno pod ovom oznakom.',
     ],
     'index'         => [
-        'actions'       => [
+        'actions'   => [
             'explore_view'  => 'Ugniježđeni pregled',
         ],
-        'add'           => 'Nova oznaka',
-        'header'        => 'Oznake u :name',
-        'title'         => 'Oznake',
+        'add'       => 'Nova oznaka',
+        'header'    => 'Oznake u :name',
+        'title'     => 'Oznake',
     ],
     'new_tag'       => 'Nova oznaka',
     'placeholders'  => [
@@ -53,13 +53,13 @@ return [
         'type'  => 'Legende, Ratovi, Povijest, Religija, Veksologija',
     ],
     'show'          => [
-        'tabs'          => [
-            'children'      => 'Djeca',
-            'tags'          => 'Oznake',
+        'tabs'  => [
+            'children'  => 'Djeca',
+            'tags'      => 'Oznake',
         ],
-        'title'         => 'Oznaka :name',
+        'title' => 'Oznaka :name',
     ],
     'tags'          => [
-        'title'         => 'Djeca oznake :name',
+        'title' => 'Djeca oznake :name',
     ],
 ];

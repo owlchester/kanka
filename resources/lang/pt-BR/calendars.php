@@ -19,16 +19,16 @@ return [
         'is_recurring'  => 'Acontece todos os anos',
     ],
     'create'        => [
-        'success'       => 'Calendário \':name\' criado.',
-        'title'         => 'Novo Calendário',
+        'success'   => 'Calendário \':name\' criado.',
+        'title'     => 'Novo Calendário',
     ],
     'destroy'       => [
         'success'   => 'Calendário \':name\' removido',
     ],
     'edit'          => [
-        'success'       => 'Calendário \':name\' atualizado.',
-        'title'         => 'Editar Calendário :name',
-        'today'         => 'Data do calendário atualizada.',
+        'success'   => 'Calendário \':name\' atualizado.',
+        'title'     => 'Editar Calendário :name',
+        'today'     => 'Data do calendário atualizada.',
     ],
     'event'         => [
         'actions'   => [
@@ -38,13 +38,13 @@ return [
             'switch'            => 'Escolha de mudança',
         ],
         'create'    => [
-            'success'       => 'Evento de calendário criado.',
-            'title'         => 'Adicionar um evento de calendário para :name',
+            'success'   => 'Evento de calendário criado.',
+            'title'     => 'Adicionar um evento de calendário para :name',
         ],
         'destroy'   => 'Evento removido do calendário \':name\'',
         'edit'      => [
-            'success'       => 'Atualização de evento de calendário.',
-            'title'         => 'Atualizar evento do calendário para :name',
+            'success'   => 'Atualização de evento de calendário.',
+            'title'     => 'Atualizar evento do calendário para :name',
         ],
         'helpers'   => [
             'add'               => 'Adicione um evento existente para esse calendário usando a lista.',
@@ -57,7 +57,7 @@ return [
         'success'   => 'Evento \':event\' adicionado ao calendário.',
     ],
     'events'        => [
-        'title'         => 'Calendário :name Eventos',
+        'title' => 'Calendário :name Eventos',
     ],
     'fields'        => [
         'calendar'              => 'Calendário Principal',
@@ -94,7 +94,6 @@ return [
     ],
     'helpers'       => [
         'month_type'    => 'Os meses intercalares não usam os dias da semana, mas ainda influenciam as luas e as estações.',
-        'nested'        => 'Exibindo calendários que não são parte de um calendário principal primeiro. Clique em um calendário para explorar seus subcalendários.',
         'nested_parent' => 'Mostrando os calendários de :parent.',
         'nested_without'=> 'Mostrando todos os calendários que não tem um calendário-pai. Clique em uma linha para ver os calendários-filhos.',
         'start_offset'  => 'Por padrão, o calendário começa no primeiro dia da semana do ano 0. A alteração deste campo influencia onde o primeiro dia do calendário é colocado.',
@@ -114,9 +113,9 @@ return [
         'years'             => 'Alguns anos são tão importantes que têm um nome próprio.',
     ],
     'index'         => [
-        'add'           => 'Novo Calendário',
-        'header'        => 'Calendários de :name',
-        'title'         => 'Calendários',
+        'add'       => 'Novo Calendário',
+        'header'    => 'Calendários de :name',
+        'title'     => 'Calendários',
     ],
     'layouts'       => [
         'month' => 'Mês',

@@ -4,8 +4,6 @@ return [
     'create'                            => [
         'description'           => 'Utwórz nową kampanię',
         'helper'                => [
-            'first'     => 'Pierwszy',
-            'second'    => 'Drugi',
             'title'     => 'Witaj w :name',
             'welcome'   => <<<'TEXT'
 Zanim przejdziesz dalej, musisz nadać swojej kampanii tytuł albo nazwać jakoś powstający świat. Jeżeli nie masz jeszcze dobrego pomysłu, nie martw się! Zawsze możesz zmienić go później, albo utworzyć nową kampanię.
@@ -24,13 +22,10 @@ TEXT
         'success'   => 'Kampania usunięta.',
     ],
     'edit'                              => [
-        'description'   => 'Edytuj kampanię',
-        'success'       => 'Zmieniono kampanię.',
-        'title'         => 'Edycja kampanii :name',
+        'success'   => 'Zmieniono kampanię.',
+        'title'     => 'Edycja kampanii :name',
     ],
-    'entity_note_visibility'            => [
-        'pinned'    => 'Przypinaj nowe komentarze do elementów',
-    ],
+    'entity_note_visibility'            => [],
     'entity_personality_visibilities'   => [
         'private'   => 'Osobowość nowych postaci jest domyślnie tajna.',
     ],
@@ -43,7 +38,6 @@ TEXT
         'unknown_id'    => 'Nieznana kampania.',
     ],
     'export'                            => [
-        'description'       => 'Eksportuj kampanię.',
         'errors'            => [
             'limit' => 'Przekraczasz limit jednego eksportu dziennie. Spróbuj ponownie jutro.',
         ],
@@ -54,59 +48,53 @@ TEXT
         'title'             => 'Eksportowanie kampanii :nazwa',
     ],
     'fields'                            => [
-        'boosted'                       => 'Doładowanie przez',
-        'connections'                   => 'Pokazuj domyślnie tabelę powiązań tego elementu (zamiast grafu relacji w kampaniach doładowanych)',
-        'css'                           => 'CSS',
-        'description'                   => 'Opis',
-        'entity_count'                  => 'Liczba elementów',
-        'entity_note_visibility'        => 'Przypięte komentarze',
-        'entity_personality_visibility' => 'Widoczność osobowości postaci',
-        'entity_visibility'             => 'Widoczność elementów',
-        'entry'                         => 'Opis kampanii',
-        'excerpt'                       => 'Podsumowanie',
-        'followers'                     => 'Obserwujący',
-        'header_image'                  => 'Ilustracja okładkowa',
-        'hide_history'                  => 'Ukryj historię edycji',
-        'hide_members'                  => 'Ukryj uczestników kampanii',
-        'image'                         => 'Obraz',
-        'locale'                        => 'Język kampanii',
-        'name'                          => 'Nazwa',
-        'nested'                        => 'Domyślnie pokazuj listy elementów w widoku hierarchii (jeżeli jest dostępny)',
-        'open'                          => 'Otwarta na zgłoszenia',
-        'post_collapsed'                => 'Nowe komentarze do elementów są domyślnie zwynięte.',
-        'public_campaign_filters'       => 'Filtry kampanii publicznych',
-        'related_visibility'            => 'Widoczność tworzonych elementów',
-        'rpg_system'                    => 'Systemy RPG',
-        'superboosted'                  => 'Turbodoładowana przez',
-        'system'                        => 'System',
-        'theme'                         => 'Motyw',
-        'tooltip_family'                => 'Usuń nazwy rodzin z dymków',
-        'tooltip_image'                 => 'Pokaż obraz elementu w dymku',
-        'visibility'                    => 'Widoczność',
+        'boosted'                   => 'Doładowanie przez',
+        'connections'               => 'Pokazuj domyślnie tabelę powiązań tego elementu (zamiast grafu relacji w kampaniach doładowanych)',
+        'css'                       => 'CSS',
+        'description'               => 'Opis',
+        'entity_count'              => 'Liczba elementów',
+        'entry'                     => 'Opis kampanii',
+        'excerpt'                   => 'Podsumowanie',
+        'followers'                 => 'Obserwujący',
+        'header_image'              => 'Ilustracja okładkowa',
+        'hide_history'              => 'Ukryj historię edycji',
+        'hide_members'              => 'Ukryj uczestników kampanii',
+        'image'                     => 'Obraz',
+        'locale'                    => 'Język kampanii',
+        'name'                      => 'Nazwa',
+        'nested'                    => 'Domyślnie pokazuj listy elementów w widoku hierarchii (jeżeli jest dostępny)',
+        'open'                      => 'Otwarta na zgłoszenia',
+        'post_collapsed'            => 'Nowe komentarze do elementów są domyślnie zwynięte.',
+        'public_campaign_filters'   => 'Filtry kampanii publicznych',
+        'related_visibility'        => 'Widoczność tworzonych elementów',
+        'rpg_system'                => 'Systemy RPG',
+        'superboosted'              => 'Turbodoładowana przez',
+        'system'                    => 'System',
+        'theme'                     => 'Motyw',
+        'tooltip_family'            => 'Usuń nazwy rodzin z dymków',
+        'tooltip_image'             => 'Pokaż obraz elementu w dymku',
+        'visibility'                => 'Widoczność',
     ],
     'following'                         => 'Obserwowanie',
     'helpers'                           => [
-        'boost_required'                => 'Ta opcja jest dostępna tylko w doładowanych kampaniach. Więcej informacji znajdziesz na stronie :settings.',
-        'boosted'                       => 'Odblokowano nowe opcje ponieważ kampania jest doładowana. Więcej informacji znajdziesz na stronie :settings.',
-        'css'                           => 'Twórz własne style CSS do używania w kampanii. Uwaga - nadużywanie tej opcji może poskutkować usunięciem stworzonych stylów. Powtarzające się albo poważne wykroczenia mogą spowodować usunięcie kampanii.',
-        'dashboard'                     => 'Dostosuj sposób wyświetlania widżetów na pulpicie kampanii wypełniając poniższe pola',
-        'entity_note_visibility'        => 'Kiedy tworzysz nowy komentarz do elementu, domyślnie wybrana będzie opcja "Przypięty".',
-        'entity_personality_visibility' => 'Gdy tworzysz nową postać, opcja "Postać jawna" będzie domyślnie wyłączona.',
-        'entity_visibility'             => 'Gdy tworzysz nowy element, domyślnie włączona będzie opcja "Tajne".',
-        'excerpt'                       => 'Podsumowanie kampanii będzie wyświetlane na pulpicie, więc poświęć mu kilka zdań. Najlepiej, gdy jest krótkie i dobitne.',
-        'header_image'                  => 'Obraz wyświetlany w tle nagłówka pulpitu kampanii',
-        'hide_history'                  => 'Zaznacz, by ukryć historię edycji elementów kampanii przed nieposiadającymi statusu administratora.',
-        'hide_members'                  => 'Zaznacz, by ukryć listę uczestników kampanii przed nieposiadającymi statusu administratora.',
-        'locale'                        => 'Język, w którym piszesz kampanię. Służy do tworzenia zawartości oraz filtrowania kampanii publicznych.',
-        'name'                          => 'Twoja kampania lub świat mogą się nazywać jakkolwiek, o ile nazwa ma przynamniej 4 litery lub cyfry.',
-        'public_campaign_filters'       => 'Pomóż innym graczom znaleźć twoją kampanię wśród innych dostępnych publicznie, podając następujące informacje.',
-        'public_no_visibility'          => 'Uwaga! Ta kampania jest publiczna, ale nie rola "publiczność" na razie niczego nie widzi. :fix',
-        'related_visibility'            => 'Domyślna widoczność elementów tworzonych przy pomocy tego pola (notek, relacji, zdolności itd.)',
-        'system'                        => 'Jeżeli kampania jest dostępna publicznie, system podany jest na stronie :link.',
-        'systems'                       => 'By nie zarzucać wszystkich użytkowników mnóstwem opcji, Kanka udostępnia niektóre możliwości tylko dla konkretnych systemów RPG (np. blok statystyk potworów do D&D 5 ed.). Jeżeli dodasz tu wspierany w ten sposób system, uzyskasz dostęp do takich treści.',
-        'theme'                         => 'Ustaw inny motyw tej kampanii, niż zaznaczony w ogólnych preferencjach użytkownika.',
-        'view_public'                   => 'By zobaczyć kampanię tak, jak obserwujący otwórz :link w trybie incognito.',
-        'visibility'                    => 'Jeżeli kampania jest publiczna, każda osoba posiadająca odnośnik będzie mogła ją zobaczyć.',
+        'boost_required'            => 'Ta opcja jest dostępna tylko w doładowanych kampaniach. Więcej informacji znajdziesz na stronie :settings.',
+        'boosted'                   => 'Odblokowano nowe opcje ponieważ kampania jest doładowana. Więcej informacji znajdziesz na stronie :settings.',
+        'css'                       => 'Twórz własne style CSS do używania w kampanii. Uwaga - nadużywanie tej opcji może poskutkować usunięciem stworzonych stylów. Powtarzające się albo poważne wykroczenia mogą spowodować usunięcie kampanii.',
+        'dashboard'                 => 'Dostosuj sposób wyświetlania widżetów na pulpicie kampanii wypełniając poniższe pola',
+        'excerpt'                   => 'Podsumowanie kampanii będzie wyświetlane na pulpicie, więc poświęć mu kilka zdań. Najlepiej, gdy jest krótkie i dobitne.',
+        'header_image'              => 'Obraz wyświetlany w tle nagłówka pulpitu kampanii',
+        'hide_history'              => 'Zaznacz, by ukryć historię edycji elementów kampanii przed nieposiadającymi statusu administratora.',
+        'hide_members'              => 'Zaznacz, by ukryć listę uczestników kampanii przed nieposiadającymi statusu administratora.',
+        'locale'                    => 'Język, w którym piszesz kampanię. Służy do tworzenia zawartości oraz filtrowania kampanii publicznych.',
+        'name'                      => 'Twoja kampania lub świat mogą się nazywać jakkolwiek, o ile nazwa ma przynamniej 4 litery lub cyfry.',
+        'public_campaign_filters'   => 'Pomóż innym graczom znaleźć twoją kampanię wśród innych dostępnych publicznie, podając następujące informacje.',
+        'public_no_visibility'      => 'Uwaga! Ta kampania jest publiczna, ale nie rola "publiczność" na razie niczego nie widzi. :fix',
+        'related_visibility'        => 'Domyślna widoczność elementów tworzonych przy pomocy tego pola (notek, relacji, zdolności itd.)',
+        'system'                    => 'Jeżeli kampania jest dostępna publicznie, system podany jest na stronie :link.',
+        'systems'                   => 'By nie zarzucać wszystkich użytkowników mnóstwem opcji, Kanka udostępnia niektóre możliwości tylko dla konkretnych systemów RPG (np. blok statystyk potworów do D&D 5 ed.). Jeżeli dodasz tu wspierany w ten sposób system, uzyskasz dostęp do takich treści.',
+        'theme'                     => 'Ustaw inny motyw tej kampanii, niż zaznaczony w ogólnych preferencjach użytkownika.',
+        'view_public'               => 'By zobaczyć kampanię tak, jak obserwujący otwórz :link w trybie incognito.',
+        'visibility'                => 'Jeżeli kampania jest publiczna, każda osoba posiadająca odnośnik będzie mogła ją zobaczyć.',
     ],
     'index'                             => [
         'actions'   => [
@@ -123,13 +111,10 @@ TEXT
             'link'  => 'Nowy odnośnik',
         ],
         'create'                => [
-            'button'        => 'Zaproś',
             'buttons'       => [
                 'create'    => 'Stwórz zaproszenie',
                 'send'      => 'Wyślij zaproszenie',
             ],
-            'description'   => 'Zaproś znajomych do udziału w kampanii',
-            'link'          => 'Odnośnik stworzony: <a href=":url" target="_blank">:url</a>',
             'success'       => 'Wysłano zaproszenie.',
             'success_link'  => 'Stworzono odnośnik :link',
             'title'         => 'Zaproś kogoś do udziału w kampanii',
@@ -138,7 +123,6 @@ TEXT
             'success'   => 'Usunięto zaproszenie.',
         ],
         'email'                 => [
-            'link'      => '<a href=":link">Dołącz do :name\'s campaign</a>',
             'link_text' => 'Dołącz do kampanii :name\'s',
             'subject'   => ':name zaprasza cię do udziału w kampanii \':campaign\' na platformie kanka.io! By przyjąć zaproszenie, użyj załączonego odnośnika.',
             'title'     => 'Zaproszenie od :name',
@@ -155,7 +139,6 @@ TEXT
             'role'      => 'Rola',
             'type'      => 'Rodzaj',
             'usage'     => 'Maksymalna liczba użyć',
-            'validity'  => 'Limit',
         ],
         'helpers'               => [
             'email'     => 'Nasze emaile często uważane są za spam i może minąć kilka godzin, zanim trafią do adresata.',
@@ -191,10 +174,8 @@ TEXT
         'create'                => [
             'title' => 'Dodaj uczestnika kampanii',
         ],
-        'description'           => 'Zarządzaj uczestnikami kampanii',
         'edit'                  => [
-            'description'   => 'Edytuj uczestnika kampanii',
-            'title'         => 'Edytuj uczestnika :name',
+            'title' => 'Edytuj uczestnika :name',
         ],
         'fields'                => [
             'joined'        => 'Dołączył(a)',
@@ -270,7 +251,6 @@ TEXT
             'success'   => 'Stworzono rolę.',
             'title'     => 'Stwórz nową rolę dla :name',
         ],
-        'description'   => 'Zarządzaj rolami w kampanii',
         'destroy'       => [
             'success'   => 'Usunięto rolę.',
         ],
@@ -336,8 +316,7 @@ TEXT
             'name'  => 'Nazwa roli',
         ],
         'show'          => [
-            'description'   => 'Uczestnicy i uprawnienia roli w kampanii',
-            'title'         => 'Rola w kampanii ":role"',
+            'title' => 'Rola w kampanii ":role"',
         ],
         'title'         => 'Role w kampanii :name',
         'types'         => [
@@ -363,16 +342,15 @@ TEXT
         ],
     ],
     'settings'                          => [
-        'actions'       => [
+        'actions'   => [
             'enable'    => 'Aktywny',
         ],
-        'boosted'       => 'Opcja we wczesnym dostępie, na razie dostępna wyłącznie w :boosted.',
-        'description'   => 'Aktywuj i wyłączaj moduły kampanii.',
-        'edit'          => [
+        'boosted'   => 'Opcja we wczesnym dostępie, na razie dostępna wyłącznie w :boosted.',
+        'edit'      => [
             'success'   => 'Zaktualizowano ustawienia kampanii.',
         ],
-        'helper'        => 'Wszystkie moduły kampanii można w każdej chwili aktywować lub wyłączyć. Wyłączenie modułu powoduje ukrycie związanych z nim składników interfejsu oraz istniejących już elementów kampanii - ale nie zostaną usunięte. Możesz zawsze zmienić zdanie i włączyć je ponownie. Zmiana działa u wszystkich uczestników kampanii, nawet administratorów.',
-        'helpers'       => [
+        'helper'    => 'Wszystkie moduły kampanii można w każdej chwili aktywować lub wyłączyć. Wyłączenie modułu powoduje ukrycie związanych z nim składników interfejsu oraz istniejących już elementów kampanii - ale nie zostaną usunięte. Możesz zawsze zmienić zdanie i włączyć je ponownie. Zmiana działa u wszystkich uczestników kampanii, nawet administratorów.',
+        'helpers'   => [
             'abilities'     => 'Twórz zdolności specjalne, na przykład czary, moce czy techniki, i przypisuj je innym elementom.',
             'calendars'     => 'Wyposaż swój świat w systemy liczenia czasu.',
             'characters'    => 'Mieszkańcy tego świata.',
@@ -393,21 +371,20 @@ TEXT
             'tags'          => 'Każdy element można oznaczyć z pomocą rozmaitych etykiet ułatwiających wyszukiwanie. Nawet etykiety mogą mieć własne etykiety.',
             'timelines'     => 'Dzieje świata wedle rozmaitych historii.',
         ],
-        'title'         => 'Moduły Kampanii :name',
+        'title'     => 'Moduły Kampanii :name',
     ],
     'show'                              => [
-        'actions'       => [
+        'actions'   => [
             'boost' => 'Doładuj kampanię',
             'edit'  => 'Edytuj kampanię',
             'leave' => 'Opuść kampanię',
         ],
-        'description'   => 'Szczegóły kampanii',
-        'menus'         => [
+        'menus'     => [
             'configuration'     => 'Konfiguracja',
             'overview'          => 'Ogólne',
             'user_management'   => 'Użytkownicy',
         ],
-        'tabs'          => [
+        'tabs'      => [
             'achievements'      => 'Osiągnięcia',
             'applications'      => 'Zgłoszenia',
             'campaign'          => 'Kampania',
@@ -421,7 +398,7 @@ TEXT
             'settings'          => 'Moduły',
             'styles'            => 'Motywy',
         ],
-        'title'         => 'Kampania :name',
+        'title'     => 'Kampania :name',
     ],
     'superboosted'                      => [
         'gallery'   => [

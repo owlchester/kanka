@@ -24,10 +24,6 @@ TEXT
         'answer'    => 'Kanka non ha questa funzionalità. In ogni caso, se stai cercando di gestire vari gruppi di gioco nel medesimo mondo, puoi provare a usare la stessa campagna e a separare i tuoi gruppi per mezzo di una combinazione di missioni, tags e permessi.',
         'question'  => 'Posso sincronizzare entità per campagne multiple?',
     ],
-    'conversations'         => [
-        'answer'    => 'Le conversazioni possono essere impostate come discorsi fra Personaggio o fra Membri della Campagna. Se, per esempio, volessi documentare un\'importante discorso tra NPCs e PCs lo potresti fare utilizzando questo modulo. You puoi utilizzare anche per le campagna play-by-post.',
-        'question'  => 'Che cosa sono le Conversazioni?',
-    ],
     'custom'                => [
         'answer'    => 'Kanka parte con un set di tipi predefiniti di entità che interagiscono l\'uno con l\'altro. Permettere la creazione di tipi di entità personalizzati richiederebbe la ricostruzione dell\'app da zero, rendendo vano lo scopo di uno strumento dotato di tipi predefiniti per aiutare persone a creare mondi, piuttosto che a cercare di capire come organizzare cose. Inoltre, Kanka è flessibile con i Tags, che possono rappresentare la maggior parte dei probabili tipi di entità personalizzati.',
         'question'  => 'Posso creare tipi di entità personalizzati?',

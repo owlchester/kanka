@@ -2,8 +2,8 @@
 
 return [
     'create'        => [
-        'success'       => 'Logboek \':name\' gemaakt.',
-        'title'         => 'Nieuw Logboek',
+        'success'   => 'Logboek \':name\' gemaakt.',
+        'title'     => 'Nieuw Logboek',
     ],
     'destroy'       => [
         'success'   => 'Logboek \':name\' verwijderd.',
@@ -24,12 +24,11 @@ return [
     ],
     'helpers'       => [
         'journals'  => 'Geef alle of alleen de directe sub logboeken van dit logboek weer.',
-        'nested'    => 'Eerst logboeken zonder bovenliggend logboek weergeven. Klik op een rij om de sub logboeken van het logboek te bekijken.',
     ],
     'index'         => [
-        'add'           => 'Nieuw Logboek',
-        'header'        => 'Logboeken van :name',
-        'title'         => 'Logboeken',
+        'add'       => 'Nieuw Logboek',
+        'header'    => 'Logboeken van :name',
+        'title'     => 'Logboeken',
     ],
     'journals'      => [
         'title' => 'Logboek :name sub logboeken',
@@ -42,9 +41,9 @@ return [
         'type'      => 'Sessie, One Shot, Concept',
     ],
     'show'          => [
-        'tabs'          => [
+        'tabs'  => [
             'journals'  => 'Logboeken',
         ],
-        'title'         => 'Logboek :name',
+        'title' => 'Logboek :name',
     ],
 ];

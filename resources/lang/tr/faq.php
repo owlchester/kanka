@@ -28,10 +28,6 @@ TEXT
         'answer'    => 'Kanka bu özelliğe sahip değil. Ancak, eğer aynı dünyada birden fazla oyun grubu bulundurmaya çalışıyorsanız, onları aynı serüvende farklı bir görevler, etiketler ve izinler kombinasyonu ile birbirlerinden ayırmayı düşünün.',
         'question'  => 'Varlıkları birden fazla serüvende senkronize edebilir miyim?',
     ],
-    'conversations'         => [
-        'answer'    => 'Muhabbetler Karaktelrer ya da Serüven Üyeleri arasında konuşmalar şeklinde ayarlanabilir. Örneğin eğer önemli bir NPC ile PC\'ler arasındaki bir konuşmayı belgelemek isterseniz, bu modül aracılığı ile bunu yapabilirsiniz. Bunu metin üzerinden oynanan serüvenler için de kullanabilirsiniz.',
-        'question'  => 'Muhabbetler nedir?',
-    ],
     'custom'                => [
         'answer'    => 'Kanka birbirleri ile etkileşim halinde olan bir grup önceden belirlenmiş varlık türü ile beraber gelir. Özel varlık türlerine izin vermek uygulamayı sıfırdan yeniden inşa etmeyi gerektirir ve bir şeyleri nasıl düzenleyeceğiniz hakkında bir alet yerine önceden belirlenmiş türler ile insanların dünya yaratmasına yardımcı olacak bir alet olma hedefinden sapmasına sebep olur. Dahası, Kanka Etiketler ile çoğu özel varlık türü senaryosunu temsil edebiliecek kadar esnektir.',
         'question'  => 'Özel varlık türleri yaratabilir miyim?',

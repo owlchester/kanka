@@ -2,18 +2,18 @@
 
 return [
     'children'      => [
-        'actions'       => [
+        'actions'   => [
             'add'   => 'Pridať novú kategóriu',
         ],
-        'create'        => [
+        'create'    => [
             'success'   => 'Kategória :name bola priradená objektu.',
             'title'     => 'Pridaj kategóriu k :name',
         ],
-        'title'         => 'Podradené kategórie :name',
+        'title'     => 'Podradené kategórie :name',
     ],
     'create'        => [
-        'success'       => 'Kategória :name vytvorená.',
-        'title'         => 'Nová kategória',
+        'success'   => 'Kategória :name vytvorená.',
+        'title'     => 'Nová kategória',
     ],
     'destroy'       => [
         'success'   => 'Kategória :name odstránená.',
@@ -39,12 +39,12 @@ return [
         'tag'       => 'Zobrazené sú všetky kategórie, ktoré sú tejto priamo podriadené.',
     ],
     'index'         => [
-        'actions'       => [
+        'actions'   => [
             'explore_view'  => 'Vnorené zobrazenie',
         ],
-        'add'           => 'Nová kategória',
-        'header'        => 'Kategórie podradené :name',
-        'title'         => 'Kategórie',
+        'add'       => 'Nová kategória',
+        'header'    => 'Kategórie podradené :name',
+        'title'     => 'Kategórie',
     ],
     'new_tag'       => 'Nová kategória',
     'placeholders'  => [
@@ -53,13 +53,13 @@ return [
         'type'  => 'mýtus, vojna, historická udalosť, náboženstvo, vexilológia',
     ],
     'show'          => [
-        'tabs'          => [
-            'children'      => 'Podradené kategórie',
-            'tags'          => 'Kategórie',
+        'tabs'  => [
+            'children'  => 'Podradené kategórie',
+            'tags'      => 'Kategórie',
         ],
-        'title'         => 'Kategória :name',
+        'title' => 'Kategória :name',
     ],
     'tags'          => [
-        'title'         => 'Kategórie podradené :name',
+        'title' => 'Kategórie podradené :name',
     ],
 ];

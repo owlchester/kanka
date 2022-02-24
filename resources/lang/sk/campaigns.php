@@ -4,8 +4,6 @@ return [
     'create'                            => [
         'description'           => 'Vytvoriť novú kampaň',
         'helper'                => [
-            'first'     => 'Ďakujeme za vyskúšanie našej apky! Predtým, než sa pohneme ďalej, budeme potrebovať jednu maličkosť - <b>názov tvojej kampane</b>. Je to názov, ktorý ju odlišuje od ostatných. Ak ešte nemáš vymyslený dobrý názov, žiadne starosti, môžeš ho <b>hocikedy zmeniť</b> alebo vytvoriť ďalšie kampane.',
-            'second'    => 'Dosť bolo kecania! Čo to teda bude?',
             'title'     => 'Vitaj v :name!',
             'welcome'   => <<<'TEXT'
 Predtým, než budeš pokračovať, musíš zvoliť názov kampane. Je to meno tvojho sveta. Ak ešte nemáš žiadne vymyslené, nič sa nedeje, môžeš ho stále zmeniť neskôr alebo vytvoriť ďalšiu kampaň.
@@ -24,13 +22,10 @@ TEXT
         'success'   => 'Kampaň odstránená.',
     ],
     'edit'                              => [
-        'description'   => 'Upraviť kampaň',
-        'success'       => 'Kampaň upravená.',
-        'title'         => 'Upraviť kampaň :campaign',
+        'success'   => 'Kampaň upravená.',
+        'title'     => 'Upraviť kampaň :campaign',
     ],
-    'entity_note_visibility'            => [
-        'pinned'    => 'Pripnúť nové poznámky objektov',
-    ],
+    'entity_note_visibility'            => [],
     'entity_personality_visibilities'   => [
         'private'   => 'Nové postavy majú popis osobnosti nastavený štandardne ako súkromný.',
     ],
@@ -43,7 +38,6 @@ TEXT
         'unknown_id'    => 'Neznáma kampaň.',
     ],
     'export'                            => [
-        'description'       => 'Exportovať kampaň.',
         'errors'            => [
             'limit' => 'Maximum jeden export za deň bol dosiahnutý. Prosím, skús to opäť zajtra.',
         ],
@@ -54,59 +48,53 @@ TEXT
         'title'             => 'Export kampane :name',
     ],
     'fields'                            => [
-        'boosted'                       => 'Boost od',
-        'connections'                   => 'Zobraziť tabuľku vzťahov objektu štandardne (namiesto sieťovej vizualizácie pre boostnuté kampane)',
-        'css'                           => 'CSS',
-        'description'                   => 'Popis',
-        'entity_count'                  => 'Počet objektov',
-        'entity_note_visibility'        => 'Pripnuté poznámky objektov',
-        'entity_personality_visibility' => 'Viditeľnosť osobností postáv',
-        'entity_visibility'             => 'Viditeľnosť objektov',
-        'entry'                         => 'Popis kampane',
-        'excerpt'                       => 'Krátky popis',
-        'followers'                     => 'Odberatelia',
-        'header_image'                  => 'Titulný obrázok',
-        'hide_history'                  => 'Skryť históriu objektu',
-        'hide_members'                  => 'Skryť členov kampane',
-        'image'                         => 'Obrázok',
-        'locale'                        => 'Jazyk',
-        'name'                          => 'Názov',
-        'nested'                        => 'Vnorené zobrazenie zoznamov objektov, ak možné',
-        'open'                          => 'Otvorená pre prihlášky',
-        'post_collapsed'                => 'Nové príspevky k objektom sú štandardne minimalizované.',
-        'public_campaign_filters'       => 'Filter verejných kampaní',
-        'related_visibility'            => 'Viditeľnosť príbuzných prvkov',
-        'rpg_system'                    => 'RPG systémy',
-        'superboosted'                  => 'Superboostnutie od',
-        'system'                        => 'Systém',
-        'theme'                         => 'Téma',
-        'tooltip_family'                => 'Zrušiť mená rodov z bublín',
-        'tooltip_image'                 => 'Zobraziť obrázok objektu v bubline',
-        'visibility'                    => 'Viditeľnosť',
+        'boosted'                   => 'Boost od',
+        'connections'               => 'Zobraziť tabuľku vzťahov objektu štandardne (namiesto sieťovej vizualizácie pre boostnuté kampane)',
+        'css'                       => 'CSS',
+        'description'               => 'Popis',
+        'entity_count'              => 'Počet objektov',
+        'entry'                     => 'Popis kampane',
+        'excerpt'                   => 'Krátky popis',
+        'followers'                 => 'Odberatelia',
+        'header_image'              => 'Titulný obrázok',
+        'hide_history'              => 'Skryť históriu objektu',
+        'hide_members'              => 'Skryť členov kampane',
+        'image'                     => 'Obrázok',
+        'locale'                    => 'Jazyk',
+        'name'                      => 'Názov',
+        'nested'                    => 'Vnorené zobrazenie zoznamov objektov, ak možné',
+        'open'                      => 'Otvorená pre prihlášky',
+        'post_collapsed'            => 'Nové príspevky k objektom sú štandardne minimalizované.',
+        'public_campaign_filters'   => 'Filter verejných kampaní',
+        'related_visibility'        => 'Viditeľnosť príbuzných prvkov',
+        'rpg_system'                => 'RPG systémy',
+        'superboosted'              => 'Superboostnutie od',
+        'system'                    => 'Systém',
+        'theme'                     => 'Téma',
+        'tooltip_family'            => 'Zrušiť mená rodov z bublín',
+        'tooltip_image'             => 'Zobraziť obrázok objektu v bubline',
+        'visibility'                => 'Viditeľnosť',
     ],
     'following'                         => 'Odber aktívny',
     'helpers'                           => [
-        'boost_required'                => 'Táto funkcia vyžaduje boostnutú kampaň. Viac informácií nájdeš v :settings.',
-        'boosted'                       => 'Niektoré funkcie sú odomknuté, pretože táto kampaň je boostnutá. Viac nájdeš v :settings.',
-        'css'                           => 'Napíš svoj vlastný CSS, ktorý sa nahrá do stránok tvojej kampane. Prosím, uvedom si, že hociktoré zneužitie tejto funkcionality môže viesť k odstráneniu tvojho užívateľského CSS kódu. Opakované alebo závažné porušenia môžu viesť k odstráneniu tvojej kampane.',
-        'dashboard'                     => 'Prispôsob zobrazenie widgetu na nástenke vyplnením týchto údajov.',
-        'entity_note_visibility'        => 'Pri vytváraní novej poznámky objektu bude pole "Pripnutá" automaticky zaškrtnuté.',
-        'entity_personality_visibility' => 'Keď vytvoríš novú postavu, nebude pole "Osobnosť viditeľná" automaticky zaškrtnuté.',
-        'entity_visibility'             => 'Keď vytvoríš nový objekt, bude pole "Súkromný" automaticky zaškrtnuté.',
-        'excerpt'                       => 'Krátky popis kampane sa zobrazí na nástenke, napíš teda pár pár viet ako úvod do tvojho sveta. Nemusíš sa rozpisovať, stačí pár slov.',
-        'header_image'                  => 'Obrázok, ktorý sa bude zobrazovať na pozadí widgetu pre záhlavie kampane na nástenke.',
-        'hide_history'                  => 'Aktivuj toto nastavenie, ak chceš skryť prehľad minulých zmien objektov pre neadministrátorov.',
-        'hide_members'                  => 'Aktivuj toto nastavenie, ak chceš skryť zoznam členov kampane pre neadministrátorov.',
-        'locale'                        => 'Regionálne nastavenie, ktoré sa vzťahuje na tvoju kampaň. Používa sa na vytváranie obsahu a filtrovanie verejných kampaní.',
-        'name'                          => 'Tvoja kampaň / svet môže mať ľubovoľné meno, pokiaľ sa skladá z min. 4 písmen alebo čísel.',
-        'public_campaign_filters'       => 'Pomôž iným nájsť tvoju kampaň medzi ostatnými verejnými doplnením týchto informácií.',
-        'public_no_visibility'          => 'Hlavu hore! Tvoja kampaň je verejná, ale rola pre verejnosť nemá k ničomu prístup. :fix',
-        'related_visibility'            => 'Štandardná hodnota viditeľnosti, keď vytváraš nový prvok s týmto poľom (poznámky objektov, vlastností, schopností, atď.)',
-        'system'                        => 'Ak je tvoja kampaň verejne viditeľná, systém sa zobrazuje na stránke :link.',
-        'systems'                       => 'Aby sme užívateľov nezahltili nespočetnými možnosťami, niektoré funkcionality Kanky sú prístupné len pre špecifické RPG systémy (napr. štatistický popis príšer pre D&D 5e). Priradením systému na tomto mieste aktivuješ dané funkcionality.',
-        'theme'                         => 'Nastav tému pevne pre kampaň a prepíš nastavenie užívateľov.',
-        'view_public'                   => 'Ak si chceš pozrieť tvoju kampaň ako verejnú, otvor tento :link v novom inkognito okne.',
-        'visibility'                    => 'Ak nastavíte kampaň ako verejnú, bude ju vidieť každý, kto k nej bude mať link.',
+        'boost_required'            => 'Táto funkcia vyžaduje boostnutú kampaň. Viac informácií nájdeš v :settings.',
+        'boosted'                   => 'Niektoré funkcie sú odomknuté, pretože táto kampaň je boostnutá. Viac nájdeš v :settings.',
+        'css'                       => 'Napíš svoj vlastný CSS, ktorý sa nahrá do stránok tvojej kampane. Prosím, uvedom si, že hociktoré zneužitie tejto funkcionality môže viesť k odstráneniu tvojho užívateľského CSS kódu. Opakované alebo závažné porušenia môžu viesť k odstráneniu tvojej kampane.',
+        'dashboard'                 => 'Prispôsob zobrazenie widgetu na nástenke vyplnením týchto údajov.',
+        'excerpt'                   => 'Krátky popis kampane sa zobrazí na nástenke, napíš teda pár pár viet ako úvod do tvojho sveta. Nemusíš sa rozpisovať, stačí pár slov.',
+        'header_image'              => 'Obrázok, ktorý sa bude zobrazovať na pozadí widgetu pre záhlavie kampane na nástenke.',
+        'hide_history'              => 'Aktivuj toto nastavenie, ak chceš skryť prehľad minulých zmien objektov pre neadministrátorov.',
+        'hide_members'              => 'Aktivuj toto nastavenie, ak chceš skryť zoznam členov kampane pre neadministrátorov.',
+        'locale'                    => 'Regionálne nastavenie, ktoré sa vzťahuje na tvoju kampaň. Používa sa na vytváranie obsahu a filtrovanie verejných kampaní.',
+        'name'                      => 'Tvoja kampaň / svet môže mať ľubovoľné meno, pokiaľ sa skladá z min. 4 písmen alebo čísel.',
+        'public_campaign_filters'   => 'Pomôž iným nájsť tvoju kampaň medzi ostatnými verejnými doplnením týchto informácií.',
+        'public_no_visibility'      => 'Hlavu hore! Tvoja kampaň je verejná, ale rola pre verejnosť nemá k ničomu prístup. :fix',
+        'related_visibility'        => 'Štandardná hodnota viditeľnosti, keď vytváraš nový prvok s týmto poľom (poznámky objektov, vlastností, schopností, atď.)',
+        'system'                    => 'Ak je tvoja kampaň verejne viditeľná, systém sa zobrazuje na stránke :link.',
+        'systems'                   => 'Aby sme užívateľov nezahltili nespočetnými možnosťami, niektoré funkcionality Kanky sú prístupné len pre špecifické RPG systémy (napr. štatistický popis príšer pre D&D 5e). Priradením systému na tomto mieste aktivuješ dané funkcionality.',
+        'theme'                     => 'Nastav tému pevne pre kampaň a prepíš nastavenie užívateľov.',
+        'view_public'               => 'Ak si chceš pozrieť tvoju kampaň ako verejnú, otvor tento :link v novom inkognito okne.',
+        'visibility'                => 'Ak nastavíte kampaň ako verejnú, bude ju vidieť každý, kto k nej bude mať link.',
     ],
     'index'                             => [
         'actions'   => [
@@ -123,13 +111,10 @@ TEXT
             'link'  => 'Nový link',
         ],
         'create'                => [
-            'button'        => 'Pozvať',
             'buttons'       => [
                 'create'    => 'Vytvoriť pozvánku',
                 'send'      => 'Zaslať pozvánku',
             ],
-            'description'   => 'Pozvi priateľa do svojej kampane',
-            'link'          => 'Link vytvorený: <a href=":url" target="_blank">:url</a>',
             'success'       => 'Pozvánka zaslaná.',
             'success_link'  => 'Link vytvorený: :link',
             'title'         => 'Pozvať niekoho k tvojej kampani',
@@ -138,7 +123,6 @@ TEXT
             'success'   => 'Pozvánka odstránená.',
         ],
         'email'                 => [
-            'link'      => '<a href=":link">Pridať sa do kampane od :name</a>',
             'link_text' => 'Pridať sa do kampane :name',
             'subject'   => ':name ťa pozval/a, aby si sa pridal/a do jeho kampane :campaign na kanka.io! Pozvánku môžeš akceptovať kliknutím na nasledujúci link.',
             'title'     => 'Pozvánka od :name',
@@ -155,7 +139,6 @@ TEXT
             'role'      => 'Rola',
             'type'      => 'Typ',
             'usage'     => 'Max. počet použití',
-            'validity'  => 'Platnosť',
         ],
         'helpers'               => [
             'email'     => 'Naše e-maily sú často označované ako spam a môže sa stať, že sa v tvojej doručenej pošte objavia až o pár hodín neskôr.',
@@ -191,10 +174,8 @@ TEXT
         'create'                => [
             'title' => 'Pridať člena do tvojej kampane',
         ],
-        'description'           => 'Spravovať členov kampane',
         'edit'                  => [
-            'description'   => 'Upraviť člena kampane',
-            'title'         => 'Upraviť člena :name',
+            'title' => 'Upraviť člena :name',
         ],
         'fields'                => [
             'joined'        => 'Súčasťou od',
@@ -270,7 +251,6 @@ TEXT
             'success'   => 'Rola vytvorená.',
             'title'     => 'Vytvoriť novú rolu pre :name',
         ],
-        'description'   => 'Spravovať roly kampane',
         'destroy'       => [
             'success'   => 'Rola odstránená.',
         ],
@@ -336,8 +316,7 @@ TEXT
             'name'  => 'Názov role',
         ],
         'show'          => [
-            'description'   => 'Členovia a oprávnenia role v kampani',
-            'title'         => 'Rola :role kampane :campaign',
+            'title' => 'Rola :role kampane :campaign',
         ],
         'title'         => 'Roly kampane :name',
         'types'         => [
@@ -363,16 +342,15 @@ TEXT
         ],
     ],
     'settings'                          => [
-        'actions'       => [
+        'actions'   => [
             'enable'    => 'Aktivovať',
         ],
-        'boosted'       => 'Táto funkcia je aktuálne v beta verzii a dostupná iba pre :boosted.',
-        'description'   => 'Aktivovať alebo deaktivovať moduly v kampani.',
-        'edit'          => [
+        'boosted'   => 'Táto funkcia je aktuálne v beta verzii a dostupná iba pre :boosted.',
+        'edit'      => [
             'success'   => 'Nastavenia kampane boli upravené.',
         ],
-        'helper'        => 'Všetky moduly kampane môžu byť aktivované alebo deaktivované. Ak deaktivuješ modul, prepojené prvky rozhrania zmiznú, ale ostávajú existovať v pozadí, ak by si ich v budúcnosti potreboval/a. Tieto zmeny ovplyvňujú všetkých užívateľov kampane, vrátane s rolou Admin.',
-        'helpers'       => [
+        'helper'    => 'Všetky moduly kampane môžu byť aktivované alebo deaktivované. Ak deaktivuješ modul, prepojené prvky rozhrania zmiznú, ale ostávajú existovať v pozadí, ak by si ich v budúcnosti potreboval/a. Tieto zmeny ovplyvňujú všetkých užívateľov kampane, vrátane s rolou Admin.',
+        'helpers'   => [
             'abilities'     => 'Vytvor schopnosti ako kúzla alebo sily, ktoré priradíš iným objektom.',
             'calendars'     => 'Miesto, na ktorom vieš vytvoriť kalendáre tvojho sveta.',
             'characters'    => 'Postavy, ktoré obývajú svoj svet.',
@@ -393,21 +371,20 @@ TEXT
             'tags'          => 'Každý objekt môže byť priradený viacerým kategóriám. Kategórie môžu patriť pod iné kategórie a objekty môžu byť podľa kategórií filtrované.',
             'timelines'     => 'Zobraz dejiny tvojho sveta pomocou časových osí.',
         ],
-        'title'         => 'Moduly kampane :name',
+        'title'     => 'Moduly kampane :name',
     ],
     'show'                              => [
-        'actions'       => [
+        'actions'   => [
             'boost' => 'Boostnuť kampaň',
             'edit'  => 'Upraviť kampaň',
             'leave' => 'Opustiť kampaň',
         ],
-        'description'   => 'Detailné zobrazenie kampane',
-        'menus'         => [
+        'menus'     => [
             'configuration'     => 'Konfigurácia',
             'overview'          => 'Prehľad',
             'user_management'   => 'Správa užívateľov',
         ],
-        'tabs'          => [
+        'tabs'      => [
             'achievements'      => 'Úspechy',
             'applications'      => 'Prihlášky',
             'campaign'          => 'Kampaň',
@@ -421,7 +398,7 @@ TEXT
             'settings'          => 'Moduly',
             'styles'            => 'Témy',
         ],
-        'title'         => 'Kampaň :name',
+        'title'     => 'Kampaň :name',
     ],
     'superboosted'                      => [
         'gallery'   => [

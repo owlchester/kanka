@@ -2,15 +2,15 @@
 
 return [
     'create'        => [
-        'success'       => '\':name\' menühivatkozást létrehoztuk.',
-        'title'         => 'Új menühivatkozás',
+        'success'   => '\':name\' menühivatkozást létrehoztuk.',
+        'title'     => 'Új menühivatkozás',
     ],
     'destroy'       => [
         'success'   => '\':name\' menühivatkozást töröltük.',
     ],
     'edit'          => [
-        'success'       => '\':name\' menühivatkozást frissítettük.',
-        'title'         => ':name menühivatkozás',
+        'success'   => '\':name\' menühivatkozást frissítettük.',
+        'title'     => ':name menühivatkozás',
     ],
     'fields'        => [
         'dashboard'     => 'Főoldal',
@@ -35,8 +35,8 @@ return [
         'type'      => 'Hozz létre egy menü hivatkozást entitások listájának közvetlen eléréséhez. A találatok szűréséhez másold a szűrt entitás lista url-jének azon részét a :filter mezőbe, amely a :? karakter után következik.',
     ],
     'index'         => [
-        'add'           => 'Új menühivatkozás',
-        'title'         => 'Menühivatkozások',
+        'add'   => 'Új menühivatkozás',
+        'title' => 'Menühivatkozások',
     ],
     'placeholders'  => [
         'entity'    => 'Válassz ki egy entitást',
@@ -49,8 +49,6 @@ return [
         'any'   => 'Bármelyik entitás',
     ],
     'show'          => [
-        'tabs'          => [
-        ],
-        'title'         => ':name menühivatkozás',
+        'title' => ':name menühivatkozás',
     ],
 ];

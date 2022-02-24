@@ -54,8 +54,6 @@ return [
         'title'     => 'Reordenar links rápidos',
     ],
     'show'              => [
-        'tabs'  => [
-        ],
         'title' => 'Link rápido :name',
     ],
 ];

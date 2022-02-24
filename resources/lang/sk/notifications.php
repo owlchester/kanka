@@ -37,7 +37,7 @@ return [
     ],
     'header'            => '{1} Máš :count notifikáciu.|[2,4] Máš :count notifikácie.|[5,*] Máš :count notifikácií.',
     'index'             => [
-        'title'         => 'Notifikácie',
+        'title' => 'Notifikácie',
     ],
     'no_notifications'  => 'Aktuálne neexistujú žiadne notifikácie.',
     'subscriptions'     => [

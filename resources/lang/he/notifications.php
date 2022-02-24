@@ -17,7 +17,7 @@ return [
     ],
     'header'            => 'יש לך :count התראות.',
     'index'             => [
-        'title'         => 'התראות',
+        'title' => 'התראות',
     ],
     'no_notifications'  => 'אין כרגע התראות',
     'subscriptions'     => [

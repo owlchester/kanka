@@ -2,15 +2,15 @@
 
 return [
     'characters'    => [
-        'helpers'       => [
+        'helpers'   => [
             'all_characters'    => 'Wyświetla wszystkie postaci należące do tej rasy i ras pochodnych.',
             'characters'        => 'Wyświetla wyłącznie postaci należące do tej rasy.',
         ],
-        'title'         => 'Postaci rasy :nazwa',
+        'title'     => 'Postaci rasy :nazwa',
     ],
     'create'        => [
-        'success'       => 'Stworzono rasę \':name\'.',
-        'title'         => 'Nowa rasa',
+        'success'   => 'Stworzono rasę \':name\'.',
+        'title'     => 'Nowa rasa',
     ],
     'destroy'       => [
         'success'   => 'Usunięto rasę \':name\'.',
@@ -31,22 +31,22 @@ return [
         'nested_without'=> 'Wyświetlono wszystkie rasy nie posiadające źródła. Kliknij na rząd, by wyświetlić rasy pochodne.',
     ],
     'index'         => [
-        'add'           => 'Nowa rasa',
-        'header'        => 'Rasy elementu :name',
-        'title'         => 'Rasy',
+        'add'       => 'Nowa rasa',
+        'header'    => 'Rasy elementu :name',
+        'title'     => 'Rasy',
     ],
     'placeholders'  => [
         'name'  => 'Nazwa rasy',
         'type'  => 'Człowiek, sidhe, borg',
     ],
     'races'         => [
-        'title'         => 'Rasy pochodne od :name',
+        'title' => 'Rasy pochodne od :name',
     ],
     'show'          => [
-        'tabs'          => [
+        'tabs'  => [
             'characters'    => 'Postaci',
             'races'         => 'Rasy pochodne',
         ],
-        'title'         => 'Rasa :name',
+        'title' => 'Rasa :name',
     ],
 ];

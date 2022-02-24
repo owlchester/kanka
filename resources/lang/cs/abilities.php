@@ -42,9 +42,9 @@ return [
         'nested_without'=> 'Seznam všech schopností bez nadřazené schopnosti (jsou na vrcholu stromu schopností). Klepnutím na řádek se zobrazí podřazené schopnosti.',
     ],
     'index'         => [
-        'add'           => 'Nová schopnost',
-        'header'        => 'Schopnosti objektu :name',
-        'title'         => 'Schopnosti',
+        'add'       => 'Nová schopnost',
+        'header'    => 'Schopnosti objektu :name',
+        'title'     => 'Schopnosti',
     ],
     'placeholders'  => [
         'charges'   => 'Počet použití. Odkaz na atributy pomocí {Úroveň}*{CHA}',

@@ -1,18 +1,18 @@
 <?php
 
 return [
-    'create'        => [
-        'success'       => 'Úkol :name byl vytvořen.',
-        'title'         => 'Nový úkol',
+    'create'    => [
+        'success'   => 'Úkol :name byl vytvořen.',
+        'title'     => 'Nový úkol',
     ],
-    'destroy'       => [
+    'destroy'   => [
         'success'   => 'Úkol :name byl odstraněn.',
     ],
-    'edit'          => [
-        'success'       => 'Úkol :name byl aktualizován.',
-        'title'         => 'Upravit úkol :name',
+    'edit'      => [
+        'success'   => 'Úkol :name byl aktualizován.',
+        'title'     => 'Upravit úkol :name',
     ],
-    'fields'        => [
+    'fields'    => [
         'date'          => 'Datum',
         'description'   => 'Popis',
         'image'         => 'Obrázek',
@@ -23,9 +23,9 @@ return [
         'role'          => 'Role',
         'type'          => 'Typ',
     ],
-    'index'         => [
-        'add'           => 'Nový úkol',
-        'header'        => ':name úkol',
-        'title'         => 'Úkoly',
+    'index'     => [
+        'add'       => 'Nový úkol',
+        'header'    => ':name úkol',
+        'title'     => 'Úkoly',
     ],
 ];

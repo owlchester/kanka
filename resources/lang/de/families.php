@@ -2,8 +2,8 @@
 
 return [
     'create'        => [
-        'success'       => 'Familie \':name\' erstellt.',
-        'title'         => 'Erstelle eine neue Familie',
+        'success'   => 'Familie \':name\' erstellt.',
+        'title'     => 'Erstelle eine neue Familie',
     ],
     'destroy'       => [
         'success'   => 'Familie \':name\' entfernt.',
@@ -34,9 +34,9 @@ return [
         'members'   => 'Mitglieder einer Familie werden hier gelistet. Ein Charakter kann einer Familie hinzugefügt werden, in dem bei dem gewünschten Charakter das Familiendropdown genutzt wird.',
     ],
     'index'         => [
-        'add'           => 'Neue Familie',
-        'header'        => 'Familien von :name',
-        'title'         => 'Familien',
+        'add'       => 'Neue Familie',
+        'header'    => 'Familien von :name',
+        'title'     => 'Familien',
     ],
     'members'       => [
         'helpers'   => [
@@ -51,12 +51,12 @@ return [
         'type'      => 'königlich, edel, ausgestorben',
     ],
     'show'          => [
-        'tabs'          => [
+        'tabs'  => [
             'all_members'   => 'Alle Mitglieder',
             'families'      => 'Familien',
             'members'       => 'Mitglieder',
             'relation'      => 'Beziehungen',
         ],
-        'title'         => 'Familie :name',
+        'title' => 'Familie :name',
     ],
 ];

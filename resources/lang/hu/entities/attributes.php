@@ -21,9 +21,7 @@ return [
     'helpers'       => [
         'delete_all'    => 'Biztosan ki akarod törölni az entitás összes tulajdonságát?',
     ],
-    'hints'         => [
-        'is_private'    => 'Elrejtheted egy entitás összes tulajdonságát az összes, nem-admin szerepű felhasználó elől, úgy, hogy priváttá teszed őket.',
-    ],
+    'hints'         => [],
     'index'         => [
         'success'   => ':entity számára frissítettük a tulajdonságokat.',
         'title'     => 'Tulajdonságok :name számára',

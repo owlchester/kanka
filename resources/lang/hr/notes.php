@@ -2,8 +2,8 @@
 
 return [
     'create'        => [
-        'success'       => 'Kreirana bilješka ":name".',
-        'title'         => 'Nova bilješka',
+        'success'   => 'Kreirana bilješka ":name".',
+        'title'     => 'Nova bilješka',
     ],
     'destroy'       => [
         'success'   => 'Uklonjena bilješka ":name".',
@@ -29,9 +29,9 @@ return [
         'is_pinned' => 'Do 3 bilješke mogu biti prikazane na naslovnoj ploči tako što su pričvršćene.',
     ],
     'index'         => [
-        'add'           => 'Nova bilješka',
-        'header'        => 'Bilješke od :name',
-        'title'         => 'Bilješke',
+        'add'       => 'Nova bilješka',
+        'header'    => 'Bilješke od :name',
+        'title'     => 'Bilješke',
     ],
     'placeholders'  => [
         'name'  => 'Naslov bilješke',
@@ -39,6 +39,6 @@ return [
         'type'  => 'Religija, Rasa, Politički sustav',
     ],
     'show'          => [
-        'title'         => 'Bilješka :name',
+        'title' => 'Bilješka :name',
     ],
 ];

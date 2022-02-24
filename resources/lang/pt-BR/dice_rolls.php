@@ -2,16 +2,16 @@
 
 return [
     'create'        => [
-        'success'       => 'Rolagem de dados :name: criada',
-        'title'         => 'Nova rolagem de dados',
+        'success'   => 'Rolagem de dados :name: criada',
+        'title'     => 'Nova rolagem de dados',
     ],
     'destroy'       => [
         'dice_roll' => 'Rolagem de dados removida',
         'success'   => 'Rolagem de dados :name removida',
     ],
     'edit'          => [
-        'success'       => 'Rolagem de dados :name atualizada',
-        'title'         => 'Editar rolagem de dados :name',
+        'success'   => 'Rolagem de dados :name atualizada',
+        'title'     => 'Editar rolagem de dados :name',
     ],
     'fields'        => [
         'created_at'    => 'Rolado em',
@@ -24,13 +24,13 @@ return [
         'parameters'    => 'Quais são mimnhas opções de dados?',
     ],
     'index'         => [
-        'actions'       => [
+        'actions'   => [
             'dice'      => 'Rolagem de dados',
             'results'   => 'Resultados',
         ],
-        'add'           => 'Nova rolagem de dados',
-        'header'        => 'Rolagens de dado de :name',
-        'title'         => 'Rolagens de dado',
+        'add'       => 'Nova rolagem de dados',
+        'header'    => 'Rolagens de dado de :name',
+        'title'     => 'Rolagens de dado',
     ],
     'placeholders'  => [
         'dice_roll' => 'Rolagem de dados',
@@ -51,9 +51,9 @@ return [
         'success'   => 'Dados rolados',
     ],
     'show'          => [
-        'tabs'          => [
+        'tabs'  => [
             'results'   => 'Resultados',
         ],
-        'title'         => 'Rolagem de dados :name',
+        'title' => 'Rolagem de dados :name',
     ],
 ];

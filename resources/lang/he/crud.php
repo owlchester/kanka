@@ -85,8 +85,7 @@ return [
         'copy_options'  => 'העתק הגדרות',
     ],
     'hidden'            => 'מוסתר',
-    'history'           => [
-    ],
+    'history'           => [],
     'remove'            => 'הסר',
     'rename'            => 'שנה שם',
     'save'              => 'שמור',

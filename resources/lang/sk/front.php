@@ -87,7 +87,6 @@ return [
             'dashboards'            => 'Nastaviť vlastné nástenky pre role v kampani',
             'description'           => 'Niektoré formy predplatného dávajú užívateľom možnosť boostnuť kampane. Tieto následne získajú tieto výhody.',
             'entity-aliases'        => 'Nastaviť aliasy objektov s cieľom flexibilnejšieho hľadania a referencií',
-            'entity_files'          => 'Navýšený max. počet nahraných súborov v objekte (5 namiesto 3)',
             'entity_files_v2'       => 'Maximálny počet súborov v objekte',
             'entity_links'          => 'Nastav linky na objekty pre externé zdroje a webstránky',
             'header_image'          => 'Obrázok záhlavia objektu',
@@ -112,12 +111,10 @@ return [
             'title'         => 'Kalendáre',
         ],
         'collaborative'     => [
-            'description'   => 'Ste viacerí? Máme pre teba riešenie! Môžeš pozvať ľudí, ktorí hrajú alebo GMujú tvoju kampaň, aby ste ju tvorili spolu!',
-            'title'         => 'Spoločne',
+            'title' => 'Spoločne',
         ],
         'dashboards'        => [
-            'description'   => 'Kontroluj informácie viditeľné pre hráčov/ky, keď otvoria Kanku.',
-            'title'         => 'Nástenky',
+            'title' => 'Nástenky',
         ],
         'description'       => 'Kanka je plná úžasných funkcionalít. Spravuj postavy v tvojom svete a ich vzájomné vzťahy, miesta a ich dejiny, úlohy a ich smerovanie, kalendáre a udalosti v nich či počasie a mnoho ďalších. To najlepšie je, že Kanka je aktualizovaná niekoľkokrát mesačne na základe spätnej väzby od používateľov.',
         'description_full'  => 'Neustále do Kanky pridávame nové funkcionality a zlepšenia, všetky hlavné funkcionality sú však dostupné zadarmo.',
@@ -126,9 +123,8 @@ return [
             'title'         => 'Flóra a fauna',
         ],
         'free'              => [
-            'bonuses'       => 'bonusmi',
-            'description'   => 'Najlepšie veci v živote sú zadarmo, s :bonuses pre našich podporovateľov/ky.',
-            'title'         => 'Zadarmo',
+            'bonuses'   => 'bonusmi',
+            'title'     => 'Zadarmo',
         ],
         'landscape'         => 'Prosím, prepni svoje zariadenie do formátu na šírku, aby sa ti objavil zoznam funkcionalít.',
         'layers'            => [
@@ -148,10 +144,6 @@ return [
         'notebook'          => [
             'description'   => 'Priprav svoje ďalšie hranie alebo spíš obsah minulého v module denníkových záznamov.',
             'title'         => 'Denníkové záznamy',
-        ],
-        'notes'             => [
-            'description'   => 'xxx',
-            'title'         => 'Poznámky',
         ],
         'patreon'           => [
             'api_calls'         => 'Vyšší počet API volaní (90)',
@@ -194,13 +186,10 @@ return [
             'title'         => 'Spravovať tajomstvá',
         ],
         'superboosts'       => [
-            'boosted'       => 'Superboostnutie',
-            'description'   => 'Za použitie troch boostrov na jednu kampaň sa táto stane Superboostovaná, čím sa odomknú tieto funkcionality.',
-            'files'         => 'Až 10 súborov môže byť pridaných jednému objektu',
-            'gallery'       => 'Galéria obrázkov kampane a jej integrácia v rámci textového editora Summernote',
-            'logs'          => 'Plnohodnotné logy zmien v objektoch (30 dní dozadu)',
-            'stats'         => 'Stránka s Úspechmi v kampani',
-            'title'         => 'Superboostnutá kampaň',
+            'boosted'   => 'Superboostnutie',
+            'gallery'   => 'Galéria obrázkov kampane a jej integrácia v rámci textového editora Summernote',
+            'logs'      => 'Plnohodnotné logy zmien v objektoch (30 dní dozadu)',
+            'stats'     => 'Stránka s Úspechmi v kampani',
         ],
         'timelines'         => [
             'description'   => 'Vizuálne zobrazujú časové osy tvojho sveta, krajín, šľachtických rodov alebo hoci aj jednotlivých postáv.',
@@ -209,12 +198,10 @@ return [
         'title'             => 'Funkcie s neuveriteľnou mierou flexibility',
         'unlimited'         => 'Bez obmedzení',
         'updates'           => [
-            'description'   => 'Kanka je často vylepšovaná aktualizáciami, o ktorých rozhoduje komunita.',
-            'title'         => 'Časté aktualizácie',
+            'title' => 'Časté aktualizácie',
         ],
         'worldbuilding'     => [
-            'description'   => 'Moduly, ktoré pokrývajú všetko od máp až po časové osy a kalendáre či udalosti - Kanka má všetko, čo potrebuješ k jednoduchej správe komplexných svetov.',
-            'title'         => 'Tvorba svetov',
+            'title' => 'Tvorba svetov',
         ],
     ],
     'first_block'   => [
@@ -305,16 +292,15 @@ return [
             'support'   => 'Podpora',
         ],
         'benefits'      => [
-            'big_maps'          => 'Veľké mapy (:size)',
-            'bigger_maps'       => 'Väčšie mapy (:size)',
-            'boosters'          => 'Boosty pre kampane',
-            'core'              => 'Prístup ku všetkým funkciám',
-            'higher_uploads'    => 'Vyššia veľkosť nahrávaných súborov',
-            'huge_maps'         => 'Obrovské mapy (:size)',
-            'huge_uploads'      => 'Obrovská veľkosť nahrávaných súborov',
-            'no_boosters'       => 'Žiadne Boosty kampaní',
-            'unlimited'         => 'Neobmedzený počet kampaní a nahrávaných súborov',
-            'updates'           => 'Časté aktualizácie a zlepšenia',
+            'big_maps'      => 'Veľké mapy (:size)',
+            'bigger_maps'   => 'Väčšie mapy (:size)',
+            'boosters'      => 'Boosty pre kampane',
+            'core'          => 'Prístup ku všetkým funkciám',
+            'huge_maps'     => 'Obrovské mapy (:size)',
+            'huge_uploads'  => 'Obrovská veľkosť nahrávaných súborov',
+            'no_boosters'   => 'Žiadne Boosty kampaní',
+            'unlimited'     => 'Neobmedzený počet kampaní a nahrávaných súborov',
+            'updates'       => 'Časté aktualizácie a zlepšenia',
         ],
         'description'   => 'Napriek tomu, že hlavné funkcie sú zadarmo, podpora Kanky nám pomáha prinášať častejšie aktualizácie a zlepšenia pre všetkých používateľov.',
         'tier'          => [

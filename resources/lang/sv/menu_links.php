@@ -44,8 +44,6 @@ return [
         'any'   => 'Valfri entitet',
     ],
     'show'          => [
-        'tabs'  => [
-        ],
         'title' => 'Snabblänk :name',
     ],
 ];

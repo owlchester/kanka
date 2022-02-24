@@ -81,7 +81,6 @@ return [
             'css'                   => 'CSS de campanya personalitzat',
             'dashboards'            => 'Taulells personalitzats segons el rol de campanya',
             'description'           => 'Alguns nivells de mecenatge atorguen millores als usuaris, que poden usar per a millorar campanyes. Aquestes obtenen els següents beneficis.',
-            'entity_files'          => 'Més arxius pujats per entitat (fins a 5, en comptes de 3)',
             'entity_links'          => 'Enllaços a recursos i webs externes a les entitats',
             'header_image'          => 'Imatge de capçalera per a les entitats',
             'images'                => 'Imatges per defecte per a les entitats',
@@ -98,12 +97,10 @@ return [
             'title'         => 'Calendaris',
         ],
         'collaborative'     => [
-            'description'   => 'Teniu companyia? Compteu amb nosaltres! Podeu convidar tots els amics per a ajudar-vos a construir la campanya junts!',
-            'title'         => 'Col·laboratiu',
+            'title' => 'Col·laboratiu',
         ],
         'dashboards'        => [
-            'description'   => 'Controleu la informació visible pels jugadors quan ells accedeixen a Kanka.',
-            'title'         => 'Taulells',
+            'title' => 'Taulells',
         ],
         'description'       => 'Kanka té una gran quantitat de funcions. Des de fer un seguiment dels teus personatges i les seves relacions, els llocs i la seva història, passant per les missions i els seus objectius, fins als calendaris i els seus esdeveniments i fenòmens meteorològics, i molt més. El millor de tot és que Kanka rep moltes actualitzacions cada mes basades en els comentaris dels usuaris.',
         'description_full'  => 'Kanka s\'actualitza constantment, però aquí hi ha algunes de les funcions més importants.',
@@ -112,9 +109,8 @@ return [
             'title'         => 'Flora i fauna',
         ],
         'free'              => [
-            'bonuses'       => 'extres',
-            'description'   => 'Totes les funcions principals de Kanka són absolutament gratuïtes, amb alguns :bonuses per als subscriptors.',
-            'title'         => 'Ús gratuït',
+            'bonuses'   => 'extres',
+            'title'     => 'Ús gratuït',
         ],
         'landscape'         => 'Poseu el vostre dispositiu en manera apaïsada per a mostrar tota la llista de característiques.',
         'layers'            => [
@@ -176,13 +172,10 @@ return [
             'title'         => 'Gestió de secrets',
         ],
         'superboosts'       => [
-            'boosted'       => 'Supermillorades',
-            'description'   => 'Per a Supermillorar una campanya i desbloquejar les següents funcionalitats cal utilitzar tres millores a una mateixa campanya.',
-            'files'         => 'Fins a 10 fitxers pujats a cada entitat',
-            'gallery'       => 'Galeria de campanya i integracions amb l\'editor de text Summernote',
-            'logs'          => 'Registre de canvis complet a les entitats (de fins a 30 dies)',
-            'stats'         => 'Pàgina d\'assoliments de la campanya',
-            'title'         => 'Campanyes supermillorades',
+            'boosted'   => 'Supermillorades',
+            'gallery'   => 'Galeria de campanya i integracions amb l\'editor de text Summernote',
+            'logs'      => 'Registre de canvis complet a les entitats (de fins a 30 dies)',
+            'stats'     => 'Pàgina d\'assoliments de la campanya',
         ],
         'timelines'         => [
             'description'   => 'Representa visualment les línies de temps del món, imperis, famílies nobles o fins i tot d\'un sol personatge.',
@@ -191,12 +184,10 @@ return [
         'title'             => 'Poderoses funcions amb una flexibilitat increïble',
         'unlimited'         => 'Il·limitat',
         'updates'           => [
-            'description'   => 'Kanka s\'actualitza sovint gràcies a les aportacions de la comunitat. El detall d\'aquestes actualitzacions es discuteix en profunditat al nostre :discord.',
-            'title'         => 'Actualizacions freqüents',
+            'title' => 'Actualizacions freqüents',
         ],
         'worldbuilding'     => [
-            'description'   => 'Kanka facilita l\'organització de mons complexos gràcies a la gran varietat de mòduls flexibles: des de Mapes i Línies de temps fins a Calendaris i Esdeveniments.',
-            'title'         => 'Creadors de mons',
+            'title' => 'Creadors de mons',
         ],
     ],
     'first_block'   => [

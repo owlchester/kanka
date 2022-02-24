@@ -2,8 +2,8 @@
 
 return [
     'create'        => [
-        'success'       => 'Kreiran dnevnik ":name".',
-        'title'         => 'Novi dnevnik',
+        'success'   => 'Kreiran dnevnik ":name".',
+        'title'     => 'Novi dnevnik',
     ],
     'destroy'       => [
         'success'   => 'Uklonjen dnevnik ":name".',
@@ -28,9 +28,9 @@ return [
         'nested_without'=> 'Prikazuju se svi dnevnici koji nemaju dnevnik roditelj. Klikni redak da bi vidio/la dnevnike djecu.',
     ],
     'index'         => [
-        'add'           => 'Novi dnevnik',
-        'header'        => 'Dnevnici :name',
-        'title'         => 'Dnevnici',
+        'add'       => 'Novi dnevnik',
+        'header'    => 'Dnevnici :name',
+        'title'     => 'Dnevnici',
     ],
     'journals'      => [
         'title' => 'Djeca dnevnici dnevnika :name',
@@ -43,9 +43,9 @@ return [
         'type'      => 'Sesija, Jednokratna kampanja, Nacrt',
     ],
     'show'          => [
-        'tabs'          => [
+        'tabs'  => [
             'journals'  => 'Dnevnici',
         ],
-        'title'         => 'Dnevnik :name',
+        'title' => 'Dnevnik :name',
     ],
 ];

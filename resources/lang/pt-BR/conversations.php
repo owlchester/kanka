@@ -2,15 +2,15 @@
 
 return [
     'create'        => [
-        'success'       => 'Conversa \':name\' criada',
-        'title'         => 'Nova conversa',
+        'success'   => 'Conversa \':name\' criada',
+        'title'     => 'Nova conversa',
     ],
     'destroy'       => [
         'success'   => 'Conversa \':name\' apagada',
     ],
     'edit'          => [
-        'success'       => 'Conversa \':name\' atualizada',
-        'title'         => 'Conversa :name',
+        'success'   => 'Conversa \':name\' atualizada',
+        'title'     => 'Conversa :name',
     ],
     'fields'        => [
         'is_closed'     => 'Fechado',
@@ -24,9 +24,9 @@ return [
         'participants'  => 'Por favor, adicione participantes à sua conversa pressionando o ícone :icon no canto superior direito.',
     ],
     'index'         => [
-        'add'           => 'Nova conversa',
-        'header'        => 'Conversas em :name',
-        'title'         => 'Conversas',
+        'add'       => 'Nova conversa',
+        'header'    => 'Conversas em :name',
+        'title'     => 'Conversas',
     ],
     'messages'      => [
         'destroy'       => [
@@ -39,22 +39,22 @@ return [
         ],
     ],
     'participants'  => [
-        'create'        => [
+        'create'    => [
             'success'   => 'Participante :entity adicionado(a) à conversa',
         ],
-        'destroy'       => [
+        'destroy'   => [
             'success'   => 'Participante :entity removido(a) da conversa',
         ],
-        'modal'         => 'Participantes',
-        'title'         => 'Participantes de :name',
+        'modal'     => 'Participantes',
+        'title'     => 'Participantes de :name',
     ],
     'placeholders'  => [
         'name'  => 'Nome da conversa',
         'type'  => 'Dentro do jogo, Pré-mesa, Plot',
     ],
     'show'          => [
-        'is_closed'     => 'Conversa está fechada.',
-        'title'         => 'Conversa :name',
+        'is_closed' => 'Conversa está fechada.',
+        'title'     => 'Conversa :name',
     ],
     'tabs'          => [
         'conversation'  => 'Conversa',

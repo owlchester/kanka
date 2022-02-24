@@ -2,8 +2,8 @@
 
 return [
     'create'        => [
-        'success'       => '\':name\' organizasyonu yaratıldı.',
-        'title'         => 'Yeni Organizasyon',
+        'success'   => '\':name\' organizasyonu yaratıldı.',
+        'title'     => 'Yeni Organizasyon',
     ],
     'destroy'       => [
         'success'   => '\':name\' organizasyonu kaldırıldı.',
@@ -24,20 +24,19 @@ return [
     ],
     'helpers'       => [
         'descendants'   => 'Bu liste bu organizasyondan gelen tüm organizasyonları içerir, yalnızca doğrudan altında olanları değil.',
-        'nested'        => 'İç İçe Görünüm\'de, Organizasyonlarınızı iç içe olacak şekilde görebilirsiniz. Ana Organizasyonu olmayan haritalar varsayılan olarak gösterilecektir. Alt Organizasyonu olan Organizasyonlar o alt Organizasyonları göstermek için tıklanabilir. Daha fazla alt Organizasyon kalmayana kadar tıklamaya devam edebilirsiniz.',
     ],
     'index'         => [
-        'add'           => 'Yeni Organizasyon',
-        'header'        => ':name Organizasyonları',
-        'title'         => 'Organizasyonlar',
+        'add'       => 'Yeni Organizasyon',
+        'header'    => ':name Organizasyonları',
+        'title'     => 'Organizasyonlar',
     ],
     'members'       => [
         'actions'       => [
             'add'   => 'Bir üye ekle',
         ],
         'create'        => [
-            'success'       => 'Üye organizasyona eklendi.',
-            'title'         => ':name için Yeni Organizasyon Üyesi',
+            'success'   => 'Üye organizasyona eklendi.',
+            'title'     => ':name için Yeni Organizasyon Üyesi',
         ],
         'destroy'       => [
             'success'   => 'Üye organizasyondan kaldırıldı.',
@@ -70,11 +69,11 @@ return [
         'type'      => 'Kült, Çete, Ayaklanma, Hayran Kulübü',
     ],
     'show'          => [
-        'tabs'          => [
+        'tabs'  => [
             'organisations' => 'Organizasyonlar',
             'quests'        => 'Görevler',
             'relations'     => 'İlişkiler',
         ],
-        'title'         => ':name Organizasyonu',
+        'title' => ':name Organizasyonu',
     ],
 ];

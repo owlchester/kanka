@@ -26,9 +26,9 @@ return [
         'descendants'   => 'Deze lijst bevat alle vaardigheden die afstammen van deze vaardigheid, en niet alleen die er direct onder hangen.',
     ],
     'index'         => [
-        'add'           => 'Nieuwe Vaardigheid',
-        'header'        => 'Vaardigheden van :name',
-        'title'         => 'Vaardigheden',
+        'add'       => 'Nieuwe Vaardigheid',
+        'header'    => 'Vaardigheden van :name',
+        'title'     => 'Vaardigheden',
     ],
     'placeholders'  => [
         'charges'   => 'Hoeveelheid ladingen. Referentie kenmerken met {Level}*{CHA}',

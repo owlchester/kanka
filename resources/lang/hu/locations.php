@@ -2,11 +2,11 @@
 
 return [
     'characters'    => [
-        'title'         => ':name helyszín karakterei',
+        'title' => ':name helyszín karakterei',
     ],
     'create'        => [
-        'success'       => ':name helyszínt létrehoztuk.',
-        'title'         => 'Új helyszín',
+        'success'   => ':name helyszínt létrehoztuk.',
+        'title'     => 'Új helyszín',
     ],
     'destroy'       => [
         'success'   => ':name helyszínt töröltük.',
@@ -16,7 +16,7 @@ return [
         'title'     => ':name helyszín szerkesztése',
     ],
     'events'        => [
-        'title'         => ':name helyszín eseményei',
+        'title' => ':name helyszín eseményei',
     ],
     'families'      => [
         'title' => ':name helyszínhez kapcsolódó családok',
@@ -37,9 +37,7 @@ return [
         'descendants'       => 'Ez a lista a helyszín összes leszármazott helyszínét tartalmazza, nemcsak a közvetlen alhelyszíneit.',
         'families'          => 'A helyszínek befolyásos családok otthonául szolgálhatnak.',
         'map'               => 'Egy térképet hozzárendelve egy helyszínhez lehetőséged nyílik Térkép pontok elhelyezésére rajta, melyek más-más entitásokra hivatkozhatnak a kampányodban.',
-        'map_deprecated'    => 'A térképek mostantól saját modullal rendelkeznek! Ez a funkció jelenleg a :boosted kampányok számára érhető el korai hozzáférésben. A jelenlegi felület nem lesz elérhető a jövőben, amint az új modul átveszi a helyét, de a régi térképek továbbra is megmaradnak szerkeszthetőnek.',
         'map_deprecated_2'  => 'A Térképek már saját modullal rendelkeznek! A már meglévő, régi helyszín térképek továbbra is szerkeszthetőek maradnak, de minden új térkép már az Új Térkép modulba fognak kerülni.',
-        'nested'            => 'Hierarchikus nézetben a helyszíneidet alá-fölérendeltségi viszonyukban tekintheted meg. Alapesetben a szülő helyszín nélküli helyszínek látszanak, rájuk kattintva megtekintheted azok alhelyszíneit.',
         'nested_parent'     => ':parent helyszíneinek mutatása',
         'nested_without'    => 'Minden olyan helyszín mutatása, amelynek nincs szülője. Klikkelj egy sorra, hogy lásd a gyermekhelyszíneit.',
         'organisations'     => 'Megtekintheted az összes Szervezetet ezen a helyszínen, és ezek leszármazott helyszíneit, vagy csak azokat, amelyek közvetlenül itt találhatóak.',
@@ -48,21 +46,21 @@ return [
         'is_map_private'    => 'Egy privát térkép csak a kampány "Admin" szerepű tagjai számára láthatóak.',
     ],
     'index'         => [
-        'actions'       => [
+        'actions'   => [
             'explore_view'  => 'Hierarchikus nézet',
         ],
-        'add'           => 'Új helyszín',
-        'header'        => ':name helyszínei',
-        'title'         => 'Helyszínek',
+        'add'       => 'Új helyszín',
+        'header'    => ':name helyszínei',
+        'title'     => 'Helyszínek',
     ],
     'items'         => [
-        'title'         => ':name helyszín tárgyai',
+        'title' => ':name helyszín tárgyai',
     ],
     'journals'      => [
-        'title'         => ':name helyszín naplóbejegyzései',
+        'title' => ':name helyszín naplóbejegyzései',
     ],
     'locations'     => [
-        'title'         => ':name helyszín alhelyszínei',
+        'title' => ':name helyszín alhelyszínei',
     ],
     'map'           => [
         'actions'   => [
@@ -196,7 +194,7 @@ return [
         'title' => 'Helyszín :name Térképei',
     ],
     'organisations' => [
-        'title'         => ':name helyszín szervezetei',
+        'title' => ':name helyszín szervezetei',
     ],
     'panels'        => [
         'map'   => 'Térkép',
@@ -207,7 +205,7 @@ return [
         'type'      => 'Város, királyság, rom, táncklub',
     ],
     'show'          => [
-        'tabs'          => [
+        'tabs'  => [
             'characters'    => 'Karakterek',
             'events'        => 'Események',
             'families'      => 'Családok',
@@ -219,6 +217,6 @@ return [
             'organisations' => 'Szervezetek',
             'quests'        => 'Küldetések',
         ],
-        'title'         => ':name helyszín',
+        'title' => ':name helyszín',
     ],
 ];

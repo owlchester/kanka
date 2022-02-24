@@ -2,8 +2,8 @@
 
 return [
     'create'        => [
-        'success'       => 'Gegenstand \':name\' erstellt',
-        'title'         => 'Neuen Gegenstand erstellen',
+        'success'   => 'Gegenstand \':name\' erstellt',
+        'title'     => 'Neuen Gegenstand erstellen',
     ],
     'destroy'       => [
         'success'   => 'Gegenstand \':name\' entfernt.',
@@ -23,12 +23,12 @@ return [
         'type'      => 'Typ',
     ],
     'index'         => [
-        'add'           => 'Neuer Gegenstand',
-        'header'        => 'Gegenstände von :name',
-        'title'         => 'Gegenstände',
+        'add'       => 'Neuer Gegenstand',
+        'header'    => 'Gegenstände von :name',
+        'title'     => 'Gegenstände',
     ],
     'inventories'   => [
-        'title'         => 'Gegenstand :name Objekte',
+        'title' => 'Gegenstand :name Objekte',
     ],
     'placeholders'  => [
         'character' => 'Wähle einen Charakter',
@@ -39,11 +39,9 @@ return [
         'type'      => 'Waffe, Trank, Artefakt',
     ],
     'show'          => [
-        'tabs'          => [
-            'information'   => 'Informationen',
+        'tabs'  => [
             'inventories'   => 'Objekte',
-            'quests'        => 'Quests',
         ],
-        'title'         => 'Gegenstand :name',
+        'title' => 'Gegenstand :name',
     ],
 ];

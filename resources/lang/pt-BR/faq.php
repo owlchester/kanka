@@ -33,10 +33,6 @@ TEXT
         'answer'    => 'Kanka não tem esse recurso. No entanto, se você está tentando ter vários grupos de jogo no mesmo mundo, considere usar a mesma campanha e separar seus grupos por meio de uma combinação de missões, tags e permissões',
         'question'  => 'Posso sincronizar entidades em várias campanhas?',
     ],
-    'conversations'         => [
-        'answer'    => 'As Conversas podem ser configuradas como conversas entre personagens ou entre membros da campanha. Se, por exemplo, você deseja documentar uma conversa importante entre NPCs e os Personagens dos Jogadores, pode fazê-lo usando este módulo. Você também pode usá-los para campanhas feitas por posts.',
-        'question'  => 'O que são Conversas?',
-    ],
     'custom'                => [
         'answer'    => 'Kanka vem com um conjunto de tipos de entidades predefinidas que interagem entre si. Permitir tipos de entidade personalizados exigiria reconstruir o aplicativo do zero e anular o propósito de uma ferramenta com tipos predefinidos para ajudar as pessoas a construir um mundo em vez de descobrir como organizar as coisas. Além disso, Kanka é flexível com tags que podem representar a maioria dos cenários de tipo de entidade personalizado.',
         'question'  => 'Posso criar tipos de entidade personalizados?',

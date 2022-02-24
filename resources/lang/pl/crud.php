@@ -147,7 +147,6 @@ return [
         'image'                 => 'Obraz',
         'is_closed'             => 'Ta rozmowa zostanie zamknięta i nie będzie można dodawać do niej nowych wiadomości.',
         'is_private'            => 'Tajne',
-        'is_private_v2'         => 'Pokazuj wyłącznie uczestnikom posiadającym rolę :admin-role.',
         'is_private_v3'         => 'Wyświetlaj tylko użytkownikom w roli :admin-role. To ustawienie zastępuje wszystkie inne.',
         'is_star'               => 'Przypięte',
         'item'                  => 'Przedmiot',
@@ -240,7 +239,6 @@ return [
         'image_limitations'     => 'Dozwolone formaty: :formats. Maksymalny rozmiar pliku :size.',
         'image_patreon'         => 'Zwiększyć limit rozmiaru pliku?',
         'image_recommendation'  => 'Sugerowane wymiary: :width na :height pikseli.',
-        'is_private'            => 'Element oznaczony jako tajny jest widoczny tylko dla posiadaczy roli "administrator".',
         'is_star'               => 'Elementy przypięte pojawiają się w menu elementu.',
         'tooltip'               => 'Zastąp dymek z poradą generowaną automatycznie następującą zawartością.',
         'visibility'            => 'Opcja widoczności "Administrator" sprawia, że widzą to wszyscy administratorzy kampanii. Ustawienie widoczności "Ja" oznacza, że widzisz to wyłącznie ty.',
@@ -261,30 +259,6 @@ return [
     'legacy'                    => 'Poprzednia wersja',
     'linking_help'              => 'Jak tworzyć linki do innych elementów?',
     'manage'                    => 'Zarządzaj',
-    'move'                      => [
-        'errors'        => [
-            'permission'        => 'Nie masz uprawnień, by w tej kampanii tworzyć elementy tego rodzaju.',
-            'same_campaign'     => 'Musisz wybrać kampanię, do której element ma zostać przeniesiony.',
-            'unknown_campaign'  => 'Nieznana kampania.',
-        ],
-        'fields'        => [
-            'campaign'  => 'Nowa kampania',
-            'copy'      => 'Stwórz kopię',
-            'target'    => 'Nowy rodzaj',
-        ],
-        'hints'         => [
-            'campaign'  => 'Możesz również przenieść ten element do innej kampanii.',
-            'copy'      => 'Wybierz tę opcję, by stworzyć kopię elementu w nowej kampanii.',
-            'target'    => 'Pamiętaj, że podczas zmiany rodzaju elementu na inny część danych może zostać utracona.',
-        ],
-        'panels'        => [
-            'change'    => 'Zmień rodzaj elementu',
-            'move'      => 'Przenieś do innej kampanii',
-        ],
-        'success'       => 'Przeniesiono element \':name\'.',
-        'success_copy'  => 'Skopiowano element \':name\'.',
-        'title'         => 'Zmiana lub Przenoszenie :name',
-    ],
     'navigation'                => [
         'cancel'            => 'anuluj',
         'or_cancel'         => 'lub :cancel',
@@ -297,7 +271,6 @@ return [
         ],
         'title' => 'Nowy element',
     ],
-    'or_cancel'                 => 'lub <a href=":url">anuluj</a>',
     'panels'                    => [
         'appearance'            => 'Wygląd',
         'attribute_template'    => 'Szablon cech',

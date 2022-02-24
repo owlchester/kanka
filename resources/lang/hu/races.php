@@ -2,15 +2,15 @@
 
 return [
     'characters'    => [
-        'helpers'       => [
+        'helpers'   => [
             'all_characters'    => 'Minden, az adott fajhoz és alfajaihoz tartozó karakter megmutatása',
             'characters'        => 'Minden karaktert megmutat, ami közvetlenük ehhez a fajhoz kapcsolódik.',
         ],
-        'title'         => ':name fajú karakterek',
+        'title'     => ':name fajú karakterek',
     ],
     'create'        => [
-        'success'       => 'A \':name\' fajt létrehoztuk.',
-        'title'         => 'Új faj',
+        'success'   => 'A \':name\' fajt létrehoztuk.',
+        'title'     => 'Új faj',
     ],
     'destroy'       => [
         'success'   => 'A \':name\' fajt eltávolítottuk.',
@@ -31,22 +31,22 @@ return [
         'nested_without'=> 'Megmutat minden fajt, aminek nincs szülője. Klikkelj egy sorra, hogy megnézd a gyermekfajait.',
     ],
     'index'         => [
-        'add'           => 'Új faj',
-        'header'        => ':name fajai',
-        'title'         => 'Fajok',
+        'add'       => 'Új faj',
+        'header'    => ':name fajai',
+        'title'     => 'Fajok',
     ],
     'placeholders'  => [
         'name'  => 'A faj neve',
         'type'  => 'Ember, tündér, Borg',
     ],
     'races'         => [
-        'title'         => ':name alfajai',
+        'title' => ':name alfajai',
     ],
     'show'          => [
-        'tabs'          => [
+        'tabs'  => [
             'characters'    => 'Karakterek',
             'races'         => 'Alfajok',
         ],
-        'title'         => ':name faj',
+        'title' => ':name faj',
     ],
 ];

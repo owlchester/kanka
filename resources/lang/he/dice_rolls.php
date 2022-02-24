@@ -2,16 +2,16 @@
 
 return [
     'create'        => [
-        'success'       => 'גלגול \':name\' נוצר.',
-        'title'         => 'גלגול חדש',
+        'success'   => 'גלגול \':name\' נוצר.',
+        'title'     => 'גלגול חדש',
     ],
     'destroy'       => [
         'dice_roll' => 'הגלגול הוסר',
         'success'   => 'הגלגול \':name\' הוסר.',
     ],
     'edit'          => [
-        'success'       => 'הגלגול \':name\' עודכן.',
-        'title'         => 'ערוך גלגול :name',
+        'success'   => 'הגלגול \':name\' עודכן.',
+        'title'     => 'ערוך גלגול :name',
     ],
     'fields'        => [
         'created_at'    => 'גולגל ב',
@@ -24,13 +24,13 @@ return [
         'parameters'    => 'מה האפשרויות לקבויות?',
     ],
     'index'         => [
-        'actions'       => [
+        'actions'   => [
             'dice'      => 'גלגולים',
             'results'   => 'תוצאות',
         ],
-        'add'           => 'גלגול חדש',
-        'header'        => 'גלגולים של :name',
-        'title'         => 'גלגולי קוביות',
+        'add'       => 'גלגול חדש',
+        'header'    => 'גלגולים של :name',
+        'title'     => 'גלגולי קוביות',
     ],
     'placeholders'  => [
         'dice_roll' => 'גלגול',
@@ -51,9 +51,9 @@ return [
         'success'   => 'ההטלה בוצעה.',
     ],
     'show'          => [
-        'tabs'          => [
+        'tabs'  => [
             'results'   => 'תוצאה',
         ],
-        'title'         => 'גלגול :name',
+        'title' => 'גלגול :name',
     ],
 ];

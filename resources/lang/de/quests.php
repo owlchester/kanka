@@ -2,15 +2,15 @@
 
 return [
     'create'        => [
-        'success'       => 'Quest \':name\' erstellt.',
-        'title'         => 'Erstelle einen neuen Quest',
+        'success'   => 'Quest \':name\' erstellt.',
+        'title'     => 'Erstelle einen neuen Quest',
     ],
     'destroy'       => [
         'success'   => 'Quest \':name\' entfernt',
     ],
     'edit'          => [
-        'success'       => 'Quest \':name\' aktualisiert',
-        'title'         => 'Bearbeite Quest :name',
+        'success'   => 'Quest \':name\' aktualisiert',
+        'title'     => 'Bearbeite Quest :name',
     ],
     'elements'      => [
         'create'    => [
@@ -54,9 +54,9 @@ return [
         'quests'    => 'Ein Netz aus verknüpften Quests kann mit dem Elternquest-Feld erstellt werden.',
     ],
     'index'         => [
-        'add'           => 'Neuer Quest',
-        'header'        => 'Quests von :name',
-        'title'         => 'Quests',
+        'add'       => 'Neuer Quest',
+        'header'    => 'Quests von :name',
+        'title'     => 'Quests',
     ],
     'items'         => [],
     'locations'     => [],
@@ -69,14 +69,12 @@ return [
         'type'  => 'Charakterentwicklung, Sidequest, Hauptquest',
     ],
     'show'          => [
-        'actions'       => [
+        'actions'   => [
             'add_element'   => 'Element hinzufügen',
         ],
-        'tabs'          => [
-            'elements'      => 'Elemente',
-            'information'   => 'Informationen',
-            'quests'        => 'Quests',
+        'tabs'      => [
+            'elements'  => 'Elemente',
         ],
-        'title'         => 'Quest :name',
+        'title'     => 'Quest :name',
     ],
 ];

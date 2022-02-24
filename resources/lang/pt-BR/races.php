@@ -2,15 +2,15 @@
 
 return [
     'characters'    => [
-        'helpers'       => [
+        'helpers'   => [
             'all_characters'    => 'Mostrando todos os personagens relacionados a esta raça e suas sub-raças',
             'characters'        => 'Mostrando todos os personagens relacionados diretamente a esta raça.',
         ],
-        'title'         => 'Raça :name Personagens',
+        'title'     => 'Raça :name Personagens',
     ],
     'create'        => [
-        'success'       => 'Raça \':name\' criada',
-        'title'         => 'Nova Raça',
+        'success'   => 'Raça \':name\' criada',
+        'title'     => 'Nova Raça',
     ],
     'destroy'       => [
         'success'   => 'Raça \':name\' removida',
@@ -31,22 +31,22 @@ return [
         'nested_without'=> 'Mostrando todas as raças que não tem uma raça-pai. Clique em uma linha para ver as raças-filhos.',
     ],
     'index'         => [
-        'add'           => 'Nova raça',
-        'header'        => 'Raças de :name',
-        'title'         => 'Raças',
+        'add'       => 'Nova raça',
+        'header'    => 'Raças de :name',
+        'title'     => 'Raças',
     ],
     'placeholders'  => [
         'name'  => 'Nome da raça',
         'type'  => 'Humano, Fada, Ciborgue',
     ],
     'races'         => [
-        'title'         => 'Raça :name sub-raças',
+        'title' => 'Raça :name sub-raças',
     ],
     'show'          => [
-        'tabs'          => [
+        'tabs'  => [
             'characters'    => 'Personagens',
             'races'         => 'Sub-raças',
         ],
-        'title'         => 'Raça :name',
+        'title' => 'Raça :name',
     ],
 ];

@@ -17,16 +17,16 @@ return [
         'is_recurring'  => 'Accade ogni anno',
     ],
     'create'        => [
-        'success'       => 'Calendario \':name\' creato.',
-        'title'         => 'Nuovo Calendario',
+        'success'   => 'Calendario \':name\' creato.',
+        'title'     => 'Nuovo Calendario',
     ],
     'destroy'       => [
         'success'   => 'Calendario \':name\' rimosso.',
     ],
     'edit'          => [
-        'success'       => 'Calendario \':name\' aggiornato.',
-        'title'         => 'Modifica Calendario :name',
-        'today'         => 'Data del calendario aggiornata.',
+        'success'   => 'Calendario \':name\' aggiornato.',
+        'title'     => 'Modifica Calendario :name',
+        'today'     => 'Data del calendario aggiornata.',
     ],
     'event'         => [
         'actions'   => [
@@ -35,13 +35,13 @@ return [
             'switch'    => 'Cambia scelta',
         ],
         'create'    => [
-            'success'       => 'Evento del calendario creato',
-            'title'         => 'Aggiungi un Evento del Calendario su :name',
+            'success'   => 'Evento del calendario creato',
+            'title'     => 'Aggiungi un Evento del Calendario su :name',
         ],
         'destroy'   => 'Evento rimosso dal calendario \':name\'',
         'edit'      => [
-            'success'       => 'Evento del calendario aggiornato.',
-            'title'         => 'Aggiorna un Evento del Calendario per :name',
+            'success'   => 'Evento del calendario aggiornato.',
+            'title'     => 'Aggiorna un Evento del Calendario per :name',
         ],
         'helpers'   => [
             'add'   => 'Aggiungi un evento esistente a questo calendario',
@@ -53,7 +53,7 @@ return [
         'success'   => 'Evento \':event\' aggiunto al calendario.',
     ],
     'events'        => [
-        'title'         => 'Eventi del Calendario :name',
+        'title' => 'Eventi del Calendario :name',
     ],
     'fields'        => [
         'colour'                => 'Colore',
@@ -103,9 +103,9 @@ return [
         'years'             => 'Alcuni anni sono così importanti che hanno un nome specifico.',
     ],
     'index'         => [
-        'add'           => 'Nuovo Calendario',
-        'header'        => 'Calendari di :name',
-        'title'         => 'Calendari',
+        'add'       => 'Nuovo Calendario',
+        'header'    => 'Calendari di :name',
+        'title'     => 'Calendari',
     ],
     'layouts'       => [
         'month' => 'Mese',

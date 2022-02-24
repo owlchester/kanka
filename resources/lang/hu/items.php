@@ -2,8 +2,8 @@
 
 return [
     'create'        => [
-        'success'       => '\':name\' tárgyat létrehoztuk.',
-        'title'         => 'Új tárgy',
+        'success'   => '\':name\' tárgyat létrehoztuk.',
+        'title'     => 'Új tárgy',
     ],
     'destroy'       => [
         'success'   => '\':name\' tárgyat töröltük.',
@@ -23,12 +23,12 @@ return [
         'type'      => 'Típus',
     ],
     'index'         => [
-        'add'           => 'Új tárgy',
-        'header'        => ':name tárgyai',
-        'title'         => 'Tárgyak',
+        'add'       => 'Új tárgy',
+        'header'    => ':name tárgyai',
+        'title'     => 'Tárgyak',
     ],
     'inventories'   => [
-        'title'         => ':name tárgy Felszerelései',
+        'title' => ':name tárgy Felszerelései',
     ],
     'placeholders'  => [
         'character' => 'Válassz ki egy karaktert!',
@@ -39,11 +39,9 @@ return [
         'type'      => 'Fegyver, bájital, ereklye',
     ],
     'show'          => [
-        'tabs'          => [
-            'information'   => 'Információ',
+        'tabs'  => [
             'inventories'   => 'Felszerelések',
-            'quests'        => 'Küldetések',
         ],
-        'title'         => ':name tárgy',
+        'title' => ':name tárgy',
     ],
 ];

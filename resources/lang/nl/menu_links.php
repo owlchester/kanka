@@ -48,8 +48,6 @@ return [
         'any'   => 'Elke entiteit',
     ],
     'show'          => [
-        'tabs'  => [
-        ],
         'title' => 'Snelle Link :name',
     ],
 ];

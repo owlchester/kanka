@@ -20,9 +20,9 @@ return [
         'title'             => 'Fiók',
     ],
     'api'           => [
-        'helper'                => 'Üdvözlünk a Kankai API-ban. Hozz létre egy Személyes Hozzáférés Tokent, amit az API-kéréseidben használhatsz az információgyűjtésre azokról a kampányokról, amelyekben részt veszel.',
-        'link'                  => 'Olvasd el az API dokumentációt',
-        'title'                 => 'API',
+        'helper'    => 'Üdvözlünk a Kankai API-ban. Hozz létre egy Személyes Hozzáférés Tokent, amit az API-kéréseidben használhatsz az információgyűjtésre azokról a kampányokról, amelyekben részt veszel.',
+        'link'      => 'Olvasd el az API dokumentációt',
+        'title'     => 'API',
     ],
     'apps'          => [
         'actions'   => [
@@ -32,7 +32,6 @@ return [
         'benefits'  => 'A Kanka integrációt nyújt néhány harmadik fél szolgáltatásához. További ilyen integrációkra lehet számítani a jövőben.',
         'discord'   => [
             'errors'    => [
-                '0'     => '1',
                 'add'   => 'Hiba történt a Kanka és a Discord fiókod összekapcsolása során. Kérlek próbáld meg ismét.',
             ],
             'success'   => [
@@ -65,7 +64,6 @@ return [
                 'superboosted'  => 'Minden szupererősített kampány lehetőség',
             ],
             'recovery'          => 'A törölt entitások visszaállításának lehetősége :amount napon belül.',
-            'second'            => 'Egy kampány Boost-olása az alábbi előnyöket biztosítja:',
             'superboost'        => 'A szupererősített kampányok 3 megerősítést használnak el, és újabb lehetőségeket adnak a megerősített kampányok lehetőségein felül.',
             'theme'             => 'Kampány-szintű téma, és egyedi megjelenítési stílus.',
             'third'             => 'A kampány boost-olásához keresd fel a kampány oldalát, kattints a ":boost_button" gombra, amely a ":edit_button" felett helyezkedik el.',
@@ -134,8 +132,8 @@ return [
         'title'     => 'Számlák',
     ],
     'layout'        => [
-        'success'       => 'Az elrendezési beállításokat frissítettük.',
-        'title'         => 'Elrendezés',
+        'success'   => 'Az elrendezési beállításokat frissítettük.',
+        'title'     => 'Elrendezés',
     ],
     'marketplace'   => [
         'fields'    => [
@@ -164,23 +162,23 @@ return [
         'subscription_status'   => 'Előfizetés állapota',
     ],
     'patreon'       => [
-        'deprecated'        => 'Elavult funkció - ha támogatni szeretnéd a Kankát, kérlek tedd az :subscription segítségével. A Patreon-on keresztüli fizetés természetesen aktív marad azon támogatóinknak, akik még az új előfizetési rendszer élesbe állítása előtt kezdték a támogatást.',
-        'pledge'            => ':name támogatási szint',
-        'remove'            => [
+        'deprecated'    => 'Elavult funkció - ha támogatni szeretnéd a Kankát, kérlek tedd az :subscription segítségével. A Patreon-on keresztüli fizetés természetesen aktív marad azon támogatóinknak, akik még az új előfizetési rendszer élesbe állítása előtt kezdték a támogatást.',
+        'pledge'        => ':name támogatási szint',
+        'remove'        => [
             'button'    => 'Patreon fiók leválasztása',
             'success'   => 'A Patreon fiókod le lett választva.',
             'text'      => 'A Patreon fiók leválasztása megszűntet minden bónuszt, a Dicsőségcsarnokbeli jelenléted, kampány boost-ot, és egyéb, a támogatással szerzett funkciókat a Kankán. Fontos megjegyezni, hogy egyik boost-tal kihelyezett tartalmad sem fog elveszni (pl. entitás fejlécek). Amint ismét előfizetővé válasz, újra hozzá fogsz férni ezekhez az adatokhoz, beleértve a lehetőségét, hogy boost-olj, egy korábban boostolt kampányodat.',
             'title'     => 'A Patreon fiókod leválasztása a Kankáról',
         ],
-        'title'             => 'Patreon',
+        'title'         => 'Patreon',
     ],
     'profile'       => [
-        'actions'       => [
+        'actions'   => [
             'update_profile'    => 'Profil módosítása',
         ],
-        'avatar'        => 'Profilkép',
-        'success'       => 'A profilodat sikeresen módosítottuk.',
-        'title'         => 'Személyes profil',
+        'avatar'    => 'Profilkép',
+        'success'   => 'A profilodat sikeresen módosítottuk.',
+        'title'     => 'Személyes profil',
     ],
     'subscription'  => [
         'actions'               => [
@@ -219,7 +217,6 @@ return [
         'fields'                => [
             'active_since'      => 'Előfizetés kezdete',
             'active_until'      => 'Előfizetés vége',
-            'billed_monthly'    => 'Havonta számlázva',
             'billing'           => 'Számlázás',
             'currency'          => 'Számlázott összeg pénzneme',
             'payment_method'    => 'Fizetési mód',

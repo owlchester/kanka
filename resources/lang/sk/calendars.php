@@ -18,29 +18,18 @@ return [
     'checkboxes'    => [
         'is_recurring'  => 'Opakuje sa ročne',
     ],
-    'colours'       => [
-        'black'     => 'Čierna',
-        'blue'      => 'Modrá',
-        'default'   => 'Štandardná',
-        'green'     => 'Zelená',
-        'maroon'    => 'Gaštanová',
-        'navy'      => 'Tmavomodrá',
-        'orange'    => 'Oranžová',
-        'purple'    => 'Fialová',
-        'red'       => 'Červená',
-        'teal'      => 'Tyrkysová',
-    ],
+    'colours'       => [],
     'create'        => [
-        'success'       => 'Kalendár ":name" vytvorený.',
-        'title'         => 'Nový kalendár',
+        'success'   => 'Kalendár ":name" vytvorený.',
+        'title'     => 'Nový kalendár',
     ],
     'destroy'       => [
         'success'   => 'Kalendár ":name" odstránený.',
     ],
     'edit'          => [
-        'success'       => 'Kalendár ":name" upravený.',
-        'title'         => 'Upraviť kalendár :name',
-        'today'         => 'Kalendárny dátum upravený.',
+        'success'   => 'Kalendár ":name" upravený.',
+        'title'     => 'Upraviť kalendár :name',
+        'today'     => 'Kalendárny dátum upravený.',
     ],
     'event'         => [
         'actions'   => [
@@ -50,13 +39,13 @@ return [
             'switch'            => 'Zmeniť výber',
         ],
         'create'    => [
-            'success'       => 'Nová udalosť vytvorená',
-            'title'         => 'Pridať udalosť do :name',
+            'success'   => 'Nová udalosť vytvorená',
+            'title'     => 'Pridať udalosť do :name',
         ],
         'destroy'   => 'Pripomienka z kalendára ":name" odstránená.',
         'edit'      => [
-            'success'       => 'Pripomienka upravená.',
-            'title'         => 'Upraviť pripomienku v :name',
+            'success'   => 'Pripomienka upravená.',
+            'title'     => 'Upraviť pripomienku v :name',
         ],
         'helpers'   => [
             'add'               => 'Pridať existujúcu udalosť do tohto kalendára.',
@@ -69,7 +58,7 @@ return [
         'success'   => 'Udalosť ":event" pridaná do kalendára.',
     ],
     'events'        => [
-        'title'         => 'Udalosti kalendára :name',
+        'title' => 'Udalosti kalendára :name',
     ],
     'fields'        => [
         'calendar'              => 'Nadradený kalendár',
@@ -106,7 +95,6 @@ return [
     ],
     'helpers'       => [
         'month_type'    => 'Priestupné mesiace nepoužívajú dni v týždni, ale ovplyvňujú družice a ročné obdobia.',
-        'nested'        => 'Najprv sa zobrazujú kalendáre nepodradené žiadnemu inému kalendáru. Klikni na kalendár, aby sa zobrazili podradené kalendáre.',
         'nested_parent' => 'Zobraziť kalendáre :parent.',
         'nested_without'=> 'Zobraziť všetky kalendáre, ktoré nemajú nadradený kalendár. Kliknutím na riadok zobrazíš podradené kalendáre.',
         'start_offset'  => 'Štandardne začína kalendár prvý deň v týždni v roku 0. Nastavenie tejto hodnoty ovplyvňuje, na ktorý deň v kalendári pripadne prvý deň.',
@@ -126,9 +114,9 @@ return [
         'years'             => 'Niektoré roky sú tak dôležité, že dostali vlastné pomenovanie.',
     ],
     'index'         => [
-        'add'           => 'Nový kalendár',
-        'header'        => 'Kalendár :name',
-        'title'         => 'Kalendáre',
+        'add'       => 'Nový kalendár',
+        'header'    => 'Kalendár :name',
+        'title'     => 'Kalendáre',
     ],
     'layouts'       => [
         'month' => 'Mesiac',

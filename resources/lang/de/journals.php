@@ -2,8 +2,8 @@
 
 return [
     'create'        => [
-        'success'       => 'Logbuch erstellt.',
-        'title'         => 'Erstelle ein neues Logbuch',
+        'success'   => 'Logbuch erstellt.',
+        'title'     => 'Erstelle ein neues Logbuch',
     ],
     'destroy'       => [
         'success'   => 'Logbuch entfernt.',
@@ -28,9 +28,9 @@ return [
         'nested_without'=> 'Anzeigen aller Journale ohne übergeordnetes Journal. Klicken Sie auf eine Zeile, um die Kinderjournale anzuzeigen.',
     ],
     'index'         => [
-        'add'           => 'Neues Logbuch',
-        'header'        => 'Logbücher von :name',
-        'title'         => 'Logbücher',
+        'add'       => 'Neues Logbuch',
+        'header'    => 'Logbücher von :name',
+        'title'     => 'Logbücher',
     ],
     'journals'      => [
         'title' => 'Logbuch :name Untergeordnetes Logbuch',
@@ -43,9 +43,9 @@ return [
         'type'      => 'Session, One Shot, Entwurf',
     ],
     'show'          => [
-        'tabs'          => [
+        'tabs'  => [
             'journals'  => 'Logbücher',
         ],
-        'title'         => 'Logbuch :name',
+        'title' => 'Logbuch :name',
     ],
 ];

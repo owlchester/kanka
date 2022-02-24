@@ -1,17 +1,16 @@
 <?php
 
 return [
-
     'create'        => [
-        'success'       => 'Úloha :name vytvorená.',
-        'title'         => 'Nová úloha',
+        'success'   => 'Úloha :name vytvorená.',
+        'title'     => 'Nová úloha',
     ],
     'destroy'       => [
         'success'   => 'Úloha :name odstránená.',
     ],
     'edit'          => [
-        'success'       => 'Úloha :name upravená.',
-        'title'         => 'Upraviť úlohu :name',
+        'success'   => 'Úloha :name upravená.',
+        'title'     => 'Upraviť úlohu :name',
     ],
     'elements'      => [
         'create'    => [
@@ -48,7 +47,6 @@ return [
     ],
     'helpers'       => [
         'is_completed'      => 'Zaškrtni, ak je daná úloha považovaná za splnenú.',
-        'nested'            => 'Úlohy vieš usporiadať vnoreným zobrazením. Úlohy bez nadradenej úlohy sa zobrazia štandardným spôsobom. Úlohy s podradenými úlohami je možné rozkliknúť, dokiaľ nebudú existovať už žiadne ďalšie podradené úlohy.',
         'nested_parent'     => 'Zobraziť úlohy :parent.',
         'nested_without'    => 'Zobraziť všetky úlohy, ktoré nemajú nadradenú úlohu. Kliknutím na riadok zobrazíš podradené úlohy.',
     ],
@@ -56,9 +54,9 @@ return [
         'quests'    => 'Sieť prepojených úloh je možné vytvoriť cez nadradenú úlohu.',
     ],
     'index'         => [
-        'add'           => 'Nová úloha',
-        'header'        => 'Úlohy podradené :name',
-        'title'         => 'Úlohy',
+        'add'       => 'Nová úloha',
+        'header'    => 'Úlohy podradené :name',
+        'title'     => 'Úlohy',
     ],
     'placeholders'  => [
         'date'  => 'Reálny dátum zadania úlohy',
@@ -68,13 +66,12 @@ return [
         'type'  => 'príbeh postavy, bočná úloha, hlavný dej',
     ],
     'show'          => [
-        'actions'       => [
-            'add_element'       => 'Pridať prvok',
+        'actions'   => [
+            'add_element'   => 'Pridať prvok',
         ],
-        'tabs'          => [
-            'elements'      => 'Prvky',
-            'quests'        => 'Úlohy',
+        'tabs'      => [
+            'elements'  => 'Prvky',
         ],
-        'title'         => 'Úloha :name',
+        'title'     => 'Úloha :name',
     ],
 ];

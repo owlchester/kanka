@@ -31,10 +31,7 @@ return [
             'updates'           => 'Kanka ažuriranja',
         ],
         'settings'  => [
-            'news'          => 'Vijesti - budi obaviješten kada ima :news.',
-            'newsletter'    => 'Bilten - primajte Kanka bilten.',
-            'updates'       => 'Ažuriranja - budi obaviješten kada se Kanka ažurira.',
-            'votes'         => 'Glasanje zajednice - budi obaviješten čim je novo :vote dostupno.',
+            'news'  => 'Vijesti - budi obaviješten kada ima :news.',
         ],
         'title'     => 'Bilteni',
     ],

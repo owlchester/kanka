@@ -7,22 +7,22 @@ return [
         'add_personality'   => 'Lägg till en personlighet',
     ],
     'conversations' => [
-        'title'         => 'Karaktär :name Konversationer',
+        'title' => 'Karaktär :name Konversationer',
     ],
     'create'        => [
-        'success'       => 'Karaktär \':name\' skapad.',
-        'title'         => 'Ny Karaktär',
+        'success'   => 'Karaktär \':name\' skapad.',
+        'title'     => 'Ny Karaktär',
     ],
     'destroy'       => [
         'success'   => 'Karaktär \':name\' borttagen.',
     ],
     'dice_rolls'    => [
-        'hint'          => 'Tärningskast kan tilldelas till en karaktär för användning i spel.',
-        'title'         => 'Karaktär :name Tärningskast',
+        'hint'  => 'Tärningskast kan tilldelas till en karaktär för användning i spel.',
+        'title' => 'Karaktär :name Tärningskast',
     ],
     'edit'          => [
-        'success'       => 'Karaktär \':name\' uppdaterad.',
-        'title'         => 'Redigera Karaktär :name',
+        'success'   => 'Karaktär \':name\' uppdaterad.',
+        'title'     => 'Redigera Karaktär :name',
     ],
     'fields'        => [
         'age'                       => 'Ålder',
@@ -51,37 +51,37 @@ return [
         'personality_visible'       => 'Personlighetsdrag för denna karaktär är synliga för alla.',
     ],
     'index'         => [
-        'actions'       => [
+        'actions'   => [
             'random'    => 'Ny Slumpad Karaktär',
         ],
-        'add'           => 'Ny Karaktär',
-        'header'        => 'Karaktärer i :name',
-        'title'         => 'Karktärer',
+        'add'       => 'Ny Karaktär',
+        'header'    => 'Karaktärer i :name',
+        'title'     => 'Karktärer',
     ],
     'items'         => [
-        'hint'          => 'Föremål kan tilldelas till karaktärer och kommer visas här.',
-        'title'         => 'Karaktär :name Föremål',
+        'hint'  => 'Föremål kan tilldelas till karaktärer och kommer visas här.',
+        'title' => 'Karaktär :name Föremål',
     ],
     'journals'      => [
-        'title'         => 'Karaktär :name Journaler',
+        'title' => 'Karaktär :name Journaler',
     ],
     'maps'          => [
-        'title'         => 'Karaktär :name Förbindelse Karta',
+        'title' => 'Karaktär :name Förbindelse Karta',
     ],
     'organisations' => [
         'actions'       => [
             'add'   => 'Lägg till organisation',
         ],
         'create'        => [
-            'success'       => 'Karaktär tillagd till organisation.',
-            'title'         => 'Ny Organisation för :name',
+            'success'   => 'Karaktär tillagd till organisation.',
+            'title'     => 'Ny Organisation för :name',
         ],
         'destroy'       => [
             'success'   => 'Karaktär organisation borttagen.',
         ],
         'edit'          => [
-            'success'       => 'Karaktär organisation uppdaterad.',
-            'title'         => 'Uppdatera Organisation för :name',
+            'success'   => 'Karaktär organisation uppdaterad.',
+            'title'     => 'Uppdatera Organisation för :name',
         ],
         'fields'        => [
             'organisation'  => 'Organisation',
@@ -111,11 +111,10 @@ return [
         'type'              => 'SLP, Spelarkaraktär, Gudomlighet',
     ],
     'quests'        => [
-        'helpers'       => [
+        'helpers'   => [
             'quest_giver'   => 'Uppdrag som karaktären är en uppdragsgivare för.',
             'quest_member'  => 'Uppdrag som karaktären är en medlem av.',
         ],
-        'title'         => 'Karaktär :name Quests',
     ],
     'sections'      => [
         'appearance'    => 'Utseende',
@@ -123,17 +122,12 @@ return [
         'personality'   => 'Personlighet',
     ],
     'show'          => [
-        'tabs'          => [
-            'conversations' => 'Konversationer',
-            'dice_rolls'    => 'Tärningskast',
-            'items'         => 'Föremål',
-            'journals'      => 'Journaler',
+        'tabs'  => [
             'map'           => 'Förbindelse Karta',
             'organisations' => 'Organisationer',
             'personality'   => 'Personlighet',
-            'quests'        => 'Uppdrag',
         ],
-        'title'         => 'Karaktär :name',
+        'title' => 'Karaktär :name',
     ],
     'warnings'      => [
         'personality_hidden'    => 'Du är inte tillåten att redigera personlighetsdrag på denna karaktär.',

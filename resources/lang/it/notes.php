@@ -2,8 +2,8 @@
 
 return [
     'create'        => [
-        'success'       => 'Nota \':name\' creata.',
-        'title'         => 'Nuova Nota',
+        'success'   => 'Nota \':name\' creata.',
+        'title'     => 'Nuova Nota',
     ],
     'destroy'       => [
         'success'   => 'Nota \':name\' rimossa.',
@@ -23,15 +23,15 @@ return [
         'is_pinned' => 'Fino a 3 note possono essere fissate per essere visualizzate nella dashboard.',
     ],
     'index'         => [
-        'add'           => 'Nuova Nota',
-        'header'        => 'Note di :name',
-        'title'         => 'Note',
+        'add'       => 'Nuova Nota',
+        'header'    => 'Note di :name',
+        'title'     => 'Note',
     ],
     'placeholders'  => [
         'name'  => 'Nome della nota',
         'type'  => 'Religione, Razza, Systema Politico',
     ],
     'show'          => [
-        'title'         => 'Nota :name',
+        'title' => 'Nota :name',
     ],
 ];

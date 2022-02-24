@@ -2,8 +2,8 @@
 
 return [
     'create'        => [
-        'success'       => 'Notiz \':name\' erstellt.',
-        'title'         => 'Erstelle eine neue Notiz',
+        'success'   => 'Notiz \':name\' erstellt.',
+        'title'     => 'Erstelle eine neue Notiz',
     ],
     'destroy'       => [
         'success'   => 'Notiz \':name\' entfernt.',
@@ -29,9 +29,9 @@ return [
         'is_pinned' => 'Bis zu 3 Notizen können angepinnt werden und werden dann auf dem Dashboard angezeigt.',
     ],
     'index'         => [
-        'add'           => 'Neue Notiz',
-        'header'        => 'Notizen von :name',
-        'title'         => 'Notizen',
+        'add'       => 'Neue Notiz',
+        'header'    => 'Notizen von :name',
+        'title'     => 'Notizen',
     ],
     'placeholders'  => [
         'name'  => 'Name der Notiz',
@@ -39,6 +39,6 @@ return [
         'type'  => 'Religion, Spezies, Politisches System',
     ],
     'show'          => [
-        'title'         => 'Notiz :name',
+        'title' => 'Notiz :name',
     ],
 ];

@@ -7,15 +7,15 @@ return [
         'add_user'  => 'Engadir integrante',
     ],
     'create'        => [
-        'success'       => 'Entrada ":name" engadida a ":entity".',
-        'title'         => 'Nova entrada en ":name"',
+        'success'   => 'Entrada ":name" engadida a ":entity".',
+        'title'     => 'Nova entrada en ":name"',
     ],
     'destroy'       => [
         'success'   => 'Entrada ":name" de ":entity" eliminada.',
     ],
     'edit'          => [
-        'success'       => 'Entrada ":name" de ":entity" actualizada.',
-        'title'         => 'Actualizar entrada de ":name"',
+        'success'   => 'Entrada ":name" de ":entity" actualizada.',
+        'title'     => 'Actualizar entrada de ":name"',
     ],
     'fields'        => [
         'collapsed' => 'Entrada colapsada por defecto.',

@@ -7,22 +7,22 @@ return [
         'add_personality'   => 'Dodaj osobnost',
     ],
     'conversations' => [
-        'title'         => 'Razgovori s likom :name',
+        'title' => 'Razgovori s likom :name',
     ],
     'create'        => [
-        'success'       => 'Kreiran lik ":name"',
-        'title'         => 'Novi lik',
+        'success'   => 'Kreiran lik ":name"',
+        'title'     => 'Novi lik',
     ],
     'destroy'       => [
         'success'   => 'Uklonjen lik ":name"',
     ],
     'dice_rolls'    => [
-        'hint'          => 'Rezultati bacanja kockica se mogu dodijeliti liku za korištenje unutar igre.',
-        'title'         => 'Rezultati bacanja kockica lika :name',
+        'hint'  => 'Rezultati bacanja kockica se mogu dodijeliti liku za korištenje unutar igre.',
+        'title' => 'Rezultati bacanja kockica lika :name',
     ],
     'edit'          => [
-        'success'       => 'Ažuriran lik ":name".',
-        'title'         => 'Uredi lika :name',
+        'success'   => 'Ažuriran lik ":name".',
+        'title'     => 'Uredi lika :name',
     ],
     'fields'        => [
         'age'                       => 'Starosna dob',
@@ -52,37 +52,37 @@ return [
         'personality_visible'       => 'Osobine ličnosti ovog lika su vidljive svima.',
     ],
     'index'         => [
-        'actions'       => [
+        'actions'   => [
             'random'    => 'Novi nasumički lik',
         ],
-        'add'           => 'Novi lik',
-        'header'        => 'Likovi u :name',
-        'title'         => 'Likovi',
+        'add'       => 'Novi lik',
+        'header'    => 'Likovi u :name',
+        'title'     => 'Likovi',
     ],
     'items'         => [
-        'hint'          => 'Predmeti se mogu dodijeliti na likove i bit će prikazani ovdje.',
-        'title'         => 'Predmeti lika :name',
+        'hint'  => 'Predmeti se mogu dodijeliti na likove i bit će prikazani ovdje.',
+        'title' => 'Predmeti lika :name',
     ],
     'journals'      => [
-        'title'         => 'Dnevnici lika :name',
+        'title' => 'Dnevnici lika :name',
     ],
     'maps'          => [
-        'title'         => 'Mapa odnosa za lika :name',
+        'title' => 'Mapa odnosa za lika :name',
     ],
     'organisations' => [
         'actions'       => [
             'add'   => 'Dodaj organizaciju',
         ],
         'create'        => [
-            'success'       => 'Lik je dodan u organizaciju.',
-            'title'         => 'Nova organizacija za :name',
+            'success'   => 'Lik je dodan u organizaciju.',
+            'title'     => 'Nova organizacija za :name',
         ],
         'destroy'       => [
             'success'   => 'Organizacija lika uklonjena.',
         ],
         'edit'          => [
-            'success'       => 'Organizacija lika ažurirana.',
-            'title'         => 'Ažuriraj organizaciju za :name',
+            'success'   => 'Organizacija lika ažurirana.',
+            'title'     => 'Ažuriraj organizaciju za :name',
         ],
         'fields'        => [
             'organisation'  => 'Organizacija',
@@ -113,11 +113,10 @@ return [
         'type'              => 'Lik igrača, Lik kojim upravlja voditelj igre, Božanstvo',
     ],
     'quests'        => [
-        'helpers'       => [
+        'helpers'   => [
             'quest_giver'   => 'Zadaci kojima je lik zadavatelj.',
             'quest_member'  => 'Zadaci kojih je lik član.',
         ],
-        'title'         => 'Zadaci lika :name',
     ],
     'sections'      => [
         'appearance'    => 'Fizički izgled',
@@ -125,17 +124,12 @@ return [
         'personality'   => 'Osobnost',
     ],
     'show'          => [
-        'tabs'          => [
-            'conversations' => 'Razgovori',
-            'dice_rolls'    => 'Rezultati bacanja kockica',
-            'items'         => 'Predmeti',
-            'journals'      => 'Dnevnici',
+        'tabs'  => [
             'map'           => 'Mapa odnosa',
             'organisations' => 'Organizacije',
             'personality'   => 'Osobnost',
-            'quests'        => 'Zadaci',
         ],
-        'title'         => 'Lik :name',
+        'title' => 'Lik :name',
     ],
     'warnings'      => [
         'personality_hidden'    => 'Nemaš dopuštenje mijenjati osobine ovog lika.',

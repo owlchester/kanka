@@ -2,8 +2,8 @@
 
 return [
     'create'        => [
-        'success'       => 'יומן ":name" נוצר.',
-        'title'         => 'יומן חדש',
+        'success'   => 'יומן ":name" נוצר.',
+        'title'     => 'יומן חדש',
     ],
     'destroy'       => [
         'success'   => 'יומן ":name" הוסר.',
@@ -21,9 +21,9 @@ return [
         'type'      => 'סוג',
     ],
     'index'         => [
-        'add'           => 'יומן חדש',
-        'header'        => 'היומנים של :name',
-        'title'         => 'יומנים',
+        'add'       => 'יומן חדש',
+        'header'    => 'היומנים של :name',
+        'title'     => 'יומנים',
     ],
     'placeholders'  => [
         'author'    => 'מי כתב את היומן',
@@ -32,6 +32,6 @@ return [
         'type'      => 'מפגש, חד"פ, טיוטה',
     ],
     'show'          => [
-        'title'         => 'יומן :name',
+        'title' => 'יומן :name',
     ],
 ];

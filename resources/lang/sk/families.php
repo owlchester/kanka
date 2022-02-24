@@ -2,8 +2,8 @@
 
 return [
     'create'        => [
-        'success'       => 'Rod :name vytvorený.',
-        'title'         => 'Nový rod',
+        'success'   => 'Rod :name vytvorený.',
+        'title'     => 'Nový rod',
     ],
     'destroy'       => [
         'success'   => 'Rod :name odstránený.',
@@ -27,7 +27,6 @@ return [
     ],
     'helpers'       => [
         'descendants'   => 'Tento zoznam obsahuje všetky rody, ktoré sú potomkami tohto rodu a nielen tých, ktoré sp priamymi potomkami.',
-        'nested'        => 'Vo vnorenom zobrazení vieš zoradiť tvoje rody podľa nadradených rodov. Rody bez nadradeného rodu sa zoradia štandardným spôsobom. Rody s podradenými rodmi je možné rozkliknúť, dokiaľ nebudú existovať už nižšie podradené rody.',
         'nested_parent' => 'Zobraziť rody :parent.',
         'nested_without'=> 'Zobraziť všetky rody, ktoré nemajú nadradený rod. Kliknutím na riadok zobrazíš podradené rody.',
     ],
@@ -35,9 +34,9 @@ return [
         'members'   => 'Zoznam členov a členiek daného rodu sa zobrazuje na tomto mieste. Úpravou danej postavy je možné ju pridať do daného rodu v poli Rod.',
     ],
     'index'         => [
-        'add'           => 'Nový rod',
-        'header'        => 'Rody :name',
-        'title'         => 'Rody',
+        'add'       => 'Nový rod',
+        'header'    => 'Rody :name',
+        'title'     => 'Rody',
     ],
     'members'       => [
         'helpers'   => [
@@ -52,12 +51,12 @@ return [
         'type'      => 'Kráľovský, Šľachtický, Vyhynutý',
     ],
     'show'          => [
-        'tabs'          => [
+        'tabs'  => [
             'all_members'   => 'Všetci členovia/ky',
             'families'      => 'Rody',
             'members'       => 'Členovia/ky',
             'relation'      => 'Vzťahy',
         ],
-        'title'         => 'Rod :name',
+        'title' => 'Rod :name',
     ],
 ];

@@ -7,22 +7,22 @@ return [
         'add_personality'   => 'Személyiség hozzáadása',
     ],
     'conversations' => [
-        'title'         => ':name karakter beszélgetései',
+        'title' => ':name karakter beszélgetései',
     ],
     'create'        => [
-        'success'       => ':name karaktert létrehoztuk.',
-        'title'         => 'Új karakter',
+        'success'   => ':name karaktert létrehoztuk.',
+        'title'     => 'Új karakter',
     ],
     'destroy'       => [
         'success'   => '\':name\' karaktert eltávolítottuk.',
     ],
     'dice_rolls'    => [
-        'hint'          => 'A dobásokat egy karakterhez lehet rendelni a játék közbeni használat érdekében.',
-        'title'         => ':name karakter dobásai',
+        'hint'  => 'A dobásokat egy karakterhez lehet rendelni a játék közbeni használat érdekében.',
+        'title' => ':name karakter dobásai',
     ],
     'edit'          => [
-        'success'       => '\':name\' karaktert frissítettük.',
-        'title'         => ':name karakter szerkesztése',
+        'success'   => '\':name\' karaktert frissítettük.',
+        'title'     => ':name karakter szerkesztése',
     ],
     'fields'        => [
         'age'                       => 'Kor',
@@ -44,47 +44,45 @@ return [
     ],
     'helpers'       => [
         'age'   => 'Összerendelheted ezt az entitást a kampányod egy naptárával, hogy az életkor automatikusan kerüljön számításra. :more.',
-        'free'  => 'Hová tűnt a "Szabad" mező? Ha ennek a karakternek van egy, azt áttettük az új jegyzet fülre!',
     ],
     'hints'         => [
-        'hide_personality'          => 'Ez a fület el lehet rejteni a nem "Admin" felhasználók elől, ha kikapcsoljuk a "Látható személyiség" opciót, amikor szerkesztjük ezt a karaktert.',
         'is_dead'                   => 'Ez a karakter halott.',
         'is_personality_visible'    => 'A teljes személyiség szekciót elrejtheted a nem "Admin" felhasználók elől.',
         'personality_not_visible'   => 'Ennek a karakternek a személyes jellemzőit jelenleg csak az Admin láthatja.',
         'personality_visible'       => 'Ennek a karakternek a személyes jellemzőit mindenki láthatja.',
     ],
     'index'         => [
-        'actions'       => [
+        'actions'   => [
             'random'    => 'Új véletlen karakter',
         ],
-        'add'           => 'Új karakter',
-        'header'        => 'Karakterek itt: :name',
-        'title'         => 'Karakterek',
+        'add'       => 'Új karakter',
+        'header'    => 'Karakterek itt: :name',
+        'title'     => 'Karakterek',
     ],
     'items'         => [
-        'hint'          => 'A tárgyakat a karakterekhez rendelheted, és azokat itt mutatjuk meg.',
-        'title'         => ':name karakter tárgyai',
+        'hint'  => 'A tárgyakat a karakterekhez rendelheted, és azokat itt mutatjuk meg.',
+        'title' => ':name karakter tárgyai',
     ],
     'journals'      => [
-        'title'         => ':name karakter irományai',
+        'title' => ':name karakter irományai',
     ],
     'maps'          => [
-        'title'         => ':name karakter kapcsolati térképe',
+        'title' => ':name karakter kapcsolati térképe',
     ],
     'organisations' => [
         'actions'       => [
             'add'   => 'Szervezet hozzáadása',
         ],
         'create'        => [
-            'success'       => 'A karaktert hozzáadtuk a szervezethez.',
-            'title'         => ':name számára új szervezet',
+            'success'   => 'A karaktert hozzáadtuk a szervezethez.',
+            'title'     => ':name számára új szervezet',
         ],
         'destroy'       => [
             'success'   => 'A karakter szervezetét eltávolítottuk.',
         ],
         'edit'          => [
-            'success'       => 'A karakter szervezetét frissítettük.',
-            'title'         => 'Szervezet frissítése :name számára',
+            'success'   => 'A karakter szervezetét frissítettük.',
+            'title'     => 'Szervezet frissítése :name számára',
         ],
         'fields'        => [
             'organisation'  => 'Szervezet',
@@ -115,11 +113,10 @@ return [
         'type'              => 'NJK, játékos karakter, istenség',
     ],
     'quests'        => [
-        'helpers'       => [
+        'helpers'   => [
             'quest_giver'   => 'Küldetések, amelyeket a karakter ad.',
             'quest_member'  => 'Küldetések, amelyekben a karakter részt vesz.',
         ],
-        'title'         => ':name karakter küldetései',
     ],
     'sections'      => [
         'appearance'    => 'Megjelenés',
@@ -127,17 +124,12 @@ return [
         'personality'   => 'Személyiség',
     ],
     'show'          => [
-        'tabs'          => [
-            'conversations' => 'Beszélgetések',
-            'dice_rolls'    => 'Dobások',
-            'items'         => 'Tárgyak',
-            'journals'      => 'Irományok',
+        'tabs'  => [
             'map'           => 'Kapcsolati térkép',
             'organisations' => 'Szervezetek',
             'personality'   => 'Személyiség',
-            'quests'        => 'Küldetések',
         ],
-        'title'         => ':name karakter',
+        'title' => ':name karakter',
     ],
     'warnings'      => [
         'personality_hidden'    => 'Nincs jogosultságod szerkeszteni ennek a karakternek a Személyiség jellemzőit.',

@@ -20,9 +20,8 @@ TEXT
         'success'   => 'Campagna eliminata.',
     ],
     'edit'                              => [
-        'description'   => 'Modifica la tua campagna',
-        'success'       => 'Campagna aggiornata.',
-        'title'         => 'Modifica la campagna :campaign',
+        'success'   => 'Campagna aggiornata.',
+        'title'     => 'Modifica la campagna :campaign',
     ],
     'entity_personality_visibilities'   => [
         'private'   => 'I nuovi personaggi hanno la loro personalità privata in maniera predefinita.',
@@ -35,51 +34,46 @@ TEXT
         'unknown_id'    => 'Campagna sconosciuta.',
     ],
     'export'                            => [
-        'description'   => 'Esporta la campagna.',
-        'errors'        => [
+        'errors'    => [
             'limit' => 'Hai superato il tuo limite massimo di un\'esportazione al giorno. Riprova domani, per favore.',
         ],
-        'helper'        => 'Esporta la tua campagna. Riceverai una notifica con il link per il download appena disponibile.',
-        'success'       => 'L\'esportazione della tua campagna è in preparazione. Riceverai una notifica su Kanka con il link ad un archivio zip scaricabile non appena sarà pronto.',
-        'title'         => 'Esportazione della Campagna :name',
+        'helper'    => 'Esporta la tua campagna. Riceverai una notifica con il link per il download appena disponibile.',
+        'success'   => 'L\'esportazione della tua campagna è in preparazione. Riceverai una notifica su Kanka con il link ad un archivio zip scaricabile non appena sarà pronto.',
+        'title'     => 'Esportazione della Campagna :name',
     ],
     'fields'                            => [
-        'boosted'                       => 'Potenziata da',
-        'css'                           => 'CSS',
-        'description'                   => 'Descrizione',
-        'entity_count'                  => 'Numero di Entità',
-        'entity_personality_visibility' => 'Visibilità della Personalità del Personaggio',
-        'entity_visibility'             => 'Visibilità dell\'entità',
-        'excerpt'                       => 'Estratto',
-        'followers'                     => 'Followers',
-        'header_image'                  => 'Immagine di copertina',
-        'image'                         => 'Immagine',
-        'locale'                        => 'Lingua',
-        'name'                          => 'Nome',
-        'public_campaign_filters'       => 'Filtri Campagna Pubblica',
-        'rpg_system'                    => 'Sistema RPG',
-        'system'                        => 'Sistema',
-        'theme'                         => 'Tema',
-        'tooltip_family'                => 'Disabilita i nomi delle famiglie dai tooltips',
-        'tooltip_image'                 => 'Mostra l\'immagine dell\'entità nei tooltips',
-        'visibility'                    => 'Visibilità',
+        'boosted'                   => 'Potenziata da',
+        'css'                       => 'CSS',
+        'description'               => 'Descrizione',
+        'entity_count'              => 'Numero di Entità',
+        'excerpt'                   => 'Estratto',
+        'followers'                 => 'Followers',
+        'header_image'              => 'Immagine di copertina',
+        'image'                     => 'Immagine',
+        'locale'                    => 'Lingua',
+        'name'                      => 'Nome',
+        'public_campaign_filters'   => 'Filtri Campagna Pubblica',
+        'rpg_system'                => 'Sistema RPG',
+        'system'                    => 'Sistema',
+        'theme'                     => 'Tema',
+        'tooltip_family'            => 'Disabilita i nomi delle famiglie dai tooltips',
+        'tooltip_image'             => 'Mostra l\'immagine dell\'entità nei tooltips',
+        'visibility'                => 'Visibilità',
     ],
     'following'                         => 'Che Segui',
     'helpers'                           => [
-        'boost_required'                => 'Questa funzione richiede che la campagna sia potenziata. Puoi trovare maggiori informazioni sulla pagina :settings.',
-        'boosted'                       => 'Alcune caratteristiche sono sbloccate perché questa campagna è stata potenziata. Scopri di più nella pagina :settings.',
-        'css'                           => 'Scrivi i tuoi CSS che saranno caricati all\'interno della pagina della tua campagna. Considera che qualsiasi abuso di questa funzionalità può portare alla rimozione dei tuoi CSS personalizzati.',
-        'entity_personality_visibility' => 'Quando si crea un nuovo personaggio, l\'opzione "Visibilità della Personalità" sarà automaticamente deselezionata.',
-        'entity_visibility'             => 'Quando creerai una nuova entità, l\'opzione "Privato" sarà selezionata automaticamente.',
-        'excerpt'                       => 'L\'estratto della campagna sarà mostrato sulla dashboard, quindi scrivi una breve introduzione al tuo mondo. Mantienila breve per un miglior risultato.',
-        'locale'                        => 'La lingua in cui la tua campagna è scritta. Questa specificazione è sfruttata per generare contenuti e raggruppare le campagne pubbliche.',
-        'name'                          => 'La tua campagna/mondo può avere qualsiasi nome, a patto che che contenga almeno 4 lettere o numeri.',
-        'public_campaign_filters'       => 'Aiuta altre persone a trovare la campagna tra altre campagne pubbliche fornendo le seguenti informazioni.',
-        'system'                        => 'Se la tua campagna è visibile pubblicamente, il sistema sarà visualizzato nella pagina :link.',
-        'systems'                       => 'Per evitare di confondere gli utenti con una sovrabbondanza di opzioni, alcune di esse sono disponibili solamente per specifici sistemi RPG (per esempio il blocco delle statistiche dei mostri di D&D 5e). Aggiungere un sistema supportato qui abiliterà queste funzionalità.',
-        'theme'                         => 'Forza il tema della campagna, sovrascrivendo le preferenze delle utenze.',
-        'view_public'                   => 'Per visualizzare la tua campagna come farebbe uno spettatore pubblico, apri :link in una finestra di navigazione in incognito.',
-        'visibility'                    => 'Rendere pubblica una campagna significa che chiunque abbia il link può vederla.',
+        'boost_required'            => 'Questa funzione richiede che la campagna sia potenziata. Puoi trovare maggiori informazioni sulla pagina :settings.',
+        'boosted'                   => 'Alcune caratteristiche sono sbloccate perché questa campagna è stata potenziata. Scopri di più nella pagina :settings.',
+        'css'                       => 'Scrivi i tuoi CSS che saranno caricati all\'interno della pagina della tua campagna. Considera che qualsiasi abuso di questa funzionalità può portare alla rimozione dei tuoi CSS personalizzati.',
+        'excerpt'                   => 'L\'estratto della campagna sarà mostrato sulla dashboard, quindi scrivi una breve introduzione al tuo mondo. Mantienila breve per un miglior risultato.',
+        'locale'                    => 'La lingua in cui la tua campagna è scritta. Questa specificazione è sfruttata per generare contenuti e raggruppare le campagne pubbliche.',
+        'name'                      => 'La tua campagna/mondo può avere qualsiasi nome, a patto che che contenga almeno 4 lettere o numeri.',
+        'public_campaign_filters'   => 'Aiuta altre persone a trovare la campagna tra altre campagne pubbliche fornendo le seguenti informazioni.',
+        'system'                    => 'Se la tua campagna è visibile pubblicamente, il sistema sarà visualizzato nella pagina :link.',
+        'systems'                   => 'Per evitare di confondere gli utenti con una sovrabbondanza di opzioni, alcune di esse sono disponibili solamente per specifici sistemi RPG (per esempio il blocco delle statistiche dei mostri di D&D 5e). Aggiungere un sistema supportato qui abiliterà queste funzionalità.',
+        'theme'                     => 'Forza il tema della campagna, sovrascrivendo le preferenze delle utenze.',
+        'view_public'               => 'Per visualizzare la tua campagna come farebbe uno spettatore pubblico, apri :link in una finestra di navigazione in incognito.',
+        'visibility'                => 'Rendere pubblica una campagna significa che chiunque abbia il link può vederla.',
     ],
     'index'                             => [
         'actions'   => [
@@ -93,20 +87,15 @@ TEXT
         'actions'               => [
             'add'   => 'Invita',
             'copy'  => 'Copia il collegamento nei tuoi appunti',
-            'link'  => 'Nuovo collegamento',
         ],
         'create'                => [
-            'button'        => 'Invita',
-            'description'   => 'Invita un amico alla tua campagna',
-            'link'          => 'Collegamento creato: <a href=":url" target="_blank">:url</a>',
-            'success'       => 'Invito inviato.',
-            'title'         => 'Invita qualcuno nella tua campagna',
+            'success'   => 'Invito inviato.',
+            'title'     => 'Invita qualcuno nella tua campagna',
         ],
         'destroy'               => [
             'success'   => 'Invito rimosso.',
         ],
         'email'                 => [
-            'link'      => '<a href=":link">Unisciti alla campagna di :name</a>',
             'subject'   => ':name ti ha invitato ad unirti alla sua campagna \':campaign\' su kanka.io! Usa il seguente link per accettare il suo invito.',
             'title'     => 'Invito da parte di :name',
         ],
@@ -121,7 +110,6 @@ TEXT
             'email'     => 'E-Mail',
             'role'      => 'Ruolo',
             'type'      => 'Tipo',
-            'validity'  => 'Validità',
         ],
         'helpers'               => [
             'email'     => 'Le nostre mail sono spesso marcate come spam e possono impiegare fino a qualche ora prima che appaiano nella tua casella di posta.',
@@ -149,10 +137,8 @@ TEXT
         'create'                => [
             'title' => 'Aggiungi un membro alla tua campagna',
         ],
-        'description'           => 'Gestisci i membri della campagna',
         'edit'                  => [
-            'description'   => 'Modifica un membro della tua campagna',
-            'title'         => 'Modifica il membro :name',
+            'title' => 'Modifica il membro :name',
         ],
         'fields'                => [
             'joined'        => 'Unito',
@@ -209,7 +195,6 @@ TEXT
             'success'   => 'Ruolo creato.',
             'title'     => 'Crea un nuovo ruolo per :name',
         ],
-        'description'   => 'Gestisci i ruoli per la campagna',
         'destroy'       => [
             'success'   => 'Ruolo rimosso.',
         ],
@@ -253,8 +238,7 @@ TEXT
             'name'  => 'Nome del ruolo',
         ],
         'show'          => [
-            'description'   => 'Membri e Permessi di un ruolo della campagna',
-            'title'         => 'Ruolo nella campagna \':role\'',
+            'title' => 'Ruolo nella campagna \':role\'',
         ],
         'title'         => 'Ruoli della campagna :name',
         'types'         => [
@@ -279,16 +263,15 @@ TEXT
         ],
     ],
     'settings'                          => [
-        'actions'       => [
+        'actions'   => [
             'enable'    => 'Abilita',
         ],
-        'boosted'       => 'Questa funzionalità è in beta e al momento è disponibile solo per :boosted.',
-        'description'   => 'Abilita o disabilita moduli della campagna.',
-        'edit'          => [
+        'boosted'   => 'Questa funzionalità è in beta e al momento è disponibile solo per :boosted.',
+        'edit'      => [
             'success'   => 'Impostazioni della campagna aggiornate.',
         ],
-        'helper'        => 'Tutti i moduli di una campagna possono essere abilitati o disabilitati a proprio piacimento. Disabilitare un modulo nasconderà gli elementi dell\'interfaccia ad esso correlati, le entità esistenti saranno nascoste ma continueranno ad esistere, nel caso cambiassi idea. Questo cambiamento riguarda tutti i membri della campagna, inclusi i membri Proprietario.',
-        'helpers'       => [
+        'helper'    => 'Tutti i moduli di una campagna possono essere abilitati o disabilitati a proprio piacimento. Disabilitare un modulo nasconderà gli elementi dell\'interfaccia ad esso correlati, le entità esistenti saranno nascoste ma continueranno ad esistere, nel caso cambiassi idea. Questo cambiamento riguarda tutti i membri della campagna, inclusi i membri Proprietario.',
+        'helpers'   => [
             'abilities'     => 'Crea abilità, siano esse talenti, incantesimi o poteri che possono essere assegnati alle entità.',
             'calendars'     => 'Un\'area dove definire i calendari del tuo mondo.',
             'characters'    => 'Le persone che abitano il tuo mondo.',
@@ -307,15 +290,14 @@ TEXT
             'races'         => 'Se la tua campagna ha più di una razza, questo ti aiuterà a tenerne traccia facilmente.',
             'tags'          => 'Ogni entità può avere diversi tag. I tag possono appartenere ad altri tag e le entità possono essere filtrate per tag.',
         ],
-        'title'         => 'Moduli della Campagna :name',
+        'title'     => 'Moduli della Campagna :name',
     ],
     'show'                              => [
-        'actions'       => [
+        'actions'   => [
             'boost' => 'Potenzia campagna',
             'leave' => 'Abbandona campagna',
         ],
-        'description'   => 'Una visione dettagliata di una campagna',
-        'tabs'          => [
+        'tabs'      => [
             'default-images'    => 'Immagini predefinite',
             'export'            => 'Esporta',
             'information'       => 'Informazioni',
@@ -324,7 +306,7 @@ TEXT
             'roles'             => 'Ruoli',
             'settings'          => 'Moduli',
         ],
-        'title'         => 'Campagna :name',
+        'title'     => 'Campagna :name',
     ],
     'ui'                                => [
         'helper'    => 'Usa queste impostazioni per cambiare il modo in cui alcuni elementi saranno mostrati nella campagna.',

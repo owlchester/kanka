@@ -20,12 +20,12 @@ return [
         'title'             => 'Account',
     ],
     'api'       => [
-        'link'                  => 'Leggi la documentazione delle API',
-        'title'                 => 'API',
+        'link'  => 'Leggi la documentazione delle API',
+        'title' => 'API',
     ],
     'layout'    => [
-        'success'       => 'Impostazioni di layout aggiornate.',
-        'title'         => 'Layout',
+        'success'   => 'Impostazioni di layout aggiornate.',
+        'title'     => 'Layout',
     ],
     'menu'      => [
         'account'           => 'Account',
@@ -36,15 +36,15 @@ return [
         'profile'           => 'Profilo',
     ],
     'patreon'   => [
-        'pledge'        => 'Pledge: :name',
-        'title'         => 'Patreon',
+        'pledge'    => 'Pledge: :name',
+        'title'     => 'Patreon',
     ],
     'profile'   => [
-        'actions'       => [
+        'actions'   => [
             'update_profile'    => 'Aggiorna profilo',
         ],
-        'avatar'        => 'Immagine del profilo',
-        'success'       => 'Profilo aggiornato.',
-        'title'         => 'Profilo Personale',
+        'avatar'    => 'Immagine del profilo',
+        'success'   => 'Profilo aggiornato.',
+        'title'     => 'Profilo Personale',
     ],
 ];

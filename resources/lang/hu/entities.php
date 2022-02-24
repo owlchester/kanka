@@ -16,7 +16,6 @@ return [
     'creator'               => [
         'back'      => 'Vissza a listához',
         'duplicate' => 'Már létezik ilyen típusú entitás ugyanezzel a névvel.',
-        'error'     => 'Valami hiba van az értékeidnél. Kérjük, ellenőrizd újra!',
         'helper'    => 'Válassz ki egy entitástípust a létrehozásához! Ha nem jelennek meg entitások, az jelenti, hogy nincs engedélyed semmilyen entitás létrehozásához ebben a kampányban.',
         'success'   => '\':link\', amit új entitásként létrehoztunk.',
         'title'     => 'Új entitás létrehozása',

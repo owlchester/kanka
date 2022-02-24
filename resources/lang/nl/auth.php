@@ -40,7 +40,6 @@ return [
             'email'     => 'E-mail',
             'name'      => 'Gebruikersnaam',
             'password'  => 'Wachtwoord',
-            'tos'       => 'Ik ga akkoord met het <a href=":privacyUrl" target="_blank">privacybeleid</a>.',
         ],
         'register_with_facebook'    => 'Registreer met Facebook',
         'register_with_google'      => 'Registreer met Google',

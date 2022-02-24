@@ -54,7 +54,6 @@ return [
             'visible'   => 'Synlig',
         ],
     ],
-    'description'       => 'Hemmet för din kreativitet',
     'helpers'           => [
         'follow'    => 'Att följa en kampanj gör att den visas i kampanj bytaren (uppe till vänster) under din kampanj.',
         'setup'     => 'Välj din kampanjs dashboard.',

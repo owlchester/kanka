@@ -20,9 +20,9 @@ return [
         'title'             => 'Conta',
     ],
     'api'           => [
-        'helper'                => 'Bem vindo(a) as APIs do Kanka. Gere um token de acesso pessoal para usar em sua solicitação de API, para coletar informações sobre as campanhas das quais você faz parte.',
-        'link'                  => 'Leia a documentação da API',
-        'title'                 => 'API',
+        'helper'    => 'Bem vindo(a) as APIs do Kanka. Gere um token de acesso pessoal para usar em sua solicitação de API, para coletar informações sobre as campanhas das quais você faz parte.',
+        'link'      => 'Leia a documentação da API',
+        'title'     => 'API',
     ],
     'apps'          => [
         'actions'   => [
@@ -64,7 +64,6 @@ return [
                 'superboosted'  => 'Todos recursos de uma campanha Super Impulsionada',
             ],
             'recovery'          => 'Recuperar entidades deletadas por até :amount dias',
-            'second'            => 'Impulsionar uma campanha oferece os seguintes benefícios:',
             'superboost'        => 'Super impulsionar uma campanha usa 3 de seus impulsos e desbloqueia recursos adicionais além dos presentes em campanhas impulsionadas.',
             'theme'             => 'Tema nível da campanha e estilo personalizado.',
             'third'             => 'Para impulsionar uma campanha, vá até a página da campanha e clique no botão ":boost_button" acima do botão ":edit_button".',
@@ -163,15 +162,15 @@ return [
         'subscription_status'   => 'Status da assinatura',
     ],
     'patreon'       => [
-        'deprecated'        => 'Recurso obsoleto - se você deseja oferecer suporte ao Kanka, faça-o com uma :subscription. A vinculação do Patreon ainda está ativa para nossos clientes que vincularam suas contas antes de termos deixado o Patreon.',
-        'pledge'            => 'Pledge :name',
-        'remove'            => [
+        'deprecated'    => 'Recurso obsoleto - se você deseja oferecer suporte ao Kanka, faça-o com uma :subscription. A vinculação do Patreon ainda está ativa para nossos clientes que vincularam suas contas antes de termos deixado o Patreon.',
+        'pledge'        => 'Pledge :name',
+        'remove'        => [
             'button'    => 'Desvincular sua conta Patreon',
             'success'   => 'Sua conta Patreon foi desvinculada',
             'text'      => 'Desvincular sua conta do Patreon com Kanka removerá seus bônus, nome no Hall da fama, impulsionamentos de campanha e outros recursos vinculados ao suporte de Kanka. Nenhum de seus conteúdos impulsionados serão perdidos (por exemplo, cabeçalhos de entidade). Ao se inscrever novamente, você terá acesso a todos os seus dados anteriores, incluindo a capacidade de impulsionar suas campanhas previamente impulsionadas.',
             'title'     => 'Desvincule sua conta Patreon com Kanka',
         ],
-        'title'             => 'Patreon',
+        'title'         => 'Patreon',
     ],
     'profile'       => [
         'actions'   => [

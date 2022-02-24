@@ -18,29 +18,18 @@ return [
     'checkboxes'    => [
         'is_recurring'  => 'Minden évben megtörténik',
     ],
-    'colours'       => [
-        'black'     => 'Fekete',
-        'blue'      => 'Kék',
-        'default'   => 'Alapértelmezett',
-        'green'     => 'Zöld',
-        'maroon'    => 'Gesztenyebarna',
-        'navy'      => 'Tengerkék',
-        'orange'    => 'Narancssárga',
-        'purple'    => 'Lila',
-        'red'       => 'Vörös',
-        'teal'      => 'Kékeszöld',
-    ],
+    'colours'       => [],
     'create'        => [
-        'success'       => '\':name\' naptárat létrehoztuk',
-        'title'         => 'Új naptár',
+        'success'   => '\':name\' naptárat létrehoztuk',
+        'title'     => 'Új naptár',
     ],
     'destroy'       => [
         'success'   => '\':name\' naptárat eltávolítottuk',
     ],
     'edit'          => [
-        'success'       => '\':name\' naptárat frissítettük',
-        'title'         => ':name naptár szerkesztése',
-        'today'         => 'Naptár dátum frissítve.',
+        'success'   => '\':name\' naptárat frissítettük',
+        'title'     => ':name naptár szerkesztése',
+        'today'     => 'Naptár dátum frissítve.',
     ],
     'event'         => [
         'actions'   => [
@@ -50,13 +39,13 @@ return [
             'switch'            => 'Választás megváltoztatása',
         ],
         'create'    => [
-            'success'       => 'A naptári eseményt létrehoztuk',
-            'title'         => 'Esemény hozzáadása a \':name\' naptárhoz',
+            'success'   => 'A naptári eseményt létrehoztuk',
+            'title'     => 'Esemény hozzáadása a \':name\' naptárhoz',
         ],
         'destroy'   => '\':name\' naptárból az eseményt eltávolítottuk',
         'edit'      => [
-            'success'       => 'A naptári eseményt frissítettük',
-            'title'         => ':name naptár eseményének frissítése',
+            'success'   => 'A naptári eseményt frissítettük',
+            'title'     => ':name naptár eseményének frissítése',
         ],
         'helpers'   => [
             'add'               => 'Egy létező esemény hozzáadása ehhez a naptárhoz.',
@@ -69,7 +58,7 @@ return [
         'success'   => '\':event\' eseményt hozzáadtuk a naptárhoz.',
     ],
     'events'        => [
-        'title'         => ':name naptár eseményei',
+        'title' => ':name naptár eseményei',
     ],
     'fields'        => [
         'calendar'              => 'Szülő Naptár',
@@ -106,7 +95,6 @@ return [
     ],
     'helpers'       => [
         'month_type'    => 'A naptárközi hónapok nem számolják a hét napjait, de a holdfázisokat és az évszakokat igen.',
-        'nested'        => 'Elsőként azon naptárak megjelenítése, amelynek nincs szülő naptárja. Kattints egy naptárra, hogy az al-naptárjait böngészhesd!',
         'nested_parent' => ':parent naptárainak kijelzése',
         'nested_without'=> 'Minden olyan naptár megmutatása, amelynek nincs szülő naptára. Klikkelj egy sorra, hogy lást a gyermeknaptárakat.',
         'start_offset'  => 'Alapértelmezés szerint a naptár a 0-ik év első hétköznapjával kezdődik. Ezen mező értékének megváltoztatásával beállítható, hogy a naptár első napja hova essen.',
@@ -126,9 +114,9 @@ return [
         'years'             => 'Némelyik év olyan fontos, hogy saját neve van.',
     ],
     'index'         => [
-        'add'           => 'Új naptár',
-        'header'        => ':name naptár',
-        'title'         => 'Naptárak',
+        'add'       => 'Új naptár',
+        'header'    => ':name naptár',
+        'title'     => 'Naptárak',
     ],
     'layouts'       => [
         'month' => 'Hónap',
