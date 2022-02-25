@@ -11,7 +11,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        //$this->call(CampaignBoostCount::class);
         $this->call(EntityEventTypeSeeder::class);
         $this->call(EntityTypesTableSeeder::class);
         //$this->call(RpgSystemsTableSeeder::class);

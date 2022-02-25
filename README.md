@@ -109,10 +109,6 @@ When you are finished, export your changes.
 php artisan translations:export *
 ```
 
-The following translations can be ignored, as they are imported from thirdparty software:
-
-- `voyager.php`.
-
 ### Vue translations
 
 To generate the vue translations:
