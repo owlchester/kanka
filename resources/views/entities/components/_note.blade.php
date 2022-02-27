@@ -10,14 +10,16 @@
     <div class="box box-solid entity-note" id="post-{{ $note->id }}">
         <div class="box-header with-border">
             <h3 class="box-title cursor entity-note-toggle" data-toggle="collapse" data-target="#entity-note-body-{{ $note->id }}" data-short="entity-note-toggle-{{ $note->id }}">
-                <i class="fa fa-chevron-up" id="entity-note-toggle-{{ $note->id }}-show" @if($note->collapsed()) style="display: none;" @endif></i>
-                <i class="fa fa-chevron-down" id="entity-note-toggle-{{ $note->id }}-hide" @if(!$note->collapsed()) style="display: none;" @endif></i>
+                <i class="fa fa-chevron-up" id="entity-note-toggle-{{ $note->id }}-show" @if ($note->collapsed()) style="display: none;" @endif></i>
+                <i class="fa fa-chevron-down" id="entity-note-toggle-{{ $note->id }}-hide" @if (!$note->collapsed()) style="display: none;" @endif></i>
                 {{ $note->name  }}
+                @if (app()->environment('local'))
+                    ({{ $note->position }})
+                @endif
             </h3>
             <div class="box-tools">
                 @if (auth()->check())
-                    @include('cruds.partials.visibility', ['model' => $note])
-
+                    @include('cruds.partials.visibility', ['model' => $note, 'toolbox' => true])
 
                     <a class="dropdown-toggle btn btn-box-tool" data-toggle="dropdown" aria-expanded="false" data-placement="right" data-tree="escape">
                         <i class="fas fa-ellipsis-v"></i>
@@ -38,14 +40,13 @@
                             </a>
                         </li>
                     </ul>
-
                 @endif
             </div>
         </div>
         <div class="entity-content box-body collapse @if(!$note->collapsed()) in @endif" id="entity-note-body-{{ $note->id }}">
             <div class="entity-note-details">
 
-                @if($note->location)
+                @if ($note->location)
                 <span class="entity-note-detail-element entity-note-location">
                     <i class="ra ra-tower"></i> {!! $note->location->tooltipedLink() !!}
                 </span>

@@ -47,15 +47,6 @@ class EntityNoteObserver
             $entityNote->is_private = false;
         }
 
-        if (empty($entityNote->position)) {
-            $last = $entityNote->entity->notes()
-                ->where('is_pinned', true)
-                ->where('id', '!=', $entityNote->id)
-                ->orderBy('position', 'desc')
-                ->first();
-            $entityNote->position = $last ? ($last->position + 1) : 1;
-        }
-
         $settings = $entityNote->settings;
         if (request()->has('settings[collapse]')) {
             if ((bool) request()->get('settings[collapse]')) {
@@ -65,6 +56,19 @@ class EntityNoteObserver
             }
         }
         $entityNote->settings = $settings;
+    }
+
+    /**
+     * @param EntityNote $entityNote
+     */
+    public function creating(EntityNote $entityNote)
+    {
+        // Make sure we're adding this note at the end of other notes
+        $last = $entityNote->entity->notes()
+            ->where('id', '!=', $entityNote->id)
+            ->orderBy('position', 'desc')
+            ->first();
+        $entityNote->position = $last ? ($last->position + 1) : 1;
     }
 
     /**
