@@ -17,7 +17,7 @@
 
 <div class="row">
     <div class="col-sm-6">
-        @include('cruds.fields.colour_picker', request()->ajax() ? ['dropdownParent' => '#entity-modal'] : null)
+        @include('cruds.fields.colour_picker', request()->ajax() ? ['dropdownParent' => '#entity-modal'] : [])
     </div>
     <div class="col-sm-6">
         @include('cruds.fields.attitude')
