@@ -15,6 +15,6 @@ if (isset($toolbox) && $toolbox) {
     $icon .= ' btn-box-tool';
 }
 ?>
-<i id="entity-file-{{ $model->id }}" class="{{ $icon }}"
+<i id="element-visibility-{{ $model->id }}" class="{{ $icon }}"
    title="{{ __('crud.visibilities.' . $model->visibility) }}" data-toggle="tooltip"></i>
 
