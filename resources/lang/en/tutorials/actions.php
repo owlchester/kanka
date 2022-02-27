@@ -1,8 +1,8 @@
 <?php
 
 return [
-    'ok' => 'OK',
-    'next' => 'Next',
-    'close' => 'Close',
-    'disable' => 'Disable tutorials',
+    'close'     => 'Close',
+    'disable'   => 'Disable tutorials',
+    'next'      => 'Next',
+    'ok'        => 'OK',
 ];

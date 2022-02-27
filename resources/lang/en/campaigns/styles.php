@@ -15,8 +15,8 @@ return [
         'content'       => 'CSS rule',
         'is_enabled'    => 'Enabled',
         'length'        => 'Length',
-        'name'          => 'Name',
         'modified'      => 'Modified',
+        'name'          => 'Name',
     ],
     'helpers'   => [
         'css_moved' => 'The CSS field was moved to a new flexible interface that can be found in the campaign\'s menu :link.',

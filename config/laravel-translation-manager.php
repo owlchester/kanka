@@ -173,6 +173,9 @@ return array(
         'randomisers.characters',
         'backup::notifications',
         'lfgm',
+        'tutorials.actions',
+        'tutorials.home',
+        'tutorials.characters'
     ),
     /**
      * Exclude specific groups from Laravel Translation Manager in page edit mode.
@@ -186,7 +189,6 @@ return array(
         'validation',
         'pagination',
         'passwords',
-        'voyager',
     ),
     /**
      * determines whether missing keys are logged

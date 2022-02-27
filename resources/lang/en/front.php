@@ -256,6 +256,7 @@ return [
         'contact'       => 'Contact',
         'contact_us'    => 'Contact Us',
         'dashboard'     => 'Dashboard',
+        'documentation' => 'Documentation',
         'faq'           => 'FAQ & Help',
         'features'      => 'Features',
         'help'          => 'Help',

@@ -1,6 +1,9 @@
 <?php
 
 return [
+    'campaign'      => [
+        'name'  => 'Monde de :user',
+    ],
     'character1'    => [
         'fears'     => 'James a peur du bruit et des explosions.',
         'history'   => 'Ceci est un exemple de personnage.',
@@ -18,12 +21,6 @@ return [
         'sex'       => 'Femelle',
         'title'     => 'Reine des Explosions',
         'traits'    => 'Besoin d\'autre chose? Cette section est là pour ça!',
-    ],
-    'item1'         => [
-        'description'   => 'Exemple d\'un objet',
-        'history'       => 'Histoire de l\'objet.',
-        'name'          => 'Dague de la Pénombre (exemple)',
-        'type'          => 'Arme',
     ],
     'kingdom1'      => [
         'description'   => 'Ceci est un exemple de localité.',
@@ -45,7 +42,7 @@ Tu voudras probablement commencer par ajouter tes propres entités. Choisis une 
 
 Voici quelques conseils pour t'aider à commencer:
 - Tu peux écrire @nom dans la description d'une entité pour lier vers d'autres entités. Le lien sera automatiquement mis à jour en cas de modifications de l'entité mentionnée.
-- Tu peux configurer ton profil pour changer de thème ou le nombre d'entités affichées par page. L'accès à la configuration du profil se fait en cliquant en haut à droite. 
+- Tu peux configurer ton profil pour changer de thème ou le nombre d'entités affichées par page. L'accès à la configuration du profil se fait en cliquant en haut à droite.
 - Tu peux définir des permissions sur des types d'entités ainsi que sur les entités individuellement.
 - Il y a des tutoriels sur :youtube. Les tutoriels couvrent la thématique des attributs ou comment partager la campagne avec tes amis. La :faq peut aussi t'être utile.
 

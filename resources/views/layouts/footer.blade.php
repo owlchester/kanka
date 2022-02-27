@@ -74,7 +74,7 @@
                         <a href="{{ route('front.faqs.index') }}">{{ __('front.menu.kb') }}</a>
                     </li>
                     <li>
-                        <a href="{{ route('front.roadmap') }}">{{ __('front.menu.roadmap') }}</a>
+                        <a href="{{ route('documentation') }}">{{ __('front.menu.documentation') }}</a>
                     </li>
                     <li>
                         <a href="{{ route('front.contact') }}">{{ __('front.menu.contact') }}</a>

@@ -67,7 +67,6 @@ class CampaignDashboardWidget extends Model
         'config',
         'position',
         'width',
-        'is_full',
         'dashboard_id',
     ];
 

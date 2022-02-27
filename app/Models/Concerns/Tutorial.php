@@ -61,6 +61,7 @@ trait Tutorial
      */
     public function disabledTutorial(): bool
     {
+        return true;
         return isset($this->tutorial['disabled']);
     }
 

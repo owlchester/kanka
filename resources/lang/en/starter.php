@@ -1,8 +1,8 @@
 <?php
 
 return [
-    'campaign' => [
-        'name' => ':user\'s world',
+    'campaign'      => [
+        'name'  => ':user\'s world',
     ],
     'character1'    => [
         'fears'     => 'James is scared of loud noises and explosions.',
@@ -21,12 +21,6 @@ return [
         'sex'       => 'Female',
         'title'     => 'Queen of Explosions',
         'traits'    => 'Want to track something else? We\'ve got you covered with this free text section!',
-    ],
-    'item1'         => [
-        'description'   => 'Example of an item.',
-        'history'       => 'History of the item.',
-        'name'          => 'Dagger of Darkness (example)',
-        'type'          => 'Weapon',
     ],
     'kingdom1'      => [
         'description'   => 'This is an example location created to show you what can be done with the app.',

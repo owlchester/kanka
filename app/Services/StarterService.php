@@ -39,9 +39,16 @@ class StarterService
             'name' => __('starter.campaign.name', ['user' => $this->user->name]),
             'entry' => '',
             'excerpt' => '',
+            'ui_settings' => ['nested' => true]
         ];
         $campaign = Campaign::create($data);
         $this->user->setCurrentCampaign($campaign);
+
+        try {
+            $this->generateBoilerplate($campaign);
+        } catch (\Exception $e) {
+            // Don't block the user if the boilerplate crashes
+        }
 
         return $campaign;
     }
@@ -51,6 +58,7 @@ class StarterService
      */
     public function generateBoilerplate(Campaign $campaign)
     {
+        CampaignLocalization::forceCampaign($campaign);
         $this->campaign = $campaign;
 
         // Generate locations
@@ -102,19 +110,6 @@ class StarterService
         ]);
         $irwie->save();
 
-        // One item for good measure
-        $item = new Item([
-            'name' => __('starter.item1.name'),
-            'campaign_id' => $campaign->id,
-            'type' => __('starter.item1.type'),
-            'entry' => '<p>' . __('starter.item1.description') . '</p>',
-            'character_id' => $irwie->id,
-            'location_id' => $kingdom->id,
-            'is_private' => false,
-        ]);
-        $item->save();
-
-
         $this->dashboard();
     }
 
@@ -143,7 +138,7 @@ class StarterService
             'entity_id' => $note->entity->id,
             'widget' => CampaignDashboardWidget::WIDGET_PREVIEW,
             'width' => 6, // half
-            'config' => '{"full":"1"}',
+            'config' => ['full' => '1'],
             'position' => 1,
         ]);
         $widget->save();
