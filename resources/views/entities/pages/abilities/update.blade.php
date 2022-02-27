@@ -11,6 +11,11 @@
 @inject('campaign', 'App\Services\CampaignService')
 
 @section('content')
+    {!! Form::model($ability, [
+        'route' => ['entities.entity_abilities.update', $entity->id, $ability],
+        'method' => 'PATCH',
+        'data-shortcut' => 1
+    ]) !!}
     <div class="panel panel-default">
         @if (request()->ajax())
             <div class="panel-heading">
@@ -23,10 +28,8 @@
         <div class="panel-body">
             @include('partials.errors')
 
-            {!! Form::model($ability, ['route' => ['entities.entity_abilities.update', $entity->id, $ability], 'method' => 'PATCH', 'data-shortcut' => 1]) !!}
-
             <div class="form-group">
-                <label>{{ __('crud.fields.ability') }}</label>
+                <label>{{ __('crud.fields.ability') }}</label><br />
                 {!! $ability->ability->tooltipedLink() !!}
                 {!! Form::hidden('ability_id', $ability->ability_id) !!}
             </div>
@@ -52,13 +55,11 @@
             </div>
 
             @include('cruds.fields.visibility')
-
-            <div class="form-group">
-                <button class="btn btn-success">{{ trans('crud.save') }}</button>
-                @includeWhen(!request()->ajax(), 'partials.or_cancel')
-            </div>
-
-            {!! Form::close() !!}
+        </div>
+        <div class="panel-footer">
+            <button class="btn btn-success pull-right">{{ __('crud.save') }}</button>
+            @include('partials.footer_cancel')
         </div>
     </div>
+    {!! Form::close() !!}
 @endsection
