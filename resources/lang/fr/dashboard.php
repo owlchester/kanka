@@ -71,7 +71,7 @@ return [
         'title' => 'Modifications récentes sur les :name',
     ],
     'settings'          => [
-        'title' => 'Paramètres du tableau de bord',
+        'title' => 'Modifier le tableau de bord',
     ],
     'setup'             => [
         'actions'   => [

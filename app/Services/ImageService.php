@@ -223,18 +223,20 @@ class ImageService
      */
     public static function cleanup($model, $field = 'image')
     {
-        if ($model->$field) {
-            try {
-                Storage::delete($model->$field);
-                // Leave removing thumbs for old campaigns
-                $thumb = str_replace('.', '_thumb.', $model->$field);
-                if (Storage::has($thumb)) {
-                    Storage::delete($thumb);
-                }
-            } catch (Exception $e) {
-                // silence exception, didn't find the image to delete.
-            }
-            $model->$field = null;
+        if (empty($model->$field)) {
+            return;
         }
+
+        try {
+            Storage::delete($model->$field);
+            // Leave removing thumbs for old campaigns
+            $thumb = str_replace('.', '_thumb.', $model->$field);
+            if (Storage::has($thumb)) {
+                Storage::delete($thumb);
+            }
+        } catch (Exception $e) {
+            // silence exception, didn't find the image to delete.
+        }
+        $model->$field = null;
     }
 }

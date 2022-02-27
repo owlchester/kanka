@@ -115,6 +115,8 @@ class RecoveryService
         $this->entityIds[] = $entity->id;
         $entity->forceDelete();
 
+        ImageService::cleanup($child);
+
 
         $this->count++;
     }

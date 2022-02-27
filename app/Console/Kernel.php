@@ -36,7 +36,7 @@ class Kernel extends ConsoleKernel
         $schedule->command(CampaignVisibileEntityCount::class)->dailyAt('01:00');
         $schedule->command(CleanupEntityLogs::class)->dailyAt('03:30');
         $schedule->command(CleanupEntityUsers::class)->dailyAt('03:35');
-        //$schedule->command(CleanupTrashed::class)->dailyAt('04:00');
+        $schedule->command(CleanupTrashed::class)->dailyAt('04:00');
 
         $schedule->command('backup:clean')->daily()->at('01:00');
         $schedule->command('backup:run')->twiceDaily(2, 14);

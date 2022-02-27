@@ -18,7 +18,7 @@ class CleanupTrashed extends Command
      *
      * @var string
      */
-    protected $signature = 'cleanup:trashed {types=all}';
+    protected $signature = 'cleanup:trashed {types=character}';
 
     /**
      * The console command description.
@@ -55,24 +55,39 @@ class CleanupTrashed extends Command
         $delay = Carbon::now()->subDays(config('entities.hard_delete'))->toDateString();
         $types = $this->argument('types');
         $typeList = explode(',', $types);
-        $firstType = Arr::first($typeList);
-        $firstTypeTable = Str::plural($firstType);
+        $entityTypeIDs = [];
+        foreach ($typeList as $entityType) {
+            if ($entityType === 'all') {
+                continue;
+            }
+            $id = config('entities.ids.' . $entityType);
+            if (empty($id)) {
+                $this->warn('Unknown entity type ' . $entityType);
+                continue;
+            }
+            $entityTypeIDs[] = $id;
+        }
+
 
         $this->info('Looking for deleted entities (' . $types . ') where deleted_at <= ' . $delay);
 
         // Stats stuff for developing
         $entityCount = $endEntityCount = 0;
-        if ($firstType !== 'all') {
+        if ($types !== 'all') {
+            $firstType = Arr::first($typeList);
+            $firstTypeTable = Str::plural($firstType);
+            $firstTypeID = Arr::first($entityTypeIDs);
+
             $res = DB::table($firstTypeTable)
                 ->select(DB::raw('count(*) as tot'))
                 ->get();
             $this->info('Total ' . $firstTypeTable . ' ' . number_format($res[0]->tot, 0, '.', '\''));
             $res = DB::table('entities')
                 ->select(DB::raw('count(*) as tot'))
-                ->where('type', $firstType)
+                ->where('type_id', $firstTypeID)
                 ->get();
             $entityCount = $res[0]->tot;
-            $this->info('Total entities ' . number_format($entityCount, 0, '.', '\''));
+            $this->info('Total entities (type_id=' . $firstTypeID . ')' . number_format($entityCount, 0, '.', '\''));
         }
 
         // Dump each time a query is made
@@ -84,7 +99,7 @@ class CleanupTrashed extends Command
 
         DB::beginTransaction();
         try {
-            Entity::inTypes($typeList)
+            Entity::inTypes($entityTypeIDs)
                 ->onlyTrashed()
                 ->where('deleted_at', '<=', $delay)
                 ->allCampaigns()
@@ -93,6 +108,7 @@ class CleanupTrashed extends Command
                 ->chunkById(1000, function ($entities) {
                     $this->info('Chunk deleting ' . count($entities) . ' entities.');
                     foreach ($entities as $entity) {
+                        //dump($entity->name . ' (' . $entity->type() . ')');
                         $this->service->trash($entity);
                     }
                 });
@@ -106,17 +122,17 @@ class CleanupTrashed extends Command
         $this->info('Deleted ' . $this->service->count() . ' trashed entities.');
 
         // Stats checkup for developing
-        if ($firstType !== 'all') {
+        if ($types !== 'all') {
             $res = DB::table($firstTypeTable)
                 ->select(DB::raw('count(*) as tot'))
                 ->get();
             $this->info('Total ' . $firstTypeTable . ' ' . number_format($res[0]->tot, 0, '.', '\''));
             $res = DB::table('entities')
                 ->select(DB::raw('count(*) as tot'))
-                ->where('type', $firstType)
+                ->where('type_id', $firstTypeID)
                 ->get();
             $endEntityCount = $res[0]->tot;
-            $this->info('Total entities ' . number_format($endEntityCount, 0, '.', '\''));
+            $this->info('Total entities (type_id=' . $firstTypeID . ') ' . number_format($endEntityCount, 0, '.', '\''));
 
             if ($entityCount - $this->service->count() !== $endEntityCount) {
                 $this->error('Entity count mismatch ' . $entityCount . ' - ' . $this->service->count() . ' != ' . $endEntityCount);
