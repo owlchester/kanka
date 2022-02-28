@@ -16,9 +16,7 @@
         @include('entities.components.notes')
 
         <div class="box box-solid">
-            <div class="box-body">
                 @include('dice_rolls._results')
-            </div>
         </div>
 
         @include('cruds.partials.mentions')

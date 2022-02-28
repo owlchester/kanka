@@ -310,6 +310,19 @@ class Entity extends Model
     }
 
     /**
+     * @param $types
+     * @return bool
+     */
+    public function isType($types): bool
+    {
+        if (!is_array($types)) {
+            $types[] = $types;
+        }
+
+        return in_array($this->type_id, $types);
+    }
+
+    /**
      * @return string
      */
     public function type(): string

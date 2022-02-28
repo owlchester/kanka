@@ -56,6 +56,7 @@ $first = $pinnedNotes->first();
 </div>
 @endif
 
+@if ($entity && !$entity->isType([config('entities.ids.map'), config('entities.ids.timeline'), config('entities.ids.calendar')]))
 @can('entity-note', [$model, 'add'])
     <div class="margin-bottom text-center row-add-note-button">
             <a href="{{ route('entities.entity_notes.create', $entity) }}" class="btn btn-warning btn-sm"
@@ -64,3 +65,4 @@ $first = $pinnedNotes->first();
             </a>
     </div>
 @endcan
+@endif
