@@ -122,7 +122,7 @@ class TagController extends CrudController
     {
         $this->authorize('update', $tag);
         $ajax = request()->ajax();
-        $formOptions = ['tags.entity-add', 'tag' => $tag];
+        $formOptions = ['tags.entity-add.save', 'tag' => $tag];
         if (request()->has('from-children')) {
             $formOptions['from-children'] = true;
         }

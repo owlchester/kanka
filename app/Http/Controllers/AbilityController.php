@@ -127,7 +127,7 @@ class AbilityController extends CrudController
     {
         $this->authorize('update', $ability);
         $ajax = request()->ajax();
-        $formOptions = ['abilities.entity-add', 'ability' => $ability];
+        $formOptions = ['abilities.entity-add.save', 'ability' => $ability];
         if (request()->has('from-children')) {
             $formOptions['from-children'] = true;
         }

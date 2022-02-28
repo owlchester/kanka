@@ -40,7 +40,7 @@
                                     {!! Form::open([
                                         'method' => 'DELETE',
                                         'route' => [
-                                            'campaign.default-images',
+                                            'campaign.default-images.delete',
                                         ],
                                         'style' => 'display:inline',
                                         'id' => 'delete-form-' . $image['uuid']

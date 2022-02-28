@@ -17,7 +17,7 @@
         <div class="col-md-9">
 
             @if ($campaign->boosted())
-            {{ Form::open(['route' => ['recovery']]) }}
+            {{ Form::open(['route' => ['recovery.save']]) }}
             <div class="box no-border">
                 <div class="box-body">
                     <p class="help-block">{{ __('campaigns/recovery.helper', ['count' => config('entities.hard_delete')]) }}</p>

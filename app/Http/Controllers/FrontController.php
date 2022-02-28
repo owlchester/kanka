@@ -189,6 +189,16 @@ class FrontController extends Controller
             ->to(app()->getLocale() . '/campaign/' . 20000);
     }
 
+    /**
+     * Redirect to the api docs
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function api()
+    {
+        return redirect()
+            ->to(app()->getLocale() . '/docs/1.0/overview');
+    }
+
     protected function cachedResponse(string $view, int $days = 7)
     {
         return response(view($view))

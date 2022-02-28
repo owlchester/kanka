@@ -49,4 +49,5 @@ Route::resources([
 // Documentation catch all
 Route::get('/documentation', 'FrontController@documentation')->name('documentation');
 Route::get('/docs', 'FrontController@documentation');
+Route::get('/api', 'FrontController@api');
 

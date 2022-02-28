@@ -42,8 +42,8 @@ Route::group([
     // OAuth Routes
     Route::get('auth/{provider}', 'Auth\AuthController@redirectToProvider')->name('auth.provider');
 
-    Route::get('/start', 'StartController@index')->name('start');
-    Route::post('/start', 'StartController@store')->name('start');
+    //Route::get('/start', 'StartController@index')->name('start');
+    //Route::post('/start', 'StartController@store')->name('start.save');
     Route::post('/create-campaign', 'CampaignController@store')->name('create-campaign');
 
     // Invitation's campaign comes from the token.
@@ -76,7 +76,7 @@ Route::group([
         Route::get('/abilities/tree', 'AbilityController@tree')->name('abilities.tree');
 
         Route::get('/abilities/{ability}/entity-add', 'AbilityController@entityAdd')->name('abilities.entity-add');
-        Route::post('/abilities/{ability}/entity-add', 'AbilityController@entityStore')->name('abilities.entity-add');
+        Route::post('/abilities/{ability}/entity-add', 'AbilityController@entityStore')->name('abilities.entity-add.save');
 
         // Maps
         Route::get('/maps/{map}/maps', 'Maps\MapController@maps')->name('maps.maps');
@@ -168,7 +168,7 @@ Route::group([
 
         // Tags Quick Add
         Route::get('/tags/{tag}/entity-add', 'TagController@entityAdd')->name('tags.entity-add');
-        Route::post('/tags/{tag}/entity-add', 'TagController@entityStore')->name('tags.entity-add');
+        Route::post('/tags/{tag}/entity-add', 'TagController@entityStore')->name('tags.entity-add.save');
 
         // Multi-delete for cruds
         Route::post('/bulk/process', 'BulkController@process')->name('bulk.process');
@@ -216,7 +216,7 @@ Route::group([
         Route::post('/entities/{entity}/image-focus', [\App\Http\Controllers\Entity\ImageController::class, 'saveFocus'])->name('entities.image.save-focus');
 
         Route::get('/entities/{entity}/image-replace', [\App\Http\Controllers\Entity\ImageController::class, 'replace'])->name('entities.image.replace');
-        Route::post('/entities/{entity}/image-replace', [\App\Http\Controllers\Entity\ImageController::class, 'update'])->name('entities.image.replace');
+        Route::post('/entities/{entity}/image-replace', [\App\Http\Controllers\Entity\ImageController::class, 'update'])->name('entities.image.replace.save');
 
 
         // Entity update entry
@@ -240,7 +240,7 @@ Route::group([
 
         // Recovery
         Route::get('/recovery', 'Campaign\RecoveryController@index')->name('recovery');
-        Route::post('/recovery', 'Campaign\RecoveryController@recover')->name('recovery');
+        Route::post('/recovery', 'Campaign\RecoveryController@recover')->name('recovery.save');
 
 
 
@@ -259,7 +259,7 @@ Route::group([
         Route::post('/default-images/create', 'Campaign\DefaultImageController@store')
             ->name('campaign.default-images.store');
         Route::delete('/default-images', 'Campaign\DefaultImageController@destroy')
-            ->name('campaign.default-images');
+            ->name('campaign.default-images.delete');
 
         Route::post('/gallery/folder', 'Campaign\GalleryController@folder')
             ->name('campaign.gallery.folder');
