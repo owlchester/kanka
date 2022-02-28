@@ -55,3 +55,12 @@ $first = $pinnedNotes->first();
 @if($wrapper)
 </div>
 @endif
+
+@can('entity-note', [$model, 'add'])
+    <div class="margin-bottom text-center row-add-note-button">
+            <a href="{{ route('entities.entity_notes.create', $entity) }}" class="btn btn-warning btn-sm"
+               data-toggle="tooltip" title="{{ __('crud.tooltips.new_post') }}">
+                <i class="fa fa-plus"></i> {{ __('crud.actions.new_post') }}
+            </a>
+    </div>
+@endcan

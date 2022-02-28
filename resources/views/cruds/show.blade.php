@@ -38,7 +38,8 @@ $headerImage = true;
             </a>
         @endcan
         @can('entity-note', [$model, 'add'])
-        <a href="{{ route('entities.entity_notes.create', $model->entity) }}" class="btn btn-warning btn-sm ">
+        <a href="{{ route('entities.entity_notes.create', $model->entity) }}" class="btn btn-warning btn-sm"
+           data-toggle="tooltip" title="{{ __('crud.tooltips.new_post') }}">
             <i class="fa fa-plus"></i> {{ __('crud.actions.new_post') }}
         </a>
         @endcan

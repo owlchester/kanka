@@ -383,6 +383,7 @@ return [
     ],
     'tooltips'                  => [
         'boosted_feature'   => 'Boosted campaign feature',
+        'new_post' => 'Add a new post to this entity.',
     ],
     'update'                    => 'Update',
     'users'                     => [
