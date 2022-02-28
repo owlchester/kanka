@@ -196,7 +196,7 @@ class FrontController extends Controller
     public function api()
     {
         return redirect()
-            ->to(app()->getLocale() . '/docs/1.0/overview');
+            ->to(app()->getLocale() . config('larecipe.docs.route') . '/1.0/overview');
     }
 
     protected function cachedResponse(string $view, int $days = 7)

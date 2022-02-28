@@ -50,4 +50,5 @@ Route::resources([
 Route::get('/documentation', 'FrontController@documentation')->name('documentation');
 Route::get('/docs', 'FrontController@documentation');
 Route::get('/api', 'FrontController@api');
+Route::get('/docs/1.0/{sub}', 'FrontController@api');
 

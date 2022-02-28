@@ -99,7 +99,7 @@
                         <a href="//loot.kanka.io" target="_blank">{{ __('front.menu.merch') }}</a>
                     </li>
                     <li>
-                        <a href="/docs/1.0">{{ __('front.menu.api') }}</a>
+                        <a href="/{{ app()->getLocale() }}{{ config('larecipe.docs.route') }}/1.0/overview" target="_blank">{{ __('front.menu.api') }}</a>
                     </li>
                     <li>
                         <a href="{{ route('front.privacy') }}">{{ __('front.menu.privacy') }}</a>

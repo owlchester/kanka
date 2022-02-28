@@ -14,8 +14,8 @@ return [
     */
 
     'docs'        => [
-        'route'   => '/docs',
-        'path'    => '/resources/docs',
+        'route'   => '/api-docs',
+        'path'    => '/resources/api-docs',
         'landing' => 'overview',
     ],
 
