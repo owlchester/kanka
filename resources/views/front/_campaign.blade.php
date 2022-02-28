@@ -6,6 +6,9 @@
         </div>
         <div class="bottom">
             <h4 class="campaign-title">
+                @if (!$featured && $campaign->isFeatured())
+                    <i class="fas fa-star" title="{{ __('campaigns.fields.featured_campaign') }}"></i>
+                @endif
                 {!! $campaign->name !!}
             </h4>
             <div class="labels">

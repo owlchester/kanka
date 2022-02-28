@@ -286,6 +286,15 @@ class Campaign extends MiscModel
     }
 
     /**
+     * Determine if a campaign is featured
+     * @return bool
+     */
+    public function isFeatured(): bool
+    {
+        return (bool) $this->is_featured;
+    }
+
+    /**
      * @return mixed
      */
     public function entry()
