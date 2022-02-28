@@ -42,7 +42,7 @@ Route::group([
     // OAuth Routes
     Route::get('auth/{provider}', 'Auth\AuthController@redirectToProvider')->name('auth.provider');
 
-    //Route::get('/start', 'StartController@index')->name('start');
+    Route::get('/start', 'StartController@index')->name('start');
     //Route::post('/start', 'StartController@store')->name('start.save');
     Route::post('/create-campaign', 'CampaignController@store')->name('create-campaign');
 
