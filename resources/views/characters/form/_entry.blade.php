@@ -17,16 +17,20 @@ if (request()->route()->getName() == 'characters.random') {
     <div class="col-md-6">
         @include('cruds.fields.type', ['base' => \App\Models\Character::class, 'trans' => 'characters'])
     </div>
-</div>
 
-<div class="row">
     <div class="col-md-6">
         @include('cruds.fields.title')
-        @include('cruds.fields.location', ['quickCreator' => true])
     </div>
     <div class="col-md-6">
         @include('cruds.fields.family', ['quickCreator' => true])
-        @include('cruds.fields.races')
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6">
+        @include('cruds.fields.location', ['quickCreator' => true])
+    </div>
+    <div class="col-md-6">
+        @include('cruds.fields.races', ['quickCreator' => true])
     </div>
 </div>
 
