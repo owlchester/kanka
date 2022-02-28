@@ -225,7 +225,7 @@ TEXT
             'closed'    => 'Closed',
             'open'      => 'Open to applications',
         ],
-        'title'     => 'Open Campaign',
+        'title'     => 'Applications',
     ],
     'panels'                            => [
         'boosted'   => 'Boosted',
