@@ -19,7 +19,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string $date
  * @property int $character_id
  * @property int $journal_id
+ * @property int $author_id
  * @property Character $character
+ * @property Entity $author
  * @property Journal $journal
  * @property Journal[] $journals
  * @property Journal[] $descendants
@@ -49,6 +51,7 @@ class Journal extends MiscModel
         'location_id',
         'is_private',
         'journal_id',
+        'author_id',
 
         // calendar date
         'calendar_id',
@@ -78,6 +81,7 @@ class Journal extends MiscModel
         'character_id',
         'location_id',
         'journal_id',
+        'author_id',
     ];
 
     /**
@@ -87,7 +91,8 @@ class Journal extends MiscModel
     protected $sortableColumns = [
         'date',
         'calendar_date',
-        'character.name',
+        'author.name',
+        //'character.name',
     ];
 
     /**
@@ -96,9 +101,10 @@ class Journal extends MiscModel
      */
     public $nullableForeignKeys = [
         'location_id',
-        'character_id',
+        //'character_id',
         'calendar_id',
         'journal_id',
+        'author_id',
     ];
 
     /**
@@ -111,7 +117,7 @@ class Journal extends MiscModel
         return $query->with([
             'entity',
             'entity.image',
-            'character', 'character.entity',
+            'author',
             'location', 'location.entity',
             'journal', 'journal.entity',
             'calendar',
@@ -169,6 +175,14 @@ class Journal extends MiscModel
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
+    public function author()
+    {
+        return $this->belongsTo('App\Models\Entity', 'author_id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function location()
     {
         return $this->belongsTo('App\Models\Location', 'location_id');
@@ -211,7 +225,7 @@ class Journal extends MiscModel
             return true;
         }
 
-        if (!empty($this->character)) {
+        if (!empty($this->author)) {
             return true;
         }
 

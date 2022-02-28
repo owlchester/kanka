@@ -123,6 +123,7 @@ class EntityRelationService
                 $this->addParent()
                     ->addLocation()
                     ->addQuests()
+                    ->addAuthorJournals()
                     ->addMapMarkers();
             }
         }
@@ -357,7 +358,9 @@ class EntityRelationService
                 ->addParent()
                 ->addLocation()
                 ->addQuests()
-                ->addMapMarkers();
+                ->addMapMarkers()
+                ->addAuthorJournals()
+        ;
         }
         return $this;
     }
@@ -432,7 +435,7 @@ class EntityRelationService
             $this->addFamily()
                 ->addOrganisation()
                 ->addItems()
-                ->addJournals()
+                ->addAuthorJournals()
                 ->addLocation()
                 ->addDiceRolls()
                 ->addConversations()
@@ -468,6 +471,7 @@ class EntityRelationService
                 ->addQuests()
                 ->addMapMarkers()
                 ->addMaps()
+                ->addAuthorJournals()
             ;
         }
 
@@ -498,6 +502,7 @@ class EntityRelationService
                 ->addLocation()
                 ->addQuests()
                 ->addMapMarkers()
+                ->addAuthorJournals()
             ;
         }
 
@@ -518,7 +523,9 @@ class EntityRelationService
                 ->addLocation()
                 ->addQuests()
                 ->addMapMarkers()
-                ->addMaps();
+                ->addMaps()
+                ->addAuthorJournals()
+            ;
         }
 
         return $this;
@@ -626,16 +633,33 @@ class EntityRelationService
     protected function addJournals(): self
     {
         /** @var Journal $journal */
-        $isCharacter = $this->entity->typeId() == config('entities.ids.character');
         foreach ($this->entity->child->journals()->with('entity')->has('entity')->get() as $journal) {
             $this->addEntity($journal->entity);
             $this->relations[] = [
                 'source' => $this->entity->id,
                 'target' => $journal->entity->id,
-                'text' => $isCharacter ? __('journals.fields.author') : __('crud.fields.journal'),
+                'text' => __('crud.fields.journal'),
                 'colour' => '#ccc',
                 'attitude' => null,
-                'type' => 'journal-' . ($isCharacter ? 'author' : 'location'),
+                'type' => 'journal-location',
+                'shape' => 'none',
+            ];
+        }
+        return $this;
+    }
+
+    protected function addAuthorJournals(): self
+    {
+        $elements = $this->entity->authoredJournals()->with(['entity'])->has('entity')->get();
+        foreach ($elements as $journal) {
+            $this->addEntity($journal->entity);
+            $this->relations[] = [
+                'source' => $this->entity->id,
+                'target' => $journal->entity->id,
+                'text' => __('journals.fields.author'),
+                'colour' => '#ccc',
+                'attitude' => null,
+                'type' => 'journal-author',
                 'shape' => 'none',
             ];
         }

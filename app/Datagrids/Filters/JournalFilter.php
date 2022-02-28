@@ -2,6 +2,8 @@
 
 namespace App\Datagrids\Filters;
 
+use App\Models\Entity;
+
 class JournalFilter extends DatagridFilter
 {
     /**
@@ -13,7 +15,14 @@ class JournalFilter extends DatagridFilter
             ->add('name')
             ->add('type')
             ->date()
-            ->character()
+            ->add([
+                    'field' => 'author_id',
+                    'label' => trans('journals.fields.author'),
+                    'type' => 'select2',
+                    'route' => route('search.entities-with-relations'),
+                    'placeholder' =>  trans('journals.placeholders.author'),
+                    'model' => Entity::class,
+            ])
             ->location()
             ->isPrivate()
             ->hasImage()

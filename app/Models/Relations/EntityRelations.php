@@ -18,6 +18,7 @@ use App\Models\EntityTag;
 use App\Models\EntityUser;
 use App\Models\Image;
 use App\Models\Inventory;
+use App\Models\Journal;
 use App\Models\Map;
 use App\Models\MiscModel;
 use App\Models\Quest;
@@ -421,6 +422,11 @@ trait EntityRelations
     public function mapMarkers()
     {
         return $this->hasMany('App\Models\MapMarker', 'entity_id', 'id');
+    }
+
+    public function authoredJournals()
+    {
+        return $this->hasMany(Journal::class, 'author_id', 'id');
     }
 
     /**

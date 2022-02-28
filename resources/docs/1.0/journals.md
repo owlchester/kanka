@@ -43,7 +43,7 @@ The list of returned journals can be filtered. The available filters are availab
             "created_by": null,
             "updated_at":  "2019-08-29T13:48:54.000000Z",
             "updated_by": 1,
-            "character_id": 11,
+            "author_id": 11,
             "date": "2017-11-02",
             "type": "Session"
         }
@@ -79,7 +79,7 @@ To get the details of a single journal, use the following endpoint.
         "created_by": null,
         "updated_at":  "2019-08-29T13:48:54.000000Z",
         "updated_by": 1,
-        "character_id": 11,
+        "author_id": 11,
         "date": "2017-11-02",
         "type": "Session"
     }
@@ -105,7 +105,7 @@ To create a journal, use the following endpoint.
 | `entry` | `string` | The html description of the journal |
 | `type` | `string` | The journal's type |
 | `date` | `string` | The date of the session |
-| `character_id` | `string` | The "author" of the journal |
+| `author_id` | `string` | The "author" of the journal (entity id) |
 | `tags` | `array` | Array of tag ids |
 | `image_url` | `string` | URL to a picture to be used for the journal |
 | `entity_image_uuid` | `string` | Gallery image UUID for the entity image (limited to superboosted campaigns) |

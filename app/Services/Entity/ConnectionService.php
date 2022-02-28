@@ -71,7 +71,9 @@ class ConnectionService
             $this->loadMapMarkers()
                 ->loadLocation()
                 ->loadTimelines()
-                ->loadQuests();
+                ->loadQuests()
+                ->loadAuthoredJournals()
+            ;
         }
     }
 
@@ -83,9 +85,9 @@ class ConnectionService
         $this->loadMapMarkers()
             ->loadQuests()
             ->loadItems()
-            ->loadJournals()
             ->loadTimelines()
             ->loadDicerolls()
+            ->loadAuthoredJournals()
         ;
     }
 
@@ -102,6 +104,7 @@ class ConnectionService
             ->loadJournals()
             ->loadFamilies()
             ->loadTimelines()
+            ->loadAuthoredJournals()
         ;
     }
 
@@ -112,7 +115,9 @@ class ConnectionService
             ->loadParentMaps()
             ->loadLocation()
             ->loadTimelines()
-            ->loadQuests();
+            ->loadAuthoredJournals()
+            ->loadQuests()
+        ;
     }
 
     /**
@@ -213,6 +218,17 @@ class ConnectionService
             $entity = $sub->entity;
             $this->ids[] = $entity->id;
             $this->reasons[$entity->id][] = __('entities.journal');
+        }
+        return $this;
+    }
+
+    protected function loadAuthoredJournals(): self
+    {
+        $elements = $this->entity->authoredJournals()->with(['entity'])->has('entity')->get();
+        foreach ($elements as $sub) {
+            $entity = $sub->entity;
+            $this->ids[] = $entity->id;
+            $this->reasons[$entity->id][] = __('journals.fields.author');
         }
         return $this;
     }

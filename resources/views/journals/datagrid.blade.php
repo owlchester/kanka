@@ -1,3 +1,4 @@
+<?php /** @var \App\Models\Journal $model */?>
 @inject ('datagrid', 'App\Renderers\DatagridRenderer')
 
 {!! $datagrid->filters($filters)
@@ -16,17 +17,17 @@
         [
             'type' => 'calendar_date',
         ],
-        // Character
+        // Author
         [
             'type' => 'avatar',
-            'parent' => 'character',
-            'parent_route' => 'characters',
-            'visible' => $campaign->enabled('characters'),
+            'parent' => 'author',
         ],
         [
-            'type' => 'character',
-            'visible' => $campaign->enabled('characters'),
-            'label' => trans('journals.fields.author')
+            'field' => 'author.name',
+            'label' => __('journals.fields.author'),
+            'render' => function($model) {
+                return $model->author ? $model->author->tooltipedLink() : null;
+            },
         ],
         [
             'type' => 'is_private',

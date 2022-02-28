@@ -20,10 +20,10 @@
             </div>
         @endif
 
-        @if ($model->character)
+        @if ($model->author && $model->author)
             <div class="element profile-character">
                 <div class="title">{{ __('journals.fields.author') }}</div>
-                {!! $model->character->tooltipedLink() !!}
+                {!! $model->author->tooltipedLink() !!}
             </div>
         @endif
 

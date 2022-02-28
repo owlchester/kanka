@@ -41,19 +41,19 @@
             @foreach ($connections as $connection)
                 <tr data-entity-id="{{ $connection->id }}" data-entity-type="{{ $connection->type() }}">
                     <td class="avatar">
-                        <a class="entity-image" style="background-image: url('{{ $connection->child->getImageUrl(40) }}');" title="{{ $connection->name }}" href="{{ $connection->url() }}"></a>
+                        <a class="entity-image" style="background-image: url('{{ $connection->avatar(40) }}');" title="{{ $connection->name }}" href="{{ $connection->url() }}"></a>
                     </td>
                     <td>
-                        {!! $connection->child->tooltipedLink() !!}
+                        {!! $connection->tooltipedLink() !!}
 
                         @if ($connection->type() == 'map')
-                            <a href="{{ route('maps.explore', $connection->child) }}" class="btn btn-xs btn-primary" target="_blank">
+                            <a href="{{ route('maps.explore', $connection->entity_id) }}" class="btn btn-xs btn-primary" target="_blank">
                                 <i class="fa fa-map"></i> {{ __('maps.actions.explore') }}
                             </a>
                         @endif
                     </td>
                     <td>
-                        {{ __('entities.' . $connection->child->getEntityType()) }}
+                        {{ $connection->entityType() }}
                     </td>
                     <td>
                         {{ $connectionService->connectionsText($connection->id) }}
@@ -62,8 +62,10 @@
             @endforeach
             </tbody>
         </table>
-
-        {{ $connections->appends(['mode' => $mode, 'order' => request()->get('order')])->fragment('entity-connections')->links() }}
-
     </div>
+    @if ($connections->hasPages())
+    <div class="box-footer">
+        {{ $connections->appends(['mode' => $mode, 'order' => request()->get('order')])->fragment('entity-connections')->links() }}
+    </div>
+    @endif
 </div>
