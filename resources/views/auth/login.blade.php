@@ -16,7 +16,7 @@
         <div class="form-group has-feedback{{ $errors->has('email') ? ' has-error' : '' }}">
             @if(config('auth.user_list'))
                 <select id="email" name="email" class="form-control">
-                    @foreach (\App\User::get() as $user)
+                    @foreach (\App\User::limit(30)->get() as $user)
                         <option value="{{ $user->email}}">{!! $user->name !!}</option>
                     @endforeach
                 </select>

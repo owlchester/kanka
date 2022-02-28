@@ -389,6 +389,7 @@ class CalendarRenderer
         $weekNumber = $offset > 0 && empty($this->calendar->reset) ? 2 : 1;
         //dump('Starting week number: ' . $weekNumber);
         $totalDay = 1;
+        $weekday = 0;
         foreach ($months as $month) {
             //dump('Month: ' . $month['name']);
             //if ($weekNumber)
@@ -432,7 +433,6 @@ class CalendarRenderer
             // Add each day of the month to the day thing
             $remainingRecurring = [];
             $endedWeek = false;
-            $weekday = 0;
             for ($day = 1; $day <= $monthLength; $day++) {
                 $endedWeek = false;
                 $exact = $this->getYear() . '-' . $monthNumber . '-' . $day;
@@ -502,6 +502,7 @@ class CalendarRenderer
                 $totalDay++;
                 $weekday++;
 
+                // If we're hitting the end of the week, go down
                 if ($weekday % $weekLength == 0 && Arr::get($month, 'type') != 'intercalary') {
                     //if ($weekNumber < 13) dump('end of the week: week ' . $weekNumber . ' is over, going to ' . ($weekNumber+1));
                     $weekNumber++;
