@@ -17,7 +17,7 @@
     </div>
 </div>
 
-{!! Form::model($campaign->setting, ['method' => 'POST', 'route' => ['campaigns.settings.save']]) !!}
+{!! Form::model($campaign->setting, ['method' => 'POST', 'route' => ['campaign_settings.save']]) !!}
 <div class="row">
     <div class="col-md-4">
         @include('campaigns.settings.box', ['icon' => 'fa fa-user', 'module' => 'characters'])

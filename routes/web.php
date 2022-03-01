@@ -356,8 +356,6 @@ Route::group([
         ]);
         Route::get('/leave-campaign', 'CampaignController@leave')->name('campaigns.leave');
 
-        Route::post('campaign-settings', 'CampaignSettingController@save')->name('campaigns.settings.save');
-
         Route::get('/campaigns/{campaign}/dashboard-header/{campaignDashboardWidget?}', 'Campaign\DashboardHeaderController@edit')->name('campaigns.dashboard-header.edit');
         Route::patch('/campaigns/{campaign}/dashboard-header', 'Campaign\DashboardHeaderController@update')->name('campaigns.dashboard-header.update');
 
