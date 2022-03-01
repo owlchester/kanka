@@ -48,7 +48,7 @@ class MigrateJournalAuthor extends Command
             ->whereNull('author_id')
             ->with(['character', 'character.entity'])
             ->has('character')
-            ->chunk($this->chunk, function ($rows) {
+            ->chunkById($this->chunk, function ($rows) {
             $this->info('Looping ' . $this->chunk . '...');
             foreach ($rows as $journal) {
                 /** @var Journal $journal */
