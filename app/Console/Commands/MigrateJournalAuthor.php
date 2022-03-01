@@ -23,6 +23,7 @@ class MigrateJournalAuthor extends Command
     protected $description = 'Migrate journal authors to new structure';
 
     protected $count = 0;
+    protected $chunk = 1000;
 
 
     /**
@@ -47,8 +48,8 @@ class MigrateJournalAuthor extends Command
             ->whereNull('author_id')
             ->with(['character', 'character.entity'])
             ->has('character')
-            ->chunk(2000, function ($rows) {
-            $this->info('Looping 2000....');
+            ->chunk($this->chunk, function ($rows) {
+            $this->info('Looping ' . $this->chunk . '...');
             foreach ($rows as $journal) {
                 /** @var Journal $journal */
                 $journal->author_id = $journal->character->entity->id;
