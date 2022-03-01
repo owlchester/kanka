@@ -12,9 +12,9 @@ return [
     |
     */
 
-    'failed'    => 'Neplatné přihlašovací údaje',
+    'failed'    => 'Neplatné přihlašovací údaje.',
     'helpers'   => [
-        'password'  => 'Zobrazit / skrýt heslo',
+        'password'  => 'Zobrazit / Skrýt heslo',
     ],
     'login'     => [
         'fields'                => [
@@ -26,13 +26,13 @@ return [
         'login_with_twitter'    => 'Přihlášení přes Twitter',
         'new_account'           => 'Registrovat nový účet',
         'or'                    => 'NEBO',
-        'password_forgotten'    => 'Zapomenuté heslo',
+        'password_forgotten'    => 'Zapomněl jsi heslo?',
         'remember_me'           => 'Zapamatuj si mě',
         'submit'                => 'Přihlásit se',
         'title'                 => 'Přihlášení',
     ],
     'register'  => [
-        'already_account'           => 'Existující účet?',
+        'already_account'           => 'Již máš účet?',
         'errors'                    => [
             'email_already_taken'   => 'Účet s tímto emailem již existuje.',
             'general_error'         => 'Při registraci účtu došlo k chybě. Zkuste to, prosím, znovu.',
@@ -41,11 +41,12 @@ return [
             'email'     => 'E-mail',
             'name'      => 'Uživatelské jméno',
             'password'  => 'Heslo',
+            'tos_clean' => 'Souhlasím s :privacy',
         ],
         'register_with_facebook'    => 'Registrace přes Facebook',
         'register_with_google'      => 'Registrace přes Google',
         'register_with_twitter'     => 'Registrace přes Twitter',
-        'submit'                    => 'Zaregistrovat',
+        'submit'                    => 'Zaregistrovat se',
         'title'                     => 'Registrace',
     ],
     'reset'     => [

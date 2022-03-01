@@ -92,4 +92,9 @@ return [
         'week_names'            => '周名',
         'weekdays'              => '工作日',
     ],
+    'helpers'       => [
+        'month_type'    => '闰月不使用工作日，但仍然影响月亮和季节。',
+        'nested_parent' => '显示:parent的日历',
+        'nested_without'=> '显示所有没有父日历的日历。点击某一行以查看子日历。',
+    ],
 ];

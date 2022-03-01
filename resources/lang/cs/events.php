@@ -38,9 +38,12 @@ return [
         'date'      => 'Kalendářní datum události',
         'location'  => 'Vyber si místo',
         'name'      => 'Název události',
-        'type'      => 'Oslava, festival, pohroma, bitva, narozeniny',
+        'type'      => 'Oslava, Festival, Pohroma, Bitva, Narozeniny',
     ],
     'show'          => [
+        'tabs'  => [
+            'events'    => 'Události',
+        ],
         'title' => 'Událost :name',
     ],
     'tabs'          => [

@@ -15,7 +15,7 @@ return [
         'amount'            => 'Množství',
         'copy_entity_entry' => 'Použít záznam předmětu',
         'description'       => 'Popis',
-        'is_equipped'       => 'Ve výbavě',
+        'is_equipped'       => 'Nasazeno',
         'name'              => 'Název',
         'position'          => 'Umístění',
         'qty'               => 'Množ.',
@@ -25,7 +25,7 @@ return [
     ],
     'placeholders'  => [
         'amount'        => 'Libovolné množství',
-        'description'   => 'Použité, poškozené, vyladěné',
+        'description'   => 'Použité, Poškozené, Vyladěné',
         'name'          => 'Vyžadováno, pokud není vybrán žádný předmět',
         'position'      => 'Připravené; v batohu; ve skladu; v bance',
     ],

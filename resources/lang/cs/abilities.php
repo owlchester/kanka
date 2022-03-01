@@ -17,14 +17,14 @@ return [
     ],
     'create'        => [
         'success'   => 'Schopnost :name vytvořena.',
-        'title'     => 'Nová schopnost',
+        'title'     => 'Nová Schopnost',
     ],
     'destroy'       => [
         'success'   => 'Schopnost :name odstraněna.',
     ],
     'edit'          => [
         'success'   => 'Schopnost :name upravena.',
-        'title'     => 'Upravit schopnost :name',
+        'title'     => 'Upravit Schopnost :name',
     ],
     'entities'      => [
         'title' => 'Objekty se schopností :name',
@@ -49,7 +49,7 @@ return [
     'placeholders'  => [
         'charges'   => 'Počet použití. Odkaz na atributy pomocí {Úroveň}*{CHA}',
         'name'      => 'Ohnivá koule, Ve střehu, Zákeřný úder',
-        'type'      => 'Kouzlo, schopnost, útok',
+        'type'      => 'Kouzlo, Schopnost, útok',
     ],
     'show'          => [
         'tabs'  => [

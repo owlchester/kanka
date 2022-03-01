@@ -70,7 +70,7 @@ return [
         'date'                  => 'Současné datum',
         'has_leap_year'         => 'Obsahuje přestupné roky',
         'intercalary'           => 'Přestupné dny',
-        'is_incrementing'       => 'Živý kalendář',
+        'is_incrementing'       => 'Následující den',
         'is_recurring'          => 'Opakující se',
         'leap_year_amount'      => 'Přidat dny',
         'leap_year_month'       => 'Kalendářní měsíc',

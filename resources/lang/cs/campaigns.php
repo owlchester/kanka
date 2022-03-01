@@ -2,28 +2,28 @@
 
 return [
     'create'                            => [
-        'description'           => 'Vytvořit nové tažení',
+        'description'           => 'Vytvořit novou kampaň',
         'helper'                => [
             'title'     => 'Vítej v :name',
             'welcome'   => <<<'TEXT'
-Než budeme pokračovat, je třeba zvolit název tažení, který odpovídá prostředí a situaci tvého světa. Pokud zatím vhodný název nemáš, nevadí. Později je možné jej změnit nebo vytvořit další tažení.
+Než budeme pokračovat, je třeba zvolit název kampaně. Je to zároveň zázev tvého světa. Pokud zatím vhodný název nemáš, nevadí. Později jej bude možné změnit nebo vytvořit další kampaň.
 
-Děkujeme, že jsi se rozhodl pro systém Kanka a vítáme tě do naší rostoucí komunity.
+Děkujeme, že jsi se rozhodl pro systém Kanka a vítáme tě do naší rostoucí komunity!
 TEXT
 ,
         ],
-        'success'               => 'Vytvořeno tažení',
-        'success_first_time'    => 'Nové tažení je připraveno. Protože jde o tvé první tažení, přidali jsme do něj několik objektů, které ti pomohou v začátcích a poskytnou určitou inspiraci, jak systém používat.',
-        'title'                 => 'Vytvořit nové tažení',
+        'success'               => 'Kampaň vytvořena.',
+        'success_first_time'    => 'Nové kampaň připravena. Protože jde o tvou první kampaň, přidali jsme do ní několik objektů, které ti pomohou v začátcích a poskytnou ti určitou inspiraci, jak systém používat.',
+        'title'                 => 'Nová Kampaň',
     ],
     'destroy'                           => [
-        'action'    => 'Odstranit tažení',
-        'helper'    => 'Tažení lze odstranit pouze pokud zůstáváš jeho jediným členem.',
-        'success'   => 'Tažení odstraněno',
+        'action'    => 'Odstranit Kampaň',
+        'helper'    => 'Kampaň lze odstranit pouze pokud jsi jejím jediným členem.',
+        'success'   => 'Kampaň odstraněna.',
     ],
     'edit'                              => [
-        'success'   => 'Tažení upraveno',
-        'title'     => 'Upravit tažení :campaign',
+        'success'   => 'Kampaň upravena',
+        'title'     => 'Upravit Kampaň :campaign',
     ],
     'entity_note_visibility'            => [],
     'entity_personality_visibilities'   => [
@@ -33,9 +33,9 @@ TEXT
         'private'   => 'Nové objekty jsou soukromé',
     ],
     'errors'                            => [
-        'access'        => 'K tomuto tažení nemáš přístup',
+        'access'        => 'K této kampani nemáš přístup',
         'superboosted'  => 'Tato funkce je dostupná pouze pro super-zvýhodněná ("superboosted") tažení .',
-        'unknown_id'    => 'Neznámé tažení',
+        'unknown_id'    => 'Neznámá Kampaň',
     ],
     'export'                            => [
         'errors'            => [
@@ -47,6 +47,7 @@ Vytvoří se dva soubory: Jeden soubor s objekty ve formátu JSON. A druhý soub
 Pozor, u větších tažení může pokus o export obrázků skončit chybou. V tom případě je třeba použít :api
 TEXT
 ,
+        'helper_third'      => 'Soubory typu JSON mohou být otevřeny za pomocí kteréhokoliv textového editoru. Reprezentují uložení dat v Kanka databázi v textovém podobě. Není zde způsob jak tato data nahrát zpět.',
         'success'           => 'Export tvého tažení se připravuje. Jakmile bude soubor archivu ke stažení k dispozici, zašleme ti upozornění.',
         'title'             => 'Export tažení :name',
     ],
@@ -56,8 +57,8 @@ TEXT
         'css'                       => 'CSS',
         'description'               => 'Popis',
         'entity_count'              => 'Počet objektů',
-        'entry'                     => 'Popis tažení',
-        'excerpt'                   => 'Stručný popis tažení',
+        'entry'                     => 'Popis Kampaně',
+        'excerpt'                   => 'Stručný popis Kampaně',
         'followers'                 => 'Sledující',
         'header_image'              => 'Obrázek pozadí nástěnky tažení',
         'hide_history'              => 'Skrýt historii objektu',
@@ -79,7 +80,7 @@ TEXT
     ],
     'following'                         => 'Sledující',
     'helpers'                           => [
-        'boost_required'            => 'Tato funkce vyžaduje zvýhodněné tažení pomocí "Boost". Další informace najdeš na stránce :settings',
+        'boost_required'            => 'Tato funkce vyžaduje zvýhodněné kmapaň pomocí "Boost". Další informace najdeš na stránce :settings',
         'boosted'                   => 'Jsou dostupné některé bonusové funkce, protože tažení je zvýhodněné pomocí "Boost". Další informace najdeš na stránce :settings',
         'css'                       => 'Pro své tažení můžeš vytvořit vlastní CSS definici. Jakékoli zneužití této funkce povede k odstranění CSS definice. Opakované nebo závažné porušení mohou vést k odstranění tvého tažení.',
         'dashboard'                 => 'Vyplněním následujících polí ovlivníš vzhled nástěnky tažení.',
@@ -167,13 +168,13 @@ TEXT
     ],
     'leave'                             => [
         'confirm'   => 'Určitě chceš opustit toto tažení? Tím k němu natrvalo ztratíš přístup - pokud ti správce tažení nepošle znovu pozvánku.',
-        'error'     => 'Nelze opustit tažení.',
-        'success'   => 'Opustil jsi tažení.',
+        'error'     => 'Nelze opustit kampaň.',
+        'success'   => 'Opustil jsi kampaň.',
     ],
     'members'                           => [
         'actions'               => [
             'help'          => 'Nápověda',
-            'remove'        => 'Odstranit z tažení',
+            'remove'        => 'Odstranit z kampaně.',
             'switch'        => 'Zobrazit jako',
             'switch-back'   => 'Zpět k mému zobrazení',
         ],
@@ -190,10 +191,10 @@ TEXT
             'role'          => 'Role',
             'roles'         => 'Role',
         ],
-        'help'                  => 'Počet členů tažení není omezen',
+        'help'                  => 'Počet členů kampaně není omezen',
         'helpers'               => [
             'admin' => 'Jako člen role správce tažení můžeš zvát nové uživatele, odstraňovat neaktivní uživatele a měnit jejich přístupová práva. Chceš-li prověřit přístupová práva uživatele, klepni na tlačítko :button. O této funkci nalezneš více informací zde: :link',
-            'switch'=> 'Zobrazit tažení jako tento uživatel',
+            'switch'=> 'Zobrazit kmapaň jako tento uživatel',
         ],
         'impersonating'         => [
             'message'   => 'Nyní kampaň vidíš jako zvolený uživatel. Některé funkce nemusí být nyní dostupné, ale jinak se vše zobrazuje přesně tak, jak by to viděl daný uživatel.',
@@ -297,6 +298,7 @@ TEXT
                 'delete'        => 'Odebrat',
                 'edit'          => 'Upravit',
                 'entity-note'   => 'Poznámka',
+                'gallery'       => 'Galerie',
                 'manage'        => 'Spravovat',
                 'members'       => 'Členové',
                 'permission'    => 'Oprávnění',
@@ -402,18 +404,18 @@ TEXT
             'settings'          => 'Moduly',
             'styles'            => 'Téma vzhledu',
         ],
-        'title'     => 'Tažení :name',
+        'title'     => 'Kampaň :name',
     ],
     'superboosted'                      => [
         'gallery'   => [
             'error' => [
-                'text'  => 'Nahrávat obrázky do textového editoru lze pouze u super-zvýhodněných ("superboosted") tažení.',
-                'title' => 'Nahrát obrázek do galerie tažení',
+                'text'  => 'Nahrávat obrázky do textového editoru lze pouze u :superboosted kampaní.',
+                'title' => 'Nahrát obrázek do galerie Kampaně',
             ],
         ],
     ],
     'ui'                                => [
-        'helper'    => 'Změna těchto nastavení ovlivní, jak se budou některé objekty tažení zobrazovat.',
+        'helper'    => 'Změna těchto nastavení ovlivní, jak se budou některé objekty v kampani zobrazovat.',
         'other'     => 'Ostatní',
     ],
     'visibilities'                      => [

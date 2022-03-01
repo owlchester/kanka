@@ -2,21 +2,21 @@
 
 return [
     'actions'       => [
-        'delete-confirm'    => 'Tyto povětrnostní podmínky',
+        'delete-confirm'    => 'toto počasí',
     ],
     'create'        => [
-        'success'   => 'Povětrnostní podmínky přidány',
-        'title'     => 'Nové povětrnostní podmínky',
+        'success'   => 'Počasí přidáno',
+        'title'     => 'Nové počasí',
     ],
     'destroy'       => [
-        'success'   => 'Povětrnostní podmínky odebrány',
+        'success'   => 'Počasí odebráno',
     ],
     'edit'          => [
-        'success'   => 'Povětrnostní podmínky upraveny',
-        'title'     => 'Upravit povětrnostní podmínky',
+        'success'   => 'Počasí upraveno',
+        'title'     => 'Upravit Počasí',
     ],
     'fields'        => [
-        'effect'        => 'Povětrnostní podmínky',
+        'effect'        => 'Efekty',
         'name'          => 'Název',
         'precipitation' => 'Srážky',
         'temperature'   => 'Teplota',
@@ -40,7 +40,7 @@ return [
     ],
     'placeholders'  => [
         'effect'        => 'Magický nebo přírodní jev',
-        'name'          => 'Volitelný vlastní popis povětrnostních podmínek',
+        'name'          => 'Volitelný vlastní popis počasí',
         'precipitation' => 'Množství srážek',
         'temperature'   => 'Nejvyšší a nejnižší denní teplota',
         'wind'          => 'Rychlost větru',
