@@ -18,7 +18,7 @@ class CleanupTrashed extends Command
      *
      * @var string
      */
-    protected $signature = 'cleanup:trashed {types=character} {limit=0}';
+    protected $signature = 'cleanup:trashed {types=map} {limit=0}';
 
     /**
      * The console command description.
@@ -111,7 +111,7 @@ class CleanupTrashed extends Command
                 // chunkById allows us to safely delete elements in a chunk
                 // see https://stackoverflow.com/questions/32700537/eloquent-chunk-missing-half-the-results
                 ->chunkById(1000, function ($entities) {
-                    if (!empty($this->limit) && $this->service->count() > $this->limit) {
+                    if (!empty($this->limit) && $this->service->count() >= $this->limit) {
                         return;
                     }
                     $this->info('Chunk deleting ' . count($entities) . ' entities.');
