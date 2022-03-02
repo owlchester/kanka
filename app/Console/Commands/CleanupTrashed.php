@@ -108,6 +108,7 @@ class CleanupTrashed extends Command
                 ->onlyTrashed()
                 ->where('deleted_at', '<=', $delay)
                 ->allCampaigns()
+                ->limit($this->limit)
                 // chunkById allows us to safely delete elements in a chunk
                 // see https://stackoverflow.com/questions/32700537/eloquent-chunk-missing-half-the-results
                 ->chunkById(1000, function ($entities) {
