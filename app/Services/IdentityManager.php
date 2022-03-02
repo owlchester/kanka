@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\CampaignUser;
+use App\Models\UserLog;
 use App\User;
 use Illuminate\Foundation\Application;
 use \App\Facades\CampaignLocalization;
@@ -35,6 +36,13 @@ class IdentityManager
             // Save the current user in the session to know we have limitation on the current user.
             session()->put($this->getSessionKey(), $this->app['auth']->user()->id);
             session()->put($this->getSessionCampaignKey(), CampaignLocalization::getCampaign()->id);
+
+            // Log this action
+            UserLog::create([
+                'user_id' => auth()->user()->id,
+                'type_id' => UserLog::TYPE_USER_SWITCH,
+            ]);
+            session()->put('kanka.userLog', UserLog::TYPE_USER_SWITCH_LOGIN);
             $this->app['auth']->loginUsingId($campaignUser->user->id);
         } catch (\Exception $e) {
             return false;
@@ -58,6 +66,8 @@ class IdentityManager
         try {
             $impersonated = $this->app['auth']->user();
             $impersonator = $this->findUserById($this->getImpersonatorId());
+
+            session()->put('kanka.userLog', UserLog::TYPE_USER_REVERT);
 
             $this->app['auth']->loginUsingId($impersonator->id);
             $this->clear();

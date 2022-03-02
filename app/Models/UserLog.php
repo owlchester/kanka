@@ -38,6 +38,10 @@ class UserLog extends Model
     const TYPE_EMAIL_UPDATE = 40;
     const TYPE_SOCIAL_SWITCH = 41;
 
+    const TYPE_USER_SWITCH = 50;
+    const TYPE_USER_REVERT = 51;
+    const TYPE_USER_SWITCH_LOGIN = 52;
+
     /**
      * @var string
      */
@@ -98,6 +102,13 @@ class UserLog extends Model
                 return 'Update email';
             case self::TYPE_SOCIAL_SWITCH:
                 return 'Disable social';
+
+            case self::TYPE_USER_SWITCH:
+                return 'Switch user';
+            case self::TYPE_USER_REVERT:
+                return 'Revert back';
+            case self::TYPE_USER_SWITCH_LOGIN:
+                return 'Impersonated login';
         }
 
         return 'unknown';

@@ -43,12 +43,13 @@ class UserEventSubscriber
             dd('Error OSL-010');
         }
 
+        $userLogType = session()->get('kanka.userLog', UserLog::TYPE_LOGIN);
         $log = UserLog::create([
             'user_id' => $event->user->id,
-            'type_id' => UserLog::TYPE_LOGIN,
+            'type_id' => $userLogType,
         ]);
         $log->save();
-
+        session()->remove('kanka.userLog');
         $event->user->update(['last_login_at' => Carbon::now()->toDateTimeString()]);
 
         // Does the user have a join campaign token?
