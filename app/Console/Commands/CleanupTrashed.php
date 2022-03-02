@@ -18,7 +18,7 @@ class CleanupTrashed extends Command
      *
      * @var string
      */
-    protected $signature = 'cleanup:trashed {types=character}';
+    protected $signature = 'cleanup:trashed {types=character} {limit=0}';
 
     /**
      * The console command description.
@@ -33,6 +33,8 @@ class CleanupTrashed extends Command
      * @var RecoveryService
      */
     protected $service;
+
+    protected $limit = null;
 
     /**
      * Create a new command instance.
@@ -54,6 +56,7 @@ class CleanupTrashed extends Command
     {
         $delay = Carbon::now()->subDays(config('entities.hard_delete'))->toDateString();
         $types = $this->argument('types');
+        $this->limit = $this->argument('limit');
         $typeList = explode(',', $types);
         $entityTypeIDs = [];
         foreach ($typeList as $entityType) {
@@ -68,8 +71,10 @@ class CleanupTrashed extends Command
             $entityTypeIDs[] = $id;
         }
 
-
         $this->info('Looking for deleted entities (' . $types . ') where deleted_at <= ' . $delay);
+        if (!empty($this->limit)) {
+            $this->info('- Limit: ' . $this->limit);
+        }
 
         // Stats stuff for developing
         $entityCount = $endEntityCount = 0;
@@ -106,6 +111,9 @@ class CleanupTrashed extends Command
                 // chunkById allows us to safely delete elements in a chunk
                 // see https://stackoverflow.com/questions/32700537/eloquent-chunk-missing-half-the-results
                 ->chunkById(1000, function ($entities) {
+                    if (!empty($this->limit) && $this->service->count() > $this->limit) {
+                        return;
+                    }
                     $this->info('Chunk deleting ' . count($entities) . ' entities.');
                     foreach ($entities as $entity) {
                         //dump($entity->name . ' (' . $entity->type() . ')');
