@@ -18,7 +18,7 @@ class CleanupTrashed extends Command
      *
      * @var string
      */
-    protected $signature = 'cleanup:trashed {types=map} {limit=0}';
+    protected $signature = 'cleanup:trashed {types=all} {limit=0}';
 
     /**
      * The console command description.
