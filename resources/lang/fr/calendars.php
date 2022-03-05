@@ -67,6 +67,7 @@ return [
         'current_day'           => 'Jour Actuel',
         'current_month'         => 'Mois actuel',
         'current_year'          => 'Année actuelle',
+        'day'                   => 'Jour',
         'date'                  => 'Date actuelle',
         'has_leap_year'         => 'Année bissextile',
         'intercalary'           => 'Jours Intercalaires',
@@ -78,6 +79,7 @@ return [
         'leap_year_start'       => 'Année bissextile',
         'length'                => 'Durée de l\'événement',
         'length_days'           => ':count jour|:count jours',
+        'month'                 => 'Mois',
         'months'                => 'Mois',
         'moons'                 => 'Lunes',
         'name'                  => 'Nom',
@@ -91,6 +93,7 @@ return [
         'type'                  => 'Type',
         'week_names'            => 'Nom de semaine',
         'weekdays'              => 'Jours de la semaine',
+        'year'                  => 'Année',
     ],
     'helpers'       => [
         'month_type'    => 'Les mois intercalaires n\'utilisent pas les jours de la semaine, mais ont quand-même une influence sur les lunes et saisons.',
