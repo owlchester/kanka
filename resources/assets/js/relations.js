@@ -11,7 +11,6 @@ var cy, cySelector;
 var entity, relation;
 var elementList = [];
 const DEFAULT_COLOUR = '#777777';
-var addingRelation = false;
 
 function initCytoscape() {
 
@@ -173,10 +172,9 @@ function runLayout() {
 }
 
 function addListeners() {
-    // open on double click
-    cy.nodes().on('click', function(e) {
-        entity = cy.getElementById(e.target.id());
-        let data = e.target.data();
+    // open on simple click
+    cy.on('tap', 'node', function (evt) {
+        let data = evt.target.data();
         if (data.link) {
             window.location = data.link;
         }
@@ -185,6 +183,7 @@ function addListeners() {
 
     // highlight on hover
     cy.nodes().on('mouseover', function(e) {
+        console.log('mouseover');
         entity = cy.getElementById(e.target.id());
         entity.addClass('node-hover');
     });
@@ -195,8 +194,7 @@ function addListeners() {
     });
 
     // Double click on an edge to edit it
-    cy.edges().on('click', function(e) {
-        //console.log('e', e.target.data());
+    cy.on('tap', 'edge', function (e) {
         let editUrl = e.target.data().edit_url;
         if (!editUrl) {
             return;
