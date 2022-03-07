@@ -15,6 +15,7 @@
     <link href="{{ mix('css/bootstrap.css') }}" rel="stylesheet">
     <link href="{{ mix('css/vendor.css') }}" rel="stylesheet">
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
+    @if (!config('fontawesome.kit'))<link href="/vendor/fontawesome/6.0.0/css/all.min.css" rel="stylesheet">@endif
     @yield('styles')
 </head>
 <body class="skin-black sidebar-mini">
@@ -123,7 +124,8 @@
     <script src="{{ mix('js/app.js') }}"></script>
 @if (config('fontawesome.kit'))
     <script src="https://kit.fontawesome.com/{{ config('fontawesome.kit') }}.js" crossorigin="anonymous"></script>
-@endif    @yield('scripts')
+@endif
+    @yield('scripts')
     @yield('scripts')
 </body>
 </html>

@@ -38,7 +38,8 @@ $specificTheme = null;
 @if(app()->getLocale() == 'he')
     <link href="{{ mix('css/app-rtl.css') }}" rel="stylesheet">
 @endif
-@yield('styles')
+    @if (!config('fontawesome.kit'))<link href="/vendor/fontawesome/6.0.0/css/all.min.css" rel="stylesheet">@endif
+    @yield('styles')
 
 @if (!empty($themeOverride) && in_array($themeOverride, ['dark', 'midnight', 'base']))
     @php $specificTheme = $themeOverride; @endphp

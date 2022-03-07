@@ -23,6 +23,7 @@ $specificTheme = null;
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
     <link href="{{ mix('css/freyja.css') }}" rel="stylesheet">
     <link href="{{ mix('css/map-v3.css') }}" rel="stylesheet">
+    @if (!config('fontawesome.kit'))<link href="/vendor/fontawesome/6.0.0/css/all.min.css" rel="stylesheet">@endif
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
           integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
           crossorigin=""/>
