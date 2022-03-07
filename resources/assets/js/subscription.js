@@ -12,6 +12,7 @@ $(document).ready(function() {
     initStripe();
     $('#subscribe-confirm').on('shown.bs.modal', () => {
         initConfirmListener();
+        initCancelListener();
     });
 });
 
@@ -22,6 +23,17 @@ function initStripe() {
 
     // Create an instance of Elements.
     elements = stripe.elements();
+}
+
+function initCancelListener()
+{
+    $('#cancel-reason-select').change(function (e) {
+        if (this.value === 'custom') {
+            $('#cancel-reason-custom').show();
+        } else {
+            $('#cancel-reason-custom').hide();
+        }
+    });
 }
 
 // When the modal is opened and loaded, inject stripe if needed and the form validator

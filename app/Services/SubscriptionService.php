@@ -145,7 +145,7 @@ class SubscriptionService
         // Switching to kobold?
         if (empty($this->plan)) {
             //Log::debug('Cancelling plan for user ' . $this->user->id);
-            $this->cancel(Arr::get($request, 'reason'));
+            $this->cancel(Arr::get($request, 'reason'), Arr::get($request, 'reason_custom'));
             return $this;
         }
 
@@ -388,12 +388,12 @@ class SubscriptionService
      * @param string|null $reason
      * @return bool
      */
-    public function cancel(string $reason = null): bool
+    public function cancel(string $reason = null, string $custom = null): bool
     {
         $this->user->subscription('kanka')->cancel();
 
         // Anything that can fail, send to a queue
-        SubscriptionCancelEmailJob::dispatch($this->user, $reason);
+        SubscriptionCancelEmailJob::dispatch($this->user, $reason, $custom);
 
         // Dispatch the job when the subscription actually ends
         SubscriptionEndJob::dispatch($this->user)

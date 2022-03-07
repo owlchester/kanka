@@ -8,10 +8,15 @@
         Cancelled subscription for user <a href="{{ route('admin.users.show', $user) }}">{{ $user->name }}</a> (#{{ $user->id }}) <a href="mailto:{{ $user->email }}">{{ $user->email }}</a>.
     </p>
 
-    @if ($reason)
+    @if (!empty($custom))
         <p>
             <strong>Reason provided: </strong><br />
-            {!! nl2br(e($reason)) !!}
+            {!! nl2br(e($custom)) !!}
+        </p>
+    @elseif ($reason)
+        <p>
+            <strong>Reason provided: </strong><br />
+            {{ $reason }}<br />
         </p>
     @endif
 

@@ -168,13 +168,23 @@
 
         <div class="form-group margin-bottom">
             <label>{{ __('settings.subscription.fields.reason') }}</label>
+            {!! Form::select('reason', [
+    '' => __('crud.select'),
+    'financial' => __('settings.subscription.cancel.options.financial'),
+    'not_using' => __('settings.subscription.cancel.options.not_using'),
+    'missing_features' => __('settings.subscription.cancel.options.missing_features'),
+    'competitor' => __('settings.subscription.cancel.options.competitor'),
+    'custom' => __('settings.subscription.cancel.options.custom')
+], null, ['class' => 'form-control margin-bottom', 'id' => 'cancel-reason-select']) !!}
             {!! Form::textarea(
-                'reason',
+                'reason_custom',
                 null,
                 [
                     'placeholder' => __('settings.subscription.placeholders.reason'),
                     'class' => 'form-control',
+                    'style' => 'display: none',
                     'rows' => 4,
+                    'id' => 'cancel-reason-custom'
                 ]
             ) !!}
         </div>

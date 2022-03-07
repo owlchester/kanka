@@ -23,6 +23,7 @@ class SubscriptionCancelEmailJob implements ShouldQueue
 
     /** @var string */
     public $reason;
+    public $custom;
 
     /** @var int */
     public $tries = 3;
@@ -32,10 +33,11 @@ class SubscriptionCancelEmailJob implements ShouldQueue
      * @param User $user
      * @param string $reason
      */
-    public function __construct(User $user, string $reason = null)
+    public function __construct(User $user, string $reason = null, string $custom = null)
     {
         $this->userId = $user->id;
         $this->reason = $reason;
+        $this->custom = $custom;
     }
 
     public function handle()
@@ -49,7 +51,7 @@ class SubscriptionCancelEmailJob implements ShouldQueue
         // Send an email to the admins
         Mail::to('hello@kanka.io')
             ->send(
-                new CancelledSubscriptionMail($user, $this->reason)
+                new CancelledSubscriptionMail($user, $this->reason, $this->custom)
             );
 
         // Send an email to the user
