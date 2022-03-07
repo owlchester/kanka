@@ -126,7 +126,9 @@ $specificTheme = null;
     </div>
 
 <script src="{{ mix('js/app.js') }}"></script>
-<script src="https://kit.fontawesome.com/d7f0be4a8d.js" crossorigin="anonymous"></script>
+@if (config('fontawesome.kit'))
+    <script src="https://kit.fontawesome.com/{{ config('fontawesome.kit') }}.js" crossorigin="anonymous"></script>
+@endif
 <!-- Make sure you put this AFTER Leaflet's CSS -->
 <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
         integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="

@@ -217,9 +217,9 @@
         crossorigin="anonymous"></script>
 
 <script src="{{ mix('js/front.js') }}" async></script>
-
-<script src="https://kit.fontawesome.com/d7f0be4a8d.js" crossorigin="anonymous"></script>
-
+@if (config('fontawesome.kit'))
+<script src="https://kit.fontawesome.com/{{ config('fontawesome.kit') }}.js" crossorigin="anonymous"></script>
+@endif
 <script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.1/cookieconsent.min.js" async></script>
 <script>
     window.addEventListener("load", function(){

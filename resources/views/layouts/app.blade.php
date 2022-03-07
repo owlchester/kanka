@@ -234,7 +234,9 @@ $seoTitle = isset($seoTitle) ? $seoTitle : (isset($title) ? $title : null);
         @endif
     </div>
 
-    <script src="https://kit.fontawesome.com/d7f0be4a8d.js" crossorigin="anonymous"></script>
+@if (config('fontawesome.kit'))
+    <script src="https://kit.fontawesome.com/{{ config('fontawesome.kit') }}.js" crossorigin="anonymous"></script>
+@endif
     <script src="{{ mix('js/app.js') }}" defer></script>
     <script src="/js/select2/i18n/{{ LaravelLocalization::getCurrentLocale() == 'en-US' ? 'en' : LaravelLocalization::getCurrentLocale() }}.js" defer></script>
     @yield('scripts')
