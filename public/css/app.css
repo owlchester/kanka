@@ -1141,7 +1141,9 @@ td.breakable {
 .btn-app > .fas,
 .btn-app > .far,
 .btn-app > .fab,
-.btn-app > .fa {
+.btn-app > .fa,
+.btn-app > .fa-solid,
+.btn-app > .fa-regular {
   font-size: 20px;
   display: block;
   line-height: 20px !important;
@@ -1171,7 +1173,9 @@ summary {
   display: list-item;
 }
 
-.dropdown-menu > li > a > .ra {
+.dropdown-menu > li > a > .ra,
+.dropdown-menu > li > a > .fa-regular,
+.dropdown-menu > li > a > .fa-solid {
   margin-right: 10px;
 }
 

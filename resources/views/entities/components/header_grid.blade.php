@@ -169,9 +169,9 @@ if($campaign->campaign()->boosted() && $entity->hasHeaderImage($superboosted)) {
                                     <li>
                                         <a href="{{ route('entities.template', $entity) }}">
                                             @if($entity->is_template)
-                                                <i class="fa fa-star-o" aria-hidden="true"></i> {{ __('entities/actions.templates.unset') }}
+                                                <i class="fa-regular fa-star" aria-hidden="true"></i> {{ __('entities/actions.templates.unset') }}
                                             @else
-                                                <i class="fa fa-star" aria-hidden="true"></i> {{ __('entities/actions.templates.set') }}
+                                                <i class="fa-solid fa-star" aria-hidden="true"></i> {{ __('entities/actions.templates.set') }}
                                             @endif
                                         </a>
                                     </li>
