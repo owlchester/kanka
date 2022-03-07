@@ -79,6 +79,9 @@
             @endif
         @endif
 
+
+        @include('entities.components.profile._events')
+
         @include('entities.components.profile._type')
 
     </div>
