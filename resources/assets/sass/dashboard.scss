@@ -417,6 +417,15 @@
   }
 }
 
+.dashboard-releases {
+  overflow-x: hidden;
+  overflow-y: hidden;
+  white-space: nowrap;
+  .box {
+    display: inline-block;
+  }
+}
+
 /*.campaign-dashboard-widgets {
   .widget {
     .widget-overlay {

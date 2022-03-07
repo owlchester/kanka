@@ -1,14 +1,13 @@
 <?php /** @var \App\Models\AppRelease $release */?>
-<div class="row dashboard-releases">
+<div class="dashboard-releases">
 @foreach ($releases as $release)
     @if($release->isPast())
         @continue
     @endif
-    <div class="col-md-{{ count($releases) == 1 ? 12 : 6 }}">
         <div class="box box-widget">
             <div class="box-header with-border">
                 <div class="user-block">
-                        <img class="img-circle" src="/images/favicon/apple-touch-icon-76x76.png" alt="Kanka" title="Kanka">
+                    <img class="img-circle" src="/images/favicon/apple-touch-icon-76x76.png" alt="Kanka" title="Kanka">
                     <span class="username">
                         <a href="{{ $release->link }}" target="_blank">{!! $release->name !!}</a>
                     </span>
@@ -28,6 +27,5 @@
                 <p>{!! nl2br($release->excerpt) !!}</p>
             </div>
         </div>
-    </div>
 @endforeach
 </div>

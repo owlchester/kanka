@@ -60,7 +60,6 @@ return [
         'join'      => 'This campaign is open to new members. Click to apply to join it.',
         'setup'     => 'Setup your campaign\'s dashboard.',
     ],
-    'latest_release'    => 'Latest Release',
     'notifications'     => [
         'modal' => [
             'confirm'   => 'Got it',
