@@ -9,11 +9,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
 
-    <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-    <!-- Ionicons -->
-    <link href="//code.ionicframework.com/ionicons/2.0.0/css/ionicons.min.css" rel="stylesheet" type="text/css" />
-    <link rel="icon" type="image/png" href="/favicon.ico">
+     <link rel="icon" type="image/png" href="/favicon.ico">
 
     <!-- Styles -->
     <link href="{{ mix('css/bootstrap.css') }}" rel="stylesheet">
@@ -125,6 +121,9 @@
 
     <!-- Scripts -->
     <script src="{{ mix('js/app.js') }}"></script>
+@if (config('fontawesome.kit'))
+    <script src="https://kit.fontawesome.com/{{ config('fontawesome.kit') }}.js" crossorigin="anonymous"></script>
+@endif    @yield('scripts')
     @yield('scripts')
 </body>
 </html>
