@@ -49,18 +49,18 @@
 
             <p><b>{{ __('emails/welcome.section_1') }}</b></p>
             <p>{!! __('emails/welcome.section_2', [
-                'discord' => link_to(config('social.discord'), 'Discord'),
+                'discord' => link_to('https:' . config('social.discord'), 'Discord'),
             ]) !!}</p>
             <p>{!! __('emails/welcome.section_3', [
                 'faq' => link_to_route('faq.index', __('front.faq.title'))
             ]) !!}</p>
             <p>{!! __('emails/welcome.section_4', [
-                'youtube' => link_to(config('social.youtube'), __('emails/welcome.section_5'))
+                'youtube' => link_to('https:' . config('social.youtube'), __('emails/welcome.section_5'))
             ]) !!}</p>
 
             <p><b>{{ __('emails/welcome.section_6') }}</b></p>
             <p>{!! __('emails/welcome.section_7', [
-                'facebook' => link_to(config('social.facebook'), 'Facebook'),
+                'facebook' => link_to('https:' . config('social.facebook'), 'Facebook'),
                 'email' => '<a href="mailto:hello@kanka.io">hello@kanka.io</a>'
             ]) !!}</p>
 
