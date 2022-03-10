@@ -4,15 +4,17 @@
  * @var \App\Models\Character[] $characters
  */
 $filters = [];
+$allMembers = true;
 if (request()->has('location_id')) {
     $filters['location_id'] = request()->get('location_id');
+    $allMembers = false;
 }
 
 $characters = $model
         ->allCharacters()
         ->filter($filters)
         ->simpleSort($datagridSorter)
-        ->with(['location', 'family', 'entity', 'entity.tags'])
+        ->with(['location', 'location.entity', 'families', 'families.entity', 'entity', 'entity.tags'])
         ->paginate();
 ?>
 <div class="box box-solid" id="location-characters">
@@ -39,30 +41,28 @@ $characters = $model
         </p>
 
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-sm-12">
                 @include('cruds.datagrids.sorters.simple-sorter', ['target' => '#location-characters'])
-            </div>
-            <div class="col-md-6 text-right">
-
-
             </div>
         </div>
 
         @if ($characters->count() > 0)
         <div class="table-responsive">
         <table id="characters" class="table table-hover">
-            <tbody><tr>
+            <thead><tr>
                 <th class="avatar"><br /></th>
                 <th>{{ __('characters.fields.name') }}</th>
                 <th>{{ __('characters.fields.type') }}</th>
                 @if ($campaign->enabled('families'))
-                    <th>{{ __('characters.fields.family') }}</th>
+                    <th>{{ __('characters.fields.families') }}</th>
                 @endif
-                <th>{{ __('crud.fields.location') }}</th>
+                @if ($allMembers)<th>{{ __('crud.fields.location') }}</th>@endif
                 @if ($campaign->enabled('races'))
-                    <th>{{ __('characters.fields.race') }}</th>
+                    <th>{{ __('characters.fields.races') }}</th>
                 @endif
             </tr>
+            </thead>
+            <tbody>
             @foreach ($characters as $character)
                 <tr>
                     <td>
@@ -81,14 +81,14 @@ $characters = $model
                     </td>
                     @if ($campaign->enabled('families'))
                         <td>
-                            @if ($character->family)
-                                {!! $character->family->tooltipedLink() !!}
-                            @endif
+                            @foreach ($character->families as $family)
+                                {!! $family->tooltipedLink() !!}
+                            @endforeach
                         </td>
                     @endif
-                    <td>
+                    @if($allMembers)<td>
                         {!! $character->location->tooltipedLink() !!}
-                    </td>
+                    </td>@endif
                     @if ($campaign->enabled('races'))
                         <td>
                             @foreach ($character->races as $race)

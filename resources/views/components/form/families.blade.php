@@ -16,9 +16,9 @@ if (!empty($previous)) {
 // If we didn't get anything, and there is a model sent, use that
 elseif(!empty($model)) {
     /** @var \App\Models\OrganisationMember $member */
-    foreach ($model->families as $familiy) {
-        if (\App\Facades\EntityPermission::canView($familiy->entity)) {
-            $selectedOption[$familiy->id] = strip_tags($familiy->name);
+    foreach ($model->families as $family) {
+        if (\App\Facades\EntityPermission::canView($family->entity)) {
+            $selectedOption[$family->id] = strip_tags($family->name);
         }
     }
 }

@@ -20,23 +20,6 @@
             @endif
         </div>
     @endif
-
-    @if ($campaign->enabled('races') && !$model->races->isEmpty())
-        @foreach ($model->races as $race)
-        <div class="entity-header-sub-element entity-header-sub-race" style="display: none">
-            <i class="ra ra-dragon" title="{{ __('crud.fields.race') }}" data-toggle="tooltip"></i>
-            {!! $race->tooltipedLink() !!}
-        </div>
-        @endforeach
-    @endif
-
-    @if ($campaign->enabled('families') && $model->family)
-        <div class="entity-header-sub-element entity-header-sub-family" style="display: none">
-            <i class="ra ra-double-team" title="{{ __('crud.fields.family') }}" data-toggle="tooltip"></i>
-            {!! $model->family->tooltipedLink() !!}
-        </div>
-    @endif
-
     </div>
 @endif
 

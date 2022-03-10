@@ -13,9 +13,11 @@ class LocationCharacterSorter extends DatagridSorter
      */
     public $options = [
         'name' => 'characters.fields.name',
-        'family.name' => 'characters.fields.family',
+        'type' => 'characters.fields.type',
+        //'family.name' => 'characters.fields.family',
         'location.name' => 'crud.fields.location',
         'age' => 'characters.fields.age',
+        'is_dead' => 'characters.fields.is_dead',
         //'race.name' => 'characters.fields.race',
     ];
 
