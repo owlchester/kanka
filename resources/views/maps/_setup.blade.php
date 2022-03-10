@@ -18,7 +18,8 @@ if (isset($single) && $single) {
 
 ?>
 <script type="text/javascript">
-    var bounds{{ $map->id }} = [[0, 0], [{{ floor($map->height / 1) }}, {{ floor($map->width / 1) }}]];
+    /** Kanka map {{ $map->id }} setup **/
+    var bounds{{ $map->id }} = {{ $map->bounds() }};
     var baseLayer{{ $map->id }} = L.imageOverlay('{{ Storage::url($map->image) }}', bounds{{ $map->id }});
 
     /** Layers Init **/

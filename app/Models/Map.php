@@ -469,6 +469,20 @@ class Map extends MiscModel
     }
 
     /**
+     * Build the image's bounds for leaflet.
+     * If the height or width is 0, which can happen with an svg with no height/width property,
+     * we just assume 1000/1000 and wait for a user to come in discord for help.
+     * @return string
+     */
+    public function bounds(): string
+    {
+        $height = floor((empty($this->height) ? 1000 : $this->height) / 1);
+        $width = floor((empty($this->width) ? 1000 : $this->width) / 1);
+
+        return '[[0, 0], [' . $height . ', ' . $width . ']]';
+    }
+
+    /**
      * Copy related elements to the target
      * @param MiscModel $target
      */

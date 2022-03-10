@@ -185,7 +185,7 @@ if($campaign->campaign()->boosted() && $entity->hasHeaderImage($superboosted)) {
                                 </li>
                                 <li>
                                     <a href="{{ route('entities.json-export', $entity) }}">
-                                        <i class="fa fa-download" aria-hidden="true"></i> {{ trans('crud.actions.json-export') }}
+                                        <i class="fa fa-download" aria-hidden="true"></i> {{ __('crud.actions.json-export') }}
                                     </a>
                                 </li>
                             @endif
