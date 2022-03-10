@@ -4,6 +4,7 @@ namespace App\Observers;
 
 use App\Facades\CharacterCache;
 use App\Models\CharacterTrait;
+use App\Models\Family;
 use App\Models\MiscModel;
 use App\Models\OrganisationMember;
 use App\Models\Race;
@@ -20,7 +21,9 @@ class CharacterObserver extends MiscObserver
         $this->saveTraits($model, 'personality')
             ->saveTraits($model, 'appearance')
             ->saveOrganisations($model)
-            ->saveRaces($model);
+            ->saveRaces($model)
+            ->saveFamilies($model)
+        ;
     }
 
     /**
@@ -212,6 +215,64 @@ class CharacterObserver extends MiscObserver
         // Detach the remaining
         if (!empty($existing)) {
             $character->races()->detach($existing);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param MiscModel $character
+     */
+    protected function saveFamilies(MiscModel $character): self
+    {
+        if (!request()->has('save_families') && !request()->has('families')) {
+            return $this;
+        }
+
+        /** @var Family $families */
+        $existing = [];
+        $unique = [];
+        $recreate = [];
+        foreach ($character->families as $family) {
+            // If it already exists, we have an issue
+            if (!empty($existing[$family->id])) {
+                $recreate[$race->id] = $family->id;
+                $character->families()->detach($family->id);
+                continue;
+            }
+            $existing[$family->id] = $family->id;
+            $unique[$family->id] = $family->id;
+        }
+
+        if (!empty($recreate)) {
+            $character->families()->attach($recreate);
+        }
+
+        $families = request()->get('families', []);
+        $newFamilies = [];
+        foreach ($families as $id) {
+            // Existing race, do nothing
+            if (!empty($existing[$id])) {
+                unset($existing[$id]);
+                continue;
+            }
+            // If already managed, again, ignore
+            if (!empty($unique[$id])) {
+                continue;
+            }
+
+            $family = Family::find($id);
+            if (empty($family)) {
+                continue;
+            }
+            $newFamilies[] = $family->id;
+
+        }
+        $character->families()->attach($newFamilies);
+
+        // Detach the remaining
+        if (!empty($existing)) {
+            $character->families()->detach($existing);
         }
 
         return $this;

@@ -17,7 +17,7 @@ class CharacterFilter extends DatagridFilter
             ->add('name')
             ->add('title')
             ->add([
-                'field' => 'family_id',
+                'field' => 'family',
                 'label' => __('crud.fields.family'),
                 'type' => 'select2',
                 'route' => route('families.find'),

@@ -158,9 +158,9 @@ To create a character, use the following endpoint.
 | `sex` | `string`  | Gender of the character |
 | `pronouns` | `string`  | Prefered pronouns of the character |
 | `type` | `string`  | Type of the character |
-| `family_id` | `integer` | Family id |
+| `families` | `array` | Array of family id |
 | `location_id` | `integer` | Location id |
-| `races` | `array` | Race ids |
+| `races` | `array` | Array of race ids |
 | `tags` | `array` | Array of tag ids |
 | `is_dead` | `boolean` | If the character is dead |
 | `is_private` | `boolean` | If the character is only visible to `admin` members of the campaign |

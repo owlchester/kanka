@@ -22,7 +22,7 @@ if (request()->route()->getName() == 'characters.random') {
         @include('cruds.fields.title')
     </div>
     <div class="col-md-6">
-        @include('cruds.fields.family', ['quickCreator' => true])
+        @include('cruds.fields.families', ['quickCreator' => true])
     </div>
 </div>
 <div class="row">

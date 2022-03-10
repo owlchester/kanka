@@ -14,7 +14,6 @@ class RaceCharacterSorter extends DatagridSorter
     public $options = [
         'name' => 'characters.fields.name',
         'location.name' => 'crud.fields.location',
-        'family.name' => 'crud.fields.family',
         'age' => 'characters.fields.age',
     ];
 

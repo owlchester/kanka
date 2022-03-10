@@ -201,14 +201,15 @@ class Entity extends Model
 
         $avatar = $text = null;
 
-        if ($this->campaign->boosted()) {
+        $campaign = CampaignLocalization::getCampaign();
+        if ($campaign->boosted()) {
             $boostedTooltip = str_replace(['</h', '</p', '<br'], [' </h', ' </p', ' <br'], $this->tooltip);
             $boostedTooltip = strip_tags(preg_replace('!\s+!', ' ', $boostedTooltip));
             if (!empty(trim($boostedTooltip))) {
                 $text = Mentions::mapEntity($this);
                 $text = strip_tags($text);
             }
-            if ($this->campaign->tooltip_image) {
+            if ($campaign->tooltip_image) {
                 $avatar = $this->child->withEntity($this)->getImageUrl(60);
             }
         }

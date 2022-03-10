@@ -10,13 +10,15 @@
         'name',
         'title',
         [
-            'label' => __('characters.fields.family'),
-            'field' => 'family.name',
+            'label' => __('characters.fields.families'),
             'visible' => $campaign->enabled('families'),
+            'disableSort' => true,
             'render' => function($model) {
-                if ($model->family) {
-                    return $model->family->tooltipedLink();
+                $families = [];
+                foreach ($model->families as $family) {
+                    $families[] = $family->tooltipedLink();
                 }
+                return implode( ', ', $families);
             }
         ],
         [
@@ -26,7 +28,6 @@
         [
             'label' => __('characters.fields.races'),
             'visible' => $campaign->enabled('races'),
-            //'field' => 'races.id',
             'disableSort' => true,
             'render' => function($model) {
                 $races = [];

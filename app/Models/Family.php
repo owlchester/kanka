@@ -136,7 +136,7 @@ class Family extends MiscModel
      */
     public function members()
     {
-        return $this->hasMany('App\Models\Character', 'family_id', 'id');
+        return $this->belongsToMany('App\Models\Character', 'character_family');
     }
 
     /**
@@ -167,7 +167,13 @@ class Family extends MiscModel
             $familyId[] = $descendant->id;
         };
 
-        return Character::whereIn('family_id', $familyId)->with(['family', 'location']);
+        return Character
+            ::select('characters.*')
+            ->distinct('characters.id')
+            ->leftJoin('character_family as cf', function ($join) {
+                $join->on('cf.character_id', '=', 'characters.id');
+            })
+            ->whereIn('cf.family_id', $familyId);
     }
 
     /**

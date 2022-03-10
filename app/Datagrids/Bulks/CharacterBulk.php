@@ -9,7 +9,7 @@ class CharacterBulk extends Bulk
     protected $fields = [
         'name',
         'title',
-        'family_id',
+        'families',
         'location_id',
         'races',
         'type',
@@ -26,5 +26,10 @@ class CharacterBulk extends Bulk
 
     protected $maths = [
         'age'
+    ];
+
+    protected $belongsTo = [
+        'races',
+        'families',
     ];
 }

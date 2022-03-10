@@ -93,6 +93,7 @@ $clipboardFilters = $filterService->clipboardFilters();
                                         </div>
                                     </div>
                                 @elseif ($field['type'] == 'select')
+                                    <input type="hidden" name="{{ $field['id'] }}" value="" />
                                     {!! Form::select(
                                         $field['field'],
                                         array_merge(['' => ''], $field['data']), // Add an empty option

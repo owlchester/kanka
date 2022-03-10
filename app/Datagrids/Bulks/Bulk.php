@@ -34,6 +34,18 @@ abstract class Bulk
     }
 
     /**
+     * @return array
+     */
+    public function belongsTo(): array
+    {
+        if (isset($this->belongsTo)) {
+            return $this->belongsTo;
+        }
+
+        return [];
+    }
+
+    /**
      * Attributes that can support basic math
      * @return array
      */

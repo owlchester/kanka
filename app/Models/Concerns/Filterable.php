@@ -174,6 +174,18 @@ trait Filterable
                                 $join->on('cr.character_id', '=', $this->getTable() . '.id');
                             })
                             ->where('cr.race_id', $value);
+                    } elseif ($key == 'family') {
+                        // Character families
+                        if (!empty($filterOption) && $filterOption == 'exclude') {
+                            $query->whereRaw('(select count(*) from character_family as cf where cf.character_id = ' . $this->getTable() . '.id and cf.family_id = ' . ((int) $value) . ') = 0');
+                            continue;
+                        }
+                        $query
+                            ->select($this->getTable() . '.*')
+                            ->leftJoin('character_family as cf', function ($join) {
+                                $join->on('cf.character_id', '=', $this->getTable() . '.id');
+                            })
+                            ->where('cf.family_id', $value);
                     } elseif ($key == 'has_image') {
                         if ($value) {
                             $query->whereNotNull($this->getTable() . '.image');
@@ -259,7 +271,7 @@ trait Filterable
                 // Validate the key is a filter
                 if (in_array($key, $fields)) {
                     // Left join shenanigans
-                    if (!in_array($key, ['organisation_member', 'race'])) {
+                    if (!in_array($key, ['organisation_member', 'race', 'family'])) {
                         $query->whereNull($this->getTable() . '.' . $key);
                     } elseif($key == 'organisation_member') {
                         $query
@@ -275,6 +287,13 @@ trait Filterable
                                 $join->on('cr.character_id', '=', $this->getTable() . '.id');
                             })
                             ->where('cr.race_id', null);
+                    } elseif ($key == 'family') {
+                        $query
+                            ->select($this->getTable() . '.*')
+                            ->leftJoin('character_family as cf', function ($join) {
+                                $join->on('cf.character_id', '=', $this->getTable() . '.id');
+                            })
+                            ->where('cf.family_id', null);
                     }
                 }
             }

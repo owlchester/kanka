@@ -210,6 +210,7 @@ class BulkService
         // Only get fields that can be bulk edited and with content
         $fillableFields = Arr::only($fields, $bulk->fields());
         $filledFields = [];
+        $filledForeigns = [];
         foreach ($fillableFields as $field => $value) {
             if (!empty($value)) {
                 $filledFields[$field] = $value;
@@ -217,13 +218,26 @@ class BulkService
         }
 
         foreach ($bulk->mappings() as $field) {
-            if (Arr::has($fields, $field)) {
-                $value = Arr::get($fields, $field);
-                if (Str::startsWith($field, 'is_') && $value === null) {
-                    // Do nothing
-                } else {
-                    $filledFields[$field] = $value;
+            if (!Arr::has($fields, $field)) {
+                continue;
+            }
+            $value = Arr::get($fields, $field);
+            if (Str::startsWith($field, 'is_') && $value === null) {
+                // Do nothing
+            } else {
+                $filledFields[$field] = $value;
+            }
+        }
+
+        foreach ($bulk->belongsTo() as $relation) {
+            if (!Arr::has($fields, $relation)) {
+                continue;
+            }
+            foreach ($fields[$relation] as $foreignID) {
+                if (!isset($filledForeigns[$relation])) {
+                    $filledForeigns[$relation] = [];
                 }
+                $filledForeigns[$relation][] = $foreignID;
             }
         }
 
@@ -271,6 +285,11 @@ class BulkService
             // Age can be manage differently (math)
 
             $entity->update($entityFields);
+
+            // Foreign belongsTo loop
+            foreach ($filledForeigns as $relation => $ids) {
+                $entity->{$relation}()->syncWithoutDetaching($ids);
+            }
 
             // We have to still update the entity object
             $realEntity = $entity->entity;

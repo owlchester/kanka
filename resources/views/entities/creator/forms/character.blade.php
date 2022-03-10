@@ -13,7 +13,7 @@
 
 <div class="row">
     <div class="col-lg-6">
-        @include('cruds.fields.family')
+        @include('cruds.fields.families')
     </div>
     <div class="col-lg-6">
         @include('cruds.fields.races')

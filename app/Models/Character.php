@@ -20,8 +20,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property bool $is_personality_visible
  * @property bool $is_appearance_pinned
  * @property bool $is_personality_pinned
- * @property int $family_id
- * @property Family $family
+ * @property Family[] $families
  * @property Location $location
  * @property Race $race
  * @property Race[] $races
@@ -39,7 +38,6 @@ class Character extends MiscModel
         'name',
         'slug',
         'campaign_id',
-        'family_id',
         'location_id',
         'title',
         'entry',
@@ -65,12 +63,12 @@ class Character extends MiscModel
         'sex',
         'pronouns',
         'location_id',
-        'family_id',
         'is_dead',
         'name',
         'organisation_member',
-        'race',
         'attributes',
+        'race',
+        'family',
     ];
 
     /**
@@ -79,9 +77,7 @@ class Character extends MiscModel
      */
     protected $sortableColumns = [
         'title',
-        'family.name',
         'location.name',
-        //'races.id',
         'age',
         'sex',
         'is_dead'
@@ -141,7 +137,6 @@ class Character extends MiscModel
      */
     public $nullableForeignKeys = [
         'location_id',
-        'family_id',
         'is_personality_visible', // checkbox
     ];
 
@@ -159,8 +154,8 @@ class Character extends MiscModel
             'entity.image',
             'location',
             'location.entity',
-            'family',
-            'family.entity',
+            'families',
+            'families.entity',
             'races',
             'races.entity',
         ]);
@@ -177,9 +172,9 @@ class Character extends MiscModel
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function family()
+    public function families()
     {
-        return $this->belongsTo('App\Models\Family', 'family_id', 'id');
+        return $this->belongsToMany('App\Models\Family');
     }
 
     /**
@@ -187,9 +182,7 @@ class Character extends MiscModel
      */
     public function races()
     {
-        return $this->belongsToMany('App\Models\Race')
-            ;
-        return $this->hasMany('App\Models\Race', 'character_id', 'id');
+        return $this->belongsToMany('App\Models\Race');
     }
 
     /**
@@ -362,8 +355,12 @@ class Character extends MiscModel
     {
         // e() isn't enough, remove tags too to avoid ><script injections.
         $str = $this->name;
-        if (!empty($this->family) && !CampaignLocalization::getCampaign()->tooltip_family) {
-            $str .= ' - ' . $this->family->name;
+        if (!empty($this->families) && !CampaignLocalization::getCampaign()->tooltip_family) {
+            $families = [];
+            foreach ($this->families as $family) {
+                $families[] = $family->name;
+            }
+            $str .= ' - ' . implode(', ', $families);
         }
         return e(strip_tags(trim($str))) . ($this->is_dead ? ' <i class=\'ra ra-skull\'></i>' : null);
     }
@@ -414,7 +411,7 @@ class Character extends MiscModel
             || !empty($this->pronouns)) {
             return true;
         }
-        if (!$this->races->isEmpty() || !empty($this->family)) {
+        if (!$this->races->isEmpty() || !$this->families->isEmpty()) {
             return true;
         }
         return false;

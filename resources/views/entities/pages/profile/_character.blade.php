@@ -33,17 +33,18 @@ $traits = $model->characterTraits()->personality()->orderBy('default_order')->ge
                     </p>
                     @endforeach
                 @endif
-                @if ($campaign->enabled('families') && $model->family)
-                    <p class="entity-family" data-foreign="{{ $model->family_id }}">
-                        <b>{{ __('characters.fields.family') }}</b><br />
-
-                        @if ($model->family->family)
-                            {!! $model->family->tooltipedLink() !!},
-                            {!! $model->family->family->tooltipedLink() !!}
-                        @else
-                            {!! $model->family->tooltipedLink() !!}
+                @if ($campaign->enabled('families') && !$model->families->isEmpty())
+                    @php $existingFamilies = []; @endphp
+                    @foreach ($model->families as $family)
+                        @if(!empty($existingFamilies[$family->id]))
+                            @continue
                         @endif
-                    </p>
+                        @php $existingFamilies[$family->id] = true; @endphp
+                        <p class="entity-family" data-foreign="{{ $family->id }}">
+                            <b>{{ __('characters.fields.family') }}</b><br />
+                            {!! $family->tooltipedLink() !!}
+                        </p>
+                    @endforeach
                 @endif
 
                 @if ($model->age || $model->age === '0')

@@ -44,8 +44,8 @@ $first = $pinnedNotes->first();
 
     @if ($pinnedNotes->currentPage() < $pinnedNotes->lastPage())
         <div class="text-center">
-            <a href="#" class="btn btn-default btn-lg story-load-more" data-url="{{ route('entities.story.load-more', [$entity, 'page' => $pinnedNotes->currentPage() + 1]) }}">
-                <i class="fas fa-plus"></i> {{ __('entities/story.actions.load_more') }}
+            <a href="#" class="btn btn-default btn-sm margin-bottom story-load-more" data-url="{{ route('entities.story.load-more', [$entity, 'page' => $pinnedNotes->currentPage() + 1]) }}">
+                <i class="fas fa-refresh"></i> {{ __('entities/story.actions.load_more') }}
             </a>
 
             <i class="fa fa-spinner fa-spin fa-2x" id="story-more-spinner" style="display: none"></i>
@@ -56,7 +56,7 @@ $first = $pinnedNotes->first();
 </div>
 @endif
 
-@if ($entity && !$entity->isType([config('entities.ids.map'), config('entities.ids.timeline'), config('entities.ids.calendar')]))
+@if (!request()->ajax() && $entity && !$entity->isType([config('entities.ids.map'), config('entities.ids.timeline'), config('entities.ids.calendar')]))
 @can('entity-note', [$model, 'add'])
     <div class="margin-bottom text-center row-add-note-button">
             <a href="{{ route('entities.entity_notes.create', $entity) }}" class="btn btn-warning btn-sm"

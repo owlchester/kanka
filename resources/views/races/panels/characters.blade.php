@@ -40,21 +40,23 @@ $datagridSorter->request(request()->all());
         </div>
 
         <table id="characters" class="table table-hover">
-            <tbody><tr>
+            <thead><tr>
                 <th class="avatar"><br /></th>
                 <th>{{ __('characters.fields.name') }}</th>
                 @if ($campaign->enabled('locations'))
                     <th>{{ __('crud.fields.location') }}</th>
                 @endif
                 @if ($campaign->enabled('families'))
-                    <th>{{ __('characters.fields.family') }}</th>
+                    <th>{{ __('characters.fields.families') }}</th>
                 @endif
             </tr>
+            </thead>
+            <tbody>
 
 <?php
 $r = $model->allCharacters($allMembers)
     ->has('entity')
-    ->with(['family', 'location', 'entity'])
+    ->with(['families', 'families.entity', 'location', 'location.entity', 'entity'])
     ->filter($filters)
     ->simpleSort($datagridSorter)
     ->paginate(); ?>
@@ -65,6 +67,10 @@ $r = $model->allCharacters($allMembers)
                     </td>
                     <td>
                         {!! $character->tooltipedLink() !!}
+                        @if ($character->is_dead)
+                            <span class="ra ra-skull" data-toggle="tooltip" title="{{ __('characters.hints.is_dead') }}"></span>
+                        @endif<br />
+                        <i>{{ $character->title }}</i>
                     </td>
                     @if ($campaign->enabled('locations'))
                         <td>
@@ -75,9 +81,9 @@ $r = $model->allCharacters($allMembers)
                     @endif
                     @if ($campaign->enabled('families'))
                     <td>
-                        @if ($character->family)
-                            {!! $character->family->tooltipedLink() !!}
-                        @endif
+                        @foreach ($character->families as $family)
+                            {!! $family->tooltipedLink() !!}<br />
+                        @endforeach
                     </td>
                     @endif
                 </tr>

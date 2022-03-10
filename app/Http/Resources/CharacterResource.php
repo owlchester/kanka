@@ -20,8 +20,12 @@ class CharacterResource extends EntityResource
         $model = $this->resource;
 
         // Fallback for old api calls
+        // TODO: optimize to not re-do a db query
         $raceIDs = $model->races()->pluck('id');
         $raceID = Arr::first($raceIDs);
+
+        $familyIDs = $model->families()->pluck('id');
+        $familyID = Arr::first($familyIDs);
 
         $character = [
             'title' => $model->title,
@@ -32,8 +36,8 @@ class CharacterResource extends EntityResource
             'races' => $raceIDs,
             'type' => $model->type,
 
-            'family_id' => $model->family_id,
-            'families' => [$model->family_id],
+            'family_id' => $familyID,
+            'families' => $familyIDs,
 
             'is_dead' => (bool) $model->is_dead,
             'traits' => CharacterTraitResource::collection($model->characterTraits),

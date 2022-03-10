@@ -17,7 +17,7 @@ if (!$allMembers) {
 }
 $datagridSorter = new \App\Datagrids\Sorters\FamilyCharacterSorter();
 $datagridSorter->request(request()->all());
-$r = $r->with(['races', 'location'])->simpleSort($datagridSorter)->orderBy('name')->paginate();
+$r = $r->with(['entity', 'races', 'races.entity', 'location', 'location.entity', 'families', 'families.entity'])->simpleSort($datagridSorter)->orderBy('name')->paginate();
 ?>
 <div class="box box-solid" id="family-members">
     <div class="box-header with-border">
@@ -45,15 +45,14 @@ $r = $r->with(['races', 'location'])->simpleSort($datagridSorter)->orderBy('name
             <thead><tr>
                 <th class="avatar"><br></th>
                 <th>{{ __('characters.fields.name') }}</th>
-                @if($allMembers)<th>{{ __('characters.fields.family') }}</th>@endif
+                @if($allMembers)<th>{{ __('characters.fields.families') }}</th>@endif
                 @if ($campaign->enabled('locations'))
                     <th class="hidden-xs hidden-sm">{{ __('characters.fields.location') }}</th>
                 @endif
                 @if ($campaign->enabled('races'))
-                    <th class="hidden-xs hidden-sm">{{ __('characters.fields.race') }}</th>
+                    <th class="hidden-xs hidden-sm">{{ __('characters.fields.races') }}</th>
                 @endif
                 <th>{{ __('characters.fields.sex') }}</th>
-                <th>{{ __('characters.fields.is_dead') }}</th>
             </tr></thead>
             <tbody>
             @foreach ($r as $member)
@@ -62,10 +61,14 @@ $r = $r->with(['races', 'location'])->simpleSort($datagridSorter)->orderBy('name
                         <a class="entity-image" style="background-image: url('{{ $member->getImageUrl(40) }}');" title="{{ $member->name }}" href="{{ route('characters.show', $member->id) }}"></a>
                     </td>
                     <td>
-                        {!! $member->tooltipedLink() !!}<br />
+                        {!! $member->tooltipedLink() !!} @if ($member->is_dead)<span class="ra ra-skull" data-toggle="tooltip" title="{{ __('characters.hints.is_dead') }}"></span>@endif<br />
                         <i>{{ $member->title }}</i>
                     </td>
-                    @if($allMembers)<td>{!! $member->family->tooltipedLink() !!}</td>@endif
+                    @if($allMembers)<td>
+                        @foreach ($member->families as $family)
+                            {!! $family->tooltipedLink() !!}
+                        @endforeach
+                    </td>@endif
                     @if ($campaign->enabled('locations'))
                         <td class="hidden-xs hidden-sm">
                             @if ($member->location)
@@ -81,7 +84,6 @@ $r = $r->with(['races', 'location'])->simpleSort($datagridSorter)->orderBy('name
                         </td>
                     @endif
                     <td>{{ $member->sex }}</td>
-                    <td>@if ($member->is_dead)<span class="ra ra-skull"></span>@endif</td>
                 </tr>
             @endforeach
             </tbody>

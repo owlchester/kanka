@@ -17,11 +17,17 @@
     </div>
 
     <div class="sidebar-elements collapse in" id="sidebar-profile-elements">
-        @if ($campaign->enabled('families') && !empty($model->family))
+        @if ($campaign->enabled('families') && !$model->families->isEmpty())
             <div class="element profile-family">
-                <div class="title">{{ __('characters.fields.family') }}</div>
-                {!! $model->family->tooltipedLink() !!}
-            </div>
+                <div class="title">{{ __('characters.fields.families') }}</div>
+                @php $existingFamilies = []; @endphp
+                @foreach ($model->families as $family)
+                    @if(!empty($existingFamilies[$family->id]))
+                        @continue
+                    @endif
+                    @php $existingRaces[$family->id] = true; @endphp
+                    {!! $family->tooltipedLink() !!}
+                @endforeach            </div>
         @endif
 
         @if (!$model->races->isEmpty() || $model->hasAge())
