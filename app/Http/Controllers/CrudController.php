@@ -134,6 +134,16 @@ class CrudController extends Controller
     {
         //$this->authorize('browse', $this->model);
 
+        // Check that the module isn't disabled
+        $campaign = CampaignLocalization::getCampaign();
+        if (!empty($this->module) && !$campaign->enabled($this->module)) {
+            return redirect()->route('dashboard')->with('error_raw',
+                __('campaigns.settings.errors.module-disabled', [
+                    'fix' => link_to_route('campaign_settings', __('crud.fix-this-issue'), ['#' . $this->module]),
+                ])
+            );
+        }
+
         /** @var MiscModel $model */
         $model = new $this->model;
         $this->filterService->make($this->view, request()->all(), $model);

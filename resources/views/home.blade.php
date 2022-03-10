@@ -98,8 +98,6 @@
 
 @section('content')
 
-    @include('partials.errors')
-
     @includeWhen(!empty($releases), 'partials.releases')
 
     @if (empty($dashboard))

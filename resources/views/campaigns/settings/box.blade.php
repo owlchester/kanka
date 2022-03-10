@@ -1,5 +1,5 @@
 @if (isset($boosted) && $boosted && !$campaign->boosted())
-    <div class="box box-solid box-warning">
+    <div class="box box-solid box-warning" id="{{ $module }}">
         <div class="box-header with-border">
             <h3 class="box-title">
                 <i class="{{ $icon }}"></i> {{ __('entities.' . $module) }}
@@ -13,7 +13,7 @@
         </div>
     </div>
 @else
-    <div class="box box-solid @if ($campaign->enabled($module)) box-success @else box-default @endif ">
+    <div class="box box-solid @if ($campaign->enabled($module)) box-success @else box-default @endif " id="{{ $module }}">
         <div class="box-header with-border">
             <h3 class="box-title">
                 <i class="{{ $icon }}"></i> {{ __('entities.' . $module) }}

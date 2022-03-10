@@ -19,6 +19,7 @@ class AbilityController extends CrudController
      */
     protected $view = 'abilities';
     protected $route = 'abilities';
+    protected $module = 'abilities';
 
     /**
      * Crud models

@@ -20,6 +20,7 @@ class OrganisationController extends CrudController
      */
     protected $view = 'organisations';
     protected $route = 'organisations';
+    protected $module = 'organisations';
 
     /** @var string */
     protected $model = \App\Models\Organisation::class;

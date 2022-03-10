@@ -26,6 +26,7 @@ class FamilyController extends CrudController
      */
     protected $view = 'families';
     protected $route = 'families';
+    protected $module = 'families';
 
     /**
      * Crud models

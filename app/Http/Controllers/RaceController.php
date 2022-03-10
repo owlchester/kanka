@@ -19,6 +19,7 @@ class RaceController extends CrudController
      */
     protected $view = 'races';
     protected $route = 'races';
+    protected $module = 'races';
 
     /** @var string Model */
     protected $model = \App\Models\Race::class;

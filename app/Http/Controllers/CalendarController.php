@@ -24,6 +24,7 @@ class CalendarController extends CrudController
      */
     protected $view = 'calendars';
     protected $route = 'calendars';
+    protected $module = 'calendars';
 
     protected $calendarService;
 

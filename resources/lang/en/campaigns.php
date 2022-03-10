@@ -362,6 +362,9 @@ TEXT
         'edit'      => [
             'success'   => 'Campaign settings updated.',
         ],
+        'errors'    => [
+            'module-disabled' => 'The module you are trying to load is currently disabled in the campaign settings. :fix',
+        ],
         'helper'    => 'All modules of a campaign can be enabled or disabled at will. Disabling a module will simply hide interface elements related to it, and pre-existing entities will be hidden but still exist in the background, in case you change your mind. These change effect all users of a campaign, including members of the :admin role.',
         'helpers'   => [
             'abilities'     => 'Create abilities, be it feats, spells, or powers that can be assigned to entities.',

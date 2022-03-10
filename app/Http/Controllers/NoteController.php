@@ -22,6 +22,7 @@ class NoteController extends CrudController
      */
     protected $view = 'notes';
     protected $route = 'notes';
+    protected $module = 'notes';
 
     /** @var string */
     protected $model = \App\Models\Note::class;

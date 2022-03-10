@@ -26,6 +26,7 @@ class LocationController extends CrudController
      */
     protected $view = 'locations';
     protected $route = 'locations';
+    protected $module = 'locations';
 
     /** @var string Model */
     protected $model = \App\Models\Location::class;

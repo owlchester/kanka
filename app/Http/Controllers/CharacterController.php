@@ -14,6 +14,7 @@ class CharacterController extends CrudController
      */
     protected $view = 'characters';
     protected $route = 'characters';
+    protected $module = 'characters';
 
     /**
      * @var string

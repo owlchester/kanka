@@ -20,6 +20,7 @@ class EventController extends CrudController
      */
     protected $view = 'events';
     protected $route = 'events';
+    protected $module = 'events';
 
     /** @var string Model */
     protected $model = \App\Models\Event::class;

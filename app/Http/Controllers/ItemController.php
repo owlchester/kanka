@@ -18,6 +18,7 @@ class ItemController extends CrudController
      */
     protected $view = 'items';
     protected $route = 'items';
+    protected $module = 'items';
 
     /** @var string Model */
     protected $model = \App\Models\Item::class;

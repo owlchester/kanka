@@ -26,6 +26,7 @@ class TagController extends CrudController
      */
     protected $view = 'tags';
     protected $route = 'tags';
+    protected $module = 'tags';
 
     /** @var string Model */
     protected $model = \App\Models\Tag::class;

@@ -17,6 +17,7 @@ class DiceRollController extends CrudController
      */
     protected $view = 'dice_rolls';
     protected $route = 'dice_rolls';
+    protected $module = 'dice_rolls';
 
     /** @var string Model */
     protected $model = \App\Models\DiceRoll::class;
