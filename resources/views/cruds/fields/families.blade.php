@@ -8,7 +8,7 @@
         'id',
         [
             'model' => isset($model) ? $model : FormCopy::model(),
-            'source' => $source
+            'source' => isset($source) ? $source : null,
         ]
     ) !!}
 </div>
