@@ -460,7 +460,7 @@ class AttributeService
 
         // Marketplace campaigns
         $key = __('attributes/templates.list.marketplace');
-        foreach(CampaignPlugin::templates($this->campaign)->get() as $plugin) {
+        foreach(CampaignPlugin::templates($this->campaign)->with(['plugin', 'plugin.user'])->get() as $plugin) {
             if (empty($plugin->plugin)) {
                 continue;
             }
