@@ -472,6 +472,8 @@ Route::group([
         Route::get('/campaign', 'CampaignController@index')->name('campaign');
         Route::get('/campaign-settings', 'CampaignSettingController@index')->name('campaign_settings');
         Route::post('/campaign-settings', 'CampaignSettingController@save')->name('campaign_settings.save');
+        Route::get('/campaign-theme', 'Campaign\StyleController@theme')->name('campaign-theme');
+        Route::post('/campaign-theme', 'Campaign\StyleController@themeSave')->name('campaign-theme.save');
         Route::get('/campaign-export', 'Campaign\ExportController@index')->name('campaign_export');
         Route::post('/campaign-export', 'Campaign\ExportController@export')->name('campaign_export.save');
         Route::get('/campaign.styles', 'CampaignController@css')->name('campaign.css');

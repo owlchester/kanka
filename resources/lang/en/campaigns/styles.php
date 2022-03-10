@@ -3,6 +3,7 @@
 return [
     'actions'   => [
         'new'   => 'New style',
+        'current' => 'Current theme: :theme',
     ],
     'create'    => [
         'success'   => 'New style created.',
@@ -28,4 +29,8 @@ return [
         'success'   => 'Style :name updated.',
         'title'     => 'Update style',
     ],
+    'theme' => [
+        'title' => 'Update the campaign theme',
+        'success' => 'Campaign theme updated.',
+    ]
 ];

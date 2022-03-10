@@ -6,6 +6,7 @@ use App\Facades\CampaignCache;
 use App\Facades\CampaignLocalization;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreCampaignStyle;
+use App\Http\Requests\StoreCampaignTheme;
 use App\Models\Campaign;
 use App\Models\CampaignStyle;
 use App\Services\Campaign\UserService;
@@ -32,8 +33,9 @@ class StyleController extends Controller
         $campaign = CampaignLocalization::getCampaign();
         $this->authorize('recover', $campaign);
         $styles = $campaign->styles()->paginate();
+        $theme = $campaign->theme;
 
-        return view('campaigns.styles.index', compact('campaign', 'styles'));
+        return view('campaigns.styles.index', compact('campaign', 'styles', 'theme'));
     }
 
     public function show(CampaignStyle $campaignStyle)
@@ -99,5 +101,33 @@ class StyleController extends Controller
             ->route('campaign_styles.index')
             ->with('success', __('campaigns/styles.delete.success', ['name' => $campaignStyle->name]));
 
+    }
+
+    public function theme()
+    {
+        $campaign = CampaignLocalization::getCampaign();
+        $this->authorize('update', $campaign);
+
+        $themes = [null => __('crud.filters.options.none')];
+        foreach (\App\Models\Theme::all() as $theme) {
+            $themes[$theme->id] = $theme->__toString();
+        }
+
+        return view('campaigns.styles.theme', compact('campaign', 'themes'));
+    }
+
+    public function themeSave(StoreCampaignTheme $request)
+    {
+        $campaign = CampaignLocalization::getCampaign();
+        $this->authorize('update', $campaign);
+
+        $campaign->update([
+            'theme_id' => $request->get('theme_id')
+        ]);
+
+        return redirect()
+            ->route('campaign_styles.index')
+            ->with('success', __('campaigns/styles.theme.success'))
+        ;
     }
 }

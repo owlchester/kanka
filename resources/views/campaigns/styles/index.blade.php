@@ -37,6 +37,10 @@
                             {{ __('campaigns.members.actions.help') }}
                         </button>
 
+                        <a href="#" data-url="{{ route('campaign-theme') }}" data-target="#entity-modal" data-toggle="ajax-modal" class="btn btn-default btn-sm" >
+                            <i class="fas fa-brush"></i> {{ __('campaigns/styles.actions.current', ['theme' => !empty($theme) ? $theme->__toString() : __('crud.filters.options.none')]) }}
+                        </a>
+
                         <a href="{{ route('campaign_styles.create') }}" class="btn btn-primary btn-sm">
                             <i class="fa fa-plus"></i> {{ __('campaigns/styles.actions.new') }}
                         </a>
