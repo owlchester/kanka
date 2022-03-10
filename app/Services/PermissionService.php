@@ -479,11 +479,11 @@ class PermissionService
             ];
 
             /** @var CampaignRole $role */
-            foreach ($campaign->roles()->with('users')->get() as $campaignRole) {
-                $campaignPermissions = $campaignRole->permissions()
+            foreach ($campaign->roles()->with(['users', 'permissions'])->get() as $campaignRole) {
+                $campaignPermissions = $campaignRole->permissions
                     ->whereNull('entity_id')
                     ->whereNull('user_id')
-                    ->get();
+                ;
                 $users = $campaignRole->users->pluck('user_id');
                 /** @var CampaignPermission $campaignPermission */
                 foreach ($campaignPermissions as $campaignPermission) {
