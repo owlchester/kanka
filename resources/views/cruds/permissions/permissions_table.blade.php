@@ -10,6 +10,7 @@ $actions = [
         'deny' => __('crud.permissions.actions.bulk_entity.deny'),
         'inherit' => __('crud.permissions.actions.bulk_entity.inherit'),
 ];
+$permissionService->campaign($campaign->campaign());
 ?>
 
 <div id="crud_permissions">
@@ -71,8 +72,8 @@ $actions = [
         </div>
     @endforeach
 
-    @if (isset($skipUsers) && $skipUsers && $campaign->campaign()->members->count() > 10)
-        <p class="help-block">{{ __('crud.permissions.too_many_members') }}</p>
+    @if (isset($skipUsers) && $skipUsers && $permissionService->users()->count() > 10)
+        <p class="help-block">{{ __('crud.permissions.too_many_members', ['value' => 10]) }}</p>
         <input type="hidden" name="permissions_too_many" value="1" />
     @else
         <div class="row margin-bottom">
@@ -101,7 +102,7 @@ $actions = [
                 <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="bottom" title="{{ __('campaigns.roles.permissions.helpers.entity_note') }}"></i>
             </div>
         </div>
-        @foreach ($campaign->campaign()->members()->withoutAdmins()->with('user')->get() as $member)
+        @foreach ($permissionService->users() as $member)
             <div class="row margin-bottom">
                 <div class="col-sm-4">
                     <div class="entity-image pull-left" style="background-image: url({{ $member->user->getAvatarUrl() }})" title="{{ $member->user->name }}">

@@ -2,16 +2,13 @@
 
 namespace App\Services;
 
-use App\Models\CampaignUser;
-use App\Exceptions\RequireLoginException;
-use App\Models\CampaignInvite;
+use App\Models\Campaign;
 use App\Models\CampaignPermission;
 use App\Models\CampaignRole;
 use App\Models\Entity;
 use App\Models\MiscModel;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Session;
 
 /**
  * Class PermissionService
@@ -30,9 +27,19 @@ class PermissionService
     private $baseModel;
 
     /**
+     * @var array Users with a role
+     */
+    private $users = false;
+
+    /**
      * @var string
      */
     private $type;
+
+    /**
+     * @var
+     */
+    protected $campaign;
 
     /**
      * Permissions setup on the campaign
@@ -541,5 +548,26 @@ class PermissionService
             return 'inherit';
         }
         return $value->access ? 'allow' : 'deny';
+    }
+
+    /**
+     * @param Campaign $campaign
+     * @return $this
+     */
+    public function campaign(Campaign $campaign): self
+    {
+        $this->campaign = $campaign;
+        return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function users()
+    {
+        if ($this->users === false) {
+            $this->users = $this->campaign->members()->withoutAdmins()->with('user')->get();
+        }
+        return $this->users;
     }
 }
