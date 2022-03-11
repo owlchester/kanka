@@ -479,14 +479,13 @@ class PermissionService
         }
 
         if ($this->basePermissions === false) {
-            $campaign = \App\Facades\CampaignLocalization::getCampaign();
             $this->basePermissions = [
                 'roles' => [],
                 'users' => []
             ];
 
             /** @var CampaignRole $role */
-            foreach ($campaign->roles()->with(['users', 'permissions'])->get() as $campaignRole) {
+            foreach ($this->campaign->roles()->with(['users', 'permissions'])->get() as $campaignRole) {
                 $campaignPermissions = $campaignRole->permissions
                     ->whereNull('entity_id')
                     ->whereNull('user_id')
