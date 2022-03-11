@@ -215,15 +215,9 @@ class AppServiceProvider extends ServiceProvider
     protected function addBladeDirectives()
     {
         // Role based directives
-        Blade::if('admin', function () {
-            return auth()->check() && auth()->user()->hasRole('admin');
-        });
-        Blade::if('translator', function () {
-            return auth()->check() && auth()->user()->hasRole('translator');
-        });
-        Blade::if('moderator', function () {
-            return auth()->check() && auth()->user()->hasRole('moderator');
-        });
+        /*Blade::if('userRole', function ($role) {
+            return auth()->check() && auth()->user()->hasRole($role);
+        });*/
 
         // Permission to view an entity
         Blade::if('viewentity', function (Entity $entity) {

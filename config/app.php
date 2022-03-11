@@ -192,7 +192,6 @@ return [
         Laravel\Socialite\SocialiteServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
 
-
         Vsch\TranslationManager\ManagerServiceProvider::class,
         Vsch\TranslationManager\TranslationServiceProvider::class,
         //Illuminate\Translation\TranslationServiceProvider::class,
