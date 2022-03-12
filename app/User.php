@@ -233,7 +233,7 @@ class User extends \Illuminate\Foundation\Auth\User
      */
     public function hasOtherCampaigns(int $campaignId): bool
     {
-        return $this->campaigns()->where('campaign_id', '!=', $campaignId)->count() > 0;
+        return $this->campaigns()->where('campaign_id', '<>', $campaignId)->count() > 0;
     }
 
     /**
