@@ -21,10 +21,10 @@ class CharacterResource extends EntityResource
 
         // Fallback for old api calls
         // TODO: optimize to not re-do a db query
-        $raceIDs = $model->races()->pluck('id');
+        $raceIDs = $model->races()->pluck('races.id');
         $raceID = Arr::first($raceIDs);
 
-        $familyIDs = $model->families()->pluck('id');
+        $familyIDs = $model->families()->pluck('families.id');
         $familyID = Arr::first($familyIDs);
 
         $character = [
