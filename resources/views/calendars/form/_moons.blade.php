@@ -71,13 +71,15 @@ if (!empty($moonNames)) {
     <i class="fa fa-plus"></i> {{ __('calendars.actions.add_moon') }}
 </a>
 
+@section('modals')
+    @parent
 <div class="form-group" id="template_moon" style="display: none">
     <div class="row">
         <div class="col-md-6">
             <div class="input-group">
-                <span class="input-group-addon">
+                <!--<span class="input-group-addon">
                     <span class="fa fa-arrows-alt-v"></span>
-                </span>
+                </span>-->
                 {!! Form::text('moon_name[]', null, ['class' => 'form-control', 'placeholder' => __('calendars.parameters.moon.name')]) !!}
             </div>
         </div>
@@ -100,3 +102,4 @@ if (!empty($moonNames)) {
     </div>
     {!! Form::hidden('moon_id[]', null) !!}
 </div>
+@endsection

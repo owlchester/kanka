@@ -111,7 +111,7 @@ return [
         'personality_entry' => 'Details',
         'personality_name'  => 'Goals, Mannerisms, Fears, Bonds',
         'physical'          => 'Physical',
-        'pronouns'          => 'He/Him, She/Her, They/Their',
+        'pronouns'          => 'He/Him, She/Her, They/Them',
         'race'              => 'Race',
         'races'             => 'Choose races',
         'sex'               => 'Gender',

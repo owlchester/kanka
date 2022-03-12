@@ -61,13 +61,15 @@ if (!empty($seasonNames)) {
     <i class="fa fa-plus"></i> {{ trans('calendars.actions.add_season') }}
 </a>
 
+@section('modals')
+    @parent
 <div class="form-group" id="template_season" style="display: none">
     <div class="row">
         <div class="col-md-6">
             <div class="input-group">
-                <span class="input-group-addon">
+                <!--<span class="input-group-addon">
                     <span class="fa fa-arrows-alt-v"></span>
-                </span>
+                </span>-->
                 {!! Form::text('season_name[]', null, ['class' => 'form-control', 'placeholder' => __('calendars.parameters.seasons.name')]) !!}
             </div>
         </div>
@@ -86,3 +88,4 @@ if (!empty($seasonNames)) {
         </div>
     </div>
 </div>
+@endsection

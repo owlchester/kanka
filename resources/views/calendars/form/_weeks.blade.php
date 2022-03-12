@@ -41,20 +41,6 @@
         <a class="btn btn-default" id="add_weekday" href="#" title="{{ trans('calendars.actions.add_weekday') }}">
             <i class="fa fa-plus"></i> {{ trans('calendars.actions.add_weekday') }}
         </a>
-
-        <div class="form-group" id="template_weekday" style="display: none">
-            <div class="input-group">
-                        <span class="input-group-addon">
-                            <span class="fa fa-arrows-alt-v"></span>
-                        </span>
-                {!! Form::text('weekday[]', null, ['class' => 'form-control']) !!}
-                <span class="input-group-btn">
-                            <span href="#" class="month-delete btn btn-danger" title="{{ trans('crud.remove') }}">
-                                <i class="fa fa-trash"></i>
-                            </span>
-                        </span>
-            </div>
-        </div>
     </div>
     <div class="col-md-6">
         <div class="form-group">
@@ -113,28 +99,45 @@
         <a class="btn btn-default" id="add_week" href="#" title="{{ trans('calendars.actions.add_week') }}">
             <i class="fa fa-plus"></i> {{ trans('calendars.actions.add_week') }}
         </a>
+    </div>
+</div>
 
-        <div class="form-group" id="template_week" style="display: none">
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="input-group">
-                        <span class="input-group-addon">
-                            <span class="fa fa-arrows-alt-v"></span>
-                        </span>
-                        {!! Form::number('week_number[]', null, ['class' => 'form-control', 'placeholder' => __('calendars.parameters.weeks.number')]) !!}
-                    </div>
+@section('modals')
+    @parent
+    <div class="form-group" id="template_weekday" style="display: none">
+        <div class="input-group">
+            <!--<span class="input-group-addon">
+                <span class="fa fa-arrows-alt-v"></span>
+            </span>-->
+            {!! Form::text('weekday[]', null, ['class' => 'form-control']) !!}
+            <span class="input-group-btn">
+                <span href="#" class="month-delete btn btn-danger" title="{{ trans('crud.remove') }}">
+                    <i class="fa fa-trash"></i>
+                </span>
+            </span>
+        </div>
+    </div>
+
+    <div class="form-group" id="template_week" style="display: none">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="input-group">
+                    <!--<span class="input-group-addon">
+                        <span class="fa fa-arrows-alt-v"></span>
+                    </span>-->
+                    {!! Form::number('week_number[]', null, ['class' => 'form-control', 'placeholder' => __('calendars.parameters.weeks.number')]) !!}
                 </div>
-                <div class="col-md-8">
-                    <div class="input-group">
-                        {!! Form::text('week_name[]', null, ['class' => 'form-control', 'placeholder' => __('calendars.parameters.weeks.name')]) !!}
-                        <span class="input-group-btn">
-                            <span class="month-delete btn btn-danger" data-remove="4" title="{{ trans('crud.remove') }}">
-                                <i class="fa fa-trash"></i>
-                            </span>
+            </div>
+            <div class="col-md-8">
+                <div class="input-group">
+                    {!! Form::text('week_name[]', null, ['class' => 'form-control', 'placeholder' => __('calendars.parameters.weeks.name')]) !!}
+                    <span class="input-group-btn">
+                        <span class="month-delete btn btn-danger" data-remove="4" title="{{ trans('crud.remove') }}">
+                            <i class="fa fa-trash"></i>
                         </span>
-                    </div>
+                    </span>
                 </div>
             </div>
         </div>
     </div>
-</div>
+@endsection
