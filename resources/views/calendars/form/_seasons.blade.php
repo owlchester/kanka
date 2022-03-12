@@ -66,12 +66,7 @@ if (!empty($seasonNames)) {
 <div class="form-group" id="template_season" style="display: none">
     <div class="row">
         <div class="col-md-6">
-            <div class="input-group">
-                <!--<span class="input-group-addon">
-                    <span class="fa fa-arrows-alt-v"></span>
-                </span>-->
-                {!! Form::text('season_name[]', null, ['class' => 'form-control', 'placeholder' => __('calendars.parameters.seasons.name')]) !!}
-            </div>
+            {!! Form::text('season_name[]', null, ['class' => 'form-control', 'placeholder' => __('calendars.parameters.seasons.name')]) !!}
         </div>
         <div class="col-md-3">
             {!! Form::number('season_month[]', null, ['class' => 'form-control', 'placeholder' => __('calendars.parameters.seasons.month')]) !!}

@@ -76,12 +76,7 @@ if (!empty($moonNames)) {
 <div class="form-group" id="template_moon" style="display: none">
     <div class="row">
         <div class="col-md-6">
-            <div class="input-group">
-                <!--<span class="input-group-addon">
-                    <span class="fa fa-arrows-alt-v"></span>
-                </span>-->
-                {!! Form::text('moon_name[]', null, ['class' => 'form-control', 'placeholder' => __('calendars.parameters.moon.name')]) !!}
-            </div>
+            {!! Form::text('moon_name[]', null, ['class' => 'form-control', 'placeholder' => __('calendars.parameters.moon.name')]) !!}
         </div>
         <div class="col-md-2">
             {!! Form::number('moon_fullmoon[]', null, ['class' => 'form-control', 'placeholder' => __('calendars.parameters.moon.fullmoon'), 'step' => '0.01', 'min' => 1]) !!}
