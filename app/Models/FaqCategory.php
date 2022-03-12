@@ -127,6 +127,10 @@ class FaqCategory extends Model
         return $this->title;
     }
 
+    /**
+     * @param string $locale
+     * @return string
+     */
     public function translatedTitle(string $locale): string
     {
         $translation = $this->translations->where('locale', $locale)->first();
@@ -146,6 +150,10 @@ class FaqCategory extends Model
         return $this->faqCount()<> $this->translatedCount($locale);
     }
 
+    /**
+     * @param $locale
+     * @return mixed
+     */
     public function translatedCount($locale)
     {
         if ($this->_translatedCount === false) {
@@ -155,6 +163,9 @@ class FaqCategory extends Model
         return $this->_translatedCount;
     }
 
+    /**
+     * @return mixed
+     */
     public function faqCount()
     {
         if ($this->_faqCount === false) {

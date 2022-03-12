@@ -49,6 +49,7 @@ class FaqTranslation extends Model
     {
         return $query->where('locale', $locale);
     }
+
     /**
      * @param $query
      * @param string $locale

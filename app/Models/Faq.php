@@ -42,7 +42,7 @@ class Faq extends Model
     ];
 
     /** @var null|string Cached slug */
-    protected $_slug = null;
+    protected $cachedSlug = null;
 
     /**
      * This call should be adapted in each entity model to add required "with()" statements to the query for performance
@@ -115,12 +115,16 @@ class Faq extends Model
      */
     public function slug(): string
     {
-        if ($this->_slug !== null) {
-            return $this->_slug;
+        if ($this->cachedSlug !== null) {
+            return $this->cachedSlug;
         }
-        return $this->_slug = Str::slug($this->question);
+        return $this->cachedSlug = Str::slug($this->question);
     }
 
+    /**
+     * @param $query
+     * @return mixed
+     */
     public function scopeAdmin($query)
     {
         return $query;
@@ -150,6 +154,10 @@ class Faq extends Model
         return $this->answer;
     }
 
+    /**
+     * @param string $locale
+     * @return string
+     */
     public function translatedQuestion(string $locale): string
     {
         $translation = $this->translations->where('locale', $locale)->first();
@@ -159,6 +167,11 @@ class Faq extends Model
 
         return $translation->question;
     }
+
+    /**
+     * @param string $locale
+     * @return string
+     */
     public function translatedAnswer(string $locale): string
     {
         $translation = $this->translations->where('locale', $locale)->first();

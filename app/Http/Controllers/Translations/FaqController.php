@@ -11,6 +11,11 @@ use Stevebauman\Purify\Facades\Purify;
 
 class FaqController extends Controller
 {
+    /**
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Psr\Container\ContainerExceptionInterface
+     * @throws \Psr\Container\NotFoundExceptionInterface
+     */
     public function index()
     {
         $categories = [];
@@ -25,6 +30,10 @@ class FaqController extends Controller
         ));
     }
 
+    /**
+     * @param StoreFaqTranslationRequest $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function save(StoreFaqTranslationRequest $request)
     {
         $category = FaqCategory::find($request->get('category_id'));
