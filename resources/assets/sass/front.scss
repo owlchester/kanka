@@ -614,23 +614,17 @@ section.features .feature-item i {
   }
 }
 
-.faqs {
-  ul {
-    margin: 0;
-    padding: 0;
-    list-style-type: none;
-    li {
-      margin: 0 0 20px 0;
+.faq-categories {
+  .card-text {
+    .question-title {
+      color: $KankaBlue;
     }
   }
-
-  .faq-more {
-    a {
-      margin-right: 25px;
-      i {
-        display: inline-block;
-      }
-    }
+  .faq-block {
+    margin-bottom: 5px;
+  }
+  .faq-answer {
+    padding-left: 18px;
   }
 }
 

@@ -139,6 +139,7 @@
                         <i class="fa fa-envelope-open"></i>
                         {{ __('front.help.email') }}
                     </a>
+                </div>
             </div>
         </div>
     </section>

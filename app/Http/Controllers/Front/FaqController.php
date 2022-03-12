@@ -30,7 +30,7 @@ class FaqController extends Controller
      */
     public function index()
     {
-        $categories = FaqCategory::visible()->ordered()->with('faqs')->get();
+        $categories = FaqCategory::visible()->ordered()->with(['localeTranslation', 'faqs', 'faqs.localeTranslation'])->get();
 
         return view('front.faqs.index', compact('categories'));
     }

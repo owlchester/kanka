@@ -169,7 +169,7 @@ return array(
         'admin.releases',
         'admin.users',
         'admin.faqs',
-        'front.kb',
+        'faq',
         'randomisers.characters',
         'backup::notifications',
         'lfgm',

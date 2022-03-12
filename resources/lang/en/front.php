@@ -51,16 +51,9 @@ return [
         'message'   => 'This website uses cookies to ensure you get the best experience on our website.',
     ],
     'faq'           => [
-        'description'   => 'We\'ve covered the most frequently asked questions and answered them as clearly as we can.',
         'helpers'       => [
             'more'  => 'Didn\'t find what you were looking for?',
         ],
-        'kb'            => [
-            'button'    => 'Find answers in our knowledge base',
-            'text'      => 'Have a question about how to use features of Kanka? Our ever expanding knowledge base is the place to go.',
-            'title'     => 'Need help using Kanka?',
-        ],
-        'title'         => 'FAQ',
     ],
     'features'      => [
         'abilities'         => [
@@ -224,6 +217,7 @@ return [
     'help'          => [
         'description'   => 'We are here for you in case you need a bit of help. Contact us using one of the following methods, and we\'ll get back to you as fast as we can.',
         'discord'       => 'Join our Discord',
+        'documentation' => 'Check the documentation',
         'email'         => 'Send us an email',
         'facebook'      => 'Contact us on Facebook',
         'title'         => 'Help',
@@ -257,7 +251,6 @@ return [
         'contact_us'    => 'Contact Us',
         'dashboard'     => 'Dashboard',
         'documentation' => 'Documentation',
-        'faq'           => 'FAQ & Help',
         'features'      => 'Features',
         'help'          => 'Help',
         'home'          => 'Home',

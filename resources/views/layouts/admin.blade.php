@@ -126,6 +126,5 @@
     <script src="https://kit.fontawesome.com/{{ config('fontawesome.kit') }}.js" crossorigin="anonymous"></script>
 @endif
     @yield('scripts')
-    @yield('scripts')
 </body>
 </html>

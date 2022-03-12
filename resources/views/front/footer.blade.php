@@ -61,13 +61,13 @@
                 </div>
                 <ul>
                     <li>
-                        <a href="{{ route('faq.index') }}">{{ __('front.menu.faq') }}</a>
-                    </li>
-                    <li>
                         <a href="{{ route('front.faqs.index') }}">{{ __('front.menu.kb') }}</a>
                     </li>
                     <li>
                         <a href="{{ route('documentation') }}">{{ __('front.menu.documentation') }}</a>
+                    </li>
+                    <li>
+                        <a href="/{{ app()->getLocale() }}{{ config('larecipe.docs.route') }}/1.0/overview" target="_blank">{{ __('front.features.api.link') }}</a>
                     </li>
                     <li>
                         <a href="{{ route('front.contact') }}">{{ __('front.menu.contact') }}</a>
@@ -90,9 +90,6 @@
                     </li>
                     <li>
                         <a href="//loot.kanka.io" target="_blank">{{ __('front.menu.merch') }}</a>
-                    </li>
-                    <li>
-                        <a href="/{{ app()->getLocale() }}{{ config('larecipe.docs.route') }}/1.0/overview" target="_blank">{{ __('front.menu.api') }}</a>
                     </li>
                     <li>
                         <a href="{{ route('front.privacy') }}">{{ __('front.menu.privacy') }}</a>

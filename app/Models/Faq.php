@@ -18,6 +18,8 @@ use Illuminate\Support\Str;
  * @property string $locale
  * @property string $question
  * @property string $answer
+ * @property FaqTranslation[] $translations
+ * @property FaqTranslation $localeTranslation
  */
 class Faq extends Model
 {
@@ -38,6 +40,9 @@ class Faq extends Model
         'is_visible',
         'locale'
     ];
+
+    /** @var null|string Cached slug */
+    protected $_slug = null;
 
     /**
      * This call should be adapted in each entity model to add required "with()" statements to the query for performance
@@ -89,15 +94,78 @@ class Faq extends Model
     }
 
     /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function translations()
+    {
+        return $this->hasMany(FaqTranslation::class);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function localeTranslation()
+    {
+        return $this->hasOne(FaqTranslation::class, 'faq_id', 'id')
+            ->where('locale', app()->getLocale());
+    }
+
+    /**
      * @return string
      */
-    public function slug()
+    public function slug(): string
     {
-        return Str::slug($this->question);
+        if ($this->_slug !== null) {
+            return $this->_slug;
+        }
+        return $this->_slug = Str::slug($this->question);
     }
 
     public function scopeAdmin($query)
     {
         return $query;
+    }
+
+    /**
+     * Get the question
+     * @return string
+     */
+    public function question(): string
+    {
+        if ($this->localeTranslation && !empty($this->localeTranslation->question)) {
+            return $this->localeTranslation->question;
+        }
+        return $this->question;
+    }
+
+    /**
+     * Get the answer
+     * @return string
+     */
+    public function answer(): string
+    {
+        if ($this->localeTranslation && !empty($this->localeTranslation->answer)) {
+            return $this->localeTranslation->answer;
+        }
+        return $this->answer;
+    }
+
+    public function translatedQuestion(string $locale): string
+    {
+        $translation = $this->translations->where('locale', $locale)->first();
+        if (!$translation) {
+            return '';
+        }
+
+        return $translation->question;
+    }
+    public function translatedAnswer(string $locale): string
+    {
+        $translation = $this->translations->where('locale', $locale)->first();
+        if (!$translation) {
+            return '';
+        }
+
+        return $translation->answer;
     }
 }

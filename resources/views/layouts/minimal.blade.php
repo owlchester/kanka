@@ -34,7 +34,7 @@
             </section>
         </div>
 
-        @include('layouts.footer')
+        @includeWhen(!isset($footer) || $footer !== false, 'layouts.footer')
 
     </div>
 

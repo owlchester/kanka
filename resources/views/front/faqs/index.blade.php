@@ -35,5 +35,21 @@
                 @includeWhen($model->sortedFaqs()->count() > 0, 'front.faqs._category')
             @endforeach
         </div>
+
+        <h2 class="mt-5 text-center">{{ __('front.faq.helpers.more') }}</h2>
+        <div class="text-center faq-more">
+            <a href="{{ config('social.discord') }}" class="btn btn-light">
+                <i class="fab fa-discord"></i>
+                {{ __('front.help.discord') }}
+            </a>
+            <a href="{{ route('documentation') }}" class="btn btn-light">
+                <i class="fas fa-book"></i>
+                {{ __('front.help.documentation') }}
+            </a>
+            <a href="mailto:hello@kanka.io" class="btn btn-light">
+                <i class="fa fa-envelope-open"></i>
+                {{ __('front.help.email') }}
+            </a>
+        </div>
     </section>
 @endsection

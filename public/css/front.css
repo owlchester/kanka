@@ -624,22 +624,16 @@ section.features .feature-item i {
   margin: 0;
 }
 
-.faqs ul {
-  margin: 0;
-  padding: 0;
-  list-style-type: none;
+.faq-categories .card-text .question-title {
+  color: #2828A1;
 }
 
-.faqs ul li {
-  margin: 0 0 20px 0;
+.faq-categories .faq-block {
+  margin-bottom: 5px;
 }
 
-.faqs .faq-more a {
-  margin-right: 25px;
-}
-
-.faqs .faq-more a i {
-  display: inline-block;
+.faq-categories .faq-answer {
+  padding-left: 18px;
 }
 
 .youtube-placeholder {

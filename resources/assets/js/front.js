@@ -28,6 +28,25 @@ $(document).ready(function(e) {
             sub.addClass('show');
         }
     })*/
+    initKBScroller();
+
+    $('.faq-dynamic').click(function () {
+        $($(this).data('target')).collapse();
+    });
 });
 
+/**
+ * Automatically open a kb answer if it's in the anchor
+ */
+function initKBScroller() {
+    if ($('.faq-categories').length === 0) {
+        return;
+    }
+
+    let hash = window.location.hash;
+    if (!hash) {
+        return;
+    }
+    $(hash + '-answer').collapse();
+}
 

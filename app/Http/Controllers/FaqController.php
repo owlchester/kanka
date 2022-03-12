@@ -15,8 +15,7 @@ class FaqController extends Controller
      */
     public function index()
     {
-        $faqs = Faq::locale(app()->getLocale())->visible()->ordered()->get();
-        return view('faqs.index')->with('faqs', $faqs);
+        return redirect()->route('front.faqs.index');
     }
 
     /**
@@ -27,10 +26,6 @@ class FaqController extends Controller
      */
     public function show($key, $slug = '')
     {
-        if (!Lang::has('faq.' . $key)) {
-            return redirect()->route('faq.index');
-        }
-
-        return view('faqs.show', ['key' => $key]);
+        return redirect()->route('front.faqs.index');
     }
 }

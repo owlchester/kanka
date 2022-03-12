@@ -81,75 +81,65 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 20);
+/******/ 	return __webpack_require__(__webpack_require__.s = 27);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "./resources/assets/js/front.js":
-/*!**************************************!*\
-  !*** ./resources/assets/js/front.js ***!
-  \**************************************/
+/***/ "./resources/assets/js/admin/admin.js":
+/*!********************************************!*\
+  !*** ./resources/assets/js/admin/admin.js ***!
+  \********************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-$(document).ready(function (e) {
-  var video_wrapper = $('.youtube-placeholder'); //  Check to see if youtube wrapper exists
-
-  if (video_wrapper.length) {
-    // If user clicks on the video wrapper load the video.
-    $('.youtube-placeholder').on('click', function () {
-      /* Dynamically inject the iframe on demand of the user.
-       Pull the youtube url from the data attribute on the wrapper element. */
-      var html = '<div class="embed-responsive embed-responsive-16by9">' + '<div class="youtube-video embed-responsive-item" data-src="' + $(this).data('yt-url') + '">' + '<iframe class="embed-responsive-item" src="' + $(this).data('yt-url') + '" data-src="' + $(this).data('yt-url') + '" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>' + '</div>' + '</div>'; //console.log('html', html);
-
-      $(this).hide().after(html);
-    });
-  }
-  /*$('[data-toggle="dropdown"]').on('click', function(e) {
-      e.preventDefault();
-      let sub = $(this).next('.dropdown-menu');
-      if (sub.hasClass('show')) {
-          sub.removeClass('show');
-      } else {
-          sub.addClass('show');
-      }
-  })*/
-
-
-  initKBScroller();
-  $('.faq-dynamic').click(function () {
-    $($(this).data('target')).collapse();
-  });
+$(document).ready(function () {
+  initTranslationForm();
 });
-/**
- * Automatically open a kb answer if it's in the anchor
- */
 
-function initKBScroller() {
-  if ($('.faq-categories').length === 0) {
+function initTranslationForm() {
+  var selector = $('.form-translations');
+
+  if (selector.length === 0) {
     return;
   }
 
-  var hash = window.location.hash;
+  selector.submit(function (e) {
+    e.preventDefault();
+    $(this).find('.btn-submit').hide();
+    $(this).find('.btn-ajax').show();
+    $.ajaxSetup({
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      }
+    });
+    $.ajax({
+      url: $(this).attr('action'),
+      method: $(this).attr('method'),
+      data: $(this).serialize(),
+      context: this
+    }).done(function (result, textStatus, xhr) {
+      $(this).find('.btn-ajax').hide();
+      $(this).find('.btn-submit').show();
 
-  if (!hash) {
-    return;
-  }
-
-  $(hash + '-answer').collapse();
+      if (result.message) {
+        $(this).find('.btn-submit').append(result.message);
+        $(this).find('.success').delay(1000).fadeOut();
+      }
+    });
+  });
 }
 
 /***/ }),
 
-/***/ 20:
-/*!*****************************************!*\
-  !*** multi ./resources/assets/js/front ***!
-  \*****************************************/
+/***/ 27:
+/*!***********************************************!*\
+  !*** multi ./resources/assets/js/admin/admin ***!
+  \***********************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/jay/Documents/GitHub/miscellany/resources/assets/js/front */"./resources/assets/js/front.js");
+module.exports = __webpack_require__(/*! /Users/jay/Documents/GitHub/miscellany/resources/assets/js/admin/admin */"./resources/assets/js/admin/admin.js");
 
 
 /***/ })
