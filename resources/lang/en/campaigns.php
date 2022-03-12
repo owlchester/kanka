@@ -424,6 +424,9 @@ TEXT
             ],
         ],
     ],
+    'themes' => [
+        'none' => 'None (defaults to profile settings)',
+    ],
     'ui'                                => [
         'boosted'           => 'Boosted',
         'collapsed'         => [

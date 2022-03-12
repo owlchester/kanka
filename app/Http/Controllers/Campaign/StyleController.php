@@ -108,7 +108,7 @@ class StyleController extends Controller
         $campaign = CampaignLocalization::getCampaign();
         $this->authorize('update', $campaign);
 
-        $themes = [null => __('crud.filters.options.none')];
+        $themes = [null => __('campaigns.themes.none')];
         foreach (\App\Models\Theme::all() as $theme) {
             $themes[$theme->id] = $theme->__toString();
         }

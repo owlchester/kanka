@@ -418,11 +418,16 @@
 }
 
 .dashboard-releases {
-  overflow-x: hidden;
+  overflow-x: auto;
   overflow-y: hidden;
   white-space: nowrap;
   .box {
     display: inline-block;
+    width: 80%;
+
+    &:only-child {
+      width: 100%;
+    }
   }
 }
 
