@@ -43,7 +43,7 @@ class EntityNoteVisibilityScope implements Scope
         }
 
         // If we aren't authenticated, just see what is set to all
-        if (!Auth::check()) {
+        if (!auth()->check()) {
             $builder->where($model->getTable() . '.visibility', self::VISIBILITY_ALL);
             return $builder;
         }
@@ -99,7 +99,8 @@ class EntityNoteVisibilityScope implements Scope
 
         /** @var EntityNotePermission $perm */
         $perms = EntityNotePermission::
-            where('user_id', auth()->user()->id)
+            select('entity_note_id')
+            ->where('user_id', auth()->user()->id)
             ->get();
         foreach ($perms as $perm) {
             if ($perm->permission === 2) {

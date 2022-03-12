@@ -6,7 +6,6 @@ use App\Facades\Img;
 use App\Facades\UserCache;
 use App\Models\Campaign;
 use App\Facades\CampaignLocalization;
-use App\Models\CampaignRole;
 use App\Models\Concerns\Filterable;
 use App\Models\Concerns\Searchable;
 use App\Models\Concerns\Sortable;
@@ -233,7 +232,8 @@ class User extends \Illuminate\Foundation\Auth\User
      */
     public function hasOtherCampaigns(int $campaignId): bool
     {
-        return $this->campaigns()->where('campaign_id', '<>', $campaignId)->count() > 0;
+        $campaigns = UserCache::campaigns();
+        return $campaigns->where('campaign_id', '<>', $campaignId)->count() > 0;
     }
 
     /**
