@@ -59,13 +59,13 @@
 
             <div class="entity-note-footer text-right text-muted">
             <span class="entity-note-footer-element entity-note-created" title="{{ __('entities/notes.footer.created', [
-'user' => $note->creator ? $note->creator->name : __('crud.users.unknown'),
+'user' => $note->created_by ? e(\App\Facades\UserCache::name($note->created_by)) : __('crud.users.unknown'),
 'date' => $note->created_at->isoFormat('MMMM Do Y, hh:mm a')]) }}" data-toggle="tooltip">
                 {{ $note->created_at->isoFormat('MMMM Do, Y') }}
             </span>
                 @if ($note->updated_at->greaterThan($note->created_at))
                     <span class="entity-note-footer-element entity-note-updated" title="{{ __('entities/notes.footer.updated', [
-'user' => $note->editor ? $note->editor->name : __('crud.users.unknown'),
+'user' => $note->updated_by ? e(\App\Facades\UserCache::name($note->updated_by)) : __('crud.users.unknown'),
 'date' => $note->updated_at->isoFormat('MMMM Do Y, hh:mm a')]) }}" data-toggle="tooltip">
                 {{ $note->updated_at->isoFormat('MMMM Do, Y') }}
             </span>
