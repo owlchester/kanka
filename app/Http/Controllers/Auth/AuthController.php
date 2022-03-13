@@ -69,9 +69,9 @@ class AuthController extends Controller
             return redirect()->route('home');
         } catch (\Exception $ex) {
             if ($ex->getCode() == '1') {
-                return redirect()->route('login')->withErrors(trans('auth.register.errors.email_already_taken'));
+                return redirect()->route('login')->withErrors(__('auth.register.errors.email_already_taken'));
             } else {
-                return redirect()->route('register')->withErrors(trans('auth.register.errors.general_error'));
+                return redirect()->route('register')->withErrors(__('auth.register.errors.general_error'));
             }
         }
     }
