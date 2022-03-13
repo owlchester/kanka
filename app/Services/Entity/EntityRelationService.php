@@ -700,7 +700,7 @@ class EntityRelationService
     {
         if (!method_exists($this->entity->child, 'getParentIdName')) {
             // If not part of the node model, check for the {self}_id attribute
-            if (!array_key_exists($this->entity->type . '_id', $this->entity->child->getAttributes())) {
+            if (!array_key_exists($this->entity->type() . '_id', $this->entity->child->getAttributes())) {
                 return $this;
             }
         }
@@ -712,7 +712,7 @@ class EntityRelationService
             return $this;
         }
 
-        $transKey = $this->entity->pluralType() . '.fields.' . $this->entity->type;
+        $transKey = $this->entity->pluralType() . '.fields.' . $this->entity->type();
 
         $this->addEntity($parent->entity);
         $this->relations[] = [
