@@ -133,7 +133,7 @@ trait Filterable
                     } elseif ($key == 'organisation_member') {
                         if (!empty($filterOption) && $filterOption == 'exclude') {
                             $query
-                                ->whereRaw('(select count(*) from organisation_member as ome where ome.character_id = ' . $this->getTable() . '.id and ome.organisation_id in (' . $value . ')) = 0');
+                                ->whereRaw('(select count(*) from organisation_member as ome where ome.character_id = ' . $this->getTable() . '.id and ome.organisation_id in (' . (int) $value . ')) = 0');
                             continue;
                         }
                         $query
