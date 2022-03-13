@@ -2,6 +2,7 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\PasswordConfirm;
 use App\Http\Middleware\Tracking;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 use Laravel\Passport\Http\Middleware\CheckClientCredentials;
@@ -81,5 +82,6 @@ class Kernel extends HttpKernel
         'moderator' => \App\Http\Middleware\Moderator::class,
         'identity' => \App\Http\Middleware\Identity::class,
         'partner' => \App\Http\Middleware\Partner::class,
+        'password.confirm' => PasswordConfirm::class,
     ];
 }

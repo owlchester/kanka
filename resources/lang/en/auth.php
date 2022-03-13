@@ -13,6 +13,12 @@ return [
     |
     */
 
+    'confirm' => [
+        'title' => 'Password confirmation',
+        'helper' => 'Please confirm your password before being able to continue.',
+        'confirm' => 'Confirm',
+        'error' => 'Invalid password, please try again.',
+    ],
     'failed'    => 'These credentials do not match our records.',
     'helpers'   => [
         'password'  => 'Show / Hide password',

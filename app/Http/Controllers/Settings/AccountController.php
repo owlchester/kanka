@@ -20,7 +20,7 @@ class AccountController extends Controller
      */
     public function __construct()
     {
-        $this->middleware(['auth', 'identity']);
+        $this->middleware(['auth', 'identity', 'password.confirm']);
     }
 
     /**
@@ -28,7 +28,9 @@ class AccountController extends Controller
      */
     public function index()
     {
-        return view('settings.account');
+        $user = auth()->user();
+        return view('settings.account')
+            ->with(compact('user'));
     }
 
     /**
@@ -45,7 +47,7 @@ class AccountController extends Controller
 
         return redirect()
             ->route('settings.account')
-            ->with('success', trans('settings.account.password_success'));
+            ->with('success', __('settings.account.password_success'));
     }
 
     /**
@@ -62,7 +64,7 @@ class AccountController extends Controller
 
         return redirect()
             ->route('settings.account')
-            ->with('success', trans('settings.account.email_success'));
+            ->with('success', __('settings.account.email_success'));
     }
 
     /**
@@ -74,7 +76,7 @@ class AccountController extends Controller
         if (empty(Auth()->user()->provider)) {
             return redirect()
                 ->route('settings.account')
-                ->with('error', trans('settings.account.social.error'));
+                ->with('error', __('settings.account.social.error'));
         }
 
         $data['provider'] = null;
@@ -88,7 +90,7 @@ class AccountController extends Controller
 
         return redirect()
             ->route('settings.account')
-            ->with('success', trans('settings.account.social.success'));
+            ->with('success', __('settings.account.social.success'));
     }
 
     /**

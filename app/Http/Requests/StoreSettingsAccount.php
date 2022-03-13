@@ -24,9 +24,7 @@ class StoreSettingsAccount extends FormRequest
      */
     public function rules()
     {
-        $user = Auth::user();
         $rules = [];
-        $rules['password'] = 'required|hash:' . $user->getAuthPassword();
         $rules['password_new'] = 'required|min:6|confirmed';
         $rules['password_new_confirmation'] = 'required';
 

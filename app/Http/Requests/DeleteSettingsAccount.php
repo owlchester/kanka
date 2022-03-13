@@ -26,11 +26,6 @@ class DeleteSettingsAccount extends FormRequest
     {
         $user = Auth::user();
         $rules = [];
-        if (empty($user->provider)) {
-            $rules = [
-                'password' => 'required|hash:' . $user->getAuthPassword()
-            ];
-        }
         return $rules;
     }
 }

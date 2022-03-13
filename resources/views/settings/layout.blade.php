@@ -67,25 +67,31 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label>{{ __('profiles.settings.fields.new_entity_workflow') }}</label>
+                        <label>
+                            {{ __('profiles.settings.fields.new_entity_workflow') }}
+                            <i class="fas fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" title="{{ __('profiles.settings.hints.new_entity_workflow') }}"></i>
+                        </label>
                             {!! Form::select('new_entity_workflow', [
                                     '' => __('profiles.workflows.default'),
                                     'created' => __('profiles.workflows.created'),
                                 ], null, ['class' => 'form-control']) !!}
 
-                        <p class="help-block">{{ __('profiles.settings.hints.new_entity_workflow') }}</p>
+                        <p class="help-block visible-xs visible-sm">{{ __('profiles.settings.hints.new_entity_workflow') }}</p>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label>{{ __('profiles.settings.fields.editor') }}</label>
+                        <label>
+                            {{ __('profiles.settings.fields.editor') }}
+                            <i class="fas fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" title="{{ __('profiles.settings.helpers.editor_v2') }}"></i>
+                        </label>
                         {!! Form::select('editor', [
                             '' => 'Summernote',
                             'legacy' => __('profiles.editors.legacy'),
                         ], null, ['class' => 'form-control']) !!}
                     </div>
 
-                    <p class="help-block">{{ __('profiles.settings.helpers.editor_v2') }}</p>
+                    <p class="help-block visible-xs visible-sm">{{ __('profiles.settings.helpers.editor_v2') }}</p>
                 </div>
             </div>
 
@@ -113,7 +119,7 @@
             </div>
         </div>
 
-        <div class="box-footer">
+        <div class="box-footer text-right">
             <button class="btn btn-primary">
                 {{ __('crud.save') }}
             </button>

@@ -450,7 +450,7 @@ class User extends \Illuminate\Foundation\Auth\User
      *
      * @return bool
      */
-    public function hasRole($name)
+    public function hasRole($name): bool
     {
         $roles = $this->roles->pluck('name')->toArray();
 
@@ -461,5 +461,14 @@ class User extends \Illuminate\Foundation\Auth\User
         }
 
         return false;
+    }
+
+    /**
+     * Determine if a user is using a social login
+     * @return bool
+     */
+    public function isSocialLogin(): bool
+    {
+        return !empty($this->provider);
     }
 }

@@ -29,11 +29,6 @@ class StoreSettingsAccountEmail extends FormRequest
             'email' => 'required|email|unique:users,email,' . $user->id,
         ];
 
-        // Social media account, no password
-        if (empty($user->provider)) {
-            $rules['password'] = 'required|hash:' . $user->getAuthPassword();
-        }
-
         return $rules;
     }
 }

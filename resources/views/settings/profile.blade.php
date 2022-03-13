@@ -64,7 +64,8 @@
 
                 </div>
             </div>
-
+        </div>
+        <div class="box-footer text-right">
             <button class="btn btn-primary">
                 {{ __('settings.profile.actions.update_profile') }}
             </button>

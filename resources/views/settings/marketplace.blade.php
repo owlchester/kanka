@@ -23,7 +23,7 @@
                 <p class="help-block">{!! __('settings.marketplace.helper', ['marketplace' => link_to(config('marketplace.url'), __('front.menu.marketplace'), ['target' => '_blank'])]) !!}</p>
             </div>
         </div>
-        <div class="box-footer">
+        <div class="box-footer text-right">
             <button class="btn btn-primary">
                 {{ __('crud.save') }}
             </button>
