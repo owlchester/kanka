@@ -1,19 +1,19 @@
 <?php
 
 return [
-    'actions'           => [
+    'actions'       => [
         'follow'    => 'Follow',
         'join'      => 'Join',
         'unfollow'  => 'Stop following',
     ],
-    'campaigns'         => [
+    'campaigns'     => [
         'tabs'  => [
             'modules'   => ':count Modules',
             'roles'     => ':count Roles',
             'users'     => ':count Users',
         ],
     ],
-    'dashboards'        => [
+    'dashboards'    => [
         'actions'       => [
             'edit'      => 'Edit name & permissions',
             'new'       => 'New Dashboard',
@@ -55,24 +55,24 @@ return [
             'visible'   => 'Visible',
         ],
     ],
-    'helpers'           => [
+    'helpers'       => [
         'follow'    => 'Following a campaign will make it appear in the campaign switcher (top-left) below your campaigns.',
         'join'      => 'This campaign is open to new members. Click to apply to join it.',
         'setup'     => 'Setup your campaign\'s dashboard.',
     ],
-    'notifications'     => [
+    'notifications' => [
         'modal' => [
             'confirm'   => 'Got it',
             'title'     => 'Important Notification',
         ],
     ],
-    'recent'            => [
+    'recent'        => [
         'title' => 'Entity list :name',
     ],
-    'settings'          => [
+    'settings'      => [
         'title' => 'Dashboard Settings',
     ],
-    'setup'             => [
+    'setup'         => [
         'actions'   => [
             'add'               => 'Add a widget',
             'back_to_dashboard' => 'Back to dashboard',
@@ -93,8 +93,8 @@ return [
             'unmentioned'   => 'Unmentioned entities list',
         ],
     ],
-    'title'             => 'Dashboard',
-    'widgets'           => [
+    'title'         => 'Dashboard',
+    'widgets'       => [
         'actions'                   => [
             'advanced-options'  => 'Advanced options',
             'delete-confirm'    => 'this widget',

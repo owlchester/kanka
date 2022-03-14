@@ -1,14 +1,14 @@
 <?php
 
 return [
-    'actions' => [
-        'return' => 'Return to knowledge base',
+    'actions'       => [
         'copy_link' => 'Copy link',
+        'return'    => 'Return to knowledge base',
     ],
-    'show' => [
+    'categories'    => 'Categories',
+    'description'   => 'The Kanka knowledge base.',
+    'show'          => [
         'title' => 'KB: :name',
     ],
-    'title' => 'Knowledge base',
-    'description' => 'The Kanka knowledge base.',
-    'categories' => 'Categories',
+    'title'         => 'Knowledge base',
 ];

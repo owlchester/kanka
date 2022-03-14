@@ -194,7 +194,14 @@ return [
             'title'     => 'Modifier la méthode de paiement',
         ],
         'cancel'                => [
-            'text'  => 'Désolé de te voir partir! L\'annulation de ton abonnement le gardera actif jusqu\'au la fin du mois payé, après quoi tu perdras les bonus de ta campagne et les autres avantages liés au soutien de Kanka. N\'hésite pas à remplir le formulaire suivant pour nous informer de ce que nous pouvons améliorer, ou ce qui a conduit à ta décision.',
+            'options'   => [
+                'competitor'        => 'Passer à un concurrent',
+                'custom'            => 'Autre (merci de spécifier)',
+                'financial'         => 'Situation financière à changé',
+                'missing_features'  => 'Fonctionnalités manquantes',
+                'not_using'         => 'N\'utilise pas actuellement Kanka',
+            ],
+            'text'      => 'Désolé de te voir partir! L\'annulation de ton abonnement le gardera actif jusqu\'au la fin du mois payé, après quoi tu perdras les bonus de ta campagne et les autres avantages liés au soutien de Kanka. N\'hésite pas à remplir le formulaire suivant pour nous informer de ce que nous pouvons améliorer, ou ce qui a conduit à ta décision.',
         ],
         'cancelled'             => 'L\'abonnement a été annulé. Un nouvel abonnement peut être fait dès que celui-ci arrive à terme.',
         'change'                => [
@@ -263,6 +270,7 @@ return [
         'sub_status'            => 'Information d\'abonnement',
         'subscription'          => [
             'actions'   => [
+                'cancel'            => 'Annuler l\'abonnement',
                 'downgrading'       => 'Prière de nous contacter pour un déclassement',
                 'rollback'          => 'Changer à Kobold',
                 'subscribe'         => 'Changer à :tier mensuel',

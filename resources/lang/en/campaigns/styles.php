@@ -2,8 +2,8 @@
 
 return [
     'actions'   => [
-        'new'   => 'New style',
-        'current' => 'Current theme: :theme',
+        'current'   => 'Current theme: :theme',
+        'new'       => 'New style',
     ],
     'create'    => [
         'success'   => 'New style created.',
@@ -24,13 +24,13 @@ return [
         'here'      => 'on our blog',
         'main'      => 'You can create custom CSS styling for your boosted campaign. These styles are loaded after any themes from the marketplace that are enabled for the campaign. You can learn more about styling your campaign :here.',
     ],
+    'theme'     => [
+        'success'   => 'Campaign theme updated.',
+        'title'     => 'Update the campaign theme',
+    ],
     'title'     => 'Campaign Theming',
     'update'    => [
         'success'   => 'Style :name updated.',
         'title'     => 'Update style',
     ],
-    'theme' => [
-        'title' => 'Update the campaign theme',
-        'success' => 'Campaign theme updated.',
-    ]
 ];

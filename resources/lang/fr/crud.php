@@ -383,6 +383,7 @@ return [
     ],
     'tooltips'                  => [
         'boosted_feature'   => 'Fonctionnalité de campagne boostée',
+        'new_post'          => 'Ajouter un nouveau post à cette entité.',
     ],
     'update'                    => 'Modifier',
     'users'                     => [

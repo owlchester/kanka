@@ -51,7 +51,7 @@ return [
         'message'   => 'This website uses cookies to ensure you get the best experience on our website.',
     ],
     'faq'           => [
-        'helpers'       => [
+        'helpers'   => [
             'more'  => 'Didn\'t find what you were looking for?',
         ],
     ],

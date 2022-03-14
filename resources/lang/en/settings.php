@@ -194,14 +194,14 @@ return [
             'title'     => 'Edit Payment Method',
         ],
         'cancel'                => [
-            'text'  => 'Sorry to see you go! Cancelling your subscription will keep it active until your next billing cycle, after which you will lose your campaign boosts and other benefits related to supporting Kanka. Feel free to fill out the following form to inform us what we can do better, or what lead to your decision.',
-            'options' => [
-                'financial' => 'Financial situation changed',
-                'not_using' => 'Not currently using Kanka',
-                'competitor' => 'Switching to a competitor',
-                'missing_features' => 'Missing features',
-                'custom' => 'Other (please specify)',
-            ]
+            'options'   => [
+                'competitor'        => 'Switching to a competitor',
+                'custom'            => 'Other (please specify)',
+                'financial'         => 'Financial situation changed',
+                'missing_features'  => 'Missing features',
+                'not_using'         => 'Not currently using Kanka',
+            ],
+            'text'      => 'Sorry to see you go! Cancelling your subscription will keep it active until your next billing cycle, after which you will lose your campaign boosts and other benefits related to supporting Kanka. Feel free to fill out the following form to inform us what we can do better, or what lead to your decision.',
         ],
         'cancelled'             => 'Your subscription has been cancelled. You can renew a subscription once your current subscription ends.',
         'change'                => [
@@ -270,9 +270,9 @@ return [
         'sub_status'            => 'Subscription information',
         'subscription'          => [
             'actions'   => [
+                'cancel'            => 'Cancel subscription',
                 'downgrading'       => 'Please contact us for downgrading',
                 'rollback'          => 'Change to Kobold',
-                'cancel'            => 'Cancel subscription',
                 'subscribe'         => 'Change to :tier monthly',
                 'subscribe_annual'  => 'Change to :tier yearly',
             ],

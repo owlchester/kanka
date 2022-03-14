@@ -364,6 +364,9 @@ TEXT
         'edit'      => [
             'success'   => 'Campagne modifiée.',
         ],
+        'errors'    => [
+            'module-disabled'   => 'Le module demandé est actuellement désactivé dans la configuration de la campagne. :fix.',
+        ],
         'helper'    => 'Tu peux facilement modifier les éléments disponibles pour la campagne. Les éléments déjà créés seront simplement cachés',
         'helpers'   => [
             'abilities'     => 'Créer des pouvoirs, compétences, sorts, etc. qui peuvent être assignés aux entités.',
@@ -422,6 +425,9 @@ TEXT
                 'title' => 'Galerie de campagne',
             ],
         ],
+    ],
+    'themes'                            => [
+        'none'  => 'Aucun (utilise la configuration de l\'utilisateur)',
     ],
     'ui'                                => [
         'boosted'           => 'Boosté',

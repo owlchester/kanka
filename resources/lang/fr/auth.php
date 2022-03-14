@@ -13,6 +13,12 @@ return [
     |
     */
 
+    'confirm'   => [
+        'confirm'   => 'Confirmer',
+        'error'     => 'Mot de passe invalid, merci de ressayer.',
+        'helper'    => 'Prière de confirmer le mot de passe avant de pouvoir continuer.',
+        'title'     => 'Confirmation du mot de passe.',
+    ],
     'failed'    => 'Ces informations ne correspondent pas avec nos entrées.',
     'helpers'   => [
         'password'  => 'Afficher / Cacher le mot de passe',

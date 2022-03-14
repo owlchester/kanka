@@ -2,7 +2,8 @@
 
 return [
     'actions'   => [
-        'new'   => 'Nouveau style',
+        'current'   => 'Thème actuel: theme',
+        'new'       => 'Nouveau style',
     ],
     'create'    => [
         'success'   => 'Nouveau style créé.',
@@ -22,6 +23,10 @@ return [
         'css_moved' => 'Le champ CSS a été déplacé dans la nouvelle interface plus flexible :link dans le menu de campagne.',
         'here'      => 'sur notre blog',
         'main'      => 'Tu peux créer des règles CSS personnalisées pour ta campagne boostée. Ces styles sont chargés après les thèmes du marketplace activés pour la campagne. Tu peux en savoir plus sur comment personnalisé ta campagne :here.',
+    ],
+    'theme'     => [
+        'success'   => 'Thème de la campagne modifié.',
+        'title'     => 'Modifier le thème de la campagne.',
     ],
     'title'     => 'Styles de la campagne',
     'update'    => [
