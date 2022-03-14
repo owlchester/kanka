@@ -124,8 +124,10 @@ class MapMarker extends Model
         if (!empty($this->custom_icon)) {
             return '<i class="' . $this->custom_icon . '"></i>';
         }
-        if ($this->icon == 4 && !empty($this->entity)) {
-            return '<div class="entity-image" style="background-image: url(' . $this->entity->child->getImageUrl(40) . '); width: 100%; height: 100%"></div>';
+        if ($this->icon == 4 && $this->entity && $this->entity->child) {
+            return '<div class="entity-image" style="background-image: url(' .
+                $this->entity->child->getImageUrl(40) .
+            '); width: 100%; height: 100%"></div>';
         }
 
         switch ($this->icon) {
@@ -341,9 +343,11 @@ class MapMarker extends Model
 
         $iconStyles = [];
         $iconStyles[] = 'background-color: ' . $this->backgroundColour();
-        if ($this->entity && $this->icon == 4) {
-            $entityImage = '<div class="marker-entity" style="background-image: url(' . $this->entity->child->getImageUrl(400) . ');"></div>';
-        }
+        /*if ($this->entity && $this->icon == 4 && $this->entity->child) {
+            $entityImage = '<div class="marker-entity" style="background-image: url(' .
+                $this->entity->child->getImageUrl(400) .
+            ');"></div>';
+        }*/
 
         $iconShape = '<div style="background-color: ' . $this->backgroundColour() . '" class="marker-pin"></div>';
 
