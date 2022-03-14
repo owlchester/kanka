@@ -155,7 +155,7 @@ class AdminCrudController extends Controller
             $model = new $this->model;
             $new = $model->create($request->all());
 
-            $success = trans($this->trans . '.create.success', [
+            $success = __($this->trans . '.create.success', [
                 'name' => link_to_route(
                     $this->route . '.index',
                     e($new->name),
@@ -171,7 +171,7 @@ class AdminCrudController extends Controller
                 ->with('success_raw', $success);
         } catch (LogicException $exception) {
             $error =  str_replace(' ', '_', strtolower($exception->getMessage()));
-            return redirect()->back()->withInput()->with('error', trans('crud.errors.' . $error));
+            return redirect()->back()->withInput()->with('error', __('crud.errors.' . $error));
         }
     }
 
@@ -217,7 +217,7 @@ class AdminCrudController extends Controller
     {
         try {
             $model->update(empty($fields) ? $request->all() : $request->only($fields));
-            $success = trans($this->trans . '.edit.success', [
+            $success = __($this->trans . '.edit.success', [
                 'name' => link_to_route(
                     $this->route . '.index',
                     e($model->name),
@@ -229,7 +229,7 @@ class AdminCrudController extends Controller
                 ->with('success_raw', $success);
         } catch (LogicException $exception) {
             $error =  str_replace(' ', '_', strtolower($exception->getMessage()));
-            return redirect()->back()->withInput()->with('error', trans('crud.errors.' . $error));
+            return redirect()->back()->withInput()->with('error', __('crud.errors.' . $error));
         }
     }
 
@@ -241,10 +241,11 @@ class AdminCrudController extends Controller
      */
     public function crudDestroy(Model $model)
     {
-        $this->authorize('delete', $model);
+        //$this->authorize('delete', $model);
 
         $model->delete();
+
         return redirect()->route($this->route . '.index')
-            ->with('success', trans($this->trans . '.destroy.success', ['name' => $model->name]));
+            ->with('success', __($this->trans . '.destroy.success', ['name' => $model->name]));
     }
 }
