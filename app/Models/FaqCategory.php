@@ -158,7 +158,11 @@ class FaqCategory extends Model
     {
         if ($this->_translatedCount === false) {
             $ids = $this->faqs->pluck('id')->toArray();
-            $this->_translatedCount = FaqTranslation::locale($locale)->whereIn('faq_id', $ids)->count();;
+            $this->_translatedCount = FaqTranslation::locale($locale)
+                ->whereIn('faq_id', $ids)
+                ->whereNotNull('answer')
+                ->where('answer', '<>', '')
+                ->count();
         }
         return $this->_translatedCount;
     }
