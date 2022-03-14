@@ -60,13 +60,13 @@ class MiscController extends Controller
         $modelClass = new Character();
         if (empty($term)) {
             $models = $modelClass
-                ->with('family')
+                ->with('families')
                 ->limit(10)
                 ->orderBy('updated_at', 'DESC')
                 ->get();
         } else {
             $models = $modelClass
-                ->with('family')
+                ->with('families')
                 ->where('name', 'like', "%$term%")
                 ->limit(10)
                 ->get();
@@ -74,9 +74,10 @@ class MiscController extends Controller
         $formatted = [];
 
         foreach ($models as $model) {
+            $families = $model->families->pluck('name')->toarray();
             $format = [
                 'id' => $model->id,
-                'text' => $model->name . (!empty($model->family) ? ' (' . $model->family->name . ')' : null)
+                'text' => $model->name . (!empty($families) ? ' (' . implode(', ', $families) . ')' : null)
             ];
             $formatted[] = $format;
         }
