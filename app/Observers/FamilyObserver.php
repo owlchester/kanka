@@ -56,6 +56,7 @@ class FamilyObserver extends MiscObserver
         }
 
         // Detach the remaining
+        // todo: refactor into a single call?
         foreach ($existing as $k) {
             $k->families()->detach($family->id);
         }
