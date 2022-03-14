@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use App\Models\Character;
 use App\Models\CharacterFamily;
+use Carbon\Carbon;
 use Illuminate\Console\Command;
 
 class MigrateCharacterFamily extends Command
@@ -41,15 +42,17 @@ class MigrateCharacterFamily extends Command
      */
     public function handle()
     {
+        $this->info(Carbon::now());
         CharacterFamily::truncate();
-        Character::whereNotNull('family_id')->chunk(1000, function ($characters) {
-            $this->info('1000 Chunk...');
+        Character::whereNotNull('family_id')->chunk(5000, function ($characters) {
+            $this->info('5000 Chunk...');
             foreach ($characters as $character) {
                 $character->families()->attach($character->family_id);
                 $this->count++;
             }
         });
         $this->info('Migrated ' . $this->count . ' characters');
+        $this->info(Carbon::now());
         return 0;
     }
 }
