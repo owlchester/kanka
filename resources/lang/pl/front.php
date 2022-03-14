@@ -256,6 +256,7 @@ return [
         'contact'       => 'Kontakt',
         'contact_us'    => 'Napisz do nas',
         'dashboard'     => 'Pulpit',
+        'documentation' => 'Dokumentacja',
         'faq'           => 'FAQ i pomoc',
         'features'      => 'Funkcje',
         'help'          => 'Pomoc',

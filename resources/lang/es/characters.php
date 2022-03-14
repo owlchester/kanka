@@ -29,7 +29,9 @@ return [
         'families'                  => 'Familias',
         'family'                    => 'Familia',
         'image'                     => 'Imagen',
+        'is_appearance_pinned'      => 'Apariencia fijada',
         'is_dead'                   => 'Muerto',
+        'is_personality_pinned'     => 'Personalidad fijada',
         'is_personality_visible'    => 'Personalidad visible',
         'life'                      => 'Biografía',
         'location'                  => 'Procedencia',
@@ -48,7 +50,9 @@ return [
         'age'   => 'Puedes vincular esta entidad con un calendario de la campaña para calcular automáticamente su edad. :more',
     ],
     'hints'         => [
+        'is_appearance_pinned'      => 'Si está seleccionado, la apariencia del personaje aparecerá bajo la entrada principal de la página.',
         'is_dead'                   => 'Este personaje está muerto',
+        'is_personality_pinned'     => 'Si está seleccionado, los rasgos de personalidad del personaje aparecerán bajo la entrada principal en la página.',
         'is_personality_visible'    => 'Se puede ocultar la sección de personalidad a los usuarios no administradores.',
         'personality_not_visible'   => 'Los rasgos de personalidad de este personaje actualmente solo son visibles para los administradores.',
         'personality_visible'       => 'Los rasgos de personalidad de este personaje son visibles para todos.',
@@ -130,7 +134,6 @@ return [
         'tabs'  => [
             'map'           => 'Mapa de relaciones',
             'organisations' => 'Organizaciones',
-            'personality'   => 'Características',
         ],
         'title' => 'Personaje :name',
     ],

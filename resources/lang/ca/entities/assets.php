@@ -2,6 +2,7 @@
 
 return [
     'actions'   => [
+        'alias' => 'Àlies',
         'file'  => 'Fitxer',
         'link'  => 'Enllaç',
     ],

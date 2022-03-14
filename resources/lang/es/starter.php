@@ -1,6 +1,9 @@
 <?php
 
 return [
+    'campaign'      => [
+        'name'  => 'Mundo de :user',
+    ],
     'character1'    => [
         'fears'     => 'A James le asustan las explosiones y los ruidos fuertes.',
         'history'   => 'Este es un ejemplo de personaje. Hijo de Mance Owlchester y Rige Dunton, James creció en el campo a las afueras de Genoria, y se mudó a la capital Unria para trabajar como escriba del rey.',
@@ -19,12 +22,7 @@ return [
         'title'     => 'Reina de las Explosiones',
         'traits'    => '¿Quieres añadir algo más? ¡Hazlo en esta sección de texto libre!',
     ],
-    'item1'         => [
-        'description'   => 'Ejemplo de objeto.',
-        'history'       => 'Historia del objeto.',
-        'name'          => 'Daga de la Oscuridad (ejemplo)',
-        'type'          => 'Arma',
-    ],
+    'item1'         => [],
     'kingdom1'      => [
         'description'   => 'Esta localización es un ejemplo creado para enseñarte lo que se puede hacer en la app.',
         'history'       => '(ejemplo) El reino de Genoria fue fundado por tribus genorianas a finales del siglo V, tras invadir las tierras de los hottenses.',

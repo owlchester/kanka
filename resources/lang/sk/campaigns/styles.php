@@ -15,6 +15,7 @@ return [
         'content'       => 'Pravidlo CSS',
         'is_enabled'    => 'Aktivovaný',
         'length'        => 'Dĺžka',
+        'modified'      => 'Upravené',
         'name'          => 'Názov',
     ],
     'helpers'   => [

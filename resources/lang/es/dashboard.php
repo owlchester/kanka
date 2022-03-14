@@ -121,12 +121,16 @@ return [
             'success'   => 'Widget eliminado del tablero.',
         ],
         'fields'                    => [
+            'class'             => 'Clase CSS',
             'dashboard'         => 'Tablero',
             'name'              => 'Nombre personalizado del widget',
             'optional-entity'   => 'Link a la entidad',
             'order'             => 'Orden',
             'text'              => 'Texto',
             'width'             => 'Anchura',
+        ],
+        'helpers'                   => [
+            'class' => 'Define una clase CSS personalizada para este widget.',
         ],
         'orders'                    => [
             'name_asc'  => 'Ascendente por nombre',
@@ -162,6 +166,10 @@ return [
             'singular'          => 'Singular',
             'tags'              => 'Filtra la lista de las entidades recientemente modificadas con etiquetas específicas.',
             'title'             => 'Modificado recientemente',
+        ],
+        'tabs'                      => [
+            'advanced'  => 'Avanzado',
+            'setup'     => 'Configuración',
         ],
         'unmentioned'               => [
             'title' => 'Entidades no mencionadas',

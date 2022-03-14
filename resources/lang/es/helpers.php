@@ -37,6 +37,8 @@ return [
     'filters'           => [
         'attributes'    => [
             'exclude'   => '!Nivel',
+            'first'     => 'Puedes filtrar entidades mediante sus atributos. Los campos de búsqueda buscan coincidencias exactas para el nombre y el valor. Si el campo del valor se deja vacío, buscará entidades que tengan un atributo con ese nombre exacto. Puedes escribir :exclude para excluir entidades con un atributo llamado Level.',
+            'second'    => 'El filtro no hace cálculos de atributos. Si un atributo tiene un valor de :code, no es posible buscar el resultado de dicho cálculo.',
         ],
         'clipboard'     => 'Cuando haya filtros puestos, se activará el botón de copiar, con el que puedes copiar dichos filtros al portapapeles y usarlos para los widgets del tablero o los enlaces del acceso rápido.',
         'description'   => 'Puedes usar los filtros para limitar la cantidad de resultados que se muestra en las listas. Se puede filtrar por más de un campo para controlar detalladamente qué se excluye con los filtros.',
@@ -48,6 +50,7 @@ return [
         'title'         => 'Cómo usar los filtros',
     ],
     'link'              => [
+        'anchor'            => 'La mención avanzada también puede especificar el ancla HTML a la que el enlace debería apuntar usando :example.',
         'attributes'        => 'Puedes vincular atributos de la entidad escribiendo :code. Esto solo funciona para los atributos existentes de la entidad.',
         'auto_update'       => 'Los enlaces a otras entidades se actualizarán automáticamente cuando se cambie el nombre o la descripción de éstas.',
         'description'       => 'Puedes enlazar fácilmente otras entidades usando los siguientes atajos.',
@@ -76,6 +79,7 @@ return [
     'public'            => 'Mira el vídeo tutorial en Youtube acerca de las campañas públicas.',
     'title'             => 'Consejos',
     'troubleshooting'   => [
+        'description'       => 'Un miembro del equipo de Kanka te ha enviado a esta página. Selecciona una campaña del desplegable para generar un token y así poderte unir temporalmente a la campaña como administrador.',
         'errors'            => [
             'token_exists'  => 'Ya existe un token para :campaign.',
         ],

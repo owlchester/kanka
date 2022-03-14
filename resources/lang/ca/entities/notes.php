@@ -6,6 +6,10 @@ return [
         'add_role'  => 'Afegeix un rol',
         'add_user'  => 'Afegeix un usuari',
     ],
+    'copy_mention'  => [
+        'copy'      => 'Copia\'n la menció avançada',
+        'success'   => 'S\'ha copiat la menció avançada d\'aquesta anotació.',
+    ],
     'create'        => [
         'success'   => 'S\'ha afegit l\'anotació «:name» a :entity.',
         'title'     => 'Nova anotació a :name',

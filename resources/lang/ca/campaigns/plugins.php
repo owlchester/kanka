@@ -30,9 +30,15 @@ return [
     ],
     'helper'        => 'La comunitat de Kanka crea contínuament plugins molt guais pel Marketplace. Si la vostra campanya està millorada, hi podeu instal·lar plugins. Des d\'aquí podeu desinstal·lar els plugins de la campanya.',
     'import'        => [
-        'created'   => 'S\'han creat les entitats següents:',
-        'success'   => '{1} S\'ha importat :count entitat del plugin :plugin.|[2,*] S\'han importat :count entitats del plugin :plugin.',
-        'updated'   => 'S\'han actualitzat les següents entitats:',
+        'button'                => 'Importa',
+        'created'               => 'S\'han creat les entitats següents:',
+        'helper'                => 'Esteu a punt d\'importar :count entitats del plugin :plugin. Si aquest plugin es va importar prèviament, els canvis que hagueu fet a les entitats importades es podrien perdre.',
+        'no_new_entities'       => 'No hi ha entitats noves a importar.',
+        'option_only_import'    => 'Importa només entitats noves, passant per alt les importades prèviament.',
+        'option_private'        => 'Importa totes les entitats com a privades.',
+        'success'               => '{1} S\'ha importat :count entitat del plugin :plugin.|[2,*] S\'han importat :count entitats del plugin :plugin.',
+        'title'                 => 'Importar :plugin',
+        'updated'               => 'S\'han actualitzat les següents entitats:',
     ],
     'info'          => [
         'helper'        => 'Quan surti una nova versió d\'un plugin, podreu actualitzar-lo.',

@@ -15,6 +15,7 @@ return [
         'content'       => 'Reguły CSS',
         'is_enabled'    => 'Aktywna',
         'length'        => 'Długość',
+        'modified'      => 'Zmieniona',
         'name'          => 'Nazwa',
     ],
     'helpers'   => [

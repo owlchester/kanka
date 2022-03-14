@@ -2,29 +2,31 @@
 
 return [
     'campaign'          => [
-        'application'       => [
+        'application'           => [
             'approved'  => 'S\'ha aprovat la vostra sol·licitud per unir-vos a la campanya :campaign.',
             'new'       => 'Nova sol·licitud per a :campaign',
             'rejected'  => 'S\'ha rebutjat la vostra sol·licitud per unir-vos a la campanya :campaign. Motiu:',
         ],
-        'asset_export'      => 'Ja està disponible una exportació de la campanya. L\'enllaç estarà disponible durant :time minuts.',
-        'boost'             => [
+        'asset_export'          => 'Ja està disponible una exportació de la campanya. L\'enllaç estarà disponible durant :time minuts.',
+        'asset_export_error'    => 'Hi ha hagut un error al exportar els arxius de la campanya. Això pot passar a les campanyes de gran tamany.',
+        'boost'                 => [
             'add'           => ':user està millorant la campanya :campaign.',
             'remove'        => ':user ja no està millorant la campanya :campaign.',
             'superboost'    => ':user està supermillorant la campanya :campaign.',
         ],
-        'export'            => 'Ja s\'ha exportat la campanya. L\'enllaç estarà disponible durant :time minuts.',
-        'export_error'      => 'Hi ha hagut un error mentre s\'exportava la campanya. Contacteu-nos si l\'error persisteix.',
-        'join'              => ':user s\'ha unit a la campanya :campaign.',
-        'leave'             => ':user ha abandonat la campanya :campaign.',
-        'plugin'            => [
+        'deleted'               => 'S\'ha eliminat la campanya :campaign.',
+        'export'                => 'Ja s\'ha exportat la campanya. L\'enllaç estarà disponible durant :time minuts.',
+        'export_error'          => 'Hi ha hagut un error mentre s\'exportava la campanya. Contacteu-nos si l\'error persisteix.',
+        'join'                  => ':user s\'ha unit a la campanya :campaign.',
+        'leave'                 => ':user ha abandonat la campanya :campaign.',
+        'plugin'                => [
             'deleted'   => 'El plugin :plugin s\'ha eliminat del mercat i s\'ha retirat de la vostra campanya :campaign.',
         ],
-        'role'              => [
+        'role'                  => [
             'add'       => 'Us han assignat el rol :role a la campanya :campaign.',
             'remove'    => 'Us han tret el rol :role a la campanya :campaign.',
         ],
-        'troubleshooting'   => [
+        'troubleshooting'       => [
             'joined'    => 'L\'integrant de l\'equip de Kanka :user s\'ha unit a la campanya :campaign.',
         ],
     ],

@@ -1,6 +1,9 @@
 <?php
 
 return [
+    'campaign'      => [
+        'name'  => 'Món de :user',
+    ],
     'character1'    => [
         'fears'     => 'A l\'Oriol li espanten les explosions i els sorolls forts.',
         'history'   => 'Aquest és un exemple de personatge. Fill d\'Arnau de Mataplana i Adalaisa de Montbador, n\'Oriol va créixer en el camp als afores de Corbaria, i es va mudar a la capital per a treballar com a escriba del bisbe.',
@@ -19,12 +22,7 @@ return [
         'title'     => 'Bruixa encoberta',
         'traits'    => 'Voleu afegir alguna cosa més? Feu-ho en aquesta secció de text lliure!',
     ],
-    'item1'         => [
-        'description'   => 'Exemple d\'objecte.',
-        'history'       => 'Història de l\'objecte.',
-        'name'          => 'Daga de la Foscor (exemple)',
-        'type'          => 'Arma',
-    ],
+    'item1'         => [],
     'kingdom1'      => [
         'description'   => 'Aquest indret és un exemple creat per a mostrar el que es pot fer a l\'app.',
         'history'       => '(exemple) El regne de Genòria va ser fundat per tribus genorianes a la fi del segle V, després d\'envair les terres dels gegants.',

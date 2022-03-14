@@ -383,6 +383,7 @@ return [
     ],
     'tooltips'                  => [
         'boosted_feature'   => 'Dostępne po doładowaniu',
+        'new_post'          => 'Dodaj do tego elementu nowy komentarz.',
     ],
     'update'                    => 'Aktualizacja',
     'users'                     => [

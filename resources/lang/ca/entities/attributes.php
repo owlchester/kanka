@@ -18,6 +18,10 @@ return [
         'template'              => 'Plantilla',
         'value'                 => 'Valor',
     ],
+    'filters'       => [
+        'name'  => 'Nom de l\'atribut',
+        'value' => 'Valor de l\'atribut',
+    ],
     'helpers'       => [
         'delete_all'    => '¿Segur que voleu eliminar tots els atributs d\'aquesta entitat?',
         'setup'         => 'Podeu representar elements com els punts de vida o la intel·ligència d\'una entitat mitjançant els atributs. Per a afegir-ne, cliqueu al botó de :manage, o apliqueu-los des d\'una plantilla d\'atributs.',

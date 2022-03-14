@@ -383,6 +383,7 @@ return [
     ],
     'tooltips'                  => [
         'boosted_feature'   => 'Funkcionalita boostnutej kampane',
+        'new_post'          => 'Pridať novú poznámku k tomuto objektu',
     ],
     'update'                    => 'Upraviť',
     'users'                     => [

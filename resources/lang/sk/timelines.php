@@ -24,7 +24,7 @@ return [
         'copy_eras'     => 'Kopírovať vek',
         'eras'          => 'Veky',
         'name'          => 'Názov',
-        'reverse_order' => 'Obrátiť poradie veku',
+        'reverse_order' => 'Otočiť poradie veku',
         'timeline'      => 'Nadradená časová os',
         'timelines'     => 'Časové osy',
         'type'          => 'Typ',
@@ -32,6 +32,7 @@ return [
     'helpers'       => [
         'nested_parent'     => 'Zobraziť časové osy :parent.',
         'nested_without'    => 'Zobrazujú sa všetky časové osy, ktoré nemajú nadradenú časovú os. Kliknutím na riadok zobrazíš podradené časové osy.',
+        'no_era'            => 'Táto časová os nemá žiadne veky. Veky môžu byť pridané na časovú os v režime úprav a následne do nich vložené prvky na osi.',
         'reorder'           => 'Pretiahni prvky vo veku pomocou Drag & Drop a usporiadaj ich podľa seba.',
         'reorder_tooltip'   => 'Kliknutím aktivuješ ručné usporiadanie prvkov pomocou Drag & Drop.',
         'reverse_order'     => 'Aktivovaním zobrazíš veky v spätnom chronologickom poradí (najstarší vek ako prvý).',

@@ -2,43 +2,47 @@
 
 return [
     'actions'       => [
-        'add'       => 'Nueva nota',
+        'add'       => 'Nuevo post',
         'add_role'  => 'Añadir rol',
         'add_user'  => 'Añadir usuario',
     ],
+    'copy_mention'  => [
+        'copy'      => 'Copiar mención avanzada',
+        'success'   => 'Se ha copiado la mención avanzada de este post.',
+    ],
     'create'        => [
-        'success'   => 'Nota \':name\' añadida a :entity.',
-        'title'     => 'Nueva nota en :name',
+        'success'   => 'Se ha añadido el post ":name" a :entity.',
+        'title'     => 'Nuevo post en :name',
     ],
     'destroy'       => [
-        'success'   => 'Nota \':name\' eliminada de :entity.',
+        'success'   => 'Se ha eliminado el post ":name" de :entity.',
     ],
     'edit'          => [
-        'success'   => 'Nota \':name\' actualizada en :entity.',
-        'title'     => 'Actualizar nota de :name',
+        'success'   => 'Se ha actualizado el post ":name" de :entity.',
+        'title'     => 'Actualizar post de :name',
     ],
     'fields'        => [
-        'collapsed' => 'Nota cerrada por defecto',
+        'collapsed' => 'Post colapsado por defecto',
         'creator'   => 'Creador',
         'entry'     => 'Entrada',
         'name'      => 'Nombre',
     ],
     'footer'        => [
-        'created'   => 'Creada por :user el :date',
-        'updated'   => 'Actualizada por :user el :date',
+        'created'   => 'Creado por :user el :date',
+        'updated'   => 'Actualizad por :user el :date',
     ],
     'hint'          => 'Aquí puedes añadir toda aquella información que no acaba de encajar en los campos por defecto de la entidad, o que quieres mantener en privado.',
     'hints'         => [
-        'reorder'   => 'Puedes reordenar las notas de una entidad haciendo clic en el icono de :icono en la cabecera de la entidad.',
+        'reorder'   => 'Puedes reordenar los posts de una entidad haciendo clic en el icono de :icono en la cabecera de la entidad.',
     ],
     'index'         => [
-        'title' => 'Notas de :name',
+        'title' => 'Posts de :name',
     ],
     'placeholders'  => [
-        'name'  => 'Nombre de la nota, observación...',
+        'name'  => 'Nombre del post, observación...',
     ],
     'show'          => [
         'advanced'  => 'Permisos avanzados',
-        'title'     => 'Nota :name de :entity',
+        'title'     => 'Post :name de :entity',
     ],
 ];

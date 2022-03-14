@@ -256,6 +256,7 @@ return [
         'contact'       => 'Kontakt',
         'contact_us'    => 'Kontaktuj nás',
         'dashboard'     => 'Nástenka',
+        'documentation' => 'Dokumentácia',
         'faq'           => 'FAQ a Pomocník',
         'features'      => 'Funkcie',
         'help'          => 'Pomocník',

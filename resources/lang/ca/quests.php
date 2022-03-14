@@ -46,8 +46,9 @@ return [
         'type'          => 'Tipus',
     ],
     'helpers'       => [
-        'nested_parent' => 'S\'estan mostrant les missions de :parent.',
-        'nested_without'=> 'S\'estan mostrant les missions sense pare. Feu clic a la fila d\'una missió per a mostrar-ne les descendents.',
+        'is_completed'      => 'Marqueu això si la missió es considera completada.',
+        'nested_parent'     => 'S\'estan mostrant les missions de :parent.',
+        'nested_without'    => 'S\'estan mostrant les missions sense pare. Feu clic a la fila d\'una missió per a mostrar-ne les descendents.',
     ],
     'hints'         => [
         'quests'    => 'Es pot crear una xarxa de missions entrellaçades usant el camp de missió superior.',

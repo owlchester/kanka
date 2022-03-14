@@ -121,12 +121,16 @@ return [
             'success'   => 'S\'ha eliminat el widget del taulell.',
         ],
         'fields'                    => [
+            'class'             => 'Classe CSS',
             'dashboard'         => 'Taulell',
             'name'              => 'Nom personalitzat pel widget',
             'optional-entity'   => 'Enllaç a l\'entitat',
             'order'             => 'Ordre',
             'text'              => 'Text',
             'width'             => 'Amplada',
+        ],
+        'helpers'                   => [
+            'class' => 'Definiu una classe CSS personalitzada per afegir-la al widget.',
         ],
         'orders'                    => [
             'name_asc'  => 'Ascendent per nom',
@@ -162,6 +166,10 @@ return [
             'singular'          => 'Singular',
             'tags'              => 'Filtra la llista de les entitats modificades recentment amb etiquetes específiques.',
             'title'             => 'Modificades recentment',
+        ],
+        'tabs'                      => [
+            'advanced'  => 'Avançat',
+            'setup'     => 'Configuració',
         ],
         'unmentioned'               => [
             'title' => 'Entitats no mencionades',

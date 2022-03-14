@@ -6,7 +6,9 @@ return [
         'add_intercalary'   => 'Aggiungi giorni intercalari',
         'add_month'         => 'Aggiungi un mese',
         'add_moon'          => 'Aggiungi una luna',
+        'add_reminder'      => 'Aggiungi un promemoria',
         'add_season'        => 'Aggiungi una stagione',
+        'add_weather'       => 'Imposta l\'effetto meteo',
         'add_week'          => 'Aggiungi una settimana con un nome',
         'add_weekday'       => 'Aggiungi un giorno della settimana',
         'add_year'          => 'Aggiungi un nome dell\'anno',
@@ -30,9 +32,10 @@ return [
     ],
     'event'         => [
         'actions'   => [
-            'existing'  => 'Entità esistente',
-            'new'       => 'Nuovo Evento',
-            'switch'    => 'Cambia scelta',
+            'delete-confirm'    => 'questo promemoria',
+            'existing'          => 'Entità esistente',
+            'new'               => 'Nuovo Evento',
+            'switch'            => 'Cambia scelta',
         ],
         'create'    => [
             'success'   => 'Evento del calendario creato',
@@ -44,8 +47,9 @@ return [
             'title'     => 'Aggiorna un Evento del Calendario per :name',
         ],
         'helpers'   => [
-            'add'   => 'Aggiungi un evento esistente a questo calendario',
-            'new'   => 'O crea un nuovo evento semplicemente inserendone il nome.',
+            'add'               => 'Aggiungi un evento esistente a questo calendario',
+            'new'               => 'O crea un nuovo evento semplicemente inserendone il nome.',
+            'other_calendar'    => 'Stai modificando un promemoria che si trova sul calendario :calendar',
         ],
         'modal'     => [
             'title' => 'Aggiungi un evento al calendario',
@@ -56,6 +60,7 @@ return [
         'title' => 'Eventi del Calendario :name',
     ],
     'fields'        => [
+        'calendars'             => 'Calendari',
         'colour'                => 'Colore',
         'comment'               => 'Commento',
         'current_day'           => 'Giorno corrente',
@@ -123,8 +128,14 @@ return [
     'options'       => [
         'events'    => [
             'recurring_periodicity' => [
-                'month' => 'Mensile',
-                'year'  => 'Annuale',
+                'fullmoon'      => 'Luna piena',
+                'fullmoon_name' => ':moon luna piena',
+                'month'         => 'Mensile',
+                'newmoon'       => 'Luna nuova',
+                'newmoon_name'  => ':moon luna nuova',
+                'none'          => 'Nessuno',
+                'unnamed_moon'  => 'Luna :number',
+                'year'          => 'Annuale',
             ],
         ],
         'resets'    => [

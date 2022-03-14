@@ -1,6 +1,9 @@
 <?php
 
 return [
+    'campaign'      => [
+        'name'  => ':user - Svet',
+    ],
     'character1'    => [
         'fears'     => 'James sa bojí hlasných zvukov a explózií.',
         'history'   => 'Toto je príklad postavy. James, dieťa Mancea Owlchestera a Rigy Duntonovej, vyrastal na genorijskom vidieku predtým, ako sa presťahoval do hlavného mesta Unrie, kde dostal miesto pisára na kráľovskom dvore.',

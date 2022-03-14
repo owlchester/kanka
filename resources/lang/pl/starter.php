@@ -1,6 +1,9 @@
 <?php
 
 return [
+    'campaign'      => [
+        'name'  => ':świat użytkownika',
+    ],
     'character1'    => [
         'fears'     => 'Jakub boi się głośnych dźwięków i wybuchów.',
         'history'   => 'To przykładowa postać. Jakub, syn Mateusza Sowosera i Renaty Nagórnej dorastał w sielskiej okolicy Genory nim przeniósł się do stołecznego miasta Unira by służyć jako królewski skryba.',
@@ -32,9 +35,9 @@ return [
         'type'          => 'Królestwo',
     ],
     'kingdom2'      => [
-        'description'   => '(przykład) Unira to stolica Genory i trzecie największe miasto Sojuszu Agarskiego',
-        'history'       => '(przykład) Unira to stolica Genory. Założył ją na brzegu Uniru król Frazjan Irwen.',
-        'name'          => 'Unira (przykład)',
+        'description'   => '(przykład) Ulis to stolica Genory i trzecie największe miasto Sojuszu Agarskiego',
+        'history'       => '(przykład) Ulis to stolica Genory. Założył ją na brzegu Uniry król Frazjan Irwen.',
+        'name'          => 'Ulis (przykład)',
         'type'          => 'Stolica',
     ],
     'note1'         => [
