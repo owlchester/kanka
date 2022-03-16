@@ -485,6 +485,8 @@ Route::group([
         Route::post('/entity-creator/{type}', [\App\Http\Controllers\EntityCreatorController::class, 'store'])->name('entity-creator.store');
     });
 
+    Route::get('users/{user}', 'User\ProfileController@show')->name('users.profile');
+
     // Notification
     Route::get('/notifications', 'NotificationController@index')->name('notifications');
     Route::get('/notifications/refresh', 'NotificationController@refresh')->name('notifications.refresh');
@@ -509,6 +511,7 @@ Route::group([
     });
 
 });
+
 
 // Auth callback without language segment in url
 Route::get('auth/{provider}/callback', 'Auth\AuthController@handleProviderCallback')->name('auth.provider.callback');
