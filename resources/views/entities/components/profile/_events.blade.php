@@ -72,7 +72,7 @@ foreach ($elapsed as $event) {
             <div class="title">{{ __('entities/events.types.death') }}</div>
             <a href="{{ $death->calendar->getLink() }}?year={{ $death->year }}&month={{ $death->month }}" title="{{ $death->calendar->name }}" data-toggle="tooltip">
             {{ $death->readableDate() }}
-            </a> ({{ $death->calcElasped() }})
+            </a> (&#10013;{{ $death->calcElasped() }})
         </div>
 
     @endif
