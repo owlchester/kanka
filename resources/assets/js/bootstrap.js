@@ -71,7 +71,7 @@ $.AdminLTESidebarTweak = {};
 
 $.AdminLTESidebarTweak.options = {
     EnableRemember: true,
-    NoTransitionAfterReload: false
+    NoTransitionAfterReload: true
     //Removes the transition after page reload.
 };
 

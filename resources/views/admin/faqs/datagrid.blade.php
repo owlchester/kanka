@@ -2,9 +2,9 @@
 <table class="table table-striped">
     <thead>
     <tr>
-        <th>{{ __('faq.fields.category') }}</th>
-        <th>{{ __('faq.fields.order') }}</th>
-        <th>{{ __('faq.fields.question') }}</th>
+        <th>{{ __('Category') }}</th>
+        <th>{{ __('Order') }}</th>
+        <th>{{ __('Question') }}</th>
         <th></th>
     </tr>
     </thead>
@@ -22,8 +22,8 @@
                 {{ $model->question }}
                 </a>
             </td>
-            <td>
-                <a href="{{ route('admin.faqs.edit', $model) }}">
+            <td class="text-right">
+                <a href="{{ route('admin.faqs.edit', $model) }}" class="margin-r-5">
                     <i class="fa fa-edit"></i>
                 </a>
             </td>

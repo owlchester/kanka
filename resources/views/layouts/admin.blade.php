@@ -118,10 +118,31 @@
     </div>
 
 @yield('modals')
+<div class="modal modal-danger fade" id="delete-confirm" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('crud.delete_modal.close') }}"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">{{ __('crud.delete_modal.title') }}</h4>
+            </div>
+            <div class="modal-body">
 
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">{{ __('crud.cancel') }}</button>
+                <button type="button" class="btn btn-outline delete-confirm-submit">
+                    <span class="fa fa-trash"></span>
+                    <span class="delete-button-label">{{ __('crud.delete_modal.delete') }}</span>
+                    <span class="remove-button-label" style="display: none">{{ __('crud.remove') }}</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
 
     <!-- Scripts -->
     <script src="{{ mix('js/app.js') }}"></script>
+    <script src="{{ mix('js/admin/admin.js') }}" async></script>
 @if (config('fontawesome.kit'))
     <script src="https://kit.fontawesome.com/{{ config('fontawesome.kit') }}.js" crossorigin="anonymous"></script>
 @endif

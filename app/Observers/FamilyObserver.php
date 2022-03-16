@@ -50,19 +50,15 @@ class FamilyObserver extends MiscObserver
                 if (!empty($character)) {
                     $new[] = $character->id;
 
-                    $character->family_id = $family->id;
-                    $character->saveObserver = false;
-                    $character->savingObserver = false;
-                    $character->save();
+                    $character->families()->attach($family->id);
                 }
             }
         }
 
         // Detach the remaining
+        // todo: refactor into a single call?
         foreach ($existing as $k) {
-            $k->family_id = null;
-            $k->saveObserver = false;
-            $k->save();
+            $k->families()->detach($family->id);
         }
     }
 
