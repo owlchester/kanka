@@ -12,7 +12,7 @@
     <div class="box box-solid">
         <div class="box-body">
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-7">
                     <h2 class="page-header with-border">
                         {{ __('settings.profile.title') }}
                     </h2>
@@ -20,6 +20,12 @@
                     <div class="form-group required">
                         <label>{{ __('profiles.fields.name') }}</label>
                         {!! Form::text('name', null, ['placeholder' => __('profiles.placeholders.name'), 'class' => 'form-control']) !!}
+                    </div>
+
+
+                    <div class="form-group">
+                        <label>{{ __('profiles.fields.bio') }}</label>
+                        {!! Form::textarea('profile[bio]', null, ['placeholder' => __('profiles.placeholders.bio'), 'class' => 'form-control', 'rows' => 5, 'maxlength' => 300]) !!}
                     </div>
 
                     <hr />
@@ -43,7 +49,7 @@
                         </div>
                     @endif
                 </div>
-                <div class="col-md-4 col-md-offset-2">
+                <div class="col-md-4 col-md-offset-1">
                     <h2 class="page-header with-border">
                         {{ __('settings.profile.avatar') }}
                     </h2>

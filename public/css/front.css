@@ -682,6 +682,13 @@ section.features .feature-item i {
   transform: translateY(0);
 }
 
+/* Profile */
+
+.profile-subscriber {
+  max-width: 150px;
+  display: inline-block;
+}
+
 /* Hover Effects on Card */
 
 @media (min-width: 992px) {

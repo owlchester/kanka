@@ -39,6 +39,7 @@ use Laravel\Passport\HasApiTokens;
  * @property int $booster_count
  * @property int $referral_id
  * @property Collection $settings
+ * @property Collection $profile
  *
  * Virtual (from \App\Models\UserSetting)
  * @property bool $advancedMentions
@@ -95,6 +96,7 @@ class User extends \Illuminate\Foundation\Auth\User
         'has_last_login_sharing',
         'patreon_pledge',
         'referral_id',
+        'profile',
     ];
 
     /**
@@ -122,6 +124,7 @@ class User extends \Illuminate\Foundation\Auth\User
     protected $casts = [
         'settings' => 'array',
         'tutorial' => 'array',
+        'profile' => 'array',
     ];
 
     /**
@@ -470,5 +473,28 @@ class User extends \Illuminate\Foundation\Auth\User
     public function isSocialLogin(): bool
     {
         return !empty($this->provider);
+    }
+
+    /**
+     * Number of entities the user has created
+     * @return string
+     */
+    public function createdEntitiesCount(): string
+    {
+        return (string) number_format(UserCache::user($this)->entitiesCreatedCount());
+    }
+
+    public function hasPlugins(): bool
+    {
+        return $this->plugins->count();
+    }
+
+    /**
+     * Get the Discord app of the user
+     * @return mixed
+     */
+    public function discord()
+    {
+        return $this->apps->where('app', 'discord')->first();
     }
 }

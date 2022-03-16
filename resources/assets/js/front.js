@@ -33,6 +33,10 @@ $(document).ready(function(e) {
     $('.faq-dynamic').click(function () {
         $($(this).data('target')).collapse();
     });
+
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
 });
 
 /**

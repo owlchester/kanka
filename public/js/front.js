@@ -121,6 +121,9 @@ $(document).ready(function (e) {
   $('.faq-dynamic').click(function () {
     $($(this).data('target')).collapse();
   });
+  $(function () {
+    $('[data-toggle="tooltip"]').tooltip();
+  });
 });
 /**
  * Automatically open a kb answer if it's in the anchor

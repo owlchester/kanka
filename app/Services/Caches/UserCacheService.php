@@ -6,6 +6,7 @@ namespace App\Services\Caches;
 use App\User;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 /**
  * @property \App\User $user
@@ -194,6 +195,20 @@ class UserCacheService extends BaseCache
         $key = $this->nameKey($this->user->id);
         $this->forget($key);
         return $this;
+    }
+
+    public function entitiesCreatedCount(): int
+    {
+        $key = 'user_' . $this->user->id . '_entities_created_count';
+        if ($this->has($key)) {
+            return (int) $this->get($key);
+        }
+
+        $data = DB::table('entities')->where('created_by', $this->user->id)->count();
+
+        $this->forever($key, $data, 1);
+
+        return $data;
     }
 
     /**

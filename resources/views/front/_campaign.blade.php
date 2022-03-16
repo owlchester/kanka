@@ -7,27 +7,23 @@
         <div class="bottom">
             <h4 class="campaign-title">
                 @if (!$featured && $campaign->isFeatured())
-                    <i class="fas fa-star" title="{{ __('campaigns.fields.featured_campaign') }}"></i>
+                    <i class="fas fa-star" title="{{ __('campaigns.fields.featured_campaign') }}" data-toggle="tooltip"></i>
                 @endif
                 {!! $campaign->name !!}
             </h4>
             <div class="labels">
-                <span class="label label-default" title="{{ __('campaigns.fields.entity_count') }}"><i class="fa fa-eye"></i> {{ number_format($campaign->visible_entity_count) }}</span>
+                <span class="label label-default" title="{{ __('campaigns.fields.entity_count') }}" data-toggle="tooltip"><i class="fa fa-eye"></i> {{ number_format($campaign->visible_entity_count) }}</span>
                 @if ($campaign->locale)
-                    <span class="label label-default" title="{{ __('languages.codes.' . $campaign->locale) }}">{{ $campaign->locale }}</span>
+                    <span class="label label-default" title="{{ __('languages.codes.' . $campaign->locale) }}" data-toggle="tooltip">{{ $campaign->locale }}</span>
                 @endif
                 @if (!empty($campaign->system))
-                    <span class="label label-default" title="{{ __('campaigns.fields.system') }}">{{ $campaign->system }}</span>
+                    <span class="label label-default" title="{{ __('campaigns.fields.system') }}" data-toggle="tooltip">{{ $campaign->system }}</span>
                 @endif
                 @if ($campaign->is_open)
-                    <span class="label label-default mr-1" title="{{ __('campaigns.open_campaign.title') }}">
-                        <i class="fas fa-door-open"></i>
-                    </span>
+                    <span class="label label-default mr-1" title="{{ __('campaigns.open_campaign.title') }}" data-toggle="tooltip"><i class="fas fa-door-open"></i></span>
                 @endif
                 @if ($campaign->boosted())
-                    <span class="label label-default" title="{{ __('campaigns.panels.boosted') }}">
-                        <i class="fa fa-rocket"></i>
-                    </span>
+                    <span class="label label-default" title="{{ __('campaigns.panels.boosted') }}" data-toggle="tooltip"><i class="fa fa-rocket"></i></span>
                 @endif
             </div>
         </div>

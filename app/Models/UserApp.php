@@ -7,6 +7,7 @@ namespace App\Models;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 
 /**
  * Class UserApp
@@ -23,7 +24,8 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @property User $user
  *
- * @method self app(string $app)
+ * @method static self|Builder app(string $app)
+ * @method static self|Builder discord()
  */
 class UserApp extends Model
 {
@@ -53,6 +55,15 @@ class UserApp extends Model
     public function scopeApp($query, string $type)
     {
         return $query->where('app', $type);
+    }
+
+    /**
+     * @param $query
+     * @return UserApp
+     */
+    public function scopeDiscord($query)
+    {
+        return $this->app('discord');
     }
 
     /**

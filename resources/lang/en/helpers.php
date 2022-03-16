@@ -80,7 +80,7 @@ return [
         'mentions_field'    => 'You can also display a field from the entity instead of its name in the link with :code.',
         'months'            => 'Type :code to get a list of months from your calendars.',
         'options'           => 'Some options are :options.',
-        'title'             => 'Linking to other entries and shortcuts',
+        'title'             => 'Linking to other entities with mentions',
     ],
     'map'               => [
         'description'   => 'Uploading a map to a location will enable the `Map` menu on the Location\'s view page, and a direct link to the map from the campaign\'s locations page. From the map view, users who can edit the location can activate the \'Edit Mode\' which allows them to place Map Points on the map. These can link to an existing entity or be a label, and have various shapes and sizes.',

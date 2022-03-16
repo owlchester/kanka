@@ -10,6 +10,7 @@ use App\Models\CampaignRole;
 use App\Models\CampaignSubmission;
 use App\Models\Entity;
 use App\Models\EntityUser;
+use App\Models\Plugin;
 use App\Models\Referral;
 use App\Models\Role;
 use App\Models\UserApp;
@@ -26,6 +27,8 @@ use App\Models\UserApp;
  * @property Referral $referrer
  * @property CampaignSubmission[] $submissions
  * @property Entity[] $entities
+ * @property Plugin[] $plugins
+ * @property UserApp[] $apps
  */
 trait UserRelations
 {
@@ -138,6 +141,14 @@ trait UserRelations
     {
         return $this->belongsToMany(Entity::class)
             ->using(EntityUser::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function plugins()
+    {
+        return $this->hasMany(Plugin::class, 'created_by');
     }
 
     /**

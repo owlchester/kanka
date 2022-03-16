@@ -22,6 +22,7 @@ return [
     ],
     'fields'                        => [
         'avatar'                    => 'Avatar',
+        'bio'                       => 'Biography',
         'email'                     => 'Email',
         'hide_subscription'         => 'Hide my name from the :hall_of_fame.',
         'last_login_share'          => 'Share with other campaign members when I last logged in.',
@@ -58,6 +59,7 @@ return [
         'success'   => 'Password updated',
     ],
     'placeholders'                  => [
+        'bio'                       => 'A short bio of yourself displayed on your public profile.',
         'email'                     => 'Your email address',
         'name'                      => 'Your name as displayed',
         'new_password'              => 'Your new password',

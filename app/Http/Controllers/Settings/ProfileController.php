@@ -44,7 +44,8 @@ class ProfileController extends Controller
             $settings->forget('hide_subscription');
         }
         $user->settings = $settings;
-        $user->update($request->only('name', 'has_last_login_sharing', 'avatar'));
+
+        $user->update($request->only('name', 'has_last_login_sharing', 'avatar', 'profile'));
 
         return redirect()
             ->route('settings.profile')

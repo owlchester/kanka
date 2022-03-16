@@ -15,6 +15,8 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 class UserObserver
 {
+    use PurifiableTrait;
+
     /**
      * @param User $user
      */
@@ -24,6 +26,13 @@ class UserObserver
         $new = request()->post('password_new');
         if (!empty($new)) {
             $user->password = Hash::make(request()->post('password_new'));
+        }
+
+        // Purify the bio
+        if (!empty($user->profile['bio'])) {
+            $profile = $user->profile;
+            $profile['bio'] = substr(strip_tags($profile['bio']), 0, 301);
+            $user->profile = $profile;
         }
 
         // Handle image. Let's use a service for this.
