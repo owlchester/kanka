@@ -33,6 +33,12 @@
     </ul>
 </div>
 
+<div class="alert alert-warning alert-too-many-fields margin-top" style="display:none">
+    {!! __('entities/attributes.errors.too_many', [
+    'max' => number_format(ini_get('max_input_vars'))
+]) !!}
+</div>
+
 <a href="{{ route('helpers.attributes') }}" data-url="{{ route('helpers.attributes') }}" data-toggle="ajax-modal" data-target="#entity-modal" title="{{ __('helpers.attributes.description', [
     'mention' => '[entity:id]',
     'attribute' => '{' . __('helpers.attributes.level') . '}',

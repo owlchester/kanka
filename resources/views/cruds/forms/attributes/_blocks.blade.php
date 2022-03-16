@@ -5,6 +5,8 @@ $actionBlock = 'col-xs-5 col-sm-4 col-md-3 col-lg-2';
 
 ?>
 <!-- Attribute Section -->
+@section('modals')
+    @parent
 <div class="attribute-templates">
     <div class="form-group hidden" id="attribute_template">
         <div class="row attribute_row">
@@ -181,3 +183,4 @@ $actionBlock = 'col-xs-5 col-sm-4 col-md-3 col-lg-2';
         </div>
     </div>
 </div>
+@endsection

@@ -9,6 +9,7 @@ return [
     ],
     'errors'        => [
         'loop'  => 'There is an endless loop in this attribute calculation!',
+        'too_many' => 'There are too many fields on this entity, can\'t add more attributes. Delete some attributes first before being able to add more.',
     ],
     'fields'        => [
         'attribute'             => 'Attribute',

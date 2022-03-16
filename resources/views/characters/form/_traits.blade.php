@@ -51,38 +51,6 @@ $role = \App\Facades\CampaignCache::adminRole();
         <a class="btn btn-default btn-block" id="add_appearance" href="#" title="{{ __('characters.actions.add_appearance') }}">
             <i class="fa fa-plus"></i> {{ __('characters.actions.add_appearance') }}
         </a>
-        <div id="template_appearance" style="display: none">
-            <div class="form-group parent-delete-row">
-                <div class="row">
-                    <div class="col-md-4 col-xs-4">
-                        <div class="input-group">
-                            <span class="input-group-addon hidden-xs hidden-sm">
-                                <span class="fa fa-arrows-alt-v"></span>
-                            </span>
-                            {!! Form::text('appearance_name[]', null, [
-                                'class' => 'form-control',
-                                'placeholder' => __('characters.placeholders.appearance_name'),
-                                'spellcheck' => 'true'
-                            ]) !!}
-                        </div>
-                    </div>
-                    <div class="col-md-8 col-xs-8">
-                        <div class="input-group">
-                            {!! Form::text('appearance_entry[]', null, [
-                                'class' => 'form-control',
-                                'placeholder' => __('characters.placeholders.appearance_entry'),
-                                'spellcheck' => 'true'
-                            ]) !!}
-                            <span class="input-group-btn">
-                                <span class="personality-delete btn btn-danger" title="{{ __('crud.remove') }}">
-                                    <i class="fa fa-trash"></i>
-                                </span>
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
 
         <div class="form-group checkbox">
             {!! Form::hidden('is_appearance_pinned', 0) !!}
@@ -134,35 +102,6 @@ $role = \App\Facades\CampaignCache::adminRole();
             <a class="btn btn-default btn-block" id="add_personality" href="#" title="{{ __('characters.actions.add_personality') }}">
                 <i class="fa fa-plus"></i> {{ __('characters.actions.add_personality') }}
             </a>
-            <div id="template_personality" style="display: none">
-                <div class="parent-delete-row margin-bottom">
-                    <div class="form-group">
-                        <div class="input-group">
-                            <span class="input-group-addon hidden-xs hidden-sm">
-                                <span class="fa fa-arrows-alt-v"></span>
-                            </span>
-                            {!! Form::text('personality_name[]', null, [
-                                'class' => 'form-control',
-                                'placeholder' => __('characters.placeholders.personality_name'),
-                                'spellcheck' => 'true'
-                            ]) !!}
-                            <span class="input-group-btn">
-                                <span class="personality-delete btn btn-danger" title="{{ __('crud.remove') }}">
-                                    <i class="fa fa-trash"></i>
-                                </span>
-                            </span>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        {!! Form::textarea('personality_entry[]', null, [
-                            'class' => 'form-control',
-                            'placeholder' => __('characters.placeholders.personality_entry'),
-                            'spellcheck' => 'true',
-                            'rows' => 3
-                        ]) !!}
-                    </div>
-                </div>
-            </div>
 
 
             <div class="form-group checkbox">
@@ -197,3 +136,72 @@ $role = \App\Facades\CampaignCache::adminRole();
         @endif
     </div>
 </div>
+
+
+@section('modals')
+    @parent
+    <div class="hidden">
+        <div id="template_appearance">
+            <div class="form-group parent-delete-row">
+                <div class="row">
+                    <div class="col-md-4 col-xs-4">
+                        <div class="input-group">
+                                <span class="input-group-addon hidden-xs hidden-sm">
+                                    <span class="fa fa-arrows-alt-v"></span>
+                                </span>
+                            {!! Form::text('appearance_name[]', null, [
+                                'class' => 'form-control',
+                                'placeholder' => __('characters.placeholders.appearance_name'),
+                                'spellcheck' => 'true'
+                            ]) !!}
+                        </div>
+                    </div>
+                    <div class="col-md-8 col-xs-8">
+                        <div class="input-group">
+                            {!! Form::text('appearance_entry[]', null, [
+                                'class' => 'form-control',
+                                'placeholder' => __('characters.placeholders.appearance_entry'),
+                                'spellcheck' => 'true'
+                            ]) !!}
+                            <span class="input-group-btn">
+                                    <span class="personality-delete btn btn-danger" title="{{ __('crud.remove') }}">
+                                        <i class="fa fa-trash"></i>
+                                    </span>
+                                </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="template_personality">
+            <div class="parent-delete-row margin-bottom">
+                <div class="form-group">
+                    <div class="input-group">
+                                <span class="input-group-addon hidden-xs hidden-sm">
+                                    <span class="fa fa-arrows-alt-v"></span>
+                                </span>
+                        {!! Form::text('personality_name[]', null, [
+                            'class' => 'form-control',
+                            'placeholder' => __('characters.placeholders.personality_name'),
+                            'spellcheck' => 'true'
+                        ]) !!}
+                        <span class="input-group-btn">
+                                    <span class="personality-delete btn btn-danger" title="{{ __('crud.remove') }}">
+                                        <i class="fa fa-trash"></i>
+                                    </span>
+                                </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    {!! Form::textarea('personality_entry[]', null, [
+                        'class' => 'form-control',
+                        'placeholder' => __('characters.placeholders.personality_entry'),
+                        'spellcheck' => 'true',
+                        'rows' => 3
+                    ]) !!}
+                </div>
+            </div>
+        </div>
+    </div>
+
+@endsection

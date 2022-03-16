@@ -13,7 +13,15 @@
 @inject('campaign', 'App\Services\CampaignService')
 
 @section('fullpage-form')
-    {!! Form::model($model, ['method' => 'PATCH', 'enctype' => 'multipart/form-data', 'route' => [$name . '.update', $model->id], 'data-shortcut' => '1', 'class' => 'entity-form' . (isset($horizontalForm) && $horizontalForm ? ' form-horizontal' : null), 'id' => 'entity-form']) !!}
+{!! Form::model($model, [
+    'method' => 'PATCH',
+    'enctype' => 'multipart/form-data',
+    'route' => [$name . '.update', $model->id],
+    'data-shortcut' => '1',
+    'data-max-fields' => ini_get('max_input_vars'),
+    'class' => 'entity-form' . (isset($horizontalForm) && $horizontalForm ? ' form-horizontal' : null),
+    'id' => 'entity-form'
+]) !!}
 @endsection
 
 @section('content')

@@ -114,10 +114,20 @@ __webpack_require__.r(__webpack_exports__);
  * @type {number}
  */
 var attribute_id_count = -1000;
+var maxFields = false;
+var maxFieldAlert;
 
 $(document).ready(function () {
-  if ($('#add_attribute_target').length > 0) {
-    initAttributeUI();
+  if ($('#add_attribute_target').length === 0) {
+    return;
+  }
+
+  initAttributeUI();
+  var maxConfig = $('[data-max-fields]');
+
+  if (maxConfig.length === 1) {
+    maxFields = maxConfig.data('max-fields');
+    maxFieldAlert = $('.alert-too-many-fields');
   }
 });
 /**
@@ -126,10 +136,21 @@ $(document).ready(function () {
 
 function initAttributeUI() {
   var target = $('#add_attribute_target');
-  var targetNew = $('#add_unsortable_attribute_target');
   initAttributeHandlers();
-  $('.add_attribute').on('click', function (e) {
+  $('.add_attribute').click(function (e) {
     e.preventDefault();
+
+    if (maxFields !== false) {
+      var fieldCount = $('form :input').length + 4; //console.log('checking', fieldCount, 'vs', maxFields);
+
+      if (fieldCount > maxFields) {
+        maxFieldAlert.show();
+        return;
+      } else {
+        maxFieldAlert.hide();
+      }
+    }
+
     attribute_id_count -= 1;
     var body = $($(this).data('template')).clone().removeClass('hidden').removeAttr('id');
     var html = body.html().replace(/\$TMP_ID\$/g, attribute_id_count);
@@ -143,6 +164,11 @@ function initAttributeUI() {
     e.preventDefault();
     $('#entity-attributes-all .attribute_delete').click();
     $('#attributes-delete-all-confirm').modal('hide');
+
+    if (maxFieldAlert) {
+      maxFieldAlert.hide();
+    }
+
     return false;
   });
   $.each($('[data-toggle="private"]'), function () {
@@ -165,6 +191,10 @@ function initAttributeHandlers() {
     $(this).unbind('click');
     $(this).on('click', function () {
       $(this).parent().parent().parent().remove();
+
+      if (maxFieldAlert) {
+        maxFieldAlert.hide();
+      }
     });
   });
   $('[data-toggle="private"]').unbind('click').click(function () {

@@ -17,7 +17,13 @@ $isAdmin = Auth::user()->isAdmin();
 ])
 
 @section('fullpage-form')
-    {!! Form::open(['url' => route('entities.attributes.save', ['entity' => $entity]), 'method' => 'POST', 'data-shortcut' => 1, 'class' => 'entity-form']) !!}
+{!! Form::open([
+    'url' => route('entities.attributes.save', ['entity' => $entity]),
+    'method' => 'POST',
+    'data-shortcut' => 1,
+    'data-max-fields' => ini_get('max_input_vars'),
+    'class' => 'entity-form'
+]) !!}
 @endsection
 
 @section('content')
