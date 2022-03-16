@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Facades\CampaignLocalization;
-use App\Http\Requests\StoreNote;
 use App\Models\Campaign;
 use App\Models\MiscModel;
 use App\Services\EntityService;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
 class EntityCreatorController extends Controller
@@ -69,17 +69,18 @@ class EntityCreatorController extends Controller
      * @throws \Psr\Container\ContainerExceptionInterface
      * @throws \Psr\Container\NotFoundExceptionInterface
      */
-    public function store($type)
+    public function store(Request $request, $type)
     {
         // Make sure the user is allowed to create this kind of entity
         $class = $this->entityService->getClass($type);
         $this->authorize('create', $class);
 
-        /** @var FormRequest $request */
-        // This is dirty. Todo: change? We really need a entity -> icon, name, class, validator service somewhere
-        $requestValidator = '\App\Http\Requests\Store' . ucfirst(Str::singular($type));
-        $request = app($requestValidator);
+        $names = $request->get('names');
         $values = $request->all();
+
+        // Prepare the data
+        unset($values['names']);
+        unset($values['_target']);  // Remove target as we need that for something else
 
         if (!empty($values['entry'])) {
             $values['entry'] = nl2br($values['entry']);
@@ -87,30 +88,53 @@ class EntityCreatorController extends Controller
             $values['entry'] = '';
         }
 
-        // Remove target as we need that for something else
-        unset($values['_target']);
+        // Prepare the validator
+        /** @var $validator FormRequest */
+        $requestValidator = '\App\Http\Requests\Store' . ucfirst(Str::singular($type));
+        $validator = new $requestValidator();
 
-        /** @var MiscModel $model */
-        $model = new $class;
-        $new = $model->create($values);
-        $new->crudSaved();
-        $new->entity->crudSaved();
+        // Now loop on each name and create entities
+        $createdEntities = $links = [];
+        foreach ($names as $name) {
+            if (empty($name)) {
+                continue;
+            }
+            $values['name'] = $name;
+
+            $this->validateEntity($values, $validator->rules());
+
+            /** @var MiscModel $model */
+            $model = new $class;
+            $new = $model->create($values);
+            $new->crudSaved();
+            $new->entity->crudSaved();
+
+            $createdEntities[] = $new;
+            $links[] = link_to($new->entity->url(), $new->name);
+        }
+
+        // If no entity was created, we throw the standard error
+        if (empty($createdEntities)) {
+            $rules = $validator->rules();
+            $this->validateEntity($values, $rules);
+        }
 
         // Content for the selector
         $entities = $this->availableEntities();
 
         // Have a target? Return json for the js to handle it instead
         if ($request->has('_target')) {
+            $first = $createdEntities[0];
             return response()->json([
                 '_target' => $request->get('_target'),
-                '_id' => $new->id,
-                '_name' => $new->name,
+                '_id' => $first->id,
+                '_name' => $first->name,
             ]);
         }
 
         return view('entities.creator.selection', [
             'entities' => $entities,
-            'new' => __('entities.creator.success', ['link' => link_to($new->getLink(), e($new->name))])
+            'new' => trans_choice('entities.creator.success_multiple', count($links), ['link' => implode(', ', $links)])
         ]);
     }
 
@@ -137,5 +161,12 @@ class EntityCreatorController extends Controller
         }
 
         return $entities;
+    }
+
+    protected function validateEntity(array $data, array $rules, array $messages = [], array $customAttributes = [])
+    {
+        return $this->getValidationFactory()->make(
+            $data, $rules, $messages, $customAttributes
+        )->validate();
     }
 }

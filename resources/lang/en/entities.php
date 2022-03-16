@@ -17,9 +17,13 @@ return [
         'back'      => 'Back to selection',
         'duplicate' => 'Head\'s up! There are other entities of this type with a similar name.',
         'helper'    => 'Select an entity type to create. If no entities appear, it means that you don\'t have the permission to create any kind of entity in this campaign.',
-        'success'   => 'New entity \':link\' created.',
+        'success_multiple' => '{1} New entity :link created.|[2,*] New entities :link created.',
         'title'     => 'New Entity',
         'tooltip'   => 'Create a new entity without leaving the current page',
+        'name' => [
+            'new' => 'New name',
+            'remove' => 'Remove',
+        ]
     ],
     'dice_roll'             => 'Dice Roll',
     'dice_rolls'            => 'Dice Rolls',

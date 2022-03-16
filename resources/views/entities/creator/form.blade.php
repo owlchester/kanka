@@ -12,18 +12,28 @@
 <div class="modal-body entity-creator-body-{{ $type }}">
     <div class="form-group required">
         <label>{{ __($type . '.fields.name') }}</label>
-        {!! Form::text('name', old('name'), [
-            'placeholder' => __($type . '.placeholders.name'),
-            'autocomplete' => 'off',
-            'class' => 'form-control',
-            'maxlength' => 191,
-            'data-live' => route('search.live'),
-            'data-type' => $singularType
-        ]) !!}
+
+        <div class="input-group">
+            {!! Form::text('names[]', null, [
+                'placeholder' => __($type . '.placeholders.name'),
+                'autocomplete' => 'off',
+                'class' => 'form-control',
+                'maxlength' => 191,
+                'data-live' => route('search.live'),
+                'data-type' => $singularType
+            ]) !!}
+            <div class="input-group-btn">
+                <a class="btn btn-extra-name" style="" data-toggle="tooltip" title="{{ __('entities.creator.name.new') }}">
+                    <span class="fas fa-plus"></span>
+                </a>
+            </div>
+        </div>
         <p class="text-yellow duplicate-entity-warning" style="display: none">
-            {{ __('entities.creator.duplicate') }}<br /><span id="duplicate-entities"></span>
+            {{ __('entities.creator.duplicate') }}<br />
+            <span class="duplicate-entities"></span>
         </p>
     </div>
+    <div class="extra-name-fields"></div>
 
     @include('entities.creator.forms.' . $singularType)
 
@@ -52,3 +62,28 @@
     <input type="hidden" name="_target" value="{{ $target }}" />
 @endif
 </form>
+
+<div class="hidden">
+    <div class="name-block-template form-group">
+
+        <div class="input-group">
+            {!! Form::text('names[]', null, [
+                'placeholder' => __($type . '.placeholders.name'),
+                'autocomplete' => 'off',
+                'class' => 'form-control',
+                'maxlength' => 191,
+                'data-live' => route('search.live'),
+                'data-type' => $singularType
+            ]) !!}
+            <div class="input-group-btn">
+                <a class="btn btn-extra-name-remove" style="" data-toggle="toggle-tooltip" title="{{ __('entities.creator.name.remove') }}">
+                    <span class="fas fa-times"></span>
+                </a>
+            </div>
+        </div>
+        <p class="text-yellow duplicate-entity-warning" style="display: none">
+            {{ __('entities.creator.duplicate') }}<br />
+            <span class="duplicate-entities"></span>
+        </p>
+    </div>
+</div>
