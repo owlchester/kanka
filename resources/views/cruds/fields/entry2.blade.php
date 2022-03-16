@@ -3,7 +3,14 @@ $old = old('entry');
 ?>
 
 <div class="form-group">
-    <label>{{ __('crud.panels.entry') }}</label>
+    <label style="width: 100%">
+        {{ __('crud.panels.entry') }}
+
+        <a href="{{ route('helpers.link') }}" class="pull-right btn btn-default btn-sm"
+           data-url="{{ route('helpers.link') }}" data-toggle="ajax-modal" data-target="#entity-modal" title="{{ __('helpers.link.description') }}">
+            {{ __('crud.helpers.linking') }}
+        </a>
+    </label>
     {!! Form::textarea(
         'entryForEdition',
         !empty($old) ? $old : FormCopy::field('entryForEdition')->string(),
@@ -13,9 +20,4 @@ $old = old('entry');
             'name' => 'entry'
         ]
     ) !!}
-    <div class="text-right">
-        <a href="{{ route('helpers.link') }}" data-url="{{ route('helpers.link') }}" data-toggle="ajax-modal" data-target="#entity-modal" title="{{ __('helpers.link.description') }}">
-            {{ __('crud.linking_help') }} <i class="fa fa-question-circle"></i>
-        </a>
-    </div>
 </div>

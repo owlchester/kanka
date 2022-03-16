@@ -51,15 +51,30 @@ return [
     ],
     'link'              => [
         'anchor'            => 'The advanced mention can also specify the HTML anchor the link should point to using :example.',
-        'attributes'        => 'You can reference attributes of the entity by typing :code. This only works for on existing attributes of the entity.',
+        'attribute' => [
+            'title' => 'Attributes',
+            'description' => 'Referencing attributes of this entity is also possible. Simply type :code and three letters or more to display matching attributes on the entity.',
+        ],
         'auto_update'       => 'Links to other entities will automatically be updated when the target\'s name or description is changed.',
         'description'       => 'You can easily link to other entities in your campaign using the following shorthands.',
         'formatting'        => [
             'text'  => 'The list of allowed HTML tags and attributes can be seen on our :github.',
             'title' => 'Formatting',
         ],
+        'filtering' => [
+            'title' => 'Filtering',
+            'description' => 'Filtering for the exact entity you are looking for is easy.',
+            'space' => 'Type :code to find an entity with a space in the name.',
+            'exact' => 'Type :code to find an entity that has exactly that name.',
+        ],
+        'advanced' => [
+            'title' => 'Advanced mentions',
+        ],
+        'month' => [
+            'title' => 'Calendar months',
+        ],
+        'overview' => 'Easily link to existing entities of your campaign by typing :code and three letters or more.',
         'friendly_mentions' => 'Link to other entities by typing :code and the first few characters of an entity to search for it. This will inject :example in the text editor, and render as a link to the entity when viewing said entity.',
-        'limitations'       => 'Please note that due to technical limitations, these shorthands don\'t work on android mobile devices, unless using the new Summernote editor. You can change your editor in your Settings > Layout preferences.',
         'mention_helpers'   => 'If your entity name has a space, use :example instead of space. If you want to search for an entity with exactly that name, type in :exact.',
         'mentions'          => 'Link to other entities by typing :code and the first few characters of an entity to search for it. This will inject :example in the text editor. To customise the name of the entity displayed, you can type :example_name. To set the entity\'s subpage, use :example_page.',
         'mentions_field'    => 'You can also display a field from the entity instead of its name in the link with :code.',

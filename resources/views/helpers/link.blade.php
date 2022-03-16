@@ -13,20 +13,28 @@
 
         <div class="box-body">
             <p>
-                {{ __('helpers.link.description') }}
+                {!! __('helpers.link.overview', [
+    'code' => '<code>@</code>'
+]) !!}
             </p>
+
+            <hr />
+
+            <h4 id="filtering">{{ __('helpers.link.filtering.title') }}</h4>
+            <p>{{ __('helpers.link.filtering.description') }}</p>
             <p>
-                {!! __('helpers.link.friendly_mentions', [
-                    'code' => '<code>@</code>',
-                    'example' => '<code>Entity Name</code>'
+                {!! __('helpers.link.filtering.space', [
+                    'code' => '<code>@Entity_Name</code>',
                 ]) !!}
             </p>
             <p>
-                {!! __('helpers.link.mention_helpers', [
-                    'example' => '<code>_</code>',
-                    'exact' => '<code>=Entity Name</code>'
+                {!! __('helpers.link.filtering.exact', [
+                    'code' => '<code>@=Entityname</code>'
                 ]) !!}
             </p>
+
+            <hr />
+            <h4 id="advanced">{{ __('helpers.link.advanced.title') }}</h4>
             <p>
                 {!! __('helpers.link.mentions', [
                     'code' => '<code>[</code>',
@@ -54,21 +62,26 @@
 ]) !!}
             </p>
 
+            <hr />
+            <h4 id="attributes">{{ __('helpers.link.attribute.title') }}</h4>
+            <p>
+                {!! __('helpers.link.attribute.description', [
+                    'code' => '<code>{</code>'
+                ]) !!}
+            </p>
+
+            <hr />
+
+            <h4 id="months">{{ __('helpers.link.month.title') }}</h4>
             <p>
                 {!! __('helpers.link.months', [
                     'code' => '<code>#</code>'
                 ]) !!}
             </p>
-            <p>
-                {!! __('helpers.link.attributes', [
-                    'code' => '<code>{</code>'
-                ]) !!}
-            </p>
-            <p class="helo-block">{{ __('helpers.link.limitations') }}</p>
 
             <hr />
 
-            <h4>{{ __('helpers.link.formatting.title') }}</h4>
+            <h4 id="formatting">{{ __('helpers.link.formatting.title') }}</h4>
             <p>{!! __('helpers.link.formatting.text', ['github' => '<a href="https://github.com/ilestis/miscellany/blob/develop/config/purify.php" target="_blank">Github</a>']) !!}</p>
         </div>
     </div>
