@@ -5,7 +5,7 @@
 ])
 
 @section('og')
-    <meta property="og:description" content="{{ __('users/profile.description') }}" />
+    @if (!empty($user->profile['bio']))<meta property="og:description" content="{{ $user->profile['bio'] }}" />@endif
     <meta property="og:url" content="{{ route('users.profile', $user) }}" />
     @if ($user->avatar)<meta property="og:image" content="{{ $user->getAvatarUrl()  }}" />@endif
 @endsection
@@ -73,7 +73,7 @@
 
                 <div class="row">
                     <div class="col-md-9">
-                        @if (!empty($campaigns))
+                        @if (!$campaigns->isEmpty())
                             <h1>{{ __('users/profile.fields.public_campaigns') }}</h1>
 
                             <div class="row">
