@@ -79,7 +79,7 @@ if (auth()->check()) {
             </div>
         </div>
 
-        @if (auth()->check() && (auth()->user()->can('members') || auth()->user()->can('submissions') || auth()->user()->can('roles')))
+        @if (auth()->check() && (auth()->user()->can('members', $campaign) || auth()->user()->can('submissions', $campaign) || auth()->user()->can('roles', $campaign)))
         <div class="box box-solid entity-submenu">
             <div class="box-body no-padding">
                 <ul class="nav nav-pills nav-stacked">
@@ -161,54 +161,56 @@ if (auth()->check()) {
         'label' => __('campaigns.show.tabs.campaign'),
         'route' => route('campaign')
     ];
-    if (auth()->check() && auth()->user()->can('update', $campaign)) {
-        $menuOptions['export'] = [
-                'label' => __('campaigns.show.tabs.export'),
-                'route' => route('campaign_export')
-        ];
-        $menuOptions['recovery'] = [
-                'label' => __('campaigns.show.tabs.recovery'),
-                'route' => route('recovery')
-        ];
-    }
-    if (auth()->check() && auth()->user()->can('stats', $campaign)) {
-        $menuOptions['stats'] = [
-                'label' => __('campaigns.show.tabs.achievements'),
-                'route' => route('stats')
-        ];
-    }
-    if (auth()->check() && auth()->user()->can('members', $campaign)) {
-        $menuOptions['users'] = [
-                'label' => __('campaigns.show.tabs.members'),
-                'route' => route('campaign_users.index')
-        ];
-    }
-    if (auth()->check() && auth()->user()->can('submissions', $campaign)) {
-        $menuOptions['submissions'] = [
-                'label' => __('campaigns.show.tabs.applications'),
-                'route' => route('campaign_submissions.index')
-        ];
-    }
-    if (auth()->check() && auth()->user()->can('roles', $campaign)) {
-        $menuOptions['roles'] = [
-                'label' => __('campaigns.show.tabs.roles'),
-                'route' => route('campaign_roles.index')
-        ];
-    }
+    if (auth()->check()) {
+        if (auth()->user()->can('update', $campaign)) {
+            $menuOptions['export'] = [
+                    'label' => __('campaigns.show.tabs.export'),
+                    'route' => route('campaign_export')
+            ];
+            $menuOptions['recovery'] = [
+                    'label' => __('campaigns.show.tabs.recovery'),
+                    'route' => route('recovery')
+            ];
+        }
+        if (auth()->user()->can('stats', $campaign)) {
+            $menuOptions['stats'] = [
+                    'label' => __('campaigns.show.tabs.achievements'),
+                    'route' => route('stats')
+            ];
+        }
+        if (auth()->user()->can('members', $campaign)) {
+            $menuOptions['users'] = [
+                    'label' => __('campaigns.show.tabs.members'),
+                    'route' => route('campaign_users.index')
+            ];
+        }
+        if (auth()->user()->can('submissions', $campaign)) {
+            $menuOptions['submissions'] = [
+                    'label' => __('campaigns.show.tabs.applications'),
+                    'route' => route('campaign_submissions.index')
+            ];
+        }
+        if (auth()->user()->can('roles', $campaign)) {
+            $menuOptions['roles'] = [
+                    'label' => __('campaigns.show.tabs.roles'),
+                    'route' => route('campaign_roles.index')
+            ];
+        }
 
-    if (auth()->check() && auth()->user()->can('update', $campaign)) {
-        $menuOptions['settings'] = [
-            'label' => __('campaigns.show.tabs.settings'),
-            'route' => route('campaign_settings')
-        ];
-        $menuOptions['default-images'] = [
-            'label' => __('campaigns.show.tabs.default-images'),
-            'route' => route('campaign.default-images')
-        ];
-        $menuOptions['styles'] = [
-            'label' => __('campaigns.show.tabs.styles'),
-            'route' => route('campaign_styles.index')
-        ];
+        if (auth()->user()->can('update', $campaign)) {
+            $menuOptions['settings'] = [
+                'label' => __('campaigns.show.tabs.settings'),
+                'route' => route('campaign_settings')
+            ];
+            $menuOptions['default-images'] = [
+                'label' => __('campaigns.show.tabs.default-images'),
+                'route' => route('campaign.default-images')
+            ];
+            $menuOptions['styles'] = [
+                'label' => __('campaigns.show.tabs.styles'),
+                'route' => route('campaign_styles.index')
+            ];
+        }
     }
 
     if (config('marketplace.enabled')) {
