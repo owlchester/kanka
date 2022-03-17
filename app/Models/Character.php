@@ -174,7 +174,8 @@ class Character extends MiscModel
      */
     public function families()
     {
-        return $this->belongsToMany('App\Models\Family');
+        return $this->belongsToMany('App\Models\Family')
+            ->orderBy('character_family.id');
     }
 
     /**
