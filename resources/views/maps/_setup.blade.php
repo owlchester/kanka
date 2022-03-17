@@ -59,6 +59,8 @@ if (isset($single) && $single) {
         crs: L.CRS.Simple,
         center: [ {{ $focus }} ],
         noWrap: true,
+        maxBounds: bounds{{ $map->id }},
+        maxBoundsViscosity: 0.5,
         dragging: true,
         tap: false,
         attributionControl: false,

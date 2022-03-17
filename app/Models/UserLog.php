@@ -111,6 +111,9 @@ class UserLog extends Model
                 return 'Revert back';
             case self::TYPE_USER_SWITCH_LOGIN:
                 return 'Impersonated login';
+
+            case self::NOTIFY_YEARLY_SUB:
+                return 'Yearly sub notification';
         }
 
         return 'unknown';

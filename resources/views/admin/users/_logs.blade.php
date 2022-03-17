@@ -14,7 +14,7 @@ $logs = $model->logs()->orderBy('created_at', 'DESC')->paginate(15);
                 <dl class="dl-horizontal">
                     @foreach ($logs as $log)
                         <dt>{{ $log->action() }}</dt>
-                        <dd>
+                        <dd title="{{ $log->created_at }}" data-toggle="tooltip">
                             {{ $log->created_at->diffForHumans() }}
                         </dd>
                     @endforeach
