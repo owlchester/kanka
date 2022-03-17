@@ -132,7 +132,7 @@ trait CampaignScopes
         }
         $query
             ->orderBy('visible_entity_count', 'desc')
-            ->orderBy('name', 'asc');
+            ->orderBy('name');
 
         return $query;
     }
