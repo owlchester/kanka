@@ -2,7 +2,10 @@
 
 namespace App\Console\Commands;
 
+use App\Jobs\Emails\Subscriptions\UpcomingYearlyAlert;
+use App\Models\UserLog;
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Console\Command;
 use Laravel\Cashier\Subscription;
 
@@ -39,7 +42,44 @@ class SubscriptionUpcomingAlert extends Command
      */
     public function handle()
     {
-        $subscriptions = Subscription::where();
+        $plans = [
+            config('subscription.owlbear.eur.yearly'),
+            config('subscription.owlbear.usd.yearly'),
+            config('subscription.wyvern.eur.yearly'),
+            config('subscription.wyvern.usd.yearly'),
+            config('subscription.elemental.eur.yearly'),
+            config('subscription.elemental.usd.yearly'),
+        ];
+
+        $now = Carbon::now()->addMonth();
+        $this->info('Looking for active yearly subscriptions created on month ' . $now->month . ' and day ' . $now->day);
+        //$this->info('Plans: ' . implode('\', \'', $plans));
+        $subscriptions = Subscription::whereIn('stripe_plan', $plans)
+            ->where('stripe_status', 'active')
+            ->whereRaw('month(created_at) = ' . $now->month)
+            ->whereRaw('day(created_at) = ' . $now->day)
+            //->whereRaw('year(created_at) <> ' . $now->year)
+            ->whereNull('ends_at')
+            ->with('user')
+            ->get()
+        ;
+
+        /** @var Subscription $subscription */
+        $count = 0;
+        foreach ($subscriptions as $subscription) {
+            $this->info('User #' . $subscription->user_id . ' ' . $subscription->user->name);
+
+            UpcomingYearlyAlert::dispatch($subscription->user);
+
+            UserLog::create([
+                'user_id' => $subscription->user_id,
+                'type_id' => UserLog::NOTIFY_YEARLY_SUB,
+            ]);
+
+            $count++;
+        }
+
+        $this->info('Notified ' . $count . ' users.');
         return 0;
     }
 }

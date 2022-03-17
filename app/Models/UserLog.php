@@ -42,6 +42,8 @@ class UserLog extends Model
     const TYPE_USER_REVERT = 51;
     const TYPE_USER_SWITCH_LOGIN = 52;
 
+    const NOTIFY_YEARLY_SUB = 70;
+
     /**
      * @var string
      */
