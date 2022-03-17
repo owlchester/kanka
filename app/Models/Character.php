@@ -182,7 +182,8 @@ class Character extends MiscModel
      */
     public function races()
     {
-        return $this->belongsToMany('App\Models\Race');
+        return $this->belongsToMany('App\Models\Race')
+            ->orderBy('character_race.id');
     }
 
     /**

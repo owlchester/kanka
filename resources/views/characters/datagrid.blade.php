@@ -1,3 +1,4 @@
+<?php /** @var \App\Models\Character $model */?>
 @inject ('datagrid', 'App\Renderers\DatagridRenderer')
 
 {!! $datagrid->filters($filters)
