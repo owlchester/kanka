@@ -40,7 +40,7 @@
                             <a href="{{ config('marketplace.url') }}/plugins/{{ $plugin->uuid }}" target="_blank">
                                 {{ $plugin->name }}
                             </a><br />
-                            @if($plugin->hasUpdate())
+                            @if(auth()->check() && auth()->user()->can('recover', $campaign) && $plugin->hasUpdate())
                                 <a href="{{ route('campaign_plugins.update-info', $plugin) }}" class="btn btn-xs btn-info"
                                    data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('campaign_plugins.update-info', $plugin) }}">
                                     {{ __('campaigns/plugins.actions.update_available') }}
@@ -63,6 +63,7 @@
                             </span>
                             @endif
                         </td>
+                        @can('recover', $campaign)
                         <td class="text-right">
                             <div class="dropdown">
                                 <a class="dropdown-toggle btn btn-sm btn-default" data-toggle="dropdown" aria-expanded="false" data-placement="right" href="#">
@@ -122,6 +123,7 @@
 
                             {!! Form::close() !!}
                         </td>
+                        @endcan
                     </tr>
                 @empty
                     <tr>

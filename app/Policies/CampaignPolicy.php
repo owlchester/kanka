@@ -226,6 +226,9 @@ class CampaignPolicy
      */
     public function members(?User $user, Campaign $campaign)
     {
+        if (!$user) {
+            return false;
+        }
         return (UserCache::user($user)->admin() || $this->checkPermission('members', $user, $campaign)) ||
             !($campaign->boosted() && $campaign->hide_members);
     }
@@ -238,7 +241,7 @@ class CampaignPolicy
      */
     public function submissions(?User $user, Campaign $campaign)
     {
-        return UserCache::user($user)->admin();
+        return $user && UserCache::user($user)->admin();
     }
 
     /**

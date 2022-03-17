@@ -20,7 +20,7 @@ class CampaignPluginController extends Controller
 
     public function __construct(CampaignPluginService $service)
     {
-        $this->middleware('auth', ['except' => 'css']);
+        $this->middleware('auth', ['except' => ['css', 'index']]);
         $this->middleware('campaign.boosted', ['except' => 'index']);
 
         $this->service = $service;
@@ -33,13 +33,17 @@ class CampaignPluginController extends Controller
     public function index()
     {
         $campaign = CampaignLocalization::getCampaign();
-        $this->authorize('recover', $campaign);
 
         $highlight = request()->get('highlight');
         $plugins = $campaign->plugins()
             ->highlighted($highlight)
-            ->with('versions')
-            ->paginate();
+            ->with('versions');
+
+        if (!auth()->check() || !$campaign->userIsMember()) {
+            $plugins->where('campaign_plugins.is_active', true);
+        }
+        $plugins = $plugins->paginate();
+
 
         return view('campaigns.plugins', compact('campaign', 'plugins', 'highlight'));
     }

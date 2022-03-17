@@ -126,10 +126,15 @@ trait CampaignScopes
      */
     public function scopeFront(Builder $query)
     {
-        return $query
-            ->where('visible_entity_count', '>', 0)
+        if (!app()->environment('local')) {
+            $query
+                ->where('visible_entity_count', '>', 0);
+        }
+        $query
             ->orderBy('visible_entity_count', 'desc')
             ->orderBy('name', 'asc');
+
+        return $query;
     }
 
     /**
