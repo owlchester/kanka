@@ -343,11 +343,11 @@ TEXT
                 'remove'    => ':user from the :role role',
             ],
             'create'    => [
-                'success'   => 'User added to the role.',
+                'success'   => ':user added to the role :role.',
                 'title'     => 'Add a member to the :name role',
             ],
             'destroy'   => [
-                'success'   => 'User removed from the role.',
+                'success'   => ':user removed from the role :role.',
             ],
             'fields'    => [
                 'name'  => 'Name',

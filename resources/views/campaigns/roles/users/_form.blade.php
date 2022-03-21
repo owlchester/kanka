@@ -8,7 +8,3 @@
     </div>
 </div>
 
-<div class="form-group">
-    <button class="btn btn-success">{{ trans('crud.save') }}</button>
-    @includeWhen(!request()->ajax(), 'partials.or_cancel')
-</div>

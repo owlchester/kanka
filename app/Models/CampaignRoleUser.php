@@ -17,6 +17,7 @@ use DateTime;
  *
  * @property User $user
  * @property Campaign $campaign
+ * @property CampaignRole $campaignRole
  */
 class CampaignRoleUser extends Model
 {

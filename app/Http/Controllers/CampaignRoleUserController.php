@@ -57,7 +57,10 @@ class CampaignRoleUserController extends Controller
         $relation = CampaignRoleUser::create($request->all());
         return redirect()->route('campaign_roles.show', [
             'campaign_role' => $campaignRole])
-            ->with('success', trans($this->view . '.create.success'));
+            ->with('success', __($this->view . '.create.success', [
+                'user' => $relation->user->name,
+                'role' => $relation->campaignRole->name
+            ]));
     }
 
     /**
@@ -68,52 +71,8 @@ class CampaignRoleUserController extends Controller
      */
     public function show(CampaignRole $campaignRole, CampaignRoleUser $campaignRoleUser)
     {
-        $this->authorize('user', $campaignRole);
-        $campaign = CampaignLocalization::getCampaign();
-
-        return view($this->view . '.show', [
-            'campaign' => $campaign,
-            'role' => $campaignRole,
-            'user' =>  $campaignRoleUser
-        ]);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Campaign  $campaign
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(CampaignRole $campaignRole, CampaignRoleUser $campaignRoleUser)
-    {
-        $this->authorize('user', $campaignRole);
-        $campaign = CampaignLocalization::getCampaign();
-
-        return view($this->view . '.edit', [
-            'campaign' => $campaign,
-            'role' => $campaignRole,
-            'user' => $campaignRoleUser
-        ]);
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Campaign  $campaign
-     * @return \Illuminate\Http\Response
-     */
-    public function update(
-        StoreCampaignRoleUser $request,
-        CampaignRole $campaignRole,
-        CampaignRoleUser $campaignRoleUser
-    ) {
-        $this->authorize('user', $campaignRole);
-        $campaign = CampaignLocalization::getCampaign();
-
-        $campaignRoleUser->update($request->all());
-        return redirect()->route('campaign_roles.show', $campaignRole)
-            ->with('success', trans($this->view . '.edit.success'));
+        return redirect()
+            ->route('campaign_roles.show', $campaignRole);
     }
 
     /**
@@ -129,6 +88,9 @@ class CampaignRoleUserController extends Controller
 
         $campaignRoleUser->delete();
         return redirect()->route('campaign_roles.show', $campaignRole)
-            ->with('success', trans($this->view . '.destroy.success'));
+            ->with('success', __($this->view . '.destroy.success', [
+                'user' => $campaignRoleUser->user->name,
+                'role' => $campaignRoleUser->campaignRole->name
+            ]));
     }
 }
