@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\Ability;
 use App\Models\Campaign;
 use App\Models\Character;
 use App\Models\CharacterTrait;
@@ -594,6 +595,7 @@ class EntityService
             'organisation' => Organisation::class,
             'event' => Event::class,
             'journal' => Journal::class,
+            'ability' => Ability::class,
             'quest' => Quest::class,
             'tag' => Tag::class,
         ];
