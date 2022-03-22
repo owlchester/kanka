@@ -31,6 +31,10 @@ $(document).ready(function() {
         }).done(function(data) {
             $(this).closest('.box').fadeOut("normal", function (e) {
                 $(this).remove();
+
+                if ($('.dashboard-releases .box').length === 0) {
+                    $('.dashboard-releases').remove();
+                }
             });
         });
     });
