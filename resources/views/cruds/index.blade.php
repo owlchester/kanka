@@ -98,8 +98,4 @@
     @include('cruds.datagrids.bulks.modals')
 @endsection
 
-@section('scripts')
-    @parent
-    <script src="{{ mix('js/datagrids.js') }}" defer></script>
-@endsection
 

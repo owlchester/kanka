@@ -79074,38 +79074,7 @@ $(document).ready(function () {
 
   window.initForeignSelect();
   initSpectrum();
-  initCopyToClipboard();
-  initSidebar();
-  initSubmenuSwitcher(); // Open select2 dropdowns on focus. Don't add this in initSelect2 since we only need this
-  // binded once.
-
-  $(document).on('focus', '.select2.select2-container', function (e) {
-    // only open on original attempt - close focus event should not fire open
-    if (e.originalEvent && $(this).find(".select2-selection--single").length > 0) {
-      $(this).siblings('select').select2('open');
-    }
-  });
-
-  if ($('.date-picker').length > 0) {
-    $.each($('.date-picker'), function (index) {
-      // instance, using default configuration.
-      $(this).datepicker({
-        autoclose: true,
-        format: 'yyyy-mm-dd',
-        todayHighlight: true
-      });
-    });
-  }
-
-  if ($('.datetime-picker').length > 0) {
-    $.each($('.datetime-picker'), function (index) {
-      // instance, using default configuration.
-      $(this).datetimepicker({
-        sideBySide: true,
-        format: 'YYYY-MM-DD HH:mm:00'
-      });
-    });
-  }
+  initSubmenuSwitcher();
 
   if ($('#delete-confirm-form').length > 0) {
     $('#delete-confirm-form').on('keyup keypress', function (e) {
@@ -79125,12 +79094,9 @@ $(document).ready(function () {
   Object(_mention__WEBPACK_IMPORTED_MODULE_1__["default"])();
   initTogglePasswordFields();
   initAjaxPagination();
-  initTimelineToggle();
   initEntityNoteToggle();
   initDynamicDelete();
   initImageRemoval();
-  initBannerPromoDismiss();
-  registerToastDismiss();
   /**
    * Whenever a modal or popover is shown, we'll need to re-bind various helpers we have.
    */
@@ -79148,15 +79114,41 @@ $(document).ready(function () {
     initImageRemoval();
     Object(_components_delete_confirm_js__WEBPACK_IMPORTED_MODULE_0__["default"])();
   });
-}); // Select2 open focus bugfix with newer jquery versions
-
-$(document).on('select2:open', function () {
-  var allFound = document.querySelectorAll('.select2-container--open .select2-search__field');
-  allFound[allFound.length - 1].focus();
 });
+/**
+ * Initiate spectrum for the various fields
+ */
+
+function initSpectrum() {
+  if (!$.isFunction($.fn.spectrum)) {
+    return;
+  }
+
+  $.each($('.spectrum'), function (i) {
+    var _$$data;
+
+    $(this).spectrum({
+      preferredFormat: "hex",
+      showInput: true,
+      showPalette: true,
+      allowEmpty: true,
+      appendTo: (_$$data = $(this).data('append-to')) !== null && _$$data !== void 0 ? _$$data : null
+    });
+  });
+}
+/**
+ * Register the tooltip and tooltip-ajax helper
+ */
+
+
+function initTooltips() {
+  $('[data-toggle="tooltip"]').tooltip();
+  window.ajaxTooltip();
+}
 /**
  * Go through table trs to add on click support
  */
+
 
 function treeViewInit() {
   var treeViewLoader = $('.list-treeview');
@@ -79270,87 +79262,6 @@ function initAjaxPagination() {
     return false;
   });
 }
-/**
- * Handler for copying content to the clipboard
- */
-
-
-function initCopyToClipboard() {
-  $('[data-clipboard]').click(function (e) {
-    e.preventDefault();
-    var $temp = $("<input>");
-    $("body").append($temp);
-    $temp.val($(this).data('clipboard')).select();
-    document.execCommand("copy");
-    $temp.remove();
-    var post = $(this).data('success');
-    var toast = $(this).data('toast');
-
-    if (toast) {
-      showToast(toast);
-      return false;
-    }
-
-    if (post) {
-      $(post).fadeIn();
-      setTimeout(function () {
-        $(post).fadeOut();
-      }, 3000);
-    } else return false;
-  });
-}
-/** Show an expiring message at the bottom right of the page **/
-
-
-function showToast(message) {
-  var $container = $('<div class="toast-success">');
-  $container.html('<span class="toast-message">' + message + '<i class="fa fa-times" data-toggle="dismiss"></i></span');
-  $('.toast-container').append($container);
-  setTimeout(function () {
-    $container.fadeOut();
-  }, 3000);
-  registerToastDismiss();
-}
-/** Handle closing of a toast **/
-
-
-function registerToastDismiss() {
-  $('.toast-container [data-toggle="dismiss"]').unbind('click').on('click', function (e) {
-    e.preventDefault();
-    $(this).parent().parent().fadeOut();
-  });
-}
-/**
- * Register the tooltip and tooltip-ajax helper
- */
-
-
-function initTooltips() {
-  $('[data-toggle="tooltip"]').tooltip();
-  window.ajaxTooltip();
-}
-/**
- * Initiate spectrum for the various fields
- */
-
-
-function initSpectrum() {
-  if (!$.isFunction($.fn.spectrum)) {
-    return;
-  }
-
-  $.each($('.spectrum'), function (i) {
-    var _$$data;
-
-    $(this).spectrum({
-      preferredFormat: "hex",
-      showInput: true,
-      showPalette: true,
-      allowEmpty: true,
-      appendTo: (_$$data = $(this).data('append-to')) !== null && _$$data !== void 0 ? _$$data : null
-    });
-  });
-}
 
 function initDynamicDelete() {
   $('.btn-dynamic-delete').popover({
@@ -79371,34 +79282,6 @@ function initDynamicDelete() {
     trigger: 'focus'
   });
 }
-/**
- *
- */
-
-
-function initSidebar() {
-  var toggler = $('.sidebar-campaign .campaign-head .campaign-name');
-
-  if (toggler.length === 0) {
-    return;
-  }
-
-  var down = $('.sidebar-campaign .campaign-head .campaign-name .fa-caret-down');
-  var dropdown = $('#campaign-switcher');
-  var backdrop = $('.campaign-switcher-backdrop');
-  toggler.on('click', function (e) {
-    e.preventDefault();
-    dropdown.collapse('toggle');
-    backdrop.show();
-    down.addClass('flipped');
-  });
-  backdrop.click(function (e) {
-    e.preventDefault();
-    backdrop.hide();
-    dropdown.collapse('hide');
-    down.removeClass('flipped');
-  });
-}
 
 function initSubmenuSwitcher() {
   $('.submenu-switcher').change(function (e) {
@@ -79408,25 +79291,6 @@ function initSubmenuSwitcher() {
     var route = selected.data('route');
     console.log('route', route);
     window.location.href = route;
-  });
-}
-/**
- * Timeline toggle support
- */
-
-
-function initTimelineToggle() {
-  $('.timeline-toggle').on('click', function () {
-    var id = $(this).data('short');
-    $('#' + id + "-show").toggle();
-    $('#' + id + "-hide").toggle();
-  });
-  $('.timeline-era-reorder').on('click', function (e) {
-    e.preventDefault();
-    var eraId = $(this).data('era-id');
-    $('#era-items-' + eraId + '').sortable();
-    $(this).parent().hide();
-    $('#era-items-' + eraId + '-save-reorder').show();
   });
 }
 /**
@@ -79440,7 +79304,53 @@ function initEntityNoteToggle() {
     $('#' + id + "-show").toggle();
     $('#' + id + "-hide").toggle();
   });
-}
+} // Splitting off the js files into logical blocks
+
+
+__webpack_require__(/*! ./helpers */ "./resources/assets/js/helpers.js");
+
+__webpack_require__(/*! ./keyboard */ "./resources/assets/js/keyboard.js");
+
+__webpack_require__(/*! ./crud */ "./resources/assets/js/crud.js");
+
+__webpack_require__(/*! ./calendar */ "./resources/assets/js/calendar.js");
+
+__webpack_require__(/*! ./search */ "./resources/assets/js/search.js");
+
+__webpack_require__(/*! ./notification */ "./resources/assets/js/notification.js");
+
+__webpack_require__(/*! ./quick-creator */ "./resources/assets/js/quick-creator.js");
+
+__webpack_require__(/*! ./tutorial */ "./resources/assets/js/tutorial.js");
+
+__webpack_require__(/*! ./datagrids */ "./resources/assets/js/datagrids.js");
+
+__webpack_require__(/*! ./quick-links */ "./resources/assets/js/quick-links.js");
+
+__webpack_require__(/*! ./members */ "./resources/assets/js/members.js");
+
+__webpack_require__(/*! ./campaign */ "./resources/assets/js/campaign.js");
+
+__webpack_require__(/*! ./clipboard */ "./resources/assets/js/clipboard.js");
+
+__webpack_require__(/*! ./toast */ "./resources/assets/js/toast.js");
+
+__webpack_require__(/*! ./sidebar */ "./resources/assets/js/sidebar.js");
+
+__webpack_require__(/*! ./banner */ "./resources/assets/js/banner.js");
+
+__webpack_require__(/*! ./timeline */ "./resources/assets/js/timeline.js");
+
+__webpack_require__(/*! ./vendor */ "./resources/assets/js/vendor.js");
+
+/***/ }),
+
+/***/ "./resources/assets/js/banner.js":
+/*!***************************************!*\
+  !*** ./resources/assets/js/banner.js ***!
+  \***************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
 
 function initBannerPromoDismiss() {
   $('#banner-notification-dismiss').click(function (e) {
@@ -79456,24 +79366,7 @@ function initBannerPromoDismiss() {
       method: 'POST'
     }).done(function (data) {});
   });
-} // Helpers are injected directly in the window functions.
-
-
-__webpack_require__(/*! ./helpers.js */ "./resources/assets/js/helpers.js");
-
-__webpack_require__(/*! ./keyboard.js */ "./resources/assets/js/keyboard.js");
-
-__webpack_require__(/*! ./crud.js */ "./resources/assets/js/crud.js");
-
-__webpack_require__(/*! ./calendar.js */ "./resources/assets/js/calendar.js");
-
-__webpack_require__(/*! ./search.js */ "./resources/assets/js/search.js");
-
-__webpack_require__(/*! ./notification */ "./resources/assets/js/notification.js");
-
-__webpack_require__(/*! ./quick-creator */ "./resources/assets/js/quick-creator.js");
-
-__webpack_require__(/*! ./tutorial */ "./resources/assets/js/tutorial.js");
+}
 
 /***/ }),
 
@@ -79857,6 +79750,124 @@ function resetReminderAnimation() {
   reminderForm.find('.btn-success i.fa').hide();
   reminderForm.find('.btn-success span').show();
   reminderForm.find('.btn-success').prop('disabled', false);
+}
+
+/***/ }),
+
+/***/ "./resources/assets/js/campaign.js":
+/*!*****************************************!*\
+  !*** ./resources/assets/js/campaign.js ***!
+  \*****************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+$(document).ready(function () {
+  initRpgSystems();
+  registerModules();
+  registerUserRoles();
+  registerCodeMirror();
+});
+/**
+ * Form Rpg Systems field
+ */
+
+function initRpgSystems() {
+  $.each($('.form-rpg-systems'), function () {
+    $(this).select2({
+      multiple: true,
+      allowClear: true,
+      minimumInputLength: 0
+    });
+  });
+}
+/**
+ * Register Modules change for campaign settings
+ */
+
+
+function registerModules() {
+  $('.content :checkbox').change(function () {
+    if (this.checked) {
+      $(this).closest('div.box').removeClass('box-default').addClass('box-success');
+    } else {
+      $(this).closest('div.box').removeClass('box-success').addClass('box-default');
+    }
+  });
+}
+/**
+ * User role admin quick interface
+ */
+
+
+function registerUserRoles() {
+  $('.btn-user-roles').popover({
+    html: true,
+    sanitize: false,
+    trigger: 'focus'
+  });
+}
+/**
+ * Initiate codemirror editor in the theming section
+ */
+
+
+function registerCodeMirror() {
+  $.each($('.codemirror'), function () {
+    var elementID = $(this).attr('id');
+    CodeMirror.fromTextArea(document.getElementById(elementID), {
+      extraKeys: {
+        "Ctrl-Space": "autocomplete"
+      },
+      lineNumbers: true,
+      lineWrapping: true,
+      theme: 'dracula'
+    });
+  });
+}
+
+/***/ }),
+
+/***/ "./resources/assets/js/clipboard.js":
+/*!******************************************!*\
+  !*** ./resources/assets/js/clipboard.js ***!
+  \******************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+$(document).ready(function () {
+  initCopyToClipboard();
+});
+/**
+ * Handler for copying content to the clipboard
+ */
+
+function initCopyToClipboard() {
+  if ($('[data-clipboard]').length === 0) {
+    return;
+  }
+
+  $('[data-clipboard]').click(function (e) {
+    e.preventDefault();
+    var $temp = $("<input>");
+    $("body").append($temp);
+    $temp.val($(this).data('clipboard')).select();
+    document.execCommand("copy");
+    $temp.remove();
+    var post = $(this).data('success');
+    var toast = $(this).data('toast');
+
+    if (toast) {
+      window.showToast(toast);
+      return false;
+    }
+
+    if (post) {
+      $(post).fadeIn();
+      setTimeout(function () {
+        $(post).fadeOut();
+      }, 3000);
+    } else return false;
+  });
 }
 
 /***/ }),
@@ -80964,6 +80975,106 @@ function keepAlivePulse() {
 
 /***/ }),
 
+/***/ "./resources/assets/js/datagrids.js":
+/*!******************************************!*\
+  !*** ./resources/assets/js/datagrids.js ***!
+  \******************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// id="datagrids-bulk-actions-permissions"
+// id="datagrids-bulk-actions-edit
+$(document).ready(function () {
+  // Multi-delete
+  var crudDelete = $('#datagrid-select-all');
+
+  if (crudDelete.length > 0) {
+    crudDelete.click(function (e) {
+      if ($(this).prop('checked')) {
+        $.each($("input[name='model[]']"), function () {
+          $(this).prop('checked', true);
+        });
+      } else {
+        $.each($("input[name='model[]']"), function () {
+          $(this).prop('checked', false);
+        });
+      }
+
+      toggleCrudMultiDelete();
+    });
+  }
+
+  $.each($("input[name='model[]']"), function () {
+    $(this).change(function (e) {
+      toggleCrudMultiDelete();
+      e.preventDefault();
+    });
+  });
+  registerBulkActions();
+  toggleCrudMultiDelete();
+});
+/**
+ * Register button handeling for bulk actions
+ */
+
+function registerBulkActions() {
+  $('#datagrids-bulk-actions-permissions').on('click', function () {
+    setBulkModels('#datagrid-bulk-permission-models');
+  });
+  $('#datagrids-bulk-actions-batch').on('click', function () {
+    setBulkModels('#datagrid-bulk-batch-models');
+  });
+  $('#datagrids-bulk-actions-delete').on('click', function () {
+    setBulkModels('#datagrid-bulk-delete-models');
+  });
+  $('#datagrids-bulk-actions-copy-campaign').on('click', function () {
+    setBulkModels('#datagrid-bulk-permission-models');
+  });
+  $('#datagrids-bulk-actions-templates').on('click', function () {
+    setBulkModels('#datagrid-bulk-permission-models');
+  });
+  $('#datagrids-bulk-actions-transform').on('click', function () {
+    setBulkModels('#datagrid-bulk-transform-models');
+  });
+}
+/**
+ * Set the datagrid bulk models
+ * @param modelField
+ */
+
+
+function setBulkModels(modelField) {
+  var values = [];
+  $.each($("input[name='model[]']"), function () {
+    if ($(this).prop('checked')) {
+      values.push($(this).val());
+    }
+  });
+  console.log('datagrid models', values);
+  $(modelField).val(values.toString());
+}
+/**
+ *
+ */
+
+
+function toggleCrudMultiDelete() {
+  var hide = true;
+  $.each($("input[name='model[]']"), function () {
+    if ($(this).prop('checked')) {
+      hide = false;
+    }
+  });
+
+  if (hide) {
+    $('.datagrid-bulk-actions .btn').prop('disabled', true).addClass('disabled');
+  } else {
+    $('.datagrid-bulk-actions .btn').prop('disabled', false).removeClass('disabled');
+  }
+}
+
+/***/ }),
+
 /***/ "./resources/assets/js/helpers.js":
 /*!****************************************!*\
   !*** ./resources/assets/js/helpers.js ***!
@@ -81075,6 +81186,50 @@ function initSaveKeyboardShortcut(form) {
     }
   });
 }
+
+/***/ }),
+
+/***/ "./resources/assets/js/members.js":
+/*!****************************************!*\
+  !*** ./resources/assets/js/members.js ***!
+  \****************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+$(document).ready(function () {
+  if ($('.form-members').count === 0) {
+    return;
+  }
+
+  $.each($('.form-members'), function (index) {
+    var allowClear = $(this).data('allow-clear');
+    $(this).select2({
+      tags: true,
+      allowClear: allowClear || true,
+      minimumInputLength: 0,
+      ajax: {
+        quietMillis: 500,
+        delay: 500,
+        url: $(this).attr('data-url'),
+        dataType: 'json',
+        data: function data(params) {
+          return {
+            q: $.trim(params.term)
+          };
+        },
+        processResults: function processResults(data) {
+          return {
+            results: data
+          };
+        },
+        cache: true
+      },
+      createTag: function createTag(params) {
+        return undefined;
+      }
+    });
+  });
+});
 
 /***/ }),
 
@@ -81424,6 +81579,38 @@ function quickCreatorNameHandler() {
 
 /***/ }),
 
+/***/ "./resources/assets/js/quick-links.js":
+/*!********************************************!*\
+  !*** ./resources/assets/js/quick-links.js ***!
+  \********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+$(document).ready(function () {
+  initQuickLinksForm();
+});
+
+function initQuickLinksForm() {
+  var selector = $('#quick-link-selector');
+
+  if (selector.length === 0) {
+    return false;
+  }
+
+  $('#quick-link-selector .btn-app').each(function (i) {
+    $(this).click(function () {
+      // Hide the others and activate this one
+      $('.quick-link-subform').hide();
+      $('#quick-link-selector .btn-app').removeClass('btn-active');
+      var target = $(this).data('type');
+      $(this).addClass('btn-active');
+      $('#quick-link-' + target).show();
+    });
+  });
+}
+
+/***/ }),
+
 /***/ "./resources/assets/js/search.js":
 /*!***************************************!*\
   !*** ./resources/assets/js/search.js ***!
@@ -81536,6 +81723,46 @@ function submitEnter(ev) {
 
 /***/ }),
 
+/***/ "./resources/assets/js/sidebar.js":
+/*!****************************************!*\
+  !*** ./resources/assets/js/sidebar.js ***!
+  \****************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+$(document).ready(function () {
+  registerSidebarEvents();
+});
+/**
+ *
+ */
+
+function registerSidebarEvents() {
+  var toggler = $('.sidebar-campaign .campaign-head .campaign-name');
+
+  if (toggler.length === 0) {
+    return;
+  }
+
+  var down = $('.sidebar-campaign .campaign-head .campaign-name .fa-caret-down');
+  var dropdown = $('#campaign-switcher');
+  var backdrop = $('.campaign-switcher-backdrop');
+  toggler.on('click', function (e) {
+    e.preventDefault();
+    dropdown.collapse('toggle');
+    backdrop.show();
+    down.addClass('flipped');
+  });
+  backdrop.click(function (e) {
+    e.preventDefault();
+    backdrop.hide();
+    dropdown.collapse('hide');
+    down.removeClass('flipped');
+  });
+}
+
+/***/ }),
+
 /***/ "./resources/assets/js/tags.js":
 /*!*************************************!*\
   !*** ./resources/assets/js/tags.js ***!
@@ -81611,6 +81838,70 @@ $(document).ready(function () {
 
   window.initTags();
 });
+
+/***/ }),
+
+/***/ "./resources/assets/js/timeline.js":
+/*!*****************************************!*\
+  !*** ./resources/assets/js/timeline.js ***!
+  \*****************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+$(document).ready(function () {
+  registerTimelineEvents();
+});
+/**
+ * Timeline toggle support
+ */
+
+function registerTimelineEvents() {
+  $('.timeline-toggle').on('click', function () {
+    var id = $(this).data('short');
+    $('#' + id + "-show").toggle();
+    $('#' + id + "-hide").toggle();
+  });
+  $('.timeline-era-reorder').on('click', function (e) {
+    e.preventDefault();
+    var eraId = $(this).data('era-id');
+    $('#era-items-' + eraId + '').sortable();
+    $(this).parent().hide();
+    $('#era-items-' + eraId + '-save-reorder').show();
+  });
+}
+
+/***/ }),
+
+/***/ "./resources/assets/js/toast.js":
+/*!**************************************!*\
+  !*** ./resources/assets/js/toast.js ***!
+  \**************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+$(document).ready(function () {
+  registerToastDismiss();
+});
+/** Handle closing of a toast **/
+
+function registerToastDismiss() {
+  $('.toast-container [data-toggle="dismiss"]').unbind('click').on('click', function (e) {
+    e.preventDefault();
+    $(this).parent().parent().fadeOut();
+  });
+}
+/** Show an expiring message at the bottom right of the page **/
+
+
+window.showToast = function (message) {
+  var $container = $('<div class="toast-success">');
+  $container.html('<span class="toast-message">' + message + '<i class="fa fa-times" data-toggle="dismiss"></i></span');
+  $('.toast-container').append($container);
+  setTimeout(function () {
+    $container.fadeOut();
+  }, 3000);
+  registerToastDismiss();
+};
 
 /***/ }),
 
@@ -81691,6 +81982,51 @@ function tutorialNext(element) {
 
 /***/ }),
 
+/***/ "./resources/assets/js/vendor.js":
+/*!***************************************!*\
+  !*** ./resources/assets/js/vendor.js ***!
+  \***************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+$(document).ready(function () {
+  registerVendorEvents();
+}); // Select2 open focus bugfix with newer jquery versions
+
+$(document).on('select2:open', function () {
+  var allFound = document.querySelectorAll('.select2-container--open .select2-search__field');
+  allFound[allFound.length - 1].focus();
+});
+
+function registerVendorEvents() {
+  // Datetime picker (admin)
+  $.each($('.datetime-picker'), function (index) {
+    $(this).datetimepicker({
+      sideBySide: true,
+      format: 'YYYY-MM-DD HH:mm:00'
+    });
+  }); // Date picker
+
+  $.each($('.date-picker'), function (index) {
+    // instance, using default configuration.
+    $(this).datepicker({
+      autoclose: true,
+      format: 'yyyy-mm-dd',
+      todayHighlight: true
+    });
+  }); // Open select2 dropdowns on focus. Don't add this in
+  // initSelect2 since we only need this binded once.
+
+  $(document).on('focus', '.select2.select2-container', function (e) {
+    // only open on original attempt - close focus event should not fire open
+    if (e.originalEvent && $(this).find(".select2-selection--single").length > 0) {
+      $(this).siblings('select').select2('open');
+    }
+  });
+}
+
+/***/ }),
+
 /***/ "./resources/assets/sass/abilities.scss":
 /*!**********************************************!*\
   !*** ./resources/assets/sass/abilities.scss ***!
@@ -81750,28 +82086,6 @@ function tutorialNext(element) {
 /*!**********************************************!*\
   !*** ./resources/assets/sass/bootstrap.scss ***!
   \**********************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
-/***/ "./resources/assets/sass/community-votes.scss":
-/*!****************************************************!*\
-  !*** ./resources/assets/sass/community-votes.scss ***!
-  \****************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
-/***/ "./resources/assets/sass/conversation.scss":
-/*!*************************************************!*\
-  !*** ./resources/assets/sass/conversation.scss ***!
-  \*************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -81849,17 +82163,6 @@ function tutorialNext(element) {
 /*!********************************************!*\
   !*** ./resources/assets/sass/gallery.scss ***!
   \********************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
-/***/ "./resources/assets/sass/map-v2.scss":
-/*!*******************************************!*\
-  !*** ./resources/assets/sass/map-v2.scss ***!
-  \*******************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -81989,9 +82292,9 @@ function tutorialNext(element) {
 /***/ }),
 
 /***/ 0:
-/*!*****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** multi ./resources/assets/js/app.js ./resources/assets/sass/bootstrap.scss ./resources/assets/sass/vendor.scss ./resources/assets/sass/app.scss ./resources/assets/sass/app-rtl.scss ./resources/assets/sass/abilities.scss ./resources/assets/sass/story.scss ./resources/assets/sass/assets.scss ./resources/assets/sass/export.scss ./resources/assets/sass/map.scss ./resources/assets/sass/map-v2.scss ./resources/assets/sass/map-v3.scss ./resources/assets/sass/subscription.scss ./resources/assets/sass/conversation.scss ./resources/assets/sass/gallery.scss ./resources/assets/sass/front.scss ./resources/assets/sass/auth.scss ./resources/assets/sass/front-rtl.scss ./resources/assets/sass/front/critical.scss ./resources/assets/sass/community-votes.scss ./resources/assets/sass/relations.scss ./resources/assets/sass/dashboard.scss ./resources/assets/sass/settings.scss ./resources/assets/sass/themes/dark.scss ./resources/assets/sass/themes/midnight.scss ./resources/assets/sass/tinymce.scss ./resources/assets/sass/freyja/freyja.scss ./resources/assets/sass/print.scss ***!
-  \*****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*!**************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** multi ./resources/assets/js/app.js ./resources/assets/sass/bootstrap.scss ./resources/assets/sass/vendor.scss ./resources/assets/sass/app.scss ./resources/assets/sass/app-rtl.scss ./resources/assets/sass/abilities.scss ./resources/assets/sass/story.scss ./resources/assets/sass/assets.scss ./resources/assets/sass/export.scss ./resources/assets/sass/map.scss ./resources/assets/sass/map-v3.scss ./resources/assets/sass/subscription.scss ./resources/assets/sass/gallery.scss ./resources/assets/sass/front.scss ./resources/assets/sass/auth.scss ./resources/assets/sass/front-rtl.scss ./resources/assets/sass/front/critical.scss ./resources/assets/sass/relations.scss ./resources/assets/sass/dashboard.scss ./resources/assets/sass/settings.scss ./resources/assets/sass/themes/dark.scss ./resources/assets/sass/themes/midnight.scss ./resources/assets/sass/tinymce.scss ./resources/assets/sass/freyja/freyja.scss ./resources/assets/sass/print.scss ***!
+  \**************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -82005,16 +82308,13 @@ __webpack_require__(/*! /Users/jay/Documents/GitHub/miscellany/resources/assets/
 __webpack_require__(/*! /Users/jay/Documents/GitHub/miscellany/resources/assets/sass/assets.scss */"./resources/assets/sass/assets.scss");
 __webpack_require__(/*! /Users/jay/Documents/GitHub/miscellany/resources/assets/sass/export.scss */"./resources/assets/sass/export.scss");
 __webpack_require__(/*! /Users/jay/Documents/GitHub/miscellany/resources/assets/sass/map.scss */"./resources/assets/sass/map.scss");
-__webpack_require__(/*! /Users/jay/Documents/GitHub/miscellany/resources/assets/sass/map-v2.scss */"./resources/assets/sass/map-v2.scss");
 __webpack_require__(/*! /Users/jay/Documents/GitHub/miscellany/resources/assets/sass/map-v3.scss */"./resources/assets/sass/map-v3.scss");
 __webpack_require__(/*! /Users/jay/Documents/GitHub/miscellany/resources/assets/sass/subscription.scss */"./resources/assets/sass/subscription.scss");
-__webpack_require__(/*! /Users/jay/Documents/GitHub/miscellany/resources/assets/sass/conversation.scss */"./resources/assets/sass/conversation.scss");
 __webpack_require__(/*! /Users/jay/Documents/GitHub/miscellany/resources/assets/sass/gallery.scss */"./resources/assets/sass/gallery.scss");
 __webpack_require__(/*! /Users/jay/Documents/GitHub/miscellany/resources/assets/sass/front.scss */"./resources/assets/sass/front.scss");
 __webpack_require__(/*! /Users/jay/Documents/GitHub/miscellany/resources/assets/sass/auth.scss */"./resources/assets/sass/auth.scss");
 __webpack_require__(/*! /Users/jay/Documents/GitHub/miscellany/resources/assets/sass/front-rtl.scss */"./resources/assets/sass/front-rtl.scss");
 __webpack_require__(/*! /Users/jay/Documents/GitHub/miscellany/resources/assets/sass/front/critical.scss */"./resources/assets/sass/front/critical.scss");
-__webpack_require__(/*! /Users/jay/Documents/GitHub/miscellany/resources/assets/sass/community-votes.scss */"./resources/assets/sass/community-votes.scss");
 __webpack_require__(/*! /Users/jay/Documents/GitHub/miscellany/resources/assets/sass/relations.scss */"./resources/assets/sass/relations.scss");
 __webpack_require__(/*! /Users/jay/Documents/GitHub/miscellany/resources/assets/sass/dashboard.scss */"./resources/assets/sass/dashboard.scss");
 __webpack_require__(/*! /Users/jay/Documents/GitHub/miscellany/resources/assets/sass/settings.scss */"./resources/assets/sass/settings.scss");

@@ -93,8 +93,3 @@
 
     <input type="hidden" class="list-treeview" id="{{ $view }}-treeview" value="1" data-url="{{ route($route . '.tree') }}">
 @endsection
-
-@section('scripts')
-    @parent
-    <script src="{{ mix('js/datagrids.js') }}" defer></script>
-@endsection

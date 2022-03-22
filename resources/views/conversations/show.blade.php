@@ -48,11 +48,6 @@
     </div>
 </div>
 
-@section('styles')
-    @parent
-    <link href="{{ mix('css/conversation.css') }}" rel="stylesheet">
-@endsection
-
 @section('scripts')
     @parent
     <script src="{{ mix('js/conversation.js') }}" defer></script>

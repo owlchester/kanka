@@ -74,13 +74,3 @@
         </div>
     </section>
 @endsection
-
-
-
-@section('scripts')
-{{--    <script src="{{ mix('js/community-events.js') }}" defer></script>--}}
-@endsection
-
-@section('styles')
-{{--    <link href="{{ mix('css/community-events.css') }}" rel="stylesheet">--}}
-@endsection

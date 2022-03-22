@@ -1,4 +1,8 @@
 $(document).ready(function() {
+    if ($('.form-members').count === 0) {
+        return;
+    }
+
     $.each($('.form-members'), function (index) {
 
         let allowClear = $(this).data('allow-clear');

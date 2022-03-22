@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 22);
+/******/ 	return __webpack_require__(__webpack_require__.s = 16);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -123,7 +123,7 @@ function handle(element) {
 
 /***/ }),
 
-/***/ 22:
+/***/ 16:
 /*!*******************************************!*\
   !*** multi ./resources/assets/js/profile ***!
   \*******************************************/

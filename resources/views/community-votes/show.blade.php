@@ -105,9 +105,5 @@
 
 @section('scripts')
 <script src="/vendor/jquery/jquery.min.js"></script>
-<script src="{{ mix('js/community-votes.js') }}" defer></script>
 @endsection
 
-@section('styles')
-    <link href="{{ mix('css/community-votes.css') }}" rel="stylesheet">
-@endsection

@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 21);
+/******/ 	return __webpack_require__(__webpack_require__.s = 15);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -93,11 +93,31 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
+$(document).ready(function () {
+  registerTimelineEvents();
+});
+/**
+ * Timeline toggle support
+ */
 
+function registerTimelineEvents() {
+  $('.timeline-toggle').on('click', function () {
+    var id = $(this).data('short');
+    $('#' + id + "-show").toggle();
+    $('#' + id + "-hide").toggle();
+  });
+  $('.timeline-era-reorder').on('click', function (e) {
+    e.preventDefault();
+    var eraId = $(this).data('era-id');
+    $('#era-items-' + eraId + '').sortable();
+    $(this).parent().hide();
+    $('#era-items-' + eraId + '-save-reorder').show();
+  });
+}
 
 /***/ }),
 
-/***/ 21:
+/***/ 15:
 /*!********************************************!*\
   !*** multi ./resources/assets/js/timeline ***!
   \********************************************/

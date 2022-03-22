@@ -103,7 +103,3 @@ if (isset($model)) {
 
 @include('cruds.fields.private2')
 
-@section('scripts')
-    @parent
-    <script src="{{ mix('js/quick-links.js') }}" defer></script>
-@endsection

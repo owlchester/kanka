@@ -53,7 +53,3 @@
 </div>
 @include('cruds.fields.private2')
 
-@section('scripts')
-    @parent
-    <script src="{{ mix('js/organisation.js') }}" defer></script>
-@endsection

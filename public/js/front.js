@@ -81,17 +81,102 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 20);
+/******/ 	return __webpack_require__(__webpack_require__.s = 14);
 /******/ })
 /************************************************************************/
 /******/ ({
+
+/***/ "./resources/assets/js/community-votes.js":
+/*!************************************************!*\
+  !*** ./resources/assets/js/community-votes.js ***!
+  \************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+$(document).ready(function () {
+  initCommunityVotes();
+});
+var ajaxUrl;
+var options;
+var selected;
+
+function initCommunityVotes() {
+  ajaxUrl = $("#community-vote-url");
+
+  if (ajaxUrl.length === 0) {
+    return;
+  } // Allow ajax requests to use the X_CSRF_TOKEN for deletes
+
+
+  $.ajaxSetup({
+    headers: {
+      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+  });
+  options = $('.vote-body');
+  options.click(function () {
+    var option = $(this).data('option');
+
+    if ($(this).hasClass('vote-selected')) {
+      // Remove vote
+      vote();
+    } else {
+      vote(option);
+    }
+  });
+}
+
+function vote(element) {
+  options.each(function () {
+    $(this).removeClass('vote-selected');
+  });
+  var data = {
+    vote: element
+  };
+  selected = element;
+  $.post(ajaxUrl.val(), data).done(function (result, textStatus, xhr) {
+    if (element) {
+      $(".vote-body[data-option='" + selected + "']").addClass('vote-selected');
+    }
+
+    if (result.data) {
+      updateStats(result.data);
+    }
+  }).fail(function (result, textStatus, xhr) {// console.log('map point error', result);
+  });
+}
+
+function updateStats(results) {
+  for (var _i = 0, _Object$entries = Object.entries(results); _i < _Object$entries.length; _i++) {
+    var _Object$entries$_i = _slicedToArray(_Object$entries[_i], 2),
+        key = _Object$entries$_i[0],
+        value = _Object$entries$_i[1];
+
+    $(".vote-progress[data-width='" + key + "']").width(value + '%');
+    $(".vote-result[data-result='" + key + "']").html(value + '%');
+  }
+}
+
+/***/ }),
 
 /***/ "./resources/assets/js/front.js":
 /*!**************************************!*\
   !*** ./resources/assets/js/front.js ***!
   \**************************************/
 /*! no static exports found */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
 $(document).ready(function (e) {
   var video_wrapper = $('.youtube-placeholder'); //  Check to see if youtube wrapper exists
@@ -143,9 +228,11 @@ function initKBScroller() {
   $(hash + '-answer').collapse();
 }
 
+__webpack_require__(/*! ./community-votes */ "./resources/assets/js/community-votes.js");
+
 /***/ }),
 
-/***/ 20:
+/***/ 14:
 /*!*****************************************!*\
   !*** multi ./resources/assets/js/front ***!
   \*****************************************/

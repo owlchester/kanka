@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 27);
+/******/ 	return __webpack_require__(__webpack_require__.s = 20);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -132,7 +132,7 @@ function initTranslationForm() {
 
 /***/ }),
 
-/***/ 27:
+/***/ 20:
 /*!***********************************************!*\
   !*** multi ./resources/assets/js/admin/admin ***!
   \***********************************************/

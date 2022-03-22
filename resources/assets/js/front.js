@@ -1,4 +1,3 @@
-
 $(document).ready(function(e) {
     var video_wrapper = $('.youtube-placeholder');
 //  Check to see if youtube wrapper exists
@@ -54,3 +53,4 @@ function initKBScroller() {
     $(hash + '-answer').collapse();
 }
 
+require('./community-votes');

@@ -28,39 +28,7 @@ $(document).ready(function() {
 
     window.initForeignSelect();
     initSpectrum();
-    initCopyToClipboard();
-    initSidebar();
     initSubmenuSwitcher()
-
-    // Open select2 dropdowns on focus. Don't add this in initSelect2 since we only need this
-    // binded once.
-    $(document).on('focus', '.select2.select2-container', function (e) {
-        // only open on original attempt - close focus event should not fire open
-        if (e.originalEvent && $(this).find(".select2-selection--single").length > 0) {
-            $(this).siblings('select').select2('open');
-        }
-    });
-
-    if ($('.date-picker').length > 0) {
-        $.each($('.date-picker'), function (index) {
-            // instance, using default configuration.
-            $(this).datepicker({
-                autoclose: true,
-                format: 'yyyy-mm-dd',
-                todayHighlight: true
-            });
-        });
-    }
-
-    if ($('.datetime-picker').length > 0) {
-        $.each($('.datetime-picker'), function (index) {
-            // instance, using default configuration.
-            $(this).datetimepicker({
-                sideBySide: true,
-                format: 'YYYY-MM-DD HH:mm:00'
-            });
-        });
-    }
 
 
     if ($('#delete-confirm-form').length > 0) {
@@ -82,12 +50,9 @@ $(document).ready(function() {
     dynamicMentions();
     initTogglePasswordFields();
     initAjaxPagination();
-    initTimelineToggle();
     initEntityNoteToggle();
     initDynamicDelete();
     initImageRemoval();
-    initBannerPromoDismiss();
-    registerToastDismiss();
 
     /**
      * Whenever a modal or popover is shown, we'll need to re-bind various helpers we have.
@@ -107,11 +72,34 @@ $(document).ready(function() {
     });
 });
 
-// Select2 open focus bugfix with newer jquery versions
-$(document).on('select2:open', () => {
-    let allFound = document.querySelectorAll('.select2-container--open .select2-search__field');
-    allFound[allFound.length - 1].focus();
-});
+
+
+/**
+ * Initiate spectrum for the various fields
+ */
+function initSpectrum() {
+    if (!$.isFunction($.fn.spectrum)) {
+        return;
+    }
+
+    $.each($('.spectrum'), function (i) {
+        $(this).spectrum({
+            preferredFormat: "hex",
+            showInput: true,
+            showPalette: true,
+            allowEmpty: true,
+            appendTo: $(this).data('append-to') ?? null,
+        });
+    });
+}
+
+/**
+ * Register the tooltip and tooltip-ajax helper
+ */
+function initTooltips() {
+    $('[data-toggle="tooltip"]').tooltip();
+    window.ajaxTooltip();
+}
 
 
 /**
@@ -229,80 +217,6 @@ function initAjaxPagination() {
     })
 }
 
-/**
- * Handler for copying content to the clipboard
- */
-function initCopyToClipboard() {
-    $('[data-clipboard]').click(function (e) {
-        e.preventDefault();
-        let $temp = $("<input>");
-        $("body").append($temp);
-        $temp.val($(this).data('clipboard')).select();
-        document.execCommand("copy");
-        $temp.remove();
-
-        let post = $(this).data('success');
-        let toast = $(this).data('toast');
-        if (toast) {
-            showToast(toast);
-            return false;
-        }
-        if (post) {
-            $(post).fadeIn();
-            setTimeout(function() {
-                $(post).fadeOut();
-            }, 3000);
-        } else
-        return false;
-    });
-}
-
-/** Show an expiring message at the bottom right of the page **/
-function showToast(message) {
-    let $container = $('<div class="toast-success">');
-    $container.html('<span class="toast-message">' + message + '<i class="fa fa-times" data-toggle="dismiss"></i></span');
-
-    $('.toast-container').append($container);
-    setTimeout(function() {
-        $container.fadeOut();
-    }, 3000);
-    registerToastDismiss();
-}
-
-/** Handle closing of a toast **/
-function registerToastDismiss() {
-    $('.toast-container [data-toggle="dismiss"]').unbind('click').on('click', function (e) {
-        e.preventDefault();
-        $(this).parent().parent().fadeOut();
-    });
-}
-
-/**
- * Register the tooltip and tooltip-ajax helper
- */
-function initTooltips() {
-    $('[data-toggle="tooltip"]').tooltip();
-    window.ajaxTooltip();
-}
-
-/**
- * Initiate spectrum for the various fields
- */
-function initSpectrum() {
-    if (!$.isFunction($.fn.spectrum)) {
-        return;
-    }
-
-    $.each($('.spectrum'), function (i) {
-        $(this).spectrum({
-            preferredFormat: "hex",
-            showInput: true,
-            showPalette: true,
-            allowEmpty: true,
-            appendTo: $(this).data('append-to') ?? null,
-        });
-    });
-}
 
 function initDynamicDelete() {
     $('.btn-dynamic-delete').popover({
@@ -326,33 +240,6 @@ function initDynamicDelete() {
     })
 }
 
-/**
- *
- */
-function initSidebar() {
-    let toggler = $('.sidebar-campaign .campaign-head .campaign-name');
-    if (toggler.length === 0) {
-        return;
-    }
-
-    let down = $('.sidebar-campaign .campaign-head .campaign-name .fa-caret-down');
-    let dropdown = $('#campaign-switcher');
-    let backdrop = $('.campaign-switcher-backdrop');
-
-    toggler.on('click', function(e) {
-        e.preventDefault();
-        dropdown.collapse('toggle');
-        backdrop.show();
-        down.addClass('flipped');
-    });
-
-    backdrop.click(function (e) {
-        e.preventDefault();
-        backdrop.hide();
-        dropdown.collapse('hide');
-        down.removeClass('flipped');
-    });
-}
 
 function initSubmenuSwitcher() {
     $('.submenu-switcher').change(function (e) {
@@ -367,26 +254,6 @@ function initSubmenuSwitcher() {
     });
 }
 
-/**
- * Timeline toggle support
- */
-function initTimelineToggle() {
-    $('.timeline-toggle').on('click', function() {
-        let id = $(this).data('short');
-        $('#' + id + "-show").toggle();
-        $('#' + id + "-hide").toggle();
-    });
-
-    $('.timeline-era-reorder').on('click', function(e) {
-        e.preventDefault();
-        let eraId = $(this).data('era-id');
-
-        $('#era-items-' + eraId + '').sortable();
-
-        $(this).parent().hide();
-        $('#era-items-' + eraId + '-save-reorder').show();
-    });
-}
 
 /**
  * Entity Note toggle support
@@ -399,32 +266,23 @@ function initEntityNoteToggle() {
     });
 }
 
-function initBannerPromoDismiss()
-{
-    $('#banner-notification-dismiss').click(function (e) {
-        e.preventDefault();
-        $('.banner-notification').fadeOut();
 
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-
-        $.post({
-            url: $(this).data('url'),
-            method: 'POST',
-        }).done(function(data) {
-        });
-    });
-}
-
-// Helpers are injected directly in the window functions.
-require('./helpers.js');
-require('./keyboard.js');
-require('./crud.js');
-require('./calendar.js');
-require('./search.js');
-require('./notification');
-require('./quick-creator');
-require('./tutorial');
+// Splitting off the js files into logical blocks
+require('./helpers')
+require('./keyboard')
+require('./crud')
+require('./calendar')
+require('./search')
+require('./notification')
+require('./quick-creator')
+require('./tutorial')
+require('./datagrids')
+require('./quick-links')
+require('./members')
+require('./campaign')
+require('./clipboard')
+require('./toast')
+require('./sidebar')
+require('./banner')
+require('./timeline')
+require('./vendor')
