@@ -16,8 +16,8 @@
                     </span>
                 </div>
                 <div class="box-tools">
-                    <button type="button" class="btn btn-box-tool" data-release="remove" data-url="{{ route('settings.release', $release) }}">
-                        <i class="fa fa-times"></i>
+                    <button type="button" class="btn btn-box-tool" data-release="remove" data-url="{{ route('settings.release', $release) }}" aria-label="{{ __('crud.remove') }}">
+                        <i class="fa fa-times" aria-hidden="true"></i>
                     </button>
                 </div>
                 @auth
