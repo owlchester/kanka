@@ -421,13 +421,31 @@
   overflow-x: auto;
   overflow-y: hidden;
   white-space: nowrap;
+  margin-bottom: 20px;
   .box {
     display: inline-block;
+    vertical-align:top;
     width: 80%;
+    margin-bottom: 0;
+
+    .release-excerpt {
+      .overflow-wrap {
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+        hyphens: auto;
+        word-break: break-all;
+        white-space: normal;
+      }
+    }
 
     &:only-child {
       width: 100%;
     }
+  }
+}
+@media (min-width: 992px) {
+  .dashboard-releases .box {
+    width: 50%;
   }
 }
 

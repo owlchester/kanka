@@ -112,12 +112,15 @@ $(document).ready(function () {
       $(this).html('<i class="fa fa-chevron-down"></i>');
     }
   });
-  $.each($('[data-widget="remove"]'), function (i) {
-    $(this).click(function (e) {
-      $.post({
-        url: $(this).data('url'),
-        method: 'POST'
-      }).done(function (data) {});
+  $('[data-release="remove"]').click(function () {
+    $.post({
+      url: $(this).data('url'),
+      method: 'POST',
+      context: this
+    }).done(function (data) {
+      $(this).closest('.box').fadeOut("normal", function (e) {
+        $(this).remove();
+      });
     });
   }); // Ajax requests
 

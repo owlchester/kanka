@@ -16,7 +16,7 @@
                     </span>
                 </div>
                 <div class="box-tools">
-                    <button type="button" class="btn btn-box-tool" data-widget="remove" data-url="{{ route('settings.release', $release) }}">
+                    <button type="button" class="btn btn-box-tool" data-release="remove" data-url="{{ route('settings.release', $release) }}">
                         <i class="fa fa-times"></i>
                     </button>
                 </div>
@@ -24,7 +24,7 @@
                 @endauth
             </div>
             <div class="box-body release-excerpt">
-                <p>{!! nl2br($release->excerpt) !!}</p>
+                <p class="overflow-wrap">{!! nl2br($release->excerpt) !!}</p>
             </div>
         </div>
 @endforeach

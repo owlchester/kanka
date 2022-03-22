@@ -32,7 +32,7 @@
                         </button>
                     </div>
                 </div>
-                <div class="box-body">
+                <div class="box-body" style="overflow-y: auto">
                     <p class="help-block">{{ __('campaigns.roles.hints.role_permissions', ['name' => $role->name]) }}</p>
                     @if ($role->is_public)
                         <p class="help-block">{!! __('campaigns.roles.hints.public', ['more' => '']) !!}<br />

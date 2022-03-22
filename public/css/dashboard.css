@@ -416,15 +416,34 @@
   overflow-x: auto;
   overflow-y: hidden;
   white-space: nowrap;
+  margin-bottom: 20px;
 }
 
 .dashboard-releases .box {
   display: inline-block;
+  vertical-align: top;
   width: 80%;
+  margin-bottom: 0;
+}
+
+.dashboard-releases .box .release-excerpt .overflow-wrap {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  -webkit-hyphens: auto;
+      -ms-hyphens: auto;
+          hyphens: auto;
+  word-break: break-all;
+  white-space: normal;
 }
 
 .dashboard-releases .box:only-child {
   width: 100%;
+}
+
+@media (min-width: 992px) {
+  .dashboard-releases .box {
+    width: 50%;
+  }
 }
 
 /*.campaign-dashboard-widgets {
