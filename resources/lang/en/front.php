@@ -2,11 +2,11 @@
 
 return [
     'about'         => [
-        'description'   => 'Kanka was born out of the desire of a passionate tabletop RPG player who wanted to build and manage a world with his players. After trying out a few available options and concluding that none of them fit quite right, development on Kanka started in the fall of 2017.',
+        'description'   => ':kanka was born out of the desire of a passionate tabletop RPG player who wanted to build and manage a world with his players. After trying out a few available options and concluding that none of them fit quite right, development on :kanka started in the fall of 2017.',
         'title'         => 'About',
     ],
     'campaigns'     => [
-        'description_full'  => 'Many campaigns in Kanka are public for all to see. This page contains a list of all public campaigns, as well as some featured campaigns from the community.',
+        'description_full'  => 'Many campaigns in :kanka are public for all to see. This page contains a list of all public campaigns, as well as some featured campaigns from the community.',
         'featured'          => [
             'description'   => 'Our community builds amazing things that we love to showcase as Featured Campaigns. Be sure to come back every now and then for more featured campaigns to check out.',
             'title'         => 'Featured Campaigns',
@@ -30,17 +30,8 @@ return [
         ],
         'title'             => 'Public Campaigns',
     ],
-    'community'     => [
-        'description'   => 'Kanka isn\'t only an app, it\'s also a thriving community of world builders, dungeon masters, role players and creative enthusiasts.',
-        'discord'       => 'The Kanka Discord is the most active place for talking about the app, bugs, features, asking for help and helping out.',
-        'facebook'      => 'Stay up to date with all our updates over on our facebook page.',
-        'instagram'     => 'Want to see more behind the scenes pictures of us working on Kanka or playing? Instagram is the place to follow us!',
-        'join'          => 'Join us!',
-        'reddit'        => 'The Kanka subreddit is a quieter place where things can be discussed during a longer period of time.',
-        'title'         => 'Community',
-    ],
     'contact'       => [
-        'description'   => 'Need help, have a suggestion, or just want to share your love for Kanka? Our team will reply whatever the occasion!',
+        'description'   => 'Need help, have a suggestion, or just want to share your love for :kanka? Our team will reply whatever the occasion!',
         'email'         => 'Send all inquiries to',
         'other'         => 'Or on one of the following social media platforms:',
         'title'         => 'We\'re here for you',
@@ -65,7 +56,7 @@ return [
             'worldbuilder'  => 'For Worldbuilders',
         ],
         'api'               => [
-            'description'   => 'Want to build cool tools that integrate with Kanka? Head over to the :link.',
+            'description'   => 'Want to build cool tools that integrate with :kanka? Head over to the :link.',
             'link'          => 'API docs',
             'title'         => 'API',
         ],
@@ -109,8 +100,8 @@ return [
         'dashboards'        => [
             'title' => 'Dashboards',
         ],
-        'description'       => 'With our @mentions, our tags, and our in-depth permissions system, Kanka makes it easy to keep track of your world or campaign. This includes Characters and their relations, Locations and their history, Quests and their objectives, Timelines and their eras, and Calendars with both events and weather effects. Best of all, Kanka’s users have a say in which new features are developed through regular Community Votes.',
-        'description_full'  => 'Kanka is constantly being updated with new features and improvements, but here are some of the most important ones we think you’ll love.',
+        'description'       => 'With our @mentions, our tags, and our in-depth permissions system, :kanka makes it easy to keep track of your world or campaign. This includes Characters and their relations, Locations and their history, Quests and their objectives, Timelines and their eras, and Calendars with both events and weather effects. Best of all, :kanka’s users have a say in which new features are developed through regular Community Votes.',
+        'description_full'  => ':kanka is constantly being updated with new features and improvements, but here are some of the most important ones we think you’ll love.',
         'flora'             => [
             'description'   => 'Track the living world of creatures using our Races module, and build a complex ecosystem using our nested Notes.',
             'title'         => 'Flora & Fauna',
@@ -124,7 +115,7 @@ return [
             'description'   => 'Populate the people of your world with characters. Define their allegiance using families and organisations. Build your planets, continents, kingdoms, taverns and fountains with our nested locations.',
             'title'         => 'Characters, Families, Location',
         ],
-        'learn_more'        => 'Full list of Kanka\'s features',
+        'learn_more'        => 'Full list of :kanka\'s features',
         'learn_more_about'  => 'Learn more about this feature',
         'maps'              => [
             'description'   => 'Upload maps of your worlds, cities and caves, and add handy markers and links on them.',
@@ -143,7 +134,7 @@ return [
             'boosts'            => 'Campaign Boosters',
             'curation'          => 'Help curate the community vote items',
             'default_image'     => 'Nicer default images for entities in lists',
-            'description'       => 'Supporting Kanka with a subscription gives you access to the following features and improvements.',
+            'description'       => 'Supporting :kanka with a subscription gives you access to the following features and improvements.',
             'discord'           => 'Private Discord channel',
             'entities'          => 'Number of entities that can be created in each campaign',
             'free'              => 'Free',
@@ -198,7 +189,7 @@ return [
         ],
     ],
     'first_block'   => [
-        'description'   => 'Kanka is available on any device and is updated regularly with new features and improvements. Forget about losing track of your scattered notes, in Kanka everything is in one place, easy to find, and accessible on the go.',
+        'description'   => ':kanka is available on any device and is updated regularly with new features and improvements. Forget about losing track of your scattered notes, in :kanka everything is in one place, easy to find, and accessible on the go.',
         'title'         => 'A novel way to keep track of your worldbuilding and RPG campaigns.',
     ],
     'footer'        => [
@@ -230,15 +221,15 @@ return [
     ],
     'master'        => [
         'call_to_action'    => 'Create an account',
-        'description'       => 'Kanka is a community driven worldbuilding and tabletop RPG campaign management tool perfect for worldbuilders and game masters alike. We help you create and organize your campaigns and worlds with our @mentions system and a whole range of features such as calendars, interactive maps, timelines, organisations, families, and as many characters as you can come up with!',
+        'description'       => ':kanka is a community driven worldbuilding and tabletop RPG campaign management tool perfect for worldbuilders and game masters alike. We help you create and organize your campaigns and worlds with our @mentions system and a whole range of features such as calendars, interactive maps, timelines, organisations, families, and as many characters as you can come up with!',
         'heading'           => 'Worldbuilding, tabletop RPG campaign management, storytelling. All in one',
         'title'             => 'Kanka',
     ],
     'media'         => [
-        'description'   => 'Find high resolution images of Kanka on this page. Use these if you are promoting Kanka or building tools that interact with Kanka.',
+        'description'   => 'Find high resolution images of :kanka on this page. Use these if you are promoting :kanka or building tools that interact with :kanka.',
         'images'        => [
-            'primary'   => 'Primary Kanka logo',
-            'social'    => 'Social Kanka logo',
+            'primary'   => 'Primary :kanka logo',
+            'social'    => 'Social :kanka logo',
         ],
         'title'         => 'Media',
     ],
@@ -272,8 +263,8 @@ return [
         'title'         => 'Menu',
     ],
     'meta'          => [
-        'description'   => 'Kanka is a flexible digital world builder and online tabletop rpg campaign manager',
-        'title'         => 'Kanka - Online tabletop RPG campaign manager and worldbuilding tool',
+        'description'   => ':kanka is a flexible digital world builder and online tabletop rpg campaign manager',
+        'title'         => ':kanka - Online tabletop RPG campaign manager and worldbuilding tool',
     ],
     'partners'      => [
         'description'   => 'We\'ve partnered up with a few amazing tools and communities that share our goals and values.',
@@ -281,9 +272,7 @@ return [
     ],
     'pricing'       => [
         'actions'       => [
-            'more'      => 'Full list of features unlocked by supporting Kanka',
             'subscribe' => 'Become a subscriber',
-            'support'   => 'Support',
         ],
         'benefits'      => [
             'big_maps'      => 'Big map size (:size)',
@@ -296,7 +285,7 @@ return [
             'unlimited'     => 'Unlimited campaigns & uploads',
             'updates'       => 'Frequent updates and improvements',
         ],
-        'description'   => 'All core features are free, but supporting Kanka helps us deliver frequent updates and improvements for all users.',
+        'description'   => 'All core features are free, but supporting :kanka helps us deliver frequent updates and improvements for all users.',
         'tier'          => [
             'free'  => 'Free',
             'month' => 'Month',
@@ -306,10 +295,6 @@ return [
     'privacy'       => [
         'description'   => 'Effective date: :date',
         'title'         => 'Privacy Policy',
-    ],
-    'release'       => [
-        'description'   => 'Kanka is constantly growing and improving, and we want the world to know about all the awesome things we are adding to the app.',
-        'title'         => 'Releases',
     ],
     'roadmap'       => [
         'backlog'           => [

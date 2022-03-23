@@ -11,7 +11,7 @@ Route::get('/features', 'FrontController@features')->name('front.features');
 Route::get('/gm-features', 'FrontController@gmFeatures')->name('front.gm-features');
 Route::get('/worldbuilding-features', 'FrontController@wbFeatures')->name('front.worldbuilder-features');
 Route::get('/roadmap', 'FrontController@roadmap')->name('front.roadmap');
-Route::get('/community', 'FrontController@community')->name('front.community');
+//Route::get('/community', 'FrontController@community')->name('front.community');
 Route::get('/media', 'FrontController@media')->name('front.media');
 Route::get('/public-campaigns', 'FrontController@campaigns')->name('front.public_campaigns');
 Route::get('/contact', 'FrontController@contact')->name('front.contact');

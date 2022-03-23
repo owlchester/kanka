@@ -222,7 +222,7 @@
 
             <div class="margin-bottom"></div>
             <p class="help-block">
-                {!! __('settings.subscription.trial_period', ['email' => link_to('mailto:hello@kanka.io', 'hello@kanka.io')]) !!}
+                {!! __('settings.subscription.trial_period', ['email' => link_to('mailto:' .  config('app.email'), config('app.email'))]) !!}
             </p>
         </div>
     </div>

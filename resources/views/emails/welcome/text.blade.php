@@ -24,7 +24,7 @@
 
 {!! __('emails/welcome.section_7', [
     'facebook' => 'Facebook (https:' . config('social.facebook') . ')',
-    'email' => 'hello@kanka.io'
+    'email' => config('app.email')
 ]) !!}
 
 @if (!empty($user->provider))

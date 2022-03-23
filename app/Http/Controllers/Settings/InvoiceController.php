@@ -12,7 +12,7 @@ class InvoiceController extends Controller
      */
     public function __construct()
     {
-        $this->middleware(['auth', 'identity']);
+        $this->middleware(['auth', 'identity', 'subscriptions']);
     }
 
     /**

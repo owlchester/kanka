@@ -14,7 +14,7 @@
     <meta property="og:image" content="https://kanka-app-assets.s3.amazonaws.com/images/logos/logo-blue-white.png" />
 
 @yield('og')
-    <title>{{ $title ?? __('front.meta.title') }}@if (!isset($skipEnding)) - {{ config('app.name', 'Kanka') }}@endif</title>
+    <title>{{ $title ?? __('front.meta.title', ['kanka' => config('app.name')]) }}@if (!isset($skipEnding)) - {{ config('app.name', 'Kanka') }}@endif</title>
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
@@ -112,9 +112,11 @@
                 <li class="nav-item">
                     <a class="nav-link @if(!empty($active) && $active == 'features') nav-active @endif" href="{{ route("front.features") }}">{{ __('front.menu.features') }}</a>
                 </li>
+                @if(config('services.stripe.enabled'))
                 <li class="nav-item">
                     <a class="nav-link @if(!empty($active) && $active == 'pricing') nav-active @endif" href="{{ route("front.pricing") }}">{{ __('front.menu.pricing') }}</a>
                 </li>
+                @endif
                 <li class="nav-item">
                     <a class="nav-link @if(!empty($active) && $active == 'public-campaigns') nav-active @endif" href="{{ route("front.public_campaigns") }}">{{ __('front.menu.campaigns') }}</a>
                 </li>

@@ -1,5 +1,5 @@
 @extends('layouts.front', [
-    'title' => trans('front.menu.contact'),
+    'title' => __('front.menu.contact'),
     'active' => 'contact'
 ])
 @section('content')
@@ -9,8 +9,8 @@
             <div class="row h-100">
                 <div class="col-lg-9 my-auto">
                     <div class="header-content mx-auto">
-                        <h1 class="mb-3">{{ trans('front.contact.title') }}</h1>
-                        <p class="mb-5">{{ trans('front.contact.description') }}</p>
+                        <h1 class="mb-3">{{ __('front.contact.title') }}</h1>
+                        <p class="mb-5">{{ __('front.contact.description', ['kanka' => config('app.name')]) }}</p>
                     </div>
                 </div>
             </div>
@@ -21,7 +21,7 @@
         <div class="container">
             <div class="section-body">
                 <p>
-                    {{ __('front.contact.email') }} <a href="mailto:hello@kanka.io">hello@kanka.io</a>
+                    {{ __('front.contact.email') }} <a href="mailto:{{ config('app.email') }}">{{ config('app.email') }}</a>
                 </p>
                 <p>
                     {{ __('front.contact.other') }}

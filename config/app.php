@@ -13,7 +13,8 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => env('APP_NAME', 'Miscellany'),
+    'email' => env('APP_EMAIL', 'you@example.com'),
 
     /*
     |--------------------------------------------------------------------------
@@ -53,7 +54,7 @@ return [
     */
 
     'url' => env('APP_URL', 'http://localhost'),
-    'site_name' => env('APP_SITE_NAME', 'kanka.io'),
+    'site_name' => env('APP_SITE_NAME', 'my self hosted miscellany'),
 
     /*
     |--------------------------------------------------------------------------

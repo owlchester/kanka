@@ -27,7 +27,7 @@ class SubscriptionController extends Controller
      */
     public function __construct(SubscriptionService $service)
     {
-        $this->middleware(['auth', 'identity']);
+        $this->middleware(['auth', 'identity', 'subscriptions']);
         $this->subscription = $service;
     }
 

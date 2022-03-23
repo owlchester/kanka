@@ -1,5 +1,6 @@
 @extends('layouts.front', [
     'metaDescription' => __('front.home.seo.meta-description'),
+    'title' => __('front.meta.title', ['kanka' => config('app.name')]),
     'skipEnding' => true,
 ])
 
@@ -17,7 +18,7 @@
             <div class="row">
                 <div class="col-md-8 mx-auto">
                     <h2 class="section-heading">{{ __('front.first_block.title') }}</h2>
-                    <p>{{ __('front.first_block.description') }}</p>
+                    <p>{{ __('front.first_block.description', ['kanka' => config('app.name')]) }}</p>
                 </div>
             </div>
             <div class="device-container">
@@ -34,7 +35,7 @@
         <div class="container">
             <div class="section-heading text-center">
                 <h2>{{ __('front.features.title') }}</h2>
-                <p class="text-muted">{{ __('front.features.description') }}</p>
+                <p class="text-muted">{{ __('front.features.description', ['kanka' => config('app.name')]) }}</p>
                 <hr>
             </div>
             <div class="row">
@@ -80,11 +81,12 @@
         </div>
     </section>
 
+    @if (config('services.stripe.enabled'))
     <section id="pricing">
         <div class="container">
             <div class="section-heading text-center">
                 <h2>{{ __('front.pricing.title') }}</h2>
-                <p class="text-muted">{{ __('front.pricing.description') }}</p>
+                <p class="text-muted">{{ __('front.pricing.description', ['kanka' => config('app.name')]) }}</p>
             </div>
             <div class="mb-3"><br /></div>
             <div class="mt-5">
@@ -92,4 +94,5 @@
             </div>
         </div>
     </section>
+    @endif
 @endsection

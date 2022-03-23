@@ -83,5 +83,6 @@ class Kernel extends HttpKernel
         'identity' => \App\Http\Middleware\Identity::class,
         'partner' => \App\Http\Middleware\Partner::class,
         'password.confirm' => PasswordConfirm::class,
+        'subscriptions' => \App\Http\Middleware\Subscriptions::class,
     ];
 }

@@ -100,14 +100,6 @@ class FrontController extends Controller
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function community()
-    {
-        return abort(404);
-    }
-
-    /**
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
     public function roadmap()
     {
         return $this->cachedResponse('front.roadmap');
@@ -118,6 +110,9 @@ class FrontController extends Controller
      */
     public function pricing()
     {
+        if (!config('services.stripe.enabled')) {
+            return redirect()->route('home');
+        }
         return $this->cachedResponse('front.pricing');
     }
 

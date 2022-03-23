@@ -5,7 +5,7 @@
 ])
 
 @section('og')
-    <meta property="og:description" content="{{ __('front/hall-of-fame.description') }}" />
+    <meta property="og:description" content="{{ __('front/hall-of-fame.description', ['kanka' => config('app.name')]) }}" />
     <meta property="og:url" content="{{ route('front.hall-of-fame') }}" />
 @endsection
 
@@ -17,6 +17,7 @@
                     <div class="header-content mx-auto">
                         <h1 class="mb-3">{{ __('front/hall-of-fame.title') }}</h1>
                         <p class="mb-5">{!! __('front/hall-of-fame.description', [
+    'kanka' => config('app.name'),
     'features' => link_to_route('front.features', __('front.menu.features'), ['#paid-features'])
 ]) !!}</p>
                     </div>

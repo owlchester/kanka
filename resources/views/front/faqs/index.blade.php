@@ -46,7 +46,7 @@
                 <i class="fas fa-book"></i>
                 {{ __('front.help.documentation') }}
             </a>
-            <a href="mailto:hello@kanka.io" class="btn btn-light">
+            <a href="mailto:{{ config('app.email') }}" class="btn btn-light">
                 <i class="fa fa-envelope-open"></i>
                 {{ __('front.help.email') }}
             </a>

@@ -43,7 +43,7 @@
                     </div>
                     <div class="col-lg-4">
                         <div class="feature-item">
-                            <a href="mailto:hello@kanka.io">
+                            <a href="mailto:{{ config('app.email') }}">
                                 <i class="fa fa-envelope-open"></i>
                                 <h3>{{ trans('front.help.email') }}</h3>
                             </a>

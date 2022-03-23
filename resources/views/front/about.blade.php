@@ -5,7 +5,7 @@
 ])
 
 @section('og')
-    <meta property="og:description" content="{{ __('front.about.description') }}" />
+    <meta property="og:description" content="{{ __('front.about.description', ['kanka' => config('app.name')]) }}" />
     <meta property="og:url" content="{{ route('front.about') }}" />
 @endsection
 
@@ -16,7 +16,7 @@
                 <div class="col-lg-9 my-auto">
                     <div class="header-content mx-auto">
                         <h1 class="mb-3">{{ __('front.about.title') }}</h1>
-                        <p class="mb-5">{{ __('front.about.description') }}</p>
+                        <p class="mb-5">{{ __('front.about.description', ['kanka' => config('app.name')]) }}</p>
                     </div>
                 </div>
             </div>

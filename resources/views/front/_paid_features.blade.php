@@ -3,7 +3,7 @@
         <div class="col-lg-12 my-auto">
             <div class="header-content mx-auto">
                 <h1 class="mb-5">{{ __('front.features.patreon.title') }}</h1>
-                <p class="mb-5">{{ __('front.features.patreon.description') }}</p>
+                <p class="mb-5">{{ __('front.features.patreon.description', ['kanka' => config('app.name')]) }}</p>
             </div>
         </div>
 

@@ -61,7 +61,7 @@
             <p><b>{{ __('emails/welcome.section_6') }}</b></p>
             <p>{!! __('emails/welcome.section_7', [
                 'facebook' => link_to('https:' . config('social.facebook'), 'Facebook'),
-                'email' => '<a href="mailto:hello@kanka.io">hello@kanka.io</a>'
+                'email' => '<a href="mailto:' . config('app.email') . '">' . config('app.email') . '</a>'
             ]) !!}</p>
 
             @if (!empty($user->provider))

@@ -135,7 +135,7 @@
                         <i class="fab fa-facebook"></i>
                         {{ __('front.help.facebook') }}
                     </a>
-                    <a href="mailto:hello@kanka.io" class="btn btn-light">
+                    <a href="mailto:{{ config('app.email') }}" class="btn btn-light">
                         <i class="fa fa-envelope-open"></i>
                         {{ __('front.help.email') }}
                     </a>

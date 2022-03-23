@@ -16,9 +16,9 @@
                     <li>
                         <a href="{{ route('front.features') }}">{{ __('front.menu.features') }}</a>
                     </li>
-                    <li>
+                    @if (config('services.stripe.enabled'))<li>
                         <a href="{{ route('front.pricing') }}">{{ __('front.menu.pricing') }}</a>
-                    </li>
+                    </li>@endif
                     <li>
                         <a href="{{ route('front.about') }}">{{ __('front.menu.about') }}</a>
                     </li>
@@ -38,18 +38,18 @@
                     </span>
                 </div>
                 <ul>
-                    <li>
+                    @if (config('services.stripe.enabled'))<li>
                         <a href="{{ route('community-votes.index') }}">{{ __('front/community-votes.title') }}</a>
-                    </li>
+                    </li>@endif
                     <li>
                         <a href="{{ route('front.public_campaigns') }}">{{ __('front.menu.campaigns') }}</a>
                     </li>
                     <li>
                         <a href="{{ route('community-events.index') }}">{{ __('front/community-events.title') }}</a>
                     </li>
-                    <li>
+                    @if (config('services.stripe.enabled'))<li>
                         <a href="{{ route('front.hall-of-fame') }}">{{ __('front/hall-of-fame.title') }}</a>
-                    </li>
+                    </li>@endif
                 </ul>
             </div>
 
@@ -104,7 +104,7 @@
         <div class="row">
             <div class="col-12 footer-socials">
                 <div class="email">
-                    <i class="fa fa-envelope hidden-xs"></i> hello@kanka.io
+                    <i class="fa fa-envelope hidden-xs"></i> {{ config('app.email') }}
                 </div>
 
                 <div class="socials">

@@ -1,7 +1,7 @@
 <?php
 /** @var \App\Models\Campaign $camp */
 ?>@extends('layouts.front', [
-    'title' => trans('front.menu.campaigns'),
+    'title' => __('front.menu.campaigns'),
     'active' => 'public-campaigns',
     'skipPerf' => true,
 ])
@@ -9,7 +9,7 @@
 @inject('languages', 'App\Services\LanguageService')
 
 @section('og')
-    <meta property="og:description" content="{{ __("front.campaigns.description_full") }}" />
+    <meta property="og:description" content="{{ __("front.campaigns.description_full", ['kanka' => config('app.name')]) }}" />
     <meta property="og:url" content="{{ route('front.public_campaigns') }}" />
 @endsection
 
@@ -19,8 +19,8 @@
             <div class="row h-100">
                 <div class="col-lg-9 my-auto">
                     <div class="header-content mx-auto">
-                        <h1 class="mb-3">{{ trans('front.campaigns.title') }}</h1>
-                        <p class="mb-5">{{ trans('front.campaigns.description_full') }}</p>
+                        <h1 class="mb-3">{{ __('front.campaigns.title') }}</h1>
+                        <p class="mb-5">{{ __('front.campaigns.description_full', ['kanka' => config('app.name')]) }}</p>
                     </div>
                 </div>
             </div>
@@ -31,8 +31,8 @@
     <section class="featured-campaigns pb-1" id="featured">
         <div class="container">
             <div class="section-body">
-                <h1>{{ trans('front.campaigns.featured.title') }}</h1>
-                <p class="text-muted">{{ trans('front.campaigns.featured.description') }}</p>
+                <h1>{{ __('front.campaigns.featured.title') }}</h1>
+                <p class="text-muted">{{ __('front.campaigns.featured.description') }}</p>
 
                 <div class="row">
                     @foreach ($featured as $camp)
@@ -49,8 +49,8 @@
     <section class="campaigns" id="public-campaigns">
         <div class="container">
             <div class="section-body">
-                <h1>{{ trans('front.campaigns.public.title') }}</h1>
-                <p class="text-muted">{{ trans('front.campaigns.public.description') }}</p>
+                <h1>{{ __('front.campaigns.public.title') }}</h1>
+                <p class="text-muted">{{ __('front.campaigns.public.description') }}</p>
 
                 {!! Form::open(['route' => 'front.public_campaigns', 'method' => 'GET']) !!}
                 <div class="row mb-3">

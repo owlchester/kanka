@@ -48,6 +48,8 @@
                     <i class="fa fa-rocket"></i> <span>{{ __('settings.menu.boost') }}</span>
                 </a>
             </li>
+
+            @if (config('services.stripe.enabled'))
             <li class="{{ $sidebar->settings('billing-information') }} subsection">
                 <a href="{{ route('settings.billing') }}">
                     <i class="fa fa-credit-card"></i> <span>{{ __('settings.menu.billing') }}</span>
@@ -63,6 +65,7 @@
                     <i class="fa fa-receipt"></i> <span>{{ __('settings.menu.invoices') }}</span>
                 </a>
             </li>
+            @endif
 
 
             <li class="sidebar-section">
