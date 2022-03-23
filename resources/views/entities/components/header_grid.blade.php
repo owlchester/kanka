@@ -38,9 +38,8 @@ if($campaign->campaign()->boosted() && $entity->hasHeaderImage($superboosted)) {
     $hasBanner = true;
 }
 
-
-
 ?>
+
 <div class="entity-header @if ($hasBanner) with-entity-banner @endif">
     @if ($hasBanner)
         <div class="entity-banner" style="background-image: url('{{ $entity->getHeaderUrl($superboosted) }}');">

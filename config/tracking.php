@@ -38,6 +38,10 @@ return [
      * AdSense ID
      */
     'adsense' => env('TRACKING_ADSENSE', null),
+    'adsense_sidebar' => env('TRACKING_ADSENSE_SIDEBAR', null),
+    'adsense_dashboard' => env('TRACKING_ADSENSE_DASHBOARD', null),
+    'adsense_entity' => env('TRACKING_ADSENSE_ENTITY', null),
+    'adsense_footer' => env('TRACKING_ADSENSE_FOOTER', null),
 
     /*
      * Hotjar tracking

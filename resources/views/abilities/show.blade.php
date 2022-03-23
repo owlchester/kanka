@@ -1,5 +1,6 @@
 @inject('attributeService', 'App\Services\AttributeService')
 
+
 <div class="entity-grid">
 
     @include('entities.components.header_grid', [

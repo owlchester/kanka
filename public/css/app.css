@@ -2521,3 +2521,15 @@ div.mce-fullscreen {
   text-align: center;
 }
 
+/*body.env-local .ads-space {
+  border: 2px dashed blue;
+}*/
+
+.dashboard .ads-space {
+  margin-bottom: 10px;
+}
+
+.ads-space {
+  overflow: hidden;
+}
+

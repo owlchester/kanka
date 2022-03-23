@@ -1,5 +1,18 @@
 <!-- Main Footer -->
 <footer id="footer" class="main-footer">
+    @ads('footer')
+    <div class="ads-space">
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="{{ config('tracking.adsense') }}"
+             data-ad-slot="{{ config('tracking.adsense_footer') }}"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+    </div>
+    @endads
     @if (auth()->check())
     <div class="translator-call text-center hidden-xs hidden-sm">
         <p class="text-muted">{!! __('footer.translator_call', ['discord' => link_to(config('discord.url'), 'Discord', ['target' => '_blank'])]) !!}</p>

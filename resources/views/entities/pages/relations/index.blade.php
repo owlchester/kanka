@@ -37,6 +37,7 @@
 
 @section('content')
     @include('partials.errors')
+    @include('partials.ads.top')
 
     <div class="entity-grid">
 

@@ -11,6 +11,7 @@
 
 @section('content')
     @include('partials.errors')
+    @include('partials.ads.top')
 
     @if(session('plugin_entities_created'))
         <div class="alert alert-info alert-dismissable">

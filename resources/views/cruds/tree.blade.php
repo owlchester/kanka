@@ -56,6 +56,7 @@
     @if ($filter)
         @include('cruds.datagrids.filters.datagrid-filter', ['route' => $route . '.tree'])
     @endif
+    @include('partials.ads.top')
 
     <div class="box no-border">
         {!! Form::open(['url' => route('bulk.process'), 'method' => 'POST']) !!}

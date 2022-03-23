@@ -49,6 +49,8 @@ $headerImage = true;
 
 
 @section('content')
+
+    @include('partials.ads.top')
     @if(view()->exists($name . '.show'))
         @include($name . '.show')
     @else

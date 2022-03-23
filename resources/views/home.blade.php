@@ -104,6 +104,21 @@
         @include('dashboard.widgets._campaign')
     @endif
 
+    @ads('dashboard')
+    <div class="ads-space">
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="{{ config('tracking.adsense') }}"
+             data-ad-slot="{{ config('tracking.adsense_dashboard') }}"
+             data-ad-format="auto"
+             @if(!app()->environment('prod'))data-adtest="on"@endif
+             data-full-width-responsive="true"></ins>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+    </div>
+    @endads
+
     <div class="dashboard-widgets">
         <div class="row">
         @foreach ($widgets as $widget)

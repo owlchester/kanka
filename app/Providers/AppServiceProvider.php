@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Facades\CampaignLocalization;
 use App\Facades\EntityPermission;
 use App\Facades\Img;
 use App\Models\Ability;
@@ -82,6 +83,7 @@ use App\Models\Organisation;
 use App\Models\OrganisationMember;
 use App\Models\EntityLink;
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Gate;
@@ -245,6 +247,37 @@ class AppServiceProvider extends ServiceProvider
             }
 
             return !$user->readTutorial($tutorial);
+        });
+
+        /** @ads() to show ads */
+        Blade::if('ads', function(string $section = null) {
+            if (empty(config('tracking.adsense'))) {
+                return false;
+            }
+
+            // If requesting a section but it isn't set up, don't show
+            if (!empty($section) && empty(config('tracking.adsense_' . $section))) {
+                return false;
+            }
+
+            // Always show ads to unlogged users
+            if (!auth()->check()) {
+                return true;
+            }
+
+            // Subscribed users don't have ads
+            if (auth()->user()->isPatron()) {
+                return false;
+            }
+
+            // User has been created less than 24 hours ago
+            if (auth()->user()->created_at->diffInHours(Carbon::now()) < 24) {
+                return false;
+            }
+
+            // Boosted campaigns don't either have ads displayed to their members
+            $campaign = CampaignLocalization::getCampaign(false);
+            return !empty($campaign) && $campaign->boosted();
         });
     }
 }

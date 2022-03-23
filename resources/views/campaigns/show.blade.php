@@ -16,6 +16,8 @@
 
 @section('content')
     @include('partials.errors')
+    @include('partials.ads.top')
+
     <div class="row">
         <div class="col-md-3">
             @include('campaigns._menu', ['active' => 'campaign'])

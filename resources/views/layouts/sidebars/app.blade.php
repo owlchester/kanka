@@ -160,6 +160,21 @@ $defaultIndex = ($currentCampaign && $currentCampaign->defaultToNested()) || aut
                     <a href="{{ route('attribute_templates.index') }}"><i class="fa fa-copy"></i> <span>{{ __('sidebar.attribute_templates') }}</span></a>
                 </li>
             </ul>
+
+            @ads('sidebar')
+            <div class="ads-space">
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:280px;height:280px"
+                     data-ad-client="{{ config('tracking.adsense') }}"
+                     data-ad-slot="{{ config('tracking.adsense_sidebar') }}"
+                     @if(!app()->environment('prod'))data-adtest="on"@endif
+                ></ins>
+                <script>
+                    (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </div>
+            @endads
+
         </section>
     </aside>
     @if (auth()->check() && $currentCampaign->userIsMember())

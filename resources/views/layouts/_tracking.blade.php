@@ -83,6 +83,8 @@
     </script>
 @endif
 
-@if(!empty(config('tracking.adsense')) && (auth()->guest() || auth()->user()->showAds()) && !isset($noads))
-    <script data-ad-client="{{ config('tracking.adsense') }}" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-@endif
+@ads()
+    @if(!isset($noads))
+    <script data-ad-client="{{ config('tracking.adsense') }}" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" @if(!app()->environment('prod'))data-adtest="on"@endif></script>
+    @endif
+@endads

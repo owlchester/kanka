@@ -28,6 +28,7 @@ $assetCount = 0; ?>
 
 @section('content')
     @include('partials.errors')
+    @include('partials.ads.top')
 
     <div class="entity-grid">
         @include('entities.components.header_grid', [
