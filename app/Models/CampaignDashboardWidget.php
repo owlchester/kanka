@@ -136,7 +136,7 @@ class CampaignDashboardWidget extends Model
      */
     public function scopePositioned($query)
     {
-        return $query->with(['entity', 'tags'])
+        return $query->with(['entity', 'tags:id'])
             ->orderBy('position', 'asc');
     }
 
@@ -313,7 +313,7 @@ class CampaignDashboardWidget extends Model
             ->inTags($this->tags->pluck('id')->toArray())
             ->type($entityTypeID)
             ->acl()
-            ->with(['tags', 'image'])
+            ->with(['image:campaign_id,id,ext'])
             ->paginate(10)
         ;
     }
