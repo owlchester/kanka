@@ -462,7 +462,7 @@ class MentionsService
         }
 
         // Directly get with the mentioned entity types (provided they are valid)
-        $entities = Entity::whereIn('id', $ids)->with($this->mentionedEntityTypes)->get();
+        $entities = Entity::whereIn('id', $ids)->with('tags:id,name')->get();
         foreach ($entities as $entity) {
             $this->entities[$entity->id] = $entity;
         }

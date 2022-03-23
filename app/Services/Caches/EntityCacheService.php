@@ -61,6 +61,7 @@ class EntityCacheService extends BaseCache
             return $this->entities[$key];
         }
 
+        // Why are we doing ->first? because child is a loop to this function.
         $child = $entity->child()->first();
 
         return $this->entities[$key] = $child;
