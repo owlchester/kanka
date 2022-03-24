@@ -52,3 +52,5 @@ Route::get('/docs', 'FrontController@documentation');
 Route::get('/api', 'FrontController@api');
 Route::get('/docs/1.0/{sub}', 'FrontController@api');
 
+
+Route::get('/koinks', 'Front\KoinkController@index')->name('front.koinks');

@@ -73,7 +73,17 @@ $currentCampaign = CampaignLocalization::getCampaign();
                     </li>@endif
                 @endguest
 
+                @if (auth()->check() && !\App\Facades\Identity::isImpersonating())
+                    <li class="message-menu" data-toggle="tooltip" title="{{ auth()->user()->koinks() }} Koinks">
+                        <a href="{{ route('front.koinks') }}">
+                            <img src="/images/koink.png" width="24" height="24" class="user-image" alt="Koinks">
+                            <span class="label label-warning">{{ auth()->user()->koinks() }}</span>
+                        </a>
+                    </li>
+                @endif
+
                 @auth()
+
                 <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" title="{{ auth()->user()->name }}">
                         <img src="{{ auth()->user()->getAvatarUrl() }}" class="user-image" alt="{{ __('header.avatar') }}"/>

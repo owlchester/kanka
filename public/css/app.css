@@ -1483,6 +1483,24 @@ summary {
   display: block;
 }
 
+/** Change positioning of various elements so tooltips can extend beyond overflow:hidden containers **/
+
+/* Entity sidebar */
+
+.entity-sidebar {
+  position: relative;
+}
+
+.list-group-item {
+  position: unset;
+}
+
+/* Dashboard widgets */
+
+.panel .panel-body .preview {
+  position: unset;
+}
+
 :root {
   --timeline-item-background: #fff;
   --timeline-element-border: #ddd;
@@ -2531,5 +2549,11 @@ div.mce-fullscreen {
 
 .ads-space {
   overflow: hidden;
+}
+
+.btn img.koink,
+.dropdown-menu img.koink {
+  width: 20px;
+  height: 20px;
 }
 

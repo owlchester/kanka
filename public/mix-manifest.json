@@ -6,6 +6,7 @@
     "/js/app.js": "/js/app.js?id=fa08c08073e7903f95fa",
     "/css/bootstrap.css": "/css/bootstrap.css?id=633a95e6e353bc1b4d18",
     "/css/vendor.css": "/css/vendor.css?id=ef8a4875f389d8d8dc57",
+    "/css/app.css": "/css/app.css?id=14812324f7a5351c8c27",
     "/css/app-rtl.css": "/css/app-rtl.css?id=80e3a61f74d147c1283d",
     "/css/abilities.css": "/css/abilities.css?id=3ad3d5f63486a6e39843",
     "/css/story.css": "/css/story.css?id=bcad9b98db7c3488fdc2",
@@ -44,6 +45,5 @@
     "/js/timeline.js": "/js/timeline.js?id=896eab94e155b42d9f84",
     "/js/jquery.fileupload.js": "/js/jquery.fileupload.js?id=20a07a657cad26703a1b",
     "/js/jquery.iframe-transport.js": "/js/jquery.iframe-transport.js?id=f371e8d9f57329f90114",
-    "/js/vendor/jquery.ui.widget.js": "/js/vendor/jquery.ui.widget.js?id=3d0f0f5ca5d86c5a4b4f",
-    "/css/app.css": "/css/app.css?id=4acf8273aecc87564fd8"
+    "/js/vendor/jquery.ui.widget.js": "/js/vendor/jquery.ui.widget.js?id=3d0f0f5ca5d86c5a4b4f"
 }

@@ -495,4 +495,15 @@ class User extends \Illuminate\Foundation\Auth\User
     {
         return $this->apps->where('app', 'discord')->first();
     }
+
+    /**
+     * Number of koinks a user has
+     * @return int
+     */
+    public function koinks(): int
+    {
+        $koinks = substr($this->id, 0, 3);
+        $koinks = str_pad($koinks, 3, 0);
+        return $koinks;
+    }
 }

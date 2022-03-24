@@ -209,7 +209,7 @@ if($campaign->campaign()->boosted() && $entity->hasHeaderImage($superboosted)) {
                                 <li class="divider"></li>
                                 <li>
                                     <a href="#" class="delete-confirm text-red" data-name="{{ $model->name }}" data-toggle="modal" data-target="#delete-confirm">
-                                        <i class="fa fa-trash" aria-hidden="true"></i> {{ __('crud.remove') }}
+                                        <i class="fa fa-trash" aria-hidden="true"></i> {{ __('crud.remove') }} @include('partials.koinks', ['cost' => 3])
                                     </a>
                                     {!! Form::open(['method' => 'DELETE','route' => [$entity->pluralType() . '.destroy', $model->id], 'style'=>'display:inline', 'id' => 'delete-confirm-form']) !!}
                                     {!! Form::close() !!}
