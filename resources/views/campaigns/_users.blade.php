@@ -37,7 +37,9 @@
                             <div class="entity-image pull-left" style="background-image: url({{ $relation->user->getAvatarUrl() }})" title="{{ $relation->user->name }}">
                             </div>
                             <div class="user-name text-break">
-                                {{ $relation->user->name }}
+                                <a href="{{ route('users.profile', $relation->user_id) }}" target="_blank">
+                                    {{ $relation->user->name }}
+                                </a>
                             </div>
                         </td>
                         <td>

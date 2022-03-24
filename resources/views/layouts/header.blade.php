@@ -75,16 +75,16 @@ $currentCampaign = CampaignLocalization::getCampaign();
 
                 @auth()
                 <li class="dropdown user user-menu">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" name="list-user-profile-actions" title="{{ auth()->user()->name }}">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" title="{{ auth()->user()->name }}">
                         <img src="{{ auth()->user()->getAvatarUrl() }}" class="user-image" alt="{{ __('header.avatar') }}"/>
                     </a>
                     <ul class="dropdown-menu">
                         <li class="user-header">
-                            <a href="{{ route('settings.profile') }}">
+                            <a href="{{ route('users.profile', auth()->user()) }}">
                                 <img src="{{ auth()->user()->getAvatarUrl(100) }}" class="img-circle" alt="{{ __('header.avatar') }}" />
                             </a>
                             <p>
-                                {{ auth()->user()->name }}
+                                <a href="{{ route('users.profile', auth()->user()) }}">{{ auth()->user()->name }}</a>
                                 <small title="{{ auth()->user()->created_at }}">{{ __('header.member_since', ['date' => auth()->user()->created_at->diffForHumans()]) }}</small>
                             </p>
                         </li>

@@ -24,8 +24,15 @@
 
 
                     <div class="form-group">
-                        <label>{{ __('profiles.fields.bio') }}</label>
+                        <label>
+                            {{ __('profiles.fields.bio') }}
+                        </label>
                         {!! Form::textarea('profile[bio]', null, ['placeholder' => __('profiles.placeholders.bio'), 'class' => 'form-control', 'rows' => 5, 'maxlength' => 300]) !!}
+                        <p class="help-block">
+                            {!!  __('profiles.settings.helpers.bio', [
+    'link' => link_to_route('users.profile', __('profiles.settings.helpers.profile'), $user, ['target' => '_blank'])
+    ]) !!}
+                        </p>
                     </div>
 
                     <hr />

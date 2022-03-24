@@ -31,7 +31,3 @@
 @inject('campaign', 'App\Services\CampaignService')
 @include('editors.editor')
 
-@section('scripts')
-    @parent
-    <script src="{{ mix('js/campaign.js') }}" defer></script>
-@endsection

@@ -27,12 +27,12 @@
                 <div class="pagination-ajax-content">
                     <table class="table table-hover" style="word-break: break-all;">
                         <thead>
-                        <tr>
-                            <th>{{ __('entities/logs.fields.action') }}</th>
-                            <th>{{ __('campaigns.members.fields.name') }}</th>
-                            <th>{{ __('entities/logs.fields.date') }}</th>
-                            @if ($campaign->boosted(true))<th></th>@endif
-                        </tr>
+                            <tr>
+                                <th>{{ __('entities/logs.fields.action') }}</th>
+                                <th>{{ __('campaigns.members.fields.name') }}</th>
+                                <th>{{ __('entities/logs.fields.date') }}</th>
+                                @if ($campaign->boosted(true))<th></th>@endif
+                            </tr>
                         </thead>
                         <tbody>
                         @foreach ($logs as $log)
@@ -41,7 +41,7 @@
                                     {{ __('entities/logs.actions.' . $log->actionCode()) }}
                                 </td>
                                 <td>@if ($log->user)
-                                        {{ $log->user->name }}
+                                        {!! link_to_route('users.profile', $log->user->name, $log->user, ['target' => '_blank']) !!}
                                     @else
                                         {{  __('crud.history.unknown') }}
                                     @endif
@@ -54,10 +54,10 @@
                                     {{ $log->created_at->diffForHumans() }}
                                 </td>
                                 @if ($campaign->boosted(true))
-                                    <td>
+                                    <td class="pull-right">
                                         @if(!empty($log->changes))
                                             <a href="#log-{{ $log->id }}" data-toggle="collapse">
-                                                <i class="far fa-eye"></i> <span class="hidden-xs">{{ __('crud.view') }}</span>
+                                                <i class="far fa-eye"></i> <span class="hidden-xs">{{ __('entities/logs.actions.view') }}</span>
                                             </a>
                                         @endif
                                     </td>

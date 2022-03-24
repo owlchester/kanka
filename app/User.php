@@ -315,7 +315,9 @@ class User extends \Illuminate\Foundation\Auth\User
      */
     public function isElementalPatreon(): bool
     {
-        $campaign = CampaignLocalization::getCampaign();
+        // We check the campaign and roles for 61105 because of a special Elemental subscriber.
+        $campaign = CampaignLocalization::getCampaign(false);
+
         return (!empty($this->patreon_pledge) && $this->patreon_pledge == Patreon::PLEDGE_ELEMENTAL) ||
             (!empty($campaign) && $this->campaignRoles->where('campaign_id', $campaign->id)->where('id', '61105')->count() == 1);
     }

@@ -53,7 +53,6 @@
     <script src="/vendor/codemirror/mode/css/css.js"></script>
     <script src="/vendor/codemirror/addon/hint/show-hint.js"></script>
     <script src="/vendor/codemirror/addon/hint/css-hint.js"></script>
-    <script src="{{ mix('js/campaign.js') }}" defer></script>
 @endsection
 
 @section('styles')

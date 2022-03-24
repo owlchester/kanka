@@ -45,3 +45,18 @@
     display: block;
   }
 }
+
+/** Change positioning of various elements so tooltips can extend beyond overflow:hidden containers **/
+
+/* Entity sidebar */
+.entity-sidebar {
+  position: relative;
+}
+.list-group-item {
+  position: unset;
+}
+
+/* Dashboard widgets */
+.panel .panel-body .preview {
+  position: unset;
+}
