@@ -194,7 +194,7 @@ return [
     ],
     'footer'        => [
         'app'       => 'App',
-        'copyright' => 'Copyright :copy :year Owlchester SNC',
+        'copyright' => 'Copyright :copy :year :company',
         'headings'  => [
             'app'           => 'App',
             'community'     => 'Community',
