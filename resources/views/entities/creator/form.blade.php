@@ -38,7 +38,9 @@
     @include('entities.creator.forms.' . $singularType)
 
     @if ($type !== 'tags')
-    @include('cruds.fields.tags', ['dropdownParent' => '#entity-modal'])
+        <div id="quick-creator-tags-field">
+    @include('cruds.fields.tags', ['dropdownParent' => '#quick-creator-tags-field'])
+        </div>
     @endif
 
     @include('cruds.fields.private2')
