@@ -38,8 +38,9 @@ class CampaignRoleUserController extends Controller
      */
     public function create(CampaignRole $campaignRole)
     {
-        $this->authorize('user', $campaignRole);
         $campaign = CampaignLocalization::getCampaign();
+        $this->authorize('roles', $campaign);
+        $this->authorize('user', $campaignRole);
 
         return view($this->view . '.create', ['campaign' => $campaign, 'role' => $campaignRole]);
     }
@@ -52,8 +53,10 @@ class CampaignRoleUserController extends Controller
      */
     public function store(StoreCampaignRoleUser $request, CampaignRole $campaignRole)
     {
-        $this->authorize('create', CampaignRole::class);
         $campaign = $campaignRole->campaign;
+        $this->authorize('roles', $campaign);
+        $this->authorize('create', CampaignRole::class);
+
         $relation = CampaignRoleUser::create($request->all());
         return redirect()->route('campaign_roles.show', [
             'campaign_role' => $campaignRole])
@@ -83,8 +86,9 @@ class CampaignRoleUserController extends Controller
      */
     public function destroy(CampaignRole $campaignRole, CampaignRoleUser $campaignRoleUser)
     {
-        $this->authorize('removeUser', $campaignRole);
         $campaign = CampaignLocalization::getCampaign();
+        $this->authorize('roles', $campaign);
+        $this->authorize('removeUser', $campaignRole);
 
         $campaignRoleUser->delete();
         return redirect()->route('campaign_roles.show', $campaignRole)

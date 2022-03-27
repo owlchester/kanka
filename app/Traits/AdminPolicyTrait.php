@@ -2,6 +2,7 @@
 
 namespace App\Traits;
 
+use App\Facades\CampaignLocalization;
 use App\User;
 
 trait AdminPolicyTrait
@@ -21,7 +22,9 @@ trait AdminPolicyTrait
     {
         if ($this->cachedAdminPolicy === null) {
             $this->cachedAdminPolicy = false;
-            foreach ($user->campaignRoles as $role) {
+            $campaign = CampaignLocalization::getCampaign(false);
+            $roles = $user->campaignRoles->where('campaign_id', $campaign->id);
+            foreach ($roles as $role) {
                 if ($role->is_admin) {
                     $this->cachedAdminPolicy = true;
                 }
