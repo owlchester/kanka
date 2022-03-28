@@ -26,7 +26,6 @@
 <body id="page-top">
 @include('layouts._tracking-fallback')
 <!-- Custom styles for this template -->
-<link href="/css/front/new-age.min.css" rel="stylesheet">
 <link href="{{ mix('css/front.css') }}" rel="stylesheet">
 <noscript id="deferred-styles">
 </noscript>
@@ -82,12 +81,6 @@
 <script src="/vendor/jquery/jquery.min.js"></script>
 <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-<!-- Plugin JavaScript -->
-<script src="/vendor/jquery-easing/jquery.easing.min.js" async></script>
-
-<!-- Custom scripts for this template -->
-<script src="/js/front/new-age.min.js" async></script>
-
 <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.5.18/webfont.js"></script>
 <script>
     WebFont.load({
@@ -106,28 +99,6 @@
             webkitRequestAnimationFrame || msRequestAnimationFrame;
     if (raf) raf(function() { window.setTimeout(loadDeferredStyles, 0); });
     else window.addEventListener('load', loadDeferredStyles);
-</script>
-
-<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css" />
-<script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.js"></script>
-<script>
-    window.addEventListener("load", function(){
-        window.cookieconsent.initialise({
-            "palette": {
-                "popup": {
-                    "background": "#0E2231"
-                },
-                "button": {
-                    "background": "#2e8893"
-                }
-            },
-            "theme": "classic",
-            "content": {
-                "message": "{{ __('front.cookie.message') }}",
-                "dismiss": "{{ __('front.cookie.dismiss') }}",
-                "link": "{{ __('front.cookie.link') }}"
-            }
-        })});
 </script>
 </body>
 </html>
