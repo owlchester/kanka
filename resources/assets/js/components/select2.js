@@ -5,7 +5,7 @@ $(document).ready(function() {
         }
         $.each($('select.select2'), function (index) {
 
-            if ($(this).hasClass("select2-hidden-accessible")) {
+            if ($(this).hasClass('select2-hidden-accessible')) {
                 return;
             }
 

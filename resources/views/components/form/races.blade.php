@@ -25,7 +25,7 @@ elseif(!empty($model)) {
 ?>
 <label>{{ __('characters.fields.races') }}</label>
 
-<select multiple="multiple" name="races[]" id="races" class="form-control select2" data-tags="true" style="width: 100%" data-url="{{ route('races.find') }}" data-allow-clear="true" data-allow-new="false" data-placeholder=" ">
+<select multiple="multiple" name="races[]" class="form-control select2" data-tags="true" style="width: 100%" data-url="{{ route('races.find') }}" data-allow-clear="true" data-allow-new="false" data-placeholder=" ">
     @foreach ($selectedOption as $key => $val)
         <option value="{{ $key }}" selected="selected">{{ $val }}</option>
     @endforeach

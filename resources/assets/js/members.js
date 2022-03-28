@@ -6,6 +6,7 @@ $(document).ready(function() {
     $.each($('.form-members'), function (index) {
 
         let allowClear = $(this).data('allow-clear');
+
         $(this).select2({
             tags: true,
             allowClear: allowClear || true,
