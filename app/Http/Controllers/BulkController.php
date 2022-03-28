@@ -79,12 +79,12 @@ class BulkController extends Controller
             }
         } catch (\Exception $e) {
             return redirect()
-                ->route($this->indexRoute(), $this->routeParams)
+                ->back()
                 ->with('error', __('crud.bulk.errors.general', ['hint' => $e->getMessage()]));
         }
 
         return redirect()
-            ->route($this->indexRoute(), $this->routeParams);
+            ->back();
     }
 
     /**
@@ -143,7 +143,7 @@ class BulkController extends Controller
         }
 
         return redirect()
-            ->route($this->indexRoute(), $this->routeParams)
+            ->back()
             ->with('success', trans_choice($langFile . $key, $count, ['count' => $count, 'total' => $total]));
     }
 
@@ -157,7 +157,7 @@ class BulkController extends Controller
             ->transform($target);
 
         return redirect()
-            ->route($this->indexRoute(), $this->routeParams)
+            ->back()
             ->with('success_raw', trans_choice('entities/transform.bulk.success', $count, ['count' => $count, 'type' => __('entities.' . $target)]));
     }
 
@@ -173,7 +173,7 @@ class BulkController extends Controller
             ->copyToCampaign($campaign->id);
 
         return redirect()
-            ->route($this->indexRoute(), $this->routeParams)
+            ->back()
             ->with('success_raw', trans_choice('crud.bulk.success.copy_to_campaign', $count, ['count' => $count, 'campaign' => $campaign->name]));
     }
 
@@ -186,7 +186,7 @@ class BulkController extends Controller
             ->permissions($this->request->only('user', 'role'), $this->request->has('permission-override'));
 
         return redirect()
-            ->route($this->indexRoute(), $this->routeParams)
+            ->back()
             ->with('success', trans_choice('crud.bulk.success.permissions', $count, ['count' => $count]));
     }
 
@@ -211,7 +211,7 @@ class BulkController extends Controller
         $key = $this->entity === 'relations' ? 'entities/relations.bulk.delete' : 'crud.destroy_many.success';
 
         return redirect()
-            ->route($this->indexRoute(), $this->routeParams)
+            ->back()
             ->with('success', trans_choice($key, $count, ['count' => $count]));
     }
 
@@ -223,7 +223,7 @@ class BulkController extends Controller
             ->templates($this->request->get('template_id'));
 
         return redirect()
-            ->route($this->indexRoute(), $this->routeParams)
+            ->back()
             ->with('success', trans_choice('crud.bulk.success.templates', $count, ['count' => $count]));
     }
 
