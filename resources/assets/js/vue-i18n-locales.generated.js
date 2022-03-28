@@ -177,7 +177,6 @@ export default {
             },
             "patreon": {
                 "deprecated": "Funcionalitat discontinuada. Si desitgeu fer suport a Kanka, podeu fer-ho mitjançant una {subscription}. La vinculació amb Patreon encara continua activa per als nostres Patrons que van vincular els seus comptes abans de la mudança de Patreon.",
-                "description": "Sincronizant amb Patreon",
                 "pledge": "Pledge {name}",
                 "remove": {
                     "button": "Desvincula el meu compte de Patreon",
@@ -218,6 +217,12 @@ export default {
                         "yearly": "Us esteu subscrivint al nivell {tier}, que costa {amount} anuals."
                     },
                     "title": "Canvia el nivell de subscripció"
+                },
+                "coupon": {
+                    "check": "Comprova un codi promocional",
+                    "invalid": "Codi promocional no vàlid.",
+                    "label": "Codi promocional",
+                    "percent_off": "{percent}% de descompte per la vostra primera subscripció anual!"
                 },
                 "currencies": {
                     "eur": "Euros",
@@ -319,7 +324,6 @@ export default {
         },
         "conversations": {
             "create": {
-                "description": "Crea una nova conversa",
                 "success": "S'ha creat la conversa «{name}».",
                 "title": "Nova conversa"
             },
@@ -327,7 +331,6 @@ export default {
                 "success": "S'ha eliminat la conversa «{name}»."
             },
             "edit": {
-                "description": "Actualiza la conversa",
                 "success": "S'ha actualitzat la conversa «{name}».",
                 "title": "Conversa {name}"
             },
@@ -344,7 +347,6 @@ export default {
             },
             "index": {
                 "add": "Nova conversa",
-                "description": "Gestiona les converses de {name}.",
                 "header": "Converses de {name}",
                 "title": "Converses"
             },
@@ -362,7 +364,6 @@ export default {
                 "create": {
                     "success": "S'ha afegit el participant {entity} a la conversa."
                 },
-                "description": "Afegeix o elimina participants d'una conversa",
                 "destroy": {
                     "success": "El participant {entity} s'ha tret de la conversa."
                 },
@@ -374,7 +375,6 @@ export default {
                 "type": "Dins del joc, preparació, argument..."
             },
             "show": {
-                "description": "Vista detallada de conversa",
                 "is_closed": "La conversa és tancada.",
                 "title": "Conversa {name}"
             },
@@ -516,7 +516,8 @@ export default {
                 "copy_attributes": "Copia els atributs",
                 "copy_inventory": "Copia l'inventori",
                 "copy_links": "Copia els enllaços",
-                "copy_notes": "Copia les anotacions de l'entitat",
+                "copy_permissions": "Copia'n els permisos (això sobreescriurà els valors de la pestanya de permisos)",
+                "copy_posts": "Copia'n les anotacions (això n'inclou els permisos)",
                 "creator": "Creador",
                 "dice_roll": "Tirada de daus",
                 "entity": "Entitat",
@@ -528,6 +529,7 @@ export default {
                 "files": "Fitxers",
                 "gallery_header": "Capçalera de la galeria",
                 "gallery_image": "Imatge de la galeria",
+                "has_attributes": "Té atributs",
                 "has_entity_files": "Té fitxers",
                 "has_entity_notes": "Té anotacions",
                 "has_image": "Té imatge",
@@ -535,7 +537,7 @@ export default {
                 "image": "Imatge",
                 "is_closed": "La conversa es tancarà i no acceptarà més missatges nous.",
                 "is_private": "Privada",
-                "is_private_v2": "Mostra-ho només als membres del {admin}-role de la campanya.",
+                "is_private_v3": "Mostra això només als membres del rol {admin}-role. Això sobreescriu qualsevol altre permís.",
                 "is_star": "Fixada",
                 "item": "Objecte",
                 "journal": "Crònica",
@@ -626,17 +628,17 @@ export default {
                 "header_image": "Aquesta imatge es troba sobre la entitat. Per a obtenir resultats millors, feu servir una imatge apaisada.",
                 "image_limitations": "Formats acceptats: {formats}. Tamany màxim del fitxer: {size}.",
                 "image_patreon": "¿Com s'augmenta el tamany màxim dels fitxers?",
-                "is_private": "Si és privada, aquesta entitat només es mostrarà als membres que tinguin el rol \"Admin\".",
+                "image_recommendation": "Dimensions recomanades: {width} per {height} px.",
                 "is_star": "Els elements fixats es mostraran al menú principal de l'entitat.",
                 "tooltip": "Reemplaça la descripció emergent automàtica amb el contingut següent.",
                 "visibility": "En seleccionar \"Administrador\", només els membres amb el rol d'administrador podran veure això. \"Només jo\" vol dir que només vós podeu veure això."
             },
             "history": {
-                "created": "Creada per <strong>{name}</strong> el <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>",
-                "created_date": "Creada el <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>",
+                "created_clean": "Creat per {name} el {date}",
+                "created_date_clean": "Creat el {date}",
                 "unknown": "Desconegut",
-                "updated": "Última modificació per <strong>{name}</strong> el <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>",
-                "updated_date": "Última modificació el <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>",
+                "updated_clean": "Última modificació per {name} el {date}",
+                "updated_date_clean": "Última modificació el {date}",
                 "view": "Historial de canvis de l'entitat"
             },
             "image": {
@@ -650,7 +652,8 @@ export default {
             "move": [],
             "navigation": {
                 "cancel": "cancela",
-                "or_cancel": "o {cancel}"
+                "or_cancel": "o {cancel}",
+                "skip_to_content": "Salta la navegació"
             },
             "new_entity": {
                 "error": "Reviseu les dades introduïdes.",
@@ -769,6 +772,10 @@ export default {
                 "timelines": "Línies de temps",
                 "tooltip": "Descripció emergent"
             },
+            "tooltips": {
+                "boosted_feature": "Funcionalitat de campanya millorada",
+                "new_post": "Afegeix una nova anotació a l'entitat."
+            },
             "update": "Actualitza",
             "users": {
                 "unknown": "Desconegut"
@@ -792,9 +799,27 @@ export default {
     "cs": {
         "maps": [],
         "calendars": [],
+        "settings": {
+            "account": {
+                "actions": {
+                    "update_email": "Upravit email",
+                    "update_password": "Upravit heslo"
+                }
+            },
+            "menu": {
+                "profile": "Profil"
+            },
+            "subscription": {
+                "billing": {
+                    "title": "Upravit Platební Metodu"
+                },
+                "coupon": {
+                    "invalid": "Neplatný promo kod."
+                }
+            }
+        },
         "conversations": {
             "create": {
-                "description": "Vytvořit nový rozhovor",
                 "success": "Rozhovor \"{name}\" vytvořen",
                 "title": "Nový rozhovor"
             },
@@ -802,7 +827,6 @@ export default {
                 "success": "Rozhovor \"{name}\" smazán."
             },
             "edit": {
-                "description": "Aktualizovat rozhovor",
                 "success": "Rozhovor \"{name}\" aktualizován.",
                 "title": "Rozhovor \"{name}\""
             },
@@ -819,7 +843,6 @@ export default {
             },
             "index": {
                 "add": "Nový rozhovor",
-                "description": "Spravovat kategorii {name}",
                 "header": "Rozhovory v {name}",
                 "title": "Rozhovory"
             },
@@ -837,7 +860,6 @@ export default {
                 "create": {
                     "success": "Postava {entity} se nyní účastní rozhovoru."
                 },
-                "description": "Přidat nebo odstranit účastníky rozhovoru",
                 "destroy": {
                     "success": "Postava {entity} se nadále neúčastní rozhovoru."
                 },
@@ -849,7 +871,6 @@ export default {
                 "type": "Ve hře, příprava, námět"
             },
             "show": {
-                "description": "Podrobné zobrazení rozhovoru",
                 "is_closed": "Rozhovor skončil",
                 "title": "Rozhovor {name}"
             },
@@ -992,7 +1013,6 @@ export default {
                 "copy_attributes": "Kopírovat atributy",
                 "copy_inventory": "Kopírovat inventář",
                 "copy_links": "Kopírovat odkazy na objekty",
-                "copy_notes": "Kopírovat poznámky objektu",
                 "creator": "Autor",
                 "dice_roll": "Hod kostkou",
                 "entity": "Objekt",
@@ -1011,7 +1031,6 @@ export default {
                 "image": "Obrázek",
                 "is_closed": "Rozhovor bude uzavřen a nadále do něj nebude možno přidávat nové zprávy.",
                 "is_private": "Soukromý",
-                "is_private_v2": "Dostupné pouze pro členy role {admin}-role. Toto nastavení má přednost před ostatními oprávněními.",
                 "is_star": "Připnuté",
                 "item": "Předmět",
                 "journal": "Deník",
@@ -1102,17 +1121,12 @@ export default {
                 "header_image": "Tento obrázek se zobrazuje nad objektem. Doporučujeme použít širokoúhlý obrázek.",
                 "image_limitations": "Podporované formáty: {formats}. Maximální velikost souboru: {size}",
                 "image_patreon": "Chceš zvýšit omezení na velikost souborů?",
-                "is_private": "Je-li nastaven jako soukromý, bude tento objekt viditelný pouze členům role \"Správce\" tažení.",
                 "is_star": "Připnuté objekty se zobrazí na stránce popisu objektu.",
                 "tooltip": "Nahradí automaticky generované informační bubliny následujícím obsahem. Případný HTML kód bude odebrán. Je ale možné použít pokročilý typ odkazů na objekty.",
                 "visibility": "Nastavení viditelnosti pouze pro \"správce\" znamená, že pouze členové role \"Správce\" si jej budou moci zobrazit. Při nastavení viditelnosti na \"Vlastník\" bude objekt viditelný jen pro tebe."
             },
             "history": {
-                "created": "Vytvořeno uživatelem <strong>{name}</strong> <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>",
-                "created_date": "Vytvořeno dne <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>",
                 "unknown": "Neznámé",
-                "updated": "Naposledy upraveno uživatelem <strong>{name}</strong> <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>",
-                "updated_date": "Naposledy upraveno dne <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>",
                 "view": "Zobrazit protokol objektu"
             },
             "image": {
@@ -1271,7 +1285,6 @@ export default {
                     "update_email": "Email aktualisieren",
                     "update_password": "Passwort aktualisieren"
                 },
-                "description": "Deinen Account aktualisieren",
                 "email": "Email ändern",
                 "email_success": "Email aktualisiert.",
                 "password": "Passwort ändern",
@@ -1285,12 +1298,8 @@ export default {
                 "title": "Account"
             },
             "api": {
-                "description": "Aktualisiere deine API Einstellungen",
-                "experimental": "Willkommen zur API von Kanka! Diese Features sind noch experimentell, aber sollten stabil genug sein, um mit API zu kommunizieren. Erstelle ein persönliches Access Token, welches in deinem API Request genutzt wird, oder nutze das Client Token wenn du möchtest, dass deine App Zugriff auf Nutzerdaten hat.",
-                "help": "Kanka wird bald eine RESTful API zur Verfügung stellen, so dass Drittanbieter-Apps mit Kanka kommunizieren können. Details, wie du deine API Keys verwaltest, wirst du bald hier finden.",
                 "helper": "Willkommen bei den Kanka APIs. Generieren Sie ein persönliches Zugriffstoken, das Sie in Ihrer API-Anfrage verwenden können, um Informationen zu den Kampagnen zu sammeln, an denen Sie beteiligt sind.",
                 "link": "Lies die API Dokumentation",
-                "request_permission": "Wir bauen zurzeit eine mächtige RESTful API, so das Drittanbieter-Apps sich zu Kanka verbinden können. Allerdings limitieren wir aktuell noch die Anzahl der Nutzer, die die API nutzen können, solange wir noch daran arbeiten. Wenn du Zugriff auf die API haben möchtest und coole Apps bauen möchtest, die mit Kanka kommunizieren, bitte kontaktiere uns und wir senden dir die Informationen, die du brauchst.",
                 "title": "API"
             },
             "apps": {
@@ -1333,7 +1342,6 @@ export default {
                         "superboosted": "Alle Superboost Kampagnenfunktionen"
                     },
                     "recovery": "Gelöschte Objekte für bis zu {amount} Tage wiederherstellen.",
-                    "second": "Das Boosten einer Kampagne bietet die folgenden Vorteile:",
                     "superboost": "Beim Superboosting einer Kampagne werden 3 Ihrer Boosts verwendet und zusätzliche Funktionen für Boosted-Kampagnen freigeschaltet.",
                     "theme": "Leitmotiv auf Kampagnenebene und benutzerdefiniertes Design.",
                     "third": "Um eine Kampagne zu boosten, rufen Sie die Seite der Kampagne auf und klicken Sie auf die Schaltfläche \"{boost_button}\" über der Schaltfläche \"{edit_button}\".",
@@ -1402,7 +1410,6 @@ export default {
                 "title": "Rechnungen"
             },
             "layout": {
-                "description": "Aktualisiere deine Layout Optionen",
                 "success": "Layout Optionen aktualisiert.",
                 "title": "Layout"
             },
@@ -1433,21 +1440,7 @@ export default {
                 "subscription_status": "Abonnement Status"
             },
             "patreon": {
-                "actions": {
-                    "link": "Account verlinken",
-                    "view": "Besuche Kanka auf Patreon"
-                },
-                "benefits": "Eure Unterstützung auf Patreon erlaubt es euch größere Bilder hochzuladen, hilft uns die Serverkosten zu begleichen und mehr Arbeitszeit in Kanka zu stecken.",
-                "benefits_features": "erstaunliche Eigenschaften",
                 "deprecated": "Veraltete Funktion - Wenn Sie Kanka unterstützen möchten, tun Sie dies bitte mit einem {subscription}. Die Patreon-Verknüpfung ist weiterhin für unsere Benutzer aktiv, die ihr Konto vor dem Umzug von Patreon verknüpft haben.",
-                "description": "Synchronisierung mit Patreon",
-                "errors": {
-                    "invalid_token": "Ungültiger Token! Patreon konnte die Anfrage nicht validieren.",
-                    "missing_code": "Fehlender Code! Patreon hat keinen Code zurück geschickt, um deinen Account zu verifizieren.",
-                    "no_pledge": "Kein Pledge! Patreon hat deinen Account verifiziert, aber konnte keinen aktiven Pledge feststellen."
-                },
-                "link": "Benutze diesen Button, wenn du aktuell Kanka auf Patreon unterstützt. Das gibt dir Zugriff auf einige tolle Extras.",
-                "linked": "Danke, dass du Kanka auf Patreon unterstützt! Dein Account wurde verlinkt.",
                 "pledge": "Pledge {name}",
                 "remove": {
                     "button": "Trennen Sie die Verknüpfung Ihres Patreon-Kontos",
@@ -1455,16 +1448,13 @@ export default {
                     "text": "Wenn Sie die Verknüpfung Ihres Patreon-Kontos mit Kanka aufheben, werden Ihre Boni, Ihr Name in der Hall of Fame, Kampagnen-Boosts und andere Funktionen im Zusammenhang mit der Unterstützung von Kanka entfernt. Keiner Ihrer verstärkten Inhalte geht verloren (z. B. Objekt header). Wenn Sie sich erneut anmelden, haben Sie Zugriff auf alle Ihre vorherigen Daten, einschließlich der Möglichkeit, Ihre zuvor verstärkten Kampagnen zu boosten.",
                     "title": "Trennen Sie Ihr Patreon-Konto von Kanka"
                 },
-                "success": "Danke, dass du Kanka auf Patreon unterstützt.",
-                "title": "Patreon",
-                "wrong_pledge": "Euer Patreon Tier wird manuell von uns gesetzt. Daher kann es sein, dass es bis zu ein paar Tagen dauert bis es korrekt hinterlegt wird. Wenn es länger falsch ist, kontaktiert uns bitte."
+                "title": "Patreon"
             },
             "profile": {
                 "actions": {
                     "update_profile": "Aktualisiere dein Profil"
                 },
                 "avatar": "Profilbild",
-                "description": "Aktualisiere dein Profil",
                 "success": "Profil aktualisiert.",
                 "title": "Persönliches Profil"
             },
@@ -1482,6 +1472,13 @@ export default {
                     "title": "Zahlungsmethode ändern"
                 },
                 "cancel": {
+                    "options": {
+                        "competitor": "Wechsel zu einem Wettbewerber",
+                        "custom": "Sonstiges (bitte angeben)",
+                        "financial": "Finanzielle Situation verändert",
+                        "missing_features": "Fehlende Funktionen",
+                        "not_using": "Kanka wird derzeit nicht verwendet"
+                    },
                     "text": "Es tut uns leid dich gehen zu sehen! Wenn Sie Ihr Abonnement kündigen, bleibt es bis zu Ihrem nächsten Abrechnungszyklus aktiv. Danach verlieren Sie Ihre Kampagnen-Boosts und andere Vorteile im Zusammenhang mit der Unterstützung von Kanka. Füllen Sie das folgende Formular aus, um uns mitzuteilen, was wir besser machen können oder was zu Ihrer Entscheidung geführt hat."
                 },
                 "cancelled": "Ihr Abonnement wurde gekündigt. Sie können ein Abonnement verlängern, sobald Ihr aktuelles Abonnement endet.",
@@ -1491,6 +1488,12 @@ export default {
                         "yearly": "Sie abonnieren die {tier} Stufe, die jährlich in Rechnung gestellt wird für {amount}."
                     },
                     "title": "Abonnementstufe ändern"
+                },
+                "coupon": {
+                    "check": "Gutscheincode prüfen",
+                    "invalid": "Ungültiger Gutscheincode.",
+                    "label": "Promotional code",
+                    "percent_off": "Wir reduzieren dein erstes Jahresabonnement um {percent}%!"
                 },
                 "currencies": {
                     "eur": "EUR",
@@ -1506,7 +1509,6 @@ export default {
                 "fields": {
                     "active_since": "aktiv seit",
                     "active_until": "aktiv bis",
-                    "billed_monthly": "Monatlich abgerechnet",
                     "billing": "Abrechnung",
                     "currency": "Abrechnungswährung",
                     "payment_method": "Zahlungsmethode",
@@ -1546,6 +1548,7 @@ export default {
                 "sub_status": "Abonnementinformationen",
                 "subscription": {
                     "actions": {
+                        "cancel": "Abonnement beenden",
                         "downgrading": "Bitte kontaktieren Sie uns für ein Downgrade",
                         "rollback": "Wechseln Sie zu Kobold",
                         "subscribe": "Wechseln Sie zu {tier} monatlich",
@@ -1593,7 +1596,6 @@ export default {
         },
         "conversations": {
             "create": {
-                "description": "Erstelle eine neue Unterhaltung",
                 "success": "Unterhaltung {name} erstellt.",
                 "title": "Neue Unterhaltung"
             },
@@ -1601,7 +1603,6 @@ export default {
                 "success": "Unterhaltung {name} gelöscht."
             },
             "edit": {
-                "description": "Aktualisiere die Unterhaltung",
                 "success": "Unterhaltung '{name}' aktualisiert.",
                 "title": "Unterhaltung {name}"
             },
@@ -1618,7 +1619,6 @@ export default {
             },
             "index": {
                 "add": "Neue Unterhaltung",
-                "description": "Verwalte die Kategorie von {name}.",
                 "header": "Unterhaltungen in {name}",
                 "title": "Unterhaltungen"
             },
@@ -1636,7 +1636,6 @@ export default {
                 "create": {
                     "success": "Teilnehmer {entity} zu Unterhaltung hinzugefügt."
                 },
-                "description": "Entferne oder füge Teilnehmer einer Unterhaltung hinzu",
                 "destroy": {
                     "success": "Teilnehmer {entity} von Unterhaltung entfernt."
                 },
@@ -1648,7 +1647,6 @@ export default {
                 "type": "Im Spiel, Vorbereitung, Handlung"
             },
             "show": {
-                "description": "Eine Detailansicht einer Unterhaltung",
                 "is_closed": "Unterhaltung geschlossen",
                 "title": "Unterhaltung {name}"
             },
@@ -1680,14 +1678,11 @@ export default {
                 "go_to": "Gehe zu {name}",
                 "json-export": "Export (json)",
                 "manage_links": "Links verwalten",
-                "more": "Mehr Aktionen",
                 "move": "Verschieben",
                 "new": "Neu",
                 "new_post": "Neue Objektnotiz",
                 "next": "Weiter",
                 "print": "Drucken",
-                "private": "Privat",
-                "public": "Öffentlich",
                 "reset": "Zurücksetzen",
                 "transform": "Umwandeln"
             },
@@ -1733,6 +1728,7 @@ export default {
                 "success": {
                     "copy_to_campaign": "{1} {count} der in {campaign} kopierten Objekte. | [2, *] {count}  der in {campaign} kopierten Objekte.",
                     "editing": "{1} {count} objekt wurde aktualisiert. | [2, *] {count} objekte wurden aktualisiert.",
+                    "editing_partial": "{1} {count}/{total} Objekt wurde aktualisiert.|[2,*] {count}/{total} Objekte wurden aktualisiert.",
                     "permissions": "{1} Berechtigungen für {count} Objekt geändert.|Berechtigungen für {count} Objekte geändert.",
                     "private": "{1} {count} Objekt ist jetzt privat.|{count} Objekte sind jetzt privat.",
                     "public": "{1} {count} Objekt ist jetzt sichtbar.|{count} Objekte sind jetzt sichtbar.",
@@ -1772,6 +1768,7 @@ export default {
             "errors": {
                 "boosted": "Diese Funktion ist nur für geboostete Kampagnen verfügbar.",
                 "boosted_campaigns": "Diese Funktion ist nur für {boosted} verfügbar",
+                "cannot_move_node_into_itself": "Das  ausgewählte übergeordnete Objekt ist ungültig. Dies könnte darauf zurückzuführen sein, dass es dieses Objekt als übergeordnetes Element hat.",
                 "node_must_not_be_a_descendant": "Ungültiges Objekt (Kategorie, Ort): es würde ein Nachkomme von sich selbst sein.",
                 "unavailable_feature": "nicht verfügbare Eigenschaft"
             },
@@ -1792,7 +1789,8 @@ export default {
                 "copy_attributes": "Kopiere Attribute",
                 "copy_inventory": "Kopiere Inventar",
                 "copy_links": "Kopiere Objekt Links",
-                "copy_notes": "Kopiere Objektnotizen",
+                "copy_permissions": "Berechtigungen kopieren (dies überschreibt die auf der Registerkarte Berechtigungen festgelegten Werte)",
+                "copy_posts": "Beiträge kopieren (dies umfasst die Berechtigungen für Beiträge)",
                 "creator": "Ersteller",
                 "dice_roll": "Würfelwürf",
                 "entity": "Objekt",
@@ -1804,6 +1802,7 @@ export default {
                 "files": "Dateien",
                 "gallery_header": "Galerie-Header",
                 "gallery_image": "Galerie Bild",
+                "has_attributes": "Hat Attribute",
                 "has_entity_files": "Hat Objektdateien",
                 "has_entity_notes": "Hat Objektnotizen",
                 "has_image": "hat ein Bild",
@@ -1811,7 +1810,7 @@ export default {
                 "image": "Bild",
                 "is_closed": "Die Konversation wird geschlossen und es werden keine neuen Nachrichten mehr akzeptiert.",
                 "is_private": "Privat",
-                "is_private_v2": "Zeigen Sie dies nur Mitgliedern der Kampagne {admin}-role",
+                "is_private_v3": "Zeigen Sie dies nur Mitgliedern der Rolle {admin}-role an. Dies überschreibt alle anderen Berechtigungen.",
                 "is_star": "Angepinnt",
                 "item": "Gegenstand",
                 "journal": "Tagebuch",
@@ -1856,6 +1855,16 @@ export default {
                 "direct": "Filter um nur direkte Unterobjekte zu sehen",
                 "filtered": "Zeige {count} von {total} {entity}.",
                 "hide": "Verstecken",
+                "lists": {
+                    "desktop": {
+                        "all": "Zeige alle Nachkommen ({count})",
+                        "filtered": "Zeige direkte Nachkommen ({count})"
+                    },
+                    "mobile": {
+                        "all": "Zeige alle ({count})",
+                        "filtered": "Zeige direkte ({count})"
+                    }
+                },
                 "mobile": {
                     "clear": "Löschen",
                     "copy": "Clipboard"
@@ -1892,17 +1901,17 @@ export default {
                 "header_image": "Dieses Bild wird über dem Objekt platziert. Verwenden Sie ein breites Bild, um optimale Ergebnisse zu erzielen.",
                 "image_limitations": "Unterstützte Formate: {formats}. Maximale Dateigröße: {size}.",
                 "image_patreon": "Erhöhe das Limit indem du uns bei Patreon unterstützt.",
-                "is_private": "Vor 'Zuschauern' verbergen",
+                "image_recommendation": "empfohlene Abmaße: {width} by {height} px.",
                 "is_star": "Angepinnte Objekte erscheinen im Objektmenü.",
                 "tooltip": "Ersetzen Sie die automatisch generierte Kurzinfo durch den folgenden Inhalt.",
                 "visibility": "Wenn die Sichtbarkeit auf Admin festgelegt wird, können dies nur Mitglieder in der Rolle Admin sehen. Wird es auf \"Selbst\" gesetzt, kannst es nur du sehen."
             },
             "history": {
-                "created": "Erstellt von <strong>{name}</strong> <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>",
-                "created_date": "Erstelle <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>",
+                "created_clean": "Erstellt von {name} {date}",
+                "created_date_clean": "Erstellt {date}",
                 "unknown": "Unbekannt",
-                "updated": "Zuletzt aktualisiert von <strong>{name}</strong> <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>",
-                "updated_date": "Letzte Änderung <span data-toggle = \"tooltip\" title = \": realdate\">: Datum </ span>",
+                "updated_clean": "Zuletzt bearbeitet von {name} {date}",
+                "updated_date_clean": "Zuletzt bearbeitet {date}",
                 "view": "Zeige Objektprotokoll"
             },
             "image": {
@@ -1913,34 +1922,11 @@ export default {
             "legacy": "Erbe",
             "linking_help": "Wie kann ich zu anderen Objekten verlinken?",
             "manage": "Verwalten",
-            "move": {
-                "description": "Verschiebe diese Objekt an einen anderen Ort",
-                "errors": {
-                    "permission": "Du hast keine Berechtigung, Objekte diesen Typs in dieser Kampagne zu erstellen.",
-                    "same_campaign": "Du musst eine andere Kampagne auswählen, in welche du das Objekt verschieben willst.",
-                    "unknown_campaign": "Unbekannte Kampagne."
-                },
-                "fields": {
-                    "campaign": "Neue Kampagne",
-                    "copy": "Erstelle Kopie",
-                    "target": "Neuer Typ"
-                },
-                "hints": {
-                    "campaign": "Du kannst auch versuchen, dieses Objekt in eine andere Kampagne zu verschieben.",
-                    "copy": "Wähle diese Option, wenn du eine Kopie in der neuen Kampagne erstellen willst.",
-                    "target": "Bitte beachte, das einige Daten verloren gehen können, wenn ein Objekt von einem Typ zu einem anderen verschoben wird."
-                },
-                "panels": {
-                    "change": "Objekttyp ändern",
-                    "move": "Verschiebe in eine andere Kampagne"
-                },
-                "success": "Objekt '{name}' verschoben",
-                "success_copy": "Objekt '{name}' kopiert",
-                "title": "Verschiebe {name} an einen anderen Ort"
-            },
+            "move": [],
             "navigation": {
                 "cancel": "Abbrechen",
-                "or_cancel": "oder {cancel}"
+                "or_cancel": "oder {cancel}",
+                "skip_to_content": "Navigation überspringen"
             },
             "new_entity": {
                 "error": "Bitte überprüfe deine Eingabe.",
@@ -1949,7 +1935,6 @@ export default {
                 },
                 "title": "Neues Objekt"
             },
-            "or_cancel": "oder <a href=\"{url}\">abbrechen</a>",
             "panels": {
                 "appearance": "Aussehen",
                 "attribute_template": "Attributsvorlage",
@@ -1986,7 +1971,6 @@ export default {
                 },
                 "helper": "Benutze dieses Interface um die Berechtigungen von Nutzern und Rollen mit diesem Objekt  fein zu justieren.",
                 "helpers": {
-                    "entity_note": "Ermöglichen Sie Benutzern das Erstellen von Objektnotizen für dieses Objekt. Ohne diese Berechtigung können sie weiterhin Objekt Notizen sehen, die auf Sichtbarkeit Alle eingestellt sind.",
                     "setup": "Verwenden Sie diese Schnittstelle, um zu optimieren, wie Rollen und Benutzer mit diesem Objekt interagieren können. {allow} ermöglicht dem Benutzer oder der Rolle, diese Aktion auszuführen. {deny} wird ihnen diese Handlung verweigern. {inherit} verwendet die Berechtigung des Benutzers oder der Hauptrolle. Ein Benutzer, der auf {allow} eingestellt ist, kann die Aktion ausführen, auch wenn seine Rolle auf {deny} eingestellt ist."
                 },
                 "inherited": "Für diese Rolle ist die Berechtigung für diesen Objekttyp bereits festgelegt.",
@@ -2057,9 +2041,13 @@ export default {
                 "quests": "Abenteuer",
                 "relations": "Beziehungen",
                 "reminders": "Erinnerungen",
-                "story": "Geschichte",
+                "story": "Übersicht",
                 "timelines": "Zeitstrahlen",
                 "tooltip": "Kurztip"
+            },
+            "tooltips": {
+                "boosted_feature": "boost Kampagnenfunktion",
+                "new_post": "Fügen Sie diesem Objekt einen neuen Beitrag hinzu."
             },
             "update": "Bearbeiten",
             "users": {
@@ -2124,10 +2112,10 @@ export default {
                     "connect": "Connect",
                     "remove": "Remove"
                 },
-                "benefits": "Kanka provides a few integration to third party services. More third party integrations are planned for the future.",
+                "benefits": "Kanka provides a few integrations to third party services. More third party integrations are planned for the future.",
                 "discord": {
                     "errors": {
-                        "add": "An error occurred linking up your Discord account with Kanka. Please try again."
+                        "add": "An error occurred linking up your Discord account with Kanka. Please try again. If this keeps happening, please be aware that Discord has a limit on 100 joined servers when using their APIs."
                     },
                     "success": {
                         "add": "Your Discord account has been linked.",
@@ -2258,7 +2246,6 @@ export default {
             },
             "patreon": {
                 "deprecated": "Deprecated feature - if you wish to support Kanka, please do so with a {subscription}. Patreon linking is still active for our Patrons who have linked their account before the move away from Patreon.",
-                "description": "Syncing with Patreon",
                 "pledge": "Pledge: {name}",
                 "remove": {
                     "button": "Unlink your Patreon account",
@@ -2290,15 +2277,28 @@ export default {
                     "title": "Edit Payment Method"
                 },
                 "cancel": {
+                    "options": {
+                        "competitor": "Switching to a competitor",
+                        "custom": "Other (please specify)",
+                        "financial": "Financial situation changed",
+                        "missing_features": "Missing features",
+                        "not_using": "Not currently using Kanka"
+                    },
                     "text": "Sorry to see you go! Cancelling your subscription will keep it active until your next billing cycle, after which you will lose your campaign boosts and other benefits related to supporting Kanka. Feel free to fill out the following form to inform us what we can do better, or what lead to your decision."
                 },
                 "cancelled": "Your subscription has been cancelled. You can renew a subscription once your current subscription ends.",
                 "change": {
                     "text": {
                         "monthly": "You are subscribing at the {tier} tier, billed monthly for {amount}.",
-                        "yearly": "You are subscribing at the {tier} tier, billed annualy for {amount}."
+                        "yearly": "You are subscribing at the {tier} tier, billed annually for {amount}."
                     },
                     "title": "Change Subscription Tier"
+                },
+                "coupon": {
+                    "check": "Check promo code",
+                    "invalid": "Invalid promotional code.",
+                    "label": "Promotional code",
+                    "percent_off": "We will discount your first yearly subscription by {percent}%!"
                 },
                 "currencies": {
                     "eur": "EUR",
@@ -2322,7 +2322,7 @@ export default {
                 },
                 "helpers": {
                     "alternatives": "Pay for your subscription using {method}. This payment method won't auto-renew at the end of your subscription. {method} is only available in Euros.",
-                    "alternatives_warning": "Upgrading your subscription when using this method is not possible. Please create a new subscription when your current one ends.",
+                    "alternatives_warning": "Upgrading your subscription when using this method is not possible. Please subscribe again when your current one ends.",
                     "alternatives_yearly": "Due to the restrictions surrounding recurring payments, {method} is only available for yearly subscriptions"
                 },
                 "manage_subscription": "Manage subscription",
@@ -2353,6 +2353,7 @@ export default {
                 "sub_status": "Subscription information",
                 "subscription": {
                     "actions": {
+                        "cancel": "Cancel subscription",
                         "downgrading": "Please contact us for downgrading",
                         "rollback": "Change to Kobold",
                         "subscribe": "Change to {tier} monthly",
@@ -2400,7 +2401,6 @@ export default {
         },
         "conversations": {
             "create": {
-                "description": "Create a new conversation",
                 "success": "Conversation '{name}' created.",
                 "title": "New Conversation"
             },
@@ -2408,7 +2408,6 @@ export default {
                 "success": "Conversation '{name}' removed."
             },
             "edit": {
-                "description": "Update the conversation",
                 "success": "Conversation '{name}' updated.",
                 "title": "Conversation {name}"
             },
@@ -2425,7 +2424,6 @@ export default {
             },
             "index": {
                 "add": "New Conversation",
-                "description": "Manage the category of {name}.",
                 "header": "Conversations in {name}",
                 "title": "Conversations"
             },
@@ -2443,7 +2441,6 @@ export default {
                 "create": {
                     "success": "Participant {entity} added to the conversation."
                 },
-                "description": "Add or remove participants of a conversation",
                 "destroy": {
                     "success": "Participant {entity} removed from the conversation."
                 },
@@ -2455,7 +2452,6 @@ export default {
                 "type": "In Game, Prep, Plot"
             },
             "show": {
-                "description": "A detailed view of a conversation",
                 "is_closed": "Conversation is closed.",
                 "title": "Conversation {name}"
             },
@@ -2468,7 +2464,9 @@ export default {
                 "members": "Members"
             }
         },
-        "emails": [],
+        "emails": {
+            "subscriptions": []
+        },
         "admin": [],
         "timelines": [],
         "attributes": [],
@@ -2577,6 +2575,7 @@ export default {
             "errors": {
                 "boosted": "This feature is only available to boosted campaigns.",
                 "boosted_campaigns": "This feature is only available for {boosted}.",
+                "cannot_move_node_into_itself": "The selected parent entity is invalid. This could be due to it having this entity as the parent.",
                 "node_must_not_be_a_descendant": "Invalid node (tag, parent location): it would be a descendant of itself.",
                 "unavailable_feature": "Unavailable feature"
             },
@@ -2597,7 +2596,8 @@ export default {
                 "copy_attributes": "Copy Attributes",
                 "copy_inventory": "Copy Inventory",
                 "copy_links": "Copy Entity Links",
-                "copy_notes": "Copy Posts",
+                "copy_permissions": "Copy Permissions (this will override values set in the permissions tab)",
+                "copy_posts": "Copy Posts (this includes the posts permissions)",
                 "creator": "Creator",
                 "dice_roll": "Dice Roll",
                 "entity": "Entity",
@@ -2609,6 +2609,7 @@ export default {
                 "files": "Files",
                 "gallery_header": "Gallery Header",
                 "gallery_image": "Gallery Image",
+                "has_attributes": "Has attributes",
                 "has_entity_files": "Has entity files",
                 "has_entity_notes": "Has posts",
                 "has_image": "Has an image",
@@ -2616,7 +2617,7 @@ export default {
                 "image": "Image",
                 "is_closed": "Conversation will be closed and will no longer accept new messages.",
                 "is_private": "Private",
-                "is_private_v2": "Only show this to members of the campaign's {admin}-role. This overrides any other permission.",
+                "is_private_v3": "Only show this to members of the {admin}-role role. This overrides any other permission.",
                 "is_star": "Pinned",
                 "item": "Item",
                 "journal": "Journal",
@@ -2696,7 +2697,8 @@ export default {
                 "copy_options": "Copy Options"
             },
             "helpers": {
-                "copy_options": "Copy the following related elements from the source to the new entity."
+                "copy_options": "Copy the following related elements from the source to the new entity.",
+                "linking": "Linking to other entities"
             },
             "hidden": "Hidden",
             "hints": {
@@ -2707,30 +2709,31 @@ export default {
                 "header_image": "This image is placed above the entity. For best results, use a wide image.",
                 "image_limitations": "Supported formats: {formats}. Max file size: {size}.",
                 "image_patreon": "Increase file size limit?",
-                "is_private": "If set to private, this entity will only be visible to members who are in the campaign's \"Admin\" role.",
-                "is_star": "Pinned elements will appear on the entity's story page.",
+                "image_recommendation": "Recommended dimensions: {width} by {height} px.",
+                "is_star": "Pinned elements will appear on the entity's overview page.",
                 "tooltip": "Replace the automatically generated tooltip with the following contents. Any HTML code will be stripped, but you can still mention other entities using advanced mentions.",
                 "visibility": "Setting the visibility to admin means only members in the Admin campaign role can view this. Setting it to self means only you can view this."
             },
             "history": {
-                "created": "Created by <strong>{name}</strong> <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>",
-                "created_date": "Created <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>",
+                "created_clean": "Created by {name} {date}",
+                "created_date_clean": "Created {date}",
                 "unknown": "Unknown",
-                "updated": "Last modified by <strong>{name}</strong> <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>",
-                "updated_date": "Last modified <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>",
+                "updated_clean": "Last modified by {name} {date}",
+                "updated_date_clean": "Last modified {date}",
                 "view": "View entity log"
             },
             "image": {
                 "error": "We weren't able to get the image you requested. It could be that the website doesn't allow us to download the image (typically for Squarespace and DeviantArt), or that the link is no longer valid. Please also make sure that the image isn't larger than {size}."
             },
             "is_not_private": "This entity isn't currently set to private.",
-            "is_private": "This entity is private and only visible to members of the Admin role.",
+            "is_private": "This entity is private and only visible to members of the campaign's Admin role.",
             "legacy": "Legacy",
             "linking_help": "How can I link to other entities?",
             "manage": "Manage",
             "navigation": {
                 "cancel": "cancel",
-                "or_cancel": "or {cancel}"
+                "or_cancel": "or {cancel}",
+                "skip_to_content": "Skip navigation"
             },
             "new_entity": {
                 "error": "Please review your values.",
@@ -2781,7 +2784,7 @@ export default {
                 "inherited_by": "This user is part of the '{role}' role which grants this permissions on this entity type.",
                 "success": "Permissions saved.",
                 "title": "Permissions",
-                "too_many_members": "This campaign has too many members (>10) to display in this interface. Please use the Permission button on the entity view to control permissions in detail."
+                "too_many_members": "This campaign has too many members (>{number}) to display in this interface. Please use the Permission button on the entity view to control permissions in detail."
             },
             "placeholders": {
                 "ability": "Choose an ability",
@@ -2845,9 +2848,13 @@ export default {
                 "quests": "Quests",
                 "relations": "Relations",
                 "reminders": "Reminders",
-                "story": "Story",
+                "story": "Overview",
                 "timelines": "Timelines",
                 "tooltip": "Tooltip"
+            },
+            "tooltips": {
+                "boosted_feature": "Boosted campaign feature",
+                "new_post": "Add a new post to this entity."
             },
             "update": "Update",
             "users": {
@@ -2862,6 +2869,8 @@ export default {
                 "self": "Self"
             }
         },
+        "users": [],
+        "tutorials": [],
         "campaigns": [],
         "front": {
             "features": []
@@ -3050,7 +3059,6 @@ export default {
             },
             "patreon": {
                 "deprecated": "Funcionalidad obosleta. Si deseas apoyar a Kanka, puedes hacerlo mediante una {subscription}. La vinculación con Patreon aún sigue activa para nuestros Patrons que vincularon sus cuentas antes de la mudanza de Patreon.",
-                "description": "Sincronizando con Patreon",
                 "pledge": "Pledge {name}",
                 "remove": {
                     "button": "Desvincular mi cuenta de Patreon",
@@ -3091,6 +3099,12 @@ export default {
                         "yearly": "Estás suscribiéndote al nivel {tier}, que cuesta {amount} anuales."
                     },
                     "title": "Cambiar nivel de suscripción"
+                },
+                "coupon": {
+                    "check": "Ver código promocional",
+                    "invalid": "Código promocional no válido.",
+                    "label": "Código promocional",
+                    "percent_off": "¡Tendrás un descuento del {percent}% en tu primera suscripción anual!"
                 },
                 "currencies": {
                     "eur": "Euros",
@@ -3192,7 +3206,6 @@ export default {
         },
         "conversations": {
             "create": {
-                "description": "Crear nueva conversación",
                 "success": "Conversación \"{name}\" creada.",
                 "title": "Nueva Conversación"
             },
@@ -3200,7 +3213,6 @@ export default {
                 "success": "Conversación \"{name}\" eliminada."
             },
             "edit": {
-                "description": "Actualizar la conversación",
                 "success": "Conversación \"{name}\" actualizada.",
                 "title": "Conversación {name}"
             },
@@ -3217,7 +3229,6 @@ export default {
             },
             "index": {
                 "add": "Nueva conversación",
-                "description": "Gestiona las conversaciones de {name}.",
                 "header": "Conversaciones de {name}",
                 "title": "Conversaciones"
             },
@@ -3235,7 +3246,6 @@ export default {
                 "create": {
                     "success": "El participante {entity} se ha añadido a la conversación."
                 },
-                "description": "Añadir o eliminar participantes de una conversación",
                 "destroy": {
                     "success": "El participante {entity} se ha eliminado de la conversación."
                 },
@@ -3247,7 +3257,6 @@ export default {
                 "type": "Dentro del juego, Preparación, Argumento..."
             },
             "show": {
-                "description": "Vista detallada de conversación",
                 "is_closed": "La conversación se ha cerrado.",
                 "title": "Conversación {name}"
             },
@@ -3369,6 +3378,7 @@ export default {
             "errors": {
                 "boosted": "Esta función solo está disponible para las campañas mejoradas.",
                 "boosted_campaigns": "Esta funcionalidad solo está disponible para las {boosted}.",
+                "cannot_move_node_into_itself": "La entidad superior seleccionada no es válida. Comprueba que no sea la hija de esta entidad.",
                 "node_must_not_be_a_descendant": "Nodo inválido (etiqueta, localización superior): sería un descendiente de sí mismo.",
                 "unavailable_feature": "Funcionalidad no disponible"
             },
@@ -3382,13 +3392,15 @@ export default {
                 "calendar": "Calendario",
                 "calendar_date": "Fecha del calendario",
                 "character": "Personaje",
+                "child": "Hijo",
                 "closed": "Cerrado",
                 "colour": "Color",
                 "copy_abilities": "Copiar habilidades",
                 "copy_attributes": "Copiar atributos",
                 "copy_inventory": "Copiar inventario",
                 "copy_links": "Copiar notas de entidad",
-                "copy_notes": "Copiar notas de la entidad",
+                "copy_permissions": "Copiar permisos (esto anulará los valores que hayas configurado en la pestaña de permisos)",
+                "copy_posts": "Copiar publicaciones (esto incluye los permisos de cada publicación)",
                 "creator": "Creador",
                 "dice_roll": "Tirada de dados",
                 "entity": "Entidad",
@@ -3400,6 +3412,7 @@ export default {
                 "files": "Archivos",
                 "gallery_header": "Cabecera de la galería",
                 "gallery_image": "Imagen de la galería",
+                "has_attributes": "Tiene atributos",
                 "has_entity_files": "Tiene archivos",
                 "has_entity_notes": "Tiene notas de entidad",
                 "has_image": "Tiene imagen",
@@ -3407,7 +3420,7 @@ export default {
                 "image": "Imagen",
                 "is_closed": "La conversación se cerrará y no aceptará más mensajes nuevos.",
                 "is_private": "Privado",
-                "is_private_v2": "Muestra esto solo a miembros del {admin}-role.",
+                "is_private_v3": "Muestra esto solo a miembros del rol {admin}-role. Esto anula cualquier otro permiso.",
                 "is_star": "Fijada",
                 "item": "Objeto",
                 "journal": "Diario",
@@ -3498,17 +3511,17 @@ export default {
                 "header_image": "Esta imagen está situada sobre la entidad. Para obtener mejores resultados, usa una imagen apaisada.",
                 "image_limitations": "Formatos soportados: {formats}. Tamaño máximo del archivo: {size}.",
                 "image_patreon": "¿Cómo se puede aumentar el tamaño máximo de los archivos?",
-                "is_private": "Si es privada, esta entidad solo se mostrará a los miembros de la campaña que tengan el rol \"Admin\".",
+                "image_recommendation": "Dimensiones recomendadas: {width} por {height} px.",
                 "is_star": "Los elementos fijados aparecerán en el menú principal de la entidad.",
                 "tooltip": "Reemplaza la descripción emergente automática con el siguiente contenido.",
                 "visibility": "Al seleccionar \"Administrador\", solo los miembros con el rol de administrador podrán ver esto. \"Solo yo\" significa que solo tú puedes ver esto."
             },
             "history": {
-                "created": "Creado por <strong>{name}</strong> <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>",
-                "created_date": "Creado el <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>",
+                "created_clean": "Creado por {name} el {date}",
+                "created_date_clean": "Creado el {date}",
                 "unknown": "Desconocido",
-                "updated": "Última modificación por <strong>{name}</strong> <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>",
-                "updated_date": "Última modificación <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>",
+                "updated_clean": "Última modificación por {name} el {date}",
+                "updated_date_clean": "Última modificación el {date}",
                 "view": "Historial de cambios de la entidad"
             },
             "image": {
@@ -3522,7 +3535,8 @@ export default {
             "move": [],
             "navigation": {
                 "cancel": "cancelar",
-                "or_cancel": "o {cancel}"
+                "or_cancel": "o {cancel}",
+                "skip_to_content": "Saltar navegación"
             },
             "new_entity": {
                 "error": "Revisa los datos introducidos.",
@@ -3640,6 +3654,10 @@ export default {
                 "story": "Historia",
                 "timelines": "Líneas de tiempo",
                 "tooltip": "Descripción emergente"
+            },
+            "tooltips": {
+                "boosted_feature": "Funcionalidad de campaña mejorada",
+                "new_post": "Añadir un post a esta entidad."
             },
             "update": "Actualizar",
             "users": {
@@ -3827,7 +3845,6 @@ export default {
             },
             "patreon": {
                 "deprecated": "Fonction obsolète - si tu souhaites supporter Kanka, fais-le avec un abonnement. La liaison Patreon est toujours active pour nos Patrons qui ont lié leur compte avant le changement d'abonnement.",
-                "description": "Synchronisation avec Patreon",
                 "pledge": "Pledge: {name}",
                 "remove": {
                     "button": "Délier le compte Patreon",
@@ -3859,6 +3876,13 @@ export default {
                     "title": "Modifier la méthode de paiement"
                 },
                 "cancel": {
+                    "options": {
+                        "competitor": "Passer à un concurrent",
+                        "custom": "Autre (merci de spécifier)",
+                        "financial": "Situation financière à changé",
+                        "missing_features": "Fonctionnalités manquantes",
+                        "not_using": "N'utilise pas actuellement Kanka"
+                    },
                     "text": "Désolé de te voir partir! L'annulation de ton abonnement le gardera actif jusqu'au la fin du mois payé, après quoi tu perdras les bonus de ta campagne et les autres avantages liés au soutien de Kanka. N'hésite pas à remplir le formulaire suivant pour nous informer de ce que nous pouvons améliorer, ou ce qui a conduit à ta décision."
                 },
                 "cancelled": "L'abonnement a été annulé. Un nouvel abonnement peut être fait dès que celui-ci arrive à terme.",
@@ -3868,6 +3892,12 @@ export default {
                         "yearly": "Abonnement au niveau {tier}, facturé annuellement pour {amount}."
                     },
                     "title": "Changement d'abonnement"
+                },
+                "coupon": {
+                    "check": "Vérifier",
+                    "invalid": "Code promotionnel invalide.",
+                    "label": "Code promotionnel",
+                    "percent_off": "Nous appliquerons un rabais de {percent}% sur la première année de l'abonnement!"
                 },
                 "currencies": {
                     "eur": "EUR",
@@ -3922,6 +3952,7 @@ export default {
                 "sub_status": "Information d'abonnement",
                 "subscription": {
                     "actions": {
+                        "cancel": "Annuler l'abonnement",
                         "downgrading": "Prière de nous contacter pour un déclassement",
                         "rollback": "Changer à Kobold",
                         "subscribe": "Changer à {tier} mensuel",
@@ -3969,7 +4000,6 @@ export default {
         },
         "conversations": {
             "create": {
-                "description": "Créer une nouvelle conversation",
                 "success": "Conversation '{name}' créée.",
                 "title": "Nouvelle Conversation"
             },
@@ -3977,7 +4007,6 @@ export default {
                 "success": "Conversation '{name}' supprimée."
             },
             "edit": {
-                "description": "Modifier la conversation",
                 "success": "Conversation '{name}' modifiée.",
                 "title": "Conversation {name}"
             },
@@ -3994,7 +4023,6 @@ export default {
             },
             "index": {
                 "add": "Nouvelle Conversation",
-                "description": "Gérer les conversations de {name}.",
                 "header": "Conversations dans {name}",
                 "title": "Conversations"
             },
@@ -4012,7 +4040,6 @@ export default {
                 "create": {
                     "success": "Participant {entity} ajouté à la conversation."
                 },
-                "description": "Ajouter ou retirer des participants à une conversation",
                 "destroy": {
                     "success": "Participant {entity} retiré de la conversation."
                 },
@@ -4024,7 +4051,6 @@ export default {
                 "type": "In Game, Préparation, Quête"
             },
             "show": {
-                "description": "Vue détaillée d'une conversation",
                 "is_closed": "La conversation est fermée.",
                 "title": "Conversation {name}"
             },
@@ -4037,7 +4063,9 @@ export default {
                 "members": "Membres"
             }
         },
-        "emails": [],
+        "emails": {
+            "subscriptions": []
+        },
         "admin": [],
         "timelines": [],
         "attributes": [],
@@ -4146,6 +4174,7 @@ export default {
             "errors": {
                 "boosted": "Cette fonctionnalité n'est accessible qu'aux campagnes boostées..",
                 "boosted_campaigns": "Cette fonctionnalité n'est que disponible que pour les {boosted}.",
+                "cannot_move_node_into_itself": "Le parent sélectionné est invalide. Cela peut être causé par le parent ayant cette entité comme parent.",
                 "node_must_not_be_a_descendant": "Node invalide (étiquette, lieu parent): l'entité serait un descendant de lui-même.",
                 "unavailable_feature": "Fonctionnalité indisponible"
             },
@@ -4166,7 +4195,8 @@ export default {
                 "copy_attributes": "Copier les attributs",
                 "copy_inventory": "Copier l'inventaire",
                 "copy_links": "Copier les liens d'entité",
-                "copy_notes": "Copier les notes d'entité",
+                "copy_permissions": "Copier les permissions (cela ignore les permissions définies dans l'onglet de permissions)",
+                "copy_posts": "Copier les notes (cela inclus les permissions des notes)",
                 "creator": "Créateur",
                 "dice_roll": "Jet de dés",
                 "entity": "Entité",
@@ -4178,6 +4208,7 @@ export default {
                 "files": "Fichiers",
                 "gallery_header": "Entête de gallerie",
                 "gallery_image": "Galerie d'image",
+                "has_attributes": "Possède des attributs",
                 "has_entity_files": "Possède des fichiers",
                 "has_entity_notes": "Possède des notes",
                 "has_image": "Possède une image",
@@ -4185,7 +4216,7 @@ export default {
                 "image": "Image",
                 "is_closed": "La conversation est fermée et n'acceptera plus de nouveau messages.",
                 "is_private": "Privé",
-                "is_private_v2": "Seulement afficher ceci aux membres du {admin}-role de la campagne.",
+                "is_private_v3": "Seulement afficher cet élément aux membres du rôle {admin}-role. Cette option remplace toutes autres permissions.",
                 "is_star": "Epinglé",
                 "item": "Objet",
                 "journal": "Journal",
@@ -4265,7 +4296,8 @@ export default {
                 "copy_options": "Option de copie"
             },
             "helpers": {
-                "copy_options": "Copier les éléments liés suivant de la source à la nouvelle entité."
+                "copy_options": "Copier les éléments liés suivant de la source à la nouvelle entité.",
+                "linking": "Lier d'autres entités"
             },
             "hidden": "Caché",
             "hints": {
@@ -4276,17 +4308,17 @@ export default {
                 "header_image": "Cette image s'affiche au-delà de l'entité. Les images larges mènent a un meilleur résultat.",
                 "image_limitations": "Formats supportés: {formats}. Taille maximale: {size}.",
                 "image_patreon": "Augmenter la taille limite?",
-                "is_private": "Cacher des membres de type non-Admin",
+                "image_recommendation": "Dimensions recommandées: {width} par {height} px.",
                 "is_star": "Les éléments épinglés sont affichés sur le menu de l'entité.",
                 "tooltip": "Remplace l'infobulle automatiquement généré avec le texte ci-dessous.",
                 "visibility": "Si la visibilité est définie à Admin, seuls les membres du rôle Admin de la campagne verront ceci. La visibilité \"Soi-même\" signifie que tu es le seul à le voir."
             },
             "history": {
-                "created": "Créé par <strong>{name}</strong> <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>",
-                "created_date": "Créé <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>",
+                "created_clean": "Créé par {name} {date}",
+                "created_date_clean": "Créé {date}",
                 "unknown": "Inconnu",
-                "updated": "Dernière modification par <strong>{name}</strong> <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>",
-                "updated_date": "Dernière modification <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>",
+                "updated_clean": "Dernière modification par {name} {date}",
+                "updated_date_clean": "Dernière modification {date}",
                 "view": "Visionner les journaux de l'entité"
             },
             "image": {
@@ -4299,7 +4331,8 @@ export default {
             "manage": "Gérer",
             "navigation": {
                 "cancel": "annuler",
-                "or_cancel": "ou {cancel}"
+                "or_cancel": "ou {cancel}",
+                "skip_to_content": "Aller au contenu"
             },
             "new_entity": {
                 "error": "Vérifier les valeurs.",
@@ -4418,6 +4451,10 @@ export default {
                 "timelines": "Chronologies",
                 "tooltip": "Infobulle"
             },
+            "tooltips": {
+                "boosted_feature": "Fonctionnalité de campagne boostée",
+                "new_post": "Ajouter un nouveau post à cette entité."
+            },
             "update": "Modifier",
             "users": {
                 "unknown": "Inconnu"
@@ -4431,6 +4468,7 @@ export default {
                 "self": "Soi-même"
             }
         },
+        "users": [],
         "campaigns": [],
         "front": {
             "features": []
@@ -4604,7 +4642,6 @@ export default {
             },
             "patreon": {
                 "deprecated": "Funcionalidade obsoleta - se desexas apoiar a Kanka, por favor, faino con unha subscripción. A ligazón de contas de Patreon aínda está activa para as persoas que ligaron a súa conta previamente a que deixásemos de usar Patreon.",
-                "description": "Sincronizando con Patreon",
                 "pledge": "Pledge {name}",
                 "remove": {
                     "button": "Desligar a túa conta de Patreon",
@@ -4636,6 +4673,13 @@ export default {
                     "title": "Editar método de pagamento"
                 },
                 "cancel": {
+                    "options": {
+                        "competitor": "Marcho á competencia",
+                        "custom": "Outra (por favor, especifique)",
+                        "financial": "Cambio a miña situación financieira",
+                        "missing_features": "Faltan funcionalidades",
+                        "not_using": "Non estou usando Kanka"
+                    },
                     "text": "Lamentamos verte marchar! Cancelar a túa subscripción manteraa activa ata o próximio ciclo de facturación, tras o cal perderás todas as túas potenciacións de campaña e outros beneficios ligados a apoiar a Kanka. Podes cubrir o seguinte formulario para informarnos de como podemos mellorar, ou do que causou a túa decisión."
                 },
                 "cancelled": "A túa subscripción foi cancelada. Podes renovala unha vez a subcripción actual termine.",
@@ -4645,6 +4689,12 @@ export default {
                         "yearly": "Estás subscribíndote ao nivel {tier}, pagando {amount} anualmente."
                     },
                     "title": "Cambiar nivel de subscripción"
+                },
+                "coupon": {
+                    "check": "Verificar código promocional",
+                    "invalid": "O código promocional non é válido.",
+                    "label": "Código promocional",
+                    "percent_off": "Descontaremos un {percent}% da túa primeira subscrición anual!"
                 },
                 "currencies": {
                     "eur": "EUR",
@@ -4699,6 +4749,7 @@ export default {
                 "sub_status": "Información da subscripción",
                 "subscription": {
                     "actions": {
+                        "cancel": "Cancelar subscripción",
                         "downgrading": "Por favor, contacta connosco para baixar o nivel da subscripción",
                         "rollback": "Cambiar a Kobold",
                         "subscribe": "Cambiar a {tier} mensual",
@@ -4746,7 +4797,6 @@ export default {
         },
         "conversations": {
             "create": {
-                "description": "Crear unha nova conversa",
                 "success": "Conversa \"{name}\" creada.",
                 "title": "Nova conversa"
             },
@@ -4754,7 +4804,6 @@ export default {
                 "success": "Conversa \"{name}\" eliminada."
             },
             "edit": {
-                "description": "Actualizar a conversa",
                 "success": "Conversa \"{name}\" actualizada.",
                 "title": "Conversa \"{name}\""
             },
@@ -4771,7 +4820,6 @@ export default {
             },
             "index": {
                 "add": "Nova conversa",
-                "description": "Xestiona a categoría de \"{name}\".",
                 "header": "Conversas en \"{name}\"",
                 "title": "Conversas"
             },
@@ -4789,7 +4837,6 @@ export default {
                 "create": {
                     "success": "Participante {entity} engadida á conversa."
                 },
-                "description": "Engade ou elimina participantes da conversa",
                 "destroy": {
                     "success": "Participante {entity} eliminada da conversa."
                 },
@@ -4801,7 +4848,6 @@ export default {
                 "type": "Dentro do xogo, preparación, argumento..."
             },
             "show": {
-                "description": "Vista detallada dunha conversa",
                 "is_closed": "A conversa está pechada.",
                 "title": "Conversa \"{name}\""
             },
@@ -4924,6 +4970,7 @@ export default {
             "errors": {
                 "boosted": "Esta función só está dispoñíbel para campañas potenciadas.",
                 "boosted_campaigns": "Esta función só está dispoñíbel para {boosted}.",
+                "cannot_move_node_into_itself": "A entidade superior seleccionada non é válida. Comproba que non sexa descendente desta entidade.",
                 "node_must_not_be_a_descendant": "Nó inválido (etiqueta, localización nai): sería un descendente de si mesmo.",
                 "unavailable_feature": "Función non dispoñíbel"
             },
@@ -4944,7 +4991,8 @@ export default {
                 "copy_attributes": "Copiar atributos",
                 "copy_inventory": "Copiar inventario",
                 "copy_links": "Copiar ligazóns de entidade",
-                "copy_notes": "Copiar notas de entidade",
+                "copy_permissions": "Copiar permisos (isto sobrescribirá os valores establecidos na lapela de permisos)",
+                "copy_posts": "Copiar entradas (incluíndo os permisos de cada entrada)",
                 "creator": "Creada por",
                 "dice_roll": "Tirada de dados",
                 "entity": "Entidade",
@@ -4956,6 +5004,7 @@ export default {
                 "files": "Arquivos",
                 "gallery_header": "Cabeceira de galería",
                 "gallery_image": "Imaxe de galería",
+                "has_attributes": "Ten atributos",
                 "has_entity_files": "Ten arquivos de entidade",
                 "has_entity_notes": "Ten notas de entidade",
                 "has_image": "Contén unha imaxe",
@@ -4963,7 +5012,7 @@ export default {
                 "image": "Imaxe",
                 "is_closed": "A conversa será pechada e non aceptará novas mensaxes.",
                 "is_private": "Privada",
-                "is_private_v2": "Mostra isto só a integrantes do {admin}-role da campaña. Isto sobrescribe calquer outro permiso.",
+                "is_private_v3": "Mostra isto só a integrantes do rol {admin}-role da campaña. Isto sobrescribe calquera outro permiso.",
                 "is_star": "Fixada",
                 "item": "Obxecto",
                 "journal": "Caderno",
@@ -5054,17 +5103,17 @@ export default {
                 "header_image": "Esta imaxe é situada enriba da entidade. Para obter os mellores resultados, usa unha imaxe ancha.",
                 "image_limitations": "Formatos soportados: {formats}. Tamaño máximo do arquivo: {size}.",
                 "image_patreon": "Queres aumentar o tamaño máximo dos arquivos?",
-                "is_private": "Se está marcada como privada, a entidade será visíbel só para a Administración da campaña.",
+                "image_recommendation": "Dimensións recomendadas: {width} x {height} px.",
                 "is_star": "Os elementos fixados aparecerán no menú da entidade",
                 "tooltip": "Substitúe a previsualización emerxente por defecto polo seguinte contido.",
                 "visibility": "Seleccionando \"Administración\", só a Administración da campaña poderá ver isto. \"Só eu\" significa que só ti poderás velo."
             },
             "history": {
-                "created": "Creada por <strong>{name}</strong> <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>",
-                "created_date": "Creada <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>",
+                "created_clean": "Creada por {name} {date}",
+                "created_date_clean": "Creada {date}",
                 "unknown": "Descoñecido",
-                "updated": "Modificada por última vez por <strong>{name}</strong> <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>",
-                "updated_date": "Modificada por última vez <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>",
+                "updated_clean": "Modificada por última vez por {name} {date}",
+                "updated_date_clean": "Modificada por última vez {date}",
                 "view": "Ver historial de cambios da entidade"
             },
             "image": {
@@ -5078,7 +5127,8 @@ export default {
             "move": [],
             "navigation": {
                 "cancel": "cancelar",
-                "or_cancel": "ou {cancel}"
+                "or_cancel": "ou {cancel}",
+                "skip_to_content": "Saltar navegación"
             },
             "new_entity": {
                 "error": "Por favor, revisa os valores introducidos.",
@@ -5193,9 +5243,13 @@ export default {
                 "quests": "Misións",
                 "relations": "Relacións",
                 "reminders": "Lembretes",
-                "story": "Historia",
+                "story": "Entradas",
                 "timelines": "Liñas temporais",
                 "tooltip": "Previsualización emerxente"
+            },
+            "tooltips": {
+                "boosted_feature": "Funcionalidade de campaña potenciada",
+                "new_post": "Engade unha nova entrada a esta entidade."
             },
             "update": "Actualizar",
             "users": {
@@ -5222,7 +5276,6 @@ export default {
         "calendars": [],
         "conversations": {
             "create": {
-                "description": "צור שיחה חדשה",
                 "success": "השיחה '{name}' נוצרה.",
                 "title": "שיחה חדשה"
             },
@@ -5230,7 +5283,6 @@ export default {
                 "success": "השיחה '{name}' הוסרה."
             },
             "edit": {
-                "description": "עדכן את השיחה",
                 "success": "השיחה '{name}' עודכנה.",
                 "title": "שיחה {name}"
             },
@@ -5246,7 +5298,6 @@ export default {
             },
             "index": {
                 "add": "שיחה חדשה",
-                "description": "ניהול הקטגוריה של {name}.",
                 "header": "שיחות ב{name}",
                 "title": "שיחות"
             },
@@ -5264,7 +5315,6 @@ export default {
                 "create": {
                     "success": "{entity} הוסף לשיחה."
                 },
-                "description": "הוסף או הסר משתתפים",
                 "destroy": {
                     "success": "{entity} הוסר מהשיחה."
                 },
@@ -5276,7 +5326,6 @@ export default {
                 "type": "בתוך המשחק, הכנה, עלילה"
             },
             "show": {
-                "description": "מבט מפורט על שיחה",
                 "title": "שיחה {name}"
             },
             "tabs": {
@@ -5305,7 +5354,6 @@ export default {
                 "character": "דמות",
                 "colour": "צבע",
                 "copy_attributes": "העתק מאפיינים",
-                "copy_notes": "העתק פתקי אובייקט",
                 "creator": "יוצר",
                 "dice_roll": "הטלת קוביה",
                 "entity": "אובייקט",
@@ -5376,12 +5424,7 @@ export default {
                 "copy_options": "העתק הגדרות"
             },
             "hidden": "מוסתר",
-            "history": {
-                "created": "נוצר על ידי <strong>{name}</strong> <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>",
-                "created_date": "נוצר <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>",
-                "updated": "עדכון אחרון על ידי <strong>{name}</strong> <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>",
-                "updated_date": "עדכון אחרון <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>"
-            },
+            "history": [],
             "remove": "הסר",
             "rename": "שנה שם",
             "save": "שמור",
@@ -5585,7 +5628,6 @@ export default {
             },
             "patreon": {
                 "deprecated": "Zastarjela značajka - ako želite podržati Kanku, učinite to putem {subscription}. Patreon povezivanje je i dalje aktivno za one koji su povezali svoj račun prije našeg odlaska iz Patreona.",
-                "description": "Sinkroniziranje s Patreonom",
                 "pledge": "Zalog: {name}",
                 "remove": {
                     "button": "Prekini vezu s Patreon računom",
@@ -5726,7 +5768,6 @@ export default {
         },
         "conversations": {
             "create": {
-                "description": "Kreiraj novi razgovor",
                 "success": "Kreiran razgovor \"{name}\".",
                 "title": "Novi razgovor"
             },
@@ -5734,7 +5775,6 @@ export default {
                 "success": "Uklonjen razgovor \"{name}\"."
             },
             "edit": {
-                "description": "Ažuriraj razgovor",
                 "success": "Ažuriran razgovor \"{name}\".",
                 "title": "Razgovor {name}"
             },
@@ -5751,7 +5791,6 @@ export default {
             },
             "index": {
                 "add": "Novi razgovor",
-                "description": "Upravljanje kategorijom u {name}.",
                 "header": "Razgovori u {name}",
                 "title": "Razgovori"
             },
@@ -5769,7 +5808,6 @@ export default {
                 "create": {
                     "success": "Sudionik {entity} dodan u razgovor."
                 },
-                "description": "Dodavaj ili ukloni sudionika razgovora",
                 "destroy": {
                     "success": "Sudionik {entity} uklonjen iz razgovora."
                 },
@@ -5781,7 +5819,6 @@ export default {
                 "type": "U igri, Priprema, Zaplet"
             },
             "show": {
-                "description": "Detaljan prikaz razgovora",
                 "is_closed": "Razgovor je zatvoren.",
                 "title": "Razgovor {name}"
             },
@@ -5920,7 +5957,6 @@ export default {
                 "copy_attributes": "Kopiraj atribute",
                 "copy_inventory": "Kopiraj Inventar",
                 "copy_links": "Kopiraj Poveznice entiteta",
-                "copy_notes": "Kopiraj entitetske bilješke",
                 "creator": "Tvorac",
                 "dice_roll": "Bacanje kockica",
                 "entity": "Entitet",
@@ -5939,7 +5975,6 @@ export default {
                 "image": "Slika",
                 "is_closed": "Razgovor će biti zatvoren i više neće prihvaćati nove poruke.",
                 "is_private": "Privatno",
-                "is_private_v2": "Pokaži samo članovima kampanje u {admin}-role. Ovo zamjenjuje svako drugo dopuštenje.",
                 "is_star": "Prikvačeno",
                 "item": "Predmet",
                 "journal": "Dnevnik",
@@ -6020,17 +6055,12 @@ export default {
                 "header_image": "Ova se slika postavlja iznad entiteta. Za najbolje rezultate koristite široku sliku.",
                 "image_limitations": "Podržani formati: {formats}. Maksimalna veličina datoteke: {size}.",
                 "image_patreon": "Povećaj ograničenje veličine datoteke?",
-                "is_private": "Ako se postavi na privatno, ovaj će entitet biti vidljiv samo članovima koji su u ulozi kampanje \"Administrator\".",
                 "is_star": "Prikvačeni elementi pojavit će se na izborniku entiteta",
                 "tooltip": "Zamijeni automatski generirani kratki opis sljedećim sadržajem.",
                 "visibility": "Postavljanje vidljivosti na \"Administratori\" znači da će samo članovi kampanje u ulozi Administrator vidjeti ovo. Postavljanje vidljivosti na \"Samo ja\" znači da samo ti vidiš ovo."
             },
             "history": {
-                "created": "Kreirao/la <strong>{name}</strong> <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>",
-                "created_date": "Kreirano <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>",
                 "unknown": "Nepoznato",
-                "updated": "Zadnji/a promijenio/la <strong>{name}</strong> <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>",
-                "updated_date": "Zadnji puta ažurirano <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>",
                 "view": "Pogledaj zapisnik entiteta"
             },
             "image": {
@@ -6192,7 +6222,6 @@ export default {
                     "update_email": "E-mail megváltoztatása",
                     "update_password": "Jelszó megváltoztatása"
                 },
-                "description": "Fiók szerkesztése",
                 "email": "Email-cím megváltoztatása",
                 "email_success": "Az email-címet sikeresen megváltoztattuk",
                 "password": "Jelszó megváltoztatása",
@@ -6206,12 +6235,8 @@ export default {
                 "title": "Fiók"
             },
             "api": {
-                "description": "API beállítások frissítése",
-                "experimental": "Üdvözlünk a Kanka APIkban! Ezek a funkciók még kísérleti állapotban vannak, de elég stabilak kell, hogy legyenek ahhoz, hogy elkezdhess kommunikálni a Kanka APIval. Hozz létre egy Személyes Hozzáférés Tokent, amit az api hívásaidban használhatsz, vagy használd a Kliens Tokent, ha azt szeretnéd, hogy az alkalmazásod hozzáférjen a felhasználó adataihoz.",
-                "help": "A Kanka rövidesen egy teljes REST API-t fog biztosítani, hogy harmadik féltől származó alkalmazások tudjanak csatlakozni hozzá. Az API kulcsok kezelésének részleteiről rövidesen itt olvashatsz.",
                 "helper": "Üdvözlünk a Kankai API-ban. Hozz létre egy Személyes Hozzáférés Tokent, amit az API-kéréseidben használhatsz az információgyűjtésre azokról a kampányokról, amelyekben részt veszel.",
                 "link": "Olvasd el az API dokumentációt",
-                "request_permission": "Jelenleg is dolgozunk egy REST API-n amivel harmadik féltől származó alkalmazások is csatlakozhatnak a Kankához, azonban amíg az utolsó simításokat végezzük rajta, addig korlátozzuk a hozzáférések számát. Ha szeretnél hozzáférni az APIhoz és király alkalmazásokat fejleszteni, amelyek a Kankával kommunikálnak, kérjük, hogy lépj kapcsolatba velünk, és elküldünk minden információt, amire szükséged lehet.",
                 "title": "API"
             },
             "apps": {
@@ -6222,7 +6247,6 @@ export default {
                 "benefits": "A Kanka integrációt nyújt néhány harmadik fél szolgáltatásához. További ilyen integrációkra lehet számítani a jövőben.",
                 "discord": {
                     "errors": {
-                        "0": "1",
                         "add": "Hiba történt a Kanka és a Discord fiókod összekapcsolása során. Kérlek próbáld meg ismét."
                     },
                     "success": {
@@ -6255,7 +6279,6 @@ export default {
                         "superboosted": "Minden szupererősített kampány lehetőség"
                     },
                     "recovery": "A törölt entitások visszaállításának lehetősége {amount} napon belül.",
-                    "second": "Egy kampány Boost-olása az alábbi előnyöket biztosítja:",
                     "superboost": "A szupererősített kampányok 3 megerősítést használnak el, és újabb lehetőségeket adnak a megerősített kampányok lehetőségein felül.",
                     "theme": "Kampány-szintű téma, és egyedi megjelenítési stílus.",
                     "third": "A kampány boost-olásához keresd fel a kampány oldalát, kattints a \"{boost_button}\" gombra, amely a \"{edit_button}\" felett helyezkedik el.",
@@ -6324,7 +6347,6 @@ export default {
                 "title": "Számlák"
             },
             "layout": {
-                "description": "Elrendezési beállítások frissítése",
                 "success": "Az elrendezési beállításokat frissítettük.",
                 "title": "Elrendezés"
             },
@@ -6355,21 +6377,7 @@ export default {
                 "subscription_status": "Előfizetés állapota"
             },
             "patreon": {
-                "actions": {
-                    "link": "Fiókok összekapcsolása",
-                    "view": "Látogasd meg a Kankát a Patreonon!"
-                },
-                "benefits": "A Patreon támogatóink nagyobb képeket tölthetnek fel, segítenek nekünk fedezni a szerverköltségeket, valamint lehetővé teszik, hogy több időt fordíthassunk a Kankán végzett munkánkra.",
-                "benefits_features": "csodálatos képességek",
                 "deprecated": "Elavult funkció - ha támogatni szeretnéd a Kankát, kérlek tedd az {subscription} segítségével. A Patreon-on keresztüli fizetés természetesen aktív marad azon támogatóinknak, akik még az új előfizetési rendszer élesbe állítása előtt kezdték a támogatást.",
-                "description": "Szinkronizálás a Patreonnal",
-                "errors": {
-                    "invalid_token": "Érvénytelen token! A Patreon nem tudta érvényesíteni a kérésed.",
-                    "missing_code": "Hiányzó kód! A Patreon nem küldött vissza kódot, amely a fiókodat azonosítja.",
-                    "no_pledge": "Nincs támogatás! A Patreon azonosította a fiókodat, de nem tud aktív támogatásról."
-                },
-                "link": "Nyomd meg ezt a gombot, ha jelenleg támogatod a Kankát a Patreonon, aktiválva a bónuszaid.",
-                "linked": "Köszönjük, hogy támogatsz minket a Patreonon! A fiókjaid összekapcsoltuk.",
                 "pledge": "{name} támogatási szint",
                 "remove": {
                     "button": "Patreon fiók leválasztása",
@@ -6377,16 +6385,13 @@ export default {
                     "text": "A Patreon fiók leválasztása megszűntet minden bónuszt, a Dicsőségcsarnokbeli jelenléted, kampány boost-ot, és egyéb, a támogatással szerzett funkciókat a Kankán. Fontos megjegyezni, hogy egyik boost-tal kihelyezett tartalmad sem fog elveszni (pl. entitás fejlécek). Amint ismét előfizetővé válasz, újra hozzá fogsz férni ezekhez az adatokhoz, beleértve a lehetőségét, hogy boost-olj, egy korábban boostolt kampányodat.",
                     "title": "A Patreon fiókod leválasztása a Kankáról"
                 },
-                "success": "Köszönjük, hogy támogatsz minket a Patreonon!",
-                "title": "Patreon",
-                "wrong_pledge": "A támogatási szintedet manuálisan állítjuk be, így kérjük, adj nekünk pár napot, hogy megfelelően beállíthassuk. Ha továbbra is helytelennek látod, lépj velünk kapcsolatba."
+                "title": "Patreon"
             },
             "profile": {
                 "actions": {
                     "update_profile": "Profil módosítása"
                 },
                 "avatar": "Profilkép",
-                "description": "Profil módosítása",
                 "success": "A profilodat sikeresen módosítottuk.",
                 "title": "Személyes profil"
             },
@@ -6427,7 +6432,6 @@ export default {
                 "fields": {
                     "active_since": "Előfizetés kezdete",
                     "active_until": "Előfizetés vége",
-                    "billed_monthly": "Havonta számlázva",
                     "billing": "Számlázás",
                     "currency": "Számlázott összeg pénzneme",
                     "payment_method": "Fizetési mód",
@@ -6514,7 +6518,6 @@ export default {
         },
         "conversations": {
             "create": {
-                "description": "Új beszélgetés létrehozása",
                 "success": "'{name}' beszélgetést létrehoztuk.",
                 "title": "Új beszélgetés"
             },
@@ -6522,7 +6525,6 @@ export default {
                 "success": "'{name}' beszélgetést eltávolítottuk."
             },
             "edit": {
-                "description": "A beszélgetés frissítése",
                 "success": "'{name}' beszélgetést frissítettük.",
                 "title": "{name} beszélgetés"
             },
@@ -6539,7 +6541,6 @@ export default {
             },
             "index": {
                 "add": "Új beszélgetés",
-                "description": "{name} kategória kezelése",
                 "header": "Beszélgetés itt: {name}",
                 "title": "Beszélgetés"
             },
@@ -6557,7 +6558,6 @@ export default {
                 "create": {
                     "success": "{entity} résztvevőt hozzáadtuk a beszélgetéshez."
                 },
-                "description": "Résztvevők hozzáadása vagy eltávolítása a beszélgetésből",
                 "destroy": {
                     "success": "{entity} résztvevőt eltávolítottuk a beszélgetésből."
                 },
@@ -6569,7 +6569,6 @@ export default {
                 "type": "Játékbeli, előkészület, cselekmény"
             },
             "show": {
-                "description": "Egy beszélgetés részletes megjelenítése",
                 "is_closed": "A beszélgetést lezártuk.",
                 "title": "{name} beszélgetés"
             },
@@ -6601,13 +6600,10 @@ export default {
                 "go_to": "Ugrás {name} entitáshoz",
                 "json-export": "Exportálás (json)",
                 "manage_links": "Linkek kezelése",
-                "more": "Több művelet",
                 "move": "Mozgatás",
                 "new": "Új",
                 "new_post": "Új entitás bejegyzés",
                 "next": "Következő",
-                "private": "Privát",
-                "public": "Nyilvános",
                 "reset": "Visszaállítás",
                 "transform": "Transzformálás"
             },
@@ -6705,13 +6701,13 @@ export default {
                 "calendar": "Naptár",
                 "calendar_date": "Naptári dátum",
                 "character": "Karakter",
+                "child": "Gyermek",
                 "closed": "Lezárt",
                 "colour": "Szín",
                 "copy_abilities": "Képességek másolása",
                 "copy_attributes": "Tulajdonságok másolása",
                 "copy_inventory": "Felszerelés másolása",
                 "copy_links": "Entitás linkjeinek másolása",
-                "copy_notes": "Entitásjegyzetek másolása",
                 "creator": "Létrehozó",
                 "dice_roll": "Dobás",
                 "entity": "Entitás",
@@ -6730,7 +6726,6 @@ export default {
                 "image": "Kép",
                 "is_closed": "A beszélgetést lezárjuk, és nem fogadhat új hozzászólást.",
                 "is_private": "Privát",
-                "is_private_v2": "Csak ezt mutassa meg a kampány {admin}-role tagjainak. Ez felülír minden más engedélyt.",
                 "is_star": "Kitűzve",
                 "item": "Tárgy",
                 "journal": "Napló",
@@ -6775,6 +6770,16 @@ export default {
                 "direct": "Szűrés közvetlen leszármazottakra",
                 "filtered": "{count} {entity} a(z) {total} elemből",
                 "hide": "Szűrők elrejtése",
+                "lists": {
+                    "desktop": {
+                        "all": "Minden leszármazott megmutatása ({count})",
+                        "filtered": "Közvetlen leszármazottak megmutatása ({count})"
+                    },
+                    "mobile": {
+                        "all": "Összes megmutatása ({count})",
+                        "filtered": "Közvetlen megmutatása ({count})"
+                    }
+                },
                 "mobile": {
                     "clear": "Üres",
                     "copy": "Vágólap"
@@ -6811,17 +6816,12 @@ export default {
                 "header_image": "Ez a kép az entitás fölött fog megjelenni. Érdemes széles képet választani.",
                 "image_limitations": "Támogatott formátumok: {formats}. Maximális állományméret: {size}.",
                 "image_patreon": "Megnöveled az állományméret korlátját?",
-                "is_private": "Ha privátnak állítod be, ezt az entitást csak a kampány \"Admin\" szereplői fogják látni.",
                 "is_star": "Kitűzött elemek az entitás menüjén jelennek meg",
                 "tooltip": "Lecseréli az automatikusan generált tooltip szöveget az alábbi tartalommal.",
                 "visibility": "Ha a láthatóságot Admin-ra állítod, akkor csak az Admin jogú felhasználók tudják megnézni ezt. 'Magam'-ra állítva csak te láthatod."
             },
             "history": {
-                "created": "Létrehozta <strong>{name}</strong> <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>",
-                "created_date": "Létrejött <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>",
                 "unknown": "Ismeretlen",
-                "updated": "Utolsó módosítás: <strong>{name}</strong> <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>",
-                "updated_date": "Uoljára módosítva <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>",
                 "view": "Entitásnapló megtekintése"
             },
             "image": {
@@ -6832,27 +6832,6 @@ export default {
             "legacy": "Örökség",
             "linking_help": "Hogyan hozhatok létre linket más entitásokhoz?",
             "manage": "Kezelés",
-            "move": {
-                "description": "Az entitás más helyre mozgatása",
-                "errors": {
-                    "permission": "Nincs engedélyed ilyen tipusú entitás létrehozására ebben a kampányban.",
-                    "same_campaign": "Ki kell választanod egy másik kampányt, ahová az entitás szeretnéd mozgatni.",
-                    "unknown_campaign": "Ismeretlen kampány."
-                },
-                "fields": {
-                    "campaign": "Új kampány",
-                    "copy": "Készíts másolatot",
-                    "target": "Új típus"
-                },
-                "hints": {
-                    "campaign": "Megpróbálhatod egy másik kampányba mozgatni ezt az entitást.",
-                    "copy": "Ezt válaszd ki, ha szeretnél egy másolatot készíteni az új kampányba.",
-                    "target": "Kérjük, ne felejtsd el, hogy néhány adat elveszhet, amikor egy elemet az egyik típusból egy másikban mozgatod."
-                },
-                "success": "'{name}' entitást átmozgattuk.",
-                "success_copy": "'{name}' entitást másoltuk.",
-                "title": "{name} mozgatása"
-            },
             "navigation": {
                 "cancel": "megszakítás",
                 "or_cancel": "vagy {cancel}"
@@ -6864,7 +6843,6 @@ export default {
                 },
                 "title": "Új entitás"
             },
-            "or_cancel": "vagy <a href=\"{url}\">mégse</a>",
             "panels": {
                 "appearance": "Megjelenés",
                 "attribute_template": "Tulajdonságsablon",
@@ -6901,7 +6879,6 @@ export default {
                 },
                 "helper": "Használd ezt a felületet, hogy finomhangold, melyik felhasználó és szerep tud kapcsolatba lépni ezzel az entitással. {allow}",
                 "helpers": {
-                    "entity_note": "Entitás Jegyzetek létrehozásának engedélyezése a felhasználók számára ezen az entitáson. Enélkül a jogosultság nélkül a felhasználók látják majd az Entitás Jegyzeteket, ha azok láthatósága 'Mindenki'-re van állítva.",
                     "setup": "Használd ezt a felületet, hogy finomhangold, melyik felhasználó és szerep tud kapcsolatba lépni ezzel az entitással. {allow} engedélyezni fogja a felhasználó, vagy a szerep birtokosa számára, ennek a műveletnek az elvégzését. {deny} megtiltja hogy ezt a műveletet végezhessék. {inherit} beállítás esetén pedig a felhasználó szerepét, vagy fő szerepének jogosultságát fogja figyelembe venni. Egy felhasználói szinten beállított {allow} jog engedélyt fog adni a művelet elvégzésére, még akkor is, ha a felhasználó szerepköre {deny}-aná ezt."
                 },
                 "inherited": "Ez a szerep már rendelkezik ezzel a jogosultsággal ehhez a típusú entitáshoz.",
@@ -7006,7 +6983,6 @@ export default {
                     "update_email": "Aggiorna e-mail",
                     "update_password": "Aggiorna password"
                 },
-                "description": "Aggiorna il tuo account",
                 "email": "Cambia e-mail",
                 "email_success": "E-Mail aggiornata.",
                 "password": "Cambia password",
@@ -7020,15 +6996,10 @@ export default {
                 "title": "Account"
             },
             "api": {
-                "description": "Aggiorna le impostazioni delle tue API",
-                "experimental": "Benvenuto alle API di Kanka! Queste caratteristiche sono ancora in fase di sperimentazione ma dovrebbero essere abbastanza stabili per permetterti di incominciare a comunicare con le APIs. Crea un Token di Accesso Personale da utilizzare nelle tue richieste api o utilizza il Token del Client se vuoi che la tua app abbia accesso ai dati utente.",
-                "help": "Kanka fornirà presto una RESTful API in modo che applicazioni di terze parti possano connettervisi. I dettagli su come gestire le tue chiavi API saranno mostrati qui.",
                 "link": "Leggi la documentazione delle API",
-                "request_permission": "Stiamo attualmente creando una potente RESTful API in modo che applicazioni di terze parti possano connettervisi. Stiamo attualmente limitando il numero di utenti che possono interagire con le API mentre le miglioriamo. Se vuoi avere accesso alle API e creare eccezionali apps che comunichino con Kanka, per favore contattaci e noi ti invieremo tutte le informazioni di cui hai bisogno.",
                 "title": "API"
             },
             "layout": {
-                "description": "Aggiorna le tue impostazioni di layout",
                 "success": "Impostazioni di layout aggiornate.",
                 "title": "Layout"
             },
@@ -7041,37 +7012,20 @@ export default {
                 "profile": "Profilo"
             },
             "patreon": {
-                "actions": {
-                    "link": "Collega Account",
-                    "view": "Visita Kanka su Patreon"
-                },
-                "benefits": "Supportarci su Patreon fa si che tu possa caricare immagini più grandi, aiuti noi a coprire i costi del server e ci permetti di dedicare più tempo a lavorare su Kanka.",
-                "description": "Connetti con Patreon",
-                "errors": {
-                    "invalid_token": "Token non valido! Patreon non può verificare la tua richiesta.",
-                    "missing_code": "Codice mancante! Patreon non ha ritornato un codice per l'identificazione del tuo account.",
-                    "no_pledge": "Nessun pledge! Patreon ha riconosciuto il tuo account my non è a conoscenza di nessun pledge attivo."
-                },
-                "link": "Usa questo bottone se stai attualmente supportando Kanka su {patreon}. Questo sbloccherà i bonus",
-                "linked": "Grazie per supportare Kanka su Patreon! Il tuo account è stato collegato.",
                 "pledge": "Pledge: {name}",
-                "success": "Grazie per supportare Kanka su Patreon!",
-                "title": "Patreon",
-                "wrong_pledge": "Il livello del tuo pledge è settato manualmente da noi, quindi per favore daccia fino a qualche giorno per settarlo correttamente. Se resta sbagliato per diverso tempo ti preghiamo di contattarci."
+                "title": "Patreon"
             },
             "profile": {
                 "actions": {
                     "update_profile": "Aggiorna profilo"
                 },
                 "avatar": "Immagine del profilo",
-                "description": "Aggiorna il tuo profilo",
                 "success": "Profilo aggiornato.",
                 "title": "Profilo Personale"
             }
         },
         "conversations": {
             "create": {
-                "description": "Crea una nuova conversazione",
                 "success": "Conversazione '{name}' creata.",
                 "title": "Nuova conversazione"
             },
@@ -7079,11 +7033,11 @@ export default {
                 "success": "Conversazione '{name}' rimossa."
             },
             "edit": {
-                "description": "Aggiorna la conversazione",
                 "success": "Conversazione '{name}' aggiornata.",
                 "title": "Conversazione {name}"
             },
             "fields": {
+                "is_closed": "Chiusa",
                 "messages": "Messaggi",
                 "name": "Nome",
                 "participants": "Partecipanti",
@@ -7095,7 +7049,6 @@ export default {
             },
             "index": {
                 "add": "Nuova conversazione",
-                "description": "Gestisci la categoria di {name}.",
                 "header": "Conversazioni in {name}",
                 "title": "Conversazioni"
             },
@@ -7113,7 +7066,6 @@ export default {
                 "create": {
                     "success": "Partecipante {entity} aggiunto alla conversazione."
                 },
-                "description": "Aggiungi o rimuovi partecipanti di una conversazione",
                 "destroy": {
                     "success": "Partecipante {entity} rimosso dalla conversazione."
                 },
@@ -7125,7 +7077,7 @@ export default {
                 "type": "In Gioco, Preparazione, Trama"
             },
             "show": {
-                "description": "Una vista dettagliata della conversazione",
+                "is_closed": "Conversazione chiusa.",
                 "title": "Conversazione {name}"
             },
             "tabs": {
@@ -7139,11 +7091,13 @@ export default {
         },
         "emails": [],
         "admin": [],
+        "attributes": [],
         "crud": {
             "actions": {
                 "actions": "Azioni",
                 "apply": "Applica",
                 "back": "Indietro",
+                "bulk_templates": "Applica modello attributo",
                 "copy": "Copia",
                 "copy_mention": "Copia [ ] menzione",
                 "copy_to_campaign": "Copia nella Campagna",
@@ -7152,13 +7106,14 @@ export default {
                 "find_out_more": "Scopri di più",
                 "go_to": "Vai a {name}",
                 "json-export": "Esporta (JSON)",
-                "more": "Più Azioni",
+                "manage_links": "Gestisci link",
                 "move": "Sposta",
                 "new": "Nuovo",
+                "new_post": "Nuovo post",
                 "next": "Prossimo",
-                "private": "Privato",
-                "public": "Pubblico",
-                "reset": "Resetta"
+                "print": "Stampa",
+                "reset": "Resetta",
+                "transform": "Trasforma"
             },
             "add": "Aggiungi",
             "alerts": {
@@ -7206,6 +7161,9 @@ export default {
                     "public": "{1} {count} entità è adesso visibile|[2,*] {count} entità sono adesso visibili."
                 }
             },
+            "bulk_templates": {
+                "bulk_title": "Applica un modello a più entità"
+            },
             "cancel": "Annulla",
             "click_modal": {
                 "close": "Chiudi",
@@ -7225,6 +7183,7 @@ export default {
                 "close": "Chiudi",
                 "delete": "Cancella",
                 "description": "Sei sicuro di voler rimuovere {tag}?",
+                "description_final": "Sei sicuro di voler rimuovere {tag}? Questa azione non può essere annullata.",
                 "mirrored": "Rimuovere la relazione speculare.",
                 "title": "Conferma di cancellazione"
             },
@@ -7234,10 +7193,11 @@ export default {
             "edit": "Modifica",
             "errors": {
                 "boosted": "Questa funzionalità è disponibile solo per le campagne potenziate.",
+                "boosted_campaigns": "Questa funzionalità è disponibile solo per {boosted}",
                 "node_must_not_be_a_descendant": "Nodo non valido (tag, luogo padre): sarebbe un discendente di sé stesso."
             },
             "events": {
-                "hint": "Qui sotto puoi vedere una lista di tutti i calendari ai quali questa entità è stata aggiunta usando \"Aggiungi un evento ad un calendario\"."
+                "hint": "Qui sotto puoi vedere una lista di tutti i calendari ai quali questa entità è stata aggiunta usando \"Aggiungi un evento a un calendario\"."
             },
             "export": "Esporta",
             "fields": {
@@ -7247,8 +7207,10 @@ export default {
                 "calendar_date": "Data del Calendario",
                 "character": "Personaggio",
                 "colour": "Colore",
+                "copy_abilities": "Copia abilità",
                 "copy_attributes": "Copia Attributo",
-                "copy_notes": "Copia le Note dell'Entità",
+                "copy_inventory": "Copia inventario",
+                "copy_links": "Copia link entità",
                 "creator": "Creatore",
                 "dice_roll": "Tiro di dado",
                 "entity": "Entità",
@@ -7258,18 +7220,25 @@ export default {
                 "excerpt": "Estratto",
                 "family": "Famiglia",
                 "files": "Files",
+                "gallery_image": "Immagine dalla galleria",
                 "header_image": "Immagine dell'intestazione",
                 "image": "Immagine",
+                "is_closed": "La conversazione verrà chiusa e non saranno pubblicati nuovi messaggi",
                 "is_private": "Privato",
                 "is_star": "Fissato",
                 "item": "Oggetto",
+                "journal": "Diario",
                 "location": "Luogo",
+                "locations": "{first} in {second}",
                 "map": "Mappa",
                 "name": "Nome",
                 "organisation": "Organizzazione",
+                "position": "Posizione",
+                "privacy": "Privacy",
                 "race": "Razza",
                 "tag": "Tag",
                 "tags": "Tags",
+                "timeline": "TImeline",
                 "tooltip": "Tooltip",
                 "type": "Tipo",
                 "visibility": "Visibilità"
@@ -7318,17 +7287,12 @@ export default {
                 "header_image": "Questa immagine è posizionata sopra all' entità. Per un miglior risultato, utilizza un'immagine larga.",
                 "image_limitations": "Formati supportati: {formats}. Dimensione massima del file: {size}.",
                 "image_patreon": "Aumentare la dimensione massima dei file?",
-                "is_private": "Se impostata come privata, questa entità sarà visibile solamente ai membri appartenenti al ruolo \"Proprietario\" della campagna.",
                 "is_star": "Gli elementi fissati appariranno nel menù dell'entità",
                 "tooltip": "Sostituisci il tooltip generato automaticamente con il seguente contenuto.",
                 "visibility": "Impostare la visibilità agli amministratori significa che solamente i membri del ruolo \"Proprietario\" della campagna potranno visualizzarlo. Impostarlo a \"Te stesso\" significa che solo tu potrai vederlo."
             },
             "history": {
-                "created": "Creato da <strong>{name}</strong> <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>",
-                "created_date": "Creato <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>",
                 "unknown": "Sconosciuto",
-                "updated": "Modificato l'ultima volta da <strong>{name}</strong> <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>",
-                "updated_date": "Ultima modifica <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>",
                 "view": "Visualizza i log dell'entità"
             },
             "image": {
@@ -7337,27 +7301,6 @@ export default {
             "is_private": "Questa entità è privata e visibile solamente ai membri del ruolo \"Proprietario\".",
             "linking_help": "Come posso creare un collegamento ad altre entità?",
             "manage": "Gestisci",
-            "move": {
-                "description": "Sposta questa entità in un altro posto",
-                "errors": {
-                    "permission": "Non sei autorizzato a creare entità di questo tipo nella campagna selezionata.",
-                    "same_campaign": "Devi selezionare un'altra campagna verso cui spostare l'entità.",
-                    "unknown_campaign": "Campagna sconosciuta"
-                },
-                "fields": {
-                    "campaign": "Nuova campagna",
-                    "copy": "Crea una copia",
-                    "target": "Nuovo tipo"
-                },
-                "hints": {
-                    "campaign": "Puoi anche provare a spostare questa entità in un'altra campagna",
-                    "copy": "Seleziona questa opzione se vuoi crearne una copia nella nuova campagna.",
-                    "target": "Per favore considera che alcuni dati potrebbero andare persi nel caso si spostasse un elemento da un tipo ad un altro."
-                },
-                "success": "Entità '{name}' spostata.",
-                "success_copy": "Entità '{name}' copiata.",
-                "title": "Sposta {name}"
-            },
             "new_entity": {
                 "error": "Per favore controlla i tuoi valori.",
                 "fields": {
@@ -7365,7 +7308,6 @@ export default {
                 },
                 "title": "Nuova entità"
             },
-            "or_cancel": "o <a href=\"{url}\">annulla</a>",
             "panels": {
                 "appearance": "Aspetto",
                 "attribute_template": "Template di attributi",
@@ -7402,7 +7344,6 @@ export default {
                 },
                 "helper": "Utilizza questa interfaccia per rifinire e specificare quali utenti e ruoli possono interagire con questa entità.",
                 "helpers": {
-                    "entity_note": "Permetti agli utenti di creare Note per questa Entità. Senza questo permesso, essi saranno ancora in grado di vedere le note dell'entità impostate come visibili per Tutti.",
                     "setup": "Utilizza questa interfaccia per rifinire e specificare come utenti e ruoli possono interagire con questa entità. {allow} permetterà all'utente o al ruolo di fare questa azione. {deny} negherà loro tale azione. {inherit} farà riferimento al ruolo dell'utente o al permesso del ruolo. Un utente impostato come {allow} sarà in grado di fare l'azione anche se il suo ruolo sarà invece impostato su {deny}."
                 },
                 "inherited": "Questo ruolo ha già questo permesso impostato per questa tipologia di entità.",
@@ -7418,13 +7359,18 @@ export default {
                 "entity": "Entità",
                 "event": "Seleziona un evento",
                 "family": "Seleziona una famiglia",
+                "gallery_image": "Scegli una immagine dalla galleria della campagna",
                 "image_url": "Altrimenti puoi caricare un'immagine da un URL",
                 "item": "Seleziona un'oggetto",
+                "journal": "Scegli un diario",
                 "location": "Seleziona un luogo",
                 "map": "Seleziona una mappa",
+                "note": "Scegli una nota",
                 "organisation": "Seleziona un'organizzazione",
+                "quest": "Scegli una missione",
                 "race": "Seleziona una razza",
-                "tag": "Seleziona un tag"
+                "tag": "Seleziona un tag",
+                "timeline": "Scegli una timeline"
             },
             "relations": {
                 "actions": {
@@ -7455,14 +7401,20 @@ export default {
                 "default": "Predefinito",
                 "events": "Eventi",
                 "inventory": "Inventario",
+                "links": "Link",
                 "map-points": "Punti della Mappa",
                 "mentions": "Menzioni",
                 "menu": "Menù",
                 "notes": "Note",
                 "permissions": "Permessi",
+                "quests": "Missioni",
                 "relations": "Relazioni",
                 "reminders": "Promemoria",
+                "timelines": "Timeline",
                 "tooltip": "Tooltip"
+            },
+            "tooltips": {
+                "new_post": "Aggiungi un post a questa entità"
             },
             "update": "Aggiorna",
             "users": {
@@ -7473,6 +7425,7 @@ export default {
                 "admin": "Proprietario",
                 "admin-self": "Te Stesso e Proprietario",
                 "all": "Tutti",
+                "members": "Membri",
                 "self": "Te stesso"
             }
         },
@@ -7567,7 +7520,6 @@ export default {
                         "superboosted": "Alle superboosted campaign functies"
                     },
                     "recovery": "Herstel verwijderde entiteiten voor maximaal {amount} dagen.",
-                    "second": "Het boosten van een campaign levert de volgende voordelen op:",
                     "superboost": "Het superboosten van een campaign gebruikt 3 van je boosts en ontgrendelt extra functies bovenop die voor boosted campaigns.",
                     "theme": "Campaign level thema en custom stijl.",
                     "third": "Om een campaign een boost te geven, ga je naar de campaign pagina en klik je op de knop {boost_button} boven de knop {edit_button}.",
@@ -7658,15 +7610,7 @@ export default {
                 "subscription_status": "Abbonement Status"
             },
             "patreon": {
-                "actions": {
-                    "link": "Account koppelen",
-                    "view": "Bezoek Kanka op Patreon"
-                },
-                "benefits": "Door ons te steunen op {patreon} ontgrendel je allerlei {features} voor jou en jouw campaigns, en helpt het ons ook meer tijd te besteden aan het verbeteren van Kanka.",
-                "benefits_features": "geweldige functies",
                 "deprecated": "Verouderde functie - als je Kanka wilt steunen, doe dit dan met een {subscription}. Patreon-koppeling is nog steeds actief voor onze klanten die hun account hebben gekoppeld voordat ze weggingen van Patreon.",
-                "description": "Synchroniseren met Patreon",
-                "linked": "Bedankt voor het steunen van Kanka op Patreon! Je account is gekoppeld.",
                 "pledge": "Toezegging: {name}",
                 "remove": {
                     "button": "Ontkoppel je Patreon-account",
@@ -7674,9 +7618,7 @@ export default {
                     "text": "Als je je Patreon-account met Kanka ontkoppelt, worden je bonussen, naam in de hall of fame, campaign boosts en andere functies verwijderd die zijn gekoppeld aan het ondersteunen van Kanka. Geen van je boosted inhoud gaat verloren (bijv. entiteit headers). Door je opnieuw te abonneren, heb je toegang tot al je eerdere gegevens, inclusief de mogelijkheid om je eerder boosted campaigns een boost te geven.",
                     "title": "Ontkoppel je Patreon-account met Kanka"
                 },
-                "success": "Bedankt voor het steunen van Kanka op Patreon!",
-                "title": "Patreon",
-                "wrong_pledge": "Je toezegging niveau wordt handmatig door ons ingesteld, dus het kan een paar dagen duren voordat we het correct hebben ingesteld. Mocht het een tijdje fout blijven, neem dan contact met ons op."
+                "title": "Patreon"
             },
             "profile": {
                 "actions": {
@@ -7809,7 +7751,6 @@ export default {
         },
         "conversations": {
             "create": {
-                "description": "Maak een nieuwe conversatie",
                 "success": "Conversatie '{name}' gemaakt.",
                 "title": "Nieuwe Conversatie"
             },
@@ -7817,7 +7758,6 @@ export default {
                 "success": "Conversatie '{name}' verwijderd."
             },
             "edit": {
-                "description": "Werk de conversatie bij",
                 "success": "Conversatie '{name}' bijgewerkt.",
                 "title": "Conversatie {name}"
             },
@@ -7833,7 +7773,6 @@ export default {
             },
             "index": {
                 "add": "Nieuwe Conversatie",
-                "description": "Beheer de categorie van {name}",
                 "header": "Conversaties in {name}",
                 "title": "Conversaties"
             },
@@ -7851,7 +7790,6 @@ export default {
                 "create": {
                     "success": "Deelnemer {entity} toegevoegd aan de conversatie."
                 },
-                "description": "Deelnemers aan een conversatie toevoegen of verwijderen",
                 "destroy": {
                     "success": "Deelnemer {entity} verwijderd uit de conversatie."
                 },
@@ -7863,7 +7801,6 @@ export default {
                 "type": "In Game, Prep, Plot"
             },
             "show": {
-                "description": "Een gedetailleerd overzicht van een conversatie",
                 "title": "Conversatie {name}"
             },
             "tabs": {
@@ -7995,7 +7932,6 @@ export default {
                 "copy_attributes": "Kopieer Attributen",
                 "copy_inventory": "Kopieer Inventory",
                 "copy_links": "Kopieer Entiteit Links",
-                "copy_notes": "Kopieer Entiteit Notities",
                 "creator": "Maker",
                 "dice_roll": "Dobbelsteen Worp",
                 "entity": "Entiteit",
@@ -8012,7 +7948,6 @@ export default {
                 "header_image": "Header Afbeeldingen",
                 "image": "Afbeelding",
                 "is_private": "Privé",
-                "is_private_v2": "Laat dit alleen zien aan leden van de campaign's {admin}-role. Dit heft elke andere permissie op.",
                 "is_star": "Vastgemaakt",
                 "item": "Voorwerp",
                 "location": "Locatie",
@@ -8082,17 +8017,12 @@ export default {
                 "header_image": "Deze afbeelding wordt boven de entiteit geplaatst. Gebruik een brede afbeelding voor de beste resultaten.",
                 "image_limitations": "Ondersteunde formaten: {formats}. Max Bestandsgrootte: {size}.",
                 "image_patreon": "Limiet voor bestandsgrootte verhogen?",
-                "is_private": "Indien ingesteld op privé, is deze entiteit alleen zichtbaar voor leden die de rol \"Beheerder\" van de campaign hebben.",
                 "is_star": "Vastgezette elementen verschijnen in het menu van de entiteit",
                 "tooltip": "Vervang de automatisch gegenereerde tooltip door de volgende inhoud.",
                 "visibility": "Als je de zichtbaarheid instelt op beheerder, kunnen alleen leden met de campaign rol Beheerder dit zien. Als je het op zichzelf instelt, betekent dit dat alleen jij dit kunt zien."
             },
             "history": {
-                "created": "Gemaakt door <strong>{name}</strong> <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>",
-                "created_date": "<span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span> gemaakt",
                 "unknown": "Onbekend",
-                "updated": "Laatst gewijzigd door <strong>{name}</strong> <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>",
-                "updated_date": "Laatst gewijzigd <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>",
                 "view": "Bekijk entiteit log"
             },
             "image": {
@@ -8103,30 +8033,6 @@ export default {
             "legacy": "Legacy",
             "linking_help": "Hoe kan ik linken naar andere invoeren?",
             "manage": "Beheer",
-            "move": {
-                "errors": {
-                    "permission": "Je mag geen entiteiten van dat type maken in de doel campaign.",
-                    "same_campaign": "Je moet een andere campaign selecteren om de entiteit naar te verplaatsen.",
-                    "unknown_campaign": "Onbekende campaign."
-                },
-                "fields": {
-                    "campaign": "Nieuwe campaign",
-                    "copy": "Maak een kopie",
-                    "target": "Nieuwe type"
-                },
-                "hints": {
-                    "campaign": "Je kunt ook proberen deze entiteit naar een andere campaign te verplaatsen.",
-                    "copy": "Selecteer deze optie als je een kopie in de nieuwe campaign wilt maken.",
-                    "target": "Houd er rekening mee dat sommige gegevens verloren kunnen gaan bij het verplaatsen van een element van het ene type naar het andere."
-                },
-                "panels": {
-                    "change": "Verander entiteit type",
-                    "move": "Verplaats naar andere campaign"
-                },
-                "success": "Entiteit '{name}' verplaatst.",
-                "success_copy": "Entiteit '{name}' gekopieerd.",
-                "title": "Wijzig of Verplaats {name}"
-            },
             "new_entity": {
                 "error": "Controleer je waarden.",
                 "fields": {
@@ -8134,7 +8040,6 @@ export default {
                 },
                 "title": "Nieuwe entiteit"
             },
-            "or_cancel": "of <a href=\"{url}\">annuleer</a>",
             "panels": {
                 "appearance": "Uiterlijk",
                 "attribute_template": "Attribuutsjabloon",
@@ -8326,7 +8231,6 @@ export default {
                         "superboosted": "Wszystkie funkcje turbodoładowanej kampanii"
                     },
                     "recovery": "Odzyskaj elementy usunięte do {amount} dni temu",
-                    "second": "Doładowanie kampanii zapewnia następujące korzyści:",
                     "superboost": "Turbodoładowanie kampanii zużywa 3 doładowania i odblokowuje kolejne funkcje, w dodatku do wynikających z doładowania.",
                     "theme": "Inny motyw i styl dla każdej kampanii.",
                     "third": "By doładować kampanię, idź na jej stronę i kliknij \"{boost_button}\" tuż nad \"{edit_button}\".",
@@ -8425,15 +8329,7 @@ export default {
                 "subscription_status": "Status subskrypcji"
             },
             "patreon": {
-                "actions": {
-                    "link": "Połącz konto",
-                    "view": "Przejdź do Kanki na Patreonie"
-                },
-                "benefits": "Wspierając nas na {parteon} pomagasz w tworzeniu {features} dla swojej kampanii i pozwalasz nam spędzać więcej czasu na ulepszaniu Kanki.",
-                "benefits_features": "świetnych funkcji",
                 "deprecated": "Przestarzała funkcja. Jeżeli chcesz wspierać Kankę, rozważ subskrypcję. Integracja z Patreonem jest dostępna tylko dla osób, które połączyły swoje konta Patren z Kanką zanim wycofaliśmy się z tego serwisu.",
-                "description": "Sybchronizacja z Patreonem",
-                "linked": "Dziękujmy za wspieranie Kanki na Patreonie! Twoje konto zostało dodane.",
                 "pledge": "Deklaracja {name}",
                 "remove": {
                     "button": "Odłącz konto Patreon",
@@ -8441,9 +8337,7 @@ export default {
                     "text": "Dołączenie kontra Patreon spowoduje usunięcie z listy wspierających, utratę doładować kampanii i innych korzyści dostępnych dla wspierających. Treści związane z doładowaniem (na przykład nagłówki) nie zostają usunięte. Odnawiając subskrypcje odzyskasz dostęp do danych oraz możliwość ponownego doładowywania kampanii.",
                     "title": "Odłącz swoje konto Patreon od Kanki"
                 },
-                "success": "Dziękujemy za wspierane Kanki na Patreonie!",
-                "title": "Patreon",
-                "wrong_pledge": "Twój poziom wsparcia jest przez nas ustawiany ręcznie, więc daj mu kilka dni na reakcję. Jeżeli nie zmieni się przez dłuższy czas, daj nam znać."
+                "title": "Patreon"
             },
             "profile": {
                 "actions": {
@@ -8467,6 +8361,13 @@ export default {
                     "title": "Edycja metody płatności"
                 },
                 "cancel": {
+                    "options": {
+                        "competitor": "Wybieram produkt konkurencji",
+                        "custom": "Inne (jakie?)",
+                        "financial": "Moja sytuacja finansowa się zmieniła",
+                        "missing_features": "Nie ma opcji, których potrzebuję",
+                        "not_using": "Nie używam ostatnio Kanki"
+                    },
                     "text": "Szkoda, że rezygnujesz! Po zaniechaniu subskrypcji konto pozostanie aktywne do końca okresu rozliczeniowego. Potem stracisz doładowania i inne korzyści wynikające ze wspierania Kanki. Wypełniając poniższy formularz nasz nam znać, co możemy poprawić i dlaczego rezygnujesz."
                 },
                 "cancelled": "Anulowano subskrypcję. Możesz ją odnowić, gdy tylko ta wygaśnie.",
@@ -8476,6 +8377,12 @@ export default {
                         "yearly": "Subskrybujesz na poziomie {tier}, płacąc rocznie {amount}."
                     },
                     "title": "Zmiana poziomu subskrypcji"
+                },
+                "coupon": {
+                    "check": "Sprawdź kod promocyjny",
+                    "invalid": "Niewłaściwy kod promocyjny.",
+                    "label": "Kod promocyjny",
+                    "percent_off": "Uzyskujesz zniżką na pierwszą roczną subskrypcję w wysokości {percent}%!"
                 },
                 "currencies": {
                     "eur": "EUR",
@@ -8530,6 +8437,7 @@ export default {
                 "sub_status": "Informacje o subskrypcji",
                 "subscription": {
                     "actions": {
+                        "cancel": "Anuluj subskrybcję",
                         "downgrading": "Skontaktuj się z nami by zmniejszyć poziom subskrypcji",
                         "rollback": "Zmień na Kobolda",
                         "subscribe": "Zmień na poziom {tier} miesięcznie",
@@ -8577,7 +8485,6 @@ export default {
         },
         "conversations": {
             "create": {
-                "description": "Stwórz nową konwersację",
                 "success": "Stworzono konwersację '{name}'",
                 "title": "Nowa konwersacja"
             },
@@ -8585,7 +8492,6 @@ export default {
                 "success": "Usunięto konwersację '{name}'."
             },
             "edit": {
-                "description": "Aktualizuj konwersację",
                 "success": "Zmieniono konwersację '{name}'.",
                 "title": "Konwersacja {name}"
             },
@@ -8602,7 +8508,6 @@ export default {
             },
             "index": {
                 "add": "Nowa konwersacja",
-                "description": "Zarządzaj kategorią {name}.",
                 "header": "Konwersacje w {name}",
                 "title": "Konwersacje"
             },
@@ -8620,7 +8525,6 @@ export default {
                 "create": {
                     "success": "Uczestnik {entity} wypowiedział się w konwersacji."
                 },
-                "description": "Dodaj albo usuń uczestników konwersacji",
                 "destroy": {
                     "success": "Usunięto uczestnika {entity} z konwersacji."
                 },
@@ -8632,7 +8536,6 @@ export default {
                 "type": "W grze, przygotowanie, omawianie intrygi"
             },
             "show": {
-                "description": "Szczegóły konwersacji",
                 "is_closed": "Konwersacja jest zamknięta.",
                 "title": "Konwersacja {name}"
             },
@@ -8715,6 +8618,7 @@ export default {
                 "success": {
                     "copy_to_campaign": "{1} {count} element został skopiowany do {campaign}.|[2,3,4] {count} elementy zostały skopiowane do {campaign}.|[5,*] {count} elementów zostało skopiowane do {campaign}.",
                     "editing": "{1} Zaktualizowano {count} element .|[2,3,4] Zaktualizowano {count} elementy .|[5,*] Zaktualizowano {count} elementów.",
+                    "editing_partial": "{1} Zmieniono {count}/{total} element.|[2,3,4] Zmieniono {count}/{total} elementy.|[5,*] Zmieniono {count}/{total} elementów.",
                     "permissions": "{1} Zmieniono uprawnienia dla {count} elementu.|[2,*] Zmieniono uprawnienia dla {count} elementów.",
                     "private": "{1} {count} element jest teraz tajny|[2,3,4] {count} elementy są teraz tajne|[5,*] elementów jest teraz tajnych.",
                     "public": "{1} {count} element jest teraz jawny|[2,3,4] {count} elementy są teraz jawne|[5,*] elementów jest teraz jawnych.",
@@ -8754,6 +8658,7 @@ export default {
             "errors": {
                 "boosted": "Ta funkcja jest dostępna wyłącznie w doładowanych kampaniach.",
                 "boosted_campaigns": "By korzystać z tej funkcji, kampania musi być {boosted}.",
+                "cannot_move_node_into_itself": "Wybrano niewłaściwy element źródłowy. Przyczyną może być fakt posiadania tego właśnie elementu za źródło.",
                 "node_must_not_be_a_descendant": "Niewłaściwy węzeł (etykieta, miejsce źródłowe): pochodziłby sam od siebie.",
                 "unavailable_feature": "Funkcja niedostępna"
             },
@@ -8767,13 +8672,15 @@ export default {
                 "calendar": "Kalendarz",
                 "calendar_date": "Data",
                 "character": "Postać",
+                "child": "Pochodzenie",
                 "closed": "Zamknięta",
                 "colour": "Kolor",
                 "copy_abilities": "Kopiuj zdolności",
                 "copy_attributes": "Kopiuj cechy",
                 "copy_inventory": "Kopiuj wyposażenie",
                 "copy_links": "Kopiuj odnośniki elementu",
-                "copy_notes": "Kopiuj komentarze do elementu",
+                "copy_permissions": "Kopiuj uprawnienia (zastąpią obecnie obowiązujące uprawnienia)",
+                "copy_posts": "Kopiuj komentarze (oraz ich uprawnienia)",
                 "creator": "Tworzenie",
                 "dice_roll": "Rzut kośćmi",
                 "entity": "Element",
@@ -8785,14 +8692,15 @@ export default {
                 "files": "Pliki",
                 "gallery_header": "Nagłowek z galerii",
                 "gallery_image": "Obraz w galerii",
+                "has_attributes": "Posiada cechy",
                 "has_entity_files": "Ma dołączone pliki",
                 "has_entity_notes": "Posiada komentarze",
                 "has_image": "Ma obraz",
-                "header_image": "Winieta",
+                "header_image": "Nagłówek",
                 "image": "Obraz",
                 "is_closed": "Ta rozmowa zostanie zamknięta i nie będzie można dodawać do niej nowych wiadomości.",
                 "is_private": "Tajne",
-                "is_private_v2": "Pokazuj wyłącznie uczestnikom posiadającym rolę {admin}-role.",
+                "is_private_v3": "Wyświetlaj tylko użytkownikom w roli {admin}-role. To ustawienie zastępuje wszystkie inne.",
                 "is_star": "Przypięte",
                 "item": "Przedmiot",
                 "journal": "Dziennik",
@@ -8837,6 +8745,16 @@ export default {
                 "direct": "Pokaż elementy bezpośrednio pochodne",
                 "filtered": "Wyświetlono {count} z {total} elementów.",
                 "hide": "Ukryj filtry",
+                "lists": {
+                    "desktop": {
+                        "all": "Pokaż wszystkie pochodne ({count})",
+                        "filtered": "Pokaż bezpośrednio pochodne  ({count})"
+                    },
+                    "mobile": {
+                        "all": "Pokaż wszystkie  ({count})",
+                        "filtered": "Pokaż bezpośrednie ({count})"
+                    }
+                },
                 "mobile": {
                     "clear": "Wyczyść",
                     "copy": "Schowek"
@@ -8873,17 +8791,17 @@ export default {
                 "header_image": "Obraz umieszczony w nagłówku elementu. Użyj szerokiego obrazu by osiągnąć najlepszy efekt.",
                 "image_limitations": "Dozwolone formaty: {formats}. Maksymalny rozmiar pliku {size}.",
                 "image_patreon": "Zwiększyć limit rozmiaru pliku?",
-                "is_private": "Element oznaczony jako tajny jest widoczny tylko dla posiadaczy roli \"administrator\".",
+                "image_recommendation": "Sugerowane wymiary: {width} na {height} pikseli.",
                 "is_star": "Elementy przypięte pojawiają się w menu elementu.",
                 "tooltip": "Zastąp dymek z poradą generowaną automatycznie następującą zawartością.",
                 "visibility": "Opcja widoczności \"Administrator\" sprawia, że widzą to wszyscy administratorzy kampanii. Ustawienie widoczności \"Ja\" oznacza, że widzisz to wyłącznie ty."
             },
             "history": {
-                "created": "Stworzone przez <strong>{name}</strong> <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>",
-                "created_date": "Stworzone <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>",
+                "created_clean": "Stworzone przez {name} {date}",
+                "created_date_clean": "Stworzone {date}",
                 "unknown": "Nieznane",
-                "updated": "Ostatnio modyfikowane przez <strong>{name}</strong> <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>",
-                "updated_date": "Ostatnio modyfikowane <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>",
+                "updated_clean": "Ostatnio zmienione przez {name} {date}",
+                "updated_date_clean": "Ostatnio zmienione {date}",
                 "view": "Zobacz dziennik elementu"
             },
             "image": {
@@ -8894,33 +8812,10 @@ export default {
             "legacy": "Poprzednia wersja",
             "linking_help": "Jak tworzyć linki do innych elementów?",
             "manage": "Zarządzaj",
-            "move": {
-                "errors": {
-                    "permission": "Nie masz uprawnień, by w tej kampanii tworzyć elementy tego rodzaju.",
-                    "same_campaign": "Musisz wybrać kampanię, do której element ma zostać przeniesiony.",
-                    "unknown_campaign": "Nieznana kampania."
-                },
-                "fields": {
-                    "campaign": "Nowa kampania",
-                    "copy": "Stwórz kopię",
-                    "target": "Nowy rodzaj"
-                },
-                "hints": {
-                    "campaign": "Możesz również przenieść ten element do innej kampanii.",
-                    "copy": "Wybierz tę opcję, by stworzyć kopię elementu w nowej kampanii.",
-                    "target": "Pamiętaj, że podczas zmiany rodzaju elementu na inny część danych może zostać utracona."
-                },
-                "panels": {
-                    "change": "Zmień rodzaj elementu",
-                    "move": "Przenieś do innej kampanii"
-                },
-                "success": "Przeniesiono element '{name}'.",
-                "success_copy": "Skopiowano element '{name}'.",
-                "title": "Zmiana lub Przenoszenie {name}"
-            },
             "navigation": {
                 "cancel": "anuluj",
-                "or_cancel": "lub {cancel}"
+                "or_cancel": "lub {cancel}",
+                "skip_to_content": "Pomiń nawigację"
             },
             "new_entity": {
                 "error": "Sprawdź poprawność wartości.",
@@ -8929,7 +8824,6 @@ export default {
                 },
                 "title": "Nowy element"
             },
-            "or_cancel": "lub <a href=\"{url}\">anuluj</a>",
             "panels": {
                 "appearance": "Wygląd",
                 "attribute_template": "Szablon cech",
@@ -9040,6 +8934,10 @@ export default {
                 "timelines": "Historie",
                 "tooltip": "Dymek"
             },
+            "tooltips": {
+                "boosted_feature": "Dostępne po doładowaniu",
+                "new_post": "Dodaj do tego elementu nowy komentarz."
+            },
             "update": "Aktualizacja",
             "users": {
                 "unknown": "Nieznany"
@@ -9086,11 +8984,8 @@ export default {
                 "title": "Conta"
             },
             "api": {
-                "experimental": "Bem-vindo às APIs Kanka! Esses recursos ainda são experimentais, mas devem ser estáveis o suficiente para que você comece a se comunicar com as APIs. Crie um token de acesso pessoal para usar em suas solicitações de API ou use o token de cliente se desejar que seu aplicativo tenha acesso aos dados do usuário.",
-                "help": "Em breve, Kanka fornecerá uma API RESTful para que aplicativos de terceiros possam se conectar ao aplicativo. Detalhes sobre como gerenciar suas chaves de API serão mostrados aqui.",
                 "helper": "Bem vindo(a) as APIs do Kanka. Gere um token de acesso pessoal para usar em sua solicitação de API, para coletar informações sobre as campanhas das quais você faz parte.",
                 "link": "Leia a documentação da API",
-                "request_permission": "No momento, estamos construindo uma API RESTful poderosa para que aplicativos de terceiros possam se conectar ao aplicativo. No entanto, atualmente estamos limitando o número de usuários que podem interagir com a API enquanto a aperfeiçoamos. Se você deseja acessar a API e construir aplicativos maneiros que se comunicam com o Kanka, entre em contato conosco e enviaremos todas as informações de que você precisa.",
                 "title": "API"
             },
             "apps": {
@@ -9133,7 +9028,6 @@ export default {
                         "superboosted": "Todos recursos de uma campanha Super Impulsionada"
                     },
                     "recovery": "Recuperar entidades deletadas por até {amount} dias",
-                    "second": "Impulsionar uma campanha oferece os seguintes benefícios:",
                     "superboost": "Super impulsionar uma campanha usa 3 de seus impulsos e desbloqueia recursos adicionais além dos presentes em campanhas impulsionadas.",
                     "theme": "Tema nível da campanha e estilo personalizado.",
                     "third": "Para impulsionar uma campanha, vá até a página da campanha e clique no botão \"{boost_button}\" acima do botão \"{edit_button}\".",
@@ -9232,15 +9126,7 @@ export default {
                 "subscription_status": "Status da assinatura"
             },
             "patreon": {
-                "actions": {
-                    "link": "Vincular conta",
-                    "view": "Visite Kanka no Patreon"
-                },
-                "benefits": "Apoiando-nos em {patreon} desbloqueia todos os tipos de {features} para você e suas campanhas, e também nos ajuda a passar mais tempo trabalhando para melhorar o Kanka.",
-                "benefits_features": "Recursos incríveis",
                 "deprecated": "Recurso obsoleto - se você deseja oferecer suporte ao Kanka, faça-o com uma {subscription}. A vinculação do Patreon ainda está ativa para nossos clientes que vincularam suas contas antes de termos deixado o Patreon.",
-                "description": "Sincronizando com o Patreon",
-                "linked": "Obrigado por apoiar o Kanka no Patreon! Sua conta está vinculada.",
                 "pledge": "Pledge {name}",
                 "remove": {
                     "button": "Desvincular sua conta Patreon",
@@ -9248,9 +9134,7 @@ export default {
                     "text": "Desvincular sua conta do Patreon com Kanka removerá seus bônus, nome no Hall da fama, impulsionamentos de campanha e outros recursos vinculados ao suporte de Kanka. Nenhum de seus conteúdos impulsionados serão perdidos (por exemplo, cabeçalhos de entidade). Ao se inscrever novamente, você terá acesso a todos os seus dados anteriores, incluindo a capacidade de impulsionar suas campanhas previamente impulsionadas.",
                     "title": "Desvincule sua conta Patreon com Kanka"
                 },
-                "success": "Obrigado por apoiar Kanka no Patreon!",
-                "title": "Patreon",
-                "wrong_pledge": "Seu nível de pledge é definido manualmente por nós, portanto, espere alguns dias para que possamos defini-lo corretamente. Se continuar errado por muito tempo, entre em contato conosco."
+                "title": "Patreon"
             },
             "profile": {
                 "actions": {
@@ -9283,6 +9167,12 @@ export default {
                         "yearly": "Você está se inscrevendo no nível {tier}, cobrado anualmente em {amount}."
                     },
                     "title": "Alterar nível de assinatura"
+                },
+                "coupon": {
+                    "check": "Verifique o código promocional",
+                    "invalid": "Código promocional inválido.",
+                    "label": "Código promocional",
+                    "percent_off": "Iremos descontar sua primeira assinatura anual por {percent}%!"
                 },
                 "currencies": {
                     "eur": "EUR",
@@ -9384,7 +9274,6 @@ export default {
         },
         "conversations": {
             "create": {
-                "description": "Criar nova conversa",
                 "success": "Conversa '{name}' criada",
                 "title": "Nova conversa"
             },
@@ -9392,7 +9281,6 @@ export default {
                 "success": "Conversa '{name}' apagada"
             },
             "edit": {
-                "description": "Atualizar conversa",
                 "success": "Conversa '{name}' atualizada",
                 "title": "Conversa {name}"
             },
@@ -9409,7 +9297,6 @@ export default {
             },
             "index": {
                 "add": "Nova conversa",
-                "description": "Gerenciar categoria de {name}",
                 "header": "Conversas em {name}",
                 "title": "Conversas"
             },
@@ -9427,7 +9314,6 @@ export default {
                 "create": {
                     "success": "Participante {entity} adicionado(a) à conversa"
                 },
-                "description": "Adicionar ou remover participantes da conversa",
                 "destroy": {
                     "success": "Participante {entity} removido(a) da conversa"
                 },
@@ -9439,7 +9325,6 @@ export default {
                 "type": "Dentro do jogo, Pré-mesa, Plot"
             },
             "show": {
-                "description": "Uma vista detalhada da conversa",
                 "is_closed": "Conversa está fechada.",
                 "title": "Conversa {name}"
             },
@@ -9471,14 +9356,11 @@ export default {
                 "go_to": "Ir para {name}",
                 "json-export": "Exportar (JSON)",
                 "manage_links": "Gerenciar Links",
-                "more": "Mais Ações",
                 "move": "Mover",
                 "new": "Novo",
                 "new_post": "Nova nota de entidade",
                 "next": "Próximo",
                 "print": "Imprimir",
-                "private": "Privado",
-                "public": "Público",
                 "reset": "Redefinir",
                 "transform": "Transformar"
             },
@@ -9584,7 +9466,8 @@ export default {
                 "copy_attributes": "Copiar atributos",
                 "copy_inventory": "Copiar Inventário",
                 "copy_links": "Copiar Links de Entidade",
-                "copy_notes": "Copiar notas de entidade",
+                "copy_permissions": "Copiar permissões (isso substituirá os valores definidos na guia de permissões)",
+                "copy_posts": "Copiar postagens (isso inclui as permissões de postagens)",
                 "creator": "Criador",
                 "dice_roll": "Rolagem de Dados",
                 "entity": "Entidade",
@@ -9596,6 +9479,7 @@ export default {
                 "files": "Arquivos",
                 "gallery_header": "Cabeçalho da Galeria",
                 "gallery_image": "Imagem da Galeria",
+                "has_attributes": "Possui atributos",
                 "has_entity_files": "Possui arquivos de entidade",
                 "has_entity_notes": "Possui notas de entidade",
                 "has_image": "Contém uma imagem",
@@ -9603,7 +9487,7 @@ export default {
                 "image": "Imagem",
                 "is_closed": "Conversa será fechada e não aceitará novas mensagens.",
                 "is_private": "Privado",
-                "is_private_v2": "Mostre isso apenas para membros da campanha {admin}-role. Isso substitui qualquer outra permissão.",
+                "is_private_v3": "Mostre isso apenas aos membros da função {admin}-role. Isso substitui qualquer outra permissão.",
                 "is_star": "Fixado",
                 "item": "Item",
                 "journal": "Jornal",
@@ -9694,17 +9578,17 @@ export default {
                 "header_image": "Esta imagem é colocada acima da entidade. Para obter melhores resultados, use uma imagem larga.",
                 "image_limitations": "Formatos suportados: {formats}. Tamanho máximo do arquivo: {size}.",
                 "image_patreon": "Aumentar limite do tamanho das imagens?",
-                "is_private": "Esconder de \"Espectadores\"",
-                "is_star": "Elementos fixados aparecerão no menu da entidade",
+                "image_recommendation": "Dimensões recomendadas {width} por {height} px.",
+                "is_star": "Elementos fixados aparecerão no menu de visão geral da entidade.",
                 "tooltip": "Substitua a dica de ferramenta gerada automaticamente pelo conteúdo a seguir.",
                 "visibility": "Definir a visibilidade para admin significa que apenas os membros no cargo de admnistrador de campanha  podem ver isso. Definir como apenas eu significa que apenas você pode ver isso."
             },
             "history": {
-                "created": "Criado por <strong>{name}</strong> <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>",
-                "created_date": "Criado <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>",
+                "created_clean": "Criado pelo {name} {date}",
+                "created_date_clean": "Criado {date}",
                 "unknown": "Desconhecido",
-                "updated": "Modificado pela última vez por <strong>{name}</strong> <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>",
-                "updated_date": "Modificado pela última vez em <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>",
+                "updated_clean": "Última modificação feita por {name} {date}",
+                "updated_date_clean": "Última modificação {date}",
                 "view": "Ver histórico da entidade"
             },
             "image": {
@@ -9715,31 +9599,6 @@ export default {
             "legacy": "Legado",
             "linking_help": "Como eu posso vincular a outras entidades?",
             "manage": "Gerenciar",
-            "move": {
-                "description": "Mover a entidade para outro lugar",
-                "errors": {
-                    "permission": "Você não tem permissão para criar entidades deste tipo na campanha escolhida",
-                    "same_campaign": "Você deve selecionar a campanha para qual moverá esta entidade",
-                    "unknown_campaign": "Campanha desconhecida"
-                },
-                "fields": {
-                    "campaign": "Nova campanha",
-                    "copy": "Fazer uma cópia",
-                    "target": "Novo tipo"
-                },
-                "hints": {
-                    "campaign": "Você também pode mover esta entidade para outra camapnha",
-                    "copy": "Selecione esta opção se você deseja criar uma cópia na nova campanha",
-                    "target": "Esteja ciente que alguns dados podem ser perdidos ao mudar um elemento de um tipo para outro."
-                },
-                "panels": {
-                    "change": "Mudar tipo de entidade",
-                    "move": "Copiar para outra campanha"
-                },
-                "success": "Entidade {name} movida.",
-                "success_copy": "Entidade {name} copiada",
-                "title": "Mover {name} para outro lugar"
-            },
             "navigation": {
                 "cancel": "Cancelar",
                 "or_cancel": "ou {cancel}"
@@ -9751,7 +9610,6 @@ export default {
                 },
                 "title": "Nova entidade"
             },
-            "or_cancel": "ou <a href=\"{url}\">cancel</a>",
             "panels": {
                 "appearance": "Aparência",
                 "attribute_template": "Modelo de atributo",
@@ -9858,9 +9716,12 @@ export default {
                 "quests": "Missões",
                 "relations": "Relações",
                 "reminders": "Lembretes",
-                "story": "História",
+                "story": "Visão Geral",
                 "timelines": "Linhas do Tempo",
                 "tooltip": "Dica"
+            },
+            "tooltips": {
+                "boosted_feature": "Recurso da campanha impulsionada"
             },
             "update": "Atualizar",
             "users": {
@@ -10048,7 +9909,6 @@ export default {
             },
             "patreon": {
                 "deprecated": "Устаревшая функция - если вы хотите поддержать Kanka, пожалуйста сделайте это с помощью меню \"{subscription}\". Ссылка на Patreon до сих пор активна для наших Patron-ов, подключивших свои аккаунты до нашего ухода с Patreon.",
-                "description": "Синхронизация с Patreon",
                 "pledge": "Уровень: {name}",
                 "remove": {
                     "button": "Отключить Patreon аккаунт",
@@ -10089,6 +9949,12 @@ export default {
                         "yearly": "Вы подписываетесь на уровень {tier}, стоимостью {amount} в год."
                     },
                     "title": "Изменение уровня подписки"
+                },
+                "coupon": {
+                    "check": "Проверить промокод",
+                    "invalid": "Недействительный промокод.",
+                    "label": "Промокод",
+                    "percent_off": "Вы получите скидку {percent}% на вашу первую годовую подписку!"
                 },
                 "currencies": {
                     "eur": "EUR",
@@ -10190,7 +10056,6 @@ export default {
         },
         "conversations": {
             "create": {
-                "description": "Создание нового разговора",
                 "success": "Разговор \"{name}\" создан.",
                 "title": "Новый разговор"
             },
@@ -10198,7 +10063,6 @@ export default {
                 "success": "Разговор \"{name}\" удален."
             },
             "edit": {
-                "description": "Обновление разговора",
                 "success": "Разговор \"{name}\" обновлен.",
                 "title": "Разговор {name}"
             },
@@ -10215,7 +10079,6 @@ export default {
             },
             "index": {
                 "add": "Новый разговор",
-                "description": "Управление категорией {name}",
                 "header": "Разговоры в {name}",
                 "title": "Разговоры"
             },
@@ -10233,7 +10096,6 @@ export default {
                 "create": {
                     "success": "Участник \"{entity}\" добавлен в разговор."
                 },
-                "description": "Добавление или удаление участников разговора",
                 "destroy": {
                     "success": "Участник \"{entity}\" удален из разговора."
                 },
@@ -10245,7 +10107,6 @@ export default {
                 "type": "Игра, подготовка, сюжет"
             },
             "show": {
-                "description": "Детальный вид разговора",
                 "is_closed": "Разговор закрыт.",
                 "title": "Разговор {name}"
             },
@@ -10367,7 +10228,8 @@ export default {
             "errors": {
                 "boosted": "Этой функцией обладают только усиленные кампании.",
                 "boosted_campaigns": "Этой функцией обладают только {boosted}.",
-                "node_must_not_be_a_descendant": "Недопустимая привязка (тэг, родительская локация): объект является потомком самого себя.",
+                "cannot_move_node_into_itself": "Выбранный родительский объект недействителен. Причиной может быть то, что он является потомком этого объекта.",
+                "node_must_not_be_a_descendant": "Недопустимая привязка (тэг, родительская локация): объект не может являться потомком самого себя.",
                 "unavailable_feature": "Функция недоступна."
             },
             "events": {
@@ -10387,7 +10249,8 @@ export default {
                 "copy_attributes": "Копировать атрибуты",
                 "copy_inventory": "Копировать инвентарь",
                 "copy_links": "Копировать ссылки объекта",
-                "copy_notes": "Копировать заметки объекта",
+                "copy_permissions": "Копировать разрешения (значения во вкладке разрешений будут заменены)",
+                "copy_posts": "Копировать посты (и их разрешения)",
                 "creator": "Создатель",
                 "dice_roll": "Бросок костей",
                 "entity": "Объект",
@@ -10399,6 +10262,7 @@ export default {
                 "files": "Файлы",
                 "gallery_header": "Заголовок из галереи",
                 "gallery_image": "Изображение из галереи",
+                "has_attributes": "Есть атрибуты",
                 "has_entity_files": "Есть загруженные файлы",
                 "has_entity_notes": "Есть заметки объекта",
                 "has_image": "Есть изображение",
@@ -10406,7 +10270,7 @@ export default {
                 "image": "Изображение",
                 "is_closed": "Разговор будет закрыт и перестанет принимать новые сообщения.",
                 "is_private": "Скрытый",
-                "is_private_v2": "Показывать это только участникам кампании с {admin}-role независимо от разрешений.",
+                "is_private_v3": "Показывать это только участникам кампании с {admin}-role независимо от любых разрешений.",
                 "is_star": "Закрепить",
                 "item": "Предмет",
                 "journal": "Журнал",
@@ -10497,17 +10361,17 @@ export default {
                 "header_image": "Это изображение будет находиться над объектом. Лучше всего использовать широкое изображение.",
                 "image_limitations": "Форматы: {formats}. Размер файла: до {size}.",
                 "image_patreon": "Увеличить максимальный размер файла?",
-                "is_private": "Скрытые объекты могут видеть только участники кампании с ролью \"Админ\".",
+                "image_recommendation": "Рекомендованный размер: {width} на {height} пикселей.",
                 "is_star": "Закрепленные элементы отображаются в меню объекта.",
                 "tooltip": "Автоматическая подсказка будет заменена на содержание этого поля. HTML код не поддерживается, но можно упоминать другие объекты с помощью продвинутых упоминаний.",
                 "visibility": "Значение \"Админ\" означает, что видеть этот объект могут только админы. Значение \"Вы\" означает, что его можете видеть только вы."
             },
             "history": {
-                "created": "Создано <strong>{name}</strong> <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>",
-                "created_date": "Создано <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>",
+                "created_clean": "Создано {name} {date}",
+                "created_date_clean": "Создано {date}",
                 "unknown": "Неизвестно",
-                "updated": "Изменено <strong>{name}</strong> <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>.",
-                "updated_date": "Изменено <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>.",
+                "updated_clean": "Изменено {name} {date}",
+                "updated_date_clean": "Изменено {date}",
                 "view": "Показать историю объекта"
             },
             "image": {
@@ -10521,7 +10385,8 @@ export default {
             "move": [],
             "navigation": {
                 "cancel": "отменить",
-                "or_cancel": "или {cancel}"
+                "or_cancel": "или {cancel}",
+                "skip_to_content": "Пропустить меню"
             },
             "new_entity": {
                 "error": "Пожалуйста, проверьте значения.",
@@ -10636,9 +10501,12 @@ export default {
                 "quests": "Квесты",
                 "relations": "Связи",
                 "reminders": "Напоминания",
-                "story": "История",
+                "story": "Основное",
                 "timelines": "Хронологии",
                 "tooltip": "Подсказка"
+            },
+            "tooltips": {
+                "boosted_feature": "Функция усиленной кампании"
             },
             "update": "Обновить",
             "users": {
@@ -10670,7 +10538,6 @@ export default {
                     "update_email": "Aktualizovať e-mail",
                     "update_password": "Aktualizovať heslo"
                 },
-                "description": "Aktualizuj tvoje konto",
                 "email": "Zmeniť e-mail",
                 "email_success": "E-mail bol aktualizovaný.",
                 "password": "Zmeniť heslo",
@@ -10684,11 +10551,8 @@ export default {
                 "title": "Konto"
             },
             "api": {
-                "experimental": "Vitaj v API Kanky! Tieto funkcionality sú stále experimentálne, ale mali by byť dostatočne stabilné na komunikáciu s API rozhraním. Vytvor si osobný prístupový žetón a použi ho v dotazovaní na API alebo použi klientský žetón, ak chceš, aby mala tvoja aplikácia prístup k užívateľským údajom.",
-                "help": "Kanka bude čoskoro poskytovať prístup cez RESTful API, aby sa na ňu vedeli pripojiť aplikácie tretích strán. Detaily ohľadom správy tvojich API kľúčov nájdeš na tomto mieste.",
                 "helper": "Vitaj v API Kanky. Vytvor si Osobný prístupový žetón, ktorý budeš používať v tvojich požiadavkách na API s cieľom získať informácie o kampaniach, ku ktorým patríš.",
                 "link": "Čítať API dokumentáciu",
-                "request_permission": "Aktuálne pracujeme na silnej RESTful API, aby sa ku Kanke vedeli pripojiť aplikácie tretích strán. Zároveň ale obmedzujeme počet užívateľov, ktorí sa na rozhranie vedia pripojiť, dokiaľ na ňom pracujeme. Ak chceš prístup k API a vytvárať fajnové aplikácie, ktoré komunikujú s Kankou, kontaktuj nás a my ti zašleme všetky informácie, ktoré potrebuješ.",
                 "title": "API"
             },
             "apps": {
@@ -10731,7 +10595,6 @@ export default {
                         "superboosted": "Všetky výhody superboostnutej kampane"
                     },
                     "recovery": "Obnovenie odstránených objektov do {amount} dní.",
-                    "second": "Boostnutie kampane odomkne nasledujúce výhody:",
                     "superboost": "Superboostnutie kampane použije 3 z tvojich boostov a odomkne ďalšie výhody nadmieru tých z boostnutej kampane.",
                     "theme": "Nastaviteľnú tému a vizuálny štýl kampane.",
                     "third": "Ak chceš boostnuť kampaň, prejdi na stránku kampane a klikni na tlačidlo \"{boost_button}\" nad tlačidlom \"{edit_button}\".",
@@ -10830,15 +10693,7 @@ export default {
                 "subscription_status": "Stav predplatného"
             },
             "patreon": {
-                "actions": {
-                    "link": "Prepojiť konto",
-                    "view": "Navštív Kanku na Patreone"
-                },
-                "benefits": "Ak nás podporíš na {patreon}, odomknú sa ti rôzne {features} pre tvoje kampane, a tiež nám pomôžeš, aby sme viac času mohli venovať Kanke.",
-                "benefits_features": "úžasné funkcionality",
                 "deprecated": "Zastaralá funkcionalita - Ak chceš podporiť Kanku, urob tak cez {subscription}. Prepojenie na Patreon je ešte stále aktívne pre osoby, ktoré nás podporili predtým, než sme z neho odišli.",
-                "description": "Synchronizácia s Patreonom",
-                "linked": "Ďakujeme, že podporuješ Kanku na Patreone! Tvoje konto je prepojené.",
                 "pledge": "Úroveň: {name}",
                 "remove": {
                     "button": "Zrušiť prepojenie s Patreonom",
@@ -10846,9 +10701,7 @@ export default {
                     "text": "Ak zrušíš prepojenie tvojho Patreon konta s Kankou, stratíš tvoje bonusy, meno v sieni slávy, boosty pre kampane a iné funkcionality získané vďaka podpore Kanky. Nestratíš ale žiaden obsah (napr. záhlavia objektov). Ak si nás neskôr zasa predplatíš, prístup k dátam sa ti obnoví, vrátane možnosti boostnuť predtým boostnuté kampane.",
                     "title": "Zrušiť prepojenie Patreon konta s Kankou"
                 },
-                "success": "Ďakujeme, že Kanku podporuješ na Patreone!",
-                "title": "Patreon",
-                "wrong_pledge": "Tvoju úroveň podpory nastavujeme ručne, takže nám na to prosím daj pár dní. Ak by nemala byť dlhší čas ešte stále správna, kontaktuj nás."
+                "title": "Patreon"
             },
             "profile": {
                 "actions": {
@@ -10872,6 +10725,13 @@ export default {
                     "title": "Upraviť spôsob platby"
                 },
                 "cancel": {
+                    "options": {
+                        "competitor": "Prechádzam ku konkurencii",
+                        "custom": "Iný (prosím špecifikuj)",
+                        "financial": "Moja finančná situácia sa zmenila",
+                        "missing_features": "Chýbajú mi funkcionality",
+                        "not_using": "Aktuálne Kanku nevyužívam"
+                    },
                     "text": "Ľutujeme, že odchádzaš! Zrušením tvojho predplatného ostáva toto aktívne do ďalšieho platobného obdobia, po ktorom stratíš tvoje boosty kampaní a ostatné výhody vďaka podpore Kanky. Vyplnením následného formulára nám pomôžeš zistiť, čo by sme mali robiť lepšie, alebo čo ťa viedlo k tomuto rozhodnutiu."
                 },
                 "cancelled": "Tvoje predplatné bolo zrušené. Môžeš ho obnoviť, keď ti aktívne predplatné skončí.",
@@ -10881,6 +10741,12 @@ export default {
                         "yearly": "Máte predplatenú úroveň {tier}, splatnú ročne vo výške {amount}."
                     },
                     "title": "Zmeniť úroveň predplatného"
+                },
+                "coupon": {
+                    "check": "Skontrolovať promo kód",
+                    "invalid": "Neplatný promo kód.",
+                    "label": "Promo kód",
+                    "percent_off": "Tvoje prvé ročné predplatné bude zlacnené o {percent}%!"
                 },
                 "currencies": {
                     "eur": "EUR",
@@ -10935,6 +10801,7 @@ export default {
                 "sub_status": "Informácie o predplatnom",
                 "subscription": {
                     "actions": {
+                        "cancel": "Zrušiť predplatné",
                         "downgrading": "Prosím, kontaktuj nás ohľadom zníženia úrovne",
                         "rollback": "Zmeniť na Kobolda",
                         "subscribe": "Zmeniť na {tier} mesačný",
@@ -10982,7 +10849,6 @@ export default {
         },
         "conversations": {
             "create": {
-                "description": "Vytvoriť novú diskusiu",
                 "success": "Diskusia {name} vytvorená.",
                 "title": "Nová diskusia"
             },
@@ -10990,7 +10856,6 @@ export default {
                 "success": "Diskusia {name} odstránená."
             },
             "edit": {
-                "description": "Upraviť diskusiu",
                 "success": "Diskusia {name} upravená.",
                 "title": "Diskusia {name}"
             },
@@ -11007,7 +10872,6 @@ export default {
             },
             "index": {
                 "add": "Nová diskusia",
-                "description": "Spravovať kategóriu {name}.",
                 "header": "Diskusie v {name}",
                 "title": "Diskusie"
             },
@@ -11025,7 +10889,6 @@ export default {
                 "create": {
                     "success": "Účastník {entity} pridaný do diskusie."
                 },
-                "description": "Pridať alebo odstrániť účastníkov z diskusie",
                 "destroy": {
                     "success": "Účastník {entity} odstránený z diskusie."
                 },
@@ -11037,7 +10900,6 @@ export default {
                 "type": "V hre, príprave, deji"
             },
             "show": {
-                "description": "Detailné zobrazenie diskusie",
                 "is_closed": "Diskusia je uzavretá.",
                 "title": "Diskusia {name}"
             },
@@ -11069,14 +10931,11 @@ export default {
                 "go_to": "Prejsť na {name}",
                 "json-export": "Exportovať (json)",
                 "manage_links": "Spravovať linky",
-                "more": "Ďalšie akcie",
                 "move": "Premiestniť",
                 "new": "Nový",
                 "new_post": "Nová poznámka objektu",
                 "next": "Ďalej",
                 "print": "Tlačiť",
-                "private": "Súkromný",
-                "public": "Verejný",
                 "reset": "Resetovať",
                 "transform": "Transformovať"
             },
@@ -11122,6 +10981,7 @@ export default {
                 "success": {
                     "copy_to_campaign": "{1} {count} objekt bol skopírovaný do {campaign}.|[2,4] {count} objekty boli skopírované do {campaign}.|[5,*] {count} objektov bolo skopírovaných do {campaign}.",
                     "editing": "{1} {count} objekt bol upravený.|[2,4] {count} objekty boli upravené.|[5,*] {count} objektov bolo upravených.",
+                    "editing_partial": "{1} {count}/{total} objekt bol upravený.|[2,4] {count}/{total} objekty boli upravené.|[5,*] {count}/{total} objektov bolo upravených.",
                     "permissions": "{1} Oprávnenia zmenené pre {count} objekt.|[2,4] Oprávnenia zmenené pre {count} objekty.|[5,*] Oprávnenia zmenené pre {count} objektov.",
                     "private": "{1} {count} objekt je teraz súkromný.|[2,4] {count} objekty je teraz súkromné.|[5,*] {count} objektov je teraz súkromných.",
                     "public": "{1} {count} objekt je teraz viditeľný.|[2,4] {count} objekty sú teraz viditeľné.|[5,*] {count} objektov je teraz viditeľných.",
@@ -11161,6 +11021,7 @@ export default {
             "errors": {
                 "boosted": "Táto funkcionalita je dostupná iba pre boostnuté kampane.",
                 "boosted_campaigns": "Funkcionalita je dostupná iba pre {boosted}.",
+                "cannot_move_node_into_itself": "Vybraný nadradený objekt je neplatný, možno pretože má tento objekt priradený ako nadradený.",
                 "node_must_not_be_a_descendant": "Neplatný objekt (kategória, miesto): bol by potomok samého seba.",
                 "unavailable_feature": "Funkcionalita nedostupná"
             },
@@ -11181,7 +11042,8 @@ export default {
                 "copy_attributes": "Kopírovať atribúty",
                 "copy_inventory": "Kopírovať inventár",
                 "copy_links": "Kopírovať linky objektu",
-                "copy_notes": "Kopírovať poznámky objektu",
+                "copy_permissions": "Kopírovať oprávnenia (tieto majú prioritu pred nastavenými v karte oprávnení)",
+                "copy_posts": "Kopírovať príspevky (inkl. ich oprávnení)",
                 "creator": "Autor",
                 "dice_roll": "Hod kockou",
                 "entity": "Objekt",
@@ -11193,6 +11055,7 @@ export default {
                 "files": "Súbory",
                 "gallery_header": "Záhlavie galérie",
                 "gallery_image": "Obrázok galérie",
+                "has_attributes": "S atribútmi",
                 "has_entity_files": "So súbormi v objektoch",
                 "has_entity_notes": "S poznámkami v objektoch",
                 "has_image": "S obrázkom",
@@ -11200,7 +11063,7 @@ export default {
                 "image": "Obrázok",
                 "is_closed": "Diskusia bude uzavretá a nebude možné do nej pridávaťnové správy.",
                 "is_private": "Súkromný",
-                "is_private_v2": "Zobraziť len pre členov role {admin}-role v kampani. Toto nastavenie prepíše iné oprávnenia.",
+                "is_private_v3": "Zobraziť iba pre členov {admin}-role role. Toto má prednosť pre ostatnými oprávneniami.",
                 "is_star": "Pripnutý",
                 "item": "Predmet",
                 "journal": "Denník",
@@ -11245,6 +11108,16 @@ export default {
                 "direct": "Filter zobrazenia iba priamych podobjektov",
                 "filtered": "Zobraziť {count} z {total} {entity}.",
                 "hide": "Skryť",
+                "lists": {
+                    "desktop": {
+                        "all": "Zobraziť všetky podradené ({count})",
+                        "filtered": "Zobraziť priamo podradené ({count})"
+                    },
+                    "mobile": {
+                        "all": "Zobraziť všetky ({count})",
+                        "filtered": "Zobraziť priame ({count})"
+                    }
+                },
                 "mobile": {
                     "clear": "Vymazať",
                     "copy": "Schránka"
@@ -11281,17 +11154,17 @@ export default {
                 "header_image": "Tento obrázok je umiestnený nad objekt. Odporúčame používať obrázok na šírku.",
                 "image_limitations": "Podporované formáty: {formats}. Max. veľkosť súboru: {size}.",
                 "image_patreon": "Chceš zvýšiť limit pre veľkosť súborov?",
-                "is_private": "Nastaviť ako súkromný.",
+                "image_recommendation": "Odporúčané rozmery: {width} x {height} px.",
                 "is_star": "Pripnuté objekty sa zobrazia v menu objektu.",
                 "tooltip": "Nahradiť automaticky generovaný obsah bubliny týmto obsahom.",
                 "visibility": "Ak je viditeľnosť nastavená na \"Admin\", vidia to len členovia a členky roly Admin. Ak je nastavená na \"Vlastník\", môže to vidieť len ty."
             },
             "history": {
-                "created": "Vytvorené: <strong>{name}</strong> <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>",
-                "created_date": "Vytvorené: <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>",
+                "created_clean": "Vytvorené {name} {date}",
+                "created_date_clean": "Vytvorené {date}",
                 "unknown": "Neznámy",
-                "updated": "Posledná úprava: <strong>{name}</strong> <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>",
-                "updated_date": "Posledná úprava: <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>",
+                "updated_clean": "Posledná úprava {name} {date}",
+                "updated_date_clean": "Posledná úprava {date}",
                 "view": "Zobraziť protokol objektu"
             },
             "image": {
@@ -11302,34 +11175,10 @@ export default {
             "legacy": "Dedičstvo",
             "linking_help": "Ako môžem prepojiť ďalšie objekty?",
             "manage": "Spravovať",
-            "move": {
-                "description": "Premiestniť objekt na iné miesto",
-                "errors": {
-                    "permission": "Nemáš oprávnenie vytvoriť objekty tohto typu v tejto kampani.",
-                    "same_campaign": "Musíš vybrať inú kampaň, do ktorej chceš daný objekt premiestniť.",
-                    "unknown_campaign": "Neznáma kampaň"
-                },
-                "fields": {
-                    "campaign": "Nová kampaň",
-                    "copy": "Vytvoriť kópiu",
-                    "target": "Nový typ"
-                },
-                "hints": {
-                    "campaign": "Môžeš tiež skúsiť premiestniť tento objekt do inej kampane.",
-                    "copy": "Vyber si túto možnosť, ak chceš vytvoriť kópiu v novej kampani.",
-                    "target": "Prosím, uvedom si, že niektoré dáta môžu zmiznúť, ak sa objekt premiestni do iného typu."
-                },
-                "panels": {
-                    "change": "Zmeniť typ objektu",
-                    "move": "Premiestniť do inej kampane"
-                },
-                "success": "Objekt {name} premiestnený",
-                "success_copy": "Objekt {name} skopírovaný",
-                "title": "Premiestniť {name} na iné miesto"
-            },
             "navigation": {
                 "cancel": "Zrušiť",
-                "or_cancel": "alebo {cancel}"
+                "or_cancel": "alebo {cancel}",
+                "skip_to_content": "Preskočiť navigáciu"
             },
             "new_entity": {
                 "error": "Prosím, prekontroluj tvoje zadanie.",
@@ -11338,7 +11187,6 @@ export default {
                 },
                 "title": "Nový objekt"
             },
-            "or_cancel": "alebo <a href=\"{url}\">Zrušiť</a>",
             "panels": {
                 "appearance": "Výzor",
                 "attribute_template": "Šablóna atribútov",
@@ -11375,7 +11223,6 @@ export default {
                 },
                 "helper": "Použi toto rozhranie na nastavenie oprávnení pre užívateľov a role pre daný objekt.",
                 "helpers": {
-                    "entity_note": "Povoliť užívateľom vytvárať poznámky k tomuto objektu. Aj bez tohto oprávnenia budú ešte stále vidieť poznámky s nastavením viditeľnosti pre všetkých.",
                     "setup": "Pomocou tohto rozhrania môžeš presne nastaviť ako role a užívatelia pracujú s týmto objektom. {allow} dovolí užívateľovi alebo role urobiť danú akciu. {deny} im túto akciu zakáže. {inherit} preberie nastavenie z roly užívateľa alebo z oprávnení hlavnej roly. Užívateľ s nastavením {allow} môže danú akciu vykonať, aj keď má jeho rola nastavenie {deny}."
                 },
                 "inherited": "Táto rola má už pridelené oprávnenia na tento typ objektov.",
@@ -11446,9 +11293,13 @@ export default {
                 "quests": "Úlohy",
                 "relations": "Vzťahy",
                 "reminders": "Pripomienky",
-                "story": "Príbeh",
+                "story": "Prehľad",
                 "timelines": "Časové osi",
                 "tooltip": "Bublina"
+            },
+            "tooltips": {
+                "boosted_feature": "Funkcionalita boostnutej kampane",
+                "new_post": "Pridať novú poznámku k tomuto objektu"
             },
             "update": "Upraviť",
             "users": {
@@ -11475,7 +11326,6 @@ export default {
         "calendars": [],
         "conversations": {
             "create": {
-                "description": "Skapa en ny konversation",
                 "success": "Konversation '{name}' skapad.",
                 "title": "Ny Konversation"
             },
@@ -11483,7 +11333,6 @@ export default {
                 "success": "Konversation '{name}' borttagen."
             },
             "edit": {
-                "description": "Uppdatera konversationen.",
                 "success": "Konversation '{name}' uppdaterad.",
                 "title": "Konversation {name}"
             },
@@ -11499,7 +11348,6 @@ export default {
             },
             "index": {
                 "add": "Ny Konversation",
-                "description": "Hantera kategorin av {name}",
                 "header": "Konversationer i {name}",
                 "title": "Konversationer"
             },
@@ -11517,7 +11365,6 @@ export default {
                 "create": {
                     "success": "Deltagare {entity} tillagd till konversationen."
                 },
-                "description": "Lägg till eller ta bort deltagare i en konversation",
                 "destroy": {
                     "success": "Deltagare {entity} borttagen från konversationen."
                 },
@@ -11529,7 +11376,6 @@ export default {
                 "type": "I Spelet, Förberedande, Handling"
             },
             "show": {
-                "description": "En detaljerad vy för en konversation",
                 "title": "Konversation {name}"
             },
             "tabs": {
@@ -11545,6 +11391,7 @@ export default {
         "randomizers": [],
         "admin": [],
         "timelines": [],
+        "attributes": [],
         "crud": {
             "actions": {
                 "actions": "Åtgärder",
@@ -11655,7 +11502,6 @@ export default {
                 "copy_attributes": "Kopiera Egenskaper",
                 "copy_inventory": "Kopiera Inventarie",
                 "copy_links": "Kopiera Entitetslänkar",
-                "copy_notes": "Kopiera Entitetsanteckningar",
                 "creator": "Skapare",
                 "dice_roll": "Tärningskast",
                 "entity": "Entitet",
@@ -11739,17 +11585,12 @@ export default {
                 "header_image": "Denna bild är placerad över entiteten. För bästa resultat, använd en bred bild.",
                 "image_limitations": "Stöda format: {formats}. Max filstorlek: {size}.",
                 "image_patreon": "Utöka filstorleks gräns?",
-                "is_private": "Om satt som privat, denna entitet kommer bara vara synlig för medlemmar i kampanjens \"Admin\" roll.",
                 "is_star": "Fastnålade element kommer bara visas på entitetens meny",
                 "tooltip": "Ersätt de automatiskt genererade inforutorna med följande innehåll.",
                 "visibility": "Att sätta synligheten till 'admin' betyder att bara medlemmar i Admin rollen för kampanjen kan se detta. Att sätta den till 'Jag själv' betyder att bara du själv kan se detta."
             },
             "history": {
-                "created": "Skapad av <strong>{name}</strong> <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>",
-                "created_date": "Skapad <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>",
                 "unknown": "Okänd",
-                "updated": "Senast ändrad av <strong>{name}</strong> <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>",
-                "updated_date": "Senast ändrad <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>",
                 "view": "Visa entitets logg"
             },
             "image": {
@@ -11759,30 +11600,6 @@ export default {
             "is_private": "Denna entitet är privat och endast synlig för medlemmar med Admin rollen.",
             "linking_help": "Hur kan ja hänvisa till andra entiteter?",
             "manage": "Hantera",
-            "move": {
-                "errors": {
-                    "permission": "Du har inte behörighet att skapa entiteter av den typen i den valda kampanjen.",
-                    "same_campaign": "Du måste välja en annan kampanj att flytta entiteten till.",
-                    "unknown_campaign": "Okänd kampanj."
-                },
-                "fields": {
-                    "campaign": "Ny kampanj",
-                    "copy": "Skapa en kopia",
-                    "target": "Ny typ"
-                },
-                "hints": {
-                    "campaign": "Du kan också försöka flytta denna entitet till en annan kampanj.",
-                    "copy": "Välj detta val om du vill skapa en kopia i den nya kampanjen.",
-                    "target": "Vänligen observera att viss data kan gå förlorad när ett element flyttas från en typ till en annan."
-                },
-                "panels": {
-                    "change": "Ändra entitets typ",
-                    "move": "Flytta till en annan kampanj"
-                },
-                "success": "Entitet '{name}' flyttad.",
-                "success_copy": "Entitet '{name}' kopierad.",
-                "title": "Ändra eller Flytta {name}"
-            },
             "new_entity": {
                 "error": "Vänligen kontrollera dina värden.",
                 "fields": {
@@ -11790,7 +11607,6 @@ export default {
                 },
                 "title": "Ny entitet"
             },
-            "or_cancel": "eller <a href=\"{url}\">avbryt</a>",
             "panels": {
                 "appearance": "Utseende",
                 "attribute_template": "Egenskapsmall",
@@ -11933,10 +11749,7 @@ export default {
                 "title": "Hesap"
             },
             "api": {
-                "experimental": "Kanka API'larına hoşgeldiniz! Bu özellikler hala deneysel ancak sizin API'lar ile bağ kurmanıza yetecek kadar stabil olmalılar. Kendi API istekleriniz için Şahsi Erişim Tokeni oluşturun, ya da uygulanmanızın kullanıcı verisine erişimi olması için İstemci tokeni oluşturun.",
-                "help": "Kanka yakın zamanda üçüncü parti uygulamaların uygulamaya bağlanabilmesi için bir RESTful API sağlayacak. API anahtarlarınızı nasıl yöneteceğinizin detayları aşağıda gösterilecek.",
                 "link": "API dokümentasyonunu okuyun",
-                "request_permission": "Şu anda üçüncü parti uygulamalar uygulamaya bağlanabilsin diye güçlü bir RESTful API oluşturuyoruz. Ancak, biz API altyapısını düzenlerken, şu anda API ile etkileşebilecek kullanıcıların sayısını sınırlıyoruz. Eğer API erişimi kazanmak ve Kanka ile konuşan havalı uygulamalar yaratmak istiyorsanız, lütfen bizimle iletişime geçin ve biz de size ihtiyacınız olan tüm bilgiyi sağlayalım.",
                 "title": "API"
             },
             "apps": {
@@ -11965,8 +11778,6 @@ export default {
                     "first": "Kanka'da sürekli ilerlemenin güvence altına alınması için, bazı serüven özelliklerinin kilidi yalnızca bir serüveni destekleyerek açılır. Destekler abonelikler aracılığı ile açılır. Bir serüveni görüntüleyebilen herhangi biri serüveni destekleyebilir, böylece hesap yalnızca DM'e kilitlenmemiş olur. Bir serüven bir kullanıcı onu desteklediği ve kullanıcı Kanka'yı desteklediği sürece destekli kalır. Eğer bir serüven artık destekli değilse, veri kaybolmaz, yalnızca serüven tekrar desteklenene kadar saklı kalır.",
                     "header": "Varlık kapak görselleri.",
                     "images": "Özel varsayılan varlık görselleri.",
-                    "more": "Bütün özellikler hakkında daha fazla bilgi edinin.",
-                    "second": "Bir serüveni desteklemek aşağıdaki faydaları sağlar:",
                     "superboost": "Bir serüveni süperdesteklemek 3 desteğinizin tamamını harcar ve destekli serüvenlerin üstüne ek özelliklerin de kilidini açar.",
                     "theme": "Serüven seviyesinde tema ve özel tasarım.",
                     "third": "Bir serüveni desteklemek için, serüvenin sayfasına gidin, ve \"{edit_button}\" butonunun üstündeki \"{boost_button}\" butonuna tıklayın.",
@@ -12052,15 +11863,7 @@ export default {
                 "subscription_status": "Abonelik Durumu"
             },
             "patreon": {
-                "actions": {
-                    "link": "Hesabı Bağla",
-                    "view": "Kanka'yı Patreon'da Görüntüle"
-                },
-                "benefits": "Bizi {patreon} üzerinde desteklemek sizin ve serüvenleriniz için her türlü {features} kilidini açar, ve Kanka'nın üstünde çalışmak ve onu geliştirmek için daha fazla zaman geçirmemize yardımcı olur.",
-                "benefits_features": "harika özellikler",
                 "deprecated": "Artık kullanılmayan özellik - eğer Kanka'yı desteklemek istiyorsanız, lütfen bunu {subscription} ile yapın. Patreon bağlama biz Patreon'dan ayrılmadan önce hesaplarını bağlamış Patron'lar için hala aktiftir.",
-                "description": "Patreon ile Senkronizasyon",
-                "linked": "Kanka'yı Patreon'da desteklediğiniz için teşekkür ederiz! Hesabınız bağlandı.",
                 "pledge": "{name} vaadi",
                 "remove": {
                     "button": "Patreon hesabınızın bağlantısını kesin.",
@@ -12068,9 +11871,7 @@ export default {
                     "text": "Patreon hesabınızın Kanka ile bağını koparmak bonuslarınızı, onur duvarından adınızı, serüven destekleriniz, ve Kanka'yı desteklemek ile alakalı diğer özelliklerinizi kaldırır. Destekli hiçbir içeriğiniz kaybolmaz (örn. varlık kapakları). Tekrar abone olarak önceki serüvenlerinizi desteklemek dahil olmak üzere önceki verilerinizin tamamına erişim kazanacaksınız.",
                     "title": "Patreon hesabınızın Kanka ile olan bağını koparın."
                 },
-                "success": "Kanka'yı Patreon'da desteklediğiniz için teşekkür ederiz!",
-                "title": "Patreon",
-                "wrong_pledge": "Vaat seviyeniz bizim tarafımızdan elle ayarlanmıştır, bundan ötürü lütfen bize doğru şekilde ayarlamamız için birkaç güne kadar zaman tanıyın. Eğer bir süre boyunca yanlış kalırsa, lütfen bizimle iletişime geçin."
+                "title": "Patreon"
             },
             "profile": {
                 "actions": {
@@ -12132,7 +11933,6 @@ export default {
         },
         "conversations": {
             "create": {
-                "description": "Yeni bir muhabbet yarat",
                 "success": "'{name}' muhabbeti yaratıldı.",
                 "title": "Yeni Muhabbet"
             },
@@ -12140,7 +11940,6 @@ export default {
                 "success": "'{name}' muahbbeti kaldırıldı."
             },
             "edit": {
-                "description": "Muhabbeti güncelle",
                 "success": "'{name}' muhabbeti güncellendi.",
                 "title": "{name} Muhabbeti"
             },
@@ -12156,7 +11955,6 @@ export default {
             },
             "index": {
                 "add": "Yeni Muhabbet",
-                "description": "{name} kategorisini yönet.",
                 "header": "{name} Muhabbetleri",
                 "title": "Muhabbetler"
             },
@@ -12174,7 +11972,6 @@ export default {
                 "create": {
                     "success": "{entity} katılımcısı muhabbete eklendi."
                 },
-                "description": "Bir muhabbetin katılımcılarını ekle veya kaldır",
                 "destroy": {
                     "success": "{name} katılımcısı muhabbetten kaldırıldı."
                 },
@@ -12186,7 +11983,6 @@ export default {
                 "type": "Oyun İçi, Hazırlık, Plan"
             },
             "show": {
-                "description": "Muhabbete detaylı bir bakış",
                 "title": "{name} Muhabbeti"
             },
             "tabs": {
@@ -12206,5 +12002,16 @@ export default {
         "front": [],
         "entities": []
     },
-    "zh_CN": []
+    "zh-CN": {
+        "maps": [],
+        "calendars": [],
+        "emails": [],
+        "randomizers": [],
+        "admin": [],
+        "timelines": [],
+        "attributes": [],
+        "campaigns": [],
+        "front": [],
+        "entities": []
+    }
 }

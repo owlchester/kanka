@@ -14,7 +14,6 @@ Vue.use(uiv);
 Vue.use(VueInternationalization);
 const lang = document.documentElement.lang.substr(0, 2);
 
-console.log('lang', lang);
 
 const i18n = new VueInternationalization({
     locale: lang,
