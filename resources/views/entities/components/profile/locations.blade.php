@@ -13,5 +13,14 @@
 
     <div class="sidebar-elements collapse in" id="sidebar-profile-elements">
         @include('entities.components.profile._type')
+
+        @if (!$model->maps->isEmpty())
+            <div class="element profile-maps">
+                <div class="title">{{ __('entities.maps') }}</div>
+                @foreach ($model->maps as $map)
+                    {!! $map->tooltipedLink() !!}
+                @endforeach
+            </div>
+        @endif
     </div>
 </div>
