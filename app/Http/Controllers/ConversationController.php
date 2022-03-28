@@ -44,7 +44,28 @@ class ConversationController extends CrudController
      */
     public function show(Conversation $conversation)
     {
-        return $this->crudShow($conversation);
+        // Policies will always fail if they can't resolve the user.
+        if (auth()->check()) {
+            $this->authorize('view', $conversation);
+        } else {
+            $this->authorizeForGuest('read', $conversation);
+        }
+        $name = $this->view;
+        $ajax = request()->ajax();
+        $model = $conversation;
+        $translations = json_encode([
+            'edit' => __('crud.edit'),
+            'remove' => __('crud.remove'),
+            'is_updated' => __('conversations.messages.is_updated'),
+            'is_closed' => __('conversations.show.is_closed'),
+            'load_previous' => __('conversations.messages.load_previous'),
+            'user_unknown' => __('crud.users.unknown'),
+        ]);
+
+        return view(
+            'cruds.show',
+            compact('model', 'name', 'ajax', 'translations')
+        );
     }
 
     /**

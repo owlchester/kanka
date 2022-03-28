@@ -1,7 +1,7 @@
 <template>
     <div class="box-comments" ref="messagebox">
         <div class="load-more" v-if="previous && !loadingPrevious" v-on:click="getPrevious">
-            {{ $t('conversations.messages.load_previous') }}
+            {{ translate('load_previous') }}
         </div>
         <div class="load more text-center" v-if="loadingPrevious">
             <i class="fa fa-spin fa-spinner"></i>
@@ -13,6 +13,7 @@
             v-for="message in messages"
             :key="message.id"
             :message="message"
+            :trans="trans"
             >
         </conversation-message>
 
@@ -31,7 +32,8 @@
      */
     export default {
         props: [
-            'api'
+            'api',
+            'trans'
         ],
         data() {
             return {
@@ -104,6 +106,9 @@
                     let index = this.messages.findIndex(msg => msg.id === message.id);
                     this.messages.splice(index, 1);
                 });
+            },
+            translate(key) {
+                return this.trans[key] ?? 'unknown';
             }
         },
         mounted() {
