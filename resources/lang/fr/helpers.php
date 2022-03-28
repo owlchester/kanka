@@ -50,21 +50,36 @@ return [
         'title'         => 'Comment utiliser les filtres',
     ],
     'link'              => [
+        'advanced'          => [
+            'title' => 'Mentions avancées',
+        ],
         'anchor'            => 'La mention avancée peut aussi spécifier l\'ancre HTML vers lequel le liens ira avec :example.',
-        'attributes'        => 'Pour référencer des attributs de cette entité, utiliser la touche :code. Ceci fonctionne seulement sur les attributs sauvegardés de l\'entité.',
+        'attribute'         => [
+            'description'   => 'Pour référencer des attributs de cette entité, utiliser la touche :code. Ceci fonctionne seulement sur les attributs sauvegardés de l\'entité.',
+            'title'         => 'Attributs',
+        ],
         'auto_update'       => 'Les liens vers d\'autres entités seront automatiquement mis à jour lorsque le nom ou la description de l\'entité cible est modifié.',
         'description'       => 'Un lien vers une entité peut être facilement inséré en utilisant \'@\' dans le text. \'#\' peut être utilisé pour avoir une liste de mois depuis les calendriers de la campagne.',
+        'filtering'         => [
+            'description'   => 'Filtrer pour trouver des entités est facile.',
+            'exact'         => 'Ecrire :code pour trouver des entités qui ont exactement ce nom.',
+            'space'         => 'Ecrire :code pour trouver des entités avec un espace dans le nom.',
+            'title'         => 'Filtres',
+        ],
         'formatting'        => [
             'text'  => 'La liste des balises et attributs HTML autorisés peut être consultée sur notre :github.',
             'title' => 'Mise en page',
         ],
         'friendly_mentions' => 'Lier vers d\'autres entités avec :code et les premiers caractères d\'une entité pour la rechercher. Cela injectera :example dans l\'editeur de texte et affichera un lien vers l\'entité lors de la lecture.',
-        'limitations'       => 'Malheureusement, à cause de limitation technique, ces raccourcis ne sont pas disponibles sur Android.',
         'mention_helpers'   => 'Si le nom de l\'entité contient des espaces, utiliser :example à la place d\'espace. :exact peut être utilisé pour chercher des entités avec exactement ce nom.',
         'mentions'          => 'Créer des liens vers d\'autres entités en saisissant :code suivi du nom d\'une entité pour la chercher. Cela injectera :example dans l\'editeur. Le nom affiché peut être contrôlé avec :example_name. Le lien vers une sous-page peut être contrôlé avec :example_page. Le lien vers un onglet peut être contrôlé avec :example_tab.',
         'mentions_field'    => 'Il est aussi possible d\'afficher un champ de l\'entité au lieu du nom avec :code.',
+        'month'             => [
+            'title' => 'Mois des calendriers',
+        ],
         'months'            => 'Saisis :code pour avoir une liste de mois des calendriers de la campagne.',
         'options'           => 'Quelques options: :options.',
+        'overview'          => 'Lier facilement aux entités de la campagne en écrivant :code et trois lettres ou plus.',
         'title'             => 'Liens vers d\'autres éléments et raccourcis',
     ],
     'map'               => [

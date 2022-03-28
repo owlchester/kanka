@@ -1,14 +1,14 @@
 <?php
 
 return [
-    'fields' => [
-        'public_campaigns' => 'Public campaigns',
-        'member_since' => 'Member since :date',
-        'subscriber_since' => 'Subscriber since :date',
-        'entities_created' => 'Entities created :help :count',
+    'fields'    => [
+        'entities_created'  => 'Entities created :help :count',
+        'member_since'      => 'Member since :date',
+        'public_campaigns'  => 'Public campaigns',
+        'subscriber_since'  => 'Subscriber since :date',
     ],
-    'helpers' => [
-        'entities_created' => 'This value is recalculated every day.',
+    'helpers'   => [
+        'entities_created'  => 'This value is recalculated every day.',
     ],
-    'title' => ':name Profile',
+    'title'     => ':name Profile',
 ];

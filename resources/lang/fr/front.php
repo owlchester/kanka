@@ -30,15 +30,7 @@ return [
         ],
         'title'             => 'Campagnes Publiques',
     ],
-    'community'     => [
-        'description'   => 'Kanka n\'est pas seulement une application, c\'est aussi une riche communauté de constructeurs de monde, maîtres de jeu, joueurs et créateurs enthousiastes.',
-        'discord'       => 'Le Discord de Kanka est l\'endroit le plus actif pour parler de l\'application, des bugs, nouvelles fonctionnalités, demander de l\'aide et aider les autres.',
-        'facebook'      => 'Reste au courant de nos modifications sur notre page Facebook.',
-        'instagram'     => 'Envie de nous voir travailler sur Kanka depuis les coulisses ou nos sessions de jeux? Suis-nous sur Instagram!',
-        'join'          => 'Rejoins-nous!',
-        'reddit'        => 'Le subreddit Kanka est un endroit plus calme où les sujets peuvent être discutés pendant de longues périodes.',
-        'title'         => 'Communauté',
-    ],
+    'community'     => [],
     'contact'       => [
         'description'   => 'T\'as besoin d\'aide, une amélioration à suggérer, ou envie de nous dire que t\'adores Kanka? Notre équipe répond à tous les emails.',
         'email'         => 'Envoie toutes tes demandes à notre email:',
@@ -281,9 +273,7 @@ return [
     ],
     'pricing'       => [
         'actions'       => [
-            'more'      => 'Plus d\'infos sur les fonctionnalités débloquées en nous soutenant',
             'subscribe' => 'Souscrire',
-            'support'   => 'Soutenir',
         ],
         'benefits'      => [
             'big_maps'      => 'Taille de carte (:size)',
@@ -307,10 +297,7 @@ return [
         'description'   => 'Date effective: :date',
         'title'         => 'Politique de confidentialité',
     ],
-    'release'       => [
-        'description'   => 'Kanka ne cesse de croître et de s\'améliorer, et nous voulons que le monde sache toutes les choses impressionnantes que nous ajoutons à l\'application.',
-        'title'         => 'Mises à jour',
-    ],
+    'release'       => [],
     'roadmap'       => [
         'backlog'           => [
             'description'   => 'Ce Trello contient toutes les requêtes de la communauté, ainsi que les améliorations planifiées et nouvelles fonctionnalités qui seront un jour ajoutées à l\'application.',

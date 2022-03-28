@@ -228,6 +228,7 @@ return [
     ],
     'helpers'                   => [
         'copy_options'  => 'Copier les éléments liés suivant de la source à la nouvelle entité.',
+        'linking'       => 'Lier d\'autres entités',
     ],
     'hidden'                    => 'Caché',
     'hints'                     => [

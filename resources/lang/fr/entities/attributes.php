@@ -8,7 +8,8 @@ return [
         'remove_all'        => 'Tout supprimer',
     ],
     'errors'        => [
-        'loop'  => 'Il y a une boucle sur la calculation de cet attribut!',
+        'loop'      => 'Il y a une boucle sur la calculation de cet attribut!',
+        'too_many'  => 'Il y a trop de temps sur cette entité, il n\'est pas possible d\'ajouter plus d\'attributs. Prière de supprimer des attributs avant de pouvoir en ajouter d\'autre.',
     ],
     'fields'        => [
         'attribute'             => 'Attribut',

@@ -22,6 +22,7 @@ return [
     ],
     'fields'                        => [
         'avatar'                    => 'Avatar',
+        'bio'                       => 'Bigraphie',
         'email'                     => 'Email',
         'hide_subscription'         => 'Cacher mon nom du :hall_of_fame.',
         'last_login_share'          => 'Partager la date de ma dernière connexion avec les autres membres de la campagne.',
@@ -58,6 +59,7 @@ return [
         'success'   => 'Mot de passe modifié.',
     ],
     'placeholders'                  => [
+        'bio'                       => 'Une courte bio affichée sur le profile publique.',
         'email'                     => 'Adresse email',
         'name'                      => 'Nom tel qu\'affiché',
         'new_password'              => 'Nouveau mot de passe',
@@ -86,7 +88,9 @@ return [
             'pagination'                    => 'Pagination (éléments par page)',
         ],
         'helpers'   => [
+            'bio'       => 'La biographie est visible sur ton :link.',
             'editor_v2' => 'L\'ancien éditeur de text (TinyMCE) ne supporte pas les mentions sur mobile, ni certaines fonctionnalités tel que la galerie de campagne.',
+            'profile'   => 'profile publique',
         ],
         'hints'     => [
             'advanced_mentions'     => 'Lorsque cette option est activée, les mentions s\'afficheront tout le temps comme [entity:123] lors de l\'édition d\'une entité.',

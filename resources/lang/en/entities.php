@@ -14,16 +14,16 @@ return [
     'conversation'          => 'Conversation',
     'conversations'         => 'Conversations',
     'creator'               => [
-        'back'      => 'Back to selection',
-        'duplicate' => 'Heads up! There are other entities of this type with a similar name.',
-        'helper'    => 'Select an entity type to create. If no entities appear, it means that you don\'t have the permission to create any kind of entity in this campaign.',
-        'success_multiple' => '{1} New entity :link created.|[2,*] New entities :link created.',
-        'title'     => 'New Entity',
-        'tooltip'   => 'Create a new entity without leaving the current page',
-        'name' => [
-            'new' => 'New name',
-            'remove' => 'Remove',
-        ]
+        'back'              => 'Back to selection',
+        'duplicate'         => 'Heads up! There are other entities of this type with a similar name.',
+        'helper'            => 'Select an entity type to create. If no entities appear, it means that you don\'t have the permission to create any kind of entity in this campaign.',
+        'name'              => [
+            'new'       => 'New name',
+            'remove'    => 'Remove',
+        ],
+        'success_multiple'  => '{1} New entity :link created.|[2,*] New entities :link created.',
+        'title'             => 'New Entity',
+        'tooltip'           => 'Create a new entity without leaving the current page',
     ],
     'dice_roll'             => 'Dice Roll',
     'dice_rolls'            => 'Dice Rolls',

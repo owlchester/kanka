@@ -6,6 +6,7 @@ return [
         'delete'    => 'Supprimé',
         'restore'   => 'Restoré',
         'update'    => 'Mis à jour',
+        'view'      => 'Voir les changements',
     ],
     'fields'        => [
         'action'    => 'Action',
