@@ -115,9 +115,7 @@
             this.loadIntent();
             this.loadPaymentMethods();
 
-            console.log('trans', this.trans);
             this.json_trans = JSON.parse(this.trans);
-            console.log('trans 2', this.json_trans);
         },
 
         methods: {

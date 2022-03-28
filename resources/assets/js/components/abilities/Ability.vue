@@ -7,27 +7,27 @@
                 <span class="box-title">
                     <dropdown tag="a" menu-left class="message-options" v-if="permission">
                         <a class="dropdown-toggle" role="button">
-                            <i class="fas fa-lock" v-if="ability.visibility === 'admin'" v-bind:title="$t('crud.visibilities.admin')"></i>
-                            <i class="fas fa-user-lock" v-if="ability.visibility === 'admin-self'" v-bind:title="$t('crud.visibilities.admin-self')"></i>
-                            <i class="fas fa-users" v-if="ability.visibility === 'members'" v-bind:title="$t('crud.visibilities.members')"></i>
-                            <i class="fas fa-user-secret" v-if="ability.visibility === 'self'" v-bind:title="$t('crud.visibilities.self')"></i>
-                            <i class="fa fa-eye" v-if="ability.visibility === 'all'" v-bind:title="$t('crud.visibilities.all')"></i>
+                            <i class="fas fa-lock" v-if="ability.visibility === 'admin'" v-bind:title="translate('admin')"></i>
+                            <i class="fas fa-user-lock" v-if="ability.visibility === 'admin-self'" v-bind:title="translate('admin-self')"></i>
+                            <i class="fas fa-users" v-if="ability.visibility === 'members'" v-bind:title="translate('members')"></i>
+                            <i class="fas fa-user-secret" v-if="ability.visibility === 'self'" v-bind:title="translate('self')"></i>
+                            <i class="fa fa-eye" v-if="ability.visibility === 'all'" v-bind:title="translate('all')"></i>
                         </a>
                         <template slot="dropdown">
                             <li>
-                                <a role="button" v-on:click="setVisibility('all')">{{ $t('crud.visibilities.all') }}</a>
+                                <a role="button" v-on:click="setVisibility('all')">{{ translate('all') }}</a>
                             </li>
                             <li v-if="meta.is_admin">
-                                <a role="button" v-on:click="setVisibility('admin')">{{ $t('crud.visibilities.admin') }}</a>
+                                <a role="button" v-on:click="setVisibility('admin')">{{ translate('admin') }}</a>
                             </li>
                             <li v-if="this.isSelf">
-                                <a role="button" v-on:click="setVisibility('self')">{{ $t('crud.visibilities.self') }}</a>
+                                <a role="button" v-on:click="setVisibility('self')">{{ translate('self') }}</a>
                             </li>
                             <li v-if="this.isSelf">
-                                <a role="button" v-on:click="setVisibility('members')">{{ $t('crud.visibilities.members') }}</a>
+                                <a role="button" v-on:click="setVisibility('members')">{{ translate('members') }}</a>
                             </li>
                             <li v-if="this.isSelf">
-                                <a role="button" v-on:click="setVisibility('admin.self')">{{ $t('crud.visibilities.admin-self') }}</a>
+                                <a role="button" v-on:click="setVisibility('admin.self')">{{ translate('admin-self') }}</a>
                             </li>
                         </template>
                     </dropdown>
@@ -40,10 +40,10 @@
                    v-on:click="updateAbility(ability)"
                    v-if="this.canDelete"
                    class="btn btn-box-tool"
-                  v-bind:title="$t('crud.update')">
+                  v-bind:title="translate('update')">
                   <i class="fa fa-pencil"></i>
                 </a>
-                <a class="btn btn-box-tool" role="button" v-on:click="deleteAbility(ability)" v-if="this.canDelete" v-bind:title="$t('crud.remove')">
+                <a class="btn btn-box-tool" role="button" v-on:click="deleteAbility(ability)" v-if="this.canDelete" v-bind:title="translate('remove')">
                   <i class="fa fa-trash"></i>
                 </a>
               </div>
@@ -102,6 +102,7 @@
             'ability',
             'permission',
             'meta',
+            'trans',
         ],
 
         data() {
@@ -167,6 +168,9 @@
                     .catch(() => {
                         ability.used_charges -= 1;
                     });
+            },
+            translate(key) {
+                return this.trans[key] ?? 'unknown';
             }
         }
     }

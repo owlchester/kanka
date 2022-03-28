@@ -200,9 +200,7 @@ __webpack_require__.r(__webpack_exports__);
     }.bind(this));
     this.loadIntent();
     this.loadPaymentMethods();
-    console.log('trans', this.trans);
     this.json_trans = JSON.parse(this.trans);
-    console.log('trans 2', this.json_trans);
   },
   methods: {
     /*
@@ -18228,16 +18226,7 @@ __webpack_require__.r(__webpack_exports__);
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 Vue.component('billing-management', _components_subscription_BillingManagement__WEBPACK_IMPORTED_MODULE_0__["default"]); // Boostrap
 
-Vue.use(uiv__WEBPACK_IMPORTED_MODULE_1__); // Translations
-//Vue.use(VueInternationalization);
-//const lang = document.documentElement.lang.substr(0, 2);
-
-/*const i18n = new VueInternationalization({
-    locale: lang,
-    fallbackLocale: 'en',
-    messages: Locale
-});*/
-
+Vue.use(uiv__WEBPACK_IMPORTED_MODULE_1__);
 var app = new Vue({
   el: '#billing'
 });

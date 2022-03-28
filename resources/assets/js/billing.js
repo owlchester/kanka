@@ -8,17 +8,6 @@ Vue.component('billing-management', BillingManagement);
 // Boostrap
 Vue.use(uiv);
 
-// Translations
-//Vue.use(VueInternationalization);
-//const lang = document.documentElement.lang.substr(0, 2);
-
-
-/*const i18n = new VueInternationalization({
-    locale: lang,
-    fallbackLocale: 'en',
-    messages: Locale
-});*/
-
 const app = new Vue({
     el: '#billing',
 });

@@ -26,7 +26,8 @@
                 :key="ability.id"
                 :ability="ability"
                 :permission="permission"
-                :meta="meta">
+                :meta="meta"
+                :trans="json_trans">
             </ability>
         </div>
 
@@ -34,10 +35,11 @@
                  :key="ability.id"
                  :ability="ability"
                  :permission="permission"
-                 :meta="meta">
+                 :meta="meta"
+                 :trans="json_trans">
         </ability>
 
-        <ability_form>
+        <ability_form :trans="json_trans">
         </ability_form>
 
         <div v-if="waiting" class="box-waiting">
@@ -55,6 +57,7 @@
             'id',
             'api',
             'permission',
+            'trans',
         ],
 
         data() {
@@ -67,6 +70,7 @@
                 parent: null,
                 waiting: false,
                 modal: false,
+                json_trans: [],
             }
         },
 
@@ -114,6 +118,10 @@
                         // Ability might have been deleted by someone else
                         this.getAbilities();
                     });
+            },
+
+            translate(key) {
+                return this.json_trans[key] ?? 'unknown';
             }
         },
 
@@ -128,6 +136,8 @@
             Event.$on('delete_ability', (ability) => {
                 this.deleteAbility(ability);
             });
+            this.json_trans = JSON.parse(this.trans);
+
         }
     }
 </script>
