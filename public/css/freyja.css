@@ -65,8 +65,8 @@
 }
 
 .main-sidebar .sidebar li {
-  padding: 6px 12px;
-  height: 38px;
+  padding: 0 12px;
+  min-height: 38px;
 }
 
 .main-sidebar .sidebar li .fa,
@@ -82,7 +82,8 @@
 }
 
 .main-sidebar .sidebar li a,
-.main-sidebar .sidebar li .sidebar-text {
+.main-sidebar .sidebar li span {
+  display: block;
   font-size: 11px;
   line-height: 22px;
   color: var(--sidebar-link);
@@ -100,17 +101,23 @@
   border-radius: 8px;
 }
 
-.main-sidebar .sidebar li.active a,
+.main-sidebar .sidebar li ul.sidebar-submenu {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.main-sidebar .sidebar li ul.sidebar-submenu li {
+  padding-left: 12px;
+  margin: 1px 0;
+}
+
+.main-sidebar .sidebar li.active > a,
 .main-sidebar .sidebar li.active.sidebar-section {
   border: none;
   background: rgba(0, 0, 0, 0.24);
   box-shadow: inset 1px 2px 6px rgba(0, 0, 0, 0.16);
   border-radius: 8px;
-}
-
-.main-sidebar .sidebar li.subsection {
-  padding-left: 24px;
-  margin: 1px 0;
 }
 
 .main-sidebar-placeholder {
@@ -130,7 +137,8 @@
   background-color: unset;
 }
 
-.skin-black .sidebar-menu li > a {
+.skin-black .sidebar-menu li > a,
+.skin-black .sidebar-menu li > span {
   padding: 8px 5px 8px 15px;
 }
 

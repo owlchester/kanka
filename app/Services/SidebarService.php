@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\Campaign;
 use App\Models\MenuLink;
 use Illuminate\Support\Arr;
 
@@ -134,6 +135,162 @@ class SidebarService
         ],
     ];
 
+    protected $elements = [
+        'dashboard' => [
+            'icon' => 'fas fa-th-large',
+            'label' => 'sidebar.dashboard',
+            'module' => false,
+            'route' => 'dashboard',
+        ],
+        'menu_links' => [
+            'icon' => 'fa fa-star',
+            'label' => 'entities.menu_links',
+        ],
+        'campaigns' => [
+            'icon' => 'fa fa-globe',
+            'label' => 'sidebar.world',
+            'module' => false,
+            'route' => 'campaign',
+        ],
+        'characters' => [
+            'icon' => 'fa fa-user',
+            'label' => 'sidebar.characters',
+        ],
+        'locations' => [
+            'icon' => 'ra ra-tower',
+            'label' => 'sidebar.locations',
+        ],
+        'maps' => [
+            'icon' => 'fas fa-map',
+            'label' => 'entities.maps',
+        ],
+        'organisations' => [
+            'icon' => 'ra ra-hood',
+            'label' => 'sidebar.organisations',
+        ],
+        'families' => [
+            'icon' => 'ra ra-double-team',
+            'label' => 'sidebar.families',
+        ],
+        'calendars' => [
+            'icon' => 'fa fa-calendar',
+            'label' => 'sidebar.calendars',
+        ],
+        'timelines' => [
+            'icon' => 'fas fa-hourglass-half',
+            'label' => 'sidebar.timelines',
+        ],
+        'races' => [
+            'icon' => 'ra ra-wyvern',
+            'label' => 'sidebar.races',
+        ],
+        'campaign' => [
+            'icon' => 'fa fa-globe',
+            'label' => 'sidebar.campaign',
+            'route' => 'campaign',
+        ],
+        'quests' => [
+            'icon' => 'ra ra-wooden-sign',
+            'label' => 'sidebar.quests'
+        ],
+        'journals' => [
+            'icon' => 'ra ra-quill-ink',
+            'label' => 'sidebar.journals'
+        ],
+        'items' => [
+            'icon' => 'ra ra-gem-pendant',
+            'label' => 'sidebar.items'
+        ],
+        'events' => [
+            'icon' => 'fa fa-bolt',
+            'label' => 'sidebar.events'
+        ],
+        'abilities' => [
+            'icon' => 'ra ra-fire-symbol',
+            'label' => 'sidebar.abilities'
+        ],
+        'notes' => [
+            'icon' => 'fas fa-book-open',
+            'label' => 'sidebar.notes',
+        ],
+        'other' => [
+            'icon' => 'fas fa-cubes',
+            'label' => 'sidebar.other',
+            'module' => false,
+            'route' => false,
+        ],
+        'tags' => [
+            'icon' => 'fa fa-tags',
+            'label' => 'sidebar.tags',
+        ],
+        'conversations' => [
+            'icon' => 'fa fa-comment',
+            'label' => 'sidebar.conversations',
+        ],
+        'dice_rolls' => [
+            'icon' => 'ra ra-dice-five',
+            'label' => 'sidebar.dice_rolls',
+        ],
+        'relations' => [
+            'icon' => 'fas fa-people-arrows',
+            'label' => 'sidebar.relations',
+            'perm' => 'relations',
+            'module' => false,
+        ],
+        'gallery' => [
+            'icon' => 'fas fa-images',
+            'label' => 'sidebar.gallery',
+            'perm' => 'gallery',
+            'route' => 'campaign.gallery.index',
+            'module' => false,
+        ],
+        'attribute_templates' => [
+            'icon' => 'fa fa-copy',
+            'label' => 'sidebar.attribute_templates',
+            'module' => false,
+        ],
+    ];
+
+    protected $layout = [
+        'dashboard' => null,
+        'menu_links' => null,
+        'campaigns' => [ //world
+            'characters',
+            'locations',
+            'maps',
+            'organisations',
+            'families',
+            'calendars',
+            'timelines',
+            'races',
+        ],
+        'campaign' => [
+            'quests',
+            'journals',
+            'items',
+            'events',
+            'abilities',
+        ],
+        'notes' => null,
+        'other' => [
+            'tags',
+            'conversations',
+            'dice_rolls',
+            'relations',
+            'gallery',
+            'attribute_templates',
+        ]
+    ];
+
+    /** @var Campaign */
+    protected $campaign;
+
+    public function campaign(Campaign $campaign): self
+    {
+        $this->campaign = $campaign;
+        return $this;
+    }
+
     /**
      * @param $menu
      */
@@ -229,5 +386,58 @@ class SidebarService
         }
 
         return null;
+    }
+
+    /**
+     * Generate an array of the sidebar elements
+     * @return array
+     */
+    public function layout(): array
+    {
+        $layout = [];
+        foreach ($this->layout as $name => $children) {
+            if (!isset($this->elements[$name])) {
+                dd('cant find element ' . $name);
+            }
+            $element = $this->elements[$name];
+            // Add route if should have one
+            if (!isset($element['route'])) {
+                $element['route'] = $name . '.index';
+            }
+            $element['label'] = __($element['label']);
+            $layout[$name] = $element;
+
+            // No children? Nothing more to do
+            if (empty($children)) {
+                continue;
+            }
+            $layout[$name]['children'] = [];
+            foreach ($children as $childName) {
+                $child = $this->elements[$childName];
+                // Child has a module, check that the campaign has it enabled
+                if (!isset($child['module'])) {
+                    if (!$this->campaign->enabled($childName)) {
+                        continue;
+                    }
+                }
+                // Child has permission check?
+                if (isset($child['perm'])) {
+                    if (!auth()->check() || !auth()->user()->can($childName, $this->campaign)) {
+                        continue;
+                    }
+                }
+
+                // Add route when none is set
+                if (!isset($child['route'])) {
+                    $child['route'] = $childName . '.index';
+                }
+                $child['label'] = __($child['label']);
+
+                // Add it
+                $layout[$name]['children'][$childName] = $child;
+            }
+        }
+
+        return $layout;
     }
 }
