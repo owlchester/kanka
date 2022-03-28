@@ -48,7 +48,6 @@
                 <div class="header-content mx-auto">
                     <h1 class="mb-5" id="maintenance">{{ __('errors.503.title') }}</h1>
 
-
                     <p class="mb-5">{{ __('errors.503.body.1') }}</p>
                     <p class="mb-5">{{ __('errors.503.body.2') }}</p>
 

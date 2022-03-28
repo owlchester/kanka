@@ -170,8 +170,9 @@ function initSubforms() {
       // properly save their data.
 
       if (err.status === 503) {
-        $('#entity-form-503-error').show();
+        window.showToast(err.responseJSON.message, 'toast-error');
         resetSubformSubmitAnimation(currentAjaxForm);
+        return;
       } // If it's 403, the session is gone
 
 

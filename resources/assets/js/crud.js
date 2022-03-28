@@ -528,8 +528,9 @@ function registerEntityFormSubmit() {
             // If we have a 503 error status, let's assume it's from cloudflare and help the user
             // properly save their data.
             if (err.status === 503) {
-                $('#entity-form-503-error').show();
+                window.showToast(err.responseJSON.message, 'toast-error');
                 resetEntityFormSubmitAnimation();
+                return;
             }
 
             // If it's 403, the session is gone
@@ -628,8 +629,9 @@ function registerRelationFormSubmit() {
             // If we have a 503 error status, let's assume it's from cloudflare and help the user
             // properly save their data.
             if (err.status === 503) {
-                $('#entity-form-503-error').show();
+                window.showToast(err.responseJSON.message);
                 resetRelationFormSubmitAnimation();
+                return;
             }
 
             // Loop through the errors to add the class and error message

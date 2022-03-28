@@ -1239,6 +1239,7 @@ summary {
 
 :root {
   --toast-background: #00a65a;
+  --toast-background-error: #d73925;
   --toast-text: white;
 }
 
@@ -1251,21 +1252,28 @@ summary {
   overflow-x: hidden;
 }
 
-.toast-container .toast-success {
+.toast-container .toast-success,
+.toast-container .toast-error {
   margin-top: 10px;
   text-align: right;
 }
 
-.toast-container .toast-success .toast-message {
+.toast-container .toast-success .toast-message,
+.toast-container .toast-error .toast-message {
   display: inline-block;
   background-color: var(--toast-background);
   color: var(--toast-text);
   padding: 10px;
 }
 
-.toast-container .toast-success .toast-message .fa-times {
+.toast-container .toast-success .toast-message .fa-times,
+.toast-container .toast-error .toast-message .fa-times {
   cursor: pointer;
   margin-left: 5px;
+}
+
+.toast-container .toast-error .toast-message {
+  background-color: var(--toast-background-error);
 }
 
 .tutorial-highlight {

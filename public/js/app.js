@@ -79709,8 +79709,9 @@ function initCalendarEventModal() {
       // properly save their data.
 
       if (err.status === 503) {
-        $('#entity-form-503-error').show();
+        window.showToast(err.responseJSON.message, 'toast-error');
         resetReminderAnimation();
+        return;
       } // If it's 403, the session is gone
 
 
@@ -80570,8 +80571,9 @@ function registerEntityFormSubmit() {
       // properly save their data.
 
       if (err.status === 503) {
-        $('#entity-form-503-error').show();
+        window.showToast(err.responseJSON.message, 'toast-error');
         resetEntityFormSubmitAnimation();
+        return;
       } // If it's 403, the session is gone
 
 
@@ -80670,8 +80672,9 @@ function registerRelationFormSubmit() {
       // properly save their data.
 
       if (err.status === 503) {
-        $('#entity-form-503-error').show();
+        window.showToast(err.responseJSON.message);
         resetRelationFormSubmitAnimation();
+        return;
       } // Loop through the errors to add the class and error message
 
 
@@ -81893,8 +81896,9 @@ function registerToastDismiss() {
 /** Show an expiring message at the bottom right of the page **/
 
 
-window.showToast = function (message) {
-  var $container = $('<div class="toast-success">');
+window.showToast = function (message, css) {
+  css = css || 'toast-success';
+  var $container = $('<div class="' + css + '">');
   $container.html('<span class="toast-message">' + message + '<i class="fa fa-times" data-toggle="dismiss"></i></span');
   $('.toast-container').append($container);
   setTimeout(function () {
