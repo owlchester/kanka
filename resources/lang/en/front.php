@@ -79,6 +79,7 @@ return [
             'no_ads'                => 'No ads on the campaign for logged in users',
             'recovery'              => 'Restore deleted entities (up to :amount days)',
             'relation-visualiser'   => 'Explore the relations of entities visually',
+            'sidebar'               => 'Reorder and customise the sidebar of a campaign',
             'theme'                 => 'Fixed campaign theme',
             'title'                 => 'Boosted Campaigns',
             'tooltip'               => 'Custom tooltips for entities (text, show image)',

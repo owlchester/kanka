@@ -5,6 +5,9 @@ namespace App\Services;
 use App\Models\Campaign;
 use App\Models\MenuLink;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Str;
+use Stevebauman\Purify\Facades\Purify;
 
 class SidebarService
 {
@@ -141,16 +144,19 @@ class SidebarService
             'label' => 'sidebar.dashboard',
             'module' => false,
             'route' => 'dashboard',
+            'fixed' => true,
         ],
         'menu_links' => [
             'icon' => 'fa fa-star',
             'label' => 'entities.menu_links',
+            'fixed' => true,
         ],
         'campaigns' => [
             'icon' => 'fa fa-globe',
             'label' => 'sidebar.world',
             'module' => false,
             'route' => 'campaign',
+            'fixed' => true,
         ],
         'characters' => [
             'icon' => 'fa fa-user',
@@ -159,69 +165,83 @@ class SidebarService
         'locations' => [
             'icon' => 'ra ra-tower',
             'label' => 'sidebar.locations',
+            'tree' => true,
         ],
         'maps' => [
             'icon' => 'fas fa-map',
             'label' => 'entities.maps',
+            'tree' => true,
         ],
         'organisations' => [
             'icon' => 'ra ra-hood',
             'label' => 'sidebar.organisations',
+            'tree' => true,
         ],
         'families' => [
             'icon' => 'ra ra-double-team',
             'label' => 'sidebar.families',
+            'tree' => true,
         ],
         'calendars' => [
             'icon' => 'fa fa-calendar',
             'label' => 'sidebar.calendars',
+            'tree' => true,
         ],
         'timelines' => [
             'icon' => 'fas fa-hourglass-half',
             'label' => 'sidebar.timelines',
+            'tree' => true,
         ],
         'races' => [
             'icon' => 'ra ra-wyvern',
             'label' => 'sidebar.races',
+            'tree' => true,
         ],
         'campaign' => [
             'icon' => 'fa fa-globe',
             'label' => 'sidebar.campaign',
             'route' => 'campaign',
+            'fixed' => true,
         ],
         'quests' => [
             'icon' => 'ra ra-wooden-sign',
-            'label' => 'sidebar.quests'
+            'label' => 'sidebar.quests',
+            'tree' => true,
         ],
         'journals' => [
             'icon' => 'ra ra-quill-ink',
-            'label' => 'sidebar.journals'
+            'label' => 'sidebar.journals',
+            'tree' => true,
         ],
         'items' => [
             'icon' => 'ra ra-gem-pendant',
-            'label' => 'sidebar.items'
+            'label' => 'sidebar.items',
         ],
         'events' => [
             'icon' => 'fa fa-bolt',
-            'label' => 'sidebar.events'
+            'label' => 'sidebar.events',
         ],
         'abilities' => [
             'icon' => 'ra ra-fire-symbol',
-            'label' => 'sidebar.abilities'
+            'label' => 'sidebar.abilities',
+            'tree' => true,
         ],
         'notes' => [
             'icon' => 'fas fa-book-open',
             'label' => 'sidebar.notes',
+            'tree' => true,
         ],
         'other' => [
             'icon' => 'fas fa-cubes',
             'label' => 'sidebar.other',
             'module' => false,
             'route' => false,
+            'fixed' => true,
         ],
         'tags' => [
             'icon' => 'fa fa-tags',
             'label' => 'sidebar.tags',
+            'tree' => true,
         ],
         'conversations' => [
             'icon' => 'fa fa-comment',
@@ -285,9 +305,18 @@ class SidebarService
     /** @var Campaign */
     protected $campaign;
 
+    /** @var bool */
+    protected $withDisabled = false;
+
     public function campaign(Campaign $campaign): self
     {
         $this->campaign = $campaign;
+        return $this;
+    }
+
+    public function withDisabled(): self
+    {
+        $this->withDisabled = true;
         return $this;
     }
 
@@ -394,17 +423,20 @@ class SidebarService
      */
     public function layout(): array
     {
+        $key = $this->cacheKey();
+        if (Cache::has($key)) {
+            return Cache::get($key);
+        }
         $layout = [];
-        foreach ($this->layout as $name => $children) {
+        foreach ($this->customLayout() as $name => $children) {
             if (!isset($this->elements[$name])) {
-                dd('cant find element ' . $name);
+                dd('E601 - cant find element ' . $name);
             }
-            $element = $this->elements[$name];
-            // Add route if should have one
+            $element = $this->customElement($name);
+            // Add route if it should have one
             if (!isset($element['route'])) {
                 $element['route'] = $name . '.index';
             }
-            $element['label'] = __($element['label']);
             $layout[$name] = $element;
 
             // No children? Nothing more to do
@@ -413,10 +445,10 @@ class SidebarService
             }
             $layout[$name]['children'] = [];
             foreach ($children as $childName) {
-                $child = $this->elements[$childName];
+                $child = $this->customElement($childName);
                 // Child has a module, check that the campaign has it enabled
                 if (!isset($child['module'])) {
-                    if (!$this->campaign->enabled($childName)) {
+                    if (!$this->withDisabled && !$this->campaign->enabled($childName)) {
                         continue;
                     }
                 }
@@ -431,13 +463,140 @@ class SidebarService
                 if (!isset($child['route'])) {
                     $child['route'] = $childName . '.index';
                 }
-                $child['label'] = __($child['label']);
 
                 // Add it
                 $layout[$name]['children'][$childName] = $child;
             }
         }
 
+        Cache::put($key, $layout, 7 * 86400);
         return $layout;
+    }
+
+    /**
+     * Save the new config into the database, somehow.
+     * @param array $data
+     */
+    public function save(array $data)
+    {
+        // Prepare the data for the database
+        $ui = $this->campaign->ui_settings;
+
+        // First we want to figure out the new "order", and later we can worry about the "overrides".
+        $order = [];
+        $parent = null;
+        foreach ($data['order'] as $field => $value) {
+            if (Str::endsWith($field, '_start')) {
+                $parent = Str::before($field, '_start');
+                $order[$parent] = [];
+                continue;
+            } elseif (Str::endsWith($field, '_end')) {
+                $parent = null;
+                continue;
+            }
+
+            if (!empty($parent)) {
+                $order[$parent][$field] = $field;
+            } else {
+                $order[$field] = null;
+            }
+        }
+
+        $ui['sidebar'] = [
+            'order' => $order,
+        ];
+
+        // Now let's build the config.
+        $labels = [];
+        $icons = [];
+
+        foreach ($data as $field => $value) {
+            if (empty($value)) {
+                continue;
+            }
+            if (Str::endsWith($field, '_label')) {
+                $labels[Str::before($field, '_label')] = Purify::clean($value);
+                continue;
+            }
+            elseif (Str::endsWith($field, '_icon')) {
+                $icons[Str::before($field, '_icon')] = Purify::clean($value);
+                continue;
+            }
+            // Nothing of value
+        }
+
+        // Save the new data to the campaign config
+        if (!empty($labels)) {
+            $ui['sidebar']['labels'] = $labels;
+        } elseif (isset($ui['sidebar']['labels'])) {
+            unset($ui['sidebar']['labels']);
+        }
+
+        if (!empty($icons)) {
+            $ui['sidebar']['icons'] = $icons;
+        } elseif (isset($ui['sidebar']['icons'])) {
+            unset($ui['sidebar']['icons']);
+        }
+
+        $this->campaign->ui_settings = $ui;
+        $this->campaign->save();
+
+        Cache::forget($this->cacheKey());
+    }
+
+    public function reset()
+    {
+        $ui = $this->campaign->ui_settings;
+        unset($ui['sidebar']);
+        $this->campaign->ui_settings = $ui;
+        $this->campaign->save();
+
+        Cache::forget($this->cacheKey());
+    }
+
+    protected function customLayout(): array
+    {
+        // Only boosted campaigns can change the layout
+        if (!$this->campaign->boosted()) {
+            return $this->layout;
+        }
+        $layout = Arr::get($this->campaign->ui_settings, 'sidebar.order');
+        if (empty($layout)) {
+            return $this->layout;
+        }
+
+        // We have a layout, we assume it's correct.
+        // Todo for future, make sure new elements in the default layout are set?
+        return $layout;
+    }
+
+    protected function customElement(string $key): array
+    {
+        $element = $this->elements[$key];
+        $element['custom_label'] = null;
+        $element['custom_icon'] = null;
+        $element['label'] = __($element['label']);
+
+        if (!$this->campaign->boosted()) {
+            return $element;
+        }
+        $label = Arr::get($this->campaign->ui_settings, 'sidebar.labels.' . $key);
+        $icon = Arr::get($this->campaign->ui_settings, 'sidebar.icons.' . $key);
+        if (!empty($label)) {
+            $element['custom_label'] = $label;
+        }
+        if (!empty($icon)) {
+            $element['custom_icon'] = $icon;
+        }
+
+        return $element;
+    }
+
+    /**
+     * @return string
+     */
+    protected function cacheKey(): string
+    {
+        return 'campaign_' . $this->campaign->id . '_sidebar';
     }
 }

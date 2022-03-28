@@ -51,7 +51,13 @@
 .main-sidebar .sidebar .sidebar-icon-link .fas,
 .main-sidebar .sidebar .sidebar-icon-link .fa,
 .main-sidebar .sidebar .sidebar-icon-link .far,
-.main-sidebar .sidebar .sidebar-icon-link .ra {
+.main-sidebar .sidebar .sidebar-icon-link .fab,
+.main-sidebar .sidebar .sidebar-icon-link .ra,
+.main-sidebar .sidebar .sidebar-icon-link .fa-solid,
+.main-sidebar .sidebar .sidebar-icon-link .fa-regular,
+.main-sidebar .sidebar .sidebar-icon-link .fa-light,
+.main-sidebar .sidebar .sidebar-icon-link .fa-thin,
+.main-sidebar .sidebar .sidebar-icon-link .fa-duotone {
   width: 20px;
 }
 
@@ -72,7 +78,13 @@
 .main-sidebar .sidebar li .fa,
 .main-sidebar .sidebar li .ra,
 .main-sidebar .sidebar li .fas,
-.main-sidebar .sidebar li .far {
+.main-sidebar .sidebar li .far,
+.main-sidebar .sidebar li .fab,
+.main-sidebar .sidebar li .fa-solid,
+.main-sidebar .sidebar li .fa-regular,
+.main-sidebar .sidebar li .fa-light,
+.main-sidebar .sidebar li .fa-thin,
+.main-sidebar .sidebar li .fa-duotone {
   font-size: 14px;
   width: 22px;
 }
@@ -125,10 +137,16 @@
   z-index: 820;
 }
 
-.skin-black .sidebar-menu .ra,
+.skin-black .sidebar-menu .fa,
 .skin-black .sidebar-menu .fas,
 .skin-black .sidebar-menu .fab,
-.skin-black .sidebar-menu .far {
+.skin-black .sidebar-menu .far,
+.skin-black .sidebar-menu .ra,
+.skin-black .sidebar-menu .fa-solid,
+.skin-black .sidebar-menu .fa-regular,
+.skin-black .sidebar-menu .fa-light,
+.skin-black .sidebar-menu .fa-thin,
+.skin-black .sidebar-menu .fa-duotone {
   display: inline-block;
   width: 20px;
 }
@@ -335,10 +353,15 @@ section.sidebar-campaign .campaign-block .campaign-head .campaign-updated {
 }
 
 .main-sidebar .sidebar li .fa,
-.main-sidebar .sidebar li .ra,
 .main-sidebar .sidebar li .fas,
+.main-sidebar .sidebar li .fab,
 .main-sidebar .sidebar li .far,
-.main-sidebar .sidebar li .ra {
+.main-sidebar .sidebar li .ra,
+.main-sidebar .sidebar li .fa-solid,
+.main-sidebar .sidebar li .fa-regular,
+.main-sidebar .sidebar li .fa-light,
+.main-sidebar .sidebar li .fa-thin,
+.main-sidebar .sidebar li .fa-duotone {
   font-size: 14px;
   vertical-align: text-bottom;
 }

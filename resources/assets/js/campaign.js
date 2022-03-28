@@ -3,6 +3,7 @@ $(document).ready(function() {
     registerModules();
     registerUserRoles();
     registerCodeMirror();
+    registerSidebarSetup();
 });
 
 /**
@@ -54,5 +55,26 @@ function registerCodeMirror() {
             lineWrapping: true,
             theme: 'dracula',
         });
+    });
+}
+
+function registerSidebarSetup() {
+    $('ul.sidebar-sortable').sortable({
+        connectWith: 'ul.sidebar-sortable',
+        placeholder: 'placeholder',
+        //items: 'li:not(.fixed)',
+        stop: function (e, ui) {
+            if (ui.item.first().hasClass('fixed')) {
+                $('ul.sidebar-sortable').sortable("cancel");
+            }
+        }
+    });
+
+    $('form.sidebar-setup').on('submit', function (e) {
+        var sortedIDs = $('ul.sidebar-sortable').sortable( "toArray" );
+        //console.log('sortedIDs', sortedIDs);
+
+        return true;
+
     });
 }

@@ -478,6 +478,14 @@ Route::group([
         Route::post('/campaign-export', 'Campaign\ExportController@export')->name('campaign_export.save');
         Route::get('/campaign.styles', 'CampaignController@css')->name('campaign.css');
         Route::get('/campaign_plugin.styles', 'Campaign\CampaignPluginController@css')->name('campaign_plugins.css');
+        // Campaign sidebar setup
+        Route::get('/sidebar-setup', 'Campaign\SidebarController@index')
+            ->name('campaign-sidebar');
+        Route::post('/sidebar-setup', 'Campaign\SidebarController@save')
+            ->name('campaign-sidebar-save');
+        Route::delete('/sidebar-setup/reset', 'Campaign\SidebarController@reset')
+            ->name('campaign-sidebar-reset');
+
 
         // Entity quick creator
         Route::get('/entity-creator', [\App\Http\Controllers\EntityCreatorController::class, 'selection'])->name('entity-creator.selection');

@@ -39,14 +39,20 @@ $defaultIndex = ($currentCampaign && $currentCampaign->defaultToNested()) || aut
 
                     <li class="{{ (!isset($element['route']) || $element['route'] !== false ? $sidebar->active($name) : null) }} section section-{{ $name }}">
                         @if ($element['route'] !== false)
-                        <a href="{{ route($element['route']) }}">
-                            <i class="{{$element['icon']}}"></i>
-                            {!! $element['label'] !!}
+                            @php
+                            $route = $element['route'];
+                            if (isset($element['tree'])) {
+                                $route = \Illuminate\Support\Str::beforeLast($route, '.') . '.' . $defaultIndex;
+                            }
+                            @endphp
+                        <a href="{{ route($route) }}">
+                            <i class="{{ $element['custom_icon'] ?: $element['icon']  }}"></i>
+                            {!! $element['custom_label'] ?: $element['label']  !!}
                         </a>
                         @else
                             <span>
-                                <i class="{{$element['icon']}}"></i>
-                                {!! $element['label'] !!}
+                                <i class="{{ $element['custom_icon'] ?: $element['icon'] }}"></i>
+                                {!! $element['custom_label'] ?: $element['label'] !!}
                             </span>
                         @endif
 
@@ -56,9 +62,15 @@ $defaultIndex = ($currentCampaign && $currentCampaign->defaultToNested()) || aut
                         <ul class="sidebar-submenu">
                         @foreach($element['children'] as $childName => $child)
                             <li class="{{ (!isset($child['route']) || $child['route'] !== false ? $sidebar->active($childName) : null) }} section subsection section-{{ $childName }}">
-                                <a href="{{ route($child['route']) }}">
-                                    <i class="{{$child['icon']}}"></i>
-                                    {!! $child['label'] !!}
+                                @php
+                                    $route = $child['route'];
+                                    if (isset($child['tree'])) {
+                                        $route = \Illuminate\Support\Str::beforeLast($route, '.') . '.' . $defaultIndex;
+                                    }
+                                @endphp
+                                <a href="{{ route($route) }}">
+                                    <i class="{{ $child['custom_icon'] ?: $child['icon'] }}"></i>
+                                    {!! $child['custom_label'] ?: $child['label'] !!}
                                 </a>
                             </li>
                         @endforeach
