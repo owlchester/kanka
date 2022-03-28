@@ -29,9 +29,22 @@ class BillingController extends Controller
         $stripeApiToken = config('cashier.key', null);
         $user = Auth::user();
 
+        $translations = [
+            'ending' => __('settings.subscription.payment_method.ending'),
+            'add_one' => __('settings.subscription.payment_method.add_one'),
+            'new_card' => __('settings.subscription.payment_method.new_card'),
+            'card_name' => __('settings.subscription.payment_method.card_name'),
+            'card' => __('settings.subscription.payment_method.card'),
+            'helper' => __('settings.subscription.payment_method.helper'),
+            'actions.add_new' => __('settings.subscription.payment_method.actions.add_new'),
+            'actions.save' => __('settings.subscription.payment_method.actions.save'),
+        ];
+        $translations = json_encode($translations);
+
         return view('settings.subscription.billing', compact(
             'stripeApiToken',
-            'user'
+            'user',
+            'translations'
         ));
     }
 

@@ -32,6 +32,7 @@
                     <div id="billing">
                         <billing-management
                                 api_token="{{ $stripeApiToken }}"
+                                trans="{{ $translations }}"
                         ></billing-management>
                     </div>
 

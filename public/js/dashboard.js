@@ -1,1 +1,340 @@
-!function(t){var e={};function n(i){if(e[i])return e[i].exports;var a=e[i]={i:i,l:!1,exports:{}};return t[i].call(a.exports,a,a.exports,n),a.l=!0,a.exports}n.m=t,n.c=e,n.d=function(t,e,i){n.o(t,e)||Object.defineProperty(t,e,{enumerable:!0,get:i})},n.r=function(t){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(t,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(t,"__esModule",{value:!0})},n.t=function(t,e){if(1&e&&(t=n(t)),8&e)return t;if(4&e&&"object"==typeof t&&t&&t.__esModule)return t;var i=Object.create(null);if(n.r(i),Object.defineProperty(i,"default",{enumerable:!0,value:t}),2&e&&"string"!=typeof t)for(var a in t)n.d(i,a,function(e){return t[e]}.bind(null,a));return i},n.n=function(t){var e=t&&t.__esModule?function(){return t.default}:function(){return t};return n.d(e,"a",e),e},n.o=function(t,e){return Object.prototype.hasOwnProperty.call(t,e)},n.p="/",n(n.s=13)}({13:function(t,e,n){t.exports=n("cT1l")},cT1l:function(t,e){var n,i,a,o;function r(){$(".recent-entity-type").change((function(t){this.value?$(".recent-filters").show():$(".recent-filters").hide()}))}$(document).ready((function(){$(".preview-switch").click((function(t){t.preventDefault();var e=$("#widget-preview-body-"+$(this).data("widget"));e.hasClass("preview")?(e.removeClass("preview").addClass("full"),$(this).html('<i class="fa fa-chevron-up"></i>')):(e.removeClass("full").addClass("preview"),$(this).html('<i class="fa fa-chevron-down"></i>'))})),$('[data-release="remove"]').click((function(){$.post({url:$(this).data("url"),method:"POST",context:this}).done((function(t){$(this).closest(".box").fadeOut("normal",(function(t){$(this).remove(),0===$(".dashboard-releases .box").length&&$(".dashboard-releases").remove()}))}))})),$.ajaxSetup({headers:{"X-CSRF-TOKEN":$('meta[name="csrf-token"]').attr("content")}}),1===$(".campaign-dashboard-widgets").length&&($("#new-widget"),$("#new-widget-preview"),$("#new-widget-calendar"),$("#new-widget-recent"),n=$("#btn-add-widget"),i=$("#modal-content-buttons"),a=$("#modal-content-target"),o=$("#modal-content-spinner"),$(".btn-lg").click((function(t){var e;e=$(this).data("url"),$("#edit-widget .modal-content").html(""),i.hide(),o.show(),$.ajax(e).done((function(t){o.hide(),a.html(t),window.initForeignSelect(),window.initTags(),r()}))})),n.click((function(t){o.hide(),a.html(""),i.show()})),$("#widgets").sortable({items:".widget-draggable",stop:function(t,e){$.post({url:$("#widgets").data("url"),dataType:"json",data:$('input[name="widgets[]"]').serialize()}).done((function(t){}))}}),$(document).on("shown.bs.modal shown.bs.popover",(function(){$("#summernote-config").length>0&&window.initSummernote(),$.each($(".img-delete"),(function(){$(this).click((function(t){t.preventDefault(),$("input[name="+$(this).data("target")+"]")[0].value=1,$(this).parent().parent().hide()}))})),r()}))),function t(){$(".widget-recent-more").click((function(e){e.preventDefault(),$(this).html('<i class="fa fa-spin fa-spinner"></i>'),$.ajax({url:$(this).data("url"),context:this}).done((function(e){$(this).closest(".widget-recent-list").append(e),$(this).remove(),t(),window.ajaxTooltip()}))}))}(),function t(){$(".widget-calendar-switch").click((function(e){var n=$(this).data("url"),i=$(this).data("widget");$.ajaxSetup({headers:{"X-CSRF-TOKEN":$('meta[name="csrf-token"]').attr("content")}}),$("#widget-date-"+i).addClass("hidden"),$("#widget-loading-"+i).removeClass("hidden").siblings(".row").addClass("hidden"),$.ajax({url:n,method:"POST",context:this}).done((function(e){if(e){var n=$(this).data("widget");$("#widget-body-"+n).html(e),t()}}))}))}(),function(){var t=$("#campaign-follow"),e=$("#campaign-follow-text");if(1!==t.length)return;t.data("following")?e.html(t.data("unfollow")):e.html(t.data("follow"));t.show(),t.click((function(n){n.preventDefault(),$.post({url:$(this).data("url"),method:"POST"}).done((function(n){n.following?e.html(t.data("unfollow")):e.html(t.data("follow"))}))}))}(),$.each($('[data-toggle="preview"]'),(function(t){$(this).height()===parseInt($(this).css("max-height"))?$(this).next().removeClass("hidden"):$(this).removeClass("pinned-entity preview")}))}))}});
+/******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId]) {
+/******/ 			return installedModules[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
+/******/ 		}
+/******/ 	};
+/******/
+/******/ 	// define __esModule on exports
+/******/ 	__webpack_require__.r = function(exports) {
+/******/ 		if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 		}
+/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 	};
+/******/
+/******/ 	// create a fake namespace object
+/******/ 	// mode & 1: value is a module id, require it
+/******/ 	// mode & 2: merge all properties of value into the ns
+/******/ 	// mode & 4: return value when already ns object
+/******/ 	// mode & 8|1: behave like require
+/******/ 	__webpack_require__.t = function(value, mode) {
+/******/ 		if(mode & 1) value = __webpack_require__(value);
+/******/ 		if(mode & 8) return value;
+/******/ 		if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
+/******/ 		var ns = Object.create(null);
+/******/ 		__webpack_require__.r(ns);
+/******/ 		Object.defineProperty(ns, 'default', { enumerable: true, value: value });
+/******/ 		if(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
+/******/ 		return ns;
+/******/ 	};
+/******/
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+/******/
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "/";
+/******/
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(__webpack_require__.s = 13);
+/******/ })
+/************************************************************************/
+/******/ ({
+
+/***/ "./resources/assets/js/dashboard.js":
+/*!******************************************!*\
+  !*** ./resources/assets/js/dashboard.js ***!
+  \******************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+/**
+ * Dashboard
+ */
+var newWidget, newWidgetPreview, newWidgetCalendar, newWidgetRecent;
+var btnAddWidget;
+var modalContentButtons, modalContentTarget, modalContentSpinner;
+$(document).ready(function () {
+  $('.preview-switch').click(function (e) {
+    e.preventDefault();
+    var preview = $('#widget-preview-body-' + $(this).data('widget'));
+
+    if (preview.hasClass('preview')) {
+      preview.removeClass('preview').addClass('full');
+      $(this).html('<i class="fa fa-chevron-up"></i>');
+    } else {
+      preview.removeClass('full').addClass('preview');
+      $(this).html('<i class="fa fa-chevron-down"></i>');
+    }
+  });
+  $('[data-release="remove"]').click(function () {
+    $.post({
+      url: $(this).data('url'),
+      method: 'POST',
+      context: this
+    }).done(function (data) {
+      $(this).closest('.box').fadeOut("normal", function (e) {
+        $(this).remove();
+
+        if ($('.dashboard-releases .box').length === 0) {
+          $('.dashboard-releases').remove();
+        }
+      });
+    });
+  }); // Ajax requests
+
+  $.ajaxSetup({
+    headers: {
+      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+  });
+
+  if ($('.campaign-dashboard-widgets').length === 1) {
+    initDashboardAdminUI();
+  }
+
+  initDashboardRecent();
+  initDashboardCalendars();
+  initFollow();
+  removePreviewExpander();
+});
+/**
+ *
+ */
+
+function initDashboardAdminUI() {
+  newWidget = $('#new-widget');
+  newWidgetPreview = $('#new-widget-preview');
+  newWidgetCalendar = $('#new-widget-calendar');
+  newWidgetRecent = $('#new-widget-recent');
+  btnAddWidget = $('#btn-add-widget');
+  modalContentButtons = $('#modal-content-buttons');
+  modalContentTarget = $('#modal-content-target');
+  modalContentSpinner = $('#modal-content-spinner');
+  $('.btn-lg').click(function (e) {
+    loadModalForm($(this).data('url'));
+  }); // Reset the modal
+
+  btnAddWidget.click(function (e) {
+    modalContentSpinner.hide();
+    modalContentTarget.html('');
+    modalContentButtons.show();
+  });
+  $('#widgets').sortable({
+    items: '.widget-draggable',
+    stop: function stop(event, ui) {
+      // Allow ajax requests to use the X_CSRF_TOKEN for deletes
+      $.post({
+        url: $('#widgets').data('url'),
+        dataType: 'json',
+        data: $('input[name="widgets[]"]').serialize()
+      }).done(function (data) {});
+    }
+  });
+  $(document).on('shown.bs.modal shown.bs.popover', function () {
+    var summernoteConfig = $('#summernote-config');
+
+    if (summernoteConfig.length > 0) {
+      window.initSummernote();
+    }
+
+    $.each($('.img-delete'), function () {
+      $(this).click(function (e) {
+        e.preventDefault();
+        $('input[name=' + $(this).data('target') + ']')[0].value = 1;
+        $(this).parent().parent().hide();
+      });
+    });
+    initWidgetSubform();
+  }); //$('#widgets').disableSelection();
+}
+/**
+ * Load widget subform in modal
+ * @param url
+ */
+
+
+function loadModalForm(url) {
+  // Remove content from any edit widget already loaded (to avoid having multiple fields with the tag id
+  $('#edit-widget .modal-content').html('');
+  modalContentButtons.hide();
+  modalContentSpinner.show();
+  $.ajax(url).done(function (data) {
+    modalContentSpinner.hide();
+    modalContentTarget.html(data);
+    window.initForeignSelect();
+    window.initTags();
+    initWidgetSubform();
+  });
+}
+
+function initWidgetSubform() {
+  // Recent entities: filter field dynamic display
+  $('.recent-entity-type').change(function (e) {
+    if (this.value) {
+      $('.recent-filters').show();
+    } else {
+      $('.recent-filters').hide();
+    }
+  });
+}
+/**
+ *
+ */
+
+
+function initDashboardRecent() {
+  $('.widget-recent-more').click(function (e) {
+    e.preventDefault();
+    $(this).html('<i class="fa fa-spin fa-spinner"></i>');
+    $.ajax({
+      url: $(this).data('url'),
+      context: this
+    }).done(function (data) {
+      $(this).closest('.widget-recent-list').append(data);
+      $(this).remove();
+      initDashboardRecent();
+      window.ajaxTooltip();
+    });
+  });
+}
+/**
+ *
+ */
+
+
+function initDashboardCalendars() {
+  $('.widget-calendar-switch').click(function (e) {
+    var url = $(this).data('url'),
+        widget = $(this).data('widget');
+    $.ajaxSetup({
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      }
+    });
+    $('#widget-date-' + widget).addClass('hidden');
+    $('#widget-loading-' + widget).removeClass('hidden').siblings('.row').addClass('hidden');
+    $.ajax({
+      url: url,
+      method: 'POST',
+      context: this
+    }).done(function (data) {
+      if (data) {
+        // Redirect page
+        var widget = $(this).data('widget');
+        $('#widget-body-' + widget).html(data);
+        initDashboardCalendars();
+      }
+    });
+  });
+}
+/**
+ * Follow / Unfollow a campaign
+ */
+
+
+function initFollow() {
+  var btn = $('#campaign-follow');
+  var text = $('#campaign-follow-text');
+
+  if (btn.length !== 1) {
+    return;
+  }
+
+  var status = btn.data('following');
+
+  if (status) {
+    text.html(btn.data('unfollow'));
+  } else {
+    text.html(btn.data('follow'));
+  }
+
+  btn.show();
+  btn.click(function (e) {
+    e.preventDefault();
+    $.post({
+      url: $(this).data('url'),
+      method: 'POST'
+    }).done(function (data) {
+      if (data.following) {
+        text.html(btn.data('unfollow'));
+      } else {
+        text.html(btn.data('follow'));
+      }
+    });
+  });
+}
+
+function removePreviewExpander() {
+  $.each($('[data-toggle="preview"]'), function (i) {
+    // If we are exactly the max-height, some content is hidden
+    // console.log('compare', $(this).height(), 'vs', $(this).css('max-height'));
+    if ($(this).height() === parseInt($(this).css('max-height'))) {
+      $(this).next().removeClass('hidden');
+    } else {
+      $(this).removeClass('pinned-entity preview');
+    } //$(this).next().removeClass('hidden');
+
+  });
+}
+
+/***/ }),
+
+/***/ 13:
+/*!*********************************************!*\
+  !*** multi ./resources/assets/js/dashboard ***!
+  \*********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! /Users/jay/Documents/GitHub/miscellany/resources/assets/js/dashboard */"./resources/assets/js/dashboard.js");
+
+
+/***/ })
+
+/******/ });
