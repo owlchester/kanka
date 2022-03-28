@@ -68,6 +68,7 @@ return [
         'current_month'         => 'Mes actual',
         'current_year'          => 'Ano actual',
         'date'                  => 'Data actual',
+        'day'                   => 'Día',
         'has_leap_year'         => 'Ten anos bisestos',
         'intercalary'           => 'Días intercalares',
         'is_incrementing'       => 'Data incremental',
@@ -78,6 +79,7 @@ return [
         'leap_year_start'       => 'Ano bisesto',
         'length'                => 'Duración do evento',
         'length_days'           => ':count día|:count días',
+        'month'                 => 'Mes',
         'months'                => 'Meses',
         'moons'                 => 'Lúas',
         'name'                  => 'Nome',
@@ -91,6 +93,7 @@ return [
         'type'                  => 'Tipo',
         'week_names'            => 'Nomes da semana',
         'weekdays'              => 'Días da semana',
+        'year'                  => 'Ano',
     ],
     'helpers'       => [
         'month_type'    => 'Os meses intercalares non usan días da semana, pero inflúen nas lúas e nas estacións.',

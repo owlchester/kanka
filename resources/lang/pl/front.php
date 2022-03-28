@@ -224,6 +224,7 @@ return [
     'help'          => [
         'description'   => 'Jeżeli potrzebujesz jakiejś pomocy, chętnie jej udzielimy. Skontaktuj się z nami za pomocą jednej z tych metod, a odezwiemy się tak szybko jak to możliwe.',
         'discord'       => 'Dołącz do nas na Discordzie',
+        'documentation' => 'Zobacz dokumentację',
         'email'         => 'Wyślij nam maila',
         'facebook'      => 'Skontaktuj się na Facebooku',
         'title'         => 'Pomoc',

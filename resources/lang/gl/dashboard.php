@@ -1,19 +1,19 @@
 <?php
 
 return [
-    'actions'           => [
+    'actions'       => [
         'follow'    => 'Seguir',
         'join'      => 'Unirse',
         'unfollow'  => 'Deixar de seguir',
     ],
-    'campaigns'         => [
+    'campaigns'     => [
         'tabs'  => [
             'modules'   => ':count módulos',
             'roles'     => ':count roles',
             'users'     => ':count integrantes',
         ],
     ],
-    'dashboards'        => [
+    'dashboards'    => [
         'actions'       => [
             'edit'      => 'Editar',
             'new'       => 'Novo taboleiro',
@@ -55,25 +55,24 @@ return [
             'visible'   => 'Visíbel',
         ],
     ],
-    'helpers'           => [
+    'helpers'       => [
         'follow'    => 'Seguir unha campaña fará que esta apareza no selector de campañas (arriba á esquerda) baixo as túas campañas.',
         'join'      => 'Esta campaña está aberta a inscricións. Fai clic para solicitar unirte a ela.',
         'setup'     => 'Configura os taboleiros da túa campaña.',
     ],
-    'latest_release'    => 'Última versión',
-    'notifications'     => [
+    'notifications' => [
         'modal' => [
             'confirm'   => 'De acordo',
             'title'     => 'Notificación importante',
         ],
     ],
-    'recent'            => [
+    'recent'        => [
         'title' => ':name modificacións recentes',
     ],
-    'settings'          => [
+    'settings'      => [
         'title' => 'Configuración do taboleiro',
     ],
-    'setup'             => [
+    'setup'         => [
         'actions'   => [
             'add'               => 'Engadir complemento',
             'back_to_dashboard' => 'Voltar ao taboleiro',
@@ -94,8 +93,8 @@ return [
             'unmentioned'   => 'Entidades non mencionadas',
         ],
     ],
-    'title'             => 'Taboleiro',
-    'widgets'           => [
+    'title'         => 'Taboleiro',
+    'widgets'       => [
         'actions'                   => [
             'advanced-options'  => 'Opcións avanzadas',
             'delete-confirm'    => 'este complemento',
@@ -120,12 +119,16 @@ return [
             'success'   => 'Complemento eliminado do taboleiro.',
         ],
         'fields'                    => [
+            'class'             => 'Clase CSS',
             'dashboard'         => 'Taboleiro',
             'name'              => 'Nome personalizado',
             'optional-entity'   => 'Ligazón a entidade',
             'order'             => 'Orde',
             'text'              => 'Texto',
             'width'             => 'Anchura',
+        ],
+        'helpers'                   => [
+            'class' => 'Define unha clase CSS personalizada para este complemento.',
         ],
         'orders'                    => [
             'name_asc'  => 'Nome (ascendente)',
@@ -161,6 +164,10 @@ return [
             'singular'          => 'Singular',
             'tags'              => 'Filtra a lista de entidades modificadas recentemente con etiquetas específicas.',
             'title'             => 'Modificadas recentemente',
+        ],
+        'tabs'                      => [
+            'advanced'  => 'Avanzado',
+            'setup'     => 'Configuración',
         ],
         'unmentioned'               => [
             'title' => 'Entidades non mencionadas',

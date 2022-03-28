@@ -69,6 +69,7 @@ return [
         'current_month'         => 'Obecny miesiąc',
         'current_year'          => 'Obecny rok',
         'date'                  => 'Obecna data',
+        'day'                   => 'Dzień',
         'has_leap_year'         => 'Ma lata przestępne',
         'intercalary'           => 'Dni dodatkowe',
         'is_incrementing'       => 'Upływ czasu',
@@ -79,6 +80,7 @@ return [
         'leap_year_start'       => 'Rok przestępny',
         'length'                => 'Długość wydarzenia',
         'length_days'           => ':count dzień|:count dni',
+        'month'                 => 'Miesiąc',
         'months'                => 'Miesiące',
         'moons'                 => 'Księżyce',
         'name'                  => 'Nazwa',
@@ -92,6 +94,7 @@ return [
         'type'                  => 'Rodzaj',
         'week_names'            => 'Tygodnie specjalne',
         'weekdays'              => 'Dni tygodnia',
+        'year'                  => 'Rok',
     ],
     'helpers'       => [
         'month_type'    => 'Miesiące dodatkowe nie mają dni tygodnia, ale wpływają na pory roku czy fazy księżyca.',

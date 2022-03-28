@@ -6,6 +6,10 @@ return [
         'add_role'  => 'Engadir rol',
         'add_user'  => 'Engadir integrante',
     ],
+    'copy_mention'  => [
+        'copy'      => 'Copiar mención avanzada',
+        'success'   => 'Copiouse no portapapeis a mención avanzada a esta entrada.',
+    ],
     'create'        => [
         'success'   => 'Entrada ":name" engadida a ":entity".',
         'title'     => 'Nova entrada en ":name"',

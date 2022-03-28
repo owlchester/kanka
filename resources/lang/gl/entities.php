@@ -19,6 +19,7 @@ return [
         'helper'    => 'Selecciona o tipo de entidade que queiras crear. Se non aparecen entidades, significa que non tes permisos para crear ningún tipo de entidade nesta campaña.',
         'success'   => 'Nova entidade ":link" creada.',
         'title'     => 'Nova entidade',
+        'tooltip'   => 'Crea unha nova entidade sen abandonar a páxina actual',
     ],
     'dice_roll'             => 'Tirada de dados',
     'dice_rolls'            => 'Tiradas de dados',

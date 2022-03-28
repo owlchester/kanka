@@ -50,6 +50,7 @@ return [
         'title'         => 'Como usar os filtros',
     ],
     'link'              => [
+        'anchor'            => 'A mención avanzada tamén pode especificar a áncora HTML coa que a ligazón debería ligar, usando :example.',
         'attributes'        => 'Podes referenciar os atributos dunha entidade escrebendo :code. Isto só funciona para os atributos existentes da entidade.',
         'auto_update'       => 'As ligazóns a outras entidades serán actualizadas automaticamente cando o nome ou a descrición da entidade obxectivo cambie.',
         'description'       => 'Podes crea ligazóns a outras entidades facilmente usando os seguintes atallos.',

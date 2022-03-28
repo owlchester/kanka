@@ -194,7 +194,14 @@ return [
             'title'     => 'Upraviť spôsob platby',
         ],
         'cancel'                => [
-            'text'  => 'Ľutujeme, že odchádzaš! Zrušením tvojho predplatného ostáva toto aktívne do ďalšieho platobného obdobia, po ktorom stratíš tvoje boosty kampaní a ostatné výhody vďaka podpore Kanky. Vyplnením následného formulára nám pomôžeš zistiť, čo by sme mali robiť lepšie, alebo čo ťa viedlo k tomuto rozhodnutiu.',
+            'options'   => [
+                'competitor'        => 'Prechádzam ku konkurencii',
+                'custom'            => 'Iný (prosím špecifikuj)',
+                'financial'         => 'Moja finančná situácia sa zmenila',
+                'missing_features'  => 'Chýbajú mi funkcionality',
+                'not_using'         => 'Aktuálne Kanku nevyužívam',
+            ],
+            'text'      => 'Ľutujeme, že odchádzaš! Zrušením tvojho predplatného ostáva toto aktívne do ďalšieho platobného obdobia, po ktorom stratíš tvoje boosty kampaní a ostatné výhody vďaka podpore Kanky. Vyplnením následného formulára nám pomôžeš zistiť, čo by sme mali robiť lepšie, alebo čo ťa viedlo k tomuto rozhodnutiu.',
         ],
         'cancelled'             => 'Tvoje predplatné bolo zrušené. Môžeš ho obnoviť, keď ti aktívne predplatné skončí.',
         'change'                => [
@@ -263,6 +270,7 @@ return [
         'sub_status'            => 'Informácie o predplatnom',
         'subscription'          => [
             'actions'   => [
+                'cancel'            => 'Zrušiť predplatné',
                 'downgrading'       => 'Prosím, kontaktuj nás ohľadom zníženia úrovne',
                 'rollback'          => 'Zmeniť na Kobolda',
                 'subscribe'         => 'Zmeniť na :tier mesačný',

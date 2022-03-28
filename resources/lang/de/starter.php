@@ -1,6 +1,9 @@
 <?php
 
 return [
+    'campaign'      => [
+        'name'  => ':user\'s Welt',
+    ],
     'character1'    => [
         'fears'     => 'James hat Angst vor lauten Geräuschen und Explosionen',
         'history'   => 'Das ist ein Beispielcharakter. Als Kind von Mance Owlchester und Rige Dunton, James ist in der ländlichen Gegend von Genory aufgewachsen, bevor er in die Haupstadt von Unria gezogen ist, um als Schreiberling des Königs zu arbeiten.',

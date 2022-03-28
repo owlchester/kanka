@@ -12,6 +12,12 @@ return [
     |
     */
 
+    'confirm'   => [
+        'confirm'   => 'Potwierdź',
+        'error'     => 'Niewłaściwe hasło, spróbuj jeszcze raz',
+        'helper'    => 'Przed przejściem dalej potwierdź swoje hasło',
+        'title'     => 'Potwierdzenie hasła',
+    ],
     'failed'    => 'Błędny login lub hasło.',
     'helpers'   => [
         'password'  => 'Pokaż/ukryj hasło',

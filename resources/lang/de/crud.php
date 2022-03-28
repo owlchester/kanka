@@ -384,6 +384,7 @@ return [
     ],
     'tooltips'                  => [
         'boosted_feature'   => 'boost Kampagnenfunktion',
+        'new_post'          => 'Fügen Sie diesem Objekt einen neuen Beitrag hinzu.',
     ],
     'update'                    => 'Bearbeiten',
     'users'                     => [

@@ -35,6 +35,11 @@ return [
         'title'         => 'Objekttemplates',
     ],
     'filters'           => [
+        'attributes'    => [
+            'exclude'   => '!Level',
+            'first'     => 'Sie können Objekte basierend auf ihren Attributen filtern. Die Suchfelder sind exakte Übereinstimmungen sowohl für den Namen als auch für den Wert. Wenn das Wertfeld leer gelassen wird, sucht es nach Objekten, die ein Attribut mit genau diesem Namen haben. Sie können :exclude eingeben, um Objekte mit einem Attribut namens Level auszuschließen.',
+            'second'    => 'Der Filter wertet keine Attributberechnungen aus. Wenn ein Attribut den Wert :code hat, ist die Suche nach dem Ergebnis dieser Berechnung nicht möglich.',
+        ],
         'clipboard'     => 'Wenn Filter aktiv sind, wird die Schaltfläche in die Zwischenablage kopieren aktiv. Dadurch werden die Filter in Ihre Zwischenablage kopiert und Sie können sie für Dashboard-Widget-Filter oder für Quicklink-Filter verwenden.',
         'description'   => 'Sie können Filter verwenden, um die Anzahl der in Listen angezeigten Ergebnisse zu begrenzen. Textfelder unterstützen verschiedene Optionen, um detaillierter zu steuern, was herausgefiltert wird.',
         'empty'         => 'Schreibt man :tag in ein Feld wird in allen Objekten, bei denen dieses Feld leer ist gesucht.',
@@ -45,6 +50,7 @@ return [
         'title'         => 'Verwendung von Filtern',
     ],
     'link'              => [
+        'anchor'            => 'Die erweiterte Erwähnung kann auch den HTML-Anker angeben, auf den der Link zeigen soll, indem :example verwendet wird.',
         'attributes'        => 'Sie können auf Attribute der Objekte verweisen, indem Sie Folgendes eingeben :code. Dies funktioniert nur für vorhandene Attribute der Objekte.',
         'auto_update'       => 'Links zu ändern Objekten werden automatisch aktualisiert, wenn der Name des Ziels oder die Beschreibung sich geändert hat.',
         'description'       => 'Mit einem "@" kannst du ganz einfach Links zu anderen Einträgen setzen. Ein "#" zeigt dir stattdessen eine Namensliste mit Monaten aus deinen Kalendern an.',

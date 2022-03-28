@@ -194,7 +194,14 @@ return [
             'title'     => 'Zahlungsmethode ändern',
         ],
         'cancel'                => [
-            'text'  => 'Es tut uns leid dich gehen zu sehen! Wenn Sie Ihr Abonnement kündigen, bleibt es bis zu Ihrem nächsten Abrechnungszyklus aktiv. Danach verlieren Sie Ihre Kampagnen-Boosts und andere Vorteile im Zusammenhang mit der Unterstützung von Kanka. Füllen Sie das folgende Formular aus, um uns mitzuteilen, was wir besser machen können oder was zu Ihrer Entscheidung geführt hat.',
+            'options'   => [
+                'competitor'        => 'Wechsel zu einem Wettbewerber',
+                'custom'            => 'Sonstiges (bitte angeben)',
+                'financial'         => 'Finanzielle Situation verändert',
+                'missing_features'  => 'Fehlende Funktionen',
+                'not_using'         => 'Kanka wird derzeit nicht verwendet',
+            ],
+            'text'      => 'Es tut uns leid dich gehen zu sehen! Wenn Sie Ihr Abonnement kündigen, bleibt es bis zu Ihrem nächsten Abrechnungszyklus aktiv. Danach verlieren Sie Ihre Kampagnen-Boosts und andere Vorteile im Zusammenhang mit der Unterstützung von Kanka. Füllen Sie das folgende Formular aus, um uns mitzuteilen, was wir besser machen können oder was zu Ihrer Entscheidung geführt hat.',
         ],
         'cancelled'             => 'Ihr Abonnement wurde gekündigt. Sie können ein Abonnement verlängern, sobald Ihr aktuelles Abonnement endet.',
         'change'                => [
@@ -263,6 +270,7 @@ return [
         'sub_status'            => 'Abonnementinformationen',
         'subscription'          => [
             'actions'   => [
+                'cancel'            => 'Abonnement beenden',
                 'downgrading'       => 'Bitte kontaktieren Sie uns für ein Downgrade',
                 'rollback'          => 'Wechseln Sie zu Kobold',
                 'subscribe'         => 'Wechseln Sie zu :tier monatlich',

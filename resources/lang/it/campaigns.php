@@ -89,13 +89,15 @@ TEXT
             'copy'  => 'Copia il collegamento nei tuoi appunti',
         ],
         'create'                => [
-            'success'   => 'Invito inviato.',
-            'title'     => 'Invita qualcuno nella tua campagna',
+            'success'       => 'Invito inviato.',
+            'success_link'  => 'Link creato: :link',
+            'title'         => 'Invita qualcuno nella tua campagna',
         ],
         'destroy'               => [
             'success'   => 'Invito rimosso.',
         ],
         'email'                 => [
+            'link_text' => 'Unisciti alla campagna di :name',
             'subject'   => ':name ti ha invitato ad unirti alla sua campagna \':campaign\' su kanka.io! Usa il seguente link per accettare il suo invito.',
             'title'     => 'Invito da parte di :name',
         ],
@@ -131,6 +133,8 @@ TEXT
     ],
     'members'                           => [
         'actions'               => [
+            'help'          => 'Aiuto',
+            'remove'        => 'Rimuovi dalla campagna',
             'switch'        => 'Passa a',
             'switch-back'   => 'Torna al mio utente',
         ],
@@ -162,6 +166,7 @@ TEXT
             'roles_page'    => 'Pagina dei ruoli',
             'title'         => 'Invita',
         ],
+        'manage_roles'          => 'Gestisci i ruoli degli utenti',
         'roles'                 => [
             'member'    => 'Membro',
             'owner'     => 'Proprietario',
@@ -171,6 +176,10 @@ TEXT
         ],
         'switch_back_success'   => 'Ora sei tornato al tuo utente originale.',
         'title'                 => 'Membri della Campagna :name',
+        'updates'               => [
+            'added'     => 'Ruolo :role aggiunto a :user.',
+            'removed'   => 'Ruolo :role rimosso da :user',
+        ],
         'your_role'             => 'Il tuo ruolo: <i>:role</i>',
     ],
     'panels'                            => [
@@ -222,9 +231,12 @@ TEXT
         'permissions'   => [
             'actions'   => [
                 'add'           => 'Crea',
+                'dashboard'     => 'Dashboard',
                 'delete'        => 'Elimina',
                 'edit'          => 'Modifica',
                 'entity-note'   => 'Note dell\'Entità',
+                'gallery'       => 'Galleria',
+                'members'       => 'Membri',
                 'permission'    => 'Gestisci Permessi',
                 'read'          => 'Visualizza',
                 'toggle'        => 'Cambia per tutte',
@@ -297,11 +309,16 @@ TEXT
             'boost' => 'Potenzia campagna',
             'leave' => 'Abbandona campagna',
         ],
+        'menus'     => [
+            'configuration'     => 'Configurazione',
+            'user_management'   => 'Gestione utente',
+        ],
         'tabs'      => [
             'default-images'    => 'Immagini predefinite',
             'export'            => 'Esporta',
             'information'       => 'Informazioni',
             'members'           => 'Membri',
+            'plugins'           => 'Plugin',
             'recovery'          => 'Recupero',
             'roles'             => 'Ruoli',
             'settings'          => 'Moduli',
@@ -309,7 +326,19 @@ TEXT
         'title'     => 'Campagna :name',
     ],
     'ui'                                => [
+        'fields'    => [
+            'entity_image'  => 'Immagine dell\'entità',
+            'family_toolip' => 'Famiglia del personaggio',
+        ],
         'helper'    => 'Usa queste impostazioni per cambiare il modo in cui alcuni elementi saranno mostrati nella campagna.',
+        'members'   => [
+            'hidden'    => 'Visibile solo agli amministratori della campagna',
+            'visible'   => 'Visibile ai membri',
+        ],
+        'nested'    => [
+            'default'   => 'Predefinito',
+        ],
+        'other'     => 'Altro',
     ],
     'visibilities'                      => [
         'private'   => 'Privata',

@@ -371,6 +371,9 @@ TEXT
         'edit'      => [
             'success'   => 'Nastavenia kampane boli upravené.',
         ],
+        'errors'    => [
+            'module-disabled'   => 'Požadovaný modul je aktuálne v nastaveniach kampane deaktivovaný. :fix.',
+        ],
         'helper'    => 'Všetky moduly kampane môžu byť aktivované alebo deaktivované. Ak deaktivuješ modul, prepojené prvky rozhrania zmiznú, ale ostávajú existovať v pozadí, ak by si ich v budúcnosti potreboval/a. Tieto zmeny ovplyvňujú všetkých užívateľov kampane, vrátane s rolou Admin.',
         'helpers'   => [
             'abilities'     => 'Vytvor schopnosti ako kúzla alebo sily, ktoré priradíš iným objektom.',
@@ -429,6 +432,9 @@ TEXT
                 'title' => 'Nahrávanie obrázkov do galérie kampane',
             ],
         ],
+    ],
+    'themes'                            => [
+        'none'  => 'Žiadna (štandardné nastavenie)',
     ],
     'ui'                                => [
         'boosted'           => 'Boostnutá',

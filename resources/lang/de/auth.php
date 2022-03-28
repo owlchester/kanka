@@ -1,6 +1,12 @@
 <?php
 
 return [
+    'confirm'   => [
+        'confirm'   => 'Bestätigung',
+        'error'     => 'Falsche Kennwort. Bitte versuchen Sie es erneut.',
+        'helper'    => 'Bitte bestätigen Sie Ihr Passwort, bevor Sie fortfahren können.',
+        'title'     => 'Passwort Bestätigung',
+    ],
     'failed'    => 'Wir kennen diese Logindaten nicht.',
     'helpers'   => [
         'password'  => 'Passwort anzeigen / verbergen',

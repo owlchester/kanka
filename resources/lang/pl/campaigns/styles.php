@@ -2,7 +2,8 @@
 
 return [
     'actions'   => [
-        'new'   => 'Nowy styl',
+        'current'   => 'Obecny motyw: :theme',
+        'new'       => 'Nowy styl',
     ],
     'create'    => [
         'success'   => 'Stworzono nowy styl',
@@ -22,6 +23,10 @@ return [
         'css_moved' => 'Pola CSS znajdują się teraz w nowym, bardziej poręcznym miejscu w menu kampanii: :link.',
         'here'      => 'z naszego bloga',
         'main'      => 'Możesz tworzyć własne style CSS w doładowanych kampaniach. Będą ładowane po załadowaniu stylów pobranych z targowiska. Więcej o tworzeniu stylów dowiesz się :here.',
+    ],
+    'theme'     => [
+        'success'   => 'Zmieniono motyw kampanii.',
+        'title'     => 'Zmień motyw kampanii',
     ],
     'title'     => 'Motywy kampanii',
     'update'    => [

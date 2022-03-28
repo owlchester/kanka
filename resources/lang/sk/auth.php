@@ -12,6 +12,12 @@ return [
     |
     */
 
+    'confirm'   => [
+        'confirm'   => 'Potvrdiť',
+        'error'     => 'Nesprávne heslo, prosím skús ešte raz.',
+        'helper'    => 'Prosím potvrď tvoje heslo, aby bolo možné pokračovať.',
+        'title'     => 'Potvrdenie hesla',
+    ],
     'failed'    => 'Prihlasovacie údaje nie sú správne.',
     'helpers'   => [
         'password'  => 'Zobraziť / Skryť heslo',

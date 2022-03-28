@@ -194,7 +194,14 @@ return [
             'title'     => 'Edycja metody płatności',
         ],
         'cancel'                => [
-            'text'  => 'Szkoda, że rezygnujesz! Po zaniechaniu subskrypcji konto pozostanie aktywne do końca okresu rozliczeniowego. Potem stracisz doładowania i inne korzyści wynikające ze wspierania Kanki. Wypełniając poniższy formularz nasz nam znać, co możemy poprawić i dlaczego rezygnujesz.',
+            'options'   => [
+                'competitor'        => 'Wybieram produkt konkurencji',
+                'custom'            => 'Inne (jakie?)',
+                'financial'         => 'Moja sytuacja finansowa się zmieniła',
+                'missing_features'  => 'Nie ma opcji, których potrzebuję',
+                'not_using'         => 'Nie używam ostatnio Kanki',
+            ],
+            'text'      => 'Szkoda, że rezygnujesz! Po zaniechaniu subskrypcji konto pozostanie aktywne do końca okresu rozliczeniowego. Potem stracisz doładowania i inne korzyści wynikające ze wspierania Kanki. Wypełniając poniższy formularz nasz nam znać, co możemy poprawić i dlaczego rezygnujesz.',
         ],
         'cancelled'             => 'Anulowano subskrypcję. Możesz ją odnowić, gdy tylko ta wygaśnie.',
         'change'                => [
@@ -263,6 +270,7 @@ return [
         'sub_status'            => 'Informacje o subskrypcji',
         'subscription'          => [
             'actions'   => [
+                'cancel'            => 'Anuluj subskrybcję',
                 'downgrading'       => 'Skontaktuj się z nami by zmniejszyć poziom subskrypcji',
                 'rollback'          => 'Zmień na Kobolda',
                 'subscribe'         => 'Zmień na poziom :tier miesięcznie',

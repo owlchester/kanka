@@ -11,6 +11,12 @@ return [
     | these language lines according to your application's requirements.
     |
     */
+    'confirm'   => [
+        'confirm'   => 'Conferma',
+        'error'     => 'Password non valida, riprova.',
+        'helper'    => 'Conferma la tua password prima di continuare',
+        'title'     => 'Conferma della password',
+    ],
     'failed'    => 'Credenziali non corrispondenti ai dati registrati.',
     'helpers'   => [
         'password'  => 'Mostra / Nascondi password',
@@ -40,6 +46,7 @@ return [
             'email'     => 'Email',
             'name'      => 'Nome Utente',
             'password'  => 'Password',
+            'tos_clean' => 'Accetto le condizioni :privacy',
         ],
         'register_with_facebook'    => 'Registrati con Facebook',
         'register_with_google'      => 'Registrati con Google',

@@ -12,6 +12,12 @@ return [
     |
     */
 
+    'confirm'   => [
+        'confirm'   => 'Confirmar',
+        'error'     => 'Contrasinal inválido, proba de novo.',
+        'helper'    => 'Confirma o teu contrasinal antes de continuar.',
+        'title'     => 'Confirmación do contrasinal',
+    ],
     'failed'    => 'Estas credenciais non coinciden cos nosos rexistros.',
     'helpers'   => [
         'password'  => 'Mostrar / Ocultar contrasinal',

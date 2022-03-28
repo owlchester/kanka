@@ -194,7 +194,14 @@ return [
             'title'     => 'Editar método de pagamento',
         ],
         'cancel'                => [
-            'text'  => 'Lamentamos verte marchar! Cancelar a túa subscripción manteraa activa ata o próximio ciclo de facturación, tras o cal perderás todas as túas potenciacións de campaña e outros beneficios ligados a apoiar a Kanka. Podes cubrir o seguinte formulario para informarnos de como podemos mellorar, ou do que causou a túa decisión.',
+            'options'   => [
+                'competitor'        => 'Marcho á competencia',
+                'custom'            => 'Outra (por favor, especifique)',
+                'financial'         => 'Cambio a miña situación financieira',
+                'missing_features'  => 'Faltan funcionalidades',
+                'not_using'         => 'Non estou usando Kanka',
+            ],
+            'text'      => 'Lamentamos verte marchar! Cancelar a túa subscripción manteraa activa ata o próximio ciclo de facturación, tras o cal perderás todas as túas potenciacións de campaña e outros beneficios ligados a apoiar a Kanka. Podes cubrir o seguinte formulario para informarnos de como podemos mellorar, ou do que causou a túa decisión.',
         ],
         'cancelled'             => 'A túa subscripción foi cancelada. Podes renovala unha vez a subcripción actual termine.',
         'change'                => [
@@ -263,6 +270,7 @@ return [
         'sub_status'            => 'Información da subscripción',
         'subscription'          => [
             'actions'   => [
+                'cancel'            => 'Cancelar subscripción',
                 'downgrading'       => 'Por favor, contacta connosco para baixar o nivel da subscripción',
                 'rollback'          => 'Cambiar a Kobold',
                 'subscribe'         => 'Cambiar a :tier mensual',

@@ -371,6 +371,9 @@ TEXT
         'edit'      => [
             'success'   => 'Zaktualizowano ustawienia kampanii.',
         ],
+        'errors'    => [
+            'module-disabled'   => 'Ten moduł jest obecnie wyłączony w ustawieniach kampanii. :fix',
+        ],
         'helper'    => 'Wszystkie moduły kampanii można w każdej chwili aktywować lub wyłączyć. Wyłączenie modułu powoduje ukrycie związanych z nim składników interfejsu oraz istniejących już elementów kampanii - ale nie zostaną usunięte. Możesz zawsze zmienić zdanie i włączyć je ponownie. Zmiana działa u wszystkich uczestników kampanii, nawet administratorów.',
         'helpers'   => [
             'abilities'     => 'Twórz zdolności specjalne, na przykład czary, moce czy techniki, i przypisuj je innym elementom.',
@@ -429,6 +432,9 @@ TEXT
                 'title' => 'Zamieszczanie obrazów w galerii kampanii',
             ],
         ],
+    ],
+    'themes'                            => [
+        'none'  => 'Brak (powrót do ustawień użytkownika)',
     ],
     'ui'                                => [
         'boosted'           => 'Doładowana',

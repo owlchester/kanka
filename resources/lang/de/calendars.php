@@ -68,6 +68,7 @@ return [
         'current_month'         => 'Aktueller Monat',
         'current_year'          => 'Aktuelles Jahr',
         'date'                  => 'Aktuelles Datum',
+        'day'                   => 'Tag',
         'has_leap_year'         => 'Hat Schaltjahre',
         'intercalary'           => 'Schalttage',
         'is_incrementing'       => 'Vorausdatierung',
@@ -78,6 +79,7 @@ return [
         'leap_year_start'       => 'Schaltjahr',
         'length'                => 'Länge des Ereignisses',
         'length_days'           => ':count Tag|:count Tage',
+        'month'                 => 'Monat',
         'months'                => 'Monate',
         'moons'                 => 'Monde',
         'name'                  => 'Name',
@@ -91,6 +93,7 @@ return [
         'type'                  => 'Typ',
         'week_names'            => 'Wochennamen',
         'weekdays'              => 'Wochentage',
+        'year'                  => 'Jahr',
     ],
     'helpers'       => [
         'month_type'    => 'Schaltmonate benutzen keine Wochentage, aber beeinflussen trotzdem Monde und Jahreszeiten.',

@@ -69,6 +69,7 @@ return [
         'current_month'         => 'Aktuálny mesiac',
         'current_year'          => 'Aktuálny rok',
         'date'                  => 'Aktuálny dátum',
+        'day'                   => 'Deň',
         'has_leap_year'         => 'Má priestupné roky',
         'intercalary'           => 'Priestupné dni',
         'is_incrementing'       => 'Narastajúce dni',
@@ -79,6 +80,7 @@ return [
         'leap_year_start'       => 'Priestupný rok',
         'length'                => 'Dĺžka udalosti',
         'length_days'           => ':count deň|:count dní',
+        'month'                 => 'Mesiac',
         'months'                => 'Mesiace',
         'moons'                 => 'Družice',
         'name'                  => 'Názov',
@@ -92,6 +94,7 @@ return [
         'type'                  => 'Typ',
         'week_names'            => 'Názvy týždňov',
         'weekdays'              => 'Dni v týždni',
+        'year'                  => 'Rok',
     ],
     'helpers'       => [
         'month_type'    => 'Priestupné mesiace nepoužívajú dni v týždni, ale ovplyvňujú družice a ročné obdobia.',

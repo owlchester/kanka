@@ -32,6 +32,7 @@ return [
     'helpers'       => [
         'nested_parent'     => 'Mostrando as liñas temporais de ":parent".',
         'nested_without'    => 'Mostrando todas as liñas temporais que non teñen unha liña temporal nai. Fai clic nunha liña para ver as súas descendentes.',
+        'no_era'            => 'Esta liña temporal non ten ningunha era. As eras poden ser engadidas editando a entidade, e despois podes engadirlles elementos aquí.',
         'reorder'           => 'Arrastra elementos da era para reordenalos.',
         'reorder_tooltip'   => 'Fai clic para habilitar a reordenación manual de elementos arrastrando o cursor.',
         'reverse_order'     => 'Activa isto para mostrar as eras en orde cronolóxica inversa (as eras máis antigas primeiro)',

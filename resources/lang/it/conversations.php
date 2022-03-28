@@ -13,6 +13,7 @@ return [
         'title'     => 'Conversazione :name',
     ],
     'fields'        => [
+        'is_closed'     => 'Chiusa',
         'messages'      => 'Messaggi',
         'name'          => 'Nome',
         'participants'  => 'Partecipanti',
@@ -52,7 +53,8 @@ return [
         'type'  => 'In Gioco, Preparazione, Trama',
     ],
     'show'          => [
-        'title' => 'Conversazione :name',
+        'is_closed' => 'Conversazione chiusa.',
+        'title'     => 'Conversazione :name',
     ],
     'tabs'          => [
         'conversation'  => 'Conversazione',

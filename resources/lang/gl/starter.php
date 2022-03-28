@@ -1,6 +1,9 @@
 <?php
 
 return [
+    'campaign'      => [
+        'name'  => 'Mundo de :user',
+    ],
     'character1'    => [
         'fears'     => 'James ten medo aos ruídos fortes e ás explosións.',
         'history'   => 'Este é un personaxe de exemplo. Fillo de Mance Owlchester e de Rige Dunton, James medrou no campo cerca de Genory antes de mudarse á cidade capital de Unria para traballar como escriba para o rei.',
@@ -19,12 +22,7 @@ return [
         'title'     => 'Raíña das Explosións',
         'traits'    => 'Precisas levar conta de máis cousas? Temos esta sección de texto para iso!',
     ],
-    'item1'         => [
-        'description'   => 'Exemplo de un obxeto.',
-        'history'       => 'Historia do obxeto.',
-        'name'          => 'Daga da Oscuridade (exemplo)',
-        'type'          => 'Arma',
-    ],
+    'item1'         => [],
     'kingdom1'      => [
         'description'   => 'Este é un lugar de exemplo creado para ensinarte o que se pode facer coa aplicación.',
         'history'       => '(exemplo) O Reino de Genory foi fundado pola tribu genoriana a finais do século V, despois de invadir as terras da tribu Hottena.',

@@ -210,7 +210,7 @@ return [
     ],
     'footer'        => [
         'app'       => 'Aplikácia',
-        'copyright' => '© 2017 - :current kanka.io. Všetky práva vyhradené.',
+        'copyright' => 'Copyright :copy :year Owlchester SNC',
         'headings'  => [
             'app'           => 'Aplikácia',
             'community'     => 'Komunita',
@@ -224,6 +224,7 @@ return [
     'help'          => [
         'description'   => 'Sme tu, ak potrebuješ pomôcť. Kontaktuj nás jedným z nasledujúcich spôsobov a my sa ti čo najskôr ozveme späť.',
         'discord'       => 'Prihlás sa do nášho Discordu',
+        'documentation' => 'Pohľadaj v dokumentácii',
         'email'         => 'Pošli nám e-mail',
         'facebook'      => 'Kontaktuj nás na Facebooku',
         'title'         => 'Pomocník',

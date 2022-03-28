@@ -46,8 +46,9 @@ return [
         'type'          => 'Tipo',
     ],
     'helpers'       => [
-        'nested_parent' => 'Mostrando as misións de ":parent".',
-        'nested_without'=> 'Mostrando todas as misións que non teñen unha misión superior. Fai clic nunha fila para ver as súas submisións.',
+        'is_completed'      => 'Selecciona se a misión é considerada completa.',
+        'nested_parent'     => 'Mostrando as misións de ":parent".',
+        'nested_without'    => 'Mostrando todas as misións que non teñen unha misión superior. Fai clic nunha fila para ver as súas submisións.',
     ],
     'hints'         => [
         'quests'    => 'Podes crear unha rede de misións entrelazadas usando o campo "Misión superior".',

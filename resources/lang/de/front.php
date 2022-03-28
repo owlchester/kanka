@@ -224,6 +224,7 @@ return [
     'help'          => [
         'description'   => 'Wir sind für dich da, falls du Hilfe brauchst. Kontaktier uns über einen der folgenden Wege und wir melden uns bei dir so schnell wie möglich zurück.',
         'discord'       => 'Tritt der Community auf Discord bei',
+        'documentation' => 'Überprüfen Sie die Dokumentation',
         'email'         => 'Sende uns eine Email',
         'facebook'      => 'Kontaktieren Sie uns auf Facebook',
         'title'         => 'Hilfe',
@@ -256,6 +257,7 @@ return [
         'contact'       => 'Kontakt',
         'contact_us'    => 'Kontaktiere uns',
         'dashboard'     => 'Dashboard',
+        'documentation' => 'Dokumentation',
         'faq'           => 'FAQ',
         'features'      => 'Features',
         'help'          => 'Hilfe',
