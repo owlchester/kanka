@@ -689,6 +689,14 @@ section.features .feature-item i {
   display: inline-block;
 }
 
+.profile-pledge > a > img {
+  transition: all 0.6s ease-in-out;
+}
+
+.profile-pledge > a > img:not(.no-transform):hover {
+  transform: scale(1.1) rotate(8deg);
+}
+
 /* Hover Effects on Card */
 
 @media (min-width: 992px) {
