@@ -1,7 +1,9 @@
-<?php /** @var \App\Models\Campaign $campaign */?>
+<?php /** @var \App\Models\Campaign $campaign */
+$width = $featured ? 350 : 255;
+?>
 <div class="campaign-container @if($campaign->boosted()) campaign-boosted @endif">
     <a class="campaign @if(!$featured) small-campaign @endif " href="{{ url(app()->getLocale() . '/' . $campaign->getMiddlewareLink()) }}" title="{!! $campaign->name !!}">
-        <div class="campaign-image campaign-placeholder"  @if ($campaign->image) style="background-image: url('{{ $campaign->getImageUrl() }}')" @endif>
+        <div class="campaign-image campaign-placeholder"  @if ($campaign->image) style="background-image: url('{{ $campaign->getImageUrl($width, 200) }}')" @endif>
 
         </div>
         <div class="bottom">
