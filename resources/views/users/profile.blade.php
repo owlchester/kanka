@@ -66,7 +66,7 @@
                         <div class="text-uppercase">Owlbear</div>
                     @elseif ($user->isAdmin())
                         <a href="{{ route('front.about') }}">
-                            <img src="https://kanka-app-assets.s3.amazonaws.com/images/logos/logo-blue-white.png"
+                            <img src="https://kanka-app-assets.s3.amazonaws.com/images/logos/icon-large.png"
                                  class="profile-subscriber no-transform" title="Kanka Team" />
                         </a>
                         <div class="text-uppercase">
