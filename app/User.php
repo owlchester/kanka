@@ -423,7 +423,7 @@ class User extends \Illuminate\Foundation\Auth\User
 
         // Campaigns that are boosted don't either
         $campaign = CampaignLocalization::getCampaign(false);
-        return !empty($campaign) && $campaign->boosted();
+        return !empty($campaign) && !$campaign->boosted();
     }
 
     /**
