@@ -7,7 +7,9 @@
         <div class="bottom">
             <h4 class="campaign-title">
                 @if (!$featured && $campaign->isFeatured())
-                    <i class="fas fa-star" title="{{ __('campaigns.fields.featured_campaign') }}" data-toggle="tooltip"></i>
+                    <i class="fas fa-star" title="{{ __('campaigns.fields.featured') }}" data-toggle="tooltip"></i>
+                @elseif (!$featured && $campaign->isFeatured(true))
+                    <i class="fas fa-star" title="{{ __('campaigns.fields.past_featured') }}" data-toggle="tooltip"></i>
                 @endif
                 {!! $campaign->name !!}
             </h4>

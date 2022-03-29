@@ -60,10 +60,18 @@ trait CampaignScopes
      */
     public function scopeFeatured(Builder $query, $featured = true)
     {
+        if ($featured) {
+            return $query->where('is_featured', true)
+                ->where(function ($sub) {
+                    return $sub->whereNull('featured_until')
+                        ->orWhereDate('featured_until', '>=', Carbon::today()->toDateString());
+                });
+        }
+        // Not featured, or featured in the past
         return $query->where('is_featured', $featured)
-            ->where(function ($sub) {
-                return $sub->whereNull('featured_until')
-                    ->orWhereDate('featured_until', '>=', Carbon::today()->toDateString());
+            ->orWhere(function ($sub) {
+                return $sub->where('is_featured', true)
+                    ->whereDate('featured_until', '<', Carbon::today()->toDateString());
             });
     }
 
