@@ -277,7 +277,7 @@ class AppServiceProvider extends ServiceProvider
 
             // Boosted campaigns don't either have ads displayed to their members
             $campaign = CampaignLocalization::getCampaign(false);
-            return !empty($campaign) && $campaign->boosted();
+            return !empty($campaign) && !$campaign->boosted();
         });
     }
 }
