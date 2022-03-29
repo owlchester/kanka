@@ -269,6 +269,12 @@ class SidebarService
             'label' => 'sidebar.attribute_templates',
             'module' => false,
         ],
+        /*'search' => [
+            'icon' => 'fa fa-search',
+            'label' => 'Search...',
+            'module' => false,
+            'route' => 'search',
+        ],*/
     ];
 
     protected $layout = [
@@ -299,7 +305,8 @@ class SidebarService
             'relations',
             'gallery',
             'attribute_templates',
-        ]
+        ],
+        //'search' => null,
     ];
 
     /** @var Campaign */
@@ -424,8 +431,9 @@ class SidebarService
     public function layout(): array
     {
         $key = $this->cacheKey();
-        if (Cache::has($key)) {
-            return Cache::get($key);
+        if (!$this->withDisabled && Cache::has($key)) {
+            //dump('read from cache ' . $key);
+            //return Cache::get($key);
         }
         $layout = [];
         foreach ($this->customLayout() as $name => $children) {
@@ -447,8 +455,8 @@ class SidebarService
             foreach ($children as $childName) {
                 $child = $this->customElement($childName);
                 // Child has a module, check that the campaign has it enabled
-                if (!isset($child['module'])) {
-                    if (!$this->withDisabled && !$this->campaign->enabled($childName)) {
+                if (!isset($child['module']) && !$this->withDisabled) {
+                    if (!$this->campaign->enabled($childName)) {
                         continue;
                     }
                 }
@@ -565,8 +573,51 @@ class SidebarService
             return $this->layout;
         }
 
-        // We have a layout, we assume it's correct.
-        // Todo for future, make sure new elements in the default layout are set?
+        // We have a layout, let's see if anything is missing. There is probably a smarter way to do this.
+        $definedElements = [];
+        foreach ($layout as $name => $values) {
+            $definedElements[] = $name;
+            if (!is_array($values)) {
+                continue;
+            }
+            foreach ($values as $key) {
+                $definedElements[] = $key;
+            }
+        }
+
+        // Find missing elements that are in the base layout but not in the custom one
+        $missing = array_diff(array_keys($this->elements), $definedElements);
+
+        // Loop through the missing elements and inject them where they are "expected"
+        foreach ($missing as $element) {
+            $found = false;
+            //dump('Missing: ' . $element);
+            // If it's a base level, add it there
+            if (array_key_exists($element, $this->layout)) {
+                $layout[$element] = null;
+                continue;
+            }
+            foreach ($this->layout as $name => $children) {
+                if (!is_array($children)) {
+                    continue;
+                }
+                $values = array_values($children);
+                //dump(!in_array($element, $values));
+                if (!in_array($element, $values)) {
+                    continue;
+                }
+                $layout[$name][$element] = $element;
+                //dump('Added it to ' . $name);
+
+                $found = true;
+                continue;
+            }
+
+            if (!$found) {
+                dd('E637: Couldn\'t place sidebar element ' . $element);
+            }
+        }
+
         return $layout;
     }
 
