@@ -64,7 +64,7 @@
                                  class="profile-subscriber" title="Owlbear" />
                         </a>
                         <div class="text-uppercase">Owlbear</div>
-                    @elseif ($user->isAdmin())
+                    @elseif ($user->hasRole('admin'))
                         <a href="{{ route('front.about') }}">
                             <img src="https://kanka-app-assets.s3.amazonaws.com/images/logos/icon-large.png"
                                  class="profile-subscriber no-transform" title="Kanka Team" />
