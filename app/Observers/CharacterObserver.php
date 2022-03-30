@@ -134,9 +134,9 @@ class CharacterObserver extends MiscObserver
                 continue;
             }
 
-            if (!empty($existing[$id])) {
-                $model = $existing[$id];
-                unset($existing[$id]);
+            if (!empty($existing[$key])) {
+                $model = $existing[$key];
+                unset($existing[$key]);
             } else {
                 $model = new OrganisationMember();
                 $model->character_id = $character->id;
