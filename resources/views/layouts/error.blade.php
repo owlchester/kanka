@@ -86,7 +86,7 @@
 <div id="main-content"></div>
 @yield('content')
 
-@include('front.footer')
+@includeWhen(Route::has('home'), 'front.footer')
 
 <!-- Bootstrap core JavaScript -->
 <script src="/vendor/jquery/jquery.min.js"></script>
