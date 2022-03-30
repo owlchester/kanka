@@ -44,7 +44,14 @@ class SyncUserRoles extends Command
     public function handle()
     {
         $userID = $this->argument('user');
+
+        /** @var User $user */
         $user = User::find($userID);
+
+        if ($user->apps()->app('discord')->count() === 0) {
+            $this->error('User has no discord sync.');
+            return 0;
+        }
 
         $this->service->user($user)
             ->addRoles();
