@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Facades\CampaignLocalization;
 use App\Models\Plugin;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
@@ -46,6 +47,7 @@ class RouteServiceProvider extends ServiceProvider
 
         $this->mapWebRoutes();
         $this->mapFrontRoutes();
+        $this->mapCampaignRoutes();
         $this->mapProfileRoutes();
         $this->mapAdminRoutes();
         $this->mapPartnerRoutes();
@@ -90,6 +92,14 @@ class RouteServiceProvider extends ServiceProvider
             ->prefix(LaravelLocalization::setLocale())
             ->namespace($this->namespace)
             ->group(base_path('routes/front.php'));
+    }
+
+    protected function mapCampaignRoutes()
+    {
+        Route::middleware(['web', 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath', 'localizeDatetime', 'campaign'])
+            ->prefix(LaravelLocalization::setLocale() . '/' . CampaignLocalization::setCampaign())
+            ->namespace($this->namespace)
+            ->group(base_path('routes/campaign.php'));
     }
 
     /**
