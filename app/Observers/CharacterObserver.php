@@ -236,7 +236,7 @@ class CharacterObserver extends MiscObserver
         foreach ($character->families as $family) {
             // If it already exists, we have an issue
             if (!empty($existing[$family->id])) {
-                $recreate[$race->id] = $family->id;
+                $recreate[$family->id] = $family->id;
                 $character->families()->detach($family->id);
                 continue;
             }
