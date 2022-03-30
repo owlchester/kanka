@@ -3,7 +3,7 @@
  * @var \App\Models\CommunityEventEntry $entry
  * */?>
 @extends('layouts.front', [
-    'title' => __('front/community-events.show.title', ['name' => $model->name]),
+    'title' => $model->name,
     'description' => '',
     'skipPerf' => true,
 ])
