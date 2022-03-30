@@ -224,4 +224,7 @@ return [
         'after' => 'Today & after',
         'before'=> 'Today & before',
     ],
+    'validators' => [
+        'moon_offset' => 'The moon first fullmoon offset can\'t be bigger than the length of the calendar\'s first month.',
+    ]
 ];

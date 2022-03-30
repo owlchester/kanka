@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\CalendarMoonOffset;
 use App\Traits\ApiRequest;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -40,6 +41,9 @@ class StoreCalendar extends FormRequest
             'epoch_name' => 'nullable|array',
             'season_name' => 'nullable|array',
             'template_id' => 'nullable',
+            'moon_offset' => [
+                '*' => new CalendarMoonOffset
+            ]
         ];
 
         $leapYear = request()->post('has_leap_year');

@@ -80584,6 +80584,7 @@ function registerEntityFormSubmit() {
 
 
       var errors = err.responseJSON.errors;
+      var logs = [];
       var errorKeys = Object.keys(errors);
       var foundAllErrors = true;
       errorKeys.forEach(function (i) {
@@ -80593,10 +80594,17 @@ function registerEntityFormSubmit() {
           errorSelector.addClass('input-error').parent().append('<div class="text-danger">' + errors[i][0] + '</div>');
         } else {
           foundAllErrors = false;
+          logs.push(errors[i][0]);
         }
       }); // If not all error fields could be found, show a generic error message on top of the form.
 
       if (!foundAllErrors) {
+        var genericError = $('#entity-form-generic-error .error-logs');
+        genericError.html('');
+        logs.forEach(function (i) {
+          var msg = i + "<br />";
+          genericError.append(msg);
+        });
         $('#entity-form-generic-error').show();
       }
 
