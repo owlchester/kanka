@@ -31,9 +31,14 @@ class CalendarMoonOffset implements Rule
             return false;
         }
         $max = $lengths[0];
-
         $min = 0 - $max;
-        return $value < $max && $value > $min;
+
+        foreach ($value as $offset) {
+            if ($offset > $max || $offset < $min) {
+                return false;
+            }
+        }
+        return true;
     }
 
     /**
