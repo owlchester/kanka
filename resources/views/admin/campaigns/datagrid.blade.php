@@ -37,7 +37,11 @@
             </td>
             <td>
                 @if ($campaign->is_featured)
-                    <i class="fa fa-star" title="Featured" data-toggle="tooltip"></i>
+                    @if (empty($campaign->featured_until))
+                        <i class="fa fa-star" title="Featured" data-toggle="tooltip"></i>
+                    @else
+                        <i class="fa-solid fa-star-half-stroke" title="Featured until {{ $campaign->featured_until->format('Y.m.d') }}" data-toggle="tooltip"></i>
+                    @endif
                 @endif
             </td>
             <td>

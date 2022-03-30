@@ -286,12 +286,19 @@ class Campaign extends MiscModel
     }
 
     /**
-     * Determine if a campaign is featured
+     * Determine if a campaign is featured or was featured in the past
+     * @param bool $past
      * @return bool
      */
-    public function isFeatured(): bool
+    public function isFeatured(bool $past = false): bool
     {
-        return (bool) $this->is_featured;
+        return (bool) $this->is_featured && (
+            empty($this->featured_until) || (
+                $past ?
+                    $this->featured_until->isBefore(Carbon::today()) :
+                    $this->featured_until->isAfter(Carbon::today())
+            )
+        );
     }
 
     /**
