@@ -7,6 +7,7 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Laravel\Cashier\Subscription;
 
 class NewSubscriptionMail extends Mailable
 {
@@ -42,9 +43,19 @@ class NewSubscriptionMail extends Mailable
      */
     public function build()
     {
+        $action = $this->new ? 'New' : 'Changed';
+        // If new, check if user was previously subbed
+        if ($this->new) {
+            $cancelled = Subscription::where('user_id', $this->user->id)->cancelled()->count();
+            if ($cancelled > 0) {
+                $action = 'Renewed';
+            }
+        }
+
+        $subject = 'Subscription: ' . $action . ' ' . ucfirst($this->period) . ' ' . $this->user->patreon_pledge;
         return $this
             ->from(['address' => 'no-reply@kanka.io', 'name' => 'Kanka Admin'])
-            ->subject('Subscription: ' . ($this->new ? 'New' : 'Changed') . ' ' . ucfirst($this->period) . ' ' . $this->user->patreon_pledge)
+            ->subject($subject)
             ->view('emails.subscriptions.' . ($this->new ? 'new' : 'changed') . '.html');
     }
 }
