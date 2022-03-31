@@ -20,6 +20,7 @@ if (isset($single) && $single) {
 <script type="text/javascript">
     /** Kanka map {{ $map->id }} setup **/
     var bounds{{ $map->id }} = {{ $map->bounds() }};
+    var maxBounds{{ $map->id }} = {{ $map->bounds(true) }};
     var baseLayer{{ $map->id }} = L.imageOverlay('{{ Storage::url($map->image) }}', bounds{{ $map->id }});
 
     /** Layers Init **/
@@ -59,7 +60,7 @@ if (isset($single) && $single) {
         crs: L.CRS.Simple,
         center: [ {{ $focus }} ],
         noWrap: true,
-        maxBounds: bounds{{ $map->id }},
+        maxBounds: maxBounds{{ $map->id }},
         maxBoundsViscosity: 0.5,
         dragging: true,
         tap: false,

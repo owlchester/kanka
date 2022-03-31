@@ -474,12 +474,14 @@ class Map extends MiscModel
      * we just assume 1000/1000 and wait for a user to come in discord for help.
      * @return string
      */
-    public function bounds(): string
+    public function bounds(bool $extend = false): string
     {
-        $height = floor((empty($this->height) ? 1000 : $this->height) / 1);
-        $width = floor((empty($this->width) ? 1000 : $this->width) / 1);
+        $extra = $extend ? 50 : 0;
+        $height = floor((empty($this->height) ? 1000 : $this->height) / 1) + $extra;
+        $width = floor((empty($this->width) ? 1000 : $this->width) / 1) + $extra;
 
-        return '[[0, 0], [' . $height . ', ' . $width . ']]';
+        $min = $extend ? -50 : 0;
+        return "[[$min, $min], [$height, $width]]";
     }
 
     /**
