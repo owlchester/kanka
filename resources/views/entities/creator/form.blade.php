@@ -54,7 +54,7 @@
     @endif
 
     <button class="btn btn-success" id="quick-creator-submit-btn" data-text="{{ __('crud.create') }}">
-        {{ __('crud.create') }}
+        {{ __('crud.create') }} @include('partials.koinks', ['cost' => 15])
     </button>
 
 </div>
