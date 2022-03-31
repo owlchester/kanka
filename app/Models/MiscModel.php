@@ -649,6 +649,10 @@ abstract class MiscModel extends Model
         foreach ($this->entity->tagsWithEntity() as $tag) {
             $classes[] = 'kanka-tag-' . $tag->id;
             $classes[] = 'kanka-tag-' . $tag->slug;
+
+            if ($tag->tag_id) {
+                $classes[] = 'kanka-tag-' . $tag->tag_id;
+            }
         }
 
         // Specific entity flags
