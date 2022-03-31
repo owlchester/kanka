@@ -56,6 +56,7 @@ if (isset($single) && $single) {
     var overlayMaps{{ $map->id }} = {};
 @endif
     @if (!$map->is_real)
+
     var map{{ $map->id }} = L.map('map{{ $map->id }}', {
         crs: L.CRS.Simple,
         center: [ {{ $focus }} ],
@@ -74,6 +75,7 @@ if (isset($single) && $single) {
 
     L.control.layers(baseMaps{{ $map->id }}, overlayMaps{{ $map->id }}).addTo(map{{ $map->id }});
     @else
+
     var map{{ $map->id }} = L.map('map{{ $map->id }}', {
         noWrap: true,
         dragging: true,
