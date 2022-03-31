@@ -149,6 +149,14 @@ if (auth()->check()) {
                             </span>
                         </a>
                     </li>
+                    <li class="@if(!empty($active) && $active == 'sidebar')active @endif">
+                        <a href="{{ route('campaign-sidebar') }}">
+                            {{ __('campaigns.show.tabs.sidebar') }}
+                            <span class="label label-default bg-maroon pull-right" title="{{ __('crud.tooltips.boosted_feature') }}" data-toggle="tooltip">
+                                <i class="fas fa-rocket"></i>
+                            </span>
+                        </a>
+                    </li>
                     @endcan
                 </ul>
             </div>
@@ -209,6 +217,10 @@ if (auth()->check()) {
             $menuOptions['styles'] = [
                 'label' => __('campaigns.show.tabs.styles'),
                 'route' => route('campaign_styles.index')
+            ];
+            $menuOptions['sidebar'] = [
+                'label' => __('campaigns.show.tabs.sidebar'),
+                'route' => route('campaign-sidebar')
             ];
         }
     }

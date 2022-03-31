@@ -164,7 +164,9 @@
                 <td><i class="fa fa-check-circle"></i></td>
             </tr>
             <tr>
-                <td class="text">{{ __('front.features.boosts.css') }}</td>
+                <td class="text">
+                    {!! link_to('https://kanka.io/' . app()->getLocale() . '/campaign/20000/notes/151346#entity-note-body-149581', __('front.features.boosts.css'), ['target' => '_blank']) !!}
+                </td>
                 <td><i class="fa fa-check-circle"></i></td>
                 <td><i class="fa fa-check-circle"></i></td>
             </tr>
@@ -179,7 +181,9 @@
                 <td><i class="fa fa-check-circle"></i></td>
             </tr>
             <tr>
-                <td class="text">{{ __('front.features.boosts.dashboards') }} {!! link_to_route('front.features.dashboards', __('front.cookie.link'), [], ['target' => '_blank', 'class' => 'ml-2']) !!}</td>
+                <td class="text">
+                    {!! link_to_route('front.features.dashboards', __('front.features.boosts.dashboards'), [], ['target' => '_blank']) !!}
+                </td>
                 <td><i class="fa fa-check-circle"></i></td>
                 <td><i class="fa fa-check-circle"></i></td>
             </tr>
@@ -214,12 +218,21 @@
                 <td><i class="fa fa-check-circle"></i></td>
             </tr>
             <tr>
-                <td class="text">{{ __('front.features.boosts.relation-visualiser') }} {!! link_to_route('front.features.relations', __('front.cookie.link'), [], ['target' => '_blank', 'class' => 'ml-2']) !!}</td>
+                <td class="text">
+                    {!! link_to_route('front.features.relations', __('front.features.boosts.relation-visualiser'), ['target' => '_blank']) !!}
+                </td>
                 <td><i class="fa fa-check-circle"></i></td>
                 <td><i class="fa fa-check-circle"></i></td>
             </tr>
             <tr>
                 <td class="text">{{ __('front.features.boosts.beta') }}</td>
+                <td><i class="fa fa-check-circle"></i></td>
+                <td><i class="fa fa-check-circle"></i></td>
+            </tr>
+            <tr>
+                <td class="text">
+                    {!! link_to('https://kanka.io/' . app()->getLocale() . '/campaign/20000/notes/156620', __('front.features.boosts.sidebar'), ['target' => '_blank']) !!}
+                </td>
                 <td><i class="fa fa-check-circle"></i></td>
                 <td><i class="fa fa-check-circle"></i></td>
             </tr>
