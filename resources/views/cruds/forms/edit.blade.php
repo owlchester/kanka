@@ -29,7 +29,7 @@
 
     <div class="nav-tabs-custom">
         <div class="pull-right">
-            @include('cruds.fields.save', ['disableCancel' => true, 'target' => 'entity-form'])
+            @include('cruds.fields.save', ['disableCancel' => true, 'target' => 'entity-form', 'cost' => 6])
         </div>
         <ul class="nav nav-tabs" role="tablist">
             <li role="presentation" class="{{ (request()->get('tab') == null ? ' active' : '') }}">
