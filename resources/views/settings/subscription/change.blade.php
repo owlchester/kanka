@@ -189,6 +189,10 @@
             ) !!}
         </div>
 
+            <div class="alert alert-warning">
+                <p>Cancelling because our April fools Koinks announcement? Don't worry, it's a joke that will be removed on the 2nd of April ;-)</p>
+            </div>
+
         <div class="text-center">
             <button class="btn btn-xl btn-danger subscription-confirm-button" data-text="{{ __('settings.subscription.actions.subscribe') }}">
                 {{ __('settings.subscription.actions.cancel_sub') }}
