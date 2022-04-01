@@ -38,7 +38,7 @@
                 <p>We've been building the Koink Action Payment Portal Yummies (KAPPY) network with experts in the cryoptocurrency and worldbuilding sphere for the past two years. Along with our partners, we started mining Koinks in secret before the end of 2021 to accumulate Koinks into a central pool.</p>
 
                 <h3 class="mt-5">How come I already have koinks?</h3>
-                <p>When logged in, you will see your number of available Koinks in the top-right, between your notifications and user profile picture. Koinks were granted based on how long you've actively been using Kanka during the past five years, pooling from the Koinks that were mind during the past few months.</p>
+                <p>When logged in, you will see your number of available Koinks in the top-right, between your notifications and user profile picture. Koinks were granted based on how long you've actively been using Kanka during the past five years, pooling from the Koinks that were mined during the past few months.</p>
 
                 <h3 class="mt-5">How to get more Koinks?</h3>
                 <p>Whenever an element is created in Kanka or in our partner applications, that element is sent to the decentralised KAPPY network for analysis. Various notes will then attribute a worldbuilding score from 0 to 1, with 1 being the highest, to each element. The network will then compare the results between nodes, and form a consensus on the worldbuilding quality and potential of the created element, and assign a number of Koinks to the KWallet based on the score.</p>
