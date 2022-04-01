@@ -16,6 +16,8 @@
                 <div class="col-md-9">
                     <div class="header-content mx-auto">
                         <h1 class="mb-3">Introducing KOINKS!</h1>
+
+                        <p class="mb-3"><i>Update: thanks everyone for the fun messages in <a href="{{ config('social.discord') }}" target="_blank">Discord</a>! This was our first April Fool's and we had a lot of fun with the community. See you again next year for more shenanigans!</i></p>
                         <p class="mb-3">With the help of our amazing community and experts in the worldbuilding and cryptocurrency world, we've spent last two years building the KAPPY network. Today on <a href="https://en.wikipedia.org/wiki/April_Fools%27_Day" target="_blank" rel="nofollow">April 1st</a> we are ready to release it into Kanka, and expect many of your favourite worldbuilding websites to start using them soon.</p>
 
                         <p class="mb-5">Koinks are a worldbuilding-focused, eco-friendly, murderhobo-free cryptocurrency that will power the future of worldbuilding and TTRPGs.</p>
