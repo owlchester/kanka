@@ -38,7 +38,7 @@
     @if(request()->ajax())
     </div>
     <div class="modal-footer">
-        <button class="btn btn-success">{{ __('crud.save') }} @include('partials.koinks', ['cost' => 5])</button>
+        <button class="btn btn-success">{{ __('crud.save') }}</button>
 
         <div class="pull-left">
             @include('partials.footer_cancel')
@@ -47,7 +47,7 @@
     @else
         <div class="panel-footer">
             <div class="pull-right">
-                    <button class="btn btn-success">{{ __('crud.save') }} @include('partials.koinks', ['cost' => 5])</button>
+                    <button class="btn btn-success">{{ __('crud.save') }}</button>
             </div>
             @include('partials.footer_cancel')
         </div>

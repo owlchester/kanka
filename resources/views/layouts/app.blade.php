@@ -204,8 +204,8 @@ $seoTitle = isset($seoTitle) ? $seoTitle : (isset($title) ? $title : null);
                     <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">{{ __('crud.cancel') }}</button>
                     <button type="button" class="btn btn-outline delete-confirm-submit">
                         <span class="fa fa-trash"></span>
-                        <span class="delete-button-label">{{ __('crud.delete_modal.delete') }} @include('partials.koinks', ['cost' => 1])</span>
-                        <span class="remove-button-label" style="display: none">{{ __('crud.remove') }} @include('partials.koinks', ['cost' => 1])</span>
+                        <span class="delete-button-label">{{ __('crud.delete_modal.delete') }}</span>
+                        <span class="remove-button-label" style="display: none">{{ __('crud.remove') }}</span>
                     </button>
                 </div>
             </div>
