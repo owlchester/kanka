@@ -34,6 +34,10 @@ return [
         'success'   => 'Attributes for :entity updated.',
         'title'     => 'Attributes for :name',
     ],
+    'live'          => [
+        'success'   => 'Attribute :attribute updated.',
+        'title'     => 'Updating :attribute',
+    ],
     'placeholders'  => [
         'attribute' => 'Number of conquests, Challenge Rating, Initiative, Population',
         'block'     => 'Block name',

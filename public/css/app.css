@@ -2589,3 +2589,18 @@ ul.sidebar-sortable ul li ul {
   border-radius: 5px;
 }
 
+.live-edit-parsed {
+  cursor: pointer;
+}
+
+.live-edit-parsed:hover:after {
+  -webkit-font-smoothing: antialiased;
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
+  content: " \F303";
+  font-style: normal;
+  font-variant: normal;
+  line-height: 1;
+  text-rendering: auto;
+}
+

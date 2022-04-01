@@ -9,6 +9,7 @@ var maxFieldAlert;
 import dynamicMentions from "./mention";
 
 $(document).ready(function() {
+    initLiveAttributes();
     if ($('#add_attribute_target').length === 0) {
         return;
     }
@@ -119,4 +120,78 @@ function initAttributeHandlers() {
     });
 
     //window.initSelect2();
+}
+
+
+var liveEditURL, liveEditModal, liveEditCurrentUID;
+function initLiveAttributes() {
+    let config = $('[name="live-attribute-config"]');
+    if (config.length === 0) {
+        console.log('no config');
+        return;
+    }
+
+    liveEditURL = config.data('live');
+    liveEditModal = $('#live-attribute-modal');
+
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
+    // Add the live-edit-parsed attribute to variables to confirm that they are valid
+    let uid = 1;
+    $.each($('.live-edit'), function (i) {
+        $(this).addClass('live-edit-parsed');
+        $(this).attr('data-uid', uid);
+        uid++;
+    });
+
+    $('.live-edit-parsed').unbind('click').click(function (e) {
+        //console.log('clicked on live edit parsed');
+
+        let id = $(this).data('id');
+        liveEditCurrentUID = $(this).data('uid');
+
+        let url = liveEditURL + '?id=' + id + '&uid=' + $(this).data('uid');
+        $.ajax({
+            url: url
+        }).done(function (result, textStatus, xhr) {
+            let params = {};
+            liveEditModal.find('.modal-content').html(result);
+            liveEditModal.modal(params);
+
+            //console.log('child', liveEditModal.find('form'));
+            liveEditModal.find('form').submit(function (e) {
+                e.preventDefault();
+
+                $.ajax({
+                    method: 'POST',
+                    context: this,
+                    url: $(this).attr('action'),
+                    data: $(this).serialize()
+                }).done(function (result) {
+
+                    liveEditModal.find('.modal-content').html('');
+                    liveEditModal.modal('hide');
+
+                    let target = $('[data-uid="' + result.uid + '"]');
+                    //console.log('looking for', '[data-uid="' + result.uid + '"]', target);
+                    target.html(result.value);
+
+                    window.showToast(result.success)
+
+                }).fail(function (result, textStatus, xhr) {
+                    //alert('error! check console logs');
+                    console.error('live-edit-error', result);
+
+                    liveEditModal.find('.modal-content').html('');
+                    liveEditModal.modal('hide');
+                });
+
+                return false;
+            });
+        });
+    });
 }

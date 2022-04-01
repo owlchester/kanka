@@ -5,10 +5,13 @@ namespace App\Http\Controllers\Entity;
 use App\Facades\CampaignLocalization;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ApplyAttributeTemplate;
+use App\Http\Requests\UpdateEntityAttribute;
+use App\Models\Attribute;
 use App\Models\Entity;
 use App\Services\AttributeService;
 use App\Traits\GuestAuthTrait;
 use Illuminate\Support\Facades\Auth;
+use Stevebauman\Purify\Facades\Purify;
 
 class AttributeController extends Controller
 {
@@ -169,5 +172,50 @@ class AttributeController extends Controller
             ->with('success', __('entities/attributes.template.success', [
                 'name' => $templateName, 'entity' => $entity->child->name
             ]));
+    }
+
+    public function liveEdit(Entity $entity)
+    {
+        $this->authorize('update', $entity->child);
+
+        $id = request()->get('id');
+        $uid = request()->get('uid');
+        if (!is_numeric($uid)) {
+            abort(421);
+        }
+
+        $attribute = $entity->attributes()->where('id', $id)->first();
+        if (!$id) {
+            return abort(421);
+        }
+
+        return response()->view('entities.pages.attributes.live.edit', compact('attribute', 'entity', 'uid'));
+
+    }
+
+    public function liveSave(UpdateEntityAttribute $request, Entity $entity, Attribute $attribute)
+    {
+        $this->authorize('update', $entity->child);
+
+        if ($attribute->entity_id !== $entity->id) {
+            abort(404);
+        }
+
+        $attribute->update([
+            'value' => Purify::clean($request->get('value'))
+        ]);
+
+        $result = $attribute->mappedValue();
+        if ($attribute->isText()) {
+            $result = nl2br($result);
+        } elseif ($attribute->isCheckbox()) {
+            $result = '<i class="fa fa-' . ($attribute->value ? 'check' : 'times') . '"></i>';
+        }
+        return response()->json([
+            'value' => $result,
+            'uid' => $request->get('uid'),
+            'success' => __('entities/attributes.live.success', ['attribute' => $attribute->name()])
+        ]);
+
     }
 }
