@@ -46,6 +46,7 @@
                             <i class="{{ $setup['custom_icon'] ?: $setup['icon'] }}"></i>
                             <input type="text" class="form-control" name="{{ $name }}_icon" value="{{ $setup['custom_icon'] }}" placeholder="{{$setup['icon'] }}" maxlength="20" />
                             <input type="text" class="form-control" name="{{ $name }}_label" value="{{ $setup['custom_label'] }}" placeholder="{{$setup['label'] }}" />
+                            <span class="text-muted text-sm">({{ $setup['label'] }})</span>
                             <input type="hidden" name="order[{{ $name }}]" value="1" />
                             @if (empty($setup['children']))
                                 @continue
@@ -58,6 +59,7 @@
                                         <i class="{{ $child['custom_icon'] ?: $child['icon'] }}"></i>
                                         <input type="text" class="form-control" name="{{ $childName }}_icon" value="{{ $child['custom_icon'] }}" placeholder="{{ $child['icon'] }}" maxlength="20" />
                                         <input type="text" class="form-control" name="{{ $childName }}_label" value="{{ $child['custom_label'] }}" placeholder="{{ $child['label'] }}" />
+                                        <span class="text-muted text-sm">({{ $child['label'] }})</span>
                                         <input type="hidden" name="order[{{ $childName }}]" value="1" />
                                     </li>
                                 @endforeach
