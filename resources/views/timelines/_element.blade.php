@@ -9,8 +9,10 @@
     {!! $element->htmlIcon() !!}
 
     <div class="timeline-item">
+        <span class="time">
+            @include('cruds.partials.visibility', ['model' => $element, 'rightMargin' => true])
+
         @can('update', $timeline)
-            <span class="time">
 
                 <a href="{{ route('timelines.timeline_elements.edit', [$timeline, $element, 'from' => 'view']) }}" class="margin-r-5"
                    title="{{ __('crud.edit') }}"
@@ -23,8 +25,9 @@
                    title="{{ __('crud.remove') }}">
                     <i class="fa fa-trash" aria-hidden="true"></i>
                 </a>
-            </span>
         @endcan
+
+            </span>
 
         <h3 class="timeline-header cursor entity-note-toggle" data-toggle="collapse" data-target="#timeline-element-body-{{ $element->id }}" data-short="timeline-element-body-toggle-{{ $element->id }}">
             <i class="fa fa-chevron-up" id="timeline-element-body-toggle-{{ $element->id }}-show" @if($element->collapsed()) style="display: none;" @endif></i>
@@ -36,7 +39,6 @@
             @if($element->entity && $element->entity->is_private)
                 <i class="fas fa-lock" title="{{ __('timelines/elements.helpers.entity_is_private') }}" data-toggle="tooltip" ></i>
             @endif
-            @include('cruds.partials.visibility', ['model' => $element])
         </h3>
 
         <div class="timeline-body entity-content collapse {{ $element->collapsed() ? 'out' : 'in' }}" id="timeline-element-body-{{ $element->id }}">
