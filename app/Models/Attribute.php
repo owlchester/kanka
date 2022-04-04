@@ -94,6 +94,25 @@ class Attribute extends Model
     }
 
     /**
+     * @return string
+     */
+    public function mappedValue(): string
+    {
+        if ($this->type == self::TYPE_SECTION) {
+            return $this->name;
+        }
+        return Mentions::mapAttribute($this);
+    }
+
+    /**
+     * @return bool
+     */
+    public function isDefault(): bool
+    {
+        return empty($this->type);
+    }
+
+    /**
      * @return bool
      */
     public function isBlock(): bool
@@ -116,18 +135,6 @@ class Attribute extends Model
     {
         return $this->type == self::TYPE_TEXT;
     }
-
-    /**
-     * @return string
-     */
-    public function mappedValue(): string
-    {
-        if ($this->type == self::TYPE_SECTION) {
-            return $this->name;
-        }
-        return Mentions::mapAttribute($this);
-    }
-
     /**
      * @return bool
      */
@@ -179,11 +186,10 @@ class Attribute extends Model
     public function name(): string
     {
         $name = preg_replace('`\[icon:(.*?)\]`si', '<i class="$1"></i>', $this->name);
-        if (!$this->isNumber()) {
-            return (string) $name;
-        }
+        $name = preg_replace($this->listRegexp, '', $this->name);
 
-        return preg_replace($this->numberRange, '', $this->name);
+        return (string) $name;
+
     }
 
     /**
@@ -194,11 +200,7 @@ class Attribute extends Model
     public function setValue($value): self
     {
         $this->value = $value;
-        if (!$this->isNumber()) {
-            return $this;
-        }
 
-        //dump('checking for range in ' . $this->name);
         // Check if there is a constraint
         if (!$this->validConstraints()) {
             return $this;
@@ -233,7 +235,7 @@ class Attribute extends Model
     public function validConstraints(): bool
     {
         $this->calculateConstraints();
-        return $this->numberMax !== false && $this->numberMin !== false;
+        return ($this->numberMax !== false && $this->numberMin !== false) || $this->listRange !== false;
     }
 
     /**
@@ -243,7 +245,7 @@ class Attribute extends Model
     {
         if ($this->isNumber()) {
             return $this->calculateNumberConstraints();
-        } elseif ($this->isList()) {
+        } elseif ($this->isDefault()) {
             return $this->calculateListConstraints();
         }
 
@@ -293,19 +295,27 @@ class Attribute extends Model
         $this->listRange = false;
 
         if (!Str::contains($this->name, '[range:')) {
-            dd('nope a');
+            //dd('nope a');
             return $this;
         }
 
         preg_match($this->listRegexp, $this->name, $constraints);
         if (count($constraints) !== 2) {
-            dd('nope b');
+            //dd('nope b');
             return $this;
         }
         $this->listRange = explode(',', $constraints[1]);
-        dump($constraints);
-        dd($this->listRange);
+        //dump($constraints);
+        //dd($this->listRange);
 
         return $this;
+    }
+
+    /**
+     * @return array|null
+     */
+    public function listRange(): array
+    {
+        return $this->listRange;
     }
 }

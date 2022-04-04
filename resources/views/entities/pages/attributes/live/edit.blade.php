@@ -18,6 +18,12 @@
     @elseif ($attribute->isNumber())
         <input type="number" name="value" class="form-control" maxlength="20" value="{{ $attribute->value }}"
         @if ($attribute->validConstraints()) max="{{ $attribute->numberMax() }}" min="{{ $attribute->numberMin() }}" @endif />
+    @elseif ($attribute->validConstraints())
+        <select name="value" class="form-control">
+            @foreach ($attribute->listRange() as $option)
+                <option value="{{ $option }}" @if ($option == $attribute->value) selected="selected" @endif>{{ $option }}</option>
+            @endforeach
+        </select>
     @else
         <input type="text" name="value" class="form-control" maxlength="191" value="{{ $attribute->value }}" />
     @endif

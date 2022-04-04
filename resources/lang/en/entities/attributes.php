@@ -66,6 +66,7 @@ return [
         'block'     => 'Block',
         'checkbox'  => 'Checkbox',
         'icon'      => 'Icon',
+        'number'    => 'Number',
         'random'    => 'Random',
         'section'   => 'Section',
         'text'      => 'Multiline Text',
