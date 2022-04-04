@@ -38,63 +38,63 @@
   color: var(--sidebar-link);
 }
 
-.main-sidebar .sidebar {
+.main-sidebar .sidebar-menu {
   background-color: unset;
   margin-bottom: 60px;
 }
 
-.main-sidebar .sidebar .sidebar-icon-link {
+.main-sidebar .sidebar-menu .sidebar-icon-link {
   color: #474747;
   font-size: 16px;
 }
 
-.main-sidebar .sidebar .sidebar-icon-link .fas,
-.main-sidebar .sidebar .sidebar-icon-link .fa,
-.main-sidebar .sidebar .sidebar-icon-link .far,
-.main-sidebar .sidebar .sidebar-icon-link .fab,
-.main-sidebar .sidebar .sidebar-icon-link .ra,
-.main-sidebar .sidebar .sidebar-icon-link .fa-solid,
-.main-sidebar .sidebar .sidebar-icon-link .fa-regular,
-.main-sidebar .sidebar .sidebar-icon-link .fa-light,
-.main-sidebar .sidebar .sidebar-icon-link .fa-thin,
-.main-sidebar .sidebar .sidebar-icon-link .fa-duotone {
+.main-sidebar .sidebar-menu .sidebar-icon-link .fas,
+.main-sidebar .sidebar-menu .sidebar-icon-link .fa,
+.main-sidebar .sidebar-menu .sidebar-icon-link .far,
+.main-sidebar .sidebar-menu .sidebar-icon-link .fab,
+.main-sidebar .sidebar-menu .sidebar-icon-link .ra,
+.main-sidebar .sidebar-menu .sidebar-icon-link .fa-solid,
+.main-sidebar .sidebar-menu .sidebar-icon-link .fa-regular,
+.main-sidebar .sidebar-menu .sidebar-icon-link .fa-light,
+.main-sidebar .sidebar-menu .sidebar-icon-link .fa-thin,
+.main-sidebar .sidebar-menu .sidebar-icon-link .fa-duotone {
   width: 20px;
 }
 
-.main-sidebar .sidebar .sidebar-icon-link:hover {
+.main-sidebar .sidebar-menu .sidebar-icon-link:hover {
   color: #C2C2C2;
   background: unset;
 }
 
-.main-sidebar .sidebar li.sidebar-section .sidebar-text {
+.main-sidebar .sidebar-menu li.sidebar-section .sidebar-text {
   padding: 6px 5px 6px 15px;
 }
 
-.main-sidebar .sidebar li {
+.main-sidebar .sidebar-menu li {
   padding: 0 12px;
   min-height: 38px;
 }
 
-.main-sidebar .sidebar li .fa,
-.main-sidebar .sidebar li .ra,
-.main-sidebar .sidebar li .fas,
-.main-sidebar .sidebar li .far,
-.main-sidebar .sidebar li .fab,
-.main-sidebar .sidebar li .fa-solid,
-.main-sidebar .sidebar li .fa-regular,
-.main-sidebar .sidebar li .fa-light,
-.main-sidebar .sidebar li .fa-thin,
-.main-sidebar .sidebar li .fa-duotone {
+.main-sidebar .sidebar-menu li .fa,
+.main-sidebar .sidebar-menu li .ra,
+.main-sidebar .sidebar-menu li .fas,
+.main-sidebar .sidebar-menu li .far,
+.main-sidebar .sidebar-menu li .fab,
+.main-sidebar .sidebar-menu li .fa-solid,
+.main-sidebar .sidebar-menu li .fa-regular,
+.main-sidebar .sidebar-menu li .fa-light,
+.main-sidebar .sidebar-menu li .fa-thin,
+.main-sidebar .sidebar-menu li .fa-duotone {
   font-size: 14px;
   width: 22px;
 }
 
-.main-sidebar .sidebar li:hover a {
+.main-sidebar .sidebar-menu li:hover a {
   background: unset;
 }
 
-.main-sidebar .sidebar li a,
-.main-sidebar .sidebar li span {
+.main-sidebar .sidebar-menu li a,
+.main-sidebar .sidebar-menu li span {
   display: block;
   font-size: 11px;
   line-height: 22px;
@@ -103,29 +103,29 @@
   text-transform: uppercase;
 }
 
-.main-sidebar .sidebar li a {
+.main-sidebar .sidebar-menu li a {
   border-left: unset;
   overflow: hidden;
 }
 
-.main-sidebar .sidebar li a:hover {
+.main-sidebar .sidebar-menu li a:hover {
   background: rgba(0, 0, 0, 0.16);
   border-radius: 8px;
 }
 
-.main-sidebar .sidebar li ul.sidebar-submenu {
+.main-sidebar .sidebar-menu li ul.sidebar-submenu {
   list-style-type: none;
   margin: 0;
   padding: 0;
 }
 
-.main-sidebar .sidebar li ul.sidebar-submenu li {
+.main-sidebar .sidebar-menu li ul.sidebar-submenu li {
   padding-left: 12px;
   margin: 1px 0;
 }
 
-.main-sidebar .sidebar li.active > a,
-.main-sidebar .sidebar li.active.sidebar-section {
+.main-sidebar .sidebar-menu li.active > a,
+.main-sidebar .sidebar-menu li.active.sidebar-section {
   border: none;
   background: rgba(0, 0, 0, 0.24);
   box-shadow: inset 1px 2px 6px rgba(0, 0, 0, 0.16);
