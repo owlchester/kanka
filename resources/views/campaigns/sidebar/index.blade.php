@@ -52,8 +52,8 @@
                             <i class="{{ $setup['custom_icon'] ?: $setup['icon'] }}"></i>
                             <span class="text-muted text-sm hidden-md hidden-lg">({{ $setup['label'] }})</span>
                             <br class="hidden-md hidden-lg" />
-                            <input type="text" class="form-control" name="{{ $name }}_icon" value="{{ $setup['custom_icon'] }}" placeholder="{{$setup['icon'] }}" maxlength="20" />
-                            <input type="text" class="form-control" name="{{ $name }}_label" value="{{ $setup['custom_label'] }}" placeholder="{{$setup['label'] }}" />
+                            <input type="text" class="form-control" name="{{ $name }}_icon" value="{{ $setup['custom_icon'] }}" placeholder="{{$setup['icon'] }}" maxlength="50" />
+                            <input type="text" class="form-control" name="{{ $name }}_label" value="{{ $setup['custom_label'] }}" placeholder="{{$setup['label'] }}" maxlength="90" />
                             <span class="text-muted text-sm hidden-xs hidden-sm">({{ $setup['label'] }})</span>
                             <input type="hidden" name="order[{{ $name }}]" value="1" />
                             @if (empty($setup['children']))
@@ -67,8 +67,8 @@
                                         <i class="{{ $child['custom_icon'] ?: $child['icon'] }}"></i>
                                         <span class="text-muted text-sm hidden-md hidden-lg">({{ $child['label'] }})</span>
                                         <br class="hidden-md hidden-lg" />
-                                        <input type="text" class="form-control" name="{{ $childName }}_icon" value="{{ $child['custom_icon'] }}" placeholder="{{ $child['icon'] }}" maxlength="20" />
-                                        <input type="text" class="form-control" name="{{ $childName }}_label" value="{{ $child['custom_label'] }}" placeholder="{{ $child['label'] }}" />
+                                        <input type="text" class="form-control" name="{{ $childName }}_icon" value="{{ $child['custom_icon'] }}" placeholder="{{ $child['icon'] }}" maxlength="50" />
+                                        <input type="text" class="form-control" name="{{ $childName }}_label" value="{{ $child['custom_label'] }}" placeholder="{{ $child['label'] }}" maxlength="90" />
                                         <span class="text-muted text-sm hidden-xs hidden-sm">({{ $child['label'] }})</span>
                                         <input type="hidden" name="order[{{ $childName }}]" value="1" />
                                     </li>
