@@ -57,7 +57,7 @@ class AttributeService
         }
 
         try {
-            $calculated = $this->entityAttributes()->get($attribute->$field);
+            $calculated = $this->entityAttributes()->get($attribute->name);
             return (string) $calculated['final'];
 
         } catch(\Exception $e) {
