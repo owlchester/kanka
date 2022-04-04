@@ -32,6 +32,8 @@ $id = isset($resetAttributeId) ? -$attribute->id : $attribute->id;
             @elseif($attribute->name == '_layout')
                 {!! Form::hidden('attr_value[' . $id . ']', $attribute->value) !!}
                 {{ $attribute->value }}
+            @elseif ($attribute->isNumber())
+                {!! Form::number('attr_value[' . $id . ']', $attribute->value, ['placeholder' => __('entities/attributes.placeholders.value'), 'class' => 'form-control', 'maxlength' => 191]) !!}
             @else
                 {!! Form::text('attr_value[' . $id . ']', $attribute->value, ['placeholder' => __('entities/attributes.placeholders.value'), 'class' => 'form-control kanka-mentions', 'maxlength' => 191, 'data-remote' => route('search.live')]) !!}
             @endif

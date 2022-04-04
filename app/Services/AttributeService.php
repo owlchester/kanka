@@ -337,7 +337,7 @@ class AttributeService
                 $attribute = $existing[$id];
                 $attribute->type = $type;
                 $attribute->name = $name;
-                $attribute->value = $value;
+                $attribute->setValue($value);
                 $attribute->is_private = (int) $isPrivate;
                 $attribute->is_star = (int) $isStar;
                 $attribute->default_order = $order;
@@ -354,15 +354,16 @@ class AttributeService
                     list ($type, $value) = $this->randomAttribute($type, $value);
                 }
 
-                Attribute::create([
+                $attribute = new Attribute([
                     'entity_id' => $entity->id,
                     'type' => $type,
                     'name' => $name,
-                    'value' => $value,
                     'is_private' => $isPrivate,
                     'is_star' => $isStar,
                     'default_order' => $order,
                 ]);
+                $attribute->setValue($value);
+                $attribute->save();
                 $touch = true;
             }
             $order++;

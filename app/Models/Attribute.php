@@ -9,6 +9,7 @@ use App\Traits\OrderableTrait;
 use App\Traits\VisibleTrait;
 use Illuminate\Database\Eloquent\Model;
 use DateTime;
+use Illuminate\Support\Str;
 
 /**
  * Class Attribute
@@ -32,6 +33,8 @@ class Attribute extends Model
     const TYPE_TEXT = 'text';
     const TYPE_SECTION = 'section';
     const TYPE_RANDOM = 'random';
+    const TYPE_NUMBER = 'number';
+    const TYPE_LIST = 'list';
 
     /**
      * @var array
@@ -66,6 +69,13 @@ class Attribute extends Model
     protected $searchableColumns = [
         'name'
     ];
+
+    protected $numberRange = '`\[range:(-?[0-9]+),(-?[0-9]+)\]`i';
+    protected $numberMax = null;
+    protected $numberMin = null;
+
+    protected $listRegexp = '`\[range:(.*?[^\)])\]`i';
+    protected $listRange = null;
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
@@ -127,6 +137,22 @@ class Attribute extends Model
     }
 
     /**
+     * @return bool
+     */
+    public function isNumber(): bool
+    {
+        return $this->type == self::TYPE_NUMBER;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isList(): bool
+    {
+        return $this->type == self::TYPE_LIST;
+    }
+
+    /**
      * Copy an attribute to another target
      * @param Entity $target
      */
@@ -152,6 +178,134 @@ class Attribute extends Model
      */
     public function name(): string
     {
-        return (string) preg_replace('`\[icon:(.*?)\]`si', '<i class="$1"></i>', $this->name);
+        $name = preg_replace('`\[icon:(.*?)\]`si', '<i class="$1"></i>', $this->name);
+        if (!$this->isNumber()) {
+            return (string) $name;
+        }
+
+        return preg_replace($this->numberRange, '', $this->name);
+    }
+
+    /**
+     * Set the value of the attribute. Validates if there are constraints
+     * @param $value
+     * @return $this
+     */
+    public function setValue($value): self
+    {
+        $this->value = $value;
+        if (!$this->isNumber()) {
+            return $this;
+        }
+
+        //dump('checking for range in ' . $this->name);
+        // Check if there is a constraint
+        if (!$this->validConstraints()) {
+            return $this;
+        }
+
+        $this->value = min($this->numberMax, max($this->numberMin, $value));
+
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function numberMax()
+    {
+        $this->calculateConstraints();
+        return $this->numberMax;
+    }
+
+    /**
+     * @return int
+     */
+    public function numberMin()
+    {
+        $this->calculateConstraints();
+        return $this->numberMin;
+    }
+
+    /**
+     * @return bool
+     */
+    public function validConstraints(): bool
+    {
+        $this->calculateConstraints();
+        return $this->numberMax !== false && $this->numberMin !== false;
+    }
+
+    /**
+     * @return $this
+     */
+    protected function calculateConstraints(): self
+    {
+        if ($this->isNumber()) {
+            return $this->calculateNumberConstraints();
+        } elseif ($this->isList()) {
+            return $this->calculateListConstraints();
+        }
+
+        return $this;
+    }
+
+    /**
+     * Define the min/max range of a number, if set
+     * @return $this
+     */
+    protected function calculateNumberConstraints(): self
+    {
+        if (!$this->numberMax === null) {
+            return $this;
+        }
+
+        $this->numberMax = false;
+        $this->numberMin = false;
+
+        if (!Str::contains($this->name, '[range:')) {
+            //dd('no');
+            return $this;
+        }
+
+        //dump('check regexp');
+        preg_match($this->numberRange, $this->name, $constraints);
+        if (count($constraints) !== 3) {
+            //dd('no');
+            return $this;
+        }
+
+        $this->numberMin = $constraints[1];
+        $this->numberMax = $constraints[2];
+
+        //dump($this->numberMin);
+        //dd($this->numberMax);
+
+        return $this;
+    }
+
+    protected function calculateListConstraints(): self
+    {
+        if (!$this->listRange === null) {
+            return $this;
+        }
+
+        $this->listRange = false;
+
+        if (!Str::contains($this->name, '[range:')) {
+            dd('nope a');
+            return $this;
+        }
+
+        preg_match($this->listRegexp, $this->name, $constraints);
+        if (count($constraints) !== 2) {
+            dd('nope b');
+            return $this;
+        }
+        $this->listRange = explode(',', $constraints[1]);
+        dump($constraints);
+        dd($this->listRange);
+
+        return $this;
     }
 }

@@ -19,6 +19,11 @@
             </a>
         </li>
         <li>
+            <a href="#" class="add_attribute" data-template="#number_template" data-sortable="{{ $existing ? 'true' : 'false'}}">
+                <i class="fa fas fa-hashtag"></i> {{ __('entities/attributes.types.number') }}
+            </a>
+        </li>
+        <li>
             <a  href="#" class="add_attribute" data-template="#section_template" data-sortable="{{ $existing ? 'true' : 'false'}}">
                 <i class="fa fas fa-layer-group"></i> {{ __('entities/attributes.types.section') }}
             </a>
