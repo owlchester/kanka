@@ -256,7 +256,10 @@ class Attribute extends Model
     public function validConstraints(): bool
     {
         $this->calculateConstraints();
-        return ($this->numberMax !== false && $this->numberMin !== false) || $this->listRange !== false;
+        if ($this->isNumber()) {
+            return $this->numberMax !== false && $this->numberMin !== false;
+        }
+        return $this->listRange !== false;
     }
 
     /**
