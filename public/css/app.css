@@ -2593,14 +2593,25 @@ ul.sidebar-sortable ul li ul {
   cursor: pointer;
 }
 
-.live-edit-parsed:hover:after {
+.live-edit-parsed:after {
   -webkit-font-smoothing: antialiased;
   font-family: "Font Awesome 6 Free";
   font-weight: 900;
-  content: " \F303";
   font-style: normal;
   font-variant: normal;
   line-height: 1;
   text-rendering: auto;
+}
+
+.live-edit-parsed:hover:after {
+  content: " \F303";
+}
+
+/** Mobile support **/
+
+@media (max-width: 767px) {
+  .live-edit-parsed:after {
+    content: " \F303";
+  }
 }
 
