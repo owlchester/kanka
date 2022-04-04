@@ -25,7 +25,7 @@ $inSection = false;
             <div class="panel-heading" data-toggle="collapse" data-target="#attribute-section-body-{{ $attribute->id }}">
                 <h4 class="panel-title">
                     @if (auth()->check() && auth()->user()->isAdmin() && $attribute->is_private == true)
-                        <i class="fas fa-lock pull-right" title="{{ trans('crud.is_private') }}"></i>
+                        <i class="fas fa-lock pull-right" title="{{ __('crud.is_private') }}"></i>
                     @endif
 
                     {!! $attribute->name() !!}
@@ -41,7 +41,7 @@ $inSection = false;
             {!! $attribute->name() !!}
             </span>
             @if (auth()->check() && auth()->user()->isAdmin() && $attribute->is_private == true)
-                <i class="fas fa-lock" title="{{ trans('crud.is_private') }}"></i>
+                <i class="fas fa-lock" title="{{ __('crud.is_private') }}"></i>
             @endif
         </dt>
         <dd>

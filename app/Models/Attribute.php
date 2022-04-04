@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Facades\Attributes;
 use App\Facades\Mentions;
 use App\Models\Concerns\Paginatable;
 use App\Models\Scopes\Starred;
@@ -74,8 +75,10 @@ class Attribute extends Model
     protected $numberMax = null;
     protected $numberMin = null;
 
-    protected $listRegexp = '`\[range:(.*?[^\)])\]`i';
+    protected $listRegexp = '`\[range:(.*)\]`i';
     protected $listRange = null;
+
+    protected $mappedName = false;
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
@@ -102,6 +105,18 @@ class Attribute extends Model
             return $this->name;
         }
         return Mentions::mapAttribute($this);
+    }
+
+    /**
+     * @return string
+     */
+    public function mappedName(): string
+    {
+        if ($this->mappedName !== false) {
+            return $this->mappedName;
+        }
+
+        return (string) $this->mappedName = Attributes::map($this, 'name');
     }
 
     /**
@@ -186,7 +201,7 @@ class Attribute extends Model
     public function name(): string
     {
         $name = preg_replace('`\[icon:(.*?)\]`si', '<i class="$1"></i>', $this->name);
-        $name = preg_replace($this->listRegexp, '', $this->name);
+        $name = preg_replace($this->listRegexp, '', $name);
 
         return (string) $name;
 
@@ -206,7 +221,13 @@ class Attribute extends Model
             return $this;
         }
 
-        $this->value = min($this->numberMax, max($this->numberMin, $value));
+        if ($this->isNumber()) {
+            $this->value = min($this->numberMax, max($this->numberMin, $value));
+        } elseif (!empty($this->listRange)) {
+            if (!in_array($this->value, $this->listRange())) {
+                $this->value = null;
+            }
+        }
 
         return $this;
     }
@@ -265,15 +286,16 @@ class Attribute extends Model
         $this->numberMax = false;
         $this->numberMin = false;
 
-        if (!Str::contains($this->name, '[range:')) {
-            //dd('no');
+        //dump('checking ' . $this->name . '(' . $this->mappedName() . ')');
+
+        if (!Str::contains($this->mappedName(), '[range:')) {
             return $this;
         }
 
         //dump('check regexp');
-        preg_match($this->numberRange, $this->name, $constraints);
+        preg_match($this->numberRange, $this->mappedName(), $constraints);
         if (count($constraints) !== 3) {
-            //dd('no');
+            //dd('no range');
             return $this;
         }
 
@@ -294,12 +316,12 @@ class Attribute extends Model
 
         $this->listRange = false;
 
-        if (!Str::contains($this->name, '[range:')) {
+        if (!Str::contains($this->mappedName(), '[range:')) {
             //dd('nope a');
             return $this;
         }
 
-        preg_match($this->listRegexp, $this->name, $constraints);
+        preg_match($this->listRegexp, $this->mappedName(), $constraints);
         if (count($constraints) !== 2) {
             //dd('nope b');
             return $this;

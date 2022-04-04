@@ -43,15 +43,13 @@ class AttributeService
 
     /**
      * @param Entity $entity
+     * @param string $field
      * @return string
      */
-    public function parse(Attribute $attribute): string
+    public function parse(Attribute $attribute, string $field = 'value'): string
     {
-        if (!Str::contains($attribute->value, ['{', '}'])) {
-            return (string) $attribute->value;
-        }
-        if (Str::contains($attribute->value, ['<', '>'])) {
-            return (string) $attribute->value;
+        if (!$this->validField($attribute->$field)) {
+            return (string) $attribute->$field;
         }
 
         if ($this->loadedEntity === null || $this->loadedEntity->id != $attribute->entity_id) {
@@ -59,12 +57,45 @@ class AttributeService
         }
 
         try {
-            $calculated = $this->entityAttributes()->get($attribute->name);
+            $calculated = $this->entityAttributes()->get($attribute->$field);
             return (string) $calculated['final'];
 
         } catch(\Exception $e) {
             //throw $e;
-            return (string) $attribute->value;
+            return (string) $attribute->$field;
+        }
+    }
+
+    /**
+     * Replace references in an attribute name with attribute values for ranges
+     * @param Attribute $attribute
+     * @param string $field
+     * @return string
+     * @throws \ChrisKonnertz\StringCalc\Exceptions\ContainerException
+     * @throws \ChrisKonnertz\StringCalc\Exceptions\NotFoundException
+     */
+    public function map(Attribute $attribute, string $field = 'name'): string
+    {
+        if (!$this->validField($attribute->$field)) {
+            return (string) $attribute->$field;
+        }
+
+        if ($this->loadedEntity === null || $this->loadedEntity->id != $attribute->entity_id) {
+            $this->loadedEntity = $attribute->entity;
+        }
+
+        try {
+            // Prepare all the attributes and calculates them
+            $this->entityAttributes();
+
+            $data = [
+                'name' => $attribute->name,
+                'value' => $attribute->$field,
+            ];
+            $value = $this->calculateAttributeValue($data);
+            return $value;
+        } catch (Exception $e) {
+            return $this->$field;
         }
     }
 
@@ -86,6 +117,9 @@ class AttributeService
         foreach ($baseAttributes as $name => $value) {
             $references = [];
             preg_match_all('`\{(.*?)\}`i', $value, $references);
+
+            // Cleanup attribute name to remove range stuff
+            $name = preg_replace('`\[range:(.*)\]`i', '', $name);
 
             $this->calculatedAttributes->put($name, [
                 'value' => $value,
@@ -763,5 +797,20 @@ class AttributeService
         $purifyConfig['HTML.Allowed'] = preg_replace('`,table\[(.*?)\]`', '$2', $purifyConfig['HTML.Allowed']);
         $purifyConfig['HTML.Allowed'] = preg_replace('`,details\[(.*?)\]`', '$2', $purifyConfig['HTML.Allowed']);
         return $purifyConfig;
+    }
+
+    /**
+     * @param string $value
+     * @return bool
+     */
+    protected function validField(string $value): bool
+    {
+        if (!Str::contains($value, ['{', '}'])) {
+            return false;
+        }
+        if (Str::contains($value, ['<', '>'])) {
+            return false;
+        }
+        return true;
     }
 }
