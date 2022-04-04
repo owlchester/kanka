@@ -2589,6 +2589,13 @@ ul.sidebar-sortable ul li ul {
   border-radius: 5px;
 }
 
+@media (max-width: 767px) {
+  .form-mobile-inline .form-control {
+    display: inline;
+    width: auto;
+  }
+}
+
 .live-edit-parsed {
   cursor: pointer;
 }
