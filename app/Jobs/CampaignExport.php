@@ -8,11 +8,11 @@ use App\Notifications\Header;
 use App\Services\EntityService;
 use App\User;
 use Illuminate\Bus\Queueable;
-use Illuminate\Http\File;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use ZipArchive;
@@ -71,10 +71,14 @@ class CampaignExport implements ShouldQueue
             $this->campaign->save();
         }
 
+        // Prepare the folder if it's missing (new local installs)
+        $saveFolder = storage_path() . '/exports/campaigns/';
+        File::ensureDirectoryExists($saveFolder);
+
         // We want the full path for jobs running in the queue.
         $zipName = 'campaign_' . $this->campaign->id . '_' .  uniqid() . '_' . date('Ymd_His') . '.zip';
         CampaignCache::campaign($this->campaign);
-        $pathName = storage_path() . '/exports/campaigns/' . $zipName;
+        $pathName = $saveFolder . $zipName;
         $zip = new ZipArchive();
         $zip->open($pathName, ZipArchive::CREATE);
 
@@ -106,8 +110,7 @@ class CampaignExport implements ShouldQueue
         $zip->close();
 
         // Move to ?
-        $downloadPath = Storage::putFileAs('exports/campaigns', new File($pathName), $zipName, 'public');
-        //$zip->delete();
+        $downloadPath = Storage::putFileAs('exports/campaigns', $pathName, $zipName, 'public');
         unlink($pathName);
 
         // Email ?
@@ -125,7 +128,7 @@ class CampaignExport implements ShouldQueue
 
         // Don't delete in "sync" mode as there is no delay.
         $queue = config('queue.default');
-        if ($queue != 'sync') {
+        if ($queue !== 'sync') {
             CampaignExportCleanup::dispatch($this->campaign)->delay(now()->addMinutes(60));
         }
     }
