@@ -23,6 +23,11 @@ return [
             'language' => 'en-UK',
 
             /*
+             * The format of the feed.  Acceptable values are 'rss', 'atom', or 'json'.
+             */
+            'format' => 'atom',
+
+            /*
              * The view that will render the feed.
              */
             'view' => 'feed::atom',

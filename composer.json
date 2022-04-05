@@ -40,7 +40,7 @@
         "sentry/sentry-laravel": "^2.8",
         "sergej-kurakin/diceroller": "^2.0",
         "spatie/laravel-backup": "^6.16",
-        "spatie/laravel-feed": "^2.6",
+        "spatie/laravel-feed": "^4.0",
         "spatie/laravel-newsletter": "^4.8",
         "stevebauman/purify": "^3.0"
     },

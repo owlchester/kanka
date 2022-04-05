@@ -177,7 +177,7 @@ class CommunityVote extends Model implements Feedable
      * RSS feed item
      * @return FeedItem
      */
-    public function toFeedItem()
+    public function toFeedItem(): FeedItem
     {
         return FeedItem::create()
             ->id($this->id)

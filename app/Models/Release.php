@@ -5,9 +5,6 @@ namespace App\Models;
 use App\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
-use Spatie\Feed\Feedable;
-use Spatie\Feed\FeedItem;
-use App\Models\Post;
 
 /**
  * Class Release
@@ -19,7 +16,7 @@ use App\Models\Post;
  * @property string $image
  * @property User $author
  */
-class Release extends Model implements Feedable
+class Release extends Model
 {
     // Do nothing, this class is just for the route resource binding to work with release instead of post.
 
@@ -44,22 +41,6 @@ class Release extends Model implements Feedable
         return $this->belongsTo(User::class, 'author_id', 'id');
     }
 
-
-    /**
-     * RSS feed item
-     * @return FeedItem
-     */
-    public function toFeedItem()
-    {
-        return FeedItem::create()
-            ->id($this->id)
-            ->title($this->title)
-            ->summary((string) $this->excerpt)
-            ->updated($this->updated_at)
-            ->link($this->link)
-            ->author('Kanka.io');
-    }
-
     /**
      * link attribute
      * @return string
@@ -67,16 +48,5 @@ class Release extends Model implements Feedable
     public function getLinkAttribute()
     {
         return route('front.news.show', $this->getSlug());
-    }
-
-    /**
-     * RSS items
-     * @return mixed
-     */
-    public function getFeedItems()
-    {
-        return Release::published()
-            ->orderBy('created_at', 'DESC')
-            ->get();
     }
 }
