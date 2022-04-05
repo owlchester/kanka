@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 
 class StatsController extends Controller
 {
-    public function index()
+    public function subs()
     {
         $stats = [
             'day' => 0,
