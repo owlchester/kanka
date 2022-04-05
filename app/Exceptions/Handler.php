@@ -6,7 +6,6 @@ use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Http\Exceptions\MaintenanceModeException;
-use Illuminate\Support\Facades\Route;
 use Illuminate\Validation\ValidationException;
 use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -23,7 +22,7 @@ class Handler extends ExceptionHandler
      */
     protected $dontReport = [
         \League\OAuth2\Server\Exception\OAuthServerException::class,
-        \Doctrine\DBAL\Driver\PDOException::class,
+        //\Doctrine\DBAL\Driver\PDOException::class,
         \Symfony\Component\Console\Exception\NamespaceNotFoundException::class,
         \Symfony\Component\Console\Exception\CommandNotFoundException::class,
         NotFoundHttpException::class,
@@ -35,6 +34,7 @@ class Handler extends ExceptionHandler
      * @var array
      */
     protected $dontFlash = [
+        'current_password',
         'password',
         'password_confirmation',
     ];
@@ -47,13 +47,23 @@ class Handler extends ExceptionHandler
      * @param  \Exception  $exception
      * @return void
      */
-    public function report(Throwable $exception)
+    /*public function report(Throwable $exception)
     {
         if (app()->bound('sentry') && $this->shouldReport($exception)) {
             app('sentry')->captureException($exception);
         }
 
         parent::report($exception);
+    }*/
+
+    public function register()
+    {
+        $this->reportable(function (Throwable $e) {
+            if (app()->bound('sentry')) {
+                app('sentry')->captureException($e);
+            }
+        });
+
     }
 
     /**
@@ -91,33 +101,8 @@ class Handler extends ExceptionHandler
         }
 
         // API error handling
-        elseif ($request->is('api/*')) {
-            if ($exception instanceof ModelNotFoundException) {
-                return response()
-                    ->json([
-                        'code' => 404,
-                        'error' => $exception->getMessage(),
-                    ], 404);
-            } elseif ($exception instanceof MethodNotAllowedHttpException) {
-                return response()
-                    ->json([
-                        'code' => 405,
-                        'error' => $exception->getMessage()
-                    ], 405);
-            } elseif ($exception instanceof ValidationException) {
-                return response()
-                    ->json([
-                        'code' => $exception->status,
-                        'error' => $exception->getMessage(),
-                        'fields' => $exception->errors()
-                    ], $exception->status);
-            } elseif ($exception instanceof AuthorizationException) {
-                return response()
-                    ->json([
-                        'code' => 403,
-                        'error' => $exception->getMessage()
-                    ], 403);
-            }
+        elseif ($request->expectsJson()) {
+            $this->handleApi($exception);
         }
 
         return parent::render($request, $exception);
@@ -138,5 +123,58 @@ class Handler extends ExceptionHandler
             ], 401)
             : redirect()->guest(route('login'));
 
+    }
+
+    protected function handleApi($exception)
+    {
+        if ($exception instanceof ModelNotFoundException) {
+            return response()
+                ->json([
+                    'code' => 404,
+                    'error' => $exception->getMessage(),
+                ], 404);
+        } elseif ($exception instanceof MethodNotAllowedHttpException) {
+            return response()
+                ->json([
+                    'code' => 405,
+                    'error' => $exception->getMessage()
+                ], 405);
+        } elseif ($exception instanceof ValidationException) {
+            return response()
+                ->json([
+                    'code' => $exception->status,
+                    'error' => $exception->getMessage(),
+                    'fields' => $exception->errors()
+                ], $exception->status);
+        } elseif ($exception instanceof AuthorizationException) {
+            return response()
+                ->json([
+                    'code' => 403,
+                    'error' => $exception->getMessage()
+                ], 403);
+        } elseif ($exception instanceof AuthenticationException) {
+            return response()
+                ->json([
+                    'code' => 401,
+                ], 401);
+        } elseif ($exception instanceof NotFoundHttpException) {
+            return response()
+                ->json([
+                    'code' => 404,
+                    'error' => 'Page not found'
+                ], 404);
+        } elseif ($exception instanceof \Symfony\Component\HttpKernel\Exception\HttpException) {
+            return response()
+                ->json([
+                    'code' => $exception->getStatusCode(),
+                    'error' => 'Kanka is currently unavailable due to maintenance. We\'ll be back soon.',
+                ], $exception->getStatusCode());
+        } else {
+            return response()
+                ->json([
+                    'code' => $exception->getCode(),
+                    'error' => $exception->getMessage()
+                ], $exception->getSta());
+        }
     }
 }
