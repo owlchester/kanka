@@ -46,4 +46,5 @@ Route::delete('users/{user}/roles', 'UserController@removeRole')->name('users.ro
 Route::post('campaigns/{campaign}/featured', 'CampaignController@featured')->name('campaigns.featured');
 
 Route::get('setup', 'SetupController@index')->name('setup');
+Route::get('stats/subs', 'StatsController@subs')->name('stats.subs');
 
