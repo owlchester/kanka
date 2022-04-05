@@ -15,7 +15,6 @@
         "ext-zip": "*",
         "almasaeed2010/adminlte": "~2.4",
         "barryvdh/laravel-cors": "^2.0",
-        "barryvdh/laravel-dompdf": "^0.8.2",
         "binarytorch/larecipe": "^2.0",
         "blueimp/jquery-file-upload": "^9.23",
         "caseyamcl/toc": "^3.0",

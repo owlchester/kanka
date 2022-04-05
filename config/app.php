@@ -198,7 +198,7 @@ return [
         //Illuminate\Translation\TranslationServiceProvider::class,
 
 
-        Barryvdh\DomPDF\ServiceProvider::class,
+        //Barryvdh\DomPDF\ServiceProvider::class,
         RichanFongdasen\EloquentBlameable\ServiceProvider::class,
 
         /*
@@ -276,11 +276,11 @@ return [
         'Html' => Collective\Html\HtmlFacade::class,
         'Purify' => Stevebauman\Purify\Facades\Purify::class,
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
-        'Sentry' => Sentry\SentryLaravel\SentryFacade::class,
+        //'Sentry' => Sentry\SentryLaravel\SentryFacade::class,
         'Image' => Intervention\Image\Facades\Image::class,
         'LaravelLocalization' => Mcamara\LaravelLocalization\Facades\LaravelLocalization::class,
-        'PDF' => Barryvdh\DomPDF\Facade::class,
-        'Zipper' => Chumper\Zipper\Zipper::class,
+        //'PDF' => Barryvdh\DomPDF\Facade::class,
+        //'Zipper' => Chumper\Zipper\Zipper::class,
 
         // Custom
         'CampaignLocalization' => App\Facades\CampaignLocalization::class,
