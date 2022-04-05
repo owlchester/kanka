@@ -21,7 +21,8 @@ class StatsController extends Controller
         $db = DB::select("
 SELECT s.created_at as subbed, u.created_at as created
 FROM subscriptions as s LEFT JOIN users as u on u.id = s.user_id
-WHERE s.stripe_status = 'active' and u.created_at is not null");
+LEFT JOIN subscriptions as s2 on s2.user_id = s.user_id and s2.stripe_status <> 'active'
+WHERE s.stripe_status = 'active' and u.created_at is not null  and s2.id is null");
         foreach ($db as $stat) {
             $start = new Carbon($stat->created);
             $diff = $start->diffinDays($stat->subbed);
