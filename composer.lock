@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "60a6c4c7d622c91afa66871f213dc35b",
+    "content-hash": "0c614ab89f00fc76f6bb8c37cc16f499",
     "packages": [
         {
             "name": "almasaeed2010/adminlte",
@@ -4087,36 +4087,36 @@
         },
         {
             "name": "laravel/socialite",
-            "version": "v5.5.2",
+            "version": "v4.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/socialite.git",
-                "reference": "68afb03259b82d898c68196cbcacd48596a9dd72"
+                "reference": "80951df0d93435b773aa00efe1fad6d5015fac75"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/socialite/zipball/68afb03259b82d898c68196cbcacd48596a9dd72",
-                "reference": "68afb03259b82d898c68196cbcacd48596a9dd72",
+                "url": "https://api.github.com/repos/laravel/socialite/zipball/80951df0d93435b773aa00efe1fad6d5015fac75",
+                "reference": "80951df0d93435b773aa00efe1fad6d5015fac75",
                 "shasum": ""
             },
             "require": {
                 "ext-json": "*",
                 "guzzlehttp/guzzle": "^6.0|^7.0",
-                "illuminate/http": "^6.0|^7.0|^8.0|^9.0",
-                "illuminate/support": "^6.0|^7.0|^8.0|^9.0",
+                "illuminate/http": "~5.7.0|~5.8.0|^6.0|^7.0",
+                "illuminate/support": "~5.7.0|~5.8.0|^6.0|^7.0",
                 "league/oauth1-client": "^1.0",
-                "php": "^7.2|^8.0"
+                "php": "^7.1.3"
             },
             "require-dev": {
-                "illuminate/contracts": "^6.0|^7.0|^8.0|^9.0",
+                "illuminate/contracts": "~5.7.0|~5.8.0|^6.0|^7.0",
                 "mockery/mockery": "^1.0",
-                "orchestra/testbench": "^4.0|^5.0|^6.0|^7.0",
-                "phpunit/phpunit": "^8.0|^9.3"
+                "orchestra/testbench": "^3.7|^3.8|^4.0|^5.0",
+                "phpunit/phpunit": "^7.0|^8.0"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "5.x-dev"
+                    "dev-master": "4.x-dev"
                 },
                 "laravel": {
                     "providers": [
@@ -4152,7 +4152,7 @@
                 "issues": "https://github.com/laravel/socialite/issues",
                 "source": "https://github.com/laravel/socialite"
             },
-            "time": "2022-03-10T15:26:19+00:00"
+            "time": "2020-06-03T13:30:03+00:00"
         },
         {
             "name": "laravel/ui",
