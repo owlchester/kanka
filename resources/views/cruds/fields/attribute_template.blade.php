@@ -1,4 +1,4 @@
-@inject('attributeTemplateService', 'App\Services\AttributeService'')
+@inject('attributeTemplateService', 'App\Services\AttributeService')
 @php $attributeTemplates = $attributeTemplateService->campaign($campaign->campaign())->templateList() @endphp
 @if (empty($attributeTemplates))
     <?php return ?>

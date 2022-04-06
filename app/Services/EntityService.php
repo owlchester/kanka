@@ -618,10 +618,14 @@ class EntityService
     {
         $campaign = CampaignLocalization::getCampaign();
 
+        $defaultPrivate = false;
+        if (auth()->user()->isAdmin() && $campaign->entity_visibility) {
+            $defaultPrivate = true;
+        }
         $model->name = $name;
         $model->savingObserver = false;
         $model->forceSavedObserver = true;
-        $model->is_private = $campaign->entity_visibility;
+        $model->is_private = $defaultPrivate;
         $model->save();
 
         return $model;
