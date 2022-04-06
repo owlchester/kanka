@@ -56,7 +56,7 @@ class MiscPolicy
             &&
             // The user must have access.
             // isAdmin could be cached for performance, but needs to trigger a release when changing permissions
-            // other permissions should albo be cachable with a release trigger
+            // other permissions should also be cacheable with a release trigger
             $this->checkPermission('read', $user, $entity);
     }
 

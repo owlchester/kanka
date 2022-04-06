@@ -272,7 +272,6 @@ class PermissionService
                             unset($permissions['user'][$userId][$perm]);
                         }
                     } elseif ($action === 'deny') {
-
                         if (empty($permissions['user'][$userId][$perm])) {
                             CampaignPermission::create([
                                 'key' => $entity->type() . '_' . $perm . '_' . $entity->child->id,
@@ -310,7 +309,7 @@ class PermissionService
         }
 
         // Campaign admins can hide all attributes from an entity
-        if (Auth::user()->isAdmin()) {
+        if (auth()->user()->isAdmin()) {
             $privateAttributes = Arr::get($request, 'is_attributes_private', false);
             $entity->is_attributes_private = $privateAttributes;
             $entity->save();

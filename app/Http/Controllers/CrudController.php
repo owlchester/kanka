@@ -295,7 +295,6 @@ class CrudController extends Controller
 
             session()->flash('success_raw', $success);
 
-
             if ($request->has('submit-new')) {
                 $route = route($this->route . '.create');
                 return response()->redirectTo($route);
