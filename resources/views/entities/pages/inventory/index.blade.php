@@ -52,6 +52,13 @@
                 <div class="box-body">
                     @if ($inventory->count() === 0)
                         <p class="help-block">{{ __('entities/inventories.show.helper') }}</p>
+                        <a href="{{ route('entities.inventories.create', ['entity' => $entity]) }}" class="btn btn-warning btn-sm"
+                           data-toggle="ajax-modal" data-target="#entity-modal"
+                           data-url="{{ route('entities.inventories.create', ['entity' => $entity]) }}"
+                        >
+                            <i class="fa fa-plus"></i>
+                            {{ __('entities/inventories.actions.add') }}
+                        </a>
                     @endif
                     @includeWhen($inventory->count() > 0, 'entities.pages.inventory._inventory')
                 </div>

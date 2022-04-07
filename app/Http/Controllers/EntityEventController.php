@@ -52,9 +52,15 @@ class EntityEventController extends Controller
         } else {
             $this->authorizeForGuest('read', $entity->child, $entity->child->getEntityType());
         }
+        $reminders = $entity
+            ->events()
+            ->has('calendar')
+            ->with(['calendar', 'calendar.entity', 'entity'])
+            ->order(request()->get('order'), 'events/date')
+            ->paginate();
 
         return view('entities.pages.reminders.index', compact(
-            'entity',
+            'entity', 'reminders'
         ));
     }
 

@@ -1,20 +1,18 @@
 <?php
 /** @var \App\Models\Entity $entity */
 /** @var \App\Models\EntityEvent $relation */
-
-$r = $entity
-        ->events()
-        ->has('calendar')
-        ->with(['calendar', 'calendar.entity', 'entity'])
-        ->order(request()->get('order'), 'events/date')
-        ->paginate();
 ?>
 
-@if ($r->count() === 0)
-<p class="help-block">
-    {{ __('crud.events.hint') }}
-</p>
-@endif
+@if ($reminders->count() === 0)
+    <p class="help-block">
+        {!! __('entities/events.helpers.no_events') !!}
+    </p>
+    <a href="{{ route('entities.entity_events.create', [$entity, 'next' => 'entity.events']) }}"
+       class="btn btn-sm btn-warning" data-toggle="ajax-modal" data-target="#entity-modal"
+       data-url="{{ route('entities.entity_events.create', [$entity, 'next' => 'entity.events']) }}">
+        <i class="fa fa-plus"></i> {{ __('entities/events.show.actions.add') }}
+    </a>
+@else
 
 <table id="entity-event-list" class="table table-hover">
     <thead>
@@ -37,7 +35,7 @@ $r = $entity
     </tr>
     </thead>
     <tbody>
-    @foreach ($r as $relation)
+    @foreach ($reminders as $relation)
         @viewentity($relation->calendar->entity)
         <tr>
             <td>
@@ -81,4 +79,5 @@ $r = $entity
     </tbody>
 </table>
 
-{{ $r->fragment('tab_calendars')->links() }}
+{{ $reminders->fragment('tab_calendars')->links() }}
+@endif

@@ -41,6 +41,7 @@ return [
         'nested_parent'     => 'Displaying the locations of :parent.',
         'nested_without'    => 'Displaying all locations that don\'t have a parent location. Click on a row to see the children locations.',
         'organisations'     => 'View all organisations in this location and its children locations, or just those directly located here.',
+        'location_list'     => 'This interface shows this location\'s children locations, and can be filtered to switch between all or only direct descendants.',
     ],
     'hints'         => [
         'is_map_private'    => 'A private map will only be visible to members of the campaign\'s "Admin" role.',
