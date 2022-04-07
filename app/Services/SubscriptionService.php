@@ -413,6 +413,14 @@ class SubscriptionService
     }
 
     /**
+     * @return bool
+     */
+    public function cancelled(): bool
+    {
+        return $this->cancelled;
+    }
+
+    /**
      * @param Request $request
      * @throws Exception
      */
