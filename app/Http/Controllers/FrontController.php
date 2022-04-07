@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Facades\FrontCache;
 use App\Models\Campaign;
-use App\Models\Faq;
 use App\Services\PatreonService;
 use App\Services\ReferralService;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Support\Collection;
 
 class FrontController extends Controller
 {
@@ -36,7 +35,9 @@ class FrontController extends Controller
         if(!auth()->check()) {
             return redirect()->route('home');
         }
-        return view('front.home');
+        $campaigns = FrontCache::featured();
+        return view('front.home')
+            ->with('campaigns', $campaigns);
     }
 
     /**
@@ -44,8 +45,7 @@ class FrontController extends Controller
      */
     public function about()
     {
-        $patrons = $this->patreon->patrons();
-        return view('front.about', compact('patrons'));
+        return view('front.about');
     }
 
     /**

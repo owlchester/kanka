@@ -193,6 +193,11 @@ return [
         'description'   => ':kanka is available on any device and is updated regularly with new features and improvements. Forget about losing track of your scattered notes, in :kanka everything is in one place, easy to find, and accessible on the go.',
         'title'         => 'A novel way to keep track of your worldbuilding and RPG campaigns.',
     ],
+    'featured_campaigns' => [
+        'title' => 'Looking for some inspiration?',
+        'description' => 'Want to see Kanka in action and how other people are using it? Here are a few campaigns from our community that we think are absolutely incredible.',
+        'more' => 'Want to see more campaigns? Check out our :public-campaigns.'
+    ],
     'footer'        => [
         'app'       => 'App',
         'copyright' => 'Copyright :copy :year :company',
