@@ -16,17 +16,23 @@ $r = $model->descendants()->with('entity')->has('event')->simpleSort($datagridSo
             </div>
         @else
 
-
-        @include('cruds.datagrids.sorters.simple-sorter', ['target' => '#event-events'])
+        <div class="row">
+            <div class="col-md-6 col-sm-12">
+                @include('cruds.datagrids.sorters.simple-sorter', ['target' => '#event-events'])
+            </div>
+        </div>
 
         <table id="events-table" class="table table-hover ">
-            <tbody><tr>
-                <th class="avatar"><br /></th>
-                <th>{{ __('events.fields.name') }}</th>
-                <th>{{ __('crud.fields.type') }}</th>
-                <th>{{ __('events.fields.date') }}</th>
-                <th>{{ __('events.fields.event') }}</th>
-            </tr>
+            <thead>
+                <tr>
+                    <th class="avatar"><br /></th>
+                    <th>{{ __('events.fields.name') }}</th>
+                    <th>{{ __('crud.fields.type') }}</th>
+                    <th>{{ __('events.fields.date') }}</th>
+                    <th>{{ __('events.fields.event') }}</th>
+                </tr>
+            </thead>
+            <tbody>
             @foreach ($r as $event)
                 <tr class="{{ $event->rowClasses() }}">
                     <td>

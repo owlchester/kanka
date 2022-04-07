@@ -24,7 +24,7 @@ if ($allMembers) {
 }
 $r = $r->acl()
     ->simpleSort($datagridSorter)
-    ->paginate();
+    ->paginate(1);
 
 ?>
 <div class="box box-solid" id="tag-children">
@@ -33,45 +33,55 @@ $r = $r->acl()
             {{ __('tags.show.tabs.children') }}
         </h3>
         <div class="box-tools">
+            <a href="#" class="btn btn-box-tool" data-toggle="modal" data-target="#help-modal">
+                <i class="fa fa-question-circle"></i> {{ __('crud.actions.help') }}
+            </a>
+            @if (!$allMembers)
+                <a href="{{ route('tags.show', [$model, 'all_members' => true, '#tag-children']) }}" class="btn btn-box-tool">
+                    <i class="fa fa-filter"></i> {{ __('crud.filters.all') }} ({{ $model->allChildren()->acl()->count() }})
+                </a>
+            @else
+                <a href="{{ route('tags.show', [$model, '#tag-children']) }}" class="btn btn-box-tool">
+                    <i class="fa fa-filter"></i> {{ __('crud.filters.direct') }} ({{ $model->entities()->acl()->count() }})
+                </a>
+            @endif
+
+            @if ($r->count() > 0)
             @can('update', $model)
                 <a href="{{ $addEntityUrl }}" class="btn btn-primary btn-sm"
                    data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ $addEntityUrl }}">
                     <i class="fa fa-plus"></i> <span class="hidden-sm hidden-xs">{{ __('tags.children.actions.add') }}</span>
                 </a>
             @endcan
+            @endif
         </div>
     </div>
     <div class="box-body">
-
-        <p class="help-block">
-            {{ __('tags.hints.children') }}
-        </p>
-
+        @if ($r->count() === 0)
+            <p class="help-block">
+                {{ __('tags.helpers.no_children') }}
+            </p>
+            @can('update', $model)
+                <a href="{{ $addEntityUrl }}" class="btn btn-primary"
+                   data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ $addEntityUrl }}">
+                    <i class="fa fa-plus"></i> <span class="hidden-sm hidden-xs">{{ __('tags.children.actions.add') }}</span>
+                </a>
+            @endcan
+        @else
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-6 col-sm-12">
                 @include('cruds.datagrids.sorters.simple-sorter', ['target' => '#tag-children'])
-            </div>
-            <div class="col-md-6 text-right">
-                @if (!$allMembers)
-                    <a href="{{ route('tags.show', [$model, 'all_members' => true, '#tag-children']) }}" class="btn btn-default btn-sm pull-right">
-                        <i class="fa fa-filter"></i> {{ __('crud.filters.all') }} ({{ $model->allChildren()->acl()->count() }})
-                    </a>
-                @else
-                    <a href="{{ route('tags.show', [$model, '#tag-children']) }}" class="btn btn-default btn-sm pull-right">
-                        <i class="fa fa-filter"></i> {{ __('crud.filters.direct') }} ({{ $model->entities()->acl()->count() }})
-                    </a>
-                @endif
             </div>
         </div>
         <table id="section-children" class="table table-hover">
             <thead>
-            <tr>
-                <th class="avatar"><br /></th>
-                <th>{{ __('crud.fields.name') }}</th>
-                <th>{{ __('crud.fields.entity_type') }}</th>
-                <th class="text-right">
-                </th>
-            </tr>
+                <tr>
+                    <th class="avatar"><br /></th>
+                    <th>{{ __('crud.fields.name') }}</th>
+                    <th>{{ __('crud.fields.entity_type') }}</th>
+                    <th class="text-right">
+                    </th>
+                </tr>
             </thead>
             <tbody>
             @foreach ($r as $child)
@@ -92,7 +102,33 @@ $r = $r->acl()
             @endforeach
             </tbody>
         </table>
-
-        {{ $r->fragment('tag-children')->links() }}
+        @endif
     </div>
+    @if ($r->hasPages())
+        <div class="box-footer text-right">
+            {{ $r->fragment('tag-children')->links() }}
+        </div>
+    @endif
 </div>
+
+
+@section('modals')
+    @parent
+    <div class="modal fade" id="help-modal" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('crud.delete_modal.close') }}"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        {{ __('crud.actions.help') }}
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        {{ __('tags.hints.children') }}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection
