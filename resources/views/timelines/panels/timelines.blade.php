@@ -8,7 +8,11 @@
 
         <?php  $r = $model->descendants()->with('entity')->simpleSort($datagridSorter)->paginate(); ?>
 
-        @include('cruds.datagrids.sorters.simple-sorter', ['target' => '#timeline-timelines'])
+        <div class="row">
+            <div class="col-md-6 col-sm-12">
+                @include('cruds.datagrids.sorters.simple-sorter', ['target' => '#timeline-timelines'])
+            </div>
+        </div>
 
         <table id="timelines" class="table table-hover ">
             <thead><tr>

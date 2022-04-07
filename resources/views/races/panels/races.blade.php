@@ -8,17 +8,24 @@
 
         <?php  $r = $model->races()->simpleSort($datagridSorter)->with(['characters'])->paginate(); ?>
 
-        @include('cruds.datagrids.sorters.simple-sorter', ['target' => '#race-races'])
+        <div class="row">
+            <div class="col-md-6 col-sm-12">
+                @include('cruds.datagrids.sorters.simple-sorter', ['target' => '#race-races'])
+            </div>
+        </div>
 
-        <table id="races" class="table table-hover ">
-            <tbody><tr>
-                <th class="avatar"><br /></th>
-                <th>{{ __('races.fields.name') }}</th>
-                <th>{{ __('races.fields.type') }}</th>
-                @if ($campaign->enabled('characters'))
-                    <th>{{ __('races.fields.characters') }}</th>
-                @endif
-            </tr>
+        <table id="races" class="table table-hover">
+            <thead>
+                <tr>
+                    <th class="avatar"><br /></th>
+                    <th>{{ __('races.fields.name') }}</th>
+                    <th>{{ __('races.fields.type') }}</th>
+                    @if ($campaign->enabled('characters'))
+                        <th>{{ __('races.fields.characters') }}</th>
+                    @endif
+                </tr>
+            </thead>
+            <tbody>
             @foreach ($r as $race)
                 <tr class="{{ $race->rowClasses() }}">
                     <td>
@@ -41,8 +48,12 @@
                 </tr>
             @endforeach
             </tbody>
+            </thead>
         </table>
-
-        {{ $r->fragment('race-races')->links() }}
     </div>
+    @if ($r->hasPages())
+        <div class="box-footer text-right">
+            {{ $r->fragment('race-races')->links() }}
+        </div>
+    @endif
 </div>
