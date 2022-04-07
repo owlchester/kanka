@@ -42,18 +42,22 @@ $locations = $model->descendants()
 
         @if($locations->count() > 0)
         <table id="locations" class="table table-hover">
-            <tbody><tr>
+            <thead><tr>
                 <th class="avatar"><br /></th>
                 <th>{{ __('locations.fields.name') }}</th>
                 <th>{{ __('locations.fields.type') }}</th>
                 <th>{{ __('locations.fields.location') }}</th>
-            </tr>
+            </tr></thead>
+            <tbody>
             @foreach ($locations as $model)
                 <tr>
                     <td>
                         <a class="entity-image" style="background-image: url('{{ $model->getImageUrl(40) }}');" title="{{ $model->name }}" href="{{ route('locations.show', $model->id) }}"></a>
                     </td>
                     <td>
+                        @if ($model->is_private)
+                            <i class="fas fa-lock" title="{{ __('crud.is_private') }}" data-toggle="tooltip"></i>
+                        @endif
                         {!! $model->tooltipedLink() !!}
                     </td>
                     <td>

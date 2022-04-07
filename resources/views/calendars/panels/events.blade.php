@@ -36,6 +36,9 @@
                         <a class="entity-image" style="background-image: url('{{ $event->entity->child->getImageUrl(40) }}');" title="{{ $event->entity->name }}" href="{{ $event->entity->url() }}"></a>
                     </td>
                     <td>
+                        @if ($event->entity->is_private)
+                            <i class="fas fa-lock" title="{{ __('crud.is_private') }}" data-toggle="tooltip"></i>
+                        @endif
                         {!! $event->entity->tooltipedLink() !!}
                     </td>
                     <td>{{ $event->entity->entityType() }}</td>

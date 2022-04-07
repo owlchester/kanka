@@ -80,6 +80,9 @@ $r = $r->acl()
                         <a class="entity-image" style="background-image: url('{{ $child->avatar(true) }}');" title="{{ $child->name }}" href="{{ $child->url() }}"></a>
                     </td>
                     <td>
+                        @if ($child->is_private)
+                            <i class="fas fa-lock" title="{{ __('crud.is_private') }}" data-toggle="tooltip"></i>
+                        @endif
                         {!! $child->tooltipedLink() !!}
                     </td>
                     <td colspan="2">

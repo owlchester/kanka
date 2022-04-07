@@ -61,6 +61,9 @@ $r = $model->allJournals()
                         <a class="entity-image" style="background-image: url('{{ $journal->getImageUrl(40) }}');" title="{{ $journal->name }}" href="{{ route('journals.show', $journal->id) }}"></a>
                     </td>
                     <td>
+                        @if ($journal->is_private)
+                            <i class="fas fa-lock" title="{{ __('crud.is_private') }}" data-toggle="tooltip"></i>
+                        @endif
                         {!! $journal->tooltipedLink() !!}<br />
                         <i>{{ $journal->type }}</i>
                     </td>

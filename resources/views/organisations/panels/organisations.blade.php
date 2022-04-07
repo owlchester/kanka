@@ -18,18 +18,23 @@
     <?php $r = $model->descendants()->with('parent')->simpleSort($datagridSorter)->paginate(); ?>
 
         <table id="organisations" class="table table-hover ">
-            <tbody><tr>
+            <thead><tr>
                 <th class="avatar"><br /></th>
                 <th>{{ __('organisations.fields.name') }}</th>
                 <th>{{ __('organisations.fields.type') }}</th>
                 <th>{{ __('crud.fields.organisation') }}</th>
             </tr>
+            </thead>
+            <tbody>
             @foreach ($r as $model)
                 <tr>
                     <td>
                         <a class="entity-image" style="background-image: url('{{ $model->getImageUrl(40) }}');" title="{{ $model->name }}" href="{{ route('organisations.show', $model->id) }}"></a>
                     </td>
                     <td>
+                        @if ($model->is_private)
+                            <i class="fas fa-lock" title="{{ __('crud.is_private') }}" data-toggle="tooltip"></i>
+                        @endif
                         {!! $model->tooltipedLink() !!}
                     </td>
                     <td>

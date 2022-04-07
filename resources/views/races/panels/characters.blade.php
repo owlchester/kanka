@@ -66,6 +66,9 @@ $r = $model->allCharacters($allMembers)
                         <a class="entity-image" style="background-image: url('{{ $character->getImageUrl(40) }}');" title="{{ $character->name }}" href="{{ route('characters.show', $character->id) }}"></a>
                     </td>
                     <td>
+                        @if ($character->is_private)
+                            <i class="fas fa-lock" title="{{ __('crud.is_private') }}" data-toggle="tooltip"></i>
+                        @endif
                         {!! $character->tooltipedLink() !!}
                         @if ($character->is_dead)
                             <span class="ra ra-skull" data-toggle="tooltip" title="{{ __('characters.hints.is_dead') }}"></span>

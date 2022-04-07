@@ -25,6 +25,9 @@
                         <a class="entity-image" style="background-image: url('{{ $race->getImageUrl(40) }}');" title="{{ $race->name }}" href="{{ route('races.show', $race->id) }}"></a>
                     </td>
                     <td>
+                        @if ($race->is_private)
+                            <i class="fas fa-lock" title="{{ __('crud.is_private') }}" data-toggle="tooltip"></i>
+                        @endif
                         {!! $race->tooltipedLink() !!}
                     </td>
                     <td>

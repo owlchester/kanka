@@ -43,6 +43,9 @@ $r = $model->descendants()
                         <a class="entity-image" style="background-image: url('{{ $ability->getImageUrl(40) }}');" title="{{ $ability->name }}" href="{{ route('abilities.show', $ability->id) }}"></a>
                     </td>
                     <td>
+                        @if ($ability->is_private)
+                            <i class="fas fa-lock" title="{{ __('crud.is_private') }}" data-toggle="tooltip"></i>
+                        @endif
                         {!! $ability->tooltipedLink() !!}
                     </td>
                     <td>

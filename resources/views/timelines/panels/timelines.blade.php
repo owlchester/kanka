@@ -25,6 +25,9 @@
                         <a class="entity-image" style="background-image: url('{{ $timeline->getImageUrl(40) }}');" title="{{ $timeline->name }}" href="{{ route('timelines.show', $timeline->id) }}"></a>
                     </td>
                     <td>
+                        @if ($timeline->is_private)
+                            <i class="fas fa-lock" title="{{ __('crud.is_private') }}" data-toggle="tooltip"></i>
+                        @endif
                         {!! $timeline->tooltipedLink() !!}
                     </td>
                     <td>

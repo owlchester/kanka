@@ -13,22 +13,27 @@ if($subquests->count() == 0) {
         <h3 class="box-title">{{ __('quests.fields.quests') }}</h3>
     </div>
     <div class="box-body entity-content">
-        <p>{{ trans('quests.hints.quests') }}</p>
+        <p class="help-block">{{ __('quests.hints.quests') }}</p>
         <table id="quest-quests" class="table table-hover">
-            <tbody><tr>
+            <thead><tr>
                 <th class="avatar"><br /></th>
-                <th>{{ trans('quests.fields.name') }}</th>
-                <th>{{ trans('quests.fields.type') }}</th>
-                <th>{{ trans('quests.fields.date') }}</th>
-                <th>{{ trans('quests.fields.is_completed') }}</th>
-                <th>&nbsp;</th>
+                <th>{{ __('quests.fields.name') }}</th>
+                <th>{{ __('quests.fields.type') }}</th>
+                <th>{{ __('quests.fields.date') }}</th>
+                <th>{{ __('quests.fields.is_completed') }}</th>
+                <th></th>
             </tr>
+            </thead>
+            <tbody>
             @foreach ($subquests as $subquest)
                 <tr>
                     <td>
                         <a class="entity-image" style="background-image: url('{{ $subquest->getImageUrl(40) }}');" title="{{ $subquest->name }}" href="{{ route('quests.show', $subquest->id) }}"></a>
                     </td>
                     <td>
+                        @if ($subquest->is_private)
+                            <i class="fas fa-lock" title="{{ __('crud.is_private') }}" data-toggle="tooltip"></i>
+                        @endif
                         {!! $subquest->tooltipedLink() !!}
                     </td>
                     <td>

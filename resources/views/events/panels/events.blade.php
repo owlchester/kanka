@@ -33,6 +33,9 @@ $r = $model->descendants()->with('entity')->has('event')->simpleSort($datagridSo
                         <a class="entity-image" style="background-image: url('{{ $event->getImageUrl(40) }}');" title="{{ $event->name }}" href="{{ route('events.show', $event->id) }}"></a>
                     </td>
                     <td>
+                        @if ($event->is_private)
+                            <i class="fas fa-lock" title="{{ __('crud.is_private') }}" data-toggle="tooltip"></i>
+                        @endif
                         {!! $event->tooltipedLink() !!}
                     </td>
                     <td>
