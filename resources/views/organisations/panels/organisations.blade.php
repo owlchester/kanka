@@ -27,7 +27,7 @@
             </thead>
             <tbody>
             @foreach ($r as $model)
-                <tr>
+                <tr class="{{ $model->rowClasses() }}">
                     <td>
                         <a class="entity-image" style="background-image: url('{{ $model->getImageUrl(40) }}');" title="{{ $model->name }}" href="{{ route('organisations.show', $model->id) }}"></a>
                     </td>

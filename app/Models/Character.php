@@ -427,4 +427,17 @@ class Character extends MiscModel
     {
         return !empty($this->age) || $this->age === "0";
     }
+
+    /**
+     * Row classes for entities
+     * @return string
+     */
+    public function rowClasses(): string
+    {
+        $classes = parent::rowClasses();
+        if (!$this->is_dead) {
+            return $classes;
+        }
+        return $classes . ' character-dead';
+    }
 }

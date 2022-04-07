@@ -56,7 +56,7 @@ $r = $r->with(['entity', 'races', 'races.entity', 'location', 'location.entity',
             </tr></thead>
             <tbody>
             @foreach ($r as $member)
-                <tr>
+                <tr class="{{ $member->rowClasses() }}">
                     <td>
                         <a class="entity-image" style="background-image: url('{{ $member->getImageUrl(40) }}');" title="{{ $member->name }}" href="{{ route('characters.show', $member->id) }}"></a>
                     </td>

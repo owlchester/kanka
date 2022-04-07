@@ -28,7 +28,7 @@ $r = $model->descendants()->with('entity')->has('event')->simpleSort($datagridSo
                 <th>{{ __('events.fields.event') }}</th>
             </tr>
             @foreach ($r as $event)
-                <tr>
+                <tr class="{{ $event->rowClasses() }}">
                     <td>
                         <a class="entity-image" style="background-image: url('{{ $event->getImageUrl(40) }}');" title="{{ $event->name }}" href="{{ route('events.show', $event->id) }}"></a>
                     </td>

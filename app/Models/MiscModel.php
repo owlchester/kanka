@@ -678,4 +678,16 @@ abstract class MiscModel extends Model
     {
         return !empty($this->type);
     }
+
+    /**
+     * Row classes for entities
+     * @return string
+     */
+    public function rowClasses(): string
+    {
+        if (!$this->is_private) {
+            return '';
+        }
+        return 'entity-private';
+    }
 }

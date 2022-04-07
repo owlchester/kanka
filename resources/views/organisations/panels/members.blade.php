@@ -71,7 +71,7 @@ $hasOrg = request()->has('organisation_id');
                 ->simpleSort($datagridSorter)
                 ->paginate();?>
             @foreach ($r as $relation)
-                <tr>
+                <tr class="{{ $relation->character->rowClasses() }}">
                     <td>
                         <a class="entity-image" style="background-image: url('{{ $relation->character->getImageUrl(40) }}');" title="{{ $relation->character->name }}" href="{{ route('characters.show', $relation->character->id) }}"></a>
                     </td>

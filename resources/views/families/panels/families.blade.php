@@ -1,3 +1,4 @@
+<?php /** @var \App\Models\Family $family */?>
 <div class="box box-solid" id="family-families">
     <div class="box-header">
         <h3 class="box-title">
@@ -24,7 +25,7 @@
             </thead>
             <tbody>
             @foreach ($r as $family)
-                <tr>
+                <tr class="{{ $family->rowClasses() }}">
                     <td>
                         <a class="entity-image" style="background-image: url('{{ $family->getImageUrl(40) }}');" title="{{ $family->name }}" href="{{ route('families.show', $family->id) }}"></a>
                     </td>

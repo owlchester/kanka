@@ -20,7 +20,7 @@
             </thead>
             <tbody>
             @foreach ($r as $timeline)
-                <tr>
+                <tr class="{{ $timeline->rowClasses() }}">
                     <td>
                         <a class="entity-image" style="background-image: url('{{ $timeline->getImageUrl(40) }}');" title="{{ $timeline->name }}" href="{{ route('timelines.show', $timeline->id) }}"></a>
                     </td>

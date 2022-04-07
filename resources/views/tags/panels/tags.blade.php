@@ -29,19 +29,23 @@ if (request()->has('tag_id')) {
         </div>
 
         <table id="section-sections" class="table table-hover">
-            <tbody><tr>
+            <thead><tr>
                 <th class="avatar"><br /></th>
                 <th>{{ trans('tags.fields.name') }}</th>
                 <th>{{ trans('tags.fields.type') }}</th>
                 <th>{{ trans('crud.fields.tag') }}</th>
                 <th>&nbsp;</th>
-            </tr>
+            </tr></thead>
+            <tbody>
             @foreach ($r = $model->descendants()->with('tag')->has('tag')->filter($filters)->simpleSort($datagridSorter)->paginate() as $model)
-                <tr>
+                <tr class="{{ $model->rowClasses() }}">
                     <td>
                         <a class="entity-image" style="background-image: url('{{ $model->getImageUrl(40) }}');" title="{{ $model->name }}" href="{{ route('tags.show', $model->id) }}"></a>
                     </td>
                     <td>
+                        @if ($model->is_private)
+                            <i class="fas fa-lock" title="{{ __('crud.is_private') }}" data-toggle="tooltip"></i>
+                        @endif
                         {!! $model->tooltipedLink() !!}
                     </td>
                     <td>

@@ -56,7 +56,7 @@ $r = $model->allJournals()
                 @endif
             </tr>
             @foreach ($r as $journal)
-                <tr>
+                <tr class="{{ $journal->rowClasses() }}">
                     <td>
                         <a class="entity-image" style="background-image: url('{{ $journal->getImageUrl(40) }}');" title="{{ $journal->name }}" href="{{ route('journals.show', $journal->id) }}"></a>
                     </td>

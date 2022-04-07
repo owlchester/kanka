@@ -26,7 +26,7 @@ if($subquests->count() == 0) {
             </thead>
             <tbody>
             @foreach ($subquests as $subquest)
-                <tr>
+                <tr class="{{ $subquest->rowClasses() }}">
                     <td>
                         <a class="entity-image" style="background-image: url('{{ $subquest->getImageUrl(40) }}');" title="{{ $subquest->name }}" href="{{ route('quests.show', $subquest->id) }}"></a>
                     </td>

@@ -45,7 +45,7 @@ $members = $model->organisations()
                 </tr>
             </thead>
             @foreach ($members as $organisation)
-                <tr>
+                <tr class="{{ $organisation->organisation->rowClasses() }}">
                     <td>
                         <a class="entity-image" style="background-image: url('{{ $organisation->organisation->getImageUrl(40) }}');" title="{{ $organisation->organisation->name }}" href="{{ route('organisations.show', $organisation->organisation->id) }}"></a>
                     </td>

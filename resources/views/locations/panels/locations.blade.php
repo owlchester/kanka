@@ -50,7 +50,7 @@ $locations = $model->descendants()
             </tr></thead>
             <tbody>
             @foreach ($locations as $model)
-                <tr>
+                <tr class="{{ $model->rowClasses() }}">
                     <td>
                         <a class="entity-image" style="background-image: url('{{ $model->getImageUrl(40) }}');" title="{{ $model->name }}" href="{{ route('locations.show', $model->id) }}"></a>
                     </td>

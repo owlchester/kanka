@@ -64,7 +64,7 @@ $characters = $model
             </thead>
             <tbody>
             @foreach ($characters as $character)
-                <tr>
+                <tr class="{{ $character->rowClasses() }}">
                     <td>
                         <a class="entity-image" style="background-image: url('{{ $character->getImageUrl(40) }}');" title="{{ $character->name }}" href="{{ route('characters.show', $character->id) }}"></a>
                     </td>

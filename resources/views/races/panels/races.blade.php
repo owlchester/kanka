@@ -20,7 +20,7 @@
                 @endif
             </tr>
             @foreach ($r as $race)
-                <tr>
+                <tr class="{{ $race->rowClasses() }}">
                     <td>
                         <a class="entity-image" style="background-image: url('{{ $race->getImageUrl(40) }}');" title="{{ $race->name }}" href="{{ route('races.show', $race->id) }}"></a>
                     </td>

@@ -75,7 +75,7 @@ $r = $r->acl()
             </thead>
             <tbody>
             @foreach ($r as $child)
-                <tr data-entity-id="{{ $child->id }}" data-entity-type="{{ $child->type() }}">
+                <tr data-entity-id="{{ $child->id }}" data-entity-type="{{ $child->type() }}" class="@if ($child->is_private) entity-private @endif">
                     <td>
                         <a class="entity-image" style="background-image: url('{{ $child->avatar(true) }}');" title="{{ $child->name }}" href="{{ $child->url() }}"></a>
                     </td>
