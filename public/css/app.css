@@ -1149,6 +1149,10 @@ td.breakable {
   line-height: 20px !important;
 }
 
+.btn-box-tool .fa-ellipsis-v {
+  padding: 0 7px;
+}
+
 .menu-link-selector .btn-app > .badge {
   display: none;
 }
