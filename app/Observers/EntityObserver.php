@@ -135,11 +135,11 @@ class EntityObserver
      * @param Entity $entity
      * @throws \Exception
      */
-    protected function saveAttributes(Entity $entity)
+    protected function saveAttributes(Entity $entity): self
     {
         // If we're not in an interface that has attributes, don't go any further
-        if (!request()->has('attr_name') || !Auth::user()->can('attributes', $entity)) {
-            return false;
+        if (!request()->has('attr_name') && !request()->has('save-attributes') || !auth()->user()->can('attributes', $entity)) {
+            return $this;
         }
         $data = request()->only(
             'attr_name',
@@ -151,6 +151,8 @@ class EntityObserver
             'is_attributes_private'
         );
         $this->attributeService->saveEntity($data, $entity);
+
+        return $this;
     }
 
     /**
