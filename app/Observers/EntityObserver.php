@@ -133,6 +133,7 @@ class EntityObserver
 
     /**
      * @param Entity $entity
+     * @return $this
      * @throws \Exception
      */
     protected function saveAttributes(Entity $entity): self
