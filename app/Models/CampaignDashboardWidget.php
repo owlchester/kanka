@@ -71,7 +71,7 @@ class CampaignDashboardWidget extends Model
     ];
 
     protected $casts = [
-        'config' => 'Array',
+        'config' => 'array',
     ];
 
     /**

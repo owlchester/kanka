@@ -38,7 +38,7 @@ class PluginVersion extends Model
      * @var string[]
      */
     protected $casts = [
-        'json' => 'Array'
+        'json' => 'array'
     ];
 
     /**

@@ -37,7 +37,7 @@ class EntityLog extends Model
     ];
 
     public $casts = [
-        'changes' => 'Array'
+        'changes' => 'array'
     ];
 
     /**
