@@ -4,18 +4,22 @@ namespace App\Http\Controllers\Settings;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreSettingsLayout;
+use App\Services\PaginationService;
 use Illuminate\Support\Facades\Auth;
 
 class LayoutController extends Controller
 {
+    protected $service;
+
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(PaginationService $paginationService)
     {
         $this->middleware(['auth', 'identity']);
+        $this->service = $paginationService;
     }
 
     /**
@@ -23,7 +27,8 @@ class LayoutController extends Controller
      */
     public function index()
     {
-        return view('settings.layout');
+        return view('settings.layout')
+            ->with('pagination', $this->service);
     }
 
     /**

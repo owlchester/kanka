@@ -5,8 +5,6 @@
     'noads' => true,
 ])
 
-@inject('pagination', App\Services\PaginationService)
-
 @section('content')
     @include('partials.errors')
     {!! Form::model(auth()->user(), ['method' => 'POST', 'route' => ['settings.marketplace.save'], 'data-shortcut' => 1]) !!}

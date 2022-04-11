@@ -101,7 +101,7 @@ class StatService
 
         // Reorder
         uasort($stats, function ($a, $b) {
-            return $a['level'] < $b['level'];
+            return (int) (strlen($a['level']) < strlen($b['level']));
         });
 
         Cache::put($cacheKey, $stats, 86400);
