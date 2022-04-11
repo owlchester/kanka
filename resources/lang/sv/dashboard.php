@@ -1,18 +1,18 @@
 <?php
 
 return [
-    'actions'           => [
+    'actions'       => [
         'follow'    => 'Följ',
         'unfollow'  => 'Sluta Följa',
     ],
-    'campaigns'         => [
+    'campaigns'     => [
         'tabs'  => [
             'modules'   => ':count Moduler',
             'roles'     => ':count Roller',
             'users'     => ':count Användare',
         ],
     ],
-    'dashboards'        => [
+    'dashboards'    => [
         'actions'       => [
             'edit'      => 'Redigera',
             'new'       => 'Nytt Dashboard',
@@ -54,24 +54,23 @@ return [
             'visible'   => 'Synlig',
         ],
     ],
-    'helpers'           => [
+    'helpers'       => [
         'follow'    => 'Att följa en kampanj gör att den visas i kampanj bytaren (uppe till vänster) under din kampanj.',
         'setup'     => 'Välj din kampanjs dashboard.',
     ],
-    'latest_release'    => 'Senaste Release',
-    'notifications'     => [
+    'notifications' => [
         'modal' => [
             'confirm'   => 'Uppfattat',
             'title'     => 'Viktig Notifikation',
         ],
     ],
-    'recent'            => [
+    'recent'        => [
         'title' => 'Nyligen modifierad :name',
     ],
-    'settings'          => [
+    'settings'      => [
         'title' => 'Dashboard Inställnigar',
     ],
-    'setup'             => [
+    'setup'         => [
         'actions'   => [
             'add'               => 'Lägg till widget',
             'back_to_dashboard' => 'Tillbaka till dashboard',
@@ -88,8 +87,8 @@ return [
             'unmentioned'   => 'Onämnda entiteter',
         ],
     ],
-    'title'             => 'Dashboard',
-    'widgets'           => [
+    'title'         => 'Dashboard',
+    'widgets'       => [
         'calendar'      => [
             'actions'           => [
                 'next'      => 'Ändra datum till nästa dag',

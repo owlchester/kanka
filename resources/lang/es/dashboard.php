@@ -1,19 +1,19 @@
 <?php
 
 return [
-    'actions'           => [
+    'actions'       => [
         'follow'    => 'Seguir',
         'join'      => 'Unirse',
         'unfollow'  => 'Dejar de seguir',
     ],
-    'campaigns'         => [
+    'campaigns'     => [
         'tabs'  => [
             'modules'   => ':count módulos',
             'roles'     => ':count roles',
             'users'     => ':count usuarios',
         ],
     ],
-    'dashboards'        => [
+    'dashboards'    => [
         'actions'       => [
             'edit'      => 'Editar',
             'new'       => 'Nuevo tablero',
@@ -55,25 +55,24 @@ return [
             'visible'   => 'Visible',
         ],
     ],
-    'helpers'           => [
+    'helpers'       => [
         'follow'    => 'Si sigues una campaña, esta aparecerá en el menú de cambio de campaña (arriba a la derecha) bajo tus campañas.',
         'join'      => 'Esta campaña está abierta a nuevos miembros. Haz clic en unirse para enviar una solicitud.',
         'setup'     => 'Configura el tablero de la campaña',
     ],
-    'latest_release'    => 'Publicación reciente',
-    'notifications'     => [
+    'notifications' => [
         'modal' => [
             'confirm'   => 'Entendido',
             'title'     => 'Notificación importante',
         ],
     ],
-    'recent'            => [
+    'recent'        => [
         'title' => ':name recientemente modificados',
     ],
-    'settings'          => [
+    'settings'      => [
         'title' => 'Ajustes del tablero',
     ],
-    'setup'             => [
+    'setup'         => [
         'actions'   => [
             'add'               => 'Añadir widget',
             'back_to_dashboard' => 'Volver al tablero',
@@ -94,9 +93,9 @@ return [
             'unmentioned'   => 'Entidades sin mención',
         ],
     ],
-    'title'             => 'Tablero de',
-    'welcome'           => [],
-    'widgets'           => [
+    'title'         => 'Tablero de',
+    'welcome'       => [],
+    'widgets'       => [
         'actions'                   => [
             'advanced-options'  => 'Opciones avanzadas',
             'delete-confirm'    => 'este widget',

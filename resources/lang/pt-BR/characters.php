@@ -130,7 +130,6 @@ return [
         'tabs'  => [
             'map'           => 'Mapa de relações',
             'organisations' => 'Organizações',
-            'personality'   => 'Personalidade',
         ],
     ],
     'warnings'      => [

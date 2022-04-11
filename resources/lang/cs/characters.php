@@ -127,7 +127,6 @@ return [
         'tabs'  => [
             'map'           => 'Mapa souvislostí',
             'organisations' => 'Organizace',
-            'personality'   => 'Povahové rysy',
         ],
         'title' => 'Postava :name',
     ],

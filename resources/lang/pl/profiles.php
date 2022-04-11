@@ -22,6 +22,7 @@ return [
     ],
     'fields'                        => [
         'avatar'                    => 'Awatar',
+        'bio'                       => 'Życiorys',
         'email'                     => 'Email',
         'hide_subscription'         => 'Ukryj moje imię na stronie :hall_of_fame.',
         'last_login_share'          => 'Informuj innych członków kampanii o moim ostatnim logowaniu',
@@ -58,6 +59,7 @@ return [
         'success'   => 'Zmieniono hasło',
     ],
     'placeholders'                  => [
+        'bio'                       => 'Kilka informacji osobistych do wyświetlenia w profilu publicznym.',
         'email'                     => 'Twój adres email',
         'name'                      => 'Nazwa, która będzie wyświetlana',
         'new_password'              => 'Twoje nowe hasło',
@@ -86,7 +88,9 @@ return [
             'pagination'                    => 'Elementy na stronie',
         ],
         'helpers'   => [
+            'bio'       => 'Życiorys będzie widoczny w twoim :link.',
             'editor_v2' => 'Jeżeli używasz poprzedniego edytora tekstu (TinyMCE) nie będziesz mieć dostępu do powiadomień na urządzeniach mobilnych oraz niektórych funkcji, na przykład galerii kampanii.',
+            'profile'   => 'profilu publicznym',
         ],
         'hints'     => [
             'advanced_mentions'     => 'Po zaznaczeniu, podczas edycji elementów będą generowane wzmianki w formacie [element:123].',

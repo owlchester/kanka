@@ -19,12 +19,7 @@ return [
         'title'     => 'A Robbanások Királynője',
         'traits'    => 'Mást is nyilvántartanál? Ezt a szabadszöveges szakaszt neked találtuk ki!',
     ],
-    'item1'         => [
-        'description'   => 'Egy nagyon sötét tőr. De komolyan.',
-        'history'       => 'A Sötét Úr kovácsolta a Sötét Korban, sötétségből.',
-        'name'          => 'A Sötétség Tőre (példa)',
-        'type'          => 'Fegyver',
-    ],
+    'item1'         => [],
     'kingdom1'      => [
         'description'   => 'Egy példahelyszín, ami megmutatja, mi valósítható meg az alkalmazással.',
         'history'       => '(példa) Genoria királyságát a genori törzsek alapították a késő ötödik században, miután elhódították a vidéket a hottenektől.',

@@ -22,6 +22,7 @@ return [
     ],
     'fields'                        => [
         'avatar'                    => 'Avatar',
+        'bio'                       => 'Biografie',
         'email'                     => 'Email',
         'hide_subscription'         => 'Verstecke meinen Namen in der :hall_of_fame',
         'last_login_share'          => 'Teile mit anderen Kampagnenmitgliedern, wann ich mich zuletzt angemeldet habe.',
@@ -58,6 +59,7 @@ return [
         'success'   => 'Passwort aktualisiert',
     ],
     'placeholders'                  => [
+        'bio'                       => 'Eine kurze Biografie von Ihnen, die in Ihrem öffentlichen Profil angezeigt wird.',
         'email'                     => 'Deine Email Adresse',
         'name'                      => 'Dein Name, wie er dargestellt wird',
         'new_password'              => 'Dein neues Passwort',
@@ -86,7 +88,9 @@ return [
             'pagination'                    => 'Seitennummerierung (Objekte pro Seite)',
         ],
         'helpers'   => [
+            'bio'       => 'Die Biografie ist auf Ihrem :link sichtbar.',
             'editor_v2' => 'Die Verwendung des Legacy-Texteditors (TinyMCE) unterstützt keine Erwähnungen auf Mobilgeräten und unterstützt einige Funktionen wie die Kampagnengalerie nicht.',
+            'profile'   => 'öffentliches Profil',
         ],
         'hints'     => [
             'advanced_mentions'     => 'Wenn diese Option aktiviert ist, werden Erwähnungen beim Bearbeiten eines Objektes immer als [entity: 123] angezeigt.',

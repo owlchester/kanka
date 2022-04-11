@@ -97,10 +97,10 @@ return [
     ],
     'helpers'       => [
         'month_type'    => 'Intercalary months don\'t use week days, but still influence moons and seasons.',
+        'moon_offset'   => 'By default, the first fullmoon appears on the first day of year 0. Changing the offset will alter when the first full moon is displayed. This value can negative (up to the length of the first month) or positive (up to the length of the first month).',
         'nested_parent' => 'Displaying the calendars of :parent.',
         'nested_without'=> 'Displaying all calendars that don\'t have a parent calendar. Click on a row to see the children calendars.',
         'start_offset'  => 'By default, the calendar starts on the first weekday of year 0. Changing this field influences where the calendar\'s first day is placed.',
-        'moon_offset' => 'By default, the first fullmoon appears on the first day of year 0. Changing the offset will alter when the first full moon is displayed. This value can negative (up to the length of the first month) or positive (up to the length of the first month).'
     ],
     'hints'         => [
         'event_length'      => 'How long an event is set to last. An event can\'t span over more than two months.',
@@ -225,7 +225,7 @@ return [
         'after' => 'Today & after',
         'before'=> 'Today & before',
     ],
-    'validators' => [
-        'moon_offset' => 'The moon first fullmoon offset can\'t be bigger than the length of the calendar\'s first month.',
-    ]
+    'validators'    => [
+        'moon_offset'   => 'The moon first fullmoon offset can\'t be bigger than the length of the calendar\'s first month.',
+    ],
 ];

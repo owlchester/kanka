@@ -19,12 +19,7 @@ return [
         'title'     => 'Koningin van Explosies',
         'traits'    => 'Wil je iets anders tracken? We helpen je met deze gratis tekstsectie!',
     ],
-    'item1'         => [
-        'description'   => 'Voorbeeld van een voorwerp.',
-        'history'       => 'Geschiedenis van het voorwerp.',
-        'name'          => 'Dolk van Duisternis (voorbeeld)',
-        'type'          => 'Wapen',
-    ],
+    'item1'         => [],
     'kingdom1'      => [
         'description'   => 'Dit is een voorbeeld locatie die is gemaakt om je te laten zien wat je met de app kunt doen.',
         'history'       => '(voorbeeld) Het Koninkrijk van Genory werd gesticht door Genoriaanse stamleden aan het einde van de 5e eeuw nadat ze het land waren binnengevallen vanuit de Hottens.',

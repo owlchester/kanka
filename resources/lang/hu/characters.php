@@ -127,7 +127,6 @@ return [
         'tabs'  => [
             'map'           => 'Kapcsolati térkép',
             'organisations' => 'Szervezetek',
-            'personality'   => 'Személyiség',
         ],
         'title' => ':name karakter',
     ],

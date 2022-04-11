@@ -59,8 +59,6 @@ TEXT
         'excerpt'                           => 'Krátky popis',
         'followers'                         => 'Odberatelia',
         'header_image'                      => 'Titulný obrázok',
-        'hide_history'                      => 'Skryť históriu objektu',
-        'hide_members'                      => 'Skryť členov kampane',
         'image'                             => 'Obrázok',
         'locale'                            => 'Jazyk',
         'name'                              => 'Názov',
@@ -74,8 +72,6 @@ TEXT
         'superboosted'                      => 'Superboostnutie od',
         'system'                            => 'Systém',
         'theme'                             => 'Téma',
-        'tooltip_family'                    => 'Zrušiť mená rodov z bublín',
-        'tooltip_image'                     => 'Zobraziť obrázok objektu v bubline',
         'visibility'                        => 'Viditeľnosť',
     ],
     'following'                         => 'Odber aktívny',
@@ -232,10 +228,7 @@ TEXT
         ],
         'title'     => 'Otvorená kampaň',
     ],
-    'options'                           => [
-        'entity_personality_visibility' => 'Automaticky nastaviť, aby nové postavy mali Osobnosť nastavenú štandardne ako súkromnú.',
-        'entity_visibility'             => 'Automaticky nastaviť, aby novo vytvorené objekty boli štandardne nastavené ako súkromné.',
-    ],
+    'options'                           => [],
     'panels'                            => [
         'boosted'   => 'Boostovaná',
         'dashboard' => 'Nástenka',
@@ -459,7 +452,6 @@ TEXT
             'nested'            => 'Štandardné zobrazenie zoznamov',
             'post_collapsed'    => 'Štandardná nová hodnota zbalenej poznámky',
         ],
-        'helper'            => 'Použi tieto nastavenia na zmenu zobrazenia určitých prvkov v kampani.',
         'helpers'           => [
             'connections'       => 'Ak klikneš na podstránku so vzťahmi objektu, vyber si štandardné zobrazené rozhranie.',
             'other'             => 'Ďalšie možnosti zobrazenia kampane.',

@@ -5,6 +5,9 @@ return [
         'body'  => 'Sembra che tu non abbia il permesso per accedere a questa pagina!',
         'title' => 'Permesso Negato',
     ],
+    '403-form'  => [
+        'help'  => 'Forse la tua sessione è scaduta. Prova ad accedere di nuovo in un\'altra finestra prima di salvare.',
+    ],
     '404'       => [
         'body'  => 'Ci dispiace, la pagina che stavi cercando non può essere trovata.',
         'title' => 'Pagina non trovata',
@@ -18,7 +21,7 @@ return [
     ],
     '503'       => [
         'body'  => [
-            '1' => 'Kanka è attualmente in manutenzione che normalmente significa che un c\'è aggiornamento in corso!',
+            '1' => 'Kanka è attualmente in manutenzione che normalmente significa che c\'è un aggiornamento in corso!',
             '2' => 'Ci dispiace per l\'inconveniente. Tutto tornerà alla normalità in pochi minuti.',
         ],
         'title' => 'Manutenzione',

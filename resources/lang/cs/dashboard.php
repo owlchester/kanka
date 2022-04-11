@@ -1,19 +1,19 @@
 <?php
 
 return [
-    'actions'           => [
+    'actions'       => [
         'follow'    => 'Sledovat',
         'join'      => 'Přidat se',
         'unfollow'  => 'Přestat sledovat',
     ],
-    'campaigns'         => [
+    'campaigns'     => [
         'tabs'  => [
             'modules'   => '{1} :count modul|[2,4] :count moduly|[5,*] :count modulů',
             'roles'     => '[1,4] :count role|[5,*] :count rolí',
             'users'     => '{1} :count uživatel|[2,4] :count uživatelé|[5,*] :count uživatelů',
         ],
     ],
-    'dashboards'        => [
+    'dashboards'    => [
         'actions'       => [
             'edit'      => 'Upravit název a oprávnění',
             'new'       => 'Nová nástěnka',
@@ -55,25 +55,24 @@ return [
             'visible'   => 'Viditelné',
         ],
     ],
-    'helpers'           => [
+    'helpers'       => [
         'follow'    => 'Tažení, která sleduješ, se budou zobrazovat v seznamu tažení (vlevo nahoře) pod vlastními taženími.',
         'join'      => 'Tažení přijímá pro nové členy. Klepnutím podáte přihlášku.',
         'setup'     => 'Vytvořit nástěnku tažení',
     ],
-    'latest_release'    => 'Poslední verze',
-    'notifications'     => [
+    'notifications' => [
         'modal' => [
             'confirm'   => 'Rozumím',
             'title'     => 'Důležité upozornění',
         ],
     ],
-    'recent'            => [
+    'recent'        => [
         'title' => 'Nedávno upravené :name',
     ],
-    'settings'          => [
+    'settings'      => [
         'title' => 'Nastavení nástěnky',
     ],
-    'setup'             => [
+    'setup'         => [
         'actions'   => [
             'add'               => 'Přidat součást nástěnky',
             'back_to_dashboard' => 'Zpět na nástěnku',
@@ -94,8 +93,8 @@ return [
             'unmentioned'   => 'Objekty bez odkazů',
         ],
     ],
-    'title'             => 'Nástěnka',
-    'widgets'           => [
+    'title'         => 'Nástěnka',
+    'widgets'       => [
         'actions'                   => [
             'advanced-options'  => 'Pokročilá nastavení',
             'delete-confirm'    => 'tato součást nástěnky',

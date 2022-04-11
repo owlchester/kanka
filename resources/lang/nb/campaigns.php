@@ -49,8 +49,6 @@ TEXT
         'excerpt'                   => 'Utdrag',
         'followers'                 => 'Følgere',
         'header_image'              => 'Banner Bilde',
-        'hide_history'              => 'Skjul objekts historie',
-        'hide_members'              => 'Skjul kampanje medlemmer',
         'image'                     => 'Bilde',
         'locale'                    => 'Lokale',
         'name'                      => 'Navn',
@@ -58,8 +56,6 @@ TEXT
         'rpg_system'                => 'RPG systemer',
         'system'                    => 'System',
         'theme'                     => 'Tema',
-        'tooltip_family'            => 'Skjul familienavn fra verktøy tips.',
-        'tooltip_image'             => 'Vis objekt bilde i verktøytips',
         'visibility'                => 'Synlighet',
     ],
     'following'                         => 'Følger',
@@ -324,9 +320,7 @@ TEXT
             ],
         ],
     ],
-    'ui'                                => [
-        'helper'    => 'Bruk disse innstillingene for å endre måten enkelte elementer blir vist i kampanjen.',
-    ],
+    'ui'                                => [],
     'visibilities'                      => [
         'private'   => 'Privat',
         'public'    => 'Offentlig',

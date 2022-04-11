@@ -127,7 +127,6 @@ return [
         'tabs'  => [
             'map'           => 'Mapa odnosa',
             'organisations' => 'Organizacije',
-            'personality'   => 'Osobnost',
         ],
         'title' => 'Lik :name',
     ],

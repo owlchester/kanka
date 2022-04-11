@@ -123,7 +123,6 @@ return [
         'tabs'  => [
             'map'           => 'מפת יחסים',
             'organisations' => 'אירגונים',
-            'personality'   => 'אישיות',
         ],
         'title' => 'דמות :name',
     ],

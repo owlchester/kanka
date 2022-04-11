@@ -38,8 +38,8 @@ return [
     ],
     'helper'        => 'Set up relations between entities with attitudes and visibility. Relations can also be pinned to the entity\'s menu.',
     'helpers'       => [
-        'popup'     => 'Entities of the campaign can be linked together using relations. These can have a description, an attitude rating, a visibility to control who sees a relation, and more.',
-        'no_relations' => 'This entity doesn\'t currently have any relations to other entities of the campaign.',
+        'no_relations'  => 'This entity doesn\'t currently have any relations to other entities of the campaign.',
+        'popup'         => 'Entities of the campaign can be linked together using relations. These can have a description, an attitude rating, a visibility to control who sees a relation, and more.',
     ],
     'hints'         => [
         'attitude'          => 'This optional field can be used to define the default order relations appear in by descending order.',

@@ -51,7 +51,6 @@ return [
     ],
     'link'              => [
         'anchor'            => 'A mención avanzada tamén pode especificar a áncora HTML coa que a ligazón debería ligar, usando :example.',
-        'attributes'        => 'Podes referenciar os atributos dunha entidade escrebendo :code. Isto só funciona para os atributos existentes da entidade.',
         'auto_update'       => 'As ligazóns a outras entidades serán actualizadas automaticamente cando o nome ou a descrición da entidade obxectivo cambie.',
         'description'       => 'Podes crea ligazóns a outras entidades facilmente usando os seguintes atallos.',
         'formatting'        => [
@@ -59,7 +58,6 @@ return [
             'title' => 'Formatación',
         ],
         'friendly_mentions' => 'Crea ligazóns a outras entidades escrebendo :code e os primeiros caracteres dunha entidade para buscala. Isto insertará :example no editor de texto, e mostrarase como unha ligazón á entidade.',
-        'limitations'       => 'Ten en conta que, debido a limitacións técnicas, estes atallos non funcionan en dispositivos móbiles Android, a menos que se esté usando o novo editor Summernote. Podes cambiar o teu editor nas opcións de Deseño.',
         'mention_helpers'   => 'Se o nome da túa entidade contén un espazo, usa :example no lugar do espazo. Se queres buscar unha entidade con exactamente ese nome, escrebe :exact.',
         'mentions'          => 'Crea ligazóns a outras entidades escrebendo :code e os primeiros caracteres dunha entidade para buscala. Isto insertará :example no editor de texto. Para personalizar o nome co que se mostra a ligazón á entidade, podes escreber :example_name. Para establecer a subpáxina da entidade á que estás ligando, usa :example_page. Para establecer a lapela, usa :example_tab.',
         'mentions_field'    => 'Tamén podes mostrar un campo da entidade en lugar do seu nome na ligazón con :code.',

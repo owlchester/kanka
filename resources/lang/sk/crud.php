@@ -228,6 +228,7 @@ return [
     ],
     'helpers'                   => [
         'copy_options'  => 'Kopírovať nasledujúce prepojené prvky zo zdroja do nového objektu.',
+        'linking'       => 'Prepojenia s inými objektami',
     ],
     'hidden'                    => 'Skrytý',
     'hints'                     => [

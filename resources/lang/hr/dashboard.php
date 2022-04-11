@@ -1,19 +1,19 @@
 <?php
 
 return [
-    'actions'           => [
+    'actions'       => [
         'follow'    => 'Prati',
         'join'      => 'Pridruži se',
         'unfollow'  => 'Prekini pratiti',
     ],
-    'campaigns'         => [
+    'campaigns'     => [
         'tabs'  => [
             'modules'   => '{1} :count modul|{2,*} :count modula',
             'roles'     => '{1} :count uloga|{2,4} :count uloge|{5,*} :count uloga',
             'users'     => '{1} :count korisnik|{2,*} :count korisnika',
         ],
     ],
-    'dashboards'        => [
+    'dashboards'    => [
         'actions'       => [
             'edit'      => 'Uredi',
             'new'       => 'Nova naslovna ploča',
@@ -55,25 +55,24 @@ return [
             'visible'   => 'Vidljiva',
         ],
     ],
-    'helpers'           => [
+    'helpers'       => [
         'follow'    => 'Praćenje kampanje prikazat će ju u izborniku kampanje (gore desno) ispod tvojih kampanja.',
         'join'      => 'Ova kampanja otvorena je za nove članove. Prijavi se da bi joj se pridružio/la.',
         'setup'     => 'Postavljanje naslovne ploče kampanje.',
     ],
-    'latest_release'    => 'Najnovije izdanje',
-    'notifications'     => [
+    'notifications' => [
         'modal' => [
             'confirm'   => 'Shvaćam',
             'title'     => 'Važna obavijest',
         ],
     ],
-    'recent'            => [
+    'recent'        => [
         'title' => 'Nedavno izmijenjeno :name',
     ],
-    'settings'          => [
+    'settings'      => [
         'title' => 'Postavke naslovne ploče',
     ],
-    'setup'             => [
+    'setup'         => [
         'actions'   => [
             'add'               => 'Dodajte programčić',
             'back_to_dashboard' => 'Povratak na naslovnu ploču',
@@ -90,8 +89,8 @@ return [
             'unmentioned'   => 'Entiteti koji nisu nigdje spomenuti',
         ],
     ],
-    'title'             => 'Naslovna ploča',
-    'widgets'           => [
+    'title'         => 'Naslovna ploča',
+    'widgets'       => [
         'actions'                   => [
             'advanced-options'  => 'Napredne opcije',
             'delete-confirm'    => 'ovaj programčić',

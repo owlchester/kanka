@@ -14,6 +14,7 @@ return [
         'community-votes'   => 'Voti della COmmunity',
         'news'              => 'News',
         'newsletter'        => 'Newsletter',
+        'updates'           => 'Aggiornamenti dal team',
     ],
     'headline'  => 'Iscriviti ad una o a tutte le nostre newsletter per rimanere aggiornato con Kanka.',
     'title'     => 'Aggiornamenti Email',

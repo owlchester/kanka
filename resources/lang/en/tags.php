@@ -32,7 +32,7 @@ return [
     'helpers'       => [
         'nested_parent' => 'Displaying the tags of :parent.',
         'nested_without'=> 'Displaying all tags that don\'t have a parent tag. Click on a row to see the children tags.',
-        'no_children'   => 'There are currently no entities tagged with this tag.'
+        'no_children'   => 'There are currently no entities tagged with this tag.',
     ],
     'hints'         => [
         'children'  => 'This list contains all the entities that are assigned to this tag or the tag\'s children.',

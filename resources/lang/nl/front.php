@@ -30,15 +30,7 @@ return [
         ],
         'title'             => 'Openbare Campaigns',
     ],
-    'community'     => [
-        'description'   => 'Kanka is niet alleen een app, het is ook een bloeiende gemeenschap van worldbuilders, dungeon masters, role players en creatieve enthousiastelingen.',
-        'discord'       => 'De Kanka Discord is de meest actieve plek om te praten over de app, bugs, functies, om hulp te vragen en te helpen.',
-        'facebook'      => 'Blijf op de hoogte van al onze updates op onze facebookpagina.',
-        'instagram'     => 'Wil je meer foto\'s achter de schermen zien van ons die aan Kanka werken of spelen? Instagram is de plek om ons te volgen!',
-        'join'          => 'Doe met ons mee!',
-        'reddit'        => 'De Kanka-subreddit is een rustigere plek waar dingen gedurende een langere periode kunnen worden besproken.',
-        'title'         => 'Community',
-    ],
+    'community'     => [],
     'contact'       => [
         'description'   => 'Hulp nodig, een suggestie of wil je gewoon je liefde voor Kanka delen? Ons team zal bij elke gelegenheid antwoorden!',
         'email'         => 'Stuur alle vragen naar',
@@ -51,11 +43,9 @@ return [
         'message'   => 'Deze website gebruikt cookies om ervoor te zorgen dat je de beste ervaring op onze website krijgt.',
     ],
     'faq'           => [
-        'description'   => 'We hebben de meest gestelde vragen behandeld en ze zo duidelijk mogelijk beantwoord.',
-        'helpers'       => [
+        'helpers'   => [
             'more'  => 'Heb je niet gevonden wat je zocht?',
         ],
-        'title'         => 'FAQ',
     ],
     'features'      => [
         'abilities'         => [
@@ -239,7 +229,6 @@ return [
         'contact'       => 'Contact',
         'contact_us'    => 'Neem contact op',
         'dashboard'     => 'Dashboard',
-        'faq'           => 'FAQ & Help',
         'features'      => 'Functies',
         'help'          => 'Help',
         'home'          => 'Home',
@@ -267,9 +256,7 @@ return [
     ],
     'pricing'       => [
         'actions'       => [
-            'more'      => 'Volledige lijst met functies die zijn ontgrendeld door Kanka te ondersteunen',
             'subscribe' => 'Word abonnee',
-            'support'   => 'Support',
         ],
         'benefits'      => [
             'big_maps'      => 'Grote kaartgrootte (:size)',
@@ -293,10 +280,7 @@ return [
         'description'   => 'Ingangsdatum: :date',
         'title'         => 'Privacybeleid',
     ],
-    'release'       => [
-        'description'   => 'Kanka groeit en verbetert voortdurend, en we willen dat de wereld weet over alle geweldige dingen die we aan de app toevoegen.',
-        'title'         => 'Releases',
-    ],
+    'release'       => [],
     'roadmap'       => [
         'backlog'           => [
             'description'   => 'Dit Trello-bord bevat alle gevraagde functies die door de community zijn ingediend, evenals alle geplande functies en verbeteringen die ooit in de app zullen komen.',

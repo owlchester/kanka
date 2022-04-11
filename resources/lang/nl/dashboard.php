@@ -1,19 +1,19 @@
 <?php
 
 return [
-    'actions'           => [
+    'actions'       => [
         'follow'    => 'Volg',
         'join'      => 'Join',
         'unfollow'  => 'Ontvolg',
     ],
-    'campaigns'         => [
+    'campaigns'     => [
         'tabs'  => [
             'modules'   => ':count Modules',
             'roles'     => ':count Rollen',
             'users'     => ':count Gebruikers',
         ],
     ],
-    'dashboards'        => [
+    'dashboards'    => [
         'actions'       => [
             'edit'      => 'Wijzig',
             'new'       => 'Nieuw Dashboard',
@@ -55,25 +55,24 @@ return [
             'visible'   => 'Zichtbaar',
         ],
     ],
-    'helpers'           => [
+    'helpers'       => [
         'follow'    => 'Als je een campaign volgt, wordt deze weergegeven in de campaign wisselaar (linksboven) onder je campaigns.',
         'join'      => 'Deze campaign staat open voor nieuwe leden. Klik om aan te vragen om er lid van te worden.',
         'setup'     => 'Stel het dashboard van je campaign in.',
     ],
-    'latest_release'    => 'Laatste Release',
-    'notifications'     => [
+    'notifications' => [
         'modal' => [
             'confirm'   => 'Begrepen',
             'title'     => 'Belangrijke Melding',
         ],
     ],
-    'recent'            => [
+    'recent'        => [
         'title' => 'Onlangs gewijzigd :name',
     ],
-    'settings'          => [
+    'settings'      => [
         'title' => 'Dashboard Instellingen',
     ],
-    'setup'             => [
+    'setup'         => [
         'actions'   => [
             'add'               => 'Voeg een widget toe',
             'back_to_dashboard' => 'Terug naar dashboard',
@@ -90,8 +89,8 @@ return [
             'unmentioned'   => 'Niet-genoemde entiteiten',
         ],
     ],
-    'title'             => 'Dashboard',
-    'widgets'           => [
+    'title'         => 'Dashboard',
+    'widgets'       => [
         'calendar'      => [
             'actions'           => [
                 'next'      => 'Wijzig de datum naar de volgende dag',

@@ -19,12 +19,7 @@ return [
         'title'     => 'Rainha das Explosões',
         'traits'    => 'Quer tomar nota de outra coisa? Nós te damos cobertura com esse espaço de texto livre!',
     ],
-    'item1'         => [
-        'description'   => 'Exemplo de um item.',
-        'history'       => 'História do item.',
-        'name'          => 'Adaga da Escuridão (exemplo)',
-        'type'          => 'Arma',
-    ],
+    'item1'         => [],
     'kingdom1'      => [
         'description'   => 'Esse é um local exemplo criado para te mostrar o que pode ser feito com esse app.',
         'history'       => '(exemplo) O Reino de Genory foi fundada pelas tribos Genorianas no século 5 depois deles invadirem essas terras dos Hottens.',

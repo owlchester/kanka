@@ -6,7 +6,8 @@ return [
             'add'   => 'Aggiungi un nuovo tag',
         ],
         'create'    => [
-            'title' => 'Aggiungi un tag a :name',
+            'success'   => 'Aggiungi il tag :name all\'entità',
+            'title'     => 'Aggiungi un tag a :name',
         ],
         'title'     => 'Discendente del tag :name',
     ],

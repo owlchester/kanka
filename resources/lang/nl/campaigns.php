@@ -55,8 +55,6 @@ TEXT
         'excerpt'                   => 'Excerpt',
         'followers'                 => 'Volgers',
         'header_image'              => 'Header Afbeelding',
-        'hide_history'              => 'Verberg entiteit geschiedenis',
-        'hide_members'              => 'Verberg campaign leden',
         'image'                     => 'Afbeelding',
         'locale'                    => 'Lokale',
         'name'                      => 'Naam',
@@ -67,8 +65,6 @@ TEXT
         'superboosted'              => 'Superboosted door',
         'system'                    => 'Systeem',
         'theme'                     => 'Thema',
-        'tooltip_family'            => 'Schakel familie namen uit via tooltips',
-        'tooltip_image'             => 'Toon de entiteit afbeelding in tooltips',
         'visibility'                => 'Zichtbaarheid',
     ],
     'following'                         => 'Volgend',
@@ -356,9 +352,7 @@ TEXT
             ],
         ],
     ],
-    'ui'                                => [
-        'helper'    => 'Gebruik deze instellingen om de manier te wijzigen waarop sommige elementen in de campaign worden weergegeven.',
-    ],
+    'ui'                                => [],
     'visibilities'                      => [
         'private'   => 'Privé',
         'public'    => 'Openbaar',

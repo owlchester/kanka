@@ -6,6 +6,7 @@ return [
     ],
     'helpers'   => [
         'characters'    => 'Définir le type comme la date de naissance ou de mort pour ce personnage calculera automatiquement leur âge. :more.',
+        'no_events'     => 'Cette interface affiche les calendriers liés à cette entité à travers les rappels.',
     ],
     'show'      => [
         'actions'   => [

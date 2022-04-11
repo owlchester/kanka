@@ -36,6 +36,7 @@ return [
         'characters'        => 'Afficher tous les personnages dans ce lieu et sous-lieux, ou seulement ceux qui sont ici.',
         'descendants'       => 'Cette liste contient tous les lieux descendants de celui-ci, pas uniquement les descendants directs.',
         'families'          => 'Un lien peut être le siège d\'une puissante famille.',
+        'location_list'     => 'Cette interface affiche les lieux enfants du lieu, et peut être filtré entre afficher tous les lieux enfants ou seulement les enfants directs.',
         'map'               => 'Ajouter une carte au lieu permet ensuite d\'ajouter des "Points" sur la carte, liant vers d\'autres entités de la campagne.',
         'map_deprecated_2'  => 'Les cartes ont désormais leur propre module! Les anciennes cartes peuvent toujours être modifiées, mais toutes les nouvelles cartes vont dans le module de Carte.',
         'nested_parent'     => 'Affichage des lieux de :parent.',

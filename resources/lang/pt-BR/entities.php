@@ -17,7 +17,6 @@ return [
         'back'      => 'Voltar para seleção',
         'duplicate' => 'Já existem outras entidades deste tipo com o mesmo nome.',
         'helper'    => 'Selecione um tipo de entidade para criar. Se nenhuma entidade for exibida, significa que você não tem permissão para criar qualquer tipo de entidade nesta campanha.',
-        'success'   => 'Nova entidade :link criada',
         'title'     => 'Nova entidade',
         'tooltip'   => 'Crie uma nova entidade sem deixar a página atual',
     ],

@@ -228,6 +228,7 @@ return [
     ],
     'helpers'                   => [
         'copy_options'  => 'Kopieren Sie die folgenden verwandten Elemente aus der Quelle in das neue Objekt.',
+        'linking'       => 'Verknüpfung mit anderen Objekten',
     ],
     'hidden'                    => 'Versteckt',
     'hints'                     => [

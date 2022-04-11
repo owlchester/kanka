@@ -45,7 +45,6 @@ return [
         'title'         => 'Com fer servir els filtres',
     ],
     'link'              => [
-        'attributes'        => 'Per a referenciar atributs de l\'entitat, escriviu :code. Això només funciona amb atributs ja existents a l\'entitat.',
         'auto_update'       => 'Els enllaços a altres entitats s\'actualitzaran automàticament quan es canviï el nom o la descripció d\'aquestes.',
         'description'       => 'És fàcil enllaçar altres entitats usant les següents dreceres.',
         'formatting'        => [
@@ -53,7 +52,6 @@ return [
             'title' => 'Format',
         ],
         'friendly_mentions' => 'Per a enllaçar altres entitats, escriviu :code i els primers caràcters d\'una entitat per a buscar-la. Això inserirà :example en l\'editor de text, i es mostrarà com un enllaç a l\'entitat en veure-la.',
-        'limitations'       => 'Tingueu en compte que a causa de limitacions tècniques aquestes dreceres no funcionen en dispositius mòbils android, excepte al nou editor de text Summernote. Podeu canviar l\'editor a les preferències de disseny de la configuració.',
         'mention_helpers'   => 'Si el nom de l\'entitat té un espai, escriviu :example en comptes de l\'espai. Si voleu buscar una entitat amb exactament el mateix nom, escriviu :exact.',
         'mentions'          => 'Per a enllaçar altres entitats, escriviu :code i els primers caràcters d\'una entitat per a buscar-la. Això introduirà :example en l\'editor de text. Per a personalitzar el nom a mostrar, escriviu :example_name. Per a indicar una subpàgina concreta de l\'entitat, useu :example_page. Per a indicar una pestanya concreta, useu :example_tab.',
         'mentions_field'    => 'També podeu mostrar un camp de l\'entitat enlloc del seu nom al link amb :code.',

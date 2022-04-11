@@ -57,8 +57,6 @@ TEXT
         'excerpt'                   => 'Resumo',
         'followers'                 => 'Seguidores',
         'header_image'              => 'Cabeçalho',
-        'hide_history'              => 'Esconder histórico da entidade',
-        'hide_members'              => 'Esconder membros da campanha',
         'image'                     => 'Imagem',
         'locale'                    => 'Local',
         'name'                      => 'Nome',
@@ -71,8 +69,6 @@ TEXT
         'superboosted'              => 'Super Impulsionada por:',
         'system'                    => 'Sistema',
         'theme'                     => 'Tema',
-        'tooltip_family'            => 'Desativar nomes de família das dicas',
-        'tooltip_image'             => 'Mostrar imagens da entidade nas dicas',
         'visibility'                => 'Visibilidade',
     ],
     'following'                         => 'Seguindo',
@@ -220,10 +216,7 @@ TEXT
         'link'      => 'aplicações de campanha',
         'title'     => 'Abrir a campanha',
     ],
-    'options'                           => [
-        'entity_personality_visibility' => 'Define automaticamente novos personagens a terem sua personalidade privada por padrão.',
-        'entity_visibility'             => 'Define automaticamente entidades recém-criadas como privadas por padrão.',
-    ],
+    'options'                           => [],
     'panels'                            => [
         'boosted'   => 'Impulsionada',
         'dashboard' => 'Dashboard',
@@ -407,8 +400,7 @@ TEXT
         ],
     ],
     'ui'                                => [
-        'helper'    => 'Use essas configurações para alterar a forma como alguns elementos serão exibidos na campanha.',
-        'other'     => 'Outro',
+        'other' => 'Outro',
     ],
     'visibilities'                      => [
         'private'   => 'Privado',

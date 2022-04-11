@@ -56,8 +56,6 @@ TEXT
         'excerpt'                   => 'Kivonat',
         'followers'                 => 'Követők',
         'header_image'              => 'Fejléc képe',
-        'hide_history'              => 'Az entitások változási naplójának elrejtése',
-        'hide_members'              => 'A kampányban résztvevő tagok elrejtése',
         'image'                     => 'Kép',
         'locale'                    => 'Nyelv',
         'name'                      => 'Név',
@@ -69,8 +67,6 @@ TEXT
         'superboosted'              => 'Szupererősítette',
         'system'                    => 'Rendszer',
         'theme'                     => 'Téma',
-        'tooltip_family'            => 'Családnevek elrejtése a tooltip-ekből',
-        'tooltip_image'             => 'Entitás képének mutatása a tooltip-ben.',
         'visibility'                => 'Láthatóság',
     ],
     'following'                         => 'Követve',
@@ -400,8 +396,7 @@ TEXT
         ],
     ],
     'ui'                                => [
-        'helper'    => 'Használd ezeket a beállításokat, hogy meg meghatározd, hogy bizonyos elemek hogyan jelenjenek meg a kampányodban.',
-        'other'     => 'Egyéb',
+        'other' => 'Egyéb',
     ],
     'visibilities'                      => [
         'private'   => 'Privát',

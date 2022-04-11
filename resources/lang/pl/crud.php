@@ -228,6 +228,7 @@ return [
     ],
     'helpers'                   => [
         'copy_options'  => 'Skopiuj następujące elementy elementu źródłowego do nowego elementu.',
+        'linking'       => 'Łącza do innych elementów',
     ],
     'hidden'                    => 'Ukryte',
     'hints'                     => [

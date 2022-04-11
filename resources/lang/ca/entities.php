@@ -17,7 +17,6 @@ return [
         'back'      => 'Torna a la selecció',
         'duplicate' => 'Ja existeixen altres entitats d\'aquest tipus amb el mateix nom.',
         'helper'    => 'Seleccioneu el tipus d\'entitat a crear. Si no n\'apareix cap, vol dir que no teniu permís per a crear entitats en aquesta campanya.',
-        'success'   => 'Nueva entidad \':link\' creada.',
         'title'     => 'Nova entitat',
         'tooltip'   => 'Crea una nova entitat sense abandonar la pàgina',
     ],

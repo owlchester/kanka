@@ -46,7 +46,7 @@ return [
             'class' => 'FontAwesome or RPG Awesome class: fas fa-users',
             'name'  => 'Icon name',
         ],
-        'number'     => 'Number name',
+        'number'    => 'Number name',
         'random'    => [
             'name'  => 'Attribute name',
             'value' => '1-100 or list of values separated by a comma',

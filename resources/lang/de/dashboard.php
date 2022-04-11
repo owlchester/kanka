@@ -1,19 +1,19 @@
 <?php
 
 return [
-    'actions'           => [
+    'actions'       => [
         'follow'    => 'Folgen',
         'join'      => 'beitreten',
         'unfollow'  => 'Nicht mehr folgen',
     ],
-    'campaigns'         => [
+    'campaigns'     => [
         'tabs'  => [
             'modules'   => ':count Module',
             'roles'     => ':count Rollen',
             'users'     => ':count Users',
         ],
     ],
-    'dashboards'        => [
+    'dashboards'    => [
         'actions'       => [
             'edit'      => 'Editieren',
             'new'       => 'neues Dashboard',
@@ -55,25 +55,24 @@ return [
             'visible'   => 'Sichtbar',
         ],
     ],
-    'helpers'           => [
+    'helpers'       => [
         'follow'    => 'Wenn du einer Kampagne folgst, wird sie im Kampagnenwähler (oben rechts) unter deinen Kampagnen angezeigt.',
         'join'      => 'Diese Kampagne steht neuen Mitgliedern offen. Klicken Sie, um sich zu bewerben, um daran teilzunehmen.',
         'setup'     => 'Richte dein Kampagnen Dashboard ein.',
     ],
-    'latest_release'    => 'Letztes Release',
-    'notifications'     => [
+    'notifications' => [
         'modal' => [
             'confirm'   => 'Verstanden',
             'title'     => 'Wichtige Mitteilung',
         ],
     ],
-    'recent'            => [
+    'recent'        => [
         'title' => 'Vor kurzem bearbeitete :name',
     ],
-    'settings'          => [
+    'settings'      => [
         'title' => 'Dashboard Einstellungen',
     ],
-    'setup'             => [
+    'setup'         => [
         'actions'   => [
             'add'               => 'Widget hinzufügen',
             'back_to_dashboard' => 'Zurück zum Dashboard.',
@@ -94,9 +93,9 @@ return [
             'unmentioned'   => 'Unerwähntes Objekt',
         ],
     ],
-    'title'             => 'Dashboard',
-    'welcome'           => [],
-    'widgets'           => [
+    'title'         => 'Dashboard',
+    'welcome'       => [],
+    'widgets'       => [
         'actions'                   => [
             'advanced-options'  => 'Erweiterte Optionen',
             'delete-confirm'    => 'dieses Widget',
