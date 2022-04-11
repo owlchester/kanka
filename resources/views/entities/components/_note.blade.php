@@ -39,6 +39,12 @@
                                 <i class="fa fa-link"></i> {{ __('entities/notes.copy_mention.copy') }}
                             </a>
                         </li>
+                        <li>
+                            <a href="#" title="[{{ $model->getEntityType() }}:{{ $model->entity->id }}|anchor:post-{{ $note->id }}]|{{ $model->name }}" data-toggle="tooltip"
+                               data-clipboard="[{{ $model->getEntityType() }}:{{ $model->entity->id }}|anchor:post-{{ $note->id }}|{{ $model->name }}]" data-toast="{{ __('entities/notes.copy_mention.success') }}">
+                                <i class="fa fa-link"></i> {{ __('entities/notes.copy_mention.copy_with_name') }}
+                            </a>
+                        </li>
                     </ul>
                 @endif
             </div>
