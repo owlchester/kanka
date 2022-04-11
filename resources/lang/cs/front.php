@@ -16,9 +16,6 @@ return [
     ],
     'release'       => [],
     'roadmap'       => [
-        'blog'              => [
-            'title' => 'Měsíční Roudmapa',
-        ],
         'next'              => [
             'title' => 'Další',
         ],

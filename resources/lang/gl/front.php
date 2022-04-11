@@ -303,10 +303,6 @@ return [
             'description'   => 'Este taboleiro de Trello contén todas as funcionalidades solicitadas pola comunidade, así como todas as planexadas que chegarán á aplicación algún día.',
             'title'         => 'Traballos pendentes',
         ],
-        'blog'              => [
-            'description'   => 'Publicamos unha folla de ruta ao comezo de cada mes, seguindo a votación da comunidade.',
-            'title'         => 'Follas de ruta mensuais',
-        ],
         'description'       => 'As votacións da comunidade dan forma ao noso traballo, así que, aínda que non temos unha folla de ruta de varios meses, é fácil estar ao tanto do que foi solicitado e de no que se está traballando actualmente.',
         'featured_requests' => [
             'title' => 'Solicitudes de funcionalidades',

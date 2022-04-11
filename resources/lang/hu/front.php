@@ -297,10 +297,6 @@ return [
             'description'   => 'Ez a Trello board minden igényelt funkciót tartalmaz, amelyet a közösség küldött be, valamint azokat a tervezett funkciókat és fejlesztéseket, amelyek egy napon bekerülnek az alkalmazásba.',
             'title'         => 'Feladatlista',
         ],
-        'blog'              => [
-            'description'   => 'Minden hónap elején nyilvánosságra hozzuk a fejlesztési tervet, ami a Közösségi szavazást követi',
-            'title'         => 'Havi fejlesztési terv',
-        ],
         'description'       => 'A csodálatos Patreon támogatóink havonta egyszer szavaznak, hogy mely funkciókon dolgozzunk, így hiába nincs előre többhavi tervünk, könnyű követni, mire van igény, és min dolgozunk.',
         'featured_requests' => [
             'title' => 'Funkció igénylés',

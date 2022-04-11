@@ -23,12 +23,11 @@ return [
         'title'     => 'Editar etiqueta :name',
     ],
     'fields'        => [
-        'characters'    => 'Personajes',
-        'children'      => 'Entidades anidadas',
-        'name'          => 'Nombre',
-        'tag'           => 'Etiqueta superior',
-        'tags'          => 'Subetiquetas',
-        'type'          => 'Tipo',
+        'children'  => 'Entidades anidadas',
+        'name'      => 'Nombre',
+        'tag'       => 'Etiqueta superior',
+        'tags'      => 'Subetiquetas',
+        'type'      => 'Tipo',
     ],
     'helpers'       => [
         'nested_parent' => 'Mostrando etiquetas de :parent.',

@@ -23,12 +23,11 @@ return [
         'title'     => 'Modifica il Tag :name',
     ],
     'fields'        => [
-        'characters'    => 'Personaggi',
-        'children'      => 'Figli',
-        'name'          => 'Nome',
-        'tag'           => 'Tag',
-        'tags'          => 'Sotto-Tag',
-        'type'          => 'Tipo',
+        'children'  => 'Figli',
+        'name'      => 'Nome',
+        'tag'       => 'Tag',
+        'tags'      => 'Sotto-Tag',
+        'type'      => 'Tipo',
     ],
     'helpers'       => [],
     'hints'         => [

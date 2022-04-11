@@ -309,10 +309,6 @@ return [
             'description'   => 'Ce Trello contient toutes les requêtes de la communauté, ainsi que les améliorations planifiées et nouvelles fonctionnalités qui seront un jour ajoutées à l\'application.',
             'title'         => 'Backlog',
         ],
-        'blog'              => [
-            'description'   => 'Après notre vote communautaire, nous annonçons une roadmap au début de chaque mois.',
-            'title'         => 'Roadmaps mensuels',
-        ],
         'description'       => 'Nos incroyables supporteurs votent une fois par mois sur les nouvelles fonctionnalités à prioriser, ce qui veut dire que nous n\'avons pas de roadmap sur plusieurs mois, mais qu’il est facile de suivre les requêtes qui sont en cours d’implémentation.',
         'featured_requests' => [
             'title' => 'Requêtes de nouvelles fonctionnalités',

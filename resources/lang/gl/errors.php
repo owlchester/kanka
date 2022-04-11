@@ -26,10 +26,6 @@ return [
         ],
         'title' => 'Mantemento',
     ],
-    '503-form'  => [
-        'body'  => 'Non poidemos gardar os teus datos correctamente, o que xeralmente ocorre por unha das seguintes razóns. Por favor, abre Kanka nun :link. Se a aplicación está en mantemento, por favor, garda os teus datos nalgún outro sitio ata que volte estar en funcionamento. Se che saiu unha mensaxe dicindo "Checking your browser"/"Verificando o seu navegador", intenta facer clic en Gardar de novo.',
-        'link'  => 'Nova xanela',
-        'title' => 'Acorreu algo inesperado',
-    ],
+    '503-form'  => [],
     'footer'    => 'Se precisas máis asistencia, contáctanos en hello@kanka.io ou no :discord',
 ];

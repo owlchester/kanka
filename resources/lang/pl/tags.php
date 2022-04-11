@@ -23,12 +23,11 @@ return [
         'title'     => 'Edycja etykiety :name',
     ],
     'fields'        => [
-        'characters'    => 'Postaci',
-        'children'      => 'Pochodne',
-        'name'          => 'Nazwa',
-        'tag'           => 'Etykieta źródłowa',
-        'tags'          => 'Etykiety pochodne',
-        'type'          => 'Rodzaj',
+        'children'  => 'Pochodne',
+        'name'      => 'Nazwa',
+        'tag'       => 'Etykieta źródłowa',
+        'tags'      => 'Etykiety pochodne',
+        'type'      => 'Rodzaj',
     ],
     'helpers'       => [
         'nested_parent' => 'Wyświetlono etykiety pochodzące od :parent.',

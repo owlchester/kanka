@@ -95,9 +95,7 @@ return [
         'boosted'                       => 'Denna funktion är endast tillgänglig för boostade kampanjer.',
         'node_must_not_be_a_descendant' => 'Ogiltig nod (tag, huvudplats): den skulle härledas till sig själv.',
     ],
-    'events'                    => [
-        'hint'  => 'Visad nedanför är en lista över alla Kalendrar som denna entitet har lagts till i genom "Lägg till en händelse i kalendern" gränssnittet.',
-    ],
+    'events'                    => [],
     'export'                    => 'Exportera',
     'fields'                    => [
         'ability'               => 'Förmåga',

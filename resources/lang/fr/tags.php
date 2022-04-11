@@ -23,12 +23,11 @@ return [
         'title'     => 'Modifier l\'étiquette :name',
     ],
     'fields'        => [
-        'characters'    => 'Personnages',
-        'children'      => 'Enfants',
-        'name'          => 'Nom',
-        'tag'           => 'Étiquette Parentale',
-        'tags'          => 'Étiquettes',
-        'type'          => 'Type',
+        'children'  => 'Enfants',
+        'name'      => 'Nom',
+        'tag'       => 'Étiquette Parentale',
+        'tags'      => 'Étiquettes',
+        'type'      => 'Type',
     ],
     'helpers'       => [
         'nested_parent' => 'Affichage des étiquettes de :parent.',

@@ -303,10 +303,6 @@ return [
             'description'   => 'Táto nástenka v Trelle obsahuje všetky komunitou požadované funkcionality, ako aj všetky plánované funkcie a vylepšenia, ktoré sa jedného dňa dostanú do aplikácie.',
             'title'         => 'Backlog',
         ],
-        'blog'              => [
-            'description'   => 'Na začiatku každého mesiaca vydávame plán, ktorý sa odvíja od komunitného hlasovania.',
-            'title'         => 'Mesačné plány',
-        ],
         'description'       => 'Naše komunitné hlasovania ovplyvňujú našu prácu, takže hoci nemáme viacmesačný plán, vieme všetci jednoducho získať prehľad o aktuálnom stave požiadaviek a o tom, na čom sa aktuálne pracuje.',
         'featured_requests' => [
             'title' => 'Vybrané požiadavky',

@@ -22,12 +22,11 @@ return [
         'title'     => 'ערוך את התג :name',
     ],
     'fields'        => [
-        'characters'    => 'דמויות',
-        'children'      => 'צאצאים',
-        'name'          => 'שם',
-        'tag'           => 'תג-אב',
-        'tags'          => 'תת-תגים',
-        'type'          => 'סוג',
+        'children'  => 'צאצאים',
+        'name'      => 'שם',
+        'tag'       => 'תג-אב',
+        'tags'      => 'תת-תגים',
+        'type'      => 'סוג',
     ],
     'helpers'       => [],
     'hints'         => [

@@ -26,10 +26,6 @@ return [
         ],
         'title' => 'Underhåll',
     ],
-    '503-form'  => [
-        'body'  => 'Vi kunde inte spara din data ordentligt, detta orsakas oftast av en av två faktorer. Vänligen öppna Kanka i ett :link. Om sidan är nere för underhåll, vänligen spara din data någon annanstans tills sidan är tillbaka och fungerar igen. Om du möts av ett "Checking your browser" meddelande så kan du försöka klicka på Spara igen.',
-        'link'  => 'nytt fönster',
-        'title' => 'Något oväntat inträffade.',
-    ],
+    '503-form'  => [],
     'footer'    => 'Om du behöver mer hjälp, vänligen kontakta oss, på engelska, på hello@kanka.io eller på :discord',
 ];

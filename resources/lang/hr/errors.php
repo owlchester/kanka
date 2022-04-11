@@ -26,10 +26,6 @@ return [
         ],
         'title' => 'Održavanje',
     ],
-    '503-form'  => [
-        'body'  => 'Nismo uspjeli pravilno spremiti tvoje podatke, što je obično uzrokovano jednim od dva faktora. Molimo da otvoriš Kanku na :link. Ako se aplikacija održava, spremi svoje podatke negdje drugdje dok aplikacija ne bude ponovno podignuta pa pokušaj ponovo. Ako te dočekala poruka "Provjera preglednika", pokušaj ponovo kliknuti Spremi.',
-        'link'  => 'novi prozor',
-        'title' => 'Dogodilo se nešto neočekivano.',
-    ],
+    '503-form'  => [],
     'footer'    => 'Ako ti je potrebna dodatna pomoć, kontaktiraj nas na hello@kanka.io ili na :discord',
 ];

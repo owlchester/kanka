@@ -296,10 +296,6 @@ return [
             'description'   => 'Ova Trello ploča sadrži sve funkcionalnosti koje je zajednica tražila, kao i sve planirane funkcionalnosti i poboljšanja koja će jednog dana biti dio aplikacije.',
             'title'         => 'Za obaviti kasnije',
         ],
-        'blog'              => [
-            'description'   => 'Plan razvoja objavljujemo početkom svakog mjeseca, nakon našeg glasanja zajednice.',
-            'title'         => 'Mjesečni planovi razvoja',
-        ],
         'description'       => 'Naša glasanja zajednice oblikuju naš rad, tako da iako nemamo višemjesečni plan puta, lako je biti u tijeku s onim što je traženo i na čemu se trenutno radi.',
         'featured_requests' => [
             'title' => 'Zahtjevi za značajke',

@@ -293,10 +293,6 @@ return [
             'description'   => 'Este tablón de Trello contiene todas las peticiones de características propuestas por la comunidad, así como las mejoras planeadas que algún día llegarán a la app.',
             'title'         => 'Trabajos pendientes',
         ],
-        'blog'              => [
-            'description'   => 'Lanzamos una hoja de ruta a principios de mes, tras las votaciones comunitarias.',
-            'title'         => 'Hojas de ruta mensuales',
-        ],
         'description'       => 'Los votaciones de nuestra comunidad moldean nuestro trabajo, así que, aunque no tenemos una hoja de ruta a meses vista, es sencillo estar al tanto de lo que se ha pedido y en lo que se está trabajando en cada momento.',
         'featured_requests' => [
             'title' => 'Peticiones destacadas',

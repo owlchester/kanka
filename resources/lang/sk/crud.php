@@ -109,9 +109,7 @@ return [
         'node_must_not_be_a_descendant' => 'Neplatný objekt (kategória, miesto): bol by potomok samého seba.',
         'unavailable_feature'           => 'Funkcionalita nedostupná',
     ],
-    'events'                    => [
-        'hint'  => 'Kalendárne udalosti, ktoré sú prepojené s týmto objektom, sa zobrazujú na tomto mieste.',
-    ],
+    'events'                    => [],
     'export'                    => 'Exportovať',
     'fields'                    => [
         'ability'               => 'Schopnosť',

@@ -109,9 +109,7 @@ return [
         'node_must_not_be_a_descendant' => 'Ungültiges Objekt (Kategorie, Ort): es würde ein Nachkomme von sich selbst sein.',
         'unavailable_feature'           => 'nicht verfügbare Eigenschaft',
     ],
-    'events'                    => [
-        'hint'  => 'Kalenderereignisse, die mit diesem Objekt verknüpft sind, werden hier dargestellt.',
-    ],
+    'events'                    => [],
     'export'                    => 'Exportieren',
     'fields'                    => [
         'ability'               => 'Fähigkeit',

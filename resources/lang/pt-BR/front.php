@@ -300,10 +300,6 @@ return [
             'description'   => 'Este quadro da Trello contém todos os recursos solicitados que foram enviados pela comunidade, bem como todos os recursos planejados e melhorias que um dia chegarão ao aplicativo.',
             'title'         => 'Backlog',
         ],
-        'blog'              => [
-            'description'   => 'Nós lançamos um roadmap no começo de cada mês, seguindo o nosso Voto da Comunidade.',
-            'title'         => 'Roadmaps mensais',
-        ],
         'description'       => 'Os votos da nossa comunidade moldam o nosso trabalho, portanto, embora não tenhamos um roteiro de vários meses, é fácil nos mantermos atualizados com o que foi solicitado e o que está sendo trabalhado no momento.',
         'featured_requests' => [
             'title' => 'Solicitações de funcionalidades',

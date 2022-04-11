@@ -303,10 +303,6 @@ return [
             'description'   => 'Dieses Trello Board enthält alle von der Community angefragten Features, wie auch alle geplanten Features und Verbesserungen die eines Tages in die App schaffen werden.',
             'title'         => 'Backlog',
         ],
-        'blog'              => [
-            'description'   => 'Wir veröffentlichen zu Beginn eines jeden Monats nach unserer Community-Abstimmung einen Verlaufplan.',
-            'title'         => 'monatlicher Verlaufplan',
-        ],
         'description'       => 'Unsere großartigen Patrons stimmen einmal im Monat darüber ab, an welchen Features als nächstes gearbeitet wird. Auch wenn wir keine Roadmap über mehrere Monate haben, ist es einfach nachzuverfolgen, welche Features bereits angefragt wurden und was momentan in Arbeit ist.',
         'featured_requests' => [
             'title' => 'Ausgewählte Anfragen',

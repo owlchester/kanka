@@ -26,10 +26,6 @@ return [
         ],
         'title' => 'Údržba',
     ],
-    '503-form'  => [
-        'body'  => 'Nepodařilo se nám uložit data, což obvykle spočívá v jednom ze dvou důvodů. Otevři, prosím, tento odkaz: :link. Pokud systém podstupuje údržbu, ulož si prozatím data stranou, dokud aplikace znovu nepoběží a pak to zkus znovu. Pokud se ti zobrazí zpráva "Kontrola prohlížeče", zkus znovu klepnout na "Uložit".',
-        'link'  => 'Nové okno',
-        'title' => 'Došlo k neočekávané chybě',
-    ],
+    '503-form'  => [],
     'footer'    => 'Pokud potřebuješ pomoc, napiš nám na hello@kanka.io nebo se nám ozvi na serveru :discord',
 ];

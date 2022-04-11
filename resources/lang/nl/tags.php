@@ -22,12 +22,11 @@ return [
         'title'     => 'Wijzig Tag :name',
     ],
     'fields'        => [
-        'characters'    => 'Personages',
-        'children'      => 'Gerelateerden',
-        'name'          => 'Naam',
-        'tag'           => 'Bovenliggende Tag',
-        'tags'          => 'Subtags',
-        'type'          => 'Type',
+        'children'  => 'Gerelateerden',
+        'name'      => 'Naam',
+        'tag'       => 'Bovenliggende Tag',
+        'tags'      => 'Subtags',
+        'type'      => 'Type',
     ],
     'helpers'       => [],
     'hints'         => [
