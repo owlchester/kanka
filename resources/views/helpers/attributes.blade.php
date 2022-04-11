@@ -24,6 +24,12 @@
 ]) !!}
             </p>
 
+            <p>
+                {!! __('helpers.attributes.range', [
+    'example' => '<code>Level[range:1,10]</code>',
+'reference' => '<code>HP[range:0,{MaxHP}]</code>']) !!}
+            </p>
+
             <hr />
             <p>
                 {!! __('helpers.attributes.random', [
