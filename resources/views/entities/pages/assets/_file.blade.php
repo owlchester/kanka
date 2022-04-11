@@ -11,7 +11,7 @@
 
             @if(auth()->check() && auth()->user()->can('update', $entity->child))
                 <a href="#" data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('entities.entity_files.edit', [$entity, $asset]) }}">
-                    <i class="fa fa-pencil-square-o"></i>
+                    <i class="fa-solid fa-pencil"></i>
                 </a>
             @endif
             @include('cruds.partials.visibility', ['model' => $asset])

@@ -9,7 +9,7 @@
 
             @if(auth()->check() && auth()->user()->can('update', $entity->child))
                 <a href="{{ route('entities.entity_aliases.edit', [$entity, $asset]) }}" data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('entities.entity_aliases.edit', [$entity, $asset]) }}">
-                    <i class="fa fa-pencil-square-o"></i>
+                    <i class="fa-solid fa-pencil"></i>
                 </a>
             @endif
             {!! $asset->visibilityIcon() !!}

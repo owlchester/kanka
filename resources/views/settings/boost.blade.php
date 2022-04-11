@@ -73,7 +73,7 @@
     </div>
 
 
-    @if (Auth::user()->maxBoosts() > 0)
+    @if (auth()->user()->maxBoosts() > 0)
         <div class="box box-solid">
             <div class="box-header with-border">
                 <h3 class="box-title">
@@ -96,13 +96,13 @@
                                     {!! $campaign->name !!}
                                 </a>
 
-                                @if(Auth::user()->availableBoosts() > 0)
+                                @if(auth()->user()->availableBoosts() > 0)
                                     {!! Form::open(['route' => 'campaign_boosts.store']) !!}
                                     <button type="submit" class="btn btn-primary boost" name="action" value="boost" title="{{ __('settings.boost.buttons.tooltips.boost', ['amount' => 1]) }}" data-toggle="tooltip">
                                         <i class="fa fa-rocket"></i> {{ __('settings.boost.buttons.boost') }}
                                     </button>
 
-                                    @if(Auth::user()->availableBoosts() >= 3)
+                                    @if(auth()->user()->availableBoosts() >= 3)
                                     <button type="submit" class="btn bg-maroon" name="action" value="superboost" title="{{ __('settings.boost.buttons.tooltips.boost', ['amount' => 3]) }}" data-toggle="tooltip">
                                         <i class="fa fa-rocket"></i> {{ __('settings.boost.buttons.superboost') }}
                                     </button>
@@ -165,13 +165,13 @@
                                         {!! $userCampaign->name !!}
                                     </a>
 
-                                    @if(Auth::user()->availableBoosts() > 0)
+                                    @if(auth()->user()->availableBoosts() > 0)
                                         {!! Form::open(['route' => 'campaign_boosts.store']) !!}
                                         <button type="submit" class="btn btn-primary boost" name="action" value="boost" title="{{ __('settings.boost.buttons.tooltips.boost', ['amount' => 1]) }}" data-toggle="tooltip">
                                             <i class="fa fa-rocket"></i> {{ __('settings.boost.buttons.boost') }}
                                         </button>
 
-                                        @if(Auth::user()->availableBoosts() >= 3)
+                                        @if(auth()->user()->availableBoosts() >= 3)
                                             <button type="submit" class="btn bg-maroon" name="action" value="superboost" title="{{ __('settings.boost.buttons.tooltips.superboost', ['amount' => 3]) }}" data-toggle="tooltip">
                                                 <i class="fa fa-rocket"></i> {{ __('settings.boost.buttons.superboost') }}
                                             </button>
