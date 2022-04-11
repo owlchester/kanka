@@ -18,6 +18,13 @@
   }
 }
 
+.live-edit.empty-value {
+  width: 24px;
+  height: 24px;
+  display: inline-block;
+  border-bottom: 1px dotted var(--search-border);
+}
+
 /** Mobile support **/
 @media(max-width: 767px) {
   .live-edit-parsed:after {
