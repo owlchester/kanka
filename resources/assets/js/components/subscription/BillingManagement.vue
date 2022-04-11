@@ -16,7 +16,7 @@
                             {{ method.brand.charAt(0).toUpperCase() }}{{ method.brand.slice(1) }}
                         </div>
                         <div class="col-xs-7">
-                            {{ $t('settings.subscription.payment_method.ending' )}}: {{ method.last_four }} Exp: {{ method.exp_month }} / {{ method.exp_year }}
+                            {{ translate('ending') }}: {{ method.last_four }} Exp: {{ method.exp_month }} / {{ method.exp_year }}
                         </div>
                         <div class="col-xs-3 text-right">
                             <span v-on:click.stop="removePaymentMethod( method.id )" title="Remove" class="text-red">
@@ -29,9 +29,9 @@
         </div>
         <div v-show="paymentMethodsLoadStatus == 2 && paymentMethods.length == 0">
             <p class="help-block">
-                {{ $t('settings.subscription.payment_method.add_one' )}}
+                {{ translate('add_one') }}
                 <a href="#" v-on:click.close="toggleShowNewPaymentMethod">
-                    <i class="far fa-credit-card"></i> {{ $t('settings.subscription.payment_method.actions.add_new' )}}
+                    <i class="far fa-credit-card"></i> {{ translate('actions.add_new') }}
                 </a>
             </p>
         </div>
@@ -43,14 +43,14 @@
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" v-on:click="toggleShowNewPaymentMethod"><span aria-hidden="true">&times;</span></button>
                             <h4 class="modal-title" id="clickModalLabel">
-                                <h4 class="box-title">{{ $t('settings.subscription.payment_method.new_card' )}}</h4>
+                                <h4 class="box-title">{{ translate('new_card') }}</h4>
                             </h4>
                         </div>
                         <div class="modal-body">
-                            <label>{{ $t('settings.subscription.payment_method.card_name' )}}</label>
+                            <label>{{ translate('card_name') }}</label>
                             <input id="card-holder-name" type="text" v-model="name" class="form-control mb-2">
 
-                            <label>{{ $t('settings.subscription.payment_method.card' )}}</label>
+                            <label>{{ translate('card') }}</label>
                             <div id="card-element">
 
                             </div>
@@ -58,7 +58,7 @@
                         <div class="box-footer">
                             <div class="pull-right">
                                 <button class="btn btn-primary mt-3" id="add-card-button" v-on:click="submitPaymentMethod()" v-show="savePaymentMethodStatus == 0">
-                                    {{ $t('settings.subscription.payment_method.actions.save' )}}
+                                    {{ translate('actions.save') }}
                                 </button>
                                 <button class="btn btn-primary" v-show="savePaymentMethodStatus != 0" disabled="disabled">
                                     <i class="fa fa-spin fa-spinner"></i>
@@ -67,7 +67,7 @@
 
 
                             <p class="help-block">
-                                {{ $t('settings.subscription.payment_method.helper')}}
+                                {{ translate('helper') }}
                             </p>
                         </div>
                     </div>
@@ -81,6 +81,7 @@
     export default {
         props: [
             'api_token',
+            'trans'
         ],
 
         data(){
@@ -101,6 +102,7 @@
                 showNewPaymentMethod: false,
                 savePaymentMethodStatus: 0,
                 deletingPaymentMethodStatus: 0,
+                json_trans: [],
             }
         },
 
@@ -112,6 +114,8 @@
 
             this.loadIntent();
             this.loadPaymentMethods();
+
+            this.json_trans = JSON.parse(this.trans);
         },
 
         methods: {
@@ -218,6 +222,10 @@
 
             toggleShowNewPaymentMethod() {
                 this.showNewPaymentMethod = !this.showNewPaymentMethod;
+            },
+
+            translate(key) {
+                return this.json_trans[key] ?? 'unknown';
             }
         },
     }

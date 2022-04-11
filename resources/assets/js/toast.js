@@ -11,9 +11,11 @@ function registerToastDismiss() {
 }
 
 /** Show an expiring message at the bottom right of the page **/
-window.showToast = function(message) {
-    let $container = $('<div class="toast-success">');
+window.showToast = function(message, css) {
+    css = css || 'toast-success';
+    let $container = $('<div class="' + css + '">');
     $container.html('<span class="toast-message">' + message + '<i class="fa fa-times" data-toggle="dismiss"></i></span');
+
 
     $('.toast-container').append($container);
     setTimeout(function() {

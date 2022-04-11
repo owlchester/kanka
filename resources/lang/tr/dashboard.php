@@ -1,18 +1,18 @@
 <?php
 
 return [
-    'actions'           => [
+    'actions'       => [
         'follow'    => 'Takip et',
         'unfollow'  => 'Takipten çık',
     ],
-    'campaigns'         => [
+    'campaigns'     => [
         'tabs'  => [
             'modules'   => ':count Modül',
             'roles'     => ':count Rol',
             'users'     => ':count Kullanıcı',
         ],
     ],
-    'dashboards'        => [
+    'dashboards'    => [
         'actions'       => [
             'edit'      => 'Düzenle',
             'new'       => 'Yeni Ana Panel',
@@ -50,24 +50,23 @@ return [
             'visible'   => 'Görünür',
         ],
     ],
-    'helpers'           => [
+    'helpers'       => [
         'follow'    => 'Bir serüveni takip etmek o serüvenin serüven değiştiricide (sol üstte) sizin serüvenlerinizin altında belirmesini sağlar.',
         'setup'     => 'Serüveninizin ana panelini ayarlayın.',
     ],
-    'latest_release'    => 'En Son Yayın',
-    'notifications'     => [
+    'notifications' => [
         'modal' => [
             'confirm'   => 'Anladım',
             'title'     => 'Önemli Bildirim',
         ],
     ],
-    'recent'            => [
+    'recent'        => [
         'title' => ':name En Son Değişiklik',
     ],
-    'settings'          => [
+    'settings'      => [
         'title' => 'Ana Panel Ayarları',
     ],
-    'setup'             => [
+    'setup'         => [
         'actions'   => [
             'add'               => 'Bir ufak eklenti ekle',
             'back_to_dashboard' => 'Ana panele geri dön',
@@ -84,8 +83,8 @@ return [
             'unmentioned'   => 'Bahsedilmemiş varlıklar',
         ],
     ],
-    'title'             => 'Ana panel',
-    'widgets'           => [
+    'title'         => 'Ana panel',
+    'widgets'       => [
         'calendar'      => [
             'actions'           => [
                 'next'      => 'Tarihi sonraki güne değiştir',

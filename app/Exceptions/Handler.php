@@ -6,6 +6,7 @@ use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Http\Exceptions\MaintenanceModeException;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Validation\ValidationException;
 use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -69,7 +70,7 @@ class Handler extends ExceptionHandler
             return redirect()
                 ->back()
                 ->withInput($request->all())
-                ->withErrors(trans('redirects.session_timeout'));
+                ->withErrors(__('redirects.session_timeout'));
         }
 
         elseif ($exception instanceof HttpException && $exception->getStatusCode() == 403 && auth()->guest()) {
@@ -77,6 +78,12 @@ class Handler extends ExceptionHandler
         }
 
         elseif ($exception instanceof MaintenanceModeException) {
+            if (request()->ajax()) {
+                return response()->json([
+                    'title' => __('errors.503.title'),
+                    'message' => __('errors.503.json'),
+                ], 503);
+            }
             return response()->view('errors.maintenance', [
                 'message' => $exception->getMessage(),
                 'retry' => $exception->retryAfter

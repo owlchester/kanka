@@ -22,12 +22,7 @@ return [
         'title'     => 'Królowa Wybuchów',
         'traits'    => 'Chcesz opisać coś innego? Nie ma sprawy, używaj tego dodatkowego modułu tekstowego.',
     ],
-    'item1'         => [
-        'description'   => 'Przykładowy przedmiot.',
-        'history'       => 'Historia przedmiotu.',
-        'name'          => 'Sztylet Mroku (przykład)',
-        'type'          => 'Broń',
-    ],
+    'item1'         => [],
     'kingdom1'      => [
         'description'   => 'To przykładowe miejsce stworzone, by pokazać ci możliwości aplikacji.',
         'history'       => '(przykład) Królestwo Genory założył wódz plemienia Genorian po tym, jak pod koniec V wieku najechał ziemie Hottenów.',

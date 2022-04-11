@@ -8,7 +8,8 @@ return [
         'remove_all'        => 'Usuń wszystko',
     ],
     'errors'        => [
-        'loop'  => 'W obliczeniu tej cechy występuje nie kończąca się pętla!',
+        'loop'      => 'W obliczeniu tej cechy występuje nie kończąca się pętla!',
+        'too_many'  => 'Ten element ma zbyt wiele pól, nie można dodać kolejnych cech. Przed ich dodaniem usuń kilka istniejących.',
     ],
     'fields'        => [
         'attribute'             => 'Cecha',

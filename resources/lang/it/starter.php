@@ -1,6 +1,9 @@
 <?php
 
 return [
+    'campaign'      => [
+        'name'  => 'Mondo di :user',
+    ],
     'character1'    => [
         'fears'     => 'James è spaventato dai forti rumori e dalle esplosioni.',
         'history'   => 'Questo è un personaggio di esempio. nato da Mance Owlchester e Rige Dunton, James è cresciuto nelle campagne di Genory prima di traferirsi alla capitale di Unria per lavorare come scrivano pesso il re.',
@@ -19,12 +22,7 @@ return [
         'title'     => 'Regina delle Esplosioni',
         'traits'    => 'Vuoi tener traccia di qualcos\'altro? Ci abbiamo pensato noi con questa sezione di testo libero!',
     ],
-    'item1'         => [
-        'description'   => 'Esempio di un oggetto.',
-        'history'       => 'Storia dell\'oggetto.',
-        'name'          => 'Pugnale dell\'Oscurità (esempio)',
-        'type'          => 'Arma',
-    ],
+    'item1'         => [],
     'kingdom1'      => [
         'description'   => 'Questo è un luogo di esempio creato per mostrarti cosa sia possibile fare con l\'app.',
         'history'       => '(esempio) Il Regno di Genory fu fondato dai membri della tribù Genorian nel tardo 5° secolo dopo che ebbero invaso le terre degli Hottens.',
@@ -52,7 +50,7 @@ Alcuni consigli per iniziare:
 Ultimo ma non meno importante:
 - Guarda :public per un'ispirazione su come gli altri usano Kanka.
 - Se ha delle domande, dei suggerimento o vuoi solamente chattare unisciti a noi su :discord.
-- Ami l'app e vuoi supportare la sua crescita? Recati sul nostro :patreon.
+- Ami l'app e vuoi supportare la sua crescita? Recati sul nostro :subscriptions.
 TEXT
 ,
         'name'          => 'Nota di Benvenuto',

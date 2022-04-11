@@ -34,6 +34,10 @@ return [
         'success'   => 'Attributs modifiés pour :entity.',
         'title'     => 'Attributs pour :name',
     ],
+    'live'          => [
+        'success'   => 'Attribut :attribute modifié.',
+        'title'     => 'Modification de :attribute',
+    ],
     'placeholders'  => [
         'attribute' => 'Nombre de quêtes, niveau de difficulté, initiative, population',
         'block'     => 'Nom du bloc',
@@ -42,6 +46,7 @@ return [
             'class' => 'Classes FontAwesome ou RPG Awesome: fas fa-users',
             'name'  => 'Nom de l\'icône',
         ],
+        'number'    => 'Nom du chiffre',
         'random'    => [
             'name'  => 'Nom de l\'attribut',
             'value' => '1-100 ou une liste de valeurs séparées par une virgule',
@@ -62,6 +67,7 @@ return [
         'block'     => 'Bloc',
         'checkbox'  => 'Case à cocher',
         'icon'      => 'Icône',
+        'number'    => 'Nombre',
         'random'    => 'Aléatoire',
         'section'   => 'Section',
         'text'      => 'Texte multiligne',

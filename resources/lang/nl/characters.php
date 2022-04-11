@@ -125,7 +125,6 @@ return [
         'tabs'  => [
             'map'           => 'Relatie Kaart',
             'organisations' => 'Organisaties',
-            'personality'   => 'Persoonlijkheid',
         ],
         'title' => 'Personage :name',
     ],

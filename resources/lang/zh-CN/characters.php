@@ -130,7 +130,6 @@ return [
         'tabs'  => [
             'map'           => '关系图',
             'organisations' => '组织',
-            'personality'   => '个性',
         ],
         'title' => '角色：:name',
     ],

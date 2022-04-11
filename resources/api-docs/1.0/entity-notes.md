@@ -91,7 +91,7 @@ To create an entity-note, use the following endpoint.
 | `entity_id` | `integer` (Required) | The entity-note's parent entity |
 | `visibility` | `string` | The visibility: `all` (default), `self`, `member`, `admin` or `self-admin`. |
 | `position` | `int|null` (optional) | Position for ordering pinned entity notes |
-| `settings` | `array` (optional) | `collapsed:1` if the pinned entity note should be collapsed on page load |
+| `settings` | `object` (optional) | `collapsed:1` if the pinned entity note should be collapsed on page load |
 
 ### Results
 

@@ -1,19 +1,19 @@
 <?php
 
 return [
-    'actions'           => [
+    'actions'       => [
         'follow'    => 'Śledź',
         'join'      => 'Dołącz',
         'unfollow'  => 'Przestań śledzić',
     ],
-    'campaigns'         => [
+    'campaigns'     => [
         'tabs'  => [
             'modules'   => ':count modułów',
             'roles'     => ':count ról',
             'users'     => '"count użytkowników',
         ],
     ],
-    'dashboards'        => [
+    'dashboards'    => [
         'actions'       => [
             'edit'      => 'Edytuj',
             'new'       => 'Nowy pulpit',
@@ -55,25 +55,24 @@ return [
             'visible'   => 'Widoczny',
         ],
     ],
-    'helpers'           => [
+    'helpers'       => [
         'follow'    => 'Śledzenie kampanii sprawi, że pojawi się w menu przełączania kampanii (lewy górny róg), pod twoimi własnymi kampaniami.',
         'join'      => 'Kampania jest otwarta na nowych członków. Kliknij, by do niej dołączyć.',
         'setup'     => 'Skonfiguruj pulpit kampanii.',
     ],
-    'latest_release'    => 'Ostatnia wersja',
-    'notifications'     => [
+    'notifications' => [
         'modal' => [
             'confirm'   => 'Rozumiem',
             'title'     => 'Ważne ogłoszenia',
         ],
     ],
-    'recent'            => [
+    'recent'        => [
         'title' => 'Ostatnio zmieniany element :name',
     ],
-    'settings'          => [
+    'settings'      => [
         'title' => 'Ustawienia pulpitu',
     ],
-    'setup'             => [
+    'setup'         => [
         'actions'   => [
             'add'               => 'Dodaj widżet',
             'back_to_dashboard' => 'Powrót do pulpitu',
@@ -94,8 +93,8 @@ return [
             'unmentioned'   => 'Elementy bez wzmianki',
         ],
     ],
-    'title'             => 'Pulpit',
-    'widgets'           => [
+    'title'         => 'Pulpit',
+    'widgets'       => [
         'actions'                   => [
             'advanced-options'  => 'Opcje zaawansowane',
             'delete-confirm'    => 'ten widżet',

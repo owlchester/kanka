@@ -50,21 +50,36 @@ return [
         'title'         => 'Verwendung von Filtern',
     ],
     'link'              => [
+        'advanced'          => [
+            'title' => 'Erweiterte Erwähnungen',
+        ],
         'anchor'            => 'Die erweiterte Erwähnung kann auch den HTML-Anker angeben, auf den der Link zeigen soll, indem :example verwendet wird.',
-        'attributes'        => 'Sie können auf Attribute der Objekte verweisen, indem Sie Folgendes eingeben :code. Dies funktioniert nur für vorhandene Attribute der Objekte.',
+        'attribute'         => [
+            'description'   => 'Auch das Referenzieren von Attributen dieses Objekts ist möglich. Geben Sie einfach :code und drei oder mehr Buchstaben ein, um übereinstimmende Attribute für dieses Objekt anzuzeigen.',
+            'title'         => 'Attribute',
+        ],
         'auto_update'       => 'Links zu ändern Objekten werden automatisch aktualisiert, wenn der Name des Ziels oder die Beschreibung sich geändert hat.',
         'description'       => 'Mit einem "@" kannst du ganz einfach Links zu anderen Einträgen setzen. Ein "#" zeigt dir stattdessen eine Namensliste mit Monaten aus deinen Kalendern an.',
+        'filtering'         => [
+            'description'   => 'Das Filtern nach genau dem Objekt, nach derm Sie suchen, ist einfach.',
+            'exact'         => 'Geben Sie :code ein, um ein Objekt zu finden, das genau diesen Namen hat.',
+            'space'         => 'Geben Sie :code ein, um ein Objekt mit einem Leerzeichen im Namen zu finden.',
+            'title'         => 'Filtern',
+        ],
         'formatting'        => [
             'text'  => 'Die Liste der zulässigen HTML-Tags und -Attribute finden Sie auf unserem :github.',
             'title' => 'Formatierung',
         ],
         'friendly_mentions' => 'Verknüpfen Sie andere Objekte, indem Sie Folgendes eingeben :code und die ersten Zeichen eines Objekts, um danach zu suchen. Dadurch wird :example in den Texteditor eingefügt und beim Anzeigen dieses Objekts als Link zum Objekt verlinkt.',
-        'limitations'       => 'Bitte beachte, dass diese Abkürzungen aufgrund technischer Einschränkungen auf Android-Mobilgeräten nicht funktionieren.',
         'mention_helpers'   => 'Wenn Ihr Objektname ein Leerzeichen enthält, verwenden Sie :example anstelle von Leerzeichen. Wenn Sie nach einem Objekt mit genau diesem Namen suchen möchten, geben Sie Folgendes ein :exact.',
         'mentions'          => 'Verknüpfen Sie andere Objekte, indem Sie Folgendes eingeben :code und die ersten Zeichen eines Objekts, um danach zu suchen. Dies wird eingefügt :example im Texteditor. Um den Namen des angezeigten Objekts anzupassen, können Sie Folgendes eingeben: :example_name. Verwenden Sie zum Festlegen der Unterseite des Objekts :example_page. Verwenden Sie zum Festlegen der Registerkarte des Objekts :example_tab.',
         'mentions_field'    => 'Sie können auch ein Feld aus dem Objekt anstelle seines Namens im Link mit :code anzeigen.',
+        'month'             => [
+            'title' => 'Kalendermonate',
+        ],
         'months'            => 'Geben Sie :code ein, um eine Liste der Monate aus Ihrem Kalendern abzurufen.',
         'options'           => 'Ein paar Optionen sind :options',
+        'overview'          => 'Verknüpfen Sie einfach mit bestehenden Objekten der Kampagne, indem Sie :code und drei oder mehr Buchstaben eingeben.',
         'title'             => 'Andere Objekte verlinken',
     ],
     'map'               => [

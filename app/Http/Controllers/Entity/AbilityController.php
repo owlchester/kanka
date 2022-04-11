@@ -47,8 +47,20 @@ class AbilityController extends Controller
             $this->authorizeEntityForGuest('read', $entity->child);
         }
 
+        $translations = [
+            'all' => __('crud.visibilities.all'),
+            'members' => __('crud.visibilities.members'),
+            'admin-self' => __('crud.visibilities.admin-self'),
+            'admin' => __('crud.visibilities.admin'),
+            'self' => __('crud.visibilities.self'),
+            'update' => __('crud.update'),
+            'remove' => __('crud.remove'),
+        ];
+        $translations = json_encode($translations);
+
         return view('entities.pages.abilities.index', compact(
-            'entity'
+            'entity',
+            'translations'
         ));
     }
 

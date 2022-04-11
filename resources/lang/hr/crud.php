@@ -106,9 +106,7 @@ return [
         'node_must_not_be_a_descendant' => 'Nevažeći čvor (oznaka, roditeljska lokacija): bio bi potomak sam sebi.',
         'unavailable_feature'           => 'Nedostupna funkcionalnost',
     ],
-    'events'                    => [
-        'hint'  => 'Dolje je prikazan popis svih kalendara kojima je ovaj entitet dodan pomoću sučelja "Dodavanje događaja u kalendar".',
-    ],
+    'events'                    => [],
     'export'                    => 'Izvoz',
     'fields'                    => [
         'ability'               => 'Sposobnost',

@@ -17,7 +17,6 @@ return [
         'back'      => 'Tillbaka till val',
         'duplicate' => 'Det finns andra entiteter av denna typ med samma namn.',
         'helper'    => 'Välj en entitetstyp att skapa. Om inga entiteter syns betyder det att du inte har behörighet att skapa någon form av entitet i denna kampanj.',
-        'success'   => 'Ny entitet \':link\' skapad.',
         'title'     => 'Ny Entitet',
     ],
     'dice_roll'             => 'Tärningskast',

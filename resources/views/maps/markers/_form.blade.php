@@ -34,7 +34,7 @@ $sizeOptions = [
         </li>
         <li role="presentation" @if($activeTab == 3) class="active" @endif>
             <a href="#marker-circle" data-nohash="true"  data-toggle="tooltip" class="text-center" title="{{ __('maps/markers.tabs.circle') }}">
-                <i class="fa fa-2x fa-circle-o"></i><br />
+                <i class="fa-regular fa-2x fa-circle"></i><br />
                 {{ __('maps/markers.tabs.circle') }}
             </a>
         </li>

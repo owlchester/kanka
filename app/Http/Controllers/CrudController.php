@@ -451,7 +451,15 @@ class CrudController extends Controller
 
             session()->flash('success_raw', $success);
 
-            $route = route($this->route . '.show', $model->id);
+            $options = [$model];
+            if (request()->has('redirect')) {
+                $redirect = explode('&', request()->get('redirect'));
+                foreach ($redirect as $option) {
+                    $vals = explode('=', $option);
+                    $options[$vals[0]] = $vals[1];
+                }
+            }
+            $route = route($this->route . '.show', $options);
             if ($request->has('submit-new')) {
                 $route = route($this->route . '.create');
             } elseif ($request->has('submit-update')) {

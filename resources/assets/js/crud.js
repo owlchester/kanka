@@ -528,8 +528,9 @@ function registerEntityFormSubmit() {
             // If we have a 503 error status, let's assume it's from cloudflare and help the user
             // properly save their data.
             if (err.status === 503) {
-                $('#entity-form-503-error').show();
+                window.showToast(err.responseJSON.message, 'toast-error');
                 resetEntityFormSubmitAnimation();
+                return;
             }
 
             // If it's 403, the session is gone
@@ -539,26 +540,34 @@ function registerEntityFormSubmit() {
             }
 
             // Loop through the errors to add the class and error message
-            var errors = err.responseJSON.errors;
+            let errors = err.responseJSON.errors;
+            let logs = [];
 
-            var errorKeys = Object.keys(errors);
-            var foundAllErrors = true;
+            let errorKeys = Object.keys(errors);
+            let foundAllErrors = true;
             errorKeys.forEach(function (i) {
-                var errorSelector = $('[name="' + i + '"]');
+                let errorSelector = $('[name="' + i + '"]');
                 if (errorSelector.length > 0) {
                     errorSelector.addClass('input-error').parent().append('<div class="text-danger">' + errors[i][0] + '</div>');
                 } else {
                     foundAllErrors = false;
+                    logs.push(errors[i][0]);
                 }
             });
 
             // If not all error fields could be found, show a generic error message on top of the form.
             if (!foundAllErrors) {
+                let genericError = $('#entity-form-generic-error .error-logs');
+                genericError.html('');
+                logs.forEach(function (i) {
+                    let msg = i + "<br />";
+                    genericError.append(msg);
+                });
                 $('#entity-form-generic-error').show();
             }
 
-            var firstItem = Object.keys(errors)[0];
-            var firstItemDom = document.getElementsByName(firstItem);
+            let firstItem = Object.keys(errors)[0];
+            let firstItemDom = document.getElementsByName(firstItem);
 
             // If we can actually find the first element, switch to it and the correct tab.
             if (firstItemDom[0]) {
@@ -567,7 +576,7 @@ function registerEntityFormSubmit() {
                 // Switch tabs/pane
                 $('.tab-content .active').removeClass('active');
                 $('.nav-tabs li.active').removeClass('active');
-                var firstPane = $('[name="' + firstItem + '"').closest('.tab-pane');
+                let firstPane = $('[name="' + firstItem + '"').closest('.tab-pane');
                 firstPane.addClass('active');
                 $('a[href="#' + firstPane.attr('id') + '"]').closest('li').addClass('active');
             }
@@ -628,8 +637,9 @@ function registerRelationFormSubmit() {
             // If we have a 503 error status, let's assume it's from cloudflare and help the user
             // properly save their data.
             if (err.status === 503) {
-                $('#entity-form-503-error').show();
+                window.showToast(err.responseJSON.message);
                 resetRelationFormSubmitAnimation();
+                return;
             }
 
             // Loop through the errors to add the class and error message

@@ -35,16 +35,6 @@
                         </div>
                     </div>
                 </div>
-
-                <div class="row">
-                    <div class="col-lg-6 offset-lg-3">
-                        <div class="feature-item">
-                            <i class="fas fa-th-large"></i>
-                            <h3><a href="https://blog.kanka.io/tag/roadmap/" target="_blank">{{ __('front.roadmap.blog.title') }}</a></h3>
-                            <p class="text-muted">{{ __('front.roadmap.blog.description') }}</p>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </section>

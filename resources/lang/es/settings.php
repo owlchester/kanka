@@ -48,7 +48,6 @@ return [
             'campaign_gallery'  => 'Una galería para subir imágenes que podrás reutilizar en la campaña.',
             'entity_files'      => 'Sube hasta 10 archivos por entidad.',
             'entity_logs'       => 'Registros completos de los cambios de una entidad.',
-            'first'             => 'Para asegurar un progreso contínuo en Kanka, algunas características de campaña se pueden desbloquear mejorando la campaña. Las mejoras se desbloquean mediante :patreon. Cualquiera que pueda ver una campaña puede mejorarla; así el máster no tiene que pagar la cuenta siempre. Una campaña permanece mejorada mientras un usuario la esté mejorando y continúe apoyando a Kanka en :patreon. Si una campaña deja de estar mejorada, los datos no se pierden: solo permanecen ocultos hasta que la campaña vuelva a ser mejorada.',
             'header'            => 'Imágenes de cabecera para las entidades.',
             'headers'           => [
                 'boosted'       => 'Beneficios de la campaña mejorada',

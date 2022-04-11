@@ -30,15 +30,7 @@ return [
         ],
         'title'             => 'Campanyes públiques',
     ],
-    'community'     => [
-        'description'   => 'Kanka no és solament una app: també és una pròspera comunitat de creadors de mons, màsters, jugadors de rol i entusiastes creatius.',
-        'discord'       => 'El Discord de Kanka és el lloc més actiu per a parlar de l\'app, errors, característiques, demanar ajuda i cooperar.',
-        'facebook'      => 'Manteniu-vos alerta de les nostres actualitzacions a la nostra pàgina de Facebook.',
-        'instagram'     => 'Voleu veure fotos de com treballem a Kanka o juguem? Instagram és el lloc perfecte!',
-        'join'          => 'Uniu-vos!',
-        'reddit'        => 'El subreddit de Kanka és un lloc més tranquil on es pot parlar de les coses durant un període de temps més llarg.',
-        'title'         => 'Comunitat',
-    ],
+    'community'     => [],
     'contact'       => [
         'description'   => 'Necessiteu ajuda, teniu un suggeriment o voleu compartir el vostre amor per Kanka? El nostre equip us respondrà en qualsevol moment!',
         'email'         => 'Envieu qualsevol consulta a',
@@ -51,11 +43,9 @@ return [
         'message'   => 'Aquest web utilitza cookies per a assegurar-se que obteniu la millor experiència.',
     ],
     'faq'           => [
-        'description'   => 'Hem reunit les preguntes més freqüents i les hem respost el més clarament possible.',
-        'helpers'       => [
+        'helpers'   => [
             'more'  => 'No ha quedat tot clar?',
         ],
-        'title'         => 'Preguntes freqüents',
     ],
     'features'      => [
         'abilities'         => [
@@ -242,7 +232,6 @@ return [
         'contact'       => 'Contacte',
         'contact_us'    => 'Contacteu-nos',
         'dashboard'     => 'Taulell',
-        'faq'           => 'Preguntes freqüents',
         'features'      => 'Característiques',
         'help'          => 'Ajuda',
         'home'          => 'Inici',
@@ -270,9 +259,7 @@ return [
     ],
     'pricing'       => [
         'actions'       => [
-            'more'      => 'Saber més sobre les funcions que es desbloquegen fent suport a Kanka',
             'subscribe' => 'Subscriu-me',
-            'support'   => 'Fer suport',
         ],
         'benefits'      => [
             'big_maps'      => 'Mapes grans (:size)',
@@ -296,18 +283,11 @@ return [
         'description'   => 'Data efectiva: :date',
         'title'         => 'Política de privacitat',
     ],
-    'release'       => [
-        'description'   => 'Kanka està creixent i millorant constantment, i volem que el món conegui totes les coses increïbles que estem afegint a l\'aplicació.',
-        'title'         => 'Llançaments',
-    ],
+    'release'       => [],
     'roadmap'       => [
         'backlog'           => [
             'description'   => 'Aquest tauler de Trello conté totes les peticions de característiques proposades per la comunitat, així com les millores planejades que algun dia arribaran a l\'app.',
             'title'         => 'Feines pendents',
-        ],
-        'blog'              => [
-            'description'   => 'Llançem un full de ruta a principis de cada mes, seguit de les votacions comunitàries.',
-            'title'         => 'Fulls de ruta mensuals',
         ],
         'description'       => 'Les votacions de la nostra comunitat modelen la nostra feina, així que, malgrat no tenir un full de ruta a mesos vista, és fàcil estar al corrent del que s\'ha demanat i en el que s\'està treballant a cada moment.',
         'featured_requests' => [

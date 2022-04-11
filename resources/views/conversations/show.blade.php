@@ -32,6 +32,7 @@
                             :targets="{{ $model->jsonParticipants() }}"
                             :disabled="{{ ($model->is_closed ? 'true' : 'false') }}"
                             send="{{ route('conversations.conversation_messages.store', $model) }}"
+                            trans="{{ $translations }}"
                     >
                     </conversation>
                 </div>

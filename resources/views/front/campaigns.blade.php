@@ -52,7 +52,7 @@
                 <h1>{{ __('front.campaigns.public.title') }}</h1>
                 <p class="text-muted">{{ __('front.campaigns.public.description') }}</p>
 
-                {!! Form::open(['route' => 'front.public_campaigns', 'method' => 'GET']) !!}
+                {!! Form::open(['route' => ['front.public_campaigns', '#public-campaigns'], 'method' => 'GET']) !!}
                 <div class="row mb-3">
                     <div class="col-sm-2 mb-1">
                         {!! Form::select('language', array_merge(['' => __('campaigns.fields.locale')], $languages->getSupportedLanguagesList()), request()->get('language'), ['class' => 'form-control']) !!}

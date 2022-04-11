@@ -59,8 +59,6 @@ TEXT
         'excerpt'                           => 'Zusammenfassung',
         'followers'                         => 'Abonnenten',
         'header_image'                      => 'Header Bild',
-        'hide_history'                      => 'Objektverlauf ausblenden',
-        'hide_members'                      => 'Kampagnenmitglieder ausblenden',
         'image'                             => 'Bild',
         'locale'                            => 'Sprache',
         'name'                              => 'Name',
@@ -74,8 +72,6 @@ TEXT
         'superboosted'                      => 'supergeboosted von',
         'system'                            => 'System',
         'theme'                             => 'Thema',
-        'tooltip_family'                    => 'Deaktivieren Sie Familiennamen in den QuickInfos',
-        'tooltip_image'                     => 'Objektbild in QuickInfos anzeige',
         'visibility'                        => 'Sichtbarkeit',
     ],
     'following'                         => 'Abonniert',
@@ -236,10 +232,7 @@ TEXT
         ],
         'title'     => 'offene Kampagne',
     ],
-    'options'                           => [
-        'entity_personality_visibility' => 'Stellen Sie neue Charaktere automatisch so ein, dass ihre Persönlichkeit standardmäßig privat ist.',
-        'entity_visibility'             => 'Legen Sie neu erstellte Objekte standardmäßig automatisch auf privat fest.',
-    ],
+    'options'                           => [],
     'panels'                            => [
         'boosted'   => 'Geboosted',
         'dashboard' => 'Dashboard',
@@ -463,7 +456,6 @@ TEXT
             'nested'            => 'Standardlistenlayout',
             'post_collapsed'    => 'Neuer Post-Standardwert für eingeklappteWerte',
         ],
-        'helper'            => 'Verwenden Sie diese Einstellungen, um die Art und Weise zu ändern, in der einige Elemente in der Kampagne angezeigt werden.',
         'helpers'           => [
             'connections'       => 'Wenn Sie auf die Unterseite „Verbindungen“ eines Objekts klicken, wählen Sie die angezeigte Standardwerte aus.',
             'other'             => 'Andere visuelle Optionen für die Kampagne.',

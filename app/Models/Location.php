@@ -428,4 +428,13 @@ class Location extends MiscModel
     {
         return (int) config('entities.ids.location');
     }
+
+    /**
+     * If the profile is shown
+     * @return bool
+     */
+    public function showProfileInfo(): bool
+    {
+        return  !empty($this->type) || !$this->maps->isEmpty();
+    }
 }

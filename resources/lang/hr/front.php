@@ -30,15 +30,7 @@ return [
         ],
         'title'             => 'Javne kampanje',
     ],
-    'community'     => [
-        'description'   => 'Kanka nije samo aplikacija, već je i uspješna zajednica graditelja svjetova, voditelja igri, igrača, te kreativnih entuzijasta.',
-        'discord'       => 'Kanka Discord je najaktivnije mjesto za razgovor o aplikaciji, programskim pogreškama, funkcionalnostima, traženju pomoći i pomaganju.',
-        'facebook'      => 'Budi u toku sa svim našim nadogradnjama na našoj Facebook stranici.',
-        'instagram'     => 'Želiš li vidjeti više slika nas kako radimo na Kanki ili se igramo? Instagram je mjesto na kojem nas treba pratiti!',
-        'join'          => 'Pridruži nam se!',
-        'reddit'        => 'Kanka subreddit je mirnije mjesto gdje se može razgovarati o stvarima kroz duže vremensko razdoblje.',
-        'title'         => 'Zajednica',
-    ],
+    'community'     => [],
     'contact'       => [
         'description'   => 'Trebaš pomoć, imaš prijedlog ili samo želiš podijeliti svoju ljubav prema Kanki? Naš tim će odgovoriti bez obzira na prigodu!',
         'email'         => 'Sve upite pošalji na naš email:',
@@ -51,16 +43,9 @@ return [
         'message'   => 'Ova web stranica koristi kolačiće kako bi osigurala najbolje iskustvo na našoj web stranici.',
     ],
     'faq'           => [
-        'description'   => 'Pokrili smo najčešće postavljana pitanja i odgovorili na njih što je jasnije moguće.',
-        'helpers'       => [
+        'helpers'   => [
             'more'  => 'Nisi pronašao/la što si tražio/la?',
         ],
-        'kb'            => [
-            'button'    => 'Pronađi odgovore u našoj bazi znanja',
-            'text'      => 'Imaš pitanje o tome kako koristiti funkcionalnosti Kanke? Najbolje je posjetiti našu stalno rastuću baza znanja.',
-            'title'     => 'Trebaš pomoć u korištenju Kanke?',
-        ],
-        'title'         => 'Često postavljana pitanja',
     ],
     'features'      => [
         'abilities'         => [
@@ -253,7 +238,6 @@ return [
         'contact'       => 'Kontakt',
         'contact_us'    => 'Kontaktiraj nas',
         'dashboard'     => 'Naslovna ploča',
-        'faq'           => 'Često postavljana pitanja',
         'features'      => 'Funkcionalnosti',
         'help'          => 'Pomoć',
         'home'          => 'Početna stranica',
@@ -282,9 +266,7 @@ return [
     ],
     'pricing'       => [
         'actions'       => [
-            'more'      => 'Saznaj više o svim funkcionalnostima otključanih podržavanjem Kanke',
             'subscribe' => 'Pretplati se',
-            'support'   => 'Podrška',
         ],
         'benefits'      => [
             'big_maps'      => 'Velika veličina mape (:size)',
@@ -308,18 +290,11 @@ return [
         'description'   => 'Datum stupanja na snagu: :date',
         'title'         => 'Pravila privatnosti',
     ],
-    'release'       => [
-        'description'   => 'Kanka se neprestano povećava i poboljšava, te želimo da svijet zna o svim fenomenalnim stvarima koje dodajemo u aplikaciju.',
-        'title'         => 'Izdanja',
-    ],
+    'release'       => [],
     'roadmap'       => [
         'backlog'           => [
             'description'   => 'Ova Trello ploča sadrži sve funkcionalnosti koje je zajednica tražila, kao i sve planirane funkcionalnosti i poboljšanja koja će jednog dana biti dio aplikacije.',
             'title'         => 'Za obaviti kasnije',
-        ],
-        'blog'              => [
-            'description'   => 'Plan razvoja objavljujemo početkom svakog mjeseca, nakon našeg glasanja zajednice.',
-            'title'         => 'Mjesečni planovi razvoja',
         ],
         'description'       => 'Naša glasanja zajednice oblikuju naš rad, tako da iako nemamo višemjesečni plan puta, lako je biti u tijeku s onim što je traženo i na čemu se trenutno radi.',
         'featured_requests' => [

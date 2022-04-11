@@ -245,7 +245,7 @@ class SubscriptionService
 
         // Anything that can fail, send to the queue
         $period = !empty($this->period) ? $this->period : (in_array($planID, $this->yearlyPlans()) ? 'yearly' : 'monthly');
-        DiscordRoleJob::dispatch($this->user);
+        DiscordRoleJob::dispatch($this->user)->delay(now()->addSeconds($new ? 0 : 30));
 
         // If Stripe is confirming that a sub is renewed, we don't want to do anything more
         if ($this->renewal()) {
@@ -410,6 +410,14 @@ class SubscriptionService
         $this->cancelled = true;
 
         return true;
+    }
+
+    /**
+     * @return bool
+     */
+    public function cancelled(): bool
+    {
+        return $this->cancelled;
     }
 
     /**

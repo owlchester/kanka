@@ -1,0 +1,26 @@
+.live-edit-parsed {
+  cursor: pointer;
+
+  &:after {
+    -webkit-font-smoothing: antialiased;
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    font-style: normal;
+    font-variant: normal;
+    line-height: 1;
+    text-rendering: auto;
+  }
+
+  &:hover {
+    &:after {
+      content: " \f303";
+    }
+  }
+}
+
+/** Mobile support **/
+@media(max-width: 767px) {
+  .live-edit-parsed:after {
+    content: " \f303";
+  }
+}

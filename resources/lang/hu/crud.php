@@ -106,9 +106,7 @@ return [
         'node_must_not_be_a_descendant' => 'Érvénytelen csomópont (címke, előd helyszín): saját maga leszármazottja lehet.',
         'unavailable_feature'           => 'Nem elérhető lehetőség.',
     ],
-    'events'                    => [
-        'hint'  => 'Ez egy lista minden naptárról, amihez ezt az entitást hozzáadták az "Esemény hozzáadása a naptárhoz" felületen.',
-    ],
+    'events'                    => [],
     'export'                    => 'Export',
     'fields'                    => [
         'ability'               => 'Képesség',

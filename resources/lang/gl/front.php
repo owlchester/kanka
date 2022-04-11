@@ -30,15 +30,7 @@ return [
         ],
         'title'             => 'Campañas públicas',
     ],
-    'community'     => [
-        'description'   => 'Kanka non só é unha aplicación, tamén é unha próspera comunidade de persoas creadoras, directoras de xogo, xogadoras de rol, e entusiastas creativas.',
-        'discord'       => 'O Discord de Kanka é o lugar máis activo para falar sobre a aplicación, erros, funcionalidades, pedir axuda, e axudar.',
-        'facebook'      => 'Mantente ao tanto de todas as actualizacións na nosa páxina de Facebook.',
-        'instagram'     => 'Queres ver máis fotos de nós traballando en Kanka ou xogando? Séguenos en Instagram!',
-        'join'          => 'Únete a nós!',
-        'reddit'        => 'O subreddit de Kanka é un lugar máis tranquilo onde se poden discutir as cousas durante un tempo máis longo.',
-        'title'         => 'Comunidade',
-    ],
+    'community'     => [],
     'contact'       => [
         'description'   => 'Precisas axuda, tes unha suxestión, ou queres compartir o teu amor por Kanka? O noso equipo responderá a calquera cousa!',
         'email'         => 'Envía calquera consulta a',
@@ -281,9 +273,7 @@ return [
     ],
     'pricing'       => [
         'actions'       => [
-            'more'      => 'Lista completa de funcionalidades desbloqueadas apoiando a Kanka',
             'subscribe' => 'Subscríbete',
-            'support'   => 'Apoiar',
         ],
         'benefits'      => [
             'big_maps'      => 'Tamaño de mapa grande (:size)',
@@ -307,18 +297,11 @@ return [
         'description'   => 'Data efectiva: :date',
         'title'         => 'Política de privacidade',
     ],
-    'release'       => [
-        'description'   => 'Kanka medra e mellora constantemente, e queremos que o mundo coñeza todas as cousas marabillosas que estamos engadindo á aplicación.',
-        'title'         => 'Lanzamentos',
-    ],
+    'release'       => [],
     'roadmap'       => [
         'backlog'           => [
             'description'   => 'Este taboleiro de Trello contén todas as funcionalidades solicitadas pola comunidade, así como todas as planexadas que chegarán á aplicación algún día.',
             'title'         => 'Traballos pendentes',
-        ],
-        'blog'              => [
-            'description'   => 'Publicamos unha folla de ruta ao comezo de cada mes, seguindo a votación da comunidade.',
-            'title'         => 'Follas de ruta mensuais',
         ],
         'description'       => 'As votacións da comunidade dan forma ao noso traballo, así que, aínda que non temos unha folla de ruta de varios meses, é fácil estar ao tanto do que foi solicitado e de no que se está traballando actualmente.',
         'featured_requests' => [

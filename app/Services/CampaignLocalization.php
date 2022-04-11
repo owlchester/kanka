@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\Campaign;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class CampaignLocalization
 {
@@ -45,7 +46,8 @@ class CampaignLocalization
         // Check to make sure the campaign is an id (we don't want to check the db at this point)
         if (!empty($campaignId) && !is_numeric($campaignId)) {
             if (request()->segment(2) == 'campaign') {
-                abort(404);
+                return redirect()->to(app()->getLocale() . '/404');
+                throw new ModelNotFoundException();
             }
         }
 
@@ -74,7 +76,7 @@ class CampaignLocalization
             $this->campaign = Campaign::find((int) $this->campaignId);
             // If we're looking for a campaign that doesn't exist, just 404
             if (empty($this->campaign) && $canAbort) {
-                abort(404);
+                throw new ModelNotFoundException();
             }
         }
 

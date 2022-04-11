@@ -23,12 +23,11 @@ return [
         'title'     => 'Bearbeite Kategorie :name',
     ],
     'fields'        => [
-        'characters'    => 'Charaktere',
-        'children'      => 'Kinder',
-        'name'          => 'Name',
-        'tag'           => 'Übergeordnete Kategorie',
-        'tags'          => 'Unterkategorien',
-        'type'          => 'Typ',
+        'children'  => 'Kinder',
+        'name'      => 'Name',
+        'tag'       => 'Übergeordnete Kategorie',
+        'tags'      => 'Unterkategorien',
+        'type'      => 'Typ',
     ],
     'helpers'       => [
         'nested_parent' => 'Anzeigen der Tags von :parent.',

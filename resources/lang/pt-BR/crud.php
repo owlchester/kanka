@@ -108,9 +108,7 @@ return [
         'node_must_not_be_a_descendant' => 'Nó inválido (tag, localização principal): seria um descendente de si mesmo.',
         'unavailable_feature'           => 'Recurso indisponível',
     ],
-    'events'                    => [
-        'hint'  => 'Abaixo é mostrada uma lista de todos os calendários em que esta entidade foi adicionada usando a interface "Adicionar um evento a um calendário".',
-    ],
+    'events'                    => [],
     'export'                    => 'Exportar',
     'fields'                    => [
         'ability'               => 'Habilidade',

@@ -26,10 +26,6 @@ return [
         ],
         'title' => 'Onderhoud',
     ],
-    '503-form'  => [
-        'body'  => 'We konden je gegevens niet goed opslaan, wat meestal wordt veroorzaakt door een van twee factoren. Open Kanka in een :link. Als de app in onderhoud is, bewaar je gegevens dan ergens anders totdat de app weer actief is en probeer het opnieuw. Als je werd begroet door een "Controleer uw browser" bericht, kan je opnieuw op Opslaan klikken.',
-        'link'  => 'nieuw venster',
-        'title' => 'Er is iets onverwachts gebeurd.',
-    ],
+    '503-form'  => [],
     'footer'    => 'Als je meer hulp nodig hebt, neem dan contact met ons op via hello@kanka.io of via :discord',
 ];

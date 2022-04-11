@@ -17,7 +17,7 @@
                         class="form-control"
                         @keydown="typing"
                         v-model="body"
-                        :placeholder=" disabled? $t('conversations.show.is_closed') : ''"
+                        :placeholder=" disabled ? translate('is_closed') : ''"
                         :disabled="(inputFormDisabled || disabled)"
                 />
             </div>
@@ -39,7 +39,8 @@
             targets: undefined,
             disabled: {
                 type: Boolean
-            }
+            },
+            trans: undefined
         },
 
         data() {
@@ -111,6 +112,10 @@
                 this.body = null;
                 this.message_id = null;
                 Event.$emit('sent_message');
+            },
+
+            translate(key) {
+                return this.json_trans[key] ?? 'unknown';
             }
         },
 

@@ -55,8 +55,6 @@ TEXT
         'excerpt'                   => 'Isječak',
         'followers'                 => 'Pratitelji',
         'header_image'              => 'Slika zaglavlja',
-        'hide_history'              => 'Sakrij povijest entiteta',
-        'hide_members'              => 'Sakrij članove kampanje',
         'image'                     => 'Slika',
         'locale'                    => 'Jezik',
         'name'                      => 'Naziv',
@@ -67,8 +65,6 @@ TEXT
         'superboosted'              => 'Super pojačali',
         'system'                    => 'Sustav',
         'theme'                     => 'Tema',
-        'tooltip_family'            => 'Onemogući nazive obitelji u kratkom opisu',
-        'tooltip_image'             => 'Prikaži sliku entiteta u kratkom opisu',
         'visibility'                => 'Vidljivost',
     ],
     'following'                         => 'Praćenje',
@@ -368,9 +364,7 @@ TEXT
             ],
         ],
     ],
-    'ui'                                => [
-        'helper'    => 'Pomoću ovih postavki promijeni način na koji će se neki elementi prikazivati ​​u kampanji.',
-    ],
+    'ui'                                => [],
     'visibilities'                      => [
         'private'   => 'Privatna',
         'public'    => 'Javna',

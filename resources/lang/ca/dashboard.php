@@ -1,19 +1,19 @@
 <?php
 
 return [
-    'actions'           => [
+    'actions'       => [
         'follow'    => 'Segueix',
         'join'      => 'Uneix-me',
         'unfollow'  => 'Deixa de seguir',
     ],
-    'campaigns'         => [
+    'campaigns'     => [
         'tabs'  => [
             'modules'   => ':count mòduls',
             'roles'     => ':count rols',
             'users'     => ':count usuaris',
         ],
     ],
-    'dashboards'        => [
+    'dashboards'    => [
         'actions'       => [
             'edit'      => 'Edita',
             'new'       => 'Nou taulell',
@@ -55,25 +55,24 @@ return [
             'visible'   => 'Visible',
         ],
     ],
-    'helpers'           => [
+    'helpers'       => [
         'follow'    => 'Les campanyes que seguiu apareixen al menú de canvi de campanya (adalt a l\'esquerra) sota les vostres campanyes.',
         'join'      => 'Aquesta campanya es troba oberta a nous membres. Cliqueu a "Uneix-me" per a sol·licitar unir-vos.',
         'setup'     => 'Configura el taulell de la campanya',
     ],
-    'latest_release'    => 'Últim llançament',
-    'notifications'     => [
+    'notifications' => [
         'modal' => [
             'confirm'   => 'D\'acord',
             'title'     => 'Notificació important',
         ],
     ],
-    'recent'            => [
+    'recent'        => [
         'title' => ':name que s\'han modificat recentement',
     ],
-    'settings'          => [
+    'settings'      => [
         'title' => 'Configuració del taulell',
     ],
-    'setup'             => [
+    'setup'         => [
         'actions'   => [
             'add'               => 'Afegeix un widget',
             'back_to_dashboard' => 'Torna al taulell',
@@ -94,9 +93,9 @@ return [
             'unmentioned'   => 'Entitat no mencionada',
         ],
     ],
-    'title'             => 'Taulell de',
-    'welcome'           => [],
-    'widgets'           => [
+    'title'         => 'Taulell de',
+    'welcome'       => [],
+    'widgets'       => [
         'actions'                   => [
             'advanced-options'  => 'Opcions avançades',
             'delete-confirm'    => 'aquest widget',

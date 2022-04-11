@@ -30,15 +30,7 @@ return [
         ],
         'title'             => 'Kampanie publliczne',
     ],
-    'community'     => [
-        'description'   => 'Kanka to nie tylko aplikacja - to również żywa społeczność światotwórców, mistrzów gry, graczy i entuzjastów.',
-        'discord'       => 'Kanka Discord to najlepsze miejsce, by porozmawiać o aplikacji, jej błędach i możliwościach, poprosić i pomoc i samemu ją zaoferować.',
-        'facebook'      => 'Bądź na bieżąco z aktualizacjami naszego profilu na Facebooku.',
-        'instagram'     => 'Chcesz zobaczyć więcej zdjęć z tworzenia Kanki albo naszych sesji? Śledź nas na Instagramie!',
-        'join'          => 'Dołącz do nas!',
-        'reddit'        => 'Subreddit Kanki to spokojniejsze miejsce, gdzie dyskusje mogą potrwać dłużej.',
-        'title'         => 'Społeczność',
-    ],
+    'community'     => [],
     'contact'       => [
         'description'   => 'Potrzebujesz pomocy, masz sugestię albo chcesz podzielić się podziwem dla Kanki? Nasz zespół odpowie niezależnie od tematu!',
         'email'         => 'Ślij zapytania na adres',
@@ -51,16 +43,9 @@ return [
         'message'   => 'By zapewnić jak najlepsze doświadczenie, ta strona używa cookies',
     ],
     'faq'           => [
-        'description'   => 'Zebraliśmy najczęściej zadawane pytania i odpowiedzieliśmy jak najprecyzyjniej.',
-        'helpers'       => [
+        'helpers'   => [
             'more'  => 'Nie ma tu tego, czego szukasz?',
         ],
-        'kb'            => [
-            'button'    => 'Poszukaj odpowiedzi w bazie wiedzy',
-            'text'      => 'Masz pytania dotyczące działania Kanki? Zajrzyj do naszej rosnącej bazy wiedzy.',
-            'title'     => 'Potrzebujesz pomocy?',
-        ],
-        'title'         => 'FAQ',
     ],
     'features'      => [
         'abilities'         => [
@@ -258,7 +243,6 @@ return [
         'contact_us'    => 'Napisz do nas',
         'dashboard'     => 'Pulpit',
         'documentation' => 'Dokumentacja',
-        'faq'           => 'FAQ i pomoc',
         'features'      => 'Funkcje',
         'help'          => 'Pomoc',
         'home'          => 'Ekran główny',
@@ -289,9 +273,7 @@ return [
     ],
     'pricing'       => [
         'actions'       => [
-            'more'      => 'Pełna lista funkcji dostępnych dla wspierających Kankę',
             'subscribe' => 'Zasubskrybuj',
-            'support'   => 'Wsparcie',
         ],
         'benefits'      => [
             'big_maps'      => 'Zwiększona mapa (:size)',
@@ -315,18 +297,11 @@ return [
         'description'   => 'Efektywna data :date',
         'title'         => 'Polityka prywatności',
     ],
-    'release'       => [
-        'description'   => 'Kanka wciąż się rozwija i rośnie, a my chcemy poinformować cały świat o wszystkich świetnych rozwiązaniach, które planujemy.',
-        'title'         => 'Aktualizacje',
-    ],
+    'release'       => [],
     'roadmap'       => [
         'backlog'           => [
             'description'   => 'Na tej tablicy Trello znajdują się funkcje, o dodanie których prosi społeczność oraz lista planowanych usprawnień i nowości, które pewnego dnia dodamy do Kanki.',
             'title'         => 'Plany rozwoju',
-        ],
-        'blog'              => [
-            'description'   => 'Na początku każdego miesiąca, po głosowaniach społeczności, publikujemy plany aktualizacji.',
-            'title'         => 'Plany na ten miesiąc',
         ],
         'description'       => 'O kierunku rozwoju decyduje głosowanie społeczności, więc chociaż nie przedstawiamy planu na wiele miesięcy, łatwo jest śledzić zamówienia na nowe funkcje i sprawdzać nad czym właśnie pracujemy.',
         'featured_requests' => [

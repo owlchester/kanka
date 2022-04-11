@@ -414,6 +414,7 @@ TEXT
             'recovery'          => 'Recovery',
             'roles'             => 'Roles',
             'settings'          => 'Modules',
+            'sidebar'           => 'Sidebar setup',
             'styles'            => 'Theming',
         ],
         'title'     => 'Campaign :name',

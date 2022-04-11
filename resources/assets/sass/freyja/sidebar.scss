@@ -34,7 +34,7 @@
     color: var(--sidebar-link);
   }
 
-  .sidebar {
+  .sidebar-menu {
     background-color: unset;
     margin-bottom: 60px;
 
@@ -42,7 +42,7 @@
       color: #474747;
       font-size: 16px;
 
-      .fas, .fa, .far, .ra {
+      .fas, .fa, .far, .fab, .ra, .fa-solid, .fa-regular, .fa-light, .fa-thin, .fa-duotone {
         width: 20px;
       }
       &:hover {
@@ -57,19 +57,20 @@
       }
     }
     li {
-      .fa, .ra, .fas, .far {
+      .fa, .ra, .fas, .far, .fab, .fa-solid, .fa-regular, .fa-light, .fa-thin, .fa-duotone {
         font-size: 14px;
         width: 22px;
       }
-      padding: 6px 12px;
-      height: 38px;
+      padding: 0 12px;
+      min-height: 38px;
 
       &:hover {
         a {
           background: unset;
         }
       }
-      a, .sidebar-text {
+      a, span {
+        display: block;
         font-size: 11px;
         line-height: 22px;
         color: var(--sidebar-link);
@@ -84,17 +85,22 @@
           border-radius: 8px;
         }
       }
+
+      ul.sidebar-submenu {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        li {
+          padding-left: 12px;
+          margin: 1px 0;
+        }
+      }
     }
-    li.active a, li.active.sidebar-section {
+    li.active > a, li.active.sidebar-section {
         border: none;
         background: rgba(0, 0, 0, 0.24);
         box-shadow: inset 1px 2px 6px rgba(0, 0, 0, 0.16);
         border-radius: 8px;
-    }
-
-    li.subsection {
-      padding-left: 24px;
-      margin: 1px 0;
     }
   }
 }
@@ -103,14 +109,14 @@ background-image: url(https://images.kanka.io/app/L5nSYCLgwtxR3wlUGk16fMZ0zAU=/2
   z-index: 820;
 }
 .skin-black .sidebar-menu {
-  .ra, .fas, .fab, .far {
+  .fa, .fas, .fab, .far, .ra, .fa-solid, .fa-regular, .fa-light, .fa-thin, .fa-duotone {
     display: inline-block;
     width: 20px;
   }
   li > .treeview-menu {
     background-color: unset;
   }
-  li > a {
+  li > a, li > span {
       padding: 8px 5px 8px 15px;
   }
 }
@@ -317,9 +323,11 @@ padding-top: 96px;
 .skin-black .main-sidebar, .skin-black .left-side {
   background-color: var(--sidebar-background);
 }
-.main-sidebar .sidebar li .fa, .main-sidebar .sidebar li .ra, .main-sidebar .sidebar li .fas, .main-sidebar .sidebar li .far, .main-sidebar .sidebar li .ra {
-  font-size: 14px;
-  vertical-align: text-bottom;
+.main-sidebar .sidebar li {
+  .fa, .fas, .fab, .far, .ra, .fa-solid, .fa-regular, .fa-light, .fa-thin, .fa-duotone {
+    font-size: 14px;
+    vertical-align: text-bottom;
+  }
 }
 
 .main-footer {

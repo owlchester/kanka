@@ -30,7 +30,6 @@ return [
         'title'         => 'Hogyan használjuk a szűrőket',
     ],
     'link'              => [
-        'attributes'        => 'Hivatkozhatsz tulajdonságok értékére az alábbi begépelésével :code. Ez csak már az entitáson létező Tulajdonságokon működik.',
         'auto_update'       => 'A más entitásokra mutató hivatkozásokat automatikusan frissítjük, ha azok neve vagy leírása megváltozik.',
         'description'       => 'Könnyedén hivatkozhatsz más entitásokat a \'@\' begépelésével. A \'#\' begépelésével a naptáraid hónapjainak listája ugrik fel.',
         'formatting'        => [
@@ -38,7 +37,6 @@ return [
             'title' => 'Formázás',
         ],
         'friendly_mentions' => 'Egy entitásra való hivatkozás létrehozásához gépeld be a :code karaktert, majd a cél entitás nevének első pár betűjét, hogy megjelenjen a szóba jöhető entitások listája. A megfelelőt kiválasztva beszúrásra kerül egy :example  mintájú bejegyzés a szövegszerkesztőbe, ami majd egy hivatkozásként jelenik meg az említett entitásra.',
-        'limitations'       => 'Kérlek vedd figyelembe, hogy technikai limitációk miatt ezek a gyorsparancsok létrehozása nem működik Androidos mobil eszközökön.',
         'mentions'          => 'Egy entitásra való hivatkozás létrehozásához gépeld be a :code karaktert, majd a cél entitás nevének első pár betűjét, hogy megjelenjen a szóba jöhető entitások listája. A megfelelőt kiválasztva egy ilyen formájú bejegyzés kerül beszúrásra a szövegszerkesztőbe :example. A megjelenített hivatkozás nevének beállításához, az alábbi formátumot használd: :example_name. Hogy egy entitás adott rész-oldalára szeretnél hivatkozni, ezt a formátumot használd: :example_page. Hogy az entitás egy fülének nézetére hivatkoznál, használd ezt: :example_tab.',
         'months'            => 'A :code begépelésével a naptáraid hónapjainak listája ugrik fel.',
         'options'           => 'Néhány lehetőség :options',

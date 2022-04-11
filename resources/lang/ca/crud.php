@@ -108,9 +108,7 @@ return [
         'node_must_not_be_a_descendant' => 'Node invàlid (etiqueta, localització superior): seria un descendent de si mateix.',
         'unavailable_feature'           => 'Funcionalitat no disponible',
     ],
-    'events'                    => [
-        'hint'  => 'Aquí es mostren els esdeveniments del calendari associats a aquesta entitat.',
-    ],
+    'events'                    => [],
     'export'                    => 'Exporta',
     'fields'                    => [
         'ability'               => 'Habilitat',

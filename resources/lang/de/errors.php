@@ -26,10 +26,6 @@ return [
         ],
         'title' => 'Wartung',
     ],
-    '503-form'  => [
-        'body'  => 'Wir konnten deine Daten nicht richtig speichern, was normalerweise auf einen von zwei Faktoren zurückzuführen ist. Bitte öffne Kanka hier: :link. Wenn die App gewartet wird, speicher deine Daten bitte an einem anderen Ort, bis die App wieder verfügbar ist, und versuche es erneut. Wenn du mit der Meldung "Überprüfen deines Browsers" begrüßt wurdest, kannst du erneut auf Speichern klicken.',
-        'link'  => 'Neues Fenster',
-        'title' => 'Etwas Unerwartetes ist passiert.',
-    ],
+    '503-form'  => [],
     'footer'    => 'Wenn du weitere Hilfe brauchst, bitte kontaktiere uns über hello@kanka.io oder über :discord.',
 ];

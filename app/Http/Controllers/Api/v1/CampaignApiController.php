@@ -20,6 +20,7 @@ class CampaignApiController extends ApiController
 
     public function show(Campaign $campaign)
     {
+        $this->authorize('access', $campaign);
         $resource = new CampaignResource($campaign);
 
         return $resource->withMentions();

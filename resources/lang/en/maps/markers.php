@@ -43,7 +43,7 @@ return [
         'custom_icon'               => 'Copy the HTML of an icon from :fontawesome or :rpgawesome, or a custom SVG icon.',
         'custom_radius'             => 'Select the custom size option from the dropdown to define a size.',
         'draggable'                 => 'Enable to allow moving this marker in the exploration mode of the map.',
-        'label'                     => 'A label is displayed as a block of text on the map. The content will be the marker\'s name of the entity\'s name.',
+        'label'                     => 'A label is displayed as a block of text on the map. The content will be the marker\'s name or the entity\'s name.',
         'polygon'                   => [
             'edit'  => 'Click on the map to add that position to the polygon\'s coordinates.',
             'new'   => 'Move the marker around on the map to save the position to the polygone.',

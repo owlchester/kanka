@@ -63,7 +63,6 @@ TEXT
     ],
     'free'                  => [
         'answer'    => <<<'TEXT'
-Sí! Creiem que la vostra situació econòmica no hauria d'impedir que gaudiu dels jocs de rol i de la creació de móns, i per això sempre mantindrem gratis l'aplicació. No obstant això, si desitgeu tenir un paper més actiu en aquest viatge, donar-nos suport i votar les funcionalitats que us interessin, podeu fer-ho mitjançant la nostra web o al :patreon.
 
 A més d'inlfuir sobre la direcció que prendrà Kanka, en donar-nos suport obtindreu un augment a la grandària dels arxius que podeu pujar, afegirem el vostre nom al mur de la fama, rebreu icones predefinides que fan goig, podreu votar quines funcions es prioritzen i molt més!
 TEXT

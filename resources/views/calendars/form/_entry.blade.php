@@ -53,3 +53,7 @@
 </div>
 
 @include('cruds.fields.private2')
+
+@if (request()->has('redirect'))
+    {!! Form::hidden('redirect', request()->get('redirect')) !!}
+@endif

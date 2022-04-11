@@ -125,7 +125,6 @@ return [
         'tabs'  => [
             'map'           => 'Förbindelse Karta',
             'organisations' => 'Organisationer',
-            'personality'   => 'Personlighet',
         ],
         'title' => 'Karaktär :name',
     ],

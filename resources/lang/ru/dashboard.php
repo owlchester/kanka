@@ -1,19 +1,19 @@
 <?php
 
 return [
-    'actions'           => [
+    'actions'       => [
         'follow'    => 'Отслеживать',
         'join'      => 'Вступить',
         'unfollow'  => 'Перестать отслеживать',
     ],
-    'campaigns'         => [
+    'campaigns'     => [
         'tabs'  => [
             'modules'   => 'Модули: :count',
             'roles'     => 'Роли: :count',
             'users'     => 'Пользователи: :count',
         ],
     ],
-    'dashboards'        => [
+    'dashboards'    => [
         'actions'       => [
             'edit'      => 'Изменить параметры',
             'new'       => 'Новый обзор',
@@ -55,25 +55,24 @@ return [
             'visible'   => 'Доступный',
         ],
     ],
-    'helpers'           => [
+    'helpers'       => [
         'follow'    => 'Кампании, которые вы отслеживаете, находятся в переключателе кампаний (слева вверху) ниже ваших кампаний.',
         'join'      => 'Эта кампания открыта для новых участников. Нажмите, чтобы отправить заявку а вступление.',
         'setup'     => 'Составьте обзор вашей кампании.',
     ],
-    'latest_release'    => 'Последнее обновление',
-    'notifications'     => [
+    'notifications' => [
         'modal' => [
             'confirm'   => 'Понятно',
             'title'     => 'Важное уведомление',
         ],
     ],
-    'recent'            => [
+    'recent'        => [
         'title' => 'Недавние изменения :name',
     ],
-    'settings'          => [
+    'settings'      => [
         'title' => 'Настройка обзора',
     ],
-    'setup'             => [
+    'setup'         => [
         'actions'   => [
             'add'               => 'Добавить виджет',
             'back_to_dashboard' => 'Назад к обзору',
@@ -94,8 +93,8 @@ return [
             'unmentioned'   => 'Неупомянутые объекты',
         ],
     ],
-    'title'             => 'Обзор кампании',
-    'widgets'           => [
+    'title'         => 'Обзор кампании',
+    'widgets'       => [
         'actions'                   => [
             'advanced-options'  => 'Дополнительные параметры',
             'delete-confirm'    => 'этот виджет.',

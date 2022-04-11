@@ -682,6 +682,12 @@ section.features .feature-item i {
   max-width: 150px;
   display: inline-block;
 }
+.profile-pledge > a > img {
+  transition: all 0.6s ease-in-out;
+  &:not(.no-transform):hover {
+    transform: scale(1.1) rotate(8deg);
+  }
+}
 
 /* Hover Effects on Card */
 
@@ -734,4 +740,4 @@ section.features .feature-item i {
   }
 }
 
-@import "community-votes"
+@import "community-votes";

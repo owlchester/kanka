@@ -1,35 +1,34 @@
 <?php
 
 return [
-    'actions'           => [
+    'actions'       => [
         'follow'    => 'Segui',
         'unfollow'  => 'Smetti di seguire',
     ],
-    'campaigns'         => [
+    'campaigns'     => [
         'tabs'  => [
             'modules'   => ':count Moduli',
             'roles'     => ':count Ruoli',
             'users'     => ':count Utenti',
         ],
     ],
-    'helpers'           => [
+    'helpers'       => [
         'follow'    => 'Seguire una campagna farà si che questa appaia nel selettore delle campagne (in alto a destra) sotto alle tue campagna.',
         'setup'     => 'Imposta la dashboard della tua campagna.',
     ],
-    'latest_release'    => 'Ultima Versione',
-    'notifications'     => [
+    'notifications' => [
         'modal' => [
             'confirm'   => 'Capito',
             'title'     => 'Notifica iImportante',
         ],
     ],
-    'recent'            => [
+    'recent'        => [
         'title' => ':name con modifiche recenti',
     ],
-    'settings'          => [
+    'settings'      => [
         'title' => 'Impostazioni della Dashboard',
     ],
-    'setup'             => [
+    'setup'         => [
         'actions'   => [
             'add'               => 'Aggiungi un widget',
             'back_to_dashboard' => 'Torna alla dashboard',
@@ -42,8 +41,8 @@ return [
             'recent'    => 'Recente',
         ],
     ],
-    'title'             => 'Dashboard',
-    'widgets'           => [
+    'title'         => 'Dashboard',
+    'widgets'       => [
         'calendar'  => [
             'actions'           => [
                 'next'      => 'Cambia la data al giorno successivo',
@@ -60,6 +59,7 @@ return [
             'success'   => 'Widget rimosso dalla dashboard',
         ],
         'fields'    => [
+            'text'  => 'Testo',
             'width' => 'Larghezza',
         ],
         'recent'    => [

@@ -66,8 +66,8 @@ class AbilityService
         // Meta
         $this->abilities['meta'] = [
             'add_url' => route('entities.entity_abilities.create', $this->entity),
-            'user_id' => Auth::check() ? Auth::user()->id : 0,
-            'is_admin' => Auth::check() && Auth::user()->isAdmin(),
+            'user_id' => auth()->check() ? auth()->user()->id : 0,
+            'is_admin' => auth()->check() && auth()->user()->isAdmin(),
         ];
 
         return $this->abilities;

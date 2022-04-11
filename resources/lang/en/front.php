@@ -1,11 +1,11 @@
 <?php
 
 return [
-    'about'         => [
+    'about'                 => [
         'description'   => ':kanka was born out of the desire of a passionate tabletop RPG player who wanted to build and manage a world with his players. After trying out a few available options and concluding that none of them fit quite right, development on :kanka started in the fall of 2017.',
         'title'         => 'About',
     ],
-    'campaigns'     => [
+    'campaigns'             => [
         'description_full'  => 'Many campaigns in :kanka are public for all to see. This page contains a list of all public campaigns, as well as some featured campaigns from the community.',
         'featured'          => [
             'description'   => 'Our community builds amazing things that we love to showcase as Featured Campaigns. Be sure to come back every now and then for more featured campaigns to check out.',
@@ -30,23 +30,28 @@ return [
         ],
         'title'             => 'Public Campaigns',
     ],
-    'contact'       => [
+    'contact'               => [
         'description'   => 'Need help, have a suggestion, or just want to share your love for :kanka? Our team will reply whatever the occasion!',
         'email'         => 'Send all inquiries to',
         'other'         => 'Or on one of the following social media platforms:',
         'title'         => 'We\'re here for you',
     ],
-    'cookie'        => [
+    'cookie'                => [
         'dismiss'   => 'Got it!',
         'link'      => 'Learn more',
         'message'   => 'This website uses cookies to ensure you get the best experience on our website.',
     ],
-    'faq'           => [
+    'faq'                   => [
         'helpers'   => [
             'more'  => 'Didn\'t find what you were looking for?',
         ],
     ],
-    'features'      => [
+    'featured_campaigns'    => [
+        'description'   => 'Want to see Kanka in action and how other people are using it? Here are a few campaigns from our community that we think are absolutely incredible.',
+        'more'          => 'Want to see more campaigns? Check out our :public-campaigns.',
+        'title'         => 'Looking for some inspiration?',
+    ],
+    'features'              => [
         'abilities'         => [
             'description'   => 'Organise your characters or shops\' inventories by attaching items. Attach spells and powers to characters through abilities.',
             'title'         => 'Abilities and Items',
@@ -79,6 +84,7 @@ return [
             'no_ads'                => 'No ads on the campaign for logged in users',
             'recovery'              => 'Restore deleted entities (up to :amount days)',
             'relation-visualiser'   => 'Explore the relations of entities visually',
+            'sidebar'               => 'Reorder and customise the sidebar of a campaign',
             'theme'                 => 'Fixed campaign theme',
             'title'                 => 'Boosted Campaigns',
             'tooltip'               => 'Custom tooltips for entities (text, show image)',
@@ -188,11 +194,11 @@ return [
             'title' => 'Worldbuilding',
         ],
     ],
-    'first_block'   => [
+    'first_block'           => [
         'description'   => ':kanka is available on any device and is updated regularly with new features and improvements. Forget about losing track of your scattered notes, in :kanka everything is in one place, easy to find, and accessible on the go.',
         'title'         => 'A novel way to keep track of your worldbuilding and RPG campaigns.',
     ],
-    'footer'        => [
+    'footer'                => [
         'app'       => 'App',
         'copyright' => 'Copyright :copy :year :company',
         'headings'  => [
@@ -205,7 +211,7 @@ return [
         'resources' => 'Resources',
         'social'    => 'Social',
     ],
-    'help'          => [
+    'help'                  => [
         'description'   => 'We are here for you in case you need a bit of help. Contact us using one of the following methods, and we\'ll get back to you as fast as we can.',
         'discord'       => 'Join our Discord',
         'documentation' => 'Check the documentation',
@@ -214,18 +220,18 @@ return [
         'title'         => 'Help',
         'twitter'       => 'Tweet at us on Twitter',
     ],
-    'home'          => [
+    'home'                  => [
         'seo'   => [
             'meta-description'  => 'Are you a game master, worldbuilder, or a storyteller? We offer a tabletop campaign manager and worldbuilding tool that makes it easy to organise, plan, and enjoy your TTRPG campaigns. We are community driven, and best of all, our core features are free!',
         ],
     ],
-    'master'        => [
+    'master'                => [
         'call_to_action'    => 'Create an account',
         'description'       => ':kanka is a community driven worldbuilding and tabletop RPG campaign management tool perfect for worldbuilders and game masters alike. We help you create and organize your campaigns and worlds with our @mentions system and a whole range of features such as calendars, interactive maps, timelines, organisations, families, and as many characters as you can come up with!',
         'heading'           => 'Worldbuilding, tabletop RPG campaign management, storytelling. All in one',
         'title'             => 'Kanka',
     ],
-    'media'         => [
+    'media'                 => [
         'description'   => 'Find high resolution images of :kanka on this page. Use these if you are promoting :kanka or building tools that interact with :kanka.',
         'images'        => [
             'primary'   => 'Primary :kanka logo',
@@ -233,7 +239,7 @@ return [
         ],
         'title'         => 'Media',
     ],
-    'menu'          => [
+    'menu'                  => [
         'about'         => 'About',
         'api'           => 'API',
         'campaigns'     => 'Public Campaigns',
@@ -262,15 +268,15 @@ return [
         'terms'         => 'Terms & Conditions',
         'title'         => 'Menu',
     ],
-    'meta'          => [
+    'meta'                  => [
         'description'   => ':kanka is a flexible digital world builder and online tabletop rpg campaign manager',
         'title'         => ':kanka - Online tabletop RPG campaign manager and worldbuilding tool',
     ],
-    'partners'      => [
+    'partners'              => [
         'description'   => 'We\'ve partnered up with a few amazing tools and communities that share our goals and values.',
         'title'         => 'Partners',
     ],
-    'pricing'       => [
+    'pricing'               => [
         'actions'       => [
             'subscribe' => 'Become a subscriber',
         ],
@@ -292,18 +298,14 @@ return [
         ],
         'title'         => 'Pricing',
     ],
-    'privacy'       => [
+    'privacy'               => [
         'description'   => 'Effective date: :date',
         'title'         => 'Privacy Policy',
     ],
-    'roadmap'       => [
+    'roadmap'               => [
         'backlog'           => [
             'description'   => 'This Trello board contains all the requested features that have been submitted by the community, as well as all the planned features and improvements that will one day make it to the app.',
             'title'         => 'Backlog',
-        ],
-        'blog'              => [
-            'description'   => 'We release a roadmap at the beginning of every month, following our Community Vote.',
-            'title'         => 'Monthly Roadmaps',
         ],
         'description'       => 'Our community votes shape our work, so while we don\'t have a multi-month roadmap, it is easy to stay up to date with what has been requested and what is currently being worked on.',
         'featured_requests' => [
@@ -318,16 +320,16 @@ return [
         ],
         'title'             => 'Roadmap',
     ],
-    'second_block'  => [
+    'second_block'          => [
         'call_to_action'    => 'Register a free account!',
     ],
-    'seo'           => [
+    'seo'                   => [
         'keywords'  => 'Worldbuilding, Tabletop RPG, RPG Campaign Manager',
     ],
-    'team'          => [
+    'team'                  => [
         'coffee'    => 'Buy me a coffee!',
     ],
-    'terms'         => [
+    'terms'                 => [
         'description'   => 'Effective date: :date',
         'title'         => 'Terms & Conditions',
     ],

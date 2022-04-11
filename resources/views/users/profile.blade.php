@@ -44,23 +44,38 @@
                         @endif
                     </div>
                 </div>
-                    <div class="col-md-3 mt-md-5 text-center">
+                    <div class="col-md-3 mt-md-5 text-center profile-pledge">
                     @if ($user->isElementalPatreon())
-                        <img src="https://kanka-app-assets.s3.amazonaws.com/images/tiers/elemental-325.png" class="profile-subscriber" title="Elemental" />
+                        <a href="{{ route('front.hall-of-fame') }}">
+                            <img src="https://kanka-app-assets.s3.amazonaws.com/images/tiers/elemental-325.png"
+                                 class="profile-subscriber" title="Elemental" />
+                        </a>
                         <div class="text-uppercase">Elemental</div>
                     @elseif ($user->isWyvern())
-                        <img src="https://kanka-app-assets.s3.amazonaws.com/images/tiers/wyvern-325.png"
-                             class="profile-subscriber" title="Wyvern" />
-                            <div class="text-uppercase">Wyvern</div>
+                        <a href="{{ route('front.hall-of-fame') }}">
+                            <img src="https://kanka-app-assets.s3.amazonaws.com/images/tiers/wyvern-325.png"
+                                class="profile-subscriber" title="Wyvern" />
+                        </a>
+                        <div class="text-uppercase">Wyvern</div>
 
                     @elseif ($user->isOwlbear())
+                        <a href="{{ route('front.hall-of-fame') }}">
                         <img src="https://kanka-app-assets.s3.amazonaws.com/images/tiers/owlbear-325.png"
                                  class="profile-subscriber" title="Owlbear" />
-                            <div class="text-uppercase">Owlbear</div>
+                        </a>
+                        <div class="text-uppercase">Owlbear</div>
+                    @elseif ($user->hasRole('admin'))
+                        <a href="{{ route('front.about') }}">
+                            <img src="https://kanka-app-assets.s3.amazonaws.com/images/logos/icon-large.png"
+                                 class="profile-subscriber no-transform" title="Kanka Team" />
+                        </a>
+                        <div class="text-uppercase">
+                            Kanka Team
+                        </div>
                     @else
                         <img src="https://kanka-app-assets.s3.amazonaws.com/images/tiers/kobold-325.png"
                                  class="profile-subscriber" title="Kobold" />
-                            <div class="text-uppercase">Kobold</div>
+                        <div class="text-uppercase">Kobold</div>
                     @endif
                     </div>
             </div>

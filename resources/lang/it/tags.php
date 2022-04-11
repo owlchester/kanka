@@ -6,7 +6,8 @@ return [
             'add'   => 'Aggiungi un nuovo tag',
         ],
         'create'    => [
-            'title' => 'Aggiungi un tag a :name',
+            'success'   => 'Aggiungi il tag :name all\'entità',
+            'title'     => 'Aggiungi un tag a :name',
         ],
         'title'     => 'Discendente del tag :name',
     ],
@@ -22,12 +23,11 @@ return [
         'title'     => 'Modifica il Tag :name',
     ],
     'fields'        => [
-        'characters'    => 'Personaggi',
-        'children'      => 'Figli',
-        'name'          => 'Nome',
-        'tag'           => 'Tag',
-        'tags'          => 'Sotto-Tag',
-        'type'          => 'Tipo',
+        'children'  => 'Figli',
+        'name'      => 'Nome',
+        'tag'       => 'Tag',
+        'tags'      => 'Sotto-Tag',
+        'type'      => 'Tipo',
     ],
     'helpers'       => [],
     'hints'         => [

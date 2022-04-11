@@ -24,7 +24,7 @@
     <section class="features" id="terms">
         <div class="container">
             <div class="section-heading">
-                <h3 class="">AGREEMENT TO TERMS</h3>
+                <h3 class="" id="agreement-to-terms"><a href="#agreement-to-terms">AGREEMENT TO TERMS</a></h3>
 
                 <p class="mb-3">These Terms and Conditions constitute a legally binding agreement made between you, whether personally or on behalf of an entity (“you”) and Kanka (“we,” “us” or “our”), concerning your access to and use of the www.kanka.io website as well as any other media form, media channel, mobile website or mobile application related, linked, or otherwise connected thereto (collectively, the “Site”).</p>
 
@@ -34,7 +34,7 @@
 
                 <p class="mb-3">The information provided on the Site is not intended for distribution to or use by any person or entity in any jurisdiction or country where such distribution or use would be contrary to law or regulation or which would subject us to any registration requirement within such jurisdiction or country.</p>
 
-                <h3 class="mt-4">USER REPRESENTATIONS</h3>
+                <h3 class="mt-4" id="user-representations"><a href="#user-representations">USER REPRESENTATIONS</a></h3>
 
                 <p class="mb-3">By using the Site, you represent and warrant that:</p>
 
@@ -44,11 +44,11 @@
 
                 <p class="mb-3">(3) your use of the Site will not violate any applicable law or regulation.</p>
 
-                <h3 class="mt-4">USER REGISTRATION</h3>
+                <h3 class="mt-4" id="user-registration"><a href="#user-registration">USER REGISTRATION</a></h3>
 
                 <p class="mb-3">You will be required to register with the Site. You agree to keep your password confidential and will be responsible for all use of your account and password. We reserve the right to remove, reclaim, or change a username you select if we determine, in our sole discretion, that such username is inappropriate, obscene, or otherwise objectionable.</p>
 
-                <h3 class="mt-4">PROHIBITED ACTIVITIES</h3>
+                <h3 class="mt-4" id="prohibited-activities"><a href="#prohibited-activities">PROHIBITED ACTIVITIES</a></h3>
 
                 <p class="mb-3">You may not access or use the Site for any purpose other than that for which we make the Site available. The Site may not be used in connection with any commercial endeavors except those that are specifically endorsed or approved by us.</p>
 
@@ -64,7 +64,7 @@
                     <li>use the Site in a manner inconsistent with any applicable laws or regulations.</li>
                 </ol>
 
-                <h3 class="mt-4">USER GENERATED CONTRIBUTIONS</h3>
+                <h3 class="mt-4" id="user-generated-contributions"><a href="#user-generated-contributions">USER GENERATED CONTRIBUTIONS</a></h3>
 
                 <p class="mb-3">The Site may provide you with the opportunity to create, submit, post, display, transmit, perform, publish, distribute, or broadcast content and materials to us or on the Site, including but not limited to text, writings, video, audio, photographs, graphics, comments, suggestions, or personal information or other material (collectively, "Contributions").</p>
 
@@ -81,7 +81,7 @@
 
 
 
-                <h3 class="mt-4">SITE MANAGEMENT</h3>
+                <h3 class="mt-4" id="site-management"><a href="#site-management">SITE MANAGEMENT</a></h3>
 
                 <p class="mb-3">We reserve the right, but not the obligation, to:</p>
 
@@ -91,11 +91,11 @@
 
                 <p class="mb-3">(3) otherwise manage the Site in a manner designed to protect our rights and to facilitate the proper functioning of the Site.</p>
 
-                <h3 class="mt-4">COPYRIGHT INFRINGEMENTS</h3>
+                <h3 class="mt-4" id="copyright-infringements"><a href="#copyright-infringements">COPYRIGHT INFRINGEMENTS</a></h3>
 
                 <p class="mb-3">We respect the intellectual property rights of others. If you believe that any material available on or through the Site infringes upon any copyright you own or control, please immediately notify us using the contact information provided below (a “Notification”). A copy of your Notification will be sent to the person who posted or stored the material addressed in the Notification.</p>
 
-                <h3 class="mt-4">TERM AND TERMINATION</h3>
+                <h3 class="mt-4" id="term-and-termination"><a href="#term-and-termination">TERM AND TERMINATION</a></h3>
 
                 <p class="mb-3">These Terms and Conditions shall remain in full force and effect while you use the Site. Without limiting any other provision of these terms and conditions, we reserve the right to, in our sole discretion and without notice or liability, deny access to and use of the site (including blocking certain IP addresses), to any person for any reason, including without limitation for breach of any representation, warranty, or covenant contained in these terms and conditions or of any applicable law or regulation. We may terminate your use or participation in the site or delete [your account and] any content or information that you posted at any time, without warning, in our sole discretion.</p>
 
@@ -103,17 +103,17 @@
 
                 <p class="mb-3">In addition to terminating or suspending your account, we reserve the right to take appropriate legal action, including without limitation pursuing civil, criminal, and injunctive redress.</p>
 
-                <h3 class="mt-4">MODIFICATIONS AND INTERRUPTIONS</h3>
+                <h3 class="mt-4" id="modifications-and-interruptions"><a href="#modifications-and-interruptions">MODIFICATIONS AND INTERRUPTIONS</a></h3>
 
                 <p class="mb-3">We cannot guarantee the Site will be available at all times. We may experience hardware, software, or other problems or need to perform maintenance related to the Site, resulting in interruptions, delays, or errors.</p>
 
                 <p class="mb-3">We reserve the right to change, revise, update, suspend, discontinue, or otherwise modify the Site at any time or for any reason without notice. You agree that we have no liability whatsoever for any loss, damage, or inconvenience caused by your inability to access or use the Site during any downtime or discontinuance of the Site.</p>
 
-                <h3 class="mt-4">USER DATA</h3>
+                <h3 class="mt-4" id="user-data"><a href="#user-data">USER DATA</a></h3>
 
                 <p class="mb-3">We will maintain certain data that you transmit to the Site for the purpose of managing the Site, as well as data relating to your use of the Site. Although we perform regular routine backups of data, you are solely responsible for all data that you transmit or that relates to any activity you have undertaken using the Site.</p>
 
-                <h3 class="mt-4">MISCELLANEOUS</h3>
+                <h3 class="mt-4" id="miscellaneous"><a href="#miscellaneous">MISCELLANEOUS</a></h3>
 
                 <p class="mb-3">These Terms and Conditions and any policies or operating rules posted by us on the Site constitute the entire agreement and understanding between you and us. Our failure to exercise or enforce any right or provision of these Terms and Conditions shall not operate as a waiver of such right or provision.</p>
 

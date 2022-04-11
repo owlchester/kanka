@@ -1,19 +1,19 @@
 <?php
 
 return [
-    'actions'           => [
+    'actions'       => [
         'follow'    => 'Seguir',
         'join'      => 'Entrar',
         'unfollow'  => 'Deixar de seguir',
     ],
-    'campaigns'         => [
+    'campaigns'     => [
         'tabs'  => [
             'modules'   => ':count Módulos',
             'roles'     => ':count Cargos',
             'users'     => ':count Usuários',
         ],
     ],
-    'dashboards'        => [
+    'dashboards'    => [
         'actions'       => [
             'edit'      => 'Editar',
             'new'       => 'Novo dashboard',
@@ -55,25 +55,24 @@ return [
             'visible'   => 'Visível',
         ],
     ],
-    'helpers'           => [
+    'helpers'       => [
         'follow'    => 'Seguir uma campanha fará com que ela apareça no seletor de campanha (canto superior esquerdo) abaixo de suas campanhas.',
         'join'      => 'Essa campanha é aberta a novos membros. Clique para solicitar sua inscrição.',
         'setup'     => 'Configure o dashboard de sua campanha.',
     ],
-    'latest_release'    => 'Última Atualização',
-    'notifications'     => [
+    'notifications' => [
         'modal' => [
             'confirm'   => 'Entendi',
             'title'     => 'Notificação Importante',
         ],
     ],
-    'recent'            => [
+    'recent'        => [
         'title' => ':name Modificados(as) Recentemente',
     ],
-    'settings'          => [
+    'settings'      => [
         'title' => 'Configurações do Dashboard',
     ],
-    'setup'             => [
+    'setup'         => [
         'actions'   => [
             'add'               => 'Adicionar um widget',
             'back_to_dashboard' => 'Voltar para o dashboard',
@@ -94,8 +93,8 @@ return [
             'unmentioned'   => 'Entidades não mencionadas',
         ],
     ],
-    'title'             => 'Dashboard',
-    'widgets'           => [
+    'title'         => 'Dashboard',
+    'widgets'       => [
         'actions'                   => [
             'advanced-options'  => 'Opções avançadas',
             'delete-confirm'    => 'esse widget',

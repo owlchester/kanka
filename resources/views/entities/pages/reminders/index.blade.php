@@ -49,7 +49,7 @@
         <div class="entity-main-block">
             <div class="box box-solid box-entity-reminders">
                 <div class="box-body">
-            @include('entities.pages.reminders._table')
+                    @include('entities.pages.reminders._table')
                 </div>
             </div>
         </div>

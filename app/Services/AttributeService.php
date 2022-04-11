@@ -43,15 +43,13 @@ class AttributeService
 
     /**
      * @param Entity $entity
+     * @param string $field
      * @return string
      */
-    public function parse(Attribute $attribute): string
+    public function parse(Attribute $attribute, string $field = 'value'): string
     {
-        if (!Str::contains($attribute->value, ['{', '}'])) {
-            return (string) $attribute->value;
-        }
-        if (Str::contains($attribute->value, ['<', '>'])) {
-            return (string) $attribute->value;
+        if (!$this->validField($attribute->$field)) {
+            return (string) $attribute->$field;
         }
 
         if ($this->loadedEntity === null || $this->loadedEntity->id != $attribute->entity_id) {
@@ -64,7 +62,40 @@ class AttributeService
 
         } catch(\Exception $e) {
             //throw $e;
-            return (string) $attribute->value;
+            return (string) $attribute->$field;
+        }
+    }
+
+    /**
+     * Replace references in an attribute name with attribute values for ranges
+     * @param Attribute $attribute
+     * @param string $field
+     * @return string
+     * @throws \ChrisKonnertz\StringCalc\Exceptions\ContainerException
+     * @throws \ChrisKonnertz\StringCalc\Exceptions\NotFoundException
+     */
+    public function map(Attribute $attribute, string $field = 'name'): string
+    {
+        if (!$this->validField($attribute->$field)) {
+            return (string) $attribute->$field;
+        }
+
+        if ($this->loadedEntity === null || $this->loadedEntity->id != $attribute->entity_id) {
+            $this->loadedEntity = $attribute->entity;
+        }
+
+        try {
+            // Prepare all the attributes and calculates them
+            $this->entityAttributes();
+
+            $data = [
+                'name' => $attribute->name,
+                'value' => $attribute->$field,
+            ];
+            $value = $this->calculateAttributeValue($data);
+            return $value;
+        } catch (Exception $e) {
+            return $this->$field;
         }
     }
 
@@ -86,6 +117,9 @@ class AttributeService
         foreach ($baseAttributes as $name => $value) {
             $references = [];
             preg_match_all('`\{(.*?)\}`i', $value, $references);
+
+            // Cleanup attribute name to remove range stuff
+            $name = preg_replace('`\[range:(.*)\]`i', '', $name);
 
             $this->calculatedAttributes->put($name, [
                 'value' => $value,
@@ -337,7 +371,7 @@ class AttributeService
                 $attribute = $existing[$id];
                 $attribute->type = $type;
                 $attribute->name = $name;
-                $attribute->value = $value;
+                $attribute->setValue($value);
                 $attribute->is_private = (int) $isPrivate;
                 $attribute->is_star = (int) $isStar;
                 $attribute->default_order = $order;
@@ -354,15 +388,16 @@ class AttributeService
                     list ($type, $value) = $this->randomAttribute($type, $value);
                 }
 
-                Attribute::create([
+                $attribute = new Attribute([
                     'entity_id' => $entity->id,
                     'type' => $type,
                     'name' => $name,
-                    'value' => $value,
                     'is_private' => $isPrivate,
                     'is_star' => $isStar,
                     'default_order' => $order,
                 ]);
+                $attribute->setValue($value);
+                $attribute->save();
                 $touch = true;
             }
             $order++;
@@ -762,5 +797,20 @@ class AttributeService
         $purifyConfig['HTML.Allowed'] = preg_replace('`,table\[(.*?)\]`', '$2', $purifyConfig['HTML.Allowed']);
         $purifyConfig['HTML.Allowed'] = preg_replace('`,details\[(.*?)\]`', '$2', $purifyConfig['HTML.Allowed']);
         return $purifyConfig;
+    }
+
+    /**
+     * @param string $value
+     * @return bool
+     */
+    protected function validField(string $value): bool
+    {
+        if (!Str::contains($value, ['{', '}'])) {
+            return false;
+        }
+        if (Str::contains($value, ['<', '>'])) {
+            return false;
+        }
+        return true;
     }
 }

@@ -109,7 +109,12 @@ class CampaignAssetExport implements ShouldQueue
         }
 
         // Save all the content.
-        $zip->close();
+        try {
+            $zip->close();
+        } catch (Exception $e) {
+            // The export might fail if the zip is too big.
+            $files = 0;
+        }
 
         // No files generated? End the process
         if ($files === 0) {

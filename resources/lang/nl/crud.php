@@ -102,9 +102,7 @@ return [
         'node_must_not_be_a_descendant' => 'Ongeldig knooppunt (tag, bovenliggende locatie): het zou een afstammeling van zichzelf zijn.',
         'unavailable_feature'           => 'Functie niet beschikbaar',
     ],
-    'events'                    => [
-        'hint'  => 'Hieronder wordt een lijst weergegeven met alle Kalenders waarin deze entiteit is toegevoegd met de interface "Een gebeurtenis aan een kalender toevoegen".',
-    ],
+    'events'                    => [],
     'export'                    => 'Exporteer',
     'fields'                    => [
         'ability'               => 'Vaardigheid',

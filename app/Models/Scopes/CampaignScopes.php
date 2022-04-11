@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\DB;
  * @method static self|Builder public()
  * @method static self|Builder top()
  * @method static self|Builder front()
- * @method static self|Builder featured(bool $features = true)
+ * @method static self|Builder featured(bool $featured = true)
  * @method static self|Builder filterPublic(array $filters)
  * @method static self|Builder open()
  */

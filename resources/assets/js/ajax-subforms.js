@@ -79,8 +79,9 @@ function initSubforms() {
             // If we have a 503 error status, let's assume it's from cloudflare and help the user
             // properly save their data.
             if (err.status === 503) {
-                $('#entity-form-503-error').show();
+                window.showToast(err.responseJSON.message, 'toast-error');
                 resetSubformSubmitAnimation(currentAjaxForm);
+                return;
             }
 
             // If it's 403, the session is gone

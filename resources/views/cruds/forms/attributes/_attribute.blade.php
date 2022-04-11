@@ -11,7 +11,6 @@ $id = isset($resetAttributeId) ? -$attribute->id : $attribute->id;
                     <span class="fa fa-arrows-alt-v"></span>
                 </span>
                 @if($attribute->name == '_layout')
-
                     {!! Form::text('attr_name[' . $id . ']', $attribute->name, ['placeholder' => __('entities/attributes.placeholders.attribute'), 'class' => 'form-control', 'maxlength' => 191, 'disabled' => 'disabled']) !!}
                     {!! Form::hidden('attr_name[' . $id . ']', $attribute->name) !!}
                 @else
@@ -32,6 +31,8 @@ $id = isset($resetAttributeId) ? -$attribute->id : $attribute->id;
             @elseif($attribute->name == '_layout')
                 {!! Form::hidden('attr_value[' . $id . ']', $attribute->value) !!}
                 {{ $attribute->value }}
+            @elseif ($attribute->isNumber())
+                {!! Form::number('attr_value[' . $id . ']', $attribute->value, ['placeholder' => __('entities/attributes.placeholders.value'), 'class' => 'form-control', 'maxlength' => 191]) !!}
             @else
                 {!! Form::text('attr_value[' . $id . ']', $attribute->value, ['placeholder' => __('entities/attributes.placeholders.value'), 'class' => 'form-control kanka-mentions', 'maxlength' => 191, 'data-remote' => route('search.live')]) !!}
             @endif
@@ -48,7 +49,9 @@ $id = isset($resetAttributeId) ? -$attribute->id : $attribute->id;
             <i class="fa @if($attribute->is_private) fa-lock @else fa-unlock-alt @endif fa-2x" data-toggle="private" data-private="{{ __('entities/attributes.visibility.private') }}" data-public="{{ __('entities/attributes.visibility.public') }}"></i>
             @endif
             @if (!isset($model) || auth()->user()->can('attribute', [$model, 'delete']))
-                    <a class="text-danger attribute_delete pull-right" title="{{ __('crud.remove') }}"><i class="fa fa-trash fa-2x"></i></a>
+                <a class="text-danger attribute_delete pull-right" title="{{ __('crud.remove') }}">
+                    <i class="fa fa-trash fa-2x"></i>
+                </a>
             @endcan
         </div>
 

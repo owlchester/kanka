@@ -174,7 +174,7 @@ class MapMarker extends Model
             return 'L.marker([' . ($this->latitude ). ', ' . $this->longitude . '], {
                 opacity: 0,
                 icon: labelShapeIcon,'
-                . ($this->editing ? 'draggable: true' : null) . '
+                . ($this->editing ? null : null) . '
             }).bindTooltip(`' . str_replace('`', '\'', $this->markerTitle()) . '`, {
                 direction: \'center\',
                 permanent: true,
@@ -302,7 +302,7 @@ class MapMarker extends Model
 
             .on(\'dragend\', function() {
                 var coordinates = marker' . $this->id . '.getLatLng();
-                //console.log(`dragend`, coordinates);
+                console.log(`dragend`, coordinates);
                 $.ajax({
                     url: `' . route('maps.markers.move', [$this->map_id, $this->id]) . '`,
                     type: `post`,

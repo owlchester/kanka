@@ -50,21 +50,36 @@ return [
         'title'         => 'Ako používať filtre',
     ],
     'link'              => [
+        'advanced'          => [
+            'title' => 'Rozšírené referencie',
+        ],
         'anchor'            => 'Rozšírené referencie môžu tiež špecifikovať ukotvenie v HTML, kam daný link má smerovať pomocou :example.',
-        'attributes'        => 'Atribúty objektu môžeš referencovať pomocou vpísania :code. Toto funguje len pre existujúce atribúty objektu.',
+        'attribute'         => [
+            'description'   => 'Taktiež je možné referencovať aj atribúty objektu. Jednoducho zadaj :code a tri alebo viac písmen, aby sa začali zobrazovať zodpovedajúce atribúty objektu.',
+            'title'         => 'Atribúty',
+        ],
         'auto_update'       => 'Prepojenia na iné objekty budú automaticky aktualizované, keď sa zmení názov alebo popis cieľa.',
         'description'       => 'Prepojenia medzi objektami tvojej kampane môžeš vytvoriť jednoducho pomocou nasledujúcich skratiek.',
+        'filtering'         => [
+            'description'   => 'Filtrovanie presne daného objektu je jednoduché.',
+            'exact'         => 'Zadaj :code, aby sa našli objekty s rovnakým názvom.',
+            'space'         => 'Zadaj :code, aby sa našli objekty s medzerou v názve.',
+            'title'         => 'Filtrovanie',
+        ],
         'formatting'        => [
             'text'  => 'Zoznam povolených HTML tagov a atribútov nájdeš na našom :github.',
             'title' => 'Formátovanie',
         ],
         'friendly_mentions' => 'Prepojenie k iných objektom vytvoríš napísaním :code a potom prvých písmen názvu, čo spustí hľadanie tohto objektu. Toto vloží :example do textového editoru a vytvorí link k objektu, keď tento objekt zobrazíš.',
-        'limitations'       => 'Prosím, nezabudni, že kvôli technickým obmedzeniam, tieto skratky nebudú fungovať na mobilných zariadeniach s Androidom, dokiaľ nebudeš používať nový Summernote editor. Editor textu si môžeš vybrať v tvojich Nastaveniach > Preferencie schémy.',
         'mention_helpers'   => 'Ak je v názve objektu medzera, použi :example namiesto medzery. Ak chceš hľadať objekt presne podľa zadaného mena, použi :exact.',
         'mentions'          => 'Prepojenie k iných objektom vytvoríš napísaním :code a potom prvých písmen názvu, čo spustí hľadanie daného objektu. Toto vloží :example do textového editoru. Ak chceš upraviť názov zobrazeného objektu, môžeš vpísať :example_name. Na zobrazenie podstránky objektu, použi :example_page. Na zobrazenie karty objektu, použi :example_tab.',
         'mentions_field'    => 'Taktiež môžeš zobraziť aj pole objektu namiesto názvu v linke pomocou :code.',
+        'month'             => [
+            'title' => 'Kalendárne mesiace',
+        ],
         'months'            => 'Vpíš :code, aby sa zobrazil zoznam mesiacov tvojho kalendára.',
         'options'           => 'Niektoré možnosti sú :options.',
+        'overview'          => 'Jednoducho vytvor prepojenie s existujúcimi objektami kampane zadaním :code a troch a viac písmen.',
         'title'             => 'Prepojenie iných objektov a skratky',
     ],
     'map'               => [

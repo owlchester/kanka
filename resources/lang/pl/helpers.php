@@ -50,21 +50,36 @@ return [
         'title'         => 'Jak używać filtrów',
     ],
     'link'              => [
+        'advanced'          => [
+            'title' => 'Zaawansowane wzmianki',
+        ],
         'anchor'            => 'Wzmianka zaawansowana może określać kotwicę HTML, do której odsyłać powinien odnośnik :example.',
-        'attributes'        => 'Możesz stworzyć odnośnik do cechy elementy pisząc :code. Funkcja działa wyłącznie z już istniejącymi cechami tego elementu.',
+        'attribute'         => [
+            'description'   => 'Można również wzmiankować cechy elementu. Wspisz po prostu :code i trzy lub więcej liter, by wyświetlić pasujące do wzmianki cechy elementu.',
+            'title'         => 'Cechy',
+        ],
         'auto_update'       => 'Odnośniki do innych elementów aktualizują się automatycznie, kiedy zmienia się nazwa albo opis celu.',
         'description'       => 'Możesz z łatwością tworzyć odnośniki do innych elementów kampanii przy pomocy następującego zapisu.',
+        'filtering'         => [
+            'description'   => 'Łatwo jest filtrować, by znaleźć ten element, którego szukasz.',
+            'exact'         => 'Wpisz :code by znaleźć element o tej właśnie nazwie.',
+            'space'         => 'Wpisz :code by znaleźć elementy ze spacją w nazwie.',
+            'title'         => 'Filtrowanie',
+        ],
         'formatting'        => [
             'text'  => 'Lista dozwolonych tagów HTML i cech znajduje się na naszym :github.',
             'title' => 'Fromatowanie',
         ],
         'friendly_mentions' => 'By stworzyć odnośnik do innego elementu wpisz :code i kilka pierwszych znaków nazwy, by go wyszukać. Dzięki temu umieścisz :example w edytorze tekstu i utworzysz odnośnik do tego elementu podczas jego przeglądania.',
-        'limitations'       => 'Pamiętaj że ze względu na ograniczenia techniczne takie skróty nie działają na urządzeniach mobilnych jeżeli nie używasz edytora Summernote. Możesz zmienić edytor wchodząc w Ustawienia > Układ.',
         'mention_helpers'   => 'Jeżeli w nazwie elementu jest spacja, zamiast niej użyj :example. Jeśli szukasz elementu o dokładnie takiej nazwie, wpisz :exact.',
         'mentions'          => 'Możesz tworzyć odnośniki do innych elementów wpisując :code i pierwsze kilka znaków nazwy, by je wyszukać. To umieści :example w edytorze. By zmienić wyświetlaną nazwę, wpisz :example_name. Jeżeli odnośnik ma prowadzić na podstronę elementu, użyj :example_page, jeżeli chcesz zalinkować zakładkę, użyj example :tab.',
         'mentions_field'    => 'Możesz wyświetlić w odnośniki pole z opisu elementu zamiast jego nazwy, używając :code.',
+        'month'             => [
+            'title' => 'Miesiące kalendarza',
+        ],
         'months'            => 'Wpisz :code by dodać numer miesiąca z kalnedarza.',
         'options'           => 'Niektóre opcje: :options.',
+        'overview'          => 'Można łatwo tworzyć odnośniki do elementów kampanii, wpisując :code i trzy lub więcej liter.',
         'title'             => 'Tworzenie odnośników i skrótów',
     ],
     'map'               => [

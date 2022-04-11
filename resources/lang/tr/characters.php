@@ -125,7 +125,6 @@ return [
         'tabs'  => [
             'map'           => 'İlişki Haritası',
             'organisations' => 'Organizasyonlar',
-            'personality'   => 'Kişilik',
         ],
         'title' => ':name Karakteri',
     ],

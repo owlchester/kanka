@@ -1,35 +1,34 @@
 <?php
 
 return [
-    'actions'           => [
+    'actions'       => [
         'follow'    => 'עקוב',
         'unfollow'  => 'הפסק לעקוב',
     ],
-    'campaigns'         => [
+    'campaigns'     => [
         'tabs'  => [
             'modules'   => ':count רכיבים',
             'roles'     => ':count תפקידים',
             'users'     => ':count משתמשים',
         ],
     ],
-    'helpers'           => [
+    'helpers'       => [
         'follow'    => 'מעקב אחר מערכה יגרום לה להופיע ברשימת המערכות (פינה ימנית-עליונה) מתחת למערכות שלך',
         'setup'     => 'הגדר את מסך הבית של המערכה',
     ],
-    'latest_release'    => 'גרסה אחרונה',
-    'notifications'     => [
+    'notifications' => [
         'modal' => [
             'confirm'   => 'התקבל',
             'title'     => 'התראה חשובה',
         ],
     ],
-    'recent'            => [
+    'recent'        => [
         'title' => ':name שנערכו לאחרונה',
     ],
-    'settings'          => [
+    'settings'      => [
         'title' => 'הגדרות מסך בית',
     ],
-    'setup'             => [
+    'setup'         => [
         'actions'   => [
             'add'               => 'הוסף יישומון',
             'back_to_dashboard' => 'חזור למסך בית',
@@ -42,8 +41,8 @@ return [
             'recent'    => 'עריכות אחרונות',
         ],
     ],
-    'title'             => 'בית',
-    'widgets'           => [
+    'title'         => 'בית',
+    'widgets'       => [
         'calendar'  => [
             'actions'           => [
                 'next'      => 'שנה תאריך ליום הבא',

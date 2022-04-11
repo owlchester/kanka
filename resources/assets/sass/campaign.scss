@@ -1,0 +1,31 @@
+ul.sidebar-sortable, ul.sidebar-sortable ul {
+  list-style: none;
+  margin: 0;
+  padding-inline-start: 12px;
+  li {
+    padding: 6px 6px;
+    cursor: pointer;
+
+    i {
+      width: 20px;
+      display: inline-block;
+    }
+    ul {
+      margin-top: 6px;
+    }
+  }
+}
+
+.ui-sortable-placeholder {
+  border: 1px dotted #333;
+  border-radius: 5px;
+}
+
+@media(max-width: 767px) {
+  .form-mobile-inline {
+    .form-control {
+      display: inline;
+      width: auto;
+    }
+  }
+}

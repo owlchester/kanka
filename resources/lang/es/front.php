@@ -30,15 +30,7 @@ return [
         ],
         'title'             => 'Campañas públicas',
     ],
-    'community'     => [
-        'description'   => 'Kanka no es solamente una app: también es una próspera comunidad de creadores de mundos, másters y jugadores de rol y entusiastas creativos.',
-        'discord'       => 'El Discord de Kanka es el lugar más activo para hablar de la app, errores, características, pedir ayuda y echar una mano.',
-        'facebook'      => 'Mantente al tanto de nuestras actualizaciones en nuestra página de Facebook.',
-        'instagram'     => '¿Quieres ver fotos de cómo trabajamos en Kanka o jugamos? ¡Instagram es el lugar perfecto!',
-        'join'          => 'Únete!',
-        'reddit'        => 'El subreddit de Kanka es un lugar más tranquilo donde se puede hablar de las cosas durante un período de tiempo más largo.',
-        'title'         => 'Comunidad',
-    ],
+    'community'     => [],
     'contact'       => [
         'description'   => '¿Necesitas ayuda, tienes una sugerencia o simplemente quieres compartir tu amor por Kanka? ¡Nuestro equipo te responderá en cualquier momento!',
         'email'         => 'Envía cualquier consulta a',
@@ -51,16 +43,9 @@ return [
         'message'   => 'Esta página web usa cookies para asegurarse de que obtienes la mejor experiencia.',
     ],
     'faq'           => [
-        'description'   => 'Hemos reunido las preguntas más frecuentes y las hemos respondido lo más claramente posible.',
-        'helpers'       => [
+        'helpers'   => [
             'more'  => '¿No encuentras lo que buscas?',
         ],
-        'kb'            => [
-            'button'    => 'Encuentra respuestas en nuestra base de conocimientos',
-            'text'      => '¿Tienes preguntas sobre cómo usar las funcionalidades de Kanka? Nuestra base de conocimiento es el lugar a donde ir.',
-            'title'     => '¿Necesitas ayuda para usar Kanka?',
-        ],
-        'title'         => 'Preguntas Frecuentes',
     ],
     'features'      => [
         'abilities'         => [
@@ -248,7 +233,6 @@ return [
         'contact'       => 'Contacto',
         'contact_us'    => 'Contáctanos',
         'dashboard'     => 'Tablero',
-        'faq'           => 'Preguntas Frecuentes',
         'features'      => 'Características',
         'help'          => 'Ayuda',
         'home'          => 'Inicio',
@@ -279,9 +263,7 @@ return [
     ],
     'pricing'       => [
         'actions'       => [
-            'more'      => 'Saber más sobre las funciones que se desbloquean apoyando a Kanka',
             'subscribe' => 'Suscribirse',
-            'support'   => 'Apoyar',
         ],
         'benefits'      => [
             'big_maps'      => 'Mapas grandes (:size)',
@@ -305,18 +287,11 @@ return [
         'description'   => 'Fecha efectiva: :date',
         'title'         => 'Política de privacidad',
     ],
-    'release'       => [
-        'description'   => 'Kanka está creciendo y mejorando constantemente, y queremos que el mundo conozca todas las cosas increíbles que estamos añadiendo a la aplicación.',
-        'title'         => 'Lanzamientos',
-    ],
+    'release'       => [],
     'roadmap'       => [
         'backlog'           => [
             'description'   => 'Este tablón de Trello contiene todas las peticiones de características propuestas por la comunidad, así como las mejoras planeadas que algún día llegarán a la app.',
             'title'         => 'Trabajos pendientes',
-        ],
-        'blog'              => [
-            'description'   => 'Lanzamos una hoja de ruta a principios de mes, tras las votaciones comunitarias.',
-            'title'         => 'Hojas de ruta mensuales',
         ],
         'description'       => 'Los votaciones de nuestra comunidad moldean nuestro trabajo, así que, aunque no tenemos una hoja de ruta a meses vista, es sencillo estar al tanto de lo que se ha pedido y en lo que se está trabajando en cada momento.',
         'featured_requests' => [

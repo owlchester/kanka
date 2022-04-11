@@ -23,12 +23,11 @@ return [
         'title'     => ':name címke szerkesztése',
     ],
     'fields'        => [
-        'characters'    => 'Karakterek',
-        'children'      => 'Almezők',
-        'name'          => 'Megnevezés',
-        'tag'           => 'Szülő Címke',
-        'tags'          => 'Alcímkék',
-        'type'          => 'Típus',
+        'children'  => 'Almezők',
+        'name'      => 'Megnevezés',
+        'tag'       => 'Szülő Címke',
+        'tags'      => 'Alcímkék',
+        'type'      => 'Típus',
     ],
     'helpers'       => [
         'nested_parent' => ':parent céduláinak megmutatása.',

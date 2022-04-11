@@ -42,7 +42,6 @@ class Kernel extends HttpKernel
             \App\Http\Middleware\HttpsProtocol::class, // Force https in prod
             \App\Http\Middleware\LocaleChange::class, // Save language changing
             Tracking::class,
-
         ],
 
         'api' => [

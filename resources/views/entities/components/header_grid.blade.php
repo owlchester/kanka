@@ -249,7 +249,7 @@ if($campaign->campaign()->boosted() && $entity->hasHeaderImage($superboosted)) {
 
         @includeIf('entities.headers._' . $model->getEntityType())
 
-        @yield('entity-header-actions')
+        @yield($entityHeaderActions ?? 'entity-header-actions')
         </div>
     </div>
 </div>

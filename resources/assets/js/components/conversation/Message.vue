@@ -4,8 +4,8 @@
             <dropdown tag="a" menu-right class="message-options" v-if="message.can_delete">
                 <a class="dropdown-toggle" role="button"><span class="caret"></span></a>
                 <template slot="dropdown">
-                  <li><a role="button" v-on:click="editMessage(message)">{{ $t('crud.edit') }}</a></li>
-                  <li><a role="button" v-on:click="deleteMessage(message)">{{ $t('crud.remove') }}</a></li>
+                  <li><a role="button" v-on:click="editMessage(message)">{{ translate('edit') }}</a></li>
+                  <li><a role="button" v-on:click="deleteMessage(message)">{{ translate('remove') }}</a></li>
                 </template>
             </dropdown><br />
         </span>
@@ -15,12 +15,12 @@
             <span>{{ message.character }}</span>
         </strong>
         <strong class="unknown" v-else>
-            {{ $t('crud.users.unknown') }}
+            {{ translate('user_unknown') }}
         </strong>
         <div class="comment-text">
             {{ message.message }}
             <span class="pull-right text-muted">
-                <em v-if="message.is_updated" v-bind:title="message.updated_at">{{ $t('conversations.messages.is_updated') }},</em> {{ message.created_at }}
+                <em v-if="message.is_updated" v-bind:title="message.updated_at">{{ translate('is_updated') }},</em> {{ message.created_at }}
             </span>
         </div>
     </div>
@@ -34,7 +34,8 @@
      */
     export default {
         props: [
-            'message'
+            'message',
+            'trans',
         ],
 
         computed: {
@@ -52,6 +53,9 @@
             },
             editMessage: function(message) {
                 Event.$emit('edit_message', message);
+            },
+            translate(key) {
+                return this.trans[key] ?? 'unknown';
             }
         },
     }

@@ -22,12 +22,11 @@ return [
         'title'     => 'Redigera Tagg :name',
     ],
     'fields'        => [
-        'characters'    => 'Karaktärer',
-        'children'      => 'Undertaggar',
-        'name'          => 'Namn',
-        'tag'           => 'Huvudtagg',
-        'tags'          => 'Undertaggar',
-        'type'          => 'Typ',
+        'children'  => 'Undertaggar',
+        'name'      => 'Namn',
+        'tag'       => 'Huvudtagg',
+        'tags'      => 'Undertaggar',
+        'type'      => 'Typ',
     ],
     'helpers'       => [],
     'hints'         => [

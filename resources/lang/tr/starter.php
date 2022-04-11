@@ -19,12 +19,7 @@ return [
         'title'     => 'Patlayıcıların Kraliçesi',
         'traits'    => 'Başka bir şeyi mi takip etmek istiyorsunuz? Bu boş metin kutucuğu ile biz sizin arkanızdayız!',
     ],
-    'item1'         => [
-        'description'   => 'Bir eşya örneği',
-        'history'       => 'Eşyanın tarihçesi',
-        'name'          => 'Karanlık hançeri (örnek)',
-        'type'          => 'Silah',
-    ],
+    'item1'         => [],
     'kingdom1'      => [
         'description'   => 'Bu uygulama ile yapabileceklerinizi göstermek için yaratılmış örnek bir konumdur.',
         'history'       => '(örnek) Genory Krallığı Hotten\'lerin topraklarının 5. yy\'da Genoryalı kabile üyeleri tarafından işgali tarafından kurulmuştur.',

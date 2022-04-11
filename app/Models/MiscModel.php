@@ -649,6 +649,10 @@ abstract class MiscModel extends Model
         foreach ($this->entity->tagsWithEntity() as $tag) {
             $classes[] = 'kanka-tag-' . $tag->id;
             $classes[] = 'kanka-tag-' . $tag->slug;
+
+            if ($tag->tag_id) {
+                $classes[] = 'kanka-tag-' . $tag->tag_id;
+            }
         }
 
         // Specific entity flags
@@ -673,5 +677,17 @@ abstract class MiscModel extends Model
     public function showProfileInfo(): bool
     {
         return !empty($this->type);
+    }
+
+    /**
+     * Row classes for entities
+     * @return string
+     */
+    public function rowClasses(): string
+    {
+        if (!$this->is_private) {
+            return '';
+        }
+        return 'entity-private';
     }
 }

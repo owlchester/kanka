@@ -109,9 +109,7 @@ return [
         'node_must_not_be_a_descendant' => 'Nodo inválido (etiqueta, localización superior): sería un descendiente de sí mismo.',
         'unavailable_feature'           => 'Funcionalidad no disponible',
     ],
-    'events'                    => [
-        'hint'  => 'Los eventos del calendario asociados a esta entidad se muestran aquí.',
-    ],
+    'events'                    => [],
     'export'                    => 'Exportar',
     'fields'                    => [
         'ability'               => 'Habilidad',

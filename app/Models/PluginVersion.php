@@ -121,6 +121,7 @@ class PluginVersion extends Model
         $html = $this->content;
         $html = str_replace(['&lt;', '&gt;', '&amp;&amp;'], ['<', '>', '&&'], $html);
 
+
         $html = preg_replace_callback('`\{(.*?[^\!])\}`i', function ($matches) {
             $name = trim((string) $matches[1]);
             if(Str::startsWith($name, '{')) {
@@ -154,11 +155,13 @@ class PluginVersion extends Model
 
         // Prepare attributes
         $data = [];
+        $ids = [];
         $this->entityAttributes = $entity->allAttributes;
         $allAttributes = [];
         foreach ($this->entityAttributes as $attr) {
             $name = str_replace(' ', null, $attr->name);
             $data[$name] = $attr->mappedValue();
+            $ids[$name] = $attr->id;
             if ($attr->isText()) {
                 $data[$name] = nl2br($data[$name]);
             }
@@ -180,6 +183,16 @@ class PluginVersion extends Model
         foreach ($this->templateAttributes as $name) {
             $data[$name] = null;
         }
+
+
+        $html = preg_replace_callback('`\@liveAttribute\(\'(.*?[^)])\'\)`i', function ($matches) use ($data, $ids) {
+            $attr = trim((string) $matches[1]);
+            if (!isset($data[$attr])) {
+                return $matches[0];
+            }
+            return '<span class="live-edit" data-id="' . $ids[$attr] . '">' . $data[$attr] . '</span>';
+        }, $html);
+        //dd($html);
 
         $obLevel = ob_get_level();
         ob_start() and extract($data, EXTR_SKIP);

@@ -36,12 +36,10 @@ class StoreCharacter extends FormRequest
             'pronouns' => 'nullable|max:45',
             'title' => 'nullable|max:191',
             'template_id' => 'nullable',
-            'families' => [
-                '*' => 'exists:families,id'
-            ],
-            'races' => [
-                '*' => 'exists:races,id'
-            ]
+            'families' => 'array',
+            'families.*' => 'distinct|exists:families,id',
+            'races' => 'array',
+            'races.*' => 'distinct|exists:races,id'
         ];
 
         return $this->clean($rules);

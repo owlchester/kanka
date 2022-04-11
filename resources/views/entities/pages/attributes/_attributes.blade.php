@@ -24,8 +24,8 @@ $inSection = false;
         <div class="panel panel-default">
             <div class="panel-heading" data-toggle="collapse" data-target="#attribute-section-body-{{ $attribute->id }}">
                 <h4 class="panel-title">
-                    @if (Auth::check() && Auth::user()->isAdmin() && $attribute->is_private == true)
-                        <i class="fas fa-lock pull-right" title="{{ trans('crud.is_private') }}"></i>
+                    @if (auth()->check() && auth()->user()->isAdmin() && $attribute->is_private == true)
+                        <i class="fas fa-lock pull-right" title="{{ __('crud.is_private') }}"></i>
                     @endif
 
                     {!! $attribute->name() !!}
@@ -40,19 +40,23 @@ $inSection = false;
                   data-clipboard="{attribute:{{ $attribute->id }}}" data-toast="{{ __('crud.alerts.copy_attribute') }}">
             {!! $attribute->name() !!}
             </span>
-            @if (Auth::check() && Auth::user()->isAdmin() && $attribute->is_private == true)
-                <i class="fas fa-lock" title="{{ trans('crud.is_private') }}"></i>
+            @if (auth()->check() && auth()->user()->isAdmin() && $attribute->is_private == true)
+                <i class="fas fa-lock" title="{{ __('crud.is_private') }}"></i>
             @endif
         </dt>
         <dd>
             @if ($attribute->isCheckbox())
+                <span class="live-edit" data-id="{{ $attribute->id }}">
                 @if ($attribute->value)
                     <i class="fa fa-check"></i>
+                @else
+                    <i class="fa fa-times"></i>
                 @endif
+                </span>
             @elseif ($attribute->isText())
-                {!! nl2br($attribute->mappedValue()) !!}
+                <span class="live-edit" data-id="{{ $attribute->id }}">{!! nl2br($attribute->mappedValue()) !!}</span>
             @else
-                {!! $attribute->mappedValue() !!}
+                <span class="live-edit" data-id="{{ $attribute->id }}">{!! $attribute->mappedValue() !!}</span>
             @endif
 
             @if($attributeService->isLoop($attribute->name))

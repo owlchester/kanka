@@ -34,6 +34,10 @@ return [
         'success'   => 'Attributes for :entity updated.',
         'title'     => 'Attributes for :name',
     ],
+    'live'          => [
+        'success'   => 'Attribute :attribute updated.',
+        'title'     => 'Updating :attribute',
+    ],
     'placeholders'  => [
         'attribute' => 'Number of conquests, Challenge Rating, Initiative, Population',
         'block'     => 'Block name',
@@ -42,6 +46,7 @@ return [
             'class' => 'FontAwesome or RPG Awesome class: fas fa-users',
             'name'  => 'Icon name',
         ],
+        'number'    => 'Number name',
         'random'    => [
             'name'  => 'Attribute name',
             'value' => '1-100 or list of values separated by a comma',
@@ -62,6 +67,7 @@ return [
         'block'     => 'Block',
         'checkbox'  => 'Checkbox',
         'icon'      => 'Icon',
+        'number'    => 'Number',
         'random'    => 'Random',
         'section'   => 'Section',
         'text'      => 'Multiline Text',

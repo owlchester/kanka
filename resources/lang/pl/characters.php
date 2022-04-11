@@ -134,7 +134,6 @@ return [
         'tabs'  => [
             'map'           => 'Mapa relacji',
             'organisations' => 'Organizacje',
-            'personality'   => 'Osobowość',
         ],
         'title' => 'Postać :name',
     ],

@@ -134,9 +134,9 @@ class CharacterObserver extends MiscObserver
                 continue;
             }
 
-            if (!empty($existing[$id])) {
-                $model = $existing[$id];
-                unset($existing[$id]);
+            if (!empty($existing[$key])) {
+                $model = $existing[$key];
+                unset($existing[$key]);
             } else {
                 $model = new OrganisationMember();
                 $model->character_id = $character->id;
@@ -236,7 +236,7 @@ class CharacterObserver extends MiscObserver
         foreach ($character->families as $family) {
             // If it already exists, we have an issue
             if (!empty($existing[$family->id])) {
-                $recreate[$race->id] = $family->id;
+                $recreate[$family->id] = $family->id;
                 $character->families()->detach($family->id);
                 continue;
             }

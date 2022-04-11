@@ -19,12 +19,7 @@ return [
         'title'     => 'Kraljica eksplozija',
         'traits'    => 'Želiš pratiti nešto drugo? Možeš s ovom slobodnom sekcijom teksta.',
     ],
-    'item1'         => [
-        'description'   => 'Primjer predmeta.',
-        'history'       => 'Povijest predmeta.',
-        'name'          => 'Bodež tame (primjer)',
-        'type'          => 'Oružje',
-    ],
+    'item1'         => [],
     'kingdom1'      => [
         'description'   => 'Ovo je primjer lokacije stvorene kako bi pokazala što se može učiniti s aplikacijom.',
         'history'       => '(primjer) Kraljevstvo Genory osnovala su Genorska plemena krajem 5. stoljeća nakon što su napravili invaziju u zemlje Hottensa.',

@@ -23,12 +23,11 @@ return [
         'title'     => 'Uredi oznaku :name',
     ],
     'fields'        => [
-        'characters'    => 'Likovi',
-        'children'      => 'Djeca',
-        'name'          => 'Naziv',
-        'tag'           => 'Oznaka roditelj',
-        'tags'          => 'Pod-oznake',
-        'type'          => 'Tip',
+        'children'  => 'Djeca',
+        'name'      => 'Naziv',
+        'tag'       => 'Oznaka roditelj',
+        'tags'      => 'Pod-oznake',
+        'type'      => 'Tip',
     ],
     'helpers'       => [
         'nested_parent' => 'Prikaz oznake od :parent.',

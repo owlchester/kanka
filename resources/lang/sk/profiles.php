@@ -22,6 +22,7 @@ return [
     ],
     'fields'                        => [
         'avatar'                    => 'Avatar',
+        'bio'                       => 'Životopis',
         'email'                     => 'E-mail',
         'hide_subscription'         => 'Skryť moje meno zo :hall_of_fame.',
         'last_login_share'          => 'Zdieľaj s ostatnými členmi kampane tvoj posledný čas online.',
@@ -58,6 +59,7 @@ return [
         'success'   => 'Heslo zmenené',
     ],
     'placeholders'                  => [
+        'bio'                       => 'Krátky životopis alebo informácia o tebe, ktorá sa zobrazí na verejnom profile.',
         'email'                     => 'Tvoja e-mailová adresa',
         'name'                      => 'Tvoje meno, ako sa bude zobrazovať',
         'new_password'              => 'Tvoje nové heslo',
@@ -86,7 +88,9 @@ return [
             'pagination'                    => 'Stránkovanie (počet objektov na stránke)',
         ],
         'helpers'   => [
+            'bio'       => 'Životopis je viditeľný na tvojom :link.',
             'editor_v2' => 'Používanie pôvodného textového editoru (TinyMCE) nebude podporovať vytváranie referencií na mobilných zariadeniach alebo funkcionality ako galéria kampane.',
+            'profile'   => 'verejnom profile',
         ],
         'hints'     => [
             'advanced_mentions'     => 'Ak je toto nastavenie aktívne, budú sa referencie pri úprave objektov zobrazovať vo forme [entity:123].',

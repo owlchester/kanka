@@ -13,6 +13,7 @@ return [
         'export'            => 'Export',
         'find_out_more'     => 'En savoir plus',
         'go_to'             => 'Aller à :name',
+        'help'              => 'Aide',
         'json-export'       => 'Export (JSON)',
         'manage_links'      => 'Gérer les liens',
         'move'              => 'Déplacer',
@@ -109,9 +110,7 @@ return [
         'node_must_not_be_a_descendant' => 'Node invalide (étiquette, lieu parent): l\'entité serait un descendant de lui-même.',
         'unavailable_feature'           => 'Fonctionnalité indisponible',
     ],
-    'events'                    => [
-        'hint'  => 'Les événements de calendrier peuvent être associés à cette entité et être affichés ici.',
-    ],
+    'events'                    => [],
     'export'                    => 'Export',
     'fields'                    => [
         'ability'               => 'Pouvoirs',

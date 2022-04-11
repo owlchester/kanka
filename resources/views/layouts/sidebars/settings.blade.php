@@ -6,7 +6,7 @@
             <div class="campaign-head">
                 <div class="campaign-name" data-toggle="collapse" data-target="#campaign-switcher">
                     <i class="fa fa-caret-down pull-right"></i>
-                    {{ Auth::user()->name }}
+                    {{ auth()->user()->name }}
                 </div>
             </div>
         </div>
@@ -16,80 +16,96 @@
         <ul class="sidebar-menu tree" data-widget="tree">
             <li class="{{ $sidebar->settings('profile') }}">
                 <a href="{{ route('settings.profile') }}">
-                    <i class="fa fa-user"></i> <span>{{ __('settings.menu.profile') }}</span>
+                    <i class="fa fa-user"></i>
+                    {{ __('settings.menu.profile') }}
                 </a>
             </li>
             <li class="{{ $sidebar->settings('account') }}">
                 <a href="{{ route('settings.account') }}">
-                    <i class="fa fa-key"></i> <span>{{ __('settings.menu.account') }}</span>
+                    <i class="fa fa-key"></i>
+                    {{ __('settings.menu.account') }}
                 </a>
             </li>
             <li class="{{ $sidebar->settings('layout') }}">
                 <a href="{{ route('settings.layout') }}">
-                    <i class="fas fa-th-large"></i> <span>{{ __('settings.menu.layout') }}</span>
+                    <i class="fas fa-th-large"></i>
+                    {{ __('settings.menu.layout') }}
                 </a>
             </li>
             <li class="{{ $sidebar->settings('marketplace') }}">
                 <a href="{{ route('settings.marketplace') }}">
-                    <i class="fas fa-palette"></i> <span>{{ __('settings.menu.marketplace') }}</span>
+                    <i class="fas fa-palette"></i>
+                    {{ __('settings.menu.marketplace') }}
                 </a>
             </li>
 
 
-            <li class="sidebar-section">
-                <div class="sidebar-text">
+            <li class=" ">
+                <span>
                     <i class="fa fa-bolt"></i>
-                    <span>{{ trans('settings.menu.subscription') }}</span>
-                </div>
+                    {{ __('settings.menu.subscription') }}
+                </span>
+                <ul class="sidebar-submenu">
+                    <li class="{{ $sidebar->settings('boost') }} subsection">
+                        <a href="{{ route('settings.boost') }}">
+                            <i class="fa fa-rocket"></i>
+                            {{ __('settings.menu.boost') }}
+                        </a>
+                    </li>
+
+                    @if (config('services.stripe.enabled'))
+                        <li class="{{ $sidebar->settings('billing-information') }} subsection">
+                            <a href="{{ route('settings.billing') }}">
+                                <i class="fa fa-credit-card"></i>
+                                {{ __('settings.menu.billing') }}
+                            </a>
+                        </li>
+                        <li class="{{ $sidebar->settings('subscription') }} subsection">
+                            <a href="{{ route('settings.subscription') }}">
+                                <i class="fa fa-heart"></i>
+                                {{ __('settings.menu.subscription_status') }}
+                            </a>
+                        </li>
+                        <li class="{{ $sidebar->settings('invoices') }} subsection">
+                            <a href="{{ route('settings.invoices') }}">
+                                <i class="fa fa-receipt"></i>
+                                {{ __('settings.menu.invoices') }}
+                            </a>
+                        </li>
+                    @endif
+                </ul>
             </li>
 
-            <li class="{{ $sidebar->settings('boost') }} subsection">
-                <a href="{{ route('settings.boost') }}">
-                    <i class="fa fa-rocket"></i> <span>{{ __('settings.menu.boost') }}</span>
-                </a>
-            </li>
 
-            @if (config('services.stripe.enabled'))
-            <li class="{{ $sidebar->settings('billing-information') }} subsection">
-                <a href="{{ route('settings.billing') }}">
-                    <i class="fa fa-credit-card"></i> <span>{{ __('settings.menu.billing') }}</span>
-                </a>
-            </li>
-            <li class="{{ $sidebar->settings('subscription') }} subsection">
-                <a href="{{ route('settings.subscription') }}">
-                    <i class="fa fa-heart"></i> <span>{{ __('settings.menu.subscription_status') }}</span>
-                </a>
-            </li>
-            <li class="{{ $sidebar->settings('invoices') }} subsection">
-                <a href="{{ route('settings.invoices') }}">
-                    <i class="fa fa-receipt"></i> <span>{{ __('settings.menu.invoices') }}</span>
-                </a>
-            </li>
-            @endif
-
-
-            <li class="sidebar-section">
-                <div class="sidebar-text">
+            <li class="section-section">
+                <span>
                     <i class="fa fa-cubes"></i>
-                    <span>{{ trans('settings.menu.other') }}</span>
-                </div>
-            </li>
-            @if (Auth::user()->hasPatreonSync())<li class="{{ $sidebar->settings('patreon') }} subsection">
-                <a href="{{ route('settings.patreon') }}">
-                    <i class="fab fa-patreon"></i> <span>{{ __('settings.menu.patreon') }}</span>
-                </a>
-            </li>@endif
+                    {{ __('settings.menu.other') }}
+                </span>
 
-            <li class="{{ $sidebar->settings('apps') }} subsection">
-                <a href="{{ route('settings.apps') }}">
-                    <i class="fab fa-discord"></i> <span>{{ __('settings.menu.apps') }}</span>
-                </a>
+                <ul class="sidebar-submenu">
+                    @if (auth()->user()->hasPatreonSync())<li class="{{ $sidebar->settings('patreon') }} subsection">
+                        <a href="{{ route('settings.patreon') }}">
+                            <i class="fab fa-patreon"></i>
+                            {{ __('settings.menu.patreon') }}
+                        </a>
+                    </li>@endif
+
+                    <li class="{{ $sidebar->settings('apps') }} subsection">
+                        <a href="{{ route('settings.apps') }}">
+                            <i class="fab fa-discord"></i>
+                            {{ __('settings.menu.apps') }}
+                        </a>
+                    </li>
+                    <li class="{{ $sidebar->settings('api') }} subsection">
+                        <a href="{{ route('settings.api') }}">
+                            <i class="fas fa-code"></i>
+                            {{ __('settings.menu.api') }}
+                        </a>
+                    </li>
+                </ul>
             </li>
-            <li class="{{ $sidebar->settings('api') }} subsection">
-                <a href="{{ route('settings.api') }}">
-                    <i class="fas fa-code"></i> <span>{{ __('settings.menu.api') }}</span>
-                </a>
-            </li>
+
         </ul>
     </section>
 </aside>

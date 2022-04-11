@@ -9,9 +9,7 @@ return [
         'race'  => 'Gnom',
         'sex'   => 'Žena',
     ],
-    'item1'         => [
-        'type'  => 'Zbraň',
-    ],
+    'item1'         => [],
     'kingdom1'      => [
         'type'  => 'Království',
     ],

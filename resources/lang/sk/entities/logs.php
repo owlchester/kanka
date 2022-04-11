@@ -6,6 +6,7 @@ return [
         'delete'    => 'Zmazať',
         'restore'   => 'Obnoviť',
         'update'    => 'Upraviť',
+        'view'      => 'Zobraziť zmeny',
     ],
     'fields'        => [
         'action'    => 'Akcia',

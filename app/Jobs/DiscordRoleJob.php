@@ -13,6 +13,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Log;
 
 class DiscordRoleJob implements ShouldQueue
 {
@@ -60,6 +61,7 @@ class DiscordRoleJob implements ShouldQueue
                 $this->discord->user($this->user)->removeRoles();
             }
         } catch (\Exception $e) {
+            Log::error("DiscordRoleJob:: " . $e->getMessage());
             // Silence errors and ignore
         }
     }
