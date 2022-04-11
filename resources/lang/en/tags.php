@@ -23,20 +23,20 @@ return [
         'title'     => 'Edit Tag :name',
     ],
     'fields'        => [
-        'characters'    => 'Characters',
-        'children'      => 'Children',
-        'name'          => 'Name',
-        'tag'           => 'Parent Tag',
-        'tags'          => 'Subtags',
-        'type'          => 'Type',
+        'children'  => 'Children',
+        'name'      => 'Name',
+        'tag'       => 'Parent Tag',
+        'tags'      => 'Subtags',
+        'type'      => 'Type',
     ],
     'helpers'       => [
         'nested_parent' => 'Displaying the tags of :parent.',
         'nested_without'=> 'Displaying all tags that don\'t have a parent tag. Click on a row to see the children tags.',
+        'no_children'   => 'There are currently no entities tagged with this tag.',
     ],
     'hints'         => [
-        'children'  => 'This list contains all the entities directly in this tag and in all nested tags.',
-        'tag'       => 'Displayed below are all the tags that are directly under this tag.',
+        'children'  => 'This list contains all the entities that are assigned to this tag or the tag\'s children.',
+        'tag'       => 'This list contains all the tags are children of this tag or its children tags.',
     ],
     'index'         => [
         'actions'   => [

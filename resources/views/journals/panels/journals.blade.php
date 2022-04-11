@@ -19,23 +19,21 @@ $r = $model->allJournals()
             {{ __('journals.show.tabs.journals') }}
         </h3>
         <div class="box-tools">
+            <a href="#" class="btn btn-box-tool" data-toggle="modal" data-target="#help-modal">
+                <i class="fa fa-question-circle"></i> {{ __('crud.actions.help') }}
+            </a>
             @if (request()->has('journal_id'))
-                <a href="{{ route('journals.journals', [$model, '#journal-journals']) }}" class="btn btn-default btn-box-tool">
+                <a href="{{ route('journals.journals', [$model, '#journal-journals']) }}" class="btn btn-box-tool">
                     <i class="fa fa-filter"></i> {{ __('crud.filters.all') }} ({{ $model->allJournals()->count() }})
                 </a>
             @else
-                <a href="{{ route('journals.journals', [$model, 'journal_id' => $model->id, '#journal-journals']) }}" class="btn btn-default btn-box-tool">
+                <a href="{{ route('journals.journals', [$model, 'journal_id' => $model->id, '#journal-journals']) }}" class="btn btn-box-tool">
                     <i class="fa fa-filter"></i> {{ __('crud.filters.direct') }} ({{ $model->journals()->count() }})
                 </a>
             @endif
         </div>
     </div>
     <div class="box-body">
-
-
-        <p class="help-block">
-            {{ __('journals.helpers.journals') }}
-        </p>
 
         <div class="row">
             <div class="col-md-6">
@@ -56,11 +54,14 @@ $r = $model->allJournals()
                 @endif
             </tr>
             @foreach ($r as $journal)
-                <tr>
+                <tr class="{{ $journal->rowClasses() }}">
                     <td>
                         <a class="entity-image" style="background-image: url('{{ $journal->getImageUrl(40) }}');" title="{{ $journal->name }}" href="{{ route('journals.show', $journal->id) }}"></a>
                     </td>
                     <td>
+                        @if ($journal->is_private)
+                            <i class="fas fa-lock" title="{{ __('crud.is_private') }}" data-toggle="tooltip"></i>
+                        @endif
                         {!! $journal->tooltipedLink() !!}<br />
                         <i>{{ $journal->type }}</i>
                     </td>
@@ -82,3 +83,24 @@ $r = $model->allJournals()
         </div>
     @endif
 </div>
+
+@section('modals')
+    @parent
+    <div class="modal fade" id="help-modal" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('crud.delete_modal.close') }}"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        {{ __('crud.actions.help') }}
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        {{ __('journals.helpers.journals') }}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection

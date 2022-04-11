@@ -37,7 +37,7 @@ $defaultIndex = ($currentCampaign && $currentCampaign->defaultToNested()) || aut
                         @continue
                     @endif
 
-                    <li class="{{ (!isset($element['route']) || $element['route'] !== false ? $sidebar->active($name) : null) }} section section-{{ $name }}">
+                    <li class="{{ (!isset($element['route']) || $element['route'] !== false ? $sidebar->active($name) : null) }} section-{{ $name }}">
                         @if ($element['route'] !== false)
                             @php
                             $route = $element['route'];
@@ -61,7 +61,7 @@ $defaultIndex = ($currentCampaign && $currentCampaign->defaultToNested()) || aut
                         @endif
                         <ul class="sidebar-submenu">
                         @foreach($element['children'] as $childName => $child)
-                            <li class="{{ (!isset($child['route']) || $child['route'] !== false ? $sidebar->active($childName) : null) }} section subsection section-{{ $childName }}">
+                            <li class="{{ (!isset($child['route']) || $child['route'] !== false ? $sidebar->active($childName) : null) }} subsection section-{{ $childName }}">
                                 @php
                                     $route = $child['route'];
                                     if (isset($child['tree'])) {
@@ -107,7 +107,7 @@ $defaultIndex = ($currentCampaign && $currentCampaign->defaultToNested()) || aut
         <section class="sidebar">
             <ul class="sidebar-menu tree" data-widget="tree">
                 @foreach (\App\Facades\UserCache::campaigns() as $userCampaign)
-                    <li class="section section-campaign section-campaign-{{ $userCampaign->id }}">
+                    <li class="section-campaign section-campaign-{{ $userCampaign->id }}">
                         <a href="{{ url(App::getLocale() . '/' . $userCampaign->getMiddlewareLink()) }}">
                             <i class="fa fa-globe"></i>
                             {!! $userCampaign->name !!}

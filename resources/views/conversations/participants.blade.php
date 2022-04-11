@@ -20,7 +20,7 @@
         <div class="panel-body">
             <ul class="list-group list-group-unbordered margin-bottom">
                 @foreach ($model->participants as $participant)
-                    @if ($participant->isMember() || auth()->user()->can('view', $participant->entity()))
+                    @if ($participant->isMember() || (auth()->check() && auth()->user()->can('view', $participant->entity())))
                     <li class="list-group-item">
                         @can('update', $model)
                             {!! Form::open(['method' => 'DELETE', 'route' => ['conversations.conversation_participants.destroy', $model, $participant], 'style'=>'display:inline']) !!}

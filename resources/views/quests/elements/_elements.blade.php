@@ -29,7 +29,7 @@
 
                     <h3 class="widget-user-username">
                         @if ($element->is_private)
-                            <i class="fas fa-lock pull-right" title="{{ __('crud.is_private') }}"></i>
+                            <i class="fas fa-lock pull-right" title="{{ __('crud.is_private') }}" data-toggle="tooltip"></i>
                         @endif
                         @if($element->entity)
                             {!! $element->entity->tooltipedLink($element->name) !!}

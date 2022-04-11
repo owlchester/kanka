@@ -51,7 +51,6 @@ return [
     ],
     'link'              => [
         'anchor'            => 'La mención avanzada también puede especificar el ancla HTML a la que el enlace debería apuntar usando :example.',
-        'attributes'        => 'Puedes vincular atributos de la entidad escribiendo :code. Esto solo funciona para los atributos existentes de la entidad.',
         'auto_update'       => 'Los enlaces a otras entidades se actualizarán automáticamente cuando se cambie el nombre o la descripción de éstas.',
         'description'       => 'Puedes enlazar fácilmente otras entidades usando los siguientes atajos.',
         'formatting'        => [
@@ -59,7 +58,6 @@ return [
             'title' => 'Formato',
         ],
         'friendly_mentions' => 'Enlaza a otras entidades escribiendo :code y los primeros caracteres de una entidad para buscarla. Esto insertará :example en el editor de texto, y se mostrará como un enlace a la entidad al ver dicha entidad.',
-        'limitations'       => 'Ten en cuenta que debido a limitaciones técnicas estos atajos no funcionan en dispositivos móviles android.',
         'mention_helpers'   => 'Si el nombre de la entidad contiene un espacio, usa :example en vez del espacio. Si quieres buscar una entidad con exactamente ese nombre, escribe :exact.',
         'mentions'          => 'Enlaza a otras entidades escribiendo :code y los primeros caracteres de una entidad para buscarla. Esto introducirá :example en el editor de texto. Para personalizar el nombre a mostrar, puedes escribir :example_name. Para indicar una subpágina concreta de la entidad, usa :example_page. Para indicar una pestaña concreta, usa :example_tab.',
         'mentions_field'    => 'También puedes mostrar un campo de la entidad en lugar de su nombre en el link con :code.',

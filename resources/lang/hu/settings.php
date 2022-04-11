@@ -48,7 +48,6 @@ return [
             'campaign_gallery'  => 'A feltöltött képek kampánygalériája, amelyket újrahasznosíthatsz a kampány során.',
             'entity_files'      => 'Entitásonként 10 állományt tölthetsz fel.',
             'entity_logs'       => 'Részletes napló arról, hogy mi változott az entitáson minden frissítés során.',
-            'first'             => 'Hogy biztosítsuk a Kanka folyamatos fejlődését, bizonyos funkciók az adott kampány boost-olása után válnak elérhetővé. A boost-olás lehetőségégének megszerzése :patreon-on keresztül történik. Egy kampányt akárki boost-olhatja is, ha van joga megtekinteni azt, így nem minden esetben a Mesélőnek kell állnia a cehhet. Egy kampány addig marad boost-olva, amíg egy felhasználó fenntartja rajta a boost-ját, valamint a támogatását is :patreon-on keresztül. Ha egy kampány boost-olása megszűnik, az adatok nem vesznek el, csupán eltűnnek szem elől, amíg ismét nem kerül boost-olásra.',
             'header'            => 'Entitás fejléc képek.',
             'headers'           => [
                 'boosted'       => 'Megerősített kampány előnyei',

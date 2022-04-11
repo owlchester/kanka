@@ -154,7 +154,7 @@ class PatreonService
         }
 
         // Cache for a day
-        cache()->set($cacheKey, $patrons, 3600 * 6);
+        cache()->set($cacheKey, $patrons, 3600 * 24);
 
         return $patrons;
     }

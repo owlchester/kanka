@@ -68,8 +68,8 @@
         <div class="form-group">
             <label>{{ __('timelines/elements.fields.icon') }}</label>
             @if ($campaign->campaign()->boosted())
-                {!! Form::text('icon', null, ['class' => 'form-control', 'placeholder' => '<i class="fa fa-gem"></i>, <i class="ra ra-sword">']) !!}
-                <p class="help-block">{!! __('timelines/elements.helpers.icon', ['rpgawesome' => '<a href="https://nagoshiashumari.github.io/Rpg-Awesome/" target="_blank">RPG Awesome</a>', 'fontawesome' => '<a href="https://fontawesome.com/icons?d=gallery" target="_blank">Font Awesome</a>']) !!}</p>
+                {!! Form::text('icon', null, ['class' => 'form-control', 'placeholder' => 'fa-solid fa-gem, ra ra-sword']) !!}
+                <p class="help-block">{!! __('timelines/elements.helpers.icon', ['rpgawesome' => '<a href="https://nagoshiashumari.github.io/Rpg-Awesome/" target="_blank">RPG Awesome</a>', 'fontawesome' => '<a href="https://fontawesome.com/search?m=free&s=solid" target="_blank">Font Awesome</a>']) !!}</p>
             @else
                 <p class="help-block">{{ __('crud.errors.boosted') }}</p>
             @endif

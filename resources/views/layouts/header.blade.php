@@ -74,6 +74,7 @@ $currentCampaign = CampaignLocalization::getCampaign();
                 @endguest
 
                 @auth()
+
                 <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" title="{{ auth()->user()->name }}">
                         <img src="{{ auth()->user()->getAvatarUrl() }}" class="user-image" alt="{{ __('header.avatar') }}"/>

@@ -134,7 +134,6 @@ return [
         'tabs'  => [
             'map'           => 'Mapa vzťahov',
             'organisations' => 'Organizácie',
-            'personality'   => 'Osobnosť',
         ],
         'title' => 'Postava :name',
     ],

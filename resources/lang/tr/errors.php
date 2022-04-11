@@ -26,10 +26,6 @@ return [
         ],
         'title' => 'Bakım',
     ],
-    '503-form'  => [
-        'body'  => 'Verinizi doğru şekilde kaydedemedik, ki buna iki faktörden biri sebep olur. Lütfen Kanka\'yı :link ile açın. Eğer uygulama bakımda ise, uygulama tekrar çalışır hale gelene kadar lütfen verinizi başka bir yerde kaydedin. Eğer karşınıza "Tarayıcınız kontrol ediliyor" mesajı gelirse, tekrardan Kaydet tuşuna tıklamayı deneyebilirsiniz.',
-        'link'  => 'yeni pencere',
-        'title' => 'Beklenmeyen bir şey oldu.',
-    ],
+    '503-form'  => [],
     'footer'    => 'Eğer daha fazla yardıma ihtiyacınız varsa, lütfen bize hello@kanka.io adresinden ya da :discord üzerinden ulaşın.',
 ];

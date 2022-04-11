@@ -1,11 +1,11 @@
 <?php
 
 return [
-    'about'         => [
+    'about'                 => [
         'description'   => 'Kanka a été imaginé durant l\'été 2017 par deux joueurs de JdR passionnés souhaitant construire et gérer un monde ensemble. Après avoir essayé plusieurs outils existant à l\'époque, nous avons conclu qu\'aucune solution ne faisait exactement ce qu\'on voulait, alors on s\'est donné comme objectif de créer notre propre outil durant l\'automne de 2017.',
         'title'         => 'A propos',
     ],
-    'campaigns'     => [
+    'campaigns'             => [
         'description_full'  => 'Plusieurs campagnes sur Kanka sont publiques et accessibles à tous. Ci-dessous se trouve une liste de toutes les campagnes publiques, ainsi que des campagnes promues par la communauté.',
         'featured'          => [
             'description'   => 'Notre communauté construit des choses incroyables que nous aimons présenter grâce aux campagnes promues. Cette liste change assez souvent, alors reviens de temps en temps pour consulter de nouvelles campagnes.',
@@ -30,24 +30,29 @@ return [
         ],
         'title'             => 'Campagnes Publiques',
     ],
-    'community'     => [],
-    'contact'       => [
+    'community'             => [],
+    'contact'               => [
         'description'   => 'T\'as besoin d\'aide, une amélioration à suggérer, ou envie de nous dire que t\'adores Kanka? Notre équipe répond à tous les emails.',
         'email'         => 'Envoie toutes tes demandes à notre email:',
         'other'         => 'Ou contacte-nous à travers les réseaux sociaux.',
         'title'         => 'Nous sommes là!',
     ],
-    'cookie'        => [
+    'cookie'                => [
         'dismiss'   => 'Compris!',
         'link'      => 'En savoir plus',
         'message'   => 'Kanka utilise des cookies pour assurer une bonne expérience sur notre site web.',
     ],
-    'faq'           => [
+    'faq'                   => [
         'helpers'   => [
             'more'  => 'Pas trouvé ce que tu cherches?',
         ],
     ],
-    'features'      => [
+    'featured_campaigns'    => [
+        'description'   => 'Envies de voir Kanka en action et comment les gens l\'utilise? Voici quelques campagnes de notre communauté que nous pensons sont incroyables.',
+        'more'          => 'Découvre plus de campagne sur notre page de :public-campaigns.',
+        'title'         => 'En recherche d\'inspiration?',
+    ],
+    'features'              => [
         'abilities'         => [
             'description'   => 'Gérez les inventaires d\'entités. Attribue des sorts à tes personnages avec le module Pouvoirs.',
             'title'         => 'Pouvoirs et Inventaires',
@@ -80,6 +85,7 @@ return [
             'no_ads'                => 'Pas de publicité',
             'recovery'              => 'Récupération d\'entité pendant 30 jours',
             'relation-visualiser'   => 'Explorer les relations des entités visuellement',
+            'sidebar'               => 'Réordonner et modifier la navigation de a la campagne.',
             'theme'                 => 'Thème de campagne fixe',
             'title'                 => 'Campagnes Boostées',
             'tooltip'               => 'Infobulles d\'entité personnalisés',
@@ -189,11 +195,11 @@ return [
             'title' => 'Création d\'univers',
         ],
     ],
-    'first_block'   => [
+    'first_block'           => [
         'description'   => 'Notre application est disponible depuis n\'importe quel appareil mobile et navigateur, tu n’as rien besoin d’installer. Et en plus, c\'est complètement gratuit!',
         'title'         => 'Une nouvelle manière d\'organiser tes campagnes de JDR.',
     ],
-    'footer'        => [
+    'footer'                => [
         'app'       => 'App',
         'copyright' => '&copy; 2017 - :current kanka.io. Tous droits réservés.',
         'headings'  => [
@@ -206,7 +212,7 @@ return [
         'resources' => 'Ressources',
         'social'    => 'Social',
     ],
-    'help'          => [
+    'help'                  => [
         'description'   => 'Nous sommes là en cas de pépins. Contacte-nous en utilisant une des méthodes suivantes, et nous te contacterons aussi rapidement que possible.',
         'discord'       => 'Rejoins notre Discord',
         'documentation' => 'Accéder à la documentation',
@@ -215,18 +221,18 @@ return [
         'title'         => 'Aide',
         'twitter'       => 'Tweet-nous sur Twitter',
     ],
-    'home'          => [
+    'home'                  => [
         'seo'   => [
             'meta-description'  => 'Kanka est un gestionnaire de campagne JDR communautaire, qui facilite l\'organisation et la planification de tes campagnes JDR',
         ],
     ],
-    'master'        => [
+    'master'                => [
         'call_to_action'    => 'Créer un compte',
         'description'       => 'Kanka est un outil de création et de gestion pour des campagnes de jeux de rôle. Centré sur sa communauté et parfait pour ceux qui veulent créer des mondes élaborés. On t\'aide à créer et à organiser tes campagnes et mondes avec notre système de @mentions ainsi que toute une gamme de fonctionnalités telles que des calendriers, des cartes interactives, des chronologies, des organisations, des familles et autant de personnages que tu peux inventer!',
         'heading'           => 'Gestionnaire de jeux de rôle et création de monde rendu facile',
         'title'             => 'Kanka',
     ],
-    'media'         => [
+    'media'                 => [
         'description'   => 'Logos hautes définitions de Kanka. Utilises ces images pour promouvoir Kanka ou pour des outils qui interagissent avec Kanka.',
         'images'        => [
             'primary'   => 'Logo principal de Kanka',
@@ -234,7 +240,7 @@ return [
         ],
         'title'         => 'Media',
     ],
-    'menu'          => [
+    'menu'                  => [
         'about'         => 'À propos',
         'api'           => 'API',
         'campaigns'     => 'Campagnes Publiques',
@@ -263,15 +269,15 @@ return [
         'terms'         => 'Termes & Conditions',
         'title'         => 'Menu',
     ],
-    'meta'          => [
+    'meta'                  => [
         'description'   => 'Kanka est un outil digital et flexible pour la création de monde et gestionnaire de campagne de jeu de rôle.',
         'title'         => 'Kanka - Gestionnaire en ligne de campagne de jeu de rôle et outil de création de monde',
     ],
-    'partners'      => [
+    'partners'              => [
         'description'   => 'Nous sommes en partenariat avec des outils et communautés incroyables qui partagent nos objectifes et valeurs.',
         'title'         => 'Partenaires',
     ],
-    'pricing'       => [
+    'pricing'               => [
         'actions'       => [
             'subscribe' => 'Souscrire',
         ],
@@ -293,19 +299,15 @@ return [
         ],
         'title'         => 'Apercu des prix',
     ],
-    'privacy'       => [
+    'privacy'               => [
         'description'   => 'Date effective: :date',
         'title'         => 'Politique de confidentialité',
     ],
-    'release'       => [],
-    'roadmap'       => [
+    'release'               => [],
+    'roadmap'               => [
         'backlog'           => [
             'description'   => 'Ce Trello contient toutes les requêtes de la communauté, ainsi que les améliorations planifiées et nouvelles fonctionnalités qui seront un jour ajoutées à l\'application.',
             'title'         => 'Backlog',
-        ],
-        'blog'              => [
-            'description'   => 'Après notre vote communautaire, nous annonçons une roadmap au début de chaque mois.',
-            'title'         => 'Roadmaps mensuels',
         ],
         'description'       => 'Nos incroyables supporteurs votent une fois par mois sur les nouvelles fonctionnalités à prioriser, ce qui veut dire que nous n\'avons pas de roadmap sur plusieurs mois, mais qu’il est facile de suivre les requêtes qui sont en cours d’implémentation.',
         'featured_requests' => [
@@ -320,16 +322,16 @@ return [
         ],
         'title'             => 'Roadmap',
     ],
-    'second_block'  => [
+    'second_block'          => [
         'call_to_action'    => 'C\'est parti!',
     ],
-    'seo'           => [
+    'seo'                   => [
         'keywords'  => 'Création de monde, jeux de rôle, gestionnaire de jeux de rôle',
     ],
-    'team'          => [
+    'team'                  => [
         'coffee'    => 'Achète-moi un café!',
     ],
-    'terms'         => [
+    'terms'                 => [
         'description'   => 'Date effective: :date',
         'title'         => 'Termes & Conditions',
     ],

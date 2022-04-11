@@ -50,8 +50,6 @@ TEXT
         'excerpt'                   => 'Özet',
         'followers'                 => 'Takipçiler',
         'header_image'              => 'Başlık Görseli',
-        'hide_history'              => 'Varlık geçmişini gizle',
-        'hide_members'              => 'Serüven üyelerini gizle',
         'image'                     => 'Görsel',
         'locale'                    => 'Dil',
         'name'                      => 'Ad',
@@ -59,8 +57,6 @@ TEXT
         'rpg_system'                => 'RYO Sistemleri',
         'system'                    => 'Sistem',
         'theme'                     => 'Tema',
-        'tooltip_family'            => 'Bilgi çubuklarında aile adlarını engelle.',
-        'tooltip_image'             => 'Bilgi çubuklarında varlık görselini göster',
         'visibility'                => 'Görünürlük',
     ],
     'following'                         => 'Takip ediyor',
@@ -326,9 +322,7 @@ TEXT
             ],
         ],
     ],
-    'ui'                                => [
-        'helper'    => 'Serüvendeki bazı elementlerin gösterilme şeklini değiştirmek için bu seçenekleri kullanın.',
-    ],
+    'ui'                                => [],
     'visibilities'                      => [
         'private'   => 'Özel',
         'public'    => 'Açık',

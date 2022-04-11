@@ -22,12 +22,11 @@ return [
         'title'     => ':name Etiketini Düzenle',
     ],
     'fields'        => [
-        'characters'    => 'Karakterler',
-        'children'      => 'Bağlı not',
-        'name'          => 'Ad',
-        'tag'           => 'Ana Etiket',
-        'tags'          => 'Alt Etiket',
-        'type'          => 'Tür',
+        'children'  => 'Bağlı not',
+        'name'      => 'Ad',
+        'tag'       => 'Ana Etiket',
+        'tags'      => 'Alt Etiket',
+        'type'      => 'Tür',
     ],
     'helpers'       => [],
     'hints'         => [

@@ -26,10 +26,6 @@ return [
         ],
         'title' => 'Údržba',
     ],
-    '503-form'  => [
-        'body'  => 'Nepodarilo sa nám správne uložiť tvoje dáta, čo sa zvyčajne stáva z jedného z dvoch dôvodov. Prosím, otvor Kanku tu: :link. Ak práve pracujeme na aplikácii, ulož svoje dáta teraz inam, dokiaľ nebude Kanka opäť dostupná a pokús sa ich uložiť znovu. Ak ťa ale privítala hláška "Kontrola tvojho prehliadača", môžeš ich skúsiť uložiť znovu kliknutím na Uložiť.',
-        'link'  => 'Nové okno',
-        'title' => 'Stalo sa niečo, čo sme neočakávali.',
-    ],
+    '503-form'  => [],
     'footer'    => 'Ak potrebuješ ďalšiu pomoc, kontaktuj nás na hello@kanka.io alebo na :discord.',
 ];

@@ -13,6 +13,7 @@ return [
         'export'            => 'Export (PDF)',
         'find_out_more'     => 'Find out more',
         'go_to'             => 'Go to :name',
+        'help'              => 'Help',
         'json-export'       => 'Export (JSON)',
         'manage_links'      => 'Manage Links',
         'move'              => 'Move',
@@ -108,9 +109,6 @@ return [
         'cannot_move_node_into_itself'  => 'The selected parent entity is invalid. This could be due to it having this entity as the parent.',
         'node_must_not_be_a_descendant' => 'Invalid node (tag, parent location): it would be a descendant of itself.',
         'unavailable_feature'           => 'Unavailable feature',
-    ],
-    'events'                    => [
-        'hint'  => 'Shown below is a list of all the Calendars in which this entity was added using the "Add an event to a calendar" interface.',
     ],
     'export'                    => 'Export',
     'fields'                    => [

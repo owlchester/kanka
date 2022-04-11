@@ -30,15 +30,7 @@ return [
         ],
         'title'             => 'Verejné kampane',
     ],
-    'community'     => [
-        'description'   => 'Kanka nie je iba aplikácia, ale aj stále rastúca komunita osôb, ktoré tvoria svety, pánia jaskyniam, hrajú rolové hry a kreatívne tvoria.',
-        'discord'       => 'Discord server Kanky je najživšie miesto, kde sa môžeš vykecať o tejto apke, jej chybách alebo funkcionalitách. Alebo kde môžeš požiadať o pomoc alebo pomáhať iným.',
-        'facebook'      => 'Získaj informácie o aktualizáciách Kanky na našej stránke na Facebooku.',
-        'instagram'     => 'Chceš vidieť viac fotiek z našej práce na Kanke? Sleduj nás na Instagrame!',
-        'join'          => 'Pridaj sa k nám!',
-        'reddit'        => 'Subreddit je pokojné miesto, kde sa dajú témy diskutovať počas dlhšej doby.',
-        'title'         => 'Komunita',
-    ],
+    'community'     => [],
     'contact'       => [
         'description'   => 'Potrebuješ pomoc, máš nápad alebo sa chceš iba podeliť o tvoju lásku ku Kanke? Náš tím ti odpovie na každú správu!',
         'email'         => 'Všetky pripomienky nám zasielaj na e-mail:',
@@ -51,16 +43,9 @@ return [
         'message'   => 'Táto webstránka používa cookies, aby pre teba zaistila najlepšiu možnú skúsenosť s ňou.',
     ],
     'faq'           => [
-        'description'   => 'Zozbierali sme najčastejšie otázky a odpovedali na nich najlepšie, ako vieme.',
-        'helpers'       => [
+        'helpers'   => [
             'more'  => 'Nemôžeš nájsť, čo hľadáš?',
         ],
-        'kb'            => [
-            'button'    => 'Nájdi odpovede v našej vedomostnej databáze',
-            'text'      => 'Máš otázku o tom, ako používať funkcionality Kanky? Naša vedomostná databáza je miesto, ktoré hľadáš!',
-            'title'     => 'Potrebuješ pomoc pri používaní Kanky?',
-        ],
-        'title'         => 'FAQ',
     ],
     'features'      => [
         'abilities'         => [
@@ -258,7 +243,6 @@ return [
         'contact_us'    => 'Kontaktuj nás',
         'dashboard'     => 'Nástenka',
         'documentation' => 'Dokumentácia',
-        'faq'           => 'FAQ a Pomocník',
         'features'      => 'Funkcie',
         'help'          => 'Pomocník',
         'home'          => 'Domov',
@@ -289,9 +273,7 @@ return [
     ],
     'pricing'       => [
         'actions'       => [
-            'more'      => 'Zisti viac o všetkých funkciách, ktoré je možné získať podporou Kanky',
             'subscribe' => 'Predplatné',
-            'support'   => 'Podpora',
         ],
         'benefits'      => [
             'big_maps'      => 'Veľké mapy (:size)',
@@ -315,18 +297,11 @@ return [
         'description'   => 'Vstupuje do platnosti: :date',
         'title'         => 'Ochrana osobných údajov',
     ],
-    'release'       => [
-        'description'   => 'Kanka rastie a mení sa neustále a my chceme, aby sa svet dozvedel o všetkých úžasných veciach, ktoré do nej pridávame.',
-        'title'         => 'Verzie',
-    ],
+    'release'       => [],
     'roadmap'       => [
         'backlog'           => [
             'description'   => 'Táto nástenka v Trelle obsahuje všetky komunitou požadované funkcionality, ako aj všetky plánované funkcie a vylepšenia, ktoré sa jedného dňa dostanú do aplikácie.',
             'title'         => 'Backlog',
-        ],
-        'blog'              => [
-            'description'   => 'Na začiatku každého mesiaca vydávame plán, ktorý sa odvíja od komunitného hlasovania.',
-            'title'         => 'Mesačné plány',
         ],
         'description'       => 'Naše komunitné hlasovania ovplyvňujú našu prácu, takže hoci nemáme viacmesačný plán, vieme všetci jednoducho získať prehľad o aktuálnom stave požiadaviek a o tom, na čom sa aktuálne pracuje.',
         'featured_requests' => [

@@ -23,12 +23,11 @@ return [
         'title'     => 'Upraviť kategóriu :name',
     ],
     'fields'        => [
-        'characters'    => 'Postavy',
-        'children'      => 'Podradené kategórie',
-        'name'          => 'Názov',
-        'tag'           => 'Kategória',
-        'tags'          => 'Priradené kategórie',
-        'type'          => 'Typ',
+        'children'  => 'Podradené kategórie',
+        'name'      => 'Názov',
+        'tag'       => 'Kategória',
+        'tags'      => 'Priradené kategórie',
+        'type'      => 'Typ',
     ],
     'helpers'       => [
         'nested_parent' => 'Zobraziť kategórie :parent.',

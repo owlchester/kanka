@@ -116,7 +116,7 @@ class EntityObserver
 
         $data = request()->only('role', 'user', 'is_attributes_private', 'permissions_too_many');
 
-        // If the user granted themselves read/write permissions on the entity, we need to make sure they
+        // If the user granted/assigned themselves read/write permissions on the entity, we need to make sure they
         // still have them even if not checked in the UI.
         if (EntityPermission::granted() && !empty($data['user'])) {
             $user = auth()->user()->id;
@@ -133,13 +133,14 @@ class EntityObserver
 
     /**
      * @param Entity $entity
+     * @return $this
      * @throws \Exception
      */
-    protected function saveAttributes(Entity $entity)
+    protected function saveAttributes(Entity $entity): self
     {
         // If we're not in an interface that has attributes, don't go any further
-        if (!request()->has('attr_name') || !Auth::user()->can('attributes', $entity)) {
-            return false;
+        if (!request()->has('attr_name') && !request()->has('save-attributes') || !auth()->user()->can('attributes', $entity)) {
+            return $this;
         }
         $data = request()->only(
             'attr_name',
@@ -151,6 +152,8 @@ class EntityObserver
             'is_attributes_private'
         );
         $this->attributeService->saveEntity($data, $entity);
+
+        return $this;
     }
 
     /**
@@ -179,6 +182,7 @@ class EntityObserver
             $permission->table_name = $entity->pluralType();
             $permission->access = true;
             $permission->save();
+            EntityPermission::grant($entity, 'edit');
             $this->permissionGrantSelf = true;
         }
 

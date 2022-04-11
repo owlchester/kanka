@@ -108,9 +108,7 @@ return [
         'node_must_not_be_a_descendant' => 'Neplatný objekt (štítek, nadřazená lokace): Objekt nemůže být podřazen sám sobě.',
         'unavailable_feature'           => 'Nedostupná funkce',
     ],
-    'events'                    => [
-        'hint'  => 'Zde se zobrazují všechny kalendáře, které obsahují některou událost objektu, přidanou pomocí funkce: "Přidat událost do kalendáře".',
-    ],
+    'events'                    => [],
     'export'                    => 'Exportovat',
     'fields'                    => [
         'ability'               => 'Schopnost',

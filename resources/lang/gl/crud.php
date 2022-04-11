@@ -109,9 +109,7 @@ return [
         'node_must_not_be_a_descendant' => 'Nó inválido (etiqueta, localización nai): sería un descendente de si mesmo.',
         'unavailable_feature'           => 'Función non dispoñíbel',
     ],
-    'events'                    => [
-        'hint'  => 'Abaixo tes unha lista de todos os calendarios nos que esta entidade foi engadida usando a interface "Engadir un evento a un calendario".',
-    ],
+    'events'                    => [],
     'export'                    => 'Exportar',
     'fields'                    => [
         'ability'               => 'Habilidade',

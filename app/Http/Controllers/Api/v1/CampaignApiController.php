@@ -20,7 +20,6 @@ class CampaignApiController extends ApiController
 
     public function show(Campaign $campaign)
     {
-        throw new Bobli();
         $this->authorize('access', $campaign);
         $resource = new CampaignResource($campaign);
 

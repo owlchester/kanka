@@ -14,13 +14,8 @@ return [
         ],
         'title' => 'Cena',
     ],
-    'release'       => [
-        'title' => 'Vydané verze',
-    ],
+    'release'       => [],
     'roadmap'       => [
-        'blog'              => [
-            'title' => 'Měsíční Roudmapa',
-        ],
         'next'              => [
             'title' => 'Další',
         ],

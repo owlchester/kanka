@@ -56,11 +56,14 @@ $r = $r->with(['entity', 'races', 'races.entity', 'location', 'location.entity',
             </tr></thead>
             <tbody>
             @foreach ($r as $member)
-                <tr>
+                <tr class="{{ $member->rowClasses() }}">
                     <td>
                         <a class="entity-image" style="background-image: url('{{ $member->getImageUrl(40) }}');" title="{{ $member->name }}" href="{{ route('characters.show', $member->id) }}"></a>
                     </td>
                     <td>
+                        @if ($member->is_private)
+                            <i class="fas fa-lock" title="{{ __('crud.is_private') }}" data-toggle="tooltip"></i>
+                        @endif
                         {!! $member->tooltipedLink() !!} @if ($member->is_dead)<span class="ra ra-skull" data-toggle="tooltip" title="{{ __('characters.hints.is_dead') }}"></span>@endif<br />
                         <i>{{ $member->title }}</i>
                     </td>

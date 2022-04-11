@@ -23,16 +23,16 @@ return [
         'title'     => 'Modifier l\'étiquette :name',
     ],
     'fields'        => [
-        'characters'    => 'Personnages',
-        'children'      => 'Enfants',
-        'name'          => 'Nom',
-        'tag'           => 'Étiquette Parentale',
-        'tags'          => 'Étiquettes',
-        'type'          => 'Type',
+        'children'  => 'Enfants',
+        'name'      => 'Nom',
+        'tag'       => 'Étiquette Parentale',
+        'tags'      => 'Étiquettes',
+        'type'      => 'Type',
     ],
     'helpers'       => [
         'nested_parent' => 'Affichage des étiquettes de :parent.',
         'nested_without'=> 'Affichage des étiquettes sans parent. Cliquer sur une rangée pour afficher les étiquettes enfants.',
+        'no_children'   => 'Il n\'y a actuellement aucune entité avec cette étiquette.',
     ],
     'hints'         => [
         'children'  => 'Cette liste contient toutes les entités directement dans cette étiquette et toutes les étiquettes enfants.',

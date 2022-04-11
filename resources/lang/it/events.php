@@ -31,6 +31,9 @@ return [
         'type'      => 'Cerimonia, Festival, Disastro, Battaglia, Nascita',
     ],
     'show'          => [
+        'tabs'  => [
+            'events'    => 'Eventi',
+        ],
         'title' => 'Evento :name',
     ],
     'tabs'          => [

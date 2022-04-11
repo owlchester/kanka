@@ -59,8 +59,6 @@ TEXT
         'excerpt'                           => 'Podsumowanie',
         'followers'                         => 'Obserwujący',
         'header_image'                      => 'Ilustracja okładkowa',
-        'hide_history'                      => 'Ukryj historię edycji',
-        'hide_members'                      => 'Ukryj uczestników kampanii',
         'image'                             => 'Obraz',
         'locale'                            => 'Język kampanii',
         'name'                              => 'Nazwa',
@@ -74,8 +72,6 @@ TEXT
         'superboosted'                      => 'Turbodoładowana przez',
         'system'                            => 'System',
         'theme'                             => 'Motyw',
-        'tooltip_family'                    => 'Usuń nazwy rodzin z dymków',
-        'tooltip_image'                     => 'Pokaż obraz elementu w dymku',
         'visibility'                        => 'Widoczność',
     ],
     'following'                         => 'Obserwowanie',
@@ -232,10 +228,7 @@ TEXT
         ],
         'title'     => 'Kampania otwarta',
     ],
-    'options'                           => [
-        'entity_personality_visibility' => 'Osobowość nowych postaci jest automatycznie tajna',
-        'entity_visibility'             => 'Nowo stworzone elementy są automatycznie tajne',
-    ],
+    'options'                           => [],
     'panels'                            => [
         'boosted'   => 'Doładowana',
         'dashboard' => 'Pulpit',
@@ -459,7 +452,6 @@ TEXT
             'nested'            => 'Domyślny układ list',
             'post_collapsed'    => 'Domyślny sposób prezentowana komentarzy',
         ],
-        'helper'            => 'Użyj tych ustawień by zmienić zachowanie niektórych elementów kampanii.',
         'helpers'           => [
             'connections'       => 'Wybierz domyślny sposób wyświetlania powiązań po wejściu na odpowiednią podstronę elementu.',
             'other'             => 'Inne opcje wizualne kampanii',

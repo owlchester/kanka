@@ -30,15 +30,7 @@ return [
         ],
         'title'             => 'Nyilvános kampányok',
     ],
-    'community'     => [
-        'description'   => 'A Kanka nemcsak egy alkalmazás, hanem világépítők, mesélők, szerepjátékosok és lelkes kreatívok virágzó közössége is.',
-        'discord'       => 'A Kanka Discord a legaktívabb hely, ahol az alkalmazásról, annak funkcióiról vagya megtalált hibákról beszélgethetsz, illetve segítséget kérhetsz vagy adhatsz.',
-        'facebook'      => 'Légy naprakész az összes újdonsággal kapcsolatban a facebook oldalunkon keresztül.',
-        'instagram'     => 'Kíváncsi vagy több színfalak mögötti képre rólunk ahogy a Kankán dolgozunk, vagy épp játszunk? Az Instagram a te helyed, ahol követhetsz minket!',
-        'join'          => 'Csatlakozz hozzánk!',
-        'reddit'        => 'A Kanka subreddit egy nyugisabb hely, ahol a dolgokat hosszabb időkeretben beszélhetitek meg.',
-        'title'         => 'Közösség',
-    ],
+    'community'     => [],
     'contact'       => [
         'description'   => 'Segítségre lenne szükséged, van egy javaslatod, vagy csak egyszerűen megosztanád, hogy mennyire tetszik a Kanka? Csapatunk válaszol majd, bármi legyen is az alkalom!',
         'email'         => 'Az alábbi email címen elérhetsz minket:',
@@ -51,16 +43,9 @@ return [
         'message'   => 'Ez a weboldal sütiket használ, hogy biztosíthassa a lehető legjobb böngészési élményedet.',
     ],
     'faq'           => [
-        'description'   => 'Összegyűjtöttük a leggyakrabban feltett kérdéseket, és igyekeztünk a lehető legtisztább választ adni.',
-        'helpers'       => [
+        'helpers'   => [
             'more'  => 'Nem találtad meg, amit kerestél?',
         ],
-        'kb'            => [
-            'button'    => 'Találd meg a választ a tudásbázisunkban',
-            'text'      => 'Kérdésed van, hogyan használd a Kanka lehetőségeit? A folyamatosan bővülő tudásbázisunk, ahová fordulhatsz.',
-            'title'     => 'Segítségre van szükséged a Kanka használatához?',
-        ],
-        'title'         => 'GYIK',
     ],
     'features'      => [
         'abilities'         => [
@@ -146,9 +131,7 @@ return [
         'patreon'           => [
             'api_calls'         => 'Megnövelt API hívás szám (90)',
             'boosts'            => 'Kampány Booster-ek',
-            'curation'          => 'Részt vehetsz a Patreon szavazási lista összeállításában',
             'default_image'     => 'Jópofa alapértelmezett entitás képek',
-            'description'       => 'A Kanka támogatásával a Patreon-on az alábbi előnyökhez juthatsz:',
             'discord'           => 'Privát Discord csatorna',
             'entities'          => 'Entitások darabszáma, amely egy-egy kampány számára létrehozható.',
             'free'              => 'Ingyenes',
@@ -158,7 +141,6 @@ return [
             'no_ads'            => 'Nem lesznek reklámok',
             'pagination'        => 'Megnövelt megjelenített elemek száma oldalanként (100)',
             'pagination_help'   => 'Ez a maximálisan megjeleníthető találatok száma oldalanként nem pedig a kampányban létrehozható entitásokra vonatkozó limit.',
-            'title'             => 'Patreon támogatás',
             'upload_limit'      => 'Megnövelt feltöltési méret (8MB)',
             'upload_limit_map'  => 'Megnövelt térkép feltöltési méret (10MB)',
             'users_roles'       => 'Felhasználók száma, szerepek, és jogosultság kezelés',
@@ -254,7 +236,6 @@ return [
         'contact'       => 'Kapcsolat',
         'contact_us'    => 'Lépj velünk kapcsolatba',
         'dashboard'     => 'Főoldal',
-        'faq'           => 'GYIK',
         'features'      => 'Funkciók',
         'help'          => 'Segítség',
         'home'          => 'Kezdőlap',
@@ -283,9 +264,7 @@ return [
     ],
     'pricing'       => [
         'actions'       => [
-            'more'      => 'Ismerd meg az összes funkciót, amelyet a Kanka támogatásával szerezhetsz meg',
             'subscribe' => 'Előfizetés',
-            'support'   => 'Támogatás',
         ],
         'benefits'      => [
             'big_maps'      => 'Nagy térkép méret (:size)',
@@ -309,20 +288,12 @@ return [
         'description'   => 'Érvényes 2018. május 25-től.',
         'title'         => 'Adatvédelmi nyilatkozat',
     ],
-    'release'       => [
-        'description'   => 'A Kanka folyamatosan növekszik és fejlődik, és szeretnénk, hogy tudjatok minden király dologról, amit hozzáadunk.',
-        'title'         => 'Verziók',
-    ],
+    'release'       => [],
     'roadmap'       => [
         'backlog'           => [
             'description'   => 'Ez a Trello board minden igényelt funkciót tartalmaz, amelyet a közösség küldött be, valamint azokat a tervezett funkciókat és fejlesztéseket, amelyek egy napon bekerülnek az alkalmazásba.',
             'title'         => 'Feladatlista',
         ],
-        'blog'              => [
-            'description'   => 'Minden hónap elején nyilvánosságra hozzuk a fejlesztési tervet, ami a Közösségi szavazást követi',
-            'title'         => 'Havi fejlesztési terv',
-        ],
-        'description'       => 'A csodálatos Patreon támogatóink havonta egyszer szavaznak, hogy mely funkciókon dolgozzunk, így hiába nincs előre többhavi tervünk, könnyű követni, mire van igény, és min dolgozunk.',
         'featured_requests' => [
             'title' => 'Funkció igénylés',
         ],

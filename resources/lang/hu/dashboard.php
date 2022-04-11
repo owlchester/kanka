@@ -1,19 +1,19 @@
 <?php
 
 return [
-    'actions'           => [
+    'actions'       => [
         'follow'    => 'Követés',
         'join'      => 'Csatlakozás',
         'unfollow'  => 'Követés visszavonása',
     ],
-    'campaigns'         => [
+    'campaigns'     => [
         'tabs'  => [
             'modules'   => ':count modul',
             'roles'     => ':count szerep',
             'users'     => ':count felhasználó',
         ],
     ],
-    'dashboards'        => [
+    'dashboards'    => [
         'actions'       => [
             'edit'      => 'Név és engedélyek szerkesztése',
             'new'       => 'Új főoldal',
@@ -55,25 +55,24 @@ return [
             'visible'   => 'Látható',
         ],
     ],
-    'helpers'           => [
+    'helpers'       => [
         'follow'    => 'Egy kampány követése esetén megjelenik majd a kampányválasztó menüben (jobbra fent) a saját kampányaid alatt.',
         'join'      => 'A kampány nyitott az új tagok számára. Klikkelj a csatlakozás kéréséért.',
         'setup'     => 'Állítsd be a kampányod főoldalát!',
     ],
-    'latest_release'    => 'Legutóbbi frissítések',
-    'notifications'     => [
+    'notifications' => [
         'modal' => [
             'confirm'   => 'Értem',
             'title'     => 'Fontos megjegyzés',
         ],
     ],
-    'recent'            => [
+    'recent'        => [
         'title' => 'Mostanában módosított :name',
     ],
-    'settings'          => [
+    'settings'      => [
         'title' => 'Főoldal beállításai',
     ],
-    'setup'             => [
+    'setup'         => [
         'actions'   => [
             'add'               => 'Widget hozzáadása',
             'back_to_dashboard' => 'Vissza a főoldalra',
@@ -90,8 +89,8 @@ return [
             'unmentioned'   => 'Nem említett entitások',
         ],
     ],
-    'title'             => 'Főoldal',
-    'widgets'           => [
+    'title'         => 'Főoldal',
+    'widgets'       => [
         'actions'                   => [
             'advanced-options'  => 'Bővebb lehetőségek',
             'delete-confirm'    => 'eme widget',

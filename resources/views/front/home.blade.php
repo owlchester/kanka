@@ -95,4 +95,6 @@
         </div>
     </section>
     @endif
+
+    @includeWhen(!empty($campaigns), 'front._campaigns')
 @endsection

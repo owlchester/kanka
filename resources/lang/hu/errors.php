@@ -26,14 +26,6 @@ return [
         ],
         'title' => 'Karbantartás',
     ],
-    '503-form'  => [
-        'body'  => <<<'TEXT'
-Nem tudtuk menteni az adatot, amelyet általában az alábbi két eset egyike szokott okozni:
-Kérlek nyisd meg a Kankát az alábbi linken keresztül :link. Amennyiben az app karbantartás alatt áll, kérlek mentsd el a módosításaid valahol magadnak, és amikor az app megint elérhető, próbálkozz újra. Amennyiben "Böngésző ellenőrzése" üzenettel találkoznál, próbáld meg újra elmenteni a változtatásaid a Mentés gombra kattintva.
-TEXT
-,
-        'link'  => 'új ablak',
-        'title' => 'Váratlan esemény történt.',
-    ],
+    '503-form'  => [],
     'footer'    => 'Ha további segítségre van szükséged, kérjük, keress meg minket a hello@kanka.io email-címen vagy a :discord szerverünkön.',
 ];

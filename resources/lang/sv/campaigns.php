@@ -54,8 +54,6 @@ TEXT
         'excerpt'                   => 'Utdrag',
         'followers'                 => 'Följare',
         'header_image'              => 'Titelbild',
-        'hide_history'              => 'Dölj entitet-historia',
-        'hide_members'              => 'Dölj kampanj-medlemmar',
         'image'                     => 'Bild',
         'locale'                    => 'Språk',
         'name'                      => 'Namn',
@@ -64,8 +62,6 @@ TEXT
         'rpg_system'                => 'RPG System',
         'system'                    => 'System',
         'theme'                     => 'Tema',
-        'tooltip_family'            => 'Dölj familjenamn från inforutor.',
-        'tooltip_image'             => 'Visa entitetsbilder i inforutor',
         'visibility'                => 'Synlighet',
     ],
     'following'                         => 'Följer',
@@ -335,9 +331,7 @@ TEXT
             ],
         ],
     ],
-    'ui'                                => [
-        'helper'    => 'Använd dessa inställningar för att ändra hur visa element kommer visas i kampanjen.',
-    ],
+    'ui'                                => [],
     'visibilities'                      => [
         'private'   => 'Privat',
         'public'    => 'Offentlig',

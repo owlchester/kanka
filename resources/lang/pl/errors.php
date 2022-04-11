@@ -26,10 +26,6 @@ return [
         ],
         'title' => 'Konserwacja',
     ],
-    '503-form'  => [
-        'body'  => 'Nie udało nam się poprawnie zapisać danych, co zwykle zdarza się w dwóch przypadkach. Otwórz Kankę z pomocą :link. Jeżeli trwa konserwacja, zapisz swoje dane gdzie indziej dopóki nie skończymy, a potem spróbuj ponownie. Jeżeli powitał cię napis "Sprawdzanie przeglądarki", możesz ponowić próbę zapisu.',
-        'link'  => 'nowe okno',
-        'title' => 'Niespodziewany wyjątek',
-    ],
+    '503-form'  => [],
     'footer'    => 'Jeżeli potrzebujesz pomocy, skontaktuj się z nami przez hello@kanka.io albo na serwerze :discord',
 ];

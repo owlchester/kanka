@@ -109,9 +109,7 @@ return [
         'node_must_not_be_a_descendant' => 'Niewłaściwy węzeł (etykieta, miejsce źródłowe): pochodziłby sam od siebie.',
         'unavailable_feature'           => 'Funkcja niedostępna',
     ],
-    'events'                    => [
-        'hint'  => 'Poniżej znajduje się lista kalendarzy, do których dodano wydarzenia zawierające ten element.',
-    ],
+    'events'                    => [],
     'export'                    => 'Eksportuj',
     'fields'                    => [
         'ability'               => 'Zdolność',
@@ -228,6 +226,7 @@ return [
     ],
     'helpers'                   => [
         'copy_options'  => 'Skopiuj następujące elementy elementu źródłowego do nowego elementu.',
+        'linking'       => 'Łącza do innych elementów',
     ],
     'hidden'                    => 'Ukryte',
     'hints'                     => [

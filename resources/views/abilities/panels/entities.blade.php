@@ -20,11 +20,14 @@
                 <th>{{ __('crud.fields.entity_type') }}</th>
             </tr>
             @foreach ($r as $entity)
-                <tr>
+                <tr class="@if ($entity->is_private) entity-private @endif">
                     <td>
                         <a class="entity-image" style="background-image: url('{{ $entity->avatar(true) }}');" title="{{ $entity->name }}" href="{{ $entity->url('show') }}"></a>
                     </td>
                     <td>
+                        @if ($entity->is_private)
+                            <i class="fas fa-lock" title="{{ __('crud.is_private') }}" data-toggle="tooltip"></i>
+                        @endif
                         {!! $entity->tooltipedLink() !!}
                     </td>
                     <td>

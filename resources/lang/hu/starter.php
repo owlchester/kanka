@@ -19,12 +19,7 @@ return [
         'title'     => 'A Robbanások Királynője',
         'traits'    => 'Mást is nyilvántartanál? Ezt a szabadszöveges szakaszt neked találtuk ki!',
     ],
-    'item1'         => [
-        'description'   => 'Egy nagyon sötét tőr. De komolyan.',
-        'history'       => 'A Sötét Úr kovácsolta a Sötét Korban, sötétségből.',
-        'name'          => 'A Sötétség Tőre (példa)',
-        'type'          => 'Fegyver',
-    ],
+    'item1'         => [],
     'kingdom1'      => [
         'description'   => 'Egy példahelyszín, ami megmutatja, mi valósítható meg az alkalmazással.',
         'history'       => '(példa) Genoria királyságát a genori törzsek alapították a késő ötödik században, miután elhódították a vidéket a hottenektől.',
@@ -52,7 +47,7 @@ Néhány tipp a kezdéshez:
 Végül, de nem utolsó sorban:
 - Böngészheted a :public kampányokat ötletekért, hogy mások hogyan használják a Kankát a saját kampányukban.
 - Ha kérdésed, vagy javaslatod lenne, esetleg csak beszélgetnél, látogass meg minket :discord-on!
-- Tetszik az app, és szeretnéd segíteni, hogy tovább növekedhessen? Látogass el a :patreon-ra, és támogasd a Kankát!
+- Tetszik az app, és szeretnéd segíteni, hogy tovább növekedhessen? Látogass el a :subscriptions, és támogasd a Kankát!
 TEXT
 ,
         'name'          => 'Üdvözlő üzenet',

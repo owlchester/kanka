@@ -37,17 +37,21 @@ $r = $model->descendants()
         </div>
 
         <table id="maps" class="table table-hover margin-top ">
-            <tbody><tr>
-                <th class="avatar"><br /></th>
-                <th>{{ __('maps.fields.name') }}</th>
-                <th>{{ __('crud.fields.map') }}</th>
-            </tr>
-            @foreach ($r as $map)
+            <thead>
                 <tr>
+                    <th class="avatar"><br /></th>
+                    <th>{{ __('maps.fields.name') }}</th>
+                    <th>{{ __('crud.fields.map') }}</th>
+                </tr>
+            </thead>
+            <tbody>
+            @foreach ($r as $map)
+                <tr class="{{ $map->rowClasses() }}">
                     <td>
                         <a class="entity-image" style="background-image: url('{{ $map->getImageUrl(40) }}');" title="{{ $map->name }}" href="{{ route('maps.show', $map->id) }}"></a>
                     </td>
                     <td>
+                        @if ($map->is_private) <i class="fas fa-lock" title="{{ __('crud.is_private') }}" data-toggle="tooltip"></i> @endif
                         {!! $map->tooltipedLink() !!}
                     </td>
                     <td>

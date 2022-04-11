@@ -23,12 +23,11 @@ return [
         'title'     => 'Editar tag :name',
     ],
     'fields'        => [
-        'characters'    => 'Personagens',
-        'children'      => 'Filhos',
-        'name'          => 'Nome',
-        'tag'           => 'Tag Principal',
-        'tags'          => 'Subtags',
-        'type'          => 'Tipo',
+        'children'  => 'Filhos',
+        'name'      => 'Nome',
+        'tag'       => 'Tag Principal',
+        'tags'      => 'Subtags',
+        'type'      => 'Tipo',
     ],
     'helpers'       => [
         'nested_parent' => 'Mostrando as tags de :parent.',

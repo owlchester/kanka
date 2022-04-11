@@ -17,7 +17,6 @@ return [
         'back'      => 'Terug naar selectie',
         'duplicate' => 'Er zijn andere entiteiten van dit type met dezelfde naam.',
         'helper'    => 'Selecteer een entiteitstype om te maken. Als er geen entiteiten worden weergegeven, betekent dit dat je geen toestemming hebt om een entiteit in deze campaign te maken.',
-        'success'   => 'Nieuwe entiteit \':link\' gemaakt.',
         'title'     => 'Nieuwe Entiteit',
     ],
     'dice_roll'             => 'Dobbelsteen Worp',

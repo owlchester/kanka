@@ -26,10 +26,6 @@ return [
         ],
         'title' => 'Em manutenção',
     ],
-    '503-form'  => [
-        'body'  => 'Não foi possível salvar seus dados corretamente, o que geralmente é causado por um de dois fatores. Abra o Kanka em a :link. Se o aplicativo estiver em manutenção, salve seus dados em outro lugar até que o aplicativo esteja de volta e tente novamente. Se você foi saudado por uma mensagem "Verificando seu navegador", você pode tentar clicar em Salvar novamente.',
-        'link'  => 'Nova janela',
-        'title' => 'Algo inesperado aconteceu',
-    ],
+    '503-form'  => [],
     'footer'    => 'Se precisar de mais ajuda, entre em contato conosco em hello@kanka.io ou no :discord',
 ];

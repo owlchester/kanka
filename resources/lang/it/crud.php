@@ -104,9 +104,7 @@ return [
         'boosted_campaigns'             => 'Questa funzionalità è disponibile solo per :boosted',
         'node_must_not_be_a_descendant' => 'Nodo non valido (tag, luogo padre): sarebbe un discendente di sé stesso.',
     ],
-    'events'            => [
-        'hint'  => 'Qui sotto puoi vedere una lista di tutti i calendari ai quali questa entità è stata aggiunta usando "Aggiungi un evento a un calendario".',
-    ],
+    'events'            => [],
     'export'            => 'Esporta',
     'fields'            => [
         'ability'               => 'Abilità',

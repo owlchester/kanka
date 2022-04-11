@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\FontAwesomeIcon;
 use App\Traits\ApiRequest;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -32,7 +33,7 @@ class StoreMenuLink extends FormRequest
             'type' => 'required_without_all:entity_id,random_entity_type,dashboard_id',
             'random_entity_type' => 'required_without_all:entity_id,type,dashboard_id',
             'dashboard_id' => 'required_without_all:entity_id,type,random_entity_type',
-            'icon' => 'nullable',
+            'icon' => ['nullable', new FontAwesomeIcon],
             'tab' => 'nullable',
             'filters' => 'nullable|string|max:191',
             'menu' => 'nullable|string|max:45',

@@ -18,6 +18,7 @@ return [
         'name'              => 'You can reference the entity\'s name with :name. If an attribute exists with that name, the attribute will be used instead.',
         'pinned'            => 'Pinning an attribute using the :icon icon will make it appear in the entitiy\'s menu below its image.',
         'private'           => 'Private attributes using the :icon will make them only visible to members of the campaign\'s admin role.',
+        'range'             => 'Number attributes can be set up to only allow value between a range of numbers. For example, use :example to limit the attribute between 1 and 10. The range values can also reference other attributes, for example with :reference. When saving an attribute, if the value is outside of the range, it will automatically revert to the closest range value.',
         'random'            => 'When creating or editing an attribute template, you can set random attributes. This can either be a random value between two numbers separated by :dash, or a random value from a list of values separated by :comma. The value for the attribute is determined when the template is applied to an entity, or when an entity is saved.',
         'random_examples'   => 'For example, if you want a number between 1 and 100, use :number. If you want a value from a list of options, use :list.',
         'title'             => 'Attributes',

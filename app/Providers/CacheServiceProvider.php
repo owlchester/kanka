@@ -7,6 +7,7 @@ namespace App\Providers;
 use App\Services\Caches\CampaignCacheService;
 use App\Services\Caches\CharacterCacheService;
 use App\Services\Caches\EntityCacheService;
+use App\Services\Caches\FrontCacheService;
 use App\Services\Caches\PostCacheService;
 use App\Services\Caches\UserCacheService;
 use Illuminate\Support\ServiceProvider;
@@ -41,5 +42,6 @@ class CacheServiceProvider extends ServiceProvider
         $this->app->alias(UserCacheService::class, 'usercache');
         $this->app->alias(PostCacheService::class, 'postcache');
         $this->app->alias(CharacterCacheService::class, 'charactercache');
+        $this->app->alias(FrontCacheService::class, 'frontcache');
     }
 }

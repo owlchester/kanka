@@ -22,12 +22,7 @@ return [
         'title'     => 'Königin der Explosionen',
         'traits'    => 'Möchtest du etwas anderes nachvollziehen? Dafür gibt es diese Freitextsektion!',
     ],
-    'item1'         => [
-        'description'   => 'Beispiel eines Items',
-        'history'       => 'Geschichte des Items.',
-        'name'          => 'Dolch der Dunkelheit (Beispiel)',
-        'type'          => 'Waffe',
-    ],
+    'item1'         => [],
     'kingdom1'      => [
         'description'   => 'Dies ist ein Beispielort, um dir zu zeigen, was du mit dieser App machen kannst.',
         'history'       => '(Beispiel) Das Königreich von Genory wurde von genorischen Stammesangehörigen im späten 5. Jahrhundert gegründet, nachdem sie in die Länder der Hotten eingedrungen sind.',

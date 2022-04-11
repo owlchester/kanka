@@ -8,7 +8,8 @@ return [
         'remove_all'        => 'Odstrániť všetko',
     ],
     'errors'        => [
-        'loop'  => 'Vo výpočte atribútu sa vyskytuje nekonečná slučka!',
+        'loop'      => 'Vo výpočte atribútu sa vyskytuje nekonečná slučka!',
+        'too_many'  => 'Tento objekt má príliš veľa polí a nie je možné mu pridať ďalšie atribúty. Zmaž niektoré z atribútov, ak chceš pridať nové.',
     ],
     'fields'        => [
         'attribute'             => 'Atribút',

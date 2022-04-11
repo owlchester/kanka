@@ -1149,6 +1149,10 @@ td.breakable {
   line-height: 20px !important;
 }
 
+.btn-box-tool .fa-ellipsis-v {
+  padding: 0 7px;
+}
+
 .menu-link-selector .btn-app > .badge {
   display: none;
 }
@@ -1518,7 +1522,12 @@ summary {
 .timeline > li > .ra,
 .timeline > li > .fab,
 .timeline > li > .far,
-.timeline > li > .fas {
+.timeline > li > .fas,
+.timeline > li > .fa-solid,
+.timeline > li > .fa-solid,
+.timeline > li > .fa-light,
+.timeline > li > .fa-thin,
+.timeline > li > .fa-duotone {
   width: 30px;
   height: 30px;
   font-size: 15px;
@@ -2612,6 +2621,13 @@ ul.sidebar-sortable ul li ul {
 
 .live-edit-parsed:hover:after {
   content: " \F303";
+}
+
+.live-edit.empty-value {
+  width: 24px;
+  height: 24px;
+  display: inline-block;
+  border-bottom: 1px dotted var(--search-border);
 }
 
 /** Mobile support **/

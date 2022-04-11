@@ -22,12 +22,7 @@ return [
         'title'     => 'Kráľovná explózií',
         'traits'    => 'Hľadáš priestor pre ďalšie poznámky? Máš možnosť v tejto sekcii pre voľný text!',
     ],
-    'item1'         => [
-        'description'   => 'Príklad predmetu',
-        'history'       => 'História predmetu',
-        'name'          => 'Dýka Temnoty (Príklad)',
-        'type'          => 'Zbraň',
-    ],
+    'item1'         => [],
     'kingdom1'      => [
         'description'   => 'Toto je príklad miesta, ktoré sme vytvorili, aby sme ukázali, čo aplikácia dokáže.',
         'history'       => '(Príklad) Genorijské kráľovstvo bolo založené genorijskými kmeňmi koncom 5. storočia po tom, čo vnikli na územie Hottenov.',
@@ -55,7 +50,7 @@ Niekoľko tipov na začiatok:
 No a nakoniec:
 - Inšpiruj sa na :public ako iní užívatelia pracujú s Kankou.
 - Ak máš nejaké otázky, nápady alebo si chceš len pokecať, pridaj sa k nám na :discord.
-- Pozdáva sa ti Kanka a chceš podporiť jej fungovanie? Zavítaj na náš :patreon.
+- Pozdáva sa ti Kanka a chceš podporiť jej fungovanie? Zavítaj na náš :subscriptions.
 TEXT
 ,
         'name'          => 'Uvítacia správa',

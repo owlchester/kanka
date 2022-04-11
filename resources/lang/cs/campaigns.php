@@ -61,8 +61,6 @@ TEXT
         'excerpt'                   => 'Stručný popis Kampaně',
         'followers'                 => 'Sledující',
         'header_image'              => 'Obrázek pozadí nástěnky tažení',
-        'hide_history'              => 'Skrýt historii objektu',
-        'hide_members'              => 'Skrýt členy tažení',
         'image'                     => 'Obrázek',
         'locale'                    => 'Jazyk',
         'name'                      => 'Název',
@@ -74,8 +72,6 @@ TEXT
         'superboosted'              => '"Superboost" výhoda od',
         'system'                    => 'Systém',
         'theme'                     => 'Téma',
-        'tooltip_family'            => 'Nezobrazovat jména rodin v informačních bublinách',
-        'tooltip_image'             => 'Zobrazovat obrázky objektů v informačních bublinách',
         'visibility'                => 'Viditelnost',
     ],
     'following'                         => 'Sledující',
@@ -227,10 +223,7 @@ TEXT
         'link'      => 'Přihlášky k tažení',
         'title'     => 'Otevřené tažení',
     ],
-    'options'                           => [
-        'entity_personality_visibility' => 'U nově vytvořených postav bude ve výchozím nastavení skrytý popis osobnosti.',
-        'entity_visibility'             => 'Nově vytvořené objekty budou ve výchozím nastavení skryté.',
-    ],
+    'options'                           => [],
     'panels'                            => [
         'boosted'   => 'Zvýhodněné ("boosted") tažení.',
         'dashboard' => 'Nástěnka',
@@ -415,8 +408,7 @@ TEXT
         ],
     ],
     'ui'                                => [
-        'helper'    => 'Změna těchto nastavení ovlivní, jak se budou některé objekty v kampani zobrazovat.',
-        'other'     => 'Ostatní',
+        'other' => 'Ostatní',
     ],
     'visibilities'                      => [
         'private'   => 'Soukromé',

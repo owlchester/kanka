@@ -18,15 +18,7 @@ return [
         ],
         'title'             => 'Campagne Pubbliche',
     ],
-    'community'     => [
-        'description'   => 'Kanka non è solamente un\'app è anche una fiorente comunità di costruttori di mondi, dungeon masters, giocatori di ruolo ed appassionati creativi.',
-        'discord'       => 'Il canale Discord di Kanka è il luogo più attivo per parlare dell\'app, dei bug, delle caratteristiche e per chiedere aiuto o darne.',
-        'facebook'      => 'Tieniti al corrente di tutti i nostri aggiornamenti sulla nostra pagina Facebook.',
-        'instagram'     => 'Vuoi dare uno sguardo dietro le quinte ad immagini di noi mentre lavoriamo a Kanka o giochiamo? Allora Instagram è il luogo dove puoi seguirci!',
-        'join'          => 'Unisciti a noi!',
-        'reddit'        => 'Il subreddit di kanka è un posto più tranquillo dove le cose possono essere discusse per un periodo più lungo.',
-        'title'         => 'Comunità',
-    ],
+    'community'     => [],
     'contact'       => [
         'description'   => 'Hai bisogno di aiuto, hai un suggerimento, o vuoi semplicemente condividere il tuo amore per Kanka? Il nostro team ti risponderà in ogni caso!',
         'email'         => 'Manda tutte le domande a',
@@ -39,11 +31,9 @@ return [
         'message'   => 'Questo sito utilizza dei cookies per assicurarsi di fornirti la miglior esperienza possibile.',
     ],
     'faq'           => [
-        'description'   => 'Abbiamo risposto alle domande più frequenti nella maniera più chiara possibile.',
-        'helpers'       => [
+        'helpers'   => [
             'more'  => 'Non hai trovato ciò che stavi cercando?',
         ],
-        'title'         => 'FAQ',
     ],
     'features'      => [
         'api'               => [
@@ -159,7 +149,6 @@ return [
         'contact'   => 'Contatti',
         'contact_us'=> 'Contattaci',
         'dashboard' => 'Dashboard',
-        'faq'       => 'FAQ',
         'features'  => 'Caratteristiche',
         'help'      => 'Aiuto',
         'home'      => 'Home',
@@ -182,10 +171,7 @@ return [
         'description'   => 'Data di entrata in vigore: :date',
         'title'         => 'Privacy Policy',
     ],
-    'release'       => [
-        'description'   => 'Kanka cresce e migliora costantemente è vogliamo che il mondo conosca tutte le magnifiche cose che stiamo aggiungendo all\'app.',
-        'title'         => 'Rilasci',
-    ],
+    'release'       => [],
     'roadmap'       => [
         'backlog'       => [
             'description'   => 'Questa bacheca di Trello contiene tutte le caratteristiche richieste dalla comunità come tutte le caratteristiche  ed i miglioramenti pianificati che un giorno rilascieremo per l\'app.',

@@ -97,6 +97,7 @@ return [
     ],
     'helpers'       => [
         'month_type'    => 'Les mois intercalaires n\'utilisent pas les jours de la semaine, mais ont quand-même une influence sur les lunes et saisons.',
+        'moon_offset'   => 'Par défaut, la première pleine lune apparait lors du premier jour de l\'année 0. Modifier ce champ permet de définir quand la première pleine lune apparaitra. Cette valeur peut être négative (jusqu\'à la durée du premier mois) ou positive (jusqu\'à la durée du premier mois).',
         'nested_parent' => 'Affichage des calendriers de :parent.',
         'nested_without'=> 'Affichage des calendriers sans parent. Cliquer sur une rangée pour afficher les calendriers enfants.',
         'start_offset'  => 'Un calendrier commence par défaut le premier jour de la première semaine de l\'année 0. Modifier ce champ permet d\'influencer quand le premier jour tombe.',
@@ -223,5 +224,8 @@ return [
     'sorters'       => [
         'after' => 'Aujourd\'hui et après',
         'before'=> 'Aujourd\'hui et avant',
+    ],
+    'validators'    => [
+        'moon_offset'   => 'Le décalage de début de lune ne peut pas être plus grand que la durée du premier mois du calendrier.',
     ],
 ];

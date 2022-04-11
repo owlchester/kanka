@@ -17,6 +17,8 @@ TEXT
         'title'                 => 'Nuova campagna',
     ],
     'destroy'                           => [
+        'action'    => 'Elimina campagna',
+        'helper'    => 'Puoi eliminare la campagna solo se sei un partecipante.',
         'success'   => 'Campagna eliminata.',
     ],
     'edit'                              => [
@@ -46,6 +48,7 @@ TEXT
         'css'                       => 'CSS',
         'description'               => 'Descrizione',
         'entity_count'              => 'Numero di Entità',
+        'entry'                     => 'Descrizione della campagna',
         'excerpt'                   => 'Estratto',
         'followers'                 => 'Followers',
         'header_image'              => 'Immagine di copertina',
@@ -56,8 +59,6 @@ TEXT
         'rpg_system'                => 'Sistema RPG',
         'system'                    => 'Sistema',
         'theme'                     => 'Tema',
-        'tooltip_family'            => 'Disabilita i nomi delle famiglie dai tooltips',
-        'tooltip_image'             => 'Mostra l\'immagine dell\'entità nei tooltips',
         'visibility'                => 'Visibilità',
     ],
     'following'                         => 'Che Segui',
@@ -330,7 +331,6 @@ TEXT
             'entity_image'  => 'Immagine dell\'entità',
             'family_toolip' => 'Famiglia del personaggio',
         ],
-        'helper'    => 'Usa queste impostazioni per cambiare il modo in cui alcuni elementi saranno mostrati nella campagna.',
         'members'   => [
             'hidden'    => 'Visibile solo agli amministratori della campagna',
             'visible'   => 'Visibile ai membri',

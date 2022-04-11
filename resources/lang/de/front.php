@@ -30,15 +30,7 @@ return [
         ],
         'title'             => 'Öffentliche Kampagnen',
     ],
-    'community'     => [
-        'description'   => 'Kanka ist nicht nur eine App, sondern auch eine wachsende Community aus Weltenbauern, Dungeon Mastern, Rollenspielern und kreativen Enthusiasten.',
-        'discord'       => 'Der Kanka Discord ist der lebhafteste Platz um über die App, Bugs und Features zu sprechen. Oder um nach Hilfe zu fragen und auszuhelfen.',
-        'facebook'      => 'Bleiben Sie auf unserer Facebook-Seite über alle Updates auf dem Laufenden.',
-        'instagram'     => 'Möchten Sie mehr Bilder hinter den Kulissen sehen, in denen wir an Kanka arbeiten oder spielen? Instagram ist der Ort, um uns zu folgen!',
-        'join'          => 'Mach mit!',
-        'reddit'        => 'Der Kanka Subreddit ist ein ruhigerer Ort, wo Themen über eine längere Zeit besprochen werden können.',
-        'title'         => 'Community',
-    ],
+    'community'     => [],
     'contact'       => [
         'description'   => 'Benötigen Sie Hilfe, haben Sie einen Vorschlag oder möchten Sie einfach Ihre Liebe zu Kanka teilen? Unser Team wird zu jedem Anlass antworten!',
         'email'         => 'Senden Sie alle Anfragen an unsere :email',
@@ -51,16 +43,9 @@ return [
         'message'   => 'Diese Webseite benutzt Cookies um sicherzustellen, dass du die bestmögliche Erfahrung mit der Seite machst.',
     ],
     'faq'           => [
-        'description'   => 'Wir haben die häufigsten Fragen gesammelt und so genau wie möglich beantwortet.',
-        'helpers'       => [
+        'helpers'   => [
             'more'  => 'Haben Sie nicht gefunden, wonach Sie gesucht haben?',
         ],
-        'kb'            => [
-            'button'    => 'Finden Sie Antworten in unserer Datenbank',
-            'text'      => 'Haben Sie eine Frage zur Verwendung der Funktionen von Kanka? Unsere ständig wachsende Datenbank ist der richtige Ort für Sie.',
-            'title'     => 'Benötigen sie Hilfe beim Benutzen von Kanka',
-        ],
-        'title'         => 'FAQ',
     ],
     'features'      => [
         'abilities'         => [
@@ -258,7 +243,6 @@ return [
         'contact_us'    => 'Kontaktiere uns',
         'dashboard'     => 'Dashboard',
         'documentation' => 'Dokumentation',
-        'faq'           => 'FAQ',
         'features'      => 'Features',
         'help'          => 'Hilfe',
         'home'          => 'Home',
@@ -289,9 +273,7 @@ return [
     ],
     'pricing'       => [
         'actions'       => [
-            'more'      => 'Erfahren Sie mehr über alle Funktionen, die durch die Unterstützung von Kanka freigeschaltet wurden',
             'subscribe' => 'Abonnieren',
-            'support'   => 'Unterstützung',
         ],
         'benefits'      => [
             'big_maps'      => 'große Kartengröße (:size)',
@@ -315,18 +297,11 @@ return [
         'description'   => 'Datum des Inkrafttretens: :date',
         'title'         => 'Datenschutzbestimmung',
     ],
-    'release'       => [
-        'description'   => 'Kanka wächst und verändert sich ständig und wir wollen der Welt zeigen, welche tollen Dinge wir hinzufügen.',
-        'title'         => 'Versionen',
-    ],
+    'release'       => [],
     'roadmap'       => [
         'backlog'           => [
             'description'   => 'Dieses Trello Board enthält alle von der Community angefragten Features, wie auch alle geplanten Features und Verbesserungen die eines Tages in die App schaffen werden.',
             'title'         => 'Backlog',
-        ],
-        'blog'              => [
-            'description'   => 'Wir veröffentlichen zu Beginn eines jeden Monats nach unserer Community-Abstimmung einen Verlaufplan.',
-            'title'         => 'monatlicher Verlaufplan',
         ],
         'description'       => 'Unsere großartigen Patrons stimmen einmal im Monat darüber ab, an welchen Features als nächstes gearbeitet wird. Auch wenn wir keine Roadmap über mehrere Monate haben, ist es einfach nachzuverfolgen, welche Features bereits angefragt wurden und was momentan in Arbeit ist.',
         'featured_requests' => [

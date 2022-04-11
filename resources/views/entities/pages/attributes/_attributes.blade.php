@@ -54,9 +54,13 @@ $inSection = false;
                 @endif
                 </span>
             @elseif ($attribute->isText())
-                <span class="live-edit" data-id="{{ $attribute->id }}">{!! nl2br($attribute->mappedValue()) !!}</span>
+                <span class="live-edit @if (empty($attribute->value)) empty-value @endif" data-id="{{ $attribute->id }}">
+                    {!! nl2br($attribute->mappedValue()) !!}
+                </span>
             @else
-                <span class="live-edit" data-id="{{ $attribute->id }}">{!! $attribute->mappedValue() !!}</span>
+                <span class="live-edit @if (empty($attribute->value)) empty-value @endif" data-id="{{ $attribute->id }}">
+                    {!! $attribute->mappedValue() !!}
+                </span>
             @endif
 
             @if($attributeService->isLoop($attribute->name))

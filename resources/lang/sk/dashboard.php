@@ -1,19 +1,19 @@
 <?php
 
 return [
-    'actions'           => [
+    'actions'       => [
         'follow'    => 'Sledovať',
         'join'      => 'Pridať sa',
         'unfollow'  => 'Zrušiť sledovanie',
     ],
-    'campaigns'         => [
+    'campaigns'     => [
         'tabs'  => [
             'modules'   => '{1} :count modul|[2,4] :count moduly|[5,*] :count modulov',
             'roles'     => '{1} :count rola|[2,4] :count role|[5,*] :count rolí',
             'users'     => '{1} :count užívateľ|[2,4] :count užívatelia|[5,*] :count užívateľov',
         ],
     ],
-    'dashboards'        => [
+    'dashboards'    => [
         'actions'       => [
             'edit'      => 'Upraviť názov a oprávnenia',
             'new'       => 'Nová nástenka',
@@ -55,25 +55,24 @@ return [
             'visible'   => 'Viditeľná',
         ],
     ],
-    'helpers'           => [
+    'helpers'       => [
         'follow'    => 'Keď sleduješ nejakú kampaň, bude sa ti zobrazovať v prepínači kampaní (vpravo hore) pod tvojimi kampaňami.',
         'join'      => 'Táto kampaň je otvorená pre nových členov. Klikni sem na pridanie sa do nej.',
         'setup'     => 'Nastav svoju nástenku kampane.',
     ],
-    'latest_release'    => 'Posledná verzia',
-    'notifications'     => [
+    'notifications' => [
         'modal' => [
             'confirm'   => 'Rozumiem',
             'title'     => 'Dôležitý oznam',
         ],
     ],
-    'recent'            => [
+    'recent'        => [
         'title' => 'Nedávno zmenené :name',
     ],
-    'settings'          => [
+    'settings'      => [
         'title' => 'Nastavenia nástenky',
     ],
-    'setup'             => [
+    'setup'         => [
         'actions'   => [
             'add'               => 'Pridať widget',
             'back_to_dashboard' => 'Naspäť na nástenku',
@@ -94,8 +93,8 @@ return [
             'unmentioned'   => 'Objekty bez referencií',
         ],
     ],
-    'title'             => 'Nástenka',
-    'widgets'           => [
+    'title'         => 'Nástenka',
+    'widgets'       => [
         'actions'                   => [
             'advanced-options'  => 'Rozšírené možnosti',
             'delete-confirm'    => 'tento widget',
