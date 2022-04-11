@@ -64,7 +64,7 @@ function registerSidebarSetup() {
         placeholder: 'placeholder',
         //items: 'li:not(.fixed)',
         stop: function (e, ui) {
-            if (ui.item.first().hasClass('fixed')) {
+            if (ui.item.first().hasClass('fixed') && ul.item.parents('.fixed').length > 0) {
                 $('ul.sidebar-sortable').sortable("cancel");
             }
         }
