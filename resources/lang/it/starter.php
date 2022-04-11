@@ -50,7 +50,7 @@ Alcuni consigli per iniziare:
 Ultimo ma non meno importante:
 - Guarda :public per un'ispirazione su come gli altri usano Kanka.
 - Se ha delle domande, dei suggerimento o vuoi solamente chattare unisciti a noi su :discord.
-- Ami l'app e vuoi supportare la sua crescita? Recati sul nostro :patreon.
+- Ami l'app e vuoi supportare la sua crescita? Recati sul nostro :subscriptions.
 TEXT
 ,
         'name'          => 'Nota di Benvenuto',

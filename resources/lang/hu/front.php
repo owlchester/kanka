@@ -131,9 +131,7 @@ return [
         'patreon'           => [
             'api_calls'         => 'Megnövelt API hívás szám (90)',
             'boosts'            => 'Kampány Booster-ek',
-            'curation'          => 'Részt vehetsz a Patreon szavazási lista összeállításában',
             'default_image'     => 'Jópofa alapértelmezett entitás képek',
-            'description'       => 'A Kanka támogatásával a Patreon-on az alábbi előnyökhez juthatsz:',
             'discord'           => 'Privát Discord csatorna',
             'entities'          => 'Entitások darabszáma, amely egy-egy kampány számára létrehozható.',
             'free'              => 'Ingyenes',
@@ -143,7 +141,6 @@ return [
             'no_ads'            => 'Nem lesznek reklámok',
             'pagination'        => 'Megnövelt megjelenített elemek száma oldalanként (100)',
             'pagination_help'   => 'Ez a maximálisan megjeleníthető találatok száma oldalanként nem pedig a kampányban létrehozható entitásokra vonatkozó limit.',
-            'title'             => 'Patreon támogatás',
             'upload_limit'      => 'Megnövelt feltöltési méret (8MB)',
             'upload_limit_map'  => 'Megnövelt térkép feltöltési méret (10MB)',
             'users_roles'       => 'Felhasználók száma, szerepek, és jogosultság kezelés',
@@ -297,7 +294,6 @@ return [
             'description'   => 'Ez a Trello board minden igényelt funkciót tartalmaz, amelyet a közösség küldött be, valamint azokat a tervezett funkciókat és fejlesztéseket, amelyek egy napon bekerülnek az alkalmazásba.',
             'title'         => 'Feladatlista',
         ],
-        'description'       => 'A csodálatos Patreon támogatóink havonta egyszer szavaznak, hogy mely funkciókon dolgozzunk, így hiába nincs előre többhavi tervünk, könnyű követni, mire van igény, és min dolgozunk.',
         'featured_requests' => [
             'title' => 'Funkció igénylés',
         ],

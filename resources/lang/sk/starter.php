@@ -50,7 +50,7 @@ Niekoľko tipov na začiatok:
 No a nakoniec:
 - Inšpiruj sa na :public ako iní užívatelia pracujú s Kankou.
 - Ak máš nejaké otázky, nápady alebo si chceš len pokecať, pridaj sa k nám na :discord.
-- Pozdáva sa ti Kanka a chceš podporiť jej fungovanie? Zavítaj na náš :patreon.
+- Pozdáva sa ti Kanka a chceš podporiť jej fungovanie? Zavítaj na náš :subscriptions.
 TEXT
 ,
         'name'          => 'Uvítacia správa',

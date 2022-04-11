@@ -47,7 +47,7 @@ Néhány tipp a kezdéshez:
 Végül, de nem utolsó sorban:
 - Böngészheted a :public kampányokat ötletekért, hogy mások hogyan használják a Kankát a saját kampányukban.
 - Ha kérdésed, vagy javaslatod lenne, esetleg csak beszélgetnél, látogass meg minket :discord-on!
-- Tetszik az app, és szeretnéd segíteni, hogy tovább növekedhessen? Látogass el a :patreon-ra, és támogasd a Kankát!
+- Tetszik az app, és szeretnéd segíteni, hogy tovább növekedhessen? Látogass el a :subscriptions, és támogasd a Kankát!
 TEXT
 ,
         'name'          => 'Üdvözlő üzenet',
