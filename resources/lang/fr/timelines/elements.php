@@ -20,7 +20,7 @@ return [
     ],
     'helpers'       => [
         'entity_is_private' => 'L\'entité de cet élément est privé.',
-        'icon'              => 'Copier le HTML d\'une icône depuis :fontawesome ou :rpgawesome.',
+        'icon'              => 'Copier la class CSS d\'une icône depuis :fontawesome ou :rpgawesome.',
         'is_collapsed'      => 'L\'élément s\'affiche de manière minimisé par défaut.',
     ],
     'placeholders'  => [

@@ -155,8 +155,11 @@ class TimelineElement extends Model
      */
     public function htmlIcon(): string
     {
-        if (!empty($this->icon) && Str::startsWith($this->icon, '<i class=')) {
-            return str_replace('<i class="', '<i class="bg-' . $this->colour . ' ', $this->icon);
+        if (!empty($this->icon)) {
+            if (Str::startsWith($this->icon, '<i class=')) {
+                return str_replace('<i class="', '<i class="bg-' . $this->colour . ' ', $this->icon);
+            }
+            return '<i class="bg-' . $this->colour . ' ' . $this->icon . '"></i>';
         }
 
         return '<i class="fa fas fa-hourglass-half bg-' . $this->colour . '"></i>';

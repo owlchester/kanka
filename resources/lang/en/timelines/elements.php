@@ -20,7 +20,7 @@ return [
     ],
     'helpers'       => [
         'entity_is_private' => 'The element\'s entity is private.',
-        'icon'              => 'Copy the HTML of an icon from :fontawesome or :rpgawesome.',
+        'icon'              => 'Copy the CSS class of an icon from :fontawesome or :rpgawesome.',
         'is_collapsed'      => 'The element displays collapsed by default.',
     ],
     'placeholders'  => [
