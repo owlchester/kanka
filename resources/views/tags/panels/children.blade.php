@@ -24,7 +24,7 @@ if ($allMembers) {
 }
 $r = $r->acl()
     ->simpleSort($datagridSorter)
-    ->paginate(1);
+    ->paginate();
 
 ?>
 <div class="box box-solid" id="tag-children">
