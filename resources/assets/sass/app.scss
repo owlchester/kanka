@@ -618,7 +618,7 @@ summary { display: list-item; }
   bottom: 20px;
   max-height: 100%;
   right: 20px;
-  overflow-y:scroll;
+  overflow-y:auto;
   overflow-x:hidden;
 
   .toast-success, .toast-error {
