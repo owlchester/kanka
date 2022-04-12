@@ -30,7 +30,9 @@
             @if (!$marker->visible())
                 @continue
             @endif
-            var marker{{ $marker->id }} = {!! $marker->exploring()->multiplier($map->is_real)->marker() !!};
+
+        /** Marker{{ $marker->id }} **/
+        var marker{{ $marker->id }} = {!! $marker->exploring()->multiplier($map->is_real)->marker() !!};
             markers.push('marker' + {{ $marker->id }});
         @endforeach
 
@@ -40,14 +42,29 @@
 
     <script type="text/javascript">
         window.map = map{{ $map->id }};
+        /** Add markers outside of a group directly to the page **/
         @foreach ($map->markers as $marker)
             @if ($marker->visible() && empty($marker->group_id))
-                marker{{ $marker->id }}.addTo(map{{ $map->id }});
+                clusterMarkers{{ $map->id }}.addLayer(marker{{ $marker->id }});
+                //marker{{ $marker->id }}.addTo(map{{ $map->id }});
+            @elseif (!empty($marker->group_id))
+                  marker{{ $marker->id }}.addTo(group{{ $marker->group_id }})
             @endif
+        @endforeach
+        map.addLayer(clusterMarkers{{ $map->id }});
+
+        /** Add the groups to the cluster **/
+        clusterMarkers{{ $map->id }}.checkIn({{ $map->checkinGroups() }});
+
+        /** Add the groups to the map **/
+        @foreach ($map->groups as $group)
+            @if (!$group->is_shown) @continue @endif
+            group{{ $group->id }}.addTo(map{{ $map->id }});
         @endforeach
 
         @can('update', $map)
             map{{ $map->id }}.on('click', function(ev) {
+                return false;
             let position = ev.latlng;
             //console.log('Click', 'lat', position.lat, 'lng', position.lng);
             // AJAX request

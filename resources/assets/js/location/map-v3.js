@@ -1,13 +1,11 @@
 import deleteConfirm from "../components/delete-confirm";
 
+//require ('leaflet.markercluster/dist/leaflet.markercluster');
+//require ('leaflet.markercluster.layersupport');
+
 var mapPageBody;
 var sidebarMap, sidebarMarker;
 var markerModal, markerModalContent, markerModalTitle;
-var validEntityForm = false;
-
-var validSubform = false;
-var subForm;
-var currentAjaxForm;
 
 $(document).ready(function() {
 

@@ -135,6 +135,8 @@ $specificTheme = null;
         integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
         crossorigin=""></script>
 <script src="/js/vendor/leaflet/leaflet-polyline-measure.js"></script>
+<script src="/js/vendor/leaflet/leaflet.markercluster.js"></script>
+<script src="/js/vendor/leaflet/leaflet.markercluster.layersupport.js"></script>
 
 <script src="{{ mix('js/location/map-v3.js') }}" defer></script>
 @yield('scripts')

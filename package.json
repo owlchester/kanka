@@ -38,6 +38,8 @@
         "cytoscape-panzoom": "^2.5.3",
         "eonasdan-bootstrap-datetimepicker": "^4.17.47",
         "grunt": "^1.3.0",
+        "leaflet.markercluster": "^1.5.3",
+        "leaflet.markercluster.layersupport": "^2.0.1",
         "postcss-import": "^12.0.1",
         "pretty-checkbox": "^3.0.3",
         "rpg-awesome": "^0.2.0",

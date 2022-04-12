@@ -538,4 +538,18 @@ class Map extends MiscModel
             $newSub->save();
         }
     }
+
+    public function checkinGroups(): string
+    {
+
+        if (empty($this->groups)) {
+            return '[]';
+        }
+        $ids = [];
+        foreach ($this->groups as $group) {
+            $ids[] = 'group' . $group->id;
+        }
+
+        return '[' . implode(', ', $ids) . ']';
+    }
 }
