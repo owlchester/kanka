@@ -65,6 +65,7 @@
                     <p><a href="/">{{ __('dashboard.setup.actions.back_to_dashboard') }}</a>.</p>
                 </div>
             </div>
+            @if ($error !== 503)
             <div class="col-lg-3 my-auto text-right">
                 @if (!auth()->check())
                     <p>
@@ -74,11 +75,11 @@
                         <a href="/register" class="btn btn-outline btn-xl">{{ __('front.menu.register') }}</a>
                     </p>@endif
                 @endif
-
-                    <p>
-                        <a href="/" class="btn btn-outline btn-xl">{{ __('front.menu.home') }}</a>
-                    </p>
+                <p>
+                    <a href="/" class="btn btn-outline btn-xl">{{ __('front.menu.home') }}</a>
+                </p>
             </div>
+            @endif
         </div>
     </div>
 </header>

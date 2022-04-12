@@ -425,7 +425,7 @@
   .box {
     display: inline-block;
     vertical-align:top;
-    width: 80%;
+    width: calc(80% - 2px);
     margin-bottom: 0;
 
     .release-excerpt {
@@ -439,13 +439,13 @@
     }
 
     &:only-child {
-      width: 100%;
+      width: calc(100% - 2px);
     }
   }
 }
 @media (min-width: 992px) {
   .dashboard-releases .box {
-    width: 50%;
+    width: calc(50% - 2px);
   }
 }
 

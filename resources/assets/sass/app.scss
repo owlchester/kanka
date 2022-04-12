@@ -546,7 +546,7 @@ td.breakable {
 summary { display: list-item; }
 
 // RPG awesome dropdown icon margin
-.dropdown-menu > li > a > .ra, .dropdown-menu > li > a > .fa-regular, .dropdown-menu > li > a > .fa-solid {
+.dropdown-menu > li > a > :is(.fas, .fab, .far, .ra, .fa-solid, .fa-light, .fa-thin, .fa-regular) {
   margin-right: 10px;
 }
 
@@ -618,7 +618,7 @@ summary { display: list-item; }
   bottom: 20px;
   max-height: 100%;
   right: 20px;
-  overflow-y:scroll;
+  overflow-y:auto;
   overflow-x:hidden;
 
   .toast-success, .toast-error {
