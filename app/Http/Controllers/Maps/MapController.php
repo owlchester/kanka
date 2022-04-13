@@ -12,6 +12,7 @@ use App\Models\MapMarker;
 use App\Traits\TreeControllerTrait;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class MapController extends CrudController
 {
@@ -177,5 +178,28 @@ class MapController extends CrudController
             'ts' => Carbon::now(),
             'markers' => $data,
         ]);
+    }
+
+    public function chunks(Map $map)
+    {
+        $headers = ['Expires', Carbon::now()->addDays(1)->toDateTimeString()];
+        if (!request()->has(['z', 'x', 'y'])) {
+            return response()
+                ->file(public_path('/images/map_chunks/transparent.png'), $headers);
+        }
+        //http://miscellany.test/storage/maps/{{ $map->id }}/chunks/{z}/{x}_{y}.png
+
+        $path = 'maps/' . $map->id . '/chunks/' . request()->get('z')
+            . '/' . request()->get('x') . '_' . request()->get('y')
+            . '.png'
+        ;
+
+        if (!Storage::disk('public')->exists($path)) {
+            return response()
+                ->file(public_path('/images/map_chunks/transparent.png'), $headers);
+        }
+
+        return response()
+            ->file(Storage::disk('public')->path($path), $headers);
     }
 }

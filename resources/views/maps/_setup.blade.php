@@ -96,7 +96,7 @@ if (isset($single) && $single) {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
     }).addTo(map{{ $map->id }});
     @else
-    L.tileLayer('http://miscellany.test/storage/maps/{{ $map->id }}/chunks/{z}/{x}_{y}.png', {
+    L.tileLayer('{{ route('maps.chunks', $map->id) }}/?z={z}&x={x}&y={y}', {
         attribution: '&copy; Kanka',
     }).addTo(map{{ $map->id }});
     @endif
