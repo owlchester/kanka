@@ -56,7 +56,7 @@ if (isset($single) && $single) {
 @else
     var overlayMaps{{ $map->id }} = {};
 @endif
-    @if (!$map->is_real)
+    @if (!$map->isReal() && !$map->isChunked())
 
     var map{{ $map->id }} = L.map('map{{ $map->id }}', {
         crs: L.CRS.Simple,
@@ -78,6 +78,11 @@ if (isset($single) && $single) {
     @else
 
     var map{{ $map->id }} = L.map('map{{ $map->id }}', {
+        @if ($map->isChunked())
+        crs: L.CRS.Simple,
+        maxBounds: maxBounds{{ $map->id }},
+        maxBoundsViscosity: 0.5,
+        @endif
         noWrap: true,
         dragging: true,
         tap: false,
@@ -86,9 +91,15 @@ if (isset($single) && $single) {
         maxZoom: {{ $map->maxZoom() }},
     }).setView([ {{ $focus }} ], {{ $map->initialZoom() }});
 
+    @if ($map->isReal())
     L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
     }).addTo(map{{ $map->id }});
+    @else
+    L.tileLayer('http://miscellany.test/storage/maps/{{ $map->id }}/chunks/{z}/{x}_{y}.png', {
+        attribution: '&copy; Kanka',
+    }).addTo(map{{ $map->id }});
+    @endif
 
     L.control.layers(null, overlayMaps{{ $map->id }}).addTo(map{{ $map->id }});
 

@@ -301,7 +301,7 @@ class Map extends MiscModel
     public function activeLayers(bool $groups = true): string
     {
         $layers = [];
-        if (!$this->is_real) {
+        if (!$this->isReal()) {
             $layers = ['baseLayer' . $this->id];
         }
         if ($groups) {
@@ -383,7 +383,7 @@ class Map extends MiscModel
     public function minZoom(): int
     {
         if (!is_numeric($this->min_zoom)) {
-            if ($this->is_real) {
+            if ($this->isReal() || $this->isChunked()) {
                 return self::MIN_ZOOM_REAL;
             }
             return -2;
@@ -393,7 +393,11 @@ class Map extends MiscModel
         if ($this->min_zoom > $this->initial_zoom && $this->initial_zoom > self::MIN_ZOOM) {
             return $this->initial_zoom;
         }
-        $min = $this->is_real ? self::MIN_ZOOM_REAL : self::MIN_ZOOM;
+        // The max zoom is based on the chunked image so we trust this.
+        if ($this->isChunked()) {
+            return $this->min_zoom;
+        }
+        $min = $this->isReal() ? self::MIN_ZOOM_REAL : self::MIN_ZOOM;
         return (int) max($this->min_zoom, $min);
     }
 
@@ -404,12 +408,19 @@ class Map extends MiscModel
     public function maxZoom(): float
     {
         if (!is_numeric($this->max_zoom)) {
-            if ($this->is_real) {
+            if ($this->isChunked()) {
+                return 13;
+            }
+            if ($this->isChunked() || $this->isReal()) {
                 return self::MAX_ZOOM_REAL;
             }
             return 2.75;
         }
-        $max = $this->is_real ? self::MAX_ZOOM_REAL : self::MAX_ZOOM;
+        // The max zoom is based on the chunked image so we trust this.
+        if ($this->isChunked()) {
+            return $this->max_zoom;
+        }
+        $max = $this->isReal() ? self::MAX_ZOOM_REAL : self::MAX_ZOOM;
         return (float) min($this->max_zoom, $max);
     }
 
@@ -420,7 +431,7 @@ class Map extends MiscModel
     public function initialZoom(): int
     {
         if (!is_numeric($this->initial_zoom)) {
-            if ($this->is_real) {
+            if ($this->isReal() || $this->isChunked()) {
                 return 12;
             }
             return 0;
@@ -442,9 +453,12 @@ class Map extends MiscModel
     {
         // Init position in the middle of the map
         $latitude = $longitude = 0;
-        if ($this->is_real) {
+        if ($this->isReal()) {
             $latitude = 46.205;
             $longitude = 6.147;
+        } elseif ($this->isChunked()) {
+            $latitude = 0;
+            $longitude = 0;
         } else {
             $latitude = floor($this->height / 2);
             $longitude = floor($this->width / 2);
@@ -551,5 +565,15 @@ class Map extends MiscModel
         }
 
         return '[' . implode(', ', $ids) . ']';
+    }
+
+    public function isReal(): bool
+    {
+        return $this->is_real;
+    }
+
+    public function isChunked(): bool
+    {
+        return in_array($this->id, [1, 45]);
     }
 }
