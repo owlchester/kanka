@@ -187,7 +187,6 @@ class MapController extends CrudController
             return response()
                 ->file(public_path('/images/map_chunks/transparent.png'), $headers);
         }
-        //http://miscellany.test/storage/maps/{{ $map->id }}/chunks/{z}/{x}_{y}.png
 
         $path = 'maps/' . $map->id . '/chunks/' . request()->get('z')
             . '/' . request()->get('x') . '_' . request()->get('y')
