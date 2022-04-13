@@ -64,14 +64,14 @@
 
         @can('update', $map)
             map{{ $map->id }}.on('click', function(ev) {
-                return false;
-            let position = ev.latlng;
-            //console.log('Click', 'lat', position.lat, 'lng', position.lng);
-            // AJAX request
-            //console.log('do', "$('#marker-latitude').val(" + position.lat.toFixed(3) + ");");
-            $('#marker-latitude').val(position.lat.toFixed(3));
-            $('#marker-longitude').val(position.lng.toFixed(3));
-            $('#marker-modal').modal('show');
+                // return false;
+                let position = ev.latlng;
+                //console.log('Click', 'lat', position.lat, 'lng', position.lng);
+                // AJAX request
+                //console.log('do', "$('#marker-latitude').val(" + position.lat.toFixed(3) + ");");
+                $('#marker-latitude').val(position.lat.toFixed(3));
+                $('#marker-longitude').val(position.lng.toFixed(3));
+                $('#marker-modal').modal('show');
             });
         @endcan
 

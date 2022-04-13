@@ -80,6 +80,8 @@ __('maps/markers.edit.title', ['name' => $model->name])
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
         integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
         crossorigin=""></script>
+    <script src="/js/vendor/leaflet/leaflet.markercluster.js"></script>
+    <script src="/js/vendor/leaflet/leaflet.markercluster.layersupport.js"></script>
     <script src="{{ mix('js/ajax-subforms.js') }}" defer></script>
     <script src="{{ mix('js/location/map-v3.js') }}" defer></script>
 

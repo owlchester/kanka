@@ -17,11 +17,22 @@
         @if (!empty($model->image))
             <div class="row">
                 <div class="col-md-12">
-                    <p>
-                        <a href="{{ route('maps.explore', $model) }}" class="btn btn-block btn-primary" target="_blank">
-                            <i class="fa fa-map"></i> {{ __('maps.actions.explore') }}
-                        </a>
-                    </p>
+                        @if ($model->isChunked() && $model->chunkingError())
+                            <p class="alert alert-error">
+                                {!! __('maps.errors.chunking.error', ['discord' => link_to(config('social.discord'), 'Discord', ['target' => '_blank'])]) !!}
+                            </p>
+                        @elseif ($model->isChunked() && !$model->chunkingReady())
+                            <p class="alert alert-warning">
+                                {{ __('maps.errors.chunking.running.explore') }}
+                                {{ __('maps.errors.chunking.running.time') }}
+                            </p>
+                        @else
+                        <p>
+                            <a href="{{ route('maps.explore', $model) }}" class="btn btn-block btn-primary" target="_blank">
+                                <i class="fa fa-map"></i> {{ __('maps.actions.explore') }}
+                            </a>
+                        </p>
+                        @endif
                 </div>
             </div>
         @endif

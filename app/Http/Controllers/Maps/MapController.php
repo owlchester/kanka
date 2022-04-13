@@ -72,6 +72,12 @@ class MapController extends CrudController
      */
     public function edit(Map $map)
     {
+        // Can't edit a map being chunked
+        if ($map->isChunked() && $map->chunkingRunning()) {
+            return response()
+                ->redirectToRoute('maps.show', $map->id)
+                ->with('error', __('maps.errors.chunking.running.edit') . ' ' . __('maps.errors.chunking.running.time'));
+        }
         return $this->crudEdit($map);
     }
 
@@ -118,7 +124,7 @@ class MapController extends CrudController
     public function explore(Map $map)
     {
         // Policies will always fail if they can't resolve the user.
-        if (Auth::check()) {
+        if (auth()->check()) {
             $this->authorize('view', $map);
         } else {
             $this->authorizeForGuest('read', $map);
@@ -126,6 +132,17 @@ class MapController extends CrudController
 
         if (empty($map->image)) {
             return redirect()->back()->withError(__('maps.errors.explore.missing'));
+        }
+        if ($map->isChunked()) {
+            if ($map->chunkingError()) {
+                return redirect()
+                    ->route('maps.show', $map->id)
+                ;
+            } elseif (!$map->chunkingReady()) {
+                return redirect()
+                    ->route('maps.show', $map->id)
+                ;
+            }
         }
         return view('maps.explore', compact('map'));
     }

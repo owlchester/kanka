@@ -27,7 +27,6 @@ $specificTheme = null;
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
           integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
           crossorigin=""/>
-    <link rel="stylesheet" href="https://ppete2.github.io/Leaflet.PolylineMeasure/Leaflet.PolylineMeasure.css" />
 
 @if (!empty($themeOverride) && in_array($themeOverride, ['dark', 'midnight', 'base']))
     @php $specificTheme = $themeOverride; @endphp
@@ -134,7 +133,6 @@ $specificTheme = null;
 <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
         integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
         crossorigin=""></script>
-<script src="/js/vendor/leaflet/leaflet-polyline-measure.js"></script>
 <script src="/js/vendor/leaflet/leaflet.markercluster.js"></script>
 <script src="/js/vendor/leaflet/leaflet.markercluster.layersupport.js"></script>
 

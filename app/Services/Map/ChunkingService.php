@@ -3,6 +3,8 @@
 namespace App\Services\Map;
 
 use App\Models\Map;
+use App\Notifications\Header;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 
@@ -13,6 +15,7 @@ class ChunkingService
 
     /** @var \Intervention\Image\Image */
     protected $original;
+    protected $path;
 
     protected $width = 0;
     protected $height = 0;
@@ -20,7 +23,9 @@ class ChunkingService
     protected $maxZoom = 8;
     protected $minZoom = 8;
 
-    protected $maxZoomThreshold = 14;
+    protected $maxBound = 0;
+
+    protected $maxZoomThreshold = 13;
 
     protected $tileSize = 256;
 
@@ -30,35 +35,34 @@ class ChunkingService
     public function map(Map $map): self
     {
         $this->map = $map;
+        $this->map->saveObserver = false;
+        $this->map->savingObserver = false;
         return $this;
     }
 
     public function chunk(): bool
     {
-        // Get original image
-        $img = $this->map->image;
+        if (empty($this->map->image)) {
+            throw new \Exception('Map #' . $this->map->id . ' has no image.');
+        }
 
-        // Load the image into memory
-        $image = Storage::disk('public')->get($img);
-        dump("Chunking image " . $img);
-        $this->original = Image::make($image);
+        // Set the map chunking process
+        $this->map->chunking_status = Map::CHUNKING_RUNNING;
+        $this->map->save();
 
-        $this->width = $this->original->width();
-        $this->height = $this->original->height();
-        $max = max([$this->width, $this->height]);
-        dump("Max bounds is $max");
-        $this->zoomLevels($max);
-        dump("Generating levels " . $this->minZoom . " to " . $this->maxZoom);
+        // Get original image and load it into memory
+        $this->log('File ' . $this->map->image);
+
+        $this->openOriginal();
+        $this->log("Generating levels " . $this->minZoom . " to " . $this->maxZoom);
 
         // Create the folder for storing the chunks
         $folder = 'maps/' . $this->map->id . '/chunks';
         Storage::deleteDirectory($folder);
         Storage::makeDirectory($folder);
 
-        dump("Creating " . $this->minZoom . " levels");
-
         for($level = $this->minZoom; $level <= $this->maxZoom; $level++) {
-            dump('creating chunks for level ' . $level);
+            $this->log('creating chunks for level ' . $level);
             $levelFolder = $folder . '/' . $level;
             Storage::makeDirectory($levelFolder);
 
@@ -69,19 +73,8 @@ class ChunkingService
             $this->createTile($width, $height, $level, $levelFolder);
         }
 
-        unset($this->original);
-
         // Update the map's min/max zoom levels
-        $this->map->min_zoom = $this->minZoom;
-        $this->map->max_zoom = $this->maxZoom;
-        // Set initial zoom in bounds
-        if ($this->map->initial_zoom > $this->maxZoom || $this->map->initial_zoom < $this->minZoom) {
-            $this->map->initial_zoom = max($this->minZoom, min($this->maxZoom, $this->map->initial_zoom));
-        }
-        $this->map->timestamps = false;
-        $this->map->saveObserver = false;
-        $this->map->savingObserver = false;
-        $this->map->save();
+        $this->finish();
 
         return true;
     }
@@ -144,18 +137,19 @@ class ChunkingService
 
     protected function createTile(int $width, int $height, int $level, string $levelFolder)
     {
-        $this->original->backup();
-        $this->original->resize($width, $height);
+        $image = $this->generate($width, $height);
+        $image->backup();
 
-        Storage::put(
+        /*Storage::put(
             $levelFolder . '/base.png',
             (string)$this->original->encode($this->tileFormat, 70),
             'public'
-        );
+        );*/
 
         list($cols, $rows) = $this->countTiles($width, $height);
         //dump("Create title for level $level");
         //dump("cols $cols rows $rows ($width x $height)");
+        $total = $cols * $rows;
 
         foreach (range(0, $cols -1) as $col) {
             //dump("- Col $col");
@@ -163,17 +157,18 @@ class ChunkingService
                 $file = $col . '_' . $row . '.' . $this->tileFormat;
                 //dump('tile ' . $levelFolder . '/' . $file);
                 //dump("width $width height $height");
-                //list($w, $h, $x, $y) = $this->tileBounds($level, $col, $row, $width, $height);
                 $bounds = $this->tileBounds($col, $row, $width, $height);
 
-                $tile = clone $this->original;
+                // We need to clone the original, because Image::make($this->original) crops
+                // the original for some reason.
+                //$tile = clone $image;
                 /*Storage::put(
                     $levelFolder . '/' . str_replace('.', '_make.', $file),
                     (string)$tile->encode($this->tileFormat, 50),
                     'public'
                 );*/
 
-                $tile->crop($bounds['width'], $bounds['height'], $bounds['x'], $bounds['y']);
+                $image->crop($bounds['width'], $bounds['height'], $bounds['x'], $bounds['y']);
 
                 /*Storage::put(
                     $levelFolder . '/' . str_replace('.', '_tile.', $file),
@@ -181,20 +176,23 @@ class ChunkingService
                     'public'
                 );*/
 
+                // Create a 256x256 blank transparent canvas on which we'll insert the crop. This is to make sure each
+                // image create is a square tile (and avoid distortion in leafletjs)
                 $png = Image::canvas($this->tileSize, $this->tileSize);
-                $png->insert($tile);
+                $png->insert($image);
 
                 Storage::put(
                     $levelFolder . '/' . $file,
                     (string)$png->encode($this->tileFormat, 85),
                     'public'
                 );
-                unset($tile);
+                //unset($tile);
                 unset($png);
+                $image->reset();
             }
         }
 
-        $this->original->reset();
+        unset ($image);
         unset ($tmp);
     }
 
@@ -205,8 +203,67 @@ class ChunkingService
      */
     protected function zoomLevels(int $max): self
     {
-        $this->maxZoom = min((int) ceil(log($max,2)) + 1, $this->maxZoomThreshold);
+        $this->maxZoom = min((int) ceil(log($max,2)), $this->maxZoomThreshold);
         $this->levelMin = (int) floor(log($max, 2));
+        return $this;
+    }
+
+    protected function finish(): self
+    {
+        $this->map->chunking_status = Map::CHUNKING_FINISHED;
+        $this->map->min_zoom = $this->minZoom;
+        $this->map->max_zoom = $this->maxZoom;
+        $this->map->center_x = 0;
+        $this->map->center_y = 0;
+        // Set initial zoom in bounds
+        if ($this->map->initial_zoom > $this->maxZoom || $this->map->initial_zoom < $this->minZoom) {
+            $this->map->initial_zoom = max($this->minZoom, min($this->maxZoom, $this->map->initial_zoom));
+        }
+        $this->map->save();
+        Log::info('Saved map #' . $this->map->id);
+        if ($this->map->entity->creator) {
+
+            $this->map->entity->creator->notify(new Header(
+                'map.chunked',
+                'fas fa-map',
+                'green',
+                ['name' => $this->map->name]
+            ));
+
+            Log::info('Notified user #' . $this->map->entity->created_by);
+        }
+        return $this;
+    }
+
+    protected function log($log): self
+    {
+        Log::info($log);
+        return $this;
+    }
+
+    protected function generate(int $width, int $height): \Intervention\Image\Image
+    {
+        $image = Image::make($this->path);
+        return $image->resize($width, $height);
+    }
+
+    /**
+     * Open the original image
+     * @return $this
+     * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
+     */
+    protected function openOriginal(): self
+    {
+        $this->path = Storage::disk('public')->path($this->map->image);
+        $original = Image::make($this->path);
+
+        $this->width = $original->width();
+        $this->height = $original->height();
+
+        $this->maxBound = max([$this->width, $this->height]);
+        $this->zoomLevels($this->maxBound);
+
+        unset($original);
         return $this;
     }
 }

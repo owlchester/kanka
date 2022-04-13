@@ -17,6 +17,15 @@
         [
             'label' => trans('maps.actions.explore'),
             'render' => function($model) {
+                if (empty($model->image)) {
+                    return '';
+                } elseif ($model->isChunked()) {
+                    if ($model->chunkingError()) {
+                        return '<i class="fas fa-exclamation-triangle" data-toggle="tooltip" title="' . __('maps.errors.chunking.error', ['discord' => 'Discord']). '"></i>';
+                    } elseif ($model->chunkingRunning()) {
+                        return '<i class="fas fa-spin fa-spinner" data-toggle="tooltip" title="' . __('maps.tooltips.chunking.running'). '"></i>';
+                    }
+                }
                 return '<a href="' . route('maps.explore', $model) . '" target="_blank"><i class="fa fa-map" data-tree="escape"></i></a>';
             },
             'disableSort' => true,

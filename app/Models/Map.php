@@ -30,6 +30,7 @@ use Illuminate\Support\Facades\Storage;
  * @property float $center_y
  * @property int $center_marker_id
  * @property bool $is_real
+ * @property int $chunking_status
  * @property Map $map
  * @property Map[] $maps
  * @property Location $location
@@ -52,6 +53,10 @@ class Map extends MiscModel
     const MIN_ZOOM = -10;
     const MAX_ZOOM_REAL = 15;
     const MIN_ZOOM_REAL = 2;
+
+    const CHUNKING_RUNNING = 1;
+    const CHUNKING_FINISHED = 2;
+    const CHUNKING_ERROR = 3;
 
     /**
      * @var array
@@ -553,9 +558,12 @@ class Map extends MiscModel
         }
     }
 
+    /**
+     * Prepare groups for clustering
+     * @return string
+     */
     public function checkinGroups(): string
     {
-
         if (empty($this->groups)) {
             return '[]';
         }
@@ -567,13 +575,47 @@ class Map extends MiscModel
         return '[' . implode(', ', $ids) . ']';
     }
 
+    /**
+     * Check if a map is using the "real" world (openstreetmaps)
+     * @return bool
+     */
     public function isReal(): bool
     {
         return $this->is_real;
     }
 
+    /**
+     * Check if a map has a chunked tileset
+     * @return bool
+     */
     public function isChunked(): bool
     {
-        return in_array($this->id, [1, 45]);
+        return !empty($this->chunking_status);
+    }
+
+    /**
+     * Check if a map is currently being chunked
+     * @return bool
+     */
+    public function chunkingReady(): bool
+    {
+        return !$this->chunkingError() && !$this->chunkingRunning();
+    }
+
+    /**
+     * Check if a map encountered a chunking error
+     * @return bool
+     */
+    public function chunkingError(): bool
+    {
+        return $this->chunking_status == self::CHUNKING_ERROR;
+    }
+    /**
+     * Check if a map encountered a chunking error
+     * @return bool
+     */
+    public function chunkingRunning(): bool
+    {
+        return $this->chunking_status == self::CHUNKING_RUNNING;
     }
 }

@@ -2,8 +2,8 @@
 
 namespace App\Console\Commands;
 
+use App\Jobs\ChunkMapJob;
 use App\Models\Map;
-use App\Services\Map\ChunkingService;
 use Illuminate\Console\Command;
 
 class MapChunk extends Command
@@ -39,24 +39,15 @@ class MapChunk extends Command
      */
     public function handle()
     {
-        /** @var ChunkingService $service */
-        $service = app()->make(ChunkingService::class);
-
-        $mapID  =$this->argument('map');
+        $mapID = $this->argument('map');
         $map = Map::find($mapID);
         if (empty($map)) {
-            $this->error('Unknown map ' . $mapID);
+            $this->error('Unknown map #' . $mapID);
             return 0;
         }
 
-        $this->info('Chunking map ' . $mapID);
-        try {
-            $service->map($map)
-                ->chunk();
-            $this->info('Success.');
-        } catch (\Exception $e) {
-            $this->error($e->getMessage());
-        }
+        ChunkMapJob::dispatch($mapID);
+        $this->info('ChunkMapJob queues for map #' . $mapID);
         return 0;
     }
 }
