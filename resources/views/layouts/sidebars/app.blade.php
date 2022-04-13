@@ -33,7 +33,7 @@ $defaultIndex = ($currentCampaign && $currentCampaign->defaultToNested()) || aut
 
                 @foreach ($sidebar->campaign($currentCampaign)->layout() as $name => $element)
                     @if ($name === 'menu_links')
-                        @includeWhen($currentCampaign->enabled('menu_links'), 'layouts.sidebars.quick-links')
+                        @includeWhen($currentCampaign->enabled('menu_links'), 'layouts.sidebars.quick-links', $element)
                         @continue
                     @endif
 
@@ -79,6 +79,16 @@ $defaultIndex = ($currentCampaign && $currentCampaign->defaultToNested()) || aut
                 @endforeach
             </ul>
 
+            @nativeAd('sidebar')
+                <div class="ads-space nativead-manager" data-video="true">
+                    <a href="{{ config('ads.url') }}" target="_blank">
+                        <video loop autoplay muted playsinline class="nativead nativead-sidebar">
+                            <source src="{{ config('ads.sidebar') }}"
+                                    type="video/webm">
+                        </video>
+                    </a>
+                </div>
+            @else
             @ads('sidebar')
             <div class="ads-space">
                 <ins class="adsbygoogle"
@@ -92,6 +102,7 @@ $defaultIndex = ($currentCampaign && $currentCampaign->defaultToNested()) || aut
                 </script>
             </div>
             @endads
+            @endnativeAd
 
         </section>
     </aside>

@@ -1,3 +1,19 @@
+@nativeAd('banner')
+<div class="ads-space nativead-manager" data-video="true">
+    <a href="{{ config('ads.url') }}" target="_blank">
+        <video loop autoplay muted playsinline class="nativead nativead-banner" style="max-width: 920px">
+            <source src="{{ config('ads.banner') }}"
+                    type="video/webm">
+        </video>
+    </a>
+</div>
+<p class="text-center text-muted">
+    {!! __('misc.ads.remove_v2', [
+'supporting' => link_to_route('settings.subscription', __('misc.ads.supporting'), [], ['target' => '_blank']),
+'boosting' => link_to_route('front.pricing', __('misc.ads.boosting'), ['#boost'], ['target' => '_blank']),
+]) !!}
+</p>
+@else
 @ads('entity')
 <div class="ads-space">
     <ins class="adsbygoogle"
@@ -11,4 +27,11 @@
         (adsbygoogle = window.adsbygoogle || []).push({});
     </script>
 </div>
+<p class="text-center text-muted">
+    {!! __('misc.ads.remove_v2', [
+'supporting' => link_to_route('settings.subscription', __('misc.ads.supporting'), [], ['target' => '_blank']),
+'boosting' => link_to_route('front.pricing', __('misc.ads.boosting'), ['#boost'], ['target' => '_blank']),
+]) !!}
+</p>
 @endads
+@endnativeAd

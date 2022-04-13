@@ -30,7 +30,8 @@
             {!! Form::open([
     'route' => 'campaign-sidebar-save',
     'method' => 'POST',
-    'class' => 'sidebar-setup form-inline form-mobile-inline'
+    'class' => 'sidebar-setup form-inline form-mobile-inline',
+    'data-shortcut' => 1
 ]) !!}
             <div class="box box-solid">
                 <div class="box-header with-border">

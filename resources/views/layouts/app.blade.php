@@ -129,15 +129,6 @@ $seoTitle = isset($seoTitle) ? $seoTitle : (isset($title) ? $title : null);
                 @endif
                 @include('partials.success')
 
-@if(!empty(config('tracking.adsense')) && (auth()->guest() || auth()->user()->showAds()) && !isset($skipBannerAd) && (!isset($sidebar) || $sidebar != 'settings'))
-                <p class="text-center text-muted">
-                    {!! __('misc.ads.remove_v2', [
-    'supporting' => link_to_route('settings.subscription', __('misc.ads.supporting'), [], ['target' => '_blank']),
-    'boosting' => link_to_route('front.pricing', __('misc.ads.boosting'), ['#boost'], ['target' => '_blank']),
-    ]) !!}
-                </p>
-@endif
-
                 @yield('entity-actions')
                 @yield('entity-header')
                 @yield('content')

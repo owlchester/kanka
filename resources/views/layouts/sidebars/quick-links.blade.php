@@ -1,13 +1,13 @@
 <li class="{{ $sidebar->active('menu_links') }} sidebar-quick-links">
     @if(auth()->check() && auth()->user()->isAdmin())
         <a href="{{ route('menu_links.index') }}">
-            <i class="fa fa-star"></i>
-            {{ __('entities.menu_links') }}
+            <i class="{{ $element['custom_icon'] ?: $element['icon'] }}"></i>
+            {{ $element['custom_label'] ?: $element['label'] }}
         </a>
     @else
         <span>
-            <i class="fa fa-star"></i>
-            {{ __('entities.menu_links') }}
+            <i class="{{ $element['custom_icon'] ?: $element['icon'] }}"></i>
+            {{ $element['custom_label'] ?: $element['label'] }}
         </span>
     @endif
 

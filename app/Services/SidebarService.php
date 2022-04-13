@@ -523,11 +523,11 @@ class SidebarService
                 continue;
             }
             if (Str::endsWith($field, '_label')) {
-                $labels[Str::before($field, '_label')] = Purify::clean($value);
+                $labels[Str::before($field, '_label')] = Purify::clean(strip_tags($value));
                 continue;
             }
             elseif (Str::endsWith($field, '_icon')) {
-                $icons[Str::before($field, '_icon')] = Purify::clean($value);
+                $icons[Str::before($field, '_icon')] = Purify::clean(strip_tags($value));
                 continue;
             }
             // Nothing of value

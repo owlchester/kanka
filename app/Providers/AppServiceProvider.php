@@ -279,5 +279,34 @@ class AppServiceProvider extends ServiceProvider
             $campaign = CampaignLocalization::getCampaign(false);
             return !empty($campaign) && !$campaign->boosted();
         });
+
+        Blade::if('nativeAd', function (string $section) {
+            $data = config('ads.' . $section);
+            if (empty($data)) {
+                return false;
+            }
+            // Always show ads to unlogged users
+            if (!auth()->check()) {
+                return true;
+            }
+
+            if (request()->get('_boost') === '0') {
+                return true;
+            }
+
+            // Subscribed users don't have ads
+            if (auth()->user()->isPatron()) {
+                return false;
+            }
+
+            // User has been created less than 24 hours ago
+            if (auth()->user()->created_at->diffInHours(Carbon::now()) < 24) {
+                return false;
+            }
+
+            // Boosted campaigns don't either have ads displayed to their members
+            $campaign = CampaignLocalization::getCampaign(false);
+            return !empty($campaign) && !$campaign->boosted();
+        });
     }
 }
