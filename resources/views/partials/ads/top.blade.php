@@ -1,6 +1,6 @@
 @nativeAd('banner')
 <div class="ads-space nativead-manager" data-video="true" style="max-height: 228px;">
-    <a href="{{ config('ads.url') }}" target="_blank">
+    <a href="{{ config('ads.url') }}" target="_blank" class="nativead-link">
         <video loop autoplay muted playsinline class="nativead nativead-banner" style="max-width: 920px;">
             <source src="{{ config('ads.banner') }}"
                     type="video/webm">
