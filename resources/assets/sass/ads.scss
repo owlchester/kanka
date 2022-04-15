@@ -10,8 +10,10 @@
   overflow: hidden;
 }
 
-.nativead {
-
+.nativead-manager {
+  a.nativead-link {
+    display: inline-block;
+  }
 }
 .nativead.sidebar {
   width: 280px;

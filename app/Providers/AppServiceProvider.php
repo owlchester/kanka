@@ -281,7 +281,11 @@ class AppServiceProvider extends ServiceProvider
         });
 
         Blade::if('nativeAd', function (string $section) {
-            $data = config('ads.' . $section);
+            $provider = config('ads.provider');
+            if (empty($provider)) {
+                return false;
+            }
+            $data = config('ads.' . $provider . '.' . $section);
             if (empty($data)) {
                 return false;
             }
