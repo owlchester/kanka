@@ -33,7 +33,7 @@ $defaultIndex = ($currentCampaign && $currentCampaign->defaultToNested()) || aut
 
                 @foreach ($sidebar->campaign($currentCampaign)->layout() as $name => $element)
                     @if ($name === 'menu_links')
-                        @includeWhen($currentCampaign->enabled('menu_links'), 'layouts.sidebars.quick-links')
+                        @includeWhen($currentCampaign->enabled('menu_links'), 'layouts.sidebars.quick-links', $element)
                         @continue
                     @endif
 
@@ -79,20 +79,7 @@ $defaultIndex = ($currentCampaign && $currentCampaign->defaultToNested()) || aut
                 @endforeach
             </ul>
 
-            @ads('sidebar')
-            <div class="ads-space">
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:280px;height:280px"
-                     data-ad-client="{{ config('tracking.adsense') }}"
-                     data-ad-slot="{{ config('tracking.adsense_sidebar') }}"
-                     @if(!app()->environment('prod'))data-adtest="on"@endif
-                ></ins>
-                <script>
-                    (adsbygoogle = window.adsbygoogle || []).push({});
-                </script>
-            </div>
-            @endads
-
+            @include('partials.ads.sidebar')
         </section>
     </aside>
     @if (auth()->check() && $currentCampaign->userIsMember())
