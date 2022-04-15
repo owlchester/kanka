@@ -35,6 +35,9 @@
             <li class="{{ $sidebar->admin('referrals') }}">
                 <a href="{{ route('admin.referrals.index') }}"><i class="fa fa-user-tag"></i> <span>Referrals</span></a>
             </li>
+            <li class="{{ $sidebar->admin('ads') }}">
+                <a href="{{ route('admin.ads.index') }}"><i class="fa fa-dollar"></i> <span>Ads</span></a>
+            </li>
             <li class="{{ $sidebar->admin('cache') }}">
                 <a href="{{ route('admin.cache') }}"><i class="fa fa-hourglass-half"></i> <span>Cache</span></a>
             </li>

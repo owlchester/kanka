@@ -1,17 +1,6 @@
-@nativeAd('banner')
+@nativeAd(\App\Models\Ad::SECTION_BANNER)
 <div class="ads-space nativead-manager" data-video="true" style="max-height: 228px;">
-    @if (config('ads.provider') === 'dScryb')
-    <a href="{{ config('ads.dScryb.url') }}" target="_blank" class="nativead-link">
-        <video loop autoplay muted playsinline class="nativead nativead-banner" style="max-width: 920px;" @if (config('ads.dScryb.posters.banner')) poster="{{ config('ads.dScryb.posters.banner') }}" @endif>
-            <source src="{{ config('ads.dScryb.banner') }}"
-                    type="video/webm">
-        </video>
-    </a>
-    @else
-        <a href="{{ config('ads.ks.url') }}" target="_blank" class="nativead-link" style="max-width:900px; max-height:225px">
-            <img src="{{ config('ads.ks.banner') }}" class="nativead nativead-banner" />
-        </a>
-    @endif
+    {!! \App\Facades\AdCache::show() !!}
 </div>
 <p class="text-center text-muted">
     {!! __('misc.ads.remove_v2', [
