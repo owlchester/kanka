@@ -19,9 +19,6 @@
                                 <h3 class="campaign-title">
                                     {!! $campaign->name !!}
                                 </h3>
-                                <div class="campaign-excerpt">
-                                    {!! \Illuminate\Support\Str::limit(strip_tags($campaign->excerpt), 150) !!}
-                                </div>
                             </div>
                         </a>
                     </div>

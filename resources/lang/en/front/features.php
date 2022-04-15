@@ -39,7 +39,7 @@ TEXT
         'title'         => 'Entities in Kanka',
     ],
     'free'          => [
-        'description'   => 'Tired of having to pay for basic features like unlimited campaigns, having limits on the number of users in a campaign, or being able to control who sees what? We are too, which is why all core features of Kanka are absolutely free. We also have some :bonuses that are nice to have, though not essential.',
+        'description'   => 'Tired of having to pay for basic features like unlimited campaigns, having limits on the number of elements in a campaign, or not being able to control who sees what? We are too, which is why all core features of Kanka are absolutely free. We also have some :bonuses that are nice to have, though not essential.',
     ],
     'gm'            => [
         'title' => 'Game Masters',

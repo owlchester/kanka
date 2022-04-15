@@ -1,7 +1,7 @@
 @nativeAd('sidebar')
 <div class="ads-space nativead-manager" data-video="true">
     <a href="{{ config('ads.url') }}" target="_blank" class="nativead-link">
-        <video loop autoplay muted playsinline class="nativead nativead-sidebar">
+        <video loop autoplay muted playsinline class="nativead nativead-sidebar" @if (config('ads.posters.sidebar')) poster="{{ config('ads.posters.sidebar') }}" @endif>
             <source src="{{ config('ads.sidebar') }}"
                     type="video/webm">
         </video>
