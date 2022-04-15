@@ -96,5 +96,7 @@
     </section>
     @endif
 
+    @include('front._testimonials')
+
     @includeWhen(!empty($campaigns), 'front._campaigns')
 @endsection

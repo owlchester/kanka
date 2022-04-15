@@ -203,6 +203,7 @@ $(document).ready(function (e) {
 
 
   initKBScroller();
+  initTestimonialSlider();
   $('.faq-dynamic').click(function () {
     $($(this).data('target')).collapse();
   });
@@ -226,6 +227,20 @@ function initKBScroller() {
   }
 
   $(hash + '-answer').collapse();
+}
+
+function initTestimonialSlider() {
+  if ($('#testimonials').length === 0) {
+    return;
+  }
+
+  return;
+  $('#testimonials .items').slick({
+    dots: true,
+    infinite: true,
+    autoplay: false,
+    speed: 800
+  });
 }
 
 __webpack_require__(/*! ./community-votes */ "./resources/assets/js/community-votes.js");

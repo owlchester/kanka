@@ -28,6 +28,10 @@
         })(window,document,'script','dataLayer', '{{ config('tracking.gtm') }}');</script>
     <!-- End Google Tag Manager -->
 @endif
+@if (!empty(config('tracking.optimize')))
+    <!-- Google Optimize -->
+    <script src="https://www.googleoptimize.com/optimize.js?id={{ config('tracking.optimize') }}"></script>
+@endif
 @if (!empty(config('tracking.fb')))
     <!-- Facebook Pixel Code -->
     <script>

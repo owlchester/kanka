@@ -693,6 +693,53 @@ section.features .feature-item i {
 
 /* Hover Effects on Card */
 
+/* Testimonials */
+#testimonials {
+  .items {
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+
+    .card {
+      display: inline-block;
+      vertical-align:top;
+      width: calc(80% - 5px);
+      margin-right: 20px;
+      .card-body {
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+        hyphens: auto;
+        white-space: normal;
+        .card-title {
+          font-size: 1.2em;
+        }
+        .card-text {
+          font-size: 14px;
+        }
+      }
+
+      &:last-of-type {
+        margin-right: 0;
+      }
+    }
+  }
+}
+
+
+@media (min-width: 768px) {
+  .pricing {
+    .card-body {
+      ul {
+        min-height: 360px;
+      }
+    }
+  }
+  #testimonials .items .card {
+    width: calc(60% - 5px);
+  }
+
+}
+
 @media (min-width: 992px) {
   .pricing .card:hover {
     margin-top: -.25rem;
@@ -702,15 +749,8 @@ section.features .feature-item i {
   .pricing .card:hover .btn {
     opacity: 1;
   }
-}
-
-@media (min-width: 768px) {
-  .pricing {
-    .card-body {
-      ul {
-        min-height: 360px;
-      }
-    }
+  #testimonials .items .card {
+    width: calc(32% - 3px);
   }
 }
 
