@@ -90,6 +90,7 @@ $seoTitle = isset($seoTitle) ? $seoTitle : (isset($title) ? $title : null);
         @yield('fullpage-form')
 
         <div class="content-wrapper" id="{{ isset($contentId) ? $contentId : "main-content" }}">
+            @include('layouts.banner')
 
             @if(!view()->hasSection('content-header'))
             <section class="content-header">
