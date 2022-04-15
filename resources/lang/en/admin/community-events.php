@@ -2,10 +2,10 @@
 
 return [
     'create'    => [
-        'title' => 'New community event',
+        'title' => 'New prompt',
     ],
     'edit'      => [
-        'title' => 'Edit community event :name',
+        'title' => 'Edit prompt :name',
     ],
     'fields'    => [
         'content'   => 'Content',
@@ -17,8 +17,8 @@ return [
         'status'    => 'Status',
     ],
     'index'     => [
-        'add'   => 'New event',
-        'title' => 'Community Events',
+        'add'   => 'New prompt',
+        'title' => 'Worldbuilding Prompts',
     ],
     'status'    => [
         'finished'  => 'Finished',

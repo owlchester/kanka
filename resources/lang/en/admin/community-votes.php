@@ -24,6 +24,6 @@ return [
     ],
     'index'     => [
         'add'   => 'New Community Vote',
-        'title' => 'Admin: Community Votes',
+        'title' => 'Community Votes',
     ],
 ];

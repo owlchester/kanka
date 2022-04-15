@@ -13,7 +13,7 @@
         </script>
     </div>
     @endads
-    @if (auth()->check())
+    @if (auth()->check() && !isset($skipTranslators))
     <div class="translator-call text-center hidden-xs hidden-sm">
         <p class="text-muted">{!! __('footer.translator_call', ['discord' => link_to(config('discord.url'), 'Discord', ['target' => '_blank'])]) !!}</p>
     </div>

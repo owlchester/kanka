@@ -21,21 +21,16 @@
 <body class="skin-black sidebar-mini">
 @include('layouts._tracking-fallback')
     <div id="app" class="wrapper">
-        <!-- Header -->
         @include('layouts.admin.header')
 
-        <!-- Sidebar -->
         @include('layouts.admin.sidebar')
 
-        <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
-            <!-- Content Header (Page header) -->
             <section class="content-header">
                 <div class="row">
                     <div class="col-md-12 content-header">
                         <h1>
-                            {{ $title ?? "Page Title" }}
-                            <small>{{ $description ?? null }}</small>
+                            Admin - {{ $title ?? "Page Title" }}
                             @if (!empty($headerExtra))
                                 {!! $headerExtra !!}
                             @endif
@@ -68,18 +63,15 @@
                 </ol>
             </section>
 
-            <!-- Main content -->
             <section class="content">
-                <!-- Your Page Content Here -->
                 @include('partials.success')
                 @yield('content')
-            </section><!-- /.content -->
-        </div><!-- /.content-wrapper -->
+            </section>
+        </div>
 
-        <!-- Footer -->
-        @include('layouts.footer')
+        @include('layouts.footer', ['skipTranslators' => true])
 
-    </div><!-- ./wrapper -->
+    </div>
 
     <!-- Modal -->
     <div class="modal fade" id="delete-confirm" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmLabel">
