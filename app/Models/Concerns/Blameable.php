@@ -3,6 +3,7 @@
 namespace App\Models\Concerns;
 
 use App\Observers\BlameableObserver;
+use App\User;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
@@ -12,6 +13,9 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $created_by
  * @property int $updated_by
  * @property int $deleted_by
+ *
+ * @property User $creator
+ * @property User $updater
  */
 trait Blameable
 {
