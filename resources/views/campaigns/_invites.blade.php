@@ -23,12 +23,6 @@
                     <i class="fa fa-user-plus" aria-hidden="true"></i>
                     <span class="hidden-xs hidden-md">{{ __('campaigns.invites.actions.link') }}</span>
                 </a>
-
-                <a href="{{ route('campaign_invites.create', ['type_id' => \App\Models\CampaignInvite::TYPE_EMAIL]) }}" class="btn btn-primary btn-sm"
-                   data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('campaign_invites.create', ['type_id' => \App\Models\CampaignInvite::TYPE_EMAIL]) }}">
-                    <i class="fa fa-envelope-o" aria-hidden="true"></i>
-                    <span class="hidden-xs hidden-md">{{ __('campaigns.invites.actions.add') }}</span>
-                </a>
             </div>
         </div>
         @if($invitations->count() > 0)
