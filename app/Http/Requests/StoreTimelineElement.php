@@ -38,7 +38,7 @@ class StoreTimelineElement extends FormRequest
             'colour' => 'nullable|string|max:12',
             'date' => 'nullable|string|max:45',
             'visibility' => 'string',
-            'icon' => ['nullable', 'string'/*, new FontAwesomeIcon*/],
+            'icon' => ['nullable', 'string', new FontAwesomeIcon],
         ];
 
         return $this->clean($rules);
