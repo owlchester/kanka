@@ -13,11 +13,6 @@
         </script>
     </div>
     @endads
-    @if (auth()->check() && !isset($skipTranslators))
-    <div class="translator-call text-center hidden-xs hidden-sm">
-        <p class="text-muted">{!! __('footer.translator_call', ['discord' => link_to(config('discord.url'), 'Discord', ['target' => '_blank'])]) !!}</p>
-    </div>
-    @endif
 
     <div class="footer-links">
         <div class="row">
@@ -150,14 +145,15 @@
 
                 <div id="language-switcher" class="language-switcher">
                     <div class="dropup inline">
-                        <a href="#" class="dropdown-toggle @if(app()->getLocale() == 'he') btn btn-default @endif" data-toggle="dropdown" id="languageDropdown" aria-haspopup="true" aria-expanded="false" name="list-languages">
-                            <i class="fas fa-globe"></i> {{ app()->getLocale() == 'he' ? 'Hebrew' : LaravelLocalization::getCurrentLocaleNative() }}
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="languageDropdown" aria-haspopup="true" aria-expanded="false" name="list-languages">
+                            <i class="fas fa-globe"></i> {{ LaravelLocalization::getCurrentLocaleNative() }}
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="languageDropdown">
                             @foreach (LaravelLocalization::getSupportedLocales() as $localeCode => $langData)
+                                @if ($localeCode === 'he') @continue @endif
                                 <?php $url = LaravelLocalization::getLocalizedURL($localeCode, null, [], true); ?>
                                 <li>
-                                    @if (App::getLocale() == $localeCode)
+                                    @if (app()->getLocale() == $localeCode)
                                         <a href="#"><strong>{{ $langData['native'] }}</strong></a>
                                     @else
                                         <a rel="alternate" hreflang="{{ $localeCode }}" href="{{ $url . (strpos($url, '?') !== false ? '&' : '?') }}updateLocale=true">

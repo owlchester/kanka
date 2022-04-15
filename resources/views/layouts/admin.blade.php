@@ -69,7 +69,7 @@
             </section>
         </div>
 
-        @include('layouts.footer', ['skipTranslators' => true])
+        @include('layouts.footer')
 
     </div>
 

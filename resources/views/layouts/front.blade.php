@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="{{ app()->getLocale() }}" @if(app()->getLocale() == 'he') dir="rtl" @endif>
+<html lang="{{ app()->getLocale() }}">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content='width=device-width, initial-scale=1, maximum-scale=5, shrink-to-fit=no'>
@@ -54,9 +54,6 @@
 
     <link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"></noscript>
-@if(app()->getLocale() == 'he')
-        <link href="{{ mix('css/front-rtl.css') }}" rel="stylesheet">
-    @endif
     <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.1/cookieconsent.min.css" media="print" onload="this.media='all'" />
     @if (!config('fontawesome.kit'))<link href="/vendor/fontawesome/6.0.0/css/all.min.css" rel="stylesheet">@endif
 
@@ -151,7 +148,8 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropLocale">
                     @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
-                        @if ($localeCode != App::getLocale())
+                        @if ($localeCode === 'he') @continue @endif
+                        @if ($localeCode != app()->getLocale())
                             <a rel="alternate" hreflang="{{ $localeCode }}" href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true).(auth()->guest() ? '' : '?updateLocale=true') }}" class="dropdown-item">
                                 {{ ucfirst($properties['native']) }}
                             </a>

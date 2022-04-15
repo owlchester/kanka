@@ -7,7 +7,7 @@ $campaign = CampaignLocalization::getCampaign();
 $themeOverride = request()->get('_theme');
 $specificTheme = null;
 ?><!DOCTYPE html>
-<html lang="{{ app()->getLocale() }}" @if(app()->getLocale() == 'he') dir="rtl" @endif>
+<html lang="{{ app()->getLocale() }}">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -35,9 +35,6 @@ $specificTheme = null;
     <link href="{{ mix('css/vendor.css') }}" rel="stylesheet">
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
     <link href="{{ mix('css/freyja.css') }}" rel="stylesheet">
-@if(app()->getLocale() == 'he')
-    <link href="{{ mix('css/app-rtl.css') }}" rel="stylesheet">
-@endif
     @if (!config('fontawesome.kit'))<link href="/vendor/fontawesome/6.0.0/css/all.min.css" rel="stylesheet">@endif
     @yield('styles')
 
