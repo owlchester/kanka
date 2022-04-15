@@ -26,7 +26,7 @@
                 @endif
             </td>
             <td>
-                @if ($model->updater) by {{ $model->updater->name }} @endif {{ $model->updated_at->diffForHumans() }}
+                @if ($model->updater) {{ $model->updater->name }} @endif {{ $model->updated_at->diffForHumans() }}
             </td>
             <td class="text-right">
                 <a href="{{ route('admin.ads.edit', $model) }}" class="btn btn-sm btn-primary">
