@@ -74,6 +74,15 @@ class Timeline extends MiscModel
     ];
 
     /**
+     * Foreign relations to add to export
+     * @var array
+     */
+    protected $foreignExport = [
+        'eras',
+        'elements',
+    ];
+
+    /**
      * Entity type
      * @var string
      */
