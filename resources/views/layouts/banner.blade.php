@@ -1,4 +1,4 @@
-@if (auth()->check() && !auth()->user()->settings()->get('banner_4yearpromo') && \Carbon\Carbon::create(2021, 11, 1)->isFuture())
+@if (false && auth()->check() && !auth()->user()->settings()->get('banner_4yearpromo') && \Carbon\Carbon::create(2021, 11, 1)->isFuture())
     <div class="bg-primary banner-notification">
         <span>
             <a href="{{ route('settings.subscription') }}">
@@ -10,10 +10,10 @@
     </div>
 @endif
 
-@if (false)
-<!--<div class="bg-danger banner-notification">
+@if (true)
+<div class="bg-danger banner-notification">
     <span>
-        Kanka will be unavailable on Monday 20th of December at <strong><a href="https://everytimezone.com/s/9c5cae60" target="_blank">4PM UTC</a></strong> for about 60 minutes while we do some maintenance work.
+        Kanka will be undergoing server maintenance on Tuesday the 19th of April at <strong><a href="https://everytimezone.com/s/5d4c9c76" target="_blank">2:00PM UTC</a></strong> for about two hours. Access to your campaigns and data will be limited during the maintenance.
     </span>
-</div>-->
+</div>
 @endif
