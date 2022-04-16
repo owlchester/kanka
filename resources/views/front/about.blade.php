@@ -30,7 +30,7 @@
 
                 <div class="row equal text-center">
                     <div class="col-xl-4 col-md-6 col-12 mb-4">
-                        <div class="bg-white rounded shadow-sm py-5 px-4 fullheight">
+                        <div class="bg-white rounded shadow-sm py-5 px-4 fullheight hover-focus">
                             <img class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm" src="https://images.kanka.io/app/rBQO54fZWQxOyJ1yAOrnP0_2qxs=/200x200/smart/src/images%2Fteam%2Fjay.jpg" alt="Jay" width="200">
                             <h5 class="mb-0">Jay</h5>
                             <span class="small text-uppercase text-muted">{{ __('teams.people.jay.title') }}</span>
@@ -41,7 +41,7 @@
                         </div>
                     </div>
                     <div class="col-xl-4 col-md-6 col-12 mb-4">
-                        <div class="bg-white rounded shadow-sm py-5 px-4 fullheight">
+                        <div class="bg-white rounded shadow-sm py-5 px-4 fullheight hover-focus">
                             <img class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm" src="https://images.kanka.io/app/-ZiCBU1NMqqtcZO-Kg3RRxTMGKg=/200x200/smart/src/images%2Fteam%2Fjon.jpg" alt="Jon" width="200">
                             <h5 class="mb-0">Jon</h5>
                             <span class="small text-uppercase text-muted">{{ __('teams.people.jon.title') }}</span>
@@ -52,11 +52,16 @@
                         </div>
                     </div>
                 </div>
-
-                <h2 class="mt-5">{{ __('teams.index.community') }}</h2>
+            </div>
+        </div>
+    </section>
+    <section id="community" class="pt-1 bg-primary">
+        <div class="container">
+            <div class="section-body">
+                <h1>{{ __('teams.index.community') }}</h1>
                 <div class="row text-center">
                     <div class="col-xl-3 col-md-4 col-6 mb-4">
-                        <div class="bg-white rounded shadow-sm py-5 px-4 fullheight">
+                        <div class="bg-white rounded shadow-sm py-5 px-4 fullheight hover-focus">
                             <img class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm" src="https://images.kanka.io/app/RFQtdd8vwwFOx_Bcncm2I_l-tBQ=/100x100/smart/src/images%2Fteam%2Fjoseph.jpg" alt="ChaosOS" width="100">
                             <h5 class="mb-0">ChaosOS</h5>
                             <p class="small text-uppercase text-muted">{{ __('teams.people.joseph.title') }}</p>
@@ -64,7 +69,7 @@
                         </div>
                     </div>
                     <div class="col-xl-3 col-md-4 col-6 mb-4">
-                        <div class="bg-white rounded shadow-sm py-5 px-4 fullheight">
+                        <div class="bg-white rounded shadow-sm py-5 px-4 fullheight hover-focus">
                             <img class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm" src="https://images.kanka.io/app/5NaNz1G4komlYUVsxuqph-Udv3I=/100x100/smart/src/images%2Fteam%2Fryan.jpg" alt="ArcOnyx" width="100">
                             <h5 class="mb-0">ArcOnyx</h5>
                             <p class="small text-uppercase text-muted">{{ __('teams.people.ryan.title') }}</p>
@@ -76,12 +81,12 @@
         </div>
     </section>
 
-    <section class="translators bg-primary " id="translators">
+    <section class="translators" id="translators">
         <div class="container">
             <div class="section-body">
                 <div class="row">
                     <div class="col-12 my-auto">
-                        <h2>{{ __('teams.index.translations') }}</h2>
+                        <h1>{{ __('teams.index.translations') }}</h1>
 
                         <p class="text-muted">{!! __('footer.translator_call', ['discord' => link_to(config('discord.url'), 'Discord', ['target' => '_blank'])]) !!}</p>
 
