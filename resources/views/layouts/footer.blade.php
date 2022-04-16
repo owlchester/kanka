@@ -146,12 +146,12 @@
                 <div id="language-switcher" class="language-switcher">
                     <div class="dropup inline">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="languageDropdown" aria-haspopup="true" aria-expanded="false" name="list-languages">
-                            <i class="fas fa-globe"></i> {{ LaravelLocalization::getCurrentLocaleNative() }}
+                            <i class="fa-solid fa-language"></i> {{ LaravelLocalization::getCurrentLocaleNative() }}
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="languageDropdown">
                             @foreach (LaravelLocalization::getSupportedLocales() as $localeCode => $langData)
                                 @if ($localeCode === 'he') @continue @endif
-                                <?php $url = LaravelLocalization::getLocalizedURL($localeCode, null, [], true); ?>
+                                @php $url = LaravelLocalization::getLocalizedURL($localeCode, null, [], true); @endphp
                                 <li>
                                     @if (app()->getLocale() == $localeCode)
                                         <a href="#"><strong>{{ $langData['native'] }}</strong></a>
