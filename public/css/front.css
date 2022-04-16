@@ -486,16 +486,8 @@ ul.pagination li span {
   padding: 15px;
 }
 
-.team .card {
+.fullheight {
   height: 100%;
-}
-
-.team .card .card-body {
-  padding-bottom: 40px;
-}
-
-.team .card .card-text {
-  font-size: 16px;
 }
 
 .card .pull-bottom {

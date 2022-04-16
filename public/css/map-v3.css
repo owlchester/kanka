@@ -84,7 +84,7 @@
 }
 
 .marker-popup-actions a {
-  color: #fff;
+  color: var(--link-text);
 }
 
 #map-body #sidebar-content {

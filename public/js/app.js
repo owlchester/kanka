@@ -82388,17 +82388,6 @@ function registerVendorEvents() {
 
 /***/ }),
 
-/***/ "./resources/assets/sass/app-rtl.scss":
-/*!********************************************!*\
-  !*** ./resources/assets/sass/app-rtl.scss ***!
-  \********************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
 /***/ "./resources/assets/sass/app.scss":
 /*!****************************************!*\
   !*** ./resources/assets/sass/app.scss ***!
@@ -82469,17 +82458,6 @@ function registerVendorEvents() {
 /*!**************************************************!*\
   !*** ./resources/assets/sass/freyja/freyja.scss ***!
   \**************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
-/***/ "./resources/assets/sass/front-rtl.scss":
-/*!**********************************************!*\
-  !*** ./resources/assets/sass/front-rtl.scss ***!
-  \**********************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -82642,9 +82620,9 @@ function registerVendorEvents() {
 /***/ }),
 
 /***/ 0:
-/*!**************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** multi ./resources/assets/js/app.js ./resources/assets/sass/bootstrap.scss ./resources/assets/sass/vendor.scss ./resources/assets/sass/app.scss ./resources/assets/sass/app-rtl.scss ./resources/assets/sass/abilities.scss ./resources/assets/sass/story.scss ./resources/assets/sass/assets.scss ./resources/assets/sass/export.scss ./resources/assets/sass/map.scss ./resources/assets/sass/map-v3.scss ./resources/assets/sass/subscription.scss ./resources/assets/sass/gallery.scss ./resources/assets/sass/front.scss ./resources/assets/sass/auth.scss ./resources/assets/sass/front-rtl.scss ./resources/assets/sass/front/critical.scss ./resources/assets/sass/relations.scss ./resources/assets/sass/dashboard.scss ./resources/assets/sass/settings.scss ./resources/assets/sass/themes/dark.scss ./resources/assets/sass/themes/midnight.scss ./resources/assets/sass/tinymce.scss ./resources/assets/sass/freyja/freyja.scss ./resources/assets/sass/print.scss ***!
-  \**************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*!**********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** multi ./resources/assets/js/app.js ./resources/assets/sass/bootstrap.scss ./resources/assets/sass/vendor.scss ./resources/assets/sass/app.scss ./resources/assets/sass/abilities.scss ./resources/assets/sass/story.scss ./resources/assets/sass/assets.scss ./resources/assets/sass/export.scss ./resources/assets/sass/map.scss ./resources/assets/sass/map-v3.scss ./resources/assets/sass/subscription.scss ./resources/assets/sass/gallery.scss ./resources/assets/sass/front.scss ./resources/assets/sass/auth.scss ./resources/assets/sass/front/critical.scss ./resources/assets/sass/relations.scss ./resources/assets/sass/dashboard.scss ./resources/assets/sass/settings.scss ./resources/assets/sass/themes/dark.scss ./resources/assets/sass/themes/midnight.scss ./resources/assets/sass/tinymce.scss ./resources/assets/sass/freyja/freyja.scss ./resources/assets/sass/print.scss ***!
+  \**********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -82652,7 +82630,6 @@ __webpack_require__(/*! /Users/jay/Documents/GitHub/miscellany/resources/assets/
 __webpack_require__(/*! /Users/jay/Documents/GitHub/miscellany/resources/assets/sass/bootstrap.scss */"./resources/assets/sass/bootstrap.scss");
 __webpack_require__(/*! /Users/jay/Documents/GitHub/miscellany/resources/assets/sass/vendor.scss */"./resources/assets/sass/vendor.scss");
 __webpack_require__(/*! /Users/jay/Documents/GitHub/miscellany/resources/assets/sass/app.scss */"./resources/assets/sass/app.scss");
-__webpack_require__(/*! /Users/jay/Documents/GitHub/miscellany/resources/assets/sass/app-rtl.scss */"./resources/assets/sass/app-rtl.scss");
 __webpack_require__(/*! /Users/jay/Documents/GitHub/miscellany/resources/assets/sass/abilities.scss */"./resources/assets/sass/abilities.scss");
 __webpack_require__(/*! /Users/jay/Documents/GitHub/miscellany/resources/assets/sass/story.scss */"./resources/assets/sass/story.scss");
 __webpack_require__(/*! /Users/jay/Documents/GitHub/miscellany/resources/assets/sass/assets.scss */"./resources/assets/sass/assets.scss");
@@ -82663,7 +82640,6 @@ __webpack_require__(/*! /Users/jay/Documents/GitHub/miscellany/resources/assets/
 __webpack_require__(/*! /Users/jay/Documents/GitHub/miscellany/resources/assets/sass/gallery.scss */"./resources/assets/sass/gallery.scss");
 __webpack_require__(/*! /Users/jay/Documents/GitHub/miscellany/resources/assets/sass/front.scss */"./resources/assets/sass/front.scss");
 __webpack_require__(/*! /Users/jay/Documents/GitHub/miscellany/resources/assets/sass/auth.scss */"./resources/assets/sass/auth.scss");
-__webpack_require__(/*! /Users/jay/Documents/GitHub/miscellany/resources/assets/sass/front-rtl.scss */"./resources/assets/sass/front-rtl.scss");
 __webpack_require__(/*! /Users/jay/Documents/GitHub/miscellany/resources/assets/sass/front/critical.scss */"./resources/assets/sass/front/critical.scss");
 __webpack_require__(/*! /Users/jay/Documents/GitHub/miscellany/resources/assets/sass/relations.scss */"./resources/assets/sass/relations.scss");
 __webpack_require__(/*! /Users/jay/Documents/GitHub/miscellany/resources/assets/sass/dashboard.scss */"./resources/assets/sass/dashboard.scss");

@@ -46,6 +46,7 @@
     - [Entity Abilities](/api-docs/{{version}}/entity-abilities)
     - [Entity Links](/api-docs/{{version}}/entity-links)
     - [Entity Image](/api-docs/{{version}}/entity-image)
+    - [Entity Aliases](/api-docs/{{version}}/entity-aliases)
 
 - ## Search
     - [Search](/api-docs/{{version}}/search)
