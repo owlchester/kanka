@@ -125,7 +125,7 @@
         <div class="card mb-5 mb-lg-0">
             <div class="card-body">
                 <div class="card-image subscription-elemental @nowebp webpfallback @endnowebp"></div>
-                <div class="card-title text-muted text-uppercase text-center">Elementals</div>
+                <div class="card-title text-muted text-uppercase text-center">Elemental</div>
                 <div class="card-price text-center">$25<span class="period">/{{ __('front.pricing.tier.month') }}</span></div>
                 <hr>
                 <ul class="fa-ul">
@@ -146,9 +146,6 @@
                     </li>
                     <li>
                         <span class="fa-li"><i class="fas fa-check"></i></span> {{ __('front.features.patreon.no_ads') }}
-                    </li>
-                    <li>
-                        <span class="fa-li"><i class="fas fa-check"></i></span> {{ __('front.features.patreon.curation') }}
                     </li>
                     <li>
                         <span class="fa-li"><i class="fas fa-check"></i></span> {{ __('front.features.patreon.impact') }}
