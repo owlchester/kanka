@@ -10,7 +10,7 @@ $specificTheme = null;
     @include('layouts._tracking', ['noads' => true])
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>{{ $title ?? trans('default.page_title') }} - {{ config('app.name') }}</title>
+    <title>{{ $title ?? __('default.page_title') }} - {{ config('app.name') }}</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
     <meta property="og:title" content="{{ $title ?? '' }} - {{ config('app.name') }}" />
@@ -104,12 +104,12 @@ $specificTheme = null;
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="{{ trans('crud.delete_modal.close') }}"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">{{ trans('crud.delete_modal.title') }}</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('crud.delete_modal.close') }}"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">{{ __('crud.delete_modal.title') }}</h4>
                 </div>
                 <div class="modal-body">
                     <p id="delete-confirm-text">
-                        {!! trans('crud.delete_modal.description', ['tag' => '<b><span id="delete-confirm-name"></span></b>']) !!}
+                        {!! __('crud.delete_modal.description', ['tag' => '<b><span id="delete-confirm-name"></span></b>']) !!}
                     </p>
                     <div id="delete-confirm-mirror" class="form-group" style="display: none">
                         <label>
@@ -119,8 +119,8 @@ $specificTheme = null;
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">{{ trans('crud.cancel') }}</button>
-                    <button type="button" class="btn btn-danger delete-confirm-submit"><span class="fa fa-trash"></span> {{ trans('crud.delete_modal.delete') }}</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">{{ __('crud.cancel') }}</button>
+                    <button type="button" class="btn btn-danger delete-confirm-submit"><span class="fa fa-trash"></span> {{ __('crud.delete_modal.delete') }}</button>
                 </div>
             </div>
         </div>

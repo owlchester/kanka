@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a95fbc161ec3f41877aa3d9c000d76e5",
+    "content-hash": "50076e0ae5cbe7c6ac6b2c7aa90eabf6",
     "packages": [
         {
             "name": "almasaeed2010/adminlte",
@@ -3199,20 +3199,20 @@
         },
         {
             "name": "ilestis/kanka-dnd5e-monster",
-            "version": "4.1",
+            "version": "4.2",
             "source": {
                 "type": "git",
-                "url": "https://github.com/ilestis/kanka-dnd5e-monster.git",
-                "reference": "2ad3b0bbbaa713097d80c7c7cc0577e7c33d6337"
+                "url": "https://github.com/owlchester/kanka-dnd5e-monster.git",
+                "reference": "438842c726deabe458bae96897c3de20c3398511"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ilestis/kanka-dnd5e-monster/zipball/2ad3b0bbbaa713097d80c7c7cc0577e7c33d6337",
-                "reference": "2ad3b0bbbaa713097d80c7c7cc0577e7c33d6337",
+                "url": "https://api.github.com/repos/owlchester/kanka-dnd5e-monster/zipball/438842c726deabe458bae96897c3de20c3398511",
+                "reference": "438842c726deabe458bae96897c3de20c3398511",
                 "shasum": ""
             },
             "require": {
-                "illuminate/support": "^6.0|^7.0|^8.0"
+                "illuminate/support": "^8.0|^9.0"
             },
             "type": "library",
             "extra": {
@@ -3233,13 +3233,13 @@
             ],
             "authors": [
                 {
-                    "name": "Ilestis",
+                    "name": "Owlchester SNC",
                     "email": "hello@kanka.io",
                     "homepage": "https://kanka.io"
                 }
             ],
             "description": "A attribute template for D&D 5th edition monsters",
-            "homepage": "https://github.com/ilestis/kanka-dnd5e-monster",
+            "homepage": "https://github.com/owlchester/kanka-dnd5e-monster",
             "keywords": [
                 "5e",
                 "dnd",
@@ -3247,10 +3247,10 @@
                 "monsters"
             ],
             "support": {
-                "issues": "https://github.com/ilestis/kanka-dnd5e-monster/issues",
-                "source": "https://github.com/ilestis/kanka-dnd5e-monster/tree/4.1"
+                "issues": "https://github.com/owlchester/kanka-dnd5e-monster/issues",
+                "source": "https://github.com/owlchester/kanka-dnd5e-monster/tree/4.2"
             },
-            "time": "2021-04-26T18:39:27+00:00"
+            "time": "2022-04-17T23:18:06+00:00"
         },
         {
             "name": "intervention/image",
@@ -14581,7 +14581,7 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": ">=7.4.0",
+        "php": ">=8.0",
         "ext-json": "*",
         "ext-zip": "*"
     },

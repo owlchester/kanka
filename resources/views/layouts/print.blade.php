@@ -101,7 +101,7 @@ $specificTheme = null;
                             {{ __('campaigns.members.impersonating.message') }}
 
                             <a href="{{ route('identity.back') }}" class="btn btn-warning btn-sm">
-                                <i class="fa fa-sign-out-alt"></i> {{ trans('campaigns.members.actions.switch-back') }}
+                                <i class="fa fa-sign-out-alt"></i> {{ __('campaigns.members.actions.switch-back') }}
                             </a>
                         </p>
                     </div>

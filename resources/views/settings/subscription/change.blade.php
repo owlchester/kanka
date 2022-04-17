@@ -1,5 +1,5 @@
 <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-label="{{ trans('crud.click_modal.close') }}">
+    <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('crud.click_modal.close') }}">
         <span aria-hidden="true">&times;</span>
     </button>
     <h4 class="modal-title" id="newEntityModalLabel">
@@ -188,10 +188,6 @@
                 ]
             ) !!}
         </div>
-
-            <div class="alert alert-warning">
-                <p>Cancelling because our April fools Koinks announcement? Don't worry, it's a joke that will be removed on the 2nd of April ;-)</p>
-            </div>
 
         <div class="text-center">
             <button class="btn btn-xl btn-danger subscription-confirm-button" data-text="{{ __('settings.subscription.actions.subscribe') }}">

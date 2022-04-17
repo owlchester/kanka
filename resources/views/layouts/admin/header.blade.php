@@ -9,7 +9,7 @@
     <!-- Header Navbar -->
     <nav class="navbar navbar-static-top">
         <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
-            <span class="sr-only">{{ trans('header.toggle_navigation') }}</span>
+            <span class="sr-only">{{ __('header.toggle_navigation') }}</span>
         </a>
 
         <!-- Navbar Right Menu -->
@@ -22,7 +22,7 @@
                         <i class="fa fa-caret-down"></i> {{ LaravelLocalization::getCurrentLocaleNative() }}
                     </a>
                     <ul class="dropdown-menu">
-                        <li class="header">{{ trans('languages.header') }}</li>
+                        <li class="header">{{ __('languages.header') }}</li>
                         <li>
                             <!-- inner menu: contains the actual data -->
                             <ul class="menu">
@@ -46,29 +46,29 @@
                 <?php /* added the test because sometimes the session exists but the user isn't authenticated */ ?>
                 <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <img src="{{ Auth::user()->getAvatarUrl() }}" class="user-image" alt="{{ trans('header.avatar') }}"/>
+                        <img src="{{ Auth::user()->getAvatarUrl() }}" class="user-image" alt="{{ __('header.avatar') }}"/>
 
                         <span class="hidden-xs">{{ Auth::user()->name }}</span>
                     </a>
                     <ul class="dropdown-menu">
                         <li class="user-header">
                             <a href="{{ route('settings.profile') }}">
-                                <img src="{{ Auth::user()->getAvatarUrl() }}" class="img-circle" alt="{{ trans('header.avatar') }}" />
+                                <img src="{{ Auth::user()->getAvatarUrl() }}" class="img-circle" alt="{{ __('header.avatar') }}" />
                             </a>
                             <p>
                                 {{ Auth::user()->name }}
-                                <small>{{ trans('header.member_since', ['date' => Auth::user()->created_at->diffForHumans()]) }}</small>
+                                <small>{{ __('header.member_since', ['date' => Auth::user()->created_at->diffForHumans()]) }}</small>
                             </p>
                         </li>
                         <li class="user-footer">
                             @if (session()->has('campaign_id'))
                             <div class="pull-left">
-                                <a href="{{ route('settings.profile') }}" class="btn btn-default btn-flat"> {{ trans('header.profile') }}</a>
+                                <a href="{{ route('settings.profile') }}" class="btn btn-default btn-flat"> {{ __('header.profile') }}</a>
                             </div>
                             @endif
                             <div class="pull-right">
                                 <a href="{{ route('logout') }}" class="btn btn-default" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                    {{ trans('header.logout') }}
+                                    {{ __('header.logout') }}
                                 </a>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                     {{ csrf_field() }}
