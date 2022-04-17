@@ -49,7 +49,7 @@
                             <p class="text-justify mt-1">{!! nl2br(__('teams.people.jon.text')) !!}</p>
 
                             <span title="Discord" class="pull-bottom"><i class="fab fa-discord"></i> Karuga#6904</span>
-                        </div>K
+                        </div>
                     </div>
                 </div>
             </div>
