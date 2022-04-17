@@ -118,7 +118,6 @@ return [
     ],
     'footer'        => [
         'app'       => 'App',
-        'copyright' => '© 2017 - :current kanka.io. All Rights Reserved.',
         'headings'  => [
             'app'           => 'App',
             'community'     => 'Community',

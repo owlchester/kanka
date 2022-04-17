@@ -190,7 +190,6 @@ return [
     ],
     'footer'        => [
         'app'       => 'Alkalmazás',
-        'copyright' => '© 2017 - :current kanka.io. Minden jog fenntartva.',
         'headings'  => [
             'app'           => 'App',
             'community'     => 'Közösség',

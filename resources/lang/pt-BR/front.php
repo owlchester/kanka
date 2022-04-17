@@ -194,7 +194,6 @@ return [
     ],
     'footer'        => [
         'app'       => 'Aplicativo',
-        'copyright' => '© 2017 - :current kanka.io. Todos direitos reservados.',
         'headings'  => [
             'app'           => 'Aplicativo',
             'community'     => 'Comunidade',

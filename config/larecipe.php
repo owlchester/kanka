@@ -117,7 +117,7 @@ return [
 
     'repository'   => [
         'provider' => 'github',
-        'url'      => 'https://github.com/ilestis/miscellany'
+        'url'      => 'https://github.com/owlchester/kanka'
     ],
 
     /*

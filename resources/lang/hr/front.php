@@ -192,7 +192,6 @@ return [
     ],
     'footer'        => [
         'app'       => 'Aplikacija',
-        'copyright' => '© 2017 - :current kanka.io. Sva prava pridržana.',
         'headings'  => [
             'app'           => 'Aplikacija',
             'community'     => 'Zajednica',
