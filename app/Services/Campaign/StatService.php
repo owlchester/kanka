@@ -35,10 +35,10 @@ class StatService
     /**
      * @return array|array[]
      */
-    public function stats(): array
+    public function stats(): array|false
     {
         if (!$this->campaign->superboosted()) {
-            return [];
+            return false;
         }
 
         $cacheKey = 'campaign_' . $this->campaign->id . '_achievements';
@@ -101,7 +101,10 @@ class StatService
 
         // Reorder
         uasort($stats, function ($a, $b) {
-            return (int) (strlen($a['level']) < strlen($b['level']));
+            if ($a['level'] == $b['level']) {
+                return 0;
+            }
+            return ($a['level'] < $b['level']) ? 1 : -1;
         });
 
         Cache::put($cacheKey, $stats, 86400);
