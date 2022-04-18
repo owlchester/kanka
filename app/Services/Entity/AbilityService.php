@@ -61,7 +61,9 @@ class AbilityService
         }
 
         // Reorder parents
-        usort($this->abilities['parents'], function ($a, $b) { return strtoupper($a['name']) > strtoupper($b['name']); });
+        usort($this->abilities['parents'], function ($a, $b) {
+            return strcmp(strtoupper($a['name']), strtoupper($b['name']));
+        });
 
         // Meta
         $this->abilities['meta'] = [
