@@ -175,10 +175,10 @@ trait Filterable
                         }
                         $query
                             ->select($this->getTable() . '.*')
-                            ->leftJoin('character_race as cr', function ($join) {
-                                $join->on('cr.character_id', '=', $this->getTable() . '.id');
+                            ->leftJoin('character_race as cr1', function ($join) {
+                                $join->on('cr1.character_id', '=', $this->getTable() . '.id');
                             })
-                            ->where('cr.race_id', $value);
+                            ->where('cr1.race_id', $value);
                     } elseif ($key == 'family') {
                         // Character families
                         if (!empty($filterOption) && $filterOption == 'exclude') {
@@ -288,10 +288,10 @@ trait Filterable
                     } elseif ($key == 'race') {
                         $query
                             ->select($this->getTable() . '.*')
-                            ->leftJoin('character_race as cr', function ($join) {
-                                $join->on('cr.character_id', '=', $this->getTable() . '.id');
+                            ->leftJoin('character_race as cr2', function ($join) {
+                                $join->on('cr2.character_id', '=', $this->getTable() . '.id');
                             })
-                            ->where('cr.race_id', null);
+                            ->where('cr2.race_id', null);
                     } elseif ($key == 'family') {
                         $query
                             ->select($this->getTable() . '.*')

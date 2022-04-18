@@ -606,14 +606,14 @@ class CalendarRenderer
             $this->segments = true;
 
             $segments = $this->splitDate($this->calendar->date);
-            $this->setMonth($segments[1]);
-            $this->setYear($segments[0]);
+            $this->setMonth($segments[1])
+                ->setYear($segments[0]);
 
             if (request()->filled('month')) {
-                $this->setMonth(request()->input('month'));
+                $this->setMonth((int) request()->input('month'));
             }
             if (request()->filled('year') ) {
-                $this->setYear(request()->input('year'));
+                $this->setYear((int) request()->input('year'));
             }
 
             if (empty($this->getMonth())) {
@@ -872,17 +872,19 @@ class CalendarRenderer
     /**
      * @param $year
      */
-    protected function setYear($year)
+    protected function setYear(int $year): self
     {
         $this->year = $year;
+        return $this;
     }
 
     /**
      * @param $month
      */
-    protected function setMonth($month)
+    protected function setMonth(int $month): self
     {
         $this->month = $month;
+        return $this;
     }
 
     /**
@@ -1002,7 +1004,7 @@ class CalendarRenderer
      * Get the total amount of days since the beginning
      * @return float|int|mixed
      */
-    protected function daysToDate($includeIntercalary = true)
+    protected function daysToDate(bool $includeIntercalary = true)
     {
         // We assume that the 01 01 00 is a monday.
         // We need to know how many days elapsed since that day, to calculate the offset (total days / week length)
