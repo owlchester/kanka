@@ -159,7 +159,6 @@ trait CalendarDateTrait
         // changing the colour or periodicity. To support the API not overriding the values, we still check to make
         // sure that the calendar_id property is set.
         if (!request()->has('calendar_id')) {
-            //dd('noping');
             return;
         }
 
@@ -193,7 +192,11 @@ trait CalendarDateTrait
             $event->is_recurring = request()->post('is_recurring', false);
             $event->recurring_periodicity = request()->post('recurring_periodicity', null);
             $event->colour = request()->post('calendar_colour', null);
-            $event->save();
+            try {
+                $event->save();
+            } catch(\Exception $e) {
+                // Something went wrong, silence the issue
+            }
         }
     }
 }
