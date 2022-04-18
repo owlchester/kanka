@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $user_id
  * @property int $type_id
  * @property string $ip
+ * @property string $country
  * @property Carbon $created_at
  */
 class UserLog extends Model
