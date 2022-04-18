@@ -11,11 +11,12 @@ class UserLogObserver
      */
     public function creating(UserLog $userLog)
     {
-        $ip = request()->ip();
+        $userLog->ip = request()->ip();
         if (isset($_SERVER["HTTP_CF_CONNECTING_IP"])) {
-            $ip = $_SERVER["HTTP_CF_CONNECTING_IP"];
+            $userLog->ip = $_SERVER["HTTP_CF_CONNECTING_IP"];
         }
-
-        $userLog->ip = $ip;
+        if (isset($_SERVER["HTTP_CF_IPCOUNTRY"])) {
+            $userLog->country = substr($_SERVER["HTTP_CF_IPCOUNTRY"], 0, 6);
+        }
     }
 }
