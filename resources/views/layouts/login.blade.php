@@ -36,7 +36,7 @@
 @if (config('fontawesome.kit'))
     <script src="https://kit.fontawesome.com/{{ config('fontawesome.kit') }}.js" crossorigin="anonymous"></script>
 @endif
-    <script src="{{ mix('js/app.js') }}" defer></script>
+    <script src="{{ mix('js/auth.js') }}" defer></script>
 @yield('scripts')
 </body>
 </html>

@@ -48,7 +48,6 @@ $(document).ready(function() {
 
     deleteConfirm();
     dynamicMentions();
-    initTogglePasswordFields();
     initAjaxPagination();
     initEntityNoteToggle();
     initDynamicDelete();
@@ -160,26 +159,6 @@ function manageTabs() {
     // on load of the page: switch to the currently selected tab
     var tabHash = window.location.hash.replace('tab_', '');
     $('ul.nav-tabs > li > a[href="' + tabHash + '"]').tab('show');
-}
-
-
-/**
- * Show/Hide password field helpers
- */
-function initTogglePasswordFields() {
-    var passwordField = $('#password');
-    var passwordToggleIcon = $('.toggle-password-icon');
-    $('.toggle-password').on('click', function(e) {
-        e.preventDefault();
-        if (passwordField.prop('type') === 'text') {
-            passwordField.prop('type', 'password');
-            passwordToggleIcon.removeClass('fa-eye-slash').addClass('fa-eye')
-        } else {
-            passwordField.prop('type', 'text');
-            passwordToggleIcon.removeClass('fa-eye').addClass('fa-eye-slash');
-        }
-        return false;
-    });
 }
 
 function resetSubmitButton(id) {

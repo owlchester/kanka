@@ -37,6 +37,8 @@ $(document).ready(function(e) {
     $(function () {
         $('[data-toggle="tooltip"]').tooltip()
     })
+
+    initFormBlocker();
 });
 
 /**
@@ -67,5 +69,6 @@ function initTestimonialSlider() {
         speed: 800,
     });
 }
+
 
 require('./community-votes');

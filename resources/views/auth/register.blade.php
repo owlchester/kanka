@@ -7,7 +7,7 @@
 
     @include('partials.errors')
 
-    <form method="POST" action="{{ route('register') }}">
+    <form method="POST" action="{{ route('register') }}" class="submit-lock">
         {{ csrf_field() }}
 
         <div class="form-group has-feedback{{ $errors->has('name') ? ' has-error' : '' }}">
