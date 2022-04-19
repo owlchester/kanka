@@ -104,7 +104,12 @@
       height: unset;
     }
     a {
-      color: #fff;
+      color: var(--sidebar-link);
+    }
+    .entity-content {
+      a {
+        color: var(--link-text);
+      }
     }
   }
 }
