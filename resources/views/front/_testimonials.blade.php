@@ -1,4 +1,4 @@
-<section id="testimonials" class="bg-primary" @if(!\App\Facades\DataLayer::groupB())style="display: none"@endif>
+<section id="testimonials" class="bg-primary ab-testing-b">
     <div class="container">
         <div class="section-heading text-center">
             <h2>{{ __('front/testimonials.title') }}</h2>

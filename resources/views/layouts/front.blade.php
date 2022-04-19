@@ -60,7 +60,7 @@
     @yield('styles')
 </head>
 
-<body id="page-top">
+<body id="page-top" class="@if(\App\Facades\DataLayer::groupB())ab-testing-second @else ab-testing-first @endif">
 @include('layouts._tracking-fallback')
 <noscript id="deferred-styles">
 </noscript>

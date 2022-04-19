@@ -31,7 +31,10 @@
 {{--                    </li>--}}
                 </ul>
                 @if(config('auth.register_enabled'))
-                <a href="{{ route('register') }}" class="btn btn-block btn-primary text-uppercase">
+                <a href="{{ route('register') }}" class="btn btn-block btn-primary text-uppercase ab-testing-a">
+                    {{ __('front.second_block.call_to_action') }}
+                </a>
+                <a href="{{ route('register') }}" class="btn btn-block btn-success text-uppercase ab-testing-b">
                     {{ __('front.second_block.call_to_action') }}
                 </a>@endif
             </div>
@@ -73,7 +76,10 @@
 {{--                    </li>--}}
                 </ul>
 
-                <a href="{{ route('settings.subscription') }}" target="_blank" class="btn btn-block btn-primary text-uppercase">
+                <a href="{{ route('settings.subscription') }}" target="_blank" class="btn btn-block btn-primary text-uppercase ab-testing-a">
+                    {{ __('front.pricing.actions.subscribe') }}
+                </a>
+                <a href="{{ route('settings.subscription') }}" target="_blank" class="btn btn-block btn-success text-uppercase ab-testing-b">
                     {{ __('front.pricing.actions.subscribe') }}
                 </a>
             </div>
@@ -115,7 +121,10 @@
 {{--                    </li>--}}
                 </ul>
 
-                <a href="{{ route('settings.subscription') }}" target="_blank" class="btn btn-block btn-primary text-uppercase">
+                <a href="{{ route('settings.subscription') }}" target="_blank" class="btn btn-block btn-primary text-uppercase ab-testing-a">
+                    {{ __('front.pricing.actions.subscribe') }}
+                </a>
+                <a href="{{ route('settings.subscription') }}" target="_blank" class="btn btn-block btn-success text-uppercase ab-testing-b">
                     {{ __('front.pricing.actions.subscribe') }}
                 </a>
             </div>
@@ -152,7 +161,10 @@
                     </li>
                 </ul>
 
-                <a href="{{ route('settings.subscription') }}" target="_blank" class="btn btn-block btn-primary text-uppercase">
+                <a href="{{ route('settings.subscription') }}" target="_blank" class="btn btn-block btn-primary text-uppercase ab-testing-a">
+                    {{ __('front.pricing.actions.subscribe') }}
+                </a>
+                <a href="{{ route('settings.subscription') }}" target="_blank" class="btn btn-block btn-success text-uppercase ab-testing-b">
                     {{ __('front.pricing.actions.subscribe') }}
                 </a>
             </div>

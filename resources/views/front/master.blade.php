@@ -2,15 +2,19 @@
     <div class="container h-100">
         <div class="row h-100">
             <div class="col-lg-12 my-auto landing-heading">
-                <h1 class="">{{ trans('front.master.heading') }}</h1>
+                <h1 class="">{{ __('front.master.heading') }}</h1>
             </div>
             <div class="col-lg-7">
                 <div class="header-content">
-                    <p class="mb-5">{{ trans('front.master.description', ['kanka' => config('app.name')]) }}</p>
+                    <p class="mb-5">{{ __('front.master.description', ['kanka' => config('app.name')]) }}</p>
                     @if(config('auth.register_enabled'))
-                    <a href="{{ route('register') }}" class="btn btn-primary btn-lg">
-                        {{ trans('front.master.call_to_action') }}
-                    </a>@endif
+                    <a href="{{ route('register') }}" class="btn btn-primary btn-lg ab-testing-a">
+                        {{ __('front.master.call_to_action') }}
+                    </a>
+                    <a href="{{ route('register') }}" class="btn btn-success btn-lg ab-testing-b">
+                        {{ __('front.master.call_to_action') }}
+                    </a>
+                    @endif
                 </div>
             </div>
             <div class="col-lg-5 text-center">
