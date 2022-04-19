@@ -13,6 +13,7 @@ return [
         'export'            => 'Exportieren',
         'find_out_more'     => 'Mehr erfahren',
         'go_to'             => 'Gehe zu :name',
+        'help'              => 'Hilfe',
         'json-export'       => 'Export (json)',
         'manage_links'      => 'Links verwalten',
         'move'              => 'Verschieben',

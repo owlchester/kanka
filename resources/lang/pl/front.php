@@ -1,11 +1,11 @@
 <?php
 
 return [
-    'about'         => [
+    'about'                 => [
         'description'   => 'Kanka zrodziła się pragnienia oddanego fana gier fabularnych, który chciał budować światy i dzielić się nimi z graczami. Po wypróbowaniu istniejących opcji i odkryciu, że żadna nie spełnia jego oczekiwań, zaczął pracować nad Kanką jesienią 2017 roku.',
         'title'         => 'O nas',
     ],
-    'campaigns'     => [
+    'campaigns'             => [
         'description_full'  => 'Kanka posiada wiele kampanii, które każdy może obejrzeć. Na tej stronie znajduje się lista wszystkich kampanii publicznych oraz kampanie wyróżnione przez społeczność.',
         'featured'          => [
             'description'   => 'Członkowie naszej społeczności tworzą wspaniałe rzeczy, którym chętnie nadajemy status Wyróżnionych Kampanii. Wracaj na tę stronę co jakiś czas, by obejrzeć kolejne wyróżnione kampanie.',
@@ -30,24 +30,29 @@ return [
         ],
         'title'             => 'Kampanie publliczne',
     ],
-    'community'     => [],
-    'contact'       => [
+    'community'             => [],
+    'contact'               => [
         'description'   => 'Potrzebujesz pomocy, masz sugestię albo chcesz podzielić się podziwem dla Kanki? Nasz zespół odpowie niezależnie od tematu!',
         'email'         => 'Ślij zapytania na adres',
         'other'         => 'Albo użyj jednego z serwisów społecznościowych:',
         'title'         => 'W czym możemy pomóc?',
     ],
-    'cookie'        => [
+    'cookie'                => [
         'dismiss'   => 'Jasne!',
         'link'      => 'Więcej',
         'message'   => 'By zapewnić jak najlepsze doświadczenie, ta strona używa cookies',
     ],
-    'faq'           => [
+    'faq'                   => [
         'helpers'   => [
             'more'  => 'Nie ma tu tego, czego szukasz?',
         ],
     ],
-    'features'      => [
+    'featured_campaigns'    => [
+        'description'   => 'Chcesz zobaczyć, jak działa Kanka i jak ludzie jej używają? Oto kilka kampanii stworzonych przez członków społeczności, które my uważamy za absolutnie wspaniałe.',
+        'more'          => 'Chcesz zobaczyć inne kampanie? Sprawdź :public-campaigns.',
+        'title'         => 'Szukasz inspiracji?',
+    ],
+    'features'              => [
         'abilities'         => [
             'description'   => 'Zarządzaj ekwipunkiem postaci. Dodawaj im zdolności, na przykład supermoce czy czary.',
             'title'         => 'Zdolności i przedmioty',
@@ -80,6 +85,7 @@ return [
             'no_ads'                => 'Brak reklam w kampanii',
             'recovery'              => 'Odzyskiwanie usuniętych elementów do 30 dni',
             'relation-visualiser'   => 'Wizualizacja relacji między elementami',
+            'sidebar'               => 'Dostosuj i zmieniaj kolejność bocznego menu kampanii',
             'theme'                 => 'Dobór motywu dla kampanii',
             'title'                 => 'Doładowane kampanie',
             'tooltip'               => 'Własne dymki elementów: zmieniaj tekst, dodawaj obrazy',
@@ -189,12 +195,13 @@ return [
             'title' => 'Światotwórstwo',
         ],
     ],
-    'first_block'   => [
+    'first_block'           => [
         'description'   => 'Kanka jest dostępna na wszystkich urządzeniach i regularnie aktualizowana o nowe funkcje. Już nigdy nie pogubisz się w notatkach - dzięki Kance wszystko będziesz mieć pod ręką i w jednym miejscu.',
         'title'         => 'Nowy sposób zarządzania kampaniami RPG i własnymi światami.',
     ],
-    'footer'        => [
+    'footer'                => [
         'app'       => 'Aplikacja',
+        'copyright' => '© 2017 - :current kanka.io. All Rights Reserved.',
         'headings'  => [
             'app'           => 'Aplikacja',
             'community'     => 'Społeczność',
@@ -205,7 +212,7 @@ return [
         'resources' => 'Zasoby',
         'social'    => 'Społeczne',
     ],
-    'help'          => [
+    'help'                  => [
         'description'   => 'Jeżeli potrzebujesz jakiejś pomocy, chętnie jej udzielimy. Skontaktuj się z nami za pomocą jednej z tych metod, a odezwiemy się tak szybko jak to możliwe.',
         'discord'       => 'Dołącz do nas na Discordzie',
         'documentation' => 'Zobacz dokumentację',
@@ -214,18 +221,18 @@ return [
         'title'         => 'Pomoc',
         'twitter'       => 'Zaczep nas na Twitterze',
     ],
-    'home'          => [
+    'home'                  => [
         'seo'   => [
             'meta-description'  => 'Prowadzisz gry RPG, wymyślasz światy i historie? Dzięki naszemu menedżerowi kampanii i narzędziom światotwórczym z łatwością zorganizujesz, zaplanujesz i przeprowadzisz grę. Słuchamy naszej społeczności i, co najlepsze, jesteśmy całkiem za darmo!',
         ],
     ],
-    'master'        => [
+    'master'                => [
         'call_to_action'    => 'Załóż konto',
         'description'       => 'Kanka to rozwijane przez społeczność narzędzie do budowy światów i zarządzania kampaniami RPG, idealne dla autorów i mistrzów gry. Już nigdy nie pogubisz się w notatkach dzięki systemowi @wzmianek oraz takim funkcjom, jak kalendarze, interaktywne mapy, historie, organizacje, rodziny oraz tyle postaci, ile zdołasz wymyślić!',
         'heading'           => 'Tworzenie światów, zarządzanie kampaniami RPG, narracja. Wszystko to wspiera',
         'title'             => 'Kanka',
     ],
-    'media'         => [
+    'media'                 => [
         'description'   => 'Na tej stronie znajdziesz obrazy Kanki z wysokiej rozdzielczości. Używaj ich do promocji aplikacji i podczas projektowania narzędzi uzupełniających Kankę.',
         'images'        => [
             'primary'   => 'Głowne logo Kanki',
@@ -233,7 +240,7 @@ return [
         ],
         'title'         => 'Media',
     ],
-    'menu'          => [
+    'menu'                  => [
         'about'         => 'O nas',
         'api'           => 'API',
         'campaigns'     => 'Kampanie publiczne',
@@ -262,15 +269,15 @@ return [
         'terms'         => 'Regulamin',
         'title'         => 'Menu',
     ],
-    'meta'          => [
+    'meta'                  => [
         'description'   => 'Kanka to elastyczny cyfrowy menedżer kampanii RPG i narzędzie do projektowania światów',
         'title'         => 'Kanka - menedżer kampanii RPG i narzędzie tworzenia światów dostępne online',
     ],
-    'partners'      => [
+    'partners'              => [
         'description'   => 'Współpracujemy z kilkoma znakomitymi narzędziami i społecznościami, które podzielają nasze wartości i cele.',
         'title'         => 'Partnerzy',
     ],
-    'pricing'       => [
+    'pricing'               => [
         'actions'       => [
             'subscribe' => 'Zasubskrybuj',
         ],
@@ -292,12 +299,12 @@ return [
         ],
         'title'         => 'Cena',
     ],
-    'privacy'       => [
+    'privacy'               => [
         'description'   => 'Efektywna data :date',
         'title'         => 'Polityka prywatności',
     ],
-    'release'       => [],
-    'roadmap'       => [
+    'release'               => [],
+    'roadmap'               => [
         'backlog'           => [
             'description'   => 'Na tej tablicy Trello znajdują się funkcje, o dodanie których prosi społeczność oraz lista planowanych usprawnień i nowości, które pewnego dnia dodamy do Kanki.',
             'title'         => 'Plany rozwoju',
@@ -315,16 +322,16 @@ return [
         ],
         'title'             => 'Plany rozwoju',
     ],
-    'second_block'  => [
+    'second_block'          => [
         'call_to_action'    => 'Założ darmowe konto!',
     ],
-    'seo'           => [
+    'seo'                   => [
         'keywords'  => 'Światotwórstwo, gry fabularne, zarządzanie kampaniami RPG',
     ],
-    'team'          => [
+    'team'                  => [
         'coffee'    => 'Kup nam kawę!',
     ],
-    'terms'         => [
+    'terms'                 => [
         'description'   => 'Efektywna data :date',
         'title'         => 'Regulamin',
     ],

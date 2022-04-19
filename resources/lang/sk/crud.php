@@ -13,6 +13,7 @@ return [
         'export'            => 'Exportovať (PDF)',
         'find_out_more'     => 'Dozvedieť sa viac',
         'go_to'             => 'Prejsť na :name',
+        'help'              => 'Pomoc',
         'json-export'       => 'Exportovať (json)',
         'manage_links'      => 'Spravovať linky',
         'move'              => 'Premiestniť',

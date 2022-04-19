@@ -34,6 +34,10 @@ return [
         'success'   => 'Atribúty pre :entity upravené.',
         'title'     => 'Atribúty pre :name',
     ],
+    'live'          => [
+        'success'   => 'Atribút :attribute aktualizovaný.',
+        'title'     => 'Aktualizácia :attribute',
+    ],
     'placeholders'  => [
         'attribute' => 'Počet dobytí, úroveň obtiažnosti výzvy, iniciatíva, obyvateľstvo',
         'block'     => 'Názov bloku',
@@ -42,6 +46,7 @@ return [
             'class' => 'Trieda FontAwesome alebo RPG Awesome: fas fa-users',
             'name'  => 'Názov symbolu',
         ],
+        'number'    => 'Názov čísla',
         'random'    => [
             'name'  => 'Názov atribútu',
             'value' => '1-100 alebo zoznam hodnôt oddelených čiarkou',
@@ -62,6 +67,7 @@ return [
         'block'     => 'Blok',
         'checkbox'  => 'Zaškrtávacie políčko',
         'icon'      => 'Symbol',
+        'number'    => 'Číslo',
         'random'    => 'Náhodne',
         'section'   => 'Sekcia',
         'text'      => 'Viacriadkový text',

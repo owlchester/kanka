@@ -255,7 +255,7 @@ return [
         'login'         => 'Login',
         'marketplace'   => 'Marketplace',
         'media'         => 'Media',
-        'merch'         => 'Merchandise',
+        'merch'         => 'Merch',
         'news'          => 'News',
         'newsletter'    => 'Newsletter',
         'other'         => 'Other',

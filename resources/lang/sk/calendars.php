@@ -98,6 +98,7 @@ return [
     ],
     'helpers'       => [
         'month_type'    => 'Priestupné mesiace nepoužívajú dni v týždni, ale ovplyvňujú družice a ročné obdobia.',
+        'moon_offset'   => 'Štandardne začína spln prvý deň v roku 0. Nastavenie posunu ovplyvňuje, kedy sa tento spln udeje. Hodnota môže byť negatívna (do max. dĺžky prvého mesiaca) alebo pozitívna (do max. dĺžky prvého mesiaca).',
         'nested_parent' => 'Zobraziť kalendáre :parent.',
         'nested_without'=> 'Zobraziť všetky kalendáre, ktoré nemajú nadradený kalendár. Kliknutím na riadok zobrazíš podradené kalendáre.',
         'start_offset'  => 'Štandardne začína kalendár prvý deň v týždni v roku 0. Nastavenie tejto hodnoty ovplyvňuje, na ktorý deň v kalendári pripadne prvý deň.',
@@ -224,5 +225,8 @@ return [
     'sorters'       => [
         'after' => 'Dnes a potom',
         'before'=> 'Dnes a predtým',
+    ],
+    'validators'    => [
+        'moon_offset'   => 'Posun pre prvý spln nemôže byť väčší ako dĺžka prvého mesiaca kalendára.',
     ],
 ];

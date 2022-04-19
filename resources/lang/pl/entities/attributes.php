@@ -34,6 +34,10 @@ return [
         'success'   => 'Zaktualizowano cechy :entity',
         'title'     => 'Cechy :name',
     ],
+    'live'          => [
+        'success'   => 'Zmieniono cechę :attribute.',
+        'title'     => 'Zmiana cechy :attribute.',
+    ],
     'placeholders'  => [
         'attribute' => 'Liczba zwycięstw, Skala Wyzwania, Inicjatywa, Populacja',
         'block'     => 'Nazwa bloku',
@@ -42,6 +46,7 @@ return [
             'class' => 'Klasa FontAwesome lub RPG Awesome: fas fa-users',
             'name'  => 'Nazwa ikony',
         ],
+        'number'    => 'Rodzaj liczby',
         'random'    => [
             'name'  => 'Nazwa cechy',
             'value' => '1-100 lub lista wartości rozdzielonych przecinkiem',
@@ -62,6 +67,7 @@ return [
         'block'     => 'Blok',
         'checkbox'  => 'Pole wyboru',
         'icon'      => 'Ikona',
+        'number'    => 'Liczba',
         'random'    => 'Losowy',
         'section'   => 'Sekcja',
         'text'      => 'Kilka wierszy',

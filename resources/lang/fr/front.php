@@ -201,7 +201,7 @@ return [
     ],
     'footer'                => [
         'app'       => 'App',
-        'copyright' => 'Tous droits réservé :copy :year :company.',
+        'copyright' => '&copy; 2017 - :current kanka.io. Tous droits réservés.',
         'headings'  => [
             'app'           => 'App',
             'community'     => 'Communauté',

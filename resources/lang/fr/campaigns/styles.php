@@ -2,7 +2,7 @@
 
 return [
     'actions'   => [
-        'current'   => 'Thème actuel: :theme',
+        'current'   => 'Thème actuel: theme',
         'new'       => 'Nouveau style',
     ],
     'create'    => [

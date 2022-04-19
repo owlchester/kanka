@@ -36,7 +36,13 @@ TEXT
             'title' => 'QA & Onboarding',
         ],
         'ryan'      => [
-            'title' => 'OG Community Member',
+            'text'  => <<<'TEXT'
+I started using Kanka in early 2018 and was one of the first people to join the Discord. I promptly started making work for Jay by creating a whole list of possible features for the (then upcoming) calendars.
+
+Nowdays I help out with the community on Discord and Reddit, and break new versions so you don't have to.
+TEXT
+,
+            'title' => 'Community Manager & Lead QA',
         ],
     ],
 ];

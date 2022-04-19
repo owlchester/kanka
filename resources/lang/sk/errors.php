@@ -24,6 +24,7 @@ return [
             '1' => 'Na Kanke sa práve pracuje, čo zvyčajne znamená, že nahrávame jej aktualizáciu!',
             '2' => 'Ospravedlňujeme sa za túto nepríjemnosť. Všetko bude o chvíľu zasa fungovať.',
         ],
+        'json'  => 'Na Kanke sa aktuálne pracuje, prosím, skús to o pár minút.',
         'title' => 'Údržba',
     ],
     '503-form'  => [],

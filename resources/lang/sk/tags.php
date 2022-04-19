@@ -32,6 +32,7 @@ return [
     'helpers'       => [
         'nested_parent' => 'Zobraziť kategórie :parent.',
         'nested_without'=> 'Zobrazujú sa všetky kategórie, ktoré nemajú nadradenú kategóriu. Kliknutím na riadok zobrazíš podradené kategórie.',
+        'no_children'   => 'Aktuálne nemá túto kategóriu pridelený žiaden objekt.',
     ],
     'hints'         => [
         'children'  => 'Tento zoznam obsahuje všetky objekty priamo pod touto kategóriou a jej podriadenými kategóriami.',

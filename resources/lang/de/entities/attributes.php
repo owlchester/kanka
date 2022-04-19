@@ -37,6 +37,10 @@ return [
         'success'   => 'Attribute für :entity aktualisiert',
         'title'     => 'Attribute für :name',
     ],
+    'live'          => [
+        'success'   => 'Attribute :attribute aktualisiert',
+        'title'     => ':attribute aktualisieren',
+    ],
     'placeholders'  => [
         'attribute' => 'Anzahl der Eroberungen, Challenge Rating, Initiative, Bevölkerung',
         'block'     => 'Blockname',
@@ -45,6 +49,7 @@ return [
             'class' => 'FontAwesome oder RPG Awesome class: fas fa-users',
             'name'  => 'Symbolname',
         ],
+        'number'    => 'Nummernname',
         'random'    => [
             'name'  => 'Attributname',
             'value' => '1-100 oder Liste von Werten, die durch ein Komma getrennt sind',
@@ -65,6 +70,7 @@ return [
         'block'     => 'Block',
         'checkbox'  => 'Checkbox',
         'icon'      => 'Symbol',
+        'number'    => 'Nummer',
         'random'    => 'Zufällig',
         'section'   => 'Abteilung',
         'text'      => 'Mehrzeiliger Text',

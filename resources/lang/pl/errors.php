@@ -24,6 +24,7 @@ return [
             '1' => 'Trwa konserwacja Kanki, co zwykle oznacza, że instalujemy aktualizację!',
             '2' => 'Przepraszamy za niedogodność. Za kilka minut wszystko wróci do normy.',
         ],
+        'json'  => 'Właśnie trwa konserwacja Kanki, spróbuj za kilka minut.',
         'title' => 'Konserwacja',
     ],
     '503-form'  => [],

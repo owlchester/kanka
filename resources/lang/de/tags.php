@@ -32,6 +32,7 @@ return [
     'helpers'       => [
         'nested_parent' => 'Anzeigen der Tags von :parent.',
         'nested_without'=> 'Anzeigen aller Tags, die kein übergeordnetes Tag haben. Klicken Sie auf eine Zeile, um die untergeordneten Tags anzuzeigen.',
+        'no_children'   => 'Es gibt derzeit kein Objekt, die mit diesem Tag getaggt sind.',
     ],
     'hints'         => [
         'children'  => 'Diese Liste enthält alle Objekte, die direkt in dieser Kategorie und allen Unterkategorien sind.',

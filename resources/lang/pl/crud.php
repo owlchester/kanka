@@ -13,6 +13,7 @@ return [
         'export'            => 'Eksport (PDF)',
         'find_out_more'     => 'Więcej',
         'go_to'             => 'Idź do :name',
+        'help'              => 'Pomoc',
         'json-export'       => 'Eksport (JSON)',
         'manage_links'      => 'Zarządzaj odnośnikami',
         'move'              => 'Zmień lub przenieś',

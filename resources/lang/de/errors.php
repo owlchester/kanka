@@ -24,6 +24,7 @@ return [
             '1' => 'Kanka ist aktuell in Wartung, was normalerweise bedeutet, dass ein Update eingespielt wird!',
             '2' => 'Entschuldige die Unannehmlichkeiten. Alles wird bald wieder normal funktionieren.',
         ],
+        'json'  => 'Kanka wird derzeit gewartet, bitte versuchen Sie es in ein paar Minuten erneut.',
         'title' => 'Wartung',
     ],
     '503-form'  => [],

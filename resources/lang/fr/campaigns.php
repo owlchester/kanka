@@ -417,7 +417,7 @@ TEXT
             'roles'             => 'Rôles',
             'settings'          => 'Modules',
             'sidebar'           => 'Navigation',
-            'styles'            => 'Styles',
+            'styles'            => 'Thèmage',
         ],
         'title'     => 'Campagne :name',
     ],

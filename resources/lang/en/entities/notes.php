@@ -7,9 +7,8 @@ return [
         'add_user'  => 'Add user',
     ],
     'copy_mention'  => [
-        'copy'              => 'Copy advanced mention',
-        'copy_with_name'    => 'Copy advanced mention with post name',
-        'success'           => 'Advanced mention to post copied to the clipboard.',
+        'copy'      => 'Copy advanced mention',
+        'success'   => 'Advanced mention to post copied to the clipboard.',
     ],
     'create'        => [
         'success'   => 'Post \':name\' added to :entity.',

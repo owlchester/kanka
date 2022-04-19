@@ -1,11 +1,11 @@
 <?php
 
 return [
-    'about'         => [
+    'about'                 => [
         'description'   => 'Kanka sa zrodila v roku 2017 z túžby dvoch vášnivých hráčov hier na hrdinov, ktorí chceli vytvoriť spoločný svet a spravovať ho. Po vyskúšaní niekoľkých možností sa zhodli na tom, že žiadna existujúca im neponúka, čo hľadajú. Preto sa v jeseni 2017 rozhodli vytvoriť svoj vlastný nástroj.',
         'title'         => 'O Kanke',
     ],
-    'campaigns'     => [
+    'campaigns'             => [
         'description_full'  => 'Mnoho kampaní je v Kanke viditeľných pre verejnosť. Táto stránka obsahuje zoznam verejných kampaní ako aj niektorých komunitou zvýraznených kampaní.',
         'featured'          => [
             'description'   => 'Naša komunita vytvára úžasné veci, ktoré sme sa rozhodli prezentovať formou Zvýraznených kampaní. Zoznam časom obmeňujeme, takže stránku navštív aj neskôr, nech objavíš ďalšie.',
@@ -30,24 +30,29 @@ return [
         ],
         'title'             => 'Verejné kampane',
     ],
-    'community'     => [],
-    'contact'       => [
+    'community'             => [],
+    'contact'               => [
         'description'   => 'Potrebuješ pomoc, máš nápad alebo sa chceš iba podeliť o tvoju lásku ku Kanke? Náš tím ti odpovie na každú správu!',
         'email'         => 'Všetky pripomienky nám zasielaj na e-mail:',
         'other'         => 'Alebo nás kontaktuj na jednej z týchto sociálnych sietí:',
         'title'         => 'Sme tu pre teba',
     ],
-    'cookie'        => [
+    'cookie'                => [
         'dismiss'   => 'Rozumiem!',
         'link'      => 'Dozvedieť sa viac',
         'message'   => 'Táto webstránka používa cookies, aby pre teba zaistila najlepšiu možnú skúsenosť s ňou.',
     ],
-    'faq'           => [
+    'faq'                   => [
         'helpers'   => [
             'more'  => 'Nemôžeš nájsť, čo hľadáš?',
         ],
     ],
-    'features'      => [
+    'featured_campaigns'    => [
+        'description'   => 'Chceš vidieť Kanku v akcii a ako ju používajú iní ľudia? Tu je niekoľko kampaní našej komunity, o ktorých si myslíme, že sú úžasné.',
+        'more'          => 'Chceš vidieť ďalšie kampane? Skús pozrieť na :public-campaigns.',
+        'title'         => 'Hľadáš inšpiráciu?',
+    ],
+    'features'              => [
         'abilities'         => [
             'description'   => 'Spravuj zoznamy predmetov. Pridaj postavám kúzla a sily pomocou schopností.',
             'title'         => 'Schopnosti a Predmety',
@@ -79,7 +84,8 @@ return [
             'marketplace'           => 'Prístup do :marketplace',
             'no_ads'                => 'Kampaň bez reklám',
             'recovery'              => 'Obnovenie odstránených objektov do 30 dní',
-            'relation-visualiser'   => 'Objavuj vizuálne vzťahové prepojenia medzi objektami',
+            'relation-visualiser'   => 'Objavuj vzťahy medzi objektami vizuálnym zobrazením',
+            'sidebar'               => 'Zmeň poradie a nastavenie bočného menu',
             'theme'                 => 'Nezmeniteľná téma kampane',
             'title'                 => 'Boostnuté kampane',
             'tooltip'               => 'Bubliny objektov s možnosťou zobrazenia obrázku a úpravy textu',
@@ -189,11 +195,11 @@ return [
             'title' => 'Tvorba svetov',
         ],
     ],
-    'first_block'   => [
+    'first_block'           => [
         'description'   => 'Naša aplikácia je dostupná na všetkých mobilných zariadeniach a prehliadačoch! Nemusíš nič inštalovať, stále máš najnovšiu verziu a nové funkcionality. Zabudni na rozstratené poznámky, v Kanke nájdeš všetko na jednom mieste.',
         'title'         => 'Nový spôsob, ako mať poriadok v tvojich svetoch a kampaniach.',
     ],
-    'footer'        => [
+    'footer'                => [
         'app'       => 'Aplikácia',
         'copyright' => 'Copyright :copy :year Owlchester SNC',
         'headings'  => [
@@ -206,7 +212,7 @@ return [
         'resources' => 'Zdroje',
         'social'    => 'Sociálne siete',
     ],
-    'help'          => [
+    'help'                  => [
         'description'   => 'Sme tu, ak potrebuješ pomôcť. Kontaktuj nás jedným z nasledujúcich spôsobov a my sa ti čo najskôr ozveme späť.',
         'discord'       => 'Prihlás sa do nášho Discordu',
         'documentation' => 'Pohľadaj v dokumentácii',
@@ -215,18 +221,18 @@ return [
         'title'         => 'Pomocník',
         'twitter'       => 'Napíš nám na Twitteri',
     ],
-    'home'          => [
+    'home'                  => [
         'seo'   => [
             'meta-description'  => 'Kanka je komunitou riadený nástroj na spravovanie RPG kampaní a tvorbu svetov, s ktorým sa dajú tieto jednoducho organizovať, plánovať a používať',
         ],
     ],
-    'master'        => [
+    'master'                => [
         'call_to_action'    => 'Registrácia',
         'description'       => 'Kanka je jednoduchý, intuitívny a flexibilný nástroj pre ľudí, ktorí tvoria svety, píšu knihy, rozprávajú príbehy a hrajú hry na hrdinov (RPG), v ktorom môžu digitálne spravovať svoje svety a kampane. Tvor a organizuj postavy, miesta, organizácie, udalosti a oveľa viac zadarmo.',
         'heading'           => 'Manažment RPG kampaní a tvorba svetov čo najjednoduchšie',
         'title'             => 'Kanka',
     ],
-    'media'         => [
+    'media'                 => [
         'description'   => 'Na tejto stránke nájdeš obrázky Kanky vo vysokom rozlíšení. Použi ich, ak chceš Kanku spropagovať, alebo vytváraš nástroje pre interakciu s Kankou.',
         'images'        => [
             'primary'   => 'Primárne logo Kanky',
@@ -234,7 +240,7 @@ return [
         ],
         'title'         => 'Médiá',
     ],
-    'menu'          => [
+    'menu'                  => [
         'about'         => 'O Kanke',
         'api'           => 'API',
         'campaigns'     => 'Verejné kampane',
@@ -263,15 +269,15 @@ return [
         'terms'         => 'Všeobecné podmienky',
         'title'         => 'Menu',
     ],
-    'meta'          => [
+    'meta'                  => [
         'description'   => 'Kanka je flexibilný digitálny nástroj na tvorbu svetov a spravovanie tvojej RPG kampane',
         'title'         => 'Kanka - nástroj na správu RPG kampaní a tvorbu svetov',
     ],
-    'partners'      => [
+    'partners'              => [
         'description'   => 'Sme partneri ďalších úžasných aplikácií a komunít, ktoré zdieľajú naše hodnoty a ciele.',
         'title'         => 'Partneri',
     ],
-    'pricing'       => [
+    'pricing'               => [
         'actions'       => [
             'subscribe' => 'Predplatné',
         ],
@@ -293,12 +299,12 @@ return [
         ],
         'title'         => 'Prehľad cien',
     ],
-    'privacy'       => [
+    'privacy'               => [
         'description'   => 'Vstupuje do platnosti: :date',
         'title'         => 'Ochrana osobných údajov',
     ],
-    'release'       => [],
-    'roadmap'       => [
+    'release'               => [],
+    'roadmap'               => [
         'backlog'           => [
             'description'   => 'Táto nástenka v Trelle obsahuje všetky komunitou požadované funkcionality, ako aj všetky plánované funkcie a vylepšenia, ktoré sa jedného dňa dostanú do aplikácie.',
             'title'         => 'Backlog',
@@ -316,16 +322,16 @@ return [
         ],
         'title'             => 'Roadmap',
     ],
-    'second_block'  => [
+    'second_block'          => [
         'call_to_action'    => 'Zaregistruj sa zadarmo!',
     ],
-    'seo'           => [
+    'seo'                   => [
         'keywords'  => 'Tvorba svetov, Hry na hrdinov, Správa RPG kampaní',
     ],
-    'team'          => [
+    'team'                  => [
         'coffee'    => 'Prispej mi na kávu!',
     ],
-    'terms'         => [
+    'terms'                 => [
         'description'   => 'Vstupuje do platnosti: :date',
         'title'         => 'Všeobecné podmienky',
     ],

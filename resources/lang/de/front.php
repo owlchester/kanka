@@ -1,11 +1,11 @@
 <?php
 
 return [
-    'about'         => [
+    'about'                 => [
         'description'   => 'Kanka wurde im Sommer 2017 aus dem Wunsch zweier leidenschaftlicher RPG Spieler geboren eine gemeinsame Welt aufzubauen und zu verwalten. Nach dem wir ein paar der zu der Zeit verfügbaren Optionen ausprobierten, mussten wir feststellten dass keine Lösung das bot was wir suchten. Also machten wir uns im Herbst 2017 auf, unser eigenes Tool zu bauen.',
         'title'         => 'Über Kanka',
     ],
-    'campaigns'     => [
+    'campaigns'             => [
         'description_full'  => 'Viele Kampagnen auf Kanka sind öffentlich für jeden. Diese Seite enthält eine Liste aller öffentlichen Kampagnen sowie einige von der Community hervorgehobene Kampagnen.',
         'featured'          => [
             'description'   => 'Unsere Community erstellt erstaunliche Dinge, die wir als hervorgehobene Kampagnen zur Schau stellen. Wir ändern die Liste regelmäßig, also schau immer mal wieder vorbei, um mehr Kampagnen zu entdecken.',
@@ -30,24 +30,29 @@ return [
         ],
         'title'             => 'Öffentliche Kampagnen',
     ],
-    'community'     => [],
-    'contact'       => [
+    'community'             => [],
+    'contact'               => [
         'description'   => 'Benötigen Sie Hilfe, haben Sie einen Vorschlag oder möchten Sie einfach Ihre Liebe zu Kanka teilen? Unser Team wird zu jedem Anlass antworten!',
         'email'         => 'Senden Sie alle Anfragen an unsere :email',
         'other'         => 'Oder kontaktieren Sie uns auf einer der folgenden Social-Media-Plattformen:',
         'title'         => 'Wir :icon neue Freunde!',
     ],
-    'cookie'        => [
+    'cookie'                => [
         'dismiss'   => 'Verstanden!',
         'link'      => 'Mehr erfahren',
         'message'   => 'Diese Webseite benutzt Cookies um sicherzustellen, dass du die bestmögliche Erfahrung mit der Seite machst.',
     ],
-    'faq'           => [
+    'faq'                   => [
         'helpers'   => [
             'more'  => 'Haben Sie nicht gefunden, wonach Sie gesucht haben?',
         ],
     ],
-    'features'      => [
+    'featured_campaigns'    => [
+        'description'   => 'Möchten Sie Kanka in Aktion sehen und wie andere es verwenden? Hier sind ein paar Kampagnen aus unserer Community, die wir für absolut unglaublich halten.',
+        'more'          => 'Möchten Sie mehr Kampagnen sehen? Schauen Sie sich unsere :public-campaigns an.',
+        'title'         => 'Auf der Suche nach Inspiration?',
+    ],
+    'features'              => [
         'abilities'         => [
             'description'   => 'Objektbestände verwalten. Bringen Sie durch Fähigkeiten Zauber und Kräfte an Charaktere an.',
             'title'         => 'Fähigkeiten und Gegenstände',
@@ -80,6 +85,7 @@ return [
             'no_ads'                => 'Keine Anzeigen in der Kampagne',
             'recovery'              => 'Wiederherstellung des Objektes für bis zu 30 Tage',
             'relation-visualiser'   => 'Erforschen Sie die Beziehungen von Objekten visuell',
+            'sidebar'               => 'Ordnen Sie die Seitenleiste einer Kampagne neu an und passen Sie sie an',
             'theme'                 => 'Fixiertes Kampagnenthema',
             'title'                 => 'geboostete Kampagne',
             'tooltip'               => 'Kurzinfo für benutzerdefinierte Objekte: Bild anzeigen, Text ändern',
@@ -189,12 +195,13 @@ return [
             'title' => 'Worldbuilding',
         ],
     ],
-    'first_block'   => [
+    'first_block'           => [
         'description'   => 'Unsere App ist auf allen mobilen Geräten und Browsern verfügbar! Du brauchst nichts zu installieren, alles läuft in deinem Browser. Das Beste daran, es ist komplett kostenlos!',
         'title'         => 'Ein neuer Art und Weise, den Überblick über deine Kampagne zu bewahren.',
     ],
-    'footer'        => [
+    'footer'                => [
         'app'       => 'App',
+        'copyright' => '© 2017 - :current kanka.io. Alle Rechte vorbehalten.',
         'headings'  => [
             'app'           => 'App',
             'community'     => 'Community',
@@ -205,7 +212,7 @@ return [
         'resources' => 'Ressourcen',
         'social'    => 'Social',
     ],
-    'help'          => [
+    'help'                  => [
         'description'   => 'Wir sind für dich da, falls du Hilfe brauchst. Kontaktier uns über einen der folgenden Wege und wir melden uns bei dir so schnell wie möglich zurück.',
         'discord'       => 'Tritt der Community auf Discord bei',
         'documentation' => 'Überprüfen Sie die Dokumentation',
@@ -214,18 +221,18 @@ return [
         'title'         => 'Hilfe',
         'twitter'       => 'Twittere uns auf Twitter',
     ],
-    'home'          => [
+    'home'                  => [
         'seo'   => [
             'meta-description'  => 'Kanka ist ein Community-gesteuerter RPG-Kampagnenmanager und ein Worldbuilding-Tool, mit dem Sie Ihre Tabletop-RPG-Kampagnen einfach organisieren, planen und genießen können',
         ],
     ],
-    'master'        => [
+    'master'                => [
         'call_to_action'    => 'Registrier dich jetzt, es ist kostenlos!',
         'description'       => 'Kanka ist ein einfaches und flexibles Tool, um Welten zu bauen und deine Rollenspielkampagne online zu verwalten. Erstelle und organisiere Charaktere, Orte, Organisationen, Ereignisse und vieles mehr.',
         'heading'           => 'RPG Campaign Management und Worldbuilding leicht gemacht',
         'title'             => 'Kanka',
     ],
-    'media'         => [
+    'media'                 => [
         'description'   => 'Auf dieser Seite finden Sie hochauflösende Bilder von Kanka. Verwenden Sie diese, wenn Sie für Kanka werben oder Tools erstellen, die mit Kanka interagieren.',
         'images'        => [
             'primary'   => 'Primäres Kanka-Logo',
@@ -233,7 +240,7 @@ return [
         ],
         'title'         => 'Medien',
     ],
-    'menu'          => [
+    'menu'                  => [
         'about'         => 'Über Kanka',
         'api'           => 'API',
         'campaigns'     => 'Öffentliche Kampagnen',
@@ -262,15 +269,15 @@ return [
         'terms'         => 'Bedingungen',
         'title'         => 'Menü',
     ],
-    'meta'          => [
+    'meta'                  => [
         'description'   => 'Kanka ist ein flexibles digitales Tool zum weltenbauen und verwalten deiner Rollenspielkampagnen',
         'title'         => 'Kanka - Online Rollenspielkampagnen Verwalter und Weltenbautool',
     ],
-    'partners'      => [
+    'partners'              => [
         'description'   => 'Wir haben uns mit einigen erstaunlichen Tools und Communities zusammengetan, die unsere Ziele und Werte teilen.',
         'title'         => 'Partner',
     ],
-    'pricing'       => [
+    'pricing'               => [
         'actions'       => [
             'subscribe' => 'Abonnieren',
         ],
@@ -292,12 +299,12 @@ return [
         ],
         'title'         => 'Preisübersicht',
     ],
-    'privacy'       => [
+    'privacy'               => [
         'description'   => 'Datum des Inkrafttretens: :date',
         'title'         => 'Datenschutzbestimmung',
     ],
-    'release'       => [],
-    'roadmap'       => [
+    'release'               => [],
+    'roadmap'               => [
         'backlog'           => [
             'description'   => 'Dieses Trello Board enthält alle von der Community angefragten Features, wie auch alle geplanten Features und Verbesserungen die eines Tages in die App schaffen werden.',
             'title'         => 'Backlog',
@@ -315,16 +322,16 @@ return [
         ],
         'title'             => 'Roadmap',
     ],
-    'second_block'  => [
+    'second_block'          => [
         'call_to_action'    => 'Lass uns anfangen!',
     ],
-    'seo'           => [
+    'seo'                   => [
         'keywords'  => 'Worldbuilding, Tabletop-RPG, RPG-Kampagnenmanager',
     ],
-    'team'          => [
+    'team'                  => [
         'coffee'    => 'Kauf mir einen Kaffee!',
     ],
-    'terms'         => [
+    'terms'                 => [
         'description'   => 'Datum des Inkrafttretens: :date',
         'title'         => 'Bedingungen',
     ],
