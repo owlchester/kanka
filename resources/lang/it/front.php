@@ -117,16 +117,15 @@ return [
         'title'         => 'Un nuovo modo per tener traccia delle tue campagne.',
     ],
     'footer'        => [
-        'app'       => 'App',
-        'copyright' => '© 2017 - :current kanka.io. All Rights Reserved.',
-        'headings'  => [
+        'app'           => 'App',
+        'headings'      => [
             'app'           => 'App',
             'community'     => 'Community',
             'useful_links'  => 'Link Utili',
         ],
-        'navigation'=> 'Navigazione',
-        'resources' => 'Risorse',
-        'social'    => 'Social',
+        'navigation'    => 'Navigazione',
+        'resources'     => 'Risorse',
+        'social'        => 'Social',
     ],
     'help'          => [
         'description'   => 'Noi siamo qui per te nel caso qavessi bisogno di un piccolo aiuto. Contattaci utilizzando uno dei seguenti metodi è noi ti risponderemo il più velocemente possibile.',

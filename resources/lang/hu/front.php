@@ -189,17 +189,16 @@ return [
         'title'         => 'Egy új módszer a kampányaid kezelésére',
     ],
     'footer'        => [
-        'app'       => 'Alkalmazás',
-        'copyright' => '© 2017 - :current kanka.io. Minden jog fenntartva.',
-        'headings'  => [
+        'app'           => 'Alkalmazás',
+        'headings'      => [
             'app'           => 'App',
             'community'     => 'Közösség',
             'other'         => 'Egyéb',
             'useful_links'  => 'Hasznos linkek',
         ],
-        'navigation'=> 'Navigáció',
-        'resources' => 'Dokumentumok',
-        'social'    => 'Közösségi média',
+        'navigation'    => 'Navigáció',
+        'resources'     => 'Dokumentumok',
+        'social'        => 'Közösségi média',
     ],
     'help'          => [
         'description'   => 'Ha segítség kellene, itt vagyunk. Keress meg minket az alábbi módok valamelyikén, és válaszolunk, amint tudunk.',

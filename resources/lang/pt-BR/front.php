@@ -193,17 +193,16 @@ return [
         'title'         => 'Uma nova maneira de acompanhar suas campanhas.',
     ],
     'footer'        => [
-        'app'       => 'Aplicativo',
-        'copyright' => '© 2017 - :current kanka.io. Todos direitos reservados.',
-        'headings'  => [
+        'app'           => 'Aplicativo',
+        'headings'      => [
             'app'           => 'Aplicativo',
             'community'     => 'Comunidade',
             'other'         => 'Outro',
             'useful_links'  => 'Links úteis',
         ],
-        'navigation'=> 'Navegação',
-        'resources' => 'Recursos',
-        'social'    => 'Social',
+        'navigation'    => 'Navegação',
+        'resources'     => 'Recursos',
+        'social'        => 'Social',
     ],
     'help'          => [
         'description'   => 'Nós estamos aqui caso necessite um pouco de ajuda. Nos contate utilizando um dos seguintes métodos e nós retornaremos o mais rápido possível.',

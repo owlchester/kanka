@@ -36,12 +36,6 @@ TEXT
             'title' => 'Qualitätskontrolle und Einarbeitung',
         ],
         'ryan'      => [
-            'text'  => <<<'TEXT'
-Ich habe Anfang 2018 angefangen, Kanka zu benutzen und war einer der ersten, die sich Discord angeschlossen haben. Ich begann sofort, für Jay zu arbeiten, indem ich eine ganze Liste möglicher Funktionen für die (dann kommenden) Kalender erstellte.
-
-Heutzutage helfe ich mit der Community auf Discord und Reddit und teste neue Versionen, damit Sie dies nicht müssen.
-TEXT
-,
             'title' => 'Community Manager und Qualitätskontrollleiter',
         ],
     ],

@@ -200,17 +200,16 @@ return [
         'title'         => 'Ein neuer Art und Weise, den Überblick über deine Kampagne zu bewahren.',
     ],
     'footer'                => [
-        'app'       => 'App',
-        'copyright' => '© 2017 - :current kanka.io. Alle Rechte vorbehalten.',
-        'headings'  => [
+        'app'           => 'App',
+        'headings'      => [
             'app'           => 'App',
             'community'     => 'Community',
             'other'         => 'Andere',
             'useful_links'  => 'Nützliche Links',
         ],
-        'navigation'=> 'Navigation',
-        'resources' => 'Ressourcen',
-        'social'    => 'Social',
+        'navigation'    => 'Navigation',
+        'resources'     => 'Ressourcen',
+        'social'        => 'Social',
     ],
     'help'                  => [
         'description'   => 'Wir sind für dich da, falls du Hilfe brauchst. Kontaktier uns über einen der folgenden Wege und wir melden uns bei dir so schnell wie möglich zurück.',

@@ -200,17 +200,16 @@ return [
         'title'         => 'Une nouvelle manière d\'organiser tes campagnes de JDR.',
     ],
     'footer'                => [
-        'app'       => 'App',
-        'copyright' => '&copy; 2017 - :current kanka.io. Tous droits réservés.',
-        'headings'  => [
+        'app'           => 'App',
+        'headings'      => [
             'app'           => 'App',
             'community'     => 'Communauté',
             'other'         => 'Autre',
             'useful_links'  => 'Liens utiles',
         ],
-        'navigation'=> 'Navigation',
-        'resources' => 'Ressources',
-        'social'    => 'Social',
+        'navigation'    => 'Navigation',
+        'resources'     => 'Ressources',
+        'social'        => 'Social',
     ],
     'help'                  => [
         'description'   => 'Nous sommes là en cas de pépins. Contacte-nous en utilisant une des méthodes suivantes, et nous te contacterons aussi rapidement que possible.',

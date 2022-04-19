@@ -2,7 +2,7 @@
 
 return [
     'index' => [
+        'add'   => 'New ad',
         'title' => 'Ads',
-        'add' => 'New ad',
     ],
 ];

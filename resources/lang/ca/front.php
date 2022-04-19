@@ -185,17 +185,16 @@ return [
         'title'         => 'Una nova manera de monitorar les campanyes de rol.',
     ],
     'footer'        => [
-        'app'       => 'App',
-        'copyright' => '© 2017 - :current kanka.io. Tots els drets reservats.',
-        'headings'  => [
+        'app'           => 'App',
+        'headings'      => [
             'app'           => 'App',
             'community'     => 'Comunitat',
             'other'         => 'Altres',
             'useful_links'  => 'Enllaços útils',
         ],
-        'navigation'=> 'Navegació',
-        'resources' => 'Recursos',
-        'social'    => 'Social',
+        'navigation'    => 'Navegació',
+        'resources'     => 'Recursos',
+        'social'        => 'Social',
     ],
     'help'          => [
         'description'   => 'Som aquí per a fer-vos un cop de mà. Contacteu-nos mitjançant una de les següents vies, i us respondrem el més ràpid possible.',

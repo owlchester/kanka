@@ -35,12 +35,6 @@ TEXT
             'title' => 'QA e integração',
         ],
         'ryan'      => [
-            'text'  => <<<'TEXT'
-Comecei a usar o Kanka no início de 2018 e fui uma das primeiras pessoas a entrar no Discord. Imediatamente comecei a trabalhar para Jay criando uma lista completa de recursos possíveis para os (então próximos) calendários.
-
-Hoje em dia eu ajudo a comunidade no Discord e no Reddit, e quebro novas versões para que você não precise fazer isso.
-TEXT
-,
             'title' => 'Gerente da Comunidade e líder de QA',
         ],
     ],

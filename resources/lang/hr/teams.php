@@ -36,12 +36,6 @@ TEXT
             'title' => 'Osiguranje kvalitete i pomoć novim korisnicima',
         ],
         'ryan'      => [
-            'text'  => <<<'TEXT'
-Počeo sam koristiti Kanku početkom 2018. godine i bio jedan od prvih ljudi koji su se uključili u Discord. Odmah sam započeo raditi za Jaya kreirajući čitav popis mogućih značajki za (tada nadolazeće) kalendare.
-
-Danas pomažem zajednici na Discordu i Redditu i razbijam nove verzije tako da ti ne moraš.
-TEXT
-,
             'title' => 'Voditelj zajednice i Voditelj osiguranja kvalitete',
         ],
     ],

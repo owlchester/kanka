@@ -35,12 +35,6 @@ TEXT
             'title' => 'Minőségbiztosítás & Szervezeti szocializáció',
         ],
         'ryan'      => [
-            'text'  => <<<'TEXT'
-2018 elején kezdtem használni a Kankát, és az elsők között csatlakoztam a Discord csatornához. Ezt követően azonnal dolgozni kezdtem Jay-nek, elkészítve lehetséges funkcionalitások listáját a(z akkor még készülő) naptárak számára.
-
-Manapság a közösségnek segítek Discordon és Redditen, illetve a hibák kigyomlálásában segítek, hogy ti már ne találkozzatok velük.
-TEXT
-,
             'title' => 'Community Manager & Vezető Minőségbiztosítás',
         ],
     ],

@@ -35,12 +35,6 @@ TEXT
             'title' => 'Zabezpečenie kvality a onboarding',
         ],
         'ryan'      => [
-            'text'  => <<<'TEXT'
-Kanku som začal používať začiatkom 2018 a bol som jedným z prvých na Discorde. Onedlho na to som Jayovi začal vytvárať prácu tým, že som mu spísal zoznam možných funkcionalít pre (vtedy pripravované) kalendáre.
-
-Teraz pomáham komunite na Discorde a Reddite a testujem nové verzie, aby ste to nemuseli robiť vy.
-TEXT
-,
             'title' => 'Manažér komunity a zabezpečenia kvality',
         ],
     ],

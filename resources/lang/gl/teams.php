@@ -36,12 +36,6 @@ TEXT
             'title' => 'Garantía de calidade e Incorporacións',
         ],
         'ryan'      => [
-            'text'  => <<<'TEXT'
-Comecei a usar Kanka a principios do 2018 e fun unha das primeiras persoas en unirme ao Discord. Deseguida empecei a dar traballo a Jay, facendo unha gran lista de posíbeis funcionalidades para os (entón inminentes) calendarios.
-
-Hoxe en día axudo á comunidade en Discord e Reddit, e rompo as novas versións para que ti non teñas que facelo.
-TEXT
-,
             'title' => 'Xerente da comunidade e Líder de Garantía de calidade',
         ],
     ],

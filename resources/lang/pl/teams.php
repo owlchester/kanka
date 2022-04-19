@@ -35,12 +35,6 @@ TEXT
             'title' => 'Testy i wdrażanie pracowników',
         ],
         'ryan'      => [
-            'text'  => <<<'TEXT'
-Zacząłem używać Kanki w 2018 r. i byłem jednym z pierwszych użytkowników na serwerze Discord. Od razu zacząłem zawalać Jaya robotą, tworząc całą listę możliwych funkcji powstających właśnie kalendarzy.
-
-Dziś pomagam z zarządzaniem społecznością na Discordzie i Reddicie i psuję nowe wersje, by oszczędzić wam zachodu.
-TEXT
-,
             'title' => 'Zarządzanie społecznością i główny tester',
         ],
     ],

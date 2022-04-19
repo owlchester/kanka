@@ -35,12 +35,6 @@ TEXT
             'title' => 'Kalite Kontrol & İşe Alım',
         ],
         'ryan'      => [
-            'text'  => <<<'TEXT'
-Kanka'yı 2018'in başlarında kullanmaya başladım ve Discord'a katılan ilk kişilerden biriydim. Çabucak (zamanında yakında gelecek olan) takvimler için kocaman bir olası özellikler listesi çıkartaarak Jay'i işe koştum.
-
-Şimdilerde Discord ve Reddit'teki toopluluklar ile ilgileniyor ve yeni versiyonları siz bozmayın diye bozuyorum.
-TEXT
-,
             'title' => 'Topluluk Yöneticisi & Baş Kalite Kontrol Sorumlusu',
         ],
     ],

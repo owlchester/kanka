@@ -191,17 +191,16 @@ return [
         'title'         => 'Nov način za praćenje svojih svjetova i kampanja.',
     ],
     'footer'        => [
-        'app'       => 'Aplikacija',
-        'copyright' => '© 2017 - :current kanka.io. Sva prava pridržana.',
-        'headings'  => [
+        'app'           => 'Aplikacija',
+        'headings'      => [
             'app'           => 'Aplikacija',
             'community'     => 'Zajednica',
             'other'         => 'Ostalo',
             'useful_links'  => 'Korisne poveznice',
         ],
-        'navigation'=> 'Navigacija',
-        'resources' => 'Resursi',
-        'social'    => 'Socijalno',
+        'navigation'    => 'Navigacija',
+        'resources'     => 'Resursi',
+        'social'        => 'Socijalno',
     ],
     'help'          => [
         'description'   => 'Tu smo za tebe u slučaju da ti treba malo pomoći. Obrati nam se koristeći neku od sljedećih metoda, a mi ćemo ti se javiti što je brže moguće.',

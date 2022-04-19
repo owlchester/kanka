@@ -36,12 +36,6 @@ TEXT
             'title' => 'QA & Onboarding',
         ],
         'ryan'      => [
-            'text'  => <<<'TEXT'
-J'ai commencé à utiliser Kanka début 2018, et un des premiers à rejoinrde le Discord. J'ai rapidement commencé à travailler avec Jay en listant de façon exhaustive les fonctionnalités des calendriers (encore à venir, alors).
-
-A présent j'aide la communauté sur discord et reddit, et fait planter les nouvelles versions avant que ça ne t'arrive.
-TEXT
-,
             'title' => 'Community Manager & Lead QA',
         ],
     ],

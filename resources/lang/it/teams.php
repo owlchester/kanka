@@ -35,7 +35,6 @@ TEXT
             'title' => 'QA e Onboarding',
         ],
         'ryan'      => [
-            'text'  => 'Ho iniziato ad usare Kanka nella prima parte del 2018 e sono stato una delle prime persone ad unirsi al server Discord. Ho iniziato subito a fare cose per Jay, creando un\'intera lista di possibili funzionalità per i (allora ancora da rilasciare) calendari.',
             'title' => 'Community Manager e Capo QA',
         ],
     ],

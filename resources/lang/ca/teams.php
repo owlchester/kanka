@@ -36,12 +36,6 @@ TEXT
             'title' => 'Control de qualitat i noves incorporacions',
         ],
         'ryan'      => [
-            'text'  => <<<'TEXT'
-Vaig començar a usar Kanka a principis del 2018 i vaig ser una de les primeres persones a unir-se al canal de Discord. De seguida vaig començar a donar-li treball al Jay, enumerant una gran llista de possibles funcions per als (llavors imminents) calendaris.
-
-Avui dia ajudo a la comunitat a Discord i Reddit, i em carrego les primeres versions perquè vosaltres no hagueu de fer-ho.
-TEXT
-,
             'title' => 'Community manager i cap del control de qualitat',
         ],
     ],
