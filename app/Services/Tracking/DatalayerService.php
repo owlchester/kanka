@@ -4,6 +4,9 @@ namespace App\Services\Tracking;
 
 class DatalayerService
 {
+    /**
+     * @return string
+     */
     public function base(): string
     {
         $data = [
@@ -14,7 +17,10 @@ class DatalayerService
         return json_encode($data);
     }
 
-    protected function userGroup(): string
+    /**
+     * @return string
+     */
+    public function userGroup(): string
     {
         // Set in session? Use that
         if (session()->has('user_group')) {
@@ -31,6 +37,9 @@ class DatalayerService
         return $group;
     }
 
+    /**
+     * @return string
+     */
     protected function route(): string
     {
         if (empty(request()->route())) {

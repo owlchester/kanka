@@ -56,13 +56,24 @@ class DashboardController extends Controller
             $releases = $unreadReleases;
         }
 
+        // A user with campaigns doesn't need this process.
+        $gaTrackingEvent = null;
+        $welcome = false;
+        if (session()->has('user_registered')) {
+            session()->remove('user_registered');
+            $gaTrackingEvent = 'pa10CJTvrssBEOaOq7oC';
+            $welcome = true;
+        }
+
         return view('home', compact(
             'campaign',
             'settings',
             'releases',
             'widgets',
             'dashboard',
-            'dashboards'
+            'dashboards',
+            'welcome',
+            'gaTrackingEvent',
         ));
     }
 
