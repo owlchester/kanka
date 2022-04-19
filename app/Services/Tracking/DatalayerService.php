@@ -33,12 +33,9 @@ class DatalayerService
 
     protected function route(): string
     {
-        try {
-            $route = request()->route()->getName();
-            return (string) $route;
-        } catch (\Exception $e) {
-
+        if (empty(request()->route())) {
+            return '';
         }
-        return '';
+        return (string) request()->route()->getName();
     }
 }
