@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Facades\FrontCache;
 use App\Models\Campaign;
 use App\Facades\CampaignLocalization;
 use App\Services\ReferralService;
@@ -37,7 +38,9 @@ class HomeController extends Controller
      */
     protected function front()
     {
-        return view('front.home');
+        $campaigns = FrontCache::featured();
+        return view('front.home')
+            ->with('campaigns', $campaigns);
     }
 
     /**
