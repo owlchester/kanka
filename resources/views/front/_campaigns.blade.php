@@ -1,6 +1,6 @@
 <?php /** @var \App\Models\Campaign[] $campaigns */ ?>
 
-<section id="featured">
+<section id="featured" class="team-featured-campaigns">
     <div class="container">
         <div class="section-heading text-center">
             <h2>{{ __('front.featured_campaigns.title') }}</h2>
