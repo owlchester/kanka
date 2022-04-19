@@ -8,7 +8,8 @@ class DatalayerService
     {
         $data = [
             'userType' => auth()->check() ? 'registered' : 'visitor',
-            'userGroup' => $this->userGroup()
+            'userGroup' => $this->userGroup(),
+            'route' => $this->route(),
         ];
         return json_encode($data);
     }
@@ -28,5 +29,11 @@ class DatalayerService
         $group = mt_rand(0, 1) === 0 ? 'a' : 'b';
         session()->put('user_group', $group);
         return $group;
+    }
+
+    protected function route(): string
+    {
+        $route = request()->route()->getName();
+        return (string) $route;
     }
 }
