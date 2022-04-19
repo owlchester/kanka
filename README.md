@@ -1,9 +1,9 @@
-# Miscellany <!-- omit in toc -->
+# Kanka <!-- omit in toc -->
 
-[![Minimum PHP Version](http://img.shields.io/badge/php-%3E%3D%207.3-8892BF.svg)](https://php.net/)
+[![Minimum PHP Version](http://img.shields.io/badge/php-%3E%3D%208.0-8892BF.svg)](https://php.net/)
 [![Discord](https://img.shields.io/discord/413623253366603777.svg)](https://discord.gg/rhsyZJ4)
 
-Miscellany is the code source of [Kanka](https://kanka.io/en-US), a collaborative world building and campaign management tool tailored for tabletop RPG players and game masters.
+This repository is the code source of [Kanka](https://kanka.io/en-US), a collaborative world building and campaign management tool tailored for tabletop RPG players and storytellers.
 
 - [Run](#run)
 - [Concepts](#concepts)
@@ -86,11 +86,11 @@ All migrations should have a working `down()` function. Exceptions can be permit
 
 Development should be done on your own fork of the repository in the `develop` branch, with substantial new features done in a separate branch.
 
-**Tagging** is only done on the master branch.
+**Tagging** is only done on the main branch.
 
 ### Production
 
-Once a feature is ready and tested, the admin will merge it into the master branch. There is no auto-deploy to the servers.
+Once a feature is ready and tested, the admin will merge it into the main branch. There is no auto-deploy to the servers.
 
 ## Translations
 
