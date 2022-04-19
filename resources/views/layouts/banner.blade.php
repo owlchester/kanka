@@ -10,7 +10,7 @@
     </div>
 @endif
 
-@if (true)
+@if (false)
 <div class="bg-orange banner-notification">
     <span>
 
