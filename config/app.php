@@ -221,6 +221,7 @@ return [
         App\Providers\ImgServiceProvider::class,
         App\Providers\AttributesServiceProvider::class,
         \App\Providers\DashboardServiceProvider::class,
+        \App\Providers\DatalayerServiceProvider::class,
     ],
 
     /*
