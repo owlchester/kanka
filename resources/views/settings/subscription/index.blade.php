@@ -22,7 +22,7 @@
         <div class="box-body">
             <p>
                 {!! __('settings.subscription.benefits', [
-                    'features' => link_to_route('front.features', __('settings.subscription.benefits_features'), '#paid-features', ['target' => '_blank']),
+                    'features' => link_to_route('front.pricing', __('settings.subscription.benefits_features'), '#paid-features', ['target' => '_blank']),
                     'stripe' => link_to('https://www.stripe.com', 'Stripe', ['target' => '_blank'])
                 ]) !!}
             </p>
@@ -138,7 +138,7 @@
                 </button>
             </div>
         </div>
-        <div class="box-body">
+        <div class="box-body no-padding">
             <table class="table table-bordered tiers">
                 <thead>
                 <tr>
@@ -219,8 +219,8 @@
                 </thead>
                 @include('settings.subscription._benefits')
             </table>
-
-            <div class="margin-bottom"></div>
+        </div>
+        <div class="box-footer">
             <p class="help-block">
                 {!! __('settings.subscription.trial_period', ['email' => link_to('mailto:' .  config('app.email'), config('app.email'))]) !!}
             </p>

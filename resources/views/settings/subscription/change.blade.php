@@ -33,7 +33,7 @@
                 {{ __('settings.subscription.coupon.invalid') }}
             </p>
         @endif
-        <div class="card">
+        <div class="card" style="margin: 0">
 
         <!-- Nav tabs -->
             <ul class="nav nav-tabs" role="tablist">
@@ -67,7 +67,7 @@
 
 
                     <div class="text-center">
-                        <button class="btn btn-xl btn-success subscription-confirm-button" data-text="{{ __('settings.subscription.actions.subscribe') }}">
+                        <button class="btn btn-lg btn-primary subscription-confirm-button" data-text="{{ __('settings.subscription.actions.subscribe') }}">
                             {{ __('settings.subscription.actions.subscribe') }}
                         </button>
                     </div>
@@ -109,7 +109,7 @@
                         </select>
 
                         <div class="text-center">
-                            <button class="btn btn-xl btn-success subscription-confirm-button" data-text="{{ __('settings.subscription.actions.subscribe') }}">
+                            <button class="btn btn-lg btn-primary subscription-confirm-button" data-text="{{ __('settings.subscription.actions.subscribe') }}">
                                 {{ __('settings.subscription.actions.subscribe') }}
                             </button>
                         </div>
@@ -155,10 +155,24 @@
                         <input type="hidden" name="period" value="{{ $period }}" />
                         <input type="hidden" name="subscription-intent-token" value="{{ $intent->client_secret }}" />
                         {!! Form::close() !!}
+
+                        @if($period === 'yearly')
+                            <p class="help-block">
+                                {!! __('settings.subscription.trial_period', ['email' => link_to('mailto:' .  config('app.email'), config('app.email'))]) !!}
+                            </p>
+                        @endif
                         @endif
                     @endif
                 </div>
             </div>
+        </div>
+
+            <p class="help-block">
+                {!! __('settings.subscription.helpers.stripe', ['stripe' => link_to('https://stripe.com', 'Stripe', ['target' => '_blank'])]) !!}
+        @if($period === 'yearly')
+                <br />{!! __('settings.subscription.trial_period', ['email' => link_to('mailto:' .  config('app.email'), config('app.email'))]) !!}
+        @endif
+            </p>
     @else
         {!! Form::open(['route' => ['settings.subscription.subscribe'], 'method' => 'POST', 'id' => 'cancellation-confirm', 'class' => 'subscription-form']) !!}
 
@@ -190,7 +204,7 @@
         </div>
 
         <div class="text-center">
-            <button class="btn btn-xl btn-danger subscription-confirm-button" data-text="{{ __('settings.subscription.actions.subscribe') }}">
+            <button class="btn btn-lg btn-danger subscription-confirm-button" data-text="{{ __('settings.subscription.actions.subscribe') }}">
                 {{ __('settings.subscription.actions.cancel_sub') }}
             </button>
         </div>

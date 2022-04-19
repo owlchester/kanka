@@ -19,9 +19,21 @@
 </tr>
 <tr>
     <td></td>
-    <td><i class="fa fa-check"></i> 3 {!! link_to_route('front.pricing', __('tiers.features.boosters'), '#boost', ['target' => '_blank']) !!}</td>
-    <td><i class="fa fa-check"></i> 6 {!! link_to_route('front.pricing', __('tiers.features.boosters'), '#boost', ['target' => '_blank']) !!}</td>
-    <td><i class="fa fa-check"></i> 10 {!! link_to_route('front.pricing', __('tiers.features.boosters'), '#boost', ['target' => '_blank']) !!}</td>
+    <td><i class="fa fa-rocket text-maroon"></i>
+        {!! link_to_route('front.pricing', 3 . ' ' . __('tiers.features.boosters'), '#boost', ['target' => '_blank']) !!}
+    </td>
+    <td><i class="fa fa-rocket text-maroon"></i>
+        {!! link_to_route('front.pricing', 6 . ' ' . __('tiers.features.boosters'), '#boost', ['target' => '_blank']) !!}
+    </td>
+    <td><i class="fa fa-rocket text-maroon"></i>
+        {!! link_to_route('front.pricing', 10 . ' ' . __('tiers.features.boosters'), '#boost', ['target' => '_blank']) !!}
+    </td>
+</tr>
+<tr>
+    <td></td>
+    <td><i class="fa fa-check"></i> {{ __('tiers.features.no_ads') }}</td>
+    <td><i class="fa fa-check"></i> {{ __('tiers.features.no_ads') }}</td>
+    <td><i class="fa fa-check"></i> {{ __('tiers.features.no_ads') }}</td>
 </tr>
 <tr>
     <td></td>
@@ -40,12 +52,6 @@
     <td><i class="fa fa-check"></i> {{ __('tiers.features.nice_image') }}</td>
     <td><i class="fa fa-check"></i> {{ __('tiers.features.nice_image') }}</td>
     <td><i class="fa fa-check"></i> {{ __('tiers.features.nice_image') }}</td>
-</tr>
-<tr>
-    <td></td>
-    <td><i class="fa fa-check"></i> {{ __('tiers.features.no_ads') }}</td>
-    <td><i class="fa fa-check"></i> {{ __('tiers.features.no_ads') }}</td>
-    <td><i class="fa fa-check"></i> {{ __('tiers.features.no_ads') }}</td>
 </tr>
 <tr>
     <td></td>
@@ -66,9 +72,25 @@
     <td><i class="fa fa-check"></i> {{ __('tiers.features.feature_influence') }}</td>
 </tr>
 <tr>
-    <td>{{ __('tiers.features.api_requests', ['amount' => 30]) }}</td>
-    <td>{{ __('tiers.features.api_requests', ['amount' => 90]) }}</td>
-    <td>{{ __('tiers.features.api_requests', ['amount' => 90]) }}</td>
-    <td>{{ __('tiers.features.api_requests', ['amount' => 90]) }}</td>
+    <td>
+        <a href="/{{ app()->getLocale() }}{{ config('larecipe.docs.route') }}/1.0/overview" target="_blank">
+            {{ __('tiers.features.api_requests', ['amount' => 30]) }}
+        </a>
+    </td>
+    <td>
+        <a href="/{{ app()->getLocale() }}{{ config('larecipe.docs.route') }}/1.0/overview" target="_blank">
+            {{ __('tiers.features.api_requests', ['amount' => 90]) }}
+        </a>
+    </td>
+    <td>
+        <a href="/{{ app()->getLocale() }}{{ config('larecipe.docs.route') }}/1.0/overview" target="_blank">
+            {{ __('tiers.features.api_requests', ['amount' => 90]) }}
+        </a>
+    </td>
+    <td>
+        <a href="/{{ app()->getLocale() }}{{ config('larecipe.docs.route') }}/1.0/overview" target="_blank">
+            {{ __('tiers.features.api_requests', ['amount' => 90]) }}
+        </a>
+    </td>
 </tr>
 </tbody>

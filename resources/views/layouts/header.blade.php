@@ -98,7 +98,7 @@ $currentCampaign = CampaignLocalization::getCampaign();
                             <div class="pull-right">
                                 @if (\App\Facades\Identity::isImpersonating())
 
-                                    <a href="{{ route('identity.back') }}" class="btn btn-default btn-flat">
+                                    <a href="{{ route('identity.back') }}" class="btn btn-default btn-flat switch-back">
                                         <i class="fa fa-sign-out-alt"></i> {{ __('campaigns.members.actions.switch-back') }}
                                     </a>
                                 @else

@@ -27,7 +27,7 @@
                         <th>{{ __('campaigns.members.fields.roles') }}</th>
                         <th class="hidden-xs hidden-md">{{ __('campaigns.members.fields.joined') }}</th>
                         <th class="hidden-xs hidden-md">{{ __('campaigns.members.fields.last_login') }}</th>
-                        <th>&nbsp;</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -83,11 +83,12 @@
                                     <ul class="dropdown-menu dropdown-menu-right" role="menu">
                                         @can('switch', $relation)
                                             <li>
-                                                <a href="{{ route('identity.switch', $relation) }}" title="{{ __('campaigns.members.helpers.switch') }}" data-toggle="tooltip">
+                                                <a href="{{ route('identity.switch', $relation) }}" title="{{ __('campaigns.members.helpers.switch') }}" data-toggle="tooltip" class="switch-user">
                                                     <i class="fa fa-sign-in-alt" aria-hidden="true"></i>
                                                     {{ __('campaigns.members.actions.switch') }}
                                                 </a>
                                             </li>
+                                            <li class="divider"></li>
                                         @endcan
                                         @can('delete', $relation)
                                             <li>

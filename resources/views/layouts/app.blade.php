@@ -119,7 +119,7 @@ $seoTitle = isset($seoTitle) ? $seoTitle : (isset($title) ? $title : null);
                         <p>
                             {{ __('campaigns.members.impersonating.message') }}
 
-                            <a href="{{ route('identity.back') }}" class="btn btn-warning btn-sm">
+                            <a href="{{ route('identity.back') }}" class="btn btn-warning btn-sm switch-back">
                                 <i class="fa fa-sign-out-alt"></i> {{ __('campaigns.members.actions.switch-back') }}
                             </a>
                         </p>
