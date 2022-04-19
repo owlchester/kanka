@@ -12,8 +12,9 @@
 
 @if (true)
 <div class="bg-danger banner-notification">
-    <span>
-        Kanka will be undergoing server maintenance on Tuesday the 19th of April at <strong><a href="https://everytimezone.com/s/5d4c9c76" target="_blank">2:00PM UTC</a></strong> for about two hours. Access to your campaigns and data will be limited during the maintenance.
-    </span>
+    <p>
+
+        Kanka is currently undergoing server maintenance, which we expect to last until <strong><a href="https://everytimezone.com/s/b41937bc" target="_blank">4:00PM UTC</a></strong>. Some pages might load slowly or not at all.<br />Join us on <a href="{{ config('social.discord') }}" target="_blank">Discord</a> to get updates.
+    </p>
 </div>
 @endif
