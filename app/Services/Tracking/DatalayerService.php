@@ -4,6 +4,9 @@ namespace App\Services\Tracking;
 
 class DatalayerService
 {
+    /** @var bool|string */
+    protected $group = false;
+
     /**
      * @return string
      */
@@ -22,19 +25,32 @@ class DatalayerService
      */
     public function userGroup(): string
     {
+        if ($this->group !== false) {
+            return $this->group;
+        }
         // Set in session? Use that
         if (session()->has('user_group')) {
-            return session()->get('user_group');
+            $this->group = session()->get('user_group');
+            return $this->group;
         }
 
         if (auth()->check()) {
-            return auth()->user()->id % 2 == 0 ? 'a' : 'b';
+            $this->group = auth()->user()->id % 2 == 0 ? 'a' : 'b';
+            return $this->group;
         }
 
         // Unlogged user, use one from the session
-        $group = mt_rand(0, 1) === 0 ? 'a' : 'b';
-        session()->put('user_group', $group);
-        return $group;
+        $this->group = mt_rand(0, 1) === 0 ? 'a' : 'b';
+        session()->put('user_group', $this->group);
+        return $this->group;
+    }
+
+    /**
+     * @return bool
+     */
+    public function groupB(): bool
+    {
+        return $this->userGroup() === 'b';
     }
 
     /**
