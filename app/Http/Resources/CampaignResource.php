@@ -67,6 +67,9 @@ class CampaignResource extends JsonResource
             $data['entry_parsed'] = Mentions::mapCampaign($this->resource);
         }
 
+        // Hide stuff like sidebar
+        unset($data['ui_settings']['sidebar']);
+
         return $data;
     }
 }

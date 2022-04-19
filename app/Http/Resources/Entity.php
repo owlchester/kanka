@@ -14,6 +14,9 @@ class Entity extends EntityChild
      */
     public function toArray($request)
     {
+        if (!$this->child) {
+            return ['error' => 'KA7: Entity #' . $this->id . ' missing child.'];
+        }
         return [
             'id' => $this->child->id,
             'entity_id' => $this->id,
