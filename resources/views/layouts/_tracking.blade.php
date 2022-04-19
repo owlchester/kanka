@@ -1,9 +1,9 @@
-<script id="datalayer">var dataLayer = [{!! \App\Facades\DataLayer::base() !!}];</script>
 @if (!empty(config('tracking.ga')))
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id={{ config('tracking.ga') }}"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
+        dataLayer.push({!! \App\Facades\DataLayer::base() !!});
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
         gtag('config', '{{ config('tracking.ga') }}');
