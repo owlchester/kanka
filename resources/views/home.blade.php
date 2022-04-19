@@ -160,9 +160,9 @@
             integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
             crossorigin=""></script>
 
-    @if (isset($welcome) && $welcome)
+    @if (isset($welcome) && $welcome && !empty(config('tracking.ga')))
     <script type="text/javascript">
-        gtag('event', 'user_registered', {'userGroup': '{{ \App\Facades\DataLayer::userGroup() }}'});
+        gtag('event', 'Registered', {'event_category': 'Users', 'event_label': 'Group {{ \App\Facades\DataLayer::userGroup() }}', 'value': '{{ \App\Facades\DataLayer::userGroup() }}'});
     </script>
     @endif
 @endsection
