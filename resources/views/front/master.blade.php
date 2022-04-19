@@ -8,12 +8,12 @@
                 <div class="header-content">
                     <p class="mb-5">{{ __('front.master.description', ['kanka' => config('app.name')]) }}</p>
                     @if(config('auth.register_enabled'))
-                    <a href="{{ route('register') }}" class="btn btn-primary btn-lg ab-testing-a">
+                    <a href="{{ route('register') }}" class="btn btn-primary btn-lg">
                         {{ __('front.master.call_to_action') }}
                     </a>
-                    <a href="{{ route('register') }}" class="btn btn-success btn-lg ab-testing-b">
+                    <!--<a href="{{ route('register') }}" class="btn btn-success btn-lg ab-testing-b">
                         {{ __('front.master.call_to_action') }}
-                    </a>
+                    </a>-->
                     @endif
                 </div>
             </div>
