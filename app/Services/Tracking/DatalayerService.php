@@ -22,7 +22,7 @@ class DatalayerService
         if (auth()->check()) {
             $data['userType'] = 'registered';
             $data['userTier'] = !empty(auth()->user()->patreon_pledge) ? auth()->user()->patreon_pledge : null;
-            $data['userSubbed'] = !empty(auth()->user()->patreon_pledge);
+            $data['userSubbed'] = !empty(auth()->user()->patreon_pledge) ? 'true' : 'false';
         }
         return json_encode($data);
     }
