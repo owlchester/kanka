@@ -30,12 +30,12 @@ if (isset($toggle) && $toggle) {
 </th>
 <th class="align-middle">
     @if ($user->subscribedToPlan($service->elementalPlans(), 'kanka'))
-        <a class="btn btn-block btn-sm btn-default disabled price-monthly">
+        <a class="btn btn-block btn-sm btn-default disabled">
             {{ __('settings.subscription.subscription.actions.downgrading') }}
         </a>
     @else
         @if($user->subscribedToPlan([config('subscription.owlbear.eur.monthly'), config('subscription.owlbear.usd.monthly')], 'kanka'))
-            <a class="btn btn-block btn-sm btn-default disabled price-monthly">
+            <a class="btn btn-block btn-sm btn-default disabled">
                 {{ __('tiers.current') }}
             </a>
         @else
@@ -57,11 +57,11 @@ if (isset($toggle) && $toggle) {
 </th>
 <th class="align-middle">
     @if($user->subscribedToPlan([config('subscription.wyvern.eur.monthly'), config('subscription.wyvern.usd.monthly')], 'kanka'))
-        <a class="btn btn-block btn-sm btn-default disabled price-monthly">
+        <a class="btn btn-block btn-sm btn-default disabled">
             {{ __('tiers.current') }}
         </a>
     @elseif ($user->subscribedToPlan($service->wyvernPlans(), 'kanka'))
-        <a class="btn btn-block btn-sm btn-default disabled price-monthly">
+        <a class="btn btn-block btn-sm btn-default disabled">
             {{ __('settings.subscription.subscription.actions.downgrading') }}
         </a>
     @else
@@ -72,7 +72,7 @@ if (isset($toggle) && $toggle) {
 
 
     @if($user->subscribedToPlan([config('subscription.wyvern.eur.yearly'), config('subscription.wyvern.usd.yearly')], 'kanka'))
-        <a class="btn btn-block btn-sm btn-default disabled price-yearly">
+        <a class="btn btn-block btn-sm btn-default disabled">
             {{ __('tiers.current') }}
         </a>
     @else
@@ -87,7 +87,7 @@ if (isset($toggle) && $toggle) {
             {{ __('tiers.current') }}
         </a>
     @elseif ($user->subscribedToPlan($service->elementalPlans(), 'kanka'))
-        <a class="btn btn-block btn-sm btn-default disabled price-monthly">
+        <a class="btn btn-block btn-sm btn-default disabled">
             {{ __('settings.subscription.subscription.actions.downgrading') }}
         </a>
     @else

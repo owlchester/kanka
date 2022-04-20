@@ -13,10 +13,17 @@ class DatalayerService
     public function base(): string
     {
         $data = [
-            'userType' => auth()->check() ? 'registered' : 'visitor',
+            'userType' => 'visitor',
             'userGroup' => $this->userGroup(),
+            'userTier' => null,
+            'userSubbed' => false,
             'route' => $this->route(),
         ];
+        if (auth()->check()) {
+            $data['userType'] = 'registered';
+            $data['userTier'] = !empty(auth()->user()->patreon_pledge) ? auth()->user()->patreon_pledge : null;
+            $data['userSubbed'] = !empty(auth()->user()->patreon_pledge);
+        }
         return json_encode($data);
     }
 
