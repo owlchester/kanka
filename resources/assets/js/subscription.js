@@ -10,6 +10,7 @@ var couponBtn, couponField, couponSuccess, couponError, couponId, couponBtnOrigi
 
 $(document).ready(function() {
     initStripe();
+    initPeriodToggle();
     $('#subscribe-confirm').on('shown.bs.modal', () => {
         initConfirmListener();
         initCancelListener();
@@ -176,5 +177,16 @@ function checkCoupon() {
         couponError.hide();
         couponSuccess.html(result.discount).show();
         couponId.val(result.coupon);
+    });
+}
+
+function initPeriodToggle() {
+    $('input[name="period"]').change(function () {
+        let box = $('#pricing-overview');
+        if (this.checked) {
+            box.removeClass('period-month').addClass('period-year');
+        } else {
+            box.removeClass('period-year').addClass('period-month');
+        }
     });
 }

@@ -268,6 +268,10 @@ return [
             'cost_monthly'  => ':currency :amount billed monthly',
             'cost_yearly'   => ':currency :amount billed yearly',
         ],
+        'periods'               => [
+            'monthly'   => 'Monthly',
+            'yearly'    => 'Yearly',
+        ],
         'sub_status'            => 'Subscription information',
         'subscription'          => [
             'actions'   => [

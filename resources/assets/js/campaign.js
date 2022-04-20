@@ -23,6 +23,9 @@ function initRpgSystems() {
  * Register Modules change for campaign settings
  */
 function registerModules() {
+    if ($('.campaign-settings').length === 0) {
+        return;
+    }
     $('.content :checkbox').change(function () {
         if (this.checked) {
             $(this).closest('div.box').removeClass('box-default').addClass('box-success');

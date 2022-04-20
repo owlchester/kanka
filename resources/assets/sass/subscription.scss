@@ -5,6 +5,7 @@ table.tiers {
   .tier {
     display: flex;
     align-items: center;
+    position: relative;
     .img {
       justify-content: flex-start;
       margin-right: 10px;
@@ -52,7 +53,31 @@ table.tiers {
   background-color: white;
   padding: 9px 12px;
   line-height: 1.6;
+}
 
+body.ab-testing-second {
+  #pricing-overview.period-year {
+    .price-monthly {
+      display: none;
+    }
+    .price-yearly {
+      display: block;
+    }
+    .ribbon {
+      display: block;
+    }
+  }
+  #pricing-overview.period-month {
+    .price-monthly {
+      display: block;
+    }
+    .price-yearly {
+      display: none;
+    }
+  }
+  .btn-block.price-yearly {
+    margin-top: 0;
+  }
 }
 
 @media (max-width: 991px) {
@@ -66,4 +91,75 @@ table.tiers {
       }
     }
   }
+}
+
+
+/* common */
+.ribbon {
+  width: 70px;
+  height: 70px;
+  overflow: hidden;
+  position: absolute;
+  display: none;
+}
+.ribbon span {
+  position: absolute;
+  display: block;
+  width: 105px;
+  padding: 3px 0;
+  background-color: #00a65a;
+  box-shadow: 0 2px 5px rgba(0,0,0,.1);
+  color: #fff;
+
+  font: 700 8px/1 'Lato', sans-serif;
+  text-shadow: 0 1px 1px rgba(0,0,0,.2);
+  text-transform: uppercase;
+  text-align: center;
+}
+.ribbon-red span {
+  background-color: #D81B60;
+}
+
+/* top left*/
+.ribbon-top-left {
+  top: -10px;
+  left: -10px;
+}
+.ribbon-top-left span {
+  right: -25px;
+  top: 30px;
+  transform: rotate(-45deg);
+}
+
+/* top right*/
+.ribbon-top-right {
+  top: -9px;
+  right: -9px;
+}
+.ribbon-top-right span {
+  left: -10px;
+  bottom: 35px;
+  transform: rotate(45deg);
+}
+
+/* bottom left*/
+.ribbon-bottom-left {
+  bottom: -10px;
+  left: -10px;
+}
+.ribbon-bottom-left span {
+  right: -25px;
+  bottom: 30px;
+  transform: rotate(225deg);
+}
+
+/* bottom right*/
+.ribbon-bottom-right {
+  bottom: -10px;
+  right: -10px;
+}
+.ribbon-bottom-right span {
+  left: -25px;
+  bottom: 25px;
+  transform: rotate(-225deg);
 }

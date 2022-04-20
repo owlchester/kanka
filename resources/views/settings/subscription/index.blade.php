@@ -126,7 +126,7 @@
         </div>
     </div>
 
-    <div class="box box-solid">
+    <div class="box box-solid period-year" id="pricing-overview">
         <div class="box-header with-border">
             <h3 class="box-title">
                 {{ __('settings.subscription.tiers') }}
@@ -139,9 +139,19 @@
             </div>
         </div>
         <div class="box-body no-padding">
+
+            <div class="text-center px-3 text-vertical ab-testing-b">
+                <span>{{ __('tiers.periods.monthly') }}</span>
+                <label class="toggle ml-1 mr-1">
+                    <input type="checkbox" name="period" checked="checked">
+                    <span class="slider"></span>
+                </label>
+                <span>{{ __('tiers.toggle.yearly') }}</span>
+            </div>
+
             <table class="table table-bordered tiers">
                 <thead>
-                <tr>
+                <tr class="ab-testing-a">
                     <th class="align-middle">
                         <div class="tier">
                             <div class="img">
@@ -195,6 +205,81 @@
                         </div>
                     </th>
                 </tr>
+                <tr class="ab-testing-b">
+                    <th class="align-middle">
+                        <div class="tier">
+                            <div class="img">
+                                <img class="img-circle" src="https://kanka-app-assets.s3.amazonaws.com/images/tiers/kobold-325.png" alt="Kobold"/>
+                            </div>
+                            <div class="text">
+                                KOBOLD
+                                <span class="price">
+                                    {{ __('front.features.patreon.free') }}
+                                </span>
+                            </div>
+                        </div>
+                    </th>
+                    <th class="align-middle">
+                        <div class="tier">
+                            <div class="img">
+                                <img class="img-circle" src="https://kanka-app-assets.s3.amazonaws.com/images/tiers/owlbear-325.png" alt="Owlbear"/>
+                            </div>
+                            <div class="text">
+                                OWLBEAR
+                                <div class="price price-monthly">
+                                   {{ $user->currencySymbol() }} 5<sup>00</sup>
+                                    <span class="">{{ __('tiers.periods.monthly') }}</span>
+                                </div>
+                                <div class="price price-yearly">
+                                   {{ $user->currencySymbol() }} 55<sup>00</sup>
+                                    <span class="">{{ __('tiers.periods.yearly') }}</span>
+                                </div>
+                            </div>
+                            <div class="ribbon ribbon-top-right">
+                                <span>{{ __('tiers.ribbons.popular') }}</span>
+                            </div>
+                        </div>
+                    </th>
+                    <th class="align-middle">
+                        <div class="tier">
+                            <div class="img">
+                                <img class="img-circle" src="https://kanka-app-assets.s3.amazonaws.com/images/tiers/wyvern-325.png" alt="Wyvern"/>
+                            </div>
+                            <div class="text">
+                                WYVERN
+                                <div class="price price-monthly">
+                                    {{ $user->currencySymbol() }} 10<sup>00</sup>
+                                    <span class="">{{ __('tiers.periods.monthly') }}</span>
+                                </div>
+                                <div class="price price-yearly">
+                                    {{ $user->currencySymbol() }} 110<sup>00</sup>
+                                    <span class="">{{ __('tiers.periods.yearly') }}</span>
+                                </div>
+                            </div>
+                            <div class="ribbon ribbon-top-right ribbon-red">
+                                <span>{{ __('tiers.ribbons.best-value') }}</span>
+                            </div>
+                        </div>
+                    </th>
+                    <th class="align-middle">
+                        <div class="tier">
+                            <div class="img">
+                                <img class="img-circle" src="https://kanka-app-assets.s3.amazonaws.com/images/tiers/elemental-325.png" alt="Elemental"/>
+                            </div>
+                            <div class="text">
+                                ELEMENTAL
+                                <div class="price price-monthly">
+                                    {{ $user->currencySymbol() }} 25<sup>00</sup>
+                                    <span class="">{{ __('tiers.periods.monthly') }}</span>
+                                </div>
+                                <div class="price price-yearly">
+                                    {{ $user->currencySymbol() }} 275<sup>00</sup>
+                                    <span class="">{{ __('tiers.periods.yearly') }}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </th>
+                </tr>
                 @if ($user->hasPatreonSync())
                     <tr>
                         <td class="text-center" colspan="4">
@@ -212,8 +297,11 @@
                         </td>
                     </tr>
                 @else
-                <tr>
-                    @include('settings.subscription._buttons')
+                <tr class="ab-testing-a">
+                    @include('settings.subscription._buttons', ['toggle' => false])
+                </tr>
+                <tr class="ab-testing-b">
+                    @include('settings.subscription._buttons', ['toggle' => true])
                 </tr>
                 @endif
                 </thead>
