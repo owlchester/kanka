@@ -94,12 +94,12 @@
 /***/ (function(module, exports) {
 
 $(document).ready(function () {
-  var selector = $('.entity-notes-reorder');
+  var selector = $('.element-live-reorder');
   selector.sortable(); //selector.disableSelection();
 
   $('.fa-arrow-up').click(function (e) {
-    var $current = $(this).closest('div.story');
-    var $previous = $current.prev('div.story');
+    var $current = $(this).closest('div.element');
+    var $previous = $current.prev('div.element');
 
     if ($previous.length !== 0) {
       $current.insertBefore($previous);
@@ -108,8 +108,8 @@ $(document).ready(function () {
     return false;
   });
   $('.fa-arrow-down').click(function (e) {
-    var $current = $(this).closest('div.story');
-    var $previous = $current.next('div.story');
+    var $current = $(this).closest('div.element');
+    var $previous = $current.next('div.element');
 
     if ($previous.length !== 0) {
       $current.insertAfter($previous);

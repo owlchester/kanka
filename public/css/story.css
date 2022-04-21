@@ -1,4 +1,4 @@
-.entity-notes-reorder .story {
+.element-live-reorder .element {
   display: flex;
   flex-flow: row wrap;
   background-color: rgba(0, 0, 0, 0.1);
@@ -11,15 +11,15 @@
   justify-content: center;
 }
 
-.entity-notes-reorder .story .dragger {
+.element-live-reorder .element .dragger {
   padding-right: 10px;
 }
 
-.entity-notes-reorder .story .name {
+.element-live-reorder .element .name {
   overflow: hidden;
 }
 
-.entity-notes-reorder .story .icons {
+.element-live-reorder .element .icons {
   margin-left: auto;
 }
 

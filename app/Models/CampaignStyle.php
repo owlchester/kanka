@@ -23,6 +23,7 @@ use Illuminate\Database\Eloquent\Builder;
  * @property Carbon $updated_at
  * @property Carbon $created_at
  * @property bool $is_enabled
+ * @property int $order
  *
  * @method static self|Builder enabled($enabled = true)
  */
@@ -33,14 +34,18 @@ class CampaignStyle extends Model
     public $fillable = [
         'name',
         'content',
-        'is_enabled'
+        'is_enabled',
+        'order',
     ];
 
     public $sortable = [
         'name',
         'updated_at',
         'is_enabled',
+        'order',
     ];
+
+    public $defaultSort = ['order', 'id'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

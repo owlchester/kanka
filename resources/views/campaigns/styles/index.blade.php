@@ -1,7 +1,7 @@
 <?php /** @var \App\Models\CampaignStyle $style */
 use App\Facades\Datagrid ?>
 @extends('layouts.app', [
-    'title' => trans('campaigns/styles.title', ['campaign' => $campaign->name]),
+    'title' => __('campaigns/styles.title', ['campaign' => $campaign->name]),
     'breadcrumbs' => [
         ['url' => route('campaign'), 'label' => __('campaigns.index.title')],
         __('campaigns.show.tabs.styles')
@@ -77,17 +77,18 @@ use App\Facades\Datagrid ?>
                         </tbody>
                     </table>
                     </div>
-                    @if ($styles->hasPages() || Datagrid::hasBulks())
+                    @if (Datagrid::hasBulks())
                     <div class="box-footer text-right">
                         <div class="pull-left">
                             @includeWhen(Datagrid::hasBulks(), 'layouts.datagrid.bulks')
                         </div>
-                        {!! $styles->links() !!}
                     </div>
                     @endif
                 @endif
             </div>
             @if(Datagrid::hasBulks()) {!! Form::close() !!} @endif
+
+                @include('campaigns.styles._reorder')
             @endif
         </div>
     </div>
@@ -115,4 +116,15 @@ use App\Facades\Datagrid ?>
             </div>
         </div>
     </div>
+@endsection
+
+
+@section('styles')
+    @parent
+    <link href="{{ mix('css/story.css') }}" rel="stylesheet">
+@endsection
+
+@section('scripts')
+    @parent
+    <script src="{{ mix('js/story.js') }}" defer></script>
 @endsection

@@ -20,12 +20,12 @@ $notes = $entity->notes()->ordered()->get();
     <div class="box-body">
 
 
-        <div class="entity-notes-reorder">
+        <div class="element-live-reorder">
             @if ($notes->count() > 0)
                 @php $first = $notes->first(); @endphp
                 @if ($first->position >= 0)
                     @php $hasEntry = true @endphp
-                    <div class="story" data-id="story">
+                    <div class="element" data-id="story">
                         {!! Form::hidden('entity_types[]', 'story') !!}
                         <div class="dragger">
                             <span class="fa fa-ellipsis-v visible-md visible-lg"></span>
@@ -45,7 +45,7 @@ $notes = $entity->notes()->ordered()->get();
             @foreach($notes as $note)
                 @if (!$hasEntry && $note->position >= 0)
                     @php $hasEntry = true @endphp
-                    <div class="story" data-id="story">
+                    <div class="element" data-id="story">
                         {!! Form::hidden('entity_types[]', 'story') !!}
                         <div class="dragger">
                             <span class="fa fa-ellipsis-v visible-md visible-lg"></span>
@@ -62,7 +62,7 @@ $notes = $entity->notes()->ordered()->get();
                     </div>
                 @endif
 
-                <div class="story" data-id="{{ $note->id }}">
+                <div class="element" data-id="{{ $note->id }}">
                     {!! Form::hidden('entity_note_id[]', $note->id) !!}
                     {!! Form::hidden('entity_types[]', 'post') !!}
                     <div class="dragger">

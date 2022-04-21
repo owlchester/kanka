@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Campaign;
 use App\Facades\CampaignCache;
 use App\Facades\CampaignLocalization;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ReorderStyles;
 use App\Http\Requests\StoreCampaignStyle;
 use App\Http\Requests\StoreCampaignTheme;
 use App\Models\Campaign;
@@ -15,6 +16,8 @@ class StyleController extends Controller
 {
     /** @var UserService */
     protected $service;
+
+    const MAX_THEMES = 30;
 
     /**
      * Create a new controller instance.
@@ -32,10 +35,11 @@ class StyleController extends Controller
     {
         $campaign = CampaignLocalization::getCampaign();
         $this->authorize('recover', $campaign);
-        $styles = $campaign->styles()->sort(request()->only(['o', 'k']))->paginate();
+        $styles = $campaign->styles()->sort(request()->only(['o', 'k']))->take(self::MAX_THEMES)->get();
         $theme = $campaign->theme;
+        $reorderStyles = $campaign->styles()->defaultOrder()->take(self::MAX_THEMES)->get();
 
-        return view('campaigns.styles.index', compact('campaign', 'styles', 'theme'));
+        return view('campaigns.styles.index', compact('campaign', 'styles', 'theme', 'reorderStyles'));
     }
 
     public function show(CampaignStyle $campaignStyle)
@@ -48,6 +52,11 @@ class StyleController extends Controller
     {
         $campaign = CampaignLocalization::getCampaign();
         $this->authorize('update', $campaign);
+
+        if ($campaign->styles()->count() >= self::MAX_THEMES) {
+            return redirect()->route('campaign_styles.index')
+                ->with('error', __('campaigns/styles.errors.max_reached', ['max' => self::MAX_THEMES]));
+        }
         return view('campaigns.styles.create', compact('campaign'));
     }
 
@@ -55,6 +64,11 @@ class StyleController extends Controller
     {
         $campaign = CampaignLocalization::getCampaign();
         $this->authorize('update', $campaign);
+
+        if ($campaign->styles()->count() >= self::MAX_THEMES) {
+            return redirect()->route('campaign_styles.index')
+                ->with('error', __('campaigns/styles.errors.max_reached', ['max' => self::MAX_THEMES]));
+        }
 
         $style = new CampaignStyle($request->only('name', 'content', 'is_enabled'));
         $style->campaign_id = $campaign->id;
@@ -131,6 +145,11 @@ class StyleController extends Controller
         ;
     }
 
+    /**
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Psr\Container\ContainerExceptionInterface
+     * @throws \Psr\Container\NotFoundExceptionInterface
+     */
     public function bulk()
     {
         $action = request()->get('action');
@@ -160,9 +179,36 @@ class StyleController extends Controller
                 $count++;
             }
         }
+        CampaignCache::clearStyles();
+
         return redirect()
             ->route('campaign_styles.index')
             ->with('success', trans_choice('campaigns/styles.bulks.' . $action, $count, ['count' => $count]))
+        ;
+    }
+
+    public function reorder(ReorderStyles $request)
+    {
+        $order = 1;
+        $ids = $request->get('style');
+        foreach ($ids as $id) {
+            $style = CampaignStyle::find($id);
+            if (empty($style)) {
+                continue;
+            }
+            $style->order = $order;
+            $style->timestamps = false;
+            $style->update();
+            $order++;
+        }
+        CampaignCache::clearStyles();
+
+        $order--;
+        return redirect()
+            ->route('campaign_styles.index')
+            ->with('success', trans_choice('campaigns/styles.reorder.success', $order, ['count' => $order]))
             ;
+
+
     }
 }

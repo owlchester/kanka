@@ -13,6 +13,13 @@ class Theme extends Layout
     public function columns(): array
     {
         $columns = [
+            'order' => [
+                'key' => 'order',
+                'label' => 'campaigns/styles.fields.order',
+                'render' => function ($model) {
+                    return $model->order ? '#' . $model->order : null;
+                }
+            ],
             'name' => [
                 'key' => 'name',
                 'label' => 'campaigns/styles.fields.name',
@@ -37,7 +44,7 @@ class Theme extends Layout
                 'key' => 'is_enabled',
                 'label' => 'campaigns/styles.fields.is_enabled',
                 'render' => function ($model) {
-                    return $model->is_enabled ? '<i class="fa fa-check-circle"></i>' : null;
+                    return $model->is_enabled ? '<i class="fa-solid fa-check-circle"></i>' : null;
                 }
             ],
         ];

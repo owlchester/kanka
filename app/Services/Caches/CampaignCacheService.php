@@ -261,7 +261,7 @@ class CampaignCacheService extends BaseCache
         }
 
         $css = "/**\n * Campaign Styles for #" . $this->campaign->id . "\n */\n\n";
-        foreach ($this->campaign->styles()->enabled()->get() as $style) {
+        foreach ($this->campaign->styles()->enabled()->defaultOrder()->get() as $style) {
             $css .= "/** Style " . $style->name . "#" . $style->id . " */\n" . $style->content . "\n";
         }
 
