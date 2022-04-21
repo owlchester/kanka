@@ -320,14 +320,15 @@ Route::get('/campaign-roles/public', 'CampaignRoleController@public')->name('cam
 
 // Marketplace plugin route
 if(config('marketplace.enabled')) {
-    Route::get('/plugins', 'Campaign\CampaignPluginController@index')->name('campaign_plugins.index');
-    Route::delete('/plugins/{plugin}/delete', 'Campaign\CampaignPluginController@delete')->name('campaign_plugins.destroy');
-    Route::get('/plugins/{plugin}/enable', 'Campaign\CampaignPluginController@enable')->name('campaign_plugins.enable');
-    Route::get('/plugins/{plugin}/disable', 'Campaign\CampaignPluginController@disable')->name('campaign_plugins.disable');
-    Route::post('/plugins/{plugin}/import', 'Campaign\CampaignPluginController@import')->name('campaign_plugins.import');
-    Route::get('/plugins/{plugin}/confirm-import', 'Campaign\CampaignPluginController@confirmImport')->name('campaign_plugins.confirm-import');
-    Route::get('/plugins/{plugin}/update', 'Campaign\CampaignPluginController@updateInfo')->name('campaign_plugins.update-info');
-    Route::post('/plugins/{plugin}/update', 'Campaign\CampaignPluginController@update')->name('campaign_plugins.update');
+    Route::get('/plugins', 'Campaign\PluginController@index')->name('campaign_plugins.index');
+    Route::delete('/plugins/{plugin}/delete', 'Campaign\PluginController@delete')->name('campaign_plugins.destroy');
+    Route::get('/plugins/{plugin}/enable', 'Campaign\PluginController@enable')->name('campaign_plugins.enable');
+    Route::get('/plugins/{plugin}/disable', 'Campaign\PluginController@disable')->name('campaign_plugins.disable');
+    Route::post('/plugins/{plugin}/import', 'Campaign\PluginController@import')->name('campaign_plugins.import');
+    Route::get('/plugins/{plugin}/confirm-import', 'Campaign\PluginController@confirmImport')->name('campaign_plugins.confirm-import');
+    Route::get('/plugins/{plugin}/update', 'Campaign\PluginController@updateInfo')->name('campaign_plugins.update-info');
+    Route::post('/plugins/{plugin}/update', 'Campaign\PluginController@update')->name('campaign_plugins.update');
+    Route::post('/plugins/bulk', 'Campaign\PluginController@bulk')->name('campaign_plugins.bulk');
 }
 
 Route::post('/timelines/{timeline}/timeline-era/{timeline_era}/reorder', 'Timelines\TimelineEraController@reorder')->name('timelines.reorder');

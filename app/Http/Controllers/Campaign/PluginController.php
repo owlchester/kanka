@@ -6,6 +6,7 @@ namespace App\Http\Controllers\Campaign;
 
 use App\Facades\CampaignCache;
 use App\Facades\CampaignLocalization;
+use App\Facades\Datagrid;
 use App\Http\Controllers\Controller;
 use App\Models\CampaignPlugin;
 use App\Models\Plugin;
@@ -13,7 +14,7 @@ use App\Services\Campaign\CampaignPluginService;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
-class CampaignPluginController extends Controller
+class PluginController extends Controller
 {
     /** @var CampaignPluginService */
     protected $service;
@@ -35,17 +36,31 @@ class CampaignPluginController extends Controller
         $campaign = CampaignLocalization::getCampaign();
 
         $highlight = request()->get('highlight');
+
+        Datagrid::layout(\App\Renderers\Layouts\Campaign\Plugin::class);
+
         $plugins = $campaign->plugins()
+            ->sort(request()->only(['o', 'k']))
             ->highlighted($highlight)
             ->with('versions');
 
         if (!auth()->check() || !$campaign->userIsMember()) {
             $plugins->where('campaign_plugins.is_active', true);
         }
-        $plugins = $plugins->paginate();
+        $rows = $plugins->paginate();
 
+        // Ajax Datagrid
+        if (request()->ajax()) {
+            $html = view('campaigns.plugins._table')->with('rows', $rows)->render();
+            $deletes = view('layouts.datagrid.delete-forms')->with('models', Datagrid::deleteForms())->render();
+            return response()->json([
+                'success' => true,
+                'html' => $html,
+                'deletes' => $deletes,
+            ]);
+        }
 
-        return view('campaigns.plugins', compact('campaign', 'plugins', 'highlight'));
+        return view('campaigns.plugins', compact('campaign', 'rows', 'highlight'));
     }
 
     /**
@@ -216,6 +231,57 @@ class CampaignPluginController extends Controller
             return redirect()->route('campaign_plugins.index')
                 ->withError('campaigns/plugins.import.errors.' . $e->getMessage(), ['plugin' => $plugin->name]);
         }
+    }
+
+
+    /**
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Psr\Container\ContainerExceptionInterface
+     * @throws \Psr\Container\NotFoundExceptionInterface
+     */
+    public function bulk()
+    {
+        $campaign = CampaignLocalization::getCampaign();
+        $this->authorize('recover', $campaign);
+
+        $action = request()->get('action');
+        $models = request()->get('model');
+        if (!in_array($action, ['enable', 'disable', 'update', 'delete']) || empty($models)) {
+            return redirect()
+                ->route('campaign_plugins.index');
+        }
+
+        $this->service->campaign($campaign);
+        $count = 0;
+        foreach ($models as $id) {
+            /** @var Plugin $plugin */
+            $plugin = Plugin::find($id);
+            if (empty($plugin)) {
+                continue;
+            }
+            if ($action === 'enable') {
+                if ($this->service->plugin($plugin)->enable()) {
+                    $count++;
+                }
+            } elseif ($action === 'disable') {
+                if ($this->service->plugin($plugin)->disable()) {
+                    $count++;
+                }
+            } elseif ($action === 'update') {
+                if ($this->service->plugin($plugin)->update()) {
+                    $count++;
+                }
+            } elseif ($action === 'delete') {
+                $this->service->plugin($plugin)->remove();
+                $count++;
+            }
+        }
+        CampaignCache::clearTheme();
+
+        return redirect()
+            ->route('campaign_plugins.index')
+            ->with('success', trans_choice('campaigns/plugins.bulks.' . $action, $count, ['count' => $count]))
+            ;
     }
 
 }

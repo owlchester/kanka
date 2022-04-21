@@ -81309,11 +81309,15 @@ function keepAlivePulse() {
 /*!******************************************!*\
   !*** ./resources/assets/js/datagrids.js ***!
   \******************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _components_ajax_modal__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/ajax-modal */ "./resources/assets/js/components/ajax-modal.js");
 // id="datagrids-bulk-actions-permissions"
 // id="datagrids-bulk-actions-edit
+
 var datagrid2DeleteConfirm = false;
 var datagrid2Form;
 var datagrid2Table;
@@ -81471,7 +81475,9 @@ function datagrid2Reorder(ele) {
       window.history.pushState({}, "", res.url);
     }
 
-    initDatagrid2Ajax();
+    initDatagrid2Ajax(); // Needed for ajax buttons in campaigns/plugins
+
+    Object(_components_ajax_modal__WEBPACK_IMPORTED_MODULE_0__["default"])();
   }).fail(function (err) {
     console.error('datagrid2', err);
     datagrid2Table.find('tfoot').addClass('bg-danger');

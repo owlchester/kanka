@@ -2,6 +2,7 @@
 
 namespace App\Renderers;
 
+use App\Facades\CampaignLocalization;
 use App\Renderers\Layouts\Columns\Action;
 use App\Renderers\Layouts\Columns\Column;
 use App\Renderers\Layouts\Columns\Checkbox;
@@ -25,6 +26,15 @@ class DatagridRenderer2
     protected $routeName = null;
     protected $routeOptions = [];
 
+    protected $bulks = false;
+
+    /** @var \App\Models\Campaign */
+    protected $campaign;
+
+    public function __construct()
+    {
+        $this->campaign = CampaignLocalization::getCampaign();
+    }
     /**
      * @param $layout
      * @return $this
@@ -88,7 +98,6 @@ class DatagridRenderer2
              $columns[] = $action;
         }
 
-
         return $columns;
     }
 
@@ -102,7 +111,38 @@ class DatagridRenderer2
 
     public function bulks(): array
     {
-        return $this->layout->bulks();
+        if ($this->bulks !== false) {
+            return $this->bulks;
+        }
+
+        $this->bulks = [];
+        $bulks = $this->layout->bulks();
+        foreach ($bulks as $bulk) {
+            if (is_array($bulk)) {
+                if (empty($bulk['can'])) {
+                    $this->bulks[] = $bulk;
+                    continue;
+                }
+                $can = $bulk['can'];
+                // General campaign permission
+                if (Str::startsWith($can, 'campaign:')) {
+                    $action = Str::afterLast($can, 'campaign:');
+
+                    if (auth()->check() && auth()->user()->can($action, $this->campaign)) {
+                        $this->bulks[] = $bulk;
+                    }
+                    continue;
+                }
+                // More specific use cases?
+            }
+            elseif ($bulk === Layout::ACTION_DELETE) {
+                if (auth()->check() && auth()->user()->isAdmin()) {
+                    $this->bulks[] = $bulk;
+                }
+            }
+        }
+
+        return $this->bulks;
     }
 
     /**
@@ -143,11 +183,19 @@ class DatagridRenderer2
         return request()->route()->getName();
     }
 
+    /**
+     * @return array
+     */
     public function routeOptions(): array
     {
         return $this->routeOptions;
     }
 
+    /**
+     * @return array
+     * @throws \Psr\Container\ContainerExceptionInterface
+     * @throws \Psr\Container\NotFoundExceptionInterface
+     */
     public function paginationFilters(): array
     {
         $options = $this->routeOptions;

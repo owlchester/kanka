@@ -80,6 +80,11 @@ trait SortableTrait
     {
         $segments = explode('.', $key);
         $relationName = $segments[0];
+
+        // Querying a pivot table? Let's let the other query builder take care of this.
+        if ($relationName === 'pivot') {
+            return $query;
+        }
         $relation = $this->{$relationName}();
         $foreignName = $relation->getQuery()->getQuery()->from;
         return $query

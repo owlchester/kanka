@@ -1,3 +1,4 @@
+<?php /** @var \App\Renderers\Layouts\Header $header */?>
 @if ($header->bulk())
     <th>
         <input type="checkbox" name="all" id="datagrid-select-all" />

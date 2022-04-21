@@ -74,7 +74,7 @@ class Header
      */
     public function sortable(): bool
     {
-        return !empty($this->data['key']) && !empty(request()->route());
+        return !empty($this->data['key']) && auth()->check() && !empty(request()->route());
     }
 
     /**

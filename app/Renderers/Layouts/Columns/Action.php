@@ -5,6 +5,7 @@ namespace App\Renderers\Layouts\Columns;
 
 use App\Renderers\Layouts\Layout;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Arr;
 
 class Action extends Column
 {
@@ -26,11 +27,12 @@ class Action extends Column
             elseif ($action == Layout::ACTION_DELETE) {
                 if (!$permissions) {
                     $this->actions[] = $action;
-                } elseif (auth()->user()->can('destroy', $this->model)) {
+                } elseif (auth()->user()->can('delete', $this->model)) {
                     $this->actions[] = $action;
                 }
-            } else {
+            } elseif (is_array($action)) {
                 // Custom, to do?
+                $this->import($action);
             }
         }
     }
@@ -50,5 +52,19 @@ class Action extends Column
     public function hasDelete(): bool
     {
         return in_array(Layout::ACTION_DELETE, $this->actions);
+    }
+
+    protected function import(array $action): self
+    {
+        // No auth check? We good.
+        if (!Arr::has($action, 'can')) {
+            $this->actions[] = $action;
+            return $this;
+        }
+
+        if (auth()->user()->can($action['can'], $this->model)) {
+            $this->actions[] = $action;
+        }
+        return $this;
     }
 }

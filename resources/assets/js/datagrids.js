@@ -1,6 +1,8 @@
 // id="datagrids-bulk-actions-permissions"
 // id="datagrids-bulk-actions-edit
 
+import ajaxModal from "./components/ajax-modal";
+
 var datagrid2DeleteConfirm = false;
 var datagrid2Form;
 var datagrid2Table;
@@ -166,6 +168,8 @@ function datagrid2Reorder(ele) {
             window.history.pushState({}, "", res.url);
         }
         initDatagrid2Ajax();
+        // Needed for ajax buttons in campaigns/plugins
+        ajaxModal();
     }).fail(function (err) {
         console.error('datagrid2', err);
         datagrid2Table.find('tfoot').addClass('bg-danger');
