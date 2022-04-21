@@ -103,6 +103,7 @@ class CrudController extends Controller
      * @var null
      */
     protected $datagrid = null;
+    protected $rows = [];
 
     /**
      * Create a new controller instance.
@@ -547,6 +548,8 @@ class CrudController extends Controller
                 ->paginate();
         }
 
+        $rows = $this->rows;
+
         return view('cruds.subview', compact(
             'fullview',
             'model',
@@ -554,7 +557,8 @@ class CrudController extends Controller
             'datagridSorter',
             'data',
             'markers',
-            'view'
+            'view',
+            'rows'
         ));
     }
 

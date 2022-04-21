@@ -81442,6 +81442,10 @@ function initDatagrid2Ajax() {
       e.preventDefault();
       datagrid2Reorder($(this));
     });
+    $(this).closest('#datagrid-parent').find('.pagination > li > a').click(function (e) {
+      e.preventDefault();
+      datagrid2Reorder($(this));
+    });
   });
 }
 
@@ -81457,7 +81461,14 @@ function datagrid2Reorder(ele) {
     //console.log('res', res);
     if (res.html) {
       $(target).html(res.html);
+    }
+
+    if (res["delete"]) {
       $('#datagrid-delete-forms').html(res.deletes);
+    }
+
+    if (res.url) {
+      window.history.pushState({}, "", res.url);
     }
 
     initDatagrid2Ajax();

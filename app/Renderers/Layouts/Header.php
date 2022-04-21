@@ -2,6 +2,8 @@
 
 namespace App\Renderers\Layouts;
 
+use App\Facades\Datagrid;
+use App\Renderers\Layouts\Columns\Standard;
 use Illuminate\Support\Arr;
 
 class Header
@@ -23,6 +25,9 @@ class Header
             return '';
         }
         if (empty($this->data['label'])) {
+            if (Arr::get($this->data, 'render') === Standard::IMAGE) {
+                return '';
+            }
             return '<i>no label</i>';
         }
 
@@ -35,15 +40,25 @@ class Header
         $this->orderDir = request()->get('o');
 
         // We have some HTML going on, let blade render it
-        return view('layouts.datagrid._head')
-            ->with('head', $this);
+        try {
+            return view('layouts.datagrid._head')
+                ->with('head', $this)
+                ->render();
+        } catch (\Exception $e) {
+            throw $e;
+            return $e->getMessage();
+        }
 
     }
 
     public function css(): string|null
     {
+        $default = null;
+        if (Arr::get($this->data, 'render') === Standard::IMAGE) {
+            $default = 'avatar';
+        }
         if (empty($this->data['class'])) {
-            return null;
+            return $default;
         }
 
         return $this->data['class'];
@@ -82,7 +97,7 @@ class Header
      */
     public function route(): string
     {
-        $route = request()->route()->getName();
+        $route = Datagrid::routeName();
         $options = [
             'k' => $this->data['key'],
             'o' => 'asc'
@@ -95,8 +110,16 @@ class Header
                 $options['o'] = 'desc';
             }
         }
+        $options = array_merge($options, Datagrid::routeOptions());
+        if (request()->has('page')) {
+            $options['page'] = (int) request()->get('page');
+        }
 
-        return route($route, $options);
+        try {
+            return route($route, $options);
+        } catch (\Exception $e) {
+            return 'invalid';
+        }
     }
 
     /**

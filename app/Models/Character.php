@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Facades\CampaignLocalization;
 use App\Models\Concerns\SimpleSortableTrait;
+use App\Models\Concerns\SortableTrait;
 use App\Traits\CampaignTrait;
 use App\Traits\ExportableTrait;
 use App\Traits\VisibleTrait;
@@ -31,7 +32,9 @@ class Character extends MiscModel
         VisibleTrait,
         ExportableTrait,
         SimpleSortableTrait,
-        SoftDeletes;
+        SoftDeletes,
+        SortableTrait
+    ;
 
     //
     protected $fillable = [
@@ -81,6 +84,11 @@ class Character extends MiscModel
         'age',
         'sex',
         'is_dead'
+    ];
+    protected $sortable = [
+        'name',
+        'location.name',
+        'is_dead',
     ];
 
     /**

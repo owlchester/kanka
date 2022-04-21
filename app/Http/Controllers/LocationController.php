@@ -6,6 +6,7 @@ use App\Datagrids\Filters\LocationFilter;
 use App\Datagrids\Sorters\LocationCharacterSorter;
 use App\Datagrids\Sorters\LocationFamilySorter;
 use App\Datagrids\Sorters\LocationLocationSorter;
+use App\Facades\Datagrid;
 use App\Http\Requests\StoreLocation;
 use App\Models\Location;
 use App\Services\LocationService;
@@ -160,7 +161,33 @@ class LocationController extends CrudController
      */
     public function characters(Location $location)
     {
-        return $this->datagridSorter(LocationCharacterSorter::class)
+        $options = ['location' => $location];
+        $filters = [];
+        if (request()->has('location_id')) {
+            $options['location_id'] = (int) request()->get('location_id');
+            $filters['location_id'] = $options['location_id'];
+        }
+        Datagrid::layout(\App\Renderers\Layouts\Location\Character::class)
+            ->route('locations.characters', $options);
+
+        $this->rows = $location
+            ->allCharacters()
+            ->sort(request()->only(['o', 'k']))
+            ->filter($filters)
+            ->with(['location', 'location.entity', 'families', 'families.entity', 'entity', 'entity.tags'])
+            ->paginate(5);
+
+        // Ajax Datagrid
+        if (request()->ajax()) {
+            $html = view('locations.panels._characters')->with('rows', $this->rows)->render();
+            return response()->json([
+                'success' => true,
+                'html' => $html,
+                'url' => request()->fullUrl()
+            ]);
+        }
+
+        return $this
             ->menuView($location, 'characters');
     }
 

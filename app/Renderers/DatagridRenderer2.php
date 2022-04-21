@@ -9,6 +9,7 @@ use App\Renderers\Layouts\Columns\Standard;
 use App\Renderers\Layouts\Header;
 use App\Renderers\Layouts\Layout;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class DatagridRenderer2
 {
@@ -21,12 +22,25 @@ class DatagridRenderer2
     /** @var bool If permissions are checked or not. If false, assume we are admin. */
     protected $permissions = true;
 
+    protected $routeName = null;
+    protected $routeOptions = [];
+
+    /**
+     * @param $layout
+     * @return $this
+     */
     public function layout($layout): self
     {
         if (is_string($layout)) {
             $layout = new $layout();
         }
         $this->layout = $layout;
+        return $this;
+    }
+
+    public function route(string $route, array $options = null): self {
+        $this->routeName = $route;
+        $this->routeOptions = $options;
         return $this;
     }
 
@@ -41,7 +55,7 @@ class DatagridRenderer2
             $headers[] = new Header('bulk');
         }
 
-        foreach ($this->layout->columns() as $key => $col) {
+        foreach ($this->layout->visibleColumns() as $key => $col) {
             $headers[] = new Header($col);
         }
 
@@ -63,7 +77,7 @@ class DatagridRenderer2
         if ($this->hasBulks()) {
             $columns[] = new Checkbox($model, []);
         }
-        foreach ($this->layout->columns() as $key => $col) {
+        foreach ($this->layout->visibleColumns() as $key => $col) {
             $columns[] = new Standard($model, $col);
         }
         if ($this->hasActions() && auth()->check()) {
@@ -115,5 +129,40 @@ class DatagridRenderer2
     {
         $this->permissions = $permissions;
         return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function routeName()
+    {
+        if (isset($this->routeName)) {
+            return $this->routeName;
+        }
+
+        return request()->route()->getName();
+    }
+
+    public function routeOptions(): array
+    {
+        return $this->routeOptions;
+    }
+
+    public function paginationFilters(): array
+    {
+        $options = $this->routeOptions;
+        foreach ($this->routeOptions as $k => $v) {
+            if (Str::endsWith($k, '_id')) {
+                continue;
+            }
+            unset($options[$k]);
+        }
+        if (request()->has('o')) {
+            $options['o'] = request()->get('o');
+        }
+        if (request()->has('k')) {
+            $options['k'] = request()->get('k');
+        }
+        return $options;
     }
 }

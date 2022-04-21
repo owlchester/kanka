@@ -4,6 +4,7 @@ namespace App\Models\Concerns;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
 
 /**
  * @method static self|Builder sort(array $filters)
@@ -41,6 +42,13 @@ trait SortableTrait
             $order = 'asc';
         }
 
+        if (Str::contains($key, '.')) {
+            $segments = explode('.', $key);
+            if (count($segments) == 2) {
+                return $query->sortOnForeign($key, $order);
+            }
+        }
+
         return $query->orderBy($key, $order);
     }
 
@@ -59,5 +67,28 @@ trait SortableTrait
             $query->orderBy($default);
         }
         return $query;
+    }
+
+    /**
+     * Sort on a foreign relation
+     * @param Builder $query
+     * @param string $key
+     * @param string $order
+     * @return Builder
+     */
+    protected function scopeSortOnForeign(Builder $query, string $key, string $order)
+    {
+        $segments = explode('.', $key);
+        $relationName = $segments[0];
+        $relation = $this->{$relationName}();
+        $foreignName = $relation->getQuery()->getQuery()->from;
+        return $query
+            ->select($this->getTable() . '.*')
+            ->leftJoin(
+                $foreignName . ' as f',
+                'f.id',
+                $this->getTable() . '.' . $relation->getForeignKeyName()
+            )
+            ->orderBy(str_replace($relationName, 'f', $key), $order);
     }
 }
