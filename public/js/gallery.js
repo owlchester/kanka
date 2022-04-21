@@ -1,1 +1,243 @@
-!function(e){var r={};function n(o){if(r[o])return r[o].exports;var t=r[o]={i:o,l:!1,exports:{}};return e[o].call(t.exports,t,t.exports,n),t.l=!0,t.exports}n.m=e,n.c=r,n.d=function(e,r,o){n.o(e,r)||Object.defineProperty(e,r,{enumerable:!0,get:o})},n.r=function(e){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})},n.t=function(e,r){if(1&r&&(e=n(e)),8&r)return e;if(4&r&&"object"==typeof e&&e&&e.__esModule)return e;var o=Object.create(null);if(n.r(o),Object.defineProperty(o,"default",{enumerable:!0,value:e}),2&r&&"string"!=typeof e)for(var t in e)n.d(o,t,function(r){return e[r]}.bind(null,t));return o},n.n=function(e){var r=e&&e.__esModule?function(){return e.default}:function(){return e};return n.d(r,"a",r),r},n.o=function(e,r){return Object.prototype.hasOwnProperty.call(e,r)},n.p="/",n(n.s=19)}({19:function(e,r,n){e.exports=n("GVCI")},GVCI:function(e,r){var n,o,t,a,l,u;function i(){o.hide(),n.show(),$.ajax({url:t.data("url")+"?q="+t.val()}).done((function(e){n.hide(),o.html(e).show(),d()}))}function d(){$("#gallery-images li").unbind("click").on("click",(function(e){var r=$(this).data("folder");r?window.location=r:$.ajax({url:$(this).data("url")}).done((function(e){$("#large-modal-content").html(e),$("#large-modal").modal("show")}))}))}$(document).ready((function(){n=$("#gallery-loader"),o=$("#gallery-images"),t=$("#gallery-search"),a=$(".uploader"),l=$(".progress"),$("#file-upload"),u=$(".gallery-error"),t.on("blur",(function(e){e.preventDefault(),i()})).on("submit",(function(e){e.preventDefault(),i()})),a.unbind("drop dragover").bind("drop dragover",(function(e){e.preventDefault(),l.show()})),$(".file-upload-form").fileupload({dropZone:a,dataType:"json",add:function(e,r){u.hide(),r.submit()},progressall:function(e,r){var n=parseInt(r.loaded/r.total*100,10);l.show(),$(".progress .progress-bar").css("width",n+"%")},done:function(e,r){l.hide(),r.result.success&&(o.prepend(r.result.html),d())},fail:function(e,r){l.hide(),r.jqXHR.responseJSON&&u.text(function(e){var r="";for(var n in e)if(e.hasOwnProperty(n))for(var o in e[n])r+=e[n][o]+"\n";return r}(r.jqXHR.responseJSON.errors)).fadeToggle(),d()}}),d()}))}});
+/******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId]) {
+/******/ 			return installedModules[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
+/******/ 		}
+/******/ 	};
+/******/
+/******/ 	// define __esModule on exports
+/******/ 	__webpack_require__.r = function(exports) {
+/******/ 		if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 		}
+/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 	};
+/******/
+/******/ 	// create a fake namespace object
+/******/ 	// mode & 1: value is a module id, require it
+/******/ 	// mode & 2: merge all properties of value into the ns
+/******/ 	// mode & 4: return value when already ns object
+/******/ 	// mode & 8|1: behave like require
+/******/ 	__webpack_require__.t = function(value, mode) {
+/******/ 		if(mode & 1) value = __webpack_require__(value);
+/******/ 		if(mode & 8) return value;
+/******/ 		if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
+/******/ 		var ns = Object.create(null);
+/******/ 		__webpack_require__.r(ns);
+/******/ 		Object.defineProperty(ns, 'default', { enumerable: true, value: value });
+/******/ 		if(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
+/******/ 		return ns;
+/******/ 	};
+/******/
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+/******/
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "/";
+/******/
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(__webpack_require__.s = 19);
+/******/ })
+/************************************************************************/
+/******/ ({
+
+/***/ "./resources/assets/js/gallery.js":
+/*!****************************************!*\
+  !*** ./resources/assets/js/gallery.js ***!
+  \****************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+var loader, gallery, search;
+var fileDrop, fileProgress, fileUploadField, fileError;
+$(document).ready(function () {
+  initGallery();
+  initUploader();
+  registerEvents();
+});
+
+function initGallery() {
+  loader = $('#gallery-loader');
+  gallery = $('#gallery-images');
+  search = $('#gallery-search');
+  fileDrop = $('.uploader');
+  fileProgress = $('.progress');
+  fileUploadField = $('#file-upload');
+  fileError = $('.gallery-error');
+  search.on('blur', function (e) {
+    e.preventDefault();
+    initSearch();
+  }).on('submit', function (e) {
+    e.preventDefault();
+    initSearch();
+  });
+}
+
+function loadGallery(url) {
+  $.ajax({
+    url: url,
+    dataType: 'json'
+  }).done(function (data) {
+    console.log('data', data);
+    gallery.html(data.content);
+    loader.hide();
+    gallery.show();
+  });
+}
+/**
+ *
+ */
+
+
+function initSearch() {
+  gallery.hide();
+  loader.show();
+  $.ajax({
+    url: search.data('url') + '?q=' + search.val()
+  }).done(function (data) {
+    loader.hide();
+    gallery.html(data).show();
+    registerEvents();
+  });
+}
+/**
+ *
+ */
+
+
+function initUploader() {
+  fileDrop.unbind('drop dragover').bind('drop dragover', function (e) {
+    e.preventDefault();
+    fileProgress.show();
+  });
+  $('.file-upload-form').fileupload({
+    dropZone: fileDrop,
+    dataType: 'json',
+    add: function add(e, data) {
+      fileError.hide();
+      data.submit();
+    },
+    progressall: function progressall(e, data) {
+      var progress = parseInt(data.loaded / data.total * 100, 10);
+      fileProgress.show();
+      $('.progress .progress-bar').css('width', progress + '%');
+    },
+    done: function done(e, data) {
+      fileProgress.hide();
+
+      if (data.result.success) {
+        gallery.prepend(data.result.html);
+        registerEvents();
+      }
+    },
+    fail: function fail(e, data) {
+      fileProgress.hide();
+
+      if (data.jqXHR.responseJSON) {
+        fileError.text(buildErrors(data.jqXHR.responseJSON.errors)).fadeToggle();
+      }
+
+      registerEvents();
+    }
+  });
+}
+/**
+ *
+ * @param data
+ * @returns {string}
+ */
+
+
+function buildErrors(data) {
+  var errors = '';
+
+  for (var key in data) {
+    // skip loop if the property is from prototype
+    if (!data.hasOwnProperty(key)) continue;
+
+    for (var e in data[key]) {
+      errors += data[key][e] + "\n";
+    }
+  }
+
+  return errors;
+}
+
+function registerEvents() {
+  $('#gallery-images li').unbind('click').on('click', function (e) {
+    var folder = $(this).data('folder');
+
+    if (folder) {
+      window.location = folder;
+      return;
+    }
+
+    $.ajax({
+      url: $(this).data('url')
+    }).done(function (data) {
+      $('#large-modal-content').html(data);
+      $('#large-modal').modal('show');
+    });
+  });
+}
+
+/***/ }),
+
+/***/ 19:
+/*!*******************************************!*\
+  !*** multi ./resources/assets/js/gallery ***!
+  \*******************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! /Users/jay/Documents/GitHub/miscellany/resources/assets/js/gallery */"./resources/assets/js/gallery.js");
+
+
+/***/ })
+
+/******/ });

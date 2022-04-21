@@ -4,6 +4,7 @@
 namespace App\Models;
 
 
+use App\Models\Concerns\SortableTrait;
 use App\Traits\CampaignTrait;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
@@ -27,12 +28,18 @@ use Illuminate\Database\Eloquent\Builder;
  */
 class CampaignStyle extends Model
 {
-    use SoftDeletes, CampaignTrait;
+    use SoftDeletes, CampaignTrait, SortableTrait;
 
     public $fillable = [
         'name',
         'content',
         'is_enabled'
+    ];
+
+    public $sortable = [
+        'name',
+        'updated_at',
+        'is_enabled',
     ];
 
     /**
@@ -52,4 +59,23 @@ class CampaignStyle extends Model
     {
         return $query->where('is_enabled', $enabled);
     }
+
+    /**
+     * @return string
+     */
+    public function length(): string
+    {
+        return (string) number_format(strlen($this->content));
+    }
+
+    /**
+     * @param string $sub
+     * @return string
+     */
+    public function url(string $sub): string
+    {
+        return 'campaign_styles.' . $sub;
+    }
+
+
 }

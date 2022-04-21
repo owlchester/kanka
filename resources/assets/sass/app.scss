@@ -548,6 +548,7 @@ summary { display: list-item; }
 // RPG awesome dropdown icon margin
 .dropdown-menu > li > a > :is(.fas, .fab, .far, .ra, .fa-solid, .fa-light, .fa-thin, .fa-regular) {
   margin-right: 10px;
+  width: 14px;
 }
 
 .table .table-actions .dropdown-toggle i {

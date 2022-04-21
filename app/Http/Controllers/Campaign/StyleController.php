@@ -32,7 +32,7 @@ class StyleController extends Controller
     {
         $campaign = CampaignLocalization::getCampaign();
         $this->authorize('recover', $campaign);
-        $styles = $campaign->styles()->paginate();
+        $styles = $campaign->styles()->sort(request()->only(['o', 'k']))->paginate();
         $theme = $campaign->theme;
 
         return view('campaigns.styles.index', compact('campaign', 'styles', 'theme'));
@@ -129,5 +129,40 @@ class StyleController extends Controller
             ->route('campaign_styles.index')
             ->with('success', __('campaigns/styles.theme.success'))
         ;
+    }
+
+    public function bulk()
+    {
+        $action = request()->get('action');
+        $models = request()->get('model');
+        if (!in_array($action, ['enable', 'disable', 'delete']) || empty($models)) {
+            return redirect()
+                ->route('campaign_styles.index');
+        }
+
+        $count = 0;
+        foreach ($models as $id) {
+            /** @var CampaignStyle $style */
+            $style = CampaignStyle::find($id);
+            if (empty($style)) {
+                continue;
+            }
+            if ($action === 'enable' && !$style->is_enabled) {
+                $style->is_enabled = true;
+                $style->update();
+                $count++;
+            } elseif ($action === 'disable' && $style->is_enabled) {
+                $style->is_enabled = false;
+                $style->update();
+                $count++;
+            } elseif ($action === 'delete') {
+                $style->delete();
+                $count++;
+            }
+        }
+        return redirect()
+            ->route('campaign_styles.index')
+            ->with('success', trans_choice('campaigns/styles.bulks.' . $action, $count, ['count' => $count]))
+            ;
     }
 }

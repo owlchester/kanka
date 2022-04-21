@@ -220,8 +220,9 @@ return [
         App\Providers\CacheServiceProvider::class,
         App\Providers\ImgServiceProvider::class,
         App\Providers\AttributesServiceProvider::class,
-        \App\Providers\DashboardServiceProvider::class,
-        \App\Providers\DatalayerServiceProvider::class,
+        App\Providers\DashboardServiceProvider::class,
+        App\Providers\DatalayerServiceProvider::class,
+        App\Providers\DatagridRendererProvider::class,
     ],
 
     /*

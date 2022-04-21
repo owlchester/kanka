@@ -1,4 +1,5 @@
-<?php /** @var \App\Models\CampaignStyle $style */?>
+<?php /** @var \App\Models\CampaignStyle $style */
+use App\Facades\Datagrid ?>
 @extends('layouts.app', [
     'title' => trans('campaigns/styles.title', ['campaign' => $campaign->name]),
     'breadcrumbs' => [
@@ -27,6 +28,9 @@
                     </div>
                 </div>
             @else
+
+            @php \App\Facades\Datagrid::layout(\App\Renderers\Layouts\Campaign\Theme::class)->permissions(false) @endphp
+            @if(Datagrid::hasBulks()) {!! Form::open(['route' => 'campaign_styles.bulk']) !!} @endif
             <div class="box box-solid">
                 <div class="box-header with-border">
                     <h3 class="box-title">{{ __('campaigns.show.tabs.styles') }}</h3>
@@ -53,72 +57,37 @@
                         </p>
                     </div>
                 @else
-                <div class="box-body no-padding">
-
-                    <table class="table table-hover">
+                    <div class="box-body no-padding">
+                        <table class="table table-hover">
                         <thead>
-                        <tr>
-                            <th>{{ __('campaigns/styles.fields.name') }}</th>
-                            <th class="hidden-xs">{{ __('campaigns/styles.fields.length') }}</th>
-                            <th class="hidden-xs">{{ __('campaigns/styles.fields.modified') }}</th>
-                            <th>{{ __('campaigns/styles.fields.is_enabled') }}</th>
-                            <th></th>
-                        </tr>
+                            <tr>
+                            @foreach (Datagrid::headers() as $header)
+                                @include('layouts.datagrid._header')
+                            @endforeach
+                            </tr>
                         </thead>
                         <tbody>
                         @foreach ($styles as $style)
                             <tr>
-                                <td>
-                                    <a href="{{ route('campaign_styles.edit', $style) }}">{!! $style->name !!}</a>
-                                </td>
-                                <td class="hidden-xs">
-                                    {{ number_format(strlen($style->content)) }}
-                                </td>
-                                <td class="hidden-xs">
-                                    {{ $style->updated_at->diffForHumans() }}
-                                </td>
-                                <td>
-                                    @if($style->is_enabled)
-                                        <i class="fa fa-check-circle"></i>
-                                    @endif
-                                </td>
-                                <td class="text-right">
-                                    <div class="dropdown">
-                                        <a class="dropdown-toggle btn btn-xs btn-default" data-toggle="dropdown" aria-expanded="false" data-placement="right" href="#">
-                                            <i class="fa fa-ellipsis-h" data-tree="escape"></i>
-                                            <span class="sr-only">{{ __('crud.actions.actions') }}</span>
-                                        </a>
-                                        <ul class="dropdown-menu dropdown-menu-right" role="menu">
-                                            <li>
-                                                <a href="{{ route('campaign_styles.edit', [$style]) }}">
-                                                    <i class="fa fa-pencil"></i> {{ __('crud.edit') }}
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#" class="text-red delete-confirm" data-toggle="modal" data-name="{!! $style->name !!}"
-                                                   data-target="#delete-confirm" data-delete-target="delete-form-{{ $style->id }}">
-                                                    <i class="fa fa-trash" aria-hidden="true"></i>
-                                                    {{ __('crud.remove') }}
-                                                </a>
-
-                                                {!! Form::open(['method' => 'DELETE','route' => ['campaign_styles.destroy', $style], 'style '=> 'display:inline', 'id' => 'delete-form-' . $style->id]) !!}
-                                                {!! Form::close() !!}
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </td>
+                            @foreach (Datagrid::columns($style) as $column)
+                                @include('layouts.datagrid._column')
+                            @endforeach
                             </tr>
                         @endforeach
                         </tbody>
                     </table>
-                </div>
-                @if ($styles->hasPages())
+                    </div>
+                    @if ($styles->hasPages() || Datagrid::hasBulks())
                     <div class="box-footer text-right">
+                        <div class="pull-left">
+                            @includeWhen(Datagrid::hasBulks(), 'layouts.datagrid.bulks')
+                        </div>
                         {!! $styles->links() !!}
                     </div>
-                @endif
+                    @endif
                 @endif
             </div>
+            @if(Datagrid::hasBulks()) {!! Form::close() !!} @endif
             @endif
         </div>
     </div>
@@ -126,6 +95,8 @@
 
 
 @section('modals')
+
+    @include('layouts.datagrid.delete-forms', ['models' => Datagrid::deleteForms()])
 
     <div class="modal fade" id="theming-help" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmLabel">
         <div class="modal-dialog" role="document">

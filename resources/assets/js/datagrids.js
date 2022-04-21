@@ -1,6 +1,8 @@
 // id="datagrids-bulk-actions-permissions"
 // id="datagrids-bulk-actions-edit
 
+var datagrid2DeleteConfirm = false;
+var datagrid2Form;
 
 $(document).ready(function () {
     // Multi-delete
@@ -28,6 +30,7 @@ $(document).ready(function () {
 
     registerBulkActions();
     toggleCrudMultiDelete();
+    registerDatagrids2();
 });
 
 /**
@@ -90,4 +93,38 @@ function toggleCrudMultiDelete()
     } else {
         $('.datagrid-bulk-actions .btn').prop('disabled', false).removeClass('disabled');
     }
+}
+
+function registerDatagrids2()
+{
+    $('.datagrid-submit').click(function (e) {
+        e.preventDefault();
+
+        datagrid2Form = $(this).closest('form');
+        //console.log('form', form);
+
+        let action = datagrid2Form.find('input[name="action"]');
+        action.val($(this).data('action'));
+
+        //console.log('action', action);
+        //console.log('me', $(this).data('action'));
+
+        if ($(this).data('action') === 'delete') {
+            if (datagrid2DeleteConfirm === false) {
+                $('#datagrid-bulk-delete').modal();
+                return false;
+            }
+        }
+
+
+        // Disable the whole dropdown and replace it with a spinning wheel
+        $('.datagrid-bulk-actions').hide();
+        $('.datagrid-spinner').show();
+        datagrid2Form.submit();
+    });
+
+    $('#datagrid-action-confirm').click(function (e) {
+        $('#datagrid-bulk-delete').modal('hide');
+        datagrid2Form.submit();
+    });
 }

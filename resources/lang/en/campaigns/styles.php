@@ -4,6 +4,13 @@ return [
     'actions'   => [
         'current'   => 'Current theme: :theme',
         'new'       => 'New style',
+        'enable'    => 'Enable',
+        'disable'   => 'Disable',
+    ],
+    'bulks' => [
+        'enable' => '{1} Enabled :count style.|[2,*] Enabled :count styles.',
+        'disable' => '{1} Disabled :count style.|[2,*] Disabled :count styles.',
+        'delete' => '{1} Deleted :count style.|[2,*] Deleted :count styles.',
     ],
     'create'    => [
         'success'   => 'New style created.',
