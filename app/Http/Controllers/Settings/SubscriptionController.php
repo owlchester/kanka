@@ -4,6 +4,7 @@
 namespace App\Http\Controllers\Settings;
 
 
+use App\Facades\DataLayer;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Settings\UserAltSubscribeStore;
 use App\Http\Requests\Settings\UserSubscribeStore;
@@ -48,6 +49,7 @@ class SubscriptionController extends Controller
         $gaTrackingEvent = null;
         if (!empty($tracking)) {
             $gaTrackingEvent = 'TJhYCMDErpYDEOaOq7oC';
+            DataLayer::newSubscriber();
         }
 
         return view('settings.subscription.index', compact(

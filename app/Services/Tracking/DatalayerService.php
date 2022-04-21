@@ -7,6 +7,9 @@ class DatalayerService
     /** @var bool|string */
     protected $group = false;
 
+    protected $newAccount = false;
+    protected $newSubcriber = false;
+
     /**
      * @return string
      */
@@ -18,6 +21,8 @@ class DatalayerService
             'userTier' => null,
             'userSubbed' => false,
             'route' => $this->route(),
+            'newAccount' => $this->newAccount,
+            'newSubscriber' => $this->newSubcriber,
         ];
         if (auth()->check()) {
             $data['userType'] = 'registered';
@@ -69,5 +74,17 @@ class DatalayerService
             return '';
         }
         return (string) request()->route()->getName();
+    }
+
+    public function newSubscriber(): self
+    {
+        $this->newSubcriber = true;
+        return $this;
+    }
+
+    public function newAccount(): self
+    {
+        $this->newAccount = true;
+        return $this;
     }
 }
