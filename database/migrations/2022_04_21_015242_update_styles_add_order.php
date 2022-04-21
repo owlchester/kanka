@@ -14,9 +14,9 @@ class UpdateStylesAddOrder extends Migration
     public function up()
     {
         Schema::table('campaign_styles', function (Blueprint $table) {
-            //$table->unsignedTinyInteger('order')->nullable();
+            $table->unsignedTinyInteger('order')->nullable();
             $table->dropIndex('campaign_styles_is_enabled_index');
-            $table->index(['order', 'is_enabled']);
+            $table->indKex(['order', 'is_enabled']);
         });
     }
 
