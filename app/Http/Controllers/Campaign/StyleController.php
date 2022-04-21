@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Campaign;
 
 use App\Facades\CampaignCache;
 use App\Facades\CampaignLocalization;
+use App\Facades\Datagrid;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ReorderStyles;
 use App\Http\Requests\StoreCampaignStyle;
@@ -31,11 +32,28 @@ class StyleController extends Controller
         $this->service = $userService;
     }
 
+    /**
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\JsonResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
     public function index()
     {
         $campaign = CampaignLocalization::getCampaign();
         $this->authorize('recover', $campaign);
         $styles = $campaign->styles()->sort(request()->only(['o', 'k']))->take(self::MAX_THEMES)->get();
+        Datagrid::layout(\App\Renderers\Layouts\Campaign\Theme::class)->permissions(false);
+
+        // Ajax Datagrid
+        if (request()->ajax()) {
+            $html = view('campaigns.styles._table')->with('styles', $styles)->render();
+            $deletes = view('layouts.datagrid.delete-forms')->with('models', Datagrid::deleteForms())->render();
+            return response()->json([
+                'success' => true,
+                'html' => $html,
+                'deletes' => $deletes,
+            ]);
+        }
+
         $theme = $campaign->theme;
         $reorderStyles = $campaign->styles()->defaultOrder()->take(self::MAX_THEMES)->get();
 

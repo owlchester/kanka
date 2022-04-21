@@ -297,6 +297,7 @@ return [
         'UserCache' => App\Facades\UserCache::class,
         'Img' => App\Facades\Img::class,
         'Attributes' => App\Facades\Attributes::class,
+        'Datagrid' => App\Facades\Datagrid::class,
     ],
 
 ];

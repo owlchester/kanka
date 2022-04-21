@@ -81316,6 +81316,7 @@ function keepAlivePulse() {
 // id="datagrids-bulk-actions-edit
 var datagrid2DeleteConfirm = false;
 var datagrid2Form;
+var datagrid2Table;
 $(document).ready(function () {
   // Multi-delete
   var crudDelete = $('#datagrid-select-all');
@@ -81430,6 +81431,39 @@ function registerDatagrids2() {
   $('#datagrid-action-confirm').click(function (e) {
     $('#datagrid-bulk-delete').modal('hide');
     datagrid2Form.submit();
+  });
+  initDatagrid2Ajax();
+}
+
+function initDatagrid2Ajax() {
+  $.each($('table[data-render="datagrid2"]'), function (i) {
+    datagrid2Table = $(this);
+    $(this).find('thead a').click(function (e) {
+      e.preventDefault();
+      datagrid2Reorder($(this));
+    });
+  });
+}
+
+function datagrid2Reorder(ele) {
+  var _ele$data;
+
+  datagrid2Table.find('thead').hide();
+  datagrid2Table.find('tbody').hide();
+  datagrid2Table.find('tfoot').fadeIn();
+  var url = ele.attr('href');
+  var target = (_ele$data = ele.data('target')) !== null && _ele$data !== void 0 ? _ele$data : '#datagrid-parent';
+  $.ajax(url).done(function (res) {
+    //console.log('res', res);
+    if (res.html) {
+      $(target).html(res.html);
+      $('#datagrid-delete-forms').html(res.deletes);
+    }
+
+    initDatagrid2Ajax();
+  }).fail(function (err) {
+    console.error('datagrid2', err);
+    datagrid2Table.find('tfoot').addClass('bg-danger');
   });
 }
 
