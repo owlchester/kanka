@@ -433,7 +433,7 @@ Route::post('/campaign-theme', 'Campaign\StyleController@themeSave')->name('camp
 Route::get('/campaign-export', 'Campaign\ExportController@index')->name('campaign_export');
 Route::post('/campaign-export', 'Campaign\ExportController@export')->name('campaign_export.save');
 Route::get('/campaign.styles', 'CampaignController@css')->name('campaign.css');
-Route::get('/campaign_plugin.styles', 'Campaign\CampaignPluginController@css')->name('campaign_plugins.css');
+Route::get('/campaign_plugin.styles', 'Campaign\PluginController@css')->name('campaign_plugins.css');
 
 // Campaign sidebar setup
 Route::get('/sidebar-setup', 'Campaign\SidebarController@index')->name('campaign-sidebar');

@@ -137,7 +137,12 @@
                 this.deleteAbility(ability);
             });
             this.json_trans = JSON.parse(this.trans);
+        },
 
+        updated() {
+            // Add the ajax tooltip listener when the dom is updated (for example when displaying
+            // children abilities)
+            window.ajaxTooltip();
         }
     }
 </script>

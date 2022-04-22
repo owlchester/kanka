@@ -31,7 +31,8 @@
                             </li>
                         </template>
                     </dropdown>
-                    <a role="button" v-on:click="showAbility(ability)">
+                    <a role="button" v-on:click="showAbility(ability)" data-toggle="tooltip-ajax"
+                       v-bind:data-id="ability.entity.id" v-bind:data-url="ability.entity.tooltip">
                       {{ ability.name }}
                     </a>
                 </span>
@@ -49,6 +50,9 @@
               </div>
             </div>
             <div class="box-body">
+                <a class="ability-image cover-background" v-if="ability.images.has" target="_blank" v-bind:href="ability.images.url"
+                     v-bind:style="backgroundImage">
+                </a>
                 <span class="help-block">{{ ability.type }}</span>
 
                 <div v-html="ability.entry"></div>
@@ -120,6 +124,14 @@
             },
             isSelf: function() {
                 return this.meta.user_id == this.ability.created_by;
+            },
+            backgroundImage: function() {
+                if (this.ability.images.thumb) {
+                    return {
+                        backgroundImage: 'url(' + this.ability.images.thumb + ')'
+                    }
+                }
+                return {}
             }
         },
 
@@ -172,6 +184,6 @@
             translate(key) {
                 return this.trans[key] ?? 'unknown';
             }
-        }
+        },
     }
 </script>

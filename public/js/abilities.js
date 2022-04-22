@@ -229,6 +229,11 @@ __webpack_require__.r(__webpack_exports__);
       _this3.deleteAbility(ability);
     });
     this.json_trans = JSON.parse(this.trans);
+  },
+  updated: function updated() {
+    // Add the ajax tooltip listener when the dom is updated (for example when displaying
+    // children abilities)
+    window.ajaxTooltip();
   }
 });
 
@@ -244,6 +249,10 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _event_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../event.js */ "./resources/assets/js/components/event.js");
+//
+//
+//
+//
 //
 //
 //
@@ -357,6 +366,15 @@ __webpack_require__.r(__webpack_exports__);
     },
     isSelf: function isSelf() {
       return this.meta.user_id == this.ability.created_by;
+    },
+    backgroundImage: function backgroundImage() {
+      if (this.ability.images.thumb) {
+        return {
+          backgroundImage: 'url(' + this.ability.images.thumb + ')'
+        };
+      }
+
+      return {};
     }
   },
   methods: {
@@ -6272,7 +6290,12 @@ var render = function() {
             _c(
               "a",
               {
-                attrs: { role: "button" },
+                attrs: {
+                  role: "button",
+                  "data-toggle": "tooltip-ajax",
+                  "data-id": _vm.ability.entity.id,
+                  "data-url": _vm.ability.entity.tooltip
+                },
                 on: {
                   click: function($event) {
                     return _vm.showAbility(_vm.ability)
@@ -6327,6 +6350,14 @@ var render = function() {
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "box-body" }, [
+        _vm.ability.images.has
+          ? _c("a", {
+              staticClass: "ability-image cover-background",
+              style: _vm.backgroundImage,
+              attrs: { target: "_blank", href: _vm.ability.images.url }
+            })
+          : _vm._e(),
+        _vm._v(" "),
         _c("span", { staticClass: "help-block" }, [
           _vm._v(_vm._s(_vm.ability.type))
         ]),

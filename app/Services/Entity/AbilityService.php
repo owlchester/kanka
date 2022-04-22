@@ -47,7 +47,12 @@ class AbilityService
         /** @var EntityAbility $ability */
         $abilities = $this->entity->abilities()
             ->select('entity_abilities.*')
-            ->with(['ability', 'ability.entity', 'ability.entity.attributes', 'ability.ability', 'ability.ability.entity'])
+            ->with(['ability',
+                // entity
+                'ability.entity', 'ability.entity.image', 'ability.entity.attributes',
+                // parent
+                'ability.ability', 'ability.ability.entity'
+            ])
             ->join('abilities as a', 'a.id', 'entity_abilities.ability_id')
             ->defaultOrder()
             ->get();
@@ -156,12 +161,21 @@ class AbilityService
             'visibility' => $entityAbility->visibility,
             'created_by' => $entityAbility->created_by,
             'attributes' => $this->attributes($entityAbility->ability->entity),
+            'images' => [
+                'has' => !empty($entityAbility->ability->image) || $entityAbility->ability->entity->image,
+                'thumb' => $entityAbility->ability->getImageUrl(120),
+                'url' => $entityAbility->ability->getOriginalImageUrl(),
+            ],
             'actions' => [
                 'edit' => route('entities.entity_abilities.edit', [$this->entity, $entityAbility]),
                 'update' => route('entities.entity_abilities.update', [$this->entity, $entityAbility]),
                 'delete' => route('entities.entity_abilities.destroy', [$this->entity, $entityAbility]),
                 'view' => route('abilities.show', $entityAbility->ability_id),
             ],
+            'entity' => [
+                'id' => $entityAbility->ability->entity->id,
+                'tooltip' => route('entities.tooltip', $entityAbility->ability->entity->id)
+            ]
         ];
 
         if (!empty($entityAbility->ability->charges)) {
