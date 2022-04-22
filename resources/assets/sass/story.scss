@@ -18,6 +18,13 @@
     .name {
       overflow: hidden;
       //align-self: flex-start;
+
+      i {
+        min-width: 20px;
+      }
+      i.ra {
+        display: var(--fa-display,inline-block);
+      }
     }
 
     .icons {

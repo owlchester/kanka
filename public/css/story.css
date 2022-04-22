@@ -19,6 +19,14 @@
   overflow: hidden;
 }
 
+.element-live-reorder .element .name i {
+  min-width: 20px;
+}
+
+.element-live-reorder .element .name i.ra {
+  display: var(--fa-display, inline-block);
+}
+
 .element-live-reorder .element .icons {
   margin-left: auto;
 }
