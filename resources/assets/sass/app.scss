@@ -595,6 +595,7 @@ summary { display: list-item; }
 .skip-nav-link {
   position: absolute;
   left: .5rem;
+  top: -2px;
   border-radius: 0 0 0.25rem 0.25rem;
   padding: 0.5rem 1rem;
   background-color: white;
@@ -604,6 +605,7 @@ summary { display: list-item; }
   z-index: 1040;
 
   &:focus {
+    top: 0;
     transform: translateY(0);
   }
 }
