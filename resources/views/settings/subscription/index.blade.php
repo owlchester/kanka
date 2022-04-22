@@ -312,9 +312,19 @@
             <p class="help-block">
                 {!! __('settings.subscription.trial_period', ['email' => link_to('mailto:' .  config('app.email'), config('app.email'))]) !!}
             </p>
+            <hr />
+            <p class="help-block">
+                {!! __('settings.subscription.helpers.paypal', ['email' => link_to('mailto:' .  config('app.email'), config('app.email'))]) !!}
+            </p>
         </div>
     </div>
 
+
+    <input type="hidden" id="stripe-token" value="{{ config('services.stripe.key') }}" />
+@endsection
+
+@section('modals')
+    @parent
     <div class="modal fade" id="change-information" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -380,8 +390,6 @@
             <div class="modal-content"></div>
         </div>
     </div>
-
-    <input type="hidden" id="stripe-token" value="{{ config('services.stripe.key') }}" />
 @endsection
 
 
@@ -396,11 +404,6 @@
             'send_to': 'AW-659212134/z5nbCLmq0fsBEOaOq7oC',
             'transaction_id': '{{ auth()->user()->id }}'
         });
-        gtag('event', 'Subscribed', {'event_category': 'Users', 'event_label': 'Group {{ \App\Facades\DataLayer::userGroup() }}'});
-    </script>
-@elseif($tracking == 'cancel')
-    <script>
-        gtag('event', 'Cancelled', {'event_category': 'Users', 'event_label': 'Group {{ \App\Facades\DataLayer::userGroup() }}'});
     </script>
 @endif
 @endsection

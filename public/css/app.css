@@ -1240,6 +1240,10 @@ summary {
   transform: translateY(0);
 }
 
+.main-header .navbar a:focus {
+  color: var(--link-text) !important;
+}
+
 /** Toast **/
 
 :root {
