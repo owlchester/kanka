@@ -71393,9 +71393,8 @@ $(document).ready(function (e) {
 
 function initFormBlocker() {
   $('form.submit-lock').on('submit', function (e) {
-    var btn = $(this).find('.btn-primary');
-    btn.prop('disabled', true);
-    btn.html('<i class="fas fa-spin fa-spinner"></i>');
+    $(this).find('.btn-save').hide();
+    $(this).find('.btn-wait').show();
     return true;
   });
 }

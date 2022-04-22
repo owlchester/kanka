@@ -61,9 +61,14 @@
                 @endif
 
 
-                <button type="submit" class="btn btn-primary pull-right">
-                    {{ __('auth.register.submit') }}
-                </button>
+                <div class="pull-right">
+                    <button type="submit" class="btn btn-primary btn-save">
+                        {{ __('auth.register.submit') }}
+                    </button>
+                    <div class="btn btn-primary btn-wait disabled" style="display: none;">
+                        <i class="fa-solid fa-spinner fa-spin"></i>
+                    </div>
+                </div>
             </div>
         </div>
 
