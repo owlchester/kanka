@@ -290,7 +290,7 @@ function registerFormSubmitAnimation() {
                     } else {
                         $(this)
                             .data('reset', $(this).html())
-                            .html('<i class="fa fa-spinner fa-spin"></i>')
+                            .html('<i class="fa-solid fa-spinner fa-spin"></i>')
                             .prop('disabled', true);
                     }
                 });
@@ -897,7 +897,7 @@ function registerEditWarning() {
 }
 
 function confirmEditWarningModal() {
-    multiEditingModal.find('.modal-body').html('<div class="text-center"><i class="fa fa-spinner fa-spin fa-2x"></i></div>')
+    multiEditingModal.find('.modal-body').html('<div class="text-center"><i class="fa-solid fa-spinner fa-spin fa-2x"></i></div>')
     multiEditingModal.find('.modal-footer').hide();
 }
 

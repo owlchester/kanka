@@ -2,7 +2,7 @@
     <div>
 
         <div v-show="paymentMethodsLoadStatus != 2" class="text-center">
-            <i class="fa fa-spin fa-spinner"></i>
+            <i class="fa-solid fa-spin fa-spinner"></i>
         </div>
         <div v-show="paymentMethodsLoadStatus == 2
     && paymentMethods.length > 0">
@@ -20,7 +20,7 @@
                         </div>
                         <div class="col-xs-3 text-right">
                             <span v-on:click.stop="removePaymentMethod( method.id )" title="Remove" class="text-red">
-                                <i class="fa fa-trash"></i>
+                                <i class="fa-solid fa-trash"></i>
                             </span>
                         </div>
                     </div>
@@ -61,7 +61,7 @@
                                     {{ translate('actions.save') }}
                                 </button>
                                 <button class="btn btn-primary" v-show="savePaymentMethodStatus != 0" disabled="disabled">
-                                    <i class="fa fa-spin fa-spinner"></i>
+                                    <i class="fa-solid fa-spin fa-spinner"></i>
                                 </button>
                             </div>
 

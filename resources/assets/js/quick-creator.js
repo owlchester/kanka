@@ -69,7 +69,7 @@ function quickCreatorLoadingModal() {
         .html(
             '<div class="modal-body">' +
             '<div class="text-center">' +
-            '<i class="fa fa-spinner fa-spin fa-2x"></i>' +
+            '<i class="fa-solid fa-spinner fa-spin fa-2x"></i>' +
             '</div>' +
             '</div>'
         );
@@ -95,7 +95,7 @@ function quickCreatorSubformHandler() {
         e.preventDefault();
         quickCreatorSubmitBtn
             .prop('disabled', true)
-            .html('<i class="fas fa-spinner fa-spin"></i>');
+            .html('<i class="fa-solid fa-spinner fa-spin"></i>');
 
         // Allow ajax requests to use the X_CSRF_TOKEN for deletes
         $.ajaxSetup({

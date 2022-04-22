@@ -485,7 +485,7 @@ class SubscriptionService
             $this->user->notify(
                 new Header(
                     'subscriptions.started',
-                    'fas fa-credit-card',
+                    'fa-solid fa-credit-card',
                     'green'
                 )
             );
@@ -494,7 +494,7 @@ class SubscriptionService
             $this->user->notify(
                 new Header(
                     'subscriptions.charge_fail',
-                    'fas fa-credit-card',
+                    'fa-solid fa-credit-card',
                     'red'
                 )
             );

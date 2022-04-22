@@ -79,7 +79,7 @@ function initConfirmListener()
         }
 
         e.preventDefault();
-        formSubmitBtn.addClass('disabled').html('<i class="fa fa-spin fa-spinner"></i>');
+        formSubmitBtn.addClass('disabled').html('<i class="fa-solid fa-spin fa-spinner"></i>');
 
         let intentToken = $('input[name="subscription-intent-token"]');
         let errorMessage = $('.alert-danger');
@@ -117,7 +117,7 @@ function initConfirmListener()
     });
 
     $('.subscription-form').submit(function (e) {
-        formSubmitBtn.addClass('disabled').html('<i class="fa fa-spin fa-spinner"></i>');
+        formSubmitBtn.addClass('disabled').html('<i class="fa-solid fa-spin fa-spinner"></i>');
 
         return true;
     });
@@ -150,7 +150,7 @@ function checkCoupon() {
     let url = couponField.data('url');
     couponBtnOriginalText = couponBtn.html();
 
-    couponBtn.html('<i class="fas fa-span fa-spinner"></i>')
+    couponBtn.html('<i class="fa-solid fa-span fa-spinner"></i>')
         .prop('disabled', true);
 
     if (!coupon) {

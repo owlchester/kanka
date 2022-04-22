@@ -305,7 +305,7 @@ function initMapForms() {
 }
 
 function showSidebar() {
-  var spinner = '<div class="text-center"><i class="fa fa-spin fa-spinner fa-2x"></i></div>'; // On mobile use the modal instead of the sidebar
+  var spinner = '<div class="text-center"><i class="fa-solid fa-spin fa-spinner fa-2x"></i></div>'; // On mobile use the modal instead of the sidebar
 
   if (window.kankaIsMobile.matches) {
     markerModalContent.html(spinner);

@@ -5812,7 +5812,7 @@ var render = function() {
         ],
         staticClass: "text-center"
       },
-      [_c("i", { staticClass: "fa fa-spin fa-spinner" })]
+      [_c("i", { staticClass: "fa-solid fa-spin fa-spinner" })]
     ),
     _vm._v(" "),
     _c(
@@ -5873,7 +5873,7 @@ var render = function() {
                         }
                       }
                     },
-                    [_c("i", { staticClass: "fa fa-trash" })]
+                    [_c("i", { staticClass: "fa-solid fa-trash" })]
                   )
                 ])
               ])
@@ -6074,7 +6074,11 @@ var render = function() {
                           staticClass: "btn btn-primary",
                           attrs: { disabled: "disabled" }
                         },
-                        [_c("i", { staticClass: "fa fa-spin fa-spinner" })]
+                        [
+                          _c("i", {
+                            staticClass: "fa-solid fa-spin fa-spinner"
+                          })
+                        ]
                       )
                     ]),
                     _vm._v(" "),

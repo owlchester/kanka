@@ -6319,13 +6319,13 @@ var render = function() {
       _vm._v(" "),
       _vm.loadingPrevious
         ? _c("div", { staticClass: "load more text-center" }, [
-            _c("i", { staticClass: "fa fa-spin fa-spinner" })
+            _c("i", { staticClass: "fa-solid fa-spin fa-spinner" })
           ])
         : _vm._e(),
       _vm._v(" "),
       _vm.initializing
         ? _c("div", { staticClass: "load more text-center" }, [
-            _c("i", { staticClass: "fa fa-spin fa-spinner fa-4x" })
+            _c("i", { staticClass: "fa-solid fa-spin fa-spinner fa-4x" })
           ])
         : _vm._e(),
       _vm._v(" "),
@@ -6338,7 +6338,7 @@ var render = function() {
       _vm._v(" "),
       _vm.sending
         ? _c("div", { staticClass: "text-center" }, [
-            _c("i", { staticClass: "fa fa-spin fa-spinner" })
+            _c("i", { staticClass: "fa-solid fa-spin fa-spinner" })
           ])
         : _vm._e()
     ],

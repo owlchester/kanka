@@ -14,7 +14,7 @@ function registerToastDismiss() {
 window.showToast = function(message, css) {
     css = css || 'toast-success';
     let $container = $('<div class="' + css + '">');
-    $container.html('<span class="toast-message">' + message + '<i class="fa fa-times" data-toggle="dismiss"></i></span');
+    $container.html('<span class="toast-message">' + message + '<i class="fa-solid fa-times" data-toggle="dismiss"></i></span');
 
 
     $('.toast-container').append($container);

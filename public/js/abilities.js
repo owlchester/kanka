@@ -6040,7 +6040,7 @@ var render = function() {
     [
       _vm.loading
         ? _c("div", { staticClass: "load more text-center" }, [
-            _c("i", { staticClass: "fa fa-spin fa-spinner" })
+            _c("i", { staticClass: "fa-solid fa-spin fa-spinner" })
           ])
         : _vm._e(),
       _vm._v(" "),
@@ -6110,7 +6110,7 @@ var render = function() {
       _vm._v(" "),
       _vm.waiting
         ? _c("div", { staticClass: "box-waiting" }, [
-            _c("i", { staticClass: "fa fa-spin fa-spinner fa-4x" })
+            _c("i", { staticClass: "fa-solid fa-spin fa-spinner fa-4x" })
           ])
         : _vm._e()
     ],
@@ -6163,35 +6163,35 @@ var render = function() {
                       [
                         _vm.ability.visibility === "admin"
                           ? _c("i", {
-                              staticClass: "fas fa-lock",
+                              staticClass: "fa-solid fa-lock",
                               attrs: { title: _vm.translate("admin") }
                             })
                           : _vm._e(),
                         _vm._v(" "),
                         _vm.ability.visibility === "admin-self"
                           ? _c("i", {
-                              staticClass: "fas fa-user-lock",
+                              staticClass: "fa-solid fa-user-lock",
                               attrs: { title: _vm.translate("admin-self") }
                             })
                           : _vm._e(),
                         _vm._v(" "),
                         _vm.ability.visibility === "members"
                           ? _c("i", {
-                              staticClass: "fas fa-users",
+                              staticClass: "fa-solid fa-users",
                               attrs: { title: _vm.translate("members") }
                             })
                           : _vm._e(),
                         _vm._v(" "),
                         _vm.ability.visibility === "self"
                           ? _c("i", {
-                              staticClass: "fas fa-user-secret",
+                              staticClass: "fa-solid fa-user-secret",
                               attrs: { title: _vm.translate("self") }
                             })
                           : _vm._e(),
                         _vm._v(" "),
                         _vm.ability.visibility === "all"
                           ? _c("i", {
-                              staticClass: "fa fa-eye",
+                              staticClass: "fa-solid fa-eye",
                               attrs: { title: _vm.translate("all") }
                             })
                           : _vm._e()
@@ -6327,7 +6327,7 @@ var render = function() {
                     }
                   }
                 },
-                [_c("i", { staticClass: "fa fa-pencil" })]
+                [_c("i", { staticClass: "fa-solid fa-pencil" })]
               )
             : _vm._e(),
           _vm._v(" "),
@@ -6343,7 +6343,7 @@ var render = function() {
                     }
                   }
                 },
-                [_c("i", { staticClass: "fa fa-trash" })]
+                [_c("i", { staticClass: "fa-solid fa-trash" })]
               )
             : _vm._e()
         ])
@@ -6403,7 +6403,7 @@ var render = function() {
               },
               [
                 !_vm.details
-                  ? _c("i", { staticClass: "fa fa-chevron-down" })
+                  ? _c("i", { staticClass: "fa-solid fa-chevron-down" })
                   : _vm._e()
               ]
             )
@@ -6430,7 +6430,9 @@ var render = function() {
                           att.type == "checkbox"
                             ? _c("dd", [
                                 att.value == 1
-                                  ? _c("i", { staticClass: "fa fa-check" })
+                                  ? _c("i", {
+                                      staticClass: "fa-solid fa-check"
+                                    })
                                   : _vm._e()
                               ])
                             : _c("dd", {
@@ -6457,7 +6459,7 @@ var render = function() {
               },
               [
                 _vm.details
-                  ? _c("i", { staticClass: "fa fa-chevron-up" })
+                  ? _c("i", { staticClass: "fa-solid fa-chevron-up" })
                   : _vm._e()
               ]
             )

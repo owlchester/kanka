@@ -48,7 +48,7 @@ $(document).ready(function() {
                 },
                 templateSelection : function (state, container) {
                     if (state.newTag) {
-                        return $('<span class="new-tag" title="' + $('#tags').data('new-tag') + '">' + state.text + ' <i class="fa fa-plus-circle"></i></span>');
+                        return $('<span class="new-tag" title="' + $('#tags').data('new-tag') + '">' + state.text + ' <i class="fa-solid fa-plus-circle"></i></span>');
                     }
 
                     let el = $(state.element);

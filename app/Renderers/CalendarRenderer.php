@@ -1069,12 +1069,12 @@ class CalendarRenderer
         // Full & New Moon
         $this->addMoonPhase($start, $moon, 'full', 'far fa-circle');
         $newMoon = $start + ($moon['fullmoon'] / 2);
-        $this->addMoonPhase($newMoon, $moon, 'new', 'fas fa-circle');
+        $this->addMoonPhase($newMoon, $moon, 'new', 'fa-solid fa-circle');
 
         if ($moon['fullmoon'] > 10) {
             $quarterMonth = $moon['fullmoon'] / 4;
-            $this->addMoonPhase($newMoon - $quarterMonth, $moon, 'waning', 'far fa-moon');
-            $this->addMoonPhase($newMoon + $quarterMonth, $moon, 'waxing', 'fas fa-moon');
+            $this->addMoonPhase($newMoon - $quarterMonth, $moon, 'waning', 'fa-regular fa-moon');
+            $this->addMoonPhase($newMoon + $quarterMonth, $moon, 'waxing', 'fa-solid fa-moon');
         }
     }
 
@@ -1084,7 +1084,7 @@ class CalendarRenderer
      * @param string $type = 'full
      * @param string $class = 'far fa-circle'
      */
-    protected function addMoonPhase(string $nextFullMoon, array $moon, string $type = 'full', string $class = 'far fa-circle')
+    protected function addMoonPhase(string $nextFullMoon, array $moon, string $type = 'full', string $class = 'fa-regular fa-circle')
     {
         // Moons can be float so we "floor" them
         $nextFullMoon = floor($nextFullMoon);

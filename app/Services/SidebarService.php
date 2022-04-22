@@ -140,7 +140,7 @@ class SidebarService
 
     protected $elements = [
         'dashboard' => [
-            'icon' => 'fas fa-th-large',
+            'icon' => 'fa-solid fa-th-large',
             'label' => 'sidebar.dashboard',
             'module' => false,
             'route' => 'dashboard',
@@ -258,7 +258,7 @@ class SidebarService
             'module' => false,
         ],
         'gallery' => [
-            'icon' => 'fas fa-images',
+            'icon' => 'fa-solid fa-images',
             'label' => 'sidebar.gallery',
             'perm' => 'gallery',
             'route' => 'campaign.gallery.index',

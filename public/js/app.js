@@ -80657,7 +80657,7 @@ function registerFormSubmitAnimation() {
           if ($(this).hasClass('dropdown-toggle')) {
             $(this).prop('disabled', true);
           } else {
-            $(this).data('reset', $(this).html()).html('<i class="fa fa-spinner fa-spin"></i>').prop('disabled', true);
+            $(this).data('reset', $(this).html()).html('<i class="fa-solid fa-spinner fa-spin"></i>').prop('disabled', true);
           }
         }); // Inject the selected option for the "workflow" (submit-action)
 
@@ -81259,7 +81259,7 @@ function registerEditWarning() {
 }
 
 function confirmEditWarningModal() {
-  multiEditingModal.find('.modal-body').html('<div class="text-center"><i class="fa fa-spinner fa-spin fa-2x"></i></div>');
+  multiEditingModal.find('.modal-body').html('<div class="text-center"><i class="fa-solid fa-spinner fa-spin fa-2x"></i></div>');
   multiEditingModal.find('.modal-footer').hide();
 }
 /**
@@ -81506,7 +81506,7 @@ function entityTooltip() {
     return cachedTooltips[id];
   }
 
-  var title = '<div class="center"><i class="fa fa-spinner fa-spin"></i></div>';
+  var title = '<div class="center"><i class="fa-solid fa-spinner fa-spin"></i></div>';
   $.ajax({
     url: $(this).data('url'),
     method: "GET",
@@ -81870,7 +81870,7 @@ function quickCreatorDuplicateName() {
 }
 
 function quickCreatorLoadingModal() {
-  $(quickCreatorModalID).find('.modal-content').html('<div class="modal-body">' + '<div class="text-center">' + '<i class="fa fa-spinner fa-spin fa-2x"></i>' + '</div>' + '</div>');
+  $(quickCreatorModalID).find('.modal-content').html('<div class="modal-body">' + '<div class="text-center">' + '<i class="fa-solid fa-spinner fa-spin fa-2x"></i>' + '</div>' + '</div>');
 }
 /**
  *
@@ -81887,7 +81887,7 @@ function quickCreatorSubformHandler() {
   quickCreatorExtraName();
   $('#entity-creator-form').submit(function (e) {
     e.preventDefault();
-    quickCreatorSubmitBtn.prop('disabled', true).html('<i class="fas fa-spinner fa-spin"></i>'); // Allow ajax requests to use the X_CSRF_TOKEN for deletes
+    quickCreatorSubmitBtn.prop('disabled', true).html('<i class="fa-solid fa-spinner fa-spin"></i>'); // Allow ajax requests to use the X_CSRF_TOKEN for deletes
 
     $.ajaxSetup({
       headers: {
@@ -82230,7 +82230,7 @@ $(document).ready(function () {
         },
         templateSelection: function templateSelection(state, container) {
           if (state.newTag) {
-            return $('<span class="new-tag" title="' + $('#tags').data('new-tag') + '">' + state.text + ' <i class="fa fa-plus-circle"></i></span>');
+            return $('<span class="new-tag" title="' + $('#tags').data('new-tag') + '">' + state.text + ' <i class="fa-solid fa-plus-circle"></i></span>');
           }
 
           var el = $(state.element);
@@ -82307,7 +82307,7 @@ function registerToastDismiss() {
 window.showToast = function (message, css) {
   css = css || 'toast-success';
   var $container = $('<div class="' + css + '">');
-  $container.html('<span class="toast-message">' + message + '<i class="fa fa-times" data-toggle="dismiss"></i></span');
+  $container.html('<span class="toast-message">' + message + '<i class="fa-solid fa-times" data-toggle="dismiss"></i></span');
   $('.toast-container').append($container);
   setTimeout(function () {
     $container.fadeOut();
@@ -82352,7 +82352,7 @@ function initTutorialButtons() {
 }
 
 function tutorialLoading() {
-  tutorialModal.find('.modal-content').first().html('<div class="modal-body text-center">' + '<i class="fa fa-spin fa-spinner fa-4x"></i>' + '</div>');
+  tutorialModal.find('.modal-content').first().html('<div class="modal-body text-center">' + '<i class="fa-solid fa-spin fa-spinner fa-4x"></i>' + '</div>');
 }
 
 function closeTutorialModal() {

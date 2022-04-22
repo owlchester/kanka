@@ -7,11 +7,11 @@
                 <span class="box-title">
                     <dropdown tag="a" menu-left class="message-options" v-if="permission">
                         <a class="dropdown-toggle" role="button">
-                            <i class="fas fa-lock" v-if="ability.visibility === 'admin'" v-bind:title="translate('admin')"></i>
-                            <i class="fas fa-user-lock" v-if="ability.visibility === 'admin-self'" v-bind:title="translate('admin-self')"></i>
-                            <i class="fas fa-users" v-if="ability.visibility === 'members'" v-bind:title="translate('members')"></i>
-                            <i class="fas fa-user-secret" v-if="ability.visibility === 'self'" v-bind:title="translate('self')"></i>
-                            <i class="fa fa-eye" v-if="ability.visibility === 'all'" v-bind:title="translate('all')"></i>
+                            <i class="fa-solid fa-lock" v-if="ability.visibility === 'admin'" v-bind:title="translate('admin')"></i>
+                            <i class="fa-solid fa-user-lock" v-if="ability.visibility === 'admin-self'" v-bind:title="translate('admin-self')"></i>
+                            <i class="fa-solid fa-users" v-if="ability.visibility === 'members'" v-bind:title="translate('members')"></i>
+                            <i class="fa-solid fa-user-secret" v-if="ability.visibility === 'self'" v-bind:title="translate('self')"></i>
+                            <i class="fa-solid fa-eye" v-if="ability.visibility === 'all'" v-bind:title="translate('all')"></i>
                         </a>
                         <template slot="dropdown">
                             <li>
@@ -42,10 +42,10 @@
                    v-if="this.canDelete"
                    class="btn btn-box-tool"
                   v-bind:title="translate('update')">
-                  <i class="fa fa-pencil"></i>
+                  <i class="fa-solid fa-pencil"></i>
                 </a>
                 <a class="btn btn-box-tool" role="button" v-on:click="deleteAbility(ability)" v-if="this.canDelete" v-bind:title="translate('remove')">
-                  <i class="fa fa-trash"></i>
+                  <i class="fa-solid fa-trash"></i>
                 </a>
               </div>
             </div>
@@ -69,7 +69,7 @@
 
                 <div class="text-center more-available" v-if="hasAttribute"
                      v-on:click="click(ability)">
-                    <i class="fa fa-chevron-down" v-if="!details"></i>
+                    <i class="fa-solid fa-chevron-down" v-if="!details"></i>
                 </div>
                 <div v-if="details && hasAttribute">
                     <dl class="dl-horizontal">
@@ -82,7 +82,7 @@
                             <div v-else>
                                 <dt>{{ att.name}}</dt>
                                 <dd v-if="att.type == 'checkbox'">
-                                    <i v-if="att.value == 1" class="fa fa-check"></i>
+                                    <i v-if="att.value == 1" class="fa-solid fa-check"></i>
                                 </dd>
                                 <dd v-else v-html="att.value"></dd>
                             </div>
@@ -91,7 +91,7 @@
                 </div>
                 <div class="text-center more-available" v-if="hasAttribute"
                      v-on:click="click(ability)">
-                    <i class="fa fa-chevron-up" v-if="details"></i>
+                    <i class="fa-solid fa-chevron-up" v-if="details"></i>
                 </div>
             </div>
         </div>

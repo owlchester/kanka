@@ -29,8 +29,8 @@ function registerPrivacyToggle() {
     $('.entity-private-toggle').click(function() {
         $(this).addClass('disabled');
 
-        let child = $(this).children('i.fa');
-        child.removeClass().addClass('fa fa-spin fa-spinner');
+        let child = $(this).children('i.fa-solid');
+        child.removeClass().addClass('fa-solid fa-spin fa-spinner');
 
         $.post({
             url: $(this).data('url'),

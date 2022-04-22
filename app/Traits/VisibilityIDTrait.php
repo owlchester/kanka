@@ -33,16 +33,16 @@ trait VisibilityIDTrait
 
         $class = $title = '';
         if ($this->visibility_id == Visibility::VISIBILITY_ADMIN) {
-            $class = 'fas fa-lock';
+            $class = 'fa-solid fa-lock';
             $title = __('crud.visibilities.admin');
         } elseif ($this->visibility_id == Visibility::VISIBILITY_SELF) {
-            $class = 'fas fa-user-secret';
+            $class = 'fa-solid fa-user-secret';
             $title = __('crud.visibilities.self');
         } elseif ($this->visibility_id == Visibility::VISIBILITY_ADMIN_SELF) {
-            $class = 'fas fa-user-lock';
+            $class = 'fa-solid fa-user-lock';
             $title = __('crud.visibilities.admin-self');
         } elseif ($this->visibility_id == Visibility::VISIBILITY_MEMBERS) {
-            $class = 'fas fa-users';
+            $class = 'fa-solid fa-users';
             $title = __('crud.visibilities.members');
         }
 

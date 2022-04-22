@@ -32,7 +32,7 @@ function initTutorialButtons() {
 function tutorialLoading() {
     tutorialModal.find('.modal-content').first().html(
         '<div class="modal-body text-center">' +
-        '<i class="fa fa-spin fa-spinner fa-4x"></i>' +
+        '<i class="fa-solid fa-spin fa-spinner fa-4x"></i>' +
         '</div>'
     );
 }

@@ -799,7 +799,7 @@ function formatShapeState(state) {
     return state.text;
   }
 
-  var $state = $('<span><i class="fas fa-' + state.id + '"></i> ' + state.text + '</span>');
+  var $state = $('<span><i class="fa-solid fa-' + state.id + '"></i> ' + state.text + '</span>');
   return $state;
 }
 /**

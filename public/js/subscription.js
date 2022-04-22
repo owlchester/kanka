@@ -169,7 +169,7 @@ function initConfirmListener() {
     }
 
     e.preventDefault();
-    formSubmitBtn.addClass('disabled').html('<i class="fa fa-spin fa-spinner"></i>');
+    formSubmitBtn.addClass('disabled').html('<i class="fa-solid fa-spin fa-spinner"></i>');
     var intentToken = $('input[name="subscription-intent-token"]');
     var errorMessage = $('.alert-danger');
     errorMessage.hide(); // If the form already has a payment id, we don't need stripe to add the new one
@@ -202,7 +202,7 @@ function initConfirmListener() {
     }.bind(this));
   });
   $('.subscription-form').submit(function (e) {
-    formSubmitBtn.addClass('disabled').html('<i class="fa fa-spin fa-spinner"></i>');
+    formSubmitBtn.addClass('disabled').html('<i class="fa-solid fa-spin fa-spinner"></i>');
     return true;
   });
   couponBtn = $('#coupon-check-btn');
@@ -232,7 +232,7 @@ function checkCoupon() {
   var coupon = couponField.val();
   var url = couponField.data('url');
   couponBtnOriginalText = couponBtn.html();
-  couponBtn.html('<i class="fas fa-span fa-spinner"></i>').prop('disabled', true);
+  couponBtn.html('<i class="fa-solid fa-span fa-spinner"></i>').prop('disabled', true);
 
   if (!coupon) {
     formSubmitBtn.removeClass('disabled').prop('disabled', false);
