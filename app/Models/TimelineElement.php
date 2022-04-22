@@ -162,7 +162,7 @@ class TimelineElement extends Model
             return '<i class="bg-' . $this->colour . ' ' . $this->icon . '"></i>';
         }
 
-        return '<i class="fa fas fa-hourglass-half bg-' . $this->colour . '"></i>';
+        return '<i class="fa fa-solid fa-hourglass-half bg-' . $this->colour . '"></i>';
     }
 
     /**

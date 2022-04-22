@@ -73,7 +73,7 @@ class EntityLink extends Model
     public function iconName(): string
     {
         if (empty($this->icon)) {
-            return 'fa fa-external-link';
+            return 'fa-solid fa-external-link';
         }
 
         return (string) $this->icon;

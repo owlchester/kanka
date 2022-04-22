@@ -13,13 +13,13 @@
             'label' => __('crud.fields.type'),
             'render' => function ($model) {
                 if ($model->isDashboard()) {
-                    return '<i class="fa fa-th-large"></i> ' . __('menu_links.fields.dashboard');
+                    return '<i class="fa-solid fa-th-large"></i> ' . __('menu_links.fields.dashboard');
                 } elseif ($model->isEntity()) {
                     return '<i class="ra ra-tower"></i> ' . __('menu_links.fields.entity');
                 } elseif ($model->isList()) {
-                    return '<i class="fa fa-th-list"></i> ' . __('menu_links.fields.type');
+                    return '<i class="fa-solid fa-th-list"></i> ' . __('menu_links.fields.type');
                 } elseif ($model->isRandom()) {
-                    return '<i class="fa fa-question"></i> ' . __('menu_links.fields.random');
+                    return '<i class="fa-solid fa-question"></i> ' . __('menu_links.fields.random');
                 }
                 return '';
             },

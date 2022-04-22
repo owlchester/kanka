@@ -1,6 +1,6 @@
 <div class="form-group">
     <label>
-        <i class="fas fa-rocket" title="{{ __('crud.tooltips.boosted_feature') }}" data-toggle="tooltip"></i>
+        <i class="fa-solid fa-rocket" title="{{ __('crud.tooltips.boosted_feature') }}" data-toggle="tooltip"></i>
         {{ __('fields.tooltip.name') }}
     </label>
 
@@ -19,7 +19,7 @@
 
 <div class="form-group">
     <label>
-        <i class="fas fa-rocket" title="{{ __('crud.tooltips.boosted_feature') }}" data-toggle="tooltip"></i>
+        <i class="fa-solid fa-rocket" title="{{ __('crud.tooltips.boosted_feature') }}" data-toggle="tooltip"></i>
         {{ __('fields.header-image.title') }}
     </label>
 

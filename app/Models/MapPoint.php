@@ -150,7 +150,7 @@ class MapPoint extends Model
     {
         $icon = $this->icon;
         if ($icon == 'pin' || ($icon == self::ICON_ENTITY && !$this->hasTarget())) {
-            return 'fa fa-map-marker';
+            return 'fa-solid fa-map-pin';
         } else {
             $icon = 'ra ra-' . e($this->icon);
         }

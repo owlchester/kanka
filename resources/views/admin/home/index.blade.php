@@ -25,7 +25,7 @@
 
         <div class="col-md-4 col-sm-6 col-xs-12">
             <div class="info-box">
-                <span class="info-box-icon bg-aqua"><i class="fa fa-globe"></i></span>
+                <span class="info-box-icon bg-aqua"><i class="fa-solid fa-globe"></i></span>
 
                 <div class="info-box-content">
                     <span class="info-box-text">Campaigns</span>

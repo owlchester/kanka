@@ -8,7 +8,7 @@ $old = old('entry');
 
         <a href="{{ route('helpers.link') }}" class="pull-right btn btn-default btn-sm"
            data-url="{{ route('helpers.link') }}" data-toggle="ajax-modal" data-target="#entity-modal" title="{{ __('helpers.link.description') }}">
-            <i class="fas fa-question-circle"></i> {{ __('crud.helpers.linking') }}
+            <i class="fa-solid fa-question-circle"></i> {{ __('crud.helpers.linking') }}
         </a>
     </label>
     {!! Form::textarea(

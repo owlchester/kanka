@@ -16,7 +16,7 @@
             </td>
             <td>
                 @if (!$model->is_visible)
-                    <i class="fas fa-eye-slash"></i>
+                    <i class="fa-solid fa-eye-slash"></i>
                 @endif
                 <a href="{{ route('admin.faq-categories.edit', $model) }}">
                     {{ $model->title }}
@@ -25,7 +25,7 @@
             <td>{{ $model->faqs->count() }}</td>
             <td class="text-right">
                 <a href="{{ route('admin.faq-categories.edit', $model) }}">
-                    <i class="fa fa-edit"></i>
+                    <i class="fa-solid fa-edit"></i>
                 </a>
             </td>
         </tr>

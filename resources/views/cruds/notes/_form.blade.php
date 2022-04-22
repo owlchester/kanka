@@ -34,7 +34,7 @@ $permissions = [
         </div>
 
         <div class="help-block">
-            {!! __('entities/notes.hints.reorder', ['icon' => '<i class="fas fa-cog"></i>']) !!}
+            {!! __('entities/notes.hints.reorder', ['icon' => '<i class="fa-solid fa-cog"></i>']) !!}
         </div>
     </div>
     <div class="col-md-6">

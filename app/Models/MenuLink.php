@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Facades\CampaignLocalization;
 use App\Facades\Dashboard;
 use App\Models\Concerns\Taggable;
 use App\Traits\CampaignTrait;
@@ -344,14 +345,15 @@ class MenuLink extends MiscModel
      */
     public function icon(): string
     {
-        if (!empty($this->icon)) {
+        $campaign = CampaignLocalization::getCampaign();
+        if (!empty($this->icon) && $campaign->boosted()) {
             return e($this->icon);
         } elseif ($this->target) {
-            return 'fa fa-arrow-circle-right';
+            return 'fa-solid fa-arrow-circle-right';
         } elseif ($this->isRandom()) {
-            return 'fa fa-question';
+            return 'fa-solid fa-question';
         }
-        return 'fa fa-th-list';
+        return 'fa-solid fa-th-list';
     }
 
     /**

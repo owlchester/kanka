@@ -189,7 +189,7 @@ class EntityEvent extends MiscModel
         $label = '';
 
         if ($this->is_recurring) {
-            $label .= '<i class="fa fa-refresh pull-right margin-l-5" data-toggle="tooltip" title="'
+            $label .= '<i class="fa-solid fa-refresh pull-right margin-l-5" data-toggle="tooltip" title="'
                 . trans('calendars.fields.is_recurring') . '"></i>';
         }
         if ($this->comment) {

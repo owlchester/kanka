@@ -38,7 +38,7 @@
                     </div>
                 </div>
                 <ol class="breadcrumb">
-                    <li><a href="{{route('home')}}"><i class="fa fa-dashboard"></i> {{ __('dashboard.title') }}</a></li>
+                    <li><a href="{{route('home')}}"><i class="fa-solid fa-dashboard"></i> {{ __('dashboard.title') }}</a></li>
                     @if (isset($breadcrumbs))
                     @foreach ($breadcrumbs as $breadcrumb)
                         <li>
@@ -86,7 +86,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">{{ __('crud.cancel') }}</button>
-                    <button type="button" class="btn btn-danger delete-confirm-submit"><span class="fa fa-trash"></span> {{ __('crud.delete_modal.delete') }}</button>
+                    <button type="button" class="btn btn-danger delete-confirm-submit"><span class="fa-solid fa-trash"></span> {{ __('crud.delete_modal.delete') }}</button>
                 </div>
             </div>
         </div>
@@ -123,7 +123,7 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">{{ __('crud.cancel') }}</button>
                 <button type="button" class="btn btn-outline delete-confirm-submit">
-                    <span class="fa fa-trash"></span>
+                    <span class="fa-solid fa-trash"></span>
                     <span class="delete-button-label">{{ __('crud.delete_modal.delete') }}</span>
                     <span class="remove-button-label" style="display: none">{{ __('crud.remove') }}</span>
                 </button>

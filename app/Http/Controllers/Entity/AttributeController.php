@@ -209,7 +209,7 @@ class AttributeController extends Controller
         if ($attribute->isText()) {
             $result = nl2br($result);
         } elseif ($attribute->isCheckbox()) {
-            $result = '<i class="fa fa-' . ($attribute->value ? 'check' : 'times') . '"></i>';
+            $result = '<i class="fa-solid fa-' . ($attribute->value ? 'check' : 'times') . '"></i>';
         }
         return response()->json([
             'value' => $result,

@@ -55,6 +55,7 @@
 .main-sidebar .sidebar-menu .sidebar-icon-link .ra,
 .main-sidebar .sidebar-menu .sidebar-icon-link .fa-solid,
 .main-sidebar .sidebar-menu .sidebar-icon-link .fa-regular,
+.main-sidebar .sidebar-menu .sidebar-icon-link .fa-brands,
 .main-sidebar .sidebar-menu .sidebar-icon-link .fa-light,
 .main-sidebar .sidebar-menu .sidebar-icon-link .fa-thin,
 .main-sidebar .sidebar-menu .sidebar-icon-link .fa-duotone {
@@ -82,6 +83,7 @@
 .main-sidebar .sidebar-menu li .fab,
 .main-sidebar .sidebar-menu li .fa-solid,
 .main-sidebar .sidebar-menu li .fa-regular,
+.main-sidebar .sidebar-menu li .fa-brands,
 .main-sidebar .sidebar-menu li .fa-light,
 .main-sidebar .sidebar-menu li .fa-thin,
 .main-sidebar .sidebar-menu li .fa-duotone {
@@ -144,6 +146,7 @@
 .skin-black .sidebar-menu .ra,
 .skin-black .sidebar-menu .fa-solid,
 .skin-black .sidebar-menu .fa-regular,
+.skin-black .sidebar-menu .fa-brands,
 .skin-black .sidebar-menu .fa-light,
 .skin-black .sidebar-menu .fa-thin,
 .skin-black .sidebar-menu .fa-duotone {
@@ -359,6 +362,7 @@ section.sidebar-campaign .campaign-block .campaign-head .campaign-updated {
 .main-sidebar .sidebar li .ra,
 .main-sidebar .sidebar li .fa-solid,
 .main-sidebar .sidebar li .fa-regular,
+.main-sidebar .sidebar li .fa-brands,
 .main-sidebar .sidebar li .fa-light,
 .main-sidebar .sidebar li .fa-thin,
 .main-sidebar .sidebar li .fa-duotone {

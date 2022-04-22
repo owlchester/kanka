@@ -119,7 +119,7 @@
         <div class="row">
             <div class="col-xs-12 footer-socials text-center">
                 <div class="email">
-                    <i class="fa fa-envelope hidden-xs"></i> {{ config('app.email') }}
+                    <i class="fa-solid fa-envelope hidden-xs"></i> {{ config('app.email') }}
                 </div>
 
                 <div class="socials">

@@ -15,7 +15,7 @@ $defaultIndex = ($currentCampaign && $currentCampaign->defaultToNested()) || aut
             <div class="campaign-block">
                 <div class="campaign-head">
                     <div class="campaign-name">
-                        @if(auth()->check())<i class="fa fa-caret-down pull-right"></i>@endif
+                        @if(auth()->check())<i class="fa-solid fa-caret-down pull-right"></i>@endif
                         {!! $currentCampaign->name !!}
                     </div>
 
@@ -85,7 +85,7 @@ $defaultIndex = ($currentCampaign && $currentCampaign->defaultToNested()) || aut
     @if (auth()->check() && $currentCampaign->userIsMember())
         <section class="sidebar-creator" data-toggle="tooltip" title="{{ __('entities.creator.tooltip') }}">
             <a href="#" data-url="{{ route('entity-creator.selection') }}" data-toggle="ajax-modal" data-target="#entity-modal">
-                <i class="fa fa-plus"></i> <span>{{ __('sidebar.new-entity') }}</span>
+                <i class="fa-solid fa-plus"></i> <span>{{ __('sidebar.new-entity') }}</span>
             </a>
         </section>
     @endif
@@ -95,8 +95,8 @@ $defaultIndex = ($currentCampaign && $currentCampaign->defaultToNested()) || aut
             <ul class="sidebar-menu tree" data-widget="tree">
                 @foreach (\App\Facades\UserCache::campaigns() as $userCampaign)
                     <li class="section-campaign section-campaign-{{ $userCampaign->id }}">
-                        <a href="{{ url(App::getLocale() . '/' . $userCampaign->getMiddlewareLink()) }}">
-                            <i class="fa fa-globe"></i>
+                        <a href="{{ url(app()->getLocale() . '/' . $userCampaign->getMiddlewareLink()) }}">
+                            <i class="fa-solid fa-globe"></i>
                             {!! $userCampaign->name !!}
                         </a>
                     </li>

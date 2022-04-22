@@ -16,7 +16,7 @@
             <td>
 
                 @if (!$model->is_visible)
-                    <i class="fas fa-eye-slash"></i>
+                    <i class="fa-solid fa-eye-slash"></i>
                 @endif
                 <a href="{{ route('admin.faqs.edit', $model) }}">
                 {{ $model->question }}
@@ -24,7 +24,7 @@
             </td>
             <td class="text-right">
                 <a href="{{ route('admin.faqs.edit', $model) }}" class="margin-r-5">
-                    <i class="fa fa-edit"></i>
+                    <i class="fa-solid fa-edit"></i>
                 </a>
             </td>
         </tr>

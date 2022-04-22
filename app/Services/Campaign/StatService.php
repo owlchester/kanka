@@ -57,7 +57,7 @@ class StatService
 
         $stats = [
             'characters' => [
-                'icon' => 'fa fa-user',
+                'icon' => 'fa-solid fa-user',
                 'amount' => $characters,
                 'target' => $this->target($characters),
                 'level' => $this->level($characters),
@@ -75,13 +75,13 @@ class StatService
                 'level' => $this->level($races),
             ],
             'families' => [
-                'icon' => 'fa fa-users',
+                'icon' => 'fa-solid fa-users',
                 'amount' => $families,
                 'target' => $this->target($families, 2),
                 'level' => $this->level($families, 2),
             ],
             'calendars' => [
-                'icon' => 'fa fa-calendar',
+                'icon' => 'fa-solid fa-calendar',
                 'amount' => $calendars,
                 'target' => $this->target($calendars, 3),
                 'level' => $this->level($calendars, 3),
@@ -190,7 +190,7 @@ class StatService
                 'goal' => __('campaigns/stats.achievements.calendars.goal'),
                 'amount' => $calendars,
                 'target' => 3,
-                'icon' => 'fa fa-calendar'
+                'icon' => 'fa-solid fa-calendar'
             ],
         ];
 

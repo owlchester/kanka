@@ -3,7 +3,7 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="{{ trans('crud.delete_modal.close') }}"><span aria-hidden="true">&times;</span></button>
         <h4>{{ $entityNote->name }}
         @if ($entityNote->is_private)
-            <i class="fas fa-lock" title="{{ __('crud.is_private') }}"></i>
+            <i class="fa-solid fa-lock" title="{{ __('crud.is_private') }}"></i>
         @endif
         </h4>
     </div>

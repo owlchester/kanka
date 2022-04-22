@@ -147,19 +147,19 @@ class SidebarService
             'fixed' => true,
         ],
         'menu_links' => [
-            'icon' => 'fa fa-star',
+            'icon' => 'fa-solid fa-star',
             'label' => 'entities.menu_links',
             'fixed' => true,
         ],
         'campaigns' => [
-            'icon' => 'fa fa-globe',
+            'icon' => 'fa-solid fa-globe',
             'label' => 'sidebar.world',
             'module' => false,
             'route' => 'campaign',
             'fixed' => true,
         ],
         'characters' => [
-            'icon' => 'fa fa-user',
+            'icon' => 'fa-solid fa-user',
             'label' => 'sidebar.characters',
         ],
         'locations' => [
@@ -168,7 +168,7 @@ class SidebarService
             'tree' => true,
         ],
         'maps' => [
-            'icon' => 'fas fa-map',
+            'icon' => 'fa-solid fa-map',
             'label' => 'entities.maps',
             'tree' => true,
         ],
@@ -183,12 +183,12 @@ class SidebarService
             'tree' => true,
         ],
         'calendars' => [
-            'icon' => 'fa fa-calendar',
+            'icon' => 'fa-solid fa-calendar',
             'label' => 'sidebar.calendars',
             'tree' => true,
         ],
         'timelines' => [
-            'icon' => 'fas fa-hourglass-half',
+            'icon' => 'fa-solid fa-hourglass-half',
             'label' => 'sidebar.timelines',
             'tree' => true,
         ],
@@ -198,7 +198,7 @@ class SidebarService
             'tree' => true,
         ],
         'campaign' => [
-            'icon' => 'fa fa-globe',
+            'icon' => 'fa-solid fa-globe',
             'label' => 'sidebar.campaign',
             'route' => 'campaign',
             'fixed' => true,
@@ -218,7 +218,7 @@ class SidebarService
             'label' => 'sidebar.items',
         ],
         'events' => [
-            'icon' => 'fa fa-bolt',
+            'icon' => 'fa-solid fa-bolt',
             'label' => 'sidebar.events',
         ],
         'abilities' => [
@@ -227,24 +227,24 @@ class SidebarService
             'tree' => true,
         ],
         'notes' => [
-            'icon' => 'fas fa-book-open',
+            'icon' => 'fa-solid fa-book-open',
             'label' => 'sidebar.notes',
             'tree' => true,
         ],
         'other' => [
-            'icon' => 'fas fa-cubes',
+            'icon' => 'fa-solid fa-cubes',
             'label' => 'sidebar.other',
             'module' => false,
             'route' => false,
             'fixed' => true,
         ],
         'tags' => [
-            'icon' => 'fa fa-tags',
+            'icon' => 'fa-solid fa-tags',
             'label' => 'sidebar.tags',
             'tree' => true,
         ],
         'conversations' => [
-            'icon' => 'fa fa-comment',
+            'icon' => 'fa-solid fa-comment',
             'label' => 'sidebar.conversations',
         ],
         'dice_rolls' => [
@@ -252,7 +252,7 @@ class SidebarService
             'label' => 'sidebar.dice_rolls',
         ],
         'relations' => [
-            'icon' => 'fas fa-people-arrows',
+            'icon' => 'fa-solid fa-people-arrows',
             'label' => 'sidebar.relations',
             'perm' => 'relations',
             'module' => false,
@@ -265,7 +265,7 @@ class SidebarService
             'module' => false,
         ],
         'attribute_templates' => [
-            'icon' => 'fa fa-copy',
+            'icon' => 'fa-solid fa-copy',
             'label' => 'sidebar.attribute_templates',
             'module' => false,
         ],

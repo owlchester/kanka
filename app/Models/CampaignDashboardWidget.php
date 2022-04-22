@@ -361,17 +361,17 @@ class CampaignDashboardWidget extends Model
     {
         $icon = null;
         if ($this->widget === self::WIDGET_RECENT) {
-            $icon = 'fas fa-list';
+            $icon = 'fa-solid fa-list';
         } elseif ($this->widget === self::WIDGET_HEADER) {
-            $icon = 'fas fa-heading';
+            $icon = 'fa-solid fa-heading';
         } elseif ($this->widget === self::WIDGET_PREVIEW) {
-            $icon = 'fas fa-align-justify';
+            $icon = 'fa-solid fa-align-justify';
         } elseif ($this->widget === self::WIDGET_CALENDAR) {
             $icon = 'ra ra-moon-sun';
         } elseif ($this->widget === self::WIDGET_RANDOM) {
-            $icon = 'fas fa-dice-d20';
+            $icon = 'fa-solid fa-dice-d20';
         } elseif ($this->widget === self::WIDGET_CAMPAIGN) {
-            $icon = 'fas fa-th-list';
+            $icon = 'fa-solid fa-th-list';
         }
 
         if (empty($icon)) {

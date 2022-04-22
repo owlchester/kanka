@@ -10,28 +10,28 @@
     <ul class="dropdown-menu" role="menu">
         <li>
             <a href="#" class="add_attribute" data-template="#checkbox_template" data-sortable="{{ $existing ? 'true' : 'false'}}">
-                <i class="fa fa-check"></i> {{ __('entities/attributes.types.checkbox') }}
+                <i class="fa-solid fa-check"></i> {{ __('entities/attributes.types.checkbox') }}
             </a>
         </li>
         <li>
             <a href="#" class="add_attribute" data-template="#text_template" data-sortable="{{ $existing ? 'true' : 'false'}}">
-                <i class="fa fas fa-align-justify"></i> {{ __('entities/attributes.types.text') }}
+                <i class="fa-solid fa-align-justify"></i> {{ __('entities/attributes.types.text') }}
             </a>
         </li>
         <li>
             <a href="#" class="add_attribute" data-template="#number_template" data-sortable="{{ $existing ? 'true' : 'false'}}">
-                <i class="fa fas fa-hashtag"></i> {{ __('entities/attributes.types.number') }}
+                <i class="fa-solid fa-hashtag"></i> {{ __('entities/attributes.types.number') }}
             </a>
         </li>
         <li>
             <a  href="#" class="add_attribute" data-template="#section_template" data-sortable="{{ $existing ? 'true' : 'false'}}">
-                <i class="fa fas fa-layer-group"></i> {{ __('entities/attributes.types.section') }}
+                <i class="fa-solid fa-layer-group"></i> {{ __('entities/attributes.types.section') }}
             </a>
         </li>
         @if(request()->is('*/attribute_templates/*') || (isset($entity) && $entity->typeId() == config('entities.ids.attribute_template')))
         <li>
             <a  href="#" class="add_attribute" data-template="#random_template" data-sortable="{{ $existing ? 'true' : 'false'}}">
-                <i class="fa fas fa-question"></i> {{ __('entities/attributes.types.random') }}
+                <i class="fa-solid fa-question"></i> {{ __('entities/attributes.types.random') }}
             </a>
         </li>
         @endif

@@ -3,7 +3,7 @@
 @endif
 <div class="dropdown">
     <a class="dropdown-toggle cursor" data-toggle="dropdown" aria-expanded="false" data-placement="right" data-tree="escape">
-        <i class="fa fa-ellipsis-v" data-tree="escape"></i>
+        <i class="fa-solid fa-ellipsis-v" data-tree="escape"></i>
         <span class="sr-only">{{ __('crud.actions.actions') }}</span>
     </a>
     <ul class="dropdown-menu dropdown-menu-right" role="menu">
@@ -11,13 +11,13 @@
             <li>
                 @if ($action === \App\Renderers\Layouts\Layout::ACTION_EDIT)
                     <a href="{{ route($model->url('edit'), $model) }}">
-                        <i class="fa fa-pencil"></i>
+                        <i class="fa-solid fa-pencil"></i>
                         {{ __('crud.edit') }}
                     </a>
                 @elseif ($action === \App\Renderers\Layouts\Layout::ACTION_DELETE)
                     <a href="#" class="text-red delete-confirm" data-toggle="modal" data-name="{!! $model->name !!}"
                        data-target="#delete-confirm" data-delete-target="delete-form-{{ $model->id }}">
-                        <i class="fa fa-trash" aria-hidden="true"></i>
+                        <i class="fa-solid fa-trash" aria-hidden="true"></i>
                         {{ __('crud.remove') }}
                     </a>
                 @elseif (is_array($action))

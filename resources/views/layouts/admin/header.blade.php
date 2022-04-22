@@ -12,19 +12,16 @@
             <span class="sr-only">{{ __('header.toggle_navigation') }}</span>
         </a>
 
-        <!-- Navbar Right Menu -->
         <div class="navbar-custom-menu">
             <ul class="nav navbar-nav">
 
-                <!-- Messages: style can be found in dropdown.less-->
                 <li class="dropdown messages-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                        <i class="fa fa-caret-down"></i> {{ LaravelLocalization::getCurrentLocaleNative() }}
+                        <i class="fa-solid fa-caret-down"></i> {{ LaravelLocalization::getCurrentLocaleNative() }}
                     </a>
                     <ul class="dropdown-menu">
                         <li class="header">{{ __('languages.header') }}</li>
                         <li>
-                            <!-- inner menu: contains the actual data -->
                             <ul class="menu">
                                 @foreach (LaravelLocalization::getSupportedLocales() as $localeCode => $langData)
                                     <?php $url = LaravelLocalization::getLocalizedURL($localeCode, null, [], true); ?>

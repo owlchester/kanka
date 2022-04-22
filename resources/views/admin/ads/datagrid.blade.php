@@ -22,7 +22,7 @@
             </td>
             <td>
                 @if ($model->is_active)
-                    <i class="fas fa-dollar fa-2x text-success" title="Active" data-toggle="tooltip"></i>
+                    <i class="fa-solid fa-dollar fa-2x text-success" title="Active" data-toggle="tooltip"></i>
                 @endif
             </td>
             <td>
@@ -30,11 +30,11 @@
             </td>
             <td class="text-right">
                 <a href="{{ route('admin.ads.edit', $model) }}" class="btn btn-sm btn-primary">
-                    <i class="fa fa-edit"></i> Edit
+                    <i class="fa-solid fa-edit"></i> Edit
                 </a>
 
                 <a href="/{{ app()->getLocale() }}/campaign/1?_adtest={{ $model->id }}" target="_blank" class="btn btn-sm btn-default">
-                    <i class="fa fa-eye"></i> Test
+                    <i class="fa-solid fa-eye"></i> Test
                 </a>
             </td>
         </tr>

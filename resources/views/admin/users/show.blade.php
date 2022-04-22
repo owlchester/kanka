@@ -109,7 +109,8 @@
                     <dd>@if ($model->booster_count)
                         {{ $model->booster_count }}
                         @endif
-                        <a href="#" class="" data-toggle="modal" data-target="#user-booster"><i class="fa fa-edit"></i></a>
+                        <a href="#" class="" data-toggle="modal" data-target="#user-booster">
+                            <i class="fa-solid fa-edit"></i></a>
                     </dd>
                 </dl>
             </div>
@@ -127,7 +128,7 @@
                 <h4 class="box-title">Kanka Roles</h4>
                 <div class="box-tools">
                     <a href="#" class="btn btn-sm" data-toggle="modal" data-target="#user-role">
-                        <i class="fa fa-plus"></i> Add
+                        <i class="fa-solid fa-plus"></i> Add
                     </a>
                 </div>
             </div>
@@ -139,7 +140,7 @@
                         <button class="btn btn-xs btn-danger delete-confirm" data-toggle="modal" data-name="{{ $role->name }}"
                                 data-target="#delete-confirm" data-delete-target="remove-role-{{ $role->id }}"
                                 title="{{ __('crud.remove') }}">
-                            <i class="fa fa-trash" aria-hidden="true"></i>
+                            <i class="fa-solid fa-trash" aria-hidden="true"></i>
                         </button>
                     </dd>
 
@@ -173,7 +174,7 @@
                     <button class="btn btn-danger btn-block delete-confirm" data-toggle="modal" data-name="{{ $model->name }}"
                       data-target="#delete-confirm" data-delete-target="remove-patreon-{{ $model->id }}"
                       title="{{ __('crud.remove') }}">
-                        <i class="fa fa-trash" aria-hidden="true"></i> Unsync
+                        <i class="fa-solid fa-trash" aria-hidden="true"></i> Unsync
                     </button>
 
 

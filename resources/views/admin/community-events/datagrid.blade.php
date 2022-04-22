@@ -24,7 +24,7 @@
             </td>
             <td class="text-right">
                 <a href="{{ route('admin.community-events.edit', $model) }}">
-                    <i class="fa fa-edit"></i>
+                    <i class="fa-solid fa-edit"></i>
                 </a>
             </td>
         </tr>

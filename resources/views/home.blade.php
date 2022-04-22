@@ -89,7 +89,7 @@
                     data-target="#large-modal"
                     data-placement="bottom"
             >
-                <i class="fas fa-door-open"></i> {{ __('dashboard.actions.join') }}
+                <i class="fa-solid fa-door-open"></i> {{ __('dashboard.actions.join') }}
             </button>
         @endcan
     </div>

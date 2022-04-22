@@ -39,7 +39,7 @@
             </td>
             <td class="text-right">
                 <a href="{{ route('admin.users.show', $model) }}" class="margin-r-5">
-                    <i class="fa fa-eye"></i>
+                    <i class="fa-solid fa-eye"></i>
                 </a>
             </td>
         </tr>

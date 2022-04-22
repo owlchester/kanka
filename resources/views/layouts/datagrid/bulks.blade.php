@@ -14,7 +14,7 @@ $hasOthers = false;
                 @if ($hasOthers) <li class="divider"></li> @endif
             <li>
                 <a href="#" class="text-red datagrid-submit" data-action="delete">
-                    <i class="fa fa-trash"></i> {{ __('crud.remove') }}
+                    <i class="fa-solid fa-trash"></i> {{ __('crud.remove') }}
                 </a>
             </li>
             @elseif (is_array($bulk))
@@ -30,7 +30,7 @@ $hasOthers = false;
     </ul>
 </div>
 <a href="#" class="btn btn-default btn-disabled datagrid-spinner" style="display:none">
-    <i class="fas fa-spinner fa-spin"></i>
+    <i class="fa-solid fa-spinner fa-spin"></i>
 </a>
 <input type="hidden" name="action" value="" />
 

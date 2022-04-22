@@ -344,7 +344,7 @@ abstract class MiscModel extends Model
             'route' => $this->entity->pluralType() . '.show',
             'button' => auth()->check() && auth()->user()->can('update', $this) ? [
                 'url' => route('entities.story.reorder', $this->entity->id),
-                'icon' => 'fa fa-cog',
+                'icon' => 'fa-solid fa-cog',
                 'tooltip' => __('entities/story.reorder.icon_tooltip'),
             ] : null,
         ];
@@ -357,7 +357,7 @@ abstract class MiscModel extends Model
                 'route' => 'entities.relations.index',
                 'count' => $this->entity->relationships()->has('target')->acl()->count(),
                 'entity' => true,
-                'icon' => 'fa fa-users',
+                'icon' => 'fa-solid fa-users',
             ];
         }
 
@@ -409,7 +409,7 @@ abstract class MiscModel extends Model
                 'route' => 'entities.assets',
                 'count' => $this->entity->files()->count() + ($campaign->boosted() ? $this->entity->links->count() : 0),
                 'entity' => true,
-                'icon' => 'fa fa-file',
+                'icon' => 'fa-solid fa-file',
             ];
         }
 
@@ -420,7 +420,7 @@ abstract class MiscModel extends Model
                 'name' => 'crud.tabs.permissions',
                 'route' => 'entities.permissions',
                 'entity' => true,
-                'icon' => 'fa fa-lock',
+                'icon' => 'fa-solid fa-lock',
                 'ajax' => true
             ];
         }
@@ -595,7 +595,7 @@ abstract class MiscModel extends Model
         if (!isset($this->hasRelations)) {
             $actions[] = '<li>
                 <a href="' . route('entities.relations.index', $this->entity) . '" class="dropdown-item">
-                    <i class="fa fa-users" aria-hidden="true"></i> ' . __('crud.tabs.connections') . '
+                    <i class="fa-solid fa-users" aria-hidden="true"></i> ' . __('crud.tabs.connections') . '
                 </a>
             </li>';
 
@@ -623,7 +623,7 @@ abstract class MiscModel extends Model
             }
             $actions[] = '<li>
                 <a href="' . $this->getLink('edit') . '" class="dropdown-item">
-                    <i class="fa fa-edit" aria-hidden="true"></i> ' . __('crud.edit') . '
+                    <i class="fa-solid fa-edit" aria-hidden="true"></i> ' . __('crud.edit') . '
                 </a>
             </li>';
         }

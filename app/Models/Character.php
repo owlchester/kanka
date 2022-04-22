@@ -340,7 +340,7 @@ class Character extends MiscModel
 
             'button' => auth()->check() && auth()->user()->can('update', $this) ? [
                 'url' => $this->getLink('edit'),
-                'icon' => 'fa fa-pencil',
+                'icon' => 'fa-solid fa-pencil',
                 'tooltip' => __('crud.edit'),
             ] : null,
         ];

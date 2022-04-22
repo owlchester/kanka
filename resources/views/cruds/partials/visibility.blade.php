@@ -2,13 +2,13 @@
 use App\Models\Scopes\VisibilityScope;
 /** @var \App\Models\EntityNote $model */
 
-$icon = "fas fa-" . (in_array($model->visibility, [VisibilityScope::VISIBILITY_SELF, VisibilityScope::VISIBILITY_ADMIN_SELF]) ? 'user-' : '') . 'lock';
+$icon = "fa-solid fa-" . (in_array($model->visibility, [VisibilityScope::VISIBILITY_SELF, VisibilityScope::VISIBILITY_ADMIN_SELF]) ? 'user-' : '') . 'lock';
 if ($model->visibility == \App\Models\Scopes\VisibilityScope::VISIBILITY_ALL) {
-    $icon =  "far fa-eye";
+    $icon =  "fa-regular fa-eye";
 } elseif ($model->visibility == VisibilityScope::VISIBILITY_MEMBERS) {
-    $icon = "fas fa-users";
+    $icon = "fa-solid fa-users";
 } elseif ($model->visibility == VisibilityScope::VISIBILITY_SELF) {
-    $icon = "fas fa-user-secret";
+    $icon = "fa-solid fa-user-secret";
 }
 
 if (isset($toolbox) && $toolbox) {

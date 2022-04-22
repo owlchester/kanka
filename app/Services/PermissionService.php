@@ -106,22 +106,22 @@ class PermissionService
         $entityActions = ['read', 'edit', 'add', 'delete', 'entity-note', 'permission'];
         $icons = [
             'read' => [
-                'fa fa-eye',
+                'fa-solid fa-eye',
             ],
             'edit' => [
-                'fa fa-pen',
+                'fa-solid fa-pen',
             ],
             'add' => [
-                'fas fa-plus-square',
+                'fa-solid fa-plus-square',
             ],
             'delete' => [
-                'fas fa-trash-alt',
+                'fa-solid fa-trash-alt',
             ],
             'entity-note' => [
-                'fas fa-file',
+                'fa-solid fa-file',
             ],
             'permission' => [
-                'fa fa-cog',
+                'fa-solid fa-cog',
             ],
         ];
 
@@ -175,16 +175,16 @@ class PermissionService
         $entityActions = ['manage', 'dashboard', 'members', 'gallery'];
         $icons = [
             'manage' => [
-                'fa fa-cog',
+                'fa-solid fa-cog',
             ],
             'dashboard' => [
-                'fas fa-columns',
+                'fa-solid fa-columns',
             ],
             'members' => [
-                'fas fa-users'
+                'fa-solid fa-users'
             ],
             'gallery' => [
-                'fas fa-image'
+                'fa-solid fa-image'
             ]
         ];
 

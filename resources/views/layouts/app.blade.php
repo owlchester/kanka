@@ -113,14 +113,14 @@ $seoTitle = isset($seoTitle) ? $seoTitle : (isset($title) ? $title : null);
                 @if (auth()->check() && \App\Facades\Identity::isImpersonating())
                     <div class="alert alert-warning">
                         <h4>
-                            <i class="icon fa fa-exclamation-triangle"></i>
+                            <i class="icon fa-solid fa-exclamation-triangle"></i>
                             {{ __('campaigns.members.impersonating.title', ['name' => auth()->user()->name]) }}
                         </h4>
                         <p>
                             {{ __('campaigns.members.impersonating.message') }}
 
                             <a href="{{ route('identity.back') }}" class="btn btn-warning btn-sm switch-back">
-                                <i class="fa fa-sign-out-alt"></i> {{ __('campaigns.members.actions.switch-back') }}
+                                <i class="fa-solid fa-sign-out-alt"></i> {{ __('campaigns.members.actions.switch-back') }}
                             </a>
                         </p>
                     </div>
@@ -192,7 +192,7 @@ $seoTitle = isset($seoTitle) ? $seoTitle : (isset($title) ? $title : null);
                 <div class="modal-footer">
                     <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">{{ __('crud.cancel') }}</button>
                     <button type="button" class="btn btn-outline delete-confirm-submit">
-                        <span class="fa fa-trash"></span>
+                        <span class="fa-solid fa-trash"></span>
                         <span class="delete-button-label">{{ __('crud.delete_modal.delete') }}</span>
                         <span class="remove-button-label" style="display: none">{{ __('crud.remove') }}</span>
                     </button>
@@ -210,7 +210,7 @@ $seoTitle = isset($seoTitle) ? $seoTitle : (isset($title) ? $title : null);
             <span class="toast-message">
                 {{ $i }} message to the user spam
 
-                <i class="fa fa-times" data-toggle="dismiss"></i>
+                <i class="fa-solid fa-times" data-toggle="dismiss"></i>
             </span>
         </div>
         @endfor
@@ -218,7 +218,7 @@ $seoTitle = isset($seoTitle) ? $seoTitle : (isset($title) ? $title : null);
 
             <span class="toast-message">
                 Last message
-                <i class="fa fa-times" data-toggle="dismiss"></i>
+                <i class="fa-solid fa-times" data-toggle="dismiss"></i>
             </span>
         </div>
         @endif

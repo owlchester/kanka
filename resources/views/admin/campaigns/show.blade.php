@@ -38,7 +38,7 @@
 
                         @elseif ($model->boost_count == 1)
                             <span class="label label-info hidden-xs">Boosted</span>
-                            <i class="fa fa-rocker visible-xs"></i>
+                            <i class="fa-solid fa-rocker visible-xs"></i>
                         @endif
                     </dd>
 
@@ -55,7 +55,7 @@
                 <h4 class="box-title">Featured status</h4>
                 <div class="box-tools">
                     <a href="#" class="btn btn-box-tool" data-toggle="modal" data-target="#campaign-featured">
-                        <i class="fa fa-pencil-alt"></i>
+                        <i class="fa-solid fa-pencil-alt"></i>
                     </a>
 
                 </div>

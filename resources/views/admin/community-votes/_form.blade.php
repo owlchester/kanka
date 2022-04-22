@@ -52,7 +52,7 @@
        title="{{ __('crud.delete_modal.title') }}"
        data-content="<p>{{ __('crud.delete_modal.description_final', ['tag' => $model->name]) }}</p>
                        <a href='#' class='btn btn-danger btn-block' data-toggle='delete-form' data-target='#delete-form-vote-{{ $model->id}}'>{{ __('crud.remove') }}</a>">
-        <i class="fa fa-trash" aria-hidden="true"></i> {{ __('crud.remove') }}
+        <i class="fa-solid fa-trash" aria-hidden="true"></i> {{ __('crud.remove') }}
     </a>
 </div>
 @endif

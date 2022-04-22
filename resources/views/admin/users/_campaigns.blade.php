@@ -18,11 +18,11 @@
                     <th>User Roles</th>
                     <th>
                         <span class="hidden-xs">Members</span>
-                        <i class="fa fa-users visible-xs"></i>
+                        <i class="fa-solid fa-users visible-xs"></i>
                     </th>
                     <th>
                         <span class="hidden-xs">Boosted</span>
-                        <i class="fa fa-rocket visible-xs"></i>
+                        <i class="fa-solid fa-rocket visible-xs"></i>
                     </th>
                 </tr>
                 </thead>
@@ -38,9 +38,9 @@
                                 {!! $campaign->name !!}
                             </a>
                             @if ($campaign->isPublic())
-                                <i class="fa fa-eye" title="Campaign is public"></i>
+                                <i class="fa-solid fa-eye" title="Campaign is public"></i>
                             @else
-                                <i class="fa fa-lock" title="Campaign is private"></i>
+                                <i class="fa-solid fa-lock" title="Campaign is private"></i>
                             @endif
                         </td>
                         <td>
@@ -64,7 +64,7 @@
 
                             @elseif ($campaign->boosted())
                                 <span class="label label-info hidden-xs">Boosted</span>
-                                <i class="fa fa-rocker visible-xs"></i>
+                                <i class="fa-solid fa-rocket visible-xs"></i>
                             @endif
                         </td>
                     </tr>

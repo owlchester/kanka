@@ -44,7 +44,7 @@ $r = $model->descendants()
                     </td>
                     <td>
                         @if ($ability->is_private)
-                            <i class="fas fa-lock" title="{{ __('crud.is_private') }}" data-toggle="tooltip"></i>
+                            <i class="fa-solid fa-lock" title="{{ __('crud.is_private') }}" data-toggle="tooltip"></i>
                         @endif
                         {!! $ability->tooltipedLink() !!}
                     </td>

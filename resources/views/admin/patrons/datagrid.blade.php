@@ -19,11 +19,11 @@
             <td>{{ $model->id }}</td>
             <td>
                 {{ $model->name }}<br />
-                <i class="fa fa-envelope-open"></i> {{ $model->email }}
+                <i class="fa-solid fa-envelope-open"></i> {{ $model->email }}
             </td>
             <td>
                 {{ $model->patreon_fullname }}<br />
-                <i class="fa fa-envelope-open"></i> {{ $model->patreon_email }}
+                <i class="fa-solid fa-envelope-open"></i> {{ $model->patreon_email }}
             </td>
             <td>{{ $model->patreon_pledge }}</td>
             <td>
@@ -34,13 +34,13 @@
             </td>
             <td>
                 <a href="{{ route('admin.patrons.edit', $model) }}">
-                    <i class="fa fa-edit"></i>
+                    <i class="fa-solid fa-edit"></i>
                 </a>
 
                 <a href="#" class="text-danger delete-confirm" data-toggle="modal" data-name="{{ $model->name }}"
                         data-target="#delete-confirm" data-delete-target="delete-form-{{ $model->id }}"
                         title="{{ __('crud.remove') }}">
-                    <i class="fa fa-trash" aria-hidden="true"></i>
+                    <i class="fa-solid fa-trash" aria-hidden="true"></i>
                 </a>
                 {!! Form::open(['method' => 'DELETE','route' => ['admin.patrons.destroy', $model], 'style '=> 'display:inline', 'id' => 'delete-form-' . $model->id]) !!}
                 {!! Form::close() !!}

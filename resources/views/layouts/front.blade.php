@@ -137,7 +137,7 @@
                         <div class="dropdown-divider"></div>
 
                         <a href="https://blog.kanka.io" class="dropdown-item" target="_blank" rel="noopener noreferrer">
-                            {{ __('front.menu.news') }} <i class="fa fa-external-link"></i>
+                            {{ __('front.menu.news') }} <i class="fa-solid fa-external-link"></i>
                         </a>
                     </div>
                 </li>

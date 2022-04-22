@@ -18,7 +18,7 @@
             <td>{{ $model->answer }}</td>
             <td>
                 <a href="{{ route('admin.faqs.edit', $model) }}">
-                    <i class="fa fa-edit"></i>
+                    <i class="fa-solid fa-edit"></i>
                 </a>
             </td>
         </tr>

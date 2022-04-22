@@ -22,10 +22,10 @@
             <h4 class="box-title">{!! $event->name !!}</h4>
             <div class="box-tools">
                 <a href="{{ route('community-events.show', $event) }}" class="btn btn-box-tool" title="View event" data-toggle="tooltip">
-                    <i class="fa fa-external-link-alt"></i>
+                    <i class="fa-solid fa-external-link-alt"></i>
                 </a>
                 <a href="{{ route('admin.community-events.edit', $event) }}" class="btn btn-box-tool" title="Edit event" data-toggle="tooltip">
-                    <i class="fa fa-pencil-alt"></i>
+                    <i class="fa-solid fa-pencil-alt"></i>
                 </a>
             </div>
         </div>
@@ -57,7 +57,7 @@
             <tbody>
             @foreach ($entries as $entry)
                 <tr>
-                    <td>{{ $entry->rank }} <a data-toggle="collapse" href="#entry-id-{{ $entry->id }}" class="pull-right"><i class="fa fa-pencil-alt"></i></a></td>
+                    <td>{{ $entry->rank }} <a data-toggle="collapse" href="#entry-id-{{ $entry->id }}" class="pull-right"><i class="fa-solid fa-pencil-alt"></i></a></td>
                     <td>
                         <a href="{{ route('admin.users.show', $entry->user) }}">
                             {!! $entry->user->name !!}
@@ -69,7 +69,7 @@
                         @endif
                     </td>
                     <td>
-                        <a href="{{ $entry->link }}" target="_blank">{{ $entry->link }} <i class="fa fa-external-link-alt"></i></a>
+                        <a href="{{ $entry->link }}" target="_blank">{{ $entry->link }} <i class="fa-solid fa-external-link-alt"></i></a>
                     </td>
                     <td>{!! nl2br($entry->comment) !!}</td>
                     <td>{{ $entry->created_at->diffForHumans() }} </td>

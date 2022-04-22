@@ -35,7 +35,7 @@ $currentCampaign = CampaignLocalization::getCampaign();
                 @if (!empty($currentCampaign))
                     <li class="visible-xs visible-sm">
                         <a href="#" class="mobile-search">
-                            <span class="fa fa-search"></span>
+                            <span class="fa-solid fa-search"></span>
                         </a>
                     </li>
                 @endif
@@ -58,7 +58,7 @@ $currentCampaign = CampaignLocalization::getCampaign();
                             </li>
                             <li>
                                 <ul class="menu" id="header-notification-list" data-url="{{ route('notifications.refresh') }}">
-                                    <li class="text-center"><i class="fa fa-spin fa-spinner"></i></li>
+                                    <li class="text-center"><i class="fa-solid fa-spin fa-spinner"></i></li>
                                 </ul>
                             </li>
                         </ul>
@@ -99,7 +99,7 @@ $currentCampaign = CampaignLocalization::getCampaign();
                                 @if (\App\Facades\Identity::isImpersonating())
 
                                     <a href="{{ route('identity.back') }}" class="btn btn-default btn-flat switch-back">
-                                        <i class="fa fa-sign-out-alt"></i> {{ __('campaigns.members.actions.switch-back') }}
+                                        <i class="fa-solid fa-sign-out-alt"></i> {{ __('campaigns.members.actions.switch-back') }}
                                     </a>
                                 @else
                                 <a href="{{ route('logout') }}" class="btn btn-default btn-flat" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">

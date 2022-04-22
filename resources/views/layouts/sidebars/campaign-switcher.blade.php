@@ -20,7 +20,7 @@
         @can('create', \App\Models\Campaign::class)
             <li class="bordered">
                 <a href="{{ route('start') }}">
-                    <i class="fa fa-plus"></i> {{ __('sidebar.campaign_switcher.new_campaign') }}
+                    <i class="fa-solid fa-plus"></i> {{ __('sidebar.campaign_switcher.new_campaign') }}
                 </a>
             </li>
         @endcan
@@ -47,7 +47,7 @@
     <ul class="switcher-user">
         <li class="switcher-profile">
             <a href="{{ route('settings.profile') }}">
-                <i class="fa fa-user"></i> {{ __('header.profile') }}
+                <i class="fa-solid fa-user"></i> {{ __('header.profile') }}
             </a>
         </li>
     </ul>

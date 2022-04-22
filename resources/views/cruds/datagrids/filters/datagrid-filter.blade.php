@@ -185,33 +185,33 @@ $clipboardFilters = $filterService->clipboardFilters();
 
                 @if($activeFilters > 0)
                 <a href="#" class="btn btn-default margin-r-5" data-clipboard="{{ $clipboardFilters }}" data-toggle="tooltip" title="{{ __('crud.filters.copy_helper') }}">
-                    <i class="fas fa-clipboard"></i> {{ __('crud.filters.copy_to_clipboard') }}
+                    <i class="fa-solid fa-clipboard"></i> {{ __('crud.filters.copy_to_clipboard') }}
                 </a>
                 @else
                     <div class="visible-lg-inline-block visible-md-inline-block visible-sm-inline-block margin-r-5" data-toggle="tooltip" title="{{ __('crud.filters.copy_helper_no_filters') }}">
                     <a href="#" class="btn btn-default" style="pointer-events: none;" disabled >
-                        <i class="fas fa-clipboard"></i> {{ __('crud.filters.copy_to_clipboard') }}
+                        <i class="fa-solid fa-clipboard"></i> {{ __('crud.filters.copy_to_clipboard') }}
                     </a>
                     </div>
                 @endif
 
                 <a href="{{ route('helpers.filters') }}" data-url="{{ route('helpers.filters') }}" data-toggle="ajax-modal" data-target="#entity-modal" title="{{ __('helpers.filters.title') }}">
-                    {{ __('helpers.filters.title') }} <i class="fa fa-question-circle"></i>
+                    {{ __('helpers.filters.title') }} <i class="fa-solid fa-question-circle"></i>
                 </a>
             </div>
 
             <div class="visible-xs pull-left block">
                 <a href="{{ route($route, ['reset-filter' => 'true']) }}" class="btn btn-default margin-r-5">
-                    <i class="fa fa-eraser"></i> {{ __('crud.filters.mobile.clear') }}
+                    <i class="fa-solid fa-eraser"></i> {{ __('crud.filters.mobile.clear') }}
                 </a>
 
                 @if($activeFilters > 0)
                 <a href="#" class="btn btn-default margin-r-5" data-clipboard="{{ $clipboardFilters }}" data-toggle="tooltip">
-                    <i class="fas fa-clipboard"></i> {{ __('crud.filters.mobile.copy') }}
+                    <i class="fa-solid fa-clipboard"></i> {{ __('crud.filters.mobile.copy') }}
                 </a>
             @else
                 <a href="#" class="btn btn-default margin-r-5" disabled="disabled" data-toggle="tooltip" title="{{ __('crud.filters.copy_helper_no_filters') }}">
-                    <i class="fas fa-clipboard"></i> {{ __('crud.filters.mobile.copy') }}
+                    <i class="fa-solid fa-clipboard"></i> {{ __('crud.filters.mobile.copy') }}
                 </a>
                 @endif
 
