@@ -185,7 +185,9 @@ class CommunityVote extends Model implements Feedable
             ->summary($this->excerpt)
             ->updated($this->updated_at)
             ->link($this->link)
-            ->author('Kanka.io');
+            ->authorName(config('app.name'))
+            ->authorEmail(config('app.email'))
+        ;
     }
 
     /**
