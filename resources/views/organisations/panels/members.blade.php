@@ -65,7 +65,7 @@ $hasOrg = request()->has('organisation_id');
                 ->filter($filters)
                 ->has('character')
                 ->with([
-                    'character', 'character.race', 'character.location', 'character.family', 'organisation',
+                    'character', 'character.races', 'character.location', 'character.families', 'organisation',
                     'character.entity'
                 ])
                 ->simpleSort($datagridSorter)
