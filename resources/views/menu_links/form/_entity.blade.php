@@ -8,7 +8,9 @@ $tabs = [
 ];
 $menus = [
         'abilities' => __('crud.tabs.abilities'),
-        'all-members' => __('families.show.tabs.all_members') . ' (' . __('entities.organisations') . ', ' . __('entities.families') . ', ' . __('entities.tags') . ')',
+        'assets' => __('crud.tabs.assets'),
+        'reminders' => __('crud.tabs.reminders'),
+        //'all-members' => __('families.show.tabs.all_members') . ' (' . __('entities.organisations') . ', ' . __('entities.families') . ', ' . __('entities.tags') . ')',
         //'locations' => __('locations.show.tabs.locations') . ' (' . __('entities.locations') . ')',
         'organisations' => __('characters.show.tabs.organisations')  . ' (' . __('entities.characters') . ', ' . __('entities.organisations') . ')',
         __('entities.maps') => [
@@ -20,8 +22,8 @@ $menus = [
         ],
         __('entities.locations') => [
             'map' => __('locations.show.tabs.map') . ' (' . __('crud.legacy') . ')',
-            'maps' => __('locations.show.tabs.maps'),
-            'items' => __('locations.show.tabs.items'),
+        //    'maps' => __('locations.show.tabs.maps'),
+        //    'items' => __('locations.show.tabs.items'),
             'characters' => __('locations.show.tabs.characters'),
             'locations' => __('locations.show.tabs.locations'),
         ],
@@ -35,9 +37,9 @@ $menus = [
         //'tags' => __('tags.show.tabs.tags') . ' (' . __('entities.tags') . ')',
         //'explore' => __('maps.actions.explore') . ' (' . __('entities.maps') . ')',
         //'children' => __('tags.show.tabs.children') . ' (' . __('entities.tags') . ')',
-        'quests' => __('characters.show.tabs.quests'),
+        //'quests' => __('characters.show.tabs.quests'),
         //'members' => __('families.show.tabs.members') . ' (' . __('entities.families') . ')',
-        'map_points' => __('crud.tabs.map-points'),
+        //'map_points' => __('crud.tabs.map-points'),
         //'map' => __('locations.show.tabs.map') . ' (' . __('entities.locations') . ')',
         //'inventories' => __('items.show.tabs.inventories'),
         //'characters' => __('locations.show.tabs.characters') . ' (' . __('entities.locations') . ')',
