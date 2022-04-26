@@ -199,6 +199,9 @@ class MacroServiceProvider extends ServiceProvider
 
         Blade::if('nativeAd', function (int $section) {
             // If we provided an ad test, override that
+            if (!config('app.admin')) {
+                return false;
+            }
             if (request()->has('_adtest') && auth()->user()->hasRole('admin')) {
                 return AdCache::test($section, request()->get('_adtest'));
             }

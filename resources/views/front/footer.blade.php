@@ -22,9 +22,11 @@
                     <li>
                         <a href="{{ route('front.about') }}">{{ __('front.menu.about') }}</a>
                     </li>
+                    @if (config('services.stripe.enabled'))<li>
                     <li>
                         <a href="{{ route('front.newsletter') }}">{{ __('front.menu.newsletter') }}</a>
                     </li>
+                    @endif
                     <li>
                         <a href="//blog.kanka.io" target="_blank">{{ __('front.menu.news') }}</a>
                     </li>
@@ -38,15 +40,17 @@
                     </span>
                 </div>
                 <ul>
-                    @if (config('services.stripe.enabled'))<li>
+                    @if (config('services.stripe.enabled') && config('app.admin'))<li>
                         <a href="{{ route('community-votes.index') }}">{{ __('front/community-votes.title') }}</a>
                     </li>@endif
                     <li>
                         <a href="{{ route('front.public_campaigns') }}">{{ __('front.menu.campaigns') }}</a>
                     </li>
+                    @if(config('app.admin'))
                     <li>
                         <a href="{{ route('community-events.index') }}">{{ __('front/community-events.title') }}</a>
                     </li>
+                    @endif
                     @if (config('services.stripe.enabled'))<li>
                         <a href="{{ route('front.hall-of-fame') }}">{{ __('front/hall-of-fame.title') }}</a>
                     </li>@endif
@@ -60,9 +64,11 @@
                     </span>
                 </div>
                 <ul>
+                    @if(config('app.admin'))
                     <li>
                         <a href="{{ route('front.faqs.index') }}">{{ __('front.menu.kb') }}</a>
                     </li>
+                    @endif
                     <li>
                         <a href="{{ route('documentation') }}">{{ __('front.menu.documentation') }}</a>
                     </li>

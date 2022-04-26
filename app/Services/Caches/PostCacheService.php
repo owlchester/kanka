@@ -15,6 +15,9 @@ class PostCacheService extends BaseCache
      */
     public function latest()
     {
+        if (!config('app.admin')) {
+            return [];
+        }
         $key = 'latest_releases';
         if ($this->has($key)) {
            return $this->get($key);

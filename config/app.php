@@ -43,6 +43,11 @@ return [
     'debug' => env('APP_DEBUG', false),
 
     /*
+     * If the app is hosted along the admin, will enable the community aspects of Kanka.
+     */
+    'admin' => env('APP_ADMIN', false),
+
+    /*
     |--------------------------------------------------------------------------
     | Application URL
     |--------------------------------------------------------------------------
