@@ -39,9 +39,6 @@ class UpdateTablesAddIndexesQ22020 extends Migration
         Schema::table('relations', function (Blueprint $table) {
             $table->index(['attitude', 'relation']);
         });
-        Schema::table('posts', function (Blueprint $table) {
-            $table->index(['status', 'created_at']);
-        });
     }
 
     /**
