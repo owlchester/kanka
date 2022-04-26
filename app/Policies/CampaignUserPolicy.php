@@ -5,14 +5,13 @@ namespace App\Policies;
 use App\Facades\Identity;
 use App\Facades\UserCache;
 use App\Traits\AdminPolicyTrait;
-use App\Traits\EnvTrait;
 use App\User;
 use App\Models\CampaignUser;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class CampaignUserPolicy
 {
-    use HandlesAuthorization, AdminPolicyTrait, EnvTrait;
+    use HandlesAuthorization, AdminPolicyTrait;
 
     /**
      * Determine whether the user can view the campaignUser.

@@ -70,7 +70,7 @@ class CommunityEventEntryController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Release  $post
+     * @param  \App\Models\CommunityEvent $communityEvent
      * @return \Illuminate\Http\Response
      */
     public function destroy(CommunityEvent $communityEvent, CommunityEventEntry $communityEventEntry)

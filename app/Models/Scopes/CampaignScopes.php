@@ -86,48 +86,6 @@ trait CampaignScopes
     }
 
     /**
-     * Campaigns with the most entities
-     * @param $query
-     * @return mixed
-     */
-    public function scopeTop(Builder $query)
-    {
-        return $query
-            ->select([
-                $this->getTable() . '.*',
-                DB::raw("(select count(*) from entities where campaign_id = " . $this->getTable() . ".id and type_id not in (" . config('entities.ids.tag') . ", " . config('entities.ids.attribute_template') . ")) as cpt")
-            ])
-            ->orderBy('cpt', 'desc')
-            ;
-    }
-
-    /**
-     * Campaigns with the most entities
-     * @param $query
-     * @return mixed
-     */
-    public function scopeTopMembers(Builder $query)
-    {
-        return $query
-            ->select([
-                $this->getTable() . '.*',
-                DB::raw("(select count(*) from campaign_user where campaign_id = " . $this->getTable() . ".id) as cpt")
-            ])
-            ->orderBy('cpt', 'desc')
-            ;
-    }
-
-    /**
-     * Created today
-     * @param $query
-     * @return mixed
-     */
-    public function scopeToday(Builder $query)
-    {
-        return $query->whereDate('created_at', Carbon::today());
-    }
-
-    /**
      * Campaigns for the frontend
      * @param $query
      * @return mixed

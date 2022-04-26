@@ -1,1 +1,0 @@
-New user {{ $user->name }} with email {{ $user->email }}

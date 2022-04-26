@@ -176,16 +176,6 @@ class Organisation extends MiscModel
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
-     */
-    public function quests()
-    {
-        return $this->belongsToMany('App\Models\Quest', 'quest_organisations')
-            ->using('App\Models\Pivots\QuestOrganisation')
-            ->withPivot('role', 'is_private');
-    }
-
-    /**
      * @return mixed
      */
     public function relatedQuests()

@@ -8,14 +8,13 @@ use App\Facades\Identity;
 use App\Facades\UserCache;
 use App\Models\Entity;
 use App\Traits\AdminPolicyTrait;
-use App\Traits\EnvTrait;
 use App\User;
 use App\Models\Campaign;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class CampaignPolicy
 {
-    use HandlesAuthorization, AdminPolicyTrait, EnvTrait;
+    use HandlesAuthorization, AdminPolicyTrait;
 
     /**
      * Determine whether the user can view the campaign.

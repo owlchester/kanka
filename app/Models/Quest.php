@@ -154,38 +154,6 @@ class Quest extends MiscModel
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function locations()
-    {
-        return $this->hasMany('App\Models\QuestLocation', 'quest_id', 'id');
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function characters()
-    {
-        return $this->hasMany('App\Models\QuestCharacter', 'quest_id', 'id');
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function items()
-    {
-        return $this->hasMany('App\Models\QuestItem', 'quest_id', 'id');
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function organisations()
-    {
-        return $this->hasMany('App\Models\QuestOrganisation', 'quest_id', 'id');
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
     public function quests()
     {
         return $this->hasMany('App\Models\Quest', 'quest_id', 'id');

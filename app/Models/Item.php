@@ -159,16 +159,6 @@ class Item extends MiscModel
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasManyThrough
-     */
-    public function quests()
-    {
-        return $this->belongsToMany('App\Models\Quest', 'quest_items')
-            ->using('App\Models\Pivots\QuestItem')
-            ->withPivot('role', 'is_private');
-    }
-
-    /**
      * @return mixed
      */
     public function relatedQuests()

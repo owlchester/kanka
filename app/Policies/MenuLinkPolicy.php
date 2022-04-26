@@ -4,13 +4,12 @@ namespace App\Policies;
 
 use App\Models\MenuLink;
 use App\Traits\AdminPolicyTrait;
-use App\Traits\EnvTrait;
 use App\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class MenuLinkPolicy
 {
-    use HandlesAuthorization, EnvTrait, AdminPolicyTrait;
+    use HandlesAuthorization, AdminPolicyTrait;
 
     public function browse(User $user)
     {

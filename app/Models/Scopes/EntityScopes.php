@@ -14,7 +14,7 @@ use Illuminate\Support\Str;
  * @method static self|Builder recentlyModified()
  * @method static self|Builder unmentioned()
  * @method static self|Builder mentionless()
- * @method static self type(string $type)
+ * @method static self|Builder type(string $type)
  * @method static self|Builder inTags(array $tags)
  * @method static self|Builder inTypes(array $types)
  * @method static self|Builder templates(string $entityType)
@@ -22,18 +22,6 @@ use Illuminate\Support\Str;
  */
 trait EntityScopes
 {
-    /**
-     * @param $query
-     * @return mixed
-     */
-    public function scopeTop(Builder $query)
-    {
-        return $query
-            ->select('*', DB::raw('count(id) as cpt'))
-            ->groupBy('type_id')
-            ->orderBy('cpt', 'desc');
-    }
-
     /**
      * @param $query
      * @return mixed

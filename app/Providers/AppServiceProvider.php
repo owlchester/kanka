@@ -7,8 +7,6 @@ use App\Facades\CampaignLocalization;
 use App\Facades\EntityPermission;
 use App\Facades\Img;
 use App\Models\Ability;
-use App\Models\Ad;
-use App\Models\AppRelease;
 use App\Models\CalendarWeather;
 use App\Models\Campaign;
 use App\Models\CampaignDashboard;
@@ -25,9 +23,7 @@ use App\Models\AttributeTemplate;
 use App\Models\Calendar;
 use App\Models\Character;
 use App\Models\CharacterTrait;
-use App\Models\CommunityEvent;
 use App\Models\CommunityEventEntry;
-use App\Models\CommunityVote;
 use App\Models\Conversation;
 use App\Models\ConversationMessage;
 use App\Models\DiceRoll;
@@ -57,7 +53,6 @@ use App\Models\QuestElement;
 use App\Models\Note;
 use App\Models\Race;
 use App\Models\Relation;
-use App\Models\Release;
 use App\Models\Tag;
 use App\Models\Timeline;
 use App\Models\TimelineElement;
@@ -82,9 +77,7 @@ use App\Models\OrganisationMember;
 use App\Models\EntityLink;
 use App\User;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Blade;
-use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\ServiceProvider;
@@ -138,9 +131,7 @@ class AppServiceProvider extends ServiceProvider
 
         // Model observers. Lots of magic.
         Ability::observe('App\Observers\AbilityObserver');
-        Ad::observe('App\Observers\AdObserver');
         AttributeTemplate::observe('App\Observers\AttributeTemplateObserver');
-        AppRelease::observe('App\Observers\AppReleaseObserver');
         Calendar::observe(CalendarObserver::class);
         CalendarWeather::observe(CalendarWeatherObserver::class);
         Campaign::observe(CampaignObserver::class);
@@ -157,8 +148,6 @@ class AppServiceProvider extends ServiceProvider
         CampaignStyle::observe('App\Observers\CampaignStyleObserver');
         Character::observe(CharacterObserver::class);
         CharacterTrait::observe('App\Observers\CharacterTraitObserver');
-        CommunityVote::observe('App\Observers\CommunityVoteObserver');
-        CommunityEvent::observe('App\Observers\CommunityEventObserver');
         CommunityEventEntry::observe('App\Observers\CommunityEventEntryObserver');
         Conversation::observe('App\Observers\ConversationObserver');
         ConversationMessage::observe('App\Observers\ConversationMessageObserver');
@@ -199,116 +188,11 @@ class AppServiceProvider extends ServiceProvider
 
         Relation::observe('App\Observers\RelationObserver');
 
-        Release::observe('App\Observers\ReleaseObserver');
-
         // Tell laravel that we are using bootstrap 3 to style the paginators
         Paginator::useBootstrapThree();
 
-        // Add our custom blade directives
-        $this->addBladeDirectives();
     }
 
 
-    /**
-     * Setup some custom blade directives to simply some code
-     * For example, use @admin in blade
-     */
-    protected function addBladeDirectives()
-    {
-        // Role based directives
-        /*Blade::if('userRole', function ($role) {
-            return auth()->check() && auth()->user()->hasRole($role);
-        });*/
 
-        // Permission to view an entity
-        Blade::if('viewentity', function (Entity $entity) {
-            return EntityPermission::canView($entity);
-        });
-
-        // If a webp fallback is needed
-        Blade::if('nowebp', function () {
-            return Img::nowebp();
-        });
-
-        // Tutorial modal handler
-        Blade::if('tutorial', function (string $tutorial) {
-            // Not logged in? Don't bother
-            if (!auth()->check()) {
-                return false;
-            }
-
-            /** @var User $user */
-            $user = auth()->user();
-
-            // If disabled tutorials, remove all
-            if ($user->disabledTutorial()) {
-                return false;
-            }
-
-            return !$user->readTutorial($tutorial);
-        });
-
-        /** @ads() to show ads */
-        Blade::if('ads', function(string $section = null) {
-            if (empty(config('tracking.adsense'))) {
-                return false;
-            }
-
-            // If requesting a section but it isn't set up, don't show
-            if (!empty($section) && empty(config('tracking.adsense_' . $section))) {
-                return false;
-            }
-
-            // Always show ads to unlogged users
-            if (!auth()->check()) {
-                return true;
-            }
-
-            // Subscribed users don't have ads
-            if (auth()->user()->isPatron()) {
-                return false;
-            }
-
-            // User has been created less than 24 hours ago
-            if (auth()->user()->created_at->diffInHours(Carbon::now()) < 24) {
-                return false;
-            }
-
-            // Boosted campaigns don't either have ads displayed to their members
-            $campaign = CampaignLocalization::getCampaign(false);
-            return !empty($campaign) && !$campaign->boosted();
-        });
-
-        Blade::if('nativeAd', function (int $section) {
-            // If we provided an ad test, override that
-            if (request()->has('_adtest') && auth()->user()->hasRole('admin')) {
-                return AdCache::test($section, request()->get('_adtest'));
-            }
-            if (!AdCache::has($section)) {
-                return false;
-            }
-            // Always show ads to unlogged users
-            if (!auth()->check()) {
-                return true;
-            }
-
-            if (request()->get('_boost') === '0') {
-                return true;
-            }
-
-            // Subscribed users don't have ads
-            if (auth()->user()->isPatron()) {
-                return false;
-            }
-
-            // User has been created less than 24 hours ago
-            if (auth()->user()->created_at->diffInHours(Carbon::now()) < 24) {
-                return false;
-            }
-
-            // Boosted campaigns don't either have ads displayed to their members
-            $campaign = CampaignLocalization::getCampaign(false);
-            return !empty($campaign) && !$campaign->boosted();
-        });
-    }
 }

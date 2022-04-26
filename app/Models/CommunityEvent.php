@@ -32,38 +32,12 @@ use Illuminate\Support\Str;
  */
 class CommunityEvent extends Model
 {
-    use Filterable, Sortable, Searchable, CommunityEventScopes, Uuid;
-
-    public $searchableColumns = ['name'];
-    public $sortableColumns = [];
-    public $filterableColumns = ['name'];
+    use CommunityEventScopes, Uuid;
 
     public $dates = [
         'start_at',
         'end_at'
     ];
-
-    public $fillable = [
-        'name',
-        'entry',
-        'excerpt',
-        'start_at',
-        'end_at',
-    ];
-
-    /**
-     * Event status
-     * @return string
-     */
-    public function status(): string
-    {
-        if ($this->start_at->isFuture()) {
-            return __('admin/community-events.status.upcoming');
-        } elseif ($this->end_at->isPast()) {
-            return __('admin/community-events.status.finished');
-        }
-        return __('admin/community-events.status.ongoing');
-    }
 
     /**
      * @return bool

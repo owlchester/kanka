@@ -255,16 +255,6 @@ class Location extends MiscModel
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
-     */
-    public function quests()
-    {
-        return $this->belongsToMany('App\Models\Quest', 'quest_locations')
-            ->using('App\Models\Pivots\QuestLocation')
-            ->withPivot('role', 'is_private');
-    }
-
-    /**
      * @return mixed
      */
     public function relatedQuests()

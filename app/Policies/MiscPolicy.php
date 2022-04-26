@@ -8,14 +8,13 @@ use App\Models\Campaign;
 use App\Facades\EntityPermission;
 use App\Models\Entity;
 use App\Models\EntityNote;
-use App\Traits\EnvTrait;
 use App\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 use Illuminate\Support\Facades\Auth;
 
 class MiscPolicy
 {
-    use HandlesAuthorization, EnvTrait;
+    use HandlesAuthorization;
 
     protected static $cached = [];
 

@@ -17,9 +17,7 @@ Route::get('/public-campaigns', 'FrontController@campaigns')->name('front.public
 Route::get('/contact', 'FrontController@contact')->name('front.contact');
 Route::get('/pricing', 'FrontController@pricing')->name('front.pricing');
 Route::get('/partners', 'FrontController@partners')->name('front.partners');
-//Route::get('/news', 'Front\NewsController@index')->name('front.news');
 Route::get('/newsletter', 'Front\NewsletterController@index')->name('front.newsletter');
-//Route::get('/news/show/{id}-{slug?}', 'Front\NewsController@show')->name('front.news.show');
 
 Route::get('/kb', 'Front\FaqController@index')->name('front.faqs.index');
 Route::get('/kb/{faq}-{slug?}', 'Front\FaqController@show')->name('front.faqs.show');
@@ -51,6 +49,3 @@ Route::get('/documentation', 'FrontController@documentation')->name('documentati
 Route::get('/docs', 'FrontController@documentation');
 Route::get('/api', 'FrontController@api');
 Route::get('/docs/1.0/{sub}', 'FrontController@api');
-
-
-Route::get('/koinks', 'Front\KoinkController@index')->name('front.koinks');

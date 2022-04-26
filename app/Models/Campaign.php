@@ -109,12 +109,6 @@ class Campaign extends MiscModel
     ];
 
     /**
-     * Searchable fields
-     * @var array
-     */
-    protected $searchableColumns  = ['name'];
-
-    /**
      * If set to false, skip many of the observers
      * @var bool
      */
@@ -125,7 +119,7 @@ class Campaign extends MiscModel
      * Helper function to know if a campaign has permissions. This is true as soon as the campaign has several roles
      * @return bool
      */
-    public function hasPermissions()
+    public function hasPermissions(): bool
     {
         return $this->roles()->count() > 1;
     }
@@ -157,7 +151,7 @@ class Campaign extends MiscModel
     /**
      * @return array
      */
-    public function membersList($removedIds = [])
+    public function membersList($removedIds = []): array
     {
         $members = [];
 
@@ -330,15 +324,6 @@ class Campaign extends MiscModel
     public function getExcerptForEditionAttribute()
     {
         return Mentions::editCampaign($this, 'excerpt');
-    }
-
-    /**
-     * Link to the dashboard
-     * @return string
-     */
-    public function dashboard(): string
-    {
-        return link_to(App::getLocale() . '/' . $this->getMiddlewareLink(), $this->name);
     }
 
     /**

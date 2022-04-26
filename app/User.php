@@ -6,9 +6,6 @@ use App\Facades\Img;
 use App\Facades\UserCache;
 use App\Models\Campaign;
 use App\Facades\CampaignLocalization;
-use App\Models\Concerns\Filterable;
-use App\Models\Concerns\Searchable;
-use App\Models\Concerns\Sortable;
 use App\Models\Concerns\Tutorial;
 use App\Models\Patreon;
 use App\Models\Relations\UserRelations;
@@ -55,9 +52,6 @@ class User extends \Illuminate\Foundation\Auth\User
         UserScope,
         UserRelations,
         UserSetting,
-        Searchable,
-        Filterable,
-        Sortable,
         Billable,
         Tutorial
     ;
@@ -68,10 +62,6 @@ class User extends \Illuminate\Foundation\Auth\User
         'patreon_fullname',
         //'patreon_email'
     ];
-
-    public $searchableColumns = ['email', 'settings'];
-    public $sortableColumns = [];
-    public $filterableColumns = ['patreon_pledge', 'referral_id'];
 
     /**
      * The attributes that are mass assignable.

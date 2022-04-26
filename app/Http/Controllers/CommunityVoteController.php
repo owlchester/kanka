@@ -81,10 +81,10 @@ class CommunityVoteController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Release  $post
+     * @param  \App\Models\ $post
      * @return \Illuminate\Http\Response
      */
-    public function edit(Release $post)
+    public function edit($post)
     {
         //
     }
@@ -93,10 +93,10 @@ class CommunityVoteController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Release  $post
+     * @param  \App\Models\  $post
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Release $post)
+    public function update(Request $request, $post)
     {
         //
     }
@@ -104,10 +104,10 @@ class CommunityVoteController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Release  $post
+     * @param  \App\Models\ $post
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Release $post)
+    public function destroy($post)
     {
         //
     }

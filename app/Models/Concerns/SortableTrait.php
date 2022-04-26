@@ -64,6 +64,11 @@ trait SortableTrait
 
         $defaults = is_array($this->defaultSort) ? $this->defaultSort : [$this->defaultSort];
         foreach ($defaults as $default) {
+            if (is_array($default)) {
+                $key = array_key_first($default);
+                $query->orderBy($key, $default[$key]);
+                continue;
+            }
             $query->orderBy($default);
         }
         return $query;
