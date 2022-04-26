@@ -5,7 +5,7 @@
 </head>
 <body>
     <p>
-        Cancelled subscription for user <a href="{{ route('admin.users.show', $user) }}">{{ $user->name }}</a> (#{{ $user->id }}) <a href="mailto:{{ $user->email }}">{{ $user->email }}</a>.
+        Cancelled subscription for user <a href="https://admin.kanka.io/users/{{ $user->id }}">{{ $user->name }}</a> (#{{ $user->id }}) <a href="mailto:{{ $user->email }}">{{ $user->email }}</a>.
     </p>
 
     @if (!empty($custom))

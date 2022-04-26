@@ -6,7 +6,7 @@
 </head>
 <body>
     <p>
-        New subscription for user <a href="{{ route('admin.users.show', $user) }}">{{ $user->name }}</a> in {{ $user->currencySymbol() }} (#{{ $user->id }}) <a href="mailto:{{ $user->email }}">{{ $user->email }}</a>.
+        New subscription for user <a href="https://admin.kanka.io/users/{{ $user->id }}">{{ $user->name }}</a> in {{ $user->currencySymbol() }} (#{{ $user->id }}) <a href="mailto:{{ $user->email }}">{{ $user->email }}</a>.
     </p>
     <p>
         Account created {{ $user->created_at->diffForHumans() }} ({{ $user->created_at->format('d.m.Y') }}).

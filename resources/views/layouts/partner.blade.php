@@ -20,9 +20,6 @@
 <body class="skin-black sidebar-mini">
 @include('layouts._tracking-fallback')
     <div id="app" class="wrapper">
-        <!-- Header -->
-        @include('layouts.admin.header')
-
         <!-- Sidebar -->
         @include('layouts.partner.sidebar')
 
