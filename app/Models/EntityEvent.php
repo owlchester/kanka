@@ -36,7 +36,6 @@ class EntityEvent extends MiscModel
     /**
      * Traits
      */
-    //use VisibleTrait;
     use OrderableTrait, SimpleSortableTrait, VisibilityTrait, Blameable;
 
     /**

@@ -6,7 +6,7 @@
     </div>
     <div class="box-body">
 
-        <?php $r = $model->inventories()->acl()->orderBy('entity_id', 'ASC')->with(['entity'])->has('entity')->paginate(); ?>
+        <?php $r = $model->inventories()->orderBy('entity_id', 'ASC')->with(['entity'])->has('entity')->paginate(); ?>
         <table id="item-inventories" class="table table-hover">
             <tbody><tr>
                 <th class="avatar"><br /></th>

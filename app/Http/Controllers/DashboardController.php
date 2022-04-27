@@ -114,7 +114,6 @@ class DashboardController extends Controller
         $entities = \App\Models\Entity::unmentioned()
             ->inTags($widget->tags->pluck('id')->toArray())
             ->type($widget->conf('entity'))
-            ->acl()
             ->with(['updater'])
             ->paginate(10);
 

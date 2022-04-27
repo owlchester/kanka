@@ -2,7 +2,7 @@
 
 namespace App\Traits;
 
-use App\Scopes\CampaignScope;
+use App\Models\Scopes\CampaignScope;
 use Illuminate\Database\Query\Builder;
 
 /**

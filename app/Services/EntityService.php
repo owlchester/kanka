@@ -25,7 +25,6 @@ use App\Models\TimelineEra;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 use App\Exceptions\TranslatableException;
 use App\Facades\CampaignLocalization;
@@ -502,6 +501,21 @@ class EntityService
     public function getClass($entity)
     {
         return Arr::get($this->entities, $entity, false);
+    }
+
+    /**
+     * Get an entity object string based on the entity type
+     * @param $entity
+     * @return mixed
+     */
+    public function getName(string $class): string|false
+    {
+        $flipped = array_flip($this->entities);
+        if (!Arr::has($flipped, $class)) {
+            return false;
+        }
+        $name = Arr::get($flipped, $class);
+        return Str::singular($name);
     }
 
     /**

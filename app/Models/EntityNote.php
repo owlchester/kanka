@@ -3,13 +3,12 @@
 namespace App\Models;
 
 use App\Facades\Mentions;
+use App\Models\Concerns\Acl;
 use App\Models\Concerns\Blameable;
 use App\Models\Concerns\Paginatable;
-use App\Traits\EntityNoteVisibilityTrait;
-use App\Traits\OrderableTrait;
+use App\Traits\VisibilityTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
-use DateTime;
 use Illuminate\Support\Arr;
 
 /**
@@ -38,7 +37,7 @@ use Illuminate\Support\Arr;
 class EntityNote extends Model
 {
     /** Traits */
-    use EntityNoteVisibilityTrait, OrderableTrait, Paginatable, Blameable;
+    use VisibilityTrait, Paginatable, Blameable, Acl;
 
     /** @var array */
     protected $fillable = [
@@ -60,12 +59,6 @@ class EntityNote extends Model
     ];
 
     /**
-     * Trigger for filtering based on the order request.
-     * @var string
-     */
-    protected $orderTrigger = 'notes/';
-
-    /**
      * Set to false to skip saved observers
      * @var bool
      */
@@ -76,14 +69,6 @@ class EntityNote extends Model
      * @var bool
      */
     public $savingObserver = true;
-
-    /**
-     * Searchable fields
-     * @var array
-     */
-    protected $searchableColumns = [
-        'name'
-    ];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -99,22 +84,6 @@ class EntityNote extends Model
     public function location()
     {
         return $this->belongsTo('App\Models\Location', 'location_id');
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function creator()
-    {
-        return $this->belongsTo('App\User', 'created_by');
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function editor()
-    {
-        return $this->belongsTo('App\User', 'updated_by');
     }
 
     /**
@@ -165,10 +134,10 @@ class EntityNote extends Model
     /**
      * @return bool
      */
-    public function hasEntity(): bool
+    /*public function hasEntity(): bool
     {
         return true;
-    }
+    }*/
 
     /**
      * @return mixed

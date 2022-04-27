@@ -6,7 +6,6 @@ use App\Models\Campaign;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\DB;
 
 /**
  * Trait CampaignScopes

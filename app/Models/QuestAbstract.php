@@ -6,7 +6,6 @@ namespace App\Models;
 
 use App\Facades\Mentions;
 use App\Models\Concerns\SimpleSortableTrait;
-use App\Traits\VisibleTrait;
 
 /**
  * Class QuestElement

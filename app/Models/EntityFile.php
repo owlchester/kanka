@@ -5,12 +5,8 @@ namespace App\Models;
 use App\Facades\Img;
 use App\Models\Concerns\Blameable;
 use App\Models\Concerns\EntityAsset;
-use App\Models\Concerns\Paginatable;
-use App\Traits\OrderableTrait;
 use App\Traits\VisibilityTrait;
-use App\Traits\VisibleTrait;
 use Illuminate\Database\Eloquent\Model;
-use DateTime;
 use Illuminate\Support\Str;
 
 /**
@@ -32,8 +28,10 @@ class EntityFile extends Model
     /**
      * Traits
      */
-    use VisibleTrait, VisibilityTrait, Blameable,
-        EntityAsset;
+    use VisibilityTrait,
+        Blameable,
+        EntityAsset
+    ;
 
     /**
      * @var array

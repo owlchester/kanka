@@ -312,7 +312,6 @@ class CampaignDashboardWidget extends Model
         return $base
             ->inTags($this->tags->pluck('id')->toArray())
             ->type($entityTypeID)
-            ->acl()
             ->with(['image:campaign_id,id,ext'])
             ->paginate(10)
         ;

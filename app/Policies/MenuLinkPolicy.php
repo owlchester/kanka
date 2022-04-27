@@ -36,8 +36,7 @@ class MenuLinkPolicy
      */
     public function create(User $user)
     {
-        return !$this->shadow() &&
-            $this->isAdmin($user);
+        return $this->isAdmin($user);
     }
 
     /**
@@ -62,7 +61,6 @@ class MenuLinkPolicy
      */
     public function delete(User $user, MenuLink $menuLink)
     {
-        return !$this->shadow() &&
-            $this->isAdmin($user);
+        return $this->isAdmin($user);
     }
 }

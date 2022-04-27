@@ -22,7 +22,7 @@ if ($allMembers) {
 } else {
     $r = $model->entities();
 }
-$r = $r->acl()
+$r = $r->
     ->simpleSort($datagridSorter)
     ->paginate();
 
@@ -38,11 +38,11 @@ $r = $r->acl()
             </a>
             @if (!$allMembers)
                 <a href="{{ route('tags.show', [$model, 'all_members' => true, '#tag-children']) }}" class="btn btn-box-tool">
-                    <i class="fa fa-filter"></i> {{ __('crud.filters.all') }} ({{ $model->allChildren()->acl()->count() }})
+                    <i class="fa fa-filter"></i> {{ __('crud.filters.all') }} ({{ $model->allChildren()->count() }})
                 </a>
             @else
                 <a href="{{ route('tags.show', [$model, '#tag-children']) }}" class="btn btn-box-tool">
-                    <i class="fa fa-filter"></i> {{ __('crud.filters.direct') }} ({{ $model->entities()->acl()->count() }})
+                    <i class="fa fa-filter"></i> {{ __('crud.filters.direct') }} ({{ $model->entities()->count() }})
                 </a>
             @endif
 

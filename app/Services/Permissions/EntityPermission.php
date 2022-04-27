@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services;
+namespace App\Services\Permissions;
 
 use App\Facades\CampaignCache;
 use App\Facades\UserCache;
@@ -11,7 +11,6 @@ use App\Models\Entity;
 use App\Models\MiscModel;
 use App\User;
 use Illuminate\Support\Arr;
-use Illuminate\Support\Str;
 
 class EntityPermission
 {

@@ -5,14 +5,14 @@ namespace App\Facades;
 use Illuminate\Support\Facades\Facade;
 
 /**
- * Class RolePermission
+ * Class Permissions
  * Used for the Entity object
  * @package App\Facades
  *
- * @see \App\Services\Permissions\RolePermission
- * @mixin \App\Services\Permissions\RolePermission
+ * @see \App\Services\Permissions\PermissionService
+ * @mixin \App\Services\Permissions\PermissionService
  */
-class RolePermission extends Facade
+class Permissions extends Facade
 {
     /**
      * Get the registered name of the component.
@@ -21,6 +21,6 @@ class RolePermission extends Facade
      */
     protected static function getFacadeAccessor()
     {
-        return 'rolepermission';
+        return 'permissions';
     }
 }

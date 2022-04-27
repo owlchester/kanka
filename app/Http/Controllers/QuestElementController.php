@@ -43,7 +43,6 @@ class QuestElementController extends Controller
         $elements = $quest
             ->elements()
             ->with('entity')
-            ->acl()
             ->simpleSort($datagridSorter)
             ->paginate();
 

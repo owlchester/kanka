@@ -13,7 +13,6 @@ $entity = \App\Models\Entity::
         inTags($widget->tags->pluck('id')->toArray())
         ->whereNotIn('type', ['attribute_template', 'conversation', 'tag'])
         ->type($entityTypeID)
-        ->acl()
         ->with(['image'])
         ->whereNotIn('entities.id', \App\Facades\Dashboard::excluding())
         ->inRandomOrder()

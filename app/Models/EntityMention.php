@@ -2,9 +2,7 @@
 
 namespace App\Models;
 
-use App\Traits\EntityMentionAclTrait;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\DB;
 
 /**
  * Class EntityMention
@@ -21,8 +19,6 @@ use Illuminate\Support\Facades\DB;
  */
 class EntityMention extends Model
 {
-    use EntityMentionAclTrait;
-
     public $fillable = [
         'entity_id',
         'entity_note_id',

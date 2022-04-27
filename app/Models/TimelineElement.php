@@ -120,37 +120,6 @@ class TimelineElement extends Model
     }
 
     /**
-     * Scope a query to only include elements that are visible
-     *
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     * @param mixed $type
-     * @return \Illuminate\Database\Eloquent\Builder
-     */
-    public function scopeAcl($query, $action = 'read', $user = null)
-    {
-        // Use the User Permission Service to handle all of this easily.
-        /** @var \App\Services\UserPermission $service */
-        $service = UserPermission::user($user)->action($action);
-
-        if ($service->isCampaignOwner()) {
-            return $query;
-        }
-
-        return $query
-            ->select('timeline_elements.*')
-            ->join('entities', 'entities.id', '=', 'timeline_elements.entity_id')
-            ->where('entities.is_private', false)
-            ->where(function ($subquery) use ($service) {
-                return $subquery
-                    ->where(function ($sub) use ($service) {
-                        return $sub->whereIn('entities.id', $service->entityIds())
-                            ->orWhereIn('entities.type', $service->entityTypes());
-                    })
-                    ->whereNotIn('entities.id', $service->deniedEntityIds());
-            });
-    }
-
-    /**
      * @return string
      */
     public function htmlIcon(): string

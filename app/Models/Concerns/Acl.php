@@ -1,0 +1,28 @@
+<?php
+
+namespace App\Models\Concerns;
+
+use App\Models\Scopes\AclScope;
+use Illuminate\Database\Eloquent\Builder;
+
+trait Acl
+{
+    /**
+     * Boot the trait's observers
+     */
+    public static function bootAcl(): void
+    {
+        static::addGlobalScope(new AclScope);
+    }
+
+    /**
+     * Global privacy scope
+     * @param Builder $query
+     * @param bool $private
+     * @return Builder
+     */
+    public function scopePrivate(Builder $query, bool $private = true): Builder
+    {
+        return $query->where('is_private', $private);
+    }
+}

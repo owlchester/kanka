@@ -14,7 +14,7 @@ trait AdminPolicyTrait
     protected $cachedAdminPolicy = null;
 
     /**
-     * Determin if a user is admin of a campaign
+     * Determine if a user is admin of a campaign
      * @param User $user
      * @return bool
      */

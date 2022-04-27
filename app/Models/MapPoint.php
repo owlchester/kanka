@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use App\Facades\EntityPermission;
-use App\Traits\AclTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 
@@ -30,7 +29,6 @@ class MapPoint extends Model
     /**
      * Acl setup
      */
-    use AclTrait;
     public $entityType = 'location';
     public $aclFieldName = 'location_id';
 

@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use App\Models\Concerns\Paginatable;
-use App\Scopes\CampaignScope;
 use App\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;

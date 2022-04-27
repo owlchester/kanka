@@ -6,6 +6,7 @@ use App\Facades\CampaignLocalization;
 use App\Facades\EntityCache;
 use App\Facades\Img;
 use App\Facades\Mentions;
+use App\Models\Concerns\Acl;
 use App\Models\Concerns\EntityLogs;
 use App\Models\Concerns\LastSync;
 use App\Models\Concerns\Paginatable;
@@ -15,7 +16,6 @@ use App\Models\Concerns\SimpleSortableTrait;
 use App\Models\Relations\EntityRelations;
 use App\Models\Scopes\EntityScopes;
 use App\Traits\CampaignTrait;
-use App\Traits\EntityAclTrait;
 use App\Traits\TooltipTrait;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
@@ -75,7 +75,6 @@ class Entity extends Model
     use CampaignTrait,
         EntityRelations,
         BlameableTrait,
-        EntityAclTrait,
         EntityScopes,
         Searchable,
         TooltipTrait,
@@ -84,7 +83,8 @@ class Entity extends Model
         SoftDeletes,
         EntityLogs,
         Paginatable,
-        LastSync
+        LastSync,
+        Acl
     ;
 
     /**

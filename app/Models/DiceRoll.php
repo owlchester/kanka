@@ -2,10 +2,9 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\Acl;
 use App\Traits\CampaignTrait;
 use App\Traits\ExportableTrait;
-use App\Traits\VisibleTrait;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
@@ -16,9 +15,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class DiceRoll extends MiscModel
 {
     use CampaignTrait,
-        VisibleTrait,
         ExportableTrait,
-        SoftDeletes;
+        SoftDeletes,
+        Acl
+    ;
 
     //
     protected $fillable = [

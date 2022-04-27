@@ -6,7 +6,6 @@ use App\Facades\CampaignLocalization;
 use App\Facades\Dashboard;
 use App\Models\Concerns\Taggable;
 use App\Traits\CampaignTrait;
-use App\Traits\VisibleTrait;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
 
@@ -33,7 +32,7 @@ use Illuminate\Support\Str;
  */
 class MenuLink extends MiscModel
 {
-    use Taggable;
+    use Taggable, CampaignTrait;
 
     /**
      * @var string
@@ -75,12 +74,6 @@ class MenuLink extends MiscModel
      * @var array
      */
     public $optionsAllowedKeys = ['is_nested'];
-
-    /**
-     *
-     */
-    use VisibleTrait;
-    use CampaignTrait;
 
     /**
      * Searchable fields
@@ -328,7 +321,6 @@ class MenuLink extends MiscModel
         $entity = Entity::
             inTags($this->tags->pluck('id')->toArray())
             ->type($entityTypeID)
-            ->acl()
             ->inRandomOrder()
             ->first();
 

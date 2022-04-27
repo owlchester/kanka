@@ -3,9 +3,7 @@
 namespace App\Models;
 
 use App\Models\Concerns\Paginatable;
-use App\Traits\VisibleTrait;
 use Illuminate\Database\Eloquent\Model;
-use DateTime;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Builder;
 

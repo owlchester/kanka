@@ -3,11 +3,11 @@
 namespace App\Models;
 
 use App\Facades\CampaignLocalization;
+use App\Models\Concerns\Acl;
 use App\Models\Concerns\SimpleSortableTrait;
 use App\Models\Concerns\SortableTrait;
 use App\Traits\CampaignTrait;
 use App\Traits\ExportableTrait;
-use App\Traits\VisibleTrait;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
@@ -29,11 +29,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Character extends MiscModel
 {
     use CampaignTrait,
-        VisibleTrait,
         ExportableTrait,
         SimpleSortableTrait,
         SoftDeletes,
-        SortableTrait
+        SortableTrait,
+        Acl
     ;
 
     //

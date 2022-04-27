@@ -56,7 +56,6 @@ class ConnectionService
 
 
         return Entity::whereIn('id', $this->ids)
-            ->acl()
             ->orderBy($this->order)
             ->paginate();
     }

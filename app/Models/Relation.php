@@ -11,11 +11,8 @@ use App\Models\Concerns\Searchable;
 use App\Models\Concerns\SimpleSortableTrait;
 use App\Models\Concerns\Sortable;
 use App\Models\Scopes\Starred;
-use App\Traits\OrderableTrait;
 use App\Traits\VisibilityTrait;
-use App\Traits\VisibleTrait;
 use Illuminate\Database\Eloquent\Model;
-use Exception;
 
 /**
  * Class Relation
@@ -41,7 +38,11 @@ class Relation extends Model
     /**
      * Traits
      */
-    use VisibilityTrait, Starred, Paginatable, Blameable, SimpleSortableTrait,
+    use VisibilityTrait,
+        Starred,
+        Paginatable,
+        Blameable,
+        SimpleSortableTrait,
         Filterable,
         Sortable,
         Searchable,
@@ -151,36 +152,6 @@ class Relation extends Model
 
         // Update this relation to keep track of everything
         $this->update(['mirror_id' => $mirror->id]);
-    }
-    /**
-     * Scope a query to only include elements that are visible
-     *
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     * @param mixed $type
-     * @return \Illuminate\Database\Eloquent\Builder
-     */
-    public function scopeAcl($query, $action = 'read', $user = null)
-    {
-        // Use the User Permission Service to handle all of this easily.
-        /** @var \App\Services\UserPermission $service */
-        $service = UserPermission::user($user)->action($action);
-
-        if ($service->isCampaignOwner()) {
-            return $query;
-        }
-
-        return $query
-            ->select('relations.*')
-            ->join('entities', 'relations.target_id', '=', 'entities.id')
-            ->where('entities.is_private', false)
-            ->where(function ($subquery) use ($service) {
-                return $subquery
-                    ->where(function ($sub) use ($service) {
-                        return $sub->whereIn('entities.id', $service->entityIds())
-                            ->orWhereIn('entities.type', $service->entityTypes());
-                    })
-                    ->whereNotIn('entities.id', $service->deniedEntityIds());
-            });
     }
 
     /**

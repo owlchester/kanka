@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Datagrids\Sorters\DatagridSorter;
 use App\Facades\CampaignLocalization;
 use App\Facades\FormCopy;
+use App\Facades\Permissions;
 use App\Http\Resources\AttributeResource;
 use App\Models\Entity;
 use App\Models\AttributeTemplate;
@@ -163,7 +164,6 @@ class CrudController extends Controller
         $templates = null;
         if (auth()->check() && !empty($model->entityTypeID()) && auth()->user()->can('create', $model)) {
             $templates = Entity::templates($model->entityTypeID())
-                ->acl()
                 ->get();
         }
 
@@ -357,8 +357,16 @@ class CrudController extends Controller
 
         // Fix for models without an entity
         if (empty($model->entity) && !($model instanceof MenuLink)) {
-            $model->save();
-            $model->load('entity');
+            if (auth()->guest()) {
+                abort(404);
+            }
+            if (Permissions::user(auth()->user())->campaign(CampaignLocalization::getCampaign())->isAdmin()) {
+                dd('trying to save?');
+                $model->save();
+                $model->load('entity');
+            } else {
+                abort(404);
+            }
         }
 
         return view(

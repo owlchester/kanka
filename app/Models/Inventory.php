@@ -5,7 +5,6 @@ namespace App\Models;
 use App\Facades\CampaignLocalization;
 use App\Facades\UserPermission;
 use App\Models\Concerns\SimpleSortableTrait;
-use App\Traits\EntityAclTrait;
 use App\Traits\VisibilityTrait;
 use Illuminate\Database\Eloquent\Model;
 
@@ -78,8 +77,7 @@ class Inventory extends Model
     public static function positionList()
     {
         $campaign = CampaignLocalization::getCampaign();
-        return self::acl()
-            ->groupBy('position')
+        return self::groupBy('position')
             ->whereNotNull('position')
             ->leftJoin('entities as e', 'e.id', 'inventories.entity_id')
             ->where('e.campaign_id', $campaign->id)
@@ -87,41 +85,6 @@ class Inventory extends Model
             ->limit(20)
             ->pluck('position')
             ->all();
-    }
-
-    /**
-     * Scope a query to only include elements that are visible
-     *
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     * @param mixed $type
-     * @return \Illuminate\Database\Eloquent\Builder
-     */
-    public function scopeAcl($query, $action = 'read', $user = null)
-    {
-        // Use the User Permission Service to handle all of this easily.
-        /** @var \App\Services\UserPermission $service */
-        $service = UserPermission::user($user)->action($action);
-
-        if ($service->isCampaignOwner()) {
-            return $query;
-        }
-
-        return $query
-            ->select('inventories.*')
-            ->join('items', 'inventories.item_id', '=', 'items.id')
-            ->join('entities', function ($join) {
-                $join->on('entities.entity_id', '=', 'items.id')
-                    ->where('entities.type', '=', 'item');
-            })
-            ->where('entities.is_private', false)
-            ->where(function ($subquery) use ($service) {
-                return $subquery
-                    ->where(function ($sub) use ($service) {
-                        return $sub->whereIn('entities.id', $service->entityIds())
-                            ->orWhereIn('entities.type', $service->entityTypes());
-                    })
-                    ->whereNotIn('entities.id', $service->deniedEntityIds());
-            });
     }
 
     /**

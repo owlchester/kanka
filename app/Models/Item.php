@@ -3,10 +3,10 @@
 namespace App\Models;
 
 use App\Facades\CampaignLocalization;
+use App\Models\Concerns\Acl;
 use App\Models\Concerns\SimpleSortableTrait;
 use App\Traits\CampaignTrait;
 use App\Traits\ExportableTrait;
-use App\Traits\VisibleTrait;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
@@ -25,10 +25,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Item extends MiscModel
 {
     use CampaignTrait,
-        VisibleTrait,
         ExportableTrait,
         SimpleSortableTrait,
-        SoftDeletes;
+        SoftDeletes,
+        Acl
+    ;
 
     /**
      * @var array
@@ -197,7 +198,7 @@ class Item extends MiscModel
     {
         $campaign = CampaignLocalization::getCampaign();
 
-        $inventoryCount = $this->inventories()->with('item')->acl()->has('entity')->count();
+        $inventoryCount = $this->inventories()->with('item')->has('entity')->count();
         if ($inventoryCount > 0) {
             $items['second']['inventories'] = [
                 'name' => 'items.show.tabs.inventories',

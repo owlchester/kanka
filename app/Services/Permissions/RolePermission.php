@@ -1,13 +1,8 @@
 <?php
 
-namespace App\Services;
+namespace App\Services\Permissions;
 
-use App\Facades\CampaignCache;
-use App\Facades\UserCache;
-use App\Models\CampaignPermission;
 use App\Models\CampaignRole;
-use App\User;
-use Illuminate\Support\Str;
 
 class RolePermission
 {

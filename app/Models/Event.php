@@ -2,11 +2,11 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\Acl;
 use App\Models\Concerns\Nested;
 use App\Models\Concerns\SimpleSortableTrait;
 use App\Traits\CampaignTrait;
 use App\Traits\ExportableTrait;
-use App\Traits\VisibleTrait;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
@@ -24,11 +24,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Event extends MiscModel
 {
     use CampaignTrait,
-        VisibleTrait,
         ExportableTrait,
         SoftDeletes,
         Nested,
-        SimpleSortableTrait;
+        SimpleSortableTrait,
+        Acl
+    ;
 
     /**
      * @var array

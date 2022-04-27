@@ -11,8 +11,8 @@ use Illuminate\Support\Facades\Facade;
  * Used for the Entity object
  * @package App\Facades
  *
- * @see \App\Services\UserPermission
- * @mixin \App\Services\UserPermission
+ * @see \App\Services\Permissions\UserPermission
+ * @mixin \App\Services\Permissions\UserPermission
  */
 class UserPermission extends Facade
 {

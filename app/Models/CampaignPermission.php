@@ -2,9 +2,7 @@
 
 namespace App\Models;
 
-use App\Traits\VisibleTrait;
 use Illuminate\Database\Eloquent\Model;
-use DateTime;
 use Illuminate\Support\Str;
 
 /**

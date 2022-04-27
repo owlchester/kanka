@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\Acl;
 use App\Models\Concerns\Nested;
 use App\Traits\CampaignTrait;
-use App\Traits\VisibleTrait;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
@@ -20,9 +20,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class AttributeTemplate extends MiscModel
 {
     use CampaignTrait,
-        VisibleTrait,
         Nested,
-        SoftDeletes;
+        SoftDeletes,
+        Acl
+    ;
 
     /**
      * Fields that can be mass-assigned

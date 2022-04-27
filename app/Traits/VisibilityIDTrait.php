@@ -7,6 +7,10 @@ use App\Models\Visibility;
 
 /**
  * Trait VisibilityTrait
+ *
+ * Prioritize using this package where the visibility is an id, rather than the
+ * old one with a string.
+ *
  * @package App\Traits
  *
  * @property string $visibility_id

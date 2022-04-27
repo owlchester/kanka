@@ -66,7 +66,7 @@ class InventoryController extends Controller
         $inventory = $entity
             ->inventories()
             ->with(['entity', 'item', 'item.entity'])
-            ->has('entity')
+            ->has('item')
             ->simpleSort($datagridSorter)
             ->get()
             ->sortBy(function($model, $key) {

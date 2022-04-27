@@ -42,7 +42,6 @@ class TimelineController extends Controller
             ->timelines()
             ->with(['timeline', 'timeline.entity', 'era'])
             ->has('timeline')
-            ->acl()
             ->simpleSort($datagridSorter)
             ->paginate();
 

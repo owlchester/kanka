@@ -4,11 +4,11 @@ namespace App\Models;
 
 use App\Facades\CampaignLocalization;
 use App\Facades\Mentions;
+use App\Models\Concerns\Acl;
 use App\Models\Concerns\Nested;
 use App\Models\Concerns\SimpleSortableTrait;
 use App\Traits\CampaignTrait;
 use App\Traits\ExportableTrait;
-use App\Traits\VisibleTrait;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Arr;
 
@@ -24,11 +24,12 @@ use Illuminate\Support\Arr;
 class Ability extends MiscModel
 {
     use CampaignTrait,
-        VisibleTrait,
         ExportableTrait,
         Nested,
         SimpleSortableTrait,
-        SoftDeletes;
+        SoftDeletes,
+        Acl
+    ;
 
     /**
      * @var array
@@ -171,7 +172,7 @@ class Ability extends MiscModel
         $items['second']['entities'] = [
             'name' => 'abilities.show.tabs.entities',
             'route' => 'abilities.entities',
-            'count' => $this->entities()->acl()->count()
+            'count' => $this->entities()->count()
         ];
         return parent::menuItems($items);
     }

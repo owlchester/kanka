@@ -487,13 +487,13 @@ class User extends \Illuminate\Foundation\Auth\User
     }
 
     /**
-     * Number of koinks a user has
-     * @return int
+     * Get the user's role IDs based on the campaign
+     * @param int $campaignID
+     * @return array
      */
-    public function koinks(): int
+    public function campaignRoleIDs(int $campaignID): array
     {
-        $koinks = substr($this->id, 0, 3);
-        $koinks = str_pad($koinks, 3, 0);
-        return $koinks;
+        $roles = UserCache::roles()->where('campaign_id', $campaignID);
+        return $roles->pluck('id')->toArray();
     }
 }

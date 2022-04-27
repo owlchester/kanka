@@ -42,7 +42,6 @@ trait TreeControllerTrait
         $templates = null;
         if (auth()->check() && !empty($model->entityTypeID()) && auth()->user()->can('create', $model)) {
             $templates = Entity::templates($model->entityTypeID())
-                ->acl()
                 ->get();
         }
 

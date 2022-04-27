@@ -11,7 +11,7 @@ if (empty($entity)) {
 $wrapper = false;
 $entryShown = false;
 if (!isset($pinnedNotes)) {
-    $pinnedNotes = $entity->notes()->with(['permissions', 'location', 'creator', 'editor'])->ordered()->paginate(15);
+    $pinnedNotes = $entity->notes()->with(['permissions', 'location'])->ordered()->paginate(15);
     $wrapper = true;
 }
 

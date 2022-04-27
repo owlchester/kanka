@@ -2,12 +2,7 @@
 
 namespace App\Models;
 
-use App\Facades\CampaignLocalization;
-use App\Traits\CampaignTrait;
-use App\Traits\VisibleTrait;
 use App\User;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Session;
 
 class ConversationParticipant extends MiscModel
 {

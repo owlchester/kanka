@@ -12,7 +12,7 @@
             </div>
         </div>
 
-        <?php $r = $model->entities()->acl()->simpleSort($datagridSorter)->paginate(); ?>
+        <?php $r = $model->entities()->simpleSort($datagridSorter)->paginate(); ?>
         <table id="abilities" class="table table-hover margin-top ">
             <tbody><tr>
                 <th class="avatar"><br /></th>

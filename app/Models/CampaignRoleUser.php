@@ -2,10 +2,8 @@
 
 namespace App\Models;
 
-use App\Traits\VisibleTrait;
 use App\User;
 use Illuminate\Database\Eloquent\Model;
-use DateTime;
 
 /**
  * Class Attribute

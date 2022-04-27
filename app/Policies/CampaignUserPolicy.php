@@ -46,8 +46,7 @@ class CampaignUserPolicy
         return $user->campaign->id == $campaignUser->campaign->id &&
             // Don't allow updating if we are currently impersonating
             !Identity::isImpersonating()
-            && UserCache::user($user)->admin() && !UserCache::user($campaignUser->user)->admin() &&
-            !$this->shadow()
+            && UserCache::user($user)->admin() && !UserCache::user($campaignUser->user)->admin()
         ;
     }
 
@@ -63,8 +62,7 @@ class CampaignUserPolicy
         return $user->campaign->id == $campaignUser->campaign->id &&
             // Don't allow deleting if we are currently impersonating
             !Identity::isImpersonating()
-            && UserCache::user($user)->admin() && !UserCache::user($campaignUser->user)->admin() &&
-            !$this->shadow()
+            && UserCache::user($user)->admin() && !UserCache::user($campaignUser->user)->admin()
         ;
     }
 
@@ -80,8 +78,7 @@ class CampaignUserPolicy
         return $user->campaign->id == $campaignUser->campaign->id &&
             // Don't allow impersonating if we are already impersonating
             !Identity::isImpersonating()
-            && UserCache::user($user)->admin() && !UserCache::user($campaignUser->user)->admin() &&
-            !$this->shadow()
+            && UserCache::user($user)->admin() && !UserCache::user($campaignUser->user)->admin()
         ;
     }
 }

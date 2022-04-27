@@ -14,7 +14,6 @@ use App\Models\Concerns\Searchable;
 use App\Models\Concerns\Sortable;
 use App\Models\Concerns\Tooltip;
 use App\Models\Scopes\SubEntityScopes;
-use App\Traits\AclTrait;
 use App\Traits\SourceCopiable;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
@@ -48,7 +47,6 @@ use Illuminate\Support\Str;
 abstract class MiscModel extends Model
 {
     use Paginatable,
-        AclTrait,
         Searchable,
         Orderable,
         Filterable,
@@ -355,7 +353,7 @@ abstract class MiscModel extends Model
             $items['first']['relations'] = [
                 'name' => 'crud.tabs.connections',
                 'route' => 'entities.relations.index',
-                'count' => $this->entity->relationships()->has('target')->acl()->count(),
+                'count' => $this->entity->relationships()->has('target')->count(),
                 'entity' => true,
                 'icon' => 'fa-solid fa-users',
             ];

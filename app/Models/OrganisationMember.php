@@ -5,8 +5,6 @@ namespace App\Models;
 use App\Models\Concerns\Filterable;
 use App\Models\Concerns\Paginatable;
 use App\Models\Concerns\SimpleSortableTrait;
-use App\Traits\AclTrait;
-use App\Traits\VisibleTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Query\Builder;
 
@@ -29,13 +27,7 @@ use Illuminate\Database\Query\Builder;
  */
 class OrganisationMember extends Model
 {
-    use Paginatable, VisibleTrait, Filterable, SimpleSortableTrait;
-
-    /**
-     * ACL Trait config
-     * We want to get permissions on the character to know if we can see them
-     */
-    use AclTrait;
+    use Paginatable, Filterable, SimpleSortableTrait;
 
     const PIN_CHARACTER = 1;
     const PIN_ORGANISATION = 2;

@@ -12,13 +12,13 @@
 
         @include('cruds.datagrids.sorters.simple-sorter', ['target' => '#calendar-events'])
 
-        <?php  $r = $model->calendarEvents()->with('entity', 'calendar')->entityAcl()->simpleSort($datagridSorter)->paginate(); ?>
+        <?php  $r = $model->calendarEvents()->with('entity', 'calendar')->has('entity')->simpleSort($datagridSorter)->paginate(); ?>
         <table id="calendar-events" class="table table-hover ">
             <thead>
                 <tr>
                     <th class="avatar"><br /></th>
                     <th>{{ __('crud.fields.entity') }}</th>
-                    <th>{{ __('crud.fields.entity_type') }}</th>
+                    <th class="hidden-xs hidden-sm">{{ __('crud.fields.entity_type') }}</th>
                     <th>{{ __('events.fields.date') }}</th>
                     <th>{{ __('calendars.fields.length') }}</th>
                     <th></th>
@@ -28,6 +28,9 @@
             </thead>
             <tbody>
             @foreach ($r as $event)
+                @if (empty($event->entity->child))
+                    @dd($event)
+                @endif
                 @if (empty($event->entity) || empty($event->entity->child))
                     @continue
                 @endif
@@ -41,7 +44,7 @@
                         @endif
                         {!! $event->entity->tooltipedLink() !!}
                     </td>
-                    <td>{{ $event->entity->entityType() }}</td>
+                    <td class="hidden-xs hidden-sm">{{ $event->entity->entityType() }}</td>
                     <td>{{ $event->readableDate() }}</td>
                     <td>{{ trans_choice('calendars.fields.length_days', $event->length, ['count' => $event->length]) }}</td>
                     <td>@if ($event->comment)
@@ -54,7 +57,7 @@
                         @can('update', $model)
                             <a href="{{ route('entities.entity_events.edit', [$event->entity, $event->id]) }}" class="btn btn-xs btn-primary" data-toggle="ajax-modal"
                                data-target="#entity-modal" data-url="{{ route('entities.entity_events.edit', [$event->entity->id, $event->id, 'next' => 'calendars.events']) }}"
-                                title="{{ trans('crud.edit') }}">
+                                title="{{ __('crud.edit') }}">
                                 <i class="fa fa-edit"></i>
                             </a>
 

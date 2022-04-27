@@ -276,6 +276,7 @@ class DatagridRenderer
         $useEntity = $this->getOption('disableEntity') !== true;
         // Should never happen...
         if ($useEntity && empty($model->entity)) {
+            return;
             $model->save();
             $model->refresh();
         }

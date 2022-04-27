@@ -43,7 +43,11 @@ class UserEventSubscriber
             dd('Error OSL-010');
         }
 
-        $userLogType = session()->get('kanka.userLog', UserLog::TYPE_LOGIN);
+        $default = UserLog::TYPE_LOGIN;
+        if (auth()->viaRemember()) {
+            $default = UserLog::TYPE_AUTOLOGIN;
+        }
+        $userLogType = session()->get('kanka.userLog', $default);
         $log = UserLog::create([
             'user_id' => $event->user->id,
             'type_id' => $userLogType,
