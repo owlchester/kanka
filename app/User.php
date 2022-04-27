@@ -294,9 +294,7 @@ class User extends \Illuminate\Foundation\Auth\User
      */
     public function isGoblinPatron(): bool
     {
-        return ($this->hasRole('patreon') && !empty($this->patreon_pledge)
-                && $this->patreon_pledge != Patreon::PLEDGE_KOBOLD)
-            || $this->hasRole('admin');
+        return $this->patreon_pledge == Patreon::PLEDGE_GOBLIN;
     }
 
     /**

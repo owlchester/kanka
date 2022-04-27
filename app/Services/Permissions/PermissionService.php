@@ -247,9 +247,12 @@ class PermissionService
         return $this;
     }
 
+    /**
+     * Load public role permissions as a fall back for non-members of the campaign.
+     */
     protected function loadPublicRole(): void
     {
-        // Go and get the Public role
+        // Go and get the Public role from the cache.
         $publicRole = CampaignCache::campaign($this->campaign)
             ->roles()
             ->where('is_public', true)
@@ -303,12 +306,19 @@ class PermissionService
     }
 
     /**
-     *
+     * Load the user's permissions. This table doesn't involve the campaign_id of the campaign, so we
+     * have to load every permission...
+     * Todo: add a limit to the current campaign
      */
     protected function loadUserPermissions(): void
     {
+        if ($this->admin) {
+            return;
+        }
         // If we have a user, they might have individual entity permissions
-        foreach (CampaignPermission::where('user_id', $this->user->id)->get() as $permission) {
+        $permissions = CampaignPermission::where('user_id', $this->user->id)
+            ->get();
+        foreach ($permissions as $permission) {
             $this->parseUserPermission($permission);
         }
     }

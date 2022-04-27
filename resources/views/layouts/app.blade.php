@@ -53,10 +53,10 @@ $seoTitle = isset($seoTitle) ? $seoTitle : (isset($title) ? $title : null);
     <link href="{{ mix('css/' . request()->get('_theme') . '.css') }}" rel="stylesheet">
     @endif
 @else
-    @if (!empty($campaign) && $campaign->boosted() && !empty($campaign->theme))
+    @if (!empty($campaign) && $campaign->boosted() && !empty($campaign->theme_id))
     @if ($campaign->theme_id !== 1)
-        <link href="{{ mix('css/' . $campaign->theme->name . '.css') }}" rel="stylesheet">
-        @php $specificTheme = $campaign->theme->name @endphp
+        <link href="{{ mix('css/' . ($campaign->theme_id === 2 ? 'dark' : 'midnight') . '.css') }}" rel="stylesheet">
+        @php $specificTheme = ($campaign->theme_id === 2 ? 'dark' : 'midnight') @endphp
     @endif
     @elseif (auth()->check() && !empty(auth()->user()->theme))
         <link href="{{ mix('css/' . auth()->user()->theme . '.css') }}" rel="stylesheet">

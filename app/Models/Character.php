@@ -161,11 +161,8 @@ class Character extends MiscModel
             'entity',
             'entity.image',
             'location',
-            'location.entity',
             'families',
-            'families.entity',
             'races',
-            'races.entity',
         ]);
     }
 
@@ -174,25 +171,28 @@ class Character extends MiscModel
      */
     public function location()
     {
-        return $this->belongsTo('App\Models\Location', 'location_id', 'id');
+        return $this->belongsTo('App\Models\Location', 'location_id', 'id')
+            ->with('entity');
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function families()
     {
         return $this->belongsToMany('App\Models\Family')
-            ->orderBy('character_family.id');
+            ->orderBy('character_family.id')
+            ->with('entity');
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function races()
     {
         return $this->belongsToMany('App\Models\Race')
-            ->orderBy('character_race.id');
+            ->orderBy('character_race.id')
+            ->with('entity');
     }
 
     /**
