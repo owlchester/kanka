@@ -19,7 +19,7 @@ class PermissionService
     /** @var User */
     protected $user;
 
-    /** @var string read|view|delete */
+    /** @var int CampaignPermission::ACTION_READ etc */
     protected $action;
 
     /** @var array Entity IDs and Types the user can access */
@@ -68,7 +68,12 @@ class PermissionService
         return $this->admin;
     }
 
-    public function action(string $action): self
+    /**
+     * Set the desired action
+     * @param int $action
+     * @return $this
+     */
+    public function action(int $action): self
     {
         $this->action = $action;
         return $this;
@@ -85,7 +90,7 @@ class PermissionService
         return $this;
     }
 
-    public function entityType(string $entityType): self
+    public function entityType(int $entityType): self
     {
         $this->entityType = $entityType;
         return $this;
@@ -154,7 +159,7 @@ class PermissionService
     public function canRole(): bool
     {
         $this->loadPermissions();
-        return in_array($this->entityType, $this->entityTypes);
+        return in_array($this->entityType, $this->entityTypesIds);
     }
 
     /**
@@ -282,7 +287,7 @@ class PermissionService
     protected function parseRolePermission(CampaignPermission $permission)
     {
         // Only test permissions who's action is being requested
-        if ($permission->action() != $this->action) {
+        if (!$permission->isAction($this->action)) {
             return;
         }
         if (!empty($this->entityType) && $permission->table_name !== $this->entityType) {
@@ -290,11 +295,8 @@ class PermissionService
         }
 
         if (empty($permission->entity_id)) {
-            // This permission targets an entity type
-            $type = Str::singular($permission->table_name);
-            if (!in_array($type, $this->entityTypes)) {
-                $this->entityTypes[] = $type;
-                $this->entityTypesIds[] = config('entities.ids.' . $type);
+            if (!in_array($permission->entity_type_id, $this->entityTypesIds)) {
+                $this->entityTypesIds[] = $permission->entity_type_id;
             }
         } elseif ($permission->access && !in_array($permission->entity_id, $this->entityIds)) {
             // This permission targets an entity directly
@@ -315,8 +317,10 @@ class PermissionService
         if ($this->admin) {
             return;
         }
+
         // If we have a user, they might have individual entity permissions
         $permissions = CampaignPermission::where('user_id', $this->user->id)
+            ->where('campaign_id', $this->campaign->id)
             ->get();
         foreach ($permissions as $permission) {
             $this->parseUserPermission($permission);
@@ -329,7 +333,7 @@ class PermissionService
      */
     protected function parseUserPermission(CampaignPermission $permission)
     {
-        if ($permission->action() != $this->action) {
+        if (!$permission->isAction($this->action)) {
             return;
         }
 
@@ -338,19 +342,21 @@ class PermissionService
         if ($permission->access) {
             if (!in_array($permission->entity_id, $this->entityIds)) {
                 $this->entityIds[] = $permission->entity_id;
-                $this->allowedModels[] = $permission->entityId();
+                $this->allowedModels[] = $permission->misc_id;
             }
             // If the user was denied through a role but has access through a direct permissions, still allow them
             if (($key = array_search($permission->entity_id, $this->deniedIds)) !== false) {
                 unset($this->deniedIds[$key]);
-                if (($key = array_search($permission->entityId(), $this->deniedModels)) !== false) {
+                if (($key = array_search($permission->misc_id, $this->deniedModels)) !== false) {
                     unset($this->deniedModels[$key]);
                 }
             }
+            return;
+        }
 
-        } elseif (!$permission->access && !in_array($permission->entity_id, $this->deniedIds)) {
+        if (!$permission->access && !in_array($permission->entity_id, $this->deniedIds)) {
             $this->deniedIds[] = $permission->entity_id;
-            $this->deniedModels[] = $permission->entityId();
+            $this->deniedModels[] = $permission->misc_id;
         }
     }
 

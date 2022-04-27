@@ -26,7 +26,7 @@ $actions = [
                 <td>{{ $role->name }}</td>
                 <td>
                     {!! Form::select(
-                    'role[' . $role->id . '][read]',
+                    'role[' . $role->id . '][' . \App\Models\CampaignPermission::ACTION_READ . ']',
                     $actions,
                     'ignore',
                     ['class' => 'form-control']) !!}
@@ -34,7 +34,7 @@ $actions = [
                 @if (!$role->is_public)
                     <td>
                         {!! Form::select(
-                        'role[' . $role->id . '][edit]',
+                        'role[' . $role->id . '][' . \App\Models\CampaignPermission::ACTION_EDIT . ']',
                         $actions,
                         'ignore',
                         ['class' => 'form-control']) !!}
@@ -42,14 +42,14 @@ $actions = [
                     <td>
 
                         {!! Form::select(
-                        'role[' . $role->id . '][delete]',
+                        'role[' . $role->id . '][' . \App\Models\CampaignPermission::ACTION_DELETE . ']',
                         $actions,
                         'ignore',
                         ['class' => 'form-control']) !!}
                     </td>
                     <td>
                         {!! Form::select(
-                        'role[' . $role->id . '][entity-note]',
+                        'role[' . $role->id . '][' . \App\Models\CampaignPermission::ACTION_POSTS . ']',
                         $actions,
                         'ignore',
                         ['class' => 'form-control']) !!}
@@ -76,28 +76,28 @@ $actions = [
                 <td>{{ $member->user->name }}</td>
                 <td>
                     {!! Form::select(
-                    'user[' . $member->user_id . '][read]',
+                    'user[' . $member->user_id . '][' . \App\Models\CampaignPermission::ACTION_READ . ']',
                     $actions,
                     'ignore',
                     ['class' => 'form-control']) !!}
                 </td>
                 <td>
                     {!! Form::select(
-                    'user[' . $member->user_id . '][edit]',
+                    'user[' . $member->user_id . '][' . \App\Models\CampaignPermission::ACTION_EDIT . ']',
                     $actions,
                     'ignore',
                     ['class' => 'form-control']) !!}
                 </td>
                 <td>
                     {!! Form::select(
-                    'user[' . $member->user_id . '][delete]',
+                    'user[' . $member->user_id . '][' . \App\Models\CampaignPermission::ACTION_DELETE . ']',
                     $actions,
                     'ignore',
                     ['class' => 'form-control']) !!}
                 </td>
                 <td>
                     {!! Form::select(
-                    'user[' . $member->user_id . '][entity-note]',
+                    'user[' . $member->user_id . '][' . \App\Models\CampaignPermission::ACTION_POSTS . ']',
                     $actions,
                     'ignore',
                     ['class' => 'form-control']) !!}

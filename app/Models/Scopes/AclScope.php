@@ -4,6 +4,7 @@ namespace App\Models\Scopes;
 
 use App\Facades\CampaignLocalization;
 use App\Facades\Permissions;
+use App\Models\CampaignPermission;
 use App\Models\Entity;
 use App\Models\EntityNote;
 use App\Models\MiscModel;
@@ -68,7 +69,7 @@ class AclScope implements Scope
 
         // Campaign admins doesn't have any restrictions on base
         Permissions::campaign(CampaignLocalization::getCampaign())
-            ->action('read');
+            ->action(CampaignPermission::ACTION_READ);
         if (auth()->check()) {
             Permissions::user(auth()->user());
         }
@@ -148,11 +149,9 @@ class AclScope implements Scope
      * @param MiscModel $model
      * @return string|false
      */
-    protected function entityType(MiscModel $model): string|false
+    protected function entityType(MiscModel $model): int
     {
-        /** @var EntityService $service */
-        $service = app()->make(EntityService::class);
-        return $service->getName(get_class($model));
+        return config('entities.ids.' . $model->getEntityType());
     }
 
     /**

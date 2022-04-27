@@ -171,6 +171,7 @@ abstract class MiscModel extends Model
      */
     public function permissions()
     {
+        dd('PM6 - Error 4');
         return CampaignPermission::where('table_name', $this->entity->pluralType())
             ->where('key', 'like', '%_' . $this->id);
     }

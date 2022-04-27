@@ -8,9 +8,9 @@
  */
 $permissions = isset($model) ? $permissionService->entityPermissions($model->entity) : [];
 if (isset($model)) {
-    $permissionService->type($entityType);
+    $permissionService->type($model->entity->type_id);
 } else {
-    $permissionService->type($entityType);
+    $permissionService->type(config('entities.ids.' . $entityType));
 }
 $actions = [
     'allow' => __('crud.permissions.actions.bulk_entity.allow'),

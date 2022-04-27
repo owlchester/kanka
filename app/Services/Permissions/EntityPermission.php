@@ -87,7 +87,7 @@ class EntityPermission
         if (auth()->check()) {
             return auth()->user()->can('view', $entity->child);
         } elseif (!empty($entity->child)) {
-            return self::hasPermission($entity->child->getEntityType(), 'read', null, $entity->child, $campaign);
+            return self::hasPermission($entity->type_id, CampaignPermission::ACTION_READ, null, $entity->child, $campaign);
         }
         return false;
     }
@@ -162,7 +162,7 @@ class EntityPermission
         if (auth()->check()) {
             return auth()->user()->can('view', $model);
         } elseif (!empty($model)) {
-            return self::hasPermission($model->getEntityType(), 'read', null, $model, $campaign);
+            return self::hasPermission($model->getEntityType(), CampaignPermission::ACTION_READ, null, $model, $campaign);
         }
         return false;
     }
@@ -176,7 +176,7 @@ class EntityPermission
      * @param Campaign|null $campaign
      * @return bool
      */
-    public function hasPermission(string $modelName, string $action, User $user = null, $entity = null, Campaign $campaign = null)
+    public function hasPermission(int $entityType, int $action, User $user = null, $entity = null, Campaign $campaign = null)
     {
         $this->loadAllPermissions($user, $campaign);
 
@@ -187,7 +187,11 @@ class EntityPermission
         // Check if we have permission to `action` all of the entities of this type first. The user
         // might be able to view all quests, but have a specific quest set to denied. This is why
         // we need to check the specific permissions too.
-        $key = $modelName . '_' . $action;
+        if ($entityType === 0) {
+            // Campaign permissions are a bit funky
+            $entityType = 'campaign';
+        }
+        $key = $entityType . '_' . $action;
         $perm = false;
         if (isset($this->cached[$key]) && $this->cached[$key]) {
             $perm = $this->cached[$key];
@@ -270,10 +274,10 @@ class EntityPermission
      * @param string $action
      * @return $this
      */
-    public function grant(Entity $entity, string $action = 'read'): self
+    public function grant(Entity $entity, int $action = CampaignPermission::ACTION_READ): self
     {
         $this->granted = true;
-        $this->cachedEntityIds[$entity->type()][$entity->entity_id][$action] = true;
+        $this->cachedEntityIds[$entity->entity_type_id][$entity->entity_id][$action] = true;
         return $this;
     }
 
@@ -329,9 +333,13 @@ class EntityPermission
             /** @var CampaignPermission $permission */
             $permissions = \App\Facades\RolePermission::role($role)->permissions();
             foreach ($permissions as $permission) {
-                $this->cached[$permission->key] = $permission->access;
+                $key = $permission->entity_type_id . '_' . $permission->action;
+                if ($permission->action >= 10) {
+                    $key = 'campaign_' . $permission->action;
+                }
+                $this->cached[$key] = $permission->access;
                 if (!empty($permission->entity_id)) {
-                    $this->cachedEntityIds[$permission->type()][$permission->entityId()][$permission->action()] = (bool) $permission->access;
+                    $this->cachedEntityIds[$permission->entity_type_id][$permission->misc_id][$permission->action] = (bool) $permission->access;
                 }
             }
         }
@@ -339,9 +347,9 @@ class EntityPermission
         // If a user is provided, get their permissions too
         if (!empty($user)) {
             foreach ($user->permissions as $permission) {
-                $this->cached[$permission->key] = $permission->access;
+                $this->cached[$permission->entity_type_id . '_' . $permission->action] = $permission->access;
                 if (!empty($permission->entity_id)) {
-                    $this->cachedEntityIds[$permission->type()][$permission->entityId()][$permission->action()] = (bool) $permission->access;
+                    $this->cachedEntityIds[$permission->entity_type_id][$permission->misc_id][$permission->action] = (bool) $permission->access;
                 }
             }
         }

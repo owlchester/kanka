@@ -6,6 +6,7 @@ use App\Facades\CampaignLocalization;
 use App\Facades\UserCache;
 use App\Models\Campaign;
 use App\Facades\EntityPermission;
+use App\Models\CampaignPermission;
 use App\Models\Entity;
 use App\Models\EntityNote;
 use App\User;
@@ -56,7 +57,7 @@ class MiscPolicy
             // The user must have access.
             // isAdmin could be cached for performance, but needs to trigger a release when changing permissions
             // other permissions should also be cacheable with a release trigger
-            $this->checkPermission('read', $user, $entity);
+            $this->checkPermission(CampaignPermission::ACTION_READ, $user, $entity);
     }
 
     /**
@@ -75,7 +76,7 @@ class MiscPolicy
             }
         }
 
-        return Auth::check() && $this->checkPermission('add', $user, null, $campaign);
+        return auth()->check() && $this->checkPermission(CampaignPermission::ACTION_ADD, $user, null, $campaign);
     }
 
     /**
@@ -88,7 +89,7 @@ class MiscPolicy
     public function update(User $user, $entity)
     {
         return Auth::check() && (!empty($entity->campaign_id) ? $user->campaign->id == $entity->campaign_id : true)
-            && $this->checkPermission('edit', $user, $entity);
+            && $this->checkPermission(CampaignPermission::ACTION_EDIT, $user, $entity);
     }
 
     /**
@@ -101,7 +102,7 @@ class MiscPolicy
     public function delete(User $user, $entity)
     {
         return Auth::check() &&  (!empty($entity->campaign_id) ? $user->campaign->id == $entity->campaign_id : true)
-            && $this->checkPermission('delete', $user, $entity);
+            && $this->checkPermission(CampaignPermission::ACTION_DELETE, $user, $entity);
     }
 
     /**
@@ -147,7 +148,7 @@ class MiscPolicy
     {
         return Auth::check() && (
             $this->update($user, $entity) ||
-            $this->checkPermission('entity-note', $user, $entity) ||
+            $this->checkPermission(CampaignPermission::ACTION_POSTS, $user, $entity) ||
             ($action == 'edit' ? $this->checkEntityNotePermission($user, $entityNote) : false)
         ) ;
     }
@@ -162,11 +163,11 @@ class MiscPolicy
     public function permission(User $user, $entity)
     {
         if ($entity->exists === false) {
-            return $this->checkPermission('permission', $user, null);
+            return $this->checkPermission(CampaignPermission::ACTION_PERMS, $user, null);
         }
         return $user->campaign->id == $entity->campaign_id &&
             (UserCache::roles()->count() > 1 || $user->campaign->members()->count() > 1) &&
-            $this->checkPermission('permission', $user, $entity);
+            $this->checkPermission(CampaignPermission::ACTION_PERMS, $user, $entity);
     }
 
     /**
@@ -203,9 +204,11 @@ class MiscPolicy
      * @param Campaign|null $campaign
      * @return bool
      */
-    protected function checkPermission($action, User $user, $entity = null, Campaign $campaign = null)
+    protected function checkPermission(int $action, User $user, $entity = null, Campaign $campaign = null)
     {
-        return EntityPermission::hasPermission($this->model, $action, $user, $entity, $campaign);
+        $ids = config('entities.ids');
+        $entityTypeID = $ids[$this->model];
+        return EntityPermission::hasPermission($entityTypeID, $action, $user, $entity, $campaign);
     }
 
     /**

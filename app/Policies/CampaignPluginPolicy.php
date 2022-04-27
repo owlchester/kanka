@@ -2,7 +2,6 @@
 
 namespace App\Policies;
 
-use App\Models\CampaignPermission;
 use App\Models\CampaignPlugin;
 use App\Traits\AdminPolicyTrait;
 use App\User;

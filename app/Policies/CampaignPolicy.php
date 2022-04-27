@@ -6,6 +6,7 @@ use App\Facades\CampaignCache;
 use App\Facades\EntityPermission;
 use App\Facades\Identity;
 use App\Facades\UserCache;
+use App\Models\CampaignPermission;
 use App\Models\Entity;
 use App\Traits\AdminPolicyTrait;
 use App\User;
@@ -65,7 +66,7 @@ class CampaignPolicy
     {
         return
             $user->campaign->id == $campaign->id && (
-                UserCache::user($user)->admin() || $this->checkPermission('manage', $user)
+                UserCache::user($user)->admin() || $this->checkPermission(CampaignPermission::ACTION_MANAGE, $user)
             );
     }
 
@@ -107,7 +108,7 @@ class CampaignPolicy
     public function invite(User $user, Campaign $campaign): bool
     {
         return $user->campaign->id == $campaign->id && (
-            UserCache::user($user)->admin() || $this->checkPermission('members', $user, $campaign)
+            UserCache::user($user)->admin() || $this->checkPermission(CampaignPermission::ACTION_MEMBERS, $user, $campaign)
         );
     }
 
@@ -139,7 +140,7 @@ class CampaignPolicy
     public function dashboard(User $user, Campaign $campaign): bool
     {
         return $user->campaign->id == $campaign->id && (
-            UserCache::user($user)->admin() || $this->checkPermission('dashboard', $user, $campaign));
+            UserCache::user($user)->admin() || $this->checkPermission(CampaignPermission::ACTION_DASHBOARD, $user, $campaign));
     }
 
     /**
@@ -228,7 +229,7 @@ class CampaignPolicy
         if (!$user) {
             return false;
         }
-        return (UserCache::user($user)->admin() || $this->checkPermission('members', $user, $campaign)) ||
+        return (UserCache::user($user)->admin() || $this->checkPermission(CampaignPermission::ACTION_MEMBERS, $user, $campaign)) ||
             !($campaign->boosted() && $campaign->hide_members);
     }
 
@@ -251,7 +252,7 @@ class CampaignPolicy
     public function gallery(?User $user, Campaign $campaign): bool
     {
         return $user && $campaign->boosted(true) && (
-            UserCache::user($user)->admin() || $this->checkPermission('gallery', $user, $campaign)
+            UserCache::user($user)->admin() || $this->checkPermission(CampaignPermission::ACTION_GALLERY, $user, $campaign)
         );
     }
 
@@ -274,6 +275,6 @@ class CampaignPolicy
      */
     protected function checkPermission($action, User $user, Campaign $campaign = null)
     {
-        return EntityPermission::hasPermission('campaign', $action, $user, null, $campaign);
+        return EntityPermission::hasPermission(0, $action, $user, null, $campaign);
     }
 }

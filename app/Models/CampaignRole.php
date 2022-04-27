@@ -6,6 +6,7 @@ use App\Models\Concerns\Paginatable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Str;
 
 /**
  * Class Attribute
@@ -95,12 +96,16 @@ class CampaignRole extends Model
         return $this->hasMany('App\Models\CampaignPermission', 'campaign_role_id');
     }
 
-    public function savePermissions($permissions = array())
+    public function savePermissions(array $permissions = [])
     {
         // Load existing
         $existing = [];
         foreach ($this->permissions as $permission) {
-            $existing[$permission->key] = $permission;
+            if (empty($permission->entity_type_id)) {
+                $existing['campaign_' . $permission->action] = $permission;
+                continue;
+            }
+            $existing[$permission->entity_type_id . '_' . $permission->action] = $permission;
         }
 
         // Loop on submitted form
@@ -108,16 +113,25 @@ class CampaignRole extends Model
             $permissions = [];
         }
 
-        foreach ($permissions as $key => $value) {
-            // Check if exists
+        foreach ($permissions as $key => $module) {
+            // Check if exists$
             if (isset($existing[$key])) {
                 // Do nothing
                 unset($existing[$key]);
             } else {
+                $action = Str::after($key, '_');
+                if ($module === 'campaign') {
+                    $module = null;
+                }
+
                 $permission = CampaignPermission::create([
-                    'key' => $key,
+                    //'key' => $key,
                     'campaign_role_id' => $this->id,
-                    'table_name' => $value
+                    //'table_name' => $value,
+                    'access' => true,
+                    'action' => $action,
+                    'entity_type_id' => $module
+                    //'campaign_id' => $campaign->id,
                 ]);
             }
         }

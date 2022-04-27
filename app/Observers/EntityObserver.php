@@ -120,11 +120,11 @@ class EntityObserver
         // still have them even if not checked in the UI.
         if (EntityPermission::granted() && !empty($data['user'])) {
             $user = auth()->user()->id;
-            if (!in_array('edit', $data['user'][$user])) {
-                $data['user'][$user]['edit'] = 'allow';
+            if (!in_array(CampaignPermission::ACTION_EDIT, $data['user'][$user])) {
+                $data['user'][$user][CampaignPermission::ACTION_EDIT] = 'allow';
             }
-            if (!in_array('read', $data['user'][$user])) {
-                $data['user'][$user]['read'] = 'allow';
+            if (!in_array(CampaignPermission::ACTION_READ, $data['user'][$user])) {
+                $data['user'][$user][CampaignPermission::ACTION_READ] = 'allow';
             }
         }
 
@@ -166,9 +166,13 @@ class EntityObserver
         if (!auth()->user()->can('view', $entity->child)) {
             $permission = new CampaignPermission();
             $permission->entity_id = $entity->id;
+            $permission->misc_id = $entity->child->id;
+            $permission->entity_type_id = $entity->type_id;
+            $permission->campaign_id = $entity->campaign_id;
             $permission->user_id = auth()->user()->id;
-            $permission->key = $entity->type() . '_read_' . $entity->entity_id;
-            $permission->table_name = $entity->pluralType();
+            //$permission->key = $entity->type() . '_read_' . $entity->entity_id;
+            //$permission->table_name = $entity->pluralType();
+            $permission->action = CampaignPermission::ACTION_READ;
             $permission->access = true;
             $permission->save();
             EntityPermission::grant($entity);
@@ -177,12 +181,16 @@ class EntityObserver
         if (!auth()->user()->can('update', $entity->child)) {
             $permission = new CampaignPermission();
             $permission->entity_id = $entity->id;
+            $permission->misc_id = $entity->child->id;
+            $permission->entity_type_id = $entity->type_id;
+            $permission->campaign_id = $entity->campaign_id;
             $permission->user_id = auth()->user()->id;
-            $permission->key = $entity->type() . '_edit_' . $entity->entity_id;
-            $permission->table_name = $entity->pluralType();
+            //$permission->key = $entity->type() . '_edit_' . $entity->entity_id;
+            //$permission->table_name = $entity->pluralType();
+            $permission->action = CampaignPermission::ACTION_EDIT;
             $permission->access = true;
             $permission->save();
-            EntityPermission::grant($entity, 'edit');
+            EntityPermission::grant($entity, CampaignPermission::ACTION_EDIT);
             $this->permissionGrantSelf = true;
         }
 

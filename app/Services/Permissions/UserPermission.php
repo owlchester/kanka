@@ -49,7 +49,7 @@ class UserPermission
      * The ACL action that needs to be tested
      * @var string
      */
-    protected $action = 'read';
+    protected $action = CampaignPermission::ACTION_READ;
 
     /**
      * Flag to know if permissions need to be (re)loaded
@@ -95,9 +95,9 @@ class UserPermission
 
     /**
      * Set the ACL action we want to test
-     * @param $action
+     * @param int $action
      */
-    public function action($action)
+    public function action(int $action): self
     {
         $this->action = $action;
         return $this;
@@ -218,7 +218,7 @@ class UserPermission
         $permissions = \App\Facades\RolePermission::role($role)->permissions();
         foreach ($permissions as $permission) {
             // Only test permissions who's action is being requested
-            if ($permission->action() != $this->action) {
+            if ($permission->action != $this->action) {
                 continue;
             }
 
