@@ -87,6 +87,7 @@ class Character extends MiscModel
     ];
     protected $sortable = [
         'name',
+        'type',
         'location.name',
         'is_dead',
     ];

@@ -179,7 +179,7 @@ class LocationController extends CrudController
 
         // Ajax Datagrid
         if (request()->ajax()) {
-            $html = view('locations.panels._characters')->with('rows', $this->rows)->render();
+            $html = view('layouts.datagrid._table')->with('rows', $this->rows)->render();
             return response()->json([
                 'success' => true,
                 'html' => $html,
@@ -209,8 +209,33 @@ class LocationController extends CrudController
      */
     public function locations(Location $location)
     {
+        $options = ['location' => $location];
+        $filters = [];
+        if (request()->has('parent_location_id')) {
+            $options['parent_location_id'] = $location->id;
+            $filters['parent_location_id'] = $options['parent_location_id'];
+        }
+        Datagrid::layout(\App\Renderers\Layouts\Location\Location::class)
+            ->route('locations.locations', $options);
+
+        $this->rows = $location
+            ->descendants()
+            ->sort(request()->only(['o', 'k']))
+            ->filter($filters)
+            ->with(['location', 'location.entity', 'entity', 'entity.tags'])
+            ->paginate();
+
+        // Ajax Datagrid
+        if (request()->ajax()) {
+            $html = view('layouts.datagrid._table')->with('rows', $this->rows)->render();
+            return response()->json([
+                'success' => true,
+                'html' => $html,
+                'url' => request()->fullUrl()
+            ]);
+        }
+
         return $this
-            ->datagridSorter(LocationLocationSorter::class)
             ->menuView($location, 'locations');
     }
 

@@ -6,6 +6,7 @@ use App\Facades\CampaignLocalization;
 use App\Models\Concerns\Acl;
 use App\Models\Concerns\Nested;
 use App\Models\Concerns\SimpleSortableTrait;
+use App\Models\Concerns\SortableTrait;
 use App\Traits\CampaignTrait;
 use App\Traits\ExportableTrait;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -34,6 +35,7 @@ class Location extends MiscModel
         Nested,
         SimpleSortableTrait,
         SoftDeletes,
+        SortableTrait,
         Acl
     ;
 
@@ -75,6 +77,12 @@ class Location extends MiscModel
     protected $sortableColumns = [
         'map',
         'parentLocation.name',
+    ];
+
+    protected $sortable = [
+        'name',
+        'type',
+        'location.name',
     ];
 
     /**

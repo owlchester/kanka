@@ -81321,6 +81321,16 @@ __webpack_require__.r(__webpack_exports__);
 var datagrid2DeleteConfirm = false;
 var datagrid2Form;
 var datagrid2Table;
+var datagrid2Observer = new IntersectionObserver(function (entries) {
+  // isIntersecting is true when element and viewport are overlapping
+  // isIntersecting is false when element and viewport don't overlap
+  if (entries[0].isIntersecting === true) {
+    //console.log('Element has just become visible in screen', entries[0]);
+    datagrid2Reorder($('.datagrid-onload'));
+  }
+}, {
+  threshold: [0]
+});
 $(document).ready(function () {
   // Multi-delete
   var crudDelete = $('#datagrid-select-all');
@@ -81388,7 +81398,6 @@ function setBulkModels(modelField) {
       values.push($(this).val());
     }
   });
-  console.log('datagrid models', values);
   $(modelField).val(values.toString());
 }
 /**
@@ -81437,6 +81446,7 @@ function registerDatagrids2() {
     datagrid2Form.submit();
   });
   initDatagrid2Ajax();
+  initDatagrid2OnLoad();
 }
 
 function initDatagrid2Ajax() {
@@ -81451,6 +81461,14 @@ function initDatagrid2Ajax() {
       datagrid2Reorder($(this));
     });
   });
+}
+
+function initDatagrid2OnLoad() {
+  if ($('.datagrid-onload').lenght === 0) {
+    return;
+  }
+
+  datagrid2Observer.observe(document.querySelector('.datagrid-onload'));
 }
 
 function datagrid2Reorder(ele) {

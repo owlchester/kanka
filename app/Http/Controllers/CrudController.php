@@ -361,7 +361,7 @@ class CrudController extends Controller
                 abort(404);
             }
             if (Permissions::user(auth()->user())->campaign(CampaignLocalization::getCampaign())->isAdmin()) {
-                dd('trying to save?');
+                dd('CCS16 - Error');
                 $model->save();
                 $model->load('entity');
             } else {

@@ -1,5 +1,13 @@
+@if (!empty($datagridUrl))
+    <div class="box-body text-center datagrid-onload" href="{{ $datagridUrl }}">
+        <table class="table table-hover" data-render="datagrid2"></table>
+        <i class="fa fa-spinner fa-spin fa-2x"></i>
+    </div>
+<?php return; ?>
+@endif
 <div class="box-body no-padding">
     <table class="table table-hover" data-render="datagrid2">
+
         <thead>
         <tr>
             @foreach (Datagrid::headers() as $header)
@@ -27,6 +35,6 @@
 </div>
 @if ($rows->hasPages())
     <div class="box-footer text-right">
-       {!! $rows->appends(Datagrid::paginationFilters())->links() !!}
+        {!! $rows->appends(Datagrid::paginationFilters())->links() !!}
     </div>
 @endif

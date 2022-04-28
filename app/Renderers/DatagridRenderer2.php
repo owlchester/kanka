@@ -48,6 +48,11 @@ class DatagridRenderer2
         return $this;
     }
 
+    /**
+     * @param string $route
+     * @param array|null $options
+     * @return $this
+     */
     public function route(string $route, array $options = null): self {
         $this->routeName = $route;
         $this->routeOptions = $options;
@@ -109,6 +114,9 @@ class DatagridRenderer2
         return !empty($this->layout->bulks()) && auth()->user()->isAdmin();
     }
 
+    /**
+     * @return array
+     */
     public function bulks(): array
     {
         if ($this->bulks !== false) {

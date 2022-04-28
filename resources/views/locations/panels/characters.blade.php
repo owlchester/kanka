@@ -38,15 +38,8 @@ if (request()->has('location_id')) {
             @endif
         </div>
     </div>
-    <div class="box-body no-padding">
-
-        <div id="datagrid-parent" class="table-responsive">
-            @include('locations.panels._characters')
-        </div>
-
-        @if ($rows->count() > 0)
-
-        @endif
+    <div id="datagrid-parent" class="table-responsive">
+        @include('layouts.datagrid._table')
     </div>
 </div>
 

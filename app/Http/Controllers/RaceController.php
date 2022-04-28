@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Datagrids\Filters\RaceFilter;
 use App\Datagrids\Sorters\RaceCharacterSorter;
 use App\Datagrids\Sorters\RaceRaceSorter;
+use App\Facades\Datagrid;
 use App\Http\Requests\StoreRace;
 use App\Models\Race;
 use App\Models\Tag;
@@ -89,8 +90,38 @@ class RaceController extends CrudController
      */
     public function characters(Race $race)
     {
+        $options = ['race' => $race];
+        $filters = [];
+        $relation = 'allCharacters';
+        if (request()->has('race_id')) {
+            $options['race_id'] = (int) request()->get('race_id');
+            $filters['race_id'] = $options['race_id'];
+            $relation = 'characters';
+        }
+        Datagrid::layout(\App\Renderers\Layouts\Race\Character::class)
+            ->route('races.characters', $options);
+
+        $this->rows = $race
+            ->{$relation}()
+            ->sort(request()->only(['o', 'k']))
+            ->filter($filters)
+            ->with(['location', 'location.entity', 'families', 'families.entity', 'races', 'races.entity', 'entity', 'entity.tags'])
+            ->paginate();
+
+        // Ajax Datagrid
+        if (request()->ajax()) {
+            $html = view('layouts.datagrid._table')->with('rows', $this->rows)->render();
+            $data = [
+                'success' => true,
+                'html' => $html,
+            ];
+            if (!request()->has('init')) {
+                $data['url'] = request()->fullUrl();
+            }
+            return response()->json($data);
+        }
+
         return $this
-            ->datagridSorter(RaceCharacterSorter::class)
             ->menuView($race, 'characters');
     }
 
@@ -100,8 +131,26 @@ class RaceController extends CrudController
      */
     public function races(Race $race)
     {
+        Datagrid::layout(\App\Renderers\Layouts\Race\Race::class)
+            ->route('races.races', [$race]);
+
+        $this->rows = $race
+            ->races()
+            ->sort(request()->only(['o', 'k']))
+            ->with(['entity', 'characters'])
+            ->paginate();
+
+        // Ajax Datagrid
+        if (request()->ajax()) {
+            $html = view('layouts.datagrid._table')->with('rows', $this->rows)->render();
+            return response()->json([
+                'success' => true,
+                'html' => $html,
+                'url' => request()->fullUrl()
+            ]);
+        }
+
         return $this
-            ->datagridSorter(RaceRaceSorter::class)
             ->menuView($race, 'races');
     }
 }

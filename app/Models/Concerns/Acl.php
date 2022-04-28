@@ -23,6 +23,6 @@ trait Acl
      */
     public function scopePrivate(Builder $query, bool $private = true): Builder
     {
-        return $query->where('is_private', $private);
+        return $query->where($this->getTable() . '.is_private', $private);
     }
 }

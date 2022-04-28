@@ -10,6 +10,7 @@ class Standard extends Column
 {
     const CHARACTER = 'character';
     const IMAGE = 'image';
+    const ENTITYLINK = 'entitylink';
 
     public function __toString(): string
     {
@@ -43,6 +44,7 @@ class Standard extends Column
         return in_array($render, [
             self::CHARACTER,
             self::IMAGE,
+            self::ENTITYLINK
         ]);
     }
     /**
