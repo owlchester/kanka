@@ -54,6 +54,10 @@ class Action extends Column
         return in_array(Layout::ACTION_DELETE, $this->actions);
     }
 
+    /**
+     * @param array $action
+     * @return $this
+     */
     protected function import(array $action): self
     {
         // No auth check? We good.

@@ -185,6 +185,7 @@ function datagrid2Reorder(ele) {
             window.history.pushState({}, "", res.url);
         }
         initDatagrid2Ajax();
+        $(document).trigger('shown.bs.modal'); // Get tooltips to re-generate
         // Needed for ajax buttons in campaigns/plugins
         ajaxModal();
     }).fail(function (err) {

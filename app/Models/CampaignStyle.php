@@ -82,5 +82,4 @@ class CampaignStyle extends Model
         return 'campaign_styles.' . $sub;
     }
 
-
 }

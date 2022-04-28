@@ -24,7 +24,7 @@ class Standard extends Column
         }
 
         elseif ($this->defined($render)) {
-            return $this->view($render);
+            return $this->view($render, Arr::get($this->config, 'with'));
         }
 
         $method = substr($render, 0, -2);
@@ -51,10 +51,11 @@ class Standard extends Column
      * Render a defined view
      * @return string
      */
-    protected function view(string $view): string
+    protected function view(string $view, array $extra = null): string
     {
         return view('layouts.datagrid.rows.' . $view)
             ->with('model', $this->model)
+            ->with('with', $extra)
             ->render();
     }
 

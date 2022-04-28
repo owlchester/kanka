@@ -75,6 +75,8 @@ class CharacterOrganisationController extends Controller
     {
         $this->authorize('organisation', [$character, 'read']);
 
+        dd('wut');
+
         return view($this->view . '.show', [
             'model' => $character,
             'member' => $organisationMember

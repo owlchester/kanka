@@ -69,6 +69,7 @@ class AuthServiceProvider extends ServiceProvider
         'App\Models\MenuLink' => 'App\Policies\MenuLinkPolicy',
         'App\Models\Note' => 'App\Policies\NotePolicy',
         'App\Models\Organisation' => 'App\Policies\OrganisationPolicy',
+        'App\Models\OrganisationMember' => 'App\Policies\OrganisationMemberPolicy',
         'App\Models\Plugin' => 'App\Policies\PluginPolicy',
         'App\Models\Quest' => 'App\Policies\QuestPolicy',
         'App\Models\Race' => 'App\Policies\RacePolicy',

@@ -10,12 +10,12 @@
         @foreach ($actions as $action)
             <li>
                 @if ($action === \App\Renderers\Layouts\Layout::ACTION_EDIT)
-                    <a href="{{ route($model->url('edit'), $model) }}">
+                    <a href="{{ route($model->url('edit'), method_exists($model, 'routeParams') ? $model->routeParams() : $model) }}">
                         <i class="fa-solid fa-pencil"></i>
                         {{ __('crud.edit') }}
                     </a>
                 @elseif ($action === \App\Renderers\Layouts\Layout::ACTION_DELETE)
-                    <a href="#" class="text-red delete-confirm" data-toggle="modal" data-name="{!! $model->name !!}"
+                    <a href="#" class="text-red delete-confirm" data-toggle="modal" data-name="{!! method_exists($model, 'deleteName') ? $model->deleteName() : $model->name !!}"
                        data-target="#delete-confirm" data-delete-target="delete-form-{{ $model->id }}">
                         <i class="fa-solid fa-trash" aria-hidden="true"></i>
                         {{ __('crud.remove') }}
