@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Timelines;
 
 use App\Datagrids\Filters\TimelineFilter;
 use App\Datagrids\Sorters\TimelineTimelineSorter;
+use App\Facades\Datagrid;
 use App\Http\Controllers\CrudController;
 use App\Http\Requests\StoreTimeline;
 use App\Models\Timeline;
@@ -86,8 +87,26 @@ class TimelineController extends CrudController
      */
     public function timelines(Timeline $timeline)
     {
+        Datagrid::layout(\App\Renderers\Layouts\Timeline\Timeline::class)
+            ->route('timelines.timelines', [$timeline]);
+
+        $this->rows = $timeline
+            ->descendants()
+            ->sort(request()->only(['o', 'k']))
+            ->with(['entity', 'timeline', 'timeline.entity'])
+            ->paginate();
+
+        // Ajax Datagrid
+        if (request()->ajax()) {
+            $html = view('layouts.datagrid._table')->with('rows', $this->rows)->render();
+            return response()->json([
+                'success' => true,
+                'html' => $html,
+                'url' => request()->fullUrl()
+            ]);
+        }
+
         return $this
-            ->datagridSorter(TimelineTimelineSorter::class)
             ->menuView($timeline, 'timelines');
     }
 }

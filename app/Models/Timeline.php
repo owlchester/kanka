@@ -7,6 +7,7 @@ namespace App\Models;
 use App\Models\Concerns\Acl;
 use App\Models\Concerns\Nested;
 use App\Models\Concerns\SimpleSortableTrait;
+use App\Models\Concerns\SortableTrait;
 use App\Traits\CampaignTrait;
 use App\Traits\ExportableTrait;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -26,6 +27,7 @@ class Timeline extends MiscModel
         ExportableTrait,
         SimpleSortableTrait,
         SoftDeletes,
+        SortableTrait,
         Nested
     ;
 
@@ -46,6 +48,12 @@ class Timeline extends MiscModel
      * @var array
      */
     protected $searchableColumns = ['name', 'entry'];
+
+    protected $sortable = [
+        'name',
+        'type',
+        'timeline.name',
+    ];
 
     /**
      * Fields that can be filtered on
