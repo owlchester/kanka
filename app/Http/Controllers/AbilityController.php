@@ -104,6 +104,8 @@ class AbilityController extends CrudController
      */
     public function abilities(Ability $ability)
     {
+        $this->authCheck($ability);
+
         Datagrid::layout(\App\Renderers\Layouts\Ability\Ability::class)
             ->route('abilities.abilities', [$ability]);
 
@@ -115,12 +117,7 @@ class AbilityController extends CrudController
 
         // Ajax Datagrid
         if (request()->ajax()) {
-            $html = view('layouts.datagrid._table')->with('rows', $this->rows)->render();
-            return response()->json([
-                'success' => true,
-                'html' => $html,
-                'url' => request()->fullUrl()
-            ]);
+            return $this->datagridAjax();
         }
 
         return $this
@@ -134,6 +131,8 @@ class AbilityController extends CrudController
      */
     public function entities(Ability $ability)
     {
+        $this->authCheck($ability);
+
         Datagrid::layout(\App\Renderers\Layouts\Ability\Entity::class)
             ->route('abilities.entities', [$ability]);
 
@@ -144,12 +143,7 @@ class AbilityController extends CrudController
 
         // Ajax Datagrid
         if (request()->ajax()) {
-            $html = view('layouts.datagrid._table')->with('rows', $this->rows)->render();
-            return response()->json([
-                'success' => true,
-                'html' => $html,
-                'url' => request()->fullUrl()
-            ]);
+            return $this->datagridAjax();
         }
 
         return view('abilities.entities')

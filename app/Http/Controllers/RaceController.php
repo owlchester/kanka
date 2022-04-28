@@ -90,6 +90,8 @@ class RaceController extends CrudController
      */
     public function characters(Race $race)
     {
+        $this->authCheck();
+
         $options = ['race' => $race];
         $filters = [];
         $relation = 'allCharacters';
@@ -110,15 +112,7 @@ class RaceController extends CrudController
 
         // Ajax Datagrid
         if (request()->ajax()) {
-            $html = view('layouts.datagrid._table')->with('rows', $this->rows)->render();
-            $data = [
-                'success' => true,
-                'html' => $html,
-            ];
-            if (!request()->has('init')) {
-                $data['url'] = request()->fullUrl();
-            }
-            return response()->json($data);
+            return $this->datagridAjax();
         }
 
         return $this
@@ -131,6 +125,8 @@ class RaceController extends CrudController
      */
     public function races(Race $race)
     {
+        $this->authCheck($race);
+
         Datagrid::layout(\App\Renderers\Layouts\Race\Race::class)
             ->route('races.races', [$race]);
 
@@ -142,12 +138,7 @@ class RaceController extends CrudController
 
         // Ajax Datagrid
         if (request()->ajax()) {
-            $html = view('layouts.datagrid._table')->with('rows', $this->rows)->render();
-            return response()->json([
-                'success' => true,
-                'html' => $html,
-                'url' => request()->fullUrl()
-            ]);
+            return $this->datagridAjax();
         }
 
         return $this

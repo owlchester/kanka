@@ -98,6 +98,8 @@ class TagController extends CrudController
      */
     public function tags(Tag $tag)
     {
+        $this->authCheck($tag);
+
         $options = ['tag' => $tag];
         $filters = [];
         if (request()->has('tag_id')) {
@@ -116,12 +118,7 @@ class TagController extends CrudController
 
         // Ajax Datagrid
         if (request()->ajax()) {
-            $html = view('layouts.datagrid._table')->with('rows', $this->rows)->render();
-            return response()->json([
-                'success' => true,
-                'html' => $html,
-                'url' => request()->fullUrl()
-            ]);
+            return $this->datagridAjax();
         }
         return $this
             ->menuView($tag, 'tags');
@@ -134,6 +131,27 @@ class TagController extends CrudController
      */
     public function children(Tag $tag)
     {
+        $this->authCheck($tag);
+
+        $options = ['tag' => $tag];
+        $base = 'allChildren';
+        if (request()->has('tag_id')) {
+            $options['tag_id'] = $tag->id;
+            $base = 'entities';
+        }
+        Datagrid::layout(\App\Renderers\Layouts\Tag\Entity::class)
+            ->route('tags.children', $options);
+
+        $this->rows = $tag
+            ->{$base}()
+            ->sort(request()->only(['o', 'k']))
+            ->paginate();
+
+        // Ajax Datagrid
+        if (request()->ajax()) {
+            return $this->datagridAjax();
+        }
+
         return $this
             ->datagridSorter(TagChildrenSorter::class)
             ->menuView($tag, 'children');

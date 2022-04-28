@@ -161,11 +161,13 @@ class LocationController extends CrudController
      */
     public function characters(Location $location)
     {
+        $this->authCheck();
+
         $options = ['location' => $location];
         $filters = [];
         if (request()->has('location_id')) {
-            $options['location_id'] = (int) request()->get('location_id');
-            $filters['location_id'] = $options['location_id'];
+            $options['location_id'] = $location->id;
+            $filters['location_id'] = $location->id;;
         }
         Datagrid::layout(\App\Renderers\Layouts\Location\Character::class)
             ->route('locations.characters', $options);
@@ -179,12 +181,7 @@ class LocationController extends CrudController
 
         // Ajax Datagrid
         if (request()->ajax()) {
-            $html = view('layouts.datagrid._table')->with('rows', $this->rows)->render();
-            return response()->json([
-                'success' => true,
-                'html' => $html,
-                'url' => request()->fullUrl()
-            ]);
+            return $this->datagridAjax();
         }
 
         return $this
@@ -209,6 +206,8 @@ class LocationController extends CrudController
      */
     public function locations(Location $location)
     {
+        $this->authCheck();
+
         $options = ['location' => $location];
         $filters = [];
         if (request()->has('parent_location_id')) {
@@ -227,12 +226,7 @@ class LocationController extends CrudController
 
         // Ajax Datagrid
         if (request()->ajax()) {
-            $html = view('layouts.datagrid._table')->with('rows', $this->rows)->render();
-            return response()->json([
-                'success' => true,
-                'html' => $html,
-                'url' => request()->fullUrl()
-            ]);
+            return $this->datagridAjax();
         }
 
         return $this

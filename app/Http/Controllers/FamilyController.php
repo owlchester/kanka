@@ -100,6 +100,8 @@ class FamilyController extends CrudController
      */
     public function families(Family $family)
     {
+        $this->authCheck($family);
+
         $options = ['family' => $family];
         $filters = [];
 
@@ -115,12 +117,7 @@ class FamilyController extends CrudController
 
         // Ajax Datagrid
         if (request()->ajax()) {
-            $html = view('layouts.datagrid._table')->with('rows', $this->rows)->render();
-            return response()->json([
-                'success' => true,
-                'html' => $html,
-                'url' => request()->fullUrl()
-            ]);
+            return $this->datagridAjax();
         }
 
         return $this
@@ -134,6 +131,8 @@ class FamilyController extends CrudController
      */
     public function members(Family $family)
     {
+        $this->authCheck($family);
+
         $options = ['family' => $family];
         $filters = [];
         $relation = 'allMembers';
@@ -154,15 +153,7 @@ class FamilyController extends CrudController
 
         // Ajax Datagrid
         if (request()->ajax()) {
-            $html = view('layouts.datagrid._table')->with('rows', $this->rows)->render();
-            $data = [
-                'success' => true,
-                'html' => $html,
-            ];
-            if (!request()->has('init')) {
-                $data['url'] = request()->fullUrl();
-            }
-            return response()->json($data);
+            return $this->datagridAjax();
         }
 
         return $this

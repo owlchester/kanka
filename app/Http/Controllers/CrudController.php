@@ -625,4 +625,36 @@ class CrudController extends Controller
         $this->datagridSorter->request(request()->all());
         return $this;
     }
+
+    /**
+     * @param $model
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    protected function authCheck($model)
+    {
+        if (auth()->check()) {
+            $this->authorize('view', $model);
+        } else {
+            $this->authorizeForGuest('read', $model);
+        }
+    }
+
+    /**
+     * @return \Illuminate\Http\JsonResponse
+     */
+    protected function datagridAjax()
+    {
+        $html = view('layouts.datagrid._table')
+            ->with('rows', $this->rows)
+            ->render();
+        $data = [
+            'success' => true,
+            'html' => $html,
+        ];
+        if (!request()->has('init')) {
+            $data['url'] = request()->fullUrl();
+        }
+
+        return response()->json($data);
+    }
 }

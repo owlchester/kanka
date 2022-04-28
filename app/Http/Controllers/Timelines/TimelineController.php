@@ -87,6 +87,8 @@ class TimelineController extends CrudController
      */
     public function timelines(Timeline $timeline)
     {
+        $this->authCheck($timeline);
+
         Datagrid::layout(\App\Renderers\Layouts\Timeline\Timeline::class)
             ->route('timelines.timelines', [$timeline]);
 
@@ -98,12 +100,7 @@ class TimelineController extends CrudController
 
         // Ajax Datagrid
         if (request()->ajax()) {
-            $html = view('layouts.datagrid._table')->with('rows', $this->rows)->render();
-            return response()->json([
-                'success' => true,
-                'html' => $html,
-                'url' => request()->fullUrl()
-            ]);
+            return $this->datagridAjax();
         }
 
         return $this

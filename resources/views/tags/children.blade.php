@@ -1,6 +1,5 @@
 @extends('layouts.app', [
-    'title' => trans('tags.children.title', ['name' => $model->name]),
-    'description' => trans('tags.children.description'),
+    'title' => __('tags.children.title', ['name' => $model->name]),
     'breadcrumbs' => false,
     'mainTitle' => false,
     'miscModel' => $model,
@@ -8,11 +7,19 @@
 
 @section('content')
     @include('partials.errors')
-    <div class="row entity-grid">
-        <div class="col-md-2 entity-sidebar-submenu">
-            @include('tags._menu', ['active' => 'children'])
-        </div>
-        <div class="col-md-10 entity-main-block">
+
+    <div class="entity-grid">
+        @include('entities.components.header_grid', [
+            'model' => $model,
+            'breadcrumb' => [
+                ['url' => Breadcrumb::index('tags'), 'label' => __('tags.index.title')],
+                __('tags.show.tabs.children')
+            ]
+        ])
+
+        @include('tags._menu', ['active' => 'entities'])
+
+        <div class="entity-main-block">
             @include('tags.panels.children')
         </div>
     </div>
