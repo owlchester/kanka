@@ -98,7 +98,6 @@ class TimelineController extends CrudController
             ->with(['entity', 'timeline', 'timeline.entity'])
             ->paginate();
 
-        // Ajax Datagrid
         if (request()->ajax()) {
             return $this->datagridAjax();
         }

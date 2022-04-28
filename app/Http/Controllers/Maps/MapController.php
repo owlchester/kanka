@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Maps;
 use App\Datagrids\Bulks\MapBulk;
 use App\Datagrids\Filters\MapFilter;
 use App\Datagrids\Sorters\MapMapSorter;
+use App\Facades\Datagrid;
 use App\Http\Controllers\CrudController;
 use App\Http\Requests\StoreMap;
 use App\Models\Map;
@@ -105,7 +106,30 @@ class MapController extends CrudController
      */
     public function maps(Map $map)
     {
-        return $this->datagridSorter(MapMapSorter::class)
+        $this->authCheck($map);
+
+        $options = ['map' => $map];
+        $base = 'descendants';
+        if (request()->has('map_id')) {
+            $options['map_id'] = $map->id;
+            $base = 'maps';
+        }
+
+        Datagrid::layout(\App\Renderers\Layouts\Map\Map::class)
+            ->route('maps.maps', $options);
+
+
+        $this->rows = $map
+            ->{$base}()
+            ->sort(request()->only(['o', 'k']))
+            ->with(['entity', 'map', 'map.entity'])
+            ->paginate();
+
+        if (request()->ajax()) {
+            return $this->datagridAjax();
+        }
+
+        return $this
             ->menuView($map, 'maps');
     }
 

@@ -6,6 +6,7 @@ use App\Facades\CampaignLocalization;
 use App\Models\Concerns\Acl;
 use App\Models\Concerns\Nested;
 use App\Models\Concerns\SimpleSortableTrait;
+use App\Models\Concerns\SortableTrait;
 use App\Traits\CampaignTrait;
 use App\Traits\ExportableTrait;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -46,6 +47,7 @@ class Map extends MiscModel
         Nested,
         SimpleSortableTrait,
         SoftDeletes,
+        SortableTrait,
         Acl
     ;
 
@@ -85,6 +87,13 @@ class Map extends MiscModel
      * @var array
      */
     protected $searchableColumns = ['name', 'entry'];
+
+    protected $sortable = [
+        'name',
+        'type',
+        'map.name',
+    ];
+
 
     /**
      * Fields that can be filtered on
@@ -164,6 +173,7 @@ class Map extends MiscModel
             'entity',
             'map',
             'map.entity',
+            'maps',
         ]);
     }
 
@@ -247,7 +257,7 @@ class Map extends MiscModel
         $items['second']['maps'] = [
             'name' => 'maps.show.tabs.maps',
             'route' => 'maps.maps',
-            'count' => $this->descendants()->count()
+            'count' => $this->maps()->count()
         ];
         return parent::menuItems($items);
     }
