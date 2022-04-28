@@ -1,102 +1,30 @@
-<?php
-/**
- * @var \App\Models\Organisation $model
- * @var \App\Models\OrganisationMember[] $members
- */
-$filters = [];
-$allMembers = true;
-if (!request()->has('all_members')) {
-    $filters['organisation_id'] = $model->id;
-    $allMembers = false;
-}
-$datagridSorter = new \App\Datagrids\Sorters\OrganisationCharacterSorter();
-$datagridSorter->request(request()->all());
 
-$filterCount = !$allMembers ? $model->allMembers()->has('character')->count() : $model->members()->has('character')->count();
+<div class="box-body no-padding">
 
+    @include('cruds.datagrids.sorters.simple-sorter', ['target' => '#organisation-members'])
 
-$members = $model->allMembers()
-        ->filter($filters)
-        ->has('character')
-        ->with([
-            'character', 'character.location', 'organisation',
-            'character.entity', 'organisation.entity', 'character.location.entity',
-            'parent', 'parent.character'
-        ])
-        ->simpleSort($datagridSorter)
-        ->paginate();
-?>
-<div class="box box-solid" id="organisation-members">
-    <div class="box-header with-border">
-        <h3 class="box-title">{{ __('organisations.fields.members') }}</h3>
-
-        <div class="box-tools">
-            @if (!$allMembers)
-                <a href="{{ route('organisations.show', [$model, 'all_members' => true, '#organisation-members']) }}" class="btn btn-box-tool">
-                    <i class="fa fa-filter"></i>
-                    <span class="hidden-xs hidden-sm">
-                        {{ __('crud.filters.lists.desktop.all', ['count' => $filterCount]) }}
-                    </span>
-                    <span class="visible-xs-inline visible-sm-inline">
-                        {{ __('crud.filters.lists.mobile.all', ['count' => $filterCount]) }}
-                    </span>
-                </a>
-            @else
-                <a href="{{ route('organisations.show', [$model, '#organisation-members']) }}" class="btn btn-box-tool">
-                    <i class="fa fa-filter"></i>
-
-                    <span class="hidden-xs hidden-sm">
-                        {{ __('crud.filters.lists.desktop.filtered', ['count' => $filterCount]) }}
-                    </span>
-                    <span class="visible-xs-inline visible-sm-inline">
-                        {{ __('crud.filters.lists.mobile.filtered', ['count' => $filterCount]) }}
-                    </span>
-                </a>
-            @endif
-
-            @can('member', $model)
-                <a href="{{ route('organisations.organisation_members.create', ['organisation' => $model->id]) }}" class="btn btn-primary btn-sm"
-                   data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('organisations.organisation_members.create', $model->id) }}">
-                    <i class="fa fa-plus"></i> <span class="hidden-sm hidden-xs">{{ __('organisations.members.actions.add') }}</span>
-                </a>
-            @endcan
-        </div>
-    </div>
-
-    @if ($members->count() === 0)
-        <div class="box-body">
-
-            <p class="help-block">
-                {{ __('organisations.members.helpers.' . ($allMembers ? 'all_' : null) . 'members') }}
-            </p>
-        </div>
-    @else
-    <div class="box-body no-padding">
-
-        @include('cruds.datagrids.sorters.simple-sorter', ['target' => '#organisation-members'])
-
-        <div class="table-responsive">
+    <div class="table-responsive">
         <table id="organisation-characters" class="table table-hover">
             <thead>
-                <tr>
-                    <th class="avatar"><br></th>
-                    <th>{{ __('characters.fields.name') }}</th>
-                    @if ($campaign->enabled('locations'))
+            <tr>
+                <th class="avatar"><br></th>
+                <th>{{ __('characters.fields.name') }}</th>
+                @if ($campaign->enabled('locations'))
                     <th class="hidden-sm hidden-xs">{{ __('characters.fields.location') }}</th>
-                    @endif
-                    @if ($allMembers)<th>{{ __('organisations.members.fields.organisation') }}</th>@endif
-                    <th>{{ __('organisations.members.fields.role') }}</th>
-                    <th class="hidden-sm hidden-xs">{{ __('organisations.members.fields.parent') }}</th>
-                    @if (auth()->check() && auth()->user()->isAdmin())
+                @endif
+                @if ($allMembers)<th>{{ __('organisations.members.fields.organisation') }}</th>@endif
+                <th>{{ __('organisations.members.fields.role') }}</th>
+                <th class="hidden-sm hidden-xs">{{ __('organisations.members.fields.parent') }}</th>
+                @if (auth()->check() && auth()->user()->isAdmin())
                     <th></th>
-                    @endif
-                    <th>
-                        <i class="fas fa-star" title="{{ __('organisations.members.fields.pinned') }}" data-toggle="tooltip"></i>
-                    </th>
-                    <th class="text-right">
+                @endif
+                <th>
+                    <i class="fas fa-star" title="{{ __('organisations.members.fields.pinned') }}" data-toggle="tooltip"></i>
+                </th>
+                <th class="text-right">
 
-                    </th>
-                </tr>
+                </th>
+            </tr>
             </thead>
             <tbody>
             @foreach ($members as $relation)
@@ -112,16 +40,16 @@ $members = $model->allMembers()
                         <i>{{ $relation->character->title }}</i>
                     </td>
                     @if ($campaign->enabled('locations'))
-                    <td class="hidden-sm hidden-xs">
-                        @if ($relation->character->location)
-                            {!! $relation->character->location->tooltipedLink() !!}
-                        @endif
-                    </td>
+                        <td class="hidden-sm hidden-xs">
+                            @if ($relation->character->location)
+                                {!! $relation->character->location->tooltipedLink() !!}
+                            @endif
+                        </td>
                     @endif
                     @if ($allMembers)
-                    <td>
-                        {!! $relation->organisation->tooltipedLink() !!}
-                    </td>
+                        <td>
+                            {!! $relation->organisation->tooltipedLink() !!}
+                        </td>
                     @endif
                     <td>
                         @if ($relation->inactive())
@@ -135,7 +63,7 @@ $members = $model->allMembers()
                         @if ($relation->parent && $relation->parent->character)
                             {!! $relation->parent->character->tooltipedLink() !!}
                         @endif
-                        </td>
+                    </td>
                     @include('cruds.partials.private', ['model' => $relation])
                     <td>
                         @if ($relation->pinned())
@@ -181,13 +109,5 @@ $members = $model->allMembers()
             @endforeach
             </tbody>
         </table>
-        </div>
     </div>
-    @if ($members->hasPages())
-        <div class="box-footer text-right">
-            {{ $members->fragment('organisation-members')->appends('all_members', request()->get('all_members'))->links() }}
-
-        </div>
-    @endif
-    @endif
 </div>

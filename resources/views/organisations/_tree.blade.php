@@ -33,7 +33,7 @@
             'visible' => $campaign->enabled('locations'),
         ],
         [
-            'label' => '<i class="fa fa-users" title="' . trans('organisations.fields.members') . '"></i>',
+            'label' => '<i class="fa fa-users" title="' . __('organisations.fields.members') . '"></i>',
             'visible' => $campaign->enabled('characters'),
             'render' => function($model) {
                 return $model->members->count();

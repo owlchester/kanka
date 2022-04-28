@@ -11,7 +11,7 @@
 
     <div class="entity-story-block">
         @include('entities.components.notes', ['withEntry' => true])
-        @include('organisations.panels._members')
+        @include('organisations.panels.members')
 
         @include('cruds.partials.mentions')
         @include('cruds.boxes.history')

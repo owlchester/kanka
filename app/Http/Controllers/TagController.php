@@ -153,7 +153,6 @@ class TagController extends CrudController
         }
 
         return $this
-            ->datagridSorter(TagChildrenSorter::class)
             ->menuView($tag, 'children');
     }
 

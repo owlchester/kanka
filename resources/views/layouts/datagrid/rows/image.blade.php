@@ -6,5 +6,4 @@
 @elseif (!empty($with))
     @php $target = \Illuminate\Support\Arr::get($with, 'target', false); @endphp
     <a class="entity-image" style="background-image: url('{{ $model->$target->getImageUrl(40) }}');" title="{{ $model->$target->name }}" href="{{ $model->$target->getLink() }}"></a>
-
 @endif
