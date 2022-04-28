@@ -4,7 +4,6 @@
 namespace App\Models;
 
 use App\Facades\Mentions;
-use App\Facades\UserPermission;
 use App\Models\Concerns\Blameable;
 use App\Models\Concerns\SimpleSortableTrait;
 use App\Traits\VisibilityTrait;

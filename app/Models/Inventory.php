@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use App\Facades\CampaignLocalization;
-use App\Facades\UserPermission;
 use App\Models\Concerns\SimpleSortableTrait;
 use App\Traits\VisibilityTrait;
 use Illuminate\Database\Eloquent\Model;

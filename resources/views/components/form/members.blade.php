@@ -17,18 +17,16 @@ if (!empty($previous)) {
 elseif(!empty($model)) {
     /** @var \App\Models\OrganisationMember $member */
     foreach ($model->members()->has('character')->with('character')->get() as $member) {
-        if (\App\Facades\EntityPermission::canView($member->character->entity)) {
-            // If this is a copy, we need to add the member's real id. Also no copying of roles in this constellation
-            if (!empty($source)) {
-                $selectedOption[$member->character_id] = strip_tags($member->character->name);
-            } else {
-                $selectedOption['m_' . $member->id] = strip_tags($member->character->name) . (!empty($member->role) ? ' (' . strip_tags($member->role) . ')' : null);
-            }
+        // If this is a copy, we need to add the member's real id. Also no copying of roles in this constellation
+        if (!empty($source)) {
+            $selectedOption[$member->character_id] = strip_tags($member->character->name);
+        } else {
+            $selectedOption['m_' . $member->id] = strip_tags($member->character->name) . (!empty($member->role) ? ' (' . strip_tags($member->role) . ')' : null);
         }
     }
 }
 ?>
-<label>{{ trans('organisations.fields.members') }}</label>
+<label>{{ __('organisations.fields.members') }}</label>
 
 <select multiple="multiple" name="members[]" id="members" class="form-control form-members" style="width: 100%" data-url="{{ route('characters.find') }}">
     @foreach ($selectedOption as $key => $val)

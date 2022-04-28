@@ -762,25 +762,26 @@ class CalendarRenderer
             }
 
             // Make sure the user can actually see the requested event
-            if ($event->entity->child && EntityPermission::canView($event->entity, $this->calendar->campaign)) {
-                // If the event reoccurs each month, let's add it everywhere
-                if ($event->is_recurring && $event->recurring_periodicity === 'month') {
-                    $startingMonth = $event->year == $this->getYear() ? $event->month : 1;
-                    for ($month = $startingMonth; $month <= $totalMonths; $month++) {
-                        $recurringDate = $this->getYear() . '-' . $month . '-' . $event->day;
-                        $this->events[$recurringDate][] = $event;
-                        $this->addMultidayEvent($event, $recurringDate);
-                    }
-                } elseif ($event->is_recurring && $event->recurring_periodicity !== 'year') {
-                    // If we haven't passed the max date for this event, show it in the recurring blocks
-                    if (empty($event->recurring_until) || $this->getYear() < $event->recurring_until) {
-                        $this->recurring[$event->recurring_periodicity][] = $event;
-                    }
-                } else {
-                    // Only add it once
-                    $this->events[$date][] = $event;
-                    $this->addMultidayEvent($event, $date);
+            if (!$event->entity || !$event->entity->child) {
+                continue;
+            }
+            // If the event reoccurs each month, let's add it everywhere
+            if ($event->is_recurring && $event->recurring_periodicity === 'month') {
+                $startingMonth = $event->year == $this->getYear() ? $event->month : 1;
+                for ($month = $startingMonth; $month <= $totalMonths; $month++) {
+                    $recurringDate = $this->getYear() . '-' . $month . '-' . $event->day;
+                    $this->events[$recurringDate][] = $event;
+                    $this->addMultidayEvent($event, $recurringDate);
                 }
+            } elseif ($event->is_recurring && $event->recurring_periodicity !== 'year') {
+                // If we haven't passed the max date for this event, show it in the recurring blocks
+                if (empty($event->recurring_until) || $this->getYear() < $event->recurring_until) {
+                    $this->recurring[$event->recurring_periodicity][] = $event;
+                }
+            } else {
+                // Only add it once
+                $this->events[$date][] = $event;
+                $this->addMultidayEvent($event, $date);
             }
         }
     }

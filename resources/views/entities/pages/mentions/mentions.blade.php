@@ -44,8 +44,8 @@
                                         </a>
                                     </td>
                                 </tr>
-                            @elseif ($mention->isEntityNote() && $mention->entityNote && $mention->entityNote->entity)
-                                @viewentity($mention->entityNote->entity)
+                            @elseif ($mention->isEntityNote() && $mention->entityNote)
+                                @if($mention->entityNote->entity)
                                 <tr>
                                     <td>
                                         <a href="{{ $mention->entityNote->entity->url('show', 'entity-note-' . $mention->entityNote->id) }}">
@@ -53,15 +53,13 @@
                                         </a>
                                     </td>
                                 </tr>
-                                @endviewentity
+                                @endif
                             @elseif ($mention->entity)
-                                @viewentity($mention->entity)
                                 <tr>
                                     <td>
                                         <a href="{{ $mention->entity->url() }}">{{ $mention->entity->name }} ({{ __('entities.' . $mention->entity->type()) }})</a>
                                     </td>
                                 </tr>
-                                @endviewentity
                             @endif
                         @endforeach
                         </tbody>

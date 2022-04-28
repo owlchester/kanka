@@ -29,15 +29,13 @@ if (!empty($previous)) {
 // If we didn't get anything, and there is a model sent, use that
 elseif(!empty($model) && !empty($model->entity)) {
     foreach ($model->entity->abilities()->with('entity')->has('entity')->get() as $ability) {
-        if (\App\Facades\EntityPermission::canView($ability->entity)) {
-            $selectedOption[$ability->id] = $ability;
-        }
+        $selectedOption[$ability->id] = $ability;
     }
 } elseif (!empty($filterOptions)) {
     foreach ($filterOptions as $abilityId) {
         if (!empty($abilityId)) {
             $ability = \App\Models\Ability::find($abilityId);
-            if ($ability && \App\Facades\EntityPermission::canView($ability->entity)) {
+            if ($ability) {
                 $selectedOption[$ability->id] = $ability;
             }
         }

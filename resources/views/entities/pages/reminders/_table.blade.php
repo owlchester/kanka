@@ -36,7 +36,9 @@
     </thead>
     <tbody>
     @foreach ($reminders as $relation)
-        @viewentity($relation->calendar->entity)
+        @if(!$relation->calendar->entity)
+            @continue
+        @endif
         <tr>
             <td>
                 <a class="entity-image" style="background-image: url('{{ $relation->calendar->getImageUrl(40) }}');" title="{{ $relation->calendar->name }}" href="{{ route('calendars.show', $relation->calendar->id) }}"></a>
@@ -70,12 +72,7 @@
                 @endcan
             </td>
         </tr>
-        @else
-            <tr class="entity-hidden">
-                <td colspan="7">{{ __('crud.hidden') }}</td>
-            </tr>
-            @endviewentity
-            @endforeach
+        @endforeach
     </tbody>
 </table>
 

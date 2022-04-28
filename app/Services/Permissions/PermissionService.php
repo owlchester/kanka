@@ -7,6 +7,7 @@ use App\Facades\UserCache;
 use App\Models\Campaign;
 use App\Models\CampaignPermission;
 use App\Models\CampaignRole;
+use App\Models\Entity;
 use App\Models\EntityNotePermission;
 use App\User;
 use Illuminate\Support\Str;
@@ -38,6 +39,8 @@ class PermissionService
 
     protected $loadedRoles = false;
     protected $admin = false;
+
+    protected $granted = false;
 
     /** @var null|string the entity type if provided to limit queries */
     protected $entityType = null;
@@ -160,6 +163,29 @@ class PermissionService
     {
         $this->loadPermissions();
         return in_array($this->entityType, $this->entityTypesIds);
+    }
+
+    /**
+     * Grant a permission ad-hoc
+     * @param Entity $entity
+     * @param string $action
+     * @return $this
+     */
+    public function grant(Entity $entity): self
+    {
+        $this->granted = true;
+        $this->entityIds[] = $entity->id;
+        $this->allowedModels[] = $entity->entity_id;
+        return $this;
+    }
+
+    /**
+     * Was a permission granted?
+     * @return bool
+     */
+    public function granted(): bool
+    {
+        return $this->granted;
     }
 
     /**
@@ -290,7 +316,7 @@ class PermissionService
         if (!$permission->isAction($this->action)) {
             return;
         }
-        if (!empty($this->entityType) && $permission->table_name !== $this->entityType) {
+        if (!empty($this->entityType) && $permission->entity_type_id !== $this->entityType) {
             return;
         }
 
@@ -301,9 +327,11 @@ class PermissionService
         } elseif ($permission->access && !in_array($permission->entity_id, $this->entityIds)) {
             // This permission targets an entity directly
             $this->entityIds[] = $permission->entity_id;
+            $this->allowedModels[] = $permission->misc_id;
         } elseif (!$permission->access && !in_array($permission->entity_id, $this->deniedIds)) {
             // This permission targets an entity directly
             $this->deniedIds[] = $permission->entity_id;
+            $this->deniedModels[] = $permission->misc_id;
         }
     }
 
@@ -348,7 +376,7 @@ class PermissionService
             if (($key = array_search($permission->entity_id, $this->deniedIds)) !== false) {
                 unset($this->deniedIds[$key]);
                 if (($key = array_search($permission->misc_id, $this->deniedModels)) !== false) {
-                    unset($this->deniedModels[$key]);
+                    unset($this->deniedModels[$permission->misc_id]);
                 }
             }
             return;

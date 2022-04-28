@@ -165,8 +165,21 @@ class CampaignPermission extends Model
         return $this->action === $action;
     }
 
-    public function entityType(): string
+    /**
+     * Get the "key" of the permission, used for caching and lookup in the permission engines
+     * @return string
+     */
+    public function key(): string
     {
+        // Campaign actions have a different cache key
+        if ($this->action >= 10) {
+            return 'campaign_' . $this->action;
+        }
 
+        $base = $this->entity_type_id . '_' . $this->action;
+        if (!$this->misc_id) {
+            return $base;
+        }
+        return $this->entity_type_id . '_' . $this->action . '_' . $this->misc_id;
     }
 }

@@ -20,9 +20,7 @@ class RolePermission
     protected $permissions = [];
 
     /**
-     * Create a new instance
      *
-     * UserPermission constructor.
      */
     public function __construct()
     {

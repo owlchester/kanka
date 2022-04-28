@@ -23,7 +23,7 @@ if ($allMembers) {
     $r = $model->entities();
 }
 $r = $r->
-    ->simpleSort($datagridSorter)
+    simpleSort($datagridSorter)
     ->paginate();
 
 ?>

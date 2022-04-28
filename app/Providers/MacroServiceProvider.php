@@ -138,10 +138,6 @@ class MacroServiceProvider extends ServiceProvider
             $key = 'render-once-key-' . $key;
             return defined($key)? false : define($key, true);
         });*/
-        // Permission to view an entity
-        Blade::if('viewentity', function (Entity $entity) {
-            return EntityPermission::canView($entity);
-        });
 
         // If a webp fallback is needed
         Blade::if('nowebp', function () {

@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Facades\UserPermission;
 use App\Models\Concerns\Blameable;
 use App\Models\Concerns\Filterable;
 use App\Models\Concerns\Orderable;

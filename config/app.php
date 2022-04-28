@@ -290,7 +290,6 @@ return [
         'CampaignLocalization' => App\Facades\CampaignLocalization::class,
         'EntityPermission' => App\Facades\EntityPermission::class,
         'Mentions' => App\Facades\Mentions::class,
-        'UserPermission' => App\Facades\UserPermission::class,
         'Breadcrumb' => App\Facades\Breadcrumb::class,
         'FormCopy' => App\Facades\FormCopy::class,
         'EntityCache' => App\Facades\EntityCache::class,

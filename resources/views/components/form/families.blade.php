@@ -17,9 +17,7 @@ if (!empty($previous)) {
 elseif(!empty($model)) {
     /** @var \App\Models\OrganisationMember $member */
     foreach ($model->families as $family) {
-        if (\App\Facades\EntityPermission::canView($family->entity)) {
-            $selectedOption[$family->id] = strip_tags($family->name);
-        }
+        $selectedOption[$family->id] = strip_tags($family->name);
     }
 }
 ?>

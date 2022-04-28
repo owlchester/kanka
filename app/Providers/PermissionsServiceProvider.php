@@ -4,7 +4,6 @@ namespace App\Providers;
 
 use App\Services\Permissions\EntityPermission;
 use App\Services\Permissions\RolePermission;
-use App\Services\Permissions\UserPermission;
 use App\Services\Permissions\PermissionService;
 use Illuminate\Support\ServiceProvider;
 
@@ -29,18 +28,19 @@ class PermissionsServiceProvider extends ServiceProvider
     {
         /*
         App\Providers\EntityPermissionServiceProvider::class,
-        App\Providers\UserPermissionServiceProvider::class,
         App\Providers\RolePermissionServiceProvider::class,
         */
         $this
             ->registerMain()
-            ->registerUser()
+            //->registerUser()
             ->registerRole()
             ->registerEntity()
         ;
     }
 
-
+    /**
+     * @return $this
+     */
     protected function registerMain(): self
     {
         $this->app->singleton(PermissionService::class, function () {
@@ -50,15 +50,9 @@ class PermissionsServiceProvider extends ServiceProvider
         return $this;
     }
 
-    protected function registerUser(): self
-    {
-        $this->app->singleton(UserPermission::class, function () {
-            return new UserPermission();
-        });
-        $this->app->alias(UserPermission::class, 'userpermission');
-        return $this;
-    }
-
+    /**
+     * @return $this
+     */
     protected function registerEntity(): self
     {
         $this->app->singleton(EntityPermission::class, function () {
@@ -69,6 +63,9 @@ class PermissionsServiceProvider extends ServiceProvider
         return $this;
     }
 
+    /**
+     * @return $this
+     */
     protected function registerRole(): self
     {
         $this->app->singleton(RolePermission::class, function () {

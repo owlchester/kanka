@@ -33,7 +33,9 @@
     </thead>
     <tbody>
     @foreach ($relations as $relation)
-        @viewentity($relation->target)
+        @if(!$relation->target)
+            @continue
+        @endif
         <tr data-entity-id="{{ $relation->target->id }}" data-entity-type="{{ $relation->target->type() }}">
             <td class="breakable">
                 @if ($relation->is_star)
@@ -85,11 +87,6 @@
                 @endcan
             </td>
         </tr>
-        @else
-            <tr class="entity-hidden">
-                <td colspan="{{ ($campaign->enabled('locations') ? 5 : 4) }}">{{ __('crud.hidden') }}</td>
-            </tr>
-        @endviewentity
     @endforeach
     </tbody>
 </table>

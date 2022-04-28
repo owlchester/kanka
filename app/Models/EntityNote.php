@@ -37,7 +37,7 @@ use Illuminate\Support\Arr;
 class EntityNote extends Model
 {
     /** Traits */
-    use VisibilityTrait, Paginatable, Blameable, Acl;
+    use Paginatable, Blameable, Acl;
 
     /** @var array */
     protected $fillable = [

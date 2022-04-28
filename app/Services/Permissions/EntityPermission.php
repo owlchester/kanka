@@ -60,12 +60,6 @@ class EntityPermission
     protected $loadedCampaignId = 0;
 
     /**
-     * True if the user granted themselves permissions
-     * @var bool
-     */
-    public $granted = false;
-
-    /**
      * Creates new instance.
      *
      * @throws UnsupportedLocaleException
@@ -192,14 +186,16 @@ class EntityPermission
             $entityType = 'campaign';
         }
         $key = $entityType . '_' . $action;
+
         $perm = false;
         if (isset($this->cached[$key]) && $this->cached[$key]) {
             $perm = $this->cached[$key];
         }
 
+
         // Check if we have permission for `action` exactly for this entity
         if (!empty($entity)) {
-            $entityKey = $key . '_' . $entity->id;
+            $entityKey = '_' . $action . '_' . $entity->id;
             if (isset($this->cached[$entityKey])) {
                 $perm = $this->cached[$entityKey];
             }
@@ -269,27 +265,6 @@ class EntityPermission
     }
 
     /**
-     * Grant a permission ad-hoc
-     * @param Entity $entity
-     * @param string $action
-     * @return $this
-     */
-    public function grant(Entity $entity, int $action = CampaignPermission::ACTION_READ): self
-    {
-        $this->granted = true;
-        $this->cachedEntityIds[$entity->entity_type_id][$entity->entity_id][$action] = true;
-        return $this;
-    }
-
-    /**
-     * @return bool
-     */
-    public function granted(): bool
-    {
-        return $this->granted;
-    }
-
-    /**
      * It's way easier to just load all permissions of the user once and "cache" them, rather than try and be
      * optional on each query.
      * @param User $user
@@ -333,11 +308,7 @@ class EntityPermission
             /** @var CampaignPermission $permission */
             $permissions = \App\Facades\RolePermission::role($role)->permissions();
             foreach ($permissions as $permission) {
-                $key = $permission->entity_type_id . '_' . $permission->action;
-                if ($permission->action >= 10) {
-                    $key = 'campaign_' . $permission->action;
-                }
-                $this->cached[$key] = $permission->access;
+                $this->cached[$permission->key()] = $permission->access;
                 if (!empty($permission->entity_id)) {
                     $this->cachedEntityIds[$permission->entity_type_id][$permission->misc_id][$permission->action] = (bool) $permission->access;
                 }
@@ -347,7 +318,7 @@ class EntityPermission
         // If a user is provided, get their permissions too
         if (!empty($user)) {
             foreach ($user->permissions as $permission) {
-                $this->cached[$permission->entity_type_id . '_' . $permission->action] = $permission->access;
+                $this->cached[$permission->key()] = $permission->access;
                 if (!empty($permission->entity_id)) {
                     $this->cachedEntityIds[$permission->entity_type_id][$permission->misc_id][$permission->action] = (bool) $permission->access;
                 }

@@ -239,11 +239,11 @@ class PermissionService
                     if ($action === 'allow') {
                         if (empty($permissions['role'][$roleId][$perm])) {
                             CampaignPermission::create([
+                                'campaign_role_id' => $roleId,
                                 'campaign_id' => $entity->campaign_id,
                                 //'entity_type_id' => $entity->type_id,
                                 'entity_id' => $entity->id,
                                 'misc_id' => $entity->child->id,
-                                'campaign_role_id' => $roleId,
                                 'action' => $perm,
                                 'access' => true,
                             ]);
@@ -254,11 +254,11 @@ class PermissionService
                     } elseif ($action === 'deny') {
                         if (empty($permissions['role'][$roleId][$perm])) {
                             CampaignPermission::create([
+                                'campaign_role_id' => $roleId,
                                 'campaign_id' => $entity->campaign_id,
                                 //'entity_type_id' => $entity->type_id,
                                 'entity_id' => $entity->id,
                                 'misc_id' => $entity->child->id,
-                                'campaign_role_id' => $roleId,
                                 'action' => $perm,
                                 'access' => false,
                             ]);
@@ -283,6 +283,7 @@ class PermissionService
                             CampaignPermission::create([
                                 'user_id' => $userId,
                                 'campaign_id' => $entity->campaign_id,
+                                //'entity_type_id' => $entity->type_id,
                                 'entity_id' => $entity->id,
                                 'misc_id' => $entity->child->id,
                                 'action' => $perm,
@@ -297,6 +298,7 @@ class PermissionService
                             CampaignPermission::create([
                                 'user_id' => $userId,
                                 'campaign_id' => $entity->campaign_id,
+                                //'entity_type_id' => $entity->type_id,
                                 'entity_id' => $entity->id,
                                 'misc_id' => $entity->child->id,
                                 'action' => $perm,

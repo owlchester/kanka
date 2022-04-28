@@ -17,18 +17,16 @@ if (!empty($previous)) {
 elseif(!empty($model)) {
     /** @var \App\Models\Character $member */
     foreach ($model->members()->has('entity')->with('entity')->get() as $member) {
-        if (\App\Facades\EntityPermission::canView($member->entity)) {
-            // If this is a copy, we need to add the member's real id. Also no copying of roles in this constellation
-            if (!empty($source)) {
-                $selectedOption[$member->id] = strip_tags($member->name);
-            } else {
-                $selectedOption['m_' . $member->id] = strip_tags($member->name);
-            }
+        // If this is a copy, we need to add the member's real id. Also no copying of roles in this constellation
+        if (!empty($source)) {
+            $selectedOption[$member->id] = strip_tags($member->name);
+        } else {
+            $selectedOption['m_' . $member->id] = strip_tags($member->name);
         }
     }
 }
 ?>
-<label>{{ trans('organisations.fields.members') }}</label>
+<label>{{ __('organisations.fields.members') }}</label>
 
 <select multiple="multiple" name="members[]" id="members" class="form-control form-members" style="width: 100%" data-url="{{ route('characters.find', ['with_family' => '1']) }}">
     @foreach ($selectedOption as $key => $val)

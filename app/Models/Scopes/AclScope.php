@@ -8,7 +8,7 @@ use App\Models\CampaignPermission;
 use App\Models\Entity;
 use App\Models\EntityNote;
 use App\Models\MiscModel;
-use App\Services\EntityService;
+use App\Models\Visibility;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Scope;
@@ -67,6 +67,11 @@ class AclScope implements Scope
             return $query;
         }
 
+        // For posts, we need a different hook because they can be private even for an admin
+        if ($model instanceof EntityNote) {
+            return $this->applyToPost($query, $model);
+        }
+
         // Campaign admins doesn't have any restrictions on base
         Permissions::campaign(CampaignLocalization::getCampaign())
             ->action(CampaignPermission::ACTION_READ);
@@ -83,8 +88,6 @@ class AclScope implements Scope
             return $this->applyToEntity($query, $model);
         } elseif ($model instanceof MiscModel) {
             return $this->applyToMisc($query, $model);
-        } elseif ($model instanceof EntityNote) {
-            return $this->applyToPost($query, $model);
         }
         dd($model);
 
@@ -162,9 +165,33 @@ class AclScope implements Scope
      */
     protected function applyToPost(Builder $query, Model $model)
     {
-        return $query
-            ->whereIn($model->getTable() . '.id', Permissions::allowedPosts())
-            ->whereNotIn($model->getTable() . '.id', Permissions::deniedPosts());
+        $table = $model->getTable();
+        if (auth()->guest()) {
+            return $query->where($table . '.visibility', Visibility::VISIBILITY_ALL_STR);
+        }
+
+        Permissions::campaign(CampaignLocalization::getCampaign());
+
+        // Either mine (self && created_by = me) or (if admin: !self, else: all)
+        return $query->where(function ($sub) use ($model, $table) {
+            $visibilities = Permissions::isAdmin()
+                ? [Visibility::VISIBILITY_ALL_STR, Visibility::VISIBILITY_ADMIN_STR,
+                    Visibility::VISIBILITY_ADMIN_SELF_STR, Visibility::VISIBILITY_MEMBERS_STR]
+                : [Visibility::VISIBILITY_ALL_STR, Visibility::VISIBILITY_MEMBERS_STR];
+            $sub
+                ->where(function ($self) use ($model, $table) {
+                    $self
+                        ->whereIn($table . '.visibility', [
+                            Visibility::VISIBILITY_SELF_STR,
+                            Visibility::VISIBILITY_ADMIN_SELF_STR,
+                        ])
+                        ->where($table . '.created_by', auth()->user()->id);
+                })
+
+                ->orWhereIn($table . '.visibility', $visibilities)
+                ->orWhereIn($table . '.id', Permissions::allowedPosts());
+             })
+            ->whereNotIn($table . '.id', Permissions::deniedPosts());
     }
 
 }

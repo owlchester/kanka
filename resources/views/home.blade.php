@@ -113,9 +113,9 @@
                 @include('dashboard.widgets._campaign')
                 @continue;
             @endif
-            <?php if (!in_array($widget->widget, \App\Models\CampaignDashboardWidget::WIDGET_VISIBLE) && (empty($widget->entity) || !EntityPermission::canView($widget->entity))):
+            <?php if (!in_array($widget->widget, \App\Models\CampaignDashboardWidget::WIDGET_VISIBLE) && empty($widget->entity)):
                 continue;
-            elseif ($widget->widget == \App\Models\CampaignDashboardWidget::WIDGET_PREVIEW && !EntityPermission::canView($widget->entity)):
+            elseif ($widget->widget == \App\Models\CampaignDashboardWidget::WIDGET_PREVIEW && !$widget->entity):
                 continue;
             endif; ?>
             @if ($position + $widget->colSize() > 12)
