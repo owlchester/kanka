@@ -26,53 +26,11 @@ if (request()->has('tag_id')) {
             @endif
         </div>
     </div>
-    <div class="box-body">
 
-        <div class="row">
-            <div class="col-md-6 col-sm-12">
-                @include('cruds.datagrids.sorters.simple-sorter', ['target' => '#tag-tags'])
-            </div>
-        </div>
-
-        <table id="section-sections" class="table table-hover">
-            <thead>
-                <tr>
-                    <th class="avatar"><br /></th>
-                    <th>{{ __('tags.fields.name') }}</th>
-                    <th>{{ __('tags.fields.type') }}</th>
-                    <th>{{ __('crud.fields.tag') }}</th>
-                </tr>
-            </thead>
-            <tbody>
-            @foreach ($r = $model->descendants()->with('tag')->has('tag')->filter($filters)->simpleSort($datagridSorter)->paginate() as $model)
-                <tr class="{{ $model->rowClasses() }}">
-                    <td>
-                        <a class="entity-image" style="background-image: url('{{ $model->getImageUrl(40) }}');" title="{{ $model->name }}" href="{{ route('tags.show', $model->id) }}"></a>
-                    </td>
-                    <td>
-                        @if ($model->is_private)
-                            <i class="fas fa-lock" title="{{ __('crud.is_private') }}" data-toggle="tooltip"></i>
-                        @endif
-                        {!! $model->tooltipedLink() !!}
-                    </td>
-                    <td>
-                        {{ $model->type }}
-                    </td>
-                    <td>
-                        @if ($model->tag)
-                            {!! $model->tag->tooltipedLink() !!}
-                        @endif
-                    </td>
-                </tr>
-            @endforeach
-            </tbody>
-        </table>
+    <div id="datagrid-parent" class="table-responsive">
+        @include('layouts.datagrid._table')
     </div>
-    @if ($r->hasPages())
-        <div class="box-footer text-right">
-            {{ $r->fragment('tag-tags')->links() }}
-        </div>
-    @endif
+
 </div>
 
 @section('modals')

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Datagrids\Filters\TagFilter;
 use App\Datagrids\Sorters\TagChildrenSorter;
 use App\Datagrids\Sorters\TagTagSorter;
+use App\Facades\Datagrid;
 use App\Http\Requests\StoreTagEntity;
 use App\Models\Character;
 use App\Http\Requests\StoreTag;
@@ -97,8 +98,32 @@ class TagController extends CrudController
      */
     public function tags(Tag $tag)
     {
+        $options = ['tag' => $tag];
+        $filters = [];
+        if (request()->has('tag_id')) {
+            $options['tag_id'] = $tag->id;
+            $filters['tag_id'] = $tag->id;
+        }
+        Datagrid::layout(\App\Renderers\Layouts\Tag\Tag::class)
+            ->route('tags.tags', $options);
+
+        $this->rows = $tag
+            ->descendants()
+            ->sort(request()->only(['o', 'k']))
+            ->filter($filters)
+            ->with(['entity', 'entity.tags', 'tag', 'tag.entity'])
+            ->paginate();
+
+        // Ajax Datagrid
+        if (request()->ajax()) {
+            $html = view('layouts.datagrid._table')->with('rows', $this->rows)->render();
+            return response()->json([
+                'success' => true,
+                'html' => $html,
+                'url' => request()->fullUrl()
+            ]);
+        }
         return $this
-            ->datagridSorter(TagTagSorter::class)
             ->menuView($tag, 'tags');
     }
 

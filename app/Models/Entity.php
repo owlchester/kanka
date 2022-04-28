@@ -13,6 +13,7 @@ use App\Models\Concerns\Paginatable;
 use App\Models\Concerns\Picture;
 use App\Models\Concerns\Searchable;
 use App\Models\Concerns\SimpleSortableTrait;
+use App\Models\Concerns\SortableTrait;
 use App\Models\Relations\EntityRelations;
 use App\Models\Scopes\EntityScopes;
 use App\Traits\CampaignTrait;
@@ -84,6 +85,7 @@ class Entity extends Model
         EntityLogs,
         Paginatable,
         LastSync,
+        SortableTrait,
         Acl
     ;
 
@@ -93,6 +95,11 @@ class Entity extends Model
      */
     protected $searchableColumns = [
         'name',
+    ];
+
+    protected $sortable = [
+        'name',
+        'type_id',
     ];
 
     /**

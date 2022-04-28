@@ -17,7 +17,7 @@
         </thead>
         <tbody>
         @foreach ($rows as $row)
-            <tr class="{{ $row->rowClasses() }}">
+            <tr class="{{ method_exists($row, 'rowClasses') ? $row->rowClasses() : null }}">
                 @foreach (Datagrid::columns($row) as $column)
                     @include('layouts.datagrid._column')
                 @endforeach

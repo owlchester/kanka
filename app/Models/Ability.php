@@ -7,6 +7,7 @@ use App\Facades\Mentions;
 use App\Models\Concerns\Acl;
 use App\Models\Concerns\Nested;
 use App\Models\Concerns\SimpleSortableTrait;
+use App\Models\Concerns\SortableTrait;
 use App\Traits\CampaignTrait;
 use App\Traits\ExportableTrait;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -28,7 +29,8 @@ class Ability extends MiscModel
         Nested,
         SimpleSortableTrait,
         SoftDeletes,
-        Acl
+        Acl,
+        SortableTrait
     ;
 
     /**
@@ -50,6 +52,12 @@ class Ability extends MiscModel
      * @var array
      */
     protected $searchableColumns = ['name', 'entry'];
+
+    protected $sortable = [
+        'name',
+        'type',
+        'ability.name',
+    ];
 
     /**
      * Fields that can be filtered on

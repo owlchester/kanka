@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Datagrids\Filters\AbilityFilter;
 use App\Datagrids\Sorters\AbilityAbilitySorter;
 use App\Datagrids\Sorters\AbilityEntitySorter;
+use App\Facades\Datagrid;
 use App\Http\Requests\StoreAbilityEntity;
 use App\Http\Requests\StoreAbility;
 use App\Models\Ability;
@@ -103,7 +104,26 @@ class AbilityController extends CrudController
      */
     public function abilities(Ability $ability)
     {
-        return $this->datagridSorter(AbilityAbilitySorter::class)
+        Datagrid::layout(\App\Renderers\Layouts\Ability\Ability::class)
+            ->route('abilities.abilities', [$ability]);
+
+        $this->rows = $ability
+            ->descendants()
+            ->sort(request()->only(['o', 'k']))
+            ->with(['entity', 'ability', 'ability.entity'])
+            ->paginate();
+
+        // Ajax Datagrid
+        if (request()->ajax()) {
+            $html = view('layouts.datagrid._table')->with('rows', $this->rows)->render();
+            return response()->json([
+                'success' => true,
+                'html' => $html,
+                'url' => request()->fullUrl()
+            ]);
+        }
+
+        return $this
             ->menuView($ability, 'abilities');
     }
 
@@ -114,9 +134,27 @@ class AbilityController extends CrudController
      */
     public function entities(Ability $ability)
     {
+        Datagrid::layout(\App\Renderers\Layouts\Ability\Entity::class)
+            ->route('abilities.entities', [$ability]);
+
+        $this->rows = $ability
+            ->entities()
+            ->sort(request()->only(['o', 'k']))
+            ->paginate();
+
+        // Ajax Datagrid
+        if (request()->ajax()) {
+            $html = view('layouts.datagrid._table')->with('rows', $this->rows)->render();
+            return response()->json([
+                'success' => true,
+                'html' => $html,
+                'url' => request()->fullUrl()
+            ]);
+        }
+
         return view('abilities.entities')
             ->with('model', $ability)
-            ->with('datagridSorter', new AbilityEntitySorter());
+            ->with('rows', $this->rows);
     }
 
     /**
