@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Renderers\Layouts\Location;
+namespace App\Renderers\Layouts\Family;
 
 use App\Renderers\Layouts\Columns\Standard;
 use App\Renderers\Layouts\Layout;
 
-class Location extends Layout
+class Family extends Layout
 {
     /**
      * Available columns
@@ -17,27 +17,34 @@ class Location extends Layout
             'image' => [
                 'render' => Standard::IMAGE
             ],
-            'location_id' => [
+            'family_id' => [
                 'key' => 'name',
-                'label' => 'locations.fields.name',
+                'label' => 'families.fields.name',
                 'render' => Standard::ENTITYLINK,
             ],
             'type' => [
                 'key' => 'type',
-                'label' => 'characters.fields.type',
+                'label' => 'families.fields.type',
             ],
             'location' => [
                 'key' => 'location.name',
-                'label' => 'locations.fields.location',
+                'label' => 'families.fields.location',
                 'render' => function ($model) {
                     if (!$model->location) {
                         return null;
                     }
                     return $model->location->tooltipedLink();
                 },
-                'visible' => function () {
-                    return !request()->has('parent_location_id');
-                }
+            ],
+            'family' => [
+                'key' => 'family.name',
+                'label' => 'families.fields.family',
+                'render' => function ($model) {
+                    if (!$model->family) {
+                        return null;
+                    }
+                    return $model->family->tooltipedLink();
+                },
             ],
         ];
 

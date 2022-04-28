@@ -158,7 +158,7 @@ function initDatagrid2Ajax() {
 }
 
 function initDatagrid2OnLoad() {
-    if($('.datagrid-onload').lenght === 0) {
+    if ($('.datagrid-onload').length == 0) {
         return;
     }
     datagrid2Observer.observe(document.querySelector('.datagrid-onload'));

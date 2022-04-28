@@ -15,7 +15,7 @@ class Standard extends Column
     public function __toString(): string
     {
         if (!isset($this->config['render'])) {
-            return $this->model->{$this->config['key']};
+            return (string) $this->model->{$this->config['key']};
         }
 
         $render = $this->config['render'];
