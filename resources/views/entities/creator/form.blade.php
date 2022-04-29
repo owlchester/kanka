@@ -54,7 +54,8 @@
     @endif
 
     <button class="btn btn-success" id="quick-creator-submit-btn" data-text="{{ __('crud.create') }}">
-        {{ __('crud.create') }}
+        <span>{{ __('crud.create') }}</span>
+        <i class="fa-solid fa-spinner fa-spin" style="display: none"></i>
     </button>
 
 </div>

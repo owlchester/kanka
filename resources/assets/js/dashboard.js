@@ -152,7 +152,8 @@ function initWidgetSubform() {
 function initDashboardRecent() {
     $('.widget-recent-more').click(function(e) {
         e.preventDefault();
-        $(this).html('<i class="fa-solid fa-spin fa-spinner"></i>');
+        $(this).find('.spinner').show();
+        $(this).find('span').hide();
 
         $.ajax({
             url: $(this).data('url'),

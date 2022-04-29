@@ -83,9 +83,11 @@ function initMapExplore()
                 if (result) {
                     if (window.kankaIsMobile.matches) {
                         markerModalTitle.html(result.name);
-                        markerModalContent.html(result.body);
+                        markerModalContent.find('.content').html(result.body);
+                        markerModalContent.find('.spinner').hide();
                     } else {
-                        sidebarMarker.html(result.body);
+                        sidebarMarker.html(result.body).parent().find('.spinner').hide();
+
                         handleCloseMarker();
                         mapPageBody.addClass('sidebar-open');
                     }
@@ -138,11 +140,10 @@ function initMapForms()
 
 function showSidebar()
 {
-    let spinner = '<div class="text-center"><i class="fa-solid fa-spin fa-spinner fa-2x"></i></div>';
-
     // On mobile use the modal instead of the sidebar
     if (window.kankaIsMobile.matches) {
-        markerModalContent.html(spinner)
+        markerModalContent.find('.spinner').show();
+        markerModalContent.find('.content').hide();
         markerModal.modal('toggle');
         return;
     }
@@ -150,7 +151,8 @@ function showSidebar()
     //window.map.invalidateSize();
     mapPageBody.removeClass('sidebar-collapse').addClass('sidebar-open');
     sidebarMap.hide();
-    sidebarMarker.show().html(spinner);
+    sidebarMarker.html('');
+    sidebarMarker.parent().find('.spinner').show();
 }
 
 function handleCloseMarker()

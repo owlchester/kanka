@@ -31,7 +31,8 @@
 <div class="text-center">
     <a href="#" class="text-center widget-recent-more"
        data-url="{{ route('dashboard.recent', ['id' => $widget->id, 'page' => $entities->currentPage() + 1]) }}">
-        {{ __('crud.actions.next') }}
+        <span>{{ __('crud.actions.next') }}</span>
+        <i class="fa-solid fa-spinner fa-spin spinner" style="display: none;"></i>
     </a>
 </div>
 @endif

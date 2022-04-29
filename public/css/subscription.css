@@ -1,1 +1,175 @@
-table.tiers{table-layout:fixed}table.tiers .tier{display:flex;align-items:center;position:relative}table.tiers .tier .img{justify-content:flex-start;margin-right:10px}table.tiers .tier .img .img-circle{height:60px}table.tiers .tier .text{font-size:1.2em}table.tiers .tier .text .price{color:#777;font-size:.8em;display:block}table.tiers .btn-block{white-space:normal!important;word-wrap:break-word}table.tiers .align-middle{vertical-align:middle!important}table.tiers .fa-check{color:green}.card{margin:30px 0;padding:15px}.card .card-element,.StripeElement{border:1px solid #d2d6de;background-color:#fff}.StripeElement{padding:9px 12px;line-height:1.6}body.ab-testing-second #pricing-overview.period-year .price-monthly{display:none}body.ab-testing-second #pricing-overview.period-month .price-monthly,body.ab-testing-second #pricing-overview.period-year .price-yearly,body.ab-testing-second #pricing-overview.period-year .ribbon{display:block}body.ab-testing-second #pricing-overview.period-month .price-yearly{display:none}body.ab-testing-second .btn-block.price-yearly{margin-top:0}@media (max-width:991px){table.tiers .tier{text-align:center;display:block}table.tiers .tier .img{text-align:center;justify-content:unset}}.ribbon{width:70px;height:70px;overflow:hidden;position:absolute;display:none}.ribbon span{position:absolute;display:block;width:105px;padding:3px 0;background-color:#00a65a;box-shadow:0 2px 5px rgba(0,0,0,.1);color:#fff;font:700 8px/1 Lato,sans-serif;text-shadow:0 1px 1px rgba(0,0,0,.2);text-transform:uppercase;text-align:center}.ribbon-red span{background-color:#d81b60}.ribbon-top-left{top:-10px;left:-10px}.ribbon-top-left span{right:-25px;top:30px;transform:rotate(-45deg)}.ribbon-top-right{top:-9px;right:-9px}.ribbon-top-right span{left:-10px;bottom:35px;transform:rotate(45deg)}.ribbon-bottom-left{bottom:-10px;left:-10px}.ribbon-bottom-left span{right:-25px;bottom:30px;transform:rotate(225deg)}.ribbon-bottom-right{bottom:-10px;right:-10px}.ribbon-bottom-right span{left:-25px;bottom:25px;transform:rotate(-225deg)}
+table.tiers {
+  table-layout: fixed;
+}
+
+table.tiers .tier {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+table.tiers .tier .img {
+  justify-content: flex-start;
+  margin-right: 10px;
+}
+
+table.tiers .tier .img .img-circle {
+  height: 60px;
+}
+
+table.tiers .tier .text {
+  font-size: 1.2em;
+}
+
+table.tiers .tier .text .price {
+  color: #777;
+  font-size: 0.8em;
+  display: block;
+}
+
+table.tiers .btn-block {
+  white-space: normal !important;
+  word-wrap: break-word;
+}
+
+table.tiers .align-middle {
+  vertical-align: middle !important;
+}
+
+table.tiers .fa-check {
+  color: green;
+}
+
+.card {
+  margin: 30px 0;
+  padding: 15px;
+}
+
+.card .card-element {
+  border: 1px solid #d2d6de;
+  background-color: white;
+}
+
+.StripeElement {
+  border: 1px solid #d2d6de;
+  background-color: white;
+  padding: 9px 12px;
+  line-height: 1.6;
+}
+
+body.ab-testing-second #pricing-overview.period-year .price-monthly {
+  display: none;
+}
+
+body.ab-testing-second #pricing-overview.period-year .price-yearly {
+  display: block;
+}
+
+body.ab-testing-second #pricing-overview.period-year .ribbon {
+  display: block;
+}
+
+body.ab-testing-second #pricing-overview.period-month .price-monthly {
+  display: block;
+}
+
+body.ab-testing-second #pricing-overview.period-month .price-yearly {
+  display: none;
+}
+
+body.ab-testing-second .btn-block.price-yearly {
+  margin-top: 0;
+}
+
+@media (max-width: 991px) {
+  table.tiers .tier {
+    text-align: center;
+    display: block;
+  }
+
+  table.tiers .tier .img {
+    text-align: center;
+    justify-content: unset;
+  }
+}
+
+/* common */
+
+.ribbon {
+  width: 70px;
+  height: 70px;
+  overflow: hidden;
+  position: absolute;
+  display: none;
+}
+
+.ribbon span {
+  position: absolute;
+  display: block;
+  width: 105px;
+  padding: 3px 0;
+  background-color: #00a65a;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  color: #fff;
+  font: 700 8px/1 "Lato", sans-serif;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.ribbon-red span {
+  background-color: #D81B60;
+}
+
+/* top left*/
+
+.ribbon-top-left {
+  top: -10px;
+  left: -10px;
+}
+
+.ribbon-top-left span {
+  right: -25px;
+  top: 30px;
+  transform: rotate(-45deg);
+}
+
+/* top right*/
+
+.ribbon-top-right {
+  top: -9px;
+  right: -9px;
+}
+
+.ribbon-top-right span {
+  left: -10px;
+  bottom: 35px;
+  transform: rotate(45deg);
+}
+
+/* bottom left*/
+
+.ribbon-bottom-left {
+  bottom: -10px;
+  left: -10px;
+}
+
+.ribbon-bottom-left span {
+  right: -25px;
+  bottom: 30px;
+  transform: rotate(225deg);
+}
+
+/* bottom right*/
+
+.ribbon-bottom-right {
+  bottom: -10px;
+  right: -10px;
+}
+
+.ribbon-bottom-right span {
+  left: -25px;
+  bottom: 25px;
+  transform: rotate(-225deg);
+}
+

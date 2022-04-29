@@ -42,7 +42,6 @@ __('maps/markers.create.title')
                     <input id="submit-mode" type="hidden" value="true"/>
                     <div class="btn-group">
                         <button class="btn btn-success" id="form-submit-main"
-                            data-unsaved="{{ __('crud.hints.unsaved_changes') }}"
                             data-target="{{ isset($target) ? $target : null }}">{{ __('crud.save') }}</button>
                         <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown"
                             aria-expanded="false">

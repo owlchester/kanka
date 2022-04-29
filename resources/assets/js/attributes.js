@@ -127,7 +127,6 @@ var liveEditURL, liveEditModal, liveEditCurrentUID;
 function initLiveAttributes() {
     let config = $('[name="live-attribute-config"]');
     if (config.length === 0) {
-        console.log('no config');
         return;
     }
 

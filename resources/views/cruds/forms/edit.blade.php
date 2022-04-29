@@ -110,7 +110,7 @@
                     <div class="modal-header">
                         <h4 class="modal-title" id="myModalLabel">{{ __('entities/story.warning.editing.title') }}</h4>
                     </div>
-                    <div class="modal-body">
+                    <div class="modal-body modal-ajax-body">
                         <p>
                             {{ __('entities/story.warning.editing.description') }}
 
@@ -120,6 +120,9 @@
                                 <li class="user-id-{{ $user->id }}">{{ __('entities/story.warning.editing.user', ['user' => $user->name, 'since' => \Carbon\Carbon::createFromTimeString($user->pivot->created_at)->diffForHumans()]) }}</li>
                             @endforeach
                         </ul>
+                    </div>
+                    <div class="modal-body modal-spinner-body text-center" style="display: none">
+                        <i class="fa-solid fa-spinner fa-spin fa-2x"></i>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default pull-left" id="entity-edit-warning-back" data-url="{{ url()->previous() }}">

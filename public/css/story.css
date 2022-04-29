@@ -1,1 +1,56 @@
-.element-live-reorder .element{display:flex;flex-flow:row wrap;background-color:rgba(0,0,0,.1);margin-bottom:10px;padding:10px;cursor:-webkit-grab;cursor:grab;flex-wrap:nowrap;align-items:center;justify-content:center}.element-live-reorder .element .dragger{padding-right:10px}.element-live-reorder .element .name{overflow:hidden}.element-live-reorder .element .name i{min-width:20px}.element-live-reorder .element .name i.ra{display:var(--fa-display,inline-block)}.element-live-reorder .element .icons{margin-left:auto}.entity-image-focus .focus-selector{overflow:auto;position:relative;max-height:70vh;margin-bottom:10px}.entity-image-focus .focus-selector .focus{position:absolute;color:#fff;text-shadow:rgba(0,0,0,.5) 0 1px 4px;cursor:pointer;font-size:18pt}.entity-image-focus .focus-selector .focus:hover{color:red}.entity-image-focus .focus-selector img{max-width:unset}
+.element-live-reorder .element {
+  display: flex;
+  flex-flow: row wrap;
+  background-color: rgba(0, 0, 0, 0.1);
+  margin-bottom: 10px;
+  padding: 10px;
+  cursor: -webkit-grab;
+  cursor: grab;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.element-live-reorder .element .dragger {
+  padding-right: 10px;
+}
+
+.element-live-reorder .element .name {
+  overflow: hidden;
+}
+
+.element-live-reorder .element .name i {
+  min-width: 20px;
+}
+
+.element-live-reorder .element .name i.ra {
+  display: var(--fa-display, inline-block);
+}
+
+.element-live-reorder .element .icons {
+  margin-left: auto;
+}
+
+.entity-image-focus .focus-selector {
+  overflow: auto;
+  position: relative;
+  max-height: 70vh;
+  margin-bottom: 10px;
+}
+
+.entity-image-focus .focus-selector .focus {
+  position: absolute;
+  color: white;
+  text-shadow: rgba(0, 0, 0, 0.5) 0 1px 4px;
+  cursor: pointer;
+  font-size: 18pt;
+}
+
+.entity-image-focus .focus-selector .focus:hover {
+  color: red;
+}
+
+.entity-image-focus .focus-selector img {
+  max-width: unset;
+}
+

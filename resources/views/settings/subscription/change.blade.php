@@ -24,7 +24,8 @@
 
                 <span class="input-group-btn">
                   <button type="button" id="coupon-check-btn" class="btn btn-info btn-flat" title="{{ __('settings.subscription.coupon.check') }}" data-toggle="tooltip">
-                      <i class="fas fa-check"></i>
+                      <i class="fa-solid fa-check check"></i>
+                      <i class="fa-solid fa-spinner fa-spin spinner" style="display: none"></i>
                   </button>
                 </span>
             </div>
@@ -68,7 +69,8 @@
 
                     <div class="text-center">
                         <button class="btn btn-lg btn-primary subscription-confirm-button" data-text="{{ __('settings.subscription.actions.subscribe') }}">
-                            {{ __('settings.subscription.actions.subscribe') }}
+                            <span>{{ __('settings.subscription.actions.subscribe') }}</span>
+                            <i class="fa-solid fa-spin fa-spinner spinner" style="display: none"></i>
                         </button>
                     </div>
 
@@ -110,7 +112,8 @@
 
                         <div class="text-center">
                             <button class="btn btn-lg btn-primary subscription-confirm-button" data-text="{{ __('settings.subscription.actions.subscribe') }}">
-                                {{ __('settings.subscription.actions.subscribe') }}
+                                <span>{{ __('settings.subscription.actions.subscribe') }}</span>
+                                <i class="fa-solid fa-spin fa-spinner spinner" style="display: none"></i>
                             </button>
                         </div>
 
@@ -146,7 +149,8 @@
 
                         <div class="text-center">
                             <button class="btn btn-xl btn-success subscription-confirm-button" data-text="{{ __('settings.subscription.actions.subscribe') }}">
-                                {{ __('settings.subscription.actions.subscribe') }}
+                                <span>{{ __('settings.subscription.actions.subscribe') }}</span>
+                                <i class="fa-solid fa-spin fa-spinner spinner" style="display: none"></i>
                             </button>
                         </div>
 
@@ -205,7 +209,8 @@
 
         <div class="text-center">
             <button class="btn btn-lg btn-danger subscription-confirm-button" data-text="{{ __('settings.subscription.actions.subscribe') }}">
-                {{ __('settings.subscription.actions.cancel_sub') }}
+                <span>{{ __('settings.subscription.actions.cancel_sub') }}</span>
+                <i class="fa-solid fa-spin fa-spinner spinner" style="display: none"></i>
             </button>
         </div>
 

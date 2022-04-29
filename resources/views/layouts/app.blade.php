@@ -161,6 +161,11 @@ $seoTitle = isset($seoTitle) ? $seoTitle : (isset($title) ? $title : null);
     <div class="modal fade" id="entity-modal" role="dialog" aria-labelledby="deleteConfirmLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content"></div>
+            <div class="modal-spinner">
+                <div class="modal-body text-center">
+                    <i class="fa-solid fa-spinner fa-spin fa-2x"></i>
+                </div>
+            </div>
         </div>
     </div>
 

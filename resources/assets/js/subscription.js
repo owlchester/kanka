@@ -6,7 +6,7 @@ var formSubmit = false;
 var formSubmitBtn;
 
 // Coupon stuff
-var couponBtn, couponField, couponSuccess, couponError, couponId, couponBtnOriginalText;
+var couponBtn, couponField, couponSuccess, couponError, couponId;
 
 $(document).ready(function() {
     initStripe();
@@ -79,7 +79,9 @@ function initConfirmListener()
         }
 
         e.preventDefault();
-        formSubmitBtn.addClass('disabled').html('<i class="fa-solid fa-spin fa-spinner"></i>');
+        formSubmitBtn.addClass('disabled')
+        formSubmitBtn.find('span').hide();
+        formSubmitBtn.find('spinner').show();
 
         let intentToken = $('input[name="subscription-intent-token"]');
         let errorMessage = $('.alert-danger');
@@ -117,7 +119,8 @@ function initConfirmListener()
     });
 
     $('.subscription-form').submit(function (e) {
-        formSubmitBtn.addClass('disabled').html('<i class="fa-solid fa-spin fa-spinner"></i>');
+        formSubmitBtn.addClass('disabled').find('span').hide();
+        formSubmitBtn.find('i').show();
 
         return true;
     });
@@ -148,10 +151,10 @@ function initConfirmListener()
 function checkCoupon() {
     let coupon = couponField.val();
     let url = couponField.data('url');
-    couponBtnOriginalText = couponBtn.html();
 
-    couponBtn.html('<i class="fa-solid fa-span fa-spinner"></i>')
-        .prop('disabled', true);
+    couponBtn.prop('disabled', true)
+        .find('.check').hide()
+        .parent().find('.spinner').show();
 
     if (!coupon) {
         formSubmitBtn.removeClass('disabled').prop('disabled', false);
@@ -163,7 +166,8 @@ function checkCoupon() {
     }).done(function (result) {
         couponBtn
             .prop('disabled', false)
-            .html(couponBtnOriginalText);
+            .find('.check').show()
+            .parent().find('.spinner').hide();
 
         formSubmitBtn.removeClass('disabled').prop('disabled', false);
 
