@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Entity;
 
 use App\Datagrids\Sorters\EntityRelationSorter;
 use App\Facades\CampaignLocalization;
+use App\Facades\Datagrid;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreRelation;
 use App\Models\Entity;
@@ -61,7 +62,7 @@ class RelationController extends Controller
             abort(404);
         }
         // Policies will always fail if they can't resolve the user.
-        if (Auth::check()) {
+        if (auth()->check()) {
             $this->authorize('view', $entity->child);
         } else {
             $this->authorizeEntityForGuest('read', $entity->child);
@@ -85,11 +86,15 @@ class RelationController extends Controller
 
         $ajax = request()->ajax();
 
-        $relations = $connections = $connectionService = [];
+        $rows = $connections = $connectionService = [];
         $defaultToTable = !$campaign->boosted() || ($campaign->boosted() && $campaign->defaultToConnection());
         if ($mode == 'table' || (empty($mode) && $defaultToTable)) {
             $mode = 'table';
-            $relations = $entity
+
+            Datagrid::layout(\App\Renderers\Layouts\Entity\Relation::class)
+                ->route('entities.relations_table', [$entity, 'mode' => 'table']);
+
+            $rows = $entity
                 ->allRelationships()
                 ->simpleSort($datagridSorter)
                 ->paginate();
@@ -105,7 +110,7 @@ class RelationController extends Controller
         return view('entities.pages.relations.index', compact(
             'ajax',
             'entity',
-            'relations',
+            'rows',
             'datagridSorter',
             'mode',
             'option',
@@ -316,5 +321,37 @@ class RelationController extends Controller
             return $mode;
         }
         return null;
+    }
+
+    public function table(Entity $entity)
+    {
+        if (empty($entity->child)) {
+            abort(404);
+        }
+
+        // Policies will always fail if they can't resolve the user.
+        if (Auth::check()) {
+            $this->authorize('view', $entity->child);
+        } else {
+            $this->authorizeEntityForGuest('read', $entity->child);
+        }
+
+        Datagrid::layout(\App\Renderers\Layouts\Entity\Relation::class)
+            ->route('entities.relations_table', [$entity, 'mode' => 'table']);
+
+        $rows = $entity
+            ->allRelationships()
+            ->sort(request()->only(['o', 'k']))
+            ->paginate();
+
+        $html = view('layouts.datagrid._table')
+            ->with('rows', $rows)
+            ->render();
+        $data = [
+            'success' => true,
+            'html' => $html,
+        ];
+
+        return response()->json($data);
     }
 }

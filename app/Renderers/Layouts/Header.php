@@ -28,7 +28,8 @@ class Header
             if (Arr::get($this->data, 'render') === Standard::IMAGE) {
                 return '';
             }
-            return '<i>no label</i>';
+
+            return !isset($this->data['label']) ? '<i>no label</i>' : '';
         }
 
         if (!$this->sortable()) {

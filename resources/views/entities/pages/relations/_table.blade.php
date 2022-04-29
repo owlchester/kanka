@@ -32,7 +32,7 @@
     </tr>
     </thead>
     <tbody>
-    @foreach ($relations as $relation)
+    @foreach ([] as $relation)
         @if(!$relation->target)
             @continue
         @endif
@@ -77,7 +77,11 @@
                 @can('relation', [$entity->child, 'delete'])
                     <button class="btn btn-xs btn-danger delete-confirm" data-toggle="modal" data-name="{{ $relation->target->name }}"
                             data-target="#delete-confirm" data-delete-target="delete-form-{{ $relation->id }}"
+
+
                             data-mirrored="{{ $relation->mirrored() }}"
+
+
                             title="{{ __('crud.remove') }}">
                         <i class="fa fa-trash" aria-hidden="true"></i>
                     </button>

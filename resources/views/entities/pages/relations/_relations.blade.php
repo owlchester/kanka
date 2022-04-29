@@ -15,7 +15,7 @@
     </div>
     <div class="box-body">
 
-        @if ($relations->count() === 0)
+        @if ($rows->count() === 0)
         <p class="help-block">
             {{ __('entities/relations.helpers.no_relations') }}
         </p>
@@ -29,21 +29,11 @@
             @endcan
         @else
 
-        <div class="row row-sorting">
-            <div class="col-md-6">
-                @include('cruds.datagrids.sorters.simple-sorter', [
-    'filter' => !empty($mode) ? '?mode=' . $mode : null,
-    'target' => '#entity-relations-table'
-    ])
-            </div>
-            <div class="col-md-6 text-right">
-
-            </div>
+        <div id="datagrid-parent" class="table-responsive">
+            @include('layouts.datagrid._table')
         </div>
 
-        @include('entities.pages.relations._table')
-
-        {{ $relations->appends(['mode' => $mode, 'dg-sort' => request()->get('dg-sort')])->fragment('entity-relations-table')->links() }}
+        @includeWhen(false, 'entities.pages.relations._table')
         @endif
     </div>
 </div>
@@ -71,4 +61,6 @@
             </div>
         </div>
     </div>
+
+    @include('layouts.datagrid.delete-forms', ['models' => Datagrid::deleteForms()])
 @endsection

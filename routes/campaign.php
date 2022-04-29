@@ -176,6 +176,7 @@ Route::get('/entities/{entity}/entry', [\App\Http\Controllers\Entity\EntryContro
 Route::patch('/entities/{entity}/entry', [\App\Http\Controllers\Entity\EntryController::class, 'update'])->name('entities.entry.update');
 
 Route::get('/entities/{entity}/relations_map', 'Entity\RelationController@map')->name('entities.relations_map');
+Route::get('/entities/{entity}/relations/table', 'Entity\RelationController@table')->name('entities.relations_table');
 
 Route::post('/entities/{entity}/confirm-editing', 'Entity\EditingController@confirm')->name('entities.confirm-editing');
 Route::post('/entities/{entity}/keep-alive', 'Entity\EditingController@keepAlive')->name('entities.keep-alive');
@@ -307,6 +308,7 @@ Route::resources([
     'images' => 'Campaign\GalleryController',
 ]);
 Route::get('/leave-campaign', 'CampaignController@leave')->name('campaigns.leave');
+
 
 Route::post('/campaign_styles/bulk', 'Campaign\StyleController@bulk')->name('campaign_styles.bulk');
 Route::post('/campaign_styles/reorder', 'Campaign\StyleController@reorder')->name('campaign_styles.reorder-save');

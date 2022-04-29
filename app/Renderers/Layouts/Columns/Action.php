@@ -39,6 +39,11 @@ class Action extends Column
 
     public function __toString(): string
     {
+        /*dd(view('layouts.datagrid.actions')
+            ->with('actions', $this->actions)
+            ->with('model', $this->model)
+            ->render()
+        );*/
         return view('layouts.datagrid.actions')
             ->with('actions', $this->actions)
             ->with('model', $this->model);

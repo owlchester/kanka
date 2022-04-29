@@ -9,6 +9,7 @@ use App\Models\Concerns\Paginatable;
 use App\Models\Concerns\Searchable;
 use App\Models\Concerns\SimpleSortableTrait;
 use App\Models\Concerns\Sortable;
+use App\Models\Concerns\SortableTrait;
 use App\Models\Scopes\Starred;
 use App\Traits\VisibilityTrait;
 use Illuminate\Database\Eloquent\Model;
@@ -45,7 +46,8 @@ class Relation extends Model
         Filterable,
         Sortable,
         Searchable,
-        Orderable
+        Orderable,
+        SortableTrait
     ;
 
     /**
@@ -61,6 +63,13 @@ class Relation extends Model
         'attitude',
         'is_star',
         'colour',
+    ];
+
+    protected $sortable = [
+        'relation',
+        'target.name',
+        'attitude',
+        'visibility',
     ];
 
     /**
@@ -208,5 +217,23 @@ class Relation extends Model
     public function entityTypeID()
     {
         return 0;
+    }
+
+    /**
+     * Functions for the datagrid2
+     * @param string $where
+     * @return string
+     */
+    public function deleteName(): string
+    {
+        return (string) $this->relation;
+    }
+    public function url(string $where): string
+    {
+        return 'entities.relations.' . $where;
+    }
+    public function routeParams(): array
+    {
+        return [$this->owner_id, $this->id, 'mode' => 'table'];
     }
 }
