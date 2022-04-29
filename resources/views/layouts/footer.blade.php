@@ -160,7 +160,7 @@
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="languageDropdown">
                             @foreach (LaravelLocalization::getSupportedLocales() as $localeCode => $langData)
-                                @if ($localeCode === 'he') @continue @endif
+                                @if (in_array($localeCode, ['he', 'hr'])) @continue @endif
                                 @php $url = LaravelLocalization::getLocalizedURL($localeCode, null, [], true); @endphp
                                 <li>
                                     @if (app()->getLocale() == $localeCode)

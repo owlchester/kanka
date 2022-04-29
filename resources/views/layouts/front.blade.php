@@ -148,7 +148,7 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropLocale">
                     @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
-                        @if ($localeCode === 'he') @continue @endif
+                        @if (in_array($localeCode, ['he', 'hr'])) @continue @endif
                         @if ($localeCode != app()->getLocale())
                             <a rel="alternate" hreflang="{{ $localeCode }}" href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true).(auth()->guest() ? '' : '?updateLocale=true') }}" class="dropdown-item">
                                 {{ ucfirst($properties['native']) }}
