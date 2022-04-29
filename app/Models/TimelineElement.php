@@ -145,6 +145,15 @@ class TimelineElement extends Model
         return $this->entity->tooltipedLink($this->name, false);
     }
 
+    public function mentionName(): string
+    {
+        if (!empty($this->name)) {
+            return strip_tags(htmlentities($this->name));
+        }
+
+        return strip_tags($this->entity->name);
+    }
+
     /**
      * For legacy tinymce editor
      * @return bool
