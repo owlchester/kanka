@@ -3,18 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Datagrids\Filters\CalendarFilter;
-use App\Datagrids\Sorters\CalendarEventSorter;
 use App\Facades\Datagrid;
 use App\Http\Requests\AddCalendarEvent;
 use App\Http\Requests\StoreCalendar;
 use App\Models\Calendar;
-use App\Models\CalendarEvent;
-use App\Models\Tag;
 use App\Services\CalendarService;
 use App\Traits\TreeControllerTrait;
 use Illuminate\Http\Request;
 use Response;
-use Illuminate\Support\Facades\Session;
 
 class CalendarController extends CrudController
 {

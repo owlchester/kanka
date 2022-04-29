@@ -125,6 +125,12 @@ class EntityEvent extends MiscModel
         return $this->belongsTo('App\Models\EntityEventType', 'type_id');
     }
 
+    /**
+     * All events before the current calendar's date
+     * @param Builder $query
+     * @param Calendar $calendar
+     * @return Builder
+     */
     public function scopeBefore(Builder $query, Calendar $calendar)
     {
         $year = $calendar->currentDate('year');
@@ -143,6 +149,12 @@ class EntityEvent extends MiscModel
             });
     }
 
+    /**
+     * All events today and after today
+     * @param Builder $query
+     * @param Calendar $calendar
+     * @return Builder
+     */
     public function scopeAfter(Builder $query, Calendar $calendar)
     {
         $year = $calendar->currentDate('year');
@@ -161,6 +173,12 @@ class EntityEvent extends MiscModel
             });
     }
 
+    /**
+     * Sort order for the datagrid page
+     * @param Builder $query
+     * @param string|null $order
+     * @return Builder
+     */
     public function scopeCustomSortDate(Builder $query, string $order = null)
     {
         return $query
