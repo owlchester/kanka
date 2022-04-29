@@ -3,7 +3,8 @@
 namespace App\Models;
 
 use App\Models\Concerns\Blameable;
-use App\Models\Concerns\SimpleSortableTrait;
+use Illuminate\Database\Eloquent\Builder;
+use App\Models\Concerns\SortableTrait;
 use App\Traits\OrderableTrait;
 use App\Traits\VisibilityTrait;
 use Illuminate\Support\Str;
@@ -36,7 +37,7 @@ class EntityEvent extends MiscModel
     /**
      * Traits
      */
-    use OrderableTrait, SimpleSortableTrait, VisibilityTrait, Blameable;
+    use OrderableTrait, SortableTrait, VisibilityTrait, Blameable;
 
     /**
      * Trigger for filtering based on the order request.
@@ -72,7 +73,6 @@ class EntityEvent extends MiscModel
      */
     protected $readableDate;
 
-
     /**
      * @var array
      */
@@ -90,6 +90,14 @@ class EntityEvent extends MiscModel
         'month',
         'year',
         'type_id',
+        'visibility',
+    ];
+
+    protected $sortable = [
+        'entity.name',
+        'length',
+        'date',
+        'is_recurring',
         'visibility',
     ];
 
@@ -117,6 +125,52 @@ class EntityEvent extends MiscModel
         return $this->belongsTo('App\Models\EntityEventType', 'type_id');
     }
 
+    public function scopeBefore(Builder $query, Calendar $calendar)
+    {
+        $year = $calendar->currentDate('year');
+        $month = $calendar->currentDate('month');
+        $day = $calendar->currentDate('date');
+
+        return $query->where('year', '<', $year)
+            ->orWhere(function ($sub) use ($year, $month) {
+                $sub->where('year', '=', $year)
+                    ->where('month', '<', $month);
+            })
+            ->orWhere(function ($sub) use ($year, $month, $day) {
+                $sub->where('year', '=', $year)
+                    ->where('month', '=', $month)
+                    ->where('day', '<=', $day);
+            });
+    }
+
+    public function scopeAfter(Builder $query, Calendar $calendar)
+    {
+        $year = $calendar->currentDate('year');
+        $month = $calendar->currentDate('month');
+        $day = $calendar->currentDate('date');
+
+        return $query->where('year', '>', $year)
+            ->orWhere(function ($sub) use ($year, $month) {
+                $sub->where('year', '=', $year)
+                    ->where('month', '>', $month);
+            })
+            ->orWhere(function ($sub) use ($year, $month, $day) {
+                $sub->where('year', '=', $year)
+                    ->where('month', '=', $month)
+                    ->where('day', '>=', $day);
+            });
+    }
+
+    public function scopeCustomSortDate(Builder $query, string $order = null)
+    {
+        return $query
+            ->orderBy('year', $order)
+            ->orderBy('month', $order)
+            ->orderBy('day', $order);
+    }
+
+
+
     /**
      * @return string
      */
@@ -137,6 +191,15 @@ class EntityEvent extends MiscModel
             }
         }
         return $this->readableDate;
+    }
+
+    /**
+     * Length of the event in a readable format (appends "days")
+     * @return string
+     */
+    public function readableLength(): string
+    {
+        return trans_choice('calendars.fields.length_days', $this->length, ['count' => $this->length]);
     }
 
     /**
@@ -284,5 +347,23 @@ class EntityEvent extends MiscModel
 
         // Same month
         return $years - ($day < $this->day ? 1 : 0);
+    }
+
+    /**
+     * Functions for the datagrid2
+     * @param string $where
+     * @return string
+     */
+    public function deleteName(): string
+    {
+        return (string) $this->entity->name;
+    }
+    public function url(string $where): string
+    {
+        return 'entities.entity_events.' . $where;
+    }
+    public function routeParams(): array
+    {
+        return [$this->entity_id, $this->id];
     }
 }

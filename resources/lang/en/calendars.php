@@ -58,6 +58,11 @@ return [
     ],
     'events'        => [
         'title' => 'Calendar :name Events',
+        'filters'   => [
+            'show_before' => 'Show before today',
+            'show_after' => 'Show today and after',
+            'show_all' => 'Show all',
+        ],
     ],
     'fields'        => [
         'calendar'              => 'Parent Calendar',

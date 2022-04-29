@@ -100,6 +100,9 @@ class CrudController extends Controller
     /** @var bool If the bulk templates button is available */
     protected $bulkTemplates = true;
 
+    /** @var bool If the auth check was already performed on this controller */
+    protected $alreadyAuthChecked = false;
+
     /**
      * @var null
      */
@@ -524,11 +527,8 @@ class CrudController extends Controller
     protected function menuView($model, $view, $directView = false)
     {
         // Policies will always fail if they can't resolve the user.
-        if (auth()->check()) {
-            $this->authorize('view', $model);
-        } else {
-            $this->authorizeForGuest('read', $model);
-        }
+        $this->authCheck($model);
+
         $name = $this->view;
         $fullview = $this->view . '.' . $view;
         if ($directView) {
@@ -632,11 +632,15 @@ class CrudController extends Controller
      */
     protected function authCheck($model)
     {
+        if ($this->alreadyAuthChecked) {
+            return;
+        }
         if (auth()->check()) {
             $this->authorize('view', $model);
         } else {
             $this->authorizeForGuest('read', $model);
         }
+        $this->alreadyAuthChecked = true;
     }
 
     /**

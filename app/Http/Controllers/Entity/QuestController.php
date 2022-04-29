@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Entity;
 
-use App\Datagrids\Sorters\EntityTimelineSorter;
 use App\Http\Controllers\Controller;
 use App\Models\Entity;
 use App\Traits\GuestAuthTrait;
@@ -34,15 +33,11 @@ class QuestController extends Controller
         }
 
 
-        //$datagridSorter = new EntityTimelineSorter();
-        //$datagridSorter->request(request()->all());
-
         $ajax = request()->ajax();
         $quests = $entity
             ->quests()
             ->with(['quest', 'quest.entity'])
             ->has('quest')
-            //->simpleSort($datagridSorter)
             ->paginate();
 
         $data = $entity

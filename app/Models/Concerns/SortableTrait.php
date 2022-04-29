@@ -36,7 +36,7 @@ trait SortableTrait
             return $query;
         }
 
-        // Force order to be valid
+        // Force the order to be valid
         $order = strtolower(Arr::get($filters, 'o', 'asc'));
         if (!in_array($order, ['asc', 'desc'])) {
             $order = 'asc';
@@ -47,6 +47,12 @@ trait SortableTrait
             if (count($segments) == 2) {
                 return $query->sortOnForeign($key, $order);
             }
+        }
+
+        // Custom sort method?
+        $custom = 'scopeCustomSort' . ucfirst($key);
+        if (method_exists($this, $custom)) {
+            return $query->{'customSort' . ucfirst($key)}($order);
         }
 
         return $query->orderBy($key, $order);

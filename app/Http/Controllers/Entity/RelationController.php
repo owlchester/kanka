@@ -2,19 +2,16 @@
 
 namespace App\Http\Controllers\Entity;
 
-use App\Datagrids\Sorters\EntityRelationSorter;
 use App\Facades\CampaignLocalization;
 use App\Facades\Datagrid;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreRelation;
 use App\Models\Entity;
 use App\Models\Relation;
-use App\Models\MiscModel;
 use App\Services\Entity\ConnectionService;
 use App\Services\Entity\EntityRelationService;
 use App\Traits\GuestAuthTrait;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -68,8 +65,6 @@ class RelationController extends Controller
             $this->authorizeEntityForGuest('read', $entity->child);
         }
 
-        $datagridSorter = new EntityRelationSorter();
-        $datagridSorter->request(request()->all());
         $campaign = CampaignLocalization::getCampaign();
 
         $mode = request()->get('mode', null);
@@ -96,7 +91,7 @@ class RelationController extends Controller
 
             $rows = $entity
                 ->allRelationships()
-                ->simpleSort($datagridSorter)
+                ->sort(request()->only(['o', 'k']))
                 ->paginate();
 
             $connections = $this->connectionService

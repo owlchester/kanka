@@ -16,8 +16,6 @@
             {{ __('entities/timelines.helper') }}
         </p>
 
-        @include('cruds.datagrids.sorters.simple-sorter', ['target' => '#entity-timelines'])
-
         <table id="entity_timelines" class="table table-hover">
             <thead>
             <tr>

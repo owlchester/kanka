@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Entity;
 
-use App\Datagrids\Sorters\EntityTimelineSorter;
 use App\Http\Controllers\Controller;
 use App\Models\Entity;
 use App\Traits\GuestAuthTrait;
@@ -33,10 +32,6 @@ class MapPointController extends Controller
             $this->authorizeEntityForGuest('read', $entity->child);
         }
 
-
-        $datagridSorter = new EntityTimelineSorter();
-        $datagridSorter->request(request()->all());
-
         $ajax = request()->ajax();
         $markers = $entity
             ->mapMarkers()
@@ -57,7 +52,6 @@ class MapPointController extends Controller
             'entity',
             'markers',
             'data',
-            'datagridSorter'
         ));
     }
 }

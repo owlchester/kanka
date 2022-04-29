@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Datagrids\Filters\CalendarFilter;
 use App\Datagrids\Sorters\CalendarEventSorter;
+use App\Facades\Datagrid;
 use App\Http\Requests\AddCalendarEvent;
 use App\Http\Requests\StoreCalendar;
 use App\Models\Calendar;
@@ -178,8 +179,39 @@ class CalendarController extends CrudController
      */
     public function events(Calendar $calendar)
     {
+        $this->authCheck($calendar);
+
+        $options = ['calendar' => $calendar];
+        $after = $before = false;
+        if (request()->has('before_id')) {
+            $options['before_id'] = 1;
+            $before = true;
+        } elseif (request()->has('after_id')) {
+            $options['after_id'] = 1;
+            $after = true;
+        }
+
+        Datagrid::layout(\App\Renderers\Layouts\Calendar\Reminder::class)
+            ->route('calendars.events', $options)
+            ->permissions(!(auth()->check() && auth()->user()->can('update', $calendar)));
+
+        $rows = $calendar->calendarEvents();
+        if ($after) {
+            $rows->after($calendar);
+        } elseif ($before) {
+            $rows->before($calendar);
+        }
+
+        $this->rows = $rows
+            ->with(['entity', 'calendar', 'entity.image'])
+            ->sort(request()->only(['o', 'k']))
+            ->paginate();
+
+        if (request()->ajax()) {
+            return $this->datagridAjax();
+        }
+
         return $this
-            ->datagridSorter(CalendarEventSorter::class)
             ->menuView($calendar, 'events');
     }
 

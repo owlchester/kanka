@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Entity;
 
-use App\Datagrids\Sorters\EntityTimelineSorter;
 use App\Http\Controllers\Controller;
 use App\Models\Entity;
 use App\Traits\GuestAuthTrait;
@@ -33,23 +32,17 @@ class TimelineController extends Controller
             $this->authorizeEntityForGuest('read', $entity->child);
         }
 
-
-        $datagridSorter = new EntityTimelineSorter();
-        $datagridSorter->request(request()->all());
-
         $ajax = request()->ajax();
         $timelines = $entity
             ->timelines()
             ->with(['timeline', 'timeline.entity', 'era'])
             ->has('timeline')
-            ->simpleSort($datagridSorter)
             ->paginate();
 
         return view('entities.pages.timelines.index', compact(
             'ajax',
             'entity',
             'timelines',
-            'datagridSorter'
         ));
     }
 }
