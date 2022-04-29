@@ -59,6 +59,9 @@ class SubscriptionService
     /** @var null|string applied coupon */
     protected $coupon = null;
 
+    /** @var int Value of the subscription */
+    protected $subscriptionValue = 0;
+
     /**
      * @param User $user
      * @return $this
@@ -169,6 +172,7 @@ class SubscriptionService
      */
     public function subscribe($planID, $paymentID): self
     {
+        // New subscriber
         if (!$this->user->subscribed('kanka')) {
             $this->user->newSubscription('kanka', $planID)
                 ->withCoupon($this->coupon)
@@ -178,23 +182,25 @@ class SubscriptionService
                 'user_id' => $this->user->id,
                 'type_id' => UserLog::TYPE_SUB_NEW,
             ]);
+
+            return $this;
+        }
+
+        // If going down from elemental to owlbear, keep it as is until the current billing period
+        if ($this->downgrading()) {
+            $this->user->subscription('kanka')->swap($planID);
+
+            UserLog::create([
+                'user_id' => $this->user->id,
+                'type_id' => UserLog::TYPE_SUB_DOWNGRADE,
+            ]);
         } else {
-            // If going down from elemental to owlbear, keep it as is until the current billing period
-            if ($this->downgrading()) {
-                $this->user->subscription('kanka')->swap($planID);
+            $this->user->subscription('kanka')->swapAndInvoice($planID);
 
-                UserLog::create([
-                    'user_id' => $this->user->id,
-                    'type_id' => UserLog::TYPE_SUB_DOWNGRADE,
-                ]);
-            } else {
-                $this->user->subscription('kanka')->swapAndInvoice($planID);
-
-                UserLog::create([
-                    'user_id' => $this->user->id,
-                    'type_id' => UserLog::TYPE_SUB_UPGRADE,
-                ]);
-            }
+            UserLog::create([
+                'user_id' => $this->user->id,
+                'type_id' => UserLog::TYPE_SUB_UPGRADE,
+            ]);
         }
 
         return $this;
@@ -257,6 +263,11 @@ class SubscriptionService
             SubscriptionNewElementalEmailJob::dispatch($this->user, $period, $new);
         }
 
+        // Save the new sub value
+        $this->subscriptionValue =
+            ($period === 'yearly' ? 12 : 1) *
+            ($plan == 'Elemental' ? 25 : ($plan === 'Wyvern' ? 10 : 5));
+
         return $this;
     }
 
@@ -267,8 +278,6 @@ class SubscriptionService
     {
         // Notify admin
         SubscriptionFailedEmailJob::dispatch($this->user);
-
-
     }
 
     /**
@@ -363,6 +372,7 @@ class SubscriptionService
 
         return $this->user->currencySymbol() . ' ' . $amount . '.00';
     }
+
     /**
      * Get the user's current plan
      * @return string
@@ -683,6 +693,10 @@ class SubscriptionService
         ];
     }
 
+    public function subscriptionValue(): int
+    {
+        return (int) $this->subscriptionValue;
+    }
     /**
      * Determine if a user is downgrading
      * @return bool
