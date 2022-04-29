@@ -213,6 +213,16 @@
                 <td><i class="fa fa-check-circle"></i></td>
             </tr>
             <tr>
+                <td class="text">{{ __('front.features.boosts.map_markers') }}</td>
+                <td><i class="fa fa-check-circle"></i></td>
+                <td><i class="fa fa-check-circle"></i></td>
+            </tr>
+            <tr>
+                <td class="text">{{ __('front.features.boosts.timeline_elements') }}</td>
+                <td><i class="fa fa-check-circle"></i></td>
+                <td><i class="fa fa-check-circle"></i></td>
+            </tr>
+            <tr>
                 <td class="text">{{ __('front.features.boosts.recovery', ['amount' => config('entities.hard_delete')]) }}</td>
                 <td><i class="fa fa-check-circle"></i></td>
                 <td><i class="fa fa-check-circle"></i></td>
