@@ -124,7 +124,7 @@ class CampaignPermission extends Model
     public function type()
     {
         $segments = $this->segments();
-        dd('CPT: Error 2');
+        //dd('CPT: Error 2');
 
         // Todo: move this info somewhere else so we can avoid a massive split
         if (Str::startsWith($this->key, 'attribute_template')) {
