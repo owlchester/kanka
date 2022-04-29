@@ -4,7 +4,7 @@ namespace App\Models;
 
 use App\Facades\CampaignLocalization;
 use App\Models\Concerns\Acl;
-use App\Models\Concerns\SimpleSortableTrait;
+use App\Models\Concerns\SortableTrait;
 use App\Traits\CalendarDateTrait;
 use App\Traits\CampaignTrait;
 use App\Traits\ExportableTrait;
@@ -31,8 +31,8 @@ class Quest extends MiscModel
     use CampaignTrait,
         ExportableTrait,
         CalendarDateTrait,
-        SimpleSortableTrait,
         SoftDeletes,
+        SortableTrait,
         Acl
     ;
 
@@ -56,6 +56,13 @@ class Quest extends MiscModel
         'calendar_year',
         'calendar_month',
         'calendar_day',
+    ];
+
+    protected $sortable = [
+        'name',
+        'type',
+        'date',
+        'is_compelted',
     ];
 
     /**

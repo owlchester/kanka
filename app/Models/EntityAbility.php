@@ -4,7 +4,6 @@ namespace App\Models;
 
 use App\Facades\CampaignLocalization;
 use App\Models\Concerns\Blameable;
-use App\Models\Concerns\SimpleSortableTrait;
 use App\Traits\VisibilityTrait;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
@@ -40,7 +39,7 @@ class EntityAbility extends Model
         'note',
     ];
 
-    use VisibilityTrait, SimpleSortableTrait, Blameable;
+    use VisibilityTrait, Blameable;
 
     /**
      * Set to false to skip save observers

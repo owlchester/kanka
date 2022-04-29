@@ -5,7 +5,6 @@ namespace App\Models;
 
 
 use App\Facades\Mentions;
-use App\Models\Concerns\SimpleSortableTrait;
 
 /**
  * Class QuestElement
@@ -15,11 +14,6 @@ use App\Models\Concerns\SimpleSortableTrait;
  */
 abstract class QuestAbstract extends MiscModel
 {
-    /**
-     * Traits
-     */
-    use SimpleSortableTrait;
-
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */

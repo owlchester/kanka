@@ -37,7 +37,6 @@ class MapPointController extends Controller
             ->mapMarkers()
             ->with(['map', 'map.entity'])
             ->has('map')
-            //->simpleSort($datagridSorter)
             ->paginate();
 
         $data = $entity

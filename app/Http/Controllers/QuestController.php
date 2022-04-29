@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Datagrids\Filters\QuestFilter;
+use App\Facades\Datagrid;
 use App\Http\Requests\StoreQuest;
 use App\Models\Quest;
 use App\Traits\TreeControllerTrait;
@@ -78,5 +79,37 @@ class QuestController extends CrudController
     public function destroy(Quest $quest)
     {
         return $this->crudDestroy($quest);
+    }
+
+    /**
+     * @param Quest $quest
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    public function quests(Quest $quest)
+    {
+        $this->authCheck($quest);
+
+        $options = ['quest' => $quest];
+        $filters = [];
+
+        Datagrid::layout(\App\Renderers\Layouts\Quest\Quest::class)
+            ->route('quests.quests', $options);
+
+        $this->rows = $quest
+            ->quests()
+            ->sort(request()->only(['o', 'k']))
+            ->filter($filters)
+            ->with(['entity'])
+            ->paginate();
+
+        return $this->datagridAjax();
+
+        // Ajax Datagrid
+        if (request()->ajax()) {
+            return $this->datagridAjax();
+        }
+        return $this
+            ->menuView($quest, 'quests');
     }
 }

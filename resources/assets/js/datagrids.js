@@ -170,6 +170,11 @@ function datagrid2Reorder(ele) {
     datagrid2Table.find('tfoot').fadeIn();
 
     let url = ele.attr('href');
+    let dataUrl = ele.data('url');
+    if (url === '#' && dataUrl) {
+        url = dataUrl;
+    }
+
     let target = ele.data('target') ?? '#datagrid-parent';
     $.ajax(
         url

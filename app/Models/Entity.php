@@ -12,7 +12,6 @@ use App\Models\Concerns\LastSync;
 use App\Models\Concerns\Paginatable;
 use App\Models\Concerns\Picture;
 use App\Models\Concerns\Searchable;
-use App\Models\Concerns\SimpleSortableTrait;
 use App\Models\Concerns\SortableTrait;
 use App\Models\Relations\EntityRelations;
 use App\Models\Scopes\EntityScopes;
@@ -80,7 +79,6 @@ class Entity extends Model
         Searchable,
         TooltipTrait,
         Picture,
-        SimpleSortableTrait,
         SoftDeletes,
         EntityLogs,
         Paginatable,

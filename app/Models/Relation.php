@@ -7,7 +7,6 @@ use App\Models\Concerns\Filterable;
 use App\Models\Concerns\Orderable;
 use App\Models\Concerns\Paginatable;
 use App\Models\Concerns\Searchable;
-use App\Models\Concerns\SimpleSortableTrait;
 use App\Models\Concerns\Sortable;
 use App\Models\Concerns\SortableTrait;
 use App\Models\Scopes\Starred;
@@ -42,7 +41,6 @@ class Relation extends Model
         Starred,
         Paginatable,
         Blameable,
-        SimpleSortableTrait,
         Filterable,
         Sortable,
         Searchable,

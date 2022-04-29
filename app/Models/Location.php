@@ -5,7 +5,6 @@ namespace App\Models;
 use App\Facades\CampaignLocalization;
 use App\Models\Concerns\Acl;
 use App\Models\Concerns\Nested;
-use App\Models\Concerns\SimpleSortableTrait;
 use App\Models\Concerns\SortableTrait;
 use App\Traits\CampaignTrait;
 use App\Traits\ExportableTrait;
@@ -33,7 +32,6 @@ class Location extends MiscModel
     use CampaignTrait,
         ExportableTrait,
         Nested,
-        SimpleSortableTrait,
         SoftDeletes,
         SortableTrait,
         Acl

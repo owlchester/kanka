@@ -12,6 +12,7 @@ class Standard extends Column
     const IMAGE = 'image';
     const ENTITYLINK = 'entitylink';
     const VISIBILITY = 'visibility';
+    const DATE = 'date';
 
     public function __toString(): string
     {
@@ -20,7 +21,7 @@ class Standard extends Column
         }
 
         $render = $this->config['render'];
-        if (is_callable($render)) {
+        if ($render instanceof \Closure) {
             return (string) $render($this->model);
         }
 
@@ -47,6 +48,7 @@ class Standard extends Column
             self::IMAGE,
             self::ENTITYLINK,
             self::VISIBILITY,
+            self::DATE,
         ]);
     }
     /**

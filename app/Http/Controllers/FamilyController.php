@@ -159,15 +159,4 @@ class FamilyController extends CrudController
         return $this
             ->menuView($family, 'members');
     }
-
-    /**
-     * @param Family $family
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
-    public function allMembers(Family $family)
-    {
-        return $this->datagridSorter(FamilyCharacterSorter::class)
-            ->menuView($family, 'all_members');
-    }
 }

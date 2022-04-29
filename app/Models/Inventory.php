@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use App\Facades\CampaignLocalization;
-use App\Models\Concerns\SimpleSortableTrait;
 use App\Traits\VisibilityTrait;
 use Illuminate\Database\Eloquent\Model;
 
@@ -42,7 +41,7 @@ class Inventory extends Model
         'copy_item_entry',
     ];
 
-    use VisibilityTrait, SimpleSortableTrait;
+    use VisibilityTrait;
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

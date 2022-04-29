@@ -239,18 +239,6 @@ class LocationController extends CrudController
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function families(Location $location)
-    {
-        return $this
-            ->datagridSorter(LocationFamilySorter::class)
-            ->menuView($location, 'families');
-    }
-
-    /**
-     * @param Location $location
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
     public function organisations(Location $location)
     {
         return $this->menuView($location, 'organisations');

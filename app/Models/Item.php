@@ -4,7 +4,6 @@ namespace App\Models;
 
 use App\Facades\CampaignLocalization;
 use App\Models\Concerns\Acl;
-use App\Models\Concerns\SimpleSortableTrait;
 use App\Traits\CampaignTrait;
 use App\Traits\ExportableTrait;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -26,7 +25,6 @@ class Item extends MiscModel
 {
     use CampaignTrait,
         ExportableTrait,
-        SimpleSortableTrait,
         SoftDeletes,
         Acl
     ;

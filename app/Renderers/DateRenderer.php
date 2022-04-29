@@ -13,7 +13,7 @@ class DateRenderer
 
     protected $delimiter = '-';
 
-    public function render($date)
+    public function render($date): string
     {
         if (auth()->check()) {
             $this->format = strtolower(auth()->user()->date_format);
@@ -35,7 +35,7 @@ class DateRenderer
                 $this->addSegment($original, $to[1]) .
                 $this->addSegment($original, $to[2], false);
         } catch (\Exception $e) {
-            return $date;
+            return (string) $date;
         }
     }
 

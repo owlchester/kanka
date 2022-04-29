@@ -4,7 +4,6 @@ namespace App\Models;
 
 use App\Models\Concerns\Filterable;
 use App\Models\Concerns\Paginatable;
-use App\Models\Concerns\SimpleSortableTrait;
 use App\Models\Concerns\SortableTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Query\Builder;

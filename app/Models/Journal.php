@@ -4,7 +4,6 @@ namespace App\Models;
 
 use App\Models\Concerns\Acl;
 use App\Models\Concerns\Nested;
-use App\Models\Concerns\SimpleSortableTrait;
 use App\Traits\CalendarDateTrait;
 use App\Traits\CampaignTrait;
 use App\Traits\ExportableTrait;
@@ -31,7 +30,6 @@ class Journal extends MiscModel
         ExportableTrait,
         CalendarDateTrait,
         Nested,
-        SimpleSortableTrait,
         SoftDeletes,
         Acl
     ;

@@ -34,14 +34,9 @@ Route::get('/maps/tree', 'Maps\MapController@tree')->name('maps.tree');
 
 // Character
 Route::get('/characters/random', 'CharacterController@random')->name('characters.random');
-Route::get('/characters/{character}/quests', 'CharacterSubController@quests')->name('characters.quests');
 Route::get('/characters/{character}/organisations', 'CharacterSubController@organisations')->name('characters.organisations');
-Route::get('/characters/{character}/items', 'CharacterSubController@items')->name('characters.items');
 Route::get('/characters/{character}/map', 'CharacterSubController@map')->name('characters.map');
 Route::get('/characters/{character}/map_data', 'CharacterSubController@mapData')->name('characters.map_data');
-Route::get('/characters/{character}/dice_rolls', 'CharacterSubController@diceRolls')->name('characters.dice_rolls');
-Route::get('/characters/{character}/conversations', 'CharacterSubController@conversations')->name('characters.conversations');
-Route::get('/characters/{character}/journals', 'CharacterSubController@journals')->name('characters.journals');
 //Route::get('/characters/{character}/map-points', 'CharacterSubController@mapPoints')->name('characters.map-points');
 
 Route::get('/dice_rolls/{dice_roll}/roll', 'DiceRollController@roll')->name('dice_rolls.roll');
@@ -56,37 +51,28 @@ Route::get('/locations/{location}/map-points', 'LocationController@mapPoints')->
 Route::any('/locations/{location}/map/admin', 'LocationController@mapAdmin')->name('locations.map.admin');
 Route::post('/locations/{location}/map_points/{map_point}/move', 'LocationMapPointController@move')->name('locations.map_points.move');
 
-Route::get('/locations/{location}/events', 'LocationController@events')->name('locations.events');
 Route::get('/locations/{location}/characters', 'LocationController@characters')->name('locations.characters');
-Route::get('/locations/{location}/families', 'LocationController@families')->name('locations.families');
-Route::get('/locations/{location}/items', 'LocationController@items')->name('locations.items');
 Route::get('/locations/{location}/locations', 'LocationController@locations')->name('locations.locations');
-Route::get('/locations/{location}/organisations', 'LocationController@organisations')->name('locations.organisations');
-Route::get('/locations/{location}/quests', 'LocationController@quests')->name('locations.quests');
-Route::get('/locations/{location}/journals', 'LocationController@journals')->name('locations.journals');
 
 // Organisation menu
 Route::get('/organisations/{organisation}/members', 'OrganisationController@members')->name('organisations.members');
-Route::get('/organisations/{organisation}/quests', 'OrganisationController@quests')->name('organisations.quests');
 Route::get('/organisations/{organisation}/organisations', 'OrganisationController@organisations')->name('organisations.organisations');
 Route::get('/organisations/tree', 'OrganisationController@tree')->name('organisations.tree');
 //Route::get('/organisations/{organisation}/map-points', 'OrganisationController@mapPoints')->name('organisations.map-points');
 
 // Families menu
 Route::get('/families/{family}/members', 'FamilyController@members')->name('families.members');
-Route::get('/families/{family}/all-members', 'FamilyController@allMembers')->name('families.all-members');
-
 Route::get('/families/{family}/families', 'FamilyController@families')->name('families.families');
 Route::get('/families/tree', 'FamilyController@tree')->name('families.tree');
 //Route::get('/families/{family}/map-points', 'FamilyController@mapPoints')->name('families.map-points');
 
 // Items menu
-Route::get('/items/{item}/quests', 'ItemController@quests')->name('items.quests');
 //Route::get('/items/{item}/map-points', 'ItemController@mapPoints')->name('items.map-points');
 Route::get('/items/{item}/inventories', 'ItemController@inventories')->name('items.inventories');
 
 // Quest menus
 Route::get('/quests/tree', 'QuestController@tree')->name('quests.tree');
+Route::get('/quests/{quest}/quests', 'QuestController@quests')->name('quests.quests');
 //Route::get('/quests/{quest}/map-points', 'QuestController@mapPoints')->name('quests.map-points');
 
 // Races
@@ -269,10 +255,6 @@ Route::resources([
     'organisations.organisation_members' => 'OrganisationMemberController',
     'notes' => 'NoteController',
     'quests' => 'QuestController',
-    //'quests.quest_locations' => 'QuestLocationController',
-    //'quests.quest_characters' => 'QuestCharacterController',
-    //'quests.quest_items' => 'QuestItemController',
-    //'quests.quest_organisations' => 'QuestOrganisationController',
     'quests.quest_elements' => 'QuestElementController',
     'tags' => 'TagController',
     'timelines' => 'Timelines\TimelineController',

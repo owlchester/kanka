@@ -5,7 +5,6 @@ namespace App\Models;
 
 use App\Facades\Mentions;
 use App\Models\Concerns\Blameable;
-use App\Models\Concerns\SimpleSortableTrait;
 use App\Traits\VisibilityTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
@@ -36,7 +35,8 @@ use Illuminate\Support\Str;
  */
 class TimelineElement extends Model
 {
-    use VisibilityTrait, Blameable, SimpleSortableTrait;
+    use VisibilityTrait,
+        Blameable;
 
     /** Fillable fields */
     protected $fillable = [

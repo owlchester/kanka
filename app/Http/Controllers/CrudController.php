@@ -656,7 +656,7 @@ class CrudController extends Controller
             'html' => $html,
         ];
         if (!request()->has('init')) {
-            $data['url'] = request()->fullUrl();
+            //$data['url'] = request()->fullUrl();
         }
 
         return response()->json($data);

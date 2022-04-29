@@ -106,13 +106,6 @@ abstract class MiscModel extends Model
     protected $sortableColumns = [];
 
     /**
-     * Casting order for mysql.
-     * Ex. ['age' => 'unsigned']
-     * @var array
-     */
-    protected $orderCasting = [];
-
-    /**
      * Explicit fields for filtering.
      * Ex. ['sex']
      * @var array

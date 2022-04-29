@@ -6,7 +6,6 @@ use App\Facades\CampaignLocalization;
 use App\Facades\Mentions;
 use App\Models\Concerns\Acl;
 use App\Models\Concerns\Nested;
-use App\Models\Concerns\SimpleSortableTrait;
 use App\Models\Concerns\SortableTrait;
 use App\Traits\CampaignTrait;
 use App\Traits\ExportableTrait;
@@ -27,7 +26,6 @@ class Ability extends MiscModel
     use CampaignTrait,
         ExportableTrait,
         Nested,
-        SimpleSortableTrait,
         SoftDeletes,
         Acl,
         SortableTrait

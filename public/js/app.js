@@ -81469,6 +81469,12 @@ function datagrid2Reorder(ele) {
   datagrid2Table.find('tbody').hide();
   datagrid2Table.find('tfoot').fadeIn();
   var url = ele.attr('href');
+  var dataUrl = ele.data('url');
+
+  if (url === '#' && dataUrl) {
+    url = dataUrl;
+  }
+
   var target = (_ele$data = ele.data('target')) !== null && _ele$data !== void 0 ? _ele$data : '#datagrid-parent';
   $.ajax(url).done(function (res) {
     //console.log('res', res);

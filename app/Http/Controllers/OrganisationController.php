@@ -143,16 +143,4 @@ class OrganisationController extends CrudController
         return $this
             ->menuView($organisation, 'members');
     }
-
-    /**
-     * @param Organisation $organisation
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
-    public function allMembers(Organisation $organisation)
-    {
-        return $this
-            ->datagridSorter(OrganisationCharacterSorter::class)
-            ->menuView($organisation, 'all_members');
-    }
 }
