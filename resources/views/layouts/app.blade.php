@@ -182,19 +182,22 @@ $seoTitle = isset($seoTitle) ? $seoTitle : (isset($title) ? $title : null);
                     <p id="delete-confirm-text">
                         {!! __('crud.delete_modal.description', ['tag' => '<b><span id="delete-confirm-name"></span></b>']) !!}
                     </p>
-                    <div id="delete-confirm-mirror" class="form-group" style="display: none">
+                    <div id="delete-confirm-mirror" class="form-group checkbox" style="display: none">
                         <label>
-                            <input type="checkbox" id="delete-confirm-mirror-chexkbox" name="delete-mirror">
-                            {{ __('crud.delete_modal.mirrored') }}
+                            <input type="checkbox" id="delete-confirm-mirror-checkbox" name="delete-mirror">
+                            {{ __('entities/relations.delete_mirrored.option') }}
+                            <i class="fa-solid fa-question-circle hidden-xs hidden-sm" title="{{ __('entities/relations.delete_mirrored.helper') }}" data-toggle="tooltip"></i>
                         </label>
+                        <p class="help-block visible-xs visible-sm">
+                            {{ __('entities/relations.delete_mirrored.helper') }}
+                        </p>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">{{ __('crud.cancel') }}</button>
                     <button type="button" class="btn btn-outline delete-confirm-submit">
                         <span class="fa-solid fa-trash"></span>
-                        <span class="delete-button-label">{{ __('crud.delete_modal.delete') }}</span>
-                        <span class="remove-button-label" style="display: none">{{ __('crud.remove') }}</span>
+                        <span class="remove-button-label">{{ __('crud.remove') }}</span>
                     </button>
                 </div>
             </div>

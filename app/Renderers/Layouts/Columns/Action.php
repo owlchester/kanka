@@ -17,7 +17,7 @@ class Action extends Column
 
         // Validate actions?
         foreach ($this->config as $action) {
-            if ($action == Layout::ACTION_EDIT) {
+            if (in_array($action, [Layout::ACTION_EDIT, Layout::ACTION_EDIT_AJAX])) {
                 if (!$permissions) {
                     $this->actions[] = $action;
                 }  elseif (auth()->user()->can('update', $this->model)) {

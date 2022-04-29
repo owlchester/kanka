@@ -23,6 +23,10 @@ return [
         'success'   => 'Relation :target added to :entity.',
         'title'     => 'New relation for :name',
     ],
+    'delete_mirrored' => [
+        'option' => 'Delete mirrored relation',
+        'helper' => 'This relation is mirrored on the target entity. Select this option to also remove the mirrored relation.',
+    ],
     'destroy'       => [
         'success'   => 'Relation :target removed for :entity.',
     ],

@@ -14,9 +14,19 @@
                         <i class="fa-solid fa-pencil"></i>
                         {{ __('crud.edit') }}
                     </a>
+                @elseif ($action === \App\Renderers\Layouts\Layout::ACTION_EDIT_AJAX)
+                    <a href="{{ route($model->url('edit'), method_exists($model, 'routeParams') ? $model->routeParams() : $model) }}"
+                       data-toggle="ajax-modal" data-target="#entity-modal"
+                       data-url="{{ route($model->url('edit'), method_exists($model, 'routeParams') ? $model->routeParams() : $model) }}"
+                    >
+                        <i class="fa-solid fa-pencil"></i>
+                        {{ __('crud.edit') }}
+                    </a>
                 @elseif ($action === \App\Renderers\Layouts\Layout::ACTION_DELETE)
                     <a href="#" class="text-red delete-confirm" data-toggle="modal" data-name="{!! method_exists($model, 'deleteName') ? $model->deleteName() : $model->name !!}"
-                       data-target="#delete-confirm" data-delete-target="delete-form-{{ $model->id }}">
+                       data-target="#delete-confirm" data-delete-target="delete-form-{{ $model->id }}"
+                       {!! method_exists($model, 'actionDeleteConfirmOptions') ? $model->actionDeleteConfirmOptions() : null !!}
+                    >
                         <i class="fa-solid fa-trash" aria-hidden="true"></i>
                         {{ __('crud.remove') }}
                     </a>

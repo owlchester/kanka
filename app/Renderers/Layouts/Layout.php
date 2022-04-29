@@ -7,6 +7,7 @@ abstract class Layout
     const ONLY_DESKTOP = 'hidden-xs hidden-sm';
 
     const ACTION_EDIT = 'edit';
+    const ACTION_EDIT_AJAX = 'edit-ajax';
     const ACTION_DELETE = 'delete';
 
     /** @var bool|array */

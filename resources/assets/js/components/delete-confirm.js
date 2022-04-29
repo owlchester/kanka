@@ -6,7 +6,6 @@ export default function deleteConfirm() {
             let text = $(this).data('text');
             let target = $(this).data('delete-target');
             let confirm = $(this).data('confirm-target');
-            let reset = $(this).data('reset');
 
             if (!confirm) {
                 confirm = '#delete-confirm-name';
@@ -27,14 +26,6 @@ export default function deleteConfirm() {
             if (target) {
                 $('.delete-confirm-submit').data('target', target);
             }
-
-            if (reset) {
-                $('.delete-button-label').hide();
-                $('.remove-button-label').show();
-            } else {
-                $('.delete-button-label').show();
-                $('.remove-button-label').hide();
-            }
         });
     });
 
@@ -47,7 +38,7 @@ export default function deleteConfirm() {
             var target = $(this).data('target');
             if (target) {
                 $('#' + target + ' input[name=remove_mirrored]').val(
-                    $('#delete-confirm-mirror-chexkbox').is(':checked') ? 1 : 0
+                    $('#delete-confirm-mirror-checkbox').is(':checked') ? 1 : 0
                 );
                 //console.log('target', target, $('#' + target));
                 $('#' + target).submit();

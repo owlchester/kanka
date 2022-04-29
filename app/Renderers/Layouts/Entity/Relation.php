@@ -74,7 +74,7 @@ class Relation extends Layout
     public function actions(): array
     {
         return [
-            self::ACTION_EDIT,
+            self::ACTION_EDIT_AJAX,
             self::ACTION_DELETE
         ];
     }

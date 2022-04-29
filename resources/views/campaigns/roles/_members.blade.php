@@ -41,7 +41,7 @@
                             </td>
                             <td class="text-right">
                                 @can('removeUser', $role)
-                                    <button class="btn btn-xs btn-danger delete-confirm" data-toggle="modal" data-name="{{ __('campaigns.roles.users.actions.remove', ['user' => $relation->user->name, 'role' => $role->name]) }}" data-reset="1"
+                                    <button class="btn btn-xs btn-danger delete-confirm" data-toggle="modal" data-name="{{ __('campaigns.roles.users.actions.remove', ['user' => $relation->user->name, 'role' => $role->name]) }}"
                                             data-target="#delete-confirm" data-delete-target="campaign-role-member-{{ $relation->id }}"
                                             title="{{ __('crud.remove') }}">
                                         <i class="fa fa-user-slash" aria-hidden="true"></i>

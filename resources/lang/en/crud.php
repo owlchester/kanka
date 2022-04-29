@@ -97,7 +97,6 @@ return [
         'delete'            => 'Remove',
         'description'       => 'Are you sure you want to remove :tag?',
         'description_final' => 'Are you sure you want to remove :tag? This action cannot be undone.',
-        'mirrored'          => 'Remove mirrored relation.',
         'title'             => 'Removal confirmation',
     ],
     'destroy_many'              => [

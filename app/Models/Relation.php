@@ -236,4 +236,8 @@ class Relation extends Model
     {
         return [$this->owner_id, $this->id, 'mode' => 'table'];
     }
+    public function actionDeleteConfirmOptions(): string
+    {
+        return 'data-mirrored="' . $this->mirrored() . '"';
+    }
 }
