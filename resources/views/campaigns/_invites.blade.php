@@ -20,7 +20,7 @@
 
                 <a href="{{ route('campaign_invites.create') }}" class="btn btn-primary btn-sm"
                    data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('campaign_invites.create', ['type' => 'link']) }}">
-                    <i class="fa fa-user-plus" aria-hidden="true"></i>
+                    <i class="fa-solid fa-user-plus" aria-hidden="true"></i>
                     <span class="hidden-xs hidden-md">{{ __('campaigns.invites.actions.link') }}</span>
                 </a>
             </div>
@@ -50,7 +50,7 @@
                                             {{ substr($relation->token, 0, 6) . '...' }}
                                         </a>
                                         <a href="#" title="{{ __('campaigns.invites.actions.copy') }}" data-clipboard="{{ route('campaigns.join', ['token' => $relation->token]) }}" data-toggle="tooltip">
-                                            <i class="fa fa-copy"></i>
+                                            <i class="fa-solid fa-copy"></i>
                                         </a>
                                     @endif
                                 </td>
@@ -67,7 +67,7 @@
                                 <td class="text-right">
                                     {!! Form::open(['method' => 'DELETE','route' => ['campaign_invites.destroy', $relation->id],'style'=>'display:inline']) !!}
                                     <button class="btn btn-xs btn-danger">
-                                        <i class="fa fa-trash" aria-hidden="true"></i> <span  class="hidden-xs hidden-md">{{ __('crud.remove') }}</span>
+                                        <i class="fa-solid fa-trash" aria-hidden="true"></i> <span  class="hidden-xs hidden-md">{{ __('crud.remove') }}</span>
                                     </button>
                                     {!! Form::close() !!}
                                 </td>

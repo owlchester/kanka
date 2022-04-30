@@ -19,57 +19,57 @@
 </tr>
 <tr>
     <td></td>
-    <td><i class="fa fa-rocket text-maroon"></i>
+    <td><i class="fa-solid fa-rocket text-maroon"></i>
         {!! link_to_route('front.pricing', 3 . ' ' . __('tiers.features.boosters'), '#boost', ['target' => '_blank']) !!}
     </td>
-    <td><i class="fa fa-rocket text-maroon"></i>
+    <td><i class="fa-solid fa-rocket text-maroon"></i>
         {!! link_to_route('front.pricing', 6 . ' ' . __('tiers.features.boosters'), '#boost', ['target' => '_blank']) !!}
     </td>
-    <td><i class="fa fa-rocket text-maroon"></i>
+    <td><i class="fa-solid fa-rocket text-maroon"></i>
         {!! link_to_route('front.pricing', 10 . ' ' . __('tiers.features.boosters'), '#boost', ['target' => '_blank']) !!}
     </td>
 </tr>
 <tr>
     <td></td>
-    <td><i class="fa fa-check"></i> {{ __('tiers.features.no_ads') }}</td>
-    <td><i class="fa fa-check"></i> {{ __('tiers.features.no_ads') }}</td>
-    <td><i class="fa fa-check"></i> {{ __('tiers.features.no_ads') }}</td>
+    <td><i class="fa-solid fa-check"></i> {{ __('tiers.features.no_ads') }}</td>
+    <td><i class="fa-solid fa-check"></i> {{ __('tiers.features.no_ads') }}</td>
+    <td><i class="fa-solid fa-check"></i> {{ __('tiers.features.no_ads') }}</td>
 </tr>
 <tr>
     <td></td>
-    <td><i class="fa fa-check"></i> {{ __('tiers.features.discord') }}</td>
-    <td><i class="fa fa-check"></i> {{ __('tiers.features.discord') }}</td>
-    <td><i class="fa fa-check"></i> {{ __('tiers.features.discord') }}</td>
+    <td><i class="fa-solid fa-check"></i> {{ __('tiers.features.discord') }}</td>
+    <td><i class="fa-solid fa-check"></i> {{ __('tiers.features.discord') }}</td>
+    <td><i class="fa-solid fa-check"></i> {{ __('tiers.features.discord') }}</td>
 </tr>
 <tr>
     <td></td>
-    <td><i class="fa fa-check"></i> {!! link_to_route('front.hall-of-fame', __('tiers.features.hall_of_fame'), null, ['target' => '_blank']) !!}</td>
-    <td><i class="fa fa-check"></i> {!! link_to_route('front.hall-of-fame', __('tiers.features.hall_of_fame'), null, ['target' => '_blank']) !!}</td>
-    <td><i class="fa fa-check"></i> {!! link_to_route('front.hall-of-fame', __('tiers.features.hall_of_fame'), null, ['target' => '_blank']) !!}</td>
+    <td><i class="fa-solid fa-check"></i> {!! link_to_route('front.hall-of-fame', __('tiers.features.hall_of_fame'), null, ['target' => '_blank']) !!}</td>
+    <td><i class="fa-solid fa-check"></i> {!! link_to_route('front.hall-of-fame', __('tiers.features.hall_of_fame'), null, ['target' => '_blank']) !!}</td>
+    <td><i class="fa-solid fa-check"></i> {!! link_to_route('front.hall-of-fame', __('tiers.features.hall_of_fame'), null, ['target' => '_blank']) !!}</td>
 </tr>
 <tr>
     <td></td>
-    <td><i class="fa fa-check"></i> {{ __('tiers.features.nice_image') }}</td>
-    <td><i class="fa fa-check"></i> {{ __('tiers.features.nice_image') }}</td>
-    <td><i class="fa fa-check"></i> {{ __('tiers.features.nice_image') }}</td>
+    <td><i class="fa-solid fa-check"></i> {{ __('tiers.features.nice_image') }}</td>
+    <td><i class="fa-solid fa-check"></i> {{ __('tiers.features.nice_image') }}</td>
+    <td><i class="fa-solid fa-check"></i> {{ __('tiers.features.nice_image') }}</td>
 </tr>
 <tr>
     <td></td>
-    <td><i class="fa fa-check"></i> {!! link_to_route('community-votes.index', __('tiers.features.community_vote'), ['target' => '_blank']) !!}</td>
-    <td><i class="fa fa-check"></i> {!! link_to_route('community-votes.index', __('tiers.features.community_vote'), ['target' => '_blank']) !!}</td>
-    <td><i class="fa fa-check"></i> {!! link_to_route('community-votes.index', __('tiers.features.community_vote'), ['target' => '_blank']) !!}</td>
-</tr>
-<tr>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td><i class="fa fa-check"></i> {{ __('tiers.features.vote_influence') }}</td>
+    <td><i class="fa-solid fa-check"></i> {!! link_to_route('community-votes.index', __('tiers.features.community_vote'), ['target' => '_blank']) !!}</td>
+    <td><i class="fa-solid fa-check"></i> {!! link_to_route('community-votes.index', __('tiers.features.community_vote'), ['target' => '_blank']) !!}</td>
+    <td><i class="fa-solid fa-check"></i> {!! link_to_route('community-votes.index', __('tiers.features.community_vote'), ['target' => '_blank']) !!}</td>
 </tr>
 <tr>
     <td></td>
     <td></td>
     <td></td>
-    <td><i class="fa fa-check"></i> {{ __('tiers.features.feature_influence') }}</td>
+    <td><i class="fa-solid fa-check"></i> {{ __('tiers.features.vote_influence') }}</td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td><i class="fa-solid fa-check"></i> {{ __('tiers.features.feature_influence') }}</td>
 </tr>
 <tr>
     <td>

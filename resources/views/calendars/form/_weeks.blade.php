@@ -26,12 +26,12 @@
                 <div class="form-group">
                     <div class="input-group">
                             <span class="input-group-addon">
-                                <span class="fa fa-arrows-alt-v"></span>
+                                <span class="fa-solid fa-arrows-alt-v"></span>
                             </span>
                         {!! Form::text('weekday[]', $weekday, ['class' => 'form-control']) !!}
                         <span class="input-group-btn">
                                 <span class="month-delete btn btn-danger" title="{{ __('crud.remove') }}">
-                                    <i class="fa fa-trash"></i>
+                                    <i class="fa-solid fa-trash"></i>
                                 </span>
                             </span>
                     </div>
@@ -39,7 +39,7 @@
             @endforeach
         </div>
         <a class="btn btn-default" id="add_weekday" href="#" title="{{ __('calendars.actions.add_weekday') }}">
-            <i class="fa fa-plus"></i> {{ __('calendars.actions.add_weekday') }}
+            <i class="fa-solid fa-plus"></i> {{ __('calendars.actions.add_weekday') }}
         </a>
     </div>
     <div class="col-md-6">
@@ -77,7 +77,7 @@
                         <div class="col-md-4">
                             <div class="input-group">
                                 <span class="input-group-addon">
-                                    <span class="fa fa-arrows-alt-v"></span>
+                                    <span class="fa-solid fa-arrows-alt-v"></span>
                                 </span>
                                 {!! Form::text('week_number[]', $week, ['class' => 'form-control']) !!}
                             </div>
@@ -87,7 +87,7 @@
                                 {!! Form::text('week_name[]', $name, ['class' => 'form-control']) !!}
                                 <span class="input-group-btn">
                                     <span class="month-delete btn btn-danger" data-remove="4" title="{{ __('crud.remove') }}">
-                                        <i class="fa fa-trash"></i>
+                                        <i class="fa-solid fa-trash"></i>
                                     </span>
                                 </span>
                             </div>
@@ -97,7 +97,7 @@
             @endforeach
         </div>
         <a class="btn btn-default" id="add_week" href="#" title="{{ __('calendars.actions.add_week') }}">
-            <i class="fa fa-plus"></i> {{ __('calendars.actions.add_week') }}
+            <i class="fa-solid fa-plus"></i> {{ __('calendars.actions.add_week') }}
         </a>
     </div>
 </div>
@@ -109,7 +109,7 @@
             {!! Form::text('weekday[]', null, ['class' => 'form-control']) !!}
             <span class="input-group-btn">
                 <span href="#" class="month-delete btn btn-danger" title="{{ __('crud.remove') }}">
-                    <i class="fa fa-trash"></i>
+                    <i class="fa-solid fa-trash"></i>
                 </span>
             </span>
         </div>
@@ -125,7 +125,7 @@
                     {!! Form::text('week_name[]', null, ['class' => 'form-control', 'placeholder' => __('calendars.parameters.weeks.name')]) !!}
                     <span class="input-group-btn">
                         <span class="month-delete btn btn-danger" data-remove="4" title="{{ __('crud.remove') }}">
-                            <i class="fa fa-trash"></i>
+                            <i class="fa-solid fa-trash"></i>
                         </span>
                     </span>
                 </div>

@@ -13,7 +13,7 @@
 
     {{ csrf_field() }}
     <div class="row">
-        <div class="col-md-10 col-lg-8">
+        <div class="col-md-10 col-lg-6">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h4 class="panel-title">{{ __('entities/transform.panel.title') }}</h4>
@@ -28,9 +28,11 @@
                     </div>
 
                     <div class="form-group">
-                        <button class="btn btn-success">{{ __('entities/transform.actions.transform') }}</button>
-                        @includeWhen(!request()->ajax(), 'partials.or_cancel')
                     </div>
+                </div>
+                <div class="panel-footer">
+                    <button class="btn btn-success pull-right">{{ __('entities/transform.actions.transform') }}</button>
+                    @includeWhen(!request()->ajax(), 'partials.footer_cancel')
                 </div>
             </div>
         </div>

@@ -36,7 +36,7 @@
             <div class="pull-left">
                 {!! Form::open(['method' => 'DELETE','route' => ['campaign_dashboard_widgets.destroy', $widget], 'class' => 'form-inline']) !!}
                 <button class="btn btn-danger">
-                    <i class="fa fa-trash" aria-hidden="true"></i> <span class="hidden-xs hidden-md">{{ trans('crud.remove') }}</span>
+                    <i class="fa-solid fa-trash" aria-hidden="true"></i> <span class="hidden-xs hidden-md">{{ trans('crud.remove') }}</span>
                 </button>
                 {!! Form::close() !!}
             </div>

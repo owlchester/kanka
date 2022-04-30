@@ -9,10 +9,10 @@
         @endphp
         <a href="{{ $url }}">
             @if(!$notification->read())
-            <i class="fa fa-circle text-info" title="{{ __('notifications.unread') }}"></i>
+            <i class="fa-solid fa-circle text-info" title="{{ __('notifications.unread') }}"></i>
             @endif
             @if (!empty($notification->data['icon']))
-            <i class="fa fa-{{ $notification->data['icon'] }} text-{{ $notification->data['colour'] }}"></i>
+            <i class="fa-solid fa-{{ $notification->data['icon'] }} text-{{ $notification->data['colour'] }}"></i>
             @endif
             {!! __('notifications.' . $notification->data['key'], $notification->data['params']) !!}
         </a>

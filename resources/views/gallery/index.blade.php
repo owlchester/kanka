@@ -23,15 +23,15 @@ if ($folder) {
     <div class="box no-border box-gallery">
         <div class="box-body">
             <button class="btn btn-primary" data-toggle="collapse" data-target="#uploader">
-                <i class="fa fa-upload"></i> {{ __('campaigns/gallery.uploader.add') }}
+                <i class="fa-solid fa-upload"></i> {{ __('campaigns/gallery.uploader.add') }}
             </button>
             <button class="btn btn-default" data-toggle="modal" data-target="#modal-new-folder">
-                <i class="fa fa-folder"></i> {{ __('campaigns/gallery.uploader.new_folder') }}
+                <i class="fa-solid fa-folder"></i> {{ __('campaigns/gallery.uploader.new_folder') }}
             </button>
 
             @if(!empty($folder))
                 <button class="btn btn-default" data-toggle="ajax-modal" data-target="#large-modal" data-url="{{ route('images.edit', $folder) }}">
-                    <i class="fa fa-pencil"></i> {{ __('crud.edit') }}
+                    <i class="fa-solid fa-pencil"></i> {{ __('crud.edit') }}
                 </button>
             @endif
 
@@ -45,7 +45,7 @@ if ($folder) {
         {{ csrf_field() }}
         <div class="uploader collapse out well text-center" id="uploader">
             <a href="#" class="pull-right" data-toggle="collapse" data-target="#uploader">
-                <i class="fa fa-times"></i>
+                <i class="fa-solid fa-times"></i>
             </a>
 
             <h4>{{ __('campaigns/gallery.uploader.well') }}</h4>
@@ -77,7 +77,7 @@ if ($folder) {
 
     <div class="gallery">
         <div id="gallery-loader" class="text-center" style="display: none">
-            <i class="fa fa-spinner fa-spin fa-4x"></i>
+            <i class="fa-solid fa-spinner fa-spin fa-4x"></i>
         </div>
         <div id="gallery-content">
             <ul id="gallery-images">

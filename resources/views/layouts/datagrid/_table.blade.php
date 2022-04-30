@@ -1,7 +1,7 @@
 @if (!empty($datagridUrl))
     <div class="box-body text-center datagrid-onload" href="{{ $datagridUrl }}">
         <table class="table table-hover" data-render="datagrid2"></table>
-        <i class="fa fa-spinner fa-spin fa-2x"></i>
+        <i class="fa-solid fa-spinner fa-spin fa-2x"></i>
     </div>
 <?php return; ?>
 @endif
@@ -27,7 +27,7 @@
         <tfoot style="display: none">
         <tr>
             <th class="text-center">
-                <i class="fa fa-spinner fa-spin fa-2x"></i>
+                <i class="fa-solid fa-spinner fa-spin fa-2x"></i>
             </th>
         </tr>
         </tfoot>

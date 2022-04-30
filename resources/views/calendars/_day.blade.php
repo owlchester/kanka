@@ -8,7 +8,7 @@
             @if ($canEdit)
                 <div class="dropdown pull-right">
                     <a class="dropdown-toggle btn btn-xs btn-default" data-toggle="dropdown" aria-expanded="false" data-placement="right">
-                        <i class="fa fa-ellipsis-h" data-tree="escape"></i>
+                        <i class="fa-solid fa-ellipsis-h" data-tree="escape"></i>
                         <span class="sr-only">' . __('crud.actions.actions') . '</span>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-right" role="menu">
@@ -16,14 +16,14 @@
                             <a href="{{ route('calendars.event.create', [$model, 'date' => $day['date']]) }}" data-toggle="ajax-modal"
                                data-target="#entity-modal" data-url="{{ route('calendars.event.create', [$model, 'date' => $day['date']]) }}"
                                class="" data-date="{{ $day['date'] }}">
-                                <i class="fa fa-plus"></i> {{ __('calendars.actions.add_reminder') }}
+                                <i class="fa-solid fa-plus"></i> {{ __('calendars.actions.add_reminder') }}
                             </a>
                         </li>
                         <li>
                             <a href="{{ route('calendars.calendar_weather.create', [$model, 'date' => $day['date']]) }}" data-toggle="ajax-modal"
                                data-target="#entity-modal" data-url="{{ route('calendars.calendar_weather.create', [$model, 'date' => $day['date']]) }}"
                                class="" data-date="{{ $day['date'] }}">
-                                <i class="fa fa-snowflake"></i> {{ __('calendars.actions.add_weather') }}
+                                <i class="fa-solid fa-snowflake"></i> {{ __('calendars.actions.add_weather') }}
                             </a>
                         </li>
 
@@ -32,7 +32,7 @@
                             <li>
                                 <a href="{{ route('calendars.today', [$model, 'date' => $day['date']]) }}"
                                    class="" data-date="{{ $day['date'] }}">
-                                    <i class="fa fa-check"></i> {{ __('calendars.actions.set_today') }}
+                                    <i class="fa-solid fa-check"></i> {{ __('calendars.actions.set_today') }}
                                 </a>
                             </li>
                         @endif

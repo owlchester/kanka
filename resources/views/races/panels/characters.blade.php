@@ -20,16 +20,16 @@ if (request()->has('race_id')) {
 
         <div class="box-tools pull-right">
             <a href="#" class="btn btn-box-tool" data-toggle="modal" data-target="#help-modal">
-                <i class="fa fa-question-circle"></i> {{ __('crud.actions.help') }}
+                <i class="fa-solid fa-question-circle"></i> {{ __('crud.actions.help') }}
             </a>
 
             @if (request()->has('race_id'))
                 <a href="{{ route('races.show', $model) }}" class="btn btn-box-tool">
-                    <i class="fa fa-filter"></i> {{ __('crud.filters.all') }} ({{ $model->allCharacters()->count() }})
+                    <i class="fa-solid fa-filter"></i> {{ __('crud.filters.all') }} ({{ $model->allCharacters()->count() }})
                 </a>
             @else
                 <a href="{{ route('races.show', [$model, 'race_id' => $model->id]) }}" class="btn btn-box-tool">
-                    <i class="fa fa-filter"></i> {{ __('crud.filters.direct') }} ({{ $model->characters()->count() }})
+                    <i class="fa-solid fa-filter"></i> {{ __('crud.filters.direct') }} ({{ $model->characters()->count() }})
                 </a>
             @endif
         </div>

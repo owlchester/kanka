@@ -28,10 +28,10 @@ $notes = $entity->notes()->ordered()->get();
                     <div class="element" data-id="story">
                         {!! Form::hidden('entity_types[]', 'story') !!}
                         <div class="dragger">
-                            <span class="fa fa-ellipsis-v visible-md visible-lg"></span>
+                            <span class="fa-solid fa-ellipsis-v visible-md visible-lg"></span>
                             <div class="visible-xs visible-sm">
-                                <span class="fa fa-arrow-up"></span><br />
-                                <span class="fa fa-arrow-down"></span>
+                                <span class="fa-solid fa-arrow-up"></span><br />
+                                <span class="fa-solid fa-arrow-down"></span>
                             </div>
                         </div>
                         <div class="name">
@@ -48,10 +48,10 @@ $notes = $entity->notes()->ordered()->get();
                     <div class="element" data-id="story">
                         {!! Form::hidden('entity_types[]', 'story') !!}
                         <div class="dragger">
-                            <span class="fa fa-ellipsis-v visible-md visible-lg"></span>
+                            <span class="fa-solid fa-ellipsis-v visible-md visible-lg"></span>
                             <div class="visible-xs visible-sm">
-                                <span class="fa fa-arrow-up"></span><br />
-                                <span class="fa fa-arrow-down"></span>
+                                <span class="fa-solid fa-arrow-up"></span><br />
+                                <span class="fa-solid fa-arrow-down"></span>
                             </div>
                         </div>
                         <div class="name">
@@ -66,10 +66,10 @@ $notes = $entity->notes()->ordered()->get();
                     {!! Form::hidden('entity_note_id[]', $note->id) !!}
                     {!! Form::hidden('entity_types[]', 'post') !!}
                     <div class="dragger">
-                        <span class="fa fa-ellipsis-v visible-md visible-lg"></span>
+                        <span class="fa-solid fa-ellipsis-v visible-md visible-lg"></span>
                         <div class="visible-xs visible-sm">
-                            <span class="fa fa-arrow-up"></span><br />
-                            <span class="fa fa-arrow-down"></span>
+                            <span class="fa-solid fa-arrow-up"></span><br />
+                            <span class="fa-solid fa-arrow-down"></span>
                         </div>
                     </div>
                     <div class="name">
@@ -84,13 +84,13 @@ $notes = $entity->notes()->ordered()->get();
 
             @if (!$hasEntry)
                 @php $hasEntry = true @endphp
-                <div class="story" data-id="story">
+                <div class="element" data-id="story">
                     {!! Form::hidden('entity_types[]', 'story') !!}
                     <div class="dragger">
-                        <span class="fa fa-ellipsis-v visible-md visible-lg"></span>
+                        <span class="fa-solid fa-ellipsis-v visible-md visible-lg"></span>
                         <div class="visible-xs visible-sm">
-                            <span class="fa fa-arrow-up"></span><br />
-                            <span class="fa fa-arrow-down"></span>
+                            <span class="fa-solid fa-arrow-up"></span><br />
+                            <span class="fa-solid fa-arrow-down"></span>
                         </div>
                     </div>
                     <div class="name">

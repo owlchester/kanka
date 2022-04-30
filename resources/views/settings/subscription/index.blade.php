@@ -69,7 +69,7 @@
                             <span class="margin-r-5">{{ strtoupper($user->currency ?? 'USD') }}</span>
                             <a href="#" data-toggle="modal"
                                data-target="#change-currency">
-                                <i class="fa fa-pencil-alt"></i> {{ __('crud.edit') }}
+                                <i class="fa-solid fa-pencil-alt"></i> {{ __('crud.edit') }}
                             </a>
                         </dd>
                         @if ($user->subscribed('kanka'))

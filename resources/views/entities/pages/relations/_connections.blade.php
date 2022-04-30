@@ -48,7 +48,7 @@
 
                         @if ($connection->type() == 'map')
                             <a href="{{ route('maps.explore', $connection->entity_id) }}" class="btn btn-xs btn-primary" target="_blank">
-                                <i class="fa fa-map"></i> {{ __('maps.actions.explore') }}
+                                <i class="fa-solid fa-map"></i> {{ __('maps.actions.explore') }}
                             </a>
                         @endif
                     </td>

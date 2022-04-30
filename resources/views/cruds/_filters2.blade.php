@@ -61,7 +61,7 @@
 <button class="btn btn-primary">{{ __('crud.filter') }}</button>
 
 <a href="{{ route($route, ['reset-filter' => 'true']) }}" class="btn btn-default pull-right">
-    <i class="fa fa-eraser"></i> {{ trans('crud.filters.clear') }}
+    <i class="fa-solid fa-eraser"></i> {{ trans('crud.filters.clear') }}
 </a>
 
 {!! Form::close() !!}

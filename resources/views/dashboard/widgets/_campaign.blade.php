@@ -22,7 +22,7 @@
                                     data-toggle="tooltip" title="{{ __('dashboard.helpers.follow') }}"
                                     data-placement="bottom"
                             >
-                                <i class="fa fa-star"></i> <span id="campaign-follow-text"></span>
+                                <i class="fa-solid fa-star"></i> <span id="campaign-follow-text"></span>
                             </button>
                         @endcan
                         @can('apply', $campaign)
@@ -40,7 +40,7 @@
                             @if(!empty($dashboards))
                                 <div class="btn-group pull-right">
                                     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                        <i class="fa fa-th-large"></i>
+                                        <i class="fa-solid fa-th-large"></i>
                                     </button>
                                     <ul class="dropdown-menu" role="menu">
                                         @if (!empty($dashboard))
@@ -73,7 +73,7 @@
                                 </div>
                             @elseif($settings)
                                 <a href="{{ route('dashboard.setup') }}" class="btn btn-default btn-xl" title="{{ __('dashboard.settings.title') }}">
-                                    <i class="fa fa-th-large"></i>
+                                    <i class="fa-solid fa-th-large"></i>
                                 </a>
                             @endif
                         @endcannot
@@ -87,7 +87,7 @@
                                 @if (!empty($dashboard))
                                     <li>
                                         <a href="{{ route('dashboard', ['dashboard' => 'default']) }}">
-                                            <i class="fa fa-th-large"></i> {{ __('dashboard.dashboards.default.title')}}
+                                            <i class="fa-solid fa-th-large"></i> {{ __('dashboard.dashboards.default.title')}}
                                         </a>
                                     </li>
                                 @endif
@@ -97,35 +97,35 @@
                                     @endif
                                     <li>
                                         <a href="{{ route('dashboard', ['dashboard' => $dash->id]) }}">
-                                            <i class="fa fa-th-large"></i> {!! $dash->name !!}
+                                            <i class="fa-solid fa-th-large"></i> {!! $dash->name !!}
                                         </a>
                                     </li>
                                 @endforeach
                                 <li>
                                     <a href="{{ route('dashboard.setup', !empty($dashboard) ? ['dashboard' => $dashboard->id] : []) }}" title="{{ __('dashboard.settings.title') }}">
-                                        <i class="fa fa-cog"></i> {{ __('dashboard.settings.title') }}
+                                        <i class="fa-solid fa-cog"></i> {{ __('dashboard.settings.title') }}
                                     </a>
                                 </li>
                                 <li class="divider"></li>
                                 <li>
                                     <a href="{{ route('campaigns.edit', $campaign) }}">
-                                        <i class="fa fa-pencil"></i> {{ __('campaigns.show.actions.edit') }}
+                                        <i class="fa-solid fa-pencil"></i> {{ __('campaigns.show.actions.edit') }}
                                     </a>
                                 </li>
                                 <li class="divider"></li>
                                 <li>
                                     <a href="{{ route('campaign_users.index') }}"  title="{{ __('campaigns.show.tabs.members') }}">
-                                        <i class="fa fa-user"></i> {{ __('campaigns.show.tabs.members') }}
+                                        <i class="fa-solid fa-user"></i> {{ __('campaigns.show.tabs.members') }}
                                     </a>
                                 </li>
                                 <li>
                                     <a href="{{ route('campaign_roles.index') }}" title="{{  __('campaigns.show.tabs.roles') }}">
-                                        <i class="fa fa-user-tag"></i> {{ __('campaigns.show.tabs.roles') }}
+                                        <i class="fa-solid fa-user-tag"></i> {{ __('campaigns.show.tabs.roles') }}
                                     </a>
                                 </li>
                                 <li>
                                     <a href="{{ route('campaign_settings') }}" title="{{ __('campaigns.show.tabs.settings') }}">
-                                        <i class="fa fa-th-large"></i> {{ __('campaigns.show.tabs.settings') }}
+                                        <i class="fa-solid fa-th-large"></i> {{ __('campaigns.show.tabs.settings') }}
                                     </a>
                                 </li>
                             </ul>

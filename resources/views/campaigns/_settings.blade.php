@@ -5,7 +5,7 @@
 <div class="box box-solid">
     <div class="box-header with-border">
         <h3 class="box-title">
-            <i class="fa fa-th-large"></i> {{ __('campaigns.show.tabs.settings') }}
+            <i class="fa-solid fa-th-large"></i> {{ __('campaigns.show.tabs.settings') }}
         </h3>
         <div class="box-tools">
             <button class="btn btn-default btn-sm" data-toggle="modal"
@@ -20,7 +20,7 @@
 {!! Form::model($campaign->setting, ['method' => 'POST', 'route' => ['campaign_settings.save']]) !!}
 <div class="row">
     <div class="col-md-4">
-        @include('campaigns.settings.box', ['icon' => 'fa fa-user', 'module' => 'characters'])
+        @include('campaigns.settings.box', ['icon' => 'fa-solid fa-user', 'module' => 'characters'])
     </div>
     <div class="col-md-4">
         @include('campaigns.settings.box', ['icon' => 'ra ra-tower', 'module' => 'locations'])
@@ -45,7 +45,7 @@
         @include('campaigns.settings.box', ['icon' => 'ra ra-moon-sun', 'module' => 'calendars'])
     </div>
     <div class="col-md-4">
-        @include('campaigns.settings.box', ['icon' => 'fa fa-calendar', 'module' => 'events'])
+        @include('campaigns.settings.box', ['icon' => 'fa-solid fa-calendar', 'module' => 'events'])
     </div>
     <div class="col-md-4">
         @include('campaigns.settings.box', ['icon' => 'ra ra-scroll-unfurled', 'module' => 'journals'])
@@ -59,7 +59,7 @@
         @include('campaigns.settings.box', ['icon' => 'ra ra-wooden-sign', 'module' => 'quests'])
     </div>
     <div class="col-md-4">
-        @include('campaigns.settings.box', ['icon' => 'fa fa-tags', 'module' => 'tags'])
+        @include('campaigns.settings.box', ['icon' => 'fa-solid fa-tags', 'module' => 'tags'])
     </div>
 </div>
 <div class="row">
@@ -67,10 +67,10 @@
         @include('campaigns.settings.box', ['icon' => 'ra ra-fire-symbol', 'module' => 'abilities'])
     </div>
     <div class="col-md-4">
-        @include('campaigns.settings.box', ['icon' => 'fa fa-map', 'module' => 'maps'])
+        @include('campaigns.settings.box', ['icon' => 'fa-solid fa-map', 'module' => 'maps'])
     </div>
     <div class="col-md-4">
-        @include('campaigns.settings.box', ['icon' => 'fa fa-clock', 'module' => 'timelines'])
+        @include('campaigns.settings.box', ['icon' => 'fa-solid fa-clock', 'module' => 'timelines'])
     </div>
 </div>
 <div class="row">
@@ -81,7 +81,7 @@
         @include('campaigns.settings.box', ['icon' => 'ra ra-speech-bubbles', 'module' => 'conversations'])
     </div>
     <div class="col-md-4">
-        @include('campaigns.settings.box', ['icon' => 'fa fa-link', 'module' => 'menu_links'])
+        @include('campaigns.settings.box', ['icon' => 'fa-solid fa-link', 'module' => 'menu_links'])
     </div>
 </div>
 <div class="row">
@@ -91,7 +91,7 @@
 </div>
 
         <button class="btn btn-success btn-block">
-            <i class="fa fa-check"></i> {{ __('crud.save') }}
+            <i class="fa-solid fa-check"></i> {{ __('crud.save') }}
         </button>
 
 {!! Form::close() !!}

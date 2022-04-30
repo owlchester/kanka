@@ -28,7 +28,7 @@
             <label>{{ __('journals.fields.date') }}</label>
             <div class="input-group">
                 <div class="input-group-addon">
-                    <i class="fa fa-calendar"></i>
+                    <i class="fa-solid fa-calendar"></i>
                 </div>
                 {!! Form::text('date', FormCopy::field('date')->string(), ['placeholder' => __('journals.placeholders.date'), 'id' => 'date', 'class' => 'form-control date-picker', 'autocomplete' => 'off']) !!}
             </div>

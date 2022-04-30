@@ -34,13 +34,13 @@ $headerImage = true;
         </div>
         @can('update', $model)
             <a href="{{ $model->getLink('edit') }}" class="btn btn-primary btn-sm ">
-                <i class="fa fa-pencil"></i> {{ __('crud.edit') }}
+                <i class="fa-solid fa-pencil"></i> {{ __('crud.edit') }}
             </a>
         @endcan
         @can('entity-note', [$model, 'add'])
         <a href="{{ route('entities.entity_notes.create', $model->entity) }}" class="btn btn-warning btn-sm"
            data-toggle="tooltip" title="{{ __('crud.tooltips.new_post') }}">
-            <i class="fa fa-plus"></i> {{ __('crud.actions.new_post') }}
+            <i class="fa-solid fa-plus"></i> {{ __('crud.actions.new_post') }}
         </a>
         @endcan
     </div>

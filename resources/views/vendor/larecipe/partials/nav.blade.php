@@ -34,7 +34,7 @@
             {{-- versions dropdown --}}
             <larecipe-dropdown>
                 <larecipe-button type="primary" class="flex">
-                    {{ $currentVersion }} <i class="mx-1 fa fa-angle-down"></i>
+                    {{ $currentVersion }} <i class="mx-1 fa-solid fa-angle-down"></i>
                 </larecipe-button>
 
                 <template slot="list">
@@ -53,14 +53,14 @@
                 {{-- account --}}
                 <larecipe-dropdown>
                     <larecipe-button type="white" class="ml-2">
-                        {{ auth()->user()->name ?? 'Account' }} <i class="fa fa-angle-down"></i>
+                        {{ auth()->user()->name ?? 'Account' }} <i class="fa-solid fa-angle-down"></i>
                     </larecipe-button>
 
                     <template slot="list">
                         <form action="/logout" method="POST">
                             {{ csrf_field() }}
 
-                            <button type="submit" class="py-2 px-4 text-white bg-danger inline-flex"><i class="fa fa-power-off mr-2"></i> Logout</button>
+                            <button type="submit" class="py-2 px-4 text-white bg-danger inline-flex"><i class="fa-solid fa-power-off mr-2"></i> Logout</button>
                         </form>
                     </template>
                 </larecipe-dropdown>

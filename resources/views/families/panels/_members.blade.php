@@ -21,11 +21,11 @@ if (request()->has('family_id')) {
         <div class="box-tools pull-right">
             @if (!$allMembers)
                 <a href="{{ route('families.show', [$model]) }}" class="btn btn-default btn-sm">
-                    <i class="fa fa-filter"></i> {{ __('crud.filters.all') }} ({{ $model->allMembers()->count() }})
+                    <i class="fa-solid fa-filter"></i> {{ __('crud.filters.all') }} ({{ $model->allMembers()->count() }})
                 </a>
             @else
                 <a href="{{ route('families.show', [$model, 'family_id' => $model->id]) }}" class="btn btn-default btn-sm">
-                    <i class="fa fa-filter"></i> {{ __('crud.filters.direct') }} ({{ $model->members()->count() }})
+                    <i class="fa-solid fa-filter"></i> {{ __('crud.filters.direct') }} ({{ $model->members()->count() }})
                 </a>
             @endif
         </div>

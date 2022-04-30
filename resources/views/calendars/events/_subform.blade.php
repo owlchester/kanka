@@ -30,8 +30,9 @@
 <div class="row">
     <div class="col-md-6">
         <div class="form-group">
-            <label>{{ __('calendars.fields.length') }}
-            <i class="fa fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" title="{{ __('calendars.hints.event_length') }}"></i>
+            <label>
+                {{ __('calendars.fields.length') }}
+                <i class="fa-solid fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" title="{{ __('calendars.hints.event_length') }}"></i>
             </label>
             {!! Form::number('length', (empty($entityEvent) ? 1 : null), ['placeholder' => __('calendars.placeholders.length'), 'class' => 'form-control', 'maxlength' => 1]) !!}
 

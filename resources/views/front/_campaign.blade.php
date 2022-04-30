@@ -16,7 +16,7 @@ $width = $featured ? 350 : 255;
                 {!! $campaign->name !!}
             </h4>
             <div class="labels">
-                <span class="label label-default" title="{{ __('campaigns.fields.entity_count') }}" data-toggle="tooltip"><i class="fa fa-eye"></i> {{ number_format($campaign->visible_entity_count) }}</span>
+                <span class="label label-default" title="{{ __('campaigns.fields.entity_count') }}" data-toggle="tooltip"><i class="fa-solid fa-eye"></i> {{ number_format($campaign->visible_entity_count) }}</span>
                 @if ($campaign->locale)
                     <span class="label label-default" title="{{ __('languages.codes.' . $campaign->locale) }}" data-toggle="tooltip">{{ $campaign->locale }}</span>
                 @endif
@@ -27,7 +27,7 @@ $width = $featured ? 350 : 255;
                     <span class="label label-default mr-1" title="{{ __('campaigns.open_campaign.title') }}" data-toggle="tooltip"><i class="fas fa-door-open"></i></span>
                 @endif
                 @if ($campaign->boosted())
-                    <span class="label label-default" title="{{ __('campaigns.panels.boosted') }}" data-toggle="tooltip"><i class="fa fa-rocket"></i></span>
+                    <span class="label label-default" title="{{ __('campaigns.panels.boosted') }}" data-toggle="tooltip"><i class="fa-solid fa-rocket"></i></span>
                 @endif
             </div>
         </div>

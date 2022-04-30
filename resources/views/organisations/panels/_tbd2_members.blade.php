@@ -28,11 +28,11 @@ $hasOrg = request()->has('organisation_id');
             <div class="col-md-6 text-right">
                 @if ($hasOrg)
                     <a href="{{ route('organisations.members', $model) }}" class="btn btn-default btn-sm">
-                        <i class="fa fa-filter"></i> {{ __('crud.filters.all') }} ({{ $model->allMembers()->has('character')->count() }})
+                        <i class="fa-solid fa-filter"></i> {{ __('crud.filters.all') }} ({{ $model->allMembers()->has('character')->count() }})
                     </a>
                 @else
                     <a href="{{ route('organisations.members', [$model, 'organisation_id' => $model->id]) }}" class="btn btn-default btn-sm">
-                        <i class="fa fa-filter"></i> {{ __('crud.filters.direct') }} ({{ $model->members()->has('character')->count() }})
+                        <i class="fa-solid fa-filter"></i> {{ __('crud.filters.direct') }} ({{ $model->members()->has('character')->count() }})
                     </a>
                 @endif
             </div>
@@ -56,7 +56,7 @@ $hasOrg = request()->has('organisation_id');
                     @can('member', $model)
                         <a href="{{ route('organisations.organisation_members.create', ['organisation' => $model->id]) }}" class="btn btn-primary btn-sm"
                            data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('organisations.organisation_members.create', $model->id) }}">
-                            <i class="fa fa-plus"></i> <span class="hidden-sm hidden-xs">{{ __('organisations.members.actions.add') }}</span>
+                            <i class="fa-solid fa-plus"></i> <span class="hidden-sm hidden-xs">{{ __('organisations.members.actions.add') }}</span>
                         </a>
                     @endcan
                 </th>
@@ -117,13 +117,13 @@ $hasOrg = request()->has('organisation_id');
                                data-url="{{ route('organisations.organisation_members.edit', [$model, $relation]) }}"
                                title=" {{ __('crud.edit') }}"
                             >
-                                <i class="fa fa-edit"></i>
+                                <i class="fa-solid fa-edit"></i>
                             </a>
 
                             <button class="btn btn-xs btn-danger delete-confirm" data-toggle="modal" data-name="{{ $relation->character->name }}"
                                     data-target="#delete-confirm" data-delete-target="delete-form-{{ $relation->id }}"
                                     title="{{ __('crud.remove') }}">
-                                <i class="fa fa-trash" aria-hidden="true"></i>
+                                <i class="fa-solid fa-trash" aria-hidden="true"></i>
                             </button>
                             {!! Form::open(['method' => 'DELETE', 'route' => ['organisations.organisation_members.destroy', $model->id, $relation->id], 'style' => 'display:inline', 'id' => 'delete-form-' . $relation->id]) !!}
                             {!! Form::close() !!}

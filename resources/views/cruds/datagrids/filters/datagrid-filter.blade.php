@@ -15,14 +15,14 @@ $clipboardFilters = $filterService->clipboardFilters();
 <div class="box no-border datagrid-filters">
     <div class="box-header" data-toggle="collapse" data-target="#datagrid-filters">
 
-        <i class="fa fa-chevron-down pull-right"></i>
-        <i class="fa fa-filter"></i> {{ __('crud.filters.title') }}
+        <i class="fa-solid fa-chevron-down pull-right"></i>
+        <i class="fa-solid fa-filter"></i> {{ __('crud.filters.title') }}
 
         @if ($activeFilters > 0)
             <span class="label label-danger">{{ $activeFilters }}</span>
             <div class="box-tools">
                 <a href="{{ route($route, ['reset-filter' => 'true']) }}" class="btn btn-box-tool">
-                    <i class="fa fa-eraser"></i> {{ __('crud.filters.clear') }}
+                    <i class="fa-solid fa-eraser"></i> {{ __('crud.filters.clear') }}
                 </a>
             </div>
         @endif
@@ -163,7 +163,7 @@ $clipboardFilters = $filterService->clipboardFilters();
                                 @elseif ($field === 'date')
                                     <div class="input-group">
                                         <div class="input-group-addon">
-                                            <i class="fa fa-calendar"></i>
+                                            <i class="fa-solid fa-calendar"></i>
                                         </div>
                                         <input type="text" class="form-control date-picker" name="{{ $field }}" value="{{ $filterService->single($field) }}" autocomplete="off" />
                                     </div>
@@ -179,7 +179,7 @@ $clipboardFilters = $filterService->clipboardFilters();
         <div class="box-footer text-center">
             <div class="pull-left hidden-xs">
                 <a href="{{ route($route, ['reset-filter' => 'true']) }}" class="btn btn-default">
-                    <i class="fa fa-eraser"></i> {{ __('crud.filters.clear') }}
+                    <i class="fa-solid fa-eraser"></i> {{ __('crud.filters.clear') }}
                 </a>
 
 
@@ -216,17 +216,17 @@ $clipboardFilters = $filterService->clipboardFilters();
                 @endif
 
                 <a href="{{ route('helpers.filters') }}" data-url="{{ route('helpers.filters') }}" data-toggle="ajax-modal" data-target="#entity-modal" title="{{ __('helpers.filters.title') }}">
-                    <i class="fa fa-question-circle"></i>
+                    <i class="fa-solid fa-question-circle"></i>
                 </a>
             </div>
 
 
             <span class="pull-right">
                 <button type="submit" class="btn btn-primary margin-r-5">
-                    <i class="fa fa-filter"></i> {{ __('crud.filter') }}
+                    <i class="fa-solid fa-filter"></i> {{ __('crud.filter') }}
                 </button>
                 <span data-toggle="collapse" data-target="#datagrid-filters">
-                    <i class="fa fa-chevron-up"></i>
+                    <i class="fa-solid fa-chevron-up"></i>
                 </span>
             </span>
 

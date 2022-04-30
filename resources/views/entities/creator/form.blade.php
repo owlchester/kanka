@@ -48,7 +48,7 @@
 <div class="modal-footer">
     @if (empty($origin))
     <a href="#" id="entity-creator-back" data-url="{{ route('entity-creator.selection') }}" data-target="#entity-modal" class="btn btn-default pull-left">
-        <i class="fa fa-chevron-left"></i>
+        <i class="fa-solid fa-chevron-left"></i>
         {{ __('entities.creator.back') }}
     </a>
     @endif

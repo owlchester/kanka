@@ -4,7 +4,7 @@
     <div class="form-group">
         <label>
             {{ __('campaigns.fields.excerpt') }}
-            <i class="fa fa-question-circle hidden-xs hidden-sm" title="{{ __('campaigns.helpers.excerpt') }}" data-toggle="tooltip"></i>
+            <i class="fa-solid fa-question-circle hidden-xs hidden-sm" title="{{ __('campaigns.helpers.excerpt') }}" data-toggle="tooltip"></i>
         </label>
         {!! Form::textarea('excerptForEdition', null, ['class' => 'form-control html-editor', 'id' => 'excerpt', 'name' => 'excerpt']) !!}
         <p class="help-block visible-xs visible-sm">{{ __('campaigns.helpers.excerpt') }}</p>
@@ -13,7 +13,7 @@
     <div class="form-group">
         <label for="header_image">
             {{ __('campaigns.fields.header_image') }}
-            <i class="fa fa-question-circle hidden-xs hidden-sm" title="{{ __('campaigns.helpers.header_image') }}" data-toggle="tooltip"></i>
+            <i class="fa-solid fa-question-circle hidden-xs hidden-sm" title="{{ __('campaigns.helpers.header_image') }}" data-toggle="tooltip"></i>
         </label>
         <p class="help-block visible-xs visible-sm">{{ __('campaigns.helpers.header_image') }}</p>
         {!! Form::hidden('remove-header_image') !!}
@@ -39,7 +39,7 @@
                     <div class="preview-v2">
                         <div class="image" style="background-image: url('{{ $model->getImageUrl(200, 160, 'header_image') }}')" title="{{ $model->name }}">
                             <a href="#" class="img-delete" data-target="remove-header_image" title="{{ __('crud.remove') }}">
-                                <i class="fa fa-trash"></i> {{ __('crud.remove') }}
+                                <i class="fa-solid fa-trash"></i> {{ __('crud.remove') }}
                             </a>
                         </div>
                     </div>

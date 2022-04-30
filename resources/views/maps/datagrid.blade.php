@@ -18,7 +18,7 @@
                 if (empty($model->image)) {
                     return '';
                 }
-                return '<a href="' . route('maps.explore', $model) . '" target="_blank"><i class="fa fa-map"></i></a>';
+                return '<a href="' . route('maps.explore', $model) . '" target="_blank"><i class="fa-solid fa-map"></i></a>';
             },
             'disableSort' => true,
         ],
@@ -36,7 +36,7 @@
             'visible' => $campaign->enabled('locations'),
         ],
         [
-            'label' => '<i class="fa fa-users" title="' . trans('maps.fields.maps') . '"></i>',
+            'label' => '<i class="fa-solid fa-users" title="' . trans('maps.fields.maps') . '"></i>',
             'render' => function($model) {
                 return $model->maps->count();
             },

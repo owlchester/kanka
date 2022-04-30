@@ -61,7 +61,7 @@
                             <dl class="dl-horizontal dl-force-mobile">
                                 @if ($campaign->boosted() && $campaign->boosts->count() > 0)
                                     <dt class="text-maroon">
-                                        <i class="fa fa-rocket"></i> {{ __('campaigns.fields.' . ($campaign->boosts->count() >= 3 ? 'superboosted' : 'boosted')) }}
+                                        <i class="fa-solid fa-rocket"></i> {{ __('campaigns.fields.' . ($campaign->boosts->count() >= 3 ? 'superboosted' : 'boosted')) }}
                                     </dt>
                                     <dd>
                                         {{ $campaign->boosts->first()->user->name }}
@@ -91,7 +91,7 @@
                     <div class="box-tools pull-right">
                         @can('update', $campaign)
                             <a href="{{ route('campaigns.edit', $campaign->id) }}" class="btn btn-box-tool" title="{{ __('campaigns.show.actions.edit') }}">
-                                <i class="fa fa-edit" aria-hidden="true"></i>
+                                <i class="fa-solid fa-edit" aria-hidden="true"></i>
                             </a>
                         @endcan
                     </div>

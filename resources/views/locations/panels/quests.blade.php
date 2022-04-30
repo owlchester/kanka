@@ -51,11 +51,11 @@
                     </td>
                     @endif
                     <td>
-                        @if ($quest->is_completed) <i class="fa fa-check-circle"></i> @endif
+                        @if ($quest->is_completed) <i class="fa-solid fa-check-circle"></i> @endif
                     </td>
                     <td class="text-right">
                         <a href="{{ route('quests.show', [$quest]) }}" class="btn btn-xs btn-primary">
-                            <i class="fa fa-eye" aria-hidden="true"></i> <span class="visible-sm">{{ __('crud.view') }}</span>
+                            <i class="fa-solid fa-eye" aria-hidden="true"></i> <span class="visible-sm">{{ __('crud.view') }}</span>
                         </a>
                     </td>
                 </tr>

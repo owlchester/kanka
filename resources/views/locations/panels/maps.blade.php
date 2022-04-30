@@ -26,10 +26,10 @@
                     <td>{{ $map->type }}</td>
                     <td class="text-right">
                         <a href="{{ route('maps.show', [$map]) }}" class="btn btn-xs btn-primary">
-                            <i class="fa fa-eye" aria-hidden="true"></i> {{ __('crud.view') }}
+                            <i class="fa-solid fa-eye" aria-hidden="true"></i> {{ __('crud.view') }}
                         </a>
                         <a href="{{ route('maps.explore', $map) }}" class="btn btn-xs btn-primary">
-                            <i class="fa fa-map"></i> {{ __('maps.actions.explore') }}
+                            <i class="fa-solid fa-map"></i> {{ __('maps.actions.explore') }}
                         </a>
                     </td>
                 </tr>

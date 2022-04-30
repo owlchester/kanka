@@ -110,7 +110,7 @@
         <div class="row">
             <div class="col-12 footer-socials">
                 <div class="email">
-                    <i class="fa fa-envelope hidden-xs"></i> {{ config('app.email') }}
+                    <i class="fa-solid fa-envelope hidden-xs"></i> {{ config('app.email') }}
                 </div>
 
                 <div class="socials">

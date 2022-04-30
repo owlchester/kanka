@@ -45,7 +45,7 @@ use App\Facades\Datagrid ?>
                         </a>
 
                         <a href="{{ route('campaign_styles.create') }}" class="btn btn-primary btn-sm">
-                            <i class="fa fa-plus"></i> {{ __('campaigns/styles.actions.new') }}
+                            <i class="fa-solid fa-plus"></i> {{ __('campaigns/styles.actions.new') }}
                         </a>
                     </div>
                 </div>

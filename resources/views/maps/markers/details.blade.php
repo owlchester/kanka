@@ -1,7 +1,7 @@
 <?php /** @var \App\Models\MapMarker $marker */?>
 <div class="marker-details">
 @if (!request()->has('mobile'))
-    <h3 class="marker-name">{{ $marker->name }}<span class="pull-right marker-close" title="{{ __('crud.click_modal.close') }}"><i class="fa fa-close"></i></span></h3>
+    <h3 class="marker-name">{{ $marker->name }}<span class="pull-right marker-close" title="{{ __('crud.click_modal.close') }}"><i class="fa-solid fa-close"></i></span></h3>
     @if ($marker->hasEntry())
         <div class="marker-entry entity-content">
             {!! \App\Facades\Mentions::mapAny($marker) !!}
@@ -27,7 +27,7 @@
         @if($marker->entity->typeId() == config('entities.ids.map'))
             <div class="marker-map-link text-center">
                 <a href="{{ $marker->entity->url('explore') }}" target="_blank" class="btn btn-primary">
-                    <i class="fa fa-map"></i> {{ __('maps.actions.explore') }}
+                    <i class="fa-solid fa-map"></i> {{ __('maps.actions.explore') }}
                 </a>
             </div>
         @endif
@@ -38,13 +38,13 @@
         @can('update', $marker->map)
             <div class="btn-group">
                 <a href="{{ route('maps.map_markers.edit', [$marker->map, $marker]) }}" class="btn btn-primary" target="_blank">
-                    <i class="fa fa-map-pin"></i> {{ __('maps/markers.actions.update') }}
+                    <i class="fa-solid fa-map-pin"></i> {{ __('maps/markers.actions.update') }}
                 </a>
                 <a href="{{ route('maps.edit', [$marker->map]) }}" class="btn btn-primary">
-                    <i class="fa fa-map"></i> {{ __('maps.actions.edit') }}
+                    <i class="fa-solid fa-map"></i> {{ __('maps.actions.edit') }}
                 </a>
                 <button class="btn btn-danger delete-confirm" data-name="{{ $marker->name }}" data-toggle="modal" data-target="#delete-confirm" data-delete-target="delete-marker-confirm-form-{{ $marker->id }}">
-                    <i class="fa fa-trash" aria-hidden="true"></i> {{ trans('maps/markers.actions.remove') }}
+                    <i class="fa-solid fa-trash" aria-hidden="true"></i> {{ trans('maps/markers.actions.remove') }}
                 </button>
                 {!! Form::open(['method' => 'DELETE', 'route' => ['maps.map_markers.destroy', $marker->map_id, $marker->id, 'from' => 'map'], 'style' => 'display:inline', 'id' => 'delete-marker-confirm-form-' . $marker->id]) !!}
                 {!! Form::close() !!}

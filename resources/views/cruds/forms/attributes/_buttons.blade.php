@@ -1,7 +1,7 @@
 
 <div class="btn-group margin-r-5">
     <button type="button" class="btn btn-default add_attribute" data-template="#attribute_template" data-sortable="{{ $existing ? 'true' : 'false'}}">
-        <i class="fa fa-plus"></i> {{ __('entities/attributes.types.attribute') }}
+        <i class="fa-solid fa-plus"></i> {{ __('entities/attributes.types.attribute') }}
     </button>
     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
         {{ __('entities/attributes.actions.more') }}
@@ -48,10 +48,10 @@
     'mention' => '[entity:id]',
     'attribute' => '{' . __('helpers.attributes.level') . '}',
 ]) }}">
-    {{ __('helpers.attributes.link') }} <i class="fa fa-question-circle"></i>
+    {{ __('helpers.attributes.link') }} <i class="fa-solid fa-question-circle"></i>
 </a>
 <a href="#" class="btn btn-danger pull-right" data-toggle="modal" data-target="#attributes-delete-all-confirm">
-    <i class="fa fa-trash"></i> <span class="hidden-xs">{{ __('entities/attributes.actions.remove_all') }}</span>
+    <i class="fa-solid fa-trash"></i> <span class="hidden-xs">{{ __('entities/attributes.actions.remove_all') }}</span>
 </a>
 
 
@@ -70,7 +70,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">{{ __('crud.cancel') }}</button>
-                <button type="button" class="btn btn-danger" id="attributes-delete-all-confirm-submit"><span class="fa fa-trash"></span> {{ __('crud.delete_modal.delete') }}</button>
+                <button type="button" class="btn btn-danger" id="attributes-delete-all-confirm-submit"><span class="fa-solid fa-trash"></span> {{ __('crud.delete_modal.delete') }}</button>
             </div>
         </div>
     </div>

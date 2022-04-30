@@ -98,7 +98,7 @@
         </div>
         <div class="box-footer text-right">
             <button class="btn btn-danger delete-confirm" data-text="{{ __('profiles.sections.delete.warning') }}" data-toggle="modal" data-target="#delete-confirm">
-                <i class="fa fa-trash" aria-hidden="true"></i> {{ __('profiles.sections.delete.delete') }}
+                <i class="fa-solid fa-trash" aria-hidden="true"></i> {{ __('profiles.sections.delete.delete') }}
             </button>
         </div>
     </div>

@@ -36,7 +36,7 @@
             <div class="input-group">
                 <input id="password" type="password" class="form-control" name="password" required placeholder="{{ __('auth.register.fields.password') }}">
                 <a href="#" class="toggle-password input-group-addon" title="{{ __('auth.helpers.password') }}">
-                    <i class="toggle-password-icon fa fa-eye"></i>
+                    <i class="toggle-password-icon fa-solid fa-eye"></i>
                 </a>
             </div>
 

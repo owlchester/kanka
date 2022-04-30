@@ -123,7 +123,7 @@
                     <div class="preview-v2">
                         <div class="image" style="background-image: url('{{ $model->getImageUrl(40, 'header_image') }}')" title="{{ $model->name }}">
                             <a href="#" class="img-delete" data-target="remove-header-image" title="{{ __('crud.remove') }}">
-                                <i class="fa fa-trash"></i> {{ __('crud.remove') }}
+                                <i class="fa-solid fa-trash"></i> {{ __('crud.remove') }}
                             </a>
                         </div>
                     </div>

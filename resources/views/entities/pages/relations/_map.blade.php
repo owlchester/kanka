@@ -40,7 +40,7 @@ $options = [
 <div class="box box-solid box-entity-relations box-entity-relations-explorer">
     <div class="box-body">
     <div class="loading text-center" id="spinner">
-        <i class="fa fa-spinner fa-spin fa-4x"></i>
+        <i class="fa-solid fa-spinner fa-spin fa-4x"></i>
     </div>
     <div id="cy" class="cy" style="display: none;" data-url="{{ route('entities.relations_map', [$entity, 'option' => $option]) }}"></div>
 

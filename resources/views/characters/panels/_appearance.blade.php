@@ -6,8 +6,8 @@ $appearances = $model->characterTraits()->appearance()->orderBy('default_order')
     <div class="box box-solid character-appearances">
         <div class="box-header with-border">
             <h3 class="box-title cursor entity-note-toggle" data-toggle="collapse" data-target="#character-appearance-body" data-short="character-appearance-toggle">
-                <i class="fa fa-chevron-up" id="character-appearance-toggle-show"></i>
-                <i class="fa fa-chevron-down" id="character-appearance-toggle-hide" style="display: none;"></i>
+                <i class="fa-solid fa-chevron-up" id="character-appearance-toggle-show"></i>
+                <i class="fa-solid fa-chevron-down" id="character-appearance-toggle-hide" style="display: none;"></i>
                 {{ __('characters.sections.appearance') }}
             </h3>
         </div>

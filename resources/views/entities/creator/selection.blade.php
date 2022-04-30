@@ -16,7 +16,7 @@
         @if (isset($entities['characters']))
             <div class="col-md-4 col-sm-6 col-xs-4">
                 <a href="#" data-toggle="entity-creator" data-url="{{ route('entity-creator.form', ['type' => 'characters']) }}">
-                    <i class="fa fa-user fa-2x"></i>
+                    <i class="fa-solid fa-user fa-2x"></i>
                     {{ __('entities.character') }}
                 </a>
             </div>
@@ -79,7 +79,7 @@
         @if (isset($entities['calendars']))
             <div class="col-md-4 col-sm-6 col-xs-4">
                 <a href="#"  data-toggle="entity-creator" data-url="{{ route('entity-creator.form', ['type' => 'calendar']) }}">
-                    <i class="fa fa-calendar fa-2x"></i>
+                    <i class="fa-solid fa-calendar fa-2x"></i>
                     {{ __('entities.calendar') }}
                 </a>
             </div>
@@ -124,7 +124,7 @@
         @can('create', \App\Models\Tag::class)
         <div class="col-md-4 col-sm-6 col-xs-4">
             <a href="#" data-toggle="entity-creator" data-url="{{ route('entity-creator.form', ['type' => 'tags']) }}">
-                <i class="fa fa-tags fa-2x"></i>
+                <i class="fa-solid fa-tags fa-2x"></i>
                 {{ __('entities.tag') }}
             </a>
         </div>

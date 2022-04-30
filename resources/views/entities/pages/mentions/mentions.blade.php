@@ -22,7 +22,7 @@
             @endif
             <div class="panel-body">
                 <div class="loading text-center" style="display: none">
-                    <i class="fa fa-spinner fa-spin fa-4x"></i>
+                    <i class="fa-solid fa-spinner fa-spin fa-4x"></i>
                 </div>
                 <div class="pagination-ajax-content">
                     <p class="help-block">

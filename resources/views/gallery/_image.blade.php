@@ -11,7 +11,7 @@
             <div class="gallery-folder">
                 <span class="text">
                     @if ($image->visibility_id == \App\Models\Visibility::VISIBILITY_ALL)
-                    <i class="fa fa-folder fa-2x"></i>
+                    <i class="fa-solid fa-folder fa-2x"></i>
                     @else
                         {!! $image->visibilityIcon('fa-2x') !!}
                     @endif

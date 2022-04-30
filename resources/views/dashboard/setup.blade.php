@@ -14,7 +14,7 @@
         <div class="box-header with-border">
             <h4 class="box-title">@if ($dashboard) {!! $dashboard->name !!} @else {{ __('dashboard.dashboards.default.title') }} @endif</h4>
             <div class="box-tools" style="margin-top: 1px;">
-                <a href="{{ route('dashboard', isset($dashboard) ? ['dashboard' => $dashboard->id] : null) }}" class="btn btn-box-tool" title="{{ __('dashboard.setup.actions.back_to_dashboard') }}"><i class="fa fa-arrow-left"></i> {{ __('dashboard.setup.actions.back_to_dashboard') }}</a>
+                <a href="{{ route('dashboard', isset($dashboard) ? ['dashboard' => $dashboard->id] : null) }}" class="btn btn-box-tool" title="{{ __('dashboard.setup.actions.back_to_dashboard') }}"><i class="fa-solid fa-arrow-left"></i> {{ __('dashboard.setup.actions.back_to_dashboard') }}</a>
             </div>
         </div>
         <div class="box-body">
@@ -103,7 +103,7 @@
                             <a href="#" class="delete-confirm text-red" data-toggle="modal" data-name="{{ $dashboard->name }}"
                                data-target="#delete-confirm" data-delete-target="delete-dashboard-{{ $dashboard->id }}"
                                title="{{ __('crud.remove') }}">
-                                <i class="fa fa-trash" aria-hidden="true"></i>
+                                <i class="fa-solid fa-trash" aria-hidden="true"></i>
                                 {{ __('crud.remove') }}
                             </a>
                             {!! Form::open(['method' => 'DELETE', 'route' => ['campaign_dashboards.destroy', $dashboard], 'style '=> 'display:inline', 'id' => 'delete-dashboard-' . $dashboard->id]) !!}
@@ -140,7 +140,7 @@
             <div class="col-md-4">
                 <div class="widget add" data-toggle="modal" data-target="#new-widget" id="btn-add-widget">
                     <div class="widget-overlay">
-                    <i class="fa fa-plus"></i> {{ __('dashboard.setup.actions.add') }}
+                    <i class="fa-solid fa-plus"></i> {{ __('dashboard.setup.actions.add') }}
                     </div>
                 </div>
             </div>
@@ -159,10 +159,10 @@
                 </div>
                 <div class="modal-body" id="modal-content-buttons">
                     <div class="btn btn-block btn-default btn-lg" id="btn-widget-recent" data-url="{{ route('campaign_dashboard_widgets.create', ['widget' => 'recent', 'dashboard' => $dashboard]) }}">
-                        <i class="fa fa-list"></i> {{ __('dashboard.setup.widgets.recent') }}
+                        <i class="fa-solid fa-list"></i> {{ __('dashboard.setup.widgets.recent') }}
                     </div>
                     <div class="btn btn-block btn-default btn-lg" id="btn-widget-preview" data-url="{{ route('campaign_dashboard_widgets.create', ['widget' => 'preview', 'dashboard' => $dashboard]) }}">
-                        <i class="fa fa-align-justify"></i> {{ __('dashboard.setup.widgets.preview') }}
+                        <i class="fa-solid fa-align-justify"></i> {{ __('dashboard.setup.widgets.preview') }}
                     </div>
                     <div class="btn btn-block btn-default btn-lg" id="btn-widget-calendar" data-url="{{ route('campaign_dashboard_widgets.create', ['widget' => 'calendar', 'dashboard' => $dashboard]) }}">
                         <i class="ra ra-moon-sun"></i> {{ __('dashboard.setup.widgets.calendar') }}
@@ -183,7 +183,7 @@
 
                 <div class="modal-body" id="modal-content-spinner">
                     <div class="text-center">
-                        <h1><i class="fa fa-spin fa-spinner"></i></h1>
+                        <h1><i class="fa-solid fa-spin fa-spinner"></i></h1>
                     </div>
                 </div>
 

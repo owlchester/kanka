@@ -69,7 +69,7 @@
                         <div class="preview-v2">
                             <div class="image" style="background-image: url('{{ auth()->user()->getAvatarUrl(200) }}')">
                                 <a href="#" class="img-delete" data-target="remove-avatar" title="{{ trans('crud.remove') }}">
-                                    <i class="fa fa-trash"></i> {{ trans('crud.remove') }}
+                                    <i class="fa-solid fa-trash"></i> {{ trans('crud.remove') }}
                                 </a>
                             </div>
                         </div>

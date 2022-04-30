@@ -22,15 +22,15 @@ $existing = $model->allChildren()->count();
         </h3>
         <div class="box-tools">
             <a href="#" class="btn btn-box-tool" data-toggle="modal" data-target="#help-modal">
-                <i class="fa fa-question-circle"></i> {{ __('crud.actions.help') }}
+                <i class="fa-solid fa-question-circle"></i> {{ __('crud.actions.help') }}
             </a>
             @if (request()->has('tag_id'))
                 <a href="{{ route('tags.show', [$model, '#tag-children']) }}" class="btn btn-box-tool">
-                    <i class="fa fa-filter"></i> {{ __('crud.filters.all') }} ({{ $model->allChildren()->count() }})
+                    <i class="fa-solid fa-filter"></i> {{ __('crud.filters.all') }} ({{ $model->allChildren()->count() }})
                 </a>
             @else
                 <a href="{{ route('tags.show', [$model, 'tag_id' => $model->id, '#tag-children']) }}" class="btn btn-box-tool">
-                    <i class="fa fa-filter"></i> {{ __('crud.filters.direct') }} ({{ $model->entities()->count() }})
+                    <i class="fa-solid fa-filter"></i> {{ __('crud.filters.direct') }} ({{ $model->entities()->count() }})
                 </a>
             @endif
 
@@ -38,7 +38,7 @@ $existing = $model->allChildren()->count();
             @can('update', $model)
                 <a href="{{ $addEntityUrl }}" class="btn btn-primary btn-sm"
                    data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ $addEntityUrl }}">
-                    <i class="fa fa-plus"></i> <span class="hidden-sm hidden-xs">{{ __('tags.children.actions.add') }}</span>
+                    <i class="fa-solid fa-plus"></i> <span class="hidden-sm hidden-xs">{{ __('tags.children.actions.add') }}</span>
                 </a>
             @endcan
             @endif
@@ -53,7 +53,7 @@ $existing = $model->allChildren()->count();
         @can('update', $model)
             <a href="{{ $addEntityUrl }}" class="btn btn-primary"
                data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ $addEntityUrl }}">
-                <i class="fa fa-plus"></i> <span class="hidden-sm hidden-xs">{{ __('tags.children.actions.add') }}</span>
+                <i class="fa-solid fa-plus"></i> <span class="hidden-sm hidden-xs">{{ __('tags.children.actions.add') }}</span>
             </a>
         @endcan
         </div>

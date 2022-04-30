@@ -5,7 +5,7 @@
             @if($asset->icon)
                 <i class="{{ $asset->icon }}"></i>
             @else
-                <i class="fa fa-map"></i>
+                <i class="fa-solid fa-map"></i>
             @endif
         </a>
         <div class="child text">

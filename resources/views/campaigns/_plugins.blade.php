@@ -4,7 +4,7 @@
 <div class="box box-solid">
     <div class="box-header with-border">
         <h4 class="box-title">
-            <i class="fa fa-gift"></i> {{ __('campaigns.show.tabs.plugins') }}
+            <i class="fa-solid fa-gift"></i> {{ __('campaigns.show.tabs.plugins') }}
         </h4>
     </div>
     <div class="box-body">
@@ -13,7 +13,7 @@
 
         <p class="text-center">
             <a href="{{ config('marketplace.url') }}" target="_blank" class="btn btn-large btn-primary">
-                {{ __('campaigns/plugins.actions.go_to_marketplace') }} <i class="fa fa-external-link-alt"></i>
+                {{ __('campaigns/plugins.actions.go_to_marketplace') }} <i class="fa-solid fa-external-link-alt"></i>
             </a>
         </p>
     </div>

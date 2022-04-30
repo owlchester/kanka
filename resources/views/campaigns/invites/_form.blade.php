@@ -12,7 +12,7 @@ $usages = [
 @if ($typeID == \App\Models\CampaignInvite::TYPE_EMAIL)
     <label>
         {{ __('campaigns.invites.fields.email') }}
-        <i class="fa fa-question-circle hidden-xs hidden-sm" title="{{ __('campaigns.invites.helpers.email') }}" data-toggle="tooltip"></i>
+        <i class="fa-solid fa-question-circle hidden-xs hidden-sm" title="{{ __('campaigns.invites.helpers.email') }}" data-toggle="tooltip"></i>
     </label>
     {!! Form::text('email', null, ['placeholder' => trans('campaigns.invites.placeholders.email'), 'class' => 'form-control']) !!}
         <p class="help-block visible-xs visible-sm">{{  __('campaigns.invites.helpers.email')}}</p>

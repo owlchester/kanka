@@ -38,7 +38,7 @@ $inSection = false;
         <dd>
             @if ($attribute->isCheckbox())
                 @if ($attribute->value)
-                    <i class="fa fa-check"></i>
+                    <i class="fa-solid fa-check"></i>
                 @endif
             @elseif ($attribute->isText())
                 {!! nl2br($attribute->mappedValue()) !!}
@@ -47,7 +47,7 @@ $inSection = false;
             @endif
 
             @if($attributeService->isLoop($attribute->name))
-                <i class="fa fa-warning" title="{{ __('entities/attributes.errors.loop') }}" data-toggle="tooltip"></i>
+                <i class="fa-solid fa-warning" title="{{ __('entities/attributes.errors.loop') }}" data-toggle="tooltip"></i>
             @endif
         </dd>
 @endforeach

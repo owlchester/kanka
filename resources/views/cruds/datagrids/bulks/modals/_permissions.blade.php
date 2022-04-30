@@ -10,7 +10,7 @@ $actions = [
     <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('crud.click_modal.close') }}"><span aria-hidden="true">&times;</span></button>
     <h4 class="modal-title" id="clickModalLabel">{{ __('crud.bulk.permissions.title') }}</h4>
 </div>
-<div class="modal-body">
+<div class="modal-body no-padding">
     <table id="crud_permissions" class="table table-hover">
         <tbody>
         <tr>
@@ -70,8 +70,7 @@ $actions = [
             <th>{{ __('crud.permissions.actions.entity_note') }}</th>
         </tr>
         <?php /** @var \App\Models\CampaignUser $member */ ?>
-        @foreach ($campaign->members()->with('user')->withoutAdmins()->get() as $member)
-
+        @foreach ($campaign->members()->with('user')->withoutAdmins()->paginate(20) as $member)
             <tr>
                 <td>{{ $member->user->name }}</td>
                 <td>

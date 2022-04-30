@@ -20,15 +20,15 @@ $r = $model->allJournals()
         </h3>
         <div class="box-tools">
             <a href="#" class="btn btn-box-tool" data-toggle="modal" data-target="#help-modal">
-                <i class="fa fa-question-circle"></i> {{ __('crud.actions.help') }}
+                <i class="fa-solid fa-question-circle"></i> {{ __('crud.actions.help') }}
             </a>
             @if (request()->has('journal_id'))
                 <a href="{{ route('journals.journals', [$model, '#journal-journals']) }}" class="btn btn-box-tool">
-                    <i class="fa fa-filter"></i> {{ __('crud.filters.all') }} ({{ $model->allJournals()->count() }})
+                    <i class="fa-solid fa-filter"></i> {{ __('crud.filters.all') }} ({{ $model->allJournals()->count() }})
                 </a>
             @else
                 <a href="{{ route('journals.journals', [$model, 'journal_id' => $model->id, '#journal-journals']) }}" class="btn btn-box-tool">
-                    <i class="fa fa-filter"></i> {{ __('crud.filters.direct') }} ({{ $model->journals()->count() }})
+                    <i class="fa-solid fa-filter"></i> {{ __('crud.filters.direct') }} ({{ $model->journals()->count() }})
                 </a>
             @endif
         </div>

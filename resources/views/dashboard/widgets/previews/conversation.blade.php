@@ -29,7 +29,7 @@ $conversation = $entity->child;
 
                 <span class="pull-right" data-toggle="tooltip" title="{{ __('conversations.tabs.participants') }}">
 
-                    <span class="label label-default"><i class="fa fa-users"></i> {{ $conversation->participants()->count() }}</span>
+                    <span class="label label-default"><i class="fa-solid fa-users"></i> {{ $conversation->participants()->count() }}</span>
                 </span>
                 @if(!empty($customName))
                     {{ $customName }}

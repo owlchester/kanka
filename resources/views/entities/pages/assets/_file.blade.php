@@ -3,7 +3,7 @@
     <div class="entity-asset asset-file">
         <a href="{{ Storage::url($asset->path) }}" target="_blank" class="child icon" @if($asset->isImage()) style="background-image: url({{ $asset->imageUrl() }})"@endif>
             @if (!$asset->isImage())
-            <i class="fa fa-file-o"></i>
+            <i class="fa-solid fa-file-o"></i>
             @endif
         </a>
         <div class="child text">

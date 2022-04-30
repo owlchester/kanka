@@ -3,12 +3,12 @@
     <div class="row" id="calendar-event-first">
         <div class="col-md-6">
             <a href="#" class="btn btn-default btn-block btn-lg" id="calendar-action-existing">
-                <i class="fa fa-search fa-2x"></i><br />{{ __('calendars.event.actions.existing') }}
+                <i class="fa-solid fa-search fa-2x"></i><br />{{ __('calendars.event.actions.existing') }}
             </a>
         </div>
         <div class="col-md-6">
             <span class="btn btn-default btn-block btn-lg" id="calendar-action-new">
-                <i class="fa fa-bolt fa-2x"></i><br />{{ __('calendars.event.actions.new') }}
+                <i class="fa-solid fa-bolt fa-2x"></i><br />{{ __('calendars.event.actions.new') }}
             </span>
         </div>
     </div>

@@ -13,16 +13,16 @@ if (request()->has('parent_location_id')) {
         </h3>
         <div class="box-tools">
             <a href="#" class="btn btn-box-tool" data-toggle="modal" data-target="#help-modal">
-                <i class="fa fa-question-circle"></i> {{ __('crud.actions.help') }}
+                <i class="fa-solid fa-question-circle"></i> {{ __('crud.actions.help') }}
             </a>
 
             @if (request()->has('parent_location_id'))
                 <a href="{{ route('locations.locations', [$model]) }}" class="btn btn-box-tool">
-                    <i class="fa fa-filter"></i> {{ __('crud.filters.all') }} ({{ $model->descendants()->count() }})
+                    <i class="fa-solid fa-filter"></i> {{ __('crud.filters.all') }} ({{ $model->descendants()->count() }})
                 </a>
             @else
                 <a href="{{ route('locations.locations', [$model, 'parent_location_id' => $model->id]) }}" class="btn btn-box-tool">
-                    <i class="fa fa-filter"></i> {{ __('crud.filters.direct') }} ({{ $model->locations()->count() }})
+                    <i class="fa-solid fa-filter"></i> {{ __('crud.filters.direct') }} ({{ $model->locations()->count() }})
                 </a>
             @endif
         </div>

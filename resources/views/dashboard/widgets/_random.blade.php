@@ -84,7 +84,7 @@ $widget->setEntity($entity);
         </div>
         <a href="#" class="preview-switch hidden"
            id="widget-preview-switch-{{ $widget->id }}" data-widget="{{ $widget->id }}">
-            <i class="fa fa-chevron-down"></i>
+            <i class="fa-solid fa-chevron-down"></i>
         </a>
         @endif
     </div>

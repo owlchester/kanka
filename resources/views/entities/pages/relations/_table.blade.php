@@ -71,7 +71,7 @@
                        data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('entities.relations.edit', [$entity, 'relation' => $relation, 'mode' => 'table']) }}"
                        title=" {{ __('crud.edit') }}"
                     >
-                        <i class="fa fa-edit"></i>
+                        <i class="fa-solid fa-edit"></i>
                     </a>
                 @endcan
                 @can('relation', [$entity->child, 'delete'])
@@ -83,7 +83,7 @@
 
 
                             title="{{ __('crud.remove') }}">
-                        <i class="fa fa-trash" aria-hidden="true"></i>
+                        <i class="fa-solid fa-trash" aria-hidden="true"></i>
                     </button>
                     {!! Form::open(['method' => 'DELETE', 'route' => ['entities.relations.destroy', $entity, 'relation' => $relation], 'style' => 'display:inline', 'id' => 'delete-form-' . $relation->id]) !!}
                     {!! Form::hidden('remove_mirrored', 0) !!}

@@ -20,7 +20,7 @@ $role = \App\Facades\CampaignCache::adminRole();
                         <div class="col-md-4 col-xs-4">
                             <div class="input-group">
                                 <span class="input-group-addon hidden-xs hidden-sm">
-                                    <span class="fa fa-arrows-alt-v"></span>
+                                    <span class="fa-solid fa-arrows-alt-v"></span>
                                 </span>
                                 {!! Form::text('appearance_name[' . $trait->id . ']', $trait->name, [
                                     'class' => 'form-control',
@@ -39,7 +39,7 @@ $role = \App\Facades\CampaignCache::adminRole();
                                 ]) !!}
                                 <span class="input-group-btn">
                                     <span class="personality-delete btn btn-danger" title="{{ __('crud.remove') }}">
-                                        <i class="fa fa-trash"></i>
+                                        <i class="fa-solid fa-trash"></i>
                                     </span>
                                 </span>
                             </div>
@@ -49,7 +49,7 @@ $role = \App\Facades\CampaignCache::adminRole();
             @endforeach
         </div>
         <a class="btn btn-default btn-block" id="add_appearance" href="#" title="{{ __('characters.actions.add_appearance') }}">
-            <i class="fa fa-plus"></i> {{ __('characters.actions.add_appearance') }}
+            <i class="fa-solid fa-plus"></i> {{ __('characters.actions.add_appearance') }}
         </a>
 
         <div class="form-group checkbox">
@@ -74,7 +74,7 @@ $role = \App\Facades\CampaignCache::adminRole();
                         <div class="form-group">
                             <div class="input-group">
                             <span class="input-group-addon hidden-xs hidden-sm">
-                                <span class="fa fa-arrows-alt-v"></span>
+                                <span class="fa-solid fa-arrows-alt-v"></span>
                             </span>
                                 {!! Form::text('personality_name[' . $trait->id . ']', $trait->name, [
                                     'class' => 'form-control',
@@ -83,7 +83,7 @@ $role = \App\Facades\CampaignCache::adminRole();
                                 ]) !!}
                                 <span class="input-group-btn">
                                 <span class="personality-delete btn btn-danger" title="{{ __('crud.remove') }}">
-                                    <i class="fa fa-trash"></i>
+                                    <i class="fa-solid fa-trash"></i>
                                 </span>
                             </span>
                             </div>
@@ -100,7 +100,7 @@ $role = \App\Facades\CampaignCache::adminRole();
                 @endforeach
             </div>
             <a class="btn btn-default btn-block" id="add_personality" href="#" title="{{ __('characters.actions.add_personality') }}">
-                <i class="fa fa-plus"></i> {{ __('characters.actions.add_personality') }}
+                <i class="fa-solid fa-plus"></i> {{ __('characters.actions.add_personality') }}
             </a>
 
 
@@ -147,7 +147,7 @@ $role = \App\Facades\CampaignCache::adminRole();
                     <div class="col-md-4 col-xs-4">
                         <div class="input-group">
                                 <span class="input-group-addon hidden-xs hidden-sm">
-                                    <span class="fa fa-arrows-alt-v"></span>
+                                    <span class="fa-solid fa-arrows-alt-v"></span>
                                 </span>
                             {!! Form::text('appearance_name[]', null, [
                                 'class' => 'form-control',
@@ -165,7 +165,7 @@ $role = \App\Facades\CampaignCache::adminRole();
                             ]) !!}
                             <span class="input-group-btn">
                                     <span class="personality-delete btn btn-danger" title="{{ __('crud.remove') }}">
-                                        <i class="fa fa-trash"></i>
+                                        <i class="fa-solid fa-trash"></i>
                                     </span>
                                 </span>
                         </div>
@@ -178,7 +178,7 @@ $role = \App\Facades\CampaignCache::adminRole();
                 <div class="form-group">
                     <div class="input-group">
                                 <span class="input-group-addon hidden-xs hidden-sm">
-                                    <span class="fa fa-arrows-alt-v"></span>
+                                    <span class="fa-solid fa-arrows-alt-v"></span>
                                 </span>
                         {!! Form::text('personality_name[]', null, [
                             'class' => 'form-control',
@@ -187,7 +187,7 @@ $role = \App\Facades\CampaignCache::adminRole();
                         ]) !!}
                         <span class="input-group-btn">
                                     <span class="personality-delete btn btn-danger" title="{{ __('crud.remove') }}">
-                                        <i class="fa fa-trash"></i>
+                                        <i class="fa-solid fa-trash"></i>
                                     </span>
                                 </span>
                     </div>

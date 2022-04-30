@@ -15,7 +15,7 @@
             <a href="{{ route('characters.character_organisations.create', ['character' => $model->id]) }}"
                class="btn btn-sm btn-warning" data-toggle="ajax-modal"
                data-target="#entity-modal" data-url="{{ route('characters.character_organisations.create', $model->id) }}">
-                <i class="fa fa-plus"></i> {{ __('characters.organisations.actions.add')  }}
+                <i class="fa-solid fa-plus"></i> {{ __('characters.organisations.actions.add')  }}
             </a>
         </div>
     @endcan

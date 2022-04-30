@@ -17,7 +17,7 @@
             @can('create', $model)
                 <div class="btn-group pull-right">
                     <a href="{{ route($name . '.create') }}" class="btn btn-primary">
-                        <i class="fa fa-plus"></i> <span class="hidden-xs hidden-sm">{{ trans($name . '.index.add') }}</span>
+                        <i class="fa-solid fa-plus"></i> <span class="hidden-xs hidden-sm">{{ trans($name . '.index.add') }}</span>
                     </a>
                     <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                         <span class="caret"></span>
@@ -27,7 +27,7 @@
                         @foreach ($templates as $entityTemplate)
                             <li>
                                 <a href="{{ route($name . '.create', ['copy' => $entityTemplate->entity_id, 'template' => true]) }}">
-                                    <i class="fa fa-star-o"></i> {{ $entityTemplate->name  }}</span>
+                                    <i class="fa-solid fa-star-o"></i> {{ $entityTemplate->name  }}</span>
                                 </a>
                             </li>
                         @endforeach
@@ -35,7 +35,7 @@
                         @endif
                         <li>
                             <a href="{{ route('helpers.entity-templates') }}" data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('helpers.entity-templates') }}">
-                                <i class="fa fa-external-link"></i> {{ __('helpers.entity_templates.link') }}
+                                <i class="fa-solid fa-external-link"></i> {{ __('helpers.entity_templates.link') }}
                             </a>
                         </li>
                     </ul>

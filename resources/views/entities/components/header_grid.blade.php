@@ -63,7 +63,7 @@ if($campaign->campaign()->boosted() && $entity->hasHeaderImage($superboosted)) {
             <ul class="dropdown-menu dropdown-menu-right" role="menu">
                 <li>
                     <a href="{{ $imageUrl }}" target="_blank">
-                        <i class="fa fa-external-link"></i> {{ __('entities/image.actions.view') }}
+                        <i class="fa-solid fa-external-link"></i> {{ __('entities/image.actions.view') }}
                     </a>
                 </li>
                 <li class="divider"></li>
@@ -131,19 +131,19 @@ if($campaign->campaign()->boosted() && $entity->hasHeaderImage($superboosted)) {
                             @can('update', $model)
                                 <li>
                                     <a href="{{ route($entity->pluralType() . '.edit', $model->id) }}">
-                                        <i class="fa fa-pencil" aria-hidden="true"></i> {{ __('crud.edit') }}
+                                        <i class="fa-solid fa-pencil" aria-hidden="true"></i> {{ __('crud.edit') }}
                                     </a>
                                 </li>
                             @endcan
                             @can('create', $model)
                                 <li>
                                     <a href="{{ route($entity->pluralType() . '.create') }}">
-                                        <i class="fa fa-plus" aria-hidden="true"></i> {{ __('crud.actions.new') }}
+                                        <i class="fa-solid fa-plus" aria-hidden="true"></i> {{ __('crud.actions.new') }}
                                     </a>
                                 </li>
                                 <li>
                                     <a href="{{ route($entity->pluralType() . '.create', ['copy' => $model->id]) }}">
-                                        <i class="fa fa-copy" aria-hidden="true"></i> {{ __('crud.actions.copy') }}
+                                        <i class="fa-solid fa-copy" aria-hidden="true"></i> {{ __('crud.actions.copy') }}
                                     </a>
                                 </li>
                             @endcan
@@ -154,14 +154,14 @@ if($campaign->campaign()->boosted() && $entity->hasHeaderImage($superboosted)) {
 
                                 <li>
                                     <a href="{{ route('entities.story.reorder', $model->entity->id) }}">
-                                        <i class="fa fa-list-ol"></i> {{ __('entities/story.reorder.icon_tooltip') }}
+                                        <i class="fa-solid fa-list-ol"></i> {{ __('entities/story.reorder.icon_tooltip') }}
                                     </a>
                                 </li>
                             @endcan
                                 <li>
                                     <a href="#" title="[{{ $model->getEntityType() }}:{{ $model->entity->id }}]" data-toggle="tooltip"
                                        data-clipboard="[{{ $model->getEntityType() }}:{{ $model->entity->id }}]" data-toast="{{ __('crud.alerts.copy_mention') }}">
-                                        <i class="fa fa-link"></i> {{ __('crud.actions.copy_mention') }}
+                                        <i class="fa-solid fa-link"></i> {{ __('crud.actions.copy_mention') }}
                                     </a>
                                 </li>
                         @if (auth()->user()->isAdmin())
@@ -179,12 +179,12 @@ if($campaign->campaign()->boosted() && $entity->hasHeaderImage($superboosted)) {
                     @endif
                                 <li>
                                     <a href="{{ route('entities.html-export', $entity) }}">
-                                        <i class="fa fa-print" aria-hidden="true"></i> {{ __('crud.actions.print') }}
+                                        <i class="fa-solid fa-print" aria-hidden="true"></i> {{ __('crud.actions.print') }}
                                     </a>
                                 </li>
                                 <li>
                                     <a href="{{ route('entities.json-export', $entity) }}">
-                                        <i class="fa fa-download" aria-hidden="true"></i> {{ __('crud.actions.json-export') }}
+                                        <i class="fa-solid fa-download" aria-hidden="true"></i> {{ __('crud.actions.json-export') }}
                                     </a>
                                 </li>
                             @endif
@@ -192,7 +192,7 @@ if($campaign->campaign()->boosted() && $entity->hasHeaderImage($superboosted)) {
                                 <li class="divider"></li>
                                 <li>
                                     <a href="{{ route('entities.move', $entity->id) }}">
-                                        <i class="fa fa-clone" aria-hidden="true"></i> {{ __('crud.actions.move') }}
+                                        <i class="fa-solid fa-clone" aria-hidden="true"></i> {{ __('crud.actions.move') }}
                                     </a>
                                 </li>
                             @endif
@@ -200,7 +200,7 @@ if($campaign->campaign()->boosted() && $entity->hasHeaderImage($superboosted)) {
                             @if ((empty($disableMove) || !$disableMove) && auth()->check() && auth()->user()->can('move', $model))
                                 <li>
                                     <a href="{{ route('entities.transform', $entity->id) }}">
-                                        <i class="fa fa-exchange-alt" aria-hidden="true"></i> {{ __('crud.actions.transform') }}
+                                        <i class="fa-solid fa-exchange-alt" aria-hidden="true"></i> {{ __('crud.actions.transform') }}
                                     </a>
                                 </li>
                             @endif
@@ -209,7 +209,7 @@ if($campaign->campaign()->boosted() && $entity->hasHeaderImage($superboosted)) {
                                 <li class="divider"></li>
                                 <li>
                                     <a href="#" class="delete-confirm text-red" data-name="{{ $model->name }}" data-toggle="modal" data-target="#delete-confirm">
-                                        <i class="fa fa-trash" aria-hidden="true"></i> {{ __('crud.remove') }}
+                                        <i class="fa-solid fa-trash" aria-hidden="true"></i> {{ __('crud.remove') }}
                                     </a>
                                     {!! Form::open(['method' => 'DELETE','route' => [$entity->pluralType() . '.destroy', $model->id], 'style'=>'display:inline', 'id' => 'delete-confirm-form']) !!}
                                     {!! Form::close() !!}

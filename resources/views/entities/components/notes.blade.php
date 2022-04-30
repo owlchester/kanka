@@ -48,7 +48,7 @@ $first = $pinnedNotes->first();
                 <i class="fas fa-refresh"></i> {{ __('entities/story.actions.load_more') }}
             </a>
 
-            <i class="fa fa-spinner fa-spin fa-2x" id="story-more-spinner" style="display: none"></i>
+            <i class="fa-solid fa-spinner fa-spin fa-2x" id="story-more-spinner" style="display: none"></i>
         </div>
     @endif
 
@@ -61,7 +61,7 @@ $first = $pinnedNotes->first();
     <div class="margin-bottom text-center row-add-note-button">
         <a href="{{ route('entities.entity_notes.create', $entity) }}" class="btn btn-warning btn-sm"
            data-toggle="tooltip" title="{{ __('crud.tooltips.new_post') }}">
-            <i class="fa fa-plus"></i> {{ __('crud.actions.new_post') }}
+            <i class="fa-solid fa-plus"></i> {{ __('crud.actions.new_post') }}
         </a>
     </div>
 @endcan

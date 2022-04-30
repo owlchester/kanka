@@ -6,8 +6,8 @@
 
 <div class="sidebar-section-box sidebar-section-profile">
     <div class="sidebar-section-title cursor" data-toggle="collapse" data-target="#sidebar-profile-elements">
-        <i class="fa fa-chevron-right" style="display: none"></i>
-        <i class="fa fa-chevron-down"></i>
+        <i class="fa-solid fa-chevron-right" style="display: none"></i>
+        <i class="fa-solid fa-chevron-down"></i>
         {{ __('crud.tabs.profile') }}
     </div>
 

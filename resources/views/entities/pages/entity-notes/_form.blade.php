@@ -41,7 +41,7 @@ if (!isset($model) && !empty($currentCampaign->ui_settings['post_collapsed'])) {
                 {!! Form::textarea('entryForEdition', null, ['class' => 'form-control html-editor', 'id' => 'entry', 'name' => 'entry']) !!}
                 <div class="text-right">
                     <a href="{{ route('helpers.link') }}" data-url="{{ route('helpers.link') }}" data-toggle="ajax-modal" data-target="#entity-modal" title="{{ __('helpers.link.description') }}">
-                        {{ __('crud.linking_help') }} <i class="fa fa-question-circle"></i>
+                        {{ __('crud.linking_help') }} <i class="fa-solid fa-question-circle"></i>
                     </a>
                 </div>
             </div>

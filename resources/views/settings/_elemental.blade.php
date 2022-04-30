@@ -17,27 +17,27 @@
         </div>
         <div class="row">
             <div class="col-xs-9 col-sm-8">{{ __('front.features.patreon.discord') }}</div>
-            <div class="col-xs-3 col-sm-4"><i class="fa fa-check-circle"></i></div>
+            <div class="col-xs-3 col-sm-4"><i class="fa-solid fa-check-circle"></i></div>
         </div>
         <div class="row">
             <div class="col-xs-9 col-sm-8">{{ __('front.features.patreon.default_image') }}</div>
-            <div class="col-xs-3 col-sm-4"><i class="fa fa-check-circle"></i></div>
+            <div class="col-xs-3 col-sm-4"><i class="fa-solid fa-check-circle"></i></div>
         </div>
         <div class="row">
             <div class="col-xs-9 col-sm-8">{!! __('front.features.patreon.hall_of_fame', ['link' => link_to_route('front.hall-of-fame', __('front/hall-of-fame.title'))]) !!}</div>
-            <div class="col-xs-3 col-sm-4"><i class="fa fa-check-circle"></i></div>
+            <div class="col-xs-3 col-sm-4"><i class="fa-solid fa-check-circle"></i></div>
         </div>
         <div class="row">
             <div class="col-xs-9 col-sm-8">{{ __('front.features.patreon.api_calls') }}</div>
-            <div class="col-xs-3 col-sm-4"><i class="fa fa-check-circle"></i></div>
+            <div class="col-xs-3 col-sm-4"><i class="fa-solid fa-check-circle"></i></div>
         </div>
         <div class="row">
             <div class="col-xs-9 col-sm-8">{{ __('front.features.patreon.pagination') }}</div>
-            <div class="col-xs-3 col-sm-4"><i class="fa fa-check-circle"></i></div>
+            <div class="col-xs-3 col-sm-4"><i class="fa-solid fa-check-circle"></i></div>
         </div>
         <div class="row">
             <div class="col-xs-9 col-sm-8">{{ __('front.features.patreon.monthly_vote') }}</div>
-            <div class="col-xs-3 col-sm-4"><i class="fa fa-check-circle"></i></div>
+            <div class="col-xs-3 col-sm-4"><i class="fa-solid fa-check-circle"></i></div>
         </div>
         <div class="row">
             <div class="col-xs-9 col-sm-8">{{ __('front.features.patreon.boosts') }}</div>
@@ -45,11 +45,11 @@
         </div>
         <div class="row">
             <div class="col-xs-9 col-sm-8">{{ __('front.features.patreon.curation') }}</div>
-            <div class="col-xs-3 col-sm-4"><i class="fa fa-check-circle"></i></div>
+            <div class="col-xs-3 col-sm-4"><i class="fa-solid fa-check-circle"></i></div>
         </div>
         <div class="row">
             <div class="col-xs-9 col-sm-8">{{ __('front.features.patreon.impact') }}</div>
-            <div class="col-xs-3 col-sm-4"><i class="fa fa-check-circle"></i></div>
+            <div class="col-xs-3 col-sm-4"><i class="fa-solid fa-check-circle"></i></div>
         </div>
     </div>
 

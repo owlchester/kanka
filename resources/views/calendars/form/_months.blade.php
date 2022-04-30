@@ -9,7 +9,7 @@
         <div class="col-md-6">{{ __('calendars.parameters.month.name') }}</div>
         <div class="col-md-2">{{ __('calendars.parameters.month.length') }}</div>
         <div class="col-md-2">{{ __('calendars.parameters.month.alias') }}</div>
-        <div class="col-md-2">{{ __('calendars.parameters.month.type') }} <i class="fa fa-question-circle" data-toggle="tooltip" title="{{ __('calendars.helpers.month_type') }}"></i></div>
+        <div class="col-md-2">{{ __('calendars.parameters.month.type') }} <i class="fa-solid fa-question-circle" data-toggle="tooltip" title="{{ __('calendars.helpers.month_type') }}"></i></div>
     </div>
 </div>
 <?php
@@ -42,9 +42,9 @@ if (!empty($names)) {
             <div class="row">
                 <div class="col-md-6">
                     <div class="input-group">
-                            <span class="input-group-addon">
-                                <span class="fa fa-arrows-alt-v"></span>
-                            </span>
+                        <span class="input-group-addon cursor">
+                            <span class="fa-solid fa-arrows-alt-v"></span>
+                        </span>
                         {!! Form::text('month_name[]', $month['name'], ['class' => 'form-control']) !!}
                     </div>
                 </div>
@@ -63,7 +63,7 @@ if (!empty($names)) {
                         {!! Form::select('month_type[]', __('calendars.month_types'), (!empty($month['type']) ? $month['type'] : 'standard'), ['class' => 'form-control']) !!}
                         <span class="input-group-btn">
                                 <span class="month-delete btn btn-danger" data-remove="4" title="{{ __('crud.remove') }}">
-                                    <i class="fa fa-trash"></i>
+                                    <i class="fa-solid fa-trash"></i>
                                 </span>
                             </span>
                     </div>
@@ -73,7 +73,7 @@ if (!empty($names)) {
     @endforeach
 </div>
 <a class="btn btn-default" id="add_month" href="#" title="{{ __('calendars.actions.add_month') }}">
-    <i class="fa fa-plus"></i> {{ __('calendars.actions.add_month') }}
+    <i class="fa-solid fa-plus"></i> {{ __('calendars.actions.add_month') }}
 </a>
 
 @section('modals')
@@ -94,7 +94,7 @@ if (!empty($names)) {
                 {!! Form::select('month_type[]', __('calendars.month_types'), 'standard', ['class' => 'form-control']) !!}
                 <span class="input-group-btn">
                     <span class="month-delete btn btn-danger" data-remove="4" title="{{ __('crud.remove') }}">
-                        <i class="fa fa-trash"></i>
+                        <i class="fa-solid fa-trash"></i>
                     </span>
                 </span>
             </div>

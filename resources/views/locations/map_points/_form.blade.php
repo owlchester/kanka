@@ -40,11 +40,11 @@ $sizeOptions = [
     <div class="row">
         <div class="col-md-12 text-center">
             <a href="#" class="btn btn-app" id="phase-first-entity">
-                <i class="fas fa fa-search"></i>
+                <i class="fas fa-solid fa-search"></i>
                 {{ __('crud.fields.entity') }}
             </a>
             <a href="#" class="btn btn-app" id="phase-first-label">
-                <i class="fas fa fa-comment-alt"></i>
+                <i class="fas fa-solid fa-comment-alt"></i>
                 {{ __('locations.map.points.fields.name') }}
             </a>
         </div>
@@ -54,7 +54,7 @@ $sizeOptions = [
     <div class="row">
         <div class="col-sm-12 ">
             <div class="form-group required point-entity" style="{{ $entityFieldStyle }}">
-                <a href="#" class="phase-undo pull-right"><i class="fa fa-undo" title="{{ __('crud.actions.back') }}"></i></a>
+                <a href="#" class="phase-undo pull-right"><i class="fa-solid fa-undo" title="{{ __('crud.actions.back') }}"></i></a>
                 {!! Form::select2(
                     'target_entity_id',
                     (isset($model) && $model->targetEntity ? $model->targetEntity : null),
@@ -66,7 +66,7 @@ $sizeOptions = [
                 ) !!}
             </div>
             <div class="form-group required point-label" style="{{ $nameFieldStyle }}">
-                <a href="#" class="phase-undo pull-right"><i class="fa fa-undo" title="{{ __('crud.actions.back') }}"></i></a>
+                <a href="#" class="phase-undo pull-right"><i class="fa-solid fa-undo" title="{{ __('crud.actions.back') }}"></i></a>
                 <label>{{ __('locations.map.points.fields.name') }}</label>
                 {!! Form::text('name', (!isset($model) ? request()->get('name', null) : null), ['placeholder' => __('locations.map.points.placeholders.name'), 'class' => 'form-control', 'maxlength' => 194]) !!}
             </div>
@@ -84,7 +84,7 @@ $sizeOptions = [
             <div class="form-group required">
                 <label>{{ __('locations.map.points.fields.icon') }}</label>
                 <select name="icon" class="form-control select2-icon" style="width: 100%" data-language="{{ LaravelLocalization::getCurrentLocale() }}">
-                    <option value="pin" data-icon="fa fa-map-marker">{{ __('locations.map.points.icons.pin') }}</option>
+                    <option value="pin" data-icon="fa-solid fa-map-marker">{{ __('locations.map.points.icons.pin') }}</option>
                     <option value="entity"@if (isset($model) && $model->icon == "entity") selected="selected" @endif>{{ __('locations.map.points.icons.entity') }}</option>
                     @foreach ($iconOptions as $icon => $text)
                     <option value="{{ $icon }}" @if (isset($model) && $model->icon == $icon) selected="selected" @endif>{{ $text }}</option>

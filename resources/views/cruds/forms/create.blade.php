@@ -37,7 +37,7 @@
             @if ($tabBoosted)
                 <li class="{{ (request()->get('tab') == 'boost' ? ' active' : '') }}">
                     <a href="#form-boost" title="{{ __('crud.tabs.boost') }}">
-                        <i class="fa fa-rocket"></i>
+                        <i class="fa-solid fa-rocket"></i>
                         <span class="hidden-xs hidden-sm">{{ __('crud.tabs.boost') }}</span>
                     </a>
                 </li>
@@ -45,7 +45,7 @@
             @if ($tabAttributes)
                 <li class="{{ (request()->get('tab') == 'attributes' ? ' active' : '') }}">
                     <a href="#form-attributes" title="{{ __('crud.tabs.attributes') }}">
-                        <i class="fa fa-th-list" title="{{ __('crud.tabs.attributes') }}"></i>
+                        <i class="fa-solid fa-th-list" title="{{ __('crud.tabs.attributes') }}"></i>
                         <span class="hidden-xs hidden-sm">{{ __('crud.tabs.attributes') }}</span>
                     </a>
                 </li>
@@ -53,7 +53,7 @@
             @if ($tabPermissions)
             <li class="{{ (request()->get('tab') == 'permission' ? ' active' : '') }}">
                 <a href="#form-permissions" title="{{ __('crud.tabs.permissions') }}">
-                    <i class="fa fa-cog" title="{{ __('crud.tabs.permissions') }}"></i>
+                    <i class="fa-solid fa-cog" title="{{ __('crud.tabs.permissions') }}"></i>
                     <span class="hidden-xs hidden-sm">{{ __('crud.tabs.permissions') }}</span>
                 </a>
             </li>

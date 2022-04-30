@@ -48,9 +48,9 @@ $inSection = false;
             @if ($attribute->isCheckbox())
                 <span class="live-edit" data-id="{{ $attribute->id }}">
                 @if ($attribute->value)
-                    <i class="fa fa-check"></i>
+                    <i class="fa-solid fa-check"></i>
                 @else
-                    <i class="fa fa-times"></i>
+                    <i class="fa-solid fa-times"></i>
                 @endif
                 </span>
             @elseif ($attribute->isText())
@@ -64,7 +64,7 @@ $inSection = false;
             @endif
 
             @if($attributeService->isLoop($attribute->name))
-                <i class="fa fa-warning" title="{{ __('entities/attributes.errors.loop') }}" data-toggle="tooltip"></i>
+                <i class="fa-solid fa-warning" title="{{ __('entities/attributes.errors.loop') }}" data-toggle="tooltip"></i>
             @endif
         </dd>
 @endforeach

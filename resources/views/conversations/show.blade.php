@@ -19,7 +19,7 @@
                 <div class="box-tools">
                     <button class="btn btn-default" data-toggle="ajax-modal" data-target="#entity-modal"
                             data-url="{{ route('conversations.conversation_participants.index', $model) }}">
-                        <i class="fa fa-users"> {{ $model->participants->count() }}</i>
+                        <i class="fa-solid fa-users"> {{ $model->participants->count() }}</i>
                     </button>
                 </div>
             </div>

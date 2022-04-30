@@ -26,13 +26,13 @@
         @if(!empty($dashboards))
             <div class="btn-group pull-right">
                 <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                    <i class="fa fa-th-large"></i>
+                    <i class="fa-solid fa-th-large"></i>
                 </button>
                 <ul class="dropdown-menu" role="menu">
                     @if (!empty($dashboard))
                         <li>
                             <a href="{{ route('dashboard', ['dashboard' => 'default']) }}">
-                                <i class="fa fa-th-large"></i> {{ __('dashboard.dashboards.default.title')}}
+                                <i class="fa-solid fa-th-large"></i> {{ __('dashboard.dashboards.default.title')}}
                             </a>
                         </li>
                     @endif
@@ -42,7 +42,7 @@
                         @endif
                         <li>
                             <a href="{{ route('dashboard', ['dashboard' => $dash->id]) }}">
-                                <i class="fa fa-th-large"></i> {!! $dash->name !!}
+                                <i class="fa-solid fa-th-large"></i> {!! $dash->name !!}
                             </a>
                         </li>
                     @endforeach
@@ -50,7 +50,7 @@
                     @if($settings)
                         <li>
                             <a href="{{ route('dashboard.setup', !empty($dashboard) ? ['dashboard' => $dashboard->id] : []) }}">
-                                <i class="fa fa-cog"></i> {{ __('dashboard.settings.title') }}
+                                <i class="fa-solid fa-cog"></i> {{ __('dashboard.settings.title') }}
                             </a>
                         </li>
                     @endif
@@ -58,7 +58,7 @@
                         <li class="divider"></li>
                         <li>
                             <a href="{{ route('campaigns.edit', $campaign) }}">
-                                <i class="fa fa-pencil"></i> {{ __('campaigns.show.actions.edit') }}
+                                <i class="fa-solid fa-pencil"></i> {{ __('campaigns.show.actions.edit') }}
                             </a>
                         </li>
                     @endcan
@@ -66,7 +66,7 @@
             </div>
         @elseif($settings)
             <a href="{{ route('dashboard.setup') }}" class="btn btn-default btn-xl" title="{{ __('dashboard.settings.title') }}">
-                <i class="fa fa-th-large"></i>
+                <i class="fa-solid fa-th-large"></i>
             </a>
         @endif
         @can ('follow', $campaign)
@@ -79,7 +79,7 @@
                     data-toggle="tooltip" title="{{ __('dashboard.helpers.follow') }}"
                     data-placement="bottom"
             >
-                <i class="fa fa-star"></i> <span id="campaign-follow-text"></span>
+                <i class="fa-regular fa-star"></i> <span id="campaign-follow-text"></span>
             </button>
         @endcan
         @can('apply', $campaign)
@@ -137,7 +137,7 @@
         <div class="row margin-top">
             <div class="col-md-12 text-center">
                 <a href="{{ route('dashboard.setup', !empty($dashboard) ? ['dashboard' => $dashboard->id] : []) }}" class="btn btn-default" title="{{ __('dashboard.settings.title') }}">
-                    <i class="fa fa-cog"></i> {{ __('dashboard.settings.title') }}
+                    <i class="fa-solid fa-cog"></i> {{ __('dashboard.settings.title') }}
                 </a>
             </div>
         </div>

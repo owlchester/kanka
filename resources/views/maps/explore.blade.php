@@ -222,7 +222,7 @@
                                 </div>
                             </div>
                             <div class="submit-animation" style="display: none;">
-                                <button class="btn btn-success" disabled><i class="fa fa-spinner fa-spin"></i></button>
+                                <button class="btn btn-success" disabled><i class="fa-solid fa-spinner fa-spin"></i></button>
                             </div>
                         </div>
 

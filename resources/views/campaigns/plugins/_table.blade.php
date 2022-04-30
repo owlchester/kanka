@@ -28,7 +28,7 @@
         <tfoot style="display: none">
         <tr>
             <th class="text-center">
-                <i class="fa fa-spinner fa-spin fa-2x"></i>
+                <i class="fa-solid fa-spinner fa-spin fa-2x"></i>
             </th>
         </tr>
         </tfoot>

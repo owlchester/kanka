@@ -14,7 +14,7 @@
 
         @if($model->date)
             <span title="{{ __('journals.fields.date') }}" data-toggle="tooltip">
-                <i class="fa fa-calendar-day"></i> {{ $model->date }}
+                <i class="fa-solid fa-calendar-day"></i> {{ $model->date }}
             </span>
         @endif
     </div>

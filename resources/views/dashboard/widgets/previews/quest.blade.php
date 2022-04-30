@@ -30,7 +30,7 @@ $model = $entity->child;
                     <i class="fas fa-lock pull-right" title="{{ trans('crud.is_private') }}"></i>
                 @endif
                 @if ($model->is_completed)
-                    <i class="fa fa-check-circle pull-right margin-r-5" title="{{ trans('quests.fields.is_completed') }}"></i>
+                    <i class="fa-solid fa-check-circle pull-right margin-r-5" title="{{ trans('quests.fields.is_completed') }}"></i>
                 @endif
 
                 @if(!empty($customName))
@@ -84,7 +84,7 @@ $model = $entity->child;
         </div>
         <a href="#" class="preview-switch hidden"
            id="widget-preview-switch-{{ $widget->id }}" data-widget="{{ $widget->id }}">
-            <i class="fa fa-chevron-down"></i>
+            <i class="fa-solid fa-chevron-down"></i>
         </a>
         @endif
     </div>

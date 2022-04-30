@@ -50,13 +50,13 @@
                    data-url="{{ route('maps.map_layers.edit', [$model, $layer]) }}"
                    data-backdrop="static"
                 >
-                    <i class="fa fa-pencil"></i>
+                    <i class="fa-solid fa-pencil"></i>
                 </a>
 
                 <a href="#" class="btn btn-xs btn-danger delete-confirm" data-toggle="modal" data-name="{{ $layer->name }}"
                         data-target="#delete-confirm" data-delete-target="delete-form-layer-{{ $layer->id }}"
                         title="{{ __('crud.remove') }}">
-                    <i class="fa fa-trash" aria-hidden="true"></i>
+                    <i class="fa-solid fa-trash" aria-hidden="true"></i>
                 </a>
             </td>
         </tr>

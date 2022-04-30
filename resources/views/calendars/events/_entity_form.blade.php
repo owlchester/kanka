@@ -24,7 +24,7 @@ $onlyOneCalendar = count($calendars) == 1;
 
 <div class="entity-calendar-loading" style="display: none">
     <p class="text-center">
-        <i class="fa fa-spin fa-spinner"></i>
+        <i class="fa-solid fa-spin fa-spinner"></i>
     </p>
 </div>
 

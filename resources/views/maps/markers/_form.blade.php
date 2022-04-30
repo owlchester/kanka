@@ -22,13 +22,13 @@ $sizeOptions = [
     <ul class="nav nav-tabs">
         <li role="presentation" @if($activeTab == 1) class="active" @endif>
             <a href="#marker-pin" data-nohash="true" data-toggle="tooltip" class="text-center" title="{{ __('maps/markers.tabs.marker') }}">
-                <i class="fa fa-2x fa-map-pin"></i><br />
+                <i class="fa-solid fa-2x fa-map-pin"></i><br />
                 {{ __('maps/markers.tabs.marker') }}
             </a>
         </li>
         <li role="presentation" @if($activeTab == 2) class="active" @endif>
             <a href="#marker-label" data-nohash="true"  data-toggle="tooltip" class="text-center" title="{{ __('maps/markers.tabs.label') }}">
-                <i class="fa fa-2x fa-font"></i><br />
+                <i class="fa-solid fa-2x fa-font"></i><br />
                 {{ __('maps/markers.tabs.label') }}
             </a>
         </li>
@@ -40,7 +40,7 @@ $sizeOptions = [
         </li>
         <li role="presentation" @if($activeTab == 5) class="active" @endif>
             <a href="#marker-poly" data-nohash="true"  data-toggle="tooltip" class="text-center" title="{{ __('maps/markers.tabs.polygon') }}">
-                <i class="fa fa-2x fa-draw-polygon"></i><br />
+                <i class="fa-solid fa-2x fa-draw-polygon"></i><br />
                 {{ __('maps/markers.tabs.polygon') }}
             </a>
         </li>
@@ -59,7 +59,7 @@ $sizeOptions = [
                     <div class="form-group">
                         <label>{{ __('maps/markers.fields.custom_icon') }}</label>
                         @if ($campaign->campaign()->boosted())
-                            {!! Form::text('custom_icon', \App\Facades\FormCopy::field('custom_icon')->string(), ['class' => 'form-control', 'placeholder' => '<i class="fa fa-gem"></i>, <i class="ra ra-sword">']) !!}
+                            {!! Form::text('custom_icon', \App\Facades\FormCopy::field('custom_icon')->string(), ['class' => 'form-control', 'placeholder' => '<i class="fa-solid fa-gem"></i>, <i class="ra ra-sword">']) !!}
                             <p class="help-block">{!! __('maps/markers.helpers.custom_icon', ['rpgawesome' => '<a href="https://nagoshiashumari.github.io/Rpg-Awesome/" target="_blank">RPG Awesome</a>', 'fontawesome' => '<a href="https://fontawesome.com/search?m=free&s=solid" target="_blank">Font Awesome</a>']) !!}</p>
                         @else
                             <p class="help-block">{{ __('crud.errors.boosted') }}</p>

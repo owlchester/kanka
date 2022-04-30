@@ -7,14 +7,14 @@
 
 <li class="{{ $sidebar->active('campaigns') }} section section-world">
     <a href="{{ route('campaign') }}">
-        <i class="fa fa-globe"></i>
+        <i class="fa-solid fa-globe"></i>
         <span>{{ __('sidebar.world') }}</span>
     </a>
 </li>
 
 @if ($currentCampaign->enabled('characters'))
     <li class="{{ $sidebar->active('characters') }} subsection section-characters">
-        <a class="" href="{{ route('characters.index') }}"><i class="fa fa-user"></i> <span>{{ __('sidebar.characters') }}</span></a>
+        <a class="" href="{{ route('characters.index') }}"><i class="fa-solid fa-user"></i> <span>{{ __('sidebar.characters') }}</span></a>
     </li>
 @endif
 @if ($currentCampaign->enabled('locations'))
@@ -39,7 +39,7 @@
 @endif
 @if ($currentCampaign->enabled('calendars'))
     <li class="{{ $sidebar->active('calendars') }} subsection section-calendars">
-        <a href="{{ route('calendars.' . $defaultIndex) }}"><i class="fa fa-calendar"></i> <span>{{ __('sidebar.calendars') }}</span></a>
+        <a href="{{ route('calendars.' . $defaultIndex) }}"><i class="fa-solid fa-calendar"></i> <span>{{ __('sidebar.calendars') }}</span></a>
     </li>
 @endif
 @if ($currentCampaign->enabled('timelines'))
@@ -55,7 +55,7 @@
 
 <li class="section section-campaign">
     <a href="{{ route('campaign') }}">
-        <i class="fa fa-globe"></i>
+        <i class="fa-solid fa-globe"></i>
         <span>{{ __('sidebar.campaign') }}</span>
     </a>
 </li>
@@ -77,7 +77,7 @@
 @endif
 @if ($currentCampaign->enabled('events'))
     <li class="{{ $sidebar->active('events') }} subsection section-events">
-        <a href="{{ route('events.' . $defaultIndex) }}"><i class="fa fa-bolt"></i> <span>{{ __('sidebar.events') }}</span></a>
+        <a href="{{ route('events.' . $defaultIndex) }}"><i class="fa-solid fa-bolt"></i> <span>{{ __('sidebar.events') }}</span></a>
     </li>
 @endif
 @if ($currentCampaign->enabled('abilities'))
@@ -102,12 +102,12 @@
 
 @if ($currentCampaign->enabled('tags'))
     <li class="{{ $sidebar->active('tags') }} subsection section-tags">
-        <a href="{{ route('tags.' . $defaultIndex) }}"><i class="fa fa-tags"></i> <span>{{ __('sidebar.tags') }}</span></a>
+        <a href="{{ route('tags.' . $defaultIndex) }}"><i class="fa-solid fa-tags"></i> <span>{{ __('sidebar.tags') }}</span></a>
     </li>
 @endif
 @if ($currentCampaign->enabled('conversations'))
     <li class="{{ $sidebar->active('conversations') }} subsection section-conversations">
-        <a href="{{ route('conversations.index') }}"><i class="fa fa-comment"></i> <span>{{ __('sidebar.conversations') }}</span></a>
+        <a href="{{ route('conversations.index') }}"><i class="fa-solid fa-comment"></i> <span>{{ __('sidebar.conversations') }}</span></a>
     </li>
 @endif
 @if ($currentCampaign->enabled('dice_rolls'))
@@ -126,5 +126,5 @@
     </li>
 @endcan
 <li class="{{ $sidebar->active('attribute_templates') }} subsection section-attribute-templates">
-    <a href="{{ route('attribute_templates.index') }}"><i class="fa fa-copy"></i> <span>{{ __('sidebar.attribute_templates') }}</span></a>
+    <a href="{{ route('attribute_templates.index') }}"><i class="fa-solid fa-copy"></i> <span>{{ __('sidebar.attribute_templates') }}</span></a>
 </li>

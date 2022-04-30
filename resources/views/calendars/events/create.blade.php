@@ -24,7 +24,7 @@
 
             <div class="pull-right">
                 <button class="btn btn-success">
-                    <i class="fa fa-spinner fa-spin" style="display:none;"></i>
+                    <i class="fa-solid fa-spinner fa-spin" style="display:none;"></i>
                     <span>{{ __('crud.save') }}</span>
                 </button>
             </div>

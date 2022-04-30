@@ -7,7 +7,7 @@
 <div class="box box-solid">
     <div class="box-header with-border">
         <h3 class="box-title">
-            <i class="fa fa-users"></i> {{ __('campaigns.show.tabs.members') }}
+            <i class="fa-solid fa-users"></i> {{ __('campaigns.show.tabs.members') }}
         </h3>
         <div class="box-tools">
             <button class="btn btn-default btn-sm" data-toggle="modal"
@@ -77,14 +77,14 @@
                             @if(auth()->user()->can('switch', $relation) || auth()->user()->can('delete', $relation))
                                 <div class="dropdown">
                                     <a class="dropdown-toggle btn btn-sm btn-default" data-toggle="dropdown" aria-expanded="false" data-placement="right" href="#">
-                                        <i class="fa fa-ellipsis-h" data-tree="escape"></i>
+                                        <i class="fa-solid fa-ellipsis-h" data-tree="escape"></i>
                                         <span class="sr-only">{{ __('crud.actions.actions') }}</span>
                                     </a>
                                     <ul class="dropdown-menu dropdown-menu-right" role="menu">
                                         @can('switch', $relation)
                                             <li>
                                                 <a href="{{ route('identity.switch', $relation) }}" title="{{ __('campaigns.members.helpers.switch') }}" data-toggle="tooltip" class="switch-user">
-                                                    <i class="fa fa-sign-in-alt" aria-hidden="true"></i>
+                                                    <i class="fa-solid fa-sign-in-alt" aria-hidden="true"></i>
                                                     {{ __('campaigns.members.actions.switch') }}
                                                 </a>
                                             </li>
@@ -96,7 +96,7 @@
                                                    data-toggle="modal" data-name="{{ $relation->user->name }}"
                                                    data-target="#delete-confirm" data-delete-target="campaign-user-{{ $relation->id }}"
                                                 >
-                                                    <i class="fa fa-trash" aria-hidden="true"></i>
+                                                    <i class="fa-solid fa-trash" aria-hidden="true"></i>
                                                     {{ __('campaigns.members.actions.remove') }}
                                                 </a>
                                             </li>
@@ -145,7 +145,7 @@
                 <p>
                     {!! __('campaigns.members.helpers.admin', [
         'link' => link_to_route('faq.show', __('front.menu.faq'), ['key' => 'user-switch'], ['target' => '_blank']),
-        'button' => '<code><i class="fa fa-sign-in-alt" aria-hidden="true"></i>' . __('campaigns.members.actions.switch') . '</code>']) !!}
+        'button' => '<code><i class="fa-solid fa-sign-in-alt" aria-hidden="true"></i>' . __('campaigns.members.actions.switch') . '</code>']) !!}
                 </p>
                 @endif
             </div>

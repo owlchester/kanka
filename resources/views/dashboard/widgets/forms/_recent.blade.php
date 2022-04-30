@@ -51,7 +51,7 @@ $advancedFilters = [
                         {!! Form::checkbox('config[singular]', 1, (!empty($model) ? $model->conf('singular') : null)) !!}
 
                         {{ __('dashboard.widgets.recent.singular') }}
-                        <i class="fa fa-question-circle hidden-xs hidden-sm" title="{{ __('dashboard.widgets.recent.help') }}" data-toggle="tooltip"></i>
+                        <i class="fa-solid fa-question-circle hidden-xs hidden-sm" title="{{ __('dashboard.widgets.recent.help') }}" data-toggle="tooltip"></i>
                     </label>
                 </div>
                 <p class="help-block hidden-md hidden-lg">
@@ -67,7 +67,7 @@ $advancedFilters = [
                             {!! Form::checkbox('config[entity-header]', 1, (!empty($model) ? $model->conf('entity-header') : null), ['id' => 'config-entity-header']) !!}
                             {{ __('dashboard.widgets.recent.entity-header') }}
 
-                            <i class="fa fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" title="{{ __('dashboard.widgets.recent.helpers.entity-header') }}"></i>
+                            <i class="fa-solid fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" title="{{ __('dashboard.widgets.recent.helpers.entity-header') }}"></i>
                         </label>
                     </div>
                     <p class="help-block visible-xs visible-sm">{{ __('dashboard.widgets.recent.helpers.entity-header') }}</p>

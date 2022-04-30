@@ -2,7 +2,7 @@
 <div class="col-md-4 col-xs-6">
     <div class="entity-asset asset-link" data-id="{{ $asset->id }}" data-asset-type="alias">
         <span href="#" class="child icon">
-            <i class="fa fa-arrow-right"></i>
+            <i class="fa-solid fa-arrow-right"></i>
         </span>
         <div class="child text">
             {{ $asset->name }}<br />

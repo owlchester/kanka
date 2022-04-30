@@ -35,17 +35,17 @@
             </tr>
             <tr>
                 <td class="text">{{ __('front.features.patreon.users_roles') }}</td>
-                <td><i class="fa fa-infinity" title="{{ __('front.features.unlimited') }}"></i></td>
-                <td><i class="fa fa-infinity" title="{{ __('front.features.unlimited') }}"></i></td>
-                <td><i class="fa fa-infinity" title="{{ __('front.features.unlimited') }}"></i></td>
-                <td><i class="fa fa-infinity" title="{{ __('front.features.unlimited') }}"></i></td>
+                <td><i class="fa-solid fa-infinity" title="{{ __('front.features.unlimited') }}"></i></td>
+                <td><i class="fa-solid fa-infinity" title="{{ __('front.features.unlimited') }}"></i></td>
+                <td><i class="fa-solid fa-infinity" title="{{ __('front.features.unlimited') }}"></i></td>
+                <td><i class="fa-solid fa-infinity" title="{{ __('front.features.unlimited') }}"></i></td>
             </tr>
             <tr>
                 <td class="text">{{ __('front.features.patreon.entities') }}</td>
-                <td><i class="fa fa-infinity" title="{{ __('front.features.unlimited') }}"></i></td>
-                <td><i class="fa fa-infinity" title="{{ __('front.features.unlimited') }}"></i></td>
-                <td><i class="fa fa-infinity" title="{{ __('front.features.unlimited') }}"></i></td>
-                <td><i class="fa fa-infinity" title="{{ __('front.features.unlimited') }}"></i></td>
+                <td><i class="fa-solid fa-infinity" title="{{ __('front.features.unlimited') }}"></i></td>
+                <td><i class="fa-solid fa-infinity" title="{{ __('front.features.unlimited') }}"></i></td>
+                <td><i class="fa-solid fa-infinity" title="{{ __('front.features.unlimited') }}"></i></td>
+                <td><i class="fa-solid fa-infinity" title="{{ __('front.features.unlimited') }}"></i></td>
             </tr>
             <tr>
                 <td class="text">
@@ -61,16 +61,16 @@
             <tr>
                 <td class="text">{{ __('front.features.patreon.no_ads') }}</td>
                 <td></td>
-                <td><i class="fa fa-check-circle"></i></td>
-                <td><i class="fa fa-check-circle"></i></td>
-                <td><i class="fa fa-check-circle"></i></td>
+                <td><i class="fa-solid fa-check-circle"></i></td>
+                <td><i class="fa-solid fa-check-circle"></i></td>
+                <td><i class="fa-solid fa-check-circle"></i></td>
             </tr>
             <tr>
                 <td class="text">{{ __('front.features.patreon.discord') }}</td>
                 <td></td>
-                <td><i class="fa fa-check-circle"></i></td>
-                <td><i class="fa fa-check-circle"></i></td>
-                <td><i class="fa fa-check-circle"></i></td>
+                <td><i class="fa-solid fa-check-circle"></i></td>
+                <td><i class="fa-solid fa-check-circle"></i></td>
+                <td><i class="fa-solid fa-check-circle"></i></td>
             </tr>
             <tr>
                 <td class="text">
@@ -79,51 +79,51 @@
                     </a>
                 </td>
                 <td></td>
-                <td><i class="fa fa-check-circle"></i></td>
-                <td><i class="fa fa-check-circle"></i></td>
-                <td><i class="fa fa-check-circle"></i></td>
+                <td><i class="fa-solid fa-check-circle"></i></td>
+                <td><i class="fa-solid fa-check-circle"></i></td>
+                <td><i class="fa-solid fa-check-circle"></i></td>
             </tr>
             <tr>
                 <td class="text">{{ __('front.features.patreon.default_image') }}</td>
                 <td></td>
-                <td><i class="fa fa-check-circle"></i></td>
-                <td><i class="fa fa-check-circle"></i></td>
-                <td><i class="fa fa-check-circle"></i></td>
+                <td><i class="fa-solid fa-check-circle"></i></td>
+                <td><i class="fa-solid fa-check-circle"></i></td>
+                <td><i class="fa-solid fa-check-circle"></i></td>
             </tr>
             <tr>
                 <td class="text">{!! __('front.features.patreon.hall_of_fame', ['link' => link_to_route('front.hall-of-fame', __('front/hall-of-fame.title'))]) !!}</td>
                 <td></td>
-                <td><i class="fa fa-check-circle"></i></td>
-                <td><i class="fa fa-check-circle"></i></td>
-                <td><i class="fa fa-check-circle"></i></td>
+                <td><i class="fa-solid fa-check-circle"></i></td>
+                <td><i class="fa-solid fa-check-circle"></i></td>
+                <td><i class="fa-solid fa-check-circle"></i></td>
             </tr>
             <tr>
                 <td class="text">{{ __('front.features.patreon.api_calls') }}</td>
                 <td></td>
-                <td><i class="fa fa-check-circle"></i></td>
-                <td><i class="fa fa-check-circle"></i></td>
-                <td><i class="fa fa-check-circle"></i></td>
+                <td><i class="fa-solid fa-check-circle"></i></td>
+                <td><i class="fa-solid fa-check-circle"></i></td>
+                <td><i class="fa-solid fa-check-circle"></i></td>
             </tr>
             <tr>
-                <td class="text">{{ __('front.features.patreon.pagination') }} <i class="fa fa-question-circle-o" title="{{ __('front.features.patreon.pagination_help') }}"></i></td>
+                <td class="text">{{ __('front.features.patreon.pagination') }} <i class="fa-solid fa-question-circle-o" title="{{ __('front.features.patreon.pagination_help') }}"></i></td>
                 <td></td>
-                <td><i class="fa fa-check-circle"></i></td>
-                <td><i class="fa fa-check-circle"></i></td>
-                <td><i class="fa fa-check-circle"></i></td>
+                <td><i class="fa-solid fa-check-circle"></i></td>
+                <td><i class="fa-solid fa-check-circle"></i></td>
+                <td><i class="fa-solid fa-check-circle"></i></td>
             </tr>
             <tr>
                 <td class="text">{{ __('front.features.patreon.curation') }}</td>
                 <td></td>
                 <td></td>
                 <td></td>
-                <td><i class="fa fa-check-circle"></i></td>
+                <td><i class="fa-solid fa-check-circle"></i></td>
             </tr>
             <tr>
                 <td class="text">{{ __('front.features.patreon.impact') }}</td>
                 <td></td>
                 <td></td>
                 <td></td>
-                <td><i class="fa fa-check-circle"></i></td>
+                <td><i class="fa-solid fa-check-circle"></i></td>
             </tr>
             </tbody>
         </table>
@@ -155,96 +155,96 @@
             <tbody>
             <tr>
                 <td class="text">{!! __('front.features.boosts.marketplace', ['marketplace' => link_to('https://marketplace.kanka.io', __('front.menu.marketplace'), ['target' => '_blank'])]) !!}</td>
-                <td><i class="fa fa-check-circle"></i></td>
-                <td><i class="fa fa-check-circle"></i></td>
+                <td><i class="fa-solid fa-check-circle"></i></td>
+                <td><i class="fa-solid fa-check-circle"></i></td>
             </tr>
             <tr>
                 <td class="text">{{ __('front.features.boosts.theme') }}</td>
-                <td><i class="fa fa-check-circle"></i></td>
-                <td><i class="fa fa-check-circle"></i></td>
+                <td><i class="fa-solid fa-check-circle"></i></td>
+                <td><i class="fa-solid fa-check-circle"></i></td>
             </tr>
             <tr>
                 <td class="text">
                     {!! link_to('https://kanka.io/' . app()->getLocale() . '/campaign/20000/notes/151346#entity-note-body-149581', __('front.features.boosts.css'), ['target' => '_blank']) !!}
                 </td>
-                <td><i class="fa fa-check-circle"></i></td>
-                <td><i class="fa fa-check-circle"></i></td>
+                <td><i class="fa-solid fa-check-circle"></i></td>
+                <td><i class="fa-solid fa-check-circle"></i></td>
             </tr>
             <tr>
                 <td class="text">{{ __('front.features.boosts.tooltip') }}</td>
-                <td><i class="fa fa-check-circle"></i></td>
-                <td><i class="fa fa-check-circle"></i></td>
+                <td><i class="fa-solid fa-check-circle"></i></td>
+                <td><i class="fa-solid fa-check-circle"></i></td>
             </tr>
             <tr>
                 <td class="text">{{ __('front.features.boosts.header_image') }}</td>
-                <td><i class="fa fa-check-circle"></i></td>
-                <td><i class="fa fa-check-circle"></i></td>
+                <td><i class="fa-solid fa-check-circle"></i></td>
+                <td><i class="fa-solid fa-check-circle"></i></td>
             </tr>
             <tr>
                 <td class="text">
                     {!! link_to_route('front.features.dashboards', __('front.features.boosts.dashboards'), [], ['target' => '_blank']) !!}
                 </td>
-                <td><i class="fa fa-check-circle"></i></td>
-                <td><i class="fa fa-check-circle"></i></td>
+                <td><i class="fa-solid fa-check-circle"></i></td>
+                <td><i class="fa-solid fa-check-circle"></i></td>
             </tr>
             <tr>
                 <td class="text">{{ __('front.features.boosts.images') }}</td>
-                <td><i class="fa fa-check-circle"></i></td>
-                <td><i class="fa fa-check-circle"></i></td>
+                <td><i class="fa-solid fa-check-circle"></i></td>
+                <td><i class="fa-solid fa-check-circle"></i></td>
             </tr>
             <tr>
                 <td class="text">{{ __('front.features.boosts.entity_links') }}</td>
-                <td><i class="fa fa-check-circle"></i></td>
-                <td><i class="fa fa-check-circle"></i></td>
+                <td><i class="fa-solid fa-check-circle"></i></td>
+                <td><i class="fa-solid fa-check-circle"></i></td>
             </tr>
             <tr>
                 <td class="text">{{ __('front.features.boosts.entity-aliases') }}</td>
-                <td><i class="fa fa-check-circle"></i></td>
-                <td><i class="fa fa-check-circle"></i></td>
+                <td><i class="fa-solid fa-check-circle"></i></td>
+                <td><i class="fa-solid fa-check-circle"></i></td>
             </tr>
             <tr>
                 <td class="text">{{ __('front.features.boosts.no_ads') }}</td>
-                <td><i class="fa fa-check-circle"></i></td>
-                <td><i class="fa fa-check-circle"></i></td>
+                <td><i class="fa-solid fa-check-circle"></i></td>
+                <td><i class="fa-solid fa-check-circle"></i></td>
             </tr>
             <tr>
                 <td class="text">{{ __('front.features.boosts.upload') }}</td>
-                <td><i class="fa fa-check-circle"></i></td>
-                <td><i class="fa fa-check-circle"></i></td>
+                <td><i class="fa-solid fa-check-circle"></i></td>
+                <td><i class="fa-solid fa-check-circle"></i></td>
             </tr>
             <tr>
                 <td class="text">{{ __('front.features.boosts.map_markers') }}</td>
-                <td><i class="fa fa-check-circle"></i></td>
-                <td><i class="fa fa-check-circle"></i></td>
+                <td><i class="fa-solid fa-check-circle"></i></td>
+                <td><i class="fa-solid fa-check-circle"></i></td>
             </tr>
             <tr>
                 <td class="text">{{ __('front.features.boosts.timeline_elements') }}</td>
-                <td><i class="fa fa-check-circle"></i></td>
-                <td><i class="fa fa-check-circle"></i></td>
+                <td><i class="fa-solid fa-check-circle"></i></td>
+                <td><i class="fa-solid fa-check-circle"></i></td>
             </tr>
             <tr>
                 <td class="text">{{ __('front.features.boosts.recovery', ['amount' => config('entities.hard_delete')]) }}</td>
-                <td><i class="fa fa-check-circle"></i></td>
-                <td><i class="fa fa-check-circle"></i></td>
+                <td><i class="fa-solid fa-check-circle"></i></td>
+                <td><i class="fa-solid fa-check-circle"></i></td>
             </tr>
             <tr>
                 <td class="text">
                     {!! link_to_route('front.features.relations', __('front.features.boosts.relation-visualiser'), ['target' => '_blank']) !!}
                 </td>
-                <td><i class="fa fa-check-circle"></i></td>
-                <td><i class="fa fa-check-circle"></i></td>
+                <td><i class="fa-solid fa-check-circle"></i></td>
+                <td><i class="fa-solid fa-check-circle"></i></td>
             </tr>
             <tr>
                 <td class="text">{{ __('front.features.boosts.beta') }}</td>
-                <td><i class="fa fa-check-circle"></i></td>
-                <td><i class="fa fa-check-circle"></i></td>
+                <td><i class="fa-solid fa-check-circle"></i></td>
+                <td><i class="fa-solid fa-check-circle"></i></td>
             </tr>
             <tr>
                 <td class="text">
                     {!! link_to('https://kanka.io/' . app()->getLocale() . '/campaign/20000/notes/156620', __('front.features.boosts.sidebar'), ['target' => '_blank']) !!}
                 </td>
-                <td><i class="fa fa-check-circle"></i></td>
-                <td><i class="fa fa-check-circle"></i></td>
+                <td><i class="fa-solid fa-check-circle"></i></td>
+                <td><i class="fa-solid fa-check-circle"></i></td>
             </tr>
             <tr>
                 <td class="text">{{ __('front.features.boosts.entity_files_v2') }}</td>
@@ -254,17 +254,17 @@
             <tr id="superboost">
                 <td class="text">{{ __('front.features.superboosts.gallery') }}</td>
                 <td></td>
-                <td><i class="fa fa-check-circle"></i></td>
+                <td><i class="fa-solid fa-check-circle"></i></td>
             </tr>
             <tr>
                 <td class="text">{{ __('front.features.superboosts.logs', ['amount' => config('entities.logs')]) }}</td>
                 <td></td>
-                <td><i class="fa fa-check-circle"></i></td>
+                <td><i class="fa-solid fa-check-circle"></i></td>
             </tr>
             <tr>
                 <td class="text">{{ __('front.features.superboosts.stats') }}</td>
                 <td></td>
-                <td><i class="fa fa-check-circle"></i></td>
+                <td><i class="fa-solid fa-check-circle"></i></td>
             </tr>
             </tbody>
         </table>

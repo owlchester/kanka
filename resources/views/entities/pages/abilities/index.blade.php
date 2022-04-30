@@ -14,7 +14,7 @@
     @can('update', $entity->child)
         <div class="header-buttons">
             <a href="{{ route('entities.entity_abilities.reset', $entity) }}" class="btn btn-sm btn-default">
-                <i class="fa fa-redo"></i> <span class="hidden-xs hidden-sm">{{ __('entities/abilities.actions.reset') }}</span>
+                <i class="fa-solid fa-redo"></i> <span class="hidden-xs hidden-sm">{{ __('entities/abilities.actions.reset') }}</span>
                 <span class="visible-xs visible-sm">{{ __('crud.actions.reset') }}</span>
             </a>
             @if ($entity->typeId() == config('entities.ids.character'))
@@ -26,7 +26,7 @@
             @endif
             <a href="{{ route('entities.entity_abilities.create', $entity) }}" class="btn btn-sm btn-warning"
                data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('entities.entity_abilities.create', $entity) }}">
-                <i class="fa fa-plus"></i> <span class="hidden-sm hidden-xs">{{ __('entities/abilities.actions.add') }}</span>
+                <i class="fa-solid fa-plus"></i> <span class="hidden-sm hidden-xs">{{ __('entities/abilities.actions.add') }}</span>
                 <span class="visible-xs visible-sm">{{ __('crud.add') }}</span>
             </a>
         </div>

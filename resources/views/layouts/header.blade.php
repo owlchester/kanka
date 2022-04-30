@@ -25,7 +25,7 @@ $currentCampaign = CampaignLocalization::getCampaign();
                        tabindex="2">
 
                     <a href="#" class="live-search-close visible-xs visible-sm pull-right" name="search-close">
-                        <i class="fa fa-close"></i>
+                        <i class="fa-solid fa-close"></i>
                     </a>
             {!! Form::close() !!}
         @endif

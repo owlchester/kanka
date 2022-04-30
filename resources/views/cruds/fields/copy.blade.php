@@ -1,7 +1,7 @@
 @if (!empty($source) || !empty(old('copy_source_id')))
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h4><i class="fa fa-copy"></i> {{ trans('crud.forms.copy_options') }}</h4>
+            <h4><i class="fa-solid fa-copy"></i> {{ trans('crud.forms.copy_options') }}</h4>
         </div>
         <div class="panel-body">
             <div class="form-group">

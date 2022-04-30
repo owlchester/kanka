@@ -10,8 +10,8 @@
     <div class="box box-solid entity-note" id="post-{{ $note->id }}">
         <div class="box-header with-border">
             <h3 class="box-title cursor entity-note-toggle" data-toggle="collapse" data-target="#entity-note-body-{{ $note->id }}" data-short="entity-note-toggle-{{ $note->id }}">
-                <i class="fa fa-chevron-up" id="entity-note-toggle-{{ $note->id }}-show" @if ($note->collapsed()) style="display: none;" @endif></i>
-                <i class="fa fa-chevron-down" id="entity-note-toggle-{{ $note->id }}-hide" @if (!$note->collapsed()) style="display: none;" @endif></i>
+                <i class="fa-solid fa-chevron-up" id="entity-note-toggle-{{ $note->id }}-show" @if ($note->collapsed()) style="display: none;" @endif></i>
+                <i class="fa-solid fa-chevron-down" id="entity-note-toggle-{{ $note->id }}-hide" @if (!$note->collapsed()) style="display: none;" @endif></i>
                 {{ $note->name  }}
                 @if (app()->environment('local'))
                     ({{ $note->position }})
@@ -29,20 +29,20 @@
                         @can('entity-note', [$model, 'edit', $note])
                         <li>
                             <a href="{{ route('entities.entity_notes.edit', ['entity' => $entity, 'entity_note' => $note, 'from' => 'main']) }}" title="{{ __('crud.edit') }}">
-                                <i class="fa fa-edit"></i> {{ __('crud.edit') }}
+                                <i class="fa-solid fa-edit"></i> {{ __('crud.edit') }}
                             </a>
                         </li>
                         @endcan
                         <li>
                             <a href="#" title="[{{ $model->getEntityType() }}:{{ $model->entity->id }}|anchor:post-{{ $note->id }}]" data-toggle="tooltip"
                                data-clipboard="[{{ $model->getEntityType() }}:{{ $model->entity->id }}|anchor:post-{{ $note->id }}]" data-toast="{{ __('entities/notes.copy_mention.success') }}">
-                                <i class="fa fa-link"></i> {{ __('entities/notes.copy_mention.copy') }}
+                                <i class="fa-solid fa-link"></i> {{ __('entities/notes.copy_mention.copy') }}
                             </a>
                         </li>
                         <li>
                             <a href="#" title="[{{ $model->getEntityType() }}:{{ $model->entity->id }}|anchor:post-{{ $note->id }}]|{{ $model->name }}" data-toggle="tooltip"
                                data-clipboard="[{{ $model->getEntityType() }}:{{ $model->entity->id }}|anchor:post-{{ $note->id }}|{{ $model->name }}]" data-toast="{{ __('entities/notes.copy_mention.success') }}">
-                                <i class="fa fa-link"></i> {{ __('entities/notes.copy_mention.copy_with_name') }}
+                                <i class="fa-solid fa-link"></i> {{ __('entities/notes.copy_mention.copy_with_name') }}
                             </a>
                         </li>
                     </ul>

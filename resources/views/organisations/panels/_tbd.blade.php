@@ -68,7 +68,7 @@
                     <td>
                         @if ($relation->pinned())
                             @if ($relation->pinnedToCharacter())
-                                <i class="fa fa-user" data-toggle="tooltip" title="{{ __('organisations.members.pinned.character') }}"></i>
+                                <i class="fa-solid fa-user" data-toggle="tooltip" title="{{ __('organisations.members.pinned.character') }}"></i>
                             @elseif ($relation->pinnedToOrganisation())
                                 <i class="ra ra-hood" data-toggle="tooltip" title="{{ __('organisations.members.pinned.organisation') }}"></i>
                             @else
@@ -80,7 +80,7 @@
                         @can('member', $model)
                             <div class="dropdown">
                                 <a class="dropdown-toggle btn btn-xs btn-default" data-toggle="dropdown" aria-expanded="false" data-placement="right" href="#">
-                                    <i class="fa fa-ellipsis-h" data-tree="escape"></i>
+                                    <i class="fa-solid fa-ellipsis-h" data-tree="escape"></i>
                                     <span class="sr-only">{{ __('crud.actions.actions') }}</span>
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-right" role="menu">
@@ -88,13 +88,13 @@
                                         <a href="{{ route('organisations.organisation_members.edit', [$model, $relation]) }}"
                                            data-toggle="ajax-modal" data-target="#entity-modal"
                                            data-url="{{ route('organisations.organisation_members.edit', [$model, $relation]) }}">
-                                            <i class="fa fa-pencil"></i> {{ __('crud.edit') }}
+                                            <i class="fa-solid fa-pencil"></i> {{ __('crud.edit') }}
                                         </a>
                                     </li>
                                     <li>
                                         <a href="#" class="text-red delete-confirm" data-toggle="modal" data-name="{!! $relation->character->name !!}"
                                            data-target="#delete-confirm" data-delete-target="delete-form-{{ $relation->id }}">
-                                            <i class="fa fa-trash" aria-hidden="true"></i>
+                                            <i class="fa-solid fa-trash" aria-hidden="true"></i>
                                             {{ __('crud.remove') }}
                                         </a>
 

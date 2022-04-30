@@ -69,7 +69,7 @@ $customName = !empty($widget->conf('text')) ? str_replace('{name}', $model->name
         </div>
         <a href="#" class="preview-switch hidden"
            id="widget-preview-switch-{{ $widget->id }}" data-widget="{{ $widget->id }}">
-            <i class="fa fa-chevron-down"></i>
+            <i class="fa-solid fa-chevron-down"></i>
         </a>
         @endif
 
@@ -79,7 +79,7 @@ $customName = !empty($widget->conf('text')) ? str_replace('{name}', $model->name
         @if (!empty($widget->entity->child->map))
             <div class="panel-footer text-right">
                 <a href="{{ $widget->entity->url('map') }}">
-                    <i class="fa fa-map"></i> {{ __('locations.show.tabs.map') }}
+                    <i class="fa-solid fa-map"></i> {{ __('locations.show.tabs.map') }}
                 </a>
             </div>
         @endif

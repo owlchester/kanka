@@ -17,7 +17,7 @@
         [
             'label' => trans('maps.actions.explore'),
             'render' => function($model) {
-                return '<a href="' . route('maps.explore', $model) . '" target="_blank"><i class="fa fa-map" data-tree="escape"></i></a>';
+                return '<a href="' . route('maps.explore', $model) . '" target="_blank"><i class="fa-solid fa-map" data-tree="escape"></i></a>';
             },
             'disableSort' => true,
         ],

@@ -50,12 +50,12 @@
                     </div>
                     @can('update', $model)
                         <a href="{{ route('quests.quest_elements.edit', [$model, $element]) }}" class="btn btn-xs btn-primary">
-                            <i class="fa fa-edit" title="{{ __('crud.edit') }}"></i>
+                            <i class="fa-solid fa-edit" title="{{ __('crud.edit') }}"></i>
                         </a>
                         <button class="btn btn-xs btn-danger delete-confirm" data-toggle="modal" data-name="{{ $element->name() }}"
                                 data-target="#delete-confirm" data-delete-target="delete-form-{{ $element->id }}"
                                 title="{{ __('crud.remove') }}">
-                            <i class="fa fa-trash" aria-hidden="true"></i>
+                            <i class="fa-solid fa-trash" aria-hidden="true"></i>
                         </button>
                         {!! Form::open([
                             'method' => 'DELETE',

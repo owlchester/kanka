@@ -41,7 +41,7 @@
 
             <div class="form-group">
                 <div class="pull-right hidden-xs">
-                    <i class="fa fa-question-circle" title="{!! __('entities/abilities.helpers.note', [
+                    <i class="fa-solid fa-question-circle" title="{!! __('entities/abilities.helpers.note', [
     'code' => '<code>[character:4096]</code>',
     'attr' => '<code>{Strengh}</code>'
 ]) !!}" data-toggle="tooltip" data-html="true" data-placement="left"></i>
