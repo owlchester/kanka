@@ -38,7 +38,7 @@ class Quest extends Layout
                     if (!$model->is_completed) {
                         return '';
                     }
-                    return '<i class="f-solid fa-check-circle" title="' . __('quests.fields.is_completed') . '"></i>';
+                    return '<i class="fa-solid fa-check-circle" title="' . __('quests.fields.is_completed') . '"></i>';
                 },
 
             ],
