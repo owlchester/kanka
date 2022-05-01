@@ -35,7 +35,7 @@
                  data-target="#edit-widget"
                  data-url="{{ route('campaign_dashboards.create') }}"
                >
-                <i class="fas fa-plus"></i>
+                <i class="fa-solid fa-plus"></i>
                 <span class="hidden-xs">{{ __('dashboard.dashboards.actions.new') }}</span>
             </a>
 
@@ -43,7 +43,7 @@
                 <div class="btn-group">
                     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                         <span class="hidden-xs">{{ __('dashboard.dashboards.actions.switch') }}</span>
-                        <span class="visible-xs-inline"><i class="fas fa-exchange-alt"></i></span> <span class="caret"></span>
+                        <span class="visible-xs-inline"><i class="fa-solid fa-exchange-alt"></i></span> <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu" role="menu">
                         @if (!empty($dashboard))
@@ -73,7 +73,7 @@
                         <li>
                             <a href="{{ route('dashboard', ['dashboard' => $dashboard->id]) }}" target="_blank"
                                >
-                                <i class="fas fa-external-link-alt"></i>
+                                <i class="fa-solid fa-external-link-alt"></i>
                                 {{ __('crud.view') }}
                             </a>
                         </li>
@@ -84,7 +84,7 @@
                                data-target="#edit-widget"
                                data-url="{{ route('campaign_dashboards.edit', $dashboard) }}"
                             >
-                                <i class="fas fa-pencil-alt"></i>
+                                <i class="fa-solid fa-pencil-alt"></i>
                                 {{ __('dashboard.dashboards.actions.edit') }}
                             </a>
                         </li>
@@ -95,7 +95,7 @@
                                     data-target="#edit-widget"
                                     data-url="{{ route('campaign_dashboards.create', ['source' => $dashboard]) }}"
                             >
-                                <i class="fas fa-copy"></i>
+                                <i class="fa-solid fa-copy"></i>
                                 {{ __('crud.actions.copy') }}
                             </a>
                         </li>
@@ -169,14 +169,14 @@
                     </div>
 
                     <div class="btn btn-block btn-default btn-lg" id="btn-widget-header" data-url="{{ route('campaign_dashboard_widgets.create', ['widget' => \App\Models\CampaignDashboardWidget::WIDGET_HEADER, 'dashboard' => $dashboard]) }}">
-                        <i class="fas fa-heading"></i> {{ __('dashboard.setup.widgets.header') }}
+                        <i class="fa-solid fa-heading"></i> {{ __('dashboard.setup.widgets.header') }}
                     </div>
                     <div class="btn btn-block btn-default btn-lg" id="btn-widget-random" data-url="{{ route('campaign_dashboard_widgets.create', ['widget' => 'random', 'dashboard' => $dashboard]) }}">
-                        <i class="fas fa-dice-d20"></i> {{ __('dashboard.setup.widgets.random') }}
+                        <i class="fa-solid fa-dice-d20"></i> {{ __('dashboard.setup.widgets.random') }}
                     </div>
                     @if(!empty($dashboard))
                         <div class="btn btn-block btn-default btn-lg" id="btn-widget-campaign" data-url="{{ route('campaign_dashboard_widgets.create', ['widget' => 'campaign', 'dashboard' => $dashboard]) }}">
-                            <i class="fas fa-th-list"></i> {{ __('dashboard.setup.widgets.campaign') }}
+                            <i class="fa-solid fa-th-list"></i> {{ __('dashboard.setup.widgets.campaign') }}
                         </div>
                     @endif
                 </div>

@@ -43,7 +43,7 @@
                 {{ __('front.help.discord') }}
             </a>
             <a href="{{ route('documentation') }}" class="btn btn-light">
-                <i class="fas fa-book"></i>
+                <i class="fa-solid fa-book"></i>
                 {{ __('front.help.documentation') }}
             </a>
             <a href="mailto:{{ config('app.email') }}" class="btn btn-light">

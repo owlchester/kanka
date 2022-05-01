@@ -19,7 +19,7 @@
                     <th></th>
                 @endif
                 <th>
-                    <i class="fas fa-star" title="{{ __('organisations.members.fields.pinned') }}" data-toggle="tooltip"></i>
+                    <i class="fa-solid fa-star" title="{{ __('organisations.members.fields.pinned') }}" data-toggle="tooltip"></i>
                 </th>
                 <th class="text-right">
 
@@ -33,7 +33,7 @@
                         <a class="entity-image" style="background-image: url('{{ $relation->character->getImageUrl(40) }}');" title="{{ $relation->character->name }}" href="{{ route('characters.show', $relation->character->id) }}"></a>
                     </td>
                     <td>
-                        @if ($relation->character->is_private) <i class="fas fa-lock" title="{{ __('crud.is_private') }}" data-toggle="tooltip"></i> @endif
+                        @if ($relation->character->is_private) <i class="fa-solid fa-lock" title="{{ __('crud.is_private') }}" data-toggle="tooltip"></i> @endif
                         {!! $relation->character->tooltipedLink() !!}
                         @if ($relation->character->is_dead)<span class="ra ra-skull" title="{{ __('characters.fields.is_dead') }}"></span>@endif
                         <br />
@@ -53,9 +53,9 @@
                     @endif
                     <td>
                         @if ($relation->inactive())
-                            <i class="fas fa-user-slash" title="{{ __('organisations.members.status.inactive') }}" data-toggle="tooltip"></i>
+                            <i class="fa-solid fa-user-slash" title="{{ __('organisations.members.status.inactive') }}" data-toggle="tooltip"></i>
                         @elseif ($relation->unknown())
-                            <i class="fas fa-question" title="{{ __('organisations.members.status.unknown') }}" data-toggle="tooltip"></i>
+                            <i class="fa-solid fa-question" title="{{ __('organisations.members.status.unknown') }}" data-toggle="tooltip"></i>
                         @endif
                         {{ $relation->role }}
                     </td>
@@ -72,7 +72,7 @@
                             @elseif ($relation->pinnedToOrganisation())
                                 <i class="ra ra-hood" data-toggle="tooltip" title="{{ __('organisations.members.pinned.organisation') }}"></i>
                             @else
-                                <i class="fas fa-star" data-toggle="tooltip" title="{{ __('organisations.members.pinned.both') }}"></i>
+                                <i class="fa-solid fa-star" data-toggle="tooltip" title="{{ __('organisations.members.pinned.both') }}"></i>
                             @endif
                         @endif
                     </td>

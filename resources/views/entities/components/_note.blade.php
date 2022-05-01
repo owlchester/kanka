@@ -22,7 +22,7 @@
                     @include('cruds.partials.visibility', ['model' => $note, 'toolbox' => true])
 
                     <a class="dropdown-toggle btn btn-box-tool" data-toggle="dropdown" aria-expanded="false" data-placement="right" data-tree="escape">
-                        <i class="fas fa-ellipsis-v"></i>
+                        <i class="fa-solid fa-ellipsis-v"></i>
                         <span class="sr-only">{{__('crud.actions.actions') }}'</span>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-right" role="menu">
@@ -45,6 +45,12 @@
                                 <i class="fa-solid fa-link"></i> {{ __('entities/notes.copy_mention.copy_with_name') }}
                             </a>
                         </li>
+                        <li class="divider"></li>
+                            <li>
+                                <a href="{{ route('entities.story.reorder', ['entity' => $entity]) }}" title="{{ __('entities/story.reorder.icon_tooltip') }}">
+                                    <i class="fa-solid fa-arrows-v"></i> {{ __('entities/story.reorder.icon_tooltip') }}
+                                </a>
+                            </li>
                     </ul>
                 @endif
             </div>

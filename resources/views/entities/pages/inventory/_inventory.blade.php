@@ -29,7 +29,7 @@
         <tr class="collapse inventory-group-{{ \Illuminate\Support\Str::kebab($item->position) }} in">
             <td style="width: 50px">
                 @if($item->is_equipped)
-                    <i class="fas fa-check" title="{{ __('entities/inventories.fields.is_equipped') }}" data-toggle="tooltip"></i>
+                    <i class="fa-solid fa-check" title="{{ __('entities/inventories.fields.is_equipped') }}" data-toggle="tooltip"></i>
                 @endif
             </td>
             <td>

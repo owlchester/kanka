@@ -134,7 +134,7 @@
 ]) !!}
                     </p>
                     <a href="{{ route('front.features.dashboards') }}">
-                        <i class="fas fa-chevron-right"></i>
+                        <i class="fa-solid fa-chevron-right"></i>
                         {{ __('front.features.learn_more_about') }}
                     </a>
 
@@ -173,7 +173,7 @@
         <div class="container">
             <h2 class="text-center mb-5">
                 {{ __('front/features.sections.rpg') }}
-                <a href="#top"><i class="fas fa-arrow-up"></i></a>
+                <a href="#top"><i class="fa-solid fa-arrow-up"></i></a>
             </h2>
 
             <div class="row" id="entity">
@@ -257,7 +257,7 @@
         <div class="container">
             <h2 class="text-center mb-5">
                 {{ __('front/features.sections.worldbuilding') }}
-                <a href="#top"><i class="fas fa-arrow-up"></i></a>
+                <a href="#top"><i class="fa-solid fa-arrow-up"></i></a>
             </h2>
 
             <div class="row" id="relations">
@@ -274,7 +274,7 @@
                     </p>
 
                     <a href="{{ route('front.features.relations') }}">
-                        <i class="fas fa-chevron-right"></i>
+                        <i class="fa-solid fa-chevron-right"></i>
                         {{ __('front.features.learn_more_about') }}
                     </a>
                 </div>
@@ -303,7 +303,7 @@
                     </p>
 
                     <a href="{{ route('front.features.timelines') }}">
-                        <i class="fas fa-chevron-right"></i>
+                        <i class="fa-solid fa-chevron-right"></i>
                         {{ __('front.features.learn_more_about') }}
                     </a>
 
@@ -322,7 +322,7 @@
                         {{ __('front/features.calendars.description') }}
                     </p>
                     <a href="{{ route('front.features.calendars') }}">
-                        <i class="fas fa-chevron-right"></i>
+                        <i class="fa-solid fa-chevron-right"></i>
                         {{ __('front.features.learn_more_about') }}
                     </a>
                     <img src="/images/features/calendars.png" alt="kanka calendar" class="img-fluid shadow mb-2 mt-2" />
@@ -334,7 +334,7 @@
                         {{ __('front/features.maps.description') }}
                     </p>
                     <a href="{{ route('front.features.maps') }}">
-                        <i class="fas fa-chevron-right"></i>
+                        <i class="fa-solid fa-chevron-right"></i>
                         {{ __('front.features.learn_more_about') }}
                     </a>
                     <img src="/images/features/maps.png" alt="kanka map" class="img-fluid shadow mb-2 mt-2" />
@@ -368,7 +368,7 @@
         <div class="container">
             <h2 class="text-center mb-5">
                 {{ __('front/features.sections.boosted') }}
-                <a href="#top"><i class="fas fa-arrow-up"></i></a>
+                <a href="#top"><i class="fa-solid fa-arrow-up"></i></a>
             </h2>
 
             <div class="row mb-5">
@@ -378,7 +378,7 @@
                         {{ __('front/features.boosters.description') }}
                     </p>
                     <a href="{{ route('front.pricing', '#boost') }}">
-                        <i class="fas fa-chevron-right"></i> {{ __('front/features.boosters.link') }}
+                        <i class="fa-solid fa-chevron-right"></i> {{ __('front/features.boosters.link') }}
                     </a>
                 </div>
                 <div class="col-12 col-md-6" id="marketplace">

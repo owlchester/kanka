@@ -32,7 +32,7 @@
                                     data-target="#large-modal"
                                     data-placement="bottom"
                             >
-                                <i class="fas fa-door-open"></i> {{ __('dashboard.actions.join') }}
+                                <i class="fa-solid fa-door-open"></i> {{ __('dashboard.actions.join') }}
                             </button>
                         @endcan
 
@@ -81,7 +81,7 @@
                         @can('update', $campaign)
                         <div class="btn-group">
                             <button data-toggle="dropdown" class="btn btn-default dropdown-toggle" aria-expanded="false">
-                                <i class="fas fa-ellipsis-h"></i>
+                                <i class="fa-solid fa-ellipsis-h"></i>
                             </button>
                             <ul class="dropdown-menu dropdown-menu-right">
                                 @if (!empty($dashboard))

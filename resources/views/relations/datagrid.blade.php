@@ -36,16 +36,16 @@
         ],
         [
             'field' => 'mirror_id',
-            'label' => '<i class="fas fa-sync-alt" title="' . __('entities/relations.hints.mirrored.title') . '"></i>',
+            'label' => '<i class="fa-solid fa-sync-alt" title="' . __('entities/relations.hints.mirrored.title') . '"></i>',
             'render' => function ($model) {
-                return $model->mirrored() ? '<i class="fas fa-sync-alt"></i>' : null;
+                return $model->mirrored() ? '<i class="fa-solid fa-sync-alt"></i>' : null;
             }
         ],
         [
             'field' => 'is_star',
-            'label' => '<i class="fas fa-star" title="' . __('entities/relations.fields.is_star') . '"></i>',
+            'label' => '<i class="fa-solid fa-star" title="' . __('entities/relations.fields.is_star') . '"></i>',
             'render' => function ($model) {
-                return $model->is_star ? '<i class="fas fa-star"></i>' : null;
+                return $model->is_star ? '<i class="fa-solid fa-star"></i>' : null;
             }
         ],
         [

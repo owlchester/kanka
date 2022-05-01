@@ -40,11 +40,11 @@ $sizeOptions = [
     <div class="row">
         <div class="col-md-12 text-center">
             <a href="#" class="btn btn-app" id="phase-first-entity">
-                <i class="fas fa-solid fa-search"></i>
+                <i class="fa-solid fa-solid fa-search"></i>
                 {{ __('crud.fields.entity') }}
             </a>
             <a href="#" class="btn btn-app" id="phase-first-label">
-                <i class="fas fa-solid fa-comment-alt"></i>
+                <i class="fa-solid fa-solid fa-comment-alt"></i>
                 {{ __('locations.map.points.fields.name') }}
             </a>
         </div>

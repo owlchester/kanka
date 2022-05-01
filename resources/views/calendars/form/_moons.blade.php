@@ -6,7 +6,7 @@
         <div class="col-md-2">{{ __('calendars.parameters.moon.fullmoon') }}</div>
         <div class="col-md-2">{{ __('crud.fields.colour') }}</div>
         <div class="col-md-2">{{ __('calendars.parameters.moon.offset') }}
-        <i class="fas fa-question-circle hidden-xs hidden-sm" data-placement="left" data-toggle="tooltip" title="{{ __('calendars.helpers.moon_offset') }}"></i>
+        <i class="fa-solid fa-question-circle hidden-xs hidden-sm" data-placement="left" data-toggle="tooltip" title="{{ __('calendars.helpers.moon_offset') }}"></i>
         </div>
     </div>
 </div>

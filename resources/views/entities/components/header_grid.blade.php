@@ -114,19 +114,19 @@ if($campaign->campaign()->boosted() && $entity->hasHeaderImage($superboosted)) {
                         <i role="button" tabindex="0" class="ra ra-skull entity-icons btn-popover" title="{{ __('characters.hints.is_dead') }}"></i>
                     @endif
                     @if ($model instanceof \App\Models\Quest && $model->is_completed)
-                        <i role="button" tabindex="0" class="fas fa-check-circle entity-icons btn-popover" title="{{ __('quests.fields.is_completed') }}"></i>
+                        <i role="button" tabindex="0" class="fa-solid fa-check-circle entity-icons btn-popover" title="{{ __('quests.fields.is_completed') }}"></i>
                     @endif
 
                     @if (auth()->check() && auth()->user()->isAdmin())
                         @if ($model->is_private)
-                            <i role="button" tabindex="0" class="fas fa-lock entity-icons btn-popover" title="{{ __('entities/permissions.quick.title') }}" data-content="{{ __('entities/permissions.quick.private') }}"></i>
+                            <i role="button" tabindex="0" class="fa-solid fa-lock entity-icons btn-popover" title="{{ __('entities/permissions.quick.title') }}" data-content="{{ __('entities/permissions.quick.private') }}"></i>
                         @else
-                            <i role="button" tabindex="0" class="fas fa-lock-open entity-icons btn-popover" title="{{ __('entities/permissions.quick.title') }}" data-content="{{ __('entities/permissions.quick.public') }}"></i>
+                            <i role="button" tabindex="0" class="fa-solid fa-lock-open entity-icons btn-popover" title="{{ __('entities/permissions.quick.title') }}" data-content="{{ __('entities/permissions.quick.public') }}"></i>
                         @endif
                     @endif
 
                     <div class="btn-group entity-actions">
-                        <i class="fas fa-cog entity-icons dropdown-toggle" data-toggle="dropdown" aria-expanded="false"></i>
+                        <i class="fa-solid fa-cog entity-icons dropdown-toggle" data-toggle="dropdown" aria-expanded="false"></i>
                         <ul class="dropdown-menu dropdown-menu-right" role="menu">
                             @can('update', $model)
                                 <li>

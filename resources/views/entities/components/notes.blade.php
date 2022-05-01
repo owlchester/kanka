@@ -45,7 +45,7 @@ $first = $pinnedNotes->first();
     @if ($pinnedNotes->currentPage() < $pinnedNotes->lastPage())
         <div class="text-center">
             <a href="#" class="btn btn-default btn-sm margin-bottom story-load-more" data-url="{{ route('entities.story.load-more', [$entity, 'page' => $pinnedNotes->currentPage() + 1]) }}">
-                <i class="fas fa-refresh"></i> {{ __('entities/story.actions.load_more') }}
+                <i class="fa-solid fa-refresh"></i> {{ __('entities/story.actions.load_more') }}
             </a>
 
             <i class="fa-solid fa-spinner fa-spin fa-2x" id="story-more-spinner" style="display: none"></i>

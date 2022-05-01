@@ -31,7 +31,7 @@ $advancedFilters = [
             <div class="form-group recent-filters" style="@if (empty($model) || empty($model->conf('entity'))) display: none @else @endif">
                 <label>{{ __('dashboard.widgets.recent.filters') }}</label>
                 {!! Form::text('config[filters]', null, ['class' => 'form-control']) !!}
-                <p class="help-block">{!! __('dashboard.widgets.recent.helpers.filters', ['link' => '<a href="' . route('helpers.widget-filters') . '" target="_blank"><i class="fas fa-external-link-alt"></i> ' . __('helpers.widget-filters.link') . '</a>']) !!}</p>
+                <p class="help-block">{!! __('dashboard.widgets.recent.helpers.filters', ['link' => '<a href="' . route('helpers.widget-filters') . '" target="_blank"><i class="fa-solid fa-external-link-alt"></i> ' . __('helpers.widget-filters.link') . '</a>']) !!}</p>
             </div>
 
             <div class="row">

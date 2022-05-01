@@ -60,7 +60,7 @@ if (auth()->check()) {
                         <a href="{{ route('recovery') }}">
                             {{ __('campaigns.show.tabs.recovery') }}
                             <span class="label label-default bg-maroon pull-right" title="{{ __('crud.tooltips.boosted_feature') }}" data-toggle="tooltip">
-                                <i class="fas fa-rocket"></i>
+                                <i class="fa-solid fa-rocket"></i>
                             </span>
                         </a>
                     </li>
@@ -70,7 +70,7 @@ if (auth()->check()) {
                             <a href="{{ route('stats') }}">
                                 {{ __('campaigns.show.tabs.achievements') }}
                                 <span class="label label-default bg-maroon pull-right" title="{{ __('crud.tooltips.boosted_feature') }}" data-toggle="tooltip">
-                            <i class="fas fa-rocket"></i>
+                            <i class="fa-solid fa-rocket"></i>
                         </span>
                             </a>
                         </li>
@@ -127,7 +127,7 @@ if (auth()->check()) {
                             <a href="{{ route('campaign_plugins.index') }}">
                                 {{ __('campaigns.show.tabs.plugins') }}
                                 <span class="label label-default bg-maroon pull-right" title="{{ __('crud.tooltips.boosted_feature') }}" data-toggle="tooltip">
-                                <i class="fas fa-rocket"></i>
+                                <i class="fa-solid fa-rocket"></i>
                             </span>
                             </a>
                         </li>
@@ -137,7 +137,7 @@ if (auth()->check()) {
                         <a href="{{ route('campaign.default-images') }}">
                             {{ __('campaigns.show.tabs.default-images') }}
                             <span class="label label-default bg-maroon pull-right" title="{{ __('crud.tooltips.boosted_feature') }}" data-toggle="tooltip">
-                                <i class="fas fa-rocket"></i>
+                                <i class="fa-solid fa-rocket"></i>
                             </span>
                         </a>
                     </li>
@@ -145,7 +145,7 @@ if (auth()->check()) {
                         <a href="{{ route('campaign_styles.index') }}">
                             {{ __('campaigns.show.tabs.styles') }}
                             <span class="label label-default bg-maroon pull-right" title="{{ __('crud.tooltips.boosted_feature') }}" data-toggle="tooltip">
-                                <i class="fas fa-rocket"></i>
+                                <i class="fa-solid fa-rocket"></i>
                             </span>
                         </a>
                     </li>
@@ -153,7 +153,7 @@ if (auth()->check()) {
                         <a href="{{ route('campaign-sidebar') }}">
                             {{ __('campaigns.show.tabs.sidebar') }}
                             <span class="label label-default bg-maroon pull-right" title="{{ __('crud.tooltips.boosted_feature') }}" data-toggle="tooltip">
-                                <i class="fas fa-rocket"></i>
+                                <i class="fa-solid fa-rocket"></i>
                             </span>
                         </a>
                     </li>

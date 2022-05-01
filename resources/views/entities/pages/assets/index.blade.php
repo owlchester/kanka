@@ -14,13 +14,13 @@ $assetCount = 0; ?>
     @can('update', $entity->child)
         <div class="header-buttons">
             <a href="#" class="btn btn-warning btn-sm" data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('entities.entity_aliases.create', [$entity]) }}">
-                <i class="fas fa-plus"></i> {{ __('entities/assets.actions.alias') }}
+                <i class="fa-solid fa-plus"></i> {{ __('entities/assets.actions.alias') }}
             </a>
             <a href="#" class="btn btn-warning btn-sm" data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('entities.entity_files.create', [$entity]) }}">
-                <i class="fas fa-plus"></i> {{ __('entities/assets.actions.file') }}
+                <i class="fa-solid fa-plus"></i> {{ __('entities/assets.actions.file') }}
             </a>
             <a href="#" class="btn btn-warning btn-sm" data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('entities.entity_links.create', [$entity]) }}">
-                <i class="fas fa-plus"></i> {{ __('entities/assets.actions.link') }}
+                <i class="fa-solid fa-plus"></i> {{ __('entities/assets.actions.link') }}
             </a>
         </div>
     @endcan

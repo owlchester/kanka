@@ -18,10 +18,10 @@ if (!empty($redirect)) {
     <div class="header-buttons">
         <div class="btn-group">
             <div class="btn btn-default btn-sm btn-post-collapse" title="{{ __('entities/story.actions.collapse_all') }}" data-toggle="tooltip">
-                <i class="fas fa-grip-lines"></i>
+                <i class="fa-solid fa-grip-lines"></i>
             </div>
             <div class="btn btn-default btn-sm btn-post-expand" title="{{ __('entities/story.actions.expand_all') }}" data-toggle="tooltip">
-                <i class="fas fa-bars"></i>
+                <i class="fa-solid fa-bars"></i>
             </div>
         </div>
         @can('update', $model)

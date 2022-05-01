@@ -36,7 +36,7 @@ $customName = !empty($widget->conf('text')) ? str_replace('{name}', $model->name
         <h3 class="panel-title">
             <a href="{{ $widget->entity->url() }}">
                 @if ($model->is_private)
-                    <i class="fas fa-lock pull-right" title="{{ trans('crud.is_private') }}"></i>
+                    <i class="fa-solid fa-lock pull-right" title="{{ trans('crud.is_private') }}"></i>
                 @endif
                 @if (!empty($widget->conf('text')))
                     {{ $customName }}

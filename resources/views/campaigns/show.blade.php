@@ -48,7 +48,7 @@
                                 </dt>
                                 <dd>
                                     {{ number_format(\App\Facades\CampaignCache::entityCount()) }}
-                                    <i class="fas fa-question-circle" data-toggle="tooltip" title="{{ __('campaigns.helpers.entity_count') }}"></i>
+                                    <i class="fa-solid fa-question-circle" data-toggle="tooltip" title="{{ __('campaigns.helpers.entity_count') }}"></i>
                                 </dd>
 
                                 @if ($campaign->isPublic())

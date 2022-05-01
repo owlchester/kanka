@@ -17,7 +17,7 @@ if (!isset($model) || !$model->boosted()) {
 <div class="tab-pane" id="form-ui">
 
     <h4>
-        <i class="fas fa-rocket" title="{{ __('crud.tooltips.boosted_feature') }}" data-toggle="tooltip"></i>
+        <i class="fa-solid fa-rocket" title="{{ __('crud.tooltips.boosted_feature') }}" data-toggle="tooltip"></i>
         {{ __('campaigns.ui.boosted') }}
     </h4>
     @if (isset($model) && $model->boosted())
@@ -35,7 +35,7 @@ if (!isset($model) || !$model->boosted()) {
             <div class="form-group">
                 <label>
                     {{ __('campaigns.fields.theme') }}
-                    <i class="fas fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" title="{{ __('campaigns.helpers.theme') }}"></i>
+                    <i class="fa-solid fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" title="{{ __('campaigns.helpers.theme') }}"></i>
                 </label>
 
 
@@ -87,7 +87,7 @@ if (!isset($model) || !$model->boosted()) {
         <div class="col-md-6 col-lg-4">
             <div class="form-group">
                 <label>
-                    <i class="fas fa-rocket" title="{{ __('crud.tooltips.boosted_feature') }}" data-toggle="tooltip"></i>
+                    <i class="fa-solid fa-rocket" title="{{ __('crud.tooltips.boosted_feature') }}" data-toggle="tooltip"></i>
                     {{ __('campaigns.ui.fields.entity_image') }}
                 </label>
                 {!! Form::select('ui_settings[tooltip_image]', [0 => __('campaigns.privacy.hidden'), 1 => __('campaigns.privacy.visible')], null, $boostedFormFields) !!}
@@ -121,7 +121,7 @@ if (!isset($model) || !$model->boosted()) {
             <div class="form-group">
                 <label>
                     {{ __('campaigns.ui.fields.connections') }}
-                    <i class="fas fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" title="{{ __('campaigns.ui.helpers.connections') }}"></i>
+                    <i class="fa-solid fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" title="{{ __('campaigns.ui.helpers.connections') }}"></i>
 
                 </label>
                 {!! Form::select('ui_settings[connections]', [0 => __('campaigns.ui.connections.explorer'), 1 => __('campaigns.ui.connections.list')], null, ['class' => 'form-control']) !!}
@@ -142,7 +142,7 @@ if (!isset($model) || !$model->boosted()) {
             <div class="form-group">
                 <label>
                     {{ __('campaigns.ui.fields.post_collapsed') }}
-                    <i class="fas fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" title="{{ __('campaigns.ui.helpers.post_collapsed') }}"></i>
+                    <i class="fa-solid fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" title="{{ __('campaigns.ui.helpers.post_collapsed') }}"></i>
                 </label>
                 {!! Form::select('ui_settings[post_collapsed]', [0 => __('campaigns.ui.collapsed.default'), 1 => __('campaigns.ui.collapsed.collapsed')], null, ['class' => 'form-control']) !!}
                 <p class="help-block visible-xs visible-sm">{{ __('campaigns.ui.helpers.post_collapsed') }}</p>

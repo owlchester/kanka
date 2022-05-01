@@ -11,7 +11,7 @@
     <div class="form-group">
         <label>
             {{ __('campaigns.fields.theme') }}
-            <i class="fas fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" title="{{ __('campaigns.helpers.theme') }}"></i>
+            <i class="fa-solid fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" title="{{ __('campaigns.helpers.theme') }}"></i>
         </label>
 
         {!! Form::select(

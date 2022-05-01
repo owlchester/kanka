@@ -75,7 +75,7 @@
        data-url="{{ route('maps.map_layers.create', ['map' => $model]) }}"
        data-backdrop="static"
     >
-        <i class="fas fa-plus"></i> {{ __('maps/layers.actions.add') }}
+        <i class="fa-solid fa-plus"></i> {{ __('maps/layers.actions.add') }}
     </a>
     @endif
 

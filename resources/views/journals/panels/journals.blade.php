@@ -60,7 +60,7 @@ $r = $model->allJournals()
                     </td>
                     <td>
                         @if ($journal->is_private)
-                            <i class="fas fa-lock" title="{{ __('crud.is_private') }}" data-toggle="tooltip"></i>
+                            <i class="fa-solid fa-lock" title="{{ __('crud.is_private') }}" data-toggle="tooltip"></i>
                         @endif
                         {!! $journal->tooltipedLink() !!}<br />
                         <i>{{ $journal->type }}</i>

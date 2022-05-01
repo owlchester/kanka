@@ -77,7 +77,7 @@ $hasOrg = request()->has('organisation_id');
                     </td>
                     <td>
                         @if ($relation->character->is_private)
-                            <i class="fas fa-lock" title="{{ __('crud.is_private') }}" data-toggle="tooltip"></i>
+                            <i class="fa-solid fa-lock" title="{{ __('crud.is_private') }}" data-toggle="tooltip"></i>
                         @endif
                         {!! $relation->character->tooltipedLink() !!}<br />
                         <i>{{ $relation->character->title }}</i>
@@ -106,7 +106,7 @@ $hasOrg = request()->has('organisation_id');
                     <td>
                         @if (Auth::check() && Auth::user()->isAdmin())
                             @if ($relation->is_private == true)
-                                <i class="fas fa-lock" title="{{ __('crud.is_private') }}"></i>
+                                <i class="fa-solid fa-lock" title="{{ __('crud.is_private') }}"></i>
                             @endif
                         @endif
                     </td>

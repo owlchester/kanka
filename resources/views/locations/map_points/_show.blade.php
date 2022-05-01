@@ -6,7 +6,7 @@
 
             @if ($mapPoint->hasTarget() && $mapPoint->targetEntity->child->is_private)
                 <span class="pull-right fa-xs margin-r-5">
-                    <i class="fas fa-lock"></i>
+                    <i class="fa-solid fa-lock"></i>
                 </span>
             @endif
             @if (!$mapPoint->hasTarget())

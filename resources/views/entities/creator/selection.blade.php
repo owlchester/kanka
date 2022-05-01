@@ -61,7 +61,7 @@
         @if (isset($entities['notes']))
             <div class="col-md-4 col-sm-6 col-xs-4">
                 <a href="#"  data-toggle="entity-creator" data-url="{{ route('entity-creator.form', ['type' => 'notes']) }}">
-                    <i class="fas fa-book-open fa-2x"></i>
+                    <i class="fa-solid fa-book-open fa-2x"></i>
                     {{ __('entities.note') }}
                 </a>
             </div>
@@ -70,7 +70,7 @@
         @if (isset($entities['events']))
             <div class="col-md-4 col-sm-6 col-xs-4">
                 <a href="#"  data-toggle="entity-creator" data-url="{{ route('entity-creator.form', ['type' => 'events']) }}">
-                    <i class="fas fa-bolt fa-2x"></i>
+                    <i class="fa-solid fa-bolt fa-2x"></i>
                     {{ __('entities.event') }}
                 </a>
             </div>

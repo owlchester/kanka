@@ -39,7 +39,7 @@
         <tr data-entity-id="{{ $relation->target->id }}" data-entity-type="{{ $relation->target->type() }}">
             <td class="breakable">
                 @if ($relation->is_star)
-                    <i class="fas fa-star" title="{{ __('crud.fields.is_star') }}" data-toggle="tooltip"></i>
+                    <i class="fa-solid fa-star" title="{{ __('crud.fields.is_star') }}" data-toggle="tooltip"></i>
                 @endif
                 {{ $relation->relation }}
             </td>

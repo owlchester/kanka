@@ -54,7 +54,7 @@
             <p class="text-left">
                 @if (!empty($day['weather']))
                     <div class="weather weather-{{ $day['weather']->weather }}" data-html="true" data-toggle="tooltip" title="{!! $day['weather']->tooltip() !!}">
-                        <i class="fas fa-{{ $day['weather']->weather }}"></i>
+                        <i class="fa-solid fa-{{ $day['weather']->weather }}"></i>
                         {{ $day['weather']->weatherName() }}
                     </div>
                 @endif

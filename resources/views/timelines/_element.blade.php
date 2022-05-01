@@ -18,7 +18,7 @@
                     @if(isset($element->date))<span class="text-muted">{{ $element->date }}</span>@endif
 
                     @if($element->entity && $element->entity->is_private)
-                        <i class="fas fa-lock" title="{{ __('timelines/elements.helpers.entity_is_private') }}" data-toggle="tooltip" ></i>
+                        <i class="fa-solid fa-lock" title="{{ __('timelines/elements.helpers.entity_is_private') }}" data-toggle="tooltip" ></i>
                     @endif
                 </h3>
                 <div class="box-tools">
@@ -26,7 +26,7 @@
 
                     @can('update', $timeline)
                         <a class="dropdown-toggle btn btn-box-tool" data-toggle="dropdown" aria-expanded="false" data-placement="right" data-tree="escape">
-                            <i class="fas fa-ellipsis-v"></i>
+                            <i class="fa-solid fa-ellipsis-v"></i>
                             <span class="sr-only">{{__('crud.actions.actions') }}'</span>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-right" role="menu">

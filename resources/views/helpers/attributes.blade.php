@@ -51,10 +51,10 @@
 
             <hr />
             <p>
-                {!! __('helpers.attributes.pinned', ['icon' => '<i class="fas fa-star"></i>']) !!}
+                {!! __('helpers.attributes.pinned', ['icon' => '<i class="fa-solid fa-star"></i>']) !!}
             </p>
             <p>
-                {!! __('helpers.attributes.private', ['icon' => '<i class="fas fa-lock"></i>']) !!}
+                {!! __('helpers.attributes.private', ['icon' => '<i class="fa-solid fa-lock"></i>']) !!}
             </p>
         </div>
     </div>

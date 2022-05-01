@@ -45,7 +45,7 @@ elseif(!empty($model) && !empty($model->entity)) {
 @if ($label)
 <label>{{ __('crud.fields.tags') }}
 @if(!empty($helper))
-    <i class="fas fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" title="{{ $helper }}"></i>
+    <i class="fa-solid fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" title="{{ $helper }}"></i>
 @endif
 </label>
 @endif

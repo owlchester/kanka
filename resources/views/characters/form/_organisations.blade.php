@@ -25,7 +25,7 @@ $statuses = [
     <div class="col-sm-3">{{ __('organisations.members.fields.role') }}</div>
     <div class="col-sm-2">{{ __('organisations.members.fields.status') }}</div>
     <div class="col-sm-2">
-        {{ __('organisations.members.fields.pinned') }} <i class="fas fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" title="{{ __('organisations.members.helpers.pinned') }}"></i>
+        {{ __('organisations.members.fields.pinned') }} <i class="fa-solid fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" title="{{ __('organisations.members.helpers.pinned') }}"></i>
     </div>
 @if ($isAdmin)
     <div class="col-sm-1 text-center">{{ __('crud.fields.is_private') }}</div>

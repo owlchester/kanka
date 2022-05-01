@@ -86,7 +86,7 @@
                         <i class="fa-solid fa-trash"></i> {{ __('campaigns/sidebar.actions.reset') }}
                     </a>
                     <button type="submit" class="btn btn-primary">
-                        <i class="fas fa-save"></i>
+                        <i class="fa-solid fa-save"></i>
                         {{ __('crud.save') }}
                     </button>
                 </div>

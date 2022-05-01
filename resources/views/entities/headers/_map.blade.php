@@ -7,7 +7,7 @@
     <div class="entity-header-sub pull-left">
         @if ($model->map)
             <span  class="margin-r-5">
-                <i class="fas fa-map" title="{{ __('crud.fields.map') }}"></i>
+                <i class="fa-solid fa-map" title="{{ __('crud.fields.map') }}"></i>
                 {!! $model->map->tooltipedLink() !!}
             </span>
         @endif

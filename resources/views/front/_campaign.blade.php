@@ -9,9 +9,9 @@ $width = $featured ? 350 : 255;
         <div class="bottom">
             <h4 class="campaign-title">
                 @if (!$featured && $campaign->isFeatured())
-                    <i class="fas fa-star" title="{{ __('campaigns.fields.featured') }}" data-toggle="tooltip"></i>
+                    <i class="fa-solid fa-star" title="{{ __('campaigns.fields.featured') }}" data-toggle="tooltip"></i>
                 @elseif (!$featured && $campaign->isFeatured(true))
-                    <i class="fas fa-star" title="{{ __('campaigns.fields.past_featured') }}" data-toggle="tooltip"></i>
+                    <i class="fa-solid fa-star" title="{{ __('campaigns.fields.past_featured') }}" data-toggle="tooltip"></i>
                 @endif
                 {!! $campaign->name !!}
             </h4>
@@ -24,7 +24,7 @@ $width = $featured ? 350 : 255;
                     <span class="label label-default" title="{{ __('campaigns.fields.system') }}" data-toggle="tooltip">{{ $campaign->system }}</span>
                 @endif
                 @if ($campaign->is_open)
-                    <span class="label label-default mr-1" title="{{ __('campaigns.open_campaign.title') }}" data-toggle="tooltip"><i class="fas fa-door-open"></i></span>
+                    <span class="label label-default mr-1" title="{{ __('campaigns.open_campaign.title') }}" data-toggle="tooltip"><i class="fa-solid fa-door-open"></i></span>
                 @endif
                 @if ($campaign->boosted())
                     <span class="label label-default" title="{{ __('campaigns.panels.boosted') }}" data-toggle="tooltip"><i class="fa-solid fa-rocket"></i></span>

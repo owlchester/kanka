@@ -33,7 +33,7 @@
         <tr>
             <td>{{ $group->name }}</td>
             <td>{{ $group->position }}</td>
-            <td>@if($group->is_shown) <i class="fas fa-check"></i> @endif</td>
+            <td>@if($group->is_shown) <i class="fa-solid fa-check"></i> @endif</td>
             <td>
                 @include('cruds.partials.visibility', ['model' => $group])
             </td>
@@ -67,7 +67,7 @@
        data-toggle="ajax-modal" data-target="#entity-modal"
        data-url="{{ route('maps.map_groups.create', ['map' => $model]) }}"
     >
-        <i class="fas fa-plus"></i> {{ __('maps/groups.actions.add') }}
+        <i class="fa-solid fa-plus"></i> {{ __('maps/groups.actions.add') }}
     </a>
     @endif
 

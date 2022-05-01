@@ -14,7 +14,7 @@ $map = $entity->child;
             <h3 class="panel-title">
                 <a href="{{ $map->getLink() }}">
                     @if ($map->is_private)
-                        <i class="fas fa-lock pull-right" title="{{ trans('crud.is_private') }}"></i>
+                        <i class="fa-solid fa-lock pull-right" title="{{ trans('crud.is_private') }}"></i>
                     @endif
 
                     @if(!empty($customName))

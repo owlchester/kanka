@@ -27,7 +27,7 @@ $model = $entity->child;
         <h3 class="panel-title">
             <a href="{{ $model->getLink() }}">
                 @if ($model->is_private)
-                    <i class="fas fa-lock pull-right" title="{{ trans('crud.is_private') }}"></i>
+                    <i class="fa-solid fa-lock pull-right" title="{{ trans('crud.is_private') }}"></i>
                 @endif
                 @if ($model->is_completed)
                     <i class="fa-solid fa-check-circle pull-right margin-r-5" title="{{ trans('quests.fields.is_completed') }}"></i>

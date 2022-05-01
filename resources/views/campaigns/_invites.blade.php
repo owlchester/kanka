@@ -14,7 +14,7 @@
             <div class="box-tools">
                 <button class="btn btn-default btn-sm" data-toggle="modal"
                         data-target="#invite-help">
-                    <i class="fas fa-question-circle" aria-hidden="true"></i>
+                    <i class="fa-solid fa-question-circle" aria-hidden="true"></i>
                     <span class="hidden-xs hidden-md">{{ __('campaigns.members.actions.help') }}</span>
                 </button>
 

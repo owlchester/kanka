@@ -70,7 +70,7 @@
        data-url="{{ route('timelines.timeline_eras.create', ['timeline' => $model]) }}"
        data-backdrop="static"
     >
-        <i class="fas fa-plus"></i> {{ __('timelines/eras.actions.add') }}
+        <i class="fa-solid fa-plus"></i> {{ __('timelines/eras.actions.add') }}
     </a>
 
     <hr />

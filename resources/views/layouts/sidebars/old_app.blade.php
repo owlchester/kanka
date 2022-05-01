@@ -1,6 +1,6 @@
 <li class="{{ $sidebar->active('dashboard') }} section section-dashboard">
     <a href="{{ route('dashboard') }}">
-        <i class="fas fa-th-large"></i> <span>{{ __('sidebar.dashboard') }}</span>
+        <i class="fa-solid fa-th-large"></i> <span>{{ __('sidebar.dashboard') }}</span>
     </a>
 </li>
 @includeWhen($currentCampaign->enabled('menu_links'), 'layouts.sidebars.quick-links')
@@ -24,7 +24,7 @@
 @endif
 @if ($currentCampaign->enabled('maps'))
     <li class="{{ $sidebar->active('maps') }} subsection section-maps">
-        <a href="{{ route('maps.' . $defaultIndex) }}"><i class="fas fa-map"></i> <span>{{ __('entities.maps') }}</span></a>
+        <a href="{{ route('maps.' . $defaultIndex) }}"><i class="fa-solid fa-map"></i> <span>{{ __('entities.maps') }}</span></a>
     </li>
 @endif
 @if ($currentCampaign->enabled('organisations'))
@@ -44,7 +44,7 @@
 @endif
 @if ($currentCampaign->enabled('timelines'))
     <li class="{{ $sidebar->active('timelines') }} subsection section-timelines">
-        <a href="{{ route('timelines.' . $defaultIndex) }}"><i class="fas fa-hourglass-half"></i> <span>{{ __('sidebar.timelines') }}</span></a>
+        <a href="{{ route('timelines.' . $defaultIndex) }}"><i class="fa-solid fa-hourglass-half"></i> <span>{{ __('sidebar.timelines') }}</span></a>
     </li>
 @endif
 @if ($currentCampaign->enabled('races'))
@@ -89,13 +89,13 @@
 
 @if ($currentCampaign->enabled('notes'))
     <li class="{{ $sidebar->active('notes') }} section-notes">
-        <a href="{{ route('notes.' . $defaultIndex) }}"><i class="fas fa-book-open"></i> <span>{{ __('sidebar.notes') }}</span></a>
+        <a href="{{ route('notes.' . $defaultIndex) }}"><i class="fa-solid fa-book-open"></i> <span>{{ __('sidebar.notes') }}</span></a>
     </li>
 @endif
 
 <li class="sidebar-section section-other">
     <div class="sidebar-text">
-        <i class="fas fa-cubes"></i>
+        <i class="fa-solid fa-cubes"></i>
         <span>{{ __('sidebar.other') }}</span>
     </div>
 </li>
@@ -117,12 +117,12 @@
 @endif
 @can('relations', $currentCampaign)
     <li class="{{ $sidebar->active('relations') }} subsection section-relations">
-        <a href="{{ route('relations.index') }}"><i class="fas fa-people-arrows"></i> <span>{{ __('sidebar.relations') }}</span></a>
+        <a href="{{ route('relations.index') }}"><i class="fa-solid fa-people-arrows"></i> <span>{{ __('sidebar.relations') }}</span></a>
     </li>
 @endcan
 @can('gallery', $currentCampaign)
     <li class="{{ $sidebar->active('gallery') }} subsection section-gallery">
-        <a href="{{ route('campaign.gallery.index') }}"><i class="fas fa-images"></i> <span>{{ __('sidebar.gallery') }}</span></a>
+        <a href="{{ route('campaign.gallery.index') }}"><i class="fa-solid fa-images"></i> <span>{{ __('sidebar.gallery') }}</span></a>
     </li>
 @endcan
 <li class="{{ $sidebar->active('attribute_templates') }} subsection section-attribute-templates">

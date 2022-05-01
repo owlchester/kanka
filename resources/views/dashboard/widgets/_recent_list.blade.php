@@ -10,7 +10,7 @@
         {!! $entity->tooltipedLink() !!}
 
         @if ($entity->is_private)
-            <i class="fas fa-lock" title="{{ __('crud.is_private') }}"></i>
+            <i class="fa-solid fa-lock" title="{{ __('crud.is_private') }}"></i>
         @endif
 
         <div class="blame">

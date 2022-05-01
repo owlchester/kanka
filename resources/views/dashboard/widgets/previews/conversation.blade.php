@@ -24,7 +24,7 @@ $conversation = $entity->child;
         <h3 class="panel-title">
             <a href="{{ $conversation->getLink() }}">
                 @if ($conversation->is_private)
-                    <i class="fas fa-lock pull-right" title="{{ __('crud.is_private') }}"></i>
+                    <i class="fa-solid fa-lock pull-right" title="{{ __('crud.is_private') }}"></i>
                 @endif
 
                 <span class="pull-right" data-toggle="tooltip" title="{{ __('conversations.tabs.participants') }}">

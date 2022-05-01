@@ -59,7 +59,7 @@
                     @else
                         <div class="text-center margin-bottom">
                             <strong>{{ __('settings.subscription.fields.payment_method') }}</strong><br />
-                            <i class="fas fa-credit-card"></i> **** {{ $card->card->last4 }} {{ $card->card->exp_month }}/{{ $card->card->exp_year }}
+                            <i class="fa-solid fa-credit-card"></i> **** {{ $card->card->last4 }} {{ $card->card->exp_month }}/{{ $card->card->exp_year }}
 
                             <p><a href="{{ route('settings.billing') }}">{{ __('settings.subscription.payment_method.actions.change') }}</a></p>
                         </div>

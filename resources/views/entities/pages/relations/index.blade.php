@@ -15,10 +15,10 @@
         <div class="header-buttons">
             <div class="btn-group">
                 <a href="{{ route('entities.relations.index', [$entity, 'mode' => 'table']) }}" class="btn btn-sm btn-default" data-toggle="tooltip" title="{{ __('entities/relations.actions.mode-table') }}">
-                    <i class="fas fa-list-ul"></i>
+                    <i class="fa-solid fa-list-ul"></i>
                 </a>
                 <a href="{{ route('entities.relations.index', [$entity, 'mode' => 'map']) }}" class="btn btn-sm btn-default" data-toggle="tooltip" title="{{ __('entities/relations.actions.mode-map') }}">
-                    <i class="fas fa-map"></i>
+                    <i class="fa-solid fa-map"></i>
                 </a>
             </div>
 

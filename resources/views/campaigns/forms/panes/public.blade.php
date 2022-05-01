@@ -7,7 +7,7 @@
     'public-role' => link_to_route('campaigns.campaign_roles.public', __('campaigns.members.roles.public'), null, ['target' => '_blank'])
 ]) !!}</p>
         <p>
-            <a href="https://www.youtube.com/watch?v=VpY_D2PAguM" target="_blank"><i class="fas fa-external-link-alt"></i> {{ __('helpers.public') }}</a>
+            <a href="https://www.youtube.com/watch?v=VpY_D2PAguM" target="_blank"><i class="fa-solid fa-external-link-alt"></i> {{ __('helpers.public') }}</a>
         </p>
     </div>
 

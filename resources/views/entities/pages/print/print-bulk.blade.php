@@ -20,7 +20,7 @@
 @section('content')
 
     <button class="btn btn-lg btn-warning btn-print" onclick="javascript:window.print();">
-        <i class="fas fa-print"></i> {{ __('crud.actions.print') }}
+        <i class="fa-solid fa-print"></i> {{ __('crud.actions.print') }}
     </button>
 
     @foreach ($entities as $model)

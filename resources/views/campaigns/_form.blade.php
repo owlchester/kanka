@@ -146,7 +146,7 @@
                 {{ __('campaigns.visibilities.public') }}
             </label>
             <p class="help-block">{{ __('campaigns.helpers.visibility') }}<br />
-                <a href="https://www.youtube.com/watch?v=VpY_D2PAguM" target="_blank"><i class="fas fa-external-link-alt"></i> {{ __('helpers.public') }}</a>
+                <a href="https://www.youtube.com/watch?v=VpY_D2PAguM" target="_blank"><i class="fa-solid fa-external-link-alt"></i> {{ __('helpers.public') }}</a>
             </p>
         </div>
     </div>

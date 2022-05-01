@@ -16,7 +16,7 @@
                 <th colspan="2">
                     @if(request()->get('order') == 'name' || !request()->has('order'))
                         {{ __('crud.fields.name') }}
-                        <i class="fas fa-arrow-down"></i>
+                        <i class="fa-solid fa-arrow-down"></i>
                     @else
                         <a href="{{ route('entities.relations.index', [$entity, 'mode' => 'table', '#entity-related', 'order' => 'name']) }}">
                             {{ __('crud.fields.name') }}
@@ -27,7 +27,7 @@
                     @if(request()->get('order') == 'type')
                         {{ __('crud.fields.entity_type') }}
 
-                        <i class="fas fa-arrow-down"></i>
+                        <i class="fa-solid fa-arrow-down"></i>
                     @else
                     <a href="{{ route('entities.relations.index', [$entity, 'mode' => 'table', '#entity-related', 'order' => 'type']) }}">
                         {{ __('crud.fields.entity_type') }}

@@ -12,7 +12,7 @@
         <div class="box-tools">
             <button class="btn btn-default btn-sm" data-toggle="modal"
                     data-target="#members-help">
-                <i class="fas fa-question-circle" aria-hidden="true"></i>
+                <i class="fa-solid fa-question-circle" aria-hidden="true"></i>
                     {{ __('campaigns.members.actions.help') }}
             </button>
         </div>
@@ -45,16 +45,16 @@
                         <td>
                             {!! $relation->user->rolesList($campaign->id) !!}
                             @can('update', $relation)
-                                <i role="button" tabindex="0" class="fas fa-plus-circle cursor btn-user-roles" title="{{ __('campaigns.members.manage_roles') }}" data-content="
+                                <i role="button" tabindex="0" class="fa-solid fa-plus-circle cursor btn-user-roles" title="{{ __('campaigns.members.manage_roles') }}" data-content="
                                 @foreach($roles as $role)
                                 <form method='post' action='{{ route('campaign_users.update-roles', [$relation, $role]) }}' class='user-role-update'>
     {!! str_replace('"', '\'', csrf_field()) !!}
 
                                     <button class='btn btn-block btn-role-update'>
                                     @if($relation->user->hasCampaignRole($role->id))
-                                        <span class='text-danger'><i class='fas fa-times'></i> {{ $role->name }}</span>
+                                        <span class='text-danger'><i class='fa-solid fa-times'></i> {{ $role->name }}</span>
                                     @else
-                                        <i class='fas fa-plus'></i> {{ $role->name }}
+                                        <i class='fa-solid fa-plus'></i> {{ $role->name }}
                                     @endif
                                     </button>
                                 </form>

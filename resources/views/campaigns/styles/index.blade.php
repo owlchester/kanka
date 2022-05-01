@@ -36,12 +36,12 @@ use App\Facades\Datagrid ?>
                     <div class="box-tools">
                         <button class="btn btn-default btn-sm" data-toggle="modal"
                                 data-target="#theming-help">
-                            <i class="fas fa-question-circle" aria-hidden="true"></i>
+                            <i class="fa-solid fa-question-circle" aria-hidden="true"></i>
                             {{ __('campaigns.members.actions.help') }}
                         </button>
 
                         <a href="#" data-url="{{ route('campaign-theme') }}" data-target="#entity-modal" data-toggle="ajax-modal" class="btn btn-default btn-sm" >
-                            <i class="fas fa-brush"></i> {{ __('campaigns/styles.actions.current', ['theme' => !empty($theme) ? $theme->__toString() : __('crud.filters.options.none')]) }}
+                            <i class="fa-solid fa-brush"></i> {{ __('campaigns/styles.actions.current', ['theme' => !empty($theme) ? $theme->__toString() : __('crud.filters.options.none')]) }}
                         </a>
 
                         <a href="{{ route('campaign_styles.create') }}" class="btn btn-primary btn-sm">

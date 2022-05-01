@@ -18,7 +18,7 @@
             <p>
                 {!! __('helpers.entity_templates.description', [
     'link' => '<code><i class="fa-solid fa-star" aria-hidden="true"></i> ' .  __('entities/actions.templates.set') . '</code>',
-'action' => '<i class="fas fa-cog"></i>',
+'action' => '<i class="fa-solid fa-cog"></i>',
 'new' => '<button class="btn btn-primary btn-sm"><i class="fa-solid fa-plus"></i> ' . __('crud.new_entity.title') . '</button>',
 ]) !!}
             </p>

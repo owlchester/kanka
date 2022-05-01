@@ -31,7 +31,7 @@
                     </p>
                     <p>
                         <a href="{{ url()->previous() }}">
-                            <i class="fas fa-arrow-left"></i>
+                            <i class="fa-solid fa-arrow-left"></i>
                             {{ __('crud.actions.back') }}
                         </a>
                     </p>
@@ -40,7 +40,7 @@
             <p class="help-block">{{ __('entities/image.focus.helper') }}</p>
             <div class="focus-selector">
                 <div class="focus" style="@if(empty($entity->focus_x))display: none; @else left: {{ $entity->focus_x }}px; top: {{ $entity->focus_y }}px; @endif">
-                    <i class="fas fa-bullseye fa-2x"></i>
+                    <i class="fa-solid fa-bullseye fa-2x"></i>
                 </div>
 
                 <img class="focus-image" src="{{ $model->getImageUrl(0) }}" alt="img" />
