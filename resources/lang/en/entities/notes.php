@@ -46,4 +46,8 @@ return [
         'advanced'  => 'Advanced Permissions',
         'title'     => 'Post :name for :entity',
     ],
+    'states'        => [
+        'expanded' => 'Expanded',
+        'collapsed' => 'Collapsed',
+    ]
 ];

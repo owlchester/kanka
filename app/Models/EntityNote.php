@@ -26,6 +26,7 @@ use Illuminate\Support\Arr;
  * @property boolean $is_private
  * @property boolean $is_pinned
  * @property integer $position
+ * @property array $settings
  * @property Entity $entity
  * @property Location $location
  * @property EntityMention[] $mentions

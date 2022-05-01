@@ -17,6 +17,7 @@
 
 .element-live-reorder .element .name {
   overflow: hidden;
+  flex-grow: 1;
 }
 
 .element-live-reorder .element .name i {
@@ -27,8 +28,18 @@
   display: var(--fa-display, inline-block);
 }
 
+.element-live-reorder .element .state {
+  padding: 0 10px;
+  align-self: flex-end;
+}
+
+.element-live-reorder .element .state select {
+  height: 28px;
+  padding: 3px 6px;
+}
+
 .element-live-reorder .element .icons {
-  margin-left: auto;
+  align-self: flex-end;
 }
 
 .entity-image-focus .focus-selector {

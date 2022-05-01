@@ -18,8 +18,6 @@ $notes = $entity->notes()->ordered()->get();
         </h3>
     </div>
     <div class="box-body">
-
-
         <div class="element-live-reorder">
             @if ($notes->count() > 0)
                 @php $first = $notes->first(); @endphp
@@ -35,7 +33,7 @@ $notes = $entity->notes()->ordered()->get();
                             </div>
                         </div>
                         <div class="name">
-                            <i class="fas fa-align-justify"></i> {{ __('crud.fields.entry') }}
+                            <i class="fa-solid fa-align-justify"></i> {{ __('crud.fields.entry') }}
                         </div>
                         <div class="icons">
                         </div>
@@ -46,7 +44,7 @@ $notes = $entity->notes()->ordered()->get();
                 @if (!$hasEntry && $note->position >= 0)
                     @php $hasEntry = true @endphp
                     <div class="element" data-id="story">
-                        {!! Form::hidden('entity_types[]', 'story') !!}
+                        {!! Form::hidden('posts[story]', 'story') !!}
                         <div class="dragger">
                             <span class="fa-solid fa-ellipsis-v visible-md visible-lg"></span>
                             <div class="visible-xs visible-sm">
@@ -55,7 +53,7 @@ $notes = $entity->notes()->ordered()->get();
                             </div>
                         </div>
                         <div class="name">
-                            <i class="fas fa-align-justify"></i> {{ __('crud.fields.entry') }}
+                            <i class="fa-solid fa-align-justify"></i> {{ __('crud.fields.entry') }}
                         </div>
                         <div class="icons">
                         </div>
@@ -63,8 +61,7 @@ $notes = $entity->notes()->ordered()->get();
                 @endif
 
                 <div class="element" data-id="{{ $note->id }}">
-                    {!! Form::hidden('entity_note_id[]', $note->id) !!}
-                    {!! Form::hidden('entity_types[]', 'post') !!}
+                    {!! Form::hidden('posts[' . $note->id . '][id]', $note->id) !!}
                     <div class="dragger">
                         <span class="fa-solid fa-ellipsis-v visible-md visible-lg"></span>
                         <div class="visible-xs visible-sm">
@@ -75,6 +72,13 @@ $notes = $entity->notes()->ordered()->get();
                     <div class="name">
                         {!! $note->name !!}
                     </div>
+                    <div class="state">
+                        <select name="posts[{{ $note->id }}][collapsed]" class="form-control">
+                            <option value="0">{{ __('entities/notes.states.expanded') }}</option>
+                            <option value="1" @if ($note->collapsed()) selected="selected" @endif>{{ __('entities/notes.states.collapsed') }}</option>
+                        </select>
+                    </div>
+
                     <div class="icons">
                         @include('cruds.partials.visibility', ['model' => $note])
                     </div>
@@ -85,7 +89,7 @@ $notes = $entity->notes()->ordered()->get();
             @if (!$hasEntry)
                 @php $hasEntry = true @endphp
                 <div class="element" data-id="story">
-                    {!! Form::hidden('entity_types[]', 'story') !!}
+                    {!! Form::hidden('posts[story]', 'story') !!}
                     <div class="dragger">
                         <span class="fa-solid fa-ellipsis-v visible-md visible-lg"></span>
                         <div class="visible-xs visible-sm">
@@ -94,7 +98,7 @@ $notes = $entity->notes()->ordered()->get();
                         </div>
                     </div>
                     <div class="name">
-                        <i class="fas fa-align-justify"></i> {{ __('crud.fields.entry') }}
+                        <i class="fa-solid fa-align-justify"></i> {{ __('crud.fields.entry') }}
                     </div>
                     <div class="icons">
                     </div>

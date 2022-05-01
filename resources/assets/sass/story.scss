@@ -17,6 +17,7 @@
 
     .name {
       overflow: hidden;
+      flex-grow: 1;
       //align-self: flex-start;
 
       i {
@@ -27,8 +28,17 @@
       }
     }
 
+    .state {
+      padding: 0 10px;
+      align-self: flex-end;
+      select {
+        height: 28px;
+        padding: 3px 6px;
+      }
+    }
+
     .icons {
-      margin-left: auto;
+      align-self: flex-end;
     }
   }
 }

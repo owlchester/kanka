@@ -24,8 +24,10 @@ class ReorderStories extends FormRequest
     public function rules()
     {
         return [
-            'entity_note_id' => [
-                '*' => 'exists:entity_notes,id'
+            'posts' => [
+                '*' => [
+                    'id' => 'exists:entity_notes,id'
+                ],
             ]
         ];
     }
