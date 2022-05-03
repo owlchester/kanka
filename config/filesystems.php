@@ -81,8 +81,6 @@ return [
             'region' => env('AWS_DEFAULT_REGION'),
             'bucket' => env('AWS_BUCKET_APP'),
             'visibility' => 'public',
-            // We have to declare the url otherwise voyager gets confused
-            'url' => 'https://' . env('AWS_BUCKET_APP') . '.s3.amazonaws.com/'
         ],
 
         's3-images' => [
@@ -92,8 +90,6 @@ return [
             'region' => env('AWS_IMAGES_DEFAULT_REGION'),
             'bucket' => env('AWS_IMAGES_BUCKET_APP'),
             'visibility' => 'public',
-            // We have to declare the url otherwise voyager gets confused
-            'url' => 'https://images.kanka.io/'
         ],
 
         's3-marketplace' => [
@@ -103,8 +99,6 @@ return [
             'region' => env('AWS_DEFAULT_REGION'),
             'bucket' => env('AWS_BUCKET_MARKETPLACE'),
             'visibility' => 'public',
-            // We have to declare the url otherwise voyager gets confused
-            'url' => 'https://' . env('AWS_BUCKET_APP') . '.s3.amazonaws.com/'
         ]
 
     ],

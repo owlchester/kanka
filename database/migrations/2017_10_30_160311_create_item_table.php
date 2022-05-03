@@ -29,10 +29,14 @@ class CreateItemTable extends Migration
 
             $table->timestamps();
 
+            // Privacy
+            $table->boolean('is_private')->default(false);
+            $table->index(['is_private']);
+
             // Foreign
             $table->foreign('campaign_id')->references('id')->on('campaigns')->onDelete('cascade');
-            $table->foreign('location_id')->references('id')->on('locations')->onDelete('cascade');
-            $table->foreign('character_id')->references('id')->on('characters')->onDelete('cascade');
+            $table->foreign('location_id')->references('id')->on('locations')->nullOnDelete();
+            $table->foreign('character_id')->references('id')->on('characters')->nullOnDelete();
 
             // Index
             $table->index(['name', 'slug', 'type']);

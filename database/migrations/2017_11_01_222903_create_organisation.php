@@ -28,9 +28,13 @@ class CreateOrganisation extends Migration
 
             $table->timestamps();
 
+            // Privacy
+            $table->boolean('is_private')->default(false);
+            $table->index(['is_private']);
+
             // Foreign
             $table->foreign('campaign_id')->references('id')->on('campaigns')->onDelete('cascade');
-            $table->foreign('location_id')->references('id')->on('locations')->onDelete('cascade');
+            $table->foreign('location_id')->references('id')->on('locations')->nullOnDelete();
 
             // Index
             $table->index(['name', 'slug', 'type']);

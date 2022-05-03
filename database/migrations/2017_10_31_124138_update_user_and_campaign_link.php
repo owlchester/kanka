@@ -15,6 +15,15 @@ class UpdateUserAndCampaignLink extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->unsignedInteger('last_campaign_id')->nullable();
+
+            $table->string('password')->nullable()->change();
+            $table->string('provider')->nullable();
+            $table->string('provider_id')->nullable();
+
+            $table->string('locale', 5)->default('en');
+
+            $table->index(['provider', 'provider_id']);
+
         });
     }
 

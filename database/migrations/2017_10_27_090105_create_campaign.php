@@ -23,6 +23,9 @@ class CreateCampaign extends Migration
             $table->string('slug');
             $table->string('locale');
 
+            $table->string('image', 255)->nullable();
+            $table->longText('entry')->nullable();
+
             $table->unique(['name', 'slug']);
 
             $table->timestamps();

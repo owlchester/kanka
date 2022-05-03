@@ -27,6 +27,10 @@ class CreateJournalTable extends Migration
 
             $table->timestamps();
 
+            // Privacy
+            $table->boolean('is_private')->default(false);
+            $table->index(['is_private']);
+
             // Foreign
             $table->foreign('campaign_id')->references('id')->on('campaigns')->onDelete('cascade');
 
