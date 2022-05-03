@@ -40,7 +40,10 @@ class CreateCampaign extends Migration
             $table->boolean('entity_personality_visibility')->defaultValue(true);
 
             $table->text('settings')->nullable();
+            $table->text('default_images')->nullable();
+            $table->text('ui_settings')->nullable();
 
+            $table->unsignedTinyInteger('boost_count')->nullable();
 
             $table->timestamps();
 

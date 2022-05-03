@@ -22,10 +22,14 @@ class CreateEntitiesTable extends Migration
             $table->integer('entity_id')->unsigned()->notNull();
             $table->integer('campaign_id')->unsigned()->notNull();
 
+            $table->text('tooltip')->nullable();
+            $table->string('header_image')->nullable();
+
             $table->boolean('is_template')->nullable();
 
             $table->unsignedSmallInteger('focus_x')->nullable();
             $table->unsignedSmallInteger('focus_y')->nullable();
+
 
             $table->timestamps();
 

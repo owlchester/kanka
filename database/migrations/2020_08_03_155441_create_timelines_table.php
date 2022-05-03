@@ -55,6 +55,7 @@ class CreateTimelinesTable extends Migration
 
             // Overview
             $table->longText('entry')->nullable();
+            $table->boolean('is_collapsed')->default(false);
 
             $table->timestamps();
 

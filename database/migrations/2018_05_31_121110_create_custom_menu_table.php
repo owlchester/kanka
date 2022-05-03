@@ -27,6 +27,7 @@ class CreateCustomMenuTable extends Migration
             $table->string('random_entity_type', 30)->nullable();
             $table->string('menu', 20)->nullable();
             $table->string('type', 30)->nullable();
+            $table->text('options')->nullable();
 
             $table->unsignedSmallInteger('position')->default(1);
 
