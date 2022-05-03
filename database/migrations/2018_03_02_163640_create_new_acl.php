@@ -20,6 +20,8 @@ class CreateNewAcl extends Migration
             $table->string('name')->notNull();
             $table->integer('campaign_id')->unsigned()->notNull();
 
+            $table->boolean('is_admin')->default(false)->notNull();
+
             $table->timestamps();
 
             // Foreign

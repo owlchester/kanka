@@ -22,6 +22,9 @@ class CreateRelationsTable extends Migration
             $table->integer('target_id')->unsigned()->notNull();
             $table->integer('campaign_id')->unsigned()->notNull();
 
+            $table->string('relation', 255)->notNull();
+
+
             // Foreign
             $table->foreign('campaign_id')->references('id')->on('campaigns')->onDelete('cascade');
             $table->foreign('owner_id')->references('id')->on('entities')->onDelete('cascade');

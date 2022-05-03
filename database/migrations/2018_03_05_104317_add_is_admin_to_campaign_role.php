@@ -14,7 +14,6 @@ class AddIsAdminToCampaignRole extends Migration
     public function up()
     {
         Schema::table('campaign_roles', function (Blueprint $table) {
-            $table->boolean('is_admin')->default(false)->notNull();
         });
     }
 

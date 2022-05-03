@@ -22,6 +22,7 @@ class CreateCharacters extends Migration
             // Overview
             $table->longText('entry')->nullable();
             $table->string('title')->nullable();
+            $table->string('type', 45)->nullable();
 
             // Appearance
             $table->string('age', 25)->nullable();
@@ -33,6 +34,8 @@ class CreateCharacters extends Migration
             // Privacy
             $table->boolean('is_private')->default(false);
             $table->index(['is_private']);
+
+            $table->boolean('is_personality_visible')->default(true);
 
             // Foreign
             $table->foreign('campaign_id')->references('id')->on('campaigns')->onDelete('cascade');

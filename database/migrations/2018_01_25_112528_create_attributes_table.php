@@ -17,7 +17,7 @@ class CreateAttributesTable extends Migration
         Schema::create('attributes', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name')->notNull();
-            $table->string('value')->notNull();
+            $table->string('value', 191)->nullable();
             $table->boolean('is_private')->default(0);
             $table->integer('entity_id')->unsigned()->notNull();
 

@@ -21,7 +21,7 @@ class CreateLocations extends Migration
             $table->increments('id');
             $table->string('name')->notNull();
             $table->string('slug');
-            $table->string('type', 45);
+            $table->string('type', 45)->nullable();
             $table->string('image')->nullable();
             $table->longText('entry')->nullable();
             $table->integer('parent_location_id')->unsigned()->nullable();
