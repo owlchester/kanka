@@ -36,12 +36,12 @@ class StoryService
 
         // If the story element isn't in first place, we need to have negative starting positions.
         $position = 0;
-        $storyPosition = array_search('story', array_keys($posts));
+        $storyPosition = array_search('story', array_values($posts));
         $position -= $storyPosition;
 
         foreach ($posts as $id => $data) {
             // We only want to process posts
-            if ($id === 'story') {
+            if (!is_array($data) || $data === 'story') {
                 continue;
             }
             $id = $data['id'];
@@ -60,6 +60,9 @@ class StoryService
                     unset($settings['collapsed']);
                 }
                 $story->settings = $settings;
+            }
+            if (isset($data['visibility'])) {
+               $story->visibility = $data['visibility'];
             }
 
             $story->position = $position;

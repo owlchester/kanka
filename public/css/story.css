@@ -33,13 +33,13 @@
   align-self: flex-end;
 }
 
-.element-live-reorder .element .state select {
-  height: 28px;
-  padding: 3px 6px;
-}
-
 .element-live-reorder .element .icons {
   align-self: flex-end;
+}
+
+.element-live-reorder .element select {
+  height: 28px;
+  padding: 3px 6px;
 }
 
 .entity-image-focus .focus-selector {
