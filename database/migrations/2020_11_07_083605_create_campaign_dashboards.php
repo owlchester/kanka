@@ -13,9 +13,6 @@ class CreateCampaignDashboards extends Migration
      */
     public function up()
     {
-        Schema::dropIfExists('campaign_dashboard_roles');
-        Schema::dropIfExists('campaign_dashboards');
-
         Schema::create('campaign_dashboards', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedInteger('campaign_id');

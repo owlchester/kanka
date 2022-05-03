@@ -27,6 +27,8 @@ class CreateEntityNotesTable extends Migration
             $table->string('visibility', 10)->default('all');
             $table->smallInteger('position');
 
+            $table->text('settings')->nullable();
+
             $table->timestamps();
 
             // Foreign

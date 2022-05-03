@@ -42,6 +42,9 @@ class CreateMapsTable extends Migration
             $table->smallInteger('max_zoom')->nullable();
             $table->smallInteger('initial_zoom')->nullable();
 
+            $table->unsignedSmallInteger('center_x')->nullable();
+            $table->unsignedSmallInteger('center_y')->nullable();
+
             $table->unsignedSmallInteger('grid')->nullable();
 
             $table->timestamps();
@@ -73,6 +76,8 @@ class CreateMapsTable extends Migration
             $table->string('visibility', 10)->default('all');
 
             $table->boolean('is_shown')->default(true);
+
+            $table->unsignedTinyInteger('type_id')->nullable();
 
             $table->timestamps();
 

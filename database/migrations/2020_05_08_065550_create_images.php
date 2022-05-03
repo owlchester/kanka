@@ -22,13 +22,21 @@ class CreateImages extends Migration
             $table->integer('size')->nullable();
 
             $table->unsignedInteger('created_by')->nullable();
+            $table->boolean('is_default')->default(false);
+
+            $table->uuid('folder_id')->nullable();
+            $table->boolean('is_folder')->default(false);
 
             $table->timestamps();
 
             $table->foreign('created_by')->references('id')->on('users')->onDelete('set null');
             $table->foreign('campaign_id')->references('id')->on('campaigns')->onDelete('cascade');
+            $table->foreign('folder_id')->references('id')->on('images')->onDelete('cascade');
 
             $table->unique('id');
+
+            $table->index('is_folder');
+            $table->index(['is_default']);
         });
     }
 

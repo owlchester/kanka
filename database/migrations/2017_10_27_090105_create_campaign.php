@@ -39,6 +39,9 @@ class CreateCampaign extends Migration
             $table->unsignedInteger('visible_entity_count')->default(0);
             $table->boolean('entity_personality_visibility')->defaultValue(true);
 
+            $table->text('settings')->nullable();
+
+
             $table->timestamps();
 
             $table->index(['visibility', 'is_featured', 'visible_entity_count']);
