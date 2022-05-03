@@ -22,6 +22,9 @@ class CreateOrganisation extends Migration
 
             $table->integer('campaign_id')->unsigned()->notNull();
             $table->integer('location_id')->unsigned()->nullable();
+            $table->unsignedInteger('organisation_id')->nullable();
+            $table->unsignedInteger('_lft')->default(0);
+            $table->unsignedInteger('_rgt')->default(0);
 
             // Overview
             $table->longText('entry')->nullable();
@@ -35,9 +38,11 @@ class CreateOrganisation extends Migration
             // Foreign
             $table->foreign('campaign_id')->references('id')->on('campaigns')->onDelete('cascade');
             $table->foreign('location_id')->references('id')->on('locations')->nullOnDelete();
+            $table->foreign('organisation_id')->references('id')->on('organisations')->onDelete('set null');
 
             // Index
             $table->index(['name', 'slug', 'type']);
+            $table->index(['_lft', '_rgt', 'organisation_id']);
         });
 
         Schema::create('organisation_member', function (Blueprint $table) {
@@ -49,11 +54,11 @@ class CreateOrganisation extends Migration
             $table->timestamps();
 
             // Foreign
-            $table->foreign('organisation_id')->references('id')->on('organisations');
-            $table->foreign('character_id')->references('id')->on('characters');
+            $table->foreign('organisation_id')->references('id')->on('organisations')->cascadeOnDelete();
+            $table->foreign('character_id')->references('id')->on('characters')->cascadeOnDelete();
 
             // Index
-            $table->index(['is_private']);
+            $table->index(['is_private', 'role']);
         });
     }
 

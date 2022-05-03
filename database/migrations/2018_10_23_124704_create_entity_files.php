@@ -24,12 +24,15 @@ class CreateEntityFiles extends Migration
 
             $table->unsignedInteger('entity_id');
             $table->unsignedInteger('created_by')->nullable();
+
+            $table->string('visibility')->default('all');
             $table->timestamps();
 
             $table->foreign('entity_id')->references('id')->on('entities')->onDelete('cascade');
             $table->foreign('created_by')->references('id')->on('users')->onDelete('set null');
 
             $table->index(['name', 'is_private', 'type']);
+            $table->index(['visibility']);
         });
     }
 

@@ -53,12 +53,19 @@ class CreateConversations extends Migration
             $table->unsignedInteger('conversation_id');
             $table->unsignedInteger('character_id')->nullable();
             $table->unsignedInteger('user_id')->nullable();
+            $table->unsignedInteger('created_by')->nullable();
+            $table->unsignedInteger('updated_by')->nullable();
+
             $table->longText('message')->nullable();
             $table->timestamps();
 
             $table->foreign('conversation_id')->references('id')->on('conversations')->onDelete('cascade');
             $table->foreign('character_id')->references('id')->on('characters')->onDelete('set null');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');
+            $table->foreign('created_by')->references('id')->on('users')->onDelete('set null');
+            $table->foreign('updated_by')->references('id')->on('users')->onDelete('set null');
+
+            $table->index('created_at');
         });
 
         Schema::table('campaign_settings', function (Blueprint $table) {

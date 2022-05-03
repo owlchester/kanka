@@ -25,6 +25,7 @@ class CreateFamilies extends Migration
             $table->string('slug');
             $table->integer('campaign_id')->unsigned()->notNull();
 
+            $table->string('type', 45)->nullable();
             $table->longText('entry')->nullable();
 
             $table->string('image')->nullable();

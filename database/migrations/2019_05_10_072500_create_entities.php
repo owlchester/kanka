@@ -19,6 +19,9 @@ class CreateEntities extends Migration
             $table->boolean('is_special')->default(false);
             $table->boolean('is_enabled')->default(true);
             $table->unsignedTinyInteger('position')->default(0);
+
+            $table->boolean('is_attributes_private')->default(false);
+
             $table->timestamps();
 
             $table->index(['position', 'is_enabled', 'is_special']);

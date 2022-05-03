@@ -25,17 +25,23 @@ class CreateCampaign extends Migration
 
             $table->string('image', 255)->nullable();
             $table->longText('entry')->nullable();
+            $table->text('excerpt')->nullable();
+
+            $table->string('header_image')->nullable();
+            $table->string('system', 45)->nullable();
 
             $table->string('export_path')->nullable();
             $table->date('export_date')->nullable();
 
+            $table->string('visibility', 7)->default('private');
             $table->boolean('is_featured')->defaultValue(false);
             $table->boolean('entity_visibility')->defaultValue(false);
+            $table->unsignedInteger('visible_entity_count')->default(0);
+            $table->boolean('entity_personality_visibility')->defaultValue(true);
 
             $table->timestamps();
 
-            $table->unique(['name', 'slug']);
-            $table->index(['visibility', 'is_featured'], 'campaigns_public_idx');
+            $table->index(['visibility', 'is_featured', 'visible_entity_count']);
         });
 
         Schema::create('campaign_user', function (Blueprint $table) {

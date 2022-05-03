@@ -22,6 +22,7 @@ class CreateCharacterTraitsTable extends Migration
             $table->text('entry')->nullable();
             $table->boolean('is_private')->default(0);
             $table->string('section', 10)->default('appearance');
+            $table->unsignedSmallInteger('default_order')->null()->default('0');
             $table->timestamps();
 
             // Foreign
@@ -29,6 +30,7 @@ class CreateCharacterTraitsTable extends Migration
             $table->foreign('created_by')->references('id')->on('users')->onDelete('set null');
 
             $table->index(['name', 'section', 'is_private']);
+            $table->index(['default_order']);
         });
     }
 

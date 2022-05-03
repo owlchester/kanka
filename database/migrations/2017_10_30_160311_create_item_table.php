@@ -27,11 +27,15 @@ class CreateItemTable extends Migration
             // Overview
             $table->longText('entry')->nullable();
 
-            $table->timestamps();
+            $table->string('price')->nullable();
+            $table->string('size')->nullable();
+
 
             // Privacy
             $table->boolean('is_private')->default(false);
-            $table->index(['is_private']);
+
+            $table->timestamps();
+
 
             // Foreign
             $table->foreign('campaign_id')->references('id')->on('campaigns')->onDelete('cascade');
@@ -39,7 +43,8 @@ class CreateItemTable extends Migration
             $table->foreign('character_id')->references('id')->on('characters')->nullOnDelete();
 
             // Index
-            $table->index(['name', 'slug', 'type']);
+            $table->index(['name', 'slug', 'type', 'is_private']);
+            $table->index(['price', 'size'], 'items_price_idx');
         });
     }
 

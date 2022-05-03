@@ -38,9 +38,6 @@ class CreateCharacters extends Migration
             $table->boolean('is_personality_visible')->default(true);
             $table->boolean('is_dead')->default(false)->notNull();
 
-            $table->string('header_image')->nullable();
-            $table->string('system', 45)->nullable();
-
             // Foreign
             $table->foreign('campaign_id')->references('id')->on('campaigns')->onDelete('cascade');
 

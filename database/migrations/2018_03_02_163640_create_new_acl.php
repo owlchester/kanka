@@ -21,6 +21,7 @@ class CreateNewAcl extends Migration
             $table->integer('campaign_id')->unsigned()->notNull();
 
             $table->boolean('is_admin')->default(false)->notNull();
+            $table->boolean('is_public')->default(false)->notNull();
 
             $table->timestamps();
 
@@ -63,6 +64,9 @@ class CreateNewAcl extends Migration
 
             // The table name
             $table->string('table_name', 191)->notNull();
+
+            $table->boolean('access')->default(true);
+
 
             $table->timestamps();
 

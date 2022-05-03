@@ -20,6 +20,7 @@ class CreateEntityEvents extends Migration
             $table->string('date');
             $table->boolean('is_recurring')->defaultValue(false);
             $table->string('comment')->nullable();
+            $table->string('colour', 12);
             $table->timestamps();
 
             $table->index(['date', 'is_recurring']);

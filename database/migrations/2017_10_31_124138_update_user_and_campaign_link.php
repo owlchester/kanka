@@ -29,6 +29,13 @@ class UpdateUserAndCampaignLink extends Migration
             $table->unsignedSmallInteger('default_pagination')->notNull()->default('15');
             $table->string('date_format', 20)->notNull()->default('Y-m-d');
 
+            $table->char('currency', 3)->nullable();
+            $table->unsignedTinyInteger('booster_count')->nullable();
+
+            $table->dateTime('last_login_at')->nullable();
+            $table->boolean('has_last_login_sharing')->default(0);
+
+            $table->string('theme', 20)->nullable();
 
             $table->index(['provider', 'provider_id']);
 

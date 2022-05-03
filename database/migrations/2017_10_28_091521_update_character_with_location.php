@@ -15,7 +15,7 @@ class UpdateCharacterWithLocation extends Migration
     {
         Schema::table('characters', function (Blueprint $table) {
             $table->integer('location_id')->unsigned()->nullable();
-            $table->foreign('location_id')->references('id')->on('locations')->onDelete('set null');
+            $table->foreign('location_id')->references('id')->on('locations')->nullOnDelete();
         });
     }
 

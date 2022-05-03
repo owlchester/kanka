@@ -22,13 +22,20 @@ class CreateEntityNotesTable extends Migration
             $table->boolean('is_private')->default(0);
             $table->unsignedInteger('entity_id')->notNull();
             $table->unsignedInteger('created_by')->nullable();
+
+            $table->integer('updated_by')->unsigned()->nullable();
+            $table->string('visibility', 10)->default('all');
+            $table->smallInteger('position');
+
             $table->timestamps();
 
             // Foreign
             $table->foreign('entity_id')->references('id')->on('entities')->onDelete('cascade');
             $table->foreign('created_by')->references('id')->on('users')->onDelete('set null');
+            $table->foreign('updated_by')->references('id')->on('users')->onDelete('set null');
 
             $table->index(['name', 'is_private']);
+            $table->index(['visibility', 'position']);
         });
     }
 

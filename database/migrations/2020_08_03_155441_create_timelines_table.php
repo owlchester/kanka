@@ -30,6 +30,8 @@ class CreateTimelinesTable extends Migration
             // Overview
             $table->longText('entry')->nullable();
 
+            $table->boolean('revert_order')->default(false);
+
             $table->timestamps();
             $table->softDeletes();
 

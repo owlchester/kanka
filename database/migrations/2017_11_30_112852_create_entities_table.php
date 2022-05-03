@@ -22,12 +22,15 @@ class CreateEntitiesTable extends Migration
             $table->integer('entity_id')->unsigned()->notNull();
             $table->integer('campaign_id')->unsigned()->notNull();
 
+            $table->boolean('is_template')->nullable();
+
             $table->timestamps();
 
             // Foreign
             $table->foreign('campaign_id')->references('id')->on('campaigns')->onDelete('cascade');
 
-            $table->index(['type', 'name', 'is_private']);
+            $table->index(['type', 'name', 'is_private', 'is_template']);
+            $table->index('updated_at');
         });
     }
 
