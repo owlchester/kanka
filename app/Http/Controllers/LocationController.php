@@ -161,7 +161,7 @@ class LocationController extends CrudController
      */
     public function characters(Location $location)
     {
-        $this->authCheck();
+        $this->authCheck($location);
 
         $options = ['location' => $location];
         $filters = [];
@@ -206,7 +206,7 @@ class LocationController extends CrudController
      */
     public function locations(Location $location)
     {
-        $this->authCheck();
+        $this->authCheck($location);
 
         $options = ['location' => $location];
         $filters = [];

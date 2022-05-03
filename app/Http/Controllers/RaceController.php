@@ -90,7 +90,7 @@ class RaceController extends CrudController
      */
     public function characters(Race $race)
     {
-        $this->authCheck();
+        $this->authCheck($race);
 
         $options = ['race' => $race];
         $filters = [];
