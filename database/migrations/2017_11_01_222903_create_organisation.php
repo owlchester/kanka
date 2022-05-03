@@ -44,7 +44,8 @@ class CreateOrganisation extends Migration
             $table->increments('id');
             $table->integer('organisation_id')->unsigned()->notNull();
             $table->integer('character_id')->unsigned()->notNull();
-            $table->string('role', 45)->notNull();
+            $table->string('role', 45)->nullable();
+            $table->boolean('is_private')->default(false);
             $table->timestamps();
 
             // Foreign
@@ -52,7 +53,7 @@ class CreateOrganisation extends Migration
             $table->foreign('character_id')->references('id')->on('characters');
 
             // Index
-            //$table->index([]);
+            $table->index(['is_private']);
         });
     }
 

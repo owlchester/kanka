@@ -32,10 +32,12 @@ class CreateLocations extends Migration
 
             // Privacy
             $table->boolean('is_private')->default(false);
-            $table->index(['is_private']);
+
+            $table->boolean('is_map_private')->default(0);
 
             // Index
             $table->index(['name', 'slug', 'type']);
+            $table->index(['is_private']);
 
             // Foreign
             $table->foreign('campaign_id')->references('id')->on('campaigns')->onDelete('cascade');

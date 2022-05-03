@@ -30,12 +30,14 @@ class CreateCalendarTable extends Migration
             $table->text('weekdays')->nullable();
             $table->text('years')->nullable();
             $table->text('seasons')->nullable();
+            $table->text('epochs')->nullable();
+            $table->text('moons')->nullable();
             $table->string('date')->nullable();
             $table->string('suffix')->nullable();
 
             // Leap year stuff, single
             $table->boolean('has_leap_year')->default(false);
-            $table->tinyInteger('leap_year_amount')->unsigned()->nullable();
+            $table->integer('leap_year_amount')->nullable();
             $table->tinyInteger('leap_year_month')->unsigned()->nullable();
             $table->tinyInteger('leap_year_offset')->unsigned()->nullable();
             $table->tinyInteger('leap_year_start')->unsigned()->nullable();

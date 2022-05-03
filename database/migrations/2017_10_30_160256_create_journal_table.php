@@ -22,6 +22,7 @@ class CreateJournalTable extends Migration
             $table->date('date')->nullable();
             $table->unsignedInteger('campaign_id')->notNull();
             $table->unsignedInteger('character_id')->nullable();
+            $table->unsignedInteger('location_id')->nullable();
 
             // Overview
             $table->longText('entry')->nullable();
@@ -34,9 +35,8 @@ class CreateJournalTable extends Migration
 
             // Foreign
             $table->foreign('campaign_id')->references('id')->on('campaigns')->onDelete('cascade');
-
-            // Foreign
             $table->foreign('character_id')->references('id')->on('characters')->nullOnDelete();
+            $table->foreign('location_id')->references('id')->on('locations')->nullOnDelete();
 
             // Index
             $table->index(['name', 'slug', 'type', 'date']);

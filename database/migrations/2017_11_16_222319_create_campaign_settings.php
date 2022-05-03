@@ -24,6 +24,7 @@ class CreateCampaignSettings extends Migration
             $table->boolean('locations')->default(true);
             $table->boolean('notes')->default(true);
             $table->boolean('organisations')->default(true);
+            $table->boolean('menu_links')->default(true);
             $table->timestamps();
 
             // Foreign
