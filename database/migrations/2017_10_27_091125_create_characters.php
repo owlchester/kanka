@@ -27,6 +27,7 @@ class CreateCharacters extends Migration
             // Appearance
             $table->string('age', 20)->nullable();
             $table->string('sex', 45)->nullable();
+            $table->string('pronouns', 45)->nullable();
             $table->string('image')->nullable();
 
             $table->timestamps();
