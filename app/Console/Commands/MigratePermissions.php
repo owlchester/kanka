@@ -34,12 +34,12 @@ class MigratePermissions extends Command
     }
 
     protected $count = 0;
-
     protected $types = [];
 
     /** @var int[] deletable permissions */
     protected $delete = [];
 
+    /** @var array link the old action to the new int */
     protected $map = [
       'read' => CampaignPermission::ACTION_READ,
       'edit' => CampaignPermission::ACTION_EDIT,
@@ -73,6 +73,9 @@ class MigratePermissions extends Command
         return 0;
     }
 
+    /**
+     * Remove some old wrong permissions
+     */
     protected function prepare(): void
     {
         $this->types = config('entities.ids');
@@ -81,6 +84,10 @@ class MigratePermissions extends Command
         DB::statement("DELETE FROM campaign_permissions WHERE table_name = 'relations';");
     }
 
+    /**
+     * Migrate all permissions belonging to campaign roles
+     * @throws \Exception
+     */
     protected function migrateRolePermissions()
     {
         $this->count = 0;
@@ -122,6 +129,9 @@ class MigratePermissions extends Command
         $this->info('Migrated ' . $this->count . ' role permissions.');
     }
 
+    /**
+     * Migrate all permissions belonging to specific users
+     */
     protected function migrateUserPermissions()
     {
         $this->count = 0;
@@ -131,14 +141,16 @@ class MigratePermissions extends Command
             return;
         }
 
-        CampaignPermission::select(['id', 'key', 'entity_id'])->with('entity')
+        CampaignPermission::select(['id', 'key', 'entity_id'])
+            ->with('entity')
+            ->has('entity') // skip soft deleted entities
             ->whereNull('campaign_id')
             ->whereNotNull('user_id')
             ->chunkById(10000, function ($models) {
                 /** @var CampaignPermission $model */
                 foreach ($models as $model) {
                     try {
-                        if (empty($model->entity)) {
+                        if (empty($model->key)) {
                             $this->delete[] = $model->id;
                             continue;
                         }
