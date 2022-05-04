@@ -46,6 +46,7 @@ class MigratePermissions extends Command
       'add' => CampaignPermission::ACTION_ADD,
       'delete' => CampaignPermission::ACTION_DELETE,
       'entity-note' => CampaignPermission::ACTION_POSTS,
+      'entity-notes' => CampaignPermission::ACTION_POSTS,
       'permission' => CampaignPermission::ACTION_PERMS,
       'manage' => CampaignPermission::ACTION_MANAGE,
       'dashboard' => CampaignPermission::ACTION_DASHBOARD,
@@ -62,7 +63,7 @@ class MigratePermissions extends Command
     {
         $this->info(Carbon::now());
 
-        $this->types = config('entities.ids');
+        $this->prepare();
         $this->migrateRolePermissions();
         $this->migrateUserPermissions();
         $this->cleanup();
@@ -70,6 +71,14 @@ class MigratePermissions extends Command
         $this->info(Carbon::now());
         $this->info('Finished processing ' . $this->count . ' permissions.');
         return 0;
+    }
+
+    protected function prepare(): void
+    {
+        $this->types = config('entities.ids');
+
+        // Delete old permissions
+        DB::statement("DELETE FROM campaign_permissions WHERE table_name = 'relations';");
     }
 
     protected function migrateRolePermissions()
@@ -83,20 +92,27 @@ class MigratePermissions extends Command
 
         CampaignPermission::select(['id', 'key', 'campaign_role_id', 'entity_id'])->with('campaignRole')
             ->whereNull('campaign_id')
+             //   ->where('campaign_role_id', 268897)
             ->whereNotNull('campaign_role_id')
             ->chunk(5000, function ($models) {
                 /** @var CampaignPermission $model */
                 foreach ($models as $model) {
                     try {
+                        if ($model->invalidKey()) {
+                            $this->info('Invalid key ' . $model->key . ' for #' . $model->id);
+                            continue;
+                        }
                         $campaignID = $model->campaignRole->campaign_id;
                         $action = $this->actionID($model->action());
-                        $entityType = !empty($model->entity_id) ? $this->entityType($model->type()) : null;
+                        $type = $model->type();
+                        $entityType = $type != 'campaign' ? $this->entityType($type) : null;
                         $miscID = !empty($model->entity_id) ? $model->entityId() : null;
 
                         $this->update($model->id, $campaignID, $action, $miscID, $entityType);
 
                         $this->count++;
                     } catch (\Exception $e) {
+                        dump($model->id);
                         throw $e;
                         $this->error('Error on #' . $model->id . '. Action(): ' . $model->action() . '. Key: ' . $model->key);
                     }
@@ -149,13 +165,13 @@ class MigratePermissions extends Command
      */
     protected function actionID(string $action): int
     {
-        return $this->map[$action];
+        return (int) $this->map[$action];
     }
 
     /**
      * Delete old permissions
      */
-    protected function cleanup()
+    protected function cleanup(): void
     {
         if (empty($this->delete)) {
             return;

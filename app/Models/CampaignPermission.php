@@ -182,4 +182,19 @@ class CampaignPermission extends Model
         }
         return $this->entity_type_id . '_' . $this->action . '_' . $this->misc_id;
     }
+
+    /**
+     * Check if the key is invalid (old corrupt data)
+     * @return bool
+     */
+    public function invalidKey(): bool
+    {
+        // If we have an entity id, assume we are valid and end early
+        if (!empty($this->entity_id)) {
+            return false;
+        }
+        $segments = $this->segments();
+        $end = last($segments);
+        return is_numeric($end) && empty($this->entity_id);
+    }
 }

@@ -317,12 +317,14 @@ class EntityPermission
 
         // If a user is provided, get their permissions too
         if (!empty($user)) {
-            foreach ($user->permissions as $permission) {
+            $userPermissions = $user->permissions()->where('campaign_id', $campaign->id)->get();
+            foreach ($userPermissions as $permission) {
                 $this->cached[$permission->key()] = $permission->access;
                 if (!empty($permission->entity_id)) {
                     $this->cachedEntityIds[$permission->entity_type_id][$permission->misc_id][$permission->action] = (bool) $permission->access;
                 }
             }
+            unset($userPermissions);
         }
 
         //dump('finished loading entities:');
