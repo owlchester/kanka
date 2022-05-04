@@ -192,8 +192,7 @@ class EntityPermission
             $perm = $this->cached[$key];
         }
 
-
-        // Check if we have permission for `action` exactly for this entity
+        // Check if we have permission to do this action for exactly this entity
         if (!empty($entity)) {
             $entityKey = '_' . $action . '_' . $entity->id;
             if (isset($this->cached[$entityKey])) {
@@ -304,9 +303,13 @@ class EntityPermission
         }
 
         /** @var CampaignRole $role */
+        $campaignRoleIDs = [];
         foreach ($this->roles as $role) {
+            $campaignRoleIDs[] = $role->id;
+        }
+        if (!empty($campaignRoleIDs)) {
             /** @var CampaignPermission $permission */
-            $permissions = \App\Facades\RolePermission::role($role)->permissions();
+            $permissions = \App\Facades\RolePermission::rolesPermissions($campaignRoleIDs);
             foreach ($permissions as $permission) {
                 $this->cached[$permission->key()] = $permission->access;
                 if (!empty($permission->entity_id)) {

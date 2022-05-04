@@ -94,7 +94,7 @@ class MigratePermissions extends Command
             ->whereNull('campaign_id')
              //   ->where('campaign_role_id', 268897)
             ->whereNotNull('campaign_role_id')
-            ->chunk(5000, function ($models) {
+            ->chunkById(10000, function ($models) {
                 /** @var CampaignPermission $model */
                 foreach ($models as $model) {
                     try {
@@ -134,7 +134,7 @@ class MigratePermissions extends Command
         CampaignPermission::select(['id', 'key', 'entity_id'])->with('entity')
             ->whereNull('campaign_id')
             ->whereNotNull('user_id')
-            ->chunk(5000, function ($models) {
+            ->chunkById(10000, function ($models) {
                 /** @var CampaignPermission $model */
                 foreach ($models as $model) {
                     try {
@@ -144,7 +144,9 @@ class MigratePermissions extends Command
                         }
                         $campaignID = $model->entity->campaign_id;
                         $action = $this->actionID($model->action());
-                        $entityType = !empty($model->entity_id) ? $this->entityType($model->type()) : null;
+                        // Individual user permissions are always attached to an entity, so
+                        // we don't need to save the entity type.
+                        $entityType = null;
                         $miscID = !empty($model->entity_id) ? $model->entityId() : null;
 
                         $this->update($model->id, $campaignID, $action, $miscID, $entityType);

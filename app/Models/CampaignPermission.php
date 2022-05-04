@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Str;
 
 /**
@@ -24,6 +25,8 @@ use Illuminate\Support\Str;
  * @property CampaignRole $campaignRole
  * @property Entity $entity
  * @property \App\User $user
+ *
+ * @method static self|Builder roleIds(array $ids)
  */
 class CampaignPermission extends Model
 {
@@ -86,6 +89,16 @@ class CampaignPermission extends Model
     public function entity()
     {
         return $this->belongsTo('App\Models\Entity', 'entity_id');
+    }
+
+    /**
+     * @param $query
+     * @param array $roleIds
+     * @return mixed
+     */
+    public function scopeRoleIDs(Builder $query, array $roleIds)
+    {
+        return $query->whereIn('campaign_role_id', $roleIds);
     }
 
     /**
@@ -176,11 +189,11 @@ class CampaignPermission extends Model
             return 'campaign_' . $this->action;
         }
 
-        $base = $this->entity_type_id . '_' . $this->action;
+        // If there is no entity attached,
         if (!$this->misc_id) {
-            return $base;
+            return $this->entity_type_id . '_' . $this->action;
         }
-        return $this->entity_type_id . '_' . $this->action . '_' . $this->misc_id;
+        return '_' . $this->action . '_' . $this->misc_id;
     }
 
     /**

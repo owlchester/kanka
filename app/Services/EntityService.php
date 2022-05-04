@@ -454,7 +454,8 @@ class EntityService
             }
         }
 
-        // Update entity
+        // Update entity to it's new type. We don't use a new entity to keep all mentions, attributes and
+        // other related elements attached.
         $entity->type_id = $new->entityTypeID();
         $entity->entity_id = $new->id;
         $entity->cleanCache()->save();
@@ -464,7 +465,7 @@ class EntityService
         // entities in the db. ForceDelete the MiscModel for img cleanup.
         $old->entity = null;
 
-        // Actually, don't force delete until the tree bug isn't fixed. This could cause deeper issues by deleting entities.
+        // Force delete the old entity to avoid it creating weird issues in the db by being soft deleted.
         $old->forceDelete();
 
         return $entity;

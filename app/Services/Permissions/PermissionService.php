@@ -265,6 +265,7 @@ class PermissionService
         $this->loadedRoles = 0;
 
         $roles = UserCache::user($this->user)->roles()->where('campaign_id', $this->campaign->id);
+        $roleIDs = [];
         foreach ($roles as $role) {
             $this->loadedRoles++;
             // If one of the roles is an admin, we don't need to figure any more stuff, we're good.
@@ -272,8 +273,10 @@ class PermissionService
                 $this->admin = true;
                 return $this;
             }
-            $this->parseRole($role);
+            $roleIDs[] = $role->id;
         }
+        $this->parseRoles($roleIDs);
+
 
         return $this;
     }
@@ -301,6 +304,20 @@ class PermissionService
     {
         // Loop through the permissions of the role to get any blanket _read permissions on entities
         $permissions = \App\Facades\RolePermission::role($role)->permissions();
+        foreach ($permissions as $permission) {
+            $this->parseRolePermission($permission);
+        }
+    }
+    /**
+     * Load the permissions of several roles into the service
+     * @param array $roleIDs
+     */
+    protected function parseRoles(array $roleIDs): void
+    {
+        // Loop through the permissions of the role to get any blanket _read permissions on entities
+        $permissions =
+        $permissions = \App\Facades\RolePermission::rolesPermissions($roleIDs);
+        //CampaignPermission::whereIn('campaign_role_id', $roleIDs)->get();
         foreach ($permissions as $permission) {
             $this->parseRolePermission($permission);
         }

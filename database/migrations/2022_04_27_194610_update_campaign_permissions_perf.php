@@ -22,7 +22,7 @@ class UpdateCampaignPermissionsPerf extends Migration
 
 
             $table->unsignedTinyInteger('action')->after('key');
-            $table->unsignedInteger('misc_id')->after('entity_id');
+            $table->unsignedInteger('misc_id')->nullable()->after('entity_id');
         });
     }
 

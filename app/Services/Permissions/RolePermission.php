@@ -2,6 +2,7 @@
 
 namespace App\Services\Permissions;
 
+use App\Models\CampaignPermission;
 use App\Models\CampaignRole;
 
 class RolePermission
@@ -18,6 +19,7 @@ class RolePermission
 
     /** @var array */
     protected $permissions = [];
+    protected $rolesPermissions = [];
 
     /**
      *
@@ -47,5 +49,15 @@ class RolePermission
         }
 
         return $this->permissions[$this->role->id] = $this->role->permissions;
+    }
+
+    public function rolesPermissions(array $roles)
+    {
+        $key = implode('-', $roles);
+        if (isset($this->rolesPermissions[$key])) {
+            return $this->rolesPermissions[$key];
+        }
+
+        return $this->rolesPermissions[$key] = CampaignPermission::roleIds($roles)->get();
     }
 }
