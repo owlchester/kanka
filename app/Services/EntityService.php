@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Models\Ability;
 use App\Models\Campaign;
+use App\Models\CampaignPermission;
 use App\Models\Character;
 use App\Models\CharacterTrait;
 use App\Models\Entity;
@@ -415,25 +416,21 @@ class EntityService
         $new->save();
 
         // If switching from an organisation to a family, we need to move the members?
-        if ($old->getEntityType() == 'organisation' && $new->getEntityType() == 'family') {
+        if ($old->entityTypeId() == config('entities.ids.organisation') && $new->entityTypeId() == config('entities.ids.family')) {
+            /** @var Organisation $old */
             foreach ($old->members as $member) {
-                if (empty($member->character->family_id)) {
-                    $member->character->family_id = $new->id;
-                    $member->character->save();
-                }
                 $member->delete();
+                $new->members()->attach($member->character_id);
             }
-        } elseif ($old->getEntityType() == 'family' && $new->getEntityType() == 'organisation') {
-            $characters = Character::where('family_id', $old->id)->get();
-            foreach ($characters as $character) {
+        } elseif ($old->entityTypeId() == config('entities.ids.family') && $new->entityTypeId() == config('entities.ids.organisation')) {
+            /** @var Family $old */
+            foreach ($old->members as $character) {
                 $orgMember = new OrganisationMember();
                 $orgMember->character_id = $character->id;
                 $orgMember->organisation_id = $new->id;
                 $orgMember->role = '';
                 $orgMember->save();
-
-                $character->family_id = null;
-                $character->save();
+                $old->members()->detach($character->id);
             }
         } else {
             // Remove members when they aren't characters
@@ -448,7 +445,7 @@ class EntityService
             }
         }
         // Remove a character from conversations
-        if ($old->getEntityType() == 'character') {
+        if ($old->entityTypeId() === config('entities.ids.character')) {
             foreach ($old->conversationParticipants as $conPar) {
                 $conPar->delete();
             }
@@ -464,6 +461,11 @@ class EntityService
         // entity to avoid the softDelete affecting it and causing duplicate
         // entities in the db. ForceDelete the MiscModel for img cleanup.
         $old->entity = null;
+
+        // Change the permission's misc_id to be the new one
+        CampaignPermission::where('entity_id', $entity->id)
+            ->where('misc_id', $old->id)
+            ->update(['misc_id' => $new->id]);
 
         // Force delete the old entity to avoid it creating weird issues in the db by being soft deleted.
         $old->forceDelete();

@@ -73,7 +73,7 @@ $permissionService->campaign($campaign->campaign());
     @endforeach
 
     @if (isset($skipUsers) && $skipUsers && $permissionService->users()->count() > 10)
-        <p class="help-block">{{ __('crud.permissions.too_many_members', ['value' => 10]) }}</p>
+        <p class="help-block">{{ __('crud.permissions.too_many_members', ['number' => 10]) }}</p>
         <input type="hidden" name="permissions_too_many" value="1" />
     @else
         <div class="row margin-bottom">

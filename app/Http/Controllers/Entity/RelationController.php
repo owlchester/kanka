@@ -106,7 +106,6 @@ class RelationController extends Controller
             'ajax',
             'entity',
             'rows',
-            'datagridSorter',
             'mode',
             'option',
             'connections',

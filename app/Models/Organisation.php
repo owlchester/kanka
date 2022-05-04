@@ -16,6 +16,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *
  * @property int $organisation_id
  * @property Organisation $organisation
+ * @property OrganisationMember[] $members
  * @property Organisation[] $descendants
  * @property Organisation[] $organisations
  */
