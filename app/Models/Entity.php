@@ -211,8 +211,9 @@ class Entity extends Model
             $boostedTooltip = str_replace(['</h', '</p', '<br'], [' </h', ' </p', ' <br'], $this->tooltip);
             $boostedTooltip = strip_tags(preg_replace('!\s+!', ' ', $boostedTooltip));
             if (!empty(trim($boostedTooltip))) {
+                //dd('why?');
                 $text = Mentions::mapEntity($this);
-                $text = strip_tags($text);
+                $text = strip_tags($text, $this->allowedTooltipTags());
             }
             if ($campaign->tooltip_image) {
                 $avatar = $this->child->withEntity($this)->getImageUrl(60);
@@ -248,6 +249,18 @@ class Entity extends Model
         //return "<div class='entity-tooltip-avatar'>$avatar<div class='entity-names'>" . $name . $subtitle . '</div></div>' . $text;
     }
 
+    /**
+     * Allowed tags in tooltips
+     * @return array
+     */
+    protected function allowedTooltipTags(): array
+    {
+        $html = [];
+        foreach (config('purify.tooltips.allowed') as $tag) {
+            $html[] = "<$tag>";
+        }
+        return $html;
+    }
     /**
      * Preview of the entity with mapped mentions. For map markers
      * @return string

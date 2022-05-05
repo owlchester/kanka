@@ -183,4 +183,11 @@ return [
             . ")%",
     ],
 
+
+    'tooltips' => [
+        //<p>', '<table>', '<tr>', '<th>', '<td>', '<i>', '<span>', '<div>', '<img>
+        'allowed' => [
+            'p', 'table', 'tr', 'th', 'td', 'i', 'span', 'b', 'strong', 'div', 'img'
+        ],
+    ]
 ];
