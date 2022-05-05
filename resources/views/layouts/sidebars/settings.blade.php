@@ -49,7 +49,7 @@
                     <li class="{{ $sidebar->settings('boost') }} subsection">
                         <a href="{{ route('settings.boost') }}">
                             <i class="fa-solid fa-rocket"></i>
-                            {{ __('settings.menu.boost') }}
+                            {{ __('settings.menu.boosters') }}
                         </a>
                     </li>
 

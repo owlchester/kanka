@@ -45,30 +45,16 @@ return [
     'boost'         => [
         'available_boosts'  => 'Available boosts: :amount / :max',
         'benefits'          => [
-            'campaign_gallery'  => 'A campaign gallery to upload images that you can re-use through the campaign.',
-            'entity_files'      => 'Upload up to 10 files per entity.',
-            'entity_logs'       => 'Full entity logs of what was changed on an entity with each update.',
-            'first'             => 'To secure continued progress on Kanka, some campaign features are unlocked by boosting a campaign. Boosters are unlocked through subscriptions. Anyone who can view a campaign can boost it, so that the DM doesn\'t always have to foot the bill. A campaign remains boosted as long as a user is boosting the campaign and they continue supporting Kanka. If a campaign is no longer boosted, data isn\'t lost, it is only hidden until the campaign is boosted again.',
-            'header'            => 'Entity header images.',
             'headers'           => [
                 'boosted'       => 'Boosted campaign benefits',
                 'superboosted'  => 'Superboosted campaign benefits',
             ],
-            'helpers'           => [
-                'boosted'       => 'Boosting a campaign assigns a single booster to the campaign.',
-                'superboosted'  => 'Superboosting a campaign assigns a total of three boosters to the campaign.',
-            ],
-            'images'            => 'Custom default entity images.',
             'more'              => [
                 'boosted'       => 'All boosted campaign features',
                 'superboosted'  => 'All superboosted campaign features',
             ],
-            'recovery'          => 'Recover deleted entities for up to :amount days.',
-            'superboost'        => 'Superboosting a campaign uses 3 of your boosts and unlockes additional features on top of those for boosted campaigns.',
-            'theme'             => 'Campaign level theme and custom styling.',
+
             'third'             => 'To boost a campaign, go to the campaign\'s page, and click on the :boost_button button above the :edit_button button.',
-            'tooltip'           => 'Custom tooltips for entities.',
-            'upload'            => 'Increased upload size for every member in the campaign.',
         ],
         'buttons'           => [
             'boost'         => 'Boost',
@@ -148,7 +134,7 @@ return [
         'api'                   => 'API',
         'apps'                  => 'Apps',
         'billing'               => 'Payment Method',
-        'boost'                 => 'Boost',
+        'boosters'              => 'Boosters',
         'invoices'              => 'Invoices',
         'layout'                => 'Layout',
         'marketplace'           => 'Marketplace',
@@ -186,8 +172,7 @@ return [
             'subscribe'         => 'Subscribe',
             'update_currency'   => 'Save prefered currency',
         ],
-        'benefits'              => 'By supporting us, you can unlock some new :features and help us invest more time into improving Kanka. No credit card information is stored or transits through our servers. We use :stripe to handle all billing.',
-        'benefits_features'     => 'amazing features',
+        'benefits'              => '',
         'billing'               => [
             'helper'    => 'Your billing information is processed and stored safely through :stripe. This payment method is used for all of your subscriptions.',
             'saved'     => 'Saved payment method',
