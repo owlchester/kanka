@@ -107,8 +107,10 @@ function toggleCrudMultiDelete()
     }
 }
 
-function registerDatagrids2()
-{
+/**
+ *
+ */
+function registerDatagrids2() {
     $('.datagrid-submit').click(function (e) {
         e.preventDefault();
 
@@ -143,6 +145,9 @@ function registerDatagrids2()
     initDatagrid2OnLoad();
 }
 
+/**
+ *
+ */
 function initDatagrid2Ajax() {
     $.each($('table[data-render="datagrid2"]'), function (i) {
         datagrid2Table = $(this);
@@ -157,6 +162,9 @@ function initDatagrid2Ajax() {
     });
 }
 
+/**
+ *
+ */
 function initDatagrid2OnLoad() {
     if ($('.datagrid-onload').length == 0) {
         return;
@@ -164,6 +172,10 @@ function initDatagrid2OnLoad() {
     datagrid2Observer.observe(document.querySelector('.datagrid-onload'));
 }
 
+/**
+ *
+ * @param ele
+ */
 function datagrid2Reorder(ele) {
     datagrid2Table.find('thead').hide();
     datagrid2Table.find('tbody').hide();

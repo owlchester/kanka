@@ -119,6 +119,7 @@ class Header
         try {
             return route($route, $options);
         } catch (\Exception $e) {
+            throw $e;
             return 'invalid';
         }
     }

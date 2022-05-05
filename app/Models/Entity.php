@@ -211,7 +211,6 @@ class Entity extends Model
             $boostedTooltip = str_replace(['</h', '</p', '<br'], [' </h', ' </p', ' <br'], $this->tooltip);
             $boostedTooltip = strip_tags(preg_replace('!\s+!', ' ', $boostedTooltip));
             if (!empty(trim($boostedTooltip))) {
-                //dd('why?');
                 $text = Mentions::mapEntity($this);
                 $text = strip_tags($text, $this->allowedTooltipTags());
             }

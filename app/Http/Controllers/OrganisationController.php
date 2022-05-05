@@ -120,7 +120,7 @@ class OrganisationController extends CrudController
     {
         $this->authCheck($organisation);
 
-        $options = ['tag' => $organisation];
+        $options = ['organisation' => $organisation];
         $base = 'members';
         if (request()->has('all')) {
             $options['all'] = true;
