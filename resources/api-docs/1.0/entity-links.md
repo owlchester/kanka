@@ -28,7 +28,7 @@ You can get a list of all the entity-links of an entity by using the following e
             "created_by": 1,
             "entity_id": 69,
             "id": 31,
-            "visibility": "all",
+            "visibility_id": 1,
             "name": "DNDbeyond",
             "url": "{url}",
             "icon": "",
@@ -58,7 +58,7 @@ To get the details of a single entity-link, use the following endpoint.
         "created_by": 1,
         "entity_id": 69,
         "id": 31,
-        "visibility": "all",
+        "visibility_id": 1,
         "name": "DNDbeyond",
         "url": "{url}",
         "icon": "",
@@ -87,7 +87,7 @@ To create an entity-link, use the following endpoint.
 | `icon` | `string` | The icon of the link |
 | `url` | `string` | The url of the link |
 | `position` | `int` | Optional position of the entity link |
-| `visibility` | `string` | The visibility: `all`, `self`, `admin`, `self-admin` or `members`. |
+| `visibility_id` | `integer` | The visibility: 1 for `all`, 2 `self`, 3 `admin`, 4 `self-admin` or 5 `members`. |
 
 ### Results
 

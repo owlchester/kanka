@@ -3,10 +3,9 @@
 namespace App\Models;
 
 use App\Models\Concerns\EntityAsset;
-use App\Traits\VisibilityTrait;
+use App\Traits\VisibilityIDTrait;
 use App\User;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Str;
 
 /**
  * Class EntityLink
@@ -24,7 +23,7 @@ use Illuminate\Support\Str;
  */
 class EntityLink extends Model
 {
-    use VisibilityTrait,
+    use VisibilityIDTrait,
         EntityAsset;
 
     public $fillable = [
@@ -34,7 +33,7 @@ class EntityLink extends Model
         'url',
         'icon',
         'position',
-        'visibility',
+        'visibility_id',
     ];
 
     /** EntityAsset booleans */

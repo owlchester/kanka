@@ -32,7 +32,7 @@
                 'icon',
                 null,
                 [
-                    'placeholder' => __('entities/links.placeholders.icon'),
+                    'placeholder' => 'fa-brands fa-d-and-d-beyond',
                     'class' => 'form-control',
                     'maxlength' => 45
                 ]
@@ -57,10 +57,6 @@
             ) !!}
         </div>
 
-        <div class="row">
-            <div class="col-md-12">
-                @include('cruds.fields.visibility')
-            </div>
-        </div>
+        @include('cruds.fields.visibility_id', ['model' => $entityLink ?? null])
     </div>
 </div>

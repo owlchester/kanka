@@ -64,7 +64,7 @@ class LinkController extends Controller
     {
         $this->authorize('update', $entity->child);
 
-        $data = $request->only(['name', 'url', 'position', 'icon', 'visibility']);
+        $data = $request->only(['name', 'url', 'position', 'icon', 'visibility_id']);
         $data['entity_id'] = $entity->id;
 
         $link = EntityLink::create($data);
@@ -110,7 +110,7 @@ class LinkController extends Controller
     {
         $this->authorize('update', $entity->child);
 
-        $data = $request->only(['name', 'url', 'icon', 'position', 'visibility']);
+        $data = $request->only(['name', 'url', 'icon', 'position', 'visibility_id']);
 
         $entityLink->update($data);
 

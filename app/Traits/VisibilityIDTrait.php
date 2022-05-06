@@ -31,12 +31,15 @@ trait VisibilityIDTrait
      */
     public function visibilityIcon(string $extra = ''): string
     {
-        if ($this->visibility_id == Visibility::VISIBILITY_ALL) {
+        /*if ($this->visibility_id == Visibility::VISIBILITY_ALL) {
             return '';
-        }
+        }*/
 
         $class = $title = '';
-        if ($this->visibility_id == Visibility::VISIBILITY_ADMIN) {
+        if ($this->visibility_id == Visibility::VISIBILITY_ALL) {
+            $class = 'fa-solid fa-eye';
+            $title = __('crud.visibilities.all');
+        } elseif ($this->visibility_id == Visibility::VISIBILITY_ADMIN) {
             $class = 'fa-solid fa-lock';
             $title = __('crud.visibilities.admin');
         } elseif ($this->visibility_id == Visibility::VISIBILITY_SELF) {

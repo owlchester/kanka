@@ -17,7 +17,7 @@
                     <i class="fa-solid fa-pencil"></i>
                 </a>
             @endif
-            @include('cruds.partials.visibility', ['model' => $asset])
+            {!! $asset->visibilityIcon() !!}
 
         </div>
     </div>
