@@ -260,6 +260,13 @@ class CalendarRenderer
         $week = [];
         $remainingRecurring = [];
 
+        // Calc julian based on previous months
+        $julian = 1;
+        for ($passedMonth = 1; $passedMonth < $this->getMonth(); $passedMonth++) {
+            $passedMonthData = $months[$passedMonth-1];
+            $julian += $passedMonthData['length'];
+        }
+
         for ($day = 1; $day <= $monthLength; $day++) {
             if ($offset > 0) {
                 $week[] = null;
@@ -272,6 +279,7 @@ class CalendarRenderer
                     'events' => [],
                     'date' => $exact,
                     'isToday' => false,
+                    'julian' => $julian
                 ];
 
                 if (isset($events[$exact])) {
@@ -327,6 +335,7 @@ class CalendarRenderer
                     }
                 }
                 $week[] = $dayData;
+                $julian++;
             }
 
             $weekLength++;
@@ -364,6 +373,7 @@ class CalendarRenderer
         // Number of weeks in this month?
         $weekdays = $this->calendar->weekdays();
         $months = $this->calendar->months();
+        $julian = 1;
         $data = [];
 
         $events = $this->events();
@@ -441,6 +451,7 @@ class CalendarRenderer
                     'day' => $day,
                     'events' => [],
                     'date' => $exact,
+                    'julian' => $julian,
                     'isToday' => false,
                     'month' => $month['name'],
                     'week' => Arr::get($month, 'type') == 'intercalary' ? null : $weekNumber
@@ -510,6 +521,9 @@ class CalendarRenderer
                 } else {
                     $weekday++;
                 }
+
+                // Increase the julian date by one
+                $julian++;
             }
 
             //if ($weekNumber < 13) dump('finished the month. Did we end the week on the last day? ' . ($endedWeek ? 'yes' : 'no'));

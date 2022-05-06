@@ -1344,6 +1344,8 @@ summary {
   --calendar-season: var(--calendar-weather);
   --calendar-season-text: #444;
   --calendar-event-text: white;
+  --calendar-julian: none;
+  --calendar-monthday: inline;
 }
 
 .calendar {
@@ -1359,6 +1361,14 @@ summary {
 .calendar tbody td h5 {
   float: left;
   margin-top: 3px;
+}
+
+.calendar tbody td h5 .julian-number {
+  display: var(--calendar-julian);
+}
+
+.calendar tbody td h5 .day-number {
+  display: var(--calendar-monthday);
 }
 
 .calendar tbody td p {
