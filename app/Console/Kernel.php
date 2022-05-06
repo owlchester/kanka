@@ -8,7 +8,8 @@ use App\Console\Commands\CleanupEntityLogs;
 use App\Console\Commands\CleanupEntityUsers;
 use App\Console\Commands\CleanupTrashed;
 use App\Console\Commands\CleanupUserLog;
-use App\Console\Commands\SubscriptionUpcomingAlert;
+use App\Console\Commands\Subscriptions\ExpiringCardCommand;
+use App\Console\Commands\Subscriptions\UpcomingYearlyCommand;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -40,7 +41,8 @@ class Kernel extends ConsoleKernel
         $schedule->command(CleanupEntityUsers::class)->dailyAt('03:35');
         $schedule->command(CleanupUserLog::class)->dailyAt('03:45');
         $schedule->command(CleanupTrashed::class)->dailyAt('02:15');
-        $schedule->command(SubscriptionUpcomingAlert::class)->dailyAt('06:30');
+        $schedule->command(UpcomingYearlyCommand::class)->dailyAt('06:30');
+        $schedule->command(ExpiringCardCommand::class)->monthlyOn(1, '02:00');
 
         $schedule->command('backup:clean')->daily()->at('01:00');
         $schedule->command('backup:run')->twiceDaily(2, 14);

@@ -11,6 +11,7 @@ use App\Models\Patreon;
 use App\Models\Relations\UserRelations;
 use App\Models\Scopes\UserScope;
 use App\Models\UserSetting;
+use Carbon\Carbon;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
@@ -35,6 +36,7 @@ use Laravel\Passport\HasApiTokens;
  * @property string $patreon_pledge
  * @property int $booster_count
  * @property int $referral_id
+ * @property Carbon $card_expires_at
  * @property Collection $settings
  * @property Collection $profile
  *
@@ -95,7 +97,7 @@ class User extends \Illuminate\Foundation\Auth\User
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password', 'remember_token', 'card_expires_at',
     ];
 
     /**
@@ -115,6 +117,7 @@ class User extends \Illuminate\Foundation\Auth\User
         'settings' => 'array',
         'tutorial' => 'array',
         'profile' => 'array',
+        'card_expires_at' => 'datetime'
     ];
 
     /**

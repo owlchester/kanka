@@ -1,22 +1,21 @@
 <?php
 
-namespace App\Console\Commands;
+namespace App\Console\Commands\Subscriptions;
 
 use App\Jobs\Emails\Subscriptions\UpcomingYearlyAlert;
 use App\Models\UserLog;
-use App\User;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
 use Laravel\Cashier\Subscription;
 
-class SubscriptionUpcomingAlert extends Command
+class UpcomingYearlyCommand extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'subscription:upcoming';
+    protected $signature = 'subscriptions:upcoming';
 
     /**
      * The console command description.

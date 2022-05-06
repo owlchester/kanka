@@ -22,6 +22,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Log;
+use Laravel\Cashier\PaymentMethod;
 use Stripe\Charge;
 use Stripe\Customer as StripeCustomer;
 use Stripe\Source;
@@ -156,6 +157,15 @@ class SubscriptionService
         $paymentMethodID = Arr::get($request, 'payment_id');
         $this->user->addPaymentMethod($paymentMethodID);
         $this->user->updateDefaultPaymentMethod($paymentMethodID);
+
+        // Save the expiration date on the user for alerts about expiring cards
+        $payment = $this->user->defaultPaymentMethod();
+        if ($payment && $payment instanceof PaymentMethod) {
+            $card = $payment->asStripePaymentMethod()->card;
+            $expiresAt = Carbon::createFromDate($card->exp_year, $card->exp_month)->endOfMonth();
+            $this->user->card_expires_at = $expiresAt;
+            $this->user->save();
+        }
 
         // Subscribe
         $this->subscribe($this->plan, $paymentMethodID);
