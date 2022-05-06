@@ -17,7 +17,7 @@ class EntityFileResource extends EntityChild
     {
         return $this->entity([
             'name' => $this->name,
-            'visibility' => $this->visibility,
+            'visibility_id' => $this->visibility_id,
             'type' => $this->type,
             'path' => Storage::url($this->path),
             'size' => $this->size,

@@ -128,7 +128,7 @@ class EntityFileController extends Controller
     {
         $this->authorize('update', $entity->child);
 
-        $entityFile->update($request->only('name', 'visibility'));
+        $entityFile->update($request->only('name', 'visibility_id'));
 
         return redirect()
             ->route('entities.assets', $entity)

@@ -9,7 +9,7 @@
             @endif
         </a>
         <div class="child text">
-            {{ $asset->name }}<br />
+            {!! $asset->name !!}<br />
             <div class="url">{{ $asset->url }}</div>
 
             @if(auth()->check() && auth()->user()->can('update', $entity->child))

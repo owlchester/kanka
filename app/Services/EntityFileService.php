@@ -61,7 +61,7 @@ class EntityFileService
         $file->name = $name;
         $file->size = $uploadedFile->getSize();
         $file->type = $uploadedFile->getMimeType();
-        $file->visibility = $request->get('visibility', 'all');
+        $file->visibility_id = $request->get('visibility_id', 1);
         $file->save();
         return $file;
     }
