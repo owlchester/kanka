@@ -145,7 +145,7 @@ class MapController extends CrudController
         if (Auth::check()) {
             $this->authorize('view', $map);
         } else {
-            $this->authorizeForGuest('read', $map);
+            $this->authorizeForGuest(\App\Models\CampaignPermission::ACTION_READ, $map);
         }
 
         if (empty($map->image)) {
@@ -165,7 +165,7 @@ class MapController extends CrudController
         if (Auth::check()) {
             $this->authorize('view', $map);
         } else {
-            $this->authorizeForGuest('read', $map);
+            $this->authorizeForGuest(\App\Models\CampaignPermission::ACTION_READ, $map);
         }
 
         $timestamp = request()->get('ts', time());

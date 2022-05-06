@@ -40,7 +40,7 @@ class MentionController extends Controller
         if (Auth::check()) {
             $this->authorize('view', $entity->child);
         } else {
-            $this->authorizeEntityForGuest('read', $entity->child);
+            $this->authorizeEntityForGuest(\App\Models\CampaignPermission::ACTION_READ, $entity->child);
         }
 
         $ajax = request()->ajax();
@@ -63,7 +63,7 @@ class MentionController extends Controller
         if (auth()->check()) {
             $this->authorize('view', $model);
         } else {
-            $this->authorizeForGuest('read', $model);
+            $this->authorizeForGuest(\App\Models\CampaignPermission::ACTION_READ, $model);
         }
 
         $mentions = $model->entity->targetMentions()->paginate();

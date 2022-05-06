@@ -32,7 +32,7 @@ class QuestElementController extends Controller
         if (Auth::check()) {
             $this->authorize('view', $quest);
         } else {
-            $this->authorizeEntityForGuest('read', $quest);
+            $this->authorizeEntityForGuest(\App\Models\CampaignPermission::ACTION_READ, $quest);
         }
 
         $datagridSorter = new QuestElementSorter();

@@ -14,12 +14,12 @@ trait GuestAuthTrait
      * @param $action
      * @param $model
      */
-    protected function authorizeForGuest($action, $model, string $modelType = null)
+    protected function authorizeForGuest(int $action, $model, int $modelType = null)
     {
         $campaign = CampaignLocalization::getCampaign();
         if (empty($modelType)) {
             $mainModel = new $this->model;
-            $modelType = $mainModel->getEntityType();
+            $modelType = $mainModel->entityTypeId();
         }
         $permission = EntityPermission::hasPermission($modelType, $action, null, $model, $campaign);
 
@@ -34,7 +34,7 @@ trait GuestAuthTrait
      * @param string $action
      * @param MiscModel $model = null
      */
-    protected function authorizeEntityForGuest($action, MiscModel $model = null)
+    protected function authorizeEntityForGuest(int $action, MiscModel $model = null)
     {
         // If the misc model is null ($entity->child), the user has no valid access
         if ($model === null) {
@@ -42,7 +42,7 @@ trait GuestAuthTrait
         }
 
         $campaign = CampaignLocalization::getCampaign();
-        $permission = EntityPermission::hasPermission($model->getEntityType(), $action, null, $model, $campaign);
+        $permission = EntityPermission::hasPermission($model->entityTypeId(), $action, null, $model, $campaign);
 
         if ($campaign->id != $model->campaign_id || !$permission) {
             // Raise an error

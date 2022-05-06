@@ -208,9 +208,9 @@ class MapMarkerController extends Controller
                 $this->authorize('view', $mapMarker->entity->child);
             }
         } else {
-            $this->authorizeForGuest('read', $map);
+            $this->authorizeForGuest(\App\Models\CampaignPermission::ACTION_READ, $map);
             if ($mapMarker->entity_id) {
-                $this->authorizeForGuest('read', $mapMarker->entity->child, $mapMarker->entity->child->getEntityType());
+                $this->authorizeForGuest(\App\Models\CampaignPermission::ACTION_READ, $mapMarker->entity->child, $mapMarker->entity->typeId());
             }
         }
 

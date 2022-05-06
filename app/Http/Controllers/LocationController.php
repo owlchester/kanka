@@ -59,7 +59,7 @@ class LocationController extends CrudController
         if (Auth::check()) {
             $this->authorize('map', $location);
         } else {
-            $this->authorizeForGuest('read', $location);
+            $this->authorizeForGuest(\App\Models\CampaignPermission::ACTION_READ, $location);
             // Extra check for private maps
             if ($location->is_map_private) {
                 abort('403');

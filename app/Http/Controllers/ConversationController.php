@@ -48,7 +48,7 @@ class ConversationController extends CrudController
         if (auth()->check()) {
             $this->authorize('view', $conversation);
         } else {
-            $this->authorizeForGuest('read', $conversation);
+            $this->authorizeForGuest(\App\Models\CampaignPermission::ACTION_READ, $conversation);
         }
         $name = $this->view;
         $ajax = request()->ajax();

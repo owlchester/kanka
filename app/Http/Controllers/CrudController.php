@@ -353,7 +353,7 @@ class CrudController extends Controller
         if (auth()->check()) {
             $this->authorize('view', $model);
         } else {
-            $this->authorizeForGuest('read', $model);
+            $this->authorizeForGuest(\App\Models\CampaignPermission::ACTION_READ, $model);
         }
         $name = $this->view;
         $ajax = request()->ajax();
@@ -638,7 +638,7 @@ class CrudController extends Controller
         if (auth()->check()) {
             $this->authorize('view', $model);
         } else {
-            $this->authorizeForGuest('read', $model);
+            $this->authorizeForGuest(\App\Models\CampaignPermission::ACTION_READ, $model);
         }
         $this->alreadyAuthChecked = true;
     }
