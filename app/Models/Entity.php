@@ -473,4 +473,28 @@ class Entity extends Model
         }
         return auth()->check() && auth()->user()->isAdmin();
     }
+
+    /**
+     * Count the number of mentions this entity has. The AclTrait on entities and posts
+     * makes sure only visible things get added to the query.
+     * @return int
+     */
+    public function mentionsCount(): int
+    {
+        return $this->targetMentions()->where(function ($sub) {
+            return $sub
+                ->where(function ($subEnt) {
+                    return $subEnt->entity()
+                        ->has('entity');
+                })
+                ->orWhere(function ($subPost) {
+                    return $subPost->entityNote()
+                        ->has('entityNote.entity');
+                })
+                ->orWhere(function ($subCam) {
+                    return $subCam->campaign();
+                });
+        })
+            ->count();
+    }
 }
