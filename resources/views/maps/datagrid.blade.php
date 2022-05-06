@@ -13,17 +13,17 @@
         'name',
         'type',
         [
-            'label' => trans('maps.actions.explore'),
+            'label' => '<i class="fa-solid fa-map" data-toggle="tooltip" title="' . __('maps.actions.explore') . '"></i>',
             'render' => function($model) {
                 if (empty($model->image)) {
                     return '';
                 }
-                return '<a href="' . route('maps.explore', $model) . '" target="_blank"><i class="fa-solid fa-map"></i></a>';
+                return $model->exploreLink();
             },
             'disableSort' => true,
         ],
         [
-            'label' => trans('crud.fields.map'),
+            'label' => __('maps.fields.map'),
             'field' => 'map.name',
             'render' => function($model) {
                 if ($model->map) {

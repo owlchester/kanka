@@ -15,14 +15,14 @@
         'name',
         'type',
         [
-            'label' => trans('maps.actions.explore'),
+            'label' => '<i class="fa-solid fa-map" data-toggle="tooltip" title="' . __('maps.actions.explore') . '"></i>',
             'render' => function($model) {
-                return '<a href="' . route('maps.explore', $model) . '" target="_blank"><i class="fa-solid fa-map" data-tree="escape"></i></a>';
+                return $model->exploreLink();
             },
             'disableSort' => true,
         ],
         [
-            'label' => trans('maps.fields.maps'),
+            'label' => __('maps.fields.maps'),
             'render' => function($model) {
                 return $model->maps->count();
             },
