@@ -89,8 +89,5 @@
     </div>
 </div>
 
-<div class="row">
-    <div class="col-md-6">
-@include('cruds.fields.visibility', ['model' => isset($inventory) ? $inventory : null])
-    </div>
-</div>
+@include('cruds.fields.visibility_id', ['model' => $inventory ?? null])
+

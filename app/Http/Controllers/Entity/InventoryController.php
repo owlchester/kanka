@@ -32,7 +32,7 @@ class InventoryController extends Controller
         'entity_id',
         'position',
         'description',
-        'visibility',
+        'visibility_id',
         'is_equipped',
         'copy_item_entry'
     ];
@@ -60,7 +60,6 @@ class InventoryController extends Controller
         $inventory = $entity
             ->inventories()
             ->with(['entity', 'item', 'item.entity'])
-            ->has('item')
             ->get()
             ->sortBy(function($model, $key) {
                 return !empty($model->position) ? $model->position : 'zzzz' . $model->itemName();

@@ -6,7 +6,7 @@
     <tr>
         <th colspan="2">{{ __('crud.fields.item') }}</th>
         <th>{{ __('entities/inventories.fields.qty') }}</th>
-        @if (Auth::check())
+        @if (auth()->check())
             <th><i class="fa-solid fa-user-lock" title="{{ __('crud.fields.visibility') }}" data-toggle="tooltip"></i></th>
             <th><br /></th>
         @endif
@@ -49,9 +49,9 @@
             <td>
                 {{ $item->amount }}
             </td>
-            @if (Auth::check())
+            @if (auth()->check())
                 <td>
-                    @include('cruds.partials.visibility', ['model' => $item])
+                    {!! $item->visibilityIcon() !!}
                 </td>
                 @can('inventory', $entity->child)
                     <td class="text-right">

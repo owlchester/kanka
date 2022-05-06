@@ -29,7 +29,7 @@ You can get a list of the inventory of an entity by using the following endpoint
             "entity_id": 69,
             "id": 31,
             "item_id": 5,
-            "visibility": "all",
+            "visibility_id": 1,
             "amount": "5",
             "position": "Bank",
             "updated_at":  "2019-08-29T13:48:54.000000Z",
@@ -54,11 +54,11 @@ To add an item to an entity, use the following endpoint.
 
 | Parameter | Type | Detail |
 | :- |   :-   |  :-  |
-| `item_id` | `integer` (Required) | ID of the item |
+| `item_id` | `int` (Required) | ID of the item |
 | `amount` | `string` | The amount of items |
 | `position` | `string` | The position of the item in the inventory|
-| `entity_id` | `integer` (Required) | The inventory's parent entity |
-| `visibility` | `string` | The visibility: `all`, `self`, `admin` or `self-admin`. |
+| `entity_id` | `int` (Required) | The inventory's parent entity |
+| `visibility_id` | `int` | The visibility ID: 1 for `all`, 2 `self`, 3 `admin`, 4 `self-admin` or 5 for `members`. |
 
 ### Results
 

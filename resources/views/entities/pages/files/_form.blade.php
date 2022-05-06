@@ -29,10 +29,6 @@
             ) !!}
         </div>
 
-        <div class="row">
-            <div class="col-md-12">
-                @include('cruds.fields.visibility_id', ['model' => $entityFile ?? null])
-            </div>
-        </div>
+        @include('cruds.fields.visibility_id', ['model' => $entityFile ?? null])
     </div>
 </div>

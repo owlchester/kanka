@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use App\Facades\CampaignLocalization;
-use App\Traits\VisibilityTrait;
+use App\Traits\VisibilityIDTrait;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -16,8 +16,6 @@ use Illuminate\Database\Eloquent\Model;
  * @property integer $amount
  * @property string $position
  * @property string $description
- * @property string $visibility
- * @property integer $created_by
  * @property bool $is_equipped
  * @property bool $copy_item_entry
  * @property Item $item
@@ -35,13 +33,13 @@ class Inventory extends Model
         'amount',
         'position',
         'description',
-        'visibility',
+        'visibility_id',
         'created_by',
         'is_equipped',
         'copy_item_entry',
     ];
 
-    use VisibilityTrait;
+    use VisibilityIDTrait;
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
