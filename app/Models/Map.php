@@ -547,4 +547,11 @@ class Map extends MiscModel
             $newSub->save();
         }
     }
+
+    public function exploreLink(): string
+    {
+        return '<a href="' . route('maps.explore', $this->id) . '" target="_blank" data-toggle="tooltip" title="' . __('maps.actions.explore') . '">' .
+            '<i class="fa-solid fa-map"></i>' .
+            '</a>';
+    }
 }

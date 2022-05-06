@@ -15,10 +15,10 @@
         @include('entities.components.profile._type')
 
         @if (!$model->maps->isEmpty())
-            <div class="element profile-maps">
+            <div class="profile-maps">
                 <div class="title">{{ __('entities.maps') }}</div>
                 @foreach ($model->maps as $map)
-                    {!! $map->tooltipedLink() !!}
+                    {!! $map->tooltipedLink() !!} {!! $map->exploreLink() !!}<br />
                 @endforeach
             </div>
         @endif
