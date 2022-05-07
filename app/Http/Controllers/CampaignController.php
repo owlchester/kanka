@@ -162,9 +162,15 @@ class CampaignController extends Controller
         $this->authorize('update', $campaign);
 
         $data = $request->all();
-        // Missing sidebar config? Because we shouldn't have used the same array....
+        // Missing sidebar config? Because we shouldn't have used the same array...
         if (!empty($campaign->ui_settings['sidebar'])) {
             $data['ui_settings']['sidebar'] = $campaign->ui_settings['sidebar'];
+        }
+        // Also, let's unset ui_settings that are set to true
+        foreach ($data['ui_settings'] as $key => $value) {
+            if ($value === '0') {
+                unset($data['ui_settings'][$key]);
+            }
         }
 
         $campaign->update($data);

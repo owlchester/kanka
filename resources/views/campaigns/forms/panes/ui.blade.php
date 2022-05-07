@@ -134,7 +134,8 @@ if (!isset($model) || !$model->boosted()) {
                 <label>
                     {{ __('campaigns.ui.fields.nested') }}
                 </label>
-                {!! Form::select('ui_settings[nested]', [0 => __('campaigns.ui.nested.default'), 1 => __('campaigns.ui.nested.nested')], null, ['class' => 'form-control']) !!}
+                {!! Form::select('ui_settings[nested]', [0 => __('campaigns.ui.nested.default'), 1 => __('campaigns.ui.nested.nested')], (!isset($model) ? 1 : null), ['class' => 'form-control']) !!}
+
             </div>
         </div>
 
