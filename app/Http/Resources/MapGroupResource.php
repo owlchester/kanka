@@ -2,8 +2,6 @@
 
 namespace App\Http\Resources;
 
-use Illuminate\Http\Resources\Json\JsonResource;
-
 class MapGroupResource extends ModelResource
 {
     /**
@@ -18,7 +16,7 @@ class MapGroupResource extends ModelResource
             'map_id' => $this->map_id,
             'name' => $this->name,
             'position' => (int) $this->position,
-            'visibility' => $this->visibility,
+            'visibility_id' => $this->visibility_id,
             'is_shown' => (bool) $this->is_shown,
         ]);
     }

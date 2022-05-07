@@ -41,7 +41,7 @@
             <td>{{ $layer->position }}</td>
             <td>{{ __('maps/layers.short_types.' . $layer->typeName()) }}</td>
             <td>
-                @include('cruds.partials.visibility', ['model' => $layer])
+                {!! $layer->visibilityIcon() !!}
             </td>
             <td class="text-right">
                 <a href="{{ route('maps.map_layers.edit', [$model, $layer]) }}" class="btn btn-primary btn-xs"

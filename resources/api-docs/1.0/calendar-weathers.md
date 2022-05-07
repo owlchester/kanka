@@ -27,6 +27,7 @@ You can get a list of all the weather effects of a calendar by using the followi
         {
             "id": 2,
             "calendar_id": 3,
+            "created_by": 1,
             "weather": "bolt",
             "temperature": "asdasd",
             "precipitation": "",
@@ -36,7 +37,8 @@ You can get a list of all the weather effects of a calendar by using the followi
             "month": 2,
             "year": 110,
             "created_at": "2020-01-27 14:32:59",
-            "updated_at": "2020-01-27 14:33:22"
+            "updated_at": "2020-01-27 14:33:22",
+            "visibility_id": 1,
         }
     ],
     "links": {
@@ -73,6 +75,7 @@ To get the details of a single weather effect, use the following endpoint.
     "data": {
         "id": 2,
         "calendar_id": 3,
+        "created_by": 1,
         "weather": "bolt",
         "temperature": "asdasd",
         "precipitation": "",
@@ -82,7 +85,8 @@ To get the details of a single weather effect, use the following endpoint.
         "month": 2,
         "year": 110,
         "created_at": "2020-01-27 14:32:59",
-        "updated_at": "2020-01-27 14:33:22"
+        "updated_at": "2020-01-27 14:33:22",
+        "visibility_id": 1
     }
 
 }
@@ -110,6 +114,7 @@ To create a calendar weather, use the following endpoint.
 | `precipitation` | `string` | The precipitation |
 | `wind` | `string` | The wind |
 | `effect` | `string` | The effect |
+| `visibility_id` | `integer` | The visibility: 1 for `all`, 2 `self`, 3 `admin`, 4 `self-admin` or 5 `members`. |
 
 ### Results
 

@@ -67,7 +67,7 @@ class CalendarService
                 'year' => $request->post('year'),
                 'month' => $request->post('month'),
                 'day' => $request->post('day'),
-                'visibility' => $request->post('visibility'),
+                'visibility_id' => $request->post('visibility_id'),
                 'name' => $request->post('name'),
             ]);
         }
@@ -78,7 +78,7 @@ class CalendarService
             'precipitation' => $request->post('precipitation'),
             'wind' => $request->post('wind'),
             'effect' => $request->post('effect'),
-            'visibility' => $request->post('visibility'),
+            'visibility_id' => $request->post('visibility_id'),
             'name' => $request->post('name'),
         ]);
         $weather->save();

@@ -8,7 +8,7 @@ use App\Facades\Mentions;
 use App\Models\Concerns\Blameable;
 use App\Models\Concerns\Paginatable;
 use App\Traits\SourceCopiable;
-use App\Traits\VisibilityTrait;
+use App\Traits\VisibilityIDTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
@@ -37,14 +37,13 @@ use Illuminate\Support\Str;
  * @property bool $is_draggable
  * @property array $polygon_style
  * @property float $opacity
- * @property string $visibility
  * @property int $group_id
  * @property int $pin_size
  * @property MapGroup $group
  */
 class MapMarker extends Model
 {
-    use Blameable, VisibilityTrait, Paginatable, SourceCopiable;
+    use Blameable, VisibilityIDTrait, Paginatable, SourceCopiable;
 
     const SHAPE_MARKER = 1;
     const SHAPE_LABEL = 2;
@@ -56,7 +55,7 @@ class MapMarker extends Model
         'map_id',
         'name',
         'entry',
-        'visibility',
+        'visibility_id',
         'entity_id',
         'type_id',
         'size_id',

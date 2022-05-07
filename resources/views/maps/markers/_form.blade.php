@@ -212,7 +212,7 @@ $sizeOptions = [
     </div>
     <div class="col-sm-6">
         <div class="form-group">
-        @include('cruds.fields.visibility')
+            @include('cruds.fields.visibility_id')
         </div>
     </div>
 </div>

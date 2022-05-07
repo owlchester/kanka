@@ -46,7 +46,7 @@ You can get a list of all the map-markers of a map by using the following endpoi
             "size_id": 1,
             "updated_at": "2020-07-25T10:10:30.000000Z",
             "updated_by": null,
-            "visibility": "all"
+            "visibility_id": 1
         }
     ]
 }
@@ -79,7 +79,7 @@ To create a map marker, use the following endpoint.
 | `custom_icon` | `string` | HTML of the custom icon |
 | `size_id` | `int` | 1 to 6 for size (used by circles, 6 being custom) |
 | `opacity` | `int` | 0 to 100 opacity |
-| `visibility` | `string` | `all`, `admin`, `admin-self` or `self` |
+| `visibility_id` | `integer` | The visibility: 1 for `all`, 2 `self`, 3 `admin`, 4 `self-admin` or 5 `members`. |
 | `colour` | `string` | Hex colour code with leading `#` |
 | `font_colour` | `string` | Hex colour code with leading `#` |
 | `circle_radius` | `null` or `int` | If the shape_id is 3 (circle) and size_id is 6 (cursom), can provide a custom circle radius size |

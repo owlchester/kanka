@@ -5,7 +5,7 @@ namespace App\Models;
 
 use App\Models\Concerns\Blameable;
 use App\Models\Concerns\Paginatable;
-use App\Traits\VisibilityTrait;
+use App\Traits\VisibilityIDTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 
@@ -16,7 +16,6 @@ use Illuminate\Database\Eloquent\Builder;
  * @property int $id
  * @property int $map_id
  * @property string $name
- * @property string $visibility
  * @property int $position
  * @property boolean $is_shown
  *
@@ -26,14 +25,14 @@ use Illuminate\Database\Eloquent\Builder;
  */
 class MapGroup extends Model
 {
-    use VisibilityTrait, Blameable, Paginatable;
+    use VisibilityIDTrait, Blameable, Paginatable;
 
     /** Fillable fields */
     protected $fillable = [
         'map_id',
         'name',
         'position',
-        'visibility',
+        'visibility_id',
         'is_shown',
     ];
 

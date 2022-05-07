@@ -1,15 +1,10 @@
 <?php
-/**
- * Description of
- *
- * @author Ilestis
- * 20/01/2020
- */
 
 namespace App\Models;
 
+use App\Models\Concerns\Blameable;
 use App\Models\Scopes\CalendarWeatherScopes;
-use App\Traits\VisibilityTrait;
+use App\Traits\VisibilityIDTrait;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -31,7 +26,9 @@ use Illuminate\Database\Eloquent\Model;
  */
 class CalendarWeather extends Model
 {
-    use CalendarWeatherScopes, VisibilityTrait;
+    use CalendarWeatherScopes,
+        Blameable,
+        VisibilityIDTrait;
 
     /**
      * @var string
@@ -51,7 +48,7 @@ class CalendarWeather extends Model
         'day',
         'month',
         'year',
-        'visibility',
+        'visibility_id',
         'name',
     ];
 
@@ -76,6 +73,9 @@ class CalendarWeather extends Model
             ;
     }
 
+    /**
+     * @return string
+     */
     public function weatherName(): string
     {
         if (!empty($this->name)) {

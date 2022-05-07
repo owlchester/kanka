@@ -27,7 +27,7 @@ class MapMarkerController extends Controller
         'entity_id', 'name', 'entry', 'longitude', 'latitude',
         'colour', 'font_colour', 'opacity',
         'shape_id',
-        'type_id', 'size_id', 'icon', 'custom_icon', 'custom_shape', 'visibility',
+        'type_id', 'size_id', 'icon', 'custom_icon', 'custom_shape', 'visibility_id',
         'is_draggable',
         'group_id',
         'pin_size',

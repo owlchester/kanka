@@ -87,8 +87,11 @@
 }
 
 
-.marker-popup-actions a {
+.marker-popup-actions a:not(.btn) {
   color: var(--link-text);
+}
+.marker-popup-actions a.btn {
+  color: var(--label-default-text);
 }
 
 

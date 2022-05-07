@@ -35,7 +35,7 @@
             <td>{{ $group->position }}</td>
             <td>@if($group->is_shown) <i class="fa-solid fa-check"></i> @endif</td>
             <td>
-                @include('cruds.partials.visibility', ['model' => $group])
+                {!! $group->visibilityIcon() !!}
             </td>
             <td class="text-right">
                 <a href="{{ route('maps.map_groups.edit', [$model, $group]) }}" class="btn btn-primary btn-xs"

@@ -39,7 +39,7 @@ class MapGroupController extends Controller
         }
 
         $model = new MapGroup();
-        $data = $request->only('name', 'position', 'entry', 'visibility', 'is_shown');
+        $data = $request->only('name', 'position', 'entry', 'visibility_id', 'is_shown');
         $data['map_id'] = $map->id;
         $new = $model->create($data);
 
@@ -83,7 +83,7 @@ class MapGroupController extends Controller
             return response()->json(['success' => true]);
         }
 
-        $mapGroup->update($request->only('name', 'position', 'entry', 'visibility', 'is_shown'));
+        $mapGroup->update($request->only('name', 'position', 'entry', 'visibility_id', 'is_shown'));
 
         return redirect()
             ->route('maps.edit', [$map, '#tab_form-groups'])

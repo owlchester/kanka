@@ -14,8 +14,8 @@ class BlameableObserver
     public function creating(Model $model): void
     {
         // We need the auth check because of workers having no user
-        if (Auth::check()) {
-            $model->created_by = Auth::user()->id;
+        if (auth()->check()) {
+            $model->created_by = auth()->user()->id;
         }
     }
 
@@ -25,8 +25,8 @@ class BlameableObserver
     public function updating(Model $model): void
     {
         // Some models don't have an updated_by.
-        if (Arr::exists($model->getAttributes(), 'updated_by') && Auth::check()) {
-            $model->updated_by = Auth::user()->id;
+        if (Arr::exists($model->getAttributes(), 'updated_by') && auth()->check()) {
+            $model->updated_by = auth()->user()->id;
         }
     }
 
@@ -35,8 +35,8 @@ class BlameableObserver
      */
     public function deleting(Model $model): void
     {
-        if (Auth::check()) {
-            $model->deleted_by = Auth::user()->id;
+        if (auth()->check()) {
+            $model->deleted_by = auth()->user()->id;
         }
     }
 }

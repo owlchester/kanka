@@ -31,7 +31,7 @@ class StoreMapLayer extends FormRequest
         $rules = [
             'name' => 'required|max:191',
             'entry' => 'nullable',
-            'visibility' => 'string',
+            'visibility_id' => 'nullable|exists:visibilities,id',
             'image' => 'required_without:image_url|mimes:jpeg,png,jpg,gif,webp,svg|max:' . auth()->user()->maxUploadSize(false, 'map'),
             'image_url' => 'required_without:image|nullable|url|active_url',
             'position' => 'nullable|string|max:3',

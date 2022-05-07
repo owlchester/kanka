@@ -2,8 +2,6 @@
 
 namespace App\Http\Resources;
 
-use Illuminate\Http\Resources\Json\JsonResource;
-
 class MapMarkerResource extends ModelResource
 {
     /**
@@ -32,7 +30,7 @@ class MapMarkerResource extends ModelResource
             'opacity' => $this->opacity,
             'circle_radius' => $this->circle_radius,
             'polygon_style' => $this->polygon_style,
-            'visibility' => $this->visibility
+            'visibility_id' => $this->visibility_id
         ]);
     }
 }

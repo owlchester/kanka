@@ -14,7 +14,6 @@ use App\Models\Visibility;
  * @package App\Traits
  *
  * @property string $visibility_id
- * @property int $created_by
  */
 trait VisibilityIDTrait
 {
