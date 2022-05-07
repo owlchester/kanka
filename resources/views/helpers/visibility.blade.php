@@ -1,4 +1,4 @@
-@extends('layouts.app', [
+@extends('layouts.' . (request()->ajax() ? 'ajax' : 'app'), [
     'title' => __('visibilities.helpers.title'),
     'breadcrumbs' => false,
 ])
