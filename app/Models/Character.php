@@ -203,21 +203,6 @@ class Character extends MiscModel
     }
 
     /**
-     * @return mixed
-     */
-    public function relatedQuests()
-    {
-        $query = $this->quests()
-            ->with(['characters', 'locations', 'quests']);
-
-        if (!auth()->check() || !auth()->user()->isAdmin()) {
-            $query->where('quest_characters.is_private', false);
-        }
-
-        return $query;
-    }
-
-    /**
      * Query to get quests where the character is the "quest giver"
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */

@@ -158,22 +158,6 @@ class Item extends MiscModel
     }
 
     /**
-     * @return mixed
-     */
-    public function relatedQuests()
-    {
-        $query = $this->quests()
-            ->orderBy('name', 'ASC')
-            ->with(['characters', 'locations', 'quests']);
-
-        if (!auth()->check() || !auth()->user()->isAdmin()) {
-            $query->where('quest_items.is_private', false);
-        }
-
-        return $query;
-    }
-
-    /**
      * @return \Illuminate\Database\Eloquent\Relations\HasManyThrough
      */
     public function itemQuests()

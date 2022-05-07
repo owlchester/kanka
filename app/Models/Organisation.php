@@ -185,22 +185,6 @@ class Organisation extends MiscModel
     }
 
     /**
-     * @return mixed
-     */
-    public function relatedQuests()
-    {
-        $query = $this->quests()
-            ->orderBy('name', 'ASC')
-            ->with(['characters', 'locations', 'quests']);
-
-        if (!auth()->check() || !auth()->user()->isAdmin()) {
-            $query->where('quest_organisations.is_private', false);
-        }
-
-        return $query;
-    }
-
-    /**
      * Get all characters in the organisation and descendants
      */
     public function allMembers()
