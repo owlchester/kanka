@@ -58,6 +58,14 @@ class HelperController
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
+    public function visibility()
+    {
+        return $this->render('visibility');
+    }
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function entityTemplates()
     {
         return $this->render('entity_templates');
