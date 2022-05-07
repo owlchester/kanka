@@ -40,7 +40,6 @@ return [
         'pronouns'                  => 'Pronoms',
         'race'                      => 'Race',
         'races'                     => 'Races',
-        'relation'                  => 'Relation',
         'sex'                       => 'Sexe',
         'title'                     => 'Titre',
         'traits'                    => 'Traits',
@@ -61,8 +60,6 @@ return [
         'actions'   => [
             'random'    => 'Nouvelle Personne Aléatoire',
         ],
-        'add'       => 'Nouvelle Personne',
-        'header'    => 'Personnes de :name',
         'title'     => 'Personnes',
     ],
     'items'         => [
@@ -132,10 +129,8 @@ return [
     ],
     'show'          => [
         'tabs'  => [
-            'map'           => 'Carte Relationnelle',
             'organisations' => 'Organisations',
         ],
-        'title' => 'Personne :name',
     ],
     'warnings'      => [
         'personality_hidden'    => 'Tu n\'as pas le droit de modifier les traits de personnalité de ce personnage.',

@@ -24,9 +24,7 @@ return [
         'participants'  => 'Engade participantes á conversa presionando a icona :icon arriba á dereita.',
     ],
     'index'         => [
-        'add'       => 'Nova conversa',
-        'header'    => 'Conversas en ":name"',
-        'title'     => 'Conversas',
+        'title' => 'Conversas',
     ],
     'messages'      => [
         'destroy'       => [
@@ -54,7 +52,6 @@ return [
     ],
     'show'          => [
         'is_closed' => 'A conversa está pechada.',
-        'title'     => 'Conversa ":name"',
     ],
     'tabs'          => [
         'conversation'  => 'Conversa',

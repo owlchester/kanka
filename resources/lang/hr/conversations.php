@@ -24,9 +24,7 @@ return [
         'participants'  => 'Dodaj sudionike u razgovor pritiskom na ikonu :icon u gornjem desnom kutu.',
     ],
     'index'         => [
-        'add'       => 'Novi razgovor',
-        'header'    => 'Razgovori u :name',
-        'title'     => 'Razgovori',
+        'title' => 'Razgovori',
     ],
     'messages'      => [
         'destroy'       => [
@@ -54,7 +52,6 @@ return [
     ],
     'show'          => [
         'is_closed' => 'Razgovor je zatvoren.',
-        'title'     => 'Razgovor :name',
     ],
     'tabs'          => [
         'conversation'  => 'Razgovor',

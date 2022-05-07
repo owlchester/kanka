@@ -31,9 +31,7 @@ return [
         'nested_without'=> 'Mostrando todas as razas que non teñen unha raza nai. Fai clic nunha fila para ver as súas subrazas.',
     ],
     'index'         => [
-        'add'       => 'Nova raza',
-        'header'    => 'Razas de :name',
-        'title'     => 'Razas',
+        'title' => 'Razas',
     ],
     'placeholders'  => [
         'name'  => 'Nome da raza',
@@ -47,6 +45,5 @@ return [
             'characters'    => 'Personaxes',
             'races'         => 'Subrazas',
         ],
-        'title' => 'Raza :name',
     ],
 ];

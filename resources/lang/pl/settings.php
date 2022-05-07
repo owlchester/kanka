@@ -45,30 +45,15 @@ return [
     'boost'         => [
         'available_boosts'  => 'Dostępne doładowania. :amount / :max',
         'benefits'          => [
-            'campaign_gallery'  => 'Galeria kampanii, do której możesz dodawać obrazy dostępne w całej kampanii.',
-            'entity_files'      => 'Dodaj do 10 plików do elementu.',
-            'entity_logs'       => 'Pełen dziennik wszystkich zmian i aktualizacji elementów.',
-            'first'             => 'By zapewnić Kance możliwość rozwoju, niektóre funkcje dostępne są wyłącznie w doładowanych kampaniach. Doładowania z kolei związane są z subskrypcją. Każda osoba posiadająca dostęp do kampanii może ją doładować, więc płacenie rachunków nie spada zawsze na MG. Doładowanie jest aktywne, póki użytkownik go nie wyłączy i opłaca subskrypcję. Jeżeli kampania traci doładowanie, dane nie są usuwane, lecz ukrywane i stają się dostępne po ponownym doładowaniu.',
-            'header'            => 'Obrazy w nagłówkach elementów.',
-            'headers'           => [
+            'headers'   => [
                 'boosted'       => 'Korzyści doładowanej kampanii',
                 'superboosted'  => 'Korzyści turbodoładowanej kampanii',
             ],
-            'helpers'           => [
-                'boosted'       => 'Gdy doładowujesz kampanię, zużywasz jedno doładowanie.',
-                'superboosted'  => 'Gdy turbodoładowujesz kampanię, zużywasz trzy doładowania.',
-            ],
-            'images'            => 'Własne obrazy domyślne elementów.',
-            'more'              => [
+            'more'      => [
                 'boosted'       => 'Wszystkie funkcje doładowanej kampanii',
                 'superboosted'  => 'Wszystkie funkcje turbodoładowanej kampanii',
             ],
-            'recovery'          => 'Odzyskaj elementy usunięte do :amount dni temu',
-            'superboost'        => 'Turbodoładowanie kampanii zużywa 3 doładowania i odblokowuje kolejne funkcje, w dodatku do wynikających z doładowania.',
-            'theme'             => 'Inny motyw i styl dla każdej kampanii.',
-            'third'             => 'By doładować kampanię, idź na jej stronę i kliknij ":boost_button" tuż nad ":edit_button".',
-            'tooltip'           => 'Własne dymki z poradami.',
-            'upload'            => 'Zwiększona wielkość plików dodawanych przez wszystkich uczestników kampanii.',
+            'third'     => 'By doładować kampanię, idź na jej stronę i kliknij ":boost_button" tuż nad ":edit_button".',
         ],
         'buttons'           => [
             'boost'         => 'Doładuj',
@@ -148,7 +133,6 @@ return [
         'api'                   => 'API',
         'apps'                  => 'Aplikacje',
         'billing'               => 'Metoda płatności',
-        'boost'                 => 'Doładowanie',
         'invoices'              => 'Rachunki',
         'layout'                => 'Układ',
         'marketplace'           => 'Targowisko',
@@ -186,8 +170,6 @@ return [
             'subscribe'         => 'Subskrybuj',
             'update_currency'   => 'Zapisz preferowaną walutę',
         ],
-        'benefits'              => 'Wspierając nas pomagasz w tworzeniu :features i pozwalasz nam spędzać więcej czasu na ulepszaniu Kanki. Żadne informacje dotyczące kart kredytowych nie są przechowywane ani przetwarzane na naszych serwerach. Płatności obsługuje serwis :stripe.',
-        'benefits_features'     => 'świetnych funkcjonalności',
         'billing'               => [
             'helper'    => 'Informacje o płatnościach bezpiecznie przetwarza i przechowuje :stripe. To metoda płatności stosowana we wszystkich subskrypcjach.',
             'saved'     => 'Zapisz metodę płatności',

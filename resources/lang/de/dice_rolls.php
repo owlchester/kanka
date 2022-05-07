@@ -28,8 +28,6 @@ return [
             'dice'      => 'Würfelwürfe',
             'results'   => 'Ergebnisse',
         ],
-        'add'       => 'Neuer Würfelwurf',
-        'header'    => 'Würfelwürfe von :name',
         'title'     => 'Würfelwürfe',
     ],
     'placeholders'  => [
@@ -54,6 +52,5 @@ return [
         'tabs'  => [
             'results'   => 'Ergebnisse',
         ],
-        'title' => 'Würfelwurf :name',
     ],
 ];

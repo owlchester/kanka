@@ -61,7 +61,6 @@ return [
         'nested_without'    => 'Affichage des cartes sans parent. Cliquer sur une rangée pour afficher les cartes enfants.',
     ],
     'index'         => [
-        'add'   => 'Nouvelle carte',
         'title' => 'Cartes',
     ],
     'maps'          => [
@@ -87,6 +86,5 @@ return [
         'tabs'  => [
             'maps'  => 'Cartes',
         ],
-        'title' => 'Carte :name',
     ],
 ];

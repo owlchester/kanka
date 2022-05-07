@@ -31,9 +31,7 @@ return [
         'nested_without'=> 'Zobraziť všetky udalosti, ktoré nemajú nadradenú udalosť. Kliknutím na riadok zobrazíš podradené udalosti.',
     ],
     'index'         => [
-        'add'       => 'Nová udalosť',
-        'header'    => 'Udalosti objektu :name',
-        'title'     => 'Udalosti',
+        'title' => 'Udalosti',
     ],
     'placeholders'  => [
         'date'      => 'Dátum tvojej udalosti',
@@ -45,7 +43,6 @@ return [
         'tabs'  => [
             'events'    => 'Udalosti',
         ],
-        'title' => 'Udalosť :name',
     ],
     'tabs'          => [
         'calendars' => 'Záznamy v kalendári',

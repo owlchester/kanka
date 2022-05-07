@@ -47,7 +47,6 @@ return [
         'two_way'           => 'Se você selecionar para criar relação mútua, a mesma relação será criada no alvo. Entretanto, se você editar uma, a outra não será atualizada.',
     ],
     'index'         => [
-        'add'   => 'Nova relação',
         'title' => 'Relações',
     ],
     'options'       => [

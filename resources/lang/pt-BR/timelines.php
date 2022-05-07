@@ -37,7 +37,6 @@ return [
         'reverse_order'     => 'Habilite para mostrar linhas do tempo em ordem cronológica reversa (eras antigas primeiro)',
     ],
     'index'         => [
-        'add'   => 'Nova linha do tempo',
         'title' => 'Linhas do Tempo',
     ],
     'placeholders'  => [
@@ -48,7 +47,6 @@ return [
         'tabs'  => [
             'timelines' => 'Linhas do tempo',
         ],
-        'title' => 'Linha do tempo :name',
     ],
     'timelines'     => [
         'title' => 'Linhas do tempo de :name',

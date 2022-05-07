@@ -33,7 +33,7 @@ return [
         'members'   => 'Members of a family are listed here. A character can be added to a family by editing the desired character and using the "Family" dropdown.',
     ],
     'index'         => [
-        'title'     => 'Families',
+        'title' => 'Families',
     ],
     'members'       => [
         'helpers'   => [

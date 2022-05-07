@@ -26,9 +26,7 @@ return [
         'parent_attribute_template' => 'Bu özellik taslağı başka bir özellik taslağının alt taslağı olabilir. Bu özellik taslağı uygulanırken, kendisi ve bütün üst taslakları uygulanacak.',
     ],
     'index'                 => [
-        'add'       => 'Yeni Özellik Taslağı',
-        'header'    => ':name Özellik Taslakları',
-        'title'     => 'Özellik Taslakları',
+        'title' => 'Özellik Taslakları',
     ],
     'placeholders'          => [
         'attribute_template'    => 'Bir özellik taslağı seçin',
@@ -39,6 +37,5 @@ return [
             'attribute_templates'   => 'Özellik Taslakları',
             'attributes'            => 'Özellikler',
         ],
-        'title' => ':name Özellik Taslağı',
     ],
 ];

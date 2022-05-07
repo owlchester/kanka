@@ -19,16 +19,13 @@ return [
         'journal'   => 'Huvudjournal',
         'journals'  => 'Underjournal',
         'name'      => 'Namn',
-        'relation'  => 'Förbindelse',
         'type'      => 'Typ',
     ],
     'helpers'       => [
         'journals'  => 'Visa alla eller bara underjournalerna direkt under denna journal.',
     ],
     'index'         => [
-        'add'       => 'Ny Journal',
-        'header'    => 'Journalerna för :name',
-        'title'     => 'Journaler',
+        'title' => 'Journaler',
     ],
     'journals'      => [
         'title' => 'Journal :name underjournaler',
@@ -44,6 +41,5 @@ return [
         'tabs'  => [
             'journals'  => 'Journaler',
         ],
-        'title' => 'Journal :name',
     ],
 ];

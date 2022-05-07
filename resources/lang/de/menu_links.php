@@ -53,7 +53,5 @@ return [
         'success'   => 'Menü Links neu geordnet.',
         'title'     => 'Menü Links neu anordnen',
     ],
-    'show'              => [
-        'title' => 'Menü Link :name',
-    ],
+    'show'              => [],
 ];

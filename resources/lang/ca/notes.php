@@ -29,16 +29,12 @@ return [
         'is_pinned' => 'Es poden fixar fins a 3 notes al tauler de la campanya.',
     ],
     'index'         => [
-        'add'       => 'Nova nota',
-        'header'    => 'Notes de :name',
-        'title'     => 'Notes',
+        'title' => 'Notes',
     ],
     'placeholders'  => [
         'name'  => 'Nom de la nota',
         'note'  => 'Trieu una nota superior',
         'type'  => 'Religió, relat, sistema polític...',
     ],
-    'show'          => [
-        'title' => 'Nota :name',
-    ],
+    'show'          => [],
 ];

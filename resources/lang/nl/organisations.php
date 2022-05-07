@@ -19,16 +19,13 @@ return [
         'name'          => 'Naam',
         'organisation'  => 'Bovenliggende Organisatie',
         'organisations' => 'Sub Organisaties',
-        'relation'      => 'Relatie',
         'type'          => 'Type',
     ],
     'helpers'       => [
         'descendants'   => 'Deze lijst bevat alle organisaties die afstammen van deze organisatie, en niet alleen de direct daaronder vallende organisaties.',
     ],
     'index'         => [
-        'add'       => 'Nieuwe Organisatie',
-        'header'    => 'Organisaties van :name',
-        'title'     => 'Organisaties',
+        'title' => 'Organisaties',
     ],
     'members'       => [
         'actions'       => [
@@ -71,9 +68,6 @@ return [
     'show'          => [
         'tabs'  => [
             'organisations' => 'Organisaties',
-            'quests'        => 'Quests',
-            'relations'     => 'Relaties',
         ],
-        'title' => 'Organisatie :name',
     ],
 ];

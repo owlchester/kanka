@@ -1,11 +1,11 @@
 <?php
 
 return [
-    'actions' => [
+    'actions'   => [
         'subscribe' => [
-            'monthly' => ':tier monthly',
-            'yearly' => ':tier yearly',
-        ]
+            'monthly'   => ':tier monthly',
+            'yearly'    => ':tier yearly',
+        ],
     ],
     'current'   => 'Your current subscription',
     'features'  => [
@@ -22,16 +22,16 @@ return [
         'pagination'        => ':amount Max paginated results (entities displayed per page)',
         'vote_influence'    => 'Community vote influence',
     ],
-    'periods' => [
-        'monthly' => 'Monthly',
-        'yearly' => 'Yearly',
-    ],
-    'toggle' => [
-        'yearly' => 'Yearly (one month free!)',
+    'periods'   => [
+        'monthly'   => 'Monthly',
+        'yearly'    => 'Yearly',
     ],
     'pricing'   => ':currency :amount / month',
-    'ribbons' => [
-        'popular' => 'Popular',
-        'best-value' => 'Best value',
+    'ribbons'   => [
+        'best-value'    => 'Best value',
+        'popular'       => 'Popular',
+    ],
+    'toggle'    => [
+        'yearly'    => 'Yearly (one month free!)',
     ],
 ];

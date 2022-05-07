@@ -24,9 +24,7 @@ return [
     ],
     'helpers'       => [],
     'index'         => [
-        'add'       => 'Nuova Razza',
-        'header'    => 'Razze per :name',
-        'title'     => 'Razze',
+        'title' => 'Razze',
     ],
     'placeholders'  => [
         'name'  => 'Nome della razza',
@@ -40,6 +38,5 @@ return [
             'characters'    => 'Personaggi',
             'races'         => 'Sottorazze',
         ],
-        'title' => 'Razza :name',
     ],
 ];

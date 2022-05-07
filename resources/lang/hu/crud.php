@@ -93,7 +93,6 @@ return [
         'delete'            => 'Törlés',
         'description'       => 'Biztos, hogy eltávolítod?',
         'description_final' => 'Biztosan eltávolítod? Ezt a lépést nem tudod visszacsinálni.',
-        'mirrored'          => 'Tükörkapcsolat eltávolítása.',
         'title'             => 'Törlés megerősítése',
     ],
     'destroy_many'              => [
@@ -321,9 +320,6 @@ return [
         'timeline'      => 'Válassz egy idővonalat',
     ],
     'relations'                 => [
-        'actions'   => [
-            'add'   => 'Hozz létre egy kapcsolatot',
-        ],
         'fields'    => [
             'location'  => 'Helyszín',
             'name'      => 'Név',

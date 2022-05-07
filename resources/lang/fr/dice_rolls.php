@@ -28,8 +28,6 @@ return [
             'dice'      => 'Jets de dés',
             'results'   => 'Résultats',
         ],
-        'add'       => 'Nouveau jet de dés',
-        'header'    => 'Jets de dés pour :name',
         'title'     => 'Jets de dés',
     ],
     'placeholders'  => [
@@ -54,6 +52,5 @@ return [
         'tabs'  => [
             'results'   => 'Résultats',
         ],
-        'title' => 'Jet de dés :name',
     ],
 ];

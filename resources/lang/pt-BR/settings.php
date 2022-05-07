@@ -45,30 +45,15 @@ return [
     'boost'         => [
         'available_boosts'  => 'Impulsões disponíveis: :amount / :max',
         'benefits'          => [
-            'campaign_gallery'  => 'Uma galeria de campanha que você pode reusar por toda campanha',
-            'entity_files'      => 'Adicione até 10 arquivos por entidade',
-            'entity_logs'       => 'Relatórios completos do que foi mudado nas entidades em cada uma das atualizações.',
-            'first'             => 'Para garantir o progresso contínuo no Kanka, alguns recursos da campanha são desbloqueados ao impulsionar uma campanha. Os impulsos são desbloqueados por meio de assinaturas. Qualquer um que pode ver uma campanha pode impulsioná-la, para que o Mestre nem sempre tenha que pagar a conta. Uma campanha permanece impulsionada enquanto um usuário estiver impulsionando a campanha e eles continuarem apoiando Kanka. Se uma campanha não é mais impulsionada, os dados não são perdidos, só ficam ocultos até que a campanha seja impulsionada novamente.',
-            'header'            => 'Imagens de cabeçalho da entidade.',
-            'headers'           => [
+            'headers'   => [
                 'boosted'       => 'Benefícios da campanha Impulsionada',
                 'superboosted'  => 'Benefícios da campanha Super Impulsionada',
             ],
-            'helpers'           => [
-                'boosted'       => 'Impulsionar uma campanha atribui um único impulso à campanha.',
-                'superboosted'  => 'Super impulsionar uma campanha atribui um total de três impulsos à campanha.',
-            ],
-            'images'            => 'Imagens de entidade padrão personalizadas.',
-            'more'              => [
+            'more'      => [
                 'boosted'       => 'Todos recursos de uma campanha Impulsionada',
                 'superboosted'  => 'Todos recursos de uma campanha Super Impulsionada',
             ],
-            'recovery'          => 'Recuperar entidades deletadas por até :amount dias',
-            'superboost'        => 'Super impulsionar uma campanha usa 3 de seus impulsos e desbloqueia recursos adicionais além dos presentes em campanhas impulsionadas.',
-            'theme'             => 'Tema nível da campanha e estilo personalizado.',
-            'third'             => 'Para impulsionar uma campanha, vá até a página da campanha e clique no botão ":boost_button" acima do botão ":edit_button".',
-            'tooltip'           => 'Dicas de ferramentas personalizadas para entidades.',
-            'upload'            => 'Aumento do tamanho de upload para todos os membros da campanha.',
+            'third'     => 'Para impulsionar uma campanha, vá até a página da campanha e clique no botão ":boost_button" acima do botão ":edit_button".',
         ],
         'buttons'           => [
             'boost'         => 'Impulsionamento',
@@ -148,7 +133,6 @@ return [
         'api'                   => 'API',
         'apps'                  => 'Aplicativos',
         'billing'               => 'Formas de Pagamento',
-        'boost'                 => 'Impulsionamento',
         'invoices'              => 'Faturas',
         'layout'                => 'Layout',
         'marketplace'           => 'Mercado',
@@ -186,8 +170,6 @@ return [
             'subscribe'         => 'Assinar',
             'update_currency'   => 'Salvar moeda preferida',
         ],
-        'benefits'              => 'Ao nos apoiar, você pode desbloquear alguns novos :features e nos ajudar a investir mais tempo para melhorar o Kanka. Nenhuma informação de cartão de crédito é armazenada ou transita por nossos servidores. Usamos :stripe para lidar com todo o faturamento.',
-        'benefits_features'     => 'características incríveis',
         'billing'               => [
             'helper'    => 'Suas informações de faturamento são processadas e armazenadas com segurança através de :stripe. Este método de pagamento é usado para todas as suas assinaturas.',
             'saved'     => 'Método de pagamento salvo',

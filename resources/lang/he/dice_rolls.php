@@ -28,8 +28,6 @@ return [
             'dice'      => 'גלגולים',
             'results'   => 'תוצאות',
         ],
-        'add'       => 'גלגול חדש',
-        'header'    => 'גלגולים של :name',
         'title'     => 'גלגולי קוביות',
     ],
     'placeholders'  => [
@@ -54,6 +52,5 @@ return [
         'tabs'  => [
             'results'   => 'תוצאה',
         ],
-        'title' => 'גלגול :name',
     ],
 ];

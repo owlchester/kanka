@@ -18,14 +18,11 @@ return [
         'location'  => 'Miejsce',
         'name'      => 'Nazwa',
         'price'     => 'Cena',
-        'relation'  => 'Relacja',
         'size'      => 'Rozmiar',
         'type'      => 'Rodzaj',
     ],
     'index'         => [
-        'add'       => 'Nowy przedmiot',
-        'header'    => 'Przedmioty elementu :name.',
-        'title'     => 'Przedmioty',
+        'title' => 'Przedmioty',
     ],
     'inventories'   => [
         'title' => 'Ekwipunki przedmiotu :name',
@@ -42,6 +39,5 @@ return [
         'tabs'  => [
             'inventories'   => 'Ekwipunki',
         ],
-        'title' => 'Przedmiot :name',
     ],
 ];

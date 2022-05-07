@@ -38,12 +38,7 @@ return [
         'tag'       => 'Aquí es mostren totes les etiquetes que estan directament sota aquesta etiqueta.',
     ],
     'index'         => [
-        'actions'   => [
-            'explore_view'  => 'Vista niada',
-        ],
-        'add'       => 'Nova etiqueta',
-        'header'    => 'Etiquetes de :name',
-        'title'     => 'Etiquetes',
+        'title' => 'Etiquetes',
     ],
     'new_tag'       => 'Nova etiqueta',
     'placeholders'  => [
@@ -56,7 +51,6 @@ return [
             'children'  => 'Entitats niades',
             'tags'      => 'Etiquetes',
         ],
-        'title' => 'Etiqueta :name',
     ],
     'tags'          => [
         'title' => 'Descendents de l\'etiqueta :name',

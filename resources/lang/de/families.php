@@ -22,7 +22,6 @@ return [
         'location'  => 'Ort',
         'members'   => 'Mitglieder',
         'name'      => 'Name',
-        'relation'  => 'Beziehung',
         'type'      => 'Typ',
     ],
     'helpers'       => [
@@ -34,9 +33,7 @@ return [
         'members'   => 'Mitglieder einer Familie werden hier gelistet. Ein Charakter kann einer Familie hinzugefügt werden, in dem bei dem gewünschten Charakter das Familiendropdown genutzt wird.',
     ],
     'index'         => [
-        'add'       => 'Neue Familie',
-        'header'    => 'Familien von :name',
-        'title'     => 'Familien',
+        'title' => 'Familien',
     ],
     'members'       => [
         'helpers'   => [
@@ -55,8 +52,6 @@ return [
             'all_members'   => 'Alle Mitglieder',
             'families'      => 'Familien',
             'members'       => 'Mitglieder',
-            'relation'      => 'Beziehungen',
         ],
-        'title' => 'Familie :name',
     ],
 ];

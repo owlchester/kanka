@@ -28,8 +28,6 @@ return [
             'dice'      => 'Dobások',
             'results'   => 'Eredmények',
         ],
-        'add'       => 'Új dobás',
-        'header'    => ':name dobásai',
         'title'     => 'Dobások',
     ],
     'placeholders'  => [
@@ -54,6 +52,5 @@ return [
         'tabs'  => [
             'results'   => 'Eredmények',
         ],
-        'title' => ':name dobás',
     ],
 ];

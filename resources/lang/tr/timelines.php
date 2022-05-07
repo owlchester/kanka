@@ -32,14 +32,11 @@ return [
         'reverse_order'     => 'Çağlarını ters kronolojik sırada (eski çağ önce) sıralamak için etkinleştirin.',
     ],
     'index'         => [
-        'add'   => 'Yeni Zaman Çizgisi',
         'title' => 'Zaman Çizgileri',
     ],
     'placeholders'  => [
         'name'  => 'Zaman çizgisinin adı',
         'type'  => 'Ana, Dünya tarihçesi, Krallık mirası',
     ],
-    'show'          => [
-        'title' => ':name Zaman Çizgisi',
-    ],
+    'show'          => [],
 ];

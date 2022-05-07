@@ -31,9 +31,7 @@ return [
         'nested_without'=> 'S\'estan mostrant els esdeveniments sense pare. Feu clic a la fila d\'un esdeveniment per a mostrar-ne els descendents.',
     ],
     'index'         => [
-        'add'       => 'Nou esdeveniment',
-        'header'    => 'Esdeveniments de :name',
-        'title'     => 'Esdeveniments',
+        'title' => 'Esdeveniments',
     ],
     'placeholders'  => [
         'date'      => 'Data de l\'esdeveniment',
@@ -45,7 +43,6 @@ return [
         'tabs'  => [
             'events'    => 'Esdeveniments',
         ],
-        'title' => 'Esdeveniment :name',
     ],
     'tabs'          => [
         'calendars' => 'Entrades del calendari',

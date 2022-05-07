@@ -61,7 +61,6 @@ return [
         'nested_without'    => 'Wyświetlono wszystkie mapy nie posiadające źródła. Kliknij na rząd, by wyświetlić mapy pochodne.',
     ],
     'index'         => [
-        'add'   => 'Nowa mapa',
         'title' => 'Mapy',
     ],
     'maps'          => [
@@ -87,6 +86,5 @@ return [
         'tabs'  => [
             'maps'  => 'Mapy',
         ],
-        'title' => 'Mapa :name',
     ],
 ];

@@ -30,9 +30,7 @@ return [
         'quests'    => 'Ett nätt av sammankopplade uppdrag kan byggas genom att använda Huvuduppdrag fältet.',
     ],
     'index'         => [
-        'add'       => 'Nytt Uppdrag',
-        'header'    => 'Uppdrag för :name',
-        'title'     => 'Uppdrag',
+        'title' => 'Uppdrag',
     ],
     'placeholders'  => [
         'date'  => 'Verklig världs datum för uppdraget',
@@ -41,7 +39,5 @@ return [
         'role'  => 'Denna entitets roll i uppdraget',
         'type'  => 'Karaktärsark, Sidouppdrag, Primärt',
     ],
-    'show'          => [
-        'title' => 'Uppdrag :name',
-    ],
+    'show'          => [],
 ];

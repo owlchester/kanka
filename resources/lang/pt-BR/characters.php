@@ -38,7 +38,6 @@ return [
         'pronouns'                  => 'Pronomes',
         'race'                      => 'Raça',
         'races'                     => 'Raças',
-        'relation'                  => 'Relação',
         'sex'                       => 'Sexo',
         'title'                     => 'Título',
         'traits'                    => 'Traços de Personalidade',
@@ -57,8 +56,6 @@ return [
         'actions'   => [
             'random'    => 'Novo Personagem Aleatório',
         ],
-        'add'       => 'Novo Personagem',
-        'header'    => 'Personagens em :name',
         'title'     => 'Personagens',
     ],
     'items'         => [
@@ -128,7 +125,6 @@ return [
     ],
     'show'          => [
         'tabs'  => [
-            'map'           => 'Mapa de relações',
             'organisations' => 'Organizações',
         ],
     ],

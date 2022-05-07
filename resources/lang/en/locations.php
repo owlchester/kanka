@@ -45,7 +45,7 @@ return [
         'is_map_private'    => 'A private map will only be visible to members of the campaign\'s "Admin" role.',
     ],
     'index'         => [
-        'title'     => 'Locations',
+        'title' => 'Locations',
     ],
     'locations'     => [
         'title' => 'Location :name Locations',

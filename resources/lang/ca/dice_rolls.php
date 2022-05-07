@@ -28,8 +28,6 @@ return [
             'dice'      => 'Tirades de daus',
             'results'   => 'Resultats',
         ],
-        'add'       => 'Nova tirada de daus',
-        'header'    => 'Tirada de daus de :name',
         'title'     => 'Tirades de daus',
     ],
     'placeholders'  => [
@@ -54,6 +52,5 @@ return [
         'tabs'  => [
             'results'   => 'Resultats',
         ],
-        'title' => 'Tirada de daus :name',
     ],
 ];

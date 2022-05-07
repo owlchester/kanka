@@ -108,9 +108,7 @@ return [
         'years'             => 'Alcuni anni sono così importanti che hanno un nome specifico.',
     ],
     'index'         => [
-        'add'       => 'Nuovo Calendario',
-        'header'    => 'Calendari di :name',
-        'title'     => 'Calendari',
+        'title' => 'Calendari',
     ],
     'layouts'       => [
         'month' => 'Mese',
@@ -206,10 +204,8 @@ return [
         'moon_waning_moon'  => ':moon Decrescente',
         'moon_waxing_moon'  => ':moon Crescente',
         'tabs'              => [
-            'events'        => 'Eventi del Calendario',
-            'information'   => 'Informazioni',
-            'weather'       => 'Tempo Atmosferico',
+            'events'    => 'Eventi del Calendario',
+            'weather'   => 'Tempo Atmosferico',
         ],
-        'title'             => 'Calendario :name',
     ],
 ];

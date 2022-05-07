@@ -18,14 +18,11 @@ return [
         'location'  => 'Ort',
         'name'      => 'Name',
         'price'     => 'Preis',
-        'relation'  => 'Beziehung',
         'size'      => 'Größe',
         'type'      => 'Typ',
     ],
     'index'         => [
-        'add'       => 'Neuer Gegenstand',
-        'header'    => 'Gegenstände von :name',
-        'title'     => 'Gegenstände',
+        'title' => 'Gegenstände',
     ],
     'inventories'   => [
         'title' => 'Gegenstand :name Objekte',
@@ -42,6 +39,5 @@ return [
         'tabs'  => [
             'inventories'   => 'Objekte',
         ],
-        'title' => 'Gegenstand :name',
     ],
 ];

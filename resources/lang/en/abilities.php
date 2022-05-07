@@ -42,7 +42,7 @@ return [
         'nested_without'=> 'Displaying all abilities that don\'t have a parent ability. Click on a row to see the children abilities.',
     ],
     'index'         => [
-        'title'     => 'Abilities',
+        'title' => 'Abilities',
     ],
     'placeholders'  => [
         'charges'   => 'Amount of charges. Reference attributes with {Level}*{CHA}',

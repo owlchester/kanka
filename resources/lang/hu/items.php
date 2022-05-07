@@ -18,14 +18,11 @@ return [
         'location'  => 'Helyszín',
         'name'      => 'Név',
         'price'     => 'Ár',
-        'relation'  => 'Kapcsolat',
         'size'      => 'Méret',
         'type'      => 'Típus',
     ],
     'index'         => [
-        'add'       => 'Új tárgy',
-        'header'    => ':name tárgyai',
-        'title'     => 'Tárgyak',
+        'title' => 'Tárgyak',
     ],
     'inventories'   => [
         'title' => ':name tárgy Felszerelései',
@@ -42,6 +39,5 @@ return [
         'tabs'  => [
             'inventories'   => 'Felszerelések',
         ],
-        'title' => ':name tárgy',
     ],
 ];

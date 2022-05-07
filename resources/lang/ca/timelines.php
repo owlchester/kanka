@@ -38,7 +38,6 @@ return [
         'reverse_order'     => 'Habiliteu-ho per a mostrar les eres en ordre cronològic invers (l\'era més antiga primer)',
     ],
     'index'         => [
-        'add'   => 'Nova línia de temps',
         'title' => 'Línies de temps',
     ],
     'placeholders'  => [
@@ -49,7 +48,6 @@ return [
         'tabs'  => [
             'timelines' => 'Línies de temps',
         ],
-        'title' => 'Línia de temps :name',
     ],
     'timelines'     => [
         'title' => 'Línies de temps de :name',

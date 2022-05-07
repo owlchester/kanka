@@ -22,7 +22,6 @@ return [
         'location'  => 'Plats',
         'members'   => 'Medlemmar',
         'name'      => 'Namn',
-        'relation'  => 'Förbindelse',
         'type'      => 'Typ',
     ],
     'helpers'       => [
@@ -32,9 +31,7 @@ return [
         'members'   => 'Medlemmar av en familj är listade här. En karaktär kan läggas till i en familj genom att redigera karaktären och använda "Familj" nedrullningsmenyn.',
     ],
     'index'         => [
-        'add'       => 'Ny Familj',
-        'header'    => 'Familjer för :name',
-        'title'     => 'Familjer',
+        'title' => 'Familjer',
     ],
     'members'       => [
         'helpers'   => [
@@ -53,8 +50,6 @@ return [
             'all_members'   => 'Alla Medlemmar',
             'families'      => 'Familjer',
             'members'       => 'Medlemmar',
-            'relation'      => 'Förbindelser',
         ],
-        'title' => 'Familj :name',
     ],
 ];

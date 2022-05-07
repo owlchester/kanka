@@ -45,29 +45,15 @@ return [
     'boost'         => [
         'available_boosts'  => 'Elérhető megerősítések: :amount / :max',
         'benefits'          => [
-            'campaign_gallery'  => 'A feltöltött képek kampánygalériája, amelyket újrahasznosíthatsz a kampány során.',
-            'entity_files'      => 'Entitásonként 10 állományt tölthetsz fel.',
-            'entity_logs'       => 'Részletes napló arról, hogy mi változott az entitáson minden frissítés során.',
-            'header'            => 'Entitás fejléc képek.',
-            'headers'           => [
+            'headers'   => [
                 'boosted'       => 'Megerősített kampány előnyei',
                 'superboosted'  => 'Szupererősített kampányok előnyei',
             ],
-            'helpers'           => [
-                'boosted'       => 'Egy kampány megerősítése egy megerősítőt használ fel.',
-                'superboosted'  => 'Egy kampány szupererősítése három megerősítőt használ fel.',
-            ],
-            'images'            => 'Egyedi alapérzelmezett entitás képek.',
-            'more'              => [
+            'more'      => [
                 'boosted'       => 'Minden megerősített kampány lehetőség',
                 'superboosted'  => 'Minden szupererősített kampány lehetőség',
             ],
-            'recovery'          => 'A törölt entitások visszaállításának lehetősége :amount napon belül.',
-            'superboost'        => 'A szupererősített kampányok 3 megerősítést használnak el, és újabb lehetőségeket adnak a megerősített kampányok lehetőségein felül.',
-            'theme'             => 'Kampány-szintű téma, és egyedi megjelenítési stílus.',
-            'third'             => 'A kampány boost-olásához keresd fel a kampány oldalát, kattints a ":boost_button" gombra, amely a ":edit_button" felett helyezkedik el.',
-            'tooltip'           => 'Egyedi entitás tooltip-ek.',
-            'upload'            => 'Megnövelt fájlfeltöltési korlát az összes Tag számára.',
+            'third'     => 'A kampány boost-olásához keresd fel a kampány oldalát, kattints a ":boost_button" gombra, amely a ":edit_button" felett helyezkedik el.',
         ],
         'buttons'           => [
             'boost'         => 'Boost',
@@ -147,7 +133,6 @@ return [
         'api'                   => 'API',
         'apps'                  => 'Appok',
         'billing'               => 'Fizetési Mód',
-        'boost'                 => 'Boost',
         'invoices'              => 'Számlák',
         'layout'                => 'Elrendezés',
         'marketplace'           => 'Piactér',
@@ -185,7 +170,6 @@ return [
             'subscribe'         => 'Előfizetés',
             'update_currency'   => 'Választott pénznem mentése',
         ],
-        'benefits'              => 'Támogatásoddal lehetőséged nyílik, hogy hozzáférj új :featureshez, valamint ezzel is segítesz minket, hogy több időt szentelhessünk a Kanka fejlesztésének. A szerverünkön nem tárolunk, és nem küldünk keresztül semmilyen bankkártya információt. A számlázáshoz a :stripe vesszük segítségül.',
         'billing'               => [
             'helper'    => 'A számlázási információid tárolása, és feldolgozása a :stripe-on keresztül történik, biztonságos formában. Ez a fizetési mód kerül felhasználásra minden előfizetésed esetében.',
             'saved'     => 'Mentett fizetési mód',

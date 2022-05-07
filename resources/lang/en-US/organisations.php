@@ -22,9 +22,7 @@ return [
         'nested_without'=> 'Displaying all organizations that don\'t have a parent organization. Click on a row to see the children organizations.',
     ],
     'index'         => [
-        'add'       => 'New Organization',
-        'header'    => 'Organizations of :name',
-        'title'     => 'Organizations',
+        'title' => 'Organizations',
     ],
     'members'       => [
         'create'    => [
@@ -59,6 +57,5 @@ return [
         'tabs'  => [
             'organisations' => 'Organizations',
         ],
-        'title' => 'Organization :name',
     ],
 ];

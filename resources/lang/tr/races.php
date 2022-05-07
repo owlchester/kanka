@@ -24,9 +24,7 @@ return [
     ],
     'helpers'       => [],
     'index'         => [
-        'add'       => 'Yeni Irk',
-        'header'    => ':name ırkları',
-        'title'     => 'Irklar',
+        'title' => 'Irklar',
     ],
     'placeholders'  => [
         'name'  => 'Irkın Adı',
@@ -40,6 +38,5 @@ return [
             'characters'    => 'Karakterler',
             'races'         => 'Altırklar',
         ],
-        'title' => ':name Irkı',
     ],
 ];

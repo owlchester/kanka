@@ -53,7 +53,5 @@ return [
         'success'   => 'Accesos directos reordenados.',
         'title'     => 'Reordenar accesos directos',
     ],
-    'show'              => [
-        'title' => 'Acceso directo ":name"',
-    ],
+    'show'              => [],
 ];

@@ -28,9 +28,7 @@ return [
     ],
     'helpers'       => [],
     'index'         => [
-        'add'       => 'Ny Ras',
-        'header'    => 'Raser av :name',
-        'title'     => 'Raser',
+        'title' => 'Raser',
     ],
     'placeholders'  => [
         'name'  => 'Namn på rasen',
@@ -44,6 +42,5 @@ return [
             'characters'    => 'Karaktärer',
             'races'         => 'Underraser',
         ],
-        'title' => 'Ras :name',
     ],
 ];

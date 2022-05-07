@@ -39,12 +39,7 @@ return [
         'tag'       => 'Zobrazené sú všetky kategórie, ktoré sú tejto priamo podriadené.',
     ],
     'index'         => [
-        'actions'   => [
-            'explore_view'  => 'Vnorené zobrazenie',
-        ],
-        'add'       => 'Nová kategória',
-        'header'    => 'Kategórie podradené :name',
-        'title'     => 'Kategórie',
+        'title' => 'Kategórie',
     ],
     'new_tag'       => 'Nová kategória',
     'placeholders'  => [
@@ -57,7 +52,6 @@ return [
             'children'  => 'Podradené kategórie',
             'tags'      => 'Kategórie',
         ],
-        'title' => 'Kategória :name',
     ],
     'tags'          => [
         'title' => 'Kategórie podradené :name',

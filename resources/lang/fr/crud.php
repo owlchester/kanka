@@ -5,6 +5,7 @@ return [
         'actions'           => 'Actions',
         'apply'             => 'Appliquer',
         'back'              => 'Retour',
+        'bulk_actions'      => 'Actions',
         'bulk_templates'    => 'Appliquer modèle d\'attribut',
         'copy'              => 'Copier',
         'copy_mention'      => 'Copier mention [ ]',
@@ -96,7 +97,6 @@ return [
         'delete'            => 'Supprimer',
         'description'       => 'Es-tu sûr de vouloir supprimer :tag?',
         'description_final' => 'Es-tu sûr de vouloir retirer :tag? Cette action ne peux pas être annulée.',
-        'mirrored'          => 'Supprimer la relation liée.',
         'title'             => 'Confirmation de la suppression',
     ],
     'destroy_many'              => [
@@ -336,9 +336,6 @@ return [
         'timeline'      => 'Choix d\'une chronologie',
     ],
     'relations'                 => [
-        'actions'   => [
-            'add'   => 'Ajouter une relation',
-        ],
         'fields'    => [
             'location'  => 'Lieu',
             'name'      => 'Nom',

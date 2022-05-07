@@ -24,7 +24,7 @@ return [
         'participants'  => 'Please add participants to your conversation by pressing on the :icon icon on the upper-right.',
     ],
     'index'         => [
-        'title'     => 'Conversations',
+        'title' => 'Conversations',
     ],
     'messages'      => [
         'destroy'       => [

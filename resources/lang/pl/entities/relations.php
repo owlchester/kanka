@@ -51,7 +51,6 @@ return [
         'two_way'           => 'Jeżeli wybierzesz relację obustronną, taka sama relacja zostanie stworzona dla obiektu. Jeżeli potem zmodyfikujesz relację dla jednej strony, druga nie zostanie zaktualizowana.',
     ],
     'index'         => [
-        'add'   => 'Nowa relacja',
         'title' => 'Relacje',
     ],
     'options'       => [

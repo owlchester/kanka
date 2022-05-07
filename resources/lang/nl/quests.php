@@ -30,9 +30,7 @@ return [
         'quests'    => 'Met het veld Bovenliggende Quest kan een web van in elkaar grijpende quests worden gebouwd.',
     ],
     'index'         => [
-        'add'       => 'Nieuwe Quest',
-        'header'    => 'Quests van :name',
-        'title'     => 'Quests',
+        'title' => 'Quests',
     ],
     'placeholders'  => [
         'date'  => 'Echte werelddatum voor de quest',
@@ -41,7 +39,5 @@ return [
         'role'  => 'De rol van deze entiteit in de quest',
         'type'  => 'Karakter Boog, Sidequest, Hoofd',
     ],
-    'show'          => [
-        'title' => 'Quests :name',
-    ],
+    'show'          => [],
 ];

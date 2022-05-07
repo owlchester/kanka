@@ -42,9 +42,7 @@ return [
         'nested_without'=> 'S\'estan mostrant totes les habilitats que no tenen cap pare. Cliqueu una fila per a veure\'n les habilitats descendents.',
     ],
     'index'         => [
-        'add'       => 'Nova habilitat',
-        'header'    => 'Habilitats de :name',
-        'title'     => 'Habilitats',
+        'title' => 'Habilitats',
     ],
     'placeholders'  => [
         'charges'   => 'Quantitat d\'usos. Es pot referenciar un atribut amb {Nivell}*{CHA}',
@@ -56,6 +54,5 @@ return [
             'abilities' => 'Habilitats',
             'entities'  => 'Entitats',
         ],
-        'title' => 'Habilitat :name',
     ],
 ];

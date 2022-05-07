@@ -38,7 +38,6 @@ return [
         'pronouns'                  => '人称代词',
         'race'                      => '种族',
         'races'                     => '种族',
-        'relation'                  => '种族',
         'sex'                       => '性别',
         'title'                     => '头衔/称号',
         'traits'                    => '特质',
@@ -57,8 +56,6 @@ return [
         'actions'   => [
             'random'    => '新随机角色',
         ],
-        'add'       => '新角色',
-        'header'    => '在:name里的角色',
         'title'     => '角色',
     ],
     'items'         => [
@@ -128,10 +125,8 @@ return [
     ],
     'show'          => [
         'tabs'  => [
-            'map'           => '关系图',
             'organisations' => '组织',
         ],
-        'title' => '角色：:name',
     ],
     'warnings'      => [
         'personality_hidden'    => '你无权编辑这个角色的个性特征。',

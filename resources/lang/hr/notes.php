@@ -29,16 +29,12 @@ return [
         'is_pinned' => 'Do 3 bilješke mogu biti prikazane na naslovnoj ploči tako što su pričvršćene.',
     ],
     'index'         => [
-        'add'       => 'Nova bilješka',
-        'header'    => 'Bilješke od :name',
-        'title'     => 'Bilješke',
+        'title' => 'Bilješke',
     ],
     'placeholders'  => [
         'name'  => 'Naslov bilješke',
         'note'  => 'Odaberite bilješku roditelja',
         'type'  => 'Religija, Rasa, Politički sustav',
     ],
-    'show'          => [
-        'title' => 'Bilješka :name',
-    ],
+    'show'          => [],
 ];

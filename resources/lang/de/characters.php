@@ -40,7 +40,6 @@ return [
         'pronouns'                  => 'Pronomen',
         'race'                      => 'Spezies',
         'races'                     => 'Spezies',
-        'relation'                  => 'Beziehung',
         'sex'                       => 'Geschlecht',
         'title'                     => 'Titel',
         'traits'                    => 'Eigenschaften',
@@ -61,8 +60,6 @@ return [
         'actions'   => [
             'random'    => 'Neuen zufälligen Charakter',
         ],
-        'add'       => 'Neuer Charakter',
-        'header'    => 'Charakter in :name',
         'title'     => 'Charaktere',
     ],
     'items'         => [
@@ -132,10 +129,8 @@ return [
     ],
     'show'          => [
         'tabs'  => [
-            'map'           => 'Beziehungskarte',
             'organisations' => 'Organisationen',
         ],
-        'title' => 'Charakter :name',
     ],
     'warnings'      => [
         'personality_hidden'    => 'Es ist dir nicht erlaubt, die Persönlichkeit dieses Charakters zu bearbeiten.',

@@ -36,7 +36,6 @@ return [
         'physical'                  => 'Tělesné rysy',
         'pronouns'                  => 'Zájmena',
         'race'                      => 'Rasa',
-        'relation'                  => 'Souvislost',
         'sex'                       => 'Pohlaví',
         'title'                     => 'Titul',
         'traits'                    => 'Rysy',
@@ -55,8 +54,6 @@ return [
         'actions'   => [
             'random'    => 'Nová náhodná postava',
         ],
-        'add'       => 'Nová postava',
-        'header'    => 'Postavy v :name',
         'title'     => 'Postavy',
     ],
     'items'         => [
@@ -125,10 +122,8 @@ return [
     ],
     'show'          => [
         'tabs'  => [
-            'map'           => 'Mapa souvislostí',
             'organisations' => 'Organizace',
         ],
-        'title' => 'Postava :name',
     ],
     'warnings'      => [
         'personality_hidden'    => 'Nemáš oprávnění upravovat povahové rysy této postavy.',

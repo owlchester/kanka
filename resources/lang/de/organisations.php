@@ -19,7 +19,6 @@ return [
         'name'          => 'Name',
         'organisation'  => 'Übergeordnete Organisation',
         'organisations' => 'Unterorganisation',
-        'relation'      => 'Beziehung',
         'type'          => 'Typ',
     ],
     'helpers'       => [
@@ -28,9 +27,7 @@ return [
         'nested_without'=> 'Anzeigen aller Organisationen, die keine übergeordnete Organisation haben. Klicken Sie auf eine Zeile, um die untergeordneten Organisationen anzuzeigen.',
     ],
     'index'         => [
-        'add'       => 'Neue Organisation',
-        'header'    => 'Organisationen von :name',
-        'title'     => 'Organisationen',
+        'title' => 'Organisationen',
     ],
     'members'       => [
         'actions'       => [
@@ -90,9 +87,6 @@ return [
     'show'          => [
         'tabs'  => [
             'organisations' => 'Organisationen',
-            'quests'        => 'Quests',
-            'relations'     => 'Beziehungen',
         ],
-        'title' => 'Organisation :name',
     ],
 ];

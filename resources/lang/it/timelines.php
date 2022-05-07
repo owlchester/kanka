@@ -38,7 +38,6 @@ return [
         'reverse_order'     => 'Abilita per visualizzare le ere in ordine cronologico inverso (prima l\'era più antica)',
     ],
     'index'         => [
-        'add'   => 'Nuova linea temporale',
         'title' => 'Linee temporali',
     ],
     'placeholders'  => [
@@ -48,7 +47,6 @@ return [
         'tabs'  => [
             'timelines' => 'Linee temporali',
         ],
-        'title' => 'Linea temporale :name',
     ],
     'timelines'     => [
         'title' => 'Linea temporale :name Linee temporali',

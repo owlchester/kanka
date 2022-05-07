@@ -27,9 +27,7 @@ return [
         'type'          => 'Typ',
     ],
     'index'         => [
-        'add'       => 'Nová rasa',
-        'header'    => 'Rasy z :name',
-        'title'     => 'Rasy',
+        'title' => 'Rasy',
     ],
     'placeholders'  => [
         'name'  => 'Jméno rasy',
@@ -39,6 +37,5 @@ return [
             'characters'    => 'Postavy',
             'races'         => 'Podrasy',
         ],
-        'title' => 'Rasa :name',
     ],
 ];

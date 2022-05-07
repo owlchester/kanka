@@ -54,7 +54,7 @@ return [
         'quests'    => 'A web of interlocking quests can be built using the Parent Quest field.',
     ],
     'index'         => [
-        'title'     => 'Quests',
+        'title' => 'Quests',
     ],
     'placeholders'  => [
         'date'  => 'Real world date for the quest',

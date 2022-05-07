@@ -19,7 +19,6 @@ return [
         'name'          => 'Názov',
         'organisation'  => 'Nadradená organizácia',
         'organisations' => 'Podradená organizácia',
-        'relation'      => 'Prepojenie',
         'type'          => 'Typ',
     ],
     'helpers'       => [
@@ -28,9 +27,7 @@ return [
         'nested_without'=> 'Zobraziť všetky organizácie, ktoré nemajú nadradenú organizáciu. Kliknutím na riadok zobrazíš podradené organizácie.',
     ],
     'index'         => [
-        'add'       => 'Nová organizácia',
-        'header'    => 'Organizácie objektu :name',
-        'title'     => 'Organizácie',
+        'title' => 'Organizácie',
     ],
     'members'       => [
         'actions'       => [
@@ -89,9 +86,6 @@ return [
     'show'          => [
         'tabs'  => [
             'organisations' => 'Organizácie',
-            'quests'        => 'Úlohy',
-            'relations'     => 'Prepojenia',
         ],
-        'title' => 'Organizácia :name',
     ],
 ];

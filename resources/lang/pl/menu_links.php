@@ -53,7 +53,5 @@ return [
         'success'   => 'Zmieniono kolejność skrótów.',
         'title'     => 'Zmiana kolejności skrótów',
     ],
-    'show'              => [
-        'title' => 'Skrót :name',
-    ],
+    'show'              => [],
 ];

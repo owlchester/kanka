@@ -28,9 +28,7 @@ return [
         'date'  => 'Dit veld kan alles bevatten en is niet gekoppeld aan de kalenders van de campaign. Om deze gebeurtenis aan een kalender te koppelen, voeg je deze toe aan de kalender of op het tabblad herinneringen van deze gebeurtenissen.',
     ],
     'index'         => [
-        'add'       => 'Nieuwe gebeurtenis',
-        'header'    => 'Gebeurtenissen van :name',
-        'title'     => 'Gebeurtenissen',
+        'title' => 'Gebeurtenissen',
     ],
     'placeholders'  => [
         'date'      => 'Een datum voor je gebeurtenis',
@@ -38,9 +36,7 @@ return [
         'name'      => 'Naam van de gebeurtenis',
         'type'      => 'Ceremonie, Festival, Ramp, Veldslag, Geboorte',
     ],
-    'show'          => [
-        'title' => 'Gebeurtenis :name',
-    ],
+    'show'          => [],
     'tabs'          => [
         'calendars' => 'Kalender Invoeren',
     ],

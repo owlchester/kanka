@@ -19,7 +19,6 @@ return [
         'name'          => 'Nazwa',
         'organisation'  => 'Organizacja źródłowa',
         'organisations' => 'Organizacje pochodne',
-        'relation'      => 'Relacja',
         'type'          => 'Rodzaj',
     ],
     'helpers'       => [
@@ -28,9 +27,7 @@ return [
         'nested_without'=> 'Wyświetlono wszystkie organizacje nie posiadające źródła. Kliknij na rząd, by wyświetlić organizacje pochodne.',
     ],
     'index'         => [
-        'add'       => 'Nowa organizacja',
-        'header'    => 'Organizacje elementu :name',
-        'title'     => 'Organizacje',
+        'title' => 'Organizacje',
     ],
     'members'       => [
         'actions'       => [
@@ -89,9 +86,6 @@ return [
     'show'          => [
         'tabs'  => [
             'organisations' => 'Organizacje',
-            'quests'        => 'Misje',
-            'relations'     => 'Relacje',
         ],
-        'title' => 'Organizacja :name',
     ],
 ];

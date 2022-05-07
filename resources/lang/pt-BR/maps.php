@@ -59,7 +59,6 @@ return [
         'nested_without'    => 'Mostrando todos os mapas que não tem um mapa-pai. Clique em uma linha para ver os mapas-filhos.',
     ],
     'index'         => [
-        'add'   => 'Novo mapa',
         'title' => 'Mapas',
     ],
     'maps'          => [
@@ -85,6 +84,5 @@ return [
         'tabs'  => [
             'maps'  => 'Mapas',
         ],
-        'title' => 'Mapa :name',
     ],
 ];

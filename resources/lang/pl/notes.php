@@ -29,16 +29,12 @@ return [
         'is_pinned' => 'Na pulpicie można przypiąć do 3 notatek.',
     ],
     'index'         => [
-        'add'       => 'Nowa notatka',
-        'header'    => 'Notatki elementu :name',
-        'title'     => 'Notatki',
+        'title' => 'Notatki',
     ],
     'placeholders'  => [
         'name'  => 'Nazwa notatki',
         'note'  => 'Wybierz notatkę źródłową',
         'type'  => 'Religia, rasa, system polityczny',
     ],
-    'show'          => [
-        'title' => 'Notatka :name',
-    ],
+    'show'          => [],
 ];

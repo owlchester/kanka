@@ -23,9 +23,7 @@ return [
         'participants'  => 'Lütfen sağ-üstteki :icon ikonuna tıklayarak muhabbetinize katılımcılar ekleyin.',
     ],
     'index'         => [
-        'add'       => 'Yeni Muhabbet',
-        'header'    => ':name Muhabbetleri',
-        'title'     => 'Muhabbetler',
+        'title' => 'Muhabbetler',
     ],
     'messages'      => [
         'destroy'       => [
@@ -51,9 +49,7 @@ return [
         'name'  => 'Muhabbetin adı',
         'type'  => 'Oyun İçi, Hazırlık, Plan',
     ],
-    'show'          => [
-        'title' => ':name Muhabbeti',
-    ],
+    'show'          => [],
     'tabs'          => [
         'conversation'  => 'Muhabbet',
         'participants'  => 'Katılımcılar',

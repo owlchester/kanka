@@ -22,7 +22,6 @@ return [
         'location'  => 'Konum',
         'members'   => 'Üyeler',
         'name'      => 'Ad',
-        'relation'  => 'İlişki',
         'type'      => 'Tür',
     ],
     'helpers'       => [
@@ -32,9 +31,7 @@ return [
         'members'   => 'Aile üyeleri burada listelenir. Bir karakter bir aileye istenen karakteri düzenlerken "Aile" açılır listesi kullanılarak eklenebilir.',
     ],
     'index'         => [
-        'add'       => 'Yeni Aile',
-        'header'    => ':name Aileleri',
-        'title'     => 'Aileler',
+        'title' => 'Aileler',
     ],
     'members'       => [
         'helpers'   => [
@@ -53,8 +50,6 @@ return [
             'all_members'   => 'Tüm Üyeler',
             'families'      => 'Aileler',
             'members'       => 'Üyeler',
-            'relation'      => 'İlişkiler',
         ],
-        'title' => ':name Ailesi',
     ],
 ];

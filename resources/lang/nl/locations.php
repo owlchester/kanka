@@ -29,7 +29,6 @@ return [
         'locations'         => 'Locaties',
         'map'               => 'Kaart',
         'name'              => 'Naam',
-        'relation'          => 'Relatie',
         'type'              => 'Type',
     ],
     'helpers'       => [
@@ -44,19 +43,10 @@ return [
         'is_map_private'    => 'Een privékaart is alleen zichtbaar voor leden van de campaign\'s \'Beheerder\'.',
     ],
     'index'         => [
-        'actions'   => [
-            'explore_view'  => 'Geneste Weergave',
-        ],
-        'add'       => 'Nieuwe Locatie',
-        'header'    => 'Locaties in :name',
-        'title'     => 'Locaties',
+        'title' => 'Locaties',
     ],
-    'items'         => [
-        'title' => 'Locatie :name Voorwerpen',
-    ],
-    'journals'      => [
-        'title' => 'Locatie :name Logboeken',
-    ],
+    'items'         => [],
+    'journals'      => [],
     'locations'     => [
         'title' => 'Locatie :name Locaties',
     ],
@@ -205,16 +195,9 @@ return [
     'show'          => [
         'tabs'  => [
             'characters'    => 'Personages',
-            'events'        => 'Gebeurtenissen',
-            'families'      => 'Families',
-            'items'         => 'Voorwerpen',
-            'journals'      => 'Logboeken',
             'locations'     => 'Locaties',
             'map'           => 'Kaart',
             'maps'          => 'Kaarten',
-            'organisations' => 'Organisaties',
-            'quests'        => 'Quests',
         ],
-        'title' => 'Locatie :name',
     ],
 ];

@@ -29,7 +29,7 @@ return [
         'is_pinned' => 'Up to 3 notes can be pinned to be displayed on the dashboard.',
     ],
     'index'         => [
-        'title'     => 'Notes',
+        'title' => 'Notes',
     ],
     'placeholders'  => [
         'name'  => 'Name of the note',

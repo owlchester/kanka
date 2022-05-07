@@ -31,9 +31,7 @@ return [
         'nested_without'=> 'Wyświetlono wszystkie rasy nie posiadające źródła. Kliknij na rząd, by wyświetlić rasy pochodne.',
     ],
     'index'         => [
-        'add'       => 'Nowa rasa',
-        'header'    => 'Rasy elementu :name',
-        'title'     => 'Rasy',
+        'title' => 'Rasy',
     ],
     'placeholders'  => [
         'name'  => 'Nazwa rasy',
@@ -47,6 +45,5 @@ return [
             'characters'    => 'Postaci',
             'races'         => 'Rasy pochodne',
         ],
-        'title' => 'Rasa :name',
     ],
 ];

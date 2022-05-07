@@ -26,9 +26,7 @@ return [
         'parent_attribute_template' => 'Denna egenskapsmall kan härledas till en annan egenskapsmall. När egenskapsmallen appliceras kommer den och även alla över den i härledningskedjan att appliceras.',
     ],
     'index'                 => [
-        'add'       => 'Ny Egenskapsmall',
-        'header'    => 'Egenskapsmall för :name',
-        'title'     => 'Egenskapsmall',
+        'title' => 'Egenskapsmall',
     ],
     'placeholders'          => [
         'attribute_template'    => 'Välj en egenskapsmall',
@@ -39,6 +37,5 @@ return [
             'attribute_templates'   => 'Egenskapsmall',
             'attributes'            => 'Egenskaper',
         ],
-        'title' => 'Egenskapsmall :name',
     ],
 ];

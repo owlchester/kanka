@@ -23,9 +23,7 @@ return [
         'participants'  => 'Vänligen lägg till deltagare till din konversation genom att trycka på :icon ikonen uppe till höger.',
     ],
     'index'         => [
-        'add'       => 'Ny Konversation',
-        'header'    => 'Konversationer i :name',
-        'title'     => 'Konversationer',
+        'title' => 'Konversationer',
     ],
     'messages'      => [
         'destroy'       => [
@@ -51,9 +49,7 @@ return [
         'name'  => 'Name of the conversation',
         'type'  => 'I Spelet, Förberedande, Handling',
     ],
-    'show'          => [
-        'title' => 'Konversation :name',
-    ],
+    'show'          => [],
     'tabs'          => [
         'conversation'  => 'Konversation',
         'participants'  => 'Deltagare',

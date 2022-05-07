@@ -45,30 +45,15 @@ return [
     'boost'         => [
         'available_boosts'  => 'Dozvoljena pojačanja: :amount / :max',
         'benefits'          => [
-            'campaign_gallery'  => 'Galerija slika u koju možeš učitati slike za ponovo korištenje kroz kampanju.',
-            'entity_files'      => 'Učitaj do 10 slika po entitetu.',
-            'entity_logs'       => 'Cjeloviti zapisnici entiteta onoga što je promijenjeno na entitetu sa svakim ažuriranjem.',
-            'first'             => 'Kako bi osigurali kontinuirani napredak na Kanki, pojedine značajke kampanje otključavaju se pojačavanjem kampanje. Pojačanja se otključavaju putem pretplate. Svatko tko može pogledati kampanju može ju pojačati tako da ne mora uvijek ista osoba plaćati račun. Kampanja ostaje pojačana sve dok korisnik pojačava kampanju i oni nastave podržavati Kanku. Ako se kampanja više ne pojačava, podaci se ne gube već su samo skriveni dok se kampanja ponovno ne pojača.',
-            'header'            => 'Slike zaglavlja entiteta.',
-            'headers'           => [
+            'headers'   => [
                 'boosted'       => 'Prednosti pojačane kampanje',
                 'superboosted'  => 'Prednosti super pojačane kampanje',
             ],
-            'helpers'           => [
-                'boosted'       => 'Pojačanje kampanje dodjeljuje jedno pojačanje kampanji.',
-                'superboosted'  => 'Super pojačanje kampanje dodjeljuje tri pojačanja kampanji.',
-            ],
-            'images'            => 'Proizvoljne zadane slike entiteta.',
-            'more'              => [
+            'more'      => [
                 'boosted'       => 'Sve funkcionalnosti pojačane kampanje',
                 'superboosted'  => 'Sve funkcionalnosti super pojačane kampanje',
             ],
-            'recovery'          => 'Povrati obrisane entitete do :amount dana.',
-            'superboost'        => 'Super pojačanje kampanja koristi tvoja 3 pojačanja i otključava dodatne značajke povrh onih za pojačane kampanje.',
-            'theme'             => 'Tema na razini kampanje i proizvoljno stiliziranje.',
-            'third'             => 'Da biste pojačali kampanju, idite na stranicu kampanje i kliknite gumb ":boost_button" iznad gumba ":edit_button".',
-            'tooltip'           => 'Proizvoljni kratki opisi entiteta.',
-            'upload'            => 'Povećana veličina prijenosa za svakog člana u kampanji.',
+            'third'     => 'Da biste pojačali kampanju, idite na stranicu kampanje i kliknite gumb ":boost_button" iznad gumba ":edit_button".',
         ],
         'buttons'           => [
             'boost'         => 'Pojačaj',
@@ -141,7 +126,6 @@ return [
         'api'                   => 'API',
         'apps'                  => 'Aplikacije',
         'billing'               => 'Način plaćanja',
-        'boost'                 => 'Pojačanje',
         'invoices'              => 'Fakture',
         'layout'                => 'Raspored',
         'marketplace'           => 'Tržnica',
@@ -179,7 +163,6 @@ return [
             'subscribe'         => 'Pretplata',
             'update_currency'   => 'Spremite preferiranu valutu',
         ],
-        'benefits'              => 'Podržavajući nas možete otključati neke nove :features i pomoći nam da uložimo više vremena u poboljšanje Kanke. Podaci kreditne kartice se ne pohranjuju ili ne prolaze kroz naše poslužitelje. Koristimo :stripe za obradu svih računa.',
         'billing'               => [
             'helper'    => 'Podaci o naplati obrađuju se i pohranjuju na sigurno putem :stripe. Ovaj način plaćanja koristi se za sve tvoje pretplate.',
             'saved'     => 'Spremljen način plaćanja',

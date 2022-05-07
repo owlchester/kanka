@@ -19,16 +19,13 @@ return [
         'name'          => 'Namn',
         'organisation'  => 'Huvudorganisation',
         'organisations' => 'Underorganisation',
-        'relation'      => 'Förbindelse',
         'type'          => 'Typ',
     ],
     'helpers'       => [
         'descendants'   => 'Denna lista innehåller organisationer under denna organisation, och inte bara dem direkt under den.',
     ],
     'index'         => [
-        'add'       => 'Ny Organisation',
-        'header'    => 'Organisationer för :name',
-        'title'     => 'Organisationer',
+        'title' => 'Organisationer',
     ],
     'members'       => [
         'actions'       => [
@@ -71,9 +68,6 @@ return [
     'show'          => [
         'tabs'  => [
             'organisations' => 'Organisationer',
-            'quests'        => 'Uppdrag',
-            'relations'     => 'Förbindelser',
         ],
-        'title' => 'Organisation :name',
     ],
 ];

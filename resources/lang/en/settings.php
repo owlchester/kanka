@@ -45,16 +45,15 @@ return [
     'boost'         => [
         'available_boosts'  => 'Available boosts: :amount / :max',
         'benefits'          => [
-            'headers'           => [
+            'headers'   => [
                 'boosted'       => 'Boosted campaign benefits',
                 'superboosted'  => 'Superboosted campaign benefits',
             ],
-            'more'              => [
+            'more'      => [
                 'boosted'       => 'All boosted campaign features',
                 'superboosted'  => 'All superboosted campaign features',
             ],
-
-            'third'             => 'To boost a campaign, go to the campaign\'s page, and click on the :boost_button button above the :edit_button button.',
+            'third'     => 'To boost a campaign, go to the campaign\'s page, and click on the :boost_button button above the :edit_button button.',
         ],
         'buttons'           => [
             'boost'         => 'Boost',
@@ -172,7 +171,6 @@ return [
             'subscribe'         => 'Subscribe',
             'update_currency'   => 'Save prefered currency',
         ],
-        'benefits'              => '',
         'billing'               => [
             'helper'    => 'Your billing information is processed and stored safely through :stripe. This payment method is used for all of your subscriptions.',
             'saved'     => 'Saved payment method',
@@ -227,7 +225,7 @@ return [
             'alternatives_warning'  => 'Upgrading your subscription when using this method is not possible. Please subscribe again when your current one ends.',
             'alternatives_yearly'   => 'Due to the restrictions surrounding recurring payments, :method is only available for yearly subscriptions',
             'paypal'                => 'Want to use Paypal instead? Contact us at :email if you wish to subscribe to a yearly plan using Paypal.',
-            'stripe'                => 'Your billing information is processed and stored safely through :stripe.'
+            'stripe'                => 'Your billing information is processed and stored safely through :stripe.',
         ],
         'manage_subscription'   => 'Manage subscription',
         'payment_method'        => [
@@ -247,16 +245,16 @@ return [
             'new_card'      => 'Add a new payment method',
             'saved'         => ':brand ending with :last4',
         ],
+        'periods'               => [
+            'monthly'   => 'Monthly',
+            'yearly'    => 'Yearly',
+        ],
         'placeholders'          => [
             'reason'    => 'Optionally tell us why you are no longer supporting Kanka. Was a feature missing? Did your financial situation change?',
         ],
         'plans'                 => [
             'cost_monthly'  => ':currency :amount billed monthly',
             'cost_yearly'   => ':currency :amount billed yearly',
-        ],
-        'periods'               => [
-            'monthly'   => 'Monthly',
-            'yearly'    => 'Yearly',
         ],
         'sub_status'            => 'Subscription information',
         'subscription'          => [

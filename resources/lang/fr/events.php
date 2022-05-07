@@ -31,9 +31,7 @@ return [
         'nested_without'=> 'Affichage des événements sans parent. Cliquer sur une rangée pour afficher les événements enfants.',
     ],
     'index'         => [
-        'add'       => 'Nouvel Événement',
-        'header'    => 'Événements de :name',
-        'title'     => 'Événements',
+        'title' => 'Événements',
     ],
     'placeholders'  => [
         'date'      => 'La date de l\'événement',
@@ -45,7 +43,6 @@ return [
         'tabs'  => [
             'events'    => 'Événements',
         ],
-        'title' => 'Événement :name',
     ],
     'tabs'          => [
         'calendars' => 'Entrées calendrier',

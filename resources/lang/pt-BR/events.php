@@ -31,9 +31,7 @@ return [
         'nested_without'=> 'Mostrando todos os eventos que não tem um evento-pai. Clique em uma linha para ver os eventos-filhos.',
     ],
     'index'         => [
-        'add'       => 'Novo Evento',
-        'header'    => 'Eventos de :name',
-        'title'     => 'Eventos',
+        'title' => 'Eventos',
     ],
     'placeholders'  => [
         'date'      => 'A data para o seu evento',
@@ -45,7 +43,6 @@ return [
         'tabs'  => [
             'events'    => 'Eventos',
         ],
-        'title' => 'Evento :name',
     ],
     'tabs'          => [
         'calendars' => 'Registros no Calendário',

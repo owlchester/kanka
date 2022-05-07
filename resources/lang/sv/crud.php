@@ -84,7 +84,6 @@ return [
         'close'         => 'Stäng',
         'delete'        => 'Ta bort',
         'description'   => 'Är du säker att du vill ta bort :tag?',
-        'mirrored'      => 'Ta bort speglad förbindelse.',
         'title'         => 'Ta bort bekräftelse',
     ],
     'destroy_many'              => [
@@ -275,9 +274,6 @@ return [
         'tag'           => 'Välj en tagg',
     ],
     'relations'                 => [
-        'actions'   => [
-            'add'   => 'Lägg till en förbindelse',
-        ],
         'fields'    => [
             'location'  => 'Plats',
             'name'      => 'Namn',

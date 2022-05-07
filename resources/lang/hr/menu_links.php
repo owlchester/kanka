@@ -47,7 +47,5 @@ return [
     'random_types'  => [
         'any'   => 'Bilo koji entitet',
     ],
-    'show'          => [
-        'title' => 'Poveznica izbornika :name',
-    ],
+    'show'          => [],
 ];

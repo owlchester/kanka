@@ -2,6 +2,11 @@
 
 return [
     'actions'       => [
+        'bulks'             => [
+            'disable'   => 'Désactiver les plugins',
+            'enable'    => 'Activer les plugins',
+            'update'    => 'Mettre à jour les plugins',
+        ],
         'disable'           => 'Désactiver le plugin',
         'enable'            => 'Activer le plugin',
         'go_to_marketplace' => 'Aller au marketplace',
@@ -9,6 +14,12 @@ return [
         'remove'            => 'Retirer le plugin',
         'update'            => 'Mettre à jour le plugin',
         'update_available'  => 'Mise à jour disponible!',
+    ],
+    'bulks'         => [
+        'delete'    => '{1} :count plugin retiré.|[2,*] :count plugins retirés.',
+        'disable'   => '{1} :count plugin désactivé.|[2,*] :count plugins désactivés.',
+        'enable'    => '{1} :count plugin activé.|[2,*] :count plugins activés.',
+        'update'    => '{1} :count plugin mis à jour.|[2,*] :count plugins mis à jour.',
     ],
     'destroy'       => [
         'success'   => 'Le plugin :plugin a été retiré.',

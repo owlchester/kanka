@@ -28,8 +28,6 @@ return [
             'dice'      => 'Rolagem de dados',
             'results'   => 'Resultados',
         ],
-        'add'       => 'Nova rolagem de dados',
-        'header'    => 'Rolagens de dado de :name',
         'title'     => 'Rolagens de dado',
     ],
     'placeholders'  => [
@@ -54,6 +52,5 @@ return [
         'tabs'  => [
             'results'   => 'Resultados',
         ],
-        'title' => 'Rolagem de dados :name',
     ],
 ];

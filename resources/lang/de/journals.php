@@ -19,7 +19,6 @@ return [
         'journal'   => 'Übergeordnetes Logbuch',
         'journals'  => 'Untergeordnetes Logbuch',
         'name'      => 'Name',
-        'relation'  => 'Beziehung',
         'type'      => 'Typ',
     ],
     'helpers'       => [
@@ -28,9 +27,7 @@ return [
         'nested_without'=> 'Anzeigen aller Journale ohne übergeordnetes Journal. Klicken Sie auf eine Zeile, um die Kinderjournale anzuzeigen.',
     ],
     'index'         => [
-        'add'       => 'Neues Logbuch',
-        'header'    => 'Logbücher von :name',
-        'title'     => 'Logbücher',
+        'title' => 'Logbücher',
     ],
     'journals'      => [
         'title' => 'Logbuch :name Untergeordnetes Logbuch',
@@ -46,6 +43,5 @@ return [
         'tabs'  => [
             'journals'  => 'Logbücher',
         ],
-        'title' => 'Logbuch :name',
     ],
 ];

@@ -28,8 +28,6 @@ return [
             'dice'      => 'Hody kockami',
             'results'   => 'Výsledky',
         ],
-        'add'       => 'Nový hod kockami',
-        'header'    => 'Hody kockami od :name',
         'title'     => 'Hody kockami',
     ],
     'placeholders'  => [
@@ -54,6 +52,5 @@ return [
         'tabs'  => [
             'results'   => 'Výsledky',
         ],
-        'title' => 'Hod kockami :name',
     ],
 ];

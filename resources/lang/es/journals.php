@@ -19,7 +19,6 @@ return [
         'journal'   => 'Diario superior',
         'journals'  => 'Subdiarios',
         'name'      => 'Nombre',
-        'relation'  => 'Relación',
         'type'      => 'Tipo',
     ],
     'helpers'       => [
@@ -28,9 +27,7 @@ return [
         'nested_without'=> 'Mostrando todos los diarios sin ningún superior. Haz clic sobre una fila para mostrar sus descendientes.',
     ],
     'index'         => [
-        'add'       => 'Nuevo diario',
-        'header'    => 'Diarios de :name',
-        'title'     => 'Diarios',
+        'title' => 'Diarios',
     ],
     'journals'      => [
         'title' => 'Subdiarios del diario :name',
@@ -46,6 +43,5 @@ return [
         'tabs'  => [
             'journals'  => 'Diarios',
         ],
-        'title' => 'Diario :name',
     ],
 ];

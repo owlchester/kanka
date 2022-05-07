@@ -35,7 +35,6 @@ return [
         'name'                      => 'שם',
         'physical'                  => 'פיזי',
         'race'                      => 'גזע',
-        'relation'                  => 'יחס',
         'sex'                       => 'מגדר',
         'title'                     => 'תואר',
         'traits'                    => 'מאפיינים',
@@ -52,8 +51,6 @@ return [
         'actions'   => [
             'random'    => 'דמות אקראית חדשה',
         ],
-        'add'       => 'דמות חדשה',
-        'header'    => 'דמויות ב:name',
         'title'     => 'דמויות',
     ],
     'items'         => [
@@ -121,10 +118,8 @@ return [
     ],
     'show'          => [
         'tabs'  => [
-            'map'           => 'מפת יחסים',
             'organisations' => 'אירגונים',
         ],
-        'title' => 'דמות :name',
     ],
     'warnings'      => [
         'personality_hidden'    => 'אין לך הרשאה לערוך את האישיות של דמות זו.',

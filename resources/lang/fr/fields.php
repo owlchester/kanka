@@ -21,6 +21,7 @@ return [
     'tooltip'           => [
         'boosted-description'   => 'Replacer le texte d\'infobulle de l\'entité automatiquement généré avec une :boosted-campaign.',
         'description'           => 'Replacer le texte d\'infobulle de l\'entité automatiquement généré par le texte suivant.',
+        'helper'                => 'Les éléments HTML suivants sont permis dans l\'infobulle: :tags',
         'name'                  => 'Infobulle',
     ],
 ];

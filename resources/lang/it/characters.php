@@ -40,7 +40,6 @@ return [
         'pronouns'                  => 'Pronomi',
         'race'                      => 'Razza',
         'races'                     => 'Razze',
-        'relation'                  => 'Relazione',
         'sex'                       => 'Sesso',
         'title'                     => 'Titolo',
         'traits'                    => 'Tratti',
@@ -59,8 +58,6 @@ return [
         'actions'   => [
             'random'    => 'Nuovo Personaggio Casuale',
         ],
-        'add'       => 'Nuovo Personaggio',
-        'header'    => 'Personaggi che si trovano a \':name\'',
         'title'     => 'Personaggi',
     ],
     'items'         => [
@@ -130,10 +127,8 @@ return [
     ],
     'show'          => [
         'tabs'  => [
-            'map'           => 'Mappa delle relazioni',
             'organisations' => 'Organizzazioni',
         ],
-        'title' => 'Personaggio :name',
     ],
     'warnings'      => [
         'personality_hidden'    => 'Non ti è consentito modificare i tratti della personalità di questo personaggio.',

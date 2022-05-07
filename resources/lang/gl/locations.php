@@ -29,7 +29,6 @@ return [
         'locations'         => 'Lugares',
         'map'               => 'Mapa',
         'name'              => 'Nome',
-        'relation'          => 'Relación',
         'type'              => 'Tipo',
     ],
     'helpers'       => [
@@ -46,19 +45,10 @@ return [
         'is_map_private'    => 'Un mapa privado só será visíbel para a Administración da campaña.',
     ],
     'index'         => [
-        'actions'   => [
-            'explore_view'  => 'Vista en árbore',
-        ],
-        'add'       => 'Novo lugar',
-        'header'    => 'Lugares en :name',
-        'title'     => 'Lugares',
+        'title' => 'Lugares',
     ],
-    'items'         => [
-        'title' => 'Obxectos de :name',
-    ],
-    'journals'      => [
-        'title' => 'Cadernos de :name',
-    ],
+    'items'         => [],
+    'journals'      => [],
     'locations'     => [
         'title' => 'Lugares dentro de :name',
     ],
@@ -207,16 +197,9 @@ return [
     'show'          => [
         'tabs'  => [
             'characters'    => 'Personaxes',
-            'events'        => 'Eventos',
-            'families'      => 'Familias',
-            'items'         => 'Obxectos',
-            'journals'      => 'Cadernos',
             'locations'     => 'Lugares',
             'map'           => 'Mapa',
             'maps'          => 'Mapas',
-            'organisations' => 'Organizacións',
-            'quests'        => 'Misións',
         ],
-        'title' => 'Lugar ":name"',
     ],
 ];

@@ -36,7 +36,6 @@ return [
         'physical'                  => 'Fizičke osobine',
         'pronouns'                  => 'Zamjenice',
         'race'                      => 'Rasa',
-        'relation'                  => 'Odnos',
         'sex'                       => 'Spol',
         'title'                     => 'Titula',
         'traits'                    => 'Osobine',
@@ -55,8 +54,6 @@ return [
         'actions'   => [
             'random'    => 'Novi nasumički lik',
         ],
-        'add'       => 'Novi lik',
-        'header'    => 'Likovi u :name',
         'title'     => 'Likovi',
     ],
     'items'         => [
@@ -125,10 +122,8 @@ return [
     ],
     'show'          => [
         'tabs'  => [
-            'map'           => 'Mapa odnosa',
             'organisations' => 'Organizacije',
         ],
-        'title' => 'Lik :name',
     ],
     'warnings'      => [
         'personality_hidden'    => 'Nemaš dopuštenje mijenjati osobine ovog lika.',

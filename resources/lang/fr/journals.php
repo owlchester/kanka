@@ -19,7 +19,6 @@ return [
         'journal'   => 'Journal parent',
         'journals'  => 'Sous-journaux',
         'name'      => 'Nom',
-        'relation'  => 'Relation',
         'type'      => 'Type',
     ],
     'helpers'       => [
@@ -28,9 +27,7 @@ return [
         'nested_without'=> 'Affichage des journaux sans parent. Cliquer sur une rangée pour afficher les journaux enfants.',
     ],
     'index'         => [
-        'add'       => 'Nouveau Journal',
-        'header'    => 'Journaux de :name',
-        'title'     => 'Journaux',
+        'title' => 'Journaux',
     ],
     'journals'      => [
         'title' => 'Sous-journaux du journal :name',
@@ -46,6 +43,5 @@ return [
         'tabs'  => [
             'journals'  => 'Journaux',
         ],
-        'title' => 'Journal :name',
     ],
 ];

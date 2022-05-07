@@ -26,9 +26,7 @@ return [
         'parent_attribute_template' => 'Tato šablona atributů může být podřazena jiné šabloně atributů. Přiřazení této šablony atributů, zároveň aplikuje i všechny nadřazené šablony.',
     ],
     'index'                 => [
-        'add'       => 'Nová šablona atributů',
-        'header'    => 'Šablony atributů :name',
-        'title'     => 'Šablony atributů',
+        'title' => 'Šablony atributů',
     ],
     'placeholders'          => [
         'attribute_template'    => 'Vyber jednu ze šablon atributů',
@@ -39,6 +37,5 @@ return [
             'attribute_templates'   => 'Šablony atributů',
             'attributes'            => 'Atributy',
         ],
-        'title' => 'Šablona atributů :name',
     ],
 ];

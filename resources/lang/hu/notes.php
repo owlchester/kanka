@@ -29,16 +29,12 @@ return [
         'is_pinned' => 'A vezérlőpultra legfeljebb három jegyzetet emelhetsz ki.',
     ],
     'index'         => [
-        'add'       => 'Új jegyzet',
-        'header'    => ':name jegyzetei',
-        'title'     => 'Jegyzetek',
+        'title' => 'Jegyzetek',
     ],
     'placeholders'  => [
         'name'  => 'A jegyzet neve',
         'note'  => 'Válassz egy szülőjegyzetet',
         'type'  => 'Vallás, faj, politikai rendszer',
     ],
-    'show'          => [
-        'title' => ':name',
-    ],
+    'show'          => [],
 ];

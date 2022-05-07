@@ -28,8 +28,6 @@ return [
             'dice'      => 'Tärningskast',
             'results'   => 'Resultat',
         ],
-        'add'       => 'Nytt Tärningskast',
-        'header'    => 'Tärningskast för :name',
         'title'     => 'Tärningskast',
     ],
     'placeholders'  => [
@@ -54,6 +52,5 @@ return [
         'tabs'  => [
             'results'   => 'Resultat',
         ],
-        'title' => 'Tärningskast :name',
     ],
 ];

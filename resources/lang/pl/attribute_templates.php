@@ -26,9 +26,7 @@ return [
         'parent_attribute_template' => 'Ten szablon może pochodzić od innego szablonu cech. Kiedy przypisujesz szablon do jakieś elementu, wszystkie jego szablony źródłowe zostają również przypisane.',
     ],
     'index'                 => [
-        'add'       => 'Nowy szablon cech',
-        'header'    => 'Szablony cech elementu :name',
-        'title'     => 'Szablony cech',
+        'title' => 'Szablony cech',
     ],
     'placeholders'          => [
         'attribute_template'    => 'Wybierz szablon cech',
@@ -39,6 +37,5 @@ return [
             'attribute_templates'   => 'Szablony cech',
             'attributes'            => 'Cechy',
         ],
-        'title' => 'Szablon cech :name',
     ],
 ];

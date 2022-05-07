@@ -39,7 +39,7 @@ return [
         'tag'       => 'This list contains all the tags are children of this tag or its children tags.',
     ],
     'index'         => [
-        'title'     => 'Tags',
+        'title' => 'Tags',
     ],
     'new_tag'       => 'New Tag',
     'placeholders'  => [

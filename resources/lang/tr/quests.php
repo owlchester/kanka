@@ -30,9 +30,7 @@ return [
         'quests'    => 'İç içe geçen bir görev ağı Ana Görev alanı aracılığı ile örülebilir.',
     ],
     'index'         => [
-        'add'       => 'Yeni Görev',
-        'header'    => ':name Görevleri',
-        'title'     => 'Görevler',
+        'title' => 'Görevler',
     ],
     'placeholders'  => [
         'date'  => 'Görev için gerçek dünya tarihi',
@@ -41,7 +39,5 @@ return [
         'role'  => 'Bu varlığın görevdeki rolü',
         'type'  => 'Karakter Arkı, Yangörev, Ana',
     ],
-    'show'          => [
-        'title' => ':name Görevi',
-    ],
+    'show'          => [],
 ];

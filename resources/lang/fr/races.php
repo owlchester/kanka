@@ -31,9 +31,7 @@ return [
         'nested_without'=> 'Affichage des races sans parent. Cliquer sur une rangée pour afficher les races enfants.',
     ],
     'index'         => [
-        'add'       => 'Nouvelle Race',
-        'header'    => 'Races de :name',
-        'title'     => 'Races',
+        'title' => 'Races',
     ],
     'placeholders'  => [
         'name'  => 'Nom de la race',
@@ -47,6 +45,5 @@ return [
             'characters'    => 'Personnages',
             'races'         => 'Sous-races',
         ],
-        'title' => 'Race :name',
     ],
 ];

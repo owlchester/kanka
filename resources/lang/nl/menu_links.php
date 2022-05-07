@@ -47,7 +47,5 @@ return [
     'random_types'  => [
         'any'   => 'Elke entiteit',
     ],
-    'show'          => [
-        'title' => 'Snelle Link :name',
-    ],
+    'show'          => [],
 ];

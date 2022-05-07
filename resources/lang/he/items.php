@@ -18,14 +18,11 @@ return [
         'location'  => 'מיקום',
         'name'      => 'שם',
         'price'     => 'מחיר',
-        'relation'  => 'יחס',
         'size'      => 'גודל',
         'type'      => 'סוג',
     ],
     'index'         => [
-        'add'       => 'חפץ חדש',
-        'header'    => 'החפצים של :name',
-        'title'     => 'חפצים',
+        'title' => 'חפצים',
     ],
     'inventories'   => [
         'title' => 'רשימות חפצים של :name',
@@ -42,6 +39,5 @@ return [
         'tabs'  => [
             'inventories'   => 'רשימות ציוד',
         ],
-        'title' => ':name',
     ],
 ];

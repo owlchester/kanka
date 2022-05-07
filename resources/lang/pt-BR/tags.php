@@ -38,12 +38,7 @@ return [
         'tag'       => 'Exibidas abaixo estão todas as tags diretamente relacionadas a ela.',
     ],
     'index'         => [
-        'actions'   => [
-            'explore_view'  => 'Visão Aninhada',
-        ],
-        'add'       => 'Nova tag',
-        'header'    => 'Tags em :name',
-        'title'     => 'Tags',
+        'title' => 'Tags',
     ],
     'new_tag'       => 'Nova tag',
     'placeholders'  => [
@@ -56,7 +51,6 @@ return [
             'children'  => 'Filhos',
             'tags'      => 'Tags',
         ],
-        'title' => 'Tag :name',
     ],
     'tags'          => [
         'title' => 'Filhos da tag :name',

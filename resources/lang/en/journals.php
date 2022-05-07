@@ -27,7 +27,7 @@ return [
         'nested_without'=> 'Displaying all journals that don\'t have a parent journal. Click on a row to see the children journals.',
     ],
     'index'         => [
-        'title'     => 'Journals',
+        'title' => 'Journals',
     ],
     'journals'      => [
         'title' => 'Journal :name sub journals',

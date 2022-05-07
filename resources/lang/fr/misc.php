@@ -3,9 +3,7 @@
 return [
     'ads'   => [
         'boosting'      => 'boostant',
-        'login'         => 'connectant',
-        'remove'        => 'Cacher ces publicités en se :login.',
-        'remove_v2'     => 'Retirer ces publicités en :supporting Kanka ou en :boosting une campagne.',
-        'supporting'    => 'supportant',
+        'remove_v3'     => 'Retirer ces publicités en :subscribing à Kanka ou en :boosting la campagne.',
+        'subscribing'   => 'souscrivant',
     ],
 ];

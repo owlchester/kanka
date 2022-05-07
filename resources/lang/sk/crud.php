@@ -96,7 +96,6 @@ return [
         'delete'            => 'Odstrániť',
         'description'       => 'Naozaj chceš odstrániť :tag?',
         'description_final' => 'Naozaj chceš odstrániť :tag? Táto akcia nemôže byť vrátená späť.',
-        'mirrored'          => 'Odstrániť zrkadlený vzťah.',
         'title'             => 'Potvrdiť odstránenie',
     ],
     'destroy_many'              => [
@@ -336,9 +335,6 @@ return [
         'timeline'      => 'Vyber časovú os',
     ],
     'relations'                 => [
-        'actions'   => [
-            'add'   => 'Pridať vzťah',
-        ],
         'fields'    => [
             'location'  => 'Miesto',
             'name'      => 'Názov',

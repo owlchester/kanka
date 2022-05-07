@@ -45,30 +45,15 @@ return [
     'boost'         => [
         'available_boosts'  => 'Boosts disponibles: :amount / :max',
         'benefits'          => [
-            'campaign_gallery'  => 'Une galerie d\'image pour télécharger des images réutilisables dans toute la campagne.',
-            'entity_files'      => 'Télécharger jusqu\'à 10 fichiers par entité.',
-            'entity_logs'       => 'Historique complet des changements sur une entité.',
-            'first'             => 'Pour assurer une évolution continue de Kanka, certaines fonctionnalités de l\'application sont débloquées lorsqu\'une campagne est boostée. Les boosts sont débloqués grâce a un abonnement. Une campagne peut être boostée par n\'importe qui, du moment que le compte a accès à la campagne en question. Une campagne reste boostée tant que le compte a un :subscription actif. Si une campagne n\'est plus boostée, les informations ne sont pas perdues mais deviennent simplement invisibles jusqu\'à ce que la campagne soit à nouveau boostée.',
-            'header'            => 'Image d\'en-tête pour entité.',
-            'headers'           => [
+            'headers'   => [
                 'boosted'       => 'Avantages d\'une campagne boostée',
                 'superboosted'  => 'Avantages d\'une campagne superboostée',
             ],
-            'helpers'           => [
-                'boosted'       => 'Booster une campagne assign un booster à la campagne.',
-                'superboosted'  => 'Superbooster une campagne assign un total de trois boosters à la campagne.',
-            ],
-            'images'            => 'Images d\'entité par défaut personnalisées.',
-            'more'              => [
+            'more'      => [
                 'boosted'       => 'Toutes les fonctionnalités pour les campagnes boostées',
                 'superboosted'  => 'Toutes les fonctionnalités pour les campagnes superboostées',
             ],
-            'recovery'          => 'Récupérer des entités supprimées pendant :amount jours.',
-            'superboost'        => 'Superbooster une campagne utilise 3 boosts et permet d\'autres fonctionnalités en plus de celles débloquées par les campagnes boostées.',
-            'theme'             => 'Thème de campagne et style personnalisé.',
-            'third'             => 'Pour booster une campagne, aller sur la page de la campagne et cliquer sur le bouton ":boost_button" situé au dessus du bouton ":edit_button".',
-            'tooltip'           => 'Infobulles personnalisées pour les entités.',
-            'upload'            => 'Taille des fichiers uploadés plus grande pour tous les membres de la campagne.',
+            'third'     => 'Pour booster une campagne, aller sur la page de la campagne et cliquer sur le bouton ":boost_button" situé au dessus du bouton ":edit_button".',
         ],
         'buttons'           => [
             'boost'         => 'Boost',
@@ -148,7 +133,7 @@ return [
         'api'                   => 'API',
         'apps'                  => 'Apps',
         'billing'               => 'Méthode de paiement',
-        'boost'                 => 'Boost',
+        'boosters'              => 'Boosters',
         'invoices'              => 'Factures',
         'layout'                => 'Mise en Page',
         'marketplace'           => 'Marketplace',
@@ -186,8 +171,6 @@ return [
             'subscribe'         => 'Abonner',
             'update_currency'   => 'Changer la devise',
         ],
-        'benefits'              => 'En nous soutenant, tu peux débloquer de nouvelles :features et nous aider à investir plus de temps dans l\'amélioration de Kanka. Aucune information concernant ta carte de crédit n\'est stockée ou ne transite par nos serveurs. Nous utilisons :stripe pour gérer toutes les factures.',
-        'benefits_features'     => 'fonctionnalités',
         'billing'               => [
             'helper'    => 'Les informations de paiement sont gérées et sauvegardées de manière sécurisée à travers :stripe. Cette méthode de paiement sera utilisée pour tous les abonnements.',
             'saved'     => 'Méthode de paiement',
@@ -241,6 +224,8 @@ return [
             'alternatives'          => 'Payez votre abonnement en utilisant :method. Ce mode de paiement ne sera pas renouvelé automatiquement à la fin de votre abonnement. :method n\'est disponible qu\'en Euros.',
             'alternatives_warning'  => 'La mise à niveau de l\'abonnement lors de l\'utilisation de cette méthode n\'est pas possible. Veuillez créer un nouvel abonnement à la fin de votre abonnement actuel.',
             'alternatives_yearly'   => 'En raison des restrictions entourant les paiements récurrents, :method n\'est disponible que pour les abonnements annuels',
+            'paypal'                => 'Tu préfères utiliser Paypal? Contactes nous à :email si tu souhaites souscrire à un abonnement annuel en utilisant Paypal.',
+            'stripe'                => 'La facturation est traité en toute securité par :stripe.',
         ],
         'manage_subscription'   => 'Gérer l\'abonnement',
         'payment_method'        => [
@@ -259,6 +244,10 @@ return [
             'helper'        => 'Cette carte sera utilisée pour les abonnements.',
             'new_card'      => 'Ajouter une méthode de paiement',
             'saved'         => ':brand se terminant par :last4',
+        ],
+        'periods'               => [
+            'monthly'   => 'Menuel',
+            'yearly'    => 'Annuel',
         ],
         'placeholders'          => [
             'reason'    => '(optionnelle) dis-nous pourquoi tu ne souhaites plus être abonné à Kanka. Manquait-il une fonctionnalité? Ta situation financière a-t-elle changé?',

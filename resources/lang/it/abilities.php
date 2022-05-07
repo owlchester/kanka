@@ -42,9 +42,7 @@ return [
         'nested_without'=> 'Visualizzazione di tutte le abilità che non hanno un\'abilità genitore. Clicca su una riga per vedere le abilità figlie.',
     ],
     'index'         => [
-        'add'       => 'Nuova Abilità',
-        'header'    => 'Abilità di :name',
-        'title'     => 'Abilità',
+        'title' => 'Abilità',
     ],
     'placeholders'  => [
         'charges'   => 'Quantità di cariche. Fai riferimento agli attributi con {Level}*{CHA}',
@@ -56,6 +54,5 @@ return [
             'abilities' => 'Abilità',
             'entities'  => 'Entità',
         ],
-        'title' => 'Abilità :name',
     ],
 ];

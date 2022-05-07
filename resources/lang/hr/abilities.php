@@ -42,9 +42,7 @@ return [
         'nested_without'=> 'Prikaz svih sposobnosti koje nemaju roditeljske sposobnosti. Klikni red da bi vidio/vidjela sposobnosti djecu.',
     ],
     'index'         => [
-        'add'       => 'Nova sposobnost',
-        'header'    => 'Sposobnosti :name',
-        'title'     => 'Sposobnosti',
+        'title' => 'Sposobnosti',
     ],
     'placeholders'  => [
         'charges'   => 'Broj punjenja. Referenciraj se na atribute s {Level}*{CHA}',
@@ -56,6 +54,5 @@ return [
             'abilities' => 'Sposobnosti',
             'entities'  => 'Entiteti',
         ],
-        'title' => 'Sposobnost :name',
     ],
 ];

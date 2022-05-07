@@ -36,7 +36,6 @@ return [
         'physical'                  => 'Fizikum',
         'pronouns'                  => 'Névmások',
         'race'                      => 'Faj',
-        'relation'                  => 'Kapcsolat',
         'sex'                       => 'Nem',
         'title'                     => 'Titulus',
         'traits'                    => 'Jellemzők',
@@ -55,8 +54,6 @@ return [
         'actions'   => [
             'random'    => 'Új véletlen karakter',
         ],
-        'add'       => 'Új karakter',
-        'header'    => 'Karakterek itt: :name',
         'title'     => 'Karakterek',
     ],
     'items'         => [
@@ -125,10 +122,8 @@ return [
     ],
     'show'          => [
         'tabs'  => [
-            'map'           => 'Kapcsolati térkép',
             'organisations' => 'Szervezetek',
         ],
-        'title' => ':name karakter',
     ],
     'warnings'      => [
         'personality_hidden'    => 'Nincs jogosultságod szerkeszteni ennek a karakternek a Személyiség jellemzőit.',

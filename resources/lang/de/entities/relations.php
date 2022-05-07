@@ -51,7 +51,6 @@ return [
         'two_way'           => 'Wenn du eine gespiegelte Beziehung erstellst, wird die gleiche Beziehung auch auf dem Ziel erstellt. Wenn du diese später editierst, wird die gespiegelte Beziehung nicht aktualisiert.',
     ],
     'index'         => [
-        'add'   => 'Neue Beziehungen',
         'title' => 'Beziehungen',
     ],
     'options'       => [

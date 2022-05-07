@@ -19,7 +19,6 @@ return [
         'journal'   => 'Jornal Principal',
         'journals'  => 'Jornais secundários',
         'name'      => 'Nome',
-        'relation'  => 'Relação',
         'type'      => 'Tipo',
     ],
     'helpers'       => [
@@ -28,9 +27,7 @@ return [
         'nested_without'=> 'Mostrando todos os jornais que não tem um jornal-pai. Clique em uma linha para ver os jornais-filhos.',
     ],
     'index'         => [
-        'add'       => 'Novo Jornal',
-        'header'    => 'Jornais de :name',
-        'title'     => 'Jornais',
+        'title' => 'Jornais',
     ],
     'journals'      => [
         'title' => 'Jornais secundários do Jornal :name',
@@ -46,6 +43,5 @@ return [
         'tabs'  => [
             'journals'  => 'Jornais',
         ],
-        'title' => 'Jornal :name',
     ],
 ];

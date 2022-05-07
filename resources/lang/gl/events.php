@@ -31,9 +31,7 @@ return [
         'nested_without'=> 'Mostrando todos os eventos que non teñen un evento pai. Fai clic nunha fila para ver os seus descendentes.',
     ],
     'index'         => [
-        'add'       => 'Novo evento',
-        'header'    => 'Eventos de ":name"',
-        'title'     => 'Eventos',
+        'title' => 'Eventos',
     ],
     'placeholders'  => [
         'date'      => 'Data do teu evento',
@@ -45,7 +43,6 @@ return [
         'tabs'  => [
             'events'    => 'Eventos',
         ],
-        'title' => 'Evento ":name"',
     ],
     'tabs'          => [
         'calendars' => 'Entradas en calendarios',

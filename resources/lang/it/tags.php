@@ -35,12 +35,7 @@ return [
         'tag'       => 'Visualizzati sotto vi sono tutti i tag che sono direttamente sotto a questo.',
     ],
     'index'         => [
-        'actions'   => [
-            'explore_view'  => 'Visualizzazione annidata',
-        ],
-        'add'       => 'Nuovo tag',
-        'header'    => 'Tags per :name',
-        'title'     => 'Tags',
+        'title' => 'Tags',
     ],
     'new_tag'       => 'Nuovo Tag',
     'placeholders'  => [
@@ -53,7 +48,6 @@ return [
             'children'  => 'Figlio',
             'tags'      => 'Tags',
         ],
-        'title' => 'Tag :name',
     ],
     'tags'          => [
         'title' => 'Discendente del tag :name',

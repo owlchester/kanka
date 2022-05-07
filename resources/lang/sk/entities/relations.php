@@ -51,7 +51,6 @@ return [
         'two_way'           => 'Keď vytvoríš zrkadlenie vzťahu, vytvorí sa rovnaký vzťah aj u cieľového objektu. Ak bude neskôr upravovaný, zrkadlený vzťah nebude zmenami dotknutý.',
     ],
     'index'         => [
-        'add'   => 'Nový vzťah',
         'title' => 'Vzťahy',
     ],
     'options'       => [

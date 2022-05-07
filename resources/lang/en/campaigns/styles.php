@@ -3,14 +3,14 @@
 return [
     'actions'   => [
         'current'   => 'Current theme: :theme',
-        'new'       => 'New style',
-        'enable'    => 'Enable',
         'disable'   => 'Disable',
+        'enable'    => 'Enable',
+        'new'       => 'New style',
     ],
-    'bulks' => [
-        'enable' => '{1} Enabled :count style.|[2,*] Enabled :count styles.',
-        'disable' => '{1} Disabled :count style.|[2,*] Disabled :count styles.',
-        'delete' => '{1} Removed :count style.|[2,*] Removed :count styles.',
+    'bulks'     => [
+        'delete'    => '{1} Removed :count style.|[2,*] Removed :count styles.',
+        'disable'   => '{1} Disabled :count style.|[2,*] Disabled :count styles.',
+        'enable'    => '{1} Enabled :count style.|[2,*] Enabled :count styles.',
     ],
     'create'    => [
         'success'   => 'New style created.',
@@ -19,8 +19,8 @@ return [
     'delete'    => [
         'success'   => 'Style :name deleted.',
     ],
-    'errors' => [
-        'max_reached' => 'Max number of themes (:max) reached.',
+    'errors'    => [
+        'max_reached'   => 'Max number of styles (:max) reached.',
     ],
     'fields'    => [
         'content'       => 'CSS rule',
@@ -35,10 +35,10 @@ return [
         'here'      => 'on our blog',
         'main'      => 'You can create custom CSS styling for your boosted campaign. These styles are loaded after any themes from the marketplace that are enabled for the campaign. You can learn more about styling your campaign :here.',
     ],
-    'reorder' => [
-        'title' => 'Redorder themes',
-        'save' => 'Save new order',
-        'success' => '{1} Reordered :count style.|[2,*] Reordered :count styles.',
+    'reorder'   => [
+        'save'      => 'Save new order',
+        'success'   => '{1} Reordered :count style.|[2,*] Reordered :count styles.',
+        'title'     => 'Redorder styles',
     ],
     'theme'     => [
         'success'   => 'Campaign theme updated.',

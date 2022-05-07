@@ -59,7 +59,6 @@ return [
         'nested_without'    => 'Prikazuju se sve mape koje nemaju mapu roditelj. Klikni redak da bi vidio/la mapu djecu.',
     ],
     'index'         => [
-        'add'   => 'Nova karta',
         'title' => 'Karte',
     ],
     'maps'          => [
@@ -85,6 +84,5 @@ return [
         'tabs'  => [
             'maps'  => 'Karte',
         ],
-        'title' => 'Karta :name',
     ],
 ];

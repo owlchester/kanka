@@ -61,7 +61,6 @@ return [
         'nested_without'    => 'Anzeigen aller Karten ohne übergeordnete Karte. Klicken Sie auf eine Zeile, um die untergeordneten Karten anzuzeigen.',
     ],
     'index'         => [
-        'add'   => 'neue Karte',
         'title' => 'Karten',
     ],
     'maps'          => [
@@ -87,6 +86,5 @@ return [
         'tabs'  => [
             'maps'  => 'Karten',
         ],
-        'title' => 'Karte :name',
     ],
 ];

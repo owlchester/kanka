@@ -18,14 +18,11 @@ return [
         'location'  => 'Konum',
         'name'      => 'Ad',
         'price'     => 'Fiyat',
-        'relation'  => 'İlişki',
         'size'      => 'Boyut',
         'type'      => 'Tür',
     ],
     'index'         => [
-        'add'       => 'Yeni Eşya',
-        'header'    => ':name Eşyaları',
-        'title'     => 'Eşyalar',
+        'title' => 'Eşyalar',
     ],
     'inventories'   => [
         'title' => ':name Eşyası Envanterleri',
@@ -42,6 +39,5 @@ return [
         'tabs'  => [
             'inventories'   => 'Envanterler',
         ],
-        'title' => ':name Eşyası',
     ],
 ];

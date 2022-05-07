@@ -29,16 +29,12 @@ return [
         'is_pinned' => 'Na nástenku môžete pripnúť max. 3 poznámky.',
     ],
     'index'         => [
-        'add'       => 'Nová poznámka',
-        'header'    => 'Poznámky objektu :name',
-        'title'     => 'Poznámky',
+        'title' => 'Poznámky',
     ],
     'placeholders'  => [
         'name'  => 'Názov poznámky',
         'note'  => 'Vybrať nadradenú poznámku',
         'type'  => 'náboženstvo, rasa, politický systém',
     ],
-    'show'          => [
-        'title' => 'Poznámka :name',
-    ],
+    'show'          => [],
 ];

@@ -53,9 +53,7 @@ return [
         'quests'    => 'Uma "teia" de missões interligadas pode ser construída usando o campo de Missão Principal',
     ],
     'index'         => [
-        'add'       => 'Nova Missão',
-        'header'    => 'Missões de :name',
-        'title'     => 'Missões',
+        'title' => 'Missões',
     ],
     'placeholders'  => [
         'date'  => 'Data (mundo real) para a missão',
@@ -71,6 +69,5 @@ return [
         'tabs'      => [
             'elements'  => 'Elementos',
         ],
-        'title'     => 'Missão :name',
     ],
 ];

@@ -42,9 +42,7 @@ return [
         'nested_without'=> 'Mostrando todas as habilidades que não possuem uma habilidade-pai. Clique em uma linha para ver as habilidades-filhos.',
     ],
     'index'         => [
-        'add'       => 'Nova Habilidade',
-        'header'    => 'Habilidades de :name',
-        'title'     => 'Habilidades',
+        'title' => 'Habilidades',
     ],
     'placeholders'  => [
         'charges'   => 'Quantidade de cargas. Atributos de referência com {Level} * {CHA}',
@@ -56,6 +54,5 @@ return [
             'abilities' => 'Habilidades',
             'entities'  => 'Entidades',
         ],
-        'title' => 'Habilidade :name',
     ],
 ];

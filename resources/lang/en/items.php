@@ -22,7 +22,7 @@ return [
         'type'      => 'Type',
     ],
     'index'         => [
-        'title'     => 'Items',
+        'title' => 'Items',
     ],
     'inventories'   => [
         'title' => 'Item :name Inventories',

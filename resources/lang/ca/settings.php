@@ -45,30 +45,15 @@ return [
     'boost'         => [
         'available_boosts'  => 'Millores disponibles: :amount/:max',
         'benefits'          => [
-            'campaign_gallery'  => 'Una galeria per a pujar imatges que podeu reutilitzar a tota la campanya.',
-            'entity_files'      => 'Fins a 10 fitxers pujats per entitat.',
-            'entity_logs'       => 'Registres d\'entitat complets sobre allò que ha canviat amb cada actualització.',
-            'first'             => 'Per a assegurar un progrés continu a Kanka, algunes característiques de la campanya es poden desbloquejar millorant-la. Les millores es desbloquegen a través de les subscripcions. Qualsevol que pugui veure una campanya pot millorar-la; així el màster no ha de pagar sempre el compte. Una campanya roman millorada mentre un usuari l\'estigui millorant i continuï fent suport a Kanka. Si una campanya deixa d\'estar millorada, les dades no es perden: només romanen ocultes fins que la campanya torni a ser millorada.',
-            'header'            => 'Imatges de capçalera per a les entitats.',
-            'headers'           => [
+            'headers'   => [
                 'boosted'       => 'Beneficis de les campanyes millorades',
                 'superboosted'  => 'Beneficis de les campanyes supermillorades',
             ],
-            'helpers'           => [
-                'boosted'       => 'Millorar una campanya fa servir només una millora.',
-                'superboosted'  => 'Supermillorar una campanya fa servir un total de tres millores.',
-            ],
-            'images'            => 'Imatges per defecte personalitzades',
-            'more'              => [
+            'more'      => [
                 'boosted'       => 'Totes les funcionalitats de les campanyes millorades',
                 'superboosted'  => 'Totes les funcionalitats de les campanyes supermillorades',
             ],
-            'recovery'          => 'Recuperació d\'entitats eliminades des de fins a :amount dies.',
-            'superboost'        => 'Una campanya supermillorada fa servir 3 millores i desbloqueja funcionalitats addicionals, a més de les de les campanyes millorades.',
-            'theme'             => 'Tema i estil personalitzat a nivell de campanya.',
-            'third'             => 'Per a millorar una campanya, dirigiu-vos a la pàgina de la campanya i cliqueu el botó de ":boost_button" que hi ha sobre el botó de ":edit_button".',
-            'tooltip'           => 'Descripcions emergents personalitzades per a les entitats.',
-            'upload'            => 'Capacitat de pujada d\'arxius ampliada per a tots els membres de la campanya.',
+            'third'     => 'Per a millorar una campanya, dirigiu-vos a la pàgina de la campanya i cliqueu el botó de ":boost_button" que hi ha sobre el botó de ":edit_button".',
         ],
         'buttons'           => [
             'boost'         => 'Millora',
@@ -148,7 +133,6 @@ return [
         'api'                   => 'API',
         'apps'                  => 'Aplicacions',
         'billing'               => 'Mètode de pagament',
-        'boost'                 => 'Millorar',
         'invoices'              => 'Factures',
         'layout'                => 'Disseny',
         'marketplace'           => 'Mercat',
@@ -186,8 +170,6 @@ return [
             'subscribe'         => 'Subscriu-me',
             'update_currency'   => 'Guarda com a moneda preferida',
         ],
-        'benefits'              => 'En donar-nos suport, es desbloquegen noves :features i ens ajudeu a dedicar més temps a la millora de Kanka. No es guarda cap informació bancària. Usem :stripe per a gestionar els cobraments.',
-        'benefits_features'     => 'funcionalitats increïbles',
         'billing'               => [
             'helper'    => 'La vostra informació de pagament es processa i es guarda de manera segura mitjançant :stripe. Aquest mètode de pagament s\'usarà per a totes les vostres subscripcions.',
             'saved'     => 'Mètode de pagament guardat',

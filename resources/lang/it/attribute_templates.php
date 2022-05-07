@@ -26,9 +26,7 @@ return [
         'parent_attribute_template' => 'Questo template attributi può essere figlio di un altro template attributi. Quando si applica questo template attributi, lui e tutti i suoi figli saranno applicati.',
     ],
     'index'                 => [
-        'add'       => 'Nuovo Template Attributi',
-        'header'    => 'Template Attributi di :name',
-        'title'     => 'Template Attributi',
+        'title' => 'Template Attributi',
     ],
     'placeholders'          => [
         'attribute_template'    => 'Seleziona un template attributi',
@@ -39,6 +37,5 @@ return [
             'attribute_templates'   => 'Templates attributi',
             'attributes'            => 'Attributi',
         ],
-        'title' => 'Template Attributi :name',
     ],
 ];

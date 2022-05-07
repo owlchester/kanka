@@ -50,7 +50,6 @@ return [
         'missing_image'     => 'Sla de kaart met een afbeelding op voordat je lagen en markeringen kunt toevoegen.',
     ],
     'index'         => [
-        'add'   => 'Nieuwe Kaart',
         'title' => 'Kaarten',
     ],
     'maps'          => [
@@ -75,6 +74,5 @@ return [
         'tabs'  => [
             'maps'  => 'Kaarten',
         ],
-        'title' => 'Kaart :name',
     ],
 ];

@@ -29,16 +29,12 @@ return [
         'is_pinned' => 'Jusqu\'à 3 notes peuvent être affichées sur le tableau de bord en les épinglant.',
     ],
     'index'         => [
-        'add'       => 'Nouvelle Note',
-        'header'    => 'Notes de :name',
-        'title'     => 'Notes',
+        'title' => 'Notes',
     ],
     'placeholders'  => [
         'name'  => 'Nom de la note',
         'note'  => 'Choix d\'une note parent',
         'type'  => 'Religion, Race, Moyen de transport',
     ],
-    'show'          => [
-        'title' => 'Note :name',
-    ],
+    'show'          => [],
 ];

@@ -28,8 +28,6 @@ return [
             'dice'      => 'Zarlar',
             'results'   => 'Sonuçlar',
         ],
-        'add'       => 'Yeni Zar',
-        'header'    => ':name Zarları',
         'title'     => ':Zarlar',
     ],
     'placeholders'  => [
@@ -54,6 +52,5 @@ return [
         'tabs'  => [
             'results'   => 'Sonuçlar',
         ],
-        'title' => ':name Zarı',
     ],
 ];

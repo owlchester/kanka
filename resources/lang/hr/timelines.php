@@ -36,16 +36,13 @@ return [
         'reverse_order'     => 'Omogući za prikaz razdoblja obrnutim kronološkim redoslijedom (prvo starije ere)',
     ],
     'index'         => [
-        'add'   => 'Nova kronologija',
         'title' => 'Kronologije',
     ],
     'placeholders'  => [
         'name'  => 'Naziv kronologije',
         'type'  => 'Primarna, Svjetska kronika, Ostavština kraljevstva',
     ],
-    'show'          => [
-        'title' => 'Kronologija :name',
-    ],
+    'show'          => [],
     'timelines'     => [
         'title' => 'Kronologije kronologije :name',
     ],

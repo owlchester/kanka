@@ -117,9 +117,7 @@ return [
         'years'             => 'Manche Jahre sind so wichtig, dass sie ihren eigenen Namen haben.',
     ],
     'index'         => [
-        'add'       => 'Neuer Kalender',
-        'header'    => 'Kalender von :name',
-        'title'     => 'Kalender',
+        'title' => 'Kalender',
     ],
     'layouts'       => [
         'month' => 'Monat',
@@ -215,11 +213,9 @@ return [
         'moon_waning_moon'  => ':moon abnehmender Mond',
         'moon_waxing_moon'  => ':moon zunehmender Mond',
         'tabs'              => [
-            'events'        => 'Kalender Events',
-            'information'   => 'Information',
-            'weather'       => 'Wetter',
+            'events'    => 'Kalender Events',
+            'weather'   => 'Wetter',
         ],
-        'title'             => 'Kalender :name',
     ],
     'sorters'       => [
         'after' => 'Heute & danach',

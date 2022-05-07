@@ -57,12 +57,12 @@ return [
         'success'   => 'Reminder \':event\' added to the calendar.',
     ],
     'events'        => [
-        'title' => 'Calendar :name Events',
         'filters'   => [
-            'show_before' => 'Show before today',
-            'show_after' => 'Show today and after',
-            'show_all' => 'Show all',
+            'show_after'    => 'Show today and after',
+            'show_all'      => 'Show all',
+            'show_before'   => 'Show before today',
         ],
+        'title'     => 'Calendar :name Events',
     ],
     'fields'        => [
         'calendar'              => 'Parent Calendar',
@@ -122,7 +122,7 @@ return [
         'years'             => 'Some years are so important that they have their own name.',
     ],
     'index'         => [
-        'title'     => 'Calendars',
+        'title' => 'Calendars',
     ],
     'layouts'       => [
         'month' => 'Month',
@@ -218,8 +218,8 @@ return [
         'moon_waning_moon'  => ':moon Waning',
         'moon_waxing_moon'  => ':moon Waxing',
         'tabs'              => [
-            'events'        => 'Reminders',
-            'weather'       => 'Weather',
+            'events'    => 'Reminders',
+            'weather'   => 'Weather',
         ],
     ],
     'sorters'       => [

@@ -31,7 +31,7 @@ return [
         'nested_without'=> 'Displaying all races that don\'t have a parent race. Click on a row to see the children races.',
     ],
     'index'         => [
-        'title'     => 'Races',
+        'title' => 'Races',
     ],
     'placeholders'  => [
         'name'  => 'Name of the race',

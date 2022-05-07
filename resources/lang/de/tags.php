@@ -39,12 +39,7 @@ return [
         'tag'       => 'Unten dargestellt sind alle Kategorien, die direkt unter dieser eingeordnet sind.',
     ],
     'index'         => [
-        'actions'   => [
-            'explore_view'  => 'Erkundungsansicht',
-        ],
-        'add'       => 'Neue Kategorie',
-        'header'    => 'Kategorien von :name',
-        'title'     => 'Kategorien',
+        'title' => 'Kategorien',
     ],
     'new_tag'       => 'Neue Kategorie',
     'placeholders'  => [
@@ -57,7 +52,6 @@ return [
             'children'  => 'Kinder',
             'tags'      => 'Kategorien',
         ],
-        'title' => 'Kategorie :name',
     ],
     'tags'          => [
         'title' => 'Kategorie :name Unterkategorien',

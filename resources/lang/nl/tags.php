@@ -34,12 +34,7 @@ return [
         'tag'       => 'Hieronder worden alle tags weergegeven die direct onder deze tag staan.',
     ],
     'index'         => [
-        'actions'   => [
-            'explore_view'  => 'Geneste Weergave',
-        ],
-        'add'       => 'Nieuwe Tag',
-        'header'    => 'Tags in :name',
-        'title'     => 'Tags',
+        'title' => 'Tags',
     ],
     'new_tag'       => 'Nieuwe Tag',
     'placeholders'  => [
@@ -52,7 +47,6 @@ return [
             'children'  => 'Gerelateerden',
             'tags'      => 'Tags',
         ],
-        'title' => 'Tag :name',
     ],
     'tags'          => [
         'title' => 'Tag :name Gerelateerden',

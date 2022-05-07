@@ -29,7 +29,6 @@ return [
         'locations'         => 'Локации',
         'map'               => 'Карта',
         'name'              => 'Название',
-        'relation'          => 'Связь',
         'type'              => 'Тип',
     ],
     'helpers'       => [
@@ -46,19 +45,10 @@ return [
         'is_map_private'    => 'Скрытые карты видны только участникам кампании с ролью "Админ".',
     ],
     'index'         => [
-        'actions'   => [
-            'explore_view'  => 'Свернутый вид',
-        ],
-        'add'       => 'Новая локация',
-        'header'    => 'Локации в :name',
-        'title'     => 'Локации',
+        'title' => 'Локации',
     ],
-    'items'         => [
-        'title' => 'Предметы локации :name',
-    ],
-    'journals'      => [
-        'title' => 'Журналы локации :name',
-    ],
+    'items'         => [],
+    'journals'      => [],
     'locations'     => [
         'title' => 'Локации локации :name',
     ],
@@ -207,16 +197,9 @@ return [
     'show'          => [
         'tabs'  => [
             'characters'    => 'Персонажи',
-            'events'        => 'События',
-            'families'      => 'Семьи',
-            'items'         => 'Предметы',
-            'journals'      => 'Журналы',
             'locations'     => 'Локации',
             'map'           => 'Карта',
             'maps'          => 'Карты',
-            'organisations' => 'Организации',
-            'quests'        => 'Квесты',
         ],
-        'title' => 'Локация :name',
     ],
 ];

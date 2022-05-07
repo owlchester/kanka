@@ -35,7 +35,6 @@ return [
         'name'                      => 'Namn',
         'physical'                  => 'Fysiskt',
         'race'                      => 'Ras',
-        'relation'                  => 'Förbindelse',
         'sex'                       => 'Kön',
         'title'                     => 'Titel',
         'traits'                    => 'Karaktärsdrag',
@@ -54,8 +53,6 @@ return [
         'actions'   => [
             'random'    => 'Ny Slumpad Karaktär',
         ],
-        'add'       => 'Ny Karaktär',
-        'header'    => 'Karaktärer i :name',
         'title'     => 'Karktärer',
     ],
     'items'         => [
@@ -123,10 +120,8 @@ return [
     ],
     'show'          => [
         'tabs'  => [
-            'map'           => 'Förbindelse Karta',
             'organisations' => 'Organisationer',
         ],
-        'title' => 'Karaktär :name',
     ],
     'warnings'      => [
         'personality_hidden'    => 'Du är inte tillåten att redigera personlighetsdrag på denna karaktär.',

@@ -29,9 +29,7 @@ return [
         'quests'    => 'Una ragnatela di missioni interconnesse può essere costruita utilizzando il campo "Missione Padre".',
     ],
     'index'         => [
-        'add'       => 'Nuova Missione',
-        'header'    => 'Missioni di :name',
-        'title'     => 'Missioni',
+        'title' => 'Missioni',
     ],
     'placeholders'  => [
         'date'  => 'Data del mondo reale per la missione',
@@ -40,7 +38,5 @@ return [
         'role'  => 'Il ruolo dell\'entità nella missione',
         'type'  => 'Personaggio, Missione Secondaria, Missione Principale',
     ],
-    'show'          => [
-        'title' => 'Missione :name',
-    ],
+    'show'          => [],
 ];

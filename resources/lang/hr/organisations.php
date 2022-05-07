@@ -19,7 +19,6 @@ return [
         'name'          => 'Naziv',
         'organisation'  => 'Organizacija roditelj',
         'organisations' => 'Podorganizacije',
-        'relation'      => 'Odnosi',
         'type'          => 'Tip',
     ],
     'helpers'       => [
@@ -28,9 +27,7 @@ return [
         'nested_without'=> 'Prikazuju se sve organizacije koje nemaju organizaciju roditelj. Klikni redak da bi vidio/la organizacije djecu.',
     ],
     'index'         => [
-        'add'       => 'Nova organizacija',
-        'header'    => 'Organizacije u :name',
-        'title'     => 'Organizacije',
+        'title' => 'Organizacije',
     ],
     'members'       => [
         'actions'       => [
@@ -73,9 +70,6 @@ return [
     'show'          => [
         'tabs'  => [
             'organisations' => 'Organizacije',
-            'quests'        => 'Zadaci',
-            'relations'     => 'Odnosi',
         ],
-        'title' => 'Organizacija :name',
     ],
 ];

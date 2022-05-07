@@ -47,7 +47,6 @@ return [
         'two_way'           => 'Ao reflectir unha relación, a mesma relación será creada na entidade obxectivo. Unha vez creada, podes editalas sen que unha sexa afectada pola outra.',
     ],
     'index'         => [
-        'add'   => 'Nova relación',
         'title' => 'Relacións',
     ],
     'options'       => [

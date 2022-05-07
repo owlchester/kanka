@@ -38,12 +38,7 @@ return [
         'tag'       => 'Minden címke, mely közvetlenül ezen címke alatt van.',
     ],
     'index'         => [
-        'actions'   => [
-            'explore_view'  => 'Hierarchikus nézet',
-        ],
-        'add'       => 'Új címke',
-        'header'    => ':name címkéi',
-        'title'     => 'Címkék',
+        'title' => 'Címkék',
     ],
     'new_tag'       => 'Új címke',
     'placeholders'  => [
@@ -56,7 +51,6 @@ return [
             'children'  => 'Alcímkék',
             'tags'      => 'Címkék',
         ],
-        'title' => ':name címke',
     ],
     'tags'          => [
         'title' => ':name címke alcímkéi',

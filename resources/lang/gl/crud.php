@@ -95,7 +95,6 @@ return [
         'delete'            => 'Eliminar',
         'description'       => 'Seguro que queres eliminar :tag?',
         'description_final' => 'Tes certeza de que queres eliminar :tag? Esta acción non pode desfacerse.',
-        'mirrored'          => 'Eliminar relación espellada.',
         'title'             => 'Confirmación de eliminación',
     ],
     'destroy_many'              => [
@@ -335,9 +334,6 @@ return [
         'timeline'      => 'Escolle unha liña temporal',
     ],
     'relations'                 => [
-        'actions'   => [
-            'add'   => 'Engade unha relación',
-        ],
         'fields'    => [
             'location'  => 'Localización',
             'name'      => 'Nome',

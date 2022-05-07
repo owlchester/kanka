@@ -47,7 +47,6 @@ return [
         'two_way'           => 'Al reflejar una relación, ésta se copiará en el objetivo seleccionado. Sin embargo, si editas una, la otra no se verá afectada.',
     ],
     'index'         => [
-        'add'   => 'Nueva relación',
         'title' => 'Relaciones',
     ],
     'options'       => [

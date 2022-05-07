@@ -19,7 +19,6 @@ return [
         'journal'   => 'Crònica superior',
         'journals'  => 'Subcròniques',
         'name'      => 'Nom',
-        'relation'  => 'Relació',
         'type'      => 'Tipus',
     ],
     'helpers'       => [
@@ -28,9 +27,7 @@ return [
         'nested_without'=> 'S\'estan mostrant les cròniques sense pare. Feu clic a la fila d\'una família per a mostrar-ne les subcròniques.',
     ],
     'index'         => [
-        'add'       => 'Nova crònica',
-        'header'    => 'Cròniques de :name',
-        'title'     => 'Cròniques',
+        'title' => 'Cròniques',
     ],
     'journals'      => [
         'title' => 'Subcròniques de la crònica :name',
@@ -46,6 +43,5 @@ return [
         'tabs'  => [
             'journals'  => 'Cròniques',
         ],
-        'title' => 'Crònica :name',
     ],
 ];

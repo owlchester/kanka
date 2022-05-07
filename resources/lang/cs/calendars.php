@@ -113,9 +113,7 @@ return [
         'years'             => 'Názvy důležitých roků kalendáře.',
     ],
     'index'         => [
-        'add'       => 'Nový kalendář',
-        'header'    => 'Kalendáře :name',
-        'title'     => 'Kalendáře',
+        'title' => 'Kalendáře',
     ],
     'layouts'       => [
         'month' => 'Kalendářní měsíc',
@@ -211,11 +209,9 @@ return [
         'moon_waning_moon'  => 'Ubývání měsíce :moon',
         'moon_waxing_moon'  => 'Nárůst měsíce :moon',
         'tabs'              => [
-            'events'        => 'Připomínky',
-            'information'   => 'Informace',
-            'weather'       => 'Počasí',
+            'events'    => 'Připomínky',
+            'weather'   => 'Počasí',
         ],
-        'title'             => 'Kalendář :name',
     ],
     'sorters'       => [
         'after' => 'Ode dneška dále',

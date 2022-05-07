@@ -19,7 +19,6 @@ return [
         'name'          => 'Nom',
         'organisation'  => 'Organisation Parent',
         'organisations' => 'Sous-organisations',
-        'relation'      => 'Relation',
         'type'          => 'Type',
     ],
     'helpers'       => [
@@ -28,9 +27,7 @@ return [
         'nested_without'=> 'Affichage des organisations sans parent. Cliquer sur une rangées pour afficher les organisations enfants.',
     ],
     'index'         => [
-        'add'       => 'Nouvelle Organisation',
-        'header'    => 'Organisations de :name',
-        'title'     => 'Organisations',
+        'title' => 'Organisations',
     ],
     'members'       => [
         'actions'       => [
@@ -90,9 +87,6 @@ return [
     'show'          => [
         'tabs'  => [
             'organisations' => 'Organisations',
-            'quests'        => 'Quêtes',
-            'relations'     => 'Relations',
         ],
-        'title' => 'Organisation :name',
     ],
 ];

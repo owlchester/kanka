@@ -44,30 +44,15 @@ return [
     ],
     'boost'         => [
         'benefits'      => [
-            'campaign_gallery'  => 'Een campaign galerij om afbeeldingen te uploaden die je via de campaign kunt hergebruiken.',
-            'entity_files'      => 'Upload tot wel 10 bestanden per entiteit.',
-            'entity_logs'       => 'Volledige entiteit logboeken van wat er bij elke update op een entiteit is gewijzigd.',
-            'first'             => 'Om voortdurende vooruitgang op Kanka te garanderen, worden sommige campaignfuncties ontgrendeld door een campaign te boosten. Boosts worden ontgrendeld via abonnementen. Iedereen die een campaign kan bekijken, kan deze een boost geven, zodat de DM niet altijd de rekening hoeft te betalen. Een campaign blijft een boost krijgen zolang een gebruiker de campaign een boost geeft en ze Kanka blijven steunen. Als een campaign niet langer een boost krijgt, gaan er geen gegevens verloren, deze worden alleen verborgen totdat de campaign weer een boost krijgt.',
-            'header'            => 'Entiteit header afbeeldingen.',
-            'headers'           => [
+            'headers'   => [
                 'boosted'       => 'Boosted campaign voordelen',
                 'superboosted'  => 'Superboosted campaign voordelen',
             ],
-            'helpers'           => [
-                'boosted'       => 'Het boosten van een campaign wijst een enkele booster toe aan de campaign.',
-                'superboosted'  => 'Als je een campagne superboost, worden in totaal drie boosters aan de campaign toegewezen.',
-            ],
-            'images'            => 'Aangepaste standaard entiteit afbeeldingen.',
-            'more'              => [
+            'more'      => [
                 'boosted'       => 'Alle boosted campaign functies',
                 'superboosted'  => 'Alle superboosted campaign functies',
             ],
-            'recovery'          => 'Herstel verwijderde entiteiten voor maximaal :amount dagen.',
-            'superboost'        => 'Het superboosten van een campaign gebruikt 3 van je boosts en ontgrendelt extra functies bovenop die voor boosted campaigns.',
-            'theme'             => 'Campaign level thema en custom stijl.',
-            'third'             => 'Om een campaign een boost te geven, ga je naar de campaign pagina en klik je op de knop :boost_button boven de knop :edit_button.',
-            'tooltip'           => 'Custom tooltips voor entiteiten.',
-            'upload'            => 'Verhoogde uploadgrootte voor elk lid van de campaign.',
+            'third'     => 'Om een campaign een boost te geven, ga je naar de campaign pagina en klik je op de knop :boost_button boven de knop :edit_button.',
         ],
         'buttons'       => [
             'boost'         => 'Boost',
@@ -139,7 +124,6 @@ return [
         'api'                   => 'API',
         'apps'                  => 'Apps',
         'billing'               => 'Betalingsmiddel',
-        'boost'                 => 'Boost',
         'invoices'              => 'Facturen',
         'layout'                => 'Lay-out',
         'marketplace'           => 'Marktplaats',
@@ -177,7 +161,6 @@ return [
             'subscribe'         => 'Abboneer',
             'update_currency'   => 'Bewaar de gewenste valuta',
         ],
-        'benefits'              => 'Door ons te steunen, kun je enkele nieuwe :features ontgrendelen en ons helpen meer tijd te investeren in het verbeteren van Kanka. Er wordt geen creditcardinformatie opgeslagen of doorgegeven via onze servers. We gebruiken :stripe om alle facturering af te handelen.',
         'billing'               => [
             'helper'    => 'Je factuurgegevens worden veilig verwerkt en opgeslagen via :stripe. Deze betaalmethode wordt gebruikt voor al je abonnementen.',
             'saved'     => 'Opgeslagen betaalmethode',

@@ -45,30 +45,15 @@ return [
     'boost'         => [
         'available_boosts'  => 'Potenciadores dispoñíbeis: :amount / :max',
         'benefits'          => [
-            'campaign_gallery'  => 'Unha galería de campaña para subir imaxes que podes reutilizar en calquera lugar da campaña.',
-            'entity_files'      => 'Sube ata 10 arquivos por entidade.',
-            'entity_logs'       => 'Rexistros completos de todo o que cambiou nunha entidade en cada actualización.',
-            'first'             => 'Para asegurar o progreso continuado de Kanka, algunhas funcionalidades son desbloqueadas potenciando unha campaña. Os potenciadores son desbloqueados a través de subscripcións. Calquera persoa que pode ver unha campaña pode potenciala, para que a directora de xogo non teña que ser sempre quen paga. Unha campaña permanece potenciada sempre que haxa unha persoa que a estea potenciando e esa persoa teña unha subscripción. Se unha campaña deixa de estar potenciada, os datos non se perden, senón que quedan ocultos ata que a campaña sexa potenciada de novo.',
-            'header'            => 'Imaxes de cabeceira nas entidades.',
-            'headers'           => [
+            'headers'   => [
                 'boosted'       => 'Beneficios dunha campaña potenciada',
                 'superboosted'  => 'Beneficios dunha campaña superpotenciada',
             ],
-            'helpers'           => [
-                'boosted'       => 'Potenciar unha campaña asigna un único potenciador á campaña.',
-                'superboosted'  => 'Superpotenciar unha campaña asigna un total de tres potenciadores á campaña.',
-            ],
-            'images'            => 'Imaxes de entidade por defecto personalizábeis.',
-            'more'              => [
+            'more'      => [
                 'boosted'       => 'Todas as funcionalidades dunha campaña potenciada',
                 'superboosted'  => 'Todas as funcionalidades dunha campaña superpotenciada',
             ],
-            'recovery'          => 'Recuperar entidades eliminadas ata :amount días antes.',
-            'superboost'        => 'Superpotenciar unha campaña usa 3 dos teus potenciadores e desbloquea funcionalidades adicionais a parte das que xa teñen as campañas potenciadas.',
-            'theme'             => 'Tema e estilo personalizado a nivel de campaña.',
-            'third'             => 'Para potenciar unha campaña, vai á súa páxina e fai clic no botón :boost_button enriba do botón :edit_button.',
-            'tooltip'           => 'Previsualizacións emerxentes personalizadas para as entidades.',
-            'upload'            => 'Tamaño máximo de subida aumentado para toda persoa integrante da campaña.',
+            'third'     => 'Para potenciar unha campaña, vai á súa páxina e fai clic no botón :boost_button enriba do botón :edit_button.',
         ],
         'buttons'           => [
             'boost'         => 'Potenciar',
@@ -148,7 +133,6 @@ return [
         'api'                   => 'API',
         'apps'                  => 'Aplicacións',
         'billing'               => 'Método de pagamento',
-        'boost'                 => 'Potenciar',
         'invoices'              => 'Facturas',
         'layout'                => 'Deseño',
         'marketplace'           => 'Mercado',
@@ -186,8 +170,6 @@ return [
             'subscribe'         => 'Subscribirse',
             'update_currency'   => 'Gardar moeda preferida',
         ],
-        'benefits'              => 'Apoiándonos podes desbloquear algunhas :features e axudarnos a dedicar máis tempo a mellorar Kanka. Non gardamos ningunha información de cartóns de crédito, usamos :stripe para xestionar os pagamentos.',
-        'benefits_features'     => 'incríbeis funcionalidades',
         'billing'               => [
             'helper'    => 'A túa información de pagamento é procesada e almacenada de forma segura a través de :stripe. O teu método de pagamento é usado para todas as túas subscripcións.',
             'saved'     => 'Método de pagamento gardado',

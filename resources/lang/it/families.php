@@ -22,7 +22,6 @@ return [
         'location'  => 'Luogo',
         'members'   => 'Membri',
         'name'      => 'Nome',
-        'relation'  => 'Relazione',
         'type'      => 'Tipologia',
     ],
     'helpers'       => [
@@ -32,9 +31,7 @@ return [
         'members'   => 'I membri di una famiglia sono mostrati qui. Un personaggio può essere aggiunto alla famiglia modificando il personaggio, usando il selettore "Famiglia".',
     ],
     'index'         => [
-        'add'       => 'Nuova Famiglia',
-        'header'    => 'Famiglie di :name',
-        'title'     => 'Famiglie',
+        'title' => 'Famiglie',
     ],
     'members'       => [
         'helpers'   => [
@@ -53,8 +50,6 @@ return [
             'all_members'   => 'Tutti i Membri',
             'families'      => 'Famiglie',
             'members'       => 'Membri',
-            'relation'      => 'Relazioni',
         ],
-        'title' => 'Famiglia :name',
     ],
 ];

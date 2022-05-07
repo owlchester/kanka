@@ -31,9 +31,7 @@ return [
         'nested_without'=> 'Prikazuju se sve rase koje nemaju rasu roditelj. Klikni redak da bi vidio/la rase djecu.',
     ],
     'index'         => [
-        'add'       => 'Nova rasa',
-        'header'    => 'Rase od :name',
-        'title'     => 'Rase',
+        'title' => 'Rase',
     ],
     'placeholders'  => [
         'name'  => 'Naziv rase',
@@ -47,6 +45,5 @@ return [
             'characters'    => 'Likovi',
             'races'         => 'Podrase',
         ],
-        'title' => 'Rasa :name',
     ],
 ];

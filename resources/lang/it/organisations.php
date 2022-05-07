@@ -19,16 +19,13 @@ return [
         'name'          => 'Nome',
         'organisation'  => 'Organizzazione Padre',
         'organisations' => 'Sotto-Organizzazioni',
-        'relation'      => 'Relazione',
         'type'          => 'Tipo',
     ],
     'helpers'       => [
         'descendants'   => 'Questa lista contiene tutte le organizzazione che sono discendenti di questa organizzazione, non solo quelle direttamente sotto di essa.',
     ],
     'index'         => [
-        'add'       => 'Nuova Organizzazione',
-        'header'    => 'Organizzazioni di :name',
-        'title'     => 'Organizzazioni',
+        'title' => 'Organizzazioni',
     ],
     'members'       => [
         'actions'       => [
@@ -70,9 +67,6 @@ return [
     'show'          => [
         'tabs'  => [
             'organisations' => 'Organizzazioni',
-            'quests'        => 'Missioni',
-            'relations'     => 'Relazioni',
         ],
-        'title' => 'Organizzazione :name',
     ],
 ];

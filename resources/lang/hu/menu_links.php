@@ -48,7 +48,5 @@ return [
     'random_types'  => [
         'any'   => 'Bármelyik entitás',
     ],
-    'show'          => [
-        'title' => ':name menühivatkozás',
-    ],
+    'show'          => [],
 ];

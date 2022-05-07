@@ -36,16 +36,13 @@ return [
         'reverse_order'     => 'Pipáld ki, hogy a korszakok fordított időrendi sorrendben jelenjenek meg. (A legrégebbi korszak legelőször.)',
     ],
     'index'         => [
-        'add'   => 'Új idővonal',
         'title' => 'Idővonalak',
     ],
     'placeholders'  => [
         'name'  => 'Az idővonal neve',
         'type'  => 'Elsődleges, Világkrónika, stb.',
     ],
-    'show'          => [
-        'title' => ':name idővonal',
-    ],
+    'show'          => [],
     'timelines'     => [
         'title' => ':name idővonal idővonalai',
     ],

@@ -47,7 +47,7 @@ return [
         'title'     => 'Post :name for :entity',
     ],
     'states'        => [
-        'expanded' => 'Expanded',
         'collapsed' => 'Collapsed',
-    ]
+        'expanded'  => 'Expanded',
+    ],
 ];

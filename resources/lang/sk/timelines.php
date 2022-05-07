@@ -38,7 +38,6 @@ return [
         'reverse_order'     => 'Aktivovaním zobrazíš veky v spätnom chronologickom poradí (najstarší vek ako prvý).',
     ],
     'index'         => [
-        'add'   => 'Nová časová os',
         'title' => 'Časové osy',
     ],
     'placeholders'  => [
@@ -49,7 +48,6 @@ return [
         'tabs'  => [
             'timelines' => 'Časové osi',
         ],
-        'title' => 'Časová os :name',
     ],
     'timelines'     => [
         'title' => 'Časové osy podradené :name',

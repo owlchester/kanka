@@ -53,7 +53,5 @@ return [
         'success'   => 'Liens de menu réorganisés.',
         'title'     => 'Réorganiser les liens de menu',
     ],
-    'show'              => [
-        'title' => 'Lien de menu :name',
-    ],
+    'show'              => [],
 ];

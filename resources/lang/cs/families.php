@@ -22,7 +22,6 @@ return [
         'location'  => 'Místo',
         'members'   => 'Členové',
         'name'      => 'Název',
-        'relation'  => 'Vztah',
         'type'      => 'Typ',
     ],
     'helpers'       => [
@@ -34,9 +33,7 @@ return [
         'members'   => 'Zde se zobrazují členové rodu. Postavu lze přičlenit některému rodu na její kartě "Rod".',
     ],
     'index'         => [
-        'add'       => 'Nový rod',
-        'header'    => 'Rody :name',
-        'title'     => 'Rody',
+        'title' => 'Rody',
     ],
     'members'       => [
         'helpers'   => [
@@ -55,8 +52,6 @@ return [
             'all_members'   => 'Všichni členové',
             'families'      => 'Rody',
             'members'       => 'Členové',
-            'relation'      => 'Vztahy',
         ],
-        'title' => 'Rod :name',
     ],
 ];

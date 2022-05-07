@@ -22,7 +22,6 @@ return [
         'location'  => 'Miejsce',
         'members'   => 'Członkowie',
         'name'      => 'Nazwa',
-        'relation'  => 'Relacja',
         'type'      => 'Rodzaj',
     ],
     'helpers'       => [
@@ -34,9 +33,7 @@ return [
         'members'   => 'Lista członków rodziny. Aby dodać postać do rodziny, wybierz ją z listy w pozycji "Rodzina" podczas edycji tej postaci.',
     ],
     'index'         => [
-        'add'       => 'Nowa rodzina',
-        'header'    => 'Rodziny elementu :name',
-        'title'     => 'Rodziny',
+        'title' => 'Rodziny',
     ],
     'members'       => [
         'helpers'   => [
@@ -55,8 +52,6 @@ return [
             'all_members'   => 'Wszyscy członkowie',
             'families'      => 'Rodziny',
             'members'       => 'Członkowie',
-            'relation'      => 'Relacje',
         ],
-        'title' => 'Rodzina :name',
     ],
 ];

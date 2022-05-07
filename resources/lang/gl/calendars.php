@@ -116,9 +116,7 @@ return [
         'years'             => 'Algúns anos son tan importantes que teñen o seu propio nome.',
     ],
     'index'         => [
-        'add'       => 'Novo calendario',
-        'header'    => 'Calendarios de ":name"',
-        'title'     => 'Calendarios',
+        'title' => 'Calendarios',
     ],
     'layouts'       => [
         'month' => 'Mes',
@@ -214,11 +212,9 @@ return [
         'moon_waning_moon'  => 'Lúa :moon minguante',
         'moon_waxing_moon'  => 'Lúa :moon crecente',
         'tabs'              => [
-            'events'        => 'Eventos do calendario',
-            'information'   => 'Información',
-            'weather'       => 'Clima',
+            'events'    => 'Eventos do calendario',
+            'weather'   => 'Clima',
         ],
-        'title'             => 'Calendario ":name"',
     ],
     'sorters'       => [
         'after' => 'De hoxe en adiante',

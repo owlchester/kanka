@@ -107,9 +107,7 @@ return [
         'years'             => 'Sommige jaren zijn zo belangrijk dat ze hun eigen naam hebben.',
     ],
     'index'         => [
-        'add'       => 'Nieuwe kalender',
-        'header'    => 'Kalenders van :name',
-        'title'     => 'Kalenders',
+        'title' => 'Kalenders',
     ],
     'layouts'       => [
         'month' => 'Maand',
@@ -199,10 +197,8 @@ return [
         'moon_waning_moon'  => ':moon afnemende',
         'moon_waxing_moon'  => ':moon Wassende',
         'tabs'              => [
-            'events'        => 'Kalender Gebeurtenissen',
-            'information'   => 'Informatie',
-            'weather'       => 'Weer',
+            'events'    => 'Kalender Gebeurtenissen',
+            'weather'   => 'Weer',
         ],
-        'title'             => 'Kalender :name',
     ],
 ];

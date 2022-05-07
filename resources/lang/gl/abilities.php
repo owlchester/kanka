@@ -42,9 +42,7 @@ return [
         'nested_without'=> 'Mostrando todas as habilidades que non teñen unha habilidade nai. Fai clic nunha fila para ver as súas descendentes.',
     ],
     'index'         => [
-        'add'       => 'Nova habilidade',
-        'header'    => 'Habilidades de ":name"',
-        'title'     => 'Habilidades',
+        'title' => 'Habilidades',
     ],
     'placeholders'  => [
         'charges'   => 'Número de cargas. Podes referenciar atributos desta forma: {Level}*{CHA}',
@@ -56,6 +54,5 @@ return [
             'abilities' => 'Habilidades',
             'entities'  => 'Entidades',
         ],
-        'title' => 'Habilidade ":name"',
     ],
 ];

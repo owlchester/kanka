@@ -38,7 +38,6 @@ return [
         'reverse_order'     => 'Aktivieren Sie diese Option, um Epochen in umgekehrter chronologischer Reihenfolge anzuzeigen (ältere Epoche zuerst).',
     ],
     'index'         => [
-        'add'   => 'neuer Zeitstrahl',
         'title' => 'Zeitstrahl',
     ],
     'placeholders'  => [
@@ -49,7 +48,6 @@ return [
         'tabs'  => [
             'timelines' => 'Zeitstrahlen',
         ],
-        'title' => 'Zeitstrahl :name',
     ],
     'timelines'     => [
         'title' => 'Zeitstrahl :name Zeitstrahlen',

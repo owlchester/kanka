@@ -17,13 +17,10 @@ return [
         'date'      => 'Tarih',
         'image'     => 'Görsel',
         'name'      => 'Ad',
-        'relation'  => 'İlişki',
         'type'      => 'Tür',
     ],
     'index'         => [
-        'add'       => 'Yeni Günlük',
-        'header'    => ':name Günlükleri',
-        'title'     => 'Günlükler',
+        'title' => 'Günlükler',
     ],
     'placeholders'  => [
         'author'    => 'Günlüğü kim yazdı',
@@ -31,7 +28,5 @@ return [
         'name'      => 'Günlüğün adı',
         'type'      => 'Oturum, Tek Seferlik, Taslak',
     ],
-    'show'          => [
-        'title' => ':name Günlüğü',
-    ],
+    'show'          => [],
 ];

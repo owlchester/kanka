@@ -35,7 +35,6 @@ return [
         'name'                      => 'Ad',
         'physical'                  => 'Fiziksel',
         'race'                      => 'Irk',
-        'relation'                  => 'İlişki',
         'sex'                       => 'Cinsiyet',
         'title'                     => 'Ünvan',
         'traits'                    => 'Nitelik',
@@ -54,8 +53,6 @@ return [
         'actions'   => [
             'random'    => 'Yeni Rastgele Karakter',
         ],
-        'add'       => 'Yeni Karakter',
-        'header'    => ':name karakterleri',
         'title'     => 'Karakterler',
     ],
     'items'         => [
@@ -123,10 +120,8 @@ return [
     ],
     'show'          => [
         'tabs'  => [
-            'map'           => 'İlişki Haritası',
             'organisations' => 'Organizasyonlar',
         ],
-        'title' => ':name Karakteri',
     ],
     'warnings'      => [
         'personality_hidden'    => 'Bu karakterde kişilik özelliklerini düzenleme izniniz yok.',

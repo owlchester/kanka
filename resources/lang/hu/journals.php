@@ -19,7 +19,6 @@ return [
         'journal'   => 'Szülőnapló',
         'journals'  => 'Alnaplók',
         'name'      => 'Megnevezés',
-        'relation'  => 'Kapcsolat',
         'type'      => 'Típus',
     ],
     'helpers'       => [
@@ -28,9 +27,7 @@ return [
         'nested_without'=> 'Minden olyan napló megmutatása, amelynek nincs szülőnaplója. Klikkelj egy sorra, hogy lásd a gyermeknaplókat.',
     ],
     'index'         => [
-        'add'       => 'Új naplóbejegyzés',
-        'header'    => ':name naplóbejegyzései',
-        'title'     => 'Naplók',
+        'title' => 'Naplók',
     ],
     'journals'      => [
         'title' => ':name napló alnaplói',
@@ -46,6 +43,5 @@ return [
         'tabs'  => [
             'journals'  => 'Naplók',
         ],
-        'title' => ':name',
     ],
 ];

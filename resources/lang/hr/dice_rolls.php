@@ -28,8 +28,6 @@ return [
             'dice'      => 'Bacanja kockica',
             'results'   => 'Rezultati',
         ],
-        'add'       => 'Novo bacanje kockica',
-        'header'    => 'Bacanje kockica za :name',
         'title'     => 'Bacanja kockica',
     ],
     'placeholders'  => [
@@ -54,6 +52,5 @@ return [
         'tabs'  => [
             'results'   => 'Rezultati',
         ],
-        'title' => 'Bacanje kockica :name',
     ],
 ];

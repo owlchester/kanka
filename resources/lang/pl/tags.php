@@ -39,12 +39,7 @@ return [
         'tag'       => 'Na liście znajdują się wszystkie elementy posiadające tę etykietę.',
     ],
     'index'         => [
-        'actions'   => [
-            'explore_view'  => 'Widok hierarchii',
-        ],
-        'add'       => 'Nowa etykieta',
-        'header'    => 'Etykiety w :name',
-        'title'     => 'Etykiety',
+        'title' => 'Etykiety',
     ],
     'new_tag'       => 'Nowa etykieta',
     'placeholders'  => [
@@ -57,7 +52,6 @@ return [
             'children'  => 'Pochodne',
             'tags'      => 'Etykiety',
         ],
-        'title' => 'Etykieta :name',
     ],
     'tags'          => [
         'title' => 'Etykiety pochodzące od :name',

@@ -59,7 +59,6 @@ return [
         'nested_without'    => 'Minden olyan térkép mutatása, aminek nincs szülője. Klikkelj egy sorra, hogy lásd a gyermektérképeit.',
     ],
     'index'         => [
-        'add'   => 'Új Térkép',
         'title' => 'Térképek',
     ],
     'maps'          => [
@@ -85,6 +84,5 @@ return [
         'tabs'  => [
             'maps'  => 'Térképek',
         ],
-        'title' => ':name térkép',
     ],
 ];

@@ -61,7 +61,6 @@ return [
         'nested_without'    => 'Zobraziť všetky mapy, ktoré nemajú nadradenú mapu. Kliknutím na riadok zobrazíš podradené mapy.',
     ],
     'index'         => [
-        'add'   => 'Nová mapa',
         'title' => 'Mapy',
     ],
     'maps'          => [
@@ -87,6 +86,5 @@ return [
         'tabs'  => [
             'maps'  => 'Mapy',
         ],
-        'title' => 'Mapa :name',
     ],
 ];

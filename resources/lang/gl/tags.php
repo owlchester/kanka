@@ -38,12 +38,7 @@ return [
         'tag'       => 'Abaixo están mostradas todas as etiquetas directamente baixo esta etiqueta.',
     ],
     'index'         => [
-        'actions'   => [
-            'explore_view'  => 'Vista en árbore',
-        ],
-        'add'       => 'Nova etiqueta',
-        'header'    => 'Etiquetas en ":name"',
-        'title'     => 'Etiquetas',
+        'title' => 'Etiquetas',
     ],
     'new_tag'       => 'Nova etiqueta',
     'placeholders'  => [
@@ -56,7 +51,6 @@ return [
             'children'  => 'Subetiquetas',
             'tags'      => 'Etiquetas',
         ],
-        'title' => 'Etiqueta ":name"',
     ],
     'tags'          => [
         'title' => 'Subetiquetas de ":name"',

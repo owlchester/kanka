@@ -93,7 +93,6 @@ return [
         'delete'            => 'Obriši',
         'description'       => 'Jesi li siguran/a da želiš ukloniti :tag?',
         'description_final' => 'Sigurno želiš ukloniti :tag? Ova se radnja ne može poništiti.',
-        'mirrored'          => 'Ukloni zrcalni odnos.',
         'title'             => 'Izbriši potvrdu',
     ],
     'destroy_many'              => [
@@ -311,9 +310,6 @@ return [
         'timeline'      => 'Odaberite kronologiju',
     ],
     'relations'                 => [
-        'actions'   => [
-            'add'   => 'Dodaj odnos',
-        ],
         'fields'    => [
             'location'  => 'Lokacija',
             'name'      => 'Naziv',

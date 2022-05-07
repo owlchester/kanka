@@ -31,9 +31,7 @@ return [
         'nested_without'=> 'S\'estan mostrant les races sense pare. Feu clic a la fila d\'una raça per a mostrar-ne les descendents.',
     ],
     'index'         => [
-        'add'       => 'Nova raça',
-        'header'    => 'Races de :name',
-        'title'     => 'Races',
+        'title' => 'Races',
     ],
     'placeholders'  => [
         'name'  => 'Nom de la raça',
@@ -47,6 +45,5 @@ return [
             'characters'    => 'Personatges',
             'races'         => 'Sub-races',
         ],
-        'title' => 'Raça :name',
     ],
 ];

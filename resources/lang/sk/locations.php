@@ -29,7 +29,6 @@ return [
         'locations'         => 'Miesta',
         'map'               => 'Mapa',
         'name'              => 'Názov',
-        'relation'          => 'Prepojenie',
         'type'              => 'Typ',
     ],
     'helpers'       => [
@@ -46,19 +45,10 @@ return [
         'is_map_private'    => 'Súkromná mapa je viditeľná len pre členov kampane s rolou Admin.',
     ],
     'index'         => [
-        'actions'   => [
-            'explore_view'  => 'Vnorené zobrazenie',
-        ],
-        'add'       => 'Nové miesto',
-        'header'    => 'Miesta objektu :name',
-        'title'     => 'Miesta',
+        'title' => 'Miesta',
     ],
-    'items'         => [
-        'title' => 'Predmety miesta :name',
-    ],
-    'journals'      => [
-        'title' => 'Záznamy v denníku miesta :name',
-    ],
+    'items'         => [],
+    'journals'      => [],
     'locations'     => [
         'title' => 'Miesta miesta :name',
     ],
@@ -207,16 +197,9 @@ return [
     'show'          => [
         'tabs'  => [
             'characters'    => 'Postavy',
-            'events'        => 'Udalosti',
-            'families'      => 'Rody',
-            'items'         => 'Predmety',
-            'journals'      => 'Záznamy v denníku',
             'locations'     => 'Miesta',
             'map'           => 'Mapa',
             'maps'          => 'Mapy',
-            'organisations' => 'Organizácie',
-            'quests'        => 'Úlohy',
         ],
-        'title' => 'Miesto :name',
     ],
 ];

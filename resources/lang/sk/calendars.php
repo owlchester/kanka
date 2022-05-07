@@ -118,9 +118,7 @@ return [
         'years'             => 'Niektoré roky sú tak dôležité, že dostali vlastné pomenovanie.',
     ],
     'index'         => [
-        'add'       => 'Nový kalendár',
-        'header'    => 'Kalendár :name',
-        'title'     => 'Kalendáre',
+        'title' => 'Kalendáre',
     ],
     'layouts'       => [
         'month' => 'Mesiac',
@@ -216,11 +214,9 @@ return [
         'moon_waning_moon'  => 'Ubúdajúci :moon',
         'moon_waxing_moon'  => 'Pribúdajúci :moon',
         'tabs'              => [
-            'events'        => 'Kalendárne udalosti',
-            'information'   => 'Informácia',
-            'weather'       => 'Počasie',
+            'events'    => 'Kalendárne udalosti',
+            'weather'   => 'Počasie',
         ],
-        'title'             => 'Kalendár :name',
     ],
     'sorters'       => [
         'after' => 'Dnes a potom',

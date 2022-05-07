@@ -24,9 +24,7 @@ return [
         'participants'  => 'Dodawaj uczestników konwersacji naciskając ikonę :icon w prawym górnym rogu.',
     ],
     'index'         => [
-        'add'       => 'Nowa konwersacja',
-        'header'    => 'Konwersacje w :name',
-        'title'     => 'Konwersacje',
+        'title' => 'Konwersacje',
     ],
     'messages'      => [
         'destroy'       => [
@@ -54,7 +52,6 @@ return [
     ],
     'show'          => [
         'is_closed' => 'Konwersacja jest zamknięta.',
-        'title'     => 'Konwersacja :name',
     ],
     'tabs'          => [
         'conversation'  => 'Konwersacja',

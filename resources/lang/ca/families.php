@@ -22,7 +22,6 @@ return [
         'location'  => 'Procedència',
         'members'   => 'Membres',
         'name'      => 'Nom',
-        'relation'  => 'Relació',
         'type'      => 'Tipus',
     ],
     'helpers'       => [
@@ -34,9 +33,7 @@ return [
         'members'   => 'Aquí es mostren els membres d\'una família. Es pot afegir un personatge a una família des del menú d\'edició d\'aquest, mitjançant el desplegable «Família».',
     ],
     'index'         => [
-        'add'       => 'Nova família',
-        'header'    => 'Famílies de :name',
-        'title'     => 'Famílies',
+        'title' => 'Famílies',
     ],
     'members'       => [
         'helpers'   => [
@@ -55,8 +52,6 @@ return [
             'all_members'   => 'Tots els membres',
             'families'      => 'Famílies',
             'members'       => 'Membres',
-            'relation'      => 'Relacions',
         ],
-        'title' => 'Família :name',
     ],
 ];

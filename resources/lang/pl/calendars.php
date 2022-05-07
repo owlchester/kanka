@@ -118,9 +118,7 @@ return [
         'years'             => 'Niektóre lata są tak ważne, że posiadają własne nazwy.',
     ],
     'index'         => [
-        'add'       => 'Nowy kalendarz',
-        'header'    => 'Kalendarze elementu :name',
-        'title'     => 'Kalendarze',
+        'title' => 'Kalendarze',
     ],
     'layouts'       => [
         'month' => 'Miesiąc',
@@ -216,11 +214,9 @@ return [
         'moon_waning_moon'  => ':moon Ubywa',
         'moon_waxing_moon'  => ':moon Przybywa',
         'tabs'              => [
-            'events'        => 'Wydarzenia w kalendarzu',
-            'information'   => 'Informacje',
-            'weather'       => 'Pogoda',
+            'events'    => 'Wydarzenia w kalendarzu',
+            'weather'   => 'Pogoda',
         ],
-        'title'             => 'Kalendarz :name',
     ],
     'sorters'       => [
         'after' => 'Dziś i wcześniej',

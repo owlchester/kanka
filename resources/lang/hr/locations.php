@@ -29,7 +29,6 @@ return [
         'locations'         => 'Lokacije',
         'map'               => 'Karta',
         'name'              => 'Naziv',
-        'relation'          => 'Odnos',
         'type'              => 'Tip',
     ],
     'helpers'       => [
@@ -46,19 +45,10 @@ return [
         'is_map_private'    => 'Privatna karta je vidljiva samo članovima "Administrator" uloge u kampanji.',
     ],
     'index'         => [
-        'actions'   => [
-            'explore_view'  => 'Ugniježđeni pregled',
-        ],
-        'add'       => 'Nova lokacija',
-        'header'    => 'Lokacije u :name',
-        'title'     => 'Lokacije',
+        'title' => 'Lokacije',
     ],
-    'items'         => [
-        'title' => 'Predmeti lokacije :name',
-    ],
-    'journals'      => [
-        'title' => 'Dnevnici iz lokacije :name',
-    ],
+    'items'         => [],
+    'journals'      => [],
     'locations'     => [
         'title' => 'Lokacije unutar lokacije :name',
     ],
@@ -207,16 +197,9 @@ return [
     'show'          => [
         'tabs'  => [
             'characters'    => 'Likovi',
-            'events'        => 'Događaji',
-            'families'      => 'Obitelji',
-            'items'         => 'Predmeti',
-            'journals'      => 'Dnevnici',
             'locations'     => 'Lokacije',
             'map'           => 'Karta',
             'maps'          => 'Karte',
-            'organisations' => 'Organizacije',
-            'quests'        => 'Zadaci',
         ],
-        'title' => 'Lokacija :name',
     ],
 ];

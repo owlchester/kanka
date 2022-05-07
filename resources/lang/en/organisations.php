@@ -27,7 +27,7 @@ return [
         'nested_without'=> 'Displaying all organisations that don\'t have a parent organisation. Click on a row to see the children organisations.',
     ],
     'index'         => [
-        'title'     => 'Organisations',
+        'title' => 'Organisations',
     ],
     'members'       => [
         'actions'       => [

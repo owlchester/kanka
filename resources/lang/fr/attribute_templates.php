@@ -26,9 +26,7 @@ return [
         'parent_attribute_template' => 'Ce modèle d\'attribut peut être l\'enfant d\'un autre modèle d\'attribut. Lorsqu\'un modèle d\'attribut est appliqué, celui-ci ainsi que tous ses descendants seront aussi appliqués.',
     ],
     'index'                 => [
-        'add'       => 'Nouveau modèle d\'attribut',
-        'header'    => 'Modèle d\'attribut pour :name',
-        'title'     => 'Modèle d\'attribut',
+        'title' => 'Modèle d\'attribut',
     ],
     'placeholders'          => [
         'attribute_template'    => 'Choix d\'un modèle d\'attribut',
@@ -39,6 +37,5 @@ return [
             'attribute_templates'   => 'Modèles d\'attributs',
             'attributes'            => 'Attributs',
         ],
-        'title' => 'Modèle d\'attribut :name',
     ],
 ];
