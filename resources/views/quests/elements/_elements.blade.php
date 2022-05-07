@@ -46,7 +46,7 @@
                 </div>
                 <div class="box-footer text-right">
                     <div class="pull-left">
-                        @include('cruds.partials.visibility', ['model' => $element])
+                        {!! $element->visibilityIcon() !!}
                     </div>
                     @can('update', $model)
                         <a href="{{ route('quests.quest_elements.edit', [$model, $element]) }}" class="btn btn-xs btn-primary">

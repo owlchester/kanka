@@ -6,7 +6,7 @@ use App\Models\Concerns\Blameable;
 use Illuminate\Database\Eloquent\Builder;
 use App\Models\Concerns\SortableTrait;
 use App\Traits\OrderableTrait;
-use App\Traits\VisibilityTrait;
+use App\Traits\VisibilityIDTrait;
 use Illuminate\Support\Str;
 
 /**
@@ -37,7 +37,7 @@ class EntityEvent extends MiscModel
     /**
      * Traits
      */
-    use OrderableTrait, SortableTrait, VisibilityTrait, Blameable;
+    use OrderableTrait, SortableTrait, VisibilityIDTrait, Blameable;
 
     /**
      * Trigger for filtering based on the order request.
@@ -90,7 +90,7 @@ class EntityEvent extends MiscModel
         'month',
         'year',
         'type_id',
-        'visibility',
+        'visibility_id',
     ];
 
     protected $sortable = [
@@ -98,7 +98,7 @@ class EntityEvent extends MiscModel
         'length',
         'date',
         'is_recurring',
-        'visibility',
+        'visibility_id',
     ];
 
     /**

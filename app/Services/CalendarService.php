@@ -38,7 +38,7 @@ class CalendarService
             $link->colour = Arr::get($data, 'colour', null);
             $link->recurring_until = Arr::get($data, 'recurring_until', null);
             $link->recurring_periodicity = Arr::get($data, 'recurring_periodicity', null);
-            $link->visibility = Arr::get($data, 'visibility', 'all');
+            $link->visibility_id = Arr::get($data, 'visibility_id', 1);
             if ($link->save()) {
                 return $link;
             }

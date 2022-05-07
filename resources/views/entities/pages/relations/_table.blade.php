@@ -60,9 +60,9 @@
                 @endif
                 {{ $relation->attitude }}
             </td>
-            @if (Auth::check())
+            @if (auth()->check())
                 <td>
-                    @include('cruds.partials.visibility', ['model' => $relation])
+                    {!! $relation->visibilityIcon() !!}
                 </td>
             @endif
             <td class="text-right">

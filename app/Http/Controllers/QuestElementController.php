@@ -80,7 +80,7 @@ class QuestElementController extends Controller
         $this->authorize('update', $quest);
 
         $data = $request->only([
-            'entity_id', 'name', 'role', 'description', 'colour', 'visibility'
+            'entity_id', 'name', 'role', 'description', 'colour', 'visibility_id'
         ]);
         $data['quest_id'] = $quest->id;
 
@@ -134,7 +134,7 @@ class QuestElementController extends Controller
     {
         $this->authorize('update', $quest);
 
-        $data = $request->only(['entity_id', 'name', 'role', 'description', 'colour', 'visibility']);
+        $data = $request->only(['entity_id', 'name', 'role', 'description', 'colour', 'visibility_id']);
 
         $questElement->update($data);
         $questElement->refresh();

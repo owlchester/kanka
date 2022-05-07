@@ -53,7 +53,11 @@
             'label' => __('entities/relations.fields.attitude'),
         ],
         [
-            'type' => 'is_private',
+            'field' => 'visibility_id',
+            'label' => __('crud.fields.visibility'),
+            'render' => function ($model) {
+                return $model->visibilityIcon();
+            }
         ],
     ],
     // Data

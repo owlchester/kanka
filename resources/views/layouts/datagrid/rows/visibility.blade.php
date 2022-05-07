@@ -1,1 +1,1 @@
-@includeWhen(auth()->check(), 'cruds.partials.visibility')
+@if (auth()->check()) {!! $model->visibilityIcon() !!}@endif

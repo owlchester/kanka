@@ -1,9 +1,8 @@
 <?php /** @var \App\Models\Ability $model */ ?>
 @extends('layouts.' . ($ajax ? 'ajax' : 'app'), [
-    'title' => trans('abilities.children.create.title', ['name' => $model->name]),
-    'description' => '',
+    'title' => __('abilities.children.create.title', ['name' => $model->name]),
     'breadcrumbs' => [
-        ['url' => Breadcrumb::index('abilities'), 'label' => trans('abilities.index.title')],
+        ['url' => Breadcrumb::index('abilities'), 'label' => __('abilities.index.title')],
         ['url' => route('abilities.show', $model->id), 'label' => $model->name]
     ]
 ])
@@ -12,10 +11,10 @@
     <div class="panel panel-default">
         @if ($ajax)
             <div class="panel-heading">
-                <button type="button" class="close" data-dismiss="modal" aria-label="{{ trans('crud.delete_modal.close') }}">
+                <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('crud.delete_modal.close') }}">
                     <span aria-hidden="true">&times;</span>
                 </button>
-                <h4>{{ trans('abilities.children.create.title', ['name' => $model->name]) }}</h4>
+                <h4>{{ __('abilities.children.create.title', ['name' => $model->name]) }}</h4>
             </div>
         @endif
         <div class="panel-body">

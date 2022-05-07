@@ -35,7 +35,7 @@ You can get a list of all the element effects of a timeline by using the followi
             "date": "3rd of Appen 114",
             "colour": "blue",
             "position": 1,
-            "visibilility": "all",
+            "visibilility_id": 1,
             "created_by": 1,
             "created_at": "2020-08-05 14:32:59",
             "updated_at": "2020-08-05 14:33:22"
@@ -83,7 +83,7 @@ To get the details of a single element effect, use the following endpoint.
         "date": "3rd of Appen 114",
         "colour": "blue",
         "position": 1,
-        "visibilility": "all",
+        "visibilility_id": 1,
         "created_by": 1,
         "created_at": "2020-08-05 14:32:59",
         "updated_at": "2020-08-05 14:33:22"
@@ -107,14 +107,14 @@ To create a timeline element, use the following endpoint.
 | Parameter | Type | Detail |
 | :- |   :-   |  :-  |
 | `name` | `string` (Required if no entity) | Name of the element |
-| `entity_id` | `integer` (Required if no name) | Entity ID |
-| `timeline_id` | `integer` (Required) | Timeline ID |
-| `era_id` | `integer` (Required) | Timeline Era ID |
+| `entity_id` | `int` (Required if no name) | Entity ID |
+| `timeline_id` | `int` (Required) | Timeline ID |
+| `era_id` | `int` (Required) | Timeline Era ID |
 | `entry` | `string` | Entry of the element |
 | `date` | `string` | Date of the element |
 | `colour` | `string` | Colour of the element |
-| `position` | `integer` | Position in the list of elements of the era |
-| `visiblity` | `string` | `all`, `admin`, `self` Who can view |
+| `position` | `int` | Position in the list of elements of the era |
+| `visibility_id` | `int` | The visibility ID: 1 for `all`, 2 `self`, 3 `admin`, 4 `self-admin` or 5 `members`. |
 
 
 ### Results

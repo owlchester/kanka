@@ -49,7 +49,7 @@
         </div>
     </div>
     <div class="col-md-6">
-        @include('cruds.fields.visibility', ['model' => isset($model) ? $model : null])
+        @include('cruds.fields.visibility_id')
     </div>
 </div>
 

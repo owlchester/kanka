@@ -79,7 +79,7 @@
 
 <div class="row">
     <div class="col-md-6">
-        @include('cruds.fields.visibility')
+        @include('cruds.fields.visibility_id')
     </div>
     <div class="col-md-6">
         <div class="form-group checkbox">

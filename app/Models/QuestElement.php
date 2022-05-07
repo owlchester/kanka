@@ -3,8 +3,9 @@
 namespace App\Models;
 
 use App\Facades\Mentions;
+use App\Models\Concerns\Blameable;
 use App\Models\Concerns\SimpleSortableTrait;
-use App\Traits\VisibilityTrait;
+use App\Traits\VisibilityIDTrait;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -25,7 +26,7 @@ class QuestElement extends Model
     /**
      * Traits
      */
-    use SimpleSortableTrait, VisibilityTrait;
+    use SimpleSortableTrait, VisibilityIDTrait, Blameable;
 
     /**
      * @var array
@@ -37,7 +38,7 @@ class QuestElement extends Model
         'description',
         'role',
         'colour',
-        'visibility'
+        'visibility_id'
     ];
 
     /**

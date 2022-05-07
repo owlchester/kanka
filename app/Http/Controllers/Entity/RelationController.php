@@ -142,7 +142,7 @@ class RelationController extends Controller
         $this->authorize('update', $entity->child);
 
         $data = $request->only([
-            'owner_id', 'target_id', 'attitude', 'relation', 'colour', 'is_star', 'two_way', 'visibility'
+            'owner_id', 'target_id', 'attitude', 'relation', 'colour', 'is_star', 'two_way', 'visibility_id'
         ]);
 
         /** @var Relation $relation */
@@ -204,7 +204,7 @@ class RelationController extends Controller
     {
         $this->authorize('update', $entity->child);
 
-        $data = $request->only(['target_id', 'attitude', 'relation', 'colour', 'is_star', 'two_way', 'visibility']);
+        $data = $request->only(['target_id', 'attitude', 'relation', 'colour', 'is_star', 'two_way', 'visibility_id']);
 
         $relation->update($data);
         $relation->refresh();

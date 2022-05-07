@@ -68,7 +68,7 @@
     </div>
 @endif
 
-@include('cruds.fields.visibility', ['model' => isset($relation) ? $relation : null])
+@include('cruds.fields.visibility_id', ['model' => isset($relation) ? $relation : null])
 
 @if (!empty($mode))
     <input type="hidden" name="mode" value="{{ $mode }}" />

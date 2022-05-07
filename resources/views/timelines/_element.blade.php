@@ -22,7 +22,7 @@
                     @endif
                 </h3>
                 <div class="box-tools">
-                    @includeWhen(auth()->check(), 'cruds.partials.visibility', ['model' => $element, 'toolbox' => true])
+                    @if (auth()->check()) {!! $element->visibilityIcon('btn-box-tool') !!}@endif
 
                     @can('update', $timeline)
                         <a class="dropdown-toggle btn btn-box-tool" data-toggle="dropdown" aria-expanded="false" data-placement="right" data-tree="escape">

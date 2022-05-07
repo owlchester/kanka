@@ -4,7 +4,7 @@ namespace App\Models;
 
 use App\Facades\CampaignLocalization;
 use App\Models\Concerns\Blameable;
-use App\Traits\VisibilityTrait;
+use App\Traits\VisibilityIDTrait;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
@@ -14,7 +14,6 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @property integer $entity_id
  * @property integer $ability_id
- * @property string $visibility
  * @property integer $charges
  * @property integer $position
  * @property string $note
@@ -32,14 +31,14 @@ class EntityAbility extends Model
     public $fillable = [
         'entity_id',
         'ability_id',
-        'visibility',
+        'visibility_id',
         'created_by',
         'charges',
         'position',
         'note',
     ];
 
-    use VisibilityTrait, Blameable;
+    use VisibilityIDTrait, Blameable;
 
     /**
      * Set to false to skip save observers

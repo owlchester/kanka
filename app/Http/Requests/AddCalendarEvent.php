@@ -36,7 +36,7 @@ class AddCalendarEvent extends FormRequest
             'colour' => 'nullable|string|max:7',
             'comment' => 'nullable|max:191',
             'type_id' => 'nullable|integer|exists:entity_event_types,id',
-            'visibility' => 'nullable|string|in:all,admin,self,members,admin-self'
+            'visibility_id' => 'nullable|exists:visibilities,id'
         ];
     }
 }

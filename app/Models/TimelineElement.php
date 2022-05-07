@@ -5,7 +5,7 @@ namespace App\Models;
 
 use App\Facades\Mentions;
 use App\Models\Concerns\Blameable;
-use App\Traits\VisibilityTrait;
+use App\Traits\VisibilityIDTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Str;
@@ -35,7 +35,7 @@ use Illuminate\Support\Str;
  */
 class TimelineElement extends Model
 {
-    use VisibilityTrait,
+    use VisibilityIDTrait,
         Blameable;
 
     /** Fillable fields */
@@ -48,7 +48,7 @@ class TimelineElement extends Model
         'position',
         'name',
         'colour',
-        'visibility',
+        'visibility_id',
         'icon',
         'date',
         'is_collapsed',

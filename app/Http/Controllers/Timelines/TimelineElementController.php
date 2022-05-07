@@ -25,7 +25,7 @@ class TimelineElementController extends Controller
         'position',
         'colour',
         'date',
-        'visibility',
+        'visibility_id',
         'icon',
         'is_collapsed',
         'use_entity_entry',

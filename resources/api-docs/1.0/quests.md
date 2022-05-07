@@ -113,7 +113,7 @@ To get the elements of a quest, use the following endpoint.
         "description": "Lorem Ipsum",
         "description_parsed": "Lorem Ipsum",
         "id": 2,
-        "visibility": "all",
+        "visibility_id": 1,
         "updated_at":  "2019-08-29T13:48:54.000000Z",
         "updated_by": null
     }

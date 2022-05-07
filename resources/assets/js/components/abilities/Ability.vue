@@ -7,27 +7,27 @@
                 <span class="box-title">
                     <dropdown tag="a" menu-left class="message-options" v-if="permission">
                         <a class="dropdown-toggle" role="button">
-                            <i class="fa-solid fa-lock" v-if="ability.visibility === 'admin'" v-bind:title="translate('admin')"></i>
-                            <i class="fa-solid fa-user-lock" v-if="ability.visibility === 'admin-self'" v-bind:title="translate('admin-self')"></i>
-                            <i class="fa-solid fa-users" v-if="ability.visibility === 'members'" v-bind:title="translate('members')"></i>
-                            <i class="fa-solid fa-user-secret" v-if="ability.visibility === 'self'" v-bind:title="translate('self')"></i>
-                            <i class="fa-solid fa-eye" v-if="ability.visibility === 'all'" v-bind:title="translate('all')"></i>
+                            <i class="fa-solid fa-lock" v-if="ability.visibility_id === 2" v-bind:title="translate('admin')"></i>
+                            <i class="fa-solid fa-user-lock" v-if="ability.visibility_id === 3" v-bind:title="translate('admin-self')"></i>
+                            <i class="fa-solid fa-users" v-if="ability.visibility_id === 5" v-bind:title="translate('members')"></i>
+                            <i class="fa-solid fa-user-secret" v-if="ability.visibility_id === 4" v-bind:title="translate('self')"></i>
+                            <i class="fa-solid fa-eye" v-if="ability.visibility_id === 1" v-bind:title="translate('all')"></i>
                         </a>
                         <template slot="dropdown">
                             <li>
-                                <a role="button" v-on:click="setVisibility('all')">{{ translate('all') }}</a>
+                                <a role="button" v-on:click="setVisibility(1)">{{ translate('all') }}</a>
                             </li>
                             <li v-if="meta.is_admin">
-                                <a role="button" v-on:click="setVisibility('admin')">{{ translate('admin') }}</a>
+                                <a role="button" v-on:click="setVisibility(2)">{{ translate('admin') }}</a>
                             </li>
                             <li v-if="this.isSelf">
-                                <a role="button" v-on:click="setVisibility('self')">{{ translate('self') }}</a>
+                                <a role="button" v-on:click="setVisibility(4)">{{ translate('self') }}</a>
                             </li>
                             <li v-if="this.isSelf">
-                                <a role="button" v-on:click="setVisibility('members')">{{ translate('members') }}</a>
+                                <a role="button" v-on:click="setVisibility(5)">{{ translate('members') }}</a>
                             </li>
                             <li v-if="this.isSelf">
-                                <a role="button" v-on:click="setVisibility('admin.self')">{{ translate('admin-self') }}</a>
+                                <a role="button" v-on:click="setVisibility(3)">{{ translate('admin-self') }}</a>
                             </li>
                         </template>
                     </dropdown>
@@ -123,7 +123,7 @@
                 return this.permission;
             },
             isSelf: function() {
-                return this.meta.user_id == this.ability.created_by;
+                return this.meta.user_id === this.ability.created_by;
             },
             backgroundImage: function() {
                 if (this.ability.images.thumb) {
@@ -151,18 +151,18 @@
             showAbility: function(ability) {
                 window.open(ability.actions.view, "_blank");
             },
-            setVisibility: function(visibility) {
+            setVisibility: function(visibility_id) {
                 var data = {
-                    visibility: visibility,
+                    visibility_id: visibility_id,
                     ability_id: this.ability.ability_id,
                 };
                 axios.patch(this.ability.actions.update, data).then(response => {
-                    this.ability.visibility = visibility;
+                    this.ability.visibility_id = visibility_id;
                     Event.$emit('edited_ability', ability);
                 })
-                        .catch(() => {
+                .catch(() => {
 
-                        });
+                });
             },
             useCharge: function(ability, charge) {
                 if (charge > ability.used_charges) {

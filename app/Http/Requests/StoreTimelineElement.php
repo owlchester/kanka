@@ -37,7 +37,7 @@ class StoreTimelineElement extends FormRequest
             'position' => 'nullable|integer',
             'colour' => 'nullable|string|max:12',
             'date' => 'nullable|string|max:45',
-            'visibility' => 'string',
+            'visibility_id' => 'nullable|exists:visibilities,id',
             'icon' => ['nullable', 'string', new FontAwesomeIcon],
         ];
 

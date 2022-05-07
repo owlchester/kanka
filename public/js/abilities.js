@@ -365,7 +365,7 @@ __webpack_require__.r(__webpack_exports__);
       return this.permission;
     },
     isSelf: function isSelf() {
-      return this.meta.user_id == this.ability.created_by;
+      return this.meta.user_id === this.ability.created_by;
     },
     backgroundImage: function backgroundImage() {
       if (this.ability.images.thumb) {
@@ -393,15 +393,15 @@ __webpack_require__.r(__webpack_exports__);
     showAbility: function showAbility(ability) {
       window.open(ability.actions.view, "_blank");
     },
-    setVisibility: function setVisibility(visibility) {
+    setVisibility: function setVisibility(visibility_id) {
       var _this = this;
 
       var data = {
-        visibility: visibility,
+        visibility_id: visibility_id,
         ability_id: this.ability.ability_id
       };
       axios.patch(this.ability.actions.update, data).then(function (response) {
-        _this.ability.visibility = visibility;
+        _this.ability.visibility_id = visibility_id;
         _event_js__WEBPACK_IMPORTED_MODULE_0__["default"].$emit('edited_ability', ability);
       })["catch"](function () {});
     },
@@ -6161,35 +6161,35 @@ var render = function() {
                         attrs: { role: "button" }
                       },
                       [
-                        _vm.ability.visibility === "admin"
+                        _vm.ability.visibility_id === 2
                           ? _c("i", {
                               staticClass: "fa-solid fa-lock",
                               attrs: { title: _vm.translate("admin") }
                             })
                           : _vm._e(),
                         _vm._v(" "),
-                        _vm.ability.visibility === "admin-self"
+                        _vm.ability.visibility_id === 3
                           ? _c("i", {
                               staticClass: "fa-solid fa-user-lock",
                               attrs: { title: _vm.translate("admin-self") }
                             })
                           : _vm._e(),
                         _vm._v(" "),
-                        _vm.ability.visibility === "members"
+                        _vm.ability.visibility_id === 5
                           ? _c("i", {
                               staticClass: "fa-solid fa-users",
                               attrs: { title: _vm.translate("members") }
                             })
                           : _vm._e(),
                         _vm._v(" "),
-                        _vm.ability.visibility === "self"
+                        _vm.ability.visibility_id === 4
                           ? _c("i", {
                               staticClass: "fa-solid fa-user-secret",
                               attrs: { title: _vm.translate("self") }
                             })
                           : _vm._e(),
                         _vm._v(" "),
-                        _vm.ability.visibility === "all"
+                        _vm.ability.visibility_id === 1
                           ? _c("i", {
                               staticClass: "fa-solid fa-eye",
                               attrs: { title: _vm.translate("all") }
@@ -6206,7 +6206,7 @@ var render = function() {
                             attrs: { role: "button" },
                             on: {
                               click: function($event) {
-                                return _vm.setVisibility("all")
+                                return _vm.setVisibility(1)
                               }
                             }
                           },
@@ -6222,7 +6222,7 @@ var render = function() {
                                 attrs: { role: "button" },
                                 on: {
                                   click: function($event) {
-                                    return _vm.setVisibility("admin")
+                                    return _vm.setVisibility(2)
                                   }
                                 }
                               },
@@ -6239,7 +6239,7 @@ var render = function() {
                                 attrs: { role: "button" },
                                 on: {
                                   click: function($event) {
-                                    return _vm.setVisibility("self")
+                                    return _vm.setVisibility(4)
                                   }
                                 }
                               },
@@ -6256,7 +6256,7 @@ var render = function() {
                                 attrs: { role: "button" },
                                 on: {
                                   click: function($event) {
-                                    return _vm.setVisibility("members")
+                                    return _vm.setVisibility(5)
                                   }
                                 }
                               },
@@ -6273,7 +6273,7 @@ var render = function() {
                                 attrs: { role: "button" },
                                 on: {
                                   click: function($event) {
-                                    return _vm.setVisibility("admin.self")
+                                    return _vm.setVisibility(3)
                                   }
                                 }
                               },

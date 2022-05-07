@@ -54,7 +54,7 @@
 ]) !!}</p>
             </div>
 
-            @include('cruds.fields.visibility')
+            @include('cruds.fields.visibility_id', ['model' => $ability])
         </div>
         <div class="panel-footer">
             <button class="btn btn-success pull-right">{{ __('crud.save') }}</button>

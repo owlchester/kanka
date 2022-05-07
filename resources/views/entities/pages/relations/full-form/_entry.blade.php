@@ -19,7 +19,7 @@
     </div>
 </div>
 
-@include('cruds.fields.visibility', ['model' => isset($relation) ? $relation : null])
+@include('cruds.fields.visibility_id', ['model' => $relation ?? null])
 
 @if(empty($relation) && (!isset($mirror) || $mirror == true))
     <div class="row">

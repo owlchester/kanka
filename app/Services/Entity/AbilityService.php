@@ -158,7 +158,7 @@ class AbilityService
             'note' => nl2br($this->mapAttributes(
                 Mentions::mapAny($entityAbility, 'note'), false)
             ),
-            'visibility' => $entityAbility->visibility,
+            'visibility_id' => $entityAbility->visibility_id,
             'created_by' => $entityAbility->created_by,
             'attributes' => $this->attributes($entityAbility->ability->entity),
             'images' => [

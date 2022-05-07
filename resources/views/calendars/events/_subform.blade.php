@@ -73,7 +73,7 @@ if (isset($colourAppendTo) && request()->ajax()) {
     </div>
 </div>
 
-@include('cruds.fields.visibility', ['model' => isset($entityEvent) ? $entityEvent : null])
+@include('cruds.fields.visibility_id', ['model' => $entityEvent ?? null])
 
 @if (!empty($entity) && $entity->typeId() == config('entities.ids.character'))
     <div class="form-group">

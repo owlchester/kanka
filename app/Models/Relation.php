@@ -10,14 +10,13 @@ use App\Models\Concerns\Searchable;
 use App\Models\Concerns\Sortable;
 use App\Models\Concerns\SortableTrait;
 use App\Models\Scopes\Starred;
-use App\Traits\VisibilityTrait;
+use App\Traits\VisibilityIDTrait;
 use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class Relation
  * @package App\Models
  * @property int $id
- * @property string $visibility
  * @property string $relation
  * @property int $attitude
  * @property int $mirror_id
@@ -37,7 +36,7 @@ class Relation extends Model
     /**
      * Traits
      */
-    use VisibilityTrait,
+    use VisibilityIDTrait,
         Starred,
         Paginatable,
         Blameable,
@@ -56,7 +55,7 @@ class Relation extends Model
         'owner_id',
         'target_id',
         'relation',
-        'visibility',
+        'visibility_id',
         'mirror_id',
         'attitude',
         'is_star',
@@ -67,7 +66,7 @@ class Relation extends Model
         'relation',
         'target.name',
         'attitude',
-        'visibility',
+        'visibility_id',
     ];
 
     /**
@@ -81,6 +80,7 @@ class Relation extends Model
         'attitude',
         'is_star',
         'mirror_id',
+        'visibility_id',
     ];
 
     public $filterableColumns = [
@@ -151,7 +151,7 @@ class Relation extends Model
             'relation' => !empty($target) ? $target : $this->relation,
             'attitude' => $this->attitude,
             'colour' => $this->colour,
-            'visibility' => $this->visibility,
+            'visibility_id' => $this->visibility_id,
             'is_star' => $this->is_star,
             'mirror_id' => $this->id,
         ]);

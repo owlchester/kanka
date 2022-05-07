@@ -30,7 +30,7 @@ class StoreRelation extends FormRequest
             'owner_id' => 'required|exists:entities,id',
             'target_id' => 'required|exists:entities,id|different:owner_id',
             'relation' => 'required|max:255',
-            'visibility' => 'required',
+            'visibility_id' => 'nullable|exists:visibilities,id',
             'attitude' => 'min:-100|max:100',
             'colour' => 'nullable|max:7',
             'is_star' => 'boolean'
