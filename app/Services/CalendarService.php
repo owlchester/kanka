@@ -4,12 +4,10 @@ namespace App\Services;
 
 use App\Http\Requests\AddCalendarWeather;
 use App\Models\Calendar;
-use App\Models\CalendarEvent;
 use App\Models\CalendarWeather;
 use App\Models\Entity;
 use App\Models\EntityEvent;
 use App\Models\Event;
-use App\Observers\PurifiableTrait;
 use Exception;
 use Illuminate\Support\Arr;
 use Stevebauman\Purify\Facades\Purify;
@@ -20,7 +18,7 @@ class CalendarService
      * Add an event to a calendar, and return the new calendar_event model
      * @param Calendar $calendar
      * @param array $data
-     * @return CalendarEvent
+     * @return EntityEvent
      */
     public function addEvent(Calendar $calendar, $data = [])
     {

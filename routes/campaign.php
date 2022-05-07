@@ -228,7 +228,6 @@ Route::get('/entities/{entity}/profile', 'Entity\ProfileController@index')
 Route::resources([
     'abilities' => 'AbilityController',
     'calendars' => 'CalendarController',
-    'calendar_event' => 'CalendarEventController',
     'calendars.calendar_weather' => 'Calendar\CalendarWeatherController',
     'campaigns' => 'CampaignController',
     'campaign_users' => 'CampaignUserController',

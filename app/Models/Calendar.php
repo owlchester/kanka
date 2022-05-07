@@ -25,7 +25,7 @@ use Illuminate\Support\Str;
  * @property string $reset
  * @property int $calendar_id
  *
- * @property CalendarEvent[] $calendarEvents
+ * @property EntityEvent[] $calendarEvents
  * @property CalendarWeather[] $calendarWeather
  * @property Calendar $calendar
  */

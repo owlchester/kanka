@@ -128,19 +128,6 @@ class Event extends MiscModel
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function calendars()
-    {
-        return $this->hasManyThrough('App\Models\Calendar', 'App\Models\CalendarEvent', 'event_id', 'calendar_id');
-    }
-
-    public function calendarEvents()
-    {
-        return $this->hasMany('App\Models\CalendarEvent', 'event_id');
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
     public function event()
     {
         return $this->belongsTo('App\Models\Event', 'event_id', 'id');
@@ -152,18 +139,6 @@ class Event extends MiscModel
     public function events()
     {
         return $this->hasMany('App\Models\Event', 'event_id', 'id');
-    }
-
-    /**
-     * Detach children when moving this entity from one campaign to another
-     */
-    public function detach()
-    {
-        foreach ($this->calendarEvents as $child) {
-            $child->delete();
-        }
-
-        return parent::detach();
     }
 
     /**
