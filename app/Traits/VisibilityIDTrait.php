@@ -28,7 +28,7 @@ trait VisibilityIDTrait
     /**
      * @return string
      */
-    public function visibilityIcon(string $extra = ''): string
+    public function visibilityIcon(string $extra = null): string
     {
         /*if ($this->visibility_id == Visibility::VISIBILITY_ALL) {
             return '';

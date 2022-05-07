@@ -363,6 +363,7 @@ class Map extends MiscModel
                 'latitude' => $marker->latitude,
                 'name' => $marker->markerTitle($link),
                 'lower_name' => strtolower($marker->markerTitle(false)),
+                'visibility' => $marker->visibility_id !== 1 ? $marker->visibilityIcon() : null,
             ]);
         }
 

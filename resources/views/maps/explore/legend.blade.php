@@ -14,12 +14,17 @@
                 <ul class="collapse in" id="map-legend-group-{{ $marker['id'] }}">
                     @foreach ($marker['markers'] as $mk)
                         <li>
-                            <a href="#" class="map-legend-marker" data-lng="{{ $mk['longitude'] }}" data-lat="{{ $mk['latitude'] }}" data-id="marker{{ $mk['id'] }}">{!! $mk['name'] !!}</a>
+                            <a href="#" class="map-legend-marker" data-lng="{{ $mk['longitude'] }}" data-lat="{{ $mk['latitude'] }}" data-id="marker{{ $mk['id'] }}">
+                                {!! $mk['name'] !!}
+                            </a>
                         </li>
                     @endforeach
                 </ul>
             @else
-                <a href="#" class="map-legend-marker" data-lng="{{ $marker['longitude'] }}" data-lat="{{ $marker['latitude'] }}" data-id="marker{{ $marker['id'] }}">{!! stripcslashes($marker['name']) !!}</a>
+                <a href="#" class="map-legend-marker" data-lng="{{ $marker['longitude'] }}" data-lat="{{ $marker['latitude'] }}" data-id="marker{{ $marker['id'] }}">
+                    {!! stripcslashes($marker['name']) !!}
+                    @if (\Illuminate\Support\Arr::has($marker, 'visibility')) {!! $marker['visibility'] !!}@endif
+                </a>
             @endif
         </li>
     @endforeach
