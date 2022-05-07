@@ -9,6 +9,13 @@ class DatalayerService
 
     /** @var array Extra parameters to pass */
     protected $additional = [];
+
+    /** @var bool If the user is newly created */
+    protected $newAccount = false;
+
+    /** @var bool If the user is newly registered */
+    protected $newSubcriber = false;
+
     /**
      * @return string
      */
@@ -20,6 +27,8 @@ class DatalayerService
             'userTier' => null,
             'userSubbed' => false,
             'route' => $this->route(),
+            'newAccount' => $this->newAccount ? '1' : '0',
+            'newSubscriber' => $this->newSubcriber ? '1' : '0',
         ], $this->additional);
 
         if (auth()->check()) {
@@ -63,6 +72,11 @@ class DatalayerService
         return $this->userGroup() === 'b';
     }
 
+    /**
+     * @param string $key
+     * @param $value
+     * @return $this
+     */
     public function add(string $key, $value): self
     {
         $this->additional[$key] = $value;
@@ -78,5 +92,25 @@ class DatalayerService
             return '';
         }
         return (string) request()->route()->getName();
+    }
+
+    /**
+     * Set the new subscriber as true
+     * @return $this
+     */
+    public function newSubscriber(): self
+    {
+        $this->newSubcriber = true;
+        return $this;
+    }
+
+    /**
+     * Set the new account as true
+     * @return $this
+     */
+    public function newAccount(): self
+    {
+        $this->newAccount = true;
+        return $this;
     }
 }

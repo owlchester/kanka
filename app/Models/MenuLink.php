@@ -209,6 +209,12 @@ class MenuLink extends MiscModel
             elseif (Str::contains($this->menu, 'abilit')) {
                 return route('entities.entity_abilities.index', $this->target->id);
             }
+            elseif (Str::contains($this->menu, 'assets')) {
+                return route('entities.assets', $this->target->id);
+            }
+            elseif (Str::contains($this->menu, 'reminders')) {
+                return route('entities.entity_events.index', $this->target->id);
+            }
             elseif (Str::contains($this->menu, 'map_points')) {
                 return route('entities.map-markers', $this->target->id);
             } elseif ($this->menu == 'all-members') {

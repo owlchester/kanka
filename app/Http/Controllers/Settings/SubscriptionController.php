@@ -49,6 +49,7 @@ class SubscriptionController extends Controller
         $gaTrackingEvent = null;
         if (!empty($tracking)) {
             $gaTrackingEvent = 'TJhYCMDErpYDEOaOq7oC';
+            DataLayer::newSubscriber();
             DataLayer::add('userSubValue', session('sub_value'));
         }
 

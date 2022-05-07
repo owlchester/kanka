@@ -88,7 +88,7 @@ if (!empty($moonNames)) {
         </div>
         <div class="col-md-2">
             <div class="input-group">
-                {!! Form::number('moon_offset[]', null, ['class' => 'form-control', 'placeholder' => __('calendars.parameters.moon.offset')]) !!}
+                {!! Form::number('moon_offset[]', 0, ['class' => 'form-control', 'placeholder' => __('calendars.parameters.moon.offset')]) !!}
                 <span class="input-group-btn">
                     <span class="month-delete btn btn-danger" data-remove="4" title="{{ __('crud.remove') }}">
                         <i class="fa-solid fa-trash"></i>

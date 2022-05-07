@@ -77,8 +77,8 @@ class CampaignObserver
             }
         }
 
-        // UI settings
-        /*$uiSettings = $campaign->ui_settings;
+        /*
+        $uiSettings = $campaign->ui_settings;
         if (request()->has('tooltip_family')) {
             $uiSettings['tooltip_family'] = (bool) request()->get('tooltip_family');
         }

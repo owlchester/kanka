@@ -27,7 +27,7 @@ class CalendarMoonOffset implements Rule
     {
         // Max value
         $lengths = request()->get('month_length');
-        if (count($lengths) === 0) {
+        if (!is_array($lengths) || count($lengths) === 0) {
             return false;
         }
         $max = $lengths[0];

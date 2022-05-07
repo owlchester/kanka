@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Facades\CampaignLocalization;
 use App\Facades\Dashboard;
+use App\Facades\DataLayer;
 use App\Facades\PostCache;
 use App\Models\CampaignDashboardWidget;
 use Illuminate\Support\Facades\Auth;
@@ -58,6 +59,7 @@ class DashboardController extends Controller
         if (session()->has('user_registered')) {
             session()->remove('user_registered');
             $gaTrackingEvent = 'pa10CJTvrssBEOaOq7oC';
+            DataLayer::newAccount();
             $welcome = true;
         }
 

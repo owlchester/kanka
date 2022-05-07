@@ -40,17 +40,17 @@
                             </a>
                         </li>
                         <li>
-                            <a href="#" title="[{{ $model->getEntityType() }}:{{ $model->entity->id }}|anchor:post-{{ $note->id }}]|{{ $model->name }}" data-toggle="tooltip"
-                               data-clipboard="[{{ $model->getEntityType() }}:{{ $model->entity->id }}|anchor:post-{{ $note->id }}|{{ $model->name }}]" data-toast="{{ __('entities/notes.copy_mention.success') }}">
+                            <a href="#" title="[{{ $model->getEntityType() }}:{{ $model->entity->id }}|anchor:post-{{ $note->id }}]|{{ $note->name }}" data-toggle="tooltip"
+                               data-clipboard="[{{ $model->getEntityType() }}:{{ $model->entity->id }}|anchor:post-{{ $note->id }}|{{ $note->name }}]" data-toast="{{ __('entities/notes.copy_mention.success') }}">
                                 <i class="fa-solid fa-link"></i> {{ __('entities/notes.copy_mention.copy_with_name') }}
                             </a>
                         </li>
                         <li class="divider"></li>
-                            <li>
-                                <a href="{{ route('entities.story.reorder', ['entity' => $entity]) }}" title="{{ __('entities/story.reorder.icon_tooltip') }}">
-                                    <i class="fa-solid fa-arrows-v"></i> {{ __('entities/story.reorder.icon_tooltip') }}
-                                </a>
-                            </li>
+                        <li>
+                            <a href="{{ route('entities.story.reorder', ['entity' => $entity]) }}" title="{{ __('entities/story.reorder.icon_tooltip') }}">
+                                <i class="fa-solid fa-arrows-v"></i> {{ __('entities/story.reorder.icon_tooltip') }}
+                            </a>
+                        </li>
                     </ul>
                 @endif
             </div>

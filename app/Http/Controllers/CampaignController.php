@@ -161,7 +161,13 @@ class CampaignController extends Controller
     {
         $this->authorize('update', $campaign);
 
-        $campaign->update($request->all());
+        $data = $request->all();
+        // Missing sidebar config? Because we shouldn't have used the same array....
+        if (!empty($campaign->ui_settings['sidebar'])) {
+            $data['ui_settings']['sidebar'] = $campaign->ui_settings['sidebar'];
+        }
+
+        $campaign->update($data);
 
         if ($request->has('submit-update')) {
             return redirect()

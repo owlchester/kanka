@@ -35,8 +35,6 @@ Route::get('/maps/tree', 'Maps\MapController@tree')->name('maps.tree');
 // Character
 Route::get('/characters/random', 'CharacterController@random')->name('characters.random');
 Route::get('/characters/{character}/organisations', 'CharacterSubController@organisations')->name('characters.organisations');
-Route::get('/characters/{character}/map', 'CharacterSubController@map')->name('characters.map');
-Route::get('/characters/{character}/map_data', 'CharacterSubController@mapData')->name('characters.map_data');
 //Route::get('/characters/{character}/map-points', 'CharacterSubController@mapPoints')->name('characters.map-points');
 
 Route::get('/dice_rolls/{dice_roll}/roll', 'DiceRollController@roll')->name('dice_rolls.roll');
