@@ -19,7 +19,6 @@ return [
         'journal'   => 'Parent Journal',
         'journals'  => 'Sub Journals',
         'name'      => 'Name',
-        'relation'  => 'Relation',
         'type'      => 'Type',
     ],
     'helpers'       => [

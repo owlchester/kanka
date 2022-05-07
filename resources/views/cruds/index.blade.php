@@ -18,7 +18,7 @@
             @can('create', $model)
                 <div class="btn-group pull-right">
                     <a href="{{ route($route . '.create') }}" class="btn btn-primary btn-new-entity">
-                        <i class="fa-solid fa-plus"></i> <span class="hidden-xs hidden-sm">{{ __($langKey . '.index.add') }}</span>
+                        <i class="fa-solid fa-plus"></i> <span class="hidden-xs hidden-sm">{{ __('entities.' .  \Illuminate\Support\Str::singular($route)) }}</span>
                     </a>
                     @if(!in_array($name, ['menu_links', 'relations']))
                         <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
@@ -45,7 +45,7 @@
                 </div>
             @endcan
             @foreach ($actions as $action)
-                @if (empty($action['policy']) || (Auth::check() && Auth::user()->can($action['policy'], $model)))
+                @if (empty($action['policy']) || (auth()->check() && auth()->user()->can($action['policy'], $model)))
                     <a href="{{ $action['route'] }}" class="btn pull-right btn-{{ $action['class'] }} margin-r-5">
                         {!! $action['label'] !!}
                     </a>

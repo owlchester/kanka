@@ -19,7 +19,7 @@
         @includeWhen($model->entity->entityAttributes->count() > 0, 'entities.pages.attributes._story', ['entity' => $model->entity])
 
         @include('cruds.partials.mentions')
-        @include('cruds.boxes.history')
+        @include('entities.pages.logs.history')
     </div>
 
     <div class="entity-sidebar">

@@ -19,7 +19,6 @@ return [
         'name'          => 'Name',
         'organisation'  => 'Parent Organisation',
         'organisations' => 'Sub Organisations',
-        'relation'      => 'Relation',
         'type'          => 'Type',
     ],
     'helpers'       => [

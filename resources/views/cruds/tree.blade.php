@@ -17,7 +17,8 @@
             @can('create', $model)
                 <div class="btn-group pull-right">
                     <a href="{{ route($name . '.create') }}" class="btn btn-primary">
-                        <i class="fa-solid fa-plus"></i> <span class="hidden-xs hidden-sm">{{ trans($name . '.index.add') }}</span>
+                        <i class="fa-solid fa-plus"></i>
+                        <span class="hidden-xs hidden-sm">{{ __('entities.' .  \Illuminate\Support\Str::singular($route)) }}</span>
                     </a>
                     <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                         <span class="caret"></span>

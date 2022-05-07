@@ -22,7 +22,6 @@ return [
         'location'  => 'Location',
         'members'   => 'Members',
         'name'      => 'Name',
-        'relation'  => 'Relation',
         'type'      => 'Type',
     ],
     'helpers'       => [
@@ -55,7 +54,6 @@ return [
             'all_members'   => 'All Members',
             'families'      => 'Families',
             'members'       => 'Members',
-            'relation'      => 'Relations',
         ],
         'title' => 'Family :name',
     ],

@@ -29,7 +29,6 @@ return [
         'locations'         => 'Locations',
         'map'               => 'Map',
         'name'              => 'Name',
-        'relation'          => 'Relation',
         'type'              => 'Type',
     ],
     'helpers'       => [

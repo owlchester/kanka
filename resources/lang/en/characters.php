@@ -40,7 +40,6 @@ return [
         'pronouns'                  => 'Pronouns',
         'race'                      => 'Race',
         'races'                     => 'Races',
-        'relation'                  => 'Relation',
         'sex'                       => 'Gender',
         'title'                     => 'Title',
         'traits'                    => 'Traits',

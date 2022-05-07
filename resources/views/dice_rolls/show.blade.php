@@ -20,7 +20,7 @@
         </div>
 
         @include('cruds.partials.mentions')
-        @include('cruds.boxes.history')
+        @include('entities.pages.logs.history')
     </div>
 
     <div class="entity-sidebar">
