@@ -54,8 +54,6 @@ return [
         'quests'    => 'A web of interlocking quests can be built using the Parent Quest field.',
     ],
     'index'         => [
-        'add'       => 'New Quest',
-        'header'    => 'Quests of :name',
         'title'     => 'Quests',
     ],
     'placeholders'  => [
@@ -72,6 +70,5 @@ return [
         'tabs'      => [
             'elements'  => 'Elements',
         ],
-        'title'     => 'Quest :name',
     ],
 ];

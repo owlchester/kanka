@@ -61,7 +61,6 @@ return [
         'nested_without'    => 'Displaying all maps that don\'t have a parent map. Click on a row to see the children maps.',
     ],
     'index'         => [
-        'add'   => 'New Map',
         'title' => 'Maps',
     ],
     'maps'          => [
@@ -87,6 +86,5 @@ return [
         'tabs'  => [
             'maps'  => 'Maps',
         ],
-        'title' => 'Map :name',
     ],
 ];

@@ -38,7 +38,6 @@ return [
         'reverse_order'     => 'Enable to display eras in reverse chronological order (older era first)',
     ],
     'index'         => [
-        'add'   => 'New Timeline',
         'title' => 'Timelines',
     ],
     'placeholders'  => [
@@ -49,7 +48,6 @@ return [
         'tabs'  => [
             'timelines' => 'Timelines',
         ],
-        'title' => 'Timeline :name',
     ],
     'timelines'     => [
         'title' => 'Timeline :name Timelines',

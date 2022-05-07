@@ -122,8 +122,6 @@ return [
         'years'             => 'Some years are so important that they have their own name.',
     ],
     'index'         => [
-        'add'       => 'New Calendar',
-        'header'    => 'Calendars of :name',
         'title'     => 'Calendars',
     ],
     'layouts'       => [
@@ -221,10 +219,8 @@ return [
         'moon_waxing_moon'  => ':moon Waxing',
         'tabs'              => [
             'events'        => 'Reminders',
-            'information'   => 'Information',
             'weather'       => 'Weather',
         ],
-        'title'             => 'Calendar :name',
     ],
     'sorters'       => [
         'after' => 'Today & after',

@@ -335,9 +335,6 @@ return [
         'timeline'      => 'Choose a timeline',
     ],
     'relations'                 => [
-        'actions'   => [
-            'add'   => 'New relation',
-        ],
         'fields'    => [
             'location'  => 'Location',
             'name'      => 'Name',

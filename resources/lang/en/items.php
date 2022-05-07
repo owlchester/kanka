@@ -22,8 +22,6 @@ return [
         'type'      => 'Type',
     ],
     'index'         => [
-        'add'       => 'New Item',
-        'header'    => 'Items of :name',
         'title'     => 'Items',
     ],
     'inventories'   => [
@@ -41,6 +39,5 @@ return [
         'tabs'  => [
             'inventories'   => 'Inventories',
         ],
-        'title' => 'Item :name',
     ],
 ];

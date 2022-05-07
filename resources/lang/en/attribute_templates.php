@@ -26,8 +26,6 @@ return [
         'parent_attribute_template' => 'This attribute template can be a child of another attribute template. When applying this attribute template, it and all of its parents will be applied.',
     ],
     'index'                 => [
-        'add'       => 'New Attribute Template',
-        'header'    => 'Attribute Templates of :name',
         'title'     => 'Attribute Templates',
     ],
     'placeholders'          => [
@@ -39,6 +37,5 @@ return [
             'attribute_templates'   => 'Attribute Templates',
             'attributes'            => 'Attributes',
         ],
-        'title' => 'Attribute Template :name',
     ],
 ];

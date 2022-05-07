@@ -27,8 +27,6 @@ return [
         'nested_without'=> 'Displaying all organisations that don\'t have a parent organisation. Click on a row to see the children organisations.',
     ],
     'index'         => [
-        'add'       => 'New Organisation',
-        'header'    => 'Organisations of :name',
         'title'     => 'Organisations',
     ],
     'members'       => [
@@ -88,9 +86,6 @@ return [
     'show'          => [
         'tabs'  => [
             'organisations' => 'Organisations',
-            'quests'        => 'Quests',
-            'relations'     => 'Relations',
         ],
-        'title' => 'Organisation :name',
     ],
 ];
