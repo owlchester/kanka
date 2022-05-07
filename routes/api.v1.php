@@ -83,5 +83,7 @@ Route::get('campaigns/{campaign}/entities', 'EntityApiController@index');
 Route::get('campaigns/{campaign}/entities/{entity}', 'EntityApiController@show');
 Route::get('campaigns/{campaign}/entities/{entity}/mentions', 'EntityMentionApiController@index');
 
+Route::get('visibilities', 'VisibilityController@index');
+
 
 //Route::get('campaigns/{campaign}/settings', 'CampaignSettingApiController@index');
