@@ -128,7 +128,6 @@ trait Nested
         // No need if this entity exists
         //dump('recalculate Tree Bounds');
         if ($this->exists) {
-            //dump('already exists');
             return;
         }
 
@@ -136,7 +135,8 @@ trait Nested
         if ($value) {
             $this->appendToNode($this->newScopedQuery()->findOrFail($value));
         } else {
-            $this->makeRoot();
+            //dump('make ' . $this->name . ' root');
+            $this->actionRoot();
         }
     }
 
