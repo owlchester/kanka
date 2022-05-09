@@ -70,6 +70,15 @@ $upcomingEvents = $upcomingEvents->sortBy(function ($reminder) {
 // It could be that we get reminders for events the user can't see (2019-08: should no longer be the case? )
 $shownUpcomingEvents = 0;
 
+// Get the current day's weather effect.
+    // Todo: make it a relation that can be queried "with"?
+$weather = $calendar->calendarWeather()
+    ->year($currentYear)
+    ->month($currentMonth)
+    ->where('day', $currentDay)
+    ->first();
+
+
 /** @var \App\Models\EntityEvent $event */
 ?>
 <div class="current-date" id="widget-date-{{ $widget->id }}">
@@ -80,7 +89,18 @@ $shownUpcomingEvents = 0;
     @else
         {{ $calendar->niceDate() }}
     @endcan
+
 </div>
+
+@if ($weather)
+    <div class="text-center">
+        <div class="weather weather-{{ $weather->weather }}" data-html="true" data-toggle="tooltip" title="{!! $weather->tooltip() !!}">
+            <i class="fa-solid fa-{{ $weather->weather }}"></i>
+            {{ $weather->weatherName() }}
+        </div>
+    </div>
+@endif
+
 <div id="widget-loading-{{ $widget->id }}" class="text-center hidden">
     <i class="fa-solid fa-spin fa-spinner"></i>
 </div>
