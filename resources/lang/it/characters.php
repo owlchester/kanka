@@ -49,7 +49,9 @@ return [
         'age'   => 'Puoi collegare questa entità con un calendario della tua campagna per calcolare automaticamente l\'età.',
     ],
     'hints'         => [
+        'is_appearance_pinned'      => 'Se selezionati, i tratti fisici del personaggio appariranno sotto la voce principale della pagina.',
         'is_dead'                   => 'Questo personaggio è morto',
+        'is_personality_pinned'     => 'Se selezionati, i tratti caratteriali del personaggio appariranno sotto la voce principale della pagina.',
         'is_personality_visible'    => 'Puoi nascondere l\'intera sezione inerente la personalità per le utenze non "Admin".',
         'personality_not_visible'   => 'Solo gli amministratori possono vedere i tratti caratteriali di questo personaggio.',
         'personality_visible'       => 'Tutti possono vedere i tratti carattieriali di questo personaggio.',
@@ -89,7 +91,7 @@ return [
             'organisation'  => 'Organizzazione',
             'role'          => 'Ruolo',
         ],
-        'hint'          => 'I personaggio possono fare parte di più organizzazioni rappresentando per chi lavorano o di quale società segreta fanno parte.',
+        'hint'          => 'I personaggi possono fare parte di più organizzazioni rappresentando per chi lavorano o di quale società segreta fanno parte.',
         'placeholders'  => [
             'organisation'  => 'Seleziona un\'organizzazione...',
         ],
@@ -106,7 +108,7 @@ return [
         'personality_entry' => 'Dettagli',
         'personality_name'  => 'Obbiettivi, Vezzi, Paure, Vincoli',
         'physical'          => 'Caratteristiche Fisiche',
-        'pronouns'          => 'He/Him, She/Her, They/The,',
+        'pronouns'          => 'Lui, Lei',
         'race'              => 'Razza',
         'races'             => 'Scegli razze',
         'sex'               => 'Sesso',
@@ -131,6 +133,6 @@ return [
         ],
     ],
     'warnings'      => [
-        'personality_hidden'    => 'Non ti è consentito modificare i tratti della personalità di questo personaggio.',
+        'personality_hidden'    => 'Non puoi modificare i tratti della personalità di questo personaggio.',
     ],
 ];

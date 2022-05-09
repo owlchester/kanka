@@ -214,6 +214,10 @@ TEXT
     'open_campaign'                     => [
         'helper'    => 'Uma campanha pública definida como aberta permitirá que os usuários enviem solicitações para ingressar nela. Encontre a lista de solicitações em nossa página :link.',
         'link'      => 'aplicações de campanha',
+        'statuses'  => [
+            'closed'    => 'Fechado',
+            'open'      => 'Aberto a aplicativos',
+        ],
         'title'     => 'Abrir a campanha',
     ],
     'options'                           => [],
@@ -231,6 +235,16 @@ TEXT
         'locale'        => 'Idioma',
         'name'          => 'O nome da sua campanha',
         'system'        => 'D&D, Pathfinder, Fate, DSA',
+    ],
+    'privacy'                           => [
+        'hidden'    => 'Escondido',
+        'private'   => 'Privado',
+        'visible'   => 'Visível',
+    ],
+    'public'                            => [
+        'helpers'   => [
+            'introduction'  => 'As campanhas são privadas por padrão e podem ser tornadas públicas. Isso permite que qualquer pessoa as acesse, e as torna disponíveis na página :public-campaigns se elas tiverem entidades visíveis para a função :public-role. Uma campanha pública é visível para todos, mas para que seu conteúdo seja visível, a função :public-role precisa de permissões adequadas.',
+        ],
     ],
     'roles'                             => [
         'actions'       => [
@@ -284,6 +298,7 @@ TEXT
                 'delete'        => 'Deletar',
                 'edit'          => 'Editar',
                 'entity-note'   => 'Nota da entidade',
+                'gallery'       => 'Galeria',
                 'manage'        => 'Gerenciar',
                 'members'       => 'Membros',
                 'permission'    => 'Gerenciar Permissões',
@@ -296,6 +311,7 @@ TEXT
                 'delete'        => 'Permitir remover todas as entidades desse tipo.',
                 'edit'          => 'Permitir editar todas as entidades desse tipo.',
                 'entity_note'   => 'Isso permite que usuários que não têm permissões de edição em uma entidade adicionem notas de entidade a ela.',
+                'gallery'       => 'Permite gerenciar a galeria da campanha superimpulsionada.',
                 'manage'        => 'Permitir a edição da campanha como um administrador de campanha faria, sem permitir que os membros excluam a campanha.',
                 'members'       => 'Permitir convidar novos membros para a campanha.',
                 'permission'    => 'Permitir a configuração de permissões em entidades desse tipo que eles podem editar.',
@@ -339,6 +355,9 @@ TEXT
         'boosted'   => 'Este recurso está em acesso antecipado e atualmente disponível apenas para :boosted.',
         'edit'      => [
             'success'   => 'Configurações da campanha atualizadas.',
+        ],
+        'errors'    => [
+            'module-disabled'   => 'O módulo solicitado está atualmente desabilitado nas configurações da campanha. :fix.',
         ],
         'helper'    => 'Você pode facilmente desabilitar elementos da sua campanha que serão escondidos. Se você já havia criado elementos nas categorias que desabilitar, eles não serão deletados, apenas ocultados.',
         'helpers'   => [
@@ -387,6 +406,7 @@ TEXT
             'recovery'          => 'Recuperação',
             'roles'             => 'Cargos',
             'settings'          => 'Configurações',
+            'sidebar'           => 'Configuração da barra lateral',
             'styles'            => 'Temas',
         ],
         'title'     => 'Campanha :name',
@@ -399,8 +419,47 @@ TEXT
             ],
         ],
     ],
+    'themes'                            => [
+        'none'  => 'Nenhum (padrão para configurações do usuário)',
+    ],
     'ui'                                => [
-        'other' => 'Outro',
+        'boosted'           => 'Impulsionado',
+        'collapsed'         => [
+            'collapsed' => 'Colapsado',
+            'default'   => 'Padrão',
+        ],
+        'connections'       => [
+            'explorer'  => 'Explorador de relações (se disponível, para campanhas impulsionadas)',
+            'list'      => 'Interface da lista',
+        ],
+        'entity_history'    => [
+            'hidden'    => 'Apenas visível aos administradores da campanha.',
+            'visible'   => 'Visível aos membros',
+        ],
+        'fields'            => [
+            'connections'       => 'Interface padrão de conexões da entidade',
+            'entity_history'    => 'Registro de históricos da entidades.',
+            'entity_image'      => 'Imagem da entidade',
+            'family_toolip'     => 'Família do personagem',
+            'member_list'       => 'Lista de membros da campanha',
+            'nested'            => 'Layout padrão de listas',
+            'post_collapsed'    => 'Novo post por padrão colapsado',
+        ],
+        'helpers'           => [
+            'connections'       => 'Ao clicar na subpágina de conexões de uma entidade, selecione a interface padrão mostrada.',
+            'other'             => 'Outras opções visuais para a campanha.',
+            'post_collapsed'    => 'Ao criar uma nova postagem em uma entidade, selecione o valor padrão do campo colapsado.',
+            'tooltip'           => 'Controle quais informações ficam visíveis ao passar o mouse sobre o nome de uma entidade em sua dica de ferramenta.',
+        ],
+        'members'           => [
+            'hidden'    => 'Apenas visível aos administradores da campanha',
+            'visible'   => 'Visível aos membros',
+        ],
+        'nested'            => [
+            'default'   => 'Padrão',
+            'nested'    => 'Aninhado',
+        ],
+        'other'             => 'Outro',
     ],
     'visibilities'                      => [
         'private'   => 'Privado',

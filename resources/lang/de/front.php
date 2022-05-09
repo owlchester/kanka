@@ -197,19 +197,20 @@ return [
     ],
     'first_block'           => [
         'description'   => 'Unsere App ist auf allen mobilen Geräten und Browsern verfügbar! Du brauchst nichts zu installieren, alles läuft in deinem Browser. Das Beste daran, es ist komplett kostenlos!',
-        'title'         => 'Ein neuer Art und Weise, den Überblick über deine Kampagne zu bewahren.',
+        'title'         => 'Eine neue Art und Weise, den Überblick über deine Kampagne zu bewahren.',
     ],
     'footer'                => [
-        'app'           => 'App',
-        'headings'      => [
+        'app'       => 'App',
+        'copyright' => 'Copyright :copy :year :company',
+        'headings'  => [
             'app'           => 'App',
             'community'     => 'Community',
             'other'         => 'Andere',
             'useful_links'  => 'Nützliche Links',
         ],
-        'navigation'    => 'Navigation',
-        'resources'     => 'Ressourcen',
-        'social'        => 'Social',
+        'navigation'=> 'Navigation',
+        'resources' => 'Ressourcen',
+        'social'    => 'Social',
     ],
     'help'                  => [
         'description'   => 'Wir sind für dich da, falls du Hilfe brauchst. Kontaktier uns über einen der folgenden Wege und wir melden uns bei dir so schnell wie möglich zurück.',

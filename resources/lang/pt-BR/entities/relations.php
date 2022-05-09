@@ -37,6 +37,10 @@ return [
         'two_way'           => 'Criar relação mútua',
     ],
     'helper'        => 'Estabeleça relações entre entidades com atitudes e visibilidade. Relações também podem ser fixadas no menu da entidade.',
+    'helpers'       => [
+        'no_relations'  => 'Essa entidade atualmente não tem quaisquer outras relações com outras entidades da campanha.',
+        'popup'         => 'Entidades da campanha podem ser ligadas juntas usando relações. Elas podem ter uma descrição, uma avaliação de atitude, uma visibilidade para controlar quem vê a relação, e mais.',
+    ],
     'hints'         => [
         'attitude'          => 'Este campo opcional pode ser usado para definir a ordem na qual as relações aparecem, em ordem decrescente.',
         'mirrored'          => [

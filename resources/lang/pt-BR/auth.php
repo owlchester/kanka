@@ -1,6 +1,12 @@
 <?php
 
 return [
+    'confirm'   => [
+        'confirm'   => 'Confirmar',
+        'error'     => 'Senha inválida, por favor tente novamente.',
+        'helper'    => 'Por favor confirme sua senha antes de continuar.',
+        'title'     => 'Confirmação da Senha',
+    ],
     'failed'    => 'Essas credenciais não correspondem ao do nosso sistema.',
     'helpers'   => [
         'password'  => 'Mostrar / Esconder senha',

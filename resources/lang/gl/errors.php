@@ -24,6 +24,7 @@ return [
             '1' => 'Kanka está en mantemento agora mesmo, o que normalmente significa que unha nova actualización está en camiño!',
             '2' => 'Desculpa polas molestias. Todo volverá á normalidade nuns poucos minutos.',
         ],
+        'json'  => 'Kanka está en mantemento. Por favor, téntao de novo nuns minutos.',
         'title' => 'Mantemento',
     ],
     '503-form'  => [],

@@ -20,6 +20,7 @@ return [
         'private'           => 'Súkromné atribúty pomocou :icon zobrazíš len pre členov kampane s administrátorskou rolou.',
         'random'            => 'Ak vytváraš alebo upravuješ šablónu atribútov, môžeš v nej nastaviť náhodné atribúty. Môže to byť buď náhodná hodnota medzi dvoma číslami oddelenými :dash alebo náhodná hodnota zo zoznamu hodnôt oddelených :comma. Hodnota pre daný atribút sa stanoví, keď je šablóna použitá, alebo keď je objekt uložený.',
         'random_examples'   => 'Napr. ak chceš číslo medzi 1 a 100, použi :number. Ak chceš hodnotu zo zoznamu možností, použí :list.',
+        'range'             => 'Číselné atribúty je možné nastaviť, aby povoľovali len zápis čísiel z určitom rozpätí. Napr. použitím :example obmedzíš hodnotu atribút medzi 1 a 10. Rozpätie môže referencovať aj iné atribúty, napr. s :reference. Ak je pri uložení atribútu je hodnota mimo požadované rozpätie, automaticky sa prepočíta na najbližšiu možnú hodnotu.',
         'title'             => 'Atribúty',
     ],
     'dice'              => [

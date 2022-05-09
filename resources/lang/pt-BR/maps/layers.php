@@ -23,6 +23,7 @@ return [
     'helper'        => [
         'amount'            => 'Você pode adicionar até :amount de camadas em um mapa para trocar a imagem de fundo exibida abaixo de seus marcadores.',
         'boosted_campaign'  => 'Campanhas :boosted podem ter até :amount camadas',
+        'is_real'           => 'Camadas não estão disponíveis ao usar OpenStreetMaps.',
     ],
     'placeholders'  => [
         'name'      => 'Subterrãneo, segundo nível, navio naufragado',

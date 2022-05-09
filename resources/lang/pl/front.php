@@ -200,16 +200,17 @@ return [
         'title'         => 'Nowy sposób zarządzania kampaniami RPG i własnymi światami.',
     ],
     'footer'                => [
-        'app'           => 'Aplikacja',
-        'headings'      => [
+        'app'       => 'Aplikacja',
+        'copyright' => 'Copyright :copy :year :company',
+        'headings'  => [
             'app'           => 'Aplikacja',
             'community'     => 'Społeczność',
             'other'         => 'Pozostałe',
             'useful_links'  => 'Pożyteczne strony',
         ],
-        'navigation'    => 'Nawigacja',
-        'resources'     => 'Zasoby',
-        'social'        => 'Społeczne',
+        'navigation'=> 'Nawigacja',
+        'resources' => 'Zasoby',
+        'social'    => 'Społeczne',
     ],
     'help'                  => [
         'description'   => 'Jeżeli potrzebujesz jakiejś pomocy, chętnie jej udzielimy. Skontaktuj się z nami za pomocą jednej z tych metod, a odezwiemy się tak szybko jak to możliwe.',

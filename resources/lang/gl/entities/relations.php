@@ -37,6 +37,10 @@ return [
         'two_way'           => 'Crear relación reflectida',
     ],
     'helper'        => 'Establece relacións entre entidades con actitude e visibilidade. As relacións poden ser fixadas ao menú da entidade.',
+    'helpers'       => [
+        'no_relations'  => 'Esta entidade non ten ningunha relación con outras entidades desta campaña.',
+        'popup'         => 'As entidades da campaña poden ser ligadas usando relacións. Estas poden ter unha descrición, valoración de atitude, control sobre quen pode ver a relación, e máis.',
+    ],
     'hints'         => [
         'attitude'          => 'As relacións aparecerán ordenadas de forma descendente segundo este campo.',
         'mirrored'          => [

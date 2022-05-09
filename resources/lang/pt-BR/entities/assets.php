@@ -2,6 +2,7 @@
 
 return [
     'actions'   => [
+        'alias' => 'Pseudônimo',
         'file'  => 'Arquivo',
         'link'  => 'Link',
     ],

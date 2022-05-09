@@ -1,11 +1,11 @@
 <?php
 
 return [
-    'about'         => [
+    'about'                 => [
         'description'   => 'Kanka naceu do desexo dun apaixonado xogador de rol que quixo crear e administrar un mundo para os seus xogadores. Despois de probar unhas cantas opcións dispoñíbeis e concluír que ningunha delas encaixaba co que quería, comezou o desenvolvemento de Kanka no outono de 2017.',
         'title'         => 'Sobre nós',
     ],
-    'campaigns'     => [
+    'campaigns'             => [
         'description_full'  => 'Moitas das campañas en Kanka son públicas para que todas as poidan ver. Esta páxina contén unha lista de todas as campañas públicas, así como algunas campañas destacadas da comunidade.',
         'featured'          => [
             'description'   => 'A nosa comunidade crea cousas incríbeis que nos encanta mostrar nas Campañas Destacadas. Asegúrate de voltar de vez en cando para ver máis campañas destacadas.',
@@ -30,24 +30,29 @@ return [
         ],
         'title'             => 'Campañas públicas',
     ],
-    'community'     => [],
-    'contact'       => [
+    'community'             => [],
+    'contact'               => [
         'description'   => 'Precisas axuda, tes unha suxestión, ou queres compartir o teu amor por Kanka? O noso equipo responderá a calquera cousa!',
         'email'         => 'Envía calquera consulta a',
         'other'         => 'Ou nunha das seguintes redes sociais:',
         'title'         => 'Estamos aquí para ti',
     ],
-    'cookie'        => [
+    'cookie'                => [
         'dismiss'   => 'Entendido!',
         'link'      => 'Aprende máis',
         'message'   => 'Esta páxina web usa cookies para garantir que teñas a mellor experiencia posible.',
     ],
-    'faq'           => [
+    'faq'                   => [
         'helpers'   => [
             'more'  => 'Non atopas o que buscas?',
         ],
     ],
-    'features'      => [
+    'featured_campaigns'    => [
+        'description'   => 'Queres ver Kanka en acción e como outra xente usa a aplicación? Aquí tes algunha campañas da nosa comunidade que cremos que son exemplares.',
+        'more'          => 'Queres ver máis campañas? Mira as nosas :public-campaigns.',
+        'title'         => 'Procurando inspiración?',
+    ],
+    'features'              => [
         'abilities'         => [
             'description'   => 'Xestiona os inventarios das entidades. Engade feitizos e poderes a personaxes mediante habilidades.',
             'title'         => 'Habilidades e obxectos',
@@ -80,6 +85,7 @@ return [
             'no_ads'                => 'Ningún anuncio na campaña',
             'recovery'              => 'Recuperación de entidades de ata 30 días',
             'relation-visualiser'   => 'Explora as relacións entre entidades visualmente',
+            'sidebar'               => 'Reordena e personaliza a barra lateral da campaña',
             'theme'                 => 'Tema de campaña fixo',
             'title'                 => 'Campañas potenciadas',
             'tooltip'               => 'Previsualizacións emerxentes personalizadas: mostrar imaxe, cambiar texto',
@@ -167,7 +173,7 @@ return [
             'title'         => 'Xestión de campañas de rol',
         ],
         'secrets'           => [
-            'description'   => 'Toda entidade pode ter múltiples segredos ligados a ela en forma de notas de entidade. Estas poden ter permisos individuais para controlar quen pode velas, e poden ser fixadas na vista principal dunha entidade para ser facilmente accesíbeis.',
+            'description'   => 'Toda entidade pode ter múltiples segredos ligados a ela en forma de entradas. Estas poden ter permisos individuais para controlar quen pode velas, e son visibles na vista principal dunha entidade.',
             'title'         => 'Xestionar segredos',
         ],
         'superboosts'       => [
@@ -189,11 +195,11 @@ return [
             'title' => 'Creación de mundos',
         ],
     ],
-    'first_block'   => [
+    'first_block'           => [
         'description'   => 'Kanka está dispoñíbel en calquera dispositivo e é actualizada frecuentemente con novas funcionalidades e melloras. Esquécete de perder notas desperdigadas, en Kanka terás todo nun só lugar, doado de atopar e fácilmente accesíbel.',
         'title'         => 'Unha nova maneira de monitorizar a creación de mundo e as campañas de rol.',
     ],
-    'footer'        => [
+    'footer'                => [
         'app'       => 'Aplicación',
         'copyright' => 'Copyright :copy :year Owlchester SNC',
         'headings'  => [
@@ -206,7 +212,7 @@ return [
         'resources' => 'Recursos',
         'social'    => 'Social',
     ],
-    'help'          => [
+    'help'                  => [
         'description'   => 'Estamos aquí en caso de que precises axuda. Contáctanos usando algún dos seguintes métodos e te atenderemos o antes posíbel.',
         'discord'       => 'Únete ao noso Discord',
         'documentation' => 'Comproba a documentación',
@@ -215,18 +221,18 @@ return [
         'title'         => 'Axuda',
         'twitter'       => 'Chíanos en Twitter',
     ],
-    'home'          => [
+    'home'                  => [
         'seo'   => [
             'meta-description'  => 'Dirixes xogos de rol, creas mundos, ou narras historias? Ofrecemos un administrador de campañas e ferramenta de creación de mundos que facilita organizar, planexar e desfrutar as túas campañas de rol. Escoitamos á comunidade e, o mellor de todo, as nosas principais funcionalidades son de balde!',
         ],
     ],
-    'master'        => [
+    'master'                => [
         'call_to_action'    => 'Crea unha conta',
         'description'       => 'Kanka é unha ferramenta perfecta para crear mundos e administrar campañas de rol. Axudámoste a crear e organizar as túas campañas e mundos co noso sistema de @mencións e un amplo abano de funcionalidades como calendarios, mapas interactivos, liñas temporais, organizacións, familias, personaxes, e moito máis!',
         'heading'           => 'Xestión de campañas de rol e creación de mundos e historias. Todo en un.',
         'title'             => 'Kanka',
     ],
-    'media'         => [
+    'media'                 => [
         'description'   => 'Atopa imaxes de alta resolución de Kanka nesta páxina. Úsaas se estás promocionando Kanka ou creando ferramentas que interacionan con Kanka.',
         'images'        => [
             'primary'   => 'Logo principal de Kanka',
@@ -234,7 +240,7 @@ return [
         ],
         'title'         => 'Media',
     ],
-    'menu'          => [
+    'menu'                  => [
         'about'         => 'Sobre nós',
         'api'           => 'API',
         'campaigns'     => 'Campañas públicas',
@@ -263,15 +269,15 @@ return [
         'terms'         => 'Términos e condicións',
         'title'         => 'Menú',
     ],
-    'meta'          => [
+    'meta'                  => [
         'description'   => 'Kanka é un administrador flexíbel de campañas de rol e creación de mundos.',
         'title'         => 'Kanka - Xestión de campañas de rol e creación de mundos',
     ],
-    'partners'      => [
+    'partners'              => [
         'description'   => 'Asociámonos con algunhas incríbeis ferramentas e comunidades que comparten os nosos obxectivos e valores.',
         'title'         => 'Socias',
     ],
-    'pricing'       => [
+    'pricing'               => [
         'actions'       => [
             'subscribe' => 'Subscríbete',
         ],
@@ -293,12 +299,12 @@ return [
         ],
         'title'         => 'Prezos',
     ],
-    'privacy'       => [
+    'privacy'               => [
         'description'   => 'Data efectiva: :date',
         'title'         => 'Política de privacidade',
     ],
-    'release'       => [],
-    'roadmap'       => [
+    'release'               => [],
+    'roadmap'               => [
         'backlog'           => [
             'description'   => 'Este taboleiro de Trello contén todas as funcionalidades solicitadas pola comunidade, así como todas as planexadas que chegarán á aplicación algún día.',
             'title'         => 'Traballos pendentes',
@@ -316,16 +322,16 @@ return [
         ],
         'title'             => 'Folla de ruta',
     ],
-    'second_block'  => [
+    'second_block'          => [
         'call_to_action'    => 'Rexístrate cunha conta gratuíta!',
     ],
-    'seo'           => [
+    'seo'                   => [
         'keywords'  => 'Creación de mundos, Xogos de rol, Xestión de campañas RPG',
     ],
-    'team'          => [
+    'team'                  => [
         'coffee'    => 'Invítame a un café!',
     ],
-    'terms'         => [
+    'terms'                 => [
         'description'   => 'Data efectiva: :date',
         'title'         => 'Termos e condicións',
     ],

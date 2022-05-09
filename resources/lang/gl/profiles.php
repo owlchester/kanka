@@ -22,6 +22,7 @@ return [
     ],
     'fields'                        => [
         'avatar'                    => 'Avatar',
+        'bio'                       => 'Biografía',
         'email'                     => 'Correo electrónico',
         'hide_subscription'         => 'Ocultar o meu nome no :hall_of_fame.',
         'last_login_share'          => 'Compartir a última vez que estiven en liña coas integrantes da campaña.',
@@ -58,6 +59,7 @@ return [
         'success'   => 'Contrasinal actualizado',
     ],
     'placeholders'                  => [
+        'bio'                       => 'Unha pequena descrición que se mostrará no teu perfil público.',
         'email'                     => 'O teu enderezo de correo electrónico',
         'name'                      => 'O nome que será mostrado',
         'new_password'              => 'O teu novo contrasinal',
@@ -86,7 +88,9 @@ return [
             'pagination'                    => 'Paxinación (elementos por páxina)',
         ],
         'helpers'   => [
+            'bio'       => 'A biogrofía é visible no teu :link.',
             'editor_v2' => 'O editor de texto obsoleto (TinyMCE) non soporta mencións en dispositivos móbeis nin algunhas funcionalidades como a galería de campaña.',
+            'profile'   => 'perfil público',
         ],
         'hints'     => [
             'advanced_mentions'     => 'Ao activalo, as mencións sempre serán mostradas como [entity:123] ao editar unha entidade.',

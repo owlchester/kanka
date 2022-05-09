@@ -7,8 +7,9 @@ return [
         'add_user'  => 'Engadir integrante',
     ],
     'copy_mention'  => [
-        'copy'      => 'Copiar mención avanzada',
-        'success'   => 'Copiouse no portapapeis a mención avanzada a esta entrada.',
+        'copy'              => 'Copiar mención avanzada',
+        'copy_with_name'    => 'Copiar mención avanzada co nome da entrada',
+        'success'           => 'Copiouse no portapapeis a mención avanzada a esta entrada.',
     ],
     'create'        => [
         'success'   => 'Entrada ":name" engadida a ":entity".',

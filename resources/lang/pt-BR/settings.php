@@ -176,7 +176,14 @@ return [
             'title'     => 'Editar método de pagamento',
         ],
         'cancel'                => [
-            'text'  => 'Lamentamos ver você ir! O cancelamento de sua assinatura a manterá ativa até o próximo ciclo de faturamento, após o qual você perderá os impulsionamentos à sua campanha e outros benefícios relacionados ao suporte ao Kanka. Sinta-se à vontade para preencher o formulário a seguir para nos informar o que podemos fazer melhor ou o que levou à sua decisão.',
+            'options'   => [
+                'competitor'        => 'Mudar para um concorrente',
+                'custom'            => 'Outro (por favor especifique)',
+                'financial'         => 'Situação financeira alterada',
+                'missing_features'  => 'Recursos ausentes',
+                'not_using'         => 'Não estou usando o Kanka no momento',
+            ],
+            'text'      => 'Lamentamos ver você ir! O cancelamento de sua assinatura a manterá ativa até o próximo ciclo de faturamento, após o qual você perderá os impulsionamentos à sua campanha e outros benefícios relacionados ao suporte ao Kanka. Sinta-se à vontade para preencher o formulário a seguir para nos informar o que podemos fazer melhor ou o que levou à sua decisão.',
         ],
         'cancelled'             => 'Sua assinatura foi cancelada. Você pode renovar uma assinatura assim que sua assinatura atual terminar.',
         'change'                => [

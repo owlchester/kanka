@@ -97,6 +97,7 @@ return [
     ],
     'helpers'       => [
         'month_type'    => 'Os meses intercalares non usan días da semana, pero inflúen nas lúas e nas estacións.',
+        'moon_offset'   => 'Por defecto, a primeira lúa chea será no primeiro día do ano 0. Cambiar o seu retraso alterará cando aparece a primeira lúa chea. Este valor pode ser negativo ou positivo (ata a lonxitude do primeiro mes).',
         'nested_parent' => 'Mostrando os calendarios de ":parent".',
         'nested_without'=> 'Mostrando todos os calendarios que non teñen un calendario pai. Fai clic nunha fila para ver os seus descendentes.',
         'start_offset'  => 'Por defecto, os calendarios comezan no primeiro día da semana no ano 0. Con este campo podes cambiar en que día comeza o calendario.',
@@ -219,5 +220,8 @@ return [
     'sorters'       => [
         'after' => 'De hoxe en adiante',
         'before'=> 'De hoxe cara atrás',
+    ],
+    'validators'    => [
+        'moon_offset'   => 'O retraso da primeira lúa chea non pode ser maior que a lonxitude do primeiro mes do calendario.',
     ],
 ];
