@@ -253,7 +253,7 @@ class User extends \Illuminate\Foundation\Auth\User
         $campaign = CampaignLocalization::getCampaign();
         if ($this->isPatron() || ($campaign && $campaign->boosted())) {
             // Elementals get massive upload sizes
-            if ($this->isElementalPatreon()) {
+            if ($this->isElemental()) {
                 if ($this->id === 34122) {
                     return $readable ? '100MB' : 102400;
                 }
@@ -295,16 +295,16 @@ class User extends \Illuminate\Foundation\Auth\User
      * Determine if a user is a goblin (deprecated)
      * @return bool
      */
-    public function isGoblinPatron(): bool
+    public function isGoblin(): bool
     {
-        return $this->patreon_pledge == Patreon::PLEDGE_GOBLIN;
+        return !empty($this->patreon_pledge) && $this->patreon_pledge !== Patreon::PLEDGE_KOBOLD;
     }
 
     /**
      * Determine if a user is an elemental
      * @return bool
      */
-    public function isElementalPatreon(): bool
+    public function isElemental(): bool
     {
         // We check the campaign and roles for 61105 because of a special Elemental subscriber.
         $campaign = CampaignLocalization::getCampaign(false);
@@ -386,7 +386,7 @@ class User extends \Illuminate\Foundation\Auth\User
      */
     public function getRateLimitAttribute(): int
     {
-        return $this->isGoblinPatron() ? 90 : 30;
+        return $this->isGoblin() ? 90 : 30;
     }
 
     /**

@@ -32,7 +32,7 @@ class CommunityVotePolicy
         }
 
         if ($status == CommunityVote::STATUS_VOTING) {
-            return $user->isGoblinPatron();
+            return $user->isGoblin();
         }
 
         // Scheduled and Draft are limited to admins
@@ -51,7 +51,7 @@ class CommunityVotePolicy
         if ($status == CommunityVote::STATUS_PUBLISHED) {
             return true;
         } elseif ($status == CommunityVote::STATUS_VOTING) {
-            return $user->isGoblinPatron();
+            return $user->isGoblin();
         }
 
         // Not in a voting phase

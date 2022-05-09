@@ -714,7 +714,7 @@ class SubscriptionService
     protected function downgrading(): bool
     {
         // Elemental downgrading -> owl or wyv
-        if ($this->user->isElementalPatreon() && in_array($this->tier, [Patreon::PLEDGE_OWLBEAR, Patreon::PLEDGE_WYVERN])) {
+        if ($this->user->isElemental() && in_array($this->tier, [Patreon::PLEDGE_OWLBEAR, Patreon::PLEDGE_WYVERN])) {
             return true;
         }
 

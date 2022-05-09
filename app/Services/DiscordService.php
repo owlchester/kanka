@@ -193,7 +193,7 @@ class DiscordService
         ];
 
         $roles = [
-            config('discord.roles.' . ($this->user->isElementalPatreon() ? 'elemental' : ($this->user->isWyvern() ? 'wyvern' : 'owlbear'))),
+            config('discord.roles.' . ($this->user->isElemental() ? 'elemental' : ($this->user->isWyvern() ? 'wyvern' : 'owlbear'))),
         ];
 
        foreach ($roles as $id) {

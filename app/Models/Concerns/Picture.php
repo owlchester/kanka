@@ -57,7 +57,7 @@ trait Picture
                 return Img::crop(40, 40)->url(CampaignCache::defaultImages()[$this->type()]['path']);
             }
 
-            if (auth()->check() && auth()->user()->isGoblinPatron()) {
+            if (auth()->check() && auth()->user()->isGoblin()) {
                 return str_replace(['defaults/', '.jpg'], ['defaults/patreon/', '.png'], $avatar);
             }
         }
