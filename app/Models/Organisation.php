@@ -86,7 +86,6 @@ class Organisation extends MiscModel
      */
     protected $foreignExport = [
         'members',
-        'quests'
     ];
 
     /**

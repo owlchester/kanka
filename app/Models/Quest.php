@@ -18,12 +18,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property boolean $is_completed
  * @property string $date
  * @property Character $character
- * @property Character[] $characters
- * @property Location[] $locations
  * @property Quest $quest
  * @property Quest[] $quests
- * @property Item[] $items
- * @property Organisation[] $organisations
  * @property QuestElement[] $elements
  */
 class Quest extends MiscModel
@@ -115,10 +111,7 @@ class Quest extends MiscModel
      * @var array
      */
     protected $foreignExport = [
-        'locations',
-        'characters',
-        'items',
-        'organisations',
+        'elements',
     ];
 
     /**

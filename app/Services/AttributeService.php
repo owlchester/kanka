@@ -672,8 +672,8 @@ class AttributeService
                     return [$type, $value];
                 }
 
-                $min = trim($values[0]);
-                $max = trim($values[1]);
+                $min = (int) trim($values[0]);
+                $max = (int) trim($values[1]);
 
                 return [$type, mt_rand($min, $max)];
             }

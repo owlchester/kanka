@@ -111,7 +111,7 @@ class DatagridRenderer2
      */
     public function hasBulks(): bool
     {
-        return !empty($this->layout->bulks()) && auth()->user()->isAdmin();
+        return !empty($this->layout->bulks()) && auth()->check() && auth()->user()->isAdmin();
     }
 
     /**
