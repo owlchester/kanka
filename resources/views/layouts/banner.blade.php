@@ -10,11 +10,10 @@
     </div>
 @endif
 
-@if (false)
+@if (true)
 <div class="bg-orange banner-notification">
     <span>
-
-        Kanka is currently undergoing server maintenance, which we expect to last until <a href="https://everytimezone.com/s/b41937bc" target="_blank" class="text-light-blue">4:00PM UTC</a>. Some pages might load slowly or not at all.<br />Join us on <a href="{{ config('social.discord') }}" target="_blank" class="text-light-blue">Discord</a> to get updates.
+        Kanka will be unvailable from <a href="https://everytimezone.com/?t=62785980,31b" target="_blank" class="text-light-blue">13:15 UTC</a> to about 14:00 UTC. Please save what you are working on before then.<br />Join us on <a href="{{ config('social.discord') }}" target="_blank" class="text-light-blue">Discord</a> for more info.
     </span>
 </div>
 @endif
