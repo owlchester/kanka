@@ -164,7 +164,7 @@ class AbilityService
             'images' => [
                 'has' => !empty($entityAbility->ability->image) || $entityAbility->ability->entity->image,
                 'thumb' => $entityAbility->ability->getImageUrl(120),
-                'url' => $entityAbility->ability->getOriginalImageUrl(),
+                'url' => !empty($entityAbility->ability->image) ? $entityAbility->ability->getOriginalImageUrl() : null,
             ],
             'actions' => [
                 'edit' => route('entities.entity_abilities.edit', [$this->entity, $entityAbility]),
