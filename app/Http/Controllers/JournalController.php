@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Datagrids\Filters\JournalFilter;
+use App\Facades\Datagrid;
 use App\Models\Journal;
 use App\Http\Requests\StoreJournal;
 use App\Traits\TreeControllerTrait;
@@ -92,6 +93,31 @@ class JournalController extends CrudController
      */
     public function journals(Journal $journal)
     {
-        return $this->menuView($journal, 'journals');
+        $this->authCheck($journal);
+
+        $options = ['journal' => $journal];
+        $filters = [];
+        if (request()->has('journal_id')) {
+            $options['journal_id'] = $journal->id;
+            $filters['journal_id'] = $journal->id;;
+        }
+
+        Datagrid::layout(\App\Renderers\Layouts\Journal\Journal::class)
+            ->route('journals.journals', $options);
+
+        $this->rows = $journal
+            ->allJournals()
+            ->filter($filters)
+            ->sort(request()->only(['o', 'k']))
+            ->with(['entity', 'character'])
+            ->paginate();
+
+        // Ajax Datagrid
+        if (request()->ajax()) {
+            return $this->datagridAjax();
+        }
+
+        return $this
+            ->menuView($journal, 'journals');
     }
 }

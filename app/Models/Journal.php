@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Concerns\Acl;
 use App\Models\Concerns\Nested;
+use App\Models\Concerns\SortableTrait;
 use App\Traits\CalendarDateTrait;
 use App\Traits\CampaignTrait;
 use App\Traits\ExportableTrait;
@@ -31,6 +32,7 @@ class Journal extends MiscModel
         CalendarDateTrait,
         Nested,
         SoftDeletes,
+        SortableTrait,
         Acl
     ;
 
@@ -86,10 +88,9 @@ class Journal extends MiscModel
      * Fields that can be sorted on
      * @var array
      */
-    protected $sortableColumns = [
+    protected $sortable = [
         'date',
-        'calendar_date',
-        'author.name',
+        'character.name',
         //'character.name',
     ];
 
