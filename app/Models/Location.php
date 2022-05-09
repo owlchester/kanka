@@ -371,14 +371,14 @@ class Location extends MiscModel
                 'count' => $count
             ];
         }
-        $count = $this->events()->count();
+        /*$count = $this->events()->count();
         if ($campaign->enabled('events') && $count > 0) {
             $items['second']['events'] = [
                 'name' => 'locations.show.tabs.events',
                 'route' => 'locations.events',
                 'count' => $count
             ];
-        }
+        }*/
         return parent::menuItems($items);
     }
 
