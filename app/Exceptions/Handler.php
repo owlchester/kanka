@@ -83,7 +83,7 @@ class Handler extends ExceptionHandler
             }
             return response()->view('errors.maintenance', [
                 'message' => $exception->getMessage(),
-                'retry' => $exception->retryAfter
+                //'retry' => $exception->retryAfter
             ], 200);
         }
 
