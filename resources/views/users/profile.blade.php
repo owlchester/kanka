@@ -45,7 +45,7 @@
                     </div>
                 </div>
                     <div class="col-md-3 mt-md-5 text-center profile-pledge">
-                    @if ($user->isElementalPatreon())
+                    @if ($user->isElemental())
                         <a href="{{ route('front.hall-of-fame') }}">
                             <img src="https://kanka-app-assets.s3.amazonaws.com/images/tiers/elemental-325.png"
                                  class="profile-subscriber" title="Elemental" />
