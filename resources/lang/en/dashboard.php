@@ -129,6 +129,7 @@ return [
         ],
         'helpers'                   => [
             'class' => 'Define a custom css class added to the widget.',
+            'filters'       => 'Click to learn about the available filter options.',
         ],
         'orders'                    => [
             'name_asc'  => 'Name ascending',
@@ -152,7 +153,6 @@ return [
             'help'              => 'Only show the first entity as a preview instead of a list.',
             'helpers'           => [
                 'entity-header'     => 'If your entity has an entity header (boosted campaign feature), set this widget to use that image instead of the entity\'s image.',
-                'filters'           => 'You can filter the kind of entities that show up. Learn how to use this field by visiting the :link helper page.',
                 'full'              => 'Display the whole entity\'s entry by default instead of a preview.',
                 'show_attributes'   => 'Show the entity\'s pinned attributes below the entry.',
                 'show_members'      => 'If the entity is a family or organisation, show its members below the entry.',
