@@ -47,7 +47,6 @@ return [
         'two_way'           => 'Al emmirallar una relació, aquesta es copia a l\'objectiu seleccionat. Tanmateix, si editeu una, l\'atra no es veu afectada.',
     ],
     'index'         => [
-        'add'   => 'Nova relació',
         'title' => 'Relacions',
     ],
     'options'       => [

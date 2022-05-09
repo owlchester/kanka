@@ -19,7 +19,6 @@ return [
         'journal'   => 'Caderno pai',
         'journals'  => 'Subcadernos',
         'name'      => 'Nome',
-        'relation'  => 'Relación',
         'type'      => 'Tipo',
     ],
     'helpers'       => [
@@ -28,9 +27,7 @@ return [
         'nested_without'=> 'Mostrando todos os cadernos que non teñen un caderno pai. Fai clic nunha fila para ver os seus descendentes.',
     ],
     'index'         => [
-        'add'       => 'Novo caderno',
-        'header'    => 'Cadernos de ":name"',
-        'title'     => 'Cadernos',
+        'title' => 'Cadernos',
     ],
     'journals'      => [
         'title' => 'Subcadernos de ":name"',
@@ -46,6 +43,5 @@ return [
         'tabs'  => [
             'journals'  => 'Cadernos',
         ],
-        'title' => 'Caderno ":name"',
     ],
 ];

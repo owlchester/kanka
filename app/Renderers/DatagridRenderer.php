@@ -144,21 +144,21 @@ class DatagridRenderer
                 $html = null;
             } elseif ($type == 'location') {
                 $class .= '  hidden-xs hidden-sm';
-                $html = $this->route('location.name', trans('crud.fields.location'));
+                $html = $this->route('location.name',  __('crud.fields.location'));
             } elseif ($type == 'organisation') {
                 $class .= '  hidden-xs hidden-sm';
-                $html = $this->route('organisation.name', trans('crud.fields.organisation'));
+                $html = $this->route('organisation.name',  __('crud.fields.organisation'));
             } elseif ($type == 'character') {
                 $class .= '  hidden-xs hidden-sm';
                 $html = $this->route(
                     'character.name',
-                    !empty($column['label']) ? $column['label'] : trans('crud.fields.character')
+                    !empty($column['label']) ? $column['label'] :  __('crud.fields.character')
                 );
             } elseif ($type == 'entity') {
                 $class .= '  hidden-xs hidden-sm';
                 $html = $this->route(
                     'entity.name',
-                    !empty($column['label']) ? $column['label'] : trans('crud.fields.entity')
+                    !empty($column['label']) ? $column['label'] :  __('crud.fields.entity')
                 );
             } elseif ($type == 'is_private') {
                 // Viewers can't see private
@@ -167,7 +167,7 @@ class DatagridRenderer
                 }
                 $html = $this->route(
                     'is_private',
-                    '<i class="fa fa-lock" title="' . trans('crud.fields.is_private') . '"></i>'
+                    '<i class="fa-solid fa-lock" title="' .  __('crud.fields.is_private') . '"></i>'
                 );
                 $class = 'icon';
             } elseif ($type == 'calendar_date') {
@@ -234,14 +234,14 @@ class DatagridRenderer
 
         // Order by
         $order = $this->filterService->order();
-        $orderImg = ' <i class="fa fa-sort"></i>';
+        $orderImg = ' <i class="fa-solid fa-sort"></i>';
         if (!empty($order) && isset($order[$field])) {
             $direction = 'down';
             if ($order[$field] != 'DESC') {
                 $routeOptions['desc'] = true;
                 $direction = 'up';
             }
-            $orderImg = ' <i class="fa fa-sort-' . $direction . '"></i>';
+            $orderImg = ' <i class="fa-solid fa-sort-' . $direction . '"></i>';
         }
 
         return "<a href='" .
@@ -276,6 +276,7 @@ class DatagridRenderer
         $useEntity = $this->getOption('disableEntity') !== true;
         // Should never happen...
         if ($useEntity && empty($model->entity)) {
+            return;
             $model->save();
             $model->refresh();
         }
@@ -321,7 +322,7 @@ class DatagridRenderer
             } else {
                 // Handle boolean values (has, is)
                 if ($this->isBoolean($column)) {
-                    $icon = $column == 'is_dead' ? 'ra ra-skull' : 'fa fa-check-circle';
+                    $icon = $column == 'is_dead' ? 'ra ra-skull' : 'fa-solid fa-check-circle';
                     $content = $model->{$column} ? '<i class="' . $icon . '"></i>' : '';
                 } else {
                     $content = e($model->{$column});
@@ -383,7 +384,7 @@ class DatagridRenderer
                     return null;
                 }
                 $content = $model->is_private ?
-                    '<i class="fa fa-lock" title="' . trans('crud.is_private') . '"></i>' :
+                    '<i class="fa-solid fa-lock" title="' .  __('crud.is_private') . '"></i>' :
                     '<br />';
             } elseif ($type == 'calendar_date') {
                 $class = 'hidden-xs hidden-sm';
@@ -430,7 +431,7 @@ class DatagridRenderer
     {
         $trans = $this->getOption('trans');
         if (!empty($trans)) {
-            return trans(rtrim($trans, '.') . '.' . $field);
+            return  __(rtrim($trans, '.') . '.' . $field);
         }
         // No idea what to do!
         return $field;
@@ -448,7 +449,7 @@ class DatagridRenderer
             $content = '
         <div class="dropdown">
             <a class="dropdown-toggle cursor" data-toggle="dropdown" aria-expanded="false" data-placement="right" data-tree="escape">
-                <i class="fa fa-ellipsis-v" data-tree="escape"></i>
+                <i class="fa-solid fa-ellipsis-v" data-tree="escape"></i>
                 <span class="sr-only">' . __('crud.actions.actions') . '</span>
             </a>
             <ul class="dropdown-menu dropdown-menu-right" role="menu">
@@ -468,8 +469,8 @@ class DatagridRenderer
         if ($this->user && $this->user->can('update', $model)) {
             $actions .= ' <a href="'
                 . route($this->getOption('baseRoute') . '.edit', [$model])
-                . '" title="' . trans('crud.edit') . '">
-                <i class="fa fa-edit" aria-hidden="true"></i>
+                . '" title="' . __('crud.edit') . '">
+                <i class="fa-solid fa-edit" aria-hidden="true"></i>
             </a>';
         }
         return '<td class="text-center table-actions">' . $actions . '</td>';

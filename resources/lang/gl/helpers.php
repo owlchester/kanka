@@ -20,6 +20,7 @@ return [
         'private'           => 'Os atributos privados usando o :icon serán visíbeis só para a administración da campaña.',
         'random'            => 'Ao crear ou editar un padrón de atributos, podes definir atributos aleatorios. Estes poden ser un valor aleatorio entre dous números separados por :dash, ou un valor aleatorio dunha listaxe de valores separados por :comma. O valor do atributo é determinado ao aplicar o padrón a unha entidade, ou cando a entidade é gardada.',
         'random_examples'   => 'Por exemplo, se queres un número entre o 1 e o 100, usa :number. Se queres un valor de entre unha serie de opcións, usa :list.',
+        'range'             => 'Os atributos de número poden ser configurados para só permitir valores nun rango numérico. Por exemplo, usa :example para limitar o atributo entre 1 e 10. Os valores do rango tamén poden referenciar outros atributos, por exemplo con :reference. Ao gardar un atributo, se o valor está fóra do rango, este axustarase automaticamente ao valor permitido máis próximo.',
         'title'             => 'Atributos',
     ],
     'dice'              => [
@@ -50,9 +51,22 @@ return [
         'title'         => 'Como usar os filtros',
     ],
     'link'              => [
+        'advanced'          => [
+            'title' => 'Mencións avanzadas',
+        ],
         'anchor'            => 'A mención avanzada tamén pode especificar a áncora HTML coa que a ligazón debería ligar, usando :example.',
+        'attribute'         => [
+            'description'   => 'Tamén é posible referenciar atributos desta entidade. Escribe :code e tres letras ou máis para mostrar os atributos coincidentes na entidade.',
+            'title'         => 'Atributos',
+        ],
         'auto_update'       => 'As ligazóns a outras entidades serán actualizadas automaticamente cando o nome ou a descrición da entidade obxectivo cambie.',
         'description'       => 'Podes crea ligazóns a outras entidades facilmente usando os seguintes atallos.',
+        'filtering'         => [
+            'description'   => 'Filtrar para encontrar a entidade exacta que procuras é doado.',
+            'exact'         => 'Escribe :code para encontrar unha entidade que ten exactamente ese nome.',
+            'space'         => 'Escribe :code para encontrar unha entidade cun espazo no nome.',
+            'title'         => 'Filtrado',
+        ],
         'formatting'        => [
             'text'  => 'A lista de etiquetas e atributos HTML permitidas pode atoparse no noso :github.',
             'title' => 'Formatación',
@@ -61,8 +75,12 @@ return [
         'mention_helpers'   => 'Se o nome da túa entidade contén un espazo, usa :example no lugar do espazo. Se queres buscar unha entidade con exactamente ese nome, escrebe :exact.',
         'mentions'          => 'Crea ligazóns a outras entidades escrebendo :code e os primeiros caracteres dunha entidade para buscala. Isto insertará :example no editor de texto. Para personalizar o nome co que se mostra a ligazón á entidade, podes escreber :example_name. Para establecer a subpáxina da entidade á que estás ligando, usa :example_page. Para establecer a lapela, usa :example_tab.',
         'mentions_field'    => 'Tamén podes mostrar un campo da entidade en lugar do seu nome na ligazón con :code.',
+        'month'             => [
+            'title' => 'Meses do calendario',
+        ],
         'months'            => 'Escrebe :code para obter unha lista dos meses dos teus calendarios.',
         'options'           => 'Algunhas opcións son :options.',
+        'overview'          => 'Liga facilmente entidades existentes escribindo :code e tres letras ou máis.',
         'title'             => 'Crear ligazóns a outras entidades e atallos.',
     ],
     'map'               => [

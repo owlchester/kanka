@@ -40,7 +40,7 @@
             @if($submission)
                 <a href="#" class="btn btn-default text-danger delete-confirm pull-right"
                    data-toggle="modal" data-target="#delete-confirm" data-delete-target="delete-submission" data-name="{{ __('campaigns/submissions.apply.remove_text') }}">
-                    <i class="fa fa-trash-o"></i> {{ __('crud.remove') }}
+                    <i class="fa-solid fa-trash-o"></i> {{ __('crud.remove') }}
                 </a>
 
                 {!! Form::open(['method' => 'DELETE','route' => ['campaign.apply.remove'], 'style '=> 'display:inline', 'id' => 'delete-submission']) !!}

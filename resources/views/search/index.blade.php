@@ -17,7 +17,7 @@
 
                         <div class="input-group-btn">
                         <button type="submit" class="btn btn-primary">
-                            <i class="fa fa-search"></i> {{ trans('crud.search') }}
+                            <i class="fa-solid fa-search"></i> {{ trans('crud.search') }}
                         </button>
                         </div>
                     </div>

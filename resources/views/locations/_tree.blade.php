@@ -45,7 +45,7 @@
             'field' => 'map',
             'render' => function($model) {
                 if (!empty($model->map)) {
-                    return '<a href="' . route('locations.map', $model) . '"><i class="fa fa-map"></i></a>';
+                    return '<a href="' . route('locations.map', $model) . '"><i class="fa-solid fa-map"></i></a>';
                 }
                 return null;
             },

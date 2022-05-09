@@ -1,9 +1,9 @@
 <p class="help-block">{{ __('calendars.hints.seasons') }}</p>
 <div class="form-group">
     <div class="row">
-        <div class="col-md-6">{{ trans('calendars.parameters.seasons.name') }}</div>
-        <div class="col-md-3">{{ trans('calendars.parameters.seasons.month') }}</div>
-        <div class="col-md-3">{{ trans('calendars.parameters.seasons.day') }}</div>
+        <div class="col-md-6">{{ __('calendars.parameters.seasons.name') }}</div>
+        <div class="col-md-3">{{ __('calendars.parameters.seasons.month') }}</div>
+        <div class="col-md-3">{{ __('calendars.parameters.seasons.day') }}</div>
     </div>
 </div>
 <?php
@@ -35,7 +35,7 @@ if (!empty($seasonNames)) {
                 <div class="col-md-6">
                     <div class="input-group">
                         <span class="input-group-addon">
-                            <span class="fa fa-arrows-alt-v"></span>
+                            <span class="fa-solid fa-arrows-alt-v"></span>
                         </span>
                         {!! Form::text('season_name[]', $season['name'], ['class' => 'form-control']) !!}
                     </div>
@@ -47,8 +47,8 @@ if (!empty($seasonNames)) {
                     <div class="input-group">
                         {!! Form::number('season_day[]', $season['day'], ['class' => 'form-control']) !!}
                         <span class="input-group-btn">
-                            <span class="month-delete btn btn-danger" data-remove="4" title="{{ trans('crud.remove') }}">
-                                <i class="fa fa-trash"></i>
+                            <span class="month-delete btn btn-danger" data-remove="4" title="{{ __('crud.remove') }}">
+                                <i class="fa-solid fa-trash"></i>
                             </span>
                         </span>
                     </div>
@@ -57,8 +57,8 @@ if (!empty($seasonNames)) {
         </div>
     @endforeach
 </div>
-<a class="btn btn-default" id="add_season" href="#" title="{{ trans('calendars.actions.add_season') }}">
-    <i class="fa fa-plus"></i> {{ trans('calendars.actions.add_season') }}
+<a class="btn btn-default" id="add_season" href="#" title="{{ __('calendars.actions.add_season') }}">
+    <i class="fa-solid fa-plus"></i> {{ __('calendars.actions.add_season') }}
 </a>
 
 @section('modals')
@@ -75,8 +75,8 @@ if (!empty($seasonNames)) {
             <div class="input-group">
                 {!! Form::number('season_day[]', null, ['class' => 'form-control', 'placeholder' => __('calendars.parameters.seasons.day')]) !!}
                 <span class="input-group-btn">
-                    <span class="month-delete btn btn-danger" data-remove="4" title="{{ trans('crud.remove') }}">
-                        <i class="fa fa-trash"></i>
+                    <span class="month-delete btn btn-danger" data-remove="4" title="{{ __('crud.remove') }}">
+                        <i class="fa-solid fa-trash"></i>
                     </span>
                 </span>
             </div>

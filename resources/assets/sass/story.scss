@@ -1,5 +1,5 @@
-.entity-notes-reorder {
-  .story {
+.element-live-reorder {
+  .element {
     display: flex;
     flex-flow: row wrap;
     background-color: rgba(0, 0, 0, 0.1);
@@ -17,11 +17,29 @@
 
     .name {
       overflow: hidden;
+      flex-grow: 1;
       //align-self: flex-start;
+
+      i {
+        min-width: 20px;
+      }
+      i.ra {
+        display: var(--fa-display,inline-block);
+      }
+    }
+
+    .state {
+      padding: 0 10px;
+      align-self: flex-end;
     }
 
     .icons {
-      margin-left: auto;
+      align-self: flex-end;
+    }
+
+    select {
+      height: 28px;
+      padding: 3px 6px;
     }
   }
 }

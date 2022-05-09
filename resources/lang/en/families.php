@@ -22,7 +22,6 @@ return [
         'location'  => 'Location',
         'members'   => 'Members',
         'name'      => 'Name',
-        'relation'  => 'Relation',
         'type'      => 'Type',
     ],
     'helpers'       => [
@@ -34,9 +33,7 @@ return [
         'members'   => 'Members of a family are listed here. A character can be added to a family by editing the desired character and using the "Family" dropdown.',
     ],
     'index'         => [
-        'add'       => 'New Family',
-        'header'    => 'Families of :name',
-        'title'     => 'Families',
+        'title' => 'Families',
     ],
     'members'       => [
         'helpers'   => [
@@ -55,8 +52,6 @@ return [
             'all_members'   => 'All Members',
             'families'      => 'Families',
             'members'       => 'Members',
-            'relation'      => 'Relations',
         ],
-        'title' => 'Family :name',
     ],
 ];

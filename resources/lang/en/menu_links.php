@@ -53,7 +53,4 @@ return [
         'success'   => 'Quick links reordered.',
         'title'     => 'Reorder quick links',
     ],
-    'show'              => [
-        'title' => 'Quick Link :name',
-    ],
 ];

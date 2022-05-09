@@ -29,7 +29,6 @@ return [
         'locations'         => 'Orte',
         'map'               => 'Karte',
         'name'              => 'Name',
-        'relation'          => 'Beziehung',
         'type'              => 'Typ',
     ],
     'helpers'       => [
@@ -46,19 +45,10 @@ return [
         'is_map_private'    => 'Eine private Karte ist nur für Mitglieder der "Admin" -Rolle der Kampagne sichtbar.',
     ],
     'index'         => [
-        'actions'   => [
-            'explore_view'  => 'Erkundungsansicht',
-        ],
-        'add'       => 'Neuer Ort',
-        'header'    => 'Orte in :name',
-        'title'     => 'Orte',
+        'title' => 'Orte',
     ],
-    'items'         => [
-        'title' => 'Ort :name Gegenstände',
-    ],
-    'journals'      => [
-        'title' => 'Ort :name Logbücher',
-    ],
+    'items'         => [],
+    'journals'      => [],
     'locations'     => [
         'title' => 'Ort :name Orte',
     ],
@@ -207,16 +197,9 @@ return [
     'show'          => [
         'tabs'  => [
             'characters'    => 'Charaktere',
-            'events'        => 'Ereignisse',
-            'families'      => 'Familien',
-            'items'         => 'Gegenstände',
-            'journals'      => 'Logbücher',
             'locations'     => 'Orte',
             'map'           => 'Karte',
             'maps'          => 'Karten',
-            'organisations' => 'Organisationen',
-            'quests'        => 'Quests',
         ],
-        'title' => 'Ort :name',
     ],
 ];

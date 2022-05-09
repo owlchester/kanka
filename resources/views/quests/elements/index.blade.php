@@ -15,7 +15,7 @@
         <div class="header-buttons">
 
             <a href="{{ route('quests.quest_elements.create', ['quest' => $model->id]) }}" class="btn btn-sm btn-warning">
-                <i class="fa fa-plus"></i>
+                <i class="fa-solid fa-plus"></i>
                 <span class="hidden-xs hidden-sm">{{ __('quests.show.actions.add_element') }}</span>
             </a>
         </div>

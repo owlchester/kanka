@@ -21,7 +21,7 @@
     @inject('permissionService', 'App\Services\PermissionService')
 @php
 /** @var \App\Services\PermissionService $permissionService */
-$permissions = $permissionService->type($entity->type())->entityPermissions($entity);
+$permissions = $permissionService->type($entity->type_id)->entityPermissions($entity);
 @endphp
     {!! Form::open(['route' => ['entities.permissions', $entity->id], 'method'=>'POST', 'data-shortcut' => "1"]) !!}
 

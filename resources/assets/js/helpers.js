@@ -12,7 +12,7 @@ function entityTooltip() {
         return cachedTooltips[id];
     }
 
-    var title = '<div class="center"><i class="fa fa-spinner fa-spin"></i></div>';
+    var title = '<div class="center"><i class="fa-solid fa-spinner fa-spin"></i></div>';
 
     $.ajax({
         url: $(this).data('url'),

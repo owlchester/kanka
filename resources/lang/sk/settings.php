@@ -45,30 +45,15 @@ return [
     'boost'         => [
         'available_boosts'  => 'Dostupné boosty: :amount / :max',
         'benefits'          => [
-            'campaign_gallery'  => 'Galéria kampane pre nahraté obrázky, ktoré môžeš v kampani opätovne použiť.',
-            'entity_files'      => 'Možnosť nahrať až 10 súborov k objektu.',
-            'entity_logs'       => 'Plné protokoly k objektom o tom, čo sa na objekte zmenilo pri každej úprave.',
-            'first'             => 'Aby sme zabezpečili pre Kanku ďalší vývoj, niektoré funkcionality sa odomknú len pre boostnuté kampane. Boosty je možné získať pomocou predplatného. Hocikto, kto vie zobraziť danú kampaň, môže ju aj boostnuť, aby nemusel za ne platiť GM. Kampaň je boostnutá, dokedy ju daný užívateľ boostuje a je podporovateľ Kanky. Ak kampaň prestane byť boostnutá, dané údaje nie sú stratené, len skryté, dokiaľ nie je boostnutá opäť.',
-            'header'            => 'Obrázky záhlaví objektov.',
-            'headers'           => [
+            'headers'   => [
                 'boosted'       => 'Výhody boostnutej kampane',
                 'superboosted'  => 'Výhody superboostnutej kampane',
             ],
-            'helpers'           => [
-                'boosted'       => 'Boostnutie kampane pridelí kampani jeden boost.',
-                'superboosted'  => 'Superboostnutie kampane pridelí kampani celkovo tri boosty.',
-            ],
-            'images'            => 'Nastaviteľné štandardné obrázky objektov.',
-            'more'              => [
+            'more'      => [
                 'boosted'       => 'Všetky výhody boostnutej kampane',
                 'superboosted'  => 'Všetky výhody superboostnutej kampane',
             ],
-            'recovery'          => 'Obnovenie odstránených objektov do :amount dní.',
-            'superboost'        => 'Superboostnutie kampane použije 3 z tvojich boostov a odomkne ďalšie výhody nadmieru tých z boostnutej kampane.',
-            'theme'             => 'Nastaviteľnú tému a vizuálny štýl kampane.',
-            'third'             => 'Ak chceš boostnuť kampaň, prejdi na stránku kampane a klikni na tlačidlo ":boost_button" nad tlačidlom ":edit_button".',
-            'tooltip'           => 'Nastaviteľné bubliny pre objekty.',
-            'upload'            => 'Navýšená veľkosť pre nahrávanie súborov pre každého člena kampane.',
+            'third'     => 'Ak chceš boostnuť kampaň, prejdi na stránku kampane a klikni na tlačidlo ":boost_button" nad tlačidlom ":edit_button".',
         ],
         'buttons'           => [
             'boost'         => 'Boost',
@@ -148,7 +133,6 @@ return [
         'api'                   => 'API',
         'apps'                  => 'Apps',
         'billing'               => 'Spôsob platby',
-        'boost'                 => 'Boost',
         'invoices'              => 'Faktúry',
         'layout'                => 'Schéma',
         'marketplace'           => 'Trhovisko',
@@ -186,8 +170,6 @@ return [
             'subscribe'         => 'Predplatiť',
             'update_currency'   => 'Uložiť preferovanú menu',
         ],
-        'benefits'              => 'Ak nás podporíš, odomknú sa ti rôzne :features, a tiež nám pomôžeš, aby sme viac času mohli venovať Kanke. Neukladáme informácie o tvojej platobnej karte, ani s ňou nijak nenarábame. Všetky platby realizujeme cez :stripe.',
-        'benefits_features'     => 'úžasné funkcionality',
         'billing'               => [
             'helper'    => 'Tvoje platobné údaje sú spracované a uložené bezpečne na :stripe. Túto platobnú metódu používame pre všetky platby predplatného.',
             'saved'     => 'Uložený spôsob platby',

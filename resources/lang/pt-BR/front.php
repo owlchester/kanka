@@ -1,11 +1,11 @@
 <?php
 
 return [
-    'about'         => [
+    'about'                 => [
         'description'   => 'Kanka nasceu do desejo de dois jogadores apaixonados por RPG de criar e gerenciar um mundo juntos no ano de 2017. Depois de tentarem algumas opções da época, e concluindo que nenhuma delas funcionou do jeito que queriam, nos resolvemos criar nossa própria ferramenta no final de 2017.',
         'title'         => 'Sobre',
     ],
-    'campaigns'     => [
+    'campaigns'             => [
         'description_full'  => 'Muitas campanhas em Kanka são públicas para que todos possam ver. Esta página contém uma lista de todas as campanhas públicas, bem como algumas campanhas em destaque da comunidade.',
         'featured'          => [
             'description'   => 'Nossa comunidade cria coisas incríveis que adoramos mostrar como campanhas Destaque. Volte de vez em quando para ver mais campanhas que estão em Destaque.',
@@ -30,24 +30,29 @@ return [
         ],
         'title'             => 'Campanhas públicas',
     ],
-    'community'     => [],
-    'contact'       => [
+    'community'             => [],
+    'contact'               => [
         'description'   => 'Precisa de ajuda, tem uma sugestão ou apenas quer compartilhar seu amor por Kanka? Nossa equipe responderá em qualquer ocasião!',
         'email'         => 'Envie todas as perguntas para',
         'other'         => 'Ou em uma das seguintes plataformas sociais:',
         'title'         => 'Nós :icon novos amigos!',
     ],
-    'cookie'        => [
+    'cookie'                => [
         'dismiss'   => 'Entendido!',
         'link'      => 'Saiba mais',
         'message'   => 'Este site usa cookies para garantir que você obtenha a melhor experiência em nosso site.',
     ],
-    'faq'           => [
+    'faq'                   => [
         'helpers'   => [
             'more'  => 'Não encontrou o que estava procurando?',
         ],
     ],
-    'features'      => [
+    'featured_campaigns'    => [
+        'description'   => 'Gostaria de ver Kanka em ação e como outras pessoas o estão usando? Aqui existem algumas campanhas de nossa comunicação que nós pensamos que são absolutamente incríveis.',
+        'more'          => 'Gostaria de ver mais campanhas? Olhe nossos :public-campaigns.',
+        'title'         => 'Procurando por alguma inspiração?',
+    ],
+    'features'              => [
         'abilities'         => [
             'description'   => 'Gerencie o inventário da entidade. Adicione poderes e magias aos personagens através das habilidades.',
             'title'         => 'Habilidades e itens',
@@ -71,6 +76,7 @@ return [
             'css'                   => 'CSS personalizados para a campanha',
             'dashboards'            => 'Definir dashboards personalizados para cargos da campanha',
             'description'           => 'Certos níveis de pledge fornecem aos usuários boosters, que podem ser usados para impulsionar campanhas. Eles fornecem os seguintes benefícios.',
+            'entity-aliases'        => 'Defina pseudônimos em entidades para pesquisas e menções mais flexíveis',
             'entity_files_v2'       => 'Máximo de arquivos atualizados por entidade',
             'entity_links'          => 'Configure links em entidades para websites e fontes externas.',
             'header_image'          => 'Imagem do cabeçalho da entidade',
@@ -79,6 +85,7 @@ return [
             'no_ads'                => 'Sem anúncios na campanha',
             'recovery'              => 'Recuperação de entidade por até 30 dias',
             'relation-visualiser'   => 'Explore as relações das entidades visualmente',
+            'sidebar'               => 'Reordenar e customizar a barra lateral de uma campanha',
             'theme'                 => 'Tema de campanha fixo',
             'title'                 => 'Campanhas impulsionadas',
             'tooltip'               => 'Dicas de entidades personalizadas: mostrar imagem, alterar texto',
@@ -188,42 +195,44 @@ return [
             'title' => 'Criação de Mundos',
         ],
     ],
-    'first_block'   => [
+    'first_block'           => [
         'description'   => 'Nosso app está disponível em todos os celulares e navegadores! Não precisa instalar nada, está tudo no seu navegador. E o melhor de tudo, é completamente gratuito!',
         'title'         => 'Uma nova maneira de acompanhar suas campanhas.',
     ],
-    'footer'        => [
-        'app'           => 'Aplicativo',
-        'headings'      => [
+    'footer'                => [
+        'app'       => 'Aplicativo',
+        'copyright' => 'Direitos reservados :copy ano :company',
+        'headings'  => [
             'app'           => 'Aplicativo',
             'community'     => 'Comunidade',
             'other'         => 'Outro',
             'useful_links'  => 'Links úteis',
         ],
-        'navigation'    => 'Navegação',
-        'resources'     => 'Recursos',
-        'social'        => 'Social',
+        'navigation'=> 'Navegação',
+        'resources' => 'Recursos',
+        'social'    => 'Social',
     ],
-    'help'          => [
+    'help'                  => [
         'description'   => 'Nós estamos aqui caso necessite um pouco de ajuda. Nos contate utilizando um dos seguintes métodos e nós retornaremos o mais rápido possível.',
         'discord'       => 'Junte-se a comunidade no Discord',
+        'documentation' => 'Verifica a documentação',
         'email'         => 'Nos mande um email',
         'facebook'      => 'Contate-nos no Facebook',
         'title'         => 'Ajuda',
         'twitter'       => 'Tweete para a gente no Twitter',
     ],
-    'home'          => [
+    'home'                  => [
         'seo'   => [
             'meta-description'  => 'Você é um Mestre ou simplesmente alguém que gosta de construir mundos? Oferecemos um gerenciador de campanha de mesa e uma ferramenta de construção de mundo que torna mais fácil organizar, planejar e desfrutar de suas campanhas TTRPG. Somos voltados para a comunidade e, o melhor de tudo, nossos recursos principais são gratuitos!',
         ],
     ],
-    'master'        => [
+    'master'                => [
         'call_to_action'    => 'Registre-se agora, é gratuito!',
         'description'       => 'Kanka é uma ferramenta fácil e flexível para criar o seu mundo e gerenciar online sua campanha de RPG. Crie e organize povos, lugares, organizações, eventos e muito mais.',
         'heading'           => 'Gerenciamento de campanha de RPG de mesa e construção de mundos, tornados fáceis',
         'title'             => 'Kanka',
     ],
-    'media'         => [
+    'media'                 => [
         'description'   => 'Encontre imagens de alta resolução do Kanka nesta página. Use-as se você estiver promovendo o Kanka ou construindo ferramentas que interagem com o Kanka.',
         'images'        => [
             'primary'   => 'Logotipo primário do Kanka',
@@ -231,7 +240,7 @@ return [
         ],
         'title'         => 'Mídia',
     ],
-    'menu'          => [
+    'menu'                  => [
         'about'         => 'Sobre',
         'api'           => 'API',
         'campaigns'     => 'Campanhas Públicas',
@@ -239,6 +248,7 @@ return [
         'contact'       => 'Contato',
         'contact_us'    => 'Contate-nos',
         'dashboard'     => 'Dashboard',
+        'documentation' => 'Documentação',
         'features'      => 'Recursos',
         'help'          => 'Ajuda',
         'home'          => 'Início',
@@ -259,15 +269,15 @@ return [
         'terms'         => 'Termos e Condições',
         'title'         => 'Menu',
     ],
-    'meta'          => [
+    'meta'                  => [
         'description'   => 'Kanka é um criador flexível de mundos digitais e gerenciador online de campanhas de rpg',
         'title'         => 'Kanka - Gerenciador online de campanhas de RPG e ferramenta de criação de mundos',
     ],
-    'partners'      => [
+    'partners'              => [
         'description'   => 'Fizemos parceria com algumas ferramentas e comunidades incríveis que compartilham nossos objetivos e valores.',
         'title'         => 'Parcerias',
     ],
-    'pricing'       => [
+    'pricing'               => [
         'actions'       => [
             'subscribe' => 'Torne-se um assinante',
         ],
@@ -289,12 +299,12 @@ return [
         ],
         'title'         => 'Preços',
     ],
-    'privacy'       => [
+    'privacy'               => [
         'description'   => 'Data de vigência :date',
         'title'         => 'Política de Privacidade',
     ],
-    'release'       => [],
-    'roadmap'       => [
+    'release'               => [],
+    'roadmap'               => [
         'backlog'           => [
             'description'   => 'Este quadro da Trello contém todos os recursos solicitados que foram enviados pela comunidade, bem como todos os recursos planejados e melhorias que um dia chegarão ao aplicativo.',
             'title'         => 'Backlog',
@@ -312,16 +322,16 @@ return [
         ],
         'title'             => 'Roadmap',
     ],
-    'second_block'  => [
+    'second_block'          => [
         'call_to_action'    => 'Vamos Começar!',
     ],
-    'seo'           => [
+    'seo'                   => [
         'keywords'  => 'Worldbuilding, Tabletop RPG, e RPG Campaign Manager',
     ],
-    'team'          => [
+    'team'                  => [
         'coffee'    => 'Seja meu café!',
     ],
-    'terms'         => [
+    'terms'                 => [
         'description'   => 'Data de vigência :date',
         'title'         => 'Termos e Condições',
     ],

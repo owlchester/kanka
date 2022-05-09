@@ -31,9 +31,7 @@ return [
         'nested_without'=> 'Wyświetlono wszystkie wydarzenia nie posiadające źródła. Kliknij na rząd, by wyświetlić wydarzenia pochodne.',
     ],
     'index'         => [
-        'add'       => 'Nowe wydarzenie',
-        'header'    => 'Wydarzenia elementu :name',
-        'title'     => 'Wydarzenia',
+        'title' => 'Wydarzenia',
     ],
     'placeholders'  => [
         'date'      => 'Data tego wydarzenia',
@@ -45,7 +43,6 @@ return [
         'tabs'  => [
             'events'    => 'Wydarzenia',
         ],
-        'title' => 'Wydarzenie :name',
     ],
     'tabs'          => [
         'calendars' => 'Wpisy w kalendarzu',

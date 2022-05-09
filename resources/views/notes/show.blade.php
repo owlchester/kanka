@@ -23,7 +23,7 @@
                     <div class="row">
                         @foreach ($model->notes->sortBy('name') as $subNote)
                             <div class="col-sm-6">
-                                {!! $subNote->tooltipedLink() !!} @if($subNote->is_private) <i class="fa fa-lock"></i> @endif <br />
+                                {!! $subNote->tooltipedLink() !!} @if($subNote->is_private) <i class="fa-solid fa-lock"></i> @endif <br />
                             </div>
                         @endforeach
                     </div>
@@ -32,7 +32,7 @@
         @endif
 
         @include('cruds.partials.mentions')
-        @include('cruds.boxes.history')
+        @include('entities.pages.logs.history')
     </div>
 
     <div class="entity-sidebar">

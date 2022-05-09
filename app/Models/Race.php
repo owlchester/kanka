@@ -3,11 +3,11 @@
 namespace App\Models;
 
 use App\Facades\CampaignLocalization;
+use App\Models\Concerns\Acl;
 use App\Models\Concerns\Nested;
-use App\Models\Concerns\SimpleSortableTrait;
+use App\Models\Concerns\SortableTrait;
 use App\Traits\CampaignTrait;
 use App\Traits\ExportableTrait;
-use App\Traits\VisibleTrait;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
@@ -23,11 +23,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Race extends MiscModel
 {
     use CampaignTrait,
-        VisibleTrait,
         ExportableTrait,
         Nested,
-        SimpleSortableTrait,
-        SoftDeletes;
+        SoftDeletes,
+        Acl,
+        SortableTrait
+    ;
 
     /**
      * @var array
@@ -65,6 +66,11 @@ class Race extends MiscModel
 
     protected $sortableColumns = [
         'race.name',
+    ];
+
+    protected $sortable = [
+        'name',
+        'type',
     ];
 
     /**
@@ -140,14 +146,12 @@ class Race extends MiscModel
     /**
      * Get all characters in the location and descendants
      */
-    public function allCharacters(bool $allMembers = false)
+    public function allCharacters()
     {
         $raceIds = [$this->id];
-        if ($allMembers) {
-            foreach ($this->descendants as $descendant) {
-                $raceIds[] = $descendant->id;
-            };
-        }
+        foreach ($this->descendants as $descendant) {
+            $raceIds[] = $descendant->id;
+        };
 
         return Character
             ::select('characters.*')

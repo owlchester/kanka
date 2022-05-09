@@ -13,6 +13,7 @@ return [
         'export'            => 'Exportar (PDF)',
         'find_out_more'     => 'Saber máis',
         'go_to'             => 'Ir a :name',
+        'help'              => 'Axuda',
         'json-export'       => 'Exportar (JSON)',
         'manage_links'      => 'Administrar ligazóns',
         'move'              => 'Mover',
@@ -95,7 +96,6 @@ return [
         'delete'            => 'Eliminar',
         'description'       => 'Seguro que queres eliminar :tag?',
         'description_final' => 'Tes certeza de que queres eliminar :tag? Esta acción non pode desfacerse.',
-        'mirrored'          => 'Eliminar relación espellada.',
         'title'             => 'Confirmación de eliminación',
     ],
     'destroy_many'              => [
@@ -139,7 +139,7 @@ return [
         'gallery_image'         => 'Imaxe de galería',
         'has_attributes'        => 'Ten atributos',
         'has_entity_files'      => 'Ten arquivos de entidade',
-        'has_entity_notes'      => 'Ten notas de entidade',
+        'has_entity_notes'      => 'Ten entradas',
         'has_image'             => 'Contén unha imaxe',
         'header_image'          => 'Imaxe de cabeceira',
         'image'                 => 'Imaxe',
@@ -226,6 +226,7 @@ return [
     ],
     'helpers'                   => [
         'copy_options'  => 'Copiar os seguintes elementos relacionados dende a fonte á nova entidade.',
+        'linking'       => 'Ligar outras entidades',
     ],
     'hidden'                    => 'Oculto',
     'hints'                     => [
@@ -295,7 +296,7 @@ return [
             ],
             'delete'        => 'Eliminar',
             'edit'          => 'Editar',
-            'entity_note'   => 'Notas de entidade',
+            'entity_note'   => 'Entradas',
             'read'          => 'Ler',
             'toggle'        => 'Alternar',
         ],
@@ -335,9 +336,6 @@ return [
         'timeline'      => 'Escolle unha liña temporal',
     ],
     'relations'                 => [
-        'actions'   => [
-            'add'   => 'Engade unha relación',
-        ],
         'fields'    => [
             'location'  => 'Localización',
             'name'      => 'Nome',
@@ -370,7 +368,7 @@ return [
         'map-points'    => 'Puntos do mapa',
         'mentions'      => 'Mencións',
         'menu'          => 'Menú',
-        'notes'         => 'Notas da entidade',
+        'notes'         => 'Entradas',
         'permissions'   => 'Permisos',
         'profile'       => 'Perfil',
         'quests'        => 'Misións',

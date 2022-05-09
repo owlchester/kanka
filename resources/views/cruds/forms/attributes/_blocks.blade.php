@@ -13,7 +13,7 @@ $actionBlock = 'col-xs-5 col-sm-4 col-md-3 col-lg-2';
             <div class="{{ $nameBlock }}">
                 <div class="input-group">
                     <span class="input-group-addon hidden-xs hidden-sm">
-                        <span class="fa fa-arrows-alt-v"></span>
+                        <span class="fa-solid fa-arrows-alt-v"></span>
                     </span>
                     {!! Form::text('attr_name[$TMP_ID$]', null, [
                         'placeholder' => __('entities/attributes.placeholders.attribute'),
@@ -31,10 +31,10 @@ $actionBlock = 'col-xs-5 col-sm-4 col-md-3 col-lg-2';
 
                 @if ($isAdmin)
                     {!! Form::hidden('attr_is_private[$TMP_ID$]', false) !!}
-                    <i class="fa fa-unlock-alt fa-2x" data-toggle="private" data-private="{{ __('entities/attributes.visibility.private') }}" data-public="{{ __('entities/attributes.visibility.public') }}"></i>
+                    <i class="fa-solid fa-unlock-alt fa-2x" data-toggle="private" data-private="{{ __('entities/attributes.visibility.private') }}" data-public="{{ __('entities/attributes.visibility.public') }}"></i>
                 @endif
 
-                <a class="text-danger attribute_delete pull-right" title="{{ __('crud.remove') }}"><i class="fa fa-trash fa-2x"></i></a>
+                <a class="text-danger attribute_delete pull-right" title="{{ __('crud.remove') }}"><i class="fa-solid fa-trash fa-2x"></i></a>
             </div>
             {!! Form::hidden('attr_type[$TMP_ID$]', '') !!}
         </div>
@@ -45,7 +45,7 @@ $actionBlock = 'col-xs-5 col-sm-4 col-md-3 col-lg-2';
             <div class="{{ $nameBlock }}">
                 <div class="input-group">
                 <span class="input-group-addon hidden-xs hidden-sm">
-                    <span class="fa fa-arrows-alt-v"></span>
+                    <span class="fa-solid fa-arrows-alt-v"></span>
                     </span>
                     {!! Form::text('attr_name[$TMP_ID$]', null, ['placeholder' => __('entities/attributes.placeholders.block'), 'class' => 'form-control', 'maxlength' => 191]) !!}
                 </div>
@@ -61,9 +61,9 @@ $actionBlock = 'col-xs-5 col-sm-4 col-md-3 col-lg-2';
 
     @if($isAdmin)
                 {!! Form::hidden('attr_is_private[$TMP_ID$]', false) !!}
-                <i class="fa fa-unlock-alt fa-2x" data-toggle="private" data-private="{{ __('entities/attributes.visibility.private') }}" data-public="{{ __('entities/attributes.visibility.public') }}"></i>
+                <i class="fa-solid fa-unlock-alt fa-2x" data-toggle="private" data-private="{{ __('entities/attributes.visibility.private') }}" data-public="{{ __('entities/attributes.visibility.public') }}"></i>
     @endif
-                <a class="text-danger attribute_delete pull-right" title="{{ __('crud.remove') }}"><i class="fa fa-trash fa-2x"></i></a>
+                <a class="text-danger attribute_delete pull-right" title="{{ __('crud.remove') }}"><i class="fa-solid fa-trash fa-2x"></i></a>
             </div>
             {!! Form::hidden('attr_type[$TMP_ID$]', 'block') !!}
         </div>
@@ -74,7 +74,7 @@ $actionBlock = 'col-xs-5 col-sm-4 col-md-3 col-lg-2';
             <div class="{{ $nameBlock }}">
                 <div class="input-group">
                     <span class="input-group-addon hidden-xs hidden-sm">
-                        <span class="fa fa-arrows-alt-v"></span>
+                        <span class="fa-solid fa-arrows-alt-v"></span>
                     </span>
                     {!! Form::text('attr_name[$TMP_ID$]', null, ['placeholder' => __('entities/attributes.placeholders.block'), 'class' => 'form-control', 'maxlength' => 191]) !!}
                 </div>
@@ -88,9 +88,9 @@ $actionBlock = 'col-xs-5 col-sm-4 col-md-3 col-lg-2';
 
     @if ($isAdmin)
                 {!! Form::hidden('attr_is_private[$TMP_ID$]', false) !!}
-                <i class="fa fa-unlock-alt fa-2x" data-toggle="private" data-private="{{ __('entities/attributes.visibility.private') }}" data-public="{{ __('entities/attributes.visibility.public') }}"></i>
+                <i class="fa-solid fa-unlock-alt fa-2x" data-toggle="private" data-private="{{ __('entities/attributes.visibility.private') }}" data-public="{{ __('entities/attributes.visibility.public') }}"></i>
     @endif
-                <a class="text-danger attribute_delete pull-right" title="{{ __('crud.remove') }}"><i class="fa fa-trash fa-2x"></i></a>
+                <a class="text-danger attribute_delete pull-right" title="{{ __('crud.remove') }}"><i class="fa-solid fa-trash fa-2x"></i></a>
             </div>
 
             {!! Form::hidden('attr_type[$TMP_ID$]', 'text') !!}
@@ -102,7 +102,7 @@ $actionBlock = 'col-xs-5 col-sm-4 col-md-3 col-lg-2';
             <div class="{{ $nameBlock }}">
                 <div class="input-group">
                     <span class="input-group-addon hidden-xs hidden-sm">
-                        <span class="fa fa-arrows-alt-v"></span>
+                        <span class="fa-solid fa-arrows-alt-v"></span>
                     </span>
                     {!! Form::text('attr_name[$TMP_ID$]', null, ['placeholder' => __('entities/attributes.placeholders.number'), 'class' => 'form-control', 'maxlength' => 191]) !!}
                 </div>
@@ -116,9 +116,9 @@ $actionBlock = 'col-xs-5 col-sm-4 col-md-3 col-lg-2';
 
     @if ($isAdmin)
                 {!! Form::hidden('attr_is_private[$TMP_ID$]', false) !!}
-                <i class="fa fa-unlock-alt fa-2x" data-toggle="private" data-private="{{ __('entities/attributes.visibility.private') }}" data-public="{{ __('entities/attributes.visibility.public') }}"></i>
+                <i class="fa-solid fa-unlock-alt fa-2x" data-toggle="private" data-private="{{ __('entities/attributes.visibility.private') }}" data-public="{{ __('entities/attributes.visibility.public') }}"></i>
     @endif
-                <a class="text-danger attribute_delete pull-right" title="{{ __('crud.remove') }}"><i class="fa fa-trash fa-2x"></i></a>
+                <a class="text-danger attribute_delete pull-right" title="{{ __('crud.remove') }}"><i class="fa-solid fa-trash fa-2x"></i></a>
             </div>
 
             {!! Form::hidden('attr_type[$TMP_ID$]', 'number') !!}
@@ -129,7 +129,7 @@ $actionBlock = 'col-xs-5 col-sm-4 col-md-3 col-lg-2';
             <div class="{{ $nameBlock }}">
                 <div class="input-group">
                     <span class="input-group-addon hidden-xs hidden-sm">
-                        <span class="fa fa-arrows-alt-v"></span>
+                        <span class="fa-solid fa-arrows-alt-v"></span>
                     </span>
                     {!! Form::text('attr_name[$TMP_ID$]', null, ['placeholder' => __('entities/attributes.placeholders.checkbox'), 'class' => 'form-control', 'maxlength' => 191]) !!}
                 </div>
@@ -143,10 +143,10 @@ $actionBlock = 'col-xs-5 col-sm-4 col-md-3 col-lg-2';
 
     @if ($isAdmin)
                 {!! Form::hidden('attr_is_private[$TMP_ID$]', false) !!}
-                <i class="fa fa-unlock-alt fa-2x" data-toggle="private" data-private="{{ __('entities/attributes.visibility.private') }}" data-public="{{ __('entities/attributes.visibility.public') }}"></i>
+                <i class="fa-solid fa-unlock-alt fa-2x" data-toggle="private" data-private="{{ __('entities/attributes.visibility.private') }}" data-public="{{ __('entities/attributes.visibility.public') }}"></i>
     @endif
 
-                <a class="text-danger attribute_delete pull-right" title="{{ __('crud.remove') }}"><i class="fa fa-trash fa-2x"></i></a>
+                <a class="text-danger attribute_delete pull-right" title="{{ __('crud.remove') }}"><i class="fa-solid fa-trash fa-2x"></i></a>
             </div>
 
             {!! Form::hidden('attr_type[$TMP_ID$]', 'checkbox') !!}
@@ -158,7 +158,7 @@ $actionBlock = 'col-xs-5 col-sm-4 col-md-3 col-lg-2';
             <div class="{{ $nameBlock }}">
                 <div class="input-group">
                     <span class="input-group-addon hidden-xs hidden-sm">
-                        <span class="fa fa-arrows-alt-v"></span>
+                        <span class="fa-solid fa-arrows-alt-v"></span>
                     </span>
                     {!! Form::text('attr_name[$TMP_ID$]', null, ['placeholder' => __('entities/attributes.placeholders.section'), 'class' => 'form-control', 'maxlength' => 191]) !!}
                 </div>
@@ -172,9 +172,9 @@ $actionBlock = 'col-xs-5 col-sm-4 col-md-3 col-lg-2';
 
     @if ($isAdmin)
                 {!! Form::hidden('attr_is_private[$TMP_ID$]', false) !!}
-                <i class="fa fa-unlock-alt fa-2x" data-toggle="private" data-private="{{ __('entities/attributes.visibility.private') }}" data-public="{{ __('entities/attributes.visibility.public') }}"></i>
+                <i class="fa-solid fa-unlock-alt fa-2x" data-toggle="private" data-private="{{ __('entities/attributes.visibility.private') }}" data-public="{{ __('entities/attributes.visibility.public') }}"></i>
     @endif
-                <a class="text-danger attribute_delete pull-right" title="{{ __('crud.remove') }}"><i class="fa fa-trash fa-2x"></i></a>
+                <a class="text-danger attribute_delete pull-right" title="{{ __('crud.remove') }}"><i class="fa-solid fa-trash fa-2x"></i></a>
             </div>
             {!! Form::hidden('attr_type[$TMP_ID$]', 'section') !!}
         </div>
@@ -185,7 +185,7 @@ $actionBlock = 'col-xs-5 col-sm-4 col-md-3 col-lg-2';
             <div class="{{ $nameBlock }}">
                 <div class="input-group">
                     <span class="input-group-addon hidden-xs hidden-sm">
-                        <span class="fa fa-arrows-alt-v"></span>
+                        <span class="fa-solid fa-arrows-alt-v"></span>
                     </span>
                     {!! Form::text('attr_name[$TMP_ID$]', null, [
                         'placeholder' => __('entities/attributes.placeholders.random.name'),
@@ -203,9 +203,9 @@ $actionBlock = 'col-xs-5 col-sm-4 col-md-3 col-lg-2';
 
                 @if ($isAdmin)
                     {!! Form::hidden('attr_is_private[$TMP_ID$]', false) !!}
-                    <i class="fa fa-unlock-alt fa-2x" data-toggle="private" data-private="{{ __('entities/attributes.visibility.private') }}" data-public="{{ __('entities/attributes.visibility.public') }}"></i>
+                    <i class="fa-solid fa-unlock-alt fa-2x" data-toggle="private" data-private="{{ __('entities/attributes.visibility.private') }}" data-public="{{ __('entities/attributes.visibility.public') }}"></i>
                 @endif
-                <a class="text-danger attribute_delete pull-right" title="{{ __('crud.remove') }}"><i class="fa fa-trash fa-2x"></i></a>
+                <a class="text-danger attribute_delete pull-right" title="{{ __('crud.remove') }}"><i class="fa-solid fa-trash fa-2x"></i></a>
             </div>
             {!! Form::hidden('attr_type[$TMP_ID$]', \App\Models\Attribute::TYPE_RANDOM) !!}
         </div>

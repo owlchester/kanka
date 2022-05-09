@@ -51,9 +51,7 @@ return [
         'quests'    => 'A főküldetés és az alküldetések mezők használatával összefüggő küldetések hálóját építheted fel.',
     ],
     'index'         => [
-        'add'       => 'Új küldetés',
-        'header'    => ':name küldetései',
-        'title'     => 'Küldetések',
+        'title' => 'Küldetések',
     ],
     'placeholders'  => [
         'date'  => 'A küldetés valós világbéli dátuma',
@@ -69,6 +67,5 @@ return [
         'tabs'      => [
             'elements'  => 'Elemek',
         ],
-        'title'     => ':name küldetés',
     ],
 ];

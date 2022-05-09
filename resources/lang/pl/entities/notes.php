@@ -7,8 +7,9 @@ return [
         'add_user'  => 'Dodaj użytkownika',
     ],
     'copy_mention'  => [
-        'copy'      => 'Kopiuj wzmiankę zaawansowaną',
-        'success'   => 'Wzmianka zaawansowana skopiowana do schowka',
+        'copy'              => 'Kopiuj wzmiankę zaawansowaną',
+        'copy_with_name'    => 'Kopiuj wzmiankę zaawansowaną z tytułem wpisu',
+        'success'           => 'Wzmianka zaawansowana skopiowana do schowka',
     ],
     'create'        => [
         'success'   => 'Dodano komentarz :name do elementu :entity.',

@@ -20,9 +20,7 @@ return [
         'type'      => 'Tipo',
     ],
     'index'         => [
-        'add'       => 'Nuovo Evento',
-        'header'    => 'Eventi di :name',
-        'title'     => 'Eventi',
+        'title' => 'Eventi',
     ],
     'placeholders'  => [
         'date'      => 'Una data per il tuo evento',
@@ -34,7 +32,6 @@ return [
         'tabs'  => [
             'events'    => 'Eventi',
         ],
-        'title' => 'Evento :name',
     ],
     'tabs'          => [
         'calendars' => 'Elementi del Calendario',

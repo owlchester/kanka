@@ -50,6 +50,7 @@ class SubscriptionController extends Controller
         if (!empty($tracking)) {
             $gaTrackingEvent = 'TJhYCMDErpYDEOaOq7oC';
             DataLayer::newSubscriber();
+            DataLayer::add('userSubValue', session('sub_value'));
         }
 
         return view('settings.subscription.index', compact(
@@ -123,7 +124,8 @@ class SubscriptionController extends Controller
             return redirect()
                 ->route('settings.subscription', $routeOptions)
                 ->withSuccess(__('settings.subscription.success.' . $flash))
-                ->with('sub_tracking', $flash);
+                ->with('sub_tracking', $flash)
+                ->with('sub_value', $this->subscription->subscriptionValue());
         } catch(IncompletePayment $exception) {
             session()->put('subscription_callback', $request->get('payment_id'));
             return redirect()->route(

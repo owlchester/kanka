@@ -29,7 +29,6 @@ return [
         'locations'         => 'Konumlar',
         'map'               => 'Harita',
         'name'              => 'Ad',
-        'relation'          => 'İlişki',
         'type'              => 'Tür',
     ],
     'helpers'       => [
@@ -44,19 +43,10 @@ return [
         'is_map_private'    => 'Özel bir harita yalnızca serüvenin "Yönetici" rolüne sahip üyeleri tarafından görüntülenebilir.',
     ],
     'index'         => [
-        'actions'   => [
-            'explore_view'  => 'İç İçe Görünüm',
-        ],
-        'add'       => 'Yeni Konum',
-        'header'    => ':name konumundaki konumlar',
-        'title'     => 'Konumlar',
+        'title' => 'Konumlar',
     ],
-    'items'         => [
-        'title' => ':name Eşyaları',
-    ],
-    'journals'      => [
-        'title' => ':name Günlükleri',
-    ],
+    'items'         => [],
+    'journals'      => [],
     'locations'     => [
         'title' => ':name Konumu Konumları',
     ],
@@ -204,16 +194,9 @@ return [
     'show'          => [
         'tabs'  => [
             'characters'    => 'Karakterler',
-            'events'        => 'Olaylar',
-            'families'      => 'Aileler',
-            'items'         => 'Eşyalar',
-            'journals'      => 'Günlükler',
             'locations'     => 'Konumlar',
             'map'           => 'Harita',
             'maps'          => 'Haritalar',
-            'organisations' => 'Organizasyonlar',
-            'quests'        => 'Görevler',
         ],
-        'title' => ':name Konumu',
     ],
 ];

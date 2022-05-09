@@ -13,10 +13,10 @@
     ) !!}
 </div>
 
-@include('cruds.fields.visibility')
+@include('cruds.fields.visibility_id')
 
 <div class="form-group">
-    <button class="btn btn-success">{{ trans('crud.save') }}</button>
+    <button class="btn btn-success">{{ __('crud.save') }}</button>
     @includeWhen(!$ajax, 'partials.or_cancel')
 </div>
 

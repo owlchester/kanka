@@ -40,7 +40,6 @@ return [
         'pronouns'                  => 'Zámená',
         'race'                      => 'Rasa',
         'races'                     => 'Rasy',
-        'relation'                  => 'Vzťah',
         'sex'                       => 'Pohlavie',
         'title'                     => 'Titul',
         'traits'                    => 'Vlastnosti',
@@ -61,8 +60,6 @@ return [
         'actions'   => [
             'random'    => 'Nová náhodná postava',
         ],
-        'add'       => 'Nová postava',
-        'header'    => 'Postavy v :name',
         'title'     => 'Postavy',
     ],
     'items'         => [
@@ -132,10 +129,8 @@ return [
     ],
     'show'          => [
         'tabs'  => [
-            'map'           => 'Mapa vzťahov',
             'organisations' => 'Organizácie',
         ],
-        'title' => 'Postava :name',
     ],
     'warnings'      => [
         'personality_hidden'    => 'Nemáš povolené upravovať črty osobnosti tejto postavy.',

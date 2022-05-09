@@ -35,10 +35,16 @@ if (isset($model) && in_array($model->visibility_id, [Visibility::VISIBILITY_ADM
 ?>
 <div class="form-group">
     <label for="visibility">
-        {{ trans('crud.fields.visibility') }}
-        <i class="fa fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" title="{{ trans('crud.hints.visibility') }}"></i>
+        {{ __('crud.fields.visibility') }}
+        @if(request()->ajax())
+        <a href="{{ route('helpers.visibility') }}" data-toggle="tooltip" target="_blank" title="{{ __('visibilities.tooltip') }}">
+            <i class="fa-solid fa-question-circle"></i>
+        </a>
+        @else
+        <a href="{{ route('helpers.visibility') }}" data-url="{{ route('helpers.visibility') }}" data-toggle="ajax-modal" data-target="#entity-modal" target="_blank">
+            <i class="fa-solid fa-question-circle" data-toggle="tooltip" title="{{ __('visibilities.tooltip') }}"></i>
+        </a>
+        @endif
     </label>
     {{ Form::select('visibility_id', $options, empty($model) ? CampaignLocalization::getCampaign()->defaultVisibilityID() : $model->visibility_id, ['class' => 'form-control', 'id' => 'visibility_id']) }}
-
-    <p class="help-block visible-xs visible-sm">{{ __('crud.hints.visibility') }}</p>
 </div>

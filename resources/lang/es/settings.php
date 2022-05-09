@@ -45,29 +45,15 @@ return [
     'boost'         => [
         'available_boosts'  => 'Mejoras disponibles: :amount / :max',
         'benefits'          => [
-            'campaign_gallery'  => 'Una galería para subir imágenes que podrás reutilizar en la campaña.',
-            'entity_files'      => 'Sube hasta 10 archivos por entidad.',
-            'entity_logs'       => 'Registros completos de los cambios de una entidad.',
-            'header'            => 'Imágenes de cabecera para las entidades.',
-            'headers'           => [
+            'headers'   => [
                 'boosted'       => 'Beneficios de la campaña mejorada',
                 'superboosted'  => 'Beneficios de la campaña supermejorada',
             ],
-            'helpers'           => [
-                'boosted'       => 'Mejorar una campaña usa solo una mejora.',
-                'superboosted'  => 'Supermejorar una campaña usa un total de tres mejoras.',
-            ],
-            'images'            => 'Imágenes por defecto personalizadas',
-            'more'              => [
+            'more'      => [
                 'boosted'       => 'Todas las funcionalidades de las campañas mejoradas',
                 'superboosted'  => 'Todas las funcionalidades de las campañas supermejoradas',
             ],
-            'recovery'          => 'Recupera entidades eliminadas de hasta hace :amount días.',
-            'superboost'        => 'Supermejorar una campaña usa 3 de tus mejoras y desbloquea funcionalidades adicionales además de las de las campañas mejoradas.',
-            'theme'             => 'Tema y estilo personalizado a nivel de campaña.',
-            'third'             => 'Para mejorar una campaña, dirígete a la página de la campaña y haz clic en el botón de ":boost_button" que hay sobre el botón de ":edit_button".',
-            'tooltip'           => 'Descripciones emergentes personalizadas para las entidades.',
-            'upload'            => 'Capacidad de subida de archivos ampliada para todos los miembros de la campaña.',
+            'third'     => 'Para mejorar una campaña, dirígete a la página de la campaña y haz clic en el botón de ":boost_button" que hay sobre el botón de ":edit_button".',
         ],
         'buttons'           => [
             'boost'         => 'Mejorar',
@@ -147,7 +133,6 @@ return [
         'api'                   => 'API',
         'apps'                  => 'Aplicaciones',
         'billing'               => 'Método de pago',
-        'boost'                 => 'Mejorar',
         'invoices'              => 'Facturas',
         'layout'                => 'Diseño',
         'marketplace'           => 'Marketplace',
@@ -185,8 +170,6 @@ return [
             'subscribe'         => 'Suscribirse',
             'update_currency'   => 'Guardar moneda preferida',
         ],
-        'benefits'              => 'Si nos apoyas, desbloquearás algunas nuevas :features y nos ayudarás a dedicar más tiempo a la mejora de Kanka. No guardaremos tu información bancaria. Usamos :stripe para gestionar los cobros.',
-        'benefits_features'     => 'funcionalidades increíbles',
         'billing'               => [
             'helper'    => 'Tu información de pago se procesa y se guarda de forma segura mediante :stripe. Este método de pago se usará para todas tus suscripciones.',
             'saved'     => 'Método de pago guardado',

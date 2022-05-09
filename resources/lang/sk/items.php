@@ -18,14 +18,11 @@ return [
         'location'  => 'Miesto',
         'name'      => 'Názov',
         'price'     => 'Cena',
-        'relation'  => 'Prepojenie',
         'size'      => 'Veľkosť',
         'type'      => 'Typ',
     ],
     'index'         => [
-        'add'       => 'Nový predmet',
-        'header'    => 'Predmety objektu :name',
-        'title'     => 'Predmety',
+        'title' => 'Predmety',
     ],
     'inventories'   => [
         'title' => 'Objekty s predmetom :name',
@@ -42,6 +39,5 @@ return [
         'tabs'  => [
             'inventories'   => 'Objekty',
         ],
-        'title' => 'Predmet :name',
     ],
 ];

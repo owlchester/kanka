@@ -30,8 +30,8 @@ class StoreMapGroup extends FormRequest
     {
         $rules = [
             'name' => 'required|max:191',
-            'visibility' => 'string',
             'position' => 'nullable|string|max:3',
+            'visibility_id' => 'nullable|exists:visibilities,id'
         ];
 
         return $this->clean($rules);

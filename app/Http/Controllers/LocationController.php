@@ -6,6 +6,7 @@ use App\Datagrids\Filters\LocationFilter;
 use App\Datagrids\Sorters\LocationCharacterSorter;
 use App\Datagrids\Sorters\LocationFamilySorter;
 use App\Datagrids\Sorters\LocationLocationSorter;
+use App\Facades\Datagrid;
 use App\Http\Requests\StoreLocation;
 use App\Models\Location;
 use App\Services\LocationService;
@@ -58,7 +59,7 @@ class LocationController extends CrudController
         if (Auth::check()) {
             $this->authorize('map', $location);
         } else {
-            $this->authorizeForGuest('read', $location);
+            $this->authorizeForGuest(\App\Models\CampaignPermission::ACTION_READ, $location);
             // Extra check for private maps
             if ($location->is_map_private) {
                 abort('403');
@@ -160,7 +161,30 @@ class LocationController extends CrudController
      */
     public function characters(Location $location)
     {
-        return $this->datagridSorter(LocationCharacterSorter::class)
+        $this->authCheck($location);
+
+        $options = ['location' => $location];
+        $filters = [];
+        if (request()->has('location_id')) {
+            $options['location_id'] = $location->id;
+            $filters['location_id'] = $location->id;;
+        }
+        Datagrid::layout(\App\Renderers\Layouts\Location\Character::class)
+            ->route('locations.characters', $options);
+
+        $this->rows = $location
+            ->allCharacters()
+            ->sort(request()->only(['o', 'k']))
+            ->filter($filters)
+            ->with(['location', 'location.entity', 'families', 'families.entity', 'races', 'races.entity', 'entity', 'entity.tags'])
+            ->paginate();
+
+        // Ajax Datagrid
+        if (request()->ajax()) {
+            return $this->datagridAjax();
+        }
+
+        return $this
             ->menuView($location, 'characters');
     }
 
@@ -182,8 +206,30 @@ class LocationController extends CrudController
      */
     public function locations(Location $location)
     {
+        $this->authCheck($location);
+
+        $options = ['location' => $location];
+        $filters = [];
+        if (request()->has('parent_location_id')) {
+            $options['parent_location_id'] = $location->id;
+            $filters['parent_location_id'] = $options['parent_location_id'];
+        }
+        Datagrid::layout(\App\Renderers\Layouts\Location\Location::class)
+            ->route('locations.locations', $options);
+
+        $this->rows = $location
+            ->descendants()
+            ->sort(request()->only(['o', 'k']))
+            ->filter($filters)
+            ->with(['location', 'location.entity', 'entity', 'entity.tags'])
+            ->paginate();
+
+        // Ajax Datagrid
+        if (request()->ajax()) {
+            return $this->datagridAjax();
+        }
+
         return $this
-            ->datagridSorter(LocationLocationSorter::class)
             ->menuView($location, 'locations');
     }
 
@@ -193,31 +239,9 @@ class LocationController extends CrudController
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function families(Location $location)
-    {
-        return $this
-            ->datagridSorter(LocationFamilySorter::class)
-            ->menuView($location, 'families');
-    }
-
-    /**
-     * @param Location $location
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
     public function organisations(Location $location)
     {
         return $this->menuView($location, 'organisations');
-    }
-
-    /**
-     * @param Location $location
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
-    public function quests(Location $location)
-    {
-        return $this->menuView($location, 'quests');
     }
 
     /**

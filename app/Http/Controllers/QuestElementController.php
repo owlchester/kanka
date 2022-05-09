@@ -32,7 +32,7 @@ class QuestElementController extends Controller
         if (Auth::check()) {
             $this->authorize('view', $quest);
         } else {
-            $this->authorizeEntityForGuest('read', $quest);
+            $this->authorizeEntityForGuest(\App\Models\CampaignPermission::ACTION_READ, $quest);
         }
 
         $datagridSorter = new QuestElementSorter();
@@ -43,7 +43,6 @@ class QuestElementController extends Controller
         $elements = $quest
             ->elements()
             ->with('entity')
-            ->acl()
             ->simpleSort($datagridSorter)
             ->paginate();
 
@@ -81,7 +80,7 @@ class QuestElementController extends Controller
         $this->authorize('update', $quest);
 
         $data = $request->only([
-            'entity_id', 'name', 'role', 'description', 'colour', 'visibility'
+            'entity_id', 'name', 'role', 'description', 'colour', 'visibility_id'
         ]);
         $data['quest_id'] = $quest->id;
 
@@ -135,7 +134,7 @@ class QuestElementController extends Controller
     {
         $this->authorize('update', $quest);
 
-        $data = $request->only(['entity_id', 'name', 'role', 'description', 'colour', 'visibility']);
+        $data = $request->only(['entity_id', 'name', 'role', 'description', 'colour', 'visibility_id']);
 
         $questElement->update($data);
         $questElement->refresh();

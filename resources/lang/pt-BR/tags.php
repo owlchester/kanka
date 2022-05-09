@@ -32,18 +32,14 @@ return [
     'helpers'       => [
         'nested_parent' => 'Mostrando as tags de :parent.',
         'nested_without'=> 'Mostrando todas as tags que não tem uma tag-pai. Clique em uma linha para ver as tags-filhos.',
+        'no_children'   => 'No momento, não há entidades marcadas com esta tag.',
     ],
     'hints'         => [
         'children'  => 'Esta lista contém todas entidades diretamente relacionadas a esta tag e todas tags aninhadas nela.',
         'tag'       => 'Exibidas abaixo estão todas as tags diretamente relacionadas a ela.',
     ],
     'index'         => [
-        'actions'   => [
-            'explore_view'  => 'Visão Aninhada',
-        ],
-        'add'       => 'Nova tag',
-        'header'    => 'Tags em :name',
-        'title'     => 'Tags',
+        'title' => 'Tags',
     ],
     'new_tag'       => 'Nova tag',
     'placeholders'  => [
@@ -56,7 +52,6 @@ return [
             'children'  => 'Filhos',
             'tags'      => 'Tags',
         ],
-        'title' => 'Tag :name',
     ],
     'tags'          => [
         'title' => 'Filhos da tag :name',

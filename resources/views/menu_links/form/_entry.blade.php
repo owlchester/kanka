@@ -34,7 +34,7 @@ if (isset($model)) {
                     'icon',
                     null,
                     [
-                        'placeholder' => 'fa fa-users',
+                        'placeholder' => 'fa-solid fa-users',
                         'class' => 'form-control',
                         'maxlength' => 45
                     ]
@@ -61,28 +61,28 @@ if (isset($model)) {
                 <i class="ra ra-tower"></i>
                 {{ __('menu_links.fields.entity') }}
                 <span class="badge bg-blue">
-                    <i class="fa fa-check"></i>
+                    <i class="fa-solid fa-check"></i>
                 </span>
             </a>
             <a class="btn btn-app @if($isList) btn-active @endif" data-type="list">
-                <i class="fa fa-th-list"></i>
+                <i class="fa-solid fa-th-list"></i>
                 {{ __('menu_links.fields.type') }}
                 <span class="badge bg-blue">
-                    <i class="fa fa-check"></i>
+                    <i class="fa-solid fa-check"></i>
                 </span>
             </a>
             <a class="btn btn-app @if($isRandom) btn-active @endif" data-type="random">
-                <i class="fa fa-question"></i>
+                <i class="fa-solid fa-question"></i>
                 {{ __('menu_links.fields.random') }}
                 <span class="badge bg-blue">
-                    <i class="fa fa-check"></i>
+                    <i class="fa-solid fa-check"></i>
                 </span>
             </a>
             <a class="btn btn-app @if($isDashboard) btn-active @endif" data-type="dashboard">
-                <i class="fa fa-th-large"></i>
+                <i class="fa-solid fa-th-large"></i>
                 {{ __('menu_links.fields.dashboard') }}
                 <span class="badge bg-blue">
-                    <i class="fa fa-check"></i>
+                    <i class="fa-solid fa-check"></i>
                 </span>
             </a>
         </div>

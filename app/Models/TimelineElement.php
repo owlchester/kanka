@@ -4,10 +4,8 @@
 namespace App\Models;
 
 use App\Facades\Mentions;
-use App\Facades\UserPermission;
 use App\Models\Concerns\Blameable;
-use App\Models\Concerns\SimpleSortableTrait;
-use App\Traits\VisibilityTrait;
+use App\Traits\VisibilityIDTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Str;
@@ -37,7 +35,8 @@ use Illuminate\Support\Str;
  */
 class TimelineElement extends Model
 {
-    use VisibilityTrait, Blameable, SimpleSortableTrait;
+    use VisibilityIDTrait,
+        Blameable;
 
     /** Fillable fields */
     protected $fillable = [
@@ -49,7 +48,7 @@ class TimelineElement extends Model
         'position',
         'name',
         'colour',
-        'visibility',
+        'visibility_id',
         'icon',
         'date',
         'is_collapsed',
@@ -120,37 +119,6 @@ class TimelineElement extends Model
     }
 
     /**
-     * Scope a query to only include elements that are visible
-     *
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     * @param mixed $type
-     * @return \Illuminate\Database\Eloquent\Builder
-     */
-    public function scopeAcl($query, $action = 'read', $user = null)
-    {
-        // Use the User Permission Service to handle all of this easily.
-        /** @var \App\Services\UserPermission $service */
-        $service = UserPermission::user($user)->action($action);
-
-        if ($service->isCampaignOwner()) {
-            return $query;
-        }
-
-        return $query
-            ->select('timeline_elements.*')
-            ->join('entities', 'entities.id', '=', 'timeline_elements.entity_id')
-            ->where('entities.is_private', false)
-            ->where(function ($subquery) use ($service) {
-                return $subquery
-                    ->where(function ($sub) use ($service) {
-                        return $sub->whereIn('entities.id', $service->entityIds())
-                            ->orWhereIn('entities.type', $service->entityTypes());
-                    })
-                    ->whereNotIn('entities.id', $service->deniedEntityIds());
-            });
-    }
-
-    /**
      * @return string
      */
     public function htmlIcon(): string
@@ -162,7 +130,7 @@ class TimelineElement extends Model
             return '<i class="bg-' . $this->colour . ' ' . $this->icon . '"></i>';
         }
 
-        return '<i class="fa fas fa-hourglass-half bg-' . $this->colour . '"></i>';
+        return '<i class="fa fa-solid fa-hourglass-half bg-' . $this->colour . '"></i>';
     }
 
     /**
@@ -175,6 +143,15 @@ class TimelineElement extends Model
         }
 
         return $this->entity->tooltipedLink($this->name, false);
+    }
+
+    public function mentionName(): string
+    {
+        if (!empty($this->name)) {
+            return strip_tags(htmlentities($this->name));
+        }
+
+        return strip_tags($this->entity->name);
     }
 
     /**

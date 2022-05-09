@@ -40,7 +40,6 @@ return [
         'pronouns'                  => 'Rodzaj gramatyczny',
         'race'                      => 'Rasa',
         'races'                     => 'Rasy',
-        'relation'                  => 'Relacje',
         'sex'                       => 'Płeć',
         'title'                     => 'Tytuł',
         'traits'                    => 'Opis',
@@ -61,8 +60,6 @@ return [
         'actions'   => [
             'random'    => 'Nowa losowa postać',
         ],
-        'add'       => 'Nowa postać',
-        'header'    => 'Postaci w :name',
         'title'     => 'Postaci',
     ],
     'items'         => [
@@ -132,10 +129,8 @@ return [
     ],
     'show'          => [
         'tabs'  => [
-            'map'           => 'Mapa relacji',
             'organisations' => 'Organizacje',
         ],
-        'title' => 'Postać :name',
     ],
     'warnings'      => [
         'personality_hidden'    => 'Nie masz uprawnień do edycji osobowości tej postaci.',

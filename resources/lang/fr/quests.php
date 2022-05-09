@@ -54,9 +54,7 @@ return [
         'quests'    => 'Un réseau de quêtes liées peut être créé à l\'aide du champ Quête Parentale.',
     ],
     'index'         => [
-        'add'       => 'Nouvelle Quête',
-        'header'    => 'Quêtes de :name',
-        'title'     => 'Quêtes',
+        'title' => 'Quêtes',
     ],
     'placeholders'  => [
         'date'  => 'Date réelle de la quête',
@@ -72,6 +70,5 @@ return [
         'tabs'      => [
             'elements'  => 'Éléments',
         ],
-        'title'     => 'Quête :name',
     ],
 ];

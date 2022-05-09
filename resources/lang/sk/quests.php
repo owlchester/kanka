@@ -54,9 +54,7 @@ return [
         'quests'    => 'Sieť prepojených úloh je možné vytvoriť cez nadradenú úlohu.',
     ],
     'index'         => [
-        'add'       => 'Nová úloha',
-        'header'    => 'Úlohy podradené :name',
-        'title'     => 'Úlohy',
+        'title' => 'Úlohy',
     ],
     'placeholders'  => [
         'date'  => 'Reálny dátum zadania úlohy',
@@ -72,6 +70,5 @@ return [
         'tabs'      => [
             'elements'  => 'Prvky',
         ],
-        'title'     => 'Úloha :name',
     ],
 ];

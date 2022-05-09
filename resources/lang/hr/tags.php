@@ -38,12 +38,7 @@ return [
         'tag'       => 'Ispod su prikazane sve oznake koje su izravno pod ovom oznakom.',
     ],
     'index'         => [
-        'actions'   => [
-            'explore_view'  => 'Ugniježđeni pregled',
-        ],
-        'add'       => 'Nova oznaka',
-        'header'    => 'Oznake u :name',
-        'title'     => 'Oznake',
+        'title' => 'Oznake',
     ],
     'new_tag'       => 'Nova oznaka',
     'placeholders'  => [
@@ -56,7 +51,6 @@ return [
             'children'  => 'Djeca',
             'tags'      => 'Oznake',
         ],
-        'title' => 'Oznaka :name',
     ],
     'tags'          => [
         'title' => 'Djeca oznake :name',

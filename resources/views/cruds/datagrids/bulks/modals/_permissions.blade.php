@@ -10,7 +10,7 @@ $actions = [
     <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('crud.click_modal.close') }}"><span aria-hidden="true">&times;</span></button>
     <h4 class="modal-title" id="clickModalLabel">{{ __('crud.bulk.permissions.title') }}</h4>
 </div>
-<div class="modal-body">
+<div class="modal-body no-padding">
     <table id="crud_permissions" class="table table-hover">
         <tbody>
         <tr>
@@ -26,7 +26,7 @@ $actions = [
                 <td>{{ $role->name }}</td>
                 <td>
                     {!! Form::select(
-                    'role[' . $role->id . '][read]',
+                    'role[' . $role->id . '][' . \App\Models\CampaignPermission::ACTION_READ . ']',
                     $actions,
                     'ignore',
                     ['class' => 'form-control']) !!}
@@ -34,7 +34,7 @@ $actions = [
                 @if (!$role->is_public)
                     <td>
                         {!! Form::select(
-                        'role[' . $role->id . '][edit]',
+                        'role[' . $role->id . '][' . \App\Models\CampaignPermission::ACTION_EDIT . ']',
                         $actions,
                         'ignore',
                         ['class' => 'form-control']) !!}
@@ -42,14 +42,14 @@ $actions = [
                     <td>
 
                         {!! Form::select(
-                        'role[' . $role->id . '][delete]',
+                        'role[' . $role->id . '][' . \App\Models\CampaignPermission::ACTION_DELETE . ']',
                         $actions,
                         'ignore',
                         ['class' => 'form-control']) !!}
                     </td>
                     <td>
                         {!! Form::select(
-                        'role[' . $role->id . '][entity-note]',
+                        'role[' . $role->id . '][' . \App\Models\CampaignPermission::ACTION_POSTS . ']',
                         $actions,
                         'ignore',
                         ['class' => 'form-control']) !!}
@@ -70,34 +70,33 @@ $actions = [
             <th>{{ __('crud.permissions.actions.entity_note') }}</th>
         </tr>
         <?php /** @var \App\Models\CampaignUser $member */ ?>
-        @foreach ($campaign->members()->with('user')->withoutAdmins()->get() as $member)
-
+        @foreach ($campaign->members()->with('user')->withoutAdmins()->paginate(20) as $member)
             <tr>
                 <td>{{ $member->user->name }}</td>
                 <td>
                     {!! Form::select(
-                    'user[' . $member->user_id . '][read]',
+                    'user[' . $member->user_id . '][' . \App\Models\CampaignPermission::ACTION_READ . ']',
                     $actions,
                     'ignore',
                     ['class' => 'form-control']) !!}
                 </td>
                 <td>
                     {!! Form::select(
-                    'user[' . $member->user_id . '][edit]',
+                    'user[' . $member->user_id . '][' . \App\Models\CampaignPermission::ACTION_EDIT . ']',
                     $actions,
                     'ignore',
                     ['class' => 'form-control']) !!}
                 </td>
                 <td>
                     {!! Form::select(
-                    'user[' . $member->user_id . '][delete]',
+                    'user[' . $member->user_id . '][' . \App\Models\CampaignPermission::ACTION_DELETE . ']',
                     $actions,
                     'ignore',
                     ['class' => 'form-control']) !!}
                 </td>
                 <td>
                     {!! Form::select(
-                    'user[' . $member->user_id . '][entity-note]',
+                    'user[' . $member->user_id . '][' . \App\Models\CampaignPermission::ACTION_POSTS . ']',
                     $actions,
                     'ignore',
                     ['class' => 'form-control']) !!}

@@ -25,9 +25,14 @@ class CreateFamilies extends Migration
             $table->string('slug');
             $table->integer('campaign_id')->unsigned()->notNull();
 
+            $table->string('type', 45)->nullable();
             $table->longText('entry')->nullable();
 
-            $table->string('banner')->nullable();
+            $table->string('image')->nullable();
+
+            // Privacy
+            $table->boolean('is_private')->default(false);
+            $table->index(['is_private']);
 
             // Foreign
             $table->foreign('campaign_id')->references('id')->on('campaigns')->onDelete('cascade');

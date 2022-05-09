@@ -18,14 +18,11 @@ return [
         'location'  => 'Локация',
         'name'      => 'Название',
         'price'     => 'Цена',
-        'relation'  => 'Связь',
         'size'      => 'Размеры',
         'type'      => 'Тип',
     ],
     'index'         => [
-        'add'       => 'Новый предмет',
-        'header'    => 'Предметы :name',
-        'title'     => 'Предметы',
+        'title' => 'Предметы',
     ],
     'inventories'   => [
         'title' => 'Инвентари с предметом :name',
@@ -43,6 +40,5 @@ return [
         'tabs'  => [
             'inventories'   => 'Инвентари',
         ],
-        'title' => 'Предмет :name',
     ],
 ];

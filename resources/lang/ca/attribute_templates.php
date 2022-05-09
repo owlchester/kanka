@@ -26,9 +26,7 @@ return [
         'parent_attribute_template' => 'Aqusta plantilla d\'atributs pot ser descendent d\'una altra plantilla d\'atributs. En aplicar una plantilla, s\'aplicarà amb tots els seus descendents.',
     ],
     'index'                 => [
-        'add'       => 'Nova plantilla d\'atributs',
-        'header'    => 'Plantilles d\'atributs de :name',
-        'title'     => 'Plantilles d\'atributs',
+        'title' => 'Plantilles d\'atributs',
     ],
     'placeholders'          => [
         'attribute_template'    => 'Tria una plantilla d\'atributs',
@@ -39,6 +37,5 @@ return [
             'attribute_templates'   => 'Plantilles d\'atributs',
             'attributes'            => 'Atributs',
         ],
-        'title' => 'Plantilla d\'atributs :name',
     ],
 ];

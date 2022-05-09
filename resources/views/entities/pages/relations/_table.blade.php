@@ -32,12 +32,14 @@
     </tr>
     </thead>
     <tbody>
-    @foreach ($relations as $relation)
-        @viewentity($relation->target)
+    @foreach ([] as $relation)
+        @if(!$relation->target)
+            @continue
+        @endif
         <tr data-entity-id="{{ $relation->target->id }}" data-entity-type="{{ $relation->target->type() }}">
             <td class="breakable">
                 @if ($relation->is_star)
-                    <i class="fas fa-star" title="{{ __('crud.fields.is_star') }}" data-toggle="tooltip"></i>
+                    <i class="fa-solid fa-star" title="{{ __('crud.fields.is_star') }}" data-toggle="tooltip"></i>
                 @endif
                 {{ $relation->relation }}
             </td>
@@ -58,9 +60,9 @@
                 @endif
                 {{ $relation->attitude }}
             </td>
-            @if (Auth::check())
+            @if (auth()->check())
                 <td>
-                    @include('cruds.partials.visibility', ['model' => $relation])
+                    {!! $relation->visibilityIcon() !!}
                 </td>
             @endif
             <td class="text-right">
@@ -69,15 +71,19 @@
                        data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('entities.relations.edit', [$entity, 'relation' => $relation, 'mode' => 'table']) }}"
                        title=" {{ __('crud.edit') }}"
                     >
-                        <i class="fa fa-edit"></i>
+                        <i class="fa-solid fa-edit"></i>
                     </a>
                 @endcan
                 @can('relation', [$entity->child, 'delete'])
                     <button class="btn btn-xs btn-danger delete-confirm" data-toggle="modal" data-name="{{ $relation->target->name }}"
                             data-target="#delete-confirm" data-delete-target="delete-form-{{ $relation->id }}"
+
+
                             data-mirrored="{{ $relation->mirrored() }}"
+
+
                             title="{{ __('crud.remove') }}">
-                        <i class="fa fa-trash" aria-hidden="true"></i>
+                        <i class="fa-solid fa-trash" aria-hidden="true"></i>
                     </button>
                     {!! Form::open(['method' => 'DELETE', 'route' => ['entities.relations.destroy', $entity, 'relation' => $relation], 'style' => 'display:inline', 'id' => 'delete-form-' . $relation->id]) !!}
                     {!! Form::hidden('remove_mirrored', 0) !!}
@@ -85,11 +91,6 @@
                 @endcan
             </td>
         </tr>
-        @else
-            <tr class="entity-hidden">
-                <td colspan="{{ ($campaign->enabled('locations') ? 5 : 4) }}">{{ __('crud.hidden') }}</td>
-            </tr>
-        @endviewentity
     @endforeach
     </tbody>
 </table>

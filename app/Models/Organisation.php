@@ -3,11 +3,11 @@
 namespace App\Models;
 
 use App\Facades\CampaignLocalization;
+use App\Models\Concerns\Acl;
 use App\Models\Concerns\Nested;
-use App\Models\Concerns\SimpleSortableTrait;
+use App\Models\Concerns\SortableTrait;
 use App\Traits\CampaignTrait;
 use App\Traits\ExportableTrait;
-use App\Traits\VisibleTrait;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
@@ -16,17 +16,20 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *
  * @property int $organisation_id
  * @property Organisation $organisation
+ * @property OrganisationMember[] $members
  * @property Organisation[] $descendants
  * @property Organisation[] $organisations
  */
 class Organisation extends MiscModel
 {
     use CampaignTrait,
-        VisibleTrait,
         ExportableTrait,
         Nested,
-        SimpleSortableTrait,
-        SoftDeletes;
+        SoftDeletes,
+        SortableTrait,
+        Acl
+    ;
+
     /**
      * @var array
      */
@@ -39,6 +42,12 @@ class Organisation extends MiscModel
         'organisation_id',
         'type',
         'is_private',
+    ];
+
+    protected $sortable = [
+        'name',
+        'type',
+        'organisation.name',
     ];
 
     /**
@@ -173,32 +182,6 @@ class Organisation extends MiscModel
     public function members()
     {
         return $this->hasMany('App\Models\OrganisationMember', 'organisation_id', 'id');
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
-     */
-    public function quests()
-    {
-        return $this->belongsToMany('App\Models\Quest', 'quest_organisations')
-            ->using('App\Models\Pivots\QuestOrganisation')
-            ->withPivot('role', 'is_private');
-    }
-
-    /**
-     * @return mixed
-     */
-    public function relatedQuests()
-    {
-        $query = $this->quests()
-            ->orderBy('name', 'ASC')
-            ->with(['characters', 'locations', 'quests']);
-
-        if (!auth()->check() || !auth()->user()->isAdmin()) {
-            $query->where('quest_organisations.is_private', false);
-        }
-
-        return $query;
     }
 
     /**

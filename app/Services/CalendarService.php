@@ -4,12 +4,10 @@ namespace App\Services;
 
 use App\Http\Requests\AddCalendarWeather;
 use App\Models\Calendar;
-use App\Models\CalendarEvent;
 use App\Models\CalendarWeather;
 use App\Models\Entity;
 use App\Models\EntityEvent;
 use App\Models\Event;
-use App\Observers\PurifiableTrait;
 use Exception;
 use Illuminate\Support\Arr;
 use Stevebauman\Purify\Facades\Purify;
@@ -20,7 +18,7 @@ class CalendarService
      * Add an event to a calendar, and return the new calendar_event model
      * @param Calendar $calendar
      * @param array $data
-     * @return CalendarEvent
+     * @return EntityEvent
      */
     public function addEvent(Calendar $calendar, $data = [])
     {
@@ -38,7 +36,7 @@ class CalendarService
             $link->colour = Arr::get($data, 'colour', null);
             $link->recurring_until = Arr::get($data, 'recurring_until', null);
             $link->recurring_periodicity = Arr::get($data, 'recurring_periodicity', null);
-            $link->visibility = Arr::get($data, 'visibility', 'all');
+            $link->visibility_id = Arr::get($data, 'visibility_id', 1);
             if ($link->save()) {
                 return $link;
             }
@@ -67,7 +65,7 @@ class CalendarService
                 'year' => $request->post('year'),
                 'month' => $request->post('month'),
                 'day' => $request->post('day'),
-                'visibility' => $request->post('visibility'),
+                'visibility_id' => $request->post('visibility_id'),
                 'name' => $request->post('name'),
             ]);
         }
@@ -78,7 +76,7 @@ class CalendarService
             'precipitation' => $request->post('precipitation'),
             'wind' => $request->post('wind'),
             'effect' => $request->post('effect'),
-            'visibility' => $request->post('visibility'),
+            'visibility_id' => $request->post('visibility_id'),
             'name' => $request->post('name'),
         ]);
         $weather->save();

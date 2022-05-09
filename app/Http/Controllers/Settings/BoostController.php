@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers\Settings;
 
-use App\Exceptions\TranslatableException;
 use App\Facades\CampaignCache;
 use App\Facades\UserCache;
 use App\Http\Controllers\Controller;
 use App\Models\Campaign;
-use App\Models\CampaignBoost;
 use App\Services\CampaignBoostService;
 use Illuminate\Support\Facades\Auth;
 

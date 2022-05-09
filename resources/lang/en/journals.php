@@ -19,7 +19,6 @@ return [
         'journal'   => 'Parent Journal',
         'journals'  => 'Sub Journals',
         'name'      => 'Name',
-        'relation'  => 'Relation',
         'type'      => 'Type',
     ],
     'helpers'       => [
@@ -28,9 +27,7 @@ return [
         'nested_without'=> 'Displaying all journals that don\'t have a parent journal. Click on a row to see the children journals.',
     ],
     'index'         => [
-        'add'       => 'New Journal',
-        'header'    => 'Journals of :name',
-        'title'     => 'Journals',
+        'title' => 'Journals',
     ],
     'journals'      => [
         'title' => 'Journal :name sub journals',
@@ -46,6 +43,5 @@ return [
         'tabs'  => [
             'journals'  => 'Journals',
         ],
-        'title' => 'Journal :name',
     ],
 ];

@@ -76,6 +76,6 @@
         </div>
     </div>
     <div class="entity-main-block">
-        @include('cruds.boxes.history')
+        @include('entities.pages.logs.history')
     </div>
 </div>

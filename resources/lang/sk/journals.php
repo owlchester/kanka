@@ -19,7 +19,6 @@ return [
         'journal'   => 'Nadradený denník',
         'journals'  => 'Podradený denník',
         'name'      => 'Názov',
-        'relation'  => 'Prepojenie',
         'type'      => 'Typ',
     ],
     'helpers'       => [
@@ -28,9 +27,7 @@ return [
         'nested_without'=> 'Zobraziť všetky denníky, ktoré nemajú nadradený denník. Kliknutím na riadok zobrazíš podradené denníky.',
     ],
     'index'         => [
-        'add'       => 'Nový záznam v denníku',
-        'header'    => 'Záznamy v denníku objektu :name',
-        'title'     => 'Záznamy v denníku',
+        'title' => 'Záznamy v denníku',
     ],
     'journals'      => [
         'title' => 'Podradené denníky denníka :name',
@@ -46,6 +43,5 @@ return [
         'tabs'  => [
             'journals'  => 'Denníky',
         ],
-        'title' => 'Záznam :name',
     ],
 ];

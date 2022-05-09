@@ -4,7 +4,7 @@
     <section class="sidebar">
         <ul class="sidebar-menu tree" data-widget="tree">
             <li class="{{ $sidebar->admin('referrals') }}">
-                <a href="{{ route('partner.referrals') }}"><i class="fa fa-user-tag"></i> <span>Referrals</span></a>
+                <a href="{{ route('partner.referrals') }}"><i class="fa-solid fa-user-tag"></i> <span>Referrals</span></a>
             </li>
         </ul>
     </section>

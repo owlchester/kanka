@@ -2,11 +2,11 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\Acl;
 use App\Models\Concerns\Nested;
-use App\Models\Concerns\SimpleSortableTrait;
+use App\Models\Concerns\SortableTrait;
 use App\Traits\CampaignTrait;
 use App\Traits\ExportableTrait;
-use App\Traits\VisibleTrait;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
@@ -21,11 +21,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Family extends MiscModel
 {
     use CampaignTrait,
-        VisibleTrait,
         ExportableTrait,
         Nested,
-        SimpleSortableTrait,
-        SoftDeletes;
+        SoftDeletes,
+        SortableTrait,
+        Acl
+    ;
 
     /**
      * @var array
@@ -63,6 +64,13 @@ class Family extends MiscModel
     protected $sortableColumns = [
         'family.name',
         'location.name',
+    ];
+
+    protected $sortable = [
+        'name',
+        'type',
+        'location.name',
+        'family.name',
     ];
 
     /**

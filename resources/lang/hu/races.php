@@ -31,9 +31,7 @@ return [
         'nested_without'=> 'Megmutat minden fajt, aminek nincs szülője. Klikkelj egy sorra, hogy megnézd a gyermekfajait.',
     ],
     'index'         => [
-        'add'       => 'Új faj',
-        'header'    => ':name fajai',
-        'title'     => 'Fajok',
+        'title' => 'Fajok',
     ],
     'placeholders'  => [
         'name'  => 'A faj neve',
@@ -47,6 +45,5 @@ return [
             'characters'    => 'Karakterek',
             'races'         => 'Alfajok',
         ],
-        'title' => ':name faj',
     ],
 ];

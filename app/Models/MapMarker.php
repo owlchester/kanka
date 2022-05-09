@@ -8,7 +8,7 @@ use App\Facades\Mentions;
 use App\Models\Concerns\Blameable;
 use App\Models\Concerns\Paginatable;
 use App\Traits\SourceCopiable;
-use App\Traits\VisibilityTrait;
+use App\Traits\VisibilityIDTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
@@ -37,14 +37,13 @@ use Illuminate\Support\Str;
  * @property bool $is_draggable
  * @property array $polygon_style
  * @property float $opacity
- * @property string $visibility
  * @property int $group_id
  * @property int $pin_size
  * @property MapGroup $group
  */
 class MapMarker extends Model
 {
-    use Blameable, VisibilityTrait, Paginatable, SourceCopiable;
+    use Blameable, VisibilityIDTrait, Paginatable, SourceCopiable;
 
     const SHAPE_MARKER = 1;
     const SHAPE_LABEL = 2;
@@ -56,7 +55,7 @@ class MapMarker extends Model
         'map_id',
         'name',
         'entry',
-        'visibility',
+        'visibility_id',
         'entity_id',
         'type_id',
         'size_id',
@@ -132,11 +131,11 @@ class MapMarker extends Model
 
         switch ($this->icon) {
             case 2:
-                return '<i class="fa fa-question"></i>';
+                return '<i class="fa-solid fa-question"></i>';
             case 3:
-                return '<i class="fa fa-exclamation"></i>';
+                return '<i class="fa-solid fa-exclamation"></i>';
             default:
-                return '<i class="fa fa-marker"></i>';
+                return '<i class="fa-solid fa-map-pin"></i>';
         }
     }
 
@@ -351,7 +350,7 @@ class MapMarker extends Model
 
         $iconShape = '<div style="background-color: ' . $this->backgroundColour() . '" class="marker-pin"></div>';
 
-        $icon = '`' . $iconShape . '<i class="fa fa-pin-marker"></i>`';
+        $icon = '`' . $iconShape . '<i class="fa-solid fa-map-pin"></i>`';
         if (!empty($this->custom_icon)) {
             if (Str::startsWith($this->custom_icon, '<i')) {
                 $icon = '`' . $iconShape . '' . $this->custom_icon . '`';
@@ -360,9 +359,11 @@ class MapMarker extends Model
             }
         }
         elseif ($this->icon == 2) {
-            $icon = '`' . $iconShape . '<i class="fa fa-question"></i>`';
+            $icon = '`' . $iconShape . '<i class="fa-solid fa-question"></i>`';
         } elseif ($this->icon == 3) {
-            $icon = '`' . $iconShape . '<i class="fa fa-exclamation"></i>`';
+            $icon = '`' . $iconShape . '<i class="fa-solid fa-exclamation"></i>`';
+        } elseif ($this->icon == 4) {
+            $icon = '`' . $iconShape . '`';
         }
 
         //dd($this->pin_size ?: 40);

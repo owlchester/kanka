@@ -17,7 +17,10 @@ class CreateReferralTable extends Migration
             $table->bigIncrements('id');
             $table->string('code', 45)->unique();
             $table->boolean('is_valid');
+            $table->unsignedInteger('user_id')->nullable();
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');
         });
 
         Schema::table('users', function (Blueprint $table) {

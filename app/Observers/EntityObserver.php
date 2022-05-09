@@ -4,6 +4,7 @@ namespace App\Observers;
 
 use App\Facades\CampaignLocalization;
 use App\Facades\EntityPermission;
+use App\Facades\Permissions;
 use App\Jobs\EntityUpdatedJob;
 use App\Models\CampaignPermission;
 use App\Models\Entity;
@@ -68,7 +69,7 @@ class EntityObserver
         // have tags on entities that the user doesn't know about.
         $existing = [];
         foreach ($entity->tags()->with('entity')->has('entity')->get() as $tag) {
-            if (EntityPermission::canView($tag->entity)) {
+            if ($tag->entity) {
                 $existing[$tag->id] = $tag->name;
             }
         }
@@ -118,13 +119,13 @@ class EntityObserver
 
         // If the user granted/assigned themselves read/write permissions on the entity, we need to make sure they
         // still have them even if not checked in the UI.
-        if (EntityPermission::granted() && !empty($data['user'])) {
+        if (Permissions::granted() && !empty($data['user'])) {
             $user = auth()->user()->id;
-            if (!in_array('edit', $data['user'][$user])) {
-                $data['user'][$user]['edit'] = 'allow';
+            if (!in_array(CampaignPermission::ACTION_EDIT, $data['user'][$user])) {
+                $data['user'][$user][CampaignPermission::ACTION_EDIT] = 'allow';
             }
-            if (!in_array('read', $data['user'][$user])) {
-                $data['user'][$user]['read'] = 'allow';
+            if (!in_array(CampaignPermission::ACTION_READ, $data['user'][$user])) {
+                $data['user'][$user][CampaignPermission::ACTION_READ] = 'allow';
             }
         }
 
@@ -166,28 +167,34 @@ class EntityObserver
         if (!auth()->user()->can('view', $entity->child)) {
             $permission = new CampaignPermission();
             $permission->entity_id = $entity->id;
+            $permission->misc_id = $entity->entity_id;
+            $permission->entity_type_id = $entity->type_id;
+            $permission->campaign_id = $entity->campaign_id;
             $permission->user_id = auth()->user()->id;
-            $permission->key = $entity->type() . '_read_' . $entity->entity_id;
-            $permission->table_name = $entity->pluralType();
+            //$permission->key = $entity->type() . '_read_' . $entity->entity_id;
+            //$permission->table_name = $entity->pluralType();
+            $permission->action = CampaignPermission::ACTION_READ;
             $permission->access = true;
             $permission->save();
-            EntityPermission::grant($entity);
-            $this->permissionGrantSelf = true;
+            Permissions::grant($entity);
         }
         if (!auth()->user()->can('update', $entity->child)) {
             $permission = new CampaignPermission();
             $permission->entity_id = $entity->id;
+            $permission->misc_id = $entity->entity_id;
+            $permission->entity_type_id = $entity->type_id;
+            $permission->campaign_id = $entity->campaign_id;
             $permission->user_id = auth()->user()->id;
-            $permission->key = $entity->type() . '_edit_' . $entity->entity_id;
-            $permission->table_name = $entity->pluralType();
+            //$permission->key = $entity->type() . '_edit_' . $entity->entity_id;
+            //$permission->table_name = $entity->pluralType();
+            $permission->action = CampaignPermission::ACTION_EDIT;
             $permission->access = true;
             $permission->save();
-            EntityPermission::grant($entity, 'edit');
-            $this->permissionGrantSelf = true;
+            Permissions::grant($entity);
         }
 
         // Refresh the model because adding permissions to the child means we have a new relation
-        if ($this->permissionGrantSelf) {
+        if (Permissions::granted()) {
             $entity->unsetRelation('child');
             $entity->reloadChild();
         }

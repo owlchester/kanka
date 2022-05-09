@@ -10,7 +10,8 @@ $(document).ready(function (e) {
         $.ajax({
             url: $(this).data('url')
         }).done(function (data) {
-            $(quickCreatorModalID).find('.modal-content').html(data);
+            $(quickCreatorModalID).find('.modal-content').show().html(data);
+            $(quickCreatorModalID).find('.modal-spinner').hide();
             $(quickCreatorModalID).modal();
 
             quickCreatorSubformHandler();
@@ -30,7 +31,8 @@ function quickCreatorUI() {
         $.ajax({
             url: $(this).data('url')
         }).done(function (data) {
-            $(quickCreatorModalID).find('.modal-content').html(data);
+            $(quickCreatorModalID).find('.modal-content').show().html(data);
+            $(quickCreatorModalID).find('.modal-spinner').hide();
 
             quickCreatorSubformHandler();
         });
@@ -65,14 +67,9 @@ function quickCreatorDuplicateName() {
 
 function quickCreatorLoadingModal() {
     $(quickCreatorModalID)
-        .find('.modal-content')
-        .html(
-            '<div class="modal-body">' +
-            '<div class="text-center">' +
-            '<i class="fa fa-spinner fa-spin fa-2x"></i>' +
-            '</div>' +
-            '</div>'
-        );
+        .find('.modal-content').hide();
+    $(quickCreatorModalID)
+        .find('.modal-spinner').show();
 }
 
 /**
@@ -95,7 +92,8 @@ function quickCreatorSubformHandler() {
         e.preventDefault();
         quickCreatorSubmitBtn
             .prop('disabled', true)
-            .html('<i class="fas fa-spinner fa-spin"></i>');
+            .find('span').hide()
+            .parent().find('i').show();
 
         // Allow ajax requests to use the X_CSRF_TOKEN for deletes
         $.ajaxSetup({
@@ -115,13 +113,15 @@ function quickCreatorSubformHandler() {
                     new Option(result._name, result._id)
                 ).val(result._id).trigger('change');
 
-                $(quickCreatorModalID).find('.modal-content').html('');
+                $(quickCreatorModalID).find('.modal-content').html('').show();
+                $(quickCreatorModalID).find('.modal-spinner').hide();
                 $(quickCreatorModalID).modal('toggle');
 
                 return;
             }
 
-            $(quickCreatorModalID).find('.modal-content').html(result);
+            $(quickCreatorModalID).find('.modal-content').html(result).show();
+            $(quickCreatorModalID).find('.modal-spinner').hide();
             quickCreatorUI();
 
         }).fail(function (err) {
@@ -161,7 +161,8 @@ function quickCreatorSubformHandler() {
             }
             quickCreatorSubmitBtn
                 .prop('disabled', false)
-                .html(quickCreatorSubmitBtn.data('text'));
+                .find('i').hide()
+                .parent().find('span').show();
         });
     });
 }
@@ -176,7 +177,8 @@ function quickCreatorBackButton() {
             context: this
         }).done(function (result) {
             let target = $(this).data('target');
-            $(target).find('.modal-content').html(result);
+            $(target).find('.modal-content').html(result).show();
+            $(target).find('.modal-spinner').hide();
             quickCreatorUI();
         });
     });

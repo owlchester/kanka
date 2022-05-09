@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers\Entity;
 
-use App\Datagrids\Sorters\EntityInventorySorter;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreInventory;
 use App\Models\Entity;
 use App\Models\Inventory;
-use App\Models\MiscModel;
 use App\Traits\GuestAuthTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
@@ -34,7 +32,7 @@ class InventoryController extends Controller
         'entity_id',
         'position',
         'description',
-        'visibility',
+        'visibility_id',
         'is_equipped',
         'copy_item_entry'
     ];
@@ -54,20 +52,14 @@ class InventoryController extends Controller
         if (Auth::check()) {
             $this->authorize('view', $entity->child);
         } else {
-            $this->authorizeEntityForGuest('read', $entity->child);
+            $this->authorizeEntityForGuest(\App\Models\CampaignPermission::ACTION_READ, $entity->child);
         }
-
-
-        $datagridSorter = new EntityInventorySorter();
-        $datagridSorter->request(request()->all());
 
         $ajax = request()->ajax();
 
         $inventory = $entity
             ->inventories()
             ->with(['entity', 'item', 'item.entity'])
-            ->has('entity')
-            ->simpleSort($datagridSorter)
             ->get()
             ->sortBy(function($model, $key) {
                 return !empty($model->position) ? $model->position : 'zzzz' . $model->itemName();
@@ -77,7 +69,6 @@ class InventoryController extends Controller
             'ajax',
             'entity',
             'inventory',
-            'datagridSorter'
         ));
     }
 

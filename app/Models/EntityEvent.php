@@ -3,9 +3,10 @@
 namespace App\Models;
 
 use App\Models\Concerns\Blameable;
-use App\Models\Concerns\SimpleSortableTrait;
+use Illuminate\Database\Eloquent\Builder;
+use App\Models\Concerns\SortableTrait;
 use App\Traits\OrderableTrait;
-use App\Traits\VisibilityTrait;
+use App\Traits\VisibilityIDTrait;
 use Illuminate\Support\Str;
 
 /**
@@ -36,8 +37,7 @@ class EntityEvent extends MiscModel
     /**
      * Traits
      */
-    //use VisibleTrait;
-    use OrderableTrait, SimpleSortableTrait, VisibilityTrait, Blameable;
+    use OrderableTrait, SortableTrait, VisibilityIDTrait, Blameable;
 
     /**
      * Trigger for filtering based on the order request.
@@ -73,7 +73,6 @@ class EntityEvent extends MiscModel
      */
     protected $readableDate;
 
-
     /**
      * @var array
      */
@@ -91,7 +90,15 @@ class EntityEvent extends MiscModel
         'month',
         'year',
         'type_id',
-        'visibility',
+        'visibility_id',
+    ];
+
+    protected $sortable = [
+        'entity.name',
+        'length',
+        'date',
+        'is_recurring',
+        'visibility_id',
     ];
 
     /**
@@ -119,6 +126,70 @@ class EntityEvent extends MiscModel
     }
 
     /**
+     * All events before the current calendar's date
+     * @param Builder $query
+     * @param Calendar $calendar
+     * @return Builder
+     */
+    public function scopeBefore(Builder $query, Calendar $calendar)
+    {
+        $year = $calendar->currentDate('year');
+        $month = $calendar->currentDate('month');
+        $day = $calendar->currentDate('date');
+
+        return $query->where('year', '<', $year)
+            ->orWhere(function ($sub) use ($year, $month) {
+                $sub->where('year', '=', $year)
+                    ->where('month', '<', $month);
+            })
+            ->orWhere(function ($sub) use ($year, $month, $day) {
+                $sub->where('year', '=', $year)
+                    ->where('month', '=', $month)
+                    ->where('day', '<=', $day);
+            });
+    }
+
+    /**
+     * All events today and after today
+     * @param Builder $query
+     * @param Calendar $calendar
+     * @return Builder
+     */
+    public function scopeAfter(Builder $query, Calendar $calendar)
+    {
+        $year = $calendar->currentDate('year');
+        $month = $calendar->currentDate('month');
+        $day = $calendar->currentDate('date');
+
+        return $query->where('year', '>', $year)
+            ->orWhere(function ($sub) use ($year, $month) {
+                $sub->where('year', '=', $year)
+                    ->where('month', '>', $month);
+            })
+            ->orWhere(function ($sub) use ($year, $month, $day) {
+                $sub->where('year', '=', $year)
+                    ->where('month', '=', $month)
+                    ->where('day', '>=', $day);
+            });
+    }
+
+    /**
+     * Sort order for the datagrid page
+     * @param Builder $query
+     * @param string|null $order
+     * @return Builder
+     */
+    public function scopeCustomSortDate(Builder $query, string $order = null)
+    {
+        return $query
+            ->orderBy('year', $order)
+            ->orderBy('month', $order)
+            ->orderBy('day', $order);
+    }
+
+
+
+    /**
      * @return string
      */
     public function readableDate(): string
@@ -138,6 +209,15 @@ class EntityEvent extends MiscModel
             }
         }
         return $this->readableDate;
+    }
+
+    /**
+     * Length of the event in a readable format (appends "days")
+     * @return string
+     */
+    public function readableLength(): string
+    {
+        return trans_choice('calendars.fields.length_days', $this->length, ['count' => $this->length]);
     }
 
     /**
@@ -189,7 +269,7 @@ class EntityEvent extends MiscModel
         $label = '';
 
         if ($this->is_recurring) {
-            $label .= '<i class="fa fa-refresh pull-right margin-l-5" data-toggle="tooltip" title="'
+            $label .= '<i class="fa-solid fa-refresh pull-right margin-l-5" data-toggle="tooltip" title="'
                 . trans('calendars.fields.is_recurring') . '"></i>';
         }
         if ($this->comment) {
@@ -285,5 +365,23 @@ class EntityEvent extends MiscModel
 
         // Same month
         return $years - ($day < $this->day ? 1 : 0);
+    }
+
+    /**
+     * Functions for the datagrid2
+     * @param string $where
+     * @return string
+     */
+    public function deleteName(): string
+    {
+        return (string) $this->entity->name;
+    }
+    public function url(string $where): string
+    {
+        return 'entities.entity_events.' . $where;
+    }
+    public function routeParams(): array
+    {
+        return [$this->entity_id, $this->id];
     }
 }

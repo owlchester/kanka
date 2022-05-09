@@ -26,16 +26,12 @@ return [
         'is_pinned' => 'Upp till 3 anteckningar kan vara fastnålade för att visas på dashborden.',
     ],
     'index'         => [
-        'add'       => 'Ny Anteckning',
-        'header'    => 'Anteckningar för :name',
-        'title'     => 'Anteckningar',
+        'title' => 'Anteckningar',
     ],
     'placeholders'  => [
         'name'  => 'Namn på anteckningen',
         'note'  => 'Välj en huvudanteckning',
         'type'  => 'Religion, Ras, Politiskt System',
     ],
-    'show'          => [
-        'title' => 'Anteckning :name',
-    ],
+    'show'          => [],
 ];

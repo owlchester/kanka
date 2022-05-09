@@ -22,6 +22,8 @@ class AddCampaignDashboardCalendar extends Migration
             $table->unsignedTinyInteger('position')->notNull();
 
             $table->string('widget', 12);
+            $table->unsignedTinyInteger('width')->default(0);
+
             $table->timestamps();
 
             $table->index(['campaign_id', 'position']);

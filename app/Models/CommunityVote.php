@@ -5,9 +5,6 @@
 
 namespace App\Models;
 
-use App\Models\Concerns\Filterable;
-use App\Models\Concerns\Searchable;
-use App\Models\Concerns\Sortable;
 use App\Models\Scopes\CommunityVoteScopes;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
@@ -35,16 +32,12 @@ use Spatie\Feed\FeedItem;
  */
 class CommunityVote extends Model implements Feedable
 {
-    use Filterable, Sortable, Searchable, CommunityVoteScopes;
+    use CommunityVoteScopes;
 
     const STATUS_DRAFT = 'draft';
     const STATUS_SCHEDULED = 'scheduled';
     const STATUS_VOTING = 'voting';
     const STATUS_PUBLISHED = 'published';
-
-    public $searchableColumns = ['name'];
-    public $sortableColumns = [];
-    public $filterableColumns = ['name'];
 
     protected $cachedStatus = false;
     protected $cachedResults = false;
@@ -52,15 +45,6 @@ class CommunityVote extends Model implements Feedable
     public $dates = [
         'visible_at',
         'published_at'
-    ];
-
-    public $fillable = [
-        'name',
-        'content',
-        'excerpt',
-        'options',
-        'published_at',
-        'visible_at',
     ];
 
     /**

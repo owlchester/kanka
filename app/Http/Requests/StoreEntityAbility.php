@@ -28,7 +28,7 @@ class StoreEntityAbility extends FormRequest
             'abilities' => 'required_without:ability_id|array|min:1',
             'position' => 'nullable|integer|min:0|max:100',
             'note' => 'nullable|string',
-            'visibility' => 'string',
+            'visibility_id' => 'nullable|exists:visibilities,id',
         ];
     }
 }

@@ -28,8 +28,6 @@ return [
             'dice'      => 'Tiradas de dados',
             'results'   => 'Resultados',
         ],
-        'add'       => 'Nova tirada de dados',
-        'header'    => 'Tiradas de dados de :name',
         'title'     => 'Tiradas de dados',
     ],
     'placeholders'  => [
@@ -54,6 +52,5 @@ return [
         'tabs'  => [
             'results'   => 'Resultados',
         ],
-        'title' => 'Tirada de dados ":name"',
     ],
 ];

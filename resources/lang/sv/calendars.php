@@ -107,9 +107,7 @@ return [
         'years'             => 'Vissa år är så viktiga att dom har sitt eget namn.',
     ],
     'index'         => [
-        'add'       => 'Ny Kalender',
-        'header'    => 'Kalendrarna under :name',
-        'title'     => 'Kalendrar',
+        'title' => 'Kalendrar',
     ],
     'layouts'       => [
         'month' => 'Månad',
@@ -199,10 +197,8 @@ return [
         'moon_waning_moon'  => ':moon Avtagande',
         'moon_waxing_moon'  => ':moon Tilltagande',
         'tabs'              => [
-            'events'        => 'Kalender Händelser',
-            'information'   => 'Information',
-            'weather'       => 'Väder',
+            'events'    => 'Kalender Händelser',
+            'weather'   => 'Väder',
         ],
-        'title'             => 'Kalender :name',
     ],
 ];

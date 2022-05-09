@@ -36,10 +36,6 @@ Route::apiResources([
     'campaigns.organisations' => 'OrganisationApiController',
     'campaigns.organisations.organisation_members' => 'OrganisationMemberApiController',
     'campaigns.quests' => 'QuestApiController',
-    'campaigns.quests.quest_characters' => 'QuestCharacterApiController',
-    'campaigns.quests.quest_locations' => 'QuestLocationApiController',
-    'campaigns.quests.quest_items' => 'QuestItemApiController',
-    'campaigns.quests.quest_organisations' => 'QuestOrganisationApiController',
     'campaigns.quests.quest_elements' => 'QuestElementApiController',
     'campaigns.races' => 'RaceApiController',
     'campaigns.tags' => 'TagApiController',
@@ -82,6 +78,8 @@ Route::post('campaigns/{campaign}/entities/templates/{entity}/switch', 'EntityTe
 Route::get('campaigns/{campaign}/entities', 'EntityApiController@index');
 Route::get('campaigns/{campaign}/entities/{entity}', 'EntityApiController@show');
 Route::get('campaigns/{campaign}/entities/{entity}/mentions', 'EntityMentionApiController@index');
+
+Route::get('visibilities', 'VisibilityController@index');
 
 
 //Route::get('campaigns/{campaign}/settings', 'CampaignSettingApiController@index');

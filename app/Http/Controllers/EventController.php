@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Datagrids\Filters\EventFilter;
 use App\Datagrids\Sorters\EventEventSorter;
+use App\Facades\Datagrid;
 use App\Http\Requests\StoreEvent;
 use App\Models\Event;
 use App\Models\Tag;
@@ -86,13 +87,27 @@ class EventController extends CrudController
 
     /**
      * @param Event $event
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\JsonResponse|\Illuminate\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function events(Event $event)
     {
+        $this->authCheck($event);
+
+        Datagrid::layout(\App\Renderers\Layouts\Event\Event::class)
+            ->route('events.events', [$event]);
+
+        $this->rows = $event
+            ->descendants()
+            ->sort(request()->only(['o', 'k']))
+            ->with(['entity', 'event', 'event.entity'])
+            ->paginate();
+
+        if (request()->ajax()) {
+            return $this->datagridAjax();
+        }
+
         return $this
-            ->datagridSorter(EventEventSorter::class)
             ->menuView($event, 'events');
     }
 }

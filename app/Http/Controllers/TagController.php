@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Datagrids\Filters\TagFilter;
 use App\Datagrids\Sorters\TagChildrenSorter;
 use App\Datagrids\Sorters\TagTagSorter;
+use App\Facades\Datagrid;
 use App\Http\Requests\StoreTagEntity;
 use App\Models\Character;
 use App\Http\Requests\StoreTag;
@@ -97,8 +98,29 @@ class TagController extends CrudController
      */
     public function tags(Tag $tag)
     {
+        $this->authCheck($tag);
+
+        $options = ['tag' => $tag];
+        $filters = [];
+        if (request()->has('tag_id')) {
+            $options['tag_id'] = $tag->id;
+            $filters['tag_id'] = $tag->id;
+        }
+        Datagrid::layout(\App\Renderers\Layouts\Tag\Tag::class)
+            ->route('tags.tags', $options);
+
+        $this->rows = $tag
+            ->descendants()
+            ->sort(request()->only(['o', 'k']))
+            ->filter($filters)
+            ->with(['entity', 'entity.tags', 'tag', 'tag.entity'])
+            ->paginate();
+
+        // Ajax Datagrid
+        if (request()->ajax()) {
+            return $this->datagridAjax();
+        }
         return $this
-            ->datagridSorter(TagTagSorter::class)
             ->menuView($tag, 'tags');
     }
 
@@ -109,8 +131,28 @@ class TagController extends CrudController
      */
     public function children(Tag $tag)
     {
+        $this->authCheck($tag);
+
+        $options = ['tag' => $tag];
+        $base = 'allChildren';
+        if (request()->has('tag_id')) {
+            $options['tag_id'] = $tag->id;
+            $base = 'entities';
+        }
+        Datagrid::layout(\App\Renderers\Layouts\Tag\Entity::class)
+            ->route('tags.children', $options);
+
+        $this->rows = $tag
+            ->{$base}()
+            ->sort(request()->only(['o', 'k']))
+            ->paginate();
+
+        // Ajax Datagrid
+        if (request()->ajax()) {
+            return $this->datagridAjax();
+        }
+
         return $this
-            ->datagridSorter(TagChildrenSorter::class)
             ->menuView($tag, 'children');
     }
 

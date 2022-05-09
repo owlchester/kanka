@@ -26,7 +26,7 @@
            <a href='{{ route('locations.map_points.destroy', [$location, $model]) }}' class='btn btn-block btn-danger map-point-delete'>{{ __('crud.click_modal.confirm') }}</a>"
             title="{{ __('crud.remove') }}"
         >
-            <i class="fa fa-trash"></i> {{ trans('crud.remove') }}
+            <i class="fa-solid fa-trash"></i> {{ trans('crud.remove') }}
         </a>
         @endif
     </div>

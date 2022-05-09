@@ -13,7 +13,6 @@ $entity = \App\Models\Entity::
         inTags($widget->tags->pluck('id')->toArray())
         ->whereNotIn('type', ['attribute_template', 'conversation', 'tag'])
         ->type($entityTypeID)
-        ->acl()
         ->with(['image'])
         ->whereNotIn('entities.id', \App\Facades\Dashboard::excluding())
         ->inRandomOrder()
@@ -53,7 +52,7 @@ $widget->setEntity($entity);
         <h3 class="panel-title">
             <a href="{{ $entity->url() }}">
                 @if ($model->is_private)
-                    <i class="fas fa-lock pull-right" title="{{ trans('crud.is_private') }}"></i>
+                    <i class="fa-solid fa-lock pull-right" title="{{ trans('crud.is_private') }}"></i>
                 @endif
                 @if (!empty($widget->conf('text')))
                     {{ $customName }}
@@ -85,7 +84,7 @@ $widget->setEntity($entity);
         </div>
         <a href="#" class="preview-switch hidden"
            id="widget-preview-switch-{{ $widget->id }}" data-widget="{{ $widget->id }}">
-            <i class="fa fa-chevron-down"></i>
+            <i class="fa-solid fa-chevron-down"></i>
         </a>
         @endif
     </div>

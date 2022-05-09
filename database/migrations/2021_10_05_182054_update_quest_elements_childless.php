@@ -21,15 +21,6 @@ class UpdateQuestElementsChildless extends Migration
         if (app()->environment('testing')) {
             return;
         }
-        Schema::table('community_event_entries', function(Blueprint $table) {
-            $table->dropForeign('community_event_entries_created_by_foreign');
-            $table
-                ->foreign('created_by')
-                ->references('id')
-                ->on('users')
-                ->onUpdate('cascade');
-
-        });
     }
 
     /**
@@ -42,16 +33,6 @@ class UpdateQuestElementsChildless extends Migration
         Schema::table('quest_elements', function (Blueprint $table) {
             $table->unsignedInteger('entity_id')->change();
             $table->dropColumn('name');
-        });
-
-        Schema::table('community_event_entries', function(Blueprint $table) {
-            $table->dropForeign('community_event_entries_created_by_foreign');
-            $table
-                ->foreign('created_by')
-                ->references('id')
-                ->on('users')
-                ->onUpdate('set null');
-
         });
     }
 }

@@ -16,10 +16,10 @@ $first = true;
             @foreach ($permissions as $perm)
                 <div class="col-sm-2 text-center tooltip-wide">
                     <label>
-                        <span class="hidden-xs">{{ __('campaigns.roles.permissions.actions.' . $perm['action']) }}<br /></span>
-                        <input type="checkbox" class="permission-toggle" data-action="{{ $perm['action'] }}" title="{{ __('campaigns.roles.permissions.actions.' . $perm['action']) }}" />
+                        <span class="hidden-xs">{{ __('campaigns.roles.permissions.actions.' . $perm['label']) }}<br /></span>
+                        <input type="checkbox" class="permission-toggle" data-action="{{ $perm['action'] }}" title="{{ __('campaigns.roles.permissions.actions.' . $perm['label']) }}" />
 
-                            <span class="visible-xs-inline">{{ __('campaigns.roles.permissions.actions.' . $perm['action']) }}</span>
+                            <span class="visible-xs-inline">{{ __('campaigns.roles.permissions.actions.' . $perm['label']) }}</span>
                     </label>
                 </div>
             @endforeach
@@ -30,13 +30,13 @@ $first = true;
     @endif
     <div class="row margin-bottom">
         <div class="col-sm-4 col-md-3 col-xl-2">
-            <strong>{{ __('entities.' . $entity) }}</strong>
+            <strong>{{ __($permission->entityType($entity)) }}</strong>
         </div>
         <div class="col-sm-8 col-md-9 col-xl-10">
             <div class="row">
             @foreach ($permissions as $perm)
                 <div class="col-sm-2 text-center">
-                    <div class="pretty p-icon p-toggle p-plain" title="{{ __('campaigns.roles.permissions.actions.' . $perm['action']) }}" data-toggle="tooltip">
+                    <div class="pretty p-icon p-toggle p-plain" title="{{ __('campaigns.roles.permissions.actions.' . $perm['label']) }}" data-toggle="tooltip">
                         {!! Form::checkbox('permissions[' . $perm['key'] . ']', $entity, $perm['enabled'], ['data-action' => $perm['action']]) !!}
                         <div class="state p-success-o p-on">
                             <i class="icon {{ $perm['icon'] }}"></i>
@@ -75,12 +75,12 @@ $first = true;
                     @foreach ($permissions as $perm)
                         <div class="col-sm-2 text-center tooltip-wide">
                             <label>
-                        <span class="hidden-xs">{{ __('campaigns.roles.permissions.actions.' . $perm['action']) }}@if($perm['action'] == 'entity-note')
-                                <i class="fa fa-question-circle" data-placement="bottom" data-toggle="tooltip" title="{{ __('campaigns.roles.permissions.helpers.entity_note') }}"></i>
+                        <span class="hidden-xs">{{ __('campaigns.roles.permissions.actions.' . $perm['label']) }}@if($perm['action'] == \App\Models\CampaignPermission::ACTION_POSTS)
+                                <i class="fa-solid fa-question-circle" data-placement="bottom" data-toggle="tooltip" title="{{ __('campaigns.roles.permissions.helpers.entity_note') }}"></i>
                             @endif<br /></span>
-                                <input type="checkbox" class="permission-toggle" data-action="{{ $perm['action'] }}" title="{{ __('campaigns.roles.permissions.actions.' . $perm['action']) }}" />
+                                <input type="checkbox" class="permission-toggle" data-action="{{ $perm['action'] }}" title="{{ __('campaigns.roles.permissions.actions.' . $perm['label']) }}" />
 
-                                <span class="visible-xs-inline">{{ __('campaigns.roles.permissions.actions.' . $perm['action']) }}</span>
+                                <span class="visible-xs-inline">{{ __('campaigns.roles.permissions.actions.' . $perm['label']) }}</span>
                             </label>
                         </div>
                     @endforeach
@@ -97,18 +97,18 @@ $first = true;
             <div class="row">
                 @foreach ($permissions as $perm)
                     <div class="col-sm-2 text-center">
-                        <div class="pretty p-icon p-toggle p-plain" title="{{ __('campaigns.roles.permissions.actions.' . $perm['action']) }}" data-toggle="tooltip">
+                        <div class="pretty p-icon p-toggle p-plain" title="{{ __('campaigns.roles.permissions.actions.' . $perm['label']) }}" data-toggle="tooltip">
                             {!! Form::checkbox('permissions[' . $perm['key'] . ']', $entity, $perm['enabled'], ['data-action' => $perm['action']]) !!}
                             <div class="state p-success-o p-on">
                                 <i class="icon {{ $perm['icon'] }}"></i>
                                 <label class="visible-xs">
-                                    {{ __('campaigns.roles.permissions.actions.' . $perm['action']) }}
+                                    {{ __('campaigns.roles.permissions.actions.' . $perm['label']) }}
                                 </label>
                             </div>
                             <div class="state p-off">
                                 <i class="icon {{ $perm['icon'] }}"></i>
                                 <label class="visible-xs">
-                                    {{ __('campaigns.roles.permissions.actions.' . $perm['action']) }}
+                                    {{ __('campaigns.roles.permissions.actions.' . $perm['label']) }}
                                 </label>
                             </div>
                         </div>

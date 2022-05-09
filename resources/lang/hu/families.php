@@ -22,7 +22,6 @@ return [
         'location'  => 'Helyszín',
         'members'   => 'Tagok',
         'name'      => 'Név',
-        'relation'  => 'Kapcsolatok',
         'type'      => 'Típus',
     ],
     'helpers'       => [
@@ -34,9 +33,7 @@ return [
         'members'   => 'Ez a lista a család tagjait tartalmazza. Ha hozzá akarsz adni egy karaktert, nyisd meg a kívánt karaktert szerkesztésre, és használd a "Család" legördülő menüt.',
     ],
     'index'         => [
-        'add'       => 'Új család',
-        'header'    => ':name családja',
-        'title'     => 'Családok',
+        'title' => 'Családok',
     ],
     'members'       => [
         'helpers'   => [
@@ -55,8 +52,6 @@ return [
             'all_members'   => 'Minden családtag',
             'families'      => 'Családok',
             'members'       => 'Családtagok',
-            'relation'      => 'Viszonyok',
         ],
-        'title' => ':name család',
     ],
 ];

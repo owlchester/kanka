@@ -1,6 +1,10 @@
 <?php
 
 return [
+    'copy_mention'  => [
+        'copy_with_name'    => 'Copier la mention avancée avec le nom de l\'élément',
+        'success'           => 'Mention avancée vers l\'élément copier au press-papier.',
+    ],
     'create'        => [
         'success'   => 'Élément ajouté à la chronologie.',
         'title'     => 'Nouvel élément de chronologie',

@@ -34,12 +34,7 @@ return [
         'tag'       => 'Visad nedan är alla taggar direkt under denna tagg.',
     ],
     'index'         => [
-        'actions'   => [
-            'explore_view'  => 'Hierarkisk Vy',
-        ],
-        'add'       => 'Ny Tagg',
-        'header'    => 'Taggar i :name',
-        'title'     => 'Taggar',
+        'title' => 'Taggar',
     ],
     'new_tag'       => 'Ny Tagg',
     'placeholders'  => [
@@ -52,7 +47,6 @@ return [
             'children'  => 'Undertaggar',
             'tags'      => 'Taggar',
         ],
-        'title' => 'Tagg :name',
     ],
     'tags'          => [
         'title' => 'Tag :name undertaggar',

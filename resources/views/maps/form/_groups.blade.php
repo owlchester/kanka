@@ -33,9 +33,9 @@
         <tr>
             <td>{{ $group->name }}</td>
             <td>{{ $group->position }}</td>
-            <td>@if($group->is_shown) <i class="fas fa-check"></i> @endif</td>
+            <td>@if($group->is_shown) <i class="fa-solid fa-check"></i> @endif</td>
             <td>
-                @include('cruds.partials.visibility', ['model' => $group])
+                {!! $group->visibilityIcon() !!}
             </td>
             <td class="text-right">
                 <a href="{{ route('maps.map_groups.edit', [$model, $group]) }}" class="btn btn-primary btn-xs"
@@ -43,13 +43,13 @@
                    data-toggle="ajax-modal" data-target="#entity-modal"
                    data-url="{{ route('maps.map_groups.edit', [$model, $group]) }}"
                 >
-                    <i class="fa fa-pencil"></i>
+                    <i class="fa-solid fa-pencil"></i>
                 </a>
 
                 <a href="#" class="btn btn-xs btn-danger delete-confirm" data-toggle="modal" data-name="{{ $group->name }}"
                         data-target="#delete-confirm" data-delete-target="delete-form-group-{{ $group->id }}"
                         title="{{ __('crud.remove') }}">
-                    <i class="fa fa-trash" aria-hidden="true"></i>
+                    <i class="fa-solid fa-trash" aria-hidden="true"></i>
                 </a>
             </td>
         </tr>
@@ -67,7 +67,7 @@
        data-toggle="ajax-modal" data-target="#entity-modal"
        data-url="{{ route('maps.map_groups.create', ['map' => $model]) }}"
     >
-        <i class="fas fa-plus"></i> {{ __('maps/groups.actions.add') }}
+        <i class="fa-solid fa-plus"></i> {{ __('maps/groups.actions.add') }}
     </a>
     @endif
 

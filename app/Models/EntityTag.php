@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Models\Concerns\SimpleSortableTrait;
 use Illuminate\Database\Eloquent\Model;
 
 /**

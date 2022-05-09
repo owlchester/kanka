@@ -27,7 +27,7 @@ trait SubEntityScopes
     {
         return $query->with([
             'entity',
-        ]);
+        ])->has('entity');
     }
 
     /**

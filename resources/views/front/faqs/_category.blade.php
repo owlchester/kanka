@@ -12,7 +12,7 @@
 
             @foreach($model->sortedFaqs() as $faq)
                 <div id="{{ $faq->slug() }}" class="faq-block">
-                    <a href="#{{ $faq->slug() }}"><i class="fas fa-hashtag faq-dynamic" data-target="#{{ $faq->slug() }}-answer"></i></a>
+                    <a href="#{{ $faq->slug() }}"><i class="fa-solid fa-hashtag faq-dynamic" data-target="#{{ $faq->slug() }}-answer"></i></a>
                     <a href="#" class="question-title" data-toggle="collapse" data-target="#{{ $faq->slug() }}-answer">
                         {{ $faq->question() }}
                     </a>

@@ -22,37 +22,6 @@ class EntityController extends Controller
     }
 
     /**
-     * PDF export
-     * @param Entity $entity
-     * @return mixed
-     */
-    public function export(Entity $entity)
-    {
-        $realEntity = $entity;
-        $pdf = \App::make('dompdf.wrapper');
-        $entities = [$realEntity->child];
-        $name = $realEntity->pluralType();
-        $entityType = $realEntity->pluralType();
-        $exporting = true; // This can be used in views to know we are exporting
-        $datagridSorter = null;
-
-        if (request()->has('html')) {
-            return view('cruds.export', compact(
-                'entityType',
-                'name',
-                'entities',
-                'exporting'
-            ));
-        }
-
-        //return view('cruds.export', compact('entity', 'name', 'entities', 'exporting', 'datagridSorter'));
-
-        return $pdf
-            ->loadView('cruds.export', compact('entityType', 'name', 'entities', 'exporting', 'datagridSorter'))
-            ->download('kanka ' . strip_tags($realEntity->name) . ' export.pdf');
-    }
-
-    /**
      * @param Entity $entity
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException

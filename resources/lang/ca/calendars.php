@@ -113,9 +113,7 @@ return [
         'years'             => 'Alguns anys són tan importants que tenen el seu propi nom.',
     ],
     'index'         => [
-        'add'       => 'Nou calendari',
-        'header'    => 'Calendaris de :name',
-        'title'     => 'Calendaris',
+        'title' => 'Calendaris',
     ],
     'layouts'       => [
         'month' => 'Mes',
@@ -211,11 +209,9 @@ return [
         'moon_waning_moon'  => 'Lluna :moon minvant',
         'moon_waxing_moon'  => 'Lluna :moon creixent',
         'tabs'              => [
-            'events'        => 'Esdeveniments del calendari',
-            'information'   => 'Informació',
-            'weather'       => 'Clima',
+            'events'    => 'Esdeveniments del calendari',
+            'weather'   => 'Clima',
         ],
-        'title'             => 'Calendari :name',
     ],
     'sorters'       => [
         'after' => 'D\'avui endavant',

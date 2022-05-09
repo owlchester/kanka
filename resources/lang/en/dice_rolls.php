@@ -28,8 +28,6 @@ return [
             'dice'      => 'Dice Rolls',
             'results'   => 'Results',
         ],
-        'add'       => 'New Dice Roll',
-        'header'    => 'Dice Rolls of :name',
         'title'     => 'Dice Rolls',
     ],
     'placeholders'  => [
@@ -54,6 +52,5 @@ return [
         'tabs'  => [
             'results'   => 'Results',
         ],
-        'title' => 'Dice Roll :name',
     ],
 ];

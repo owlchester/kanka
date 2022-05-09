@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use App\Facades\EntityPermission;
-use App\Traits\AclTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 
@@ -30,7 +29,6 @@ class MapPoint extends Model
     /**
      * Acl setup
      */
-    use AclTrait;
     public $entityType = 'location';
     public $aclFieldName = 'location_id';
 
@@ -150,7 +148,7 @@ class MapPoint extends Model
     {
         $icon = $this->icon;
         if ($icon == 'pin' || ($icon == self::ICON_ENTITY && !$this->hasTarget())) {
-            return 'fa fa-map-marker';
+            return 'fa-solid fa-map-pin';
         } else {
             $icon = 'ra ra-' . e($this->icon);
         }
@@ -209,7 +207,7 @@ class MapPoint extends Model
     public function visible(): bool
     {
         if ($this->hasTarget()) {
-            return $this->targetEntity && $this->targetEntity->child && EntityPermission::canView($this->targetEntity, $this->location->campaign);
+            return $this->targetEntity && $this->targetEntity->child;
         }
         return true;
     }

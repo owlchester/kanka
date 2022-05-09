@@ -16,7 +16,7 @@ $inSection = false;
             <div class="panel-heading" data-toggle="collapse" data-target="#attribute-section-body-{{ $attribute->id }}">
                 <h4 class="panel-title">
                     @if (auth()->check() && auth()->user()->isAdmin() && $attribute->is_private == true)
-                        <i class="fas fa-lock pull-right" title="{{ trans('crud.is_private') }}"></i>
+                        <i class="fa-solid fa-lock pull-right" title="{{ trans('crud.is_private') }}"></i>
                     @endif
 
                     {!! $attribute->name() !!}
@@ -32,13 +32,13 @@ $inSection = false;
             {!! $attribute->name() !!}
             </span>
             @if (auth()->check() && auth()->user()->isAdmin() && $attribute->is_private == true)
-                <i class="fas fa-lock" title="{{ trans('crud.is_private') }}"></i>
+                <i class="fa-solid fa-lock" title="{{ trans('crud.is_private') }}"></i>
             @endif
         </dt>
         <dd>
             @if ($attribute->isCheckbox())
                 @if ($attribute->value)
-                    <i class="fa fa-check"></i>
+                    <i class="fa-solid fa-check"></i>
                 @endif
             @elseif ($attribute->isText())
                 {!! nl2br($attribute->mappedValue()) !!}
@@ -47,7 +47,7 @@ $inSection = false;
             @endif
 
             @if($attributeService->isLoop($attribute->name))
-                <i class="fa fa-warning" title="{{ __('entities/attributes.errors.loop') }}" data-toggle="tooltip"></i>
+                <i class="fa-solid fa-warning" title="{{ __('entities/attributes.errors.loop') }}" data-toggle="tooltip"></i>
             @endif
         </dd>
 @endforeach

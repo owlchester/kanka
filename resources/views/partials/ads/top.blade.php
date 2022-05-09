@@ -3,9 +3,10 @@
     {!! \App\Facades\AdCache::show() !!}
 </div>
 <p class="text-center text-muted">
-    {!! __('misc.ads.remove_v2', [
-'supporting' => link_to_route('settings.subscription', __('misc.ads.supporting'), [], ['target' => '_blank']),
-'boosting' => link_to_route('front.pricing', __('misc.ads.boosting'), ['#boost'], ['target' => '_blank']),
+    @php $subscribingUrl = auth()->check() ? 'settings.subscription' : 'front.pricing'; @endphp
+{!! __('misc.ads.remove_v3', [
+    'subscribing' => link_to_route($subscribingUrl, __('misc.ads.subscribing'), [], ['target' => '_blank']),
+    'boosting' => link_to_route('front.pricing', __('misc.ads.boosting'), ['#boost'], ['target' => '_blank']),
 ]) !!}
 </p>
 @else
@@ -23,9 +24,9 @@
     </script>
 </div>
 <p class="text-center text-muted">
-    {!! __('misc.ads.remove_v2', [
-'supporting' => link_to_route('settings.subscription', __('misc.ads.supporting'), [], ['target' => '_blank']),
-'boosting' => link_to_route('front.pricing', __('misc.ads.boosting'), ['#boost'], ['target' => '_blank']),
+{!! __('misc.ads.remove_v3', [
+    'subscribing' => link_to_route('settings.subscription', __('misc.ads.subscribing'), [], ['target' => '_blank']),
+    'boosting' => link_to_route('front.pricing', __('misc.ads.boosting'), ['#boost'], ['target' => '_blank']),
 ]) !!}
 </p>
 @endads

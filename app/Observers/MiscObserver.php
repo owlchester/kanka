@@ -98,7 +98,7 @@ abstract class MiscObserver
         if (empty($entity)) {
             $entity = new Entity([
                 'entity_id' => $model->id,
-                'campaign_id' => $model->campaign_id
+                'campaign_id' => $model->campaign_id,
             ]);
         }
         $entity->is_private = $model->is_private;

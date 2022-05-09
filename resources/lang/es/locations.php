@@ -29,7 +29,6 @@ return [
         'locations'         => 'Lugares',
         'map'               => 'Mapa',
         'name'              => 'Nombre',
-        'relation'          => 'Relación',
         'type'              => 'Tipo',
     ],
     'helpers'       => [
@@ -46,19 +45,10 @@ return [
         'is_map_private'    => 'Un mapa privado solo será visible para los miembros con el rol "Admin".',
     ],
     'index'         => [
-        'actions'   => [
-            'explore_view'  => 'Vista de exploración',
-        ],
-        'add'       => 'Nuevo lugar',
-        'header'    => 'Lugares en :name',
-        'title'     => 'Lugares',
+        'title' => 'Lugares',
     ],
-    'items'         => [
-        'title' => 'Objetos de :name',
-    ],
-    'journals'      => [
-        'title' => 'Diarios de :name',
-    ],
+    'items'         => [],
+    'journals'      => [],
     'locations'     => [
         'title' => 'Lugares de :name',
     ],
@@ -208,16 +198,9 @@ return [
     'show'          => [
         'tabs'  => [
             'characters'    => 'Personajes',
-            'events'        => 'Eventos',
-            'families'      => 'Familias',
-            'items'         => 'Objetos',
-            'journals'      => 'Diarios',
             'locations'     => 'Lugares',
             'map'           => 'Mapa',
             'maps'          => 'Mapas',
-            'organisations' => 'Organizaciones',
-            'quests'        => 'Misiones',
         ],
-        'title' => 'Lugar :name',
     ],
 ];

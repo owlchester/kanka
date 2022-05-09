@@ -67,7 +67,7 @@ class LocationMapPointController extends Controller
             $this->authorize('view', $location);
         } else {
             $this->model = Location::class;
-            $this->authorizeForGuest('read', $location);
+            $this->authorizeForGuest(\App\Models\CampaignPermission::ACTION_READ, $location);
         }
 
         $ajax = request()->ajax();

@@ -13,7 +13,6 @@ class CreateTimelineElements extends Migration
      */
     public function up()
     {
-        Schema::dropIfExists('timeline_elements');
         Schema::create('timeline_elements', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedInteger('timeline_id');
@@ -23,11 +22,13 @@ class CreateTimelineElements extends Migration
             $table->string('name', 191)->nullable();
             $table->string('date', 45)->nullable();
             $table->mediumText('entry')->nullable();
-            $table->string('colour', 12)->default('grey');
+            $table->string('colour', 10)->default('grey');
             $table->timestamps();
             $table->unsignedInteger('created_by')->nullable();
 
             $table->string('visibility', 10)->default('all');
+
+            $table->text('icon')->nullable();
 
             $table->index('position');
 

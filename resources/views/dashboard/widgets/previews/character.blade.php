@@ -28,7 +28,7 @@ $model = $entity->child;
         <h3 class="panel-title">
             <a href="{{ $entity->child->getLink() }}">
                 @if ($entity->child->is_private)
-                    <i class="fas fa-lock pull-right" title="{{ trans('crud.is_private') }}"></i>
+                    <i class="fa-solid fa-lock pull-right" title="{{ trans('crud.is_private') }}"></i>
                 @endif
                 @if ($entity->child->is_dead)
                     <i class="ra ra-skull pull-right margin-r-5" title="{{ trans('characters.fields.is_dead') }}"></i>
@@ -66,7 +66,7 @@ $model = $entity->child;
             </div>
             <a href="#" class="preview-switch hidden"
                id="widget-preview-switch-{{ $widget->id }}" data-widget="{{ $widget->id }}">
-                <i class="fa fa-chevron-down"></i>
+                <i class="fa-solid fa-chevron-down"></i>
             </a>
         @endif
 

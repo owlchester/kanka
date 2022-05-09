@@ -29,7 +29,9 @@ return [
         'families'                  => 'Famílias',
         'family'                    => 'Família',
         'image'                     => 'Imagem',
+        'is_appearance_pinned'      => 'Aparência fixada',
         'is_dead'                   => 'Morto',
+        'is_personality_pinned'     => 'Personalidade fixada',
         'is_personality_visible'    => 'A personalidade é visível',
         'life'                      => 'Vida',
         'location'                  => 'Local',
@@ -37,8 +39,7 @@ return [
         'physical'                  => 'Físico',
         'pronouns'                  => 'Pronomes',
         'race'                      => 'Raça',
-        'races'                     => 'Raças',
-        'relation'                  => 'Relação',
+        'races'                     => 'Raça(s)',
         'sex'                       => 'Sexo',
         'title'                     => 'Título',
         'traits'                    => 'Traços de Personalidade',
@@ -48,7 +49,9 @@ return [
         'age'   => 'Você pode vincular essa entidade a um calendário de sua campanha para calcular automaticamente sua idade. :more.',
     ],
     'hints'         => [
+        'is_appearance_pinned'      => 'Se selecionado, os traços de aparência do personagem aparecerão abaixo da entrada na página de visão geral.',
         'is_dead'                   => 'Esse personagem está morto',
+        'is_personality_pinned'     => 'Se selecionado, os traços de personalidade do personagem aparecerão abaixo da entrada na página de visão geral.',
         'is_personality_visible'    => 'Você pode ocultar toda a seção de personalidade dos seus Espectadores.',
         'personality_not_visible'   => 'Os traços de personalidade deste personagem estão visíveis apenas para os Administradores.',
         'personality_visible'       => 'Os traços de personalidade deste personagem estão visíveis para todos.',
@@ -57,8 +60,6 @@ return [
         'actions'   => [
             'random'    => 'Novo Personagem Aleatório',
         ],
-        'add'       => 'Novo Personagem',
-        'header'    => 'Personagens em :name',
         'title'     => 'Personagens',
     ],
     'items'         => [
@@ -128,7 +129,6 @@ return [
     ],
     'show'          => [
         'tabs'  => [
-            'map'           => 'Mapa de relações',
             'organisations' => 'Organizações',
         ],
     ],

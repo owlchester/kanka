@@ -20,9 +20,6 @@
 <body class="skin-black sidebar-mini">
 @include('layouts._tracking-fallback')
     <div id="app" class="wrapper">
-        <!-- Header -->
-        @include('layouts.admin.header')
-
         <!-- Sidebar -->
         @include('layouts.partner.sidebar')
 
@@ -92,7 +89,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">{{ __('crud.cancel') }}</button>
-                    <button type="button" class="btn btn-danger delete-confirm-submit"><span class="fa fa-trash"></span> {{ __('crud.delete_modal.delete') }}</button>
+                    <button type="button" class="btn btn-danger delete-confirm-submit"><span class="fa-solid fa-trash"></span> {{ __('crud.delete_modal.delete') }}</button>
                 </div>
             </div>
         </div>

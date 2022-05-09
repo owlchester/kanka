@@ -30,7 +30,6 @@ return [
         'missing_image'     => 'Devi salvare la mappa fornendo un\'immagine prima di poter essere in grado di aggiungere livelli e marcatori.',
     ],
     'index'         => [
-        'add'   => 'Nuova Mappa',
         'title' => 'Mappe',
     ],
     'maps'          => [
@@ -52,6 +51,5 @@ return [
         'tabs'  => [
             'maps'  => 'Mappe',
         ],
-        'title' => 'Mappa :name',
     ],
 ];

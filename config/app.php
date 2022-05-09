@@ -43,6 +43,11 @@ return [
     'debug' => env('APP_DEBUG', false),
 
     /*
+     * If the app is hosted along the admin, will enable the community aspects of Kanka.
+     */
+    'admin' => env('APP_ADMIN', false),
+
+    /*
     |--------------------------------------------------------------------------
     | Application URL
     |--------------------------------------------------------------------------
@@ -212,16 +217,15 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\MacroServiceProvider::class,
         App\Providers\CampaignLocalizationServiceProvider::class,
-        App\Providers\EntityPermissionServiceProvider::class,
         App\Providers\MentionsServiceProvider::class,
-        App\Providers\UserPermissionServiceProvider::class,
-        App\Providers\RolePermissionServiceProvider::class,
         App\Providers\BreadcrumbServiceProvider::class,
         App\Providers\CacheServiceProvider::class,
         App\Providers\ImgServiceProvider::class,
         App\Providers\AttributesServiceProvider::class,
-        \App\Providers\DashboardServiceProvider::class,
-        \App\Providers\DatalayerServiceProvider::class,
+        App\Providers\DashboardServiceProvider::class,
+        App\Providers\DatalayerServiceProvider::class,
+        App\Providers\DatagridRendererProvider::class,
+        App\Providers\PermissionsServiceProvider::class,
     ],
 
     /*
@@ -286,7 +290,6 @@ return [
         'CampaignLocalization' => App\Facades\CampaignLocalization::class,
         'EntityPermission' => App\Facades\EntityPermission::class,
         'Mentions' => App\Facades\Mentions::class,
-        'UserPermission' => App\Facades\UserPermission::class,
         'Breadcrumb' => App\Facades\Breadcrumb::class,
         'FormCopy' => App\Facades\FormCopy::class,
         'EntityCache' => App\Facades\EntityCache::class,
@@ -296,6 +299,7 @@ return [
         'UserCache' => App\Facades\UserCache::class,
         'Img' => App\Facades\Img::class,
         'Attributes' => App\Facades\Attributes::class,
+        'Datagrid' => App\Facades\Datagrid::class,
     ],
 
 ];

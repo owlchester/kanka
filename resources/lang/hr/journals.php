@@ -19,7 +19,6 @@ return [
         'journal'   => 'Dnevnik roditelj',
         'journals'  => 'Dnevnici djeca',
         'name'      => 'Naslov',
-        'relation'  => 'Odnos',
         'type'      => 'Tip',
     ],
     'helpers'       => [
@@ -28,9 +27,7 @@ return [
         'nested_without'=> 'Prikazuju se svi dnevnici koji nemaju dnevnik roditelj. Klikni redak da bi vidio/la dnevnike djecu.',
     ],
     'index'         => [
-        'add'       => 'Novi dnevnik',
-        'header'    => 'Dnevnici :name',
-        'title'     => 'Dnevnici',
+        'title' => 'Dnevnici',
     ],
     'journals'      => [
         'title' => 'Djeca dnevnici dnevnika :name',
@@ -46,6 +43,5 @@ return [
         'tabs'  => [
             'journals'  => 'Dnevnici',
         ],
-        'title' => 'Dnevnik :name',
     ],
 ];

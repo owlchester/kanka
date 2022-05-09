@@ -13,18 +13,6 @@ class CreateCampaignGalleryFolders extends Migration
      */
     public function up()
     {
-        /*Schema::create('image_folders', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->unsignedBigInteger('parent_id')->nullable();
-            $table->timestamps();
-            $table->string('name', 100);
-
-            $table->index('name');
-
-            $table->unsignedInteger('campaign_id');
-            $table->foreign('campaign_id')->references('id')->on('campaigns')->onDelete('cascade');
-            $table->foreign('parent_id')->references('id')->on('image_folders')->onDelete('cascade');
-        });*/
 
         Schema::table('images', function (Blueprint $table) {
             $table->uuid('folder_id')->nullable();

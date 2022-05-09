@@ -46,16 +46,15 @@ return [
         'type'          => 'Tipo',
     ],
     'helpers'       => [
-        'nested_parent' => 'Mostrando as missões de :parent.',
-        'nested_without'=> 'Mostrando todas as missões que não tem uma missão-pai. Clique em uma linha para ver as missões-filhos.',
+        'is_completed'      => 'Selecione se a missão estiver considerada como completa.',
+        'nested_parent'     => 'Mostrando as missões de :parent.',
+        'nested_without'    => 'Mostrando todas as missões que não tem uma missão-pai. Clique em uma linha para ver as missões-filhos.',
     ],
     'hints'         => [
         'quests'    => 'Uma "teia" de missões interligadas pode ser construída usando o campo de Missão Principal',
     ],
     'index'         => [
-        'add'       => 'Nova Missão',
-        'header'    => 'Missões de :name',
-        'title'     => 'Missões',
+        'title' => 'Missões',
     ],
     'placeholders'  => [
         'date'  => 'Data (mundo real) para a missão',
@@ -71,6 +70,5 @@ return [
         'tabs'      => [
             'elements'  => 'Elementos',
         ],
-        'title'     => 'Missão :name',
     ],
 ];

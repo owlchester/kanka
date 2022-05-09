@@ -27,16 +27,17 @@ Route::group([
 
     Route::post('/logout', 'Auth\AuthController@logout')->name('logout');
 
-    Route::get('/helper/link', 'HelperController@link')->name('helpers.link');
-    Route::get('/helper/dice', 'HelperController@dice')->name('helpers.dice');
-    Route::get('/helper/public', 'HelperController@public')->name('helpers.public');
-    Route::get('/helper/map', 'HelperController@map')->name('helpers.map');
-    Route::get('/helper/filters', 'HelperController@filters')->name('helpers.filters');
-    Route::get('/helper/age', 'HelperController@age')->name('helpers.age');
-    Route::get('/helper/attributes', 'HelperController@attributes')->name('helpers.attributes');
+    Route::get('/helper/link', [\App\Http\Controllers\HelperController::class, 'link'])->name('helpers.link');
+    Route::get('/helper/dice', [\App\Http\Controllers\HelperController::class, 'dice'])->name('helpers.dice');
+    Route::get('/helper/public', [\App\Http\Controllers\HelperController::class, 'public'])->name('helpers.public');
+    Route::get('/helper/map', [\App\Http\Controllers\HelperController::class, 'map'])->name('helpers.map');
+    Route::get('/helper/filters', [\App\Http\Controllers\HelperController::class, 'filters'])->name('helpers.filters');
+    Route::get('/helper/age', [\App\Http\Controllers\HelperController::class, 'age'])->name('helpers.age');
+    Route::get('/helper/attributes', [\App\Http\Controllers\HelperController::class, 'attributes'])->name('helpers.attributes');
     Route::get('/helper/entity-templates', 'HelperController@entityTemplates')->name('helpers.entity-templates');
     Route::get('/helper/widget-filters', 'HelperController@widgetFilters')->name('helpers.widget-filters');
-    Route::get('/helper/pins', 'HelperController@pins')->name('helpers.pins');
+    Route::get('/helper/pins', [\App\Http\Controllers\HelperController::class, 'pins'])->name('helpers.pins');
+    Route::get('/helper/visibility', [\App\Http\Controllers\HelperController::class, 'visibility'])->name('helpers.visibility');
     Route::get('/helpers/api-filters', 'HelperController@apiFilters')->name('helpers.api-filters');
 
     // OAuth Routes

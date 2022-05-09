@@ -2,7 +2,7 @@
 @if (!empty($datagridSorter) && auth()->check())
 <div class="input-group">
     <div class="input-group-addon">
-        <i class="fa fa-sort-amount-down" title="{{ __('crud.filters.sorting.helper') }}" data-toggle="tooltip"></i>
+        <i class="fa-solid fa-sort-amount-down" title="{{ __('crud.filters.sorting.helper') }}" data-toggle="tooltip"></i>
     </div>
     <select id="datagrid-simple-sorter" name="{{ $datagridSorter->fieldname() }}" class="form-control" data-url="{{ request()->url() . (!empty($allMembers) ? '?all_members=1' : (isset($filter) ? $filter : null)) . (isset($target) ? $target : null) }}">
         <option value=""></option>

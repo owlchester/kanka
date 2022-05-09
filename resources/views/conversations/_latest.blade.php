@@ -17,7 +17,7 @@
                         data-toggle="modal" data-name="{{ $message->message }}"
                         data-target="#delete-confirm" data-delete-target="delete-message-{{ $message->id }}"
                         title="{{ __('crud.remove') }}">
-                    <i class="fa fa-trash" aria-hidden="true"></i>
+                    <i class="fa-solid fa-trash" aria-hidden="true"></i>
                 </button>
                 {!! Form::open(['method' => 'DELETE', 'route' => ['conversations.conversation_messages.destroy', $model, $message], 'style' => 'display:inline', 'id' => 'delete-message-' . $message->id]) !!}
                 {!! Form::close() !!}

@@ -7,31 +7,32 @@
                 <span class="box-title">
                     <dropdown tag="a" menu-left class="message-options" v-if="permission">
                         <a class="dropdown-toggle" role="button">
-                            <i class="fas fa-lock" v-if="ability.visibility === 'admin'" v-bind:title="translate('admin')"></i>
-                            <i class="fas fa-user-lock" v-if="ability.visibility === 'admin-self'" v-bind:title="translate('admin-self')"></i>
-                            <i class="fas fa-users" v-if="ability.visibility === 'members'" v-bind:title="translate('members')"></i>
-                            <i class="fas fa-user-secret" v-if="ability.visibility === 'self'" v-bind:title="translate('self')"></i>
-                            <i class="fa fa-eye" v-if="ability.visibility === 'all'" v-bind:title="translate('all')"></i>
+                            <i class="fa-solid fa-lock" v-if="ability.visibility_id === 2" v-bind:title="translate('admin')"></i>
+                            <i class="fa-solid fa-user-lock" v-if="ability.visibility_id === 3" v-bind:title="translate('admin-self')"></i>
+                            <i class="fa-solid fa-users" v-if="ability.visibility_id === 5" v-bind:title="translate('members')"></i>
+                            <i class="fa-solid fa-user-secret" v-if="ability.visibility_id === 4" v-bind:title="translate('self')"></i>
+                            <i class="fa-solid fa-eye" v-if="ability.visibility_id === 1" v-bind:title="translate('all')"></i>
                         </a>
                         <template slot="dropdown">
                             <li>
-                                <a role="button" v-on:click="setVisibility('all')">{{ translate('all') }}</a>
+                                <a role="button" v-on:click="setVisibility(1)">{{ translate('all') }}</a>
                             </li>
                             <li v-if="meta.is_admin">
-                                <a role="button" v-on:click="setVisibility('admin')">{{ translate('admin') }}</a>
+                                <a role="button" v-on:click="setVisibility(2)">{{ translate('admin') }}</a>
                             </li>
                             <li v-if="this.isSelf">
-                                <a role="button" v-on:click="setVisibility('self')">{{ translate('self') }}</a>
+                                <a role="button" v-on:click="setVisibility(4)">{{ translate('self') }}</a>
                             </li>
                             <li v-if="this.isSelf">
-                                <a role="button" v-on:click="setVisibility('members')">{{ translate('members') }}</a>
+                                <a role="button" v-on:click="setVisibility(5)">{{ translate('members') }}</a>
                             </li>
                             <li v-if="this.isSelf">
-                                <a role="button" v-on:click="setVisibility('admin.self')">{{ translate('admin-self') }}</a>
+                                <a role="button" v-on:click="setVisibility(3)">{{ translate('admin-self') }}</a>
                             </li>
                         </template>
                     </dropdown>
-                    <a role="button" v-on:click="showAbility(ability)">
+                    <a role="button" v-on:click="showAbility(ability)" data-toggle="tooltip-ajax"
+                       v-bind:data-id="ability.entity.id" v-bind:data-url="ability.entity.tooltip">
                       {{ ability.name }}
                     </a>
                 </span>
@@ -41,14 +42,17 @@
                    v-if="this.canDelete"
                    class="btn btn-box-tool"
                   v-bind:title="translate('update')">
-                  <i class="fa fa-pencil"></i>
+                  <i class="fa-solid fa-pencil"></i>
                 </a>
                 <a class="btn btn-box-tool" role="button" v-on:click="deleteAbility(ability)" v-if="this.canDelete" v-bind:title="translate('remove')">
-                  <i class="fa fa-trash"></i>
+                  <i class="fa-solid fa-trash"></i>
                 </a>
               </div>
             </div>
             <div class="box-body">
+                <a class="ability-image cover-background" v-if="ability.images.has" target="_blank" v-bind:href="ability.images.url"
+                     v-bind:style="backgroundImage">
+                </a>
                 <span class="help-block">{{ ability.type }}</span>
 
                 <div v-html="ability.entry"></div>
@@ -65,7 +69,7 @@
 
                 <div class="text-center more-available" v-if="hasAttribute"
                      v-on:click="click(ability)">
-                    <i class="fa fa-chevron-down" v-if="!details"></i>
+                    <i class="fa-solid fa-chevron-down" v-if="!details"></i>
                 </div>
                 <div v-if="details && hasAttribute">
                     <dl class="dl-horizontal">
@@ -78,7 +82,7 @@
                             <div v-else>
                                 <dt>{{ att.name}}</dt>
                                 <dd v-if="att.type == 'checkbox'">
-                                    <i v-if="att.value == 1" class="fa fa-check"></i>
+                                    <i v-if="att.value == 1" class="fa-solid fa-check"></i>
                                 </dd>
                                 <dd v-else v-html="att.value"></dd>
                             </div>
@@ -87,7 +91,7 @@
                 </div>
                 <div class="text-center more-available" v-if="hasAttribute"
                      v-on:click="click(ability)">
-                    <i class="fa fa-chevron-up" v-if="details"></i>
+                    <i class="fa-solid fa-chevron-up" v-if="details"></i>
                 </div>
             </div>
         </div>
@@ -119,7 +123,15 @@
                 return this.permission;
             },
             isSelf: function() {
-                return this.meta.user_id == this.ability.created_by;
+                return this.meta.user_id === this.ability.created_by;
+            },
+            backgroundImage: function() {
+                if (this.ability.images.thumb) {
+                    return {
+                        backgroundImage: 'url(' + this.ability.images.thumb + ')'
+                    }
+                }
+                return {}
             }
         },
 
@@ -139,18 +151,18 @@
             showAbility: function(ability) {
                 window.open(ability.actions.view, "_blank");
             },
-            setVisibility: function(visibility) {
+            setVisibility: function(visibility_id) {
                 var data = {
-                    visibility: visibility,
+                    visibility_id: visibility_id,
                     ability_id: this.ability.ability_id,
                 };
                 axios.patch(this.ability.actions.update, data).then(response => {
-                    this.ability.visibility = visibility;
+                    this.ability.visibility_id = visibility_id;
                     Event.$emit('edited_ability', ability);
                 })
-                        .catch(() => {
+                .catch(() => {
 
-                        });
+                });
             },
             useCharge: function(ability, charge) {
                 if (charge > ability.used_charges) {
@@ -172,6 +184,6 @@
             translate(key) {
                 return this.trans[key] ?? 'unknown';
             }
-        }
+        },
     }
 </script>

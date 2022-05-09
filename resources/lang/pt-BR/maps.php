@@ -34,6 +34,7 @@ return [
         'distance_name'     => 'Unidade de distância',
         'grid'              => 'Grid',
         'initial_zoom'      => 'Zoom inicial',
+        'is_real'           => 'Usar OpenStreetMaps',
         'map'               => 'Mapa primário',
         'maps'              => 'Mapas',
         'max_zoom'          => 'Zoom máximo',
@@ -52,6 +53,7 @@ return [
         'distance_measure'  => 'Dar ao mapa uma medida de distância habilitará a ferramenta de medição no modo de exploração.',
         'grid'              => 'Defina o tamanho do grid que será mostrado no modo exploração.',
         'initial_zoom'      => 'O nível de zoom inicial com o qual um mapa é carregado. O valor padrão é :default, enquanto o maior valor permitido é :max e o menor valor permitido é :min.',
+        'is_real'           => 'Selecione esta opção se quiser usar um mapa do mundo real em vez da imagem carregada. Esta opção desativa as camadas.',
         'max_zoom'          => 'O máximo que um mapa pode ser ampliado. O valor padrão é :default, enquanto o maior valor permitido é :max.',
         'min_zoom'          => 'O máximo que um mapa pode ser diminuído. O valor padrão é :default, enquanto o menor valor permitido é :max.',
         'missing_image'     => 'Você precisa salvar o mapa com uma imagem antes de poder adicionar camadas e marcadores.',
@@ -59,7 +61,6 @@ return [
         'nested_without'    => 'Mostrando todos os mapas que não tem um mapa-pai. Clique em uma linha para ver os mapas-filhos.',
     ],
     'index'         => [
-        'add'   => 'Novo mapa',
         'title' => 'Mapas',
     ],
     'maps'          => [
@@ -85,6 +86,5 @@ return [
         'tabs'  => [
             'maps'  => 'Mapas',
         ],
-        'title' => 'Mapa :name',
     ],
 ];

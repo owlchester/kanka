@@ -20,23 +20,23 @@ if (!isset($model) || ($model->created_by == auth()->user()->id)) {
 }
 
 // If it's a visibility self & admin and we're not the creator, we can't change this
-if (isset($model) && $model->visibility === \App\Models\Scopes\VisibilityScope::VISIBILITY_ADMIN_SELF && $model->created_by !== auth()->user()->id) {
+if (isset($model) && $model->visibility === \App\Models\Visibility::VISIBILITY_ADMIN_SELF_STR && $model->created_by !== auth()->user()->id) {
     $options = ['admin-self' => __('crud.visibilities.admin-self')];
 }
 
 // The visibility is set to admin but we're not an admin, don't allow changing
 // as it's a custom permission for the user to be able to edit this model.
-if (isset($model) && in_array($model->visibility, [\App\Models\Scopes\VisibilityScope::VISIBILITY_ADMIN, \App\Models\Scopes\VisibilityScope::VISIBILITY_MEMBERS]) && !auth()->user()->isAdmin()) {
+if (isset($model) && in_array($model->visibility, [\App\Models\Visibility::VISIBILITY_ADMIN_STR, \App\Models\Visibility::VISIBILITY_MEMBERS_STR]) && !auth()->user()->isAdmin()) {
     ?><input type="hidden" name="visibility" value="{{ $model->visibility }}" /><?php
     return;
 }
 ?>
 <div class="form-group">
     <label for="visibility">
-        {{ trans('crud.fields.visibility') }}
-        <i class="fa fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" title="{{ trans('crud.hints.visibility') }}"></i>
+        {{ __('crud.fields.visibility') }}
+        <i class="fa-solid fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" title="{{ __('crud.hints.visibility') }}"></i>
     </label>
     {{ Form::select('visibility', $options, empty($model) ? CampaignLocalization::getCampaign()->default_visibility : $model->visibility, ['class' => 'form-control', 'id' => 'visibility']) }}
 
-    <p class="help-block visible-xs visible-sm">{{ trans('crud.hints.visibility') }}</p>
+    <p class="help-block visible-xs visible-sm">{{ __('crud.hints.visibility') }}</p>
 </div>

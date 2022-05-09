@@ -13,6 +13,7 @@ return [
         'export'            => 'Exportar',
         'find_out_more'     => 'Descubra mais',
         'go_to'             => 'Ir para :name',
+        'help'              => 'Ajuda',
         'json-export'       => 'Exportar (JSON)',
         'manage_links'      => 'Gerenciar Links',
         'move'              => 'Mover',
@@ -95,7 +96,6 @@ return [
         'delete'            => 'Deletar',
         'description'       => 'Tem certeza que deseja remover :tag?',
         'description_final' => 'Você tem certeza que quer remover :tag? Essa ação não pode ser desfeita.',
-        'mirrored'          => 'Remover relação espelhada',
         'title'             => 'Confirmação de apagamento',
     ],
     'destroy_many'              => [
@@ -105,6 +105,7 @@ return [
     'errors'                    => [
         'boosted'                       => 'Esta função está disponível apenas para campanhas impulsionadas',
         'boosted_campaigns'             => 'Esse recurso está somente disponível para :boosted.',
+        'cannot_move_node_into_itself'  => 'A entidade-pai selecionada é inválida. Isso pode ser devido ela ter essa entidade como um pai.',
         'node_must_not_be_a_descendant' => 'Nó inválido (tag, localização principal): seria um descendente de si mesmo.',
         'unavailable_feature'           => 'Recurso indisponível',
     ],
@@ -225,6 +226,7 @@ return [
     ],
     'helpers'                   => [
         'copy_options'  => 'Copie os seguintes elementos relacionados da origem para a nova entidade.',
+        'linking'       => 'Ligando a outras entidades',
     ],
     'hidden'                    => 'Esconder',
     'hints'                     => [
@@ -257,8 +259,9 @@ return [
     'linking_help'              => 'Como eu posso vincular a outras entidades?',
     'manage'                    => 'Gerenciar',
     'navigation'                => [
-        'cancel'    => 'Cancelar',
-        'or_cancel' => 'ou :cancel',
+        'cancel'            => 'Cancelar',
+        'or_cancel'         => 'ou :cancel',
+        'skip_to_content'   => 'Pular navegação',
     ],
     'new_entity'                => [
         'error' => 'Por favor cheque seus valores',
@@ -332,9 +335,6 @@ return [
         'timeline'      => 'Escolha uma linha do tempo',
     ],
     'relations'                 => [
-        'actions'   => [
-            'add'   => 'Nova relação',
-        ],
         'fields'    => [
             'location'  => 'Local',
             'name'      => 'Nome',
@@ -379,6 +379,7 @@ return [
     ],
     'tooltips'                  => [
         'boosted_feature'   => 'Recurso da campanha impulsionada',
+        'new_post'          => 'Adicionar um novo post a essa entidade.',
     ],
     'update'                    => 'Atualizar',
     'users'                     => [

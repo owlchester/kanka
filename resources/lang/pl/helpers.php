@@ -20,6 +20,7 @@ return [
         'private'           => 'Cechy tajne, używające ikony :icon będą widoczne tylko dla administratorów kampanii.',
         'random'            => 'Podczas tworzenia albo edycji szablonu cech, możesz ustawić cechę losową. Może wybierać z dwóch wartości rozdzielonych przez :dash, albo losową wartość z listy rozdzielonej z pomocą :comma. Losowa wartość cechy zostaje wybrana kiedy szablon zostaje przypisany do elementu albo gdy element jest zapisywany.',
         'random_examples'   => 'Na przykład, jeżeli chcesz wartości od 1 do 100, użyj :number. Jeżeli natomiast chcesz wartości wybranej z listy dostępnych opcji, użyj :list.',
+        'range'             => 'Cechy o wartości liczbowej można skonfigurować tak, by dopuszczały tylko wartości z określonego zakresu. Na przykład, polecenie :example określa zakres cechy od 1 do 10. Zakresy wartości mogą też odnosić się do innych cech, na przykład z pomocą :example. Gdy zapisujesz cechę o wartości spoza zakresu, zostanie automatycznie zmieniona na najbliższą możliwą wartość.',
         'title'             => 'Cechy',
     ],
     'dice'              => [

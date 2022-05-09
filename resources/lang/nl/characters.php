@@ -35,7 +35,6 @@ return [
         'name'                      => 'Naam',
         'physical'                  => 'Fysiek',
         'race'                      => 'Ras',
-        'relation'                  => 'Relatie',
         'sex'                       => 'Geslacht',
         'title'                     => 'Titel',
         'traits'                    => 'Eigenschappen',
@@ -54,8 +53,6 @@ return [
         'actions'   => [
             'random'    => 'Nieuw Willekeurig Personage',
         ],
-        'add'       => 'Nieuw Personage',
-        'header'    => 'Personages in :name',
         'title'     => 'Personages',
     ],
     'items'         => [
@@ -123,10 +120,8 @@ return [
     ],
     'show'          => [
         'tabs'  => [
-            'map'           => 'Relatie Kaart',
             'organisations' => 'Organisaties',
         ],
-        'title' => 'Personage :name',
     ],
     'warnings'      => [
         'personality_hidden'    => 'Het is niet toegestaan om persoonlijkheidskenmerken van dit personage te bewerken.',

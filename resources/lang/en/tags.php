@@ -39,12 +39,7 @@ return [
         'tag'       => 'This list contains all the tags are children of this tag or its children tags.',
     ],
     'index'         => [
-        'actions'   => [
-            'explore_view'  => 'Nested View',
-        ],
-        'add'       => 'New Tag',
-        'header'    => 'Tags in :name',
-        'title'     => 'Tags',
+        'title' => 'Tags',
     ],
     'new_tag'       => 'New Tag',
     'placeholders'  => [
@@ -57,7 +52,6 @@ return [
             'children'  => 'Children',
             'tags'      => 'Tags',
         ],
-        'title' => 'Tag :name',
     ],
     'tags'          => [
         'title' => 'Tag :name Children',

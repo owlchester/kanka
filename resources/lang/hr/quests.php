@@ -51,9 +51,7 @@ return [
         'quests'    => 'Mreža isprepletenih zadataka se može napraviti korištenjem Zadatak roditelj polja.',
     ],
     'index'         => [
-        'add'       => 'Novi zadatak',
-        'header'    => 'Zadaci od :name',
-        'title'     => 'Zadaci',
+        'title' => 'Zadaci',
     ],
     'placeholders'  => [
         'date'  => 'Stvarni datum zadatka',
@@ -69,6 +67,5 @@ return [
         'tabs'      => [
             'elements'  => 'Elementi',
         ],
-        'title'     => 'Zadatak :name',
     ],
 ];

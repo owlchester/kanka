@@ -26,16 +26,12 @@ return [
         'is_pinned' => '3 taneye kadar not kontrol panelinde sergilenmek üzere sabitlenebilir.',
     ],
     'index'         => [
-        'add'       => 'Yeni Not',
-        'header'    => ':note Notları',
-        'title'     => 'Notlar',
+        'title' => 'Notlar',
     ],
     'placeholders'  => [
         'name'  => 'Notun adı',
         'note'  => 'Bir ana not seçin',
         'type'  => 'Din, Irk, Politika sistemi',
     ],
-    'show'          => [
-        'title' => ':name Notu',
-    ],
+    'show'          => [],
 ];

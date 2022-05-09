@@ -6,6 +6,7 @@ use App\Datagrids\Bulks\FamilyBulk;
 use App\Datagrids\Filters\FamilyFilter;
 use App\Datagrids\Sorters\FamilyCharacterSorter;
 use App\Datagrids\Sorters\FamilyFamilySorter;
+use App\Facades\Datagrid;
 use App\Models\Character;
 use App\Http\Requests\StoreCharacter;
 use App\Http\Requests\StoreFamily;
@@ -99,7 +100,27 @@ class FamilyController extends CrudController
      */
     public function families(Family $family)
     {
-        return $this->datagridSorter(FamilyFamilySorter::class)
+        $this->authCheck($family);
+
+        $options = ['family' => $family];
+        $filters = [];
+
+        Datagrid::layout(\App\Renderers\Layouts\Family\Family::class)
+            ->route('families.families', $options);
+
+        $this->rows = $family
+            ->descendants()
+            ->sort(request()->only(['o', 'k']))
+            ->filter($filters)
+            ->with(['location', 'location.entity', 'entity', 'entity.tags'])
+            ->paginate();
+
+        // Ajax Datagrid
+        if (request()->ajax()) {
+            return $this->datagridAjax();
+        }
+
+        return $this
             ->menuView($family, 'families');
     }
 
@@ -110,18 +131,32 @@ class FamilyController extends CrudController
      */
     public function members(Family $family)
     {
-        return $this->datagridSorter(FamilyCharacterSorter::class)
-            ->menuView($family, 'members');
-    }
+        $this->authCheck($family);
 
-    /**
-     * @param Family $family
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
-    public function allMembers(Family $family)
-    {
-        return $this->datagridSorter(FamilyCharacterSorter::class)
-            ->menuView($family, 'all_members');
+        $options = ['family' => $family];
+        $filters = [];
+        $relation = 'allMembers';
+        if (request()->has('family_id')) {
+            $options['family_id'] = $family->id;
+            $filters['family_id'] = $options['family_id'];
+            $relation = 'members';
+        }
+        Datagrid::layout(\App\Renderers\Layouts\Family\Character::class)
+            ->route('families.members', $options);
+
+        $this->rows = $family
+            ->{$relation}()
+            ->sort(request()->only(['o', 'k']))
+            ->filter($filters)
+            ->with(['location', 'location.entity', 'families', 'families.entity', 'races', 'races.entity', 'entity', 'entity.tags'])
+            ->paginate();
+
+        // Ajax Datagrid
+        if (request()->ajax()) {
+            return $this->datagridAjax();
+        }
+
+        return $this
+            ->menuView($family, 'members');
     }
 }

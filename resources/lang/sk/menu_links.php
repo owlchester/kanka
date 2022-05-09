@@ -53,7 +53,5 @@ return [
         'success'   => 'Menu linky zoradené.',
         'title'     => 'Zmeniť poradie menu liniek',
     ],
-    'show'              => [
-        'title' => 'Menu link :name',
-    ],
+    'show'              => [],
 ];

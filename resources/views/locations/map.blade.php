@@ -13,15 +13,15 @@
     <div class="row">
         <div class="col-md-12 text-right">
             <a href="{{ $location->getLink() }}" class="btn btn-default">
-                <i class="fa fa-arrow-left"></i> <span class="hidden-xs">{{ trans('locations.map.points.return', ['name' => $location->name]) }}</span>
+                <i class="fa-solid fa-arrow-left"></i> <span class="hidden-xs">{{ trans('locations.map.points.return', ['name' => $location->name]) }}</span>
             </a>
             @if ($location->map)
                 @can('update', $location)
                     <button id="map-admin-mode" class="btn btn-primary" title="{{ __('locations.map.helpers.admin') }}" data-toggle="tooltip" data-placement="bottom">
-                        <i class="fa fa-edit"></i> <span class="hidden-xs">{{ __('locations.map.actions.admin_mode') }}</span>
+                        <i class="fa-solid fa-edit"></i> <span class="hidden-xs">{{ __('locations.map.actions.admin_mode') }}</span>
                     </button>
                     <button id="map-view-mode" class="btn btn-primary" title="{{ __('locations.map.actions.view_mode') }}" data-toggle="tooltip" data-placement="bottom" style="display: none">
-                        <i class="fa fa-eye"></i> <span class="hidden-xs">{{ __('locations.map.actions.view_mode') }}</span>
+                        <i class="fa-solid fa-eye"></i> <span class="hidden-xs">{{ __('locations.map.actions.view_mode') }}</span>
                     </button>
                 @endcan
             @endif
@@ -31,19 +31,19 @@
         <div class="row">
             <div class="col-md-12" id="location-map-main">
                 <div class="map-zoom">
-                    <button id="map-zoom-in" class="btn btn-default" title="{{ trans('locations.map.actions.zoom_in') }}"><i class="fa fa-plus"></i></button>
-                    <button id="map-zoom-out" class="btn btn-default" title="{{ trans('locations.map.actions.zoom_out') }}"><i class="fa fa-minus"></i></button>
-                    <button id="map-zoom-reset" class="btn btn-default" title="{{ trans('locations.map.actions.zoom_reset') }}"><i class="fa fa-undo"></i></button>
-                    <button id="map-toggle-hide" class="btn btn-default" title="{{ trans('locations.map.actions.toggle_hide') }}"><i class="fa fa-eye-slash"></i></button>
-                    <button id="map-toggle-show" class="btn btn-default" style="display: none;" title="{{ trans('locations.map.actions.toggle_show') }}"><i class="fa fa-eye"></i></button>
-                    <a href="{{ Storage::url($location->map) }}" target="_blank" class="btn btn-default" title="{{ trans('locations.map.actions.download') }}" download><i class="fa fa-download"></i></a>
+                    <button id="map-zoom-in" class="btn btn-default" title="{{ trans('locations.map.actions.zoom_in') }}"><i class="fa-solid fa-plus"></i></button>
+                    <button id="map-zoom-out" class="btn btn-default" title="{{ trans('locations.map.actions.zoom_out') }}"><i class="fa-solid fa-minus"></i></button>
+                    <button id="map-zoom-reset" class="btn btn-default" title="{{ trans('locations.map.actions.zoom_reset') }}"><i class="fa-solid fa-undo"></i></button>
+                    <button id="map-toggle-hide" class="btn btn-default" title="{{ trans('locations.map.actions.toggle_hide') }}"><i class="fa-solid fa-eye-slash"></i></button>
+                    <button id="map-toggle-show" class="btn btn-default" style="display: none;" title="{{ trans('locations.map.actions.toggle_show') }}"><i class="fa-solid fa-eye"></i></button>
+                    <a href="{{ Storage::url($location->map) }}" target="_blank" class="btn btn-default" title="{{ trans('locations.map.actions.download') }}" download><i class="fa-solid fa-download"></i></a>
                 </div>
                 <div class="map-helper hidden-xs">
                     <p>{{ __('locations.map.helpers.view') }}</p>
                 </div>
                 <div class="map">
                     <div class="loading-map text-center">
-                        <i class="fa fa-spin fa-spinner fa-4x"></i>
+                        <i class="fa-solid fa-spin fa-spinner fa-4x"></i>
                     </div>
 
                     <div id="draggable-map">
@@ -61,7 +61,7 @@
             </div>
             <div class="hidden col-md-3 col-sm-4" id="location-map-panel">
                 <div id="location-map-panel-loading" class="text-center" style="display: none">
-                    <h1><i class="fa fa-spinner fa-spin"></i></h1>
+                    <h1><i class="fa-solid fa-spinner fa-spin"></i></h1>
                 </div>
 
                 <div id="location-map-panel-target"></div>
@@ -96,7 +96,7 @@
                     </div>
                     <div class="modal-body">
                         <div class="modal-loading text-center">
-                            <i class="fa fa-spinner fa-spin fa-2x"></i>
+                            <i class="fa-solid fa-spinner fa-spin fa-2x"></i>
                         </div>
                         <div id="map-point-body">
 

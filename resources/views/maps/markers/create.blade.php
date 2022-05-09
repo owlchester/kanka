@@ -42,7 +42,6 @@ __('maps/markers.create.title')
                     <input id="submit-mode" type="hidden" value="true"/>
                     <div class="btn-group">
                         <button class="btn btn-success" id="form-submit-main"
-                            data-unsaved="{{ __('crud.hints.unsaved_changes') }}"
                             data-target="{{ isset($target) ? $target : null }}">{{ __('crud.save') }}</button>
                         <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown"
                             aria-expanded="false">
@@ -69,7 +68,7 @@ __('maps/markers.create.title')
                     @includeWhen(!request()->ajax(), 'partials.or_cancel')
                 </div>
                 <div class="submit-animation" style="display: none;">
-                    <button class="btn btn-success" disabled><i class="fa fa-spinner fa-spin"></i></button>
+                    <button class="btn btn-success" disabled><i class="fa-solid fa-spinner fa-spin"></i></button>
                 </div>
             </div>
 

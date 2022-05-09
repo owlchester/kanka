@@ -95,7 +95,6 @@ return [
         'delete'            => 'Elimina',
         'description'       => '¿Segur que voleu eliminar :tag?',
         'description_final' => 'Segur que voleu eliminar :tag? Aquesta acció no es pot desfer.',
-        'mirrored'          => 'Elimina la relació emmirallada',
         'title'             => 'Confirmació de l\'eliminació',
     ],
     'destroy_many'              => [
@@ -334,9 +333,6 @@ return [
         'timeline'      => 'Trieu una línia de temps',
     ],
     'relations'                 => [
-        'actions'   => [
-            'add'   => 'Afegeix una relació',
-        ],
         'fields'    => [
             'location'  => 'Localització',
             'name'      => 'Nom',

@@ -39,12 +39,7 @@ return [
         'tag'       => 'Affichées ci-dessous sont toutes les étiquettes enfants de cette étiquette.',
     ],
     'index'         => [
-        'actions'   => [
-            'explore_view'  => 'Mode Exploration',
-        ],
-        'add'       => 'Nouvelle étiquette',
-        'header'    => 'Les étiquettes dans :name',
-        'title'     => 'Étiquettes',
+        'title' => 'Étiquettes',
     ],
     'new_tag'       => 'Nouvelle étiquette',
     'placeholders'  => [
@@ -57,7 +52,6 @@ return [
             'children'  => 'Enfants',
             'tags'      => 'Étiquettes',
         ],
-        'title' => 'Étiquette :name',
     ],
     'tags'          => [
         'title' => 'Étiquette :name',

@@ -26,9 +26,7 @@ return [
         'parent_attribute_template' => '这个特质模板可以是其他模板的子模板。当应用该特质模板的时候，所有的父模板会同时被应用。',
     ],
     'index'                 => [
-        'add'       => '新特质模板',
-        'header'    => ':name的特质模板',
-        'title'     => '特质模板',
+        'title' => '特质模板',
     ],
     'placeholders'          => [
         'attribute_template'    => '选择特质模板',
@@ -39,6 +37,5 @@ return [
             'attribute_templates'   => '特质模板',
             'attributes'            => '特质',
         ],
-        'title' => '特质模板：:name',
     ],
 ];

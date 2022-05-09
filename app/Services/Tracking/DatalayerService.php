@@ -7,6 +7,9 @@ class DatalayerService
     /** @var bool|string */
     protected $group = false;
 
+    /** @var array Extra parameters to pass */
+    protected $additional = [];
+
     /** @var bool If the user is newly created */
     protected $newAccount = false;
 
@@ -18,7 +21,7 @@ class DatalayerService
      */
     public function base(): string
     {
-        $data = [
+        $data = array_merge([
             'userType' => 'visitor',
             'userGroup' => $this->userGroup(),
             'userTier' => null,
@@ -26,7 +29,8 @@ class DatalayerService
             'route' => $this->route(),
             'newAccount' => $this->newAccount ? '1' : '0',
             'newSubscriber' => $this->newSubcriber ? '1' : '0',
-        ];
+        ], $this->additional);
+
         if (auth()->check()) {
             $data['userType'] = 'registered';
             $data['userTier'] = !empty(auth()->user()->patreon_pledge) ? auth()->user()->patreon_pledge : null;
@@ -66,6 +70,17 @@ class DatalayerService
     public function groupB(): bool
     {
         return $this->userGroup() === 'b';
+    }
+
+    /**
+     * @param string $key
+     * @param $value
+     * @return $this
+     */
+    public function add(string $key, $value): self
+    {
+        $this->additional[$key] = $value;
+        return $this;
     }
 
     /**

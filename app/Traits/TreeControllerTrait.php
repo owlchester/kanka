@@ -35,14 +35,13 @@ trait TreeControllerTrait
         $actions = [[
             'route' => route($this->route . '.index'),
             'class' => 'default',
-            'label' => '<i class="fa fa-list"></i> ' . trans($this->view . '.index.title')
+            'label' => '<i class="fa-solid fa-list"></i> ' . __($this->view . '.index.title')
         ]];
 
         // Entity templates
         $templates = null;
         if (auth()->check() && !empty($model->entityTypeID()) && auth()->user()->can('create', $model)) {
             $templates = Entity::templates($model->entityTypeID())
-                ->acl()
                 ->get();
         }
 
@@ -67,7 +66,7 @@ trait TreeControllerTrait
                 $actions[] = [
                     'route' => route($this->route . '.tree', ['parent_id' => $parent->$singularModel->id]),
                     'class' => 'default',
-                    'label' => '<i class="fa fa-arrow-left"></i> ' . $parent->$singularModel->name
+                    'label' => '<i class="fa-solid fa-arrow-left"></i> ' . $parent->$singularModel->name
                 ];
                 $createOptions['parent_id'] = $parent->id;
             } else {
@@ -75,7 +74,7 @@ trait TreeControllerTrait
                 $actions[] = [
                     'route' => route($this->route . '.tree'),
                     'class' => 'default',
-                    'label' => '<i class="fa fa-arrow-left"></i> ' . trans('crud.actions.back')
+                    'label' => '<i class="fa-solid fa-arrow-left"></i> ' . __('crud.actions.back')
                 ];
                 $createOptions['parent_id'] = null;
             }

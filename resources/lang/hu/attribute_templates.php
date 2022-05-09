@@ -26,9 +26,7 @@ return [
         'parent_attribute_template' => 'Ez a tulajdonságsablon egy másik tulajdonságsablon leszármazottja lehet. Amikor alkalmazod ezt a tulajdonságsablont, ez és minden elődje alkalmazásra kerül.',
     ],
     'index'                 => [
-        'add'       => 'Új tulajdonságsablon',
-        'header'    => ':name tulajdonságsablon',
-        'title'     => 'Tulajdonságsablonok',
+        'title' => 'Tulajdonságsablonok',
     ],
     'placeholders'          => [
         'attribute_template'    => 'Válassz egy tulajdonságsablont!',
@@ -39,6 +37,5 @@ return [
             'attribute_templates'   => 'Tulajdonságsablonok',
             'attributes'            => 'Tulajdonságok',
         ],
-        'title' => ':name tulajdonságsablon',
     ],
 ];

@@ -330,7 +330,6 @@ trait EntityRelations
             ->with('target')
             ->has('target')
             ->leftJoin('entities as t', 't.id', '=', 'relations.target_id')
-            ->acl()
         ;
     }
 
@@ -478,8 +477,7 @@ trait EntityRelations
             ->stared()
             ->ordered()
             ->with('target')
-            ->has('target')
-            ->acl();
+            ->has('target');
     }
 
     /**

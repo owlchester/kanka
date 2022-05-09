@@ -8,26 +8,26 @@
                 <hr>
                 <ul class="fa-ul">
                     <li>
-                        <span class="fa-li"><i class="fas fa-times"></i></span>
+                        <span class="fa-li"><i class="fa-solid fa-times"></i></span>
                         <a href="{{ route('front.pricing', ['#boost']) }}" target="_blank">
                             <strong>{{ __('front.pricing.benefits.no_boosters') }}</strong>
                         </a>
                     </li>
                     <li>
-                        <span class="fa-li"><i class="fas fa-check"></i></span> {{ __('front.pricing.benefits.unlimited') }}
+                        <span class="fa-li"><i class="fa-solid fa-check"></i></span> {{ __('front.pricing.benefits.unlimited') }}
                     </li>
                     <li>
-                        <span class="fa-li"><i class="fas fa-check"></i></span> {{ __('front.pricing.benefits.core') }}
+                        <span class="fa-li"><i class="fa-solid fa-check"></i></span> {{ __('front.pricing.benefits.core') }}
                     </li>
                     <li>
-                        <span class="fa-li"><i class="fas fa-check"></i></span> {{ __('front.pricing.benefits.updates') }}
+                        <span class="fa-li"><i class="fa-solid fa-check"></i></span> {{ __('front.pricing.benefits.updates') }}
                     </li>
 
 {{--                    <li class="text-muted">--}}
-{{--                        <span class="fa-li"><i class="fas fa-times"></i></span> {{ __('front.pricing.benefits.higher_uploads') }}--}}
+{{--                        <span class="fa-li"><i class="fa-solid fa-times"></i></span> {{ __('front.pricing.benefits.higher_uploads') }}--}}
 {{--                    </li>--}}
 {{--                    <li class="text-muted">--}}
-{{--                        <span class="fa-li"><i class="fas fa-times"></i></span> {{ __('front.pricing.benefits.boosters') }}--}}
+{{--                        <span class="fa-li"><i class="fa-solid fa-times"></i></span> {{ __('front.pricing.benefits.boosters') }}--}}
 {{--                    </li>--}}
                 </ul>
                 @if(config('auth.register_enabled'))
@@ -50,29 +50,29 @@
                 <hr>
                 <ul class="fa-ul">
                     <li>
-                        <span class="fa-li"><i class="fas fa-check"></i></span>
+                        <span class="fa-li"><i class="fa-solid fa-check"></i></span>
                         <a href="{{ route('front.pricing', ['#boost']) }}" target="_blank">
                             <strong>3 {{ __('front.pricing.benefits.boosters') }}</strong>
                         </a>
                     </li>
                     <li>
-                        <span class="fa-li"><i class="fas fa-check"></i></span> {{ __('front.pricing.benefits.big_maps', ['size' => '10 MB']) }}
+                        <span class="fa-li"><i class="fa-solid fa-check"></i></span> {{ __('front.pricing.benefits.big_maps', ['size' => '10 MB']) }}
                     </li>
                     <li>
-                        <span class="fa-li"><i class="fas fa-check"></i></span> {{ __('front.features.patreon.monthly_vote') }}
+                        <span class="fa-li"><i class="fa-solid fa-check"></i></span> {{ __('front.features.patreon.monthly_vote') }}
                     </li>
                     <li>
-                        <span class="fa-li"><i class="fas fa-check"></i></span> {{ __('front.features.patreon.discord') }}
+                        <span class="fa-li"><i class="fa-solid fa-check"></i></span> {{ __('front.features.patreon.discord') }}
                     </li>
                     <li>
-                        <span class="fa-li"><i class="fas fa-check"></i></span> {{ __('front.features.patreon.no_ads') }}
+                        <span class="fa-li"><i class="fa-solid fa-check"></i></span> {{ __('front.features.patreon.no_ads') }}
                     </li>
 
 {{--                    <li class="text-muted">--}}
-{{--                        <span class="fa-li"><i class="fas fa-times"></i></span> {{ __('front.features.patreon.curation') }}--}}
+{{--                        <span class="fa-li"><i class="fa-solid fa-times"></i></span> {{ __('front.features.patreon.curation') }}--}}
 {{--                    </li>--}}
 {{--                    <li class="text-muted">--}}
-{{--                        <span class="fa-li"><i class="fas fa-times"></i></span> {{ __('front.features.patreon.impact') }}--}}
+{{--                        <span class="fa-li"><i class="fa-solid fa-times"></i></span> {{ __('front.features.patreon.impact') }}--}}
 {{--                    </li>--}}
                 </ul>
 
@@ -95,29 +95,29 @@
                 <hr>
                 <ul class="fa-ul">
                     <li>
-                        <span class="fa-li"><i class="fas fa-check"></i></span>
+                        <span class="fa-li"><i class="fa-solid fa-check"></i></span>
                         <a href="{{ route('front.pricing', ['#boost']) }}" target="_blank">
                             <strong>6 {{ __('front.pricing.benefits.boosters') }}</strong>
                         </a>
                     </li>
                     <li>
-                        <span class="fa-li"><i class="fas fa-check"></i></span> {{ __('front.pricing.benefits.bigger_maps', ['size' => '20 MB']) }}
+                        <span class="fa-li"><i class="fa-solid fa-check"></i></span> {{ __('front.pricing.benefits.bigger_maps', ['size' => '20 MB']) }}
                     </li>
                     <li>
-                        <span class="fa-li"><i class="fas fa-check"></i></span> {{ __('front.features.patreon.monthly_vote') }}
+                        <span class="fa-li"><i class="fa-solid fa-check"></i></span> {{ __('front.features.patreon.monthly_vote') }}
                     </li>
                     <li>
-                        <span class="fa-li"><i class="fas fa-check"></i></span> {{ __('front.features.patreon.discord') }}
+                        <span class="fa-li"><i class="fa-solid fa-check"></i></span> {{ __('front.features.patreon.discord') }}
                     </li>
                     <li>
-                        <span class="fa-li"><i class="fas fa-check"></i></span> {{ __('front.features.patreon.no_ads') }}
+                        <span class="fa-li"><i class="fa-solid fa-check"></i></span> {{ __('front.features.patreon.no_ads') }}
                     </li>
 
 {{--                    <li class="text-muted">--}}
-{{--                        <span class="fa-li"><i class="fas fa-times"></i></span> {{ __('front.features.patreon.curation') }}--}}
+{{--                        <span class="fa-li"><i class="fa-solid fa-times"></i></span> {{ __('front.features.patreon.curation') }}--}}
 {{--                    </li>--}}
 {{--                    <li class="text-muted">--}}
-{{--                        <span class="fa-li"><i class="fas fa-times"></i></span> {{ __('front.features.patreon.impact') }}--}}
+{{--                        <span class="fa-li"><i class="fa-solid fa-times"></i></span> {{ __('front.features.patreon.impact') }}--}}
 {{--                    </li>--}}
                 </ul>
 
@@ -139,25 +139,25 @@
                 <hr>
                 <ul class="fa-ul">
                     <li>
-                        <span class="fa-li"><i class="fas fa-check"></i></span>
+                        <span class="fa-li"><i class="fa-solid fa-check"></i></span>
                         <a href="{{ route('front.pricing', ['#boost']) }}" target="_blank">
                             <strong>10 {{ __('front.pricing.benefits.boosters') }}</strong>
                         </a>
                     </li>
                     <li>
-                        <span class="fa-li"><i class="fas fa-check"></i></span> {{ __('front.pricing.benefits.huge_maps', ['size' => '50 MB']) }}
+                        <span class="fa-li"><i class="fa-solid fa-check"></i></span> {{ __('front.pricing.benefits.huge_maps', ['size' => '50 MB']) }}
                     </li>
                     <li>
-                        <span class="fa-li"><i class="fas fa-check"></i></span> {{ __('front.features.patreon.monthly_vote') }}
+                        <span class="fa-li"><i class="fa-solid fa-check"></i></span> {{ __('front.features.patreon.monthly_vote') }}
                     </li>
                     <li>
-                        <span class="fa-li"><i class="fas fa-check"></i></span> {{ __('front.features.patreon.discord') }}
+                        <span class="fa-li"><i class="fa-solid fa-check"></i></span> {{ __('front.features.patreon.discord') }}
                     </li>
                     <li>
-                        <span class="fa-li"><i class="fas fa-check"></i></span> {{ __('front.features.patreon.no_ads') }}
+                        <span class="fa-li"><i class="fa-solid fa-check"></i></span> {{ __('front.features.patreon.no_ads') }}
                     </li>
                     <li>
-                        <span class="fa-li"><i class="fas fa-check"></i></span> {{ __('front.features.patreon.impact') }}
+                        <span class="fa-li"><i class="fa-solid fa-check"></i></span> {{ __('front.features.patreon.impact') }}
                     </li>
                 </ul>
 

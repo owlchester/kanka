@@ -31,9 +31,7 @@ return [
         'nested_without'=> 'Mostrando todas as raças que não tem uma raça-pai. Clique em uma linha para ver as raças-filhos.',
     ],
     'index'         => [
-        'add'       => 'Nova raça',
-        'header'    => 'Raças de :name',
-        'title'     => 'Raças',
+        'title' => 'Raças',
     ],
     'placeholders'  => [
         'name'  => 'Nome da raça',
@@ -47,6 +45,5 @@ return [
             'characters'    => 'Personagens',
             'races'         => 'Sub-raças',
         ],
-        'title' => 'Raça :name',
     ],
 ];

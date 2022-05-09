@@ -13,7 +13,7 @@
             <div class="panel panel-default">
                 <div class="panel-body">
                     <a href="{{ route('locations.show', [$location, '#tab_map']) }}" class="btn btn-default">
-                        <i class="fa fa-arrow-left"></i> {{ trans('locations.map.points.return', ['name' => $location->name]) }}
+                        <i class="fa-solid fa-arrow-left"></i> {{ trans('locations.map.points.return', ['name' => $location->name]) }}
                     </a>
 
                     <p class="help-block">{{ trans('locations.map.helper') }}</p>
@@ -24,20 +24,20 @@
                             <img src="{{ Img::url($location->map) }}" alt="{{ $location->name }}" id="location-map-image" data-url="{{ route('locations.map_points.create', $location) }}" />
                             @foreach ($location->mapPoints()->with('target')->get() as $point)
                                 @if ($point->target)
-                                    @viewentity($point->target->entity)
+                                    @if($point->target->entity)
                                     <div class="point" style="top: {{ $point->axis_y }}px; left: {{ $point->axis_x }}px; background-color: {{ $point->colour }};"
                                          data-toggle="tooltip" title="{{ $point->target->name }}"
                                          data-url="{{ route('locations.map_points.edit', [$location, $point]) }}"
                                          data-url-move="{{ route('locations.map_points.move', [$location, $point]) }}">
-                                        <i class="fa fa-map-marker" style="@if ($point->colour == 'white') color: black; @endif"></i>
+                                        <i class="fa-solid fa-map-marker" style="@if ($point->colour == 'white') color: black; @endif"></i>
                                     </div>
-                                    @endviewentity
+                                    @endif
                                 @elseif (!$point->hasTarget())
                                     <div class="point" style="top: {{ $point->axis_y }}px; left: {{ $point->axis_x }}px; background-color: {{ $point->colour }};"
                                          data-toggle="tooltip" title="{{ $point->name }}"
                                          data-url="{{ route('locations.map_points.edit', [$location, $point]) }}"
                                          data-url-move="{{ route('locations.map_points.move', [$location, $point]) }}">
-                                        <i class="fa fa-map-marker" style="@if ($point->colour == 'white') color: black; @endif"></i>
+                                        <i class="fa-solid fa-map-marker" style="@if ($point->colour == 'white') color: black; @endif"></i>
                                     </div>
                                 @endif
                             @endforeach

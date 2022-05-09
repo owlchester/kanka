@@ -22,7 +22,6 @@ return [
         'location'  => 'Lokacija',
         'members'   => 'Članovi',
         'name'      => 'Naziv',
-        'relation'  => 'Odnos',
         'type'      => 'Tip',
     ],
     'helpers'       => [
@@ -34,9 +33,7 @@ return [
         'members'   => 'Ovdje su navedeni članovi obitelji. Lik se može dodati u obitelj uređivanjem željenog lika, upotrebom padajućeg izbornika "Obitelj".',
     ],
     'index'         => [
-        'add'       => 'Nova obitelj',
-        'header'    => 'Obitelji od :name',
-        'title'     => 'Obitelji',
+        'title' => 'Obitelji',
     ],
     'members'       => [
         'helpers'   => [
@@ -55,8 +52,6 @@ return [
             'all_members'   => 'Svi članovi',
             'families'      => 'Obitelji',
             'members'       => 'Članovi',
-            'relation'      => 'Odnosi',
         ],
-        'title' => 'Obitelj :name',
     ],
 ];

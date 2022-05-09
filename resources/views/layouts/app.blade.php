@@ -53,10 +53,10 @@ $seoTitle = isset($seoTitle) ? $seoTitle : (isset($title) ? $title : null);
     <link href="{{ mix('css/' . request()->get('_theme') . '.css') }}" rel="stylesheet">
     @endif
 @else
-    @if (!empty($campaign) && $campaign->boosted() && !empty($campaign->theme))
+    @if (!empty($campaign) && $campaign->boosted() && !empty($campaign->theme_id))
     @if ($campaign->theme_id !== 1)
-        <link href="{{ mix('css/' . $campaign->theme->name . '.css') }}" rel="stylesheet">
-        @php $specificTheme = $campaign->theme->name @endphp
+        <link href="{{ mix('css/' . ($campaign->theme_id === 2 ? 'dark' : 'midnight') . '.css') }}" rel="stylesheet">
+        @php $specificTheme = ($campaign->theme_id === 2 ? 'dark' : 'midnight') @endphp
     @endif
     @elseif (auth()->check() && !empty(auth()->user()->theme))
         <link href="{{ mix('css/' . auth()->user()->theme . '.css') }}" rel="stylesheet">
@@ -113,14 +113,14 @@ $seoTitle = isset($seoTitle) ? $seoTitle : (isset($title) ? $title : null);
                 @if (auth()->check() && \App\Facades\Identity::isImpersonating())
                     <div class="alert alert-warning">
                         <h4>
-                            <i class="icon fa fa-exclamation-triangle"></i>
+                            <i class="icon fa-solid fa-exclamation-triangle"></i>
                             {{ __('campaigns.members.impersonating.title', ['name' => auth()->user()->name]) }}
                         </h4>
                         <p>
                             {{ __('campaigns.members.impersonating.message') }}
 
                             <a href="{{ route('identity.back') }}" class="btn btn-warning btn-sm switch-back">
-                                <i class="fa fa-sign-out-alt"></i> {{ __('campaigns.members.actions.switch-back') }}
+                                <i class="fa-solid fa-sign-out-alt"></i> {{ __('campaigns.members.actions.switch-back') }}
                             </a>
                         </p>
                     </div>
@@ -161,6 +161,11 @@ $seoTitle = isset($seoTitle) ? $seoTitle : (isset($title) ? $title : null);
     <div class="modal fade" id="entity-modal" role="dialog" aria-labelledby="deleteConfirmLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content"></div>
+            <div class="modal-spinner" style="display: none">
+                <div class="modal-body text-center">
+                    <i class="fa-solid fa-spinner fa-spin fa-2x"></i>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -182,19 +187,22 @@ $seoTitle = isset($seoTitle) ? $seoTitle : (isset($title) ? $title : null);
                     <p id="delete-confirm-text">
                         {!! __('crud.delete_modal.description', ['tag' => '<b><span id="delete-confirm-name"></span></b>']) !!}
                     </p>
-                    <div id="delete-confirm-mirror" class="form-group" style="display: none">
+                    <div id="delete-confirm-mirror" class="form-group checkbox" style="display: none">
                         <label>
-                            <input type="checkbox" id="delete-confirm-mirror-chexkbox" name="delete-mirror">
-                            {{ __('crud.delete_modal.mirrored') }}
+                            <input type="checkbox" id="delete-confirm-mirror-checkbox" name="delete-mirror">
+                            {{ __('entities/relations.delete_mirrored.option') }}
+                            <i class="fa-solid fa-question-circle hidden-xs hidden-sm" title="{{ __('entities/relations.delete_mirrored.helper') }}" data-toggle="tooltip"></i>
                         </label>
+                        <p class="help-block visible-xs visible-sm">
+                            {{ __('entities/relations.delete_mirrored.helper') }}
+                        </p>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">{{ __('crud.cancel') }}</button>
                     <button type="button" class="btn btn-outline delete-confirm-submit">
-                        <span class="fa fa-trash"></span>
-                        <span class="delete-button-label">{{ __('crud.delete_modal.delete') }}</span>
-                        <span class="remove-button-label" style="display: none">{{ __('crud.remove') }}</span>
+                        <span class="fa-solid fa-trash"></span>
+                        <span class="remove-button-label">{{ __('crud.remove') }}</span>
                     </button>
                 </div>
             </div>
@@ -210,7 +218,7 @@ $seoTitle = isset($seoTitle) ? $seoTitle : (isset($title) ? $title : null);
             <span class="toast-message">
                 {{ $i }} message to the user spam
 
-                <i class="fa fa-times" data-toggle="dismiss"></i>
+                <i class="fa-solid fa-times" data-toggle="dismiss"></i>
             </span>
         </div>
         @endfor
@@ -218,7 +226,7 @@ $seoTitle = isset($seoTitle) ? $seoTitle : (isset($title) ? $title : null);
 
             <span class="toast-message">
                 Last message
-                <i class="fa fa-times" data-toggle="dismiss"></i>
+                <i class="fa-solid fa-times" data-toggle="dismiss"></i>
             </span>
         </div>
         @endif

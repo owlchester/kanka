@@ -30,7 +30,7 @@ class DiceRollResultController extends CrudController
         $this->indexActions[] = [
             'route' => route('dice_rolls.index'),
             'class' => 'default',
-            'label' => '<i class="fa fa-square"></i> ' . trans('dice_rolls.index.actions.dice')
+            'label' => '<i class="fa-solid fa-square"></i> ' . __('dice_rolls.index.actions.dice')
         ];
     }
     /**

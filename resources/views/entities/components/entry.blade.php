@@ -7,7 +7,7 @@
             @if (auth()->check())
                 @can('update', [$model])
                     <a href="{{ route('entities.entry.edit', $model->entity) }}" title="{{ __('crud.edit') }}" role="button" class="btn btn-box-tool">
-                        <i class="fa fa-edit"></i>
+                        <i class="fa-solid fa-edit"></i>
                     </a>
                 @endcan
             @endif

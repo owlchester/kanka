@@ -112,9 +112,7 @@ return [
         'years'             => 'Neke godine su toliko važne da imaju svoj naziv.',
     ],
     'index'         => [
-        'add'       => 'Novi kalendar',
-        'header'    => 'Kalendari u :name',
-        'title'     => 'Kalendari',
+        'title' => 'Kalendari',
     ],
     'layouts'       => [
         'month' => 'Mjesec',
@@ -210,11 +208,9 @@ return [
         'moon_waning_moon'  => ':moon Prva četvrt',
         'moon_waxing_moon'  => ':moon Posljednja četvrt',
         'tabs'              => [
-            'events'        => 'Događaji kalendara',
-            'information'   => 'Informacije',
-            'weather'       => 'Vremenski uvjeti',
+            'events'    => 'Događaji kalendara',
+            'weather'   => 'Vremenski uvjeti',
         ],
-        'title'             => 'Kalendar :name',
     ],
     'sorters'       => [
         'after' => 'Danas i poslije',

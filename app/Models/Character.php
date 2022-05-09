@@ -3,10 +3,10 @@
 namespace App\Models;
 
 use App\Facades\CampaignLocalization;
-use App\Models\Concerns\SimpleSortableTrait;
+use App\Models\Concerns\Acl;
+use App\Models\Concerns\SortableTrait;
 use App\Traits\CampaignTrait;
 use App\Traits\ExportableTrait;
-use App\Traits\VisibleTrait;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
@@ -28,10 +28,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Character extends MiscModel
 {
     use CampaignTrait,
-        VisibleTrait,
         ExportableTrait,
-        SimpleSortableTrait,
-        SoftDeletes;
+        SoftDeletes,
+        SortableTrait,
+        Acl
+    ;
 
     //
     protected $fillable = [
@@ -81,6 +82,12 @@ class Character extends MiscModel
         'age',
         'sex',
         'is_dead'
+    ];
+    protected $sortable = [
+        'name',
+        'type',
+        'location.name',
+        'is_dead',
     ];
 
     /**
@@ -153,11 +160,8 @@ class Character extends MiscModel
             'entity',
             'entity.image',
             'location',
-            'location.entity',
             'families',
-            'families.entity',
             'races',
-            'races.entity',
         ]);
     }
 
@@ -166,25 +170,28 @@ class Character extends MiscModel
      */
     public function location()
     {
-        return $this->belongsTo('App\Models\Location', 'location_id', 'id');
+        return $this->belongsTo('App\Models\Location', 'location_id', 'id')
+            ->with('entity');
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function families()
     {
         return $this->belongsToMany('App\Models\Family')
-            ->orderBy('character_family.id');
+            ->orderBy('character_family.id')
+            ->with('entity');
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function races()
     {
         return $this->belongsToMany('App\Models\Race')
-            ->orderBy('character_race.id');
+            ->orderBy('character_race.id')
+            ->with('entity');
     }
 
     /**
@@ -193,31 +200,6 @@ class Character extends MiscModel
     public function organisations()
     {
         return $this->hasMany('App\Models\OrganisationMember', 'character_id', 'id');
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
-     */
-    public function quests()
-    {
-        return $this->belongsToMany('App\Models\Quest', 'quest_characters')
-            ->using('App\Models\Pivots\QuestCharacter')
-            ->withPivot('role', 'is_private');
-    }
-
-    /**
-     * @return mixed
-     */
-    public function relatedQuests()
-    {
-        $query = $this->quests()
-            ->with(['characters', 'locations', 'quests']);
-
-        if (!auth()->check() || !auth()->user()->isAdmin()) {
-            $query->where('quest_characters.is_private', false);
-        }
-
-        return $query;
     }
 
     /**
@@ -332,7 +314,7 @@ class Character extends MiscModel
 
             'button' => auth()->check() && auth()->user()->can('update', $this) ? [
                 'url' => $this->getLink('edit'),
-                'icon' => 'fa fa-pencil',
+                'icon' => 'fa-solid fa-pencil',
                 'tooltip' => __('crud.edit'),
             ] : null,
         ];

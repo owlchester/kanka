@@ -28,8 +28,6 @@ return [
             'dice'      => 'Dobbelsteen Worpen',
             'results'   => 'Resultaten',
         ],
-        'add'       => 'Nieuwe Dobbelsteen Worp',
-        'header'    => 'Dobbelsteen Worpen van :name',
         'title'     => 'Dobbelsteen Worpen van :name',
     ],
     'placeholders'  => [
@@ -54,6 +52,5 @@ return [
         'tabs'  => [
             'results'   => 'Resultaten',
         ],
-        'title' => 'Dobbelsteen Worp :name',
     ],
 ];

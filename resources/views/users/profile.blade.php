@@ -32,14 +32,14 @@
 
                         @if ($user->hasPlugins())
                             <a class="mr-5" href="{{ config('marketplace.url') . '/profiles/' . $user->id }}" title="Marketplace" data-toggle="tooltip" target="_blank">
-                                <i class="fas fa-shop"></i>
+                                <i class="fa-solid fa-shop"></i>
                                 {{ __('front.menu.marketplace') }}
                             </a>
                         @endif
 
                         @if (auth()->check() && auth()->user()->id === $user->id)
                             <a href="{{ route('settings.profile') }}" target="_blank" title="{{ __('crud.edit') }}" data-toggle="tooltip">
-                                <i class="fas fa-pencil"></i> {{ __('settings.profile.actions.update_profile') }}
+                                <i class="fa-solid fa-pencil"></i> {{ __('settings.profile.actions.update_profile') }}
                             </a>
                         @endif
                     </div>
@@ -117,7 +117,7 @@
                                     <p>
                                         {!! __('users/profile.fields.entities_created', [
     'count' => '<br />' . $user->createdEntitiesCount(),
-    'help' => '<i class="fas fa-question-circle" title="' . __('users/profile.helpers.entities_created') . '" data-toggle="tooltip"></i>',
+    'help' => '<i class="fa-solid fa-question-circle" title="' . __('users/profile.helpers.entities_created') . '" data-toggle="tooltip"></i>',
     ]) !!}</p>
                             </div>
                         </div>

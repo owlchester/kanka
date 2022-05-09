@@ -6,14 +6,12 @@ use App\Facades\Img;
 use App\Facades\UserCache;
 use App\Models\Campaign;
 use App\Facades\CampaignLocalization;
-use App\Models\Concerns\Filterable;
-use App\Models\Concerns\Searchable;
-use App\Models\Concerns\Sortable;
 use App\Models\Concerns\Tutorial;
 use App\Models\Patreon;
 use App\Models\Relations\UserRelations;
 use App\Models\Scopes\UserScope;
 use App\Models\UserSetting;
+use Carbon\Carbon;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
@@ -38,6 +36,7 @@ use Laravel\Passport\HasApiTokens;
  * @property string $patreon_pledge
  * @property int $booster_count
  * @property int $referral_id
+ * @property Carbon $card_expires_at
  * @property Collection $settings
  * @property Collection $profile
  *
@@ -55,9 +54,6 @@ class User extends \Illuminate\Foundation\Auth\User
         UserScope,
         UserRelations,
         UserSetting,
-        Searchable,
-        Filterable,
-        Sortable,
         Billable,
         Tutorial
     ;
@@ -68,10 +64,6 @@ class User extends \Illuminate\Foundation\Auth\User
         'patreon_fullname',
         //'patreon_email'
     ];
-
-    public $searchableColumns = ['email', 'settings'];
-    public $sortableColumns = [];
-    public $filterableColumns = ['patreon_pledge', 'referral_id'];
 
     /**
      * The attributes that are mass assignable.
@@ -105,7 +97,7 @@ class User extends \Illuminate\Foundation\Auth\User
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password', 'remember_token', 'card_expires_at',
     ];
 
     /**
@@ -125,6 +117,7 @@ class User extends \Illuminate\Foundation\Auth\User
         'settings' => 'array',
         'tutorial' => 'array',
         'profile' => 'array',
+        'card_expires_at' => 'datetime'
     ];
 
     /**
@@ -304,9 +297,7 @@ class User extends \Illuminate\Foundation\Auth\User
      */
     public function isGoblinPatron(): bool
     {
-        return ($this->hasRole('patreon') && !empty($this->patreon_pledge)
-                && $this->patreon_pledge != Patreon::PLEDGE_KOBOLD)
-            || $this->hasRole('admin');
+        return $this->patreon_pledge == Patreon::PLEDGE_GOBLIN;
     }
 
     /**
@@ -497,13 +488,13 @@ class User extends \Illuminate\Foundation\Auth\User
     }
 
     /**
-     * Number of koinks a user has
-     * @return int
+     * Get the user's role IDs based on the campaign
+     * @param int $campaignID
+     * @return array
      */
-    public function koinks(): int
+    public function campaignRoleIDs(int $campaignID): array
     {
-        $koinks = substr($this->id, 0, 3);
-        $koinks = str_pad($koinks, 3, 0);
-        return $koinks;
+        $roles = UserCache::roles()->where('campaign_id', $campaignID);
+        return $roles->pluck('id')->toArray();
     }
 }

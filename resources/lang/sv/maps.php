@@ -50,7 +50,6 @@ return [
         'missing_image'     => 'Spara kartan med en bild innan det är möjligt att lägga till lager och markeringar.',
     ],
     'index'         => [
-        'add'   => 'Ny Karta',
         'title' => 'Kartor',
     ],
     'maps'          => [
@@ -75,6 +74,5 @@ return [
         'tabs'  => [
             'maps'  => 'Kartor',
         ],
-        'title' => 'Karta :name',
     ],
 ];

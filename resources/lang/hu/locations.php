@@ -29,7 +29,6 @@ return [
         'locations'         => 'Helyszínek',
         'map'               => 'Térkép',
         'name'              => 'Név',
-        'relation'          => 'Kapcsolat',
         'type'              => 'Típus',
     ],
     'helpers'       => [
@@ -46,19 +45,10 @@ return [
         'is_map_private'    => 'Egy privát térkép csak a kampány "Admin" szerepű tagjai számára láthatóak.',
     ],
     'index'         => [
-        'actions'   => [
-            'explore_view'  => 'Hierarchikus nézet',
-        ],
-        'add'       => 'Új helyszín',
-        'header'    => ':name helyszínei',
-        'title'     => 'Helyszínek',
+        'title' => 'Helyszínek',
     ],
-    'items'         => [
-        'title' => ':name helyszín tárgyai',
-    ],
-    'journals'      => [
-        'title' => ':name helyszín naplóbejegyzései',
-    ],
+    'items'         => [],
+    'journals'      => [],
     'locations'     => [
         'title' => ':name helyszín alhelyszínei',
     ],
@@ -207,16 +197,9 @@ return [
     'show'          => [
         'tabs'  => [
             'characters'    => 'Karakterek',
-            'events'        => 'Események',
-            'families'      => 'Családok',
-            'items'         => 'Tárgyak',
-            'journals'      => 'Naplóbejegyzések',
             'locations'     => 'Helyszínek',
             'map'           => 'Térkép',
             'maps'          => 'Térképek',
-            'organisations' => 'Szervezetek',
-            'quests'        => 'Küldetések',
         ],
-        'title' => ':name helyszín',
     ],
 ];

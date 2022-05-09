@@ -50,7 +50,6 @@ return [
         'missing_image'     => 'Katmanlar ve işaretler ekleyebilmek için önce haritayı bir görsel ile birlikte kaydedin.',
     ],
     'index'         => [
-        'add'   => 'Yeni Harita',
         'title' => 'Haritalar',
     ],
     'maps'          => [
@@ -75,6 +74,5 @@ return [
         'tabs'  => [
             'maps'  => 'Haritalar',
         ],
-        'title' => ':name Haritası',
     ],
 ];

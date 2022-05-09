@@ -2,26 +2,21 @@
 
 namespace App\Models;
 
-use App\Facades\UserPermission;
 use App\Models\Concerns\Blameable;
 use App\Models\Concerns\Filterable;
 use App\Models\Concerns\Orderable;
 use App\Models\Concerns\Paginatable;
 use App\Models\Concerns\Searchable;
-use App\Models\Concerns\SimpleSortableTrait;
 use App\Models\Concerns\Sortable;
+use App\Models\Concerns\SortableTrait;
 use App\Models\Scopes\Starred;
-use App\Traits\OrderableTrait;
-use App\Traits\VisibilityTrait;
-use App\Traits\VisibleTrait;
+use App\Traits\VisibilityIDTrait;
 use Illuminate\Database\Eloquent\Model;
-use Exception;
 
 /**
  * Class Relation
  * @package App\Models
  * @property int $id
- * @property string $visibility
  * @property string $relation
  * @property int $attitude
  * @property int $mirror_id
@@ -41,11 +36,15 @@ class Relation extends Model
     /**
      * Traits
      */
-    use VisibilityTrait, Starred, Paginatable, Blameable, SimpleSortableTrait,
+    use VisibilityIDTrait,
+        Starred,
+        Paginatable,
+        Blameable,
         Filterable,
         Sortable,
         Searchable,
-        Orderable
+        Orderable,
+        SortableTrait
     ;
 
     /**
@@ -56,11 +55,18 @@ class Relation extends Model
         'owner_id',
         'target_id',
         'relation',
-        'visibility',
+        'visibility_id',
         'mirror_id',
         'attitude',
         'is_star',
         'colour',
+    ];
+
+    protected $sortable = [
+        'relation',
+        'target.name',
+        'attitude',
+        'visibility_id',
     ];
 
     /**
@@ -74,6 +80,7 @@ class Relation extends Model
         'attitude',
         'is_star',
         'mirror_id',
+        'visibility_id',
     ];
 
     public $filterableColumns = [
@@ -144,43 +151,13 @@ class Relation extends Model
             'relation' => !empty($target) ? $target : $this->relation,
             'attitude' => $this->attitude,
             'colour' => $this->colour,
-            'visibility' => $this->visibility,
+            'visibility_id' => $this->visibility_id,
             'is_star' => $this->is_star,
             'mirror_id' => $this->id,
         ]);
 
         // Update this relation to keep track of everything
         $this->update(['mirror_id' => $mirror->id]);
-    }
-    /**
-     * Scope a query to only include elements that are visible
-     *
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     * @param mixed $type
-     * @return \Illuminate\Database\Eloquent\Builder
-     */
-    public function scopeAcl($query, $action = 'read', $user = null)
-    {
-        // Use the User Permission Service to handle all of this easily.
-        /** @var \App\Services\UserPermission $service */
-        $service = UserPermission::user($user)->action($action);
-
-        if ($service->isCampaignOwner()) {
-            return $query;
-        }
-
-        return $query
-            ->select('relations.*')
-            ->join('entities', 'relations.target_id', '=', 'entities.id')
-            ->where('entities.is_private', false)
-            ->where(function ($subquery) use ($service) {
-                return $subquery
-                    ->where(function ($sub) use ($service) {
-                        return $sub->whereIn('entities.id', $service->entityIds())
-                            ->orWhereIn('entities.type', $service->entityTypes());
-                    })
-                    ->whereNotIn('entities.id', $service->deniedEntityIds());
-            });
     }
 
     /**
@@ -238,5 +215,27 @@ class Relation extends Model
     public function entityTypeID()
     {
         return 0;
+    }
+
+    /**
+     * Functions for the datagrid2
+     * @param string $where
+     * @return string
+     */
+    public function deleteName(): string
+    {
+        return (string) $this->relation;
+    }
+    public function url(string $where): string
+    {
+        return 'entities.relations.' . $where;
+    }
+    public function routeParams(): array
+    {
+        return [$this->owner_id, $this->id, 'mode' => 'table'];
+    }
+    public function actionDeleteConfirmOptions(): string
+    {
+        return 'data-mirrored="' . $this->mirrored() . '"';
     }
 }

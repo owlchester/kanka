@@ -15,7 +15,7 @@
             <div class="box-tools">
                 <button class="btn btn-danger delete-confirm btn-sm" data-toggle="modal"
                         data-target="#delete-confirm-notifications" data-delete-target="notifications-clear">
-                    <i class="fa fa-trash-o"></i> {{ __('notifications.clear.action') }}
+                    <i class="fa-solid fa-trash-o"></i> {{ __('notifications.clear.action') }}
                 </button>
             </div>
         </div>
@@ -29,7 +29,7 @@
                     <tr class="@if(!$notification->read()) info @endif">
                         <td>
                         @if (!empty($notification->data['icon']))
-                            <i class="fa fa-{{ $notification->data['icon'] }} text-{{ $notification->data['colour'] }}"></i>
+                            <i class="fa-solid fa-{{ $notification->data['icon'] }} text-{{ $notification->data['colour'] }}"></i>
                                 @if(\Illuminate\Support\Arr::has($notification->data['params'], 'link'))
 @php
     $url = $notification->data['params']['link'];
@@ -91,7 +91,7 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">{{ __('crud.cancel') }}</button>
                     <button type="button" class="btn btn-outline delete-confirm-submit">
-                        <span class="fa fa-trash"></span>
+                        <span class="fa-solid fa-trash"></span>
                         <span class="delete-button-label">{{ __('crud.delete_modal.delete') }}</span>
                         <span class="remove-button-label" style="display: none">{{ __('crud.remove') }}</span>
                     </button>

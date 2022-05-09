@@ -44,7 +44,7 @@ class AbilityController extends Controller
         if (Auth::check()) {
             $this->authorize('view', $entity->child);
         } else {
-            $this->authorizeEntityForGuest('read', $entity->child);
+            $this->authorizeEntityForGuest(\App\Models\CampaignPermission::ACTION_READ, $entity->child);
         }
 
         $translations = [
@@ -87,7 +87,7 @@ class AbilityController extends Controller
     {
         $this->authorize('update', $entity->child);
 
-        $data = $request->only(['abilities', 'ability_id', 'visibility']);
+        $data = $request->only(['abilities', 'ability_id', 'visibility_id']);
         $data['entity_id'] = $entity->id;
 
         /** @var EntityAbility $entityAbility */
@@ -100,7 +100,7 @@ class AbilityController extends Controller
                     $entityAbility = EntityAbility::create([
                         'entity_id' => $entity->id,
                         'ability_id' => $abilityId,
-                        'visibility' => $data['visibility'],
+                        'visibility_id' => $data['visibility_id'],
                     ]);
                     $abilities[] = $ability->name;
                 }
@@ -166,7 +166,7 @@ class AbilityController extends Controller
     {
         $this->authorize('update', $entity->child);
 
-        $data = $request->only(['ability_id', 'visibility', 'note', 'position']);
+        $data = $request->only(['ability_id', 'visibility_id', 'note', 'position']);
 
         $entityAbility->update($data);
 

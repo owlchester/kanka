@@ -6,6 +6,11 @@ return [
         'add_role'  => 'Adicionar função',
         'add_user'  => 'Adicionar usuário',
     ],
+    'copy_mention'  => [
+        'copy'              => 'Copiar menção avançada',
+        'copy_with_name'    => 'Copiar menção avançada com o nome do post',
+        'success'           => 'Menção avançada do post copiada para a área de transferência.',
+    ],
     'create'        => [
         'success'   => 'Nota de entidade :name adicionada a :entity',
         'title'     => 'Nova nota de entidade de :name',

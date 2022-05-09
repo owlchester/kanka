@@ -2,11 +2,11 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\Acl;
 use App\Models\Concerns\Nested;
-use App\Models\Concerns\SimpleSortableTrait;
+use App\Models\Concerns\SortableTrait;
 use App\Traits\CampaignTrait;
 use App\Traits\ExportableTrait;
-use App\Traits\VisibleTrait;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
@@ -24,11 +24,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Event extends MiscModel
 {
     use CampaignTrait,
-        VisibleTrait,
         ExportableTrait,
         SoftDeletes,
         Nested,
-        SimpleSortableTrait;
+        SortableTrait,
+        Acl
+    ;
 
     /**
      * @var array
@@ -54,6 +55,13 @@ class Event extends MiscModel
         'date',
         'location_id',
         'event_id',
+    ];
+
+    protected $sortable = [
+        'name',
+        'date',
+        'type',
+        'event.name',
     ];
 
     /**
@@ -120,19 +128,6 @@ class Event extends MiscModel
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function calendars()
-    {
-        return $this->hasManyThrough('App\Models\Calendar', 'App\Models\CalendarEvent', 'event_id', 'calendar_id');
-    }
-
-    public function calendarEvents()
-    {
-        return $this->hasMany('App\Models\CalendarEvent', 'event_id');
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
     public function event()
     {
         return $this->belongsTo('App\Models\Event', 'event_id', 'id');
@@ -144,18 +139,6 @@ class Event extends MiscModel
     public function events()
     {
         return $this->hasMany('App\Models\Event', 'event_id', 'id');
-    }
-
-    /**
-     * Detach children when moving this entity from one campaign to another
-     */
-    public function detach()
-    {
-        foreach ($this->calendarEvents as $child) {
-            $child->delete();
-        }
-
-        return parent::detach();
     }
 
     /**

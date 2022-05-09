@@ -18,7 +18,7 @@
             @can('create', $model)
                 <div class="btn-group pull-right">
                     <a href="{{ route($route . '.create') }}" class="btn btn-primary btn-new-entity">
-                        <i class="fa fa-plus"></i> <span class="hidden-xs hidden-sm">{{ __($langKey . '.index.add') }}</span>
+                        <i class="fa-solid fa-plus"></i> <span class="hidden-xs hidden-sm">{{ __('entities.' .  \Illuminate\Support\Str::singular($route)) }}</span>
                     </a>
                     @if(!in_array($name, ['menu_links', 'relations']))
                         <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
@@ -29,7 +29,7 @@
                             @foreach ($templates as $entityTemplate)
                             <li>
                                 <a href="{{ route($route . '.create', ['copy' => $entityTemplate->entity_id, 'template' => true]) }}">
-                                    <i class="fa fa-star-o"></i> {{ $entityTemplate->name  }}</span>
+                                    <i class="fa-solid fa-star-o"></i> {{ $entityTemplate->name  }}</span>
                                 </a>
                             </li>
                             @endforeach
@@ -37,7 +37,7 @@
                             @endif
                             <li>
                                 <a href="{{ route('helpers.entity-templates') }}" data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('helpers.entity-templates') }}">
-                                    <i class="fa fa-external-link"></i> {{ __('helpers.entity_templates.link') }}
+                                    <i class="fa-solid fa-external-link"></i> {{ __('helpers.entity_templates.link') }}
                                 </a>
                             </li>
                         </ul>
@@ -45,7 +45,7 @@
                 </div>
             @endcan
             @foreach ($actions as $action)
-                @if (empty($action['policy']) || (Auth::check() && Auth::user()->can($action['policy'], $model)))
+                @if (empty($action['policy']) || (auth()->check() && auth()->user()->can($action['policy'], $model)))
                     <a href="{{ $action['route'] }}" class="btn pull-right btn-{{ $action['class'] }} margin-r-5">
                         {!! $action['label'] !!}
                     </a>
@@ -54,7 +54,7 @@
 
             @if (!empty($nestedView) && $nestedView)
                 <a href="{{ route($route . '.tree') }}" class="btn pull-right btn-default margin-r-5">
-                    <i class="fa fa-tree"></i> {{ __('crud.actions.explore_view') }}
+                    <i class="fa-solid fa-tree"></i> {{ __('crud.actions.explore_view') }}
                 </a>
             @endif
         </div>

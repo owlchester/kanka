@@ -3,7 +3,6 @@
 namespace App\Models\Concerns;
 
 use App\Datagrids\Sorters\DatagridSorter;
-use App\Models\Calendar;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Str;
 
@@ -55,62 +54,7 @@ trait SimpleSortableTrait
                     continue;
                 }
             }
-
-            // If the field has a casting
-            if ($datagridSorter->hasOrderCasting($column)) {
-                $builder->orderByRaw(
-                    'cast(' . $this->getTable() . '.' . $column . ' as ' . $datagridSorter->orderCasting($column) . ')'
-                    . $order
-                );
-            } elseif ($datagridSorter->hasOrderRaw($column)) {
-                $builder->orderByRaw(
-                    $datagridSorter->orderRaw($column) . ' ' . $order
-                );
-            } elseif ($datagridSorter->hasMultipleOrder($column)) {
-                foreach ($datagridSorter->orderMultiple($column) as $multiple) {
-                    $builder->orderBy($this->getTable() . '.' . $multiple, $order);
-                }
-            } elseif ($column == 'today') {
-                // Get the calendar's date
-                $calendar = request()->segment(5);
-                /** @var Calendar $calendar */
-                $calendar = Calendar::findOrFail($calendar);
-
-                $year = $calendar->currentDate('year');
-                $month = $calendar->currentDate('month');
-                $day = $calendar->currentDate('date');
-
-                if ($order === 'asc') {
-                    $builder->where('year', '>', $year)
-                        ->orWhere(function ($sub) use ($year, $month) {
-                            $sub->where('year', '=', $year)
-                                ->where('month', '>', $month);
-                        })
-                        ->orWhere(function ($sub) use ($year, $month, $day) {
-                            $sub->where('year', '=', $year)
-                                ->where('month', '=', $month)
-                                ->where('day', '>=', $day);
-                        });
-                } else {
-
-                    $builder->where('year', '<', $year)
-                        ->orWhere(function ($sub) use ($year, $month) {
-                            $sub->where('year', '=', $year)
-                                ->where('month', '<', $month);
-                        })
-                        ->orWhere(function ($sub) use ($year, $month, $day) {
-                            $sub->where('year', '=', $year)
-                                ->where('month', '=', $month)
-                                ->where('day', '<=', $day);
-                        });
-                }
-
-                foreach ($datagridSorter->orderMultiple('date') as $multiple) {
-                    $builder->orderBy($this->getTable() . '.' . $multiple, $order);
-                }
-            } else {
-                $builder->orderBy($this->getTable() . '.' . $column, $order);
-            }
+            $builder->orderBy($this->getTable() . '.' . $column, $order);
         }
 
         return $builder;

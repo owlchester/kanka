@@ -31,9 +31,7 @@ return [
         'nested_without'=> 'Zobrazujú sa všetky rasy, ktoré nemajú nadradenú rasu. Kliknutím na riadok zobrazíš podradené rasy.',
     ],
     'index'         => [
-        'add'       => 'Nová rasa',
-        'header'    => 'Rasy :name',
-        'title'     => 'Rasy',
+        'title' => 'Rasy',
     ],
     'placeholders'  => [
         'name'  => 'Názov rasy',
@@ -47,6 +45,5 @@ return [
             'characters'    => 'Postavy',
             'races'         => 'Podrasy',
         ],
-        'title' => 'Rasa :name',
     ],
 ];

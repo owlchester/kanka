@@ -43,17 +43,7 @@ return [
     ],
     'boost'         => [
         'benefits'      => [
-            'campaign_gallery'  => 'Serüven süresince tekrar tekrar kullanabileceğiniz görsellerle dolu bir serüven galerisi.',
-            'entity_files'      => 'Varlık başına 10 dosyaya kadar karşıya yükleyin.',
-            'entity_logs'       => 'Bir varlığa yapılan her bir güncelleme ile varlıkta neyin değiştiğini gösteren tam değişiklik listeleri.',
-            'first'             => 'Kanka\'da sürekli ilerlemenin güvence altına alınması için, bazı serüven özelliklerinin kilidi yalnızca bir serüveni destekleyerek açılır. Destekler abonelikler aracılığı ile açılır. Bir serüveni görüntüleyebilen herhangi biri serüveni destekleyebilir, böylece hesap yalnızca DM\'e kilitlenmemiş olur. Bir serüven bir kullanıcı onu desteklediği ve kullanıcı Kanka\'yı desteklediği sürece destekli kalır. Eğer bir serüven artık destekli değilse, veri kaybolmaz, yalnızca serüven tekrar desteklenene kadar saklı kalır.',
-            'header'            => 'Varlık kapak görselleri.',
-            'images'            => 'Özel varsayılan varlık görselleri.',
-            'superboost'        => 'Bir serüveni süperdesteklemek 3 desteğinizin tamamını harcar ve destekli serüvenlerin üstüne ek özelliklerin de kilidini açar.',
-            'theme'             => 'Serüven seviyesinde tema ve özel tasarım.',
-            'third'             => 'Bir serüveni desteklemek için, serüvenin sayfasına gidin, ve ":edit_button" butonunun üstündeki ":boost_button" butonuna tıklayın.',
-            'tooltip'           => 'Varlıklar için özel bilgi çubukları',
-            'upload'            => 'Serüvendeki her bir üye için arttırılmış karşıya yükleme boyut limiti.',
+            'third' => 'Bir serüveni desteklemek için, serüvenin sayfasına gidin, ve ":edit_button" butonunun üstündeki ":boost_button" butonuna tıklayın.',
         ],
         'buttons'       => [
             'boost'         => 'Destek',
@@ -121,7 +111,6 @@ return [
         'api'                   => 'API',
         'apps'                  => 'Uygulamalar',
         'billing'               => 'Ödeme Yöntemi',
-        'boost'                 => 'Destek',
         'invoices'              => 'Faturalar',
         'layout'                => 'Düzen',
         'marketplace'           => 'Market',
@@ -158,7 +147,6 @@ return [
             'subscribe'         => 'Abone Ol',
             'update_currency'   => 'Tercih edilen kuru kaydet.',
         ],
-        'benefits'  => 'Bizi destekleyerek bazı yeni :features açabilir ve Kanka\'yı geliştirmek için daha fazla zaman ayırmamıza yardımcı olabilirsiniz. Sunucularımızda hiçbir kredi kartı bilgisi saklanmaz ya da üzerinden geçer. Bütün faturalandırma hizmetlerimiz için :stripe kullanıyoruz.',
         'billing'   => [
             'helper'    => 'Faturalandırma bilgileriniz :stripe tarafından işlenir güvenle korunur. Bu ödeme yöntemi bütün abonelikleriniz için kullanılır.',
             'saved'     => 'Kaydedilen ödeme yöntemi',

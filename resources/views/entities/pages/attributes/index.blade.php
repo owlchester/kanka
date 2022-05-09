@@ -15,11 +15,11 @@
     @can('attribute', [$entity->child, 'add'])
         <div class="header-buttons">
             <a class="btn btn-sm btn-default" href="{{ route('entities.attributes.template', $entity) }}" data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('entities.attributes.template', $entity) }}">
-                <i class="fa fa-copy"></i> {{ __('entities/attributes.actions.apply_template') }}
+                <i class="fa-solid fa-copy"></i> {{ __('entities/attributes.actions.apply_template') }}
             </a>
 
             <a href="{{ route('entities.attributes.edit', ['entity' => $entity]) }}" class="btn btn-sm btn-warning">
-                <i class="fa fa-list"></i> {{ __('entities/attributes.actions.manage') }}
+                <i class="fa-solid fa-list"></i> {{ __('entities/attributes.actions.manage') }}
             </a>
         </div>
     @endcan

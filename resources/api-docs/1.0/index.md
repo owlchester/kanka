@@ -60,6 +60,7 @@
     - [Gallery](/api-docs/{{version}}/images)
     - [Templates](/api-docs/{{version}}/templates)
     - [Campaign Styles](/api-docs/{{version}}/campaign-styles)
+    - [Visibilities](/api-docs/{{version}}/visibilities)
 
 - ## Help
     - [Troubleshooting](/api-docs/{{version}}/troubleshooting)

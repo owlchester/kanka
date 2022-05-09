@@ -23,7 +23,7 @@
                     :type="searchBox ? 'primary' : 'link'"
                     @click="searchBox = ! searchBox"
                     class="px-4">
-                    <i class="fas fa-search" id="search-button-icon"></i>
+                    <i class="fa fa-search" id="search-button-icon"></i>
                 </larecipe-button>
             @endif
 
@@ -51,6 +51,10 @@
 
             @auth
                 {{-- account --}}
+                <div class="ml-2">
+                    {{ auth()->user()->name ?? 'Account' }}
+
+                </div>
                 <larecipe-dropdown>
                     <larecipe-button type="white" class="ml-2">
                         {{ auth()->user()->name ?? 'Account' }} <i class="fa fa-angle-down"></i>

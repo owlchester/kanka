@@ -3,11 +3,11 @@
 namespace App\Models;
 
 use App\Facades\CampaignLocalization;
-use App\Models\Concerns\SimpleSortableTrait;
+use App\Models\Concerns\Acl;
+use App\Models\Concerns\SortableTrait;
 use App\Traits\CalendarDateTrait;
 use App\Traits\CampaignTrait;
 use App\Traits\ExportableTrait;
-use App\Traits\VisibleTrait;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
@@ -29,11 +29,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Quest extends MiscModel
 {
     use CampaignTrait,
-        VisibleTrait,
         ExportableTrait,
         CalendarDateTrait,
-        SimpleSortableTrait,
-        SoftDeletes;
+        SoftDeletes,
+        SortableTrait,
+        Acl
+    ;
 
     /**
      * @var array
@@ -55,6 +56,13 @@ class Quest extends MiscModel
         'calendar_year',
         'calendar_month',
         'calendar_day',
+    ];
+
+    protected $sortable = [
+        'name',
+        'type',
+        'date',
+        'is_compelted',
     ];
 
     /**
@@ -149,38 +157,6 @@ class Quest extends MiscModel
     public function shortDescription()
     {
         return $this->name;
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function locations()
-    {
-        return $this->hasMany('App\Models\QuestLocation', 'quest_id', 'id');
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function characters()
-    {
-        return $this->hasMany('App\Models\QuestCharacter', 'quest_id', 'id');
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function items()
-    {
-        return $this->hasMany('App\Models\QuestItem', 'quest_id', 'id');
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function organisations()
-    {
-        return $this->hasMany('App\Models\QuestOrganisation', 'quest_id', 'id');
     }
 
     /**

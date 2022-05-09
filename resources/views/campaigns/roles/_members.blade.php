@@ -14,7 +14,7 @@
                        class="btn btn-primary btn-sm"
                        data-toggle="ajax-modal" data-target="#entity-modal"
                        data-url="{{ route('campaign_roles.campaign_role_users.create', ['campaign_role' => $role]) }}">
-                        <i class="fa fa-plus"></i>
+                        <i class="fa-solid fa-plus"></i>
                         {{ __('campaigns.roles.users.actions.add') }}
                     </a>
                 @endif
@@ -41,10 +41,10 @@
                             </td>
                             <td class="text-right">
                                 @can('removeUser', $role)
-                                    <button class="btn btn-xs btn-danger delete-confirm" data-toggle="modal" data-name="{{ __('campaigns.roles.users.actions.remove', ['user' => $relation->user->name, 'role' => $role->name]) }}" data-reset="1"
+                                    <button class="btn btn-xs btn-danger delete-confirm" data-toggle="modal" data-name="{{ __('campaigns.roles.users.actions.remove', ['user' => $relation->user->name, 'role' => $role->name]) }}"
                                             data-target="#delete-confirm" data-delete-target="campaign-role-member-{{ $relation->id }}"
                                             title="{{ __('crud.remove') }}">
-                                        <i class="fa fa-user-slash" aria-hidden="true"></i>
+                                        <i class="fa-solid fa-user-slash" aria-hidden="true"></i>
                                     </button>
                                     {!! Form::open([
                                         'method' => 'DELETE', 'route' => ['campaign_roles.campaign_role_users.destroy', 'campaign_role' => $role, 'campaign_role_user' => $relation->id],

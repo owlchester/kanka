@@ -29,16 +29,12 @@ return [
         'is_pinned' => 'Até 3 notas podem ser fixadas no dashboard',
     ],
     'index'         => [
-        'add'       => 'Nova Nota',
-        'header'    => 'Notas de :name',
-        'title'     => 'Notas',
+        'title' => 'Notas',
     ],
     'placeholders'  => [
         'name'  => 'Nome da nota',
         'note'  => 'Escolha uma nota Primária',
         'type'  => 'Religião, Raça, Sistema político',
     ],
-    'show'          => [
-        'title' => 'Nota :name',
-    ],
+    'show'          => [],
 ];

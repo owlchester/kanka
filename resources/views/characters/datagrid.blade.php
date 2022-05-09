@@ -40,7 +40,7 @@
         ],
         'type',
         [
-            'label' => '<i class="fas fa-transgender-alt" title="' . __('characters.fields.sex') . '"></i>',
+            'label' => '<i class="fa-solid fa-transgender-alt" title="' . __('characters.fields.sex') . '"></i>',
             'field' => 'sex',
         ],
         [

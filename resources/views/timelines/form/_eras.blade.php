@@ -36,7 +36,7 @@
             <td>{{ $era->end_year }}</td>
             <td>
                 @if($era->is_collapsed)
-                    <i class="fa fa-check-circle" title="{{ __('timelines/eras.helpers.is_collapsed') }}" data-toggle="tooltip"></i>
+                    <i class="fa-solid fa-check-circle" title="{{ __('timelines/eras.helpers.is_collapsed') }}" data-toggle="tooltip"></i>
                 @endif
             </td>
             <td class="text-right">
@@ -46,13 +46,13 @@
                    data-url="{{ route('timelines.timeline_eras.edit', [$model, $era]) }}"
                    data-backdrop="static"
                 >
-                    <i class="fa fa-pencil"></i>
+                    <i class="fa-solid fa-pencil"></i>
                 </a>
 
                 <a href="#" class="btn btn-xs btn-danger delete-confirm" data-toggle="modal" data-name="{{ $era->name }}"
                         data-target="#delete-confirm" data-delete-target="delete-form-era-{{ $era->id }}"
                         title="{{ __('crud.remove') }}">
-                    <i class="fa fa-trash" aria-hidden="true"></i>
+                    <i class="fa-solid fa-trash" aria-hidden="true"></i>
                 </a>
             </td>
         </tr>
@@ -70,7 +70,7 @@
        data-url="{{ route('timelines.timeline_eras.create', ['timeline' => $model]) }}"
        data-backdrop="static"
     >
-        <i class="fas fa-plus"></i> {{ __('timelines/eras.actions.add') }}
+        <i class="fa-solid fa-plus"></i> {{ __('timelines/eras.actions.add') }}
     </a>
 
     <hr />

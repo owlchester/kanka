@@ -24,9 +24,7 @@ return [
         'participants'  => 'Afegiu participants a la conversa clicant a la icona :icon adalt a la dreta.',
     ],
     'index'         => [
-        'add'       => 'Nova conversa',
-        'header'    => 'Converses de :name',
-        'title'     => 'Converses',
+        'title' => 'Converses',
     ],
     'messages'      => [
         'destroy'       => [
@@ -54,7 +52,6 @@ return [
     ],
     'show'          => [
         'is_closed' => 'La conversa és tancada.',
-        'title'     => 'Conversa :name',
     ],
     'tabs'          => [
         'conversation'  => 'Conversa',

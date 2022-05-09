@@ -32,18 +32,14 @@ return [
     'helpers'       => [
         'nested_parent' => 'Mostrando as etiquetas de ":parent".',
         'nested_without'=> 'Mostrando todas as etiquetas que non teñen nai. Fai clic nunha liña para ver as súas subetiquetas.',
+        'no_children'   => 'Non hai ningunha entidade con esta etiqueta.',
     ],
     'hints'         => [
         'children'  => 'Esta lista contén todas as entidades que pertencen a esta etiqueta ou ás súas subetiquetas.',
         'tag'       => 'Abaixo están mostradas todas as etiquetas directamente baixo esta etiqueta.',
     ],
     'index'         => [
-        'actions'   => [
-            'explore_view'  => 'Vista en árbore',
-        ],
-        'add'       => 'Nova etiqueta',
-        'header'    => 'Etiquetas en ":name"',
-        'title'     => 'Etiquetas',
+        'title' => 'Etiquetas',
     ],
     'new_tag'       => 'Nova etiqueta',
     'placeholders'  => [
@@ -56,7 +52,6 @@ return [
             'children'  => 'Subetiquetas',
             'tags'      => 'Etiquetas',
         ],
-        'title' => 'Etiqueta ":name"',
     ],
     'tags'          => [
         'title' => 'Subetiquetas de ":name"',

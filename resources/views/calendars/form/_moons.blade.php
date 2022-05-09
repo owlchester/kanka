@@ -6,7 +6,7 @@
         <div class="col-md-2">{{ __('calendars.parameters.moon.fullmoon') }}</div>
         <div class="col-md-2">{{ __('crud.fields.colour') }}</div>
         <div class="col-md-2">{{ __('calendars.parameters.moon.offset') }}
-        <i class="fas fa-question-circle hidden-xs hidden-sm" data-placement="left" data-toggle="tooltip" title="{{ __('calendars.helpers.moon_offset') }}"></i>
+        <i class="fa-solid fa-question-circle hidden-xs hidden-sm" data-placement="left" data-toggle="tooltip" title="{{ __('calendars.helpers.moon_offset') }}"></i>
         </div>
     </div>
 </div>
@@ -43,7 +43,7 @@ if (!empty($moonNames)) {
                 <div class="col-md-6">
                     <div class="input-group">
                         <span class="input-group-addon">
-                            <span class="fa fa-arrows-alt-v"></span>
+                            <span class="fa-solid fa-arrows-alt-v"></span>
                         </span>
                         {!! Form::text('moon_name[]', $fullmoon['name'], ['class' => 'form-control']) !!}
                     </div>
@@ -59,7 +59,7 @@ if (!empty($moonNames)) {
                         {!! Form::number('moon_offset[]', $fullmoon['offset'], ['class' => 'form-control']) !!}
                         <span class="input-group-btn">
                             <span class="month-delete btn btn-danger" data-remove="4" title="{{ __('crud.remove') }}">
-                                <i class="fa fa-trash"></i>
+                                <i class="fa-solid fa-trash"></i>
                             </span>
                         </span>
                     </div>
@@ -70,7 +70,7 @@ if (!empty($moonNames)) {
     @endforeach
 </div>
 <a class="btn btn-default" id="add_moon" href="#" title="{{ __('calendars.actions.add_moon') }}">
-    <i class="fa fa-plus"></i> {{ __('calendars.actions.add_moon') }}
+    <i class="fa-solid fa-plus"></i> {{ __('calendars.actions.add_moon') }}
 </a>
 
 @section('modals')
@@ -91,7 +91,7 @@ if (!empty($moonNames)) {
                 {!! Form::number('moon_offset[]', 0, ['class' => 'form-control', 'placeholder' => __('calendars.parameters.moon.offset')]) !!}
                 <span class="input-group-btn">
                     <span class="month-delete btn btn-danger" data-remove="4" title="{{ __('crud.remove') }}">
-                        <i class="fa fa-trash"></i>
+                        <i class="fa-solid fa-trash"></i>
                     </span>
                 </span>
             </div>

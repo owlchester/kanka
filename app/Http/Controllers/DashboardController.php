@@ -7,11 +7,7 @@ use App\Facades\Dashboard;
 use App\Facades\DataLayer;
 use App\Facades\PostCache;
 use App\Models\CampaignDashboardWidget;
-use App\Providers\DashboardServiceProvider;
-use App\Services\DashboardService;
 use Illuminate\Support\Facades\Auth;
-
-use App\Models\Release;
 
 class DashboardController extends Controller
 {
@@ -120,7 +116,6 @@ class DashboardController extends Controller
         $entities = \App\Models\Entity::unmentioned()
             ->inTags($widget->tags->pluck('id')->toArray())
             ->type($widget->conf('entity'))
-            ->acl()
             ->with(['updater'])
             ->paginate(10);
 

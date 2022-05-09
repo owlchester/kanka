@@ -54,9 +54,7 @@ return [
         'quests'    => 'Ein Netz aus verknüpften Quests kann mit dem Elternquest-Feld erstellt werden.',
     ],
     'index'         => [
-        'add'       => 'Neuer Quest',
-        'header'    => 'Quests von :name',
-        'title'     => 'Quests',
+        'title' => 'Quests',
     ],
     'items'         => [],
     'locations'     => [],
@@ -75,6 +73,5 @@ return [
         'tabs'      => [
             'elements'  => 'Elemente',
         ],
-        'title'     => 'Quest :name',
     ],
 ];

@@ -23,9 +23,7 @@ return [
         'participants'  => 'Voeg deelnemers aan je conversatie toe door op het :icon pictogram in de rechterbovenhoek te drukken.',
     ],
     'index'         => [
-        'add'       => 'Nieuwe Conversatie',
-        'header'    => 'Conversaties in :name',
-        'title'     => 'Conversaties',
+        'title' => 'Conversaties',
     ],
     'messages'      => [
         'destroy'       => [
@@ -51,9 +49,7 @@ return [
         'name'  => 'Naam van de conversatie',
         'type'  => 'In Game, Prep, Plot',
     ],
-    'show'          => [
-        'title' => 'Conversatie :name',
-    ],
+    'show'          => [],
     'tabs'          => [
         'conversation'  => 'Conversatie',
         'participants'  => 'Deelnemers',

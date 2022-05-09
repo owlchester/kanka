@@ -70,7 +70,7 @@ class FaqController extends Controller
 
         return response()->json([
             'success' => true,
-            'message' => ' <span class="success">(Saved <i class="fas fa-check-circle"></i>)</span>'
+            'message' => ' <span class="success">(Saved <i class="fa-solid fa-check-circle"></i>)</span>'
         ]);
     }
 }

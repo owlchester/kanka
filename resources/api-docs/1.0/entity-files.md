@@ -29,7 +29,7 @@ You can get a list of all the entity-files of an entity by using the following e
             "entity_id": 69,
             "entry": "Lorem Ipsum",
             "id": 31,
-            "visibility": "all",
+            "visibility_id": 1,
             "name": "Secret File",
             "path": "{url}",
             "size": "44420",
@@ -60,7 +60,7 @@ To get the details of a single entity-file, use the following endpoint.
         "entity_id": 69,
         "entry": "Lorem Ipsum",
         "id": 31,
-        "visibility": "self",
+        "visibility_1": 3,
         "name": "Secret File",
         "path": "{url}",
         "size": "44420",
@@ -86,7 +86,7 @@ To create an entity-file, use the following endpoint.
 | Parameter | Type | Detail |
 | :- |   :-   |  :-  |
 | `file` | `stream` | The uploaded file (max 2mb or 8mb for subscribers) |
-| `visibility` | `string` | The visibility: `all`, `self`, `members`, `admin` or `self-admin`. |
+| `visibility_id` | `int` | The visibility ID: 1 for `all`, 2 `self`, 3 `members`, 4 `admin` or 5 for `self-admin`. |
 
 ### Results
 

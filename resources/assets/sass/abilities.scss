@@ -74,6 +74,12 @@
 }
 
 .ability {
+  .ability-image {
+    width: 120px;
+    height: 120px;
+    float: right;
+    margin: 0 0 8px 8px;
+  }
  a:hover {
    background-color: unset !important;
  }

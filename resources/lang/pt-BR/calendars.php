@@ -68,6 +68,7 @@ return [
         'current_month'         => 'Mês Atual',
         'current_year'          => 'Ano Atual',
         'date'                  => 'Data Atual',
+        'day'                   => 'Dia',
         'has_leap_year'         => 'Tem anos bissextos',
         'intercalary'           => 'Dias intercalares',
         'is_incrementing'       => 'Data de Avanço',
@@ -78,6 +79,7 @@ return [
         'leap_year_start'       => 'Ano Bissexto',
         'length'                => 'Duração do Evento',
         'length_days'           => ':count day|: contar dias',
+        'month'                 => 'Mês',
         'months'                => 'Meses',
         'moons'                 => 'Luas',
         'name'                  => 'Nome',
@@ -91,9 +93,11 @@ return [
         'type'                  => 'Tipo',
         'week_names'            => 'Nomes da semana',
         'weekdays'              => 'Dias da Semana',
+        'year'                  => 'Ano',
     ],
     'helpers'       => [
         'month_type'    => 'Os meses intercalares não usam os dias da semana, mas ainda influenciam as luas e as estações.',
+        'moon_offset'   => 'Por padrão, a primeira lua cheia aparece no primeiro dia do ano 0. A alteração do deslocamento será alterada quando a primeira lua cheia for exibida. Este valor pode ser negativo (até a duração do primeiro mês) ou positivo (até a duração do primeiro mês).',
         'nested_parent' => 'Mostrando os calendários de :parent.',
         'nested_without'=> 'Mostrando todos os calendários que não tem um calendário-pai. Clique em uma linha para ver os calendários-filhos.',
         'start_offset'  => 'Por padrão, o calendário começa no primeiro dia da semana do ano 0. A alteração deste campo influencia onde o primeiro dia do calendário é colocado.',
@@ -113,9 +117,7 @@ return [
         'years'             => 'Alguns anos são tão importantes que têm um nome próprio.',
     ],
     'index'         => [
-        'add'       => 'Novo Calendário',
-        'header'    => 'Calendários de :name',
-        'title'     => 'Calendários',
+        'title' => 'Calendários',
     ],
     'layouts'       => [
         'month' => 'Mês',
@@ -211,14 +213,15 @@ return [
         'moon_waning_moon'  => ':moon Minguante',
         'moon_waxing_moon'  => ':moon crescente',
         'tabs'              => [
-            'events'        => 'Eventos de calendário',
-            'information'   => 'Informação',
-            'weather'       => 'Clima',
+            'events'    => 'Eventos de calendário',
+            'weather'   => 'Clima',
         ],
-        'title'             => 'Calendário :name',
     ],
     'sorters'       => [
         'after' => 'Hoje e depois',
         'before'=> 'Hoje e antes',
+    ],
+    'validators'    => [
+        'moon_offset'   => 'O deslocamento da primeira lua cheia não pode ser maior que a duração do primeiro mês do calendário.',
     ],
 ];

@@ -19,6 +19,7 @@ class UserLog extends Model
 {
     const TYPE_LOGIN = 1;
     const TYPE_LOGOUT = 2;
+    const TYPE_AUTOLOGIN = 3;
     const TYPE_UPDATE = 4;
     const TYPE_SUB_NEW = 10;
     const TYPE_SUB_CANCEL = 11;

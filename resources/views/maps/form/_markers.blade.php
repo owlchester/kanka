@@ -15,7 +15,7 @@
 
     <div class="map" id="map{{ $model->id }}" style="width: 100%; height: 100%;">
         <a href="{{ route('maps.explore', $model) }}" target="_blank" class="btn btn-primary btn-map-explore"><i
-                class="fa fa-map"></i> {{ __('maps.actions.explore') }}</a>
+                class="fa-solid fa-map"></i> {{ __('maps.actions.explore') }}</a>
     </div>
 
 
@@ -148,7 +148,7 @@
                                 <button class="btn btn-success">{{ __('crud.save') }}</button>
                             </div>
                             <div class="submit-animation" style="display: none;">
-                                <button class="btn btn-success" disabled><i class="fa fa-spinner fa-spin"></i></button>
+                                <button class="btn btn-success" disabled><i class="fa-solid fa-spinner fa-spin"></i></button>
                             </div>
                         </div>
 

@@ -34,16 +34,13 @@ return [
         'reverse_order'     => 'Schakel in om tijdperken in omgekeerde chronologische volgorde weer te geven (eerst het oudere tijdperk)',
     ],
     'index'         => [
-        'add'   => 'Nieuwe tijdlijn',
         'title' => 'Tijdlijnen',
     ],
     'placeholders'  => [
         'name'  => 'Naam van de tijdlijn',
         'type'  => 'Primair, Wereldkroniek, Koninkrijk geschiedenis',
     ],
-    'show'          => [
-        'title' => 'Tijdlijn :name',
-    ],
+    'show'          => [],
     'timelines'     => [
         'title' => 'Tijdlijn :name Tijdlijnen',
     ],

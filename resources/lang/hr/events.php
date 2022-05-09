@@ -30,9 +30,7 @@ return [
         'nested_without'=> 'Prikaz svih događaja koji nemaju događaj roditelj. Klikni redak da bi vidio/la događaje djecu.',
     ],
     'index'         => [
-        'add'       => 'Novi događaj',
-        'header'    => 'Događaji :name',
-        'title'     => 'Događaji',
+        'title' => 'Događaji',
     ],
     'placeholders'  => [
         'date'      => 'Datum za događaj',
@@ -40,9 +38,7 @@ return [
         'name'      => 'Naziv događaja',
         'type'      => 'Ceremonija, Festival, Nesreća, Bitka, Rođenje',
     ],
-    'show'          => [
-        'title' => 'Događaj :name',
-    ],
+    'show'          => [],
     'tabs'          => [
         'calendars' => 'Unosi kalendara',
     ],

@@ -54,9 +54,7 @@ return [
         'quests'    => 'Es pot crear una xarxa de missions entrellaçades usant el camp de missió superior.',
     ],
     'index'         => [
-        'add'       => 'Nova missió',
-        'header'    => 'Missions de :name',
-        'title'     => 'Missions',
+        'title' => 'Missions',
     ],
     'items'         => [],
     'locations'     => [],
@@ -75,6 +73,5 @@ return [
         'tabs'      => [
             'elements'  => 'Elements',
         ],
-        'title'     => 'Missió :name',
     ],
 ];

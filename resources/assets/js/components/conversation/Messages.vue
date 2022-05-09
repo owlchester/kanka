@@ -4,10 +4,10 @@
             {{ translate('load_previous') }}
         </div>
         <div class="load more text-center" v-if="loadingPrevious">
-            <i class="fa fa-spin fa-spinner"></i>
+            <i class="fa-solid fa-spin fa-spinner"></i>
         </div>
         <div class="load more text-center" v-if="initializing">
-            <i class="fa fa-spin fa-spinner fa-4x"></i>
+            <i class="fa-solid fa-spin fa-spinner fa-4x"></i>
         </div>
         <conversation-message
             v-for="message in messages"
@@ -18,7 +18,7 @@
         </conversation-message>
 
         <div v-if="sending" class="text-center">
-            <i class="fa fa-spin fa-spinner"></i>
+            <i class="fa-solid fa-spin fa-spinner"></i>
         </div>
     </div>
 </template>

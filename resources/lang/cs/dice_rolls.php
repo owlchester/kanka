@@ -28,8 +28,6 @@ return [
             'dice'      => 'Hody kostkou',
             'results'   => 'Výsledky',
         ],
-        'add'       => 'Nový hod kostkou',
-        'header'    => 'Hody kostkou :name',
         'title'     => 'Hody kostkou',
     ],
     'placeholders'  => [
@@ -54,6 +52,5 @@ return [
         'tabs'  => [
             'results'   => 'Výsledky',
         ],
-        'title' => 'Hod kostkou :name',
     ],
 ];

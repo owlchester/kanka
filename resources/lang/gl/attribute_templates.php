@@ -26,9 +26,7 @@ return [
         'parent_attribute_template' => 'Este padrón de atributos pode ser descendente doutro padrón. Ao aplicar este padrón de atributos, todos os seus padróns pai serán tamén aplicados.',
     ],
     'index'                 => [
-        'add'       => 'Novo padrón de atributos',
-        'header'    => 'Padróns de atributos de ":name"',
-        'title'     => 'Padróns de atributos',
+        'title' => 'Padróns de atributos',
     ],
     'placeholders'          => [
         'attribute_template'    => 'Elixe un padrón de atributos',
@@ -39,6 +37,5 @@ return [
             'attribute_templates'   => 'Padróns de atributos',
             'attributes'            => 'Atributos',
         ],
-        'title' => 'Padrón de atributos ":name"',
     ],
 ];

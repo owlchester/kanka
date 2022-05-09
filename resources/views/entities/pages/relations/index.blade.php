@@ -15,16 +15,16 @@
         <div class="header-buttons">
             <div class="btn-group">
                 <a href="{{ route('entities.relations.index', [$entity, 'mode' => 'table']) }}" class="btn btn-sm btn-default" data-toggle="tooltip" title="{{ __('entities/relations.actions.mode-table') }}">
-                    <i class="fas fa-list-ul"></i>
+                    <i class="fa-solid fa-list-ul"></i>
                 </a>
                 <a href="{{ route('entities.relations.index', [$entity, 'mode' => 'map']) }}" class="btn btn-sm btn-default" data-toggle="tooltip" title="{{ __('entities/relations.actions.mode-map') }}">
-                    <i class="fas fa-map"></i>
+                    <i class="fa-solid fa-map"></i>
                 </a>
             </div>
 
             @can('relation', [$entity->child, 'add'])
             <a href="{{ route('entities.relations.create', [$entity, 'mode' => $mode]) }}" class="btn btn-sm btn-warning" data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('entities.relations.create', [$entity, 'mode' => $mode]) }}">
-                <i class="fa fa-plus"></i>
+                <i class="fa-solid fa-plus"></i>
                 <span class="hidden-xs hidden-sm">
                     {{ __('crud.relations.actions.add') }}
                 </span>

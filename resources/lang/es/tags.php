@@ -38,12 +38,7 @@ return [
         'tag'       => 'A continuación se muestran todas las etiquetas que están directamente bajo esta etiqueta.',
     ],
     'index'         => [
-        'actions'   => [
-            'explore_view'  => 'Vista anidada',
-        ],
-        'add'       => 'Nueva etiqueta',
-        'header'    => 'Etiquetas en :name',
-        'title'     => 'Etiquetas',
+        'title' => 'Etiquetas',
     ],
     'new_tag'       => 'Nueva etiqueta',
     'placeholders'  => [
@@ -56,7 +51,6 @@ return [
             'children'  => 'Entidades anidadas',
             'tags'      => 'Etiquetas',
         ],
-        'title' => 'Etiqueta :name',
     ],
     'tags'          => [
         'title' => 'Descendientes de la etiqueta :name',

@@ -207,7 +207,6 @@ class EntityRelationService
             ->with('target')
             ->has('target')
             ->leftJoin('entities as t', 't.id', '=', 'relations.target_id')
-            ->acl()
             ->get();
 
         foreach ($relations as $relation) {

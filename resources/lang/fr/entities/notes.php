@@ -7,8 +7,9 @@ return [
         'add_user'  => 'Ajouter un membre',
     ],
     'copy_mention'  => [
-        'copy'      => 'Copier la mention avancée',
-        'success'   => 'La mention avancée de la note a été copiée au presse-papier.',
+        'copy'              => 'Copier la mention avancée',
+        'copy_with_name'    => 'Copier la mention avancées avec le nom',
+        'success'           => 'La mention avancée de la note a été copiée au presse-papier.',
     ],
     'create'        => [
         'success'   => 'Note \':name\' ajoutée à :entity.',
@@ -44,5 +45,9 @@ return [
     'show'          => [
         'advanced'  => 'Permissions Avancées',
         'title'     => 'Note d\'entité :name pour :entity',
+    ],
+    'states'        => [
+        'collapsed' => 'Rétréci',
+        'expanded'  => 'Étendu',
     ],
 ];

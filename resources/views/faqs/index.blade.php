@@ -136,7 +136,7 @@
                         {{ __('front.help.facebook') }}
                     </a>
                     <a href="mailto:{{ config('app.email') }}" class="btn btn-light">
-                        <i class="fa fa-envelope-open"></i>
+                        <i class="fa-solid fa-envelope-open"></i>
                         {{ __('front.help.email') }}
                     </a>
                 </div>

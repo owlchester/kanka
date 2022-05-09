@@ -13,7 +13,6 @@ class AddMapGroups extends Migration
      */
     public function up()
     {
-        Schema::dropIfExists('map_groups');
         Schema::create('map_groups', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedInteger('map_id');
@@ -47,6 +46,7 @@ class AddMapGroups extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('map_groups');
+
     }
 }

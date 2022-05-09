@@ -4,6 +4,7 @@
 namespace App\Models;
 
 
+use App\Models\Concerns\SortableTrait;
 use App\User;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
@@ -30,9 +31,15 @@ use Illuminate\Support\Str;
  */
 class Plugin extends Model
 {
-    use SoftDeletes;
+    use SoftDeletes, SortableTrait;
 
     protected $cachedHasUpdate = null;
+
+    public $sortable = [
+        'name',
+        'type_id',
+        'pivot_is_active',
+    ];
 
     /**
      * @return string
@@ -137,5 +144,13 @@ class Plugin extends Model
         return $query->orderByRaw(
             DB::raw($this->getTable() . ".uuid = '$uuid' DESC")
         );
+    }
+    /**
+     * @param string $sub
+     * @return string
+     */
+    public function url(string $sub): string
+    {
+        return 'campaign_plugins.' . $sub;
     }
 }

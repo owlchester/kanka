@@ -1,19 +1,19 @@
 $(document).ready(function () {
-    let selector = $('.entity-notes-reorder');
+    let selector = $('.element-live-reorder');
     selector.sortable();
     //selector.disableSelection();
 
     $('.fa-arrow-up').click(function (e) {
-        let $current = $(this).closest('div.story')
-        let $previous = $current.prev('div.story');
+        let $current = $(this).closest('div.element')
+        let $previous = $current.prev('div.element');
         if ($previous.length !== 0) {
             $current.insertBefore($previous);
         }
         return false;
     });
     $('.fa-arrow-down').click(function (e) {
-        let $current = $(this).closest('div.story')
-        let $previous = $current.next('div.story');
+        let $current = $(this).closest('div.element')
+        let $previous = $current.next('div.element');
         if ($previous.length !== 0) {
             $current.insertAfter($previous);
         }

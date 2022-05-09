@@ -24,9 +24,7 @@ return [
         'participants'  => 'Prosím, pridaj do diskusiu účastníkov tým, že klikneš na symbol :icon hore vpravo.',
     ],
     'index'         => [
-        'add'       => 'Nová diskusia',
-        'header'    => 'Diskusie v :name',
-        'title'     => 'Diskusie',
+        'title' => 'Diskusie',
     ],
     'messages'      => [
         'destroy'       => [
@@ -54,7 +52,6 @@ return [
     ],
     'show'          => [
         'is_closed' => 'Diskusia je uzavretá.',
-        'title'     => 'Diskusia :name',
     ],
     'tabs'          => [
         'conversation'  => 'Diskusia',

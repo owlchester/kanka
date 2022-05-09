@@ -31,9 +31,7 @@ return [
         'nested_without'=> 'Anzeige aller Spezies, die keine übergeordnete Spezies haben. Klicken Sie auf eine Zeile, um die untergeordneten Spezies anzuzeigen.',
     ],
     'index'         => [
-        'add'       => 'Neue Spezies',
-        'header'    => 'Spezies von :name',
-        'title'     => 'Spezies',
+        'title' => 'Spezies',
     ],
     'placeholders'  => [
         'name'  => 'Name der Spezies',
@@ -47,6 +45,5 @@ return [
             'characters'    => 'Charaktere',
             'races'         => 'Unterspezies',
         ],
-        'title' => 'Spezies :name',
     ],
 ];

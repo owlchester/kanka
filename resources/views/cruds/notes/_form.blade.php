@@ -18,7 +18,7 @@ $permissions = [
     {!! Form::textarea('entryForEdition', null, ['class' => 'form-control html-editor', 'id' => 'entry', 'name' => 'entry']) !!}
     <div class="text-right">
         <a href="{{ route('helpers.link') }}" data-url="{{ route('helpers.link') }}" data-toggle="ajax-modal" data-target="#entity-modal" title="{{ __('helpers.link.description') }}">
-            {{ __('crud.linking_help') }} <i class="fa fa-question-circle"></i>
+            {{ __('crud.linking_help') }} <i class="fa-solid fa-question-circle"></i>
         </a>
     </div>
 </div>
@@ -34,7 +34,7 @@ $permissions = [
         </div>
 
         <div class="help-block">
-            {!! __('entities/notes.hints.reorder', ['icon' => '<i class="fas fa-cog"></i>']) !!}
+            {!! __('entities/notes.hints.reorder', ['icon' => '<i class="fa-solid fa-cog"></i>']) !!}
         </div>
     </div>
     <div class="col-md-6">
@@ -58,7 +58,7 @@ $permissions = [
 
                         <span class="input-group-btn">
                         <button class="btn btn-secondary btn-flat entity-note-delete-perm">
-                            <i class='fa fa-trash text-danger'></i>
+                            <i class='fa-solid fa-trash text-danger'></i>
                         </button>
                         </span>
                     </div>
@@ -70,7 +70,7 @@ $permissions = [
     <div id="entity-note-perm-target" class="margin-bottom"></div>
     <div class="text-right margin-bottom">
         <span class="btn btn-default btn-flat" data-toggle="modal" data-target="#entity-note-new-user">
-            <i class="fa fa-plus"></i> {{ __('entities/notes.actions.add_user') }}
+            <i class="fa-solid fa-plus"></i> {{ __('entities/notes.actions.add_user') }}
         </span>
     </div>
     {!! Form::hidden('permissions', true) !!}
@@ -86,7 +86,7 @@ $permissions = [
                 ]) !!}
                 <span class="input-group-btn">
                     <button class="btn btn-secondary btn-flat entity-note-delete-perm">
-                        <i class='fa fa-trash text-danger'></i>
+                        <i class='fa-solid fa-trash text-danger'></i>
                     </button>
                 </span>
             </div>
@@ -110,7 +110,7 @@ $permissions = [
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">{{ __('crud.cancel') }}</button>
                     <button class="btn btn-primary" id="entity-note-perm-add">
-                        <i class="fa fa-plus"></i> {{ __('entities/notes.actions.add_user') }}
+                        <i class="fa-solid fa-plus"></i> {{ __('entities/notes.actions.add_user') }}
                     </button>
                 </div>
             </div>

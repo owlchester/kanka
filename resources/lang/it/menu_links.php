@@ -37,7 +37,5 @@ return [
         'name'      => 'Titolo dell\'elemento del menù',
         'tab'       => 'entità, relazioni, note',
     ],
-    'show'          => [
-        'title' => 'Elemento del menù \':name\'',
-    ],
+    'show'          => [],
 ];

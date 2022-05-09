@@ -41,7 +41,7 @@
             @if ($tabBoosted)
                 <li role="presentation" class="{{ (request()->get('tab') == 'boost' ? ' active' : '') }}">
                     <a href="#form-boost" title="{{ __('crud.tabs.boost') }}" role="tab" aria-controls="form-boost">
-                        <i class="fa fa-rocket"></i>
+                        <i class="fa-solid fa-rocket"></i>
                         <span class="hidden-xs hidden-sm">{{ __('crud.tabs.boost') }}</span>
                     </a>
                 </li>
@@ -49,7 +49,7 @@
             @if ($tabAttributes)
                 <li role="presentation"  class="{{ (request()->get('tab') == 'attributes' ? ' active' : '') }}">
                     <a href="#form-attributes" title="{{ __('crud.tabs.attributes') }}" role="tab" aria-controls="form-attributes">
-                        <i class="fa fa-th-list" title="{{ __('crud.tabs.attributes') }}"></i>
+                        <i class="fa-solid fa-th-list" title="{{ __('crud.tabs.attributes') }}"></i>
                         <span class="hidden-xs hidden-sm">{{ __('crud.tabs.attributes') }}</span>
                     </a>
                 </li>
@@ -57,7 +57,7 @@
             @if ($tabPermissions)
             <li role="presentation"  class="{{ (request()->get('tab') == 'permission' ? ' active' : '') }}">
                 <a href="#form-permission" title="{{ __('crud.tabs.permissions') }}" role="tab" aria-controls="form-permission">
-                    <i class="fa fa-cog" title="{{ __('crud.tabs.permissions') }}"></i>
+                    <i class="fa-solid fa-cog" title="{{ __('crud.tabs.permissions') }}"></i>
                     <span class="hidden-xs hidden-sm">{{ __('crud.tabs.permissions') }}</span>
                 </a>
             </li>
@@ -110,7 +110,7 @@
                     <div class="modal-header">
                         <h4 class="modal-title" id="myModalLabel">{{ __('entities/story.warning.editing.title') }}</h4>
                     </div>
-                    <div class="modal-body">
+                    <div class="modal-body modal-ajax-body">
                         <p>
                             {{ __('entities/story.warning.editing.description') }}
 
@@ -120,6 +120,9 @@
                                 <li class="user-id-{{ $user->id }}">{{ __('entities/story.warning.editing.user', ['user' => $user->name, 'since' => \Carbon\Carbon::createFromTimeString($user->pivot->created_at)->diffForHumans()]) }}</li>
                             @endforeach
                         </ul>
+                    </div>
+                    <div class="modal-body modal-spinner-body text-center" style="display: none">
+                        <i class="fa-solid fa-spinner fa-spin fa-2x"></i>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default pull-left" id="entity-edit-warning-back" data-url="{{ url()->previous() }}">

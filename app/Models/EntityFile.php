@@ -5,12 +5,8 @@ namespace App\Models;
 use App\Facades\Img;
 use App\Models\Concerns\Blameable;
 use App\Models\Concerns\EntityAsset;
-use App\Models\Concerns\Paginatable;
-use App\Traits\OrderableTrait;
-use App\Traits\VisibilityTrait;
-use App\Traits\VisibleTrait;
+use App\Traits\VisibilityIDTrait;
 use Illuminate\Database\Eloquent\Model;
-use DateTime;
 use Illuminate\Support\Str;
 
 /**
@@ -32,8 +28,10 @@ class EntityFile extends Model
     /**
      * Traits
      */
-    use VisibleTrait, VisibilityTrait, Blameable,
-        EntityAsset;
+    use VisibilityIDTrait,
+        Blameable,
+        EntityAsset
+    ;
 
     /**
      * @var array
@@ -42,7 +40,7 @@ class EntityFile extends Model
         'entity_id',
         'name',
         'is_private',
-        'visibility',
+        'visibility_id',
     ];
 
     /** EntityAsset booleans */
@@ -80,6 +78,9 @@ class EntityFile extends Model
         return Str::startsWith($this->type, 'image/');
     }
 
+    /**
+     * @return string
+     */
     public function imageUrl(): string
     {
         return Img::crop(120, 80)->url($this->path);

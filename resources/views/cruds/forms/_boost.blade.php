@@ -1,6 +1,6 @@
 <div class="form-group">
     <label>
-        <i class="fas fa-rocket" title="{{ __('crud.tooltips.boosted_feature') }}" data-toggle="tooltip"></i>
+        <i class="fa-solid fa-rocket" title="{{ __('crud.tooltips.boosted_feature') }}" data-toggle="tooltip"></i>
         {{ __('fields.tooltip.name') }}
     </label>
 
@@ -10,6 +10,17 @@
     </p>
 
         {!! Form::textarea('entity_tooltip', FormCopy::entity()->field('tooltip')->string(), ['class' => 'form-control', 'id' => 'tooltip', 'rows' => 3, 'placeholder' => __('fields.tooltip.description')]) !!}
+
+        <p class="help-block">
+@php
+$tooltipTags = [];
+foreach (config('purify.tooltips.allowed') as $tag) {
+    $tooltipTags[] = '<code>'. $tag . '</code> ';
+}
+$tooltipTags = implode(', ', $tooltipTags);
+            @endphp
+            {!! __('fields.tooltip.helper', ['tags' => $tooltipTags]) !!}
+        </p>
     @else
         @include('cruds.fields.helpers.boosted', ['key' => 'fields.tooltip.boosted-description'])
     @endif
@@ -19,7 +30,7 @@
 
 <div class="form-group">
     <label>
-        <i class="fas fa-rocket" title="{{ __('crud.tooltips.boosted_feature') }}" data-toggle="tooltip"></i>
+        <i class="fa-solid fa-rocket" title="{{ __('crud.tooltips.boosted_feature') }}" data-toggle="tooltip"></i>
         {{ __('fields.header-image.title') }}
     </label>
 
@@ -53,7 +64,7 @@
                         <div class="preview-v2">
                             <div class="image" style="background-image: url('{{ $model->entity->getImageUrl(80, null) }}')" title="{{ $model->name }}">
                                 <a href="#" class="img-delete" data-target="remove-header_image" title="{{ __('crud.remove') }}">
-                                    <i class="fa fa-trash"></i> {{ __('crud.remove') }}
+                                    <i class="fa-solid fa-trash"></i> {{ __('crud.remove') }}
                                 </a>
                             </div>
                         </div>

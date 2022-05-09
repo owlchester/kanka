@@ -22,7 +22,7 @@
             }
         ],
         [
-            'label' => '<i class="fa fa-users" title="' . trans('abilities.fields.abilities') . '"></i>',
+            'label' => '<i class="fa-solid fa-users" title="' . trans('abilities.fields.abilities') . '"></i>',
             'render' => function($model) {
                 return $model->abilities->count();
             },

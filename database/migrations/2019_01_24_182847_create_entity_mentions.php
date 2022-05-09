@@ -15,14 +15,17 @@ class CreateEntityMentions extends Migration
     {
         Schema::create('entity_mentions', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('entity_id')->notNull();
+            $table->unsignedInteger('entity_id')->nullable();
+            $table->integer('entity_note_id')->unsigned()->nullable();
+            $table->integer('campaign_id')->unsigned()->nullable();
             $table->unsignedInteger('target_id')->notNull();
-
             $table->timestamps();
 
             // If we delete the entity or target, remove mentions
             $table->foreign('entity_id')->references('id')->on('entities')->onDelete('cascade');
             $table->foreign('target_id')->references('id')->on('entities')->onDelete('cascade');
+            $table->foreign('entity_note_id')->references('id')->on('entity_notes')->onDelete('cascade');
+            $table->foreign('campaign_id')->references('id')->on('campaigns')->onDelete('cascade');
         });
     }
 

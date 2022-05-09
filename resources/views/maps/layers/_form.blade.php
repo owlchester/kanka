@@ -25,7 +25,7 @@ $typeOptions = [
 
 <div class="row">
     <div class="col-sm-6">
-        @include('cruds.fields.visibility')
+        @include('cruds.fields.visibility_id')
     </div>
 
     <div class="col-sm-6">

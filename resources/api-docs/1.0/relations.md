@@ -30,7 +30,7 @@ You can get a list of all the relations of an entity by using the following endp
             "target_id": 72,
             "relation": "Just Friends",
             "attitude": 22,
-            "visibility": "all",
+            "visibility_id": 1,
             "is_star": false,
             "colour": null,
             "created_at":  "2019-01-30T00:01:44.000000Z",
@@ -59,7 +59,7 @@ To get the details of a single relation, use the following endpoint.
         "target_id": 72,
         "relation": "Just Friends",
         "attitude": 22,
-        "visibility": "all",
+        "visibility_id": 1,
         "is_star": true,
         "colour": "#22bbff",
         "created_at":  "2019-01-30T00:01:44.000000Z",
@@ -84,13 +84,13 @@ To create a relation, use the following endpoint.
 | Parameter | Type | Detail |
 | :- |   :-   |  :-  |
 | `relation` | `string` (Required, max 255) | Description of the relation |
-| `owner_id` | `integer` (Required) | The relation's entity |
-| `target_id` | `integer` (Required) | The relation's target entity |
-| `attitude` | `integer` | -100 to 100 |
+| `owner_id` | `int` (Required) | The relation's entity |
+| `target_id` | `int` (Required) | The relation's target entity |
+| `attitude` | `int` | -100 to 100 |
 | `colour` | `string` | Hex colour of the attitude (with or without the `#`) |
 | `two_way` | `boolean` | If set, will duplicate the relation but in the other direction |
 | `is_star` | `boolean` | If the relation is visible on the entity's submenu |
-| `visibility` | `string` | The visibility of the relation. Either `all`, `admin`, `admin-self`, `members` or `self` |
+| `visibility_id` | `int` | The visibility ID: 1 for `all`, 2 `self`, 3 `admin`, 4 `self-admin` or 5 `members`. |
 
 ### Results
 

@@ -24,9 +24,7 @@ return [
         'participants'  => 'Účastníky rozhovoru přidáš klepnutím na ikonu :icon vpravo nahoře.',
     ],
     'index'         => [
-        'add'       => 'Nový rozhovor',
-        'header'    => 'Rozhovory v :name',
-        'title'     => 'Rozhovory',
+        'title' => 'Rozhovory',
     ],
     'messages'      => [
         'destroy'       => [
@@ -54,7 +52,6 @@ return [
     ],
     'show'          => [
         'is_closed' => 'Rozhovor skončil',
-        'title'     => 'Rozhovor :name',
     ],
     'tabs'          => [
         'conversation'  => 'Rozhovor',

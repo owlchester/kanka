@@ -23,9 +23,7 @@ return [
         'participants'  => 'הוסף משתתפים בלחיצה על האייקון :icon בצד שמאל למעלה.',
     ],
     'index'         => [
-        'add'       => 'שיחה חדשה',
-        'header'    => 'שיחות ב:name',
-        'title'     => 'שיחות',
+        'title' => 'שיחות',
     ],
     'messages'      => [
         'destroy'       => [
@@ -51,9 +49,7 @@ return [
         'name'  => 'שם השיחה',
         'type'  => 'בתוך המשחק, הכנה, עלילה',
     ],
-    'show'          => [
-        'title' => 'שיחה :name',
-    ],
+    'show'          => [],
     'tabs'          => [
         'conversation'  => 'שיחה',
         'participants'  => 'משתתפים',

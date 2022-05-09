@@ -6,7 +6,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * Class CampaignPlugin
@@ -48,5 +47,21 @@ class CampaignPlugin extends Model
             ->where('is_active', true)
             ->with('version')
             ->orderBy('p.name');
+    }
+
+    /**
+     * @return bool
+     */
+    public function canEnable(): bool
+    {
+        return $this->plugin->isTheme() && !$this->is_active;
+    }
+
+    /**
+     * @return bool
+     */
+    public function canDisable(): bool
+    {
+        return $this->plugin->isTheme() && $this->is_active;
     }
 }

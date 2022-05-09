@@ -38,7 +38,6 @@ return [
         'reverse_order'     => 'Activer pour afficher les ères dans le sens chronologique inversé (plus ancien en premier)',
     ],
     'index'         => [
-        'add'   => 'Nouvelle chronologie',
         'title' => 'Chronologies',
     ],
     'placeholders'  => [
@@ -49,7 +48,6 @@ return [
         'tabs'  => [
             'timelines' => 'Chronologies',
         ],
-        'title' => 'Chronologie :name',
     ],
     'timelines'     => [
         'title' => 'Chronologies de la chronologie :name',

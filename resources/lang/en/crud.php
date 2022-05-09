@@ -5,6 +5,7 @@ return [
         'actions'           => 'Actions',
         'apply'             => 'Apply',
         'back'              => 'Back',
+        'bulk_actions'      => 'Bulk actions',
         'bulk_templates'    => 'Apply Attribute Template',
         'copy'              => 'Copy',
         'copy_mention'      => 'Copy [ ] mention',
@@ -96,7 +97,6 @@ return [
         'delete'            => 'Remove',
         'description'       => 'Are you sure you want to remove :tag?',
         'description_final' => 'Are you sure you want to remove :tag? This action cannot be undone.',
-        'mirrored'          => 'Remove mirrored relation.',
         'title'             => 'Removal confirmation',
     ],
     'destroy_many'              => [
@@ -335,9 +335,6 @@ return [
         'timeline'      => 'Choose a timeline',
     ],
     'relations'                 => [
-        'actions'   => [
-            'add'   => 'New relation',
-        ],
         'fields'    => [
             'location'  => 'Location',
             'name'      => 'Name',

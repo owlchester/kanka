@@ -22,12 +22,23 @@ class CreateRelationsTable extends Migration
             $table->integer('target_id')->unsigned()->notNull();
             $table->integer('campaign_id')->unsigned()->notNull();
 
+            $table->string('relation', 255)->notNull();
+            $table->string('colour', 6)->nullable();
+            $table->tinyInteger('attitude')->default(0)->nullable();
+
+            $table->integer('created_by')->unsigned()->nullable();
+            $table->integer('updated_by')->unsigned()->nullable();
+
+
             // Foreign
             $table->foreign('campaign_id')->references('id')->on('campaigns')->onDelete('cascade');
             $table->foreign('owner_id')->references('id')->on('entities')->onDelete('cascade');
             $table->foreign('target_id')->references('id')->on('entities')->onDelete('cascade');
+            $table->foreign('created_by')->references('id')->on('users')->onDelete('set null');
+            $table->foreign('updated_by')->references('id')->on('users')->onDelete('set null');
 
-            $table->index(['owner_id', 'campaign_id', 'is_private']);
+            $table->index(['is_private']);
+            $table->index(['attitude', 'relation']);
 
             $table->timestamps();
         });

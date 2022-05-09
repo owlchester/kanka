@@ -89,7 +89,6 @@ return [
         'close'         => 'Sluiten',
         'delete'        => 'Verwijder',
         'description'   => 'Weet je zeker dat je :tag wilt verwijderen?',
-        'mirrored'      => 'Verwijder gespiegelde relatie.',
         'title'         => 'Bevestiging verwijderen',
     ],
     'destroy_many'              => [
@@ -287,9 +286,6 @@ return [
         'timeline'      => 'Kies een tijdlijn',
     ],
     'relations'                 => [
-        'actions'   => [
-            'add'   => 'Voeg een relatie toe',
-        ],
         'fields'    => [
             'location'  => 'Locatie',
             'name'      => 'Naam',

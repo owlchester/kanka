@@ -2,16 +2,10 @@
 
 namespace App\Models;
 
-use App\Facades\CampaignLocalization;
 use App\Models\Concerns\Blameable;
 use App\Models\Concerns\LastSync;
-use App\Traits\CampaignTrait;
-use App\Traits\VisibleTrait;
 use App\User;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Session;
 
 /**
  * Class ConversationMessage

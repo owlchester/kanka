@@ -57,7 +57,7 @@ class AttributeController extends Controller
         if (auth()->check()) {
             $this->authorize('view', $entity->child);
         } else {
-            $this->authorizeEntityForGuest('read', $entity->child);
+            $this->authorizeEntityForGuest(\App\Models\CampaignPermission::ACTION_READ, $entity->child);
         }
 
         if (!$entity->accessAttributes()) {
@@ -209,7 +209,7 @@ class AttributeController extends Controller
         if ($attribute->isText()) {
             $result = nl2br($result);
         } elseif ($attribute->isCheckbox()) {
-            $result = '<i class="fa fa-' . ($attribute->value ? 'check' : 'times') . '"></i>';
+            $result = '<i class="fa-solid fa-' . ($attribute->value ? 'check' : 'times') . '"></i>';
         }
         return response()->json([
             'value' => $result,

@@ -8,7 +8,7 @@ $model = $widget->entity->child;
             <h3 class="widget-user-username">
                 <a href="{{ $model->getLink() }}">
                     @if ($model->is_private)
-                        <i class="fas fa-lock pull-right" title="{{ trans('crud.is_private') }}"></i>
+                        <i class="fa-solid fa-lock pull-right" title="{{ trans('crud.is_private') }}"></i>
                     @endif
                     {{ $widget->entity->name }}
                 </a>

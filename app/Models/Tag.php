@@ -3,12 +3,12 @@
 namespace App\Models;
 
 use App\Facades\CampaignLocalization;
+use App\Models\Concerns\Acl;
 use App\Models\Concerns\Nested;
-use App\Models\Concerns\SimpleSortableTrait;
+use App\Models\Concerns\SortableTrait;
 use App\Models\Scopes\TagScopes;
 use App\Traits\CampaignTrait;
 use App\Traits\ExportableTrait;
-use App\Traits\VisibleTrait;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Arr;
 
@@ -26,12 +26,13 @@ use Illuminate\Support\Arr;
 class Tag extends MiscModel
 {
     use CampaignTrait,
-        VisibleTrait,
         Nested,
         ExportableTrait,
         TagScopes,
-        SimpleSortableTrait,
-        SoftDeletes;
+        SoftDeletes,
+        SortableTrait,
+        Acl
+    ;
 
     /**
      * Searchable fields
@@ -57,6 +58,13 @@ class Tag extends MiscModel
      * @var array
      */
     protected $filterableColumns = [
+        'colour',
+    ];
+
+    protected $sortable = [
+        'name',
+        'tag.name',
+        'type',
         'colour',
     ];
 

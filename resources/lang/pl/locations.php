@@ -29,7 +29,6 @@ return [
         'locations'         => 'Miejsca pochodne',
         'map'               => 'Mapa',
         'name'              => 'Nazwa',
-        'relation'          => 'Relacja',
         'type'              => 'Rodzaj',
     ],
     'helpers'       => [
@@ -46,19 +45,10 @@ return [
         'is_map_private'    => 'Tajna mapa widoczna jest wyłącznie dla uczestników kampanii posiadających rolę "administrator".',
     ],
     'index'         => [
-        'actions'   => [
-            'explore_view'  => 'Widok hierarchii',
-        ],
-        'add'       => 'Nowe miejsce',
-        'header'    => 'Miejsca w :name',
-        'title'     => 'Miejsca',
+        'title' => 'Miejsca',
     ],
-    'items'         => [
-        'title' => 'Przedmioty miejsca :name',
-    ],
-    'journals'      => [
-        'title' => 'Dzienniki miejsca :name',
-    ],
+    'items'         => [],
+    'journals'      => [],
     'locations'     => [
         'title' => 'Miejsca miejsca :name',
     ],
@@ -207,16 +197,9 @@ return [
     'show'          => [
         'tabs'  => [
             'characters'    => 'Postaci',
-            'events'        => 'Wydarzenia',
-            'families'      => 'Rodziny',
-            'items'         => 'Przedmioty',
-            'journals'      => 'Dzienniki',
             'locations'     => 'Miejsca',
             'map'           => 'Mapa',
             'maps'          => 'Mapy',
-            'organisations' => 'Organizacje',
-            'quests'        => 'Misje',
         ],
-        'title' => 'Miejsce :name',
     ],
 ];

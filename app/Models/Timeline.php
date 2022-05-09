@@ -4,11 +4,11 @@
 namespace App\Models;
 
 
+use App\Models\Concerns\Acl;
 use App\Models\Concerns\Nested;
-use App\Models\Concerns\SimpleSortableTrait;
+use App\Models\Concerns\SortableTrait;
 use App\Traits\CampaignTrait;
 use App\Traits\ExportableTrait;
-use App\Traits\VisibleTrait;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
@@ -22,11 +22,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Timeline extends MiscModel
 {
     use CampaignTrait,
-        VisibleTrait,
+        Acl,
         ExportableTrait,
-        SimpleSortableTrait,
         SoftDeletes,
-        Nested;
+        SortableTrait,
+        Nested
+    ;
 
     public $fillable = [
         'name',
@@ -45,6 +46,12 @@ class Timeline extends MiscModel
      * @var array
      */
     protected $searchableColumns = ['name', 'entry'];
+
+    protected $sortable = [
+        'name',
+        'type',
+        'timeline.name',
+    ];
 
     /**
      * Fields that can be filtered on

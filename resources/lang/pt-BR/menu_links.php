@@ -53,7 +53,5 @@ return [
         'success'   => 'Links rápidos reordenados.',
         'title'     => 'Reordenar links rápidos',
     ],
-    'show'              => [
-        'title' => 'Link rápido :name',
-    ],
+    'show'              => [],
 ];

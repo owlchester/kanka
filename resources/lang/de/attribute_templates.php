@@ -26,9 +26,7 @@ return [
         'parent_attribute_template' => 'Diese Attributvorlage kann eine übergeordnete Attributvorlage haben. Wenn man diese Vorlage anwendet, werden sie und alle übergeordneten Vorlagen angewendet.',
     ],
     'index'                 => [
-        'add'       => 'Neue Attributvorlage',
-        'header'    => 'Attributvorlagen von :name',
-        'title'     => 'Attributvorlagen',
+        'title' => 'Attributvorlagen',
     ],
     'placeholders'          => [
         'attribute_template'    => 'Wähle eine Attributvorlage',
@@ -39,6 +37,5 @@ return [
             'attribute_templates'   => 'Attributsvorlagen',
             'attributes'            => 'Attribute',
         ],
-        'title' => 'Attributvorlage :name',
     ],
 ];

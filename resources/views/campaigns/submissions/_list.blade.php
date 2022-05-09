@@ -17,7 +17,7 @@
                        data-url="{{ route('campaign_submissions.edit', [$submission->id, 'action' => 'approve']) }}"
                        data-target="#entity-modal"
                        title="{{ __('campaigns/submissions.actions.accept') }}">
-                        <i class="fa fa-check"></i>
+                        <i class="fa-solid fa-check"></i>
                     </a>
 
                     <a class="btn btn-xl btn-danger pull-right"
@@ -26,7 +26,7 @@
                        data-url="{{ route('campaign_submissions.edit', [$submission->id, 'action' => 'reject']) }}"
                        data-target="#entity-modal"
                        title="{{ __('campaigns/submissions.actions.reject') }}">
-                        <i class="fa fa-times"></i>
+                        <i class="fa-solid fa-times"></i>
                     </a>
                 </div>
             </div>

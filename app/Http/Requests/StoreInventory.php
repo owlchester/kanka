@@ -33,7 +33,7 @@ class StoreInventory extends FormRequest
             'amount' => 'required|numeric',
             'position' => 'nullable|string|max:191',
             'description' => 'nullable|string|max:191',
-            'visibility' => 'string',
+            'visibility_id' => 'nullable|exists:visibilities,id',
             'is_equipped' => 'boolean',
         ]);
     }

@@ -19,7 +19,6 @@ return [
         'name'          => 'Név',
         'organisation'  => 'Szülőszervezet',
         'organisations' => 'Alszervezet',
-        'relation'      => 'Kapcsolat',
         'type'          => 'Típus',
     ],
     'helpers'       => [
@@ -28,9 +27,7 @@ return [
         'nested_without'=> 'Mutass meg minden szervezetet, aminek nincs szülője. Klikkelj egy sorra, hogy lásd a gyermekszervezeteit.',
     ],
     'index'         => [
-        'add'       => 'Új szervezet',
-        'header'    => ':name szervezetei',
-        'title'     => 'Szervezetek',
+        'title' => 'Szervezetek',
     ],
     'members'       => [
         'actions'       => [
@@ -73,9 +70,6 @@ return [
     'show'          => [
         'tabs'  => [
             'organisations' => 'Szervezetek',
-            'quests'        => 'Küldetések',
-            'relations'     => 'Kapcsolatok',
         ],
-        'title' => ':name szervezet',
     ],
 ];

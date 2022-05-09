@@ -40,7 +40,6 @@ return [
         'pronouns'                  => 'Pronoms',
         'race'                      => 'Raça',
         'races'                     => 'Races',
-        'relation'                  => 'Relació',
         'sex'                       => 'Gènere',
         'title'                     => 'Títol',
         'traits'                    => 'Personalitat',
@@ -61,8 +60,6 @@ return [
         'actions'   => [
             'random'    => 'Nou personatge aleatori',
         ],
-        'add'       => 'Nou personatge',
-        'header'    => 'Personatges de :name',
         'title'     => 'Personatges',
     ],
     'items'         => [
@@ -132,10 +129,8 @@ return [
     ],
     'show'          => [
         'tabs'  => [
-            'map'           => 'Mapa de relacions',
             'organisations' => 'Organitzacions',
         ],
-        'title' => 'Personatge :name',
     ],
     'warnings'      => [
         'personality_hidden'    => 'No teniu permís per editar els trets de personalitat d\'aquest personatge.',

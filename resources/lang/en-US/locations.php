@@ -14,9 +14,5 @@ return [
     'organisations' => [
         'title' => 'Location :name Organizations',
     ],
-    'show'          => [
-        'tabs'  => [
-            'organisations' => 'Organizations',
-        ],
-    ],
+    'show'          => [],
 ];

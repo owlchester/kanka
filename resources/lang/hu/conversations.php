@@ -24,9 +24,7 @@ return [
         'participants'  => 'Kérjük, adj résztvevőket a beszélgetésedhez az :icon ikonra kattintva a jobb felső részen.',
     ],
     'index'         => [
-        'add'       => 'Új beszélgetés',
-        'header'    => 'Beszélgetés itt: :name',
-        'title'     => 'Beszélgetés',
+        'title' => 'Beszélgetés',
     ],
     'messages'      => [
         'destroy'       => [
@@ -54,7 +52,6 @@ return [
     ],
     'show'          => [
         'is_closed' => 'A beszélgetést lezártuk.',
-        'title'     => ':name beszélgetés',
     ],
     'tabs'          => [
         'conversation'  => 'Beszélgetés',

@@ -2,11 +2,11 @@
 <div class="panel panel-default">
     <div class="panel-heading">
         <h3 class="title entity-title">
-            <i class="fa fa-times pull-right fa-xs entity-close" title="{{ __('crud.click_modal.close') }}"></i>
+            <i class="fa-solid fa-times pull-right fa-xs entity-close" title="{{ __('crud.click_modal.close') }}"></i>
 
             @if ($mapPoint->hasTarget() && $mapPoint->targetEntity->child->is_private)
                 <span class="pull-right fa-xs margin-r-5">
-                    <i class="fas fa-lock"></i>
+                    <i class="fa-solid fa-lock"></i>
                 </span>
             @endif
             @if (!$mapPoint->hasTarget())
@@ -30,7 +30,7 @@
             <a href="{{ $mapPoint->targetEntity->child->getLink() }}">{{ __('crud.actions.go_to', ['name' => $mapPoint->targetEntity->name]) }}</a>
 
             @if ($mapPoint->targetEntity->typeID() == config('entities.ids.location') && !empty($mapPoint->targetEntity->child->map))
-                <a href="{{ $mapPoint->targetEntity->child->getLink('map') }}" class="pull-right"><i class="fa fa-map"></i> {{ __('locations.show.tabs.map') }}</a>
+                <a href="{{ $mapPoint->targetEntity->child->getLink('map') }}" class="pull-right"><i class="fa-solid fa-map"></i> {{ __('locations.show.tabs.map') }}</a>
             @endif
         @else
             <p class="help-block">{{ __('locations.map.helpers.label') }}</p>

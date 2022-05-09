@@ -33,7 +33,7 @@
                     </td>
                     <td class="text-right">
                         <a href="{{ route('characters.show', [$template]) }}" class="btn btn-xs btn-primary">
-                            <i class="fa fa-eye" aria-hidden="true"></i> {{ trans('crud.view') }}
+                            <i class="fa-solid fa-eye" aria-hidden="true"></i> {{ trans('crud.view') }}
                         </a>
                     </td>
                 </tr>

@@ -13,7 +13,7 @@
 
     {{ csrf_field() }}
     <div class="row">
-        <div class="col-md-10 col-lg-8">
+        <div class="col-md-8 col-lg-6">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h4 class="panel-title">{{ __('entities/move.panel.title') }}</h4>
@@ -39,11 +39,9 @@
                     @endcan
 
                     @includeIf($entity->pluralType() . '.bulk.modals._copy_to_campaign')
-
-                    <div class="form-group">
-                        <button class="btn btn-success">@can('update', $entity->child) {{ __('entities/move.actions.move') }} @else  {{ __('entities/move.actions.copy') }} @endcan</button>
-                        @include('partials.or_cancel')
-                    </div>
+                </div>
+                <div class="panel-footer text-right">
+                    <button class="btn btn-success">@can('update', $entity->child) {{ __('entities/move.actions.move') }} @else  {{ __('entities/move.actions.copy') }} @endcan</button>
                 </div>
             </div>
         </div>

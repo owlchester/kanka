@@ -241,7 +241,6 @@ class SearchService
         }
 
         $query
-            ->acl()
             ->limit($this->limit);
 
         $searchResults = [];

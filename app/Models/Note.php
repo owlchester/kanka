@@ -2,10 +2,10 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\Acl;
 use App\Models\Concerns\Nested;
 use App\Traits\CampaignTrait;
 use App\Traits\ExportableTrait;
-use App\Traits\VisibleTrait;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Collection;
 
@@ -20,10 +20,11 @@ use Illuminate\Support\Collection;
 class Note extends MiscModel
 {
     use CampaignTrait,
-        VisibleTrait,
         Nested,
         ExportableTrait,
-        SoftDeletes;
+        SoftDeletes,
+        Acl
+    ;
 
     /**
      * @var array

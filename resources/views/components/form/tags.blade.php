@@ -23,7 +23,7 @@ if (!empty($previous)) {
 // If we didn't get anything, and there is a model sent, use that
 elseif(!empty($model) && !empty($model->entity)) {
     foreach ($model->entity->tags()->with('entity')->has('entity')->get() as $tag) {
-        if (\App\Facades\EntityPermission::canView($tag->entity)) {
+        if ($tag->entity) {
             $selectedOption[$tag->id] = $tag;
         }
     }
@@ -35,7 +35,7 @@ elseif(!empty($model) && !empty($model->entity)) {
     foreach ($filterOptions as $tagId) {
         if (!empty($tagId)) {
             $tag = \App\Models\Tag::find($tagId);
-            if ($tag && \App\Facades\EntityPermission::canView($tag->entity)) {
+            if ($tag && $tag->entity) {
                 $selectedOption[$tag->id] = $tag;
             }
         }
@@ -45,7 +45,7 @@ elseif(!empty($model) && !empty($model->entity)) {
 @if ($label)
 <label>{{ __('crud.fields.tags') }}
 @if(!empty($helper))
-    <i class="fas fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" title="{{ $helper }}"></i>
+    <i class="fa-solid fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" title="{{ $helper }}"></i>
 @endif
 </label>
 @endif

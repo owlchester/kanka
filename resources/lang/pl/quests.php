@@ -54,9 +54,7 @@ return [
         'quests'    => 'Przy użyciu pola Misji źródłowej można stworzyć sieć zazębiających się misji.',
     ],
     'index'         => [
-        'add'       => 'Nowa misja',
-        'header'    => 'Misje elementu :name.',
-        'title'     => 'Misje',
+        'title' => 'Misje',
     ],
     'placeholders'  => [
         'date'  => 'Data misji w prawdziwym świecie',
@@ -72,6 +70,5 @@ return [
         'tabs'      => [
             'elements'  => 'Elementy',
         ],
-        'title'     => 'Misja :name',
     ],
 ];

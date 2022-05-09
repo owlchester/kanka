@@ -6,8 +6,8 @@
     <tr>
         <th colspan="2">{{ __('crud.fields.item') }}</th>
         <th>{{ __('entities/inventories.fields.qty') }}</th>
-        @if (Auth::check())
-            <th><i class="fa fa-user-lock" title="{{ __('crud.fields.visibility') }}" data-toggle="tooltip"></i></th>
+        @if (auth()->check())
+            <th><i class="fa-solid fa-user-lock" title="{{ __('crud.fields.visibility') }}" data-toggle="tooltip"></i></th>
             <th><br /></th>
         @endif
     </tr>
@@ -29,7 +29,7 @@
         <tr class="collapse inventory-group-{{ \Illuminate\Support\Str::kebab($item->position) }} in">
             <td style="width: 50px">
                 @if($item->is_equipped)
-                    <i class="fas fa-check" title="{{ __('entities/inventories.fields.is_equipped') }}" data-toggle="tooltip"></i>
+                    <i class="fa-solid fa-check" title="{{ __('entities/inventories.fields.is_equipped') }}" data-toggle="tooltip"></i>
                 @endif
             </td>
             <td>
@@ -49,15 +49,15 @@
             <td>
                 {{ $item->amount }}
             </td>
-            @if (Auth::check())
+            @if (auth()->check())
                 <td>
-                    @include('cruds.partials.visibility', ['model' => $item])
+                    {!! $item->visibilityIcon() !!}
                 </td>
                 @can('inventory', $entity->child)
                     <td class="text-right">
                         <div class="dropdown">
                             <a class="dropdown-toggle btn btn-xs btn-default" data-toggle="dropdown" aria-expanded="false" data-placement="right" href="#">
-                                <i class="fa fa-ellipsis-h" data-tree="escape"></i>
+                                <i class="fa-solid fa-ellipsis-h" data-tree="escape"></i>
                                 <span class="sr-only">{{ __('crud.actions.actions') }}</span>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-right" role="menu">
@@ -66,13 +66,13 @@
                                        data-toggle="ajax-modal" data-target="#entity-modal"
                                        data-url="{{ route('entities.inventories.edit', ['entity' => $entity, 'inventory' => $item->id]) }}"
                                        title="{{ __('crud.edit') }}">
-                                        <i class="fa fa-edit"></i> {{ __('crud.edit') }}
+                                        <i class="fa-solid fa-edit"></i> {{ __('crud.edit') }}
                                     </a>
                                 </li>
                                 <li>
                                     <a href="#" class="text-danger delete-confirm" data-toggle="modal" data-name="{!! $item->itemName() !!}"
                                        data-target="#delete-confirm" data-delete-target="delete-form-{{ $item->id }}">
-                                        <i class="fa fa-trash" aria-hidden="true"></i>
+                                        <i class="fa-solid fa-trash" aria-hidden="true"></i>
                                         {{ __('crud.remove') }}
                                     </a>
                                     {!! Form::open(['method' => 'DELETE', 'route' => ['entities.inventories.destroy', 'entity' => $entity, 'inventory' => $item], 'style' => 'display:inline', 'id' => 'delete-form-' . $item->id]) !!}

@@ -33,15 +33,19 @@
                     <li>
                         <a href="{{ route('front.features') }}">{{ __('front.menu.features') }}</a>
                     </li>
+                    @if (config('services.stripe.enabled'))<li>
                     <li>
                         <a href="{{ route('front.pricing') }}">{{ __('front.menu.pricing') }}</a>
                     </li>
+                    @endif
                     <li>
                         <a href="{{ route('front.about') }}">{{ __('front.menu.about') }}</a>
                     </li>
+                    @if (config('services.stripe.enabled'))<li>
                     <li>
                         <a href="{{ route('front.newsletter') }}">{{ __('front.menu.newsletter') }}</a>
                     </li>
+                    @endif
                     <li>
                         <a href="//blog.kanka.io" target="_blank">{{ __('front.menu.news') }}</a>
                     </li>
@@ -54,18 +58,22 @@
                     </span>
                 </div>
                 <ul>
+                    @if(config('app.admin'))
                     <li>
                         <a href="{{ route('community-votes.index') }}">{{ __('front/community-votes.title') }}</a>
                     </li>
+                    @endif
                     <li>
                         <a href="{{ route('front.public_campaigns') }}">{{ __('front.menu.campaigns') }}</a>
                     </li>
+                    @if(config('app.admin'))
                     <li>
                         <a href="{{ route('community-events.index') }}">{{ __('front/community-events.title') }}</a>
                     </li>
                     <li>
                         <a href="{{ route('front.hall-of-fame') }}">{{ __('front/hall-of-fame.title') }}</a>
                     </li>
+                    @endif
                 </ul>
             </div>
             <div class="col-xs-6 col-sm-3">
@@ -75,15 +83,17 @@
                     </span>
                 </div>
                 <ul>
-                    <li>
+                    @if(config('app.admin'))<li>
                         <a href="{{ route('front.faqs.index') }}">{{ __('front.menu.kb') }}</a>
-                    </li>
+                    </li>@endif
                     <li>
                         <a href="{{ route('documentation') }}">{{ __('front.menu.documentation') }}</a>
                     </li>
+                    @if(config('app.admin'))
                     <li>
                         <a href="/{{ app()->getLocale() }}{{ config('larecipe.docs.route') }}/1.0/overview" target="_blank">{{ __('front.features.api.link') }}</a>
                     </li>
+                    @endif
                     <li>
                         <a href="{{ route('front.contact') }}">{{ __('front.menu.contact') }}</a>
                     </li>
@@ -119,7 +129,7 @@
         <div class="row">
             <div class="col-xs-12 footer-socials text-center">
                 <div class="email">
-                    <i class="fa fa-envelope hidden-xs"></i> {{ config('app.email') }}
+                    <i class="fa-solid fa-envelope hidden-xs"></i> {{ config('app.email') }}
                 </div>
 
                 <div class="socials">
@@ -150,7 +160,7 @@
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="languageDropdown">
                             @foreach (LaravelLocalization::getSupportedLocales() as $localeCode => $langData)
-                                @if ($localeCode === 'he') @continue @endif
+                                @if (in_array($localeCode, ['he', 'hr'])) @continue @endif
                                 @php $url = LaravelLocalization::getLocalizedURL($localeCode, null, [], true); @endphp
                                 <li>
                                     @if (app()->getLocale() == $localeCode)

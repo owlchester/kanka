@@ -42,9 +42,7 @@ return [
         'nested_without'=> 'Affichage des pouvoirs sans parent. Cliquer sur une rangée pour afficher les pouvoirs enfants.',
     ],
     'index'         => [
-        'add'       => 'Nouveau pouvoir',
-        'header'    => 'Pouvoirs de :name',
-        'title'     => 'Pouvoirs',
+        'title' => 'Pouvoirs',
     ],
     'placeholders'  => [
         'charges'   => 'Nombre d\'utilisation. Les attributs peuvent être référencés avec {Level}*{CHA}',
@@ -56,6 +54,5 @@ return [
             'abilities' => 'Pouvoirs',
             'entities'  => 'Entités',
         ],
-        'title' => 'Pouvoir :name',
     ],
 ];

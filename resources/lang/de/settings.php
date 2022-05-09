@@ -45,30 +45,15 @@ return [
     'boost'         => [
         'available_boosts'  => 'Verfügbare Boosts : :amount / :max',
         'benefits'          => [
-            'campaign_gallery'  => 'Eine Kampagnengalerie zum Hochladen von Bildern, die Sie während der Kampagne wiederverwenden können.',
-            'entity_files'      => 'Lade bis zu 10 Dateien pro Objekt hoch.',
-            'entity_logs'       => 'Vollständige Änderungsprotokolle bei jeder Aktualisierung von Objekten.',
-            'first'             => 'Um eine stetige Weiterentwicklung von Kanka zu sicherzustellen, werden einige Funktionen von Kampagnen durch Boosts freigeschaltet. Boosts werden durch Abonnements erworben. Damit der Spielleiter nicht immer die Rechnung bezahlen muss, kann jeder, für den die Kampagne sichtbar ist, ihr einen Boost geben. Der Boost einer Kampagne bleibt erhalten, solange ein Nutzer ihr einen Boost verleiht und Kanka weiterhin unterstützt. Falls eine Kampagne keinen Boost mehr hat, gehen keine Daten verloren, sondern werden nur ausgeblendet, bis die Kampagne erneut einen Boost bekommt.',
-            'header'            => 'Bilder für Objekt-Header',
-            'headers'           => [
+            'headers'   => [
                 'boosted'       => 'Boost Kampagnenvorteile',
                 'superboosted'  => 'Supergeboostete Kampagnenvorteile',
             ],
-            'helpers'           => [
-                'boosted'       => 'Durch den Boost einer Kampagne wird der Kampagne ein einzelner Booster zugewiesen.',
-                'superboosted'  => 'Durch den Superboost einer Kampagne werden der Kampagne drei Booster zugewiesen.',
-            ],
-            'images'            => 'Benutzerdefinierte Standardobjektbilder.',
-            'more'              => [
+            'more'      => [
                 'boosted'       => 'Alle Boost Kampagnenfunktionen',
                 'superboosted'  => 'Alle Superboost Kampagnenfunktionen',
             ],
-            'recovery'          => 'Gelöschte Objekte für bis zu :amount Tage wiederherstellen.',
-            'superboost'        => 'Beim Superboosting einer Kampagne werden 3 Ihrer Boosts verwendet und zusätzliche Funktionen für Boosted-Kampagnen freigeschaltet.',
-            'theme'             => 'Leitmotiv auf Kampagnenebene und benutzerdefiniertes Design.',
-            'third'             => 'Um eine Kampagne zu boosten, rufen Sie die Seite der Kampagne auf und klicken Sie auf die Schaltfläche ":boost_button" über der Schaltfläche ":edit_button".',
-            'tooltip'           => 'Benutzerdefinierte Kurzinfo für Objekte',
-            'upload'            => 'Erhöhte Upload-Größe für jedes Mitglied der Kampagne.',
+            'third'     => 'Um eine Kampagne zu boosten, rufen Sie die Seite der Kampagne auf und klicken Sie auf die Schaltfläche ":boost_button" über der Schaltfläche ":edit_button".',
         ],
         'buttons'           => [
             'boost'         => 'Boost',
@@ -148,7 +133,6 @@ return [
         'api'                   => 'API',
         'apps'                  => 'Apps',
         'billing'               => 'Zahlungsmethode',
-        'boost'                 => 'Boost',
         'invoices'              => 'Rechnungen',
         'layout'                => 'Layout',
         'marketplace'           => 'Marktplatz',
@@ -186,8 +170,6 @@ return [
             'subscribe'         => 'Abonnieren',
             'update_currency'   => 'Speichern Sie die bevorzugte Währung',
         ],
-        'benefits'              => 'Wenn Sie uns unterstützen, können Sie einige neue :features freischalten und uns helfen  mehr Zeit in die Verbesserung von Kanka zu investieren. Es werden keine Kreditkarteninformationen gespeichert oder über unsere Server übertragen. Wir verwenden :stripe, um alle Abrechnungen abzuwickeln.',
-        'benefits_features'     => 'tolle Funktionen',
         'billing'               => [
             'helper'    => 'Ihre Zahlungsinformationen werden sicher verarbeitet und gespeichert durch :stripe. Diese Zahlungsmethode wird für alle Ihre Abonnements verwendet.',
             'saved'     => 'Gespeicherte Zahlungsmethode',

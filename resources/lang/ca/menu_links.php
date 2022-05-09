@@ -53,7 +53,5 @@ return [
         'success'   => 'S\'han reordenat els accessos directes.',
         'title'     => 'Reordena els accessos directes',
     ],
-    'show'              => [
-        'title' => 'Enllaç directe :name',
-    ],
+    'show'              => [],
 ];

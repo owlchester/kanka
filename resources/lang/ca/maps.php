@@ -61,7 +61,6 @@ return [
         'nested_without'    => 'S\'estan mostrant els mapes sense pare. Feu clic a la fila d\'un mapa per a mostrar-ne els descendents.',
     ],
     'index'         => [
-        'add'   => 'Nou mapa',
         'title' => 'Mapes',
     ],
     'maps'          => [
@@ -87,6 +86,5 @@ return [
         'tabs'  => [
             'maps'  => 'Mapes',
         ],
-        'title' => 'Mapa :name',
     ],
 ];

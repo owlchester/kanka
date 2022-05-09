@@ -29,16 +29,11 @@ return [
         'is_pinned' => 'Up to 3 notes can be pinned to be displayed on the dashboard.',
     ],
     'index'         => [
-        'add'       => 'New Note',
-        'header'    => 'Notes of :name',
-        'title'     => 'Notes',
+        'title' => 'Notes',
     ],
     'placeholders'  => [
         'name'  => 'Name of the note',
         'note'  => 'Choose a parent note',
         'type'  => 'Religion, Race, Political system',
-    ],
-    'show'          => [
-        'title' => 'Note :name',
     ],
 ];

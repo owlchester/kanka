@@ -7,7 +7,7 @@
             <div class="image-preview">
                 <div class="gallery-folder">
                     <span class="text">
-                    <i class="fa fa-arrow-left fa-2x"></i>
+                    <i class="fa-solid fa-arrow-left fa-2x"></i>
                     {{ __('crud.actions.back') }}
                     </span>
                 </div>
@@ -18,7 +18,7 @@
             <div class="image-preview">
                 <div class="gallery-folder">
                     <span class="text">
-                    <i class="fa fa-arrow-left fa-2x"></i>
+                    <i class="fa-solid fa-arrow-left fa-2x"></i>
                     {{ $folder->imageFolder->name }}
                     </span>
                 </div>

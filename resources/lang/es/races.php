@@ -31,9 +31,7 @@ return [
         'nested_without'=> 'Mostrando todas las razas sin ningún superior. Haz clic sobre una fila para mostrar sus descendientes.',
     ],
     'index'         => [
-        'add'       => 'Nueva raza',
-        'header'    => 'Razas de :name',
-        'title'     => 'Razas',
+        'title' => 'Razas',
     ],
     'placeholders'  => [
         'name'  => 'Nombre de la raza',
@@ -47,6 +45,5 @@ return [
             'characters'    => 'Personajes',
             'races'         => 'Subrazas',
         ],
-        'title' => 'Raza :name',
     ],
 ];

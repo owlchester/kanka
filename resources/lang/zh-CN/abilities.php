@@ -42,9 +42,7 @@ return [
         'nested_without'=> '展示所有没有父能力的能力。点击某行来查看子能力。',
     ],
     'index'         => [
-        'add'       => '新能力',
-        'header'    => ':name的能力',
-        'title'     => '能力',
+        'title' => '能力',
     ],
     'placeholders'  => [
         'charges'   => '充能次数。参考{等级}*{魅力}',
@@ -56,6 +54,5 @@ return [
             'abilities' => '能力',
             'entities'  => '实体',
         ],
-        'title' => '能力：:name',
     ],
 ];

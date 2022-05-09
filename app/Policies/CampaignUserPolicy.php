@@ -5,14 +5,13 @@ namespace App\Policies;
 use App\Facades\Identity;
 use App\Facades\UserCache;
 use App\Traits\AdminPolicyTrait;
-use App\Traits\EnvTrait;
 use App\User;
 use App\Models\CampaignUser;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class CampaignUserPolicy
 {
-    use HandlesAuthorization, AdminPolicyTrait, EnvTrait;
+    use HandlesAuthorization, AdminPolicyTrait;
 
     /**
      * Determine whether the user can view the campaignUser.
@@ -47,8 +46,7 @@ class CampaignUserPolicy
         return $user->campaign->id == $campaignUser->campaign->id &&
             // Don't allow updating if we are currently impersonating
             !Identity::isImpersonating()
-            && UserCache::user($user)->admin() && !UserCache::user($campaignUser->user)->admin() &&
-            !$this->shadow()
+            && UserCache::user($user)->admin() && !UserCache::user($campaignUser->user)->admin()
         ;
     }
 
@@ -64,8 +62,7 @@ class CampaignUserPolicy
         return $user->campaign->id == $campaignUser->campaign->id &&
             // Don't allow deleting if we are currently impersonating
             !Identity::isImpersonating()
-            && UserCache::user($user)->admin() && !UserCache::user($campaignUser->user)->admin() &&
-            !$this->shadow()
+            && UserCache::user($user)->admin() && !UserCache::user($campaignUser->user)->admin()
         ;
     }
 
@@ -81,8 +78,7 @@ class CampaignUserPolicy
         return $user->campaign->id == $campaignUser->campaign->id &&
             // Don't allow impersonating if we are already impersonating
             !Identity::isImpersonating()
-            && UserCache::user($user)->admin() && !UserCache::user($campaignUser->user)->admin() &&
-            !$this->shadow()
+            && UserCache::user($user)->admin() && !UserCache::user($campaignUser->user)->admin()
         ;
     }
 }

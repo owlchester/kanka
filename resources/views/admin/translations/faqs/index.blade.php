@@ -68,7 +68,7 @@
                     <div class="col-sm-6 col-sm-offset-6">
                         <button class="btn btn-block btn-primary btn-submit">Save changes to {{ $category->title }}</button>
                         <button class="btn btn-block btn-primary btn-ajax" disabled="disabled" style="display: none">
-                            <i class="fas fa-spin fa-spinner"></i>
+                            <i class="fa-solid fa-spin fa-spinner"></i>
                         </button>
                     </div>
                 </div>

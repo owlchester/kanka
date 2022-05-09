@@ -8,13 +8,12 @@
 namespace App\Policies;
 
 use App\Models\CommunityVote;
-use App\Traits\EnvTrait;
 use App\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class CommunityVotePolicy
 {
-    use HandlesAuthorization, EnvTrait;
+    use HandlesAuthorization;
 
     /**
      * Determine if a user can view a vote

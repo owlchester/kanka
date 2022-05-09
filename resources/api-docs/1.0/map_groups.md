@@ -34,7 +34,7 @@ You can get a list of all the map-groups of a map by using the following endpoin
             "position": 1,
             "updated_at": "2020-07-25T16:24:34.000000Z",
             "updated_by": null,
-            "visibility": "all"
+            "visibility_id": 1
         }
     ]
 }
@@ -58,8 +58,7 @@ To create a map group, use the following endpoint.
 | `map_id` | `int` (Required) | The parent map |
 | `is_shown` | `boolean` | If the layer is shown on map load |
 | `position` | `int` | Position in the list of groups |
-| `visibility` | `string` | `all`, `admin`, `admin-self` or `self` |
-
+| `visibility_id` | `integer` | The visibility: 1 for `all`, 2 `self`, 3 `admin`, 4 `self-admin` or 5 `members`. |
 
 ### Results
 

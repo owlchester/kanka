@@ -24,9 +24,7 @@ return [
         'participants'  => 'Ajoute des participants à la conversation.',
     ],
     'index'         => [
-        'add'       => 'Nouvelle Conversation',
-        'header'    => 'Conversations dans :name',
-        'title'     => 'Conversations',
+        'title' => 'Conversations',
     ],
     'messages'      => [
         'destroy'       => [
@@ -54,7 +52,6 @@ return [
     ],
     'show'          => [
         'is_closed' => 'La conversation est fermée.',
-        'title'     => 'Conversation :name',
     ],
     'tabs'          => [
         'conversation'  => 'Conversation',

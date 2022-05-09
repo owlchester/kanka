@@ -13,7 +13,7 @@ if($subquests->count() == 0) {
         <h3 class="box-title">{{ __('quests.fields.quests') }}</h3>
         <div class="box-tools">
             <a href="#" class="btn btn-box-tool" data-toggle="modal" data-target="#help-modal">
-                <i class="fa fa-question-circle"></i> {{ __('crud.actions.help') }}
+                <i class="fa-solid fa-question-circle"></i> {{ __('crud.actions.help') }}
             </a>
         </div>
     </div>
@@ -37,7 +37,7 @@ if($subquests->count() == 0) {
                     </td>
                     <td>
                         @if ($subquest->is_private)
-                            <i class="fas fa-lock" title="{{ __('crud.is_private') }}" data-toggle="tooltip"></i>
+                            <i class="fa-solid fa-lock" title="{{ __('crud.is_private') }}" data-toggle="tooltip"></i>
                         @endif
                         {!! $subquest->tooltipedLink() !!}
                     </td>
@@ -49,7 +49,7 @@ if($subquests->count() == 0) {
                     </td>
                     <td>
                         @if ($subquest->is_completed)
-                            <i class="fa fa-check-circle" title="{{ __('quests.fields.is_completed') }}"></i>
+                            <i class="fa-solid fa-check-circle" title="{{ __('quests.fields.is_completed') }}"></i>
                         @endif
                     </td>
                     <td>

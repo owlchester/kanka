@@ -18,14 +18,11 @@ return [
         'location'  => 'Lokacija',
         'name'      => 'Naziv',
         'price'     => 'Cijena',
-        'relation'  => 'Odnos',
         'size'      => 'Veličina',
         'type'      => 'Tip',
     ],
     'index'         => [
-        'add'       => 'Novi predmet',
-        'header'    => 'Predmeti u :name',
-        'title'     => 'Predmeti',
+        'title' => 'Predmeti',
     ],
     'inventories'   => [
         'title' => 'Inventar predmeta :name',
@@ -42,6 +39,5 @@ return [
         'tabs'  => [
             'inventories'   => 'Informacije',
         ],
-        'title' => 'Predmet :name',
     ],
 ];

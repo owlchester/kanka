@@ -17,7 +17,7 @@ class EntityLinkResource extends EntityChild
     {
         return $this->entity([
             'name' => $this->name,
-            'visibility' => $this->visibility,
+            'visibility_id' => $this->visibility_id,
             'url' => $this->url,
             'icon' => $this->icon,
             'position' => $this->position,

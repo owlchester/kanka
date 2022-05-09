@@ -24,9 +24,7 @@ return [
     ],
     'helpers'       => [],
     'index'         => [
-        'add'       => 'גזע חדש',
-        'header'    => 'גזעים של :name',
-        'title'     => 'גזעים',
+        'title' => 'גזעים',
     ],
     'placeholders'  => [
         'name'  => 'שם הגזע',
@@ -40,6 +38,5 @@ return [
             'characters'    => 'דמויות',
             'races'         => 'תתי-גזע',
         ],
-        'title' => 'גזע :name',
     ],
 ];

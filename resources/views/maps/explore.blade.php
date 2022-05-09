@@ -163,7 +163,8 @@
                     aria-label="{{ __('crud.click_modal.close') }}"><span aria-hidden="true">&times;</span></button>
             </div>
             <div class="modal-body" id="map-marker-modal-content">
-                <i class="fa fa-spinner fa-spin"></i>
+                <i class="fa-solid fa-spinner fa-spin spinner"></i>
+                <div class="content"></div>
             </div>
         </div>
     </div>
@@ -192,7 +193,6 @@
                                 <input id="submit-mode" type="hidden" value="true"/>
                                 <div class="btn-group">
                                     <button class="btn btn-success form-submit-main" id="form-submit-main"
-                                        data-unsaved="{{ __('crud.hints.unsaved_changes') }}"
                                         data-target="{{ isset($target) ? $target : null }}">
                                         <span>{{ __('crud.save') }}</span>
                                     </button>
@@ -222,7 +222,7 @@
                                 </div>
                             </div>
                             <div class="submit-animation" style="display: none;">
-                                <button class="btn btn-success" disabled><i class="fa fa-spinner fa-spin"></i></button>
+                                <button class="btn btn-success" disabled><i class="fa-solid fa-spinner fa-spin"></i></button>
                             </div>
                         </div>
 

@@ -24,9 +24,7 @@ return [
         'participants'  => 'Please add participants to your conversation by pressing on the :icon icon on the upper-right.',
     ],
     'index'         => [
-        'add'       => 'New Conversation',
-        'header'    => 'Conversations in :name',
-        'title'     => 'Conversations',
+        'title' => 'Conversations',
     ],
     'messages'      => [
         'destroy'       => [
@@ -54,7 +52,6 @@ return [
     ],
     'show'          => [
         'is_closed' => 'Conversation is closed.',
-        'title'     => 'Conversation :name',
     ],
     'tabs'          => [
         'conversation'  => 'Conversation',

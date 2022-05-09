@@ -33,21 +33,21 @@
                     <div class="entity-name-icons">
                         @if (auth()->check() && auth()->user()->isAdmin())
                             @if ($model->is_private)
-                                <i role="button" tabindex="0" class="fas fa-lock entity-icons btn-popover" title="{{ __('entities/permissions.quick.title') }}" data-content="{{ __('entities/permissions.quick.private') }}"></i>
+                                <i role="button" tabindex="0" class="fa-solid fa-lock entity-icons btn-popover" title="{{ __('entities/permissions.quick.title') }}" data-content="{{ __('entities/permissions.quick.private') }}"></i>
                             @else
-                                <i role="button" tabindex="0" class="fas fa-lock-open entity-icons btn-popover" title="{{ __('entities/permissions.quick.title') }}" data-content="{{ __('entities/permissions.quick.public') }}"></i>
+                                <i role="button" tabindex="0" class="fa-solid fa-lock-open entity-icons btn-popover" title="{{ __('entities/permissions.quick.title') }}" data-content="{{ __('entities/permissions.quick.public') }}"></i>
                             @endif
                         @endif
 
                         <div class="btn-group entity-actions">
-                            <i class="fas fa-cog entity-icons dropdown-toggle" data-toggle="dropdown" aria-expanded="false"></i>
+                            <i class="fa-solid fa-cog entity-icons dropdown-toggle" data-toggle="dropdown" aria-expanded="false"></i>
                             <ul class="dropdown-menu dropdown-menu-right" role="menu">
 
                                 @can('delete', $model)
                                     <li class="divider"></li>
                                     <li>
                                         <a href="#" class="delete-confirm text-red" data-name="{{ $model->name }}" data-toggle="modal" data-target="#delete-confirm">
-                                            <i class="fa fa-trash" aria-hidden="true"></i> {{ __('crud.remove') }}
+                                            <i class="fa-solid fa-trash" aria-hidden="true"></i> {{ __('crud.remove') }}
                                         </a>
                                         {!! Form::open(['method' => 'DELETE','route' => ['menu_links.destroy', $model->id], 'style'=>'display:inline', 'id' => 'delete-confirm-form']) !!}
                                         {!! Form::close() !!}
@@ -66,7 +66,7 @@
 
                 @can('update', $model)
                     <a href="{{ route('menu_links.edit', $model) }}" class="btn btn-primary">
-                        <i class="fa fa-pencil"></i> {{ __('crud.update') }}
+                        <i class="fa-solid fa-pencil"></i> {{ __('crud.update') }}
                     </a>
                 @endcan
             </div>

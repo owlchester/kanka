@@ -4,7 +4,7 @@
         <div class="row margin-bottom">
             <div class="col-sm-6">
                 <div class="input-group">
-                    <span class="input-group-addon"><i class="fa fa-users"></i></span>
+                    <span class="input-group-addon"><i class="fa-solid fa-users"></i></span>
                     <input type="text" value="{!! $perm->role->name !!}" disabled="disabled" class="form-control" />
                 </div>
             </div>
@@ -14,7 +14,7 @@
 
                     <span class="input-group-btn">
                         <button class="btn btn-danger btn-flat entity-note-delete-perm">
-                            <i class='fa fa-trash'></i>
+                            <i class='fa-solid fa-trash'></i>
                         </button>
                     </span>
                 </div>
@@ -26,7 +26,7 @@
             <div class="row margin-bottom">
                 <div class="col-sm-6">
                     <div class="input-group">
-                        <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                        <span class="input-group-addon"><i class="fa-solid fa-user"></i></span>
                         <input type="text" value="{!! $perm->user->name !!}" disabled="disabled" class="form-control" />
                     </div>
                 </div>
@@ -36,7 +36,7 @@
 
                         <span class="input-group-btn">
                             <button class="btn btn-danger btn-flat entity-note-delete-perm">
-                                <i class='fa fa-trash'></i>
+                                <i class='fa-solid fa-trash'></i>
                             </button>
                         </span>
                     </div>
@@ -48,10 +48,10 @@
     <div id="entity-note-perm-target" class="margin-bottom"></div>
     <div class="btn-group">
         <a href="#" class="btn btn-default btn-flat" data-toggle="modal" data-target="#entity-note-new-user">
-            <i class="fa fa-user"></i> {{ __('entities/notes.actions.add_user') }}
+            <i class="fa-solid fa-user"></i> {{ __('entities/notes.actions.add_user') }}
         </a>
         <a href="#" class="btn btn-default btn-flat" data-toggle="modal" data-target="#entity-note-new-role">
-            <i class="fa fa-users"></i> {{ __('entities/notes.actions.add_role') }}
+            <i class="fa-solid fa-users"></i> {{ __('entities/notes.actions.add_role') }}
         </a>
     </div>
     {!! Form::hidden('permissions', true) !!}
@@ -59,7 +59,7 @@
     <div class="hidden row margin-bottom" id="entity-note-perm-user-template">
         <div class="col-sm-6">
             <div class="input-group">
-                <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                <span class="input-group-addon"><i class="fa-solid fa-user"></i></span>
                 <input type="text" value="$SELECTEDNAME$" disabled="disabled" class="form-control" />
             </div>
         </div>
@@ -70,7 +70,7 @@
                 ]) !!}
                 <span class="input-group-btn">
                     <button class="btn btn-danger btn-flat entity-note-delete-perm">
-                        <i class='fa fa-trash'></i>
+                        <i class='fa-solid fa-trash'></i>
                     </button>
                 </span>
             </div>
@@ -80,7 +80,7 @@
     <div class="hidden row margin-bottom" id="entity-note-perm-role-template">
         <div class="col-sm-6">
             <div class="input-group">
-                <span class="input-group-addon"><i class="fa fa-users"></i></span>
+                <span class="input-group-addon"><i class="fa-solid fa-users"></i></span>
                 <input type="text" value="$SELECTEDNAME$" disabled="disabled" class="form-control" />
             </div>        </div>
         <div class="col-sm-6">
@@ -90,7 +90,7 @@
                 ]) !!}
                 <span class="input-group-btn">
                 <button class="btn btn-danger btn-flat entity-note-delete-perm">
-                    <i class='fa fa-trash'></i>
+                    <i class='fa-solid fa-trash'></i>
                 </button>
             </span>
             </div>
@@ -114,7 +114,7 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">{{ __('crud.cancel') }}</button>
                     <button class="btn btn-primary entity-note-perm-add" id="entity-note-perm-user-add" data-type="user">
-                        <i class="fa fa-plus"></i> {{ __('entities/notes.actions.add_user') }}
+                        <i class="fa-solid fa-plus"></i> {{ __('entities/notes.actions.add_user') }}
                     </button>
                 </div>
             </div>
@@ -136,7 +136,7 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">{{ __('crud.cancel') }}</button>
                     <button class="btn btn-primary entity-note-perm-add" id="entity-note-perm-role-add" data-type="role">
-                        <i class="fa fa-plus"></i> {{ __('entities/notes.actions.add_role') }}
+                        <i class="fa-solid fa-plus"></i> {{ __('entities/notes.actions.add_role') }}
                     </button>
                 </div>
             </div>

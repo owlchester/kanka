@@ -29,7 +29,6 @@ return [
         'locations'         => 'Indrets',
         'map'               => 'Mapa',
         'name'              => 'Nom',
-        'relation'          => 'Relació',
         'type'              => 'Tipus',
     ],
     'helpers'       => [
@@ -46,19 +45,10 @@ return [
         'is_map_private'    => 'Un mapa privat només és visible per als administradors.',
     ],
     'index'         => [
-        'actions'   => [
-            'explore_view'  => 'Vista d\'exploració',
-        ],
-        'add'       => 'Nou indret',
-        'header'    => 'Indrets de :name',
-        'title'     => 'Indrets',
+        'title' => 'Indrets',
     ],
-    'items'         => [
-        'title' => 'Objectes de :name',
-    ],
-    'journals'      => [
-        'title' => 'Cròniques de :name',
-    ],
+    'items'         => [],
+    'journals'      => [],
     'locations'     => [
         'title' => 'Indrets de :name',
     ],
@@ -207,16 +197,9 @@ return [
     'show'          => [
         'tabs'  => [
             'characters'    => 'Personatges',
-            'events'        => 'Esdeveniments',
-            'families'      => 'Famílies',
-            'items'         => 'Objectes',
-            'journals'      => 'Cròniques',
             'locations'     => 'Indrets',
             'map'           => 'Mapa',
             'maps'          => 'Mapes',
-            'organisations' => 'Organitzacions',
-            'quests'        => 'Missions',
         ],
-        'title' => 'Indret :name',
     ],
 ];

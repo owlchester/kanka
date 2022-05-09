@@ -6,16 +6,16 @@ use App\Facades\CampaignLocalization;
 use App\Facades\EntityCache;
 use App\Facades\Img;
 use App\Facades\Mentions;
+use App\Models\Concerns\Acl;
 use App\Models\Concerns\EntityLogs;
 use App\Models\Concerns\LastSync;
 use App\Models\Concerns\Paginatable;
 use App\Models\Concerns\Picture;
 use App\Models\Concerns\Searchable;
-use App\Models\Concerns\SimpleSortableTrait;
+use App\Models\Concerns\SortableTrait;
 use App\Models\Relations\EntityRelations;
 use App\Models\Scopes\EntityScopes;
 use App\Traits\CampaignTrait;
-use App\Traits\EntityAclTrait;
 use App\Traits\TooltipTrait;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
@@ -75,16 +75,16 @@ class Entity extends Model
     use CampaignTrait,
         EntityRelations,
         BlameableTrait,
-        EntityAclTrait,
         EntityScopes,
         Searchable,
         TooltipTrait,
         Picture,
-        SimpleSortableTrait,
         SoftDeletes,
         EntityLogs,
         Paginatable,
-        LastSync
+        LastSync,
+        SortableTrait,
+        Acl
     ;
 
     /**
@@ -93,6 +93,11 @@ class Entity extends Model
      */
     protected $searchableColumns = [
         'name',
+    ];
+
+    protected $sortable = [
+        'name',
+        'type_id',
     ];
 
     /**
@@ -207,7 +212,7 @@ class Entity extends Model
             $boostedTooltip = strip_tags(preg_replace('!\s+!', ' ', $boostedTooltip));
             if (!empty(trim($boostedTooltip))) {
                 $text = Mentions::mapEntity($this);
-                $text = strip_tags($text);
+                $text = strip_tags($text, $this->allowedTooltipTags());
             }
             if ($campaign->tooltip_image) {
                 $avatar = $this->child->withEntity($this)->getImageUrl(60);
@@ -243,6 +248,18 @@ class Entity extends Model
         //return "<div class='entity-tooltip-avatar'>$avatar<div class='entity-names'>" . $name . $subtitle . '</div></div>' . $text;
     }
 
+    /**
+     * Allowed tags in tooltips
+     * @return array
+     */
+    protected function allowedTooltipTags(): array
+    {
+        $html = [];
+        foreach (config('purify.tooltips.allowed') as $tag) {
+            $html[] = "<$tag>";
+        }
+        return $html;
+    }
     /**
      * Preview of the entity with mapped mentions. For map markers
      * @return string
@@ -455,5 +472,29 @@ class Entity extends Model
             return true;
         }
         return auth()->check() && auth()->user()->isAdmin();
+    }
+
+    /**
+     * Count the number of mentions this entity has. The AclTrait on entities and posts
+     * makes sure only visible things get added to the query.
+     * @return int
+     */
+    public function mentionsCount(): int
+    {
+        return $this->targetMentions()->where(function ($sub) {
+            return $sub
+                ->where(function ($subEnt) {
+                    return $subEnt->entity()
+                        ->has('entity');
+                })
+                ->orWhere(function ($subPost) {
+                    return $subPost->entityNote()
+                        ->has('entityNote.entity');
+                })
+                ->orWhere(function ($subCam) {
+                    return $subCam->campaign();
+                });
+        })
+            ->count();
     }
 }

@@ -17,11 +17,11 @@ if (request()->has('location_id')) {
 
             @if (request()->has('location_id'))
                 <a href="{{ route('locations.organisations', $model) }}" class="btn btn-default btn-sm pull-right">
-                    <i class="fa fa-filter"></i> {{ __('crud.filters.all') }} ({{ $model->allOrganisations()->count() }})
+                    <i class="fa-solid fa-filter"></i> {{ __('crud.filters.all') }} ({{ $model->allOrganisations()->count() }})
                 </a>
             @else
                 <a href="{{ route('locations.organisations', [$model, 'location_id' => $model->id]) }}" class="btn btn-default btn-sm pull-right">
-                    <i class="fa fa-filter"></i> {{ __('crud.filters.direct') }} ({{ $model->organisations()->count() }})
+                    <i class="fa-solid fa-filter"></i> {{ __('crud.filters.direct') }} ({{ $model->organisations()->count() }})
                 </a>
             @endif
             {{ __('locations.helpers.organisations') }}
@@ -52,7 +52,7 @@ if (request()->has('location_id')) {
                     </td>@endif
                     <td class="text-right">
                         <a href="{{ route('organisations.show', [$org]) }}" class="btn btn-xs btn-primary">
-                            <i class="fa fa-eye" aria-hidden="true"></i> {{ __('crud.view') }}
+                            <i class="fa-solid fa-eye" aria-hidden="true"></i> {{ __('crud.view') }}
                         </a>
                     </td>
                 </tr>

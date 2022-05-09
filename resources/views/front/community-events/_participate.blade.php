@@ -16,7 +16,7 @@
     {!! Form::model($participated, ['route' => ['community-events.community-event-entries.update', $model, $participated], 'method' => 'PATCH']) !!}
 
     <div class="col-md-6 mb-3">
-        <a href="{{ $participated->link }}" target="_blank" class="float-right"><i class="fa fa-external-link"></i></a>
+        <a href="{{ $participated->link }}" target="_blank" class="float-right"><i class="fa-solid fa-external-link"></i></a>
         <label for="link">{{ __('front/community-events.fields.entity_link') }}</label>
         {!! Form::text('link', null, ['class' => 'form-control', 'placeholder' => __('front/community-events.placeholders.entity_link'), 'required']) !!}
     </div>

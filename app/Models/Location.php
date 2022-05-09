@@ -3,11 +3,11 @@
 namespace App\Models;
 
 use App\Facades\CampaignLocalization;
+use App\Models\Concerns\Acl;
 use App\Models\Concerns\Nested;
-use App\Models\Concerns\SimpleSortableTrait;
+use App\Models\Concerns\SortableTrait;
 use App\Traits\CampaignTrait;
 use App\Traits\ExportableTrait;
-use App\Traits\VisibleTrait;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Storage;
 use Exception;
@@ -30,11 +30,12 @@ use Exception;
 class Location extends MiscModel
 {
     use CampaignTrait,
-        VisibleTrait,
         ExportableTrait,
         Nested,
-        SimpleSortableTrait,
-        SoftDeletes;
+        SoftDeletes,
+        SortableTrait,
+        Acl
+    ;
 
     /**
      * Searchable fields
@@ -74,6 +75,12 @@ class Location extends MiscModel
     protected $sortableColumns = [
         'map',
         'parentLocation.name',
+    ];
+
+    protected $sortable = [
+        'name',
+        'type',
+        'location.name',
     ];
 
     /**
@@ -252,32 +259,6 @@ class Location extends MiscModel
     public function mapPoints()
     {
         return $this->hasMany('App\Models\MapPoint', 'location_id', 'id');
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
-     */
-    public function quests()
-    {
-        return $this->belongsToMany('App\Models\Quest', 'quest_locations')
-            ->using('App\Models\Pivots\QuestLocation')
-            ->withPivot('role', 'is_private');
-    }
-
-    /**
-     * @return mixed
-     */
-    public function relatedQuests()
-    {
-        $query = $this->quests()
-            ->orderBy('name', 'ASC')
-            ->with(['characters', 'locations', 'quests']);
-
-        if (!auth()->check() || !auth()->user()->isAdmin()) {
-            $query->where('quest_locations.is_private', false);
-        }
-
-        return $query;
     }
 
     /**

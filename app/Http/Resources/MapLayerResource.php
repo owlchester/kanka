@@ -2,8 +2,6 @@
 
 namespace App\Http\Resources;
 
-use Illuminate\Http\Resources\Json\JsonResource;
-
 class MapLayerResource extends ModelResource
 {
     /**
@@ -20,7 +18,7 @@ class MapLayerResource extends ModelResource
             'position' => (int) $this->position,
             'width' => (int) $this->width,
             'height' => (int) $this->height,
-            'visibility' => $this->visibility,
+            'visibility_id' => $this->visibility_id,
             'type_id' => (bool) $this->type_id,
             'type' => (string) $this->typeName(),
         ]);

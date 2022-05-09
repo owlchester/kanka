@@ -28,9 +28,7 @@ return [
     ],
     'helpers'       => [],
     'index'         => [
-        'add'       => 'Nieuw Ras',
-        'header'    => 'Rassen van :name',
-        'title'     => 'Rassen',
+        'title' => 'Rassen',
     ],
     'placeholders'  => [
         'name'  => 'Naam van het ras',
@@ -44,6 +42,5 @@ return [
             'characters'    => 'Personages',
             'races'         => 'Subrassen',
         ],
-        'title' => 'Ras :name',
     ],
 ];

@@ -19,10 +19,10 @@ $weekNumber = 1;
             {{ $renderer->todayButton() }}
             <div class="btn-group">
                 <a href="{{ $renderer->previous() }}" class="btn btn-default btn-corner-left" title="{{ $renderer->previous(true) }}" data-toggle="tooltip">
-                    <i class="fa fa-angle-left"></i>
+                    <i class="fa-solid fa-angle-left"></i>
                 </a>
                 <a href="{{ $renderer->next() }}" class="btn btn-default btn-corner-right" title="{{ $renderer->next(true) }}" data-toggle="tooltip">
-                    <i class="fa fa-angle-right"></i>
+                    <i class="fa-solid fa-angle-right"></i>
                 </a>
             </div>
             <div class="calendar-current">

@@ -9,19 +9,19 @@
 
         <div class="box-tools">
             <a href="#" class="btn btn-box-tool" data-toggle="modal" data-target="#help-modal">
-                <i class="fa fa-question-circle"></i> {{ __('crud.actions.help') }}
+                <i class="fa-solid fa-question-circle"></i> {{ __('crud.actions.help') }}
             </a>
         </div>
     </div>
     <div class="box-body">
 
-        @if ($relations->count() === 0)
+        @if ($rows->count() === 0)
         <p class="help-block">
             {{ __('entities/relations.helpers.no_relations') }}
         </p>
             @can('relation', [$entity->child, 'add'])
                 <a href="{{ route('entities.relations.create', [$entity, 'mode' => $mode]) }}" class="btn btn-sm btn-warning" data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('entities.relations.create', [$entity, 'mode' => $mode]) }}">
-                    <i class="fa fa-plus"></i>
+                    <i class="fa-solid fa-plus"></i>
                     <span class="hidden-xs hidden-sm">
                     {{ __('crud.relations.actions.add') }}
                 </span>
@@ -29,21 +29,11 @@
             @endcan
         @else
 
-        <div class="row row-sorting">
-            <div class="col-md-6">
-                @include('cruds.datagrids.sorters.simple-sorter', [
-    'filter' => !empty($mode) ? '?mode=' . $mode : null,
-    'target' => '#entity-relations-table'
-    ])
-            </div>
-            <div class="col-md-6 text-right">
-
-            </div>
+        <div id="datagrid-parent" class="table-responsive">
+            @include('layouts.datagrid._table')
         </div>
 
-        @include('entities.pages.relations._table')
-
-        {{ $relations->appends(['mode' => $mode, 'dg-sort' => request()->get('dg-sort')])->fragment('entity-relations-table')->links() }}
+        @includeWhen(false, 'entities.pages.relations._table')
         @endif
     </div>
 </div>
@@ -71,4 +61,6 @@
             </div>
         </div>
     </div>
+
+    @include('layouts.datagrid.delete-forms', ['models' => Datagrid::deleteForms()])
 @endsection

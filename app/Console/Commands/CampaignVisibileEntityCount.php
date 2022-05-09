@@ -2,13 +2,11 @@
 
 namespace App\Console\Commands;
 
-use App\Facades\EntityPermission;
 use App\Models\Campaign;
 use App\Models\CampaignPermission;
 use App\Models\CampaignRole;
 use App\Models\Entity;
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Auth;
 
 class CampaignVisibileEntityCount extends Command
 {
@@ -78,11 +76,11 @@ class CampaignVisibileEntityCount extends Command
         $types = $ids = [];
         /** @var CampaignPermission $permission */
         foreach ($public->permissions as $permission) {
-            if ($permission->action() == 'read') {
+            if ($permission->isAction(CampaignPermission::ACTION_READ)) {
                 if (!empty($permission->entity_id)) {
                     $ids[] = $permission->entity_id;
                 } else {
-                    $types[] = $permission->type();
+                    $types[] = $permission->entity_type_id;
                 }
             }
         }
@@ -92,7 +90,7 @@ class CampaignVisibileEntityCount extends Command
         return Entity::where(['campaign_id' => $campaign->id])
             ->where('is_private', false)
             ->where(function ($sub) use ($types, $ids) {
-                return $sub->whereIn('type', $types)
+                return $sub->inTypes($types)
                     ->orWhereIn('id', $ids);
             })
             ->count();

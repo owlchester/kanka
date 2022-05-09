@@ -114,9 +114,7 @@ return [
         'years'             => 'Némelyik év olyan fontos, hogy saját neve van.',
     ],
     'index'         => [
-        'add'       => 'Új naptár',
-        'header'    => ':name naptár',
-        'title'     => 'Naptárak',
+        'title' => 'Naptárak',
     ],
     'layouts'       => [
         'month' => 'Hónap',
@@ -212,11 +210,9 @@ return [
         'moon_waning_moon'  => ':moon fogy',
         'moon_waxing_moon'  => ':moon dagad',
         'tabs'              => [
-            'events'        => 'Naptári események',
-            'information'   => 'Információ',
-            'weather'       => 'Időjárás',
+            'events'    => 'Naptári események',
+            'weather'   => 'Időjárás',
         ],
-        'title'             => ':name naptár',
     ],
     'sorters'       => [
         'after' => 'Ma és utána',

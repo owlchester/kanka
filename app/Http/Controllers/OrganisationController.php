@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Datagrids\Filters\OrganisationFilter;
 use App\Datagrids\Sorters\OrganisationCharacterSorter;
 use App\Datagrids\Sorters\OrganisationOrganisationSorter;
+use App\Facades\Datagrid;
 use App\Http\Requests\StoreOrganisation;
 use App\Models\Location;
 use App\Models\Organisation;
@@ -89,20 +90,24 @@ class OrganisationController extends CrudController
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function quests(Organisation $organisation)
-    {
-        return $this->menuView($organisation, 'quests');
-    }
-
-    /**
-     * @param Organisation $organisation
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
     public function organisations(Organisation $organisation)
     {
+        $this->authCheck($organisation);
+
+        Datagrid::layout(\App\Renderers\Layouts\Organisation\Organisation::class)
+            ->route('organisations.organisations', [$organisation]);
+
+        $this->rows = $organisation
+            ->descendants()
+            ->sort(request()->only(['o', 'k']))
+            ->with(['entity', 'organisation', 'organisation.entity'])
+            ->paginate();
+
+        if (request()->ajax()) {
+            return $this->datagridAjax();
+        }
+
         return $this
-            ->datagridSorter(OrganisationOrganisationSorter::class)
             ->menuView($organisation, 'organisations');
     }
 
@@ -113,19 +118,29 @@ class OrganisationController extends CrudController
      */
     public function members(Organisation $organisation)
     {
-        return $this->datagridSorter(OrganisationCharacterSorter::class)
-            ->menuView($organisation, 'members');
-    }
+        $this->authCheck($organisation);
 
-    /**
-     * @param Organisation $organisation
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
-    public function allMembers(Organisation $organisation)
-    {
+        $options = ['organisation' => $organisation];
+        $base = 'members';
+        if (request()->has('all')) {
+            $options['all'] = true;
+            $base = 'allMembers';
+        }
+        Datagrid::layout(\App\Renderers\Layouts\Organisation\Member::class)
+            ->route('organisations.members', $options);
+
+        $this->rows = $organisation
+            ->{$base}()
+            ->with(['organisation', 'organisation.entity'])
+            ->has('character')
+            //->sort(request()->only(['o', 'k']))
+            ->paginate();
+
+        // Ajax Datagrid
+        if (request()->ajax()) {
+            return $this->datagridAjax();
+        }
         return $this
-            ->datagridSorter(OrganisationCharacterSorter::class)
-            ->menuView($organisation, 'all_members');
+            ->menuView($organisation, 'members');
     }
 }

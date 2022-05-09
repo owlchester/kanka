@@ -29,16 +29,12 @@ return [
         'is_pinned' => 'Pódense fixar ata 3 notas para ser mostradas no taboleiro.',
     ],
     'index'         => [
-        'add'       => 'Nova nota',
-        'header'    => 'Notas de ":name"',
-        'title'     => 'Notas',
+        'title' => 'Notas',
     ],
     'placeholders'  => [
         'name'  => 'Nome da nota',
         'note'  => 'Elixe unha nota superior',
         'type'  => 'Relixión, raza, sistema político...',
     ],
-    'show'          => [
-        'title' => 'Nota ":name"',
-    ],
+    'show'          => [],
 ];

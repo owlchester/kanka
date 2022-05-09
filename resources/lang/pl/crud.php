@@ -96,7 +96,6 @@ return [
         'delete'            => 'Usuń',
         'description'       => 'Czy na pewno usunąć :tag?',
         'description_final' => 'Czy na pewno chcesz usunąć :tag? Tego działania nie można cofnąć.',
-        'mirrored'          => 'Usuń relację wzajemną.',
         'title'             => 'Potwierdzanie usunięcia',
     ],
     'destroy_many'              => [
@@ -336,9 +335,6 @@ return [
         'timeline'      => 'Wybierz historię',
     ],
     'relations'                 => [
-        'actions'   => [
-            'add'   => 'Dodaj relację',
-        ],
         'fields'    => [
             'location'  => 'Miejsce',
             'name'      => 'Nazwa',

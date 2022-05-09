@@ -7,9 +7,7 @@ use App\Facades\Mentions;
 use App\Models\Concerns\Paginatable;
 use App\Models\Scopes\Starred;
 use App\Traits\OrderableTrait;
-use App\Traits\VisibleTrait;
 use Illuminate\Database\Eloquent\Model;
-use DateTime;
 use Illuminate\Support\Str;
 
 /**
@@ -29,6 +27,8 @@ use Illuminate\Support\Str;
  */
 class Attribute extends Model
 {
+    use OrderableTrait, Paginatable, Starred;
+
     const TYPE_BLOCK = 'block';
     const TYPE_CHECKBOX = 'checkbox';
     const TYPE_TEXT = 'text';
@@ -57,11 +57,6 @@ class Attribute extends Model
      * @var string
      */
     protected $orderTrigger = 'attributes/';
-
-    /**
-     * Traits
-     */
-    use VisibleTrait, OrderableTrait, Paginatable, Starred;
 
     /**
      * Searchable fields

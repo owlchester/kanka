@@ -3,11 +3,11 @@
 namespace App\Models;
 
 use App\Facades\CampaignLocalization;
+use App\Models\Concerns\Acl;
 use App\Models\Concerns\Nested;
-use App\Models\Concerns\SimpleSortableTrait;
+use App\Models\Concerns\SortableTrait;
 use App\Traits\CampaignTrait;
 use App\Traits\ExportableTrait;
-use App\Traits\VisibleTrait;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
@@ -42,11 +42,12 @@ use Illuminate\Support\Facades\Storage;
 class Map extends MiscModel
 {
     use CampaignTrait,
-        VisibleTrait,
         ExportableTrait,
         Nested,
-        SimpleSortableTrait,
-        SoftDeletes;
+        SoftDeletes,
+        SortableTrait,
+        Acl
+    ;
 
     const MAX_ZOOM = 10;
     const MIN_ZOOM = -10;
@@ -84,6 +85,13 @@ class Map extends MiscModel
      * @var array
      */
     protected $searchableColumns = ['name', 'entry'];
+
+    protected $sortable = [
+        'name',
+        'type',
+        'map.name',
+    ];
+
 
     /**
      * Fields that can be filtered on
@@ -163,6 +171,7 @@ class Map extends MiscModel
             'entity',
             'map',
             'map.entity',
+            'maps',
         ]);
     }
 
@@ -246,7 +255,7 @@ class Map extends MiscModel
         $items['second']['maps'] = [
             'name' => 'maps.show.tabs.maps',
             'route' => 'maps.maps',
-            'count' => $this->descendants()->count()
+            'count' => $this->maps()->count()
         ];
         return parent::menuItems($items);
     }
@@ -354,6 +363,7 @@ class Map extends MiscModel
                 'latitude' => $marker->latitude,
                 'name' => $marker->markerTitle($link),
                 'lower_name' => strtolower($marker->markerTitle(false)),
+                'visibility' => $marker->visibility_id !== 1 ? $marker->visibilityIcon() : null,
             ]);
         }
 
@@ -537,5 +547,16 @@ class Map extends MiscModel
             }
             $newSub->save();
         }
+    }
+
+    /**
+     * @return string
+     */
+    public function exploreLink(): string
+    {
+        return '<a href="' . route('maps.explore', $this->id) . '" target="_blank" ' .
+            'data-toggle="tooltip" title="' . __('maps.actions.explore') . '">' .
+            '<i class="fa-solid fa-map" data-tree="escape"></i>' .
+            '</a>';
     }
 }

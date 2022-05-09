@@ -137,7 +137,7 @@
                         <div class="dropdown-divider"></div>
 
                         <a href="https://blog.kanka.io" class="dropdown-item" target="_blank" rel="noopener noreferrer">
-                            {{ __('front.menu.news') }} <i class="fa fa-external-link"></i>
+                            {{ __('front.menu.news') }} <i class="fa-solid fa-external-link"></i>
                         </a>
                     </div>
                 </li>
@@ -148,7 +148,7 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropLocale">
                     @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
-                        @if ($localeCode === 'he') @continue @endif
+                        @if (in_array($localeCode, ['he', 'hr'])) @continue @endif
                         @if ($localeCode != app()->getLocale())
                             <a rel="alternate" hreflang="{{ $localeCode }}" href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true).(auth()->guest() ? '' : '?updateLocale=true') }}" class="dropdown-item">
                                 {{ ucfirst($properties['native']) }}

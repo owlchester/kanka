@@ -93,7 +93,7 @@ class EntityNoteController extends Controller
             if (empty($entity->child)) {
                 abort(404);
             }
-            $this->authorizeEntityForGuest('read', $entity->child);
+            $this->authorizeEntityForGuest(\App\Models\CampaignPermission::ACTION_READ, $entity->child);
         }
 
         $ajax = request()->ajax();

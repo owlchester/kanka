@@ -36,7 +36,7 @@ You can get a list of all the map-layers of a map by using the following endpoin
             "type_id": false,
             "updated_at": "2020-07-03T14:12:45.000000Z",
             "updated_by": null,
-            "visibility": "all",
+            "visibility_id": 1,
             "width": 1920
         }
     ]
@@ -63,8 +63,7 @@ To create a map layer, use the following endpoint.
 | `entry` | `string` | Entry of the layer |
 | `type_id` | `int` | `null` and 0 for `standard`, 1 for `overlay`, 2 for `overlay_shown` |
 | `position` | `int` | Position in the list of layers |
-| `visibility` | `string` | `all`, `admin`, `admin-self` or `self` |
-
+| `visibility_id` | `integer` | The visibility: 1 for `all`, 2 `self`, 3 `admin`, 4 `self-admin` or 5 `members`. |
 
 ### Results
 

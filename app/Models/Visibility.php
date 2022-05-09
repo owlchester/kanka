@@ -24,6 +24,15 @@ class Visibility extends Model
     const VISIBILITY_SELF = 4;
     const VISIBILITY_MEMBERS = 5;
 
+    /**
+     * Visibility strings for old tables that haven't been migrated
+     */
+    const VISIBILITY_ALL_STR = 'all';
+    const VISIBILITY_ADMIN_STR = 'admin';
+    const VISIBILITY_SELF_STR = 'self';
+    const VISIBILITY_MEMBERS_STR = 'members';
+    const VISIBILITY_ADMIN_SELF_STR = 'admin-self';
+
     public $fillable = [
         'code'
     ];

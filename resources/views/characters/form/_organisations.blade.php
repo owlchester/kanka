@@ -25,7 +25,7 @@ $statuses = [
     <div class="col-sm-3">{{ __('organisations.members.fields.role') }}</div>
     <div class="col-sm-2">{{ __('organisations.members.fields.status') }}</div>
     <div class="col-sm-2">
-        {{ __('organisations.members.fields.pinned') }} <i class="fas fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" title="{{ __('organisations.members.helpers.pinned') }}"></i>
+        {{ __('organisations.members.fields.pinned') }} <i class="fa-solid fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" title="{{ __('organisations.members.helpers.pinned') }}"></i>
     </div>
 @if ($isAdmin)
     <div class="col-sm-1 text-center">{{ __('crud.fields.is_private') }}</div>
@@ -66,7 +66,7 @@ $statuses = [
                 @endif
                 <div class="col-sm-1 text-center">
                     <span class="member-delete btn btn-danger" title="{{ __('crud.remove') }}">
-                        <i class="fa fa-trash"></i>
+                        <i class="fa-solid fa-trash"></i>
                     </span>
                 </div>
             </div>
@@ -76,7 +76,7 @@ $statuses = [
 </div>
 
 <button class="btn btn-default" id="add_organisation" href="#" title="{{ __('characters.actions.add_organisation') }}">
-    <i class="fa fa-plus"></i> {{ __('characters.actions.add_organisation') }}
+    <i class="fa-solid fa-plus"></i> {{ __('characters.actions.add_organisation') }}
 </button>
 
 
@@ -111,12 +111,12 @@ $statuses = [
             @if ($isAdmin)
                 <div class="col-sm-1 text-center">
                     {!! Form::hidden('organisation_privates[]', 0) !!}
-                    <i class="fa fa-unlock-alt fa-2x" data-toggle="private" data-private="{{ __('entities/attributes.visibility.private') }}" data-public="{{ __('entities/attributes.visibility.public') }}"></i>
+                    <i class="fa-solid fa-unlock-alt fa-2x" data-toggle="private" data-private="{{ __('entities/attributes.visibility.private') }}" data-public="{{ __('entities/attributes.visibility.public') }}"></i>
                 </div>
             @endif
             <div class="col-sm-1 text-center">
             <span class="member-delete btn btn-danger" title="{{ __('crud.remove') }}">
-                <i class="fa fa-trash"></i>
+                <i class="fa-solid fa-trash"></i>
             </span>
             </div>
         </div>

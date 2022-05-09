@@ -6,6 +6,14 @@
 $hasEntry = false;
 
 $notes = $entity->notes()->ordered()->get();
+
+$startWithStory = false;
+$firstNote = $notes->first();
+// If the first note has a positive position, it's after the entry field
+if ($firstNote && $firstNote->position >= 0) {
+    $startWithStory = true;
+    $hasEntry = true;
+}
 ?>
 {!! Form::open([
     'route' => ['entities.story.reorder-save', $entity],
@@ -18,88 +26,64 @@ $notes = $entity->notes()->ordered()->get();
         </h3>
     </div>
     <div class="box-body">
+        <div class="element-live-reorder">
+            @includeWhen($startWithStory, 'entities.pages.story.reorder._story')
 
-
-        <div class="entity-notes-reorder">
-            @if ($notes->count() > 0)
-                @php $first = $notes->first(); @endphp
-                @if ($first->position >= 0)
-                    @php $hasEntry = true @endphp
-                    <div class="story" data-id="story">
-                        {!! Form::hidden('entity_types[]', 'story') !!}
-                        <div class="dragger">
-                            <span class="fa fa-ellipsis-v visible-md visible-lg"></span>
-                            <div class="visible-xs visible-sm">
-                                <span class="fa fa-arrow-up"></span><br />
-                                <span class="fa fa-arrow-down"></span>
-                            </div>
-                        </div>
-                        <div class="name">
-                            <i class="fas fa-align-justify"></i> {{ __('crud.fields.entry') }}
-                        </div>
-                        <div class="icons">
-                        </div>
-                    </div>
-                @endif
-            @endif
             @foreach($notes as $note)
                 @if (!$hasEntry && $note->position >= 0)
                     @php $hasEntry = true @endphp
-                    <div class="story" data-id="story">
-                        {!! Form::hidden('entity_types[]', 'story') !!}
-                        <div class="dragger">
-                            <span class="fa fa-ellipsis-v visible-md visible-lg"></span>
-                            <div class="visible-xs visible-sm">
-                                <span class="fa fa-arrow-up"></span><br />
-                                <span class="fa fa-arrow-down"></span>
-                            </div>
-                        </div>
-                        <div class="name">
-                            <i class="fas fa-align-justify"></i> {{ __('crud.fields.entry') }}
-                        </div>
-                        <div class="icons">
-                        </div>
-                    </div>
+                    @include('entities.pages.story.reorder._story')
                 @endif
 
-                <div class="story" data-id="{{ $note->id }}">
-                    {!! Form::hidden('entity_note_id[]', $note->id) !!}
-                    {!! Form::hidden('entity_types[]', 'post') !!}
+                <div class="element" data-id="{{ $note->id }}">
+                    {!! Form::hidden('posts[' . $note->id . '][id]', $note->id) !!}
                     <div class="dragger">
-                        <span class="fa fa-ellipsis-v visible-md visible-lg"></span>
+                        <span class="fa-solid fa-ellipsis-v visible-md visible-lg"></span>
                         <div class="visible-xs visible-sm">
-                            <span class="fa fa-arrow-up"></span><br />
-                            <span class="fa fa-arrow-down"></span>
+                            <span class="fa-solid fa-arrow-up"></span><br />
+                            <span class="fa-solid fa-arrow-down"></span>
                         </div>
                     </div>
                     <div class="name">
                         {!! $note->name !!}
                     </div>
+                    <div class="state">
+                        <select name="posts[{{ $note->id }}][collapsed]" class="form-control">
+                            <option value="0">{{ __('entities/notes.states.expanded') }}</option>
+                            <option value="1" @if ($note->collapsed()) selected="selected" @endif>{{ __('entities/notes.states.collapsed') }}</option>
+                        </select>
+                    </div>
+
                     <div class="icons">
-                        @include('cruds.partials.visibility', ['model' => $note])
+@php
+    $options = [];
+    $options['all'] = __('crud.visibilities.all');
+
+    if (auth()->user()->isAdmin()) {
+        $options['admin'] = __('crud.visibilities.admin');
+        $options['members'] = __('crud.visibilities.members');
+    }
+    if ($note->created_by == auth()->user()->id) {
+        $options['self'] = __('crud.visibilities.self');
+        $options['admin-self'] = __('crud.visibilities.admin-self');
+    }
+
+    // If it's a visibility self & admin and we're not the creator, we can't change this
+    if ($note->visibility === \App\Models\Visibility::VISIBILITY_ADMIN_SELF_STR && $note->created_by !== auth()->user()->id) {
+        $options = ['admin-self' => __('crud.visibilities.admin-self')];
+    }
+@endphp
+                        <select name="posts[{{ $note->id }}][visibility]" class="form-control">
+                            @foreach ($options as $key => $value)
+                                <option value="{{ $key }}" @if ($key == $note->visibility) selected="selected" @endif>
+                                    {{ $value }}
+                                </option>
+                            @endforeach
+                        </select>
                     </div>
                 </div>
             @endforeach
-
-
-            @if (!$hasEntry)
-                @php $hasEntry = true @endphp
-                <div class="story" data-id="story">
-                    {!! Form::hidden('entity_types[]', 'story') !!}
-                    <div class="dragger">
-                        <span class="fa fa-ellipsis-v visible-md visible-lg"></span>
-                        <div class="visible-xs visible-sm">
-                            <span class="fa fa-arrow-up"></span><br />
-                            <span class="fa fa-arrow-down"></span>
-                        </div>
-                    </div>
-                    <div class="name">
-                        <i class="fas fa-align-justify"></i> {{ __('crud.fields.entry') }}
-                    </div>
-                    <div class="icons">
-                    </div>
-                </div>
-            @endif
+            @includeWhen(!$hasEntry, 'entities.pages.story.reorder._story')
         </div>
     </div>
     <div class="box-footer">

@@ -43,7 +43,5 @@ return [
     'random_types'  => [
         'any'   => 'Valfri entitet',
     ],
-    'show'          => [
-        'title' => 'Snabblänk :name',
-    ],
+    'show'          => [],
 ];

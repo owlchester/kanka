@@ -11,7 +11,6 @@ return [
         'type'  => 'Typ',
     ],
     'index'         => [
-        'add'   => 'Přidat předmět',
         'title' => 'Předměty',
     ],
     'placeholders'  => [
@@ -23,6 +22,5 @@ return [
         'tabs'  => [
             'inventories'   => 'Inventáře',
         ],
-        'title' => 'Předmět :name',
     ],
 ];

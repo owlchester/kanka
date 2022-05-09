@@ -13,9 +13,6 @@ class CreateMapsTable extends Migration
      */
     public function up()
     {
-        Schema::dropIfExists('map_markers');
-        Schema::dropIfExists('map_layers');
-        Schema::dropIfExists('maps');
         Schema::create('maps', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('campaign_id');
@@ -37,6 +34,18 @@ class CreateMapsTable extends Migration
 
             // Overview
             $table->longText('entry')->nullable();
+
+            $table->float('center_x', 8, 3)->nullable()->change();
+            $table->float('center_y', 8, 3)->nullable()->change();
+
+            $table->smallInteger('min_zoom')->nullable();
+            $table->smallInteger('max_zoom')->nullable();
+            $table->smallInteger('initial_zoom')->nullable();
+
+            $table->unsignedSmallInteger('center_x')->nullable();
+            $table->unsignedSmallInteger('center_y')->nullable();
+
+            $table->unsignedSmallInteger('grid')->nullable();
 
             $table->timestamps();
             $table->softDeletes();
@@ -66,6 +75,10 @@ class CreateMapsTable extends Migration
 
             $table->string('visibility', 10)->default('all');
 
+            $table->boolean('is_shown')->default(true);
+
+            $table->unsignedTinyInteger('type_id')->nullable();
+
             $table->timestamps();
 
             // Foreign
@@ -80,6 +93,7 @@ class CreateMapsTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedInteger('map_id');
             $table->unsignedInteger('entity_id')->nullable();
+            $table->unsignedSmallInteger('pin_size')->nullable();
 
             $table->string('name')->nullable();
             $table->longText('entry')->nullable();
@@ -96,7 +110,13 @@ class CreateMapsTable extends Migration
 
             $table->unsignedInteger('created_by')->nullable();
 
-            $table->string('visibility', 10)->default('all');
+            $table->string('visibility', 10)->default('all')->nullable();
+            $table->string('font_colour', 7)->nullable();
+
+            $table->smallInteger('circle_radius')->unsigned()->nullable();
+            $table->text('polygon_style')->nullable();
+
+            $table->tinyInteger('opacity')->nullable();
 
             $table->timestamps();
 
@@ -117,8 +137,8 @@ class CreateMapsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('map_markers');
-        Schema::dropIfExists('map_layers');
-        Schema::dropIfExists('maps');
+        Schema::drop('map_markers');
+        Schema::drop('map_layers');
+        Schema::drop('maps');
     }
 }

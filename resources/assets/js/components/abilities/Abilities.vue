@@ -1,7 +1,7 @@
 <template>
     <div class="viewport box-abilities">
         <div v-if="loading" class="load more text-center">
-            <i class="fa fa-spin fa-spinner"></i>
+            <i class="fa-solid fa-spin fa-spinner"></i>
         </div>
 
         <div class="row">
@@ -43,7 +43,7 @@
         </ability_form>
 
         <div v-if="waiting" class="box-waiting">
-            <i class="fa fa-spin fa-spinner fa-4x"></i>
+            <i class="fa-solid fa-spin fa-spinner fa-4x"></i>
         </div>
     </div>
 </template>
@@ -137,7 +137,12 @@
                 this.deleteAbility(ability);
             });
             this.json_trans = JSON.parse(this.trans);
+        },
 
+        updated() {
+            // Add the ajax tooltip listener when the dom is updated (for example when displaying
+            // children abilities)
+            window.ajaxTooltip();
         }
     }
 </script>

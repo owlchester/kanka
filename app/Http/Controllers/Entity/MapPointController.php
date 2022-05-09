@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Entity;
 
-use App\Datagrids\Sorters\EntityTimelineSorter;
 use App\Http\Controllers\Controller;
 use App\Models\Entity;
 use App\Traits\GuestAuthTrait;
@@ -30,19 +29,14 @@ class MapPointController extends Controller
         if (Auth::check()) {
             $this->authorize('view', $entity->child);
         } else {
-            $this->authorizeEntityForGuest('read', $entity->child);
+            $this->authorizeEntityForGuest(\App\Models\CampaignPermission::ACTION_READ, $entity->child);
         }
-
-
-        $datagridSorter = new EntityTimelineSorter();
-        $datagridSorter->request(request()->all());
 
         $ajax = request()->ajax();
         $markers = $entity
             ->mapMarkers()
             ->with(['map', 'map.entity'])
             ->has('map')
-            //->simpleSort($datagridSorter)
             ->paginate();
 
         $data = $entity
@@ -57,7 +51,6 @@ class MapPointController extends Controller
             'entity',
             'markers',
             'data',
-            'datagridSorter'
         ));
     }
 }

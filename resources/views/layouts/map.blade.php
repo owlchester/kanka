@@ -73,7 +73,7 @@ $specificTheme = null;
                         <div class="marker-actions text-center">
                             @can('update', $map)
                                 <a href="{{ route('maps.edit', [$map]) }}" class="btn btn-primary">
-                                    <i class="fa fa-map"></i> {{ __('maps.actions.edit') }}
+                                    <i class="fa-solid fa-map"></i> {{ __('maps.actions.edit') }}
                                 </a>
                             @endcan
                         </div>
@@ -87,7 +87,9 @@ $specificTheme = null;
                             <a href="{{ $map->getLink() }}" class="btn btn-primary">{{ __('maps.actions.back', ['name' => $map->name]) }}</a>
                         </div>
                     </div>
-                    <div id="sidebar-marker">
+                    <div id="sidebar-marker"></div>
+                    <div class="spinner text-center" style="margin-top: 10px;">
+                        <i class="fa-solid fa-spinner fa-spin fa-2x"></i>
                     </div>
                 </div>
 
@@ -120,7 +122,7 @@ $specificTheme = null;
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">{{ __('crud.cancel') }}</button>
-                    <button type="button" class="btn btn-danger delete-confirm-submit"><span class="fa fa-trash"></span> {{ __('crud.delete_modal.delete') }}</button>
+                    <button type="button" class="btn btn-danger delete-confirm-submit"><span class="fa-solid fa-trash"></span> {{ __('crud.delete_modal.delete') }}</button>
                 </div>
             </div>
         </div>

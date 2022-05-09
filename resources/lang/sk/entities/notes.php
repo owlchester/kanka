@@ -7,8 +7,9 @@ return [
         'add_user'  => 'Pridať užívateľa',
     ],
     'copy_mention'  => [
-        'copy'      => 'Kopírovať rozšírenú referenciu',
-        'success'   => 'Rozšírená referencia bola skopírovaná do schránky.',
+        'copy'              => 'Kopírovať rozšírenú referenciu',
+        'copy_with_name'    => 'Kopírovať rozšírenú referenciu s názvom príspevku',
+        'success'           => 'Rozšírená referencia bola skopírovaná do schránky.',
     ],
     'create'        => [
         'success'   => 'Poznámka :name pridaná k objektu :entity.',

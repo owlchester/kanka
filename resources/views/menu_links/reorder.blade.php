@@ -15,48 +15,50 @@
 
 @section('content')
     @include('partials.errors')
-    <div class="row">
-        <div class="col-md-12">
-            <div class="box box-solid box-entity-story-reorder">
-                <div class="box-header">
-                    <h3 class="box-title">
-                        {{ __('menu_links.reorder.title') }}
-                    </h3>
-                </div>
-                <div class="box-body">
 
-                    {!! Form::open([
-                        'route' => 'quick-links.reorder-save',
-                        'method' => 'POST',
-                    ]) !!}
-
-                    <div class="entity-notes-reorder">
-                        @foreach($links as $link)
-                            <div class="story" data-id="{{ $link->id }}">
-                                {!! Form::hidden('menu_link[]', $link->id) !!}
-                                <div class="dragger">
-                                    <span class="fa fa-ellipsis-v visible-md visible-lg"></span>
-                                    <div class="visible-xs visible-sm">
-                                        <span class="fa fa-arrow-up"></span><br />
-                                        <span class="fa fa-arrow-down"></span>
-                                    </div>
-                                </div>
-                                <div class="name">
-                                    <i class="{{ $link->icon() }}"></i> {!! $link->name !!}
-                                </div>
+    {!! Form::open([
+        'route' => 'quick-links.reorder-save',
+        'method' => 'POST',
+    ]) !!}
+    <div class="box box-solid box-entity-story-reorder">
+        <div class="box-header">
+            <h3 class="box-title">
+                {{ __('menu_links.reorder.title') }}
+            </h3>
+        </div>
+        <div class="box-body">
+            <div class="element-live-reorder">
+                @foreach($links as $link)
+                    <div class="element" data-id="{{ $link->id }}">
+                        {!! Form::hidden('menu_link[]', $link->id) !!}
+                        <div class="dragger">
+                            <span class="fa-solid fa-ellipsis-v visible-md visible-lg"></span>
+                            <div class="visible-xs visible-sm">
+                                <span class="fa-solid fa-arrow-up"></span><br />
+                                <span class="fa-solid fa-arrow-down"></span>
                             </div>
-                        @endforeach
+                        </div>
+                        <div class="name">
+                            <i class="{{ $link->icon() }}"></i> {!! $link->name !!}
+                        </div>
+                        <div class="icons">
+                            @if ($link->is_private)
+                                <i class="fa-solid fa-lock" title="{{ __('crud.is_private') }}" data-toggle="tooltip"></i>
+                            @endif
+                        </div>
                     </div>
-
-                    <button class="btn btn-primary btn-block">
-                        {{ __('crud.save') }}
-                    </button>
-
-                    {!! Form::close() !!}
-                </div>
+                @endforeach
             </div>
         </div>
+        <div class="box-footer">
+
+            <button class="btn btn-primary btn-block">
+                {{ __('crud.save') }}
+            </button>
+
+        </div>
     </div>
+    {!! Form::close() !!}
 @endsection
 
 

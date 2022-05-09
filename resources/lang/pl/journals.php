@@ -19,7 +19,6 @@ return [
         'journal'   => 'Dziennik źródłowy',
         'journals'  => 'Dzienniki pochodne',
         'name'      => 'Nazwa',
-        'relation'  => 'Relacja',
         'type'      => 'Rodzaj',
     ],
     'helpers'       => [
@@ -28,9 +27,7 @@ return [
         'nested_without'=> 'Wyświetlono wszystkie dzienniki nie posiadające źródła. Kliknij na rząd, by wyświetlić dzienniki pochodne.',
     ],
     'index'         => [
-        'add'       => 'Nowy dziennik',
-        'header'    => 'Dzienniki elementu :name',
-        'title'     => 'Dzienniki',
+        'title' => 'Dzienniki',
     ],
     'journals'      => [
         'title' => 'Dzienniki pochodne dziennika :name',
@@ -46,6 +43,5 @@ return [
         'tabs'  => [
             'journals'  => 'Dzienniki',
         ],
-        'title' => 'Dziennik :name',
     ],
 ];

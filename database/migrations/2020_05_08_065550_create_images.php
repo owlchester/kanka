@@ -22,6 +22,7 @@ class CreateImages extends Migration
             $table->integer('size')->nullable();
 
             $table->unsignedInteger('created_by')->nullable();
+            $table->boolean('is_default')->default(false);
 
             $table->timestamps();
 
@@ -29,6 +30,8 @@ class CreateImages extends Migration
             $table->foreign('campaign_id')->references('id')->on('campaigns')->onDelete('cascade');
 
             $table->unique('id');
+
+            $table->index(['is_default']);
         });
     }
 

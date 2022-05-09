@@ -24,9 +24,7 @@ return [
         'participants'  => 'Bitte füge Teilnehmer zu deiner Unterhaltung hinzu, indem du das :icon Symbol oben rechts drückst.',
     ],
     'index'         => [
-        'add'       => 'Neue Unterhaltung',
-        'header'    => 'Unterhaltungen in :name',
-        'title'     => 'Unterhaltungen',
+        'title' => 'Unterhaltungen',
     ],
     'messages'      => [
         'destroy'       => [
@@ -54,7 +52,6 @@ return [
     ],
     'show'          => [
         'is_closed' => 'Unterhaltung geschlossen',
-        'title'     => 'Unterhaltung :name',
     ],
     'tabs'          => [
         'conversation'  => 'Unterhaltung',

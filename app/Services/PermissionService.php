@@ -9,6 +9,7 @@ use App\Models\Entity;
 use App\Models\MiscModel;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 /**
  * Class PermissionService
@@ -83,7 +84,7 @@ class PermissionService
      * @param string $type
      * @return PermissionService
      */
-    public function type(string $type): self
+    public function type(int $type): self
     {
         $this->type = $type;
         return $this;
@@ -100,56 +101,64 @@ class PermissionService
 
         $campaignRolePermissions = [];
         foreach ($role->permissions as $perm) {
-            $campaignRolePermissions[$perm->key] = 1;
+            $campaignRolePermissions[$perm->entity_type_id . '_' . $perm->action] = 1;
         }
 
-        $entityActions = ['read', 'edit', 'add', 'delete', 'entity-note', 'permission'];
+        $entityActions = [
+            CampaignPermission::ACTION_READ, CampaignPermission::ACTION_EDIT,
+            CampaignPermission::ACTION_ADD, CampaignPermission::ACTION_DELETE,
+            CampaignPermission::ACTION_POSTS, CampaignPermission::ACTION_PERMS
+        ];
         $icons = [
-            'read' => [
-                'fa fa-eye',
+            CampaignPermission::ACTION_READ => [
+                'fa-solid fa-eye',
+                'read',
             ],
-            'edit' => [
-                'fa fa-pen',
+            CampaignPermission::ACTION_EDIT => [
+                'fa-solid fa-pen',
+                'edit',
             ],
-            'add' => [
-                'fas fa-plus-square',
+            CampaignPermission::ACTION_ADD => [
+                'fa-solid fa-plus-square',
+                'add',
             ],
-            'delete' => [
-                'fas fa-trash-alt',
+            CampaignPermission::ACTION_DELETE => [
+                'fa-solid fa-trash-alt',
+                'delete',
             ],
-            'entity-note' => [
-                'fas fa-file',
+            CampaignPermission::ACTION_POSTS => [
+                'fa-solid fa-file',
+                'entity-note',
             ],
-            'permission' => [
-                'fa fa-cog',
+            CampaignPermission::ACTION_PERMS => [
+                'fa-solid fa-cog',
+                'permission',
             ],
         ];
 
         // Public actions
         if ($role->is_public) {
             //$actions = ['read'];
-            $entityActions = ['read'];
+            $entityActions = [CampaignPermission::ACTION_READ];
         }
 
-        $excludedEntities = ['menu_links', 'relations'];
+        $excludedEntities = ['menu_link', 'relation'];
 
-        foreach ($this->entityService->entities() as $entity => $class) {
-            if (in_array($entity, $excludedEntities)) {
+        foreach (config('entities.ids') as $name => $id) {
+            if (in_array($name, $excludedEntities)) {
                 continue;
             }
-            $singularEntity = $this->entityService->singular($entity);
 
             foreach ($entityActions as $action) {
-                if (!isset($permissions[$entity])) {
-                    $permissions[$entity] = [];
+                if (!isset($permissions[$id])) {
+                    $permissions[$id] = [];
                 }
-                $key = "{$singularEntity}_{$action}";
-                $table = $key;
-                $permissions[$entity][] = [
+                $key = "{$id}_{$action}";
+                $permissions[$id][] = [
                     'action' => $action,
-                    'table' => $table,
                     'key' => $key,
                     'icon' => Arr::first($icons[$action]),
+                    'label' => Arr::last($icons[$action]),
                     'enabled' => isset($campaignRolePermissions[$key]),
                 ];
             }
@@ -169,22 +178,29 @@ class PermissionService
 
         $campaignRolePermissions = [];
         foreach ($role->permissions as $perm) {
-            $campaignRolePermissions[$perm->key] = 1;
+            if ($perm->entity_type_id) {
+                continue;
+            }
+            $campaignRolePermissions["campaign_" . $perm->action] = 1;
         }
 
-        $entityActions = ['manage', 'dashboard', 'members', 'gallery'];
+        $entityActions = [
+            CampaignPermission::ACTION_MANAGE, CampaignPermission::ACTION_DASHBOARD,
+            CampaignPermission::ACTION_MEMBERS, CampaignPermission::ACTION_GALLERY
+        ];
         $icons = [
-            'manage' => [
-                'fa fa-cog',
+            CampaignPermission::ACTION_MANAGE => [
+                'fa-solid fa-cog',
+                'manage',
             ],
-            'dashboard' => [
-                'fas fa-columns',
+            CampaignPermission::ACTION_DASHBOARD => [
+                'fa-solid fa-columns','dashboard',
             ],
-            'members' => [
-                'fas fa-users'
+            CampaignPermission::ACTION_MEMBERS => [
+                'fa-solid fa-users', 'members',
             ],
-            'gallery' => [
-                'fas fa-image'
+            CampaignPermission::ACTION_GALLERY => [
+                'fa-solid fa-image', 'gallery',
             ]
         ];
 
@@ -193,12 +209,12 @@ class PermissionService
                 $permissions['campaign'] = [];
             }
             $key = "campaign_{$action}";
-            $table = $key;
             $permissions['campaign'][] = [
                 'action' => $action,
-                'table' => $table,
+                //'table' => $table,
                 'key' => $key,
                 'icon' => Arr::first($icons[$action]),
+                'label' => Arr::last($icons[$action]),
                 'enabled' => isset($campaignRolePermissions[$key]),
             ];
         }
@@ -223,11 +239,13 @@ class PermissionService
                     if ($action === 'allow') {
                         if (empty($permissions['role'][$roleId][$perm])) {
                             CampaignPermission::create([
-                                'key' => $entity->type() . '_' . $perm . '_' . $entity->child->id,
                                 'campaign_role_id' => $roleId,
-                                'table_name' => $entity->pluralType(),
+                                'campaign_id' => $entity->campaign_id,
+                                //'entity_type_id' => $entity->type_id,
                                 'entity_id' => $entity->id,
-                                'access' => true
+                                'misc_id' => $entity->child->id,
+                                'action' => $perm,
+                                'access' => true,
                             ]);
                         } else {
                             $permissions['role'][$roleId][$perm]->update(['access' => true]);
@@ -236,10 +254,12 @@ class PermissionService
                     } elseif ($action === 'deny') {
                         if (empty($permissions['role'][$roleId][$perm])) {
                             CampaignPermission::create([
-                                'key' => $entity->type() . '_' . $perm . '_' . $entity->child->id,
                                 'campaign_role_id' => $roleId,
-                                'table_name' => $entity->pluralType(),
+                                'campaign_id' => $entity->campaign_id,
+                                //'entity_type_id' => $entity->type_id,
                                 'entity_id' => $entity->id,
+                                'misc_id' => $entity->child->id,
+                                'action' => $perm,
                                 'access' => false,
                             ]);
                         } else {
@@ -261,10 +281,12 @@ class PermissionService
                     if ($action === 'allow') {
                         if (empty($permissions['user'][$userId][$perm])) {
                             CampaignPermission::create([
-                                'key' => $entity->type() . '_' . $perm . '_' . $entity->child->id,
                                 'user_id' => $userId,
-                                'table_name' => $entity->pluralType(),
+                                'campaign_id' => $entity->campaign_id,
+                                //'entity_type_id' => $entity->type_id,
                                 'entity_id' => $entity->id,
+                                'misc_id' => $entity->child->id,
+                                'action' => $perm,
                                 'access' => true,
                             ]);
                         } else {
@@ -274,10 +296,12 @@ class PermissionService
                     } elseif ($action === 'deny') {
                         if (empty($permissions['user'][$userId][$perm])) {
                             CampaignPermission::create([
-                                'key' => $entity->type() . '_' . $perm . '_' . $entity->child->id,
                                 'user_id' => $userId,
-                                'table_name' => $entity->pluralType(),
+                                'campaign_id' => $entity->campaign_id,
+                                //'entity_type_id' => $entity->type_id,
                                 'entity_id' => $entity->id,
+                                'misc_id' => $entity->child->id,
+                                'action' => $perm,
                                 'access' => false,
                             ]);
                         } else {
@@ -333,10 +357,13 @@ class PermissionService
                     if ($action == 'allow') {
                         if (empty($permissions['role'][$roleId][$perm])) {
                             CampaignPermission::create([
-                                'key' => $entity->type() . '_' . $perm . '_' . $entity->child->id,
+                                //'key' => $entity->type() . '_' . $perm . '_' . $entity->child->id,
                                 'campaign_role_id' => $roleId,
-                                'table_name' => $entity->pluralType(),
+                                //'campaign_id' => $entity->campaign_id,
+                                //'entity_type_id' => $entity->type_id,
                                 'entity_id' => $entity->id,
+                                'misc_id' => $entity->child->id,
+                                'action' => $perm,
                                 'access' => true,
                             ]);
                         } else {
@@ -351,10 +378,14 @@ class PermissionService
                     } elseif ($action === 'deny') {
                         if (empty($permissions['role'][$roleId][$perm])) {
                             CampaignPermission::create([
-                                'key' => $entity->type() . '_' . $perm . '_' . $entity->child->id,
+                                //'key' => $entity->type() . '_' . $perm . '_' . $entity->child->id,
                                 'campaign_role_id' => $roleId,
-                                'table_name' => $entity->pluralType(),
+                                //'campaign_id' => $entity->campaign_id,
+                                //'table_name' => $entity->pluralType(),
+                                //'entity_type_id' => $entity->type_id,
                                 'entity_id' => $entity->id,
+                                'misc_id' => $entity->child->id,
+                                'action' => $perm,
                                 'access' => false,
                             ]);
                         } else {
@@ -377,10 +408,13 @@ class PermissionService
                     if ($action == 'allow') {
                         if (empty($permissions['user'][$userId][$perm])) {
                             CampaignPermission::create([
-                                'key' => $entity->type() . '_' . $perm . '_' . $entity->child->id,
+                                //'key' => $entity->type() . '_' . $perm . '_' . $entity->child->id,
                                 'user_id' => $userId,
-                                'table_name' => $entity->pluralType(),
+                                'campaign_id' => $entity->campaign_id,
+                                //'entity_type_id' => $entity->type_id,
                                 'entity_id' => $entity->id,
+                                'misc_id' => $entity->child->id,
+                                'action' => $action,
                                 'access' => true,
                             ]);
                         } else {
@@ -395,10 +429,14 @@ class PermissionService
                     } elseif ($action === 'deny') {
                         if (empty($permissions['user'][$userId][$perm])) {
                             CampaignPermission::create([
-                                'key' => $entity->type() . '_' . $perm . '_' . $entity->child->id,
+                                //'key' => $entity->type() . '_' . $perm . '_' . $entity->child->id,
                                 'user_id' => $userId,
-                                'table_name' => $entity->pluralType(),
+                                'campaign_id' => $entity->campaign_id,
+                                //'table_name' => $entity->pluralType(),
                                 'entity_id' => $entity->id,
+                                //'entity_type_id' => $entity->type_id,
+                                'misc_id' => $entity->child->id,
+                                'action' => $action,
                                 'access' => false
                             ]);
                         } else {
@@ -437,21 +475,13 @@ class PermissionService
             return $this->cachedPermissions;
         }
 
-        $keyBase = $entity->type() . '_';
-        $keys = [];
-
-        foreach ($this->entityActions as $action) {
-            $keys[] = $keyBase . $action . '_' . $entity->child->id;
-        }
-
         $permissions = ['user' => [], 'role' => []];
         /** @var CampaignPermission $perm */
-        foreach (CampaignPermission::whereIn('key', $keys)->get() as $perm) {
+        foreach (CampaignPermission::where('entity_id', $entity->id)->get() as $perm) {
             $key = (!empty($perm->user_id) ? 'user' : 'role');
             $subkey = (!empty($perm->user_id) ? $perm->user_id : $perm->campaign_role_id);
-            $permissions[$key][$subkey][$perm->action()] = $perm;
+            $permissions[$key][$subkey][$perm->action] = $perm;
         }
-
 
         return $this->cachedPermissions = $permissions;
     }
@@ -471,7 +501,7 @@ class PermissionService
      * @param int $user
      * @return bool
      */
-    public function inherited(string $action, int $role = 0, int $user = 0): bool
+    public function inherited(int $action, int $role = 0, int $user = 0): bool
     {
         if (empty($this->type)) {
             return false;
@@ -492,7 +522,7 @@ class PermissionService
                 $users = $campaignRole->users->pluck('user_id');
                 /** @var CampaignPermission $campaignPermission */
                 foreach ($campaignPermissions as $campaignPermission) {
-                    $key = $campaignPermission->key;
+                    $key = $campaignPermission->entity_type_id . '_' . $campaignPermission->action;
                     $this->basePermissions['roles'][$campaignRole->id][$key] = true;
                     foreach ($users as $permissionUser) {
                         $this->basePermissions['users'][$permissionUser][$key] = [
@@ -516,7 +546,7 @@ class PermissionService
      * @param int $user
      * @return string
      */
-    public function inheritedRoleName(string $action, int $user): string
+    public function inheritedRoleName(int $action, int $user): string
     {
         $key = $this->type . '_' . $action;
         return $this->basePermissions['users'][$user][$key]['role'];
@@ -527,7 +557,7 @@ class PermissionService
      * @param int $user
      * @return string
      */
-    public function inheritedRoleAccess(string $action, int $user): bool
+    public function inheritedRoleAccess(int $action, int $user): bool
     {
         $key = $this->type . '_' . $action;
         return $this->basePermissions['users'][$user][$key]['access'];
@@ -539,7 +569,7 @@ class PermissionService
      * @param string $action
      * @return string
      */
-    public function selected(string $type, int $user, string $action): string
+    public function selected(string $type, int $user, int $action): string
     {
         $value = Arr::get($this->cachedPermissions, $type . '.' . $user . '.' . $action, null);
         if ($value === null) {
@@ -567,5 +597,11 @@ class PermissionService
             $this->users = $this->campaign->members()->withoutAdmins()->with('user')->get();
         }
         return $this->users;
+    }
+
+    public function entityType(int $entityType): string
+    {
+        $flip = array_flip(config('entities.ids'));
+        return 'entities.' . Str::plural($flip[$entityType]);
     }
 }

@@ -32,7 +32,7 @@ class StoreEntityFile extends FormRequest
                 new EntityFileRule
             ],
             'name' => 'nullable|string|max:45',
-            'visibility' => 'nullable|string|max:10',
+            'visibility_id' => 'nullable|exists:visibilities,id'
         ];
     }
 }

@@ -113,6 +113,14 @@ class FrontController extends Controller
         if (!config('services.stripe.enabled')) {
             return redirect()->route('home');
         }
+        if (request()->has('callback') && auth()->check()) {
+            $id = request()->get('callback');
+            $campaign = Campaign::find($id);
+            if ($campaign) {
+                return view('front.pricing')
+                    ->with('campaign', $campaign);
+            }
+        }
         return $this->cachedResponse('front.pricing');
     }
 

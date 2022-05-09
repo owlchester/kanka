@@ -29,7 +29,6 @@ return [
         'locations'         => 'Luoghi',
         'map'               => 'Mappa',
         'name'              => 'Nome',
-        'relation'          => 'Relazione',
         'type'              => 'Tipo',
     ],
     'helpers'       => [
@@ -43,19 +42,10 @@ return [
         'is_map_private'    => 'Una mappa privata sarà visibile solamente ai membri del ruolo "Proprietario" della campagna.',
     ],
     'index'         => [
-        'actions'   => [
-            'explore_view'  => 'Vista Annidata',
-        ],
-        'add'       => 'Nuovo Luogo',
-        'header'    => 'Luoghi di :name',
-        'title'     => 'Luoghi',
+        'title' => 'Luoghi',
     ],
-    'items'         => [
-        'title' => 'Oggetti del Luogo :name',
-    ],
-    'journals'      => [
-        'title' => 'Pagine del diario per il Luogo :name',
-    ],
+    'items'         => [],
+    'journals'      => [],
     'locations'     => [
         'title' => 'Luoghi del Luogo :name',
     ],
@@ -203,16 +193,9 @@ return [
     'show'          => [
         'tabs'  => [
             'characters'    => 'Personaggi',
-            'events'        => 'Eventi',
-            'families'      => 'Famiglie',
-            'items'         => 'Oggetti',
-            'journals'      => 'Pagine del diario',
             'locations'     => 'Luoghi',
             'map'           => 'Mappa',
             'maps'          => 'Mappe',
-            'organisations' => 'Organizzazioni',
-            'quests'        => 'Missioni',
         ],
-        'title' => 'Luogo :name',
     ],
 ];

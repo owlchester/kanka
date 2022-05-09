@@ -3,10 +3,9 @@
 namespace App\Models;
 
 use App\Facades\CampaignLocalization;
-use App\Models\Concerns\SimpleSortableTrait;
+use App\Models\Concerns\Acl;
 use App\Traits\CampaignTrait;
 use App\Traits\ExportableTrait;
-use App\Traits\VisibleTrait;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
@@ -25,10 +24,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Item extends MiscModel
 {
     use CampaignTrait,
-        VisibleTrait,
         ExportableTrait,
-        SimpleSortableTrait,
-        SoftDeletes;
+        SoftDeletes,
+        Acl
+    ;
 
     /**
      * @var array
@@ -161,32 +160,6 @@ class Item extends MiscModel
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasManyThrough
      */
-    public function quests()
-    {
-        return $this->belongsToMany('App\Models\Quest', 'quest_items')
-            ->using('App\Models\Pivots\QuestItem')
-            ->withPivot('role', 'is_private');
-    }
-
-    /**
-     * @return mixed
-     */
-    public function relatedQuests()
-    {
-        $query = $this->quests()
-            ->orderBy('name', 'ASC')
-            ->with(['characters', 'locations', 'quests']);
-
-        if (!auth()->check() || !auth()->user()->isAdmin()) {
-            $query->where('quest_items.is_private', false);
-        }
-
-        return $query;
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasManyThrough
-     */
     public function itemQuests()
     {
         return $this->hasMany('App\Models\QuestItem', 'item_id');
@@ -207,7 +180,7 @@ class Item extends MiscModel
     {
         $campaign = CampaignLocalization::getCampaign();
 
-        $inventoryCount = $this->inventories()->with('item')->acl()->has('entity')->count();
+        $inventoryCount = $this->inventories()->with('item')->has('entity')->count();
         if ($inventoryCount > 0) {
             $items['second']['inventories'] = [
                 'name' => 'items.show.tabs.inventories',

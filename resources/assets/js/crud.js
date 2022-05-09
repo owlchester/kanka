@@ -289,9 +289,10 @@ function registerFormSubmitAnimation() {
                         $(this).prop('disabled', true);
                     } else {
                         $(this)
-                            .data('reset', $(this).html())
-                            .html('<i class="fa fa-spinner fa-spin"></i>')
-                            .prop('disabled', true);
+                            .prop('disabled', true)
+                            .data('reset', true)
+                            .find('span').hide()
+                            .parent().find('.spinner').show();
                     }
                 });
 
@@ -596,7 +597,8 @@ function resetEntityFormSubmitAnimation() {
         $.each(submit, function (su) {
             $(this).removeAttr('disabled');
             if ($(this).data('reset')) {
-                $(this).html($(this).data('reset'));
+                $(this).find('.spinner').hide()
+                    .parent().find('span').show()
             }
         });
     }
@@ -897,7 +899,8 @@ function registerEditWarning() {
 }
 
 function confirmEditWarningModal() {
-    multiEditingModal.find('.modal-body').html('<div class="text-center"><i class="fa fa-spinner fa-spin fa-2x"></i></div>')
+    multiEditingModal.find('.modal-ajax-body').hide();
+    multiEditingModal.find('.modal-spinner-body').show();
     multiEditingModal.find('.modal-footer').hide();
 }
 

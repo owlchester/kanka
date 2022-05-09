@@ -22,7 +22,6 @@ return [
         'location'  => 'Local',
         'members'   => 'Membros',
         'name'      => 'Nome',
-        'relation'  => 'Relação',
         'type'      => 'Tipo',
     ],
     'helpers'       => [
@@ -34,9 +33,7 @@ return [
         'members'   => 'Os membros de uma família estão listados aqui. Um personagem pode ser adicionado a uma família editando o personagem desejado e usando a lista suspensa "Família".',
     ],
     'index'         => [
-        'add'       => 'Nova Família',
-        'header'    => 'Famílias de :name',
-        'title'     => 'Famílias',
+        'title' => 'Famílias',
     ],
     'members'       => [
         'helpers'   => [
@@ -55,8 +52,6 @@ return [
             'all_members'   => 'Todos membros',
             'families'      => 'Famílias',
             'members'       => 'Membros',
-            'relation'      => 'Relações',
         ],
-        'title' => 'Família :name',
     ],
 ];

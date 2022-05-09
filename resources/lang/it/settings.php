@@ -23,6 +23,11 @@ return [
         'link'  => 'Leggi la documentazione delle API',
         'title' => 'API',
     ],
+    'apps'      => [
+        'actions'   => [
+            'remove'    => 'Rimuovi',
+        ],
+    ],
     'layout'    => [
         'success'   => 'Impostazioni di layout aggiornate.',
         'title'     => 'Layout',

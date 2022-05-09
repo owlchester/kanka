@@ -26,9 +26,7 @@ return [
         'parent_attribute_template' => 'Dit attribuutsjabloon kan gerelateerd zijn aan een ander attribuutsjabloon. Bij het toepassen van deze attribuutsjabloon worden deze en al zijn bovenliggende entiteiten toegepast.',
     ],
     'index'                 => [
-        'add'       => 'Nieuw attribuutsjabloon',
-        'header'    => 'Attribuutsjablonen van :naam',
-        'title'     => 'Attribuutsjablonen',
+        'title' => 'Attribuutsjablonen',
     ],
     'placeholders'          => [
         'attribute_template'    => 'Kies een attribuutsjabloon',
@@ -39,6 +37,5 @@ return [
             'attribute_templates'   => 'Attribuutsjablonen',
             'attributes'            => 'Attributen',
         ],
-        'title' => 'Attribuutsjabloon :name',
     ],
 ];

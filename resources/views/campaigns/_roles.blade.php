@@ -1,12 +1,12 @@
 <?php /** @var \App\Models\CampaignRole[] $roles */ ?>
 <div class="box-header with-border">
     <h3 class="box-title">
-        <i class="fa fa-users-cog"></i> {{ __('campaigns.show.tabs.roles') }}
+        <i class="fa-solid fa-users-cog"></i> {{ __('campaigns.show.tabs.roles') }}
     </h3>
     <div class="box-tools">
         <button class="btn btn-default btn-sm" data-toggle="modal"
                 data-target="#roles-help">
-            <i class="fas fa-question-circle" aria-hidden="true"></i>
+            <i class="fa-solid fa-question-circle" aria-hidden="true"></i>
             {{ __('campaigns.members.actions.help') }}
         </button>
 
@@ -16,7 +16,7 @@
                data-toggle="ajax-modal" data-target="#entity-modal"
                data-url="{{ route('campaign_roles.create') }}"
             >
-                <i class="fa fa-plus" aria-hidden="true"></i>
+                <i class="fa-solid fa-plus" aria-hidden="true"></i>
                 {{ __('campaigns.roles.actions.add') }}
             </a>
         @endif
@@ -29,7 +29,7 @@
             <th>{{ __('campaigns.roles.fields.name') }}</th>
             <th>
                 <span class="hidden-xs">{{ __('campaigns.roles.fields.users') }}</span>
-                <i class="fa fa-users visible-xs"></i>
+                <i class="fa-solid fa-users visible-xs"></i>
             </th>
             <th class="hidden-xs">{{ __('campaigns.roles.fields.type') }}</th>
             <th class="hidden-xs">{{ __('campaigns.roles.fields.permissions') }}</th>
@@ -59,10 +59,10 @@
                 <td>
                     @if($relation->is_public && !$campaign->is_public && $relation->permissions->whereNull('entity_id')->count() > 0)
                         <div class="hidden-xs">
-                            <i class="fa fa-exclamation-triangle" data-toggle="tooltip" title="{{ __('campaigns.roles.hints.campaign_not_public') }}"></i>
+                            <i class="fa-solid fa-exclamation-triangle" data-toggle="tooltip" title="{{ __('campaigns.roles.hints.campaign_not_public') }}"></i>
                         </div>
                         <div class="visible-xs">
-                             <i class="fa fa-exclamation-triangle" data-toggle="collapse" data-target="#campaign-public-warning"></i>
+                             <i class="fa-solid fa-exclamation-triangle" data-toggle="collapse" data-target="#campaign-public-warning"></i>
                             <span class="collapse help-block" id="campaign-public-warning">{{ __('campaigns.roles.hints.campaign_not_public') }}</span>
                         </div>
                     @endif
@@ -71,12 +71,12 @@
                 <td class="text-right">
                     <div class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false" data-placement="right">
-                            <i class="fa fa-ellipsis-v"></i>
+                            <i class="fa-solid fa-ellipsis-v"></i>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-right" role="menu">
                             <li>
                                 <a href="{{ route('campaign_roles.show', ['campaign_role' => $relation]) }}" title="{{ __('crud.manage') }}">
-                                    <i class="fa fa-users" aria-hidden="true"></i> {{ __('campaigns.roles.actions.permissions') }}
+                                    <i class="fa-solid fa-users" aria-hidden="true"></i> {{ __('campaigns.roles.actions.permissions') }}
                                 </a>
                             </li>
                             @can('update', $relation)
@@ -86,7 +86,7 @@
                                        data-toggle="ajax-modal" data-target="#entity-modal"
                                        data-url="{{ route('campaign_roles.edit', ['campaign_role' => $relation]) }}"
                                     >
-                                        <i class="fa fa-edit" aria-hidden="true"></i> {{ __('campaigns.roles.actions.rename') }}
+                                        <i class="fa-solid fa-edit" aria-hidden="true"></i> {{ __('campaigns.roles.actions.rename') }}
                                     </a>
                                 </li>
                             @endcan
@@ -98,7 +98,7 @@
                                             data-toggle="modal" data-name="{{ $relation->name }}"
                                             data-target="#delete-confirm" data-delete-target="campaign-role-{{ $relation->id }}"
                                     >
-                                        <i class="fa fa-trash" aria-hidden="true"></i> {{ __('crud.remove') }}
+                                        <i class="fa-solid fa-trash" aria-hidden="true"></i> {{ __('crud.remove') }}
                                     </a>
                                 </li>
                             @endcan

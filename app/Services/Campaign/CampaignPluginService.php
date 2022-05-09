@@ -109,19 +109,27 @@ class CampaignPluginService
         return $this;
     }
 
-    public function enable()
+    public function enable(): bool
     {
         $plugin = $this->campaignPlugin();
-        $plugin->is_active = true;
-        $plugin->save();
+        if ($plugin->canEnable()) {
+            $plugin->is_active = true;
+            $plugin->save();
+            return true;
+        }
+        return false;
     }
 
-    public function disable()
+    public function disable(): bool
     {
         $plugin = $this->campaignPlugin();
 
-        $plugin->is_active = false;
-        $plugin->save();
+        if ($plugin->canDisable()) {
+            $plugin->is_active = false;
+            $plugin->save();
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -158,7 +166,7 @@ class CampaignPluginService
     /**
      *
      */
-    public function update()
+    public function update(): bool
     {
         // Get latest
         $latest = $this->plugin->versions()
@@ -171,11 +179,15 @@ class CampaignPluginService
             ->where('plugin_id', $this->plugin->id)
             ->first();
 
+        if ($campaignPlugin->plugin_version_id === $latest->id) {
+            return false;
+        }
+
         $campaignPlugin->plugin_version_id = $latest->id;
         $campaignPlugin->save();
 
         CampaignCache::clearTheme();
-
+        return true;
     }
 
     /**

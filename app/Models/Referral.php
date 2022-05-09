@@ -3,10 +3,6 @@
 
 namespace App\Models;
 
-
-use App\Models\Concerns\Filterable;
-use App\Models\Concerns\Searchable;
-use App\Models\Concerns\Sortable;
 use App\User;
 use Illuminate\Database\Eloquent\Model;
 
@@ -24,19 +20,6 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Referral extends Model
 {
-    use Filterable, Sortable, Searchable;
-
-    public $fillable = [
-        'code',
-        'is_valid',
-        'user_id',
-    ];
-
-    public $sortableColumns = [
-        'code',
-        'is_valid',
-    ];
-
     /**
      * Users who used the referral
      * @return \Illuminate\Database\Eloquent\Relations\HasMany

@@ -29,11 +29,11 @@ if (request()->has('location_id')) {
 
                 @if (request()->has('location_id'))
                     <a href="{{ route('locations.families', $model) }}" class="btn btn-default btn-sm pull-right">
-                        <i class="fa fa-filter"></i> {{ __('crud.filters.all') }} ({{ $model->allFamilies()->count() }})
+                        <i class="fa-solid fa-filter"></i> {{ __('crud.filters.all') }} ({{ $model->allFamilies()->count() }})
                     </a>
                 @else
                     <a href="{{ route('locations.families', [$model, 'location_id' => $model->id]) }}" class="btn btn-default btn-sm pull-right">
-                        <i class="fa fa-filter"></i> {{ __('crud.filters.direct') }} ({{ $model->families()->count() }})
+                        <i class="fa-solid fa-filter"></i> {{ __('crud.filters.direct') }} ({{ $model->families()->count() }})
                     </a>
                 @endif
             </div>
@@ -75,7 +75,7 @@ if (request()->has('location_id')) {
                     <td>{{ $family->type }}</td>
                     <td class="text-right">
                         <a href="{{ route('families.show', [$family]) }}" class="btn btn-xs btn-primary">
-                            <i class="fa fa-eye" aria-hidden="true"></i> {{ __('crud.view') }}
+                            <i class="fa-solid fa-eye" aria-hidden="true"></i> {{ __('crud.view') }}
                         </a>
                     </td>
                 </tr>

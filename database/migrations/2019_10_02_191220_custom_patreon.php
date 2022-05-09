@@ -23,14 +23,8 @@ class CustomPatreon extends Migration
 
         Schema::table('campaigns', function (Blueprint $table) {
             $table->unsignedInteger('theme_id')->nullable();
-            $table->mediumText('css')->nullable();
 
             $table->foreign('theme_id')->references('id')->on('themes')->onDelete('set null');
-        });
-
-        Schema::table('entities', function (Blueprint $table) {
-            $table->text('tooltip')->nullable();
-            $table->string('header_image')->nullable();
         });
     }
 
@@ -42,13 +36,9 @@ class CustomPatreon extends Migration
     public function down()
     {
         Schema::table('campaigns', function (Blueprint $table) {
-            $table->dropColumn('theme');
-            $table->dropColumn('css');
+            $table->dropColumn('theme_id');
         });
 
-        Schema::table('entities', function (Blueprint $table) {
-            $table->dropColumn('tooltip');
-            $table->dropColumn('header_image');
-        });
+        Schema::drop('themes');
     }
 }

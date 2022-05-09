@@ -27,8 +27,6 @@ use Illuminate\Database\Eloquent\Model;
  */
 class AppRelease extends Model
 {
-    use Filterable, Sortable, Searchable;
-
     const CATEGORY_RELEASE = 1;
     const CATEGORY_EVENT = 2;
     const CATEGORY_VOTE = 3;
@@ -39,20 +37,6 @@ class AppRelease extends Model
 
     public $dates = [
         'published_at',
-        'end_at',
-    ];
-
-    public $searchableColumns = ['name'];
-    public $sortableColumns = [];
-    public $filterableColumns = ['name'];
-
-    public $fillable = [
-        'name',
-        'link',
-        'category_id',
-        'excerpt',
-        'published_at',
-        'created_by',
         'end_at',
     ];
 
@@ -96,24 +80,6 @@ class AppRelease extends Model
     {
         $lastRelease = auth()->user()->settings()->get('releases_' . $this->category_id);
         return $lastRelease == $this->id;
-    }
-
-    /**
-     * @return string
-     */
-    public function visibility(): string
-    {
-        if ($this->published_at->isFuture()) {
-            return 'Scheduled';
-        }
-        elseif (!empty($this->end_at)) {
-            if ($this->end_at->isFuture()) {
-                return 'Visible until ' . $this->end_at->isoFormat('MMMM Do Y, H:m');
-            }
-            return 'Past';
-        }
-
-        return 'Visible';
     }
 
     /**

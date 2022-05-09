@@ -2,6 +2,11 @@
 
 return [
     'actions'       => [
+        'bulks'             => [
+            'disable'   => 'Disable plugins',
+            'enable'    => 'Enable plugins',
+            'update'    => 'Update plugins',
+        ],
         'disable'           => 'Disable plugin',
         'enable'            => 'Enable plugin',
         'go_to_marketplace' => 'Go to the Marketplace',
@@ -9,6 +14,12 @@ return [
         'remove'            => 'Remove plugin',
         'update'            => 'Update plugin',
         'update_available'  => 'Update available!',
+    ],
+    'bulks'         => [
+        'delete'    => '{1} Removed :count plugin.|[2,*] Removed :count plugins.',
+        'disable'   => '{1} Disabled :count plugin.|[2,*] Disabled :count plugins.',
+        'enable'    => '{1} Enabled :count plugin.|[2,*] Enabled :count plugins.',
+        'update'    => '{1} Updated :count plugin.|[2,*] Updated :count plugins.',
     ],
     'destroy'       => [
         'success'   => 'Plugin :plugin removed.',

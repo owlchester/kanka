@@ -7,7 +7,7 @@ namespace App\Models;
 use App\Facades\Img;
 use App\Models\Concerns\Blameable;
 use App\Models\Concerns\Paginatable;
-use App\Traits\VisibilityTrait;
+use App\Traits\VisibilityIDTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 
@@ -20,7 +20,6 @@ use Illuminate\Database\Eloquent\Builder;
  * @property string $name
  * @property string $entry
  * @property string $image
- * @property string $visibility
  * @property int $position
  * @property int $height
  * @property int $width
@@ -32,7 +31,7 @@ use Illuminate\Database\Eloquent\Builder;
  */
 class MapLayer extends Model
 {
-    use VisibilityTrait, Blameable, Paginatable;
+    use VisibilityIDTrait, Blameable, Paginatable;
 
     /** @var bool If set to false, skip the saving observer */
     public $savingObserver = true;
@@ -44,7 +43,7 @@ class MapLayer extends Model
         'entry',
         'image',
         'position',
-        'visibility',
+        'visibility_id',
         'type_id',
     ];
 

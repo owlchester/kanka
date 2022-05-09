@@ -21,7 +21,7 @@ class CreateLocations extends Migration
             $table->increments('id');
             $table->string('name')->notNull();
             $table->string('slug');
-            $table->string('type', 45);
+            $table->string('type', 45)->nullable();
             $table->string('image')->nullable();
             $table->longText('entry')->nullable();
             $table->integer('parent_location_id')->unsigned()->nullable();
@@ -30,12 +30,18 @@ class CreateLocations extends Migration
 
             $table->integer('campaign_id')->unsigned()->notNull();
 
+            // Privacy
+            $table->boolean('is_private')->default(false);
+
+            $table->boolean('is_map_private')->default(0);
+
             // Index
             $table->index(['name', 'slug', 'type']);
+            $table->index(['is_private']);
 
             // Foreign
             $table->foreign('campaign_id')->references('id')->on('campaigns')->onDelete('cascade');
-            $table->foreign('parent_location_id')->references('id')->on('locations')->onDelete('cascade');
+            $table->foreign('parent_location_id')->references('id')->on('locations')->nullOnDelete();
         });
 
 

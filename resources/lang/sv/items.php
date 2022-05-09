@@ -18,14 +18,11 @@ return [
         'location'  => 'Plats',
         'name'      => 'Namn',
         'price'     => 'Pris',
-        'relation'  => 'Förbindelse',
         'size'      => 'Storlek',
         'type'      => 'Typ',
     ],
     'index'         => [
-        'add'       => 'Nytt Föremål',
-        'header'    => 'Föremål för :name',
-        'title'     => 'Föremål',
+        'title' => 'Föremål',
     ],
     'inventories'   => [
         'title' => 'Föremål :name Inventarier',
@@ -42,6 +39,5 @@ return [
         'tabs'  => [
             'inventories'   => 'Inventarier',
         ],
-        'title' => 'Föremål :name',
     ],
 ];

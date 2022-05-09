@@ -35,7 +35,7 @@
                         <div class="pull-right">
                             <a href="{{ route('entities.entity_links.create', $entity) }}" class="btn btn-sm btn-primary"
                                data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('entities.entity_links.create', $entity) }}">
-                                <i class="fa fa-plus"></i> <span class="hidden-sm hidden-xs">{{ __('entities/links.actions.add') }}</span>
+                                <i class="fa-solid fa-plus"></i> <span class="hidden-sm hidden-xs">{{ __('entities/links.actions.add') }}</span>
                                 <span class="visible-xs visible-sm">{{ __('crud.add') }}</span>
                             </a>
                         </div>
@@ -75,12 +75,12 @@
                                                data-toggle="ajax-modal" data-target="#entity-modal"
                                                data-url="{{ route('entities.entity_links.edit', ['entity' => $entity, 'entity_link' => $link->id]) }}"
                                                title="{{ __('crud.edit') }}" class="btn btn-primary btn-xs">
-                                                <i class="fa fa-edit"></i>
+                                                <i class="fa-solid fa-edit"></i>
                                             </a>
 
                                             <button class="btn btn-xs btn-danger delete-confirm" data-toggle="modal" data-name="{{ $link->name }}"
                                                     data-target="#delete-confirm" data-delete-target="delete-form-link-{{ $link->id }}" title="{{ __('crud.remove') }}">
-                                                <i class="fa fa-trash" aria-hidden="true"></i>
+                                                <i class="fa-solid fa-trash" aria-hidden="true"></i>
                                             </button>
                                             {!! Form::open(['method' => 'DELETE', 'route' => ['entities.entity_links.destroy', 'entity' => $entity, 'entity_link' => $link], 'style' => 'display:inline', 'id' => 'delete-form-link-' . $link->id]) !!}
                                             {!! Form::close() !!}

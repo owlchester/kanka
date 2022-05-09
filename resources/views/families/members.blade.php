@@ -1,11 +1,6 @@
 @extends('layouts.app', [
-    'title' => trans('families.members.title', ['name' => $model->name]),
-    'description' => '',
-    'breadcrumbs' => [
-        ['url' => Breadcrumb::index('families'), 'label' => __('families.index.title')],
-        ['url' => route('families.show', $model), 'label' => $model->name],
-        trans('families.show.tabs.members')
-    ],
+    'title' => __('families.members.title', ['name' => $model->name]),
+    'breadcrumbs' => false,
     'mainTitle' => false,
     'miscModel' => $model,
 ])
@@ -14,12 +9,20 @@
 
 @section('content')
     @include('partials.errors')
-    <div class="row entity-grid">
-        <div class="col-md-2 entity-sidebar-submenu">
-            @include('families._menu', ['active' => 'members'])
-        </div>
-        <div class="col-md-10 entity-main-block">
-            @include('families.panels.members')
+
+    <div class="entity-grid">
+        @include('entities.components.header_grid', [
+            'model' => $model,
+            'breadcrumb' => [
+                ['url' => Breadcrumb::index($name), 'label' => __($name . '.index.title')],
+                null
+            ]
+        ])
+
+        @include($name . '._menu', ['active' => 'members'])
+
+        <div class="entity-main-block">
+            @include('families.panels._members')
         </div>
     </div>
 @endsection

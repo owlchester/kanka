@@ -67,7 +67,7 @@
                     <div class="form-group">
                         <label>
                             {{ __('profiles.settings.fields.new_entity_workflow') }}
-                            <i class="fas fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" title="{{ __('profiles.settings.hints.new_entity_workflow') }}"></i>
+                            <i class="fa-solid fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" title="{{ __('profiles.settings.hints.new_entity_workflow') }}"></i>
                         </label>
                             {!! Form::select('new_entity_workflow', [
                                     '' => __('profiles.workflows.default'),
@@ -81,7 +81,7 @@
                     <div class="form-group">
                         <label>
                             {{ __('profiles.settings.fields.editor') }}
-                            <i class="fas fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" title="{{ __('profiles.settings.helpers.editor_v2') }}"></i>
+                            <i class="fa-solid fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" title="{{ __('profiles.settings.helpers.editor_v2') }}"></i>
                         </label>
                         {!! Form::select('editor', [
                             '' => 'Summernote',

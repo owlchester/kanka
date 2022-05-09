@@ -40,7 +40,6 @@ return [
         'pronouns'                  => 'Pronombres',
         'race'                      => 'Raza',
         'races'                     => 'Razas',
-        'relation'                  => 'Relación',
         'sex'                       => 'Género',
         'title'                     => 'Título',
         'traits'                    => 'Características',
@@ -61,8 +60,6 @@ return [
         'actions'   => [
             'random'    => 'Nuevo personaje aleatorio',
         ],
-        'add'       => 'Nuevo Personaje',
-        'header'    => 'Personajes en :name',
         'title'     => 'Personajes',
     ],
     'items'         => [
@@ -132,10 +129,8 @@ return [
     ],
     'show'          => [
         'tabs'  => [
-            'map'           => 'Mapa de relaciones',
             'organisations' => 'Organizaciones',
         ],
-        'title' => 'Personaje :name',
     ],
     'warnings'      => [
         'personality_hidden'    => 'No puedes editar los rasgos de personalidad de este personaje.',

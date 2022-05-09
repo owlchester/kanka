@@ -18,14 +18,11 @@ return [
         'location'  => 'Locatie',
         'name'      => 'Naam',
         'price'     => 'Prijs',
-        'relation'  => 'Relatie',
         'size'      => 'Grootte',
         'type'      => 'Type',
     ],
     'index'         => [
-        'add'       => 'Nieuw Voorwerp',
-        'header'    => 'Voorwerpen van :name',
-        'title'     => 'Voorwerpen',
+        'title' => 'Voorwerpen',
     ],
     'inventories'   => [
         'title' => 'Voorwerp :name Inventories',
@@ -42,6 +39,5 @@ return [
         'tabs'  => [
             'inventories'   => 'Inventories',
         ],
-        'title' => 'Voorwerp :name',
     ],
 ];

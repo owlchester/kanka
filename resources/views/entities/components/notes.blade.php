@@ -11,7 +11,7 @@ if (empty($entity)) {
 $wrapper = false;
 $entryShown = false;
 if (!isset($pinnedNotes)) {
-    $pinnedNotes = $entity->notes()->with(['permissions', 'location', 'creator', 'editor'])->ordered()->paginate(15);
+    $pinnedNotes = $entity->notes()->with(['permissions', 'location'])->ordered()->paginate(15);
     $wrapper = true;
 }
 
@@ -45,10 +45,10 @@ $first = $pinnedNotes->first();
     @if ($pinnedNotes->currentPage() < $pinnedNotes->lastPage())
         <div class="text-center">
             <a href="#" class="btn btn-default btn-sm margin-bottom story-load-more" data-url="{{ route('entities.story.load-more', [$entity, 'page' => $pinnedNotes->currentPage() + 1]) }}">
-                <i class="fas fa-refresh"></i> {{ __('entities/story.actions.load_more') }}
+                <i class="fa-solid fa-refresh"></i> {{ __('entities/story.actions.load_more') }}
             </a>
 
-            <i class="fa fa-spinner fa-spin fa-2x" id="story-more-spinner" style="display: none"></i>
+            <i class="fa-solid fa-spinner fa-spin fa-2x" id="story-more-spinner" style="display: none"></i>
         </div>
     @endif
 
@@ -61,7 +61,7 @@ $first = $pinnedNotes->first();
     <div class="margin-bottom text-center row-add-note-button">
         <a href="{{ route('entities.entity_notes.create', $entity) }}" class="btn btn-warning btn-sm"
            data-toggle="tooltip" title="{{ __('crud.tooltips.new_post') }}">
-            <i class="fa fa-plus"></i> {{ __('crud.actions.new_post') }}
+            <i class="fa-solid fa-plus"></i> {{ __('crud.actions.new_post') }}
         </a>
     </div>
 @endcan

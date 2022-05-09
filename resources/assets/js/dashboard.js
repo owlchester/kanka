@@ -15,10 +15,10 @@ $(document).ready(function() {
         var preview = $('#widget-preview-body-' + $(this).data('widget'));
         if (preview.hasClass('preview')) {
             preview.removeClass('preview').addClass('full');
-            $(this).html('<i class="fa fa-chevron-up"></i>');
+            $(this).html('<i class="fa-solid fa-chevron-up"></i>');
         } else {
             preview.removeClass('full').addClass('preview');
-            $(this).html('<i class="fa fa-chevron-down"></i>');
+            $(this).html('<i class="fa-solid fa-chevron-down"></i>');
         }
 
     });
@@ -152,7 +152,8 @@ function initWidgetSubform() {
 function initDashboardRecent() {
     $('.widget-recent-more').click(function(e) {
         e.preventDefault();
-        $(this).html('<i class="fa fa-spin fa-spinner"></i>');
+        $(this).find('.spinner').show();
+        $(this).find('span').hide();
 
         $.ajax({
             url: $(this).data('url'),

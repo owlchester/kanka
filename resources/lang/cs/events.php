@@ -30,9 +30,7 @@ return [
         'nested_without'=> 'Zobrazit všechny události, které nemají nadřazenou událost. Klepnutím na danou událost zobrazíš podřízené události.',
     ],
     'index'         => [
-        'add'       => 'Nová událost',
-        'header'    => 'Události objektu :name',
-        'title'     => 'Události',
+        'title' => 'Události',
     ],
     'placeholders'  => [
         'date'      => 'Kalendářní datum události',
@@ -44,7 +42,6 @@ return [
         'tabs'  => [
             'events'    => 'Události',
         ],
-        'title' => 'Událost :name',
     ],
     'tabs'          => [
         'calendars' => 'Položky kalendáře',

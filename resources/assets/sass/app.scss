@@ -164,9 +164,6 @@ table {
     overflow: hidden;
     max-height: 48px;
 
-    .fa {
-    }
-
     &:hover {
       background-color: rgba(31, 0, 4, 0.7);
     }
@@ -548,6 +545,7 @@ summary { display: list-item; }
 // RPG awesome dropdown icon margin
 .dropdown-menu > li > a > :is(.fas, .fab, .far, .ra, .fa-solid, .fa-light, .fa-thin, .fa-regular) {
   margin-right: 10px;
+  width: 14px;
 }
 
 .table .table-actions .dropdown-toggle i {
@@ -594,6 +592,7 @@ summary { display: list-item; }
 .skip-nav-link {
   position: absolute;
   left: .5rem;
+  top: -2px;
   border-radius: 0 0 0.25rem 0.25rem;
   padding: 0.5rem 1rem;
   background-color: white;
@@ -603,8 +602,12 @@ summary { display: list-item; }
   z-index: 1040;
 
   &:focus {
+    top: 0;
     transform: translateY(0);
   }
+}
+.main-header .navbar a:focus {
+  color: var(--link-text) !important;
 }
 
 /** Toast **/

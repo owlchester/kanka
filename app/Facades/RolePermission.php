@@ -2,7 +2,6 @@
 
 namespace App\Facades;
 
-use App\Models\CampaignRole;
 use Illuminate\Support\Facades\Facade;
 
 /**
@@ -10,8 +9,8 @@ use Illuminate\Support\Facades\Facade;
  * Used for the Entity object
  * @package App\Facades
  *
- * @see \App\Services\RolePermission
- * @mixin \App\Services\RolePermission
+ * @see \App\Services\Permissions\RolePermission
+ * @mixin \App\Services\Permissions\RolePermission
  */
 class RolePermission extends Facade
 {

@@ -26,16 +26,12 @@ return [
         'is_pinned' => 'Er kunnen maximaal 3 notities worden vastgemaakt om op het dashboard te worden weergegeven.',
     ],
     'index'         => [
-        'add'       => 'Nieuwe Notitie',
-        'header'    => 'Notities van :name',
-        'title'     => 'Notities',
+        'title' => 'Notities',
     ],
     'placeholders'  => [
         'name'  => 'Naam van de notitie',
         'note'  => 'Kies een bovenliggende notitie',
         'type'  => 'Religie, Ras, Politiek systeem',
     ],
-    'show'          => [
-        'title' => 'Notitie :name',
-    ],
+    'show'          => [],
 ];

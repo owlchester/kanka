@@ -1,32 +1,36 @@
 <?php
 
 return [
-    'actions'       => [
+    'actions'           => [
         'mode-map'      => 'Outil de visualisation des relations',
         'mode-table'    => 'Table des relations et connexions',
     ],
-    'bulk'          => [
+    'bulk'              => [
         'delete'    => '{1} :count relation supprimée.|[2,*] :count relations supprimées.',
         'success'   => [
             'editing'           => '{1} :count relation modifiée.|[2,*] :count relations modifiées.',
             'editing_partial'   => '{1} :count/:total relation modifiée.|[2,*] :count/:total relations modifiées.',
         ],
     ],
-    'connections'   => [
+    'connections'       => [
         'map_point'         => 'Point de carte',
         'mention'           => 'Mention',
         'quest_element'     => 'Élément de quête',
         'timeline_element'  => 'Élément de timeline',
     ],
-    'create'        => [
+    'create'            => [
         'new_title' => 'Nouvelle relation',
         'success'   => 'Relation :target ajoutée pour :entity.',
         'title'     => 'Nouvelle relation pour :name',
     ],
-    'destroy'       => [
+    'delete_mirrored'   => [
+        'helper'    => 'Cette relation est dupliquée sur l\'entité cible. Sélectionner cette option pour aussi supprimer la relation symétrique.',
+        'option'    => 'Supprimer la relation miroir',
+    ],
+    'destroy'           => [
         'success'   => 'Relation :target supprimée pour :entity.',
     ],
-    'fields'        => [
+    'fields'            => [
         'attitude'          => 'Attitude',
         'connection'        => 'Connexion',
         'is_star'           => 'Epinglé',
@@ -36,12 +40,12 @@ return [
         'target_relation'   => 'Relation de la cible',
         'two_way'           => 'Créer une relation miroir',
     ],
-    'helper'        => 'Définir des relations entre entités avec leurs description, attitude et visibilité. Les relations peuvent aussi être épinglées sur le menu de l\'entité.',
-    'helpers'       => [
+    'helper'            => 'Définir des relations entre entités avec leurs description, attitude et visibilité. Les relations peuvent aussi être épinglées sur le menu de l\'entité.',
+    'helpers'           => [
         'no_relations'  => 'Cette entité n\'a actuellement aucune relation vers d\'autres entités de la campagne.',
         'popup'         => 'Les entités de la campagne peuvent être lié entre elles en utilisant des relations. Celles-ci peuvent avoir une description, une évaluation de relation, un control de visibilité, et plus.',
     ],
-    'hints'         => [
+    'hints'             => [
         'attitude'          => 'Ce champ optionnel peut être utilisé pour définir l\'ordre ascendant dans lequel s\'affichent les relations.',
         'mirrored'          => [
             'text'  => 'Cette relation est liée avec :link.',
@@ -50,33 +54,32 @@ return [
         'target_relation'   => 'La description de la relation sur la cible. Laisser vide pour utiliser la même relation pour la cible.',
         'two_way'           => 'Sélectionne pour créer une copie de la relation sur la cible.',
     ],
-    'index'         => [
-        'add'   => 'Nouvelle relation',
+    'index'             => [
         'title' => 'Relations',
     ],
-    'options'       => [
+    'options'           => [
         'mentions'  => 'Relations + liés + mentions',
         'related'   => 'Relations + liés',
         'relations' => 'Relations',
         'show'      => 'Afficher',
     ],
-    'panels'        => [
+    'panels'            => [
         'related'   => 'Liés',
     ],
-    'placeholders'  => [
+    'placeholders'      => [
         'attitude'  => 'de -100 à 100, 100 étant très positif.',
         'relation'  => 'Nature de la relation',
         'target'    => 'Choix d\'un élément',
     ],
-    'show'          => [
+    'show'              => [
         'title' => 'Relations de :name',
     ],
-    'teaser'        => 'Les campagnes boostées ont accès à l\'explorateur de relation. Cliquer pour en savoir plus sur les campagnes boostées.',
-    'types'         => [
+    'teaser'            => 'Les campagnes boostées ont accès à l\'explorateur de relation. Cliquer pour en savoir plus sur les campagnes boostées.',
+    'types'             => [
         'family_member'         => 'Membre de famille',
         'organisation_member'   => 'Membre d\'organisation',
     ],
-    'update'        => [
+    'update'            => [
         'success'   => 'Relation :target modifiée pour :entity.',
         'title'     => 'Modifier la relation de :name',
     ],

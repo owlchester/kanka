@@ -14,7 +14,7 @@
         <div class="header-buttons">
             <a href="{{ route('abilities.entity-add', $model) }}" class="btn btn-warning btn-sm"
                data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('abilities.entity-add', $model) }}">
-                <i class="fa fa-plus"></i> <span class="hidden-sm hidden-xs">{{ __('abilities.children.actions.add') }}</span>
+                <i class="fa-solid fa-plus"></i> <span class="hidden-sm hidden-xs">{{ __('abilities.children.actions.add') }}</span>
             </a>
         </div>
     @endcan

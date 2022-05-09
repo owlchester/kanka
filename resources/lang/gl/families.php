@@ -22,7 +22,6 @@ return [
         'location'  => 'Localización',
         'members'   => 'Integrantes',
         'name'      => 'Nome',
-        'relation'  => 'Relación',
         'type'      => 'Tipo',
     ],
     'helpers'       => [
@@ -34,9 +33,7 @@ return [
         'members'   => 'As persoas integrantes dunha familia móstranse aquí. Unha personaxe pode ser engadida a unha familia editando esa personaxe e usando o campo "Familia".',
     ],
     'index'         => [
-        'add'       => 'Nova familia',
-        'header'    => 'Familias de :name',
-        'title'     => 'Familias',
+        'title' => 'Familias',
     ],
     'members'       => [
         'helpers'   => [
@@ -55,8 +52,6 @@ return [
             'all_members'   => 'Todas as integrantes',
             'families'      => 'Familias',
             'members'       => 'Integrantes',
-            'relation'      => 'Relacións',
         ],
-        'title' => 'Familia :name',
     ],
 ];

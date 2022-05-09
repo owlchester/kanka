@@ -61,7 +61,6 @@ return [
         'nested_without'    => 'Mostrando todos los mapas sin ningún superior. Haz clic sobre una fila para mostrar sus descendientes.',
     ],
     'index'         => [
-        'add'   => 'Nuevo mapa',
         'title' => 'Mapas',
     ],
     'maps'          => [
@@ -87,6 +86,5 @@ return [
         'tabs'  => [
             'maps'  => 'Mapas',
         ],
-        'title' => 'Mapa :name',
     ],
 ];

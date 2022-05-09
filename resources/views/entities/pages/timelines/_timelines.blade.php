@@ -16,8 +16,6 @@
             {{ __('entities/timelines.helper') }}
         </p>
 
-        @include('cruds.datagrids.sorters.simple-sorter', ['target' => '#entity-timelines'])
-
         <table id="entity_timelines" class="table table-hover">
             <thead>
             <tr>
@@ -31,7 +29,7 @@
                 <th>
                     {{ __('timelines/elements.fields.date') }}
                 </th>
-                @if (Auth::check())
+                @if (auth()->check())
                     <th>
                         {{ __('crud.fields.visibility') }}
                     </th>
@@ -61,9 +59,9 @@
                     <td class="breakable">
                         <a href="{{ route('timelines.show', [$element->timeline_id, '#element' . $element->id]) }}">
                             {{ $element->date }}
-                            <a/>
+                        </a>
                     </td>
-                    @if (Auth::check())
+                    @if (auth()->check())
                         <td>
                             @include('cruds.partials.visibility', ['model' => $element])
                         </td>

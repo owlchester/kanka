@@ -25,30 +25,29 @@ return [
         'eras'          => 'Ere',
         'name'          => 'Nome',
         'reverse_order' => 'Inverti l\'ordine delle ere',
-        'timeline'      => 'Linea temporale madre',
+        'timeline'      => 'Linea temporale principale',
         'timelines'     => 'Linee temporali',
         'type'          => 'Tipo',
     ],
     'helpers'       => [
         'nested_parent'     => 'Linee temporali di :parent',
-        'nested_without'    => 'Tutte le linee temporali che non hanno una linea temporale madre. Clicca su una riga per vedere le linee temporali figlie',
+        'nested_without'    => 'Tutte le linee temporali che non hanno una linea temporale principale. Clicca su una riga per vedere le linee temporali figlie',
         'no_era'            => 'Attualmente questa linea temporale non ha ere. Le ere possono essere aggiunte nella schermata di modifica delle linee temporali, dove è possibile aggiungere elementi.',
         'reorder'           => 'Trascina gli elementi dell\'era per riordinarli.',
         'reorder_tooltip'   => 'Clicca per abilitare il riordino degli elementi trascinandoli.',
         'reverse_order'     => 'Abilita per visualizzare le ere in ordine cronologico inverso (prima l\'era più antica)',
     ],
     'index'         => [
-        'add'   => 'Nuova linea temporale',
         'title' => 'Linee temporali',
     ],
     'placeholders'  => [
         'name'  => 'Nome della linea temporale',
+        'type'  => 'Principale, Cronache del mondo, Storia del Regno',
     ],
     'show'          => [
         'tabs'  => [
             'timelines' => 'Linee temporali',
         ],
-        'title' => 'Linea temporale :name',
     ],
     'timelines'     => [
         'title' => 'Linea temporale :name Linee temporali',

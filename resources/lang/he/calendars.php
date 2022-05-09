@@ -103,9 +103,7 @@ return [
         'years'             => 'ישנן שנים משמעותיות מספיק שיהיה להן שמות יחודיים.',
     ],
     'index'         => [
-        'add'       => 'לוח שנה חדש',
-        'header'    => 'לוחות השנה של :name',
-        'title'     => 'לוחות שנה',
+        'title' => 'לוחות שנה',
     ],
     'layouts'       => [
         'month' => 'חודש',
@@ -195,10 +193,8 @@ return [
         'moon_waning_moon'  => 'ירח מתמלא :moon',
         'moon_waxing_moon'  => 'ירח נחסר :moon',
         'tabs'              => [
-            'events'        => 'אירועי לוח שנה',
-            'information'   => 'מידע',
-            'weather'       => 'מזג אוויר',
+            'events'    => 'אירועי לוח שנה',
+            'weather'   => 'מזג אוויר',
         ],
-        'title'             => 'לוח שנה :name',
     ],
 ];

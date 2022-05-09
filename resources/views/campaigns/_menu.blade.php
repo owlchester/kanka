@@ -6,26 +6,26 @@ if (auth()->check()) {
 
     if (!$campaign->boosted()) {
         $buttons[] = '<a href="' . route('settings.boost', ['campaign' => $campaign->id]) .'" class="btn btn-block bg-maroon btn-boost">
-            <i class="fa fa-rocket"></i> ' . __('campaigns.show.actions.boost') . '</a>';
+            <i class="fa-solid fa-rocket"></i> ' . __('campaigns.show.actions.boost') . '</a>';
     }
     if (auth()->user()->can('update', $campaign)) {
         $buttons[] = '<a href="'. route('campaigns.edit', $campaign->id) .'" class="btn btn-primary btn-block">
-            <i class="fa fa-edit" aria-hidden="true"></i> '. __('campaigns.show.actions.edit') .'</a>';
+            <i class="fa-solid fa-edit" aria-hidden="true"></i> '. __('campaigns.show.actions.edit') .'</a>';
     }
     if (auth()->user()->can('leave', $campaign)) {
         $buttons[] = '<button data-url="'. route('campaigns.leave') . '" class="btn btn-warning btn-block click-confirm" data-toggle="modal" data-target="#click-confirm" data-message="' . __('campaigns.leave.confirm', ['name' => $campaign->name]) . '">
-                <i class="fa fa-sign-out-alt" aria-hidden="true"></i> ' . __('campaigns.show.actions.leave') . '
+                <i class="fa-solid fa-sign-out-alt" aria-hidden="true"></i> ' . __('campaigns.show.actions.leave') . '
             </button>';
     }
 
     if (auth()->user()->can('roles', $campaign)) {
         if (auth()->user()->can('delete', $campaign)) {
             $buttons[] = '<button class="btn btn-block btn-danger delete-confirm" data-name="' . $campaign->name . '" data-toggle="modal" data-target="#delete-confirm" data-delete-target="delete-campaign-confirm-form">
-        <i class="fa fa-trash" aria-hidden="true"></i> ' . __('campaigns.destroy.action') . '
+        <i class="fa-solid fa-trash" aria-hidden="true"></i> ' . __('campaigns.destroy.action') . '
     </button>' . Form::open(['method' => 'DELETE', 'route' => ['campaigns.destroy', $campaign->id], 'style' => 'display:inline', 'id' => 'delete-campaign-confirm-form']) . Form::close();
         } else {
             $buttons[] = '<span class="btn btn-block btn-danger disabled" title="' . __('campaigns.destroy.helper') . '" data-toggle="tooltip">
-                    <i class="fa fa-trash" aria-hidden="true"></i> ' . __('campaigns.destroy.action') . '</span>
+                    <i class="fa-solid fa-trash" aria-hidden="true"></i> ' . __('campaigns.destroy.action') . '</span>
     <p class="visible-xs visible-sm help-block text-center">' . __('campaigns.destroy.helper') . '</p>';
         }
     }
@@ -60,7 +60,7 @@ if (auth()->check()) {
                         <a href="{{ route('recovery') }}">
                             {{ __('campaigns.show.tabs.recovery') }}
                             <span class="label label-default bg-maroon pull-right" title="{{ __('crud.tooltips.boosted_feature') }}" data-toggle="tooltip">
-                                <i class="fas fa-rocket"></i>
+                                <i class="fa-solid fa-rocket"></i>
                             </span>
                         </a>
                     </li>
@@ -70,7 +70,7 @@ if (auth()->check()) {
                             <a href="{{ route('stats') }}">
                                 {{ __('campaigns.show.tabs.achievements') }}
                                 <span class="label label-default bg-maroon pull-right" title="{{ __('crud.tooltips.boosted_feature') }}" data-toggle="tooltip">
-                            <i class="fas fa-rocket"></i>
+                            <i class="fa-solid fa-rocket"></i>
                         </span>
                             </a>
                         </li>
@@ -127,7 +127,7 @@ if (auth()->check()) {
                             <a href="{{ route('campaign_plugins.index') }}">
                                 {{ __('campaigns.show.tabs.plugins') }}
                                 <span class="label label-default bg-maroon pull-right" title="{{ __('crud.tooltips.boosted_feature') }}" data-toggle="tooltip">
-                                <i class="fas fa-rocket"></i>
+                                <i class="fa-solid fa-rocket"></i>
                             </span>
                             </a>
                         </li>
@@ -137,7 +137,7 @@ if (auth()->check()) {
                         <a href="{{ route('campaign.default-images') }}">
                             {{ __('campaigns.show.tabs.default-images') }}
                             <span class="label label-default bg-maroon pull-right" title="{{ __('crud.tooltips.boosted_feature') }}" data-toggle="tooltip">
-                                <i class="fas fa-rocket"></i>
+                                <i class="fa-solid fa-rocket"></i>
                             </span>
                         </a>
                     </li>
@@ -145,7 +145,7 @@ if (auth()->check()) {
                         <a href="{{ route('campaign_styles.index') }}">
                             {{ __('campaigns.show.tabs.styles') }}
                             <span class="label label-default bg-maroon pull-right" title="{{ __('crud.tooltips.boosted_feature') }}" data-toggle="tooltip">
-                                <i class="fas fa-rocket"></i>
+                                <i class="fa-solid fa-rocket"></i>
                             </span>
                         </a>
                     </li>
@@ -153,7 +153,7 @@ if (auth()->check()) {
                         <a href="{{ route('campaign-sidebar') }}">
                             {{ __('campaigns.show.tabs.sidebar') }}
                             <span class="label label-default bg-maroon pull-right" title="{{ __('crud.tooltips.boosted_feature') }}" data-toggle="tooltip">
-                                <i class="fas fa-rocket"></i>
+                                <i class="fa-solid fa-rocket"></i>
                             </span>
                         </a>
                     </li>

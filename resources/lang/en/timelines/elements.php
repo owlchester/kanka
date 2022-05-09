@@ -1,6 +1,10 @@
 <?php
 
 return [
+    'copy_mention'  => [
+        'copy_with_name'    => 'Copy advanced mention with element name',
+        'success'           => 'Advanced mention to element copied to the clipboard.',
+    ],
     'create'        => [
         'success'   => 'Element added to the timeline.',
         'title'     => 'New Timeline Element',

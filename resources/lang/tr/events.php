@@ -23,9 +23,7 @@ return [
         'date'  => 'Bu alan her şeyi içinde bulundurabilir ve serüvenin takvimlerine bağlı değildir. Bu olayı bir takvime bağlamak için, olayı takvimde ya da bu olayın hatırlatıcılar sekmesinde ekleyin.',
     ],
     'index'         => [
-        'add'       => 'Yeni Olay',
-        'header'    => ':name Olayları',
-        'title'     => 'Olaylar',
+        'title' => 'Olaylar',
     ],
     'placeholders'  => [
         'date'      => 'Olayınız için bir tarih',
@@ -33,9 +31,7 @@ return [
         'name'      => 'Olayın adı',
         'type'      => 'Seremoni, Festival, Felaket, Savaş, Doğum',
     ],
-    'show'          => [
-        'title' => ':name Olayı',
-    ],
+    'show'          => [],
     'tabs'          => [
         'calendars' => 'Takvim Girdileri',
     ],

@@ -2,10 +2,9 @@
 
 namespace App\Models;
 
-use App\Facades\CampaignLocalization;
+use App\Models\Concerns\Acl;
 use App\Traits\CampaignTrait;
 use App\Traits\ExportableTrait;
-use App\Traits\VisibleTrait;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
@@ -26,16 +25,17 @@ use Illuminate\Support\Str;
  * @property string $reset
  * @property int $calendar_id
  *
- * @property CalendarEvent[] $calendarEvents
+ * @property EntityEvent[] $calendarEvents
  * @property CalendarWeather[] $calendarWeather
  * @property Calendar $calendar
  */
 class Calendar extends MiscModel
 {
     use CampaignTrait,
-        VisibleTrait,
         ExportableTrait,
-        SoftDeletes;
+        SoftDeletes,
+        Acl
+    ;
 
     /**
      * @var array
@@ -144,19 +144,6 @@ class Calendar extends MiscModel
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasManyThrough
-     */
-    public function events()
-    {
-        return $this->hasManyThrough(
-            'App\Models\Event',
-            EntityEvent::class,
-            'calendar_id',
-            'entity_id'
-        );
-    }
-
-    /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function calendarEvents()
@@ -198,7 +185,7 @@ class Calendar extends MiscModel
         $order = $operator == '<' ? 'DESC' : 'ASC';
         $query = $this->calendarEvents()
             ->with(['entity', 'calendar'])
-            ->entityAcl()
+            ->has('entity')
             ->where(function ($sub) use ($operator, $recurring) {
                 // Recurring events
                 if ($recurring) {
@@ -488,7 +475,7 @@ class Calendar extends MiscModel
      */
     public function menuItems(array $items = []): array
     {
-        $count = $this->calendarEvents()->entityAcl()->count();
+        $count = $this->calendarEvents()->has('entity')->count();
         if ($count > 0) {
             $items['second']['events'] = [
                 'name' => 'calendars.show.tabs.events',

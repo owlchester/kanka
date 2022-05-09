@@ -22,7 +22,6 @@ return [
         'location'  => 'Locatie',
         'members'   => 'Leden',
         'name'      => 'Naam',
-        'relation'  => 'Relatie',
         'type'      => 'Type',
     ],
     'helpers'       => [
@@ -32,9 +31,7 @@ return [
         'members'   => 'Leden van een familie worden hier vermeld. Een personage kan aan een familie worden toegevoegd door het gewenste personage te bewerken en de vervolgkeuzelijst "Familie" te gebruiken.',
     ],
     'index'         => [
-        'add'       => 'Nieuwe Familie',
-        'header'    => 'Families van :name',
-        'title'     => 'Families',
+        'title' => 'Families',
     ],
     'members'       => [
         'helpers'   => [
@@ -53,8 +50,6 @@ return [
             'all_members'   => 'Alle Leden',
             'families'      => 'Families',
             'members'       => 'Leden',
-            'relation'      => 'Relaties',
         ],
-        'title' => 'Familie :name',
     ],
 ];

@@ -8,7 +8,8 @@ return [
         'remove_all'        => 'Eliminar todos',
     ],
     'errors'        => [
-        'loop'  => 'Hai un bucle infinito neste cálculo de atributo!',
+        'loop'      => 'Hai un bucle infinito neste cálculo de atributo!',
+        'too_many'  => 'Hai demasiados campos nesta entidade, non poden ser engadidos máis atributos. Elimina algúns para poder engadir máis.',
     ],
     'fields'        => [
         'attribute'             => 'Atributo',
@@ -33,6 +34,10 @@ return [
         'success'   => 'Atributos de :entity actualizados.',
         'title'     => 'Atributos de :name',
     ],
+    'live'          => [
+        'success'   => 'Atributo ":attribute" actualizado.',
+        'title'     => 'Actualizando ":attribute"',
+    ],
     'placeholders'  => [
         'attribute' => 'Nivel, iniciativa, populación...',
         'block'     => 'Nome do bloque',
@@ -41,6 +46,7 @@ return [
             'class' => 'Clase de FontAwesome ou de RPG Awesome: fas fa-users',
             'name'  => 'Nome da icona',
         ],
+        'number'    => 'Nome do número',
         'random'    => [
             'name'  => 'Nome do atributo',
             'value' => '1-100 ou lista de valores separados por comas',
@@ -61,6 +67,7 @@ return [
         'block'     => 'Bloque',
         'checkbox'  => 'Caixa de selección',
         'icon'      => 'Icona',
+        'number'    => 'Número',
         'random'    => 'Aleatorio',
         'section'   => 'Sección',
         'text'      => 'Texto multiliña',

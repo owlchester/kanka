@@ -35,7 +35,7 @@ $statuses = [
 <div class="form-group">
     <label>
         {{ __('organisations.members.fields.pinned') }}
-        <i class="fas fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" title="{{ __('organisations.members.helpers.pinned') }}"></i>
+        <i class="fa-solid fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" title="{{ __('organisations.members.helpers.pinned') }}"></i>
     </label>
     {!! Form::select('pin_id', $options, null, ['class' => 'form-control']) !!}
 </div>

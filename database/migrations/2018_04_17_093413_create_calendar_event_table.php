@@ -18,6 +18,7 @@ class CreateCalendarEventTable extends Migration
             $table->integer('calendar_id')->unsigned();
             $table->integer('event_id')->unsigned();
             $table->string('date');
+            $table->string('colour')->nullable();
             $table->timestamps();
 
             $table->index('date');

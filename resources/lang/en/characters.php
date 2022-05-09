@@ -40,7 +40,6 @@ return [
         'pronouns'                  => 'Pronouns',
         'race'                      => 'Race',
         'races'                     => 'Races',
-        'relation'                  => 'Relation',
         'sex'                       => 'Gender',
         'title'                     => 'Title',
         'traits'                    => 'Traits',
@@ -61,8 +60,6 @@ return [
         'actions'   => [
             'random'    => 'New Random Character',
         ],
-        'add'       => 'New Character',
-        'header'    => 'Characters in :name',
         'title'     => 'Characters',
     ],
     'items'         => [
@@ -132,10 +129,8 @@ return [
     ],
     'show'          => [
         'tabs'  => [
-            'map'           => 'Relation Map',
             'organisations' => 'Organisations',
         ],
-        'title' => 'Character :name',
     ],
     'warnings'      => [
         'personality_hidden'    => 'You aren\'t allowed to edit personality traits on this character.',

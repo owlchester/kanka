@@ -41,7 +41,7 @@
             <td>{{ $layer->position }}</td>
             <td>{{ __('maps/layers.short_types.' . $layer->typeName()) }}</td>
             <td>
-                @include('cruds.partials.visibility', ['model' => $layer])
+                {!! $layer->visibilityIcon() !!}
             </td>
             <td class="text-right">
                 <a href="{{ route('maps.map_layers.edit', [$model, $layer]) }}" class="btn btn-primary btn-xs"
@@ -50,13 +50,13 @@
                    data-url="{{ route('maps.map_layers.edit', [$model, $layer]) }}"
                    data-backdrop="static"
                 >
-                    <i class="fa fa-pencil"></i>
+                    <i class="fa-solid fa-pencil"></i>
                 </a>
 
                 <a href="#" class="btn btn-xs btn-danger delete-confirm" data-toggle="modal" data-name="{{ $layer->name }}"
                         data-target="#delete-confirm" data-delete-target="delete-form-layer-{{ $layer->id }}"
                         title="{{ __('crud.remove') }}">
-                    <i class="fa fa-trash" aria-hidden="true"></i>
+                    <i class="fa-solid fa-trash" aria-hidden="true"></i>
                 </a>
             </td>
         </tr>
@@ -75,7 +75,7 @@
        data-url="{{ route('maps.map_layers.create', ['map' => $model]) }}"
        data-backdrop="static"
     >
-        <i class="fas fa-plus"></i> {{ __('maps/layers.actions.add') }}
+        <i class="fa-solid fa-plus"></i> {{ __('maps/layers.actions.add') }}
     </a>
     @endif
 

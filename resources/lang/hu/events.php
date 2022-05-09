@@ -30,9 +30,7 @@ return [
         'nested_without'=> 'Minden eseményt megmutat, amelyeknek nincs szülőeseménye. Klikkelj egy sorra, hogy meglásd a gyermekeseményeket.',
     ],
     'index'         => [
-        'add'       => 'Új esemény',
-        'header'    => ':name eseményei',
-        'title'     => 'Események',
+        'title' => 'Események',
     ],
     'placeholders'  => [
         'date'      => 'Az eseményed dátuma',
@@ -40,9 +38,7 @@ return [
         'name'      => 'Az esemény neve',
         'type'      => 'Szertartás, ünnepség, katasztrófa, csata, születés',
     ],
-    'show'          => [
-        'title' => ':name esemény',
-    ],
+    'show'          => [],
     'tabs'          => [
         'calendars' => 'Naptári bejegyzések',
     ],

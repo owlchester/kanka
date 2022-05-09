@@ -21,11 +21,11 @@
             <td>{{ $item->diceRollResults()->count() }}</td>
             <td class="text-right">
                 <a href="{{ route('dice_rolls.show', $item) }}" class="btn btn-xs btn-default">
-                    <i class="fa fa-eye"></i> {{ trans('crud.view') }}
+                    <i class="fa-solid fa-eye"></i> {{ trans('crud.view') }}
                 </a>
                 @can('update', $item)
                     <a href="{{ route('dice_rolls.edit', $item) }}" class="btn btn-xs btn-primary">
-                        <i class="fa fa-edit"></i> {{ trans('crud.edit') }}
+                        <i class="fa-solid fa-edit"></i> {{ trans('crud.edit') }}
                     </a>
                 @endcan
             </td>

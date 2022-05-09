@@ -69,7 +69,7 @@
                         <div class="col-sm-4">
 
                             <button class="btn btn-primary">
-                                <i class="fa fa-history"></i> {{ __('campaigns/recovery.actions.recover') }}
+                                <i class="fa-solid fa-history"></i> {{ __('campaigns/recovery.actions.recover') }}
                             </button>
                         </div>
                         <div class="col-sm-8 text-right">

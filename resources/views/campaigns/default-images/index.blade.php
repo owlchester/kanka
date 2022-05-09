@@ -35,7 +35,7 @@
                                     <button class="btn btn-xs btn-danger delete-confirm" data-toggle="modal" data-name="{{ __('entities.' . $image['type']) }}"
                                             data-target="#delete-confirm" data-delete-target="delete-form-{{ $image['uuid'] }}"
                                             title="{{ __('crud.remove') }}">
-                                        <i class="fa fa-trash" aria-hidden="true"></i>
+                                        <i class="fa-solid fa-trash" aria-hidden="true"></i>
                                     </button>
                                     {!! Form::open([
                                         'method' => 'DELETE',

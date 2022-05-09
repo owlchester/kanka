@@ -32,14 +32,11 @@ return [
         'reverse_order'     => 'Aktivera för att se eror i omvänd kronologisk ordning (äldsta eran först)',
     ],
     'index'         => [
-        'add'   => 'Ny Tidslinje',
         'title' => 'Tidslinjer',
     ],
     'placeholders'  => [
         'name'  => 'Namn på tidslinjen',
         'type'  => 'Primär, Världskrönika, Kungarikets arv',
     ],
-    'show'          => [
-        'title' => 'Tidslinje :name',
-    ],
+    'show'          => [],
 ];

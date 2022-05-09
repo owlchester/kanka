@@ -12,7 +12,7 @@
 
             <p class="text-muted">
                 {{ __('settings.api.helper') }}<br />
-                <a href="/docs/1.0" target="_blank"><i class="fa fa-external-link-alt"></i> {{ __('settings.api.link') }}</a>
+                <a href="/docs/1.0" target="_blank"><i class="fa-solid fa-external-link-alt"></i> {{ __('settings.api.link') }}</a>
             </p>
 
         </div>

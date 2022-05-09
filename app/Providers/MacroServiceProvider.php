@@ -4,25 +4,36 @@
  */
 namespace App\Providers;
 
+use App\Facades\AdCache;
+use App\Facades\CampaignLocalization;
 use App\Facades\EntityPermission;
+use App\Facades\Img;
 use App\Models\Entity;
-use App\Models\MiscModel;
-use App\Services\Macros;
 use App\User;
+use Carbon\Carbon;
 use Form;
-use Collective\Html\HtmlServiceProvider;
 use Illuminate\Support\Facades\Blade;
+use Illuminate\Support\ServiceProvider;
 
 /**
  * Class MacroServiceProvider
  * @package App\Providers
  */
-class MacroServiceProvider extends HtmlServiceProvider
+class MacroServiceProvider extends ServiceProvider
 {
     /**
      * Define our macros
      */
     public function boot()
+    {
+        $this->addFormDirectives();
+        $this->addCustomBladeDirectives();
+    }
+
+    /**
+     *
+     */
+    protected function addFormDirectives()
     {
         Form::component('select2', 'components.form.select2', [
             'fieldId',
@@ -91,8 +102,6 @@ class MacroServiceProvider extends HtmlServiceProvider
             'fieldId',
         ]);
 
-        $this->blade();
-
         /*Form::function($fieldId, $searchRouteName, $prefill = null, $placeholderKey = null) {
 
             $placeholderKey = empty($placeholderKey) ? 'crud.placeholders.' . trim($fieldId) : $placeholderKey;
@@ -119,23 +128,104 @@ class MacroServiceProvider extends HtmlServiceProvider
         });*/
     }
 
-    protected function blade()
+    /**
+     * Setup some custom blade directives to simply some code
+     * For example, use @admin in blade
+     */
+    protected function addCustomBladeDirectives()
     {
-        Blade::if('renderOnce', function ($key) {
+        /*Blade::if('renderOnce', function ($key) {
             $key = 'render-once-key-' . $key;
             return defined($key)? false : define($key, true);
-        });
-
-        /*Blade::directive('tooltip', function (Entity $entity) {
-            return "<?php echo '<a class=\"name\" data-toggle=\"tooltip-ajax\" data-id=\"" . $entity->id
-                . '" data-url="' . route('entities.tooltip', $entity->id)
-                . '" data-html="true" href="' . $entity->url() . '">'
-                . e($entity->name)
-                . "</a>\"; ?>";
         });*/
 
-//        Blade::if('campaigns', function () {
-//            return auth()->check() && auth()->user()->hasCampaigns();
-//        });
+        // If a webp fallback is needed
+        Blade::if('nowebp', function () {
+            return Img::nowebp();
+        });
+
+        // Tutorial modal handler
+        Blade::if('tutorial', function (string $tutorial) {
+            // Not logged in? Don't bother
+            if (!auth()->check()) {
+                return false;
+            }
+
+            /** @var User $user */
+            $user = auth()->user();
+
+            // If disabled tutorials, remove all
+            if ($user->disabledTutorial()) {
+                return false;
+            }
+
+            return !$user->readTutorial($tutorial);
+        });
+
+        /** @ads() to show ads */
+        Blade::if('ads', function(string $section = null) {
+            if (empty(config('tracking.adsense'))) {
+                return false;
+            }
+
+            // If requesting a section but it isn't set up, don't show
+            if (!empty($section) && empty(config('tracking.adsense_' . $section))) {
+                return false;
+            }
+
+            // Always show ads to unlogged users
+            if (!auth()->check()) {
+                return true;
+            }
+
+            // Subscribed users don't have ads
+            if (auth()->user()->isPatron()) {
+                return false;
+            }
+
+            // User has been created less than 24 hours ago
+            if (auth()->user()->created_at->diffInHours(Carbon::now()) < 24) {
+                return false;
+            }
+
+            // Boosted campaigns don't either have ads displayed to their members
+            $campaign = CampaignLocalization::getCampaign(false);
+            return !empty($campaign) && !$campaign->boosted();
+        });
+
+        Blade::if('nativeAd', function (int $section) {
+            // If we provided an ad test, override that
+            if (!config('app.admin')) {
+                return false;
+            }
+            if (request()->has('_adtest') && auth()->user()->hasRole('admin')) {
+                return AdCache::test($section, request()->get('_adtest'));
+            }
+            if (!AdCache::has($section)) {
+                return false;
+            }
+            // Always show ads to unlogged users
+            if (!auth()->check()) {
+                return true;
+            }
+
+            if (request()->get('_boost') === '0') {
+                return true;
+            }
+
+            // Subscribed users don't have ads
+            if (auth()->user()->isPatron()) {
+                return false;
+            }
+
+            // User has been created less than 24 hours ago
+            if (auth()->user()->created_at->diffInHours(Carbon::now()) < 24) {
+                return false;
+            }
+
+            // Boosted campaigns don't either have ads displayed to their members
+            $campaign = CampaignLocalization::getCampaign(false);
+            return !empty($campaign) && !$campaign->boosted();
+        });
     }
 }

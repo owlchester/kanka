@@ -1,5 +1,5 @@
 <label>
-    <i class="fas fa-rocket" title="{{ __('crud.tooltips.boosted_feature') }}" data-toggle="tooltip"></i>
+    <i class="fa-solid fa-rocket" title="{{ __('crud.tooltips.boosted_feature') }}" data-toggle="tooltip"></i>
     {{ __('fields.gallery-image.title') }}
 </label>
 @if ($campaign->campaign()->boosted(true))

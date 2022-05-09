@@ -19,7 +19,7 @@ if ($attribute->isSection()) {
         <div class="col-xs-12 col-sm-4">
             <div class="input-group">
                 <span class="input-group-addon hidden-xs hidden-sm">
-                    <span class="fa fa-arrows-alt-v"></span>
+                    <span class="fa-solid fa-arrows-alt-v"></span>
                 </span>
                 @if($attribute->name == '_layout')
                     {!! Form::text('attr_name[' . $id . ']', $attribute->name, ['placeholder' => __('entities/attributes.placeholders.attribute'), 'class' => 'form-control', 'maxlength' => 191, 'disabled' => 'disabled']) !!}
@@ -61,7 +61,7 @@ if ($attribute->isSection()) {
             @endif
             @if (!isset($model) || auth()->user()->can('attribute', [$model, 'delete']))
                 <a class="text-danger attribute_delete pull-right" title="{{ __('crud.remove') }}">
-                    <i class="fa fa-trash fa-2x"></i>
+                    <i class="fa-solid fa-trash fa-2x"></i>
                 </a>
             @endcan
         </div>

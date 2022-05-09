@@ -10,12 +10,12 @@ if (request()->has('location_id')) {
     $allMembers = false;
 }
 
-$characters = $model
+/*$characters = $model
         ->allCharacters()
         ->filter($filters)
         ->simpleSort($datagridSorter)
         ->with(['location', 'location.entity', 'families', 'families.entity', 'entity', 'entity.tags'])
-        ->paginate();
+        ->paginate();*/
 ?>
 <div class="box box-solid" id="location-characters">
     <div class="box-header">
@@ -25,92 +25,22 @@ $characters = $model
 
         <div class="box-tools">
             <a href="#" class="btn btn-box-tool" data-toggle="modal" data-target="#help-modal">
-                <i class="fa fa-question-circle"></i> {{ __('crud.actions.help') }}
+                <i class="fa-solid fa-question-circle"></i> {{ __('crud.actions.help') }}
             </a>
             @if (request()->has('location_id'))
                 <a href="{{ route('locations.characters', $model) }}" class="btn btn-box-tool">
-                    <i class="fa fa-filter"></i> {{ __('crud.filters.all') }} ({{ $model->allCharacters()->count() }})
+                    <i class="fa-solid fa-filter"></i> {{ __('crud.filters.all') }} ({{ $model->allCharacters()->count() }})
                 </a>
             @else
                 <a href="{{ route('locations.characters', [$model, 'location_id' => $model->id]) }}" class="btn btn-box-tool">
-                    <i class="fa fa-filter"></i> {{ __('crud.filters.direct') }} ({{ $model->characters()->count() }})
+                    <i class="fa-solid fa-filter"></i> {{ __('crud.filters.direct') }} ({{ $model->characters()->count() }})
                 </a>
             @endif
         </div>
     </div>
-    <div class="box-body">
-
-        <div class="row">
-            <div class="col-sm-12 col-md-6">
-                @include('cruds.datagrids.sorters.simple-sorter', ['target' => '#location-characters'])
-            </div>
-        </div>
-
-        @if ($characters->count() > 0)
-        <div class="table-responsive">
-        <table id="characters" class="table table-hover">
-            <thead><tr>
-                <th class="avatar"><br /></th>
-                <th>{{ __('characters.fields.name') }}</th>
-                <th>{{ __('characters.fields.type') }}</th>
-                @if ($campaign->enabled('families'))
-                    <th>{{ __('characters.fields.families') }}</th>
-                @endif
-                @if ($allMembers)<th>{{ __('crud.fields.location') }}</th>@endif
-                @if ($campaign->enabled('races'))
-                    <th>{{ __('characters.fields.races') }}</th>
-                @endif
-            </tr>
-            </thead>
-            <tbody>
-            @foreach ($characters as $character)
-                <tr class="{{ $character->rowClasses() }}">
-                    <td>
-                        <a class="entity-image" style="background-image: url('{{ $character->getImageUrl(40) }}');" title="{{ $character->name }}" href="{{ route('characters.show', $character->id) }}"></a>
-                    </td>
-                    <td>
-                        @if ($character->is_private)
-                            <i class="fas fa-lock" title="{{ __('crud.is_private') }}" data-toggle="tooltip"></i>
-                        @endif
-                        {!! $character->tooltipedLink() !!}
-                        @if ($character->is_dead)
-                            <i class="fa fa-skull" title="{{ __('characters.fields.is_dead') }}"></i>
-                        @endif
-                        <br />
-                        <i>{{ $character->title }}</i>
-                    </td>
-                    <td>
-                        {{ $character->type }}
-                    </td>
-                    @if ($campaign->enabled('families'))
-                        <td>
-                            @foreach ($character->families as $family)
-                                {!! $family->tooltipedLink() !!}
-                            @endforeach
-                        </td>
-                    @endif
-                    @if($allMembers)<td>
-                        {!! $character->location->tooltipedLink() !!}
-                    </td>@endif
-                    @if ($campaign->enabled('races'))
-                        <td>
-                            @foreach ($character->races as $race)
-                                {!! $race->tooltipedLink() !!}
-                            @endforeach
-                        </td>
-                    @endif
-                </tr>
-            @endforeach
-            </tbody>
-        </table>
-        </div>
-        @endif
+    <div id="datagrid-parent" class="table-responsive">
+        @include('layouts.datagrid._table')
     </div>
-    @if ($characters->hasPages())
-        <div class="box-footer text-right">
-            {{ $characters->fragment('location-characters')->appends($filters)->links() }}
-        </div>
-    @endif
 </div>
 
 @section('modals')

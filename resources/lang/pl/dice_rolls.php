@@ -28,8 +28,6 @@ return [
             'dice'      => 'Rzuty kości',
             'results'   => 'Wyniki',
         ],
-        'add'       => 'Nowy rzut kośćmi',
-        'header'    => 'Rzuty kośćmi dla :name',
         'title'     => 'Rzuty kośćmi',
     ],
     'placeholders'  => [
@@ -54,6 +52,5 @@ return [
         'tabs'  => [
             'results'   => 'Wyniki',
         ],
-        'title' => 'Rzut kośćmi :name',
     ],
 ];

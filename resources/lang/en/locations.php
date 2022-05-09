@@ -29,7 +29,6 @@ return [
         'locations'         => 'Locations',
         'map'               => 'Map',
         'name'              => 'Name',
-        'relation'          => 'Relation',
         'type'              => 'Type',
     ],
     'helpers'       => [
@@ -46,18 +45,7 @@ return [
         'is_map_private'    => 'A private map will only be visible to members of the campaign\'s "Admin" role.',
     ],
     'index'         => [
-        'actions'   => [
-            'explore_view'  => 'Nested View',
-        ],
-        'add'       => 'New Location',
-        'header'    => 'Locations in :name',
-        'title'     => 'Locations',
-    ],
-    'items'         => [
-        'title' => 'Location :name Items',
-    ],
-    'journals'      => [
-        'title' => 'Location :name Journals',
+        'title' => 'Locations',
     ],
     'locations'     => [
         'title' => 'Location :name Locations',
@@ -207,16 +195,9 @@ return [
     'show'          => [
         'tabs'  => [
             'characters'    => 'Characters',
-            'events'        => 'Events',
-            'families'      => 'Families',
-            'items'         => 'Items',
-            'journals'      => 'Journals',
             'locations'     => 'Locations',
             'map'           => 'Map',
             'maps'          => 'Maps',
-            'organisations' => 'Organisations',
-            'quests'        => 'Quests',
         ],
-        'title' => 'Location :name',
     ],
 ];

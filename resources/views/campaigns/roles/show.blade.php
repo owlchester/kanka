@@ -28,7 +28,7 @@
 
                     <div class="box-tools">
                         <button class="btn btn-sm btn-default" data-target="#permission-modal" data-toggle="modal">
-                            <i class="fa fa-question-circle"></i> {{ __('campaigns.roles.modals.details.button') }}
+                            <i class="fa-solid fa-question-circle"></i> {{ __('campaigns.roles.modals.details.button') }}
                         </button>
                     </div>
                 </div>
@@ -36,7 +36,7 @@
                     <p class="help-block">{{ __('campaigns.roles.hints.role_permissions', ['name' => $role->name]) }}</p>
                     @if ($role->is_public)
                         <p class="help-block">{!! __('campaigns.roles.hints.public', ['more' => '']) !!}<br />
-                            <a href="https://www.youtube.com/watch?v=VpY_D2PAguM" target="_blank"><i class="fas fa-external-link-alt"></i> {{ __('helpers.public') }}</a>
+                            <a href="https://www.youtube.com/watch?v=VpY_D2PAguM" target="_blank"><i class="fa-solid fa-external-link-alt"></i> {{ __('helpers.public') }}</a>
                         </p>
                     @endif
 

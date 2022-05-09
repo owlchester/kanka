@@ -17,13 +17,10 @@ return [
         'date'      => 'Data',
         'image'     => 'Immagine',
         'name'      => 'Nome',
-        'relation'  => 'Relazione',
         'type'      => 'Tipo',
     ],
     'index'         => [
-        'add'       => 'Nuovo Diario',
-        'header'    => 'Diari di :name',
-        'title'     => 'Diari',
+        'title' => 'Diari',
     ],
     'placeholders'  => [
         'author'    => 'Chi ha scritto il diario',
@@ -31,7 +28,5 @@ return [
         'name'      => 'Nome del diario',
         'type'      => 'Sessione, One Shot, Bozza',
     ],
-    'show'          => [
-        'title' => 'Diario :name',
-    ],
+    'show'          => [],
 ];

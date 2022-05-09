@@ -260,6 +260,13 @@ class CalendarRenderer
         $week = [];
         $remainingRecurring = [];
 
+        // Calc julian based on previous months
+        $julian = 1;
+        for ($passedMonth = 1; $passedMonth < $this->getMonth(); $passedMonth++) {
+            $passedMonthData = $months[$passedMonth-1];
+            $julian += $passedMonthData['length'];
+        }
+
         for ($day = 1; $day <= $monthLength; $day++) {
             if ($offset > 0) {
                 $week[] = null;
@@ -272,6 +279,7 @@ class CalendarRenderer
                     'events' => [],
                     'date' => $exact,
                     'isToday' => false,
+                    'julian' => $julian
                 ];
 
                 if (isset($events[$exact])) {
@@ -327,6 +335,7 @@ class CalendarRenderer
                     }
                 }
                 $week[] = $dayData;
+                $julian++;
             }
 
             $weekLength++;
@@ -364,6 +373,7 @@ class CalendarRenderer
         // Number of weeks in this month?
         $weekdays = $this->calendar->weekdays();
         $months = $this->calendar->months();
+        $julian = 1;
         $data = [];
 
         $events = $this->events();
@@ -441,6 +451,7 @@ class CalendarRenderer
                     'day' => $day,
                     'events' => [],
                     'date' => $exact,
+                    'julian' => $julian,
                     'isToday' => false,
                     'month' => $month['name'],
                     'week' => Arr::get($month, 'type') == 'intercalary' ? null : $weekNumber
@@ -510,6 +521,9 @@ class CalendarRenderer
                 } else {
                     $weekday++;
                 }
+
+                // Increase the julian date by one
+                $julian++;
             }
 
             //if ($weekNumber < 13) dump('finished the month. Did we end the week on the last day? ' . ($endedWeek ? 'yes' : 'no'));
@@ -762,25 +776,26 @@ class CalendarRenderer
             }
 
             // Make sure the user can actually see the requested event
-            if ($event->entity->child && EntityPermission::canView($event->entity, $this->calendar->campaign)) {
-                // If the event reoccurs each month, let's add it everywhere
-                if ($event->is_recurring && $event->recurring_periodicity === 'month') {
-                    $startingMonth = $event->year == $this->getYear() ? $event->month : 1;
-                    for ($month = $startingMonth; $month <= $totalMonths; $month++) {
-                        $recurringDate = $this->getYear() . '-' . $month . '-' . $event->day;
-                        $this->events[$recurringDate][] = $event;
-                        $this->addMultidayEvent($event, $recurringDate);
-                    }
-                } elseif ($event->is_recurring && $event->recurring_periodicity !== 'year') {
-                    // If we haven't passed the max date for this event, show it in the recurring blocks
-                    if (empty($event->recurring_until) || $this->getYear() < $event->recurring_until) {
-                        $this->recurring[$event->recurring_periodicity][] = $event;
-                    }
-                } else {
-                    // Only add it once
-                    $this->events[$date][] = $event;
-                    $this->addMultidayEvent($event, $date);
+            if (!$event->entity || !$event->entity->child) {
+                continue;
+            }
+            // If the event reoccurs each month, let's add it everywhere
+            if ($event->is_recurring && $event->recurring_periodicity === 'month') {
+                $startingMonth = $event->year == $this->getYear() ? $event->month : 1;
+                for ($month = $startingMonth; $month <= $totalMonths; $month++) {
+                    $recurringDate = $this->getYear() . '-' . $month . '-' . $event->day;
+                    $this->events[$recurringDate][] = $event;
+                    $this->addMultidayEvent($event, $recurringDate);
                 }
+            } elseif ($event->is_recurring && $event->recurring_periodicity !== 'year') {
+                // If we haven't passed the max date for this event, show it in the recurring blocks
+                if (empty($event->recurring_until) || $this->getYear() < $event->recurring_until) {
+                    $this->recurring[$event->recurring_periodicity][] = $event;
+                }
+            } else {
+                // Only add it once
+                $this->events[$date][] = $event;
+                $this->addMultidayEvent($event, $date);
             }
         }
     }
@@ -1069,12 +1084,12 @@ class CalendarRenderer
         // Full & New Moon
         $this->addMoonPhase($start, $moon, 'full', 'far fa-circle');
         $newMoon = $start + ($moon['fullmoon'] / 2);
-        $this->addMoonPhase($newMoon, $moon, 'new', 'fas fa-circle');
+        $this->addMoonPhase($newMoon, $moon, 'new', 'fa-solid fa-circle');
 
         if ($moon['fullmoon'] > 10) {
             $quarterMonth = $moon['fullmoon'] / 4;
-            $this->addMoonPhase($newMoon - $quarterMonth, $moon, 'waning', 'far fa-moon');
-            $this->addMoonPhase($newMoon + $quarterMonth, $moon, 'waxing', 'fas fa-moon');
+            $this->addMoonPhase($newMoon - $quarterMonth, $moon, 'waning', 'fa-regular fa-moon');
+            $this->addMoonPhase($newMoon + $quarterMonth, $moon, 'waxing', 'fa-solid fa-moon');
         }
     }
 
@@ -1084,7 +1099,7 @@ class CalendarRenderer
      * @param string $type = 'full
      * @param string $class = 'far fa-circle'
      */
-    protected function addMoonPhase(string $nextFullMoon, array $moon, string $type = 'full', string $class = 'far fa-circle')
+    protected function addMoonPhase(string $nextFullMoon, array $moon, string $type = 'full', string $class = 'fa-regular fa-circle')
     {
         // Moons can be float so we "floor" them
         $nextFullMoon = floor($nextFullMoon);

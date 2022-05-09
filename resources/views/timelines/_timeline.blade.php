@@ -16,8 +16,8 @@ $loadedElements = [];
         <div class="box-header with-border">
             <h3 class="box-title cursor entity-note-toggle" data-toggle="collapse" data-target="#era-items-{{ $era->id }}" data-short="timeline-era-toggle-{{ $era->id }}">
 
-                <i class="fa fa-chevron-up" id="timeline-era-toggle-{{ $era->id }}-show" @if($era->collapsed()) style="display: none;" @endif></i>
-                <i class="fa fa-chevron-down" id="timeline-era-toggle-{{ $era->id }}-hide" @if(!$era->collapsed()) style="display: none;" @endif></i>
+                <i class="fa-solid fa-chevron-up" id="timeline-era-toggle-{{ $era->id }}-show" @if($era->collapsed()) style="display: none;" @endif></i>
+                <i class="fa-solid fa-chevron-down" id="timeline-era-toggle-{{ $era->id }}-hide" @if(!$era->collapsed()) style="display: none;" @endif></i>
 
                 {!! $era->name !!} @if(!empty($era->abbreviation)) ({{ $era->abbreviation }}) @endif
 
@@ -33,14 +33,14 @@ $loadedElements = [];
                        class="btn btn-box-tool" role="button"
                        title="{{ __('crud.edit') }}"
                     >
-                        <i class="fa fa-edit"></i>
+                        <i class="fa-solid fa-edit"></i>
                     </a>
 
                     <a href="#" class="btn btn-box-tool text-red delete-confirm"
                        data-toggle="modal" data-name="{{ $era->name }}" role="button"
                        data-target="#delete-confirm" data-delete-target="delete-form-timeline-era-{{ $era->id }}"
                        title="{{ __('crud.remove') }}">
-                        <i class="fa fa-trash" aria-hidden="true"></i>
+                        <i class="fa-solid fa-trash" aria-hidden="true"></i>
                     </a>
                     {!! Form::open(['method' => 'DELETE', 'route' => ['timelines.timeline_eras.destroy', $timeline, $era, 'from' => 'view'], 'style '=> 'display:inline', 'id' => 'delete-form-timeline-era-' . $era->id]) !!}
                     {!! Form::close() !!}
@@ -74,12 +74,12 @@ $loadedElements = [];
             <a href="{{ route('timelines.timeline_elements.create', [$model, 'era_id' => $era, 'position' => $position]) }}" class="btn btn-primary btn-sm"
                 title="{{ __('crud.create') }}"
             >
-                <i class="fa fa-plus"></i>
+                <i class="fa-solid fa-plus"></i>
                 <span class="hidden-xs inline">{!! __('timelines.actions.add_element', ['era' => $era->name]) !!}</span>
             </a>
             @if($era->elements()->count() > 1)
             <a href="#" class="timeline-era-reorder btn btn-default btn-sm" data-era-id="{{ $era->id }}" data-toggle="tooltip" title="{{ __('timelines.helpers.reorder_tooltip') }}">
-                <i class="fa fa-arrows-alt-v"></i> {{ __('timelines.actions.reorder') }}
+                <i class="fa-solid fa-arrows-alt-v"></i> {{ __('timelines.actions.reorder') }}
             </a>
             @endif
         </div>

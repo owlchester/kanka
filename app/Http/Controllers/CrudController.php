@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Datagrids\Sorters\DatagridSorter;
 use App\Facades\CampaignLocalization;
 use App\Facades\FormCopy;
+use App\Facades\Permissions;
 use App\Http\Resources\AttributeResource;
 use App\Models\Entity;
 use App\Models\AttributeTemplate;
@@ -99,10 +100,14 @@ class CrudController extends Controller
     /** @var bool If the bulk templates button is available */
     protected $bulkTemplates = true;
 
+    /** @var bool If the auth check was already performed on this controller */
+    protected $alreadyAuthChecked = false;
+
     /**
      * @var null
      */
     protected $datagrid = null;
+    protected $rows = [];
 
     /**
      * Create a new controller instance.
@@ -162,7 +167,6 @@ class CrudController extends Controller
         $templates = null;
         if (auth()->check() && !empty($model->entityTypeID()) && auth()->user()->can('create', $model)) {
             $templates = Entity::templates($model->entityTypeID())
-                ->acl()
                 ->get();
         }
 
@@ -349,15 +353,23 @@ class CrudController extends Controller
         if (auth()->check()) {
             $this->authorize('view', $model);
         } else {
-            $this->authorizeForGuest('read', $model);
+            $this->authorizeForGuest(\App\Models\CampaignPermission::ACTION_READ, $model);
         }
         $name = $this->view;
         $ajax = request()->ajax();
 
         // Fix for models without an entity
         if (empty($model->entity) && !($model instanceof MenuLink)) {
-            $model->save();
-            $model->load('entity');
+            if (auth()->guest()) {
+                abort(404);
+            }
+            if (Permissions::user(auth()->user())->campaign(CampaignLocalization::getCampaign())->isAdmin()) {
+                dd('CCS16 - Error');
+                $model->save();
+                $model->load('entity');
+            } else {
+                abort(404);
+            }
         }
 
         return view(
@@ -515,11 +527,8 @@ class CrudController extends Controller
     protected function menuView($model, $view, $directView = false)
     {
         // Policies will always fail if they can't resolve the user.
-        if (auth()->check()) {
-            $this->authorize('view', $model);
-        } else {
-            $this->authorizeForGuest('read', $model);
-        }
+        $this->authCheck($model);
+
         $name = $this->view;
         $fullview = $this->view . '.' . $view;
         if ($directView) {
@@ -547,6 +556,8 @@ class CrudController extends Controller
                 ->paginate();
         }
 
+        $rows = $this->rows;
+
         return view('cruds.subview', compact(
             'fullview',
             'model',
@@ -554,7 +565,8 @@ class CrudController extends Controller
             'datagridSorter',
             'data',
             'markers',
-            'view'
+            'view',
+            'rows'
         ));
     }
 
@@ -612,5 +624,41 @@ class CrudController extends Controller
         $this->datagridSorter = new $datagridSorter;
         $this->datagridSorter->request(request()->all());
         return $this;
+    }
+
+    /**
+     * @param $model
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    protected function authCheck($model)
+    {
+        if ($this->alreadyAuthChecked) {
+            return;
+        }
+        if (auth()->check()) {
+            $this->authorize('view', $model);
+        } else {
+            $this->authorizeForGuest(\App\Models\CampaignPermission::ACTION_READ, $model);
+        }
+        $this->alreadyAuthChecked = true;
+    }
+
+    /**
+     * @return \Illuminate\Http\JsonResponse
+     */
+    protected function datagridAjax()
+    {
+        $html = view('layouts.datagrid._table')
+            ->with('rows', $this->rows)
+            ->render();
+        $data = [
+            'success' => true,
+            'html' => $html,
+        ];
+        if (!request()->has('init')) {
+            //$data['url'] = request()->fullUrl();
+        }
+
+        return response()->json($data);
     }
 }

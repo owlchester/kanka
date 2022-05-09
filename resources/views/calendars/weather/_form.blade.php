@@ -36,4 +36,4 @@
     </div>
 </div>
 
-@include('cruds.fields.visibility')
+@include('cruds.fields.visibility_id', ['model' => $weather ?? null])

@@ -28,8 +28,6 @@ return [
             'dice'      => 'Titi di Dado',
             'results'   => 'Risultati',
         ],
-        'add'       => 'Nuovo Tiro di Dado',
-        'header'    => 'Tiri di Dado di :name',
         'title'     => 'Tiri di Dado',
     ],
     'placeholders'  => [
@@ -54,6 +52,5 @@ return [
         'tabs'  => [
             'results'   => 'Risultati',
         ],
-        'title' => 'Tiro di Dado :name',
     ],
 ];

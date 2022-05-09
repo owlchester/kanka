@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use App\Models\Concerns\Paginatable;
-use App\Traits\VisibleTrait;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -19,10 +18,6 @@ use Illuminate\Database\Eloquent\Model;
  */
 class CharacterTrait extends Model
 {
-    /**
-     * Traits
-     */
-    use VisibleTrait;
     use Paginatable;
 
     const SECTION_APPEARANCE = 1;

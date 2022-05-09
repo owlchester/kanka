@@ -38,7 +38,6 @@ return [
         'reverse_order'     => 'Zaznacz by wyświetlać epoki w odwróconym porządku chronologicznym (od najdawniejszej)',
     ],
     'index'         => [
-        'add'   => 'Nowa historia',
         'title' => 'Historie',
     ],
     'placeholders'  => [
@@ -49,7 +48,6 @@ return [
         'tabs'  => [
             'timelines' => 'Historie',
         ],
-        'title' => 'Historia :name',
     ],
     'timelines'     => [
         'title' => 'Historie historii :name',

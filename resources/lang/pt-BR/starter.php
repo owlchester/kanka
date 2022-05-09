@@ -1,6 +1,9 @@
 <?php
 
 return [
+    'campaign'      => [
+        'name'  => 'mundo do :user',
+    ],
     'character1'    => [
         'fears'     => 'James tem medo de sons altos e explosões.',
         'history'   => 'Esse é um personagem exemplo. Criado por Mance Owlchester e Rige Dunton, James cresceu no campo de Genory antes de se mover para a Capital Unria para trabalhar como escriba do rei.',

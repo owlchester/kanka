@@ -6,7 +6,6 @@ use App\Models\Campaign;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\DB;
 
 /**
  * Trait CampaignScopes
@@ -83,48 +82,6 @@ trait CampaignScopes
     public function scopePublic(Builder $query)
     {
         return $query->visibility(Campaign::VISIBILITY_PUBLIC);
-    }
-
-    /**
-     * Campaigns with the most entities
-     * @param $query
-     * @return mixed
-     */
-    public function scopeTop(Builder $query)
-    {
-        return $query
-            ->select([
-                $this->getTable() . '.*',
-                DB::raw("(select count(*) from entities where campaign_id = " . $this->getTable() . ".id and type_id not in (" . config('entities.ids.tag') . ", " . config('entities.ids.attribute_template') . ")) as cpt")
-            ])
-            ->orderBy('cpt', 'desc')
-            ;
-    }
-
-    /**
-     * Campaigns with the most entities
-     * @param $query
-     * @return mixed
-     */
-    public function scopeTopMembers(Builder $query)
-    {
-        return $query
-            ->select([
-                $this->getTable() . '.*',
-                DB::raw("(select count(*) from campaign_user where campaign_id = " . $this->getTable() . ".id) as cpt")
-            ])
-            ->orderBy('cpt', 'desc')
-            ;
-    }
-
-    /**
-     * Created today
-     * @param $query
-     * @return mixed
-     */
-    public function scopeToday(Builder $query)
-    {
-        return $query->whereDate('created_at', Carbon::today());
     }
 
     /**

@@ -11,10 +11,10 @@
 
     <div class="entity-story-block">
         @include('entities.components.notes', ['withEntry' => true])
-        @include('quests._quests')
+        @includeWhen($model->quests()->has('quest')->count() > 0, 'quests.panels.quests')
 
         @include('cruds.partials.mentions')
-        @include('cruds.boxes.history')
+        @include('entities.pages.logs.history')
     </div>
 
     <div class="entity-sidebar">

@@ -32,7 +32,7 @@
                     <td>{{ $dateRenderer->render($journal->getDate()) }}</td>
                     <td class="text-right">
                         <a href="{{ route('journals.show', [$journal]) }}" class="btn btn-xs btn-primary">
-                            <i class="fa fa-eye" aria-hidden="true"></i> <span class="visible-sm">{{ trans('crud.view') }}</span>
+                            <i class="fa-solid fa-eye" aria-hidden="true"></i> <span class="visible-sm">{{ trans('crud.view') }}</span>
                         </a>
                     </td>
                 </tr>

@@ -2,8 +2,6 @@
 
 namespace App\Http\Resources;
 
-use Illuminate\Http\Resources\Json\JsonResource;
-
 class InventoryResource extends EntityChild
 {
     /**
@@ -19,7 +17,7 @@ class InventoryResource extends EntityChild
             'name' => $this->name,
             'position' => $this->position,
             'amount' => $this->amount,
-            'visibility' => $this->visibility,
+            'visibility_id' => $this->visibility_id,
             'is_equipped' => (bool) $this->is_equipped,
             'copy_item_entry' => (bool) $this->copy_item_entry,
             'description' => $this->description

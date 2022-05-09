@@ -34,12 +34,7 @@ return [
         'tag'       => 'Aşağıda bu etiketin doğrudan altında olan tüm etiketler görüntülenir.',
     ],
     'index'         => [
-        'actions'   => [
-            'explore_view'  => 'İç İçe Görünüm',
-        ],
-        'add'       => 'Yeni Etiket',
-        'header'    => ':name içindeki etiketler',
-        'title'     => 'Etiketler',
+        'title' => 'Etiketler',
     ],
     'new_tag'       => 'Yeni Etiket',
     'placeholders'  => [
@@ -52,7 +47,6 @@ return [
             'children'  => 'Alt etiketler',
             'tags'      => 'Etiketler',
         ],
-        'title' => ':name Etiketi',
     ],
     'tags'          => [
         'title' => ':name Alt Etiketleri',

@@ -29,7 +29,6 @@ return [
         'locations'         => 'Lieux',
         'map'               => 'Carte',
         'name'              => 'Nom',
-        'relation'          => 'Relation',
         'type'              => 'Type',
     ],
     'helpers'       => [
@@ -46,19 +45,10 @@ return [
         'is_map_private'    => 'Une carte privée est seulement visible aux membres du rôle Admin de la campagne.',
     ],
     'index'         => [
-        'actions'   => [
-            'explore_view'  => 'Mode Exploration',
-        ],
-        'add'       => 'Nouveau Lieu',
-        'header'    => 'Lieux de :name',
-        'title'     => 'Lieux',
+        'title' => 'Lieux',
     ],
-    'items'         => [
-        'title' => 'Objets du lieu :name',
-    ],
-    'journals'      => [
-        'title' => 'Journaux du lieu :name',
-    ],
+    'items'         => [],
+    'journals'      => [],
     'locations'     => [
         'title' => 'Sous-lieux du lieu :name',
     ],
@@ -207,16 +197,9 @@ return [
     'show'          => [
         'tabs'  => [
             'characters'    => 'Personnages',
-            'events'        => 'Evénements',
-            'families'      => 'Familles',
-            'items'         => 'Objets',
-            'journals'      => 'Journaux',
             'locations'     => 'Lieux',
             'map'           => 'Carte',
             'maps'          => 'Cartes',
-            'organisations' => 'Organisations',
-            'quests'        => 'Quêtes',
         ],
-        'title' => 'Lieu :name',
     ],
 ];

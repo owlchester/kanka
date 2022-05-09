@@ -54,7 +54,7 @@ class MapLayerController extends Controller
         }
 
         $model = new MapLayer();
-        $data = $request->only('name', 'position', 'entry', 'visibility', 'type_id');
+        $data = $request->only('name', 'position', 'entry', 'visibility_id', 'type_id');
         $data['map_id'] = $map->id;
         $new = $model->create($data);
 
@@ -99,7 +99,7 @@ class MapLayerController extends Controller
             return response()->json(['success' => true]);
         }
 
-        $mapLayer->update($request->only('name', 'position', 'entry', 'visibility', 'type_id'));
+        $mapLayer->update($request->only('name', 'position', 'entry', 'visibility_id', 'type_id'));
 
         return redirect()
             ->route('maps.edit', [$map, '#tab_form-layers'])

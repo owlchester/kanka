@@ -42,9 +42,7 @@ return [
         'nested_without'=> 'Minden olyan képesség kijelzése, amelynek nincs szülő képessége. Klikkelj egy sorra, hogy lásd a gyermekképességeit.',
     ],
     'index'         => [
-        'add'       => 'Új képesség',
-        'header'    => ':name képességei',
-        'title'     => 'Képességek',
+        'title' => 'Képességek',
     ],
     'placeholders'  => [
         'charges'   => 'Aktiválások száma. Az attribútumokra az alábbi módon hivatkozhatsz: {Szint}*{Karizma}',
@@ -56,6 +54,5 @@ return [
             'abilities' => 'Képességek',
             'entities'  => 'Entitások',
         ],
-        'title' => ':name képesség',
     ],
 ];

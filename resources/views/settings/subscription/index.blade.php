@@ -14,115 +14,68 @@
 @section('content')
     @include('partials.errors')
     <div class="box box-solid">
-        <div class="box-header with-border">
-            <h3 class="box-title">
-                {{ __('settings.subscription.manage_subscription') }}
-            </h3>
-        </div>
         <div class="box-body">
             <p>
-                {!! __('settings.subscription.benefits', [
-                    'features' => link_to_route('front.pricing', __('settings.subscription.benefits_features'), '#paid-features', ['target' => '_blank']),
+                {!! __('subscription.benefits.main', [
+                    'more' => link_to_route('front.pricing', __('subscription.benefits.more'), '#paid-features', ['target' => '_blank']),
+                    'boosters' => link_to_route('front.pricing', __('subscription.benefits.boosters'), '#boost', ['target' => '_blank']),
                     'stripe' => link_to('https://www.stripe.com', 'Stripe', ['target' => '_blank'])
                 ]) !!}
             </p>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-md-6">
-            <div class="box box-solid">
-                <div class="box-header with-border">
-                    <h3 class="box-title">
-                        {{ __('settings.subscription.sub_status') }}
-                    </h3>
-                </div>
-                <div class="box-body">
-                    <dl class="dl-horizontal">
-                    @if ($user->hasPatreonSync())
-                            <dt>{{ __('settings.subscription.fields.plan') }}</dt>
-                            <dd>{{ $user->patreon_pledge }}</dd>
-                            <dt>{{ __('settings.subscription.fields.billing') }}</dt>
-                            <dd>By Patreon</dd>
+            <dl class="dl-horizontal">
+                @if ($user->hasPatreonSync())
+                    <dt>{{ __('settings.subscription.fields.plan') }}</dt>
+                    <dd>{{ $user->patreon_pledge }}</dd>
+                    <dt>{{ __('settings.subscription.fields.billing') }}</dt>
+                    <dd>By Patreon</dd>
+                @else
+                    <dt>{{ __('settings.subscription.fields.plan') }}</dt>
+                    <dd>{{ $currentPlan }}</dd>
+                    <dt>{{ __('settings.subscription.fields.billing') }}</dt>
+                    <dd>
+                    @if ($user->subscribedToPlan($service->yearlyPlans(\App\Models\Patreon::PLEDGE_OWLBEAR), 'kanka'))
+                        {{ __('settings.subscription.plans.cost_yearly', ['amount' => 55.00, 'currency' => $currency]) }}
+                    @elseif ($user->subscribedToPlan($service->monthlyPlans(\App\Models\Patreon::PLEDGE_OWLBEAR), 'kanka'))
+                        {{ __('settings.subscription.plans.cost_monthly', ['amount' => 5.00, 'currency' => $currency]) }}
+                    @elseif ($user->subscribedToPlan($service->yearlyPlans(\App\Models\Patreon::PLEDGE_WYVERN), 'kanka'))
+                        {{ __('settings.subscription.plans.cost_yearly', ['amount' => 110.00, 'currency' => $currency]) }}
+                    @elseif ($user->subscribedToPlan($service->monthlyPlans(\App\Models\Patreon::PLEDGE_WYVERN), 'kanka'))
+                        {{ __('settings.subscription.plans.cost_monthly', ['amount' => 10.00, 'currency' => $currency]) }}
+                    @elseif ($user->subscribedToPlan($service->yearlyPlans(\App\Models\Patreon::PLEDGE_ELEMENTAL), 'kanka'))
+                        {{ __('settings.subscription.plans.cost_yearly', ['amount' => 275.00, 'currency' => $currency]) }}
+                    @elseif ($user->subscribedToPlan($service->monthlyPlans(\App\Models\Patreon::PLEDGE_ELEMENTAL), 'kanka'))
+                        {{ __('settings.subscription.plans.cost_monthly', ['amount' => 25.00, 'currency' => $currency]) }}
                     @else
-                        <dt>{{ __('settings.subscription.fields.plan') }}</dt>
-                        <dd>{{ $currentPlan }}</dd>
-                        <dt>{{ __('settings.subscription.fields.billing') }}</dt>
-                        <dd>
-                            @if ($user->subscribedToPlan($service->yearlyPlans(\App\Models\Patreon::PLEDGE_OWLBEAR), 'kanka'))
-                                {{ __('settings.subscription.plans.cost_yearly', ['amount' => 55.00, 'currency' => $currency]) }}
-                            @elseif ($user->subscribedToPlan($service->monthlyPlans(\App\Models\Patreon::PLEDGE_OWLBEAR), 'kanka'))
-                                {{ __('settings.subscription.plans.cost_monthly', ['amount' => 5.00, 'currency' => $currency]) }}
-                            @elseif ($user->subscribedToPlan($service->yearlyPlans(\App\Models\Patreon::PLEDGE_WYVERN), 'kanka'))
-                                {{ __('settings.subscription.plans.cost_yearly', ['amount' => 110.00, 'currency' => $currency]) }}
-                            @elseif ($user->subscribedToPlan($service->monthlyPlans(\App\Models\Patreon::PLEDGE_WYVERN), 'kanka'))
-                                {{ __('settings.subscription.plans.cost_monthly', ['amount' => 10.00, 'currency' => $currency]) }}
-                            @elseif ($user->subscribedToPlan($service->yearlyPlans(\App\Models\Patreon::PLEDGE_ELEMENTAL), 'kanka'))
-                                {{ __('settings.subscription.plans.cost_yearly', ['amount' => 275.00, 'currency' => $currency]) }}
-                            @elseif ($user->subscribedToPlan($service->monthlyPlans(\App\Models\Patreon::PLEDGE_ELEMENTAL), 'kanka'))
-                                {{ __('settings.subscription.plans.cost_monthly', ['amount' => 25.00, 'currency' => $currency]) }}
-                            @else
-                                {{ __('front.pricing.tier.free') }}
-                            @endif
-                        <dt>{{ __('settings.subscription.fields.currency') }}</dt>
-                        <dd>
-                            <span class="margin-r-5">{{ strtoupper($user->currency ?? 'USD') }}</span>
-                            <a href="#" data-toggle="modal"
-                               data-target="#change-currency">
-                                <i class="fa fa-pencil-alt"></i> {{ __('crud.edit') }}
-                            </a>
-                        </dd>
-                        @if ($user->subscribed('kanka'))
-                            <dt>{{ __('settings.subscription.fields.active_since') }}</dt>
-                            <dd>{{ $user->subscription('kanka')->created_at->isoFormat('MMMM D, Y') }}</dd>
-                            @if ($status == \App\Services\SubscriptionService::STATUS_GRACE)
-                                <dt>{{ __('settings.subscription.fields.active_until') }}</dt>
-                                <dd>{{ $user->subscription('kanka')->ends_at->isoFormat('MMMM D, Y') }}</dd>
-                            @endif
+                        {{ __('front.pricing.tier.free') }}
+                    @endif
+                    <dt>{{ __('settings.subscription.fields.currency') }}</dt>
+                    <dd>
+                        <span class="margin-r-5">{{ strtoupper($user->currency ?? 'USD') }}</span>
+                        <a href="#" data-toggle="modal"
+                           data-target="#change-currency">
+                            <i class="fa-solid fa-pencil-alt"></i> {{ __('crud.edit') }}
+                        </a>
+                    </dd>
+                    @if ($user->subscribed('kanka'))
+                        <dt>{{ __('settings.subscription.fields.active_since') }}</dt>
+                        <dd>{{ $user->subscription('kanka')->created_at->isoFormat('MMMM D, Y') }}</dd>
+                        @if ($status == \App\Services\SubscriptionService::STATUS_GRACE)
+                            <dt>{{ __('settings.subscription.fields.active_until') }}</dt>
+                            <dd>{{ $user->subscription('kanka')->ends_at->isoFormat('MMMM D, Y') }}</dd>
                         @endif
+                    @endif
 
-                    @endif
-                        <dt>{{ __('settings.subscription.fields.payment_method') }}</dt>
-                        <dd>
-                            @if ($user->hasPaymentMethod())
-                                @php $method = $user->defaultPaymentMethod(); @endphp
-                                {{ __('settings.subscription.payment_method.saved', ['brand' => ucfirst($method->card->brand), 'last4' => $method->card->last4]) }}
-                            @else
-                                {{ __('settings.subscription.payment_method.add_one' ) }}
-                                {{ link_to_route('settings.billing', __('settings.subscription.payment_method.new_card' )) }}
-                            @endif
-                        </dd>
-                    </dl>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="box box-solid">
-                <div class="box-header with-border">
-                    <h3 class="box-title">
-                        {{ __('settings.invoices.title') }}
-                    </h3>
-                </div>
-                <div class="box-body">
-                    @if (!empty($invoices))
-                        <dl class="dl-horizontal">
-                        @foreach ($invoices as $invoice)
-                            <dt>{{ $invoice->date()->toFormattedDateString() }}</dt>
-                            <dd>
-                                {{ $invoice->total() }}
-                            </dd>
-                        @endforeach
-                        </dl>
-                        <div class="text-center">
-                            {{ link_to_route('settings.invoices', __('settings.invoices.actions.view_all')) }}
-                        </div>
+                @endif
+                <dt>{{ __('settings.subscription.fields.payment_method') }}</dt>
+                <dd>
+                    @if ($user->hasPaymentMethod())
+                        @php $method = $user->defaultPaymentMethod(); @endphp
+                        {{ __('settings.subscription.payment_method.saved', ['brand' => ucfirst($method->card->brand), 'last4' => $method->card->last4]) }}
                     @else
-                        <p class="text-muted">
-                            {{ __('settings.invoices.empty') }}
-                        </p>
+                        {{ link_to_route('settings.billing', __('settings.subscription.payment_method.new_card' )) }}
                     @endif
-                </div>
-            </div>
+                </dd>
+            </dl>
         </div>
     </div>
 
@@ -134,7 +87,7 @@
             <div class="box-tools">
                 <button class="btn btn-box-tool" data-toggle="modal"
                         data-target="#change-information">
-                    <i class="fas fa-question-circle" aria-hidden="true"></i> {{ __('settings.subscription.upgrade_downgrade.button') }}
+                    <i class="fa-solid fa-question-circle" aria-hidden="true"></i> {{ __('settings.subscription.upgrade_downgrade.button') }}
                 </button>
             </div>
         </div>
@@ -312,9 +265,19 @@
             <p class="help-block">
                 {!! __('settings.subscription.trial_period', ['email' => link_to('mailto:' .  config('app.email'), config('app.email'))]) !!}
             </p>
+            <hr />
+            <p class="help-block">
+                {!! __('settings.subscription.helpers.paypal', ['email' => link_to('mailto:' .  config('app.email'), config('app.email'))]) !!}
+            </p>
         </div>
     </div>
 
+
+    <input type="hidden" id="stripe-token" value="{{ config('services.stripe.key') }}" />
+@endsection
+
+@section('modals')
+    @parent
     <div class="modal fade" id="change-information" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -380,8 +343,6 @@
             <div class="modal-content"></div>
         </div>
     </div>
-
-    <input type="hidden" id="stripe-token" value="{{ config('services.stripe.key') }}" />
 @endsection
 
 
@@ -396,11 +357,6 @@
             'send_to': 'AW-659212134/z5nbCLmq0fsBEOaOq7oC',
             'transaction_id': '{{ auth()->user()->id }}'
         });
-        gtag('event', 'Subscribed', {'event_category': 'Users', 'event_label': 'Group {{ \App\Facades\DataLayer::userGroup() }}'});
-    </script>
-@elseif($tracking == 'cancel')
-    <script>
-        gtag('event', 'Cancelled', {'event_category': 'Users', 'event_label': 'Group {{ \App\Facades\DataLayer::userGroup() }}'});
     </script>
 @endif
 @endsection

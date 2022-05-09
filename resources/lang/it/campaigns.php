@@ -126,6 +126,9 @@ TEXT
             'link'  => 'Collegamento',
         ],
         'unlimited_validity'    => 'Nessun Limite',
+        'usages'                => [
+            'no_limit'  => 'Nessun limite',
+        ],
     ],
     'leave'                             => [
         'confirm'   => 'Sei sicuro di voler abbandonare la campagna :name? Non potrai più accedere, a meno che un proprietario della campagna non ti inviti nuovamente.',
@@ -229,6 +232,11 @@ TEXT
             'role_permissions'      => 'Abilita il ruolo \':name\' per le seguenti funzioni su tutte le entità.',
         ],
         'members'       => 'Membri',
+        'modals'        => [
+            'details'   => [
+                'button'    => 'Assistenza',
+            ],
+        ],
         'permissions'   => [
             'actions'   => [
                 'add'           => 'Crea',
@@ -261,7 +269,8 @@ TEXT
         ],
         'users'         => [
             'actions'   => [
-                'add'   => 'Aggiungi membro',
+                'add'       => 'Aggiungi membro',
+                'remove'    => ':user dal ruolo :role',
             ],
             'create'    => [
                 'success'   => 'Utente aggiunto al ruolo.',

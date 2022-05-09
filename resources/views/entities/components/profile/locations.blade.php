@@ -6,8 +6,8 @@
 
 <div class="sidebar-section-box sidebar-section-profile">
     <div class="sidebar-section-title cursor" data-toggle="collapse" data-target="#sidebar-profile-elements">
-        <i class="fa fa-chevron-right" style="display: none"></i>
-        <i class="fa fa-chevron-down"></i>
+        <i class="fa-solid fa-chevron-right" style="display: none"></i>
+        <i class="fa-solid fa-chevron-down"></i>
         {{ __('crud.tabs.profile') }}
     </div>
 
@@ -15,10 +15,10 @@
         @include('entities.components.profile._type')
 
         @if (!$model->maps->isEmpty())
-            <div class="element profile-maps">
+            <div class="profile-maps">
                 <div class="title">{{ __('entities.maps') }}</div>
                 @foreach ($model->maps as $map)
-                    {!! $map->tooltipedLink() !!}
+                    {!! $map->tooltipedLink() !!} {!! $map->exploreLink() !!}<br />
                 @endforeach
             </div>
         @endif

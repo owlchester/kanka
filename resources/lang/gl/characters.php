@@ -40,7 +40,6 @@ return [
         'pronouns'                  => 'Terminacións/pronomes',
         'race'                      => 'Raza',
         'races'                     => 'Razas',
-        'relation'                  => 'Relación',
         'sex'                       => 'Xénero',
         'title'                     => 'Título',
         'traits'                    => 'Trazos de personalidade',
@@ -61,8 +60,6 @@ return [
         'actions'   => [
             'random'    => 'Nova personaxe aleatoria',
         ],
-        'add'       => 'Nova personaxe',
-        'header'    => 'Personaxes de ":name"',
         'title'     => 'Personaxes',
     ],
     'items'         => [
@@ -132,10 +129,8 @@ return [
     ],
     'show'          => [
         'tabs'  => [
-            'map'           => 'Mapa de relacións',
             'organisations' => 'Organizacións',
         ],
-        'title' => 'Personaxe ":name"',
     ],
     'warnings'      => [
         'personality_hidden'    => 'Non tes permiso para editar os trazos de presonalidade desta personaxe.',

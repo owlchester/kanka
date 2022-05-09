@@ -5,11 +5,11 @@
             @if($asset->icon)
                 <i class="{{ $asset->icon }}"></i>
             @else
-                <i class="fa fa-map"></i>
+                <i class="fa-solid fa-map"></i>
             @endif
         </a>
         <div class="child text">
-            {{ $asset->name }}<br />
+            {!! $asset->name !!}<br />
             <div class="url">{{ $asset->url }}</div>
 
             @if(auth()->check() && auth()->user()->can('update', $entity->child))
@@ -17,7 +17,7 @@
                     <i class="fa-solid fa-pencil"></i>
                 </a>
             @endif
-            @include('cruds.partials.visibility', ['model' => $asset])
+            {!! $asset->visibilityIcon() !!}
 
         </div>
     </div>

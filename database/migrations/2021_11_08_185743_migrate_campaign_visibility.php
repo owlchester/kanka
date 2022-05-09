@@ -19,8 +19,8 @@ class MigrateCampaignVisibility extends Migration
                 ->after('visibility')
                 ->default(Campaign::VISIBILITY_PRIVATE);
 
-            $table->dropIndex('campaigns_visibility_id_index');
-            $table->dropIndex('campaigns_is_open_index');
+            //$table->dropIndex('campaigns_visibility_id_index');
+            //$table->dropIndex('campaigns_is_open_index');
             $table->dropIndex('campaigns_visibility_is_featured_visible_entity_count_index');
             $table->index(['visibility_id', 'system', 'is_open', 'locale', 'visible_entity_count', 'is_featured'], 'public_campaigns_ids');
         });

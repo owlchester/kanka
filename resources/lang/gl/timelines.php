@@ -38,7 +38,6 @@ return [
         'reverse_order'     => 'Activa isto para mostrar as eras en orde cronolóxica inversa (as eras máis antigas primeiro)',
     ],
     'index'         => [
-        'add'   => 'Nova liña temporal',
         'title' => 'Liñas temporais',
     ],
     'placeholders'  => [
@@ -49,7 +48,6 @@ return [
         'tabs'  => [
             'timelines' => 'Liñas temporais',
         ],
-        'title' => 'Liña temporal ":name"',
     ],
     'timelines'     => [
         'title' => 'Liñas temporais de ":name"',

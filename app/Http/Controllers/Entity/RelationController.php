@@ -2,18 +2,16 @@
 
 namespace App\Http\Controllers\Entity;
 
-use App\Datagrids\Sorters\EntityRelationSorter;
 use App\Facades\CampaignLocalization;
+use App\Facades\Datagrid;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreRelation;
 use App\Models\Entity;
 use App\Models\Relation;
-use App\Models\MiscModel;
 use App\Services\Entity\ConnectionService;
 use App\Services\Entity\EntityRelationService;
 use App\Traits\GuestAuthTrait;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -61,14 +59,12 @@ class RelationController extends Controller
             abort(404);
         }
         // Policies will always fail if they can't resolve the user.
-        if (Auth::check()) {
+        if (auth()->check()) {
             $this->authorize('view', $entity->child);
         } else {
-            $this->authorizeEntityForGuest('read', $entity->child);
+            $this->authorizeEntityForGuest(\App\Models\CampaignPermission::ACTION_READ, $entity->child);
         }
 
-        $datagridSorter = new EntityRelationSorter();
-        $datagridSorter->request(request()->all());
         $campaign = CampaignLocalization::getCampaign();
 
         $mode = request()->get('mode', null);
@@ -85,13 +81,17 @@ class RelationController extends Controller
 
         $ajax = request()->ajax();
 
-        $relations = $connections = $connectionService = [];
+        $rows = $connections = $connectionService = [];
         $defaultToTable = !$campaign->boosted() || ($campaign->boosted() && $campaign->defaultToConnection());
         if ($mode == 'table' || (empty($mode) && $defaultToTable)) {
             $mode = 'table';
-            $relations = $entity
+
+            Datagrid::layout(\App\Renderers\Layouts\Entity\Relation::class)
+                ->route('entities.relations_table', [$entity, 'mode' => 'table']);
+
+            $rows = $entity
                 ->allRelationships()
-                ->simpleSort($datagridSorter)
+                ->sort(request()->only(['o', 'k']))
                 ->paginate();
 
             $connections = $this->connectionService
@@ -105,8 +105,7 @@ class RelationController extends Controller
         return view('entities.pages.relations.index', compact(
             'ajax',
             'entity',
-            'relations',
-            'datagridSorter',
+            'rows',
             'mode',
             'option',
             'connections',
@@ -143,7 +142,7 @@ class RelationController extends Controller
         $this->authorize('update', $entity->child);
 
         $data = $request->only([
-            'owner_id', 'target_id', 'attitude', 'relation', 'colour', 'is_star', 'two_way', 'visibility'
+            'owner_id', 'target_id', 'attitude', 'relation', 'colour', 'is_star', 'two_way', 'visibility_id'
         ]);
 
         /** @var Relation $relation */
@@ -205,7 +204,7 @@ class RelationController extends Controller
     {
         $this->authorize('update', $entity->child);
 
-        $data = $request->only(['target_id', 'attitude', 'relation', 'colour', 'is_star', 'two_way', 'visibility']);
+        $data = $request->only(['target_id', 'attitude', 'relation', 'colour', 'is_star', 'two_way', 'visibility_id']);
 
         $relation->update($data);
         $relation->refresh();
@@ -292,7 +291,7 @@ class RelationController extends Controller
         if (Auth::check()) {
             $this->authorize('view', $entity->child);
         } else {
-            $this->authorizeEntityForGuest('read', $entity->child);
+            $this->authorizeEntityForGuest(\App\Models\CampaignPermission::ACTION_READ, $entity->child);
         }
 
         $map = $this->service->entity($entity)
@@ -316,5 +315,37 @@ class RelationController extends Controller
             return $mode;
         }
         return null;
+    }
+
+    public function table(Entity $entity)
+    {
+        if (empty($entity->child)) {
+            abort(404);
+        }
+
+        // Policies will always fail if they can't resolve the user.
+        if (Auth::check()) {
+            $this->authorize('view', $entity->child);
+        } else {
+            $this->authorizeEntityForGuest(\App\Models\CampaignPermission::ACTION_READ, $entity->child);
+        }
+
+        Datagrid::layout(\App\Renderers\Layouts\Entity\Relation::class)
+            ->route('entities.relations_table', [$entity, 'mode' => 'table']);
+
+        $rows = $entity
+            ->allRelationships()
+            ->sort(request()->only(['o', 'k']))
+            ->paginate();
+
+        $html = view('layouts.datagrid._table')
+            ->with('rows', $rows)
+            ->render();
+        $data = [
+            'success' => true,
+            'html' => $html,
+        ];
+
+        return response()->json($data);
     }
 }

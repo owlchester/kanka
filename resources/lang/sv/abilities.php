@@ -42,9 +42,7 @@ return [
         'nested_without'=> 'Visar alla förmågor som inte har en huvudförmåga. Klicka på en rad för att se underförmågor.',
     ],
     'index'         => [
-        'add'       => 'Ny Förmåga',
-        'header'    => 'Förmågor till :name',
-        'title'     => 'Förmågor',
+        'title' => 'Förmågor',
     ],
     'placeholders'  => [
         'charges'   => 'Antal laddningar. Referera till egenskaper med {Level}*{CHA}',
@@ -56,6 +54,5 @@ return [
             'abilities' => 'Förmågor',
             'entities'  => 'Entiteter',
         ],
-        'title' => 'Förmåga :name',
     ],
 ];

@@ -107,9 +107,7 @@ return [
         'years'             => 'Bazi yıllar o kadar önemlidir ki kendi adları vardır.',
     ],
     'index'         => [
-        'add'       => 'Yeni Takvim',
-        'header'    => ':name Tavkimleri',
-        'title'     => 'Takvimler',
+        'title' => 'Takvimler',
     ],
     'layouts'       => [
         'month' => 'Ay',
@@ -199,10 +197,8 @@ return [
         'moon_waning_moon'  => ':moon İlkdördün',
         'moon_waxing_moon'  => ':moon Sondördün',
         'tabs'              => [
-            'events'        => 'Takvim Olayları',
-            'information'   => 'Bilgi',
-            'weather'       => 'Hava',
+            'events'    => 'Takvim Olayları',
+            'weather'   => 'Hava',
         ],
-        'title'             => ':name Takvimi',
     ],
 ];

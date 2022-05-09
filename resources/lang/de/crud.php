@@ -96,7 +96,6 @@ return [
         'delete'            => 'Löschen',
         'description'       => 'Bist du sicher das du :tag entfernen möchtest?',
         'description_final' => 'Möchten Sie :tag wirklich entfernen? Diese Aktion kann nicht rückgängig gemacht werden.',
-        'mirrored'          => 'Entferne gespiegelte Beziehung.',
         'title'             => 'Löschen bestätigen',
     ],
     'destroy_many'              => [
@@ -337,9 +336,6 @@ return [
         'timeline'      => 'Wähle einen Zeitstrahl',
     ],
     'relations'                 => [
-        'actions'   => [
-            'add'   => 'Füge eine Beziehung hinzu',
-        ],
         'fields'    => [
             'location'  => 'Ort',
             'name'      => 'Name',

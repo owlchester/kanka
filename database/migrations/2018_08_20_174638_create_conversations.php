@@ -14,10 +14,6 @@ class CreateConversations extends Migration
      */
     public function up()
     {
-        Schema::dropIfExists('conversation_participants');
-        Schema::dropIfExists('conversation_messages');
-        Schema::dropIfExists('conversations');
-
         Schema::create('conversations', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('campaign_id');
@@ -26,11 +22,15 @@ class CreateConversations extends Migration
             $table->string('image', 255)->nullable();
             $table->string('type', 45)->nullable();
             $table->string('slug')->nullable();
-            $table->string('target', 10)->default('members');
+            $table->unsignedTinyInteger('target_id')
+                ->default(\App\Models\Conversation::TARGET_USERS);
+
             $table->boolean('is_private')->default(false);
+            $table->boolean('is_closed')->default(false);
+
             $table->timestamps();
 
-            $table->index(['name', 'target', 'is_private']);
+            $table->index(['name', 'is_private', 'is_closed']);
 
             $table->foreign('campaign_id')->references('id')->on('campaigns')->onDelete('cascade');
             $table->foreign('created_by')->references('id')->on('users')->onDelete('set null');
@@ -53,12 +53,19 @@ class CreateConversations extends Migration
             $table->unsignedInteger('conversation_id');
             $table->unsignedInteger('character_id')->nullable();
             $table->unsignedInteger('user_id')->nullable();
+            $table->unsignedInteger('created_by')->nullable();
+            $table->unsignedInteger('updated_by')->nullable();
+
             $table->longText('message')->nullable();
             $table->timestamps();
 
             $table->foreign('conversation_id')->references('id')->on('conversations')->onDelete('cascade');
             $table->foreign('character_id')->references('id')->on('characters')->onDelete('set null');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');
+            $table->foreign('created_by')->references('id')->on('users')->onDelete('set null');
+            $table->foreign('updated_by')->references('id')->on('users')->onDelete('set null');
+
+            $table->index('created_at');
         });
 
         Schema::table('campaign_settings', function (Blueprint $table) {

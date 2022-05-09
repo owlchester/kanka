@@ -22,7 +22,6 @@ return [
         'location'  => 'Miesto',
         'members'   => 'Členovia',
         'name'      => 'Názov',
-        'relation'  => 'Vzťah',
         'type'      => 'Typ',
     ],
     'helpers'       => [
@@ -34,9 +33,7 @@ return [
         'members'   => 'Zoznam členov a členiek daného rodu sa zobrazuje na tomto mieste. Úpravou danej postavy je možné ju pridať do daného rodu v poli Rod.',
     ],
     'index'         => [
-        'add'       => 'Nový rod',
-        'header'    => 'Rody :name',
-        'title'     => 'Rody',
+        'title' => 'Rody',
     ],
     'members'       => [
         'helpers'   => [
@@ -55,8 +52,6 @@ return [
             'all_members'   => 'Všetci členovia/ky',
             'families'      => 'Rody',
             'members'       => 'Členovia/ky',
-            'relation'      => 'Vzťahy',
         ],
-        'title' => 'Rod :name',
     ],
 ];

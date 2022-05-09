@@ -7,8 +7,9 @@ return [
         'add_user'  => 'Benutzer hinzufügen',
     ],
     'copy_mention'  => [
-        'copy'      => 'Erweiterte Erwähnung kopieren',
-        'success'   => 'Erweiterte Erwähnung zum Posten in die Zwischenablage kopiert.',
+        'copy'              => 'Erweiterte Erwähnung kopieren',
+        'copy_with_name'    => 'Kopiere die erweiterte Erwähnung mit dem Beitragsnamen',
+        'success'           => 'Erweiterte Erwähnung zum Posten in die Zwischenablage kopiert.',
     ],
     'create'        => [
         'success'   => 'Notiz \':name\' zu :entity hinzugefügt.',

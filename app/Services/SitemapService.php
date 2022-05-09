@@ -9,9 +9,6 @@
 namespace App\Services;
 
 use App\Models\Campaign;
-use App\Models\Faq;
-use App\Models\Release;
-use Illuminate\Support\Str;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 class SitemapService
@@ -96,19 +93,6 @@ class SitemapService
         }
         foreach ($campaigns as $campaign) {
             $links[] = LaravelLocalization::localizeURL($campaign->getMiddlewareLink(), $this->locale);
-        }
-        return $links;
-    }
-
-    /**
-     * @return array
-     */
-    protected function news(): array
-    {
-        $links = [];
-        /** @var Release $release */
-        foreach (Release::published()->get() as $release) {
-            $links[] = LaravelLocalization::localizeURL(route('front.news.show', $release->getSlug()), $this->locale);
         }
         return $links;
     }

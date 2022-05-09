@@ -47,12 +47,6 @@ class AdCacheService
         return false;
     }
 
-    public function clear(int $section)
-    {
-        $key = $this->cacheKey($section);
-        cache()->forget($key);
-    }
-
     /**
      * Load the ad in memory
      * @param int $section

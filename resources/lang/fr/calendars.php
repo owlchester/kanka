@@ -57,7 +57,12 @@ return [
         'success'   => 'Evénement \':event\' ajouté au calendrier.',
     ],
     'events'        => [
-        'title' => 'Evénements du calendrier :name',
+        'filters'   => [
+            'show_after'    => 'Afficher aujourd\'hui et après',
+            'show_all'      => 'Afficher tout',
+            'show_before'   => 'Afficher avant aujourd\'hui',
+        ],
+        'title'     => 'Evénements du calendrier :name',
     ],
     'fields'        => [
         'calendar'              => 'Calendrier parent',
@@ -117,9 +122,7 @@ return [
         'years'             => 'Certaines années sont tellement importantes qu\'elles ont leur propre nom.',
     ],
     'index'         => [
-        'add'       => 'Nouveau Calendrier',
-        'header'    => 'Calendriers de :name',
-        'title'     => 'Calendrier',
+        'title' => 'Calendrier',
     ],
     'layouts'       => [
         'month' => 'Mois',
@@ -215,11 +218,9 @@ return [
         'moon_waning_moon'  => 'Lune décroissante de :moon',
         'moon_waxing_moon'  => 'Lune croissante de :moon',
         'tabs'              => [
-            'events'        => 'Evénements',
-            'information'   => 'Information',
-            'weather'       => 'Météo',
+            'events'    => 'Evénements',
+            'weather'   => 'Météo',
         ],
-        'title'             => 'Calendrier :name',
     ],
     'sorters'       => [
         'after' => 'Aujourd\'hui et après',

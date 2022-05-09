@@ -14,7 +14,7 @@ $map = $entity->child;
             <h3 class="panel-title">
                 <a href="{{ $map->getLink() }}">
                     @if ($map->is_private)
-                        <i class="fas fa-lock pull-right" title="{{ trans('crud.is_private') }}"></i>
+                        <i class="fa-solid fa-lock pull-right" title="{{ trans('crud.is_private') }}"></i>
                     @endif
 
                     @if(!empty($customName))
@@ -37,7 +37,7 @@ $map = $entity->child;
 <div class="panel panel-default widget-preview widget-map" id="dashboard-widget-{{ $widget->id }}">
     <div class="panel-body">
         <div class="map map-dashboard" id="map{{ $map->id }}" style="width: 100%; height: 100%;">
-            <a href="{{ route('maps.explore', $map) }}" target="_blank" class="btn btn-primary btn-xs btn-map-explore"><i class="fa fa-map"></i> {{ __('maps.actions.explore') }}</a>
+            <a href="{{ route('maps.explore', $map) }}" target="_blank" class="btn btn-primary btn-xs btn-map-explore"><i class="fa-solid fa-map"></i> {{ __('maps.actions.explore') }}</a>
         </div>
     </div>
 </div>

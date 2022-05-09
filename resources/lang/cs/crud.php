@@ -95,7 +95,6 @@ return [
         'delete'            => 'Odstranit',
         'description'       => 'Opravdu chceš odstranit štítek :tag?',
         'description_final' => 'Opravdu chceš odstranit štítek :tag? Tuto akci nelze vrátit.',
-        'mirrored'          => 'Odstranit oboustranný vztah.',
         'title'             => 'Potvrdit odstranění',
     ],
     'destroy_many'              => [
@@ -323,9 +322,6 @@ return [
         'timeline'      => 'Vybrat časovou osu',
     ],
     'relations'                 => [
-        'actions'   => [
-            'add'   => 'Přidat vztah',
-        ],
         'fields'    => [
             'location'  => 'Místo',
             'name'      => 'Název',

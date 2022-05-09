@@ -22,6 +22,7 @@ class CreateSectionsTable extends Migration
             $table->string('image', 255)->nullable();
             $table->longText('entry')->nullable();
             $table->boolean('is_private')->default(false)->notNull();
+            $table->string('colour', 20)->nullable();
 
             $table->unsignedInteger('tag_id')->nullable();
             $table->unsignedInteger('_lft')->default(0);

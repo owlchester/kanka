@@ -49,7 +49,6 @@ class RouteServiceProvider extends ServiceProvider
         $this->mapFrontRoutes();
         $this->mapCampaignRoutes();
         $this->mapProfileRoutes();
-        $this->mapAdminRoutes();
         $this->mapPartnerRoutes();
         $this->mapAuthRoutes();
     }
@@ -111,19 +110,6 @@ class RouteServiceProvider extends ServiceProvider
             ->prefix(LaravelLocalization::setLocale() . '/settings')
             ->namespace($this->namespace)
             ->group(base_path('routes/profile.php'));
-    }
-
-    /**
-     *
-     */
-    protected function mapAdminRoutes()
-    {
-        ////Route::namespace('Admin')->name('admin.')->middleware(['moderator'])->prefix('admin')->group(function () {
-        Route::middleware(['web', 'moderator', 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath', 'localizeDatetime'])
-            ->prefix(LaravelLocalization::setLocale() . '/admin')
-            ->namespace('App\Http\Controllers\Admin')
-            ->name('admin.')
-            ->group(base_path('routes/admin.php'));
     }
 
     /**

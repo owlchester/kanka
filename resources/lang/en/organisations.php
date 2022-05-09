@@ -19,7 +19,6 @@ return [
         'name'          => 'Name',
         'organisation'  => 'Parent Organisation',
         'organisations' => 'Sub Organisations',
-        'relation'      => 'Relation',
         'type'          => 'Type',
     ],
     'helpers'       => [
@@ -28,9 +27,7 @@ return [
         'nested_without'=> 'Displaying all organisations that don\'t have a parent organisation. Click on a row to see the children organisations.',
     ],
     'index'         => [
-        'add'       => 'New Organisation',
-        'header'    => 'Organisations of :name',
-        'title'     => 'Organisations',
+        'title' => 'Organisations',
     ],
     'members'       => [
         'actions'       => [
@@ -89,9 +86,6 @@ return [
     'show'          => [
         'tabs'  => [
             'organisations' => 'Organisations',
-            'quests'        => 'Quests',
-            'relations'     => 'Relations',
         ],
-        'title' => 'Organisation :name',
     ],
 ];

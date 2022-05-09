@@ -36,7 +36,7 @@ if (isset($size) && $size == 'map') {
             <div class="image" style="background-image: url('{{ $model->getImageUrl(200, 120) }}')" title="{{ $model->name }}">
                 @if (empty($imageRequired) || !$imageRequired)
                 <a href="#" class="img-delete" data-target="remove-image" title="{{ __('crud.remove') }}">
-                    <i class="fa fa-trash"></i> {{ __('crud.remove') }}
+                    <i class="fa-solid fa-trash"></i> {{ __('crud.remove') }}
                 </a>
                 @endif
             </div>

@@ -20,7 +20,7 @@
             <div class="box box-solid">
                 <div class="box-header with-border">
                     <h3 class="box-title">
-                        <i class="fa fa-download"></i> {{ __('campaigns.show.tabs.export') }}
+                        <i class="fa-solid fa-download"></i> {{ __('campaigns.show.tabs.export') }}
                     </h3>
                 </div>
                 <div class="box-body">
@@ -35,7 +35,7 @@
                 </div>
                 <div class="box-footer text-right">
                     <button class="btn btn-primary">
-                        <i class="fa fa-download"></i> {{ __('crud.export') }}
+                        <i class="fa-solid fa-download"></i> {{ __('crud.export') }}
                     </button>
                 </div>
             </div>

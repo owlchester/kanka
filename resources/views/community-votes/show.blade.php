@@ -85,7 +85,7 @@
 
                     <div class="mb-4">
                         <a href="{{ route('community-votes.index') }}">
-                            <i class="fa fa-arrow-left"></i> {{ __('front/community-votes.actions.return')}}
+                            <i class="fa-solid fa-arrow-left"></i> {{ __('front/community-votes.actions.return')}}
                         </a>
                     </div>
 

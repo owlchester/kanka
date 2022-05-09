@@ -64,7 +64,7 @@ class LinkController extends Controller
     {
         $this->authorize('update', $entity->child);
 
-        $data = $request->only(['name', 'url', 'position', 'icon', 'visibility']);
+        $data = $request->only(['name', 'url', 'position', 'icon', 'visibility_id']);
         $data['entity_id'] = $entity->id;
 
         $link = EntityLink::create($data);
@@ -110,7 +110,7 @@ class LinkController extends Controller
     {
         $this->authorize('update', $entity->child);
 
-        $data = $request->only(['name', 'url', 'icon', 'position', 'visibility']);
+        $data = $request->only(['name', 'url', 'icon', 'position', 'visibility_id']);
 
         $entityLink->update($data);
 
@@ -161,7 +161,7 @@ class LinkController extends Controller
         if (Auth::check()) {
             $this->authorize('view', $entity->child);
         } else {
-            $this->authorizeEntityForGuest('read', $entity->child);
+            $this->authorizeEntityForGuest(\App\Models\CampaignPermission::ACTION_READ, $entity->child);
         }
 
         if ($entityLink->entity_id !== $entity->id) {

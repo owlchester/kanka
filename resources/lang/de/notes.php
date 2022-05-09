@@ -29,16 +29,12 @@ return [
         'is_pinned' => 'Bis zu 3 Notizen können angepinnt werden und werden dann auf dem Dashboard angezeigt.',
     ],
     'index'         => [
-        'add'       => 'Neue Notiz',
-        'header'    => 'Notizen von :name',
-        'title'     => 'Notizen',
+        'title' => 'Notizen',
     ],
     'placeholders'  => [
         'name'  => 'Name der Notiz',
         'note'  => 'Wähle eine übergeordnete Notiz',
         'type'  => 'Religion, Spezies, Politisches System',
     ],
-    'show'          => [
-        'title' => 'Notiz :name',
-    ],
+    'show'          => [],
 ];

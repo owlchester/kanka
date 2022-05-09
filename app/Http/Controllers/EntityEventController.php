@@ -50,7 +50,7 @@ class EntityEventController extends Controller
         if (Auth::check()) {
             $this->authorize('view', $entity->child);
         } else {
-            $this->authorizeForGuest('read', $entity->child, $entity->child->getEntityType());
+            $this->authorizeForGuest(\App\Models\CampaignPermission::ACTION_READ, $entity->child, $entity->typeId());
         }
         $reminders = $entity
             ->events()

@@ -19,7 +19,7 @@
                 <div class="col-md-12">
                     <p>
                         <a href="{{ route('maps.explore', $model) }}" class="btn btn-block btn-primary" target="_blank">
-                            <i class="fa fa-map"></i> {{ __('maps.actions.explore') }}
+                            <i class="fa-solid fa-map"></i> {{ __('maps.actions.explore') }}
                         </a>
                     </p>
                 </div>
@@ -27,7 +27,7 @@
         @endif
 
         @include('cruds.partials.mentions')
-        @include('cruds.boxes.history')
+        @include('entities.pages.logs.history')
     </div>
 
     <div class="entity-sidebar">

@@ -34,12 +34,7 @@ return [
         'tag'       => 'כאן מוצגים כל התגים שהם צאצאים ישירים של תג זה.',
     ],
     'index'         => [
-        'actions'   => [
-            'explore_view'  => 'מבט מקונן',
-        ],
-        'add'       => 'תג חדש',
-        'header'    => 'התגים של :name',
-        'title'     => 'תגים',
+        'title' => 'תגים',
     ],
     'new_tag'       => 'תג חדש',
     'placeholders'  => [
@@ -52,7 +47,6 @@ return [
             'children'  => 'צאצאים',
             'tags'      => 'תגים',
         ],
-        'title' => 'תג :name',
     ],
     'tags'          => [
         'title' => 'צאצאיים של :name',

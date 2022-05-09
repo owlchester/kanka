@@ -26,9 +26,7 @@ return [
         'parent_attribute_template' => 'Táto šablóna atribútov môže byť podradená inej šablóne atribútov. Ak bude aplikovaná táto šablóna atribútov, aplikujú sa zároveň s ňou aj všetky jej nadradené šablóny atribútov.',
     ],
     'index'                 => [
-        'add'       => 'Nová šablóna atribútov',
-        'header'    => 'Šablóny atribútov :name',
-        'title'     => 'Šablóny atribútov',
+        'title' => 'Šablóny atribútov',
     ],
     'placeholders'          => [
         'attribute_template'    => 'Vyber jednu zo šablón atribútov',
@@ -39,6 +37,5 @@ return [
             'attribute_templates'   => 'Šablóny atribútov',
             'attributes'            => 'Atribúty',
         ],
-        'title' => 'Šablóna atribútov :name',
     ],
 ];

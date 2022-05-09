@@ -20,6 +20,7 @@ return [
         'private'           => 'Private Attribute, die das :icon verwenden, sind nur für Kampagnenadministratoren sichtbar.',
         'random'            => 'Beim Erstellen oder Bearbeiten einer Attributvorlage können Sie zufällige Attribute festlegen. Dies kann entweder ein Zufallswert zwischen zwei durch :dash getrennten Zahlen oder ein Zufallswert aus einer durch :comma getrennten Werteliste sein. Der Wert für das Attribut wird bestimmt, wenn die Vorlage auf ein Objekt angewendet wird oder wenn ein Objekt gespeichert wird.',
         'random_examples'   => 'Wenn Sie beispielsweise eine Zahl zwischen 1 und 100 möchten, verwenden Sie :number. Wenn Sie einen Wert aus einer Liste von Optionen wünschen, verwenden Sie :list.',
+        'range'             => 'Zahlenattribute können so eingerichtet werden, dass sie nur Werte zwischen einem Zahlenbereich zulassen. Verwende beispielsweise :example, um das Attribut zwischen 1 und 10 einzuschränken. Die Bereichswerte können auch auf andere Attribute verweisen, beispielsweise mit :reference. Wenn beim Speichern eines Attributs der Wert außerhalb des Bereichs liegt, wird es automatisch auf den nächsten Bereichswert zurückgesetzt.',
         'title'             => 'Attribute',
     ],
     'dice'              => [

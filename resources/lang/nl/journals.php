@@ -19,16 +19,13 @@ return [
         'journal'   => 'Bovenliggend Logboek',
         'journals'  => 'Sub Logboek',
         'name'      => 'Naam',
-        'relation'  => 'Relatie',
         'type'      => 'Type',
     ],
     'helpers'       => [
         'journals'  => 'Geef alle of alleen de directe sub logboeken van dit logboek weer.',
     ],
     'index'         => [
-        'add'       => 'Nieuw Logboek',
-        'header'    => 'Logboeken van :name',
-        'title'     => 'Logboeken',
+        'title' => 'Logboeken',
     ],
     'journals'      => [
         'title' => 'Logboek :name sub logboeken',
@@ -44,6 +41,5 @@ return [
         'tabs'  => [
             'journals'  => 'Logboeken',
         ],
-        'title' => 'Logboek :name',
     ],
 ];

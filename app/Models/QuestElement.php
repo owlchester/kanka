@@ -3,10 +3,9 @@
 namespace App\Models;
 
 use App\Facades\Mentions;
-use App\Facades\UserPermission;
+use App\Models\Concerns\Blameable;
 use App\Models\Concerns\SimpleSortableTrait;
-use App\Traits\VisibilityTrait;
-use App\Traits\VisibleTrait;
+use App\Traits\VisibilityIDTrait;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -27,7 +26,7 @@ class QuestElement extends Model
     /**
      * Traits
      */
-    use SimpleSortableTrait, VisibilityTrait;
+    use SimpleSortableTrait, VisibilityIDTrait, Blameable;
 
     /**
      * @var array
@@ -39,7 +38,7 @@ class QuestElement extends Model
         'description',
         'role',
         'colour',
-        'visibility'
+        'visibility_id'
     ];
 
     /**
@@ -57,39 +56,6 @@ class QuestElement extends Model
     {
         return $this->belongsTo('App\Models\Entity', 'entity_id');
     }
-
-    /**
-     * Scope a query to only include elements that are visible
-     *
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     * @param mixed $type
-     * @return \Illuminate\Database\Eloquent\Builder
-     */
-    public function scopeAcl($query, $action = 'read', $user = null)
-    {
-        // Use the User Permission Service to handle all of this easily.
-        /** @var \App\Services\UserPermission $service */
-        $service = UserPermission::user($user)->action($action);
-
-        if ($service->isCampaignOwner()) {
-            return $query;
-        }
-
-        return $query
-            ->select('quest_elements.*')
-            ->join('entities', 'quest_elements.entity_id', '=', 'entities.id')
-            ->where('entities.is_private', false)
-            ->where(function ($subquery) use ($service) {
-                return $subquery
-                    ->where(function ($sub) use ($service) {
-                        return $sub->whereIn('entities.id', $service->entityIds())
-                            ->orWhereIn('entities.type', $service->entityTypes());
-                    })
-                    ->whereNotIn('entities.id', $service->deniedEntityIds());
-            });
-    }
-
-
 
     /**
      * @return mixed

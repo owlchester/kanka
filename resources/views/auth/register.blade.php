@@ -36,7 +36,7 @@
             <div class="input-group">
                 <input id="password" type="password" class="form-control" name="password" required placeholder="{{ __('auth.register.fields.password') }}">
                 <a href="#" class="toggle-password input-group-addon" title="{{ __('auth.helpers.password') }}">
-                    <i class="toggle-password-icon fa fa-eye"></i>
+                    <i class="toggle-password-icon fa-solid fa-eye"></i>
                 </a>
             </div>
 
@@ -61,9 +61,14 @@
                 @endif
 
 
-                <button type="submit" class="btn btn-primary pull-right">
-                    {{ __('auth.register.submit') }}
-                </button>
+                <div class="pull-right">
+                    <button type="submit" class="btn btn-primary btn-save">
+                        {{ __('auth.register.submit') }}
+                    </button>
+                    <div class="btn btn-primary btn-wait disabled" style="display: none;">
+                        <i class="fa-solid fa-spinner fa-spin"></i>
+                    </div>
+                </div>
             </div>
         </div>
 

@@ -54,9 +54,7 @@ return [
         'quests'    => 'Se puede crear una red de misiones entrelazadas usando el campo Misión Superior.',
     ],
     'index'         => [
-        'add'       => 'Nueva misión',
-        'header'    => 'Misiones de :name',
-        'title'     => 'Misiones',
+        'title' => 'Misiones',
     ],
     'placeholders'  => [
         'date'  => 'Fecha real de la misión',
@@ -72,6 +70,5 @@ return [
         'tabs'      => [
             'elements'  => 'Elementos',
         ],
-        'title'     => 'Misión :name',
     ],
 ];

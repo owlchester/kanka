@@ -29,21 +29,40 @@ class StoryService
      */
     public function reorder(ReorderStories $request): bool
     {
-        $ids = $request->get('entity_note_id');
-        if (empty($ids)) {
+        $posts = $request->get('posts');
+        if (empty($posts)) {
             return false;
         }
 
+        // If the story element isn't in first place, we need to have negative starting positions.
         $position = 0;
-        $types = $request->get('entity_types');
-        $storyPosition = array_search('story', $types);
+        $storyPosition = array_search('story', array_values($posts));
         $position -= $storyPosition;
 
-        foreach ($ids as $id) {
+        foreach ($posts as $id => $data) {
+            // We only want to process posts
+            if (!is_array($data) || $data === 'story') {
+                continue;
+            }
+            $id = $data['id'];
             /** @var EntityNote $story */
             $story = $this->entity->notes->where('id', $id)->first();
             if (empty($story)) {
                 continue;
+            }
+
+            // Collapses status
+            if (isset($data['collapsed'])) {
+                $settings = $story->settings;
+                if ($data['collapsed']) {
+                    $settings['collapsed'] = true;
+                } else {
+                    unset($settings['collapsed']);
+                }
+                $story->settings = $settings;
+            }
+            if (isset($data['visibility'])) {
+               $story->visibility = $data['visibility'];
             }
 
             $story->position = $position;

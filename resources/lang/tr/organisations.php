@@ -19,16 +19,13 @@ return [
         'name'          => 'Ad',
         'organisation'  => 'Ana Organizasyon',
         'organisations' => 'Alt Organizasyonlar',
-        'relation'      => 'İlişki',
         'type'          => 'Tür',
     ],
     'helpers'       => [
         'descendants'   => 'Bu liste bu organizasyondan gelen tüm organizasyonları içerir, yalnızca doğrudan altında olanları değil.',
     ],
     'index'         => [
-        'add'       => 'Yeni Organizasyon',
-        'header'    => ':name Organizasyonları',
-        'title'     => 'Organizasyonlar',
+        'title' => 'Organizasyonlar',
     ],
     'members'       => [
         'actions'       => [
@@ -71,9 +68,6 @@ return [
     'show'          => [
         'tabs'  => [
             'organisations' => 'Organizasyonlar',
-            'quests'        => 'Görevler',
-            'relations'     => 'İlişkiler',
         ],
-        'title' => ':name Organizasyonu',
     ],
 ];

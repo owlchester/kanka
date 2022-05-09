@@ -92,7 +92,6 @@ return [
         'delete'            => 'Cancella',
         'description'       => 'Sei sicuro di voler rimuovere :tag?',
         'description_final' => 'Sei sicuro di voler rimuovere :tag? Questa azione non può essere annullata.',
-        'mirrored'          => 'Rimuovere la relazione speculare.',
         'title'             => 'Conferma di cancellazione',
     ],
     'destroy_many'      => [
@@ -279,9 +278,6 @@ return [
         'timeline'      => 'Scegli una timeline',
     ],
     'relations'         => [
-        'actions'   => [
-            'add'   => 'Aggiungi una relazione',
-        ],
         'fields'    => [
             'location'  => 'Luogo',
             'name'      => 'Nome',
@@ -313,9 +309,11 @@ return [
         'menu'          => 'Menù',
         'notes'         => 'Note',
         'permissions'   => 'Permessi',
+        'profile'       => 'Profilo',
         'quests'        => 'Missioni',
         'relations'     => 'Relazioni',
         'reminders'     => 'Promemoria',
+        'story'         => 'Panoramica',
         'timelines'     => 'Timeline',
         'tooltip'       => 'Tooltip',
     ],

@@ -24,8 +24,6 @@ return [
         'type'          => 'Typ',
     ],
     'index'     => [
-        'add'       => 'Nový úkol',
-        'header'    => ':name úkol',
-        'title'     => 'Úkoly',
+        'title' => 'Úkoly',
     ],
 ];

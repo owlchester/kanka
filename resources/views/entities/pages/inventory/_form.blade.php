@@ -71,7 +71,7 @@
                 {!! Form::hidden('copy_item_entry', 0) !!}
                 {!! Form::checkbox('copy_item_entry') !!}
                 {{ __('entities/inventories.fields.copy_entity_entry') }}
-                <i class="fa fa-question-circle hidden-xs hidden-sm" title="{{ __('entities/inventories.helpers.copy_entity_entry') }}" data-toggle="tooltip"></i>
+                <i class="fa-solid fa-question-circle hidden-xs hidden-sm" title="{{ __('entities/inventories.helpers.copy_entity_entry') }}" data-toggle="tooltip"></i>
             </label>
             <p class="help-block visible-xs visible-sm">
                 {{ __('entities/inventories.helpers.copy_entity_entry') }}
@@ -89,8 +89,5 @@
     </div>
 </div>
 
-<div class="row">
-    <div class="col-md-6">
-@include('cruds.fields.visibility', ['model' => isset($inventory) ? $inventory : null])
-    </div>
-</div>
+@include('cruds.fields.visibility_id', ['model' => $inventory ?? null])
+

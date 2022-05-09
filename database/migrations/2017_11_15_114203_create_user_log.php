@@ -16,11 +16,12 @@ class CreateUserLog extends Migration
         Schema::create('user_logs', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->unsigned();
-            $table->string('action', 10);
+            $table->unsignedTinyInteger('type_id')
+                ->default(\App\Models\UserLog::TYPE_LOGIN);
             $table->string('ip', 255)->nullable();
             $table->timestamps();
 
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
         });
     }
 

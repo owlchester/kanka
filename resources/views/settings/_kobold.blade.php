@@ -16,7 +16,7 @@
             <div class="col-xs-3 col-sm-4">10 mb</div>
 
             <div class="col-xs-9 col-sm-8">{{ __('front.features.patreon.discord') }}</div>
-            <div class="col-xs-3 col-sm-4"><i class="fa fa-check-circle"></i></div>
+            <div class="col-xs-3 col-sm-4"><i class="fa-solid fa-check-circle"></i></div>
         </div>
         <p class="help-block margin-top">{{ __('settings.patreon.wrong_pledge') }}</p>
     </div>

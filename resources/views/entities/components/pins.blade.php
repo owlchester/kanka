@@ -1,11 +1,11 @@
 
 <div class="sidebar-section-box entity-pins">
     <div class="sidebar-section-title cursor" data-toggle="collapse" data-target="#sidebar-pinned-elements">
-        <i class="fa fa-chevron-right" style="display: none"></i>
-        <i class="fa fa-chevron-down"></i>
+        <i class="fa-solid fa-chevron-right" style="display: none"></i>
+        <i class="fa-solid fa-chevron-down"></i>
 
         {{ __('entities/pins.title') }}
-        <i class="fas fa-question-circle pull-right" data-toggle="ajax-modal" role="button" data-target="#entity-modal" data-url="{{ route('helpers.pins') }}"></i>
+        <i class="fa-solid fa-question-circle pull-right" data-toggle="ajax-modal" role="button" data-target="#entity-modal" data-url="{{ route('helpers.pins') }}"></i>
     </div>
     <div class="sidebar-elements collapse in" id="sidebar-pinned-elements">
 

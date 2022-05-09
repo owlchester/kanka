@@ -74,15 +74,15 @@ $shownUpcomingEvents = 0;
 ?>
 <div class="current-date" id="widget-date-{{ $widget->id }}">
     @can('update', $calendar)
-        <i class="fa fa-chevron-circle-left widget-calendar-switch" title="{{ __('dashboard.widgets.calendar.actions.previous') }}" data-url="{{ route('dashboard.calendar.sub', $widget) }}" data-widget="{{ $widget->id }}"></i>
+        <i class="fa-solid fa-chevron-circle-left widget-calendar-switch" title="{{ __('dashboard.widgets.calendar.actions.previous') }}" data-url="{{ route('dashboard.calendar.sub', $widget) }}" data-widget="{{ $widget->id }}"></i>
         {{ $calendar->niceDate() }}
-        <i class="fa fa-chevron-circle-right widget-calendar-switch" title="{{ __('dashboard.widgets.calendar.actions.next') }}" data-url="{{ route('dashboard.calendar.add', $widget) }}" data-widget="{{ $widget->id }}"></i>
+        <i class="fa-solid fa-chevron-circle-right widget-calendar-switch" title="{{ __('dashboard.widgets.calendar.actions.next') }}" data-url="{{ route('dashboard.calendar.add', $widget) }}" data-widget="{{ $widget->id }}"></i>
     @else
         {{ $calendar->niceDate() }}
     @endcan
 </div>
 <div id="widget-loading-{{ $widget->id }}" class="text-center hidden">
-    <i class="fa fa-spin fa-spinner"></i>
+    <i class="fa-solid fa-spin fa-spinner"></i>
 </div>
 <div class="row">
     @if ($previousEvents->isNotEmpty())
@@ -94,9 +94,9 @@ $shownUpcomingEvents = 0;
                     <li>
                         <div class="pull-right">
                             @if (!empty($reminder->comment))
-                                <i class="fa fa-comment" title="{{ $reminder->comment }}" data-toggle="tooltip" data-placement="bottom"></i>
+                                <i class="fa-solid fa-comment" title="{{ $reminder->comment }}" data-toggle="tooltip" data-placement="bottom"></i>
                             @endif
-                            <i class="fa fa-calendar" title="{{ $reminder->readableDate() }}" data-toggle="tooltip" data-placement="bottom"></i>
+                            <i class="fa-solid fa-calendar" title="{{ $reminder->readableDate() }}" data-toggle="tooltip" data-placement="bottom"></i>
                         </div>
                         {{ link_to($reminder->entity->url(), $reminder->entity->name) }}
                     </li>
@@ -115,14 +115,14 @@ $shownUpcomingEvents = 0;
                         <li>
                             <div class="pull-right">
                                 @if (!empty($event->comment))
-                                    <i class="fa fa-comment" title="{{ $event->comment }}" data-toggle="tooltip" data-placement="bottom"></i>
+                                    <i class="fa-solid fa-comment" title="{{ $event->comment }}" data-toggle="tooltip" data-placement="bottom"></i>
                                 @endif
                                 @if ($event->isToday($calendar))
                                     <span class="label label-default" title="{{ $event->readableDate() }}">
                                         {{ __('calendars.actions.today') }}
                                     </span>
                                 @else
-                                    <i class="fa fa-calendar" title="{{ $event->readableDate() }}" data-toggle="tooltip" data-placement="bottom"></i>
+                                    <i class="fa-solid fa-calendar" title="{{ $event->readableDate() }}" data-toggle="tooltip" data-placement="bottom"></i>
                                 @endif
                             </div>
                             {{ link_to($event->entity->url(), $event->entity->name, ['title' => $event->comment, 'data-toggle' => 'tooltip']) }}

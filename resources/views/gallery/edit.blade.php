@@ -11,7 +11,7 @@ $imageCount = 0;
         <div class="row">
             <div class="col-md-6">
             @if($image->is_folder)
-                <i class="fa fa-folder fa-4x"></i>
+                <i class="fa-solid fa-folder fa-4x"></i>
             @else
                 <img src="{{ Img::crop(300, 300)->url($image->path) }}" alt="{{ $image->name }}" />
 
@@ -71,14 +71,14 @@ $imageCount = 0;
                 <hr />
                 @if(!$image->is_folder)
                 <a href="{{ $image->getUrl() }}" target="_blank">
-                    <i class="fa fa-link"></i> {{ __('campaigns/gallery.actions.full') }}
+                    <i class="fa-solid fa-link"></i> {{ __('campaigns/gallery.actions.full') }}
                 </a>
                 @endif
 
                 @if(!$image->is_folder || $image->hasNoFolders())
 
                 <a href="#" class="delete-confirm pull-right text-red" data-name="{{ $image->name }}" data-toggle="modal" data-target="#delete-confirm">
-                    <i class="fa fa-trash" aria-hidden="true"></i> {{ trans('crud.remove') }}
+                    <i class="fa-solid fa-trash" aria-hidden="true"></i> {{ trans('crud.remove') }}
                 </a>
                 {!! Form::open(['method' => 'DELETE','route' => ['images.destroy', $image->id], 'style'=>'display:inline', 'id' => 'delete-confirm-form']) !!}
                 {!! Form::close() !!}

@@ -32,20 +32,17 @@ if (!isset($model) && !empty($currentCampaign->ui_settings['post_collapsed'])) {
 
     <div class="tab-content">
         <div class="tab-pane active" id="form-entry">
-
             <div class="form-group required">
-                {!! Form::text('name', null, ['placeholder' => __('entities/notes.placeholders.name'), 'class' => 'form-control', 'maxlength' => 191, 'data-live-disabled' => '1']) !!}
+                {!! Form::text('name', null, ['placeholder' => __('entities/notes.placeholders.name'), 'class' => 'form-control', 'maxlength' => 191, 'data-live-disabled' => '1', 'required']) !!}
             </div>
-
             <div class="form-group">
                 {!! Form::textarea('entryForEdition', null, ['class' => 'form-control html-editor', 'id' => 'entry', 'name' => 'entry']) !!}
                 <div class="text-right">
                     <a href="{{ route('helpers.link') }}" data-url="{{ route('helpers.link') }}" data-toggle="ajax-modal" data-target="#entity-modal" title="{{ __('helpers.link.description') }}">
-                        {{ __('crud.linking_help') }} <i class="fa fa-question-circle"></i>
+                        {{ __('crud.linking_help') }} <i class="fa-solid fa-question-circle"></i>
                     </a>
                 </div>
             </div>
-
 
             <div class="row">
                 <div class="col-md-6">
@@ -60,14 +57,15 @@ if (!isset($model) && !empty($currentCampaign->ui_settings['post_collapsed'])) {
                 <div class="col-md-6">
                     <div class="form-group">
                         {!! Form::hidden('settings[collapsed]', 0) !!}
-                        <label>{!! Form::checkbox('settings[collapsed]', 1, $defaultCollapsed) !!}
+                        <label>
+                            {!! Form::checkbox('settings[collapsed]', 1, $defaultCollapsed) !!}
                             {{ __('entities/notes.fields.collapsed') }}
+                            <i class="fa-solid fa-question-circle" data-toggle="tooltip" data-html="true" title="{!! __('entities/notes.hints.reorder', ['icon' => '<i class=\'fa-solid fa-cog\'></i>']) !!}"></i>
                         </label>
-                        <div class="help-block">
-                            {!! __('entities/notes.hints.reorder', ['icon' => '<i class="fas fa-cog"></i>']) !!}
+                        <div class="help-block visible-xs visible-sm">
+                            {!! __('entities/notes.hints.reorder', ['icon' => '<i class="fa-solid fa-cog"></i>']) !!}
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
