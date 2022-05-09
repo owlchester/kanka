@@ -5,13 +5,11 @@ namespace App\Exceptions;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-use Illuminate\Foundation\Http\Exceptions\MaintenanceModeException;
-use Illuminate\Support\Facades\Route;
 use Illuminate\Validation\ValidationException;
 use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\HttpKernel\Exception\HttpException as SymHttpException;
 use Throwable;
-use Http\Client\Exception\HttpException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 
 class Handler extends ExceptionHandler
@@ -23,7 +21,6 @@ class Handler extends ExceptionHandler
      */
     protected $dontReport = [
         \League\OAuth2\Server\Exception\OAuthServerException::class,
-        \Doctrine\DBAL\Driver\PDOException::class,
         \Symfony\Component\Console\Exception\NamespaceNotFoundException::class,
         \Symfony\Component\Console\Exception\CommandNotFoundException::class,
         NotFoundHttpException::class,
@@ -73,11 +70,11 @@ class Handler extends ExceptionHandler
                 ->withErrors(__('redirects.session_timeout'));
         }
 
-        elseif ($exception instanceof HttpException && $exception->getStatusCode() == 403 && auth()->guest()) {
+        elseif ($exception instanceof AuthorizationException && auth()->guest()) {
             session()->put('login_redirect', $request->getRequestUri());
         }
 
-        elseif ($exception instanceof MaintenanceModeException) {
+        elseif ($exception instanceof SymHttpException && $exception->getStatusCode() == 503) {
             if (request()->ajax()) {
                 return response()->json([
                     'title' => __('errors.503.title'),
