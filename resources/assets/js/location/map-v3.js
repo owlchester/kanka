@@ -3,11 +3,6 @@ import deleteConfirm from "../components/delete-confirm";
 var mapPageBody;
 var sidebarMap, sidebarMarker;
 var markerModal, markerModalContent, markerModalTitle;
-var validEntityForm = false;
-
-var validSubform = false;
-var subForm;
-var currentAjaxForm;
 
 $(document).ready(function() {
 
@@ -153,6 +148,7 @@ function showSidebar()
     sidebarMap.hide();
     sidebarMarker.html('');
     sidebarMarker.parent().find('.spinner').show();
+    invalidateMapOnSidebar();
 }
 
 function handleCloseMarker()
@@ -170,6 +166,17 @@ function initLegend()
         window.map.panTo(L.latLng($(this).data('lat'), $(this).data('lng')));
         window[$(this).data('id')].openPopup();
     });
+
+    $('a.sidebar-toggle').click(function () {
+        invalidateMapOnSidebar();
+        //console.log('wat');
+    });
+}
+function invalidateMapOnSidebar() {
+    setTimeout(() => {
+        // Invalidate the map size when the sidebar is rendered/hidden
+        window.map.invalidateSize();
+    }, 500);
 }
 function initMapEntryClick() {
     $('.map-marker-entry-click').click(function (e) {
