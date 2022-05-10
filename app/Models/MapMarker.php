@@ -239,7 +239,7 @@ class MapMarker extends Model
             return '.bindPopup(`
             <div class="marker-popup-content">
                 <h4 class="marker-header">' . str_replace('`', '\'', $this->markerTitle(true)) . '</h4>
-                ' . (!empty($this->entry) ? '<p class="marker-text">' . Mentions::mapAny($this) . '</p>' : null) . '
+                ' . (!empty($this->entry) ? '<p class="marker-text">' . Str::limit(Mentions::mapAny($this), 500) . '</p>' : null) . '
             </div>
             <div class="marker-popup-entry">
                 ' . $body . '
