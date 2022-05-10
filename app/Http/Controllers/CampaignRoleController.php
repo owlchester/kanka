@@ -157,7 +157,7 @@ class CampaignRoleController extends Controller
     {
         $this->authorize('update', $campaignRole);
 
-        $campaignRole->savePermissions($request->post('permissions'));
+        $campaignRole->savePermissions($request->post('permissions', []));
 
         return redirect()->route('campaign_roles.show', ['campaign_role' => $campaignRole])
             ->with('success', trans('crud.permissions.success'));
