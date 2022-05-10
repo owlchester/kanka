@@ -203,7 +203,7 @@ function initDynamicDelete() {
     });
 
     $('a[data-toggle="delete-form"]').unbind('click').click(function (e) {
-        e.preventDefault;
+        e.preventDefault();
         let target = $(this).data('target');
         //console.log('target', target);
         $(target).submit();
@@ -221,13 +221,9 @@ function initDynamicDelete() {
 function initSubmenuSwitcher() {
     $('.submenu-switcher').change(function (e) {
         e.preventDefault();
-        console.log('this', $(this));
 
         let selected = $(this).find(":selected");
-        let route = selected.data('route');
-        console.log('route', route);
-
-        window.location.href = route;
+        window.location.href = selected.data('route');
     });
 }
 
@@ -252,7 +248,7 @@ require('./calendar')
 require('./search')
 require('./notification')
 require('./quick-creator')
-require('./tutorial')
+//require('./tutorial')
 require('./datagrids')
 require('./quick-links')
 require('./members')

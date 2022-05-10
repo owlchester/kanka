@@ -31,6 +31,9 @@ $clipboardFilters = $filterService->clipboardFilters();
     {!! Form::open(['url' => route($route), 'method' => 'GET', 'id' => 'crud-filters-form']) !!}
     <div class="collapse out" id="datagrid-filters">
         <div class="box-body">
+            @if (auth()->guest())
+                <p class="help-block">{{ __('filters.helpers.guest') }}</p>
+            @else
             <div class="row">
                 @foreach ($filters as $field)
                     @if ($count % 2 === 0 || (is_string($field) && $field == 'attributes'))
@@ -175,6 +178,7 @@ $clipboardFilters = $filterService->clipboardFilters();
                     </div>
                 @endforeach
             </div>
+            @endif
         </div>
         <div class="box-footer text-center">
             <div class="pull-left hidden-xs">
@@ -182,7 +186,7 @@ $clipboardFilters = $filterService->clipboardFilters();
                     <i class="fa-solid fa-eraser"></i> {{ __('crud.filters.clear') }}
                 </a>
 
-
+                @if (auth()->check())
                 @if($activeFilters > 0)
                 <a href="#" class="btn btn-default margin-r-5" data-clipboard="{{ $clipboardFilters }}" data-toggle="tooltip" title="{{ __('crud.filters.copy_helper') }}">
                     <i class="fa-solid fa-clipboard"></i> {{ __('crud.filters.copy_to_clipboard') }}
@@ -198,6 +202,7 @@ $clipboardFilters = $filterService->clipboardFilters();
                 <a href="{{ route('helpers.filters') }}" data-url="{{ route('helpers.filters') }}" data-toggle="ajax-modal" data-target="#entity-modal" title="{{ __('helpers.filters.title') }}">
                     {{ __('helpers.filters.title') }} <i class="fa-solid fa-question-circle"></i>
                 </a>
+                @endif
             </div>
 
             <div class="visible-xs pull-left block">
@@ -205,22 +210,24 @@ $clipboardFilters = $filterService->clipboardFilters();
                     <i class="fa-solid fa-eraser"></i> {{ __('crud.filters.mobile.clear') }}
                 </a>
 
-                @if($activeFilters > 0)
-                <a href="#" class="btn btn-default margin-r-5" data-clipboard="{{ $clipboardFilters }}" data-toggle="tooltip">
-                    <i class="fa-solid fa-clipboard"></i> {{ __('crud.filters.mobile.copy') }}
-                </a>
-            @else
-                <a href="#" class="btn btn-default margin-r-5" disabled="disabled" data-toggle="tooltip" title="{{ __('crud.filters.copy_helper_no_filters') }}">
-                    <i class="fa-solid fa-clipboard"></i> {{ __('crud.filters.mobile.copy') }}
-                </a>
-                @endif
+                @if (auth()->check())
+                    @if($activeFilters > 0)
+                    <a href="#" class="btn btn-default margin-r-5" data-clipboard="{{ $clipboardFilters }}" data-toggle="tooltip">
+                        <i class="fa-solid fa-clipboard"></i> {{ __('crud.filters.mobile.copy') }}
+                    </a>
+                    @else
+                    <a href="#" class="btn btn-default margin-r-5" disabled="disabled" data-toggle="tooltip" title="{{ __('crud.filters.copy_helper_no_filters') }}">
+                        <i class="fa-solid fa-clipboard"></i> {{ __('crud.filters.mobile.copy') }}
+                    </a>
+                    @endif
 
-                <a href="{{ route('helpers.filters') }}" data-url="{{ route('helpers.filters') }}" data-toggle="ajax-modal" data-target="#entity-modal" title="{{ __('helpers.filters.title') }}">
-                    <i class="fa-solid fa-question-circle"></i>
-                </a>
+                    <a href="{{ route('helpers.filters') }}" data-url="{{ route('helpers.filters') }}" data-toggle="ajax-modal" data-target="#entity-modal" title="{{ __('helpers.filters.title') }}">
+                        <i class="fa-solid fa-question-circle"></i>
+                    </a>
+                @endif
             </div>
 
-
+            @if (auth()->check())
             <span class="pull-right">
                 <button type="submit" class="btn btn-primary margin-r-5">
                     <i class="fa-solid fa-filter"></i> {{ __('crud.filter') }}
@@ -229,9 +236,10 @@ $clipboardFilters = $filterService->clipboardFilters();
                     <i class="fa-solid fa-chevron-up"></i>
                 </span>
             </span>
+            @endif
 
             <br class="clear" />
         </div>
-        {!! Form::close() !!}
     </div>
+    {!! Form::close() !!}
 </div>

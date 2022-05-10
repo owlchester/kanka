@@ -89,6 +89,7 @@ class Journal extends MiscModel
      * @var array
      */
     protected $sortable = [
+        'name',
         'date',
         'character.name',
         //'character.name',
