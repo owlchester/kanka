@@ -1,7 +1,7 @@
 <?php
 
 $tabs = [
-        '' => __('crud.tabs.default'),
+        //'' => __('crud.tabs.story'),
         'notes' => __('crud.tabs.notes'),
         'calendars' => __('crud.tabs.calendars'),
         'attribute' => __('crud.tabs.attributes'),
@@ -15,6 +15,7 @@ $menus = [
         'organisations' => __('characters.show.tabs.organisations')  . ' (' . __('entities.characters') . ', ' . __('entities.organisations') . ')',
         __('entities.maps') => [
             'explore' => __('maps.actions.explore'),
+            'maps' => __('maps.show.tabs.maps'),
         ],
         __('entities.tags') => [
             //'children' => __('tags.show.tabs.children'),
@@ -22,8 +23,6 @@ $menus = [
         ],
         __('entities.locations') => [
             'map' => __('locations.show.tabs.map') . ' (' . __('crud.legacy') . ')',
-        //    'maps' => __('locations.show.tabs.maps'),
-        //    'items' => __('locations.show.tabs.items'),
             'characters' => __('locations.show.tabs.characters'),
             'locations' => __('locations.show.tabs.locations'),
         ],
@@ -32,6 +31,18 @@ $menus = [
         ],
         __('entities.items') => [
             'inventories' => __('items.show.tabs.inventories')
+        ],
+        __('entities.organisations') => [
+            'organisations' => __('organisations.show.tabs.organisations')
+        ],
+        __('entities.races') => [
+            'races' => __('races.show.tabs.races')
+        ],
+        __('entities.journals') => [
+            'journals' => __('journals.show.tabs.journals')
+        ],
+        __('entities.quests') => [
+            'quest_elements' => __('quests.show.tabs.elements')
         ],
 
         //'tags' => __('tags.show.tabs.tags') . ' (' . __('entities.tags') . ')',
@@ -48,7 +59,7 @@ $menus = [
         'relations' => __('crud.tabs.connections'),
 ];
 asort($menus);
-$menus = array_merge(['' => ''], $menus);
+$menus = array_merge(['' => __('crud.tabs.story')], $menus);
 ?>
 <p class="help-block">{!! __('menu_links.helpers.entity', [
     'tab' => '<code>' . __('menu_links.fields.tab') . '</code>',

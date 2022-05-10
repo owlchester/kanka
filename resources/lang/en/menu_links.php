@@ -14,6 +14,7 @@ return [
     ],
     'fields'            => [
         'dashboard'     => 'Dashboard',
+        'default_dashboard' => 'Default dashboard',
         'entity'        => 'Entity',
         'filters'       => 'Filters',
         'is_nested'     => 'Nested',
@@ -28,6 +29,7 @@ return [
     ],
     'helpers'           => [
         'dashboard' => 'Have the quick link target one of the campaign\'s custom dashboards.',
+        'default_dashboard' => 'Link to the campaign\'s default dashboard instead. A custom dashboard still needs to be selected.',
         'entity'    => 'Set up this quick link to go directly to an entity. The :menu field controls which subpage of the entity is opened.',
         'position'  => 'Use this field to control in which ascending order the links appear in the menu.',
         'random'    => 'Use this field to have a quick link pointing to a random entity. You can filter the link to only go to a specific entity type.',
