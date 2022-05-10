@@ -8,7 +8,7 @@
 $entity = $widget->entity;
 $calendar = $entity->child;
 ?>
-<div class="panel panel-default {{ $widget->customClass($campaign) }}" id="dashboard-widget-{{ $widget->id }}">
+<div class="panel panel-default {{ $widget->customClass($campaign) }} widget-render" id="dashboard-widget-{{ $widget->id }}" data-url="{{ route('dashboard.calendar.render', $widget->id) }}">
     @if (!$calendar->image)
     <div class="panel-heading">
        <h3 class="panel-title">
@@ -23,6 +23,10 @@ $calendar = $entity->child;
         </div>
     @endif
     <div class="panel-body" id="widget-body-{{ $widget->id }}">
-        @include('dashboard.widgets.calendar.body')
+        <div class="widget-loading text-center">
+            <i class="fa-solid fa-spin fa-spinner fa-4x"></i>
+        </div>
+        <div class="widget-body"></div>
     </div>
+
 </div>

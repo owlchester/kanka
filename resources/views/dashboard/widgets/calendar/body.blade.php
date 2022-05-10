@@ -8,74 +8,19 @@
  */
 $entity = $widget->entity;
 $calendar = $entity->child;
-$currentYear = $calendar->currentDate('year');
-$currentMonth = $calendar->currentDate('month');
-$currentDay = $calendar->currentDate('date');
 
-$yearlyEvents = $calendar->dashboardEvents('=', 0);
-$upcomingEvents = new \Illuminate\Support\Collection();
-$previousEvents = new \Illuminate\Support\Collection();
-
-// Loop through reminders occurring on this year, and sort them out in upcoming and past.
-// Todo: only take a few close to the current date?
-foreach ($yearlyEvents as $reminder) {
-    if ($reminder->isPast($calendar)) {
-        $previousEvents->push($reminder);
-    } else {
-        $upcomingEvents->push($reminder);
-    }
-}
-
-// If we need more previous events, get some
-if ($previousEvents->count() < 5) {
-    $previousSingleEvents = $calendar->dashboardEvents('<');
-    foreach ($previousSingleEvents as $reminder) {
-        $previousEvents->push($reminder);
-    }
-}
-
-// Order the past events in descending date to get the closest ones to the current date first
-$previousEvents = $previousEvents->sortByDesc(function ($reminder) {
-    return [$reminder->year, $reminder->month, $reminder->day];
-});
-
-// If we need more upcoming events, get some
-if ($upcomingEvents->count() < 5) {
-    $upcomingSingleEvents = $calendar->dashboardEvents('>');
-    foreach ($upcomingSingleEvents as $reminder) {
-        $upcomingEvents->push($reminder);
-    }
-}
-
-// Get the recurring events separately to make sure we always have 5 real "upcoming" events that mix recurring and single
-$upcomingRecurringEvents = $calendar->dashboardEvents('>=', 5, true);
-foreach ($upcomingRecurringEvents as $event) {
-    // Recurring events can be forever, so check that's best
-    $until = !empty($event->recurring_until) ? min($event->recurring_until, $currentYear + 5) : $currentYear + 5;
-    for ($y = $currentYear; $y < $until; $y++) {
-        if ($y <= $currentYear && ($event->month < $currentMonth || ($event->month == $currentMonth && $event->day < $currentDay))) {
-            continue;
-        }
-        // Make a copy to change the date
-        $e = clone($event);
-        $e->year = $y;
-        $upcomingEvents->push($e);
-    }
-}
-// Order the upcoming events by date
-$upcomingEvents = $upcomingEvents->sortBy(function ($reminder) {
-    return [$reminder->year, $reminder->month, $reminder->day];
-});
+$upcomingEvents = $calendar->upcomingReminders();
+$previousEvents = $calendar->pastReminders(); //new \Illuminate\Support\Collection();
 
 // It could be that we get reminders for events the user can't see (2019-08: should no longer be the case? )
 $shownUpcomingEvents = 0;
 
 // Get the current day's weather effect.
-    // Todo: make it a relation that can be queried "with"?
+// Todo: make it a relation that can be queried "with"?
 $weather = $calendar->calendarWeather()
-    ->year($currentYear)
-    ->month($currentMonth)
-    ->where('day', $currentDay)
+    ->year($calendar->currentYear())
+    ->month($calendar->currentMonth())
+    ->where('day', $calendar->currentDay())
     ->first();
 
 
@@ -83,9 +28,14 @@ $weather = $calendar->calendarWeather()
 ?>
 <div class="current-date" id="widget-date-{{ $widget->id }}">
     @can('update', $calendar)
-        <i class="fa-solid fa-chevron-circle-left widget-calendar-switch" title="{{ __('dashboard.widgets.calendar.actions.previous') }}" data-url="{{ route('dashboard.calendar.sub', $widget) }}" data-widget="{{ $widget->id }}"></i>
-        {{ $calendar->niceDate() }}
-        <i class="fa-solid fa-chevron-circle-right widget-calendar-switch" title="{{ __('dashboard.widgets.calendar.actions.next') }}" data-url="{{ route('dashboard.calendar.add', $widget) }}" data-widget="{{ $widget->id }}"></i>
+        <a href="#" class="widget-calendar-switch" data-url="{{ route('dashboard.calendar.sub', $widget) }}" data-widget="{{ $widget->id }}">
+            <i class="fa-solid fa-chevron-circle-left" data-toggle="tooltip" title="{{ __('dashboard.widgets.calendar.actions.previous') }}" ></i>
+        </a>
+        <span>{{ $calendar->niceDate() }}</span>
+
+        <a href="#" class="widget-calendar-switch" data-url="{{ route('dashboard.calendar.add', $widget) }}" data-widget="{{ $widget->id }}">
+            <i class="fa-solid fa-chevron-circle-right" data-toggle="tooltip" title="{{ __('dashboard.widgets.calendar.actions.next') }}" ></i>
+        </a>
     @else
         {{ $calendar->niceDate() }}
     @endcan
@@ -101,26 +51,30 @@ $weather = $calendar->calendarWeather()
     </div>
 @endif
 
-<div id="widget-loading-{{ $widget->id }}" class="text-center hidden">
-    <i class="fa-solid fa-spin fa-spinner"></i>
-</div>
 <div class="row">
     @if ($previousEvents->isNotEmpty())
         <div class="col-md-12 col-lg-6">
-            <h4>{{ __('dashboard.widgets.calendar.previous_events') }}</h4>
+            <h4>
+                {{ __('dashboard.widgets.calendar.previous_events') }}
+                <a href="#" data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('helpers.calendar-widget') }}">
+                    <i class="fa-solid fa-question-circle" data-toggle="tooltip" title="{{ __('helpers.calendar-widget.info') }}"></i>
+                </a>
+            </h4>
             <ul class="list-unstyled">
                 @foreach ($previousEvents->take(5) as $reminder)
-                    @if (!empty($reminder->entity->child))
-                    <li>
+                    @if (!$reminder->entity) @continue @endif
+                    <li data-ago="{{ $reminder->daysAgo() }}">
                         <div class="pull-right">
                             @if (!empty($reminder->comment))
                                 <i class="fa-solid fa-comment" title="{{ $reminder->comment }}" data-toggle="tooltip" data-placement="bottom"></i>
+                            @endif
+                                @if ($reminder->is_recurring)
+                                <i class="fa-solid fa-arrows-rotate" title="{{ __('calendars.fields.is_recurring') }}" data-toggle="tooltip"></i>
                             @endif
                             <i class="fa-solid fa-calendar" title="{{ $reminder->readableDate() }}" data-toggle="tooltip" data-placement="bottom"></i>
                         </div>
                         {{ link_to($reminder->entity->url(), $reminder->entity->name) }}
                     </li>
-                    @endif
                 @endforeach
             </ul>
         </div>
@@ -128,19 +82,26 @@ $weather = $calendar->calendarWeather()
 
     @if ($upcomingEvents->isNotEmpty())
         <div class="col-lg-6 col-md-12">
-            <h4>{{ __('dashboard.widgets.calendar.upcoming_events') }}</h4>
+            <h4>
+                {{ __('dashboard.widgets.calendar.upcoming_events') }}
+                <a href="#" data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('helpers.calendar-widget') }}">
+                    <i class="fa-solid fa-question-circle" data-toggle="tooltip" title="{{ __('helpers.calendar-widget.info') }}"></i>
+                </a>
+            </h4>
             <ul class="list-unstyled">
                 @foreach ($upcomingEvents->all() as $event)
-                    @if ($shownUpcomingEvents < 5 && !empty($event->entity->child))
-                        <li>
+                    @if (!$reminder->entity) @continue @endif
+                @if ($shownUpcomingEvents < 5)
+                        <li data-in="{{ $reminder->inDays() }}">
                             <div class="pull-right">
                                 @if (!empty($event->comment))
                                     <i class="fa-solid fa-comment" title="{{ $event->comment }}" data-toggle="tooltip" data-placement="bottom"></i>
                                 @endif
+                                @if ($event->is_recurring)
+                                    <i class="fa-solid fa-arrows-rotate" title="{{ __('calendars.fields.is_recurring') }}" data-toggle="tooltip"></i>
+                                @endif
                                 @if ($event->isToday($calendar))
-                                    <span class="label label-default" title="{{ $event->readableDate() }}">
-                                        {{ __('calendars.actions.today') }}
-                                    </span>
+                                    <i class="fa-solid fa-calendar-check" data-toggle="tooltip" title="{{ __('calendars.actions.today') }}"></i>
                                 @else
                                     <i class="fa-solid fa-calendar" title="{{ $event->readableDate() }}" data-toggle="tooltip" data-placement="bottom"></i>
                                 @endif

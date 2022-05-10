@@ -1,1 +1,53 @@
-.campaign{background-repeat:no-repeat;background-position:50% 50%;background-size:cover;background-color:#eee;padding:8px;border-radius:2px;max-height:120px;overflow:hidden;height:120px;display:flex;justify-content:center;align-items:center}.campaign .campaign-name{display:block;margin-bottom:10px}.campaign .actions{text-align:center}.campaign .actions a,.campaign .actions span{font-size:14pt;color:#fff;text-shadow:rgba(0,0,0,.7) 0 1px 4px;cursor:pointer}.campaign .actions .btn{font-size:10pt;text-shadow:none}.campaign form{display:inline}.campaign.clickable{cursor:pointer}.campaign.clickable:hover{box-shadow:0 6px 6px rgba(50,50,93,.3),0 1px 3px rgba(0,0,0,.08)}.campaign.selected{box-shadow:0 6px 6px rgba(50,50,93,.8),0 1px 3px rgba(0,0,0,.08)}
+.campaign {
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  background-size: cover;
+  background-color: #eee;
+  padding: 8px;
+  border-radius: 2px;
+  max-height: 120px;
+  overflow: hidden;
+  height: 120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.campaign .campaign-name {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.campaign .actions {
+  text-align: center;
+}
+
+.campaign .actions a,
+.campaign .actions span {
+  font-size: 14pt;
+  color: #fff;
+  text-shadow: rgba(0, 0, 0, 0.7) 0px 1px 4px;
+  cursor: pointer;
+}
+
+.campaign .actions .btn {
+  font-size: 10pt;
+  text-shadow: none;
+}
+
+.campaign form {
+  display: inline;
+}
+
+.campaign.clickable {
+  cursor: pointer;
+}
+
+.campaign.clickable:hover {
+  box-shadow: 0 6px 6px rgba(50, 50, 93, 0.3), 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.campaign.selected {
+  box-shadow: 0 6px 6px rgba(50, 50, 93, 0.8), 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+

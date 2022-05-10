@@ -7,7 +7,18 @@ var newWidget, newWidgetPreview, newWidgetCalendar, newWidgetRecent;
 var btnAddWidget;
 var modalContentButtons, modalContentTarget, modalContentSpinner;
 
+var widgetVisible = new IntersectionObserver(function(entries) {
+    // isIntersecting is true when element and viewport are overlapping
+    // isIntersecting is false when element and viewport don't overlap
+    if(entries[0].isIntersecting === true) {
+        //console.log('Element has just become visible in screen', entries[0]);
+        renderWidget(entries[0].target);
+    }
+}, { threshold: [0] });
+
 $(document).ready(function() {
+
+    widgetVisible.observe(document.querySelector('.widget-render'));
 
     $('.preview-switch').click(function(e) {
         e.preventDefault();
@@ -174,6 +185,8 @@ function initDashboardRecent() {
 function initDashboardCalendars()
 {
     $('.widget-calendar-switch').click(function(e) {
+        e.preventDefault();
+
         var url = $(this).data('url'),
             widget = $(this).data('widget');
 
@@ -183,8 +196,8 @@ function initDashboardCalendars()
             }
         });
 
-        $('#widget-date-' + widget).addClass('hidden');
-        $('#widget-loading-' + widget).removeClass('hidden').siblings('.row').addClass('hidden');
+        $('#widget-body-' + widget).find('.widget-body').hide();
+        $('#widget-body-' + widget).find('.widget-loading').show();
 
         $.ajax({
             url: url,
@@ -194,7 +207,10 @@ function initDashboardCalendars()
             if (data) {
                 // Redirect page
                 var widget = $(this).data('widget');
-                $('#widget-body-' + widget).html(data);
+                $('#widget-body-' + widget).find('.widget-loading').hide();
+                $('#widget-body-' + widget).find('.widget-body').html(data).show();
+                $('[data-toggle="tooltip"]').tooltip();
+                window.ajaxTooltip();
                 initDashboardCalendars();
             }
         });
@@ -248,5 +264,23 @@ function removePreviewExpander() {
         }
         //$(this).next().removeClass('hidden');
     });
+}
 
+/**
+ * Render an deferred-rendering widget
+ * @param widget
+ */
+function renderWidget(widget)
+{
+    widget = $(widget);
+    $.ajax({
+        url: widget.data('url'),
+    }).done(function (res) {
+        widget.find('.widget-loading').hide();
+        widget.find('.widget-body').html(res).show();
+
+        $('[data-toggle="tooltip"]').tooltip();
+        window.ajaxTooltip();
+        initDashboardCalendars();
+    });
 }

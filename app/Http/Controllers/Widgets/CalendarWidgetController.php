@@ -47,4 +47,16 @@ class CalendarWidgetController extends Controller
         return view('dashboard.widgets.calendar.body')
             ->with('widget', $campaignDashboardWidget);
     }
+
+    public function render(CampaignDashboardWidget $campaignDashboardWidget)
+    {
+        if ($campaignDashboardWidget->widget != CampaignDashboardWidget::WIDGET_CALENDAR) {
+            return response()->json([
+                'success' => false
+            ]);
+        }
+
+        return view('dashboard.widgets.calendar.body')
+            ->with('widget', $campaignDashboardWidget);
+    }
 }

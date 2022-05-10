@@ -88,6 +88,14 @@ class HelperController
     }
 
     /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function calendarWidget()
+    {
+        return $this->render('calendar-widget');
+    }
+
+    /**
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function apiFilters()

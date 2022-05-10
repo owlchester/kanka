@@ -780,7 +780,7 @@ class CalendarRenderer
                 continue;
             }
             // If the event reoccurs each month, let's add it everywhere
-            if ($event->is_recurring && $event->recurring_periodicity === 'month') {
+            if ($event->recurringMonthly()) {
                 $startingMonth = $event->year == $this->getYear() ? $event->month : 1;
                 for ($month = $startingMonth; $month <= $totalMonths; $month++) {
                     $recurringDate = $this->getYear() . '-' . $month . '-' . $event->day;

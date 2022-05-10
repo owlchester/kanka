@@ -57,8 +57,6 @@ $(document).ready(function() {
      * Whenever a modal or popover is shown, we'll need to re-bind various helpers we have.
      */
     $(document).on('shown.bs.modal shown.bs.popover', function() {
-        $('[data-toggle="tooltip"]').tooltip();
-
         // Also re-bind select2 elements on modal show
         window.initForeignSelect();
         window.initTags(); // Need this for the abilities popup on entities

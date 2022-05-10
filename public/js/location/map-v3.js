@@ -1,1 +1,359 @@
-!function(e){var n={};function t(i){if(n[i])return n[i].exports;var r=n[i]={i:i,l:!1,exports:{}};return e[i].call(r.exports,r,r.exports,t),r.l=!0,r.exports}t.m=e,t.c=n,t.d=function(e,n,i){t.o(e,n)||Object.defineProperty(e,n,{enumerable:!0,get:i})},t.r=function(e){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})},t.t=function(e,n){if(1&n&&(e=t(e)),8&n)return e;if(4&n&&"object"==typeof e&&e&&e.__esModule)return e;var i=Object.create(null);if(t.r(i),Object.defineProperty(i,"default",{enumerable:!0,value:e}),2&n&&"string"!=typeof e)for(var r in e)t.d(i,r,function(n){return e[n]}.bind(null,r));return i},t.n=function(e){var n=e&&e.__esModule?function(){return e.default}:function(){return e};return t.d(n,"a",n),n},t.o=function(e,n){return Object.prototype.hasOwnProperty.call(e,n)},t.p="/",t(t.s=5)}({5:function(e,n,t){e.exports=t("lX53")},lX53:function(e,n,t){"use strict";t.r(n);var i,r,a,o,c,m,d=t("tygL");function l(){$(".map-legend-marker").click((function(e){e.preventDefault(),window.map.panTo(L.latLng($(this).data("lat"),$(this).data("lng"))),window[$(this).data("id")].openPopup()})),$("a.sidebar-toggle").click((function(){u()}))}function u(){setTimeout((function(){window.map.invalidateSize()}),500)}$(document).ready((function(){window.map.invalidateSize(),window.map.on("popupopen",(function(e){Object(d.a)()})),$('a[href="#marker-pin"]').click((function(e){$('input[name="shape_id"]').val(1),$("#map-marker-bg-colour").show()})),$('a[href="#marker-label"]').click((function(e){$('input[name="shape_id"]').val(2),$("#map-marker-bg-colour").hide()})),$('a[href="#marker-circle"]').click((function(e){$('input[name="shape_id"]').val(3),$("#map-marker-bg-colour").show()})),$('a[href="#marker-poly"]').click((function(e){$('input[name="shape_id"]').val(5),$("#map-marker-bg-colour").show()})),$('a[href="#form-markers"]').click((function(e){window.map.invalidateSize()})),function(){if(0===(i=$("#map-body")).length)return;r=$("#sidebar-map"),a=$("#sidebar-marker"),o=$("#map-marker-modal"),m=$("#map-marker-modal-title"),c=$("#map-marker-modal-content"),$.ajaxSetup({headers:{"X-CSRF-TOKEN":$('meta[name="csrf-token"]').attr("content")}}),window.markerDetails=function(e){!function(){if(window.kankaIsMobile.matches)return c.find(".spinner").show(),c.find(".content").hide(),void o.modal("toggle");i.removeClass("sidebar-collapse").addClass("sidebar-open"),r.hide(),a.html(""),a.parent().find(".spinner").show(),u()}(),window.kankaIsMobile.matches&&(e+="?mobile=1"),$.ajax({url:e,type:"GET",async:!0,success:function(e){e&&(window.kankaIsMobile.matches?(m.html(e.name),c.find(".content").html(e.body),c.find(".spinner").hide()):(a.html(e.body).parent().find(".spinner").hide(),$(".marker-close").click((function(e){a.hide(),r.show()})),i.addClass("sidebar-open")),Object(d.a)())}})},l()}(),function(){$('select[name="size_id"]').change((function(e){6==this.value?($(".map-marker-circle-helper").hide(),$(".map-marker-circle-radius").show()):($(".map-marker-circle-radius").hide(),$(".map-marker-circle-helper").show())}));var e=$("#map-layer-form"),n=$("#map-marker-form"),t=$("#map-group-form");if(0===$("#entity-form").length&&0===$(".map-marker-edit-form").length)return;e.unbind("submit").on("submit",(function(){window.entityFormHasUnsavedChanges=!1})),n.unbind("submit").on("submit",(function(){window.entityFormHasUnsavedChanges=!1})),t.unbind("submit").on("submit",(function(){window.entityFormHasUnsavedChanges=!1})),l()}(),$(".map-marker-entry-click").click((function(e){e.preventDefault(),$(this).parent().hide(),$(".map-marker-entry-entry").show()}))}))},tygL:function(e,n,t){"use strict";function i(){$.each($(".delete-confirm"),(function(){$(this).click((function(e){var n=$(this).data("name"),t=$(this).data("text"),i=$(this).data("delete-target"),r=$(this).data("confirm-target");r||(r="#delete-confirm-name"),t?$("#delete-confirm-text").text(t):$(r).text(n),$(this).data("mirrored")?$("#delete-confirm-mirror").show():$("#delete-confirm-mirror").hide(),i&&$(".delete-confirm-submit").data("target",i)}))})),$.each($(".delete-confirm-submit"),(function(e){$(this).unbind("click"),$(this).click((function(e){var n=$(this).data("target");n?($("#"+n+" input[name=remove_mirrored]").val($("#delete-confirm-mirror-checkbox").is(":checked")?1:0),$("#"+n).submit()):$("#delete-confirm-form").submit()}))})),$.each($(".click-confirm"),(function(e){$(this).click((function(e){var n=$(this).data("message");$("#click-confirm-text").text(n),$("#click-confirm-url").attr("href",$(this).data("url"))}))}))}t.d(n,"a",(function(){return i}))}});
+/******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId]) {
+/******/ 			return installedModules[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
+/******/ 		}
+/******/ 	};
+/******/
+/******/ 	// define __esModule on exports
+/******/ 	__webpack_require__.r = function(exports) {
+/******/ 		if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 		}
+/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 	};
+/******/
+/******/ 	// create a fake namespace object
+/******/ 	// mode & 1: value is a module id, require it
+/******/ 	// mode & 2: merge all properties of value into the ns
+/******/ 	// mode & 4: return value when already ns object
+/******/ 	// mode & 8|1: behave like require
+/******/ 	__webpack_require__.t = function(value, mode) {
+/******/ 		if(mode & 1) value = __webpack_require__(value);
+/******/ 		if(mode & 8) return value;
+/******/ 		if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
+/******/ 		var ns = Object.create(null);
+/******/ 		__webpack_require__.r(ns);
+/******/ 		Object.defineProperty(ns, 'default', { enumerable: true, value: value });
+/******/ 		if(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
+/******/ 		return ns;
+/******/ 	};
+/******/
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+/******/
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "/";
+/******/
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(__webpack_require__.s = 5);
+/******/ })
+/************************************************************************/
+/******/ ({
+
+/***/ "./resources/assets/js/components/delete-confirm.js":
+/*!**********************************************************!*\
+  !*** ./resources/assets/js/components/delete-confirm.js ***!
+  \**********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return deleteConfirm; });
+function deleteConfirm() {
+  // Delete confirm dialog
+  $.each($('.delete-confirm'), function () {
+    $(this).click(function (e) {
+      var name = $(this).data('name');
+      var text = $(this).data('text');
+      var target = $(this).data('delete-target');
+      var confirm = $(this).data('confirm-target');
+
+      if (!confirm) {
+        confirm = '#delete-confirm-name';
+      }
+
+      if (text) {
+        $('#delete-confirm-text').text(text);
+      } else {
+        $(confirm).text(name);
+      }
+
+      if ($(this).data('mirrored')) {
+        $('#delete-confirm-mirror').show();
+      } else {
+        $('#delete-confirm-mirror').hide();
+      }
+
+      if (target) {
+        $('.delete-confirm-submit').data('target', target);
+      }
+    });
+  }); // Submit modal form
+
+  $.each($('.delete-confirm-submit'), function (index) {
+    $(this).unbind('click');
+    $(this).click(function (e) {
+      //console.log('clicky submit');
+      var target = $(this).data('target');
+
+      if (target) {
+        $('#' + target + ' input[name=remove_mirrored]').val($('#delete-confirm-mirror-checkbox').is(':checked') ? 1 : 0); //console.log('target', target, $('#' + target));
+
+        $('#' + target).submit();
+      } else {
+        $('#delete-confirm-form').submit();
+      }
+    });
+  }); // Delete confirm dialog
+
+  $.each($('.click-confirm'), function (index) {
+    $(this).click(function (e) {
+      var name = $(this).data('message');
+      $('#click-confirm-text').text(name);
+      $('#click-confirm-url').attr('href', $(this).data('url'));
+    });
+  });
+}
+
+/***/ }),
+
+/***/ "./resources/assets/js/location/map-v3.js":
+/*!************************************************!*\
+  !*** ./resources/assets/js/location/map-v3.js ***!
+  \************************************************/
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _components_delete_confirm__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../components/delete-confirm */ "./resources/assets/js/components/delete-confirm.js");
+
+var mapPageBody;
+var sidebarMap, sidebarMarker;
+var markerModal, markerModalContent, markerModalTitle;
+$(document).ready(function () {
+  window.map.invalidateSize(); //deleteConfirm();
+
+  window.map.on('popupopen', function (ev) {
+    Object(_components_delete_confirm__WEBPACK_IMPORTED_MODULE_0__["default"])();
+  }); // Event fired when clicking on an existing map point
+
+  $('a[href="#marker-pin"]').click(function (e) {
+    $('input[name="shape_id"]').val(1);
+    $('#map-marker-bg-colour').show();
+  });
+  $('a[href="#marker-label"]').click(function (e) {
+    $('input[name="shape_id"]').val(2);
+    $('#map-marker-bg-colour').hide();
+  });
+  $('a[href="#marker-circle"]').click(function (e) {
+    $('input[name="shape_id"]').val(3);
+    $('#map-marker-bg-colour').show();
+  });
+  $('a[href="#marker-poly"]').click(function (e) {
+    $('input[name="shape_id"]').val(5);
+    $('#map-marker-bg-colour').show();
+  });
+  $('a[href="#form-markers"]').click(function (e) {
+    window.map.invalidateSize();
+  });
+  initMapExplore();
+  initMapForms();
+  initMapEntryClick();
+});
+/**
+ *
+ */
+
+function initMapExplore() {
+  //console.log('initMapExplore', '');
+  mapPageBody = $('#map-body');
+
+  if (mapPageBody.length === 0) {
+    //console.log('initMapExplore', 'no explore mode');
+    return;
+  }
+
+  sidebarMap = $('#sidebar-map');
+  sidebarMarker = $('#sidebar-marker');
+  markerModal = $('#map-marker-modal');
+  markerModalTitle = $('#map-marker-modal-title');
+  markerModalContent = $('#map-marker-modal-content'); // Allow ajax requests to use the X_CSRF_TOKEN for moves
+
+  $.ajaxSetup({
+    headers: {
+      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+  });
+
+  window.markerDetails = function (url) {
+    showSidebar();
+
+    if (window.kankaIsMobile.matches) {
+      url = url + '?mobile=1';
+    }
+
+    $.ajax({
+      url: url,
+      type: 'GET',
+      async: true,
+      success: function success(result) {
+        if (result) {
+          if (window.kankaIsMobile.matches) {
+            markerModalTitle.html(result.name);
+            markerModalContent.find('.content').html(result.body);
+            markerModalContent.find('.spinner').hide();
+          } else {
+            sidebarMarker.html(result.body).parent().find('.spinner').hide();
+            handleCloseMarker();
+            mapPageBody.addClass('sidebar-open');
+          }
+
+          Object(_components_delete_confirm__WEBPACK_IMPORTED_MODULE_0__["default"])();
+        }
+      }
+    });
+  };
+
+  initLegend();
+}
+/**
+ * When submitting the layer or marker form from the map modal, disable the map form unsaved changed
+ * alert.
+ */
+
+
+function initMapForms() {
+  $('select[name="size_id"]').change(function (e) {
+    if (this.value == 6) {
+      $('.map-marker-circle-helper').hide();
+      $('.map-marker-circle-radius').show();
+    } else {
+      $('.map-marker-circle-radius').hide();
+      $('.map-marker-circle-helper').show();
+    }
+  }); //console.info('mapsv3', 'initMapForms');
+
+  var layerForm = $('#map-layer-form');
+  var markerForm = $('#map-marker-form');
+  var groupForm = $('#map-group-form');
+
+  if ($('#entity-form').length === 0 && $('.map-marker-edit-form').length === 0) {
+    //console.info('initMapForms empty');
+    return;
+  }
+
+  layerForm.unbind('submit').on('submit', function () {
+    window.entityFormHasUnsavedChanges = false;
+  });
+  markerForm.unbind('submit').on('submit', function () {
+    window.entityFormHasUnsavedChanges = false;
+  });
+  groupForm.unbind('submit').on('submit', function () {
+    window.entityFormHasUnsavedChanges = false;
+  });
+  initLegend();
+}
+
+function showSidebar() {
+  // On mobile use the modal instead of the sidebar
+  if (window.kankaIsMobile.matches) {
+    markerModalContent.find('.spinner').show();
+    markerModalContent.find('.content').hide();
+    markerModal.modal('toggle');
+    return;
+  } //window.map.invalidateSize();
+
+
+  mapPageBody.removeClass('sidebar-collapse').addClass('sidebar-open');
+  sidebarMap.hide();
+  sidebarMarker.html('');
+  sidebarMarker.parent().find('.spinner').show();
+  invalidateMapOnSidebar();
+}
+
+function handleCloseMarker() {
+  $('.marker-close').click(function (ev) {
+    sidebarMarker.hide();
+    sidebarMap.show();
+  });
+}
+
+function initLegend() {
+  $('.map-legend-marker').click(function (ev) {
+    ev.preventDefault();
+    window.map.panTo(L.latLng($(this).data('lat'), $(this).data('lng')));
+    window[$(this).data('id')].openPopup();
+  });
+  $('a.sidebar-toggle').click(function () {
+    invalidateMapOnSidebar(); //console.log('wat');
+  });
+}
+
+function invalidateMapOnSidebar() {
+  setTimeout(function () {
+    // Invalidate the map size when the sidebar is rendered/hidden
+    window.map.invalidateSize();
+  }, 500);
+}
+
+function initMapEntryClick() {
+  $('.map-marker-entry-click').click(function (e) {
+    e.preventDefault();
+    $(this).parent().hide();
+    $('.map-marker-entry-entry').show();
+  });
+}
+
+/***/ }),
+
+/***/ 5:
+/*!******************************************************!*\
+  !*** multi ./resources/assets/js/location/map-v3.js ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! /Users/jay/Documents/GitHub/miscellany/resources/assets/js/location/map-v3.js */"./resources/assets/js/location/map-v3.js");
+
+
+/***/ })
+
+/******/ });

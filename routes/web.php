@@ -38,6 +38,7 @@ Route::group([
     Route::get('/helper/widget-filters', 'HelperController@widgetFilters')->name('helpers.widget-filters');
     Route::get('/helper/pins', [\App\Http\Controllers\HelperController::class, 'pins'])->name('helpers.pins');
     Route::get('/helper/visibility', [\App\Http\Controllers\HelperController::class, 'visibility'])->name('helpers.visibility');
+    Route::get('/helper/calendar-widget', [\App\Http\Controllers\HelperController::class, 'calendarWidget'])->name('helpers.calendar-widget');
     Route::get('/helpers/api-filters', 'HelperController@apiFilters')->name('helpers.api-filters');
 
     // OAuth Routes
