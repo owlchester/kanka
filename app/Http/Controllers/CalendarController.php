@@ -200,6 +200,7 @@ class CalendarController extends CrudController
 
         $this->rows = $rows
             ->with(['entity', 'calendar', 'entity.image'])
+            ->has('entity')
             ->sort(request()->only(['o', 'k']))
             ->paginate();
 
