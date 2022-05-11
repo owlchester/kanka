@@ -211,6 +211,9 @@ class DatagridRenderer2
             if (Str::endsWith($k, '_id')) {
                 continue;
             }
+            elseif ($k === 'all') {
+                continue;
+            }
             unset($options[$k]);
         }
         if (request()->has('o')) {
