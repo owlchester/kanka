@@ -37,6 +37,9 @@
     {!! Form::hidden('year', $weather->year) !!}
     {!! Form::hidden('month', $weather->month) !!}
     {!! Form::hidden('day', $weather->day) !!}
+    @if (request()->has('layout'))
+        {!! Form::hidden('layout', request()->get('layout')) !!}
+    @endif
     {!! Form::close() !!}
 
 
@@ -44,5 +47,11 @@
         'method' => 'DELETE',
         'route' => ['calendars.calendar_weather.destroy', $weather->calendar->id, $weather->id],
         'id' => 'delete-weather-' . $weather->id]) !!}
+    @if (request()->has('layout'))
+        {!! Form::hidden('layout', request()->get('layout')) !!}
+        {!! Form::hidden('year', $year) !!}
+        {!! Form::hidden('month', $month) !!}
+        {!! Form::hidden('day', $day) !!}
+    @endif
     {!! Form::close() !!}
 @endsection

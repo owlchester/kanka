@@ -52,11 +52,17 @@
     @if (!empty($next))
         <input type="hidden" name="next" value="{{ $next }}" />
     @endif
+    @if (request()->has('layout'))
+        {!! Form::hidden('layout', request()->get('layout')) !!}
+    @endif
     {!! Form::close() !!}
 
     {!! Form::open([
         'method' => 'DELETE',
         'route' => ['entities.entity_events.destroy', $entity->id, $entityEvent->id],
         'id' => 'delete-reminder-' . $entityEvent->id]) !!}
+    @if (request()->has('layout'))
+        {!! Form::hidden('layout', request()->get('layout')) !!}
+    @endif
     {!! Form::close() !!}
 @endsection

@@ -14,6 +14,7 @@ return [
         'add_year'          => 'Add a named year',
         'set_today'         => 'Set as current day',
         'today'             => 'Today',
+        'update_weather'    => 'Update weather',
     ],
     'checkboxes'    => [
         'is_recurring'  => 'Takes place every year',

@@ -34,5 +34,9 @@
         </div>
     </div>
 
+    @if (request()->has('layout'))
+        {!! Form::hidden('layout', request()->get('layout')) !!}
+    @endif
+
     {!! Form::close() !!}
 @endsection
