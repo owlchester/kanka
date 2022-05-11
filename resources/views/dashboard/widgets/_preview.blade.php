@@ -6,6 +6,10 @@
 $model = $widget->entity->child;
 $entity = $widget->entity;
 
+if (empty($model)) {
+    return;
+}
+
 $specificPreview = 'dashboard.widgets.previews.' . $entity->type();
 $customName = !empty($widget->conf('text')) ? str_replace('{name}', $model->name, $widget->conf('text')) : null;
 
