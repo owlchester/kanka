@@ -11,7 +11,7 @@ return [
         'add_weather'       => 'Set weather effect',
         'add_week'          => 'Add a named week',
         'add_weekday'       => 'Add a week day',
-        'add_year'          => 'Add a year name',
+        'add_year'          => 'Add a named year',
         'set_today'         => 'Set as current day',
         'today'             => 'Today',
     ],
@@ -74,9 +74,10 @@ return [
         'current_year'          => 'Current Year',
         'date'                  => 'Current Date',
         'day'                   => 'Day',
+        'default_layout'        => 'Default layout',
         'has_leap_year'         => 'Has leap years',
         'intercalary'           => 'Intercalary Days',
-        'is_incrementing'       => 'Advancing Date',
+        'is_incrementing'       => 'Advancing date',
         'is_recurring'          => 'Recurring',
         'leap_year_amount'      => 'Add Days',
         'leap_year_month'       => 'Month',
@@ -106,6 +107,7 @@ return [
         'nested_parent' => 'Displaying the calendars of :parent.',
         'nested_without'=> 'Displaying all calendars that don\'t have a parent calendar. Click on a row to see the children calendars.',
         'start_offset'  => 'By default, the calendar starts on the first weekday of year 0. Changing this field influences where the calendar\'s first day is placed.',
+        'default_layout' => 'Select which layout the calendar should use by default when viewed.',
     ],
     'hints'         => [
         'event_length'      => 'How long an event is set to last. An event can\'t span over more than two months.',
@@ -126,7 +128,9 @@ return [
     ],
     'layouts'       => [
         'month' => 'Month',
+        'monthly' => 'Monthly by default',
         'year'  => 'Year',
+        'yearly' => 'Yearly by default',
     ],
     'modals'        => [
         'switcher'  => [

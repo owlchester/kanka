@@ -25,6 +25,7 @@ use Illuminate\Support\Str;
  * @property string $moons
  * @property string $reset
  * @property int $calendar_id
+ * @property array $parameters
  *
  * @property EntityEvent[] $calendarEvents
  * @property CalendarWeather[] $calendarWeather
@@ -73,45 +74,30 @@ class Calendar extends MiscModel
         'calendar_id',
     ];
 
-    /**
-     * Parameters in decoded json
-     * @var bool
-     */
-    protected $params = false;
+    /** @var string[] */
+    public $casts = [
+        'parameters' => 'array'
+    ];
 
-    /**
-     * @var bool
-     */
+    /** @var bool|array */
     protected $loadedMonths = false;
 
-    /**
-     * @var bool
-     */
+    /** @var bool|array */
     protected $loadedWeekdays = false;
 
-    /**
-     * @var bool
-     */
+    /** @var bool|array */
     protected $loadedYears = false;
 
-    /**
-     * @var bool
-     */
+    /** @var bool|array */
     protected $loadedSeasons = false;
 
-    /**
-     * @var bool
-     */
+    /** @var bool|array */
     protected $loadedMoons = false;
 
-    /**
-     * @var bool
-     */
+    /** @var bool|array */
     protected $loadedWeeks = false;
 
-    /**
-     * @var bool
-     */
+    /** @var bool|array */
     protected $loadedMonthAliases = false;
 
     /**
@@ -268,7 +254,6 @@ class Calendar extends MiscModel
         return $this->loadedYears;
     }
 
-
     /**
      * Get the moons
      * @return null
@@ -315,24 +300,6 @@ class Calendar extends MiscModel
             $this->loadedMonthAliases = json_decode(empty($this->month_aliases) ? '[]' : strip_tags($this->month_aliases), true);
         }
         return $this->loadedMonthAliases;
-    }
-
-    /**
-     * Get the value of a parameter
-     * @param $field
-     * @return null
-     */
-    private function param($field)
-    {
-        if ($this->params === false) {
-            $this->params = json_decode(strip_tags($this->parameters), true);
-        }
-
-        if (isset($this->params[$field])) {
-            return $this->params[$field];
-        }
-
-        return null;
     }
 
     /**
@@ -810,5 +777,22 @@ class Calendar extends MiscModel
             $days += Arr::get($month, 'length', 1);
         }
         return $days;
+    }
+
+    /**
+     * Default calendar layout
+     * @return string
+     */
+    public function defaultLayout(): string
+    {
+        return $this->yearlyLayout() ? 'year' : 'month';
+    }
+
+    /**
+     * @return bool
+     */
+    public function yearlyLayout(): bool
+    {
+        return !empty($this->parameters['layout']) && $this->parameters['layout'] === 'yearly';
     }
 }
