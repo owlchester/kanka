@@ -79563,7 +79563,7 @@ function initDynamicDelete() {
     sanitize: false
   });
   $('a[data-toggle="delete-form"]').unbind('click').click(function (e) {
-    e.preventDefault;
+    e.preventDefault();
     var target = $(this).data('target'); //console.log('target', target);
 
     $(target).submit();
@@ -79579,11 +79579,8 @@ function initDynamicDelete() {
 function initSubmenuSwitcher() {
   $('.submenu-switcher').change(function (e) {
     e.preventDefault();
-    console.log('this', $(this));
     var selected = $(this).find(":selected");
-    var route = selected.data('route');
-    console.log('route', route);
-    window.location.href = route;
+    window.location.href = selected.data('route');
   });
 }
 /**
@@ -79612,9 +79609,8 @@ __webpack_require__(/*! ./search */ "./resources/assets/js/search.js");
 
 __webpack_require__(/*! ./notification */ "./resources/assets/js/notification.js");
 
-__webpack_require__(/*! ./quick-creator */ "./resources/assets/js/quick-creator.js");
+__webpack_require__(/*! ./quick-creator */ "./resources/assets/js/quick-creator.js"); //require('./tutorial')
 
-__webpack_require__(/*! ./tutorial */ "./resources/assets/js/tutorial.js");
 
 __webpack_require__(/*! ./datagrids */ "./resources/assets/js/datagrids.js");
 
@@ -82354,83 +82350,6 @@ window.showToast = function (message, css) {
   }, 3000);
   registerToastDismiss();
 };
-
-/***/ }),
-
-/***/ "./resources/assets/js/tutorial.js":
-/*!*****************************************!*\
-  !*** ./resources/assets/js/tutorial.js ***!
-  \*****************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-var tutorialModal;
-$(document).ready(function () {
-  initTutorialModals();
-});
-
-function initTutorialModals() {
-  tutorialModal = $('#tutorial-modal');
-  tutorialModal.modal('show'); // Handle the various buttons
-
-  initTutorialButtons();
-}
-
-function initTutorialButtons() {
-  $('[data-tutorial="disable"]').unbind('click').on('click', function (e) {
-    e.preventDefault();
-    tutorialDisable($(this));
-  });
-  $('[data-tutorial="next"]').unbind('click').on('click', function (e) {
-    e.preventDefault();
-    tutorialNext($(this));
-  });
-  $('[data-tutorial="close"]').unbind('click').on('click', function (e) {
-    e.preventDefault();
-    closeTutorialModal();
-  });
-}
-
-function tutorialLoading() {
-  tutorialModal.find('.modal-content').first().html('<div class="modal-body text-center">' + '<i class="fa-solid fa-spin fa-spinner fa-4x"></i>' + '</div>');
-}
-
-function closeTutorialModal() {
-  tutorialModal.modal('toggle');
-}
-
-function tutorialDisable(element) {
-  console.log('disable all tutorials');
-  tutorialLoading();
-  $.ajax({
-    url: element.data('url')
-  }).done(function () {
-    closeTutorialModal();
-  }).fail(function () {
-    closeTutorialModal();
-  });
-}
-
-function tutorialNext(element) {
-  console.log('next');
-  tutorialLoading();
-  $.ajax({
-    url: element.data('url')
-  }).done(function (data) {
-    if (!data.html) {
-      if (data.highlight) {
-        console.log('highlight', data.highlight);
-        $(data.highlight).addClass('tutorial-highlight');
-      }
-
-      closeTutorialModal();
-      return;
-    }
-
-    tutorialModal.find('.modal-content').html(data.html);
-    initTutorialButtons();
-  });
-}
 
 /***/ }),
 
