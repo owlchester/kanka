@@ -90,7 +90,7 @@ class CalendarRenderer
      * Get previous month link
      * @return string
      */
-    public function previous($title = false)
+    public function previous(bool $title = false, bool $monthly = true)
     {
         $month = $this->getMonth(-1);
         $year = $this->getYear();
@@ -122,6 +122,50 @@ class CalendarRenderer
             'calendars.show',
             ['calendar' => $this->calendar, 'month' => $month, 'year' => $year]
         );
+    }
+
+    /**
+     * Build a link to a year
+     * @param bool $next
+     * @return string
+     */
+    public function linkToYear(bool $next = true): string
+    {
+        $month = $this->getMonth();
+        $year = $this->getYear($next ? 1 : -1);
+
+        $options = [
+            'calendar' => $this->calendar,
+            'month' => $month,
+            'year' => $year,
+        ];
+        if ($this->isYearlyLayout()) {
+            $options['layout'] = 'year';
+            unset($options['month']);
+        }
+
+        return route(
+            'calendars.show',
+             $options
+        );
+    }
+
+    /**
+     * Get the title to a year
+     * @param bool $next
+     * @return string
+     */
+    public function titleToYear(bool $next = true): string
+    {
+        $month = $this->getMonth();
+        $year = $this->getYear($next ? 1 : -1);
+
+        if ($this->isYearlyLayout()) {
+            return $year;
+        }
+
+        $months = $this->calendar->months();
+        return $months[$month-1]['name'] . " $year";
     }
 
     /**

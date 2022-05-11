@@ -58,7 +58,7 @@ class OrganisationMember extends Model
         'organisation.name',
         'character.name',
         'role',
-        'location.name',
+        //'character.location.name',
     ];
 
     /**

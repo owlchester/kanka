@@ -17,22 +17,31 @@ $weekNumber = 1;
     <div class="box-body">
         <div class="calendar-toolbar">
             {{ $renderer->todayButton() }}
+
+            @if (!$renderer->isYearlyLayout())
             <div class="btn-group">
                 <a href="{{ $renderer->previous() }}" class="btn btn-default btn-corner-left" title="{{ $renderer->previous(true) }}" data-toggle="tooltip">
                     <i class="fa-solid fa-angle-left"></i>
                 </a>
+                <div class="btn btn-default" disabled>
+                    {!! $renderer->currentMonthName() !!}
+                </div>
                 <a href="{{ $renderer->next() }}" class="btn btn-default btn-corner-right" title="{{ $renderer->next(true) }}" data-toggle="tooltip">
                     <i class="fa-solid fa-angle-right"></i>
                 </a>
             </div>
-            <div class="calendar-current">
-                @if (!$renderer->isYearlyLayout())
-                    <span class="month">{!! $renderer->currentMonthName() !!}</span>
-                @endif
+            @endif
+            <div class="btn-group">
+                <a href="{{ $renderer->linkToYear(false) }}" class="btn btn-default btn-corner-left" title="{{ $renderer->titleToYear(false) }}" data-toggle="tooltip">
+                    <i class="fa-solid fa-angle-left"></i>
+                </a>
                 <div data-toggle="modal" data-target="#calendar-year-switcher" title="{{ __('calendars.modals.switcher.title') }}"
-                    class="btn btn-default">
+                     class="btn btn-default">
                     {!! $renderer->currentYearName() !!}
                 </div>
+                <a href="{{ $renderer->linkToYear() }}" class="btn btn-default btn-corner-right" title="{{ $renderer->titleToYear() }}" data-toggle="tooltip">
+                    <i class="fa-solid fa-angle-right"></i>
+                </a>
             </div>
 
             <div class="pull-right">
