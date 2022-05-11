@@ -1,4 +1,4 @@
-<section id="testimonials" class="bg-primary ab-testing-b">
+<section id="testimonials" class="bg-primary">
     <div class="container">
         <div class="section-heading text-center">
             <h2>{{ __('front/testimonials.title') }}</h2>

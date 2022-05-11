@@ -79,7 +79,7 @@
         </div>
     </div>
 
-    <div class="box box-solid period-year" id="pricing-overview">
+    <div class="box box-solid period-month" id="pricing-overview">
         <div class="box-header with-border">
             <h3 class="box-title">
                 {{ __('settings.subscription.tiers') }}
@@ -96,8 +96,8 @@
             <div class="text-center px-3 text-vertical ab-testing-b">
                 <span>{{ __('tiers.periods.monthly') }}</span>
                 <label class="toggle ml-1 mr-1">
-                    <input type="checkbox" name="period" checked="checked">
-                    <span class="slider"></span>
+                    <input type="checkbox" name="period">
+                    <span class="slider subscription-period-slider"></span>
                 </label>
                 <span>{{ __('tiers.toggle.yearly') }}</span>
             </div>

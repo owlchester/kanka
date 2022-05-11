@@ -56,8 +56,9 @@ class OrganisationMember extends Model
 
     protected $sortable = [
         'organisation.name',
+        'character.name',
         'role',
-        'organisation.location.name',
+        'location.name',
     ];
 
     /**

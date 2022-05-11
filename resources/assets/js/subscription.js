@@ -187,6 +187,7 @@ function checkCoupon() {
 function initPeriodToggle() {
     $('input[name="period"]').change(function () {
         let box = $('#pricing-overview');
+        console.log('checked?', this.checked);
         if (this.checked) {
             box.removeClass('period-month').addClass('period-year');
         } else {

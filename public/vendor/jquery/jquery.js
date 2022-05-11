@@ -3812,7 +3812,6 @@ jQuery.extend( {
 			resolveValues = slice.call( arguments ),
 
 			// the master Deferred
-			master = jQuery.Deferred(),
 
 			// subordinate callback factory
 			updateFunc = function( i ) {
