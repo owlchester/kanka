@@ -1088,8 +1088,8 @@ class CalendarRenderer
 
         if ($moon['fullmoon'] > 10) {
             $quarterMonth = $moon['fullmoon'] / 4;
-            $this->addMoonPhase($newMoon - $quarterMonth, $moon, 'waning', 'fa-regular fa-moon');
-            $this->addMoonPhase($newMoon + $quarterMonth, $moon, 'waxing', 'fa-solid fa-moon');
+            $this->addMoonPhase($newMoon - $quarterMonth, $moon, 'last_quarter', 'fa-solid fa-circle-half-stroke fa-flip-horizontal');
+            $this->addMoonPhase($newMoon + $quarterMonth, $moon, 'first_quarter', 'fa-solid fa-circle-half-stroke');
         }
     }
 

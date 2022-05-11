@@ -113,7 +113,7 @@ return [
         'is_incrementing'   => 'Advancing calendars will automatically have their current date incremented at 00:00 UTC.',
         'is_recurring'      => 'An event can be set to recurring. It will reappear every year on the same date.',
         'months'            => 'Your calendar should have at least 2 months.',
-        'moons'             => 'Adding moons will make them show up in the calendar on every full and new moon. If the full moon period is bigger than 10 days, waning and waxing moons will also be displayed.',
+        'moons'             => 'Adding moons will make them show up in the calendar on every full and new moon. If the full moon period is bigger than 10 days, thirst and third quarter moons will also be displayed.',
         'parent_calendar'   => 'Giving the calendar a parent calendar will include the reminders and weather effects of the parent calendar.',
         'reset'             => 'Always start the beginning of the month or year on the first week day.',
         'seasons'           => 'Create seasons for your calendar by providing when each of them start. Kanka will take care of the rest.',
@@ -213,10 +213,10 @@ return [
     ],
     'show'          => [
         'missing_details'   => 'This calendar couldn\'t be displayed. Calendars need at least 2 months and 2 weekdays to render properly.',
-        'moon_full_moon'    => ':moon Full Moon',
-        'moon_new_moon'     => ':moon New Moon',
-        'moon_waning_moon'  => ':moon Waning',
-        'moon_waxing_moon'  => ':moon Waxing',
+        'moon_full'    => ':moon full moon',
+        'moon_new'     => ':moon new moon',
+        'moon_first_quarter' => ':moon first quarter',
+        'moon_last_quarter' => ':moon last quarter',
         'tabs'              => [
             'events'    => 'Reminders',
             'weather'   => 'Weather',
