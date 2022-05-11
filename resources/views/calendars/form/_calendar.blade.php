@@ -24,7 +24,6 @@
 
         <hr />
 
-        @if ($campaign->enabled('calendars'))
             <?php
             $preset = null;
             if (isset($model) && $model->calendar) {
@@ -42,12 +41,11 @@
                         'class' => App\Models\Calendar::class,
                         'labelKey' => 'calendars.fields.calendar',
                         'from' => isset($model) ? $model : null,
+                        'helper' => __('calendars.hints.parent_calendar')
                     ]
                 ) !!}
-                <p class="help-block">{{ __('calendars.hints.parent_calendar') }}</p>
             </div>
             <hr />
-        @endif
 
         <div class="form-group checkbox">
             {!! Form::hidden('is_incrementing', 0) !!}
