@@ -131,9 +131,9 @@ class OrganisationController extends CrudController
 
         $this->rows = $organisation
             ->{$base}()
-            ->with(['organisation', 'organisation.entity'])
+            ->with(['organisation', 'organisation.entity', 'character', 'character.entity'])
             ->has('character')
-            //->sort(request()->only(['o', 'k']))
+            ->sort(request()->only(['o', 'k']))
             ->paginate();
 
         // Ajax Datagrid

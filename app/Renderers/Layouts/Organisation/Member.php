@@ -19,7 +19,7 @@ class Member extends Layout
                 'with' => ['target' => 'character']
             ],
             'character' => [
-                'key' => 'name',
+                'key' => 'character.name',
                 'label' => 'characters.fields.name',
                 'render' => Standard::CHARACTER,
             ],
