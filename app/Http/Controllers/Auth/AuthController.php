@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Services\ReferralService;
 use App\User;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
@@ -43,7 +43,11 @@ class AuthController extends Controller
         if (!in_array($provider, ['facebook', 'twitter', 'google'])) {
             return redirect()->route('login');
         }
-        return Socialite::driver($provider)->redirect();
+        try {
+            return Socialite::driver($provider)->redirect();
+        } catch(\Exception $e) {
+            return redirect()->route('login')->withErrors('Error contacting ' . ucfirst($provider) . '.');
+        }
     }
 
     /**
@@ -101,7 +105,7 @@ class AuthController extends Controller
             throw new AccessDeniedHttpException('ACCOUNT REGISTRATION DISABLED');
         }
 
-        return User::create([
+        $authUser = User::create([
             'name'     => $user->name,
             'email'    => $user->email,
             'password' => $user->email,
@@ -109,6 +113,11 @@ class AuthController extends Controller
             'provider_id' => $user->id,
             'referral_id' => $this->referralService->referralId(),
         ]);
+
+        // Call the registered event
+        event(new Registered($authUser));
+
+        return $authUser;
     }
 
     /**
