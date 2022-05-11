@@ -88,15 +88,14 @@
                 <h2>{{ __('front.pricing.title') }}</h2>
                 <p class="text-muted">{{ __('front.pricing.description', ['kanka' => config('app.name')]) }}</p>
             </div>
-            <div class="mb-3"><br /></div>
-            <div class="mt-5">
-            @include('front._pricing')
+            <div class="mt-5 pt-3">
+                @include('front._pricing')
             </div>
         </div>
     </section>
     @endif
 
-    @include('front._testimonials')
+    @includeWhen(false, 'front._testimonials')
 
     @includeWhen(!empty($campaigns), 'front._campaigns')
 @endsection
