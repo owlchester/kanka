@@ -149,6 +149,7 @@ class FamilyController extends CrudController
             ->sort(request()->only(['o', 'k']))
             ->filter($filters)
             ->with(['location', 'location.entity', 'families', 'families.entity', 'races', 'races.entity', 'entity', 'entity.tags'])
+            ->has('entity')
             ->paginate();
 
         // Ajax Datagrid
