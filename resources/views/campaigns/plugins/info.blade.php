@@ -15,7 +15,9 @@
         <div class="{{ $ajax ? 'modal' : 'box' }}-header">
             <h5 class="{{ $ajax ? 'modal' : 'box' }}-title">
                 {!! $plugin->name !!} - {{ __('campaigns/plugins.info.updates') }}
-
+                @if ($ajax)
+                    <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('crud.delete_modal.close') }}"><span aria-hidden="true">&times;</span></button>
+                @endif
             </h5>
         </div>
 
@@ -65,8 +67,10 @@
                     </div>
                 @endforeach
         </div>
+        @if ($versions->hasPages())
         <div class="{{ $ajax ? 'modal' : 'box' }}-footer">
             {!! $versions->links() !!}
         </div>
+        @endif
     </div>
 @endsection
