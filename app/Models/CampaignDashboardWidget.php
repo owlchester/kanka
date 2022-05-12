@@ -255,12 +255,13 @@ class CampaignDashboardWidget extends Model
 
         $excludedTypes = [];
         if (empty($entityType)) {
-            $excludedTypes = [
+            // Todo: this didn't work for 6 months and no one complained
+            /*$excludedTypes = [
                 config('entities.ids.tag'),
                 config('entities.ids.conversation'),
                 config('entities.ids.attribute_template'),
                 config('entities.ids.dice_roll'),
-            ];
+            ];*/
         }
 
         if ($this->filterUnmentioned()) {
