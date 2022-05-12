@@ -100,8 +100,8 @@ class QuestController extends CrudController
             ->quests()
             ->sort(request()->only(['o', 'k']))
             ->filter($filters)
-            ->with(['entity'])
-            ->paginate();
+            ->with(['entity', 'entity.image'])
+            ->paginate(15);
 
         return $this->datagridAjax();
 

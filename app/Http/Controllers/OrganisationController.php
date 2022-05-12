@@ -100,7 +100,10 @@ class OrganisationController extends CrudController
         $this->rows = $organisation
             ->descendants()
             ->sort(request()->only(['o', 'k']))
-            ->with(['entity', 'organisation', 'organisation.entity'])
+            ->with([
+                'entity', 'entity.image', 'entity.tags',
+                'organisation', 'organisation.entity'
+            ])
             ->paginate();
 
         if (request()->ajax()) {
@@ -131,10 +134,12 @@ class OrganisationController extends CrudController
 
         $this->rows = $organisation
             ->{$base}()
-            ->with(['organisation', 'organisation.entity', 'character', 'character.entity'])
+            ->with([
+                'organisation', 'organisation.entity',
+                'character', 'character.entity', 'character.entity.image'])
             ->has('character')
             ->sort(request()->only(['o', 'k']))
-            ->paginate();
+            ->paginate(15);
 
         // Ajax Datagrid
         if (request()->ajax()) {

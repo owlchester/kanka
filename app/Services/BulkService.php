@@ -291,12 +291,15 @@ class BulkService
                 $entity->{$relation}()->syncWithoutDetaching($ids);
             }
 
-            // We have to still update the entity object
-            $realEntity = $entity->entity;
+            // We have to still update the entity object (except for menu links)
+            // Todo: refactor into a trait or function
+            if ($entity->entity) {
+                $realEntity = $entity->entity;
 
-            $realEntity->is_private = $entity->is_private;
-            $realEntity->name = $entity->name;
-            $realEntity->save();
+                $realEntity->is_private = $entity->is_private;
+                $realEntity->name = $entity->name;
+                $realEntity->save();
+            }
 
             $this->count++;
 
