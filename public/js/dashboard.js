@@ -110,7 +110,10 @@ var widgetVisible = new IntersectionObserver(function (entries) {
   threshold: [0]
 });
 $(document).ready(function () {
-  widgetVisible.observe(document.querySelector('.widget-render'));
+  if ($('.widget-render').length > 0) {
+    widgetVisible.observe(document.querySelector('.widget-render'));
+  }
+
   $('.preview-switch').click(function (e) {
     e.preventDefault();
     var preview = $('#widget-preview-body-' + $(this).data('widget'));
