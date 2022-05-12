@@ -111,7 +111,7 @@ class RaceController extends CrudController
                 'location', 'location.entity',
                 'families', 'families.entity',
                 'races', 'races.entity',
-                'entity', 'entity.tags', 'entitiy.image'
+                'entity', 'entity.tags', 'entity.image'
             ])
             ->has('entity')
             ->paginate();
