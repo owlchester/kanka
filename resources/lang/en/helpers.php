@@ -86,6 +86,7 @@ return [
         'months'            => 'Type :code to get a list of months from your calendars.',
         'options'           => 'Some options are :options.',
         'overview'          => 'Easily link to existing entities of the campaign by typing :code and three letters or more.',
+        'parameters'        => 'Parameters can also be passed along to the entity link. For example, specify which year and month get shown on a calendar with :calendar. The same can be done with ordering sublists. For example, order family subfamilies by location name with :sublist.',
         'title'             => 'Linking to other entities with mentions',
     ],
     'map'               => [

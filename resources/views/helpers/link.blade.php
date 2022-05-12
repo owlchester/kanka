@@ -49,7 +49,7 @@
 
             <p>
                 {!! __('helpers.link.anchor', [
-                    'example' => '<code>[entity:123|anchor:entity-note-69]</code>',
+                    'example' => '<code>[entity:123|anchor:post-69]</code>',
                 ]) !!}
             </p>
 
@@ -60,6 +60,13 @@
                 {!! __('helpers.link.options', [
     'options' => '<code>' . implode('</code>, <code>', ['type', 'location', 'race', 'gender', 'pronouns', 'title']) . '</code>'
 ]) !!}
+            </p>
+
+            <p>
+                {!! __('helpers.link.parameters', [
+                    'calendar' => '<code>[calendar:100|params:year=' . date('Y') . '&month=' . date('m') . ']</code>',
+                    'sublist' => '<code>[family:100|page:families|params:k=location.name&o=asc]</code>',
+                ]) !!}
             </p>
 
             <hr />
