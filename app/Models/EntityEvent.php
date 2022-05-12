@@ -112,7 +112,7 @@ class EntityEvent extends MiscModel
      */
     public function calendar()
     {
-        return $this->belongsTo('App\Models\Calendar', 'calendar_id');
+        return $this->belongsTo(Calendar::class, 'calendar_id');
     }
 
     /**
@@ -120,7 +120,7 @@ class EntityEvent extends MiscModel
      */
     public function entity()
     {
-        return $this->belongsTo('App\Models\Entity', 'entity_id');
+        return $this->belongsTo(Entity::class, 'entity_id');
     }
 
     /**
@@ -128,7 +128,7 @@ class EntityEvent extends MiscModel
      */
     public function type()
     {
-        return $this->belongsTo('App\Models\EntityEventType', 'type_id');
+        return $this->belongsTo(EntityEventType::class, 'type_id');
     }
 
     /**

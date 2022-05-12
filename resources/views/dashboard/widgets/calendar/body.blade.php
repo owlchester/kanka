@@ -10,7 +10,8 @@ $entity = $widget->entity;
 $calendar = $entity->child;
 
 $upcomingEvents = $calendar->upcomingReminders();
-$previousEvents = $calendar->pastReminders(); //new \Illuminate\Support\Collection();
+$previousEvents = $calendar->pastReminders();
+//$previousEvents = new \Illuminate\Support\Collection();
 
 // It could be that we get reminders for events the user can't see (2019-08: should no longer be the case? )
 $shownUpcomingEvents = 0;
@@ -89,24 +90,23 @@ $weather = $calendar->calendarWeather()
                 </a>
             </h4>
             <ul class="list-unstyled">
-                @foreach ($upcomingEvents->all() as $event)
-                    @if (!$reminder->entity) @continue @endif
+                @foreach ($upcomingEvents->all() as $reminder)
                 @if ($shownUpcomingEvents < 5)
                         <li data-in="{{ $reminder->inDays() }}">
                             <div class="pull-right">
-                                @if (!empty($event->comment))
-                                    <i class="fa-solid fa-comment" title="{{ $event->comment }}" data-toggle="tooltip" data-placement="bottom"></i>
+                                @if (!empty($reminder->comment))
+                                    <i class="fa-solid fa-comment" title="{{ $reminder->comment }}" data-toggle="tooltip" data-placement="bottom"></i>
                                 @endif
-                                @if ($event->is_recurring)
+                                @if ($reminder->is_recurring)
                                     <i class="fa-solid fa-arrows-rotate" title="{{ __('calendars.fields.is_recurring') }}" data-toggle="tooltip"></i>
                                 @endif
-                                @if ($event->isToday($calendar))
+                                @if ($reminder->isToday($calendar))
                                     <i class="fa-solid fa-calendar-check" data-toggle="tooltip" title="{{ __('calendars.actions.today') }}"></i>
                                 @else
-                                    <i class="fa-solid fa-calendar" title="{{ $event->readableDate() }}" data-toggle="tooltip" data-placement="bottom"></i>
+                                    <i class="fa-solid fa-calendar" title="{{ $reminder->readableDate() }}" data-toggle="tooltip" data-placement="bottom"></i>
                                 @endif
                             </div>
-                            {{ link_to($event->entity->url(), $event->entity->name, ['title' => $event->comment, 'data-toggle' => 'tooltip']) }}
+                            {{ link_to($reminder->entity->url(), $reminder->entity->name, ['title' => $reminder->comment, 'data-toggle' => 'tooltip']) }}
                         </li>
                         <?php $shownUpcomingEvents++; ?>
                     @endif

@@ -633,9 +633,8 @@ class Calendar extends MiscModel
     public function upcomingReminders(int $needle = 10): Collection
     {
         $reminders = $this->calendarEvents()
-            ->with(['entity', 'calendar'])
+            ->with(['entity'])
             ->has('entity')
-            ->has('calendar')
             ->where(function ($sub) {
                 $sub->where(function ($recurring) {
                     $recurring
@@ -680,6 +679,8 @@ class Calendar extends MiscModel
 
         // Order the past events in descending date to get the closest ones to the current date first
         return $reminders->sortBy(function ($reminder) {
+            // For some reason, when using with(calendar), it loads the wrong ids?
+            $reminder->calendar = $this;
             return $reminder->nextUpcommingOccurence(
                 $this->currentYear(),
                 $this->currentMonth(),
@@ -699,9 +700,8 @@ class Calendar extends MiscModel
     public function pastReminders(int $needle = 10): Collection
     {
         $reminders = $this->calendarEvents()
-            ->with(['entity', 'calendar'])
+            ->with(['entity'])
             ->has('entity')
-            ->has('calendar')
             ->where(function ($sub) {
                 $sub->where(function ($recurring) {
                     $recurring
@@ -746,6 +746,8 @@ class Calendar extends MiscModel
 
         // Order the past events in descending date to get the closest ones to the current date first
         return $reminders->sortBy(function ($reminder) {
+            // For some reason, when using with(calendar), it loads the wrong ids?
+            $reminder->calendar = $this;
             return $reminder->mostRecentOccurence(
                 $this->currentYear(),
                 $this->currentMonth(),
