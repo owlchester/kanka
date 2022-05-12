@@ -635,6 +635,7 @@ class Calendar extends MiscModel
         $reminders = $this->calendarEvents()
             ->with(['entity', 'calendar'])
             ->has('entity')
+            ->has('calendar')
             ->where(function ($sub) {
                 $sub->where(function ($recurring) {
                     $recurring
@@ -700,6 +701,7 @@ class Calendar extends MiscModel
         $reminders = $this->calendarEvents()
             ->with(['entity', 'calendar'])
             ->has('entity')
+            ->has('calendar')
             ->where(function ($sub) {
                 $sub->where(function ($recurring) {
                     $recurring
