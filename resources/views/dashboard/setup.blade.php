@@ -181,9 +181,9 @@
                     @endif
                 </div>
 
-                <div class="modal-body" id="modal-content-spinner">
+                <div class="modal-body" id="modal-content-spinner" style="display: none">
                     <div class="text-center">
-                        <h1><i class="fa-solid fa-spin fa-spinner"></i></h1>
+                        <i class="fa-solid fa-spin fa-spinner fa-2x"></i>
                     </div>
                 </div>
 

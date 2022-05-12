@@ -18,7 +18,9 @@ var widgetVisible = new IntersectionObserver(function(entries) {
 
 $(document).ready(function() {
 
-    widgetVisible.observe(document.querySelector('.widget-render'));
+    if ($('.widget-render').length > 0) {
+        widgetVisible.observe(document.querySelector('.widget-render'));
+    }
 
     $('.preview-switch').click(function(e) {
         e.preventDefault();
