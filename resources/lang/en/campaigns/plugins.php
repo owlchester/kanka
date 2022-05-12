@@ -7,6 +7,7 @@ return [
             'enable'    => 'Enable plugins',
             'update'    => 'Update plugins',
         ],
+        'changelog'         => 'Changelog',
         'disable'           => 'Disable plugin',
         'enable'            => 'Enable plugin',
         'go_to_marketplace' => 'Go to the Marketplace',

@@ -95,7 +95,7 @@
 
             <div class="text-center px-3 text-vertical ab-testing-b">
                 <span>{{ __('tiers.periods.monthly') }}</span>
-                <label class="toggle ml-1 mr-1">
+                <label class="toggle mx-1">
                     <input type="checkbox" name="period">
                     <span class="slider subscription-period-slider"></span>
                 </label>
