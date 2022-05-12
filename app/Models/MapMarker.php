@@ -523,4 +523,12 @@ class MapMarker extends Model
     {
         return false;
     }
+
+    /**
+     * @return string
+     */
+    public function deleteName(): string
+    {
+        return $this->name();
+    }
 }

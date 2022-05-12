@@ -40,7 +40,7 @@ return [
             'helper'    => 'You can use + and - before the number to update the age by that amount.',
         ],
         'delete'        => [
-            'warning'   => 'You are deleting multiple entities',
+            'warning'   => 'You are deleting multiple entities.',
         ],
         'edit'          => [
             'tagging'   => 'Action for tags',
