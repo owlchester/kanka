@@ -40,7 +40,7 @@
 
             <a role="button" tabindex="0" class="btn btn-dynamic-delete btn-danger" data-toggle="popover"
                title="{{ __('crud.delete_modal.title') }}"
-               data-content="<p>{{ __('crud.delete_modal.description_final', ['tag' => __('calendars.event.actions.delete-confirm')]) }}</p>
+               data-content="<p>{{ __('crud.delete_modal.permanent') }}</p>
                    <a href='#' class='btn btn-danger btn-block' data-toggle='delete-form' data-target='#delete-reminder-{{ $entityEvent->id}}'>{{ __('crud.remove') }}</a>">
                 <i class="fa-solid fa-trash" aria-hidden="true"></i> {{ __('crud.remove') }}
             </a>

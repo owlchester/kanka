@@ -33,7 +33,6 @@ return [
     ],
     'event'         => [
         'actions'   => [
-            'delete-confirm'    => 'this reminder',
             'existing'          => 'Existing Entity',
             'new'               => 'New Event',
             'switch'            => 'Change choice',

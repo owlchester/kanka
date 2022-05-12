@@ -105,31 +105,30 @@
 @endsection
 
 @section('modals')
+    @parent
     <div class="modal fade" id="delete-account" tabindex="-1" role="dialog" aria-labelledby="deleteAccountLabel">
         <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
+            <div class="modal-content rounded-2xl">
+                <div class="modal-body text-center">
                     <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('crud.delete_modal.close') }}"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title">
+                    <h4>
                         {{ __('profiles.sections.delete.title') }}
                     </h4>
-                </div>
-                <div class="modal-body">
-                    <p>
+
+                    <p class="mt-5">
                         {{ __('profiles.sections.delete.helper') }}
                     </p>
-                    <p>
+                    <p class="mt-5">
                         {{ __('profiles.sections.delete.warning') }}
                     </p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn pull-left" data-dismiss="modal">{{ __('crud.cancel') }}</button>
 
-                    {!! Form::model($user, ['method' => 'PATCH', 'route' => ['settings.account.destroy']]) !!}
-                    <button type="button" class="btn btn-danger ">
-                        <i class="fa-solid fa-exclamation-triangle" aria-hidden="true"></i>
-                        {{ __('profiles.sections.delete.confirm') }}
-                    </button>
+                    <div class="py-8">
+                        {!! Form::model($user, ['method' => 'PATCH', 'route' => ['settings.account.destroy']]) !!}
+                        <button type="button" class="btn btn-danger rounded-full px-8">
+                            <i class="fa-solid fa-exclamation-triangle" aria-hidden="true"></i>
+                            {{ __('profiles.sections.delete.confirm') }}
+                        </button>
+                        </div>
                     {!! Form::close() !!}
                 </div>
             </div>

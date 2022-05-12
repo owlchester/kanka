@@ -84,7 +84,8 @@ return [
         ],
         'title'             => 'Boost',
         'unboost'           => [
-            'description'   => 'Are you sure you want to stop boosting the campaign :tag?',
+            'confirm'   => 'Unboosting the campaign ":tag".',
+            'data' => 'No data will be lost.',
             'title'         => 'Unboosting a campaign',
         ],
     ],

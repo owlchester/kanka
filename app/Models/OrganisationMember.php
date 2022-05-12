@@ -142,10 +142,29 @@ class OrganisationMember extends Model
         return $query->where('pin_id', $pin);
     }
 
+    /**
+     * Datagrid2: delete name
+     * @return string
+     */
+    public function deleteName(): string
+    {
+        return $this->character->name;
+    }
+
+    /**
+     * Datagrid2: url
+     * @param string $where
+     * @return string
+     */
     public function url(string $where): string
     {
         return 'characters.character_organisations.' . $where;
     }
+
+    /**
+     * Datagrid2: route options
+     * @return array
+     */
     public function routeParams(): array
     {
         return [$this->character_id, $this->id];

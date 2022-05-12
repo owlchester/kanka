@@ -3,24 +3,23 @@ export default function deleteConfirm() {
     $.each($('.delete-confirm'), function () {
         $(this).click(function (e) {
             let name = $(this).data('name');
-            let text = $(this).data('text');
             let target = $(this).data('delete-target');
-            let confirm = $(this).data('confirm-target');
+            let targetModal = $(this).data('target');
 
-            if (!confirm) {
-                confirm = '#delete-confirm-name';
-            }
-
-            if (text) {
-                $('#delete-confirm-text').text(text);
-            } else {
-                $(confirm).text(name);
-            }
+            $(targetModal).find('.target-name').text(name);
 
             if ($(this).data('mirrored')) {
                 $('#delete-confirm-mirror').show();
             } else {
                 $('#delete-confirm-mirror').hide();
+            }
+
+            if ($(this).data('recoverable')) {
+                $(targetModal).find('.permanent').hide();
+                $(targetModal).find('.recoverable').show();
+            } else {
+                $(targetModal).find('.recoverable').hide();
+                $(targetModal).find('.permanent').show();
             }
 
             if (target) {

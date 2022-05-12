@@ -85,7 +85,7 @@
                     <h4 class="modal-title" id="myModalLabel">{{ __('crud.delete_modal.title') }}</h4>
                 </div>
                 <div class="modal-body">
-                    <p id="delete-confirm-text">{!! __('crud.delete_modal.description', ['tag' => '<b><span id="delete-confirm-name"></span></b>']) !!}</p>
+                    <p>{!! __('crud.delete_modal.description_v2', ['tag' => '<b><span id="target-name"></span></b>']) !!}</p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">{{ __('crud.cancel') }}</button>

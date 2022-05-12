@@ -101,24 +101,22 @@ function deleteConfirm() {
   $.each($('.delete-confirm'), function () {
     $(this).click(function (e) {
       var name = $(this).data('name');
-      var text = $(this).data('text');
       var target = $(this).data('delete-target');
-      var confirm = $(this).data('confirm-target');
-
-      if (!confirm) {
-        confirm = '#delete-confirm-name';
-      }
-
-      if (text) {
-        $('#delete-confirm-text').text(text);
-      } else {
-        $(confirm).text(name);
-      }
+      var targetModal = $(this).data('target');
+      $(targetModal).find('.target-name').text(name);
 
       if ($(this).data('mirrored')) {
         $('#delete-confirm-mirror').show();
       } else {
         $('#delete-confirm-mirror').hide();
+      }
+
+      if ($(this).data('recoverable')) {
+        $(targetModal).find('.permanent').hide();
+        $(targetModal).find('.recoverable').show();
+      } else {
+        $(targetModal).find('.recoverable').hide();
+        $(targetModal).find('.permanent').show();
       }
 
       if (target) {

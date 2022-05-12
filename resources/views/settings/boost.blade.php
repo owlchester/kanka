@@ -133,7 +133,7 @@
                                         @endif
                                 @endif
                                 @can('destroy', $boost)
-                                    <a href="#" class="delete-confirm btn btn-danger" data-name="{!! $boost->campaign->name !!}" data-toggle="modal" data-target="#unboost-confirm" data-delete-target="delete-confirm-form-{{ $boost->id }}" data-confirm-target="#unboost-confirm-name">
+                                    <a href="#" class="delete-confirm btn btn-danger" data-name="{!! $boost->campaign->name !!}" data-toggle="modal" data-target="#unboost-confirm" data-delete-target="delete-confirm-form-{{ $boost->id }}">
                                         {{ __('settings.boost.buttons.unboost') }}
                                     </a>
                                     {!! Form::open(['method' => 'DELETE', 'route' => ['campaign_boosts.destroy', $boost->id], 'style' => 'display:inline', 'id' => 'delete-confirm-form-' . $boost->id]) !!}
@@ -189,23 +189,25 @@
 @endsection
 
 @section('modals')
+    @parent
     <div class="modal fade" id="unboost-confirm" tabindex="-1" role="dialog" aria-labelledby="unboostConfirmLabel">
         <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
+            <div class="modal-content rounded-2xl">
+                <div class="modal-body text-center">
                     <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('crud.delete_modal.close') }}"><span aria-hidden="true">&times;</span></button>
                     <h4 class="modal-title" id="myModalLabel">{{ __('settings.boost.unboost.title') }}</h4>
-                </div>
-                <div class="modal-body">
-                    <p id="unboost-confirm-text">
-                        {!! __('settings.boost.unboost.description', ['tag' => '<b><span id="unboost-confirm-name"></span></b>']) !!}
+
+                    <p class="mt-5">
+                        {!! __('settings.boost.unboost.confirm', ['tag' => '<span class="target-name"></span>']) !!}<br />
+                        {{ __('settings.boost.unboost.data') }}
                     </p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">{{ __('crud.cancel') }}</button>
-                    <button type="button" class="btn btn-danger delete-confirm-submit">
-                        {{ __('settings.boost.buttons.unboost') }}
-                    </button>
+
+                    <div class="py-8">
+                        <button type="button" class="btn px-8 rounded-full mr-5" data-dismiss="modal">{{ __('crud.cancel') }}</button>
+                        <button type="button" class="btn btn-danger delete-confirm-submit px-8 ml-5 rounded-full">
+                            {{ __('settings.boost.buttons.unboost') }}
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>

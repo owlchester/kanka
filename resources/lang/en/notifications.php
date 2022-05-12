@@ -31,8 +31,8 @@ return [
         ],
     ],
     'clear'             => [
+        'title'     => 'Clear notifications',
         'action'    => 'Clear all',
-        'confirm'   => 'Are you sure you want to remove all notifications? This action can\'t be undone.',
         'success'   => 'Notifications removed.',
     ],
     'header'            => 'You have :count notifications',
