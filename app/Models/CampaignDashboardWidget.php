@@ -354,7 +354,7 @@ class CampaignDashboardWidget extends Model
 
         return $base
             ->inTags($this->tags->pluck('id')->toArray())
-            ->whereNotIn('type', ['attribute_template', 'conversation', 'tag'])
+            ->whereNotIn('type_id', [config('entities.ids.attribute_template'), config('entities.ids.conversation'), config('entities.ids.tag')])
             ->whereNotIn('entities.id', \App\Facades\Dashboard::excluding())
             ->type($entityTypeID)
             ->with(['image'])
