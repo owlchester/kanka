@@ -26,14 +26,6 @@ class HelperController
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function map()
-    {
-        return $this->render('map');
-    }
-
-    /**
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
     public function filters()
     {
         return $this->render('filters');
@@ -60,7 +52,8 @@ class HelperController
      */
     public function visibility()
     {
-        return $this->render('visibility');
+        $ajax = request()->ajax();
+        return view('helpers.visibility', compact('ajax'));
     }
 
     /**
@@ -102,7 +95,7 @@ class HelperController
     {
         $type = request()->get('type');
         if (empty($type)) {
-            abort(404);
+            return redirect()->route('home');
         }
 
         // Try creating the object
@@ -129,9 +122,12 @@ class HelperController
         abort(404);
     }
 
-    protected function render(string $view)
+    /**
+     * @param string $view
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
+    protected function render(string $helper)
     {
-        $ajax = request()->ajax();
-        return view('helpers.' . $view, compact('ajax'));
+        return view('helpers.helper', compact('helper'));
     }
 }

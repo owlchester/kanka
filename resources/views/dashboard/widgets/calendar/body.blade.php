@@ -54,7 +54,7 @@ $weather = $calendar->calendarWeather()
         <div class="col-md-12 col-lg-6">
             <h4>
                 {{ __('dashboard.widgets.calendar.previous_events') }}
-                <a href="#" data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('helpers.calendar-widget') }}">
+                <a href="{{ route('helpers.calendar-widget') }}" data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('helpers.calendar-widget') }}">
                     <i class="fa-solid fa-question-circle" data-toggle="tooltip" title="{{ __('helpers.calendar-widget.info') }}"></i>
                 </a>
             </h4>
@@ -82,7 +82,7 @@ $weather = $calendar->calendarWeather()
         <div class="col-lg-6 col-md-12">
             <h4>
                 {{ __('dashboard.widgets.calendar.upcoming_events') }}
-                <a href="#" data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('helpers.calendar-widget') }}">
+                <a href="{{ route('helpers.calendar-widget') }}" data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('helpers.calendar-widget') }}">
                     <i class="fa-solid fa-question-circle" data-toggle="tooltip" title="{{ __('helpers.calendar-widget.info') }}"></i>
                 </a>
             </h4>

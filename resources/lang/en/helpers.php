@@ -89,17 +89,11 @@ return [
         'parameters'        => 'Parameters can also be passed along to the entity link. For example, specify which year and month get shown on a calendar with :calendar. The same can be done with ordering sublists. For example, order family subfamilies by location name with :sublist.',
         'title'             => 'Linking to other entities with mentions',
     ],
-    'map'               => [
-        'description'   => 'Uploading a map to a location will enable the `Map` menu on the Location\'s view page, and a direct link to the map from the campaign\'s locations page. From the map view, users who can edit the location can activate the \'Edit Mode\' which allows them to place Map Points on the map. These can link to an existing entity or be a label, and have various shapes and sizes.',
-        'private'       => 'Members in the campaign\'s Admin role can make a map private. This allows users to view a location but for admins to keep the map a secret.',
-        'title'         => 'Location Maps',
-    ],
     'pins'              => [
         'description'   => 'Entities can have relations and attributes pinned to the right of their overview. To pin an element, go and edit the relation or attributes and set the pinned value on those.',
         'title'         => 'Entity Pins',
     ],
     'public'            => 'Watch a tutorial video on Youtube explaining public campaigns.',
-    'title'             => 'Helpers',
     'troubleshooting'   => [
         'description'       => 'A member of Kanka\'s team has sent you to this page. Select a campaign from the dropdown to generate a token so we can temporarily join your campaign as an admin.',
         'errors'            => [

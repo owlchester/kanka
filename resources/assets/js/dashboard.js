@@ -1,3 +1,4 @@
+import ajaxModal from "./components/ajax-modal";
 
 /**
  * Dashboard
@@ -283,6 +284,6 @@ function renderWidget(widget)
 
         $('[data-toggle="tooltip"]').tooltip();
         window.ajaxTooltip();
-        initDashboardCalendars();
+        ajaxModal();
     });
 }

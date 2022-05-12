@@ -86,16 +86,58 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./resources/assets/js/components/ajax-modal.js":
+/*!******************************************************!*\
+  !*** ./resources/assets/js/components/ajax-modal.js ***!
+  \******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return ajaxModal; });
+function ajaxModal() {
+  $('[data-toggle="ajax-modal"]').unbind('click').click(function (e) {
+    e.preventDefault();
+    ajaxModal = $(this);
+    $.ajax({
+      url: $(this).data('url')
+    }).done(function (result, textStatus, xhr) {
+      if (result) {
+        var params = {};
+        var target = $(ajaxModal).data('target');
+        var backdrop = $(ajaxModal).data('backdrop');
+
+        if (backdrop) {
+          params.backdrop = backdrop;
+        }
+
+        $(target).find('.modal-content').html(result);
+        $(target).modal(params);
+      }
+    }).fail(function (result, textStatus, xhr) {//console.log('modal ajax error', result);
+    });
+    return false;
+  });
+}
+
+/***/ }),
+
 /***/ "./resources/assets/js/dashboard.js":
 /*!******************************************!*\
   !*** ./resources/assets/js/dashboard.js ***!
   \******************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _components_ajax_modal__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/ajax-modal */ "./resources/assets/js/components/ajax-modal.js");
 
 /**
  * Dashboard
  */
+
 var newWidget, newWidgetPreview, newWidgetCalendar, newWidgetRecent;
 var btnAddWidget;
 var modalContentButtons, modalContentTarget, modalContentSpinner;
@@ -356,7 +398,7 @@ function renderWidget(widget) {
     widget.find('.widget-body').html(res).show();
     $('[data-toggle="tooltip"]').tooltip();
     window.ajaxTooltip();
-    initDashboardCalendars();
+    Object(_components_ajax_modal__WEBPACK_IMPORTED_MODULE_0__["default"])();
   });
 }
 

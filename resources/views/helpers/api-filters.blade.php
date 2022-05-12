@@ -5,11 +5,13 @@
 
 @section('content')
     <div class="box box-solid">
+        @if (request()->ajax())
         <div class="box-header with-border">
             <h3 class="box-title">
                 {{ __('helpers.api-filters.title') }}
             </h3>
         </div>
+        @endif
 
         <div class="box-body">
             <p>
