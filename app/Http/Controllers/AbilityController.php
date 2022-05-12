@@ -112,7 +112,8 @@ class AbilityController extends CrudController
         $this->rows = $ability
             ->descendants()
             ->sort(request()->only(['o', 'k']))
-            ->with(['entity', 'ability', 'ability.entity'])
+            ->with(['entity', 'entity.image', 'ability', 'ability.entity'])
+            ->has('entity')
             ->paginate();
 
         // Ajax Datagrid

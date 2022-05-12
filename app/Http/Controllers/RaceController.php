@@ -114,7 +114,7 @@ class RaceController extends CrudController
                 'entity', 'entity.tags', 'entity.image'
             ])
             ->has('entity')
-            ->paginate();
+            ->paginate(15);
 
         // Ajax Datagrid
         if (request()->ajax()) {
