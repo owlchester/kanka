@@ -39,8 +39,8 @@ class Member extends Layout
                 }
             ],
             'location' => [
-                'key' => 'location.name',
-                'label' => 'organisations.fields.location',
+                //'key' => 'location.name',
+                'label' => 'characters.fields.location',
                 'render' => function ($model) {
                     if (!$model->location) {
                         return null;
