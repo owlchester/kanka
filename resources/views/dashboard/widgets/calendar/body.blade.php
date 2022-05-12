@@ -13,9 +13,6 @@ $upcomingEvents = $calendar->upcomingReminders();
 $previousEvents = $calendar->pastReminders();
 //$previousEvents = new \Illuminate\Support\Collection();
 
-// It could be that we get reminders for events the user can't see (2019-08: should no longer be the case? )
-$shownUpcomingEvents = 0;
-
 // Get the current day's weather effect.
 // Todo: make it a relation that can be queried "with"?
 $weather = $calendar->calendarWeather()
@@ -90,26 +87,24 @@ $weather = $calendar->calendarWeather()
                 </a>
             </h4>
             <ul class="list-unstyled">
-                @foreach ($upcomingEvents->all() as $reminder)
-                @if ($shownUpcomingEvents < 5)
-                        <li data-in="{{ $reminder->inDays() }}">
-                            <div class="pull-right">
-                                @if (!empty($reminder->comment))
-                                    <i class="fa-solid fa-comment" title="{{ $reminder->comment }}" data-toggle="tooltip" data-placement="bottom"></i>
-                                @endif
-                                @if ($reminder->is_recurring)
-                                    <i class="fa-solid fa-arrows-rotate" title="{{ __('calendars.fields.is_recurring') }}" data-toggle="tooltip"></i>
-                                @endif
-                                @if ($reminder->isToday($calendar))
-                                    <i class="fa-solid fa-calendar-check" data-toggle="tooltip" title="{{ __('calendars.actions.today') }}"></i>
-                                @else
-                                    <i class="fa-solid fa-calendar" title="{{ $reminder->readableDate() }}" data-toggle="tooltip" data-placement="bottom"></i>
-                                @endif
-                            </div>
-                            {{ link_to($reminder->entity->url(), $reminder->entity->name, ['title' => $reminder->comment, 'data-toggle' => 'tooltip']) }}
-                        </li>
-                        <?php $shownUpcomingEvents++; ?>
-                    @endif
+                @foreach ($upcomingEvents->take(5) as $reminder)
+                    @if (!$reminder->entity) @continue @endif
+                    <li data-in="{{ $reminder->inDays() }}">
+                        <div class="pull-right">
+                            @if (!empty($reminder->comment))
+                                <i class="fa-solid fa-comment" title="{{ $reminder->comment }}" data-toggle="tooltip" data-placement="bottom"></i>
+                            @endif
+                            @if ($reminder->is_recurring)
+                                <i class="fa-solid fa-arrows-rotate" title="{{ __('calendars.fields.is_recurring') }}" data-toggle="tooltip"></i>
+                            @endif
+                            @if ($reminder->isToday($calendar))
+                                <i class="fa-solid fa-calendar-check" data-toggle="tooltip" title="{{ __('calendars.actions.today') }}"></i>
+                            @else
+                                <i class="fa-solid fa-calendar" title="{{ $reminder->readableDate() }}" data-toggle="tooltip" data-placement="bottom"></i>
+                            @endif
+                        </div>
+                        {{ link_to($reminder->entity->url(), $reminder->entity->name, ['title' => $reminder->comment, 'data-toggle' => 'tooltip']) }}
+                    </li>
                 @endforeach
             </ul>
         </div>
