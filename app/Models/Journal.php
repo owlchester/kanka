@@ -88,6 +88,11 @@ class Journal extends MiscModel
      * Fields that can be sorted on
      * @var array
      */
+    protected $sortableColumns = [
+        'date',
+        'calendar_date',
+        'author.name',
+    ];
     protected $sortable = [
         'date',
         'character.name',
