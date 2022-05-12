@@ -67,7 +67,9 @@ return [
         'password'                  => 'Provide your current password for any changes',
     ],
     'sections'                      => [
+        'dangerzone'    => 'Danger Zone',
         'delete'    => [
+            'confirm'   => 'Yes, delete my account',
             'delete'    => 'Delete my account',
             'helper'    => 'Deleting your account will also delete any campaign you are the only member of. This action is permanent and can\'t be undone.',
             'title'     => 'Delete your account',

@@ -87,19 +87,52 @@
     <div class="box box-solid">
         <div class="box-header with-border">
             <h3 class="box-title text-red">
-                {{ __('profiles.sections.delete.title') }}
+                {{ __('profiles.sections.dangerzone') }}
             </h3>
         </div>
         <div class="box-body">
-            <p class="alert alert-danger">{{ __('profiles.sections.delete.helper') }}</p>
-            {!! Form::model($user, ['method' => 'PATCH', 'id' => 'delete-confirm-form', 'route' => ['settings.account.destroy']]) !!}
-
-            {!! Form::close() !!}
-        </div>
-        <div class="box-footer text-right">
-            <button class="btn btn-danger delete-confirm" data-text="{{ __('profiles.sections.delete.warning') }}" data-toggle="modal" data-target="#delete-confirm">
-                <i class="fa-solid fa-trash" aria-hidden="true"></i> {{ __('profiles.sections.delete.delete') }}
+            <button class="btn btn-danger pull-right" data-toggle="modal" data-target="#delete-account">
+                <i class="fa-solid fa-exclamation-triangle" aria-hidden="true"></i> {{ __('profiles.sections.delete.delete') }}
             </button>
+
+            <strong>
+                {{ __('profiles.sections.delete.title') }}
+            </strong><br />
+            <p>{{ __('profiles.sections.delete.helper') }}</p>
+
+        </div>
+    </div>
+@endsection
+
+@section('modals')
+    <div class="modal fade" id="delete-account" tabindex="-1" role="dialog" aria-labelledby="deleteAccountLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('crud.delete_modal.close') }}"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">
+                        {{ __('profiles.sections.delete.title') }}
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        {{ __('profiles.sections.delete.helper') }}
+                    </p>
+                    <p>
+                        {{ __('profiles.sections.delete.warning') }}
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn pull-left" data-dismiss="modal">{{ __('crud.cancel') }}</button>
+
+                    {!! Form::model($user, ['method' => 'PATCH', 'route' => ['settings.account.destroy']]) !!}
+                    <button type="button" class="btn btn-danger ">
+                        <i class="fa-solid fa-exclamation-triangle" aria-hidden="true"></i>
+                        {{ __('profiles.sections.delete.confirm') }}
+                    </button>
+                    {!! Form::close() !!}
+                </div>
+            </div>
         </div>
     </div>
 @endsection
