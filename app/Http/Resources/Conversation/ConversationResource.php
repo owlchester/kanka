@@ -27,8 +27,11 @@ class ConversationResource extends JsonResource
         $messages = $messages->reverse();
 
         $data = [];
+        $previous = null;
         /** @var ConversationMessage $message */
         foreach ($messages as $message) {
+            /** @var ConversationMessageResource $msg */
+            $message->grouppedWith($previous);
             $data[] = new ConversationMessageResource($message);
 //            [
 //                'id' => $message->id,
@@ -41,6 +44,7 @@ class ConversationResource extends JsonResource
 //                'delete_url' => route('conversations.conversation_messages.destroy', [$this, $message]),
 //                'is_updated' => $message->updated_at !== $message->created_at
 //            ];
+            $previous = $message;
         }
 
         // Check if there are previous messages available

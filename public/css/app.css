@@ -2562,9 +2562,7 @@ div.mce-fullscreen {
 }
 
 .box-conversation .box-comments .box-comment {
-  margin: 5px;
   padding: 3px 8px;
-  border-radius: 5px;
   background-color: var(--conversation-comment-background);
   border-bottom: none;
 }
@@ -2579,6 +2577,12 @@ div.mce-fullscreen {
 
 .box-conversation .box-comments .box-comment:hover .message-options {
   display: inline-block;
+}
+
+.box-conversation .box-comments .message-first {
+  margin-top: 5px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
 }
 
 .box-conversation .load-more {

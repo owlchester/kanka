@@ -26,6 +26,8 @@ class ConversationMessage extends MiscModel
 {
     use Blameable, LastSync;
 
+    public $isGroupped = false;
+
     //
     protected $fillable = [
         'conversation_id',
@@ -106,6 +108,18 @@ class ConversationMessage extends MiscModel
         }
         return null;
     }
+    /**
+     * @return string
+     */
+    public function authorID(): int|null
+    {
+        if (!empty($this->user_id)) {
+            return $this->user_id;
+        } elseif (!empty($this->character_id)) {
+            return $this->character_id;
+        }
+        return null;
+    }
 
     /**
      * @param $query
@@ -131,5 +145,24 @@ class ConversationMessage extends MiscModel
     public function isMine(): bool
     {
         return Auth::check() && $this->created_by == Auth::user()->id;
+    }
+
+    public function grouppedWith(ConversationMessage $previous = null): self
+    {
+        if (empty($previous)) {
+            return $this;
+        }
+        if ($previous->authorID() != $this->authorID()) {
+            return $this;
+        }
+        // Same 60 seconds
+        $this->isGroupped = $previous->created_at->diffInSeconds($this->created_at) < 60;
+
+        return $this;
+    }
+
+    public function isGroup(): bool
+    {
+        return $this->isGroupped;
     }
 }
