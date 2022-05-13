@@ -52,7 +52,7 @@
     </div>
 </div>
 
-@include('cruds.fields.private2')
+@includeWhen(auth()->user()->isAdmin(), 'cruds.fields.privacy_callout')
 
 @if (request()->has('redirect'))
     {!! Form::hidden('redirect', request()->get('redirect')) !!}

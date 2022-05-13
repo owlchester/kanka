@@ -309,17 +309,17 @@ tr.tr-hover {
 
 // Entity creator model buttons
 .entity-creator {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1.25rem;
   a {
-    display: block;
+    display: inline-block;
     padding: 20px 10px;
     text-align: center;
-    margin-bottom: 20px;
-    border-radius: 2px;
     color: var(--quick-creator-button-text);
-    line-height: 18px;
-    font-size: 14px;
+    line-height: 2rem;
+    font-size: 1.4rem;
     background-color: var(--quick-creator-button-background);
-    letter-spacing: 0.75px;
     text-transform: uppercase;
     overflow: hidden;
     height: 94px;
@@ -335,7 +335,7 @@ tr.tr-hover {
 
   i {
     display: block;
-    margin-bottom: 10px;
+    margin-bottom: 1rem;
   }
 }
 
@@ -687,6 +687,15 @@ summary { display: list-item; }
   }
 }
 
+.privacy-callout {
+  border-left: 2px solid #f6c9af;
+
+  label {
+    user-select: none;
+    margin: 0;
+  }
+}
+
 // Other stylings
 @import "calendar";
 @import "tooltip";
@@ -702,5 +711,7 @@ summary { display: list-item; }
 @import "attributes/attributes";
 @import "ab-testing";
 @import "toggle";
-@import "spacing";
+@import "tw/spacing";
+@import "tw/floating-forms";
+//@import "flex";
 

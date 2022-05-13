@@ -1,0 +1,26 @@
+.flex {
+  display: flex;
+}
+.flex-none {
+  flex: none;
+}
+.flex-auto {
+  flex: 1 1 auto;
+}
+.flex-1 {
+  flex: 1 1 0%;
+}
+
+.items-center {
+  align-items: center;
+}
+.justify-center {
+  justify-content: center;
+}
+
+.h-14 {
+  height: 3.5rem;
+}
+.w-14 {
+  width: 3.5rem;
+}

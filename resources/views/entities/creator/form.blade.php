@@ -3,13 +3,13 @@
 
 <form method="post" id="entity-creator-form" action="{{ route('entity-creator.store', ['type' => $type]) }}" autocomplete="off" class="entity-creator-form-{{ $type }}">
 
-<div class="modal-header entity-creator-heading-{{ $type }}">
-    <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('crud.delete_modal.close') }}"><span aria-hidden="true">&times;</span></button>
-    <h4 class="modal-title" id="myModalLabel">
-        {{ __($type . '.create.title') }}
-    </h4>
-</div>
 <div class="modal-body entity-creator-body-{{ $type }}">
+    <div class="text-center">
+        <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('crud.delete_modal.close') }}"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">
+            {{ __($type . '.create.title') }}
+        </h4>
+    </div>
     <div class="form-group required">
         <label>{{ __($type . '.fields.name') }}</label>
 
@@ -43,21 +43,29 @@
         </div>
     @endif
 
-    @include('cruds.fields.private2')
-</div>
-<div class="modal-footer">
-    @if (empty($origin))
-    <a href="#" id="entity-creator-back" data-url="{{ route('entity-creator.selection') }}" data-target="#entity-modal" class="btn btn-default pull-left">
-        <i class="fa-solid fa-chevron-left"></i>
-        {{ __('entities.creator.back') }}
-    </a>
-    @endif
+    @includeWhen(auth()->user()->isAdmin(), 'cruds.fields.privacy_callout')
 
-    <button class="btn btn-success" id="quick-creator-submit-btn" data-text="{{ __('crud.create') }}">
-        <span>{{ __('crud.create') }}</span>
-        <i class="fa-solid fa-spinner fa-spin" style="display: none"></i>
-    </button>
 
+    <div class="row my-8">
+        @if (empty($origin))
+        <div class="col-md-6 text-right">
+            <a href="#" id="entity-creator-back" data-url="{{ route('entity-creator.selection') }}" data-target="#entity-modal" class="btn btn-default rounded-full px-8">
+                <i class="fa-solid fa-chevron-left"></i>
+                {{ __('entities.creator.back') }}
+            </a>
+        </div>
+        <div class="col-md-6">
+        @endif
+
+            <button class="btn btn-success rounded-full px-8" id="quick-creator-submit-btn" data-text="{{ __('crud.create') }}">
+                <span>
+                    <i class="fa-solid fa-plus" aria-hidden="true"></i> {{ __('entities.creator.actions.create', ['type' => $entityType]) }}
+                </span>
+                <i class="fa-solid fa-spinner fa-spin" style="display: none"></i>
+            </button>
+
+        @if (empty($origin))</div>@endif
+    </div>
 </div>
 
     <input type="hidden" name="entity" value="{{ $type }}" />

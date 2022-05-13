@@ -1,8 +1,7 @@
 @include('cruds.fields.type', ['base' => \App\Models\Quest::class, 'trans' => 'quests'])
 
 <div class="row">
-
-    <div class="col-lg-6">
+    <div class="col-sm-6">
         <div class="form-group">
             {!! Form::select2(
                 'quest_id',
@@ -15,7 +14,7 @@
             ) !!}
         </div>
     </div>
-    <div class="col-lg-6">
+    <div class="col-sm-6">
         @include('cruds.fields.character')
     </div>
 </div>

@@ -21,7 +21,7 @@ return [
         'rolls'         => 'Rolls',
     ],
     'hints'         => [
-        'parameters'    => 'What are my dice options?',
+        'parameters'    => 'What dice options are available?',
     ],
     'index'         => [
         'actions'   => [

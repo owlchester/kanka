@@ -950,17 +950,20 @@ tr.tr-hover:hover {
   line-height: 1.5em;
 }
 
+.entity-creator {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1.25rem;
+}
+
 .entity-creator a {
-  display: block;
+  display: inline-block;
   padding: 20px 10px;
   text-align: center;
-  margin-bottom: 20px;
-  border-radius: 2px;
   color: var(--quick-creator-button-text);
-  line-height: 18px;
-  font-size: 14px;
+  line-height: 2rem;
+  font-size: 1.4rem;
   background-color: var(--quick-creator-button-background);
-  letter-spacing: 0.75px;
   text-transform: uppercase;
   overflow: hidden;
   height: 94px;
@@ -976,7 +979,7 @@ tr.tr-hover:hover {
 
 .entity-creator i {
   display: block;
-  margin-bottom: 10px;
+  margin-bottom: 1rem;
 }
 
 #new-entity-modal,
@@ -1335,6 +1338,18 @@ summary {
     box-shadow: 0 0 10px #fff, -10px 0 20px #f0f, 10px 0 20px #0ff;
     /* outer right cyan */
   }
+}
+
+.privacy-callout {
+  border-left: 2px solid #f6c9af;
+}
+
+.privacy-callout label {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  margin: 0;
 }
 
 :root {
@@ -2832,6 +2847,11 @@ body.ab-testing-second .ab-testing-a {
   margin: 1.25rem;
 }
 
+.mx-0 {
+  margin-left: 0;
+  margin-right: 0;
+}
+
 .mx-1 {
   margin-left: 0.25rem;
   margin-right: 0.25rem;
@@ -2860,6 +2880,11 @@ body.ab-testing-second .ab-testing-a {
 .mx-8 {
   margin-left: 2rem;
   margin-right: 2rem;
+}
+
+.my-0 {
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 .my-1 {
@@ -2896,24 +2921,96 @@ body.ab-testing-second .ab-testing-a {
   margin-right: 0.25rem;
 }
 
+.mr-2 {
+  margin-right: 0.5rem;
+}
+
+.mr-3 {
+  margin-right: 0.75rem;
+}
+
+.mr-4 {
+  margin-right: 1rem;
+}
+
 .mr-5 {
   margin-right: 1.25rem;
+}
+
+.mr-8 {
+  margin-right: 2rem;
 }
 
 .ml-1 {
   margin-left: 0.25rem;
 }
 
+.ml-2 {
+  margin-left: 0.5rem;
+}
+
+.ml-3 {
+  margin-left: 0.75rem;
+}
+
+.ml-4 {
+  margin-left: 1rem;
+}
+
 .ml-5 {
   margin-left: 1.25rem;
+}
+
+.ml-8 {
+  margin-left: 2rem;
 }
 
 .mt-1 {
   margin-top: 0.25rem;
 }
 
+.mt-2 {
+  margin-top: 0.5rem;
+}
+
+.mt-3 {
+  margin-top: 0.75rem;
+}
+
+.mt-4 {
+  margin-top: 1rem;
+}
+
 .mt-5 {
   margin-top: 1.25rem;
+}
+
+.mt-8 {
+  margin-top: 2rem;
+}
+
+.mb-1 {
+  margin-bottom: 0.25rem;
+}
+
+.mb-2 {
+  margin-bottom: 0.5rem;
+}
+
+.mb-3 {
+  margin-bottom: 0.75rem;
+}
+
+.mb-4 {
+  margin-bottom: 1rem;
+}
+
+.mb-5 {
+  margin-bottom: 1.25rem;
+}
+
+.mb-8 {
+  margin-bottom: 2rem;
 }
 
 .text-vertical {
@@ -2926,7 +3023,82 @@ body.ab-testing-second .ab-testing-a {
   border-radius: 9999px;
 }
 
+.rounded-lg {
+  border-radius: 0.5rem;
+}
+
 .rounded-2xl {
   border-radius: 1rem;
+}
+
+.form-floating {
+  position: relative;
+}
+
+.form-floating > .form-control,
+.form-floating > .form-select {
+  border-radius: 0.5rem;
+  height: 58px;
+  line-height: 1.5;
+  font-size: 1rem;
+}
+
+.form-floating > label {
+  position: absolute;
+  line-height: 24px;
+  top: 0;
+  left: 0;
+  height: 100%;
+  margin: 0;
+  padding: 16px 12px;
+  pointer-events: none;
+  border: 1px solid transparent;
+  transform-origin: 0 0;
+  transition: opacity 0.1s ease-in-out, transform 0.1s ease-in-out;
+}
+
+.form-floating > .form-control {
+  padding: 16px 12px;
+  font-size: 1.5rem;
+}
+
+.form-floating > .form-control::-moz-placeholder {
+  color: transparent;
+}
+
+.form-floating > .form-control:-ms-input-placeholder {
+  color: transparent;
+}
+
+.form-floating > .form-control::placeholder {
+  color: transparent;
+}
+
+.form-floating > .form-control:focus,
+.form-floating > .form-control:not(:placeholder-shown) {
+  padding-top: 26px;
+  padding-bottom: 10px;
+}
+
+.form-floating > .form-control:-webkit-autofill {
+  padding-top: 26px;
+  padding-bottom: 10px;
+}
+
+.form-floating > .form-select {
+  padding-top: 26px;
+  padding-bottom: 10px;
+}
+
+.form-floating > .form-control:focus ~ label,
+.form-floating > .form-control:not(:placeholder-shown) ~ label,
+.form-floating > .form-select ~ label {
+  opacity: 0.65;
+  transform: scale(0.85) translateY(-0.5rem) translateX(0.15rem);
+}
+
+.form-floating > .form-control:-webkit-autofill ~ label {
+  opacity: 0.65;
+  transform: scale(0.85) translateY(-0.5rem) translateX(0.15rem);
 }
 
