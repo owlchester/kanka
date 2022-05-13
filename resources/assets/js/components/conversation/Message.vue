@@ -1,5 +1,5 @@
 <template>
-    <div class="box-comment">
+    <div v-bind:class="boxClasses(message)">
         <span class="text-right pull-right">
             <dropdown tag="a" menu-right class="message-options" v-if="message.can_delete">
                 <a class="dropdown-toggle" role="button"><span class="caret"></span></a>
@@ -56,6 +56,12 @@
             },
             translate(key) {
                 return this.trans[key] ?? 'unknown';
+            },
+            boxClasses: function (message) {
+                let classes = 'box-comment';
+                classes += ' message-author-' + message.from_id;
+                classes += ' message-real-author-' + message.created_by;
+                return classes;
             }
         },
     }

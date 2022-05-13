@@ -63,7 +63,7 @@ use App\Facades\Datagrid ?>
             </div>
             @if(Datagrid::hasBulks()) {!! Form::close() !!} @endif
 
-                @include('campaigns.styles._reorder')
+                @includeWhen(!$reorderStyles->isEmpty(), 'campaigns.styles._reorder')
             @endif
         </div>
     </div>

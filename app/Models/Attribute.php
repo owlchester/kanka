@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Facades\Attributes;
 use App\Facades\Mentions;
 use App\Models\Concerns\Paginatable;
+use App\Models\Concerns\Privatable;
 use App\Models\Scopes\Starred;
 use App\Traits\OrderableTrait;
 use Illuminate\Database\Eloquent\Model;
@@ -27,7 +28,7 @@ use Illuminate\Support\Str;
  */
 class Attribute extends Model
 {
-    use OrderableTrait, Paginatable, Starred;
+    use OrderableTrait, Paginatable, Starred, Privatable;
 
     const TYPE_BLOCK = 'block';
     const TYPE_CHECKBOX = 'checkbox';
