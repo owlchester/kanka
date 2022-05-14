@@ -194,15 +194,6 @@ hr {
   }
 }
 
-@media (max-width: 991px) {
-  .navbar-custom-menu > .navbar-nav > li > .dropdown-menu {
-    border: 1px solid var(--dropdown-border);
-    background-color: var(--dropdown-background);
-  }
-}
-
-
-
 // Callouts / Modals / Labels
 /*.bg-info, .bg-primary, .callout.callout-info, .alert-info, .label-info {
    background-color: var(--info-background) !important;
@@ -354,38 +345,13 @@ body .main-header .navbar .nav .open > a.active {
     background-color: var(--main-navbar-hover-background);
   }
 }
-/**
-.navbar-nav > .user-menu > .dropdown-menu > .user-footer {
-  background-color: var(--theme-detail);
-}
-.nav-tabs-custom > .nav-tabs > li:first-of-type.active > a,
-.nav-tabs-custom > .nav-tabs > li.active > a {
-  border-left-color: var(--theme-border);
-  border-right-color: var(--theme-border);
-  border-bottom-color: var(--theme-background);
-}
-.nav-tabs-custom > .nav-tabs > li:hover > a, .nav-tabs-custom > .nav-tabs > li.active > a, .nav-tabs-custom > .nav-tabs > li.active:hover > a  {
-  background-color: var(--theme-background);
-  color: var(--theme-main-text);
-}
 
-body .main-header .navbar .nav > li > a:hover, body .main-header .navbar .nav > li > a:active, body .main-header .navbar .nav > li > a:focus, body .main-header .navbar .nav .open > a, body .main-header .navbar .nav .open > a:hover, body .main-header .navbar .nav .open > a:focus, body .main-header .navbar .nav > .active > a {
-  color: var(--theme-wrapper-text);
-  background-color: var(--theme-navbar-li-hover-background);
+@media (max-width: 991px) {
+  .navbar-custom-menu > .navbar-nav > li > .dropdown-menu {
+    border: 1px solid var(--dropdown-border);
+    background-color: var(--dropdown-background);
+  }
 }
-.navbar-nav > .notifications-menu > .dropdown-menu > li .menu > li > a:hover {
-  color: var(--theme-navbar-notifications-text);
-  background-color: var(--theme-navbar-notifications-background);
-}
-.navbar-nav > .notifications-menu > .dropdown-menu > li .menu > li > a {
-  border-bottom: 1px solid var(--theme-border);
-}
-
-body .main-header .navbar .sidebar-toggle:hover {
-  color: var(--theme-wrapper-text);
-  background-color: var(--theme-navbar-li-hover-background);
-}
- */
 
 .nav-tabs-custom > .nav-tabs > li.active:hover > a, .nav-tabs-custom > .nav-tabs > li.active > a {
   background-color: var(--navbar-tab-active-background);
