@@ -314,10 +314,10 @@ pre {
   --main-navbar-hover-background: #fff;
   --main-navbar-user-background: #222;
 }
-.skin-black .main-header .navbar {
+body .main-header .navbar {
   background-color: var(--main-navbar-background);
 }
-.skin-black .main-header li.user-header {
+body .main-header li.user-header {
   background-color: var(--main-navbar-user-background);
 }
 .navbar-nav > .user-menu > .dropdown-menu > .user-footer {
@@ -329,14 +329,14 @@ pre {
 
 
 /** Hover & active on all the navbar buttons **/
-.skin-black .main-header .navbar .nav > li > a, .skin-black .main-header .navbar .nav > .active > a, .skin-black .main-header .navbar .sidebar-toggle, .skin-black .main-header .navbar .nav .open > a {
+body .main-header .navbar .nav > li > a, body .main-header .navbar .nav > .active > a, body .main-header .navbar .sidebar-toggle, body .main-header .navbar .nav .open > a {
   color: var(--main-navbar-text);
   &:hover, &:active, &:focus, {
     background-color: var(--main-navbar-hover-background);
   }
 }
-.skin-black .main-header .navbar .nav .open > a, .skin-black .main-header .navbar .nav > .active > a,
-.skin-black .main-header .navbar .nav .open > a.active {
+body .main-header .navbar .nav .open > a, body .main-header .navbar .nav > .active > a,
+body .main-header .navbar .nav .open > a.active {
   background-color: var(--main-navbar-hover-background);
 }
 .navbar-nav > .notifications-menu > .dropdown-menu > li .menu > li > a, .navbar-nav > .messages-menu > .dropdown-menu > li .menu > li > a:hover, .navbar-nav > .tasks-menu > .dropdown-menu > li .menu > li > a {
@@ -362,7 +362,7 @@ pre {
   color: var(--theme-main-text);
 }
 
-.skin-black .main-header .navbar .nav > li > a:hover, .skin-black .main-header .navbar .nav > li > a:active, .skin-black .main-header .navbar .nav > li > a:focus, .skin-black .main-header .navbar .nav .open > a, .skin-black .main-header .navbar .nav .open > a:hover, .skin-black .main-header .navbar .nav .open > a:focus, .skin-black .main-header .navbar .nav > .active > a {
+body .main-header .navbar .nav > li > a:hover, body .main-header .navbar .nav > li > a:active, body .main-header .navbar .nav > li > a:focus, body .main-header .navbar .nav .open > a, body .main-header .navbar .nav .open > a:hover, body .main-header .navbar .nav .open > a:focus, body .main-header .navbar .nav > .active > a {
   color: var(--theme-wrapper-text);
   background-color: var(--theme-navbar-li-hover-background);
 }
@@ -374,7 +374,7 @@ pre {
   border-bottom: 1px solid var(--theme-border);
 }
 
-.skin-black .main-header .navbar .sidebar-toggle:hover {
+body .main-header .navbar .sidebar-toggle:hover {
   color: var(--theme-wrapper-text);
   background-color: var(--theme-navbar-li-hover-background);
 }

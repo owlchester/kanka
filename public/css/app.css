@@ -372,11 +372,11 @@ pre {
   --main-navbar-user-background: #222;
 }
 
-.skin-black .main-header .navbar {
+body .main-header .navbar {
   background-color: var(--main-navbar-background);
 }
 
-.skin-black .main-header li.user-header {
+body .main-header li.user-header {
   background-color: var(--main-navbar-user-background);
 }
 
@@ -390,31 +390,31 @@ pre {
 
 /** Hover & active on all the navbar buttons **/
 
-.skin-black .main-header .navbar .nav > li > a,
-.skin-black .main-header .navbar .nav > .active > a,
-.skin-black .main-header .navbar .sidebar-toggle,
-.skin-black .main-header .navbar .nav .open > a {
+body .main-header .navbar .nav > li > a,
+body .main-header .navbar .nav > .active > a,
+body .main-header .navbar .sidebar-toggle,
+body .main-header .navbar .nav .open > a {
   color: var(--main-navbar-text);
 }
 
-.skin-black .main-header .navbar .nav > li > a:hover,
-.skin-black .main-header .navbar .nav > li > a:active,
-.skin-black .main-header .navbar .nav > li > a:focus,
-.skin-black .main-header .navbar .nav > .active > a:hover,
-.skin-black .main-header .navbar .nav > .active > a:active,
-.skin-black .main-header .navbar .nav > .active > a:focus,
-.skin-black .main-header .navbar .sidebar-toggle:hover,
-.skin-black .main-header .navbar .sidebar-toggle:active,
-.skin-black .main-header .navbar .sidebar-toggle:focus,
-.skin-black .main-header .navbar .nav .open > a:hover,
-.skin-black .main-header .navbar .nav .open > a:active,
-.skin-black .main-header .navbar .nav .open > a:focus {
+body .main-header .navbar .nav > li > a:hover,
+body .main-header .navbar .nav > li > a:active,
+body .main-header .navbar .nav > li > a:focus,
+body .main-header .navbar .nav > .active > a:hover,
+body .main-header .navbar .nav > .active > a:active,
+body .main-header .navbar .nav > .active > a:focus,
+body .main-header .navbar .sidebar-toggle:hover,
+body .main-header .navbar .sidebar-toggle:active,
+body .main-header .navbar .sidebar-toggle:focus,
+body .main-header .navbar .nav .open > a:hover,
+body .main-header .navbar .nav .open > a:active,
+body .main-header .navbar .nav .open > a:focus {
   background-color: var(--main-navbar-hover-background);
 }
 
-.skin-black .main-header .navbar .nav .open > a,
-.skin-black .main-header .navbar .nav > .active > a,
-.skin-black .main-header .navbar .nav .open > a.active {
+body .main-header .navbar .nav .open > a,
+body .main-header .navbar .nav > .active > a,
+body .main-header .navbar .nav .open > a.active {
   background-color: var(--main-navbar-hover-background);
 }
 
@@ -446,7 +446,7 @@ pre {
   color: var(--theme-main-text);
 }
 
-.skin-black .main-header .navbar .nav > li > a:hover, .skin-black .main-header .navbar .nav > li > a:active, .skin-black .main-header .navbar .nav > li > a:focus, .skin-black .main-header .navbar .nav .open > a, .skin-black .main-header .navbar .nav .open > a:hover, .skin-black .main-header .navbar .nav .open > a:focus, .skin-black .main-header .navbar .nav > .active > a {
+body .main-header .navbar .nav > li > a:hover, body .main-header .navbar .nav > li > a:active, body .main-header .navbar .nav > li > a:focus, body .main-header .navbar .nav .open > a, body .main-header .navbar .nav .open > a:hover, body .main-header .navbar .nav .open > a:focus, body .main-header .navbar .nav > .active > a {
   color: var(--theme-wrapper-text);
   background-color: var(--theme-navbar-li-hover-background);
 }
@@ -458,7 +458,7 @@ pre {
   border-bottom: 1px solid var(--theme-border);
 }
 
-.skin-black .main-header .navbar .sidebar-toggle:hover {
+body .main-header .navbar .sidebar-toggle:hover {
   color: var(--theme-wrapper-text);
   background-color: var(--theme-navbar-li-hover-background);
 }
@@ -681,7 +681,7 @@ pre {
   overflow: unset !important;
 }
 
-.skin-black .wrapper {
+body .wrapper {
   background: none;
 }
 
@@ -2047,7 +2047,7 @@ summary {
 
 .entity-grid {
   display: grid;
-  margin: 0 -15px;
+  margin: -15px -15px 0 -15px;
   grid-template-columns: 200px minmax(auto, calc(100% - 400px)) 200px;
   grid-template-areas: "header header header" "menu main side" "footer footer footer";
 }

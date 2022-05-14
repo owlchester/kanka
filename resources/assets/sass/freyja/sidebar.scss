@@ -1,5 +1,5 @@
 
-.skin-black .main-header {
+body .main-header {
   box-shadow: unset;
 
   .sidebar-toggle {
@@ -108,7 +108,7 @@
 background-image: url(https://images.kanka.io/app/L5nSYCLgwtxR3wlUGk16fMZ0zAU=/280x210/src/images%2Fbackgrounds%2Fmountain-background-medium.jpg);
   z-index: 820;
 }
-.skin-black .sidebar-menu {
+.sidebar-menu {
   .fa, .fas, .fab, .far, .ra, .fa-solid, .fa-regular, .fa-brands, .fa-light, .fa-thin, .fa-duotone {
     display: inline-block;
     width: 20px;
@@ -320,7 +320,7 @@ padding-top: 96px;
   }
 }
 
-.skin-black .main-sidebar, .skin-black .left-side {
+body .main-sidebar, body .left-side {
   background-color: var(--sidebar-background);
 }
 .main-sidebar .sidebar li {
@@ -334,13 +334,13 @@ padding-top: 96px;
   margin-left: 280px;
 }
 
-.skin-black .main-header.main-header-start {
+body .main-header.main-header-start {
   background-color: #fff;
 }
 
 /** Mobile **/
 @media (max-width: 767px) {
-  .skin-black .main-header .navbar-static-top {
+  body .main-header .navbar-static-top {
     margin-left: 0;
   }
   .main-header {

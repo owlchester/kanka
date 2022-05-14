@@ -17,7 +17,7 @@
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
     @yield('styles')
 </head>
-<body class="skin-black sidebar-mini">
+<body class="sidebar-mini">
 @include('layouts._tracking-fallback')
     <div id="app" class="wrapper">
         <!-- Sidebar -->

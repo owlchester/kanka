@@ -65,7 +65,7 @@ $specificTheme = null;
 @endif
 @yield('styles')
 </head>
-<body id="map-body" class="map-page skin-black skin-map sidebar-mini sidebar-collapse" @if(!empty($specificTheme)) data-theme="{{ $specificTheme }}" @endif>
+<body id="map-body" class="map-page skin-map sidebar-mini sidebar-collapse" @if(!empty($specificTheme)) data-theme="{{ $specificTheme }}" @endif>
 @include('layouts._tracking-fallback')
 
     <div id="app" class="wrapper">

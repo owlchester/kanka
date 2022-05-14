@@ -1,24 +1,24 @@
-.skin-black .main-header {
+body .main-header {
   box-shadow: unset;
 }
 
-.skin-black .main-header .sidebar-toggle {
+body .main-header .sidebar-toggle {
   display: block;
   text-align: center;
   transition: transform 0.3s ease-in-out, width 0.3s ease-in-out;
 }
 
-.skin-black .main-header .navbar-static-top {
+body .main-header .navbar-static-top {
   margin-left: 280px;
 }
 
-.skin-black .main-header .navbar .navbar-custom-menu .navbar-nav > li > a,
-.skin-black .main-header .navbar .navbar-right > li > a {
+body .main-header .navbar .navbar-custom-menu .navbar-nav > li > a,
+body .main-header .navbar .navbar-right > li > a {
   border: unset;
   font-size: 18px;
 }
 
-.skin-black .main-header .navbar .sidebar-toggle {
+body .main-header .navbar .sidebar-toggle {
   border: unset;
 }
 
@@ -139,27 +139,27 @@
   z-index: 820;
 }
 
-.skin-black .sidebar-menu .fa,
-.skin-black .sidebar-menu .fas,
-.skin-black .sidebar-menu .fab,
-.skin-black .sidebar-menu .far,
-.skin-black .sidebar-menu .ra,
-.skin-black .sidebar-menu .fa-solid,
-.skin-black .sidebar-menu .fa-regular,
-.skin-black .sidebar-menu .fa-brands,
-.skin-black .sidebar-menu .fa-light,
-.skin-black .sidebar-menu .fa-thin,
-.skin-black .sidebar-menu .fa-duotone {
+.sidebar-menu .fa,
+.sidebar-menu .fas,
+.sidebar-menu .fab,
+.sidebar-menu .far,
+.sidebar-menu .ra,
+.sidebar-menu .fa-solid,
+.sidebar-menu .fa-regular,
+.sidebar-menu .fa-brands,
+.sidebar-menu .fa-light,
+.sidebar-menu .fa-thin,
+.sidebar-menu .fa-duotone {
   display: inline-block;
   width: 20px;
 }
 
-.skin-black .sidebar-menu li > .treeview-menu {
+.sidebar-menu li > .treeview-menu {
   background-color: unset;
 }
 
-.skin-black .sidebar-menu li > a,
-.skin-black .sidebar-menu li > span {
+.sidebar-menu li > a,
+.sidebar-menu li > span {
   padding: 8px 5px 8px 15px;
 }
 
@@ -350,8 +350,8 @@ section.sidebar-campaign .campaign-block .campaign-head .campaign-updated {
   width: 50px;
 }
 
-.skin-black .main-sidebar,
-.skin-black .left-side {
+body .main-sidebar,
+body .left-side {
   background-color: var(--sidebar-background);
 }
 
@@ -374,14 +374,14 @@ section.sidebar-campaign .campaign-block .campaign-head .campaign-updated {
   margin-left: 280px;
 }
 
-.skin-black .main-header.main-header-start {
+body .main-header.main-header-start {
   background-color: #fff;
 }
 
 /** Mobile **/
 
 @media (max-width: 767px) {
-  .skin-black .main-header .navbar-static-top {
+  body .main-header .navbar-static-top {
     margin-left: 0;
   }
 

@@ -15,8 +15,6 @@ Route::post('/release/{app_release}', 'Settings\ReleaseController@read')
     ->name('settings.release');
 Route::post('/banner', 'Settings\ReleaseController@banner')
     ->name('settings.banner');
-Route::post('/welcome', 'Settings\WelcomeController@read')
-    ->name('settings.welcome');
 
 Route::get('/account', 'Settings\AccountController@index')
     ->name('settings.account');
