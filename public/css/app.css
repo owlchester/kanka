@@ -231,6 +231,13 @@ hr {
   color: var(--dropdown-link);
 }
 
+@media (max-width: 991px) {
+  .navbar-custom-menu > .navbar-nav > li > .dropdown-menu {
+    border: 1px solid var(--dropdown-border);
+    background-color: var(--dropdown-background);
+  }
+}
+
 /*.bg-info, .bg-primary, .callout.callout-info, .alert-info, .label-info {
    background-color: var(--info-background) !important;
 }

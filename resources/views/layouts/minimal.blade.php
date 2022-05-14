@@ -21,7 +21,7 @@
 @endif
     @yield('styles')
 </head>
-<body class="sidebar-mini layout-top-nav">
+<body class="layout-top-nav">
 @include('layouts._tracking-fallback')
     <div id="app" class="wrapper">
 

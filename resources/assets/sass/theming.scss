@@ -194,6 +194,14 @@ hr {
   }
 }
 
+@media (max-width: 991px) {
+  .navbar-custom-menu > .navbar-nav > li > .dropdown-menu {
+    border: 1px solid var(--dropdown-border);
+    background-color: var(--dropdown-background);
+  }
+}
+
+
 
 // Callouts / Modals / Labels
 /*.bg-info, .bg-primary, .callout.callout-info, .alert-info, .label-info {
@@ -346,7 +354,6 @@ body .main-header .navbar .nav .open > a.active {
     background-color: var(--main-navbar-hover-background);
   }
 }
-
 /**
 .navbar-nav > .user-menu > .dropdown-menu > .user-footer {
   background-color: var(--theme-detail);

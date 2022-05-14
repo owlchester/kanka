@@ -421,34 +421,34 @@ body .main-header.main-header-start {
 }
 
 @media (min-width: 768px) {
-  .sidebar-mini.sidebar-collapse .main-sidebar {
+  .sidebar-collapse .main-sidebar {
     transform: translate(0, 0);
     width: 0 !important;
     z-index: 850;
   }
 
-  .sidebar-mini.sidebar-collapse .sidebar-creator {
+  .sidebar-collapse .sidebar-creator {
     width: 50px !important;
   }
 
-  .sidebar-mini.sidebar-collapse .sidebar-creator span {
+  .sidebar-collapse .sidebar-creator span {
     display: none;
   }
 
-  .sidebar-mini.sidebar-collapse .content-wrapper,
-  .sidebar-mini.sidebar-collapse .right-side,
-  .sidebar-mini.sidebar-collapse .main-footer {
+  .sidebar-collapse .content-wrapper,
+  .sidebar-collapse .right-side,
+  .sidebar-collapse .main-footer {
     margin-left: 0 !important;
     z-index: 840;
   }
 
-  .sidebar-mini.sidebar-collapse .main-header .navbar {
+  .sidebar-collapse .main-header .navbar {
     margin-left: 0;
   }
 
-  .sidebar-mini.sidebar-collapse .sidebar-menu > li > .sidebar-text > span,
-  .sidebar-mini.sidebar-collapse .campaign-updated,
-  .sidebar-mini.sidebar-collapse .campaign-name {
+  .sidebar-collapse .sidebar-menu > li > .sidebar-text > span,
+  .sidebar-collapse .campaign-updated,
+  .sidebar-collapse .campaign-name {
     display: none !important;
   }
 }
