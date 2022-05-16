@@ -12,6 +12,7 @@ if (request()->has('tag_id')) {
     $datagridOptions['tag_id'] = (int) $model->id;
     $allMembers = true;
 }
+$datagridOptions = Datagrid::initOptions($datagridOptions);
 
 $existing = $model->allChildren()->count();
 ?>
