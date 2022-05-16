@@ -109,43 +109,37 @@
   color: var(--link-text);
 }
 
-body.sidebar-collapse {
-  /*.sidebar {
-    display: none !important;
-  }*/
-}
-
-body .main-sidebar {
+#map-body .main-sidebar {
   color: #efefef;
   overflow: hidden;
   padding-top: 0;
   z-index: 1040;
 }
 
-body .marker-details .marker-name {
+#map-body .marker-details .marker-name {
   margin-top: 0;
 }
 
-body .marker-actions {
+#map-body .marker-actions {
   margin: 20px 0;
 }
 
-body .entity-title {
+#map-body .entity-title {
   min-height: 40px;
   margin-bottom: 5px;
 }
 
-body .entity-title a {
+#map-body .entity-title a {
   display: flex;
   align-items: center;
 }
 
-body .entity-title .entity-image {
+#map-body .entity-title .entity-image {
   display: inline-block;
   margin-right: 5px;
 }
 
-body .entity-title .entity-name {
+#map-body .entity-title .entity-name {
   display: inline;
   font-size: 12pt;
 }

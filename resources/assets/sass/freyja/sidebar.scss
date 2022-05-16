@@ -1,23 +1,5 @@
 
-body .main-header {
-  box-shadow: unset;
 
-  .sidebar-toggle {
-    display: block;
-    text-align: center;
-    transition: transform 0.3s ease-in-out, width 0.3s ease-in-out;
-  }
-  .navbar-static-top {
-    margin-left: $sidebarWidth;
-  }
-  .navbar .navbar-custom-menu .navbar-nav > li > a, .navbar .navbar-right > li > a {
-    border: unset;
-    font-size: 18px;
-  }
-  .navbar .sidebar-toggle {
-    border: unset;
-  }
-}
 .content-wrapper {
   margin-left: $sidebarWidth;
 }
@@ -30,6 +12,13 @@ body .main-header {
   background-size: 280px 210px;
   background-repeat: no-repeat;
 
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding-top: 50px;
+  min-height: 100%;
+  transition: transform 0.3s ease-in-out, width 0.3s ease-in-out;
+
   a {
     color: var(--sidebar-link);
   }
@@ -37,6 +26,11 @@ body .main-header {
   .sidebar-menu {
     background-color: unset;
     margin-bottom: 60px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    white-space: no-wrap;
 
     .sidebar-icon-link {
       color: #474747;
@@ -316,7 +310,6 @@ padding-top: 96px;
 // Collapsed state
 .sidebar-collapse {
   .sidebar-toggle {
-    width: 50px;
   }
 }
 
@@ -330,25 +323,14 @@ body .main-sidebar, body .left-side {
   }
 }
 
-.main-footer {
+.main-footer, .navbar {
   margin-left: 280px;
 }
 
-body .main-header.main-header-start {
-  background-color: #fff;
-}
+
 
 /** Mobile **/
 @media (max-width: 767px) {
-  body .main-header .navbar-static-top {
-    margin-left: 0;
-  }
-  .main-header {
-    background-color: #fff;
-    .navbar {
-      margin-left: 0;
-    }
-  }
   .main-sidebar {
     transform: translate(-280px, 0);
   }
@@ -386,9 +368,6 @@ body .main-header.main-header-start {
   .sidebar-collapse .content-wrapper, .sidebar-collapse .right-side, .sidebar-collapse .main-footer {
     margin-left: 0 !important;
     z-index: 840;
-  }
-  .sidebar-collapse .main-header .navbar {
-    margin-left: 0;
   }
 
   .sidebar-collapse .sidebar-menu > li > .sidebar-text > span, .sidebar-collapse .campaign-updated, .sidebar-collapse .campaign-name {

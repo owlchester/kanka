@@ -7,7 +7,7 @@ $first = true;
 ?>
 @foreach ($permission->permissions($role) as $entity => $permissions)
     @if ($first)
-    <div class="row margin-bottom">
+    <div class="row mb-5">
         <div class="col-sm-4 col-md-3 col-xl-2">
             <strong class="visible-xs">{{ __('campaigns.roles.permissions.actions.toggle') }}</strong>
         </div>
@@ -28,7 +28,7 @@ $first = true;
     </div>
         @php $first = false; @endphp
     @endif
-    <div class="row margin-bottom">
+    <div class="row mb-5">
         <div class="col-sm-4 col-md-3 col-xl-2">
             <strong>{{ __($permission->entityType($entity)) }}</strong>
         </div>
@@ -66,7 +66,7 @@ $first = true;
 ?>
 @foreach ($permission->campaignPermissions($role) as $entity => $permissions)
     @if ($first)
-        <div class="row margin-bottom">
+        <div class="row mb-5">
             <div class="col-sm-4 col-md-3 col-xl-2">
                 <strong class="visible-xs">{{ __('campaigns.roles.permissions.actions.toggle') }}</strong>
             </div>
@@ -89,7 +89,7 @@ $first = true;
         </div>
         @php $first = false; @endphp
     @endif
-    <div class="row margin-bottom">
+    <div class="row mb-5">
         <div class="col-sm-4 col-md-3 col-xl-2">
             <strong>{{ __('entities.' . $entity) }}</strong>
         </div>

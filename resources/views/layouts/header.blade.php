@@ -47,17 +47,17 @@ $currentCampaign = CampaignLocalization::getCampaign();
                             <span id="header-notification-count" class="label label-warning" style="display:none"></span>
                         </a>
                         <ul class="dropdown-menu">
-                            <li class="notification-footer">
-                                <a href="{{ route('notifications') }}">
+                            <li class="flex">
+                                <a href="{{ route('notifications') }}" class="flex-1">
                                     {{ __('header.notifications.read_all') }}
                                 </a>
 
-                                <a href="#" class="pull-right" id="header-notification-mark-all-as-read" data-url="{{ route('notifications.refresh', 'read-all') }}">
+                                <a href="#" class="flex-1 text-right" id="header-notification-mark-all-as-read" data-url="{{ route('notifications.refresh', 'read-all') }}">
                                     {{ __('header.notifications.mark_read') }}
                                 </a>
                             </li>
                             <li>
-                                <ul class="menu" id="header-notification-list" data-url="{{ route('notifications.refresh') }}">
+                                <ul class="menu list-none px-2" id="header-notification-list" data-url="{{ route('notifications.refresh') }}">
                                     <li class="text-center"><i class="fa-solid fa-spin fa-spinner"></i></li>
                                 </ul>
                             </li>
@@ -75,21 +75,23 @@ $currentCampaign = CampaignLocalization::getCampaign();
 
                 @auth()
 
-                <li class="dropdown user user-menu">
+                <li class="dropdown nav-user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" title="{{ auth()->user()->name }}">
-                        <img src="{{ auth()->user()->getAvatarUrl() }}" class="user-image" alt="{{ __('header.avatar') }}"/>
+                        <img src="{{ auth()->user()->getAvatarUrl() }}" class="user-image h-16 w-16 rounded-full" alt="{{ __('header.avatar') }}"/>
                     </a>
                     <ul class="dropdown-menu">
-                        <li class="user-header">
-                            <a href="{{ route('users.profile', auth()->user()) }}">
-                                <img src="{{ auth()->user()->getAvatarUrl(100) }}" class="img-circle" alt="{{ __('header.avatar') }}" />
+                        <li class="px-20 py-5 text-center">
+                            <a href="{{ route('users.profile', auth()->user()) }}" class="profile-avatar-link mb-5">
+                                <img src="{{ auth()->user()->getAvatarUrl(150) }}" class="avatar rounded-2xl" alt="{{ __('header.avatar') }}" />
                             </a>
                             <p>
                                 <a href="{{ route('users.profile', auth()->user()) }}">{{ auth()->user()->name }}</a>
-                                <small title="{{ auth()->user()->created_at }}">{{ __('header.member_since', ['date' => auth()->user()->created_at->diffForHumans()]) }}</small>
                             </p>
+                            <small title="{{ auth()->user()->created_at }}">
+                                {{ __('header.member_since', ['date' => auth()->user()->created_at->diffForHumans()]) }}
+                            </small>
                         </li>
-                        <li class="user-footer">
+                        <li class="p-2">
                             @if (auth()->user()->hasCampaigns())
                             <div class="pull-left">
                                 <a href="{{ route('settings.profile') }}" class="btn btn-default btn-flat"> {{ __('header.profile') }}</a>

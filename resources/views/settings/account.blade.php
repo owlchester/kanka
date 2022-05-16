@@ -8,7 +8,7 @@
 
 @section('content')
     @include('partials.errors')
-    <div class="row margin-bottom">
+    <div class="row mb-5">
         <div class="col-md-6">
             {!! Form::model($user, ['method' => 'PATCH', 'route' => ['settings.account.email']]) !!}
             <div class="box box-solid">

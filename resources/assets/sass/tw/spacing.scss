@@ -1,3 +1,6 @@
+.p-0 {
+  padding: 0;
+}
 .p-1 {
   padding: 0.25rem;
 }
@@ -12,6 +15,9 @@
 }
 .p-5 {
   padding: 1.25rem;
+}
+.pl-0 {
+  padding-left: 0;
 }
 .px-1 {
   padding-left: 0.25rem;
@@ -37,6 +43,10 @@
   padding-left: 2rem;
   padding-right: 2rem;
 }
+.px-20 {
+  padding-left: 5rem;
+  padding-right: 5rem;
+}
 .py-1 {
   padding-top: 0.25rem;
   padding-bottom: 0.25rem;
@@ -61,7 +71,14 @@
   padding-top: 2rem;
   padding-bottom: 2rem;
 }
+.py-20 {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
 
+.m-0 {
+  margin: 0;
+}
 .m-1 {
   margin: 0.25rem;
 }
@@ -154,6 +171,9 @@
   margin-right: 2rem;
 }
 
+.ml-0 {
+  margin-left: 0;
+}
 .ml-1 {
   margin-left: 0.25rem;
 }

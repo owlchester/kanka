@@ -26,7 +26,7 @@
                             </button>
                         @endcan
                         @can('apply', $campaign)
-                            <button id="campaign-apply" class="btn btn-default btn-xl margin-r-5" data-id="{{ $campaign->id }}"
+                            <button id="campaign-apply" class="btn btn-default btn-xl mr-2" data-id="{{ $campaign->id }}"
                                     data-url="{{ route('campaign.apply') }}"
                                     data-toggle="ajax-modal" title="{{ __('dashboard.helpers.join') }}"
                                     data-target="#large-modal"

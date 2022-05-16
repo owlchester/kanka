@@ -309,23 +309,11 @@ pre {
 
   --main-navbar-background: #fff;
   --main-navbar-text: #333;
-  --main-navbar-user-footer: #f9f9f9;
   --main-navbar-hover-background: #fff;
-  --main-navbar-user-background: #222;
 }
 body .main-header .navbar {
   background-color: var(--main-navbar-background);
 }
-body .main-header li.user-header {
-  background-color: var(--main-navbar-user-background);
-}
-.navbar-nav > .user-menu > .dropdown-menu > .user-footer {
-  background-color: var(--main-navbar-user-footer);
-  .btn-default {
-    color: var(--btn-default-hover-text);
-  }
-}
-
 
 /** Hover & active on all the navbar buttons **/
 body .main-header .navbar .nav > li > a, body .main-header .navbar .nav > .active > a, body .main-header .navbar .sidebar-toggle, body .main-header .navbar .nav .open > a {

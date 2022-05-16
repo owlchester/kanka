@@ -29,12 +29,28 @@
 
 @import "theming";
 
-#app {
-  // AdminLTE wants this but it becomes weird with the min-height computed on firefox
-  overflow: unset !important;
-}
-body .wrapper {
+// Surrounds the whole body
+.wrapper {
   background: none;
+  height: 100%;
+  position: relative;
+  overflow-x: hidden;
+  overflow-y: auto;
+  // AdminLTE wants this but it becomes weird with the min-height computed on firefox
+  //overflow: unset !important;
+}
+// for the content panel
+.content-wrapper {
+  margin-right: auto;
+  margin-left: auto;
+}
+.content {
+  min-height: 250px;
+  padding: 15px;
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: 15px;
+  padding-right: 15px;
 }
 
 img.profile-user-img {
@@ -46,17 +62,25 @@ img.profile-user-img {
 
 
 .content-header {
+  position: relative;
+  padding: 15px 15px 0 15px;
   .breadcrumb {
     position: relative;
     float: none;
     top: 0;
     padding: 5px 10px;
     display: block;
+
+    background: transparent;
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 1.25rem;
   }
 
   h1 {
     display: block;
     font-size: 1.3em;
+    margin: 0;
   }
 }
 
@@ -230,9 +254,6 @@ tr.tr-hover {
   font-size: 13px;
 }
 
-.panel-toggable {
-  cursor: pointer;
-}
 
 .live-search-close {
   float: left;
@@ -489,6 +510,7 @@ td.breakable {
 }
 
 
+
 /*#entry td, #entry th {
   padding: 2px;
 }
@@ -564,10 +586,8 @@ summary { display: list-item; }
   }
 }
 
-.box-footer, .panel-footer, .modal-footer {
-  .pagination {
-    margin: 0;
-  }
+.form-control-feedback.fa {
+  line-height: 34px;
 }
 
 .banner-notification {
@@ -705,13 +725,12 @@ summary { display: list-item; }
 @import "entity";
 @import "footer";
 @import "editor";
+@import "box";
 @import "conversation";
 @import "ads";
 @import "campaign";
 @import "attributes/attributes";
 @import "ab-testing";
 @import "toggle";
-@import "tw/spacing";
-@import "tw/floating-forms";
-//@import "flex";
-
+@import "tw/tailwind";
+@import 'adminlte';

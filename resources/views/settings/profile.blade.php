@@ -10,13 +10,14 @@
     @include('partials.errors')
     {!! Form::model($user, ['method' => 'PATCH', 'enctype' => 'multipart/form-data', 'route' => ['settings.profile'], 'data-shortcut' => 1]) !!}
     <div class="box box-solid">
+        <div class="box-header with-border">
+            <h4 class="box-title with-border">
+                {{ __('settings.profile.title') }}
+            </h4>
+        </div>
         <div class="box-body">
             <div class="row">
                 <div class="col-md-7">
-                    <h2 class="page-header with-border">
-                        {{ __('settings.profile.title') }}
-                    </h2>
-
                     <div class="form-group required">
                         <label>{{ __('profiles.fields.name') }}</label>
                         {!! Form::text('name', null, ['placeholder' => __('profiles.placeholders.name'), 'class' => 'form-control']) !!}
@@ -57,11 +58,9 @@
                     @endif
                 </div>
                 <div class="col-md-4 col-md-offset-1">
-                    <h2 class="page-header with-border">
+                    <label for="avatar"">
                         {{ __('settings.profile.avatar') }}
-                    </h2>
-
-
+                    </label>
                     {!! Form::file('avatar', ['class' => 'image form-group']) !!}
                     {!! Form::hidden('remove-avatar') !!}
 
@@ -96,7 +95,7 @@
             <p class="help-block">
              {{ __('profiles.newsletter.helpers.header') }}
             </p>
-            <div class="form-group checkbox margin-bottom">
+            <div class="form-group checkbox mb-5">
                 <label>
                     {!! Form::checkbox('mail_newsletter', 1, $user->mail_newsletter) !!}
                     {{ __('profiles.newsletter.options.monthly') }}
@@ -105,7 +104,7 @@
                     {{ __('profiles.newsletter.helpers.monthly') }}
                 </p>
             </div>
-            <div class="form-group checkbox margin-bottom">
+            <div class="form-group checkbox mb-5">
                 <label>
                     {!! Form::checkbox('mail_vote', 1, $user->mail_vote) !!}
                     {!! __('front/community-votes.title') !!}

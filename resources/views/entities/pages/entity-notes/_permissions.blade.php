@@ -1,7 +1,7 @@
 <div class="tab-pane" id="form-permissions">
     @if(!empty($model))
         @foreach ($model->permissions()->onlyRoles()->with('role')->get() as $perm)
-        <div class="row margin-bottom">
+        <div class="row mb-5">
             <div class="col-sm-6">
                 <div class="input-group">
                     <span class="input-group-addon"><i class="fa-solid fa-users"></i></span>
@@ -23,7 +23,7 @@
         </div>
     @endforeach
         @foreach ($model->permissions()->onlyUsers()->with('user')->get() as $perm)
-            <div class="row margin-bottom">
+            <div class="row mb-5">
                 <div class="col-sm-6">
                     <div class="input-group">
                         <span class="input-group-addon"><i class="fa-solid fa-user"></i></span>
@@ -45,7 +45,7 @@
             </div>
         @endforeach
     @endif
-    <div id="entity-note-perm-target" class="margin-bottom"></div>
+    <div id="entity-note-perm-target" class="mb-5"></div>
     <div class="btn-group">
         <a href="#" class="btn btn-default btn-flat" data-toggle="modal" data-target="#entity-note-new-user">
             <i class="fa-solid fa-user"></i> {{ __('entities/notes.actions.add_user') }}
@@ -56,7 +56,7 @@
     </div>
     {!! Form::hidden('permissions', true) !!}
 
-    <div class="hidden row margin-bottom" id="entity-note-perm-user-template">
+    <div class="hidden row mb-5" id="entity-note-perm-user-template">
         <div class="col-sm-6">
             <div class="input-group">
                 <span class="input-group-addon"><i class="fa-solid fa-user"></i></span>
@@ -77,7 +77,7 @@
         </div>
         <input type="hidden" name="perm_user[]" value="$SELECTEDID$" />
     </div>
-    <div class="hidden row margin-bottom" id="entity-note-perm-role-template">
+    <div class="hidden row mb-5" id="entity-note-perm-role-template">
         <div class="col-sm-6">
             <div class="input-group">
                 <span class="input-group-addon"><i class="fa-solid fa-users"></i></span>

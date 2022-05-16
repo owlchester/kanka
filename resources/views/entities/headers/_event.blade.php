@@ -6,7 +6,7 @@
 @if ($model->date || $model->event)
     <div class="entity-header-sub pull-left">
         @if($model->event)
-        <span title="{{ __('events.fields.event') }}" data-toggle="tooltip" class="margin-r-5">
+        <span title="{{ __('events.fields.event') }}" data-toggle="tooltip" class="mr-2">
         <i class="fa-solid fa-bolt"></i>
         {!! $model->event->tooltipedLink() !!}
         </span>

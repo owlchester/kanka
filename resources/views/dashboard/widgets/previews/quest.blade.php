@@ -30,7 +30,7 @@ $model = $entity->child;
                     <i class="fa-solid fa-lock pull-right" title="{{ trans('crud.is_private') }}"></i>
                 @endif
                 @if ($model->is_completed)
-                    <i class="fa-solid fa-check-circle pull-right margin-r-5" title="{{ trans('quests.fields.is_completed') }}"></i>
+                    <i class="fa-solid fa-check-circle pull-right mr-2" title="{{ trans('quests.fields.is_completed') }}"></i>
                 @endif
 
                 @if(!empty($customName))

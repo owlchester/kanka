@@ -30,7 +30,7 @@
         </div>
         @if ($campaign->campaign()->boosted())
         <div class="box-footer">
-            <a class="btn btn-primary margin-r-5"
+            <a class="btn btn-primary mr-2"
                  data-toggle="ajax-modal"
                  data-target="#edit-widget"
                  data-url="{{ route('campaign_dashboards.create') }}"

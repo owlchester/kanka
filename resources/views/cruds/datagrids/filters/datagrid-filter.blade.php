@@ -188,11 +188,11 @@ $clipboardFilters = $filterService->clipboardFilters();
 
                 @if (auth()->check())
                 @if($activeFilters > 0)
-                <a href="#" class="btn btn-default margin-r-5" data-clipboard="{{ $clipboardFilters }}" data-toggle="tooltip" title="{{ __('crud.filters.copy_helper') }}">
+                <a href="#" class="btn btn-default mr-2" data-clipboard="{{ $clipboardFilters }}" data-toggle="tooltip" title="{{ __('crud.filters.copy_helper') }}">
                     <i class="fa-solid fa-clipboard"></i> {{ __('crud.filters.copy_to_clipboard') }}
                 </a>
                 @else
-                    <div class="visible-lg-inline-block visible-md-inline-block visible-sm-inline-block margin-r-5" data-toggle="tooltip" title="{{ __('crud.filters.copy_helper_no_filters') }}">
+                    <div class="visible-lg-inline-block visible-md-inline-block visible-sm-inline-block mr-2" data-toggle="tooltip" title="{{ __('crud.filters.copy_helper_no_filters') }}">
                     <a href="#" class="btn btn-default" style="pointer-events: none;" disabled >
                         <i class="fa-solid fa-clipboard"></i> {{ __('crud.filters.copy_to_clipboard') }}
                     </a>
@@ -206,17 +206,17 @@ $clipboardFilters = $filterService->clipboardFilters();
             </div>
 
             <div class="visible-xs pull-left block">
-                <a href="{{ route($route, ['reset-filter' => 'true']) }}" class="btn btn-default margin-r-5">
+                <a href="{{ route($route, ['reset-filter' => 'true']) }}" class="btn btn-default mr-2">
                     <i class="fa-solid fa-eraser"></i> {{ __('crud.filters.mobile.clear') }}
                 </a>
 
                 @if (auth()->check())
                     @if($activeFilters > 0)
-                    <a href="#" class="btn btn-default margin-r-5" data-clipboard="{{ $clipboardFilters }}" data-toggle="tooltip">
+                    <a href="#" class="btn btn-default mr-2" data-clipboard="{{ $clipboardFilters }}" data-toggle="tooltip">
                         <i class="fa-solid fa-clipboard"></i> {{ __('crud.filters.mobile.copy') }}
                     </a>
                     @else
-                    <a href="#" class="btn btn-default margin-r-5" disabled="disabled" data-toggle="tooltip" title="{{ __('crud.filters.copy_helper_no_filters') }}">
+                    <a href="#" class="btn btn-default mr-2" disabled="disabled" data-toggle="tooltip" title="{{ __('crud.filters.copy_helper_no_filters') }}">
                         <i class="fa-solid fa-clipboard"></i> {{ __('crud.filters.mobile.copy') }}
                     </a>
                     @endif
@@ -229,7 +229,7 @@ $clipboardFilters = $filterService->clipboardFilters();
 
             @if (auth()->check())
             <span class="pull-right">
-                <button type="submit" class="btn btn-primary margin-r-5">
+                <button type="submit" class="btn btn-primary mr-2">
                     <i class="fa-solid fa-filter"></i> {{ __('crud.filter') }}
                 </button>
                 <span data-toggle="collapse" data-target="#datagrid-filters">

@@ -80435,8 +80435,8 @@ $(document).ready(function () {
   }
 
   registerFormSubmitAnimation();
-  registerEntityCalendarForm();
-  registerToggablePanels();
+  registerEntityCalendarForm(); //registerToggablePanels();
+
   registerEntityFormSubmit();
   registerEntityCalendarModal();
   registerModalLoad();
@@ -82440,17 +82440,6 @@ function registerVendorEvents() {
 
 /***/ }),
 
-/***/ "./resources/assets/sass/bootstrap.scss":
-/*!**********************************************!*\
-  !*** ./resources/assets/sass/bootstrap.scss ***!
-  \**********************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
 /***/ "./resources/assets/sass/dashboard.scss":
 /*!**********************************************!*\
   !*** ./resources/assets/sass/dashboard.scss ***!
@@ -82639,14 +82628,13 @@ function registerVendorEvents() {
 /***/ }),
 
 /***/ 0:
-/*!**********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** multi ./resources/assets/js/app.js ./resources/assets/sass/bootstrap.scss ./resources/assets/sass/vendor.scss ./resources/assets/sass/app.scss ./resources/assets/sass/abilities.scss ./resources/assets/sass/story.scss ./resources/assets/sass/assets.scss ./resources/assets/sass/export.scss ./resources/assets/sass/map.scss ./resources/assets/sass/map-v3.scss ./resources/assets/sass/subscription.scss ./resources/assets/sass/gallery.scss ./resources/assets/sass/front.scss ./resources/assets/sass/auth.scss ./resources/assets/sass/front/critical.scss ./resources/assets/sass/relations.scss ./resources/assets/sass/dashboard.scss ./resources/assets/sass/settings.scss ./resources/assets/sass/themes/dark.scss ./resources/assets/sass/themes/midnight.scss ./resources/assets/sass/tinymce.scss ./resources/assets/sass/freyja/freyja.scss ./resources/assets/sass/print.scss ***!
-  \**********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*!*******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** multi ./resources/assets/js/app.js ./resources/assets/sass/vendor.scss ./resources/assets/sass/app.scss ./resources/assets/sass/abilities.scss ./resources/assets/sass/story.scss ./resources/assets/sass/assets.scss ./resources/assets/sass/export.scss ./resources/assets/sass/map.scss ./resources/assets/sass/map-v3.scss ./resources/assets/sass/subscription.scss ./resources/assets/sass/gallery.scss ./resources/assets/sass/front.scss ./resources/assets/sass/auth.scss ./resources/assets/sass/front/critical.scss ./resources/assets/sass/relations.scss ./resources/assets/sass/dashboard.scss ./resources/assets/sass/settings.scss ./resources/assets/sass/themes/dark.scss ./resources/assets/sass/themes/midnight.scss ./resources/assets/sass/tinymce.scss ./resources/assets/sass/freyja/freyja.scss ./resources/assets/sass/print.scss ***!
+  \*******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(/*! /Users/jay/Documents/GitHub/miscellany/resources/assets/js/app.js */"./resources/assets/js/app.js");
-__webpack_require__(/*! /Users/jay/Documents/GitHub/miscellany/resources/assets/sass/bootstrap.scss */"./resources/assets/sass/bootstrap.scss");
 __webpack_require__(/*! /Users/jay/Documents/GitHub/miscellany/resources/assets/sass/vendor.scss */"./resources/assets/sass/vendor.scss");
 __webpack_require__(/*! /Users/jay/Documents/GitHub/miscellany/resources/assets/sass/app.scss */"./resources/assets/sass/app.scss");
 __webpack_require__(/*! /Users/jay/Documents/GitHub/miscellany/resources/assets/sass/abilities.scss */"./resources/assets/sass/abilities.scss");

@@ -75,7 +75,7 @@
             </div>
             <div class="box-body">
             @if ($campaign)
-                <div class="row margin-bottom">
+                <div class="row mb-5">
                     <div class="col-md-6">
                         <div class="campaign boost" @if ($campaign->image) style="background-image: url('{{ Img::crop(500, 200)->url($campaign->image) }}');" @endif>
                             <div class="actions">
@@ -112,7 +112,7 @@
             @endif
                 <div class="row">
                     @foreach ($boosts as $boost)
-                    <div class="col-md-6 margin-bottom">
+                    <div class="col-md-6 mb-5">
                         <div class="campaign" @if ($boost->campaign->image) style="background-image: url('{{ Img::crop(500, 200)->url($boost->campaign->image) }}');" @endif>
                             <div class="actions">
                                 <a href="{{ url(App::getLocale() . '/' . $boost->campaign->getMiddlewareLink()) }}" class="campaign-name">
@@ -145,7 +145,7 @@
                     @endforeach
 
                     @foreach ($userCampaigns as $userCampaign)
-                        <div class="col-md-6 margin-bottom">
+                        <div class="col-md-6 mb-5">
                             <div class="campaign" @if ($userCampaign->image) style="background-image: url('{{ Img::crop(500, 200)->url($userCampaign->image) }}');" @endif>
                                 <div class="actions">
                                     <a href="{{ url(App::getLocale() . '/' . $userCampaign->getMiddlewareLink()) }}" class="campaign-name">

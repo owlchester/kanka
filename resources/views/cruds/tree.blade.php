@@ -10,7 +10,7 @@
 @inject('campaign', 'App\Services\CampaignService')
 
 @section('content')
-    <div class="row margin-bottom">
+    <div class="row mb-5">
         <div class="col-md-12">
             @include('layouts.datagrid.search', ['route' => route($name . '.tree')])
 
@@ -44,7 +44,7 @@
             @endcan
             @foreach ($actions as $action)
                 @if (empty($action['policy']) || (Auth::check() && Auth::user()->can($action['policy'], $model)))
-                    <a href="{{ $action['route'] }}" class="btn pull-right btn-{{ $action['class'] }} margin-r-5">
+                    <a href="{{ $action['route'] }}" class="btn pull-right btn-{{ $action['class'] }} mr-2">
                         {!! $action['label'] !!}
                     </a>
                 @endif

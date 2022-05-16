@@ -50,7 +50,7 @@
                     @endif
                     <dt>{{ __('settings.subscription.fields.currency') }}</dt>
                     <dd>
-                        <span class="margin-r-5">{{ strtoupper($user->currency ?? 'USD') }}</span>
+                        <span class="mr-2">{{ strtoupper($user->currency ?? 'USD') }}</span>
                         <a href="#" data-toggle="modal"
                            data-target="#change-currency">
                             <i class="fa-solid fa-pencil-alt"></i> {{ __('crud.edit') }}
@@ -328,7 +328,7 @@
                         {!! Form::select('currency', ['' => __('settings.subscription.currencies.usd'), 'eur' => __('settings.subscription.currencies.eur')], null, ['class' => 'form-control']) !!}
                     </div>
 
-                    <button class="btn btn-primary margin-bottom">
+                    <button class="btn btn-primary mb-5">
                         {{ __('settings.subscription.actions.update_currency') }}
                     </button>
                     <input type="hidden" name="from" value="{{ 'settings.subscription' }}" />

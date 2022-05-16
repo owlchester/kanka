@@ -26,7 +26,7 @@
     <div id="app" class="wrapper">
 
         <div class="content-wrapper">
-            <section class="content-header margin-bottom">
+            <section class="content-header mb-5">
             </section>
 
             <section class="content">

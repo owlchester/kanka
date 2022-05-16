@@ -1,5 +1,6 @@
 @import "variables";
 @import "sidebar";
+@import "header";
 //@import "buttons";
 
 :root {
@@ -46,4 +47,8 @@ h5 {
   font-style: normal;
   font-weight: normal;
   //font-size: 24px;
+}
+a:hover, a:active, a:focus {
+  outline: none;
+  text-decoration: none;
 }

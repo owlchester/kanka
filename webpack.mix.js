@@ -1,4 +1,5 @@
 let mix = require('laravel-mix');
+const tailwindcss = require('tailwindcss');
 //require('laravel-mix-brotli');
 
 /*
@@ -35,7 +36,7 @@ mix.js('resources/assets/js/app.js', 'public/js')
     .copy('vendor/blueimp/jquery-file-upload/js/jquery.fileupload.js', 'public/js')
     .copy('vendor/blueimp/jquery-file-upload/js/jquery.iframe-transport.js', 'public/js')
     .copy('vendor/blueimp/jquery-file-upload/js/vendor/jquery.ui.widget.js', 'public/js/vendor')
-    .sass('resources/assets/sass/bootstrap.scss', 'public/css')
+    //.sass('resources/assets/sass/bootstrap.scss', 'public/css')
     .sass('resources/assets/sass/vendor.scss', 'public/css')
     .sass('resources/assets/sass/app.scss', 'public/css')
     .sass('resources/assets/sass/abilities.scss', 'public/css')
@@ -57,6 +58,15 @@ mix.js('resources/assets/js/app.js', 'public/js')
     .sass('resources/assets/sass/tinymce.scss', 'public/css')
     .sass('resources/assets/sass/freyja/freyja.scss', 'public/css')
     .sass('resources/assets/sass/print.scss', 'public/css')
+    /*.sass('resources/assets/sass/tailwind.scss', 'public/css')
+    .options({
+        processCssUrls: false,
+        postCss: [ tailwindcss('./tailwind.config.js') ],
+    })*/
+
+    /*.postCss("resources/assets/css/tailwind.css", "public/css", [
+        require("tailwindcss"),
+    ])*/
     //.brotli({
     //    enabled: mix.inProduction(),
     //    asset: '[path].br[query]',
@@ -72,6 +82,10 @@ mix.js('resources/assets/js/app.js', 'public/js')
     // })
     .version()
 ;
+
+/*mix.postCss("resources/assets/css/tailwind.css", "public/css", [
+    require("tailwindcss"),
+]);*/
 
 /*mix.setPublicPath('./public/js/').extract([
     'lodash',

@@ -27,7 +27,7 @@ $actionBlock = 'col-xs-5 col-sm-4 col-md-3 col-lg-2';
             </div>
             <div class="{{ $actionBlock }}">
                 {!! Form::hidden('attr_is_star[$TMP_ID$]', false) !!}
-                <i class="far fa-star fa-2x margin-r-5"  data-toggle="star" data-tab="{{ __('entities/attributes.visibility.tab') }}" data-entry="{{ __('entities/attributes.visibility.entry') }}" title="{{ __('entities/attributes.visibility.tab') }}"></i>
+                <i class="far fa-star fa-2x mr-2"  data-toggle="star" data-tab="{{ __('entities/attributes.visibility.tab') }}" data-entry="{{ __('entities/attributes.visibility.entry') }}" title="{{ __('entities/attributes.visibility.tab') }}"></i>
 
                 @if ($isAdmin)
                     {!! Form::hidden('attr_is_private[$TMP_ID$]', false) !!}
@@ -57,7 +57,7 @@ $actionBlock = 'col-xs-5 col-sm-4 col-md-3 col-lg-2';
             </div>
             <div class="{{ $actionBlock }}">
                 {!! Form::hidden('attr_is_star[$TMP_ID$]', false) !!}
-                <i class="far fa-star fa-2x margin-r-5"  data-toggle="star" data-tab="{{ __('entities/attributes.visibility.tab') }}" data-entry="{{ __('entities/attributes.visibility.entry') }}" title="{{ __('entities/attributes.visibility.tab') }}"></i>
+                <i class="far fa-star fa-2x mr-2"  data-toggle="star" data-tab="{{ __('entities/attributes.visibility.tab') }}" data-entry="{{ __('entities/attributes.visibility.entry') }}" title="{{ __('entities/attributes.visibility.tab') }}"></i>
 
     @if($isAdmin)
                 {!! Form::hidden('attr_is_private[$TMP_ID$]', false) !!}
@@ -84,7 +84,7 @@ $actionBlock = 'col-xs-5 col-sm-4 col-md-3 col-lg-2';
             </div>
             <div class="{{ $actionBlock }}">
                 {!! Form::hidden('attr_is_star[$TMP_ID$]', false) !!}
-                <i class="far fa-star fa-2x margin-r-5"  data-toggle="star" data-tab="{{ __('entities/attributes.visibility.tab') }}" data-entry="{{ __('entities/attributes.visibility.entry') }}" title="{{ __('entities/attributes.visibility.tab') }}"></i>
+                <i class="far fa-star fa-2x mr-2"  data-toggle="star" data-tab="{{ __('entities/attributes.visibility.tab') }}" data-entry="{{ __('entities/attributes.visibility.entry') }}" title="{{ __('entities/attributes.visibility.tab') }}"></i>
 
     @if ($isAdmin)
                 {!! Form::hidden('attr_is_private[$TMP_ID$]', false) !!}
@@ -112,7 +112,7 @@ $actionBlock = 'col-xs-5 col-sm-4 col-md-3 col-lg-2';
             </div>
             <div class="{{ $actionBlock }}">
                 {!! Form::hidden('attr_is_star[$TMP_ID$]', false) !!}
-                <i class="far fa-star fa-2x margin-r-5"  data-toggle="star" data-tab="{{ __('entities/attributes.visibility.tab') }}" data-entry="{{ __('entities/attributes.visibility.entry') }}" title="{{ __('entities/attributes.visibility.tab') }}"></i>
+                <i class="far fa-star fa-2x mr-2"  data-toggle="star" data-tab="{{ __('entities/attributes.visibility.tab') }}" data-entry="{{ __('entities/attributes.visibility.entry') }}" title="{{ __('entities/attributes.visibility.tab') }}"></i>
 
     @if ($isAdmin)
                 {!! Form::hidden('attr_is_private[$TMP_ID$]', false) !!}
@@ -139,7 +139,7 @@ $actionBlock = 'col-xs-5 col-sm-4 col-md-3 col-lg-2';
             </div>
             <div class="{{ $actionBlock }}">
                 {!! Form::hidden('attr_is_star[$TMP_ID$]', false) !!}
-                <i class="far fa-star fa-2x margin-r-5"  data-toggle="star" data-tab="{{ __('entities/attributes.visibility.tab') }}" data-entry="{{ __('entities/attributes.visibility.entry') }}" title="{{ __('entities/attributes.visibility.tab') }}"></i>
+                <i class="far fa-star fa-2x mr-2"  data-toggle="star" data-tab="{{ __('entities/attributes.visibility.tab') }}" data-entry="{{ __('entities/attributes.visibility.entry') }}" title="{{ __('entities/attributes.visibility.tab') }}"></i>
 
     @if ($isAdmin)
                 {!! Form::hidden('attr_is_private[$TMP_ID$]', false) !!}
@@ -168,7 +168,7 @@ $actionBlock = 'col-xs-5 col-sm-4 col-md-3 col-lg-2';
             </div>
             <div class="{{ $actionBlock }}">
                 {!! Form::hidden('attr_is_star[$TMP_ID$]', false) !!}
-                <i class="far fa-star fa-2x margin-r-5"  data-toggle="star" data-tab="{{ __('entities/attributes.visibility.tab') }}" data-entry="{{ __('entities/attributes.visibility.entry') }}" title="{{ __('entities/attributes.visibility.tab') }}"></i>
+                <i class="far fa-star fa-2x mr-2"  data-toggle="star" data-tab="{{ __('entities/attributes.visibility.tab') }}" data-entry="{{ __('entities/attributes.visibility.entry') }}" title="{{ __('entities/attributes.visibility.tab') }}"></i>
 
     @if ($isAdmin)
                 {!! Form::hidden('attr_is_private[$TMP_ID$]', false) !!}
@@ -199,7 +199,7 @@ $actionBlock = 'col-xs-5 col-sm-4 col-md-3 col-lg-2';
             </div>
             <div class="{{ $actionBlock }}">
                 {!! Form::hidden('attr_is_star[$TMP_ID$]', false) !!}
-                <i class="far fa-star fa-2x margin-r-5"  data-toggle="star" data-tab="{{ __('entities/attributes.visibility.tab') }}" data-entry="{{ __('entities/attributes.visibility.entry') }}" title="{{ __('entities/attributes.visibility.tab') }}"></i>
+                <i class="far fa-star fa-2x mr-2"  data-toggle="star" data-tab="{{ __('entities/attributes.visibility.tab') }}" data-entry="{{ __('entities/attributes.visibility.entry') }}" title="{{ __('entities/attributes.visibility.tab') }}"></i>
 
                 @if ($isAdmin)
                     {!! Form::hidden('attr_is_private[$TMP_ID$]', false) !!}

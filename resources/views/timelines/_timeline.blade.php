@@ -70,7 +70,7 @@ $loadedElements = [];
     </ul>
 
     @can('update', $timeline)
-        <div class="text-center margin-bottom">
+        <div class="text-center mb-5">
             <a href="{{ route('timelines.timeline_elements.create', [$model, 'era_id' => $era, 'position' => $position]) }}" class="btn btn-primary btn-sm"
                 title="{{ __('crud.create') }}"
             >
@@ -83,7 +83,7 @@ $loadedElements = [];
             </a>
             @endif
         </div>
-        <div style="display:none;" class="text-center margin-bottom" id="era-items-{{ $era->id }}-save-reorder">
+        <div style="display:none;" class="text-center mb-5" id="era-items-{{ $era->id }}-save-reorder">
             <p class="text-muted">{{ __('timelines.helpers.reorder') }}</p>
 
             <button type="submit" class="btn btn-primary">

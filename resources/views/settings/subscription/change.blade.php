@@ -19,7 +19,7 @@
     @if (!$cancel)
         @if ($period == 'yearly' && \Carbon\Carbon::create(2021, 11, 1)->isFuture())
             <label>{{ __('settings.subscription.coupon.label') }}</label>
-            <div class="input-group margin-bottom">
+            <div class="input-group mb-5">
                 <input type="text" name="coupon-check" maxlength="12" id="coupon-check" class="form-control" data-url="{{ route('subscription.check-coupon') }}" />
 
                 <span class="input-group-btn">
@@ -53,11 +53,11 @@
 
                         <label>{{ __('settings.subscription.payment_method.card' )}}</label>
 
-                        <div id="card-element" class="margin-bottom">
+                        <div id="card-element" class="mb-5">
 
                         </div>
                     @else
-                        <div class="text-center margin-bottom">
+                        <div class="text-center mb-5">
                             <strong>{{ __('settings.subscription.fields.payment_method') }}</strong><br />
                             <i class="fa-solid fa-credit-card"></i> **** {{ $card->card->last4 }} {{ $card->card->exp_month }}/{{ $card->card->exp_year }}
 
@@ -100,7 +100,7 @@
                         <label for="sofort-country">
                             {{ __('settings.subscription.payment_method.country') }}
                         </label>
-                        <select id="sofort-country"  name="sofort-country" class="form-control margin-bottom">
+                        <select id="sofort-country"  name="sofort-country" class="form-control mb-5">
                             <option value="">{{ __('crud.select') }}</option>
                             <option value="at">{{ __('settings.countries.austria') }}</option>
                             <option value="be">{{ __('settings.countries.belgium') }}</option>
@@ -145,7 +145,7 @@
                         <label for="accountholder-name">
                             {{ __('settings.subscription.payment_method.card_name') }}
                         </label>
-                        <input id="accountholder-name"  name="accountholder-name" class="form-control margin-bottom">
+                        <input id="accountholder-name"  name="accountholder-name" class="form-control mb-5">
 
                         <div class="text-center">
                             <button class="btn btn-xl btn-success subscription-confirm-button" data-text="{{ __('settings.subscription.actions.subscribe') }}">
@@ -184,7 +184,7 @@
             {!! __('settings.subscription.cancel.text')!!}
         </p>
 
-        <div class="form-group margin-bottom">
+        <div class="form-group mb-5">
             <label>{{ __('settings.subscription.fields.reason') }}</label>
             {!! Form::select('reason', [
     '' => __('crud.select'),
@@ -193,7 +193,7 @@
     'missing_features' => __('settings.subscription.cancel.options.missing_features'),
     'competitor' => __('settings.subscription.cancel.options.competitor'),
     'custom' => __('settings.subscription.cancel.options.custom')
-], null, ['class' => 'form-control margin-bottom', 'id' => 'cancel-reason-select']) !!}
+], null, ['class' => 'form-control mb-5', 'id' => 'cancel-reason-select']) !!}
             {!! Form::textarea(
                 'reason_custom',
                 null,
