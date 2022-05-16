@@ -111,6 +111,6 @@ class EntityLink implements Rule
      */
     public function message()
     {
-        return __('validation.mimes', ['values' => 'jpg, jpeg, png, gif, webp, pdf, xls(x), mp3, ogg, json']);
+        return __('validation.entity_link');
     }
 }
