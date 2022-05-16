@@ -408,8 +408,8 @@ Route::post('/entities/{entity}/permissions', 'PermissionController@store')->nam
 
 // The campaign management sub pages
 Route::get('/campaign', 'CampaignController@index')->name('campaign');
-Route::get('/modules', 'CampaignSettingController@index')->name('campaign_settings');
-Route::post('/campaign-settings', 'CampaignSettingController@save')->name('campaign_settings.save');
+Route::get('/modules', 'CampaignSettingController@index')->name('campaign.modules');
+Route::post('/modules/toggle/{module?}', 'CampaignSettingController@toggle')->name('campaign.modules.toggle');
 Route::get('/campaign-theme', 'Campaign\StyleController@theme')->name('campaign-theme');
 Route::post('/campaign-theme', 'Campaign\StyleController@themeSave')->name('campaign-theme.save');
 Route::get('/campaign-export', 'Campaign\ExportController@index')->name('campaign_export');

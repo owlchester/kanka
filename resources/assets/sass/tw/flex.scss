@@ -10,6 +10,12 @@
 .flex-1 {
   flex: 1 1 0%;
 }
+.flex-col {
+  flex-direction: column;
+}
+.flex-wrap {
+  flex-wrap: wrap;
+}
 
 .items-center {
   align-items: center;

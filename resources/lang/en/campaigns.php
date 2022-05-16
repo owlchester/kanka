@@ -357,13 +357,12 @@ TEXT
         ],
     ],
     'settings'                          => [
+        'enabled' => 'The :module module is now active.',
+        'disabled' => 'The :module module is now disabled.',
         'actions'   => [
             'enable'    => 'Enable',
         ],
         'boosted'   => 'This feature is in early access and currently only available for :boosted.',
-        'edit'      => [
-            'success'   => 'Campaign settings updated.',
-        ],
         'errors'    => [
             'module-disabled'   => 'The requested module is currently disabled in the campaign settings. :fix.',
         ],
@@ -389,7 +388,6 @@ TEXT
             'tags'          => 'Each entity can have several tags. Tags can belong to other tags, and entries can be filtered by tag.',
             'timelines'     => 'Represent the history of your world with timelines.',
         ],
-        'title'     => 'Campaign :name Modules',
     ],
     'show'                              => [
         'actions'   => [

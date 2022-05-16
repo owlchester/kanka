@@ -29,19 +29,33 @@ class CampaignSettingController extends Controller
 
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * Toggle a module in the campaign's settings
+     * @param string $module
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function save(Request $request)
+    public function toggle(string $module)
     {
         $campaign = CampaignLocalization::getCampaign();
         $this->authorize('setting', $campaign);
 
-        $campaign->setting->update($request->all());
+        // Validate module
+        $fillable = $campaign->setting->getFillable();
+        if (empty($module) || !in_array($module, $fillable)) {
+            return response()->json([
+                'success' => false
+            ]);
+        }
 
-        return redirect()->route('campaign_settings')
-            ->with('success', trans('campaigns.settings.edit.success'));
+        $campaign->setting->{$module} = !$campaign->setting->{$module};
+        $campaign->setting->save();
+        $action = $campaign->setting->{$module} ? 'enabled' : 'disabled';
+
+        return response()->json([
+            'success' => true,
+            'status' => $campaign->setting->{$module},
+            'toast' => __('campaigns.settings.' . $action, ['module' => __('entities.' . $module)])
+        ]);
+
     }
 }

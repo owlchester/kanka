@@ -117,7 +117,7 @@ if (auth()->check()) {
                 <ul class="nav nav-pills nav-stacked">
                     @can('update', $campaign)
                     <li class="@if(!empty($active) && $active == 'settings')active @endif">
-                        <a href="{{ route('campaign_settings') }}">
+                        <a href="{{ route('campaign.modules') }}">
                             {{ __('campaigns.show.tabs.settings') }}
                         </a>
                     </li>
@@ -208,7 +208,7 @@ if (auth()->check()) {
         if (auth()->user()->can('update', $campaign)) {
             $menuOptions['settings'] = [
                 'label' => __('campaigns.show.tabs.settings'),
-                'route' => route('campaign_settings')
+                'route' => route('campaign.modules')
             ];
             $menuOptions['default-images'] = [
                 'label' => __('campaigns.show.tabs.default-images'),

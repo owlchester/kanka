@@ -80083,12 +80083,42 @@ function registerModules() {
     return;
   }
 
-  $('.content :checkbox').change(function () {
-    if (this.checked) {
-      $(this).closest('div.box').removeClass('box-default').addClass('box-success');
-    } else {
-      $(this).closest('div.box').removeClass('box-success').addClass('box-default');
+  $('.box-module').unbind('click').click(function (e) {
+    e.preventDefault();
+
+    if ($(this).hasClass('box-loading')) {
+      return;
     }
+
+    $(this).addClass('box-loading');
+    $(this).find('.loading').show();
+    $(this).find('p').hide();
+    $.ajaxSetup({
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      }
+    });
+    $.ajax({
+      method: 'post',
+      url: $(this).data('url'),
+      context: this
+    }).done(function (res) {
+      console.log('res', res);
+
+      if (res.success) {
+        if (res.status) {
+          $(this).addClass('box-success').removeClass('box-default');
+        } else {
+          $(this).removeClass('box-success').addClass('box-default');
+        }
+
+        window.showToast(res.toast);
+      }
+
+      $(this).find('.loading').hide();
+      $(this).find('p').show();
+      $(this).removeClass('box-loading');
+    });
   });
 }
 /**
