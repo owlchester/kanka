@@ -119,7 +119,7 @@ return [
 
 
     'entity_link' => 'Invalid :attribute. Please verify that it is a valid Kanka link, that it points to a public campaign, and that the entity is visible for the campaign\'s public role.',
-    'entity_file' => 'Allowed extensions: jpg, jpeg, png, gif, webp, pdf, xls(x), mp3, json and ogg.',
+    //'entity_file' => 'Allowed extensions: :formats',
 
     'fontawesome' => 'The icon must be the CSS class only, not the whole HTML. For example, use :example.',
 
