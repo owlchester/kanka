@@ -1,6 +1,5 @@
 @extends('layouts.app', [
     'title' => __('campaigns/plugins.title', ['name' => $campaign->name]),
-    'description' => __('campaigns/plugins.description'),
     'breadcrumbs' => [
         ['url' => route('campaign'), 'label' => __('campaigns.index.title')],
         __('campaigns.show.tabs.plugins')

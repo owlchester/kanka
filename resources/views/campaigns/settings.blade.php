@@ -1,6 +1,5 @@
 @extends('layouts.app', [
     'title' => __('campaigns.settings.title', ['name' => $campaign->name]),
-    'description' => __('campaigns.settings.description'),
     'breadcrumbs' => [
         ['url' => route('campaign'), 'label' => __('campaigns.index.title')],
         __('campaigns.show.tabs.settings')
