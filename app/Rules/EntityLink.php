@@ -3,6 +3,9 @@
 namespace App\Rules;
 
 use App\Models\Campaign;
+use App\Models\CampaignPermission;
+use App\Models\CampaignRole;
+use App\Models\Entity;
 use Illuminate\Contracts\Validation\Rule;
 use Illuminate\Support\Str;
 
@@ -37,7 +40,7 @@ class EntityLink implements Rule
         $value = trim($value, '/');
 
         $segments = explode('/', $value);
-        // 0: land
+        // 0: lang
         // 1: campaign
         // 2: campaign id
         // 3: character|entities
@@ -56,8 +59,49 @@ class EntityLink implements Rule
             return false;
         }
 
-        // We've checked the obvious stuff, so let's assume this is valid for now.
-        return true;
+        // Are we targetting an entity or a misc?
+        $entity = null;
+        if ($segments[3] === 'entities') {
+            /** @var Entity $entity */
+            $entity = Entity::where('id', (int) $segments[4])
+                ->where('campaign_id', $campaign->id)
+                ->allCampaigns()
+                ->withInvisible()
+                ->first();
+        } else {
+            $entityTypeID = config('entities.ids.' . Str::singular($segments[3]));
+            if (empty($entityTypeID)) {
+                return false;
+            }
+            $entity = Entity::where('entity_id', (int) $segments[4])
+                ->allCampaigns()
+                ->withInvisible()
+                ->where('type_id', $entityTypeID)
+                ->where('campaign_id', $campaign->id)
+                ->first();
+        }
+        if (empty($entity) || $entity->is_private) {
+            return false;
+        }
+
+        // Figuring out if the entity is visible to the public role is going to be tricky, so let's start doing some magic.
+        $publicRole = $campaign->roles()->public()->first();
+        if (empty($publicRole)) {
+            return false;
+        }
+
+        $permission = $publicRole->permissions()
+
+            ->where(function ($sub) use ($entity) {
+                return $sub->where('entity_id', $entity->id)
+                    ->orWhere('entity_type_id', $entity->typeId());
+            })
+            ->where('access', 1)
+            ->where('action', CampaignPermission::ACTION_READ)
+            ->first();
+
+        // We don't check for the public role have deny as a permission, this is good enough
+        return !empty($permission);
     }
 
     /**
