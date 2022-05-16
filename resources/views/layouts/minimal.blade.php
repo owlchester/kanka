@@ -12,7 +12,7 @@
 @yield('og')
 
     <link rel="icon" type="image/png" href="/favicon.ico">
-    <link href="{{ mix('css/bootstrap.css') }}" rel="stylesheet">
+    <link href="/css/bootstrap.css?v={{ config('app.version') }}" rel="stylesheet">
     <link href="{{ mix('css/vendor.css') }}" rel="stylesheet">
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
     @if (!config('fontawesome.kit'))<link href="/vendor/fontawesome/6.0.0/css/all.min.css" rel="stylesheet">@endif

@@ -12,7 +12,7 @@
     <link rel="icon" type="image/png" href="/favicon.ico">
 
     <!-- Styles -->
-    <link href="{{ mix('css/bootstrap.css') }}" rel="stylesheet">
+    <link href="/css/bootstrap.css?v={{ config('app.version') }}" rel="stylesheet">
     <link href="{{ mix('css/vendor.css') }}" rel="stylesheet">
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
     @yield('styles')
