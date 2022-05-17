@@ -10,7 +10,7 @@
             <i class="fa-solid fa-users"></i> {{ __('campaigns.show.tabs.members') }}
         </h3>
         <div class="box-tools">
-            <button class="btn btn-default btn-sm" data-toggle="modal"
+            <button class="btn btn-box-tool" data-toggle="modal"
                     data-target="#members-help">
                 <i class="fa-solid fa-question-circle" aria-hidden="true"></i>
                     {{ __('campaigns.members.actions.help') }}

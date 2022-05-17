@@ -4,7 +4,7 @@
 
 <div class="row">
     @foreach($submissions as $submission)
-        <div class="col-md-6">
+        <div class="col-md-6 col-lg-4">
             <div class="box box-solid">
                 <div class="box-body">
                     <h4 class="box-title">{{ $submission->user->name }}</h4>

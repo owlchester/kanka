@@ -23,14 +23,14 @@
                         {{ __('campaigns.show.tabs.default-images') }}
                     </h3>
                     <div class="box-tools">
-                        <button class="btn btn-default btn-sm" data-toggle="modal"
+                        <button class="btn btn-box-tool" data-toggle="modal"
                                 data-target="#default-images-help">
                             <i class="fa-solid fa-question-circle" aria-hidden="true"></i>
                             {{ __('campaigns.members.actions.help') }}
                         </button>
                     </div>
                 </div>
-                <div class="box-body">
+                <div class="box-body no-padding">
 
                     <table class="table table-borderless">
                         <tbody>

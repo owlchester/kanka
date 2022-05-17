@@ -202,7 +202,7 @@ TEXT
             'description'   => 'Invite your friends and players to the campaign by creating an invitation link and sending them the generated URL! Upon accepting their invitation, they will be added as a member in the invitation\'s requested role.',
             'more'          => 'You can add more roles on the :link.',
             'roles_page'    => 'Roles page',
-            'title'         => 'Invite',
+            'title'         => 'Invites',
         ],
         'manage_roles'          => 'Manage user roles',
         'removal' => 'You are removing ":member" from the campaign.',
@@ -220,15 +220,6 @@ TEXT
             'removed'   => 'Role :role removed from :user.',
         ],
         'your_role'             => 'Your role: <i>:role</i>',
-    ],
-    'open_campaign'                     => [
-        'helper'    => 'A public campaign that is open to applications will allow users to send an application to join it through the campaign\'s dashboard. Find the list of applications in the campaign\'s :link page.',
-        'link'      => 'campaign applications',
-        'statuses'  => [
-            'closed'    => 'Closed',
-            'open'      => 'Open to applications',
-        ],
-        'title'     => 'Applications',
     ],
     'panels'                            => [
         'boosted'   => 'Boosted',
@@ -293,7 +284,6 @@ TEXT
         'members'       => 'Members',
         'modals'        => [
             'details'   => [
-                'button'    => 'Need help',
                 'campaign'  => 'Campaign permissions allow the following.',
                 'entities'  => 'Here is a quick recap of what members of this role get when a permission is set.',
                 'more'      => 'For more details, view our tutorial video on Youtube',

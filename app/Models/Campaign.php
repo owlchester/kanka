@@ -274,6 +274,15 @@ class Campaign extends MiscModel
     {
         return $this->visibility_id == self::VISIBILITY_PUBLIC;
     }
+    /**
+     *
+     * Determine if a campaign is open to submissions
+     * @return bool
+     */
+    public function isOpen(): bool
+    {
+        return $this->is_open;
+    }
 
     /**
      * Determine if a campaign is featured or was featured in the past

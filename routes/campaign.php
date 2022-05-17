@@ -417,6 +417,9 @@ Route::post('/campaign-export', 'Campaign\ExportController@export')->name('expor
 Route::get('/campaign.styles', 'CampaignController@css')->name('campaign.css');
 Route::get('/campaign_plugin.styles', 'Campaign\PluginController@css')->name('campaign_plugins.css');
 
+Route::get('/campaign-applications', 'Campaign\SubmissionController@toggle')->name('campaign-applications');
+Route::post('/campaign-applications', 'Campaign\SubmissionController@toggleSave')->name('campaign-applications.save');
+
 // Campaign sidebar setup
 Route::get('/sidebar-setup', 'Campaign\SidebarController@index')->name('campaign-sidebar');
 Route::post('/sidebar-setup', 'Campaign\SidebarController@save')->name('campaign-sidebar-save');
