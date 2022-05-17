@@ -1,16 +1,15 @@
-<div class="modal fade" id="{{ $id }}" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content rounded-2xl">
-            <div class="modal-body text-center">
-                <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('crud.delete_modal.close') }}"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">
-                    {!! $title !!}
-                </h4>
-
-                @foreach ($textes as $text)
-                    <p class="my-5">{!! $text !!}</p>
-                @endforeach
-            </div>
-        </div>
-    </div>
-</div>
+<dialog class="dialog rounded-2xl text-center" id="{{ $id }}">
+    <header>
+        <h4 id="myModalLabel">
+            {!! $title !!}
+        </h4>
+        <button type="button" class="rounded-full" onclick="this.closest('dialog').close('close')">
+            <i class="fa-solid fa-times" aria-hidden="true"></i>
+        </button>
+    </header>
+    <article>
+        @foreach ($textes as $text)
+            <p class="mb-2 text-justify">{!! $text !!}</p>
+        @endforeach
+    </article>
+</dialog>

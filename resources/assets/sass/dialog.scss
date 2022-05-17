@@ -1,0 +1,83 @@
+dialog {
+  --dialog-header-background: var(--body-background);
+  --dialog-header-text: var(--main-navbar-text);
+  --dialog-background: var(--modal-background);
+  --dialog-text: var(--body-text);
+}
+
+.dialog {
+
+  display: grid;
+  max-inline-size: min(90vw, 450px);
+  max-block-size: min(80vh, 100%);
+  max-block-size: min(80dvb, 100%);
+  overflow: hidden;
+  margin: auto;
+  padding: 0;
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  border: 0;
+  //box-shadow: $box-shadow;
+  transition: opacity .5s ease-in-out;
+
+  background-color: var(--dialog-background);
+  color: var(--dialog-header-text);
+
+  > header {
+    display: flex;
+    gap: 0.75rem;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding-block: 1rem;
+    padding-inline: 2rem;
+    background-color: var(--dialog-header-background);
+    color: var(--dialog-header-text);
+
+    h4 {
+      text-align: center;
+      padding: 6px 0;
+      flex-shrink: 0;
+      place-items: center;
+      margin: 0;
+    }
+    > button {
+      width: 32px;
+      text-align: center;
+      aspect-ratio: 1;
+      flex-shrink: 0;
+      place-items: center;
+      stroke: var(--dialog-header-text);
+      border: 0;
+      background-color: var(--dialog-background);
+      color: var(--dialog-header-text);
+    }
+  }
+
+  > article {
+    overflow-y: auto;
+    overscroll-behavior-y: contain;
+    max-block-size: 100%;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    max-block-size: 50vh;
+    max-block-size: 50dvb;
+    justify-items: flex-start;
+    gap: 0.75rem;
+    padding-inline: 2rem;
+    padding-block: 1rem;
+  }
+}
+.dialog:not([open]) {
+  pointer-events: none;
+  opacity: 0;
+}
+
+.dialog::backdrop {
+  backdrop-filter: blur(6px);
+  transition: backdrop-filter .5s ease;
+}
+
+html:has(dialog[open]) {
+  overflow: hidden;
+}

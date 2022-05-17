@@ -84,7 +84,7 @@ function initDashboardAdminUI() {
     modalContentTarget = $('#modal-content-target');
     modalContentSpinner = $('#modal-content-spinner');
 
-    $('.btn-lg').click(function(e) {
+    $('.entity-creator > a').click(function(e) {
         loadModalForm($(this).data('url'));
     });
 
@@ -285,5 +285,6 @@ function renderWidget(widget)
         $('[data-toggle="tooltip"]').tooltip();
         window.ajaxTooltip();
         ajaxModal();
+        initDashboardCalendars();
     });
 }

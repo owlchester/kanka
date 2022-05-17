@@ -334,17 +334,22 @@ tr.tr-hover {
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 1.25rem;
   a {
-    display: inline-block;
     padding: 20px 10px;
-    text-align: center;
+    //text-align: center;
     color: var(--quick-creator-button-text);
     line-height: 2rem;
     font-size: 1.4rem;
     background-color: var(--quick-creator-button-background);
     text-transform: uppercase;
     overflow: hidden;
-    height: 94px;
-    word-break: break-all;
+    //height: 94px;
+    word-break: break-word;
+
+    display: flex;
+    flex-flow: row wrap;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 
     &:hover {
       background-color: var(--quick-creator-button-hover-background);
@@ -733,4 +738,5 @@ summary { display: list-item; }
 @import "ab-testing";
 @import "toggle";
 @import "tw/tailwind";
+@import 'dialog';
 @import 'adminlte';

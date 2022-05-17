@@ -4,8 +4,8 @@
 @endphp
 <div class="text-right mb-5">
 
-    <button class="btn btn-default" data-toggle="modal"
-            data-target="#settings-help">
+    <button class="btn btn-default" data-toggle="dialog"
+            data-target="settings-help">
         <i class="fa-solid fa-question-circle" aria-hidden="true"></i>
         {!! __('campaigns.members.actions.help') !!}
     </button>

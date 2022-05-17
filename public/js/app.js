@@ -79413,6 +79413,7 @@ $(document).ready(function () {
   initEntityNoteToggle();
   initDynamicDelete();
   initImageRemoval();
+  initDialogs();
   /**
    * Whenever a modal or popover is shown, we'll need to re-bind various helpers we have.
    */
@@ -79593,6 +79594,23 @@ function initEntityNoteToggle() {
     var id = $(this).data('short');
     $('#' + id + "-show").toggle();
     $('#' + id + "-hide").toggle();
+  });
+}
+
+function initDialogs() {
+  $('[data-toggle="dialog"]').click(function (e) {
+    e.preventDefault();
+    var target = $(this).data('target');
+    target = document.getElementById(target);
+    target.showModal();
+    target.addEventListener('click', function (event) {
+      var rect = target.getBoundingClientRect();
+      var isInDialog = rect.top <= event.clientY && event.clientY <= rect.top + rect.height && rect.left <= event.clientX && event.clientX <= rect.left + rect.width;
+
+      if (!isInDialog && event.target.tagName === 'DIALOG') {
+        target.close();
+      }
+    });
   });
 } // Splitting off the js files into logical blocks
 

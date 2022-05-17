@@ -78,7 +78,7 @@ return [
             'back_to_dashboard' => 'Back to dashboard',
             'edit'              => 'Edit a widget',
         ],
-        'title'     => 'Campaign Dashboard Setup',
+        'title'     => 'Dashboard Setup',
         'tutorial'  => [
             'blog'  => 'our tutorial',
             'text'  => 'Need help setting up your campaign dashboard? Read :blog for some help and inspiration.',

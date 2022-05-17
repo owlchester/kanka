@@ -9,30 +9,31 @@
         'data-shortcut' => '1'
     ]
 ) !!}
-<div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-        <span aria-hidden="true">×</span></button>
-    <h4 class="modal-title" id="myModalLabel">
-        @if ($model->widget != \App\Models\CampaignDashboardWidget::WIDGET_HEADER)
-            <span class="widget-type">
-             {!! $model->widgetIcon() !!}
-                {{ __('dashboard.setup.widgets.' . $model->widget) }}
-        </span>
-        @else
-        {{ __('dashboard.setup.actions.edit') }}
-        @endif
-    </h4>
-</div>
 <div class="modal-body">
 
+    <div class="text-center">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span></button>
+        <h4 class="modal-title mb-5" id="myModalLabel">
+            @if ($model->widget != \App\Models\CampaignDashboardWidget::WIDGET_HEADER)
+                <span class="widget-type">
+             {!! $model->widgetIcon() !!}
+                    {{ __('dashboard.setup.widgets.' . $model->widget) }}
+        </span>
+            @else
+                {{ __('dashboard.setup.actions.edit') }}
+            @endif
+        </h4>
+    </div>
 
     @include('dashboard.widgets.forms._' . $widget)
 </div>
 <div class="modal-footer">
-    <button class="btn btn-success">{{ __('crud.save') }}</button>
+    <a href="#" data-dismiss="modal" class="mr-5">{{ __('crud.cancel') }}</a>
+    <button class="btn btn-success rounded-full px-8">{{ __('crud.save') }}</button>
 
     <div class="pull-left">
-        <a role="button" tabindex="0" class="btn btn-dynamic-delete btn-danger" data-toggle="popover"
+        <a role="button" tabindex="0" class="btn btn-dynamic-delete btn-danger rounded-full px-8" data-toggle="popover"
            title="{{ __('crud.delete_modal.title') }}"
            data-content="<p>{{ __('crud.delete_modal.permanent') }}</p>
                    <a href='#' class='btn btn-danger btn-block' data-toggle='delete-form' data-target='#delete-form-widget-{{ $model->id}}'>{{ __('crud.remove') }}</a>">

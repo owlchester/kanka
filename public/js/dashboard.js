@@ -212,7 +212,7 @@ function initDashboardAdminUI() {
   modalContentButtons = $('#modal-content-buttons');
   modalContentTarget = $('#modal-content-target');
   modalContentSpinner = $('#modal-content-spinner');
-  $('.btn-lg').click(function (e) {
+  $('.entity-creator > a').click(function (e) {
     loadModalForm($(this).data('url'));
   }); // Reset the modal
 
@@ -399,6 +399,7 @@ function renderWidget(widget) {
     $('[data-toggle="tooltip"]').tooltip();
     window.ajaxTooltip();
     Object(_components_ajax_modal__WEBPACK_IMPORTED_MODULE_0__["default"])();
+    initDashboardCalendars();
   });
 }
 

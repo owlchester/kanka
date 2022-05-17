@@ -4,8 +4,8 @@
         <i class="fa-solid fa-users-cog"></i> {{ __('campaigns.show.tabs.roles') }}
     </h3>
     <div class="box-tools">
-        <button class="btn btn-box-tool" data-toggle="modal"
-                data-target="#roles-help">
+        <button class="btn btn-box-tool" data-toggle="dialog"
+                data-target="roles-help">
             <i class="fa-solid fa-question-circle" aria-hidden="true"></i>
             {{ __('campaigns.members.actions.help') }}
         </button>

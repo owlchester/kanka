@@ -147,38 +147,38 @@
         </div>
     </div>
 
-    <!-- Modal new widget -->
     <div class="modal fade" id="new-widget" role="dialog" aria-labelledby="deleteConfirmLabel">
         <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
+            <div class="modal-content rounded-2xl">
+                <div class="modal-body text-center" id="modal-content-buttons">
                     <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('crud.delete_modal.close') }}" title="{{ __('crud.delete_modal.close') }}"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">
+                    <h4 class="modal-title mb-5" id="myModalLabel">
                         {{ __('dashboard.setup.actions.add') }}
                     </h4>
-                </div>
-                <div class="modal-body" id="modal-content-buttons">
-                    <div class="btn btn-block btn-default btn-lg" id="btn-widget-recent" data-url="{{ route('campaign_dashboard_widgets.create', ['widget' => 'recent', 'dashboard' => $dashboard]) }}">
-                        <i class="fa-solid fa-list"></i> {{ __('dashboard.setup.widgets.recent') }}
-                    </div>
-                    <div class="btn btn-block btn-default btn-lg" id="btn-widget-preview" data-url="{{ route('campaign_dashboard_widgets.create', ['widget' => 'preview', 'dashboard' => $dashboard]) }}">
-                        <i class="fa-solid fa-align-justify"></i> {{ __('dashboard.setup.widgets.preview') }}
-                    </div>
-                    <div class="btn btn-block btn-default btn-lg" id="btn-widget-calendar" data-url="{{ route('campaign_dashboard_widgets.create', ['widget' => 'calendar', 'dashboard' => $dashboard]) }}">
-                        <i class="ra ra-moon-sun"></i> {{ __('dashboard.setup.widgets.calendar') }}
-                    </div>
 
-                    <div class="btn btn-block btn-default btn-lg" id="btn-widget-header" data-url="{{ route('campaign_dashboard_widgets.create', ['widget' => \App\Models\CampaignDashboardWidget::WIDGET_HEADER, 'dashboard' => $dashboard]) }}">
-                        <i class="fa-solid fa-heading"></i> {{ __('dashboard.setup.widgets.header') }}
+                    <div class="entity-creator">
+                        <a href="#" class="rounded-lg" id="btn-widget-recent" data-url="{{ route('campaign_dashboard_widgets.create', ['widget' => 'recent', 'dashboard' => $dashboard]) }}">
+                            <i class="fa-solid fa-list fa-2x"></i> {{ __('dashboard.setup.widgets.recent') }}
+                        </a>
+                        <a href="#" class="rounded-lg" id="btn-widget-preview" data-url="{{ route('campaign_dashboard_widgets.create', ['widget' => 'preview', 'dashboard' => $dashboard]) }}">
+                            <i class="fa-solid fa-align-justify fa-2x"></i> {{ __('dashboard.setup.widgets.preview') }}
+                        </a>
+                        <a  href="#" class="rounded-lg" id="btn-widget-calendar" data-url="{{ route('campaign_dashboard_widgets.create', ['widget' => 'calendar', 'dashboard' => $dashboard]) }}">
+                            <i class="ra ra-moon-sun fa-2x"></i> {{ __('dashboard.setup.widgets.calendar') }}
+                        </a>
+
+                        <a href="#" class="rounded-lg" id="btn-widget-header" data-url="{{ route('campaign_dashboard_widgets.create', ['widget' => \App\Models\CampaignDashboardWidget::WIDGET_HEADER, 'dashboard' => $dashboard]) }}">
+                            <i class="fa-solid fa-heading fa-2x"></i> {{ __('dashboard.setup.widgets.header') }}
+                        </a>
+                        <a  href="#" class="rounded-lg" id="btn-widget-random" data-url="{{ route('campaign_dashboard_widgets.create', ['widget' => 'random', 'dashboard' => $dashboard]) }}">
+                            <i class="fa-solid fa-dice-d20 fa-2x"></i> {{ __('dashboard.setup.widgets.random') }}
+                        </a>
+                        @if(!empty($dashboard))
+                            <a  href="#" class="rounded-lg"  id="btn-widget-campaign" data-url="{{ route('campaign_dashboard_widgets.create', ['widget' => 'campaign', 'dashboard' => $dashboard]) }}">
+                                <i class="fa-solid fa-th-list fa-2x"></i> {{ __('dashboard.setup.widgets.campaign') }}
+                            </a>
+                        @endif
                     </div>
-                    <div class="btn btn-block btn-default btn-lg" id="btn-widget-random" data-url="{{ route('campaign_dashboard_widgets.create', ['widget' => 'random', 'dashboard' => $dashboard]) }}">
-                        <i class="fa-solid fa-dice-d20"></i> {{ __('dashboard.setup.widgets.random') }}
-                    </div>
-                    @if(!empty($dashboard))
-                        <div class="btn btn-block btn-default btn-lg" id="btn-widget-campaign" data-url="{{ route('campaign_dashboard_widgets.create', ['widget' => 'campaign', 'dashboard' => $dashboard]) }}">
-                            <i class="fa-solid fa-th-list"></i> {{ __('dashboard.setup.widgets.campaign') }}
-                        </div>
-                    @endif
                 </div>
 
                 <div class="modal-body" id="modal-content-spinner" style="display: none">
@@ -195,8 +195,7 @@
     <!-- Modal edit widget -->
     <div class="modal fade" id="edit-widget" role="dialog" aria-labelledby="deleteConfirmLabel">
         <div class="modal-dialog" role="document">
-            <div class="modal-content">
-
+            <div class="modal-content rounded-2xl">
             </div>
         </div>
     </div>
