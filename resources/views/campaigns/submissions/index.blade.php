@@ -24,8 +24,8 @@
                         {{ __('campaigns.show.tabs.applications') }}
                     </h4>
                     <div class="box-tools">
-                        <button class="btn btn-box-tool" data-toggle="modal"
-                                data-target="#submissions-help">
+                        <button class="btn btn-box-tool" data-toggle="dialog"
+                                data-target="submissions-help">
                             <i class="fa-solid fa-question-circle" aria-hidden="true"></i>
                             {{ __('campaigns.members.actions.help') }}
                         </button>

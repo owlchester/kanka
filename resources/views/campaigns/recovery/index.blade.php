@@ -21,8 +21,8 @@
                     <h3 class="box-title">{{ __('campaigns.show.tabs.recovery') }}</h3>
 
                     <div class="box-tools">
-                        <button class="btn btn-box-tool" data-toggle="modal"
-                                data-target="#recovery-help">
+                        <button class="btn btn-box-tool" data-toggle="dialog"
+                                data-target="recovery-help">
                             <i class="fa-solid fa-question-circle" aria-hidden="true"></i>
                             {{ __('campaigns.members.actions.help') }}
                         </button>

@@ -7,6 +7,7 @@ dialog {
 
 .dialog {
 
+  margin-top: 100px;
   display: grid;
   max-inline-size: min(90vw, 450px);
   max-block-size: min(80vh, 100%);
