@@ -1,8 +1,8 @@
 @extends('layouts.app', [
-    'title' => trans('campaigns.export.title', ['name' => $campaign->name]),
+    'title' => __('campaigns.export.title', ['name' => $campaign->name]),
     'breadcrumbs' => [
         ['url' => route('campaign'), 'label' => __('campaigns.index.title')],
-        trans('campaigns.show.tabs.export')
+        __('campaigns.show.tabs.export')
     ],
     'canonical' => true,
     'mainTitle' => false,
@@ -15,7 +15,7 @@
             @include('campaigns._menu', ['active' => 'export'])
         </div>
         <div class="col-md-9">
-            {!! Form::open(['method' => 'POST', 'route' => ['campaign_export']]) !!}
+            {!! Form::open(['method' => 'POST', 'route' => ['export.process']]) !!}
             <div class="box box-solid">
                 <div class="box-header with-border">
                     <h3 class="box-title">

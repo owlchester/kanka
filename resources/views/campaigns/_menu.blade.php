@@ -45,12 +45,12 @@ if (auth()->check()) {
                 <ul class="nav nav-pills nav-stacked">
                     <li class="@if(empty($active) || $active == 'campaign')active @endif">
                         <a href="{{ route('campaign') }}">
-                            {{ __('campaigns.show.tabs.campaign') }}
+                            {{ __('crud.tabs.overview') }}
                         </a>
                     </li>
                     @can('update', $campaign)
                         <li class="@if(!empty($active) && $active == 'export')active @endif">
-                            <a href="{{ route('campaign_export') }}">
+                            <a href="{{ route('export') }}">
                                 {{ __('campaigns.show.tabs.export') }}
                             </a>
                         </li>
@@ -166,14 +166,14 @@ if (auth()->check()) {
     @php
     $menuOptions = [];
     $menuOptions['campaign'] = [
-        'label' => __('campaigns.show.tabs.campaign'),
+        'label' => __('crud.tabs.overview'),
         'route' => route('campaign')
     ];
     if (auth()->check()) {
         if (auth()->user()->can('update', $campaign)) {
             $menuOptions['export'] = [
                     'label' => __('campaigns.show.tabs.export'),
-                    'route' => route('campaign_export')
+                    'route' => route('export')
             ];
             $menuOptions['recovery'] = [
                     'label' => __('campaigns.show.tabs.recovery'),

@@ -8,33 +8,25 @@
 
 @section('content')
     {!! Form::open(array('route' => ['campaign_invites.store'], 'method' => 'POST')) !!}
-
-    <div class="modal-header">
+    <div class="modal-body">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">×</span>
         </button>
-        <h4 class="modal-title">
-            {!! __('campaigns.invites.create.title', ['campaign' => $campaign->name]) !!}
+        <h4 class="modal-title mb-5">
+            {!! __('campaigns.invites.actions.link') !!}
         </h4>
-    </div>
-    <div class="modal-body">
-        @include('partials.errors')
 
         @include('campaigns.invites._form')
     </div>
     <div class="modal-footer">
+        <a href="#" type="button" class="block mr-5" data-dismiss="modal">
+            {{ __('crud.cancel') }}
+        </a>
 
-            <button type="button" class="btn btn-default pull-left" data-dismiss="modal">
-                {{ __('crud.cancel') }}
-            </button>
-
-            <button class="btn btn-success">
-                @if ($typeID == \App\Models\CampaignInvite::TYPE_EMAIL)
-                    {{ __('campaigns.invites.create.buttons.send') }}
-                @else
-                    {{ __('campaigns.invites.create.buttons.create') }}
-                @endif
-            </button>
+        <button class="btn btn-success">
+            <i class="fa-solid fa-link mr-2" aria-hidden="true"></i>
+            {{ __('campaigns.invites.create.buttons.create') }}
+        </button>
     </div>
     {!! Form::hidden('type_id', $typeID) !!}
     {!! Form::close() !!}

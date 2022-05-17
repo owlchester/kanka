@@ -49,25 +49,14 @@
 @endsection
 
 
-
-        @section('modals')
-            @parent
-            <div class="modal fade" id="recovery-help" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmLabel">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('crud.delete_modal.close') }}"><span aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title" id="myModalLabel">
-                                {{ __('campaigns.show.tabs.recovery') }}
-                            </h4>
-                        </div>
-                        <div class="modal-body">
-                            <p>
-                                {!! __('campaigns/recovery.helper', ['count' => config('entities.hard_delete')]) !!}
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+@section('modals')
+    @parent
+    @include('partials.helper-modal', [
+        'id' => 'recovery-help',
+        'title' => __('campaigns.show.tabs.recovery'),
+        'textes' => [
+            __('campaigns/recovery.helper', ['count' => '<code>' . config('entities.hard_delete') . '</code>'])
+        ]
+    ])
 @endsection
 

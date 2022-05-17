@@ -29,7 +29,7 @@ return [
     'placeholders'  => [
         'note'  => 'Write down your application to join the campaign',
     ],
-    'title'         => 'Campaign Applications',
+    'title'         => 'Applications - :campaign',
     'update'        => [
         'approve'   => 'Select the role the user will be added as in your campaign.',
         'approved'  => 'Application approved.',

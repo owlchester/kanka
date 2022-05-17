@@ -65,7 +65,7 @@ return [
     'templates'     => [
         'name'  => ':name by :user',
     ],
-    'title'         => 'Campaign :name Plugins',
+    'title'         => 'Plugins - :name',
     'types'         => [
         'attribute' => 'Attribute Template',
         'pack'      => 'Content Pack',

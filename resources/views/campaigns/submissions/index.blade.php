@@ -2,7 +2,7 @@
     use \Illuminate\Support\Arr;
 @endphp
 @extends('layouts.app', [
-    'title' => trans('campaigns/submissions.title', ['campaign' => $campaign->name]),
+    'title' => __('campaigns/submissions.title', ['campaign' => $campaign->name]),
     'breadcrumbs' => [
         ['url' => route('campaign'), 'label' => __('campaigns.index.title')],
         __('campaigns.show.tabs.applications')

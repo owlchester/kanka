@@ -75,26 +75,16 @@
 
 @section('modals')
     @parent
-    <div class="modal fade" id="settings-help" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('crud.delete_modal.close') }}"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">
-                        {{ __('campaigns.show.tabs.settings') }}
-                    </h4>
-                </div>
-                <div class="modal-body">
-                    <p>
-                        {!! __('campaigns.settings.helper', ['admin' => link_to_route(
+
+    @include('partials.helper-modal', [
+        'id' => 'settings-help',
+        'title' => __('campaigns.show.tabs.settings'),
+        'textes' => [
+            __('campaigns.settings.helper', ['admin' => link_to_route(
         'campaigns.campaign_roles.admin',
         \Illuminate\Support\Arr::get($role, 'name', __('campaigns.roles.admin_role')),
         null,
         ['target' => '_blank']
-)]) !!}
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
+)]),
+    ]])
 @endsection

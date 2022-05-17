@@ -137,26 +137,23 @@
 @php
     $role = \App\Facades\CampaignCache::adminRole();
 @endphp
-<div class="modal fade" id="roles-help" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('crud.delete_modal.close') }}"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">
-                    {{ __('campaigns.show.tabs.roles') }}
-                </h4>
-            </div>
-            <div class="modal-body">
-                <p>{!! __('campaigns.roles.helper.1', [
-    'admin' => link_to_route(
-        'campaigns.campaign_roles.admin',
-        \Illuminate\Support\Arr::get($role, 'name', __('campaigns.roles.admin_role')),
-        null,
-        ['target' => '_blank']
-)]) !!}</p>
-                <p>{{ __('campaigns.roles.helper.2') }}</p>
-                <p>{{ __('campaigns.roles.helper.3') }}</p>
-            </div>
-        </div>
-    </div>
-</div>
+
+@section('modals')
+    @parent
+    @include('partials.helper-modal', [
+        'id' => 'roles-help',
+        'title' => __('campaigns.show.tabs.roles'),
+        'textes' => [
+            __('campaigns.roles.helper.1', [
+                'admin' => link_to_route(
+                    'campaigns.campaign_roles.admin',
+                    \Illuminate\Support\Arr::get($role, 'name', __('campaigns.roles.admin_role')),
+                    null,
+                    ['target' => '_blank']
+                )
+            ]),
+            __('campaigns.roles.helper.2'),
+            __('campaigns.roles.helper.3')
+        ]
+    ])
+@endsection

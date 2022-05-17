@@ -19,7 +19,7 @@
                 </button>
 
                 <a href="{{ route('campaign_invites.create') }}" class="btn btn-primary btn-sm"
-                   data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('campaign_invites.create', ['type' => 'link']) }}">
+                   data-toggle="ajax-modal" data-target="#small-modal" data-url="{{ route('campaign_invites.create', ['type' => 'link']) }}">
                     <i class="fa-solid fa-user-plus" aria-hidden="true"></i>
                     <span class="hidden-xs hidden-md">{{ __('campaigns.invites.actions.link') }}</span>
                 </a>
@@ -92,27 +92,25 @@
     </div>
 @endif
 
-<div class="modal fade" id="invite-help" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('crud.delete_modal.close') }}"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">
-                    {{ __('campaigns.members.invite.title') }}
-                </h4>
-            </div>
-            <div class="modal-body">
-                <p>
-                    {{ __('campaigns.members.invite.description') }}
-                </p>
-                <p>
-                    {!! __('campaigns.members.invite.more', [
+
+@section('modals')
+    @parent
+    @include('partials.helper-modal', [
+        'id' => 'invite-help',
+        'title' => __('campaigns.members.invite.title'),
+        'textes' => [
+            __('campaigns.members.invite.description'),
+            __('campaigns.members.invite.more', [
                         'link' =>
                             '<a href="' . route('campaign_roles.index') . '">'
                             . __('campaigns.members.invite.roles_page') . '</a>'
-                    ]) !!}
-                </p>
-            </div>
+                    ])
+        ]
+    ])
+
+    <div class="modal fade" id="small-modal" role="dialog" aria-labelledby="deleteConfirmLabel">
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content rounded-2xl" id="small-modal-content"></div>
         </div>
     </div>
-</div>
+@endsection

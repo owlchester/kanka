@@ -44,7 +44,7 @@ TEXT
         'helper_secondary'  => 'Two files will be made available, one with the entities exported as JSON, and another with images uploaded to entities. Please note that on larger campaigns, the images export crashes and can only be recovered using the :api.',
         'helper_third'      => 'JSON files can be opened with any text file application. They represent the data stored in the Kanka database in a text format. There is no way to import your export back into Kanka.',
         'success'           => 'Your campaign export is being prepared. You\'ll receive a notification in Kanka to a downloadable zip as soon as it\'s ready.',
-        'title'             => 'Campaign :name Export',
+        'title'             => 'Export - :name',
     ],
     'fields'                            => [
         'boosted'                           => 'Boosted by',
@@ -143,7 +143,7 @@ TEXT
             'email'     => 'Email',
             'role'      => 'Role',
             'type'      => 'Type',
-            'usage'     => 'Max number of uses',
+            'usage'     => 'Expires after',
         ],
         'helpers'               => [
             'email'     => 'Our emails are often flagged as spam and can take up to a few hours before appearing in the inbox.',
@@ -159,7 +159,7 @@ TEXT
         'unlimited_validity'    => 'Unlimited',
         'usages'                => [
             'five'      => '5 uses',
-            'no_limit'  => 'No limit',
+            'no_limit'  => 'Never',
             'once'      => '1 use',
             'ten'       => '10 uses',
         ],
@@ -205,6 +205,7 @@ TEXT
             'title'         => 'Invite',
         ],
         'manage_roles'          => 'Manage user roles',
+        'removal' => 'You are removing ":member" from the campaign.',
         'roles'                 => [
             'member'    => 'Member',
             'owner'     => 'Admin',
@@ -213,7 +214,7 @@ TEXT
             'viewer'    => 'Viewer',
         ],
         'switch_back_success'   => 'Switched back to your account.',
-        'title'                 => 'Campaign :name Members',
+        'title'                 => 'Members - :name',
         'updates'               => [
             'added'     => 'Role :role added to :user.',
             'removed'   => 'Role :role removed from :user.',
@@ -333,7 +334,7 @@ TEXT
         'show'          => [
             'title' => 'Campaign Role \':role\'',
         ],
-        'title'         => 'Campaign :name Roles',
+        'title'         => 'Roles - :name',
         'types'         => [
             'owner'     => 'Admin',
             'public'    => 'Public',
@@ -415,7 +416,7 @@ TEXT
             'sidebar'           => 'Sidebar setup',
             'styles'            => 'Theming',
         ],
-        'title'     => 'Campaign :name',
+        'title'     => 'Overview - :name',
     ],
     'superboosted'                      => [
         'gallery'   => [

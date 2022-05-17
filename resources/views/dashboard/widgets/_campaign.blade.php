@@ -124,7 +124,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="{{ route('campaign_settings') }}" title="{{ __('campaigns.show.tabs.settings') }}">
+                                    <a href="{{ route('campaign.modules') }}" title="{{ __('campaigns.show.tabs.settings') }}">
                                         <i class="fa-solid fa-th-large"></i> {{ __('campaigns.show.tabs.settings') }}
                                     </a>
                                 </li>

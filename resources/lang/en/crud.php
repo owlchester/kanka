@@ -369,6 +369,7 @@ return [
         'mentions'      => 'Mentions',
         'menu'          => 'Menu',
         'notes'         => 'Posts',
+        'overview'      => 'Overview',
         'permissions'   => 'Permissions',
         'profile'       => 'Profile',
         'quests'        => 'Quests',
