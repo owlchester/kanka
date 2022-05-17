@@ -33,8 +33,11 @@
         </tfoot>
     </table>
 </div>
-@if ($rows->hasPages())
+@if ($rows->hasPages() || Datagrid::hasBulks() )
     <div class="box-footer text-right">
+        <div class="pull-left">
+            @includeWhen(Datagrid::hasBulks(), 'layouts.datagrid.bulks')
+        </div>
         {!! $rows->appends(Datagrid::paginationFilters())->links() !!}
     </div>
 @endif

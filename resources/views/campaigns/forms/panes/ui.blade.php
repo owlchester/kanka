@@ -22,11 +22,11 @@ if (!isset($model) || !$model->boosted()) {
     </h4>
     @if (isset($model) && $model->boosted())
         <p class="help-block">
-            {!! __('campaigns.helpers.boosted', ['settings' => link_to_route('settings.boost', __('settings.menu.boost'))]) !!}
+            {!! __('campaigns.helpers.boosted', ['settings' => link_to_route('settings.boost', __('settings.menu.boosters'))]) !!}
         </p>
     @else
         <p class="help-block">
-            {!! __('campaigns.helpers.boost_required_multi', ['settings' => link_to_route('settings.boost', __('settings.menu.boost'))]) !!}
+            {!! __('campaigns.helpers.boost_required_multi', ['settings' => link_to_route('settings.boost', __('settings.menu.boosters'))]) !!}
         </p>
     @endif
 
@@ -95,7 +95,7 @@ if (!isset($model) || !$model->boosted()) {
             @if (!isset($model) || !$model->boosted())
                 {!! Form::hidden('ui_settings[tooltip_image]', 0) !!}
                 <p class="help-block">{!! __('campaigns.helpers.boost_required', [
-                    'settings' => link_to_route('settings.boost', __('settings.menu.boost'))
+                    'settings' => link_to_route('settings.boost', __('settings.menu.boosters'))
                 ]) !!}</p>
             @endif
         </div>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Campaign;
 
 
 use App\Facades\CampaignLocalization;
+use App\Facades\Datagrid;
 use App\Http\Controllers\Controller;
 use App\Models\Entity;
 use App\Services\RecoveryService;
@@ -33,12 +34,26 @@ class RecoveryController extends Controller
         $campaign = CampaignLocalization::getCampaign();
         $this->authorize('recover', $campaign);
 
-        $entities = Entity::onlyTrashed()
-            ->orderBy('deleted_at', 'DESC')
+        Datagrid::layout(\App\Renderers\Layouts\Campaign\Recovery::class)
+            ->permissions(false);
+
+        $rows = Entity::onlyTrashed()
+            ->sort(request()->only(['o', 'k']), ['deleted_at' => 'DESC'])
             ->whereDate('deleted_at', '>=', Carbon::today()->subDays(config('entities.hard_delete')))
             ->paginate();
 
-        return view('campaigns.recovery.index', compact('entities', 'campaign'));
+        // Ajax Datagrid
+        if (request()->ajax()) {
+            $html = view('layouts.datagrid._table')
+                ->with('rows', $rows)
+                ->render();
+            return response()->json([
+                'success' => true,
+                'html' => $html,
+            ]);
+        }
+
+        return view('campaigns.recovery.index', compact('rows', 'campaign'));
     }
 
     /**
@@ -48,7 +63,7 @@ class RecoveryController extends Controller
     public function recover(Request $request)
     {
         try {
-            $count = $this->service->recover($request->only('ids'));
+            $count = $this->service->recover($request->get('model', []));
             return redirect()
                 ->route('recovery')
                 ->with('success', trans_choice('campaigns/recovery.success', $count, ['count' => $count]));

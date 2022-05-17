@@ -98,6 +98,7 @@ class Entity extends Model
     protected $sortable = [
         'name',
         'type_id',
+        'deleted_at',
     ];
 
     /**
