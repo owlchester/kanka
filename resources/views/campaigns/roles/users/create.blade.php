@@ -11,15 +11,23 @@
     @include('partials.errors')
 
     {!! Form::open(['route' => ['campaign_roles.campaign_role_users.store', 'campaign_role' => $role], 'method' => 'POST', 'data-shortcut' => 1]) !!}
-    <div class="panel panel-default">
-        <div class="panel-body">
+        <div class="modal-body">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">×</span>
+            </button>
+            <h4 class="modal-title mb-5">
+                {!! __('campaigns.roles.users.actions.add') !!}
+            </h4>
+
             @include('campaigns.roles.users._form')
+
+            <div class="text-right mt-5">
+                <button class="btn btn-success">
+                    <i class="fa-solid fa-plus" aria-hidden="true"></i>
+                    {{ __('campaigns.roles.users.actions.add') }}
+                </button>
+            </div>
         </div>
-        <div class="panel-footer text-right">
-            <button class="btn btn-success">{{ __('campaigns.roles.users.actions.add') }}</button>
-            @includeWhen(!request()->ajax(), 'partials.or_cancel')
-        </div>
-    </div>
     {!! Form::hidden('campaign_role_id', $role->id) !!}
     {!! Form::close() !!}
 @endsection

@@ -278,6 +278,7 @@ TEXT
         ],
         'hints'         => [
             'campaign_not_public'   => 'The public role has permissions but the campaign is private. You can change this setting on the Sharing tab when editing the campaign.',
+            'empty_role'            => 'The role doesn\'t have any members in it yet.',
             'public'                => 'The Public role is used when someone browses your public campaign. :more',
             'role_permissions'      => 'Enable the \':name\' role to do the following actions on all entities.',
         ],
@@ -334,6 +335,7 @@ TEXT
             'actions'   => [
                 'add'       => 'Add member',
                 'remove'    => ':user from the :role role',
+                'remove_user'   => 'Remove user from role',
             ],
             'create'    => [
                 'success'   => ':user added to the role :role.',
