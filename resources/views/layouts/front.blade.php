@@ -13,7 +13,7 @@
 @if(config('services.facebook.client_id'))  <meta property="fb:app_id" content="{{ config('services.facebook.client_id') }}" />@endif
 
     @yield('og')
-    <meta property="og:image" content="https://kanka-app-assets.s3.amazonaws.com/images/logos/logo-blue-white.png" />
+    <meta property="og:image" content="https://images.kanka.io/app/xbbBJtRB3dtY-NMTtXNylNk1-UM=/600x320/smart/src/images%2Ffront%2Fpreview-background.png{{ \App\Facades\Img::nowebp() ? '?webpfallback' : null}}" />
 
     <title>{{ $title ?? __('front.meta.title', ['kanka' => config('app.name')]) }}@if (!isset($skipEnding)) - {{ config('app.name', 'Kanka') }}@endif</title>
 

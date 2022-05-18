@@ -24,7 +24,8 @@
             <div class="device-container">
                 <div class="device-mockup iphone6_plus portrait white">
                     <div class="device">
-                        <img src="https://images.kanka.io/app/Waw_atyiOiNeph4a67qCzp_K6RA=/src/images%2Ffront%2Fdashboard.png{{ \App\Facades\Img::nowebp() ? '?webpfallback' : null }}" class="img-fluid" loading="lazy" width=819" height="461" alt="{{ config('app.name') }} tabletop rpg campaign management and worldbuilding dashboard">
+                        <img src="https://images.kanka.io/app/rWOHJ992BwZTG4E18hETBpd3xWA=/900x675/smart/src/images%2Ffront%2Fadam-morley-hd.png" class="img-fluid d-none d-lg-inline-block" loading="lazy" alt="{{ config('app.name') }} tabletop rpg campaign management and worldbuilding dashboard">
+                        <img src="https://images.kanka.io/app/dnYneEyDjAkmwrfjoUMYovRUcbI=/600x450/smart/src/images%2Ffront%2Fadam-morley-hd.png" class="img-fluid d-inline-block d-lg-none" loading="lazy" alt="{{ config('app.name') }} tabletop rpg campaign management and worldbuilding dashboard">
                     </div>
                 </div>
             </div>

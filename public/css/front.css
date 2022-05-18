@@ -568,7 +568,7 @@ ul.pagination li span {
 }
 
 .device img {
-  aspect-ratio: attr(width)/attr(height);
+  aspect-ratio: 4/3;
 }
 
 .skip-nav-link {

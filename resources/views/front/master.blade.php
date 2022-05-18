@@ -5,7 +5,7 @@
                 <h1 class="">{{ __('front.master.heading') }}</h1>
             </div>
             <div class="col-lg-7">
-                <div class="header-content">
+                <div class="header-content text-left text-lg-center">
                     <p class="mb-5">{{ __('front.master.description', ['kanka' => config('app.name')]) }}</p>
                     @if (config('auth.register_enabled'))
                     <a href="{{ route('register') }}" class="btn btn-primary btn-lg">
