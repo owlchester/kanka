@@ -3,6 +3,11 @@
     'active' => 'features',
     'skipPerf' => true,
 ])
+@section('og')
+    <meta property="og:description" content="{{ __('front.features.description', ['kanka' => config('app.name')]) }}" />
+    <meta property="og:url" content="{{ route('front.features') }}" />
+@endsection
+
 @section('content')
 
     <header class="masthead reduced-masthead">

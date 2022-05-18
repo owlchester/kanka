@@ -1,6 +1,10 @@
 @extends('layouts.front', [
     'title' => trans('front.menu.roadmap'),
 ])
+@section('og')
+    <meta property="og:description" content="{{ __('front.roadmap.description', ['kanka' => config('app.name')]) }}" />
+    <meta property="og:url" content="{{ route('front.roadmap') }}" />
+@endsection
 @section('content')
 
     <section class="features" id="roadmaps">

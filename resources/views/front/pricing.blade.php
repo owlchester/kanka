@@ -3,6 +3,12 @@
     'active' => 'pricing',
     'skipPerf' => true,
 ])
+
+@section('og')
+    <meta property="og:description" content="{{ __('front.pricing.description', ['kanka' => config('app.name')]) }}" />
+    <meta property="og:url" content="{{ route('front.pricing') }}" />
+@endsection
+
 @section('content')
 
     <section class="features" id="pricing">
