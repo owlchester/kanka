@@ -8,8 +8,6 @@
 @section('og')
     <meta property="og:description" content="{{ __('front.home.seo.meta-description') }}" />
     <meta property="og:url" content="{{ route('home') }}" />
-    <meta property="og:description" content="{{ __('front.home.seo.meta-description')  }}"/>
-
 @endsection
 
 @section('content')
