@@ -12,15 +12,16 @@
     <meta property="og:type" content="website" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:image" content="https://kanka-app-assets.s3.amazonaws.com/images/front/preview-background.png" />
-    <meta name="twitter:image:alt" content="Kanka showcase of a character view" />
+    <meta name="twitter:image:alt" content="{{ config('app.name') }} showcase of a character view" />
 @if(config('services.facebook.client_id'))  <meta property="fb:app_id" content="{{ config('services.facebook.client_id') }}" />@endif
 
     @yield('og')
+@if(config('app.admin'))
     <meta property="og:image" content="https://kanka-app-assets.s3.amazonaws.com/images/front/preview-background.png" />
     <meta property="og:image:type" content="image/png" />
     <meta property="og:image:width" content="1920" />
     <meta property="og:image:height" content="1024" />
-    <meta property="og:image:alt" content="Kanka showcase of a character view" />
+    <meta property="og:image:alt" content="{{ config('app.name') }} showcase of a character view" />
     <script type="application/ld+json">
       {
         "@id": "#product",
@@ -39,9 +40,9 @@
           "url": "{{ config('app.url') }}",
           "name": "{{ config('app.name') }}",
           "logo": { "@type": "ImageObject", "url": "https://kanka-app-assets.s3.amazonaws.com/images/logos/logo-small.png", "width": "226", "height": "205" }
-        }
+        },
       }
-    </script>
+    </script>@endif
 
     <title>{{ $title ?? __('front.meta.title', ['kanka' => config('app.name')]) }}@if (!isset($skipEnding)) - {{ config('app.name', 'Kanka') }}@endif</title>
 
