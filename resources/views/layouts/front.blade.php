@@ -81,7 +81,7 @@
         <ul class="navbar-buttons ml-auto d-none d-sm-flex d-lg-none">
             @auth
                 <li>
-                    <a href="{{ route('home') }}" class="btn btn-outline-light">
+                    <a href="{{ route('home') }}" class="btn btn-default">
                         {{ __('front.menu.dashboard') }}
                     </a>
                 </li>

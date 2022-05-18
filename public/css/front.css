@@ -77,15 +77,6 @@ header.reduced-masthead.master-sm {
   text-transform: unset;
 }
 
-#mainNav .navbar-brand {
-  color: #73a6c0 !important;
-  font-family: Catamaran, Helvetica, Arial, sans-serif !important;
-}
-
-#mainNav .navbar-brand img {
-  height: 32px;
-}
-
 #mainNav .nav-active,
 #mainNav .nav-link:hover {
   transition: all 0.2s ease-in-out;
@@ -147,9 +138,11 @@ header.reduced-masthead.master-sm {
   margin-right: 15px;
 }
 
-.navbar a {
-  color: #2828A1;
-}
+/*.navbar {
+  a {
+    color: $KankaBlue;
+  }
+}*/
 
 h1,
 h2,
@@ -165,34 +158,12 @@ h6,
   word-break: break-word;
 }
 
-section.contact-us p {
-  font-size: 24px;
-}
-
-section.contact-us a {
-  margin: 0 10px;
-}
-
-section.contact ul.list-social li.social-discord a {
-  background-color: #7289da;
-}
-
-section.contact ul.list-social li.social-discord a img {
-  width: 70%;
-  margin-top: -7px;
+section h2 {
+  font-size: 2rem;
 }
 
 section {
   background-color: #fff;
-}
-
-section.contact ul.list-social li.social-discord a:hover {
-  background-color: #5078da;
-}
-
-hr {
-  max-width: 250px;
-  margin: 25px auto;
 }
 
 @media (min-width: 992px) {
@@ -218,12 +189,12 @@ hr {
     margin-top: -0.5rem;
     background-color: #08083c;
     box-shadow: 0 7px 6px rgba(50, 50, 93, 0.21);
-    border: 1px solid #2828A1;
+    border: 1px solid #112B6B;
     border-radius: 5px;
   }
 
   #mainNav .dropdown-menu .dropdown-divider {
-    border-top: 1px solid #2828A1;
+    border-top: 1px solid #112B6B;
     color: black;
   }
 
@@ -232,111 +203,55 @@ hr {
   }
 
   #mainNav .dropdown-menu .dropdown-item:hover {
-    background-color: #2828A1;
+    background-color: #112B6B;
   }
 }
 
 footer {
-  padding-top: 40px;
-  padding-bottom: 30px;
-  text-align: left;
-  background-color: #08083c;
-  color: #ccc;
-}
-
-footer ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-}
-
-footer ul li {
-  padding: 0;
-  display: block;
-  margin: 2px 0;
+  background-color: #eee;
+  color: #181414;
 }
 
 footer ul li a {
-  font-size: 14px !important;
+  font-size: 0.825rem !important;
   width: 100%;
-  color: rgba(255, 255, 255, 0.6);
+  color: #181414;
+  border-radius: 5px;
+  padding: 0.25rem 0.5rem;
 }
 
 footer ul li a:hover {
+  color: #181414;
   transition: all 0.2s ease;
   text-decoration: none;
-  color: #c09853;
-}
-
-footer .kanka-logo {
-  font-size: 14px;
-  font-weight: 700;
-  color: #ddd;
-}
-
-footer .kanka-logo a {
-  padding: 5px;
-  display: inline-block;
+  background-color: #95B5D8;
 }
 
 footer a {
-  display: inline-block;
-  border-radius: 4px;
-  letter-spacing: 1.1px;
-  color: #ccc;
-  font-size: 1rem;
+  color: #112B6B;
 }
 
-footer .footer-socials {
-  line-height: 1.8em;
-  color: rgba(255, 255, 255, 0.8);
-  padding: 1.5rem 0px 1.5rem;
-  text-align: center;
-}
-
-footer .footer-socials .email,
-footer .footer-socials .socials {
-  display: inline;
-  font-size: 18px;
-}
-
-footer .footer-socials .email a,
-footer .footer-socials .socials a {
-  font-size: 1.4rem;
-  margin-right: 8px;
-}
-
-footer .footer-socials .email {
-  margin-right: 20px;
+footer a:hover {
+  text-decoration: none;
 }
 
 footer .footer-copyright {
-  font-size: 12px;
-  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.825rem;
 }
 
 footer .footer-links .section {
-  height: 60px;
-  position: relative;
-  margin: 0;
   text-transform: uppercase;
-  font-size: 18px;
-}
-
-footer .footer-links .section .section-title {
-  margin: 0;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
+  font-size: 1rem;
+  padding: 0.25rem 0.5rem;
 }
 
 footer .footer-links ul > li {
   margin: 0;
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
   font-weight: 400;
   font-size: 0.875rem;
-  line-height: 1.3;
+  line-height: 1.2;
 }
 
 .campaign-container {
@@ -344,10 +259,12 @@ footer .footer-links ul > li {
   margin-bottom: 20px;
   position: relative;
   height: 200px;
+  border-radius: 5px;
 }
 
 .campaign-container .campaign {
   transition: all 0.5s;
+  color: #eee;
 }
 
 .campaign-container .campaign .campaign-image {
@@ -368,7 +285,7 @@ footer .footer-links ul > li {
 .campaign-container .campaign:hover {
   box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
   text-decoration: none;
-  color: #c09853;
+  color: #95B5D8;
 }
 
 .campaign-container .campaign:hover .campaign-image {
@@ -394,6 +311,10 @@ footer .footer-links ul > li {
   font-size: 20px;
 }
 
+.featured-winner {
+  font-size: 1rem;
+}
+
 .campaign-boosted {
   box-shadow: 0 4px 6px rgba(98, 46, 116, 0.3), 0 1px 3px rgba(69, 17, 82, 0.08);
 }
@@ -410,16 +331,18 @@ h4 a {
   font-size: 28px;
 }
 
-h2 {
-  font-size: 44px !important;
-}
-
 section a {
-  color: #dbab36;
+  color: #40479E;
+  font-weight: 500;
 }
 
-section li a {
-  color: #2828A1;
+section a:hover {
+  color: #112B6B;
+}
+
+section .btn-primary {
+  background-color: #40479E;
+  border: 1px solid #112B6B;
 }
 
 ul.pagination li a {
@@ -548,15 +471,6 @@ ul.pagination li span {
   background-image: url(https://images.kanka.io/app/E6iultkgKe86CZBAiybu8nT9mwM=/200x200/src/images%2Ftiers%2Felemental-325.png?webpfallback);
 }
 
-#pricing,
-#news {
-  padding: 50px 0;
-}
-
-.pricing {
-  margin-bottom: 25px;
-}
-
 .pricing .card {
   border: none;
   border-radius: 1rem;
@@ -566,6 +480,8 @@ ul.pagination li span {
 
 .pricing hr {
   margin: 1.5rem 0;
+  max-width: 250px;
+  margin: 25px auto;
 }
 
 .pricing .card-title {
@@ -608,25 +524,12 @@ ul.pagination li span {
   text-decoration: underline;
 }
 
-section.features .feature-item i {
-  background: unset;
-  color: #007bff !important;
-  -webkit-text-fill-color: unset;
-}
-
-.features-toc {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.features-toc li {
-  padding: 2px 0;
-  margin: 0;
+.feature-item i {
+  background-image: linear-gradient(to left, #95B5D8, #112B6B) !important;
 }
 
 .faq-categories .card-text .question-title {
-  color: #2828A1;
+  color: #112B6B;
 }
 
 .faq-categories .faq-block {
@@ -782,7 +685,7 @@ section.features .feature-item i {
   }
 
   .topbar .topbar-list li a {
-    color: #2828A1;
+    color: #112B6B;
   }
 
   .topbar .topbar-list .login {

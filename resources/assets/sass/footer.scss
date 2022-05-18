@@ -14,12 +14,23 @@
 }
 
 footer {
-  border-top: none;
-
   padding-top: 40px;
   padding-bottom: 30px;
-  text-align: left;
 
+  .grid {
+    max-width: 950px;
+    .cell {
+      h5 {
+        font-size: 1.5rem;
+        padding: 0.5rem 0;
+      }
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+  }
 
   img.logo-white {
     display: var(--footer-logo-white);
@@ -34,14 +45,16 @@ footer {
     padding: 0;
 
     li {
-      padding: 0;
-      display: block;
-      margin: 2px 0;
+      padding: 0.25rem 0;
+      font-weight: 400;
+      font-size: 0.875rem;
+      line-height: 1.3;
 
       a {
-        font-size: 14px !important;
+        font-size: 1.25rem;
         width: 100%;
         word-break: break-all;
+        display: block;
 
         &:hover {
           transition: all 0.2s ease;
@@ -66,6 +79,9 @@ footer {
     border-radius: 4px;
     letter-spacing: 1.1px;
   }
+  .language-switcher {
+    display: block;
+  }
 
   .footer-socials {
     line-height: 1.8em;
@@ -85,7 +101,7 @@ footer {
   }
 
   .footer-copyright {
-    font-size: 12px;
+    font-size: 1.2rem;
   }
 
   .footer-links {
@@ -95,34 +111,6 @@ footer {
     border-bottom-right-radius: 0;
     padding: 15px;
     padding-top: 30px;
-
-    .row > .col-xs-6 {
-      min-height: 225px;
-    }
-
-    .section {
-      height: 60px;
-      position: relative;
-      margin: 0;
-      text-transform: uppercase;
-      font-size: 18px;
-
-      .section-title {
-        margin: 0;
-        position: absolute;
-        top: 50%;
-        -ms-transform: translateY(-50%);
-        transform: translateY(-50%);
-      }
-    }
-    ul > li {
-      margin: 0;
-      padding-top: 0.5rem;
-      padding-bottom: 0.5rem;
-      font-weight: 400;
-      font-size: 0.875rem;
-      line-height: 1.3;
-    }
   }
 }
 
@@ -136,6 +124,9 @@ footer {
       .email, .socials {
         margin-right: 20px;
       }
+    }
+    .grid > .cell {
+      text-align: left;
     }
   }
 }

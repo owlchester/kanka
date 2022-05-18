@@ -10,23 +10,16 @@
 @endsection
 
 @section('content')
-    <header class="masthead reduced-masthead" id="about">
-        <div class="container h-100">
-            <div class="row h-100">
-                <div class="col-lg-9 my-auto">
-                    <div class="header-content mx-auto">
-                        <h1 class="mb-3">{{ __('front.about.title') }}</h1>
-                        <p class="mb-5">{{ __('front.about.description', ['kanka' => config('app.name')]) }}</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
 
     <section class="team" id="team">
         <div class="container">
             <div class="section-body">
-                <h1>{{ __('teams.index.title') }}</h1>
+                <div class="mb-5">
+                    <h1 class="display-4">{{ __('front.about.title', ['kanka' => config('app.name')]) }}</h1>
+                    <p class="lead">{{ __('front.about.description', ['kanka' => config('app.name')]) }}</p>
+                </div>
+
+                <h2>{{ __('teams.index.title') }}</h2>
 
                 <div class="row equal text-center">
                     <div class="col-xl-4 col-md-6 col-12 mb-4">
@@ -58,7 +51,7 @@
     <section id="community" class="pt-1 bg-primary">
         <div class="container">
             <div class="section-body">
-                <h1>{{ __('teams.index.community') }}</h1>
+                <h2>{{ __('teams.index.community') }}</h2>
                 <div class="row text-center">
                     <div class="col-xl-3 col-md-4 col-6 mb-4">
                         <div class="bg-white rounded shadow-sm py-5 px-4 fullheight hover-focus">
@@ -86,7 +79,7 @@
             <div class="section-body">
                 <div class="row">
                     <div class="col-12 my-auto">
-                        <h1>{{ __('teams.index.translations') }}</h1>
+                        <h2>{{ __('teams.index.translations') }}</h2>
 
                         <p class="text-muted">{!! __('footer.translator_call', ['discord' => link_to(config('discord.url'), 'Discord', ['target' => '_blank'])]) !!}</p>
 

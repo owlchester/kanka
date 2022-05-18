@@ -5,4 +5,5 @@ return [
     'moved'         => 'The hall of fame has moved to it\'s :own_page.',
     'own_page'      => 'own page',
     'title'         => 'Hall of Fame',
+    'legacy'        => 'Discontinued in early 2020, our loyal Goblins are still supporting :kanka to this day!'
 ];

@@ -201,17 +201,11 @@ return [
         'title'         => 'A novel way to keep track of your worldbuilding and RPG campaigns.',
     ],
     'footer'                => [
-        'app'       => 'App',
         'copyright' => 'Copyright :copy :year :company',
         'headings'  => [
             'app'           => 'App',
             'community'     => 'Community',
-            'other'         => 'Other',
-            'useful_links'  => 'Useful Links',
         ],
-        'navigation'=> 'Navigation',
-        'resources' => 'Resources',
-        'social'    => 'Social',
     ],
     'help'                  => [
         'description'   => 'We are here for you in case you need a bit of help. Contact us using one of the following methods, and we\'ll get back to you as fast as we can.',

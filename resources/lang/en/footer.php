@@ -8,4 +8,9 @@ return [
     'privacy' => 'Privacy',
     'terms' => 'Terms',
     'security' => 'Security',
+    'company' => 'Company',
+    'resources' => 'Resources',
+    'whats-new' => 'What\'s new',
+    'blog' => 'Blog',
+    'platform' => 'Platform',
 ];

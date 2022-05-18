@@ -14,24 +14,16 @@
 @endsection
 
 @section('content')
-    <header class="masthead reduced-masthead">
-        <div class="container h-100">
-            <div class="row h-100">
-                <div class="col-lg-9 my-auto">
-                    <div class="header-content mx-auto">
-                        <h1 class="mb-3">{{ __('front.campaigns.title') }}</h1>
-                        <p class="mb-5">{{ __('front.campaigns.description_full', ['kanka' => config('app.name')]) }}</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
-
-    @if ($featured->count() > 0)
-    <section class="featured-campaigns pb-1" id="featured">
+    <section class="">
         <div class="container">
-            <div class="section-body">
-                <h1>{{ __('front.campaigns.featured.title') }}</h1>
+            <div class="mb-5">
+                <h1 class="display-4">{{ __('front.campaigns.title', ['kanka' => config('app.name')]) }}</h1>
+                <p class="lead">{{ __('front.campaigns.description_full', ['kanka' => config('app.name')]) }}</p>
+            </div>
+
+            @if ($featured->count() > 0)
+            <div class="section-body mb-5" id="featured">
+                <h2>{{ __('front.campaigns.featured.title') }}</h2>
                 <p class="text-muted">{{ __('front.campaigns.featured.description') }}</p>
 
                 <div class="row">
@@ -42,14 +34,10 @@
                     @endforeach
                 </div>
             </div>
-        </div>
-    </section>
-    @endif
+            @endif
 
-    <section class="campaigns" id="public-campaigns">
-        <div class="container">
-            <div class="section-body">
-                <h1>{{ __('front.campaigns.public.title') }}</h1>
+            <div class="section-body" id="public-campaigns">
+                <h2>{{ __('front.campaigns.public.title') }}</h2>
                 <p class="text-muted">{{ __('front.campaigns.public.description') }}</p>
 
                 {!! Form::open(['route' => ['front.public_campaigns', '#public-campaigns'], 'method' => 'GET']) !!}
@@ -94,4 +82,5 @@
             </div>
         </div>
     </section>
+
 @endsection

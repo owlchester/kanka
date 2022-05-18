@@ -3,57 +3,44 @@
     'active' => 'features',
 ])
 @section('content')
-
-    <header class="masthead reduced-masthead">
-        <div class="container h-100">
-            <div class="row h-100">
-                <div class="col-lg-7 my-auto">
-                    <div class="header-content mx-auto">
-                        <h1 class="mb-3">{{ __('front/features.worldbuilding.title') }}</h1>
-                        <p class="mb-5">{{ __('front.features.description_full') }}</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
-
     <section class="features" id="features-gm">
-        <div class="containe text-center">
-            <div class="row">
+        <div class="container">
+            <div class="mb-5">
+                <h1 class="display-4">{{ __('front/features.worldbuilding.title', ['kanka' => config('app.name')]) }}</h1>
+                <p class="lead">{{ __('front.features.description_full', ['kanka' => config('app.name')]) }}</p>
+            </div>
+            <div class="row text-center">
                 <div class="col-lg-12">
                     <div class="container-fluid">
                         <div class="row">
 
-                            <div class="col-lg-4 col-6">
+                            <div class="col-md-4 col-6">
                                 @include('front.features._timelines')
                             </div>
-                            <div class="col-lg-4 col-6">
+                            <div class="col-md-4 col-6">
                                 @include('front.features._entities')
                             </div>
-                            <div class="col-lg-4 col-6">
-                                @include('front.features._collaborative')
-                            </div>
 
-                            <div class="col-lg-4 col-6">
+                            <div class="col-md-4 col-6">
                                 @include('front.features._relations')
                             </div>
-                            <div class="col-lg-4 col-6">
+
+                            <div class="col-md-4 col-6">
                                 @include('front.features._flora')
                             </div>
-                            <div class="col-lg-4 col-6">
+                            <div class="col-md-4 col-6">
                                 @include('front.features._calendars')
                             </div>
 
-                            <div class="col-lg-4 col-6 offset-3 offset-lg-4">
+                            <div class="col-md-4 col-6">
                                 @include('front.features._api')
-
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="pricing">
+            <div class="text-center">
             <a href="{{ route('front.gm-features') }}" class="btn btn-primary btn-lg">
                 {{ __('front.features.actions.rpg') }}
             </a>

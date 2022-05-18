@@ -8,22 +8,14 @@
 @endsection
 
 @section('content')
-    <header class="masthead reduced-masthead">
-        <div class="container h-100">
-            <div class="row h-100">
-                <div class="col-lg-9 my-auto">
-                    <div class="header-content mx-auto">
-                        <h1 class="mb-3">{{ __('front/security.title', ['kanka' => config('app.name')]) }}</h1>
-                        <p class="mb-5">{{ __('front/security.description', ['kanka' => config('app.name')]) }}</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
-
     <section class="features" id="security">
         <div class="container">
             <div class="section-heading">
+                <div class="mb-5">
+                    <h1 class="display-4">{{ __('front/security.title', ['kanka' => config('app.name')]) }}</h1>
+                    <p class="lead">{{ __('front/security.description', ['kanka' => config('app.name')]) }}</p>
+                </div>
+
                 <h2>{{ __('front/security.data-center.title') }}</h2>
                 <p class="my-2">
                     {!! __('front/security.data-center.description', ['kanka' => config('app.name')]) !!}

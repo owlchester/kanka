@@ -13,7 +13,7 @@
 @section('content')
     @include('front.master')
 
-    <section class="download bg-primary text-center" id="download">
+    <section class="bg-primary text-center" id="novel">
         <div class="container">
             <div class="row">
                 <div class="col-md-8 mx-auto">
@@ -36,7 +36,6 @@
             <div class="section-heading text-center">
                 <h2>{{ __('front.features.title') }}</h2>
                 <p class="text-muted">{{ __('front.features.description', ['kanka' => config('app.name')]) }}</p>
-                <hr>
             </div>
             <div class="row">
                 <div class="col-12 col-md-4">
@@ -82,15 +81,13 @@
     </section>
 
     @if (config('services.stripe.enabled'))
-    <section id="pricing">
+    <section id="pricing" class="pt-2">
         <div class="container">
             <div class="section-heading text-center">
                 <h2>{{ __('front.pricing.title') }}</h2>
                 <p class="text-muted">{{ __('front.pricing.description', ['kanka' => config('app.name')]) }}</p>
             </div>
-            <div class="mt-5 pt-3">
-                @include('front._pricing')
-            </div>
+            @include('front._pricing')
         </div>
     </section>
     @endif

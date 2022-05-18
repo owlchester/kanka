@@ -4,59 +4,44 @@
 ])
 @section('content')
 
-    <header class="masthead reduced-masthead">
-        <div class="container h-100">
-            <div class="row h-100">
-                <div class="col-lg-7 my-auto">
-                    <div class="header-content mx-auto">
-                        <h1 class="mb-3">{{ __('front/features.gm.title') }}</h1>
-                        <p class="mb-5">{{ __('front.features.description_full') }}</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
-
     <section class="features" id="features-gm">
-        <div class="containe text-center">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-lg-4 col-6">
-                                @include('front.features._permissions')
-                            </div>
-                            <div class="col-lg-4 col-6">
-                                @include('front.features._calendars')
-                            </div>
-                            <div class="col-lg-4 col-6">
-                                @include('front.features._secrets')
-                            </div>
+        <div class="container">
+            <div class="mb-5">
+                <h1 class="display-4">{{ __('front/features.gm.title', ['kanka' => config('app.name')]) }}</h1>
+                <p class="lead">{{ __('front.features.description_full', ['kanka' => config('app.name')]) }}</p>
+            </div>
 
-                            <div class="col-lg-4 col-6">
-                                @include('front.features._entities')
-                            </div>
-                            <div class="col-lg-4 col-6">
-                                @include('front.features._quests')
-                            </div>
-                            <div class="col-lg-4 col-6">
-                                @include('front.features._abilities')
-                            </div>
+            <div class="container-fluid text-center">
+                <div class="row">
+                    <div class="col-md-4 col-6">
+                        @include('front.features._permissions')
+                    </div>
+                    <div class="col-md-4 col-6">
+                        @include('front.features._calendars')
+                    </div>
+                    <div class="col-md-4 col-6">
+                        @include('front.features._secrets')
+                    </div>
 
-                            <div class="col-lg-4 col-6">
-                                @include('front.features._dashboards')
-                            </div>
-                            <div class="col-lg-4 col-6">
-                                @include('front.features._audio')
-                            </div>
-                            <div class="col-lg-4 col-6">
-                                @include('front.features._api')
-                            </div>
-                        </div>
+                    <div class="col-md-4 col-6">
+                        @include('front.features._entities')
+                    </div>
+                    <div class="col-md-4 col-6">
+                        @include('front.features._quests')
+                    </div>
+                    <div class="col-md-4 col-6">
+                        @include('front.features._abilities')
+                    </div>
+
+                    <div class="col-md-4 col-6 offset-md-2">
+                        @include('front.features._audio')
+                    </div>
+                    <div class="col-md-4 col-6">
+                        @include('front.features._api')
                     </div>
                 </div>
             </div>
-            <div class="pricing">
+            <div class="text-center">
                 <a href="{{ route('front.worldbuilder-features') }}" class="btn btn-primary btn-lg">
                     {{ __('front.features.actions.worldbuilder') }}
                 </a>

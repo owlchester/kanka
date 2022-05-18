@@ -1,51 +1,83 @@
-<footer id="footer">
-    <div class="container">
-        <div class="row footer-links h-100">
-            <div class="col-6 col-sm-3">
-                <div class="section">
-                    <a href="{{ route('home') }}" class="section-title logo">
-                        @if(\App\Facades\Img::nowebp())
-                            <img src="https://images.kanka.io/app/0HdWv4egPu6lBQ30iWTcS9MPgRo=/64x64/src/images%2Flogos%2Flogo-small-white.png?webpfallback" title="Kanka logo" alt="Kanka logo white" width="48" height="48">
-                        @else
-                            <img src="https://images.kanka.io/app/0HdWv4egPu6lBQ30iWTcS9MPgRo=/64x64/src/images%2Flogos%2Flogo-small-white.png" title="Kanka logo" alt="Kanka logo white" width="48" height="48">
-                        @endif
-                    </a>
+<footer id="footer" class="py-4">
+    <div class="container-md">
+        <div class="row footer-links h-100 text-left">
+            <div class="col-6 col-sm text-truncate text-center">
+                <a href="{{ route('home') }}" class="">
+                    @if(\App\Facades\Img::nowebp())
+                        <img class="logo-white d-none" src="https://images.kanka.io/app/0HdWv4egPu6lBQ30iWTcS9MPgRo=/64x64/src/images%2Flogos%2Flogo-small-white.png?webpfallback" title="Kanka logo" alt="Kanka logo" width="48" height="48">
+                        <img class="logo-blue" src="https://images.kanka.io/app/DEy2otI4qKGIJHMX_JFxeEFGRls=/64x64/src/images%2Flogos%2Flogo-small.png?webpfallback" alt="Kanka logo blue" title="Kanka" width="48" height="48" />
+                    @else
+                        <img class="logo-blue" src="https://images.kanka.io/app/DEy2otI4qKGIJHMX_JFxeEFGRls=/64x64/src/images%2Flogos%2Flogo-small.png" alt="Kanka logo blue" title="Kanka" width="48" height="48" />
+
+                        <img class="logo-white d-none" src="https://images.kanka.io/app/0HdWv4egPu6lBQ30iWTcS9MPgRo=/64x64/src/images%2Flogos%2Flogo-small-white.png" title="Kanka logo" alt="Kanka logo" width="48" height="48">
+                    @endif
+                </a>
+            </div>
+
+            <div class="col-6 col-sm text-truncate">
+                <div class="section mb-2 text-uppcercase">
+                    {{ __('footer.platform') }}
                 </div>
 
-                <ul>
+                <ul class="list-unstyled">
                     <li>
                         <a href="{{ route('front.features') }}">{{ __('front.menu.features') }}</a>
                     </li>
                     @if (config('services.stripe.enabled'))<li>
                         <a href="{{ route('front.pricing') }}">{{ __('front.menu.pricing') }}</a>
                     </li>@endif
+
                     <li>
-                        <a href="{{ route('front.about') }}">{{ __('front.menu.about') }}</a>
+                        <a href="//marketplace.kanka.io" target="_blank">{{ __('front.menu.marketplace') }}</a>
                     </li>
-                    @if (config('services.stripe.enabled'))<li>
                     <li>
-                        <a href="{{ route('front.newsletter') }}">{{ __('front.menu.newsletter') }}</a>
-                    </li>
-                    @endif
-                    <li>
-                        <a href="//blog.kanka.io" target="_blank">{{ __('front.menu.news') }}</a>
+                        <a href="//loot.kanka.io" target="_blank">{{ __('front.menu.merch') }}</a>
                     </li>
                 </ul>
             </div>
 
-            <div class="col-6 col-sm-3">
-                <div class="section">
-                    <span class="section-title">
-                        {{ __('front.footer.headings.community') }}
-                    </span>
+            <div class="col-6 col-sm text-truncate">
+                <div class="section mb-2 text-uppcercase">
+                    {{ __('footer.resources') }}
                 </div>
-                <ul>
-                    @if (config('services.stripe.enabled') && config('app.admin'))<li>
-                        <a href="{{ route('community-votes.index') }}">{{ __('front/community-votes.title') }}</a>
-                    </li>@endif
+                <ul class="list-unstyled">
+                    @if(config('app.admin'))
+                        <li>
+                            <a href="{{ route('front.faqs.index') }}">{{ __('front.menu.kb') }}</a>
+                        </li>
+                    @endif
+                    <li>
+                        <a href="{{ route('documentation') }}">{{ __('front.menu.documentation') }}</a>
+                    </li>
+                    <li>
+                        <a href="/{{ app()->getLocale() }}{{ config('larecipe.docs.route') }}/1.0/overview" target="_blank">{{ __('front.features.api.link') }}</a>
+                    </li>
+
+                    <li>
+                        <a href="//blog.kanka.io/category/news/" target="_blank">{{ __('footer.whats-new') }}</a>
+                    </li>
+                    <li>
+                        <a href="//blog.kanka.io" target="_blank">{{ __('footer.blog') }}</a>
+                    </li>
+                    @if (config('services.stripe.enabled'))
+                    <li>
+                        <a href="{{ route('front.newsletter') }}">{{ __('front.menu.newsletter') }}</a>
+                    </li>
+                    @endif
+                </ul>
+            </div>
+
+            <div class="col-6 col-sm text-truncate">
+                <div class="section mb-2 text-uppcercase">
+                    {{ __('front.footer.headings.community') }}
+                </div>
+                <ul class="list-unstyled">
                     <li>
                         <a href="{{ route('front.public_campaigns') }}">{{ __('front.menu.campaigns') }}</a>
                     </li>
+                    @if (config('services.stripe.enabled') && config('app.admin'))<li>
+                        <a href="{{ route('community-votes.index') }}">{{ __('front/community-votes.title') }}</a>
+                    </li>@endif
                     @if(config('app.admin'))
                     <li>
                         <a href="{{ route('community-events.index') }}">{{ __('front/community-events.title') }}</a>
@@ -57,45 +89,19 @@
                 </ul>
             </div>
 
-            <div class="col-6 col-sm-3">
-                <div class="section">
-                    <span class="section-title">
-                    {{ __('front.footer.headings.useful_links') }}
-                    </span>
+            <div class="col-6 col-sm text-truncate">
+                <div class="section mb-2 text-uppcercase">
+                    {{ __('footer.company') }}
                 </div>
-                <ul>
-                    @if(config('app.admin'))
+                <ul class="list-unstyled">
                     <li>
-                        <a href="{{ route('front.faqs.index') }}">{{ __('front.menu.kb') }}</a>
-                    </li>
-                    @endif
-                    <li>
-                        <a href="{{ route('documentation') }}">{{ __('front.menu.documentation') }}</a>
-                    </li>
-                    <li>
-                        <a href="/{{ app()->getLocale() }}{{ config('larecipe.docs.route') }}/1.0/overview" target="_blank">{{ __('front.features.api.link') }}</a>
+                        <a href="{{ route('front.about') }}">{{ __('front.menu.about') }}</a>
                     </li>
                     <li>
                         <a href="{{ route('front.contact') }}">{{ __('front.menu.contact') }}</a>
                     </li>
                     <li>
                         <a href="{{ route('front.press-kit') }}">{{ __('footer.press-kit') }}</a>
-                    </li>
-                </ul>
-            </div>
-
-            <div class="col-6 col-sm-3">
-                <div class="section">
-                    <span class="section-title">
-                        {{ __('front.footer.headings.other') }}
-                    </span>
-                </div>
-                <ul>
-                    <li>
-                        <a href="//marketplace.kanka.io" target="_blank">{{ __('front.menu.marketplace') }}</a>
-                    </li>
-                    <li>
-                        <a href="//loot.kanka.io" target="_blank">{{ __('front.menu.merch') }}</a>
                     </li>
                     <li>
                         <a href="{{ route('front.security') }}">{{ __('footer.security') }}</a>
@@ -110,33 +116,25 @@
             </div>
         </div>
 
-        <div class="row">
-            <div class="col-12 footer-socials">
-                <div class="email">
-                    <i class="fa-solid fa-envelope hidden-xs"></i> {{ config('app.email') }}
-                </div>
-
-                <div class="socials">
-                    <a href="{{ config('social.discord') }}" target="discord" title="Discord" rel="noreferrer">
-                        <i class="fab fa-discord"></i>
-                    </a>
-                    <a href="{{ config('social.facebook') }}" target="facebook" title="Facebook" rel="noreferrer">
-                        <i class="fab fa-facebook"></i>
-                    </a>
-                    <a href="{{ config('social.instagram') }}" target="instagram" title="Instagram" rel="noreferrer">
-                        <i class="fab fa-instagram"></i>
-                    </a>
-                    <a href="{{ config('social.youtube') }}" target="youtube" title="Youtube" rel="noreferrer">
-                        <i class="fab fa-youtube"></i>
-                    </a>
-                    <a href="{{ config('social.reddit') }}" target="reddit" title="Reddit" rel="noreferrer">
-                        <i class="fab fa-reddit"></i>
-                    </a>
-                    <a href="{{ config('social.twitter') }}" target="twitter" title="Twitter" rel="noreferrer">
-                        <i class="fab fa-twitter"></i>
-                    </a>
-                </div>
-            </div>
+        <div class="my-4">
+            <a href="{{ config('social.discord') }}" class="mr-3" target="discord" title="Discord" rel="noreferrer">
+                <i class="fab fa-discord fa-2x"></i>
+            </a>
+            <a href="{{ config('social.facebook') }}" class="mr-3" target="facebook" title="Facebook" rel="noreferrer">
+                <i class="fab fa-facebook fa-2x"></i>
+            </a>
+            <a href="{{ config('social.instagram') }}" class="mr-3" target="instagram" title="Instagram" rel="noreferrer">
+                <i class="fab fa-instagram fa-2x"></i>
+            </a>
+            <a href="{{ config('social.youtube') }}" class="mr-3" target="youtube" title="Youtube" rel="noreferrer">
+                <i class="fab fa-youtube fa-2x"></i>
+            </a>
+            <a href="{{ config('social.reddit') }}" class="mr-3" target="reddit" title="Reddit" rel="noreferrer">
+                <i class="fab fa-reddit fa-2x"></i>
+            </a>
+            <a href="{{ config('social.twitter') }}" class="mr-3" target="twitter" title="Twitter" rel="noreferrer">
+                <i class="fab fa-twitter fa-2x"></i>
+            </a>
         </div>
         <div class="footer-copyright text-center">
             Kanka v{{ config('app.version') }} - {!! __('front.footer.copyright', ['copy' => '&copy;', 'year' => date('Y'), 'company' => 'Owlchester SNC'])!!} - {{ __('footer.server_time', ['time' => \Carbon\Carbon::now()->isoFormat('MMMM Do YYYY, h:mm a')]) }}

@@ -84,14 +84,6 @@ class FrontController extends Controller
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function help()
-    {
-        return $this->cachedResponse('front.help');
-    }
-
-    /**
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
     public function features()
     {
         return $this->cachedResponse('front.features');
@@ -146,6 +138,14 @@ class FrontController extends Controller
     public function security()
     {
         return $this->cachedResponse('front.security');
+    }
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function boosters()
+    {
+        return $this->cachedResponse('front.boosters');
     }
 
     /**

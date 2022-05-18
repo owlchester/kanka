@@ -1,4 +1,4 @@
-<div class="row pricing mt-3">
+<div class="row pricing mt-5 pt-5">
     <div class="col-lg-3 col-md-4 ">
         <div class="card mb-5 mb-lg-0">
             <div class="card-body">

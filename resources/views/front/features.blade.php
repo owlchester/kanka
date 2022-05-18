@@ -23,80 +23,80 @@
             <div class="row mb-5">
                 <div class="col-md-3 col-6">
                     <strong>{{ __('front/features.sections.general') }}</strong>
-                    <ul class="features-toc">
-                        <li>
+                    <ul class="m-0 p-0 list-unstyled">
+                        <li class="py-1">
                             <a href="#free">{{ __('front.features.free.title') }}</a>
                         </li>
-                        <li>
+                        <li class="py-1">
                             <a href="#collaborative">{{ __('front.features.collaborative.title') }}</a>
                         </li>
-                        <li>
+                        <li class="py-1">
                             <a href="#dashboards">{{ __('front.features.dashboards.title') }}</a>
                         </li>
-                        <li>
+                        <li class="py-1">
                             <a href="#modular">{{ __('front.features.modular.title') }}</a>
                         </li>
-                        <li>
+                        <li class="py-1">
                             <a href="#updates">{{ __('front/features.updates.title') }}</a>
                         </li>
                     </ul>
                 </div>
                 <div class="col-md-3 col-6">
                     <strong>{{ __('front/features.sections.rpg') }}</strong>
-                    <ul class="features-toc">
-                        <li>
+                    <ul class="list-unstyled m-0 p-0">
+                        <li class="py-1">
                             <a href="#entity">{{ __('front/features.entity.title') }}</a>
                         </li>
-                        <li>
+                        <li class="py-1">
                             <a href="#inventory">{{ __('front/features.inventory.title') }}</a>
                         </li>
-                        <li>
+                        <li class="py-1">
                             <a href="#abilities">{{ __('front/features.abilities.title') }}</a>
                         </li>
-                        <li>
+                        <li class="py-1">
                             <a href="#attributes">{{ __('front/features.attributes.title') }}</a>
                         </li>
-                        <li>
+                        <li class="py-1">
                             <a href="#journals">{{ __('front/features.journals.title') }}</a>
                         </li>
-                        <li>
+                        <li class="py-1">
                             <a href="#quests">{{ __('front/features.quests.title') }}</a>
                         </li>
                     </ul>
                 </div>
                 <div class="col-md-3 col-6">
                     <strong>{{ __('front/features.sections.worldbuilding') }}</strong>
-                    <ul class="features-toc">
-                        <li>
+                    <ul class="list-unstyled m-0 p-0">
+                        <li class="py-1">
                             <a href="#relations">{{ __('front.features.relations.title') }}</a>
                         </li>
-                        <li>
+                        <li class="py-1">
                             <a href="#timelines">{{ __('front.features.timelines.title') }}</a>
                         </li>
-                        <li>
+                        <li class="py-1">
                             <a href="#calendars">{{ __('front.features.calendars.title') }}</a>
                         </li>
-                        <li>
+                        <li class="py-1">
                             <a href="#maps">{{ __('front.features.maps.title') }}</a>
                         </li>
-                        <li>
+                        <li class="py-1">
                             <a href="#editor">{{ __('front/features.editor.title') }}</a>
                         </li>
                     </ul>
                 </div>
                 <div class="col-md-3 col-6">
                     <strong>{{ __('front/features.sections.boosted') }}</strong>
-                    <ul class="features-toc">
-                        <li>
+                    <ul class="list-unstyled m-0 p-0">
+                        <li class="py-1">
                             <a href="#boosters">{{ __('front/features.boosters.title') }}</a>
                         </li>
-                        <li>
+                        <li class="py-1">
                             <a href="#marketplace">{{ __('front/features.marketplace.title') }}</a>
                         </li>
-                        <li>
+                        <li class="py-1">
                             <a href="#theming">{{ __('front/features.theming.title') }}</a>
                         </li>
-                        <li>
+                        <li class="py-1">
                             <a href="#links">{{ __('front/features.links.title') }}</a>
                         </li>
                     </ul>

@@ -7,14 +7,6 @@ $width = $featured ? 350 : 255;
 
         </div>
         <div class="bottom">
-            <h4 class="campaign-title">
-                @if (!$featured && $campaign->isFeatured())
-                    <i class="fa-solid fa-star" title="{{ __('campaigns.fields.featured') }}" data-toggle="tooltip"></i>
-                @elseif (!$featured && $campaign->isFeatured(true))
-                    <i class="fa-solid fa-star" title="{{ __('campaigns.fields.past_featured') }}" data-toggle="tooltip"></i>
-                @endif
-                {!! $campaign->name !!}
-            </h4>
             <div class="labels">
                 <span class="label label-default" title="{{ __('campaigns.fields.entity_count') }}" data-toggle="tooltip"><i class="fa-solid fa-eye"></i> {{ number_format($campaign->visible_entity_count) }}</span>
                 @if ($campaign->locale)
@@ -30,11 +22,19 @@ $width = $featured ? 350 : 255;
                     <span class="label label-default" title="{{ __('campaigns.panels.boosted') }}" data-toggle="tooltip"><i class="fa-solid fa-rocket"></i></span>
                 @endif
             </div>
+            <h4 class="campaign-title mt-1">
+                @if (!$featured && $campaign->isFeatured())
+                    <i class="fa-solid fa-star" title="{{ __('campaigns.fields.featured') }}" data-toggle="tooltip"></i>
+                @elseif (!$featured && $campaign->isFeatured(true))
+                    <i class="fa-solid fa-star" title="{{ __('campaigns.fields.past_featured') }}" data-toggle="tooltip"></i>
+                @endif
+                {!! $campaign->name !!}
+            </h4>
         </div>
     </a>
 </div>
 @if ($campaign->is_featured && !empty($campaign->featured_reason))
-    <p class="font-weight-light text-muted">
+    <p class="font-weight-light text-muted featured-winner">
         {!! $campaign->featured_reason !!}
     </p>
 @endif

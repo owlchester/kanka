@@ -2,8 +2,8 @@
     <div class="container">
         <div class="col-lg-12 my-auto">
             <div class="header-content mx-auto">
-                <h1 class="mb-5">{{ __('front.features.patreon.title') }}</h1>
-                <p class="mb-5">{{ __('front.features.patreon.description', ['kanka' => config('app.name')]) }}</p>
+                <h2 class="">{{ __('front.features.patreon.title') }}</h2>
+                <p class="my-3">{{ __('front.features.patreon.description', ['kanka' => config('app.name')]) }}</p>
             </div>
         </div>
 
@@ -134,8 +134,8 @@
 <section class="minimal-padding" id="boost" style="">
     <div class="container">
         <div class="header-content mx-auto">
-            <h1 class="mb-5">{{ __('front.features.boosts_v2.title') }}</h1>
-            <p class="mb-5">{{ __('front.features.boosts_v2.description') }} {!! __('front.features.boosts_v2.description-count', [
+            <h2>{{ __('front.features.boosts_v2.title') }}</h2>
+            <p class="my-3">{{ __('front.features.boosts_v2.description') }} {!! __('front.features.boosts_v2.description-count', [
 'boost-count' => '<strong>1</strong>', 'superboost-count' => '<strong>3</strong>',
 ]) !!} {{ __('front.features.boosts_v2.moving') }}
             </p>

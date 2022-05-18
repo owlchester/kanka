@@ -4,10 +4,13 @@
 
 @import 'front/new-age.min.css';
 
-$KankaBlue: #2828A1;
+$KankaLogo: #112B6B;
+$KankaIconLight: #95B5D8;
+$KankaIconMiddle: #40479E;
+$KankaBlue: $KankaLogo;
 $KankaDarkBlue: #08083c;
 $KankaGrey: #EDEDED;
-$KankaGold: #c09853;
+$KankaGold: #9E9740;
 
 html {
   scroll-behavior: smooth;
@@ -76,14 +79,6 @@ header.reduced-masthead.master-sm {
     font-size: 1rem;
     text-transform: unset;
   }
-  .navbar-brand {
-    color: #73a6c0 !important;
-    font-family: Catamaran,Helvetica,Arial,sans-serif !important;
-
-    img {
-      height: 32px;
-    }
-  }
   .nav-active, .nav-link:hover {
     transition: all 0.2s ease-in-out;
     text-decoration: underline;
@@ -140,11 +135,11 @@ header.reduced-masthead.master-sm {
     }
   }
 }
-.navbar {
+/*.navbar {
   a {
     color: $KankaBlue;
   }
-}
+}*/
 
 h1, h2, h3, h4, h5, h6, .card-title, .card-price {
   font-family: Catamaran,Helvetica,Arial,sans-serif !important;
@@ -152,33 +147,11 @@ h1, h2, h3, h4, h5, h6, .card-title, .card-price {
   letter-spacing: 1px;
   word-break: break-word;
 }
-
-section.contact-us {
-  p {
-    font-size: 24px;
-  }
-  a {
-    margin: 0 10px;
-  }
-}
-section.contact ul.list-social li.social-discord a{
-  background-color:#7289da;
-
-  img {
-    width: 70%;
-    margin-top: -7px;
-  }
+section h2 {
+  font-size: 2rem;
 }
 section {
   background-color: #fff;
-}
-section.contact ul.list-social li.social-discord a:hover{
-  background-color: #5078da;
-}
-
-hr {
-  max-width: 250px;
-  margin: 25px auto;
 }
 
 @media (min-width: 992px) {
@@ -227,105 +200,53 @@ hr {
 }
 
 footer {
-  padding-top: 40px;
-  padding-bottom: 30px;
-  text-align: left;
-  background-color: $KankaDarkBlue;
-  color: #ccc;
+  background-color: #eee; //$KankaDarkBlue;
+  color: #181414;
 
   ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-
     li {
-      padding: 0;
-      display: block;
-      margin: 2px 0;
-
       a {
-        font-size: 14px !important;
+        font-size: 0.825rem !important;
         width: 100%;
-        color: rgba(255, 255, 255, 0.6);
+        color: #181414;
+        border-radius: 5px;
+        padding: 0.25rem 0.5rem;
 
         &:hover {
+          color: #181414;
           transition: all 0.2s ease;
           text-decoration: none;
-          color: $KankaGold;
+          background-color: $KankaIconLight;
         }
       }
     }
   }
 
-  .kanka-logo {
-    font-size: 14px;
-    font-weight: 700;
-    color: #ddd;
-
-    a {
-      padding: 5px;
-      display: inline-block;
-    }
-  }
-
   a {
-    display: inline-block;
-    border-radius: 4px;
-    letter-spacing: 1.1px;
-    color: #ccc;
-    font-size: 1rem;
-  }
-
-  .footer-socials {
-    line-height: 1.8em;
-    color: rgba(255,255,255,0.8);
-    padding: 1.5rem 0px 1.5rem;
-    text-align: center;
-
-    .email, .socials {
-      display: inline;
-      font-size: 18px;
-
-      a {
-        font-size: 1.4rem;
-        margin-right: 8px;
-      }
-    }
-
-    .email {
-      margin-right: 20px;
+    color: $KankaBlue;
+    &:hover {
+      text-decoration: none;
     }
   }
 
   .footer-copyright {
-    font-size: 12px;
-    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.825rem;
   }
 
   .footer-links {
 
     .section {
-      height: 60px;
-      position: relative;
-      margin: 0;
       text-transform: uppercase;
-      font-size: 18px;
-
-      .section-title {
-        margin: 0;
-        position: absolute;
-        top: 50%;
-        -ms-transform: translateY(-50%);
-        transform: translateY(-50%);
-      }
+      font-size: 1rem;
+      padding: 0.25rem 0.5rem;
     }
     ul > li {
       margin: 0;
-      padding-top: 0.5rem;
-      padding-bottom: 0.5rem;
+      padding-top: 0.25rem;
+      padding-bottom: 0.25rem;
       font-weight: 400;
       font-size: 0.875rem;
-      line-height: 1.3;
+      line-height: 1.2;
     }
   }
 }
@@ -335,9 +256,11 @@ footer {
   margin-bottom: 20px;
   position: relative;
   height: 200px;
+  border-radius: 5px;
 
   .campaign {
     transition: all 0.5s;
+    color: #eee;
 
     .campaign-image {
       background-size: cover;
@@ -357,7 +280,7 @@ footer {
     &:hover {
       box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
       text-decoration: none;
-      color: $KankaGold;
+      color: $KankaIconLight;
       .campaign-image {
         transform: scale(1.1);
       }
@@ -383,6 +306,9 @@ footer {
     }
   }
 }
+.featured-winner {
+  font-size: 1rem;
+}
 
 .campaign-boosted {
   box-shadow: 0 4px 6px rgba(98, 46, 116, 0.3), 0 1px 3px rgba(69, 17, 82, 0.08);
@@ -402,16 +328,17 @@ h4 {
   }
 }
 
-h2 {
-  font-size: 44px !important;
-}
-
 section {
   a {
-    color: #dbab36;
+    color: $KankaIconMiddle;
+    font-weight: 500;
+    &:hover {
+      color: $KankaBlue;
+    }
   }
-  li a {
-    color: $KankaBlue;
+  .btn-primary {
+    background-color: $KankaIconMiddle;
+    border: 1px solid $KankaBlue;
   }
 }
 
@@ -541,11 +468,7 @@ ul.pagination {
   }
 }
 
-#pricing, #news {
-  padding: 50px 0;
-}
 .pricing {
-  margin-bottom: 25px;
 
   .card {
     border: none;
@@ -556,6 +479,8 @@ ul.pagination {
 
   hr {
     margin: 1.5rem 0;
+    max-width: 250px;
+    margin: 25px auto;
   }
 
 
@@ -597,21 +522,8 @@ ul.pagination {
   }
 }
 
-section.features .feature-item i {
-  background: unset;
-  color: #007bff !important;
-  -webkit-text-fill-color: unset;
-}
-
-.features-toc {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-
-  li {
-    padding: 2px 0;
-    margin: 0;
-  }
+.feature-item i {
+  background-image: linear-gradient(to left,$KankaIconLight,$KankaBlue) !important;
 }
 
 .faq-categories {
