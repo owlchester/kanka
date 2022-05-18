@@ -79,7 +79,7 @@
                         <a href="{{ route('front.contact') }}">{{ __('front.menu.contact') }}</a>
                     </li>
                     <li>
-                        <a href="{{ route('front.media') }}">{{ __('front.menu.media') }}</a>
+                        <a href="{{ route('front.press-kit') }}">{{ __('footer.press-kit') }}</a>
                     </li>
                 </ul>
             </div>
@@ -98,10 +98,13 @@
                         <a href="//loot.kanka.io" target="_blank">{{ __('front.menu.merch') }}</a>
                     </li>
                     <li>
-                        <a href="{{ route('front.privacy') }}">{{ __('front.menu.privacy') }}</a>
+                        <a href="{{ route('front.security') }}">{{ __('footer.security') }}</a>
                     </li>
                     <li>
-                        <a href="{{ route('front.terms') }}">{{ __('front.menu.terms') }}</a>
+                        <a href="{{ route('front.privacy') }}">{{ __('footer.privacy') }}</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('front.terms') }}">{{ __('footer.terms') }}</a>
                     </li>
                 </ul>
             </div>

@@ -11,7 +11,7 @@
                 <div class="col-lg-9 my-auto">
                     <div class="header-content mx-auto">
                         <h1 class="mb-3">{{ __('front.features.title') }}</h1>
-                        <p class="mb-5">{{ __('front.features.description_full') }}</p>
+                        <p class="mb-5">{{ __('front.features.description_full', ['kanka' => config('app.name')]) }}</p>
                     </div>
                 </div>
             </div>

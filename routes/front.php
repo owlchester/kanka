@@ -12,12 +12,14 @@ Route::get('/gm-features', 'FrontController@gmFeatures')->name('front.gm-feature
 Route::get('/worldbuilding-features', 'FrontController@wbFeatures')->name('front.worldbuilder-features');
 Route::get('/roadmap', 'FrontController@roadmap')->name('front.roadmap');
 //Route::get('/community', 'FrontController@community')->name('front.community');
-Route::get('/media', 'FrontController@media')->name('front.media');
 Route::get('/public-campaigns', 'FrontController@campaigns')->name('front.public_campaigns');
 Route::get('/contact', 'FrontController@contact')->name('front.contact');
 Route::get('/pricing', 'FrontController@pricing')->name('front.pricing');
 Route::get('/partners', 'FrontController@partners')->name('front.partners');
 Route::get('/newsletter', 'Front\NewsletterController@index')->name('front.newsletter');
+
+Route::get('/press-kit', [\App\Http\Controllers\FrontController::class, 'pressKit'])->name('front.press-kit');
+Route::get('/security', [\App\Http\Controllers\FrontController::class, 'security'])->name('front.security');
 
 Route::get('/kb', 'Front\FaqController@index')->name('front.faqs.index');
 Route::get('/kb/{faq}-{slug?}', 'Front\FaqController@show')->name('front.faqs.show');

@@ -233,14 +233,6 @@ return [
         'heading'           => 'Worldbuilding, tabletop RPG campaign management, storytelling. All in one',
         'title'             => 'Kanka',
     ],
-    'media'                 => [
-        'description'   => 'Find high resolution images of :kanka on this page. Use these if you are promoting :kanka or building tools that interact with :kanka.',
-        'images'        => [
-            'primary'   => 'Primary :kanka logo',
-            'social'    => 'Social :kanka logo',
-        ],
-        'title'         => 'Media',
-    ],
     'menu'                  => [
         'about'         => 'About',
         'api'           => 'API',
@@ -256,18 +248,15 @@ return [
         'kb'            => 'Knowledge Base',
         'login'         => 'Login',
         'marketplace'   => 'Marketplace',
-        'media'         => 'Media',
         'merch'         => 'Merchandise',
         'news'          => 'News',
         'newsletter'    => 'Newsletter',
         'other'         => 'Other',
         'overview'      => 'Feature overview',
         'pricing'       => 'Pricing',
-        'privacy'       => 'Privacy Policy',
         'register'      => 'Register',
         'releases'      => 'Releases',
         'roadmap'       => 'Roadmap',
-        'terms'         => 'Terms & Conditions',
         'title'         => 'Menu',
     ],
     'meta'                  => [

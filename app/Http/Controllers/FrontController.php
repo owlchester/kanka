@@ -135,9 +135,17 @@ class FrontController extends Controller
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function media()
+    public function pressKit()
     {
-        return $this->cachedResponse('front.media');
+        return $this->cachedResponse('front.press-kit');
+    }
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function security()
+    {
+        return $this->cachedResponse('front.security');
     }
 
     /**
