@@ -11,7 +11,7 @@ $entityType = $widget->conf('entity');
 $entityTypeID = (int) config('entities.ids.' . $entityType);
 $entity = \App\Models\Entity::
         inTags($widget->tags->pluck('id')->toArray())
-        ->whereNotIn('type', ['attribute_template', 'conversation', 'tag'])
+        ->whereNotIn('type_id', [config('entities.ids.attribute_template'), config('entities.ids.conversation'), config('entities.ids.tag')])
         ->type($entityTypeID)
         ->with(['image'])
         ->whereNotIn('entities.id', \App\Facades\Dashboard::excluding())
