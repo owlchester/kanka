@@ -85,7 +85,7 @@
     </div>
 </nav>
 
-<section class="team" id="team">
+<section class="error" id="error-{{ $error }}">
     <div class="container">
         <div class="section-body">
             <h1 class="display-4" id="{{ $error }}">{{ __('errors.' . $error . '.title') }}</h1>
