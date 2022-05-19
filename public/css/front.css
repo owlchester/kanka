@@ -18,6 +18,8 @@ header.masthead {
 header.masthead.masthead-half {
   height: unset;
   min-height: 0;
+  padding-top: 0;
+  padding-bottom: 0;
 }
 
 header.masthead-img {
@@ -173,6 +175,7 @@ section {
 
 .booster-cards {
   display: grid;
+  grid-template-columns: 1fr;
   gap: 1rem;
 }
 
@@ -231,10 +234,6 @@ section {
   background: linear-gradient(120deg, #72CB74, #72CBA1 90%), #D89595;
 }
 
-.booster-cards .booster-card.centered {
-  grid-column: 2/3;
-}
-
 @media (min-width: 992px) {
   #mainNav {
     border-color: transparent;
@@ -277,6 +276,10 @@ section {
 
   .booster-cards {
     grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .booster-cards .booster-card.centered {
+    grid-column: 2/3;
   }
 }
 

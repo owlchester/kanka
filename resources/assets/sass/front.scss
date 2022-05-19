@@ -25,6 +25,8 @@ header.masthead {
 header.masthead.masthead-half {
   height: unset;
   min-height: 0;
+  padding-top: 0;
+  padding-bottom: 0;
 }
 header.masthead-img {
   background-color: $KankaDarkBlue;
@@ -161,6 +163,7 @@ section {
 
 .booster-cards {
   display: grid;
+  grid-template-columns: 1fr;
   gap: 1rem;
 
   .booster-card {
@@ -213,7 +216,6 @@ section {
     }
   }
   .booster-card.centered {
-    grid-column: 2/3;
   }
 }
 
@@ -263,6 +265,10 @@ section {
 
   .booster-cards {
     grid-template-columns: repeat(3, minmax(0, 1fr));
+
+    .booster-card.centered {
+      grid-column: 2/3;
+    }
   }
 }
 
