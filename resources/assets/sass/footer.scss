@@ -112,6 +112,12 @@ footer {
   }
 }
 
+#language-select-modal {
+  li > a {
+    display: block;
+  }
+}
+
 @media (min-width: 768px) {
   footer {
     .footer-socials {

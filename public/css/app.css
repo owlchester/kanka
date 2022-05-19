@@ -2325,6 +2325,10 @@ footer .footer-links {
   padding-top: 30px;
 }
 
+#language-select-modal li > a {
+  display: block;
+}
+
 @media (min-width: 768px) {
   footer .footer-socials .email,
   footer .footer-socials .socials,
@@ -2534,7 +2538,7 @@ div.mce-fullscreen {
 }
 
 .box .box-header.with-border {
-  border-bottom: 1px solid #f4f4f4;
+  border-bottom: 1px solid var(--box-with-border-bottom-border);
 }
 
 .box .box-header {
@@ -3234,6 +3238,10 @@ body.ab-testing-second .ab-testing-a {
 
 .gap-4 {
   gap: 1rem;
+}
+
+.gap-5 {
+  gap: 1.25rem;
 }
 
 @media (min-width: 768px) {
