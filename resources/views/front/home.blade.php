@@ -96,4 +96,16 @@
     @includeWhen(false, 'front._testimonials')
 
     @includeWhen(!empty($campaigns), 'front._campaigns')
+
+    @if(config('auth.register_enabled'))
+        <section class="p-0 mb-5" id="call-to-action">
+            <div class="container">
+                <div class="text-center">
+                    <a href="{{ route('register') }}" class="btn btn-primary btn-lg mr-sm-3 mr-md-5 mb-3 mb-sm-0 d-block d-sm-inline-block">
+                        {{ __('front/features.register') }}
+                    </a>
+                </div>
+            </div>
+        </section>
+    @endif
 @endsection

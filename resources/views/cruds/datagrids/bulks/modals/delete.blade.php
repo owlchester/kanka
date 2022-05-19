@@ -22,7 +22,7 @@
 
                 <div class="py-8">
                     <button type="button" class="btn px-8 rounded-full mr-5" data-dismiss="modal">{{ __('crud.cancel') }}</button>
-                    <button type="button" class="btn btn-danger datagrid-action px-8 ml-5 rounded-full" value="delete">
+                    <button type="submit" class="btn btn-danger px-8 ml-5 rounded-full" name="datagrid-action" value="delete">
                         <span class="fa-solid fa-trash"></span>
                         <span class="remove-button-label">{{ __('crud.remove') }}</span>
                     </button>
