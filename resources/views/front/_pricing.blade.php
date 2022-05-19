@@ -9,7 +9,7 @@
                 <ul class="fa-ul">
                     <li>
                         <span class="fa-li"><i class="fa-solid fa-times"></i></span>
-                        <a href="{{ route('front.pricing', ['#boost']) }}" target="_blank">
+                        <a href="{{ route('front.boosters') }}">
                             <strong>{{ __('front.pricing.benefits.no_boosters') }}</strong>
                         </a>
                     </li>
@@ -51,7 +51,7 @@
                 <ul class="fa-ul">
                     <li>
                         <span class="fa-li"><i class="fa-solid fa-check"></i></span>
-                        <a href="{{ route('front.pricing', ['#boost']) }}" target="_blank">
+                        <a href="{{ route('front.boosters') }}">
                             <strong>3 {{ __('front.pricing.benefits.boosters') }}</strong>
                         </a>
                     </li>
@@ -62,7 +62,7 @@
                         <span class="fa-li"><i class="fa-solid fa-check"></i></span> {{ __('front.features.patreon.monthly_vote') }}
                     </li>
                     <li>
-                        <span class="fa-li"><i class="fa-solid fa-check"></i></span> {{ __('front.features.patreon.discord') }}
+                        <span class="fa-li"><i class="fa-solid fa-check"></i></span> {!! __('front.features.patreon.discord', ['discord' => link_to(config('social.discord'), 'Discord', ['target' => '_blank'])]) !!}
                     </li>
                     <li>
                         <span class="fa-li"><i class="fa-solid fa-check"></i></span> {{ __('front.features.patreon.no_ads') }}
@@ -96,7 +96,7 @@
                 <ul class="fa-ul">
                     <li>
                         <span class="fa-li"><i class="fa-solid fa-check"></i></span>
-                        <a href="{{ route('front.pricing', ['#boost']) }}" target="_blank">
+                        <a href="{{ route('front.boosters') }}">
                             <strong>6 {{ __('front.pricing.benefits.boosters') }}</strong>
                         </a>
                     </li>
@@ -107,7 +107,7 @@
                         <span class="fa-li"><i class="fa-solid fa-check"></i></span> {{ __('front.features.patreon.monthly_vote') }}
                     </li>
                     <li>
-                        <span class="fa-li"><i class="fa-solid fa-check"></i></span> {{ __('front.features.patreon.discord') }}
+                        <span class="fa-li"><i class="fa-solid fa-check"></i></span> {!! __('front.features.patreon.discord', ['discord' => link_to(config('social.discord'), 'Discord', ['target' => '_blank'])]) !!}
                     </li>
                     <li>
                         <span class="fa-li"><i class="fa-solid fa-check"></i></span> {{ __('front.features.patreon.no_ads') }}
@@ -140,7 +140,7 @@
                 <ul class="fa-ul">
                     <li>
                         <span class="fa-li"><i class="fa-solid fa-check"></i></span>
-                        <a href="{{ route('front.pricing', ['#boost']) }}" target="_blank">
+                        <a href="{{ route('front.boosters') }}">
                             <strong>10 {{ __('front.pricing.benefits.boosters') }}</strong>
                         </a>
                     </li>
@@ -151,7 +151,7 @@
                         <span class="fa-li"><i class="fa-solid fa-check"></i></span> {{ __('front.features.patreon.monthly_vote') }}
                     </li>
                     <li>
-                        <span class="fa-li"><i class="fa-solid fa-check"></i></span> {{ __('front.features.patreon.discord') }}
+                        <span class="fa-li"><i class="fa-solid fa-check"></i></span> {!! __('front.features.patreon.discord', ['discord' => link_to(config('social.discord'), 'Discord', ['target' => '_blank'])]) !!}
                     </li>
                     <li>
                         <span class="fa-li"><i class="fa-solid fa-check"></i></span> {{ __('front.features.patreon.no_ads') }}

@@ -22,6 +22,10 @@ body {
 header.masthead {
   background: linear-gradient(to left, #3f44a1, $KankaDarkBlue);
 }
+header.masthead.masthead-half {
+  min-height: 375px;
+  height: 50vh;
+}
 header.masthead-img {
   background-color: $KankaDarkBlue;
   background-image: url(https://images.kanka.io/app/fRvHCH-8nraqMOxYiqN7rOJtq7I=/src/images%2Fbackgrounds%2Fmountain-background-desktop.jpg);
@@ -155,6 +159,64 @@ section {
   background-color: #fff;
 }
 
+.booster-cards {
+  display: grid;
+  gap: 1rem;
+
+  .booster-card {
+    padding: 2rem;
+    border-radius: 1rem;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: linear-gradient(120deg, #729DCB, #7472CB 90%), #72C9CB;
+
+    p {
+      font-size: 1rem;
+    }
+    .img-thumbnail {
+      align-self: center;
+      vertical-align: middle;
+
+      width: 120px;
+      height: 120px;
+      background-color: $KankaBlue;
+      border-color: $KankaBlue;
+
+      i {
+        font-size: 3rem;
+        padding-top: 2rem;
+      }
+    }
+
+    /*&:nth-of-type(odd) {
+      background: linear-gradient(120deg, #2E4ED1, #5F2ED1 90%), #2EA0D1;
+    }*/
+    &:nth-child(2) {
+      background: linear-gradient(120deg, #7472CB, #72CACB 90%), #72CBA1;
+    }
+    &:nth-child(3) {
+      background: linear-gradient(120deg, #72CACB, #729ECB 90%), #72CB75;
+    }
+    &:nth-child(4) {
+      background: linear-gradient(120deg, #729ECB, #72CBA0 90%), #B6D895;
+    }
+    &:nth-child(5) {
+      background: linear-gradient(120deg, #72CBA0, #72CACB 90%), #D8D895;
+    }
+    &:nth-child(6) {
+      background: linear-gradient(120deg, #72CACB, #72CB74 90%), #D8B695;
+    }
+    &:nth-child(7) {
+      background: linear-gradient(120deg, #72CB74, #72CBA1 90%), #D89595;
+    }
+  }
+  .booster-card.centered {
+    grid-column: 2/3;
+  }
+}
+
 @media (min-width: 992px) {
   #mainNav {
     border-color: transparent;
@@ -197,6 +259,10 @@ section {
         }
       }
     }
+  }
+
+  .booster-cards {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 
@@ -327,6 +393,9 @@ h4 {
   a {
     font-size: 28px;
   }
+}
+.py-50 {
+  padding: 50px 0;
 }
 
 section {
@@ -480,9 +549,8 @@ ul.pagination {
   }
 
   hr {
-    margin: 1.5rem 0;
+    margin: 1.25rem auto;
     max-width: 250px;
-    margin: 25px auto;
   }
 
 
@@ -493,7 +561,7 @@ ul.pagination {
     font-weight: bold;
   }
   .card-price {
-    font-size: 3rem;
+    font-size: 2rem;
     margin: 0;
   }
 
@@ -502,7 +570,7 @@ ul.pagination {
   }
 
   ul li {
-    margin-bottom: 1rem;
+    margin-bottom: 0.75rem;
   }
   .text-muted {
     opacity: 0.7;

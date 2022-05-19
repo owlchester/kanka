@@ -2,6 +2,7 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\FullSetup;
 use App\Http\Middleware\PasswordConfirm;
 use App\Http\Middleware\Tracking;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
@@ -81,5 +82,6 @@ class Kernel extends HttpKernel
         'partner' => \App\Http\Middleware\Partner::class,
         'password.confirm' => PasswordConfirm::class,
         'subscriptions' => \App\Http\Middleware\Subscriptions::class,
+        'fullsetup' => FullSetup::class,
     ];
 }

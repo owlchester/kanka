@@ -144,7 +144,7 @@ return [
             'curation'          => 'Aide à l\'établissement des votes communtaires',
             'default_image'     => 'Images par défaut pour les entités',
             'description'       => 'Soutenir Kanka à travers un abonnement débloque pour un compte les fonctionnalités suivantes.',
-            'discord'           => 'Canal Discord privé',
+            'discord'           => 'Canal :discord privé',
             'entities'          => 'Nombre d\'entités qui peuvent être créées dans une campagne',
             'free'              => 'Gratuit',
             'hall_of_fame'      => 'Nom dans la :link',

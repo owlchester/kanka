@@ -24,6 +24,8 @@ class FrontController extends Controller
     {
         $this->patreon = $patreonService;
         $referralService->validate(request());
+
+        $this->middleware('fullsetup', ['except' => 'index']);
     }
 
     /**

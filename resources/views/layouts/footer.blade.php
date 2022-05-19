@@ -38,6 +38,9 @@
                     </li>
                     @if (config('services.stripe.enabled'))
                     <li>
+                        <a href="{{ route('front.boosters') }}">{{ __('footer.boosters') }}</a>
+                    </li>
+                    <li>
                         <a href="{{ route('front.pricing') }}">{{ __('front.menu.pricing') }}</a>
                     </li>
                     @endif

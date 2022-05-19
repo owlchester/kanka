@@ -13,4 +13,5 @@ return [
     'whats-new' => 'What\'s new',
     'blog' => 'Blog',
     'platform' => 'Platform',
+    'boosters' => 'Boosters',
 ];

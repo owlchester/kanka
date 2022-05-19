@@ -18,6 +18,7 @@ Route::get('/newsletter', 'Front\NewsletterController@index')->name('front.newsl
 Route::get('/boosters', [\App\Http\Controllers\FrontController::class, 'boosters'])->name('front.boosters');
 Route::get('/press-kit', [\App\Http\Controllers\FrontController::class, 'pressKit'])->name('front.press-kit');
 Route::get('/security', [\App\Http\Controllers\FrontController::class, 'security'])->name('front.security');
+Route::get('/boosters', [\App\Http\Controllers\FrontController::class, 'boosters'])->name('front.boosters');
 
 Route::get('/kb', 'Front\FaqController@index')->name('front.faqs.index');
 Route::get('/kb/{faq}-{slug?}', 'Front\FaqController@show')->name('front.faqs.show');
