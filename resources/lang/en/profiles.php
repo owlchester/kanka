@@ -4,6 +4,13 @@ return [
     'avatar'                        => [
         'success'   => 'Avatar updated.',
     ],
+    'appearance' => [
+        'helpers' => [
+            'pagination' => 'Change the number of elements displayed in various lists.',
+            'date-format' => 'Control the date format for real date.',
+            'campaign-order' => 'Change the order in which campaigns are listed in the campaign switcher.',
+        ],
+    ],
     'campaign_switcher_order_by'    => [
         'alphabetical'      => 'Alphabetically',
         'date_created'      => 'Date Created',
@@ -22,7 +29,7 @@ return [
     ],
     'fields'                        => [
         'avatar'                    => 'Avatar',
-        'bio'                       => 'Biography',
+        'bio'                       => 'Bio',
         'email'                     => 'Email',
         'hide_subscription'         => 'Hide my name from the :hall_of_fame.',
         'last_login_share'          => 'Share with other campaign members when I last logged in.',
@@ -31,8 +38,12 @@ return [
         'new_password_confirmation' => 'New Password Confirmation',
         'newsletter'                => 'I wish to sometimes be contacted by email.',
         'password'                  => 'Current password',
+        'profile-name'              => 'Profile name',
         'settings'                  => 'Settings',
         'theme'                     => 'Theme',
+    ],
+    'helpers'                       => [
+        'profile-name' => 'Change the way your name appears on your :profile and the :marketplace. If left blank, your account name will be used instead.',
     ],
     'newsletter'                    => [
         'helpers'   => [
@@ -87,7 +98,7 @@ return [
             'default_nested'                => 'Nested Views as Default',
             'editor'                        => 'Text Editor',
             'new_entity_workflow'           => 'New Entity Workflow',
-            'pagination'                    => 'Pagination (elements per page)',
+            'pagination'                    => 'Pagination',
         ],
         'helpers'   => [
             'bio'       => 'The biography is visible on your :link.',
@@ -103,6 +114,7 @@ return [
     ],
     'theme'                         => [
         'success'   => 'Theme changed.',
+        'helper'    => 'A campaign with a set theme will override your preference.',
         'themes'    => [
             'dark'      => 'Dark',
             'default'   => 'Default',

@@ -8,6 +8,7 @@
 
 @section('content')
     @include('partials.errors')
+
     {!! Form::model($user, ['method' => 'PATCH', 'enctype' => 'multipart/form-data', 'route' => ['settings.profile'], 'data-shortcut' => 1]) !!}
     <div class="box box-solid">
         <div class="box-header with-border">
@@ -23,6 +24,17 @@
                         {!! Form::text('name', null, ['placeholder' => __('profiles.placeholders.name'), 'class' => 'form-control']) !!}
                     </div>
 
+                    <div class="form-group">
+                        <label>
+                            {{ __('profiles.fields.profile-name') }}
+                        </label>
+                        {!! Form::text('settings[marketplace_name]', null, ['class' => 'form-control', 'maxlength' => 32]) !!}
+                        <p class="help-block">
+                            {!! __('profiles.helpers.profile-name', [
+    'marketplace' => link_to(config('marketplace.url'), __('front.menu.marketplace'), ['target' => '_blank']),
+    'profile' => link_to_route('users.profile', __('profiles.settings.helpers.profile'), $user, ['target' => '_blank'])]) !!}
+                        </p>
+                    </div>
 
                     <div class="form-group">
                         <label>
@@ -36,9 +48,7 @@
                         </p>
                     </div>
 
-                    <hr />
-
-                    <div class="form-group checkbox">
+                    <div class="form-group checkbox mb-5">
                         <label>
                             {!! Form::hidden('has_last_login_sharing', 0) !!}
                             {!! Form::checkbox('has_last_login_sharing') !!}
@@ -46,7 +56,6 @@
                     </div>
 
                     @if (auth()->user()->isPatron())
-                        <hr />
                         <div class="form-group checkbox">
                             <label>
                                 {!! Form::hidden('settings[hide_subscription]', 0) !!}
@@ -58,20 +67,16 @@
                     @endif
                 </div>
                 <div class="col-md-4 col-md-offset-1">
-                    <label for="avatar"">
+                    <label>
                         {{ __('settings.profile.avatar') }}
                     </label>
                     {!! Form::file('avatar', ['class' => 'image form-group']) !!}
-                    {!! Form::hidden('remove-avatar') !!}
 
                     @if (!empty(auth()->user()->avatar) && auth()->user()->avatar != 'users/default.png')
-                        <div class="preview-v2">
-                            <div class="image" style="background-image: url('{{ auth()->user()->getAvatarUrl(200) }}')">
-                                <a href="#" class="img-delete" data-target="remove-avatar" title="{{ trans('crud.remove') }}">
-                                    <i class="fa-solid fa-trash"></i> {{ trans('crud.remove') }}
-                                </a>
-                            </div>
+                        <div class="rounded-full">
+                            <img class="avatar rounded-full avatar-user" src="{{ auth()->user()->getAvatarUrl(200) }}" width="200" height="200" alt="{{ auth()->user()->name }}">
                         </div>
+
                     @endif
 
                 </div>
@@ -84,52 +89,4 @@
         </div>
     </div>
     {!! Form::close() !!}
-
-    <div class="box box-solid">
-        <div class="box-header with-border">
-            <h3 class="box-title">
-                {{ __('profiles.newsletter.title') }}
-            </h3>
-        </div>
-        <div class="box-body">
-            <p class="help-block">
-             {{ __('profiles.newsletter.helpers.header') }}
-            </p>
-            <div class="form-group checkbox mb-5">
-                <label>
-                    {!! Form::checkbox('mail_newsletter', 1, $user->mail_newsletter) !!}
-                    {{ __('profiles.newsletter.options.monthly') }}
-                </label>
-                <p class="help-block">
-                    {{ __('profiles.newsletter.helpers.monthly') }}
-                </p>
-            </div>
-            <div class="form-group checkbox mb-5">
-                <label>
-                    {!! Form::checkbox('mail_vote', 1, $user->mail_vote) !!}
-                    {!! __('front/community-votes.title') !!}
-                </label>
-
-                <p class="help-block">
-                    {!! __('profiles.newsletter.helpers.community-vote', ['community-vote' => link_to_route('community-votes.index', __('profiles.newsletter.links.community-vote'))]) !!}
-                </p>
-            </div>
-            <div class="form-group checkbox">
-                <label>
-                    {!! Form::checkbox('mail_release', 1, $user->mail_release) !!}
-                    {!! __('profiles.newsletter.options.release') !!}
-                </label>
-                <p class="help-block">
-                    {{ __('profiles.newsletter.helpers.release') }}
-                </p>
-            </div>
-
-            <input type="hidden" id="newsletter-api" value="{{ route('settings.newsletter-api') }}" />
-        </div>
-    </div>
-@endsection
-
-@section('scripts')
-    @parent
-    <script src="{{ mix('js/profile.js') }}" defer></script>
 @endsection

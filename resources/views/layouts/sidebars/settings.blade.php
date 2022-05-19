@@ -22,23 +22,22 @@
             </li>
             <li class="{{ $sidebar->settings('account') }}">
                 <a href="{{ route('settings.account') }}">
-                    <i class="fa-solid fa-key"></i>
+                    <i class="fa-solid fa-cog"></i>
                     {{ __('settings.menu.account') }}
                 </a>
             </li>
-            <li class="{{ $sidebar->settings('layout') }}">
-                <a href="{{ route('settings.layout') }}">
-                    <i class="fa-solid fa-th-large"></i>
-                    {{ __('settings.menu.layout') }}
+            <li class="{{ $sidebar->settings('appearance') }}">
+                <a href="{{ route('settings.appearance') }}">
+                    <i class="fa-solid fa-brush"></i>
+                    {{ __('settings.menu.appearance') }}
                 </a>
             </li>
-            <li class="{{ $sidebar->settings('marketplace') }}">
-                <a href="{{ route('settings.marketplace') }}">
-                    <i class="fa-solid fa-palette"></i>
-                    {{ __('settings.menu.marketplace') }}
+            <li class="{{ $sidebar->settings('notification') }}">
+                <a href="{{ route('settings.notifications') }}">
+                    <i class="fa-solid fa-bell"></i>
+                    {{ __('settings.menu.notifications') }}
                 </a>
             </li>
-
 
             <li class=" ">
                 <span>

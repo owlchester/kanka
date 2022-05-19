@@ -7,7 +7,7 @@ use App\Http\Requests\StoreSettingsLayout;
 use App\Services\PaginationService;
 use Illuminate\Support\Facades\Auth;
 
-class LayoutController extends Controller
+class AppearanceController extends Controller
 {
     protected $service;
 
@@ -38,7 +38,7 @@ class LayoutController extends Controller
     public function update(StoreSettingsLayout $request)
     {
         /** @var \App\User $user */
-        $user = Auth::user();
+        $user = $request->user();
         $user->saveSettings($request->only(['editor', 'default_nested', 'advanced_mentions', 'new_entity_workflow', 'campaign_switcher_order_by']))
             ->update($request->only(['theme', 'default_pagination', 'date_format']));
 
@@ -49,7 +49,7 @@ class LayoutController extends Controller
         }
 
         return redirect()
-            ->route('settings.layout')
+            ->route('settings.appearance')
             ->with('success', __('settings.layout.success'));
     }
 }

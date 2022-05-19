@@ -35,7 +35,7 @@
             </tr>
             <tr>
                 <td class="text">
-                    <a href="#boost">
+                    <a href="{{ route('front.boosters') }}">
                     {{ __('front.features.patreon.boosts') }}
                     </a>
                 </td>

@@ -18,7 +18,7 @@
             <p>
                 {!! __('subscription.benefits.main', [
                     'more' => link_to_route('front.pricing', __('subscription.benefits.more'), '#paid-features', ['target' => '_blank']),
-                    'boosters' => link_to_route('front.pricing', __('subscription.benefits.boosters'), '#boost', ['target' => '_blank']),
+                    'boosters' => link_to_route('front.boosters', __('subscription.benefits.boosters'), '', ['target' => '_blank']),
                     'stripe' => link_to('https://www.stripe.com', 'Stripe', ['target' => '_blank'])
                 ]) !!}
             </p>
@@ -93,7 +93,7 @@
         </div>
         <div class="box-body no-padding">
 
-            <div class="text-center px-3 text-vertical ab-testing-b">
+            <div class="text-center py-5 text-vertical ab-testing-b">
                 <span>{{ __('tiers.periods.monthly') }}</span>
                 <label class="toggle mx-1">
                     <input type="checkbox" name="period">
@@ -362,6 +362,5 @@
 @endsection
 
 @section('styles')
-    <link href="{{ mix('css/app.css') }}" rel="stylesheet">
     <link href="{{ mix('css/subscription.css') }}" rel="stylesheet">
 @endsection

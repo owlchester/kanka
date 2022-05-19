@@ -35,10 +35,15 @@ Route::delete('/patreon-unlink', 'Settings\PatreonController@unlink')
 Route::get('/api', 'Settings\ApiController@index')
     ->name('settings.api');
 
-Route::get('/layout', 'Settings\LayoutController@index')
-    ->name('settings.layout');
-Route::patch('/layout', 'Settings\LayoutController@update')
-    ->name('settings.layout');
+Route::get('/appearance', 'Settings\AppearanceController@index')
+    ->name('settings.appearance');
+Route::patch('/appearance', 'Settings\AppearanceController@update')
+    ->name('settings.appearance.update');
+
+Route::get('/notification', 'Settings\NotificationController@index')
+    ->name('settings.notifications');
+Route::patch('/notification', 'Settings\NotificationController@update')
+    ->name('settings.notifications.save');
 
 Route::get('/subscription', 'Settings\SubscriptionController@index')
     ->name('settings.subscription');
@@ -72,13 +77,13 @@ Route::get('/discord-callback', 'Settings\Apps\DiscordController@callback')
     ->name('settings.discord.callback');
 Route::get('/discord-setup', 'Settings\Apps\DiscordController@seup');
 
-Route::post('newsletter-api', 'Settings\NewsletterApiController@update')
+Route::post('newsletter-api', [\App\Http\Controllers\Settings\NewsletterApiController::class, 'update'])
     ->name('settings.newsletter-api');
 
-Route::get('/marketplace', 'Settings\MarketplaceController@index')
+/*Route::get('/marketplace', 'Settings\MarketplaceController@index')
     ->name('settings.marketplace');
 Route::post('/marketplace', 'Settings\MarketplaceController@save')
-    ->name('settings.marketplace.save');
+    ->name('settings.marketplace.save');*/
 
 // Tutorial
 Route::get('/tutorial/{tutorial}/done/{next?}', 'Settings\TutorialController@done')

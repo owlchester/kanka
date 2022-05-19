@@ -1313,6 +1313,10 @@ summary {
   margin: 0;
 }
 
+.form-group > .help-block {
+  margin-top: 0;
+}
+
 :root {
   --calendar-today: #FFFDE2;
   --calendar-week: #FFFDE2;

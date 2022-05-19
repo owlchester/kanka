@@ -395,7 +395,7 @@
                     <p class="text-muted">
                         {{ __('front/features.boosters.description') }}
                     </p>
-                    <a href="{{ route('front.pricing', '#boost') }}">
+                    <a href="{{ route('front.boosters') }}">
                         <i class="fa-solid fa-chevron-right"></i> {{ __('front/features.boosters.link') }}
                     </a>
                 </div>

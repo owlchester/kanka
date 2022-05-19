@@ -11,6 +11,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  background-image: url(https://images.kanka.io/app/1c6fDq53wSDholuJWNiHMb9zKBQ=/550x120/smart/src/images%2Fbackgrounds%2Fmountain-background-medium.jpg);
 }
 
 .campaign .campaign-name {

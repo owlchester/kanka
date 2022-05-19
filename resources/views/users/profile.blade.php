@@ -1,6 +1,6 @@
 <?php /** @var \App\User $user */?>
 @extends('layouts.front', [
-    'title' => __('users/profile.title', ['name' => $user->name]),
+    'title' => __('users/profile.title', ['name' => $user->displayName()]),
     'skipPerf' => true,
 ])
 
@@ -16,7 +16,7 @@
             <div class="row h-100 my-auto">
                 <div class="col-md-9">
                     <div class="header-content mb-4">
-                        <h1 class="mb-3">{!! $user->name !!}</h1>
+                        <h1 class="mb-3">{!! $user->displayName() !!}</h1>
 
                         @if (!empty($user->profile['bio']))
                             <p class="mb-5 text-justify">

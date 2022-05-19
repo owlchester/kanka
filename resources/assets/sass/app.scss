@@ -700,6 +700,11 @@ summary { display: list-item; }
   }
 }
 
+// Helper block in forms, closer to field
+.form-group > .help-block {
+  margin-top: 0;
+}
+
 // Other stylings
 @import "calendar";
 @import "tooltip";

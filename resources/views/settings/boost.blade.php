@@ -36,7 +36,7 @@
     __('settings/boosters.benefits.boosted', [
         'one' => '<code>1</code>',
         'marketplace' => link_to('//marketplace.kanka.io', __('front.menu.marketplace'), ['target' => '_blank']),
-        'more' => link_to_route('front.pricing', __('settings/boosters.benefits.more'), ['#boost'], ['target' => '_blank'])
+        'more' => link_to_route('front.boosters', __('settings/boosters.benefits.more'), null, ['target' => '_blank'])
 ]) !!}</p>
                 </div>
             </div>
@@ -52,7 +52,7 @@
                     <p>{!!
     __('settings/boosters.benefits.superboosted', [
         'amount' => '<code>3</code>',
-        'more' => link_to_route('front.pricing', __('settings/boosters.benefits.more'), ['#boost'], ['target' => '_blank'])
+        'more' => link_to_route('front.boosters', __('settings/boosters.benefits.more'), null, ['target' => '_blank'])
 ]) !!}</p>
                 </div>
             </div>
@@ -79,7 +79,7 @@
                     <div class="col-md-6">
                         <div class="campaign boost" @if ($campaign->image) style="background-image: url('{{ Img::crop(500, 200)->url($campaign->image) }}');" @endif>
                             <div class="actions">
-                                <a href="{{ url(App::getLocale() . '/' . $campaign->getMiddlewareLink()) }}" class="campaign-name">
+                                <a href="{{ url(app()->getLocale() . '/' . $campaign->getMiddlewareLink()) }}" class="campaign-name">
                                     {!! $campaign->name !!}
                                 </a>
 
@@ -115,7 +115,7 @@
                     <div class="col-md-6 mb-5">
                         <div class="campaign" @if ($boost->campaign->image) style="background-image: url('{{ Img::crop(500, 200)->url($boost->campaign->image) }}');" @endif>
                             <div class="actions">
-                                <a href="{{ url(App::getLocale() . '/' . $boost->campaign->getMiddlewareLink()) }}" class="campaign-name">
+                                <a href="{{ url(app()->getLocale() . '/' . $boost->campaign->getMiddlewareLink()) }}" class="campaign-name">
                                     {!! $boost->campaign->name !!}
                                 </a>
 
@@ -148,12 +148,13 @@
                         <div class="col-md-6 mb-5">
                             <div class="campaign" @if ($userCampaign->image) style="background-image: url('{{ Img::crop(500, 200)->url($userCampaign->image) }}');" @endif>
                                 <div class="actions">
-                                    <a href="{{ url(App::getLocale() . '/' . $userCampaign->getMiddlewareLink()) }}" class="campaign-name">
+                                    <a href="{{ url(app()->getLocale() . '/' . $userCampaign->getMiddlewareLink()) }}" class="campaign-name">
                                         {!! $userCampaign->name !!}
                                     </a>
 
                                     @if(auth()->user()->availableBoosts() > 0)
                                         {!! Form::open(['route' => 'campaign_boosts.store']) !!}
+
                                         <button type="submit" class="btn btn-primary boost" name="action" value="boost" title="{{ __('settings.boost.buttons.tooltips.boost', ['amount' => 1]) }}" data-toggle="tooltip">
                                             <i class="fa-solid fa-rocket"></i> {{ __('settings.boost.buttons.boost') }}
                                         </button>

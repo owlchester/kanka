@@ -50,14 +50,14 @@ if ($attribute->isSection()) {
         </div>
         <div class="col-xs-5 col-sm-4 col-md-3 col-lg-2">
             {!! Form::hidden('attr_is_star[' . $id . ']', $attribute->is_star) !!}
-            <i class="fa-star mr-2 @if($attribute->is_star) fas @else far @endif fa-2x" data-toggle="star" data-tab="{{ __('entities/attributes.visibility.tab') }}" data-entry="{{ __('entities/attributes.visibility.entry') }}" title="@if($attribute->is_star) {{ __('entities/attributes.visibility.entry') }} @else  {{ __('entities/attributes.visibility.tab') }} @endif"></i>
+            <i class="fa-star mr-2 @if($attribute->is_star) fa-solid @else fa-regular @endif fa-2x" data-toggle="star" data-tab="{{ __('entities/attributes.visibility.tab') }}" data-entry="{{ __('entities/attributes.visibility.entry') }}" title="@if($attribute->is_star) {{ __('entities/attributes.visibility.entry') }} @else  {{ __('entities/attributes.visibility.tab') }} @endif"></i>
 
 {{--            {!! Form::hidden('attr_is_editable[' . $id . ']', $attribute->is_editable) !!}--}}
 {{--            <i class="fa-edit mr-2 @if($attribute->is_editable) fas @else far @endif fa-2x" data-toggle="star" data-tab="{{ __('entities/attributes.editable.false') }}" data-entry="{{ __('entities/attributes.editable.true') }}" title="@if($attribute->is_editable) {{ __('entities/attributes.editable.true') }} @else  {{ __('entities/attributes.editable.false') }} @endif"></i>--}}
 
             @if ($isAdmin)
             {!! Form::hidden('attr_is_private[' . $id . ']', $attribute->is_private) !!}
-            <i class="fa @if($attribute->is_private) fa-lock @else fa-unlock-alt @endif fa-2x" data-toggle="private" data-private="{{ __('entities/attributes.visibility.private') }}" data-public="{{ __('entities/attributes.visibility.public') }}"></i>
+            <i class="fa-solid @if($attribute->is_private) fa-lock @else fa-unlock-alt @endif fa-2x" data-toggle="private" data-private="{{ __('entities/attributes.visibility.private') }}" data-public="{{ __('entities/attributes.visibility.public') }}"></i>
             @endif
             @if (!isset($model) || auth()->user()->can('attribute', [$model, 'delete']))
                 <a class="text-danger attribute_delete pull-right" title="{{ __('crud.remove') }}">
