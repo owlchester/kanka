@@ -171,7 +171,7 @@ function initConfirmListener() {
     e.preventDefault();
     formSubmitBtn.addClass('disabled');
     formSubmitBtn.find('span').hide();
-    formSubmitBtn.find('spinner').show();
+    formSubmitBtn.find('.spinner').show();
     var intentToken = $('input[name="subscription-intent-token"]');
     var errorMessage = $('.alert-danger');
     errorMessage.hide(); // If the form already has a payment id, we don't need stripe to add the new one
@@ -204,8 +204,7 @@ function initConfirmListener() {
     }.bind(this));
   });
   $('.subscription-form').submit(function (e) {
-    formSubmitBtn.addClass('disabled').find('span').hide();
-    formSubmitBtn.find('i').show();
+    formSubmitBtn.addClass('disabled').find('span').hide().parent().find('.spinner').show();
     return true;
   });
   couponBtn = $('#coupon-check-btn');
