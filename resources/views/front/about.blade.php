@@ -13,16 +13,16 @@
 
     <section class="team" id="team">
         <div class="container">
-            <div class="section-body">
+            <div class="section-body text-center">
                 <div class="mb-5">
-                    <h1 class="display-4">{{ __('front.about.title', ['kanka' => config('app.name')]) }}</h1>
-                    <p class="lead">{{ __('front.about.description', ['kanka' => config('app.name')]) }}</p>
+                    <h1>{{ __('teams.index.lead', ['kanka' => config('app.name')]) }}</h1>
+                    <p class="lead">{{ __('teams.leads.about') }}</p>
                 </div>
 
-                <h2>{{ __('teams.index.title') }}</h2>
+                <h2 class="mb-3">{{ __('teams.index.title') }}</h2>
 
                 <div class="row equal text-center">
-                    <div class="col-xl-4 col-md-6 col-12 mb-4">
+                    <div class="col-xl-4 col-md-6 col-12 mb-4 offset-2">
                         <div class="bg-white rounded shadow-sm py-5 px-4 fullheight hover-focus">
                             <img class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm" src="https://images.kanka.io/app/rBQO54fZWQxOyJ1yAOrnP0_2qxs=/200x200/smart/src/images%2Fteam%2Fjay.jpg" alt="Jay" width="200">
                             <h5 class="mb-0">Jay</h5>
@@ -52,6 +52,7 @@
         <div class="container">
             <div class="section-body">
                 <h2>{{ __('teams.index.community') }}</h2>
+                <p class="lead">{{ __('teams.leads.community') }}</p>
                 <div class="row text-center">
                     <div class="col-xl-3 col-md-4 col-6 mb-4">
                         <div class="bg-white rounded shadow-sm py-5 px-4 fullheight hover-focus">
@@ -77,12 +78,20 @@
     <section class="translators" id="translators">
         <div class="container">
             <div class="section-body">
+                <div class="mb-5">
+                <h2>{{ __('teams.index.translations') }}</h2>
+
+                <p class="lead">{!! __('teams.leads.translators') !!}</p>
+                </div>
+
                 <div class="row">
-                    <div class="col-12 my-auto">
-                        <h2>{{ __('teams.index.translations') }}</h2>
-
-                        <p class="">{!! __('teams.translators.description') !!}</p>
-
+                    <div class="col-12 col-md-6">
+                        <p>
+                            <strong>{{ __('languages.codes.en') }}, {{ __('languages.codes.fr') }}</strong>: Kanka Team
+                        </p>
+                        <p>
+                            <strong>{{ __('languages.codes.pt-BR') }}</strong>: Mire, JP, Republik, Elminster Aumar
+                        </p>
                         <p>
                             <strong>{{ __('languages.codes.de') }}</strong>: TheFurya, Yanila, Thogrim, Xoltax
                         </p>
@@ -90,50 +99,34 @@
                             <strong>{{ __('languages.codes.es') }}</strong>: Helionking, Raigho
                         </p>
                         <p>
-                            <strong>{{ __('languages.codes.ca') }}</strong>: Helionking
+                            <strong>{{ __('languages.codes.it') }}</strong>: TaoTrooper, VolpeNera, Dreadino, Arroagantes
                         </p>
-                        <p>
-                            <strong>{{ __('languages.codes.it') }}</strong>: Dreadino, Arroagantes, VolpeNera
-                        </p>
-                        <p>
-                            <strong>{{ __('languages.codes.hu') }}</strong>: Kildar, Orkogo, orwen89
-                        </p>
-                        <p>
-                            <strong>{{ __('languages.codes.pt-BR') }}</strong>: Mire, JP, Republik, Elminster Aumar
-                        </p>
-                        <p>
-                            <strong>{{ __('languages.codes.hr') }}</strong>: Blaze
-                        </p>
-                        <p>
-                            <strong>{{ __('languages.codes.gl') }}</strong>: Daenvil
-                        </p>
+                    </div>
+                    <div class="col-12 col-md-6">
+
                         <p>
                             <strong>{{ __('languages.codes.ru') }}</strong>: Ilia
                         </p>
-                        <p>
-                            <strong>{{ __('languages.codes.sk') }}</strong>: Babcom
-                        </p>
-                        {{--<p>
-                            <strong>{{ __('languages.codes.el') }}</strong>: Charalampos Koundourakis
-                        </p>
-                        <p>
-                            <strong>{{ __('languages.codes.tr') }}</strong>: Lxran
-                        </p>
-                        <p>
-                            <strong>{{ __('languages.codes.gl') }}</strong>: Daenvil
-                        </p>
-                        <p>
-                            <strong>{{ __('languages.codes.nb') }}</strong>: bigboi
-                        </p>--}}
                         <p>
                             <strong>{{ __('languages.codes.pl') }}</strong>: <a href="{{ route('front.partners') }}">Gramel Books</a>
                         </p>
                         <p>
                             <strong>{{ __('languages.codes.nl') }}</strong>: ThatChickenGuy
                         </p>
-
                         <p>
-                            <strong>{{ __('languages.codes.fr') }}</strong>: Ilestis
+                            <strong>{{ __('languages.codes.ca') }}</strong>: Helionking
+                        </p>
+                        <p>
+                            <strong>{{ __('languages.codes.hu') }}</strong>: Kildar, Orkogo, orwen89
+                        </p>
+                        <p>
+                            <strong>{{ __('languages.codes.sk') }}</strong>: Babcom
+                        </p>
+                        <p>
+                            <strong>{{ __('languages.codes.hr') }}</strong>: Blaze
+                        </p>
+                        <p>
+                            <strong>{{ __('languages.codes.gl') }}</strong>: Daenvil
                         </p>
                     </div>
                 </div>

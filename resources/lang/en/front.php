@@ -2,7 +2,6 @@
 
 return [
     'about'                 => [
-        'description'   => ':kanka was born out of the desire of a passionate tabletop RPG player who wanted to build and manage a world with his players. After trying out a few available options and concluding that none of them fit quite right, development on :kanka started in the fall of 2017.',
         'title'         => 'About',
     ],
     'campaigns'             => [

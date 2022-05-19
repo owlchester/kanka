@@ -18,10 +18,11 @@ footer {
   padding-bottom: 30px;
 
   .grid {
-    max-width: 950px;
+    max-width: 1140px;
     .cell {
       h5 {
         font-size: 1.5rem;
+        font-weight: 500;
         padding: 0.5rem 0;
       }
       overflow: hidden;
@@ -45,16 +46,13 @@ footer {
     padding: 0;
 
     li {
-      padding: 0.25rem 0;
+      padding: 0.4rem 0;
       font-weight: 400;
-      font-size: 0.875rem;
+      font-size: 1.3rem;
       line-height: 1.3;
 
       a {
-        font-size: 1.25rem;
-        width: 100%;
         word-break: break-all;
-        display: block;
 
         &:hover {
           transition: all 0.2s ease;

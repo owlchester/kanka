@@ -87,7 +87,7 @@
 
 <section class="error" id="error-{{ $error }}">
     <div class="container">
-        <div class="section-body">
+        <div class="section-body text-center">
             <h1 class="display-4" id="{{ $error }}">{{ __('errors.' . $error . '.title') }}</h1>
             @if (is_array(__('errors.' . $error . '.body')))
                 @foreach (__('errors.' . $error . '.body') as $text)

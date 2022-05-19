@@ -15,7 +15,7 @@
     @endads
 
     <div class="footer-links">
-        <div class="grid grid-cols-2 md:grid-cols-5">
+        <div class="grid gap-2 grid-cols-2 md:grid-cols-5">
             <div class="col-span-2 md:col-auto text-center">
                 <a href="{{ route('home') }}" class="logo mb-5">
                     @if(\App\Facades\Img::nowebp())

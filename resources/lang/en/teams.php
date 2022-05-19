@@ -3,6 +3,7 @@
 return [
     'hall_of_fame'  => 'Hall of Fame',
     'index'         => [
+        'lead' => 'Making worldbuilding fun and reliable',
         'community'     => 'Community',
         'core'          => 'Core',
         'description'   => 'These people make Kanka possible',
@@ -39,7 +40,9 @@ TEXT
             'title' => 'OG Community Member',
         ],
     ],
-    'translators' => [
-        'description' => 'Kanka is translated to several languages thanks to these amazing contributors.',
+    'leads' => [
+        'about' => 'Kanka was born out of a frustration with worldbuilding and session notes scattered in various tools, and the difficulty of easily sharing that content with players.',
+        'translators' => 'Kanka is translated to several languages thanks to these amazing contributors.',
+        'community' => 'Community has been part of our DNA from day one. Special shoutout to these community members!'
     ]
 ];

@@ -60,7 +60,7 @@
 
 <section class="error" id="error-503">
     <div class="container">
-        <div class="section-body">
+        <div class="section-body text-center">
             <h1 class="display-4" id="maintenance">{{ __('errors.503.title') }}</h1>
 
             <p class="lead">{{ __('errors.503.body.1') }}</p>

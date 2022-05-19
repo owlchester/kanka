@@ -206,8 +206,8 @@ footer {
   ul {
     li {
       a {
-        font-size: 0.825rem !important;
-        width: 100%;
+        font-size: 0.9rem !important;
+        display: block;
         color: #181414;
         border-radius: 5px;
         padding: 0.25rem 0.5rem;
@@ -237,12 +237,12 @@ footer {
 
     .section {
       text-transform: uppercase;
-      font-size: 1rem;
+      font-size: 1.0rem;
+      font-weight: 500;
       padding: 0.25rem 0.5rem;
     }
     ul > li {
       margin: 0;
-      padding-top: 0.25rem;
       padding-bottom: 0.25rem;
       font-weight: 400;
       font-size: 0.875rem;
