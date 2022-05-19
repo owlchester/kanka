@@ -24,7 +24,7 @@
                     <div class="container-fluid text-justify">
                         <p>{{ __('front/features/maps.first') }}</p>
 
-                        <img src="/images/features/maps_setup.png" alt="Kanka map setup" class="m-2" style="max-width: 100%" />
+                        <img src="/images/features/maps_setup.png" alt="Kanka map setup" class="m-2" style="max-width: 100%" loading="lazy" />
 
                         <p>{{ __('front/features/maps.second') }}</p>
                         <p>{{ __('front/features/maps.third') }}</p>
@@ -39,7 +39,7 @@
     'boosted_campaigns' => link_to_route('front.pricing', __('crud.boosted_campaigns'), '#boost')
 ]) !!}</p>
 
-                        <img src="/images/features/maps.png" alt="Kanka map" class="m-2" style="max-width: 100%" />
+                        <img src="/images/features/maps.png" alt="Kanka map" class="m-2" style="max-width: 100%" loading="lazy" />
 
                     </div>
                 </div>

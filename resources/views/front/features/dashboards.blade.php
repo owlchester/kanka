@@ -28,7 +28,7 @@
                         <p>{{ __('front/features/dashboards.second') }}</p>
 
                         <div class="text-center">
-                            <img src="/images/features/dashboards_setup.png" alt="Kanka dashboard setup" class="mb-5" style="max-width: 100%" />
+                            <img src="/images/features/dashboards_setup.png" alt="Kanka dashboard setup" class="mb-5" style="max-width: 100%" loading="lazy" />
                         </div>
 
                         <p>{!! __('front/features/dashboards.third', [
@@ -38,7 +38,7 @@
     ]) !!}</p>
 
                         <div class="text-center">
-                            <img src="/images/features/dashboards_edit.png" alt="Kanka dashboard edit" class="mb-5" style="max-width: 100%" />
+                            <img src="/images/features/dashboards_edit.png" alt="Kanka dashboard edit" class="mb-5" style="max-width: 100%" loading="lazy" />
                         </div>
 
                         <p>{!! __('front/features/dashboards.fourth') !!}</p>

@@ -25,7 +25,7 @@
                         <p>{{ __('front/features/secrets.first') }}</p>
 
                         <div class="text-center">
-                        <img src="/images/features/secrets.png" alt="Kanka secrets" class="mb-5" style="max-width: 100%" />
+                        <img src="/images/features/secrets.png" alt="Kanka secrets" class="mb-5" style="max-width: 100%" loading="lazy" />
                         </div>
 
                         <p>{{ __('front/features/secrets.second') }}</p>
@@ -34,7 +34,7 @@
                         <p>{!! __('front/features/secrets.fourth') !!}</p>
 
                         <div class="text-center">
-                        <img src="/images/features/secrets_pinned.png" alt="Kanka secrets pinned" class="mb-5" style="max-width: 100%" />
+                        <img src="/images/features/secrets_pinned.png" alt="Kanka secrets pinned" class="mb-5" style="max-width: 100%" loading="lazy" />
                         </div>
 
                     </div>

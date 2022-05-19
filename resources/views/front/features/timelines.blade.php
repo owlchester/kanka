@@ -24,7 +24,7 @@
                     <div class="container-fluid text-justify">
                         <p>{{ __('front/features/timelines.first') }}</p>
 
-                        <img src="/images/features/timelines_standard.png" alt="Kanka timeline" class="m-2" style="max-width: 100%" />
+                        <img src="/images/features/timelines_standard.png" alt="Kanka timeline" class="m-2" style="max-width: 100%" loading="lazy" />
 
                         <p>{{ __('front/features/timelines.second') }}</p>
                         <p>{{ __('front/features/timelines.third') }}</p>
@@ -35,7 +35,7 @@
 ]) !!}</p>
 
 
-                        <img src="/images/features/timelines_boosted.png" alt="Kanka timeline boosted" class="m-2" style="max-width: 100%" />
+                        <img src="/images/features/timelines_boosted.png" alt="Kanka timeline boosted" class="m-2" style="max-width: 100%" loading="lazy" />
 
                     </div>
                 </div>

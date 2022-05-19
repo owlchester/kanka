@@ -25,7 +25,7 @@
                         <p>{{ __('front/features/relations.first') }}</p>
 
                         <div class="text-center">
-                        <img src="/images/features/relations.jpg" alt="Kanka relations" class="mb-5" style="max-width: 100%" />
+                        <img src="/images/features/relations.jpg" alt="Kanka relations" class="mb-5" style="max-width: 100%" loading="lazy" />
                         </div>
 
                         <p>{{ __('front/features/relations.second') }}</p>
@@ -36,7 +36,7 @@
 ]) !!}</p>
 
                         <div class="text-center">
-                        <img src="/images/features/relation-explorer.jpg" alt="Kanka relation explorer" class="mb-5" style="max-width: 100%" />
+                        <img src="/images/features/relation-explorer.jpg" alt="Kanka relation explorer" class="mb-5" style="max-width: 100%" loading="lazy" />
                         </div>
 
                     </div>
