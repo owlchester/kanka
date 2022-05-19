@@ -184,12 +184,13 @@ section {
 
       width: 120px;
       height: 120px;
-      background-color: $KankaBlue;
-      border-color: $KankaBlue;
+      background-color: $KankaIconLight;
+      border: 5px solid white;
+      padding: 0;
 
       i {
         font-size: 3rem;
-        padding-top: 2rem;
+        padding-top: 1.9rem;
       }
     }
 

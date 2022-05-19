@@ -201,13 +201,14 @@ section {
   vertical-align: middle;
   width: 120px;
   height: 120px;
-  background-color: #112B6B;
-  border-color: #112B6B;
+  background-color: #95B5D8;
+  border: 5px solid white;
+  padding: 0;
 }
 
 .booster-cards .booster-card .img-thumbnail i {
   font-size: 3rem;
-  padding-top: 2rem;
+  padding-top: 1.9rem;
 }
 
 .booster-cards .booster-card:nth-child(2) {
