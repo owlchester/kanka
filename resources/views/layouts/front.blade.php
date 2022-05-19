@@ -147,32 +147,10 @@
                 <li class="nav-item">
                     <a class="nav-link @if(!empty($active) && $active == 'public-campaigns') nav-active @endif" href="{{ route("front.public_campaigns") }}">{{ __('front.menu.campaigns') }}</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link @if(!empty($active) && $active == 'contact') nav-active @endif" href="{{ route("front.contact") }}">{{ __('front.menu.contact') }}</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle @if(!empty($active) && $active == 'about') nav-active @endif" href="#"  id="navbarDropAbout" role="button" aria-expanded="false" data-toggle="dropdown" aria-haspopup="true">
-                        {{ __('front.menu.about') }} <span class="caret"></span>
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropAbout">
-                        <a href="{{ route('front.about') }}" class="dropdown-item">
-                            {{ __('teams.index.title') }}
-                        </a>
-
-                        <a href="{{ route('front.hall-of-fame') }}" class="dropdown-item">
-                            {{ __('front/hall-of-fame.title') }}
-                        </a>
-
-                        <div class="dropdown-divider"></div>
-
-                        <a href="https://blog.kanka.io" class="dropdown-item" target="_blank" rel="noopener noreferrer">
-                            {{ __('front.menu.news') }} <i class="fa-solid fa-external-link"></i>
-                        </a>
-                    </div>
-                </li>
 
                 <li class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" id="navbarDropLocale" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        <i class="fa-solid fa-language" aria-hidden="true"></i>
                         {{ LaravelLocalization::getCurrentLocaleNative() }} <span class="caret"></span>
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropLocale">
