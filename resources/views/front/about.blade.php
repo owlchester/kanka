@@ -81,7 +81,7 @@
                     <div class="col-12 my-auto">
                         <h2>{{ __('teams.index.translations') }}</h2>
 
-                        <p class="text-muted">{!! __('footer.translator_call', ['discord' => link_to(config('discord.url'), 'Discord', ['target' => '_blank'])]) !!}</p>
+                        <p class="">{!! __('teams.translators.description') !!}</p>
 
                         <p>
                             <strong>{{ __('languages.codes.de') }}</strong>: TheFurya, Yanila, Thogrim, Xoltax

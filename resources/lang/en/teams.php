@@ -39,4 +39,7 @@ TEXT
             'title' => 'OG Community Member',
         ],
     ],
+    'translators' => [
+        'description' => 'Kanka is translated to several languages thanks to these amazing contributors.',
+    ]
 ];
