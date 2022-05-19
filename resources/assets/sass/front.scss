@@ -23,8 +23,8 @@ header.masthead {
   background: linear-gradient(to left, #3f44a1, $KankaDarkBlue);
 }
 header.masthead.masthead-half {
-  min-height: 375px;
-  height: 50vh;
+  height: unset;
+  min-height: 0;
 }
 header.masthead-img {
   background-color: $KankaDarkBlue;

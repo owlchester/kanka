@@ -15,8 +15,19 @@
                     <h1 class="display-4 mt-5">{{ __('front/boosters.title') }}</h1>
                 </div>
                 <div class="col-12 col-md-7">
-                    <div class="text-left">
+                    <div class="text-left mb-5 pb-5">
                         <p class="lead">{{ __('front/boosters.description', ['kanka' => config('app.name')]) }}</p>
+
+
+                        @auth
+                            <a href="{{ route('settings.subscription') }}" class="my-2 btn btn-primary btn-lg text-uppercase rounded px-3 py-2">
+                                {!! __('front/boosters.starting', ['amount' => '5.<sup>00</sup>']) !!}
+                            </a>
+                        @else
+                            <a href="{{ route('front.pricing') }}" class="my-2 btn btn-primary btn-lg text-uppercase rounded px-3">
+                                {!! __('front/boosters.starting', ['amount' => '5.<sup>00</sup>']) !!}
+                            </a>
+                        @endauth
                     </div>
                 </div>
             </div>

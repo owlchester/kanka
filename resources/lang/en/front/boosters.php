@@ -8,7 +8,8 @@ return [
         'go-to-sub' => 'Take me to the subscription page'
     ],
     'title' => 'Campaign Boosters',
-    'description' => 'Unlock advanced features for your Kanka campaigns for a small monthly cost. Experience Kanka ad-free, enjoy larger file uploads, customise the look and feel of your campaigns, and more.',
+    'description' => 'Unlock advanced features for your Kanka campaigns for a small monthly cost. Customise the look and feel of a campaign, make the campaign ad-free and enjoy larger file uploads for all campaign members, and more.',
+    'starting' => 'Starting at USD :amount per month',
     'boost' => [
         'title' => 'Campaign boosters take your Kanka experience to the next level',
         'description' => 'When a campaign gets boosted by one or more boosters, the following improvements gets unlocked for all members of the campaign.',
