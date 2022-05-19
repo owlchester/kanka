@@ -75,44 +75,57 @@ $currentCampaign = CampaignLocalization::getCampaign();
 
                 @auth()
 
-                <li class="dropdown nav-user-menu">
+                <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" title="{{ auth()->user()->name }}">
                         <img src="{{ auth()->user()->getAvatarUrl() }}" class="user-image h-16 w-16 rounded-full" alt="{{ __('header.avatar') }}"/>
                     </a>
                     <ul class="dropdown-menu">
-                        <li class="px-20 py-5 text-center">
-                            <a href="{{ route('users.profile', auth()->user()) }}" class="profile-avatar-link mb-5">
-                                <img src="{{ auth()->user()->getAvatarUrl(150) }}" class="avatar rounded-2xl" alt="{{ __('header.avatar') }}" />
-                            </a>
-                            <p>
-                                <a href="{{ route('users.profile', auth()->user()) }}">{{ auth()->user()->name }}</a>
-                            </p>
-                            <small title="{{ auth()->user()->created_at }}">
-                                {{ __('header.member_since', ['date' => auth()->user()->created_at->diffForHumans()]) }}
-                            </small>
-                        </li>
-                        <li class="p-2">
-                            @if (auth()->user()->hasCampaigns())
-                            <div class="pull-left">
-                                <a href="{{ route('settings.profile') }}" class="btn btn-default btn-flat"> {{ __('header.profile') }}</a>
-                            </div>
-                            @endif
-                            <div class="pull-right">
-                                @if (\App\Facades\Identity::isImpersonating())
 
-                                    <a href="{{ route('identity.back') }}" class="btn btn-default btn-flat switch-back">
-                                        <i class="fa-solid fa-sign-out-alt"></i> {{ __('campaigns.members.actions.switch-back') }}
-                                    </a>
-                                @else
-                                <a href="{{ route('logout') }}" class="btn btn-default btn-flat" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                    {{ __('header.logout') }}
+                        @if (\App\Facades\Identity::isImpersonating())
+                            <li>
+                                <a href="{{ route('users.profile', auth()->user()) }}">
+                                    {!! __('header.user.impersonating', ['user' => '<strong>' . auth()->user()->name . '</strong>']) !!}
+                                </a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="{{ route('identity.back') }}" class="switch-back">
+                                    <i class="fa-solid fa-sign-out-alt"></i> {{ __('campaigns.members.actions.switch-back') }}
+                                </a>
+                            </li>
+                        @else
+                            <li>
+                                <a href="{{ route('users.profile', auth()->user()) }}">
+                                    {!! __('header.user.signed-in', ['user' => '<strong>' . auth()->user()->name . '</strong>']) !!}
+                                </a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="{{ route('users.profile', auth()->user()) }}">
+                                    {{ __('header.user.your-profile') }}
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('settings.profile') }}">
+                                    {{ __('header.user.settings') }}
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('settings.subscription') }}">
+                                    {{ __('settings.menu.subscription') }}
+                                </a>
+                            </li>
+                            <li class="divider"></li>
+                            <li class="text-red">
+                                <a href="{{ route('logout') }}" class="" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                    <i class="fa-solid fa-sign-out" aria-hidden="true"></i>
+                                    {{ __('header.user.sign-out') }}
                                 </a>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                     {{ csrf_field() }}
                                 </form>
-                                @endif
-                            </div>
-                        </li>
+                            </li>
+                        @endif
                     </ul>
                 </li>
                 @endauth

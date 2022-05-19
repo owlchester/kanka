@@ -27,5 +27,5 @@ return [
         'json'  => 'Kanka is currently under maintenance, please try again in a few minutes.',
         'title' => 'Maintenance',
     ],
-    'footer'    => 'If you need further assistance, please contact us at hello@kanka.io or on the :discord',
+    'footer'    => 'If you need further assistance, please contact us at :email or on the :discord',
 ];

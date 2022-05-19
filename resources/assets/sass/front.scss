@@ -11,12 +11,13 @@ $KankaBlue: $KankaLogo;
 $KankaDarkBlue: #08083c;
 $KankaGrey: #EDEDED;
 $KankaGold: #9E9740;
+$KankaFooter: #eee;
 
 html {
   scroll-behavior: smooth;
 }
 body {
-  background-color: #222;
+  background-color: $KankaFooter;
 }
 header.masthead {
   background: linear-gradient(to left, #3f44a1, $KankaDarkBlue);
@@ -200,7 +201,7 @@ section {
 }
 
 footer {
-  background-color: #eee; //$KankaDarkBlue;
+  background-color: $KankaFooter; //$KankaDarkBlue;
   color: #181414;
 
   ul {

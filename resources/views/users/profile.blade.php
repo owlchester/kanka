@@ -37,7 +37,7 @@
                             </a>
                         @endif
 
-                        @if (auth()->check() && auth()->user()->id === $user->id)
+                        @if (auth()->check() && !\App\Facades\Identity::isImpersonating() && auth()->user()->id === $user->id)
                             <a href="{{ route('settings.profile') }}" target="_blank" title="{{ __('crud.edit') }}" data-toggle="tooltip">
                                 <i class="fa-solid fa-pencil"></i> {{ __('settings.profile.actions.update_profile') }}
                             </a>

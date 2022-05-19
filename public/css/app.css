@@ -689,25 +689,6 @@ img.profile-user-img {
   margin: 0;
 }
 
-.navbar-nav .user-menu a.dropdown-toggle {
-  height: 50px;
-}
-
-.navbar-nav .user-menu .dropdown-menu > li.user-header a > img {
-  z-index: 5;
-  height: 90px;
-  width: 90px;
-}
-
-.navbar-nav .user-menu .dropdown-menu > li.user-header a {
-  display: inline;
-  background: none;
-}
-
-.navbar-nav .user-menu .dropdown-menu > li.user-header a:hover {
-  background: none;
-}
-
 .navbar-nav .dropdown-menu > .notification-footer a {
   display: inline-block;
   padding: 3px 5px;

@@ -33,6 +33,8 @@
 
     <!-- Bootstrap core CSS -->
     <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    @if (!config('fontawesome.kit'))<link href="/vendor/fontawesome/6.0.0/css/all.min.css" rel="stylesheet">@endif
+
 </head>
 
 <body id="page-top">
@@ -88,19 +90,25 @@
 <section class="error" id="error-{{ $error }}">
     <div class="container">
         <div class="section-body text-center">
-            <h1 class="display-4" id="{{ $error }}">{{ __('errors.' . $error . '.title') }}</h1>
-            @if (is_array(__('errors.' . $error . '.body')))
-                @foreach (__('errors.' . $error . '.body') as $text)
-                    <p class="lead">{{ $text }}</p>
-                @endforeach
-            @else
-                <p class="lead">{{ __('errors.' . $error . '.body') }}</p>
-            @endif
+            <div class="row">
+                <div class="col-12 col-md-8 offset-md-2">
+                    <h1 class="display-4" id="{{ $error }}">{{ __('errors.' . $error . '.title') }}</h1>
+                    @if (is_array(__('errors.' . $error . '.body')))
+                        @foreach (__('errors.' . $error . '.body') as $text)
+                            <p class="lead">{{ $text }}</p>
+                        @endforeach
+                    @else
+                        <p class="lead">{{ __('errors.' . $error . '.body') }}</p>
+                    @endif
 
 
-            <p>{!! __('errors.footer', ['discord' => link_to(config('social.discord'), 'Discord')]) !!}</p>
+                    <p>{!! __('errors.footer', [
+    'discord' => link_to(config('social.discord'), 'Discord'),
+     'email' => link_to('mailto:' . config('app.email'), config('app.email'))]) !!}</p>
 
-            <p><a href="/">{{ __('dashboard.setup.actions.back_to_dashboard') }}</a>.</p>
+                    <p><a href="/{{ app()->getLocale() }}" class="btn btn-outline-primary px-4">{{ __('dashboard.setup.actions.back_to_dashboard') }}</a></p>
+                </div>
+            </div>
         </div>
 
     </div>
@@ -156,5 +164,8 @@
             }
         })});
 </script>
+@if (config('fontawesome.kit'))
+    <script src="https://kit.fontawesome.com/{{ config('fontawesome.kit') }}.js" crossorigin="anonymous"></script>
+@endif
 </body>
 </html>

@@ -27,5 +27,5 @@ return [
         'title' => 'Mantenimiento',
     ],
     '503-form'  => [],
-    'footer'    => 'Si necesitas más asistencia, contáctanos en hello@kanka.io o en :discord',
+    'footer'    => 'Si necesitas más asistencia, contáctanos en :email o en :discord',
 ];

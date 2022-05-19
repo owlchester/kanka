@@ -85,27 +85,6 @@ img.profile-user-img {
 }
 
 .navbar-nav {
-  .user-menu {
-    // Because adminlte is stupid
-    a.dropdown-toggle {
-      height: 50px;
-    }
-    .dropdown-menu > li.user-header {
-      a > img {
-        z-index: 5;
-        height: 90px;
-        width: 90px;
-      }
-      a {
-        display: inline;
-        background: none;
-        &:hover {
-          background: none;
-        }
-      }
-    }
-  }
-
   // Playing the notification buttons next to each other
   .dropdown-menu > .notification-footer  {
     a {
