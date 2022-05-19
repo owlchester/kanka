@@ -21,7 +21,7 @@ return [
     'blocks' => [
         'customise' => [
             'title' => 'Look & feel',
-            'description' => 'Customise the campaign\'s sidebar, change its design via custom CSS, and install amazing and beautiful plugins from the :marketplace.',
+            'description' => 'Customise the campaign\'s sidebar, change the campaign\'s design via custom CSS, and install amazing and beautiful plugins from the :marketplace.',
         ],
         'entities' => [
             'title' => 'Better entities',
@@ -41,7 +41,7 @@ return [
         ],
         'relations' => [
             'title' => 'Web of connections',
-            'description' => 'Visually explore the relations and connections of an entity.',
+            'description' => 'Visually explore the web of relations and connections of a campaign\'s entity.',
         ],
         'gang' => [
             'title' => 'One for the gang',
