@@ -15,7 +15,7 @@ return [
         'description' => 'When a campaign gets boosted by one or more boosters, the following improvements gets unlocked for all members of the campaign.',
     ],
     'superboost' => [
-        'title' => 'Want even more? Introducing superboosted campaigns',
+        'title' => 'Want even more? Don\'t just boost a campaign, superboost it!',
         'description' => 'Unlock the ultimiate Kanka experience by superboosting a campaign. This asigns three boosters, but we\'ve made these features worth it.',
     ],
     'blocks' => [
@@ -29,7 +29,7 @@ return [
         ],
         'defaults' => [
             'title' => 'Better defaults',
-            'description' => 'Replace the boring grey circle for entities with no image with a custom image for each entity type.',
+            'description' => 'Tired and confused by boring grey circles for entities with no image? Set default custom images for each entity type instead.',
         ],
         'peace-of-mind' => [
             'title' => 'Peace of mind',
@@ -45,7 +45,7 @@ return [
         ],
         'gang' => [
             'title' => 'One for the gang',
-            'description' => 'Ad free experience throughout the campaign, and campaign members all get access to larger file uploads.',
+            'description' => 'All members of the campaign get to enjoy it ad free, and also get access to larger file uploads.',
         ]
     ],
     'superboosted' => [
