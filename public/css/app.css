@@ -2317,12 +2317,8 @@ footer .footer-copyright {
 }
 
 footer .footer-links {
-  background-color: var(--footer-links-background);
-  border-radius: 15px;
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
-  padding: 15px;
-  padding-top: 30px;
 }
 
 #language-select-modal li > a {
@@ -2343,6 +2339,13 @@ footer .footer-links {
 
   footer .grid > .cell {
     text-align: left;
+  }
+
+  footer .footer-links {
+    background-color: var(--footer-links-background);
+    padding: 15px;
+    padding-top: 30px;
+    border-radius: 15px;
   }
 }
 

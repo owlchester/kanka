@@ -106,6 +106,11 @@
                             <a href="{{ route('front.hall-of-fame') }}">{{ __('front/hall-of-fame.title') }}</a>
                         </li>
                     @endif
+                    <li>
+                        <a href="{{ config('social.discord') }}" target="discord" title="Discord" rel="noreferrer">
+                            Discord
+                        </a>
+                    </li>
                 </ul>
             </div>
 
