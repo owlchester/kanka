@@ -57,6 +57,6 @@ $statuses = [
 
 
 
-@include('cruds.fields.private2', ['model' => !empty($member) ? $member : null])
+@includeWhen(auth()->user()->isAdmin(), 'cruds.fields.privacy_callout', ['model' => !empty($member) ? $member : null])
 
 

@@ -5,8 +5,8 @@
 
                 <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('crud.delete_modal.close') }}"><span aria-hidden="true">&times;</span></button>
 
-                <h4 class="modal-title" id="myModalLabel">{{ __('crud.delete_modal.title') }}</h4>
-                <p class="mt-5">
+                <h4 class="modal-title">{{ __('crud.delete_modal.title') }}</h4>
+                <p class="mt-3">
                     {!! __('crud.delete_modal.description_v2', ['tag' => '<strong><span class="target-name"></span></strong>']) !!}<br />
                     <span class="permanent" style="display: none">
                             {{ __('crud.delete_modal.permanent') }}
@@ -22,11 +22,11 @@
                         {{ __('entities/relations.delete_mirrored.helper') }}
                     </p>
                 </div>
-                <div class="mt-5 recoverable" style="display: none">
+                <div class="mt-3 recoverable" style="display: none">
                     @include('layouts.callouts.recoverable')
                 </div>
 
-                <div class="py-8">
+                <div class="py-5">
                     <button type="button" class="btn px-8 rounded-full mr-5" data-dismiss="modal">{{ __('crud.cancel') }}</button>
                     <button type="button" class="btn btn-danger delete-confirm-submit px-8 ml-5 rounded-full">
                         <span class="fa-solid fa-trash"></span>

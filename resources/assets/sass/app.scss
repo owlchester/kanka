@@ -74,7 +74,7 @@ img.profile-user-img {
     background: transparent;
     margin-top: 0;
     margin-bottom: 0;
-    font-size: 1.25rem;
+    font-size: 0.75rem;
   }
 
   h1 {
@@ -311,13 +311,13 @@ tr.tr-hover {
 .entity-creator {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 1.25rem;
+  gap: 1rem;
   a {
     padding: 20px 10px;
     //text-align: center;
     color: var(--quick-creator-button-text);
-    line-height: 2rem;
-    font-size: 1.4rem;
+    line-height: 0.9rem;
+    font-size: 0.85rem;
     background-color: var(--quick-creator-button-background);
     text-transform: uppercase;
     overflow: hidden;
@@ -340,7 +340,7 @@ tr.tr-hover {
 
   i {
     display: block;
-    margin-bottom: 1rem;
+    margin-bottom: 0.85rem;
   }
 }
 

@@ -21,7 +21,7 @@
         </div>
         <div class="box-body">
             <p>{{ __('campaigns.settings.helpers.' . $module) }}</p>
-            <div class="loading text-center py-8" style="display: none">
+            <div class="loading text-center py-5" style="display: none">
             <i class="fa-solid fa-spin fa-spinner fa-2x"></i>
             </div>
         </div>

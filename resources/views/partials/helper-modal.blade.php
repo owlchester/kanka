@@ -9,7 +9,7 @@
     </header>
     <article>
         @foreach ($textes as $text)
-            <p class="mb-2 text-justify">{!! $text !!}</p>
+            <p class="mb-1 text-justify">{!! $text !!}</p>
         @endforeach
     </article>
 </dialog>

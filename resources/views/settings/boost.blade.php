@@ -196,14 +196,14 @@
             <div class="modal-content rounded-2xl">
                 <div class="modal-body text-center">
                     <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('crud.delete_modal.close') }}"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">{{ __('settings.boost.unboost.title') }}</h4>
+                    <h4 class="modal-title">{{ __('settings.boost.unboost.title') }}</h4>
 
-                    <p class="mt-5">
+                    <p class="mt-3">
                         {!! __('settings.boost.unboost.confirm', ['tag' => '<span class="target-name"></span>']) !!}<br />
                         {{ __('settings.boost.unboost.data') }}
                     </p>
 
-                    <div class="py-8">
+                    <div class="py-5">
                         <button type="button" class="btn px-8 rounded-full mr-5" data-dismiss="modal">{{ __('crud.cancel') }}</button>
                         <button type="button" class="btn btn-danger delete-confirm-submit px-8 ml-5 rounded-full">
                             {{ __('settings.boost.buttons.unboost') }}

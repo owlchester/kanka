@@ -42,11 +42,11 @@ $hasOthers = false;
                 <div class="modal-body text-center">
 
                     <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('crud.click_modal.close') }}"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="clickModalLabel">{{ __('crud.delete_modal.title') }}</h4>
+                    <h4 class="modal-title">{{ __('crud.delete_modal.title') }}</h4>
 
-                    <p class="mt-5">{{ __('crud.bulk.delete.warning') }}<br />{{ __('crud.delete_modal.permanent') }}</p>
+                    <p class="mt-3">{{ __('crud.bulk.delete.warning') }}<br />{{ __('crud.delete_modal.permanent') }}</p>
 
-                    <div class="py-8">
+                    <div class="py-5">
                         <button type="button" class="btn px-8 rounded-full mr-5" data-dismiss="modal">{{ __('crud.cancel') }}</button>
                         <button type="button" class="btn btn-danger px-8 ml-5 rounded-full" id="datagrid-action-confirm">
                             <span class="fa-solid fa-trash"></span>

@@ -125,14 +125,14 @@
                         {{ __('profiles.sections.delete.title') }}
                     </h4>
 
-                    <p class="mt-5">
+                    <p class="mt-3">
                         {{ __('profiles.sections.delete.helper') }}
                     </p>
-                    <p class="mt-5">
+                    <p class="mt-3">
                         {{ __('profiles.sections.delete.warning') }}
                     </p>
 
-                    <div class="py-8">
+                    <div class="py-5">
                         {!! Form::model($user, ['method' => 'PATCH', 'route' => ['settings.account.destroy']]) !!}
                         <button type="button" class="btn btn-danger rounded-full px-8">
                             <i class="fa-solid fa-exclamation-triangle" aria-hidden="true"></i>

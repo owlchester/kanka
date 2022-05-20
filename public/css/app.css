@@ -680,7 +680,7 @@ img.profile-user-img {
   background: transparent;
   margin-top: 0;
   margin-bottom: 0;
-  font-size: 1.25rem;
+  font-size: 0.75rem;
 }
 
 .content-header h1 {
@@ -914,14 +914,14 @@ tr.tr-hover:hover {
 .entity-creator {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 1.25rem;
+  gap: 1rem;
 }
 
 .entity-creator a {
   padding: 20px 10px;
   color: var(--quick-creator-button-text);
-  line-height: 2rem;
-  font-size: 1.4rem;
+  line-height: 0.9rem;
+  font-size: 0.85rem;
   background-color: var(--quick-creator-button-background);
   text-transform: uppercase;
   overflow: hidden;
@@ -942,7 +942,7 @@ tr.tr-hover:hover {
 
 .entity-creator i {
   display: block;
-  margin-bottom: 1rem;
+  margin-bottom: 0.85rem;
 }
 
 #new-entity-modal,
@@ -2232,11 +2232,10 @@ footer .grid .cell {
   text-overflow: ellipsis;
   white-space: nowrap;
   text-align: center;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
 }
 
 footer .grid .cell h5 {
-  font-size: 1.5rem;
   font-weight: 500;
   padding: 0.5rem 0;
 }
@@ -2256,9 +2255,9 @@ footer ul {
 }
 
 footer ul li {
-  padding: 0.4rem 0;
+  padding: 0.3rem 0;
   font-weight: 400;
-  font-size: 1.3rem;
+  font-size: 0.8rem;
   line-height: 1.3;
 }
 
@@ -2272,7 +2271,7 @@ footer ul li a:hover {
 }
 
 footer .kanka-logo {
-  font-size: 14px;
+  font-size: 1rem;
   font-weight: 700;
 }
 
@@ -2292,28 +2291,25 @@ footer .language-switcher {
 }
 
 footer .footer-socials {
-  line-height: 1.8em;
-  padding: 1.5rem 0 1.5rem;
-  text-align: center;
+  padding: 1rem 0;
 }
 
 footer .footer-socials .email,
 footer .footer-socials .socials,
 footer .footer-socials .language-switcher {
   display: block;
-  font-size: 18px;
   margin-bottom: 10px;
 }
 
 footer .footer-socials .email a,
 footer .footer-socials .socials a,
 footer .footer-socials .language-switcher a {
-  font-size: 1.9rem;
+  font-size: 1.25rem;
   margin-right: 8px;
 }
 
 footer .footer-copyright {
-  font-size: 1.2rem;
+  font-size: 0.7rem;
 }
 
 footer .footer-links {
@@ -3437,8 +3433,8 @@ dialog {
   gap: 0.75rem;
   justify-content: space-between;
   align-items: flex-start;
-  padding-block: 1rem;
-  padding-inline: 2rem;
+  padding-block: 0.5rem;
+  padding-inline: 1.5rem;
   background-color: var(--dialog-header-background);
   color: var(--dialog-header-text);
 }
@@ -3473,8 +3469,8 @@ dialog {
   max-block-size: 50dvb;
   justify-items: flex-start;
   gap: 0.75rem;
-  padding-inline: 2rem;
-  padding-block: 1rem;
+  padding-inline: 1rem;
+  padding-block: 0.5rem;
 }
 
 .dialog:not([open]) {

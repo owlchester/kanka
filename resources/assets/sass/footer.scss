@@ -21,7 +21,6 @@ footer {
     max-width: 1140px;
     .cell {
       h5 {
-        font-size: 1.5rem;
         font-weight: 500;
         padding: 0.5rem 0;
       }
@@ -29,7 +28,7 @@ footer {
       text-overflow: ellipsis;
       white-space: nowrap;
       text-align: center;
-      margin-bottom: 1rem;
+      margin-bottom: 0.5rem;
     }
   }
 
@@ -46,9 +45,9 @@ footer {
     padding: 0;
 
     li {
-      padding: 0.4rem 0;
+      padding: 0.3rem 0;
       font-weight: 400;
-      font-size: 1.3rem;
+      font-size: 0.8rem;
       line-height: 1.3;
 
       a {
@@ -63,7 +62,7 @@ footer {
   }
 
   .kanka-logo {
-    font-size: 14px;
+    font-size: 1rem;
     font-weight: 700;
 
     a {
@@ -82,24 +81,21 @@ footer {
   }
 
   .footer-socials {
-    line-height: 1.8em;
-    padding: 1.5rem 0 1.5rem;
-    text-align: center;
+    padding: 1rem 0;
 
     .email, .socials, .language-switcher {
       display: block;
-      font-size: 18px;
       margin-bottom: 10px;
 
       a {
-        font-size: 1.9rem;
+        font-size: 1.25rem;
         margin-right: 8px;
       }
     }
   }
 
   .footer-copyright {
-    font-size: 1.2rem;
+    font-size: 0.7rem;
   }
 
   .footer-links {
