@@ -46,7 +46,7 @@
     @includeWhen(auth()->user()->isAdmin(), 'cruds.fields.privacy_callout')
 
 
-    <div class="row my-8">
+    <div class="row my-5">
         @if (empty($origin))
         <div class="col-md-6 text-right">
             <a href="#" id="entity-creator-back" data-url="{{ route('entity-creator.selection') }}" data-target="#entity-modal" class="btn btn-default rounded-full px-8">

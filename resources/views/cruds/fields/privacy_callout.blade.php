@@ -1,6 +1,6 @@
 
-<div class="privacy-callout my-4 px-5 py-4">
-    <div class="mb-3">
+<div class="privacy-callout px-3 py-1">
+    <div class="my-1">
         <i class="fa-solid fa-lock mr-1" aria-hidden="true"></i>
         <label>{{ __('crud.fields.privacy') }}</label>
     </div>

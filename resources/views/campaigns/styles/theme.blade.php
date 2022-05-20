@@ -24,7 +24,7 @@
         <p class="help-block visible-xs visible-sm">{{ __('campaigns.helpers.theme') }}</p>
     </div>
 
-    <div class="my-8 text-center">
+    <div class="my-5 text-center">
         <button type="button" class="btn btn-default mr-5 rounded-full px-8" data-dismiss="modal">
             {{ __('crud.cancel') }}
         </button>
