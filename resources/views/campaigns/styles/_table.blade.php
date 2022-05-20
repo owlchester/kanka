@@ -25,10 +25,11 @@
         </tfoot>
     </table>
 </div>
-@if (Datagrid::hasBulks())
+@if ($styles->hasPages() || \App\Facades\Datagrid::hasBulks())
     <div class="box-footer text-right">
         <div class="pull-left">
             @includeWhen(Datagrid::hasBulks(), 'layouts.datagrid.bulks')
         </div>
+        {!! $styles->appends(Datagrid::paginationFilters())->links() !!}
     </div>
 @endif

@@ -54,22 +54,22 @@
                     @elseif ($user->isWyvern())
                         <a href="{{ route('front.hall-of-fame') }}">
                             <img src="https://kanka-app-assets.s3.amazonaws.com/images/tiers/wyvern-325.png"
-                                class="profile-subscriber" title="Wyvern" />
+                                class="profile-subscriber mb-2" title="Wyvern" />
                         </a>
                         <div class="text-uppercase">Wyvern</div>
 
                     @elseif ($user->isOwlbear())
                         <a href="{{ route('front.hall-of-fame') }}">
                         <img src="https://kanka-app-assets.s3.amazonaws.com/images/tiers/owlbear-325.png"
-                                 class="profile-subscriber" title="Owlbear" />
+                                 class="profile-subscriber mb-2" title="Owlbear" />
                         </a>
                         <div class="text-uppercase">Owlbear</div>
                     @elseif ($user->hasRole('admin'))
                         <a href="{{ route('front.about') }}">
                             <img src="https://kanka-app-assets.s3.amazonaws.com/images/logos/icon-large.png"
-                                 class="profile-subscriber no-transform" title="Kanka Team" />
+                                 class="profile-subscriber no-transform mb-2" title="Kanka Team" />
                         </a>
-                        <div class="text-uppercase">
+                        <div class="text-uppercase lead">
                             Kanka Team
                         </div>
                     @else
