@@ -1,7 +1,8 @@
 <?php
 
+namespace Database\Seeders;
+
 use Illuminate\Database\Seeder;
-use \App\Models\RpgSystem;
 
 class ThemesTableSeeder extends Seeder
 {

@@ -56,6 +56,9 @@ class AdCacheService
      */
     protected function load(int $section): self
     {
+        if (!config('app.admin')) {
+            return $this;
+        }
         $key = $this->cacheKey($section);
         if (cache()->has($key)) {
             $this->ad = cache()->get($key);

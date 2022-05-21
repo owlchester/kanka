@@ -15,8 +15,8 @@ class CleanupEntitiesTable extends Migration
     {
         Schema::table('entities', function (Blueprint $table) {
             $table->dropColumn('type');
-            $table->dropForeign('entities_section_id_foreign');
-            $table->dropColumn('section_id');
+            //$table->dropForeign('entities_section_id_foreign');
+            //$table->dropColumn('section_id');
             $table->index(['entity_id'], 'idx_entity_id');
         });
     }
@@ -29,7 +29,7 @@ class CleanupEntitiesTable extends Migration
     public function down()
     {
         Schema::table('entities', function (Blueprint $table) {
-            //
+            $table->dropIndex('idx_entity_id');
         });
     }
 }

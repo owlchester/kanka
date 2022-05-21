@@ -1,6 +1,6 @@
-  <a href="https://kanka.io/#gh-light-mode-only" target="_blank">
-    <img src="./.github/logo.png" alt="Kanka" width="125" height="129">
-  </a>
+<a href="https://kanka.io/#gh-light-mode-only" target="_blank">
+  <img src="./.github/logo.png" alt="Kanka" width="125" height="129">
+</a>
 
 # Kanka <!-- omit in toc -->
 

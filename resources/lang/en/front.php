@@ -248,6 +248,7 @@ return [
         'other'         => 'Other',
         'overview'      => 'Feature overview',
         'pricing'       => 'Pricing',
+        'privacy'       => 'Privacy Policy',
         'register'      => 'Register',
         'releases'      => 'Releases',
         'roadmap'       => 'Roadmap',
