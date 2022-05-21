@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "bbc0ec28aa3bc57e6010ce4da9466a41",
+    "content-hash": "fc4813476afd10d883b654b55cb9dbaa",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -3345,26 +3345,26 @@
         },
         {
             "name": "kalnoy/nestedset",
-            "version": "v5.0.4",
+            "version": "v6.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/lazychaser/laravel-nestedset.git",
-                "reference": "cd0fecb79d2df8192fb4e1db264b2172a5b4280f"
+                "reference": "bcfbccea5e3ddf31cb22e1bc3c6124da584505fc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/lazychaser/laravel-nestedset/zipball/cd0fecb79d2df8192fb4e1db264b2172a5b4280f",
-                "reference": "cd0fecb79d2df8192fb4e1db264b2172a5b4280f",
+                "url": "https://api.github.com/repos/lazychaser/laravel-nestedset/zipball/bcfbccea5e3ddf31cb22e1bc3c6124da584505fc",
+                "reference": "bcfbccea5e3ddf31cb22e1bc3c6124da584505fc",
                 "shasum": ""
             },
             "require": {
-                "illuminate/database": "~5.7.0|~5.8.0|^6.0|^7.0|^8.41",
-                "illuminate/events": "~5.7.0|~5.8.0|^6.0|^7.0|^8.41",
-                "illuminate/support": "~5.7.0|~5.8.0|^6.0|^7.0|^8.41",
-                "php": ">=7.1.3"
+                "illuminate/database": "^7.0|^8.0|^9.0",
+                "illuminate/events": "^7.0|^8.0|^9.0",
+                "illuminate/support": "^7.0|^8.0|^9.0",
+                "php": "^7.2.5|^8.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "7.*"
+                "phpunit/phpunit": "7.*|8.*|9.*"
             },
             "type": "library",
             "extra": {
@@ -3402,9 +3402,9 @@
             ],
             "support": {
                 "issues": "https://github.com/lazychaser/laravel-nestedset/issues",
-                "source": "https://github.com/lazychaser/laravel-nestedset/tree/v5.0.4"
+                "source": "https://github.com/lazychaser/laravel-nestedset/tree/v6.0.1"
             },
-            "time": "2021-05-28T07:05:38+00:00"
+            "time": "2022-02-11T06:17:57+00:00"
         },
         {
             "name": "knplabs/knp-menu",
