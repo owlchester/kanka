@@ -23,6 +23,8 @@ return [
                 'all'       => 'Boosted Status',
                 'boosted'   => 'Boosted campaigns',
                 'unboosted' => 'Unboosted campaigns',
+                'is-boosted' => 'This campaign is boosted!',
+                'is-superboosted' => 'This campaign is superboosted!',
             ],
             'no-results'    => 'No public campaign with these filters could be found. Please try again.',
             'title'         => 'Public Campaigns',

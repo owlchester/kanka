@@ -153,12 +153,39 @@ h1, h2, h3, h4, h5, h6, .card-title, .card-price {
   font-weight: 200;
   letter-spacing: 1px;
   word-break: break-word;
-}
-section h2 {
-  font-size: 2rem;
+  -webkit-font-smoothing: antialiased;
 }
 section {
   background-color: #fff;
+
+  h1 {
+    font-weight: 300;
+  }
+  h2 {
+    font-size: 2rem;
+    font-weight: 300;
+  }
+  .lead {
+    margin-bottom: 50px;
+    margin-top: 14px;
+    font-weight: 300;
+    line-height: 1.7;
+  }
+  p {
+    font-weight: 300;
+    line-height: 1.6;
+  }
+  a {
+    color: $KankaIconMiddle;
+    font-weight: 500;
+    &:hover {
+      color: $KankaBlue;
+    }
+  }
+  .btn-primary {
+    background-color: $KankaIconMiddle;
+    border: 1px solid $KankaBlue;
+  }
 }
 
 .booster-cards {
@@ -326,66 +353,76 @@ footer {
 }
 
 .campaign-container {
-  overflow: hidden;
   margin-bottom: 20px;
-  position: relative;
-  height: 200px;
   border-radius: 5px;
+  overflow: hidden;
 
-  .campaign {
+  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+  a.campaign {
     transition: all 0.5s;
-    color: #eee;
+    display: flex;
+    flex-direction: row;
 
     .campaign-image {
       background-size: cover;
       background-repeat: no-repeat;
       background-position: center;
-      height: 200px;
-      width: 100%;
-      transition: all 0.5s;
-      position: absolute;
-      top: 0;
-    }
-
-    .small-campaign {
-      height: 160px;
+      height: 150px;
+      width: 150px;
+      z-index: 2;
     }
 
     &:hover {
       box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
       text-decoration: none;
       color: $KankaIconLight;
-      .campaign-image {
-        transform: scale(1.1);
-      }
     }
 
     .bottom {
-      position: absolute;
-      bottom: 0;
-      padding: 20px 5px 5px 5px;
-      background: linear-gradient(180deg, rgba(51, 51, 51, 0) 0%, #333333 100%);
+      position: relative;
+      flex: 1;
+      z-index: 3;
       width: 100%;
+      padding: 1rem;
 
       .labels {
-        font-size: 14pt;
+        font-size: 0.85rem;
+
+        span {
+          text-overflow: ellipsis;
+          display: inline-block;
+        }
       }
 
       h4.campaign-title {
-        margin: 0;
-        max-height: 50px;
         overflow: hidden;
-        font-size: 20px;
+        font-size: 1.4rem;
       }
     }
   }
 }
 .featured-winner {
-  font-size: 1rem;
+  font-size: 0.9rem;
+  margin-bottom: 0;
 }
 
-.campaign-boosted {
-  box-shadow: 0 4px 6px rgba(98, 46, 116, 0.3), 0 1px 3px rgba(69, 17, 82, 0.08);
+.featured-campaigns .campaign-container > a.campaign {
+  display: block;
+  .campaign-image {
+    height: 200px;
+    width: 100%;
+    transition: all 0.5s;
+    background: linear-gradient(180deg, rgba(51, 51, 51, 0) 0%, #333333 100%);
+  }
+  &:hover {
+    .campaign-image {
+      transform: scale(1.1);
+    }
+  }
+  .bottom {
+    background-color: white;
+    padding: 0.5rem;
+  }
 }
 
 .campaign-placeholder {
@@ -405,19 +442,6 @@ h4 {
   padding: 50px 0;
 }
 
-section {
-  a {
-    color: $KankaIconMiddle;
-    font-weight: 500;
-    &:hover {
-      color: $KankaBlue;
-    }
-  }
-  .btn-primary {
-    background-color: $KankaIconMiddle;
-    border: 1px solid $KankaBlue;
-  }
-}
 
 ul.pagination {
   li {

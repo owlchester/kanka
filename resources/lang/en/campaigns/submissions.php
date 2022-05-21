@@ -30,6 +30,7 @@ return [
         'open_not_public'   => 'The campaign is open to applications, but not public, meaning no one can apply to join it. This can be changed by editing the campain\'s settings.',
         'modal'             => 'A campaign which is open to applications and public can have users apply to join the campaign.',
         'no_applications'   => 'There are currently no pending applications to join your campaign. Users can apply to join your campaign by visiting it\'s dashboard and clicking on the :button button.',
+        'filter-helper' => 'This campaign is open to applications!',
     ],
     'placeholders'  => [
         'note'  => 'Write down your application to join the campaign',

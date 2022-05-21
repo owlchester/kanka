@@ -41,13 +41,13 @@ $first = true;
                         <div class="state p-success-o p-on">
                             <i class="icon {{ $perm['icon'] }}"></i>
                             <label class="visible-xs">
-                                {{ __('campaigns.roles.permissions.actions.' . $perm['action']) }}
+                                {{ __('campaigns.roles.permissions.actions.' . $perm['label']) }}
                             </label>
                         </div>
                         <div class="state p-off">
                             <i class="icon {{ $perm['icon'] }}"></i>
                             <label class="visible-xs">
-                                {{ __('campaigns.roles.permissions.actions.' . $perm['action']) }}
+                                {{ __('campaigns.roles.permissions.actions.' . $perm['label']) }}
                             </label>
                         </div>
                     </div>
