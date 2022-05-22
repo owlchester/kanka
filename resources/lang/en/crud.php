@@ -95,9 +95,9 @@ return [
         'callout'           => 'Psst!',
         'close'             => 'Close',
         'delete'            => 'Remove',
-        'description_v2'       => 'You are removing ":tag".',
-        'recoverable'       => 'Entities can be recovered for up to :day days with a :boosted-campaign.',
+        'description_v2'    => 'You are removing ":tag".',
         'permanent'         => 'This action is permanent.',
+        'recoverable'       => 'Entities can be recovered for up to :day days with a :boosted-campaign.',
         'title'             => 'Removal confirmation',
     ],
     'destroy_many'              => [

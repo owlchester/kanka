@@ -34,7 +34,6 @@ return [
             'helper'    => 'Je kunt + en - voor het nummer gebruiken om de leeftijd met dat aantal bij te werken.',
         ],
         'delete'        => [
-            'title'     => 'Meerdere entiteiten verwijderen',
             'warning'   => 'Weet je zeker dat je de geselecteerde entiteiten wilt verwijderen?',
         ],
         'edit'          => [
@@ -86,10 +85,9 @@ return [
         'empty' => 'Nog niets te laten zien.',
     ],
     'delete_modal'              => [
-        'close'         => 'Sluiten',
-        'delete'        => 'Verwijder',
-        'description'   => 'Weet je zeker dat je :tag wilt verwijderen?',
-        'title'         => 'Bevestiging verwijderen',
+        'close' => 'Sluiten',
+        'delete'=> 'Verwijder',
+        'title' => 'Bevestiging verwijderen',
     ],
     'destroy_many'              => [
         'success'   => ':count entiteit verwijderd|:count entiteiten verwijderd.',

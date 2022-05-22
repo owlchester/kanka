@@ -198,11 +198,7 @@ TEXT
         ],
         'your_role'             => 'Tvoja uloga <i>:role</i>',
     ],
-    'open_campaign'                     => [
-        'helper'    => 'Javna kampanja postavljena kao otvorena omogućit će korisnicima slanje prijava da joj se pridruže. Popis prijava pronađi na stranici :link.',
-        'link'      => 'prijave na kampanju',
-        'title'     => 'Otvorena kampanja',
-    ],
+    'open_campaign'                     => [],
     'panels'                            => [
         'boosted'   => 'Pojačano',
         'dashboard' => 'Naslovna ploča',
@@ -303,9 +299,6 @@ TEXT
             'enable'    => 'Omogući',
         ],
         'boosted'   => 'Ova funkcionalnost je u testnoj verziji i trenutno je dostupna samo za :boosted.',
-        'edit'      => [
-            'success'   => 'Ažurirane postavke kampanje.',
-        ],
         'helper'    => 'Svi moduli kampanje mogu se omogućiti ili onemogućiti po volji. Onemogućivanje modula će jednostavno sakriti elemente sučelja koji se na njega odnose, a postojeći entiteti bit će skriveni, ali i dalje postojati u pozadini, u slučaju da se predomislite. Te promjene utječu na sve korisnike kampanje, uključujući administratore.',
         'helpers'   => [
             'abilities'     => 'Stvori sposobnosti, bilo da su to podvizi, čarolije ili moći koje se mogu dodijeliti entitetima.',
@@ -328,7 +321,6 @@ TEXT
             'tags'          => 'Svaki entitet može imati nekoliko oznaka. Oznake mogu pripadati drugim oznakama, a unosi se mogu filtrirati po oznakama.',
             'timelines'     => 'Prikaži povijest svog svijeta s kronologijama.',
         ],
-        'title'     => 'Moduli kampanje :name',
     ],
     'show'                              => [
         'actions'   => [

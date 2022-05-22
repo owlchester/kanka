@@ -221,15 +221,7 @@ TEXT
         ],
         'your_role'             => 'Twoja rola: <i>:role</i>',
     ],
-    'open_campaign'                     => [
-        'helper'    => 'Publiczna kampania o statusie "Otwarta" pozwala graczom wysyłać prośby o dołączenie. Listę zgłoszeń znajdziesz na stronie :link.',
-        'link'      => 'zgłoszenia do kampanii',
-        'statuses'  => [
-            'closed'    => 'Zamknięta',
-            'open'      => 'Przyjmuje zgłoszenia',
-        ],
-        'title'     => 'Kampania otwarta',
-    ],
+    'open_campaign'                     => [],
     'options'                           => [],
     'panels'                            => [
         'boosted'   => 'Doładowana',
@@ -294,7 +286,6 @@ TEXT
         'members'       => 'Uczestnicy',
         'modals'        => [
             'details'   => [
-                'button'    => 'Pomoc',
                 'campaign'  => 'Uprawnienia w kampanii umożliwiają, co następuje.',
                 'entities'  => 'Oto krótkie zestawienie uprawnień, które mogą otrzymać użytkownicy w danej roli.',
                 'more'      => 'Dalsze instrukcje znajdziesz w filmie instruktażowym na YouTube',
@@ -363,9 +354,6 @@ TEXT
             'enable'    => 'Aktywny',
         ],
         'boosted'   => 'Opcja we wczesnym dostępie, na razie dostępna wyłącznie w :boosted.',
-        'edit'      => [
-            'success'   => 'Zaktualizowano ustawienia kampanii.',
-        ],
         'errors'    => [
             'module-disabled'   => 'Ten moduł jest obecnie wyłączony w ustawieniach kampanii. :fix',
         ],
@@ -391,7 +379,6 @@ TEXT
             'tags'          => 'Każdy element można oznaczyć z pomocą rozmaitych etykiet ułatwiających wyszukiwanie. Nawet etykiety mogą mieć własne etykiety.',
             'timelines'     => 'Dzieje świata wedle rozmaitych historii.',
         ],
-        'title'     => 'Moduły Kampanii :name',
     ],
     'show'                              => [
         'actions'   => [

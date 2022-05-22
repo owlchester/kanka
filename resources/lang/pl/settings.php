@@ -84,8 +84,7 @@ return [
         ],
         'title'             => 'Doładowanie',
         'unboost'           => [
-            'description'   => 'Czy na pewno usunąć doładowanie kampanii :tag?',
-            'title'         => 'Usunięcie doładowania',
+            'title' => 'Usunięcie doładowania',
         ],
     ],
     'countries'     => [
@@ -120,22 +119,13 @@ return [
         'success'   => 'Zmieniono opcje układu',
         'title'     => 'Układ',
     ],
-    'marketplace'   => [
-        'fields'    => [
-            'name'  => 'Nazwa na Targowisku',
-        ],
-        'helper'    => 'Domyślnie :marketplace używa twojej nazwy użytkownika. Tu możesz ją zastąpić.',
-        'title'     => 'Ustawienia Targowiska',
-        'update'    => 'Zapisano ustawienia Targowiska.',
-    ],
+    'marketplace'   => [],
     'menu'          => [
         'account'               => 'Konto',
         'api'                   => 'API',
         'apps'                  => 'Aplikacje',
         'billing'               => 'Metoda płatności',
         'invoices'              => 'Rachunki',
-        'layout'                => 'Układ',
-        'marketplace'           => 'Targowisko',
         'other'                 => 'Inne',
         'patreon'               => 'Patreon',
         'payment_options'       => 'Opcje płatności',

@@ -4,13 +4,14 @@ return [
     'hall_of_fame'  => 'Hall of Fame',
     'index'         => [
         'community'     => 'Communauté',
-        'core'          => 'Coeur',
-        'description'   => 'Ces personnes rendent Kanka possible',
-        'other'         => 'Autre',
-        'qa'            => 'Assurance Qualité',
-        'support'       => 'Support',
+        'lead'          => 'Worldbuilding amusant et fiable',
         'title'         => 'L\'équipe',
         'translations'  => 'Traductions',
+    ],
+    'leads'         => [
+        'about'         => 'Kanka est né d\'une frustration a construire un monde et aux notes de session dispersées dans divers outils, et de la difficulté de partager facilement ce contenu avec des joueurs.',
+        'community'     => 'La communauté est au coeur de notre ADN depuis le début. Mentions spéciales à ces membres de la communauté!',
+        'translators'   => 'Kanka est traduit en plusieurs langues grâce à ces incroyables contributeurs.',
     ],
     'patreon'       => [],
     'people'        => [

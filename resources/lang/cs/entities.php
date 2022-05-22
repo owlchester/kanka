@@ -16,7 +16,6 @@ return [
     'creator'               => [
         'back'      => 'Zpět k výběru',
         'duplicate' => 'Pozor! Tento název už nese jiný objekt stejného typu.',
-        'helper'    => 'Vyber typ objektu, který chceš vytvořit. Pokud není žádný typ k dispozici, nemáš dostatečná oprávnění pro jejich tvorbu v tomto tažení.',
         'title'     => 'Nový objekt',
         'tooltip'   => 'Vytvořit nový objekt a zůstat na této stránce',
     ],

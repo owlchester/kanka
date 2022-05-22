@@ -2,7 +2,7 @@
 
 return [
     'about'                 => [
-        'title'         => 'About',
+        'title' => 'About',
     ],
     'campaigns'             => [
         'description_full'  => 'Many campaigns in :kanka are public for all to see. This page contains a list of all public campaigns, as well as some featured campaigns from the community.',
@@ -20,11 +20,11 @@ return [
         'public'            => [
             'description'   => 'Take a look at the Public Campaigns for inspiration.',
             'filters'       => [
-                'all'       => 'Boosted Status',
-                'boosted'   => 'Boosted campaigns',
-                'unboosted' => 'Unboosted campaigns',
-                'is-boosted' => 'This campaign is boosted!',
-                'is-superboosted' => 'This campaign is superboosted!',
+                'all'               => 'Boosted Status',
+                'boosted'           => 'Boosted campaigns',
+                'is-boosted'        => 'This campaign is boosted!',
+                'is-superboosted'   => 'This campaign is superboosted!',
+                'unboosted'         => 'Unboosted campaigns',
             ],
             'no-results'    => 'No public campaign with these filters could be found. Please try again.',
             'title'         => 'Public Campaigns',
@@ -205,8 +205,8 @@ return [
     'footer'                => [
         'copyright' => 'Copyright :copy :year :company',
         'headings'  => [
-            'app'           => 'App',
-            'community'     => 'Community',
+            'app'       => 'App',
+            'community' => 'Community',
         ],
     ],
     'help'                  => [
@@ -231,30 +231,24 @@ return [
     ],
     'menu'                  => [
         'about'         => 'About',
-        'api'           => 'API',
         'campaigns'     => 'Public Campaigns',
         'community'     => 'Community',
         'contact'       => 'Contact',
-        'contact_us'    => 'Contact Us',
         'dashboard'     => 'Dashboard',
         'documentation' => 'Documentation',
         'features'      => 'Features',
-        'help'          => 'Help',
-        'home'          => 'Home',
         'kb'            => 'Knowledge Base',
         'login'         => 'Login',
         'marketplace'   => 'Marketplace',
         'merch'         => 'Merchandise',
         'news'          => 'News',
         'newsletter'    => 'Newsletter',
-        'other'         => 'Other',
         'overview'      => 'Feature overview',
         'pricing'       => 'Pricing',
         'privacy'       => 'Privacy Policy',
         'register'      => 'Register',
         'releases'      => 'Releases',
         'roadmap'       => 'Roadmap',
-        'title'         => 'Menu',
     ],
     'meta'                  => [
         'description'   => ':kanka is a flexible digital world builder and online tabletop rpg campaign manager',

@@ -84,8 +84,7 @@ return [
         ],
         'title'             => 'Boost',
         'unboost'           => [
-            'description'   => 'Naozaj chceš ukončiť boost kampane :tag?',
-            'title'         => 'Ukončiť boost kampane',
+            'title' => 'Ukončiť boost kampane',
         ],
     ],
     'countries'     => [
@@ -120,22 +119,13 @@ return [
         'success'   => 'Nastavenia schémy aktualizované.',
         'title'     => 'Schéma',
     ],
-    'marketplace'   => [
-        'fields'    => [
-            'name'  => 'Meno pre trhovisko',
-        ],
-        'helper'    => 'Štandardne sa v :marketplace zobrazí tvoje meno. Prepísať ho môžeš nastavením v tomto poli.',
-        'title'     => 'Nastavenia pre trhovisko',
-        'update'    => 'Nastavenia pre trhovisko uložené.',
-    ],
+    'marketplace'   => [],
     'menu'          => [
         'account'               => 'Konto',
         'api'                   => 'API',
         'apps'                  => 'Apps',
         'billing'               => 'Spôsob platby',
         'invoices'              => 'Faktúry',
-        'layout'                => 'Schéma',
-        'marketplace'           => 'Trhovisko',
         'other'                 => 'Iné',
         'patreon'               => 'Patreon',
         'payment_options'       => 'Možnosti platby',

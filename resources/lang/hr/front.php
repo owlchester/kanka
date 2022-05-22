@@ -2,8 +2,7 @@
 
 return [
     'about'         => [
-        'description'   => 'Kanka je rođena 2017. godine iz želje strastvenog RPG igrača koji je htio sa svojim igračima izgraditi i uređivati svijet. Nakon isprobavanja nekoliko tada dostupnih opcija i zaključka da nam nijedna ne odgovara u potpunosti, razvoj na Kanki započeo je u jesen 2017. godine.',
-        'title'         => 'O nama',
+        'title' => 'O nama',
     ],
     'campaigns'     => [
         'description_full'  => 'Mnoge kampanje u Kanki su javne kako bi ih svi mogu vidjeti. Ova stranica sadrži popis svih javnih kampanja, kao i nekoliko istaknutih kampanja iz zajednice.',
@@ -191,16 +190,10 @@ return [
         'title'         => 'Nov način za praćenje svojih svjetova i kampanja.',
     ],
     'footer'        => [
-        'app'           => 'Aplikacija',
-        'headings'      => [
-            'app'           => 'Aplikacija',
-            'community'     => 'Zajednica',
-            'other'         => 'Ostalo',
-            'useful_links'  => 'Korisne poveznice',
+        'headings'  => [
+            'app'       => 'Aplikacija',
+            'community' => 'Zajednica',
         ],
-        'navigation'    => 'Navigacija',
-        'resources'     => 'Resursi',
-        'social'        => 'Socijalno',
     ],
     'help'          => [
         'description'   => 'Tu smo za tebe u slučaju da ti treba malo pomoći. Obrati nam se koristeći neku od sljedećih metoda, a mi ćemo ti se javiti što je brže moguće.',
@@ -221,39 +214,24 @@ return [
         'heading'           => 'Olakšano upravljanje RPG kampanjama i izgradnja svjetova',
         'title'             => 'Kanka',
     ],
-    'media'         => [
-        'description'   => 'Na ovoj stranici pronađi slike Kanke u visokoj rezoluciji. Koristi ih ako promoviraš Kanku ili izrađuješ alate koji komuniciraju s Kankom.',
-        'images'        => [
-            'primary'   => 'Primarni Kanka logotip',
-            'social'    => 'Društveni Kanka logotip',
-        ],
-        'title'         => 'Mediji',
-    ],
+    'media'         => [],
     'menu'          => [
         'about'         => 'O nama',
-        'api'           => 'API',
         'campaigns'     => 'Javne kampanje',
         'community'     => 'Zajednica',
         'contact'       => 'Kontakt',
-        'contact_us'    => 'Kontaktiraj nas',
         'dashboard'     => 'Naslovna ploča',
         'features'      => 'Funkcionalnosti',
-        'help'          => 'Pomoć',
-        'home'          => 'Početna stranica',
         'kb'            => 'Baza znanja',
         'login'         => 'Prijava',
         'marketplace'   => 'Tržnica',
-        'media'         => 'Mediji',
         'news'          => 'Vijesti',
         'newsletter'    => 'Bilten',
-        'other'         => 'Ostalo',
         'pricing'       => 'Cijena',
         'privacy'       => 'Pravila privatnosti',
         'register'      => 'Registracija',
         'releases'      => 'Izdanja',
         'roadmap'       => 'Plan',
-        'terms'         => 'Uvjeti korištenja',
-        'title'         => 'Izbornik',
     ],
     'meta'          => [
         'description'   => 'Kanka je fleksibilni graditelj digitalnih svijetova i alat za upravljanje internetskim RPG kampanjama',

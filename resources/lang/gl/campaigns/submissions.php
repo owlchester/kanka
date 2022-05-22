@@ -23,13 +23,10 @@ return [
         'application'   => 'Solicitude de inscrición',
         'rejection'     => 'Razón do rexeitamento',
     ],
-    'helpers'       => [
-        'open_and_public'   => 'A campaña acepta solicitudes de inscrición. Para pechala, edita a campaña na lapela :tab.',
-    ],
+    'helpers'       => [],
     'placeholders'  => [
         'note'  => 'Escrebe a túa solicitude para unirte á campaña.',
     ],
-    'title'         => 'Solicitudes de inscrición á campaña',
     'update'        => [
         'approve'   => 'Escolle o rol que terá a persoa ao unirse á túa campaña.',
         'approved'  => 'Solicitude aceptada.',

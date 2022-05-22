@@ -33,10 +33,9 @@ return [
     ],
     'event'         => [
         'actions'   => [
-            'delete-confirm'    => 'táto pripomienka',
-            'existing'          => 'Existujúci objekt',
-            'new'               => 'Nová udalosť',
-            'switch'            => 'Zmeniť výber',
+            'existing'  => 'Existujúci objekt',
+            'new'       => 'Nová udalosť',
+            'switch'    => 'Zmeniť výber',
         ],
         'create'    => [
             'success'   => 'Nová udalosť vytvorená',
@@ -209,10 +208,6 @@ return [
     ],
     'show'          => [
         'missing_details'   => 'Tento kalendár nie je možné zobraziť. Kalendár vyžaduje min. 2 mesiace a min. 2 dni v týždni, aby bol vytvorený.',
-        'moon_full_moon'    => 'Spln :moon',
-        'moon_new_moon'     => 'Nov :moon',
-        'moon_waning_moon'  => 'Ubúdajúci :moon',
-        'moon_waxing_moon'  => 'Pribúdajúci :moon',
         'tabs'              => [
             'events'    => 'Kalendárne udalosti',
             'weather'   => 'Počasie',

@@ -168,6 +168,7 @@ h6,
 
 section {
   background-color: #fff;
+  padding: 50px 0;
 }
 
 section h1 {
@@ -497,7 +498,7 @@ ul.pagination li span {
 }
 
 .minimal-padding {
-  padding: 50px 20px;
+  padding: 50px 0px;
   background-color: #fff;
   width: 100%;
 }

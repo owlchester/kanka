@@ -84,8 +84,7 @@ return [
         ],
         'title'             => 'Boost',
         'unboost'           => [
-            'description'   => 'Möchten Sie die Kampagnen :tag nicht mehr boosten?',
-            'title'         => 'Kampagnen boosting beenden',
+            'title' => 'Kampagnen boosting beenden',
         ],
     ],
     'countries'     => [
@@ -120,22 +119,13 @@ return [
         'success'   => 'Layout Optionen aktualisiert.',
         'title'     => 'Layout',
     ],
-    'marketplace'   => [
-        'fields'    => [
-            'name'  => 'Marktplatzname',
-        ],
-        'helper'    => 'Standardmäßig wird Ihr Benutzername auf dem :marketplace angezeigt. Sie können diesen Wert mit diesem Feld überschreiben.',
-        'title'     => 'Marktplatz Einstellungen',
-        'update'    => 'Marktplatz Einstellungen gespeichert',
-    ],
+    'marketplace'   => [],
     'menu'          => [
         'account'               => 'Account',
         'api'                   => 'API',
         'apps'                  => 'Apps',
         'billing'               => 'Zahlungsmethode',
         'invoices'              => 'Rechnungen',
-        'layout'                => 'Layout',
-        'marketplace'           => 'Marktplatz',
         'other'                 => 'Andere',
         'patreon'               => 'Patreon',
         'payment_options'       => 'Zahlungsmöglichkeiten',

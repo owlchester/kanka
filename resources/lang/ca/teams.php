@@ -4,11 +4,6 @@ return [
     'hall_of_fame'  => 'Saló de la fama',
     'index'         => [
         'community'     => 'Comunitat',
-        'core'          => 'Essència',
-        'description'   => 'Aquestes persones fan que Kanka sigui possible',
-        'other'         => 'Altres',
-        'qa'            => 'Garantia de qualitat',
-        'support'       => 'Suport',
         'title'         => 'Equip',
         'translations'  => 'Traduccions',
     ],

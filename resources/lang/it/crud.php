@@ -37,7 +37,6 @@ return [
             'helper'    => 'Puoi usare + e - prima del numero per aggiornare l\'età di quel quantitativo.',
         ],
         'delete'        => [
-            'title'     => 'Rimuovendo molteplici entità',
             'warning'   => 'Sei sicuro di voler cancellare le entità selezionate?',
         ],
         'edit'          => [
@@ -88,11 +87,9 @@ return [
         'empty' => 'Ancora non c\'è nulla da mostrare.',
     ],
     'delete_modal'      => [
-        'close'             => 'Chiudi',
-        'delete'            => 'Cancella',
-        'description'       => 'Sei sicuro di voler rimuovere :tag?',
-        'description_final' => 'Sei sicuro di voler rimuovere :tag? Questa azione non può essere annullata.',
-        'title'             => 'Conferma di cancellazione',
+        'close' => 'Chiudi',
+        'delete'=> 'Cancella',
+        'title' => 'Conferma di cancellazione',
     ],
     'destroy_many'      => [
         'success'   => 'Cancellata :count entità|Cancellate :count entità.',

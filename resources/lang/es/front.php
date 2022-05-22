@@ -2,8 +2,7 @@
 
 return [
     'about'         => [
-        'description'   => 'Kanka nació por el deseo de dos apasionados jugadores de rol por administrar un mundo juntos durante el verano de 2017. Tras probar varias opciones disponibles en ese momento, y concluir que ninguna de ellas se adecuaba a lo que queríamos, nos pusimos a construir nuestra propia herramienta durante el otoño de 2017.',
-        'title'         => 'Acerca de',
+        'title' => 'Acerca de',
     ],
     'campaigns'     => [
         'description_full'  => 'Muchas de las campañas de Kanka son públicas para que todos las puedan ver. Esta página contiene una lista con todas las campañas públicas, así como algunas campañas destacadas de la comunidad.',
@@ -186,16 +185,10 @@ return [
         'title'         => 'Una nueva manera de monitorizar tus campañas.',
     ],
     'footer'        => [
-        'app'           => 'App',
-        'headings'      => [
-            'app'           => 'App',
-            'community'     => 'Comunidad',
-            'other'         => 'Otros',
-            'useful_links'  => 'Enlaces útiles',
+        'headings'  => [
+            'app'       => 'App',
+            'community' => 'Comunidad',
         ],
-        'navigation'    => 'Navegación',
-        'resources'     => 'Recursos',
-        'social'        => 'Social',
     ],
     'help'          => [
         'description'   => 'Estamos aquí para echarte una mano. Contáctanos usando por una de las siguientes vías, y te responderemos lo más rápido posible.',
@@ -216,41 +209,26 @@ return [
         'heading'           => 'Gestión de campañas de rol y creación de mundos a tu alcance',
         'title'             => 'Kanka',
     ],
-    'media'         => [
-        'description'   => 'Aquí encontrarás imágenes en alta resolución de Kanka. Úsalas si estás promocionando a Kanka o creando herramientas que interactúan con ella.',
-        'images'        => [
-            'primary'   => 'Logo principal de Kanka',
-            'social'    => 'Logo social de Kanka',
-        ],
-        'title'         => 'Medios',
-    ],
+    'media'         => [],
     'menu'          => [
         'about'         => 'Acerca de',
-        'api'           => 'API',
         'campaigns'     => 'Campañas Públicas',
         'community'     => 'Comunidad',
         'contact'       => 'Contacto',
-        'contact_us'    => 'Contáctanos',
         'dashboard'     => 'Tablero',
         'features'      => 'Características',
-        'help'          => 'Ayuda',
-        'home'          => 'Inicio',
         'kb'            => 'Base de conocimientos',
         'login'         => 'Iniciar sesión',
         'marketplace'   => 'Marketplace',
-        'media'         => 'Medios',
         'merch'         => 'Merchandising',
         'news'          => 'Novedades',
         'newsletter'    => 'Newsletter',
-        'other'         => 'Otros',
         'overview'      => 'Funcionalidades principales',
         'pricing'       => 'Tarifas',
         'privacy'       => 'Política de Privacidad',
         'register'      => 'Registrarse',
         'releases'      => 'Lanzamientos',
         'roadmap'       => 'Hoja de ruta',
-        'terms'         => 'Términos y condiciones',
-        'title'         => 'Menú',
     ],
     'meta'          => [
         'description'   => 'Kanka es un administrador flexible de campañas de rol online.',

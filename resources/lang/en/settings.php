@@ -85,8 +85,8 @@ return [
         'title'             => 'Boost',
         'unboost'           => [
             'confirm'   => 'Unboosting the campaign ":tag".',
-            'data' => 'No data will be lost.',
-            'title'         => 'Unboosting a campaign',
+            'data'      => 'No data will be lost.',
+            'title'     => 'Unboosting a campaign',
         ],
     ],
     'countries'     => [

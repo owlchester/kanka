@@ -84,8 +84,7 @@ return [
         ],
         'title'             => 'Boost',
         'unboost'           => [
-            'description'   => 'Biztos, hogy megszünteted a :tag kampány megerősítését?',
-            'title'         => 'Kampány megerősítésének visszavonása',
+            'title' => 'Kampány megerősítésének visszavonása',
         ],
     ],
     'countries'     => [
@@ -120,22 +119,13 @@ return [
         'success'   => 'Az elrendezési beállításokat frissítettük.',
         'title'     => 'Elrendezés',
     ],
-    'marketplace'   => [
-        'fields'    => [
-            'name'  => 'Piactér neve',
-        ],
-        'helper'    => 'Alapértelmezetten a felhasználói nevedet mutatja a :marketplace. Felülírhatod ezt ezzel a mezővel.',
-        'title'     => 'Piactér beállításai',
-        'update'    => 'Piactér beállításait elmentettük.',
-    ],
+    'marketplace'   => [],
     'menu'          => [
         'account'               => 'Fiók',
         'api'                   => 'API',
         'apps'                  => 'Appok',
         'billing'               => 'Fizetési Mód',
         'invoices'              => 'Számlák',
-        'layout'                => 'Elrendezés',
-        'marketplace'           => 'Piactér',
         'other'                 => 'Egyéb',
         'patreon'               => 'Patreon',
         'payment_options'       => 'Fizetési lehetőségek',

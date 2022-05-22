@@ -2,8 +2,7 @@
 
 return [
     'about'         => [
-        'description'   => 'Kanka va néixer pel desig de dos apassionats jugadors de rol per administrar un món junts durant l\'estiu de 2017. Després de provar diverses opcions disponibles en aquell moment, i concloure que cap d\'elles s\'adequava al que volíem, ens vam posar a construir la nostra pròpia eina durant la tardor de 2017.',
-        'title'         => 'Sobre nosaltres',
+        'title' => 'Sobre nosaltres',
     ],
     'campaigns'     => [
         'description_full'  => 'Moltes de les campanyes de Kanka són públiques perquè tothom les pugui veure. Aquesta pàgina conté una llista amb totes les campanyes públiques, així com algunes campanyes destacades de la comunitat.',
@@ -185,16 +184,10 @@ return [
         'title'         => 'Una nova manera de monitorar les campanyes de rol.',
     ],
     'footer'        => [
-        'app'           => 'App',
-        'headings'      => [
-            'app'           => 'App',
-            'community'     => 'Comunitat',
-            'other'         => 'Altres',
-            'useful_links'  => 'Enllaços útils',
+        'headings'  => [
+            'app'       => 'App',
+            'community' => 'Comunitat',
         ],
-        'navigation'    => 'Navegació',
-        'resources'     => 'Recursos',
-        'social'        => 'Social',
     ],
     'help'          => [
         'description'   => 'Som aquí per a fer-vos un cop de mà. Contacteu-nos mitjançant una de les següents vies, i us respondrem el més ràpid possible.',
@@ -215,38 +208,23 @@ return [
         'heading'           => 'Gestió de campanyes de rol i creació de mons al vostre abast',
         'title'             => 'Kanka',
     ],
-    'media'         => [
-        'description'   => 'Aquí trobareu imatges de Kanka en alta resolució. Podeu utilitzar-les per a promocionar Kanka o per a construïr eines que hi interactuin.',
-        'images'        => [
-            'primary'   => 'Logo primari de Kanka',
-            'social'    => 'Logo social de Kanka',
-        ],
-        'title'         => 'Mitjans',
-    ],
+    'media'         => [],
     'menu'          => [
         'about'         => 'Sobre nosaltres',
-        'api'           => 'API',
         'campaigns'     => 'Campanyes públiques',
         'community'     => 'Comunitat',
         'contact'       => 'Contacte',
-        'contact_us'    => 'Contacteu-nos',
         'dashboard'     => 'Taulell',
         'features'      => 'Característiques',
-        'help'          => 'Ajuda',
-        'home'          => 'Inici',
         'login'         => 'Entra',
         'marketplace'   => 'Mercat',
-        'media'         => 'Mitjans',
         'news'          => 'Novetats',
         'newsletter'    => 'Newsletter',
-        'other'         => 'Altres',
         'pricing'       => 'Tarifes',
         'privacy'       => 'Política de privacitat',
         'register'      => 'Regístra\'m',
         'releases'      => 'Llançaments',
         'roadmap'       => 'Full de ruta',
-        'terms'         => 'Termes i condicions',
-        'title'         => 'Menú',
     ],
     'meta'          => [
         'description'   => 'Kanka és un administrador flexible de campanyes de rol online.',

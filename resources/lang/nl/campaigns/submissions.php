@@ -23,13 +23,10 @@ return [
         'application'   => 'Aanvraging',
         'rejection'     => 'Reden van afwijzing',
     ],
-    'helpers'       => [
-        'open_and_public'   => 'De campaign accepteert aanvragen om eraan deel te nemen. Om dit te stoppen, bewerk je de campaign en wijzig je de instelling Openen op het :tab tabblad.',
-    ],
+    'helpers'       => [],
     'placeholders'  => [
         'note'  => 'Schrijf je aanvraag op om mee te doen aan de campaign',
     ],
-    'title'         => 'Campaign Aanvragen',
     'update'        => [
         'approve'   => 'Selecteer de rol waaraan de gebruiker zal worden toegevoegd zoals in je campaign.',
         'approved'  => 'Aanvraag goedgekeurd.',

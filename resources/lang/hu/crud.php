@@ -37,7 +37,6 @@ return [
             'helper'    => 'Használhatod a + és - gombokat a szám előtt, hogy frissítsd a korát az adott számmal.',
         ],
         'delete'        => [
-            'title'     => 'Több entitás törlése egyidejűleg',
             'warning'   => 'Biztosan törölni szeretnéd a kijelölt entitásokat?',
         ],
         'edit'          => [
@@ -89,11 +88,9 @@ return [
         'empty' => 'Nincs megjeleníthető adat',
     ],
     'delete_modal'              => [
-        'close'             => 'Bezárás',
-        'delete'            => 'Törlés',
-        'description'       => 'Biztos, hogy eltávolítod?',
-        'description_final' => 'Biztosan eltávolítod? Ezt a lépést nem tudod visszacsinálni.',
-        'title'             => 'Törlés megerősítése',
+        'close' => 'Bezárás',
+        'delete'=> 'Törlés',
+        'title' => 'Törlés megerősítése',
     ],
     'destroy_many'              => [
         'success'   => ':count entitást töröltünk|:count entitást töröltünk.',

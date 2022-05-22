@@ -32,7 +32,6 @@ return [
     ],
     'clear'             => [
         'action'    => 'Usuń wszystkie',
-        'confirm'   => 'Czy na pewno chcesz usunąć wszystkie powiadomienia? Tego działania nie można cofnąć.',
         'success'   => 'Usunięto powiadomienia',
     ],
     'header'            => 'Masz :count powiadomień.',

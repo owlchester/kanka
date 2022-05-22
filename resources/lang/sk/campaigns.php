@@ -221,15 +221,7 @@ TEXT
         ],
         'your_role'             => 'Tvoja rola: <i>:role</i>',
     ],
-    'open_campaign'                     => [
-        'helper'    => 'Verejná kampaň nastavená ako otvorená umožní ostatným zaslať prihlášky na vstup do nej. Zoznam prihlášok nájdeš na stránke :link.',
-        'link'      => 'Prihlášky do kampane',
-        'statuses'  => [
-            'closed'    => 'Ukončený',
-            'open'      => 'Príjem prihlášok otvorený',
-        ],
-        'title'     => 'Otvorená kampaň',
-    ],
+    'open_campaign'                     => [],
     'options'                           => [],
     'panels'                            => [
         'boosted'   => 'Boostovaná',
@@ -294,7 +286,6 @@ TEXT
         'members'       => 'Členovia',
         'modals'        => [
             'details'   => [
-                'button'    => 'Potrebujem pomoc',
                 'campaign'  => 'Oprávnenia kampane umožňujú nasledovné.',
                 'entities'  => 'Rýchle info o tom, čo obdržia členovia tejto role, ak dostanú dané oprávnenie.',
                 'more'      => 'Viac informácií nájdeš v našom videonávode na YouTube',
@@ -363,9 +354,6 @@ TEXT
             'enable'    => 'Aktivovať',
         ],
         'boosted'   => 'Táto funkcia je aktuálne v beta verzii a dostupná iba pre :boosted.',
-        'edit'      => [
-            'success'   => 'Nastavenia kampane boli upravené.',
-        ],
         'errors'    => [
             'module-disabled'   => 'Požadovaný modul je aktuálne v nastaveniach kampane deaktivovaný. :fix.',
         ],
@@ -391,7 +379,6 @@ TEXT
             'tags'          => 'Každý objekt môže byť priradený viacerým kategóriám. Kategórie môžu patriť pod iné kategórie a objekty môžu byť podľa kategórií filtrované.',
             'timelines'     => 'Zobraz dejiny tvojho sveta pomocou časových osí.',
         ],
-        'title'     => 'Moduly kampane :name',
     ],
     'show'                              => [
         'actions'   => [

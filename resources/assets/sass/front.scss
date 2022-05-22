@@ -157,6 +157,7 @@ h1, h2, h3, h4, h5, h6, .card-title, .card-price {
 }
 section {
   background-color: #fff;
+  padding: 50px 0;
 
   h1 {
     font-weight: 300;
@@ -493,7 +494,7 @@ ul.pagination {
 }
 
 .minimal-padding {
-  padding: 50px 20px;
+  padding: 50px 0px;
   background-color: #fff;
   width: 100%;
 }
@@ -738,6 +739,9 @@ ul.pagination {
 
 
 @media (min-width: 768px) {
+  section {
+    //padding: 100px 0;
+  }
   .pricing {
     .card-body {
       ul {

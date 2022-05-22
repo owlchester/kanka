@@ -14,8 +14,8 @@ return [
     'conversation'          => 'Conversation',
     'conversations'         => 'Conversations',
     'creator'               => [
-        'actions' => [
-            'create' => 'Create :type',
+        'actions'           => [
+            'create'    => 'Create :type',
         ],
         'back'              => 'Back to selection',
         'duplicate'         => 'Heads up! There are other entities of this type with a similar name.',

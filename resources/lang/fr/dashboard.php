@@ -98,7 +98,6 @@ return [
     'widgets'       => [
         'actions'                   => [
             'advanced-options'  => 'Options avancées',
-            'delete-confirm'    => 'ce widget',
         ],
         'advanced_options_boosted'  => 'Les :boosted_campaigns ont des options avancées tel que pouvoir afficher les enfants d\'une famille ou les attributs d\'une entité sur le tableau de bord.',
         'calendar'                  => [
@@ -129,7 +128,8 @@ return [
             'width'             => 'Largeur',
         ],
         'helpers'                   => [
-            'class' => 'Définition d\'une classe css ajoutée au widget.',
+            'class'     => 'Définition d\'une classe css ajoutée au widget.',
+            'filters'   => 'Cliquer pour en savoir plus sur les options de filtrage.',
         ],
         'orders'                    => [
             'name_asc'  => 'Nom ascendant',
@@ -153,7 +153,6 @@ return [
             'help'              => 'Afficher seulement la dernière entité modifiée avec un aperçu de celle-ci.',
             'helpers'           => [
                 'entity-header'     => 'Si l\'entité à une image d\'en-tête (limité aux campagnes boostées), le widget utilisera cette image au lieu de l\'image principale de l\'entité.',
-                'filters'           => 'Les entités affichées peuvent être filtrées. En savoir plus en lisant la page d\'aide :link.',
                 'full'              => 'Afficher le contenu entier de l\'entité au lieu d\'un aperçu.',
                 'show_attributes'   => 'Afficher les attributs épinglés de l\'entité.',
                 'show_members'      => 'Si l\'entité est une famille ou organisation, afficher les membres sous l\'entrée.',

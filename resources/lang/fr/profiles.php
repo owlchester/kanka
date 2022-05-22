@@ -1,6 +1,13 @@
 <?php
 
 return [
+    'appearance'                    => [
+        'helpers'   => [
+            'campaign-order'    => 'Changer l\'ordre dans lequel les campagnes s\'affichent dans le changeur de campagne.',
+            'date-format'       => 'Changer le format d\'affichage des dates.',
+            'pagination'        => 'Changer le nombre d\'éléments affichés dans les listes.',
+        ],
+    ],
     'avatar'                        => [
         'success'   => 'Photo de profil modifiée.',
     ],
@@ -31,8 +38,12 @@ return [
         'new_password_confirmation' => 'Confirmation du nouveau mot de passe',
         'newsletter'                => 'Je souhaite être contacté par email de temps en temps.',
         'password'                  => 'Mot de passe actuel',
+        'profile-name'              => 'Nom de profile',
         'settings'                  => 'Paramètres',
         'theme'                     => 'Thème',
+    ],
+    'helpers'                       => [
+        'profile-name'  => 'Changer ton nom sur ton :profile et le :marketplace. Si vide, le nom du compte sera utilisé.',
     ],
     'newsletter'                    => [
         'helpers'   => [
@@ -67,13 +78,16 @@ return [
         'password'                  => 'Saisie du mot de passe actuel',
     ],
     'sections'                      => [
-        'delete'    => [
-            'delete'    => 'Supprimer mon compte',
-            'helper'    => 'Supprimer ton compte supprimera aussi toutes les campagnes où tu es le seul membre. Ceci est permanent et ne peut pas être défait.',
-            'title'     => 'Suppression du compte',
-            'warning'   => 'Toutes les données relatives au compte seront supprimées. Êtes-vous certain?',
+        'dangerzone'    => 'Zone dangereuse',
+        'delete'        => [
+            'confirm'       => 'Oui, supprimer mon compte',
+            'delete'        => 'Supprimer mon compte',
+            'helper'        => 'Supprimer ton compte supprimera aussi toutes les campagnes où tu es le seul membre. Ceci est permanent et ne peut pas être défait.',
+            'subscribed'    => 'Prière d\'annuler ton :subscription avant de pouvoir supprimer ton compte.',
+            'title'         => 'Suppression du compte',
+            'warning'       => 'Toutes les données relatives au compte seront supprimées. Êtes-vous certain?',
         ],
-        'password'  => [
+        'password'      => [
             'title' => 'Modification du mot de passe',
         ],
     ],
@@ -100,6 +114,7 @@ return [
         'success'   => 'Paramètres modifiés.',
     ],
     'theme'                         => [
+        'helper'    => 'Une campagne avec un thème défini remplacera ta préférence.',
         'success'   => 'Thème modifié.',
         'themes'    => [
             'dark'      => 'Sombre',

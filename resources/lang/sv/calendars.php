@@ -192,10 +192,6 @@ return [
     ],
     'show'          => [
         'missing_details'   => 'Den här kalendern kunde inte visas. Kalendrar måste ha minst 2 månader och 2 veckodagar för att renderas korrekt.',
-        'moon_full_moon'    => ':moon Fullmåne',
-        'moon_new_moon'     => ':moon Nymåne',
-        'moon_waning_moon'  => ':moon Avtagande',
-        'moon_waxing_moon'  => ':moon Tilltagande',
         'tabs'              => [
             'events'    => 'Kalender Händelser',
             'weather'   => 'Väder',

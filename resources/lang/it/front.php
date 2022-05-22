@@ -2,8 +2,7 @@
 
 return [
     'about'         => [
-        'description'   => 'Kanka è nato dal desiderio di due appassionati giocatori di RPG per costruire e gestire un mondo assieme nell\'estate del 2017. Dopo aver provato qualcosa di già disponibile a quel tempo, ed aver concluso che nessuna di esse soddisfacesse le nostre aspettative, abbiamo iniziato a costruire il nostro sistema nell\'autunno del 2017.',
-        'title'         => 'Su di noi',
+        'title' => 'Su di noi',
     ],
     'campaigns'     => [
         'description_full'  => 'Molte campagne su Kanka sono pubbliche per essere guardate da tutti. Questa pagina contiene una lista di tutte le campagne pubbliche ed alcune campagne in primo piano dalla comunità.',
@@ -117,15 +116,10 @@ return [
         'title'         => 'Un nuovo modo per tener traccia delle tue campagne.',
     ],
     'footer'        => [
-        'app'           => 'App',
-        'headings'      => [
-            'app'           => 'App',
-            'community'     => 'Community',
-            'useful_links'  => 'Link Utili',
+        'headings'  => [
+            'app'       => 'App',
+            'community' => 'Community',
         ],
-        'navigation'    => 'Navigazione',
-        'resources'     => 'Risorse',
-        'social'        => 'Social',
     ],
     'help'          => [
         'description'   => 'Noi siamo qui per te nel caso qavessi bisogno di un piccolo aiuto. Contattaci utilizzando uno dei seguenti metodi è noi ti risponderemo il più velocemente possibile.',
@@ -142,15 +136,11 @@ return [
     ],
     'menu'          => [
         'about'     => 'Su di noi',
-        'api'       => 'API',
         'campaigns' => 'Campagne Pubbliche',
         'community' => 'Comunità',
         'contact'   => 'Contatti',
-        'contact_us'=> 'Contattaci',
         'dashboard' => 'Dashboard',
         'features'  => 'Caratteristiche',
-        'help'      => 'Aiuto',
-        'home'      => 'Home',
         'login'     => 'Entra',
         'news'      => 'Novità',
         'newsletter'=> 'Newsletter',
@@ -159,8 +149,6 @@ return [
         'register'  => 'Registrati',
         'releases'  => 'Rilasci',
         'roadmap'   => 'Roadmap',
-        'terms'     => 'Termini e Condizioni',
-        'title'     => 'Menù',
     ],
     'meta'          => [
         'description'   => 'Kanka è un flessibile costruttore di mondi digitali e gestore on-line di campagne RPG',

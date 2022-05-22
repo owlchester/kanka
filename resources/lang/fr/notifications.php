@@ -32,8 +32,8 @@ return [
     ],
     'clear'             => [
         'action'    => 'Tout supprimer',
-        'confirm'   => 'Es-tu sûr de vouloir supprimer toutes les notifications? Cette action ne peut pas être annulée.',
         'success'   => 'Notifications supprimées.',
+        'title'     => 'Vider les notifications',
     ],
     'header'            => ':count notifications',
     'index'             => [

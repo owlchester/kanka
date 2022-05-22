@@ -2,8 +2,7 @@
 
 return [
     'about'                 => [
-        'description'   => 'Kanka nasceu do desejo de dois jogadores apaixonados por RPG de criar e gerenciar um mundo juntos no ano de 2017. Depois de tentarem algumas opções da época, e concluindo que nenhuma delas funcionou do jeito que queriam, nos resolvemos criar nossa própria ferramenta no final de 2017.',
-        'title'         => 'Sobre',
+        'title' => 'Sobre',
     ],
     'campaigns'             => [
         'description_full'  => 'Muitas campanhas em Kanka são públicas para que todos possam ver. Esta página contém uma lista de todas as campanhas públicas, bem como algumas campanhas em destaque da comunidade.',
@@ -200,17 +199,11 @@ return [
         'title'         => 'Uma nova maneira de acompanhar suas campanhas.',
     ],
     'footer'                => [
-        'app'       => 'Aplicativo',
         'copyright' => 'Direitos reservados :copy ano :company',
         'headings'  => [
-            'app'           => 'Aplicativo',
-            'community'     => 'Comunidade',
-            'other'         => 'Outro',
-            'useful_links'  => 'Links úteis',
+            'app'       => 'Aplicativo',
+            'community' => 'Comunidade',
         ],
-        'navigation'=> 'Navegação',
-        'resources' => 'Recursos',
-        'social'    => 'Social',
     ],
     'help'                  => [
         'description'   => 'Nós estamos aqui caso necessite um pouco de ajuda. Nos contate utilizando um dos seguintes métodos e nós retornaremos o mais rápido possível.',
@@ -232,42 +225,27 @@ return [
         'heading'           => 'Gerenciamento de campanha de RPG de mesa e construção de mundos, tornados fáceis',
         'title'             => 'Kanka',
     ],
-    'media'                 => [
-        'description'   => 'Encontre imagens de alta resolução do Kanka nesta página. Use-as se você estiver promovendo o Kanka ou construindo ferramentas que interagem com o Kanka.',
-        'images'        => [
-            'primary'   => 'Logotipo primário do Kanka',
-            'social'    => 'Logotipo para redes sociais do Kanka',
-        ],
-        'title'         => 'Mídia',
-    ],
+    'media'                 => [],
     'menu'                  => [
         'about'         => 'Sobre',
-        'api'           => 'API',
         'campaigns'     => 'Campanhas Públicas',
         'community'     => 'Comunidade',
         'contact'       => 'Contato',
-        'contact_us'    => 'Contate-nos',
         'dashboard'     => 'Dashboard',
         'documentation' => 'Documentação',
         'features'      => 'Recursos',
-        'help'          => 'Ajuda',
-        'home'          => 'Início',
         'kb'            => 'Base de conhecimento',
         'login'         => 'Login',
         'marketplace'   => 'Mercado',
-        'media'         => 'Mídia',
         'merch'         => 'Mercadoria',
         'news'          => 'Novidades',
         'newsletter'    => 'Newsletter',
-        'other'         => 'Outro',
         'overview'      => 'Visão geral do recurso',
         'pricing'       => 'Preços',
         'privacy'       => 'Política de Privacidade',
         'register'      => 'Registrar',
         'releases'      => 'Atualizações',
         'roadmap'       => 'Roadmap',
-        'terms'         => 'Termos e Condições',
-        'title'         => 'Menu',
     ],
     'meta'                  => [
         'description'   => 'Kanka é um criador flexível de mundos digitais e gerenciador online de campanhas de rpg',

@@ -2,8 +2,7 @@
 
 return [
     'about'                 => [
-        'description'   => 'Kanka wurde im Sommer 2017 aus dem Wunsch zweier leidenschaftlicher RPG Spieler geboren eine gemeinsame Welt aufzubauen und zu verwalten. Nach dem wir ein paar der zu der Zeit verfügbaren Optionen ausprobierten, mussten wir feststellten dass keine Lösung das bot was wir suchten. Also machten wir uns im Herbst 2017 auf, unser eigenes Tool zu bauen.',
-        'title'         => 'Über Kanka',
+        'title' => 'Über Kanka',
     ],
     'campaigns'             => [
         'description_full'  => 'Viele Kampagnen auf Kanka sind öffentlich für jeden. Diese Seite enthält eine Liste aller öffentlichen Kampagnen sowie einige von der Community hervorgehobene Kampagnen.',
@@ -200,17 +199,11 @@ return [
         'title'         => 'Eine neue Art und Weise, den Überblick über deine Kampagne zu bewahren.',
     ],
     'footer'                => [
-        'app'       => 'App',
         'copyright' => 'Copyright :copy :year :company',
         'headings'  => [
-            'app'           => 'App',
-            'community'     => 'Community',
-            'other'         => 'Andere',
-            'useful_links'  => 'Nützliche Links',
+            'app'       => 'App',
+            'community' => 'Community',
         ],
-        'navigation'=> 'Navigation',
-        'resources' => 'Ressourcen',
-        'social'    => 'Social',
     ],
     'help'                  => [
         'description'   => 'Wir sind für dich da, falls du Hilfe brauchst. Kontaktier uns über einen der folgenden Wege und wir melden uns bei dir so schnell wie möglich zurück.',
@@ -232,42 +225,27 @@ return [
         'heading'           => 'RPG Campaign Management und Worldbuilding leicht gemacht',
         'title'             => 'Kanka',
     ],
-    'media'                 => [
-        'description'   => 'Auf dieser Seite finden Sie hochauflösende Bilder von Kanka. Verwenden Sie diese, wenn Sie für Kanka werben oder Tools erstellen, die mit Kanka interagieren.',
-        'images'        => [
-            'primary'   => 'Primäres Kanka-Logo',
-            'social'    => 'Soziales Kanka-Logo',
-        ],
-        'title'         => 'Medien',
-    ],
+    'media'                 => [],
     'menu'                  => [
         'about'         => 'Über Kanka',
-        'api'           => 'API',
         'campaigns'     => 'Öffentliche Kampagnen',
         'community'     => 'Community',
         'contact'       => 'Kontakt',
-        'contact_us'    => 'Kontaktiere uns',
         'dashboard'     => 'Dashboard',
         'documentation' => 'Dokumentation',
         'features'      => 'Features',
-        'help'          => 'Hilfe',
-        'home'          => 'Home',
         'kb'            => 'Datenbank',
         'login'         => 'Login',
         'marketplace'   => 'Marktplatz',
-        'media'         => 'Medien',
         'merch'         => 'Waren',
         'news'          => 'Neuigkeiten',
         'newsletter'    => 'Newsletter',
-        'other'         => 'Andere',
         'overview'      => 'Funktionsübersicht',
         'pricing'       => 'Preisgestaltung',
         'privacy'       => 'Datenschutzbestimmung',
         'register'      => 'Registrieren',
         'releases'      => 'Versionen',
         'roadmap'       => 'Roadmap',
-        'terms'         => 'Bedingungen',
-        'title'         => 'Menü',
     ],
     'meta'                  => [
         'description'   => 'Kanka ist ein flexibles digitales Tool zum weltenbauen und verwalten deiner Rollenspielkampagnen',

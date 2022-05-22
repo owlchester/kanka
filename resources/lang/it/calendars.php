@@ -32,10 +32,9 @@ return [
     ],
     'event'         => [
         'actions'   => [
-            'delete-confirm'    => 'questo promemoria',
-            'existing'          => 'Entità esistente',
-            'new'               => 'Nuovo Evento',
-            'switch'            => 'Cambia scelta',
+            'existing'  => 'Entità esistente',
+            'new'       => 'Nuovo Evento',
+            'switch'    => 'Cambia scelta',
         ],
         'create'    => [
             'success'   => 'Evento del calendario creato',
@@ -208,10 +207,6 @@ return [
     ],
     'show'          => [
         'missing_details'   => 'Questo calendario non può essere visualizzato. I Calendari necessitano almeno di 2 mesi e 2 giorni della settimana per essere visualizzati correttamente.',
-        'moon_full_moon'    => ':moon Luna Piena',
-        'moon_new_moon'     => ':moon Luna Nuova',
-        'moon_waning_moon'  => ':moon Decrescente',
-        'moon_waxing_moon'  => ':moon Crescente',
         'tabs'              => [
             'events'    => 'Eventi del Calendario',
             'weather'   => 'Tempo Atmosferico',

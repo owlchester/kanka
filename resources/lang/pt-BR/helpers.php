@@ -59,17 +59,12 @@ return [
         'options'           => 'Algumas opções são :options.',
         'title'             => 'Criando um link para outras entidades',
     ],
-    'map'               => [
-        'description'   => 'Carregar um mapa para um local habilitará o menu `Mapa` na página de visualização de Locais e um link direto para o mapa na página de locais da campanha. A partir da visualização do mapa, os usuários que podem editar a localização podem ativar o \'Modo de Edição\', que lhes permite colocar os Pontos do Mapa no mapa. Eles podem ser vinculados a uma entidade existente ou ser um rótulo e ter vários formatos e tamanhos.',
-        'private'       => 'Os membros na função de Administrador da campanha podem tornar um mapa privado. Isso permite que os usuários vejam um local, mas para o mapa ficará escondido.',
-        'title'         => 'Mapas de locais',
-    ],
+    'map'               => [],
     'pins'              => [
         'description'   => 'As entidades podem ter relações e atributos fixados à direita de sua visão geral. Para fixar um elemento, vá e edite a relação ou atributos e defina o valor fixado neles.',
         'title'         => 'Entidades Fixadas',
     ],
     'public'            => 'Assista a um tutorial em vídeo no Youtube explicando as campanhas públicas.',
-    'title'             => 'Ajuda',
     'troubleshooting'   => [
         'description'       => 'Um membro da equipe de Kanka enviou você para esta página. Selecione uma campanha no menu suspenso para gerar um token para que possamos ingressar temporariamente em sua campanha como um administrador.',
         'errors'            => [

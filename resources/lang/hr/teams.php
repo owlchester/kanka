@@ -4,11 +4,6 @@ return [
     'hall_of_fame'  => 'Kuća slavnih',
     'index'         => [
         'community'     => 'Zajednica',
-        'core'          => 'Jezgra',
-        'description'   => 'Ovi ljudi čine Kanku mogućom',
-        'other'         => 'Drugo',
-        'qa'            => 'Osiguranje kvalitete',
-        'support'       => 'Podrška',
         'title'         => 'Tim',
         'translations'  => 'Prijevodi',
     ],

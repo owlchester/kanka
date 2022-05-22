@@ -31,9 +31,9 @@ return [
         ],
     ],
     'clear'             => [
-        'title'     => 'Clear notifications',
         'action'    => 'Clear all',
         'success'   => 'Notifications removed.',
+        'title'     => 'Clear notifications',
     ],
     'header'            => 'You have :count notifications',
     'index'             => [

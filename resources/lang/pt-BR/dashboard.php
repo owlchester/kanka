@@ -97,7 +97,6 @@ return [
     'widgets'       => [
         'actions'                   => [
             'advanced-options'  => 'Opções avançadas',
-            'delete-confirm'    => 'esse widget',
         ],
         'advanced_options_boosted'  => ':boosted_campaigns têm opções avançadas, como mostrar membros de uma família ou atributos da entidade no dashboard.',
         'calendar'                  => [
@@ -148,7 +147,6 @@ return [
             'help'              => 'Mostra apenas a última entidade atualizada, mas mostra uma visualização completa da entidade',
             'helpers'           => [
                 'entity-header'     => 'Se sua entidade tiver um cabeçalho de entidade (recurso de campanha impulsionada), defina este widget para usar essa imagem em vez da imagem da entidade.',
-                'filters'           => 'Você pode filtrar o tipo de entidades que aparecem. Aprenda a usar este campo visitando a página auxiliar :link.',
                 'full'              => 'Exibe a entrada da entidade inteira por padrão em vez de uma visualização.',
                 'show_attributes'   => 'Mostra os atributos fixados da entidade abaixo da entrada.',
                 'show_members'      => 'Se a entidade for uma família ou organização, mostra seus membros abaixo da entrada.',

@@ -32,10 +32,9 @@ return [
     ],
     'event'         => [
         'actions'   => [
-            'delete-confirm'    => 'diese Erinnerung',
-            'existing'          => 'Bestehendes Objekt',
-            'new'               => 'Neues Ereignis',
-            'switch'            => 'Auswahl ändern',
+            'existing'  => 'Bestehendes Objekt',
+            'new'       => 'Neues Ereignis',
+            'switch'    => 'Auswahl ändern',
         ],
         'create'    => [
             'success'   => 'Kalender Ereignis wurde erstellt',
@@ -208,10 +207,6 @@ return [
     ],
     'show'          => [
         'missing_details'   => 'Dieser Kalender konnte nicht angezeigt werden. Kalender brauchen mindestens 2 Monate und 2 Wochentage um korrekt generiert zu werden.',
-        'moon_full_moon'    => ':moon Vollmond',
-        'moon_new_moon'     => ':moon Neumond',
-        'moon_waning_moon'  => ':moon abnehmender Mond',
-        'moon_waxing_moon'  => ':moon zunehmender Mond',
         'tabs'              => [
             'events'    => 'Kalender Events',
             'weather'   => 'Wetter',

@@ -192,10 +192,6 @@ return [
     ],
     'show'          => [
         'missing_details'   => 'Deze kalender kan niet worden weergegeven. Kalenders hebben minimaal 2 maanden en 2 weekdagen nodig om correct te worden weergegeven.',
-        'moon_full_moon'    => ':moon Volle Maan',
-        'moon_new_moon'     => ':moon Nieuwe Maan',
-        'moon_waning_moon'  => ':moon afnemende',
-        'moon_waxing_moon'  => ':moon Wassende',
         'tabs'              => [
             'events'    => 'Kalender Gebeurtenissen',
             'weather'   => 'Weer',

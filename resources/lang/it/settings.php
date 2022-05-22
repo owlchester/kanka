@@ -35,7 +35,6 @@ return [
     'menu'      => [
         'account'           => 'Account',
         'api'               => 'API',
-        'layout'            => 'Layout',
         'patreon'           => 'Patreon',
         'personal_settings' => 'Impostazioni Personali',
         'profile'           => 'Profilo',

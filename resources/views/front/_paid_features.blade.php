@@ -1,6 +1,6 @@
 <section class="minimal-padding" id="paid-features">
     <div class="container">
-        <div class="col-lg-12 my-auto">
+        <div class="my-auto">
             <div class="header-content mx-auto">
                 <h2 class="">{{ __('front.features.patreon.title') }}</h2>
                 <p class="my-3">{{ __('front.features.patreon.description', ['kanka' => config('app.name')]) }}</p>

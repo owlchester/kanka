@@ -32,7 +32,6 @@ return [
     ],
     'clear'             => [
         'action'    => 'Limpar todas',
-        'confirm'   => 'Queres eliminar todas as notificacións? Esta acción non pode desfacerse.',
         'success'   => 'Notificacións eliminadas.',
     ],
     'header'            => 'Tes :count notificacións',

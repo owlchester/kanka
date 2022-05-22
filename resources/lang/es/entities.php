@@ -16,7 +16,6 @@ return [
     'creator'               => [
         'back'      => 'Volver a la selección',
         'duplicate' => 'Ya existen otras entidades de este tipo con el mismo nombre.',
-        'helper'    => 'Selecciona el tipo de entidad que quieres crear. Si no aparece ninguna, quiere decir que no tienes permiso para crear entidades en esta campaña.',
         'title'     => 'Nueva entidad',
         'tooltip'   => 'Crear una nueva entidad sin abandonar la página actual',
     ],

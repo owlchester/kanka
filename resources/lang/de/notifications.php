@@ -32,7 +32,6 @@ return [
     ],
     'clear'             => [
         'action'    => 'Clear all',
-        'confirm'   => 'Möchten Sie wirklich alle Benachrichtigungen entfernen? Diese Aktion kann nicht rückgängig gemacht werden.',
         'success'   => 'Benachrichtigungen entfernt.',
     ],
     'header'            => 'Du hast :count Benachrichtigungen.',

@@ -84,8 +84,7 @@ return [
         ],
         'title'             => 'Millorar',
         'unboost'           => [
-            'description'   => 'Segur que voleu deixar de millorar la campanya :tag?',
-            'title'         => 'Deixar de millorar una campanya',
+            'title' => 'Deixar de millorar una campanya',
         ],
     ],
     'countries'     => [
@@ -120,22 +119,13 @@ return [
         'success'   => 'S\'han actualitzat les opcions de disseny.',
         'title'     => 'Disseny',
     ],
-    'marketplace'   => [
-        'fields'    => [
-            'name'  => 'Nom al mercat',
-        ],
-        'helper'    => 'Per defecte, el vostre nom d\'usuari es mostra al :marketplace. Podeu canviar-lo en aquest camp.',
-        'title'     => 'Configuració del Mercat',
-        'update'    => 'S\'ha guardat la configuració del Mercat.',
-    ],
+    'marketplace'   => [],
     'menu'          => [
         'account'               => 'Compte',
         'api'                   => 'API',
         'apps'                  => 'Aplicacions',
         'billing'               => 'Mètode de pagament',
         'invoices'              => 'Factures',
-        'layout'                => 'Disseny',
-        'marketplace'           => 'Mercat',
         'other'                 => 'Altres',
         'patreon'               => 'Patreon',
         'payment_options'       => 'Opcions de pagament',

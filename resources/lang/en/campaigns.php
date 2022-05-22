@@ -205,7 +205,7 @@ TEXT
             'title'         => 'Invites',
         ],
         'manage_roles'          => 'Manage user roles',
-        'removal' => 'You are removing ":member" from the campaign.',
+        'removal'               => 'You are removing ":member" from the campaign.',
         'roles'                 => [
             'member'    => 'Member',
             'owner'     => 'Admin',
@@ -333,8 +333,8 @@ TEXT
         ],
         'users'         => [
             'actions'   => [
-                'add'       => 'Add member',
-                'remove'    => ':user from the :role role',
+                'add'           => 'Add member',
+                'remove'        => ':user from the :role role',
                 'remove_user'   => 'Remove user from role',
             ],
             'create'    => [
@@ -350,12 +350,12 @@ TEXT
         ],
     ],
     'settings'                          => [
-        'enabled' => 'The :module module is now active.',
-        'disabled' => 'The :module module is now disabled.',
         'actions'   => [
             'enable'    => 'Enable',
         ],
         'boosted'   => 'This feature is in early access and currently only available for :boosted.',
+        'disabled'  => 'The :module module is disabled.',
+        'enabled'   => 'The :module module is enabled.',
         'errors'    => [
             'module-disabled'   => 'The requested module is currently disabled in the campaign settings. :fix.',
         ],

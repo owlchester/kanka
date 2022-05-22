@@ -97,7 +97,6 @@ return [
     'widgets'       => [
         'actions'                   => [
             'advanced-options'  => 'Opcje zaawansowane',
-            'delete-confirm'    => 'ten widżet',
         ],
         'advanced_options_boosted'  => ':boosted_campaigns posiadają zaawansowane opcje widżetów, pozwalające wyświetlać na pulpicie cechy albo członków rodzin.',
         'calendar'                  => [
@@ -152,7 +151,6 @@ return [
             'help'              => 'Pokazuj tylko ostatni zmodyfikowany element, ale publikuj cały skrót',
             'helpers'           => [
                 'entity-header'     => 'Jeżeli element ma obraz w nagłówku (w doładowanej kampanii), widżet będzie wyświetlał nagłówek zamiast obrazu samego elementu.',
-                'filters'           => 'Możesz filtrować rodzaje elementów, które będą wyświetlane. Instrukcję używania tej opcji znajdziesz na :link stronie pomocy.',
                 'full'              => 'Zamiast skrótu elementu domyślnie wyświetla jego cały opis.',
                 'show_attributes'   => 'Wyświetla cechy elementu pod jego opisem.',
                 'show_members'      => 'Jeżeli element jest rodziną albo organizacją, wyświetla jej członków pod opisem.',

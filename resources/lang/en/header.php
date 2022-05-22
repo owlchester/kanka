@@ -11,11 +11,11 @@ return [
     ],
     'profile'           => 'Profile',
     'toggle_navigation' => 'Toggle navigation',
-    'user' => [
-        'signed-in' => 'Signed in as :user',
+    'user'              => [
         'impersonating' => 'Impersonating :user',
-        'your-profile' => 'Your profile',
-        'settings' => 'Settings',
-        'sign-out' => 'Sign out',
-    ]
+        'settings'      => 'Settings',
+        'sign-out'      => 'Sign out',
+        'signed-in'     => 'Signed in as :user',
+        'your-profile'  => 'Your profile',
+    ],
 ];

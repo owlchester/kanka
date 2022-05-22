@@ -218,15 +218,7 @@ TEXT
         ],
         'your_role'             => 'El vostre rol: <i>:role</i>',
     ],
-    'open_campaign'                     => [
-        'helper'    => 'Obrir una campanya pública vol dir que els usuaris podran sol·licitar unir-se\'n. Podeu trobar la llista de sol·licituds a la pàgina de :link.',
-        'link'      => 'sol·licituds de campanya',
-        'statuses'  => [
-            'closed'    => 'Tancada',
-            'open'      => 'Oberta a noves incorporacions',
-        ],
-        'title'     => 'Campanya oberta',
-    ],
+    'open_campaign'                     => [],
     'options'                           => [],
     'panels'                            => [
         'boosted'   => 'Millores',
@@ -291,7 +283,6 @@ TEXT
         'members'       => 'Membres',
         'modals'        => [
             'details'   => [
-                'button'    => 'Ajuda',
                 'campaign'  => 'Els permisos de la campanya permeten fer les següents accions.',
                 'entities'  => 'A continuació hi ha un resum ràpid del que poden fer els membres d\'aquest rol.',
                 'more'      => 'Per a més detalls, mireu el nostre tutorial a Youtube.',
@@ -360,9 +351,6 @@ TEXT
             'enable'    => 'Habilita',
         ],
         'boosted'   => 'Aquesta funció encara és en beta i només està disponible per a les :boosted.',
-        'edit'      => [
-            'success'   => 'S\'ha actualitzat la configuració de la campanya.',
-        ],
         'helper'    => 'Es poden activar o desactivar fàcilment tots els mòduls d\'una campanya. Desactivar un mòdulo només n\'amaga els elements relacionats, no els elimina pas. Aquest canvi afecta a tots els usuaris d\'una campanya, inclosos els administradors.',
         'helpers'   => [
             'abilities'     => 'Crea habilitats, proeses, encanteris o poders i els assigna a entitats.',
@@ -385,7 +373,6 @@ TEXT
             'tags'          => 'Cada entitat pot tenir diverses etiquetes que, al seu torn, també poden pertànyer a altres etiquetes. A més, les entitats poden filtrar-se per etiqueta.',
             'timelines'     => 'Per a representar la història del món amb eixos cronològics.',
         ],
-        'title'     => 'Mòduls de la campanya :name',
     ],
     'show'                              => [
         'actions'   => [

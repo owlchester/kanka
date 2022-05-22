@@ -37,7 +37,6 @@ return [
             'helper'    => 'Možeš koristiti + i - prije broja za ažuriranje dobi za taj iznos.',
         ],
         'delete'        => [
-            'title'     => 'Brisanje više entiteta',
             'warning'   => 'Jesi li siguran/a da želiš izbrisati odabrane entitete?',
         ],
         'edit'          => [
@@ -89,11 +88,9 @@ return [
         'empty' => 'Nema ništa za prikazati.',
     ],
     'delete_modal'              => [
-        'close'             => 'Zatvori',
-        'delete'            => 'Obriši',
-        'description'       => 'Jesi li siguran/a da želiš ukloniti :tag?',
-        'description_final' => 'Sigurno želiš ukloniti :tag? Ova se radnja ne može poništiti.',
-        'title'             => 'Izbriši potvrdu',
+        'close' => 'Zatvori',
+        'delete'=> 'Obriši',
+        'title' => 'Izbriši potvrdu',
     ],
     'destroy_many'              => [
         'success'   => 'Obrisano :count entitet|Obrisano :count entiteta.',

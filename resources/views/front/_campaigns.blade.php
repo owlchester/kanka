@@ -6,7 +6,7 @@
             <h2>{{ __('front.featured_campaigns.title') }}</h2>
             <p class="">{{ __('front.featured_campaigns.description') }}</p>
         </div>
-        <div class="mt-5">
+        <div class="mt-5 featured-campaigns">
             <div class="row">
             @foreach ($campaigns as $campaign)
                 <div class="col-lg-6 col-12">

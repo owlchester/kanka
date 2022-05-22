@@ -23,10 +23,10 @@ return [
         'range'             => 'Number attributes can be set up to only allow value between a range of numbers. For example, use :example to limit the attribute between 1 and 10. The range values can also reference other attributes, for example with :reference. When saving an attribute, if the value is outside of the range, it will automatically revert to the closest range value.',
         'title'             => 'Attributes',
     ],
-    'calendar-widget' => [
-        'title' => 'Calendar Widget',
-        'description' => 'Confused about the reminders showing up on your calendar dashboard widget? Calculating which reminders to show is complexe and resource intensive, so we take a few shortcuts to avoid your dashboard taking too long to load. Reminders that are non-reoccuring will always have priority over reoccuring ones, and reminders based on moon phases are ignored completely.',
-        'info' => 'Why are these reminders being shown?',
+    'calendar-widget'   => [
+        'description'   => 'Confused about the reminders showing up on your calendar dashboard widget? Calculating which reminders to show is complexe and resource intensive, so we take a few shortcuts to avoid your dashboard taking too long to load. Reminders that are non-reoccuring will always have priority over reoccuring ones, and reminders based on moon phases are ignored completely.',
+        'info'          => 'Why are these reminders being shown?',
+        'title'         => 'Calendar Widget',
     ],
     'dice'              => [
         'description'               => 'Generic dice rolling is possible by writting "d20", "4d4+4", "d%" for percentile and "df" for fudge.',

@@ -23,13 +23,10 @@ return [
         'application'   => 'Přihláška',
         'rejection'     => 'Důvod odmítnutí',
     ],
-    'helpers'       => [
-        'open_and_public'   => 'Tažení přijímá nové členy. Toto lze změnit v nastavení tažení na kartě :tab.',
-    ],
+    'helpers'       => [],
     'placeholders'  => [
         'note'  => 'Napiš svou přihlášku, chceš-li se připojit k tažení.',
     ],
-    'title'         => 'Přihlášky k tažení',
     'update'        => [
         'approve'   => 'Výběr role, kterou uživatel dostane ve tvém tažení.',
         'approved'  => 'Přihláška schválena',

@@ -40,7 +40,6 @@ return [
             'helper'    => 'Il est possible de préfixer le numéro avec + ou - pour modifier l\'âge dynamiquement.',
         ],
         'delete'        => [
-            'title'     => 'Suppression de plusieurs entités',
             'warning'   => 'Es-tu sûr de vouloir supprimer les entités sélectionnées?',
         ],
         'edit'          => [
@@ -93,10 +92,12 @@ return [
         'empty' => 'Rien à afficher.',
     ],
     'delete_modal'              => [
+        'callout'           => 'Oyé!',
         'close'             => 'Fermer',
         'delete'            => 'Supprimer',
-        'description'       => 'Es-tu sûr de vouloir supprimer :tag?',
-        'description_final' => 'Es-tu sûr de vouloir retirer :tag? Cette action ne peux pas être annulée.',
+        'description_v2'    => 'Tu supprimes ":tag".',
+        'permanent'         => 'Cette action est permanente.',
+        'recoverable'       => 'Les entités supprimées peuvent être récupérées pendant :day jours avec une :boosted-campaign.',
         'title'             => 'Confirmation de la suppression',
     ],
     'destroy_many'              => [
@@ -369,6 +370,7 @@ return [
         'mentions'      => 'Mentions',
         'menu'          => 'Menu',
         'notes'         => 'Notes',
+        'overview'      => 'Aperçu',
         'permissions'   => 'Permissions',
         'profile'       => 'Profil',
         'quests'        => 'Quêtes',

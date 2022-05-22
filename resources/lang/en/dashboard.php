@@ -127,8 +127,8 @@ return [
             'width'             => 'Width',
         ],
         'helpers'                   => [
-            'class' => 'Define a custom css class added to the widget.',
-            'filters'       => 'Click to learn about the available filter options.',
+            'class'     => 'Define a custom css class added to the widget.',
+            'filters'   => 'Click to learn about the available filter options.',
         ],
         'orders'                    => [
             'name_asc'  => 'Name ascending',

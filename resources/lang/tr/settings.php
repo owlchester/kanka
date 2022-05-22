@@ -98,22 +98,13 @@ return [
         'success'   => 'Düzen seçenekleri güncellendi.',
         'title'     => 'Düzen',
     ],
-    'marketplace'   => [
-        'fields'    => [
-            'name'  => 'Market Adı',
-        ],
-        'helper'    => 'Varsayılan olarak :marketplace üzerinde sizin kullanıcı adınız gösterilir. Bu alanda bu değeri değiştirebilirsiniz.',
-        'title'     => 'Market Seçenekleri',
-        'update'    => 'Market seçenekleri kaydedildi.',
-    ],
+    'marketplace'   => [],
     'menu'          => [
         'account'               => 'Hesap',
         'api'                   => 'API',
         'apps'                  => 'Uygulamalar',
         'billing'               => 'Ödeme Yöntemi',
         'invoices'              => 'Faturalar',
-        'layout'                => 'Düzen',
-        'marketplace'           => 'Market',
         'other'                 => 'Diğer',
         'patreon'               => 'Patreon',
         'payment_options'       => 'Ödeme Seçenekleri',

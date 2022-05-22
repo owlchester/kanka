@@ -1,15 +1,15 @@
 <?php
 
 return [
+    'appearance'                    => [
+        'helpers'   => [
+            'campaign-order'    => 'Change the order in which campaigns are listed in the campaign switcher.',
+            'date-format'       => 'Control the date format for real date.',
+            'pagination'        => 'Change the number of elements displayed in various lists.',
+        ],
+    ],
     'avatar'                        => [
         'success'   => 'Avatar updated.',
-    ],
-    'appearance' => [
-        'helpers' => [
-            'pagination' => 'Change the number of elements displayed in various lists.',
-            'date-format' => 'Control the date format for real date.',
-            'campaign-order' => 'Change the order in which campaigns are listed in the campaign switcher.',
-        ],
     ],
     'campaign_switcher_order_by'    => [
         'alphabetical'      => 'Alphabetically',
@@ -43,7 +43,7 @@ return [
         'theme'                     => 'Theme',
     ],
     'helpers'                       => [
-        'profile-name' => 'Change the way your name appears on your :profile and the :marketplace. If left blank, your account name will be used instead.',
+        'profile-name'  => 'Change the way your name appears on your :profile and the :marketplace. If left blank, your account name will be used instead.',
     ],
     'newsletter'                    => [
         'helpers'   => [
@@ -79,15 +79,15 @@ return [
     ],
     'sections'                      => [
         'dangerzone'    => 'Danger Zone',
-        'delete'    => [
-            'confirm'   => 'Yes, delete my account',
-            'delete'    => 'Delete my account',
-            'helper'    => 'Deleting your account will also delete any campaign you are the only member of. This action is permanent and can\'t be undone.',
-            'subscribed' => 'Pleace cancel your :subscription before being able to delete your account.',
-            'title'     => 'Delete your account',
-            'warning'   => 'By deleting your account, all your data will be lost. Are you sure?',
+        'delete'        => [
+            'confirm'       => 'Yes, delete my account',
+            'delete'        => 'Delete my account',
+            'helper'        => 'Deleting your account will also delete any campaign you are the only member of. This action is permanent and can\'t be undone.',
+            'subscribed'    => 'Please cancel your :subscription before being able to delete your account.',
+            'title'         => 'Delete your account',
+            'warning'       => 'By deleting your account, all your data will be lost. Are you sure?',
         ],
-        'password'  => [
+        'password'      => [
             'title' => 'Change your password',
         ],
     ],
@@ -114,8 +114,8 @@ return [
         'success'   => 'Settings changed.',
     ],
     'theme'                         => [
-        'success'   => 'Theme changed.',
         'helper'    => 'A campaign with a set theme will override your preference.',
+        'success'   => 'Theme changed.',
         'themes'    => [
             'dark'      => 'Dark',
             'default'   => 'Default',

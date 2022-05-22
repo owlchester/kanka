@@ -25,7 +25,7 @@
                 <div class="box-body">
                     <p>{{ __('campaigns.export.helper') }}</p>
                     <p>{!! __('campaigns.export.helper_secondary', [
-    'api' => link_to('/docs/1.0', __('front.menu.api'))
+    'api' => link_to('/api-docs/1.0', __('front.features.api.link'))
 ]) !!}</p>
                     <p class="help-text">
                         {{ __('campaigns.export.helper_third') }}

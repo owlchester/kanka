@@ -188,11 +188,7 @@ TEXT
         'title'                 => 'Campaign :name Leden',
         'your_role'             => 'Jouw rol: <i>:role</i>',
     ],
-    'open_campaign'                     => [
-        'helper'    => 'Met een openbare campaign die is ingesteld als open, kunnen gebruikers sollicitaties sturen om eraan deel te nemen. Vind de lijst met sollicitaties op onze :link pagina.',
-        'link'      => 'campaign sollicitaties',
-        'title'     => 'Open Campaign',
-    ],
+    'open_campaign'                     => [],
     'panels'                            => [
         'boosted'   => 'Boosted',
         'dashboard' => 'Dashboard',
@@ -292,9 +288,6 @@ TEXT
             'enable'    => 'Inschakelen',
         ],
         'boosted'   => 'Deze functie is in vroege toegang en momenteel alleen beschikbaar voor :boosted.',
-        'edit'      => [
-            'success'   => 'Campaign instellingen bijgewerkt.',
-        ],
         'helper'    => 'Alle modules van een campaign kunnen naar believen worden in- of uitgeschakeld. Als je een module uitschakelt, worden de interface-elementen die eraan gerelateerd zijn eenvoudig verborgen, en reeds bestaande entiteiten zullen verborgen zijn maar nog steeds op de achtergrond bestaan, voor het geval je van gedachten verandert. Deze wijzigingen zijn van invloed op alle gebruikers van een campaign, inclusief beheerders.',
         'helpers'   => [
             'abilities'     => 'Maak vaardigheden, of het nu gaat om prestaties, spreuken of krachten die aan entiteiten kunnen worden toegewezen.',
@@ -316,7 +309,6 @@ TEXT
             'tags'          => 'Elke entiteit kan meerdere tags hebben. Tags kunnen bij andere tags horen en invoeringen kunnen op tag worden gefilterd.',
             'timelines'     => 'Geef de geschiedenis van je wereld weer met tijdlijnen.',
         ],
-        'title'     => 'Campaign :name Modules',
     ],
     'show'                              => [
         'actions'   => [

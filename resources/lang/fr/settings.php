@@ -84,8 +84,9 @@ return [
         ],
         'title'             => 'Boost',
         'unboost'           => [
-            'description'   => 'Es-tu sûr de vouloir arrêter de booster la campagne :tag?',
-            'title'         => 'Débooster une campagne',
+            'confirm'   => 'Retirer le boost de la campagne ":tag".',
+            'data'      => 'Aucune donnée ne sera perdue.',
+            'title'     => 'Débooster une campagne',
         ],
     ],
     'countries'     => [
@@ -120,23 +121,16 @@ return [
         'success'   => 'Options de mise en page modifiées.',
         'title'     => 'Mise en page',
     ],
-    'marketplace'   => [
-        'fields'    => [
-            'name'  => 'Nom sur le marketplace',
-        ],
-        'helper'    => 'Par défaut, le nom d\'utilisateur est affiché sur le :marketplace. Le nom affiché peut être modifié avec ce champs.',
-        'title'     => 'Paramètres du Marketplace',
-        'update'    => 'Paramètres du marketplace sauvegardés.',
-    ],
+    'marketplace'   => [],
     'menu'          => [
         'account'               => 'Compte',
         'api'                   => 'API',
+        'appearance'            => 'Apparence',
         'apps'                  => 'Apps',
         'billing'               => 'Méthode de paiement',
         'boosters'              => 'Boosters',
         'invoices'              => 'Factures',
-        'layout'                => 'Mise en Page',
-        'marketplace'           => 'Marketplace',
+        'notifications'         => 'Notifications',
         'other'                 => 'Autre',
         'patreon'               => 'Patreon',
         'payment_options'       => 'Options de paiement',

@@ -23,13 +23,10 @@ return [
         'application'   => 'Prijava',
         'rejection'     => 'Razlog odbijanja',
     ],
-    'helpers'       => [
-        'open_and_public'   => 'Kampanja prima prijave za pridruživanje. Da bi to zaustavio/la, uredi kampanju i promijeni Otvorene postavke na kartici :tab.',
-    ],
+    'helpers'       => [],
     'placeholders'  => [
         'note'  => 'Zapiši svoju prijavu za pridruživanje kampanji',
     ],
-    'title'         => 'Prijave na kampanju',
     'update'        => [
         'approve'   => 'Odaberi ulogu koja će biti dodijeljena korisniku koji se pridruži kampanji.',
         'approved'  => 'Prijava odobrena.',

@@ -97,7 +97,6 @@ return [
     'widgets'       => [
         'actions'                   => [
             'advanced-options'  => 'Rozšírené možnosti',
-            'delete-confirm'    => 'tento widget',
         ],
         'advanced_options_boosted'  => ':boosted_campaigns majú rozšírené možnosti ako zobrazovanie členov rodov alebo atribútov objektu na nástenke.',
         'calendar'                  => [
@@ -152,7 +151,6 @@ return [
             'help'              => 'Zobraziť iba posledný upravený objekt, no zobraziť celý náhľad na objekt',
             'helpers'           => [
                 'entity-header'     => 'Ak má daný objekt záhlavie (funkcia boostnutých kampaní), nastav tento widget, aby použil tento obrázok namiesto obrázku objektu.',
-                'filters'           => 'Môžeš zoradiť zobrazenie objektov. Ak chceš zistiť, ako funguje toto pole, klikni na pomocnú stránu :link.',
                 'full'              => 'Zobraziť celý zápis objektu namiesto jeho náhľadu.',
                 'show_attributes'   => 'Zobrazí pripnuté atribúty objektu pod záznamom.',
                 'show_members'      => 'Ak je objekt rod alebo organizácia, pod záznamom sa zobrazia členovia.',

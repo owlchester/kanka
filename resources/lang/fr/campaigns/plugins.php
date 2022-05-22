@@ -7,6 +7,7 @@ return [
             'enable'    => 'Activer les plugins',
             'update'    => 'Mettre à jour les plugins',
         ],
+        'changelog'         => 'Changements',
         'disable'           => 'Désactiver le plugin',
         'enable'            => 'Activer le plugin',
         'go_to_marketplace' => 'Aller au marketplace',

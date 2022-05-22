@@ -98,7 +98,6 @@ return [
     'widgets'       => [
         'actions'                   => [
             'advanced-options'  => 'Opcions avançades',
-            'delete-confirm'    => 'aquest widget',
         ],
         'advanced_options_boosted'  => 'Les :boosted_campaigns tenen opcions avançades, com ara mostrar els membres d\'una família o els atributs de l\'entitat directament al taulell.',
         'calendar'                  => [
@@ -153,7 +152,6 @@ return [
             'help'              => 'Mostra només la previsualització de l\'última entitat actualitzada.',
             'helpers'           => [
                 'entity-header'     => 'Si l\'entitat té una capçalera (funcionalitat de campanyes millorades), podeu indicar que aquest widget la utilitzi en comptes de la imatge de l\'entitat.',
-                'filters'           => 'Podeu filtrar quin tipus d\'entitats es mostren. Per saber-ne més, consulteu la pàgina d\'ajuda a :link.',
                 'full'              => 'Mostra tota l\'entitat per defecte en comptes d\'una previsualització.',
                 'show_attributes'   => 'Mostra els atributs de l\'entitat sota la descripció.',
                 'show_members'      => 'Si l\'entitat és una família o una organització, mostra els seus membres sota la descripció.',

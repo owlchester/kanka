@@ -16,7 +16,6 @@ return [
     'creator'               => [
         'back'      => 'Natrag na odabir',
         'duplicate' => 'Postoje drugi entiteti ovog tipa s istim nazivom.',
-        'helper'    => 'Odaberi vrstu entiteta koju želiš izraditi. Ako se ne pojavljuje nijedan entitet, to znači da nemaš dopuštenje za stvaranje bilo kakvog entiteta u ovoj kampanji.',
         'title'     => 'Novi entitet',
     ],
     'dice_roll'             => 'Bacanje kockica',

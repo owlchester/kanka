@@ -11,4 +11,11 @@ return [
     ],
     'profile'           => 'Profil',
     'toggle_navigation' => 'Basculer la navigation',
+    'user'              => [
+        'impersonating' => 'Usurpation de :user',
+        'settings'      => 'Paramêtres',
+        'sign-out'      => 'Se déconnecter',
+        'signed-in'     => 'Connecté en tant que :user',
+        'your-profile'  => 'Ton profile',
+    ],
 ];
