@@ -56,7 +56,12 @@ return [
         'success'   => 'Evento ":event" engadido ao calendario.',
     ],
     'events'        => [
-        'title' => 'Eventos do calendario ":name"',
+        'filters'   => [
+            'show_after'    => 'Mostrar hoxe e posteriores',
+            'show_all'      => 'Mostrar todos',
+            'show_before'   => 'Mostrar anteriores a hoxe',
+        ],
+        'title'     => 'Eventos do calendario ":name"',
     ],
     'fields'        => [
         'calendar'              => 'Calendario pai',

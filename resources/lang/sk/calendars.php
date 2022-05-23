@@ -57,7 +57,12 @@ return [
         'success'   => 'Udalosť ":event" pridaná do kalendára.',
     ],
     'events'        => [
-        'title' => 'Udalosti kalendára :name',
+        'filters'   => [
+            'show_after'    => 'Zobraziť od dnes ďalej',
+            'show_all'      => 'Zobraziť všetky',
+            'show_before'   => 'Zobraziť do dnes',
+        ],
+        'title'     => 'Udalosti kalendára :name',
     ],
     'fields'        => [
         'calendar'              => 'Nadradený kalendár',

@@ -125,6 +125,7 @@ return [
         'api'                   => 'API',
         'apps'                  => 'Apps',
         'billing'               => 'Spôsob platby',
+        'boosters'              => 'Boosty',
         'invoices'              => 'Faktúry',
         'other'                 => 'Iné',
         'patreon'               => 'Patreon',
@@ -213,6 +214,8 @@ return [
             'alternatives'          => 'Zaplať za tvoje predplatné pomocou :method. Tento spôsob platby nebude automaticky obnovený na konci tvojho predplatného. :method je iba dostupný v eurách.',
             'alternatives_warning'  => 'Aktualizácia predplatného týmto spôsobom nie je možná. Prosím, vytvor nové predplatné, keď tvoje súčasné skončí.',
             'alternatives_yearly'   => 'Kvôli obmedzeniam ohľadom opakovaných platieb, :method je dostupný len pre ročné zúčtovanie.',
+            'paypal'                => 'Chceš radšej použiť Paypal? Kontaktuj nás na :email, ak chceš platiť ročné predplatné cez Paypal.',
+            'stripe'                => 'Tvoje platobné údaje sú spracované a uložené bezpečne prostredníctvom :stripe.',
         ],
         'manage_subscription'   => 'Spravovať predplatné',
         'payment_method'        => [
@@ -231,6 +234,10 @@ return [
             'helper'        => 'Táto karta bude použitá na všetky tvoje predplatné.',
             'new_card'      => 'Pridať nový spôsob platby',
             'saved'         => ':brand končiac na :last4',
+        ],
+        'periods'               => [
+            'monthly'   => 'Mesačne',
+            'yearly'    => 'Ročne',
         ],
         'placeholders'          => [
             'reason'    => 'Alternatívne nám daj vedieť, prečo už nepodporuješ Kanku. Chýbala ti nejaká funkcionalita? Zmenila sa tvoja finančná situácia?',

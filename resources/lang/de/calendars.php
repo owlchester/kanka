@@ -56,7 +56,12 @@ return [
         'success'   => 'Event \':event\' zum Kalender hinzugefügt.',
     ],
     'events'        => [
-        'title' => 'Kalender :name Events',
+        'filters'   => [
+            'show_after'    => 'Zeige heute und die Zukunft',
+            'show_all'      => 'Zeige alles',
+            'show_before'   => 'Zeige die Vergangenheit',
+        ],
+        'title'     => 'Kalender :name Events',
     ],
     'fields'        => [
         'calendar'              => 'Übergeordneter Kalender',

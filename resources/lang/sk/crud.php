@@ -5,6 +5,7 @@ return [
         'actions'           => 'Akcie',
         'apply'             => 'Použiť',
         'back'              => 'Naspäť',
+        'bulk_actions'      => 'Masové akcie',
         'bulk_templates'    => 'Použiť šablónu atribútov',
         'copy'              => 'Kopírovať',
         'copy_mention'      => 'Kopírovať [ ] referenciu',

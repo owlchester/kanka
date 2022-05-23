@@ -21,6 +21,7 @@ return [
     'tooltip'           => [
         'boosted-description'   => 'Ersetzen Sie den automatisch generierte Kurzinfo des Objekts durch eine :boosted-campaign.',
         'description'           => 'Ersetzen Sie die automatisch generierte Kurzinfo  des Objekts durch den folgenden Text.',
+        'helper'                => 'Die folgenden HTML-Elemente sind in Tooltips erlaubt: :tags',
         'name'                  => 'Kurzinfo',
     ],
 ];

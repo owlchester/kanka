@@ -18,12 +18,12 @@ return [
     'fields'        => [
         'abbreviation'  => 'Skratka',
         'end_year'      => 'Koniec (rok)',
-        'is_collapsed'  => 'Sklapnuté',
+        'is_collapsed'  => 'Zbalené',
         'start_year'    => 'Začiatok (rok)',
     ],
     'helpers'       => [
         'eras'          => 'Pred pridávaním vekov musíš vytvoriť časovú os.',
-        'is_collapsed'  => 'Veky sú štandardne sklapnuté (minimalizované).',
+        'is_collapsed'  => 'Veky sú štandardne zbalené (minimalizované).',
         'primary'       => 'Rozdeľ svoju časovú os na veky. Časová os vyžaduje min. jeden vek, aby správne fungovala.',
     ],
     'placeholders'  => [

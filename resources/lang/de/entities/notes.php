@@ -46,4 +46,8 @@ return [
         'advanced'  => 'Erweiterte Berechtigungen',
         'title'     => 'Objektnotiz :name für :entity',
     ],
+    'states'        => [
+        'collapsed' => 'verkleinern',
+        'expanded'  => 'vergrößern',
+    ],
 ];

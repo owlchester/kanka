@@ -21,6 +21,7 @@ return [
     'tooltip'           => [
         'boosted-description'   => 'Zastępuj dymek z poradą generowaną automatycznie własną zawartością w :boosted-campaign.',
         'description'           => 'Zastąp dymek z poradą generowaną automatycznie następującą zawartością.',
+        'helper'                => 'W dymkach pojawić się mogą następujące elementy HTML: :tags',
         'name'                  => 'Dymek',
     ],
 ];

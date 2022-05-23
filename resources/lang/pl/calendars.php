@@ -57,7 +57,12 @@ return [
         'success'   => 'Dodano do kalendarza wydarzenie \':event\'.',
     ],
     'events'        => [
-        'title' => 'Wydarzenia w kalendarzu :name',
+        'filters'   => [
+            'show_after'    => 'Pokaż aktualną datę i dalej',
+            'show_all'      => 'Pokaż wszystko',
+            'show_before'   => 'Pokaż daty przed aktualną',
+        ],
+        'title'     => 'Wydarzenia w kalendarzu :name',
     ],
     'fields'        => [
         'calendar'              => 'Kalendarz źródłowy',

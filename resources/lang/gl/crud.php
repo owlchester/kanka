@@ -5,6 +5,7 @@ return [
         'actions'           => 'Accións',
         'apply'             => 'Aplicar',
         'back'              => 'Voltar',
+        'bulk_actions'      => 'Accións en bloque',
         'bulk_templates'    => 'Aplicar Padrón de atributos',
         'copy'              => 'Copiar',
         'copy_mention'      => 'Copiar mención [ ]',
@@ -33,7 +34,7 @@ return [
     'boosted_campaigns'         => 'Campañas potenciadas',
     'bulk'                      => [
         'actions'       => [
-            'edit'  => 'Editar e etiquetar en masa',
+            'edit'  => 'Editar e etiquetar en bloque',
         ],
         'age'           => [
             'helper'    => 'Usa + e - antes do número para modificar a idade nesa cantidade.',
