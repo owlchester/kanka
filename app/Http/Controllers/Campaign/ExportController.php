@@ -57,10 +57,10 @@ class ExportController extends Controller
             $this->campaignService
                 ->export($campaign, auth()->user(), $this->entityService);
 
-            return redirect()->route('campaign_export')
+            return redirect()->route('export')
                 ->with('success', trans('campaigns.export.success'));
         } catch (\Exception $e) {
-            return redirect()->route('campaign_export')->withErrors($e->getMessage());
+            return redirect()->route('export')->withErrors($e->getMessage());
         }
     }
 }

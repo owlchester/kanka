@@ -61,8 +61,14 @@ return [
             'secret' => env('AWS_SECRET_ACCESS_KEY'),
             'region' => env('AWS_DEFAULT_REGION'),
             'bucket' => env('AWS_BUCKET'),
+
+            // Root folder is prefixed outside of prod
             'root' => env('APP_ENV') != 'prod' ? env('APP_ENV') : null,
             'visibility' => 'public',
+            // Url for including the assets in the browser
+            'url' => env('AWS_URL_S3', env('AWS_URL')),
+            'endpoint' => env('AWS_ENDPOINT'),
+            'use_path_style_endpoint' => env('AWS_USE_PATH_STYLE_ENDPOINT', false),
         ],
 
         's3-backup' => [

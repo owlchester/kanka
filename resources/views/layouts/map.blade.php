@@ -30,7 +30,7 @@ $specificTheme = null;
     <link rel="apple-touch-icon" sizes="152x152" href="/images/favicon/apple-touch-icon-152x152.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon/apple-touch-icon-180x180.png" />
 
-    <link href="{{ mix('css/bootstrap.css') }}" rel="stylesheet">
+    <link href="/css/bootstrap.css?v={{ config('app.version') }}" rel="stylesheet">
     <link href="{{ mix('css/vendor.css') }}" rel="stylesheet">
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
     <link href="{{ mix('css/freyja.css') }}" rel="stylesheet">
