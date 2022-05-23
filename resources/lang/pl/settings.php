@@ -84,8 +84,7 @@ return [
         ],
         'title'             => 'Doładowanie',
         'unboost'           => [
-            'description'   => 'Czy na pewno usunąć doładowanie kampanii :tag?',
-            'title'         => 'Usunięcie doładowania',
+            'title' => 'Usunięcie doładowania',
         ],
     ],
     'countries'     => [
@@ -120,22 +119,14 @@ return [
         'success'   => 'Zmieniono opcje układu',
         'title'     => 'Układ',
     ],
-    'marketplace'   => [
-        'fields'    => [
-            'name'  => 'Nazwa na Targowisku',
-        ],
-        'helper'    => 'Domyślnie :marketplace używa twojej nazwy użytkownika. Tu możesz ją zastąpić.',
-        'title'     => 'Ustawienia Targowiska',
-        'update'    => 'Zapisano ustawienia Targowiska.',
-    ],
+    'marketplace'   => [],
     'menu'          => [
         'account'               => 'Konto',
         'api'                   => 'API',
         'apps'                  => 'Aplikacje',
         'billing'               => 'Metoda płatności',
+        'boosters'              => 'Doładowania',
         'invoices'              => 'Rachunki',
-        'layout'                => 'Układ',
-        'marketplace'           => 'Targowisko',
         'other'                 => 'Inne',
         'patreon'               => 'Patreon',
         'payment_options'       => 'Opcje płatności',
@@ -223,6 +214,8 @@ return [
             'alternatives'          => 'Opłać subskrypcję używając :method. Ten sposób płatności nie odnawia się automatycznie na koniec cyklu. :method jest dostępna tylko w Euro.',
             'alternatives_warning'  => 'Jeżeli używasz tej metody, nie możesz zmienić poziomu subskrypcji. Zasubskrybuj ponownie, gdy ta subskrypcja wygaśnie.',
             'alternatives_yearly'   => 'Z powodu ograniczeń cyklu płatniczego, :method jest dostępna tylko dla subskrypcji rocznych.',
+            'paypal'                => 'Wolisz użyć PayPala? Skontaktuj się z nami pisząc na adres :email, a przygotujemy dla ciebie roczny plan subskrypcji przez PayPal.',
+            'stripe'                => 'Informacje o płatnościach bezpiecznie przetwarza i przechowuje :stripe.',
         ],
         'manage_subscription'   => 'Zarządzaj subskrypcją',
         'payment_method'        => [
@@ -241,6 +234,10 @@ return [
             'helper'        => 'Karta zostanie użyta do wszystkich twoich subskrypcji',
             'new_card'      => 'Dodaj metodę płatności',
             'saved'         => ':brand o numerze kończącym się na :last4',
+        ],
+        'periods'               => [
+            'monthly'   => 'Miesięczne',
+            'yearly'    => 'Roczne',
         ],
         'placeholders'          => [
             'reason'    => 'Jeżeli chcesz, powiedz nam dlaczego rezygnujesz ze wspierania Kanki. Czy brakuje ci jakichś funkcji, czy też zmieniła się twoja sytuacja finansowa?',

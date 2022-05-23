@@ -1,15 +1,14 @@
 <?php
-/**
- * Description of
- *
- * @author Ilestis
- * 20/01/2020
- */
 
 namespace App\Models\Scopes;
 
 use Illuminate\Database\Eloquent\Builder;
 
+/**
+ * @method static self|Builder year(int $year)
+ * @method static self|Builder month(int $month)
+ * @method static self|Builder dated(int $calendarID, int $year, int $month, int $year)
+ */
 trait CalendarWeatherScopes
 {
     /**

@@ -42,7 +42,7 @@
                         <label>{{ __('settings.subscription.fields.currency') }}</label>
                         {!! Form::select('currency', ['' => __('settings.subscription.currencies.usd'), 'eur' => __('settings.subscription.currencies.eur')], null, ['class' => 'form-control']) !!}
                     </div>
-                    <button class="btn btn-primary margin-bottom">
+                    <button class="btn btn-primary mb-5">
                         {{ __('settings.subscription.actions.update_currency') }}
                     </button>
                     {!! Form::close() !!}

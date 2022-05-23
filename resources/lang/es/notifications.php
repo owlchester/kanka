@@ -32,7 +32,6 @@ return [
     ],
     'clear'             => [
         'action'    => 'Borrar todas',
-        'confirm'   => '¿Seguro que quieres eliminar todas las notificaciones? Esta acción no se puede deshacer.',
         'success'   => 'Se han eliminado las notificaciones.',
     ],
     'header'            => 'Tienes :count notificaciones',

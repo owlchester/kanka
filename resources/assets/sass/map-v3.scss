@@ -116,13 +116,8 @@
     }
   }
 }
-.skin-map.sidebar-collapse {
-  /*.sidebar {
-    display: none !important;
-  }*/
-}
 
-.skin-map {
+#map-body {
   .main-sidebar {
     //background-color: #dedede;
     color: #efefef;
@@ -185,10 +180,10 @@
       margin-left: 430px;
     }
   }
-  #map-body.skin-black .main-header .navbar-static-top {
+  #map-body .main-header .navbar-static-top {
     margin-left: 430px;
   }
-  #map-body.skin-black.sidebar-collapse .main-header .navbar-static-top {
+  #map-body.sidebar-collapse .main-header .navbar-static-top {
     margin-left: 0;
   }
 }

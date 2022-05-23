@@ -64,7 +64,7 @@ class EntityFileRule implements Rule
      */
     public function message()
     {
-        return trans('validation.entity_file');
+        return __('validation.mimes', ['values' => 'jpg, jpeg, png, gif, webp, pdf, xls(x), mp3, ogg, json']);
     }
 
     protected function shouldBlockPhpUpload($value, $parameters)

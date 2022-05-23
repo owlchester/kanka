@@ -90,7 +90,7 @@ class CalendarRenderer
      * Get previous month link
      * @return string
      */
-    public function previous($title = false)
+    public function previous(bool $title = false): string
     {
         $month = $this->getMonth(-1);
         $year = $this->getYear();
@@ -100,7 +100,7 @@ class CalendarRenderer
         if ($this->isYearlyLayout()) {
             $year--;
             if ($title) {
-                return $year;
+                return (string) $year;
             } else {
                 return route(
                     'calendars.show',
@@ -118,10 +118,62 @@ class CalendarRenderer
             return $months[$month-1]['name'] . " $year";
         }
 
+        $routeOptions = ['calendar' => $this->calendar, 'month' => $month, 'year' => $year];
+        if ($this->calendar->defaultLayout() === 'year') {
+            $routeOptions['layout'] = $this->isYearlyLayout() ? 'year' : 'month';
+        }
         return route(
             'calendars.show',
-            ['calendar' => $this->calendar, 'month' => $month, 'year' => $year]
+            $routeOptions
         );
+    }
+
+    /**
+     * Build a link to a year
+     * @param bool $next
+     * @return string
+     */
+    public function linkToYear(bool $next = true): string
+    {
+        $month = $this->getMonth();
+        $year = $this->getYear($next ? 1 : -1);
+
+        $options = [
+            'calendar' => $this->calendar,
+            'month' => $month,
+            'year' => $year,
+        ];
+        if ($this->isYearlyLayout()) {
+            if (!$this->calendar->yearlyLayout()) {
+                $options['layout'] = 'year';
+            }
+            unset($options['month']);
+        } elseif ($this->calendar->yearlyLayout()) {
+            $options['layout'] = 'month';
+        }
+
+        return route(
+            'calendars.show',
+             $options
+        );
+    }
+
+    /**
+     * Get the title to a year
+     * @param bool $next
+     * @return string
+     */
+    public function titleToYear(bool $next = true): string
+    {
+        $month = $this->getMonth();
+        $year = $this->getYear($next ? 1 : -1);
+
+        if ($this->isYearlyLayout()) {
+            return $year;
+        }
+
+        $months = $this->calendar->months();
+        return $months[$month-1]['name'] . " $year";
     }
 
     /**
@@ -172,7 +224,7 @@ class CalendarRenderer
      * Get next month link
      * @return string
      */
-    public function next($title = false)
+    public function next($title = false): string
     {
         $month = $this->getMonth(1);
         $year = $this->getYear();
@@ -182,7 +234,7 @@ class CalendarRenderer
         if ($this->isYearlyLayout()) {
             $year++;
             if ($title) {
-                return $year;
+                return (string) $year;
             } else {
                 return route(
                     'calendars.show',
@@ -200,9 +252,13 @@ class CalendarRenderer
             return $months[$month-1]['name'] . " $year";
         }
 
+        $routeOptions = ['calendar' => $this->calendar, 'month' => $month, 'year' => $year];
+        if ($this->calendar->yearlyLayout()) {
+            $routeOptions['layout'] = $this->isYearlyLayout() ? 'year' : 'month';
+        }
         return route(
             'calendars.show',
-            ['calendar' => $this->calendar, 'month' => $month, 'year' => $year]
+            $routeOptions
         );
     }
 
@@ -640,7 +696,7 @@ class CalendarRenderer
             }
 
             // Yearly layout does things a bit differently, reset month to first
-            $this->layout = request()->get('layout', 'monthly');
+            $this->layout = request()->get('layout', $this->calendar->defaultLayout());
             if ($this->isYearlyLayout()) {
                 $this->setMonth(1);
             }
@@ -780,7 +836,7 @@ class CalendarRenderer
                 continue;
             }
             // If the event reoccurs each month, let's add it everywhere
-            if ($event->is_recurring && $event->recurring_periodicity === 'month') {
+            if ($event->recurringMonthly()) {
                 $startingMonth = $event->year == $this->getYear() ? $event->month : 1;
                 for ($month = $startingMonth; $month <= $totalMonths; $month++) {
                     $recurringDate = $this->getYear() . '-' . $month . '-' . $event->day;
@@ -921,7 +977,7 @@ class CalendarRenderer
      */
     public function isYearlyLayout()
     {
-        return $this->layout == 'year';
+        return $this->layout === 'year';
     }
 
     /**
@@ -1088,8 +1144,8 @@ class CalendarRenderer
 
         if ($moon['fullmoon'] > 10) {
             $quarterMonth = $moon['fullmoon'] / 4;
-            $this->addMoonPhase($newMoon - $quarterMonth, $moon, 'waning', 'fa-regular fa-moon');
-            $this->addMoonPhase($newMoon + $quarterMonth, $moon, 'waxing', 'fa-solid fa-moon');
+            $this->addMoonPhase($newMoon - $quarterMonth, $moon, 'last_quarter', 'fa-solid fa-circle-half-stroke fa-flip-horizontal');
+            $this->addMoonPhase($newMoon + $quarterMonth, $moon, 'first_quarter', 'fa-solid fa-circle-half-stroke');
         }
     }
 

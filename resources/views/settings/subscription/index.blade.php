@@ -18,7 +18,7 @@
             <p>
                 {!! __('subscription.benefits.main', [
                     'more' => link_to_route('front.pricing', __('subscription.benefits.more'), '#paid-features', ['target' => '_blank']),
-                    'boosters' => link_to_route('front.pricing', __('subscription.benefits.boosters'), '#boost', ['target' => '_blank']),
+                    'boosters' => link_to_route('front.boosters', __('subscription.benefits.boosters'), '', ['target' => '_blank']),
                     'stripe' => link_to('https://www.stripe.com', 'Stripe', ['target' => '_blank'])
                 ]) !!}
             </p>
@@ -50,7 +50,7 @@
                     @endif
                     <dt>{{ __('settings.subscription.fields.currency') }}</dt>
                     <dd>
-                        <span class="margin-r-5">{{ strtoupper($user->currency ?? 'USD') }}</span>
+                        <span class="mr-2">{{ strtoupper($user->currency ?? 'USD') }}</span>
                         <a href="#" data-toggle="modal"
                            data-target="#change-currency">
                             <i class="fa-solid fa-pencil-alt"></i> {{ __('crud.edit') }}
@@ -93,9 +93,9 @@
         </div>
         <div class="box-body no-padding">
 
-            <div class="text-center px-3 text-vertical ab-testing-b">
+            <div class="text-center py-5 text-vertical ab-testing-b">
                 <span>{{ __('tiers.periods.monthly') }}</span>
-                <label class="toggle ml-1 mr-1">
+                <label class="toggle mx-1">
                     <input type="checkbox" name="period">
                     <span class="slider subscription-period-slider"></span>
                 </label>
@@ -328,7 +328,7 @@
                         {!! Form::select('currency', ['' => __('settings.subscription.currencies.usd'), 'eur' => __('settings.subscription.currencies.eur')], null, ['class' => 'form-control']) !!}
                     </div>
 
-                    <button class="btn btn-primary margin-bottom">
+                    <button class="btn btn-primary mb-5">
                         {{ __('settings.subscription.actions.update_currency') }}
                     </button>
                     <input type="hidden" name="from" value="{{ 'settings.subscription' }}" />
@@ -362,6 +362,5 @@
 @endsection
 
 @section('styles')
-    <link href="{{ mix('css/app.css') }}" rel="stylesheet">
     <link href="{{ mix('css/subscription.css') }}" rel="stylesheet">
 @endsection

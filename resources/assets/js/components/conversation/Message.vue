@@ -1,6 +1,6 @@
 <template>
     <div v-bind:class="boxClasses(message)">
-        <span class="text-right pull-right">
+        <span class="message-time text-right pull-right">
             <dropdown tag="a" menu-right class="message-options" v-if="message.can_delete">
                 <a class="dropdown-toggle" role="button"><span class="caret"></span></a>
                 <template slot="dropdown">
@@ -10,16 +10,18 @@
             </dropdown><br />
         </span>
 
-        <strong class="user" v-if="isUser">{{ message.user }}</strong>
-        <strong class="character" v-else-if="isCharacter">
-            <span>{{ message.character }}</span>
-        </strong>
-        <strong class="unknown" v-else>
-            {{ translate('user_unknown') }}
-        </strong>
+        <div class="message-author" v-if="!message.group">
+          <strong class="user" v-if="isUser">{{ message.user }}</strong>
+          <strong class="character" v-else-if="isCharacter">
+              <span>{{ message.character }}</span>
+          </strong>
+          <strong class="unknown" v-else>
+              {{ translate('user_unknown') }}
+          </strong>
+        </div>
         <div class="comment-text">
             {{ message.message }}
-            <span class="pull-right text-muted">
+            <span class="pull-right text-muted" v-if="!message.group">
                 <em v-if="message.is_updated" v-bind:title="message.updated_at">{{ translate('is_updated') }},</em> {{ message.created_at }}
             </span>
         </div>
@@ -61,6 +63,12 @@
                 let classes = 'box-comment';
                 classes += ' message-author-' + message.from_id;
                 classes += ' message-real-author-' + message.created_by;
+
+                if (message.group) {
+                    classes += ' message-followup';
+                } else {
+                    classes += ' message-first'
+                }
                 return classes;
             }
         },

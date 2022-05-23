@@ -44,7 +44,7 @@ TEXT
         'helper_secondary'  => 'Two files will be made available, one with the entities exported as JSON, and another with images uploaded to entities. Please note that on larger campaigns, the images export crashes and can only be recovered using the :api.',
         'helper_third'      => 'JSON files can be opened with any text file application. They represent the data stored in the Kanka database in a text format. There is no way to import your export back into Kanka.',
         'success'           => 'Your campaign export is being prepared. You\'ll receive a notification in Kanka to a downloadable zip as soon as it\'s ready.',
-        'title'             => 'Campaign :name Export',
+        'title'             => 'Export - :name',
     ],
     'fields'                            => [
         'boosted'                           => 'Boosted by',
@@ -143,7 +143,7 @@ TEXT
             'email'     => 'Email',
             'role'      => 'Role',
             'type'      => 'Type',
-            'usage'     => 'Max number of uses',
+            'usage'     => 'Expires after',
         ],
         'helpers'               => [
             'email'     => 'Our emails are often flagged as spam and can take up to a few hours before appearing in the inbox.',
@@ -159,7 +159,7 @@ TEXT
         'unlimited_validity'    => 'Unlimited',
         'usages'                => [
             'five'      => '5 uses',
-            'no_limit'  => 'No limit',
+            'no_limit'  => 'Never',
             'once'      => '1 use',
             'ten'       => '10 uses',
         ],
@@ -202,9 +202,10 @@ TEXT
             'description'   => 'Invite your friends and players to the campaign by creating an invitation link and sending them the generated URL! Upon accepting their invitation, they will be added as a member in the invitation\'s requested role.',
             'more'          => 'You can add more roles on the :link.',
             'roles_page'    => 'Roles page',
-            'title'         => 'Invite',
+            'title'         => 'Invites',
         ],
         'manage_roles'          => 'Manage user roles',
+        'removal'               => 'You are removing ":member" from the campaign.',
         'roles'                 => [
             'member'    => 'Member',
             'owner'     => 'Admin',
@@ -213,21 +214,12 @@ TEXT
             'viewer'    => 'Viewer',
         ],
         'switch_back_success'   => 'Switched back to your account.',
-        'title'                 => 'Campaign :name Members',
+        'title'                 => 'Members - :name',
         'updates'               => [
             'added'     => 'Role :role added to :user.',
             'removed'   => 'Role :role removed from :user.',
         ],
         'your_role'             => 'Your role: <i>:role</i>',
-    ],
-    'open_campaign'                     => [
-        'helper'    => 'A public campaign that is open to applications will allow users to send an application to join it through the campaign\'s dashboard. Find the list of applications in the campaign\'s :link page.',
-        'link'      => 'campaign applications',
-        'statuses'  => [
-            'closed'    => 'Closed',
-            'open'      => 'Open to applications',
-        ],
-        'title'     => 'Applications',
     ],
     'panels'                            => [
         'boosted'   => 'Boosted',
@@ -286,13 +278,13 @@ TEXT
         ],
         'hints'         => [
             'campaign_not_public'   => 'The public role has permissions but the campaign is private. You can change this setting on the Sharing tab when editing the campaign.',
+            'empty_role'            => 'The role doesn\'t have any members in it yet.',
             'public'                => 'The Public role is used when someone browses your public campaign. :more',
             'role_permissions'      => 'Enable the \':name\' role to do the following actions on all entities.',
         ],
         'members'       => 'Members',
         'modals'        => [
             'details'   => [
-                'button'    => 'Need help',
                 'campaign'  => 'Campaign permissions allow the following.',
                 'entities'  => 'Here is a quick recap of what members of this role get when a permission is set.',
                 'more'      => 'For more details, view our tutorial video on Youtube',
@@ -333,7 +325,7 @@ TEXT
         'show'          => [
             'title' => 'Campaign Role \':role\'',
         ],
-        'title'         => 'Campaign :name Roles',
+        'title'         => 'Roles - :name',
         'types'         => [
             'owner'     => 'Admin',
             'public'    => 'Public',
@@ -341,8 +333,9 @@ TEXT
         ],
         'users'         => [
             'actions'   => [
-                'add'       => 'Add member',
-                'remove'    => ':user from the :role role',
+                'add'           => 'Add member',
+                'remove'        => ':user from the :role role',
+                'remove_user'   => 'Remove user from role',
             ],
             'create'    => [
                 'success'   => ':user added to the role :role.',
@@ -361,9 +354,8 @@ TEXT
             'enable'    => 'Enable',
         ],
         'boosted'   => 'This feature is in early access and currently only available for :boosted.',
-        'edit'      => [
-            'success'   => 'Campaign settings updated.',
-        ],
+        'disabled'  => 'The :module module is disabled.',
+        'enabled'   => 'The :module module is enabled.',
         'errors'    => [
             'module-disabled'   => 'The requested module is currently disabled in the campaign settings. :fix.',
         ],
@@ -389,7 +381,6 @@ TEXT
             'tags'          => 'Each entity can have several tags. Tags can belong to other tags, and entries can be filtered by tag.',
             'timelines'     => 'Represent the history of your world with timelines.',
         ],
-        'title'     => 'Campaign :name Modules',
     ],
     'show'                              => [
         'actions'   => [
@@ -417,7 +408,7 @@ TEXT
             'sidebar'           => 'Sidebar setup',
             'styles'            => 'Theming',
         ],
-        'title'     => 'Campaign :name',
+        'title'     => 'Overview - :name',
     ],
     'superboosted'                      => [
         'gallery'   => [

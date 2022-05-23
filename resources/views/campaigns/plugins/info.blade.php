@@ -1,9 +1,9 @@
 @extends('layouts.' . ($ajax ? 'ajax' : 'app'), [
-    'title' => trans('campaigns/plugins.info.title', ['plugin' => $plugin->name]),
+    'title' => __('campaigns/plugins.info.title', ['plugin' => $plugin->name]),
     'breadcrumbs' => [
-        ['url' => route('campaigns.index'), 'label' => trans('campaigns.index.title')],
-        ['url' => route('campaign_plugins.index'), 'label' => trans('campaigns.show.tabs.plugins')],
-        trans('campaigns/plugins.info.title', ['plugin' => $plugin->name]),
+        ['url' => route('campaigns.index'), 'label' => __('campaigns.index.title')],
+        ['url' => route('campaign_plugins.index'), 'label' => __('campaigns.show.tabs.plugins')],
+        __('campaigns/plugins.info.title', ['plugin' => $plugin->name]),
     ],
     'canonical' => true,
 ])
@@ -11,59 +11,66 @@
 
 @section('content')
 
-    <div class="box box-solid">
-        <div class="box-header">
-            <h3 class="box-title">
-                {!! $plugin->name !!}
-            </h3>
+    <div class="{{ $ajax ? '' : 'box' }}">
+        <div class="{{ $ajax ? 'modal' : 'box' }}-header">
+            <h5 class="{{ $ajax ? 'modal' : 'box' }}-title">
+                {!! $plugin->name !!} - {{ __('campaigns/plugins.info.updates') }}
+                @if ($ajax)
+                    <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('crud.delete_modal.close') }}"><span aria-hidden="true">&times;</span></button>
+                @endif
+            </h5>
         </div>
-        <div class="box-body">
-            {!! $plugin->entry !!}
-        </div>
-    </div>
 
-    <div class="box box-solid">
-        <div class="box-header">
-            <div class="box-title">
-                {{ __('campaigns/plugins.info.updates') }}
+        <div class="{{ $ajax ? 'modal' : 'box' }}-body">
+            <div class="plugin-summary">
+                @if (!empty($plugin->summary))
+                    {!! $plugin->summary !!}
+                @else
+                    {!! \Illuminate\Support\Str::limit($plugin->entry, 300) !!}
+                @endif
             </div>
 
             @if($plugin->hasUpdate())
-                <div class="box-tools">
+                <div class="text-right">
                     {!! Form::open(['route' => ['campaign_plugins.update', $plugin], 'method' => 'POST']) !!}
-                    <button type="submit" class="btn btn-primary">{{ __('campaigns/plugins.actions.update') }}</button>
+                    <button type="submit" class="btn btn-primary btn-sm">
+                        <i class="fa-solid fa-download"></i>
+                        {{ __('campaigns/plugins.actions.update') }}
+                    </button>
                     {!! Form::close() !!}
                 </div>
             @endif
-        </div>
-        <div class="box-body">
-            <p class="text-muted">{{ __('campaigns/plugins.info.helper') }}</p>
 
-            @foreach ($versions as $version)
-                <div class="row margin-bottom">
-                    <div class="col-sm-10 col-sm-offset-1 ">
-                        <hr />
+                @foreach ($versions as $version)
+                    <div class="plugin-box">
+                        <hr class="my-5" />
 
-                        <h5 class="box-title">{{ $version->version }}
-                            @if($version->id == $plugin->pivot->plugin_version_id)
-                                <span class="label label-info pull-right">{{ __('campaigns/plugins.info.your_version') }}</span>
-                            @endif
-                            @if ($version->status_id == 1)
-                                <span class="label label-warning pull-right">
-                                   DRAFT
-                                </span>
-                            @endif
-                        </h5>
-                        <div class="pull-right">
-                            <small>{{ $version->updated_at->diffForHumans() }}</small>
+                        <div class="plugin-head">
+                            <i class="fa-solid fa-code-branch"></i>
+                            <strong>{{ $version->version }}</strong>
+                            <div class="pull-right">
+                                <small>{{ $version->updated_at->diffForHumans() }}</small>
+                                @if($version->id == $plugin->pivot->plugin_version_id)
+                                    <span class="label label-info">{{ __('campaigns/plugins.info.your_version') }}</span>
+                                @endif
+                                @if ($version->status_id == 1)
+                                    <span class="label label-warning">
+                                       DRAFT
+                                    </span>
+                                @endif
+                            </div>
                         </div>
 
-                        {!! $version->entry !!}
+                        <div class="plugin-body text-justify p-3">
+                            {!! $version->entry !!}
+                        </div>
                     </div>
-                </div>
-            @endforeach
-
+                @endforeach
+        </div>
+        @if ($versions->hasPages())
+        <div class="{{ $ajax ? 'modal' : 'box' }}-footer">
             {!! $versions->links() !!}
         </div>
+        @endif
     </div>
 @endsection

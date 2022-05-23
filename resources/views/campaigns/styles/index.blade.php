@@ -29,13 +29,12 @@ use App\Facades\Datagrid ?>
                 </div>
             @else
 
-            @if(Datagrid::hasBulks()) {!! Form::open(['route' => 'campaign_styles.bulk']) !!} @endif
             <div class="box box-solid">
                 <div class="box-header with-border">
                     <h3 class="box-title">{{ __('campaigns.show.tabs.styles') }}</h3>
                     <div class="box-tools">
-                        <button class="btn btn-default btn-sm" data-toggle="modal"
-                                data-target="#theming-help">
+                        <button class="btn btn-box-tool" data-toggle="dialog"
+                                data-target="theming-help">
                             <i class="fa-solid fa-question-circle" aria-hidden="true"></i>
                             {{ __('campaigns.members.actions.help') }}
                         </button>
@@ -56,12 +55,13 @@ use App\Facades\Datagrid ?>
                         </p>
                     </div>
                 @else
+                    @if(Datagrid::hasBulks()) {!! Form::open(['route' => 'campaign_styles.bulk']) !!} @endif
                     <div id="datagrid-parent">
                         @include('campaigns.styles._table')
                     </div>
+                    @if(Datagrid::hasBulks()) {!! Form::close() !!} @endif
                 @endif
             </div>
-            @if(Datagrid::hasBulks()) {!! Form::close() !!} @endif
 
                 @includeWhen(!$reorderStyles->isEmpty(), 'campaigns.styles._reorder')
             @endif
@@ -74,23 +74,14 @@ use App\Facades\Datagrid ?>
 
     @include('layouts.datagrid.delete-forms', ['models' => Datagrid::deleteForms()])
 
-    <div class="modal fade" id="theming-help" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('crud.delete_modal.close') }}"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">
-                        {{ __('campaigns.show.tabs.styles') }}
-                    </h4>
-                </div>
-                <div class="modal-body">
-                    <p>
-                        {!! __('campaigns/styles.helpers.main', ['here' => link_to('https://blog.kanka.io/category/tutorials', __('campaigns/styles.helpers.here'), ['target' => '_blank'])]) !!}
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
+
+    @include('partials.helper-modal', [
+        'id' => 'theming-help',
+        'title' => __('campaigns.show.tabs.styles'),
+        'textes' => [
+            __('campaigns/styles.helpers.main', ['here' => link_to('https://blog.kanka.io/category/tutorials', __('campaigns/styles.helpers.here'), ['target' => '_blank'])]),
+    ]])
+
 @endsection
 
 

@@ -10,8 +10,8 @@
             <i class="fa-solid fa-users"></i> {{ __('campaigns.show.tabs.members') }}
         </h3>
         <div class="box-tools">
-            <button class="btn btn-default btn-sm" data-toggle="modal"
-                    data-target="#members-help">
+            <button class="btn btn-box-tool" data-toggle="dialog"
+                    data-target="members-help">
                 <i class="fa-solid fa-question-circle" aria-hidden="true"></i>
                     {{ __('campaigns.members.actions.help') }}
             </button>
@@ -94,7 +94,7 @@
                                             <li>
                                                 <a href="#" class="text-red delete-confirm" title="{{ __('crud.remove') }}"
                                                    data-toggle="modal" data-name="{{ $relation->user->name }}"
-                                                   data-target="#delete-confirm" data-delete-target="campaign-user-{{ $relation->id }}"
+                                                   data-target="#removal-confirm" data-delete-target="campaign-user-{{ $relation->id }}"
                                                 >
                                                     <i class="fa-solid fa-trash" aria-hidden="true"></i>
                                                     {{ __('campaigns.members.actions.remove') }}
@@ -130,26 +130,45 @@
 
 @include('campaigns._invites')
 
-<div class="modal fade" id="members-help" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('crud.delete_modal.close') }}"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">
-                    {{ __('campaigns.show.tabs.members') }}
-                </h4>
-            </div>
-            <div class="modal-body">
-                <p>{{ __('campaigns.members.help') }}</p>
-                @if(auth()->user()->isAdmin())
-                <p>
-                    {!! __('campaigns.members.helpers.admin', [
-        'link' => link_to_route('faq.show', __('front.menu.faq'), ['key' => 'user-switch'], ['target' => '_blank']),
-        'button' => '<code><i class="fa-solid fa-sign-in-alt" aria-hidden="true"></i>' . __('campaigns.members.actions.switch') . '</code>']) !!}
-                </p>
-                @endif
+
+@section('modals')
+    @parent
+    @include('partials.helper-modal', [
+        'id' => 'members-help',
+        'title' => __('campaigns.show.tabs.members'),
+        'textes' => [
+            __('campaigns.members.help'),
+            (auth()->check() && auth()->user()->isAdmin() ? __('campaigns.members.helpers.admin', [
+        'link' => link_to_route('front.faqs.index', __('front.menu.kb'), null, ['target' => '_blank']),
+        'button' => '<code><i class="fa-solid fa-sign-in-alt" aria-hidden="true"></i>' . __('campaigns.members.actions.switch') . '</code>']) : null),
+        ]
+    ])
+
+    <div class="modal fade" id="removal-confirm" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content rounded-2xl">
+                <div class="modal-body text-center">
+
+                    <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('crud.delete_modal.close') }}"><span aria-hidden="true">&times;</span></button>
+
+                    <h4 class="modal-title" id="myModalLabel">{{ __('crud.delete_modal.title') }}</h4>
+                    <p class="mt-3">
+                        {!! __('campaigns.members.removal', ['member' => '<strong><span class="target-name"></span></strong>']) !!}<br />
+                        <span class="permanent" style="display: none">
+                            {{ __('crud.delete_modal.permanent') }}
+                        </span>
+                    </p>
+
+                    <div class="py-5">
+                        <button type="button" class="btn px-8 rounded-full mr-5" data-dismiss="modal">{{ __('crud.cancel') }}</button>
+                        <button type="button" class="btn btn-danger delete-confirm-submit px-8 ml-5 rounded-full">
+                            <span class="fa-solid fa-trash"></span>
+                            <span class="remove-button-label">{{ __('crud.remove') }}</span>
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
+@endsection

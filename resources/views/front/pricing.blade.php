@@ -3,26 +3,21 @@
     'active' => 'pricing',
     'skipPerf' => true,
 ])
-@section('content')
 
-    <header class="masthead reduced-masthead" id="pricing-head">
-        <div class="container h-100">
-            <div class="row h-100">
-                <div class="col-lg-9 my-auto">
-                    <div class="header-content mx-auto">
-                        <h1 class="mb-3">{{ __('front.pricing.title') }}</h1>
-                        <p class="mb-5">{{ __('front.pricing.description', ['kanka' => config('app.name')]) }}</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
+@section('og')
+    <meta property="og:description" content="{{ __('front.pricing.description', ['kanka' => config('app.name')]) }}" />
+    <meta property="og:url" content="{{ route('front.pricing') }}" />
+@endsection
+
+@section('content')
 
     <section class="features" id="pricing">
         <div class="container">
             <div class="section-body">
-{{--                <h1>{{ __('front.pricing.index.title') }}</h1>--}}
-{{--                <p class="text-muted">{{ __('front.index.description') }}</p>--}}
+                <div class="mb-5">
+                    <h1 class="display-4">{{ __('front.pricing.title') }}</h1>
+                    <p class="lead">{{ __('front.pricing.description', ['kanka' => config('app.name')]) }}</p>
+                </div>
 
                 @include('front._pricing')
             </div>

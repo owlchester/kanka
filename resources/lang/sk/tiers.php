@@ -1,6 +1,12 @@
 <?php
 
 return [
+    'actions'   => [
+        'subscribe' => [
+            'monthly'   => ':tier mesačne',
+            'yearly'    => ':tier ročne',
+        ],
+    ],
     'current'   => 'Tvoje aktuálne predplatné',
     'features'  => [
         'api_requests'      => ':amount API požiadavok/min',
@@ -16,5 +22,16 @@ return [
         'pagination'        => ':amount max. objektov v zoznamoch',
         'vote_influence'    => 'Vplyv cez hlasovanie komunity',
     ],
+    'periods'   => [
+        'monthly'   => 'Mesačne',
+        'yearly'    => 'Ročne',
+    ],
     'pricing'   => ':currency :amount / mesiac',
+    'ribbons'   => [
+        'best-value'    => 'Top hodnota',
+        'popular'       => 'Populárne',
+    ],
+    'toggle'    => [
+        'yearly'    => 'Ročne (jeden mesiac zadarmo!)',
+    ],
 ];

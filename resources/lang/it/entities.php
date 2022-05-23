@@ -15,7 +15,6 @@ return [
     'conversations'         => 'Conversazioni',
     'creator'               => [
         'duplicate' => 'Ci sono altre entità di questo tipo con lo stesso nome.',
-        'helper'    => 'Seleziona un tipo di entità da creare. Se non appare nessuna entità significa che non hai il permesso di crearne di nessun tipo in questa campagna.',
         'title'     => 'Nuova Entità',
     ],
     'dice_roll'             => 'Tiro di Dadi',

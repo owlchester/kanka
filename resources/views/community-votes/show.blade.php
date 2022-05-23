@@ -13,18 +13,6 @@
 @endsection
 
 @section('content')
-    <header class="masthead reduced-masthead">
-        <div class="container h-100">
-            <div class="row h-100">
-                <div class="col-lg-12 my-auto">
-                    <div class="header-content mx-auto">
-                        <h1 class="mb-5">{{ __('front/community-votes.title') }}</h1>
-                        <p class="mb-5">{{ __('front/community-votes.description') }}</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
 
     <section class="community-vote">
         <div class="container">
@@ -35,9 +23,9 @@
                 <div class="col-12 col-md-9">
                     <div class="card mb-4">
                         <div class="card-body">
-                            <h2 class="card-title mb-1">
+                            <h1 class="card-title mb-1">
                                 <a href="{{ route('community-votes.show', $model->getSlug()) }}">{{ $model->name }}</a>
-                            </h2>
+                            </h1>
                             <div class="text-muted mb-2">{{ $model->visible_at->isoFormat('MMMM D, Y') }}</div>
 
                             <div class="card-text">

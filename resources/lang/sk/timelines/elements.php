@@ -1,6 +1,10 @@
 <?php
 
 return [
+    'copy_mention'  => [
+        'copy_with_name'    => 'Kopírovať rozšírenú referenciu s názvom objektu',
+        'success'           => 'Rozšírená referencia objektu bola skopírovaná do schránky.',
+    ],
     'create'        => [
         'success'   => 'Prvok pridaný na časovú os.',
         'title'     => 'Nový prvok na časovej osi',

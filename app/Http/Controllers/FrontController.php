@@ -24,6 +24,8 @@ class FrontController extends Controller
     {
         $this->patreon = $patreonService;
         $referralService->validate(request());
+
+        $this->middleware('fullsetup', ['except' => 'index']);
     }
 
     /**
@@ -84,14 +86,6 @@ class FrontController extends Controller
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function help()
-    {
-        return $this->cachedResponse('front.help');
-    }
-
-    /**
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
     public function features()
     {
         return $this->cachedResponse('front.features');
@@ -135,9 +129,25 @@ class FrontController extends Controller
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function media()
+    public function pressKit()
     {
-        return $this->cachedResponse('front.media');
+        return $this->cachedResponse('front.press-kit');
+    }
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function security()
+    {
+        return $this->cachedResponse('front.security');
+    }
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function boosters()
+    {
+        return $this->cachedResponse('front.boosters');
     }
 
     /**

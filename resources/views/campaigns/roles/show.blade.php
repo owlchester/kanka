@@ -5,7 +5,6 @@
 ?>
 @extends('layouts.app', [
     'title' => __('campaigns.roles.show.title', ['role' => $role->name, 'campaign' => $model->name]),
-    'description' => '',
     'breadcrumbs' => [
         ['url' => route('campaign'), 'label' => __('campaigns.index.title')],
         ['url' => route('campaign_roles.index'), 'label' => __('campaigns.show.tabs.roles')],
@@ -27,8 +26,8 @@
                     <h3 class="box-title">{{ __('crud.permissions.title') }}</h3>
 
                     <div class="box-tools">
-                        <button class="btn btn-sm btn-default" data-target="#permission-modal" data-toggle="modal">
-                            <i class="fa-solid fa-question-circle"></i> {{ __('campaigns.roles.modals.details.button') }}
+                        <button class="btn btn-box-tool" data-target="#permission-modal" data-toggle="modal">
+                            <i class="fa-solid fa-question-circle"></i> {{ __('campaigns.members.actions.help') }}
                         </button>
                     </div>
                 </div>

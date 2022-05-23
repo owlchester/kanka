@@ -53,6 +53,12 @@ $placeholderKey = empty($placeholderKey) ? 'crud.placeholders.' . $singularField
 $labelKey = empty($labelKey) ? 'crud.fields.' . $singularFieldName : $labelKey;
 $searchRouteName = empty($searchRouteName) ? $pluralField . '.find' : $searchRouteName;
 
+// Label helper
+$labelHelper = null;
+if (Arr::has($options, 'helper')) {
+    $labelHelper = '<i class="fa-solid fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" title="' . $options['helper'] . '"></i>';
+}
+
 // Check for permissions
 if ($allowNew) {
     $allowNew = auth()->user()->can('create', new $prefillModel);
@@ -72,7 +78,7 @@ if (!empty($from)) {
 
 $fieldUniqIdentifier = $fieldId . '_' . uniqid();
 ?>
-<label>{{ __($labelKey) }}</label>
+<label>{{ __($labelKey) }} {!! $labelHelper !!}</label>
 
 @if ($allowNew || !empty($quickCreator))
     <div class="input-group input-group-sm">
@@ -110,3 +116,10 @@ $fieldUniqIdentifier = $fieldId . '_' . uniqid();
     </div>
     </div>
 @endif
+
+@if (Arr::has($options, 'helper'))
+    <p class="help-block visible-xs visible-sm">
+        {{ $options['helper'] }}
+    </p>
+@endif
+

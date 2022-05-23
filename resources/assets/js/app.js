@@ -52,13 +52,12 @@ $(document).ready(function() {
     initEntityNoteToggle();
     initDynamicDelete();
     initImageRemoval();
+    initDialogs();
 
     /**
      * Whenever a modal or popover is shown, we'll need to re-bind various helpers we have.
      */
     $(document).on('shown.bs.modal shown.bs.popover', function() {
-        $('[data-toggle="tooltip"]').tooltip();
-
         // Also re-bind select2 elements on modal show
         window.initForeignSelect();
         window.initTags(); // Need this for the abilities popup on entities
@@ -205,7 +204,7 @@ function initDynamicDelete() {
     });
 
     $('a[data-toggle="delete-form"]').unbind('click').click(function (e) {
-        e.preventDefault;
+        e.preventDefault();
         let target = $(this).data('target');
         //console.log('target', target);
         $(target).submit();
@@ -223,13 +222,9 @@ function initDynamicDelete() {
 function initSubmenuSwitcher() {
     $('.submenu-switcher').change(function (e) {
         e.preventDefault();
-        console.log('this', $(this));
 
         let selected = $(this).find(":selected");
-        let route = selected.data('route');
-        console.log('route', route);
-
-        window.location.href = route;
+        window.location.href = selected.data('route');
     });
 }
 
@@ -245,6 +240,27 @@ function initEntityNoteToggle() {
     });
 }
 
+function initDialogs() {
+    $('[data-toggle="dialog"]').click(function (e) {
+        e.preventDefault();
+
+        let target = $(this).data('target');
+        target = document.getElementById(target);
+        target.showModal();
+
+        target.addEventListener('click', function (event) {
+            var rect = target.getBoundingClientRect();
+            var isInDialog=(rect.top <= event.clientY && event.clientY <= rect.top + rect.height
+                && rect.left <= event.clientX && event.clientX <= rect.left + rect.width);
+            if (!isInDialog && event.target.tagName === 'DIALOG') {
+                target.close();
+            }
+        });
+
+
+    });
+}
+
 
 // Splitting off the js files into logical blocks
 require('./helpers')
@@ -254,7 +270,7 @@ require('./calendar')
 require('./search')
 require('./notification')
 require('./quick-creator')
-require('./tutorial')
+//require('./tutorial')
 require('./datagrids')
 require('./quick-links')
 require('./members')

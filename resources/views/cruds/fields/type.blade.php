@@ -2,8 +2,8 @@
 /** @var \App\Models\MiscModel $entityTypeListModel */
 $entityTypeListModel = new $base;
 ?>
-<div class="form-group">
-    <label>{{ trans($trans . '.fields.type') }}</label>
+<div class="{{ isset($floating) ? 'form-floating mb-3' : 'form-group' }}">
+    @if (!isset($floating))<label>{{ __($trans . '.fields.type') }}</label>@endif
     {!! Form::text(
         'type',
         (isset($isRandom) && $isRandom ? $random->generate('type') : FormCopy::field('type')->string()),
@@ -16,6 +16,7 @@ $entityTypeListModel = new $base;
             'spellcheck' => 'true'
         ]
     ) !!}
+    @if (isset($floating))<label>{{ __($trans . '.fields.type') }}</label>@endif
 </div>
 <div class="hidden">
     <datalist id="entity-type-list-<?=$trans?>">

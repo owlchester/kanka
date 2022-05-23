@@ -16,30 +16,25 @@
 @endsection
 
 @section('content')
-    <header class="masthead reduced-masthead">
-        <div class="container h-100">
-            <div class="row h-100">
-                <div class="col-lg-9 my-auto">
-                    <div class="header-content mx-auto">
-                        <h1 class="mb-3">{{ __('front/community-events.title') }}</h1>
-                        <p class="mb-5">{{ __('front/community-events.description') }}</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
 
     <section class="community-events">
         <div class="container">
+
+            <div class="section-body">
+                <div class="mb-5">
+                    <h1 class="display-4">{{ __('front/community-events.title', ['kanka' => config('app.name')]) }}</h1>
+                    <p class="lead">{{ __('front/community-events.description', ['kanka' => config('app.name')]) }}</p>
+                </div>
+
 @if (!$ongoing->isEmpty())
-                <h4>{{ __('front/community-events.index.ongoing') }}</h4>
-                @foreach($ongoing as $model)
-                    @include('front.community-events._event', ['model' => $model, 'ongoing' => true])
-                @endforeach
+            <h2>{{ __('front/community-events.index.ongoing') }}</h2>
+            @foreach($ongoing as $model)
+                @include('front.community-events._event', ['model' => $model, 'ongoing' => true])
+            @endforeach
 @endif
 
 @if ($finished->total() > 0)
-            <h4>{{ __('front/community-events.index.past') }}</h4>
+            <h2>{{ __('front/community-events.index.past') }}</h2>
             @foreach ($finished as $model)
                 @include('front.community-events._event', ['ongoing' => false])
             @endforeach

@@ -36,21 +36,23 @@ $hasOthers = false;
 
 @section('modals')
     @parent
-    <div class="modal modal-danger fade" id="datagrid-bulk-delete" tabindex="-1" role="dialog" aria-labelledby="clickConfirmLabel">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
+    <div class="modal fade" id="datagrid-bulk-delete" tabindex="-1" role="dialog" aria-labelledby="clickConfirmLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content rounded-2xl">
+                <div class="modal-body text-center">
+
                     <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('crud.click_modal.close') }}"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="clickModalLabel">{{ __('crud.bulk.delete.title') }}</h4>
-                </div>
-                <div class="modal-body">
-                    {{ __('crud.bulk.delete.warning') }}
-                </div>
+                    <h4 class="modal-title">{{ __('crud.delete_modal.title') }}</h4>
 
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">{{ __('crud.delete_modal.close') }}</button>
+                    <p class="mt-3">{{ __('crud.bulk.delete.warning') }}<br />{{ __('crud.delete_modal.permanent') }}</p>
 
-                    <a class="btn btn-outline" id="datagrid-action-confirm">{{ __('crud.click_modal.confirm') }}</a>
+                    <div class="py-5">
+                        <button type="button" class="btn px-8 rounded-full mr-5" data-dismiss="modal">{{ __('crud.cancel') }}</button>
+                        <button type="button" class="btn btn-danger px-8 ml-5 rounded-full" id="datagrid-action-confirm">
+                            <span class="fa-solid fa-trash"></span>
+                            <span class="remove-button-label">{{ __('crud.remove') }}</span>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>

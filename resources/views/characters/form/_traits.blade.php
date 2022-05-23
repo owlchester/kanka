@@ -70,7 +70,7 @@ $role = \App\Facades\CampaignCache::adminRole();
         @if (!isset($model) || auth()->user()->can('personality', $model))
             <div class="character-personality">
                 @foreach ((isset($model) ? $model->characterTraits()->personality()->orderBy('default_order', 'ASC')->get() : ($isRandom ? $random->generateTraits(false) : FormCopy::characterPersonality())) as $trait)
-                    <div class="parent-delete-row margin-bottom">
+                    <div class="parent-delete-row mb-5">
                         <div class="form-group">
                             <div class="input-group">
                             <span class="input-group-addon hidden-xs hidden-sm">
@@ -174,7 +174,7 @@ $role = \App\Facades\CampaignCache::adminRole();
             </div>
         </div>
         <div id="template_personality">
-            <div class="parent-delete-row margin-bottom">
+            <div class="parent-delete-row mb-5">
                 <div class="form-group">
                     <div class="input-group">
                                 <span class="input-group-addon hidden-xs hidden-sm">

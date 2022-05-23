@@ -23,13 +23,10 @@ return [
         'application'   => 'Bewerbung',
         'rejection'     => 'Ablehnungsgrund',
     ],
-    'helpers'       => [
-        'open_and_public'   => 'Die Kampagne akzeptiert Bewerbungen für die Teilnahme. Um dies zu beenden, bearbeiten Sie die Kampagne und ändern Sie die offene Einstellung auf der Registerkarte :tab.',
-    ],
+    'helpers'       => [],
     'placeholders'  => [
         'note'  => 'Notieren Sie Ihre Bewerbung für die Teilnahme an der Kampagne',
     ],
-    'title'         => 'Kampagnenbewerbung',
     'update'        => [
         'approve'   => 'Wählen Sie die Rolle aus, die dem Benutzer in Ihrer Kampagne hinzugefügt werden soll.',
         'approved'  => 'Bewerbung genehmigt',

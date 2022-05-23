@@ -33,7 +33,6 @@ return [
             'helper'    => 'Du kan använda + och - före siffran för att uppdatera åldern med det antalet.',
         ],
         'delete'        => [
-            'title'     => 'Tar bort flera entiteter',
             'warning'   => 'Är du säker på att du vill ta bort de valda entiteterna?',
         ],
         'edit'          => [
@@ -81,10 +80,9 @@ return [
         'empty' => 'Inget att visa än.',
     ],
     'delete_modal'              => [
-        'close'         => 'Stäng',
-        'delete'        => 'Ta bort',
-        'description'   => 'Är du säker att du vill ta bort :tag?',
-        'title'         => 'Ta bort bekräftelse',
+        'close' => 'Stäng',
+        'delete'=> 'Ta bort',
+        'title' => 'Ta bort bekräftelse',
     ],
     'destroy_many'              => [
         'success'   => 'Tog bort :count entitet|Tog bort :count entiteter',

@@ -84,8 +84,7 @@ return [
         ],
         'title'             => 'Potenciar',
         'unboost'           => [
-            'description'   => 'Tes certeza de que queres deixar de potenciar a campaña ":tag"?',
-            'title'         => 'Despotenciando unha campaña',
+            'title' => 'Despotenciando unha campaña',
         ],
     ],
     'countries'     => [
@@ -120,22 +119,14 @@ return [
         'success'   => 'Opcións de deseño actualizadas.',
         'title'     => 'Deseño',
     ],
-    'marketplace'   => [
-        'fields'    => [
-            'name'  => 'Nome no Mercado',
-        ],
-        'helper'    => 'Por defecto, o nome da túa conta é o mostrado no :marketplace. Podes modificalo neste campo.',
-        'title'     => 'Configuración do Mercado',
-        'update'    => 'Configuración do Mercado gardada.',
-    ],
+    'marketplace'   => [],
     'menu'          => [
         'account'               => 'Conta',
         'api'                   => 'API',
         'apps'                  => 'Aplicacións',
         'billing'               => 'Método de pagamento',
+        'boosters'              => 'Potenciadores',
         'invoices'              => 'Facturas',
-        'layout'                => 'Deseño',
-        'marketplace'           => 'Mercado',
         'other'                 => 'Miscelánea',
         'patreon'               => 'Patreon',
         'payment_options'       => 'Opcións de pagamento',
@@ -223,6 +214,8 @@ return [
             'alternatives'          => 'Paga a túa subscripción usando :method. Este método de pagamento non se renovará automáticamente ao final da túa subscripción. :method só está dispoñíbel en Euros.',
             'alternatives_warning'  => 'Mellorar a túa subscripción usando este método non é posíbel. Por favor, crea unha nova subscripción ao rematar a actual.',
             'alternatives_yearly'   => 'Debido a restricións nos pagamentos recurrentes, :method só está dispoíbel para subcripcións anuais.',
+            'paypal'                => 'Prefires usar Paypal? Contáctanos en :email se desexas subscribirte a un plan anual usando Paypal.',
+            'stripe'                => 'A túa información de facturación é procesada e almacenada de xeito seguro mediante :stripe.',
         ],
         'manage_subscription'   => 'Xestionar subscripción',
         'payment_method'        => [
@@ -241,6 +234,10 @@ return [
             'helper'        => 'Este cartón será usado para todas as túas subscripcións.',
             'new_card'      => 'Engadir un novo método de pagamento',
             'saved'         => ':brand terminado en :last4',
+        ],
+        'periods'               => [
+            'monthly'   => 'Mensual',
+            'yearly'    => 'Anual',
         ],
         'placeholders'          => [
             'reason'    => 'Opcionalmente, cóntanos por que deixas de apoiar a Kanka. Faltouche algunha función? Cambiou a túa situación financieira?',

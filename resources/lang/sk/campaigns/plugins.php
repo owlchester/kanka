@@ -2,6 +2,11 @@
 
 return [
     'actions'       => [
+        'bulks'             => [
+            'disable'   => 'Deaktivovať pluginy',
+            'enable'    => 'Aktivovať pluginy',
+            'update'    => 'Aktualizovať pluginy',
+        ],
         'disable'           => 'Deaktivovať plugin',
         'enable'            => 'Aktivovať plugin',
         'go_to_marketplace' => 'Prejsť do Trhoviska',
@@ -9,6 +14,12 @@ return [
         'remove'            => 'Odstrániť plugin',
         'update'            => 'Aktualizovať plugin',
         'update_available'  => 'Dostupná aktualizácia!',
+    ],
+    'bulks'         => [
+        'delete'    => '{1} Odstránený :count plugin.|[2,4] Odstránené :count pluginy.|[5,*] Odstránených :count pluginov.',
+        'disable'   => '{1} Deaktivovaný :count plugin.|[2,4] Deaktivované :count pluginy.|[5,*] Deaktivovaných :count pluginov.',
+        'enable'    => '{1} Aktivovaný :count plugin.|[2,4] Aktivované :count pluginy.|[5,*] Aktivovaných :count pluginov.',
+        'update'    => '{1} Aktualizovaný :count plugin.|[2,4] Aktualizované :count pluginy.|[5,*] Aktualizovaných :count pluginov.',
     ],
     'destroy'       => [
         'success'   => 'Plugin :plugin odstránený.',

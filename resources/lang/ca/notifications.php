@@ -32,7 +32,6 @@ return [
     ],
     'clear'             => [
         'action'    => 'Neteja-ho tot',
-        'confirm'   => 'Segur que voleu eliminar totes les notificacions? Aquesta acció no es pot desfer.',
         'success'   => 'S\'han eliminat les notificacions.',
     ],
     'header'            => 'Teniu :count notificacions',

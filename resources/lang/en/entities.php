@@ -14,9 +14,13 @@ return [
     'conversation'          => 'Conversation',
     'conversations'         => 'Conversations',
     'creator'               => [
+        'actions'           => [
+            'create'    => 'Create :type',
+        ],
         'back'              => 'Back to selection',
         'duplicate'         => 'Heads up! There are other entities of this type with a similar name.',
-        'helper'            => 'Select an entity type to create. If no entities appear, it means that you don\'t have the permission to create any kind of entity in this campaign.',
+        'helper_v2'         => 'Quickly create the foundation of a new entity without interrupting your current flow.',
+        'missing'           => 'Not seeing all entity types? It might be disabled, your permissions might not allow it, or it isn\'t supported for quick creation.',
         'name'              => [
             'new'       => 'New name',
             'remove'    => 'Remove',

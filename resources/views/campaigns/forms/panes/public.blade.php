@@ -33,24 +33,7 @@
                 @endif
             @endif
         </div>
-
-        <div class="col-md-6">
-            <div class="form-group">
-                <label>
-                    {{ __('campaigns.open_campaign.title') }}
-                </label>
-                {!! Form::select('is_open', [0 => __('campaigns.open_campaign.statuses.closed'), 1 => __('campaigns.open_campaign.statuses.open')], null, ['class' => 'form-control']) !!}
-
-                <p class="help-block">{!! __('campaigns.open_campaign.helper', [
-    'link' => link_to_route('campaign_submissions.index', __('campaigns.open_campaign.link'))
-    ]) !!}</p>
-
-            </div>
-        </div>
     </div>
-
-
-
 
 
     <hr />

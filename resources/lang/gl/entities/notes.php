@@ -46,4 +46,8 @@ return [
         'advanced'  => 'Permisos avanzados',
         'title'     => 'Entrada ":name" de ":entity"',
     ],
+    'states'        => [
+        'collapsed' => 'Colapsada',
+        'expanded'  => 'Expandida',
+    ],
 ];

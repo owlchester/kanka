@@ -83,17 +83,12 @@ return [
         'overview'          => 'Verknüpfen Sie einfach mit bestehenden Objekten der Kampagne, indem Sie :code und drei oder mehr Buchstaben eingeben.',
         'title'             => 'Andere Objekte verlinken',
     ],
-    'map'               => [
-        'description'   => 'Wenn Sie eine Karte an einen Ort hochladen, wird das Menü "Karte" auf der Ansichtsseite des Standorts und ein direkter Link zur Karte von der Standortseite der Kampagne aktiviert. In der Kartenansicht können Benutzer, die den Standort bearbeiten können, den Bearbeitungsmodus aktivieren, mit dem sie Kartenpunkte auf der Karte platzieren können. Diese können mit einem vorhandenen Objekt verknüpft sein oder ein Etikett sein und verschiedene Formen und Größen haben.',
-        'private'       => 'Mitglieder in der Administratorrolle der Kampagne können eine Karte privat machen. Auf diese Weise können Benutzer einen Standort anzeigen, Administratoren können die Karte jedoch geheim halten.',
-        'title'         => 'Standortkarten',
-    ],
+    'map'               => [],
     'pins'              => [
         'description'   => 'Objekte können rechts neben ihrer Story-Ansicht Beziehungen und Attribute haben. Um ein Element anzuheften, bearbeiten Sie die Beziehung oder die Attribute und legen Sie den angehefteten Wert für diese fest.',
         'title'         => 'Objekt Pins',
     ],
     'public'            => 'Sie die Tutorial Videos über öffentliche Kampagnen auf Youtube an.',
-    'title'             => 'Hilfe',
     'troubleshooting'   => [
         'description'       => 'Ein Mitglied von Kankas Team hat Sie auf diese Seite geschickt. Wählen Sie eine Kampagne aus der Dropdown-Liste aus, um ein Token zu generieren, damit wir Ihrer Kampagne vorübergehend als Administrator beitreten können.',
         'errors'            => [

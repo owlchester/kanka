@@ -221,15 +221,7 @@ TEXT
         ],
         'your_role'             => 'O teu rol: <i>:role</i>',
     ],
-    'open_campaign'                     => [
-        'helper'    => 'Unha campaña pública marcada como aberta permitirá que a xente envíe solicitudes para unirse a ela. Encontra a lista de solicitudes na nosa páxina :link.',
-        'link'      => 'solicitudes na campaña',
-        'statuses'  => [
-            'closed'    => 'Pechada',
-            'open'      => 'Aberta a incorporacións',
-        ],
-        'title'     => 'Campaña aberta',
-    ],
+    'open_campaign'                     => [],
     'options'                           => [],
     'panels'                            => [
         'boosted'   => 'Potenciada',
@@ -294,7 +286,6 @@ TEXT
         'members'       => 'Integrantes',
         'modals'        => [
             'details'   => [
-                'button'    => 'Axuda',
                 'campaign'  => 'Os permisos de campaña permiten o seguinte.',
                 'entities'  => 'Este é un resumo do que poden facer as integrantes deste rol cando un permiso é establecido.',
                 'more'      => 'Para máis detalles, mira o noso vídeo tutorial en Youtube',
@@ -363,9 +354,6 @@ TEXT
             'enable'    => 'Activar',
         ],
         'boosted'   => 'Esta función está en acceso anticipado e actualmente só dispoñíbel para :boosted.',
-        'edit'      => [
-            'success'   => 'Configuración da campaña actualizada.',
-        ],
         'errors'    => [
             'module-disabled'   => 'O módulo solicitado está actualmente deshabilitado na configuración da campaña. :fix.',
         ],
@@ -391,7 +379,6 @@ TEXT
             'tags'          => 'Cada entidade pode ter varias etiquetas. As etiquetas poden á súa vez pertencer a outras etiquetas, e as entradas poden ser filtradas por etiqueta.',
             'timelines'     => 'Representa a historia do teu mundo usando liñas temporais.',
         ],
-        'title'     => 'Módulos da campaña ":name"',
     ],
     'show'                              => [
         'actions'   => [

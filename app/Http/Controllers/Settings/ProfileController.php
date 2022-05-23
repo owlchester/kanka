@@ -37,15 +37,16 @@ class ProfileController extends Controller
     {
         /** @var User $user */
         $user = $request->user();
-        $settings = $user->settings();
+        /*$settings = $user->settings();
         if ($user->isPatron() && $request->has('settings.hide_subscription') && $request->input('settings.hide_subscription') == '1') {
             $settings->put('hide_subscription', true);
         } else {
             $settings->forget('hide_subscription');
         }
-        $user->settings = $settings;
+        $user->settings = $settings;*/
 
-        $user->update($request->only('name', 'has_last_login_sharing', 'avatar', 'profile'));
+        $user->saveSettings($request->only(['settings.hide_subscription', 'settings.marketplace_name']))
+            ->update($request->only('name', 'has_last_login_sharing', 'avatar', 'profile'));
 
         return redirect()
             ->route('settings.profile')

@@ -24,7 +24,6 @@ return [
         'url'       => 'De url waar je naartoe gaat is :url.',
     ],
     'placeholders'  => [
-        'icon'  => 'fab fa-d-and-d-beyond',
         'name'  => 'DNDBeyond',
         'url'   => 'https://dndbeyond.com/character-url',
     ],

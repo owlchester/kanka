@@ -31,7 +31,7 @@ $specificTheme = null;
     <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon/apple-touch-icon-180x180.png" />
 
     <!-- Styles -->
-    <link href="{{ mix('css/bootstrap.css') }}" rel="stylesheet">
+    <link href="/css/bootstrap.css?v={{ config('app.version') }}" rel="stylesheet">
     <link href="{{ mix('css/vendor.css') }}" rel="stylesheet">
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
     <link href="{{ mix('css/freyja.css') }}" rel="stylesheet">
@@ -65,7 +65,7 @@ $specificTheme = null;
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
 </head>
 
-<body class="skin-black sidebar-mini @if (!empty($campaign) || (auth()->check() && auth()->user()->hasCampaigns()) || (!empty($sidebar) && $sidebar == 'settings'))@else layout-top-nav @endif @if(isset($miscModel) && !empty($miscModel->entity)){{ $miscModel->bodyClasses() }}@endif @if(isset($dashboard))dashboard-{{ $dashboard->id }}@endif @if(isset($bodyClass)){{ $bodyClass }}@endif" @if(!empty($specificTheme)) data-theme="{{ $specificTheme }}" @endif>
+<body class="@if(isset($miscModel) && !empty($miscModel->entity)){{ $miscModel->bodyClasses() }}@endif  @if(isset($bodyClass)){{ $bodyClass }}@endif" @if(!empty($specificTheme)) data-theme="{{ $specificTheme }}" @endif>
 @include('layouts._tracking-fallback')
     <div id="app" class="wrapper">
 

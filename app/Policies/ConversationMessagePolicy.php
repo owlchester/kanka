@@ -11,14 +11,15 @@ use Illuminate\Auth\Access\HandlesAuthorization;
 class ConversationMessagePolicy
 {
     /**
+     * Allow deleting a message for up to one hour by the author
      * @param User|null $user
      * @param ConversationMessage $message
      * @return bool
      */
     public function delete(?User $user, ConversationMessage $message): bool
     {
-        $elapsed = $message->created_at->diffInHours(Carbon::now());
-        return $message->created_by == $user->id && ($elapsed < 1);
+        $elapsedHours = $message->created_at->diffInHours(Carbon::now());
+        return $message->created_by === $user->id && ($elapsedHours < 1);
     }
 
     /**

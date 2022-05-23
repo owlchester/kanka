@@ -192,10 +192,6 @@ return [
     ],
     'show'          => [
         'missing_details'   => 'Bu takvim görüntülenemedi. Takvimlerin doğru görüntülenebilmesi için en az 2 aya ve 2 hafta gününe ihtiyacı vardır.',
-        'moon_full_moon'    => ':moon Dolunay',
-        'moon_new_moon'     => ':moon Yeniay',
-        'moon_waning_moon'  => ':moon İlkdördün',
-        'moon_waxing_moon'  => ':moon Sondördün',
         'tabs'              => [
             'events'    => 'Takvim Olayları',
             'weather'   => 'Hava',

@@ -23,13 +23,10 @@ return [
         'application'   => 'Solicitud',
         'rejection'     => 'Motivo del rechazo',
     ],
-    'helpers'       => [
-        'open_and_public'   => 'La campaña acepta solicitudes para unirse a ella. Puedes cerrar las solicitudes editando la campaña y cambiando la opción "Abierta" en la pestaña :tab.',
-    ],
+    'helpers'       => [],
     'placeholders'  => [
         'note'  => 'Escribe tu solicitud para unirte a la campaña',
     ],
-    'title'         => 'Solicitudes de campaña',
     'update'        => [
         'approve'   => 'Selecciona el rol que se asignará al usuario en tu campaña.',
         'approved'  => 'Solicitud aprobada.',

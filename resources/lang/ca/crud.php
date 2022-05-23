@@ -38,7 +38,6 @@ return [
             'helper'    => 'Utilitza + i - abans del número per a canviar l\'edat.',
         ],
         'delete'        => [
-            'title'     => 'Eliminació de múltiples entitats',
             'warning'   => '¿Segur que voleu eliminar les entitats seleccionades?',
         ],
         'edit'          => [
@@ -91,11 +90,9 @@ return [
         'empty' => 'Encara no hi ha res a mostrar.',
     ],
     'delete_modal'              => [
-        'close'             => 'Tanca',
-        'delete'            => 'Elimina',
-        'description'       => '¿Segur que voleu eliminar :tag?',
-        'description_final' => 'Segur que voleu eliminar :tag? Aquesta acció no es pot desfer.',
-        'title'             => 'Confirmació de l\'eliminació',
+        'close' => 'Tanca',
+        'delete'=> 'Elimina',
+        'title' => 'Confirmació de l\'eliminació',
     ],
     'destroy_many'              => [
         'success'   => '{1} S\'ha eliminat :count entitat.|[2,*] S\'han eliminat :count entitats.',

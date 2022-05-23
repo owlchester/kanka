@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="col-lg-6">
+    <div class="col-sm-6">
         <div class="form-group">
             {!! Form::select2(
                 'family_id',
@@ -10,7 +10,7 @@
             ) !!}
         </div>
     </div>
-    <div class="col-lg-6">
+    <div class="col-sm-6">
         @include('cruds.fields.location')
     </div>
 </div>

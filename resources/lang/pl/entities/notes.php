@@ -46,4 +46,8 @@ return [
         'advanced'  => 'Uprawnienia zaawansowane',
         'title'     => 'Komentarz do elementu :entity',
     ],
+    'states'        => [
+        'collapsed' => 'Zwinięte',
+        'expanded'  => 'Rozwinięte',
+    ],
 ];

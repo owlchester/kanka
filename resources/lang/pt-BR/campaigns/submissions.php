@@ -23,13 +23,10 @@ return [
         'application'   => 'Solicitação',
         'rejection'     => 'Razão da rejeição',
     ],
-    'helpers'       => [
-        'open_and_public'   => 'A campanha está aceitando solicitações para se inscrever nela. Para parar isso, edite a campanha e mude a configuração Aberto sobre a tab :tab.',
-    ],
+    'helpers'       => [],
     'placeholders'  => [
         'note'  => 'Escreva a sua solicitação para se inscrever na campanha.',
     ],
-    'title'         => 'Solicitações da Campanha',
     'update'        => [
         'approve'   => 'Selecione a função do usuário que será adicionado em sua campanha.',
         'approved'  => 'Solicitação aprovada.',

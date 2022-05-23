@@ -16,6 +16,6 @@ return [
         'newsletter'        => 'Newsletter',
         'updates'           => 'Updates from the team',
     ],
-    'headline'  => 'Subscribe to one or all of our newsletters to stay up to date with Kanka.',
+    'headline'  => 'Subscribe to one or all of our newsletters to stay up to date with :kanka.',
     'title'     => 'Email Updates',
 ];

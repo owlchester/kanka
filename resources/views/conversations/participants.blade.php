@@ -18,7 +18,7 @@
             </div>
         @endif
         <div class="panel-body">
-            <ul class="list-group list-group-unbordered margin-bottom">
+            <ul class="list-group list-group-unbordered mb-5">
                 @foreach ($model->participants as $participant)
                     @if ($participant->isMember() || (auth()->check() && auth()->user()->can('view', $participant->entity())))
                     <li class="list-group-item">

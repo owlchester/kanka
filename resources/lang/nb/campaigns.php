@@ -267,9 +267,6 @@ TEXT
             'enable'    => 'Skru på',
         ],
         'boosted'   => 'Denne funksjonen er i tidlig tilgang og kun tilgjengelig for :boosted.',
-        'edit'      => [
-            'success'   => 'Kampanje innstillinger oppdatert.',
-        ],
         'helper'    => 'Alle moduler i en kampanje kan bli skrudd av eller på når man ønsker. Ved å slå av en modul skjuler man alle grensesnitts elementer relatert til det, og tidligere eksisterende objekter blir skjult men finnes enda i bakgrunnen i tilfelle du ombestemmer deg. Disse endringene påvirker alle brukere i kampanjen, inkludert Administratorer.',
         'helpers'   => [
             'abilities'     => 'Opprett Egenskaper, om det er feats, spells, eller krefter som kan tildeles objekter.',
@@ -291,7 +288,6 @@ TEXT
             'tags'          => 'Hvert objekt kan ha flere etiketter. Etiketter kan høre til andre etiketter og innlegg kan filtreres etter etiketter.',
             'timelines'     => 'Representer din verdens historie med tidslinjer.',
         ],
-        'title'     => 'Kampanje :name Moduler',
     ],
     'show'                              => [
         'actions'   => [

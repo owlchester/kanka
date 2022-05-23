@@ -33,10 +33,9 @@ return [
     ],
     'event'         => [
         'actions'   => [
-            'delete-confirm'    => 'to wydarzenie',
-            'existing'          => 'Istniejący element',
-            'new'               => 'Nowe wydarzenie',
-            'switch'            => 'Zmień wybór',
+            'existing'  => 'Istniejący element',
+            'new'       => 'Nowe wydarzenie',
+            'switch'    => 'Zmień wybór',
         ],
         'create'    => [
             'success'   => 'Utworzono wydarzenie.',
@@ -58,7 +57,12 @@ return [
         'success'   => 'Dodano do kalendarza wydarzenie \':event\'.',
     ],
     'events'        => [
-        'title' => 'Wydarzenia w kalendarzu :name',
+        'filters'   => [
+            'show_after'    => 'Pokaż aktualną datę i dalej',
+            'show_all'      => 'Pokaż wszystko',
+            'show_before'   => 'Pokaż daty przed aktualną',
+        ],
+        'title'     => 'Wydarzenia w kalendarzu :name',
     ],
     'fields'        => [
         'calendar'              => 'Kalendarz źródłowy',
@@ -209,10 +213,6 @@ return [
     ],
     'show'          => [
         'missing_details'   => 'Nie można wyświetlić kalendarza. Do poprawnego wyświetlania niezbędne są przynajmniej 2 miesiące posiadające po 2 dni tygodnia.',
-        'moon_full_moon'    => ':moon Pełnia',
-        'moon_new_moon'     => ':moon Nów',
-        'moon_waning_moon'  => ':moon Ubywa',
-        'moon_waxing_moon'  => ':moon Przybywa',
         'tabs'              => [
             'events'    => 'Wydarzenia w kalendarzu',
             'weather'   => 'Pogoda',

@@ -219,15 +219,7 @@ TEXT
         ],
         'your_role'             => 'Tu rol: <i>:role</i>',
     ],
-    'open_campaign'                     => [
-        'helper'    => 'Una campaña pública marcada como abierta permitirá que los usuarios puedan enviar solicitudes de inscripción para unirse a ella. La lista de solicitudes está en la página de :link.',
-        'link'      => 'solicitudes de campaña',
-        'statuses'  => [
-            'closed'    => 'Cerrada',
-            'open'      => 'Abierta a nuevas incorporaciones',
-        ],
-        'title'     => 'Campaña abierta',
-    ],
+    'open_campaign'                     => [],
     'options'                           => [],
     'panels'                            => [
         'boosted'   => 'Mejoras',
@@ -292,7 +284,6 @@ TEXT
         'members'       => 'Miembros',
         'modals'        => [
             'details'   => [
-                'button'    => 'Necesito ayuda',
                 'campaign'  => 'Los permisos de la campaña permiten lo siguiente.',
                 'entities'  => 'A continuación se muestra un resumen de los permisos de este rol.',
                 'more'      => 'Para más detalles, mira nuestro tutorial en Youtube.',
@@ -361,9 +352,6 @@ TEXT
             'enable'    => 'Habilitar',
         ],
         'boosted'   => 'Esta función está en beta y actualmente solo está disponible para las :boosted.',
-        'edit'      => [
-            'success'   => 'Ajustes de campaña actualizados.',
-        ],
         'helper'    => 'Puedes activar o desactivar fácilmente todos los módulos de una campaña. Desactivar un módulo solo ocultará sus elementos relacionados, no los eliminará. Este cambio afecta a todos los usuarios de una campaña, incluyendo a los Administradores.',
         'helpers'   => [
             'abilities'     => 'Crea habilidades, proezas, hechizos o poderes y asígnalos a entidades.',
@@ -386,7 +374,6 @@ TEXT
             'tags'          => 'Cada entidad puede tener varias etiquetas. Éstas pueden pertenecer a otras etiquetas, y las entradas pueden filtrarse por etiqueta.',
             'timelines'     => 'Representa la historia de tu mundo con líneas de tiempo.',
         ],
-        'title'     => 'Módulos de la campaña :name',
     ],
     'show'                              => [
         'actions'   => [

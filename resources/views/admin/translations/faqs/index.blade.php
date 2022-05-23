@@ -9,7 +9,7 @@
 @section('content')
     <h1>FAQ translation interface</h1>
 
-    {!! Form::open(['route' => 'translations.faq.index', 'method' => 'GET', 'class' => 'form-inline margin-bottom']) !!}
+    {!! Form::open(['route' => 'translations.faq.index', 'method' => 'GET', 'class' => 'form-inline mb-5']) !!}
 
     <div class="form-group">
         <label>Select target language</label>

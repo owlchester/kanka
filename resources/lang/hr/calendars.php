@@ -203,10 +203,6 @@ return [
     ],
     'show'          => [
         'missing_details'   => 'Ovaj se kalendar nije mogao prikazati. Kalendari trebaju imati barem 2 kalendarska mjeseca i barem 2 dana u tjednu da bi se pravilno prikazali.',
-        'moon_full_moon'    => ':moon Puni mjesec',
-        'moon_new_moon'     => ':moon Mladi mjesec',
-        'moon_waning_moon'  => ':moon Prva četvrt',
-        'moon_waxing_moon'  => ':moon Posljednja četvrt',
         'tabs'              => [
             'events'    => 'Događaji kalendara',
             'weather'   => 'Vremenski uvjeti',

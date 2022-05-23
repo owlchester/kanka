@@ -2,8 +2,7 @@
 
 return [
     'about'         => [
-        'description'   => 'Kanka werd geboren uit de wens van een gepassioneerde tabeltop RPG speler die met zijn spelers een wereld wilde bouwen en beheren. Na het uitproberen van een paar beschikbare opties en de conclusie dat geen van hen helemaal goed paste, begon de ontwikkeling van Kanka in het najaar van 2017.',
-        'title'         => 'Over',
+        'title' => 'Over',
     ],
     'campaigns'     => [
         'description_full'  => 'Veel campaigns in Kanka zijn voor iedereen zichtbaar. Deze pagina bevat een lijst met alle openbare campaigns, evenals enkele aanbevolen campaigns van de community.',
@@ -182,17 +181,11 @@ return [
         'title'         => 'Een nieuwe manier om je worldbuilding- en RPG-campaigns bij te houden.',
     ],
     'footer'        => [
-        'app'       => 'App',
         'copyright' => 'Copyright :copy :year Owlchester SNC',
         'headings'  => [
-            'app'           => 'App',
-            'community'     => 'Community',
-            'other'         => 'Andere',
-            'useful_links'  => 'Handige links',
+            'app'       => 'App',
+            'community' => 'Community',
         ],
-        'navigation'=> 'Navigatie',
-        'resources' => 'Middelen',
-        'social'    => 'Social',
     ],
     'help'          => [
         'description'   => 'We staan voor je klaar als je wat hulp nodig hebt. Neem contact met ons op via een van de volgende methoden en we nemen zo snel mogelijk contact met u op.',
@@ -213,38 +206,23 @@ return [
         'heading'           => 'Worldbuilding, tabletop RPG campaign management, storytelling. Alles in een',
         'title'             => 'Kanka',
     ],
-    'media'         => [
-        'description'   => 'Op deze pagina vind je hoge resolutie afbeeldingen van Kanka. Gebruik deze als je Kanka promoot of tools bouwt die met Kanka samenwerken.',
-        'images'        => [
-            'primary'   => 'Primair Kanka logo',
-            'social'    => 'Sociaal Kanka logo',
-        ],
-        'title'         => 'Media',
-    ],
+    'media'         => [],
     'menu'          => [
         'about'         => 'Over',
-        'api'           => 'API',
         'campaigns'     => 'Openbare campaigns',
         'community'     => 'Community',
         'contact'       => 'Contact',
-        'contact_us'    => 'Neem contact op',
         'dashboard'     => 'Dashboard',
         'features'      => 'Functies',
-        'help'          => 'Help',
-        'home'          => 'Home',
         'login'         => 'Inloggen',
         'marketplace'   => 'Marktplaats',
-        'media'         => 'Media',
         'news'          => 'Nieuws',
         'newsletter'    => 'Nieuwsbrief',
-        'other'         => 'Andere',
         'pricing'       => 'Prijzen',
         'privacy'       => 'Privacybeleid',
         'register'      => 'Registreren',
         'releases'      => 'Releases',
         'roadmap'       => 'Routekaart',
-        'terms'         => 'Algemene voorwaarden',
-        'title'         => 'Menu',
     ],
     'meta'          => [
         'description'   => 'Kanka is een flexibele digitale world builder en online rpg campaign manager',

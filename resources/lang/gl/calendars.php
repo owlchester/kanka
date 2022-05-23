@@ -32,10 +32,9 @@ return [
     ],
     'event'         => [
         'actions'   => [
-            'delete-confirm'    => 'este lembrete',
-            'existing'          => 'Entidade existente',
-            'new'               => 'Novo evento',
-            'switch'            => 'Cambiar elección',
+            'existing'  => 'Entidade existente',
+            'new'       => 'Novo evento',
+            'switch'    => 'Cambiar elección',
         ],
         'create'    => [
             'success'   => 'Evento de calendario creado.',
@@ -57,7 +56,12 @@ return [
         'success'   => 'Evento ":event" engadido ao calendario.',
     ],
     'events'        => [
-        'title' => 'Eventos do calendario ":name"',
+        'filters'   => [
+            'show_after'    => 'Mostrar hoxe e posteriores',
+            'show_all'      => 'Mostrar todos',
+            'show_before'   => 'Mostrar anteriores a hoxe',
+        ],
+        'title'     => 'Eventos do calendario ":name"',
     ],
     'fields'        => [
         'calendar'              => 'Calendario pai',
@@ -208,10 +212,6 @@ return [
     ],
     'show'          => [
         'missing_details'   => 'Este calendario non puido ser mostrado. Os calendarios precisan polo menos 2 meses e 2 días da semana para ser mostrados correctamente.',
-        'moon_full_moon'    => 'Lúa :moon chea',
-        'moon_new_moon'     => 'Lúa :moon nova',
-        'moon_waning_moon'  => 'Lúa :moon minguante',
-        'moon_waxing_moon'  => 'Lúa :moon crecente',
         'tabs'              => [
             'events'    => 'Eventos do calendario',
             'weather'   => 'Clima',

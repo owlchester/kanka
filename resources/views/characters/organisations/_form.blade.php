@@ -40,5 +40,6 @@ $statuses = [
     {!! Form::select('pin_id', $options, null, ['class' => 'form-control']) !!}
 </div>
 
-@include('cruds.fields.private2', ['model' => !empty($member) ? $member : null])
+@includeWhen(auth()->user()->isAdmin(), 'cruds.fields.privacy_callout', ['model' => !empty($member) ? $member : null])
+
 

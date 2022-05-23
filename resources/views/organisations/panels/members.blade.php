@@ -11,6 +11,8 @@ if (request()->has('all')) {
     $datagridOptions['all'] = 1;
     $allMembers = true;
 }
+$datagridOptions = Datagrid::initOptions($datagridOptions);
+
 $datagridCall = ['datagridUrl' => route('organisations.members', $datagridOptions)];
 if (!empty($rows)) {
     $datagridCall = [];

@@ -24,18 +24,18 @@
                     <div class="container-fluid text-justify">
                         <p>{{ __('front/features/timelines.first') }}</p>
 
-                        <img src="/images/features/timelines_standard.png" alt="Kanka timeline" class="m-2" style="max-width: 100%" />
+                        <img src="/images/features/timelines_standard.png" alt="Kanka timeline" class="m-2" style="max-width: 100%" loading="lazy" />
 
                         <p>{{ __('front/features/timelines.second') }}</p>
                         <p>{{ __('front/features/timelines.third') }}</p>
 
 
                         <p>{!! __('front/features/timelines.fourth', [
-    'boosted_campaigns' => link_to_route('front.pricing', __('crud.boosted_campaigns'), '#boost')
+    'boosted_campaigns' => link_to_route('front.boosters', __('crud.boosted_campaigns'))
 ]) !!}</p>
 
 
-                        <img src="/images/features/timelines_boosted.png" alt="Kanka timeline boosted" class="m-2" style="max-width: 100%" />
+                        <img src="/images/features/timelines_boosted.png" alt="Kanka timeline boosted" class="m-2" style="max-width: 100%" loading="lazy" />
 
                     </div>
                 </div>

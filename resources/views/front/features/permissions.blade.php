@@ -25,20 +25,20 @@
                         <p>{{ __('front/features/permissions.first') }}</p>
 
                         <div class="text-center">
-                        <img src="/images/features/permissions_role.png" alt="Kanka permission role" class="mb-5" style="max-width: 100%" />
+                        <img src="/images/features/permissions_role.png" alt="Kanka permission role" class="mb-5" style="max-width: 100%" loading="lazy" />
                         </div>
 
                         <p>{{ __('front/features/permissions.second') }}</p>
                         <p>{{ __('front/features/permissions.third') }}</p>
 
                         <div class="text-center">
-                        <img src="/images/features/permissions_entity.png" alt="Kanka permission entity" class="mb-5" style="max-width: 100%" />
+                        <img src="/images/features/permissions_entity.png" alt="Kanka permission entity" class="mb-5" style="max-width: 100%" loading="lazy" />
                         </div>
 
                         <p>{{ __('front/features/permissions.fourth') }}</p>
 
                         <div class="text-center">
-                        <img src="/images/features/permissions_view_as.png" alt="Kanka permission view as" class="mb-5" style="max-width: 100%" />
+                        <img src="/images/features/permissions_view_as.png" alt="Kanka permission view as" class="mb-5" style="max-width: 100%" loading="lazy" />
                         </div>
 
                         <p>{{ __('front/features/permissions.fifth') }}</p>

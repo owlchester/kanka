@@ -1,7 +1,6 @@
 <?php /** @var \App\Models\CampaignSubmission $submission */?>
 @extends('layouts.' . ($ajax ? 'ajax' : 'app'), [
     'title' => __('campaigns/submissions.edit.title', ['name' => $submission->user->name]),
-    'description' => '',
     'breadcrumbs' => [
         ['url' => route('campaign'), 'label' => __('campaigns.index.title')],
         ['url' => route('campaign_submissions.index'), 'label' => __('campaigns.show.tabs.applications')],

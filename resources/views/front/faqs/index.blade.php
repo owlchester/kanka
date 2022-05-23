@@ -15,22 +15,16 @@
 @endsection
 
 @section('content')
-    <header class="masthead reduced-masthead">
-        <div class="container h-100">
-            <div class="row h-100">
-                <div class="col-lg-9 my-auto">
-                    <div class="header-content mx-auto">
-                        <h1 class="mb-3">{{ __('front/kb.title') }}</h1>
-                        <p class="mb-5">{{ __('front/kb.description') }}</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
 
     <section class="faq-categories">
         <div class="container">
-            <h4>{{ __('front/kb.categories') }}</h4>
+
+            <div class="mb-5">
+                <h1 class="display-4">{{ __('front/kb.title', ['kanka' => config('app.name')]) }}</h1>
+                <p class="lead">{{ __('front/kb.description', ['kanka' => config('app.name')]) }}</p>
+            </div>
+
+            <h2>{{ __('front/kb.categories') }}</h2>
             @foreach ($categories as $model)
                 @includeWhen($model->sortedFaqs()->count() > 0, 'front.faqs._category')
             @endforeach
@@ -38,15 +32,15 @@
 
         <h2 class="mt-5 text-center">{{ __('front.faq.helpers.more') }}</h2>
         <div class="text-center faq-more">
-            <a href="{{ config('social.discord') }}" class="btn btn-light">
+            <a href="{{ config('social.discord') }}" class="btn btn-light d-block d-sm-inline-block m-1">
                 <i class="fab fa-discord"></i>
                 {{ __('front.help.discord') }}
             </a>
-            <a href="{{ route('documentation') }}" class="btn btn-light">
+            <a href="{{ route('documentation') }}" class="btn btn-light d-block d-sm-inline-block m-1">
                 <i class="fa-solid fa-book"></i>
                 {{ __('front.help.documentation') }}
             </a>
-            <a href="mailto:{{ config('app.email') }}" class="btn btn-light">
+            <a href="mailto:{{ config('app.email') }}" class="btn btn-light d-block d-sm-inline-block m-1">
                 <i class="fa-solid fa-envelope-open"></i>
                 {{ __('front.help.email') }}
             </a>

@@ -52,10 +52,14 @@ class EntityCreatorController extends Controller
         $this->authorize('create', $model);
         $origin = request()->get('origin');
         $target = request()->get('target');
+        $singularType = Str::singular($type);
+
+        $entityType = __('entities.' . $singularType);
 
         return view('entities.creator.form', [
             'type' => $type,
-            'singularType' => Str::singular($type),
+            'singularType' => $singularType,
+            'entityType' => $entityType,
             'source' => null,
             'origin' => $origin,
             'target' => $target,

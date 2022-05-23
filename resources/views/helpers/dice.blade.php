@@ -1,22 +1,4 @@
-@extends('layouts.app', [
-    'title' => trans('helpers.dice.title'),
-    'breadcrumbs' => false,
-])
 
-@section('content')
-    <div class="row">
-        <div class="col-md-6 col-xs-12">
-            <div class="box box-solid">
-                <div class="box-header with-border">
-                    <h4>{{ trans('helpers.dice.title') }}</h4>
-                </div>
-
-                <div class="box-body">
-                    <p>{{ trans('helpers.dice.description') }}</p>
-                    <p>{{ trans('helpers.dice.description_attributes') }}</p>
-                    <p><a href="https://github.com/ringmaster/dicecalc#Dice" target="_blank">{{ trans('helpers.dice.more') }}</a></p>
-                </div>
-            </div>
-        </div>
-    </div>
-@endsection
+<p>{{ __('helpers.dice.description') }}</p>
+<p>{{ __('helpers.dice.description_attributes') }}</p>
+<p><a href="https://github.com/ringmaster/dicecalc#Dice" target="_blank">{{ __('helpers.dice.more') }}</a></p>

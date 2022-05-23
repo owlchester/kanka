@@ -1,6 +1,6 @@
 <?php /** @var \App\User $user */?>
 @extends('layouts.front', [
-    'title' => __('users/profile.title', ['name' => $user->name]),
+    'title' => __('users/profile.title', ['name' => $user->displayName()]),
     'skipPerf' => true,
 ])
 
@@ -16,7 +16,7 @@
             <div class="row h-100 my-auto">
                 <div class="col-md-9">
                     <div class="header-content mb-4">
-                        <h1 class="mb-3">{!! $user->name !!}</h1>
+                        <h1 class="mb-3">{!! $user->displayName() !!}</h1>
 
                         @if (!empty($user->profile['bio']))
                             <p class="mb-5 text-justify">
@@ -37,7 +37,7 @@
                             </a>
                         @endif
 
-                        @if (auth()->check() && auth()->user()->id === $user->id)
+                        @if (auth()->check() && !\App\Facades\Identity::isImpersonating() && auth()->user()->id === $user->id)
                             <a href="{{ route('settings.profile') }}" target="_blank" title="{{ __('crud.edit') }}" data-toggle="tooltip">
                                 <i class="fa-solid fa-pencil"></i> {{ __('settings.profile.actions.update_profile') }}
                             </a>
@@ -54,22 +54,22 @@
                     @elseif ($user->isWyvern())
                         <a href="{{ route('front.hall-of-fame') }}">
                             <img src="https://kanka-app-assets.s3.amazonaws.com/images/tiers/wyvern-325.png"
-                                class="profile-subscriber" title="Wyvern" />
+                                class="profile-subscriber mb-2" title="Wyvern" />
                         </a>
                         <div class="text-uppercase">Wyvern</div>
 
                     @elseif ($user->isOwlbear())
                         <a href="{{ route('front.hall-of-fame') }}">
                         <img src="https://kanka-app-assets.s3.amazonaws.com/images/tiers/owlbear-325.png"
-                                 class="profile-subscriber" title="Owlbear" />
+                                 class="profile-subscriber mb-2" title="Owlbear" />
                         </a>
                         <div class="text-uppercase">Owlbear</div>
                     @elseif ($user->hasRole('admin'))
                         <a href="{{ route('front.about') }}">
                             <img src="https://kanka-app-assets.s3.amazonaws.com/images/logos/icon-large.png"
-                                 class="profile-subscriber no-transform" title="Kanka Team" />
+                                 class="profile-subscriber no-transform mb-2" title="Kanka Team" />
                         </a>
-                        <div class="text-uppercase">
+                        <div class="text-uppercase lead">
                             Kanka Team
                         </div>
                     @else

@@ -1,5 +1,6 @@
 @import "variables";
 @import "sidebar";
+@import "header";
 //@import "buttons";
 
 :root {
@@ -11,6 +12,9 @@
 
 body, a, h1, h2, h3, h4, h5, h6 {
   font-family: 'Roboto', 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+html {
+  font-size: 16px;
 }
 body {
   font-style: normal;
@@ -46,4 +50,8 @@ h5 {
   font-style: normal;
   font-weight: normal;
   //font-size: 24px;
+}
+a:hover, a:active, a:focus {
+  outline: none;
+  text-decoration: none;
 }

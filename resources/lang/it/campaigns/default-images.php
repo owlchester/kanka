@@ -13,8 +13,5 @@ return [
         'success'   => 'Immagine predefinita per :type rimossa.',
     ],
     'helper'    => 'Imposta immagini predefinite personalizzate per le entità della tua campagna. Queste saranno mostrate nelle varie liste, ma non sull\'entità stessa.',
-    'index'     => [
-        'title' => 'Immagini predefinite per le entità',
-    ],
-    'title'     => 'Immagini predefinite per le entità della campagna :campaign',
+    'index'     => [],
 ];

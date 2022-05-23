@@ -23,13 +23,10 @@ return [
         'application'   => 'Kérelem',
         'rejection'     => 'Elutasítás oka',
     ],
-    'helpers'       => [
-        'open_and_public'   => 'A kampány elfogadja a csatlakozási kérelmeket. Ha meg akarod ezt változtatni, a Nyílt beállítást kell átállítani a :tab fülön.',
-    ],
+    'helpers'       => [],
     'placeholders'  => [
         'note'  => 'Írd ide a csatlakozási kérelmedet.',
     ],
-    'title'         => 'Kampány csatlakozási kérelmei',
     'update'        => [
         'approve'   => 'Válaszd ki, hogy milyen szereppel adod hozzá a felhasználót a kampányodhoz.',
         'approved'  => 'Csatalkozási kérelem elfogadva.',

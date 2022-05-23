@@ -9,7 +9,14 @@
 ]) !!}
 
 <div class="modal-body modal-widget-subform">
-@include('dashboard.widgets.forms._' . $widget)
+    <div class="text-center">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span></button>
+        <h4 class="modal-title" id="myModalLabel">
+            {{ __('dashboard.setup.actions.add') }} - {{ __('dashboard.setup.widgets.' . $widget) }}
+        </h4>
+    </div>
+    @include('dashboard.widgets.forms._' . $widget)
 </div>
 
 <div class="modal-footer">

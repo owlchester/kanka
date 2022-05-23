@@ -94,6 +94,7 @@ class Journal extends MiscModel
         'author.name',
     ];
     protected $sortable = [
+        'name',
         'date',
         'character.name',
         //'character.name',

@@ -44,8 +44,8 @@ $first = $pinnedNotes->first();
 
     @if ($pinnedNotes->currentPage() < $pinnedNotes->lastPage())
         <div class="text-center">
-            <a href="#" class="btn btn-default btn-sm margin-bottom story-load-more" data-url="{{ route('entities.story.load-more', [$entity, 'page' => $pinnedNotes->currentPage() + 1]) }}">
-                <i class="fa-solid fa-refresh"></i> {{ __('entities/story.actions.load_more') }}
+            <a href="#" class="btn btn-default btn-sm mb-5 story-load-more" data-url="{{ route('entities.story.load-more', [$entity, 'page' => $pinnedNotes->currentPage() + 1]) }}">
+                <i class="fa-solid fa-arrows-rotate"></i> {{ __('entities/story.actions.load_more') }}
             </a>
 
             <i class="fa-solid fa-spinner fa-spin fa-2x" id="story-more-spinner" style="display: none"></i>
@@ -58,7 +58,7 @@ $first = $pinnedNotes->first();
 
 @if (!request()->ajax() && $entity && !$entity->isType([config('entities.ids.map'), config('entities.ids.timeline'), config('entities.ids.calendar')]))
 @can('entity-note', [$model, 'add'])
-    <div class="margin-bottom text-center row-add-note-button">
+    <div class="mb-5 text-center row-add-note-button">
         <a href="{{ route('entities.entity_notes.create', $entity) }}" class="btn btn-warning btn-sm"
            data-toggle="tooltip" title="{{ __('crud.tooltips.new_post') }}">
             <i class="fa-solid fa-plus"></i> {{ __('crud.actions.new_post') }}

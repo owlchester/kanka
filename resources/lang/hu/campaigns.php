@@ -208,11 +208,7 @@ TEXT
         ],
         'your_role'             => 'A szereped: <i>:role</i>',
     ],
-    'open_campaign'                     => [
-        'helper'    => 'Ha egy publikus kapmányt nyitottra állítasz, a felhasználók küldhetnek alkalmazásokat, amihez csatlakozhatsz. Az alkalmazások listáját az oldalunkon találod: :link.',
-        'link'      => 'kampány alkalmazások',
-        'title'     => 'Nyílt kampány',
-    ],
+    'open_campaign'                     => [],
     'panels'                            => [
         'boosted'   => 'Boost-olva',
         'dashboard' => 'Főoldal',
@@ -266,7 +262,6 @@ TEXT
         'members'       => 'Tagok',
         'modals'        => [
             'details'   => [
-                'button'    => 'Segítség',
                 'campaign'  => 'A kapmányengedélyek az alábbiakat hagyják.',
                 'entities'  => 'Ez egy gyors összefoglaló, hogy a szerep tagjai mit kapnak, amikor egy engedélyt beállítunk.',
                 'more'      => 'Részletekért nézd meg az oktatóvideónkat a Youtube-on.',
@@ -333,9 +328,6 @@ TEXT
             'enable'    => 'Engedélyezés',
         ],
         'boosted'   => 'Ez a lehetőség egyelőre béta állapotban van, így csak :boosted számára elérhető.',
-        'edit'      => [
-            'success'   => 'A kampány beállításait frissítettük.',
-        ],
         'helper'    => 'A kampány minden modulját lehet ki-be kapcsolgatni. Ha kikapcsolod, egyszerűen csak eltűnik a hozzátartozó felület, de a létrehozott entitások megmaradnak a háttérben, ha esetleg meggondolnád magadat. Ez a változás a kampány minden felhasználóját érinti, beleértve az Admin felhasználókat is.',
         'helpers'   => [
             'abilities'     => 'Entitásokhoz kapcsolható képességek létrehozása, legyen akár különleges képesség, varázslat vagy varázsaltos erő.',
@@ -358,7 +350,6 @@ TEXT
             'tags'          => 'Minden entitásnak lehet több címkéje is. A címkék más címkékhez is tartozhatnak, és az entitásokat szűrni lehet a címkék alapján.',
             'timelines'     => 'Mutasd be a világod történelmét idővonalak segítségével.',
         ],
-        'title'     => ':name kampány moduljai',
     ],
     'show'                              => [
         'actions'   => [

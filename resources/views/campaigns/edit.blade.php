@@ -1,6 +1,5 @@
 @extends('layouts.app', [
     'title' => trans('campaigns.edit.title', ['campaign' => $model->name]),
-    'description' => '',
     'breadcrumbs' => [
         ['url' => route('campaigns.index'), 'label' => trans('campaigns.index.title')],
         trans('crud.edit')

@@ -14,6 +14,7 @@ return [
         'add_year'          => 'Ajouter un nom d\'année',
         'set_today'         => 'Définir en tant que jour actuel',
         'today'             => 'Aujourd\'hui',
+        'update_weather'    => 'Modifier la météo',
     ],
     'checkboxes'    => [
         'is_recurring'  => 'A lieu chaque année',
@@ -32,10 +33,9 @@ return [
     ],
     'event'         => [
         'actions'   => [
-            'delete-confirm'    => 'cet événement',
-            'existing'          => 'Entité Existante',
-            'new'               => 'Nouvel Événement',
-            'switch'            => 'Choix différent',
+            'existing'  => 'Entité Existante',
+            'new'       => 'Nouvel Événement',
+            'switch'    => 'Choix différent',
         ],
         'create'    => [
             'success'   => 'Evénement de calendrier ajouté.',
@@ -74,6 +74,7 @@ return [
         'current_year'          => 'Année actuelle',
         'date'                  => 'Date actuelle',
         'day'                   => 'Jour',
+        'default_layout'        => 'Mise en page par défaut',
         'has_leap_year'         => 'Année bissextile',
         'intercalary'           => 'Jours Intercalaires',
         'is_incrementing'       => 'Incrément de date',
@@ -101,11 +102,12 @@ return [
         'year'                  => 'Année',
     ],
     'helpers'       => [
-        'month_type'    => 'Les mois intercalaires n\'utilisent pas les jours de la semaine, mais ont quand-même une influence sur les lunes et saisons.',
-        'moon_offset'   => 'Par défaut, la première pleine lune apparait lors du premier jour de l\'année 0. Modifier ce champ permet de définir quand la première pleine lune apparaitra. Cette valeur peut être négative (jusqu\'à la durée du premier mois) ou positive (jusqu\'à la durée du premier mois).',
-        'nested_parent' => 'Affichage des calendriers de :parent.',
-        'nested_without'=> 'Affichage des calendriers sans parent. Cliquer sur une rangée pour afficher les calendriers enfants.',
-        'start_offset'  => 'Un calendrier commence par défaut le premier jour de la première semaine de l\'année 0. Modifier ce champ permet d\'influencer quand le premier jour tombe.',
+        'default_layout'    => 'Choix de la mise en page par défaut du calendrier.',
+        'month_type'        => 'Les mois intercalaires n\'utilisent pas les jours de la semaine, mais ont quand-même une influence sur les lunes et saisons.',
+        'moon_offset'       => 'Par défaut, la première pleine lune apparait lors du premier jour de l\'année 0. Modifier ce champ permet de définir quand la première pleine lune apparaitra. Cette valeur peut être négative (jusqu\'à la durée du premier mois) ou positive (jusqu\'à la durée du premier mois).',
+        'nested_parent'     => 'Affichage des calendriers de :parent.',
+        'nested_without'    => 'Affichage des calendriers sans parent. Cliquer sur une rangée pour afficher les calendriers enfants.',
+        'start_offset'      => 'Un calendrier commence par défaut le premier jour de la première semaine de l\'année 0. Modifier ce champ permet d\'influencer quand le premier jour tombe.',
     ],
     'hints'         => [
         'event_length'      => 'La durée d\'un événement. Un événement ne peux pas durer plus de 2 mois.',
@@ -125,8 +127,10 @@ return [
         'title' => 'Calendrier',
     ],
     'layouts'       => [
-        'month' => 'Mois',
-        'year'  => 'Année',
+        'month'     => 'Mois',
+        'monthly'   => 'Mensuel par défaut',
+        'year'      => 'Année',
+        'yearly'    => 'Annuel par défaut',
     ],
     'modals'        => [
         'switcher'  => [
@@ -212,12 +216,12 @@ return [
         'weekdays'          => 'Nombre de jours dans une semaine',
     ],
     'show'          => [
-        'missing_details'   => 'Le calendrier ne peut pas être affiché. Un calendrier a besoin d\'au moins 2 mois et de 2 jours de la semaine pour être affiché correctement.',
-        'moon_full_moon'    => 'Pleine lune de :moon',
-        'moon_new_moon'     => 'Nouvelle lune de :moon',
-        'moon_waning_moon'  => 'Lune décroissante de :moon',
-        'moon_waxing_moon'  => 'Lune croissante de :moon',
-        'tabs'              => [
+        'missing_details'       => 'Le calendrier ne peut pas être affiché. Un calendrier a besoin d\'au moins 2 mois et de 2 jours de la semaine pour être affiché correctement.',
+        'moon_first_quarter'    => ':moon premier quartier',
+        'moon_full'             => ':moon pleine lune',
+        'moon_last_quarter'     => ':moon dernier quartier',
+        'moon_new'              => ':moon nouvelle lune',
+        'tabs'                  => [
             'events'    => 'Evénements',
             'weather'   => 'Météo',
         ],

@@ -11,9 +11,7 @@
     overflow: auto;
     background-color: unset;
     .box-comment {
-      margin: 5px;
       padding: 3px 8px;
-      border-radius: 5px;
       background-color: var(--conversation-comment-background);
       border-bottom: none;
 
@@ -29,6 +27,12 @@
           display: inline-block;
         }
       }
+    }
+
+    .message-first {
+      margin-top: 5px;
+      border-top-left-radius: 5px;
+      border-top-right-radius: 5px;
     }
   }
 

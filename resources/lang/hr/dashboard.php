@@ -93,7 +93,6 @@ return [
     'widgets'       => [
         'actions'                   => [
             'advanced-options'  => 'Napredne opcije',
-            'delete-confirm'    => 'ovaj programčić',
         ],
         'advanced_options_boosted'  => ':boosted_campaigns imaju napredne opcije poput prikazivanja članova obitelji ili atributa entiteta na naslovnoj ploči.',
         'calendar'                  => [
@@ -138,7 +137,6 @@ return [
             'help'              => 'Prikaži samo posljednji ažurirani entitet, ali prikaži cijeli pregled entiteta',
             'helpers'           => [
                 'entity-header'     => 'Ako entitet ima zaglavlje entiteta (značajka pojačane kampanje), postavite ovaj programčić da koristi tu sliku umjesto slike entiteta.',
-                'filters'           => 'Možeš filtrirati vrstu entiteta koji se pojavljuju. Nauči kako koristiti ovo polje tako što ćeš posjetiti pomoćnu stranicu :link.',
                 'full'              => 'Prikaži unos cijelog entiteta umjesto skraćenog pregleda.',
                 'show_attributes'   => 'Prikaži prikvačene atribute entiteta ispod unosa.',
                 'show_members'      => 'Ako je entitet obitelj ili organizacija, pokaži njezine članove ispod unosa.',

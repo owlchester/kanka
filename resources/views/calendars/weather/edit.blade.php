@@ -26,7 +26,7 @@
 
             <a role="button" tabindex="0" class="btn btn-dynamic-delete btn-danger" data-toggle="popover"
                title="{{ __('crud.delete_modal.title') }}"
-               data-content="<p>{{ __('crud.delete_modal.description_final', ['tag' => __('calendars/weather.actions.delete-confirm')]) }}</p>
+               data-content="<p>{{ __('crud.delete_modal.permanent') }}</p>
                    <a href='#' class='btn btn-danger btn-block' data-toggle='delete-form' data-target='#delete-weather-{{ $weather->id}}'>{{ __('crud.remove') }}</a>">
                 <i class="fa-solid fa-trash" aria-hidden="true"></i> {{ __('crud.remove') }}
             </a>
@@ -37,6 +37,9 @@
     {!! Form::hidden('year', $weather->year) !!}
     {!! Form::hidden('month', $weather->month) !!}
     {!! Form::hidden('day', $weather->day) !!}
+    @if (request()->has('layout'))
+        {!! Form::hidden('layout', request()->get('layout')) !!}
+    @endif
     {!! Form::close() !!}
 
 
@@ -44,5 +47,11 @@
         'method' => 'DELETE',
         'route' => ['calendars.calendar_weather.destroy', $weather->calendar->id, $weather->id],
         'id' => 'delete-weather-' . $weather->id]) !!}
+    @if (request()->has('layout'))
+        {!! Form::hidden('layout', request()->get('layout')) !!}
+        {!! Form::hidden('year', $year) !!}
+        {!! Form::hidden('month', $month) !!}
+        {!! Form::hidden('day', $day) !!}
+    @endif
     {!! Form::close() !!}
 @endsection

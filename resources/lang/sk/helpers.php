@@ -83,17 +83,12 @@ return [
         'overview'          => 'Jednoducho vytvor prepojenie s existujúcimi objektami kampane zadaním :code a troch a viac písmen.',
         'title'             => 'Prepojenie iných objektov a skratky',
     ],
-    'map'               => [
-        'description'   => 'Keď k miestu nahráš mapu, objaví sa na stránke miesta menu mapy a tiež link na mapu priamo zo stránky miesta vašej kampane. V zobrazení mapy môžu užívatelia s oprávnením úpravy miest aktivovať Modus úprav, ktorý im umožní umiestniť na mapu značky. Tieto môžu byť prepojené s existujúcimi objektami alebo mať len názov, rozličnú veľkosť a tvar.',
-        'private'       => 'Členovia kampane s rolou Admin môžu mapu nastaviť ako súkromnú. Toto umožní užívateľom zobraziť miesto, ale mapa ostane tajomstvom.',
-        'title'         => 'Mapy miest',
-    ],
+    'map'               => [],
     'pins'              => [
         'description'   => 'Objekty môžu mať vzťahy a atribúty pripnuté vpravo v prehľade. Úpravou vzťahu alebo atribútu a nastavením pripináčika, ich na toto miesto pripneš.',
         'title'         => 'Pripnutia objektu',
     ],
     'public'            => 'Pozri si video, ktoré vysvetľuje verejné kampane, na YouTube.',
-    'title'             => 'Pomocník',
     'troubleshooting'   => [
         'description'       => 'Člen tímu Kanky ťa poslal na túto stránku. Vyber si kampaň zo zoznamu a vygeneruj token, aby sme vedeli dočasne pristúpiť do tvojej kampane s rolou Admin.',
         'errors'            => [

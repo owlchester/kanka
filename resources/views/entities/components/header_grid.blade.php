@@ -208,7 +208,7 @@ if($campaign->campaign()->boosted() && $entity->hasHeaderImage($superboosted)) {
                             @can('delete', $model)
                                 <li class="divider"></li>
                                 <li>
-                                    <a href="#" class="delete-confirm text-red" data-name="{{ $model->name }}" data-toggle="modal" data-target="#delete-confirm">
+                                    <a href="#" class="delete-confirm text-red" data-name="{{ $model->name }}" data-toggle="modal" data-target="#delete-confirm" data-recoverable="1">
                                         <i class="fa-solid fa-trash" aria-hidden="true"></i> {{ __('crud.remove') }}
                                     </a>
                                     {!! Form::open(['method' => 'DELETE','route' => [$entity->pluralType() . '.destroy', $model->id], 'style'=>'display:inline', 'id' => 'delete-confirm-form']) !!}

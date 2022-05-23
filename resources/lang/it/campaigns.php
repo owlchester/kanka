@@ -232,11 +232,6 @@ TEXT
             'role_permissions'      => 'Abilita il ruolo \':name\' per le seguenti funzioni su tutte le entità.',
         ],
         'members'       => 'Membri',
-        'modals'        => [
-            'details'   => [
-                'button'    => 'Assistenza',
-            ],
-        ],
         'permissions'   => [
             'actions'   => [
                 'add'           => 'Crea',
@@ -289,9 +284,6 @@ TEXT
             'enable'    => 'Abilita',
         ],
         'boosted'   => 'Questa funzionalità è in beta e al momento è disponibile solo per :boosted.',
-        'edit'      => [
-            'success'   => 'Impostazioni della campagna aggiornate.',
-        ],
         'helper'    => 'Tutti i moduli di una campagna possono essere abilitati o disabilitati a proprio piacimento. Disabilitare un modulo nasconderà gli elementi dell\'interfaccia ad esso correlati, le entità esistenti saranno nascoste ma continueranno ad esistere, nel caso cambiassi idea. Questo cambiamento riguarda tutti i membri della campagna, inclusi i membri Proprietario.',
         'helpers'   => [
             'abilities'     => 'Crea abilità, siano esse talenti, incantesimi o poteri che possono essere assegnati alle entità.',
@@ -312,7 +304,6 @@ TEXT
             'races'         => 'Se la tua campagna ha più di una razza, questo ti aiuterà a tenerne traccia facilmente.',
             'tags'          => 'Ogni entità può avere diversi tag. I tag possono appartenere ad altri tag e le entità possono essere filtrate per tag.',
         ],
-        'title'     => 'Moduli della Campagna :name',
     ],
     'show'                              => [
         'actions'   => [

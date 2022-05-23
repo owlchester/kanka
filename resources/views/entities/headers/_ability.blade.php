@@ -6,7 +6,7 @@
 @if ($model->ability)
     <div class="entity-header-sub pull-left">
         @if($model->ability)
-        <span class="margin-r-5">
+        <span class="mr-2">
         <i class="ra ra-fire-symbol" title="{{ __('abilities.fields.ability') }}" data-toggle="tooltip" ></i>
         {!! $model->ability->tooltipedLink() !!}
         </span>

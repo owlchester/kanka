@@ -29,8 +29,6 @@ Route::group([
 
     Route::get('/helper/link', [\App\Http\Controllers\HelperController::class, 'link'])->name('helpers.link');
     Route::get('/helper/dice', [\App\Http\Controllers\HelperController::class, 'dice'])->name('helpers.dice');
-    Route::get('/helper/public', [\App\Http\Controllers\HelperController::class, 'public'])->name('helpers.public');
-    Route::get('/helper/map', [\App\Http\Controllers\HelperController::class, 'map'])->name('helpers.map');
     Route::get('/helper/filters', [\App\Http\Controllers\HelperController::class, 'filters'])->name('helpers.filters');
     Route::get('/helper/age', [\App\Http\Controllers\HelperController::class, 'age'])->name('helpers.age');
     Route::get('/helper/attributes', [\App\Http\Controllers\HelperController::class, 'attributes'])->name('helpers.attributes');
@@ -38,7 +36,8 @@ Route::group([
     Route::get('/helper/widget-filters', 'HelperController@widgetFilters')->name('helpers.widget-filters');
     Route::get('/helper/pins', [\App\Http\Controllers\HelperController::class, 'pins'])->name('helpers.pins');
     Route::get('/helper/visibility', [\App\Http\Controllers\HelperController::class, 'visibility'])->name('helpers.visibility');
-    Route::get('/helpers/api-filters', 'HelperController@apiFilters')->name('helpers.api-filters');
+    Route::get('/helper/calendar-widget', [\App\Http\Controllers\HelperController::class, 'calendarWidget'])->name('helpers.calendar-widget');
+    Route::get('/helpers/api-filters', [\App\Http\Controllers\HelperController::class, 'apiFilters'])->name('helpers.api-filters');
 
     // OAuth Routes
     Route::get('auth/{provider}', 'Auth\AuthController@redirectToProvider')->name('auth.provider');

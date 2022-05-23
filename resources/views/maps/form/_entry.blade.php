@@ -27,4 +27,4 @@
     </div>
 </div>
 
-@include('cruds.fields.private2')
+@includeWhen(auth()->user()->isAdmin(), 'cruds.fields.privacy_callout')

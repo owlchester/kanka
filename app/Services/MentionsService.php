@@ -279,19 +279,35 @@ class MentionsService
             if (empty($entity) || empty($entity->child)) {
                 $replace = Arr::get($data, 'text', '<i class="unknown-mention unknown-entity">' . __('crud.history.unknown') . '</i>');
             } else {
-                $tab = Arr::get($data, 'tab', null);
-                $url = $entity->url('show', $tab);
-                if (!empty($data['page'])) {
-                    $url .= '/' . strip_tags(trim($data['page'], '/'));
 
+                $routeOptions = [];
+                if (!empty($data['params'])) {
+                    $routeParams = explode('&amp;', $data['params']);
+                    foreach ($routeParams as $routeParam) {
+                        // Do we whitelist? or have a max length to avoid shenanigans?
+                        if (strlen($routeParam) > 20) {
+                            continue;
+                        }
+                        $paramOptions = explode('=', $routeParam);
+                        if (count($paramOptions) != 2) {
+                            continue;
+                        }
+                        $routeOptions[$paramOptions[0]] = $paramOptions[1];
+                    }
+                }
+
+                $url = $entity->url('show', $routeOptions);
+                if (!empty($data['page'])) {
                     // Let's validate this new url first. Maybe we need to map to entities/id (ex inventory)
                     $entityPages = ['inventory', 'abilities', 'relations', 'attributes', 'assets'];
                     if (in_array($data['page'], $entityPages)) {
                         $page = $data['page'];
-                        if ($page == 'relations') {
+                        if ($page === 'relations') {
                             $page = 'relations.index';
                         }
-                        $url = route('entities.' . $page, $entity->id);
+                        $url = route('entities.' . $page, array_merge([$entity->id], $routeOptions));
+                    } else {
+                        $url = $entity->url($data['page'], $routeOptions);
                     }
                 }
                 // An alias was used for this mention, so let's try and find it. ACL is handled directly
@@ -305,6 +321,7 @@ class MentionsService
                 if (!empty($data['anchor'])) {
                     $url .= '#' . $data['anchor'];
                 }
+
                 $dataUrl = route('entities.tooltip', $entity);
 
                 // If this request is through the API, we need to inject the language in the url

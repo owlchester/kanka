@@ -59,14 +59,14 @@ class CampaignBoostController extends Controller
                 'rocket',
                 'maroon',
                 [
-                    'user' => e(Auth::user()->name),
-                    'campaign' => e($campaign->name)
+                    'user' => auth()->user()->name,
+                    'campaign' => $campaign->name
                 ]
             );
 
             return redirect()
                 ->route('settings.boost')
-                ->with('success', trans('settings.boost.success.' . ($superboost ? 'superboost' : 'boost'), ['name' => $campaign->name]));
+                ->with('success_raw', __('settings.boost.success.' . ($superboost ? 'superboost' : 'boost'), ['name' => $campaign->name]));
         } catch (TranslatableException $e) {
             return redirect()
                 ->route('settings.boost')
@@ -99,14 +99,14 @@ class CampaignBoostController extends Controller
                 'rocket',
                 'maroon',
                 [
-                    'user' => e(Auth::user()->name),
+                    'user' => auth()->user()->name,
                     'campaign' => $campaign->name
                 ]
             );
 
             return redirect()
                 ->route('settings.boost')
-                ->with('success', trans('settings.boost.success.superboost', ['name' => $campaign->name]));
+                ->with('success_raw', __('settings.boost.success.superboost', ['name' => $campaign->name]));
         } catch (TranslatableException $e) {
             return redirect()
                 ->route('settings.boost')
@@ -131,14 +131,14 @@ class CampaignBoostController extends Controller
             'rocket',
             'red',
             [
-                'user' => e(Auth::user()->name),
-                'campaign' => e($campaignBoost->campaign->name)
+                'user' => auth()->user()->name,
+                'campaign' => $campaignBoost->campaign->name
             ]
         );
 
 
         return redirect()
             ->route('settings.boost')
-            ->with('success', __('settings.boost.success.delete', ['name' => $campaignBoost->campaign->name]));
+            ->with('success_raw', __('settings.boost.success.delete', ['name' => $campaignBoost->campaign->name]));
     }
 }

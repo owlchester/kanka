@@ -5,6 +5,7 @@ return [
         'actions'           => 'Akcje',
         'apply'             => 'Zastosuj',
         'back'              => 'Cofnij',
+        'bulk_actions'      => 'Działania wspólne',
         'bulk_templates'    => 'Zastosuj szablon cech',
         'copy'              => 'Kopiuj',
         'copy_mention'      => 'Kopiuj wzmiankę [ ]',
@@ -39,7 +40,6 @@ return [
             'helper'    => 'Możesz dodać liczbę poprzedzoną znakiem + lub -, by zmienić wiek o tyle lat.',
         ],
         'delete'        => [
-            'title'     => 'Usuwanie wielu elementów',
             'warning'   => 'Czy na pewno usunąć wybrane elementy?',
         ],
         'edit'          => [
@@ -92,11 +92,9 @@ return [
         'empty' => 'Na razie nic tu nie ma.',
     ],
     'delete_modal'              => [
-        'close'             => 'Zamknij',
-        'delete'            => 'Usuń',
-        'description'       => 'Czy na pewno usunąć :tag?',
-        'description_final' => 'Czy na pewno chcesz usunąć :tag? Tego działania nie można cofnąć.',
-        'title'             => 'Potwierdzanie usunięcia',
+        'close' => 'Zamknij',
+        'delete'=> 'Usuń',
+        'title' => 'Potwierdzanie usunięcia',
     ],
     'destroy_many'              => [
         'success'   => 'Usunięto :count element|Usunięto :count elementy.|Usunięto :count elementów.',
@@ -155,7 +153,7 @@ return [
         'name'                  => 'Nazwa',
         'organisation'          => 'Organizacja',
         'position'              => 'Kolejność',
-        'privacy'               => 'Tajność',
+        'privacy'               => 'Tajne',
         'race'                  => 'Rasa',
         'tag'                   => 'Etykieta',
         'tags'                  => 'Etykiety',

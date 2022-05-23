@@ -38,7 +38,6 @@ return [
             'helper'    => 'Puedes usar + y - antes del número para modificar la edad.',
         ],
         'delete'        => [
-            'title'     => 'Eliminar múltiples entidades',
             'warning'   => '¿Seguro que quieres eliminar las entidades seleccionadas?',
         ],
         'edit'          => [
@@ -91,11 +90,9 @@ return [
         'empty' => 'Aún no hay nada que mostrar.',
     ],
     'delete_modal'              => [
-        'close'             => 'Cerrar',
-        'delete'            => 'Eliminar',
-        'description'       => '¿Seguro que quieres eliminar :tag?',
-        'description_final' => '¿Seguro que quieres eliminar :tag? Esta acción no se puede deshacer.',
-        'title'             => 'Eliminar',
+        'close' => 'Cerrar',
+        'delete'=> 'Eliminar',
+        'title' => 'Eliminar',
     ],
     'destroy_many'              => [
         'success'   => '{1} Se ha eliminado :count entidad .|[2,*] Se han eliminado :count entidades.',

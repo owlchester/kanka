@@ -5,6 +5,7 @@ return [
         'actions'           => 'Akcie',
         'apply'             => 'Použiť',
         'back'              => 'Naspäť',
+        'bulk_actions'      => 'Masové akcie',
         'bulk_templates'    => 'Použiť šablónu atribútov',
         'copy'              => 'Kopírovať',
         'copy_mention'      => 'Kopírovať [ ] referenciu',
@@ -39,7 +40,6 @@ return [
             'helper'    => 'Môžeš použiť + a - pred číslom na úpravu veku o danú hodnotu.',
         ],
         'delete'        => [
-            'title'     => 'Odstraňujú sa viaceré objekty',
             'warning'   => 'Naozaj chceš odstrániť vybrané objekty?',
         ],
         'edit'          => [
@@ -92,11 +92,9 @@ return [
         'empty' => 'Zatiaľ je tu prázdno.',
     ],
     'delete_modal'              => [
-        'close'             => 'Zatvoriť',
-        'delete'            => 'Odstrániť',
-        'description'       => 'Naozaj chceš odstrániť :tag?',
-        'description_final' => 'Naozaj chceš odstrániť :tag? Táto akcia nemôže byť vrátená späť.',
-        'title'             => 'Potvrdiť odstránenie',
+        'close' => 'Zatvoriť',
+        'delete'=> 'Odstrániť',
+        'title' => 'Potvrdiť odstránenie',
     ],
     'destroy_many'              => [
         'success'   => ':count objekt zmazaný|:count objekty zmazané',

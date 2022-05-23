@@ -25,13 +25,13 @@
                         <p>{{ __('front/features/inventory-abilities.first') }}</p>
 
                         <div class="text-center">
-                        <img src="/images/features/inventory.png" alt="Kanka inventory" class="mb-5" style="max-width: 100%" />
+                        <img src="/images/features/inventory.png" alt="Kanka inventory" class="mb-5" style="max-width: 100%" loading="lazy" />
                         </div>
 
                         <p>{{ __('front/features/inventory-abilities.second') }}</p>
 
                         <div class="text-center">
-                        <img src="/images/features/abilities.png" alt="Kanka abilities" class="" style="max-width: 100%" />
+                        <img src="/images/features/abilities.png" alt="Kanka abilities" class="" style="max-width: 100%" loading="lazy" />
                         </div>
 
                     </div>

@@ -2,6 +2,11 @@
 
 return [
     'actions'       => [
+        'bulks'             => [
+            'disable'   => 'Desactivar extensións',
+            'enable'    => 'Activar extensións',
+            'update'    => 'Actualizar extensións',
+        ],
         'disable'           => 'Desactivar extensión',
         'enable'            => 'Activar extensión',
         'go_to_marketplace' => 'Ir ao mercado',
@@ -9,6 +14,12 @@ return [
         'remove'            => 'Eliminar extensión',
         'update'            => 'Actualizar extensión',
         'update_available'  => 'Actualización dispoñíbel!',
+    ],
+    'bulks'         => [
+        'delete'    => '{1} :count extensión eliminada.|[2,*] :count extensións eliminadas.',
+        'disable'   => '{1} :count extensión desactivada.|[2,*] :count extensións desactivadas.',
+        'enable'    => '{1} :count extensión activadas.|[2,*] :count extensións activadas.',
+        'update'    => '{1} :count extensión actualizada.|[2,*] :count extensións actualizadas.',
     ],
     'destroy'       => [
         'success'   => 'Extensión ":plugin" eliminada.',

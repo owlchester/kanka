@@ -7,6 +7,7 @@ namespace App\Models;
 use App\User;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
+use Stevebauman\Purify\Facades\Purify;
 
 /**
  * Trait UserSetting
@@ -217,23 +218,6 @@ trait UserSetting
         return Arr::get($this->settings, 'mail_vote', false);
     }
 
-
-    /**
-     * @param $value
-     */
-    public function setMarketplaceNameAttribute($value)
-    {
-        $this->setSettingsOption('marketplace_name', $value);
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getMarketplaceNameAttribute()
-    {
-        return Arr::get($this->settings, 'marketplace_name', '');
-    }
-
     /**
      * @param $key
      * @param $value
@@ -244,17 +228,22 @@ trait UserSetting
     }
 
     /**
+     * Save the user settings into the array mutator
      * @param $data
      * @return $this
      */
     public function saveSettings($data): self
     {
         $settings = $this->settings;
+        // Flatten if provided
+        if (isset($data['settings']) && is_array($data['settings'])) {
+            $data = $data['settings'];
+        }
         foreach ($data as $key => $value) {
             if (empty($value) && isset($settings[$key])) {
                 unset($settings[$key]);
             } elseif (!empty($value)) {
-                $settings[$key] = $value;
+                $settings[$key] = Purify::clean($value);
             }
         }
 
@@ -278,5 +267,17 @@ trait UserSetting
         }
 
         return $this;
+    }
+
+    /**
+     * Get the user's public display name
+     * @return string
+     */
+    public function displayName(): string
+    {
+        if (empty($this->settings['marketplace_name'])) {
+            return (string) $this->name;
+        }
+        return (string) $this->settings['marketplace_name'];
     }
 }

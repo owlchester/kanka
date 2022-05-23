@@ -16,7 +16,6 @@ return [
     'creator'               => [
         'back'      => 'Seçime geri dön',
         'duplicate' => 'Aynı türde aynı ada sahip başka varlıklar var.',
-        'helper'    => 'Yaratmak istediğiniz varlık türünü seçin. Eğer varlıklar görünmüyorsa, bu serüvende hiçbir tür varlık yaratma izniniz olmadığı anlamına gelir.',
         'title'     => 'Yeni Varlık',
     ],
     'dice_roll'             => 'Zar',

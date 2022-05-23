@@ -97,7 +97,6 @@ return [
     'widgets'       => [
         'actions'                   => [
             'advanced-options'  => 'Pokročilá nastavení',
-            'delete-confirm'    => 'tato součást nástěnky',
         ],
         'advanced_options_boosted'  => ':boosted_campaigns poskytují pokročilé funkce. Například zobrazení členů rodů nebo atributy objektů na nástěnce',
         'calendar'                  => [
@@ -148,7 +147,6 @@ return [
             'help'              => 'Zobrazit pouze náhled prvního objektu namísto celého seznamu.',
             'helpers'           => [
                 'entity-header'     => 'Pokud daný objekt obsahuje záhlaví, použije tato součást nástěnky obrázek záhlaví, namísto obrázku objektu (dostupné pouze pro zvýhodněná (boosted) tažení).',
-                'filters'           => 'Je možné filtrovat druh zobrazovaných objektů. Návod jak používat toto pole najdete na stránce nápovědy zde: :link',
                 'full'              => 'Ve výchozím zobrazení se zobrazit celý záznam objektu namísto jen náhledu.',
                 'show_attributes'   => 'Zobrazit připnuté atributy pod záznamem.',
                 'show_members'      => 'Pokud se jedná o objekt typu rod nebo organizace, zobrazit jeho členy pod záznamem.',

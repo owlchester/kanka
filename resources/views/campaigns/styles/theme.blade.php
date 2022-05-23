@@ -1,13 +1,14 @@
 {!! Form::model($campaign, ['route' => 'campaign-theme.save', 'method' => 'POST']) !!}
-<div class="modal-header">
+
+<div class="modal-body">
+
     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
         <span aria-hidden="true">×</span>
     </button>
-    <h4 class="modal-title">
+    <h4 class="modal-title  text-center mb-5">
         {!! __('campaigns/styles.theme.title') !!}
     </h4>
-</div>
-<div class="modal-body">
+
     <div class="form-group">
         <label>
             {{ __('campaigns.fields.theme') }}
@@ -21,12 +22,15 @@
             ['class' => 'form-control']
         ) !!}
         <p class="help-block visible-xs visible-sm">{{ __('campaigns.helpers.theme') }}</p>
-</div>
-<div class="modal-footer">
-    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">
-        {{ __('crud.cancel') }}
-    </button>
+    </div>
 
-    <button class="btn btn-success">{{ __('crud.actions.apply') }}</button>
+    <div class="my-5 text-center">
+        <button type="button" class="btn btn-default mr-5 rounded-full px-8" data-dismiss="modal">
+            {{ __('crud.cancel') }}
+        </button>
+
+        <button class="btn btn-success ml-5 rounded-full px-8">{{ __('crud.actions.apply') }}</button>
+
+    </div>
 </div>
 {!! Form::close() !!}

@@ -28,17 +28,17 @@
                         <p>{{ __('front/features/dashboards.second') }}</p>
 
                         <div class="text-center">
-                            <img src="/images/features/dashboards_setup.png" alt="Kanka dashboard setup" class="mb-5" style="max-width: 100%" />
+                            <img src="/images/features/dashboards_setup.png" alt="Kanka dashboard setup" class="mb-5" style="max-width: 100%" loading="lazy" />
                         </div>
 
                         <p>{!! __('front/features/dashboards.third', [
-    'boosted-campaigns' => link_to_route('front.pricing', __('crud.boosted_campaigns'), '#boost'),
+    'boosted-campaigns' => link_to_route('front.boosters', __('crud.boosted_campaigns')),
     'new-dashboard' => '<code>' . __('dashboard.dashboards.actions.new') . '</code>',
     'actions' => '<code>' . __('crud.actions.actions') . '</code>'
     ]) !!}</p>
 
                         <div class="text-center">
-                            <img src="/images/features/dashboards_edit.png" alt="Kanka dashboard edit" class="mb-5" style="max-width: 100%" />
+                            <img src="/images/features/dashboards_edit.png" alt="Kanka dashboard edit" class="mb-5" style="max-width: 100%" loading="lazy" />
                         </div>
 
                         <p>{!! __('front/features/dashboards.fourth') !!}</p>

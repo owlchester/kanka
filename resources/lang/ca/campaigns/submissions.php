@@ -23,13 +23,10 @@ return [
         'application'   => 'Sol·licitud',
         'rejection'     => 'Motiu del rebuig',
     ],
-    'helpers'       => [
-        'open_and_public'   => 'La campanya accepta sol·licituds per unir-s\'hi. Per aturar-ho, editeu la campanya i canvieu l\'opció "Oberta" a la pestanya :tab.',
-    ],
+    'helpers'       => [],
     'placeholders'  => [
         'note'  => 'Escriviu la vostra sol·licitud per a unir-vos a la campanya',
     ],
-    'title'         => 'Sol·licituds de la campanya',
     'update'        => [
         'approve'   => 'Seleccioneu el rol que tindrà l\'usuari a la campanya.',
         'approved'  => 'S\'ha aprovat la sol·licitud.',

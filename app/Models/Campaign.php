@@ -274,6 +274,15 @@ class Campaign extends MiscModel
     {
         return $this->visibility_id == self::VISIBILITY_PUBLIC;
     }
+    /**
+     *
+     * Determine if a campaign is open to submissions
+     * @return bool
+     */
+    public function isOpen(): bool
+    {
+        return $this->is_open;
+    }
 
     /**
      * Determine if a campaign is featured or was featured in the past
@@ -478,6 +487,7 @@ class Campaign extends MiscModel
     }
 
     /**
+     * Checks if the campaign's public role has no read permissions
      * @return bool
      */
     public function publicHasNoVisibility(): bool
@@ -485,7 +495,7 @@ class Campaign extends MiscModel
         /** @var CampaignRole $publicRole */
         $publicRole = $this->roles()->public()->first();
         $permissionCount = $publicRole->permissions()
-            ->where('key', 'like', '%_read')
+            ->where('action', CampaignPermission::ACTION_READ)
             ->where('access', 1)
             ->count();
         return $permissionCount == 0;

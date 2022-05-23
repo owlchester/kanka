@@ -4,11 +4,6 @@ return [
     'hall_of_fame'  => 'Hall of Fame',
     'index'         => [
         'community'     => 'Community',
-        'core'          => 'Core',
-        'description'   => 'Queste persone hanno reso Kanka possibile',
-        'other'         => 'Altro',
-        'qa'            => 'Quality Assurance',
-        'support'       => 'Supporto',
         'title'         => 'Team',
         'translations'  => 'Traduzioni',
     ],

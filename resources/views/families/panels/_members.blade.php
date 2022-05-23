@@ -12,6 +12,7 @@ if (request()->has('family_id')) {
     $allMembers = false;
     $datagridOptions['family_id'] = (int) $model->id;
 }
+$datagridOptions = Datagrid::initOptions($datagridOptions);
 ?>
 <div class="box box-solid" id="family-members">
     <div class="box-header with-border">

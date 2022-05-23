@@ -89,6 +89,7 @@ class User extends \Illuminate\Foundation\Auth\User
         'patreon_pledge',
         'referral_id',
         'profile',
+        'settings',
     ];
 
     /**

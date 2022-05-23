@@ -2,8 +2,10 @@
 
 return [
     'actions'       => [
-        'accept'    => 'Accept',
-        'reject'    => 'Reject',
+        'accept'        => 'Accept',
+        'applications'  => 'Applications: :status',
+        'change'        => 'Change',
+        'reject'        => 'Reject',
     ],
     'apply'         => [
         'apply'         => 'Apply',
@@ -24,12 +26,26 @@ return [
         'rejection'     => 'Rejection reason',
     ],
     'helpers'       => [
-        'open_and_public'   => 'The campaign is accepting applications to join it. To stop this, edit the campaign and change the Open setting on the :tab tab.',
+        'filter-helper'     => 'This campaign is open to applications!',
+        'modal'             => 'A campaign which is open to applications and public can have users apply to join the campaign.',
+        'no_applications'   => 'There are currently no pending applications to join your campaign. Users can apply to join your campaign by visiting it\'s dashboard and clicking on the :button button.',
+        'not_open'          => 'The campaign isn\'t currently accepting applications.',
+        'open_not_public'   => 'The campaign is open to applications, but not public, meaning no one can apply to join it. This can be changed by editing the campaign\'s settings.',
     ],
     'placeholders'  => [
         'note'  => 'Write down your application to join the campaign',
     ],
-    'title'         => 'Campaign Applications',
+    'statuses'      => [
+        'closed'    => 'Closed',
+        'open'      => 'Open',
+    ],
+    'toggle'        => [
+        'closed'    => 'Closed to applications',
+        'label'     => 'Status',
+        'open'      => 'Open to applications',
+        'success'   => 'Campaign application status updated.',
+        'title'     => 'Application status',
+    ],
     'update'        => [
         'approve'   => 'Select the role the user will be added as in your campaign.',
         'approved'  => 'Application approved.',

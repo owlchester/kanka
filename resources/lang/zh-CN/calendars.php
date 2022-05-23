@@ -32,10 +32,9 @@ return [
     ],
     'event'         => [
         'actions'   => [
-            'delete-confirm'    => '本事件提示',
-            'existing'          => '已存在实体',
-            'new'               => '新事件',
-            'switch'            => '改变选择',
+            'existing'  => '已存在实体',
+            'new'       => '新事件',
+            'switch'    => '改变选择',
         ],
         'create'    => [
             'success'   => '已创建日历事件',

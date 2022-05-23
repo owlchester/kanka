@@ -63,7 +63,7 @@ class MenuLinkController extends CrudController
     }
 
     /**
-     * Display the specified resource.
+     * Redirect to the edit screen
      *
      * @param  \App\Models\Character  $character
      * @return \Illuminate\Http\Response
@@ -73,7 +73,7 @@ class MenuLinkController extends CrudController
         if (!auth()->check()) {
             abort(403);
         }
-        return $this->crudShow($menuLink);
+        return redirect()->route('menu_links.edit', $menuLink);
     }
 
     /**

@@ -14,12 +14,23 @@
 }
 
 footer {
-  border-top: none;
-
   padding-top: 40px;
   padding-bottom: 30px;
-  text-align: left;
 
+  .grid {
+    max-width: 1140px;
+    .cell {
+      h5 {
+        font-weight: 500;
+        padding: 0.5rem 0;
+      }
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      text-align: center;
+      margin-bottom: 0.5rem;
+    }
+  }
 
   img.logo-white {
     display: var(--footer-logo-white);
@@ -34,13 +45,12 @@ footer {
     padding: 0;
 
     li {
-      padding: 0;
-      display: block;
-      margin: 2px 0;
+      padding: 0.3rem 0;
+      font-weight: 400;
+      font-size: 0.8rem;
+      line-height: 1.3;
 
       a {
-        font-size: 14px !important;
-        width: 100%;
         word-break: break-all;
 
         &:hover {
@@ -52,7 +62,7 @@ footer {
   }
 
   .kanka-logo {
-    font-size: 14px;
+    font-size: 1rem;
     font-weight: 700;
 
     a {
@@ -66,63 +76,37 @@ footer {
     border-radius: 4px;
     letter-spacing: 1.1px;
   }
+  .language-switcher {
+    display: block;
+  }
 
   .footer-socials {
-    line-height: 1.8em;
-    padding: 1.5rem 0 1.5rem;
-    text-align: center;
+    padding: 1rem 0;
 
     .email, .socials, .language-switcher {
       display: block;
-      font-size: 18px;
       margin-bottom: 10px;
 
       a {
-        font-size: 1.9rem;
+        font-size: 1.25rem;
         margin-right: 8px;
       }
     }
   }
 
   .footer-copyright {
-    font-size: 12px;
+    font-size: 0.7rem;
   }
 
   .footer-links {
-    background-color: var(--footer-links-background);
-    border-radius: 15px;
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
-    padding: 15px;
-    padding-top: 30px;
+  }
+}
 
-    .row > .col-xs-6 {
-      min-height: 225px;
-    }
-
-    .section {
-      height: 60px;
-      position: relative;
-      margin: 0;
-      text-transform: uppercase;
-      font-size: 18px;
-
-      .section-title {
-        margin: 0;
-        position: absolute;
-        top: 50%;
-        -ms-transform: translateY(-50%);
-        transform: translateY(-50%);
-      }
-    }
-    ul > li {
-      margin: 0;
-      padding-top: 0.5rem;
-      padding-bottom: 0.5rem;
-      font-weight: 400;
-      font-size: 0.875rem;
-      line-height: 1.3;
-    }
+#language-select-modal {
+  li > a {
+    display: block;
   }
 }
 
@@ -136,6 +120,16 @@ footer {
       .email, .socials {
         margin-right: 20px;
       }
+    }
+    .grid > .cell {
+      text-align: left;
+    }
+
+    .footer-links {
+      background-color: var(--footer-links-background);
+      padding: 15px;
+      padding-top: 30px;
+      border-radius: 15px;
     }
   }
 }

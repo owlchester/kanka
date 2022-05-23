@@ -1,3 +1,7 @@
+<a href="https://kanka.io/#gh-light-mode-only" target="_blank">
+  <img src="./.github/logo.png" alt="Kanka" width="125" height="129">
+</a>
+
 # Kanka <!-- omit in toc -->
 
 [![Minimum PHP Version](http://img.shields.io/badge/php-%3E%3D%208.0-8892BF.svg)](https://php.net/)

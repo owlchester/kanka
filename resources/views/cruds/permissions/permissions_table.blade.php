@@ -14,7 +14,7 @@ $permissionService->campaign($campaign->campaign());
 ?>
 
 <div id="crud_permissions">
-    <div class="row margin-bottom">
+    <div class="row mb-5">
         <div class="col-sm-4">
             <strong>{{ __('crud.permissions.fields.role') }}</strong>
         </div>
@@ -37,7 +37,7 @@ $permissionService->campaign($campaign->campaign());
         </div>
     </div>
     @foreach ($campaign->campaign()->roles()->withoutAdmin()->get() as $role)
-        <div class="row margin-bottom">
+        <div class="row mb-5">
             <div class="col-sm-4">{{ $role->name }}</div>
             <div class="text-center col-sm-2">
                 <span class="visible-xs-inline visible-sm-inline">{{ __('crud.permissions.actions.read') }}</span>
@@ -76,12 +76,12 @@ $permissionService->campaign($campaign->campaign());
         <p class="help-block">{{ __('crud.permissions.too_many_members', ['number' => 10]) }}</p>
         <input type="hidden" name="permissions_too_many" value="1" />
     @else
-        <div class="row margin-bottom">
+        <div class="row mb-5">
             <div class="col-sm-12">
                 <hr />
             </div>
         </div>
-        <div class="row margin-bottom">
+        <div class="row mb-5">
             <div class="col-sm-4"><strong>{{ __('crud.permissions.fields.member') }}</strong></div>
 
             <div class="col-sm-2 hidden-xs hidden-xm text-center">
@@ -103,7 +103,7 @@ $permissionService->campaign($campaign->campaign());
             </div>
         </div>
         @foreach ($permissionService->users() as $member)
-            <div class="row margin-bottom">
+            <div class="row mb-5">
                 <div class="col-sm-4">
                     <div class="entity-image pull-left" style="background-image: url({{ $member->user->getAvatarUrl() }})" title="{{ $member->user->name }}">
                     </div>

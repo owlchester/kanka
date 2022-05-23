@@ -295,10 +295,10 @@ trait Filterable
                     } elseif ($key == 'family') {
                         $query
                             ->select($this->getTable() . '.*')
-                            ->leftJoin('character_family as cf', function ($join) {
-                                $join->on('cf.character_id', '=', $this->getTable() . '.id');
+                            ->leftJoin('character_family as cf2', function ($join) {
+                                $join->on('cf2.character_id', '=', $this->getTable() . '.id');
                             })
-                            ->where('cf.family_id', null);
+                            ->where('cf2.family_id', null);
                     }
                 }
             }

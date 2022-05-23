@@ -13,8 +13,4 @@ return [
         'success'   => 'Default entity image for :type removed.',
     ],
     'helper'    => 'Set custom default entity images for your campaign. These will be shown in the various lists, but not on the entity itself.',
-    'index'     => [
-        'title' => 'Default Entity Images',
-    ],
-    'title'     => 'Campaign :campaign Default Entity Images',
 ];

@@ -9,7 +9,7 @@
     </div>
     <div class="sidebar-elements collapse in" id="sidebar-pinned-elements">
 
-        <ul class="list-group list-group-unbordered">
+        <ul class="pins m-0 p-0">
             @include('entities.components.relations')
             @includeWhen(method_exists($model, 'pinnedMembers'), 'entities.components.members')
             @includeWhen($model->entity->accessAttributes(), 'entities.components.attributes')

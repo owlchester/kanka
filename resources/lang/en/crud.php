@@ -40,8 +40,7 @@ return [
             'helper'    => 'You can use + and - before the number to update the age by that amount.',
         ],
         'delete'        => [
-            'title'     => 'Deleting multiple entities',
-            'warning'   => 'Are you sure you want to delete the selected entities?',
+            'warning'   => 'You are deleting multiple entities.',
         ],
         'edit'          => [
             'tagging'   => 'Action for tags',
@@ -93,10 +92,12 @@ return [
         'empty' => 'Nothing to show yet.',
     ],
     'delete_modal'              => [
+        'callout'           => 'Psst!',
         'close'             => 'Close',
         'delete'            => 'Remove',
-        'description'       => 'Are you sure you want to remove :tag?',
-        'description_final' => 'Are you sure you want to remove :tag? This action cannot be undone.',
+        'description_v2'    => 'You are removing ":tag".',
+        'permanent'         => 'This action is permanent.',
+        'recoverable'       => 'Entities can be recovered for up to :day days with a :boosted-campaign.',
         'title'             => 'Removal confirmation',
     ],
     'destroy_many'              => [
@@ -368,6 +369,7 @@ return [
         'mentions'      => 'Mentions',
         'menu'          => 'Menu',
         'notes'         => 'Posts',
+        'overview'      => 'Overview',
         'permissions'   => 'Permissions',
         'profile'       => 'Profile',
         'quests'        => 'Quests',

@@ -6,6 +6,7 @@ use App\Facades\CampaignLocalization;
 use App\Facades\Dashboard;
 use App\Models\Concerns\Taggable;
 use App\Traits\CampaignTrait;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
 
@@ -23,6 +24,7 @@ use Illuminate\Support\Str;
  * @property string $random_entity_type
  * @property integer $position
  * @property integer $dashboard_id
+ * @property array $options
  * @property CampaignDashboard $dashboard
  * @property Entity $target
  * @property boolean $is_private
@@ -73,7 +75,7 @@ class MenuLink extends MiscModel
      *
      * @var array
      */
-    public $optionsAllowedKeys = ['is_nested'];
+    public $optionsAllowedKeys = ['is_nested', 'default_dashboard'];
 
     /**
      * Searchable fields
@@ -176,12 +178,17 @@ class MenuLink extends MiscModel
     }
 
     /**
+     * Get the route the quick link points to
      * @return string
      */
     public function getRoute()
     {
         if ($this->dashboard) {
-            return route('dashboard', ['dashboard' => $this->dashboard_id, 'quick-link' => $this->id]);
+            $dashboard = $this->dashboard_id;
+            if (Arr::get($this->options, 'default_dashboard') === '1') {
+                $dashboard = 'default';
+            }
+            return route('dashboard', ['dashboard' => $dashboard, 'quick-link' => $this->id]);
         }
         return !empty($this->entity_id) ? $this->getEntityRoute() : $this->getIndexRoute();
     }
@@ -200,25 +207,21 @@ class MenuLink extends MiscModel
             $menuRoute = $this->target->pluralType() . '.' . $this->menu;
 
             // Inventories use a different url buildup
-            if (Str::contains($this->menu, 'inventor')) {
-                return route('entities.inventory', $this->target->id);
+            $routeOptions = [$this->target->id, 'quick-link' => $this->id];
+            if ($this->menu === 'inventory') {
+                return route('entities.inventory', $routeOptions);
             }
-            elseif (Str::contains($this->menu, 'relation')) {
-                return route('entities.relations.index', $this->target->id);
+            elseif ($this->menu === 'relations') {
+                return route('entities.relations.index', $routeOptions);
             }
-            elseif (Str::contains($this->menu, 'abilit')) {
-                return route('entities.entity_abilities.index', $this->target->id);
+            elseif ($this->menu === 'abilities') {
+                return route('entities.entity_abilities.index', $routeOptions);
             }
-            elseif (Str::contains($this->menu, 'assets')) {
-                return route('entities.assets', $this->target->id);
+            elseif ($this->menu === 'assets') {
+                return route('entities.assets', $routeOptions);
             }
-            elseif (Str::contains($this->menu, 'reminders')) {
-                return route('entities.entity_events.index', $this->target->id);
-            }
-            elseif (Str::contains($this->menu, 'map_points')) {
-                return route('entities.map-markers', $this->target->id);
-            } elseif ($this->menu == 'all-members') {
-                $menuRoute = $route;
+            elseif ($this->menu === 'reminders') {
+                return route('entities.entity_events.index', $routeOptions);
             }
             if (Route::has($menuRoute)) {
                 $route = $menuRoute;

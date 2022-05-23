@@ -3,6 +3,7 @@ $datagridOptions = [
     $model,
     'init' => 1
 ];
+$datagridOptions = Datagrid::initOptions($datagridOptions);
 ?>
 
 <div class="box box-solid quest-subquests" id="subquests">

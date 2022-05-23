@@ -18,6 +18,7 @@ class SidebarService
         ],
         'campaigns' => [
             'campaign',
+            'overview',
             'campaigns',
             'campaign_user',
             'campaign_roles',

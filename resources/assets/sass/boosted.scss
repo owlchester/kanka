@@ -58,6 +58,23 @@
         }
       }
     }
+
+    ul.pins {
+      list-style: none;
+      li.list-group-item {
+        background: none;
+        border-left: 0;
+        border-right: 0;
+        border-bottom: 0;
+        word-break: break-word;
+        padding-left: 0;
+        padding-right: 0;
+
+        &:first-child {
+          border-top: none;
+        }
+      }
+    }
   }
   .list-group-unbordered .list-group-item {
     background-color: transparent;
@@ -336,7 +353,7 @@
 
 .entity-grid {
   display: grid;
-  margin: 0 -15px;
+  margin: -15px -15px 0 -15px;
   grid-template-columns: 200px minmax(auto, calc(100% - 400px)) 200px;
   grid-template-areas:
     "header header header"

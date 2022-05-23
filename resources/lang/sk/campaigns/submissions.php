@@ -23,13 +23,10 @@ return [
         'application'   => 'Prihláška',
         'rejection'     => 'Dôvod odmietnutia',
     ],
-    'helpers'       => [
-        'open_and_public'   => 'Kampaň prijíma prihlášky na vstup do nej. Ak to chceš ukončiť, uprav kampaň a zmeň nastavenie otvorenia na karte :tab.',
-    ],
+    'helpers'       => [],
     'placeholders'  => [
         'note'  => 'Spíš tvoju prihlášku na vstup do kampane',
     ],
-    'title'         => 'Prihlášky do kampane',
     'update'        => [
         'approve'   => 'Vyber rolu užívateľa, ktorú bude mať v tvojej kampani.',
         'approved'  => 'Prihláška schválená',

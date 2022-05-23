@@ -1,9 +1,7 @@
 <?php
 
 return [
-    'actions'       => [
-        'delete-confirm'    => 'questo evento atmosferico',
-    ],
+    'actions'       => [],
     'create'        => [
         'success'   => 'Tempo meteorologico aggiunto.',
         'title'     => 'Nuovo evento atmosferico',

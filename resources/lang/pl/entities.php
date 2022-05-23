@@ -16,7 +16,6 @@ return [
     'creator'               => [
         'back'              => 'Powrót do menu wyboru',
         'duplicate'         => 'Istnieje inny element tego typu o tej samej nazwie.',
-        'helper'            => 'Wybierz element do stworzenia. Jeżeli jakiś typ się nie pojawia, nie masz uprawnień, by tworzyć elementy danego typu ramach tej kampanii.',
         'name'              => [
             'new'       => 'Nowa nazwa',
             'remove'    => 'Usuń',

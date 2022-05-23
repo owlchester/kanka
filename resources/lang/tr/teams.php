@@ -4,11 +4,6 @@ return [
     'hall_of_fame'  => 'Onur Listesi',
     'index'         => [
         'community'     => 'Topluluk',
-        'core'          => 'Çekirdek',
-        'description'   => 'Kanka\'yı bu kişiler mümkün kıldı',
-        'other'         => 'Diğerleri',
-        'qa'            => 'Kalite Kontrol',
-        'support'       => 'Destek',
         'title'         => 'Ekip',
         'translations'  => 'Çeviriler',
     ],

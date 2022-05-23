@@ -7,7 +7,7 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 
 /**
- * @method static self|Builder sort(array $filters)
+ * @method static self|Builder sort(array $filters, array $defaultOrder = [])
  * @method static self|Builder defaultOrder()
  */
 trait SortableTrait
@@ -17,10 +17,16 @@ trait SortableTrait
      * @param array $filters
      * @return Builder
      */
-    public function scopeSort(Builder $query, array $filters)
+    public function scopeSort(Builder $query, array $filters, array $defaultOrder = [])
     {
         if (empty($filters)) {
-            return $query->defaultOrder();
+            if (empty($defaultOrder)) {
+                return $query->defaultOrder();
+            }
+            foreach ($defaultOrder as $field => $order) {
+                $query->orderBy($field, $order);
+            }
+            return $query;
         }
 
         if (empty($this->sortable)) {

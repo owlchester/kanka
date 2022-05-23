@@ -16,6 +16,10 @@ ul.sidebar-sortable, ul.sidebar-sortable ul {
   }
 }
 
+.box-module {
+  cursor: pointer;
+}
+
 .ui-sortable-placeholder {
   border: 1px dotted #333;
   border-radius: 5px;

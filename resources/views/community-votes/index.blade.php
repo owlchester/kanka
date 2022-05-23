@@ -16,21 +16,14 @@
 @endsection
 
 @section('content')
-    <header class="masthead reduced-masthead">
-        <div class="container h-100">
-            <div class="row h-100">
-                <div class="col-lg-7 my-auto">
-                    <div class="header-content mx-auto">
-                        <h1 class="mb-5">{{ __('front/community-votes.title') }}</h1>
-                        <p class="mb-5">{{ __('front/community-votes.description') }}</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
-
     <section class="community-votes">
         <div class="container">
+
+            <div class="mb-5">
+                <h1 class="display-4">{{ __('front/community-votes.title', ['kanka' => config('app.name')]) }}</h1>
+                <p class="lead">{{ __('front/community-votes.description', ['kanka' => config('app.name')]) }}</p>
+            </div>
+
             <div class="row">
                 <div class="col-3">
                     @include('community-votes._recent')

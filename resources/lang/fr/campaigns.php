@@ -206,6 +206,7 @@ TEXT
             'title'         => 'Invitation',
         ],
         'manage_roles'          => 'Gérer les rôles de l\'utilisateur',
+        'removal'               => 'Retrait de ":member" de la campagne.',
         'roles'                 => [
             'member'    => 'Membre',
             'owner'     => 'Administrateur',
@@ -221,15 +222,7 @@ TEXT
         ],
         'your_role'             => 'Rôle: \'<i>:rôle</i>\'',
     ],
-    'open_campaign'                     => [
-        'helper'    => 'Une campagne public définie comme ouverte permet aux utilisateurs d\'envoyer une application pour la rejoindre. Retrouves toutes les applications sous la page :link.',
-        'link'      => 'applications de la campagne',
-        'statuses'  => [
-            'closed'    => 'Fermé',
-            'open'      => 'Ouvert aux applications',
-        ],
-        'title'     => 'Campagne Ouverte',
-    ],
+    'open_campaign'                     => [],
     'options'                           => [],
     'panels'                            => [
         'boosted'   => 'Boosté',
@@ -288,13 +281,13 @@ TEXT
         ],
         'hints'         => [
             'campaign_not_public'   => 'Le rôle Public a des permissions mais la campagne est privée. La campagne peut être rendue publique sous l\'onglet Partager en modifiant la campagne.',
+            'empty_role'            => 'Ce rôle n\'a pas encore de membre.',
             'public'                => 'Si la campagne est en mode publique, ce rôle est utilisé pour les visiteurs qui ne font pas partie de la campagne. :more',
             'role_permissions'      => 'Permettre au rôle \':name\' les actions suivantes sur toutes les entités.',
         ],
         'members'       => 'Membres',
         'modals'        => [
             'details'   => [
-                'button'    => 'Besoin d\'aide',
                 'campaign'  => 'Les permissions de campagne sont les suivants:',
                 'entities'  => 'Voici un petit récapitulatif de ce que les membres de ce rôle peuvent faire quand une permission est sélectionnée.',
                 'more'      => 'Pour plus d\'information, voir notre tutoriel sur Youtube',
@@ -343,8 +336,9 @@ TEXT
         ],
         'users'         => [
             'actions'   => [
-                'add'       => 'Ajouter',
-                'remove'    => ':user du rôle :role.',
+                'add'           => 'Ajouter',
+                'remove'        => ':user du rôle :role.',
+                'remove_user'   => 'Retirer l\'utilisateur du rôle',
             ],
             'create'    => [
                 'success'   => 'Utilisateur ajouté au rôle.',
@@ -363,9 +357,8 @@ TEXT
             'enable'    => 'Activer',
         ],
         'boosted'   => 'Cette fonctionnalité est actuellement en beta et seulement accessible pour les :boosted.',
-        'edit'      => [
-            'success'   => 'Campagne modifiée.',
-        ],
+        'disabled'  => 'Le module :module est désactivé.',
+        'enabled'   => 'Le module :module est activé.',
         'errors'    => [
             'module-disabled'   => 'Le module demandé est actuellement désactivé dans la configuration de la campagne. :fix.',
         ],
@@ -391,7 +384,6 @@ TEXT
             'tags'          => 'Chaque entité peut avoir plusieurs étiquettes. Les étiquettes peuvent appartenir à d\'autres étiquettes.',
             'timelines'     => 'Représenter l\'histoire du monde de manière visuelle avec des chronologies.',
         ],
-        'title'     => 'Modules de la campagne :name',
     ],
     'show'                              => [
         'actions'   => [
