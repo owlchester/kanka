@@ -211,6 +211,9 @@ class DatagridRenderer2
             if (Str::endsWith($k, '_id')) {
                 continue;
             }
+            elseif ($k === 'all') {
+                continue;
+            }
             unset($options[$k]);
         }
         if (request()->has('o')) {
@@ -220,5 +223,23 @@ class DatagridRenderer2
             $options['k'] = request()->get('k');
         }
         return $options;
+    }
+
+    /**
+     * Allow the ajax init to have custom ordering
+     * @param array $config
+     * @return array
+     * @throws \Psr\Container\ContainerExceptionInterface
+     * @throws \Psr\Container\NotFoundExceptionInterface
+     */
+    public function initOptions(array $config): array
+    {
+        if (request()->has('o')) {
+            $config['o'] = request()->get('o');
+        }
+        if (request()->has('k')) {
+            $config['k'] = request()->get('k');
+        }
+        return $config;
     }
 }

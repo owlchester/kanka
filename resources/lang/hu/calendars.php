@@ -33,10 +33,9 @@ return [
     ],
     'event'         => [
         'actions'   => [
-            'delete-confirm'    => 'Emlékeztető',
-            'existing'          => 'Létező entitás',
-            'new'               => 'Új esemény',
-            'switch'            => 'Választás megváltoztatása',
+            'existing'  => 'Létező entitás',
+            'new'       => 'Új esemény',
+            'switch'    => 'Választás megváltoztatása',
         ],
         'create'    => [
             'success'   => 'A naptári eseményt létrehoztuk',
@@ -205,10 +204,6 @@ return [
     ],
     'show'          => [
         'missing_details'   => 'A naptár nem jeleníthető meg - legalább két hónapot és kétnapos heteket kell tartalmazzon.',
-        'moon_full_moon'    => ':moon telihold',
-        'moon_new_moon'     => ':moon újhold',
-        'moon_waning_moon'  => ':moon fogy',
-        'moon_waxing_moon'  => ':moon dagad',
         'tabs'              => [
             'events'    => 'Naptári események',
             'weather'   => 'Időjárás',

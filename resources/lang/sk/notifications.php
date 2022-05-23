@@ -32,7 +32,6 @@ return [
     ],
     'clear'             => [
         'action'    => 'Vymazať všetky',
-        'confirm'   => 'Naozaj chceš odstrániť všetky notifikácie? Táto akcia nemôže byť vrátená späť.',
         'success'   => 'Notifikácie vymazané.',
     ],
     'header'            => '{1} Máš :count notifikáciu.|[2,4] Máš :count notifikácie.|[5,*] Máš :count notifikácií.',

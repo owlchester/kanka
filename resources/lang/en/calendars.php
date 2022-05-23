@@ -11,9 +11,10 @@ return [
         'add_weather'       => 'Set weather effect',
         'add_week'          => 'Add a named week',
         'add_weekday'       => 'Add a week day',
-        'add_year'          => 'Add a year name',
+        'add_year'          => 'Add a named year',
         'set_today'         => 'Set as current day',
         'today'             => 'Today',
+        'update_weather'    => 'Update weather',
     ],
     'checkboxes'    => [
         'is_recurring'  => 'Takes place every year',
@@ -32,10 +33,9 @@ return [
     ],
     'event'         => [
         'actions'   => [
-            'delete-confirm'    => 'this reminder',
-            'existing'          => 'Existing Entity',
-            'new'               => 'New Event',
-            'switch'            => 'Change choice',
+            'existing'  => 'Existing Entity',
+            'new'       => 'New Event',
+            'switch'    => 'Change choice',
         ],
         'create'    => [
             'success'   => 'Calendar event created.',
@@ -74,9 +74,10 @@ return [
         'current_year'          => 'Current Year',
         'date'                  => 'Current Date',
         'day'                   => 'Day',
+        'default_layout'        => 'Default layout',
         'has_leap_year'         => 'Has leap years',
         'intercalary'           => 'Intercalary Days',
-        'is_incrementing'       => 'Advancing Date',
+        'is_incrementing'       => 'Advancing date',
         'is_recurring'          => 'Recurring',
         'leap_year_amount'      => 'Add Days',
         'leap_year_month'       => 'Month',
@@ -101,11 +102,12 @@ return [
         'year'                  => 'Year',
     ],
     'helpers'       => [
-        'month_type'    => 'Intercalary months don\'t use week days, but still influence moons and seasons.',
-        'moon_offset'   => 'By default, the first fullmoon appears on the first day of year 0. Changing the offset will alter when the first full moon is displayed. This value can negative (up to the length of the first month) or positive (up to the length of the first month).',
-        'nested_parent' => 'Displaying the calendars of :parent.',
-        'nested_without'=> 'Displaying all calendars that don\'t have a parent calendar. Click on a row to see the children calendars.',
-        'start_offset'  => 'By default, the calendar starts on the first weekday of year 0. Changing this field influences where the calendar\'s first day is placed.',
+        'default_layout'    => 'Select which layout the calendar should use by default when viewed.',
+        'month_type'        => 'Intercalary months don\'t use week days, but still influence moons and seasons.',
+        'moon_offset'       => 'By default, the first fullmoon appears on the first day of year 0. Changing the offset will alter when the first full moon is displayed. This value can negative (up to the length of the first month) or positive (up to the length of the first month).',
+        'nested_parent'     => 'Displaying the calendars of :parent.',
+        'nested_without'    => 'Displaying all calendars that don\'t have a parent calendar. Click on a row to see the children calendars.',
+        'start_offset'      => 'By default, the calendar starts on the first weekday of year 0. Changing this field influences where the calendar\'s first day is placed.',
     ],
     'hints'         => [
         'event_length'      => 'How long an event is set to last. An event can\'t span over more than two months.',
@@ -113,7 +115,7 @@ return [
         'is_incrementing'   => 'Advancing calendars will automatically have their current date incremented at 00:00 UTC.',
         'is_recurring'      => 'An event can be set to recurring. It will reappear every year on the same date.',
         'months'            => 'Your calendar should have at least 2 months.',
-        'moons'             => 'Adding moons will make them show up in the calendar on every full and new moon. If the full moon period is bigger than 10 days, waning and waxing moons will also be displayed.',
+        'moons'             => 'Adding moons will make them show up in the calendar on every full and new moon. If the full moon period is bigger than 10 days, thirst and third quarter moons will also be displayed.',
         'parent_calendar'   => 'Giving the calendar a parent calendar will include the reminders and weather effects of the parent calendar.',
         'reset'             => 'Always start the beginning of the month or year on the first week day.',
         'seasons'           => 'Create seasons for your calendar by providing when each of them start. Kanka will take care of the rest.',
@@ -125,8 +127,10 @@ return [
         'title' => 'Calendars',
     ],
     'layouts'       => [
-        'month' => 'Month',
-        'year'  => 'Year',
+        'month'     => 'Month',
+        'monthly'   => 'Monthly by default',
+        'year'      => 'Year',
+        'yearly'    => 'Yearly by default',
     ],
     'modals'        => [
         'switcher'  => [
@@ -212,12 +216,12 @@ return [
         'weekdays'          => 'Number of days in a week',
     ],
     'show'          => [
-        'missing_details'   => 'This calendar couldn\'t be displayed. Calendars need at least 2 months and 2 weekdays to render properly.',
-        'moon_full_moon'    => ':moon Full Moon',
-        'moon_new_moon'     => ':moon New Moon',
-        'moon_waning_moon'  => ':moon Waning',
-        'moon_waxing_moon'  => ':moon Waxing',
-        'tabs'              => [
+        'missing_details'       => 'This calendar couldn\'t be displayed. Calendars need at least 2 months and 2 weekdays to render properly.',
+        'moon_first_quarter'    => ':moon first quarter',
+        'moon_full'             => ':moon full moon',
+        'moon_last_quarter'     => ':moon last quarter',
+        'moon_new'              => ':moon new moon',
+        'tabs'                  => [
             'events'    => 'Reminders',
             'weather'   => 'Weather',
         ],

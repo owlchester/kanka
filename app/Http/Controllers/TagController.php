@@ -113,7 +113,7 @@ class TagController extends CrudController
             ->descendants()
             ->sort(request()->only(['o', 'k']))
             ->filter($filters)
-            ->with(['entity', 'entity.tags', 'tag', 'tag.entity'])
+            ->with(['entity', 'entity.tags', 'entity.image', 'tag', 'tag.entity'])
             ->paginate();
 
         // Ajax Datagrid
@@ -145,7 +145,8 @@ class TagController extends CrudController
         $this->rows = $tag
             ->{$base}()
             ->sort(request()->only(['o', 'k']))
-            ->paginate();
+            ->with(['image', 'tags'])
+            ->paginate(15);
 
         // Ajax Datagrid
         if (request()->ajax()) {

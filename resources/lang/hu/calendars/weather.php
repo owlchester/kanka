@@ -1,9 +1,7 @@
 <?php
 
 return [
-    'actions'       => [
-        'delete-confirm'    => 'Időjárás',
-    ],
+    'actions'       => [],
     'create'        => [
         'success'   => 'Időjárás hozzáadva!',
         'title'     => 'Új időjárási hozzáadása',

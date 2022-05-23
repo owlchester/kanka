@@ -9,15 +9,15 @@
 @section('content')
     @include('partials.errors')
     <div class="box box-solid">
-        <div class="box-body">
-            <h2 class="page-header with-border">
+        <div class="box-header">
+            <h4 class="box-title with-border">
                 {{ __('settings.patreon.title') }}
-            </h2>
+            </h4>
         </div>
     </div>
 
     @if(auth()->user()->hasPatreonSync())
-        @include('settings._' . strtolower(auth()->user()->patreon_pledge ?: 'kobold'))
+        @includeIf('settings._' . strtolower(auth()->user()->patreon_pledge ?: 'kobold'))
 
     <div class="text-center">
         <button class="btn btn-danger" data-toggle="modal"
@@ -38,7 +38,7 @@
                     </p>
                     {!! Form::model(auth()->user(), ['method' => 'DELETE', 'route' => ['settings.patreon.unlink']]) !!}
 
-                    <button class="btn btn-danger margin-bottom">
+                    <button class="btn btn-danger mb-5">
                         {{ __('crud.click_modal.confirm') }}
                     </button>
                     {!! Form::close() !!}

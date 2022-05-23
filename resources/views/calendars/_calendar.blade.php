@@ -17,28 +17,37 @@ $weekNumber = 1;
     <div class="box-body">
         <div class="calendar-toolbar">
             {{ $renderer->todayButton() }}
+
+            @if (!$renderer->isYearlyLayout())
             <div class="btn-group">
                 <a href="{{ $renderer->previous() }}" class="btn btn-default btn-corner-left" title="{{ $renderer->previous(true) }}" data-toggle="tooltip">
                     <i class="fa-solid fa-angle-left"></i>
                 </a>
+                <div class="btn btn-default" disabled>
+                    {!! $renderer->currentMonthName() !!}
+                </div>
                 <a href="{{ $renderer->next() }}" class="btn btn-default btn-corner-right" title="{{ $renderer->next(true) }}" data-toggle="tooltip">
                     <i class="fa-solid fa-angle-right"></i>
                 </a>
             </div>
-            <div class="calendar-current">
-                @if (!$renderer->isYearlyLayout())
-                    <span class="month">{!! $renderer->currentMonthName() !!}</span>
-                @endif
+            @endif
+            <div class="btn-group">
+                <a href="{{ $renderer->linkToYear(false) }}" class="btn btn-default btn-corner-left" title="{{ $renderer->titleToYear(false) }}" data-toggle="tooltip">
+                    <i class="fa-solid fa-angle-left"></i>
+                </a>
                 <div data-toggle="modal" data-target="#calendar-year-switcher" title="{{ __('calendars.modals.switcher.title') }}"
-                    class="btn btn-default">
+                     class="btn btn-default">
                     {!! $renderer->currentYearName() !!}
                 </div>
+                <a href="{{ $renderer->linkToYear() }}" class="btn btn-default btn-corner-right" title="{{ $renderer->titleToYear() }}" data-toggle="tooltip">
+                    <i class="fa-solid fa-angle-right"></i>
+                </a>
             </div>
 
             <div class="pull-right">
                 <div class="btn-group">
                     <a href="{{ route('calendars.show', [$model, 'layout' => 'year', 'year' => $renderer->currentYear()]) }}" class="btn btn-default btn-corner-left"<?=($renderer->isYearlyLayout() ? ' disabled="disabled"' : null)?>>{{ __('calendars.layouts.year') }}</a>
-                    <a href="{{ route('calendars.show', [$model, 'year' => $renderer->currentYear()]) }}" class="btn btn-default btn-corner-right"<?=(!$renderer->isYearlyLayout() ? ' disabled="disabled"' : null)?>>{{ __('calendars.layouts.month') }}</a>
+                    <a href="{{ route('calendars.show', array_merge([$model, 'year' => $renderer->currentYear()], $model->defaultLayout() === 'year' ? ['layout' => 'month'] : [])) }}" class="btn btn-default btn-corner-right"<?=(!$renderer->isYearlyLayout() ? ' disabled="disabled"' : null)?>>{{ __('calendars.layouts.month') }}</a>
                 </div>
             </div>
             <div class="month-alias help-block">{!! $renderer->monthAlias() !!}</div>
@@ -107,14 +116,16 @@ $weekNumber = 1;
             </div>
             <div class="modal-body">
                 {!! Form::open(['route' => ['calendars.show', $model], 'method' => 'GET']) !!}
-                {{ csrf_field() }}
                 <div class="form-group">
                     <label>{{ __('calendars.fields.year') }}</label>
                     {!! Form::number('year', null, ['class' => 'form-control', 'placeholder' => e($renderer->currentYear())]) !!}
                 </div>
-                @if ($renderer->isYearlyLayout())
-                    <input type="hidden" name="layout" value="yearly">
+                @if ($renderer->isYearlyLayout() && !$model->yearlyLayout())
+                    <input type="hidden" name="layout" value="year">
                 @else
+                    @if ($model->yearlyLayout())
+                        <input type="hidden" name="layout" value="month">
+                    @endif
                     {!! Form::hidden('month', $renderer->currentMonthId()) !!}
                 @endif
             </div>

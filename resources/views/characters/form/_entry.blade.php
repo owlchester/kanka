@@ -91,4 +91,4 @@ if (request()->route()->getName() == 'characters.random') {
     </div>
 </div>
 
-@include('cruds.fields.private2')
+@includeWhen(auth()->user()->isAdmin(), 'cruds.fields.privacy_callout')

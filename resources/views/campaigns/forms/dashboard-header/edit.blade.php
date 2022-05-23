@@ -1,7 +1,6 @@
 <?php /** @var \App\Models\Campaign $model */?>
 @extends('layouts.' . ($ajax ? 'ajax' : 'app'), [
     'title' => __('campaigns/dashboard-header.edit.title', ['name' => $model->name]),
-    'description' => '',
     'breadcrumbs' => [],
     'mainTitle' => false,
 ])

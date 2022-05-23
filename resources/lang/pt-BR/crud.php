@@ -39,7 +39,6 @@ return [
             'helper'    => 'Você pode usar + e - antes do número para atualizar a idade naquela quantidade',
         ],
         'delete'        => [
-            'title'     => 'Deletando entidades múltiplas',
             'warning'   => 'Tem certeza que você quer deletar as entidades selecionadas?',
         ],
         'edit'          => [
@@ -92,11 +91,9 @@ return [
         'empty' => 'Nada para mostrar (ainda)',
     ],
     'delete_modal'              => [
-        'close'             => 'Fechar',
-        'delete'            => 'Deletar',
-        'description'       => 'Tem certeza que deseja remover :tag?',
-        'description_final' => 'Você tem certeza que quer remover :tag? Essa ação não pode ser desfeita.',
-        'title'             => 'Confirmação de apagamento',
+        'close' => 'Fechar',
+        'delete'=> 'Deletar',
+        'title' => 'Confirmação de apagamento',
     ],
     'destroy_many'              => [
         'success'   => 'Deletado :count entity|Deletado :count entities.',

@@ -66,7 +66,6 @@ class StartController extends Controller
         $campaign = Campaign::create($options);
 
         $user = auth()->user();
-        $user->welcome_campaign_id = $campaign->id;
         $user->save();
 
         if ($first) {

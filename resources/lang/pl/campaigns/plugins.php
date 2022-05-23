@@ -2,6 +2,11 @@
 
 return [
     'actions'       => [
+        'bulks'             => [
+            'disable'   => 'Wyłącz dodatki',
+            'enable'    => 'Aktywuj dodatki',
+            'update'    => 'Aktualizuj dodatki',
+        ],
         'disable'           => 'Deaktywuj dodatek',
         'enable'            => 'Aktywuj dodatek',
         'go_to_marketplace' => 'Idź na Targowisko',
@@ -9,6 +14,12 @@ return [
         'remove'            => 'Usuń dodatek',
         'update'            => 'Aktualizuj dodatek',
         'update_available'  => 'Dostępna aktualizacja!',
+    ],
+    'bulks'         => [
+        'delete'    => '{1} Usunięto :count dodatek.|[2,4] Usunięto :count dodatki.|[5,*] Usunięto :count dodatków.',
+        'disable'   => '{1} Wyłączono :count dodatek.|[2,4] Wyłączono :count dodatki.|[5,*] Wyłączono :count dodatków.',
+        'enable'    => '{1} Aktywowano :count dodatek.|[2,4] Aktywowano :count dodatki.|[5,*] Aktywowano :count dodatków.',
+        'update'    => '{1} Zaktualizowano :count dodatek.|[2,4] Zaktualizowano :count dodatki.|[5,*] Zaktualizowano :count dodatków.',
     ],
     'destroy'       => [
         'success'   => 'Usunięto dodatek :plugin',

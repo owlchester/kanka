@@ -32,10 +32,9 @@ return [
     ],
     'event'         => [
         'actions'   => [
-            'delete-confirm'    => 'Tato připomínka',
-            'existing'          => 'Existující objekt',
-            'new'               => 'Nová událost',
-            'switch'            => 'Změnit výběr',
+            'existing'  => 'Existující objekt',
+            'new'       => 'Nová událost',
+            'switch'    => 'Změnit výběr',
         ],
         'create'    => [
             'success'   => 'Nová událost vytvořena',
@@ -204,10 +203,6 @@ return [
     ],
     'show'          => [
         'missing_details'   => 'Kalendář nelze použít. Kalendář musí obsahovat alespoň 2 měsíce a každý týden musí zahrnovat alespoň 2 dny.',
-        'moon_full_moon'    => 'Úplněk měsíce :moon',
-        'moon_new_moon'     => 'Nov měsíce :moon',
-        'moon_waning_moon'  => 'Ubývání měsíce :moon',
-        'moon_waxing_moon'  => 'Nárůst měsíce :moon',
         'tabs'              => [
             'events'    => 'Připomínky',
             'weather'   => 'Počasí',

@@ -1,6 +1,6 @@
 <?php /** @var \App\Models\Campaign $campaign */?>
 @extends('layouts.app', [
-    'title' => trans('campaigns/default-images.title', ['campaign' => $campaign->name]),
+    'title' => __('campaigns.show.tabs.default-images') . ' - ' . $campaign->name,
     'breadcrumbs' => [
         ['url' => route('campaign'), 'label' => trans('campaigns.index.title')],
         __('campaigns.show.tabs.default-images')
@@ -18,8 +18,19 @@
         <div class="col-md-9">
             @if ($campaign->boosted())
             <div class="box no-border">
-                <div class="box-body">
-                    <p class="help-block">{{ __('campaigns/default-images.helper') }}</p>
+                <div class="box-header with-border">
+                    <h3 class="box-title">
+                        {{ __('campaigns.show.tabs.default-images') }}
+                    </h3>
+                    <div class="box-tools">
+                        <button class="btn btn-box-tool" data-toggle="dialog"
+                                data-target="default-images-help">
+                            <i class="fa-solid fa-question-circle" aria-hidden="true"></i>
+                            {{ __('campaigns.members.actions.help') }}
+                        </button>
+                    </div>
+                </div>
+                <div class="box-body no-padding">
 
                     <table class="table table-borderless">
                         <tbody>
@@ -74,3 +85,15 @@
     </div>
 @endsection
 
+
+@section('modals')
+    @parent
+
+    @include('partials.helper-modal', [
+        'id' => 'default-images-help',
+        'title' => __('campaigns.show.tabs.default-images'),
+        'textes' => [
+            __('campaigns/default-images.helper'),
+    ]])
+
+@endsection

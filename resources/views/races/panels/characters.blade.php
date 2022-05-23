@@ -13,6 +13,7 @@ if (request()->has('race_id')) {
     $datagridOptions['race_id'] = (int) $model->id;
     $allMembers = true;
 }
+$datagridOptions = Datagrid::initOptions($datagridOptions);
 ?>
 <div class="box box-solid" id="race-characters">
     <div class="box-header with-border">

@@ -7,17 +7,13 @@
 
 @section('content')
     @include('partials.errors')
-    <div class="box box-solid">
-        <div class="box-body">
-
-            <p class="text-muted">
-                {{ __('settings.api.helper') }}<br />
-                <a href="/docs/1.0" target="_blank"><i class="fa-solid fa-external-link-alt"></i> {{ __('settings.api.link') }}</a>
-            </p>
-
-        </div>
+    <div class="callout callout-info">
+        <p>{{ __('settings.api.helper') }}</p>
+        <a href="/{{ app()->getLocale() }}{{ config('larecipe.docs.route') }}/1.0/overview" class="btn btn-info" target="_blank">
+            <i class="fa-solid fa-external-link-square" aria-hidden="true"></i>
+            {{ __('front.features.api.link') }}
+        </a>
     </div>
-
     <div class="row">
         <div class="col-md-6">
 

@@ -21,17 +21,27 @@ $advancedFilters = [
 
     <div class="tab-content">
         <div id="setup" class="tab-pane fade in active">
-            <div class="form-group required">
-                <label for="config-entity">
-                    {{ __('crud.fields.entity_type') }}
-                </label>
-                {!! Form::select('config[entity]', $entities, (!empty($model) ? $model->conf('entity') : null), ['class' => 'form-control recent-entity-type']) !!}
-            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group required">
+                        <label for="config-entity">
+                            {{ __('crud.fields.entity_type') }}
+                        </label>
+                        {!! Form::select('config[entity]', $entities, (!empty($model) ? $model->conf('entity') : null), ['class' => 'form-control recent-entity-type']) !!}
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group recent-filters" style="@if (empty($model) || empty($model->conf('entity'))) display: none @else @endif">
+                        <label>
+                            {{ __('dashboard.widgets.recent.filters') }}
+                            <a href="{{ route('helpers.widget-filters') }}" target="_blank">
+                                <i class="fa-solid fa-question-circle" title="{{ __('dashboard.widgets.helpers.filters') }}" data-toggle="tooltip"></i>
+                            </a>
 
-            <div class="form-group recent-filters" style="@if (empty($model) || empty($model->conf('entity'))) display: none @else @endif">
-                <label>{{ __('dashboard.widgets.recent.filters') }}</label>
-                {!! Form::text('config[filters]', null, ['class' => 'form-control']) !!}
-                <p class="help-block">{!! __('dashboard.widgets.recent.helpers.filters', ['link' => '<a href="' . route('helpers.widget-filters') . '" target="_blank"><i class="fa-solid fa-external-link-alt"></i> ' . __('helpers.widget-filters.link') . '</a>']) !!}</p>
+                        </label>
+                        {!! Form::text('config[filters]', null, ['class' => 'form-control', 'maxlength' => 191]) !!}
+                    </div>
+                </div>
             </div>
 
             <div class="row">

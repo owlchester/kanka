@@ -255,21 +255,22 @@ class CampaignDashboardWidget extends Model
 
         $excludedTypes = [];
         if (empty($entityType)) {
-            $excludedTypes = [
-                'tag',
-                'conversation',
-                'attribute_template',
-                'dice_roll',
-            ];
+            // Todo: this didn't work for 6 months and no one complained
+            /*$excludedTypes = [
+                config('entities.ids.tag'),
+                config('entities.ids.conversation'),
+                config('entities.ids.attribute_template'),
+                config('entities.ids.dice_roll'),
+            ];*/
         }
 
         if ($this->filterUnmentioned()) {
             $base = $base->unmentioned()
-                ->whereNotIn($base->getTable() . '.type', $excludedTypes)
+                ->whereNotIn($base->getTable() . '.type_id', $excludedTypes)
             ;
         } elseif ($this->filterMentionless()) {
             $base = $base->mentionless()
-                ->whereNotIn($base->getTable() . '.type', $excludedTypes)
+                ->whereNotIn($base->getTable() . '.type_id', $excludedTypes)
             ;
         }
 
@@ -318,20 +319,70 @@ class CampaignDashboardWidget extends Model
     }
 
     /**
+     * Get a random entity
+     * Todo: refactor this code with the code from the quick link?
+     * @return mixed
+     * @throws \Illuminate\Contracts\Container\BindingResolutionException
+     */
+    public function randomEntity()
+    {
+        $entityType = $this->conf('entity');
+        $entityTypeID = (int) config('entities.ids.' . $entityType);
+
+        $base = new Entity();
+
+        if (!empty($entityType) && !empty($this->config['filters'])) {
+            $className = 'App\Models\\' . \Illuminate\Support\Str::studly($entityType);
+            /** @var \App\Models\MiscModel $model */
+            $model = new $className();
+
+            /** @var \App\Services\FilterService $filterService */
+            $filterService = app()->make('App\Services\FilterService');
+            $filterService
+                ->session(false)
+                ->make($entityType, $this->filterOptions(), $model);
+
+            $models = $model
+                ->select('id')
+                ->filter($filterService->filters())
+                ->get();
+
+            $entityIds = $models->pluck('id');
+
+            // Add the filter to the base query
+            $base = $base->whereIn('entities.entity_id', $entityIds);
+        }
+
+        return $base
+            ->inTags($this->tags->pluck('id')->toArray())
+            ->whereNotIn('type_id', [config('entities.ids.attribute_template'), config('entities.ids.conversation'), config('entities.ids.tag')])
+            ->whereNotIn('entities.id', \App\Facades\Dashboard::excluding())
+            ->type($entityTypeID)
+            ->with(['image'])
+            ->inRandomOrder()
+            ->first();
+    }
+
+    /**
      * Get the widget filters
      * @return array
      */
     private function filterOptions(): array
     {
-        $filters = [];
         if (empty($this->config['filters'])) {
-            return $filters;
+            return [];
         }
 
         try {
+            $filters = [];
             $segments = explode('&', $this->config['filters']);
             foreach ($segments as $segment) {
                 $params = explode('=', $segment);
+                $name = $params[0];
+                if (Str::endsWith($name, '[]')) {
+                    $filters[substr($name, 0, -2)][] = $params[1];
+                    continue;
+                }
                 $filters[$params[0]] = $params[1];
             }
 
@@ -379,6 +430,10 @@ class CampaignDashboardWidget extends Model
         return '<i class="' . $icon . '"></i>';
     }
 
+    /**
+     * @param Campaign $campaign
+     * @return string
+     */
     public function customClass(Campaign $campaign): string
     {
         if (!$campaign->boosted()) {

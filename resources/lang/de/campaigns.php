@@ -225,15 +225,7 @@ TEXT
         ],
         'your_role'             => 'Du bist ein <i>:role</i>',
     ],
-    'open_campaign'                     => [
-        'helper'    => 'Mit einer öffentlichen Kampagne, die als offen festgelegt ist, können Benutzer eine Berwerbung senden um teilzunehmen. Die Liste der Bewerbungen finden Sie auf unserer :link Seite.',
-        'link'      => 'Kampagnenbewerbungen',
-        'statuses'  => [
-            'closed'    => 'geschlossen',
-            'open'      => 'Offen für Anwendungsbereiche',
-        ],
-        'title'     => 'offene Kampagne',
-    ],
+    'open_campaign'                     => [],
     'options'                           => [],
     'panels'                            => [
         'boosted'   => 'Geboosted',
@@ -298,7 +290,6 @@ TEXT
         'members'       => 'Mitglieder',
         'modals'        => [
             'details'   => [
-                'button'    => 'benötige Hilfe',
                 'campaign'  => 'Kampagnenberechtigungen erlauben Folgendes.',
                 'entities'  => 'Hier ist eine kurze Zusammenfassung, was Mitglieder dieser Rolle erhalten, wenn eine Berechtigung festgelegt wird.',
                 'more'      => 'Weitere Informationen finden Sie in unserem Tutorial-Video auf Youtube',
@@ -367,9 +358,6 @@ TEXT
             'enable'    => 'aktivieren',
         ],
         'boosted'   => 'Diese Funktion befindet sich in der Beta-Phase und ist derzeit nur verfügbar für :boosted.',
-        'edit'      => [
-            'success'   => 'Kampagnen Einstellungen aktualisiert.',
-        ],
         'errors'    => [
             'module-disabled'   => 'Das angeforderte Modul ist derzeit in den Kampagneneinstellungen deaktiviert. :fix.',
         ],
@@ -395,7 +383,6 @@ TEXT
             'tags'          => 'Jedes Objekt kann eine Kategorie habe. Kategorien können zu anderen Kategorien gehören und Objekte können nach Kategorie gefiltert werden.',
             'timelines'     => 'Stellen Sie die Geschichte Ihrer Welt mit Zeitstrahlen dar.',
         ],
-        'title'     => 'Kampagne :name Module',
     ],
     'show'                              => [
         'actions'   => [

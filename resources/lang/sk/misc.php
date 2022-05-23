@@ -2,6 +2,8 @@
 
 return [
     'ads'   => [
-        'boosting'  => 'boostnutím',
+        'boosting'      => 'boostnutím',
+        'remove_v3'     => 'Odstráň reklamy :subscribing Kanky alebo :boosting kampane.',
+        'subscribing'   => 'predplatným',
     ],
 ];

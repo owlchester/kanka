@@ -38,7 +38,6 @@ return [
             'helper'    => 'Znamínky + a - před číslem lze upravit věk o daný počet.',
         ],
         'delete'        => [
-            'title'     => 'Odstranit více objektů',
             'warning'   => 'Opravdu chceš odstranit vybrané objekty?',
         ],
         'edit'          => [
@@ -91,11 +90,9 @@ return [
         'empty' => 'Zatím zde nic není.',
     ],
     'delete_modal'              => [
-        'close'             => 'Zavřít',
-        'delete'            => 'Odstranit',
-        'description'       => 'Opravdu chceš odstranit štítek :tag?',
-        'description_final' => 'Opravdu chceš odstranit štítek :tag? Tuto akci nelze vrátit.',
-        'title'             => 'Potvrdit odstranění',
+        'close' => 'Zavřít',
+        'delete'=> 'Odstranit',
+        'title' => 'Potvrdit odstranění',
     ],
     'destroy_many'              => [
         'success'   => '{1} Smazán :count objekt.|[2,4] Smazány :count objekty.|[5,*] Smazáno :count objektů.',

@@ -13,8 +13,5 @@ return [
         'success'   => 'Standardobjektbild für :type entfernt',
     ],
     'helper'    => 'Legen Sie benutzerdefinierte Standardobjektbild für Ihre Kampagne fest. Diese werden in den verschiedenen Listen angezeigt, jedoch nicht in dem Objekt selbst',
-    'index'     => [
-        'title' => 'Standardobjektbilder',
-    ],
-    'title'     => 'Kampagne :campaign Standardobjektbild',
+    'index'     => [],
 ];

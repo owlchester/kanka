@@ -1,9 +1,8 @@
 @extends('layouts.app', [
-    'title' => trans('campaigns.export.title', ['name' => $campaign->name]),
-    'description' => '',
+    'title' => __('campaigns.export.title', ['name' => $campaign->name]),
     'breadcrumbs' => [
         ['url' => route('campaign'), 'label' => __('campaigns.index.title')],
-        trans('campaigns.show.tabs.export')
+        __('campaigns.show.tabs.export')
     ],
     'canonical' => true,
     'mainTitle' => false,
@@ -16,7 +15,7 @@
             @include('campaigns._menu', ['active' => 'export'])
         </div>
         <div class="col-md-9">
-            {!! Form::open(['method' => 'POST', 'route' => ['campaign_export']]) !!}
+            {!! Form::open(['method' => 'POST', 'route' => ['export.process']]) !!}
             <div class="box box-solid">
                 <div class="box-header with-border">
                     <h3 class="box-title">
@@ -26,7 +25,7 @@
                 <div class="box-body">
                     <p>{{ __('campaigns.export.helper') }}</p>
                     <p>{!! __('campaigns.export.helper_secondary', [
-    'api' => link_to('/docs/1.0', __('front.menu.api'))
+    'api' => link_to('/api-docs/1.0', __('front.features.api.link'))
 ]) !!}</p>
                     <p class="help-text">
                         {{ __('campaigns.export.helper_third') }}

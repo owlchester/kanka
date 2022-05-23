@@ -14,9 +14,13 @@ return [
     'conversation'          => 'Conversation',
     'conversations'         => 'Conversations',
     'creator'               => [
+        'actions'           => [
+            'create'    => 'Créer :type',
+        ],
         'back'              => 'Retour à la sélection',
         'duplicate'         => 'Il y a d\'autres entités de ce type avec le même nom.',
-        'helper'            => 'Sélection d\'un type d\'entité. Si aucun type n\'apparaît, cela signifie que tu n\'as pas les permissions nécessaires pour créer des entités dans cette campagne.',
+        'helper_v2'         => 'Créés rapidement les fondations d\'une nouvelle entité sans interrompre ton flow.',
+        'missing'           => 'Tu ne vois pas tous les types d\'entités ? Il est peut-être désactivé, tes autorisations ne le permettent peut-être pas, ou il n\'est pas disponible pour la création rapide.',
         'name'              => [
             'new'       => 'Nouveau nom',
             'remove'    => 'Retirer',

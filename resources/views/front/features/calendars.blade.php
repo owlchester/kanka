@@ -39,7 +39,7 @@
 
 
                         <div class="text-center">
-                        <img src="/images/features/calendars.png" alt="Kanka calendar" class="mb-5" style="max-width: 100%" />
+                        <img src="/images/features/calendars.png" alt="Kanka calendar" class="mb-5" style="max-width: 100%" loading="lazy" />
                         </div>
 
                         <p class="text-center mb-5">
@@ -51,7 +51,7 @@
                         <p>{{ __('front/features/calendars.fifth') }}</p>
 
                         <div class="text-center">
-                        <img src="/images/features/calendar_widget.png" alt="Kanka calendar dashboard widget" width=class="mb-5" style="max-width: 100%" />
+                        <img src="/images/features/calendar_widget.png" alt="Kanka calendar dashboard widget" width=class="mb-5" style="max-width: 100%" loading="lazy" />
                         </div>
 
                     </div>

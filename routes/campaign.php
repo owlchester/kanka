@@ -364,6 +364,7 @@ Route::get('/dashboard/widgets/recent/{id}', 'DashboardController@recent')->name
 Route::get('/dashboard/widgets/unmentioned/{id}', 'DashboardController@unmentioned')->name('dashboard.unmentioned');
 Route::post('/dashboard/widgets/calendar/{campaignDashboardWidget}/add', [\App\Http\Controllers\Widgets\CalendarWidgetController::class, 'add'])->name('dashboard.calendar.add');
 Route::post('/dashboard/widgets/calendar/{campaignDashboardWidget}/sub', [\App\Http\Controllers\Widgets\CalendarWidgetController::class, 'sub'])->name('dashboard.calendar.sub');
+Route::get('/dashboard/widgets/{campaignDashboardWidget}/render', [\App\Http\Controllers\Widgets\CalendarWidgetController::class, 'render'])->name('dashboard.calendar.render');
 
 // Move
 Route::get('/entities/{entity}/move', 'Entity\MoveController@index')->name('entities.move');
@@ -406,15 +407,18 @@ Route::get('/entities/{entity}/permissions', 'PermissionController@view')->name(
 Route::post('/entities/{entity}/permissions', 'PermissionController@store')->name('entities.permissions');
 
 // The campaign management sub pages
-Route::get('/campaign', 'CampaignController@index')->name('campaign');
-Route::get('/campaign-settings', 'CampaignSettingController@index')->name('campaign_settings');
-Route::post('/campaign-settings', 'CampaignSettingController@save')->name('campaign_settings.save');
+Route::get('/overview', 'CampaignController@index')->name('campaign');
+Route::get('/modules', 'CampaignSettingController@index')->name('campaign.modules');
+Route::post('/modules/toggle/{module?}', 'CampaignSettingController@toggle')->name('campaign.modules.toggle');
 Route::get('/campaign-theme', 'Campaign\StyleController@theme')->name('campaign-theme');
 Route::post('/campaign-theme', 'Campaign\StyleController@themeSave')->name('campaign-theme.save');
-Route::get('/campaign-export', 'Campaign\ExportController@index')->name('campaign_export');
-Route::post('/campaign-export', 'Campaign\ExportController@export')->name('campaign_export.save');
+Route::get('/campaign-export', 'Campaign\ExportController@index')->name('export');
+Route::post('/campaign-export', 'Campaign\ExportController@export')->name('export.process');
 Route::get('/campaign.styles', 'CampaignController@css')->name('campaign.css');
 Route::get('/campaign_plugin.styles', 'Campaign\PluginController@css')->name('campaign_plugins.css');
+
+Route::get('/campaign-applications', 'Campaign\SubmissionController@toggle')->name('campaign-applications');
+Route::post('/campaign-applications', 'Campaign\SubmissionController@toggleSave')->name('campaign-applications.save');
 
 // Campaign sidebar setup
 Route::get('/sidebar-setup', 'Campaign\SidebarController@index')->name('campaign-sidebar');

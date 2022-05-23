@@ -5,6 +5,7 @@ return [
         'actions'           => 'Accións',
         'apply'             => 'Aplicar',
         'back'              => 'Voltar',
+        'bulk_actions'      => 'Accións en bloque',
         'bulk_templates'    => 'Aplicar Padrón de atributos',
         'copy'              => 'Copiar',
         'copy_mention'      => 'Copiar mención [ ]',
@@ -33,13 +34,12 @@ return [
     'boosted_campaigns'         => 'Campañas potenciadas',
     'bulk'                      => [
         'actions'       => [
-            'edit'  => 'Editar e etiquetar en masa',
+            'edit'  => 'Editar e etiquetar en bloque',
         ],
         'age'           => [
             'helper'    => 'Usa + e - antes do número para modificar a idade nesa cantidade.',
         ],
         'delete'        => [
-            'title'     => 'Eliminar múltiples entidades',
             'warning'   => 'Seguro que queres eliminar as entidades seleccionadas?',
         ],
         'edit'          => [
@@ -92,11 +92,9 @@ return [
         'empty' => 'Nada que mostrar (aínda).',
     ],
     'delete_modal'              => [
-        'close'             => 'Pechar',
-        'delete'            => 'Eliminar',
-        'description'       => 'Seguro que queres eliminar :tag?',
-        'description_final' => 'Tes certeza de que queres eliminar :tag? Esta acción non pode desfacerse.',
-        'title'             => 'Confirmación de eliminación',
+        'close' => 'Pechar',
+        'delete'=> 'Eliminar',
+        'title' => 'Confirmación de eliminación',
     ],
     'destroy_many'              => [
         'success'   => 'Eliminouse :count entidade|Elimináronse :count entidades.',

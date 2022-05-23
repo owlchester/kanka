@@ -1,6 +1,10 @@
 <?php
 
 return [
+    'copy_mention'  => [
+        'copy_with_name'    => 'Erweiterte Erwähnung mit Elementname kopieren',
+        'success'           => 'Erweiterte Erwähnung des in die Zwischenablage kopierten Elements.',
+    ],
     'create'        => [
         'success'   => 'Element zum Zeitstrahl hinzugefügt',
         'title'     => 'neues Zeitstrahlelement',

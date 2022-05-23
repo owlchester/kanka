@@ -81,7 +81,7 @@ function initConfirmListener()
         e.preventDefault();
         formSubmitBtn.addClass('disabled')
         formSubmitBtn.find('span').hide();
-        formSubmitBtn.find('spinner').show();
+        formSubmitBtn.find('.spinner').show();
 
         let intentToken = $('input[name="subscription-intent-token"]');
         let errorMessage = $('.alert-danger');
@@ -119,8 +119,9 @@ function initConfirmListener()
     });
 
     $('.subscription-form').submit(function (e) {
-        formSubmitBtn.addClass('disabled').find('span').hide();
-        formSubmitBtn.find('i').show();
+        formSubmitBtn.addClass('disabled')
+            .find('span').hide()
+            .parent().find('.spinner').show();
 
         return true;
     });
@@ -187,6 +188,7 @@ function checkCoupon() {
 function initPeriodToggle() {
     $('input[name="period"]').change(function () {
         let box = $('#pricing-overview');
+        console.log('checked?', this.checked);
         if (this.checked) {
             box.removeClass('period-month').addClass('period-year');
         } else {

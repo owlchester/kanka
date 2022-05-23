@@ -1,5 +1,5 @@
-<div class="row pricing mt-3">
-    <div class="col-lg-3 col-md-4 mb-5">
+<div class="row pricing mt-5 pt-5">
+    <div class="col-lg-3 col-md-4 ">
         <div class="card mb-5 mb-lg-0">
             <div class="card-body">
                 <div class="card-image subscription-kobold @nowebp webpfallback @endnowebp"></div>
@@ -9,7 +9,7 @@
                 <ul class="fa-ul">
                     <li>
                         <span class="fa-li"><i class="fa-solid fa-times"></i></span>
-                        <a href="{{ route('front.pricing', ['#boost']) }}" target="_blank">
+                        <a href="{{ route('front.boosters') }}">
                             <strong>{{ __('front.pricing.benefits.no_boosters') }}</strong>
                         </a>
                     </li>
@@ -41,8 +41,8 @@
         </div>
     </div>
 
-    <div class="col-lg-3 col-md-4 mb-5">
-        <div class="card mb-5 mb-lg-0">
+    <div class="col-lg-3 col-md-4">
+        <div class="card mb-5 mb-lg-0 mt-5 mt-md-0">
             <div class="card-body">
                 <div class="card-image subscription-owlbear @nowebp webpfallback @endnowebp"></div>
                 <div class="card-title text-muted text-uppercase text-center">Owlbear</div>
@@ -51,7 +51,7 @@
                 <ul class="fa-ul">
                     <li>
                         <span class="fa-li"><i class="fa-solid fa-check"></i></span>
-                        <a href="{{ route('front.pricing', ['#boost']) }}" target="_blank">
+                        <a href="{{ route('front.boosters') }}">
                             <strong>3 {{ __('front.pricing.benefits.boosters') }}</strong>
                         </a>
                     </li>
@@ -62,7 +62,7 @@
                         <span class="fa-li"><i class="fa-solid fa-check"></i></span> {{ __('front.features.patreon.monthly_vote') }}
                     </li>
                     <li>
-                        <span class="fa-li"><i class="fa-solid fa-check"></i></span> {{ __('front.features.patreon.discord') }}
+                        <span class="fa-li"><i class="fa-solid fa-check"></i></span> {!! __('front.features.patreon.discord', ['discord' => link_to(config('social.discord'), 'Discord', ['target' => '_blank'])]) !!}
                     </li>
                     <li>
                         <span class="fa-li"><i class="fa-solid fa-check"></i></span> {{ __('front.features.patreon.no_ads') }}
@@ -86,8 +86,8 @@
         </div>
     </div>
 
-    <div class="col-lg-3 col-md-4 mb-5">
-        <div class="card mb-5 mb-lg-0">
+    <div class="col-lg-3 col-md-4">
+        <div class="card mb-5 mb-lg-0 mt-5 mt-md-0">
             <div class="card-body">
                 <div class="card-image subscription-wyvern @nowebp webpfallback @endnowebp"></div>
                 <div class="card-title text-muted text-uppercase text-center">Wyvern</div>
@@ -96,7 +96,7 @@
                 <ul class="fa-ul">
                     <li>
                         <span class="fa-li"><i class="fa-solid fa-check"></i></span>
-                        <a href="{{ route('front.pricing', ['#boost']) }}" target="_blank">
+                        <a href="{{ route('front.boosters') }}">
                             <strong>6 {{ __('front.pricing.benefits.boosters') }}</strong>
                         </a>
                     </li>
@@ -107,7 +107,7 @@
                         <span class="fa-li"><i class="fa-solid fa-check"></i></span> {{ __('front.features.patreon.monthly_vote') }}
                     </li>
                     <li>
-                        <span class="fa-li"><i class="fa-solid fa-check"></i></span> {{ __('front.features.patreon.discord') }}
+                        <span class="fa-li"><i class="fa-solid fa-check"></i></span> {!! __('front.features.patreon.discord', ['discord' => link_to(config('social.discord'), 'Discord', ['target' => '_blank'])]) !!}
                     </li>
                     <li>
                         <span class="fa-li"><i class="fa-solid fa-check"></i></span> {{ __('front.features.patreon.no_ads') }}
@@ -130,8 +130,8 @@
             </div>
         </div>
     </div>
-    <div class="offset-md-4 offset-lg-0 col-lg-3 col-md-4 mb-5">
-        <div class="card mb-5 mb-lg-0">
+    <div class="offset-md-4 offset-lg-0 col-lg-3 col-md-4">
+        <div class="card mb-5 mb-lg-0 mt-5 mt-md-0">
             <div class="card-body">
                 <div class="card-image subscription-elemental @nowebp webpfallback @endnowebp"></div>
                 <div class="card-title text-muted text-uppercase text-center">Elemental</div>
@@ -140,7 +140,7 @@
                 <ul class="fa-ul">
                     <li>
                         <span class="fa-li"><i class="fa-solid fa-check"></i></span>
-                        <a href="{{ route('front.pricing', ['#boost']) }}" target="_blank">
+                        <a href="{{ route('front.boosters') }}">
                             <strong>10 {{ __('front.pricing.benefits.boosters') }}</strong>
                         </a>
                     </li>
@@ -151,7 +151,7 @@
                         <span class="fa-li"><i class="fa-solid fa-check"></i></span> {{ __('front.features.patreon.monthly_vote') }}
                     </li>
                     <li>
-                        <span class="fa-li"><i class="fa-solid fa-check"></i></span> {{ __('front.features.patreon.discord') }}
+                        <span class="fa-li"><i class="fa-solid fa-check"></i></span> {!! __('front.features.patreon.discord', ['discord' => link_to(config('social.discord'), 'Discord', ['target' => '_blank'])]) !!}
                     </li>
                     <li>
                         <span class="fa-li"><i class="fa-solid fa-check"></i></span> {{ __('front.features.patreon.no_ads') }}

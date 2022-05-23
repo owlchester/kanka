@@ -20,13 +20,13 @@
 <tr>
     <td></td>
     <td><i class="fa-solid fa-rocket text-maroon"></i>
-        {!! link_to_route('front.pricing', 3 . ' ' . __('tiers.features.boosters'), '#boost', ['target' => '_blank']) !!}
+        {!! link_to_route('front.boosters', 3 . ' ' . __('tiers.features.boosters'), '', ['target' => '_blank']) !!}
     </td>
     <td><i class="fa-solid fa-rocket text-maroon"></i>
-        {!! link_to_route('front.pricing', 6 . ' ' . __('tiers.features.boosters'), '#boost', ['target' => '_blank']) !!}
+        {!! link_to_route('front.boosters', 6 . ' ' . __('tiers.features.boosters'), '', ['target' => '_blank']) !!}
     </td>
     <td><i class="fa-solid fa-rocket text-maroon"></i>
-        {!! link_to_route('front.pricing', 10 . ' ' . __('tiers.features.boosters'), '#boost', ['target' => '_blank']) !!}
+        {!! link_to_route('front.boosters', 10 . ' ' . __('tiers.features.boosters'), '', ['target' => '_blank']) !!}
     </td>
 </tr>
 <tr>
@@ -55,9 +55,9 @@
 </tr>
 <tr>
     <td></td>
-    <td><i class="fa-solid fa-check"></i> {!! link_to_route('community-votes.index', __('tiers.features.community_vote'), ['target' => '_blank']) !!}</td>
-    <td><i class="fa-solid fa-check"></i> {!! link_to_route('community-votes.index', __('tiers.features.community_vote'), ['target' => '_blank']) !!}</td>
-    <td><i class="fa-solid fa-check"></i> {!! link_to_route('community-votes.index', __('tiers.features.community_vote'), ['target' => '_blank']) !!}</td>
+    <td><i class="fa-solid fa-check"></i> {!! link_to_route('community-votes.index', __('tiers.features.community_vote'), null, ['target' => '_blank']) !!}</td>
+    <td><i class="fa-solid fa-check"></i> {!! link_to_route('community-votes.index', __('tiers.features.community_vote'), null, ['target' => '_blank']) !!}</td>
+    <td><i class="fa-solid fa-check"></i> {!! link_to_route('community-votes.index', __('tiers.features.community_vote'), null, ['target' => '_blank']) !!}</td>
 </tr>
 <tr>
     <td></td>

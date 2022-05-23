@@ -1,0 +1,9 @@
+.main-header {
+  .navbar {
+    transition: transform .3s ease-in-out,width .3s ease-in-out;
+  }
+  .sidebar-toggle {
+    text-align: center;
+    transition: transform .3s ease-in-out,width .3s ease-in-out;
+  }
+}

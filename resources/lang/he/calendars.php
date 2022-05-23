@@ -188,10 +188,6 @@ return [
     ],
     'show'          => [
         'missing_details'   => 'לא ניתן להציג את לוח השנה הזה. לוח שנה חייב להכיל לפחות 2 חודשים ו2 ימים.',
-        'moon_full_moon'    => 'ירח מלא :moon',
-        'moon_new_moon'     => 'ירח מולד :moon',
-        'moon_waning_moon'  => 'ירח מתמלא :moon',
-        'moon_waxing_moon'  => 'ירח נחסר :moon',
         'tabs'              => [
             'events'    => 'אירועי לוח שנה',
             'weather'   => 'מזג אוויר',

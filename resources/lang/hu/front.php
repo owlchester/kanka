@@ -2,8 +2,7 @@
 
 return [
     'about'         => [
-        'description'   => 'A Kanka két szenvedélyes szerepjátékos abbéli vágyából született, hogy közösen felépítsenek és kezeljenek egy világot 2017 nyarán. Az akkor elérhető eszközöket kipróbálva arra jutottunk, hogy egyikük sem igazán felelt meg annak, amit akartunk, így nekiálltunk 2017 őszén a saját eszköztárunk kiépítésének.',
-        'title'         => 'Névjegy',
+        'title' => 'Névjegy',
     ],
     'campaigns'     => [
         'description_full'  => 'A Kanka rendszerében sok kampány nyilvánosan látható mindenki számára. Ezen az oldalon az összes nyilvános kampányt, valamint a közösség néhány kiemelt kampányát láthatod.',
@@ -189,16 +188,10 @@ return [
         'title'         => 'Egy új módszer a kampányaid kezelésére',
     ],
     'footer'        => [
-        'app'           => 'Alkalmazás',
-        'headings'      => [
-            'app'           => 'App',
-            'community'     => 'Közösség',
-            'other'         => 'Egyéb',
-            'useful_links'  => 'Hasznos linkek',
+        'headings'  => [
+            'app'       => 'App',
+            'community' => 'Közösség',
         ],
-        'navigation'    => 'Navigáció',
-        'resources'     => 'Dokumentumok',
-        'social'        => 'Közösségi média',
     ],
     'help'          => [
         'description'   => 'Ha segítség kellene, itt vagyunk. Keress meg minket az alábbi módok valamelyikén, és válaszolunk, amint tudunk.',
@@ -219,39 +212,24 @@ return [
         'heading'           => 'Szerepjátékos kampánymenedzsment, és világépítés könnyedén',
         'title'             => 'Kanka',
     ],
-    'media'         => [
-        'description'   => 'Keress nagy felbontású képeket ezen az oldalon a Kankáról. Használd ezeket, ha reklámozni akarod a Kankát, vagy olyan alkalmazásokat készítesz, amelyek kapcsolódnak a Kankához.',
-        'images'        => [
-            'primary'   => 'Elsődleges Kanka logó',
-            'social'    => 'Közösségi Kanka logó',
-        ],
-        'title'         => 'Média',
-    ],
+    'media'         => [],
     'menu'          => [
         'about'         => 'Névjegy',
-        'api'           => 'API',
         'campaigns'     => 'Nyilvános kampányok',
         'community'     => 'Közösség',
         'contact'       => 'Kapcsolat',
-        'contact_us'    => 'Lépj velünk kapcsolatba',
         'dashboard'     => 'Főoldal',
         'features'      => 'Funkciók',
-        'help'          => 'Segítség',
-        'home'          => 'Kezdőlap',
         'kb'            => 'Tudásbázis',
         'login'         => 'Bejelentkezés',
         'marketplace'   => 'Piactér',
-        'media'         => 'Média',
         'news'          => 'Hírek',
         'newsletter'    => 'Hírlevél',
-        'other'         => 'Egyéb',
         'pricing'       => 'Árak',
         'privacy'       => 'Adatvédelmi tájékoztató',
         'register'      => 'Regisztráció',
         'releases'      => 'Verziók',
         'roadmap'       => 'Fejlesztési terv',
-        'terms'         => 'Felhasználási feltételek',
-        'title'         => 'Menü',
     ],
     'meta'          => [
         'description'   => 'A Kanka egy rugalmas digitális világépítő és online szerepjátékos kampánykezelő',

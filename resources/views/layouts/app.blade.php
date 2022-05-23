@@ -40,7 +40,7 @@ $seoTitle = isset($seoTitle) ? $seoTitle : (isset($title) ? $title : null);
     <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon/apple-touch-icon-180x180.png" />
 
     <!-- Styles -->
-    <link href="{{ mix('css/bootstrap.css') }}" rel="stylesheet">
+    <link href="/css/bootstrap.css?v={{ config('app.version') }}" rel="stylesheet">
     <link href="{{ mix('css/vendor.css') }}" rel="stylesheet">
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
     <link href="{{ mix('css/freyja.css') }}" rel="stylesheet">
@@ -73,7 +73,7 @@ $seoTitle = isset($seoTitle) ? $seoTitle : (isset($title) ? $title : null);
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
 </head>
 {{-- Hide the sidebar if the there is no current campaign --}}
-<body class="skin-black sidebar-mini @if(\App\Facades\DataLayer::groupB())ab-testing-second @else ab-testing-first @endif @if (!empty($campaign) || (auth()->check() && auth()->user()->hasCampaigns()) || (!empty($sidebar) && $sidebar == 'settings'))@else layout-top-nav @endif @if(isset($miscModel) && !empty($miscModel->entity)){{ $miscModel->bodyClasses() }}@endif @if(isset($dashboard))dashboard-{{ $dashboard->id }}@endif @if(isset($bodyClass)){{ $bodyClass }}@endif @if(!app()->environment('prod')) env-{{ app()->environment() }} @endif" @if(!empty($specificTheme)) data-theme="{{ $specificTheme }}" @endif>
+<body class=" @if(\App\Facades\DataLayer::groupB())ab-testing-second @else ab-testing-first @endif @if (!empty($campaign) || (auth()->check() && auth()->user()->hasCampaigns()) || (!empty($sidebar) && $sidebar == 'settings'))@else layout-top-nav @endif @if(isset($miscModel) && !empty($miscModel->entity)){{ $miscModel->bodyClasses() }}@endif @if(isset($dashboard))dashboard-{{ $dashboard->id }}@endif @if(isset($bodyClass)){{ $bodyClass }}@endif @if(!app()->environment('prod')) env-{{ app()->environment() }} @endif" @if(!empty($specificTheme)) data-theme="{{ $specificTheme }}" @endif>
 @include('layouts._tracking-fallback')
 
 <a href="#{{ isset($contentId) ? $contentId : "main-content" }}" class="skip-nav-link" tabindex="1">
@@ -89,11 +89,10 @@ $seoTitle = isset($seoTitle) ? $seoTitle : (isset($title) ? $title : null);
         <div class="content-wrapper" id="{{ isset($contentId) ? $contentId : "main-content" }}">
             @include('layouts.banner')
 
-        @if(!view()->hasSection('content-header'))
+        @if(!view()->hasSection('content-header') && (isset($breadcrumbs) && $breadcrumbs !== false))
             <section class="content-header">
                 @includeWhen(!isset($breadcrumbs) || $breadcrumbs !== false, 'layouts._breadcrumbs')
-
-                @if (!View::hasSection('entity-header'))
+                @if (!view()->hasSection('entity-header'))
                     @if (isset($mainTitle))
                         @yield('header-extra')
                     @else
@@ -160,7 +159,7 @@ $seoTitle = isset($seoTitle) ? $seoTitle : (isset($title) ? $title : null);
 
     <div class="modal fade" id="entity-modal" role="dialog" aria-labelledby="deleteConfirmLabel">
         <div class="modal-dialog" role="document">
-            <div class="modal-content"></div>
+            <div class="modal-content rounded-2xl"></div>
             <div class="modal-spinner" style="display: none">
                 <div class="modal-body text-center">
                     <i class="fa-solid fa-spinner fa-spin fa-2x"></i>
@@ -175,40 +174,7 @@ $seoTitle = isset($seoTitle) ? $seoTitle : (isset($title) ? $title : null);
         </div>
     </div>
 
-@auth
-    <div class="modal modal-danger fade" id="delete-confirm" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('crud.delete_modal.close') }}"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">{{ __('crud.delete_modal.title') }}</h4>
-                </div>
-                <div class="modal-body">
-                    <p id="delete-confirm-text">
-                        {!! __('crud.delete_modal.description', ['tag' => '<b><span id="delete-confirm-name"></span></b>']) !!}
-                    </p>
-                    <div id="delete-confirm-mirror" class="form-group checkbox" style="display: none">
-                        <label>
-                            <input type="checkbox" id="delete-confirm-mirror-checkbox" name="delete-mirror">
-                            {{ __('entities/relations.delete_mirrored.option') }}
-                            <i class="fa-solid fa-question-circle hidden-xs hidden-sm" title="{{ __('entities/relations.delete_mirrored.helper') }}" data-toggle="tooltip"></i>
-                        </label>
-                        <p class="help-block visible-xs visible-sm">
-                            {{ __('entities/relations.delete_mirrored.helper') }}
-                        </p>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">{{ __('crud.cancel') }}</button>
-                    <button type="button" class="btn btn-outline delete-confirm-submit">
-                        <span class="fa-solid fa-trash"></span>
-                        <span class="remove-button-label">{{ __('crud.remove') }}</span>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-@endif
+    @includeWhen(auth()->check(), 'layouts.modals.delete')
 
     @yield('modals')
 

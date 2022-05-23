@@ -84,8 +84,7 @@ return [
         ],
         'title'             => 'Boost',
         'unboost'           => [
-            'description'   => 'Möchten Sie die Kampagnen :tag nicht mehr boosten?',
-            'title'         => 'Kampagnen boosting beenden',
+            'title' => 'Kampagnen boosting beenden',
         ],
     ],
     'countries'     => [
@@ -120,22 +119,14 @@ return [
         'success'   => 'Layout Optionen aktualisiert.',
         'title'     => 'Layout',
     ],
-    'marketplace'   => [
-        'fields'    => [
-            'name'  => 'Marktplatzname',
-        ],
-        'helper'    => 'Standardmäßig wird Ihr Benutzername auf dem :marketplace angezeigt. Sie können diesen Wert mit diesem Feld überschreiben.',
-        'title'     => 'Marktplatz Einstellungen',
-        'update'    => 'Marktplatz Einstellungen gespeichert',
-    ],
+    'marketplace'   => [],
     'menu'          => [
         'account'               => 'Account',
         'api'                   => 'API',
         'apps'                  => 'Apps',
         'billing'               => 'Zahlungsmethode',
+        'boosters'              => 'Booster',
         'invoices'              => 'Rechnungen',
-        'layout'                => 'Layout',
-        'marketplace'           => 'Marktplatz',
         'other'                 => 'Andere',
         'patreon'               => 'Patreon',
         'payment_options'       => 'Zahlungsmöglichkeiten',
@@ -223,6 +214,8 @@ return [
             'alternatives'          => 'Bezahlen Sie Ihr Abonnement mit :method. Diese Zahlungsmethode wird am Ende Ihres Abonnements nicht automatisch verlängert. :method ist nur in Euro verfügbar.',
             'alternatives_warning'  => 'Ein Upgrade Ihres Abonnements mit dieser Methode ist nicht möglich. Bitte erstellen Sie ein neues Abonnement, wenn Ihr aktuelles Abonnement endet.',
             'alternatives_yearly'   => 'Aufgrund der Einschränkungen bei wiederkehrenden Zahlungen ist die :method nur für Jahresabonnements verfügbar',
+            'paypal'                => 'Möchtest du stattdessen Paypal verwenden? Kontaktiere uns unter :email, wenn du einen Jahresplan mit Paypal abonnieren möchtest.',
+            'stripe'                => 'Deine Rechnungsinformationen werden von :stripe sicher verarbeitet und gespeichert.',
         ],
         'manage_subscription'   => 'Abonnement verwalten',
         'payment_method'        => [
@@ -241,6 +234,10 @@ return [
             'helper'        => 'Diese Karte wird für alle Ihre Abonnements verwendet.',
             'new_card'      => 'Fügen sie eine neue Zahlungsmethode hinzu',
             'saved'         => ':brand endet mit :last4',
+        ],
+        'periods'               => [
+            'monthly'   => 'Monatlich',
+            'yearly'    => 'Jährlich',
         ],
         'placeholders'          => [
             'reason'    => 'Sagen Sie uns optional, warum Sie Kanka nicht mehr unterstützen. Fehlt eine Funktion? Hat sich Ihre finanzielle Situation geändert?',

@@ -32,10 +32,9 @@ return [
     ],
     'event'         => [
         'actions'   => [
-            'delete-confirm'    => 'esse lembrete',
-            'existing'          => 'Entidade Existente',
-            'new'               => 'Novo evento',
-            'switch'            => 'Escolha de mudança',
+            'existing'  => 'Entidade Existente',
+            'new'       => 'Novo evento',
+            'switch'    => 'Escolha de mudança',
         ],
         'create'    => [
             'success'   => 'Evento de calendário criado.',
@@ -208,10 +207,6 @@ return [
     ],
     'show'          => [
         'missing_details'   => 'Este calendário não pôde ser exibido. Os calendários precisam de pelo menos 2 meses e 2 dias da semana para serem renderizados corretamente.',
-        'moon_full_moon'    => ':moon Lua cheia',
-        'moon_new_moon'     => ':moon Lua Nova',
-        'moon_waning_moon'  => ':moon Minguante',
-        'moon_waxing_moon'  => ':moon crescente',
         'tabs'              => [
             'events'    => 'Eventos de calendário',
             'weather'   => 'Clima',

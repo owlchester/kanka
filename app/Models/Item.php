@@ -103,7 +103,7 @@ class Item extends MiscModel
      * @var array
      */
     protected $foreignExport = [
-        'quests',
+
     ];
 
     public function tooltip($limit = 250, $stripSpecial = true)

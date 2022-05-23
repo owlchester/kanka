@@ -96,6 +96,9 @@ class CampaignRole extends Model
         return $this->hasMany('App\Models\CampaignPermission', 'campaign_role_id');
     }
 
+    /**
+     * @param array $permissions
+     */
     public function savePermissions(array $permissions = [])
     {
         // Load existing

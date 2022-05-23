@@ -42,16 +42,11 @@ return [
         'options'           => 'Néhány lehetőség :options',
         'title'             => 'Más entitások kapcsolása, rövidítések.',
     ],
-    'map'               => [
-        'description'   => 'Ha feltöltesz egy térképet egy helyszínhez, meg fog jelenni a \'Térkép\' menü a Helyszín felületén, és egy közvetlen hivatkozás a térképre a kampány helyszínek oldaláról. A térkép nézetből a felhasználok, akik szerkeszthetik a helyszínt, aktiválhatják a \'Szerkesztő Mód\'-ot, amely lehetővé teszi számukra, hogy ún. Térkép pontokat helyezzenek el a térképen. Ezek a pontok hivatkozásként szolgálhatnak már meglévő entitásokra, vagy címkékre, valamint számos alakúak, és méretűek lehetnek.',
-        'private'       => 'A kampány Admin jogú felhasználói priváttá tehetik a térképet. Ezzel a többi felhasználó továbbra is láthatja a helyszínt, azonban a térkép rejtve marad előlük.',
-        'title'         => 'Helyszín térképek',
-    ],
+    'map'               => [],
     'pins'              => [
         'title' => 'Entitáskitűzők',
     ],
     'public'            => 'Nézd meg az oktatóvideónkat a Youtube-on, amelyben a nyilvános kampányok működését magyarázzuk el!',
-    'title'             => 'Súgók',
     'widget-filters'    => [
         'link'  => 'widget szűrők',
         'title' => 'Főldal widget szűrők',

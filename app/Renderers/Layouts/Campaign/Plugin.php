@@ -80,6 +80,13 @@ class Plugin extends Layout
                 'type' => 'ajax-modal',
                 'route' => 'campaign_plugins.update-info',
             ],
+            'changelog' => [
+                'label' => 'campaigns/plugins.actions.changelog',
+                'icon' => 'fa-solid fa-list',
+                'can' => 'changelog',
+                'type' => 'ajax-modal',
+                'route' => 'campaign_plugins.update-info',
+            ],
             'disable' => [
                 'can' => 'disable',
                 'route' => 'campaign_plugins.disable',

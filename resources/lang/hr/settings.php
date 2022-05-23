@@ -77,8 +77,7 @@ return [
         ],
         'title'             => 'Pojačanje',
         'unboost'           => [
-            'description'   => 'Sigurno želiš prestati pojačavati kampanju :tag?',
-            'title'         => 'Poništavanje pojačavanja kampanje',
+            'title' => 'Poništavanje pojačavanja kampanje',
         ],
     ],
     'countries'     => [
@@ -113,22 +112,13 @@ return [
         'success'   => 'Ažurirane opcije rasporeda.',
         'title'     => 'Izgled',
     ],
-    'marketplace'   => [
-        'fields'    => [
-            'name'  => 'Naziv Tržnice',
-        ],
-        'helper'    => 'Prema zadanim postavkama tvoje korisničko se prikazuje na :marketplace. Možeš to promijeniti ovim poljem.',
-        'title'     => 'Postavke Tržnice',
-        'update'    => 'Postavke Tržnice spremljene.',
-    ],
+    'marketplace'   => [],
     'menu'          => [
         'account'               => 'Račun',
         'api'                   => 'API',
         'apps'                  => 'Aplikacije',
         'billing'               => 'Način plaćanja',
         'invoices'              => 'Fakture',
-        'layout'                => 'Raspored',
-        'marketplace'           => 'Tržnica',
         'other'                 => 'Ostalo',
         'patreon'               => 'Patreon',
         'payment_options'       => 'Mogućnosti plaćanja',

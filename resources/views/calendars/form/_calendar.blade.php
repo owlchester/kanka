@@ -3,9 +3,12 @@
     <div class="col-md-6">
 
         <div class="form-group">
-            <label>{{ __('calendars.fields.start_offset') }}</label>
+            <label>
+                {{ __('calendars.fields.start_offset') }}
+                <i class="fa-solid fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" title="{{ __('calendars.helpers.start_offset') }}"></i>
+            </label>
             {!! Form::number('start_offset', !empty($model) ? $model->start_offset : FormCopy::field('start_offset')->string(0), ['class' => 'form-control']) !!}
-            <p class="help-block">{{ __('calendars.helpers.start_offset') }}</p>
+            <p class="help-block visible-xs visible-sm">{{ __('calendars.helpers.start_offset') }}</p>
         </div>
 
         <hr />
@@ -13,14 +16,14 @@
         <div class="form-group">
             <label>
                 {{ __('calendars.fields.reset') }}
+                <i class="fa-solid fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" title="{{ __('calendars.hints.reset') }}"></i>
             </label>
             {!! Form::select('reset', __('calendars.options.resets'), null, ['class' => 'form-control']) !!}
-            <p class="help-block">{{ __('calendars.hints.reset') }}</p>
+            <p class="help-block visible-xs visible-sm">{{ __('calendars.hints.reset') }}</p>
         </div>
 
         <hr />
 
-        @if ($campaign->enabled('calendars'))
             <?php
             $preset = null;
             if (isset($model) && $model->calendar) {
@@ -38,31 +41,40 @@
                         'class' => App\Models\Calendar::class,
                         'labelKey' => 'calendars.fields.calendar',
                         'from' => isset($model) ? $model : null,
+                        'helper' => __('calendars.hints.parent_calendar')
                     ]
                 ) !!}
-                <p class="help-block">{{ __('calendars.hints.parent_calendar') }}</p>
             </div>
             <hr />
-        @endif
 
         <div class="form-group checkbox">
             {!! Form::hidden('is_incrementing', 0) !!}
             <label>{!! Form::checkbox('is_incrementing', 1, FormCopy::field('is_incrementing')->string()) !!}
                 {{ __('calendars.fields.is_incrementing') }}
+                <i class="fa-solid fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" title="{{ __('calendars.hints.is_incrementing') }}"></i>
             </label>
-            <p class="help-block">{{ __('calendars.hints.is_incrementing') }}</p>
+            <p class="help-block visible-xs visible-sm">{{ __('calendars.hints.is_incrementing') }}</p>
         </div>
+
+
+        <hr />
+
+        <div class="form-group">
+            <label>
+                {{ __('calendars.fields.default_layout') }}
+                <i class="fa-solid fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" title="{{ __('calendars.helpers.default_layout') }}"></i>
+            </label>
+            {!! Form::select('parameters[layout]', ['' => __('calendars.layouts.monthly'), 'yearly' => __('calendars.layouts.yearly')], null, ['class' => 'form-control'])!!}
+            <p class="help-block visible-xs visible-sm">
+                {{ __('calendars.helpers.default_layout') }}
+            </p>
+        </div>
+
     </div>
     <div class="col-md-6">
         <div class="form-group">
             <label>{{ __('calendars.panels.years') }}</label>
             <p class="help-block">{{ __('calendars.hints.years') }}</p>
-        </div>
-        <div class="form-group">
-            <div class="row">
-                <div class="col-md-4">{{ __('calendars.parameters.year.number') }}</div>
-                <div class="col-md-8">{{ __('calendars.parameters.year.name') }}</div>
-            </div>
         </div>
         <?php
         $years = [];
@@ -85,7 +97,7 @@
             @foreach ($years as $year => $name)
                 <div class="form-group">
                     <div class="row">
-                        <div class="col-md-4">
+                        <div class="col-sm-4">
                             <div class="input-group">
                                 <span class="input-group-addon">
                                     <span class="fa-solid fa-arrows-alt-v"></span>
@@ -93,7 +105,7 @@
                                 {!! Form::text('year_number[]', $year, ['class' => 'form-control']) !!}
                             </div>
                         </div>
-                        <div class="col-md-8">
+                        <div class="col-sm-8">
                             <div class="input-group">
                                 {!! Form::text('year_name[]', $name, ['class' => 'form-control']) !!}
                                 <span class="input-group-btn">
@@ -111,29 +123,8 @@
             <i class="fa-solid fa-plus"></i> {{ __('calendars.actions.add_year') }}
         </a>
 
-        <div class="form-group" id="template_year" style="display: none">
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="input-group">
-                        <span class="input-group-addon">
-                            <span class="fa-solid fa-arrows-alt-v"></span>
-                        </span>
-                        {!! Form::number('year_number[]', null, ['class' => 'form-control', 'placeholder' => __('calendars.parameters.year.number')]) !!}
-                    </div>
-                </div>
-                <div class="col-md-8">
-                    <div class="input-group">
-                        {!! Form::text('year_name[]', null, ['class' => 'form-control', 'placeholder' => __('calendars.parameters.year.name')]) !!}
-                        <span class="input-group-btn">
-                            <span class="month-delete btn btn-danger" data-remove="4" title="{{ __('crud.remove') }}">
-                                <i class="fa-solid fa-trash"></i>
-                            </span>
-                        </span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <hr>
+        <hr />
+
         <div class="form-group checkbox">
             {!! Form::hidden('has_leap_year', 0) !!}
             <label>{!! Form::checkbox('has_leap_year', 1, FormCopy::field('has_leap_year')->string()) !!}
@@ -160,3 +151,30 @@
         </div>
     </div>
 </div>
+
+
+@section('modals')
+    @parent
+    <div class="form-group" id="template_year" style="display: none">
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        <span class="fa-solid fa-arrows-alt-v"></span>
+                    </span>
+                    {!! Form::number('year_number[]', null, ['class' => 'form-control', 'placeholder' => __('calendars.parameters.year.number')]) !!}
+                </div>
+            </div>
+            <div class="col-sm-8">
+                <div class="input-group">
+                    {!! Form::text('year_name[]', null, ['class' => 'form-control', 'placeholder' => __('calendars.parameters.year.name')]) !!}
+                    <span class="input-group-btn">
+                        <span class="month-delete btn btn-danger" data-remove="4" title="{{ __('crud.remove') }}">
+                            <i class="fa-solid fa-trash"></i>
+                        </span>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection

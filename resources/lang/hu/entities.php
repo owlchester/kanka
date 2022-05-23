@@ -16,7 +16,6 @@ return [
     'creator'               => [
         'back'      => 'Vissza a listához',
         'duplicate' => 'Már létezik ilyen típusú entitás ugyanezzel a névvel.',
-        'helper'    => 'Válassz ki egy entitástípust a létrehozásához! Ha nem jelennek meg entitások, az jelenti, hogy nincs engedélyed semmilyen entitás létrehozásához ebben a kampányban.',
         'title'     => 'Új entitás létrehozása',
     ],
     'dice_roll'             => 'Dobás',

@@ -4,19 +4,29 @@
 
 @import 'front/new-age.min.css';
 
-$KankaBlue: #2828A1;
+$KankaLogo: #112B6B;
+$KankaIconLight: #95B5D8;
+$KankaIconMiddle: #40479E;
+$KankaBlue: $KankaLogo;
 $KankaDarkBlue: #08083c;
 $KankaGrey: #EDEDED;
-$KankaGold: #c09853;
+$KankaGold: #9E9740;
+$KankaFooter: #eee;
 
 html {
   scroll-behavior: smooth;
 }
 body {
-  background-color: #222;
+  background-color: $KankaFooter;
 }
 header.masthead {
   background: linear-gradient(to left, #3f44a1, $KankaDarkBlue);
+}
+header.masthead.masthead-half {
+  height: unset;
+  min-height: 0;
+  padding-top: 0;
+  padding-bottom: 0;
 }
 header.masthead-img {
   background-color: $KankaDarkBlue;
@@ -76,14 +86,6 @@ header.reduced-masthead.master-sm {
     font-size: 1rem;
     text-transform: unset;
   }
-  .navbar-brand {
-    color: #73a6c0 !important;
-    font-family: Catamaran,Helvetica,Arial,sans-serif !important;
-
-    img {
-      height: 32px;
-    }
-  }
   .nav-active, .nav-link:hover {
     transition: all 0.2s ease-in-out;
     text-decoration: underline;
@@ -140,45 +142,110 @@ header.reduced-masthead.master-sm {
     }
   }
 }
-.navbar {
+/*.navbar {
   a {
     color: $KankaBlue;
   }
-}
+}*/
 
 h1, h2, h3, h4, h5, h6, .card-title, .card-price {
   font-family: Catamaran,Helvetica,Arial,sans-serif !important;
   font-weight: 200;
   letter-spacing: 1px;
   word-break: break-word;
-}
-
-section.contact-us {
-  p {
-    font-size: 24px;
-  }
-  a {
-    margin: 0 10px;
-  }
-}
-section.contact ul.list-social li.social-discord a{
-  background-color:#7289da;
-
-  img {
-    width: 70%;
-    margin-top: -7px;
-  }
+  -webkit-font-smoothing: antialiased;
 }
 section {
   background-color: #fff;
-}
-section.contact ul.list-social li.social-discord a:hover{
-  background-color: #5078da;
+  padding: 50px 0;
+
+  h1 {
+    font-weight: 300;
+  }
+  h2 {
+    font-size: 2rem;
+    font-weight: 300;
+  }
+  .lead {
+    margin-bottom: 50px;
+    margin-top: 14px;
+    font-weight: 300;
+    line-height: 1.7;
+  }
+  p {
+    font-weight: 300;
+    line-height: 1.6;
+  }
+  a {
+    color: $KankaIconMiddle;
+    font-weight: 500;
+    &:hover {
+      color: $KankaBlue;
+    }
+  }
+  .btn-primary {
+    background-color: $KankaIconMiddle;
+    border: 1px solid $KankaBlue;
+  }
 }
 
-hr {
-  max-width: 250px;
-  margin: 25px auto;
+.booster-cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+
+  .booster-card {
+    padding: 2rem;
+    border-radius: 1rem;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: linear-gradient(120deg, #729DCB, #7472CB 90%), #72C9CB;
+
+    p {
+      font-size: 1rem;
+    }
+    .img-thumbnail {
+      align-self: center;
+      vertical-align: middle;
+
+      width: 120px;
+      height: 120px;
+      background-color: $KankaIconLight;
+      border: 5px solid white;
+      padding: 0;
+
+      i {
+        font-size: 3rem;
+        padding-top: 1.9rem;
+      }
+    }
+
+    /*&:nth-of-type(odd) {
+      background: linear-gradient(120deg, #2E4ED1, #5F2ED1 90%), #2EA0D1;
+    }*/
+    &:nth-child(2) {
+      background: linear-gradient(120deg, #7472CB, #72CACB 90%), #72CBA1;
+    }
+    &:nth-child(3) {
+      background: linear-gradient(120deg, #72CACB, #729ECB 90%), #72CB75;
+    }
+    &:nth-child(4) {
+      background: linear-gradient(120deg, #729ECB, #72CBA0 90%), #B6D895;
+    }
+    &:nth-child(5) {
+      background: linear-gradient(120deg, #72CBA0, #72CACB 90%), #D8D895;
+    }
+    &:nth-child(6) {
+      background: linear-gradient(120deg, #72CACB, #72CB74 90%), #D8B695;
+    }
+    &:nth-child(7) {
+      background: linear-gradient(120deg, #72CB74, #72CBA1 90%), #D89595;
+    }
+  }
+  .booster-card.centered {
+  }
 }
 
 @media (min-width: 992px) {
@@ -224,168 +291,139 @@ hr {
       }
     }
   }
+
+  .booster-cards {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+
+    .booster-card.centered {
+      grid-column: 2/3;
+    }
+  }
 }
 
 footer {
-  padding-top: 40px;
-  padding-bottom: 30px;
-  text-align: left;
-  background-color: $KankaDarkBlue;
-  color: #ccc;
+  background-color: $KankaFooter; //$KankaDarkBlue;
+  color: #181414;
 
   ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-
     li {
-      padding: 0;
-      display: block;
-      margin: 2px 0;
-
       a {
-        font-size: 14px !important;
-        width: 100%;
-        color: rgba(255, 255, 255, 0.6);
+        font-size: 0.9rem !important;
+        display: block;
+        color: #181414;
+        border-radius: 5px;
+        padding: 0.25rem 0.5rem;
 
         &:hover {
+          color: #181414;
           transition: all 0.2s ease;
           text-decoration: none;
-          color: $KankaGold;
+          background-color: $KankaIconLight;
         }
       }
     }
   }
 
-  .kanka-logo {
-    font-size: 14px;
-    font-weight: 700;
-    color: #ddd;
-
-    a {
-      padding: 5px;
-      display: inline-block;
-    }
-  }
-
   a {
-    display: inline-block;
-    border-radius: 4px;
-    letter-spacing: 1.1px;
-    color: #ccc;
-    font-size: 1rem;
-  }
-
-  .footer-socials {
-    line-height: 1.8em;
-    color: rgba(255,255,255,0.8);
-    padding: 1.5rem 0px 1.5rem;
-    text-align: center;
-
-    .email, .socials {
-      display: inline;
-      font-size: 18px;
-
-      a {
-        font-size: 1.4rem;
-        margin-right: 8px;
-      }
-    }
-
-    .email {
-      margin-right: 20px;
+    color: $KankaBlue;
+    &:hover {
+      text-decoration: none;
     }
   }
 
   .footer-copyright {
-    font-size: 12px;
-    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.825rem;
   }
 
   .footer-links {
 
     .section {
-      height: 60px;
-      position: relative;
-      margin: 0;
       text-transform: uppercase;
-      font-size: 18px;
-
-      .section-title {
-        margin: 0;
-        position: absolute;
-        top: 50%;
-        -ms-transform: translateY(-50%);
-        transform: translateY(-50%);
-      }
+      font-size: 1.0rem;
+      font-weight: 500;
+      padding: 0.25rem 0.5rem;
     }
     ul > li {
       margin: 0;
-      padding-top: 0.5rem;
-      padding-bottom: 0.5rem;
+      padding-bottom: 0.25rem;
       font-weight: 400;
       font-size: 0.875rem;
-      line-height: 1.3;
+      line-height: 1.2;
     }
   }
 }
 
 .campaign-container {
-  overflow: hidden;
   margin-bottom: 20px;
-  position: relative;
-  height: 200px;
+  border-radius: 5px;
+  overflow: hidden;
 
-  .campaign {
+  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+  a.campaign {
     transition: all 0.5s;
+    display: flex;
+    flex-direction: row;
 
     .campaign-image {
       background-size: cover;
       background-repeat: no-repeat;
       background-position: center;
-      height: 200px;
-      width: 100%;
-      transition: all 0.5s;
-      position: absolute;
-      top: 0;
-    }
-
-    .small-campaign {
-      height: 160px;
+      height: 150px;
+      width: 150px;
+      z-index: 2;
     }
 
     &:hover {
       box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
       text-decoration: none;
-      color: $KankaGold;
-      .campaign-image {
-        transform: scale(1.1);
-      }
+      color: $KankaIconLight;
     }
 
     .bottom {
-      position: absolute;
-      bottom: 0;
-      padding: 20px 5px 5px 5px;
-      background: linear-gradient(180deg, rgba(51, 51, 51, 0) 0%, #333333 100%);
+      position: relative;
+      flex: 1;
+      z-index: 3;
       width: 100%;
+      padding: 1rem;
 
       .labels {
-        font-size: 14pt;
+        font-size: 0.85rem;
+
+        span {
+          text-overflow: ellipsis;
+          display: inline-block;
+        }
       }
 
       h4.campaign-title {
-        margin: 0;
-        max-height: 50px;
         overflow: hidden;
-        font-size: 20px;
+        font-size: 1.4rem;
       }
     }
   }
 }
+.featured-winner {
+  font-size: 0.9rem;
+  margin-bottom: 0;
+}
 
-.campaign-boosted {
-  box-shadow: 0 4px 6px rgba(98, 46, 116, 0.3), 0 1px 3px rgba(69, 17, 82, 0.08);
+.featured-campaigns .campaign-container > a.campaign {
+  display: block;
+  .campaign-image {
+    height: 200px;
+    width: 100%;
+    transition: all 0.5s;
+    background: linear-gradient(180deg, rgba(51, 51, 51, 0) 0%, #333333 100%);
+  }
+  &:hover {
+    .campaign-image {
+      transform: scale(1.1);
+    }
+  }
+  .bottom {
+    background-color: white;
+    padding: 0.5rem;
+  }
 }
 
 .campaign-placeholder {
@@ -401,19 +439,10 @@ h4 {
     font-size: 28px;
   }
 }
-
-h2 {
-  font-size: 44px !important;
+.py-50 {
+  padding: 50px 0;
 }
 
-section {
-  a {
-    color: #dbab36;
-  }
-  li a {
-    color: $KankaBlue;
-  }
-}
 
 ul.pagination {
   li {
@@ -465,7 +494,7 @@ ul.pagination {
 }
 
 .minimal-padding {
-  padding: 50px 20px;
+  padding: 50px 0px;
   background-color: #fff;
   width: 100%;
 }
@@ -495,6 +524,7 @@ ul.pagination {
     box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1) !important;
   }
 }
+
 
 .card {
   .pull-bottom {
@@ -541,11 +571,7 @@ ul.pagination {
   }
 }
 
-#pricing, #news {
-  padding: 50px 0;
-}
 .pricing {
-  margin-bottom: 25px;
 
   .card {
     border: none;
@@ -555,7 +581,8 @@ ul.pagination {
   }
 
   hr {
-    margin: 1.5rem 0;
+    margin: 1.25rem auto;
+    max-width: 250px;
   }
 
 
@@ -566,7 +593,7 @@ ul.pagination {
     font-weight: bold;
   }
   .card-price {
-    font-size: 3rem;
+    font-size: 2rem;
     margin: 0;
   }
 
@@ -575,7 +602,7 @@ ul.pagination {
   }
 
   ul li {
-    margin-bottom: 1rem;
+    margin-bottom: 0.75rem;
   }
   .text-muted {
     opacity: 0.7;
@@ -597,21 +624,8 @@ ul.pagination {
   }
 }
 
-section.features .feature-item i {
-  background: unset;
-  color: #007bff !important;
-  -webkit-text-fill-color: unset;
-}
-
-.features-toc {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-
-  li {
-    padding: 2px 0;
-    margin: 0;
-  }
+.feature-item i {
+  background-image: linear-gradient(to left,$KankaIconLight,$KankaBlue) !important;
 }
 
 .faq-categories {
@@ -658,7 +672,7 @@ section.features .feature-item i {
 
 .device {
   img {
-    aspect-ratio: attr(width) / attr(height);
+    aspect-ratio: 4 / 3;
   }
 }
 
@@ -725,6 +739,9 @@ section.features .feature-item i {
 
 
 @media (min-width: 768px) {
+  section {
+    //padding: 100px 0;
+  }
   .pricing {
     .card-body {
       ul {

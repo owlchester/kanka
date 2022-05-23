@@ -21,6 +21,7 @@ return [
     'tooltip'           => [
         'boosted-description'   => 'Nahradiť automaticky generovanú bublinu objektu pomocou :boosted-campaign.',
         'description'           => 'Nahradiť automaticky generovanú bublinu objektu nasledujúcim textom.',
+        'helper'                => 'Nasledujúce HTML prvky sú povolené v bublinách: :tags',
         'name'                  => 'Bublina',
     ],
 ];

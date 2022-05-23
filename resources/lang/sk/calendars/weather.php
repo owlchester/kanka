@@ -1,9 +1,7 @@
 <?php
 
 return [
-    'actions'       => [
-        'delete-confirm'    => 'toto počasie',
-    ],
+    'actions'       => [],
     'create'        => [
         'success'   => 'Počasie pridané.',
         'title'     => 'Nový efekt počasia',

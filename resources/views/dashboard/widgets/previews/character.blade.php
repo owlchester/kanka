@@ -31,7 +31,7 @@ $model = $entity->child;
                     <i class="fa-solid fa-lock pull-right" title="{{ trans('crud.is_private') }}"></i>
                 @endif
                 @if ($entity->child->is_dead)
-                    <i class="ra ra-skull pull-right margin-r-5" title="{{ trans('characters.fields.is_dead') }}"></i>
+                    <i class="ra ra-skull pull-right mr-2" title="{{ trans('characters.fields.is_dead') }}"></i>
                 @endif
 
                 @if(!empty($customName))

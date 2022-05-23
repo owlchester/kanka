@@ -45,7 +45,10 @@ class RelationPolicy
      */
     public function update(User $user, Relation $relation)
     {
-        return $user->isAdmin();
+        if (empty($relation->owner) || empty($relation->owner->child)) {
+            return false;
+        }
+        return $user->can('relation', $relation->owner->child);
     }
 
     /**
@@ -57,6 +60,9 @@ class RelationPolicy
      */
     public function delete(User $user, Relation $relation)
     {
-        return $user->isAdmin();
+        if (empty($relation->owner) || empty($relation->owner->child)) {
+            return false;
+        }
+        return $user->can('relation', $relation->owner->child);
     }
 }

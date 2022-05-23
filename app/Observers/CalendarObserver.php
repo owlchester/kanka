@@ -22,6 +22,11 @@ class CalendarObserver extends MiscObserver
             return;
         }
 
+        /**
+         * Todo: move all of this to the controller, preparing the data.
+         * The model doesn't need to know how moons, months etc are build!
+         */
+
         // Handle months
         $months = [];
         $monthCount = 0;

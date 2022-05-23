@@ -65,7 +65,7 @@ $specificTheme = null;
 @endif
 @yield('styles')
 </head>
-<body id="map-body" class="map-page skin-black skin-map sidebar-mini sidebar-collapse" @if(!empty($specificTheme)) data-theme="{{ $specificTheme }}" @endif>
+<body id="map-body" class="map-page sidebar-collapse" @if(!empty($specificTheme)) data-theme="{{ $specificTheme }}" @endif>
 @include('layouts._tracking-fallback')
 
     <div id="app" class="wrapper">
@@ -114,31 +114,7 @@ $specificTheme = null;
     </div>
 
     <!-- Modal -->
-    <div class="modal fade" id="delete-confirm" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('crud.delete_modal.close') }}"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">{{ __('crud.delete_modal.title') }}</h4>
-                </div>
-                <div class="modal-body">
-                    <p id="delete-confirm-text">
-                        {!! __('crud.delete_modal.description', ['tag' => '<b><span id="delete-confirm-name"></span></b>']) !!}
-                    </p>
-                    <div id="delete-confirm-mirror" class="form-group" style="display: none">
-                        <label>
-                            <input type="checkbox" id="delete-confirm-mirror-chexkbox" name="delete-mirror">
-                            {{ __('crud.delete_modal.mirrored') }}
-                        </label>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">{{ __('crud.cancel') }}</button>
-                    <button type="button" class="btn btn-danger delete-confirm-submit"><span class="fa-solid fa-trash"></span> {{ __('crud.delete_modal.delete') }}</button>
-                </div>
-            </div>
-        </div>
-    </div>
+    @includeWhen(auth()->check(), 'layouts.modals.delete')
 
 <script src="{{ mix('js/app.js') }}"></script>
 @if (config('fontawesome.kit'))

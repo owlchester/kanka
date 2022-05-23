@@ -20,7 +20,13 @@ return [
         'private'           => 'Les attributs privés en utilisant :icon ne sont que visibles pour les membres du rôle admin de la campagne.',
         'random'            => 'Lors de la création ou de la modification d\'un modèle d\'attribut, il est possible de définir des attributs aléatoires. Cela peut être une valeur aléatoire entre deux nombres séparés par:dash, ou une valeur aléatoire d\'une liste de valeurs séparées par :comma. La valeur de l\'attribut est déterminée lorsque le modèle est appliqué à une entité ou lorsqu\'une entité est créée.',
         'random_examples'   => 'Par example, pour avoir un nombre entre 1 et 100, utiliser :number. Pour avoir une valeur d\'une liste d\'option, utiliser :list.',
+        'range'             => 'Les attributs numériques peuvent être configurés pour n\'autoriser que les valeurs comprises dans une plage de nombres. Par exemple, utilises :example pour limiter l\'attribut entre 1 et 10. Les valeurs de la fourchette peuvent également faire référence à d\'autres attributs, par exemple avec :reference. Lors de l\'enregistrement d\'un attribut, si la valeur se situe en dehors de la fourchette, la valeur la plus proche de la fourchette est automatiquement utilisé.',
         'title'             => 'Attributs',
+    ],
+    'calendar-widget'   => [
+        'description'   => 'Confus par les événements qui s\'affichent sur le widget du tableau de bord? Le calcul des rappels à afficher est complexe et nécessite beaucoup de ressources. Nous avons donc pris quelques raccourcis pour éviter que le tableau de bord ne prenne trop de temps à charger. Les rappels qui ne se répètent pas ne sont pas toujours prioritaires par rapport à ceux qui se répètent, et les rappels basés sur les phases de la lune sont complètement ignorés.',
+        'info'          => 'Pour quoi ces événements sont-ils affichés?',
+        'title'         => 'Widget de calendrier',
     ],
     'dice'              => [
         'description'               => 'Exemples de jets de dés: "d20", "4d4+4", "d%" pour un pourcentage et "df" pour un jet Fudge.',
@@ -80,19 +86,15 @@ return [
         'months'            => 'Saisis :code pour avoir une liste de mois des calendriers de la campagne.',
         'options'           => 'Quelques options: :options.',
         'overview'          => 'Lier facilement aux entités de la campagne en écrivant :code et trois lettres ou plus.',
+        'parameters'        => 'Les paramètres peuvent également être transmis au lien de l\'entité. Par exemple, tu peux spécifier l\'année et le mois à afficher sur un calendrier avec :calendar. La même chose peut être faite avec les sous-listes de classement. Par exemple, ordonner les sous-familles de famille par nom de lieu avec :sublist.',
         'title'             => 'Liens vers d\'autres éléments et raccourcis',
     ],
-    'map'               => [
-        'description'   => 'Uploader une carte dans un lieu active le menu "Carte" sur ce lieu, ainsi qu\'un lien vers la carte depuis la liste des lieux de la campagne. Les utilisateurs avec les droits de modification d\'une carte peuvent activer le mode \'Edition\' en visionnant la carte. Ceci permet d\'ajouter des Points sur la carte. Un Point peut être un lien vers une entité existante ou un champ texte.',
-        'private'       => 'Les membres du rôle Admin de la campagne peuvent rendre les cartes privées. Cela permet à un utilisateur de voir un lieu tout en gardant la carte secrète.',
-        'title'         => 'Carte de lieux',
-    ],
+    'map'               => [],
     'pins'              => [
         'description'   => 'Les entités peuvent avoir leurs relations et attributs épinglés sur la droite du mode histoire. Un élément peut être épinglé lors de l\'édition en cliquant sur le champs épingler ou l\'étoile.',
         'title'         => 'Épinglé',
     ],
     'public'            => 'Une vidéo sur Youtube explique comment fonctionne les campagnes publiques.',
-    'title'             => 'Aides',
     'troubleshooting'   => [
         'description'       => 'Un membre de l\'équipe Kanka t\'as envoyé vers cette page. Sélectionnes une campagne dans la liste pour générer un jeton. Ce jeton nous permettra de rejoindre la campagne en tant qu\'administrateur.',
         'errors'            => [

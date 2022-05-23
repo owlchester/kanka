@@ -78,7 +78,7 @@ return [
             'back_to_dashboard' => 'Back to dashboard',
             'edit'              => 'Edit a widget',
         ],
-        'title'     => 'Campaign Dashboard Setup',
+        'title'     => 'Dashboard Setup',
         'tutorial'  => [
             'blog'  => 'our tutorial',
             'text'  => 'Need help setting up your campaign dashboard? Read :blog for some help and inspiration.',
@@ -97,7 +97,6 @@ return [
     'widgets'       => [
         'actions'                   => [
             'advanced-options'  => 'Advanced options',
-            'delete-confirm'    => 'this widget',
         ],
         'advanced_options_boosted'  => ':boosted_campaigns have advanced options like showing members of a family or the entity\'s attributes on the dashboard.',
         'calendar'                  => [
@@ -128,7 +127,8 @@ return [
             'width'             => 'Width',
         ],
         'helpers'                   => [
-            'class' => 'Define a custom css class added to the widget.',
+            'class'     => 'Define a custom css class added to the widget.',
+            'filters'   => 'Click to learn about the available filter options.',
         ],
         'orders'                    => [
             'name_asc'  => 'Name ascending',
@@ -152,7 +152,6 @@ return [
             'help'              => 'Only show the first entity as a preview instead of a list.',
             'helpers'           => [
                 'entity-header'     => 'If your entity has an entity header (boosted campaign feature), set this widget to use that image instead of the entity\'s image.',
-                'filters'           => 'You can filter the kind of entities that show up. Learn how to use this field by visiting the :link helper page.',
                 'full'              => 'Display the whole entity\'s entry by default instead of a preview.',
                 'show_attributes'   => 'Show the entity\'s pinned attributes below the entry.',
                 'show_members'      => 'If the entity is a family or organisation, show its members below the entry.',

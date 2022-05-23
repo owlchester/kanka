@@ -15,10 +15,10 @@ $headerImage = true;
 ])
 
 @section('og')
-    <meta property="og:description" content="{{ $model->tooltip() ?: trans($name . '.show.title', ['name' => $model->name]) }}" />
-    @if ($model->image)<meta property="og:image" content="{{ $model->getImageUrl(0)  }}" />@endif
-
+@if ($tooltip = $model->tooltip())<meta property="og:description" content="{{ $tooltip }}" />@endif
+@if ($model->image)<meta property="og:image" content="{{ $model->getImageUrl(0)  }}" />@endif
     <meta property="og:url" content="{{ $model->getLink()  }}" />
+    <meta name="twitter:card" content="summary_large_image" />
 @endsection
 
 

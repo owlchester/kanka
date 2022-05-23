@@ -48,7 +48,7 @@ $permissions = [
     <h4>{{ __('entities/notes.show.advanced') }}</h4>
     @if(!empty($model))
         @foreach ($model->permissions()->with('user')->get() as $perm)
-            <div class="row margin-bottom">
+            <div class="row mb-5">
                 <div class="col-sm-6">
                     {!! $perm->user->name !!}
                 </div>
@@ -67,15 +67,15 @@ $permissions = [
             </div>
         @endforeach
     @endif
-    <div id="entity-note-perm-target" class="margin-bottom"></div>
-    <div class="text-right margin-bottom">
+    <div id="entity-note-perm-target" class="mb-5"></div>
+    <div class="text-right mb-5">
         <span class="btn btn-default btn-flat" data-toggle="modal" data-target="#entity-note-new-user">
             <i class="fa-solid fa-plus"></i> {{ __('entities/notes.actions.add_user') }}
         </span>
     </div>
     {!! Form::hidden('permissions', true) !!}
 
-    <div class="hidden row margin-bottom" id="entity-note-perm-template">
+    <div class="hidden row mb-5" id="entity-note-perm-template">
         <div class="col-sm-6">
             $USERNAME$
         </div>

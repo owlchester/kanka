@@ -16,7 +16,6 @@ return [
     'creator'               => [
         'back'              => 'Zurück zur Auswahl',
         'duplicate'         => 'Es gibt andere Objekte dieses Typs mit demselben Namen.',
-        'helper'            => 'Wähle einen Objekttyp zum Erstellen. Wenn keine Objekte erscheinen, bedeutet das, dass dir die Berechtigung fehlt jede Art von Objekten in dieser Kampagne zu erstellen.',
         'name'              => [
             'new'       => 'Neuer Name',
             'remove'    => 'entfernen',

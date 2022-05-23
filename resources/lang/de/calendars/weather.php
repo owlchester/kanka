@@ -1,9 +1,7 @@
 <?php
 
 return [
-    'actions'       => [
-        'delete-confirm'    => 'dieses Wetter',
-    ],
+    'actions'       => [],
     'create'        => [
         'success'   => 'Wetter hinzugefügt.',
         'title'     => 'Neuer Wettereffekt',

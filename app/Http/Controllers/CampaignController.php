@@ -117,7 +117,6 @@ class CampaignController extends Controller
         }
         elseif ($first) {
             $user = auth()->user();
-            $user->welcome_campaign_id = $campaign->id;
             $user->save();
             return redirect()->to(app()->getLocale() . '/' . $campaign->getMiddlewareLink());
         }

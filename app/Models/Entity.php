@@ -98,6 +98,7 @@ class Entity extends Model
     protected $sortable = [
         'name',
         'type_id',
+        'deleted_at',
     ];
 
     /**
@@ -286,16 +287,14 @@ class Entity extends Model
      * @param string $action
      * @return string
      */
-    public function url($action = 'show', $tab = null)
+    public function url(string $action = 'show', array $options = [])
     {
         try {
             if ($action == 'index') {
                 return route($this->pluralType() . '.index');
             }
-            if (!empty($tab)) {
-                return route($this->pluralType() . '.' . $action, [$this->entity_id, '#' . $tab]);
-            }
-            return route($this->pluralType() . '.' . $action, $this->entity_id);
+            $routeOptions = array_merge([$this->entity_id], $options);
+            return route($this->pluralType() . '.' . $action, $routeOptions);
         } catch (\Exception $e) {
             return route('dashboard');
         }

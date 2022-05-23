@@ -13,9 +13,9 @@ $traits = $model->characterTraits()->personality()->orderBy('default_order')->ge
             @if(auth()->check() && auth()->user()->can('personality', $model))
                 <div class="box-tools">
                     @if (!$model->is_personality_visible)
-                        <i class="fa-solid fa-lock" title="{{ __('characters.hints.personality_not_visible') }}" data-toggle="tooltip"></i>
+                        <i class="fa-solid fa-lock btn-box-tool" title="{{ __('characters.hints.personality_not_visible') }}" data-toggle="tooltip"></i>
                     @else
-                        <i class="fa-solid fa-lock-open" title="{{ __('characters.hints.personality_visible') }}" data-toggle="tooltip"></i>
+                        <i class="fa-solid fa-lock-open btn-box-tool" title="{{ __('characters.hints.personality_visible') }}" data-toggle="tooltip"></i>
                     @endif
                 </div>
             @endif

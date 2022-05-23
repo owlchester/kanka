@@ -21,6 +21,7 @@ return [
     'tooltip'           => [
         'boosted-description'   => 'Substitúe a previsualización da entidade xerada automaticamente cunha :boosted-campaign.',
         'description'           => 'Substitúe a previsualización da entidade xereada automaticamente co seguinte texto.',
+        'helper'                => 'Os seguintes elementos HTML están permitidos nas previsualizacións: :tags',
         'name'                  => 'Previsualización',
     ],
 ];

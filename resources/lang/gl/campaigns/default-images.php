@@ -13,8 +13,5 @@ return [
         'success'   => 'Imaxe predeterminada para :type eliminada.',
     ],
     'helper'    => 'Define imaxes predeterminadas para as entidades da túa campaña. Estas mostraranse nas listaxes, pero non nas propias entidades.',
-    'index'     => [
-        'title' => 'Imaxes predeterminadas para entidades.',
-    ],
-    'title'     => 'Imaxes predeterminadas para entidades da campaña ":campaign"',
+    'index'     => [],
 ];

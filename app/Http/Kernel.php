@@ -2,6 +2,7 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\FullSetup;
 use App\Http\Middleware\PasswordConfirm;
 use App\Http\Middleware\Tracking;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
@@ -17,12 +18,12 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $middleware = [
-        \Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode::class,
+        \App\Http\Middleware\TrustProxies::class,
+        \Fruitcake\Cors\HandleCors::class,
+        \App\Http\Middleware\PreventRequestsDuringMaintenance::class,
         \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,
         \App\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
-        //\App\Http\Middleware\TrustProxies::class,
-        \Fruitcake\Cors\HandleCors::class,
     ];
 
     /**
@@ -81,5 +82,6 @@ class Kernel extends HttpKernel
         'partner' => \App\Http\Middleware\Partner::class,
         'password.confirm' => PasswordConfirm::class,
         'subscriptions' => \App\Http\Middleware\Subscriptions::class,
+        'fullsetup' => FullSetup::class,
     ];
 }

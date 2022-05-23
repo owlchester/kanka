@@ -1,6 +1,13 @@
 <?php
 
 return [
+    'appearance'                    => [
+        'helpers'   => [
+            'campaign-order'    => 'Change the order in which campaigns are listed in the campaign switcher.',
+            'date-format'       => 'Control the date format for real date.',
+            'pagination'        => 'Change the number of elements displayed in various lists.',
+        ],
+    ],
     'avatar'                        => [
         'success'   => 'Avatar updated.',
     ],
@@ -22,7 +29,7 @@ return [
     ],
     'fields'                        => [
         'avatar'                    => 'Avatar',
-        'bio'                       => 'Biography',
+        'bio'                       => 'Bio',
         'email'                     => 'Email',
         'hide_subscription'         => 'Hide my name from the :hall_of_fame.',
         'last_login_share'          => 'Share with other campaign members when I last logged in.',
@@ -31,8 +38,12 @@ return [
         'new_password_confirmation' => 'New Password Confirmation',
         'newsletter'                => 'I wish to sometimes be contacted by email.',
         'password'                  => 'Current password',
+        'profile-name'              => 'Profile name',
         'settings'                  => 'Settings',
         'theme'                     => 'Theme',
+    ],
+    'helpers'                       => [
+        'profile-name'  => 'Change the way your name appears on your :profile and the :marketplace. If left blank, your account name will be used instead.',
     ],
     'newsletter'                    => [
         'helpers'   => [
@@ -67,13 +78,16 @@ return [
         'password'                  => 'Provide your current password for any changes',
     ],
     'sections'                      => [
-        'delete'    => [
-            'delete'    => 'Delete my account',
-            'helper'    => 'Deleting your account will also delete any campaign you are the only member of. This action is permanent and can\'t be undone.',
-            'title'     => 'Delete your account',
-            'warning'   => 'By deleting your account, all your data will be lost. Are you sure?',
+        'dangerzone'    => 'Danger Zone',
+        'delete'        => [
+            'confirm'       => 'Yes, delete my account',
+            'delete'        => 'Delete my account',
+            'helper'        => 'Deleting your account will also delete any campaign you are the only member of. This action is permanent and can\'t be undone.',
+            'subscribed'    => 'Please cancel your :subscription before being able to delete your account.',
+            'title'         => 'Delete your account',
+            'warning'       => 'By deleting your account, all your data will be lost. Are you sure?',
         ],
-        'password'  => [
+        'password'      => [
             'title' => 'Change your password',
         ],
     ],
@@ -85,7 +99,7 @@ return [
             'default_nested'                => 'Nested Views as Default',
             'editor'                        => 'Text Editor',
             'new_entity_workflow'           => 'New Entity Workflow',
-            'pagination'                    => 'Pagination (elements per page)',
+            'pagination'                    => 'Pagination',
         ],
         'helpers'   => [
             'bio'       => 'The biography is visible on your :link.',
@@ -100,6 +114,7 @@ return [
         'success'   => 'Settings changed.',
     ],
     'theme'                         => [
+        'helper'    => 'A campaign with a set theme will override your preference.',
         'success'   => 'Theme changed.',
         'themes'    => [
             'dark'      => 'Dark',

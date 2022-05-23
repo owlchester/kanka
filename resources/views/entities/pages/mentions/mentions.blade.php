@@ -48,7 +48,7 @@
                                 @if($mention->entityNote->entity)
                                 <tr>
                                     <td>
-                                        <a href="{{ $mention->entityNote->entity->url('show', 'entity-note-' . $mention->entityNote->id) }}">
+                                        <a href="{{ $mention->entityNote->entity->url('show', ['#post-' . $mention->entityNote->id]) }}">
                                             {{ __('entities/mentions.entity_note', ['name' => $mention->entityNote->entity->name]) }}
                                         </a>
                                     </td>

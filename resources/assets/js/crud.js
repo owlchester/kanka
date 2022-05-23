@@ -65,7 +65,7 @@ $(document).ready(function () {
 
     registerFormSubmitAnimation();
     registerEntityCalendarForm();
-    registerToggablePanels();
+    //registerToggablePanels();
     registerEntityFormSubmit();
     registerEntityCalendarModal();
     registerModalLoad();

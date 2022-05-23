@@ -83,17 +83,12 @@ return [
         'overview'          => 'Można łatwo tworzyć odnośniki do elementów kampanii, wpisując :code i trzy lub więcej liter.',
         'title'             => 'Tworzenie odnośników i skrótów',
     ],
-    'map'               => [
-        'description'   => 'Dodanie do miejsca mapy uruchomi menu \'Mapa\' w widoku tego miejsca oraz bezpośredni odnośnik do tej mapy z menu miejsca. Oglądając mapę, uczestnicy kampanii z prawem do edycji mogą uruchomić \'Tryb Edycji\', który pozwala dodawać na mapę punkty. Te z kolei mogą być samymi podpisami albo prowadzić do istniejących elementów kampanii. Mają różne kształty i rozmiary.',
-        'private'       => 'Administratorzy mogą utajniać mapy. Dzięki temu zwykli uczestnicy mogą oglądać miejsca i nie widzieć ich map.',
-        'title'         => 'Mapy miejsc',
-    ],
+    'map'               => [],
     'pins'              => [
         'description'   => 'Do opisu historii elementu można przypinać relacje i cechy. By to zrobić, wejdź w edycję relacji albo cechy i zaznacz pole "przypięte".',
         'title'         => 'Przypięcia',
     ],
     'public'            => 'Zobacz tutorial na Youtube dotyczący kampanii publicznych.',
-    'title'             => 'Pomoc',
     'troubleshooting'   => [
         'description'       => 'Skierował cię na tę stronę członek zespołu Kanki. Wybierz kampanię z rozwijanego menu by stworzyć zgłoszenie, dzięki któremu ktoś od nas będzie mógł czasowo dołączyć do kampanii jako administrator.',
         'errors'            => [

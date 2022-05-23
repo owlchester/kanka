@@ -7,6 +7,7 @@ namespace App\Http\Controllers\Campaign;
 use App\Facades\CampaignLocalization;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Campaigns\PatchCampaignApplication;
+use App\Http\Requests\Campaigns\StoreCampaignApplicationStatus;
 use App\Models\CampaignSubmission;
 use App\Services\Campaign\SubmissionService;
 use Illuminate\Http\Request;
@@ -69,5 +70,28 @@ class SubmissionController extends Controller
 
         return redirect()->route('campaign_submissions.index')
             ->with('success', __('campaigns/submissions.update.' . $note));
+    }
+
+    public function toggle()
+    {
+        $campaign = CampaignLocalization::getCampaign();
+        $this->authorize('submissions', $campaign);
+
+        return view('campaigns.submissions._toggle', compact('campaign'));
+    }
+
+    public function toggleSave(StoreCampaignApplicationStatus $request)
+    {
+        $campaign = CampaignLocalization::getCampaign();
+        $this->authorize('submissions', $campaign);
+
+        $campaign->update([
+            'is_open' => $request->get('status')
+        ]);
+
+        return redirect()
+            ->route('campaign_submissions.index')
+            ->with('success', __('campaigns/submissions.toggle.success'))
+            ;
     }
 }

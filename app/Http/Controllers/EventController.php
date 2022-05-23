@@ -100,7 +100,8 @@ class EventController extends CrudController
         $this->rows = $event
             ->descendants()
             ->sort(request()->only(['o', 'k']))
-            ->with(['entity', 'event', 'event.entity'])
+            ->with(['entity', 'entity.image', 'event', 'event.entity'])
+            ->has('entity')
             ->paginate();
 
         if (request()->ajax()) {

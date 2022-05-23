@@ -32,10 +32,9 @@ return [
     ],
     'event'         => [
         'actions'   => [
-            'delete-confirm'    => 'aquest recordatori',
-            'existing'          => 'Entitat existent',
-            'new'               => 'Nou esdeveniment',
-            'switch'            => 'Canvia l\'elecció',
+            'existing'  => 'Entitat existent',
+            'new'       => 'Nou esdeveniment',
+            'switch'    => 'Canvia l\'elecció',
         ],
         'create'    => [
             'success'   => 'S\'ha creat l\'esdeveniment al calendari.',
@@ -204,10 +203,6 @@ return [
     ],
     'show'          => [
         'missing_details'   => 'Aquest calendari no es pot mostrar. Els calendaris necessiten un mínim de 2 mesos i 2 dies setmanals per a renderizar-se correctament.',
-        'moon_full_moon'    => 'Lluna :moon plena',
-        'moon_new_moon'     => 'Lluna :moon nova',
-        'moon_waning_moon'  => 'Lluna :moon minvant',
-        'moon_waxing_moon'  => 'Lluna :moon creixent',
         'tabs'              => [
             'events'    => 'Esdeveniments del calendari',
             'weather'   => 'Clima',

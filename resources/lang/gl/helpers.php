@@ -83,17 +83,12 @@ return [
         'overview'          => 'Liga facilmente entidades existentes escribindo :code e tres letras ou máis.',
         'title'             => 'Crear ligazóns a outras entidades e atallos.',
     ],
-    'map'               => [
-        'description'   => 'Subir un mapa a un Lugar habilitará o menú "Mapa" na páxina do Lugar, e unha ligazón directa ao mapa dende a páxina Lugares da campaña. Dende a vista de mapa, quen teña permisos de edición no Lugar poden activar o "Modo de edición", o cal lles permite colocar Puntos no mapa. Estes Puntos poden ligar a outras entidades ou ser simplemente etiquetas, e ter diferentes formas e tamaños.',
-        'private'       => 'Un mapa pode ser marcado como privado pola administración da campaña. Isto permitirá ao resto de integrantes da campaña ver un Lugar, pero manter o mapa segredo.',
-        'title'         => 'Mapas de Lugares',
-    ],
+    'map'               => [],
     'pins'              => [
         'description'   => 'As entidades poden ter relacións e atributos fixados á dereita da súa vista de historia. Para fixar un elemento, edita a relación ou o atributo e márcao como fixado.',
         'title'         => 'Elementos fixados',
     ],
     'public'            => 'Aprende máis sobre campañas públicas vendo o vídeo tutorial en Youtube.',
-    'title'             => 'Consellos',
     'troubleshooting'   => [
         'description'       => 'Un membro do equipo de Kanka envioute a esta páxina. Selecciona unha campaña para xerar un token para que poidamos unirnos temporalmente á túa campaña como admin.',
         'errors'            => [

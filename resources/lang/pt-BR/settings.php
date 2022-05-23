@@ -84,8 +84,7 @@ return [
         ],
         'title'             => 'Impulso',
         'unboost'           => [
-            'description'   => 'Você tem certeza de que quer parar de impulsionar a campanha :tag?',
-            'title'         => 'Deixar de impulsionar uma campanha',
+            'title' => 'Deixar de impulsionar uma campanha',
         ],
     ],
     'countries'     => [
@@ -120,22 +119,13 @@ return [
         'success'   => 'Opções de layout atualizadas.',
         'title'     => 'Layout',
     ],
-    'marketplace'   => [
-        'fields'    => [
-            'name'  => 'Nome do Mercado',
-        ],
-        'helper'    => 'Como padrão, seu nome de usuário é mostrado no :marketplace:. Você pode alterar isso neste campo.',
-        'title'     => 'Configurações do Mercado',
-        'update'    => 'Configurações do Mercado salvas com sucesso.',
-    ],
+    'marketplace'   => [],
     'menu'          => [
         'account'               => 'Conta',
         'api'                   => 'API',
         'apps'                  => 'Aplicativos',
         'billing'               => 'Formas de Pagamento',
         'invoices'              => 'Faturas',
-        'layout'                => 'Layout',
-        'marketplace'           => 'Mercado',
         'other'                 => 'Outros',
         'patreon'               => 'Patreon',
         'payment_options'       => 'Formas de pagamento',

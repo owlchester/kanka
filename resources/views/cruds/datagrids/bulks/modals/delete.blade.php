@@ -1,21 +1,33 @@
 @inject('campaign', 'App\Services\CampaignService')
 
 {!! Form::open(['url' => route('bulk.process'), 'method' => 'POST']) !!}
-<div class="modal modal-danger fade" id="bulk-delete" tabindex="-1" role="dialog" aria-labelledby="clickConfirmLabel">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
+<div class="modal fade" id="bulk-delete" tabindex="-1" role="dialog" aria-labelledby="clickConfirmLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content rounded-2xl">
+            <div class="modal-body text-center">
+
                 <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('crud.click_modal.close') }}"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="clickModalLabel">{{ __('crud.bulk.delete.title') }}</h4>
-            </div>
-            <div class="modal-body">
-                {{ __('crud.bulk.delete.warning') }}
-            </div>
+                <h4 class="modal-title" id="clickModalLabel">{{ __('crud.delete_modal.title') }}</h4>
 
-            <div class="modal-footer">
-                <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">{{ __('crud.delete_modal.close') }}</button>
+                <p class="mt-5">
+                    {{ __('crud.bulk.delete.warning') }}
+                    @if(isset($datagrid) && !$datagrid->bulkPermissions)
+                        <br />{{ __('crud.delete_modal.permanent') }}
+                    @endif
+                </p>
+                <div class="mt-5 recoverable">
+                    @includeWhen(!isset($datagrid) || $datagrid->bulkPermissions, 'layouts.callouts.recoverable')
+                </div>
 
-                <button class="btn btn-outline" type="submit" name="datagrid-action" value="delete">{{ __('crud.click_modal.confirm') }}</button>
+
+                <div class="py-5">
+                    <button type="button" class="btn px-8 rounded-full mr-5" data-dismiss="modal">{{ __('crud.cancel') }}</button>
+                    <button type="submit" class="btn btn-danger px-8 ml-5 rounded-full" name="datagrid-action" value="delete">
+                        <span class="fa-solid fa-trash"></span>
+                        <span class="remove-button-label">{{ __('crud.remove') }}</span>
+                    </button>
+                </div>
+
             </div>
         </div>
     </div>

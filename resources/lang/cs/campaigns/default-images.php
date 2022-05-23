@@ -13,8 +13,5 @@ return [
         'success'   => 'Výchozí obrázek objektů typu :type odstraněn.',
     ],
     'helper'    => 'Nastaví vlastní výchozí obrázek objektů v tomto tažení. Bude se zobrazovat v seznamech objektů, ale ne u samotného objektu.',
-    'index'     => [
-        'title' => 'Výchozí obrázky objektů',
-    ],
-    'title'     => 'Výchozí obrázky objektů tažení :campaign',
+    'index'     => [],
 ];

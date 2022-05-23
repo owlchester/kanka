@@ -5,7 +5,7 @@
             <i class="fa-solid fa-times pull-right fa-xs entity-close" title="{{ __('crud.click_modal.close') }}"></i>
 
             @if ($mapPoint->hasTarget() && $mapPoint->targetEntity->child->is_private)
-                <span class="pull-right fa-xs margin-r-5">
+                <span class="pull-right fa-xs mr-2">
                     <i class="fa-solid fa-lock"></i>
                 </span>
             @endif

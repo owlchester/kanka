@@ -218,11 +218,7 @@ TEXT
         ],
         'your_role'             => 'Tvoje role: <i>:role</i>',
     ],
-    'open_campaign'                     => [
-        'helper'    => 'K veřejné kampani, označené jako otevřená, mohou uživatelé zasílat přihlášky k účasti. Seznam přihlášek najdeš na stránce :link.',
-        'link'      => 'Přihlášky k tažení',
-        'title'     => 'Otevřené tažení',
-    ],
+    'open_campaign'                     => [],
     'options'                           => [],
     'panels'                            => [
         'boosted'   => 'Zvýhodněné ("boosted") tažení.',
@@ -277,7 +273,6 @@ TEXT
         'members'       => 'Členové',
         'modals'        => [
             'details'   => [
-                'button'    => 'Potřebuji pomoc',
                 'campaign'  => 'Oprávnění tažení umožňují následující',
                 'entities'  => 'Krátké shrnutí možností tohoto oprávnění role',
                 'more'      => 'Další informace najdeš v našem videonávodu na Youtube.',
@@ -345,9 +340,6 @@ TEXT
             'enable'    => 'Zapnout',
         ],
         'boosted'   => 'Tato funkce je součástí předběžného přístupu a je dostupná pouze zvýhodněným (:boosted) tažením.',
-        'edit'      => [
-            'success'   => 'Nastavení tažení aktualizováno',
-        ],
         'helper'    => 'Všechny moduly tažení lze vypnout či zapnout. Vypnutí modulu pouze skryje související prvky rozhraní a přidružené objekty, aniž by se smazaly. Toto se projeví u všech členů tažení, včetně správců.',
         'helpers'   => [
             'abilities'     => 'Tvorba schopností, kouzel či dovedností, které lze přiřadit objektům.',
@@ -370,7 +362,6 @@ TEXT
             'tags'          => 'Každý objekt lze označit několika štítky. Štítky lze podřadit jiným štítkům a objekty lze pomocí štítků filtrovat.',
             'timelines'     => 'Zobraz dějiny světu pomocí časových os.',
         ],
-        'title'     => 'Moduly tažení :name',
     ],
     'show'                              => [
         'actions'   => [

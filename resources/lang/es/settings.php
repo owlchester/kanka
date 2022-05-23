@@ -84,8 +84,7 @@ return [
         ],
         'title'             => 'Mejorar',
         'unboost'           => [
-            'description'   => '¿Seguro que quieres dejar de mejorar la campaña :tag?',
-            'title'         => 'Dejar de mejorar una campaña',
+            'title' => 'Dejar de mejorar una campaña',
         ],
     ],
     'countries'     => [
@@ -120,22 +119,13 @@ return [
         'success'   => 'Opciones de diseño actualizadas.',
         'title'     => 'Diseño',
     ],
-    'marketplace'   => [
-        'fields'    => [
-            'name'  => 'Nombre del marketplace',
-        ],
-        'helper'    => 'Por defecto, tu nombre de usuario se muestra en el :marketplace. Puedes modificarlo en este campo.',
-        'title'     => 'Configuración del Marketplace',
-        'update'    => 'Configuración de Marketplace guardada.',
-    ],
+    'marketplace'   => [],
     'menu'          => [
         'account'               => 'Cuenta',
         'api'                   => 'API',
         'apps'                  => 'Aplicaciones',
         'billing'               => 'Método de pago',
         'invoices'              => 'Facturas',
-        'layout'                => 'Diseño',
-        'marketplace'           => 'Marketplace',
         'other'                 => 'Otros',
         'patreon'               => 'Patreon',
         'payment_options'       => 'Opciones de pago',

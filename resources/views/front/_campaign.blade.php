@@ -1,5 +1,5 @@
 <?php /** @var \App\Models\Campaign $campaign */
-$width = $featured ? 350 : 255;
+$width = $featured ? 350 : 200;
 ?>
 <div class="campaign-container @if($campaign->boosted()) campaign-boosted @endif">
     <a class="campaign @if(!$featured) small-campaign @endif " href="{{ url(app()->getLocale() . '/' . $campaign->getMiddlewareLink()) }}" title="{!! $campaign->name !!}">
@@ -7,34 +7,43 @@ $width = $featured ? 350 : 255;
 
         </div>
         <div class="bottom">
-            <h4 class="campaign-title">
-                @if (!$featured && $campaign->isFeatured())
-                    <i class="fa-solid fa-star" title="{{ __('campaigns.fields.featured') }}" data-toggle="tooltip"></i>
-                @elseif (!$featured && $campaign->isFeatured(true))
-                    <i class="fa-solid fa-star" title="{{ __('campaigns.fields.past_featured') }}" data-toggle="tooltip"></i>
-                @endif
+            <h4 class="campaign-title mb-1">
+                <div class="float-right">
+                    @if ($campaign->is_open)
+                        <i class="fa-solid fa-door-open" title="{{ __('campaigns/submissions.helpers.filter-helper') }}" data-toggle="tooltip"></i>
+                    @endif
+                    @if ($campaign->boosted())
+                        <i class="fa-solid fa-rocket" title="{{ __('front.campaigns.public.filters.is-boosted') }}" data-toggle="tooltip"></i>
+                    @elseif ($campaign->boosted(true))
+                        <i class="fa-solid fa-rocket" title="{{ __('front.campaigns.public.filters.is-superboosted') }}" data-toggle="tooltip"></i>
+                    @endif
+                </div>
                 {!! $campaign->name !!}
             </h4>
-            <div class="labels">
-                <span class="label label-default" title="{{ __('campaigns.fields.entity_count') }}" data-toggle="tooltip"><i class="fa-solid fa-eye"></i> {{ number_format($campaign->visible_entity_count) }}</span>
+
+            @if ($campaign->is_featured && !empty($campaign->featured_reason))
+                <p class="font-weight-light text-muted featured-winner mb-1">
+                    {!! $campaign->featured_reason !!}
+                </p>
+            @endif
+            <div class="labels text-muted">
+                <span class="mr-3" title="{{ __('campaigns.fields.entity_count') }}" data-toggle="tooltip">
+                    <i class="fa-solid fa-pencil" aria-hidden="true"></i>
+                    {{ number_format($campaign->visible_entity_count) }}
+                </span>
                 @if ($campaign->locale)
-                    <span class="label label-default" title="{{ __('languages.codes.' . $campaign->locale) }}" data-toggle="tooltip">{{ $campaign->locale }}</span>
+                    <span class="mr-3" title="{{ __('languages.codes.' . $campaign->locale) }}" data-toggle="tooltip">
+                        <i class="fa-solid fa-language" aria-hidden="true"></i>
+                        {{ $campaign->locale }}
+                    </span>
                 @endif
                 @if (!empty($campaign->system))
-                    <span class="label label-default" title="{{ __('campaigns.fields.system') }}" data-toggle="tooltip">{{ $campaign->system }}</span>
-                @endif
-                @if ($campaign->is_open)
-                    <span class="label label-default mr-1" title="{{ __('campaigns.open_campaign.title') }}" data-toggle="tooltip"><i class="fa-solid fa-door-open"></i></span>
-                @endif
-                @if ($campaign->boosted())
-                    <span class="label label-default" title="{{ __('campaigns.panels.boosted') }}" data-toggle="tooltip"><i class="fa-solid fa-rocket"></i></span>
+                    <span class="mr-3" title="{{ __('campaigns.fields.system') }}" data-toggle="tooltip">
+                        <i class="fa-solid fa-cog" aria-hidden="true"></i>
+                        {{ $campaign->system }}
+                    </span>
                 @endif
             </div>
         </div>
     </a>
 </div>
-@if ($campaign->is_featured && !empty($campaign->featured_reason))
-    <p class="font-weight-light text-muted">
-        {!! $campaign->featured_reason !!}
-    </p>
-@endif

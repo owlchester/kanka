@@ -136,8 +136,8 @@ class CalendarController extends CrudController
         $link = $this->calendarService->addEvent($calendar, $request->all());
 
         $routeOptions = [$calendar->id, 'year' => request()->post('year')];
-        if (request()->has('layout')) {
-            $routeOptions['layout'] = 'year';
+        if ($request->has('layout')) {
+            $routeOptions['layout'] = $request->get('layout');
         } else {
             $routeOptions['month'] = request()->post('month');
         }
@@ -200,6 +200,7 @@ class CalendarController extends CrudController
 
         $this->rows = $rows
             ->with(['entity', 'calendar', 'entity.image'])
+            ->has('entity')
             ->sort(request()->only(['o', 'k']))
             ->paginate();
 

@@ -16,7 +16,6 @@ return [
     'creator'               => [
         'back'              => 'Späť na výber',
         'duplicate'         => 'Existujú iné objekty tohto typu s rovnakým menom.',
-        'helper'            => 'Vyber si typ objektu, ktorý chceš vytvoriť. Ak sa nezobrazia žiadne objekty, znamená to, že ti chýba oprávnenie vytvoriť objekty v tejto kampani.',
         'name'              => [
             'new'       => 'Nový názov',
             'remove'    => 'Odstrániť',

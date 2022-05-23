@@ -93,7 +93,6 @@ return [
     'widgets'       => [
         'actions'                   => [
             'advanced-options'  => 'Bővebb lehetőségek',
-            'delete-confirm'    => 'eme widget',
         ],
         'advanced_options_boosted'  => ':boosted_campaigns részére bővebb lehetőségek állnak rendelkezésre, mint például egy család tagjainak megmutatása, vagy egy entitás tulajdonságainak megmutatása a főoldalon.',
         'calendar'                  => [
@@ -139,7 +138,6 @@ return [
             'help'              => 'Csak az utoljára frissített entitást mutasd, de teljes előnézettel',
             'helpers'           => [
                 'entity-header'     => 'Ha az entitásodnak van beállított entitás fejléce (boost-olt kampányok számára elérhető funkció), akkor beállíthatod ezt a widget-et, hogy használja azt a képet, az entitás képe helyett.',
-                'filters'           => 'Szűrheted a feltűnő entitásokat. Tanuld meg, hogyan használd ezt a mezőt itt: :link',
                 'full'              => 'Az entitás teljes bejegyzését jelenítsd meg, az előnézet helyett.',
                 'show_attributes'   => 'Mutasd meg az entitás kitűzött tulajdonságait a bejegyzés alatt.',
                 'show_members'      => 'Ha az entitás egy család vagy szervezet, mutasd meg a tagjait a bejegyzés alatt.',

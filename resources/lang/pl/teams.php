@@ -4,11 +4,6 @@ return [
     'hall_of_fame'  => 'Galeria Sław',
     'index'         => [
         'community'     => 'Społeczność',
-        'core'          => 'Trzon',
-        'description'   => 'Dzięki tym ludziom powstała Kanka',
-        'other'         => 'Pozostali',
-        'qa'            => 'Testerzy',
-        'support'       => 'Wsparcie',
         'title'         => 'Zespół',
         'translations'  => 'Tłumaczenie',
     ],

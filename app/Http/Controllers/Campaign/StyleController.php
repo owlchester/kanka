@@ -40,7 +40,10 @@ class StyleController extends Controller
     {
         $campaign = CampaignLocalization::getCampaign();
         $this->authorize('recover', $campaign);
-        $styles = $campaign->styles()->sort(request()->only(['o', 'k']))->take(self::MAX_THEMES)->get();
+        $styles = $campaign->styles()
+            ->sort(request()->only(['o', 'k']))
+            ->take(self::MAX_THEMES)
+            ->paginate(10);
         Datagrid::layout(\App\Renderers\Layouts\Campaign\Theme::class)->permissions(false);
 
         // Ajax Datagrid

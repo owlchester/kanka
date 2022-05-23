@@ -1,14 +1,14 @@
 /*!
- *
+ * 
  * Super simple wysiwyg editor v0.8.18
  * https://summernote.org
- *
- *
+ * 
+ * 
  * Copyright 2013- Alan Hong. and other contributors
  * summernote may be freely distributed under the MIT license.
- *
- * Date: 2020-05-20T18:09Z
- *
+ * 
+ * Date: 2022-05-11T15:14Z
+ * 
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -1598,16 +1598,8 @@ function nextPointWithEmptyNode(point, isSkipInnerOffset) {
       return null;
     }
 
-    var nextTextNode = getNextTextNode(point.node);
-
-    if (nextTextNode) {
-      node = nextTextNode;
-      offset = 0;
-    } else {
-      node = point.node.parentNode;
-      offset = dom_position(point.node) + 1;
-    } // if next node is editable, return current node's sibling node.
-
+    node = point.node.parentNode;
+    offset = dom_position(point.node) + 1; // if next node is editable ,  return current node's sibling node.
 
     if (isEditable(node)) {
       node = point.node.nextSibling;
@@ -1642,8 +1634,7 @@ function nextPointWithEmptyNode(point, isSkipInnerOffset) {
 function getNextTextNode(actual) {
   if (!actual.nextSibling) return undefined;
   if (actual.parent !== actual.nextSibling.parent) return undefined;
-  if (isText(actual.nextSibling)) return actual.nextSibling;
-  return getNextTextNode(actual.nextSibling);
+  if (isText(actual.nextSibling)) return actual.nextSibling;else return getNextTextNode(actual.nextSibling);
 }
 /**
  * returns whether pointA and pointB is same or not.
@@ -3807,7 +3798,6 @@ function Style_createClass(Constructor, protoProps, staticProps) { if (protoProp
 
 
 
-
 var Style_Style = /*#__PURE__*/function () {
   function Style() {
     Style_classCallCheck(this, Style);
@@ -3830,15 +3820,11 @@ var Style_Style = /*#__PURE__*/function () {
      * @return {Object}
      */
     value: function jQueryCSS($obj, propertyNames) {
-      if (env.jqueryVersion < 1.9) {
-        var result = {};
-        external_root_jQuery_commonjs2_jquery_commonjs_jquery_amd_jquery_default.a.each(propertyNames, function (idx, propertyName) {
-          result[propertyName] = $obj.css(propertyName);
-        });
-        return result;
-      }
-
-      return $obj.css(propertyNames);
+      var result = {};
+      external_root_jQuery_commonjs2_jquery_commonjs_jquery_amd_jquery_default.a.each(propertyNames, function (idx, propertyName) {
+        result[propertyName] = $obj.css(propertyName);
+      });
+      return result;
     }
     /**
      * returns style object from node
@@ -6660,6 +6646,12 @@ var Codeview_CodeView = /*#__PURE__*/function () {
       } else {
         this.$codable.on('blur', function (event) {
           _this2.context.triggerEvent('blur.codeview', _this2.$codable.val(), event);
+
+          var value = _this2.purify(dom.value(_this2.$codable, _this2.options.prettifyHtml) || dom.emptyPara);
+
+          _this2.$editable.html(value);
+
+          _this2.context.triggerEvent('change.codeview', _this2.$codable.val(), _this2.$codable);
         });
         this.$codable.on('input', function () {
           _this2.context.triggerEvent('change.codeview', _this2.$codable.val(), _this2.$codable);
@@ -7719,6 +7711,21 @@ var Buttons_Buttons = /*#__PURE__*/function () {
         contents: this.ui.icon(this.options.icons.indent),
         tooltip: this.lang.paragraph.indent + this.representShortcut('indent'),
         click: this.context.createInvokeHandler('editor.indent')
+      }); // Outdent and Indent in toolbar
+
+      this.context.memo('button.kanka-outdent', function () {
+        return _this2.button({
+          contents: _this2.ui.icon(_this2.options.icons.outdent),
+          tooltip: _this2.lang.paragraph.outdent + _this2.representShortcut('outdent'),
+          click: _this2.context.createInvokeHandler('editor.outdent')
+        }).render();
+      });
+      this.context.memo('button.kanka-indent', function () {
+        return _this2.button({
+          contents: _this2.ui.icon(_this2.options.icons.indent),
+          tooltip: _this2.lang.paragraph.indent + _this2.representShortcut('indent'),
+          click: _this2.context.createInvokeHandler('editor.indent')
+        }).render();
       });
       this.context.memo('button.justifyLeft', func.invoke(justifyLeft, 'render'));
       this.context.memo('button.justifyCenter', func.invoke(justifyCenter, 'render'));
@@ -8555,8 +8562,17 @@ var LinkPopover_LinkPopover = /*#__PURE__*/function () {
       'summernote.keyup summernote.mouseup summernote.change summernote.scroll': function summernoteKeyupSummernoteMouseupSummernoteChangeSummernoteScroll() {
         _this.update();
       },
-      'summernote.disable summernote.dialog.shown summernote.blur': function summernoteDisableSummernoteDialogShownSummernoteBlur() {
+      'summernote.disable summernote.dialog.shown': function summernoteDisableSummernoteDialogShown() {
         _this.hide();
+      },
+      'summernote.blur': function summernoteBlur(we, e) {
+        if (e.originalEvent && e.originalEvent.relatedTarget) {
+          if (!_this.$popover[0].contains(e.originalEvent.relatedTarget)) {
+            _this.hide();
+          }
+        } else {
+          _this.hide();
+        }
       }
     };
   }
@@ -8803,8 +8819,17 @@ var ImagePopover_ImagePopover = /*#__PURE__*/function () {
     this.editable = context.layoutInfo.editable[0];
     this.options = context.options;
     this.events = {
-      'summernote.disable summernote.blur': function summernoteDisableSummernoteBlur() {
+      'summernote.disable summernote.dialog.shown': function summernoteDisableSummernoteDialogShown() {
         _this.hide();
+      },
+      'summernote.blur': function summernoteBlur(we, e) {
+        if (e.originalEvent && e.originalEvent.relatedTarget) {
+          if (!_this.$popover[0].contains(e.originalEvent.relatedTarget)) {
+            _this.hide();
+          }
+        } else {
+          _this.hide();
+        }
       }
     };
   }
@@ -8896,8 +8921,17 @@ var TablePopover_TablePopover = /*#__PURE__*/function () {
       'summernote.keyup summernote.scroll summernote.change': function summernoteKeyupSummernoteScrollSummernoteChange() {
         _this.update();
       },
-      'summernote.disable summernote.blur': function summernoteDisableSummernoteBlur() {
+      'summernote.disable summernote.dialog.shown': function summernoteDisableSummernoteDialogShown() {
         _this.hide();
+      },
+      'summernote.blur': function summernoteBlur(we, e) {
+        if (e.originalEvent && e.originalEvent.relatedTarget) {
+          if (!_this.$popover[0].contains(e.originalEvent.relatedTarget)) {
+            _this.hide();
+          }
+        } else {
+          _this.hide();
+        }
       }
     };
   }

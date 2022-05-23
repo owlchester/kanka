@@ -29,12 +29,28 @@
 
 @import "theming";
 
-#app {
-  // AdminLTE wants this but it becomes weird with the min-height computed on firefox
-  overflow: unset !important;
-}
-.skin-black .wrapper {
+// Surrounds the whole body
+.wrapper {
   background: none;
+  height: 100%;
+  position: relative;
+  overflow-x: hidden;
+  overflow-y: auto;
+  // AdminLTE wants this but it becomes weird with the min-height computed on firefox
+  //overflow: unset !important;
+}
+// for the content panel
+.content-wrapper {
+  margin-right: auto;
+  margin-left: auto;
+}
+.content {
+  min-height: 250px;
+  padding: 15px;
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: 15px;
+  padding-right: 15px;
 }
 
 img.profile-user-img {
@@ -46,42 +62,29 @@ img.profile-user-img {
 
 
 .content-header {
+  position: relative;
+  padding: 15px 15px 0 15px;
   .breadcrumb {
     position: relative;
     float: none;
     top: 0;
     padding: 5px 10px;
     display: block;
+
+    background: transparent;
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 0.75rem;
   }
 
   h1 {
     display: block;
     font-size: 1.3em;
+    margin: 0;
   }
 }
 
 .navbar-nav {
-  .user-menu {
-    // Because adminlte is stupid
-    a.dropdown-toggle {
-      height: 50px;
-    }
-    .dropdown-menu > li.user-header {
-      a > img {
-        z-index: 5;
-        height: 90px;
-        width: 90px;
-      }
-      a {
-        display: inline;
-        background: none;
-        &:hover {
-          background: none;
-        }
-      }
-    }
-  }
-
   // Playing the notification buttons next to each other
   .dropdown-menu > .notification-footer  {
     a {
@@ -230,9 +233,6 @@ tr.tr-hover {
   font-size: 13px;
 }
 
-.panel-toggable {
-  cursor: pointer;
-}
 
 .live-search-close {
   float: left;
@@ -309,21 +309,26 @@ tr.tr-hover {
 
 // Entity creator model buttons
 .entity-creator {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
   a {
-    display: block;
     padding: 20px 10px;
-    text-align: center;
-    margin-bottom: 20px;
-    border-radius: 2px;
+    //text-align: center;
     color: var(--quick-creator-button-text);
-    line-height: 18px;
-    font-size: 14px;
+    line-height: 0.9rem;
+    font-size: 0.85rem;
     background-color: var(--quick-creator-button-background);
-    letter-spacing: 0.75px;
     text-transform: uppercase;
     overflow: hidden;
-    height: 94px;
-    word-break: break-all;
+    //height: 94px;
+    word-break: break-word;
+
+    display: flex;
+    flex-flow: row wrap;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 
     &:hover {
       background-color: var(--quick-creator-button-hover-background);
@@ -335,7 +340,7 @@ tr.tr-hover {
 
   i {
     display: block;
-    margin-bottom: 10px;
+    margin-bottom: 0.85rem;
   }
 }
 
@@ -489,6 +494,7 @@ td.breakable {
 }
 
 
+
 /*#entry td, #entry th {
   padding: 2px;
 }
@@ -564,10 +570,8 @@ summary { display: list-item; }
   }
 }
 
-.box-footer, .panel-footer, .modal-footer {
-  .pagination {
-    margin: 0;
-  }
+.form-control-feedback.fa {
+  line-height: 34px;
 }
 
 .banner-notification {
@@ -687,6 +691,20 @@ summary { display: list-item; }
   }
 }
 
+.privacy-callout {
+  border-left: 2px solid #f6c9af;
+
+  label {
+    user-select: none;
+    margin: 0;
+  }
+}
+
+// Helper block in forms, closer to field
+.form-group > .help-block {
+  margin-top: 0;
+}
+
 // Other stylings
 @import "calendar";
 @import "tooltip";
@@ -696,11 +714,13 @@ summary { display: list-item; }
 @import "entity";
 @import "footer";
 @import "editor";
+@import "box";
 @import "conversation";
 @import "ads";
 @import "campaign";
 @import "attributes/attributes";
 @import "ab-testing";
 @import "toggle";
-@import "spacing";
-
+@import "tw/tailwind";
+@import 'dialog';
+@import 'adminlte';

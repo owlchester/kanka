@@ -16,7 +16,6 @@ return [
     'creator'               => [
         'back'              => 'Voltar á selección',
         'duplicate'         => 'Hai outras entidades deste tipo co mesmo nome.',
-        'helper'            => 'Selecciona o tipo de entidade que queiras crear. Se non aparecen entidades, significa que non tes permisos para crear ningún tipo de entidade nesta campaña.',
         'name'              => [
             'new'       => 'Novo nome',
             'remove'    => 'Eliminar',

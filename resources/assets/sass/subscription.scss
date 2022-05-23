@@ -63,9 +63,6 @@ body.ab-testing-second {
     .price-yearly {
       display: block;
     }
-    .ribbon {
-      display: block;
-    }
   }
   #pricing-overview.period-month {
     .price-monthly {
@@ -77,6 +74,9 @@ body.ab-testing-second {
   }
   .btn-block.price-yearly {
     margin-top: 0;
+  }
+  .ribbon {
+    display: block;
   }
 }
 

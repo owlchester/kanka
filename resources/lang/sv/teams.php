@@ -4,11 +4,6 @@ return [
     'hall_of_fame'  => 'Hall of Fame',
     'index'         => [
         'community'     => 'Community',
-        'core'          => 'Core',
-        'description'   => 'Dessa människor gör Kanka möjligt',
-        'other'         => 'Andra',
-        'qa'            => 'Kvalitetssäkring',
-        'support'       => 'Support',
         'title'         => 'Team',
         'translations'  => 'Översättningar',
     ],

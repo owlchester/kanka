@@ -59,17 +59,12 @@ return [
         'options'           => 'Algunes opcions són :options.',
         'title'             => 'Enllaçar a altres entitats i dreceres',
     ],
-    'map'               => [
-        'description'   => 'En pujar un mapa a un indret, s\'habilitarà el menú de Mapa a la pàgina d\'aquest lloc amb un enllaç directe al mapa. Des de la vista de mapa, els usuaris que tenen permís per a editar l\'indret podran, al seu torn, editar el mapa i afegir-hi punts. Aquests poden enllaçar a una entitat existent o ser simples etiquetes, i poden tenir diverses formes i grandàries.',
-        'private'       => 'Els administradors de la campanya poden fer que un mapa sigui privat. Això permet que els usuaris puguin veure un indret, però els administradors puguin mantenir el mapa en secret.',
-        'title'         => 'Mapes dels indrets',
-    ],
+    'map'               => [],
     'pins'              => [
         'description'   => 'Les entitats poden tenir relacions i atributs fixats a la dreta de la vista d\'història. Per a fixar un element, editeu-ne la relació o els atributs i fixeu-lo.',
         'title'         => 'Xinxetes',
     ],
     'public'            => 'Mireu el vídeo tutorial a Youtube sobre les campanyes públiques.',
-    'title'             => 'Ajuda',
     'troubleshooting'   => [
         'errors'            => [
             'token_exists'  => 'Ja existeix un token per a la campanya :campaign.',

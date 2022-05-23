@@ -13,26 +13,36 @@
                         <i class="fa-solid fa-ellipsis-h" data-tree="escape"></i>
                         <span class="sr-only">{{ __('crud.actions.actions') }}</span>
                     </a>
+@php
+    $routeOptions = [
+    $model, 'date' => $day['date']
+];
+if ($renderer->isYearlyLayout() && !$model->yearlyLayout()) {
+    $routeOptions['layout'] = 'year';
+} elseif (!$renderer->isYearlyLayout() && $model->yearlyLayout()) {
+    $routeOptions['layout'] = 'month';
+}
+@endphp
                     <ul class="dropdown-menu dropdown-menu-right" role="menu">
                         <li>
-                            <a href="{{ route('calendars.event.create', [$model, 'date' => $day['date']]) }}" data-toggle="ajax-modal"
-                               data-target="#entity-modal" data-url="{{ route('calendars.event.create', [$model, 'date' => $day['date']]) }}"
+                            <a href="{{ route('calendars.event.create', $routeOptions) }}" data-toggle="ajax-modal"
+                               data-target="#entity-modal" data-url="{{ route('calendars.event.create', $routeOptions) }}"
                                class="" data-date="{{ $day['date'] }}">
                                 <i class="fa-solid fa-plus"></i> {{ __('calendars.actions.add_reminder') }}
                             </a>
                         </li>
                         <li>
-                            <a href="{{ route('calendars.calendar_weather.create', [$model, 'date' => $day['date']]) }}" data-toggle="ajax-modal"
-                               data-target="#entity-modal" data-url="{{ route('calendars.calendar_weather.create', [$model, 'date' => $day['date']]) }}"
+                            <a href="{{ route('calendars.calendar_weather.create', $routeOptions) }}" data-toggle="ajax-modal"
+                               data-target="#entity-modal" data-url="{{ route('calendars.calendar_weather.create', $routeOptions) }}"
                                class="" data-date="{{ $day['date'] }}">
-                                <i class="fa-solid fa-snowflake"></i> {{ __('calendars.actions.add_weather') }}
+                                <i class="fa-solid fa-snowflake"></i> {{ __('calendars.actions.' .  (!empty($day['weather']) ? 'update_weather' : 'add_weather')) }}
                             </a>
                         </li>
 
                         @if (!\Illuminate\Support\Arr::get($day, 'isToday', false))
                             <li class="divider"></li>
                             <li>
-                                <a href="{{ route('calendars.today', [$model, 'date' => $day['date']]) }}"
+                                <a href="{{ route('calendars.today', $routeOptions) }}"
                                    class="" data-date="{{ $day['date'] }}">
                                     <i class="fa-solid fa-check"></i> {{ __('calendars.actions.set_today') }}
                                 </a>
@@ -46,7 +56,7 @@
             @endif
             @if (!empty($day['moons']))
                 @foreach ($day['moons'] as $moon)
-                    <i class="moon {{ $moon['class'] }} text-{{ \Illuminate\Support\Arr::get($moon, 'colour', 'grey') }}" title="{{ __('calendars.show.moon_' . $moon['type'] . '_moon', ['moon' => $moon['name']]) }}" data-toggle="tooltip"></i>
+                    <i class="moon {{ $moon['class'] }} text-{{ \Illuminate\Support\Arr::get($moon, 'colour', 'grey') }}" title="{{ __('calendars.show.moon_' . $moon['type'], ['moon' => $moon['name']]) }}" data-toggle="tooltip"></i>
                 @endforeach
             @endif
             @if (!empty($day['season']))
@@ -65,13 +75,14 @@
                         <?php /** @var \App\Models\EntityEvent $event */?>
                         <div class="label calendar-event-block {{ $event->getLabelColour() }}" style="background-color: {{ $event->getLabelBackgroundColour() }};"
                             @if ($canEdit)
-                                data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('entities.entity_events.edit', ($event->calendar_id !== $model->id ? [$event->entity->id, $event->id, 'from' => $model->calendar_id, 'next' => 'calendar.' . $model->id] : [$event->entity->id, $event->id])) }}"
+@php unset($routeOptions[0]); unset($routeOptions['date']); @endphp
+                                data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('entities.entity_events.edit', array_merge(($event->calendar_id !== $model->id ? [$event->entity->id, $event->id, 'from' => $model->calendar_id, 'next' => 'calendar.' . $model->id] : [$event->entity->id, $event->id]), $routeOptions)) }}"
                             @else
                                 data-url="{{ $event->entity->url() }}"
                             @endif
                             >
                             @if (!empty($event->entity->child->image))
-                            <a href="{{ $event->entity->url() }}" class="entity-image" style="background-image: url('{{ $event->entity->child->getImageUrl(40) }}');"></a>
+                            <a href="{{ $event->entity->url() }}" class="hidden-xs hidden-sm entity-image" style="background-image: url('{{ $event->entity->child->getImageUrl(40) }}');"></a>
                             @endif
                             <span data-toggle="tooltip-ajax" data-id="{{ $event->entity->id }}" data-url="{{ route('entities.tooltip', $event->entity->id) }}" class="reminder-entity">{{ $event->entity->name }}</span>
                             {!! $event->getLabel() !!}

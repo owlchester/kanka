@@ -98,7 +98,6 @@ return [
     'widgets'       => [
         'actions'                   => [
             'advanced-options'  => 'Erweiterte Optionen',
-            'delete-confirm'    => 'dieses Widget',
         ],
         'advanced_options_boosted'  => ':boosted_campaigns verfügt über erweiterte Optionen wie das Anzeigen von Mitgliedern einer Familie oder der Attribute der Objekt im Dashboard.',
         'calendar'                  => [
@@ -153,7 +152,6 @@ return [
             'help'              => 'Nur das zuletzt aktualisierte Objekt anzeigen, aber eine vollständige Vorschau des Objektes anzeigen',
             'helpers'           => [
                 'entity-header'     => 'Wenn Ihr Objekt über einen Objekt-Header verfügt (erweiterte Kampagnenfunktion), stellen Sie dieses Widget so ein, dass dieses Bild anstelle des Bilds des Objektes verwendet wird.',
-                'filters'           => 'Sie können die Art der angezeigten Objekte filtern. Erfahren Sie, wie Sie dieses Feld verwenden, indem Sie die Hilfeseite :link besuchen.',
                 'full'              => 'Zeigen Sie standardmäßig den Eintrag des gesamten Objektes anstelle einer Vorschau an.',
                 'show_attributes'   => 'Zeigen Sie die Attribute der Objekte unter dem Eintrag an.',
                 'show_members'      => 'Wenn es sich bei dem Objekt um eine Familie oder Organisation handelt, zeigen Sie ihre Mitglieder unter dem Eintrag an.',

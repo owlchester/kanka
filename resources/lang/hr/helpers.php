@@ -55,17 +55,12 @@ return [
         'options'           => 'Neke mogućnosti su :options.',
         'title'             => 'Povezivanje s ostalim unosima i prečacima',
     ],
-    'map'               => [
-        'description'   => 'Učitavanje karte na lokaciju omogućit će izbornik "Karta" na stranici prikaza lokacije, te izravnu vezu na kartu sa stranice lokacije kampanje. Iz prikaza karte korisnici koji mogu uređivati lokaciju mogu aktivirati "Način uređivanja" koji im omogućuje postavljanje točaka karte na kartu. One se mogu povezati s postojećim entitetom ili biti natpis, i imati različite oblike i veličine.',
-        'private'       => 'Članovi u administrativnoj ulozi kampanje mogu kartu učiniti privatnom. To omogućuje korisnicima da pregledaju lokaciju, ali administratorima da kartu čuvaju u tajnosti.',
-        'title'         => 'Karte lokacije',
-    ],
+    'map'               => [],
     'pins'              => [
         'description'   => 'Entiteti mogu imati odnose i atribute prikvačene s desne strane pogleda na priču. Da bi prikvačio/la element, idi i uredi relaciju ili atribute i postavi prikvačenu vrijednost na njih.',
         'title'         => 'Prikvačeno za entitet',
     ],
     'public'            => 'Pogledajte Youtube vodič na koji objašnjava javne kampanje.',
-    'title'             => 'Pomagači',
     'widget-filters'    => [
         'description'   => 'Možeš filtrirati entitete prikazane na programčiću s nedavno izmijenjenim entitetima pružajući popis polja entiteta i vrijednosti. Na primjer, možeš koristiti :example za filtriranje mrtvih likova s kojima igrači ne mogu igrati (NPC).',
         'link'          => 'Filteri programčića',

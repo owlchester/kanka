@@ -393,7 +393,7 @@ class PermissionService
             if (($key = array_search($permission->entity_id, $this->deniedIds)) !== false) {
                 unset($this->deniedIds[$key]);
                 if (($key = array_search($permission->misc_id, $this->deniedModels)) !== false) {
-                    unset($this->deniedModels[$permission->misc_id]);
+                    unset($this->deniedModels[$key]);
                 }
             }
             return;

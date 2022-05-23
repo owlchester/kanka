@@ -23,7 +23,7 @@ return [
         'title'     => 'Upraviť poznámku pre :name',
     ],
     'fields'        => [
-        'collapsed' => 'Zatvoriť pripnutú poznámku objektu štandardne',
+        'collapsed' => 'Štandardne zbaliť pripnutú poznámku objektu',
         'creator'   => 'Autor/ka',
         'entry'     => 'Hodnota',
         'name'      => 'Názov',
@@ -45,5 +45,9 @@ return [
     'show'          => [
         'advanced'  => 'Rozšírené oprávnenia',
         'title'     => 'Poznámka :name objektu :entity',
+    ],
+    'states'        => [
+        'collapsed' => 'Zbalené',
+        'expanded'  => 'Rozbalené',
     ],
 ];

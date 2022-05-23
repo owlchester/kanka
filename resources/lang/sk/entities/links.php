@@ -24,7 +24,6 @@ return [
         'url'       => 'URL, na ktorú smerujete, je :url.',
     ],
     'placeholders'  => [
-        'icon'  => 'fab fa-d-and-d-beyond',
         'name'  => 'DNDBeyond',
         'url'   => 'https://dndbeyond.com/character-url',
     ],

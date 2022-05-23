@@ -101,12 +101,18 @@ class EntityEvent extends MiscModel
         'visibility_id',
     ];
 
+    /** @var bool|int Last occurence of the reminder */
+    protected $cachedLast = false;
+
+    /** @var bool|int Next occurence of the reminder */
+    protected $cachedNext = false;
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function calendar()
     {
-        return $this->belongsTo('App\Models\Calendar', 'calendar_id');
+        return $this->belongsTo(Calendar::class, 'calendar_id');
     }
 
     /**
@@ -114,7 +120,7 @@ class EntityEvent extends MiscModel
      */
     public function entity()
     {
-        return $this->belongsTo('App\Models\Entity', 'entity_id');
+        return $this->belongsTo(Entity::class, 'entity_id');
     }
 
     /**
@@ -122,7 +128,7 @@ class EntityEvent extends MiscModel
      */
     public function type()
     {
-        return $this->belongsTo('App\Models\EntityEventType', 'type_id');
+        return $this->belongsTo(EntityEventType::class, 'type_id');
     }
 
     /**
@@ -269,8 +275,8 @@ class EntityEvent extends MiscModel
         $label = '';
 
         if ($this->is_recurring) {
-            $label .= '<i class="fa-solid fa-refresh pull-right margin-l-5" data-toggle="tooltip" title="'
-                . trans('calendars.fields.is_recurring') . '"></i>';
+            $label .= '<i class="fa-solid fa-arrows-rotate pull-right margin-l-5" data-toggle="tooltip" title="'
+                . __('calendars.fields.is_recurring') . '"></i>';
         }
         if ($this->comment) {
             $label .= '<span class="calendar-event-comment" data-toggle="tooltip" title="'
@@ -383,5 +389,200 @@ class EntityEvent extends MiscModel
     public function routeParams(): array
     {
         return [$this->entity_id, $this->id];
+    }
+
+    /**
+     * Calculate how long ago the event happened
+     * @param int $year
+     * @param int $month
+     * @param int $day
+     * @return int
+     */
+    public function mostRecentOccurence(int $year, int $month, int $day, array $months, int $daysInYear): int
+    {
+        //dump($this->entity->name);
+        $reminderYear = $this->year;
+        $reminderMonth = $this->month;
+        $reminderDay = $this->day;
+
+        // Recurring? We need to switch arround the data a bit to figure out the most recent date
+        if (!empty($this->is_recurring)) {
+            if ($this->recurringMonthly()) {
+                //dump('monthly');
+                $reminderMonth = $month;
+                $reminderYear = $year;
+                // If it reoccures monthly, we need to see if it happened "last month" or "this month".
+                //dump('Reminder ' . $reminderDay . ' > ' . $day);
+                if ($reminderDay > $day) {
+                    $reminderMonth--;
+                    // Switched to previous month?
+                    if ($reminderMonth === 0) {
+                        $reminderMonth = $month;
+                        $reminderYear--;
+                    }
+                }
+            } else {
+                // Yearly is easy
+                //dump('yearly recurring');
+                $reminderYear = $year;
+                $reminderMonth = $month;
+            }
+        }
+        // Diff in years between current year and reminder's year
+        $days = ($year - $reminderYear) * $daysInYear;
+        // Not the same month? We need to do some math
+        if ($month != $reminderMonth) {
+            //dump('month diff ' . $month . ' (current) vs ' . $reminderMonth . '(reminder)');
+            //dump('amount of months ' . count($months));
+            $totalMounts = count($months);
+
+            // If the reminder a month in the future, meaning it was another year
+            if ($reminderMonth > $month) {
+                //dump('last year');
+                $days -= $daysInYear;
+
+                // Loop through the beginning of the year
+                for ($m = 1; $m < $month; $m++) {
+                    //dump('beginning of the year');
+                    // Month status
+                    $monthData = $months[$m-1];
+                    $days += $monthData['length'];
+                }
+                for ($m = $reminderMonth; $m <= $totalMounts; $m++) {
+                    //dump('end of previous year');
+                    $monthData = $months[$m-1];
+                    $days += $monthData['length'];
+                    //dump('days increase by ' . $monthData['length']);
+                }
+            } else {
+                // The event happened earlier this year
+                for ($m = $reminderMonth; $m < $month; $m++) {
+                    //dump('previous month');
+                    $monthData = $months[$m-1];
+                    $days += $monthData['length'];
+                }
+            }
+        }
+
+        // Diff in days
+        $days += ($day - $reminderDay);
+
+        if ($days > 1 && $this->length > 1) {
+            $days -= $this->length - 1;
+        }
+
+        //dump($days);
+        return $this->cachedLast = $days;
+    }
+
+    /**
+     * Calculate when the next event is happening
+     * @param int $year
+     * @param int $month
+     * @param int $day
+     * @return int
+     */
+    public function nextUpcommingOccurence(int $year, int $month, int $day, array $months, int $daysInYear): int
+    {
+        if ($this->cachedNext !== false) {
+            return $this->cachedNext;
+        }
+        //dump($this->entity->name);
+        $reminderYear = $this->year;
+        $reminderMonth = $this->month;
+        $reminderDay = $this->day;
+
+        // Recurring? We need to switch arround the data a bit to figure out the most recent date
+        if (!empty($this->is_recurring)) {
+            if ($this->recurringMonthly()) {
+                $reminderMonth = $month;
+                $reminderYear = $year;
+                // If it reoccures monthly, we need to see if it happened "last month" or "this month".
+                //dump('Reminder ' . $reminderDay . ' > ' . $day);
+                if ($reminderDay < $day) {
+                    $reminderMonth++;
+                    // Switched to previous month?
+                    if ($reminderMonth === count($months) - 1) {
+                        $reminderMonth = $month;
+                        $reminderYear++;
+                    }
+                }
+            } else {
+                $reminderYear = $year;
+                $reminderMonth = $month;
+                // If it was earlier this year, it's next year
+                if ($reminderMonth === $month && $reminderDay < $day) {
+                    $reminderYear++;
+                }
+            }
+        }
+        // Diff in years between current year and reminder's year
+        $days = ($reminderYear - $year) * $daysInYear;
+        // Not the same month? We need to do some math
+        if ($month != $reminderMonth) {
+            //dump('month diff ' . $month . ' (current) vs ' . $reminderMonth . '(reminder)');
+            //dump('amount of months ' . count($months));
+            $totalMounts = count($months);
+
+            // If the reminder was last year, cancel out one year
+            if ($reminderMonth > $month) {
+                $days -= $daysInYear;
+            }
+
+            // Loop through the beginning of the year
+            for ($m = 1; $m < $month; $m++) {
+                //dump('beginning of the year');
+                // Month status
+                $monthData = $months[$m-1];
+                $days += $monthData['length'];
+            }
+            for ($m = $reminderMonth; $m <= $totalMounts; $m++) {
+                //dump('end of previous year');
+                $monthData = $months[$m-1];
+                $days += $monthData['length'];
+                //dump('days increase by ' . $monthData['length']);
+            }
+        }
+
+        // Diff in days
+        $days += ($reminderDay - $day);
+
+        //dump($days);
+
+        return $this->cachedNext = $days;
+    }
+
+    /**
+     * @return bool
+     */
+    public function recurringYearly(): bool
+    {
+        return $this->is_recurring && $this->recurring_periodicity === 'year';
+    }
+
+    /**
+     * @return bool
+     */
+    public function recurringMonthly(): bool
+    {
+        return $this->is_recurring && $this->recurring_periodicity === 'month';
+    }
+
+    /**
+     * How many days ago the last occurance was
+     * @return int
+     */
+    public function daysAgo(): int
+    {
+        return $this->cachedLast;
+    }
+
+    /**
+     * In how many days the next reminder is
+     * @return int
+     */
+    public function inDays(): int
+    {
+        return $this->cachedNext;
     }
 }

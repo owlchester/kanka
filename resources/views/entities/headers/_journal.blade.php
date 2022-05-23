@@ -6,7 +6,7 @@
 @if ($model->journal || $model->date)
     <div class="entity-header-sub pull-left">
         @if($model->journal)
-        <span title="{{ __('journals.fields.journal') }}" data-toggle="tooltip" class="margin-r-5">
+        <span title="{{ __('journals.fields.journal') }}" data-toggle="tooltip" class="mr-2">
         <i class="ra ra-quill-ink"></i>
         {!! $model->journal->tooltipedLink() !!}
         </span>

@@ -10,10 +10,39 @@
     <meta property="og:title" content="{{ $title ?? __('front.meta.title') }}@if (!isset($skipEnding)) - {{ config('app.name') }} @endif">
     <meta property="og:site_name" content="{{ config('app.site_name') }}">
     <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="https://kanka-app-assets.s3.amazonaws.com/images/front/preview-background.png" />
+    <meta name="twitter:image:alt" content="{{ config('app.name') }} showcase of a character view" />
 @if(config('services.facebook.client_id'))  <meta property="fb:app_id" content="{{ config('services.facebook.client_id') }}" />@endif
 
     @yield('og')
-    <meta property="og:image" content="https://kanka-app-assets.s3.amazonaws.com/images/logos/logo-blue-white.png" />
+@if(config('app.admin'))
+    <meta property="og:image" content="https://kanka-app-assets.s3.amazonaws.com/images/front/preview-background.png" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1920" />
+    <meta property="og:image:height" content="1024" />
+    <meta property="og:image:alt" content="{{ config('app.name') }} showcase of a character view" />
+    <script type="application/ld+json">
+      {
+        "@id": "#product",
+        "@type": "WebApplication",
+        "@context": "http://schema.org/",
+        "name": "{{ config('app.name') }}",
+        "description": "{{ $metaDescription ?? __('front.home.seo.meta-description') }}",
+        "url": "{{ config('app.url') }}",
+        "applicationCategory": "Game, Note taking",
+        "operatingSystem": "all",
+        "image": ["https://images.kanka.io/app/Kerln0-2BWKISMgR-n-KvMXOY3o=/1920x1024/smart/src/images%2Ffront%2Fpreview-background.png"],
+        "screenshot": "https://images.kanka.io/app/xbbBJtRB3dtY-NMTtXNylNk1-UM=/600x320/smart/src/images%2Ffront%2Fpreview-background.png",
+        "creator": {
+          "@type": "Organization",
+          "@id": "#organization",
+          "url": "{{ config('app.url') }}",
+          "name": "{{ config('app.name') }}",
+          "logo": { "@type": "ImageObject", "url": "https://kanka-app-assets.s3.amazonaws.com/images/logos/logo-small.png", "width": "226", "height": "205" }
+        },
+      }
+    </script>@endif
 
     <title>{{ $title ?? __('front.meta.title', ['kanka' => config('app.name')]) }}@if (!isset($skipEnding)) - {{ config('app.name', 'Kanka') }}@endif</title>
 
@@ -81,7 +110,7 @@
         <ul class="navbar-buttons ml-auto d-none d-sm-flex d-lg-none">
             @auth
                 <li>
-                    <a href="{{ route('home') }}" class="btn btn-outline-light">
+                    <a href="{{ route('home') }}" class="btn btn-default">
                         {{ __('front.menu.dashboard') }}
                     </a>
                 </li>
@@ -118,32 +147,10 @@
                 <li class="nav-item">
                     <a class="nav-link @if(!empty($active) && $active == 'public-campaigns') nav-active @endif" href="{{ route("front.public_campaigns") }}">{{ __('front.menu.campaigns') }}</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link @if(!empty($active) && $active == 'contact') nav-active @endif" href="{{ route("front.contact") }}">{{ __('front.menu.contact') }}</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle @if(!empty($active) && $active == 'about') nav-active @endif" href="#"  id="navbarDropAbout" role="button" aria-expanded="false" data-toggle="dropdown" aria-haspopup="true">
-                        {{ __('front.menu.about') }} <span class="caret"></span>
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropAbout">
-                        <a href="{{ route('front.about') }}" class="dropdown-item">
-                            {{ __('teams.index.title') }}
-                        </a>
-
-                        <a href="{{ route('front.hall-of-fame') }}" class="dropdown-item">
-                            {{ __('front/hall-of-fame.title') }}
-                        </a>
-
-                        <div class="dropdown-divider"></div>
-
-                        <a href="https://blog.kanka.io" class="dropdown-item" target="_blank" rel="noopener noreferrer">
-                            {{ __('front.menu.news') }} <i class="fa-solid fa-external-link"></i>
-                        </a>
-                    </div>
-                </li>
 
                 <li class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" id="navbarDropLocale" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        <i class="fa-solid fa-language" aria-hidden="true"></i>
                         {{ LaravelLocalization::getCurrentLocaleNative() }} <span class="caret"></span>
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropLocale">

@@ -65,17 +65,12 @@ return [
         'options'           => 'Algunas opciones son :options.',
         'title'             => 'Enlazar a otras entidades y atajos',
     ],
-    'map'               => [
-        'description'   => 'Al subir un mapa a un lugar, se habilitará el menú de Mapa en la página de ese lugar con un enlace directo al mapa. Desde la vista de mapa, los usuarios que tienen permiso para editar la localización podrán, a su vez, editar el mapa y añadirle puntos. Estos pueden enlazar a una entidad existente o ser simples etiquetas, y pueden tener varias formas y tamaños.',
-        'private'       => 'Los administradores de la campaña pueden hacer que un mapa sea privado. Esto permite que los usuarios puedan ver un lugar, pero los admins puedan mantener el mapa en secreto.',
-        'title'         => 'Mapas de los lugares',
-    ],
+    'map'               => [],
     'pins'              => [
         'description'   => 'Las entidades pueden fijar relaciones y atributos a la derecha de la vista de Historia. Para fijar un elemento, edita la relación o los atributos y activa la opción de fijar.',
         'title'         => 'Chinchetas',
     ],
     'public'            => 'Mira el vídeo tutorial en Youtube acerca de las campañas públicas.',
-    'title'             => 'Consejos',
     'troubleshooting'   => [
         'description'       => 'Un miembro del equipo de Kanka te ha enviado a esta página. Selecciona una campaña del desplegable para generar un token y así poderte unir temporalmente a la campaña como administrador.',
         'errors'            => [

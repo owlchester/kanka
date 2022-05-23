@@ -23,13 +23,10 @@ return [
         'application'   => 'Zgłoszenie',
         'rejection'     => 'Powód odrzucenia',
     ],
-    'helpers'       => [
-        'open_and_public'   => 'Ta kampania przyjmuje zgłoszenia od potencjalnych członków. Możesz to zmienić w ustawieniach.',
-    ],
+    'helpers'       => [],
     'placeholders'  => [
         'note'  => 'Napisz zgłoszenie, by dołączyć do kampanii',
     ],
-    'title'         => 'Zgłoszenia udziału w kampanii',
     'update'        => [
         'approve'   => 'Wybierz rolę, którą otrzymają uczestnicy dodawani do kampanii.',
         'approved'  => 'Zatwierdzono zgłoszenie.',

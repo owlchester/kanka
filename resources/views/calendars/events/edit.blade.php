@@ -40,7 +40,7 @@
 
             <a role="button" tabindex="0" class="btn btn-dynamic-delete btn-danger" data-toggle="popover"
                title="{{ __('crud.delete_modal.title') }}"
-               data-content="<p>{{ __('crud.delete_modal.description_final', ['tag' => __('calendars.event.actions.delete-confirm')]) }}</p>
+               data-content="<p>{{ __('crud.delete_modal.permanent') }}</p>
                    <a href='#' class='btn btn-danger btn-block' data-toggle='delete-form' data-target='#delete-reminder-{{ $entityEvent->id}}'>{{ __('crud.remove') }}</a>">
                 <i class="fa-solid fa-trash" aria-hidden="true"></i> {{ __('crud.remove') }}
             </a>
@@ -52,11 +52,17 @@
     @if (!empty($next))
         <input type="hidden" name="next" value="{{ $next }}" />
     @endif
+    @if (request()->has('layout'))
+        {!! Form::hidden('layout', request()->get('layout')) !!}
+    @endif
     {!! Form::close() !!}
 
     {!! Form::open([
         'method' => 'DELETE',
         'route' => ['entities.entity_events.destroy', $entity->id, $entityEvent->id],
         'id' => 'delete-reminder-' . $entityEvent->id]) !!}
+    @if (request()->has('layout'))
+        {!! Form::hidden('layout', request()->get('layout')) !!}
+    @endif
     {!! Form::close() !!}
 @endsection

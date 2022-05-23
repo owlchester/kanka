@@ -45,8 +45,6 @@ trait MentionTrait
                     $value = Arr::last($subSegments);
                     if ($type == 'page') {
                         $data['page'] = $value;
-                    } elseif ($type == 'tab') {
-                        $data['tab'] = $value;
                     }
                 }
             }
@@ -75,35 +73,32 @@ trait MentionTrait
             'id' => (int) $id,
         ];
 
-        if (count($segments) > 1) {
-            // Skip the first segment
-            Arr::forget($segments, 0);
-            foreach ($segments as $option) {
-                $subSegments = explode(':', $option);
-                if (count($subSegments) === 1) {
-                    $data['text'] = Arr::first($subSegments);
-                    $data['custom'] = true;
-                    continue;
-                }
+        // Nothing else, we can go back
+        if (count($segments) < 2) {
+            return $data;
+        }
 
-                $type = Arr::first($subSegments);
-                $value = Arr::last($subSegments);
-                if ($type == 'page') {
-                    $data['page'] = strtolower($value);
-                    $data['custom'] = true;
-                } elseif ($type == 'tab') {
-                    $data['tab'] = strtolower($value);
-                    $data['custom'] = true;
-                } elseif ($type == 'field') {
-                    $data['field'] = strtolower($value);
-                    $data['custom'] = true;
-                } elseif ($type == 'alias') {
-                    $data['alias'] = (int) $value;
-                    $data['custom'] = true;
-                } elseif ($type == 'anchor') {
-                    $data['anchor'] = $value;
-                    $data['custom'] = true;
-                }
+        // Skip the first segment
+        Arr::forget($segments, 0);
+        foreach ($segments as $option) {
+            $subSegments = explode(':', $option);
+            if (count($subSegments) === 1) {
+                $data['text'] = Arr::first($subSegments);
+                $data['custom'] = true;
+                continue;
+            }
+
+            $type = Arr::first($subSegments);
+            $value = Arr::last($subSegments);
+            if (in_array($type, ['page', 'field'])) {
+                $data[$type] = strtolower($value);
+                $data['custom'] = true;
+            } elseif (in_array($type, ['anchor', 'params'])) {
+                $data[$type] = $value;
+                $data['custom'] = true;
+            } elseif ($type == 'alias') {
+                $data['alias'] = (int)$value;
+                $data['custom'] = true;
             }
         }
 

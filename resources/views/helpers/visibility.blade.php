@@ -5,11 +5,13 @@
 
 @section('content')
     <div class="box box-solid">
+        @if (request()->ajax())
         <div class="box-header with-border">
             <h3 class="box-title">
                 {{ __('visibilities.helpers.title') }}
             </h3>
         </div>
+        @endif
 
         <div class="box-body">
             <p>{{ __('visibilities.helpers.intro') }}</p>
@@ -30,5 +32,12 @@
 
             <p>{{ __('visibilities.helpers.entities') }}</p>
         </div>
+        @if (request()->ajax())
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal" aria-label="Close">
+                    {{ __('crud.click_modal.close') }}
+                </button>
+            </div>
+        @endif
     </div>
 @endsection

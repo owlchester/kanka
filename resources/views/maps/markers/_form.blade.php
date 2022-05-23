@@ -175,7 +175,7 @@ $sizeOptions = [
 </div>
 
 <div class="row">
-    <div class="col-sm-12 margin-bottom" style="{{ (isset($model) && $model->hasEntry() ? 'display: none' : '') }}">
+    <div class="col-sm-12 mb-5" style="{{ (isset($model) && $model->hasEntry() ? 'display: none' : '') }}">
         <a href="#" class="map-marker-entry-click">{{ __('maps/markers.actions.entry') }}</a>
     </div>
     <div class="col-sm-12 map-marker-entry-entry" style="{{ (!isset($model) || !$model->hasEntry() ? 'display: none' : '') }}">

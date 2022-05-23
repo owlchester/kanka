@@ -75,8 +75,7 @@ return [
         ],
         'title'         => 'Boost',
         'unboost'       => [
-            'description'   => 'Weet je zeker dat je de campaign :tag niet langer een boost wilt geven?',
-            'title'         => 'Een campaign unboosten',
+            'title' => 'Een campaign unboosten',
         ],
     ],
     'countries'     => [
@@ -111,22 +110,13 @@ return [
         'success'   => 'Lay-out opties bijgewerkt.',
         'title'     => 'Lay-out',
     ],
-    'marketplace'   => [
-        'fields'    => [
-            'name'  => 'Marktplaats naam',
-        ],
-        'helper'    => 'Standaard wordt je gebruikersnaam weergegeven op de :marketplace. Met dit veld kun je deze waarde overschrijven.',
-        'title'     => 'Marktplaats Instellingen',
-        'update'    => 'Marktplaats instellingen opgeslagen.',
-    ],
+    'marketplace'   => [],
     'menu'          => [
         'account'               => 'Account',
         'api'                   => 'API',
         'apps'                  => 'Apps',
         'billing'               => 'Betalingsmiddel',
         'invoices'              => 'Facturen',
-        'layout'                => 'Lay-out',
-        'marketplace'           => 'Marktplaats',
         'other'                 => 'Andere',
         'patreon'               => 'Patreon',
         'payment_options'       => 'Betalingsmogelijkheden',

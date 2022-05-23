@@ -43,11 +43,6 @@ return [
         'months'            => 'Typ :code om een lijst met maanden uit je kalenders te krijgen.',
         'title'             => 'Koppelen naar andere invoeren en snelkoppelingen',
     ],
-    'map'           => [
-        'description'   => 'Door een kaart naar een locatie te uploaden, wordt het menu \'Kaart\' op de weergavepagina van de locatie geactiveerd, en een directe link naar de kaart vanaf de locatiespagina van de campaign. Vanuit de kaartweergave kunnen gebruikers die de locatie kunnen bewerken de \'Bewerkingsmodus\' activeren waarmee ze Paart Punten op de kaart kunnen plaatsen. Deze kunnen linken naar een bestaande entiteit of een label zijn, en hebben verschillende vormen en maten.',
-        'private'       => 'Leden met de Beheerder rol van de campaign kunnen een kaart privé maken. Hierdoor kunnen gebruikers een locatie bekijken, maar beheerders kunnen de kaart geheim houden.',
-        'title'         => 'Locatie Kaarten',
-    ],
+    'map'           => [],
     'public'        => 'Bekijk een instructievideo op YouTube waarin openbare campaigns worden uitgelegd.',
-    'title'         => 'Helpers',
 ];

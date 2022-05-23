@@ -12,22 +12,14 @@
 @endsection
 
 @section('content')
-    <header class="masthead reduced-masthead">
-        <div class="container h-100">
-            <div class="row h-100">
-                <div class="col-lg-9 my-auto">
-                    <div class="header-content mx-auto">
-                        <h1 class="mb-3">{{ __('front.privacy.title') }}</h1>
-                        <p class="mb-5">{{ __('front.privacy.description', ['date' => (new \Carbon\Carbon('2020-04-24'))->toFormattedDateString()]) }}</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
-
     <section class="features" id="privacy">
         <div class="container">
             <div class="section-heading">
+                <div class="mb-5">
+                    <h1 class="display-4">{{ __('front.privacy.title') }}</h1>
+                    <p class="lead">{{ __('front.privacy.description', ['date' => (new \Carbon\Carbon('2020-04-24'))->toFormattedDateString()]) }}</p>
+                </div>
+
                 <h2>INTRODUCTION</h2>
 
                 <p class="mb-2">Kanka (“we” or “us” or “our”) respects the privacy of our users (“user” or “you”). This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website www.kanka.io, including any other media form, media channel, mobile website, or mobile application related or connected thereto (collectively, the “Site”). Please read this privacy policy carefully.  If you do not agree with the terms of this privacy policy, please do not access the site.</p>

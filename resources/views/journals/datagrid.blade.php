@@ -17,11 +17,6 @@
         [
             'type' => 'calendar_date',
         ],
-        // Author
-        [
-            'type' => 'avatar',
-            'parent' => 'author',
-        ],
         [
             'field' => 'author.name',
             'label' => __('journals.fields.author'),

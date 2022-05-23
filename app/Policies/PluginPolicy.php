@@ -21,6 +21,10 @@ class PluginPolicy
     {
         return UserCache::user($user)->admin() && $plugin->hasUpdate();
     }
+    public function changelog(User $user, Plugin $plugin)
+    {
+        return UserCache::user($user)->admin() && !$plugin->hasUpdate();
+    }
 
     public function enable(User $user, Plugin $plugin)
     {

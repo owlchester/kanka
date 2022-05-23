@@ -26,10 +26,9 @@ class RecoveryService
      * @param array $params
      * @return $count
      */
-    public function recover(array $params): int
+    public function recover(array $ids): int
     {
         $count = 0;
-        $ids = Arr::get($params, 'ids', []);
         foreach ($ids as $id) {
             if ($this->entity($id)) {
                 $count++;

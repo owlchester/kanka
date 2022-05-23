@@ -1,6 +1,10 @@
 <?php
 
 return [
+    'copy_mention'  => [
+        'copy_with_name'    => 'Kopiuj zaawansowaną wzmiankę z nazwą elementu.',
+        'success'           => 'Skopiowano do schowka zaawansowaną wzmiankę z nazwą elementu.',
+    ],
     'create'        => [
         'success'   => 'Dodano element historii.',
         'title'     => 'Nowy element historii',

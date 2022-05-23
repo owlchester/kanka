@@ -84,8 +84,9 @@ return [
         ],
         'title'             => 'Boost',
         'unboost'           => [
-            'description'   => 'Are you sure you want to stop boosting the campaign :tag?',
-            'title'         => 'Unboosting a campaign',
+            'confirm'   => 'Unboosting the campaign ":tag".',
+            'data'      => 'No data will be lost.',
+            'title'     => 'Unboosting a campaign',
         ],
     ],
     'countries'     => [
@@ -120,28 +121,20 @@ return [
         'success'   => 'Layout options updated.',
         'title'     => 'Layout',
     ],
-    'marketplace'   => [
-        'fields'    => [
-            'name'  => 'Marketplace name',
-        ],
-        'helper'    => 'By default, your user name is shown on the :marketplace. You can override this value with this field.',
-        'title'     => 'Marketplace Settings',
-        'update'    => 'Marketplace settings saved.',
-    ],
     'menu'          => [
         'account'               => 'Account',
         'api'                   => 'API',
+        'appearance'            => 'Appearance',
         'apps'                  => 'Apps',
         'billing'               => 'Payment Method',
         'boosters'              => 'Boosters',
         'invoices'              => 'Invoices',
-        'layout'                => 'Layout',
-        'marketplace'           => 'Marketplace',
+        'notifications'         => 'Notifications',
         'other'                 => 'Other',
         'patreon'               => 'Patreon',
         'payment_options'       => 'Payment Options',
         'personal_settings'     => 'Personal Settings',
-        'profile'               => 'Profile',
+        'profile'               => 'Public profile',
         'settings'              => 'Settings',
         'subscription'          => 'Subscription',
         'subscription_status'   => 'Subscription Status',
@@ -163,7 +156,7 @@ return [
         ],
         'avatar'    => 'Profile Picture',
         'success'   => 'Profile updated.',
-        'title'     => 'Personal Profile',
+        'title'     => 'Public Profile',
     ],
     'subscription'  => [
         'actions'               => [

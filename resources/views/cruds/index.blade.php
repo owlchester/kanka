@@ -11,7 +11,7 @@
 
 
 @section('content')
-    <div class="row margin-bottom">
+    <div class="row mb-5">
         <div class="col-md-12">
             @includeWhen($model->hasSearchableFields(), 'layouts.datagrid.search', ['route' => route($route . '.index')])
 
@@ -46,14 +46,14 @@
             @endcan
             @foreach ($actions as $action)
                 @if (empty($action['policy']) || (auth()->check() && auth()->user()->can($action['policy'], $model)))
-                    <a href="{{ $action['route'] }}" class="btn pull-right btn-{{ $action['class'] }} margin-r-5">
+                    <a href="{{ $action['route'] }}" class="btn pull-right btn-{{ $action['class'] }} mr-2">
                         {!! $action['label'] !!}
                     </a>
                 @endif
             @endforeach
 
             @if (!empty($nestedView) && $nestedView)
-                <a href="{{ route($route . '.tree') }}" class="btn pull-right btn-default margin-r-5">
+                <a href="{{ route($route . '.tree') }}" class="btn pull-right btn-default mr-2">
                     <i class="fa-solid fa-tree"></i> {{ __('crud.actions.explore_view') }}
                 </a>
             @endif

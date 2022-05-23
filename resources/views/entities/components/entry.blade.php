@@ -6,7 +6,7 @@
         <div class="box-tools">
             @if (auth()->check())
                 @can('update', [$model])
-                    <a href="{{ route('entities.entry.edit', $model->entity) }}" title="{{ __('crud.edit') }}" role="button" class="btn btn-box-tool">
+                    <a href="{{ route('entities.entry.edit', $model->entity) }}" title="{{ __('crud.edit') }}" role="button" class="btn btn-box-tool" data-toggle="tooltip">
                         <i class="fa-solid fa-edit"></i>
                     </a>
                 @endcan
@@ -23,8 +23,4 @@
 @includeWhen($model instanceof \App\Models\Character && $model->is_appearance_pinned, 'characters.panels._appearance')
 @includeWhen($model instanceof \App\Models\Character && $model->is_personality_pinned, 'characters.panels._personality')
 
-
-@if(auth()->check() && auth()->user()->can('update', $model))
-@include('editors.editor')
-@endif
 

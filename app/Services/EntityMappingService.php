@@ -40,59 +40,6 @@ class EntityMappingService
         return $this;
     }
 
-    /**
-     * Mapping a misc model
-     *
-     * @param MiscModel $model
-     * @return int
-     * @throws Exception
-     */
-    public function mapModel(MiscModel $model)
-    {
-        $mentions = $this->extract($model->entry);
-
-        $createdMappings = 0;
-        foreach ($mentions as $data) {
-            $type = $data['type'];
-            $id = $data['id'];
-
-            // Old redirects or mapping to something else (like the map of a location) that doesn't have a tooltip
-            if ($id == 'redirect') {
-                continue;
-            }
-
-            $singularType = $type;
-
-            // If we're mentioning a campaign
-            if ($singularType == 'campaign') {
-                // Can't handle this with this version, because target_id is meant for entities.
-                continue;
-            }
-
-            $singularType = config('entities.ids.' . $singularType);
-
-            /** @var Entity $entity */
-            $entity = Entity::where([
-                'type_id' => $singularType, 'id' => $id, 'campaign_id' => $model->campaign_id
-            ])->first();
-            if ($entity) {
-                // No need to save references to ourselves
-                if ($entity->id == $model->entity->id) {
-                    continue;
-                }
-
-                $mention = new EntityMention();
-                $mention->entity_id = $model->entity->id;
-                $mention->target_id = $entity->id;
-                $mention->save();
-
-                $createdMappings++;
-            }
-        }
-
-        return $createdMappings;
-    }
-
 
     /**
      * @param Entity $entity
@@ -124,7 +71,7 @@ class EntityMappingService
      * @return int
      * @throws Exception
      */
-    protected function map($model)
+    protected function map($model): int
     {
         $existingTargets = [];
         foreach ($model->mentions as $map) {
@@ -133,11 +80,7 @@ class EntityMappingService
         $createdMappings = 0;
         $existingMappings = 0;
 
-        if ($model instanceof Entity) {
-            $mentions = $this->extract($model->child->entry);
-        } else {
-            $mentions = $this->extract($model->entry);
-        }
+        $mentions = $this->extract($model instanceof Entity ? $model->child->entry : $model->entry);
 
         foreach ($mentions as $data) {
             $type = $data['type'];

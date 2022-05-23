@@ -1,5 +1,5 @@
 
-<div class="btn-group margin-r-5">
+<div class="btn-group mr-2">
     <button type="button" class="btn btn-default add_attribute" data-template="#attribute_template" data-sortable="{{ $existing ? 'true' : 'false'}}">
         <i class="fa-solid fa-plus"></i> {{ __('entities/attributes.types.attribute') }}
     </button>

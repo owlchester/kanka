@@ -1,12 +1,9 @@
 <?php
 
 return [
-    'media'         => [
-        'title' => 'Média',
-    ],
+    'media'         => [],
     'menu'          => [
         'about' => 'O nás',
-        'api'   => 'API',
     ],
     'pricing'       => [
         'tier'  => [

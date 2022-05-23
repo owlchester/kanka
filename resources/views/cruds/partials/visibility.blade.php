@@ -15,7 +15,7 @@ if (isset($toolbox) && $toolbox) {
     $icon .= ' btn-box-tool';
 }
 if (isset($rightMargin)) {
-    $icon .= ' margin-r-5';
+    $icon .= ' mr-2';
 }
 ?>
 <i id="element-visibility-{{ $model->id }}" class="{{ $icon }}"

@@ -16,19 +16,6 @@
 @endsection
 
 @section('content')
-    <header class="masthead reduced-masthead">
-        <div class="container h-100">
-            <div class="row h-100">
-                <div class="col-lg-12 my-auto">
-                    <div class="header-content mx-auto">
-                        <h1 class="mb-3">{{ __('front/community-events.title') }}</h1>
-                        <p class="mb-5">{{ __('front/community-events.description') }}</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
-
     <section class="community-event">
         <div class="container">
             <div class="card mb-4">

@@ -23,6 +23,11 @@ return [
         'range'             => 'Number attributes can be set up to only allow value between a range of numbers. For example, use :example to limit the attribute between 1 and 10. The range values can also reference other attributes, for example with :reference. When saving an attribute, if the value is outside of the range, it will automatically revert to the closest range value.',
         'title'             => 'Attributes',
     ],
+    'calendar-widget'   => [
+        'description'   => 'Confused about the reminders showing up on your calendar dashboard widget? Calculating which reminders to show is complexe and resource intensive, so we take a few shortcuts to avoid your dashboard taking too long to load. Reminders that are non-reoccuring will always have priority over reoccuring ones, and reminders based on moon phases are ignored completely.',
+        'info'          => 'Why are these reminders being shown?',
+        'title'         => 'Calendar Widget',
+    ],
     'dice'              => [
         'description'               => 'Generic dice rolling is possible by writting "d20", "4d4+4", "d%" for percentile and "df" for fudge.',
         'description_attributes'    => 'It is also possible to get a character\'s attribute by using the {character.attribute_name} syntax. For example, {character.level}d6+{character.wisdom}.',
@@ -81,19 +86,14 @@ return [
         'months'            => 'Type :code to get a list of months from your calendars.',
         'options'           => 'Some options are :options.',
         'overview'          => 'Easily link to existing entities of the campaign by typing :code and three letters or more.',
+        'parameters'        => 'Parameters can also be passed along to the entity link. For example, specify which year and month get shown on a calendar with :calendar. The same can be done with ordering sublists. For example, order family subfamilies by location name with :sublist.',
         'title'             => 'Linking to other entities with mentions',
-    ],
-    'map'               => [
-        'description'   => 'Uploading a map to a location will enable the `Map` menu on the Location\'s view page, and a direct link to the map from the campaign\'s locations page. From the map view, users who can edit the location can activate the \'Edit Mode\' which allows them to place Map Points on the map. These can link to an existing entity or be a label, and have various shapes and sizes.',
-        'private'       => 'Members in the campaign\'s Admin role can make a map private. This allows users to view a location but for admins to keep the map a secret.',
-        'title'         => 'Location Maps',
     ],
     'pins'              => [
         'description'   => 'Entities can have relations and attributes pinned to the right of their overview. To pin an element, go and edit the relation or attributes and set the pinned value on those.',
         'title'         => 'Entity Pins',
     ],
     'public'            => 'Watch a tutorial video on Youtube explaining public campaigns.',
-    'title'             => 'Helpers',
     'troubleshooting'   => [
         'description'       => 'A member of Kanka\'s team has sent you to this page. Select a campaign from the dropdown to generate a token so we can temporarily join your campaign as an admin.',
         'errors'            => [

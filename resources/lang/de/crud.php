@@ -5,6 +5,7 @@ return [
         'actions'           => 'Aktionen',
         'apply'             => 'Übernehmen',
         'back'              => 'Zurück',
+        'bulk_actions'      => 'Massenaktion',
         'bulk_templates'    => 'Attributvorlage anwenden',
         'copy'              => 'Kopieren',
         'copy_mention'      => 'Kopie [] erwähnen',
@@ -39,7 +40,6 @@ return [
             'helper'    => 'Sie können + und - vor der Nummer verwenden, um das Alter dynamisch zu aktualisieren.',
         ],
         'delete'        => [
-            'title'     => 'Mehrere Objekte löschen',
             'warning'   => 'Möchten Sie die ausgewählten Objekte wirklich löschen?',
         ],
         'edit'          => [
@@ -92,11 +92,9 @@ return [
         'empty' => 'Nichts zu sehen bisher.',
     ],
     'delete_modal'              => [
-        'close'             => 'Schließen',
-        'delete'            => 'Löschen',
-        'description'       => 'Bist du sicher das du :tag entfernen möchtest?',
-        'description_final' => 'Möchten Sie :tag wirklich entfernen? Diese Aktion kann nicht rückgängig gemacht werden.',
-        'title'             => 'Löschen bestätigen',
+        'close' => 'Schließen',
+        'delete'=> 'Löschen',
+        'title' => 'Löschen bestätigen',
     ],
     'destroy_many'              => [
         'success'   => ':count Objekt gelöscht|:count Objekte gelöscht',

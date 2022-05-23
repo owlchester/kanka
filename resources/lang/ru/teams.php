@@ -4,11 +4,6 @@ return [
     'hall_of_fame'  => 'Зал Славы',
     'index'         => [
         'community'     => 'Сообщество',
-        'core'          => 'Основное',
-        'description'   => 'Эти люди сделали Kanka возможной.',
-        'other'         => 'Другое',
-        'qa'            => 'Гарантия качества',
-        'support'       => 'Поддержка',
         'title'         => 'Команда',
         'translations'  => 'Перевод',
     ],

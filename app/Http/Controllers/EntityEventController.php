@@ -123,12 +123,12 @@ class EntityEventController extends Controller
         if ($next == 'entity.events') {
             return redirect()
                 ->route('entities.entity_events.index', $entity)
-                ->with('success', trans('calendars.event.create.success'));
+                ->with('success', __('calendars.event.create.success'));
         }
 
         return redirect()
             ->route('entities.entity_events.index', $entity)
-            ->with('success', trans('calendars.event.create.success'));
+            ->with('success', __('calendars.event.create.success'));
     }
 
     /**
@@ -184,8 +184,9 @@ class EntityEventController extends Controller
         $entityEvent->update($request->all());
 
         if (request()->has('layout')) {
-            $routeOptions['layout'] = 'year';
-        } else {
+            $routeOptions['layout'] = request()->get('layout');
+        }
+        if (request()->get('layout', $entityEvent->calendar->defaultLayout()) !== 'year') {
             $routeOptions['month'] = request()->post('month');
         }
 
@@ -193,18 +194,18 @@ class EntityEventController extends Controller
         if ($next == 'calendars.events') {
             return redirect()
                 ->route('calendars.events', $entityEvent->calendar)
-                ->with('success', trans('calendars.event.edit.success'));
+                ->with('success', __('calendars.event.edit.success'));
         } elseif ($next == 'entity.events') {
             return redirect()
                 ->route('entities.entity_events.index', $entity)
-                ->with('success', trans('calendars.event.edit.success'));
+                ->with('success', __('calendars.event.edit.success'));
         } elseif (Str::startsWith($next, 'calendar.')) {
             $id = Str::after($next, 'calendar.');
             $routeOptions['calendar'] = $id;
         }
 
         return redirect()->route('calendars.show', $routeOptions)
-            ->with('success', trans('calendars.event.edit.success'));
+            ->with('success', __('calendars.event.edit.success'));
     }
 
     /**
