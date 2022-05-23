@@ -61,7 +61,6 @@ return [
             'secret' => env('AWS_SECRET_ACCESS_KEY'),
             'region' => env('AWS_DEFAULT_REGION'),
             'bucket' => env('AWS_BUCKET'),
-
             // Root folder is prefixed outside of prod
             'root' => env('APP_ENV') != 'prod' ? env('APP_ENV') : null,
             'visibility' => 'public',
@@ -78,6 +77,9 @@ return [
             'region' => env('AWS_DEFAULT_REGION'),
             'bucket' => env('AWS_BUCKET_BACKUP'),
             'root' => env('APP_ENV'),
+            'url' => env('AWS_URL_BACKUP', env('AWS_URL')),
+            'endpoint' => env('AWS_ENDPOINT'),
+            'use_path_style_endpoint' => env('AWS_USE_PATH_STYLE_ENDPOINT', false),
         ],
 
         's3-assets' => [
@@ -87,15 +89,9 @@ return [
             'region' => env('AWS_DEFAULT_REGION'),
             'bucket' => env('AWS_BUCKET_APP'),
             'visibility' => 'public',
-        ],
-
-        's3-images' => [
-            'driver' => 's3',
-            'key' => env('AWS_IMAGES_ACCESS_KEY_ID'),
-            'secret' => env('AWS_IMAGES_SECRET_ACCESS_KEY'),
-            'region' => env('AWS_IMAGES_DEFAULT_REGION'),
-            'bucket' => env('AWS_IMAGES_BUCKET_APP'),
-            'visibility' => 'public',
+            'url' => env('AWS_URL_ASSETS', env('AWS_URL')),
+            'endpoint' => env('AWS_ENDPOINT'),
+            'use_path_style_endpoint' => env('AWS_USE_PATH_STYLE_ENDPOINT', false),
         ],
 
         's3-marketplace' => [
@@ -105,6 +101,9 @@ return [
             'region' => env('AWS_DEFAULT_REGION'),
             'bucket' => env('AWS_BUCKET_MARKETPLACE'),
             'visibility' => 'public',
+            'url' => env('AWS_URL_MP', env('AWS_URL')),
+            'endpoint' => env('AWS_ENDPOINT'),
+            'use_path_style_endpoint' => env('AWS_USE_PATH_STYLE_ENDPOINT', false),
         ]
 
     ],

@@ -100,7 +100,10 @@ return [
     ],
 
 
-    'register_enabled' => env('APP_REGISTRATION_ENABLED', false),
+    /**
+     * If set to false, no users can register
+     */
+    'register_enabled' => env('APP_REGISTRATION_ENABLED', true),
 
     /**
      * If set to true, show a dropdown of users for the login instead of a text field
