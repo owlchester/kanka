@@ -134,7 +134,7 @@
 
                     <div class="py-5">
                         {!! Form::model($user, ['method' => 'PATCH', 'route' => ['settings.account.destroy']]) !!}
-                        <button type="button" class="btn btn-danger rounded-full px-8">
+                        <button type="submit" class="btn btn-danger rounded-full px-8">
                             <i class="fa-solid fa-exclamation-triangle" aria-hidden="true"></i>
                             {{ __('profiles.sections.delete.confirm') }}
                         </button>
