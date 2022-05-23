@@ -31,7 +31,7 @@ if (auth()->check() && auth()->user()->isAdmin()) {
     $buttonsClass ++;
 }
 
-$superboosted = $campaign->campaign()->boosted();
+$superboosted = $campaign->campaign()->boosted(true);
 
 $hasBanner = false;
 if($campaign->campaign()->boosted() && $entity->hasHeaderImage($superboosted)) {

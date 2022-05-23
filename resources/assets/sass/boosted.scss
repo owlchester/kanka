@@ -350,10 +350,11 @@
 /**
  * Everything is a grid now
  */
-
+body.entity-with-banner .content-wrapper > .content {
+  padding-top: 0;
+}
 .entity-grid {
   display: grid;
-  margin: -15px -15px 0 -15px;
   grid-template-columns: 200px minmax(auto, calc(100% - 400px)) 200px;
   grid-template-areas:
     "header header header"

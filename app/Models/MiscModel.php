@@ -659,6 +659,14 @@ abstract class MiscModel extends Model
             $classes[] = 'kanka-entity-private';
         }
 
+        // Entity header?
+        $campaign = CampaignLocalization::getCampaign();
+        $superboosted = $campaign->boosted(true);
+
+        if($campaign->boosted() && $this->entity->hasHeaderImage($superboosted)) {
+            $classes[] = 'entity-with-banner';
+        }
+
         return (string) implode(' ', $classes);
     }
 

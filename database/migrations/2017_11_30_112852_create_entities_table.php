@@ -26,6 +26,7 @@ class CreateEntitiesTable extends Migration
             $table->string('header_image')->nullable();
 
             $table->boolean('is_template')->nullable();
+            $table->boolean('is_attributes_private')->default(false);
 
             $table->unsignedSmallInteger('focus_x')->nullable();
             $table->unsignedSmallInteger('focus_y')->nullable();

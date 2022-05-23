@@ -55,7 +55,6 @@
             </a>
         </div>
         <div class="col-md-6">
-        @endif
 
             <button class="btn btn-success rounded-full px-8" id="quick-creator-submit-btn" data-text="{{ __('crud.create') }}">
                 <span>
@@ -63,8 +62,17 @@
                 </span>
                 <i class="fa-solid fa-spinner fa-spin" style="display: none"></i>
             </button>
-
-        @if (empty($origin))</div>@endif
+        </div>
+        @else
+            <div class="text-center">
+            <button class="btn btn-success rounded-full px-8" id="quick-creator-submit-btn" data-text="{{ __('crud.create') }}">
+                <span>
+                    <i class="fa-solid fa-plus" aria-hidden="true"></i> {{ __('entities.creator.actions.create', ['type' => $entityType]) }}
+                </span>
+                <i class="fa-solid fa-spinner fa-spin" style="display: none"></i>
+            </button>
+            </div>
+        @endif
     </div>
 </div>
 
