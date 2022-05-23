@@ -30,15 +30,30 @@ Before running anything, copy `.env.example` to `.env`. This will set up Kanka's
 
 Optionally, if you want to change some configs, edit the new `.env` file.
 
-### Set up the docker machines
+### Running Kanka
 
-Navigate to the Kanka folder and run the following command.
+Everything should now be ready to run all those docker images.
 
 ```bash
 sail up
 ```
 
 This will start the docker images. You can use the `-d` command to run the docker images in the background.
+
+
+#### Set up dependencies
+
+Navigate to the Kanka folder on your local machine and run the following command. This will install all the depenencies to run Kanka in the docker image.
+
+```bash
+docker run --rm \
+    -u "$(id -u):$(id -g)" \
+    -v $(pwd):/var/www/html \
+    -w /var/www/html \
+    laravelsail/php81-composer:latest \
+    composer install --ignore-platform-reqs
+```
+
 
 #### Bucket setup
 
