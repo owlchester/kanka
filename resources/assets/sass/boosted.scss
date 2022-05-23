@@ -353,6 +353,11 @@
 body.entity-with-banner .content-wrapper > .content {
   padding-top: 0;
 }
+body[class*="kanka-entity"] .content-wrapper > .content {
+  padding-left: 0;
+  padding-right: 0;
+}
+
 .entity-grid {
   display: grid;
   grid-template-columns: 200px minmax(auto, calc(100% - 400px)) 200px;
