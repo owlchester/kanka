@@ -376,7 +376,7 @@ class CalendarRenderer
                             continue;
                         }
                         /** @var EntityEvent $event */
-                        //dump('found events for ' . $key);
+                        //dump'found events for ' . $key);
                         foreach ($this->recurring[$key] as $event) {
                             if (!$event->isPastDate($this->getYear(), $this->getMonth(), $day)) {
                                 //dd("$event->year $event->month $event->day is past {$this->getYear()} {$this->getMonth()} $day");
@@ -1033,10 +1033,13 @@ class CalendarRenderer
             // Next full moon? If it's 0, we want it today.
             $nextFullMoon = (1 + $moon['offset']) + ($fullmoon - ($daysSinceLastFullMoon == 0 ? $fullmoon : $daysSinceLastFullMoon));
 
-            // Previous cycle
-            $this->addMoonPhases($nextFullMoon - $moon['fullmoon'], $moon);
+            // Previous cycles. Twice because sometimes the first full moon appears at the end of a long month, so
+            // we need to fill up the month as much as we can.
+            for ($cycles = 1; $cycles <= 2; $cycles++) {
+                $this->addMoonPhases($nextFullMoon - ($moon['fullmoon'] * $cycles), $moon);
+            }
 
-            // Current cycle
+            // Current cycles
             $this->addMoonPhases($nextFullMoon, $moon);
 
             // Now the full moon will appear several times on this month/year.
@@ -1145,7 +1148,7 @@ class CalendarRenderer
         if ($moon['fullmoon'] > 10) {
             $quarterMonth = $moon['fullmoon'] / 4;
             $this->addMoonPhase($newMoon - $quarterMonth, $moon, 'last_quarter', 'fa-solid fa-circle-half-stroke fa-flip-horizontal');
-            $this->addMoonPhase($newMoon + $quarterMonth, $moon, 'first_quarter', 'fa-solid fa-circle-half-stroke');
+            $this->addMoonPhase($newMoon + $quarterMonth, $moon, '1first_quarter', 'fa-solid fa-circle-half-stroke');
         }
     }
 
