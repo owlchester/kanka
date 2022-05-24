@@ -84,7 +84,7 @@ $defaultIndex = ($currentCampaign && $currentCampaign->defaultToNested()) || aut
     </aside>
     @if (auth()->check() && $currentCampaign->userIsMember())
         <section class="sidebar-creator" data-toggle="tooltip" title="{{ __('entities.creator.tooltip') }}">
-            <a href="#" data-url="{{ route('entity-creator.selection') }}" data-toggle="ajax-modal" data-target="#entity-modal">
+            <a href="#" data-url="{{ route('entity-creator.selection') }}" data-toggle="ajax-modal" data-target="#entity-modal" class="quick-creator-button">
                 <i class="fa-solid fa-plus"></i> <span>{{ __('sidebar.new-entity') }}</span>
             </a>
         </section>
