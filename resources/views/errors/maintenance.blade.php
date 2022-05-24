@@ -59,15 +59,22 @@
 
 <section class="error" id="error-503">
     <div class="container">
-        <div class="section-body text-center">
-            <h1 class="display-4" id="maintenance">{{ __('errors.503.title') }}</h1>
+        <div class="section-body mt-5">
+            <div class="row">
+                <div class="col-12 col-sm-6">
+                    <h1 class="display-4" id="maintenance">{{ __('errors.503.title') }}</h1>
 
-            <p class="lead">{{ __('errors.503.body.1') }}</p>
-            <p class="lead">{{ __('errors.503.body.2') }}</p>
+                    <p class="lead">{{ __('errors.503.body.1') }}</p>
+                    <p class="lead">{{ __('errors.503.body.2') }}</p>
 
-            <p>{!! __('errors.footer', ['discord' => link_to(config('social.discord'), 'Discord')]) !!}</p>
-
-            <p><a href="/">{{ __('dashboard.setup.actions.back_to_dashboard') }}</a>.</p>
+                    <p class="lead">{!! __('errors.footer', [
+    'discord' => link_to(config('social.discord'), 'Discord'),
+     'email' => link_to('mailto:' . config('app.email'), config('app.email'))]) !!}</p>
+                </div>
+                <div class="col-12 col-sm-6">
+                    @includeIf('errors.images.503-image')
+                </div>
+            </div>
         </div>
     </div>
 </section>

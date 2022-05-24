@@ -89,10 +89,13 @@
 
 <section class="error" id="error-{{ $error }}">
     <div class="container">
-        <div class="section-body text-center">
+        <div class="section-body mt-5">
+
             <div class="row">
-                <div class="col-12 col-md-8 offset-md-2">
+                <div class="col-12 col-sm-6">
+
                     <h1 class="display-4" id="{{ $error }}">{{ __('errors.' . $error . '.title') }}</h1>
+
                     @if (is_array(__('errors.' . $error . '.body')))
                         @foreach (__('errors.' . $error . '.body') as $text)
                             <p class="lead">{{ $text }}</p>
@@ -102,11 +105,16 @@
                     @endif
 
 
-                    <p>{!! __('errors.footer', [
+                    <p class="lead">{!! __('errors.footer', [
     'discord' => link_to(config('social.discord'), 'Discord'),
      'email' => link_to('mailto:' . config('app.email'), config('app.email'))]) !!}</p>
 
-                    <p><a href="/{{ app()->getLocale() }}" class="btn btn-outline-primary px-4">{{ __('dashboard.setup.actions.back_to_dashboard') }}</a></p>
+                    <p class="lead">
+                        <a href="/{{ app()->getLocale() }}" class="btn btn-outline-primary px-4">{{ __('dashboard.setup.actions.back_to_dashboard') }}</a>
+                    </p>
+                </div>
+                <div class="col-12 col-sm-6">
+                    @includeIf('errors.images.' . $error . '-image')
                 </div>
             </div>
         </div>
