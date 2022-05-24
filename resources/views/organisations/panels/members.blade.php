@@ -72,3 +72,8 @@ $all = $model->allMembers()->has('character')->count();
     @endif
 
 </div>
+
+@section('modals')
+    @parent
+    <div id="datagrid-delete-forms"></div>
+@endsection

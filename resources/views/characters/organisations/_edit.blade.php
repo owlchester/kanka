@@ -22,4 +22,7 @@
     </div>
 </div>
 {!! Form::hidden('character_id', $model->id) !!}
+@if (request()->has('from'))
+    <input type="hidden" name="from" value="{{ request()->get('from') }}" />
+@endif
 {!! Form::close() !!}

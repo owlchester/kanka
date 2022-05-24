@@ -386,7 +386,7 @@ class EntityEvent extends MiscModel
     {
         return 'entities.entity_events.' . $where;
     }
-    public function routeParams(): array
+    public function routeParams(array $options = []): array
     {
         return [$this->entity_id, $this->id];
     }

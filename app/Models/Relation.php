@@ -230,7 +230,7 @@ class Relation extends Model
     {
         return 'entities.relations.' . $where;
     }
-    public function routeParams(): array
+    public function routeParams(array $options = []): array
     {
         return [$this->owner_id, $this->id, 'mode' => 'table'];
     }

@@ -4,11 +4,11 @@ namespace App\Renderers\Layouts;
 
 abstract class Layout
 {
-    const ONLY_DESKTOP = 'hidden-xs hidden-sm';
+    public const ONLY_DESKTOP = 'hidden-xs hidden-sm';
 
-    const ACTION_EDIT = 'edit';
-    const ACTION_EDIT_AJAX = 'edit-ajax';
-    const ACTION_DELETE = 'delete';
+    public const ACTION_EDIT = 'edit';
+    public const ACTION_EDIT_AJAX = 'edit-ajax';
+    public const ACTION_DELETE = 'delete';
 
     /** @var bool|array */
     protected $visibleColumns = false;

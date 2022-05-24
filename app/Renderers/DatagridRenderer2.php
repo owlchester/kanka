@@ -20,12 +20,16 @@ class DatagridRenderer2
     /** @var array  */
     protected $deleteForms = [];
 
+    /** @var array Action params for the edit/delete */
+    protected $actionParams = [];
+
     /** @var bool If permissions are checked or not. If false, assume we are admin. */
     protected $permissions = true;
 
     protected $routeName = null;
     protected $routeOptions = [];
 
+    /** @var bool|array */
     protected $bulks = false;
 
     /** @var \App\Models\Campaign */
@@ -35,6 +39,7 @@ class DatagridRenderer2
     {
         $this->campaign = CampaignLocalization::getCampaign();
     }
+
     /**
      * @param $layout
      * @return $this
@@ -53,10 +58,32 @@ class DatagridRenderer2
      * @param array|null $options
      * @return $this
      */
-    public function route(string $route, array $options = null): self {
+    public function route(string $route, array $options = null): self
+    {
         $this->routeName = $route;
         $this->routeOptions = $options;
         return $this;
+    }
+
+    /**
+     * @param string $route
+     * @param array|null $options
+     * @return $this
+     */
+    public function actionParams(array $options = null): self
+    {
+        $this->actionParams = $options;
+        return $this;
+    }
+
+    /**
+     * @param string $route
+     * @param array|null $options
+     * @return $this
+     */
+    public function getActionParams(): array
+    {
+        return $this->actionParams;
     }
 
     /**
@@ -96,11 +123,12 @@ class DatagridRenderer2
             $columns[] = new Standard($model, $col);
         }
         if ($this->hasActions() && auth()->check()) {
-             $action = new Action($model, $this->layout->actions(), $this->permissions);
-             if ($action->hasDelete()) {
-                 $this->deleteForms[] = $model;
-             }
-             $columns[] = $action;
+            $action = new Action($model, $this->layout->actions(), $this->permissions);
+            $action->params($this->actionParams);
+            if ($action->hasDelete()) {
+                $this->deleteForms[] = $model;
+            }
+            $columns[] = $action;
         }
 
         return $columns;
@@ -142,8 +170,7 @@ class DatagridRenderer2
                     continue;
                 }
                 // More specific use cases?
-            }
-            elseif ($bulk === Layout::ACTION_DELETE) {
+            } elseif ($bulk === Layout::ACTION_DELETE) {
                 if (auth()->check() && auth()->user()->isAdmin()) {
                     $this->bulks[] = $bulk;
                 }
@@ -210,8 +237,7 @@ class DatagridRenderer2
         foreach ($this->routeOptions as $k => $v) {
             if (Str::endsWith($k, '_id')) {
                 continue;
-            }
-            elseif ($k === 'all') {
+            } elseif ($k === 'all') {
                 continue;
             }
             unset($options[$k]);

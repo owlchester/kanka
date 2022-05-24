@@ -62,7 +62,7 @@ class CharacterOrganisationController extends Controller
 
         $relation = OrganisationMember::create($request->all());
         return redirect()->route('characters.organisations', [$character->id])
-            ->with('success', trans($this->view . '.create.success'));
+            ->with('success', __($this->view . '.create.success'));
     }
 
     /**
@@ -116,8 +116,14 @@ class CharacterOrganisationController extends Controller
         $this->authorize('organisation', [$character, 'edit']);
 
         $characterOrganisation->update($request->all());
+
+
+        if ($request->has('from') && $request->get('from') == 'org') {
+            return redirect()->route('organisations.show', [$characterOrganisation->organisation_id])
+                ->with('success', __($this->view . '.edit.success'));
+        }
         return redirect()->route('characters.organisations', [$character->id])
-            ->with('success', trans($this->view . '.edit.success'));
+            ->with('success', __($this->view . '.edit.success'));
     }
 
     /**
@@ -131,7 +137,13 @@ class CharacterOrganisationController extends Controller
         $this->authorize('organisation', [$character, 'delete']);
 
         $characterOrganisation->delete();
+
+        if (request()->has('from') && request()->get('from') === 'org') {
+            return redirect()->route('organisations.show', [$characterOrganisation->organisation_id])
+                ->with('success', __($this->view . '.destroy.success'));
+        }
+
         return redirect()->route('characters.organisations', [$characterOrganisation->character_id])
-            ->with('success', trans($this->view . '.destroy.success'));
+            ->with('success', __($this->view . '.destroy.success'));
     }
 }

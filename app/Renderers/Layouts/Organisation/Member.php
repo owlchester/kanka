@@ -34,8 +34,17 @@ class Member extends Layout
                     } elseif ($model->unknown()) {
                         $icon = '<i class="fa-solid fa-question mr-1" title="' . __('organisations.members.status.unknown') . '" data-toggle="tooltip"></i>';
                     }
-
                     return $icon . $model->role;
+                }
+            ],
+            'superior' => [
+                'key' => 'parent_id',
+                'label' => 'organisations.members.fields.parent',
+                'render' => function ($model) {
+                    if (empty($model->parent)) {
+                        return '';
+                    }
+                    return $model->parent->character->tooltipedLink();
                 }
             ],
             'location' => [
