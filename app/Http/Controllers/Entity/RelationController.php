@@ -92,7 +92,8 @@ class RelationController extends Controller
             $rows = $entity
                 ->allRelationships()
                 ->sort(request()->only(['o', 'k']))
-                ->paginate();
+                ->paginate()
+                ->withPath(route('entities.relations_table', [$entity, 'mode' => 'table']));
 
             $connections = $this->connectionService
                 ->entity($entity)
@@ -317,6 +318,11 @@ class RelationController extends Controller
         return null;
     }
 
+    /**
+     * @param Entity $entity
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
     public function table(Entity $entity)
     {
         if (empty($entity->child)) {
