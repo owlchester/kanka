@@ -2,7 +2,7 @@
 
 @if (!$start)
     <div class="pull-right">
-        @include('cruds.fields.save', ['disableCopy' => true, 'disableNew' => true, 'disableCancel' => true, 'target' => 'entity-form'])
+        @include('cruds.fields.save', ['disableCopy' => true, 'disableNew' => true, 'disableCancel' => true, 'target' => 'entity-form', 'entityType' => 'campaign'])
     </div>
 @endif
 

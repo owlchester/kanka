@@ -17,7 +17,7 @@
 
             @can('create', $model)
                 <div class="btn-group pull-right">
-                    <a href="{{ route($route . '.create') }}" class="btn btn-primary btn-new-entity">
+                    <a href="{{ route($route . '.create') }}" class="btn btn-primary btn-new-entity" data-entity-type="{{ $name }}">
                         <i class="fa-solid fa-plus"></i> <span class="hidden-xs hidden-sm">{{ __('entities.' .  \Illuminate\Support\Str::singular($route)) }}</span>
                     </a>
                     @if(!in_array($name, ['menu_links', 'relations']))
@@ -28,7 +28,7 @@
                             @if (!empty($templates) && !$templates->isEmpty())
                             @foreach ($templates as $entityTemplate)
                             <li>
-                                <a href="{{ route($route . '.create', ['copy' => $entityTemplate->entity_id, 'template' => true]) }}">
+                                <a href="{{ route($route . '.create', ['copy' => $entityTemplate->entity_id, 'template' => true]) }}" class="new-entity-from-template" data-entity-type="{{ $name }}">
                                     <i class="fa-solid fa-star-o"></i> {{ $entityTemplate->name  }}</span>
                                 </a>
                             </li>
