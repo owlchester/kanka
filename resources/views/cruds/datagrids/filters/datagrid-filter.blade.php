@@ -46,13 +46,13 @@ $clipboardFilters = $filterService->clipboardFilters();
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>{{ __('entities/attributes.filters.name') }}</label>
-                                <input type="text" class="form-control" name="attribute_name" value="{{ $filterService->single('attribute_name') }}" />
+                                <input type="text" class="form-control entity-list-filter" name="attribute_name" value="{{ $filterService->single('attribute_name') }}" />
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>{{ __('entities/attributes.filters.value') }}</label>
-                                <input type="text" class="form-control" name="attribute_value" value="{{ $filterService->single('attribute_value') }}" />
+                                <input type="text" class="form-control entity-list-filter" name="attribute_value" value="{{ $filterService->single('attribute_value') }}" />
                             </div>
                         </div>
                         @continue
@@ -78,7 +78,8 @@ $clipboardFilters = $filterService->clipboardFilters();
                                                     'enableNew' => false,
                                                     'allowClear' => 'false',
                                                     'label' => false,
-                                                    'filterOptions' => $value
+                                                    'filterOptions' => $value,
+                                                    'class' => 'entity-list-filter'
                                                 ]
                                             ) !!}
                                         </div>
@@ -91,7 +92,7 @@ $clipboardFilters = $filterService->clipboardFilters();
                                                     'none' => __('crud.filters.options.none'),
                                                 ],
                                                 $filterService->single($field['field'] . '_option'), [
-                                                    'class' => 'form-control',
+                                                    'class' => 'form-control  entity-list-filter',
                                             ]) !!}
                                         </div>
                                     </div>
@@ -103,8 +104,7 @@ $clipboardFilters = $filterService->clipboardFilters();
                                         $value,
                                         [
                                             'id' => $field['field'],
-                                            'class' => 'form-control select2',
-                                            'style' => 'width: 100%',
+                                            'class' => 'form-control select2 entity-list-filter',
                                         ]
                                     ) !!}
                                 @else
@@ -114,10 +114,9 @@ $clipboardFilters = $filterService->clipboardFilters();
                                                 null,
                                                 [
                                                     'id' => $field['field'],
-                                                    'class' => 'form-control select2',
+                                                    'class' => 'form-control select2 entity-list-filter',
                                                     'data-url' => $field['route'],
                                                     'data-placeholder' => $field['placeholder'],
-                                                    'style' => 'width: 100%',
                                                 ]
                                             ) !!}
                                         </div>
@@ -130,7 +129,7 @@ $clipboardFilters = $filterService->clipboardFilters();
                                                     'none' => __('crud.filters.options.none'),
                                                 ],
                                                 $filterService->single($field['field'] . '_option'), [
-                                                    'class' => 'form-control',
+                                                    'class' => 'form-control entity-list-filter',
                                             ]) !!}
                                         </div>
                                     </div>
@@ -138,14 +137,14 @@ $clipboardFilters = $filterService->clipboardFilters();
                             @else
                                 <label>{{ __((in_array($field, ['is_private', 'has_image', 'has_attributes', 'has_entity_files', 'has_entity_notes']) ? 'crud.fields.' : $langKey . '.fields.') . $field) }}</label>
                                 @if ($filterService->isCheckbox($field))
-                                    <select class="filter-select form-control" id="{{ $field }}" name="{{ $field }}">
+                                    <select class="filter-select form-control entity-list-filter" id="{{ $field }}" name="{{ $field }}">
                                         <option value=""></option>
                                         <option value="0" @if ($filterService->filterValue($field) === '0') selected="selected" @endif>{{ __('voyager.generic.no') }}</option>
                                         <option value="1"  @if ($filterService->filterValue($field) === '1') selected="selected" @endif>{{ __('voyager.generic.yes') }}</option>
                                     </select>
                                 @elseif ($field === 'type' && !empty($entityModel))
 
-                                    <input type="text" class="form-control" name="{{ $field }}" value="{{ $filterService->single($field) }}" autocomplete="off" list="entity-type-list" />
+                                    <input type="text" class="form-control entity-list-filter" name="{{ $field }}" value="{{ $filterService->single($field) }}" autocomplete="off" list="entity-type-list" />
                                     <div class="hidden">
                                         <datalist id="entity-type-list">
                                             @foreach (\App\Facades\EntityCache::typeSuggestion($entityModel) as $suggestion)
@@ -155,7 +154,7 @@ $clipboardFilters = $filterService->clipboardFilters();
                                     </div>
                                 @elseif ($field === 'sex' && !empty($entityModel))
 
-                                    <input type="text" class="form-control" name="{{ $field }}" value="{{ $filterService->single($field) }}" autocomplete="off" list="entity-gender-list" />
+                                    <input type="text" class="form-control entity-list-filter" name="{{ $field }}" value="{{ $filterService->single($field) }}" autocomplete="off" list="entity-gender-list" />
                                     <div class="hidden">
                                         <datalist id="entity-gender-list">
                                             @foreach (\App\Facades\CharacterCache::genderSuggestion() as $suggestion)
@@ -168,10 +167,10 @@ $clipboardFilters = $filterService->clipboardFilters();
                                         <div class="input-group-addon">
                                             <i class="fa-solid fa-calendar"></i>
                                         </div>
-                                        <input type="text" class="form-control date-picker" name="{{ $field }}" value="{{ $filterService->single($field) }}" autocomplete="off" />
+                                        <input type="text" class="form-control date-picker entity-list-filter" name="{{ $field }}" value="{{ $filterService->single($field) }}" autocomplete="off" />
                                     </div>
                                 @else
-                                    <input type="text" class="form-control" name="{{ $field }}" value="{{ $filterService->single($field) }}" />
+                                    <input type="text" class="form-control entity-list-filter" name="{{ $field }}" value="{{ $filterService->single($field) }}" />
                                 @endif
                             @endif
                         </div>
