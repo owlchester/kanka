@@ -144,7 +144,7 @@ class CrudController extends Controller
         if (!empty($this->module) && !$campaign->enabled($this->module)) {
             return redirect()->route('dashboard')->with('error_raw',
                 __('campaigns.settings.errors.module-disabled', [
-                    'fix' => link_to_route('campaign_settings', __('crud.fix-this-issue'), ['#' . $this->module]),
+                    'fix' => link_to_route('campaign.modules', __('crud.fix-this-issue'), ['#' . $this->module]),
                 ])
             );
         }

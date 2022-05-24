@@ -42,6 +42,7 @@ class PluginController extends Controller
         $plugins = $campaign->plugins()
             ->sort(request()->only(['o', 'k']))
             ->highlighted($highlight)
+            ->has('user')
             ->with('versions');
 
         if (!auth()->check() || !$campaign->userIsMember()) {
