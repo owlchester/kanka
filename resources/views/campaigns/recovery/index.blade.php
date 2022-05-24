@@ -15,6 +15,24 @@
             @include('campaigns._menu', ['active' => 'recovery'])
         </div>
         <div class="col-md-9">
+            @if (!$campaign->boosted())
+                <h3 class="mt-0">
+                    <button class="btn btn-sm btn-default pull-right" data-toggle="dialog"
+                            data-target="recovery-help">
+                        <i class="fa-solid fa-question-circle" aria-hidden="true"></i>
+                        {{ __('campaigns.members.actions.help') }}
+                    </button>
+                    {{ __('campaigns.show.tabs.recovery') }}
+                </h3>
+
+                @include('partials.boosted', ['callout' => true])
+
+                <div class="row">
+                    <div class="col-sm-12 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
+                        @include('partials.images.boosted-image')
+                    </div>
+                </div>
+            @else
 
             <div class="box box-recovery">
                 <div class="box-header with-border">
@@ -28,21 +46,12 @@
                         </button>
                     </div>
                 </div>
-
-            @if ($campaign->boosted())
-
                 @if(Datagrid::hasBulks()) {!! Form::open(['route' => 'recovery.save']) !!} @endif
                 <div id="datagrid-parent">
                     @include('layouts.datagrid._table')
                 </div>
                 @if(Datagrid::hasBulks()) {!! Form::close() !!} @endif
 
-            @else
-                <div class="box-body">
-                    <p class="help-block">{{ __('campaigns/recovery.helper', ['count' => config('entities.hard_delete')]) }}</p>
-
-                    @include('partials.boosted', ['callout' => true])
-                </div>
             @endif
         </div>
     </div>

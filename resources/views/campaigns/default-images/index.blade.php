@@ -73,13 +73,22 @@
                 </div>
             </div>
             @else
-            <div class="box no-border">
-                <div class="box-body">
-                    <p class="help-block">{{ __('campaigns/default-images.helper') }}</p>
+                <h3 class="mt-0">
+                    <button class="btn btn-default btn-sm pull-right" data-toggle="dialog"
+                            data-target="default-images-help">
+                        <i class="fa-solid fa-question-circle" aria-hidden="true"></i>
+                        {{ __('campaigns.members.actions.help') }}
+                    </button>
+                    {{ __('campaigns.show.tabs.default-images') }}
+                </h3>
 
-                    @include('partials.boosted', ['callout' => true])
+                @include('partials.boosted', ['callout' => true])
+
+                <div class="row">
+                    <div class="col-sm-12 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
+                        @include('partials.images.boosted-image')
+                    </div>
                 </div>
-            </div>
             @endif
         </div>
     </div>

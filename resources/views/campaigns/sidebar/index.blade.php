@@ -18,12 +18,28 @@
         <div class="col-md-9">
             @if (!$campaign->boosted())
                 <div class="box box-solid">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">{{ __('campaigns.show.tabs.sidebar') }}</h3>
+                        <div class="box-tools">
+                            <button class="btn btn-box-tool" data-toggle="dialog"
+                                    data-target="sidebar-help">
+                                <i class="fa-solid fa-question-circle" aria-hidden="true"></i>
+                                {{ __('campaigns.members.actions.help') }}
+                            </button>
+                        </div>
+                    </div>
                     <div class="box-body">
                         <p class="help-block">
                             {!! __('campaigns/sidebar.helpers.main', ['here' => link_to('https://kanka.io/' . app()->getLocale() . '/campaign/20000/notes/156620', __('campaigns/sidebar.helpers.here'), ['target' => '_blank'])]) !!}
                         </p>
 
                         @include('partials.boosted', ['callout' => true])
+
+                        <div class="row">
+                            <div class="col-sm-12 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
+                                @include('partials.images.boosted-image')
+                            </div>
+                        </div>
                     </div>
                 </div>
             @else
@@ -36,12 +52,15 @@
             <div class="box box-solid">
                 <div class="box-header with-border">
                     <h3 class="box-title">{{ __('campaigns.show.tabs.sidebar') }}</h3>
+                    <div class="box-tools">
+                        <button class="btn btn-box-tool" data-toggle="dialog"
+                                data-target="sidebar-help">
+                            <i class="fa-solid fa-question-circle" aria-hidden="true"></i>
+                            {{ __('campaigns.members.actions.help') }}
+                        </button>
+                    </div>
                 </div>
                 <div class="box-body">
-                    <p class="help-block">
-                        {!! __('campaigns/sidebar.helpers.setup', ['reset' => '<strong>' . __('campaigns/sidebar.actions.reset') . '</strong>']) !!}
-                    </p>
-
                     <p class="alert alert-warning hidden-md hidden-lg">
                         {{ __('campaigns/sidebar.helpers.mobile_reordering') }}
                     </p>
@@ -124,5 +143,12 @@
         </div>
     </div>
     {!! Form::close() !!}
-@endsection
 
+
+    @include('partials.helper-modal', [
+        'id' => 'sidebar-help',
+        'title' => __('campaigns.show.tabs.sidebar'),
+        'textes' => [
+            __('campaigns/sidebar.helpers.setup', ['reset' => '<strong>' . __('campaigns/sidebar.actions.reset') . '</strong>'])
+    ]])
+@endsection

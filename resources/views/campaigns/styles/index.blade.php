@@ -18,13 +18,19 @@ use App\Facades\Datagrid ?>
         </div>
         <div class="col-md-9">
             @if (!$campaign->boosted())
-                <div class="box box-solid">
-                    <div class="box-body">
-                        <p class="help-block">
-                            {!! __('campaigns/styles.helpers.main', ['here' => link_to('https://blog.kanka.io/category/tutorials', __('campaigns/styles.helpers.here'), ['target' => '_blank'])]) !!}
-                        </p>
+                <h3 class="mt-0">
+                    <button class="btn btn-sm btn-default pull-right" data-toggle="dialog"
+                            data-target="theming-help">
+                        <i class="fa-solid fa-question-circle" aria-hidden="true"></i>
+                        {{ __('campaigns.members.actions.help') }}
+                    </button>
+                    {{ __('campaigns.show.tabs.styles') }}
+                </h3>
+                @include('partials.boosted', ['callout' => true])
 
-                        @include('partials.boosted', ['callout' => true])
+                <div class="row">
+                    <div class="col-sm-12 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
+                        @include('partials.images.boosted-image')
                     </div>
                 </div>
             @else

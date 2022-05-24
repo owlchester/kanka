@@ -13,9 +13,10 @@ if ($folder) {
 }
 ?>
 @extends('layouts.app', [
-    'title' => __('campaigns/gallery.title', ['campaign' => $campaign->name]),
+    'title' => __('campaigns/gallery.breadcrumb') . ' - ' . $campaign->name,
     'breadcrumbs' => $breadcrumbs,
     'bodyClass' => 'campaign-gallery',
+    'mainTitle' => false,
 ])
 
 @section('content')

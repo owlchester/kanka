@@ -4,7 +4,7 @@ use \Illuminate\Support\Arr;
 @extends('layouts.app', [
     'title' => __('campaigns/stats.title', ['campaign' => $campaign->name]),
     'breadcrumbs' => [
-        ['url' => route('campaign'), 'label' => trans('campaigns.index.title')],
+        ['url' => route('campaign'), 'label' => __('campaigns.index.title')],
         __('campaigns.show.tabs.achievements')
     ],
     'mainTitle' => false,
@@ -18,14 +18,20 @@ use \Illuminate\Support\Arr;
             @include('campaigns._menu', ['active' => 'stats'])
         </div>
         <div class="col-md-9 achievements">
+            <h3 class="mt-0">
+                {{ __('campaigns.show.tabs.achievements') }}
+                <button class="btn btn-sm btn-default pull-right" data-toggle="dialog"
+                        data-target="stats-help">
+                    <i class="fa-solid fa-question-circle" aria-hidden="true"></i>
+                    {{ __('campaigns.members.actions.help') }}
+                </button>
+            </h3>
             @if (!$campaign->superboosted())
-                <div class="box no-border">
-                    <div class="box-body">
+                @include('partials.superboosted', ['callout' => true])
 
-                        <p class="help-block">
-                            {{ __('campaigns/stats.helper') }}
-                        </p>
-                        @include('partials.superboosted', ['callout' => true])
+                <div class="row">
+                    <div class="col-sm-12 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
+                        @include('partials.images.boosted-image')
                     </div>
                 </div>
             @else
@@ -56,14 +62,18 @@ use \Illuminate\Support\Arr;
                     </div>
                 </div>
             @endforeach
-
-                <p class="help-block">
-                    {{ __('campaigns/stats.helper') }}
-                </p>
-
-
             @endif
         </div>
     </div>
+@endsection
+
+@section('modals')
+
+    @include('partials.helper-modal', [
+        'id' => 'stats-help',
+        'title' => __('campaigns.show.tabs.achievements'),
+        'textes' => [
+            __('campaigns/stats.helper')
+    ]])
 @endsection
 

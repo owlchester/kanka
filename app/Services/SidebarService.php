@@ -261,8 +261,8 @@ class SidebarService
         'gallery' => [
             'icon' => 'fa-solid fa-images',
             'label' => 'sidebar.gallery',
-            'perm' => 'gallery',
             'route' => 'campaign.gallery.index',
+            'perm' => 'gallery',
             'module' => false,
         ],
         'attribute_templates' => [

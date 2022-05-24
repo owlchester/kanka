@@ -21,7 +21,7 @@ class GalleryController extends Controller
     public function __construct(GalleryService $service)
     {
         $this->middleware('auth');
-        $this->middleware('campaign.superboosted');
+        $this->middleware('campaign.superboosted', ['except' => 'index']);
 
         $this->service = $service;
     }
@@ -30,6 +30,11 @@ class GalleryController extends Controller
     {
         $campaign = CampaignLocalization::getCampaign();
         $this->authorize('gallery', $campaign);
+
+        if (!$campaign->superboosted()) {
+            return view('gallery.unsuperboosted')
+                ->with('campaign', $campaign);
+        }
 
         $folder = null;
         $folderId = request()->get('folder_id');
