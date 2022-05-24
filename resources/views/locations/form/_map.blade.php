@@ -34,7 +34,7 @@
         </div>
     </div>
 
-    @if (Auth::user()->isAdmin())
+    @if (auth()->user()->isAdmin())
         <hr>
         <div class="form-group">
             {!! Form::hidden('is_map_private', 0) !!}
@@ -44,8 +44,5 @@
             <p class="help-block">{{ trans('locations.hints.is_map_private') }}</p>
         </div>
     @endif
-
-    <a href="{{ route('helpers.map') }}" data-toggle="tooltip" title="{{ trans('helpers.map.description') }}" target="_blank">{{ trans('locations.map.helpers.info') }}</a>
-
 
 @endif

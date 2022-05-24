@@ -51,10 +51,7 @@
             @include('front.features._buttons')
 
             <div class="row">
-                <div class="col-lg-4">
-                    @include('front.features._dashboards')
-                </div>
-                <div class="col-lg-4">
+                <div class="col-lg-4 col-lg-offset-2">
                     @include('front.features._calendars')
                 </div>
                 <div class="col-lg-4">

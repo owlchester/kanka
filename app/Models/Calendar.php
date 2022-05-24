@@ -635,39 +635,41 @@ class Calendar extends MiscModel
         $reminders = $this->calendarEvents()
             ->with(['entity'])
             ->has('entity')
-            ->where(function ($sub) {
-                $sub->where(function ($recurring) {
-                    $recurring
-                        ->where('is_recurring', true)
-                        ->whereIn('recurring_periodicity', ['year', 'month'])
-                        ->where(function ($recurringuntil) {
-                            $recurringuntil
-                                ->whereNull('recurring_until')
-                                // Events that end in the future are fine, they could be reoccuring on this month
-                                ->orWhere('recurring_until', '>=', $this->currentYear());
-                        });
-                });
-            })
-            ->orWhere(function ($ondate) {
-                // Not recurring
-                $ondate
-                    ->where('is_recurring', false)
-                    ->where(function ($date) {
-                        // An event that happens before this year
-                        $date
-                            ->where('year', '>', $this->currentYear())
-                            ->orWhere(function ($subdate) {
-                                // An event that happens this year but after this month
-                                $subdate
-                                    ->where('year', $this->currentYear())
-                                    ->where('month', '>', $this->currentMonth());
-                            })
-                            ->orWhere(function ($subdate) {
-                                // An event that happens this year after this year
-                                $subdate
-                                    ->where('year', $this->currentYear())
-                                    ->where('month', $this->currentMonth())
-                                    ->where('day', '>=', $this->currentDay());
+            ->where(function ($primary) {
+                $primary->where(function ($sub) {
+                    $sub->where(function ($recurring) {
+                        $recurring
+                            ->where('is_recurring', true)
+                            ->whereIn('recurring_periodicity', ['year', 'month'])
+                            ->where(function ($recurringuntil) {
+                                $recurringuntil
+                                    ->whereNull('recurring_until')
+                                    // Events that end in the future are fine, they could be reoccuring on this month
+                                    ->orWhere('recurring_until', '>=', $this->currentYear());
+                            });
+                    });
+                })
+                    ->orWhere(function ($ondate) {
+                        // Not recurring
+                        $ondate
+                            ->where('is_recurring', false)
+                            ->where(function ($date) {
+                                // An event that happens before this year
+                                $date
+                                    ->where('year', '>', $this->currentYear())
+                                    ->orWhere(function ($subdate) {
+                                        // An event that happens this year but after this month
+                                        $subdate
+                                            ->where('year', $this->currentYear())
+                                            ->where('month', '>', $this->currentMonth());
+                                    })
+                                    ->orWhere(function ($subdate) {
+                                        // An event that happens this year after this year
+                                        $subdate
+                                            ->where('year', $this->currentYear())
+                                            ->where('month', $this->currentMonth())
+                                            ->where('day', '>=', $this->currentDay());
+                                    });
                             });
                     });
             })
@@ -676,6 +678,7 @@ class Calendar extends MiscModel
             ->orderBy('day', 'asc')
             ->take($needle)
             ->get();
+
 
         // Order the past events in descending date to get the closest ones to the current date first
         return $reminders->sortBy(function ($reminder) {
@@ -702,42 +705,44 @@ class Calendar extends MiscModel
         $reminders = $this->calendarEvents()
             ->with(['entity'])
             ->has('entity')
-            ->where(function ($sub) {
-                $sub->where(function ($recurring) {
-                    $recurring
-                        ->where('is_recurring', true)
-                        ->whereIn('recurring_periodicity', ['year', 'month'])
-                        ->where(function ($recurringuntil) {
-                            $recurringuntil
-                                ->whereNull('recurring_until')
-                                // Events that end in the future are fine, they could be reoccuring on this month
-                                ->orWhere('recurring_until', '>=', $this->currentYear());
-                        });
-                });
+            ->where(function ($primary) {
+                $primary->where(function ($sub) {
+                    $sub->where(function ($recurring) {
+                        $recurring
+                            ->where('is_recurring', true)
+                            ->whereIn('recurring_periodicity', ['year', 'month'])
+                            ->where(function ($recurringuntil) {
+                                $recurringuntil
+                                    ->whereNull('recurring_until')
+                                    // Events that end in the future are fine, they could be reoccuring on this month
+                                    ->orWhere('recurring_until', '>=', $this->currentYear());
+                            });
+                    });
+                })
+                    ->orWhere(function ($ondate) {
+                        // Not recurring
+                        $ondate
+                            ->where('is_recurring', false)
+                            ->where(function ($date) {
+                                // An event that happens before this year
+                                $date
+                                    ->where('year', '<', $this->currentYear())
+                                    ->orWhere(function ($subdate) {
+                                        // An event that happens this year but before this month
+                                        $subdate
+                                            ->where('year', $this->currentYear())
+                                            ->where('month', '<', $this->currentMonth());
+                                    })
+                                    ->orWhere(function ($subdate) {
+                                        // An event that happens this year but before this day
+                                        $subdate
+                                            ->where('year', $this->currentYear())
+                                            ->where('month', $this->currentMonth())
+                                            ->where('day', '<', $this->currentDay());
+                                    });
+                            });
+                    });
             })
-           ->orWhere(function ($ondate) {
-               // Not recurring
-               $ondate
-                   ->where('is_recurring', false)
-                   ->where(function ($date) {
-                       // An event that happens before this year
-                       $date
-                           ->where('year', '<', $this->currentYear())
-                           ->orWhere(function ($subdate) {
-                               // An event that happens this year but before this month
-                               $subdate
-                                   ->where('year', $this->currentYear())
-                                   ->where('month', '<', $this->currentMonth());
-                           })
-                           ->orWhere(function ($subdate) {
-                               // An event that happens this year but before this day
-                               $subdate
-                                   ->where('year', $this->currentYear())
-                                   ->where('month', $this->currentMonth())
-                                   ->where('day', '<', $this->currentDay());
-                           });
-                   });
-           })
             ->orderBy('year', 'desc')
             ->orderBy('month', 'desc')
             ->orderBy('day', 'desc')
