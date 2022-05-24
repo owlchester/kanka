@@ -72,7 +72,7 @@
      'email' => link_to('mailto:' . config('app.email'), config('app.email'))]) !!}</p>
                 </div>
                 <div class="col-12 col-sm-6">
-                    @includeIf('errors.images.503-image')
+                    <img src="/images/svgs/503.svg" alt="Error 503 image" />
                 </div>
             </div>
         </div>

@@ -114,7 +114,7 @@
                     </p>
                 </div>
                 <div class="col-12 col-sm-6">
-                    @includeIf('errors.images.' . $error . '-image')
+                    <img src="/images/svgs/{{ $error }}.svg" alt="Error {{ $error }} image" />
                 </div>
             </div>
         </div>
