@@ -21,14 +21,14 @@
 
                 <div class="form-group">
                     <label>{{ __('calendars.fields.current_month') }}</label>
-                    {!! Form::number('current_month', !empty($model) ? $model->currentDate('month') : (isset($source) ? $source->currentDate('month') : null), ['class' => 'form-control']) !!}
+                    {!! Form::number('current_month', !empty($model) ? $model->currentDate('month') : (isset($source) ? $source->currentDate('month') : null), ['class' => 'form-control', 'min' => 1]) !!}
                 </div>
             </div>
             <div class="col-md-4">
 
                 <div class="form-group">
                     <label>{{ __('calendars.fields.current_day') }}</label>
-                    {!! Form::number('current_day', !empty($model) ? $model->currentDate('date') : (isset($source) ? $source->currentDate('date') : null), ['class' => 'form-control']) !!}
+                    {!! Form::number('current_day', !empty($model) ? $model->currentDate('date') : (isset($source) ? $source->currentDate('date') : null), ['class' => 'form-control', 'min' => 1]) !!}
                 </div>
             </div>
         </div>
