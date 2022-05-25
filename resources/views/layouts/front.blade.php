@@ -154,14 +154,66 @@
                         {{ LaravelLocalization::getCurrentLocaleNative() }} <span class="caret"></span>
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropLocale">
-                    @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
-                        @if (in_array($localeCode, ['he', 'hr'])) @continue @endif
-                        @if ($localeCode != app()->getLocale())
-                            <a rel="alternate" hreflang="{{ $localeCode }}" href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true).(auth()->guest() ? '' : '?updateLocale=true') }}" class="dropdown-item">
-                                {{ ucfirst($properties['native']) }}
-                            </a>
-                        @endif
-                    @endforeach
+                        @php $locale = 'en-US'; @endphp
+                        <a rel="alternate" hreflang="{{ $locale }}" href="{{ LaravelLocalization::getLocalizedURL($locale, null, [], true).(auth()->guest() ? '' : '?updateLocale=true') }}" class="dropdown-item">
+                            US English
+                        </a>
+                        @php $locale = 'en'; @endphp
+                        <a rel="alternate" hreflang="{{ $locale }}" href="{{ LaravelLocalization::getLocalizedURL($locale, null, [], true).(auth()->guest() ? '' : '?updateLocale=true') }}" class="dropdown-item">
+                            UK English
+                        </a>
+                        @php $locale = 'pt-BR'; @endphp
+                        <a rel="alternate" hreflang="{{ $locale }}" href="{{ LaravelLocalization::getLocalizedURL($locale, null, [], true).(auth()->guest() ? '' : '?updateLocale=true') }}" class="dropdown-item">
+                            Português do Brasil
+                        </a>
+                        @php $locale = 'es'; @endphp
+                        <a rel="alternate" hreflang="{{ $locale }}" href="{{ LaravelLocalization::getLocalizedURL($locale, null, [], true).(auth()->guest() ? '' : '?updateLocale=true') }}" class="dropdown-item">
+                            Español
+                        </a>
+                        @php $locale = 'de'; @endphp
+                        <a rel="alternate" hreflang="{{ $locale }}" href="{{ LaravelLocalization::getLocalizedURL($locale, null, [], true).(auth()->guest() ? '' : '?updateLocale=true') }}" class="dropdown-item">
+                            Deutsch
+                        </a>
+                        <div class="dropdown-divider"></div>
+
+                        @php $locale = 'fr'; @endphp
+                        <a rel="alternate" hreflang="{{ $locale }}" href="{{ LaravelLocalization::getLocalizedURL($locale, null, [], true).(auth()->guest() ? '' : '?updateLocale=true') }}" class="dropdown-item">
+                            Français
+                        </a>
+                        @php $locale = 'it'; @endphp
+                        <a rel="alternate" hreflang="{{ $locale }}" href="{{ LaravelLocalization::getLocalizedURL($locale, null, [], true).(auth()->guest() ? '' : '?updateLocale=true') }}" class="dropdown-item">
+                            Italiano
+                        </a>
+                        @php $locale = 'ru'; @endphp
+                        <a rel="alternate" hreflang="{{ $locale }}" href="{{ LaravelLocalization::getLocalizedURL($locale, null, [], true).(auth()->guest() ? '' : '?updateLocale=true') }}" class="dropdown-item">
+                            Pусский
+                        </a>
+                        @php $locale = 'pl'; @endphp
+                        <a rel="alternate" hreflang="{{ $locale }}" href="{{ LaravelLocalization::getLocalizedURL($locale, null, [], true).(auth()->guest() ? '' : '?updateLocale=true') }}" class="dropdown-item">
+                            Polska
+                        </a>
+                        @php $locale = 'nl'; @endphp
+                        <a rel="alternate" hreflang="{{ $locale }}" href="{{ LaravelLocalization::getLocalizedURL($locale, null, [], true).(auth()->guest() ? '' : '?updateLocale=true') }}" class="dropdown-item">
+                            Nederlands
+                        </a>
+                        <div class="dropdown-divider"></div>
+
+                        @php $locale = 'hu'; @endphp
+                        <a rel="alternate" hreflang="{{ $locale }}" href="{{ LaravelLocalization::getLocalizedURL($locale, null, [], true).(auth()->guest() ? '' : '?updateLocale=true') }}" class="dropdown-item">
+                            Magyar
+                        </a>
+                        @php $locale = 'sk'; @endphp
+                        <a rel="alternate" hreflang="{{ $locale }}" href="{{ LaravelLocalization::getLocalizedURL($locale, null, [], true).(auth()->guest() ? '' : '?updateLocale=true') }}" class="dropdown-item">
+                            Slovenský
+                        </a>
+                        @php $locale = 'ca'; @endphp
+                        <a rel="alternate" hreflang="{{ $locale }}" href="{{ LaravelLocalization::getLocalizedURL($locale, null, [], true).(auth()->guest() ? '' : '?updateLocale=true') }}" class="dropdown-item">
+                            Català
+                        </a>
+                        @php $locale = 'gl'; @endphp
+                        <a rel="alternate" hreflang="{{ $locale }}" href="{{ LaravelLocalization::getLocalizedURL($locale, null, [], true).(auth()->guest() ? '' : '?updateLocale=true') }}" class="dropdown-item">
+                            Galego
+                        </a>
                     </div>
                 </li>
             </ul>
