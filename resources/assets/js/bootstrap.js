@@ -16,8 +16,8 @@ try {
 
 require('admin-lte');
 require('select2');
-require('bootstrap-datepicker');
-require('eonasdan-bootstrap-datetimepicker');
+//require('bootstrap-datepicker');
+//require('eonasdan-bootstrap-datetimepicker');
 require('spectrum-colorpicker');
 
 

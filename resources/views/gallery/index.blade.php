@@ -54,7 +54,7 @@ if ($folder) {
             <p>{{ __('campaigns/gallery.uploader.or') }}</p>
 
             <span class="btn btn-primary fileinput-button">
-              <i class="glyphicon glyphicon-plus"></i>
+              <i class="fa-solid fa-plus"></i>
               <span>{{ __('campaigns/gallery.uploader.select_file') }}</span>
               <input type="file" id="file-upload" name="file" multiple />
         </span>

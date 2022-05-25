@@ -163,12 +163,7 @@ $clipboardFilters = $filterService->clipboardFilters();
                                         </datalist>
                                     </div>
                                 @elseif ($field === 'date')
-                                    <div class="input-group">
-                                        <div class="input-group-addon">
-                                            <i class="fa-solid fa-calendar"></i>
-                                        </div>
-                                        <input type="text" class="form-control date-picker entity-list-filter" name="{{ $field }}" value="{{ $filterService->single($field) }}" autocomplete="off" />
-                                    </div>
+                                    <input type="date" class="form-control entity-list-filter" name="{{ $field }}" value="{{ $filterService->single($field) }}" />
                                 @else
                                     <input type="text" class="form-control entity-list-filter" name="{{ $field }}" value="{{ $filterService->single($field) }}" />
                                 @endif

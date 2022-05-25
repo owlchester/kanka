@@ -11,24 +11,6 @@ $(document).on('select2:open', () => {
 
 function registerVendorEvents()
 {
-    // Datetime picker (admin)
-    $.each($('.datetime-picker'), function (index) {
-        $(this).datetimepicker({
-            sideBySide: true,
-            format: 'YYYY-MM-DD HH:mm:00'
-        });
-    });
-
-    // Date picker
-    $.each($('.date-picker'), function (index) {
-        // instance, using default configuration.
-        $(this).datepicker({
-            autoclose: true,
-            format: 'yyyy-mm-dd',
-            todayHighlight: true
-        });
-    });
-
     // Open select2 dropdowns on focus. Don't add this in
     // initSelect2 since we only need this binded once.
     $(document).on('focus', '.select2.select2-container', function (e) {

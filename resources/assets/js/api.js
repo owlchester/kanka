@@ -7,7 +7,7 @@ import PersonalAccessTokens from './components/passport/PersonalAccessTokens.vue
  * Vue is only used on the API token generation, because enabling it in the whole app opens us
  * to {{ }} constructor injections.
  */
-window.Vue = require('vue');
+import Vue from 'vue'
 
 
 /**

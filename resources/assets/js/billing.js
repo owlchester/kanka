@@ -1,12 +1,6 @@
-import BillingManagement from './components/subscription/BillingManagement';
-import * as uiv from 'uiv';
+import Vue from 'vue'
 
-window.Vue = require('vue');
-
-Vue.component('billing-management', BillingManagement);
-
-// Boostrap
-Vue.use(uiv);
+Vue.component('billing-management', require('./components/subscription/BillingManagement.vue').default);
 
 const app = new Vue({
     el: '#billing',

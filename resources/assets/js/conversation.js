@@ -1,18 +1,9 @@
-import Conversation from "./components/conversation/Conversation"
-import Message from "./components/conversation/Message"
-import Messages from "./components/conversation/Messages"
-import Form from "./components/conversation/Form"
-import * as uiv from 'uiv'
+import Vue from 'vue'
 
-window.Vue = require('vue');
-
-Vue.component('conversation', Conversation);
-Vue.component('conversation-messages', Messages);
-Vue.component('conversation-message', Message);
-Vue.component('conversation-form', Form);
-
-// Boostrap
-Vue.use(uiv);
+Vue.component('conversation', require('./components/conversation/Conversation.vue').default);
+Vue.component('conversation-messages', require('./components/conversation/Messages.vue').default);
+Vue.component('conversation-message', require('./components/conversation/Message.vue').default);
+Vue.component('conversation-form', require('./components/conversation/Form.vue').default);
 
 // Translations
 const app = new Vue({

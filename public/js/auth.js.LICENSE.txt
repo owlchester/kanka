@@ -5,9 +5,11 @@
  */
 
 /*!
- * Datepicker for Bootstrap v1.9.0 (https://github.com/uxsolutions/bootstrap-datepicker)
+ * Select2 4.0.13
+ * https://select2.github.io
  *
- * Licensed under the Apache License v2.0 (http://www.apache.org/licenses/LICENSE-2.0)
+ * Released under the MIT license
+ * https://github.com/select2/select2/blob/master/LICENSE.md
  */
 
 /*!
@@ -36,7 +38,7 @@
  */
 
 /*!
- * jQuery UI :data 1.13.0
+ * jQuery UI :data 1.13.1
  * http://jqueryui.com
  *
  * Copyright jQuery Foundation and other contributors
@@ -45,7 +47,7 @@
  */
 
 /*!
- * jQuery UI Draggable 1.13.0
+ * jQuery UI Draggable 1.13.1
  * http://jqueryui.com
  *
  * Copyright jQuery Foundation and other contributors
@@ -54,7 +56,7 @@
  */
 
 /*!
- * jQuery UI Mouse 1.13.0
+ * jQuery UI Mouse 1.13.1
  * http://jqueryui.com
  *
  * Copyright jQuery Foundation and other contributors
@@ -63,7 +65,7 @@
  */
 
 /*!
- * jQuery UI Scroll Parent 1.13.0
+ * jQuery UI Scroll Parent 1.13.1
  * http://jqueryui.com
  *
  * Copyright jQuery Foundation and other contributors
@@ -72,7 +74,7 @@
  */
 
 /*!
- * jQuery UI Sortable 1.13.0
+ * jQuery UI Sortable 1.13.1
  * http://jqueryui.com
  *
  * Copyright jQuery Foundation and other contributors
@@ -81,7 +83,7 @@
  */
 
 /*!
- * jQuery UI Widget 1.13.0
+ * jQuery UI Widget 1.13.1
  * http://jqueryui.com
  *
  * Copyright jQuery Foundation and other contributors
@@ -102,14 +104,6 @@
 * @license MIT <http://opensource.org/licenses/MIT>
 */
 
-/*! version : 4.17.47
- =========================================================
- bootstrap-datetimejs
- https://github.com/Eonasdan/bootstrap-datetimepicker
- Copyright (c) 2015 Jonathan Peterson
- =========================================================
- */
-
 /**
  * @license
  * Lodash <https://lodash.com/>
@@ -118,14 +112,3 @@
  * Based on Underscore.js 1.8.3 <http://underscorejs.org/LICENSE>
  * Copyright Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
  */
-
-/**
- * @license almond 0.3.3 Copyright jQuery Foundation and other contributors.
- * Released under MIT license, http://github.com/requirejs/almond/LICENSE
- */
-
-//! moment.js
-
-//! moment.js language configuration
-
-//! moment.js locale configuration

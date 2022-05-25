@@ -75,6 +75,12 @@ Next up is setting up the application boilerplates.
 sail artisan db:seed
 ```
 
+Last optional command is to allow your local env to generate API tokens.
+
+```bash
+sail artisan passport:install
+```
+
 ### Testing
 
 You're now ready to test your app. Navigate to (localhost:8081)[http://localhost:8081] and you should see the Kanka application.
