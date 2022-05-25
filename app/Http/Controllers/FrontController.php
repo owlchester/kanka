@@ -4,25 +4,18 @@ namespace App\Http\Controllers;
 
 use App\Facades\FrontCache;
 use App\Models\Campaign;
-use App\Services\PatreonService;
 use App\Services\ReferralService;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class FrontController extends Controller
 {
-    /**
-     * @var PatreonService
-     */
-    protected $patreon;
 
     /**
      * FrontController constructor.
-     * @param PatreonService $patreonService
      */
-    public function __construct(PatreonService $patreonService, ReferralService $referralService)
+    public function __construct(ReferralService $referralService)
     {
-        $this->patreon = $patreonService;
         $referralService->validate(request());
 
         $this->middleware('fullsetup', ['except' => 'index']);
@@ -48,15 +41,6 @@ class FrontController extends Controller
     public function about()
     {
         return view('front.about');
-    }
-
-    /**
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function hallOfFame()
-    {
-        $patrons = $this->patreon->patrons();
-        return view('front.hall_of_fame', compact('patrons'));
     }
 
     /**

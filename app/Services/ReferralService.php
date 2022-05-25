@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Services;
-
 
 use App\Models\Referral;
 use Illuminate\Http\Request;
@@ -16,7 +14,7 @@ class ReferralService
      * Validate a referral and save it to the session
      * @param Request $request
      */
-    public function validate(Request  $request): void
+    public function validate(Request $request): void
     {
         if (!$request->has($this->key)) {
             return;
@@ -30,8 +28,6 @@ class ReferralService
 
         // A valid referral, save it to the session
         session()->put('referral_id', $referral->id);
-
-        return;
     }
 
     /**

@@ -51,10 +51,11 @@ class RouteServiceProvider extends ServiceProvider
         $this->mapProfileRoutes();
         $this->mapPartnerRoutes();
         $this->mapAuthRoutes();
+        $this->mapLocalessRoutes();
     }
 
     /**
-     * Define the "web" routes for the application.
+     * Define the general "web" routes for the application.
      *
      * These routes all receive session state, CSRF protection, etc.
      *
@@ -70,8 +71,6 @@ class RouteServiceProvider extends ServiceProvider
     /**
      * Define the "api" routes for the application.
      *
-     * These routes are typically stateless.
-     *
      * @return void
      */
     protected function mapApiRoutes()
@@ -83,7 +82,9 @@ class RouteServiceProvider extends ServiceProvider
     }
 
     /**
+     * Define the "front" routes that can be seen by everyone
      *
+     * These routes are typically stateless.
      */
     protected function mapFrontRoutes()
     {
@@ -93,6 +94,11 @@ class RouteServiceProvider extends ServiceProvider
             ->group(base_path('routes/front.php'));
     }
 
+    /**
+     * Define the "campaign" routes for everything in a campaign
+     *
+     * Todo: one day, move from campaignLocalization in the controllers, and move the campaign in route binding
+     */
     protected function mapCampaignRoutes()
     {
         Route::middleware(['web', 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath', 'localizeDatetime', 'campaign'])
@@ -102,7 +108,7 @@ class RouteServiceProvider extends ServiceProvider
     }
 
     /**
-     *
+     * Define the "profile" routes of a user
      */
     protected function mapProfileRoutes()
     {
@@ -113,7 +119,7 @@ class RouteServiceProvider extends ServiceProvider
     }
 
     /**
-     *
+     * Define the "partner" routes
      */
     protected function mapPartnerRoutes()
     {
@@ -124,12 +130,28 @@ class RouteServiceProvider extends ServiceProvider
             ->group(base_path('routes/partner.php'));
     }
 
+    /**
+     * Define the "auth" routes for login, logout, lost password etc
+     */
     protected function mapAuthRoutes()
     {
         Route::middleware(['web', 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath', 'localizeDatetime'])
             ->prefix(LaravelLocalization::setLocale())
             ->namespace('App\Http\Controllers')
             ->group(base_path('routes/auth.php'))
+        ;
+    }
+
+    /**
+     * Define routes that don't have a local associated with them
+     */
+    protected function mapLocalessRoutes()
+    {
+        Route::middleware([
+                'web'
+            ])
+            ->namespace('\App\Http\Controllers')
+            ->group(base_path('routes/localess.php'))
         ;
     }
 }

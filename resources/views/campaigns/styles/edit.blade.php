@@ -35,9 +35,6 @@
                     </label>
                 </div>
             </div>
-
-
-
         </div>
         <div class="panel-footer">
             <button class="btn btn-success">{{ __('crud.save') }}</button>
