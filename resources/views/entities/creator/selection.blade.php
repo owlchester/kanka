@@ -1,10 +1,5 @@
 <div class="modal-body text-center">
-    <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('crud.delete_modal.close') }}">
-        <span aria-hidden="true">&times;</span>
-    </button>
-    <h4 class="modal-title">
-        {{ __('entities.creator.title') }}
-    </h4>
+    @include('partials.modals.close')
 
     @if(isset($new))
         <div class="alert alert-success alert-dismissable">
@@ -12,7 +7,7 @@
             {!! $new !!}
         </div>
     @endif
-    <p class="help-block my-5">{{ __('entities.creator.helper_v2') }}</p>
+    <p class="help-block mb-5">{{ __('entities.creator.helper_v2') }}</p>
     <div class="entity-creator">
         @if (isset($entities['characters']))
                 <a href="#" class="rounded-lg quick-creator-selection" data-toggle="entity-creator" data-url="{{ route('entity-creator.form', ['type' => 'characters']) }}" data-entity-type="character">
