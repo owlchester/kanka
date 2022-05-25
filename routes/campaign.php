@@ -26,6 +26,7 @@ Route::post('/abilities/{ability}/entity-add', 'AbilityController@entityStore')-
 // Maps
 Route::get('/maps/{map}/maps', 'Maps\MapController@maps')->name('maps.maps');
 Route::get('/maps/{map}/explore', 'Maps\MapController@explore')->name('maps.explore');
+Route::get('/maps/{map}/chunks/', 'Maps\MapController@chunks')->name('maps.chunks');
 Route::get('/maps/{map}/ticker', 'Maps\MapController@ticker')->name('maps.ticker');
 Route::get('/maps/{map}/{map_marker}/details', 'Maps\MapMarkerController@details')->name('maps.markers.details');
 Route::post('/maps/{map}/{map_marker}/move', 'Maps\MapMarkerController@move')->name('maps.markers.move');

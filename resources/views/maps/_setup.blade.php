@@ -41,7 +41,8 @@ if (isset($single) && $single) {
 @if(!isset($single) || !$single)
     /** Groups Init **/
 @foreach($map->groups as $group)
-    var group{{ $group->id }} = L.layerGroup([{{ $group->markerGroupHtml() }}]);
+    var group{{ $group->id }} = L.layerGroup(/**[{{ $group->markerGroupHtml() }}]**/);
+    //var clusterMarkersGroup{{ $group->id }} = L.markerClusterGroup({ chunkedLoading: true });
 @endforeach
 
     var overlayMaps{{ $map->id }} = {
@@ -55,7 +56,7 @@ if (isset($single) && $single) {
 @else
     var overlayMaps{{ $map->id }} = {};
 @endif
-    @if (!$map->is_real)
+    @if (!$map->isReal() && !$map->isChunked())
 
     var map{{ $map->id }} = L.map('map{{ $map->id }}', {
         crs: L.CRS.Simple,
@@ -77,6 +78,11 @@ if (isset($single) && $single) {
     @else
 
     var map{{ $map->id }} = L.map('map{{ $map->id }}', {
+        @if ($map->isChunked())
+        crs: L.CRS.Simple,
+        maxBounds: maxBounds{{ $map->id }},
+        maxBoundsViscosity: 0.5,
+        @endif
         noWrap: true,
         dragging: true,
         tap: false,
@@ -85,12 +91,21 @@ if (isset($single) && $single) {
         maxZoom: {{ $map->maxZoom() }},
     }).setView([ {{ $focus }} ], {{ $map->initialZoom() }});
 
+    @if ($map->isReal())
     L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
     }).addTo(map{{ $map->id }});
+    @else
+    L.tileLayer('{{ route('maps.chunks', $map->id) }}/?z={z}&x={x}&y={y}', {
+        attribution: '&copy; Kanka',
+    }).addTo(map{{ $map->id }});
+    @endif
 
     L.control.layers(null, overlayMaps{{ $map->id }}).addTo(map{{ $map->id }});
 
     @endif
+
+    // This is where we group markers into cluster groups
+    var clusterMarkers{{ $map->id }} = L.markerClusterGroup.layerSupport({ chunkedLoading: true });
 
 </script>

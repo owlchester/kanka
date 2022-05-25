@@ -15,9 +15,6 @@
         [
             'label' => '<i class="fa-solid fa-map" data-toggle="tooltip" title="' . __('maps.actions.explore') . '"></i>',
             'render' => function($model) {
-                if (empty($model->image)) {
-                    return '';
-                }
                 return $model->exploreLink();
             },
             'disableSort' => true,

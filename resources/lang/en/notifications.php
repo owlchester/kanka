@@ -48,4 +48,7 @@ return [
         'started'       => 'Your subscription to Kanka has started.',
     ],
     'unread'            => 'New notification',
+    'map' => [
+        'chunked' => 'Map :name has finished chunking and is now usable.',
+    ]
 ];

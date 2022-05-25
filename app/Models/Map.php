@@ -30,6 +30,7 @@ use Illuminate\Support\Facades\Storage;
  * @property float $center_y
  * @property int $center_marker_id
  * @property bool $is_real
+ * @property int $chunking_status
  * @property Map $map
  * @property Map[] $maps
  * @property Location $location
@@ -53,6 +54,10 @@ class Map extends MiscModel
     const MIN_ZOOM = -10;
     const MAX_ZOOM_REAL = 15;
     const MIN_ZOOM_REAL = 2;
+
+    const CHUNKING_RUNNING = 1;
+    const CHUNKING_FINISHED = 2;
+    const CHUNKING_ERROR = 3;
 
     /**
      * @var array
@@ -310,7 +315,7 @@ class Map extends MiscModel
     public function activeLayers(bool $groups = true): string
     {
         $layers = [];
-        if (!$this->is_real) {
+        if (!$this->isReal()) {
             $layers = ['baseLayer' . $this->id];
         }
         if ($groups) {
@@ -393,7 +398,7 @@ class Map extends MiscModel
     public function minZoom(): int
     {
         if (!is_numeric($this->min_zoom)) {
-            if ($this->is_real) {
+            if ($this->isReal() || $this->isChunked()) {
                 return self::MIN_ZOOM_REAL;
             }
             return -2;
@@ -403,7 +408,11 @@ class Map extends MiscModel
         if ($this->min_zoom > $this->initial_zoom && $this->initial_zoom > self::MIN_ZOOM) {
             return $this->initial_zoom;
         }
-        $min = $this->is_real ? self::MIN_ZOOM_REAL : self::MIN_ZOOM;
+        // The max zoom is based on the chunked image so we trust this.
+        if ($this->isChunked()) {
+            return $this->min_zoom;
+        }
+        $min = $this->isReal() ? self::MIN_ZOOM_REAL : self::MIN_ZOOM;
         return (int) max($this->min_zoom, $min);
     }
 
@@ -414,12 +423,19 @@ class Map extends MiscModel
     public function maxZoom(): float
     {
         if (!is_numeric($this->max_zoom)) {
-            if ($this->is_real) {
+            if ($this->isChunked()) {
+                return 13;
+            }
+            if ($this->isChunked() || $this->isReal()) {
                 return self::MAX_ZOOM_REAL;
             }
             return 2.75;
         }
-        $max = $this->is_real ? self::MAX_ZOOM_REAL : self::MAX_ZOOM;
+        // The max zoom is based on the chunked image so we trust this.
+        if ($this->isChunked()) {
+            return $this->max_zoom;
+        }
+        $max = $this->isReal() ? self::MAX_ZOOM_REAL : self::MAX_ZOOM;
         return (float) min($this->max_zoom, $max);
     }
 
@@ -430,7 +446,7 @@ class Map extends MiscModel
     public function initialZoom(): int
     {
         if (!is_numeric($this->initial_zoom)) {
-            if ($this->is_real) {
+            if ($this->isReal() || $this->isChunked()) {
                 return 12;
             }
             return 0;
@@ -452,9 +468,12 @@ class Map extends MiscModel
     {
         // Init position in the middle of the map
         $latitude = $longitude = 0;
-        if ($this->is_real) {
+        if ($this->isReal()) {
             $latitude = 46.205;
             $longitude = 6.147;
+        } elseif ($this->isChunked()) {
+            $latitude = 0;
+            $longitude = 0;
         } else {
             $latitude = floor($this->height / 2);
             $longitude = floor($this->width / 2);
@@ -550,13 +569,87 @@ class Map extends MiscModel
     }
 
     /**
+     * The explore link for a map, or the chunking process icon
      * @return string
      */
     public function exploreLink(): string
     {
+        if (empty($this->image)) {
+            return '';
+        }
+        if ($this->isChunked()) {
+            if ($this->chunkingError()) {
+                return '<i class="fas fa-exclamation-triangle" data-toggle="tooltip" title="' .
+                    __('maps.errors.chunking.error', ['discord' => 'Discord']) . '"></i>';
+            } elseif ($this->chunkingRunning()) {
+                return '<i class="fas fa-spin fa-spinner" data-toggle="tooltip" title="' .
+                    __('maps.tooltips.chunking.running') . '"></i>';
+            }
+        }
         return '<a href="' . route('maps.explore', $this->id) . '" target="_blank" ' .
             'data-toggle="tooltip" title="' . __('maps.actions.explore') . '">' .
             '<i class="fa-solid fa-map" data-tree="escape"></i>' .
             '</a>';
+    }
+
+    /**
+     * Prepare groups for clustering
+     * @return string
+     */
+    public function checkinGroups(): string
+    {
+        if (empty($this->groups)) {
+            return '[]';
+        }
+        $ids = [];
+        foreach ($this->groups as $group) {
+            $ids[] = 'group' . $group->id;
+        }
+
+        return '[' . implode(', ', $ids) . ']';
+    }
+
+    /**
+     * Check if a map is using the "real" world (openstreetmaps)
+     * @return bool
+     */
+    public function isReal(): bool
+    {
+        return $this->is_real;
+    }
+
+    /**
+     * Check if a map has a chunked tileset
+     * @return bool
+     */
+    public function isChunked(): bool
+    {
+        return !empty($this->chunking_status);
+    }
+
+    /**
+     * Check if a map is currently being chunked
+     * @return bool
+     */
+    public function chunkingReady(): bool
+    {
+        return !$this->chunkingError() && !$this->chunkingRunning();
+    }
+
+    /**
+     * Check if a map encountered a chunking error
+     * @return bool
+     */
+    public function chunkingError(): bool
+    {
+        return $this->chunking_status == self::CHUNKING_ERROR;
+    }
+    /**
+     * Check if a map encountered a chunking error
+     * @return bool
+     */
+    public function chunkingRunning(): bool
+    {
+        return $this->chunking_status == self::CHUNKING_RUNNING;
     }
 }

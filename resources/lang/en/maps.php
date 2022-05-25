@@ -24,6 +24,14 @@ return [
         'explore'   => [
             'missing'   => 'Please add an image to the map before being able to explore it.',
         ],
+        'chunking' => [
+            'error' => 'There was an error while chunking the map. Please contact the team on :discord for support.',
+            'running' => [
+                'edit' => 'The map cannot be edited while it\'s been chunked.',
+                'explore' => 'The map cannot be displayed while it\'s been chunked.',
+                'time' => 'This can take several minutes to several hours, depending on the size of the map.',
+            ]
+        ]
     ],
     'fields'        => [
         'center_marker'     => 'Marker',
@@ -87,4 +95,9 @@ return [
             'maps'  => 'Maps',
         ],
     ],
+    'tooltips' => [
+        'chunking' => [
+            'running' => 'Map is being chunked. This process can take several minutes to hours.',
+        ]
+    ]
 ];

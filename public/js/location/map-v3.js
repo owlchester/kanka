@@ -161,6 +161,8 @@ function deleteConfirm() {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_delete_confirm__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../components/delete-confirm */ "./resources/assets/js/components/delete-confirm.js");
+ //require ('leaflet.markercluster/dist/leaflet.markercluster');
+//require ('leaflet.markercluster.layersupport');
 
 var mapPageBody;
 var sidebarMap, sidebarMarker;
