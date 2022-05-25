@@ -96,6 +96,37 @@ img.profile-user-img {
 .navbar-nav > .notifications-menu > .dropdown-menu {
   width: 360px;
 }
+// I hate my life
+.navbar {
+  .sidebar-toggle:before {
+    content: "";
+  }
+  .sidebar-toggle:focus {
+    color: var(--main-navbar-text);
+  }
+  // Desktop: default is sidebar is open
+  .fa-angles-right {
+    display: none;
+  }
+}
+// On desktop, the sidebar gets collapsed
+.sidebar-collapse .navbar .sidebar-toggle {
+  .fa-angles-left {
+    display: none;
+  }
+  .fa-angles-right {
+    display: unset;
+  }
+}
+// On mobile, the sidebar get opened
+.sidebar-open .navbar .sidebar-toggle {
+  .fa-angles-left {
+    display: unset;
+  }
+  .fa-angles-right {
+    display: none;
+  }
+}
 
 // Map form
 .disabledLink{
@@ -605,10 +636,11 @@ summary { display: list-item; }
   &:focus {
     top: 0;
     transform: translateY(0);
+    color: var(--link-text);
   }
 }
-.main-header .navbar a:focus {
-  color: var(--link-text) !important;
+.navbar-custom-menu a:focus {
+  color: var(--link-text);
 }
 
 /** Toast **/

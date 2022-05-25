@@ -13,6 +13,8 @@ $currentCampaign = CampaignLocalization::getCampaign();
     <nav class="navbar navbar-static-top">
         @if ((auth()->check() && auth()->user()->hasCampaigns()) || !auth()->check())
             <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button" tabindex="3">
+                <i class="fa-solid fa-angles-left" aria-hidden="true"></i>
+                <i class="fa-solid fa-angles-right" aria-hidden="true"></i>
                 <span class="sr-only">{{ __('header.toggle_navigation') }}</span>
             </a>
         @endif

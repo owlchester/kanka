@@ -558,6 +558,30 @@ img.profile-user-img {
   width: 360px;
 }
 
+.navbar .sidebar-toggle:before {
+  content: "";
+}
+.navbar .sidebar-toggle:focus {
+  color: var(--main-navbar-text);
+}
+.navbar .fa-angles-right {
+  display: none;
+}
+
+.sidebar-collapse .navbar .sidebar-toggle .fa-angles-left {
+  display: none;
+}
+.sidebar-collapse .navbar .sidebar-toggle .fa-angles-right {
+  display: unset;
+}
+
+.sidebar-open .navbar .sidebar-toggle .fa-angles-left {
+  display: unset;
+}
+.sidebar-open .navbar .sidebar-toggle .fa-angles-right {
+  display: none;
+}
+
 .disabledLink {
   cursor: not-allowed;
 }
@@ -1009,10 +1033,11 @@ summary {
 .skip-nav-link:focus {
   top: 0;
   transform: translateY(0);
+  color: var(--link-text);
 }
 
-.main-header .navbar a:focus {
-  color: var(--link-text) !important;
+.navbar-custom-menu a:focus {
+  color: var(--link-text);
 }
 
 /** Toast **/
@@ -1334,6 +1359,13 @@ summary {
   }
   .navbar-nav .campaign-menu a.campaign-selector {
     filter: unset;
+  }
+
+  .navbar .sidebar-toggle .fa-angles-left {
+    display: none;
+  }
+  .navbar .sidebar-toggle .fa-angles-right {
+    display: unset;
   }
 
   .main-sidebar {

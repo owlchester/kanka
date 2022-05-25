@@ -40,6 +40,16 @@
     }
   }
 
+  // On mobile, the default is for the sidebar to be closed
+  .navbar .sidebar-toggle {
+    .fa-angles-left {
+      display: none;
+    }
+    .fa-angles-right {
+      display: unset;
+    }
+  }
+
   .main-sidebar {
     padding-top: 50px;
   }
