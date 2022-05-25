@@ -84,7 +84,7 @@ $specificTheme = null;
                         <div class="marker-actions text-center">
                             @can('update', $map)
                                 <a href="{{ route('maps.edit', [$map]) }}" class="btn btn-primary">
-                                    <i class="fa-solid fa-map"></i> {{ __('maps.actions.edit') }}
+                                    <i class="fa-solid fa-map" aria-hidden="true"></i> {{ __('maps.actions.edit') }}
                                 </a>
                             @endcan
                         </div>

@@ -51,7 +51,7 @@
                   marker{{ $marker->id }}.addTo(group{{ $marker->group_id }})
             @endif
         @endforeach
-        map.addLayer(clusterMarkers{{ $map->id }});
+        map{{ $map->id }}.addLayer(clusterMarkers{{ $map->id }});
 
         /** Add the groups to the cluster **/
         clusterMarkers{{ $map->id }}.checkIn({{ $map->checkinGroups() }});

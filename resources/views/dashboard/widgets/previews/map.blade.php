@@ -67,14 +67,31 @@ $map = $entity->child;
     @include('maps._setup')
 
     <script type="text/javascript">
-@foreach ($map->markers as $marker)
-@if(!$marker->visible())
-@continue
-@endif
-    @if (empty($marker->group_id))
-        marker{{ $marker->id }}.addTo(map{{ $map->id }});
-    @endif
-@endforeach
+        /** Add markers outside of a group directly to the page **/
+        @foreach ($map->markers as $marker)
+            @if ($marker->visible() && empty($marker->group_id))
+                clusterMarkers{{ $map->id }}.addLayer(marker{{ $marker->id }});
+                //marker{{ $marker->id }}.addTo(map{{ $map->id }});
+            @elseif (!empty($marker->group_id))
+                marker{{ $marker->id }}.addTo(group{{ $marker->group_id }})
+            @endif
+        @endforeach
+        map{{ $map->id }}.addLayer(clusterMarkers{{ $map->id }});
+
+        /** Add the groups to the cluster **/
+        clusterMarkers{{ $map->id }}.checkIn({{ $map->checkinGroups() }});
+
+        /** Add the groups to the map **/
+        @foreach ($map->groups as $group)
+            @if (!$group->is_shown) @continue @endif
+            group{{ $group->id }}.addTo(map{{ $map->id }});
+        @endforeach
+        @foreach ($map->markers as $marker)
+            @if(!$marker->visible()) @continue @endif
+            @if (empty($marker->group_id))
+                marker{{ $marker->id }}.addTo(map{{ $map->id }});
+            @endif
+        @endforeach
     </script>
 @endsection
 
