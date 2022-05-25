@@ -1,3 +1,8 @@
+:root {
+  --quick-creator-background: var(--link-text);
+  --quick-creator-text: var(--label-default-text);
+}
+
 .content-wrapper {
   margin-left: 280px;
 }
@@ -82,6 +87,32 @@
   background: rgba(0, 0, 0, 0.24);
   box-shadow: inset 1px 2px 6px rgba(0, 0, 0, 0.16);
   border-radius: 8px;
+}
+.main-sidebar .sidebar-menu .quick-creator-element {
+  text-align: center;
+  margin-bottom: 0.25rem;
+}
+.main-sidebar .sidebar-menu .quick-creator-element .quick-creator-button {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  font-size: 0.9rem;
+  padding: 0.5rem 0;
+  width: 70%;
+  cursor: pointer;
+  text-align: center;
+  color: var(--quick-creator-button-text);
+  mix-blend-mode: normal;
+  background-color: var(--quick-creator-button-background);
+  text-transform: uppercase;
+  border-radius: 5px;
+}
+.main-sidebar .sidebar-menu .quick-creator-element .quick-creator-button i {
+  font-size: 1rem;
+}
+.main-sidebar .sidebar-menu .quick-creator-element .quick-creator-button:hover {
+  transition: all 0.5s ease-in-out;
+  background-color: var(--quick-creator-button-hover-background);
 }
 
 .main-sidebar-placeholder {

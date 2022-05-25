@@ -31,6 +31,15 @@ $defaultIndex = ($currentCampaign && $currentCampaign->defaultToNested()) || aut
         <section class="sidebar" style="height: auto">
             <ul class="sidebar-menu">
 
+                @if (auth()->check() && $currentCampaign->userIsMember())
+                <li class="quick-creator-element ab-testing-b" style="display: none" data-toggle="tooltip" title="{{ __('entities.creator.tooltip') }}">
+                    <div data-url="{{ route('entity-creator.selection') }}" data-toggle="ajax-modal" data-target="#entity-modal" class="quick-creator-button my-auto">
+                        <i class="fa-solid fa-plus"></i>
+                        {{ __('crud.actions.new') }}
+                    </div>
+                </li>
+                @endif
+
                 @foreach ($sidebar->campaign($currentCampaign)->layout() as $name => $element)
                     @if ($name === 'menu_links')
                         @includeWhen($currentCampaign->enabled('menu_links'), 'layouts.sidebars.quick-links', $element)
@@ -85,9 +94,8 @@ $defaultIndex = ($currentCampaign && $currentCampaign->defaultToNested()) || aut
     @if (auth()->check() && $currentCampaign->userIsMember())
         <section class="sidebar-creator" data-toggle="tooltip" title="{{ __('entities.creator.tooltip') }}">
             <a href="#" data-url="{{ route('entity-creator.selection') }}" data-toggle="ajax-modal" data-target="#entity-modal" class="quick-creator-button">
-                <i class="fa-solid fa-plus"></i>
-                <span class="ab-testing-a">{{ __('sidebar.new-entity') }}</span>
-                <span class="ab-testing-b">{{ __('crud.actions.new') }}</span>
+                <i class="fa-solid fa-plus" aria-hidden="true"></i>
+                {{ __('sidebar.new-entity') }}
             </a>
         </section>
     @endif
