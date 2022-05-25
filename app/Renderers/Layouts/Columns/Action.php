@@ -9,8 +9,17 @@ use Illuminate\Support\Arr;
 
 class Action extends Column
 {
+    /** @var array Available actions to render */
     protected $actions = [];
 
+    /** @var array Params passed to the individual action routes, ie ['from' => 'calendar'] for workflow */
+    protected $params = [];
+
+    /**
+     * @param Model $model
+     * @param array $config
+     * @param bool $permissions
+     */
     public function __construct(Model $model, array $config, bool $permissions)
     {
         parent::__construct($model, $config);
@@ -20,11 +29,10 @@ class Action extends Column
             if (in_array($action, [Layout::ACTION_EDIT, Layout::ACTION_EDIT_AJAX])) {
                 if (!$permissions) {
                     $this->actions[] = $action;
-                }  elseif (auth()->user()->can('update', $this->model)) {
+                } elseif (auth()->user()->can('update', $this->model)) {
                     $this->actions[] = $action;
                 }
-            }
-            elseif ($action == Layout::ACTION_DELETE) {
+            } elseif ($action == Layout::ACTION_DELETE) {
                 if (!$permissions) {
                     $this->actions[] = $action;
                 } elseif (auth()->user()->can('delete', $this->model)) {
@@ -37,11 +45,22 @@ class Action extends Column
         }
     }
 
+    /**
+     * @param array $params
+     * @return $this
+     */
+    public function params(array $params): self
+    {
+        $this->params = $params;
+        return $this;
+    }
+
     public function __toString(): string
     {
         $html = view('layouts.datagrid.actions')
             ->with('actions', $this->actions)
             ->with('model', $this->model)
+            ->with('params', $this->params)
             ->render()
         ;
         return $html;

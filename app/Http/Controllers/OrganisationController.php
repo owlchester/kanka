@@ -130,7 +130,8 @@ class OrganisationController extends CrudController
             $base = 'allMembers';
         }
         Datagrid::layout(\App\Renderers\Layouts\Organisation\Member::class)
-            ->route('organisations.members', $options);
+            ->route('organisations.members', $options)
+            ->actionParams(['from' => 'org']);
 
         $this->rows = $organisation
             ->{$base}()

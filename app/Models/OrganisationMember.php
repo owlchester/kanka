@@ -27,7 +27,9 @@ use Illuminate\Database\Query\Builder;
  */
 class OrganisationMember extends Model
 {
-    use Paginatable, Filterable, SortableTrait;
+    use Paginatable;
+    use Filterable;
+    use SortableTrait;
 
     const PIN_CHARACTER = 1;
     const PIN_ORGANISATION = 2;
@@ -57,6 +59,7 @@ class OrganisationMember extends Model
     protected $sortable = [
         'organisation.name',
         'character.name',
+        'parent_id',
         'role',
         //'character.location.name',
     ];
@@ -132,6 +135,7 @@ class OrganisationMember extends Model
     {
         return $this->status_id === self::STATUS_UNKNOWN;
     }
+
     /**
      * @param Builder $query
      * @param int $pin
@@ -163,10 +167,11 @@ class OrganisationMember extends Model
 
     /**
      * Datagrid2: route options
+     * @param array $options
      * @return array
      */
-    public function routeParams(): array
+    public function routeParams(array $options = []): array
     {
-        return [$this->character_id, $this->id];
+        return array_merge([$this->character_id, $this->id], $options);
     }
 }

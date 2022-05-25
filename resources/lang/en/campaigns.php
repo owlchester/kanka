@@ -36,16 +36,6 @@ TEXT
         'superboosted'  => 'This feature is only available to superboosted campaigns.',
         'unknown_id'    => 'Unknown Campaign.',
     ],
-    'export'                            => [
-        'errors'            => [
-            'limit' => 'You have exceeded your maximum of one exports per day. Please try again tomorrow.',
-        ],
-        'helper'            => 'Export your campaign. A notification with a download link will be made available.',
-        'helper_secondary'  => 'Two files will be made available, one with the entities exported as JSON, and another with images uploaded to entities. Please note that on larger campaigns, the images export crashes and can only be recovered using the :api.',
-        'helper_third'      => 'JSON files can be opened with any text file application. They represent the data stored in the Kanka database in a text format. There is no way to import your export back into Kanka.',
-        'success'           => 'Your campaign export is being prepared. You\'ll receive a notification in Kanka to a downloadable zip as soon as it\'s ready.',
-        'title'             => 'Export - :name',
-    ],
     'fields'                            => [
         'boosted'                           => 'Boosted by',
         'character_personality_visibility'  => 'Default character personality visibility',

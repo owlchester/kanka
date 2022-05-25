@@ -62,5 +62,5 @@
         </div>
     </div>
 
-    @include('layouts.datagrid.delete-forms', ['models' => Datagrid::deleteForms()])
+    @include('layouts.datagrid.delete-forms', ['models' => Datagrid::deleteForms(), 'params' => []])
 @endsection

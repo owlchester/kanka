@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Jobs\Emails;
-
 
 use App\Mail\WelcomeEmail;
 use App\User;
@@ -15,7 +13,10 @@ use Illuminate\Support\Facades\Mail;
 
 class WelcomeEmailJob implements ShouldQueue
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+    use Dispatchable,
+        InteractsWithQueue,
+        Queueable,
+        SerializesModels;
 
     /**
      * @var int
@@ -43,9 +44,17 @@ class WelcomeEmailJob implements ShouldQueue
         $this->language = $language;
     }
 
+    /**
+     * Handle the job
+     */
     public function handle()
     {
-        $user = User::findOrFail($this->userId);
+        $user = User::find($this->userId);
+        // In a dev environment, it's possible that the queue wasn't running and
+        // the user was deleted before we even get to send the welcome email.
+        if (empty($user)) {
+            return;
+        }
 
         try {
             Mail::to($user->email)

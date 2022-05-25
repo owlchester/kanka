@@ -35,9 +35,6 @@
                     </label>
                 </div>
             </div>
-
-
-
         </div>
         <div class="panel-footer">
             <button class="btn btn-success">{{ __('crud.save') }}</button>
@@ -55,11 +52,15 @@
     <script src="/vendor/codemirror/mode/css/css.js"></script>
     <script src="/vendor/codemirror/addon/hint/show-hint.js"></script>
     <script src="/vendor/codemirror/addon/hint/css-hint.js"></script>
+    <script src="/vendor/codemirror/addon/search/search.js"></script>
+    <script src="/vendor/codemirror/addon/search/searchcursor.js"></script>
+    <script src="/vendor/codemirror/addon/dialog/dialog.js"></script>
 @endsection
 
 @section('styles')
     @parent
     <link rel="stylesheet" href="/vendor/codemirror/lib/codemirror.css">
     <link rel="stylesheet" href="/vendor/codemirror/addon/hint/show-hint.css">
+    <link rel="stylesheet" href="/vendor/codemirror/addon/dialog/dialog.css">
     <link rel="stylesheet" href="/vendor/codemirror/theme/dracula.css">
 @endsection

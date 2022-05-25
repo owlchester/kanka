@@ -33,7 +33,7 @@
                     @endcan
 
                     {{ $relation->user->name }}
-                    @if (getenv('APP_ENV') === 'local')
+                    @if (config('app.env') === 'local')
                         <br />({{ $relation->user->email }})
                     @endif
                 </p>

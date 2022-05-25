@@ -88,11 +88,20 @@ class CampaignExport implements ShouldQueue
             $zip->addFromString($this->campaign->image, Storage::get($this->campaign->image));
         }
 
+        $entityWith = [
+            'entity',
+            'entity.tags', 'entity.relationships',
+            'entity.notes', 'entity.abilities',
+            'entity.events', 'entity.files',
+            'entity.aliases', 'entity.links',
+        ];
         foreach ($this->entity->entities() as $entity => $class) {
             if ($this->campaign->enabled($entity) && method_exists($class, 'export')) {
                 try {
                     $property = Str::camel($entity);
-                    foreach ($this->campaign->$property()->with('entity')->get() as $model) {
+
+                    // Todo: chunk for larger campaigns?
+                    foreach ($this->campaign->$property()->with($entityWith)->get() as $model) {
                         $zip->addFromString($entity . '/' . Str::slug($model->name) . '.json', $model->export());
                     }
                 } catch (Exception $e) {

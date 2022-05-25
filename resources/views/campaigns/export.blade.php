@@ -1,5 +1,5 @@
 @extends('layouts.app', [
-    'title' => __('campaigns.export.title', ['name' => $campaign->name]),
+    'title' => __('campaigns/export.title') . ' - ' . $campaign->name,
     'breadcrumbs' => [
         ['url' => route('campaign'), 'label' => __('campaigns.index.title')],
         __('campaigns.show.tabs.export')
@@ -15,31 +15,51 @@
             @include('campaigns._menu', ['active' => 'export'])
         </div>
         <div class="col-md-9">
-            {!! Form::open(['method' => 'POST', 'route' => ['export.process']]) !!}
-            <div class="box box-solid">
-                <div class="box-header with-border">
-                    <h3 class="box-title">
-                        <i class="fa-solid fa-download"></i> {{ __('campaigns.show.tabs.export') }}
-                    </h3>
-                </div>
-                <div class="box-body">
-                    <p>{{ __('campaigns.export.helper') }}</p>
-                    <p>{!! __('campaigns.export.helper_secondary', [
-    'api' => link_to('/api-docs/1.0', __('front.features.api.link'))
-]) !!}</p>
-                    <p class="help-text">
-                        {{ __('campaigns.export.helper_third') }}
-                    </p>
+            <h3 class="mt-0">
+                <button class="btn btn-sm btn-default pull-right" data-toggle="dialog"
+                        data-target="export-help">
+                    <i class="fa-solid fa-question-circle" aria-hidden="true"></i>
+                    {{ __('campaigns.members.actions.help') }}
+                </button>
 
-                </div>
-                <div class="box-footer text-right">
-                    <button class="btn btn-primary">
-                        <i class="fa-solid fa-download"></i> {{ __('crud.export') }}
+                {{ __('campaigns/export.title') }}
+            </h3>
+
+            @if ($campaign->exportable())
+            <div class="row">
+                <div class="col-sm-12 col-md-6 col-md-offset-3 text-center my-5">
+                    <i class="fa-solid fa-spinner fa-spin fa-2x campaign-export-spinner" aria-hidden="true"></i>
+
+                    <button class="btn btn-primary btn-large campaign-export-btn" data-url="{{ route('campaign.export-process') }}" style="display: none">
+                        <i class="fa-solid fa-download" aria-hidden="true"></i>
+                        {{ __('campaigns/export.actions.export') }}
                     </button>
+
                 </div>
             </div>
-            {!! Form::close() !!}
-
+            <div class="callout callout-success" id="campaign-export-success" style="display: none"></div>
+            <div class="callout callout-danger " id="campaign-export-error" style="display: none"></div>
+            @else
+            <div class="callout callout-warning">
+                {{ __('campaigns/export.errors.limit') }}
+            </div>
+            @endif
         </div>
     </div>
+@endsection
+
+@section('modals')
+    @parent
+    @include('partials.helper-modal', [
+        'id' => 'export-help',
+        'title' => __('campaigns.show.tabs.export'),
+        'textes' => [
+            __('campaigns/export.helpers.intro'),
+            __('campaigns/export.helpers.json'),
+            __('campaigns/export.helpers.import', [
+                'api' => link_to('/' . app()->getLocale() . config('larecipe.docs.route') . '/1.0/overview', __('front.features.api.link'), null, ['target' => '_blank'])
+])
+        ]
+    ])
+
 @endsection

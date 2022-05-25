@@ -1,7 +1,5 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,18 +24,6 @@ Route::group([
     ]);
 
     Route::post('/logout', 'Auth\AuthController@logout')->name('logout');
-
-    Route::get('/helper/link', [\App\Http\Controllers\HelperController::class, 'link'])->name('helpers.link');
-    Route::get('/helper/dice', [\App\Http\Controllers\HelperController::class, 'dice'])->name('helpers.dice');
-    Route::get('/helper/filters', [\App\Http\Controllers\HelperController::class, 'filters'])->name('helpers.filters');
-    Route::get('/helper/age', [\App\Http\Controllers\HelperController::class, 'age'])->name('helpers.age');
-    Route::get('/helper/attributes', [\App\Http\Controllers\HelperController::class, 'attributes'])->name('helpers.attributes');
-    Route::get('/helper/entity-templates', 'HelperController@entityTemplates')->name('helpers.entity-templates');
-    Route::get('/helper/widget-filters', 'HelperController@widgetFilters')->name('helpers.widget-filters');
-    Route::get('/helper/pins', [\App\Http\Controllers\HelperController::class, 'pins'])->name('helpers.pins');
-    Route::get('/helper/visibility', [\App\Http\Controllers\HelperController::class, 'visibility'])->name('helpers.visibility');
-    Route::get('/helper/calendar-widget', [\App\Http\Controllers\HelperController::class, 'calendarWidget'])->name('helpers.calendar-widget');
-    Route::get('/helpers/api-filters', [\App\Http\Controllers\HelperController::class, 'apiFilters'])->name('helpers.api-filters');
 
     // OAuth Routes
     Route::get('auth/{provider}', 'Auth\AuthController@redirectToProvider')->name('auth.provider');
@@ -77,30 +63,4 @@ Route::group([
         Route::get('/', '\BinaryTorch\LaRecipe\Http\Controllers\DocumentationController@index')->name('index');
         Route::get('/{version}/{page?}', '\BinaryTorch\LaRecipe\Http\Controllers\DocumentationController@show')->where('page', '(.*)')->name('show');
     });
-
 });
-
-
-// Auth callback without language segment in url
-Route::get('auth/{provider}/callback', 'Auth\AuthController@handleProviderCallback')->name('auth.provider.callback');
-
-Route::group(['prefix' => 'subscription-api'], function () {
-    Route::get('setup-intent', 'Settings\SubscriptionApiController@setupIntent');
-    Route::post('payments', 'Settings\SubscriptionApiController@paymentMethods');
-    Route::get('payment-methods', 'Settings\SubscriptionApiController@getPaymentMethods');
-    Route::post('remove-payment', 'Settings\SubscriptionApiController@removePaymentMethod');
-    Route::get('check-coupon', 'Settings\SubscriptionApiController@checkCoupon')
-        ->name('subscription.check-coupon');
-});
-
-// Stripe
-Route::post(
-    'stripe/webhook',
-    '\App\Http\Controllers\WebhookController@handleWebhook'
-);
-
-// Language sitemaps
-Route::get('/{locale}/sitemap.xml', 'Front\SitemapController@language')->name('front.sitemap');
-
-// Rss feeds
-Route::feeds();

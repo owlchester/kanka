@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Datagrids\Sorters\DatagridSorter;
 use App\Facades\CampaignLocalization;
+use App\Facades\Datagrid;
 use App\Facades\FormCopy;
 use App\Facades\Permissions;
 use App\Http\Resources\AttributeResource;
@@ -651,9 +652,15 @@ class CrudController extends Controller
         $html = view('layouts.datagrid._table')
             ->with('rows', $this->rows)
             ->render();
+        $deletes = view('layouts.datagrid.delete-forms')
+            ->with('models', Datagrid::deleteForms())
+            ->with('params', Datagrid::getActionParams())
+            ->render();
+
         $data = [
             'success' => true,
             'html' => $html,
+            'deletes' => $deletes,
         ];
         if (!request()->has('init')) {
             //$data['url'] = request()->fullUrl();

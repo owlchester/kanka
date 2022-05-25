@@ -26,7 +26,7 @@ use Illuminate\Support\Facades\Auth;
  * @property string $entry
  * @property string $image
  * @property string $export_path
- * @property string $export_date
+ * @property Carbon $export_date
  * @property int $visibility_id
  * @property bool $entity_visibility
  * @property bool $entity_personality_visibility
@@ -66,12 +66,12 @@ class Campaign extends MiscModel
     /**
      * Visibility of a campaign
      */
-    const VISIBILITY_PRIVATE = 1;
-    const VISIBILITY_REVIEW = 2;
-    const VISIBILITY_PUBLIC = 3;
+    public const VISIBILITY_PRIVATE = 1;
+    public const VISIBILITY_REVIEW = 2;
+    public const VISIBILITY_PUBLIC = 3;
 
-    const LAYER_COUNT_MIN = 3;
-    const LAYER_COUNT_MAX = 10;
+    public const LAYER_COUNT_MIN = 3;
+    public const LAYER_COUNT_MAX = 10;
 
     /**
      * @var array
@@ -101,7 +101,8 @@ class Campaign extends MiscModel
         'ui_settings' => 'array',
         'default_images' => 'array',
         'settings' => 'array',
-        'featured_until' => 'date'
+        'featured_until' => 'date',
+        'export_date' => 'date',
     ];
 
     /**
@@ -534,5 +535,18 @@ class Campaign extends MiscModel
         return Img::resetCrop()
             ->crop($width, (!empty($height) ? $height : $width))
             ->url($this->$field);
+    }
+
+    /**
+     * Determine if a campaign can be exported, or if it already hit the daily maximum
+     * @return bool
+     */
+    public function exportable(): bool
+    {
+        if (!app()->environment('prod')) {
+            return true;
+        }
+
+        return empty($this->export_date) || !$this->export_date->isToday();
     }
 }

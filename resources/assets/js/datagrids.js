@@ -195,7 +195,7 @@ function datagrid2Reorder(ele) {
         if (res.html) {
             $(target).html(res.html);
         }
-        if (res.delete) {
+        if (res.deletes) {
             $('#datagrid-delete-forms').html(res.deletes);
         }
         if (res.url) {
