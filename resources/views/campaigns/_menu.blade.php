@@ -50,7 +50,7 @@ if (auth()->check()) {
                     </li>
                     @can('update', $campaign)
                         <li class="@if(!empty($active) && $active == 'export')active @endif">
-                            <a href="{{ route('export') }}">
+                            <a href="{{ route('campaign.export') }}">
                                 {{ __('campaigns.show.tabs.export') }}
                             </a>
                         </li>
@@ -173,7 +173,7 @@ if (auth()->check()) {
         if (auth()->user()->can('update', $campaign)) {
             $menuOptions['export'] = [
                     'label' => __('campaigns.show.tabs.export'),
-                    'route' => route('export')
+                    'route' => route('campaign.export')
             ];
             $menuOptions['recovery'] = [
                     'label' => __('campaigns.show.tabs.recovery'),

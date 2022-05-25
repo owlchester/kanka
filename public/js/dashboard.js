@@ -1,1 +1,420 @@
-!function(t){var e={};function n(i){if(e[i])return e[i].exports;var o=e[i]={i:i,l:!1,exports:{}};return t[i].call(o.exports,o,o.exports,n),o.l=!0,o.exports}n.m=t,n.c=e,n.d=function(t,e,i){n.o(t,e)||Object.defineProperty(t,e,{enumerable:!0,get:i})},n.r=function(t){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(t,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(t,"__esModule",{value:!0})},n.t=function(t,e){if(1&e&&(t=n(t)),8&e)return t;if(4&e&&"object"==typeof t&&t&&t.__esModule)return t;var i=Object.create(null);if(n.r(i),Object.defineProperty(i,"default",{enumerable:!0,value:t}),2&e&&"string"!=typeof t)for(var o in t)n.d(i,o,function(e){return t[e]}.bind(null,o));return i},n.n=function(t){var e=t&&t.__esModule?function(){return t.default}:function(){return t};return n.d(e,"a",e),e},n.o=function(t,e){return Object.prototype.hasOwnProperty.call(t,e)},n.p="/",n(n.s=13)}({13:function(t,e,n){t.exports=n("cT1l")},"7Hqt":function(t,e,n){"use strict";function i(){$('[data-toggle="ajax-modal"]').unbind("click").click((function(t){return t.preventDefault(),i=$(this),$.ajax({url:$(this).data("url")}).done((function(t,e,n){if(t){var o={},a=$(i).data("target"),d=$(i).data("backdrop");d&&(o.backdrop=d),$(a).find(".modal-content").html(t),$(a).modal(o)}})).fail((function(t,e,n){})),!1}))}n.d(e,"a",(function(){return i}))},cT1l:function(t,e,n){"use strict";n.r(e);var i,o,a,d,r=n("7Hqt"),l=new IntersectionObserver((function(t){var e;!0===t[0].isIntersecting&&(e=t[0].target,e=$(e),$.ajax({url:e.data("url")}).done((function(t){e.find(".widget-loading").hide(),e.find(".widget-body").html(t).show(),$('[data-toggle="tooltip"]').tooltip(),window.ajaxTooltip(),Object(r.a)(),s()})))}),{threshold:[0]});function c(){$(".recent-entity-type").change((function(t){this.value?$(".recent-filters").show():$(".recent-filters").hide()}))}function s(){$(".widget-calendar-switch").click((function(t){t.preventDefault();var e=$(this).data("url"),n=$(this).data("widget");$.ajaxSetup({headers:{"X-CSRF-TOKEN":$('meta[name="csrf-token"]').attr("content")}}),$("#widget-body-"+n).find(".widget-body").hide(),$("#widget-body-"+n).find(".widget-loading").show(),$.ajax({url:e,method:"POST",context:this}).done((function(t){if(t){var e=$(this).data("widget");$("#widget-body-"+e).find(".widget-loading").hide(),$("#widget-body-"+e).find(".widget-body").html(t).show(),$('[data-toggle="tooltip"]').tooltip(),window.ajaxTooltip(),s()}}))}))}$(document).ready((function(){$(".widget-render").length>0&&l.observe(document.querySelector(".widget-render")),$(".preview-switch").click((function(t){t.preventDefault();var e=$("#widget-preview-body-"+$(this).data("widget"));e.hasClass("preview")?(e.removeClass("preview").addClass("full"),$(this).html('<i class="fa-solid fa-chevron-up"></i>')):(e.removeClass("full").addClass("preview"),$(this).html('<i class="fa-solid fa-chevron-down"></i>'))})),$('[data-release="remove"]').click((function(){$.post({url:$(this).data("url"),method:"POST",context:this}).done((function(t){$(this).closest(".box").fadeOut("normal",(function(t){$(this).remove(),0===$(".dashboard-releases .box").length&&$(".dashboard-releases").remove()}))}))})),$.ajaxSetup({headers:{"X-CSRF-TOKEN":$('meta[name="csrf-token"]').attr("content")}}),1===$(".campaign-dashboard-widgets").length&&($("#new-widget"),$("#new-widget-preview"),$("#new-widget-calendar"),$("#new-widget-recent"),i=$("#btn-add-widget"),o=$("#modal-content-buttons"),a=$("#modal-content-target"),d=$("#modal-content-spinner"),$(".entity-creator > a").click((function(t){var e;e=$(this).data("url"),$("#edit-widget .modal-content").html(""),o.hide(),d.show(),$.ajax(e).done((function(t){d.hide(),a.html(t),window.initForeignSelect(),window.initTags(),c()}))})),i.click((function(t){d.hide(),a.html(""),o.show()})),$("#widgets").sortable({items:".widget-draggable",stop:function(t,e){$.post({url:$("#widgets").data("url"),dataType:"json",data:$('input[name="widgets[]"]').serialize()}).done((function(t){}))}}),$(document).on("shown.bs.modal shown.bs.popover",(function(){$("#summernote-config").length>0&&window.initSummernote(),$.each($(".img-delete"),(function(){$(this).click((function(t){t.preventDefault(),$("input[name="+$(this).data("target")+"]")[0].value=1,$(this).parent().parent().hide()}))})),c()}))),function t(){$(".widget-recent-more").click((function(e){e.preventDefault(),$(this).find(".spinner").show(),$(this).find("span").hide(),$.ajax({url:$(this).data("url"),context:this}).done((function(e){$(this).closest(".widget-recent-list").append(e),$(this).remove(),t(),window.ajaxTooltip()}))}))}(),s(),function(){var t=$("#campaign-follow"),e=$("#campaign-follow-text");if(1!==t.length)return;t.data("following")?e.html(t.data("unfollow")):e.html(t.data("follow"));t.show(),t.click((function(n){n.preventDefault(),$.post({url:$(this).data("url"),method:"POST"}).done((function(n){n.following?e.html(t.data("unfollow")):e.html(t.data("follow"))}))}))}(),$.each($('[data-toggle="preview"]'),(function(t){$(this).height()===parseInt($(this).css("max-height"))?$(this).next().removeClass("hidden"):$(this).removeClass("pinned-entity preview")}))}))}});
+/******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId]) {
+/******/ 			return installedModules[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
+/******/ 		}
+/******/ 	};
+/******/
+/******/ 	// define __esModule on exports
+/******/ 	__webpack_require__.r = function(exports) {
+/******/ 		if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 		}
+/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 	};
+/******/
+/******/ 	// create a fake namespace object
+/******/ 	// mode & 1: value is a module id, require it
+/******/ 	// mode & 2: merge all properties of value into the ns
+/******/ 	// mode & 4: return value when already ns object
+/******/ 	// mode & 8|1: behave like require
+/******/ 	__webpack_require__.t = function(value, mode) {
+/******/ 		if(mode & 1) value = __webpack_require__(value);
+/******/ 		if(mode & 8) return value;
+/******/ 		if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
+/******/ 		var ns = Object.create(null);
+/******/ 		__webpack_require__.r(ns);
+/******/ 		Object.defineProperty(ns, 'default', { enumerable: true, value: value });
+/******/ 		if(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
+/******/ 		return ns;
+/******/ 	};
+/******/
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+/******/
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "/";
+/******/
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(__webpack_require__.s = 13);
+/******/ })
+/************************************************************************/
+/******/ ({
+
+/***/ "./resources/assets/js/components/ajax-modal.js":
+/*!******************************************************!*\
+  !*** ./resources/assets/js/components/ajax-modal.js ***!
+  \******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return ajaxModal; });
+function ajaxModal() {
+  $('[data-toggle="ajax-modal"]').unbind('click').click(function (e) {
+    e.preventDefault();
+    ajaxModal = $(this);
+    $.ajax({
+      url: $(this).data('url')
+    }).done(function (result, textStatus, xhr) {
+      if (result) {
+        var params = {};
+        var target = $(ajaxModal).data('target');
+        var backdrop = $(ajaxModal).data('backdrop');
+
+        if (backdrop) {
+          params.backdrop = backdrop;
+        }
+
+        $(target).find('.modal-content').html(result);
+        $(target).modal(params);
+      }
+    }).fail(function (result, textStatus, xhr) {//console.log('modal ajax error', result);
+    });
+    return false;
+  });
+}
+
+/***/ }),
+
+/***/ "./resources/assets/js/dashboard.js":
+/*!******************************************!*\
+  !*** ./resources/assets/js/dashboard.js ***!
+  \******************************************/
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _components_ajax_modal__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/ajax-modal */ "./resources/assets/js/components/ajax-modal.js");
+
+/**
+ * Dashboard
+ */
+
+var newWidget, newWidgetPreview, newWidgetCalendar, newWidgetRecent;
+var btnAddWidget;
+var modalContentButtons, modalContentTarget, modalContentSpinner;
+var widgetVisible = new IntersectionObserver(function (entries) {
+  // isIntersecting is true when element and viewport are overlapping
+  // isIntersecting is false when element and viewport don't overlap
+  if (entries[0].isIntersecting === true) {
+    //console.log('Element has just become visible in screen', entries[0]);
+    renderWidget(entries[0].target);
+  }
+}, {
+  threshold: [0]
+});
+$(document).ready(function () {
+  if ($('.widget-render').length > 0) {
+    widgetVisible.observe(document.querySelector('.widget-render'));
+  }
+
+  $('.preview-switch').click(function (e) {
+    e.preventDefault();
+    var preview = $('#widget-preview-body-' + $(this).data('widget'));
+
+    if (preview.hasClass('preview')) {
+      preview.removeClass('preview').addClass('full');
+      $(this).html('<i class="fa-solid fa-chevron-up"></i>');
+    } else {
+      preview.removeClass('full').addClass('preview');
+      $(this).html('<i class="fa-solid fa-chevron-down"></i>');
+    }
+  });
+  $('[data-release="remove"]').click(function () {
+    $.post({
+      url: $(this).data('url'),
+      method: 'POST',
+      context: this
+    }).done(function (data) {
+      $(this).closest('.box').fadeOut("normal", function (e) {
+        $(this).remove();
+
+        if ($('.dashboard-releases .box').length === 0) {
+          $('.dashboard-releases').remove();
+        }
+      });
+    });
+  }); // Ajax requests
+
+  $.ajaxSetup({
+    headers: {
+      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+  });
+
+  if ($('.campaign-dashboard-widgets').length === 1) {
+    initDashboardAdminUI();
+  }
+
+  initDashboardRecent();
+  initDashboardCalendars();
+  initFollow();
+  removePreviewExpander();
+});
+/**
+ *
+ */
+
+function initDashboardAdminUI() {
+  newWidget = $('#new-widget');
+  newWidgetPreview = $('#new-widget-preview');
+  newWidgetCalendar = $('#new-widget-calendar');
+  newWidgetRecent = $('#new-widget-recent');
+  btnAddWidget = $('#btn-add-widget');
+  modalContentButtons = $('#modal-content-buttons');
+  modalContentTarget = $('#modal-content-target');
+  modalContentSpinner = $('#modal-content-spinner');
+  $('.entity-creator > a').click(function (e) {
+    loadModalForm($(this).data('url'));
+  }); // Reset the modal
+
+  btnAddWidget.click(function (e) {
+    modalContentSpinner.hide();
+    modalContentTarget.html('');
+    modalContentButtons.show();
+  });
+  $('#widgets').sortable({
+    items: '.widget-draggable',
+    stop: function stop(event, ui) {
+      // Allow ajax requests to use the X_CSRF_TOKEN for deletes
+      $.post({
+        url: $('#widgets').data('url'),
+        dataType: 'json',
+        data: $('input[name="widgets[]"]').serialize()
+      }).done(function (data) {});
+    }
+  });
+  $(document).on('shown.bs.modal shown.bs.popover', function () {
+    var summernoteConfig = $('#summernote-config');
+
+    if (summernoteConfig.length > 0) {
+      window.initSummernote();
+    }
+
+    $.each($('.img-delete'), function () {
+      $(this).click(function (e) {
+        e.preventDefault();
+        $('input[name=' + $(this).data('target') + ']')[0].value = 1;
+        $(this).parent().parent().hide();
+      });
+    });
+    initWidgetSubform();
+  }); //$('#widgets').disableSelection();
+}
+/**
+ * Load widget subform in modal
+ * @param url
+ */
+
+
+function loadModalForm(url) {
+  // Remove content from any edit widget already loaded (to avoid having multiple fields with the tag id
+  $('#edit-widget .modal-content').html('');
+  modalContentButtons.hide();
+  modalContentSpinner.show();
+  $.ajax(url).done(function (data) {
+    modalContentSpinner.hide();
+    modalContentTarget.html(data);
+    window.initForeignSelect();
+    window.initTags();
+    initWidgetSubform();
+  });
+}
+
+function initWidgetSubform() {
+  // Recent entities: filter field dynamic display
+  $('.recent-entity-type').change(function (e) {
+    if (this.value) {
+      $('.recent-filters').show();
+    } else {
+      $('.recent-filters').hide();
+    }
+  });
+}
+/**
+ *
+ */
+
+
+function initDashboardRecent() {
+  $('.widget-recent-more').click(function (e) {
+    e.preventDefault();
+    $(this).find('.spinner').show();
+    $(this).find('span').hide();
+    $.ajax({
+      url: $(this).data('url'),
+      context: this
+    }).done(function (data) {
+      $(this).closest('.widget-recent-list').append(data);
+      $(this).remove();
+      initDashboardRecent();
+      window.ajaxTooltip();
+    });
+  });
+}
+/**
+ *
+ */
+
+
+function initDashboardCalendars() {
+  $('.widget-calendar-switch').click(function (e) {
+    e.preventDefault();
+    var url = $(this).data('url'),
+        widget = $(this).data('widget');
+    $.ajaxSetup({
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      }
+    });
+    $('#widget-body-' + widget).find('.widget-body').hide();
+    $('#widget-body-' + widget).find('.widget-loading').show();
+    $.ajax({
+      url: url,
+      method: 'POST',
+      context: this
+    }).done(function (data) {
+      if (data) {
+        // Redirect page
+        var widget = $(this).data('widget');
+        $('#widget-body-' + widget).find('.widget-loading').hide();
+        $('#widget-body-' + widget).find('.widget-body').html(data).show();
+        $('[data-toggle="tooltip"]').tooltip();
+        window.ajaxTooltip();
+        initDashboardCalendars();
+      }
+    });
+  });
+}
+/**
+ * Follow / Unfollow a campaign
+ */
+
+
+function initFollow() {
+  var btn = $('#campaign-follow');
+  var text = $('#campaign-follow-text');
+
+  if (btn.length !== 1) {
+    return;
+  }
+
+  var status = btn.data('following');
+
+  if (status) {
+    text.html(btn.data('unfollow'));
+  } else {
+    text.html(btn.data('follow'));
+  }
+
+  btn.show();
+  btn.click(function (e) {
+    e.preventDefault();
+    $.post({
+      url: $(this).data('url'),
+      method: 'POST'
+    }).done(function (data) {
+      if (data.following) {
+        text.html(btn.data('unfollow'));
+      } else {
+        text.html(btn.data('follow'));
+      }
+    });
+  });
+}
+
+function removePreviewExpander() {
+  $.each($('[data-toggle="preview"]'), function (i) {
+    // If we are exactly the max-height, some content is hidden
+    // console.log('compare', $(this).height(), 'vs', $(this).css('max-height'));
+    if ($(this).height() === parseInt($(this).css('max-height'))) {
+      $(this).next().removeClass('hidden');
+    } else {
+      $(this).removeClass('pinned-entity preview');
+    } //$(this).next().removeClass('hidden');
+
+  });
+}
+/**
+ * Render an deferred-rendering widget
+ * @param widget
+ */
+
+
+function renderWidget(widget) {
+  widget = $(widget);
+  $.ajax({
+    url: widget.data('url')
+  }).done(function (res) {
+    widget.find('.widget-loading').hide();
+    widget.find('.widget-body').html(res).show();
+    $('[data-toggle="tooltip"]').tooltip();
+    window.ajaxTooltip();
+    Object(_components_ajax_modal__WEBPACK_IMPORTED_MODULE_0__["default"])();
+    initDashboardCalendars();
+  });
+}
+
+/***/ }),
+
+/***/ 13:
+/*!*********************************************!*\
+  !*** multi ./resources/assets/js/dashboard ***!
+  \*********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! /Users/jay/Documents/GitHub/miscellany/resources/assets/js/dashboard */"./resources/assets/js/dashboard.js");
+
+
+/***/ })
+
+/******/ });

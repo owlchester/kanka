@@ -232,23 +232,6 @@ class CampaignService
 
     /**
      * @param Campaign $campaign
-     */
-    public function export(Campaign $campaign, User $user, EntityService $service)
-    {
-        // On prod, only 1 export per "day"
-        if (app()->environment('prod') && !empty($campaign->export_date) && $campaign->export_date == date('Y-m-d')) {
-            throw new TranslatableException(__('campaigns.export.errors.limit'));
-        }
-        $campaign->export_date = date('Y-m-d');
-        $campaign->withObservers = false;
-        $campaign->save();
-
-        CampaignExport::dispatch($campaign, $user);
-        CampaignAssetExport::dispatch($campaign, $user);
-    }
-
-    /**
-     * @param Campaign $campaign
      * @throws Exception
      */
     public function delete(Campaign $campaign)

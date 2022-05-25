@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Campaign;
 
+use App\Exceptions\TranslatableException;
 use App\Facades\CampaignLocalization;
 use App\Http\Controllers\Controller;
 use App\Models\Campaign;
+use App\Services\Campaign\ExportService;
 use App\Services\CampaignService;
 use App\Services\EntityService;
 use Illuminate\Http\Request;
@@ -12,25 +14,19 @@ use Illuminate\Http\Request;
 class ExportController extends Controller
 {
     /**
-     * @var CampaignService
+     * @var ExportService
      */
-    protected $campaignService;
-
-    /**
-     * @var EntityService
-     */
-    protected $entityService;
+    protected $service;
 
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct(CampaignService $campaignService, EntityService $entityService)
+    public function __construct(ExportService $exportService)
     {
         $this->middleware('auth');
-        $this->campaignService = $campaignService;
-        $this->entityService = $entityService;
+        $this->service = $exportService;
     }
 
     /**
@@ -43,24 +39,25 @@ class ExportController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * Dispatch the campaign export jobs and have the user wait a bit
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function export(Request $request)
     {
         $campaign = CampaignLocalization::getCampaign();
         $this->authorize('setting', $campaign);
 
-        try {
-            $this->campaignService
-                ->export($campaign, auth()->user(), $this->entityService);
-
-            return redirect()->route('export')
-                ->with('success', trans('campaigns.export.success'));
-        } catch (\Exception $e) {
-            return redirect()->route('export')->withErrors($e->getMessage());
+        if (!$campaign->exportable()) {
+            return response()->json(['error' => __('campaigns/export.errors.limit')]);
         }
+
+        $this->service
+            ->campaign($campaign)
+            ->user($request->user())
+            ->export();
+
+        return response()->json(['success' => __('campaigns/export.success')]);
     }
 }

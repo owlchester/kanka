@@ -4,6 +4,7 @@ $(document).ready(function() {
     registerUserRoles();
     registerCodeMirror();
     registerSidebarSetup();
+    registerCampaignExport();
 });
 
 /**
@@ -110,5 +111,42 @@ function registerSidebarSetup() {
 
         return true;
 
+    });
+}
+
+function registerCampaignExport() {
+    let exportBtn = $('.campaign-export-btn');
+    if (exportBtn.length === 0) {
+        return;
+    }
+
+    let spinner = $('.campaign-export-spinner');
+    spinner.hide();
+    exportBtn.show();
+
+    exportBtn.click(function (e) {
+        e.preventDefault();
+        spinner.show();
+        exportBtn.hide();
+
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        $.ajax({
+            url: exportBtn.data('url'),
+            method: 'POST',
+        }).done (function (res) {
+            spinner.hide();
+            if (res.error) {
+                $('#campaign-export-error').html(res.error).show();
+            } else {
+                $('#campaign-export-success').html(res.success).show();
+            }
+        }).fail (function (res) {
+            console.error('campaign export call', res);
+        });
     });
 }
