@@ -1,7 +1,7 @@
 @extends('layouts.login', ['title' => __('auth.confirm.title')])
 
 @section('content')
-    <h3>{{ __('auth.confirm.title') }}</h3>
+    <h1>{{ __('auth.confirm.title') }}</h1>
 
     <p class="help-block">
         {{ __('auth.confirm.helper') }}
