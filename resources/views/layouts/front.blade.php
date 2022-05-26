@@ -4,10 +4,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content='width=device-width, initial-scale=1, maximum-scale=5, shrink-to-fit=no'>
     <meta name="author" content="{{ config('app.name') }}">
-    <meta name="description" content="{{ $metaDescription ?? __('front.home.seo.meta-description') }}">
+    <meta name="description" content="{{ $metaDescription ?? __('front.home.seo.meta-description', ['kanka' =>  config('app.name')]) }}">
     <meta name="keywords" content="{{  $metaKeywords ?? __('front.seo.keywords') }}">
 
-    <meta property="og:title" content="{{ $title ?? __('front.meta.title') }}@if (!isset($skipEnding)) - {{ config('app.name') }} @endif">
+    <meta property="og:title" content="{{ $title ?? __('front.meta.title', ['kanka' =>  config('app.name')]) }}@if (!isset($skipEnding)) - {{ config('app.name') }} @endif">
     <meta property="og:site_name" content="{{ config('app.site_name') }}">
     <meta property="og:type" content="website" />
     <meta name="twitter:card" content="summary_large_image" />
@@ -40,7 +40,7 @@
           "url": "{{ config('app.url') }}",
           "name": "{{ config('app.name') }}",
           "logo": { "@type": "ImageObject", "url": "https://kanka-app-assets.s3.amazonaws.com/images/logos/logo-small.png", "width": "226", "height": "205" }
-        },
+        }
       }
     </script>@endif
 
