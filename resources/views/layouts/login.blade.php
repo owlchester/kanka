@@ -14,9 +14,7 @@
 
     <link rel="icon" type="image/png" href="/favicon.ico">
 
-    <!-- Styles -->
     <link href="/css/bootstrap.css?v={{ config('app.version') }}" rel="stylesheet">
-    <link href="{{ mix('css/vendor.css') }}" rel="stylesheet">
     <link href="{{ mix('css/auth.css') }}" rel="stylesheet">
     @if (!config('fontawesome.kit'))<link href="/vendor/fontawesome/6.0.0/css/all.min.css" rel="stylesheet">@endif
 </head>
@@ -26,8 +24,9 @@
 
         <!-- Content Header (Page header) -->
         <div class="login-box-body">
-            <div class="login-logo">
-                <a href="{{ route('home') }}"><img src="https://kanka-app-assets.s3.amazonaws.com/images/logos/logo-small.png" alt="{{ config('app.name') }}" title="{{ config('app.name') }}"/></a>
+            <div class="text-center login-logo">
+                <a href="{{ route('home') }}" tabindex="-1">
+                    <img src="https://kanka-app-assets.s3.amazonaws.com/images/logos/logo-small.png" alt="{{ config('app.name') }}" title="{{ config('app.name') }}"/></a>
             </div>
             @yield('content')
         </div>

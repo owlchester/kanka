@@ -1,7 +1,8 @@
-@extends('layouts.login', ['title' => trans('auth.login.title')])
+@extends('layouts.login', ['title' => __('auth.login.title')])
 
 @section('content')
-<h3>{{ trans('auth.login.title') }}</h3>
+
+    <h1>{{ __('auth.login.title') }}</h1>
 
     @if (session()->has('info'))
         <div class="alert alert-info alert-dismissable">
@@ -21,7 +22,7 @@
                     @endforeach
                 </select>
             @else
-            <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" placeholder="{{ trans('auth.login.fields.email') }}" required autofocus>
+            <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" placeholder="{{ __('auth.login.fields.email') }}" required autofocus>
             @endif
             <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
 
@@ -34,8 +35,8 @@
 
         <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
             <div class="input-group">
-                <input id="password" type="password" class="form-control" name="password" required placeholder="{{ trans('auth.login.fields.password') }}">
-                <a href="#" class="toggle-password input-group-addon" title="{{ trans('auth.helpers.password') }}">
+                <input id="password" type="password" class="form-control" name="password" required placeholder="{{ __('auth.login.fields.password') }}">
+                <a href="#" class="toggle-password input-group-addon" title="{{ __('auth.helpers.password') }}">
                     <i class="toggle-password-icon fa-solid fa-eye"></i>
                 </a>
             </div>
@@ -52,13 +53,13 @@
                 <div class="checkbox">
                     <label>
                         <input type="checkbox" class="minimal" name="remember" {{ old('remember') ? 'checked' : '' }}>
-                        {{ trans('auth.login.remember_me') }}
+                        {{ __('auth.login.remember_me') }}
                     </label>
                 </div>
             </div>
             <div class="col-xs-4">
                 <button type="submit" class="btn pull-right btn-primary">
-                    {{ trans('auth.login.submit') }}
+                    {{ __('auth.login.submit') }}
                 </button>
             </div>
         </div>
@@ -74,24 +75,24 @@
     <div class="row">
         <div class="col-md-12">
             <div class="social-auth-links text-center">
-                <p>- {{ trans('auth.login.or') }} -</p>
+                <p>- {{ __('auth.login.or') }} -</p>
 
                 @if(config('services.facebook.client_id'))
-                <a href="{{ route('auth.provider', ['provider' => 'facebook']) }}" class="btn btn-app btn-facebook" title="{{ trans('auth.login.login_with_facebook') }}">
+                <a href="{{ route('auth.provider', ['provider' => 'facebook']) }}" class="btn btn-app btn-facebook" title="{{ __('auth.login.login_with_facebook') }}">
                     <i class="fab fa-facebook-f"></i>
                     Facebook
                 </a>
                 @endif
 
                 @if(config('services.google.client_id'))
-                <a href="{{ route('auth.provider', ['provider' => 'google']) }}" class="btn btn-app btn-google" title="{{ trans('auth.login.login_with_google') }}">
+                <a href="{{ route('auth.provider', ['provider' => 'google']) }}" class="btn btn-app btn-google" title="{{ __('auth.login.login_with_google') }}">
                     <i class="fab fa-google"></i>
                     Google
                 </a>
                 @endif
 
                 @if(config('services.twitter.client_id'))
-                <a href="{{ route('auth.provider', ['provider' => 'twitter']) }}" class="btn btn-app btn-twitter" title="{{ trans('auth.login.login_with_twitter') }}">
+                <a href="{{ route('auth.provider', ['provider' => 'twitter']) }}" class="btn btn-app btn-twitter" title="{{ __('auth.login.login_with_twitter') }}">
                     <i class="fab fa-twitter"></i>
                     Twitter
                 </a>
@@ -103,26 +104,26 @@
     <div class="row">
         <div class="hidden-xs hidden-sm">
             <div class="col-md-6">
-                <a class="btn btn-link" href="{{ route('password.request') }}">
-                    {{ trans('auth.login.password_forgotten') }}
+                <a class="" href="{{ route('password.request') }}">
+                    {{ __('auth.login.password_forgotten') }}
                 </a>
             </div>@if(config('auth.register_enabled'))
             <div class="col-md-6 text-right">
-                <a class="btn btn-link" href="{{ route('register') }}">
-                    {{ trans('auth.login.new_account') }}
+                <a class="" href="{{ route('register') }}">
+                    {{ __('auth.login.new_account') }}
                 </a>
             </div>@endif
         </div>
         <div class="visible-xs visible-sm">
 
             <div class="col-md-12 text-center">
-                <a class="btn btn-link" href="{{ route('password.request') }}">
-                    {{ trans('auth.login.password_forgotten') }}
+                <a class="" href="{{ route('password.request') }}">
+                    {{ __('auth.login.password_forgotten') }}
                 </a>
             </div>@if(config('auth.register_enabled'))
             <div class="col-md-12 text-center">
-                <a class="btn btn-link" href="{{ route('register') }}">
-                    {{ trans('auth.login.new_account') }}
+                <a class="" href="{{ route('register') }}">
+                    {{ __('auth.login.new_account') }}
                 </a>
             </div>@endif
         </div>

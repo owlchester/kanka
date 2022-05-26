@@ -3,7 +3,7 @@
 ])
 
 @section('content')
-    <h3>{{ __('auth.register.title') }}</h3>
+    <h1>{{ __('auth.register.title') }}</h1>
 
     @include('partials.errors')
 
@@ -35,7 +35,7 @@
         <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
             <div class="input-group">
                 <input id="password" type="password" class="form-control" name="password" required placeholder="{{ __('auth.register.fields.password') }}">
-                <a href="#" class="toggle-password input-group-addon" title="{{ __('auth.helpers.password') }}">
+                <a href="#" class="toggle-password input-group-addon" tabindex="-1" title="{{ __('auth.helpers.password') }}">
                     <i class="toggle-password-icon fa-solid fa-eye"></i>
                 </a>
             </div>
@@ -99,7 +99,11 @@
                 </a>
                 @endif
             </div>
-            <a href="{{ route('login') }}">{{ __('auth.register.already_account') }}</a>
+
+            <p>
+                <a href="{{ route('login') }}">{{ __('auth.register.already_account') }}</a>
+            </p>
+
         </div>
     </div>
 
