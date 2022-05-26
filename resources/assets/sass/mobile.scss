@@ -42,11 +42,9 @@
 
   // On mobile, the default is for the sidebar to be closed
   .navbar .sidebar-toggle {
-    .fa-angles-left {
-      display: none;
-    }
-    .fa-angles-right {
-      display: unset;
+    margin-left: 0;
+    &:before {
+      content: "\f100";
     }
   }
 

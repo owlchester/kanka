@@ -558,8 +558,14 @@ img.profile-user-img {
   width: 360px;
 }
 
+.navbar .sidebar-toggle {
+  background-color: var(--main-navbar-background);
+  margin-left: -30px;
+  padding: 15px 20px;
+  border-radius: 9999px;
+}
 .navbar .sidebar-toggle:before {
-  content: "";
+  content: "\f100";
 }
 .navbar .sidebar-toggle:focus {
   color: var(--main-navbar-text);
@@ -568,18 +574,15 @@ img.profile-user-img {
   display: none;
 }
 
-.sidebar-collapse .navbar .sidebar-toggle .fa-angles-left {
-  display: none;
+.sidebar-collapse .navbar .sidebar-toggle {
+  margin-left: 0;
 }
-.sidebar-collapse .navbar .sidebar-toggle .fa-angles-right {
-  display: unset;
+.sidebar-collapse .navbar .sidebar-toggle:before {
+  content: "\f101";
 }
 
-.sidebar-open .navbar .sidebar-toggle .fa-angles-left {
-  display: unset;
-}
-.sidebar-open .navbar .sidebar-toggle .fa-angles-right {
-  display: none;
+.sidebar-open .navbar .sidebar-toggle:before {
+  content: "\f100";
 }
 
 .disabledLink {
@@ -1361,11 +1364,11 @@ summary {
     filter: unset;
   }
 
-  .navbar .sidebar-toggle .fa-angles-left {
-    display: none;
+  .navbar .sidebar-toggle {
+    margin-left: 0;
   }
-  .navbar .sidebar-toggle .fa-angles-right {
-    display: unset;
+  .navbar .sidebar-toggle:before {
+    content: "\f100";
   }
 
   .main-sidebar {

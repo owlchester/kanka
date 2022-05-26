@@ -98,8 +98,14 @@ img.profile-user-img {
 }
 // I hate my life
 .navbar {
-  .sidebar-toggle:before {
-    content: "";
+  .sidebar-toggle {
+    background-color: var(--main-navbar-background);
+    margin-left: -30px;
+    padding: 15px 20px;
+    border-radius: 9999px;
+    &:before {
+      content: "\f100";
+    }
   }
   .sidebar-toggle:focus {
     color: var(--main-navbar-text);
@@ -111,20 +117,15 @@ img.profile-user-img {
 }
 // On desktop, the sidebar gets collapsed
 .sidebar-collapse .navbar .sidebar-toggle {
-  .fa-angles-left {
-    display: none;
-  }
-  .fa-angles-right {
-    display: unset;
+  margin-left: 0;
+  &:before {
+    content: "\f101";
   }
 }
 // On mobile, the sidebar get opened
 .sidebar-open .navbar .sidebar-toggle {
-  .fa-angles-left {
-    display: unset;
-  }
-  .fa-angles-right {
-    display: none;
+  &:before {
+    content: "\f100";
   }
 }
 
