@@ -28,6 +28,7 @@ return [
         'option'    => 'Delete mirrored relation',
     ],
     'destroy'           => [
+        'mirrored'  => 'This will also delete the mirrored relation and is permanent.',
         'success'   => 'Relation :target removed for :entity.',
     ],
     'fields'            => [

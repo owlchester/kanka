@@ -59,7 +59,7 @@
     <p class="help-block visible-xs visible-sm">{{ __('crud.hints.is_star') }}</p>
 </div>
 
-@if (!empty($relation) && !empty($relation->mirrored()))
+@if (!empty($relation) && !empty($relation->isMirrored()))
     <div class="callout callout-info">
         <h4>{{ __('entities/relations.hints.mirrored.title') }}</h4>
         <p>{!! __('entities/relations.hints.mirrored.text', [

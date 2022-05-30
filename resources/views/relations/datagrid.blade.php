@@ -38,7 +38,7 @@
             'field' => 'mirror_id',
             'label' => '<i class="fa-solid fa-sync-alt" title="' . __('entities/relations.hints.mirrored.title') . '"></i>',
             'render' => function ($model) {
-                return $model->mirrored() ? '<i class="fa-solid fa-sync-alt"></i>' : null;
+                return $model->isMirrored() ? '<i class="fa-solid fa-sync-alt"></i>' : null;
             }
         ],
         [

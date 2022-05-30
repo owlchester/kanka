@@ -251,7 +251,7 @@ class RelationController extends Controller
         $this->authorize('update', $entity->child);
 
         $deletedMirror = false;
-        if (request()->get('remove_mirrored') === '1' && $relation->mirrored()) {
+        if (request()->get('remove_mirrored') === '1' && $relation->isMirrored()) {
             $mirror = $relation->mirror;
             if (!empty($mirror) && auth()->user()->can('relation', [$relation->target->child, 'delete'])) {
                 $mirror->delete();
@@ -260,7 +260,7 @@ class RelationController extends Controller
         }
 
         // Update the mirror to remove it's mirrored status
-        if ($deletedMirror === false && $relation->mirrored()) {
+        if ($deletedMirror === false && $relation->isMirrored()) {
             $mirror = $relation->mirror;
             $mirror->update([
                 'mirror_id' => null

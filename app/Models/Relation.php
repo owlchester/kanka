@@ -136,7 +136,7 @@ class Relation extends Model
      * Check if a relation is mirrored
      * @return bool
      */
-    public function mirrored(): bool
+    public function isMirrored(): bool
     {
         return !empty($this->mirror_id);
     }
@@ -239,6 +239,6 @@ class Relation extends Model
     }
     public function actionDeleteConfirmOptions(): string
     {
-        return 'data-mirrored="' . $this->mirrored() . '"';
+        return 'data-mirrored="' . $this->isMirrored() . '"';
     }
 }

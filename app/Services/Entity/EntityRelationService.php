@@ -215,7 +215,7 @@ class EntityRelationService
             }
 
             // Don't add mirrored relations
-            if ($relation->mirrored()) {
+            if ($relation->isMirrored()) {
                 if (Arr::has($this->mirrors, $relation->mirror_id . '-' . $relation->id)) {
                     continue;
                 }
@@ -236,12 +236,12 @@ class EntityRelationService
                 'colour' => $relation->colour,
                 'attitude' => $relation->attitude,
                 'type' => 'entity-relation',
-                'is_mirrored' => $relation->mirrored(),
-                'shape' => $relation->mirrored() ? 'none' : 'triangle',
+                'is_mirrored' => $relation->isMirrored(),
+                'shape' => $relation->isMirrored() ? 'none' : 'triangle',
                 'edit_url' => route('entities.relations.edit', ['entity' => $relation->owner_id, 'relation' => $relation, 'from' => $this->entity->id])
             ];
 
-            if ($relation->mirrored()) {
+            if ($relation->isMirrored()) {
                 $this->mirrors[$relation->id . '-' . $relation->mirror_id] = true;
             }
             $this->relationIds[] = $relation->id;

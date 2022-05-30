@@ -48,7 +48,7 @@
 
 @include('cruds.fields.pinned')
 
-@if (!empty($relation) && !empty($relation->mirrored()))
+@if (!empty($relation) && !empty($relation->isMirrored()))
     <div class="callout callout-info">
         <h4><i class="fa-solid fa-sync-alt"></i> {{ __('entities/relations.hints.mirrored.title') }}</h4>
         <p>{!! __('entities/relations.hints.mirrored.text', [

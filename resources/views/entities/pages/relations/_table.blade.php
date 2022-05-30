@@ -79,7 +79,7 @@
                             data-target="#delete-confirm" data-delete-target="delete-form-{{ $relation->id }}"
 
 
-                            data-mirrored="{{ $relation->mirrored() }}"
+                            data-mirrored="{{ $relation->isMirrored() }}"
 
 
                             title="{{ __('crud.remove') }}">
