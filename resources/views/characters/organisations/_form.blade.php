@@ -10,8 +10,13 @@ $statuses = [
     \App\Models\OrganisationMember::STATUS_INACTIVE => __('organisations.members.status.inactive'),
     \App\Models\OrganisationMember::STATUS_UNKNOWN => __('organisations.members.status.unknown'),
 ];
+
+$fromOrg = request()->get('from') === 'org';
 @endphp
 {{ csrf_field() }}
+@if ($fromOrg)
+   {!! Form::hidden('organisation_id') !!}
+@else
 <div class="form-group required">
     {!! Form::select2(
         'organisation_id',
@@ -19,6 +24,9 @@ $statuses = [
         App\Models\Organisation::class
     ) !!}
 </div>
+@endif
+
+@if ($fromOrg)
 <div class="form-group">
     <input type="hidden" name="parent_id" value="" />
     {!! Form::select2(
@@ -29,9 +37,10 @@ $statuses = [
         'organisations.members.fields.parent',
         'search.organisation-member',
         'organisations.members.placeholders.parent',
-        $model,
+        $member->organisation,
     ) !!}
 </div>
+@endif
 
 <div class="form-group">
     <label>{{ __('characters.organisations.fields.role') }}</label>
