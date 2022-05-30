@@ -197,9 +197,9 @@ To delete a timeline, use the following endpoint.
 <a name="era"></a>
 ## Timeline Eras
 
-You can control the era of the timeline with the following docs: [Timeline Era](/docs/{{version}}/timeline-eras)
+You can control the era of the timeline with the following docs: [Timeline Era](/api-docs/{{version}}/timeline-eras)
 
 <a name="element"></a>
 ## Timeline Elements
 
-You can control the elements of the timeline with the following docs: [Timeline Element](/docs/{{version}}/timeline-elements)
+You can control the elements of the timeline with the following docs: [Timeline Element](/api-docs/{{version}}/timeline-elements)

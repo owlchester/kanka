@@ -11,7 +11,7 @@
 
 Before you can start interacting with the Kanka API, you need to generate a Key by navigating to your [Profile > API](https://kanka.io/en/settings/api) page in the app to generate a `key`.
 
-![Api Request](/images/docs/api-request.png)
+![Api Request](/images/api-docs/api-request.png)
 
 > {warning} Tokens are valid for 365 days. Never share your tokens with anyone!
 
@@ -40,4 +40,4 @@ The API is set up to allow a maximum of 30 requests per minute per client. When 
 You can increase this limit to 90 requests per minute by becoming a [Subscriber](https://kanka.io/en-US/pricing).
 
 ---
-Next up: [Profile](/docs/{{version}}/profile)
+Next up: [Profile](/api-docs/{{version}}/profile)

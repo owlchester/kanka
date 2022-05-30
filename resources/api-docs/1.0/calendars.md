@@ -300,4 +300,4 @@ To delete a calendar, use the following endpoint.
 <a name="weather"></a>
 ## Weather
 
-You can control the weather of the calendar with the following docs: [Calendar Weather](/docs/{{version}}/calendar-weathers)
+You can control the weather of the calendar with the following docs: [Calendar Weather](/api-docs/{{version}}/calendar-weathers)

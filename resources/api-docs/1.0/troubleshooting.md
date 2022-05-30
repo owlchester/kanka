@@ -51,7 +51,7 @@ You are probably hitting the kanka.io domain in `http` instead of `https`. For e
 
 ## Image upload not working
 
-As of 1.15, fixed. See [Entity Image](/docs/{{version}}/entity-image).
+As of 1.15, fixed. See [Entity Image](/api-docs/{{version}}/entity-image).
 
 ## Other issues
 

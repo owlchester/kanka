@@ -8,7 +8,7 @@
 <a name="concept"></a>
 ## Concept
 
-Most elements in Kanka that aren't [entities](/docs/{{version}}/entities) have a `visiblity_id` property, which indicates who can see the element.
+Most elements in Kanka that aren't [entities](/api-docs/{{version}}/entities) have a `visiblity_id` property, which indicates who can see the element.
 
 | Integer | Code | Description |
 | :- |   :-   |  :-  |

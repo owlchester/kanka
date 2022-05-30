@@ -2,7 +2,7 @@
 
 ---
 
-All endpoint which give a list of entities are automatically paginated. For example, when asking for all [Locations](/docs/{{version}}/locations) of a campaign, 15 locations are sent back. A `links` property in the response give you information about the pagination options.
+All endpoint which give a list of entities are automatically paginated. For example, when asking for all [Locations](/api-docs/{{version}}/locations) of a campaign, 15 locations are sent back. A `links` property in the response give you information about the pagination options.
 
 ```json
 {

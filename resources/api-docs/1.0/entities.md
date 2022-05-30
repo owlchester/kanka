@@ -17,8 +17,8 @@ A `character` is a singular model and endpoint, and a character has both an `id`
 
 Some common entities include:
 
-* [Characters](/docs/{{version}}/characters)
-* [Locations](/docs/{{version}}/locations)
+* [Characters](/api-docs/{{version}}/characters)
+* [Locations](/api-docs/{{version}}/locations)
 
 ### Common Attributes
 
@@ -101,16 +101,16 @@ You can call this endpoint with the `?related` option described below to get the
 
 There are several models in Kanka which represent objects attached to `entities`.
 
-* [Attributes](/docs/{{version}}/attributes)
-* [Entity Events](/docs/{{version}}/entity-events)
-* [Entity Files](/docs/{{version}}/entity-files)
-* [Entity Mentions](/docs/{{version}}/entity-mentions)
-* [Entity Notes](/docs/{{version}}/entity-notes)
-* [Entity Tags](/docs/{{version}}/entity-tags)
-* [Entity Relations](/docs/{{version}}/entity-relations)
-* [Entity Inventory](/docs/{{version}}/entity-inventory)
-* [Entity Abilities](/docs/{{version}}/entity-abilities)
-* [Entity Links](/docs/{{version}}/entity-links)
+* [Attributes](/api-docs/{{version}}/attributes)
+* [Entity Events](/api-docs/{{version}}/entity-events)
+* [Entity Files](/api-docs/{{version}}/entity-files)
+* [Entity Mentions](/api-docs/{{version}}/entity-mentions)
+* [Entity Notes](/api-docs/{{version}}/entity-notes)
+* [Entity Tags](/api-docs/{{version}}/entity-tags)
+* [Entity Relations](/api-docs/{{version}}/entity-relations)
+* [Entity Inventory](/api-docs/{{version}}/entity-inventory)
+* [Entity Abilities](/api-docs/{{version}}/entity-abilities)
+* [Entity Links](/api-docs/{{version}}/entity-links)
 
 With each request to an object (ie. `character`, `location`, etc), you can include the following parameter to get those related objects directly.
 

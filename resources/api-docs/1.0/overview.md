@@ -20,4 +20,4 @@ Kanka revolves around core `entities`. These are `characters`, `locations`, `ite
 The API mostly follows the REST principles with some variation which is described in each document.
 
 ---
-Next up: [Setup](/docs/{{version}}/setup)
+Next up: [Setup](/api-docs/{{version}}/setup)
