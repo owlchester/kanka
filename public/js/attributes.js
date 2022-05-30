@@ -257,13 +257,13 @@ function initAttributeHandlers() {
     }
   });
   $('[data-toggle="star"]').unbind('click').click(function () {
-    if ($(this).hasClass('far')) {
+    if ($(this).hasClass('fa-regular')) {
       // Unlock
-      $(this).removeClass('far').addClass('fas').prop('title', $(this).data('entry'));
+      $(this).removeClass('fa-regular').addClass('fa-solid').prop('title', $(this).data('entry'));
       $(this).prev('input:hidden').val("1");
     } else {
       // Lock
-      $(this).removeClass('fas').addClass('far').prop('title', $(this).data('tab'));
+      $(this).removeClass('fa-solid').addClass('fa-regular').prop('title', $(this).data('tab'));
       $(this).prev('input:hidden').val("0");
     }
   }); //window.initSelect2();

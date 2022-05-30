@@ -50,7 +50,7 @@ if ($attribute->isSection()) {
         </div>
         <div class="col-xs-5 col-sm-4 col-md-3 col-lg-2">
             {!! Form::hidden('attr_is_star[' . $id . ']', $attribute->is_star) !!}
-            <i class="fa-star mr-2 @if($attribute->is_star) fa-solid @else fa-regular @endif fa-2x" data-toggle="star" data-tab="{{ __('entities/attributes.visibility.tab') }}" data-entry="{{ __('entities/attributes.visibility.entry') }}" title="@if($attribute->is_star) {{ __('entities/attributes.visibility.entry') }} @else  {{ __('entities/attributes.visibility.tab') }} @endif"></i>
+            <i class="cursor fa-star mr-2 @if($attribute->is_star) fa-solid @else fa-regular @endif fa-2x" data-toggle="star" data-tab="{{ __('entities/attributes.visibility.tab') }}" data-entry="{{ __('entities/attributes.visibility.entry') }}" title="@if($attribute->is_star) {{ __('entities/attributes.visibility.entry') }} @else  {{ __('entities/attributes.visibility.tab') }} @endif"></i>
 
 {{--            {!! Form::hidden('attr_is_editable[' . $id . ']', $attribute->is_editable) !!}--}}
 {{--            <i class="fa-edit mr-2 @if($attribute->is_editable) fas @else far @endif fa-2x" data-toggle="star" data-tab="{{ __('entities/attributes.editable.false') }}" data-entry="{{ __('entities/attributes.editable.true') }}" title="@if($attribute->is_editable) {{ __('entities/attributes.editable.true') }} @else  {{ __('entities/attributes.editable.false') }} @endif"></i>--}}
