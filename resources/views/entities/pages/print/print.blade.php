@@ -6,7 +6,7 @@
 @endphp
 
 @extends('layouts.print', [
-    'title' => __($name . '.show.title', ['name' => $model->name]),
+    'title' => $model->name . ' - ' . __('entities.' . $name),
     'breadcrumbs' => false,
     'miscModel' => $model,
     'canonical' => true,
