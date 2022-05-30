@@ -192,9 +192,10 @@ class MapMarker extends Model
             //dd(max(1, Arr::get($this->polygon_style, 'stroke-width', 1)));
             return 'L.polygon([' . implode(', ', $coords) . '], {
                 color: \'' . Arr::get($this->polygon_style, 'stroke', $this->colour) . '\',
-                fillColor: \'' . e($this->colour) . '\',
                 weight: ' . max(1, Arr::get($this->polygon_style, 'stroke-width', 1)) . ',
-                opacity: ' . $this->opacity() . ',
+                opacity: ' . $this->strokeOpacity() . ',
+                fillOpacity: ' . $this->opacity() . ',
+                fillColor: \'' . e($this->colour) . '\',
                 smoothFactor: 1,
                 linecap: \'round\',
                 linejoin: \'round\',
@@ -449,7 +450,23 @@ class MapMarker extends Model
             return 0.5;
         }
 
+
         return round($this->opacity / 100, 1);
+    }
+
+    /**
+     * Get the polygon's stroke opacity
+     * @return float
+     */
+    protected function strokeOpacity(): float
+    {
+        $opacity = Arr::get($this->polygon_style, 'stroke-opacity');
+        if (empty($opacity)) {
+            return 1.0;
+        }
+
+        // The number is an int (1 to 100), but needs to be a float
+        return round($opacity / 100, 1);
     }
 
     /**
