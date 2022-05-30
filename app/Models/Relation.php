@@ -93,6 +93,9 @@ class Relation extends Model
         'is_mirrored',
     ];
 
+    // Reset the default filters since they don't apply here
+    public $defaultFilterableColumns = [];
+
     public $defaultOrderField = 'relation';
 
     /**
