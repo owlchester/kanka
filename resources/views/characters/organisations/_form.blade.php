@@ -19,6 +19,19 @@ $statuses = [
         App\Models\Organisation::class
     ) !!}
 </div>
+<div class="form-group">
+    <input type="hidden" name="parent_id" value="" />
+    {!! Form::select2(
+        'parent_id',
+        (!empty($member) ? $member->parent : null),
+        App\Models\OrganisationMember::class,
+        false,
+        'organisations.members.fields.parent',
+        'search.organisation-member',
+        'organisations.members.placeholders.parent',
+        $model,
+    ) !!}
+</div>
 
 <div class="form-group">
     <label>{{ __('characters.organisations.fields.role') }}</label>
