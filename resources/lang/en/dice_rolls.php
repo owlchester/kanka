@@ -2,16 +2,10 @@
 
 return [
     'create'        => [
-        'success'   => 'Dice Roll \':name\' created.',
         'title'     => 'New Dice Roll',
     ],
     'destroy'       => [
         'dice_roll' => 'Dice roll removed.',
-        'success'   => 'Dice Roll \':name\' removed.',
-    ],
-    'edit'          => [
-        'success'   => 'Dice Roll \':name\' updated.',
-        'title'     => 'Edit Dice Roll :name',
     ],
     'fields'        => [
         'created_at'    => 'Rolled At',

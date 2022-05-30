@@ -379,6 +379,9 @@ return [
         'timelines'     => 'Timelines',
         'tooltip'       => 'Tooltip',
     ],
+    'titles'                    => [
+        'editing'   => 'Editing :name',
+    ],
     'tooltips'                  => [
         'boosted_feature'   => 'Boosted campaign feature',
         'new_post'          => 'Add a new post to this entity.',

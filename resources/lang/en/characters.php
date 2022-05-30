@@ -10,19 +10,11 @@ return [
         'title' => 'Character :name Conversations',
     ],
     'create'        => [
-        'success'   => 'Character \':name\' created.',
         'title'     => 'New Character',
-    ],
-    'destroy'       => [
-        'success'   => 'Character \':name\' removed.',
     ],
     'dice_rolls'    => [
         'hint'  => 'Dice rolls can be assigned to a character for in game usage.',
         'title' => 'Character :name Dice Rolls',
-    ],
-    'edit'          => [
-        'success'   => 'Character \':name\' updated.',
-        'title'     => 'Edit Character :name',
     ],
     'fields'        => [
         'age'                       => 'Age',

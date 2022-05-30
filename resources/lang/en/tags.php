@@ -12,15 +12,7 @@ return [
         'title'     => 'Tag :name Children',
     ],
     'create'        => [
-        'success'   => 'Tag \':name\' created.',
         'title'     => 'New Tag',
-    ],
-    'destroy'       => [
-        'success'   => 'Tag \':name\' removed.',
-    ],
-    'edit'          => [
-        'success'   => 'Tag \':name\' updated.',
-        'title'     => 'Edit Tag :name',
     ],
     'fields'        => [
         'children'  => 'Children',

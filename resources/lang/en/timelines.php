@@ -9,15 +9,7 @@ return [
         'save_order'    => 'Save new order',
     ],
     'create'        => [
-        'success'   => 'Timeline :name created.',
         'title'     => 'New Timeline',
-    ],
-    'destroy'       => [
-        'success'   => 'Timeline :name removed.',
-    ],
-    'edit'          => [
-        'success'   => 'Timeline :name updated.',
-        'title'     => 'Edit Timeline :name',
     ],
     'fields'        => [
         'copy_elements' => 'Copy Elements',

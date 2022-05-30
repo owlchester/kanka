@@ -9,15 +9,7 @@ return [
         'title'     => 'Race :name Characters',
     ],
     'create'        => [
-        'success'   => 'Race \':name\' created.',
         'title'     => 'New Race',
-    ],
-    'destroy'       => [
-        'success'   => 'Race \':name\' removed.',
-    ],
-    'edit'          => [
-        'success'   => 'Race \':name\' updated.',
-        'title'     => 'Edit Race :name',
     ],
     'fields'        => [
         'characters'    => 'Characters',

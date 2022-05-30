@@ -2,15 +2,7 @@
 
 return [
     'create'        => [
-        'success'   => 'Event \':name\' created.',
         'title'     => 'New Event',
-    ],
-    'destroy'       => [
-        'success'   => 'Event \':name\' removed.',
-    ],
-    'edit'          => [
-        'success'   => 'Event \':name\' updated.',
-        'title'     => 'Edit Event :name',
     ],
     'events'        => [
         'helper'    => 'Events that have this entity as their parent event are displayed here.',

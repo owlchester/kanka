@@ -2,15 +2,7 @@
 
 return [
     'create'        => [
-        'success'   => 'Quest \':name\' created.',
         'title'     => 'New Quest',
-    ],
-    'destroy'       => [
-        'success'   => 'Quest \':name\' removed.',
-    ],
-    'edit'          => [
-        'success'   => 'Quest \':name\' updated.',
-        'title'     => 'Edit Quest :name',
     ],
     'elements'      => [
         'create'    => [

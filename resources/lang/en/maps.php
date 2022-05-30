@@ -7,15 +7,7 @@ return [
         'explore'   => 'Explore',
     ],
     'create'        => [
-        'success'   => 'Map :name created.',
         'title'     => 'New Map',
-    ],
-    'destroy'       => [
-        'success'   => 'Map :name removed.',
-    ],
-    'edit'          => [
-        'success'   => 'Map :name updated.',
-        'title'     => 'Edit Map :name',
     ],
     'errors'        => [
         'dashboard' => [

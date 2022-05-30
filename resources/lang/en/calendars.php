@@ -20,15 +20,9 @@ return [
         'is_recurring'  => 'Takes place every year',
     ],
     'create'        => [
-        'success'   => 'Calendar \':name\' created.',
         'title'     => 'New Calendar',
     ],
-    'destroy'       => [
-        'success'   => 'Calendar \':name\' removed.',
-    ],
     'edit'          => [
-        'success'   => 'Calendar \':name\' updated.',
-        'title'     => 'Edit Calendar :name',
         'today'     => 'Calendar date updated.',
     ],
     'event'         => [

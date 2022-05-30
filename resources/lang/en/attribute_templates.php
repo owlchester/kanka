@@ -5,15 +5,7 @@ return [
         'title' => ':name attribute templates',
     ],
     'create'                => [
-        'success'   => 'Attribute Template \':name\' created.',
         'title'     => 'New Attribute Template',
-    ],
-    'destroy'               => [
-        'success'   => 'Attribute Template \':name\' removed.',
-    ],
-    'edit'                  => [
-        'success'   => 'Attribute Template \':name\' updated.',
-        'title'     => 'Edit Attribute Template :name',
     ],
     'fields'                => [
         'attribute_template'    => 'Parent Attribute Template',

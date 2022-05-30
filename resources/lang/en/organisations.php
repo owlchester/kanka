@@ -2,15 +2,7 @@
 
 return [
     'create'        => [
-        'success'   => 'Organisation \':name\' created.',
         'title'     => 'New Organisation',
-    ],
-    'destroy'       => [
-        'success'   => 'Organisation \':name\' removed.',
-    ],
-    'edit'          => [
-        'success'   => 'Organisation \':name\' updated.',
-        'title'     => 'Edit Organisation :name',
     ],
     'fields'        => [
         'image'         => 'Image',

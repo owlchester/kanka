@@ -5,15 +5,7 @@ return [
         'title' => 'Location :name Characters',
     ],
     'create'        => [
-        'success'   => 'Location \':name\' created.',
         'title'     => 'New Location',
-    ],
-    'destroy'       => [
-        'success'   => 'Location \':name\' removed.',
-    ],
-    'edit'          => [
-        'success'   => 'Location \':name\' updated.',
-        'title'     => 'Edit Location :name',
     ],
     'events'        => [
         'title' => 'Location :name Events',

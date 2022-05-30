@@ -2,15 +2,7 @@
 
 return [
     'create'        => [
-        'success'   => 'Family \':name\' created.',
         'title'     => 'New Family',
-    ],
-    'destroy'       => [
-        'success'   => 'Family \':name\' removed.',
-    ],
-    'edit'          => [
-        'success'   => 'Family \':name\' updated.',
-        'title'     => 'Edit Family :name',
     ],
     'families'      => [
         'title' => 'Family :name Families',

@@ -2,15 +2,7 @@
 
 return [
     'create'        => [
-        'success'   => 'Journal \':name\' created.',
         'title'     => 'New Journal',
-    ],
-    'destroy'       => [
-        'success'   => 'Journal \':name\' removed.',
-    ],
-    'edit'          => [
-        'success'   => 'Journal \':name\' updated.',
-        'title'     => 'Edit Journal :name',
     ],
     'fields'        => [
         'author'    => 'Author',

@@ -2,14 +2,9 @@
 
 return [
     'create'            => [
-        'success'   => 'Quick Link \':name\' created.',
         'title'     => 'New Quick Link',
     ],
-    'destroy'           => [
-        'success'   => 'Menu Quick \':name\' removed.',
-    ],
     'edit'              => [
-        'success'   => 'Quick Link \':name\' updated.',
         'title'     => 'Quick Link :name',
     ],
     'fields'            => [

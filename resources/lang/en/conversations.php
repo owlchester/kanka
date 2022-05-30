@@ -2,14 +2,9 @@
 
 return [
     'create'        => [
-        'success'   => 'Conversation \':name\' created.',
         'title'     => 'New Conversation',
     ],
-    'destroy'       => [
-        'success'   => 'Conversation \':name\' removed.',
-    ],
     'edit'          => [
-        'success'   => 'Conversation \':name\' updated.',
         'title'     => 'Conversation :name',
     ],
     'fields'        => [

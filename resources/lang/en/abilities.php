@@ -16,15 +16,7 @@ return [
         'title'         => 'Ability :name Entities',
     ],
     'create'        => [
-        'success'   => 'Ability \':name\' created.',
         'title'     => 'New Ability',
-    ],
-    'destroy'       => [
-        'success'   => 'Ability \':name\' removed.',
-    ],
-    'edit'          => [
-        'success'   => 'Ability \':name\' updated.',
-        'title'     => 'Edit Ability :name',
     ],
     'entities'      => [
         'title' => 'Entities with the :name ability',
