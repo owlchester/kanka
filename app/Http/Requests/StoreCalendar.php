@@ -55,7 +55,7 @@ class StoreCalendar extends FormRequest
 
         $self = request()->segment(5);
         if (!empty($self)) {
-            $rules['calendar_id'] = 'integer|not_in:' . ((int) $self) . '|exists:calendars,id';
+            $rules['calendar_id'] = 'nullable|integer|not_in:' . ((int) $self) . '|exists:calendars,id';
         }
 
         return $this->clean($rules);

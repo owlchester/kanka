@@ -34,6 +34,7 @@
                 $preset = FormCopy::field('calendar')->select();
             }?>
             <div class="form-group">
+                <input type="hidden" name="calendar_id" value="" />
                 {!! Form::foreignSelect(
                     'calendar_id',
                     [

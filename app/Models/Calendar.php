@@ -593,7 +593,7 @@ class Calendar extends MiscModel
             $upcomingEvents->push($reminder);
         }
 
-// If we need more upcoming events, get some
+        // If we need more upcoming events, get some
         if ($upcomingEvents->count() < $needle) {
             $upcomingSingleEvents = $this->dashboardEvents('>');
             foreach ($upcomingSingleEvents as $reminder) {
