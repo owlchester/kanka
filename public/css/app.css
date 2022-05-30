@@ -749,14 +749,6 @@ tr.tr-hover:hover {
   display: inline-block;
 }
 
-.select2-container--open {
-  z-index: 9961;
-}
-
-.select2-selection__rendered .color-white {
-  color: #000 !important;
-}
-
 .entity-attributes .fa-unlock-alt {
   color: rgba(0, 0, 0, 0.3);
   cursor: pointer;
@@ -838,15 +830,6 @@ td.breakable {
 .entity-form ul.nav li a i.fa, .entity-form ul.nav li a i.ra, .entity-form ul.nav li a i.fas, .entity-form ul.nav li a i.far, .entity-form ul.nav li a i.fab {
   line-height: 1;
 }
-.select2-container--default .select2-selection--multiple .select2-selection__choice {
-  color: #333;
-}
-
-.select2-container--default .select2-selection--multiple .select2-selection__choice__remove {
-  color: white;
-  mix-blend-mode: difference;
-}
-
 .shortcut {
   margin-left: 14px;
   color: #8f98a3;

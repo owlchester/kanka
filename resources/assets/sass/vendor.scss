@@ -12,9 +12,6 @@
 // Spectrum colour picker
 @import "~spectrum-colorpicker/spectrum.css";
 
-// Pretty Checkboxes for role perm setup
-@import '~pretty-checkbox/src/pretty-checkbox.scss';
-
 // RPG awesome
 @import "~rpg-awesome/css/rpg-awesome.min.css";
 
@@ -94,6 +91,25 @@
     margin-right: 8px;
     display: inline-block;
   }
+}
+
+/**
+ * Select 2 changes
+ */
+.select2-container--default .select2-selection--multiple .select2-selection__choice {
+  color: #333;
+}
+.select2-container--default .select2-selection--multiple .select2-selection__choice__remove {
+  color: white;
+  mix-blend-mode: difference;
+}
+
+// Need the select2 container above popovers and tooltips
+.select2-container--open {
+  z-index: 9961;
+}
+.select2-selection__rendered .color-white {
+  color: #000 !important;
 }
 
 @media (max-width: 767px) {

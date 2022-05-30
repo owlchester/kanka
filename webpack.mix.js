@@ -12,6 +12,11 @@ const tailwindcss = require('tailwindcss');
  | file for the application as well as bundling up all the JS files.
  |
  */
+mix.webpackConfig({
+    stats: {
+        children: true,
+    },
+});
 
 mix.js('resources/assets/js/app.js', 'public/js')
     .js('resources/assets/js/auth.js', 'public/js')

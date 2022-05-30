@@ -305,14 +305,6 @@ tr.tr-hover {
   display: inline-block;
 }
 
-// Need the select2 container above popovers and tooltips
-.select2-container--open {
-  z-index: 9961;
-}
-.select2-selection__rendered .color-white {
-  color: #000 !important;
-}
-
 // Private/Public
 .entity-attributes {
   .fa-unlock-alt {
@@ -415,13 +407,6 @@ td.breakable {
     //overflow-y: auto;
     //height: calc(100vh - 200px);
   }
-}
-.select2-container--default .select2-selection--multiple .select2-selection__choice {
-  color: #333;
-}
-.select2-container--default .select2-selection--multiple .select2-selection__choice__remove {
-  color: white;
-  mix-blend-mode: difference;
 }
 .shortcut {
   margin-left: 14px;

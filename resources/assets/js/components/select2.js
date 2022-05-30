@@ -21,6 +21,8 @@ $(document).ready(function() {
                 language: $(this).data('language'),
                 minimumInputLength: 0,
                 dropdownParent: dropdownParent || '',
+                width: '100%',
+
                 ajax: {
                     delay: 500,
                     quietMillis: 500,

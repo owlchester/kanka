@@ -137,3 +137,7 @@
         </div>
     </div>
 @endsection
+
+@section('styles')
+    <link href="/vendor/pretty-checkbox/pretty-checkbox.min.css" rel="stylesheet">
+@endsection

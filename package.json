@@ -40,7 +40,6 @@
         "cytoscape-panzoom": "^2.5.3",
         "leaflet.markercluster": "^1.5.3",
         "leaflet.markercluster.layersupport": "^2.0.1",
-        "pretty-checkbox": "^3.0.3",
         "rpg-awesome": "^0.2.0",
         "sass-loader": "^8.0.0",
         "select2": "^4.0.8",
