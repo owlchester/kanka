@@ -58,7 +58,9 @@ class SignImageCommand extends Command
             $url = Img::console()->base($base)->url($img);
         }
 
-        $this->info("Url: " . $url);
+        $this->info("Base: $base");
+        $this->info("Size: $width x $height");
+        $this->info("" . $url);
 
         return 0;
     }
