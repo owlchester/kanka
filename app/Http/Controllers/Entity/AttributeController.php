@@ -13,21 +13,17 @@ use App\Traits\GuestAuthTrait;
 use Illuminate\Support\Facades\Auth;
 use Stevebauman\Purify\Facades\Purify;
 
+/**
+ * Attribute Controller
+ */
 class AttributeController extends Controller
 {
-    /**
-     * Guest Auth Trait
-     */
     use GuestAuthTrait;
 
-    /**
-     * @var
-     */
+    /** @var string */
     protected $transKey;
 
-    /**
-     * @var
-     */
+    /** @var string */
     protected $viewPath;
 
     /** @var AttributeService */
@@ -107,6 +103,11 @@ class AttributeController extends Controller
         ));
     }
 
+    /**
+     * @param Entity $entity
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
     public function save(Entity $entity)
     {
         if (empty($entity->child)) {
@@ -174,6 +175,13 @@ class AttributeController extends Controller
             ]));
     }
 
+    /**
+     * @param Entity $entity
+     * @return \Illuminate\Http\Response|\never
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws \Psr\Container\ContainerExceptionInterface
+     * @throws \Psr\Container\NotFoundExceptionInterface
+     */
     public function liveEdit(Entity $entity)
     {
         $this->authorize('update', $entity->child);
@@ -190,9 +198,15 @@ class AttributeController extends Controller
         }
 
         return response()->view('entities.pages.attributes.live.edit', compact('attribute', 'entity', 'uid'));
-
     }
 
+    /**
+     * @param UpdateEntityAttribute $request
+     * @param Entity $entity
+     * @param Attribute $attribute
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
     public function liveSave(UpdateEntityAttribute $request, Entity $entity, Attribute $attribute)
     {
         $this->authorize('update', $entity->child);
@@ -216,6 +230,5 @@ class AttributeController extends Controller
             'uid' => $request->get('uid'),
             'success' => __('entities/attributes.live.success', ['attribute' => $attribute->name()])
         ]);
-
     }
 }

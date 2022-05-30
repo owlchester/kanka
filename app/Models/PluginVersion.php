@@ -113,6 +113,7 @@ class PluginVersion extends Model
     }
 
     /**
+     * The new rendering engine using Blade
      * @param Entity $entity
      * @return false|string
      */
@@ -120,7 +121,6 @@ class PluginVersion extends Model
     {
         $html = $this->content;
         $html = str_replace(['&lt;', '&gt;', '&amp;&amp;'], ['<', '>', '&&'], $html);
-
 
         $html = preg_replace_callback('`\{(.*?[^\!])\}`i', function ($matches) {
             $name = trim((string) $matches[1]);
@@ -142,15 +142,6 @@ class PluginVersion extends Model
         $html = preg_replace('`config\((.*?)\)`i', '', $html);
 
 
-        //$html = preg_replace('`\\\\`i', '', $html);
-
-        /*$html = preg_replace_callback('`$(\w+)`i', function ($matches) {
-            $name = trim((string) $matches[1]);
-            $this->templateAttributes[] = $name;
-            return '{{ $' . $name . ' }}';
-        }, $html);*/
-        //dump($html);
-
         $html = Blade::compileString($html);
 
         // Prepare attributes
@@ -160,6 +151,9 @@ class PluginVersion extends Model
         $allAttributes = [];
         foreach ($this->entityAttributes as $attr) {
             $name = str_replace(' ', null, $attr->name);
+            if (Str::contains($name, '[range:')) {
+                $name = Str::before($name, '[range:');
+            }
             $data[$name] = $attr->mappedValue();
             $ids[$name] = $attr->id;
             if ($attr->isText()) {
@@ -167,6 +161,7 @@ class PluginVersion extends Model
             }
             //dump('mapping ' . $name . ' to ' . $attr->mappedValue());
 
+            // Cleanup the name for ranged values
             $allAttributes[$name] = $data[$name];
             unset($this->templateAttributes[$name]);
         }
