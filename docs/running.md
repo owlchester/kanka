@@ -8,7 +8,7 @@ Kanka is built to run on an Nginx and MariaDB stack with the help of Docker. If 
 >
 > This docker setup is meant for developers working on Kanka. **Do not use** this docker setup to host Kanka on the web! It come with 0 security (no root password and all ports open). It is also slower than the normal Kanka as it doesn't include any performance improvements and advanced caching.
 >
-> This setup works as is for our team running with Docker on MacOS. We only provide limited support for helping people host Kanka locally on Discord from Monday to Friday 9am-4pm (GTM-5).
+> This setup works as is for our team running with Docker on MacOS. We only provide limited support for helping people host Kanka locally on Discord from Monday to Friday 9am-4pm (GMT-5).
 
 
 ## Docker
