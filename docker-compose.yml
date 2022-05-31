@@ -59,7 +59,7 @@ services:
             retries: 3
             timeout: 5s
     minio:
-        image: 'minio/minio:latest'
+        image: 'quay.io/minio/minio:latest'
         ports:
             - '${FORWARD_MINIO_PORT:-9000}:9000'
             - '${FORWARD_MINIO_CONSOLE_PORT:-8900}:8900'
