@@ -24,6 +24,8 @@ You need [docker](https://www.docker.com/) installed on your machine.
 
 This Github repository needs to be installed (`git clone`) on your local machine. All commands are to be executed in the kanka folder.
 
+When on Linux, Docker needs to run with your user and not with sudo! This is important for file permissions to properly work. To setup docker to run with your user, [follow these instructions](https://docs.docker.com/engine/install/linux-postinstall/).
+
 ### Set up your config
 
 The first step is to copy `.env.example` to `.env`. This will set up Kanka's default config to run with docker.
@@ -98,6 +100,8 @@ sail artisan passport:install
 ### Testing
 
 You're now ready to test your app. Navigate to (localhost:8081)[http://localhost:8081] and you should see the Kanka application.
+
+We recommend making an alias in your `/etc/hosts` file to point `kanka.test` to your localhost, so what (kanka.test:8081)[http://kanka.test:8081] also works.
 
 
 ### Shutting down
