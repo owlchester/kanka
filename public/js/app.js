@@ -2833,6 +2833,7 @@ $(document).ready(function () {
   registerCodeMirror();
   registerSidebarSetup();
   registerCampaignExport();
+  registerRoles();
 });
 /**
  * Form Rpg Systems field
@@ -2877,8 +2878,6 @@ function registerModules() {
       url: $(this).data('url'),
       context: this
     }).done(function (res) {
-      console.log('res', res);
-
       if (res.success) {
         if (res.status) {
           $(this).addClass('box-success').removeClass('box-default');
@@ -2905,6 +2904,37 @@ function registerUserRoles() {
     html: true,
     sanitize: false,
     trigger: 'focus'
+  });
+}
+/** Toggling an action on a permission **/
+
+
+function registerRoles() {
+  $('.public-permission').click(function (e) {
+    e.preventDefault();
+    $(this).addClass('loading');
+    $.ajaxSetup({
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      }
+    });
+    $.ajax({
+      method: 'post',
+      url: $(this).data('url'),
+      context: this
+    }).done(function (res) {
+      $(this).removeClass('loading');
+
+      if (res.success) {
+        if (res.status) {
+          $(this).addClass('enabled');
+        } else {
+          $(this).removeClass('enabled');
+        }
+
+        window.showToast(res.toast);
+      }
+    });
   });
 }
 /**

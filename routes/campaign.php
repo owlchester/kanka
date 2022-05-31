@@ -168,6 +168,7 @@ Route::post('/entities/{entity}/keep-alive', 'Entity\EditingController@keepAlive
 
 // Permission save
 Route::post('/campaign_roles/{campaign_role}/savePermissions', 'CampaignRoleController@savePermissions')->name('campaign_roles.savePermissions');
+Route::post('/campaign_roles/{campaign_role}/toggle/{entity}/{action}', 'CampaignRoleController@toggle')->name('campaign_roles.toggle');
 
 // Impersonator
 Route::get('/members/switch/{campaign_user}', 'Campaign\MemberController@switch')->name('identity.switch');
@@ -417,6 +418,8 @@ Route::get('/campaign-export', 'Campaign\ExportController@index')->name('campaig
 Route::post('/campaign-export', 'Campaign\ExportController@export')->name('campaign.export-process');
 Route::get('/campaign.styles', 'CampaignController@css')->name('campaign.css');
 Route::get('/campaign_plugin.styles', 'Campaign\PluginController@css')->name('campaign_plugins.css');
+Route::get('/campaign-visibility', 'Campaign\VisibilityController@edit')->name('campaign-visibility');
+Route::post('/campaign-visibility', 'Campaign\VisibilityController@save')->name('campaign-visibility.save');
 
 Route::get('/campaign-applications', 'Campaign\SubmissionController@toggle')->name('campaign-applications');
 Route::post('/campaign-applications', 'Campaign\SubmissionController@toggleSave')->name('campaign-applications.save');

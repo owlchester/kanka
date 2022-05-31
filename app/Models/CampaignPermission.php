@@ -30,18 +30,18 @@ use Illuminate\Support\Str;
  */
 class CampaignPermission extends Model
 {
-    const ACTION_READ = 1;
-    const ACTION_EDIT = 2;
-    const ACTION_ADD = 3;
-    const ACTION_DELETE = 4;
-    const ACTION_POSTS = 5;
-    const ACTION_PERMS = 6;
+    public const ACTION_READ = 1;
+    public const ACTION_EDIT = 2;
+    public const ACTION_ADD = 3;
+    public const ACTION_DELETE = 4;
+    public const ACTION_POSTS = 5;
+    public const ACTION_PERMS = 6;
 
-    const ACTION_MANAGE = 10;
-    const ACTION_DASHBOARD = 11;
-    const ACTION_MEMBERS = 12;
-    const ACTION_GALLERY = 13;
-    const ACTION_CAMPAIGN = 14;
+    public const ACTION_MANAGE = 10;
+    public const ACTION_DASHBOARD = 11;
+    public const ACTION_MEMBERS = 12;
+    public const ACTION_GALLERY = 13;
+    public const ACTION_CAMPAIGN = 14;
 
     /**
      * @var bool|array
@@ -99,6 +99,16 @@ class CampaignPermission extends Model
     public function scopeRoleIDs(Builder $query, array $roleIds)
     {
         return $query->whereIn('campaign_role_id', $roleIds);
+    }
+
+    /**
+     * @param $query
+     * @param array $roleIds
+     * @return mixed
+     */
+    public function scopeAction(Builder $query, int $action)
+    {
+        return $query->whereIn('action', $action);
     }
 
     /**

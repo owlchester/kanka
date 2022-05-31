@@ -1,5 +1,5 @@
 {
-    "/js/app.js": "/js/app.js?id=dcdb1ae1d4724f3820e6707199dfe1f4",
+    "/js/app.js": "/js/app.js?id=436d62afcca8e0d3fff4efe3f01525bb",
     "/js/auth.js": "/js/auth.js?id=5989fb64b497d257753aef21fd3d3c0b",
     "/js/ajax-subforms.js": "/js/ajax-subforms.js?id=82f473471c3020f890aeceab399e9584",
     "/js/location/map.js": "/js/location/map.js?id=e736c9abe47f42b13c57779245f4dfbb",
@@ -18,9 +18,8 @@
     "/js/relations.js": "/js/relations.js?id=56017ed28440f5b529631901bdb42243",
     "/js/gallery.js": "/js/gallery.js?id=d0de889a983ceccc1bd740b559e9496f",
     "/js/editors/summernote.js": "/js/editors/summernote.js?id=7f9c6629a35b6c3981f88f979c5885c4",
-    "/css/vendor.css": "/css/vendor.css?id=9b0b73887286653b88d407ecc7bf31a1",
     "/css/map-v3.css": "/css/map-v3.css?id=06a17c1da2c978ad8ca1963c4a445f76",
-    "/css/app.css": "/css/app.css?id=3863853e55c1da0f84768ef54b00b09f",
+    "/css/app.css": "/css/app.css?id=9044f79495bb4f795fa35a361556e910",
     "/css/relations.css": "/css/relations.css?id=7dd40537d93d0c58a5d98701bb98fe87",
     "/css/front.css": "/css/front.css?id=9791575f897d1505bda2cbdd8f591cb5",
     "/css/story.css": "/css/story.css?id=d0725c35e404f934b669d640517f7934",
@@ -41,5 +40,6 @@
     "/css/assets.css": "/css/assets.css?id=e0fcf0488f5bea824afcdcd35fa7f55c",
     "/js/jquery.fileupload.js": "/js/jquery.fileupload.js?id=20a07a657cad26703a1bce484cb8af89",
     "/js/jquery.iframe-transport.js": "/js/jquery.iframe-transport.js?id=f371e8d9f57329f90114d7b52dd5c7a4",
-    "/js/vendor/jquery.ui.widget.js": "/js/vendor/jquery.ui.widget.js?id=3d0f0f5ca5d86c5a4b4fc33cda374a17"
+    "/js/vendor/jquery.ui.widget.js": "/js/vendor/jquery.ui.widget.js?id=3d0f0f5ca5d86c5a4b4fc33cda374a17",
+    "/css/vendor.css": "/css/vendor.css?id=9b0b73887286653b88d407ecc7bf31a1"
 }

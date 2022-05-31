@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Concerns\Paginatable;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Builder;
@@ -17,8 +18,8 @@ use Illuminate\Support\Str;
  * @property string $name
  * @property boolean $is_admin
  * @property boolean $is_public
- * @property CampaignPermission[] $permissions
- * @property CampaignDashboardRole[] $dashboardRoles
+ * @property Collection|CampaignPermission[] $permissions
+ * @property Collection|CampaignDashboardRole[] $dashboardRoles
  */
 class CampaignRole extends Model
 {
@@ -41,6 +42,24 @@ class CampaignRole extends Model
     protected $searchableColumns = [
         'name'
     ];
+
+    /**
+     * Determine if the campaign role is the campaign's public role
+     * @return bool
+     */
+    public function isPublic(): bool
+    {
+        return $this->is_public;
+    }
+
+    /**
+     * Determine if the campaign role is the campaign's admin role
+     * @return bool
+     */
+    public function isAdmin(): bool
+    {
+        return $this->is_admin;
+    }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -127,15 +146,7 @@ class CampaignRole extends Model
                     $module = null;
                 }
 
-                $permission = CampaignPermission::create([
-                    //'key' => $key,
-                    'campaign_role_id' => $this->id,
-                    //'table_name' => $value,
-                    'access' => true,
-                    'action' => $action,
-                    'entity_type_id' => $module
-                    //'campaign_id' => $campaign->id,
-                ]);
+                $this->add($module, $action);
             }
         }
 
@@ -157,5 +168,47 @@ class CampaignRole extends Model
     {
         return $builder
             ->where('name', 'like', "%$search%");
+    }
+
+    /**
+     * Toggle an entity's action permission
+     * @param int $entityType
+     * @param int $action
+     * @return void
+     */
+    public function toggle(int $entityType, int $action): bool
+    {
+        $perm = $this->permissions()
+            ->where('entity_type_id', $entityType)
+            ->where('action', $action)
+            ->first();
+
+        if ($perm) {
+            $perm->delete();
+            return false;
+        }
+
+        $this->add($entityType, $action);
+        return true;
+
+    }
+
+    /**
+     * Add a campaign permission for the role
+     * @param int $entityType
+     * @param int $action
+     * @return CampaignPermission
+     */
+    protected function add(int $entityType, int $action): CampaignPermission
+    {
+        return CampaignPermission::create([
+            //'key' => $key,
+            'campaign_role_id' => $this->id,
+            //'table_name' => $value,
+            'access' => true,
+            'action' => $action,
+            'entity_type_id' => $entityType
+            //'campaign_id' => $campaign->id,
+        ]);
     }
 }

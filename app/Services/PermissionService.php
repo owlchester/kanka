@@ -7,6 +7,7 @@ use App\Models\CampaignPermission;
 use App\Models\CampaignRole;
 use App\Models\Entity;
 use App\Models\MiscModel;
+use App\Traits\CampaignAware;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
@@ -17,39 +18,24 @@ use Illuminate\Support\Str;
  */
 class PermissionService
 {
-    /**
-     * @var EntityService
-     */
-    private $entityService;
+    use CampaignAware;
 
-    /**
-     * @var MiscModel
-     */
-    private $baseModel;
-
-    /**
-     * @var array Users with a role
-     */
+    /** @var array Users with a role */
     private $users = false;
 
-    /**
-     * @var string
-     */
+    /** @var int */
     private $type;
 
-    /**
-     * @var
-     */
-    protected $campaign;
+    /** @var CampaignRole */
+    private $role;
 
     /**
      * Permissions setup on the campaign
      * @var bool|array
      */
     private $basePermissions = false;
-    /**
-     * @var array
-     */
+
+    /** @var array */
     public $entityActions = [
         'read',
         'edit',
@@ -57,27 +43,8 @@ class PermissionService
         'entity-note'
     ];
 
-    /** @var bool  */
+    /** @var bool|array  */
     protected $cachedPermissions = false;
-
-    /**
-     * PermissionService constructor.
-     * @param EntityService $entityService
-     */
-    public function __construct(EntityService $entityService)
-    {
-        $this->entityService = $entityService;
-    }
-
-    /**
-     * @param MiscModel $model
-     * @return $this
-     */
-    public function base(MiscModel $model): self
-    {
-        $this->baseModel = $model;
-        return $this;
-    }
 
     /**
      * Set the entity type
@@ -87,6 +54,17 @@ class PermissionService
     public function type(int $type): self
     {
         $this->type = $type;
+        return $this;
+    }
+
+    /**
+     * Set the role
+     * @param CampaignRole $role
+     * @return $this
+     */
+    public function role(CampaignRole $role): self
+    {
+        $this->role = $role;
         return $this;
     }
 
@@ -142,13 +120,7 @@ class PermissionService
             $entityActions = [CampaignPermission::ACTION_READ];
         }
 
-        $excludedEntities = ['menu_link', 'relation'];
-
-        foreach (config('entities.ids') as $name => $id) {
-            if (in_array($name, $excludedEntities)) {
-                continue;
-            }
-
+        foreach ($this->entityTypes() as $name => $id) {
             foreach ($entityActions as $action) {
                 if (!isset($permissions[$id])) {
                     $permissions[$id] = [];
@@ -165,6 +137,40 @@ class PermissionService
         }
 
         return $permissions;
+    }
+
+    /**
+     * @return array
+     */
+    public function entityTypes(): array
+    {
+        $types = [];
+        $excludedEntities = ['menu_link', 'relation'];
+
+        foreach (config('entities.ids') as $name => $id) {
+            if (in_array($name, $excludedEntities)) {
+                continue;
+            }
+            $types[$name] = $id;
+        }
+
+        return $types;
+    }
+
+    /**
+     * Determine if the loaded role has the permission to do a specific action on the
+     * specified entity type (->type())
+     * @param CampaignRole $role
+     * @param int $action
+     * @return bool
+     */
+    public function can(int $action = CampaignPermission::ACTION_READ): bool
+    {
+        return $this->role->permissions
+            ->where('entity_type_id', $this->type)
+            ->where('action', $action)
+            ->where('access', true)
+            ->count() === 1;
     }
 
     /**
@@ -579,16 +585,6 @@ class PermissionService
     }
 
     /**
-     * @param Campaign $campaign
-     * @return $this
-     */
-    public function campaign(Campaign $campaign): self
-    {
-        $this->campaign = $campaign;
-        return $this;
-    }
-
-    /**
      * @return array
      */
     public function users()
@@ -599,6 +595,10 @@ class PermissionService
         return $this->users;
     }
 
+    /**
+     * @param int $entityType
+     * @return string
+     */
     public function entityType(int $entityType): string
     {
         $flip = array_flip(config('entities.ids'));

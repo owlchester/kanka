@@ -226,6 +226,7 @@ return [
         App\Providers\DatalayerServiceProvider::class,
         App\Providers\DatagridRendererProvider::class,
         App\Providers\PermissionsServiceProvider::class,
+        App\Providers\EntitySetupServiceProvider::class,
     ],
 
     /*
@@ -300,6 +301,7 @@ return [
         'Img' => App\Facades\Img::class,
         'Attributes' => App\Facades\Attributes::class,
         'Datagrid' => App\Facades\Datagrid::class,
+        'EntitySetup' => App\Facades\EntitySetup::class,
     ],
 
 ];

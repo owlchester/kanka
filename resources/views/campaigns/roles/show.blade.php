@@ -4,7 +4,7 @@
  */
 ?>
 @extends('layouts.app', [
-    'title' => __('campaigns.roles.show.title', ['role' => $role->name, 'campaign' => $model->name]),
+    'title' => __('campaigns/roles.show.title', ['role' => $role->name, 'campaign' => $model->name]),
     'breadcrumbs' => [
         ['url' => route('campaign'), 'label' => __('campaigns.index.title')],
         ['url' => route('campaign_roles.index'), 'label' => __('campaigns.show.tabs.roles')],
@@ -17,9 +17,10 @@
     @include('partials.errors')
     @inject('permission', 'App\Services\PermissionService')
 
+    @if ($role->is_public)
+        @include('campaigns.roles._public')
+    @else
     <div class="row">
-        @includeWhen(!$role->is_public, 'campaigns.roles._members')
-
         <div class="col-md-12 col-lg-9">
             <div class="box box-solid">
                 <div class="box-header with-border">
@@ -33,11 +34,6 @@
                 </div>
                 <div class="box-body" style="overflow-y: auto">
                     <p class="help-block">{{ __('campaigns.roles.hints.role_permissions', ['name' => $role->name]) }}</p>
-                    @if ($role->is_public)
-                        <p class="help-block">{!! __('campaigns.roles.hints.public', ['more' => '']) !!}<br />
-                            <a href="https://www.youtube.com/watch?v=VpY_D2PAguM" target="_blank"><i class="fa-solid fa-external-link-alt"></i> {{ __('helpers.public') }}</a>
-                        </p>
-                    @endif
 
                     @can('permission', $role)
                     {{ Form::open(['route' => ['campaign_roles.savePermissions', 'campaign_role' => $role], 'data-shortcut' => '1']) }}
@@ -58,6 +54,7 @@
             </div>
         </div>
     </div>
+    @endif
 @endsection
 
 @section('modals')

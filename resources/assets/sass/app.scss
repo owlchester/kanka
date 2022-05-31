@@ -720,6 +720,19 @@ summary { display: list-item; }
   margin-top: 0;
 }
 
+.loading, .loading:hover {
+  pointer-events: none;
+}
+.loading:before {
+    margin-right: .5rem;
+    display: inline-block;
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    border-width: 2px;
+    animation: fa-spin 2s linear infinite;
+    content: "\f110";
+}
+
 // Other stylings
 @import "calendar";
 @import "tooltip";

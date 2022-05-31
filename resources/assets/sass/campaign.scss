@@ -25,6 +25,40 @@ ul.sidebar-sortable, ul.sidebar-sortable ul {
   border-radius: 5px;
 }
 
+.public-permission {
+  border-radius: 5px;
+  font-size: 1.3rem;
+  line-height: 1.3;
+  border: 1px solid var(--box-border);
+  background-color: var(--box-background);
+  transition: all 0.3s ease-in-out;
+
+  word-break: break-word;
+  text-align: center;
+  display: flex;
+  flex-flow: row wrap;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  &:hover {
+    background-color: var(--quick-creator-button-hover-background);
+    color: var(--quick-creator-button-hover-text);
+  }
+  i, span {
+    display: block;
+  }
+}
+.public-permission.enabled {
+  background-color: var(--quick-creator-button-background);
+  color: var(--quick-creator-button-text);
+}
+.public-permission.loading {
+  i {
+    display: none;
+  }
+}
+
 @media(max-width: 767px) {
   .form-mobile-inline {
     .form-control {

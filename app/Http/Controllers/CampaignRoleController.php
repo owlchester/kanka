@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Facades\EntitySetup;
 use App\Models\Campaign;
 use App\Facades\CampaignLocalization;
 use App\Models\CampaignRole;
@@ -73,10 +74,9 @@ class CampaignRoleController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Campaign  $campaign
-     * @return \Illuminate\Http\Response
+     * @param CampaignRole $campaignRole
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function show(CampaignRole $campaignRole)
     {
@@ -91,6 +91,7 @@ class CampaignRoleController extends Controller
         return view($this->view . '.show', [
             'model' => $campaign,
             'role' => $campaignRole,
+            'campaign' => $campaign,
             'members' => $members,
         ]);
     }
@@ -219,5 +220,32 @@ class CampaignRoleController extends Controller
         }
 
         return response()->json($results);
+    }
+
+    /**
+     * Toggle a permission on a role
+     * @param CampaignRole $campaignRole
+     * @param int $entityType
+     * @param int $action
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function toggle(CampaignRole $campaignRole, int $entityType, int $action)
+    {
+        $this->authorize('update', $campaignRole);
+
+        if (!$campaignRole->is_public) {
+            abort(404);
+        }
+
+        $enabled = $campaignRole->toggle($entityType, $action);
+        return response()->json([
+            'success' => true,
+            'status' => $enabled,
+            'toast' => __('campaigns/roles.toggle.' . ($enabled ? 'enabled' : 'disabled'), [
+                'role' => $campaignRole->name,
+                'action' => __('crud.permissions.actions.read'),
+                'entities' => EntitySetup::plural($entityType)
+            ]),
+        ]);
     }
 }
