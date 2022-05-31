@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class CampaignUserResource extends JsonResource
+class CampaignRoleResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -15,9 +15,7 @@ class CampaignUserResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'id' => $this->id,
-            'roles' => CampaignRoleResource::collection($this->roles),
-            'user' => new UserResource($this->user),
+            'name' => $this->name,
         ];
     }
 }
