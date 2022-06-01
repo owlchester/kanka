@@ -54,6 +54,7 @@ class CampaignUser extends Pivot
      */
     public function roles()
     {
+        //dd('EZ5: Roles?');
         return $this->hasManyThrough(
             'App\Models\CampaignRole',
             'App\Models\CampaignRoleUser',
