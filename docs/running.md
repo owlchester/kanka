@@ -30,7 +30,11 @@ When on Linux, Docker needs to run with your user and not with sudo! This is imp
 
 The first step is to copy `.env.example` to `.env`. This will set up Kanka's default config to run with docker.
 
-Optionally, if you want to change some configs, edit the new `.env` file. In most cases, you don't need to touch anything
+> **Hidden by default**
+>
+> Most operating systems hide files starting with a dot by default. You can either change this in your operating system's file explorer, or by accessing the files in the terminal.
+
+Optionally, if you want to change some configs, edit the new `.env` file. In most cases, you don't need to touch anything.
 
 ### Installing dependencies
 
@@ -56,16 +60,15 @@ Otherwise, whenever this setup mentions a sail command, replace it with `./vendo
 
 ### Running Kanka
 
-Everything should now be ready to run all those docker images.
+Everything should now be ready to run all those docker images. Passing the `-d` parameter starts it in the background.
 
 ```bash
-sail up
+sail up -d
 ```
 
-This will start the docker images. You can use the `-d` command to run the docker images in the background.
-
-
 #### Bucket setup
+
+Image uploading in the app is stored on a *minio* service. This mimics the amazon S3 storage, and makes it easier to handle images rather than hosting them directly in the docker responsible for PHP.
 
 First, go to [localhost:9000](http://localhost:9000). This is where your files will be stored. Login with `sail` as the user and `password` as the password.
 
@@ -73,7 +76,7 @@ Create a new bucket called `kanka`. This will redirect you to the new `kanka` bu
 
 #### Database setup
 
-Now that the bucket is setup, go back to your console run the following commands. The first will set up your security key used to encode session cookies.
+Now that the bucket is set up, go back to your console run the following commands. The first will set up your security key used to encode session cookies.
 
 ```bash
 sail artisan key:generate
@@ -106,7 +109,7 @@ We recommend making an alias in your `/etc/hosts` file to point `kanka.test` to 
 
 ### Shutting down
 
-To stop the docker images, run the following.
+To stop the docker images, run the following command from your Kanka folder.
 
 ```bash
 sail down
