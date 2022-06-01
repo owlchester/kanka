@@ -8,7 +8,7 @@
             <div class="items">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Laura "Wadue"</h5>
+                        <h5 class="card-title">Laura "Waldue"</h5>
                         <p class="card-text">{{ __('front/testimonials.laura') }}</p>
                     </div>
                 </div>

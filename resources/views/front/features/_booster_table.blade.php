@@ -117,7 +117,7 @@
             <td><i class="fa-solid fa-check-circle"></i></td>
             <td><i class="fa-solid fa-check-circle"></i></td>
         </tr>
-        <tr>
+        <tr class="d-none">
             <td class="text">{{ __('front.features.boosts.beta') }}</td>
             <td></td>
             <td><i class="fa-solid fa-check-circle"></i></td>
