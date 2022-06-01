@@ -131,9 +131,15 @@
                     <p class="mt-3">
                         {{ __('profiles.sections.delete.warning') }}
                     </p>
+                    <p class="mt-3">
+                        {{ __('profiles.sections.delete.goodbye') }}
+                    </p>
 
                     <div class="py-5">
                         {!! Form::model($user, ['method' => 'PATCH', 'route' => ['settings.account.destroy']]) !!}
+                        <div class="form-group required">
+                        {!! Form::text('goodbye',null, ['class' => 'form-control']) !!}
+                    </div>
                         <button type="submit" class="btn btn-danger rounded-full px-8">
                             <i class="fa-solid fa-exclamation-triangle" aria-hidden="true"></i>
                             {{ __('profiles.sections.delete.confirm') }}

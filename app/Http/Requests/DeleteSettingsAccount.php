@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\GoodBye;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 
@@ -25,7 +26,9 @@ class DeleteSettingsAccount extends FormRequest
     public function rules()
     {
         $user = Auth::user();
-        $rules = [];
+        $rules = [
+            'goodbye' => ['string', new GoodBye],
+        ];
         return $rules;
     }
 }
