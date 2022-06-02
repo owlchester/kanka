@@ -116,30 +116,7 @@ class MapMarker extends Model
     }
 
     /**
-     * @return string
-     */
-    public function icon(): string
-    {
-        if (!empty($this->custom_icon)) {
-            return '<i class="' . $this->custom_icon . '"></i>';
-        }
-        if ($this->icon == 4 && $this->entity && $this->entity->child) {
-            return '<div class="entity-image" style="background-image: url(' .
-                $this->entity->child->getImageUrl(40) .
-            '); width: 100%; height: 100%"></div>';
-        }
-
-        switch ($this->icon) {
-            case 2:
-                return '<i class="fa-solid fa-question"></i>';
-            case 3:
-                return '<i class="fa-solid fa-exclamation"></i>';
-            default:
-                return '<i class="fa-solid fa-map-pin"></i>';
-        }
-    }
-
-    /**
+     * Get the marker's size, and make it 20 times bigger for a "pixel" size equivalent
      * @return int
      */
     public function size(): int
@@ -148,6 +125,7 @@ class MapMarker extends Model
     }
 
     /**
+     * Determine if the marker is of the label type
      * @return bool
      */
     public function isLabel(): bool
@@ -155,30 +133,16 @@ class MapMarker extends Model
         return $this->shape_id == self::SHAPE_LABEL;
     }
 
+    /**
+     * Generate the marker for leaflet
+     * @return string
+     */
     public function marker(): string
     {
         if ($this->shape_id == MapMarker::SHAPE_CIRCLE) {
-            return 'L.circle([' . $this->latitude . ', ' . $this->longitude . '], {
-                radius: ' . $this->circleRadius() . ',
-                fillColor: \'' . e($this->colour) . '\',
-                title: \'' . $this->markerTitle() . '\',
-                stroke: false,
-                fillOpacity: ' . $this->opacity() . ',
-                className: \'marker marker-circle marker-' . $this->id . ' size-' . $this->size_id . '\','
-                . ($this->isDraggable() ? 'draggable: true' : null) . '
-            })' . $this->popup();
-
-        }
-        elseif ($this->shape_id == MapMarker::SHAPE_LABEL) {
-            return 'L.marker([' . ($this->latitude ). ', ' . $this->longitude . '], {
-                opacity: 0,
-                icon: labelShapeIcon,'
-                . ($this->editing ? null : null) . '
-            }).bindTooltip(`' . str_replace('`', '\'', $this->markerTitle()) . '`, {
-                direction: \'center\',
-                permanent: true,
-                offset: [0,0]
-            })' . $this->popup();
+            return $this->circleMarker();
+        } elseif ($this->isLabel()) {
+            return $this->labelMarker();
         } elseif ($this->shape_id == MapMarker::SHAPE_POLY && !empty($this->custom_shape)) {
             $coords = [];
             $segments = explode(' ', str_replace("\r\n", " ", $this->custom_shape));
@@ -188,8 +152,6 @@ class MapMarker extends Model
                     $coords[] = '[' . $coord[0] . ', ' . Str::before($coord[1], ' ') . ']';
                 }
             }
-            // ' . implode(', ', $coords) . '
-            //dd(max(1, Arr::get($this->polygon_style, 'stroke-width', 1)));
             return 'L.polygon([' . implode(', ', $coords) . '], {
                 color: \'' . Arr::get($this->polygon_style, 'stroke', $this->colour) . '\',
                 weight: ' . max(1, Arr::get($this->polygon_style, 'stroke-width', 1)) . ',
@@ -211,12 +173,47 @@ class MapMarker extends Model
     }
 
     /**
+     * Generate a circle marker
      * @return string
      */
-    protected function popup(): string
+    protected function circleMarker(): string
+    {
+        return 'L.circle([' . $this->latitude . ', ' . $this->longitude . '], {
+                radius: ' . $this->circleRadius() . ',
+                fillColor: \'' . e($this->colour) . '\',
+                title: \'' . $this->markerTitle() . '\',
+                stroke: false,
+                fillOpacity: ' . $this->opacity() . ',
+                className: \'marker marker-circle marker-' . $this->id . ' size-' . $this->size_id . '\','
+            . ($this->isDraggable() ? 'draggable: true' : null) . '
+            })' . $this->popup();
+    }
+
+    /**
+     * Generate a label marker
+     * @return string
+     */
+    protected function labelMarker(): string
+    {
+        return 'L.marker([' . ($this->latitude ). ', ' . $this->longitude . '], {
+                opacity: 0,
+                icon: labelShapeIcon,'
+            . ($this->editing ? null : null) . '
+            }).bindTooltip(`' . str_replace('`', '\'', $this->markerTitle()) . '`, {
+                direction: \'center\',
+                permanent: true,
+                offset: [0,0]
+            })' . $this->popup();
+    }
+
+    /**
+     * Generate the marker's popup that is usually opened on hover
+     * @return string
+     */
+    protected function popup(): string|null
     {
         if ($this->editing) {
-            return '';
+            return null;
         }
 
         $body = null;
@@ -229,7 +226,7 @@ class MapMarker extends Model
                 $body .= "<p><a href=\"$url\">" . str_replace('`', '\'', $this->entity->name) . "</a></p>";
             }
             // No entry field, include the entity tooltip
-            if ($this->shape_id != MapMarker::SHAPE_LABEL) {
+            if (!$this->isLabel()) {
                 $body .= $this->entity->mappedPreview();
                 // Replace backslashes because javascript can think that things like \6e is an octogonal string
                 $body = str_replace('\\', '/', $body);
@@ -274,7 +271,7 @@ class MapMarker extends Model
     }
 
     /**
-     * Determin if a marker is draggable
+     * Determine if a marker is draggable
      * @return bool
      */
     protected function isDraggable(): bool
@@ -286,6 +283,7 @@ class MapMarker extends Model
     }
 
     /**
+     * Generate the draggable event for a marker
      * @return string
      */
     protected function draggable(): string
@@ -353,13 +351,14 @@ class MapMarker extends Model
 
         $icon = '`' . $iconShape . '<i class="fa-solid fa-map-pin"></i>`';
         if (!empty($this->custom_icon)) {
-            if (Str::startsWith($this->custom_icon, '<i')) {
+            if (Str::startsWith($this->custom_icon, '<i ')) {
                 $icon = '`' . $iconShape . '' . $this->custom_icon . '`';
+            } elseif (Str::startsWith($this->custom_icon, ['fa-', 'ra '])) {
+                $icon = '`' . $iconShape . ' <i class="' . $this->custom_icon . '" aria-hidden="true"></i>`';
             } elseif(Str::startsWith($this->custom_icon, '<?xml')) {
                 $icon = 'L.Util.template(`<div class="custom-icon">' . $this->resizedCustomIcon() . '</div>`)';
             }
-        }
-        elseif ($this->icon == 2) {
+        } elseif ($this->icon == 2) {
             $icon = '`' . $iconShape . '<i class="fa-solid fa-question"></i>`';
         } elseif ($this->icon == 3) {
             $icon = '`' . $iconShape . '<i class="fa-solid fa-exclamation"></i>`';
@@ -410,6 +409,7 @@ class MapMarker extends Model
     }
 
     /**
+     * Set the current mode to editing the marker
      * @return $this
      */
     public function editing(): self
@@ -419,6 +419,7 @@ class MapMarker extends Model
     }
 
     /**
+     * Set the current mode to exploring the map
      * @return $this
      */
     public function exploring(): self
@@ -428,6 +429,8 @@ class MapMarker extends Model
     }
 
     /**
+     * Used for calculating sizes and distances when using open street map where everything is way more
+     * zoomed in.
      * @return $this
      */
     public function multiplier(bool $isReal = false): self
@@ -511,6 +514,7 @@ class MapMarker extends Model
     }
 
     /**
+     * Calculate the circle radius
      * @return int
      */
     protected function circleRadius(): int
@@ -523,6 +527,7 @@ class MapMarker extends Model
 
 
     /**
+     * Determine if the marker has a filled out entry
      * @return bool
      */
     public function hasEntry(): bool

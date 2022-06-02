@@ -59,7 +59,7 @@ $sizeOptions = [
                     <div class="form-group">
                         <label>{{ __('maps/markers.fields.custom_icon') }}</label>
                         @if ($campaign->campaign()->boosted())
-                            {!! Form::text('custom_icon', \App\Facades\FormCopy::field('custom_icon')->string(), ['class' => 'form-control', 'placeholder' => '<i class="fa-solid fa-gem"></i>, <i class="ra ra-sword">']) !!}
+                            {!! Form::text('custom_icon', \App\Facades\FormCopy::field('custom_icon')->string(), ['class' => 'form-control', 'placeholder' => __('maps/markers.placeholders.custom_icon', ['example1' => '"fa-solid fa-gem"', 'example2' => '"ra ra-sword"'])]) !!}
                             <p class="help-block">{!! __('maps/markers.helpers.custom_icon', ['rpgawesome' => '<a href="https://nagoshiashumari.github.io/Rpg-Awesome/" target="_blank">RPG Awesome</a>', 'fontawesome' => '<a href="https://fontawesome.com/search?m=free&s=solid" target="_blank">Font Awesome</a>']) !!}</p>
                         @else
                             <p class="help-block">{{ __('crud.errors.boosted') }}</p>

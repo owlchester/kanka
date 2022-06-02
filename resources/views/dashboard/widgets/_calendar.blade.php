@@ -7,6 +7,10 @@
  */
 $entity = $widget->entity;
 $calendar = $entity->child;
+// Todo: move this to the query
+if (empty($calendar)) {
+    return;
+}
 ?>
 <div class="panel panel-default {{ $widget->customClass($campaign) }} widget-render" id="dashboard-widget-{{ $widget->id }}" data-url="{{ route('dashboard.calendar.render', $widget->id) }}">
     @if (!$calendar->image)

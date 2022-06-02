@@ -70,7 +70,7 @@ class MapMarkerObserver
             } else {
                 return null;
             }
-        } elseif (Str::startsWith($mapMarker->custom_icon, '<i ')) {
+        } elseif (Str::startsWith($mapMarker->custom_icon, ['<i ', 'fa-', 'ra '])) {
             return $this->purify($mapMarker->custom_icon);
         }
 

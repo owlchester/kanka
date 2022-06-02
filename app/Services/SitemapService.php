@@ -107,12 +107,15 @@ class SitemapService
             '/',
             'about',
             'privacy-policy',
-            'faq',
             'features',
             'pricing',
             'roadmap',
             'public-campaigns',
             'hall-of-fame',
+            'boosters',
+            'press-kit',
+            'security',
+
         ];
 
         foreach ($base as $link) {
