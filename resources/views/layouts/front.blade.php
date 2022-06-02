@@ -121,8 +121,13 @@
                     </a>
                 </li>
                 @if(config('auth.register_enabled'))
-                    <li>
-                        <a href="{{ route('register') }}" class="btn btn-primary text-white">
+                    <li class="ab-testing-a">
+                        <a href="{{ route('register') }}" class="btn btn-primary btn-lg ab-testing-a">
+                            {{ __('front.menu.register') }}
+                        </a>
+                    </li>
+                    <li class="ab-testing-b">
+                        <a href="{{ route('register') }}" class="btn btn-success btn-lg ab-testing-b">
                             {{ __('front.menu.register') }}
                         </a>
                     </li>
@@ -229,7 +234,10 @@
                         {{ __('front.menu.login') }}
                     </a>
                     @if(config('auth.register_enabled'))
-                    <a href="{{ route('register') }}" class="btn btn-primary text-white">
+                    <a href="{{ route('register') }}" class="btn btn-primary text-white ab-testing-a">
+                        {{ __('front.menu.register') }}
+                    </a>
+                    <a href="{{ route('register') }}" class="btn btn-success text-white ab-testing-b">
                         {{ __('front.menu.register') }}
                     </a>
                     @endif
@@ -251,8 +259,13 @@
                     </a>
                 </li>
                 @if(config('auth.register_enabled'))
-                    <li>
+                    <li class="ab-testing-a">
                         <a href="{{ route('register') }}" class="btn btn-primary text-white">
+                            {{ __('front.menu.register') }}
+                        </a>
+                    </li>
+                    <li class="ab-testing-b">
+                        <a href="{{ route('register') }}" class="btn btn-success text-white">
                             {{ __('front.menu.register') }}
                         </a>
                     </li>

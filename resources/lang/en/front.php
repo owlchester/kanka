@@ -200,7 +200,7 @@ return [
     ],
     'first_block'           => [
         'description'   => ':kanka is available on any device and is updated regularly with new features and improvements. Forget about losing track of your scattered notes, in :kanka everything is in one place, easy to find, and accessible on the go.',
-        'title'         => 'A novel way to keep track of your worldbuilding and RPG campaigns.',
+        'title'         => 'A novel way to keep track of your worldbuilding and RPG campaigns',
     ],
     'footer'                => [
         'copyright' => 'Copyright :copy :year :company',
