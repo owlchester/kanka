@@ -90,7 +90,7 @@ class TimelineElementController extends Controller
         $this->service->reorderElements($new);
 
         return redirect()
-            ->route('timelines.show', [$timeline])
+            ->route('timelines.show', [$timeline->id, '#timeline-element-' . $new->id])
             ->withSuccess(__('timelines/elements.create.success', ['name' => $new->name]));
 
     }
@@ -138,7 +138,7 @@ class TimelineElementController extends Controller
         $this->service->reorderElements($timelineElement);
 
         return redirect()
-            ->route('timelines.show', [$timeline])
+            ->route('timelines.show', [$timeline->id, '#timeline-element-' . $timelineElement->id])
             ->withSuccess(__('timelines/elements.edit.success', ['name' => $timelineElement->name]));
 
     }
