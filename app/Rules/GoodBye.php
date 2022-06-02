@@ -36,6 +36,6 @@ class GoodBye implements Rule
      */
     public function message()
     {
-        return ('You must write goodbye to confirm the deletion of your account');
+        return (__('validation.goodbye', ['code' => 'goodbye']));
     }
 }
