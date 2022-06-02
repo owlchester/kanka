@@ -17,7 +17,7 @@ class EntityNoteResource extends EntityChild
     {
         return $this->entity([
             'name' => $this->name,
-            'visibility' => $this->visibility,
+            'visibility_id' => (int) $this->visibility_id,
             'entry' => $this->entry,
             'entry_parsed' => $this->entry(),
 //            'is_pinned' => (bool) $this->is_pinned,

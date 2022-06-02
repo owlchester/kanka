@@ -40,20 +40,7 @@ class EntityNoteController extends Controller
      */
     public function index(Entity $entity)
     {
-        $this->authorize('browse', [$entity->child]);
-
-        $notes = $entity->notes()->paginate();
-        $name = $this->view;
-        $route = $entity->type() . $this->route;
-        $parentRoute = $entity->pluralType();
-
-        return view('cruds.notes.index', compact(
-            'notes',
-            'name',
-            'route',
-            'entity',
-            'parentRoute'
-        ));
+        dd('ENC I49');
     }
 
     /**
@@ -87,22 +74,7 @@ class EntityNoteController extends Controller
     public function show(Entity $entity, EntityNote $entityNote)
     {
         // Policies will always fail if they can't resolve the user.
-        if (Auth::check()) {
-            $this->authorize('view', $entity->child);
-        } else {
-            if (empty($entity->child)) {
-                abort(404);
-            }
-            $this->authorizeEntityForGuest(\App\Models\CampaignPermission::ACTION_READ, $entity->child);
-        }
-
-        $ajax = request()->ajax();
-
-        return view('cruds.notes.' . ($ajax ? '_' : null) . 'show', compact(
-            'entityNote',
-            'entity',
-            'ajax'
-        ));
+        dd('ENC S13');
     }
 
     /**

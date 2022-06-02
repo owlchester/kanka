@@ -11,44 +11,6 @@ use Illuminate\Support\Facades\Auth;
 class VisibilityIDScope implements Scope
 {
     /**
-     * All the extensions to be added to the builder.
-     *
-     * @var array
-     */
-    protected $extensions = ['WithInvisible'];
-
-    /**
-     * Extend the query builder with the needed functions.
-     *
-     * @param  \Illuminate\Database\Eloquent\Builder  $builder
-     * @return void
-     */
-    public function extend(Builder $builder)
-    {
-        foreach ($this->extensions as $extension) {
-            $this->{"add{$extension}"}($builder);
-        }
-    }
-
-    /**
-     * Add the with-invisible extension to the builder.
-     *
-     * @param  \Illuminate\Database\Eloquent\Builder  $builder
-     * @return void
-     */
-    protected function addWithInvisible(Builder $builder)
-    {
-        $builder->macro('withInvisible', function (Builder $builder, $withInvisible = true) {
-            if (! $withInvisible) {
-                // Sends the default scope
-                return $builder;
-            }
-
-            return $builder->withoutGlobalScope($this);
-        });
-    }
-
-    /**
      * Apply the scope to a given Eloquent query builder.
      *
      * @param  \Illuminate\Database\Eloquent\Builder  $builder
@@ -58,8 +20,7 @@ class VisibilityIDScope implements Scope
     public function apply(Builder $builder, Model $model)
     {
         // Only apply these scopes in non-console mode.
-        if (app()->runningInConsole())
-        {
+        if (app()->runningInConsole()) {
             // However, if we are in console mode (exporting), we need a way to avoid people accessing "self" notes.
             // Todo: how to handle this use case properly? Not exporting "self" seems silly
             // $builder->where($model->getTable() . 'visibility', '!=', Visibility::VISIBILITY_SELF);
