@@ -116,6 +116,7 @@ return [
     'uploaded' => 'The :attribute failed to upload.',
     'url' => 'The :attribute format is invalid.',
     'uuid' => 'The :attribute must be a valid UUID.',
+    'goodbye' => 'You must write :code to confirm the deletion of your account',
 
 
     'entity_link' => 'Invalid :attribute. Please verify that it is a valid Kanka link, that it points to a public campaign, and that the entity is visible for the campaign\'s public role.',
