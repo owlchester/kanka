@@ -86,7 +86,7 @@ return [
             'subscribed'    => 'Please cancel your :subscription before being able to delete your account.',
             'title'         => 'Delete your account',
             'warning'       => 'By deleting your account, all your data will be lost. Are you sure?',
-            'goodbye'       => 'If so, please write ":code" on the box below.'
+            'goodbye'       => 'If so, please write :code on the box below.'
         ],
         'password'      => [
             'title' => 'Change your password',

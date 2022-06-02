@@ -133,7 +133,7 @@
                     </p>
                     <div class="py-5">
                         <p>
-                            {{ __('profiles.sections.delete.goodbye', ['code' => 'goodbye']) }}
+                            {!! __('profiles.sections.delete.goodbye', ['code' => '<code>goodbye</code>']) !!}
                         </p>
                             {!! Form::model($user, ['method' => 'PATCH', 'route' => ['settings.account.destroy']]) !!}
                         <div class="form-group required">
