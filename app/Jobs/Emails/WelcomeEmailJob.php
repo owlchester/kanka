@@ -56,6 +56,7 @@ class WelcomeEmailJob implements ShouldQueue
         } catch (\Exception $e) {
             // Something went wrong with mailgun, or the email is invalid. Silence these errors
             // to avoid spamming sentry.
+            throw $e;
         }
     }
 }
