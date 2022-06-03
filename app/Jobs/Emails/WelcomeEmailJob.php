@@ -11,6 +11,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 
 class WelcomeEmailJob implements ShouldQueue
@@ -46,6 +47,7 @@ class WelcomeEmailJob implements ShouldQueue
     public function handle()
     {
         $user = User::findOrFail($this->userId);
+        Log::info('WelcomeEmailJob for user #' . $this->userId);
 
         try {
             Mail::to($user->email)
