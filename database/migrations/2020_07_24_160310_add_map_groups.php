@@ -22,6 +22,7 @@ class AddMapGroups extends Migration
             $table->unsignedSmallInteger('position')->nullable();
 
             $table->string('visibility', 10)->default('all');
+            $table->boolean('is_shown')->default(0);
 
             $table->timestamps();
 
