@@ -43,8 +43,7 @@ __('maps/markers.edit.title', ['name' => $model->name])
                         <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown"
                             aria-expanded="false">
                             <span class="caret"></span>
-                        </button>
-                        
+                        </button>          
                         <ul class="dropdown-menu" role="menu">
                             <li>
                                 <a href="#" class="dropdown-item form-submit-actions">
@@ -78,11 +77,12 @@ __('maps/markers.edit.title', ['name' => $model->name])
                     </div>
                     @includeWhen(!request()->ajax(), 'partials.or_cancel')
                 </div>
-                {!! Form::close() !!}
                 <div class="submit-animation" style="display: none;">
                     <button class="btn btn-success" disabled><i class="fa-solid fa-spinner fa-spin"></i></button>
                 </div>
             </div>
+
+            {!! Form::close() !!}
         </div>
     </div>
 
