@@ -52,7 +52,7 @@
                 'discord' => link_to('https:' . config('social.discord'), 'Discord'),
             ]) !!}</p>
             <p>{!! __('emails/welcome.section_3', [
-                'faq' => link_to_route('faq.index', __('front.faq.title'))
+                'faq' => link_to_route('front.faqs.index', __('front.faq.title'))
             ]) !!}</p>
             <p>{!! __('emails/welcome.section_4', [
                 'youtube' => link_to('https:' . config('social.youtube'), __('emails/welcome.section_5'))

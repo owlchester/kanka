@@ -9,6 +9,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 
 class WelcomeEmailJob implements ShouldQueue
@@ -55,6 +56,7 @@ class WelcomeEmailJob implements ShouldQueue
         if (empty($user)) {
             return;
         }
+        Log::info('WelcomeEmailJob for user #' . $this->userId);
 
         try {
             Mail::to($user->email)
@@ -65,6 +67,7 @@ class WelcomeEmailJob implements ShouldQueue
         } catch (\Exception $e) {
             // Something went wrong with mailgun, or the email is invalid. Silence these errors
             // to avoid spamming sentry.
+            throw $e;
         }
     }
 }

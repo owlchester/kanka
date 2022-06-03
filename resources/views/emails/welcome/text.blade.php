@@ -13,7 +13,7 @@
 ]) !!}
 
 {!! __('emails/welcome.section_3', [
-    'faq' => __('front.faq.title') . ' (' . route('faq.index') . ')',
+    'faq' => __('front.faq.title') . ' (' . route('front.faqs.index') . ')',
 ]) !!}
 
 {!! __('emails/welcome.section_4', [
