@@ -36,41 +36,61 @@ __('maps/markers.edit.title', ['name' => $model->name])
             <div class="form-group">
                 <div class="submit-group">
                     <input id="submit-mode" type="hidden" value="true"/>
-                    <div class="btn-group">
-                        <button class="btn btn-success" id="form-submit-main"
-                            data-target="{{ isset($target) ? $target : null }}">{{ __('crud.save') }}</button>
-                        <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown"
-                            aria-expanded="false">
-                            <span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu" role="menu">
-                            <li>
-                                <a href="#" class="dropdown-item form-submit-actions">
-                                    {{ __('crud.save') }}
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="dropdown-item form-submit-actions" data-action="submit-update">
-                                    {{ __('crud.save_and_update') }}
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="dropdown-item form-submit-actions" data-action="submit-explore">
-                                    {{ __('maps/markers.actions.save_and_explore') }}
-                                </a>
-                            </li>
-                        </ul>
+                    <div class="pull-right">
+                        @include('partials.footer_cancel')
+                        <div class="btn-group">                   
+                            <button class="btn btn-success" id="form-submit-main"
+                                data-target="{{ isset($target) ? $target : null }}">{{ __('crud.save') }}</button>
+                            <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown"
+                                aria-expanded="false">
+                                <span class="caret"></span>
+                            </button>          
+                            <ul class="dropdown-menu" role="menu">
+                                <li>
+                                    <a href="#" class="dropdown-item form-submit-actions">
+                                        {{ __('crud.save') }}
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="dropdown-item form-submit-actions" data-action="submit-update">
+                                        {{ __('crud.save_and_update') }}
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="dropdown-item form-submit-actions" data-action="submit-explore">
+                                        {{ __('maps/markers.actions.save_and_explore') }}
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>  
+                    </div>  
+                    <div class="pull-left">
+                        <div class="btn-group">
+                            <a role="button" tabindex="-1" class="btn btn-dynamic-delete btn-danger" data-toggle="popover"
+                                title="{{ __('crud.delete_modal.title') }}"
+                                data-content="<p>{{ __('crud.delete_modal.permanent') }}</p>
+                                 <a href='#' class='btn btn-danger btn-block' data-toggle='delete-form' data-target='#delete-marker-confirm-form-{{ $model->id}}'>{{ __('crud.remove') }}</a>">
+                                <i class="fa-solid fa-trash" aria-hidden="true"></i> {{ __('maps/markers.actions.remove') }}
+                            </a>
+                        </div>
                     </div>
-                    @includeWhen(!request()->ajax(), 'partials.or_cancel')
                 </div>
                 <div class="submit-animation" style="display: none;">
                     <button class="btn btn-success" disabled><i class="fa-solid fa-spinner fa-spin"></i></button>
                 </div>
             </div>
-
             {!! Form::close() !!}
         </div>
     </div>
+
+    {!! Form::open([
+        'method' => 'DELETE', 
+        'route' => ['maps.map_markers.destroy', $model->map_id, $model->id], 
+        'style' => 'display:inline', 
+        'id' => 'delete-marker-confirm-form-' . $model->id]) !!}
+    {!! Form::close() !!}
+
+
 @endsection
 
 @section('scripts')

@@ -51,7 +51,7 @@
                 </a>
             </div>
         </div>
-    @else
+     @else
             <div class="panel-footer">
                 <div class="pull-right">
                     <button class="btn btn-success">{{ __('crud.save') }}</button>
