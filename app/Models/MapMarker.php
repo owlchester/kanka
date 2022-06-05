@@ -156,7 +156,7 @@ class MapMarker extends Model
                 color: \'' . Arr::get($this->polygon_style, 'stroke', $this->colour) . '\',
                 weight: ' . max(1, Arr::get($this->polygon_style, 'stroke-width', 1)) . ',
                 opacity: ' . $this->strokeOpacity() . ',
-                fillOpacity: ' . $this->opacity() . ',
+                fillOpacity: ' . $this->floatOpacity() . ',
                 fillColor: \'' . e($this->colour) . '\',
                 smoothFactor: 1,
                 linecap: \'round\',
@@ -166,7 +166,7 @@ class MapMarker extends Model
 
         return 'L.marker([' . ($this->latitude ). ', ' . $this->longitude . '], {
             title: \'' . $this->markerTitle() . '\',
-            opacity: ' . $this->opacity() . ','
+            opacity: ' . $this->floatOpacity() . ','
             . ($this->isDraggable() ? 'draggable: true,' : null) . '
             ' . $this->markerIcon() . '
         })' . $this->popup() . $this->draggable();
@@ -183,7 +183,7 @@ class MapMarker extends Model
                 fillColor: \'' . e($this->colour) . '\',
                 title: \'' . $this->markerTitle() . '\',
                 stroke: false,
-                fillOpacity: ' . $this->opacity() . ',
+                fillOpacity: ' . $this->floatOpacity() . ',
                 className: \'marker marker-circle marker-' . $this->id . ' size-' . $this->size_id . '\','
             . ($this->isDraggable() ? 'draggable: true' : null) . '
             })' . $this->popup();
@@ -443,7 +443,7 @@ class MapMarker extends Model
      * Get the opacity of a point. Users input a %, convert it to a float for leaflet
      * @return float
      */
-    protected function opacity(): float
+    protected function floatOpacity(): float
     {
         if ($this->opacity > 100) {
             return 1.0;

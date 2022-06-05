@@ -6,75 +6,78 @@
 */
 ?>
 @extends('layouts.' . ($ajax ? 'ajax' : 'app'), [
-'title' => __('maps/markers.create.title', ['name' => $map->name]),
-'description' => '',
-'breadcrumbs' => [
-['url' => route('maps.index'), 'label' => __('maps.index.title')],
-['url' => $map->entity->url('show'), 'label' => $map->name],
-__('maps/markers.create.title')
-]
+    'title' => __('maps/markers.create.title', ['name' => $map->name]),
+    'description' => '',
+    'breadcrumbs' => [
+        ['url' => route('maps.index'), 'label' => __('maps.index.title')],
+        ['url' => $map->entity->url('show'), 'label' => $map->name],
+        __('maps/markers.create.title')
+    ]
 ])
 @inject('campaign', 'App\Services\CampaignService')
 
 @section('content')
-    <div class="panel panel-default">
+    {!! Form::open(['route' => ['maps.map_markers.store', $map], 'method' => 'POST', 'id' => 'map-marker-form', 'class' => 'ajax-subform']) !!}
+    <div class="modal-content">
         @if ($ajax)
-            <div class="panel-heading">
+            <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"
-                    aria-label="{{ trans('crud.delete_modal.close') }}"><span aria-hidden="true">&times;</span></button>
-                <h4>
+                    aria-label="{{ trans('crud.delete_modal.close') }}"><span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">
                     {{ __('maps/markers.create.title', ['name' => $map->name]) }}
                 </h4>
             </div>
         @endif
-        <div class="panel-body">
+        <div class="modal-body">
             @include('partials.errors')
 
             @if (!$ajax)
                 <div class="map map-form" id="map{{ $map->id }}" style="width: 100%; height: 100%;"></div>
             @endif
 
-            {!! Form::open(['route' => ['maps.map_markers.store', $map], 'method' => 'POST', 'id' => 'map-marker-form', 'class' => 'ajax-subform']) !!}
             @include('maps.markers._form', ['model' => null])
 
-            <div class="form-group">
-                <div class="submit-group">
-                    <input id="submit-mode" type="hidden" value="true"/>
-                    <div class="btn-group">
-                        <button class="btn btn-success" id="form-submit-main"
-                            data-target="{{ isset($target) ? $target : null }}">{{ __('crud.save') }}</button>
-                        <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown"
-                            aria-expanded="false">
-                            <span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu" role="menu">
-                            <li>
-                                <a href="#" class="dropdown-item form-submit-actions">
-                                    {{ __('crud.save') }}
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="dropdown-item form-submit-actions" data-action="submit-update">
-                                    {{ __('crud.save_and_update') }}
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="dropdown-item form-submit-actions" data-action="submit-explore">
-                                    {{ __('maps/markers.actions.save_and_explore') }}
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                    @includeWhen(!request()->ajax(), 'partials.or_cancel')
-                </div>
-                <div class="submit-animation" style="display: none;">
-                    <button class="btn btn-success" disabled><i class="fa-solid fa-spinner fa-spin"></i></button>
+        </div>
+        <div class="modal-footer">
+
+            <div class="pull-left">
+                @include('partials.footer_cancel')
+            </div>
+            <div class="submit-group">
+                <input id="submit-mode" type="hidden" value="true"/>
+                <div class="btn-group">
+                    <button class="btn btn-success" id="form-submit-main"
+                        data-target="{{ isset($target) ? $target : null }}">{{ __('crud.save') }}</button>
+                    <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown"
+                        aria-expanded="false">
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                        <li>
+                            <a href="#" class="dropdown-item form-submit-actions">
+                                {{ __('crud.save') }}
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="dropdown-item form-submit-actions" data-action="submit-update">
+                                {{ __('crud.save_and_update') }}
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="dropdown-item form-submit-actions" data-action="submit-explore">
+                                {{ __('maps/markers.actions.save_and_explore') }}
+                            </a>
+                        </li>
+                    </ul>
                 </div>
             </div>
-
-            {!! Form::close() !!}
+            <div class="submit-animation" style="display: none;">
+                <button class="btn btn-success" disabled><i class="fa-solid fa-spinner fa-spin"></i></button>
+            </div>
         </div>
     </div>
+    {!! Form::close() !!}
 @endsection
 
 @section('scripts')

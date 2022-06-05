@@ -32,9 +32,10 @@ if (isset($model) && in_array($model->visibility_id, [Visibility::VISIBILITY_ADM
     ?><input type="hidden" name="visibility_id" value="{{ $model->visibility_id }}" /><?php
     return;
 }
+$visibilityUniqueID = uniqid('visibility_');
 ?>
 <div class="form-group">
-    <label for="visibility">
+    <label for="{{ $visibilityUniqueID }}">
         {{ __('crud.fields.visibility') }}
         @if(request()->ajax())
         <a href="{{ route('helpers.visibility') }}" data-toggle="tooltip" target="_blank" title="{{ __('visibilities.tooltip') }}">
@@ -46,5 +47,5 @@ if (isset($model) && in_array($model->visibility_id, [Visibility::VISIBILITY_ADM
         </a>
         @endif
     </label>
-    {{ Form::select('visibility_id', $options, empty($model) ? CampaignLocalization::getCampaign()->defaultVisibilityID() : $model->visibility_id, ['class' => 'form-control', 'id' => 'visibility_id']) }}
+    {{ Form::select('visibility_id', $options, empty($model) ? CampaignLocalization::getCampaign()->defaultVisibilityID() : $model->visibility_id, ['class' => 'form-control', 'id' => $visibilityUniqueID]) }}
 </div>
