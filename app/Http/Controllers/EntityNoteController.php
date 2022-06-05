@@ -34,7 +34,7 @@ class EntityNoteController extends Controller
     public function index(Entity $entity)
     {
         $this->authorize('browse', [$entity->child]);
-        return redirect()->route($entity->url());
+        return redirect()->to($entity->url());
     }
 
     /**
@@ -76,7 +76,7 @@ class EntityNoteController extends Controller
             }
             $this->authorizeEntityForGuest(\App\Models\CampaignPermission::ACTION_READ, $entity->child);
         }
-        return redirect()->route($entity->url());
+        return redirect()->to($entity->url());
     }
 
     /**
