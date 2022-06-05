@@ -41,7 +41,7 @@ class Member extends Layout
                 'key' => 'parent_id',
                 'label' => 'organisations.members.fields.parent',
                 'render' => function ($model) {
-                    if (empty($model->parent)) {
+                    if (empty($model->parent) || empty($model->parent->character)) {
                         return '';
                     }
                     return $model->parent->character->tooltipedLink();
@@ -69,7 +69,7 @@ class Member extends Layout
                         return '<i class="ra ra-hood" data-toggle="tooltip" title="' . __('organisations.members.pinned.organisation') . '"></i>';
                     return '<i class="fa-solid fa-star" data-toggle="tooltip" title="' . __('organisations.members.pinned.both') . '"></i>';
                 }
-            ]
+            ],
         ];
 
         return $columns;

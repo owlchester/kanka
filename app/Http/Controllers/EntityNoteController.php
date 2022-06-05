@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Facades\CampaignLocalization;
 use App\Http\Requests\StoreEntityNote;
 use App\Models\EntityNote;
 use App\Traits\GuestAuthTrait;
@@ -13,14 +12,10 @@ class EntityNoteController extends Controller
 {
     use GuestAuthTrait;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $view = '';
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $route = 'entity_notes';
 
     /**
@@ -29,9 +24,7 @@ class EntityNoteController extends Controller
      */
     protected $crudView = 'notes';
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $model = \App\Models\EntityNote::class;
 
     /**
@@ -41,19 +34,7 @@ class EntityNoteController extends Controller
     public function index(Entity $entity)
     {
         $this->authorize('browse', [$entity->child]);
-
-        $notes = $entity->notes()->paginate();
-        $name = $this->view;
-        $route = $entity->type() . $this->route;
-        $parentRoute = $entity->pluralType();
-
-        return view('cruds.notes.index', compact(
-            'notes',
-            'name',
-            'route',
-            'entity',
-            'parentRoute'
-        ));
+        return redirect()->route($entity->url());
     }
 
     /**
@@ -95,14 +76,7 @@ class EntityNoteController extends Controller
             }
             $this->authorizeEntityForGuest(\App\Models\CampaignPermission::ACTION_READ, $entity->child);
         }
-
-        $ajax = request()->ajax();
-
-        return view('cruds.notes.' . ($ajax ? '_' : null) . 'show', compact(
-            'entityNote',
-            'entity',
-            'ajax'
-        ));
+        return redirect()->route($entity->url());
     }
 
     /**
