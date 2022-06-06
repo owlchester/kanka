@@ -2,16 +2,10 @@
 
 return [
     'create'        => [
-        'success'   => 'Ereignis \':name\' erstellt',
-        'title'     => 'Neues Ereignis erstellen',
+        'title' => 'Neues Ereignis erstellen',
     ],
-    'destroy'       => [
-        'success'   => 'Ereignis \':name\' entfernt.',
-    ],
-    'edit'          => [
-        'success'   => 'Ereignis \':name\' aktualisiert.',
-        'title'     => 'Bearbeite Ereignis :name',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'events'        => [
         'helper'    => 'Ereignisse, die dieses Objekt als übergeordnetes Ereignis haben, werden hier angezeigt.',
         'title'     => 'Ereignis :name Ereignisse',

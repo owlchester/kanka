@@ -9,16 +9,10 @@ return [
         'title'     => 'Raça :name Personagens',
     ],
     'create'        => [
-        'success'   => 'Raça \':name\' criada',
-        'title'     => 'Nova Raça',
+        'title' => 'Nova Raça',
     ],
-    'destroy'       => [
-        'success'   => 'Raça \':name\' removida',
-    ],
-    'edit'          => [
-        'success'   => 'Raça \':name\' atualizada',
-        'title'     => 'Editar raça :name',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'fields'        => [
         'characters'    => 'Personagens',
         'name'          => 'Nome',

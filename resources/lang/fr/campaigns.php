@@ -37,16 +37,7 @@ TEXT
         'superboosted'  => 'Cette fonctionnalité est seulement accessible pour les campagnes superboostées.',
         'unknown_id'    => 'Campagne inconnue.',
     ],
-    'export'                            => [
-        'errors'            => [
-            'limit' => 'Nombre d\'exports maximal par jour excédé pour cette campagne.',
-        ],
-        'helper'            => 'Export de la campagne. Une notification contenant un lien de téléchargement sera généré.',
-        'helper_secondary'  => 'Deux fichiers seront générés. Le premier contiendra toutes les entités de la campagne au format JSON, et le second contiendra les images uploadées sur les entités. Si l\'export des images ne fonctionne pas (typiquement sur les grandes campagnes), nous recommandons d\'utiliser l\':api.',
-        'helper_third'      => 'Les fichiers JSON peuvent être généralement ouverts avec n\'importe quelle application de texte. Ils représentent les données enregistrées dans Kanka dans un format textuel. Il n\'y a pas de moyen de réimporter ces données dans Kanka.',
-        'success'           => 'L\'export de la campagne est en préparation. Une notification dans Kanka avec un lien de téléchargement sera généré dès que c\'est prêt.',
-        'title'             => 'Export Campagne :name',
-    ],
+    'export'                            => [],
     'fields'                            => [
         'boosted'                           => 'Boosté par',
         'character_personality_visibility'  => 'Visibilité de la personnalité d\'un personnage par défaut',
@@ -282,7 +273,6 @@ TEXT
         'hints'         => [
             'campaign_not_public'   => 'Le rôle Public a des permissions mais la campagne est privée. La campagne peut être rendue publique sous l\'onglet Partager en modifiant la campagne.',
             'empty_role'            => 'Ce rôle n\'a pas encore de membre.',
-            'public'                => 'Si la campagne est en mode publique, ce rôle est utilisé pour les visiteurs qui ne font pas partie de la campagne. :more',
             'role_permissions'      => 'Permettre au rôle \':name\' les actions suivantes sur toutes les entités.',
         ],
         'members'       => 'Membres',

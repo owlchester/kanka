@@ -11,16 +11,10 @@ return [
         'title'     => 'צאצאיים של התג :name',
     ],
     'create'        => [
-        'success'   => 'התג \':name\' נוצר.',
-        'title'     => 'תג חדש',
+        'title' => 'תג חדש',
     ],
-    'destroy'       => [
-        'success'   => 'התג \':name\' הוסר.',
-    ],
-    'edit'          => [
-        'success'   => 'התג \':name\' עודכן.',
-        'title'     => 'ערוך את התג :name',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'fields'        => [
         'children'  => 'צאצאים',
         'name'      => 'שם',

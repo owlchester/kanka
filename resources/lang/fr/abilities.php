@@ -16,16 +16,10 @@ return [
         'title'         => 'Entités du pouvoir :name',
     ],
     'create'        => [
-        'success'   => 'Pouvoir \':name\' créé.',
-        'title'     => 'Nouveau pouvoir',
+        'title' => 'Nouveau pouvoir',
     ],
-    'destroy'       => [
-        'success'   => 'Pouvoir \':name\' supprimé.',
-    ],
-    'edit'          => [
-        'success'   => 'Pouvoir \':name\' modifié.',
-        'title'     => 'Modifier le pouvoir :name',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'entities'      => [
         'title' => 'Entités avec le pouvoir :name',
     ],

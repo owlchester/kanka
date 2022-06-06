@@ -5,16 +5,10 @@ return [
         'title' => ':name šablony atributů',
     ],
     'create'                => [
-        'success'   => 'Šablona atributů :name vytvořena.',
-        'title'     => 'Nová šablona atributů.',
+        'title' => 'Nová šablona atributů.',
     ],
-    'destroy'               => [
-        'success'   => 'Šablona atributů :name odstraněna.',
-    ],
-    'edit'                  => [
-        'success'   => 'Šablona atributů :name upravena.',
-        'title'     => 'Upravit šablonu atributů :name',
-    ],
+    'destroy'               => [],
+    'edit'                  => [],
     'fields'                => [
         'attribute_template'    => 'Nadřazená šablona atributů',
         'attributes'            => 'Atributy',

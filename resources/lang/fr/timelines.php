@@ -9,16 +9,10 @@ return [
         'save_order'    => 'Enregistrer les changements',
     ],
     'create'        => [
-        'success'   => 'La chronologie :name a été créée.',
-        'title'     => 'Nouvelle chronologie',
+        'title' => 'Nouvelle chronologie',
     ],
-    'destroy'       => [
-        'success'   => 'La chronologie :name a été supprimée.',
-    ],
-    'edit'          => [
-        'success'   => 'La chronologie :name a été modifiée.',
-        'title'     => 'Modifier la chronologie :name',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'fields'        => [
         'copy_elements' => 'Copier les éléments',
         'copy_eras'     => 'Copier les ères',

@@ -5,16 +5,10 @@ return [
         'title' => 'Postaci w miejscu :name',
     ],
     'create'        => [
-        'success'   => 'Stworzono miejsce \':name\'.',
-        'title'     => 'Nowe miejsce',
+        'title' => 'Nowe miejsce',
     ],
-    'destroy'       => [
-        'success'   => 'Usunięto miejsce \':name\'.',
-    ],
-    'edit'          => [
-        'success'   => 'Zaktualizowano miejsce \':name\'.',
-        'title'     => 'Edycja miejsca :name',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'events'        => [
         'title' => 'Wydarzenia w miejscu :name',
     ],

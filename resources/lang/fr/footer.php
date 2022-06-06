@@ -4,6 +4,10 @@ return [
     'blog'              => 'Blog',
     'boosters'          => 'Boosters',
     'company'           => 'Entreprise',
+    'language-switcher' => [
+        'other' => 'Autres langues',
+        'title' => 'Choix de la langue',
+    ],
     'platform'          => 'Platforme',
     'press-kit'         => 'Press kit',
     'privacy'           => 'Confidentialité',

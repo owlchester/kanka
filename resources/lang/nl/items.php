@@ -2,16 +2,10 @@
 
 return [
     'create'        => [
-        'success'   => 'Voorwerp \':name\' gemaakt.',
-        'title'     => 'Nieuw Voorwerp',
+        'title' => 'Nieuw Voorwerp',
     ],
-    'destroy'       => [
-        'success'   => 'Voorwerp \':name\' verwijderd.',
-    ],
-    'edit'          => [
-        'success'   => 'Voorwerp \':name\' bijgewerkt.',
-        'title'     => 'Wijzig Voorwerp :name',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'fields'        => [
         'character' => 'Personage',
         'image'     => 'Afbeelding',

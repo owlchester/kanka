@@ -2,15 +2,11 @@
 
 return [
     'create'        => [
-        'success'   => 'Diskusia :name vytvorená.',
-        'title'     => 'Nová diskusia',
+        'title' => 'Nová diskusia',
     ],
-    'destroy'       => [
-        'success'   => 'Diskusia :name odstránená.',
-    ],
+    'destroy'       => [],
     'edit'          => [
-        'success'   => 'Diskusia :name upravená.',
-        'title'     => 'Diskusia :name',
+        'title' => 'Diskusia :name',
     ],
     'fields'        => [
         'is_closed'     => 'Uzavretá',

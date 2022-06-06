@@ -2,16 +2,10 @@
 
 return [
     'create'        => [
-        'success'   => '\':name\' eseményt létrehoztuk',
-        'title'     => 'Új esemény',
+        'title' => 'Új esemény',
     ],
-    'destroy'       => [
-        'success'   => '\':name\' eseményt töröltük.',
-    ],
-    'edit'          => [
-        'success'   => '\':name\' eseményt frissítettük.',
-        'title'     => ':name esemény szerkesztése',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'events'        => [
         'title' => ':name esemény',
     ],

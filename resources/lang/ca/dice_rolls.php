@@ -2,17 +2,12 @@
 
 return [
     'create'        => [
-        'success'   => 'S\'ha creat la tirada de daus «:name».',
-        'title'     => 'Nova tirada de daus',
+        'title' => 'Nova tirada de daus',
     ],
     'destroy'       => [
         'dice_roll' => 'S\'ha eliminat la tirada de daus.',
-        'success'   => 'S\'ha eliminat la tirada de daus «:name».',
     ],
-    'edit'          => [
-        'success'   => 'S\'ha actualitzat la tirada de daus «:name».',
-        'title'     => 'Edita la tirada de daus :name',
-    ],
+    'edit'          => [],
     'fields'        => [
         'created_at'    => 'Tirada a',
         'name'          => 'Nom',

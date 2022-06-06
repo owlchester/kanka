@@ -82,11 +82,11 @@ return [
         'delete'        => [
             'confirm'       => 'Delete my account now',
             'delete'        => 'Delete my account',
+            'goodbye'       => 'If so, please write :code on the box below.',
             'helper'        => 'Deleting your account will also delete any campaign you are the only member of. This action is permanent and can\'t be undone.',
             'subscribed'    => 'Please cancel your :subscription before being able to delete your account.',
             'title'         => 'Delete your account',
             'warning'       => 'By deleting your account, all your data will be lost. Are you sure?',
-            'goodbye'       => 'If so, please write :code on the box below.'
         ],
         'password'      => [
             'title' => 'Change your password',

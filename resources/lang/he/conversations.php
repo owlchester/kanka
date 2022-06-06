@@ -2,15 +2,11 @@
 
 return [
     'create'        => [
-        'success'   => 'השיחה \':name\' נוצרה.',
-        'title'     => 'שיחה חדשה',
+        'title' => 'שיחה חדשה',
     ],
-    'destroy'       => [
-        'success'   => 'השיחה \':name\' הוסרה.',
-    ],
+    'destroy'       => [],
     'edit'          => [
-        'success'   => 'השיחה \':name\' עודכנה.',
-        'title'     => 'שיחה :name',
+        'title' => 'שיחה :name',
     ],
     'fields'        => [
         'messages'      => 'הודעות',

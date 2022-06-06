@@ -84,7 +84,9 @@ return [
         ],
         'title'             => 'Boost',
         'unboost'           => [
-            'title' => 'Kampagnen boosting beenden',
+            'confirm'   => 'Unboost der Kampagne ":tag".',
+            'data'      => 'Es gehen keine Daten verloren.',
+            'title'     => 'Kampagnen boosting beenden',
         ],
     ],
     'countries'     => [
@@ -123,10 +125,12 @@ return [
     'menu'          => [
         'account'               => 'Account',
         'api'                   => 'API',
+        'appearance'            => 'Aussehen',
         'apps'                  => 'Apps',
         'billing'               => 'Zahlungsmethode',
         'boosters'              => 'Booster',
         'invoices'              => 'Rechnungen',
+        'notifications'         => 'Benachrichtigungen',
         'other'                 => 'Andere',
         'patreon'               => 'Patreon',
         'payment_options'       => 'Zahlungsmöglichkeiten',

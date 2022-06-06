@@ -10,20 +10,14 @@ return [
         'title' => 'Rozhovory s postavou :name',
     ],
     'create'        => [
-        'success'   => 'Postava ":name" vytvořena',
-        'title'     => 'Nová postava',
+        'title' => 'Nová postava',
     ],
-    'destroy'       => [
-        'success'   => 'Postava ":name" odstraněna',
-    ],
+    'destroy'       => [],
     'dice_rolls'    => [
         'hint'  => 'Hody kostkami lze pro herní účely přiřadit postavě.',
         'title' => 'Hody kostkami postavy :name',
     ],
-    'edit'          => [
-        'success'   => 'Postava ":name" aktualizována',
-        'title'     => 'Upravit postavu :name',
-    ],
+    'edit'          => [],
     'fields'        => [
         'age'                       => 'Věk',
         'family'                    => 'Rod',

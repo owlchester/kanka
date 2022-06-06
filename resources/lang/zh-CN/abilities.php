@@ -16,16 +16,10 @@ return [
         'title'         => '待修正1',
     ],
     'create'        => [
-        'success'   => '成功创建能力：:name',
-        'title'     => '新能力',
+        'title' => '新能力',
     ],
-    'destroy'       => [
-        'success'   => '成功移除能力：:name',
-    ],
-    'edit'          => [
-        'success'   => '成功更新能力：:name',
-        'title'     => '编辑能力：:name',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'entities'      => [
         'title' => '拥有:name能力的实体',
     ],

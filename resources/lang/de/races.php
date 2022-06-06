@@ -9,16 +9,10 @@ return [
         'title'     => 'Spezies :name Charaktere',
     ],
     'create'        => [
-        'success'   => 'Spezies \':name\' erstellt.',
-        'title'     => 'Neue Spezies',
+        'title' => 'Neue Spezies',
     ],
-    'destroy'       => [
-        'success'   => 'Spezies \':name\' entfernt.',
-    ],
-    'edit'          => [
-        'success'   => 'Spezies \':name\' aktualisiert.',
-        'title'     => 'Bearbeite Spezies :name',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'fields'        => [
         'characters'    => 'Charaktere',
         'name'          => 'Name',

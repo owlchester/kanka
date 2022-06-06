@@ -10,20 +10,14 @@ return [
         'title' => 'Charakter :name Unterhaltungen',
     ],
     'create'        => [
-        'success'   => 'Charakter \':name\' erstellt.',
-        'title'     => 'Erstelle einen neuen Charakter',
+        'title' => 'Erstelle einen neuen Charakter',
     ],
-    'destroy'       => [
-        'success'   => 'Charakter \':name\' entfernt.',
-    ],
+    'destroy'       => [],
     'dice_rolls'    => [
         'hint'  => 'Würfelwürfe können einem Charakter zugewiesen werden, um in einem Spiel verwendet zu werden.',
         'title' => 'Charakter :name Würfelwürfe',
     ],
-    'edit'          => [
-        'success'   => 'Charakter \':name\' aktualisiert',
-        'title'     => 'Bearbeite Charakter :name',
-    ],
+    'edit'          => [],
     'fields'        => [
         'age'                       => 'Alter',
         'families'                  => 'Familien',

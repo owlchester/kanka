@@ -5,16 +5,10 @@ return [
         'title' => ':name Šablóny atribútov',
     ],
     'create'                => [
-        'success'   => 'Šablóna atribútov :name vytvorená.',
-        'title'     => 'Nová šablóna atribútov',
+        'title' => 'Nová šablóna atribútov',
     ],
-    'destroy'               => [
-        'success'   => 'Šablóna atribútov :name odstránená.',
-    ],
-    'edit'                  => [
-        'success'   => 'Šablóna atribútov :name upravená.',
-        'title'     => 'Upraviť šablónu atribútov :name',
-    ],
+    'destroy'               => [],
+    'edit'                  => [],
     'fields'                => [
         'attribute_template'    => 'Nadradená šablóna atribútov',
         'attributes'            => 'Atribúty',

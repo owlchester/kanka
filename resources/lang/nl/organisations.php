@@ -2,16 +2,10 @@
 
 return [
     'create'        => [
-        'success'   => 'Organisatie \':name\' gemaakt.',
-        'title'     => 'Nieuwe Organisatie',
+        'title' => 'Nieuwe Organisatie',
     ],
-    'destroy'       => [
-        'success'   => 'Organisatie \':name\' verwijderd',
-    ],
-    'edit'          => [
-        'success'   => 'Organisatie \':name\' bijgewerkt.',
-        'title'     => 'Wijzig Organisatie :name',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'fields'        => [
         'image'         => 'Afbeelding',
         'location'      => 'Locatie',

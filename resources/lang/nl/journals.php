@@ -2,16 +2,10 @@
 
 return [
     'create'        => [
-        'success'   => 'Logboek \':name\' gemaakt.',
-        'title'     => 'Nieuw Logboek',
+        'title' => 'Nieuw Logboek',
     ],
-    'destroy'       => [
-        'success'   => 'Logboek \':name\' verwijderd.',
-    ],
-    'edit'          => [
-        'success'   => 'Logboek \':name\' bijgewerkt.',
-        'title'     => 'Wijzig Logboek :name',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'fields'        => [
         'author'    => 'Auteur',
         'date'      => 'Datum',

@@ -2,16 +2,10 @@
 
 return [
     'create'        => [
-        'success'   => 'S\'ha creat la crònica «:name».',
-        'title'     => 'Nova crònica',
+        'title' => 'Nova crònica',
     ],
-    'destroy'       => [
-        'success'   => 'S\'ha eliminat la crònica «:name».',
-    ],
-    'edit'          => [
-        'success'   => 'S\'ha actualitzat la crònica «:name».',
-        'title'     => 'Edita la crònica :name',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'fields'        => [
         'author'    => 'Autor',
         'date'      => 'Data',

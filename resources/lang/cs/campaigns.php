@@ -37,20 +37,7 @@ TEXT
         'superboosted'  => 'Tato funkce je dostupná pouze pro super-zvýhodněná ("superboosted") tažení .',
         'unknown_id'    => 'Neznámá Kampaň',
     ],
-    'export'                            => [
-        'errors'            => [
-            'limit' => 'Export lze provést pouze jednou denně. Zkus to, prosím, znovu zítra.',
-        ],
-        'helper'            => 'Exportuje tažení formou odkazu na soubor archivu ke stažení.',
-        'helper_secondary'  => <<<'TEXT'
-Vytvoří se dva soubory: Jeden soubor s objekty ve formátu JSON. A druhý soubor s uloženými obrázky.
-Pozor, u větších tažení může pokus o export obrázků skončit chybou. V tom případě je třeba použít :api
-TEXT
-,
-        'helper_third'      => 'Soubory typu JSON mohou být otevřeny za pomocí kteréhokoliv textového editoru. Reprezentují uložení dat v Kanka databázi v textovém podobě. Není zde způsob jak tato data nahrát zpět.',
-        'success'           => 'Export tvého tažení se připravuje. Jakmile bude soubor archivu ke stažení k dispozici, zašleme ti upozornění.',
-        'title'             => 'Export tažení :name',
-    ],
+    'export'                            => [],
     'fields'                            => [
         'boosted'                   => 'Zvýhodnění ("boost") od',
         'connections'               => 'Zobrazit tabulku souvislostí (namísto průzkumníku souvislostí zvýhodněných tažení)',
@@ -267,7 +254,6 @@ TEXT
         ],
         'hints'         => [
             'campaign_not_public'   => 'Existuje veřejná role, ale tažení je označeno jako soukromé. Změnit toto nastavení lze úpravou nastavení tažení na kartě Sdílení',
-            'public'                => 'Veřejná role se používá když si někdo prohlíží tvé veřejné tažení.',
             'role_permissions'      => 'Umožnit roli ":name" provádět následující akce na všech objektech.',
         ],
         'members'       => 'Členové',

@@ -9,16 +9,10 @@ return [
         'save_order'    => 'Guarda l\'ordre nou',
     ],
     'create'        => [
-        'success'   => 'S\'ha creat la línia de temps «:name».',
-        'title'     => 'Nova línia de temps',
+        'title' => 'Nova línia de temps',
     ],
-    'destroy'       => [
-        'success'   => 'S\'ha eliminat la línia de temps «:name».',
-    ],
-    'edit'          => [
-        'success'   => 'S\'ha actualitzat la línia de temps «:name».',
-        'title'     => 'Edita la línia de temps :name',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'fields'        => [
         'copy_elements' => 'Copia\'n els elements',
         'copy_eras'     => 'Copia\'n les eres',

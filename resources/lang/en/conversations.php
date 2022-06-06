@@ -2,10 +2,10 @@
 
 return [
     'create'        => [
-        'title'     => 'New Conversation',
+        'title' => 'New Conversation',
     ],
     'edit'          => [
-        'title'     => 'Conversation :name',
+        'title' => 'Conversation :name',
     ],
     'fields'        => [
         'is_closed'     => 'Closed',

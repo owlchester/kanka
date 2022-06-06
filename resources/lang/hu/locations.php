@@ -5,16 +5,10 @@ return [
         'title' => ':name helyszín karakterei',
     ],
     'create'        => [
-        'success'   => ':name helyszínt létrehoztuk.',
-        'title'     => 'Új helyszín',
+        'title' => 'Új helyszín',
     ],
-    'destroy'       => [
-        'success'   => ':name helyszínt töröltük.',
-    ],
-    'edit'          => [
-        'success'   => ':name helyszínt frissítettük.',
-        'title'     => ':name helyszín szerkesztése',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'events'        => [
         'title' => ':name helyszín eseményei',
     ],

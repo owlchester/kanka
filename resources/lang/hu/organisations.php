@@ -2,16 +2,10 @@
 
 return [
     'create'        => [
-        'success'   => 'A(z) :name szervezetet létrehoztuk.',
-        'title'     => 'Új szervezet',
+        'title' => 'Új szervezet',
     ],
-    'destroy'       => [
-        'success'   => 'A(z) :name szervezetet töröltük.',
-    ],
-    'edit'          => [
-        'success'   => 'A(z) :name szervezetet frissítettük.',
-        'title'     => ':name szervezet szerkesztése',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'fields'        => [
         'image'         => 'Kép',
         'location'      => 'Helyszín',

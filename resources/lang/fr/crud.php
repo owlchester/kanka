@@ -380,6 +380,9 @@ return [
         'timelines'     => 'Chronologies',
         'tooltip'       => 'Infobulle',
     ],
+    'titles'                    => [
+        'editing'   => 'Modification de :name',
+    ],
     'tooltips'                  => [
         'boosted_feature'   => 'Fonctionnalité de campagne boostée',
         'new_post'          => 'Ajouter un nouveau post à cette entité.',

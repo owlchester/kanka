@@ -37,16 +37,7 @@ TEXT
         'superboosted'  => 'Esta funcionalidade só está dispoñíbel para campañas superpotenciadas.',
         'unknown_id'    => 'Campaña descoñecida.',
     ],
-    'export'                            => [
-        'errors'            => [
-            'limit' => 'Excediches o número máximo de exportacións ao día. Por favor, inténtao de novo mañá.',
-        ],
-        'helper'            => 'Exporta a túa campaña. Recibirás unha notificación coa ligazón de descarga.',
-        'helper_secondary'  => 'Dous arquivos estarán dispoñíbeis, un coas entidades exportadas como JSON, e outro coas imaxes subidas ás entidades. Por favor, ten en conta que en campañas grandes, a exportación de imaxes pode non funcionar. Nese caso poden ser recuperadas usando a :api.',
-        'helper_third'      => 'Os ficheiros JSON poden abrirse con calquera editor de texto e conteñen os datos gardados na base de datos de Kanka. Os datos exportados deste xeito non poden ser importados de volta.',
-        'success'           => 'A exportación da túa campaña está sendo preparada. Recibirás unha notificación en Kanka para descargar un arquivo zip cando esté lista.',
-        'title'             => 'Exportación da campaña ":name"',
-    ],
+    'export'                            => [],
     'fields'                            => [
         'boosted'                           => 'Potenciada por',
         'character_personality_visibility'  => 'Visibilidade por defecto da personalidade',
@@ -280,7 +271,6 @@ TEXT
         ],
         'hints'         => [
             'campaign_not_public'   => 'O rol "Público" ten permisos pero a campaña é privada. Podes cambiar esta configuración na lapela "Compartir" ao editar a campaña.',
-            'public'                => 'O rol "Público" é usado cando alguén visita a túa campaña pública. :more',
             'role_permissions'      => 'Activa o rol ":name" para que poida facer as seguintes accións en todas as entidades.',
         ],
         'members'       => 'Integrantes',

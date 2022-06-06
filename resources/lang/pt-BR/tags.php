@@ -12,16 +12,10 @@ return [
         'title'     => 'Filhos da tag :name',
     ],
     'create'        => [
-        'success'   => 'Tag \':name\' criada.',
-        'title'     => 'Nova tag',
+        'title' => 'Nova tag',
     ],
-    'destroy'       => [
-        'success'   => 'Tag \':name\' removida',
-    ],
-    'edit'          => [
-        'success'   => 'Tag \':name\' atualizada',
-        'title'     => 'Editar tag :name',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'fields'        => [
         'children'  => 'Filhos',
         'name'      => 'Nome',

@@ -2,16 +2,10 @@
 
 return [
     'create'        => [
-        'success'   => '\':name\' organizasyonu yaratıldı.',
-        'title'     => 'Yeni Organizasyon',
+        'title' => 'Yeni Organizasyon',
     ],
-    'destroy'       => [
-        'success'   => '\':name\' organizasyonu kaldırıldı.',
-    ],
-    'edit'          => [
-        'success'   => '\':name\' organizasyonu güncellendi.',
-        'title'     => '\':name\' Organizasyonunu Düzenle',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'fields'        => [
         'image'         => 'Görsel',
         'location'      => 'Konum',

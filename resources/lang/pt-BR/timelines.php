@@ -9,16 +9,10 @@ return [
         'save_order'    => 'Salvar nova ordem',
     ],
     'create'        => [
-        'success'   => 'Linha do tempo :name criada',
-        'title'     => 'Nova linha do tempo',
+        'title' => 'Nova linha do tempo',
     ],
-    'destroy'       => [
-        'success'   => 'Linha do tempo :name removida',
-    ],
-    'edit'          => [
-        'success'   => 'Linha do tempo :name atualizada',
-        'title'     => 'Editar linha do tempo :name',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'fields'        => [
         'copy_elements' => 'Copiar elementos',
         'copy_eras'     => 'Copiar eras',

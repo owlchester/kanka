@@ -2,16 +2,10 @@
 
 return [
     'create'        => [
-        'success'   => 'Evento \':name\' criado.',
-        'title'     => 'Criar um novo evento',
+        'title' => 'Criar um novo evento',
     ],
-    'destroy'       => [
-        'success'   => 'Evento \':name\' removido.',
-    ],
-    'edit'          => [
-        'success'   => 'Evento \':name\' atualizado.',
-        'title'     => 'Editar Evento :name',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'events'        => [
         'helper'    => 'Eventos que tem essa entidade como seu evento-pai são mostrados aqui.',
         'title'     => 'Evento :name Eventos',

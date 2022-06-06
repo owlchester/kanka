@@ -2,17 +2,12 @@
 
 return [
     'create'        => [
-        'success'   => 'Tirada de dados \':name\' creada.',
-        'title'     => 'Nueva tirada de dados',
+        'title' => 'Nueva tirada de dados',
     ],
     'destroy'       => [
         'dice_roll' => 'Tirada de dados eliminada.',
-        'success'   => 'Tirada de dados \':name\' eliminada.',
     ],
-    'edit'          => [
-        'success'   => 'Tirada de dados \':name\' actualizada.',
-        'title'     => 'Editar tirada de dados :name',
-    ],
+    'edit'          => [],
     'fields'        => [
         'created_at'    => 'Tirada en',
         'name'          => 'Nombre',

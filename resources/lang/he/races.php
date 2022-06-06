@@ -5,16 +5,10 @@ return [
         'title' => 'דמויות :race',
     ],
     'create'        => [
-        'success'   => 'הגזע \':name\' נוצר.',
-        'title'     => 'גזע חדש',
+        'title' => 'גזע חדש',
     ],
-    'destroy'       => [
-        'success'   => 'הגזע \':name\' הוסר.',
-    ],
-    'edit'          => [
-        'success'   => 'הגזע \':name\' עודכן.',
-        'title'     => 'ערוך גזע \':name\'',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'fields'        => [
         'characters'    => 'דמויות',
         'name'          => 'שם',

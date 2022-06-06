@@ -5,16 +5,10 @@ return [
         'title' => ':name özellik taslakları',
     ],
     'create'                => [
-        'success'   => '\':name\' Özellik Taslağı yaratıldı.',
-        'title'     => 'Yeni Özellik Taslağı',
+        'title' => 'Yeni Özellik Taslağı',
     ],
-    'destroy'               => [
-        'success'   => '\':name\' Özellik Taslağı kaldırıldı.',
-    ],
-    'edit'                  => [
-        'success'   => '\':name\' Özellik Taslağı güncellendi.',
-        'title'     => ':name Özellik Taslağını Düzenle',
-    ],
+    'destroy'               => [],
+    'edit'                  => [],
     'fields'                => [
         'attribute_template'    => 'Ana Özellik Taslağı',
         'attributes'            => 'Özellikler',

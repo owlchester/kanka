@@ -2,16 +2,10 @@
 
 return [
     'create'        => [
-        'success'   => 'S\'ha creat l\'organització «:name».',
-        'title'     => 'Nova organització',
+        'title' => 'Nova organització',
     ],
-    'destroy'       => [
-        'success'   => 'S\'ha eliminat l\'organització «:name».',
-    ],
-    'edit'          => [
-        'success'   => 'S\'ha actualitzat l\'organització «:name».',
-        'title'     => 'Edita l\'organització :name',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'fields'        => [
         'image'         => 'Imatge',
         'location'      => 'Indret',

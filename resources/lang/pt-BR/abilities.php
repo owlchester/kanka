@@ -16,16 +16,10 @@ return [
         'title'         => 'Habilidade :name Entidades',
     ],
     'create'        => [
-        'success'   => 'Habilidade \':name\' criada.',
-        'title'     => 'Nova Habilidade',
+        'title' => 'Nova Habilidade',
     ],
-    'destroy'       => [
-        'success'   => 'Habilidade \':name\' removida.',
-    ],
-    'edit'          => [
-        'success'   => 'Habilidade \':name\' atualizada.',
-        'title'     => 'Editar habilidade :name',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'entities'      => [
         'title' => 'Entidades com a habilidade :name',
     ],

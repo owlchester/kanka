@@ -14,8 +14,13 @@ return [
     'conversation'          => 'Unterhaltung',
     'conversations'         => 'Unterhaltungen',
     'creator'               => [
+        'actions'           => [
+            'create'    => 'Erstellen :type',
+        ],
         'back'              => 'Zurück zur Auswahl',
         'duplicate'         => 'Es gibt andere Objekte dieses Typs mit demselben Namen.',
+        'helper_v2'         => 'Erstelle schnell die Grundlage für ein neues Objekt, ohne deinen aktuellen Fluss zu unterbrechen.',
+        'missing'           => 'Du siehst nicht alle Objektstypen? Möglicherweise ist die Option deaktiviert, deine Berechtigungen lassen es möglicherweise nicht zu oder es wird nicht für die schnelle Erstellung unterstützt.',
         'name'              => [
             'new'       => 'Neuer Name',
             'remove'    => 'entfernen',

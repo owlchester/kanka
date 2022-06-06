@@ -2,15 +2,11 @@
 
 return [
     'create'            => [
-        'success'   => 'Link rápido \':name\' criado',
-        'title'     => 'Novo link rápido',
+        'title' => 'Novo link rápido',
     ],
-    'destroy'           => [
-        'success'   => 'Menu rápido \':name\' removido',
-    ],
+    'destroy'           => [],
     'edit'              => [
-        'success'   => 'Link rápido \':name\' atualizado',
-        'title'     => 'Link rápido :name',
+        'title' => 'Link rápido :name',
     ],
     'fields'            => [
         'dashboard'     => 'Dashboard',

@@ -10,20 +10,14 @@ return [
         'title' => 'Conversas de :name',
     ],
     'create'        => [
-        'success'   => 'Personaxe ":name" creada.',
-        'title'     => 'Nova personaxe',
+        'title' => 'Nova personaxe',
     ],
-    'destroy'       => [
-        'success'   => 'Personaxe ":name" eliminada.',
-    ],
+    'destroy'       => [],
     'dice_rolls'    => [
         'hint'  => 'Pódense asignar tiradas de dados a unha personaxe para usalas no xogo.',
         'title' => 'Tiradas de dados de :name',
     ],
-    'edit'          => [
-        'success'   => 'Personaxe ":name" actualizada.',
-        'title'     => 'Editar personaxe ":name"',
-    ],
+    'edit'          => [],
     'fields'        => [
         'age'                       => 'Idade',
         'families'                  => 'Familias',

@@ -2,15 +2,11 @@
 
 return [
     'create'        => [
-        'success'   => 'Unterhaltung :name erstellt.',
-        'title'     => 'Neue Unterhaltung',
+        'title' => 'Neue Unterhaltung',
     ],
-    'destroy'       => [
-        'success'   => 'Unterhaltung :name gelöscht.',
-    ],
+    'destroy'       => [],
     'edit'          => [
-        'success'   => 'Unterhaltung \':name\' aktualisiert.',
-        'title'     => 'Unterhaltung :name',
+        'title' => 'Unterhaltung :name',
     ],
     'fields'        => [
         'is_closed'     => 'geschlossen',

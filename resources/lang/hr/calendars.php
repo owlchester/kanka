@@ -19,16 +19,11 @@ return [
         'is_recurring'  => 'Ponavlja se svake godine',
     ],
     'create'        => [
-        'success'   => 'Kreiran kalendar ":name"',
-        'title'     => 'Novi kalendar',
+        'title' => 'Novi kalendar',
     ],
-    'destroy'       => [
-        'success'   => 'Ukljonjen kalendar ":name".',
-    ],
+    'destroy'       => [],
     'edit'          => [
-        'success'   => 'Ažuriran kalendar ":name".',
-        'title'     => 'Uredi kalendar :name',
-        'today'     => 'Ažuriran datum kalendara.',
+        'today' => 'Ažuriran datum kalendara.',
     ],
     'event'         => [
         'actions'   => [

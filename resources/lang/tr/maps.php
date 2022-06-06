@@ -7,16 +7,10 @@ return [
         'explore'   => 'Keşfet',
     ],
     'create'        => [
-        'success'   => ':name haritası yaratıldı.',
-        'title'     => 'Yeni Harita',
+        'title' => 'Yeni Harita',
     ],
-    'destroy'       => [
-        'success'   => ':name haritası kaldırıldı.',
-    ],
-    'edit'          => [
-        'success'   => ':name haritası güncellendi.',
-        'title'     => ':name Haritasını Düzenle',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'errors'        => [
         'dashboard' => [
             'missing'   => 'Bu haritanın kontrol panelinde görüntülenebilmesi için bir görsele ihtiyacı var.',

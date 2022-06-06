@@ -2,16 +2,10 @@
 
 return [
     'create'        => [
-        'success'   => 'Kreiran dnevnik ":name".',
-        'title'     => 'Novi dnevnik',
+        'title' => 'Novi dnevnik',
     ],
-    'destroy'       => [
-        'success'   => 'Uklonjen dnevnik ":name".',
-    ],
-    'edit'          => [
-        'success'   => 'Ažuriran dnevnik ":name".',
-        'title'     => 'Uredi dnevnik :name',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'fields'        => [
         'author'    => 'Autor',
         'date'      => 'Datum',

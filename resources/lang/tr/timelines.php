@@ -9,16 +9,10 @@ return [
         'save_order'    => 'Yeni sıralamayı kaydet',
     ],
     'create'        => [
-        'success'   => ':name zaman çizgisi yaratıldı.',
-        'title'     => 'Yeni Zaman Çizgisi',
+        'title' => 'Yeni Zaman Çizgisi',
     ],
-    'destroy'       => [
-        'success'   => ':name zaman çizgisi kaldırıldı.',
-    ],
-    'edit'          => [
-        'success'   => ':name zaman çizgisi güncellendi.',
-        'title'     => ':name Zaman Çizgisini Düzenle',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'fields'        => [
         'copy_eras'     => 'Çağları kopyala',
         'eras'          => 'Çağlar',

@@ -37,16 +37,7 @@ TEXT
         'superboosted'  => 'Diese Funktion ist nur für Kampagnen mit Superboost verfügbar.',
         'unknown_id'    => 'Unbekannte Kampagne.',
     ],
-    'export'                            => [
-        'errors'            => [
-            'limit' => 'Du hast dein Limit von einem Export pro Tag erreicht. Bitte versuche es morgen wieder.',
-        ],
-        'helper'            => 'Exportiere deine Kampagne. Eine Benachrichtigung mit dem Downloadlink wir dir bereit gestellt.',
-        'helper_secondary'  => 'Es werden zwei Dateien zur Verfügung gestellt, eine mit dem Objektexporter als JSON und eine mit Bildern, die auf Objekte hochgeladen wurden. Bitte beachte, dass bei größeren Kampagnen der Bilderexport abstürzt und nur mit der :api wiederhergestellt werden kann.',
-        'helper_third'      => 'JSON-Dateien können mit jeder Textdateianwendung geöffnet werden. Sie stellen die in der Kanka-Datenbank gespeicherten Daten in einem Textformat dar. Es gibt keine Möglichkeit, Ihren Export zurück in Kanka zu importieren.',
-        'success'           => 'Der Export deiner Kampagne wird vorbereitet. Du erhältst eine Nachricht in Kanka sobald dein Download bereit steht.',
-        'title'             => 'Kampagne :name Export',
-    ],
+    'export'                            => [],
     'fields'                            => [
         'boosted'                           => 'geboosted durch',
         'character_personality_visibility'  => 'Standardmäßige Sichtbarkeit der Charakterpersönlichkeit',
@@ -210,6 +201,7 @@ TEXT
             'title'         => 'Einladen',
         ],
         'manage_roles'          => 'Verwalten von Benutzerrollen',
+        'removal'               => 'Du entfernst ":member" aus der Kampagne.',
         'roles'                 => [
             'member'    => 'Mitglied',
             'owner'     => 'Besitzer (privat Option sichtbar)',
@@ -284,7 +276,7 @@ TEXT
         ],
         'hints'         => [
             'campaign_not_public'   => 'Die öffentliche Rolle hat Berechtigungen, aber die Kampagne ist privat. Sie können diese Einstellung auf der Registerkarte Freigabe ändern, wenn Sie die Kampagne bearbeiten.',
-            'public'                => 'Die Rolle "Öffentlich" wird benutzt, wenn jemand eure öffentliche Kampagne ansieht. :more',
+            'empty_role'            => 'Die Rolle hat noch keine Mitglieder.',
             'role_permissions'      => 'Erlaube der Rolle \':name\' die folgenden Aktionen auf allen Objekten.',
         ],
         'members'       => 'Mitglieder',
@@ -338,8 +330,9 @@ TEXT
         ],
         'users'         => [
             'actions'   => [
-                'add'       => 'Hinzufügen',
-                'remove'    => ':user von der :role Rolle',
+                'add'           => 'Hinzufügen',
+                'remove'        => ':user von der :role Rolle',
+                'remove_user'   => 'Benutzer aus der Rolle entfernen',
             ],
             'create'    => [
                 'success'   => 'Benutzer zu Rolle hinzugefügt.',
@@ -358,6 +351,8 @@ TEXT
             'enable'    => 'aktivieren',
         ],
         'boosted'   => 'Diese Funktion befindet sich in der Beta-Phase und ist derzeit nur verfügbar für :boosted.',
+        'disabled'  => 'Das Modul :module ist deaktiviert.',
+        'enabled'   => 'Das Modul :module ist aktiviert.',
         'errors'    => [
             'module-disabled'   => 'Das angeforderte Modul ist derzeit in den Kampagneneinstellungen deaktiviert. :fix.',
         ],

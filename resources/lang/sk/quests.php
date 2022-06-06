@@ -2,16 +2,10 @@
 
 return [
     'create'        => [
-        'success'   => 'Úloha :name vytvorená.',
-        'title'     => 'Nová úloha',
+        'title' => 'Nová úloha',
     ],
-    'destroy'       => [
-        'success'   => 'Úloha :name odstránená.',
-    ],
-    'edit'          => [
-        'success'   => 'Úloha :name upravená.',
-        'title'     => 'Upraviť úlohu :name',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'elements'      => [
         'create'    => [
             'success'   => 'Objekt :entity pridaný k úlohe.',

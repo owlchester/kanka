@@ -2,16 +2,10 @@
 
 return [
     'create'        => [
-        'success'   => 'Kreirana lokacija ":name"',
-        'title'     => 'Nova organizacija',
+        'title' => 'Nova organizacija',
     ],
-    'destroy'       => [
-        'success'   => 'Obrisana organizacija ":name".',
-    ],
-    'edit'          => [
-        'success'   => 'Ažurirana organizacija ":name".',
-        'title'     => 'Uredi organizaciju :name',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'fields'        => [
         'image'         => 'Slika',
         'location'      => 'Lokacija',

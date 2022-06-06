@@ -5,16 +5,10 @@ return [
         'title' => ':name Attributsvorlagen',
     ],
     'create'                => [
-        'success'   => 'Attributvorlage \':name\' erstellt.',
-        'title'     => 'Erstelle eine neue Attributvorlage',
+        'title' => 'Erstelle eine neue Attributvorlage',
     ],
-    'destroy'               => [
-        'success'   => 'Attributvorlage \':name\' entfernt.',
-    ],
-    'edit'                  => [
-        'success'   => 'Attributvorlage \':name\' aktualisiert.',
-        'title'     => 'Attributvorlage :name bearbeiten',
-    ],
+    'destroy'               => [],
+    'edit'                  => [],
     'fields'                => [
         'attribute_template'    => 'Übergeordnete Attributvorlage',
         'attributes'            => 'Attribute',

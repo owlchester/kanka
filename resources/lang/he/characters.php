@@ -10,20 +10,14 @@ return [
         'title' => 'השיחות של :name',
     ],
     'create'        => [
-        'success'   => 'הדמות \':name\' נוצרה.',
-        'title'     => 'דמות חדשה',
+        'title' => 'דמות חדשה',
     ],
-    'destroy'       => [
-        'success'   => 'הדמות \':name\' הוסרה.',
-    ],
+    'destroy'       => [],
     'dice_rolls'    => [
         'hint'  => 'גלגולים יכולים להיות משוייכים לדמות לשימוש בעת משחק.',
         'title' => 'הגלגולים של :name',
     ],
-    'edit'          => [
-        'success'   => 'הדמות \':name\' עודכנה',
-        'title'     => 'ערוך דמות :name',
-    ],
+    'edit'          => [],
     'fields'        => [
         'age'                       => 'גיל',
         'family'                    => 'משפחה',

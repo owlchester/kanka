@@ -10,20 +10,14 @@ return [
         'title' => 'Razgovori s likom :name',
     ],
     'create'        => [
-        'success'   => 'Kreiran lik ":name"',
-        'title'     => 'Novi lik',
+        'title' => 'Novi lik',
     ],
-    'destroy'       => [
-        'success'   => 'Uklonjen lik ":name"',
-    ],
+    'destroy'       => [],
     'dice_rolls'    => [
         'hint'  => 'Rezultati bacanja kockica se mogu dodijeliti liku za korištenje unutar igre.',
         'title' => 'Rezultati bacanja kockica lika :name',
     ],
-    'edit'          => [
-        'success'   => 'Ažuriran lik ":name".',
-        'title'     => 'Uredi lika :name',
-    ],
+    'edit'          => [],
     'fields'        => [
         'age'                       => 'Starosna dob',
         'family'                    => 'Familija',

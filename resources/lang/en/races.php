@@ -9,7 +9,7 @@ return [
         'title'     => 'Race :name Characters',
     ],
     'create'        => [
-        'title'     => 'New Race',
+        'title' => 'New Race',
     ],
     'fields'        => [
         'characters'    => 'Characters',

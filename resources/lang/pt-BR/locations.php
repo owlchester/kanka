@@ -5,16 +5,10 @@ return [
         'title' => 'Personagens em :name',
     ],
     'create'        => [
-        'success'   => 'Local \':name\' criado.',
-        'title'     => 'Criar um novo local',
+        'title' => 'Criar um novo local',
     ],
-    'destroy'       => [
-        'success'   => 'Local \':name\' removido',
-    ],
-    'edit'          => [
-        'success'   => 'Local \':name\' atualizado.',
-        'title'     => 'Editar Local :name',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'events'        => [
         'title' => 'Eventos em :name',
     ],

@@ -2,16 +2,10 @@
 
 return [
     'create'        => [
-        'success'   => '\':name\' günlüğü yaratıldı.',
-        'title'     => 'Yeni Günlük',
+        'title' => 'Yeni Günlük',
     ],
-    'destroy'       => [
-        'success'   => '\':name\' günlüğü kaldırıldı.',
-    ],
-    'edit'          => [
-        'success'   => '\':name\' günlüğü güncellendi.',
-        'title'     => ':name Günlüğünü Düzenle',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'fields'        => [
         'author'    => 'Yazar',
         'date'      => 'Tarih',

@@ -2,16 +2,10 @@
 
 return [
     'create'        => [
-        'success'   => 'Famiglia \':name\' creata.',
-        'title'     => 'Nuova Famiglia',
+        'title' => 'Nuova Famiglia',
     ],
-    'destroy'       => [
-        'success'   => 'Famiglia \':name\' rimossa.',
-    ],
-    'edit'          => [
-        'success'   => 'Famiglia \':name\' aggiornata.',
-        'title'     => 'Modifica Famiglia :name',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'families'      => [
         'title' => 'Famiglie della Famiglia :name',
     ],

@@ -2,16 +2,10 @@
 
 return [
     'create'        => [
-        'success'   => 'Objeto ":name" creado.',
-        'title'     => 'Nuevo objeto',
+        'title' => 'Nuevo objeto',
     ],
-    'destroy'       => [
-        'success'   => 'Objeto ":name" eliminado.',
-    ],
-    'edit'          => [
-        'success'   => 'Objeto ":name" actualizado.',
-        'title'     => 'Editar :name',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'fields'        => [
         'character' => 'Personaje',
         'image'     => 'Imagen',

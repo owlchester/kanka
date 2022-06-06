@@ -2,16 +2,10 @@
 
 return [
     'create'        => [
-        'success'   => 'Událost ":name" vytvořena.',
-        'title'     => 'Nová událost',
+        'title' => 'Nová událost',
     ],
-    'destroy'       => [
-        'success'   => 'Událost ":name" odstraněna.',
-    ],
-    'edit'          => [
-        'success'   => 'Událost ":name" aktualizována.',
-        'title'     => 'Upravit událost :name',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'events'        => [
         'title' => 'Události podřazené události ::name',
     ],

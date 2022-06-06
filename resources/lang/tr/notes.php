@@ -2,16 +2,10 @@
 
 return [
     'create'        => [
-        'success'   => '\':name\' notu oluşturuldu.',
-        'title'     => 'Yeni not',
+        'title' => 'Yeni not',
     ],
-    'destroy'       => [
-        'success'   => '\':name\' notu kaldırıldı.',
-    ],
-    'edit'          => [
-        'success'   => '\':name\' notu güncellendi.',
-        'title'     => ':name Notunu Düzenle',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'fields'        => [
         'description'   => 'Açıklama',
         'image'         => 'Görsel',

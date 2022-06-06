@@ -2,15 +2,11 @@
 
 return [
     'create'        => [
-        'success'   => '\':name\' muhabbeti yaratıldı.',
-        'title'     => 'Yeni Muhabbet',
+        'title' => 'Yeni Muhabbet',
     ],
-    'destroy'       => [
-        'success'   => '\':name\' muahbbeti kaldırıldı.',
-    ],
+    'destroy'       => [],
     'edit'          => [
-        'success'   => '\':name\' muhabbeti güncellendi.',
-        'title'     => ':name Muhabbeti',
+        'title' => ':name Muhabbeti',
     ],
     'fields'        => [
         'messages'      => 'Mesajlar',

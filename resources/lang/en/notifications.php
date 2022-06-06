@@ -39,6 +39,9 @@ return [
     'index'             => [
         'title' => 'Notifications',
     ],
+    'map'               => [
+        'chunked'   => 'Map :name has finished chunking and is now usable.',
+    ],
     'no_notifications'  => 'Notifications will appear here once you have some.',
     'subscriptions'     => [
         'charge_fail'   => 'An error occurred while processing your payment. Please wait a moment while we try again. If nothing changes, please contact us.',
@@ -48,7 +51,4 @@ return [
         'started'       => 'Your subscription to Kanka has started.',
     ],
     'unread'            => 'New notification',
-    'map' => [
-        'chunked' => 'Map :name has finished chunking and is now usable.',
-    ]
 ];

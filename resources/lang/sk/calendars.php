@@ -20,16 +20,11 @@ return [
     ],
     'colours'       => [],
     'create'        => [
-        'success'   => 'Kalendár ":name" vytvorený.',
-        'title'     => 'Nový kalendár',
+        'title' => 'Nový kalendár',
     ],
-    'destroy'       => [
-        'success'   => 'Kalendár ":name" odstránený.',
-    ],
+    'destroy'       => [],
     'edit'          => [
-        'success'   => 'Kalendár ":name" upravený.',
-        'title'     => 'Upraviť kalendár :name',
-        'today'     => 'Kalendárny dátum upravený.',
+        'today' => 'Kalendárny dátum upravený.',
     ],
     'event'         => [
         'actions'   => [

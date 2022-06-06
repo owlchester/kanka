@@ -2,16 +2,10 @@
 
 return [
     'create'        => [
-        'success'   => '\':name\' olayı oluşturuldu.',
-        'title'     => 'Yeni Olay',
+        'title' => 'Yeni Olay',
     ],
-    'destroy'       => [
-        'success'   => '\':name\' olayı kaldırıldı.',
-    ],
-    'edit'          => [
-        'success'   => '\':name\' olayı güncellendi.',
-        'title'     => ':name Olayını Düzenle',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'fields'        => [
         'date'      => 'Tarih',
         'image'     => 'Görsel',

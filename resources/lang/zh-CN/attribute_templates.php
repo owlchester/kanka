@@ -5,16 +5,10 @@ return [
         'title' => ':name特质模板',
     ],
     'create'                => [
-        'success'   => '成功创建特质模板：:name',
-        'title'     => '新建特质模板',
+        'title' => '新建特质模板',
     ],
-    'destroy'               => [
-        'success'   => '成功移除特质模板：:name',
-    ],
-    'edit'                  => [
-        'success'   => '成功更新特质模板：:name',
-        'title'     => '编辑特质模板:name',
-    ],
+    'destroy'               => [],
+    'edit'                  => [],
     'fields'                => [
         'attribute_template'    => '父特质模板',
         'attributes'            => '特质',

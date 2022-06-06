@@ -2,16 +2,10 @@
 
 return [
     'create'        => [
-        'success'   => 'Caderno ":name" creado.',
-        'title'     => 'Novo caderno',
+        'title' => 'Novo caderno',
     ],
-    'destroy'       => [
-        'success'   => 'Caderno ":name" eliminado.',
-    ],
-    'edit'          => [
-        'success'   => 'Caderno ":name" actualizado.',
-        'title'     => 'Editar o caderno ":name"',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'fields'        => [
         'author'    => 'Autoría',
         'date'      => 'Data',

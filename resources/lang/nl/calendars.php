@@ -17,16 +17,11 @@ return [
         'is_recurring'  => 'Vindt elk jaar plaats',
     ],
     'create'        => [
-        'success'   => 'Kalender \':name\' gemaakt',
-        'title'     => 'Nieuwe Kalender',
+        'title' => 'Nieuwe Kalender',
     ],
-    'destroy'       => [
-        'success'   => 'Kalender \':name\' verwijderd',
-    ],
+    'destroy'       => [],
     'edit'          => [
-        'success'   => 'Kalender \':name\' bijgewerkt',
-        'title'     => 'Wijzig Kalender :name',
-        'today'     => 'Kalender datum bijgewerkt',
+        'today' => 'Kalender datum bijgewerkt',
     ],
     'event'         => [
         'actions'   => [

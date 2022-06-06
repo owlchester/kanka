@@ -2,16 +2,10 @@
 
 return [
     'create'        => [
-        'success'   => 'הפתק \':name\' נוצר.',
-        'title'     => 'פתק חדש',
+        'title' => 'פתק חדש',
     ],
-    'destroy'       => [
-        'success'   => 'הפתק \':name\' הוסר.',
-    ],
-    'edit'          => [
-        'success'   => 'הפתק \':name\' עודכן.',
-        'title'     => 'ערוך פתק \':name\'.',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'fields'        => [
         'description'   => 'תיאור',
         'image'         => 'תמונה',

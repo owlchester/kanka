@@ -9,16 +9,10 @@ return [
         'save_order'    => 'Spremi novi redoslijed',
     ],
     'create'        => [
-        'success'   => 'Kreirana kronologija :name.',
-        'title'     => 'Nova kronologija',
+        'title' => 'Nova kronologija',
     ],
-    'destroy'       => [
-        'success'   => 'Uklonjena kronologija :name.',
-    ],
-    'edit'          => [
-        'success'   => 'Ažurirana kronologija :name.',
-        'title'     => 'Uredi kronologiju :name',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'fields'        => [
         'copy_eras'     => 'Kopiraj razdoblja',
         'eras'          => 'Razdoblja',

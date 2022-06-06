@@ -2,10 +2,10 @@
 
 return [
     'create'            => [
-        'title'     => 'New Quick Link',
+        'title' => 'New Quick Link',
     ],
     'edit'              => [
-        'title'     => 'Quick Link :name',
+        'title' => 'Quick Link :name',
     ],
     'fields'            => [
         'dashboard'         => 'Dashboard',

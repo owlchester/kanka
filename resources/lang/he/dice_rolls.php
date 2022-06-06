@@ -2,17 +2,12 @@
 
 return [
     'create'        => [
-        'success'   => 'גלגול \':name\' נוצר.',
-        'title'     => 'גלגול חדש',
+        'title' => 'גלגול חדש',
     ],
     'destroy'       => [
         'dice_roll' => 'הגלגול הוסר',
-        'success'   => 'הגלגול \':name\' הוסר.',
     ],
-    'edit'          => [
-        'success'   => 'הגלגול \':name\' עודכן.',
-        'title'     => 'ערוך גלגול :name',
-    ],
+    'edit'          => [],
     'fields'        => [
         'created_at'    => 'גולגל ב',
         'name'          => 'שם',

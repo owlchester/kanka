@@ -2,16 +2,10 @@
 
 return [
     'create'        => [
-        'success'   => 'Kreirana bilješka ":name".',
-        'title'     => 'Nova bilješka',
+        'title' => 'Nova bilješka',
     ],
-    'destroy'       => [
-        'success'   => 'Uklonjena bilješka ":name".',
-    ],
-    'edit'          => [
-        'success'   => 'Ažurirana bilješka ":name".',
-        'title'     => 'Uredi bilješku :name',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'fields'        => [
         'description'   => 'Opis',
         'image'         => 'Slika',

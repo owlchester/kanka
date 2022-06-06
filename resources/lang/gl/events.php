@@ -2,16 +2,10 @@
 
 return [
     'create'        => [
-        'success'   => 'Evento ":name" creado.',
-        'title'     => 'Novo evento',
+        'title' => 'Novo evento',
     ],
-    'destroy'       => [
-        'success'   => 'Evento ":name" eliminado.',
-    ],
-    'edit'          => [
-        'success'   => 'Evento ":name" actualizado.',
-        'title'     => 'Editar evento ":name"',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'events'        => [
         'helper'    => 'Os eventos que teñen esta entidade como o seu evento superior son mostrados aquí.',
         'title'     => 'Eventos do evento ":name"',

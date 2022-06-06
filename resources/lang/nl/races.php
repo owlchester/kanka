@@ -9,16 +9,10 @@ return [
         'title'     => 'Ras :name Personages',
     ],
     'create'        => [
-        'success'   => 'Ras \':name\' gemaakt.',
-        'title'     => 'Nieuw Ras',
+        'title' => 'Nieuw Ras',
     ],
-    'destroy'       => [
-        'success'   => 'Ras \':name\' verwijderd.',
-    ],
-    'edit'          => [
-        'success'   => 'Ras \':name\' bijgewerkt.',
-        'title'     => 'Wijzig Ras :name',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'fields'        => [
         'characters'    => 'Personages',
         'name'          => 'Naam',

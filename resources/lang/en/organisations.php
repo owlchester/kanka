@@ -2,7 +2,7 @@
 
 return [
     'create'        => [
-        'title'     => 'New Organisation',
+        'title' => 'New Organisation',
     ],
     'fields'        => [
         'image'         => 'Image',

@@ -127,7 +127,8 @@ return [
             'width'             => 'Szerokość',
         ],
         'helpers'                   => [
-            'class' => 'Określ własną klasę css dodaną do widżetu',
+            'class'     => 'Określ własną klasę css dodaną do widżetu',
+            'filters'   => 'Kliknij by poznać dostępne opcje filtrowania.',
         ],
         'orders'                    => [
             'name_asc'  => 'Nazwa rosnąco',

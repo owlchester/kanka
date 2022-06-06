@@ -2,16 +2,10 @@
 
 return [
     'create'        => [
-        'success'   => 'Stworzono przedmiot \':name\'.',
-        'title'     => 'Nowy przedmiot',
+        'title' => 'Nowy przedmiot',
     ],
-    'destroy'       => [
-        'success'   => 'Usunięto przedmiot \':name\'.',
-    ],
-    'edit'          => [
-        'success'   => 'Zaktualizowano przedmiot \':name\'.',
-        'title'     => 'Edycja przedmiotu :name',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'fields'        => [
         'character' => 'Postać',
         'image'     => 'Obraz',

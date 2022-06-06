@@ -5,16 +5,10 @@ return [
         'title' => 'Lokacije lika :name',
     ],
     'create'        => [
-        'success'   => 'Kreirana lokacija ":name".',
-        'title'     => 'Nova lokacija',
+        'title' => 'Nova lokacija',
     ],
-    'destroy'       => [
-        'success'   => 'Uklonjena lokacija ":name".',
-    ],
-    'edit'          => [
-        'success'   => 'Ažurirana lokacija ":name".',
-        'title'     => 'Uredi lokaciju :name',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'events'        => [
         'title' => 'Događaji lokacije :name',
     ],

@@ -12,16 +12,10 @@ return [
         'title'     => 'Etykiety pochodne od :name',
     ],
     'create'        => [
-        'success'   => 'Stworzono etykietę \':name\'.',
-        'title'     => 'Nowa etykieta',
+        'title' => 'Nowa etykieta',
     ],
-    'destroy'       => [
-        'success'   => 'Usunięto etykietę \':name\'.',
-    ],
-    'edit'          => [
-        'success'   => 'Zmieniono etykietę \':name\'.',
-        'title'     => 'Edycja etykiety :name',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'fields'        => [
         'children'  => 'Pochodne',
         'name'      => 'Nazwa',

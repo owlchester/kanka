@@ -2,7 +2,7 @@
 
 return [
     'create'        => [
-        'title'     => 'New Family',
+        'title' => 'New Family',
     ],
     'families'      => [
         'title' => 'Family :name Families',

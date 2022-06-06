@@ -2,16 +2,10 @@
 
 return [
     'create'        => [
-        'success'   => 'A(z) :name jegyzetet létrehoztuk.',
-        'title'     => 'Új jegyzet',
+        'title' => 'Új jegyzet',
     ],
-    'destroy'       => [
-        'success'   => 'A(z) :name jegyzetet töröltük.',
-    ],
-    'edit'          => [
-        'success'   => 'A(z) :name jegyzetet frissítettük.',
-        'title'     => ':name jegyzet szerkesztése',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'fields'        => [
         'description'   => 'Leírás',
         'image'         => 'Kép',

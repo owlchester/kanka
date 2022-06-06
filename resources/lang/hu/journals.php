@@ -2,16 +2,10 @@
 
 return [
     'create'        => [
-        'success'   => '\':name\' naplóbejegyzést létrehoztuk.',
-        'title'     => 'Új naplóbejegyzést',
+        'title' => 'Új naplóbejegyzést',
     ],
-    'destroy'       => [
-        'success'   => '\':name\' naplóbejegyzést eltávolítottuk.',
-    ],
-    'edit'          => [
-        'success'   => '\':name\' naplóbejegyzést frissítettük.',
-        'title'     => ':name naplóbejegyzés szerkesztése',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'fields'        => [
         'author'    => 'Szerző',
         'date'      => 'Dátum',

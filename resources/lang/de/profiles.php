@@ -1,6 +1,13 @@
 <?php
 
 return [
+    'appearance'                    => [
+        'helpers'   => [
+            'campaign-order'    => 'Ändere die Reihenfolge, in der Kampagnen im Kampagnenwechsler aufgelistet werden.',
+            'date-format'       => 'Kontrolliere das Datumsformat für das Datum im wahren Leben.',
+            'pagination'        => 'Änderne die Anzahl der angezeigten Elemente in verschiedenen Listen.',
+        ],
+    ],
     'avatar'                        => [
         'success'   => 'Avatar aktualisiert.',
     ],
@@ -31,8 +38,12 @@ return [
         'new_password_confirmation' => 'Neues Passwort bestätigen',
         'newsletter'                => 'Ich würde gern manchmal per Email kontaktiert werden.',
         'password'                  => 'Aktuelles Passwort',
+        'profile-name'              => 'Profilname',
         'settings'                  => 'Einstellungen',
         'theme'                     => 'Theme',
+    ],
+    'helpers'                       => [
+        'profile-name'  => 'Ändere die Art und Weise, wie dein Name in deinem :profile und dem :marketplace erscheint. Wenn du das Feld leer lässt, wird stattdessen dein Kontoname verwendet.',
     ],
     'newsletter'                    => [
         'helpers'   => [
@@ -67,13 +78,16 @@ return [
         'password'                  => 'Gib dein aktuelles Passwort für Änderungen ein',
     ],
     'sections'                      => [
-        'delete'    => [
-            'delete'    => 'Lösche meinen Account',
-            'helper'    => 'Durch das Löschen Ihres Kontos werden auch alle Kampagnen gelöscht, bei denen Sie das einzige Mitglied sind. Diese Aktion ist permanent und kann nicht rückgängig gemacht werden.',
-            'title'     => 'Lösche deinen Account',
-            'warning'   => 'Wenn du deinen Account löschst, werden alle Daten gelöscht. Bist du sicher?',
+        'dangerzone'    => 'Gefahrenzone',
+        'delete'        => [
+            'confirm'       => 'Ja, lösche meinen Account',
+            'delete'        => 'Lösche meinen Account',
+            'helper'        => 'Durch das Löschen Ihres Kontos werden auch alle Kampagnen gelöscht, bei denen Sie das einzige Mitglied sind. Diese Aktion ist permanent und kann nicht rückgängig gemacht werden.',
+            'subscribed'    => 'Bitte kündige dein :subscription , bevor du dein Konto löschst.',
+            'title'         => 'Lösche deinen Account',
+            'warning'       => 'Wenn du deinen Account löschst, werden alle Daten gelöscht. Bist du sicher?',
         ],
-        'password'  => [
+        'password'      => [
             'title' => 'Ändere dein Passwort',
         ],
     ],
@@ -100,6 +114,7 @@ return [
         'success'   => 'Einstellungen geändert.',
     ],
     'theme'                         => [
+        'helper'    => 'Eine Kampagne mit einem festgelegten Thema überschreibt deine Präferenz.',
         'success'   => 'Theme geändert.',
         'themes'    => [
             'dark'      => 'Dunkel',

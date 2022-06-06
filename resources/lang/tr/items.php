@@ -2,16 +2,10 @@
 
 return [
     'create'        => [
-        'success'   => '\':name\' eşyası yaratıldı.',
-        'title'     => 'Yeni Eşya',
+        'title' => 'Yeni Eşya',
     ],
-    'destroy'       => [
-        'success'   => '\':name\' eşyası kaldırıldı.',
-    ],
-    'edit'          => [
-        'success'   => '\':name\' eşyası güncellendi.',
-        'title'     => ':name Eşyasını Düzenle',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'fields'        => [
         'character' => 'Karakter',
         'image'     => 'Görsel',

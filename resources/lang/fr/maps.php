@@ -7,17 +7,19 @@ return [
         'explore'   => 'Explorer',
     ],
     'create'        => [
-        'success'   => 'Carte :name créée.',
-        'title'     => 'Nouvelle carte',
+        'title' => 'Nouvelle carte',
     ],
-    'destroy'       => [
-        'success'   => 'Carte :name supprimée.',
-    ],
-    'edit'          => [
-        'success'   => 'Carte :name modifiée.',
-        'title'     => 'Modifier la carte :name',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'errors'        => [
+        'chunking'  => [
+            'error'     => 'Une erreur est survenue durant le traitement de la carte. Contactes l\'équipe sur :discord pour de l\'aide.',
+            'running'   => [
+                'edit'      => 'La carte ne peut pas être modifiée pendant qu\'elle est en traitement.',
+                'explore'   => 'La carte ne peut pas être affichée pendant qu\'elle est en traitement.',
+                'time'      => 'Ceci peut prendre plusieurs minutes à plusieurs heures et dépend de la taille de la carte.',
+            ],
+        ],
         'dashboard' => [
             'missing'   => 'La carte a besoin d\'une image pour être affichée sur le tableau de bord.',
         ],
@@ -85,6 +87,11 @@ return [
     'show'          => [
         'tabs'  => [
             'maps'  => 'Cartes',
+        ],
+    ],
+    'tooltips'      => [
+        'chunking'  => [
+            'running'   => 'La cartes est en traitement. Ce processus peut prendre plusieurs minutes à plusieurs heures.',
         ],
     ],
 ];

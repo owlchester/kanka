@@ -2,15 +2,11 @@
 
 return [
     'create'        => [
-        'success'   => 'Kreiran razgovor ":name".',
-        'title'     => 'Novi razgovor',
+        'title' => 'Novi razgovor',
     ],
-    'destroy'       => [
-        'success'   => 'Uklonjen razgovor ":name".',
-    ],
+    'destroy'       => [],
     'edit'          => [
-        'success'   => 'Ažuriran razgovor ":name".',
-        'title'     => 'Razgovor :name',
+        'title' => 'Razgovor :name',
     ],
     'fields'        => [
         'is_closed'     => 'Zatvoreno',

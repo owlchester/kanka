@@ -7,16 +7,10 @@ return [
         'explore'   => 'Explora',
     ],
     'create'        => [
-        'success'   => 'S\'ha creat el mapa «:name».',
-        'title'     => 'Nou mapa',
+        'title' => 'Nou mapa',
     ],
-    'destroy'       => [
-        'success'   => 'S\'ha eliminat el mapa «:name».',
-    ],
-    'edit'          => [
-        'success'   => 'S\'ha actualitzat el mapa «:name».',
-        'title'     => 'Edita el mapa :name',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'errors'        => [
         'dashboard' => [
             'missing'   => 'Aquest mapa necessita una imatge perquè es pugui mostrar al tauler.',

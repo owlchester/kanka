@@ -16,16 +16,10 @@ return [
         'title'         => 'Förmåga \':name\' Entiteter',
     ],
     'create'        => [
-        'success'   => 'Förmåga \':name\' skapad.',
-        'title'     => 'Ny Förmåga',
+        'title' => 'Ny Förmåga',
     ],
-    'destroy'       => [
-        'success'   => 'Förmåga \':name\' borttagen.',
-    ],
-    'edit'          => [
-        'success'   => 'Förmåga \':name\' uppdaterad.',
-        'title'     => 'Redigera Förmåga :name',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'entities'      => [
         'title' => 'Entiteter med :name förmågan',
     ],

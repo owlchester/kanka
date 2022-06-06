@@ -2,16 +2,10 @@
 
 return [
     'create'        => [
-        'success'   => 'Заметка ":name" создана.',
-        'title'     => 'Новая заметка',
+        'title' => 'Новая заметка',
     ],
-    'destroy'       => [
-        'success'   => 'Заметка ":name" удалена.',
-    ],
-    'edit'          => [
-        'success'   => 'Заметка ":name" обновлена.',
-        'title'     => 'Редактирование заметки :name',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'fields'        => [
         'description'   => 'Описание',
         'image'         => 'Изображение',

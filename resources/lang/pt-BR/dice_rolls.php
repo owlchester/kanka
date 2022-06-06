@@ -2,17 +2,12 @@
 
 return [
     'create'        => [
-        'success'   => 'Rolagem de dados :name: criada',
-        'title'     => 'Nova rolagem de dados',
+        'title' => 'Nova rolagem de dados',
     ],
     'destroy'       => [
         'dice_roll' => 'Rolagem de dados removida',
-        'success'   => 'Rolagem de dados :name removida',
     ],
-    'edit'          => [
-        'success'   => 'Rolagem de dados :name atualizada',
-        'title'     => 'Editar rolagem de dados :name',
-    ],
+    'edit'          => [],
     'fields'        => [
         'created_at'    => 'Rolado em',
         'name'          => 'Nome',

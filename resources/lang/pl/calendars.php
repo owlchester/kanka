@@ -14,22 +14,18 @@ return [
         'add_year'          => 'Dodaj nazwę roku',
         'set_today'         => 'Ustaw jako aktualną datę',
         'today'             => 'Dziś',
+        'update_weather'    => 'Aktualizuj pogodę',
     ],
     'checkboxes'    => [
         'is_recurring'  => 'Coroczne',
     ],
     'colours'       => [],
     'create'        => [
-        'success'   => 'Stworzono kalendarz :name.',
-        'title'     => 'Nowy kalendarz',
+        'title' => 'Nowy kalendarz',
     ],
-    'destroy'       => [
-        'success'   => 'Usunięto kalendarz :name',
-    ],
+    'destroy'       => [],
     'edit'          => [
-        'success'   => 'Zmieniono kalendarz \':nazwa\'',
-        'title'     => 'Edycja kalendarza :nazwa',
-        'today'     => 'Zmieniono datę kalendarza.',
+        'today' => 'Zmieniono datę kalendarza.',
     ],
     'event'         => [
         'actions'   => [
@@ -74,6 +70,7 @@ return [
         'current_year'          => 'Obecny rok',
         'date'                  => 'Obecna data',
         'day'                   => 'Dzień',
+        'default_layout'        => 'Domyślny układ',
         'has_leap_year'         => 'Ma lata przestępne',
         'intercalary'           => 'Dni dodatkowe',
         'is_incrementing'       => 'Upływ czasu',
@@ -101,11 +98,12 @@ return [
         'year'                  => 'Rok',
     ],
     'helpers'       => [
-        'month_type'    => 'Miesiące dodatkowe nie mają dni tygodnia, ale wpływają na pory roku czy fazy księżyca.',
-        'moon_offset'   => 'Domyślnie pierwsza pełnia ma miejsce pierwszego dnia roku 0. Zmieniając wartość przesunięcia modyfikujesz moment pełni. Przesunięcie może mieć wartość ujemną (maksymalnie długości pierwszego miesiąca) albo dodatnią (maksymalnie długości pierwszego miesiąca).',
-        'nested_parent' => 'Wyświetlono kalendarze pochodzące od :parent.',
-        'nested_without'=> 'Wyświetlono wszystkie kalendarze nie posiadające źródła. Kliknij na rząd, by wyświetlić kalendarze pochodne.',
-        'start_offset'  => 'Domyślnie kalendarz zaczyna się pierwszego dnia roku 0. Liczba w tym polu zmienia położenie pierwszego dnia kalendarza.',
+        'default_layout'    => 'Wybierz domyślny układ, w jakim wyświetlany będzie kalendarz',
+        'month_type'        => 'Miesiące dodatkowe nie mają dni tygodnia, ale wpływają na pory roku czy fazy księżyca.',
+        'moon_offset'       => 'Domyślnie pierwsza pełnia ma miejsce pierwszego dnia roku 0. Zmieniając wartość przesunięcia modyfikujesz moment pełni. Przesunięcie może mieć wartość ujemną (maksymalnie długości pierwszego miesiąca) albo dodatnią (maksymalnie długości pierwszego miesiąca).',
+        'nested_parent'     => 'Wyświetlono kalendarze pochodzące od :parent.',
+        'nested_without'    => 'Wyświetlono wszystkie kalendarze nie posiadające źródła. Kliknij na rząd, by wyświetlić kalendarze pochodne.',
+        'start_offset'      => 'Domyślnie kalendarz zaczyna się pierwszego dnia roku 0. Liczba w tym polu zmienia położenie pierwszego dnia kalendarza.',
     ],
     'hints'         => [
         'event_length'      => 'Czas trwania wydarzenia. Nie może być dłuższy, niż dwa miesiące.',
@@ -125,8 +123,10 @@ return [
         'title' => 'Kalendarze',
     ],
     'layouts'       => [
-        'month' => 'Miesiąc',
-        'year'  => 'Rok',
+        'month'     => 'Miesiąc',
+        'monthly'   => 'Miesięczny',
+        'year'      => 'Rok',
+        'yearly'    => 'Roczny',
     ],
     'modals'        => [
         'switcher'  => [
@@ -213,6 +213,9 @@ return [
     ],
     'show'          => [
         'missing_details'   => 'Nie można wyświetlić kalendarza. Do poprawnego wyświetlania niezbędne są przynajmniej 2 miesiące posiadające po 2 dni tygodnia.',
+        'moon_full'         => ':moon - pełnia',
+        'moon_last_quarter' => ':moon - ostatnia kwadra',
+        'moon_new'          => ':moon - nów',
         'tabs'              => [
             'events'    => 'Wydarzenia w kalendarzu',
             'weather'   => 'Pogoda',

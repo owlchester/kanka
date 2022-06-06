@@ -2,16 +2,10 @@
 
 return [
     'create'        => [
-        'success'   => 'S\'ha creat la família «:name».',
-        'title'     => 'Nova família',
+        'title' => 'Nova família',
     ],
-    'destroy'       => [
-        'success'   => 'S\'ha eliminat la família «:name».',
-    ],
-    'edit'          => [
-        'success'   => 'S\'ha actualitzat la família «:name».',
-        'title'     => 'Edita la família :name',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'families'      => [
         'title' => 'Famílies de la família :name',
     ],

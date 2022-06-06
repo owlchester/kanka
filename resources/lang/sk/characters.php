@@ -10,20 +10,14 @@ return [
         'title' => 'Diskusie s postavou :name',
     ],
     'create'        => [
-        'success'   => 'Postava :name vytvorená.',
-        'title'     => 'Nová postava',
+        'title' => 'Nová postava',
     ],
-    'destroy'       => [
-        'success'   => 'Postava :name odstránená.',
-    ],
+    'destroy'       => [],
     'dice_rolls'    => [
         'hint'  => 'Hody kockami môžu byť priradené postavy, aby ich mohla v hre používať.',
         'title' => 'Hody kockami postavy :name',
     ],
-    'edit'          => [
-        'success'   => 'Postava :name upravená.',
-        'title'     => 'Upraviť postavu :name',
-    ],
+    'edit'          => [],
     'fields'        => [
         'age'                       => 'Vek',
         'families'                  => 'Rody',

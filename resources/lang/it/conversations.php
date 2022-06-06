@@ -2,15 +2,11 @@
 
 return [
     'create'        => [
-        'success'   => 'Conversazione \':name\' creata.',
-        'title'     => 'Nuova conversazione',
+        'title' => 'Nuova conversazione',
     ],
-    'destroy'       => [
-        'success'   => 'Conversazione \':name\' rimossa.',
-    ],
+    'destroy'       => [],
     'edit'          => [
-        'success'   => 'Conversazione \':name\' aggiornata.',
-        'title'     => 'Conversazione :name',
+        'title' => 'Conversazione :name',
     ],
     'fields'        => [
         'is_closed'     => 'Chiusa',

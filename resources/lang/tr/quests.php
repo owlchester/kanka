@@ -2,16 +2,10 @@
 
 return [
     'create'        => [
-        'success'   => '\':name\' görevi yaratıldı.',
-        'title'     => 'Yeni Görev',
+        'title' => 'Yeni Görev',
     ],
-    'destroy'       => [
-        'success'   => '\':name\' görevi kaldırıldı.',
-    ],
-    'edit'          => [
-        'success'   => '\':name\' görevi güncellendi.',
-        'title'     => ':name Görevini Düzenle',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'fields'        => [
         'character'     => 'Azmettirici',
         'copy_elements' => 'Göreve iliştirilmiş elementleri kopyala',

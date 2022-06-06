@@ -2,17 +2,12 @@
 
 return [
     'create'        => [
-        'success'   => 'Stworzono rzut kośćmi ":name\'.',
-        'title'     => 'Nowy rzut kośćmi',
+        'title' => 'Nowy rzut kośćmi',
     ],
     'destroy'       => [
         'dice_roll' => 'Usunięto rzut kośćmi.',
-        'success'   => 'Usunięto rzut kośćmi \':name\'.',
     ],
-    'edit'          => [
-        'success'   => 'Zmieniono rzut kośćmi \':name\'.',
-        'title'     => 'Edycja rzutu kośćmi :name',
-    ],
+    'edit'          => [],
     'fields'        => [
         'created_at'    => 'Rzucono w',
         'name'          => 'Nazwa',

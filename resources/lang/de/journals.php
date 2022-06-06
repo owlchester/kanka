@@ -2,16 +2,10 @@
 
 return [
     'create'        => [
-        'success'   => 'Logbuch erstellt.',
-        'title'     => 'Erstelle ein neues Logbuch',
+        'title' => 'Erstelle ein neues Logbuch',
     ],
-    'destroy'       => [
-        'success'   => 'Logbuch entfernt.',
-    ],
-    'edit'          => [
-        'success'   => 'Logbuch aktualisiert.',
-        'title'     => 'Bearbeite Logbuch :name',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'fields'        => [
         'author'    => 'Autor',
         'date'      => 'Datum',

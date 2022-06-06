@@ -10,20 +10,14 @@ return [
         'title' => 'Conversas de :name',
     ],
     'create'        => [
-        'success'   => 'Personagem \':name\' criado.',
-        'title'     => 'Criar um novo personagem',
+        'title' => 'Criar um novo personagem',
     ],
-    'destroy'       => [
-        'success'   => 'Personagem \':name\' removido.',
-    ],
+    'destroy'       => [],
     'dice_rolls'    => [
         'hint'  => 'Rolagens de dados podem ser vinculadas a um personagem para uso no jogo.',
         'title' => 'Rolagens de dado de :name',
     ],
-    'edit'          => [
-        'success'   => 'Personagem \':name\' atualizado.',
-        'title'     => 'Editar Personagem :name',
-    ],
+    'edit'          => [],
     'fields'        => [
         'age'                       => 'Idade',
         'families'                  => 'Famílias',

@@ -2,15 +2,11 @@
 
 return [
     'create'        => [
-        'success'   => 'Elemento del menù \':name\' aggiornato.',
-        'title'     => 'Nuovo Elemento del Menù',
+        'title' => 'Nuovo Elemento del Menù',
     ],
-    'destroy'       => [
-        'success'   => 'Elemento del menù \':name\' rimosso.',
-    ],
+    'destroy'       => [],
     'edit'          => [
-        'success'   => 'Elemento del menù \':name\' aggiornato.',
-        'title'     => 'Elemento del menù \':name\'',
+        'title' => 'Elemento del menù \':name\'',
     ],
     'fields'        => [
         'entity'    => 'Entità',

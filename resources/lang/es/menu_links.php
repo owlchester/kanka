@@ -2,15 +2,11 @@
 
 return [
     'create'            => [
-        'success'   => 'Acceso directo ":name" creado.',
-        'title'     => 'Nuevo acceso directo',
+        'title' => 'Nuevo acceso directo',
     ],
-    'destroy'           => [
-        'success'   => 'Acceso directo ":name" eliminado.',
-    ],
+    'destroy'           => [],
     'edit'              => [
-        'success'   => 'Acceso directo ":name" actualizado.',
-        'title'     => 'Acceso directo :name',
+        'title' => 'Acceso directo :name',
     ],
     'fields'            => [
         'dashboard'     => 'Tablero',

@@ -5,16 +5,10 @@ return [
         'title' => 'Plantillas de atributos de :name',
     ],
     'create'                => [
-        'success'   => 'Plantilla de atributos \':name\' creada.',
-        'title'     => 'Nueva Plantilla de Atributos',
+        'title' => 'Nueva Plantilla de Atributos',
     ],
-    'destroy'               => [
-        'success'   => 'Plantilla de atributos \':name\' eliminada.',
-    ],
-    'edit'                  => [
-        'success'   => 'Plantilla de atributos \':name\' actualizada.',
-        'title'     => 'Editar plantilla de atributos :name',
-    ],
+    'destroy'               => [],
+    'edit'                  => [],
     'fields'                => [
         'attribute_template'    => 'Plantilla de atributos superior',
         'attributes'            => 'Atributos',

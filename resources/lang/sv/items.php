@@ -2,16 +2,10 @@
 
 return [
     'create'        => [
-        'success'   => 'Föremål \':name\' skapat.',
-        'title'     => 'Nytt Föremål',
+        'title' => 'Nytt Föremål',
     ],
-    'destroy'       => [
-        'success'   => 'Föremål \':name\' borttaget.',
-    ],
-    'edit'          => [
-        'success'   => 'Föremål \':name\' uppdaterat.',
-        'title'     => 'Redigera Föremål :name',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'fields'        => [
         'character' => 'Karaktär',
         'image'     => 'Bild',

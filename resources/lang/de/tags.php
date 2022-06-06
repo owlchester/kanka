@@ -12,16 +12,10 @@ return [
         'title'     => 'Kategorie :name Unterkategorien',
     ],
     'create'        => [
-        'success'   => 'Kategorie \':name\' erstellt.',
-        'title'     => 'Neue Kategorie',
+        'title' => 'Neue Kategorie',
     ],
-    'destroy'       => [
-        'success'   => 'Kategorie \':name\' entfernt.',
-    ],
-    'edit'          => [
-        'success'   => 'Kategorie \':name\' aktualisiert.',
-        'title'     => 'Bearbeite Kategorie :name',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'fields'        => [
         'children'  => 'Kinder',
         'name'      => 'Name',

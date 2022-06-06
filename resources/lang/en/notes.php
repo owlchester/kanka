@@ -2,7 +2,7 @@
 
 return [
     'create'        => [
-        'title'     => 'New Note',
+        'title' => 'New Note',
     ],
     'fields'        => [
         'description'   => 'Description',

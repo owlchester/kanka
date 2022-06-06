@@ -5,16 +5,10 @@ return [
         'title' => ':name attribuutsjablonen',
     ],
     'create'                => [
-        'success'   => 'Attribuutsjabloon \':naam\' gemaakt.',
-        'title'     => 'Nieuw attribuutsjabloon',
+        'title' => 'Nieuw attribuutsjabloon',
     ],
-    'destroy'               => [
-        'success'   => 'Attribuutsjabloon \':naam\' verwijderd.',
-    ],
-    'edit'                  => [
-        'success'   => 'Attribuutsjabloon \':naam\' bijgewerkt.',
-        'title'     => 'Wijzig attribuutsjabloon :name',
-    ],
+    'destroy'               => [],
+    'edit'                  => [],
     'fields'                => [
         'attribute_template'    => 'Bovenliggende Attribuutsjabloon',
         'attributes'            => 'Attributen',

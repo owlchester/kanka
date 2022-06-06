@@ -2,16 +2,10 @@
 
 return [
     'create'        => [
-        'success'   => '\':name\' küldetést létrehoztuk.',
-        'title'     => 'Új küldetés',
+        'title' => 'Új küldetés',
     ],
-    'destroy'       => [
-        'success'   => '\':name\' küldetést eltávolítottuk.',
-    ],
-    'edit'          => [
-        'success'   => '\':name\' küldetést frissítettük.',
-        'title'     => ':name küldetés szerkesztése',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'elements'      => [
         'create'    => [
             'success'   => ':entity entitást hozzáadtuk a küldetéshez.',

@@ -37,16 +37,7 @@ TEXT
         'superboosted'  => 'Ta opcja dostępna jest tylko w kampaniach turbodoładowanych.',
         'unknown_id'    => 'Nieznana kampania.',
     ],
-    'export'                            => [
-        'errors'            => [
-            'limit' => 'Przekraczasz limit jednego eksportu dziennie. Spróbuj ponownie jutro.',
-        ],
-        'helper'            => 'Eksportuj kampanię. Pojawi się zawiadomienie z odnośnikiem do pobrania materiałów.',
-        'helper_secondary'  => 'Zostaną utworzone dwa pliki: jeden zawierający elementy w formacie JSON i drugi z powiązanymi obrazami. Uwaga, w wypadku dużych kampanii eksport obrazów może ulec awarii i można je odzyskać wyłącznie przy pomocy :api.',
-        'helper_third'      => 'Pliki .json można otworzyć każdym edytorem tekstu. To zapisane w formacie tekstowym dane pobrane z bazy Kanki. Wyeksportowanych w ten sposób plików nie można ponownie zaimportować.',
-        'success'           => 'Przygotowujemy eksport kampanii. Gdy plik zip będzie gotowy do pobrania, otrzymasz powiadomienie.',
-        'title'             => 'Eksportowanie kampanii :nazwa',
-    ],
+    'export'                            => [],
     'fields'                            => [
         'boosted'                           => 'Doładowanie przez',
         'character_personality_visibility'  => 'Domyślna widoczność osobowości postaci',
@@ -206,6 +197,7 @@ TEXT
             'title'         => 'Zaproszenia',
         ],
         'manage_roles'          => 'Zarządzaj rolami uczestników',
+        'removal'               => 'Usuwasz ":member" z kampanii.',
         'roles'                 => [
             'member'    => 'Uczestnik',
             'owner'     => 'Administrator',
@@ -280,7 +272,7 @@ TEXT
         ],
         'hints'         => [
             'campaign_not_public'   => 'Ustawiono uprawnienia roli Publiczność, ale kampania jest prywatna. Możesz to zmienić z pomocą zakładki Udostępnij w menu edycji kampanii.',
-            'public'                => 'Roli Publiczność używa się, gdy ktoś ogląda publicznie dostępną kampanię. :more',
+            'empty_role'            => 'Tej roli nie posiada żaden z uczestników kampanii.',
             'role_permissions'      => 'Zezwól roli :name na następujące działania na elementach',
         ],
         'members'       => 'Uczestnicy',
@@ -334,8 +326,9 @@ TEXT
         ],
         'users'         => [
             'actions'   => [
-                'add'       => 'Dodaj uczestnika',
-                'remove'    => ':user z roli :role',
+                'add'           => 'Dodaj uczestnika',
+                'remove'        => ':user z roli :role',
+                'remove_user'   => 'Uusń rolę użytkownika',
             ],
             'create'    => [
                 'success'   => 'Uczestnikowi przypisano rolę.',
@@ -354,6 +347,8 @@ TEXT
             'enable'    => 'Aktywny',
         ],
         'boosted'   => 'Opcja we wczesnym dostępie, na razie dostępna wyłącznie w :boosted.',
+        'disabled'  => 'Moduł :module został wyłączony.',
+        'enabled'   => 'Moduł :module został aktywowany.',
         'errors'    => [
             'module-disabled'   => 'Ten moduł jest obecnie wyłączony w ustawieniach kampanii. :fix',
         ],

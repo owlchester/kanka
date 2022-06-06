@@ -2,16 +2,10 @@
 
 return [
     'create'        => [
-        'success'   => 'Diario \':name\' creato.',
-        'title'     => 'Nuovo Diario',
+        'title' => 'Nuovo Diario',
     ],
-    'destroy'       => [
-        'success'   => 'Diario \':name\' rimosso.',
-    ],
-    'edit'          => [
-        'success'   => 'Diario \':name\' aggiornato.',
-        'title'     => 'Modifica del diario :name',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'fields'        => [
         'author'    => 'Autore',
         'date'      => 'Data',

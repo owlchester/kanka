@@ -10,20 +10,14 @@ return [
         'title' => 'Converses de :name',
     ],
     'create'        => [
-        'success'   => 'S\'ha creat el personatge «:name».',
-        'title'     => 'Nou personatge',
+        'title' => 'Nou personatge',
     ],
-    'destroy'       => [
-        'success'   => 'S\'ha eliminat el personatge «:name».',
-    ],
+    'destroy'       => [],
     'dice_rolls'    => [
         'hint'  => 'Es poden assignar tirades de daus a un personatge per utilitzar-les durant el joc.',
         'title' => 'Tirades de daus de :name',
     ],
-    'edit'          => [
-        'success'   => 'S\'ha actualitzat el personatge «:name».',
-        'title'     => 'Edita el personatge :name',
-    ],
+    'edit'          => [],
     'fields'        => [
         'age'                       => 'Edat',
         'families'                  => 'Famílies',

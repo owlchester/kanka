@@ -128,7 +128,8 @@ return [
             'width'             => 'Breite',
         ],
         'helpers'                   => [
-            'class' => 'Definieren Sie eine benutzerdefinierte CSS-Klasse, die dem Widget hinzugefügt wird.',
+            'class'     => 'Definieren Sie eine benutzerdefinierte CSS-Klasse, die dem Widget hinzugefügt wird.',
+            'filters'   => 'Klicke hier, um mehr über die verfügbaren Filteroptionen zu erfahren.',
         ],
         'orders'                    => [
             'name_asc'  => 'Name aufsteigend',

@@ -4,6 +4,10 @@ return [
     'blog'              => 'Blog',
     'boosters'          => 'Boosters',
     'company'           => 'Company',
+    'language-switcher' => [
+        'other' => 'Other languages',
+        'title' => 'Select your language',
+    ],
     'platform'          => 'Platform',
     'press-kit'         => 'Press kit',
     'privacy'           => 'Privacy',
@@ -13,8 +17,4 @@ return [
     'terms'             => 'Terms',
     'translator_call'   => 'Kanka is translated in other languages thanks to our amazing community. If you want to help translate Kanka into your language, contact us over on our :discord!',
     'whats-new'         => 'What\'s new',
-    'language-switcher' => [
-        'title' => 'Select your language',
-        'other' => 'Other languages',
-    ]
 ];

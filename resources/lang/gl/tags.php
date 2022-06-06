@@ -12,16 +12,10 @@ return [
         'title'     => 'Subetiquetas da etiqueta ":name"',
     ],
     'create'        => [
-        'success'   => 'Etiqueta ":name" creada.',
-        'title'     => 'Nova etiqueta',
+        'title' => 'Nova etiqueta',
     ],
-    'destroy'       => [
-        'success'   => 'Etiqueta ":name" eliminada.',
-    ],
-    'edit'          => [
-        'success'   => 'Etiqueta ":name" actualizada.',
-        'title'     => 'Editar etiqueta ":name"',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'fields'        => [
         'children'  => 'Subetiquetas',
         'name'      => 'Nome',

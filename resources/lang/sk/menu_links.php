@@ -2,15 +2,11 @@
 
 return [
     'create'            => [
-        'success'   => 'Menu link :name vytvorený.',
-        'title'     => 'Nový menu link',
+        'title' => 'Nový menu link',
     ],
-    'destroy'           => [
-        'success'   => 'Menu link :name odstránený.',
-    ],
+    'destroy'           => [],
     'edit'              => [
-        'success'   => 'Menu link :name upravený.',
-        'title'     => 'Menu link :name',
+        'title' => 'Menu link :name',
     ],
     'fields'            => [
         'dashboard'     => 'Nástenka',

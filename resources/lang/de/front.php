@@ -20,9 +20,11 @@ return [
         'public'            => [
             'description'   => 'Schau dir zur Inspiration die öffentliche Kampagne an.',
             'filters'       => [
-                'all'       => 'geboosteter Status',
-                'boosted'   => 'geboostete Kampagne',
-                'unboosted' => 'nicht geboostete Kampagne',
+                'all'               => 'geboosteter Status',
+                'boosted'           => 'geboostete Kampagne',
+                'is-boosted'        => 'Die Kampagne ist geboostet!',
+                'is-superboosted'   => 'Die Kampagne ist supergeboostet!',
+                'unboosted'         => 'nicht geboostete Kampagne',
             ],
             'no-results'    => 'Es konnte keine öffentliche Kampagne mit diesen Filtern gefunden werden. Bitte versuche es erneut.',
             'title'         => 'Öffentliche Kampagnen',
@@ -86,6 +88,7 @@ return [
             'recovery'              => 'Wiederherstellung des Objektes für bis zu 30 Tage',
             'relation-visualiser'   => 'Erforschen Sie die Beziehungen von Objekten visuell',
             'sidebar'               => 'Ordnen Sie die Seitenleiste einer Kampagne neu an und passen Sie sie an',
+            'standard'              => 'Standardkampagne',
             'theme'                 => 'Fixiertes Kampagnenthema',
             'timeline_elements'     => 'Passe das Symbol und die Farbe der Zeitlinien-Elemente an',
             'title'                 => 'geboostete Kampagne',

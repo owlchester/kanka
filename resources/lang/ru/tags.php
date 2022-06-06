@@ -12,16 +12,10 @@ return [
         'title'     => 'Объекты тэга :name',
     ],
     'create'        => [
-        'success'   => 'Тэг ":name" создан.',
-        'title'     => 'Новый тэг',
+        'title' => 'Новый тэг',
     ],
-    'destroy'       => [
-        'success'   => 'Тэг ":name" удален.',
-    ],
-    'edit'          => [
-        'success'   => 'Тэг ":name" обновлен.',
-        'title'     => 'Редактирование тэга :name',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'fields'        => [
         'children'  => 'Потомки',
         'name'      => 'Название',

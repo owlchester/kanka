@@ -2,16 +2,10 @@
 
 return [
     'create'        => [
-        'success'   => 'Quest \':name\' erstellt.',
-        'title'     => 'Erstelle einen neuen Quest',
+        'title' => 'Erstelle einen neuen Quest',
     ],
-    'destroy'       => [
-        'success'   => 'Quest \':name\' entfernt',
-    ],
-    'edit'          => [
-        'success'   => 'Quest \':name\' aktualisiert',
-        'title'     => 'Bearbeite Quest :name',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'elements'      => [
         'create'    => [
             'success'   => 'Objekt :entity zur Quest hinzugefügt',

@@ -9,16 +9,10 @@ return [
         'save_order'    => 'Zapisz nową kolejność',
     ],
     'create'        => [
-        'success'   => 'Stworzono historię \':name\'.',
-        'title'     => 'Nowa historia',
+        'title' => 'Nowa historia',
     ],
-    'destroy'       => [
-        'success'   => 'Usunięto historię \':name\'.',
-    ],
-    'edit'          => [
-        'success'   => 'Zmieniono historię \':name\'.',
-        'title'     => 'Edycja historii :name',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'fields'        => [
         'copy_elements' => 'Kopiuj składowe',
         'copy_eras'     => 'Kopiuj epoki',

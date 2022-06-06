@@ -12,16 +12,10 @@ return [
         'title'     => 'Podradené kategórie :name',
     ],
     'create'        => [
-        'success'   => 'Kategória :name vytvorená.',
-        'title'     => 'Nová kategória',
+        'title' => 'Nová kategória',
     ],
-    'destroy'       => [
-        'success'   => 'Kategória :name odstránená.',
-    ],
-    'edit'          => [
-        'success'   => 'Kategória :name upravená.',
-        'title'     => 'Upraviť kategóriu :name',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'fields'        => [
         'children'  => 'Podradené kategórie',
         'name'      => 'Názov',

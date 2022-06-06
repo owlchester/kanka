@@ -5,16 +5,10 @@ return [
         'title' => ':name modelos de atributos',
     ],
     'create'                => [
-        'success'   => 'Modelo de Atributo \':name\' criado.',
-        'title'     => 'Criar um novo Modelo de Atributo',
+        'title' => 'Criar um novo Modelo de Atributo',
     ],
-    'destroy'               => [
-        'success'   => 'Modelo de Atributo \':name\' removido.',
-    ],
-    'edit'                  => [
-        'success'   => 'Modelo de Atributo \':name\' atualizado.',
-        'title'     => 'Editar Modelo de Atributo :name',
-    ],
+    'destroy'               => [],
+    'edit'                  => [],
     'fields'                => [
         'attribute_template'    => 'Modelo de atributo pai',
         'attributes'            => 'Atributos',

@@ -11,16 +11,10 @@ return [
         'title'     => ':name Etiketine Bağlı Notlar',
     ],
     'create'        => [
-        'success'   => '\':name\' etiketi yaratıldı.',
-        'title'     => 'Yeni Etiket',
+        'title' => 'Yeni Etiket',
     ],
-    'destroy'       => [
-        'success'   => '\':name\' etiketi kaldırıldı.',
-    ],
-    'edit'          => [
-        'success'   => '\':name\' etiketi güncellendi.',
-        'title'     => ':name Etiketini Düzenle',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'fields'        => [
         'children'  => 'Bağlı not',
         'name'      => 'Ad',

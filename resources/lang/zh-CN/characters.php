@@ -10,20 +10,14 @@ return [
         'title' => ':name的对话',
     ],
     'create'        => [
-        'success'   => '成功创建角色：:name',
-        'title'     => '新角色',
+        'title' => '新角色',
     ],
-    'destroy'       => [
-        'success'   => '成功移除角色：:name',
-    ],
+    'destroy'       => [],
     'dice_rolls'    => [
         'hint'  => '可以为一名角色分配此属性以供游戏使用。',
         'title' => ':name的掷骰',
     ],
-    'edit'          => [
-        'success'   => '成功更新角色：:name',
-        'title'     => '编辑角色：:name',
-    ],
+    'edit'          => [],
     'fields'        => [
         'age'                       => '年龄',
         'families'                  => '家族',

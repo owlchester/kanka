@@ -16,16 +16,10 @@ return [
         'title'         => 'Entitats de l\'habilitat :name',
     ],
     'create'        => [
-        'success'   => 'S\'ha creat l\'habilitat «:name».',
-        'title'     => 'Nova habilitat',
+        'title' => 'Nova habilitat',
     ],
-    'destroy'       => [
-        'success'   => 'S\'ha eliminat l\'habilitat «:name».',
-    ],
-    'edit'          => [
-        'success'   => 'S\'ha actualitzat l\'habilitat «:name».',
-        'title'     => 'Edita l\'habilitat :name',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'entities'      => [
         'title' => 'Entitats amb l\'habilitat :name',
     ],

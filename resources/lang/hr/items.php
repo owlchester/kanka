@@ -2,16 +2,10 @@
 
 return [
     'create'        => [
-        'success'   => 'Kreiran predmet ":name".',
-        'title'     => 'Novi predmet',
+        'title' => 'Novi predmet',
     ],
-    'destroy'       => [
-        'success'   => 'Uklonjen predmet ":name".',
-    ],
-    'edit'          => [
-        'success'   => 'Ažuriran predmet ":name".',
-        'title'     => 'Uredi predmet :name',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'fields'        => [
         'character' => 'Lik',
         'image'     => 'Slika',

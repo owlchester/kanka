@@ -9,16 +9,10 @@ return [
         'title'     => 'Postavy rasy :name',
     ],
     'create'        => [
-        'success'   => 'Rasa :name vytvorená.',
-        'title'     => 'Nová rasa',
+        'title' => 'Nová rasa',
     ],
-    'destroy'       => [
-        'success'   => 'Rasa :name odstránená.',
-    ],
-    'edit'          => [
-        'success'   => 'Rasa :name upravená.',
-        'title'     => 'Upraviť rasu :name',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'fields'        => [
         'characters'    => 'Postavy',
         'name'          => 'Názov',

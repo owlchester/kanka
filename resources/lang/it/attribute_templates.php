@@ -5,16 +5,10 @@ return [
         'title' => 'Templates attributi :name',
     ],
     'create'                => [
-        'success'   => 'Template Attributi \':name\' creato.',
-        'title'     => 'Nuovo Template Attributi',
+        'title' => 'Nuovo Template Attributi',
     ],
-    'destroy'               => [
-        'success'   => 'Template Attributi \':name\' rimosso.',
-    ],
-    'edit'                  => [
-        'success'   => 'Template Attributi \':name\' aggiornato.',
-        'title'     => 'Modifica Template Attributi :name',
-    ],
+    'destroy'               => [],
+    'edit'                  => [],
     'fields'                => [
         'attribute_template'    => 'Template Attributi Genitore',
         'attributes'            => 'Attributi',

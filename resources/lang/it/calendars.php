@@ -19,16 +19,11 @@ return [
         'is_recurring'  => 'Accade ogni anno',
     ],
     'create'        => [
-        'success'   => 'Calendario \':name\' creato.',
-        'title'     => 'Nuovo Calendario',
+        'title' => 'Nuovo Calendario',
     ],
-    'destroy'       => [
-        'success'   => 'Calendario \':name\' rimosso.',
-    ],
+    'destroy'       => [],
     'edit'          => [
-        'success'   => 'Calendario \':name\' aggiornato.',
-        'title'     => 'Modifica Calendario :name',
-        'today'     => 'Data del calendario aggiornata.',
+        'today' => 'Data del calendario aggiornata.',
     ],
     'event'         => [
         'actions'   => [

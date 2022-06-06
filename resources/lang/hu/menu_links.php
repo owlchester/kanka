@@ -2,15 +2,11 @@
 
 return [
     'create'        => [
-        'success'   => '\':name\' menühivatkozást létrehoztuk.',
-        'title'     => 'Új menühivatkozás',
+        'title' => 'Új menühivatkozás',
     ],
-    'destroy'       => [
-        'success'   => '\':name\' menühivatkozást töröltük.',
-    ],
+    'destroy'       => [],
     'edit'          => [
-        'success'   => '\':name\' menühivatkozást frissítettük.',
-        'title'     => ':name menühivatkozás',
+        'title' => ':name menühivatkozás',
     ],
     'fields'        => [
         'dashboard'     => 'Főoldal',

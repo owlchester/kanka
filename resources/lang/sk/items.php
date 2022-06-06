@@ -2,16 +2,10 @@
 
 return [
     'create'        => [
-        'success'   => 'Predmet :name vytvorený.',
-        'title'     => 'Nový predmet',
+        'title' => 'Nový predmet',
     ],
-    'destroy'       => [
-        'success'   => 'Predmet :name odstránený.',
-    ],
-    'edit'          => [
-        'success'   => 'Predmet :name upravený.',
-        'title'     => 'Upraviť predmet :name',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'fields'        => [
         'character' => 'Postava',
         'image'     => 'Obrázok',

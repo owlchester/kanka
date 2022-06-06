@@ -2,17 +2,12 @@
 
 return [
     'create'        => [
-        'success'   => 'Kreirano bacanje kockice ":name".',
-        'title'     => 'Novo bacanje kockica',
+        'title' => 'Novo bacanje kockica',
     ],
     'destroy'       => [
         'dice_roll' => 'Uklonjeno bacanje kockica.',
-        'success'   => 'Uklonjeno bacanje kockica ":name".',
     ],
-    'edit'          => [
-        'success'   => 'Ažurirano bacanje kockica ":name".',
-        'title'     => 'Uredi bacanje kockica :name',
-    ],
+    'edit'          => [],
     'fields'        => [
         'created_at'    => 'Kockice bačene u',
         'name'          => 'Naziv',

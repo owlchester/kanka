@@ -9,16 +9,10 @@ return [
         'title'     => 'Персонажи расы :name',
     ],
     'create'        => [
-        'success'   => 'Раса ":name" создана.',
-        'title'     => 'Новая раса',
+        'title' => 'Новая раса',
     ],
-    'destroy'       => [
-        'success'   => 'Раса ":name" удалена.',
-    ],
-    'edit'          => [
-        'success'   => 'Раса ":name" обновлена.',
-        'title'     => 'Редактирование расы :name',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'fields'        => [
         'characters'    => 'Персонажи',
         'name'          => 'Название',

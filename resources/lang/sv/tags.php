@@ -11,16 +11,10 @@ return [
         'title'     => 'Tagg :name undertaggar',
     ],
     'create'        => [
-        'success'   => 'Tagg \':name\' skapad.',
-        'title'     => 'Ny Tagg',
+        'title' => 'Ny Tagg',
     ],
-    'destroy'       => [
-        'success'   => 'Tagg \':name\' borttagen.',
-    ],
-    'edit'          => [
-        'success'   => 'Tagg \':name\' uppdaterad.',
-        'title'     => 'Redigera Tagg :name',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'fields'        => [
         'children'  => 'Undertaggar',
         'name'      => 'Namn',

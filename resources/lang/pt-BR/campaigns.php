@@ -37,16 +37,7 @@ TEXT
         'superboosted'  => 'Este recurso está disponível apenas para campanhas Super Impulsionadas',
         'unknown_id'    => 'Campanha desconhecida',
     ],
-    'export'                            => [
-        'errors'            => [
-            'limit' => 'Você excedeu o máximo de uma exportação por dia. Por favor, tente novamente amanhã.',
-        ],
-        'helper'            => 'Exporte sua campanha. Uma notificação com um link para download será disponibilizada.',
-        'helper_secondary'  => 'Serão disponibilizados dois arquivos, um com as entidades exportadas como JSON e outro com imagens carregadas nas entidades. Observe que em campanhas maiores, a exportação de imagens trava e só pode ser recuperada usando a :api.',
-        'helper_third'      => 'Os arquivos JSON podem ser abertos com qualquer aplicativo de arquivo de texto. Eles representam os dados armazenados no banco de dados Kanka em formato de texto. Não há como importar sua exportação de volta para o Kanka.',
-        'success'           => 'A exportação da sua campanha está sendo preparada. Você receberá uma notificação em Kanka para um arquivo .zip para download assim que estiver pronto.',
-        'title'             => 'Exportação da campanha :name',
-    ],
+    'export'                            => [],
     'fields'                            => [
         'boosted'                   => 'Impulsionada por',
         'connections'               => 'Mostra a tabela de conexão de uma entidade por padrão (em vez do explorador de relação para campanhas impulsionadas)',
@@ -270,7 +261,6 @@ TEXT
         ],
         'hints'         => [
             'campaign_not_public'   => 'A função pública tem permissões, mas a campanha é privada. Você pode alterar essa configuração na guia Compartilhamento ao editar a campanha.',
-            'public'                => 'A função Pública é usada quando alguém navega em sua campanha pública. :more',
             'role_permissions'      => 'Habilitar o cargo \':name\' a fazer as seguintes ações em todas as entidades.',
         ],
         'members'       => 'Membros',

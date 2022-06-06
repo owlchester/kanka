@@ -2,15 +2,11 @@
 
 return [
     'create'            => [
-        'success'   => 'Stworzono skrót \':name\'.',
-        'title'     => 'Nowy skrót',
+        'title' => 'Nowy skrót',
     ],
-    'destroy'           => [
-        'success'   => 'Usunięto skrót menu \':name\'.',
-    ],
+    'destroy'           => [],
     'edit'              => [
-        'success'   => 'Zmieniono skrót \':name\'.',
-        'title'     => 'Skrót :name',
+        'title' => 'Skrót :name',
     ],
     'fields'            => [
         'dashboard'     => 'Pulpit',

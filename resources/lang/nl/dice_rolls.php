@@ -2,17 +2,12 @@
 
 return [
     'create'        => [
-        'success'   => 'Dobbelsteen Worp \':name\' gemaakt.',
-        'title'     => 'Nieuwe Dobbelsteen Worp',
+        'title' => 'Nieuwe Dobbelsteen Worp',
     ],
     'destroy'       => [
         'dice_roll' => 'Dobbelsteen worp verwijderd.',
-        'success'   => 'Dobbelsteen Worp \':name\' verwijderd.',
     ],
-    'edit'          => [
-        'success'   => 'Dobbelsteen Worp \':name\' bijgewerkt.',
-        'title'     => 'Wijzig Dobbelsteen Worp :name',
-    ],
+    'edit'          => [],
     'fields'        => [
         'created_at'    => 'Gerold Bij',
         'name'          => 'Naam',

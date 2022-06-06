@@ -2,16 +2,10 @@
 
 return [
     'create'        => [
-        'success'   => 'החפץ ":name" נוצר.',
-        'title'     => 'חפץ חדש',
+        'title' => 'חפץ חדש',
     ],
-    'destroy'       => [
-        'success'   => 'החפץ ":name" הוסר.',
-    ],
-    'edit'          => [
-        'success'   => 'החפץ ":name" עודכן.',
-        'title'     => 'ערוך את החפץ ":name".',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'fields'        => [
         'character' => 'דמות',
         'image'     => 'תמונה',

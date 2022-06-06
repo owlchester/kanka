@@ -5,16 +5,10 @@ return [
         'title' => 'Plantilles d\'atributs de :name',
     ],
     'create'                => [
-        'success'   => 'S\'ha creat la plantilla d\'atributs «:name».',
-        'title'     => 'Nova plantilla d\'atributs',
+        'title' => 'Nova plantilla d\'atributs',
     ],
-    'destroy'               => [
-        'success'   => 'S\'ha eliminat la plantilla d\'atributs «:name».',
-    ],
-    'edit'                  => [
-        'success'   => 'S\'ha actualitzat la plantilla d\'atributs «:name».',
-        'title'     => 'Edició de la plantilla d\'atributs :name',
-    ],
+    'destroy'               => [],
+    'edit'                  => [],
     'fields'                => [
         'attribute_template'    => 'Plantilla d\'atributs superior',
         'attributes'            => 'Atributs',

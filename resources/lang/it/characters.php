@@ -10,20 +10,14 @@ return [
         'title' => 'Conversazioni del Personaggio :name',
     ],
     'create'        => [
-        'success'   => 'Personaggio \':name\' creato.',
-        'title'     => 'Nuovo Personaggio',
+        'title' => 'Nuovo Personaggio',
     ],
-    'destroy'       => [
-        'success'   => 'Personaggio \':name\' rimosso.',
-    ],
+    'destroy'       => [],
     'dice_rolls'    => [
         'hint'  => 'I tiri di dado possono essere assegnati ad un personaggio per essere utilizzati durante la partita.',
         'title' => 'Tiri di dado del Personaggio :name',
     ],
-    'edit'          => [
-        'success'   => 'Personaggio \':name\' aggiornato.',
-        'title'     => 'Modifica del Personaggio :name',
-    ],
+    'edit'          => [],
     'fields'        => [
         'age'                       => 'Età',
         'families'                  => 'Famiglie',

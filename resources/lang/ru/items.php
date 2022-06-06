@@ -2,16 +2,10 @@
 
 return [
     'create'        => [
-        'success'   => 'Предмет ":name" создан.',
-        'title'     => 'Новый предмет',
+        'title' => 'Новый предмет',
     ],
-    'destroy'       => [
-        'success'   => 'Предмет ":name" удален.',
-    ],
-    'edit'          => [
-        'success'   => 'Предмет ":name" обновлен.',
-        'title'     => 'Редактирование предмета :name',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'fields'        => [
         'character' => 'Персонаж',
         'image'     => 'Изображение',

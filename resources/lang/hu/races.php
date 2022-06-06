@@ -9,16 +9,10 @@ return [
         'title'     => ':name fajú karakterek',
     ],
     'create'        => [
-        'success'   => 'A \':name\' fajt létrehoztuk.',
-        'title'     => 'Új faj',
+        'title' => 'Új faj',
     ],
-    'destroy'       => [
-        'success'   => 'A \':name\' fajt eltávolítottuk.',
-    ],
-    'edit'          => [
-        'success'   => 'A \':name\' fajt frissítettük.',
-        'title'     => ':name faj szerkesztése',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'fields'        => [
         'characters'    => 'Karakterek',
         'name'          => 'Név',

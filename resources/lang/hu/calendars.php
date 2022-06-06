@@ -20,16 +20,11 @@ return [
     ],
     'colours'       => [],
     'create'        => [
-        'success'   => '\':name\' naptárat létrehoztuk',
-        'title'     => 'Új naptár',
+        'title' => 'Új naptár',
     ],
-    'destroy'       => [
-        'success'   => '\':name\' naptárat eltávolítottuk',
-    ],
+    'destroy'       => [],
     'edit'          => [
-        'success'   => '\':name\' naptárat frissítettük',
-        'title'     => ':name naptár szerkesztése',
-        'today'     => 'Naptár dátum frissítve.',
+        'today' => 'Naptár dátum frissítve.',
     ],
     'event'         => [
         'actions'   => [

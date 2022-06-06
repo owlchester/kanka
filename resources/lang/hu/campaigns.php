@@ -37,15 +37,7 @@ TEXT
         'superboosted'  => 'Ez a funkció csak szuperboostolt kapányoknál elérhető.',
         'unknown_id'    => 'Ismeretlen kampány.',
     ],
-    'export'                            => [
-        'errors'            => [
-            'limit' => 'Elérted a napi exportálási lehetőségeid számát. Kérjük, holnap próbáld meg újra.',
-        ],
-        'helper'            => 'A kampányod exportálása. Kapsz majd egy értesítést a Kankában a letölthető zip állományról, amint az elkészül.',
-        'helper_secondary'  => 'Két állomány lesz elérhető, az egyik az exportált entitásokkal (JSON), a másik a feltöltött képekkel. Kérlek, vedd figyelembe, hogy nagyobb kampányok esetében a képek exportja összeomolhat, és csak a :api használatával lehet visszanyerni.',
-        'success'           => 'A kampányod exportja előkészítés alatt áll. Kapsz majd egy értesítést a Kankában a letölthető zip állományról, amint az elkészül.',
-        'title'             => ':name kampány exportálása',
-    ],
+    'export'                            => [],
     'fields'                            => [
         'boosted'                   => 'A kampány megerősítője',
         'connections'               => 'Mutasd meg egy entitás kapcsolati tábláját az alapértelmezettek szerint (a megerősített kampányok viszonyfelfedezője helyett)',
@@ -256,7 +248,6 @@ TEXT
         ],
         'hints'         => [
             'campaign_not_public'   => 'A publikus szerep adna jogosultságokat, de a kampány privát láthatóságú. Megváltoztathatod ezt a beállítást a Megosztás fülön, a kampány szerkesztése közben.',
-            'public'                => 'A Nyilvános szerepet akkor használjuk, amikor valaki a nyilvános kampányodat böngészi. :more',
             'role_permissions'      => ':name szerep számára engedélyezni az alábbi tevékenységeket minden etnitás esetében.',
         ],
         'members'       => 'Tagok',

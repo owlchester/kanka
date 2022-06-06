@@ -37,16 +37,7 @@ TEXT
         'superboosted'  => 'Esta funcionalidad solo está disponible para las campañas supermejoradas.',
         'unknown_id'    => 'Campaña desconocida.',
     ],
-    'export'                            => [
-        'errors'            => [
-            'limit' => 'Has alcanzado el máximo de una exportación por día. Por favor, inténtalo de nuevo mañana.',
-        ],
-        'helper'            => 'Exporta la campaña. Recibirás una notificación con el enlace de descarga.',
-        'helper_secondary'  => 'Habrá dos archivos disponibles, uno con las entidades exportadas como JSON, y otro con las imágenes subidas a las entidades. Ten en cuenta que, en campañas grandes, la exportación de imágenes puede colgarse y solo puede recuperarse mediante la :api.',
-        'helper_third'      => 'Los archivos JSON pueden abrirse con cualquier editor de textos. Representan los datos que se guardan en la base de datos de Kanka en un formato de texto. No se puede importar dicha exportación de vuelta a Kanka.',
-        'success'           => 'Tu campaña se está preparando para exportar. Recibirás una notificación en Kanka a un zip descargable en cuanto esté lista.',
-        'title'             => 'Exportar campaña :name',
-    ],
+    'export'                            => [],
     'fields'                            => [
         'boosted'                           => 'Mejorada por',
         'character_personality_visibility'  => 'Visibilidad por defecto de la personalidad',
@@ -278,7 +269,6 @@ TEXT
         ],
         'hints'         => [
             'campaign_not_public'   => 'El rol "Público" tiene permisos pero la campaña es privada. Puedes ajustar esto en la pestaña Compartir al editar la campaña.',
-            'public'                => 'El rol "Público" se usa para los que visitan tu campaña pública.',
             'role_permissions'      => 'Habilitar el rol ":name" para que pueda hacer las siguientes acciones en todas las entidades.',
         ],
         'members'       => 'Miembros',

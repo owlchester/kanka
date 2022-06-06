@@ -2,16 +2,10 @@
 
 return [
     'create'        => [
-        'success'   => 'Udalosť :name vytvorená.',
-        'title'     => 'Nová udalosť',
+        'title' => 'Nová udalosť',
     ],
-    'destroy'       => [
-        'success'   => 'Udalosť :name odstránená.',
-    ],
-    'edit'          => [
-        'success'   => 'Udalosť :name upravená.',
-        'title'     => 'Upraviť udalosť :name',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'events'        => [
         'helper'    => 'Udalosti, ktoré majú tento objekt ako ich nadradený, sa zobrazujú tu.',
         'title'     => 'Udalosti podradené :name',

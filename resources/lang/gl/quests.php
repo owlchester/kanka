@@ -2,16 +2,10 @@
 
 return [
     'create'        => [
-        'success'   => 'Misión ":name" creada.',
-        'title'     => 'Nova misión',
+        'title' => 'Nova misión',
     ],
-    'destroy'       => [
-        'success'   => 'Misión ":name" eliminada.',
-    ],
-    'edit'          => [
-        'success'   => 'Misión ":name" actualizada.',
-        'title'     => 'Editar misión ":name"',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'elements'      => [
         'create'    => [
             'success'   => 'Entidade ":entity" engadida á misión.',

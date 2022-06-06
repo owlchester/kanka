@@ -2,15 +2,11 @@
 
 return [
     'create'        => [
-        'success'   => 'Poveznica ":name" kreirana u izborniku.',
-        'title'     => 'Nova poveznica izbornika',
+        'title' => 'Nova poveznica izbornika',
     ],
-    'destroy'       => [
-        'success'   => 'Poveznica ":name" uklonjena iz izbornika.',
-    ],
+    'destroy'       => [],
     'edit'          => [
-        'success'   => 'Poveznica ":name" ažurirana u izborniku.',
-        'title'     => 'Poveznica izbornika :name',
+        'title' => 'Poveznica izbornika :name',
     ],
     'fields'        => [
         'dashboard'     => 'Naslovna ploča',

@@ -2,16 +2,10 @@
 
 return [
     'create'        => [
-        'success'   => 'Rod ":name" vytvořen.',
-        'title'     => 'Nový rod',
+        'title' => 'Nový rod',
     ],
-    'destroy'       => [
-        'success'   => 'Rod ":name" odstraněn.',
-    ],
-    'edit'          => [
-        'success'   => 'Rod ":name" aktualizován.',
-        'title'     => 'Upravit rod :name',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'families'      => [
         'title' => 'Rody rodu :name',
     ],

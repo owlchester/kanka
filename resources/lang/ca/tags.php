@@ -12,16 +12,10 @@ return [
         'title'     => 'Descendents de l\'etiqueta :name',
     ],
     'create'        => [
-        'success'   => 'S\'ha creat l\'etiqueta «:name».',
-        'title'     => 'Nova etiqueta',
+        'title' => 'Nova etiqueta',
     ],
-    'destroy'       => [
-        'success'   => 'S\'ha eliminat l\'etiqueta «:name».',
-    ],
-    'edit'          => [
-        'success'   => 'S\'ha actualitzat l\'etiqueta «:name».',
-        'title'     => 'Edita l\'etiqueta :name',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'fields'        => [
         'children'  => 'Entitats niades',
         'name'      => 'Nom',

@@ -9,16 +9,10 @@ return [
         'title'     => 'Ras :name Karaktärer',
     ],
     'create'        => [
-        'success'   => 'Ras \':name\' skapad.',
-        'title'     => 'Ny Ras',
+        'title' => 'Ny Ras',
     ],
-    'destroy'       => [
-        'success'   => 'Ras \':name\' borttagen.',
-    ],
-    'edit'          => [
-        'success'   => 'Ras \':name\' uppdaterad.',
-        'title'     => 'Redigera Ras :name',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'fields'        => [
         'characters'    => 'Karaktärer',
         'name'          => 'Namn',

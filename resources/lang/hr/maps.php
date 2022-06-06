@@ -7,16 +7,10 @@ return [
         'explore'   => 'Istraži',
     ],
     'create'        => [
-        'success'   => 'Kreirana karta :name.',
-        'title'     => 'Nova karta',
+        'title' => 'Nova karta',
     ],
-    'destroy'       => [
-        'success'   => 'Uklonjena karta :name.',
-    ],
-    'edit'          => [
-        'success'   => 'Ažurirana karta :name.',
-        'title'     => 'Uredi kartu :name',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'errors'        => [
         'dashboard' => [
             'missing'   => 'Ova karta treba sliku kako bi se mogla prikazati na naslovnoj ploči.',

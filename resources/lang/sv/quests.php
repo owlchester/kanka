@@ -2,16 +2,10 @@
 
 return [
     'create'        => [
-        'success'   => 'Uppdrag \':name\' skapat.',
-        'title'     => 'Nytt Uppdrag',
+        'title' => 'Nytt Uppdrag',
     ],
-    'destroy'       => [
-        'success'   => 'Uppdrag \':name\' borttaget.',
-    ],
-    'edit'          => [
-        'success'   => 'Uppdrag \':name\' uppdaterat.',
-        'title'     => 'Redigera Uppdrag :name',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'fields'        => [
         'character'     => 'Anstiftare',
         'copy_elements' => 'Kopiera element fästa till uppdraget',

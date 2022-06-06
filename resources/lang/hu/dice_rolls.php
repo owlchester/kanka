@@ -2,17 +2,12 @@
 
 return [
     'create'        => [
-        'success'   => ':name dobást létrehoztuk.',
-        'title'     => 'Új dobás',
+        'title' => 'Új dobás',
     ],
     'destroy'       => [
         'dice_roll' => 'A dobást eltávolítottuk.',
-        'success'   => '\':name\' dobást eltávolítottuk.',
     ],
-    'edit'          => [
-        'success'   => '\':name\' dobást frissítettük.',
-        'title'     => ':name dobás szerkesztése',
-    ],
+    'edit'          => [],
     'fields'        => [
         'created_at'    => 'Dobott',
         'name'          => 'Megnevezés',

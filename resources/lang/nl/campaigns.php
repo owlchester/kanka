@@ -37,15 +37,7 @@ TEXT
         'superboosted'  => 'Deze functie is alleen beschikbaar voor superboost-campaigns.',
         'unknown_id'    => 'Onbekende Campaign.',
     ],
-    'export'                            => [
-        'errors'            => [
-            'limit' => 'Je hebt je maximum van één export per dag overschreden. Probeer het morgen opnieuw.',
-        ],
-        'helper'            => 'Exporteer je campaign. Een melding met een downloadlink wordt beschikbaar gesteld.',
-        'helper_secondary'  => 'Er worden twee bestanden beschikbaar gemaakt, een met de entiteiten exporteur als JSON en een andere met afbeeldingen geüpload naar entiteiten. Houd er rekening mee dat bij grotere campagnes de export van afbeeldingen crasht en alleen kan worden hersteld met de :api.',
-        'success'           => 'Je campaign-export wordt voorbereid. Je ontvangt een melding in Kanka voor een downloadbare zip zodra deze klaar is.',
-        'title'             => 'Campaign :name Exporteren',
-    ],
+    'export'                            => [],
     'fields'                            => [
         'boosted'                   => 'Boosted door',
         'css'                       => 'CSS',
@@ -233,7 +225,6 @@ TEXT
         ],
         'hints'         => [
             'campaign_not_public'   => 'De openbare rol heeft machtigingen, maar de campaign is privé. Je kunt deze instelling wijzigen op het tabblad Delen wanneer je de campaign bewerkt.',
-            'public'                => 'De Openbaar rol wordt gebruikt wanneer iemand je openbare campaign doorbladert. :more',
             'role_permissions'      => 'Schakel de rol \':name\' in om de volgende acties op alle entiteiten uit te voeren.',
         ],
         'members'       => 'Leden',

@@ -5,16 +5,10 @@ return [
         'title' => 'Personnages situés dans :name',
     ],
     'create'        => [
-        'success'   => 'Lieu \':name\' créé.',
-        'title'     => 'Ajouter un lieu',
+        'title' => 'Ajouter un lieu',
     ],
-    'destroy'       => [
-        'success'   => 'Lieu \':name\' supprimé.',
-    ],
-    'edit'          => [
-        'success'   => 'Lieu \':name\' modifié.',
-        'title'     => 'Modifier Lieu :name',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'events'        => [
         'title' => 'Evénements du lieu :name',
     ],

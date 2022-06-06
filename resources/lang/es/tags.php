@@ -12,16 +12,10 @@ return [
         'title'     => 'Descendientes de la etiqueta :name',
     ],
     'create'        => [
-        'success'   => 'Etiqueta ":name" creada.',
-        'title'     => 'Nueva etiqueta',
+        'title' => 'Nueva etiqueta',
     ],
-    'destroy'       => [
-        'success'   => 'Etiqueta ":name" eliminada.',
-    ],
-    'edit'          => [
-        'success'   => 'Etiqueta ":name" actualizada.',
-        'title'     => 'Editar etiqueta :name',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'fields'        => [
         'children'  => 'Entidades anidadas',
         'name'      => 'Nombre',

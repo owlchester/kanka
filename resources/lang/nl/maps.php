@@ -7,16 +7,10 @@ return [
         'explore'   => 'Verkennen',
     ],
     'create'        => [
-        'success'   => 'Kaart :name gemaakt.',
-        'title'     => 'Nieuwe Kaart',
+        'title' => 'Nieuwe Kaart',
     ],
-    'destroy'       => [
-        'success'   => 'Kaart :name verwijderd.',
-    ],
-    'edit'          => [
-        'success'   => 'Kaart :name bijgewerkt.',
-        'title'     => 'Wijzig Kaart :name',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'errors'        => [
         'dashboard' => [
             'missing'   => 'Deze kaart heeft een afbeelding nodig om op het dashboard te kunnen weergeven.',

@@ -19,16 +19,11 @@ return [
         'is_recurring'  => '每年发生',
     ],
     'create'        => [
-        'success'   => '成功创建日历：:name',
-        'title'     => '新日历',
+        'title' => '新日历',
     ],
-    'destroy'       => [
-        'success'   => '成功移除日历：:name',
-    ],
+    'destroy'       => [],
     'edit'          => [
-        'success'   => '成功更新日历：:name',
-        'title'     => '编辑日历：:name',
-        'today'     => '日历日期已更新。',
+        'today' => '日历日期已更新。',
     ],
     'event'         => [
         'actions'   => [
@@ -56,7 +51,10 @@ return [
         'success'   => '成功向日历添加事件提示：:event',
     ],
     'events'        => [
-        'title' => ':name中的事件',
+        'filters'   => [
+            'show_all'  => '显示全部',
+        ],
+        'title'     => ':name中的事件',
     ],
     'fields'        => [
         'calendar'              => '父日历',
@@ -67,6 +65,8 @@ return [
         'current_month'         => '当前月',
         'current_year'          => '当前年',
         'date'                  => '当前日期',
+        'day'                   => '日',
+        'default_layout'        => '默认布局',
         'has_leap_year'         => '存在闰年',
         'intercalary'           => '闰日',
         'is_incrementing'       => '日期推进',
@@ -77,6 +77,7 @@ return [
         'leap_year_start'       => '闰年',
         'length'                => '事件长度',
         'length_days'           => ':count天|:count天',
+        'month'                 => '月',
         'months'                => '月',
         'moons'                 => '月相',
         'name'                  => '名称',
@@ -90,6 +91,7 @@ return [
         'type'                  => '种类',
         'week_names'            => '周名',
         'weekdays'              => '工作日',
+        'year'                  => '年',
     ],
     'helpers'       => [
         'month_type'    => '闰月不使用工作日，但仍然影响月亮和季节。',

@@ -2,15 +2,11 @@
 
 return [
     'create'        => [
-        'success'   => '\':name\' beszélgetést létrehoztuk.',
-        'title'     => 'Új beszélgetés',
+        'title' => 'Új beszélgetés',
     ],
-    'destroy'       => [
-        'success'   => '\':name\' beszélgetést eltávolítottuk.',
-    ],
+    'destroy'       => [],
     'edit'          => [
-        'success'   => '\':name\' beszélgetést frissítettük.',
-        'title'     => ':name beszélgetés',
+        'title' => ':name beszélgetés',
     ],
     'fields'        => [
         'is_closed'     => 'Lezárva',

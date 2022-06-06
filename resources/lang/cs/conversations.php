@@ -2,15 +2,11 @@
 
 return [
     'create'        => [
-        'success'   => 'Rozhovor ":name" vytvořen',
-        'title'     => 'Nový rozhovor',
+        'title' => 'Nový rozhovor',
     ],
-    'destroy'       => [
-        'success'   => 'Rozhovor ":name" smazán.',
-    ],
+    'destroy'       => [],
     'edit'          => [
-        'success'   => 'Rozhovor ":name" aktualizován.',
-        'title'     => 'Rozhovor ":name"',
+        'title' => 'Rozhovor ":name"',
     ],
     'fields'        => [
         'is_closed'     => 'Uzavřený',

@@ -2,16 +2,10 @@
 
 return [
     'create'        => [
-        'success'   => 'Kreiran događaj ":name"',
-        'title'     => 'Novi događaj',
+        'title' => 'Novi događaj',
     ],
-    'destroy'       => [
-        'success'   => 'Uklonjen događaj ":name".',
-    ],
-    'edit'          => [
-        'success'   => 'Ažuriran događaj ":name".',
-        'title'     => 'Uredi događaj :name',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'events'        => [
         'title' => 'Događaji događaja :name',
     ],

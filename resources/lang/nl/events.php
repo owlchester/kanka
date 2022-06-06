@@ -2,16 +2,10 @@
 
 return [
     'create'        => [
-        'success'   => 'Gebeurtenis \':name\' gemaakt.',
-        'title'     => 'Nieuwe gebeurtenis',
+        'title' => 'Nieuwe gebeurtenis',
     ],
-    'destroy'       => [
-        'success'   => 'Gebeurtenis \':name\' verwijderd.',
-    ],
-    'edit'          => [
-        'success'   => 'Gebeurtenis \':name\' bijgewerkt.',
-        'title'     => 'Wijzig Gebeurtenis :name',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'events'        => [
         'title' => 'Gebeurtenis :name Gebeurtenissen',
     ],

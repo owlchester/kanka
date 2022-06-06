@@ -5,16 +5,10 @@ return [
         'title' => ':name predlošci svojstva',
     ],
     'create'                => [
-        'success'   => 'Kreiran predložak svojstva ":name".',
-        'title'     => 'Novi predložak svojstva',
+        'title' => 'Novi predložak svojstva',
     ],
-    'destroy'               => [
-        'success'   => 'Uklonjen predložak svojstva ":name".',
-    ],
-    'edit'                  => [
-        'success'   => 'Ažuriran predložak svojstva ":name".',
-        'title'     => 'Uredi predložak svojstva :name',
-    ],
+    'destroy'               => [],
+    'edit'                  => [],
     'fields'                => [
         'attribute_template'    => 'Predložak svojstva roditelj',
         'attributes'            => 'Svojstva',

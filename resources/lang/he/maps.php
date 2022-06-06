@@ -7,16 +7,10 @@ return [
         'explore'   => 'חקור',
     ],
     'create'        => [
-        'success'   => 'המפה :name נוצרה.',
-        'title'     => 'מפה חדשה',
+        'title' => 'מפה חדשה',
     ],
-    'destroy'       => [
-        'success'   => 'המפה :name הוסרה.',
-    ],
-    'edit'          => [
-        'success'   => 'המפה :name עודכנה.',
-        'title'     => 'ערוך את המפה :name',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'errors'        => [
         'dashboard' => [
             'missing'   => 'מפה זו זקוקה לתמונה כדי להופיע במסך הבית.',

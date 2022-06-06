@@ -2,16 +2,10 @@
 
 return [
     'create'        => [
-        'success'   => 'Journal \':name\' skapad.',
-        'title'     => 'Ny Journal',
+        'title' => 'Ny Journal',
     ],
-    'destroy'       => [
-        'success'   => 'Journal \':name\' borttagen.',
-    ],
-    'edit'          => [
-        'success'   => 'Journal \':name\' uppdaterad.',
-        'title'     => 'Redigera Journal :name',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'fields'        => [
         'author'    => 'Författare',
         'date'      => 'Datum',

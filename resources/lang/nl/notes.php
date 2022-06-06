@@ -2,16 +2,10 @@
 
 return [
     'create'        => [
-        'success'   => 'Notitie \':name\' gemaakt.',
-        'title'     => 'Nieuwe Notitie',
+        'title' => 'Nieuwe Notitie',
     ],
-    'destroy'       => [
-        'success'   => 'Notitie \':name\' verwijderd.',
-    ],
-    'edit'          => [
-        'success'   => 'Notitie \':name\' bijgewerkt.',
-        'title'     => 'Wijzig Notitie :name',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'fields'        => [
         'description'   => 'Beschrijving',
         'image'         => 'Afbeelding',

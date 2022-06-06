@@ -2,16 +2,10 @@
 
 return [
     'create'        => [
-        'success'   => 'Kreirana obitelj ":name".',
-        'title'     => 'Nova obitelj',
+        'title' => 'Nova obitelj',
     ],
-    'destroy'       => [
-        'success'   => 'Uklonjena obitelj ":name".',
-    ],
-    'edit'          => [
-        'success'   => 'Ažurirana obitelj ":name".',
-        'title'     => 'Uredi obitelj :name',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'families'      => [
         'title' => 'Obitelji od obitelji :name',
     ],
