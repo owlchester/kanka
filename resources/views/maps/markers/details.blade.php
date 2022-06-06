@@ -33,13 +33,15 @@
         @endif
     @endif
 
-    @if($marker->entity && $marker->entity->typeID() === config('entities.ids.location') && !$marker->entity->child->maps->isEmpty())
-        <div class="profile-maps">
-            @foreach ($marker->entity->child->maps as $map)                
-                <a href="{{ route('maps.explore', $map) }}" class="btn btn-block btn-primary" target="_blank">
-                    <i class="fa-solid fa-map" aria-hidden="true"></i> {{ __('maps.actions.explore') }}
-                </a>
-            @endforeach
+    @if($marker->entity && $marker->entity->typeID() === config('entities.ids.location') && !$marker->entity->child->maps->isEmpty())   
+        <div class="marker-actions text-center">    
+            <div class="profile-maps">
+                @foreach ($marker->entity->child->maps as $map)                
+                    <a href="{{ route('maps.explore', $map) }}" class="btn btn-block btn-primary" target="_blank">
+                        <i class="fa-solid fa-map" aria-hidden="true"></i> {!!__('maps.actions.explore'),' ', $map->name !!}
+                    </a>
+                @endforeach
+            </div>
         </div>
     @endif
 
