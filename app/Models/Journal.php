@@ -230,7 +230,7 @@ class Journal extends MiscModel
             return true;
         }
 
-        if (!empty($this->author)) {
+        if (!empty($this->author) || !empty($this->location)) {
             return true;
         }
 

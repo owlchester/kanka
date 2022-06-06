@@ -12,7 +12,8 @@
     </div>
 
     <div class="sidebar-elements collapse in" id="sidebar-profile-elements">
-
+        @include('entities.components.profile._location')
+        @include('entities.components.profile._type')
         @if ($model->date)
             <div class="element profile-date">
                 <div class="title">{{ __('journals.fields.date') }}</div>
