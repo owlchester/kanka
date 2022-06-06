@@ -5,9 +5,6 @@ namespace App\Http\Controllers;
 use App\Datagrids\Filters\AttributeTemplateFilter;
 use App\Models\AttributeTemplate;
 use App\Http\Requests\StoreAttributeTemplate;
-use App\Services\RandomAttributeTemplateService;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Session;
 
 class AttributeTemplateController extends CrudController
 {

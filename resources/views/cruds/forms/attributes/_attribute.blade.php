@@ -66,6 +66,6 @@ if ($attribute->isSection()) {
             @endcan
         </div>
 
-        {!! Form::hidden('attr_type[' . $id . ']', $attribute->type) !!}
+        {!! Form::hidden('attr_type[' . $id . ']', $attribute->type_id) !!}
     </div>
 </div>
