@@ -57,6 +57,7 @@ return [
         'question'      => 'Point d\'interrogation',
     ],
     'placeholders'  => [
+        'custom_icon'   => 'Essaie :example1 ou :example2',
         'custom_shape'  => '100,100, 200,240, 340,110',
         'name'          => 'Nom du marqueur',
     ],

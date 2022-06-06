@@ -9,7 +9,7 @@ return [
         'save_order'    => 'Save new order',
     ],
     'create'        => [
-        'title'     => 'New Timeline',
+        'title' => 'New Timeline',
     ],
     'fields'        => [
         'copy_elements' => 'Copy Elements',

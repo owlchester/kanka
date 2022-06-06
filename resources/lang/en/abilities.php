@@ -16,7 +16,7 @@ return [
         'title'         => 'Ability :name Entities',
     ],
     'create'        => [
-        'title'     => 'New Ability',
+        'title' => 'New Ability',
     ],
     'entities'      => [
         'title' => 'Entities with the :name ability',

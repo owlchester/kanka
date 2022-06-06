@@ -2,7 +2,7 @@
 
 return [
     'create'        => [
-        'title'     => 'New Quest',
+        'title' => 'New Quest',
     ],
     'elements'      => [
         'create'    => [

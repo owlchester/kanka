@@ -20,10 +20,10 @@ return [
         'is_recurring'  => 'Takes place every year',
     ],
     'create'        => [
-        'title'     => 'New Calendar',
+        'title' => 'New Calendar',
     ],
     'edit'          => [
-        'today'     => 'Calendar date updated.',
+        'today' => 'Calendar date updated.',
     ],
     'event'         => [
         'actions'   => [
@@ -211,7 +211,7 @@ return [
     ],
     'show'          => [
         'missing_details'       => 'This calendar couldn\'t be displayed. Calendars need at least 2 months and 2 weekdays to render properly.',
-        'moon_1first_quarter'    => ':moon first quarter',
+        'moon_1first_quarter'   => ':moon first quarter',
         'moon_full'             => ':moon full moon',
         'moon_last_quarter'     => ':moon last quarter',
         'moon_new'              => ':moon new moon',

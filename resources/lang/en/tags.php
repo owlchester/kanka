@@ -12,7 +12,7 @@ return [
         'title'     => 'Tag :name Children',
     ],
     'create'        => [
-        'title'     => 'New Tag',
+        'title' => 'New Tag',
     ],
     'fields'        => [
         'children'  => 'Children',

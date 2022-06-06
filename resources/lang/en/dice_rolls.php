@@ -2,7 +2,7 @@
 
 return [
     'create'        => [
-        'title'     => 'New Dice Roll',
+        'title' => 'New Dice Roll',
     ],
     'destroy'       => [
         'dice_roll' => 'Dice roll removed.',

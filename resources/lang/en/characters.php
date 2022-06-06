@@ -10,7 +10,7 @@ return [
         'title' => 'Character :name Conversations',
     ],
     'create'        => [
-        'title'     => 'New Character',
+        'title' => 'New Character',
     ],
     'dice_rolls'    => [
         'hint'  => 'Dice rolls can be assigned to a character for in game usage.',

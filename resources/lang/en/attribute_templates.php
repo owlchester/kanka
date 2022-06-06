@@ -5,7 +5,7 @@ return [
         'title' => ':name attribute templates',
     ],
     'create'                => [
-        'title'     => 'New Attribute Template',
+        'title' => 'New Attribute Template',
     ],
     'fields'                => [
         'attribute_template'    => 'Parent Attribute Template',

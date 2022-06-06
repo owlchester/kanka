@@ -2,7 +2,7 @@
 
 return [
     'create'        => [
-        'title'     => 'New Journal',
+        'title' => 'New Journal',
     ],
     'fields'        => [
         'author'    => 'Author',

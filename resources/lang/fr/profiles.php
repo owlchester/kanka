@@ -82,6 +82,7 @@ return [
         'delete'        => [
             'confirm'       => 'Oui, supprimer mon compte',
             'delete'        => 'Supprimer mon compte',
+            'goodbye'       => 'Pour confirmer cette action, écris :code dans le champ ci-dessous.',
             'helper'        => 'Supprimer ton compte supprimera aussi toutes les campagnes où tu es le seul membre. Ceci est permanent et ne peut pas être défait.',
             'subscribed'    => 'Prière d\'annuler ton :subscription avant de pouvoir supprimer ton compte.',
             'title'         => 'Suppression du compte',

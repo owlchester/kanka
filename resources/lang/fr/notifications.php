@@ -39,6 +39,9 @@ return [
     'index'             => [
         'title' => 'Notifications',
     ],
+    'map'               => [
+        'chunked'   => 'La carte :name a fini d\'être traitée et est maintenant utilisable.',
+    ],
     'no_notifications'  => 'Il n\'y a actuellement aucune notification.',
     'subscriptions'     => [
         'charge_fail'   => 'Une erreur est survenue lors du paiement. Kanka va ressayer encore une fois. Si rien ne change, prière de nous contacter.',

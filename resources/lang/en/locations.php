@@ -5,7 +5,7 @@ return [
         'title' => 'Location :name Characters',
     ],
     'create'        => [
-        'title'     => 'New Location',
+        'title' => 'New Location',
     ],
     'events'        => [
         'title' => 'Location :name Events',

@@ -2,7 +2,7 @@
 
 return [
     'create'        => [
-        'title'     => 'New Event',
+        'title' => 'New Event',
     ],
     'events'        => [
         'helper'    => 'Events that have this entity as their parent event are displayed here.',

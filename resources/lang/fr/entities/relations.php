@@ -28,6 +28,7 @@ return [
         'option'    => 'Supprimer la relation miroir',
     ],
     'destroy'           => [
+        'mirrored'  => 'Ceci supprimera aussi la relation liée et est permanent.',
         'success'   => 'Relation :target supprimée pour :entity.',
     ],
     'fields'            => [

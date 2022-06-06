@@ -217,7 +217,7 @@ return [
     ],
     'show'          => [
         'missing_details'       => 'Le calendrier ne peut pas être affiché. Un calendrier a besoin d\'au moins 2 mois et de 2 jours de la semaine pour être affiché correctement.',
-        'moon_first_quarter'    => ':moon premier quartier',
+        'moon_1first_quarter'   => ':moon premier quartier',
         'moon_full'             => ':moon pleine lune',
         'moon_last_quarter'     => ':moon dernier quartier',
         'moon_new'              => ':moon nouvelle lune',
