@@ -51,8 +51,8 @@ $sizeOptions = [
             <div class="row">
                 <div class="col-xs-6">
                     <div class="form-group">
-                        <label>{{ __('locations.map.points.fields.icon') }}</label>
-                        {!! Form::select('icon', $iconOptions, \App\Facades\FormCopy::field('icon')->string(), ['class' => 'form-control']) !!}
+                        <label for="icon">{{ __('locations.map.points.fields.icon') }}</label>
+                        {!! Form::select('icon', $iconOptions, \App\Facades\FormCopy::field('icon')->string(), ['class' => 'form-control', 'id' => 'icon']) !!}
                     </div>
                 </div>
                 <div class="col-xs-6">
@@ -69,8 +69,8 @@ $sizeOptions = [
             </div>
             <div class="row">
                 <div class="col-xs-6">
-                    <label>{{ __('maps/markers.fields.pin_size') }}</label><br />
-                    {!! Form::number('pin_size', \App\Facades\FormCopy::field('pin_size')->string(), ['class' => 'form-control', 'maxlength' => 3, 'step' => 2, 'max' => 100, 'min' => 10, 'placeholder' => 40] ) !!}
+                    <label for="pin_size">{{ __('maps/markers.fields.pin_size') }}</label><br />
+                    {!! Form::number('pin_size', \App\Facades\FormCopy::field('pin_size')->string(), ['class' => 'form-control', 'maxlength' => 3, 'step' => 2, 'max' => 100, 'min' => 10, 'placeholder' => 40, 'id' => 'pin_size'] ) !!}
                 </div>
 
                 <div class="col-xs-6">
@@ -99,14 +99,14 @@ $sizeOptions = [
             <div class="row">
                 <div class="col-xs-6">
                     <div class="form-group">
-                        <label>{{ __('locations.map.points.fields.size') }}</label>
-                        {!! Form::select('size_id', $sizeOptions, \App\Facades\FormCopy::field('size_id')->string(), ['class' => 'form-control']) !!}
+                        <label for="size_id">{{ __('locations.map.points.fields.size') }}</label>
+                        {!! Form::select('size_id', $sizeOptions, \App\Facades\FormCopy::field('size_id')->string(), ['class' => 'form-control', 'id' => 'size_id']) !!}
                     </div>
                 </div>
                 <div class="col-xs-6" style="">
                     <div class="form-group">
-                        <label>{{ __('maps/markers.fields.circle_radius') }}</label>
-                        {!! Form::text('circle_radius', \App\Facades\FormCopy::field('circle_radius')->string(), ['class' => 'form-control map-marker-circle-radius', 'style' => (!isset($model) || $model->shape_id != 6) ? 'display:none;' : '']) !!}
+                        <label for="circle_radius">{{ __('maps/markers.fields.circle_radius') }}</label>
+                        {!! Form::text('circle_radius', \App\Facades\FormCopy::field('circle_radius')->string(), ['class' => 'form-control map-marker-circle-radius', 'id' => 'circle_radius', 'style' => (!isset($model) || $model->shape_id != 6) ? 'display:none;' : '']) !!}
                         <p class="help-block map-marker-circle-helper">{{ __('maps/markers.helpers.custom_radius') }}</p>
                     </div>
                 </div>
@@ -134,14 +134,14 @@ $sizeOptions = [
                 </div>
                 <div class="col-xs-6 col-md-4">
                     <div class="form-group">
-                        <label>{{ __('maps/markers.fields.polygon_style.stroke-width') }}</label>
-                        {!! Form::number('polygon_style[stroke-width]', \App\Facades\FormCopy::field('polygon_style[stroke-width]')->string(), ['class' => 'form-control', 'maxlength' => 2, 'step' => 1, 'max' => 99, 'min' => 0]) !!}
+                        <label for="stroke-width">{{ __('maps/markers.fields.polygon_style.stroke-width') }}</label>
+                        {!! Form::number('polygon_style[stroke-width]', \App\Facades\FormCopy::field('polygon_style[stroke-width]')->string(), ['class' => 'form-control', 'maxlength' => 2, 'step' => 1, 'max' => 99, 'min' => 0, 'id' => 'stroke-width']) !!}
                     </div>
                 </div>
                 <div class="col-xs-6 col-md-4">
                     <div class="form-group">
-                        <label>{{ __('maps/markers.fields.polygon_style.stroke-opacity') }}</label>
-                        {!! Form::number('polygon_style[stroke-opacity]', \App\Facades\FormCopy::field('polygon_style[stroke-opacity]')->string(), ['class' => 'form-control', 'maxlength' => 3, 'step' => 10, 'max' => 100, 'min' => 0]) !!}
+                        <label for="stroke-opacity">{{ __('maps/markers.fields.polygon_style.stroke-opacity') }}</label>
+                        {!! Form::number('polygon_style[stroke-opacity]', \App\Facades\FormCopy::field('polygon_style[stroke-opacity]')->string(), ['class' => 'form-control', 'maxlength' => 3, 'step' => 10, 'max' => 100, 'min' => 0, 'id' => 'stroke-opacity']) !!}
                     </div>
                 </div>
             </div>
@@ -152,8 +152,8 @@ $sizeOptions = [
 <div class="row">
     <div class="col-sm-6">
         <div class="form-group">
-            <label>{{ __('crud.fields.name') }}</label>
-            {!! Form::text('name', \App\Facades\FormCopy::field('name')->string(), ['placeholder' => __('maps/markers.placeholders.name'), 'class' => 'form-control', 'maxlength' => 191]) !!}
+            <label for="name">{{ __('crud.fields.name') }}</label>
+            {!! Form::text('name', \App\Facades\FormCopy::field('name')->string(), ['placeholder' => __('maps/markers.placeholders.name'), 'class' => 'form-control', 'maxlength' => 191, 'id' => 'name']) !!}
         </div>
     </div>
     <div class="col-sm-6">
@@ -189,8 +189,8 @@ $sizeOptions = [
 <div class="row">
     <div class="col-sm-6">
         <div class="form-group">
-            <label>{{ __('maps/markers.fields.opacity') }}</label><br />
-            {!! Form::number('opacity', (!empty($source) ? $source->opacity : (isset($model) ? $model->opacity : 100)), ['class' => 'form-control', 'maxlength' => 3, 'step' => 10, 'max' => 100, 'min' => 0] ) !!}
+            <label for="opacity">{{ __('maps/markers.fields.opacity') }}</label><br />
+            {!! Form::number('opacity', (!empty($source) ? $source->opacity : (isset($model) ? $model->opacity : 100)), ['class' => 'form-control', 'maxlength' => 3, 'step' => 10, 'max' => 100, 'min' => 0, 'id' => 'opacity'] ) !!}
         </div>
     </div>
     <div class="col-sm-6" id="map-marker-bg-colour" @if((isset($model) && $model->isLabel()) || (isset($source) && $source->isLabel())) style="display: none;"@endif>
@@ -204,7 +204,7 @@ $sizeOptions = [
 <div class="row">
     <div class="col-sm-6">
         <div class="form-group">
-            <label for="visibility">
+            <label for="group_id">
                 {{ trans('maps/markers.fields.group') }}
             </label>
             {{ Form::select('group_id', $map->groupOptions(), \App\Facades\FormCopy::field('group_id')->string(), ['class' => 'form-control', 'id' => 'group_id']) }}

@@ -1,10 +1,7 @@
 <?php
 
-
 namespace App\Http\Requests;
 
-
-use App\Http\Resources\ApiExclusion;
 use App\Traits\ApiRequest;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -48,12 +45,11 @@ class StoreMapMarker extends FormRequest
             'icon' => 'required|integer',
             'custom_icon' => 'nullable|string',
             'circle_radius' => 'nullable|integer',
+            'opacity' => 'nullable|min:0|max:100|integer',
 
             'marker_size' => 'nullable|integer|min:10',
         ];
 
-
         return $this->clean($rules);
     }
-
 }

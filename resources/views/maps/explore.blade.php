@@ -191,63 +191,61 @@
     <div class="modal fade" id="marker-modal" role="dialog" aria-labelledby="deleteConfirmLabel">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
+                {!! Form::open(['route' => ['maps.map_markers.store', $map], 'method' => 'POST', 'data-shortcut' => 1, 'id' => 'map-marker-form', 'class' => 'ajax-subform']) !!}
+                    <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal"
                             aria-label="{{ trans('crud.delete_modal.close') }}"><span
                                 aria-hidden="true">&times;</span></button>
-                        <h4>
+                        <h4 class="modal-title">
                             {{ __('maps/markers.create.title', ['name' => $map->name]) }}
                         </h4>
                     </div>
-                    <div class="panel-body">
-
-                        {!! Form::open(['route' => ['maps.map_markers.store', $map], 'method' => 'POST', 'data-shortcut' => 1, 'id' => 'map-marker-form', 'class' => 'ajax-subform']) !!}
+                    <div class="modal-body">
                         @include('maps.markers._form', ['model' => null, 'map' => $map, 'activeTab' => 1, 'dropdownParent' => '#marker-modal'])
-
-                        <div class="form-group">
-                            <div class="submit-group">
-                                <input id="submit-mode" type="hidden" value="true"/>
-                                <div class="btn-group">
-                                    <button class="btn btn-success form-submit-main" id="form-submit-main"
-                                        data-target="{{ isset($target) ? $target : null }}">
-                                        <span>{{ __('crud.save') }}</span>
-                                    </button>
-                                    <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown"
-                                        aria-expanded="false">
-                                        <span class="caret"></span>
-                                    </button>
-                                    <ul class="dropdown-menu" role="menu">
-                                        <li>
-                                            <a href="#" class="dropdown-item form-submit-actions">
-                                                {{ __('crud.save') }}
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#" class="dropdown-item form-submit-actions"
-                                                data-action="submit-update">
-                                                {{ __('crud.save_and_update') }}
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#" class="dropdown-item form-submit-actions"
-                                                data-action="submit-explore">
-                                                {{ __('maps/markers.actions.save_and_explore') }}
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="submit-animation" style="display: none;">
-                                <button class="btn btn-success" disabled><i class="fa-solid fa-spinner fa-spin"></i></button>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="pull-left">
+                            @include('partials.footer_cancel', ['ajax' => true])
+                        </div>
+                        <div class="submit-group">
+                            <input id="submit-mode" type="hidden" value="true"/>
+                            <div class="btn-group">
+                                <button class="btn btn-success form-submit-main" id="form-submit-main"
+                                    data-target="{{ isset($target) ? $target : null }}">
+                                    <span>{{ __('crud.save') }}</span>
+                                </button>
+                                <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown"
+                                    aria-expanded="false">
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li>
+                                        <a href="#" class="dropdown-item form-submit-actions">
+                                            {{ __('crud.save') }}
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="dropdown-item form-submit-actions"
+                                            data-action="submit-update">
+                                            {{ __('crud.save_and_update') }}
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="dropdown-item form-submit-actions"
+                                            data-action="submit-explore">
+                                            {{ __('maps/markers.actions.save_and_explore') }}
+                                        </a>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
-
-                        {!! Form::hidden('from', 'explore') !!}
-
-                        {!! Form::close() !!}
+                        <div class="submit-animation" style="display: none;">
+                            <button class="btn btn-success" disabled><i class="fa-solid fa-spinner fa-spin"></i></button>
+                        </div>
                     </div>
                 </div>
+                {!! Form::hidden('from', 'explore') !!}
+                {!! Form::close() !!}
             </div>
         </div>
     </div>

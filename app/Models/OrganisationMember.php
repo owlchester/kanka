@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Concerns\Filterable;
 use App\Models\Concerns\Paginatable;
+use App\Models\Concerns\Privatable;
 use App\Models\Concerns\SortableTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Query\Builder;
@@ -30,14 +31,15 @@ class OrganisationMember extends Model
     use Paginatable;
     use Filterable;
     use SortableTrait;
+    use Privatable;
 
-    const PIN_CHARACTER = 1;
-    const PIN_ORGANISATION = 2;
-    const PIN_BOTH = 3;
+    public const PIN_CHARACTER = 1;
+    public const PIN_ORGANISATION = 2;
+    public const PIN_BOTH = 3;
 
-    const STATUS_ACTIVE = 0;
-    const STATUS_INACTIVE = 1;
-    const STATUS_UNKNOWN = 2;
+    public const STATUS_ACTIVE = 0;
+    public const STATUS_INACTIVE = 1;
+    public const STATUS_UNKNOWN = 2;
 
     public $entityType = 'character';
     public $aclFieldName = 'character_id';
