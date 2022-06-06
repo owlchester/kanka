@@ -2,17 +2,12 @@
 
 return [
     'create'        => [
-        'success'   => '\':name\' zarı yaratıldı.',
-        'title'     => 'Yeni Zar',
+        'title' => 'Yeni Zar',
     ],
     'destroy'       => [
         'dice_roll' => 'Zar kaldırıldı',
-        'success'   => '\':name\' zarı kaldırıldı.',
     ],
-    'edit'          => [
-        'success'   => '\':name\' zarı güncellendi.',
-        'title'     => ':name Zarını Düzenle',
-    ],
+    'edit'          => [],
     'fields'        => [
         'created_at'    => 'Atıldığı An',
         'name'          => 'Ad',

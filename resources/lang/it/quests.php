@@ -2,16 +2,10 @@
 
 return [
     'create'        => [
-        'success'   => 'Missione \':name\' creata.',
-        'title'     => 'Nuova Missione',
+        'title' => 'Nuova Missione',
     ],
-    'destroy'       => [
-        'success'   => 'Missione \':name\' rimossa.',
-    ],
-    'edit'          => [
-        'success'   => 'Missione \':name\' aggiornata.',
-        'title'     => 'Modifica la missione :name',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'fields'        => [
         'character'     => 'Istigatore',
         'date'          => 'Data',

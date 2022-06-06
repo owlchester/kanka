@@ -12,16 +12,10 @@ return [
         'title'     => ':name címke entitásai',
     ],
     'create'        => [
-        'success'   => 'A \':name\' címkét létrehoztuk',
-        'title'     => 'Új címke',
+        'title' => 'Új címke',
     ],
-    'destroy'       => [
-        'success'   => 'A \':name\' címkét eltávolítottuk',
-    ],
-    'edit'          => [
-        'success'   => 'A \':name\' címkét frissítettük',
-        'title'     => ':name címke szerkesztése',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'fields'        => [
         'children'  => 'Almezők',
         'name'      => 'Megnevezés',

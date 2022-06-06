@@ -5,16 +5,10 @@ return [
         'title' => ':name Konumu Karakterleri',
     ],
     'create'        => [
-        'success'   => ':name konumu yaratıldı.',
-        'title'     => 'Yeni Konum',
+        'title' => 'Yeni Konum',
     ],
-    'destroy'       => [
-        'success'   => '\':name\' konumu kaldırıldı.',
-    ],
-    'edit'          => [
-        'success'   => '\':name\' konumu güncellendi.',
-        'title'     => ':name Konumunu Güncelle',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'events'        => [
         'title' => ':name Konumu Olayları',
     ],

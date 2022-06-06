@@ -16,16 +16,10 @@ return [
         'title'         => ':name képesség entitások',
     ],
     'create'        => [
-        'success'   => '":name" képességet létrehoztuk.',
-        'title'     => 'Új képesség',
+        'title' => 'Új képesség',
     ],
-    'destroy'       => [
-        'success'   => '":name" képességet eltávolítottuk.',
-    ],
-    'edit'          => [
-        'success'   => '":name" képességet frissítettük.',
-        'title'     => ':name képesség szerkesztése',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'entities'      => [
         'title' => 'Entitások a :name képességgel',
     ],

@@ -2,16 +2,10 @@
 
 return [
     'create'        => [
-        'success'   => 'Семья ":name" создана.',
-        'title'     => 'Новая cемья',
+        'title' => 'Новая cемья',
     ],
-    'destroy'       => [
-        'success'   => 'Семья ":name" удалена.',
-    ],
-    'edit'          => [
-        'success'   => 'Семья ":name" обновлена.',
-        'title'     => 'Редактирование cемьи :name',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'families'      => [
         'title' => 'Семьи внутри семьи :name',
     ],

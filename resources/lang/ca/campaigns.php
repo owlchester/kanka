@@ -37,15 +37,7 @@ TEXT
         'superboosted'  => 'Aquesta funcionalitat només està disponible per a les campanyes supermillorades.',
         'unknown_id'    => 'Campanya desconeguda.',
     ],
-    'export'                            => [
-        'errors'            => [
-            'limit' => 'Heu arribat al màxim d\'una exportació al dia. Torneu a intentar-ho demà.',
-        ],
-        'helper'            => 'Exporta la campanya. Rebreu una notificació amb l\'enllaç de descàrrega.',
-        'helper_secondary'  => 'Tindreu disponibles dos fitxers: un amb les entitats exportades en format JSON, i un altre amb les imatges de les entitats. Tingueu en compte que a les campanyes grans l\'exportació d\'imatges pot penjar-se i només es podria recuperar mitjançant l\':api.',
-        'success'           => 'S\'està preparant la campanya per l\'exportació. Rebreu una notificació a Kanka amb un zip descarregable en quant estigui llesta.',
-        'title'             => 'Exporta la campanya :name',
-    ],
+    'export'                            => [],
     'fields'                            => [
         'boosted'                           => 'Millorada per',
         'character_personality_visibility'  => 'Visibilitat per defecte de la personalitat',
@@ -277,7 +269,6 @@ TEXT
         ],
         'hints'         => [
             'campaign_not_public'   => 'El rol públic té permisos, però la campanya és privada. Això pot ajustar-se a la pestanya de compartir en editar la campanya.',
-            'public'                => 'El rol «Públic» és pels visitants de les campanyes públiques.',
             'role_permissions'      => 'Habilita el rol «:name» per a que pugui fer les accions següents a totes les entitats.',
         ],
         'members'       => 'Membres',

@@ -2,16 +2,10 @@
 
 return [
     'create'        => [
-        'success'   => 'Quest \':name\' gemaakt.',
-        'title'     => 'Nieuwe Quest',
+        'title' => 'Nieuwe Quest',
     ],
-    'destroy'       => [
-        'success'   => 'Quest \':name\' verwijderd.',
-    ],
-    'edit'          => [
-        'success'   => 'Quest \':name\' bijgewerkt.',
-        'title'     => 'Quest :name bewerken',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'fields'        => [
         'character'     => 'Aanstichter',
         'copy_elements' => 'Kopieer elementen die aan de quest zijn gekoppeld',

@@ -17,16 +17,11 @@ return [
         'is_recurring'  => 'Her yıl gerçekleşir',
     ],
     'create'        => [
-        'success'   => '\':name\' takvimi oluşturuldu.',
-        'title'     => 'Yeni Takvim',
+        'title' => 'Yeni Takvim',
     ],
-    'destroy'       => [
-        'success'   => '\':name\' takvimi kaldırıldı.',
-    ],
+    'destroy'       => [],
     'edit'          => [
-        'success'   => '\':name\' takvimi güncellendi.',
-        'title'     => ':name Takvimini Düzenle',
-        'today'     => 'Takvim tarihi güncellendi.',
+        'today' => 'Takvim tarihi güncellendi.',
     ],
     'event'         => [
         'actions'   => [

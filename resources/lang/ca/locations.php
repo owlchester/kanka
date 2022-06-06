@@ -5,16 +5,10 @@ return [
         'title' => 'Personatges a :name',
     ],
     'create'        => [
-        'success'   => 'S\'ha creat l\'indret «:name».',
-        'title'     => 'Nou indret',
+        'title' => 'Nou indret',
     ],
-    'destroy'       => [
-        'success'   => 'S\'ha eliminat l\'indret «:name».',
-    ],
-    'edit'          => [
-        'success'   => 'S\'ha actualitzat l\'indret «:name».',
-        'title'     => 'Edita l\'indret :name',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'events'        => [
         'title' => 'Esdeveniments a :name',
     ],

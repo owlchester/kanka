@@ -2,16 +2,10 @@
 
 return [
     'create'        => [
-        'success'   => 'Jornal criado.',
-        'title'     => 'Criar novo jornal',
+        'title' => 'Criar novo jornal',
     ],
-    'destroy'       => [
-        'success'   => 'Jornal removido',
-    ],
-    'edit'          => [
-        'success'   => 'Jornal atualizado',
-        'title'     => 'Editar Jornal :name',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'fields'        => [
         'author'    => 'Autor',
         'date'      => 'Data',

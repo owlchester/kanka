@@ -2,16 +2,10 @@
 
 return [
     'create'        => [
-        'success'   => 'יומן ":name" נוצר.',
-        'title'     => 'יומן חדש',
+        'title' => 'יומן חדש',
     ],
-    'destroy'       => [
-        'success'   => 'יומן ":name" הוסר.',
-    ],
-    'edit'          => [
-        'success'   => 'יומן ":name" עודכן.',
-        'title'     => 'ערוך יומן :name',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'fields'        => [
         'author'    => 'כותב',
         'date'      => 'תאריך',

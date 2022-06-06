@@ -7,13 +7,9 @@ return [
         'explore'   => 'Esplora',
     ],
     'create'        => [
-        'success'   => 'Mappa :name creata.',
-        'title'     => 'Nuova Mappa',
+        'title' => 'Nuova Mappa',
     ],
-    'edit'          => [
-        'success'   => 'Mappa :name aggiornata.',
-        'title'     => 'Modifica Mappa :name',
-    ],
+    'edit'          => [],
     'fields'        => [
         'distance_measure'  => 'Valore di Distanza',
         'distance_name'     => 'Unità di Lunghezza',

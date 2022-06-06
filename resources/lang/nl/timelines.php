@@ -9,16 +9,10 @@ return [
         'save_order'    => 'Nieuwe volgorde opslaan',
     ],
     'create'        => [
-        'success'   => 'Tijdlijn :name gemaakt.',
-        'title'     => 'Nieuwe Tijdlijn',
+        'title' => 'Nieuwe Tijdlijn',
     ],
-    'destroy'       => [
-        'success'   => 'Tijdlijn :name verwijderd',
-    ],
-    'edit'          => [
-        'success'   => 'Tijdlijn :name bijgewerkt',
-        'title'     => 'Wijzig Tijdlijn :name',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'fields'        => [
         'copy_eras'     => 'Kopieer tijdperken',
         'eras'          => 'Tijdperken',

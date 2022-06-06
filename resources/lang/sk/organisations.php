@@ -2,16 +2,10 @@
 
 return [
     'create'        => [
-        'success'   => 'Organizácia :name vytvorená.',
-        'title'     => 'Nová organizácia',
+        'title' => 'Nová organizácia',
     ],
-    'destroy'       => [
-        'success'   => 'Organizácia :name odstránená.',
-    ],
-    'edit'          => [
-        'success'   => 'Organizácia :name upravená.',
-        'title'     => 'Upraviť organizáciu :name',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'fields'        => [
         'image'         => 'Obrázok',
         'location'      => 'Miesto',

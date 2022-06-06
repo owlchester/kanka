@@ -33,14 +33,7 @@ TEXT
         'superboosted'  => 'Denne funksjonen er kun tilgjengelig i superboostede kampanjer.',
         'unknown_id'    => 'Ukjent kampanje.',
     ],
-    'export'                            => [
-        'errors'    => [
-            'limit' => 'Du har nådd grensen på maks èn eksport per dag. Vennligst prøv igjen i morgen.',
-        ],
-        'helper'    => 'Eksporter kampanjen din. Et varsel med nedlastnings lenke vil bli gjort tilgjengelig.',
-        'success'   => 'Eksporten av din kampanje blir klargjort. Du vil få et varsel fra Kanka med nedlastbar zip-fil så snart den er ferdig.',
-        'title'     => 'Kampanje :name Eksport',
-    ],
+    'export'                            => [],
     'fields'                            => [
         'boosted'                   => 'Boostet av',
         'css'                       => 'CSS',
@@ -215,7 +208,6 @@ TEXT
         ],
         'hints'         => [
             'campaign_not_public'   => 'Offentlig rollen har tillatelser men kampanjen er privat. Du kan endre dette på Deling kategorien når man redigerer kampanjen.',
-            'public'                => 'Offentlig rollen blir brukt når noen blar gjennom din offentlige kampanje. :more',
             'role_permissions'      => 'Gjør at \':name\' rollen kan gjøre følgende handlinger på alle objekter.',
         ],
         'members'       => 'Medlemmer',

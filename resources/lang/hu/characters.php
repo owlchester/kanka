@@ -10,20 +10,14 @@ return [
         'title' => ':name karakter beszélgetései',
     ],
     'create'        => [
-        'success'   => ':name karaktert létrehoztuk.',
-        'title'     => 'Új karakter',
+        'title' => 'Új karakter',
     ],
-    'destroy'       => [
-        'success'   => '\':name\' karaktert eltávolítottuk.',
-    ],
+    'destroy'       => [],
     'dice_rolls'    => [
         'hint'  => 'A dobásokat egy karakterhez lehet rendelni a játék közbeni használat érdekében.',
         'title' => ':name karakter dobásai',
     ],
-    'edit'          => [
-        'success'   => '\':name\' karaktert frissítettük.',
-        'title'     => ':name karakter szerkesztése',
-    ],
+    'edit'          => [],
     'fields'        => [
         'age'                       => 'Kor',
         'family'                    => 'Család',

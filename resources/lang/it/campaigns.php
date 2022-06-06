@@ -35,14 +35,7 @@ TEXT
         'access'        => 'Non hai accesso a questa campagna.',
         'unknown_id'    => 'Campagna sconosciuta.',
     ],
-    'export'                            => [
-        'errors'    => [
-            'limit' => 'Hai superato il tuo limite massimo di un\'esportazione al giorno. Riprova domani, per favore.',
-        ],
-        'helper'    => 'Esporta la tua campagna. Riceverai una notifica con il link per il download appena disponibile.',
-        'success'   => 'L\'esportazione della tua campagna è in preparazione. Riceverai una notifica su Kanka con il link ad un archivio zip scaricabile non appena sarà pronto.',
-        'title'     => 'Esportazione della Campagna :name',
-    ],
+    'export'                            => [],
     'fields'                            => [
         'boosted'                   => 'Potenziata da',
         'css'                       => 'CSS',
@@ -228,7 +221,6 @@ TEXT
         ],
         'hints'         => [
             'campaign_not_public'   => 'Il ruolo pubblico ha dei permessi, ma la campagna è privata. Puoi cambiare questa impostazione sulla tabella Condivisione mentre modifichi la campagna.',
-            'public'                => 'Il ruolo Pubblico è utilizzato quando qualcuno naviga la tua campagna pubblica. :more',
             'role_permissions'      => 'Abilita il ruolo \':name\' per le seguenti funzioni su tutte le entità.',
         ],
         'members'       => 'Membri',

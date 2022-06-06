@@ -19,16 +19,11 @@ return [
         'is_recurring'  => 'Té lloc cada any',
     ],
     'create'        => [
-        'success'   => 'S\'ha creat el calendari «:name».',
-        'title'     => 'Nou calendari',
+        'title' => 'Nou calendari',
     ],
-    'destroy'       => [
-        'success'   => 'S\'ha eliminat el calendari «:name».',
-    ],
+    'destroy'       => [],
     'edit'          => [
-        'success'   => 'S\'ha actualitzat el calendari «:name».',
-        'title'     => 'Edita el calendari :name',
-        'today'     => 'S\'ha actualitzat la data del calendari.',
+        'today' => 'S\'ha actualitzat la data del calendari.',
     ],
     'event'         => [
         'actions'   => [

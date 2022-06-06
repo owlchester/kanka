@@ -5,16 +5,10 @@ return [
         'title' => ':name yeteneğinin alt yetenekleri',
     ],
     'create'        => [
-        'success'   => '\':name\' yeteneği yaratıldı.',
-        'title'     => 'Yeni Yetenek',
+        'title' => 'Yeni Yetenek',
     ],
-    'destroy'       => [
-        'success'   => '\':name\' yeteneği kaldırıldı.',
-    ],
-    'edit'          => [
-        'success'   => '\':name\' yeteneği güncellendi.',
-        'title'     => ':name Yeteneğini Düzenle',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'fields'        => [
         'abilities' => 'Yetenekler',
         'ability'   => 'Ana Yetenek',

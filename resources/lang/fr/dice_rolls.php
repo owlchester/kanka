@@ -2,17 +2,12 @@
 
 return [
     'create'        => [
-        'success'   => 'Jet de dés \':name\' créé.',
-        'title'     => 'Nouveau jet de dés',
+        'title' => 'Nouveau jet de dés',
     ],
     'destroy'       => [
         'dice_roll' => 'Jet de dés retiré.',
-        'success'   => 'Jet de dés \':name\' retiré.',
     ],
-    'edit'          => [
-        'success'   => 'Jet de dés \':name\' modifié.',
-        'title'     => 'Modifier le jet de dés :name',
-    ],
+    'edit'          => [],
     'fields'        => [
         'created_at'    => 'Jeté à',
         'name'          => 'Nom',

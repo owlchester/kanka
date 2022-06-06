@@ -16,16 +16,10 @@ return [
         'title'         => 'Abilità :name Entità',
     ],
     'create'        => [
-        'success'   => 'Abilità \':name\' creata.',
-        'title'     => 'Nuova Abilità',
+        'title' => 'Nuova Abilità',
     ],
-    'destroy'       => [
-        'success'   => 'Abilità \':name\' rimossa.',
-    ],
-    'edit'          => [
-        'success'   => 'Abilità \':name\' aggiornata.',
-        'title'     => 'Modifica Abilità :name',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'entities'      => [
         'title' => 'Entità con l\'abilità :name',
     ],

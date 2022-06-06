@@ -16,16 +16,10 @@ return [
         'title'         => 'Objekty se schopností :name',
     ],
     'create'        => [
-        'success'   => 'Schopnost :name vytvořena.',
-        'title'     => 'Nová Schopnost',
+        'title' => 'Nová Schopnost',
     ],
-    'destroy'       => [
-        'success'   => 'Schopnost :name odstraněna.',
-    ],
-    'edit'          => [
-        'success'   => 'Schopnost :name upravena.',
-        'title'     => 'Upravit Schopnost :name',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'entities'      => [
         'title' => 'Objekty se schopností :name',
     ],

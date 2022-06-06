@@ -19,16 +19,11 @@ return [
         'is_recurring'  => 'Opakuje se ročně',
     ],
     'create'        => [
-        'success'   => 'Kalendář \':name\' vytvořen',
-        'title'     => 'Nový kalendář',
+        'title' => 'Nový kalendář',
     ],
-    'destroy'       => [
-        'success'   => 'Kalendář \':name\' odstraněn',
-    ],
+    'destroy'       => [],
     'edit'          => [
-        'success'   => 'Kalendář \':name\' upraven',
-        'title'     => 'Upravit kalendář \':name\'',
-        'today'     => 'Datum kalendáře upraveno',
+        'today' => 'Datum kalendáře upraveno',
     ],
     'event'         => [
         'actions'   => [

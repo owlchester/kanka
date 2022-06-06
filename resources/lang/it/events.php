@@ -2,16 +2,10 @@
 
 return [
     'create'        => [
-        'success'   => 'Evento \':name\' creato.',
-        'title'     => 'Nuovo Evento',
+        'title' => 'Nuovo Evento',
     ],
-    'destroy'       => [
-        'success'   => 'Evento \':name\' rimosso.',
-    ],
-    'edit'          => [
-        'success'   => 'Evento \':name\' aggiornato.',
-        'title'     => 'Modifica Evento :name',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'fields'        => [
         'date'      => 'Data',
         'image'     => 'Immagine',

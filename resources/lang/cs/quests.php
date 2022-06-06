@@ -2,16 +2,10 @@
 
 return [
     'create'    => [
-        'success'   => 'Úkol :name byl vytvořen.',
-        'title'     => 'Nový úkol',
+        'title' => 'Nový úkol',
     ],
-    'destroy'   => [
-        'success'   => 'Úkol :name byl odstraněn.',
-    ],
-    'edit'      => [
-        'success'   => 'Úkol :name byl aktualizován.',
-        'title'     => 'Upravit úkol :name',
-    ],
+    'destroy'   => [],
+    'edit'      => [],
     'fields'    => [
         'date'          => 'Datum',
         'description'   => 'Popis',

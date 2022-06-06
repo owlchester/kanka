@@ -34,14 +34,7 @@ TEXT
         'superboosted'  => 'Bu özellik yalnızca süperdesteklenmiş serüvenler için mevcuttur.',
         'unknown_id'    => 'Bilinmeyen Serüven.',
     ],
-    'export'                            => [
-        'errors'    => [
-            'limit' => 'Günlük maksimum bir dışa akarma hakkınızı tükettiniz. Lütfen yarın tekrar deneyin.',
-        ],
-        'helper'    => 'Serüveninizi dışa aktarın. Bir indirme linki ile beraber bir bildirim gelecek.',
-        'success'   => 'Serüven dışa aktarmanız hazırlanıyor. İndirilebilir bir sıkıştırılmış dosya',
-        'title'     => ':name Serüvenini Dışa Aktarma',
-    ],
+    'export'                            => [],
     'fields'                            => [
         'boosted'                   => 'Destekleyen',
         'css'                       => 'CSS',
@@ -217,7 +210,6 @@ TEXT
         ],
         'hints'         => [
             'campaign_not_public'   => 'Açık rolü izinlere sahip ancak serüven özel. Bu ayarı serüveni düzenlerken Paylaşım sekmesinden değiştirebilirsiniz.',
-            'public'                => 'Açık rolü birisi sizin açık serüveninize bakarken kullanılır. :more',
             'role_permissions'      => '\':name\' rolüne aşağıdaki eylemleri yapabilme yetkisi verin.',
         ],
         'members'       => 'Üyeler',

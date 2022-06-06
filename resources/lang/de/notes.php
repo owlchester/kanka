@@ -2,16 +2,10 @@
 
 return [
     'create'        => [
-        'success'   => 'Notiz \':name\' erstellt.',
-        'title'     => 'Erstelle eine neue Notiz',
+        'title' => 'Erstelle eine neue Notiz',
     ],
-    'destroy'       => [
-        'success'   => 'Notiz \':name\' entfernt.',
-    ],
-    'edit'          => [
-        'success'   => 'Notiz \':name\' aktualisiert.',
-        'title'     => 'Bearbeite Notiz :name',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'fields'        => [
         'description'   => 'Beschreibung',
         'image'         => 'Bild',

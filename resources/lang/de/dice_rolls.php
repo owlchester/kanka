@@ -2,17 +2,12 @@
 
 return [
     'create'        => [
-        'success'   => 'Würfelwurf \':name\' erstellt.',
-        'title'     => 'Neuer Würfelwurf',
+        'title' => 'Neuer Würfelwurf',
     ],
     'destroy'       => [
         'dice_roll' => 'Würfelwurf entfernt.',
-        'success'   => 'Würfelwurf \':name\' entfernt.',
     ],
-    'edit'          => [
-        'success'   => 'Würfelwurf \':name\' aktualisiert.',
-        'title'     => 'Bearbeite Würfelwurf \':name\'',
-    ],
+    'edit'          => [],
     'fields'        => [
         'created_at'    => 'Gewürfelt am',
         'name'          => 'Name',

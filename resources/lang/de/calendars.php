@@ -20,16 +20,11 @@ return [
         'is_recurring'  => 'Wiederholt sich jedes Jahr',
     ],
     'create'        => [
-        'success'   => 'Kalender \':name\' erstellt.',
-        'title'     => 'Neuer Kalender',
+        'title' => 'Neuer Kalender',
     ],
-    'destroy'       => [
-        'success'   => 'Kalender \':name\' gelöscht',
-    ],
+    'destroy'       => [],
     'edit'          => [
-        'success'   => 'Kalender \':name\' aktualisiert',
-        'title'     => 'Kalender :name bearbeiten',
-        'today'     => 'Kalenderdatum aktualisiert.',
+        'today' => 'Kalenderdatum aktualisiert.',
     ],
     'event'         => [
         'actions'   => [
@@ -216,12 +211,11 @@ return [
         'weekdays'          => 'Anzahl der Tage in einer Woche',
     ],
     'show'          => [
-        'missing_details'       => 'Dieser Kalender konnte nicht angezeigt werden. Kalender brauchen mindestens 2 Monate und 2 Wochentage um korrekt generiert zu werden.',
-        'moon_first_quarter'    => ':moon zunehmend',
-        'moon_full'             => ':moon Vollmond',
-        'moon_last_quarter'     => ':moon abnehmend',
-        'moon_new'              => ':moon Neumond',
-        'tabs'                  => [
+        'missing_details'   => 'Dieser Kalender konnte nicht angezeigt werden. Kalender brauchen mindestens 2 Monate und 2 Wochentage um korrekt generiert zu werden.',
+        'moon_full'         => ':moon Vollmond',
+        'moon_last_quarter' => ':moon abnehmend',
+        'moon_new'          => ':moon Neumond',
+        'tabs'              => [
             'events'    => 'Kalender Events',
             'weather'   => 'Wetter',
         ],

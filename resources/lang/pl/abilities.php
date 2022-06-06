@@ -16,16 +16,10 @@ return [
         'title'         => 'Elementy zdolności :name',
     ],
     'create'        => [
-        'success'   => 'Stworzono zdolność \':name\'.',
-        'title'     => 'Nowa zdolność',
+        'title' => 'Nowa zdolność',
     ],
-    'destroy'       => [
-        'success'   => 'Usunięto zdolność \':name\'.',
-    ],
-    'edit'          => [
-        'success'   => 'Zmieniono zdolność \':name\'.',
-        'title'     => 'Edycja zdolności :name',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'entities'      => [
         'title' => 'Elementy posiadające zdolność :name',
     ],

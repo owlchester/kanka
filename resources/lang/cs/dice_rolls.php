@@ -2,17 +2,12 @@
 
 return [
     'create'        => [
-        'success'   => 'Hod kostkami ":name" vytvořen.',
-        'title'     => 'Nový hod kostami',
+        'title' => 'Nový hod kostami',
     ],
     'destroy'       => [
         'dice_roll' => 'Hod kostkami odstraněn.',
-        'success'   => 'Hod kostkami ":name" odstraněn.',
     ],
-    'edit'          => [
-        'success'   => 'Hod kostkami ":name" upraven.',
-        'title'     => 'Upravit hod kostkami :name',
-    ],
+    'edit'          => [],
     'fields'        => [
         'created_at'    => 'Hozeno v',
         'name'          => 'Název',

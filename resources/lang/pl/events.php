@@ -2,16 +2,10 @@
 
 return [
     'create'        => [
-        'success'   => 'Stworzono wydarzenie \':name\'.',
-        'title'     => 'Nowe wydarzenie',
+        'title' => 'Nowe wydarzenie',
     ],
-    'destroy'       => [
-        'success'   => 'Usunięto wydarzenie \':name\'.',
-    ],
-    'edit'          => [
-        'success'   => 'Zmieniono wydarzenie \':name\'.',
-        'title'     => 'Edycja wydarzenia :name',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'events'        => [
         'helper'    => 'Ty wyświetlone są wydarzenia pochodzące od tego elementu.',
         'title'     => 'Wydarzenia wydarzenia :name',

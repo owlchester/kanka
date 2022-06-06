@@ -2,16 +2,10 @@
 
 return [
     'create'        => [
-        'success'   => 'Gegenstand \':name\' erstellt',
-        'title'     => 'Neuen Gegenstand erstellen',
+        'title' => 'Neuen Gegenstand erstellen',
     ],
-    'destroy'       => [
-        'success'   => 'Gegenstand \':name\' entfernt.',
-    ],
-    'edit'          => [
-        'success'   => 'Gegenstand \':name\' aktualisiert.',
-        'title'     => 'Bearbeite Gegenstand :name',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'fields'        => [
         'character' => 'Charakter',
         'image'     => 'Bild',

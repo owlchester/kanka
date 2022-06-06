@@ -2,16 +2,10 @@
 
 return [
     'create'        => [
-        'success'   => 'Organisation \':name\' erstellt.',
-        'title'     => 'Erstelle eine neue Organisation',
+        'title' => 'Erstelle eine neue Organisation',
     ],
-    'destroy'       => [
-        'success'   => 'Organisation \':name\' entfernt.',
-    ],
-    'edit'          => [
-        'success'   => 'Organisation \':name\' aktualisiert.',
-        'title'     => 'Bearbeite Organisation :name',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'fields'        => [
         'image'         => 'Bild',
         'location'      => 'Ort',

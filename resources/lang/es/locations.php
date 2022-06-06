@@ -5,16 +5,10 @@ return [
         'title' => 'Personajes en :name',
     ],
     'create'        => [
-        'success'   => 'Lugar ":name" creado.',
-        'title'     => 'Nuevo lugar',
+        'title' => 'Nuevo lugar',
     ],
-    'destroy'       => [
-        'success'   => 'Lugar ":name" eliminado.',
-    ],
-    'edit'          => [
-        'success'   => 'Lugar ":name" actualizado.',
-        'title'     => 'Editar lugar :name',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'events'        => [
         'title' => 'Eventos en :name',
     ],

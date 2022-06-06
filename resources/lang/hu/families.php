@@ -2,16 +2,10 @@
 
 return [
     'create'        => [
-        'success'   => '\':name\' családot létrehoztuk.',
-        'title'     => 'Új család',
+        'title' => 'Új család',
     ],
-    'destroy'       => [
-        'success'   => '\':name\' családot töröltük.',
-    ],
-    'edit'          => [
-        'success'   => '\':name\' családot frissítettük.',
-        'title'     => ':name család szerkesztése',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'families'      => [
         'title' => ':name család családjai',
     ],

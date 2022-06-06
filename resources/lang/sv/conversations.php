@@ -2,15 +2,11 @@
 
 return [
     'create'        => [
-        'success'   => 'Konversation \':name\' skapad.',
-        'title'     => 'Ny Konversation',
+        'title' => 'Ny Konversation',
     ],
-    'destroy'       => [
-        'success'   => 'Konversation \':name\' borttagen.',
-    ],
+    'destroy'       => [],
     'edit'          => [
-        'success'   => 'Konversation \':name\' uppdaterad.',
-        'title'     => 'Konversation :name',
+        'title' => 'Konversation :name',
     ],
     'fields'        => [
         'messages'      => 'Meddelanden',

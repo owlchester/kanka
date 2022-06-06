@@ -9,16 +9,10 @@ return [
         'save_order'    => 'Spara ny ordning',
     ],
     'create'        => [
-        'success'   => 'Tidslinje :name skapad.',
-        'title'     => 'Ny Tidslinje',
+        'title' => 'Ny Tidslinje',
     ],
-    'destroy'       => [
-        'success'   => 'Tidslinje :name borttagen.',
-    ],
-    'edit'          => [
-        'success'   => 'Tidslinje :name uppdaterad.',
-        'title'     => 'Redigera Tidslinje :name',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'fields'        => [
         'copy_eras'     => 'Kopiera eror',
         'eras'          => 'Eror',

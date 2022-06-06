@@ -5,16 +5,10 @@ return [
         'title' => ':name egenskapsmall',
     ],
     'create'                => [
-        'success'   => 'Egenskapsmall \':name\' skapad.',
-        'title'     => 'Ny egenskapsmall',
+        'title' => 'Ny egenskapsmall',
     ],
-    'destroy'               => [
-        'success'   => 'Egenskapsmall \':name\' borttagen.',
-    ],
-    'edit'                  => [
-        'success'   => 'Egenskapsmall \':name\' uppdaterad.',
-        'title'     => 'Redigera egenskapsmall :name',
-    ],
+    'destroy'               => [],
+    'edit'                  => [],
     'fields'                => [
         'attribute_template'    => 'Huvudegenskapsmall',
         'attributes'            => 'Egenskaper',

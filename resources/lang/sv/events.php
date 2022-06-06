@@ -2,16 +2,10 @@
 
 return [
     'create'        => [
-        'success'   => 'Händelse \':name\' skapad.',
-        'title'     => 'Ny Händelse',
+        'title' => 'Ny Händelse',
     ],
-    'destroy'       => [
-        'success'   => 'Händelse \':name\' borttagen.',
-    ],
-    'edit'          => [
-        'success'   => 'Händelse \':name\' uppdaterad.',
-        'title'     => 'Redigera Händelse :name',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'fields'        => [
         'date'      => 'Datum',
         'image'     => 'Bild',

@@ -2,16 +2,10 @@
 
 return [
     'create'        => [
-        'success'   => 'S\'ha creat l\'esdeveniment «:name».',
-        'title'     => 'Nou esdeveniment',
+        'title' => 'Nou esdeveniment',
     ],
-    'destroy'       => [
-        'success'   => 'S\'ha esborrat l\'esdeveniment «:name».',
-    ],
-    'edit'          => [
-        'success'   => 'S\'ha actualitzat l\'esdeveniment «:name».',
-        'title'     => 'Edita l\'esdeveniment :name',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'events'        => [
         'helper'    => 'Aquí es mostren els esdeveniments que tenen aquesta entitat com el seu esdeveniment pare.',
         'title'     => 'Esdeveniments de :name',

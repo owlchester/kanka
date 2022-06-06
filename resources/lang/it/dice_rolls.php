@@ -2,17 +2,12 @@
 
 return [
     'create'        => [
-        'success'   => 'Tiro di Dado \':name\' creato.',
-        'title'     => 'Nuovo Tiro di Dado',
+        'title' => 'Nuovo Tiro di Dado',
     ],
     'destroy'       => [
         'dice_roll' => 'Tiro di dado rimosso.',
-        'success'   => 'Tiro di Dado \':name\' rimosso.',
     ],
-    'edit'          => [
-        'success'   => 'Tiro di Dado \':name\' aggiornato.',
-        'title'     => 'Modifica il Tiro di Dadi :name',
-    ],
+    'edit'          => [],
     'fields'        => [
         'created_at'    => 'Tirato il',
         'name'          => 'Nome',

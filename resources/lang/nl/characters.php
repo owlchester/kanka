@@ -10,20 +10,14 @@ return [
         'title' => 'Personage :name Conversaties',
     ],
     'create'        => [
-        'success'   => 'Personage \':name\' gemaakt.',
-        'title'     => 'Nieuw Personage',
+        'title' => 'Nieuw Personage',
     ],
-    'destroy'       => [
-        'success'   => 'Personage \':name\' verwijderd',
-    ],
+    'destroy'       => [],
     'dice_rolls'    => [
         'hint'  => 'Dobbelsteen worpen kunnen worden toegewezen aan een personage voor in het spel.',
         'title' => 'Personage :name Dobbelsteen Worpen',
     ],
-    'edit'          => [
-        'success'   => 'Personage \':name\' bijgewerkt.',
-        'title'     => 'Wijzig Personage :name',
-    ],
+    'edit'          => [],
     'fields'        => [
         'age'                       => 'Leeftijd',
         'family'                    => 'Familie',

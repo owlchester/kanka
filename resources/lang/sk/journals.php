@@ -2,16 +2,10 @@
 
 return [
     'create'        => [
-        'success'   => 'Záznam :name vytvorený.',
-        'title'     => 'Nový záznam v denníku',
+        'title' => 'Nový záznam v denníku',
     ],
-    'destroy'       => [
-        'success'   => 'Záznam :name vytvorený.',
-    ],
-    'edit'          => [
-        'success'   => 'Záznam :name upravený.',
-        'title'     => 'Upraviť záznam :name',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'fields'        => [
         'author'    => 'Autor',
         'date'      => 'Dátum',

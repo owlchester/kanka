@@ -5,16 +5,10 @@ return [
         'title' => 'Modèles d\'attributs de :name',
     ],
     'create'                => [
-        'success'   => 'Modèle d\'attribut \':name\' créé.',
-        'title'     => 'Créer un nouveau Modèle d\'attribut',
+        'title' => 'Créer un nouveau Modèle d\'attribut',
     ],
-    'destroy'               => [
-        'success'   => 'Modèle d\'attribut \':name\' supprimé.',
-    ],
-    'edit'                  => [
-        'success'   => 'Modèle d\'attribut \':name\' mis à jour.',
-        'title'     => 'Modifier le modèle d\'attribut :name',
-    ],
+    'destroy'               => [],
+    'edit'                  => [],
     'fields'                => [
         'attribute_template'    => 'Modèle d\'attribut parent',
         'attributes'            => 'Attributs',

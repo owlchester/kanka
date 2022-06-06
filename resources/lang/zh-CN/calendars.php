@@ -19,16 +19,11 @@ return [
         'is_recurring'  => '每年发生',
     ],
     'create'        => [
-        'success'   => '成功创建日历：:name',
-        'title'     => '新日历',
+        'title' => '新日历',
     ],
-    'destroy'       => [
-        'success'   => '成功移除日历：:name',
-    ],
+    'destroy'       => [],
     'edit'          => [
-        'success'   => '成功更新日历：:name',
-        'title'     => '编辑日历：:name',
-        'today'     => '日历日期已更新。',
+        'today' => '日历日期已更新。',
     ],
     'event'         => [
         'actions'   => [

@@ -5,16 +5,10 @@ return [
         'title' => 'Postavy miesta :name',
     ],
     'create'        => [
-        'success'   => 'Miesto :name vytvorené.',
-        'title'     => 'Nové miesto',
+        'title' => 'Nové miesto',
     ],
-    'destroy'       => [
-        'success'   => 'Miesto :name odstránené.',
-    ],
-    'edit'          => [
-        'success'   => 'Miesto :name upravené.',
-        'title'     => 'Upraviť miesto :name',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'events'        => [
         'title' => 'Udalosti miesta :name',
     ],

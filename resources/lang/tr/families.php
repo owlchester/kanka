@@ -2,16 +2,10 @@
 
 return [
     'create'        => [
-        'success'   => ':name ailesi oluşturuldu.',
-        'title'     => 'Yeni Aile',
+        'title' => 'Yeni Aile',
     ],
-    'destroy'       => [
-        'success'   => '\':name\' ailesi kaldırıldı.',
-    ],
-    'edit'          => [
-        'success'   => '\':name\' ailesi güncellendi',
-        'title'     => ':name Ailesini Düzenle',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'families'      => [
         'title' => ':name Aileleri',
     ],

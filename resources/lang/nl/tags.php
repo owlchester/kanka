@@ -11,16 +11,10 @@ return [
         'title'     => 'Tag :name Gerelateerden',
     ],
     'create'        => [
-        'success'   => 'Tag \':name\' gemaakt.',
-        'title'     => 'Nieuwe Tag',
+        'title' => 'Nieuwe Tag',
     ],
-    'destroy'       => [
-        'success'   => 'Tag \':name\' verwijderd.',
-    ],
-    'edit'          => [
-        'success'   => 'Tag \':name\' bijgewerkt.',
-        'title'     => 'Wijzig Tag :name',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'fields'        => [
         'children'  => 'Gerelateerden',
         'name'      => 'Naam',

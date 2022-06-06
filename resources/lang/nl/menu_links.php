@@ -2,15 +2,11 @@
 
 return [
     'create'        => [
-        'success'   => 'Snelle Link \':name\' gemaakt.',
-        'title'     => 'Nieuwe Snelle Link',
+        'title' => 'Nieuwe Snelle Link',
     ],
-    'destroy'       => [
-        'success'   => 'Menu Quick \':name\' verwijderd.',
-    ],
+    'destroy'       => [],
     'edit'          => [
-        'success'   => 'Snelle Link \':name\' bijgewerkt.',
-        'title'     => 'Snelle Link :name',
+        'title' => 'Snelle Link :name',
     ],
     'fields'        => [
         'dashboard'     => 'Dashboard',

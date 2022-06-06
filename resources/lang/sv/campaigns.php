@@ -37,15 +37,7 @@ TEXT
         'superboosted'  => 'Denna funktion är bara tillgängliga för superboostade kampanjer.',
         'unknown_id'    => 'Okänd Kampanj.',
     ],
-    'export'                            => [
-        'errors'            => [
-            'limit' => 'Du har nått gränsen på max en export per dag. Vänligen försök igen imorgon.',
-        ],
-        'helper'            => 'Exportera din kampanj. En notifikation med en nedladdningslänk kommer bli tillgänglig.',
-        'helper_secondary'  => 'Två filer kommer göras tillgängliga, en med entiteterna exporterade som JSON, och en annan med bilder uppladdade till entiteter. Vänligen notera att på större kampanjer kraschar bild exporten och kan bara återhämtas genom att använda :api.',
-        'success'           => 'Exporten av din kampanj förbereds. Du kommer få en notifikation i Kanka med en nedladdningsbar zip-fil så fort den är klar.',
-        'title'             => 'Kampanj :name Exporterad',
-    ],
+    'export'                            => [],
     'fields'                            => [
         'boosted'                   => 'Boostad av',
         'css'                       => 'CSS',
@@ -223,7 +215,6 @@ TEXT
         ],
         'hints'         => [
             'campaign_not_public'   => 'Offentlig rollen har behörigheter men kampanjen är privat. Du kan ändra denna inställning under \'Delning\' fliken när du redigerar kampanjen.',
-            'public'                => 'Offentlig rollen används när någon tittar på din offentliga kampanj. :more',
             'role_permissions'      => 'Tillåter \':name\' rollen att göra följande handlingar på alla entiteter.',
         ],
         'members'       => 'Medlemmar',

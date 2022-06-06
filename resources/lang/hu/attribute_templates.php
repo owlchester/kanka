@@ -5,16 +5,10 @@ return [
         'title' => ':name tulajdonságsablon',
     ],
     'create'                => [
-        'success'   => '\':name\' tulajdonságsablon létrehoztuk.',
-        'title'     => 'Új tulajdonságsablon',
+        'title' => 'Új tulajdonságsablon',
     ],
-    'destroy'               => [
-        'success'   => '\':name\' tulajdonságsablon eltávolítottuk.',
-    ],
-    'edit'                  => [
-        'success'   => '\':name\' tulajdonságsablon frissítettük.',
-        'title'     => ':name tulajdonságsablon szerkesztése',
-    ],
+    'destroy'               => [],
+    'edit'                  => [],
     'fields'                => [
         'attribute_template'    => 'Előd tulajdonságsablon',
         'attributes'            => 'Tulajdonságok',

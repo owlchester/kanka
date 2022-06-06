@@ -20,16 +20,11 @@ return [
         'is_recurring'  => 'A lieu chaque année',
     ],
     'create'        => [
-        'success'   => 'Nouveau calendrier \':name\' créé.',
-        'title'     => 'Nouveau Calendrier',
+        'title' => 'Nouveau Calendrier',
     ],
-    'destroy'       => [
-        'success'   => 'Calendrier \':name\' supprimé.',
-    ],
+    'destroy'       => [],
     'edit'          => [
-        'success'   => 'Calendrier \':name\' modifié.',
-        'title'     => 'Modifier le calendrier :name',
-        'today'     => 'Date du calendrier mise à jour.',
+        'today' => 'Date du calendrier mise à jour.',
     ],
     'event'         => [
         'actions'   => [

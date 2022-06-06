@@ -2,16 +2,10 @@
 
 return [
     'create'        => [
-        'success'   => 'Журнал ":name" создан.',
-        'title'     => 'Новый журнал',
+        'title' => 'Новый журнал',
     ],
-    'destroy'       => [
-        'success'   => 'Журнал ":name" удален.',
-    ],
-    'edit'          => [
-        'success'   => 'Журнал ":name" обновлен.',
-        'title'     => 'Редактирование журнала :name',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'fields'        => [
         'author'    => 'Автор',
         'date'      => 'Дата',

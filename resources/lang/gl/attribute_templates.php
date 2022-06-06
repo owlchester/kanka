@@ -5,16 +5,10 @@ return [
         'title' => 'Padróns de atributos de ":name"',
     ],
     'create'                => [
-        'success'   => 'Padrón de atributos ":name" creado.',
-        'title'     => 'Novo padrón de atributos',
+        'title' => 'Novo padrón de atributos',
     ],
-    'destroy'               => [
-        'success'   => 'Padrón de atributos ":nome" eliminado.',
-    ],
-    'edit'                  => [
-        'success'   => 'Padrón de atributos ":name" actualizado.',
-        'title'     => 'Editar padrón de atributos ":name"',
-    ],
+    'destroy'               => [],
+    'edit'                  => [],
     'fields'                => [
         'attribute_template'    => 'Padrón de atributos pai',
         'attributes'            => 'Atributos',

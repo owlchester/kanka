@@ -2,15 +2,11 @@
 
 return [
     'create'        => [
-        'success'   => 'Conversatie \':name\' gemaakt.',
-        'title'     => 'Nieuwe Conversatie',
+        'title' => 'Nieuwe Conversatie',
     ],
-    'destroy'       => [
-        'success'   => 'Conversatie \':name\' verwijderd.',
-    ],
+    'destroy'       => [],
     'edit'          => [
-        'success'   => 'Conversatie \':name\' bijgewerkt.',
-        'title'     => 'Conversatie :name',
+        'title' => 'Conversatie :name',
     ],
     'fields'        => [
         'messages'      => 'Berichten',

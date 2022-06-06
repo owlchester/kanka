@@ -2,15 +2,11 @@
 
 return [
     'create'            => [
-        'success'   => 'Lien de menu \':name\' créé.',
-        'title'     => 'Nouveau Lien de menu',
+        'title' => 'Nouveau Lien de menu',
     ],
-    'destroy'           => [
-        'success'   => 'Lien de menu \':name\' retiré.',
-    ],
+    'destroy'           => [],
     'edit'              => [
-        'success'   => 'Lien de menu \':name\' modifié.',
-        'title'     => 'Lien de menu :name',
+        'title' => 'Lien de menu :name',
     ],
     'fields'            => [
         'dashboard'         => 'Tableau de bord',

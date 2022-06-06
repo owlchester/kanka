@@ -2,16 +2,10 @@
 
 return [
     'create'        => [
-        'success'   => 'Poznámka :name vytvorená.',
-        'title'     => 'Nová poznámka',
+        'title' => 'Nová poznámka',
     ],
-    'destroy'       => [
-        'success'   => 'Poznámka :name odstránená.',
-    ],
-    'edit'          => [
-        'success'   => 'Poznámka :name upravená.',
-        'title'     => 'Upraviť poznámku :name',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'fields'        => [
         'description'   => 'Popis',
         'image'         => 'Obrázok',

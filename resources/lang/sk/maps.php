@@ -7,16 +7,10 @@ return [
         'explore'   => 'Prieskumník',
     ],
     'create'        => [
-        'success'   => 'Mapa :name vytvorená.',
-        'title'     => 'Nová mapa',
+        'title' => 'Nová mapa',
     ],
-    'destroy'       => [
-        'success'   => 'Mapa :name odstránená.',
-    ],
-    'edit'          => [
-        'success'   => 'Mapa :name aktualizovaná.',
-        'title'     => 'Upraviť mapu :name',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'errors'        => [
         'dashboard' => [
             'missing'   => 'Táto mapa vyžaduje obrázok, aby mohla byť zobrazená na nástenke.',

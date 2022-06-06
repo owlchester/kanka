@@ -2,16 +2,10 @@
 
 return [
     'create'        => [
-        'success'   => 'Journal créé.',
-        'title'     => 'Nouveau Journal',
+        'title' => 'Nouveau Journal',
     ],
-    'destroy'       => [
-        'success'   => 'Journal supprimé.',
-    ],
-    'edit'          => [
-        'success'   => 'Journal modifié.',
-        'title'     => 'Modifier Journal :name',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'fields'        => [
         'author'    => 'Auteur',
         'date'      => 'Date',

@@ -7,16 +7,10 @@ return [
         'explore'   => 'erkunden',
     ],
     'create'        => [
-        'success'   => 'Karte :name erstellt',
-        'title'     => 'neue Karte',
+        'title' => 'neue Karte',
     ],
-    'destroy'       => [
-        'success'   => 'Karte :name entfernt',
-    ],
-    'edit'          => [
-        'success'   => 'Karte :name aktualisiert',
-        'title'     => 'Karte :name editieren',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'errors'        => [
         'dashboard' => [
             'missing'   => 'Diese Karte benötigt ein Bild, um im Dashboard gerendert werden zu können.',

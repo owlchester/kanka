@@ -17,16 +17,11 @@ return [
         'is_recurring'  => 'Inträffar varje år',
     ],
     'create'        => [
-        'success'   => 'Kalender \':name\' skapad.',
-        'title'     => 'Ny Kalender',
+        'title' => 'Ny Kalender',
     ],
-    'destroy'       => [
-        'success'   => 'Kalender \':name\' borttagen.',
-    ],
+    'destroy'       => [],
     'edit'          => [
-        'success'   => 'Kalender \':name\' uppdaterad.',
-        'title'     => 'Redigera Kalender :name',
-        'today'     => 'Kalender datum uppdaterat.',
+        'today' => 'Kalender datum uppdaterat.',
     ],
     'event'         => [
         'actions'   => [

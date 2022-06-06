@@ -2,16 +2,10 @@
 
 return [
     'create'        => [
-        'success'   => 'Quête \':name\' créée.',
-        'title'     => 'Ajouter une quête',
+        'title' => 'Ajouter une quête',
     ],
-    'destroy'       => [
-        'success'   => 'Quête \':name\' supprimée.',
-    ],
-    'edit'          => [
-        'success'   => 'Quête \':name\' modifiée.',
-        'title'     => 'Modifier Quête :name',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'elements'      => [
         'create'    => [
             'success'   => 'L\'entité :entity ajoutée à la quête.',

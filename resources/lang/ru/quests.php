@@ -2,16 +2,10 @@
 
 return [
     'create'        => [
-        'success'   => 'Квест ":name" создан.',
-        'title'     => 'Новый квест',
+        'title' => 'Новый квест',
     ],
-    'destroy'       => [
-        'success'   => 'Квест ":name" удален.',
-    ],
-    'edit'          => [
-        'success'   => 'Квест ":name" обновлен.',
-        'title'     => 'Редактирование квеста :name',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'elements'      => [
         'create'    => [
             'success'   => 'Объект :entity добавлен в квест.',

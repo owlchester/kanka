@@ -5,16 +5,10 @@ return [
         'title' => 'Locatie :name Personages',
     ],
     'create'        => [
-        'success'   => 'Locatie \':name\' gemaakt.',
-        'title'     => 'Nieuwe Locatie',
+        'title' => 'Nieuwe Locatie',
     ],
-    'destroy'       => [
-        'success'   => 'Locatie \':name\' verwijderd.',
-    ],
-    'edit'          => [
-        'success'   => 'Locatie \':name\' bijgewerkt.',
-        'title'     => 'Wijzig Locatie :name',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'events'        => [
         'title' => 'Locatie :name Gebeurtenissen',
     ],

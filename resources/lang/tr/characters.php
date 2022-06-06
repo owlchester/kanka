@@ -10,20 +10,14 @@ return [
         'title' => ':name Karakterinin Muhabbetleri',
     ],
     'create'        => [
-        'success'   => '\':name\' karakteri yaratıldı.',
-        'title'     => 'Yeni Karakter',
+        'title' => 'Yeni Karakter',
     ],
-    'destroy'       => [
-        'success'   => '\':name\' karakteri kaldırıldı.',
-    ],
+    'destroy'       => [],
     'dice_rolls'    => [
         'hint'  => 'Zarlar oyun içi kullanım için karakterlere bağlanabilir.',
         'title' => ':name Karakteri Zarları',
     ],
-    'edit'          => [
-        'success'   => '\':name\' karakteri güncellendi.',
-        'title'     => ':name Karakterini Düzenle',
-    ],
+    'edit'          => [],
     'fields'        => [
         'age'                       => 'Yaş',
         'family'                    => 'Aile',

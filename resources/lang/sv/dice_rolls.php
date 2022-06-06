@@ -2,17 +2,12 @@
 
 return [
     'create'        => [
-        'success'   => 'Tärningskast \':name\' skapat.',
-        'title'     => 'Nytt Tärningskast',
+        'title' => 'Nytt Tärningskast',
     ],
     'destroy'       => [
         'dice_roll' => 'Tärningskast borttaget.',
-        'success'   => 'Tärningskast \':name\' borttaget.',
     ],
-    'edit'          => [
-        'success'   => 'Tärningskast \':name\' uppdaterat.',
-        'title'     => 'Redigera Tärningskast :name',
-    ],
+    'edit'          => [],
     'fields'        => [
         'created_at'    => 'Kastat vid',
         'name'          => 'Namn',

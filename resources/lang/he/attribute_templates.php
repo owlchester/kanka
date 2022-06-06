@@ -5,16 +5,10 @@ return [
         'title' => 'תבניות מאפיינים של :name',
     ],
     'create'                => [
-        'success'   => 'תבנית מאפיינים \':name\' נוצרה.',
-        'title'     => 'תבנית מאפיינים חדשה',
+        'title' => 'תבנית מאפיינים חדשה',
     ],
-    'destroy'               => [
-        'success'   => 'תבנית מאפיינים \':name\' הוסרה.',
-    ],
-    'edit'                  => [
-        'success'   => 'תבנית מאפיינים \':name, עודכה.',
-        'title'     => 'ערוך תבנית מאפיינים :name',
-    ],
+    'destroy'               => [],
+    'edit'                  => [],
     'fields'                => [
         'attribute_template'    => 'תבנית אם',
         'attributes'            => 'מאפיינים',

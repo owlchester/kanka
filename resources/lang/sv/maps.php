@@ -7,16 +7,10 @@ return [
         'explore'   => 'Utforska',
     ],
     'create'        => [
-        'success'   => 'Karta :name skapad.',
-        'title'     => 'Ny Karta',
+        'title' => 'Ny Karta',
     ],
-    'destroy'       => [
-        'success'   => 'Karta :name borttagen.',
-    ],
-    'edit'          => [
-        'success'   => 'Karta :name uppdaterad.',
-        'title'     => 'Redigera Karta :name',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'errors'        => [
         'dashboard' => [
             'missing'   => 'Denna karta behöver en bild för att kunna renderas på dashboardet.',

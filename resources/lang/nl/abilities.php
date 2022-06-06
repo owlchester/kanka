@@ -5,16 +5,10 @@ return [
         'title' => 'Gerelateerde vaardigheden van :name',
     ],
     'create'        => [
-        'success'   => 'Vaardigheid \':name\' gemaakt.',
-        'title'     => 'Nieuwe Vaardigheid',
+        'title' => 'Nieuwe Vaardigheid',
     ],
-    'destroy'       => [
-        'success'   => 'Vaardigheid \':name\' verwijderd.',
-    ],
-    'edit'          => [
-        'success'   => 'Vaardigheid \':name\' bijgewerkt.',
-        'title'     => 'Wijzig Vaardigheid :name',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'fields'        => [
         'abilities' => 'Vaardigheden',
         'ability'   => 'Bovenliggende Vaardigheid',

@@ -7,16 +7,10 @@ return [
         'explore'   => 'Eksploruj',
     ],
     'create'        => [
-        'success'   => 'Stworzono mapę :name.',
-        'title'     => 'Nowa mapa',
+        'title' => 'Nowa mapa',
     ],
-    'destroy'       => [
-        'success'   => 'Usunięto mapę :name',
-    ],
-    'edit'          => [
-        'success'   => 'Zmieniono mapę :name',
-        'title'     => 'Edycja mapy :name',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'errors'        => [
         'dashboard' => [
             'missing'   => 'Aby mapa mogła pojawić się na pulpicie, potrzebuje obrazu.',

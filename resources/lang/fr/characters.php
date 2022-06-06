@@ -10,20 +10,14 @@ return [
         'title' => 'Conversations du personnage :name',
     ],
     'create'        => [
-        'success'   => 'Personne \':name\' créée.',
-        'title'     => 'Créer une nouvelle personne',
+        'title' => 'Créer une nouvelle personne',
     ],
-    'destroy'       => [
-        'success'   => 'Personne \':name\' supprimée.',
-    ],
+    'destroy'       => [],
     'dice_rolls'    => [
         'hint'  => 'Les jets de dés peuvent être assignés à des personnages.',
         'title' => 'Jet de dés de :name',
     ],
-    'edit'          => [
-        'success'   => 'Personne \':name\' modifiée.',
-        'title'     => 'Modifier Personne :name',
-    ],
+    'edit'          => [],
     'fields'        => [
         'age'                       => 'Age',
         'families'                  => 'Familles',

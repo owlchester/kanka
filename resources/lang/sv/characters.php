@@ -10,20 +10,14 @@ return [
         'title' => 'Karaktär :name Konversationer',
     ],
     'create'        => [
-        'success'   => 'Karaktär \':name\' skapad.',
-        'title'     => 'Ny Karaktär',
+        'title' => 'Ny Karaktär',
     ],
-    'destroy'       => [
-        'success'   => 'Karaktär \':name\' borttagen.',
-    ],
+    'destroy'       => [],
     'dice_rolls'    => [
         'hint'  => 'Tärningskast kan tilldelas till en karaktär för användning i spel.',
         'title' => 'Karaktär :name Tärningskast',
     ],
-    'edit'          => [
-        'success'   => 'Karaktär \':name\' uppdaterad.',
-        'title'     => 'Redigera Karaktär :name',
-    ],
+    'edit'          => [],
     'fields'        => [
         'age'                       => 'Ålder',
         'family'                    => 'Familj',

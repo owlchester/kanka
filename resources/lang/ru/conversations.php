@@ -2,15 +2,11 @@
 
 return [
     'create'        => [
-        'success'   => 'Разговор ":name" создан.',
-        'title'     => 'Новый разговор',
+        'title' => 'Новый разговор',
     ],
-    'destroy'       => [
-        'success'   => 'Разговор ":name" удален.',
-    ],
+    'destroy'       => [],
     'edit'          => [
-        'success'   => 'Разговор ":name" обновлен.',
-        'title'     => 'Разговор :name',
+        'title' => 'Разговор :name',
     ],
     'fields'        => [
         'is_closed'     => 'Закрыт',

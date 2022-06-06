@@ -2,16 +2,10 @@
 
 return [
     'create'        => [
-        'success'   => '\':name\' tárgyat létrehoztuk.',
-        'title'     => 'Új tárgy',
+        'title' => 'Új tárgy',
     ],
-    'destroy'       => [
-        'success'   => '\':name\' tárgyat töröltük.',
-    ],
-    'edit'          => [
-        'success'   => '\':name\' tárgyat frissítettük.',
-        'title'     => ':name tárgy szerkesztése',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'fields'        => [
         'character' => 'Karakter',
         'image'     => 'Kép',

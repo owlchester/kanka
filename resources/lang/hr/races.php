@@ -9,16 +9,10 @@ return [
         'title'     => 'Likovi rase :name',
     ],
     'create'        => [
-        'success'   => 'Kreirana rasa ":name".',
-        'title'     => 'Nova rasa',
+        'title' => 'Nova rasa',
     ],
-    'destroy'       => [
-        'success'   => 'Uklonjena rasa ":name".',
-    ],
-    'edit'          => [
-        'success'   => 'Ažurirana rasa ":name".',
-        'title'     => 'Uredi rasu :name',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'fields'        => [
         'characters'    => 'Likovi',
         'name'          => 'Naziv',

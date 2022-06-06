@@ -37,16 +37,7 @@ TEXT
         'superboosted'  => 'Táto funkcionalita je dostupná len pre superboostnuté kampane.',
         'unknown_id'    => 'Neznáma kampaň.',
     ],
-    'export'                            => [
-        'errors'            => [
-            'limit' => 'Maximum jeden export za deň bol dosiahnutý. Prosím, skús to opäť zajtra.',
-        ],
-        'helper'            => 'Exportuj svoju kampaň. Zobrazí sa notifikácia s linkom na stiahnutie.',
-        'helper_secondary'  => 'Budú vytvorené dva súbory - jeden s objektami ako JSON a druhý s obrázkami nahratými k objektom. Pri veľkých kampaniach je možné, že export obrázkov zlyhá a bude ho možné obnoviť len pomocou :api.',
-        'helper_third'      => 'JSON súbory môžeš otvoriť v hociktorom textovom editore. Reprezentujú dáta z databázy Kanky uložené v textovom formáte. Tento export nie je možné použiť pre spätný import do Kanky.',
-        'success'           => 'Export tvojej kampane sa pripravuje. Kanka ti zašle správu, akonáhle bude zozipovaný súbor pripravený na stiahnutie.',
-        'title'             => 'Export kampane :name',
-    ],
+    'export'                            => [],
     'fields'                            => [
         'boosted'                           => 'Boost od',
         'character_personality_visibility'  => 'Štandardná viditeľnosť osobnostných čŕt postáv',
@@ -280,7 +271,6 @@ TEXT
         ],
         'hints'         => [
             'campaign_not_public'   => 'Verejná rola má oprávnenia, ale kampaň je súkromná. Tieto nastavenia počas úpravy kampane nájdeš na karte Zdieľanie.',
-            'public'                => 'Rola "Verejný" sa používa, keď niekto zobrazuje tvoju verejnú kampaň. :more',
             'role_permissions'      => 'Umožniť role :name nasledujúce akcie pre všetky objekty.',
         ],
         'members'       => 'Členovia',

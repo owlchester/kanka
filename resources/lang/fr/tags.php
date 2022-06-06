@@ -12,16 +12,10 @@ return [
         'title'     => 'Enfants de l\'étiquette :name',
     ],
     'create'        => [
-        'success'   => 'Nouvelle étiquette \':name\' ajoutée.',
-        'title'     => 'Nouvelle étiquette',
+        'title' => 'Nouvelle étiquette',
     ],
-    'destroy'       => [
-        'success'   => 'L\'étiquette \':name\' a été retirée.',
-    ],
-    'edit'          => [
-        'success'   => 'L\'étiquette \':name\' a été mise à jour.',
-        'title'     => 'Modifier l\'étiquette :name',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'fields'        => [
         'children'  => 'Enfants',
         'name'      => 'Nom',

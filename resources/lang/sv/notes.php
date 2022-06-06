@@ -2,16 +2,10 @@
 
 return [
     'create'        => [
-        'success'   => 'Anteckning \':name\' skapad.',
-        'title'     => 'Ny Anteckning',
+        'title' => 'Ny Anteckning',
     ],
-    'destroy'       => [
-        'success'   => 'Anteckning \':name\' borttagen.',
-    ],
-    'edit'          => [
-        'success'   => 'Anteckning \':name\' uppdaterad.',
-        'title'     => 'Redigera Anteckning :name',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'fields'        => [
         'description'   => 'Beskrivning',
         'image'         => 'Bild',

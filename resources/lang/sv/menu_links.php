@@ -2,15 +2,11 @@
 
 return [
     'create'        => [
-        'success'   => 'Snapplänk \':name\' skappad.',
-        'title'     => 'Ny Snabblänk',
+        'title' => 'Ny Snabblänk',
     ],
-    'destroy'       => [
-        'success'   => 'Snabblänk \':name\' borttagen.',
-    ],
+    'destroy'       => [],
     'edit'          => [
-        'success'   => 'Snabblänk \':name\' uppdaterad.',
-        'title'     => 'Snabblänk :name',
+        'title' => 'Snabblänk :name',
     ],
     'fields'        => [
         'entity'        => 'Entitet',

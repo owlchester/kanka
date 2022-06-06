@@ -37,16 +37,7 @@ TEXT
         'superboosted'  => 'Diese Funktion ist nur für Kampagnen mit Superboost verfügbar.',
         'unknown_id'    => 'Unbekannte Kampagne.',
     ],
-    'export'                            => [
-        'errors'            => [
-            'limit' => 'Du hast dein Limit von einem Export pro Tag erreicht. Bitte versuche es morgen wieder.',
-        ],
-        'helper'            => 'Exportiere deine Kampagne. Eine Benachrichtigung mit dem Downloadlink wir dir bereit gestellt.',
-        'helper_secondary'  => 'Es werden zwei Dateien zur Verfügung gestellt, eine mit dem Objektexporter als JSON und eine mit Bildern, die auf Objekte hochgeladen wurden. Bitte beachte, dass bei größeren Kampagnen der Bilderexport abstürzt und nur mit der :api wiederhergestellt werden kann.',
-        'helper_third'      => 'JSON-Dateien können mit jeder Textdateianwendung geöffnet werden. Sie stellen die in der Kanka-Datenbank gespeicherten Daten in einem Textformat dar. Es gibt keine Möglichkeit, Ihren Export zurück in Kanka zu importieren.',
-        'success'           => 'Der Export deiner Kampagne wird vorbereitet. Du erhältst eine Nachricht in Kanka sobald dein Download bereit steht.',
-        'title'             => 'Kampagne :name Export',
-    ],
+    'export'                            => [],
     'fields'                            => [
         'boosted'                           => 'geboosted durch',
         'character_personality_visibility'  => 'Standardmäßige Sichtbarkeit der Charakterpersönlichkeit',
@@ -286,7 +277,6 @@ TEXT
         'hints'         => [
             'campaign_not_public'   => 'Die öffentliche Rolle hat Berechtigungen, aber die Kampagne ist privat. Sie können diese Einstellung auf der Registerkarte Freigabe ändern, wenn Sie die Kampagne bearbeiten.',
             'empty_role'            => 'Die Rolle hat noch keine Mitglieder.',
-            'public'                => 'Die Rolle "Öffentlich" wird benutzt, wenn jemand eure öffentliche Kampagne ansieht. :more',
             'role_permissions'      => 'Erlaube der Rolle \':name\' die folgenden Aktionen auf allen Objekten.',
         ],
         'members'       => 'Mitglieder',

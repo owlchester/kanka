@@ -10,20 +10,14 @@ return [
         'title' => 'Konwersacje postaci :name',
     ],
     'create'        => [
-        'success'   => 'Stworzono postać \':name\'.',
-        'title'     => 'Nowa postać',
+        'title' => 'Nowa postać',
     ],
-    'destroy'       => [
-        'success'   => 'Usunięto postać \':name\'.',
-    ],
+    'destroy'       => [],
     'dice_rolls'    => [
         'hint'  => 'Postaci można przypisać rodzaj rzutów kośćmi, wykonywanych w grze.',
         'title' => 'Rzuty kośćmi postaci :name',
     ],
-    'edit'          => [
-        'success'   => 'Zmieniono postać \':name\'.',
-        'title'     => 'Edycja postaci :name',
-    ],
+    'edit'          => [],
     'fields'        => [
         'age'                       => 'Wiek',
         'families'                  => 'Rodziny',

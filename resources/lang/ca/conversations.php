@@ -2,15 +2,11 @@
 
 return [
     'create'        => [
-        'success'   => 'S\'ha creat la conversa «:name».',
-        'title'     => 'Nova conversa',
+        'title' => 'Nova conversa',
     ],
-    'destroy'       => [
-        'success'   => 'S\'ha eliminat la conversa «:name».',
-    ],
+    'destroy'       => [],
     'edit'          => [
-        'success'   => 'S\'ha actualitzat la conversa «:name».',
-        'title'     => 'Conversa :name',
+        'title' => 'Conversa :name',
     ],
     'fields'        => [
         'is_closed'     => 'Tancada',

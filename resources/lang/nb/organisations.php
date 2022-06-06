@@ -2,16 +2,10 @@
 
 return [
     'create'    => [
-        'success'   => 'Organisasjon \':name\' opprettet.',
-        'title'     => 'Opprett ny organisasjon.',
+        'title' => 'Opprett ny organisasjon.',
     ],
-    'destroy'   => [
-        'success'   => 'Organisasjon \':name\' fjernet.',
-    ],
-    'edit'      => [
-        'success'   => 'Organisasjon \':name\' oppdatert.',
-        'title'     => 'Rediger Organisasjon :name',
-    ],
+    'destroy'   => [],
+    'edit'      => [],
     'fields'    => [
         'organisation'  => 'Forelder Organisasjon',
     ],

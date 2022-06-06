@@ -16,16 +16,10 @@ return [
         'title'         => 'Fähigkeit :name Objekt',
     ],
     'create'        => [
-        'success'   => 'Fähigkeit \':name\' erstellt',
-        'title'     => 'Neue Fähigkeit',
+        'title' => 'Neue Fähigkeit',
     ],
-    'destroy'       => [
-        'success'   => 'Fähigkeit \':name\' entfernt',
-    ],
-    'edit'          => [
-        'success'   => 'Fähigkeit \':name\' aktualisiert',
-        'title'     => 'Fähigkeit \':name\' bearbeitet',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'entities'      => [
         'title' => 'Objekt mit der Fähigkeit :name',
     ],

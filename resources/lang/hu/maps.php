@@ -7,16 +7,10 @@ return [
         'explore'   => 'Felfedezés',
     ],
     'create'        => [
-        'success'   => ':name térképet létrehoztuk.',
-        'title'     => 'Új térkép',
+        'title' => 'Új térkép',
     ],
-    'destroy'       => [
-        'success'   => ':name térképet töröltük.',
-    ],
-    'edit'          => [
-        'success'   => ':name térképet frissítettük.',
-        'title'     => ':name térkép szerkesztése',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'errors'        => [
         'dashboard' => [
             'missing'   => 'Szükség van egy képre a térképnek, hogy a főoldalon megjeleníthessük.',

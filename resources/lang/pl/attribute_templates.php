@@ -5,16 +5,10 @@ return [
         'title' => 'Szablony cech :name',
     ],
     'create'                => [
-        'success'   => 'Dodano szablon cech \':name\'.',
-        'title'     => 'Nowy szablon cech',
+        'title' => 'Nowy szablon cech',
     ],
-    'destroy'               => [
-        'success'   => 'Usunięto szablon cech \':name\'.',
-    ],
-    'edit'                  => [
-        'success'   => 'Zmieniono szablon cech \':name\'.',
-        'title'     => 'Edycja szablonu cech :name',
-    ],
+    'destroy'               => [],
+    'edit'                  => [],
     'fields'                => [
         'attribute_template'    => 'Źródłowy szablon cech',
         'attributes'            => 'Cechy',

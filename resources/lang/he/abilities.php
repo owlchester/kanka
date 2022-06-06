@@ -5,16 +5,10 @@ return [
         'title' => 'צאצאים של :name',
     ],
     'create'        => [
-        'success'   => 'היכולת \':name\' נוצרה.',
-        'title'     => 'יכולת חדשה',
+        'title' => 'יכולת חדשה',
     ],
-    'destroy'       => [
-        'success'   => 'היכולת \':name\' הוסרה.',
-    ],
-    'edit'          => [
-        'success'   => 'היכולת \':name\' עודכנה.',
-        'title'     => 'ערוך יכולת \':name\'',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'fields'        => [
         'abilities' => 'יכולות',
         'ability'   => 'יכולת',

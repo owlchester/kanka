@@ -5,16 +5,10 @@ return [
         'title' => 'Personaggi appartenenti alla Razza \':name\'',
     ],
     'create'        => [
-        'success'   => 'Razza \':name\' creata.',
-        'title'     => 'Nuova Razza',
+        'title' => 'Nuova Razza',
     ],
-    'destroy'       => [
-        'success'   => 'Razza \':name\' rimossa.',
-    ],
-    'edit'          => [
-        'success'   => 'Razza \':name\' aggiornata.',
-        'title'     => 'Modifica la Razza \':name\'',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'fields'        => [
         'characters'    => 'Personaggi',
         'name'          => 'Nome',

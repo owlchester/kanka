@@ -2,15 +2,11 @@
 
 return [
     'create'            => [
-        'success'   => 'Menü Link \':name\' created.',
-        'title'     => 'Neuer Menü Link',
+        'title' => 'Neuer Menü Link',
     ],
-    'destroy'           => [
-        'success'   => 'Menü Link \':name\' entfernt.',
-    ],
+    'destroy'           => [],
     'edit'              => [
-        'success'   => 'Menü Link \':name\' aktualisiert.',
-        'title'     => 'Menü Link :name',
+        'title' => 'Menü Link :name',
     ],
     'fields'            => [
         'dashboard'         => 'Dashboard',

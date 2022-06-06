@@ -21,16 +21,11 @@ return [
     ],
     'colours'       => [],
     'create'        => [
-        'success'   => 'Stworzono kalendarz :name.',
-        'title'     => 'Nowy kalendarz',
+        'title' => 'Nowy kalendarz',
     ],
-    'destroy'       => [
-        'success'   => 'Usunięto kalendarz :name',
-    ],
+    'destroy'       => [],
     'edit'          => [
-        'success'   => 'Zmieniono kalendarz \':nazwa\'',
-        'title'     => 'Edycja kalendarza :nazwa',
-        'today'     => 'Zmieniono datę kalendarza.',
+        'today' => 'Zmieniono datę kalendarza.',
     ],
     'event'         => [
         'actions'   => [
@@ -217,12 +212,11 @@ return [
         'weekdays'          => 'Liczba dni w tygodniu',
     ],
     'show'          => [
-        'missing_details'       => 'Nie można wyświetlić kalendarza. Do poprawnego wyświetlania niezbędne są przynajmniej 2 miesiące posiadające po 2 dni tygodnia.',
-        'moon_first_quarter'    => ':moon - pierwsza kwadra',
-        'moon_full'             => ':moon - pełnia',
-        'moon_last_quarter'     => ':moon - ostatnia kwadra',
-        'moon_new'              => ':moon - nów',
-        'tabs'                  => [
+        'missing_details'   => 'Nie można wyświetlić kalendarza. Do poprawnego wyświetlania niezbędne są przynajmniej 2 miesiące posiadające po 2 dni tygodnia.',
+        'moon_full'         => ':moon - pełnia',
+        'moon_last_quarter' => ':moon - ostatnia kwadra',
+        'moon_new'          => ':moon - nów',
+        'tabs'              => [
             'events'    => 'Wydarzenia w kalendarzu',
             'weather'   => 'Pogoda',
         ],

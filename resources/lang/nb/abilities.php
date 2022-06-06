@@ -5,16 +5,10 @@ return [
         'title' => 'Datter egenskap til :name',
     ],
     'create'        => [
-        'success'   => 'Egenskap \':name\' opprettet.',
-        'title'     => 'Ny Egenskap',
+        'title' => 'Ny Egenskap',
     ],
-    'destroy'       => [
-        'success'   => 'Egenskap \':name\' fjernet.',
-    ],
-    'edit'          => [
-        'success'   => 'Egenskap \':name\' oppdatert.',
-        'title'     => 'Rediger Egenskap :name',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'fields'        => [
         'abilities' => 'Egenskaper',
         'ability'   => 'Forelder Egenskap',

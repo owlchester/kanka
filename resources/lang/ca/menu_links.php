@@ -2,15 +2,11 @@
 
 return [
     'create'            => [
-        'success'   => 'S\'ha creat l\'enllaç directe «:name».',
-        'title'     => 'Nou enllaç directe',
+        'title' => 'Nou enllaç directe',
     ],
-    'destroy'           => [
-        'success'   => 'S\'ha eliminat l\'enllaç directe «:name».',
-    ],
+    'destroy'           => [],
     'edit'              => [
-        'success'   => 'S\'ha actualitzat l\'enllaç directe «:name».',
-        'title'     => 'Enllaç directe :name',
+        'title' => 'Enllaç directe :name',
     ],
     'fields'            => [
         'dashboard'     => 'Taulell',

@@ -2,16 +2,10 @@
 
 return [
     'create'        => [
-        'success'   => 'Note \':name\' créée.',
-        'title'     => 'Nouvelle Note',
+        'title' => 'Nouvelle Note',
     ],
-    'destroy'       => [
-        'success'   => 'Note \':name\' supprimée.',
-    ],
-    'edit'          => [
-        'success'   => 'Note \':name\' modifiée.',
-        'title'     => 'Modifier Note :name',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'fields'        => [
         'description'   => 'Description',
         'image'         => 'Image',

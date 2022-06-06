@@ -9,16 +9,10 @@ return [
         'save_order'    => 'Uložiť nové poradie',
     ],
     'create'        => [
-        'success'   => 'Časová os :name vytvorená.',
-        'title'     => 'Nová časová os.',
+        'title' => 'Nová časová os.',
     ],
-    'destroy'       => [
-        'success'   => 'Časová os :name odstránená.',
-    ],
-    'edit'          => [
-        'success'   => 'Časová os aktualizovaná.',
-        'title'     => 'Upraviť časovú os :name.',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'fields'        => [
         'copy_elements' => 'Kopírovať prvky',
         'copy_eras'     => 'Kopírovať vek',

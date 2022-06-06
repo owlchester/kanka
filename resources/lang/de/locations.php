@@ -5,16 +5,10 @@ return [
         'title' => 'Ort :name Charaktere',
     ],
     'create'        => [
-        'success'   => 'Ort \':name\' erstellt.',
-        'title'     => 'Erstelle einen neuen Ort',
+        'title' => 'Erstelle einen neuen Ort',
     ],
-    'destroy'       => [
-        'success'   => 'Ort \':name\' entfernt.',
-    ],
-    'edit'          => [
-        'success'   => 'Ort \':name\' aktualisiert.',
-        'title'     => 'Bearbeite Ort :name',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'events'        => [
         'title' => 'Ort :name Ereignisse',
     ],

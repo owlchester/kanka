@@ -5,16 +5,10 @@ return [
         'title' => ':name Irkı Karakterler',
     ],
     'create'        => [
-        'success'   => '\':name\' ırkı yaratıldı.',
-        'title'     => 'Yeni Irk',
+        'title' => 'Yeni Irk',
     ],
-    'destroy'       => [
-        'success'   => '\':name\' ırkı kaldırıldı.',
-    ],
-    'edit'          => [
-        'success'   => '\':name\' ırkı güncellendi.',
-        'title'     => ':name Irkını Düzenle',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'fields'        => [
         'characters'    => 'Karakterler',
         'name'          => 'Ad',

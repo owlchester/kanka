@@ -9,16 +9,10 @@ return [
         'title'     => 'Postaci rasy :nazwa',
     ],
     'create'        => [
-        'success'   => 'Stworzono rasę \':name\'.',
-        'title'     => 'Nowa rasa',
+        'title' => 'Nowa rasa',
     ],
-    'destroy'       => [
-        'success'   => 'Usunięto rasę \':name\'.',
-    ],
-    'edit'          => [
-        'success'   => 'Zmieniono rasę \':name\'.',
-        'title'     => 'Edycja rasy :name',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'fields'        => [
         'characters'    => 'Postaci',
         'name'          => 'Nazwa',

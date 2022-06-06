@@ -16,16 +16,10 @@ return [
         'title'         => 'Sposobnost :name entiteta',
     ],
     'create'        => [
-        'success'   => 'Kreirana sposobnost ":name".',
-        'title'     => 'Nova sposobnost',
+        'title' => 'Nova sposobnost',
     ],
-    'destroy'       => [
-        'success'   => 'Uklonjena sposobnost ":name".',
-    ],
-    'edit'          => [
-        'success'   => 'Ažurirana sposobnost ":name".',
-        'title'     => 'Uredi sposobnost :name',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'entities'      => [
         'title' => 'Entiteti sa sposobnošću :name',
     ],

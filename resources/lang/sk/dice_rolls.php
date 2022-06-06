@@ -2,17 +2,12 @@
 
 return [
     'create'        => [
-        'success'   => 'Hod kockami \':name\' vytvorený.',
-        'title'     => 'Nový hod kockami',
+        'title' => 'Nový hod kockami',
     ],
     'destroy'       => [
         'dice_roll' => 'Hod kockami odstránený.',
-        'success'   => 'Hod kockami \':name\' odstránený.',
     ],
-    'edit'          => [
-        'success'   => 'Hod kockami \':name\' aktualizovaný.',
-        'title'     => 'Upraviť hod kociek :name',
-    ],
+    'edit'          => [],
     'fields'        => [
         'created_at'    => 'Hodený',
         'name'          => 'Názov',

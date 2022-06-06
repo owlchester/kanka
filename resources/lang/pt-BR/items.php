@@ -2,16 +2,10 @@
 
 return [
     'create'        => [
-        'success'   => 'Item \':name\' criado',
-        'title'     => 'Criar um novo item',
+        'title' => 'Criar um novo item',
     ],
-    'destroy'       => [
-        'success'   => 'Item \':name\' removido',
-    ],
-    'edit'          => [
-        'success'   => 'Item \':name\' atualizado',
-        'title'     => 'Editar Item :name',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'fields'        => [
         'character' => 'Personagem',
         'image'     => 'Imagem',

@@ -2,16 +2,10 @@
 
 return [
     'create'        => [
-        'success'   => 'Kreiran zadatak ":name".',
-        'title'     => 'Novi zadatak',
+        'title' => 'Novi zadatak',
     ],
-    'destroy'       => [
-        'success'   => 'Uklonjen zadatak ":name".',
-    ],
-    'edit'          => [
-        'success'   => 'Ažuriran zadatak ":name".',
-        'title'     => 'Uredi zadatak :name',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'elements'      => [
         'create'    => [
             'success'   => 'Entitet :entity dodan na zadatak.',

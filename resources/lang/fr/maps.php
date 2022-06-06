@@ -7,16 +7,10 @@ return [
         'explore'   => 'Explorer',
     ],
     'create'        => [
-        'success'   => 'Carte :name créée.',
-        'title'     => 'Nouvelle carte',
+        'title' => 'Nouvelle carte',
     ],
-    'destroy'       => [
-        'success'   => 'Carte :name supprimée.',
-    ],
-    'edit'          => [
-        'success'   => 'Carte :name modifiée.',
-        'title'     => 'Modifier la carte :name',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'errors'        => [
         'chunking'  => [
             'error'     => 'Une erreur est survenue durant le traitement de la carte. Contactes l\'équipe sur :discord pour de l\'aide.',

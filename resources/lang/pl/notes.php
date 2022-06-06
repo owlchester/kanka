@@ -2,16 +2,10 @@
 
 return [
     'create'        => [
-        'success'   => 'Stworzono notatkę \':name\'',
-        'title'     => 'Nowa notatka',
+        'title' => 'Nowa notatka',
     ],
-    'destroy'       => [
-        'success'   => 'Usunięto notatkę \':name\'',
-    ],
-    'edit'          => [
-        'success'   => 'Zmieniono notatkę \':name\'',
-        'title'     => 'Edycja notatki :name',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'fields'        => [
         'description'   => 'Opis',
         'image'         => 'Obraz',

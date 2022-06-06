@@ -12,16 +12,10 @@ return [
         'title'     => 'Djeca oznake :name',
     ],
     'create'        => [
-        'success'   => 'Kreirana oznaka ":name".',
-        'title'     => 'Nova oznaka',
+        'title' => 'Nova oznaka',
     ],
-    'destroy'       => [
-        'success'   => 'Uklonjena oznaka ":name".',
-    ],
-    'edit'          => [
-        'success'   => 'Ažurirana oznaka ":name".',
-        'title'     => 'Uredi oznaku :name',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'fields'        => [
         'children'  => 'Djeca',
         'name'      => 'Naziv',

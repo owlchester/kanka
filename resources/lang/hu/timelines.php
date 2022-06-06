@@ -9,16 +9,10 @@ return [
         'save_order'    => 'Új sorrend mentése',
     ],
     'create'        => [
-        'success'   => 'A \':name\' idővonalat létrehoztuk.',
-        'title'     => 'Új idővonal',
+        'title' => 'Új idővonal',
     ],
-    'destroy'       => [
-        'success'   => 'A \':name\' idővonalat eltávolítottuk.',
-    ],
-    'edit'          => [
-        'success'   => 'A \':name\' idővonalat frissítettük.',
-        'title'     => ':name idővonal szerkesztése',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'fields'        => [
         'copy_eras'     => 'Korszakok másolása',
         'eras'          => 'Korszakok',

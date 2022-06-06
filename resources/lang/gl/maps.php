@@ -7,16 +7,10 @@ return [
         'explore'   => 'Explorar',
     ],
     'create'        => [
-        'success'   => 'Mapa ":name" creado.',
-        'title'     => 'Novo mapa',
+        'title' => 'Novo mapa',
     ],
-    'destroy'       => [
-        'success'   => 'Mapa ":name" eliminado.',
-    ],
-    'edit'          => [
-        'success'   => 'Mapa ":name" actualizado.',
-        'title'     => 'Editar mapa ":name"',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'errors'        => [
         'dashboard' => [
             'missing'   => 'Este mapa precisa unha imaxe para poder ser mostrado no taboleiro.',

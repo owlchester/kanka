@@ -9,16 +9,10 @@ return [
         'save_order'    => 'neue Reihenfolge speichern',
     ],
     'create'        => [
-        'success'   => 'Zeitstrahl :name erstellt',
-        'title'     => 'neuer Zeitstrahl',
+        'title' => 'neuer Zeitstrahl',
     ],
-    'destroy'       => [
-        'success'   => 'Zeitstrahl :name entfernt',
-    ],
-    'edit'          => [
-        'success'   => 'Zeitstrahl :name aktualisiert',
-        'title'     => 'Zeitstrahl :name editieren',
-    ],
+    'destroy'       => [],
+    'edit'          => [],
     'fields'        => [
         'copy_elements' => 'Elemente kopieren',
         'copy_eras'     => 'Epoche kopieren',

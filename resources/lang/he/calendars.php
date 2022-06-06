@@ -17,16 +17,11 @@ return [
         'is_recurring'  => 'מתרחש כל שנה',
     ],
     'create'        => [
-        'success'   => 'לוח שנה \':name\' נוצר',
-        'title'     => 'לוח שנה חדש',
+        'title' => 'לוח שנה חדש',
     ],
-    'destroy'       => [
-        'success'   => 'לוח שנה \':name\' הוסר',
-    ],
+    'destroy'       => [],
     'edit'          => [
-        'success'   => 'לוח שנה \':name\' עודכן',
-        'title'     => 'ערוך לוח שנה :name',
-        'today'     => 'התאריך עודכן',
+        'today' => 'התאריך עודכן',
     ],
     'event'         => [
         'actions'   => [
