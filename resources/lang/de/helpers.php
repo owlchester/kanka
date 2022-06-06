@@ -23,6 +23,11 @@ return [
         'range'             => 'Zahlenattribute können so eingerichtet werden, dass sie nur Werte zwischen einem Zahlenbereich zulassen. Verwende beispielsweise :example, um das Attribut zwischen 1 und 10 einzuschränken. Die Bereichswerte können auch auf andere Attribute verweisen, beispielsweise mit :reference. Wenn beim Speichern eines Attributs der Wert außerhalb des Bereichs liegt, wird es automatisch auf den nächsten Bereichswert zurückgesetzt.',
         'title'             => 'Attribute',
     ],
+    'calendar-widget'   => [
+        'description'   => 'Du bist verwirrt über die Erinnerungen, die in deinem Kalender-Dashboard-Widget angezeigt werden? Die Berechnung der anzuzeigenden Erinnerungen ist komplex und ressourcenintensiv, daher nehmen wir ein paar Abkürzungen, um zu vermeiden, dass das Laden deines Dashboards zu lange dauert. Erinnerungen, die sich nicht wiederholen, haben immer Vorrang vor wiederkehrenden, und Erinnerungen, die auf Mondphasen basieren, werden vollständig ignoriert.',
+        'info'          => 'Warum werden diese Erinnerungen angezeigt?',
+        'title'         => 'Kalender-Widget',
+    ],
     'dice'              => [
         'description'               => 'Allgemeine Würfelwürfe sind möglich, wenn du "d20", "4d4+4", "d%" (Prozentwürfe) oder "df" (FUDGE-würfe) schreibst.',
         'description_attributes'    => 'Es ist auch möglich ein Charakterattribut zu verwenden mittels {character.attribute_name} Syntac. Zum Beispiel, {character.level}d6+{character.wisdom}.',
@@ -81,6 +86,7 @@ return [
         'months'            => 'Geben Sie :code ein, um eine Liste der Monate aus Ihrem Kalendern abzurufen.',
         'options'           => 'Ein paar Optionen sind :options',
         'overview'          => 'Verknüpfen Sie einfach mit bestehenden Objekten der Kampagne, indem Sie :code und drei oder mehr Buchstaben eingeben.',
+        'parameters'        => 'Parameter können auch an den Objekt-Link übergeben werden. Gib beispielsweise mit :calendar an, welches Jahr und welcher Monat in einem Kalender angezeigt werden sollen. Dasselbe kann mit dem Ordnen von Unterlisten gemacht werden. Ordne beispielsweise Familien-Unterfamilien nach Ortsnamen mit :sublist.',
         'title'             => 'Andere Objekte verlinken',
     ],
     'map'               => [],

@@ -4,8 +4,14 @@ return [
     'hall_of_fame'  => 'Ruhmeshalle',
     'index'         => [
         'community'     => 'Community',
+        'lead'          => 'Worldbuilding macht Spaß und ist bewährt',
         'title'         => 'Team',
         'translations'  => 'Übersetzungen',
+    ],
+    'leads'         => [
+        'about'         => 'Kanka entstand aus einer Frustration mit Worldbuilding- und Sitzungsnotizen, die in verschiedenen Tools verstreut waren, und der Schwierigkeit, diese Inhalte einfach mit Spielern zu teilen.',
+        'community'     => 'Die Gemeinschaft war vom ersten Tag an Teil unserer DNA. Besonderer Gruß an diese Community-Mitglieder!',
+        'translators'   => 'Kanka wurde dank dieser großartigen Mitwirkenden in mehrere Sprachen übersetzt.',
     ],
     'patreon'       => [],
     'people'        => [

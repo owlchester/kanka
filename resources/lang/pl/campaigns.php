@@ -206,6 +206,7 @@ TEXT
             'title'         => 'Zaproszenia',
         ],
         'manage_roles'          => 'Zarządzaj rolami uczestników',
+        'removal'               => 'Usuwasz ":member" z kampanii.',
         'roles'                 => [
             'member'    => 'Uczestnik',
             'owner'     => 'Administrator',
@@ -280,6 +281,7 @@ TEXT
         ],
         'hints'         => [
             'campaign_not_public'   => 'Ustawiono uprawnienia roli Publiczność, ale kampania jest prywatna. Możesz to zmienić z pomocą zakładki Udostępnij w menu edycji kampanii.',
+            'empty_role'            => 'Tej roli nie posiada żaden z uczestników kampanii.',
             'public'                => 'Roli Publiczność używa się, gdy ktoś ogląda publicznie dostępną kampanię. :more',
             'role_permissions'      => 'Zezwól roli :name na następujące działania na elementach',
         ],
@@ -334,8 +336,9 @@ TEXT
         ],
         'users'         => [
             'actions'   => [
-                'add'       => 'Dodaj uczestnika',
-                'remove'    => ':user z roli :role',
+                'add'           => 'Dodaj uczestnika',
+                'remove'        => ':user z roli :role',
+                'remove_user'   => 'Uusń rolę użytkownika',
             ],
             'create'    => [
                 'success'   => 'Uczestnikowi przypisano rolę.',
@@ -354,6 +357,8 @@ TEXT
             'enable'    => 'Aktywny',
         ],
         'boosted'   => 'Opcja we wczesnym dostępie, na razie dostępna wyłącznie w :boosted.',
+        'disabled'  => 'Moduł :module został wyłączony.',
+        'enabled'   => 'Moduł :module został aktywowany.',
         'errors'    => [
             'module-disabled'   => 'Ten moduł jest obecnie wyłączony w ustawieniach kampanii. :fix',
         ],

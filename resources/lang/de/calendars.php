@@ -14,6 +14,7 @@ return [
         'add_year'          => 'Jahr hinzufügen',
         'set_today'         => 'Als aktuellen Tag festlegen.',
         'today'             => 'Heute',
+        'update_weather'    => 'Wetter aktualisieren',
     ],
     'checkboxes'    => [
         'is_recurring'  => 'Wiederholt sich jedes Jahr',
@@ -73,6 +74,7 @@ return [
         'current_year'          => 'Aktuelles Jahr',
         'date'                  => 'Aktuelles Datum',
         'day'                   => 'Tag',
+        'default_layout'        => 'Standardlayout',
         'has_leap_year'         => 'Hat Schaltjahre',
         'intercalary'           => 'Schalttage',
         'is_incrementing'       => 'Vorausdatierung',
@@ -100,11 +102,12 @@ return [
         'year'                  => 'Jahr',
     ],
     'helpers'       => [
-        'month_type'    => 'Schaltmonate benutzen keine Wochentage, aber beeinflussen trotzdem Monde und Jahreszeiten.',
-        'moon_offset'   => 'Standardmäßig erscheint der erste Vollmond am ersten Tag des Jahres 0. Eine Verschiebung des Offsets , wird nach dem ersten Vollmond angezeigt. Dieser Wert kann negativ (bis zur Länge des ersten Monats) oder positiv (bis zur Länge des ersten Monats) sein.',
-        'nested_parent' => 'Anzeigen der Kalender von :parent.',
-        'nested_without'=> 'Anzeigen aller Kalender ohne übergeordneten Kalender. Klicken Sie auf eine Zeile, um die untergeordneten Kalender anzuzeigen.',
-        'start_offset'  => 'Standardmäßig startet der Kalender am ersten Wochentag des Jahres 0. Das Ändern dieses Felds beeinflusst, wo der erste Tag des Kalenders platziert wird.',
+        'default_layout'    => 'Wählen Sie aus, welches Layout der Kalender standardmäßig verwenden soll, wenn er angezeigt wird.',
+        'month_type'        => 'Schaltmonate benutzen keine Wochentage, aber beeinflussen trotzdem Monde und Jahreszeiten.',
+        'moon_offset'       => 'Standardmäßig erscheint der erste Vollmond am ersten Tag des Jahres 0. Eine Verschiebung des Offsets , wird nach dem ersten Vollmond angezeigt. Dieser Wert kann negativ (bis zur Länge des ersten Monats) oder positiv (bis zur Länge des ersten Monats) sein.',
+        'nested_parent'     => 'Anzeigen der Kalender von :parent.',
+        'nested_without'    => 'Anzeigen aller Kalender ohne übergeordneten Kalender. Klicken Sie auf eine Zeile, um die untergeordneten Kalender anzuzeigen.',
+        'start_offset'      => 'Standardmäßig startet der Kalender am ersten Wochentag des Jahres 0. Das Ändern dieses Felds beeinflusst, wo der erste Tag des Kalenders platziert wird.',
     ],
     'hints'         => [
         'event_length'      => 'Wie lange ein Ereignis dauern soll. Ein Ereignis kann nicht länger als zwei Monate dauern.',
@@ -124,8 +127,10 @@ return [
         'title' => 'Kalender',
     ],
     'layouts'       => [
-        'month' => 'Monat',
-        'year'  => 'Jahr',
+        'month'     => 'Monat',
+        'monthly'   => 'standardmäßig monatlich',
+        'year'      => 'Jahr',
+        'yearly'    => 'standardmäßig jährlich',
     ],
     'modals'        => [
         'switcher'  => [
@@ -211,8 +216,12 @@ return [
         'weekdays'          => 'Anzahl der Tage in einer Woche',
     ],
     'show'          => [
-        'missing_details'   => 'Dieser Kalender konnte nicht angezeigt werden. Kalender brauchen mindestens 2 Monate und 2 Wochentage um korrekt generiert zu werden.',
-        'tabs'              => [
+        'missing_details'       => 'Dieser Kalender konnte nicht angezeigt werden. Kalender brauchen mindestens 2 Monate und 2 Wochentage um korrekt generiert zu werden.',
+        'moon_first_quarter'    => ':moon zunehmend',
+        'moon_full'             => ':moon Vollmond',
+        'moon_last_quarter'     => ':moon abnehmend',
+        'moon_new'              => ':moon Neumond',
+        'tabs'                  => [
             'events'    => 'Kalender Events',
             'weather'   => 'Wetter',
         ],

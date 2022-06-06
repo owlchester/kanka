@@ -20,9 +20,11 @@ return [
         'public'            => [
             'description'   => 'Poszukaj inspiracji przeglądając dostępne publicznie kampanie.',
             'filters'       => [
-                'all'       => 'Doładowanie',
-                'boosted'   => 'Kampanie doładowane',
-                'unboosted' => 'Niedoładowane',
+                'all'               => 'Doładowanie',
+                'boosted'           => 'Kampanie doładowane',
+                'is-boosted'        => 'Tę kampanię doładowano!',
+                'is-superboosted'   => 'Tę kampanię trubodoładowano!',
+                'unboosted'         => 'Niedoładowane',
             ],
             'no-results'    => 'Nie znaleziono żadnych kampanii publicznych pasujących do tych filtrów. Spróbuj jeszcze raz.',
             'title'         => 'Kampanie publiczne',
@@ -86,6 +88,7 @@ return [
             'recovery'              => 'Odzyskiwanie usuniętych elementów do 30 dni',
             'relation-visualiser'   => 'Wizualizacja relacji między elementami',
             'sidebar'               => 'Dostosuj i zmieniaj kolejność bocznego menu kampanii',
+            'standard'              => 'Kampania standardowa',
             'theme'                 => 'Dobór motywu dla kampanii',
             'timeline_elements'     => 'Zmieniaj kolory i ikony wpisów w historii.',
             'title'                 => 'Doładowane kampanie',

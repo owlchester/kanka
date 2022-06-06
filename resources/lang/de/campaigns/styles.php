@@ -3,7 +3,14 @@
 return [
     'actions'   => [
         'current'   => 'Aktuelles Thema :theme',
+        'disable'   => 'deaktiviert',
+        'enable'    => 'aktiviert',
         'new'       => 'Neues Design',
+    ],
+    'bulks'     => [
+        'delete'    => '{1} entfernt :count style.|[2,*] entfernt :count styles.',
+        'disable'   => '{1} deaktiviert :count style.|[2,*] deaktiviert :count styles.',
+        'enable'    => '{1} aktiviert :count style.|[2,*] aktiviert :count styles.',
     ],
     'create'    => [
         'success'   => 'Neues Design angelegt.',
@@ -12,17 +19,26 @@ return [
     'delete'    => [
         'success'   => 'Design :name gelöscht.',
     ],
+    'errors'    => [
+        'max_reached'   => 'Maximale Anzahl an Stilen (:max) erreicht.',
+    ],
     'fields'    => [
         'content'       => 'CSS Regel',
         'is_enabled'    => 'Aktiviert',
         'length'        => 'Länge',
         'modified'      => 'Geändert',
         'name'          => 'Name',
+        'order'         => 'Reihenfolge',
     ],
     'helpers'   => [
         'css_moved' => 'Das CSS-Feld wurde in ein neues flexibles Interface verschoben, das im Kampagnenmenü gefunden werden kann :link.',
         'here'      => 'auf unserem Blog',
         'main'      => 'Sie können das CSS Design für Ihre geboostete Kampagne anpassen. Falls Sie Themes aus dem Marktplatz in Ihrer Kampagne verwenden, dann wird Ihr angepasstes Design nach diesen Themes geladen. Mehr über das Erstellen eigener Designs für Ihre Kampagne finden Sie :here.',
+    ],
+    'reorder'   => [
+        'save'      => 'neue Reihenfolge speichern',
+        'success'   => '{1} neu angeordnet :count style.|[2,*] neu angeordnet :count styles.',
+        'title'     => 'Stile neu anordnen',
     ],
     'theme'     => [
         'success'   => 'Kampagnenthema aktualisiert.',

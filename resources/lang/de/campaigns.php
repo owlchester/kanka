@@ -210,6 +210,7 @@ TEXT
             'title'         => 'Einladen',
         ],
         'manage_roles'          => 'Verwalten von Benutzerrollen',
+        'removal'               => 'Du entfernst ":member" aus der Kampagne.',
         'roles'                 => [
             'member'    => 'Mitglied',
             'owner'     => 'Besitzer (privat Option sichtbar)',
@@ -284,6 +285,7 @@ TEXT
         ],
         'hints'         => [
             'campaign_not_public'   => 'Die öffentliche Rolle hat Berechtigungen, aber die Kampagne ist privat. Sie können diese Einstellung auf der Registerkarte Freigabe ändern, wenn Sie die Kampagne bearbeiten.',
+            'empty_role'            => 'Die Rolle hat noch keine Mitglieder.',
             'public'                => 'Die Rolle "Öffentlich" wird benutzt, wenn jemand eure öffentliche Kampagne ansieht. :more',
             'role_permissions'      => 'Erlaube der Rolle \':name\' die folgenden Aktionen auf allen Objekten.',
         ],
@@ -338,8 +340,9 @@ TEXT
         ],
         'users'         => [
             'actions'   => [
-                'add'       => 'Hinzufügen',
-                'remove'    => ':user von der :role Rolle',
+                'add'           => 'Hinzufügen',
+                'remove'        => ':user von der :role Rolle',
+                'remove_user'   => 'Benutzer aus der Rolle entfernen',
             ],
             'create'    => [
                 'success'   => 'Benutzer zu Rolle hinzugefügt.',
@@ -358,6 +361,8 @@ TEXT
             'enable'    => 'aktivieren',
         ],
         'boosted'   => 'Diese Funktion befindet sich in der Beta-Phase und ist derzeit nur verfügbar für :boosted.',
+        'disabled'  => 'Das Modul :module ist deaktiviert.',
+        'enabled'   => 'Das Modul :module ist aktiviert.',
         'errors'    => [
             'module-disabled'   => 'Das angeforderte Modul ist derzeit in den Kampagneneinstellungen deaktiviert. :fix.',
         ],

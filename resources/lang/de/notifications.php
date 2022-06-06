@@ -33,6 +33,7 @@ return [
     'clear'             => [
         'action'    => 'Clear all',
         'success'   => 'Benachrichtigungen entfernt.',
+        'title'     => 'lösche Benachrichtigungen',
     ],
     'header'            => 'Du hast :count Benachrichtigungen.',
     'index'             => [

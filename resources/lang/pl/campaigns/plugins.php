@@ -7,6 +7,7 @@ return [
             'enable'    => 'Aktywuj dodatki',
             'update'    => 'Aktualizuj dodatki',
         ],
+        'changelog'         => 'Zmiany',
         'disable'           => 'Deaktywuj dodatek',
         'enable'            => 'Aktywuj dodatek',
         'go_to_marketplace' => 'Idź na Targowisko',

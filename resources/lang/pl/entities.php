@@ -14,8 +14,13 @@ return [
     'conversation'          => 'Rozmowa',
     'conversations'         => 'Rozmowy',
     'creator'               => [
+        'actions'           => [
+            'create'    => 'Stwórz :type',
+        ],
         'back'              => 'Powrót do menu wyboru',
         'duplicate'         => 'Istnieje inny element tego typu o tej samej nazwie.',
+        'helper_v2'         => 'Szybko stwórz szkic nowego elementu nie przerywając obecnej pracy.',
+        'missing'           => 'Nie widzisz wszystkich rodzajów elementów? Mogą być wyłączone, być może nie masz uprawnień albo nie posiadają opcji szybkiego tworzenia.',
         'name'              => [
             'new'       => 'Nowa nazwa',
             'remove'    => 'Usuń',

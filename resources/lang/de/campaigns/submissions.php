@@ -2,8 +2,10 @@
 
 return [
     'actions'       => [
-        'accept'    => 'akzeptieren',
-        'reject'    => 'ablehnen',
+        'accept'        => 'akzeptieren',
+        'applications'  => 'Anwendung: :status',
+        'change'        => 'Änderung',
+        'reject'        => 'ablehnen',
     ],
     'apply'         => [
         'apply'         => 'anwenden',
@@ -23,9 +25,26 @@ return [
         'application'   => 'Bewerbung',
         'rejection'     => 'Ablehnungsgrund',
     ],
-    'helpers'       => [],
+    'helpers'       => [
+        'filter-helper'     => 'Diese Kampagne ist offen für Bewerbungen!',
+        'modal'             => 'Bei einer Kampagne, die für Bewerbungen offen und öffentlich ist, können sich Benutzer für die Teilnahme an der Kampagne bewerben.',
+        'no_applications'   => 'Derzeit gibt es keine ausstehenden Bewerbungen zur Teilnahme an Ihrer Kampagne. Benutzer können sich für die Teilnahme an Ihrer Kampagne bewerben, indem sie das Dashboard besuchen und auf die Schaltfläche :button klicken.',
+        'not_open'          => 'Die Kampagne nimmt derzeit keine Bewerbungen an.',
+        'open_not_public'   => 'Die Kampagne ist offen für Bewerbungen, aber nicht öffentlich, was bedeutet, dass sich niemand bewerben kann, um daran teilzunehmen. Dies kann geändert werden, indem du die Einstellungen der Kampagne bearbeitest.',
+    ],
     'placeholders'  => [
         'note'  => 'Notieren Sie Ihre Bewerbung für die Teilnahme an der Kampagne',
+    ],
+    'statuses'      => [
+        'closed'    => 'geschlossen',
+        'open'      => 'offen',
+    ],
+    'toggle'        => [
+        'closed'    => 'Anwendung geschlossen',
+        'label'     => 'Status',
+        'open'      => 'Anwendung offen',
+        'success'   => 'Anwendungsstatus der Kampagne aktualisiert.',
+        'title'     => 'Anwendungsstatus',
     ],
     'update'        => [
         'approve'   => 'Wählen Sie die Rolle aus, die dem Benutzer in Ihrer Kampagne hinzugefügt werden soll.',
