@@ -365,6 +365,10 @@ class AttributeService
             $isPrivate = !empty($privates[$id]);
             $isStar = !empty($stars[$id]);
 
+            // Save empty strings as null
+            $value = $value === '' ? null : $value;
+            $type = $type === '' ? null : $type;
+
             if (!empty($existing[$id])) {
                 // Edit an existing attribute
                 /** @var \App\Models\Attribute $attribute */

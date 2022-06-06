@@ -200,7 +200,6 @@ class Attribute extends Model
         $name = preg_replace($this->listRegexp, '', $name);
 
         return (string) $name;
-
     }
 
     /**
@@ -307,6 +306,9 @@ class Attribute extends Model
         return $this;
     }
 
+    /**
+     * @return $this
+     */
     protected function calculateListConstraints(): self
     {
         if (!$this->listRange === null) {
