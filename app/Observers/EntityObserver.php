@@ -62,7 +62,10 @@ class EntityObserver
      */
     protected function saveTags(Entity $entity)
     {
-        // Only save tags if we are in a form. But we should probably move this?
+        // HTML forms will have 'save-tags', while the api will have a tag array if they want to make changes.
+        if (!request()->has('tags') && !request()->has('save-tags')) {
+            return;
+        }
         $ids = request()->post('tags', []);
 
         // Only use tags the user can actually view. This way admins can
