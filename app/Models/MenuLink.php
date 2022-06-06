@@ -6,6 +6,7 @@ use App\Facades\CampaignLocalization;
 use App\Facades\Dashboard;
 use App\Models\Concerns\Taggable;
 use App\Traits\CampaignTrait;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
@@ -75,13 +76,13 @@ class MenuLink extends MiscModel
      *
      * @var array
      */
-    public $optionsAllowedKeys = ['is_nested', 'default_dashboard'];
+    public array $optionsAllowedKeys = ['is_nested', 'default_dashboard'];
 
     /**
      * Searchable fields
      * @var array
      */
-    protected $searchableColumns  = ['name'];
+    protected array $searchableColumns  = ['name'];
 
     /**
      * Nullable values (foreign keys)
@@ -98,7 +99,7 @@ class MenuLink extends MiscModel
      * Set to false if this entity type doesn't have relations
      * @var bool
      */
-    public $hasRelations = false;
+    public bool $hasRelations = false;
 
     /**
      * Fields that can be sorted on
@@ -118,7 +119,7 @@ class MenuLink extends MiscModel
      * @param $query
      * @return mixed
      */
-    public function scopePreparedWith($query)
+    public function scopePreparedWith($query): Builder
     {
         return $query->with([
             'entity',
@@ -166,14 +167,6 @@ class MenuLink extends MiscModel
                 $parameters['all_members'] = 1;
             }
         }
-
-        if (!empty($this->tab)) {
-            $prefix = 'tab_';
-            // remove tab_ from the beginning of the string, if it's present
-            $tab = '#tab_' . trim((substr($this->tab, 0, strlen($prefix)) == $prefix ?
-                    substr($this->tab, strlen($prefix)) : $this->tab), '#');
-            $parameters[] = $tab;
-        }
         return $parameters;
     }
 
@@ -181,7 +174,7 @@ class MenuLink extends MiscModel
      * Get the route the quick link points to
      * @return string
      */
-    public function getRoute()
+    public function getRoute(): string
     {
         if ($this->dashboard) {
             $dashboard = $this->dashboard_id;
@@ -194,6 +187,7 @@ class MenuLink extends MiscModel
     }
 
     /**
+     * Generate a route for an entity's overview or subpage
      * @return string
      */
     protected function getEntityRoute(): string
@@ -210,17 +204,13 @@ class MenuLink extends MiscModel
             $routeOptions = [$this->target->id, 'quick-link' => $this->id];
             if ($this->menu === 'inventory') {
                 return route('entities.inventory', $routeOptions);
-            }
-            elseif ($this->menu === 'relations') {
+            } elseif ($this->menu === 'relations') {
                 return route('entities.relations.index', $routeOptions);
-            }
-            elseif ($this->menu === 'abilities') {
+            } elseif ($this->menu === 'abilities') {
                 return route('entities.entity_abilities.index', $routeOptions);
-            }
-            elseif ($this->menu === 'assets') {
+            } elseif ($this->menu === 'assets') {
                 return route('entities.assets', $routeOptions);
-            }
-            elseif ($this->menu === 'reminders') {
+            } elseif ($this->menu === 'reminders') {
                 return route('entities.entity_events.index', $routeOptions);
             }
             if (Route::has($menuRoute)) {
@@ -231,17 +221,22 @@ class MenuLink extends MiscModel
     }
 
     /**
+     * Generate the route for a list of entities
      * @return string
      */
-    protected function getIndexRoute()
+    protected function getIndexRoute(): string
     {
         $filters = $this->filters . '&_clean=true&_from=quicklink&quick-link=' . $this->id;
         $nestedType = (!empty($this->options['is_nested']) && $this->options['is_nested'] ? 'tree' : 'index');
-        try {
-            return route(Str::plural($this->type) . ".$nestedType", $filters);
+
+        $routeName = Str::plural($this->type) . ".$nestedType";
+        if ($nestedType === 'tree' && !Route::has($routeName)) {
+            $routeName = Str::plural($this->type) . '.index';
         }
-        catch (\Exception $e) {
-            return '';
+        try {
+            return route($routeName, $filters);
+        } catch (\Exception $e) {
+            return '/invalid';
         }
     }
 
@@ -257,9 +252,10 @@ class MenuLink extends MiscModel
 
     /**
      * @param $query
-     * @return mixed
+     * @return Builder
      */
-    public function scopeOrdered($query) {
+    public function scopeOrdered($query): Builder
+    {
         return $query
             ->orderBy('position', 'ASC')
             ->orderBy('name', 'ASC');
@@ -278,7 +274,7 @@ class MenuLink extends MiscModel
      * @param $query
      * @return mixed
      */
-    public function scopeStandardWith($query)
+    public function scopeStandardWith($query): Builder
     {
         return $query->with('entity');
     }
@@ -368,9 +364,10 @@ class MenuLink extends MiscModel
 
     /**
      * Override the tooltiped link for the datagrid
+     * @param string|null $displayName
      * @return string
      */
-    public function tooltipedLink(string $dislayName = null): string
+    public function tooltipedLink(string $displayName = null): string
     {
         return '<a href="' . $this->getLink() . '">' .
             (!empty($displayName) ? $displayName : e($this->name)) .
