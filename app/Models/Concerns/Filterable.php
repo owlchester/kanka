@@ -161,12 +161,19 @@ trait Filterable
                             })
                             ->where('att.name', $filterValue);
 
-
                         $attributeValue = Arr::get($params, 'attribute_value');
-                        if ($attributeValue !== '' && $attributeValue !== null) {
+                        if ($attributeValue !== '' && $attributeValue !== null && $attributeValue !=='!!') {
                             $query
                             ->where('att.value', $attributeValue);
                         }
+
+                        if ($attributeValue == '!!') {
+                            $query->where(function ($valueQuery) {
+                                return $valueQuery
+                                ->where('att.value', '')->orWhereNull('att.value');
+                            });
+                        }
+
                     } elseif ($key == 'race') {
                         // Character races
                         if (!empty($filterOption) && $filterOption == 'exclude') {
