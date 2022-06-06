@@ -30,22 +30,20 @@ class Attribute extends Model
 {
     use OrderableTrait, Paginatable, Starred, Privatable;
 
-    public const TYPE_BLOCK = 'block';
     public const TYPE_CHECKBOX = 'checkbox';
-    public const TYPE_TEXT = 'text';
     public const TYPE_SECTION = 'section';
     public const TYPE_RANDOM = 'random';
     public const TYPE_NUMBER = 'number';
     public const TYPE_LIST = 'list';
+    public const TYPE_TEXT = 'text';
 
     public const TYPE_STANDARD_ID = 1;
-    public const TYPE_BLOCK_ID = 2;
+    public const TYPE_TEXT_ID = 2;
     public const TYPE_CHECKBOX_ID = 3;
     public const TYPE_SECTION_ID = 4;
     public const TYPE_RANDOM_ID = 5;
     public const TYPE_NUMBER_ID = 6;
     public const TYPE_LIST_ID = 7;
-    public const TYPE_TEXT_ID = 8;
 
     /**
      * @var array
@@ -130,14 +128,6 @@ class Attribute extends Model
     public function isDefault(): bool
     {
         return $this->type_id === self::TYPE_STANDARD_ID;
-    }
-
-    /**
-     * @return bool
-     */
-    public function isBlock(): bool
-    {
-        return $this->type_id === self::TYPE_BLOCK_ID;
     }
 
     /**

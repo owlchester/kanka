@@ -13,8 +13,6 @@
         <input type="checkbox" name="value" @if($attribute->value) checked="checked" @endif />
     @elseif ($attribute->isText())
         {!! Form::textarea('value', $attribute->value, ['class' => 'form-control', 'rows' => 4]) !!}
-    @elseif ($attribute->isBlock())
-
     @elseif ($attribute->isNumber())
         <input type="number" name="value" class="form-control" maxlength="20" value="{{ $attribute->value }}"
         @if ($attribute->validConstraints()) max="{{ $attribute->numberMax() }}" min="{{ $attribute->numberMin() }}" @endif />

@@ -649,8 +649,8 @@ class AttributeService
         if ($type != Attribute::TYPE_RANDOM_ID) {
             return [$type, $value];
         }
-        // Remap the type to a standard attribute
-        $type = Attribute::TYPE_STANDARD_ID;
+        // Remap the type to a number attribute
+        $type = Attribute::TYPE_NUMBER_ID;
 
         try {
             // List of strings separated by commas
@@ -830,8 +830,8 @@ class AttributeService
             return Attribute::TYPE_STANDARD_ID;
         }
 
-        if ($type === Attribute::TYPE_BLOCK) {
-            return Attribute::TYPE_BLOCK_ID;
+        if ($type === Attribute::TYPE_TEXT) {
+            return Attribute::TYPE_TEXT_ID;
         } elseif ($type === Attribute::TYPE_CHECKBOX) {
             return Attribute::TYPE_CHECKBOX_ID;
         } elseif ($type === Attribute::TYPE_SECTION) {
@@ -842,8 +842,6 @@ class AttributeService
             return Attribute::TYPE_NUMBER_ID;
         } elseif ($type === Attribute::TYPE_LIST) {
             return Attribute::TYPE_LIST_ID;
-        } elseif ($type === Attribute::TYPE_TEXT) {
-            return Attribute::TYPE_TEXT_ID;
         }
         dd('missing mapping for ' . $type);
     }

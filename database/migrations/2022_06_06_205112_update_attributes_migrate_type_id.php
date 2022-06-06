@@ -18,7 +18,7 @@ class UpdateAttributesMigrateTypeId extends Migration
             $table->unsignedTinyInteger('type_id')->default(1);
         });
 
-        \Illuminate\Support\Facades\DB::statement("UPDATE attributes SET type_id = " . Attribute::TYPE_BLOCK_ID . " WHERE type = '" . Attribute::TYPE_BLOCK . "'");
+        \Illuminate\Support\Facades\DB::statement("UPDATE attributes SET type_id = " . Attribute::TYPE_TEXT_ID . " WHERE type = 'block'");
         \Illuminate\Support\Facades\DB::statement("UPDATE attributes SET type_id = " . Attribute::TYPE_TEXT_ID . " WHERE type = '" . Attribute::TYPE_TEXT . "'");
         \Illuminate\Support\Facades\DB::statement("UPDATE attributes SET type_id = " . Attribute::TYPE_CHECKBOX_ID . " WHERE type = '" . Attribute::TYPE_CHECKBOX . "'");
         \Illuminate\Support\Facades\DB::statement("UPDATE attributes SET type_id = " . Attribute::TYPE_SECTION_ID . " WHERE type = '" . Attribute::TYPE_SECTION . "'");
