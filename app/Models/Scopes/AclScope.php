@@ -167,28 +167,29 @@ class AclScope implements Scope
     {
         $table = $model->getTable();
         if (auth()->guest()) {
-            return $query->where($table . '.visibility', Visibility::VISIBILITY_ALL_STR);
+            return $query->where($table . '.visibility_id', Visibility::VISIBILITY_ALL);
         }
-
         Permissions::campaign(CampaignLocalization::getCampaign());
 
         // Either mine (self && created_by = me) or (if admin: !self, else: all)
-        return $query->where(function ($sub) use ($model, $table) {
+        return $query
+            // Ignore the Visibility scope because we're overriding it here with the permission engine of posts
+            ->withoutGlobalScope(VisibilityIDScope::class)
+            ->where(function ($sub) use ($model, $table) {
             $visibilities = Permissions::isAdmin()
-                ? [Visibility::VISIBILITY_ALL_STR, Visibility::VISIBILITY_ADMIN_STR,
-                    Visibility::VISIBILITY_ADMIN_SELF_STR, Visibility::VISIBILITY_MEMBERS_STR]
-                : [Visibility::VISIBILITY_ALL_STR, Visibility::VISIBILITY_MEMBERS_STR];
+                ? [Visibility::VISIBILITY_ALL, Visibility::VISIBILITY_ADMIN,
+                    Visibility::VISIBILITY_ADMIN_SELF, Visibility::VISIBILITY_MEMBERS]
+                : [Visibility::VISIBILITY_ALL, Visibility::VISIBILITY_MEMBERS];
             $sub
                 ->where(function ($self) use ($model, $table) {
                     $self
-                        ->whereIn($table . '.visibility', [
-                            Visibility::VISIBILITY_SELF_STR,
-                            Visibility::VISIBILITY_ADMIN_SELF_STR,
+                        ->whereIn($table . '.visibility_id', [
+                            Visibility::VISIBILITY_SELF,
+                            Visibility::VISIBILITY_ADMIN_SELF,
                         ])
                         ->where($table . '.created_by', auth()->user()->id);
                 })
-
-                ->orWhereIn($table . '.visibility', $visibilities)
+                ->orWhereIn($table . '.visibility_id', $visibilities)
                 ->orWhereIn($table . '.id', Permissions::allowedPosts());
              })
             ->whereNotIn($table . '.id', Permissions::deniedPosts());
