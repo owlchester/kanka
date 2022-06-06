@@ -26,14 +26,11 @@ trait VisibilityIDTrait
     }
 
     /**
+     * Generate the html icon for visibility
      * @return string
      */
     public function visibilityIcon(string $extra = null): string
     {
-        /*if ($this->visibility_id == Visibility::VISIBILITY_ALL) {
-            return '';
-        }*/
-
         $class = $title = '';
         if ($this->visibility_id == Visibility::VISIBILITY_ALL) {
             $class = 'fa-solid fa-eye';
@@ -52,6 +49,6 @@ trait VisibilityIDTrait
             $title = __('crud.visibilities.members');
         }
 
-        return '<i class="' . rtrim($class . ' ' . $extra) . '" title="' . $title . '" data-toggle="tooltip"></i>';
+        return '<i class="' . rtrim($class . ' ' . $extra) . '" title="' . $title . '" data-toggle="tooltip" aria-hiden="true"></i>';
     }
 }

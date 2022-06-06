@@ -29,7 +29,7 @@ class StoreEntityNote extends FormRequest
         return $this->clean([
             'entity_id' => 'required|exists:entities,id',
             'name' => 'required|max:191',
-            'visibility' => 'required',
+            'visibility_id' => 'nullable|exists:visibilities,id',
             'is_pinned' => 'boolean',
             'position' => 'nullable|integer|min:0|max:128',
             'entry' => '',

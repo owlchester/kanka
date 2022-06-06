@@ -6,6 +6,7 @@ use App\Facades\Mentions;
 use App\Models\Concerns\Acl;
 use App\Models\Concerns\Blameable;
 use App\Models\Concerns\Paginatable;
+use App\Traits\VisibilityIDTrait;
 use App\Traits\VisibilityTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
@@ -19,7 +20,7 @@ use Illuminate\Support\Arr;
  * @property string $name
  * @property string $value
  * @property string $entry
- * @property string $visibility
+ * @property int $visibility_id
  * @property integer $created_by
  * @property integer $location_id
  * @property string $marketplace_uuid
@@ -39,6 +40,7 @@ class EntityNote extends Model
 {
     /** Traits */
     use Paginatable, Blameable, Acl;
+    use VisibilityIDTrait;
 
     /** @var array */
     protected $fillable = [
@@ -49,7 +51,7 @@ class EntityNote extends Model
         'is_private',
         'is_pinned',
         'position',
-        'visibility',
+        'visibility_id',
         'settings',
         'location_id',
     ];
