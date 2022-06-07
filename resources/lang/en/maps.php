@@ -30,8 +30,6 @@ return [
         'center_x'          => 'Default Longitude Position',
         'center_y'          => 'Default Latitude Position',
         'centering'         => 'Centering',
-        'distance_measure'  => 'Distance Measure',
-        'distance_name'     => 'Distance Unit',
         'grid'              => 'Grid',
         'initial_zoom'      => 'Initial zoom',
         'is_real'           => 'Use OpenStreetMaps',
@@ -59,6 +57,7 @@ return [
         'missing_image'     => 'Save the map with an image before being able to add layers and markers.',
         'nested_parent'     => 'Displaying the maps of :parent.',
         'nested_without'    => 'Displaying all maps that don\'t have a parent map. Click on a row to see the children maps.',
+        'chunked_zoom'      => 'Chunked maps have their min and max settings set by the chunking process.'
     ],
     'index'         => [
         'title' => 'Maps',
@@ -76,8 +75,6 @@ return [
         'center_marker'     => 'Leave empty to load the map in the middle',
         'center_x'          => 'Leave empty to load the map in the middle',
         'center_y'          => 'Leave empty to load the map in the middle',
-        'distance_measure'  => 'Units per pixel',
-        'distance_name'     => 'Name of the distance unit (kilometer, mile)',
         'grid'              => 'Distance in pixel between grid elements. Leave empty to hide the grid.',
         'name'              => 'Name of the map',
         'type'              => 'Dungeon, City, Galaxy',
