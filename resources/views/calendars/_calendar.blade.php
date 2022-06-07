@@ -20,26 +20,26 @@ $weekNumber = 1;
 
             @if (!$renderer->isYearlyLayout())
             <div class="btn-group">
-                <a href="{{ $renderer->previous() }}" class="btn btn-default btn-corner-left" title="{{ $renderer->previous(true) }}" data-toggle="tooltip">
+                <a href="{{ $renderer->previous() }}" class="btn btn-default btn-corner-left" data-shortcut="previous" title="{{ $renderer->previous(true) }} (Ctrl <i class='fa-solid fa-arrow-left' aria-hidden='true'></i>)" data-html="true" data-toggle="tooltip">
                     <i class="fa-solid fa-angle-left"></i>
                 </a>
                 <div class="btn btn-default" disabled>
                     {!! $renderer->currentMonthName() !!}
                 </div>
-                <a href="{{ $renderer->next() }}" class="btn btn-default btn-corner-right" title="{{ $renderer->next(true) }}" data-toggle="tooltip">
+                <a href="{{ $renderer->next() }}" class="btn btn-default btn-corner-right"  data-shortcut="next" title="{{ $renderer->next(true) }} (Ctrl <i class='fa-solid fa-arrow-right' aria-hidden='true'></i>)" data-html="true" data-toggle="tooltip">
                     <i class="fa-solid fa-angle-right"></i>
                 </a>
             </div>
             @endif
             <div class="btn-group">
-                <a href="{{ $renderer->linkToYear(false) }}" class="btn btn-default btn-corner-left" title="{{ $renderer->titleToYear(false) }}" data-toggle="tooltip">
+                <a href="{{ $renderer->linkToYear(false) }}" class="btn btn-default btn-corner-left" @if ($renderer->isYearlyLayout()) data-shortcut="previous" title="{{ $renderer->titleToYear(false) }} (Ctrl <i class='fa-solid fa-arrow-left' aria-hidden='true'></i>)" data-html="true" @else title="{{ $renderer->titleToYear(false) }}" @endif data-toggle="tooltip">
                     <i class="fa-solid fa-angle-left"></i>
                 </a>
                 <div data-toggle="modal" data-target="#calendar-year-switcher" title="{{ __('calendars.modals.switcher.title') }}"
                      class="btn btn-default">
                     {!! $renderer->currentYearName() !!}
                 </div>
-                <a href="{{ $renderer->linkToYear() }}" class="btn btn-default btn-corner-right" title="{{ $renderer->titleToYear() }}" data-toggle="tooltip">
+                <a href="{{ $renderer->linkToYear() }}" class="btn btn-default btn-corner-right" @if ($renderer->isYearlyLayout()) data-shortcut="next" title="{{ $renderer->titleToYear() }} (Ctrl <i class='fa-solid fa-arrow-right' aria-hidden='true'></i>)" data-html="true" @else title="{{ $renderer->titleToYear() }}" @endif data-toggle="tooltip">
                     <i class="fa-solid fa-angle-right"></i>
                 </a>
             </div>
