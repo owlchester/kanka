@@ -125,6 +125,34 @@ trait Filterable
                                 ->where("et$v.tag_id", $v)
                             ;
                         }
+                    } elseif ($key == 'races') {
+                        // "none" filter keys is handled later
+                        if (!empty($filterOption) && $filterOption === 'none') {
+                            continue;
+                        }
+                        $query = $this->joinEntity($query);
+
+                        // Make sure we always have an array
+                        if (!is_array($value)) {
+                            $value = [$value];
+                        }
+
+                        if (!empty($filterOption) && $filterOption == 'exclude') {
+                            $raceIds = [];
+                            foreach ($value as $v) {
+                                $raceIds[] = (int) $v;
+                            }
+                             $query->whereRaw('(select count(*) from character_race as cr where cr.character_id = ' . $this->getTable() . '.id and cr.race_id in (' . implode(', ', $raceIds) . ')) = 0');
+                            continue;
+                        }
+
+                        foreach ($value as $v) {
+                            $v = (int) $v;
+                            $query
+                                ->leftJoin('character_race as cr' . $v, "cr$v.character_id", $this->getTable().'.id')
+                                ->where("cr$v.race_id", $v)
+                            ;
+                        }
                     } elseif ($key == 'tag_id') {
                         $query = $this->joinEntity($query);
                         $query
@@ -161,19 +189,12 @@ trait Filterable
                             })
                             ->where('att.name', $filterValue);
 
+
                         $attributeValue = Arr::get($params, 'attribute_value');
-                        if ($attributeValue !== '' && $attributeValue !== null && $attributeValue !== '!!') {
+                        if ($attributeValue !== '' && $attributeValue !== null) {
                             $query
                             ->where('att.value', $attributeValue);
                         }
-
-                        if ($attributeValue === '!!') {
-                            $query->where(function ($valueQuery) {
-                                return $valueQuery
-                                ->where('att.value', '')->orWhereNull('att.value');
-                            });
-                        }
-
                     } elseif ($key == 'race') {
                         // Character races
                         if (!empty($filterOption) && $filterOption == 'exclude') {
@@ -322,7 +343,7 @@ trait Filterable
     {
         $operator = 'like';
         $filterValue = $value;
-        if ($key !== 'tags') {
+        if (($key !== 'tags') && ($key !== 'races')) {
             if ($value == '!!') {
                 $operator = 'IS NULL';
                 $filterValue = null;
