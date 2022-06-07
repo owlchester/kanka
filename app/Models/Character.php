@@ -70,6 +70,7 @@ class Character extends MiscModel
         'attributes',
         'race',
         'family',
+        'races',
     ];
 
     /**
