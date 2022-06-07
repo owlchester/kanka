@@ -41,8 +41,11 @@ if (isset($single) && $single) {
 @if(!isset($single) || !$single)
     /** Groups Init **/
 @foreach($map->groups as $group)
+    @if ($map->isClustered())
     var group{{ $group->id }} = L.layerGroup(/**[{{ $group->markerGroupHtml() }}]**/);
-    //var clusterMarkersGroup{{ $group->id }} = L.markerClusterGroup({ chunkedLoading: true });
+    @else
+    var group{{ $group->id }} = L.layerGroup([{{ $group->markerGroupHtml() }}]);
+    @endif
 @endforeach
 
     var overlayMaps{{ $map->id }} = {
@@ -105,7 +108,8 @@ if (isset($single) && $single) {
 
     @endif
 
+    @if ($map->isClustered())
     // This is where we group markers into cluster groups
     var clusterMarkers{{ $map->id }} = L.markerClusterGroup.layerSupport({ chunkedLoading: true });
-
+    @endif
 </script>

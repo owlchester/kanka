@@ -53,14 +53,19 @@
         <script type="text/javascript">
             window.map = map{{ $model->id }};
             /** Add markers outside of a group directly to the page **/
-            @foreach ($model->markers as $marker)
-                @if ($marker->visible() && empty($marker->group_id))
-                    clusterMarkers{{ $model->id }}.addLayer(marker{{ $marker->id }});
-                //marker{{ $marker->id }}.addTo(map{{ $model->id }});
-                @elseif (!empty($marker->group_id))
-                    marker{{ $marker->id }}.addTo(group{{ $marker->group_id }})
-                @endif
-            @endforeach
+@foreach ($model->markers as $marker)
+    @if ($marker->visible() && empty($marker->group_id))
+        @if ($model->isClustered())
+            clusterMarkers{{ $model->id }}.addLayer(marker{{ $marker->id }});
+        @else
+            marker{{ $marker->id }}.addTo(map{{ $model->id }});
+        @endif
+    @elseif (!empty($marker->group_id))
+        marker{{ $marker->id }}.addTo(group{{ $marker->group_id }})
+    @endif
+@endforeach
+
+@if ($model->isClustered())
             map{{ $model->id }}.addLayer(clusterMarkers{{ $model->id }});
 
             /** Add the groups to the cluster **/
@@ -71,6 +76,7 @@
                 @if (!$group->is_shown) @continue @endif
                 group{{ $group->id }}.addTo(map{{ $model->id }});
             @endforeach
+@endif
 
             map{{ $model->id }}.on('click', function(ev) {
                 let position = ev.latlng;

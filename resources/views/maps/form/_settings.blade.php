@@ -11,15 +11,32 @@ if (isset($model) && $model->isChunked()) {
     $defaultInitial = $minInitial;
 }
 ?>
-<input type="hidden" name="is_real" value="0" />
-<div class="form-group checkbox">
-    <label>
-        {!! Form::checkbox('is_real') !!}
-        {{ __('maps.fields.is_real') }}
-    </label>
-    <p class="help-block">
-        {!! __('maps.helpers.is_real') !!}
-    </p>
+<div class="row">
+    <div class="col-sm-6">
+        <input type="hidden" name="is_real" value="0" />
+        <div class="form-group checkbox">
+            <label>
+                {!! Form::checkbox('is_real') !!}
+                {{ __('maps.fields.is_real') }}
+            </label>
+            <p class="help-block">
+                {!! __('maps.helpers.is_real') !!}
+            </p>
+        </div>
+    </div>
+    <div class="col-sm-6">
+
+        <input type="hidden" name="has_clustering" value="0" />
+        <div class="form-group checkbox">
+            <label>
+                {!! Form::checkbox('has_clustering', 1, !isset($model) ? true : $model->has_clustering) !!}
+                {{ __('maps.fields.has_clustering') }}
+            </label>
+            <p class="help-block">
+                {!! __('maps.helpers.has_clustering') !!}
+            </p>
+        </div>
+    </div>
 </div>
 
 <hr />
@@ -75,7 +92,7 @@ if (isset($model) && $model->isChunked()) {
             'initial_zoom',
             FormCopy::field('initial_zoom')->string(),
             [
-            'placeholder' => 0,
+            'placeholder' => 5,
             'class' => 'form-control',
             'min' => $minInitial,
             'max' => $maxInitial,
