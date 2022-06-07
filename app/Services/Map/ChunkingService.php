@@ -7,6 +7,7 @@ use App\Notifications\Header;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
+use Exception;
 
 class ChunkingService
 {
@@ -15,22 +16,22 @@ class ChunkingService
 
     /** @var \Intervention\Image\Image */
     protected $original;
-    protected $path;
+    protected string $path;
 
-    protected $width = 0;
-    protected $height = 0;
+    protected int $width = 0;
+    protected int $height = 0;
 
-    protected $maxZoom = 8;
-    protected $minZoom = 8;
+    protected int $maxZoom = 8;
+    protected int $minZoom = 8;
 
-    protected $maxBound = 0;
+    protected int $maxBound = 0;
 
-    protected $maxZoomThreshold = 13;
+    protected int $maxZoomThreshold = 13;
 
-    protected $tileSize = 256;
+    protected int $tileSize = 256;
 
-    protected $tileFormat = 'png';
-    protected $tileOverlap = 1;
+    protected string $tileFormat = 'png';
+    protected int $tileOverlap = 1;
 
     public function map(Map $map): self
     {
@@ -40,10 +41,14 @@ class ChunkingService
         return $this;
     }
 
+    /**
+     * @return bool
+     * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
+     */
     public function chunk(): bool
     {
         if (empty($this->map->image)) {
-            throw new \Exception('Map #' . $this->map->id . ' has no image.');
+            throw new Exception('Map #' . $this->map->id . ' has no image.');
         }
 
         // Set the map chunking process
@@ -61,7 +66,7 @@ class ChunkingService
         Storage::deleteDirectory($folder);
         Storage::makeDirectory($folder);
 
-        for($level = $this->minZoom; $level <= $this->maxZoom; $level++) {
+        for ($level = $this->minZoom; $level <= $this->maxZoom; $level++) {
             $this->log('creating chunks for level ' . $level);
             $levelFolder = $folder . '/' . $level;
             Storage::makeDirectory($levelFolder);
@@ -134,8 +139,14 @@ class ChunkingService
         return [$x, $y];
     }
 
-
-    protected function createTile(int $width, int $height, int $level, string $levelFolder)
+    /**
+     * @param int $width
+     * @param int $height
+     * @param int $level
+     * @param string $levelFolder
+     * @return void
+     */
+    protected function createTile(int $width, int $height, int $level, string $levelFolder): void
     {
         $image = $this->generate($width, $height);
         $image->backup();
@@ -149,11 +160,11 @@ class ChunkingService
         list($cols, $rows) = $this->countTiles($width, $height);
         //dump("Create title for level $level");
         //dump("cols $cols rows $rows ($width x $height)");
-        $total = $cols * $rows;
+        //$total = $cols * $rows;
 
-        foreach (range(0, $cols -1) as $col) {
+        foreach (range(0, $cols - 1) as $col) {
             //dump("- Col $col");
-            foreach (range(0, $rows -1) as $row) {
+            foreach (range(0, $rows - 1) as $row) {
                 $file = $col . '_' . $row . '.' . $this->tileFormat;
                 //dump('tile ' . $levelFolder . '/' . $file);
                 //dump("width $width height $height");
@@ -192,8 +203,8 @@ class ChunkingService
             }
         }
 
-        unset ($image);
-        unset ($tmp);
+        unset($image);
+        unset($tmp);
     }
 
     /**
@@ -203,11 +214,15 @@ class ChunkingService
      */
     protected function zoomLevels(int $max): self
     {
-        $this->maxZoom = min((int) ceil(log($max,2)), $this->maxZoomThreshold);
+        $this->maxZoom = min((int) ceil(log($max, 2)), $this->maxZoomThreshold);
         $this->levelMin = (int) floor(log($max, 2));
         return $this;
     }
 
+    /**
+     * Finish the process by updating the map
+     * @return $this
+     */
     protected function finish(): self
     {
         $this->map->chunking_status = Map::CHUNKING_FINISHED;
@@ -222,7 +237,6 @@ class ChunkingService
         $this->map->save();
         Log::info('Saved map #' . $this->map->id);
         if ($this->map->entity->creator) {
-
             $this->map->entity->creator->notify(new Header(
                 'map.chunked',
                 'fas fa-map',
@@ -232,6 +246,10 @@ class ChunkingService
 
             Log::info('Notified user #' . $this->map->entity->created_by);
         }
+
+        // Cleanup the locally downloaded file
+        Storage::disk('local')->delete($this->map->image);
+
         return $this;
     }
 
@@ -254,7 +272,15 @@ class ChunkingService
      */
     protected function openOriginal(): self
     {
-        $this->path = Storage::disk('public')->path($this->map->image);
+        $this->path = Storage::disk('local')->path($this->map->image);
+
+        // Download from s3 to local
+        $s3 = Storage::disk('s3')->get($this->map->image);
+        Storage::disk('local')->put(
+            $this->map->image,
+            $s3
+        );
+
         $original = Image::make($this->path);
 
         $this->width = $original->width();
@@ -263,6 +289,7 @@ class ChunkingService
         $this->maxBound = max([$this->width, $this->height]);
         $this->zoomLevels($this->maxBound);
 
+        unset($s3);
         unset($original);
         return $this;
     }
