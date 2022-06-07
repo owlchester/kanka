@@ -207,10 +207,10 @@ function initMapExplore() {
         if (result) {
           if (window.kankaIsMobile.matches) {
             markerModalTitle.html(result.name);
-            markerModalContent.find('.content').html(result.body);
+            markerModalContent.find('.content').html(result.body).show();
             markerModalContent.find('.spinner').hide();
           } else {
-            sidebarMarker.html(result.body).parent().find('.spinner').hide();
+            sidebarMarker.html(result.body).show().parent().find('.spinner').hide();
             handleCloseMarker();
             mapPageBody.addClass('sidebar-open');
           }
@@ -222,6 +222,7 @@ function initMapExplore() {
   };
 
   initLegend();
+  registerModes();
 }
 /**
  * When submitting the layer or marker form from the map modal, disable the map form unsaved changed
@@ -273,7 +274,7 @@ function showSidebar() {
 
   mapPageBody.removeClass('sidebar-collapse').addClass('sidebar-open');
   sidebarMap.hide();
-  sidebarMarker.html('');
+  sidebarMarker.html('').show();
   sidebarMarker.parent().find('.spinner').show();
   invalidateMapOnSidebar();
 }
@@ -308,6 +309,23 @@ function initMapEntryClick() {
     e.preventDefault();
     $(this).parent().hide();
     $('.map-marker-entry-entry').show();
+  });
+}
+/**
+ * Register switching in and out of edit mode
+ */
+
+
+function registerModes() {
+  $('.btn-mode-enable').click(function (e) {
+    e.preventDefault();
+    window.explodeEditMode = true;
+    $('body').addClass('map-edit-mode');
+  });
+  $('.btn-mode-disable').click(function (e) {
+    e.preventDefault();
+    window.explodeEditMode = false;
+    $('body').removeClass('map-edit-mode');
   });
 }
 })();

@@ -84,8 +84,7 @@ class Entity extends Model
         Paginatable,
         LastSync,
         SortableTrait,
-        Acl
-    ;
+        Acl;
 
     /**
      * Searchable fields
@@ -222,7 +221,7 @@ class Entity extends Model
 
         if (empty($text)) {
             $text = $this->child->entry();
-            $text = preg_replace("/\s|&nbsp;/",' ', $text);
+            $text = preg_replace("/\s|&nbsp;/", ' ', $text);
             //dd($text);
             $text = str_replace(['</h', '</p', '<br'], [' </h', ' </p', ' <br'], $text);
             /*dump('before');
@@ -261,6 +260,7 @@ class Entity extends Model
         }
         return $html;
     }
+
     /**
      * Preview of the entity with mapped mentions. For map markers
      * @return string
@@ -275,11 +275,11 @@ class Entity extends Model
             $boostedTooltip = strip_tags($this->tooltip);
             if (!empty(trim($boostedTooltip))) {
                 $text = Mentions::mapEntity($this);
-                return (string) strip_tags($text);
+                return (string)strip_tags($text);
             }
         }
         $text = Str::limit($this->child->entry(), 500);
-        return (string) strip_tags($text);
+        return (string)strip_tags($text);
     }
 
 
@@ -388,7 +388,7 @@ class Entity extends Model
      */
     public function touchSilently()
     {
-        return static::withoutEvents(function() {
+        return static::withoutEvents(function () {
             // Still logg who edited the entity
             $this->updated_by = auth()->user()->id;
             return $this->touch();
@@ -429,6 +429,33 @@ class Entity extends Model
         }
 
         return false;
+    }
+
+    /**
+     * Determine if an entity has an image that can be shown
+     * @return bool
+     */
+    public function hasImage(bool $boosted = false): bool
+    {
+        // Most basic setup, the child has an image
+        if (!empty($this->child->image)) {
+            return true;
+        }
+        // Otherwise, might have a gallery image, which needs a boosted campaign
+        return $boosted && $this->image;
+    }
+
+    /**
+     * Get the entity's image url (local or gallery)
+     * @param $boosted
+     * @return string
+     */
+    public function getEntityImageUrl($boosted = false, int $width = 200, int $height = 200): string
+    {
+        if ($boosted && $this->image) {
+            return Img::crop($width, $height)->url($this->image->path);
+        }
+        return $this->child->getImageUrl($width, $height);
     }
 
     /**
