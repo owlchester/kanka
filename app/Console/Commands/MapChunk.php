@@ -1,0 +1,89 @@
+<?php
+
+namespace App\Console\Commands;
+
+use App\Jobs\ChunkMapJob;
+use App\Models\Map;
+use App\Services\Map\ChunkingService;
+use Illuminate\Console\Command;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Log;
+
+class MapChunk extends Command
+{
+    /**
+     * The name and signature of the console command.
+     *
+     * @var string
+     */
+    protected $signature = 'map:chunk {map : The map ID}';
+
+    /**
+     * The console command description.
+     *
+     * @var string
+     */
+    protected $description = 'Chunks a map\'s image into tiles.';
+
+    /**
+     * Create a new command instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        parent::__construct();
+    }
+
+    /**
+     * Execute the console command.
+     *
+     * @return int
+     */
+    public function handle()
+    {
+        $mapID = $this->argument('map');
+        $map = Map::find($mapID);
+        if (empty($map)) {
+            $this->error('Unknown map #' . $mapID);
+            return 0;
+        }
+
+        $this->dispatch($mapID);
+        $this->info('ChunkMapJob queues for map #' . $mapID);
+        return 0;
+    }
+
+    /**
+     * @param int $mapID
+     * @return \Illuminate\Foundation\Bus\PendingDispatch
+     * @throws \Illuminate\Contracts\Container\BindingResolutionException
+     * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
+     */
+    protected function dispatch(int $mapID)
+    {
+        return ChunkMapJob::dispatch($mapID);
+
+        /** @var ChunkingService $service */
+        $service = app()->make(ChunkingService::class);
+
+        $map = Map::find($mapID);
+        if (empty($map)) {
+            Log::error('Chunking map: unknown map #' . $mapID);
+            return;
+        }
+
+        $now = Carbon::now();
+        Log::info('Chunking map #' . $mapID);
+        try {
+            $service
+                ->map($map)
+                ->chunk();
+
+            $elapsed = Carbon::now()->diffInMinutes($now);
+            Log::info('Chunked map #' . $mapID . ' in ' . $elapsed . ' minutes.');
+        } catch (\Exception $e) {
+            throw $e;
+        }
+    }
+}

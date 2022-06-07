@@ -28,6 +28,7 @@ class ChunkMapJob implements ShouldQueue
     public function __construct(int $mapID)
     {
         $this->mapID = $mapID;
+        $this->onConnection('heavy');
     }
 
     /**

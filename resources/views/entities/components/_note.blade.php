@@ -14,12 +14,12 @@
                 <i class="fa-solid fa-chevron-down" id="entity-note-toggle-{{ $note->id }}-hide" @if (!$note->collapsed()) style="display: none;" @endif></i>
                 {{ $note->name  }}
                 @if (app()->environment('local'))
-                    ({{ $note->position }})
+                    <sup>({{ $note->position }})</sup>
                 @endif
             </h3>
             <div class="box-tools">
                 @if (auth()->check())
-                    @include('cruds.partials.visibility', ['model' => $note, 'toolbox' => true])
+                    {!! $note->visibilityIcon('btn-box-tool') !!}
 
                     <a class="dropdown-toggle btn btn-box-tool" data-toggle="dropdown" aria-expanded="false" data-placement="right" data-tree="escape">
                         <i class="fa-solid fa-ellipsis-v"></i>

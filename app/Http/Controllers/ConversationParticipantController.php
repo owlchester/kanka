@@ -51,18 +51,7 @@ class ConversationParticipantController extends Controller
     {
         $this->authorize('update', $conversation);
 
-        $name = $conversation->pluralType() . '.notes' . $this->view;
-        $route = 'entities.' . $this->route;
-        $parentRoute = $conversation->pluralType();
-        $model = $conversationParticipant;
-
-        return view('cruds.notes.edit', compact(
-            'entity',
-            'model',
-            'name',
-            'route',
-            'parentRoute'
-        ));
+        dd('CPC 055');
     }
 
     /**

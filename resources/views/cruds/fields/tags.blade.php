@@ -4,6 +4,7 @@
             <div class="col-md-8">
     @endif
     <div class="form-group">
+        <input type="hidden" name="save-tags" value="1" />
         {!! Form::tags(
             'tag_id',
             [

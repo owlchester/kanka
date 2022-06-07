@@ -50,7 +50,7 @@ if (!isset($model) && !empty($currentCampaign->ui_settings['post_collapsed'])) {
                     @include('cruds.fields.location', ['from' => null])
                 </div>
                 <div class="col-md-6">
-                    @include('cruds.fields.visibility')
+                    @include('cruds.fields.visibility_id')
                 </div>
             </div>
             <div class="row">

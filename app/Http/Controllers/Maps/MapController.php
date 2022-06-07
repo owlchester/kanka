@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers\Maps;
 
-use App\Datagrids\Bulks\MapBulk;
 use App\Datagrids\Filters\MapFilter;
-use App\Datagrids\Sorters\MapMapSorter;
 use App\Facades\Datagrid;
 use App\Http\Controllers\CrudController;
 use App\Http\Requests\StoreMap;
@@ -223,12 +221,13 @@ class MapController extends CrudController
             . '.png'
         ;
 
-        if (!Storage::disk('public')->exists($path)) {
+        if (!Storage::exists($path)) {
             return response()
                 ->file(public_path('/images/map_chunks/transparent.png'), $headers);
         }
 
-        return response()
-            ->file(Storage::disk('public')->path($path), $headers);
+        return redirect()->to(Storage::url($path));
+        //return response()
+        //    ->file(Storage::path($path), $headers);
     }
 }

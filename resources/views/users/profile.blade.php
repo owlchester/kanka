@@ -93,7 +93,7 @@
 
                             <div class="row">
                                 @foreach ($campaigns as $campaign)
-                                    <div class="col-lg-4 col-md-6">
+                                    <div class="col-xl-6 col-12">
                                         @include('front._campaign', ['campaign' => $campaign, 'featured' => false])
                                     </div>
                                 @endforeach

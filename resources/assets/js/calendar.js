@@ -55,6 +55,8 @@ $(document).ready(function() {
     if ($('select[name="recurring_periodicity"]').length === 1) {
         initCalendarEventModal();
     }
+
+    registerKeyboardShortcuts();
 });
 
 /**
@@ -322,4 +324,19 @@ function resetReminderAnimation() {
     reminderForm.find('.btn-success i.fa').hide();
     reminderForm.find('.btn-success span').show();
     reminderForm.find('.btn-success').prop('disabled', false);
+}
+
+/**
+ * Register keyboard shortcuts for previous/next view
+ */
+function registerKeyboardShortcuts() {
+    $(document).bind('keydown', function(e) {
+        if ((e.ctrlKey || e.metaKey) && e.which === 37) {
+            $('[data-shortcut="previous"]').addClass('loading')[0].click();
+        } else if ((e.ctrlKey || e.metaKey) && e.which === 39) {
+            $('[data-shortcut="next"]').addClass('loading')[0].click();
+        }
+
+    });
+
 }
