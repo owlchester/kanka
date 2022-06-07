@@ -42,22 +42,23 @@ use Illuminate\Support\Facades\Storage;
  */
 class Map extends MiscModel
 {
-    use CampaignTrait,
-        ExportableTrait,
-        Nested,
-        SoftDeletes,
-        SortableTrait,
-        Acl
-    ;
+    use CampaignTrait;
+    use ExportableTrait;
+    use Nested;
+    use SoftDeletes;
+    use SortableTrait;
+    use Acl;
 
-    const MAX_ZOOM = 10;
-    const MIN_ZOOM = -10;
-    const MAX_ZOOM_REAL = 15;
-    const MIN_ZOOM_REAL = 2;
+    public const MAX_ZOOM = 10;
+    public const MIN_ZOOM = -10;
+    public const MAX_ZOOM_REAL = 15;
+    public const MIN_ZOOM_REAL = 2;
+    public const MIN_ZOOM_CHUNK = 8;
+    public const MAX_ZOOM_CHUNK = 13;
 
-    const CHUNKING_RUNNING = 1;
-    const CHUNKING_FINISHED = 2;
-    const CHUNKING_ERROR = 3;
+    public const CHUNKING_RUNNING = 1;
+    public const CHUNKING_FINISHED = 2;
+    public const CHUNKING_ERROR = 3;
 
     /**
      * @var array

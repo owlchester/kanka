@@ -1,35 +1,16 @@
-{{--<div class="row">--}}
-{{--    <div class="col-sm-6">--}}
+<?php
+/** @var Map $model */
+use App\Models\Map;
+$minInitial = Map::MIN_ZOOM;
+$maxInitial = Map::MAX_ZOOM_REAL;
+$defaultInitial = 0;
 
-{{--        <div class="form-group">--}}
-{{--            <label>{{ __('maps.fields.distance_name') }}</label>--}}
-{{--            {!! Form::text(--}}
-{{--                'distance_name',--}}
-{{--                FormCopy::field('distance_name')->string(),--}}
-{{--                [--}}
-{{--                    'placeholder' => __('maps.placeholders.distance_name'),--}}
-{{--                    'class' => 'form-control',--}}
-{{--                    'maxlength' => 20--}}
-{{--                ]--}}
-{{--            ) !!}--}}
-{{--        </div>--}}
-{{--    </div>--}}
-{{--    <div class="col-sm-6">--}}
-
-{{--        <label>{{ __('maps.fields.distance_measure') }}</label>--}}
-{{--        {!! Form::number(--}}
-{{--            'distance_measure',--}}
-{{--            FormCopy::field('distance_measure')->string(),--}}
-{{--            [--}}
-{{--                'placeholder' => __('maps.placeholders.distance_measure'),--}}
-{{--                'class' => 'form-control',--}}
-{{--                'maxlength' => 4--}}
-{{--            ]--}}
-{{--        ) !!}--}}
-{{--    </div>--}}
-{{--</div>--}}
-{{--<p class="help-block">{{ __('maps.helpers.distance_measure') }}</p>--}}
-
+if (isset($model) && $model->isChunked()) {
+    $minInitial = Map::MIN_ZOOM_CHUNK;
+    $maxInitial = Map::MAX_ZOOM_CHUNK;
+    $defaultInitial = $minInitial;
+}
+?>
 <input type="hidden" name="is_real" value="0" />
 <div class="form-group checkbox">
     <label>
@@ -43,43 +24,11 @@
 
 <hr />
 
-<div class="row">
-    <div class="col-sm-6">
-        <div class="form-group">
-            <label>{{ __('maps.fields.initial_zoom') }}</label>
-            {!! Form::number(
-            'initial_zoom',
-            FormCopy::field('initial_zoom')->string(),
-            [
-            'placeholder' => 0,
-            'class' => 'form-control',
-            'min' => \App\Models\Map::MIN_ZOOM,
-            'max' => \App\Models\Map::MAX_ZOOM_REAL,
-            ]
-            ) !!}
-            <p class="help-block">
-                {{ __('maps.helpers.initial_zoom', ['min' => \App\Models\Map::MIN_ZOOM, 'max' => \App\Models\Map::MAX_ZOOM_REAL, 'default' => 0]) }}
-            </p>
-        </div>
+@if (isset($model) && $model->isChunked())
+    <div class="alert alert-info">
+        <p>{{ __('maps.helpers.chunked_zoom') }}</p>
     </div>
-    <div class="col-sm-6">
-        <div class="form-group">
-            <label>{{ __('maps.fields.min_zoom') }}</label>
-            {!! Form::number(
-            'min_zoom',
-            FormCopy::field('min_zoom')->string(),
-            [
-            'placeholder' => -2,
-            'class' => 'form-control',
-            'min' => \App\Models\Map::MIN_ZOOM,
-            'max' => \App\Models\Map::MAX_ZOOM_REAL,
-            ]
-            ) !!}
-            <p class="help-block">
-                {{ __('maps.helpers.min_zoom', ['min' => \App\Models\Map::MIN_ZOOM, 'default' => -2]) }}</p>
-        </div>
-    </div>
-</div>
+@else
 <div class="row">
     <div class="col-sm-6">
         <div class="form-group">
@@ -91,11 +40,50 @@
             'placeholder' => 5,
             'class' => 'form-control',
             'min' => 0,
-            'max' => \App\Models\Map::MAX_ZOOM,
+            'max' => Map::MAX_ZOOM,
             ]
             ) !!}
             <p class="help-block">
-                {{ __('maps.helpers.max_zoom', ['max' => \App\Models\Map::MAX_ZOOM, 'default' => 5]) }}</p>
+                {{ __('maps.helpers.max_zoom', ['max' => Map::MAX_ZOOM, 'default' => 5]) }}</p>
+        </div>
+    </div>
+
+    <div class="col-sm-6">
+        <div class="form-group">
+            <label>{{ __('maps.fields.min_zoom') }}</label>
+            {!! Form::number(
+            'min_zoom',
+            FormCopy::field('min_zoom')->string(),
+            [
+            'placeholder' => -2,
+            'class' => 'form-control',
+            'min' => Map::MIN_ZOOM,
+            'max' => Map::MAX_ZOOM_REAL,
+            ]
+            ) !!}
+            <p class="help-block">
+                {{ __('maps.helpers.min_zoom', ['min' => Map::MIN_ZOOM, 'default' => -2]) }}</p>
+        </div>
+    </div>
+</div>
+@endif
+<div class="row">
+    <div class="col-sm-6">
+        <div class="form-group">
+            <label>{{ __('maps.fields.initial_zoom') }}</label>
+            {!! Form::number(
+            'initial_zoom',
+            FormCopy::field('initial_zoom')->string(),
+            [
+            'placeholder' => 0,
+            'class' => 'form-control',
+            'min' => $minInitial,
+            'max' => $maxInitial,
+            ]
+            ) !!}
+            <p class="help-block">
+                {{ __('maps.helpers.initial_zoom', ['min' => $minInitial, 'max' => $maxInitial, 'default' => $defaultInitial]) }}
+            </p>
         </div>
     </div>
     <div class="col-sm-6">

@@ -64,6 +64,14 @@ return [
             'retry_after' => 90,
         ],
 
+        // For heavy jobs (no timeout) like map chunking
+        'heavy' => [
+            'driver' => 'redis',
+            'connection' => 'default',
+            'queue' => env('REDIS_HEAVY_QUEUE', 'heavy'),
+            'retry_after' => 90,
+        ],
+
     ],
 
     /*
