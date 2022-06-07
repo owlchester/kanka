@@ -68,14 +68,19 @@ $map = $entity->child;
 
     <script type="text/javascript">
         /** Add markers outside of a group directly to the page **/
-        @foreach ($map->markers as $marker)
-            @if ($marker->visible() && empty($marker->group_id))
-                clusterMarkers{{ $map->id }}.addLayer(marker{{ $marker->id }});
-                //marker{{ $marker->id }}.addTo(map{{ $map->id }});
-            @elseif (!empty($marker->group_id))
-                marker{{ $marker->id }}.addTo(group{{ $marker->group_id }})
-            @endif
-        @endforeach
+@foreach ($map->markers as $marker)
+    @if ($marker->visible() && empty($marker->group_id))
+        @if ($map->isClustered())
+            clusterMarkers{{ $map->id }}.addLayer(marker{{ $marker->id }});
+        @else
+            marker{{ $marker->id }}.addTo(map{{ $map->id }});
+        @endif
+    @elseif (!empty($marker->group_id))
+            marker{{ $marker->id }}.addTo(group{{ $marker->group_id }})
+    @endif
+@endforeach
+
+@if ($map->isClustered())
         map{{ $map->id }}.addLayer(clusterMarkers{{ $map->id }});
 
         /** Add the groups to the cluster **/
@@ -86,6 +91,7 @@ $map = $entity->child;
             @if (!$group->is_shown) @continue @endif
             group{{ $group->id }}.addTo(map{{ $map->id }});
         @endforeach
+@endif
         @foreach ($map->markers as $marker)
             @if(!$marker->visible()) @continue @endif
             @if (empty($marker->group_id))
