@@ -115,7 +115,7 @@ class CalendarRenderer
         }
 
         if ($title) {
-            return $months[$month-1]['name'] . " $year";
+            return $months[$month - 1]['name'] . " $year";
         }
 
         $routeOptions = ['calendar' => $this->calendar, 'month' => $month, 'year' => $year];
@@ -154,7 +154,7 @@ class CalendarRenderer
 
         return route(
             'calendars.show',
-             $options
+            $options
         );
     }
 
@@ -173,7 +173,7 @@ class CalendarRenderer
         }
 
         $months = $this->calendar->months();
-        return $months[$month-1]['name'] . " $year";
+        return $months[$month - 1]['name'] . " $year";
     }
 
     /**
@@ -249,7 +249,7 @@ class CalendarRenderer
         }
 
         if ($title) {
-            return $months[$month-1]['name'] . " $year";
+            return $months[$month - 1]['name'] . " $year";
         }
 
         $routeOptions = ['calendar' => $this->calendar, 'month' => $month, 'year' => $year];
@@ -271,7 +271,7 @@ class CalendarRenderer
         // Number of weeks in this month?
         $weekdays = $this->calendar->weekdays();
         $months = $this->calendar->months();
-        $month = $months[$this->getMonth()-1];
+        $month = $months[$this->getMonth() - 1];
         $data = [];
 
         // If weeks reset on the first day of the week, skip the offset
@@ -319,7 +319,7 @@ class CalendarRenderer
         // Calc julian based on previous months
         $julian = 1;
         for ($passedMonth = 1; $passedMonth < $this->getMonth(); $passedMonth++) {
-            $passedMonthData = $months[$passedMonth-1];
+            $passedMonthData = $months[$passedMonth - 1];
             $julian += $passedMonthData['length'];
         }
 
@@ -424,7 +424,7 @@ class CalendarRenderer
      * Build the calendar for the yearly view
      * @return array
      */
-    public function buildForYear()
+    public function buildForYear(): array
     {
         // Number of weeks in this month?
         $weekdays = $this->calendar->weekdays();
@@ -446,7 +446,7 @@ class CalendarRenderer
         }
 
         // Add empty days for the beginning of the year
-        for ($i = $offset; $i>0; $i--) {
+        for ($i = $offset; $i > 0; $i--) {
             $data[] = null;
         }
 
@@ -459,7 +459,7 @@ class CalendarRenderer
         foreach ($months as $month) {
             //dump('Month: ' . $month['name']);
             //if ($weekNumber)
-            $month = $months[$monthNumber-1];
+            $month = $months[$monthNumber - 1];
             $this->month = $monthNumber;
 
             // Check if this month is a leap month
@@ -607,7 +607,7 @@ class CalendarRenderer
                     for ($d = 0; $d < $currentPosition; $d++) {
                         $data[] = [];
                     }
-                } elseif(!$endedWeek) {
+                } elseif (!$endedWeek) {
                     // Only increase the week number if the reset didn't happen on the last day of the previous month,
                     // otherwise we are skipping a week number.
                     //if ($weekNumber < 13) dump('reset: week ' . $weekNumber . ' is over, going to ' . ($weekNumber+1));
@@ -657,7 +657,7 @@ class CalendarRenderer
      */
     public function isIntercalaryMonth()
     {
-        $month = $this->currentMonthId()-1;
+        $month = $this->currentMonthId() - 1;
         foreach ($this->calendar->months() as $k => $m) {
             if ($k == $month && Arr::get($m, 'type') == 'intercalary') {
                 return true;
@@ -682,7 +682,7 @@ class CalendarRenderer
             if (request()->filled('month')) {
                 $this->setMonth((int) request()->input('month'));
             }
-            if (request()->filled('year') ) {
+            if (request()->filled('year')) {
                 $this->setYear((int) request()->input('year'));
             }
 
@@ -712,7 +712,7 @@ class CalendarRenderer
      * Calculate the month starting offset
      * @return float
      */
-    protected function weekStartOffset()
+    protected function weekStartOffset(): int
     {
         $totalDays = $this->daysToDate(false);
         $negativeYear = $totalDays < 0;
@@ -738,7 +738,7 @@ class CalendarRenderer
      * Load events of the year and month
      * @return array
      */
-    protected function events()
+    protected function events(): array
     {
         /** @var EntityEvent $event */
         $this->events = [];
@@ -805,7 +805,7 @@ class CalendarRenderer
     /**
      * @param Collection $reminders
      */
-    protected function parseReminders(Collection $reminders)
+    protected function parseReminders(Collection $reminders): void
     {
         $totalMonths = count($this->calendar->months());
         if (!$this->isYearlyLayout()) {
@@ -870,10 +870,9 @@ class CalendarRenderer
         for ($extra = 1; $extra < $event->length; $extra++) {
             $extraDate = $this->addDay($extraDate);
             if ($recurring) {
-
-            } else {
-                $this->events[$extraDate][] = $event;
+                continue;
             }
+            $this->events[$extraDate][] = $event;
         }
     }
 
@@ -975,7 +974,7 @@ class CalendarRenderer
     /**
      * @return bool
      */
-    public function isYearlyLayout()
+    public function isYearlyLayout(): bool
     {
         return $this->layout === 'year';
     }
@@ -992,7 +991,8 @@ class CalendarRenderer
      * @param int $week
      * @return bool
      */
-    public function isNamedWeek(int $week): bool {
+    public function isNamedWeek(int $week): bool
+    {
         return !empty($this->weeks[$week]) && !$this->isIntercalaryMonth();
     }
 
@@ -1000,14 +1000,15 @@ class CalendarRenderer
      * @param int $week
      * @return string
      */
-    public function namedWeek(int $week): string {
+    public function namedWeek(int $week): string
+    {
         return $this->weeks[$week] . '';
     }
 
     /**
      *
      */
-    protected function buildFullmoons()
+    protected function buildFullmoons(): void
     {
         //dump('full moons go brr');
         // Calculate the number of days since 0000-01-01
@@ -1054,7 +1055,7 @@ class CalendarRenderer
     /**
      * Build the weather for the year
      */
-    public function buildWeather()
+    public function buildWeather(): void
     {
         // First build parent weather, and override with local weather
         if ($this->calendar->calendar) {
@@ -1092,7 +1093,7 @@ class CalendarRenderer
             $daysInAYear += $length;
 
             // If the month has already passed, add it to the days for this year
-            if ($count < $this->getMonth()-1) {
+            if ($count < $this->getMonth() - 1) {
                 $days += $length;
             }
         }
@@ -1100,7 +1101,7 @@ class CalendarRenderer
         if ($this->calendar->has_leap_year && $this->getYear() >= $this->calendar->leap_year_start) {
             // If the leap month is intercalary, we don't need to offset anything.
             $months = $this->calendar->months();
-            $leapMonth = Arr::get($months, $this->calendar->leap_year_month-1, false);
+            $leapMonth = Arr::get($months, $this->calendar->leap_year_month - 1, false);
             if ($leapMonth && Arr::get($leapMonth, 'type') == 'intercalary') {
                 // Nothing
             } else {
@@ -1138,18 +1139,20 @@ class CalendarRenderer
      * @param float $start
      * @param array $moon
      */
-    protected function addMoonPhases($start, array $moon)
+    protected function addMoonPhases($start, array $moon): void
     {
         // Full & New Moon
         $this->addMoonPhase($start, $moon, 'full', 'far fa-circle');
         $newMoon = $start + ($moon['fullmoon'] / 2);
         $this->addMoonPhase($newMoon, $moon, 'new', 'fa-solid fa-circle');
 
-        if ($moon['fullmoon'] > 10) {
-            $quarterMonth = $moon['fullmoon'] / 4;
-            $this->addMoonPhase($newMoon - $quarterMonth, $moon, 'last_quarter', 'fa-solid fa-circle-half-stroke fa-flip-horizontal');
-            $this->addMoonPhase($newMoon + $quarterMonth, $moon, '1first_quarter', 'fa-solid fa-circle-half-stroke');
+        if ($moon['fullmoon'] <= 10) {
+            return;
         }
+        // Cycle is long enough for more phases to be displayed
+        $quarterMonth = $moon['fullmoon'] / 4;
+        $this->addMoonPhase($newMoon - $quarterMonth, $moon, 'last_quarter', 'fa-solid fa-circle-half-stroke fa-flip-horizontal');
+        $this->addMoonPhase($newMoon + $quarterMonth, $moon, '1first_quarter', 'fa-solid fa-circle-half-stroke');
     }
 
     /**
@@ -1158,11 +1161,11 @@ class CalendarRenderer
      * @param string $type = 'full
      * @param string $class = 'far fa-circle'
      */
-    protected function addMoonPhase(string $nextFullMoon, array $moon, string $type = 'full', string $class = 'fa-regular fa-circle')
+    protected function addMoonPhase(string $nextFullMoon, array $moon, string $type = 'full', string $class = 'fa-regular fa-circle'): void
     {
         // Moons can be float so we "floor" them
         $nextFullMoon = floor($nextFullMoon);
-        if($nextFullMoon < 0) {
+        if ($nextFullMoon < 0) {
             return;
         }
         if (!isset($this->moons[$nextFullMoon])) {
@@ -1178,9 +1181,9 @@ class CalendarRenderer
     }
 
     /**
-     *
+     * Prepare each of the calendar's seasons
      */
-    protected function buildSeasons()
+    protected function buildSeasons(): void
     {
         foreach ($this->calendar->seasons() as $season) {
             $date = $season['month'] . '-' . $season['day'];
@@ -1189,9 +1192,9 @@ class CalendarRenderer
     }
 
     /**
-     *
+     * Prepare each of the calendar's yearly weeks
      */
-    protected function buildWeeks()
+    protected function buildWeeks(): void
     {
         foreach ($this->calendar->weeks() as $number => $week) {
             if ($number <= 0) {
@@ -1215,7 +1218,7 @@ class CalendarRenderer
 
         foreach ($months as $monthNumber => $monthData) {
             // If we've reached the current month, break
-            if ($monthNumber == $this->getMonth()-1) {
+            if ($monthNumber == $this->getMonth() - 1) {
                 break;
             }
             if (Arr::get($monthData, 'type') == 'intercalary') {
@@ -1262,7 +1265,7 @@ class CalendarRenderer
             $daysInAYear += $length;
 
             // If the month has already passed, add it to the days for this year
-            if ($count < $this->getMonth()-1) {
+            if ($count < $this->getMonth() - 1) {
                 $days += $length;
             }
         }
