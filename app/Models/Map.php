@@ -30,6 +30,7 @@ use Illuminate\Support\Facades\Storage;
  * @property float $center_y
  * @property int $center_marker_id
  * @property bool $is_real
+ * @property bool $has_clustering
  * @property int $chunking_status
  * @property Map $map
  * @property Map[] $maps
@@ -84,6 +85,7 @@ class Map extends MiscModel
         'center_y',
         'center_marker_id',
         'is_real',
+        'has_clustering'
     ];
 
     /**
@@ -652,5 +654,14 @@ class Map extends MiscModel
     public function chunkingRunning(): bool
     {
         return $this->chunking_status == self::CHUNKING_RUNNING;
+    }
+
+    /**
+     * Determine if the map uses marker clustering or not
+     * @return bool
+     */
+    public function isClustered(): bool
+    {
+        return $this->has_clustering;
     }
 }

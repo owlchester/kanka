@@ -23,13 +23,13 @@ class Journal extends Layout
                 'render' => Standard::ENTITYLINK,
             ],
             'author' => [
-                'key' => 'character.name',
+                'key' => 'author.name',
                 'label' => 'journals.fields.author',
                 'render' => function ($model) {
-                    if (!$model->character) {
+                    if (!$model->author) {
                         return null;
                     }
-                    return $model->character->tooltipedLink();
+                    return $model->author->tooltipedLink();
                 },
             ],
         ];

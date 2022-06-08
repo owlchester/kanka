@@ -45,12 +45,17 @@
         /** Add markers outside of a group directly to the page **/
         @foreach ($map->markers as $marker)
             @if ($marker->visible() && empty($marker->group_id))
+                @if ($map->isClustered())
                 clusterMarkers{{ $map->id }}.addLayer(marker{{ $marker->id }});
-                //marker{{ $marker->id }}.addTo(map{{ $map->id }});
+                @else
+                marker{{ $marker->id }}.addTo(map{{ $map->id }});
+                @endif
             @elseif (!empty($marker->group_id))
                   marker{{ $marker->id }}.addTo(group{{ $marker->group_id }})
             @endif
         @endforeach
+
+@if ($map->isClustered())
         map{{ $map->id }}.addLayer(clusterMarkers{{ $map->id }});
 
         /** Add the groups to the cluster **/
@@ -61,6 +66,7 @@
             @if (!$group->is_shown) @continue @endif
             group{{ $group->id }}.addTo(map{{ $map->id }});
         @endforeach
+@endif
 
         @can('update', $map)
             map{{ $map->id }}.on('click', function(ev) {
