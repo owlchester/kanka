@@ -16,6 +16,7 @@ return [
         'honorable'     => 'Honorable mention',
         'rank'          => 'Rank',
         'submitter'     => 'Submitter',
+        'jury'          => 'Guest jury :user ',
     ],
     'index'         => [
         'ongoing'   => 'Ongoing prompts',
