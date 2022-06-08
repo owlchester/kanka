@@ -32,6 +32,7 @@ class StoreCommunityEvent extends FormRequest
             'start_at' => 'required',
             'end_at' => 'required',
             'image' => 'mimes:jpeg,png,jpg,gif,webp|max:10000',
+            'jury_id' => 'nullable|exists:users,id',
         ];
     }
 }
