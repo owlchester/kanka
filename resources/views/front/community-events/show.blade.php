@@ -28,7 +28,7 @@
                     </h2>
                         <div class="text-muted mb-2">{{ $model->start_at->isoFormat('MMMM Do Y') }} - {{ $model->end_at->isoFormat('MMMM Do Y') }}
                             @if ($model->jury_id) 
-                             - {!! __('front/community-events.fields.jury', ['user' => link_to_route('users.profile', $model->jury->name, [$model->jury])]) !!} 
+                             - {!! __('front/community-events.fields.jury', ['user' => link_to_route('users.profile', $model->jury->displayName(), [$model->jury])]) !!} 
                             @endif 
                         </div>
                     <div class="card-text">
