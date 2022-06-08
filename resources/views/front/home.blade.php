@@ -106,7 +106,7 @@
                     </a>
                 </div>
                 <div class="text-center ab-testing-b">
-                    <a href="{{ route('register') }}" class="btn btn-success btn-lg mr-sm-3 mr-md-5 mb-3 mb-sm-0 d-block d-sm-inline-block">
+                    <a href="{{ route('register') }}" class="btn btn-primary btn-lg mr-sm-3 mr-md-5 mb-3 mb-sm-0 d-block d-sm-inline-block">
                         {{ __('front/features.register') }}
                     </a>
                 </div>

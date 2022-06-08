@@ -247,6 +247,7 @@ return [
         'pricing'       => 'Pricing',
         'privacy'       => 'Privacy Policy',
         'register'      => 'Register',
+        'register_free'      => 'Register for free',
         'releases'      => 'Releases',
         'roadmap'       => 'Roadmap',
     ],
