@@ -100,8 +100,7 @@ class CommunityEvent extends Model
         return $this->entries()
             ->with('user')
             ->has('user')
-            ->whereNotNull('rank')
-            ->orderBy('rank');
+            ->orderByRaw('ISNULL(rank), rank ASC');
     }
 
     public function hasRankedResults(): bool

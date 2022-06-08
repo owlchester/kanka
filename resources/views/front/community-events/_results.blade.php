@@ -25,6 +25,7 @@
     </thead>
 <tbody>
 @foreach ($model->rankedResults as $entry)
+    @if ($entry->rank !== -1)
     <tr>
         <td>
             @if ($entry->rank == 1)
@@ -46,6 +47,7 @@
             </a>
         </td>
     </tr>
+    @endif
 @endforeach
 </tbody>
 </table>
