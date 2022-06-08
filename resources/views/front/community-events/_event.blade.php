@@ -13,15 +13,14 @@
                 {{ $model->name }}
             </h3>
         </a>
-        @if ($model->jury_id)
-            <div class="card-subtitle text-muted mb-2">{{ $model->start_at->isoFormat('MMMM D, Y') }} - {{ $model->end_at->isoFormat('MMMM D, Y') }} - {!! __('front/community-events.fields.jury', ['user' => link_to_route('users.profile', $model->jury->name, [$model->jury])]) !!}</div>
-        @else
-            <div class="card-subtitle text-muted mb-2">{{ $model->start_at->isoFormat('MMMM D, Y') }} - {{ $model->end_at->isoFormat('MMMM D, Y') }}</div>
-        @endif
+            <div class="card-subtitle text-muted mb-2">{{ $model->start_at->isoFormat('MMMM D, Y') }} - {{ $model->end_at->isoFormat('MMMM D, Y') }}
+                @if ($model->jury_id)
+                 - {!! __('front/community-events.fields.jury', ['user' => link_to_route('users.profile', $model->jury->name, [$model->jury])]) !!}
+                @endif
+            </div>
         <div class="card-text">
             {!! nl2br($model->excerpt) !!}
         </div>
-
         <div class="mt-2">
             <a href="{{ route('community-events.show', $model) }}" class="btn btn-primary">
                 {{ __('front/community-events.actions.show_' . ($ongoing ? 'ongoing' : 'past')) }}
