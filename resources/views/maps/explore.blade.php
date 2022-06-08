@@ -44,7 +44,10 @@
         window.map = map{{ $map->id }};
         /** Add markers outside of a group directly to the page **/
         @foreach ($map->markers as $marker)
-            @if ($marker->visible() && empty($marker->group_id))
+            @if (!$marker->visible())
+                @continue
+            @endif
+            @if(empty($marker->group_id))
                 @if ($map->isClustered())
                 clusterMarkers{{ $map->id }}.addLayer(marker{{ $marker->id }});
                 @else
