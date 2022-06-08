@@ -3,7 +3,7 @@
 
 namespace App\Models;
 
-
+use App\User;
 use App\Facades\Img;
 use App\Models\Concerns\Filterable;
 use App\Models\Concerns\Searchable;
@@ -107,6 +107,11 @@ class CommunityEvent extends Model
     public function hasRankedResults(): bool
     {
         return !$this->rankedResults->isEmpty();
+    }
+
+    public function jury()
+    {
+        return $this->belongsTo(User::class, 'jury_id');
     }
 
 }

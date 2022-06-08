@@ -26,8 +26,11 @@
                     <h2 class="card-title mb-1">
                         <a href="{{ route('community-events.show', $model) }}">{{ $model->name }}</a>
                     </h2>
-                    <div class="text-muted mb-2">{{ $model->start_at->isoFormat('MMMM Do Y') }} - {{ $model->end_at->isoFormat('MMMM Do Y') }}</div>
-
+                    @if ($model->jury_id)
+                        <div class="text-muted mb-2">{{ $model->start_at->isoFormat('MMMM Do Y') }} - {{ $model->end_at->isoFormat('MMMM Do Y') }} - {!! __('front/community-events.fields.jury', ['user' => link_to_route('users.profile', $model->jury->name, [$model->jury])]) !!}</div>
+                    @else
+                        <div class="text-muted mb-2">{{ $model->start_at->isoFormat('MMMM Do Y') }} - {{ $model->end_at->isoFormat('MMMM Do Y') }}</div>
+                    @endif
                     <div class="card-text">
                             {!! $model->entry !!}
 

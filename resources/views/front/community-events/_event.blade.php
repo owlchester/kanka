@@ -13,7 +13,11 @@
                 {{ $model->name }}
             </h3>
         </a>
-        <div class="card-subtitle text-muted mb-2">{{ $model->start_at->isoFormat('MMMM D, Y') }} - {{ $model->end_at->isoFormat('MMMM D, Y') }}</div>
+        @if ($model->jury_id)
+            <div class="card-subtitle text-muted mb-2">{{ $model->start_at->isoFormat('MMMM D, Y') }} - {{ $model->end_at->isoFormat('MMMM D, Y') }} - {!! __('front/community-events.fields.jury', ['user' => link_to_route('users.profile', $model->jury->name, [$model->jury])]) !!}</div>
+        @else
+            <div class="card-subtitle text-muted mb-2">{{ $model->start_at->isoFormat('MMMM D, Y') }} - {{ $model->end_at->isoFormat('MMMM D, Y') }}</div>
+        @endif
         <div class="card-text">
             {!! nl2br($model->excerpt) !!}
         </div>

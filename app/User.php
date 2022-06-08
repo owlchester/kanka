@@ -476,7 +476,7 @@ class User extends \Illuminate\Foundation\Auth\User
 
     public function hasPlugins(): bool
     {
-        return $this->plugins->count();
+        return config('marketplace.enabled') && $this->plugins->count();
     }
 
     /**
