@@ -1,21 +1,32 @@
-
-<div class="grid gap-5 grid-cols-1 lg:grid-cols-2 booster-block">
+@php $currentCampaign = $campaign instanceof \App\Models\Campaign ? $campaign : $campaign->campaign() @endphp
+<div class="grid gap-5 grid-cols-1 lg:grid-cols-2 booster-block mb-5">
     <div class="">
         <div class="booster-callout">
             <div class="booster-icon">
                 <i class="fa-solid fa-rocket fa-2x" aria-hidden="true"></i>
             </div>
-            <h4>{{ __('callouts.booster.titles.boosted') }}</h4>
+
+            @if (isset($superboost))
+                <h4>{{ __('callouts.booster.titles.superboosted') }}</h4>
+            @else
+                <h4>{{ __('callouts.booster.titles.boosted') }}</h4>
+            @endif
             @foreach ($texts as $text)
                 <p>{!! $text !!}</p>
             @endforeach
 
+            <p>{{ __('callouts.booster.limitation') }}</p>
             @subscriber()
-            <a href="{{ route('settings.boost', ['campaign' => $campaign->campaign()]) }}" class="btn bg-maroon btn-lg">
-                {!! __('callouts.booster.actions.boost', ['campaign' => $campaign->campaign()->name]) !!}
-            </a>
+                @if (isset($superboost))
+                    <a href="{{ route('settings.boost', ['campaign' => $campaign, 'superboost' => true]) }}" class="btn bg-maroon btn-lg">
+                        {!! __('callouts.booster.actions.superboost', ['campaign' => $campaign->name]) !!}
+                    </a>
+                @else
+                    <a href="{{ route('settings.boost', ['campaign' => $campaign]) }}" class="btn bg-maroon btn-lg">
+                        {!! __('callouts.booster.actions.boost', ['campaign' => $campaign->name]) !!}
+                    </a>
+                @endif
             @else
-                <p>{{ __('callouts.booster.limitation') }}</p>
                 <a href="{{ route('front.boosters') }}" target="_blank" class="btn bg-maroon btn-lg">
                     {!! __('callouts.booster.learn-more') !!}
                 </a>

@@ -389,7 +389,7 @@ TEXT
             'achievements'      => 'Achievements',
             'applications'      => 'Applications',
             'campaign'          => 'Campaign',
-            'default-images'    => 'Default Images',
+            'default-images'    => 'Default thumbnails',
             'export'            => 'Export',
             'information'       => 'Information',
             'members'           => 'Members',

@@ -15,44 +15,25 @@
             @include('campaigns._menu', ['active' => 'recovery'])
         </div>
         <div class="col-md-9">
-            @if (!$campaign->boosted())
-                <h3 class="mt-0">
-                    <button class="btn btn-sm btn-default pull-right" data-toggle="dialog"
-                            data-target="recovery-help">
-                        <i class="fa-solid fa-question-circle" aria-hidden="true"></i>
-                        {{ __('campaigns.members.actions.help') }}
-                    </button>
+            <div class="mb-1">
+                <h3 class="mt-0 inline-block">
                     {{ __('campaigns.show.tabs.recovery') }}
                 </h3>
+                <button class="btn btn-sm btn-default pull-right" data-toggle="dialog"
+                        data-target="recovery-help">
+                    <i class="fa-solid fa-question-circle" aria-hidden="true"></i>
+                    {{ __('campaigns.members.actions.help') }}
+                </button>
+            </div>
 
-                @include('partials.boosted', ['callout' => true])
-
-                <div class="row">
-                    <div class="col-sm-12 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
-                        @include('partials.images.boosted-image')
-                    </div>
-                </div>
-            @else
+            @includeWhen(session()->get('boosted-pitch'), 'layouts.callouts.boost', ['texts' => []])
 
             <div class="box box-recovery">
-                <div class="box-header with-border">
-                    <h3 class="box-title">{{ __('campaigns.show.tabs.recovery') }}</h3>
-
-                    <div class="box-tools">
-                        <button class="btn btn-box-tool" data-toggle="dialog"
-                                data-target="recovery-help">
-                            <i class="fa-solid fa-question-circle" aria-hidden="true"></i>
-                            {{ __('campaigns.members.actions.help') }}
-                        </button>
-                    </div>
-                </div>
                 @if(Datagrid::hasBulks()) {!! Form::open(['route' => 'recovery.save']) !!} @endif
                 <div id="datagrid-parent">
                     @include('layouts.datagrid._table')
                 </div>
                 @if(Datagrid::hasBulks()) {!! Form::close() !!} @endif
-
-            @endif
         </div>
     </div>
 @endsection

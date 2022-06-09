@@ -17,13 +17,19 @@
         </tr>
         </thead>
         <tbody>
-        @foreach ($rows as $row)
+        @forelse ($rows as $row)
             <tr class="{{ method_exists($row, 'rowClasses') ? $row->rowClasses() : null }}">
                 @foreach (Datagrid::columns($row) as $column)
                     @include('layouts.datagrid._column')
                 @endforeach
             </tr>
-        @endforeach
+        @empty
+            <tr>
+                <td>
+                    <i>{{ __('crud.datagrid.empty') }}</i>
+                </td>
+            </tr>
+        @endforelse
         </tbody>
         <tfoot style="display: none">
         <tr>
