@@ -4,6 +4,7 @@ return [
     'actions'       => [
         'add'   => 'Add an alias',
     ],
+    'call-to-action'=>'Create aliases for this entity to easily find it through the search and through mentions.',
     'create'        => [
         'success'   => 'Alias :name added to :entity.',
         'title'     => 'Add an alias to :name',
@@ -19,9 +20,6 @@ return [
     ],
     'placeholders'  => [
         'name'  => 'New alias',
-    ],
-    'unboosted'     => [
-        'text'  => 'Adding aliases to entities for searches and mentions are reserved to :boosted-campaigns.',
     ],
     'update'        => [
         'success'   => 'Alias :name updated for :entity.',

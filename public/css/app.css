@@ -18,6 +18,7 @@
   --gallery-folder-text: unset;
   --gallery-background: #f5f8fa;
   --gallery-hover-text: #124964;
+  --kanka-boost-accent: 338 78% 48%;
 }
 
 :root {
@@ -1117,6 +1118,45 @@ summary {
   margin: 0;
 }
 
+.booster-block > div {
+  text-align: center;
+}
+.booster-block .booster-callout, .booster-block img {
+  max-width: 480px;
+}
+
+.booster-icon {
+  border-radius: 9999px;
+  background-color: hsl(var(--kanka-boost-accent)/1);
+  display: inline-block;
+  padding: 0.5rem;
+  margin-bottom: 0.4rem;
+  color: white;
+}
+
+.booster-callout {
+  display: inline-block;
+  padding: 2rem 1.5rem;
+  border: 1px solid hsl(var(--kanka-boost-accent)/0.5);
+  border-radius: 0.5rem;
+  background-color: var(--box-background);
+  font-size: 1rem;
+  text-align: center;
+  line-height: 1.5;
+}
+.booster-callout h4 {
+  font-weight: 600;
+  font-size: 1.2rem;
+  margin: 0.8rem 0;
+}
+.booster-callout a {
+  display: block;
+}
+.booster-callout .column {
+  text-align: center;
+  max-width: 450px;
+}
+
 .form-group > .help-block {
   margin-top: 0;
 }
@@ -1684,28 +1724,6 @@ summary {
 }
 .entity-links li > a i {
   font-size: 20px;
-}
-
-.visu-teaser {
-  background-image: url(https://kanka-app-assets.s3.amazonaws.com/images/features/relation-visu-teaser.png);
-  background-position: center;
-  background-repeat: no-repeat;
-  width: 100%;
-  padding: 150px 0;
-}
-.visu-teaser a {
-  display: block;
-  padding: 30px;
-  transition: ease all 0.3s;
-  background-color: rgba(0, 0, 0, 0.2);
-  color: #fff;
-  text-shadow: rgba(0, 0, 0, 0.5) 0 1px 4px;
-  font-size: 18px;
-  line-height: 22px;
-  border-radius: 5px;
-}
-.visu-teaser a:hover {
-  background-color: rgba(45, 127, 255, 0.6);
 }
 
 .box .nav-stacked > li {

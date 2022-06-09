@@ -1,6 +1,9 @@
 <?php
 
 return [
+    'actions'                           => [
+        'boost'     => 'Boost :name',
+    ],
     'create'                            => [
         'description'           => 'Create a new campaign',
         'helper'                => [

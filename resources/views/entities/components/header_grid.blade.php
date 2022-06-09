@@ -73,9 +73,15 @@ if($campaign->campaign()->boosted() && $entity->hasHeaderImage($superboosted)) {
                     </a>
                 </li>
                 <li>
+                    @if ($campaign->campaign()->boosted(true))
                     <a href="{{ route('entities.image.focus', $model->entity) }}">
                         {{ __('entities/image.actions.change_focus') }}
                     </a>
+                    @else
+                        <a href="#" data-toggle="dialog" data-target="booster-cta">
+                            {{ __('entities/image.actions.change_focus') }}
+                        </a>
+                    @endif
                 </li>
             </ul>
         @else
@@ -254,3 +260,30 @@ if($campaign->campaign()->boosted() && $entity->hasHeaderImage($superboosted)) {
     </div>
 </div>
 
+@section('modals')
+    @parent
+    <dialog class="dialog rounded-2xl text-center" id="booster-cta">
+        <header>
+            <h4 id="myModalLabel">
+                <i class="fa-solid fa-rocket mr-1" aria-hidden="true"></i>
+                {{ __('callouts.booster.title') }}
+            </h4>
+            <button type="button" class="rounded-full" onclick="this.closest('dialog').close('close')">
+                <i class="fa-solid fa-times" aria-hidden="true"></i>
+            </button>
+        </header>
+        <article>
+            <p class="mb-1 text-justify">{{ __('entities/image.call-to-action') }}</p>
+            @subscriber()
+            <a href="{{ route('settings.boost', ['campaign' => $campaign->campaign()]) }}" class="btn bg-maroon btn-block">
+                {!! __('callouts.booster.boost', ['campaign' => $campaign->campaign()->name]) !!}
+            </a>
+            @else
+                <p class="mb-1 text-justify">{{ __('callouts.booster.limitation') }}</p>
+                <a href="{{ route('front.boosters') }}" target="_blank" class="btn bg-maroon btn-block">
+                    {!! __('callouts.booster.learn-more') !!}
+                </a>
+            @endif
+        </article>
+    </dialog>
+@endsection
