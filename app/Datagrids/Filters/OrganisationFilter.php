@@ -23,6 +23,7 @@ class OrganisationFilter extends DatagridFilter
                 'placeholder' =>  trans('crud.placeholders.organisation'),
                 'model' => Organisation::class,
             ])
+            ->add('is_defunct')
             ->isPrivate()
             ->hasImage()
             ->hasEntityNotes()

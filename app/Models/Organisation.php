@@ -19,6 +19,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property OrganisationMember[] $members
  * @property Organisation[] $descendants
  * @property Organisation[] $organisations
+ * @property bool $is_defunct
  */
 class Organisation extends MiscModel
 {
@@ -42,12 +43,14 @@ class Organisation extends MiscModel
         'organisation_id',
         'type',
         'is_private',
+        'is_defunct'
     ];
 
     protected $sortable = [
         'name',
         'type',
         'organisation.name',
+        'is_defunct'
     ];
 
     /**
@@ -69,6 +72,7 @@ class Organisation extends MiscModel
     protected $filterableColumns = [
         'location_id',
         'organisation_id',
+        'is_defunct',
     ];
 
     /**
@@ -78,6 +82,7 @@ class Organisation extends MiscModel
     protected $sortableColumns = [
         'organisation.name',
         'location.name',
+        'is_defunct',
     ];
 
     /**
@@ -259,5 +264,9 @@ class Organisation extends MiscModel
     public function showProfileInfo(): bool
     {
         return !empty($this->type) || !empty($this->location);
+    }
+    public function isDefunct(): bool
+    {
+        return (bool) $this->is_defunct;
     }
 }

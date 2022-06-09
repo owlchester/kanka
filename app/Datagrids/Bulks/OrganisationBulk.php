@@ -13,5 +13,10 @@ class OrganisationBulk extends Bulk
         'organisation_id',
         'tags',
         'private_choice',
+        'defunct_choice'
+    ];
+
+    protected $mappings = [
+        'is_defunct'
     ];
 }

@@ -35,6 +35,17 @@
             'disableSort' => true,
         ],
         [
+            'label' => '<i class="ra ra-skull" title="' . __('organisations.fields.is_defunct') . '"></i>',
+            'field' => 'is_defunct',
+            'render' => function($model) {
+                if ($model->isDefunct()) {
+                    return '<i class="ra ra-skull" title="' . __('organisations.fields.is_defunct') . '"></i>';
+                }
+                return '';
+            },
+            'class' => 'icon'
+        ],
+        [
             'type' => 'is_private',
         ]
     ],
