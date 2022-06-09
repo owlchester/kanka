@@ -27,9 +27,9 @@
 @foreach ($model->rankedResults as $entry)
     <tr>
         <td>
-            @if ($entry->rank == 1)
+            @if ($entry->rank === 1)
                 # {{ $entry->rank }}
-            @else
+            @elseif ($entry->rank === 2)
                 {{ __('front/community-events.fields.honorable') }}
             @endif
         </td>
