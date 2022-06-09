@@ -5,7 +5,7 @@
             <div class="booster-icon">
                 <i class="fa-solid fa-rocket fa-2x" aria-hidden="true"></i>
             </div>
-            <h4>{{ __('callouts.booster.title') }}</h4>
+            <h4>{{ __('callouts.booster.titles.boosted') }}</h4>
             @foreach ($texts as $text)
                 <p>{!! $text !!}</p>
             @endforeach

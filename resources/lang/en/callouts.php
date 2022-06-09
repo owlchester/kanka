@@ -2,8 +2,8 @@
 
 return [
     'booster' => [
-        'title' => 'Boosted feature',
         'titles' => [
+            'boosted' => 'Boosted feature',
             'superboosted' => 'Superboosted feature',
         ],
         'actions' => [

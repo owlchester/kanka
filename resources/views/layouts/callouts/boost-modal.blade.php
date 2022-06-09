@@ -6,7 +6,7 @@
 @if (isset($superboost))
     <h4>{{ __('callouts.booster.titles.superboosted') }}</h4>
 @else
-    <h4>{{ __('callouts.booster.title') }}</h4>
+    <h4>{{ __('callouts.booster.titles.boosted') }}</h4>
 @endif
 
 @foreach ($texts as $text)
