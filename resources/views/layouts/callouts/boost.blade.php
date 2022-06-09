@@ -12,7 +12,7 @@
 
             @subscriber()
             <a href="{{ route('settings.boost', ['campaign' => $campaign->campaign()]) }}" class="btn bg-maroon btn-lg">
-                {!! __('callouts.booster.boost', ['campaign' => $campaign->campaign()->name]) !!}
+                {!! __('callouts.booster.actions.boost', ['campaign' => $campaign->campaign()->name]) !!}
             </a>
             @else
                 <p>{{ __('callouts.booster.limitation') }}</p>

@@ -276,7 +276,7 @@ if($campaign->campaign()->boosted() && $entity->hasHeaderImage($superboosted)) {
             <p class="mb-1 text-justify">{{ __('entities/image.call-to-action') }}</p>
             @subscriber()
             <a href="{{ route('settings.boost', ['campaign' => $campaign->campaign()]) }}" class="btn bg-maroon btn-block">
-                {!! __('callouts.booster.boost', ['campaign' => $campaign->campaign()->name]) !!}
+                {!! __('callouts.booster.actions.boost', ['campaign' => $campaign->campaign()->name]) !!}
             </a>
             @else
                 <p class="mb-1 text-justify">{{ __('callouts.booster.limitation') }}</p>
