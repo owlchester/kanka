@@ -265,6 +265,11 @@ class Organisation extends MiscModel
     {
         return !empty($this->type) || !empty($this->location);
     }
+
+    /**
+     * Get the value of the is_defunct variable
+     * @return bool
+     */
     public function isDefunct(): bool
     {
         return (bool) $this->is_defunct;

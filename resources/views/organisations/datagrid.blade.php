@@ -35,11 +35,11 @@
             'disableSort' => true,
         ],
         [
-            'label' => '<i class="ra ra-skull" title="' . __('organisations.fields.is_defunct') . '"></i>',
+            'label' => '<i class="fa-solid fa-shop-slash" title="' . __('organisations.fields.is_defunct') . '"></i>',
             'field' => 'is_defunct',
             'render' => function($model) {
                 if ($model->isDefunct()) {
-                    return '<i class="ra ra-skull" title="' . __('organisations.fields.is_defunct') . '"></i>';
+                    return '<i class="fa-solid fa-shop-slash" title="' . __('organisations.fields.is_defunct') . '"></i>';
                 }
                 return '';
             },

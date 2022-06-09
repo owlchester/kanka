@@ -46,7 +46,7 @@
     <div class="col-md-6">
         <div class="form-group">
             {!! Form::hidden('is_defunct', 0) !!}
-            <label>{!! Form::checkbox('is_defunct', 1, $model->is_defunct )!!}
+            <label>{!! Form::checkbox('is_defunct', 1, $model->is_defunct ?? '' )!!}
                 {{ __('organisations.fields.is_defunct') }}
             </label>
             <p class="help-block">{{ __('organisations.hints.is_defunct') }}</p>
