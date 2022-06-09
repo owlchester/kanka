@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Http\Controllers\Campaign;
-
 
 use App\Facades\CampaignCache;
 use App\Facades\CampaignLocalization;
@@ -11,26 +9,42 @@ use App\Http\Requests\StoreCampaignDashboard;
 use App\Models\CampaignDashboard;
 use App\Services\DashboardService;
 
-class CampaignDashboardController extends Controller
+class DashboardController extends Controller
 {
+    /** @var DashboardService  */
     protected $service;
 
     public function __construct(DashboardService $dashboardsService)
     {
         $this->middleware('auth');
-        $this->middleware('campaign.boosted');
+        $this->middleware('campaign.boosted', ['except' => ['index', 'create']]);
 
         $this->service = $dashboardsService;
     }
 
+    /**
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function index()
     {
         return redirect()->to('home');
     }
 
+    /**
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws \Psr\Container\ContainerExceptionInterface
+     * @throws \Psr\Container\NotFoundExceptionInterface
+     */
     public function create()
     {
         $campaign = CampaignLocalization::getCampaign();
+
+        if (!$campaign->boosted()) {
+            return view('dashboard.dashboards.unboosted')
+                ->with('campaign', $campaign);
+        }
+
         $this->authorize('dashboard', $campaign);
         $source = null;
         if (request()->has('source')) {
@@ -42,6 +56,11 @@ class CampaignDashboardController extends Controller
             ->with('source', $source);
     }
 
+    /**
+     * @param StoreCampaignDashboard $request
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
     public function store(StoreCampaignDashboard $request)
     {
         $campaign = CampaignLocalization::getCampaign();

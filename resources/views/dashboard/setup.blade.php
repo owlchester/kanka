@@ -23,12 +23,8 @@
             @else
                 {{ __('dashboard.dashboards.default.text') }}
             @endif
-
-            @if (!$campaign->campaign()->boosted())
-                {!! __('dashboard.dashboards.boosted', ['boosted_campaigns' => link_to_route('front.pricing', __('crud.boosted_campaigns'), '#boost')])!!}
-           @endif
         </div>
-        @if ($campaign->campaign()->boosted())
+        @if (true || $campaign->campaign()->boosted())
         <div class="box-footer">
             <a class="btn btn-primary mr-2"
                  data-toggle="ajax-modal"

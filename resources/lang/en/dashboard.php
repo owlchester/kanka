@@ -19,7 +19,6 @@ return [
             'new'       => 'New Dashboard',
             'switch'    => 'Switch to dashboard',
         ],
-        'boosted'       => ':boosted_campaigns can create custom dashboards for each of the campaign roles.',
         'create'        => [
             'success'   => 'New campaign dashboard :name created.',
             'title'     => 'New Campaign Dashboard',
@@ -42,6 +41,7 @@ return [
         'helpers'       => [
             'copy_widgets'  => 'Duplicate the widgets from the :name dashboard into this new one.',
         ],
+        'pitch'       => 'Create multiple dashboards with custom permissions for each role of the campaign.',
         'placeholders'  => [
             'name'  => 'Name of the dashboard',
         ],
@@ -98,7 +98,6 @@ return [
         'actions'                   => [
             'advanced-options'  => 'Advanced options',
         ],
-        'advanced_options_boosted'  => ':boosted_campaigns have advanced options like showing members of a family or the entity\'s attributes on the dashboard.',
         'calendar'                  => [
             'actions'           => [
                 'next'      => 'Change date to next day',

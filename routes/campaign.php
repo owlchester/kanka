@@ -283,8 +283,8 @@ Route::resources([
     'campaign_styles' => 'Campaign\StyleController',
     //'campaigns.campaign_roles.campaign_permissions' => 'CampaignPermissions',
 
-    'campaign_dashboards' => 'Campaign\CampaignDashboardController',
-    'campaign_dashboard_widgets' => 'CampaignDashboardWidgetController',
+    'campaign_dashboards' => 'Campaign\DashboardController',
+    'campaign_dashboard_widgets' => 'Campaign\DashboardWidgetController',
 
     'images' => 'Campaign\GalleryController',
 ]);

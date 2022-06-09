@@ -1,16 +1,16 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Campaign;
 
 use App\Facades\CampaignLocalization;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreCampaignDashboardWidget;
 use App\Models\CampaignDashboard;
 use App\Models\CampaignDashboardWidget;
 use App\Services\EntityService;
 
-class CampaignDashboardWidgetController extends Controller
+class DashboardWidgetController extends Controller
 {
-
     /**
      * @var EntityService
      */

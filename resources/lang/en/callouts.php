@@ -11,6 +11,7 @@ return [
             'superboost' => 'Superboost :campaign',
         ],
         'limitation' => 'To access this feature, the campaign needs to be boosted.',
+        'multiple' => 'To access these features, the campaign needs to be boosted.',
         'learn-more' => 'What are boosters?',
     ],
 ];

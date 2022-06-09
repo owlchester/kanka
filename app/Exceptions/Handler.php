@@ -68,13 +68,10 @@ class Handler extends ExceptionHandler
                 ->back()
                 ->withInput($request->all())
                 ->withErrors(__('redirects.session_timeout'));
-        }
-
-        elseif ($exception instanceof AuthorizationException && auth()->guest()) {
+        } elseif ($exception instanceof AuthorizationException && auth()->guest()) {
+            // User needs to be logged in, remember the page they visited
             session()->put('login_redirect', $request->getRequestUri());
-        }
-
-        elseif ($exception instanceof SymHttpException && $exception->getStatusCode() == 503) {
+        } elseif ($exception instanceof SymHttpException && $exception->getStatusCode() == 503) {
             if (request()->ajax()) {
                 return response()->json([
                     'title' => __('errors.503.title'),
@@ -85,36 +82,9 @@ class Handler extends ExceptionHandler
                 'message' => $exception->getMessage(),
                 //'retry' => $exception->retryAfter
             ], 200);
-        }
-
-        // API error handling
-        elseif ($request->is('api/*')) {
-            if ($exception instanceof ModelNotFoundException) {
-                return response()
-                    ->json([
-                        'code' => 404,
-                        'error' => $exception->getMessage(),
-                    ], 404);
-            } elseif ($exception instanceof MethodNotAllowedHttpException) {
-                return response()
-                    ->json([
-                        'code' => 405,
-                        'error' => $exception->getMessage()
-                    ], 405);
-            } elseif ($exception instanceof ValidationException) {
-                return response()
-                    ->json([
-                        'code' => $exception->status,
-                        'error' => $exception->getMessage(),
-                        'fields' => $exception->errors()
-                    ], $exception->status);
-            } elseif ($exception instanceof AuthorizationException) {
-                return response()
-                    ->json([
-                        'code' => 403,
-                        'error' => $exception->getMessage()
-                    ], 403);
-            }
+        } elseif ($request->is('api/*')) {
+            // API error handling
+            return $this->handleApiErrors($exception);
         }
 
         return parent::render($request, $exception);
@@ -131,9 +101,51 @@ class Handler extends ExceptionHandler
         return $request->is('api/*')
             ? response()->json([
                 'message' => 'Unauthenticated (missing the authorization token in the request headers, or the token is invalid).',
-                'documentation' => 'https://kanka.io/en/docs/1.0/setup#authentication'
+                'documentation' => 'https://kanka.io/api-docs/1.0/setup#authentication'
             ], 401)
             : redirect()->guest(route('login'));
+    }
 
+    /**
+     * Handle all errors that happen in the API
+     * @param Throwable $exception
+     * @return \Illuminate\Http\JsonResponse
+     */
+    protected function handleApiErrors(Throwable $exception)
+    {
+        if ($exception instanceof ModelNotFoundException) {
+            return response()
+                ->json([
+                    'code' => 404,
+                    'error' => $exception->getMessage(),
+                ], 404);
+        } elseif ($exception instanceof MethodNotAllowedHttpException) {
+            return response()
+                ->json([
+                    'code' => 405,
+                    'error' => $exception->getMessage()
+                ], 405);
+        } elseif ($exception instanceof ValidationException) {
+            return response()
+                ->json([
+                    'code' => $exception->status,
+                    'error' => $exception->getMessage(),
+                    'fields' => $exception->errors()
+                ], $exception->status);
+        } elseif ($exception instanceof AuthorizationException) {
+            return response()
+                ->json([
+                    'code' => 403,
+                    'error' => $exception->getMessage()
+                ], 403);
+        } elseif ($exception instanceof NotFoundHttpException) {
+            return response()
+                ->json(null, 404);
+        }
+        return response()
+            ->json([
+                'code' => 500,
+                'error' => 'Unhandled API error. Contact us on Discord',
+            ], 500);
     }
 }

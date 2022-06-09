@@ -4,7 +4,7 @@ return [
     'actions'       => [
         'add'   => 'Add an alias',
     ],
-    'call-to-action'=>'Create aliases for this entity to easily find it through the search and through mentions.',
+    'pitch'     =>  'Create aliases for this entity to easily find it through the search and through mentions.',
     'create'        => [
         'success'   => 'Alias :name added to :entity.',
         'title'     => 'Add an alias to :name',
