@@ -1,12 +1,14 @@
 
-<div class="panel panel-default">
-    @if (request()->ajax())
-    <div class="panel-heading">
-        <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('crud.delete_modal.close') }}"><span aria-hidden="true">&times;</span></button>
-        <h4>{{ __('entities/attributes.template.title', ['name' => $entity->name]) }}</h4>
-    </div>
-    @endif
-    <div class="panel-body">
+    <div class="modal-body">
+
+        @if (request()->ajax())
+            <div class="text-center mb-5">
+                <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('crud.delete_modal.close') }}">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">{{ __('entities/attributes.template.title', ['name' => $entity->name]) }}</h4>
+            </div>
+        @endif
         {!! Form::open(['route' => ['entities.attributes.template', $entity->id], 'method'=>'POST', 'data-shortcut' => '1']) !!}
         {{ csrf_field() }}
         <div class="form-group required">
@@ -15,17 +17,20 @@
         </div>
 
         <p class="help-block">
-        {!! __('attributes/templates.helpers.marketplace', [
-    'boosted-campaigns' => link_to_route('front.pricing', __('crud.boosted_campaigns'), '#boost'),
-    'marketplace' => link_to('https://marketplace.kanka.io/attribute-templates', __('front.menu.marketplace'), ['target' => '_blank'])
+        {!! __('attributes/templates.pitch', [
+    'boosted-campaign' => link_to_route('front.boosters', __('concept.boosted-campaign')),
+    'marketplace' => link_to(config('marketplace.url') . '/attribute-templates', __('front.menu.marketplace'), ['target' => '_blank'])
     ]) !!}
         </p>
 
-        <div class="form-group">
-            <button class="btn btn-success">{{ __('crud.actions.apply') }}</button>
-            @includeWhen(!request()->ajax(), 'partials.or_cancel')
-        </div>
+        <div class="my-5 text-center">
+            <button type="button" class="btn btn-default mr-5 rounded-full px-8" data-dismiss="modal">
+                {{ __('crud.cancel') }}
+            </button>
 
+            <button class="btn btn-success ml-5 rounded-full px-8">
+                {{ __('crud.actions.apply') }}
+            </button>
+        </div>
         {!! Form::close() !!}
     </div>
-</div>
