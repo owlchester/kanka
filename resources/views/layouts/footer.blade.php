@@ -70,7 +70,7 @@
                     </li>
                     @endif
                         <li>
-                            <a href="//blog.kanka.io/categories/news" target="_blank">{{ __('footer.whats-new') }}</a>
+                            <a href="//blog.kanka.io/category/news" target="_blank">{{ __('footer.whats-new') }}</a>
                         </li>
                         <li>
                             <a href="//blog.kanka.io" target="_blank">{{ __('footer.blog') }}</a>
