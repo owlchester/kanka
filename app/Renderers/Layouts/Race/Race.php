@@ -26,6 +26,16 @@ class Race extends Layout
                 'key' => 'type',
                 'label' => 'races.fields.type',
             ],
+            'race' => [
+                'key' => 'race.name',
+                'label' => 'races.fields.race',
+                'render' => function ($model) {
+                    if (!$model->race) {
+                        return null;
+                    }
+                    return $model->race->tooltipedLink();
+                },
+            ],
             'characters' => [
                 'label' => 'races.fields.characters',
                 'render' => function ($model) {
