@@ -1,3 +1,5 @@
+@php $boosted = $campaign->campaign()->boosted() @endphp
+
 <div class="nav-tabs-custom">
     <ul class="nav nav-tabs">
         <li class="active">
@@ -41,15 +43,11 @@
             </div>
         </div>
         <div id="advanced" class="tab-pane fade in">
-            @if(!$campaign->campaign()->boosted())
-                <p class="help-block">
-                    {!! __('dashboard.widgets.advanced_options_boosted', [
-                        'boosted_campaigns' => link_to_route('front.pricing', __('crud.boosted_campaigns'), '#boost', ['target' => '_blank'])
-                    ]) !!}
-                </p>
-            @else
+            @includeWhen(!$boosted, 'dashboard.widgets.forms._boosted')
+
+            <div class="grid grid-cols-2 gap-2">
                 @include('dashboard.widgets.forms._class')
-            @endif
+            </div>
         </div>
     </div>
 </div>

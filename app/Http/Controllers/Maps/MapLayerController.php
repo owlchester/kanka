@@ -4,8 +4,10 @@
 namespace App\Http\Controllers\Maps;
 
 
+use App\Facades\CampaignLocalization;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreMapLayer;
+use App\Models\Campaign;
 use App\Models\Map;
 use App\Models\MapLayer;
 
@@ -29,7 +31,13 @@ class MapLayerController extends Controller
     public function create(Map $map)
     {
         $this->authorize('update', $map);
+        $campaign = CampaignLocalization::getCampaign();
 
+        if ($map->layers->count() >= $campaign->maxMapLayers()) {
+            return view('maps.form._layers_max')
+                ->with('campaign', $campaign)
+                ->with('max', Campaign::LAYER_COUNT_MAX);
+        }
         $ajax = request()->ajax();
 
         return view(
@@ -53,6 +61,14 @@ class MapLayerController extends Controller
             return response()->json(['success' => true]);
         }
 
+        $campaign = CampaignLocalization::getCampaign();
+
+        if ($map->layers->count() >= $campaign->maxMapLayers()) {
+            return view('maps.form._groups_max')
+                ->with('campaign', $campaign)
+                ->with('max', Campaign::LAYER_COUNT_MAX);
+        }
+
         $model = new MapLayer();
         $data = $request->only('name', 'position', 'entry', 'visibility_id', 'type_id');
         $data['map_id'] = $map->id;
@@ -61,7 +77,6 @@ class MapLayerController extends Controller
         return redirect()
             ->route('maps.edit', [$map, '#tab_form-layers'])
             ->withSuccess(__('maps/layers.create.success', ['name' => $new->name]));
-
     }
 
     /**

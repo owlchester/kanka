@@ -78,8 +78,7 @@ class CampaignBoostService
         if ($this->upgrade) {
             // Create two more
             $amount = 2;
-        }
-        elseif ($this->action === 'superboost') {
+        } elseif ($this->action === 'superboost') {
             // Create three
             $amount = 3;
         }

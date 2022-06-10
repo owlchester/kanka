@@ -1,6 +1,9 @@
 <?php
 
 return [
+    'actions'                           => [
+        'boost'     => 'Boost :name',
+    ],
     'create'                            => [
         'description'           => 'Create a new campaign',
         'helper'                => [
@@ -386,7 +389,7 @@ TEXT
             'achievements'      => 'Achievements',
             'applications'      => 'Applications',
             'campaign'          => 'Campaign',
-            'default-images'    => 'Default Images',
+            'default-images'    => 'Default thumbnails',
             'export'            => 'Export',
             'information'       => 'Information',
             'members'           => 'Members',
@@ -398,14 +401,6 @@ TEXT
             'styles'            => 'Theming',
         ],
         'title'     => 'Overview - :name',
-    ],
-    'superboosted'                      => [
-        'gallery'   => [
-            'error' => [
-                'text'  => 'Uploading images in the text editor is a feature only available to :superboosted.',
-                'title' => 'Campaign Gallery Image Upload',
-            ],
-        ],
     ],
     'themes'                            => [
         'none'  => 'None (defaults to user settings)',

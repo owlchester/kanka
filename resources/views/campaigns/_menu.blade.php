@@ -59,9 +59,6 @@ if (auth()->check()) {
                     <li class="@if(!empty($active) && $active == 'recovery')active @endif">
                         <a href="{{ route('recovery') }}">
                             {{ __('campaigns.show.tabs.recovery') }}
-                            <span class="label label-default bg-maroon pull-right" title="{{ __('crud.tooltips.boosted_feature') }}" data-toggle="tooltip">
-                                <i class="fa-solid fa-rocket"></i>
-                            </span>
                         </a>
                     </li>
                     @endcan
@@ -69,9 +66,6 @@ if (auth()->check()) {
                         <li class="@if(!empty($active) && $active == 'stats')active @endif">
                             <a href="{{ route('stats') }}">
                                 {{ __('campaigns.show.tabs.achievements') }}
-                                <span class="label label-default bg-maroon pull-right" title="{{ __('crud.tooltips.boosted_feature') }}" data-toggle="tooltip">
-                            <i class="fa-solid fa-rocket"></i>
-                        </span>
                             </a>
                         </li>
                     @endcan
@@ -126,9 +120,6 @@ if (auth()->check()) {
                         <li class="@if (!empty($active) && $active == 'plugins')active @endif">
                             <a href="{{ route('campaign_plugins.index') }}">
                                 {{ __('campaigns.show.tabs.plugins') }}
-                                <span class="label label-default bg-maroon pull-right" title="{{ __('crud.tooltips.boosted_feature') }}" data-toggle="tooltip">
-                                <i class="fa-solid fa-rocket"></i>
-                            </span>
                             </a>
                         </li>
                     @endif
@@ -136,25 +127,16 @@ if (auth()->check()) {
                     <li class="@if(!empty($active) && $active == 'default-images')active @endif">
                         <a href="{{ route('campaign.default-images') }}">
                             {{ __('campaigns.show.tabs.default-images') }}
-                            <span class="label label-default bg-maroon pull-right" title="{{ __('crud.tooltips.boosted_feature') }}" data-toggle="tooltip">
-                                <i class="fa-solid fa-rocket"></i>
-                            </span>
                         </a>
                     </li>
                     <li class="@if(!empty($active) && $active == 'styles')active @endif">
                         <a href="{{ route('campaign_styles.index') }}">
                             {{ __('campaigns.show.tabs.styles') }}
-                            <span class="label label-default bg-maroon pull-right" title="{{ __('crud.tooltips.boosted_feature') }}" data-toggle="tooltip">
-                                <i class="fa-solid fa-rocket"></i>
-                            </span>
                         </a>
                     </li>
                     <li class="@if(!empty($active) && $active == 'sidebar')active @endif">
                         <a href="{{ route('campaign-sidebar') }}">
                             {{ __('campaigns.show.tabs.sidebar') }}
-                            <span class="label label-default bg-maroon pull-right" title="{{ __('crud.tooltips.boosted_feature') }}" data-toggle="tooltip">
-                                <i class="fa-solid fa-rocket"></i>
-                            </span>
                         </a>
                     </li>
                     @endcan

@@ -21,9 +21,12 @@ return [
         'type'      => 'Layer type',
     ],
     'helper'        => [
-        'amount'            => 'You can add up to :amount layers on a map to switch the background image displayed below your markers.',
-        'boosted_campaign'  => ':boosted can have up to :amount layers.',
+        'amount_v2'            => 'Upload layers to a map to switch the background image displayed below the markers.',
         'is_real'           => 'Layers aren\'t available when using OpenStreetMaps.',
+    ],
+    'pitch' => [
+        'error' => 'Max number of layers reached.',
+        'until' => 'Upload up to :max layers to each map.',
     ],
     'placeholders'  => [
         'name'      => 'Underground, Level 2, Shipwreck',

@@ -25,6 +25,8 @@
   --gallery-folder-text: unset;
   --gallery-background: #f5f8fa;
   --gallery-hover-text: #124964;
+
+  --kanka-boost-accent: 338 78% 48%;
 }
 
 @import "theming";
@@ -712,6 +714,47 @@ summary { display: list-item; }
   label {
     user-select: none;
     margin: 0;
+  }
+}
+.booster-block {
+  > div {
+    text-align: center;
+  }
+
+  .booster-callout, img {
+    max-width: 480px;
+  }
+}
+.booster-icon {
+  border-radius: 9999px;
+  background-color: hsl(var(--kanka-boost-accent)/1);
+  display: inline-block;
+  padding: 0.5rem;
+  margin-bottom: 0.4rem;
+  color: white;
+}
+.booster-callout {
+  display: inline-block;
+  padding: 2rem 1.5rem;
+  border: 1px solid hsl(var(--kanka-boost-accent)/0.5);
+  border-radius: 0.5rem;
+  background-color: var(--box-background);
+  font-size: 1rem;
+  text-align: center;
+  line-height: 1.5;
+
+  h4 {
+    font-weight: 600;
+    font-size: 1.2rem;
+    margin: 0.8rem 0;
+  }
+  .btn {
+    display: block;
+  }
+
+  .column {
+    text-align: center;
+    max-width: 450px;
   }
 }
 

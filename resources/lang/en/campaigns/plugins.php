@@ -40,7 +40,6 @@ return [
         'status'    => 'Status',
         'type'      => 'Plugin type',
     ],
-    'helper'        => 'The Kanka community is constantly creating amazing plugins on our marketplace. If this campaign is boosted, you can install plugins from the marketplace. Use this interface to uninstall plugins in your campaign.',
     'import'        => [
         'button'                => 'Import',
         'created'               => 'Created the following entities:',
@@ -58,6 +57,7 @@ return [
         'updates'       => 'Updates',
         'your_version'  => 'Your version',
     ],
+    'pitch' => 'Install and manage plugins from the :marketplace.',
     'status'        => [
         'disabled'  => 'Disabled',
         'enabled'   => 'Enabled',

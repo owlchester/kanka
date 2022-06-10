@@ -267,6 +267,18 @@ class CampaignPolicy
     }
 
     /**
+     * Check if a user can unboost a campaign
+     * @param User|null $user
+     * @param Campaign $campaign
+     * @return bool
+     */
+    public function unboost(?User $user, Campaign $campaign): bool
+    {
+        $boost = $campaign->boosts->first();
+        return $user && $boost && $boost->user_id === $user->id;
+    }
+
+    /**
      * @param string $action
      * @param User $user
      * @param Entity|null $entity

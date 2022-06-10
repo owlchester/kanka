@@ -1,19 +1,31 @@
 <?php
 
-
 namespace App\Http\Controllers\Maps;
 
-
+use App\Facades\CampaignLocalization;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreMapGroup;
+use App\Models\Campaign;
 use App\Models\Map;
 use App\Models\MapGroup;
 
 class MapGroupController extends Controller
 {
+    /**
+     * @param Map $map
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
     public function create(Map $map)
     {
         $this->authorize('update', $map);
+        $campaign = CampaignLocalization::getCampaign();
+
+        if ($map->groups->count() >= $campaign->maxMapLayers()) {
+            return view('maps.form._groups_max')
+                ->with('campaign', $campaign)
+                ->with('max', Campaign::LAYER_COUNT_MAX);
+        }
 
         $ajax = request()->ajax();
 
@@ -36,6 +48,13 @@ class MapGroupController extends Controller
         // For ajax requests, send back that the validation succeeded, so we can really send the form to be saved.
         if (request()->ajax()) {
             return response()->json(['success' => true]);
+        }
+
+        $campaign = CampaignLocalization::getCampaign();
+        if ($map->groups->count() >= $campaign->maxMapLayers()) {
+            return view('maps.form._groups_max')
+                ->with('campaign', $campaign)
+                ->with('max', Campaign::LAYER_COUNT_MAX);
         }
 
         $model = new MapGroup();

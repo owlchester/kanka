@@ -227,5 +227,20 @@ class MacroServiceProvider extends ServiceProvider
             $campaign = CampaignLocalization::getCampaign(false);
             return !empty($campaign) && !$campaign->boosted();
         });
+
+        /**
+         * Condition to show actions or elements to users who is a subscriber
+         */
+        Blade::if('subscriber', function() {
+           if (auth()->guest()) {
+               return true;
+           }
+
+           if (request()->get('_booster') === '0') {
+               return false;
+           }
+
+           return auth()->user()->hasBoosters();
+        });
     }
 }

@@ -38,12 +38,10 @@ class AttributeTemplateController extends Controller
         $this->authorize('attributes', $entity);
 
         $campaign = CampaignLocalization::getCampaign();
-        $communityTemplates = $this->service->templates($campaign);
         $templates = $this->service->campaign($campaign)->templateList();
 
 
         return view('entities.pages.attribute-templates.apply', compact(
-            'communityTemplates',
             'entity',
             'templates'
         ));

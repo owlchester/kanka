@@ -19,10 +19,6 @@ Route::group([
 
     Route::get('/', 'HomeController@index')->name('home');
 
-    Route::resources([
-        'campaign_boosts' => 'CampaignBoostController',
-    ]);
-
     Route::post('/logout', 'Auth\AuthController@logout')->name('logout');
 
     // OAuth Routes

@@ -6,7 +6,7 @@ foreach (\App\Facades\Dashboard::campaign($campaign->campaign())->getDashboards(
 }
 ?>
 <p class="help-block">
-    {!! __('menu_links.helpers.dashboard', ['boosted' => link_to_route('front.pricing', __('crud.boosted_campaigns'), '#boost')]) !!}
+    {!! __('menu_links.helpers.dashboard', ['boosted' => link_to_route('front.boosters', __('crud.boosted_campaigns'))]) !!}
 </p>
 
 @if($campaign->campaign()->boosted())

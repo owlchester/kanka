@@ -19,6 +19,7 @@ use Illuminate\Support\Arr;
  * @method static self|Builder featured(bool $featured = true)
  * @method static self|Builder filterPublic(array $filters)
  * @method static self|Builder open()
+ * @method static self|Builder unboosted()
  */
 trait CampaignScopes
 {
@@ -27,7 +28,7 @@ trait CampaignScopes
      * @param int $visibility
      * @return mixed
      */
-    public function scopeVisibility(Builder $query, int $visibility)
+    public function scopeVisibility(Builder $query, int $visibility): Builder
     {
         return $query->where($this->getTable() . '.visibility_id', $visibility);
     }
@@ -37,7 +38,7 @@ trait CampaignScopes
      * @param $visibility
      * @return mixed
      */
-    public function scopeOpen(Builder $query)
+    public function scopeOpen(Builder $query): Builder
     {
         return $query->where('is_open', true);
     }
@@ -47,7 +48,7 @@ trait CampaignScopes
      * @param $query
      * @return mixed
      */
-    public function scopeAdmin(Builder $query)
+    public function scopeAdmin(Builder $query): Builder
     {
         return $query->with('users');
     }
@@ -57,7 +58,7 @@ trait CampaignScopes
      * @param $query
      * @return mixed
      */
-    public function scopeFeatured(Builder $query, $featured = true)
+    public function scopeFeatured(Builder $query, $featured = true): Builder
     {
         if ($featured) {
             return $query->where('is_featured', true)
@@ -79,7 +80,7 @@ trait CampaignScopes
      * @param $query
      * @return mixed
      */
-    public function scopePublic(Builder $query)
+    public function scopePublic(Builder $query): Builder
     {
         return $query->visibility(Campaign::VISIBILITY_PUBLIC);
     }
@@ -89,7 +90,7 @@ trait CampaignScopes
      * @param $query
      * @return mixed
      */
-    public function scopeFront(Builder $query)
+    public function scopeFront(Builder $query): Builder
     {
         if (!app()->environment('local')) {
             $query
@@ -107,7 +108,7 @@ trait CampaignScopes
      * @param array $options
      * @return Builder
      */
-    public function scopeFilterPublic(Builder $query, array $options)
+    public function scopeFilterPublic(Builder $query, array $options): Builder
     {
         $language = Arr::get($options, 'language');
         $system = Arr::get($options, 'system');
@@ -146,5 +147,18 @@ trait CampaignScopes
     public function scopePreparedWith($query)
     {
         return $query;
+    }
+
+    /**
+     * Unboosted campaigns
+     * @param Builder $query
+     * @return Builder
+     */
+    public function scopeUnboosted(Builder $query): Builder
+    {
+        return $query->where(function ($sub) {
+            return $sub->where('boost_count', 0)
+                ->orWhereNull('boost_count');
+        });
     }
 }

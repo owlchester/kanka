@@ -330,6 +330,15 @@ class User extends \Illuminate\Foundation\Auth\User
         return !empty($this->patreon_pledge) && $this->patreon_pledge == Patreon::PLEDGE_WYVERN;
     }
 
+    /**
+     * Determine if a user has access to campaign boosters to boost a campaign
+     * @return bool
+     */
+    public function hasBoosters(): bool
+    {
+        return $this->isGoblin();
+    }
+
 
     /**
      * Get available boosts for the user

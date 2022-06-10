@@ -13,6 +13,7 @@ return [
     ],
     'helper'        => 'Track your progress to unlocking various achievements for your campaign. These numbers are updated once every 24 hours.',
     'placeholder'   => ':amount of :target',
+    'pitch'         => 'Track your worldbuilding progress against our campaign achievements.',
     'targets'       => [
         'calendars' => 'Create :target calendars',
         'characters'=> 'Create :target characters',

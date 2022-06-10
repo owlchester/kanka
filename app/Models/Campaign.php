@@ -70,7 +70,7 @@ class Campaign extends MiscModel
     public const VISIBILITY_REVIEW = 2;
     public const VISIBILITY_PUBLIC = 3;
 
-    public const LAYER_COUNT_MIN = 3;
+    public const LAYER_COUNT_MIN = 1;
     public const LAYER_COUNT_MAX = 10;
 
     /**

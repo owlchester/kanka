@@ -66,7 +66,6 @@ $assetCount = 0; ?>
     </div>
 @endsection
 
-
 @section('styles')
     @parent
     <link href="{{ mix('css/assets.css') }}" rel="stylesheet">

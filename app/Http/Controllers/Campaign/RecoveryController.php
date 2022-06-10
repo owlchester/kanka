@@ -20,7 +20,6 @@ class RecoveryController extends Controller
     public function __construct(RecoveryService $service)
     {
         $this->middleware('auth');
-        $this->middleware('campaign.boosted', ['except' => 'index']);
 
         $this->service = $service;
     }
@@ -62,6 +61,13 @@ class RecoveryController extends Controller
      */
     public function recover(Request $request)
     {
+        $campaign = CampaignLocalization::getCampaign();
+        if (!$campaign->boosted()) {
+            return redirect()
+                ->route('recovery')
+                ->with('boosted-pitch', true)
+            ;
+        }
         try {
             $count = $this->service->recover($request->get('model', []));
             return redirect()
