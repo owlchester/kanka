@@ -17,6 +17,7 @@ class OrganisationResource extends EntityResource
         return $this->entity([
             'type' => $this->type,
             'organisation_id' => $this->organisation_id,
+            'is_defunct' => (bool) $this->is_defunct,
             'members' => OrganisationMemberResource::collection($this->members()->has('character')->with('character')->get())
         ]);
     }

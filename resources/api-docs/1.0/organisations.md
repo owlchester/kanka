@@ -48,6 +48,7 @@ The list of returned organisations can be filtered. The available filters are av
             "location_id": 4,
             "organisation_id": 4,
             "type": "Kingdom",
+            "is_defunct": true,
             "members": []
         }
     ]
@@ -84,6 +85,7 @@ To get the details of a single organisation, use the following endpoint.
         "location_id": 4,
         "organisation_id": 4,
         "type": "Kingdom",
+        "is_defunct": true,
         "members": []
     }
 
@@ -141,6 +143,7 @@ To create an organisation, use the following endpoint.
 | `organisation_id` | `integer` | The parent organisation |
 | `location_id` | `integer` | The organisation's location |
 | `tags` | `array` | Array of tag ids |
+| `is_defunct` | `boolean` | If the organisation is defunct |
 | `image_url` | `string` | URL to a picture to be used for the organisation || `entity_image_uuid` | `string` | Gallery image UUID for the entity image (limited to superboosted campaigns) |
 | `entity_header_uuid` | `string` | Gallery image UUID for the entity header (limited to superboosted campaigns) |
 | `is_private` | `boolean` | If the organisation is only visible to `admin` members of the campaign |
