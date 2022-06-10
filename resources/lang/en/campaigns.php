@@ -402,14 +402,6 @@ TEXT
         ],
         'title'     => 'Overview - :name',
     ],
-    'superboosted'                      => [
-        'gallery'   => [
-            'error' => [
-                'text'  => 'Uploading images in the text editor is a feature only available to :superboosted.',
-                'title' => 'Campaign Gallery Image Upload',
-            ],
-        ],
-    ],
     'themes'                            => [
         'none'  => 'None (defaults to user settings)',
     ],

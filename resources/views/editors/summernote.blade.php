@@ -45,23 +45,18 @@
 @endif
         data-locale="{{ app()->getLocale() }}"></div>
 
+@if(isset($campaign) && $campaign instanceof \App\Services\CampaignService && $campaign->campaign() !== null)
     <div class="modal fade" id="campaign-imageupload-error" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmLabel">
         <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
+            <div class="modal-content rounded-2xl">
+                <div class="modal-body  text-center">
                     <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('crud.delete_modal.close') }}"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">{{ __('campaigns.superboosted.gallery.error.title') }}</h4>
-                </div>
-                <div class="modal-body">
-                    <p id="superboosted-error">{!! __('campaigns.superboosted.gallery.error.text', [
-    'superboosted' => link_to_route('front.features', __('crud.superboosted_campaigns'), '#boost', ['target' => '_blank'])
-]) !!}</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">{{ __('crud.cancel') }}</button>
+
+                    @include('layouts.callouts.boost-modal', ['texts' => [__('campaigns/gallery.pitch')], 'superboost' => true, 'campaign' => $campaign->campaign()])
                 </div>
             </div>
         </div>
     </div>
+@endif
 
 @endsection

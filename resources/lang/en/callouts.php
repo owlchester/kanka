@@ -17,4 +17,8 @@ return [
             'icon' => 'Unlock millions of custom icons from FontAwesome with a :boosted-campaign.',
         ]
     ],
+    'subscribe' => [
+        'pitch-image' => 'Subscribe to unlock up to :max MB file upload sizes.',
+        'share-booster' => 'Boost :campaign to increase the file upload size for all members of the campaign.',
+    ]
 ];

@@ -12,10 +12,7 @@
 @else
     <?php $groups = $model->groups()->ordered()->paginate(); ?>
     <p class="help-block">
-        {{ __('maps/groups.helper.amount', ['amount' => $campaign->campaign()->maxMapLayers()]) }}
-        @if (!$campaign->campaign()->boosted())
-            {!! __('maps/groups.helper.boosted_campaign', ['boosted' => link_to_route('front.pricing', __('crud.boosted_campaigns'), '#boost'), 'amount' => \App\Models\Campaign::LAYER_COUNT_MAX])!!}
-        @endif
+        {{ __('maps/groups.helper.amount_v2') }}
     </p>
 
     <table class="table table-condensed">
@@ -62,14 +59,12 @@
         {{ $groups->links() }}
     </div>
 
-    @if ($groups->count() < $campaign->campaign()->maxMapLayers())
-    <a href="{{ route('maps.map_groups.create', ['map' => $model]) }}" class="btn btn-primary btn-sm"
+    <a href="{{ route('maps.map_groups.create', ['map' => $model]) }}" class="btn btn-primary"
        data-toggle="ajax-modal" data-target="#entity-modal"
        data-url="{{ route('maps.map_groups.create', ['map' => $model]) }}"
     >
         <i class="fa-solid fa-plus"></i> {{ __('maps/groups.actions.add') }}
     </a>
-    @endif
 
 @endif
 
