@@ -10,12 +10,7 @@ $options = [
 
 ?>
 @if(!$campaign->campaign()->boosted())
-
-    <div class="visu-teaser text-center">
-        <a href="{{ route('front.pricing', '#boost') }}" target="_blank">
-            {!! __('entities/relations.teaser') !!}
-        </a>
-    </div>
+    @include('layouts.callouts.boost', ['texts' => [__('entities/relations.call-to-action')]])
     <?php return ?>
 @endif
 

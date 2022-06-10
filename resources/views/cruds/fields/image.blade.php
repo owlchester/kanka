@@ -4,8 +4,10 @@
  * bool $imageRequired set to true if the image is required and can't be removed
  */
 $formats = 'PNG, JPG, GIF, WebP';
+$max = 25;
 if (isset($size) && $size == 'map') {
     $formats = 'PNG, JPG, SVG, WebP';
+    $max = 50;
 }
 ?>
 <div class="@if (!empty($imageRequired) && $imageRequired) required @endif">
@@ -24,8 +26,17 @@ if (isset($size) && $size == 'map') {
             <p class="help-block">
                 {{ __('crud.hints.image_limitations', ['formats' => $formats, 'size' => auth()->user()->maxUploadSize(true, (isset($size) ? $size : 'image'))]) }}
 @php $currentCampaign = \App\Facades\CampaignLocalization::getCampaign(false); @endphp
-                @if (!auth()->user()->hasRole('patreon') && !($currentCampaign && $currentCampaign->boosted()))
-                    <a href="{{ route('settings.subscription') }}">{{ __('crud.hints.image_patreon') }}</a>
+                @subscriber()
+                    @if ($currentCampaign && !$currentCampaign->boosted())
+                        <p>
+                            <a href="{{ route('settings.boost', ['campaign' => $currentCampaign]) }}">
+                                <i class="fa-solid fa-rocket" aria-hidden="true"></i>
+                                {!! __('callouts.subscribe.share-booster', ['campaign' => $currentCampaign->name]) !!}
+                            </a>
+                        </p>
+                    @endif
+                @else
+                    <a href="{{ route('front.pricing') }}">{{ __('callouts.subscribe.pitch-image', ['max' => $max]) }}</a>
                 @endif
             </p>
         </div>

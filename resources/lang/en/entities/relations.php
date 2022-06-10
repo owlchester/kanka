@@ -75,7 +75,7 @@ return [
     'show'              => [
         'title' => ':name Connections',
     ],
-    'teaser'            => 'Boost the campaign to get access to the relations explorer. Click to learn more about boosted campaigns.',
+    'call-to-action'    => 'Visually explore the relations of this entity and how it\'s connected to the rest of the campaign.',
     'types'             => [
         'family_member'         => 'Family member',
         'organisation_member'   => 'Organisation Member',

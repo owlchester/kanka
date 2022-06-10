@@ -43,50 +43,10 @@ return [
         'title'     => 'App Integration',
     ],
     'boost'         => [
-        'available_boosts'  => 'Available boosts: :amount / :max',
-        'benefits'          => [
-            'headers'   => [
-                'boosted'       => 'Boosted campaign benefits',
-                'superboosted'  => 'Superboosted campaign benefits',
-            ],
-            'more'      => [
-                'boosted'       => 'All boosted campaign features',
-                'superboosted'  => 'All superboosted campaign features',
-            ],
-            'third'     => 'To boost a campaign, go to the campaign\'s page, and click on the :boost_button button above the :edit_button button.',
-        ],
-        'buttons'           => [
-            'boost'         => 'Boost',
-            'superboost'    => 'Superboost',
-            'tooltips'      => [
-                'boost'         => 'Boosting a campaign uses up :amount of your boosts',
-                'superboost'    => 'Superboosting a campaign uses :amount of your boosts',
-            ],
-            'unboost'       => 'Unboost',
-        ],
-        'campaigns'         => 'Boosted Campaigns :count / :max',
         'exceptions'        => [
-            'already_boosted'       => 'Campaign :name is already boosted.',
+            'already_boosted'       => 'Campaign :name is already being boosted.',
             'exhausted_boosts'      => 'You are out of boosts to give. Remove your boost from a campaign before giving it to another.',
             'exhausted_superboosts' => 'You are out of boosts. You need 3 boosters to superboost a campaign.',
-        ],
-        'modals'            => [
-            'more'  => [
-                'action'    => 'More boosters?',
-                'body'      => 'You can get more boosters by upgrading your subscription level, or by removing them from a campaign. Unboosting a campaign doesn\'t delete any of the boosted information, it only disables it until you boost that campaign again.',
-                'title'     => 'Getting more boosters',
-            ],
-        ],
-        'success'           => [
-            'boost'         => 'Campaign :name boosted.',
-            'delete'        => 'Removed your boost from :name.',
-            'superboost'    => 'Campaign :name superboosted',
-        ],
-        'title'             => 'Boost',
-        'unboost'           => [
-            'confirm'   => 'Unboosting the campaign ":tag".',
-            'data'      => 'No data will be lost.',
-            'title'     => 'Unboosting a campaign',
         ],
     ],
     'countries'     => [

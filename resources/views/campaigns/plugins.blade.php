@@ -15,21 +15,21 @@
     @if(session('plugin_entities_created'))
         <div class="alert alert-info alert-dismissable">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-            <strong>{{ __('campaigns/plugins.import.created') }}</strong><br />
+            <strong>{{ __('campaigns/plugins.import.created') }}</strong><br/>
             {!! session('plugin_entities_created') !!}
         </div>
     @endif
     @if(session('plugin_entities_updated'))
         <div class="alert alert-info alert-dismissable">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-            <strong>{{ __('campaigns/plugins.import.updated') }}</strong><br />
+            <strong>{{ __('campaigns/plugins.import.updated') }}</strong><br/>
             {!! session('plugin_entities_updated') !!}
         </div>
     @endif
     @if(session('plugin_only_new') == 'on' && session('plugin_entities_created') == 0)
         <div class="alert alert-warning alert-dismissable">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-            <strong>{{ __('campaigns/plugins.import.no_new_entities') }}</strong><br />
+            <strong>{{ __('campaigns/plugins.import.no_new_entities') }}</strong><br/>
         </div>
     @endif
     <div class="row">
@@ -37,7 +37,7 @@
             @include('campaigns._menu', ['active' => 'plugins'])
         </div>
         <div class="col-md-9 campaign-plugins">
-            @include('campaigns._plugins')
+            @include('campaigns.plugins.index')
         </div>
     </div>
 @endsection

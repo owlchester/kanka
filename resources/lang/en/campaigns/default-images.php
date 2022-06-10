@@ -2,15 +2,16 @@
 
 return [
     'actions'   => [
-        'add'   => 'Add a new default image',
+        'add'   => 'Upload a new thumbnail',
     ],
+    'call-to-action' => 'Upload a custom thumbnail for all the characters, locations, or other entities of the campaign. These images are then shown on various lists.',
     'create'    => [
-        'error'     => 'Error saving the new default entity images. Is :type already set?',
-        'success'   => 'Default entity image for :type created.',
-        'title'     => 'New default entity image',
+        'error'     => 'Error saving the new default entity thumbnails. Is :type already set?',
+        'success'   => 'New thumnbail for :type created.',
+        'title'     => 'New default thumbnail',
     ],
     'destroy'   => [
-        'success'   => 'Default entity image for :type removed.',
+        'success'   => 'Default thumbnail for :type removed.',
     ],
-    'helper'    => 'Set custom default entity images for your campaign. These will be shown in the various lists, but not on the entity itself.',
+    'helper'    => 'Set custom default thumbnail for entity types of the campaign. These will be shown in the various lists, but not on the entity itself.',
 ];

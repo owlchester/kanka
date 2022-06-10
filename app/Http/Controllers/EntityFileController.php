@@ -65,6 +65,14 @@ class EntityFileController extends Controller
     {
         $this->authorize('update', $entity->child);
 
+        $campaign = CampaignLocalization::getCampaign();
+        $max = $campaign->maxEntityFiles();
+        if ($entity->files->count() >= $max) {
+            return view('entities.pages.files.max')
+                ->with('campaign', $campaign)
+                ->with('max', $max);
+        }
+
         return view('entities.pages.files.create')
             ->with('entity', $entity);
     }

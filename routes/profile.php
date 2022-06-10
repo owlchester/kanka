@@ -8,8 +8,12 @@ Route::get('/profile', 'Settings\ProfileController@index')
 Route::patch('/profile', 'Settings\ProfileController@update')
     ->name('settings.profile');
 
-Route::get('/boost', 'Settings\BoostController@index')
+Route::get('/boosters', 'Settings\BoostController@index')
     ->name('settings.boost');
+Route::get('/boosters/boost/{campaign}', 'Settings\BoostController@boost')
+    ->name('settings.campaign-boost');
+Route::get('/boosters/unboost/{campaign}', 'Settings\BoostController@unboost')
+    ->name('settings.campaign-unboost');
 
 Route::post('/release/{app_release}', 'Settings\ReleaseController@read')
     ->name('settings.release');
@@ -92,3 +96,12 @@ Route::get('/tutorial/disable', 'Settings\TutorialController@disable')
     ->name('settings.tutorial.disable');
 Route::get('/tutorial/reset', 'Settings\TutorialController@reset')
     ->name('settings.tutorial.reset');
+
+// Campaign boosters
+Route::resources([
+    'campaign_boosts' => 'CampaignBoostController',
+]);
+Route::get(
+    'campaign_boosts/{campaign_boost}/confirm',
+    [\App\Http\Controllers\CampaignBoostController::class, 'confirm']
+)->name('campaign_boost.confirm-destroy');

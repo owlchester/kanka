@@ -12,13 +12,10 @@
 @else
     <?php $layers = $model->layers()->ordered()->paginate(); ?>
     <p class="help-block">
-        {{ __('maps/layers.helper.amount', ['amount' => $campaign->campaign()->maxMapLayers()]) }}
-        @if (!$campaign->campaign()->boosted())
-            {!! __('maps/layers.helper.boosted_campaign', ['boosted' => link_to_route('front.pricing', __('crud.boosted_campaigns'), '#boost'), 'amount' => \App\Models\Campaign::LAYER_COUNT_MAX])!!}
-        @endif
+        {{ __('maps/layers.helper.amount_v2') }}
     </p>
 
-    @if (isset($model) && $model->is_real)
+    @if (isset($model) && $model->isReal())
         <p class="alert alert-warning">
             {{ __('maps/layers.helper.is_real') }}
         </p>
@@ -69,15 +66,13 @@
         {{ $layers->links() }}
     </div>
 
-    @if ($layers->count() < $campaign->campaign()->maxMapLayers())
-    <a href="{{ route('maps.map_layers.create', ['map' => $model]) }}" class="btn btn-primary btn-sm"
+    <a href="{{ route('maps.map_layers.create', ['map' => $model]) }}" class="btn btn-primary"
        data-toggle="ajax-modal" data-target="#large-modal"
        data-url="{{ route('maps.map_layers.create', ['map' => $model]) }}"
        data-backdrop="static"
     >
         <i class="fa-solid fa-plus"></i> {{ __('maps/layers.actions.add') }}
     </a>
-    @endif
 
 @endif
 

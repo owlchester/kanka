@@ -20,11 +20,14 @@ return [
         'position'  => 'Position',
     ],
     'helper'        => [
-        'amount'            => 'A marker can be attached to a group, allowing you to show or hide all Shops of a city. A map can have up to :amount groups.',
-        'boosted_campaign'  => ':boosted can have up to :amount groups.',
+        'amount_v2'    => 'Create marker groups and attach markers to them, enabling to quickly show or hide multiple markers with a single click.',
     ],
     'hints'         => [
         'is_shown'  => 'If checked, the group markers will be shown on the map by default.',
+    ],
+    'pitch' => [
+        'error' => 'Max number of groups reached.',
+        'until' => 'Create up to :max groups to each map.',
     ],
     'placeholders'  => [
         'name'      => 'Shops, Treasure, NPCs',

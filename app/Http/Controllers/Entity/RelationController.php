@@ -103,6 +103,8 @@ class RelationController extends Controller
             $connectionService = $this->connectionService;
         }
 
+        $campaign = CampaignLocalization::getCampaign();
+
         return view('entities.pages.relations.index', compact(
             'ajax',
             'entity',
@@ -110,7 +112,8 @@ class RelationController extends Controller
             'mode',
             'option',
             'connections',
-            'connectionService'
+            'connectionService',
+            'campaign'
         ));
     }
 

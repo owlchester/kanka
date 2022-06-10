@@ -1,6 +1,6 @@
 @php
 $pricingOptions = [
-    '#boost'
+
 ];
 if (isset($campaign) && $campaign instanceof \App\Models\Campaign) {
     $pricingOptions['callback'] = $campaign->id;
@@ -12,11 +12,11 @@ if (isset($campaign) && $campaign instanceof \App\Models\Campaign) {
     <div class="callout callout-info">
         <h4><i class="fa-solid fa-rocket"></i> {{ __('crud.errors.unavailable_feature') }}</h4>
         <p>
-            {!! __('crud.errors.boosted_campaigns', ['boosted' => link_to_route('front.pricing', __('crud.boosted_campaigns'), $pricingOptions)]) !!}
+            {!! __('crud.errors.boosted_campaigns', ['boosted' => link_to_route('front.boosters', __('crud.boosted_campaigns'), $pricingOptions)]) !!}
         </p>
     </div>
 @else
     <p class="help-block">
-        {!! __('crud.errors.boosted_campaigns', ['boosted' => link_to_route('front.pricing', __('crud.boosted_campaigns'), $pricingOptions)]) !!}
+        {!! __('crud.errors.boosted_campaigns', ['boosted' => link_to_route('front.boosters', __('crud.boosted_campaigns'), $pricingOptions)]) !!}
     </p>
 @endif

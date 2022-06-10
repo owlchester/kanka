@@ -67,11 +67,19 @@
     <div class="col-md-6">
         <div class="form-group">
             <label>{{ __('timelines/elements.fields.icon') }}</label>
-            @if ($campaign->campaign()->boosted())
-                {!! Form::text('icon', null, ['class' => 'form-control', 'placeholder' => 'fa-solid fa-gem, ra ra-sword']) !!}
+            {!! Form::text('icon', null, ['class' => 'form-control', 'placeholder' => 'fa-solid fa-gem, ra ra-sword', 'disabled' => $campaign->campaign()->boosted() ? null : 'disabled']) !!}
                 <p class="help-block">{!! __('timelines/elements.helpers.icon', ['rpgawesome' => '<a href="https://nagoshiashumari.github.io/Rpg-Awesome/" target="_blank">RPG Awesome</a>', 'fontawesome' => '<a href="https://fontawesome.com/search?m=free&s=solid" target="_blank">Font Awesome</a>']) !!}</p>
-            @else
-                <p class="help-block">{{ __('crud.errors.boosted') }}</p>
+
+            @if (!$campaign->campaign()->boosted())
+                @subscriber()
+                    <p class="help-block">
+                        <i class="fa-solid fa-rocket" aria-hidden="true"></i> {!! __('crud.errors.boosted_campaigns', ['boosted' => link_to_route('settings.boost', __('concept.boosted-campaign'), ['campaign' => $campaign->campaign()])]) !!}
+                    </p>
+                @else
+                    <p class="help-block">
+                        <i class="fa-solid fa-rocket" aria-hidden="true"></i> {!! __('crud.errors.boosted_campaigns', ['boosted' => link_to_route('front.boosters', __('concept.boosted-campaign'))]) !!}
+                    </p>
+                @endsubscriber
             @endif
         </div>
     </div>

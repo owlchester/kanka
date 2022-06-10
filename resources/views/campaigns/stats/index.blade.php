@@ -18,22 +18,22 @@ use \Illuminate\Support\Arr;
             @include('campaigns._menu', ['active' => 'stats'])
         </div>
         <div class="col-md-9 achievements">
-            <h3 class="mt-0">
+            <div class="mb-1">
+                <h3 class="mt-0 inline-block">
                 {{ __('campaigns.show.tabs.achievements') }}
-                <button class="btn btn-sm btn-default pull-right" data-toggle="dialog"
-                        data-target="stats-help">
-                    <i class="fa-solid fa-question-circle" aria-hidden="true"></i>
-                    {{ __('campaigns.members.actions.help') }}
-                </button>
-            </h3>
-            @if (!$campaign->superboosted())
-                @include('partials.superboosted', ['callout' => true])
+                </h3>
 
-                <div class="row">
-                    <div class="col-sm-12 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
-                        @include('partials.images.boosted-image')
-                    </div>
-                </div>
+                @if ($campaign->superboosted())
+                    <button class="btn btn-sm btn-default pull-right" data-toggle="dialog"
+                                 data-target="stats-help">
+                        <i class="fa-solid fa-question-circle" aria-hidden="true"></i>
+                        {{ __('campaigns.members.actions.help') }}
+                    </button>
+                @endif
+            </div>
+            @if (!$campaign->superboosted())
+                @include('layouts.callouts.boost', ['texts' => [
+            __('campaigns/stats.pitch')], 'superboost' => true])
             @else
 
             @foreach ($stats as $key => $stat)

@@ -22,6 +22,7 @@ return [
         'title' => 'New folder',
     ],
     'no_folder'     => 'No folder',
+    'pitch'         => 'Upload images to the campaign\'s gallery directly from the text editor.',
     'placeholders'  => [
         'search'    => 'Search image name...',
     ],

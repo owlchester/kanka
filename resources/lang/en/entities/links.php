@@ -4,6 +4,7 @@ return [
     'actions'       => [
         'add'   => 'Add a link',
     ],
+    'call-to-action'=> 'Add links to external resources on this entity, like to DnDBeyond, and they will display directly on the entity\'s overview.',
     'create'        => [
         'success'   => 'Link :name added to :entity.',
         'title'     => 'Add a link to :name',
@@ -30,10 +31,6 @@ return [
     'show'          => [
         'helper'    => 'Boosted campaigns can add links to entities that point to external websites.',
         'title'     => 'Links for :name',
-    ],
-    'unboosted'     => [
-        'text'  => 'Adding links to external resources that are displayed directly on the entity is reserved to :boosted-campaigns.',
-        'title' => 'Boosted campaign feature',
     ],
     'update'        => [
         'success'   => 'Link :name updated for :entity.',

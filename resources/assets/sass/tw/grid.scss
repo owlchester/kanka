@@ -43,6 +43,9 @@
     .md\:grid-cols-#{$i} {
       grid-template-columns: repeat($i, minmax(0, 1fr));
     }
+    .md\:col-span-#{$i} {
+      grid-column: span $i / span $i;
+    }
   }
   .md\:col-auto {
     grid-column: auto;
@@ -54,6 +57,9 @@
     .lg\:grid-cols-#{$i} {
       grid-template-columns: repeat($i, minmax(0, 1fr));
     }
+    .lg\:col-span-#{$i} {
+      grid-column: span $i / span $i;
+    }
   }
   .lg\:col-auto {
     grid-column: auto;
@@ -64,6 +70,9 @@
   @for $i from 1 through 12 {
     .xl\:grid-cols-#{$i} {
       grid-template-columns: repeat($i, minmax(0, 1fr));
+    }
+    .xl\:col-span-#{$i} {
+      grid-column: span $i / span $i;
     }
   }
   .xl\:col-auto {

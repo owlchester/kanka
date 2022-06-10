@@ -12,6 +12,7 @@ return [
         'disable'   => '{1} Disabled :count style.|[2,*] Disabled :count styles.',
         'enable'    => '{1} Enabled :count style.|[2,*] Enabled :count styles.',
     ],
+    'pitch' => 'Create custom CSS styling to fully customise the look and feel of the campaign.',
     'create'    => [
         'success'   => 'New style created.',
         'title'     => 'New style',

@@ -7,9 +7,7 @@ return [
             'rendering' => 'There was an error rendering the marketplace plugin. Please contact the plugin creator.',
         ],
     ],
-    'helpers'   => [
-        'marketplace'   => ':boosted-campaigns have access to attribute templates created by the community on our :marketplace.',
-    ],
+    'pitch' => 'Find and add character sheets from the :marketplace on a :boosted-campaign.',
     'list'      => [
         'campaign'      => 'Campaign Templates',
         'kanka'         => 'Kanka Templates',

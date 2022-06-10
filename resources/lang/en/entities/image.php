@@ -8,6 +8,7 @@ return [
         'save_focus'    => 'Save focus point',
         'view'          => 'View image',
     ],
+    'call-to-action' => 'Click on the entity\'s image to set it\'s focus point instead of using the automated guess.',
     'focus'     => [
         'breadcrumb'    => 'Image focus',
         'helper'        => 'Click on the image to set the focus point. Click on the focus point to remove it.',

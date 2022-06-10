@@ -49,7 +49,8 @@ class AliasController extends Controller
 
         $campaign = CampaignLocalization::getCampaign();
         if (!$campaign->boosted()) {
-            return view('entities.pages.aliases.unboosted');
+            return view('entities.pages.aliases.unboosted')
+                ->with('campaign', $campaign);
         }
 
         return view('entities.pages.aliases.create', compact(

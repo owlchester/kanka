@@ -4,11 +4,11 @@ return [
     'actions'   => [
         'reset' => 'Reset to default',
     ],
+    'call-to-action' => 'Customise the order, icons and names of elements in the campaign\'s sidebar.',
     'helpers'   => [
         'here'              => 'in our documentation',
-        'main'              => 'A boosted campaign can have its sidebar reordered and customised. You can learn more about how customising the sidebar of a campaign :here.',
         'mobile_reordering' => 'Reordering of the sidebar is only possible on desktop devices.',
-        'setup'             => 'Customise the order, icon and names of elements of the campaign\'s sidebar. You can always reset to the default setup by using the :reset button at the end of the page.',
+        'setup'             => 'Customise the order, icons and names of elements in the campaign\'s sidebar. You can always reset to the default setup by using the :reset button at the end of the page.',
     ],
     'reset'     => [
         'success'   => 'Campaign sidebar setup reset.',

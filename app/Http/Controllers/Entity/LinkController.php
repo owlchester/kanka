@@ -47,7 +47,8 @@ class LinkController extends Controller
 
         $campaign = CampaignLocalization::getCampaign();
         if (!$campaign->boosted()) {
-            return view('entities.pages.links.unboosted');
+            return view('entities.pages.links.unboosted')
+                ->with('campaign', $campaign);
         }
 
         return view('entities.pages.links.create', compact(

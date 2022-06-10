@@ -8,7 +8,6 @@ use App\Models\Campaign;
 use App\Models\CampaignBoost;
 use App\Services\CampaignBoostService;
 use App\Services\CampaignService;
-use Illuminate\Support\Facades\Auth;
 
 class CampaignBoostController extends Controller
 {
@@ -31,6 +30,26 @@ class CampaignBoostController extends Controller
         $this->middleware(['auth', 'identity']);
         $this->campaignBoostService = $campaignBoostService;
         $this->campaignService = $campaignService;
+    }
+
+    public function create()
+    {
+        $campaignID = request()->get('campaign');
+        $campaign = Campaign::findOrFail($campaignID);
+        $superboost = request()->has('superboost');
+        $cost = $superboost ? 3 : 1;
+
+        // Check if the campaign is already boosted
+        if (!$campaign) {
+            abort(404);
+        }
+
+        return view('settings.boosters.create')
+            ->with('campaign', $campaign)
+            ->with('superboost', $superboost)
+            ->with('cost', $cost)
+            ->with('user', auth()->user())
+        ;
     }
 
     /**
@@ -66,7 +85,7 @@ class CampaignBoostController extends Controller
 
             return redirect()
                 ->route('settings.boost')
-                ->with('success_raw', __('settings.boost.success.' . ($superboost ? 'superboost' : 'boost'), ['name' => $campaign->name]));
+                ->with('success_raw', __('settings/boosters.' . ($superboost ? 'superboost' : 'boost') . '.success', ['campaign' => $campaign->name]));
         } catch (TranslatableException $e) {
             return redirect()
                 ->route('settings.boost')
@@ -74,6 +93,16 @@ class CampaignBoostController extends Controller
         }
     }
 
+    public function edit(CampaignBoost $campaignBoost)
+    {
+        $this->authorize('destroy', $campaignBoost);
+
+        return view('settings.boosters.update')
+            ->with('boost', $campaignBoost)
+            ->with('campaign', $campaignBoost->campaign)
+            ->with('cost', 2)
+        ;
+    }
     /**
      * @param \Illuminate\Http\Request $request
      * @param CampaignBoost $campaignBoost
@@ -106,12 +135,28 @@ class CampaignBoostController extends Controller
 
             return redirect()
                 ->route('settings.boost')
-                ->with('success_raw', __('settings.boost.success.superboost', ['name' => $campaign->name]));
+                ->with('success_raw', __('settings/boosters.superboost.success', ['campaign' => $campaign->name]));
         } catch (TranslatableException $e) {
             return redirect()
                 ->route('settings.boost')
                 ->with('error', $e->getTranslatedMessage());
         }
+    }
+
+
+    /**
+     * @param CampaignBoost $campaignBoost
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    public function confirm(CampaignBoost $campaignBoost)
+    {
+        $this->authorize('destroy', $campaignBoost);
+
+        return view('settings.boosters.unboost')
+            ->with('campaign', $campaignBoost->campaign)
+            ->with('boost', $campaignBoost)
+            ;
     }
 
     /**
@@ -139,6 +184,6 @@ class CampaignBoostController extends Controller
 
         return redirect()
             ->route('settings.boost')
-            ->with('success_raw', __('settings.boost.success.delete', ['name' => $campaignBoost->campaign->name]));
+            ->with('success_raw', __('settings/boosters.unboost.success', ['campaign' => $campaignBoost->campaign->name]));
     }
 }
