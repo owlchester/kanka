@@ -29,6 +29,7 @@ return [
     'alerts'                    => [
         'copy_attribute'    => 'The attribute\'s mention was copied to your clipboard.',
         'copy_mention'      => 'The entity\'s advanced mention was copied to your clipboard.',
+        'copy_invite'       => 'The campaign invite link was copied to your clipboard.',
     ],
     'boosted'                   => 'Boosted',
     'boosted_campaigns'         => 'Boosted Campaigns',

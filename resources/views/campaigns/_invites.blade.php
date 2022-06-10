@@ -49,7 +49,7 @@
                                         <a href="{{ route('campaigns.join', ['token' => $relation->token]) }}">
                                             {{ substr($relation->token, 0, 6) . '...' }}
                                         </a>
-                                        <a href="#" title="{{ __('campaigns.invites.actions.copy') }}" data-clipboard="{{ route('campaigns.join', ['token' => $relation->token]) }}" data-toggle="tooltip">
+                                        <a href="#" title="{{ __('campaigns.invites.actions.copy') }}" data-clipboard="{{ route('campaigns.join', ['token' => $relation->token]) }}" data-toggle="tooltip" data-toast="{{ __('crud.alerts.copy_invite') }}">
                                             <i class="fa-solid fa-copy"></i>
                                         </a>
                                     @endif
