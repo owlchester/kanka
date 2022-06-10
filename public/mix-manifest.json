@@ -13,6 +13,7 @@
     "/js/billing.js": "/js/billing.js?id=b94da31c6d6b28d2088eda4c0b9f835f",
     "/js/dashboard.js": "/js/dashboard.js?id=c3793f2f918eedd17425f8c286221d96",
     "/js/front.js": "/js/front.js?id=48a5edd06042ec99f81495c4a0bb1456",
+    "/js/settings.js": "/js/settings.js?id=343d501628e6467ef40c80916108ac0e",
     "/js/timeline.js": "/js/timeline.js?id=5a91aab6d7ca88655af48c17f56f8f37",
     "/js/profile.js": "/js/profile.js?id=ef7479564c425df7d6adccde9a6d078d",
     "/js/relations.js": "/js/relations.js?id=56017ed28440f5b529631901bdb42243",
@@ -20,7 +21,8 @@
     "/js/editors/summernote.js": "/js/editors/summernote.js?id=7f9c6629a35b6c3981f88f979c5885c4",
     "/css/vendor.css": "/css/vendor.css?id=9b0b73887286653b88d407ecc7bf31a1",
     "/css/map-v3.css": "/css/map-v3.css?id=06a17c1da2c978ad8ca1963c4a445f76",
-    "/css/app.css": "/css/app.css?id=36287d45467ad36552d2d2ca028533c4",
+    "/css/app.css": "/css/app.css?id=8cc0704b0119e34fee06ac05eeb39e7b",
+    "/css/relations.css": "/css/relations.css?id=7dd40537d93d0c58a5d98701bb98fe87",
     "/css/front.css": "/css/front.css?id=9791575f897d1505bda2cbdd8f591cb5",
     "/css/story.css": "/css/story.css?id=d0725c35e404f934b669d640517f7934",
     "/css/abilities.css": "/css/abilities.css?id=63579f1281899539c9b086602684c6db",
@@ -29,7 +31,7 @@
     "/css/tinymce.css": "/css/tinymce.css?id=6fb59dd8cf856b6b33e812532805cc04",
     "/css/midnight.css": "/css/midnight.css?id=3290866253125ac77a3d85a006f52576",
     "/css/dark.css": "/css/dark.css?id=d21364afe75acf544376ffcbab876afc",
-    "/css/settings.css": "/css/settings.css?id=d1195e6a1cbf4bba18377d78a044ccd9",
+    "/css/settings.css": "/css/settings.css?id=0dd96914d9fdad9d0e1e6f3b6cdb9baa",
     "/css/dashboard.css": "/css/dashboard.css?id=f172871e350de9920bd8a351f4f6e232",
     "/css/front/critical.css": "/css/front/critical.css?id=68b329da9893e34099c7d8ad5cb9c940",
     "/css/auth.css": "/css/auth.css?id=6e745983369f71ec567e055d5731c6be",
@@ -40,6 +42,5 @@
     "/css/assets.css": "/css/assets.css?id=e0fcf0488f5bea824afcdcd35fa7f55c",
     "/js/jquery.fileupload.js": "/js/jquery.fileupload.js?id=20a07a657cad26703a1bce484cb8af89",
     "/js/jquery.iframe-transport.js": "/js/jquery.iframe-transport.js?id=f371e8d9f57329f90114d7b52dd5c7a4",
-    "/js/vendor/jquery.ui.widget.js": "/js/vendor/jquery.ui.widget.js?id=3d0f0f5ca5d86c5a4b4fc33cda374a17",
-    "/css/relations.css": "/css/relations.css?id=7dd40537d93d0c58a5d98701bb98fe87"
+    "/js/vendor/jquery.ui.widget.js": "/js/vendor/jquery.ui.widget.js?id=3d0f0f5ca5d86c5a4b4fc33cda374a17"
 }

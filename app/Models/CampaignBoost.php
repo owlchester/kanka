@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Concerns\Paginatable;
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -15,6 +16,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property int $campaign_id
  * @property User $user
  * @property Campaign $campaign
+ * @property Carbon $created_at
  */
 class CampaignBoost extends Model
 {
