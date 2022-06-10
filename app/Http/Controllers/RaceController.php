@@ -137,7 +137,7 @@ class RaceController extends CrudController
             ->route('races.races', [$race]);
 
         $this->rows = $race
-            ->races()
+            ->descendants()
             ->sort(request()->only(['o', 'k']))
             ->with(['entity', 'characters'])
             ->paginate();

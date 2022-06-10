@@ -71,6 +71,7 @@ class Race extends MiscModel
     protected $sortable = [
         'name',
         'type',
+        'race.name',
     ];
 
     /**
@@ -169,7 +170,7 @@ class Race extends MiscModel
     {
         $campaign = CampaignLocalization::getCampaign();
 
-        $count = $this->races()->count();
+        $count = $this->descendants()->count();
         if ($campaign->enabled('races') && $count > 0) {
             $items['second']['races'] = [
                 'name' => 'races.show.tabs.races',
