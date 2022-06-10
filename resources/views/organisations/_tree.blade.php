@@ -41,6 +41,17 @@
             'disableSort' => true,
         ],
         [
+            'label' => '<i class="fa-solid fa-shop-slash" title="' . __('organisations.fields.is_defunct') . '"></i>',
+            'field' => 'is_defunct',
+            'render' => function($model) {
+                if ($model->isDefunct()) {
+                    return '<i class="fa-solid fa-shop-slash" title="' . __('organisations.fields.is_defunct') . '"></i>';
+                }
+                return '';
+            },
+            'class' => 'icon'
+        ],
+        [
             'type' => 'is_private',
         ]
     ],

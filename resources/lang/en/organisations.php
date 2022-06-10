@@ -12,6 +12,7 @@ return [
         'organisation'  => 'Parent Organisation',
         'organisations' => 'Sub Organisations',
         'type'          => 'Type',
+        'is_defunct'    => 'Defunct',
     ],
     'helpers'       => [
         'descendants'   => 'This list contains all organisations which are descendants of this organisation, and not only those directly under it.',
@@ -79,5 +80,8 @@ return [
         'tabs'  => [
             'organisations' => 'Organisations',
         ],
+    ],
+    'hints'         => [
+        'is_defunct'    => 'This organisation is defunct.',
     ],
 ];
