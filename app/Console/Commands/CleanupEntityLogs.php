@@ -44,8 +44,9 @@ class CleanupEntityLogs extends Command
     public function handle()
     {
         $amount = config('entities.logs');
+        $delay = config('entities.logs_delete');
         EntityLog::
-            where('updated_at', '<=', Carbon::now()->subDays($amount)->toDateString())
+            where('created_at', '<=', Carbon::now()->subDays($amount)->toDateString())
             ->whereNotNull('changes')
             ->chunk(100, function ($models) {
                 $entityIds = [];
@@ -60,6 +61,18 @@ class CleanupEntityLogs extends Command
                 DB::statement($statement);
             });
 
+        $this->info('Cleaned up ' . $this->count . ' entity logs.');
+
+        DB::beginTransaction();
+        try {
+            $this->count = EntityLog::
+                where('updated_at', '<=', Carbon::now()->subDays($delay)->toDateString())
+                ->delete();
+            DB::commit();
+        } catch (\Exception $e) {
+            $this->error($e->getMessage());
+            DB::rollBack();
+        }         
         $this->info('Cleaned up ' . $this->count . ' entity logs.');
         return 0;
     }
