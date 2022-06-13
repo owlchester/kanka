@@ -7,6 +7,7 @@ use App\Models\Concerns\Acl;
 use App\Models\Concerns\SortableTrait;
 use App\Traits\CampaignTrait;
 use App\Traits\ExportableTrait;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
@@ -268,7 +269,7 @@ class Character extends MiscModel
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Eloquent\Relations\HasMany[]|OrganisationMember
+     * @return \Illuminate\Database\Eloquent\Collection|OrganisationMember[]|Builder
      */
     public function pinnedMembers()
     {
@@ -278,7 +279,6 @@ class Character extends MiscModel
             ->with(['organisation', 'organisation.entity'])
             ->whereIn('pin_id', [OrganisationMember::PIN_CHARACTER, OrganisationMember::PIN_BOTH])
             ->orderBy('role')
-            ->get()
         ;
     }
 

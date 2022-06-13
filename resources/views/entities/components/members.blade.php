@@ -3,12 +3,8 @@
  * @var \App\Models\MiscModel $model
  * @var \App\Models\OrganisationMember $member
  */
-$models = $model->pinnedMembers();
+$models = $model->pinnedMembers;
 $previousRelation = null;
-
-if (count($models) === 0) {
-    return;
-}
 ?>
 @foreach ($models as $member)
     @if(!empty($previousRelation) && $previousRelation == $member->role)

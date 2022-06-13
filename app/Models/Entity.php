@@ -496,4 +496,19 @@ class Entity extends Model
         })
             ->count();
     }
+
+    /**
+     * Determine if an entity has pinned elements to display
+     * @return bool
+     */
+    public function hasPins(): bool
+    {
+        if (!$this->starredRelations->isEmpty()) {
+            return true;
+        }
+        if (!$this->accessAttributes() && $this->starredAttributes()->isEmpty()) {
+            return true;
+        }
+        return false;
+    }
 }
