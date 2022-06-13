@@ -153,10 +153,7 @@ class InviteService
             )
         );
 
-        UserLog::create([
-            'user_id' => $this->user->id,
-            'type_id' => UserLog::TYPE_CAMPAIGN_JOIN
-        ]);
+        $this->user->log(UserLog::TYPE_CAMPAIGN_JOIN);
 
         // Make sure the user's cache is cleared
         UserCache::clearCampaigns();

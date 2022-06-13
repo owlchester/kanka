@@ -10,6 +10,7 @@ use App\Models\Concerns\Tutorial;
 use App\Models\Patreon;
 use App\Models\Relations\UserRelations;
 use App\Models\Scopes\UserScope;
+use App\Models\UserLog;
 use App\Models\UserSetting;
 use Carbon\Carbon;
 use Illuminate\Notifications\Notifiable;
@@ -506,5 +507,19 @@ class User extends \Illuminate\Foundation\Auth\User
     {
         $roles = UserCache::roles()->where('campaign_id', $campaignID);
         return $roles->pluck('id')->toArray();
+    }
+
+    /**
+     * Log an event on the user
+     * @param int $type
+     * @return $this
+     */
+    public function log(int $type): self
+    {
+        UserLog::create([
+            'user_id' => $this->id,
+            'type_id' => $type,
+        ]);
+        return $this;
     }
 }

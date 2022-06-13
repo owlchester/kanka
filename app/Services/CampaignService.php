@@ -123,11 +123,7 @@ class CampaignService
 
         // Clear cache
         UserCache::clearCampaigns();
-
-        UserLog::create([
-            'user_id' => auth()->user()->id,
-            'type_id' => UserLog::TYPE_CAMPAIGN_LEAVE
-        ]);
+        auth()->user()->log(UserLog::TYPE_CAMPAIGN_LEAVE);
 
         self::switchToNext();
     }
@@ -236,11 +232,7 @@ class CampaignService
      */
     public function delete(Campaign $campaign)
     {
-        UserLog::create([
-            'user_id' => auth()->user()->id,
-            'type_id' => UserLog::TYPE_CAMPAIGN_DELETE
-        ]);
-
+        auth()->user()->log(UserLog::TYPE_CAMPAIGN_DELETE);
         $campaign->delete();
         CampaignService::switchToNext();
     }

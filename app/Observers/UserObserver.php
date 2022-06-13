@@ -55,11 +55,7 @@ class UserObserver
      */
     public function updated(User $user)
     {
-        /*$log = UserLog::create([
-            'user_id' => $user->id,
-            'type_id' => UserLog::TYPE_UPDATE,
-        ]);
-        $log->save();*/
+
     }
 
     public function creating(User $user)

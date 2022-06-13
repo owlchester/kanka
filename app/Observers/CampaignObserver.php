@@ -137,10 +137,7 @@ class CampaignObserver
 
         UserCache::clearCampaigns();
 
-        UserLog::create([
-            'user_id' => auth()->user()->id,
-            'type_id' => UserLog::TYPE_CAMPAIGN_NEW
-        ]);
+        auth()->user()->log(UserLog::TYPE_CAMPAIGN_NEW);
     }
 
     /**
