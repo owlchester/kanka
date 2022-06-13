@@ -214,8 +214,13 @@ class MapMarkerController extends Controller
             }
         }
 
+        $campaign = CampaignLocalization::getCampaign();
+
         return response()->json([
-            'body' => view('maps.markers.details', ['marker' => $mapMarker])->render(),
+            'body' => view('maps.markers.details', [
+                'marker' => $mapMarker,
+                'campaign' => $campaign,
+            ])->render(),
             'name' => $mapMarker->name
         ]);
     }

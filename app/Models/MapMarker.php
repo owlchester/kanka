@@ -233,11 +233,13 @@ class MapMarker extends Model
             }
         }
 
+        // When exploring, we want the texts to be slightly shorter, to avoid lots of jittering on maps
         if ($this->exploring) {
+            $body = Str::limit($body, 300);
             return '.bindPopup(`
             <div class="marker-popup-content">
                 <h4 class="marker-header">' . str_replace('`', '\'', $this->markerTitle(true)) . '</h4>
-                ' . (!empty($this->entry) ? '<p class="marker-text">' . Str::limit(Mentions::mapAny($this), 500) . '</p>' : null) . '
+                ' . (!empty($this->entry) ? '<p class="marker-text">' . Str::limit(Mentions::mapAny($this), 300) . '</p>' : null) . '
             </div>
             <div class="marker-popup-entry">
                 ' . $body . '
