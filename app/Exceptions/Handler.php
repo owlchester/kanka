@@ -5,6 +5,7 @@ namespace App\Exceptions;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Http\Exceptions\ThrottleRequestsException;
 use Illuminate\Validation\ValidationException;
 use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -141,6 +142,10 @@ class Handler extends ExceptionHandler
         } elseif ($exception instanceof NotFoundHttpException) {
             return response()
                 ->json(null, 404);
+        } elseif ($exception instanceof ThrottleRequestsException) {
+            return response()
+                ->json(['Too many requests. Limit requests to ' . auth()->user()->rateLimit
+                    . ' per minute or subscribe to unlock higher limits.'], 429);
         }
         return response()
             ->json([

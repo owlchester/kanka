@@ -2,12 +2,18 @@
 @extends('layouts.front', [
     'title' => __('users/profile.title', ['name' => $user->displayName()]),
     'skipPerf' => true,
+    'ogImage' => (bool) $user->avatar,
 ])
 
 @section('og')
     @if (!empty($user->profile['bio']))<meta property="og:description" content="{{ $user->profile['bio'] }}" />@endif
     <meta property="og:url" content="{{ route('users.profile', $user) }}" />
-    @if ($user->avatar)<meta property="og:image" content="{{ $user->getAvatarUrl()  }}" />@endif
+    @if ($user->avatar)
+        <meta property="og:image" content="{{ $user->getAvatarUrl(200)  }}" />
+        <meta property="og:image:type" content="image/png" />
+        <meta property="og:image:width" content="200" />
+        <meta property="og:image:height" content="200" />
+    @endif
 @endsection
 
 @section('content')

@@ -39,11 +39,8 @@ class AccountController extends Controller
      */
     public function password(StoreSettingsAccount $request)
     {
-        Auth::user()->update($request->only('password_new'));
-        UserLog::create([
-            'user_id' => auth()->user()->id,
-            'type_id' => UserLog::TYPE_PASSWORD_UPDATE,
-        ]);
+        auth()->user()->update($request->only('password_new'));
+        auth()->user()->log(UserLog::TYPE_PASSWORD_UPDATE);
 
         return redirect()
             ->route('settings.account')
@@ -56,11 +53,8 @@ class AccountController extends Controller
      */
     public function email(StoreSettingsAccountEmail $request)
     {
-        Auth::user()->update($request->only('email'));
-        UserLog::create([
-            'user_id' => auth()->user()->id,
-            'type_id' => UserLog::TYPE_EMAIL_UPDATE,
-        ]);
+        auth()->user()->update($request->only('email'));
+        auth()->user()->log(UserLog::TYPE_EMAIL_UPDATE);
 
         return redirect()
             ->route('settings.account')
@@ -83,10 +77,7 @@ class AccountController extends Controller
         $data['provider_id'] = null;
 
         Auth::user()->update($data);
-        UserLog::create([
-            'user_id' => auth()->user()->id,
-            'type_id' => UserLog::TYPE_SOCIAL_SWITCH,
-        ]);
+        auth()->user()->log(UserLog::TYPE_SOCIAL_SWITCH);
 
         return redirect()
             ->route('settings.account')

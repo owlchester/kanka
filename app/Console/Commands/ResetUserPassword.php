@@ -55,14 +55,9 @@ class ResetUserPassword extends Command
 
         $hash = Hash::make($password);
         $user->update(['password' => $hash]);
-
-        UserLog::create([
-            'user_id' => $user->id,
-            'type_id' => UserLog::TYPE_PASSWORD_ADMIN_UPDATE,
-        ]);
+        $user->log(UserLog::TYPE_PASSWORD_ADMIN_UPDATE);
 
         $this->info('User ' . $userID . ' updated to new password ' . $password);
-
         return 0;
     }
 }

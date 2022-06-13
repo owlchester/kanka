@@ -13,6 +13,18 @@
 @section('content')
     <div class="map map-explore" id="map{{ $map->id }}" style="width: 100%; height: 100%;">
     </div>
+
+
+    @can('update', $map)
+        <div class="map-mode">
+            <a role="button" href="#" class="btn btn-warning btn-mode-enable">
+                <i class="fa-solid fa-plus" aria-hidden="true"></i> Enter edit mode
+            </a>
+            <a role="button" href="#" class="btn btn-default btn-mode-disable">
+                <i class="fa-solid fa-ban" aria-hidden="true"></i> Exit edit mode
+            </a>
+        </div>
+    @endif
 @endsection
 
 @section('scripts')
@@ -41,6 +53,7 @@
     @include('maps._setup')
 
     <script type="text/javascript">
+        window.explodeEditMode = false;
         window.map = map{{ $map->id }};
         /** Add markers outside of a group directly to the page **/
         @foreach ($map->markers as $marker)
@@ -70,6 +83,9 @@
 
         @can('update', $map)
             map{{ $map->id }}.on('click', function(ev) {
+                if (!window.explodeEditMode) {
+                    return;
+                }
                 // return false;
                 let position = ev.latlng;
                 //console.log('Click', 'lat', position.lat, 'lng', position.lng);
@@ -207,6 +223,8 @@
                         </h4>
                     </div>
                     <div class="modal-body">
+
+                        @include('partials.errors')
                         @include('maps.markers._form', ['model' => null, 'map' => $map, 'activeTab' => 1, 'dropdownParent' => '#marker-modal'])
                     </div>
                     <div class="modal-footer">

@@ -26,6 +26,7 @@ use App\Models\Relation;
 use App\Models\Tag;
 use App\Models\Timeline;
 use App\User;
+use Illuminate\Database\Eloquent\Collection;
 
 /**
  * Trait EntityRelations
@@ -47,9 +48,9 @@ use App\User;
  * @property Map $map
  * @property Timeline $timeline
  * @property Quest $quest
- * @property Attribute[] $starredAttributes
- * @property Relation[] $starredRelations
- * @property Relation[] $relations
+ * @property Attribute[]|Collection $starredAttributes
+ * @property Relation[]|Collection $starredRelations
+ * @property Relation[]|Collection $relations
  * @property EntityEvent[] $elapsedEvents
  * @property Image $image
  * @property Image $header

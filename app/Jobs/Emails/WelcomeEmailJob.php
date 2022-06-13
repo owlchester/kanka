@@ -64,6 +64,8 @@ class WelcomeEmailJob implements ShouldQueue
                 ->send(
                     new WelcomeEmail($user)
                 );
+        } catch (\GuzzleHttp\Exception\ServerException $e) {
+            // Silence
         } catch (\Exception $e) {
             // Something went wrong with mailgun, or the email is invalid. Silence these errors
             // to avoid spamming sentry.

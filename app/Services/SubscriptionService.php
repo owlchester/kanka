@@ -188,10 +188,7 @@ class SubscriptionService
                 ->withCoupon($this->coupon)
                 ->create($paymentID);
 
-            UserLog::create([
-                'user_id' => $this->user->id,
-                'type_id' => UserLog::TYPE_SUB_NEW,
-            ]);
+            $this->user->log(UserLog::TYPE_SUB_NEW);
 
             return $this;
         }
@@ -199,18 +196,10 @@ class SubscriptionService
         // If going down from elemental to owlbear, keep it as is until the current billing period
         if ($this->downgrading()) {
             $this->user->subscription('kanka')->swap($planID);
-
-            UserLog::create([
-                'user_id' => $this->user->id,
-                'type_id' => UserLog::TYPE_SUB_DOWNGRADE,
-            ]);
+            $this->user->log(UserLog::TYPE_SUB_DOWNGRADE);
         } else {
             $this->user->subscription('kanka')->swapAndInvoice($planID);
-
-            UserLog::create([
-                'user_id' => $this->user->id,
-                'type_id' => UserLog::TYPE_SUB_UPGRADE,
-            ]);
+            $this->user->log(UserLog::TYPE_SUB_UPGRADE);
         }
 
         return $this;
@@ -236,10 +225,7 @@ class SubscriptionService
         // when the user really changes. Probably?
         if ($this->downgrading()) {
             SubscriptionDowngradedEmailJob::dispatch($this->user);
-            UserLog::create([
-                'user_id' => $this->user->id,
-                'type_id' => UserLog::TYPE_SUB_DOWNGRADE,
-            ]);
+            $this->user->log(UserLog::TYPE_SUB_DOWNGRADE);
             return $this;
         }
 
@@ -422,10 +408,7 @@ class SubscriptionService
             );
 
         // Log on the user that they cancelled
-        UserLog::create([
-            'user_id' => $this->user->id,
-            'type_id' => UserLog::TYPE_SUB_CANCEL,
-        ]);
+        $this->user->log(UserLog::TYPE_SUB_CANCEL);
 
         $this->cancelled = true;
 
@@ -564,10 +547,7 @@ class SubscriptionService
         SubscriptionEndJob::dispatch($this->user);
 
         // Log info on the user
-        UserLog::create([
-            'user_id' => $this->user->id,
-            'type_id' => UserLog::TYPE_SUB_FAIL,
-        ]);
+        $this->user->log(UserLog::TYPE_SUB_FAIL);
 
         return true;
     }

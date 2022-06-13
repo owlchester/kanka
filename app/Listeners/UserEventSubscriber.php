@@ -48,11 +48,7 @@ class UserEventSubscriber
             $default = UserLog::TYPE_AUTOLOGIN;
         }
         $userLogType = session()->get('kanka.userLog', $default);
-        $log = UserLog::create([
-            'user_id' => $event->user->id,
-            'type_id' => $userLogType,
-        ]);
-        $log->save();
+        $event->user->log($userLogType);
         session()->remove('kanka.userLog');
         $event->user->update(['last_login_at' => Carbon::now()->toDateTimeString()]);
 
@@ -91,12 +87,7 @@ class UserEventSubscriber
         if (!$event->user) {
             return;
         }
-
-        $log = UserLog::create([
-            'user_id' => $event->user->id,
-            'type_id' => UserLog::TYPE_LOGOUT,
-        ]);
-        $log->save();
+        $event->user->log(UserLog::TYPE_LOGOUT);
     }
 
     /**
