@@ -17,11 +17,13 @@
 
     @yield('og')
 @if(config('app.admin'))
+    @if (!isset($ogImage) || !$ogImage)
     <meta property="og:image" content="https://kanka-app-assets.s3.amazonaws.com/images/front/preview-background.png" />
     <meta property="og:image:type" content="image/png" />
     <meta property="og:image:width" content="1920" />
     <meta property="og:image:height" content="1024" />
     <meta property="og:image:alt" content="{{ config('app.name') }} showcase of a character view" />
+    @endif
     <script type="application/ld+json">
       {
         "@id": "#product",
