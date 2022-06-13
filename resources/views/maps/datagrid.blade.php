@@ -33,7 +33,7 @@
             'visible' => $campaign->enabled('locations'),
         ],
         [
-            'label' => '<i class="fa-solid fa-users" title="' . trans('maps.fields.maps') . '"></i>',
+            'label' => '<i class="fa-solid fa-users" title="' . __('maps.fields.maps') . '"></i>',
             'render' => function($model) {
                 return $model->maps->count();
             },

@@ -3,12 +3,12 @@
 $entityTypeListModel = new $base;
 ?>
 <div class="form-group">
-    <label>{{ trans($trans . '.fields.sex') }}</label>
+    <label>{{ __($trans . '.fields.sex') }}</label>
     {!! Form::text(
         'sex',
-        (isset($isRandom) && $isRandom ? $random->generate('sex') : FormCopy::field('sex')->string()),
+        FormCopy::field('sex')->string(),
         [
-            'placeholder' => trans($trans . '.placeholders.sex'),
+            'placeholder' => __($trans . '.placeholders.sex'),
             'class' => 'form-control',
             'maxlength' => 45,
             'list' => 'entity-gender-list-' . $trans,

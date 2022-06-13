@@ -6,8 +6,6 @@
 $preset = null;
 if (isset($model) && $model->parentLocation) {
     $preset = $model->parentLocation;
-} elseif (isset($isRandom) && $isRandom) {
-    $preset = $random->generateForeign(\App\Models\Location::class);
 } else {
     $preset = FormCopy::field('parentLocation')->select();
 }

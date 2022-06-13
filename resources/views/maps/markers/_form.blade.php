@@ -212,7 +212,7 @@ $sizeOptions = [
     <div class="col-sm-6">
         <div class="form-group">
             <label for="group_id">
-                {{ trans('maps/markers.fields.group') }}
+                {{ __('maps/markers.fields.group') }}
             </label>
             {{ Form::select('group_id', $map->groupOptions(), \App\Facades\FormCopy::field('group_id')->string(), ['class' => 'form-control', 'id' => 'group_id']) }}
         </div>

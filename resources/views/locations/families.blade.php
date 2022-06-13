@@ -1,10 +1,10 @@
 @extends('layouts.app', [
-    'title' => trans('locations.families.title', ['name' => $model->name]),
+    'title' => __('locations.families.title', ['name' => $model->name]),
     'description' => '',
     'breadcrumbs' => [
         ['url' => Breadcrumb::index('locations'), 'label' => __('locations.index.title')],
         ['url' => route('locations.show', $model), 'label' => $model->name],
-        trans('locations.show.tabs.families')
+        __('locations.show.tabs.families')
     ],
     'canonical' => true,
     'mainTitle' => false,

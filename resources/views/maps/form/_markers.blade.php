@@ -150,7 +150,7 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <button type="button" class="close" data-dismiss="modal"
-                            aria-label="{{ trans('crud.delete_modal.close') }}"><span
+                            aria-label="{{ __('crud.delete_modal.close') }}"><span
                                 aria-hidden="true">&times;</span></button>
                         <h4>
                             {{ __('maps/markers.create.title', ['name' => $model->name]) }}

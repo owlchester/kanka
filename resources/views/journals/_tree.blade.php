@@ -23,7 +23,7 @@
             'type' => 'calendar_date',
         ],
         [
-            'label' => trans('journals.fields.journals'),
+            'label' => __('journals.fields.journals'),
             'render' => function($model) {
                 $count = $model->journals->count();
                 return !empty($count) ? $count : '';

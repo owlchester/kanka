@@ -49,9 +49,6 @@ return [
         'personality_visible'       => 'Personality traits of this character are visible to all.',
     ],
     'index'         => [
-        'actions'   => [
-            'random'    => 'New Random Character',
-        ],
         'title'     => 'Characters',
     ],
     'items'         => [
