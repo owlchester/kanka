@@ -3,6 +3,7 @@
 namespace App\Services\Caches;
 
 use App\Models\Ad;
+use Illuminate\Support\Facades\Cache;
 
 class AdCacheService
 {
@@ -65,7 +66,12 @@ class AdCacheService
             return $this;
         }
         $this->ad = Ad::select(['id', 'html'])->section($section)->where('is_active', true)->first();
-        cache()->forever($key, $this->ad);
+        // Save a "false" model in the db to avoid re-calling the db each time
+        if (empty($this->ad)) {
+            $this->ad = false;
+        }
+        cache()->put($key, $this->ad, 86400);
+
         return $this;
     }
 
