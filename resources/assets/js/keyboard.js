@@ -11,7 +11,7 @@ $(document).ready(function() {
 function initKeyboardShortcuts() {
     $(document).bind('keydown', function(e) {
         let target = $(e.target);
-        console.log('which', e.which);
+        //console.log('which', e.which);
         if (e.which === 161) {
             // ] to toggle sidebar
             if (isInputField(target)) {
@@ -26,8 +26,8 @@ function initKeyboardShortcuts() {
             $('#live-search').focus();
             return false; // don't add the k to the search field
         } else if (e.which === 78) {
-            // n for quick creator
-            if (isInputField(target)) {
+            // n for quick creator. Don't re-open if already opened
+            if (isInputField(target) || ($('#entity-modal').data('bs.modal') || {}).isShown) {
                 return;
             }
             $('.quick-creator-button')[0].click();
