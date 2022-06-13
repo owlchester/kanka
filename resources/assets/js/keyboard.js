@@ -5,7 +5,40 @@ $(document).ready(function() {
             initSaveKeyboardShortcut(this);
         }
     });
+    initKeyboardShortcuts();
 });
+
+function initKeyboardShortcuts() {
+    $(document).bind('keydown', function(e) {
+        let target = $(e.target);
+        console.log('which', e.which);
+        if (e.which === 161) {
+            // ] to toggle sidebar
+            if (isInputField(target)) {
+                return;
+            }
+            $('.sidebar-toggle').click();
+        } else if (e.which === 75) {
+            // k for search
+            if (isInputField(target)) {
+                return;
+            }
+            $('#live-search').focus();
+            return false; // don't add the k to the search field
+        } else if (e.which === 78) {
+            // n for quick creator
+            if (isInputField(target)) {
+                return;
+            }
+            $('.quick-creator-button')[0].click();
+            return false; // don't add the k to the search field
+        }
+    });
+}
+
+function isInputField(ele) {
+    return ele.is('input') || ele.is('select') || ele.attr("contentEditable") == "true"
+}
 
 /**
  * Handle saving form
