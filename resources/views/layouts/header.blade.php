@@ -2,31 +2,23 @@
 $currentCampaign = CampaignLocalization::getCampaign();
 ?>
 <header class="main-header @if(isset($startUI) && $startUI) main-header-start @endif">
-
-{{--    @if ((Auth::check() && Auth::user()->hasCampaigns()) || !Auth::check())--}}
-{{--        <!-- Sidebar toggle button-->--}}
-{{--        <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">--}}
-{{--            <span class="sr-only">{{ __('header.toggle_navigation') }}</span>--}}
-{{--        </a>--}}
-{{--    @endif--}}
-
     <nav class="navbar navbar-static-top">
         @if ((auth()->check() && auth()->user()->hasCampaigns()) || !auth()->check())
-            <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button" tabindex="3">
+            <button class="sidebar-toggle" data-toggle="tooltip" title="Expand/Collapse sidebar <code>t</code>" data-placement="right" data-html="true" tabindex="3">
                 <span class="sr-only">{{ __('header.toggle_navigation') }}</span>
-            </a>
+            </button>
         @endif
 
         @if (!empty($currentCampaign))
             {!! Form::open(['route' => 'search', 'class' => 'visible-md visible-lg navbar-form navbar-left live-search-form', 'method'=>'GET']) !!}
-                <input type="text" name="q" id="live-search" class="typeahead form-control" autocomplete="off"
+                <input type="search" name="q" id="live-search" class="typeahead form-control" autocomplete="off"
                        placeholder="{{ __('sidebar.search') }}" data-url="{{ route('search.live') }}"
                        data-empty="{{ __('search.no_results') }}"
                        tabindex="2">
-
-                    <a href="#" class="live-search-close visible-xs visible-sm pull-right" name="search-close">
-                        <i class="fa-solid fa-close"></i>
-                    </a>
+                <span class="keyboard-shortcut input-shortcut" data-toggle="tooltip" title="{!! __('crud.keyboard-shortcut', ['code' => '<code>K</code>']) !!}" data-html="true" data-placement="right">K</span>
+                <a href="#" class="live-search-close visible-xs visible-sm pull-right" name="search-close">
+                    <i class="fa-solid fa-close"></i>
+                </a>
             {!! Form::close() !!}
         @endif
 
