@@ -46,7 +46,7 @@ class CleanupEntityLogs extends Command
         $amount = config('entities.logs');
         $delay = config('entities.logs_delete');
         EntityLog::
-            where('updated_at', '<=', Carbon::now()->subDays($amount)->toDateString())
+            where('created_at', '<=', Carbon::now()->subDays($amount)->toDateString())
             ->whereNotNull('changes')
             ->chunk(100, function ($models) {
                 $entityIds = [];
