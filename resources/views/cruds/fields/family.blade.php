@@ -6,8 +6,6 @@
 $preset = null;
 if (isset($model) && $model->family) {
     $preset = $model->family;
-} elseif (isset($isRandom) && $isRandom) {
-    $preset = $random->generateForeign(\App\Models\Family::class);
 } else {
     $preset = FormCopy::field('family')->select();
 }

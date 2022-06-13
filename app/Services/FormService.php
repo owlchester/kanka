@@ -32,11 +32,6 @@ class FormService
      */
     public function prefill($field, $entity = null, $default = null)
     {
-        // Characters have a random generator we need to account for
-//        if ($entity instanceof RandomCharacterService) {
-//            return $entity->generate($field);
-//        }
-
         // Only copy on MiscModel (entity) models
         if ($entity instanceof MiscModel) {
             return $entity->getAttributeValue($field);

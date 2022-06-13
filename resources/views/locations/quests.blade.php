@@ -1,10 +1,10 @@
 @extends('layouts.app', [
-    'title' => trans('locations.quests.title', ['name' => $model->name]),
-    'description' => trans('locations.quests.description'),
+    'title' => __('locations.quests.title', ['name' => $model->name]),
+    'description' => __('locations.quests.description'),
     'breadcrumbs' => [
         ['url' => Breadcrumb::index('locations'), 'label' => __('locations.index.title')],
         ['url' => route('locations.show', $model), 'label' => $model->name],
-        trans('locations.show.tabs.quests')
+        __('locations.show.tabs.quests')
     ],
     'mainTitle' => false,
     'miscModel' => $model,

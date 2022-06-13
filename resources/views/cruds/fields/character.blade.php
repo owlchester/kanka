@@ -6,8 +6,6 @@
 $preset = null;
 if (isset($model) && $model->character) {
     $preset = $model->character;
-} elseif (isset($isRandom) && $isRandom) {
-    $preset = $random->generateForeign(\App\Models\Character::class);
 } else {
     $preset = FormCopy::field('character')->select();
 }

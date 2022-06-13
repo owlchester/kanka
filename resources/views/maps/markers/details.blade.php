@@ -74,7 +74,7 @@ if ($marker->entity && $marker->entity->hasImage($boosted)) {
                 <i class="fa-solid fa-map-pin"></i> {{ __('maps/markers.actions.update') }}
             </a>
             <button class="btn btn-danger delete-confirm" data-name="{{ $marker->markerTitle() }}" data-toggle="modal" data-target="#delete-confirm" data-delete-target="delete-marker-confirm-form-{{ $marker->id }}">
-                <i class="fa-solid fa-trash" aria-hidden="true"></i> {{ trans('maps/markers.actions.remove') }}
+                <i class="fa-solid fa-trash" aria-hidden="true"></i> {{ __('maps/markers.actions.remove') }}
             </button>
         </div>
     </div>

@@ -1,20 +1,11 @@
-@inject('random', 'App\Services\RandomCharacterService')
-<?php // Dirty hack to know if we need the prefill or the random generator
-/**
- * @var \App\Services\RandomCharacterService $random
- */
-$isRandom = false;
-if (request()->route()->getName() == 'characters.random') {
-    $isRandom = true;
-}
-
+<?php
 $role = \App\Facades\CampaignCache::adminRole();
 ?>
 <div class="row">
     <div class="col-md-6">
         <label>{{ __('characters.sections.appearance') }}</label>
         <div class="character-appearance">
-            @foreach ((isset($model) ? $model->characterTraits()->appearance()->orderBy('default_order', 'ASC')->get() : ($isRandom ? $random->generateTraits() : FormCopy::characterAppearance())) as $trait)
+            @foreach ((isset($model) ? $model->characterTraits()->appearance()->orderBy('default_order', 'ASC')->get() : FormCopy::characterAppearance()) as $trait)
                 <div class="form-group parent-delete-row">
                     <div class="row">
                         <div class="col-md-4 col-xs-4">
@@ -69,7 +60,7 @@ $role = \App\Facades\CampaignCache::adminRole();
         <label>{{ __('characters.sections.personality') }}</label>
         @if (!isset($model) || auth()->user()->can('personality', $model))
             <div class="character-personality">
-                @foreach ((isset($model) ? $model->characterTraits()->personality()->orderBy('default_order', 'ASC')->get() : ($isRandom ? $random->generateTraits(false) : FormCopy::characterPersonality())) as $trait)
+                @foreach ((isset($model) ? $model->characterTraits()->personality()->orderBy('default_order', 'ASC')->get() : FormCopy::characterPersonality()) as $trait)
                     <div class="parent-delete-row mb-5">
                         <div class="form-group">
                             <div class="input-group">

@@ -1,8 +1,8 @@
 @extends('layouts.app', [
-    'title' => trans('locations.map.points.title', ['name' => $location->name]),
+    'title' => __('locations.map.points.title', ['name' => $location->name]),
     'description' => '',
     'breadcrumbs' => [
-        ['url' => Breadcrumb::index('locations'), 'label' => trans('locations.index.title')],
+        ['url' => Breadcrumb::index('locations'), 'label' => __('locations.index.title')],
         ['url' => route('locations.show', $location->id), 'label' => $location->name]
     ]
 ])

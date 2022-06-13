@@ -20,7 +20,7 @@ __('maps/markers.edit.title', ['name' => $model->name])
         @if ($ajax)
             <div class="panel-heading">
                 <button type="button" class="close" data-dismiss="modal"
-                    aria-label="{{ trans('crud.delete_modal.close') }}"><span aria-hidden="true">&times;</span></button>
+                    aria-label="{{ __('crud.delete_modal.close') }}"><span aria-hidden="true">&times;</span></button>
                 <h4>
                     {{ __('maps/markers.edit.title', ['name' => $model->name]) }}
                 </h4>
@@ -38,13 +38,13 @@ __('maps/markers.edit.title', ['name' => $model->name])
                     <input id="submit-mode" type="hidden" value="true"/>
                     <div class="pull-right">
                         @include('partials.footer_cancel')
-                        <div class="btn-group">                   
+                        <div class="btn-group">
                             <button class="btn btn-success" id="form-submit-main"
                                 data-target="{{ isset($target) ? $target : null }}">{{ __('crud.save') }}</button>
                             <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown"
                                 aria-expanded="false">
                                 <span class="caret"></span>
-                            </button>          
+                            </button>
                             <ul class="dropdown-menu" role="menu">
                                 <li>
                                     <a href="#" class="dropdown-item form-submit-actions">
@@ -62,8 +62,8 @@ __('maps/markers.edit.title', ['name' => $model->name])
                                     </a>
                                 </li>
                             </ul>
-                        </div>  
-                    </div>  
+                        </div>
+                    </div>
                     <div class="pull-left">
                         <div class="btn-group">
                             <a role="button" tabindex="-1" class="btn btn-dynamic-delete btn-danger" data-toggle="popover"
@@ -84,9 +84,9 @@ __('maps/markers.edit.title', ['name' => $model->name])
     </div>
 
     {!! Form::open([
-        'method' => 'DELETE', 
-        'route' => ['maps.map_markers.destroy', $model->map_id, $model->id], 
-        'style' => 'display:inline', 
+        'method' => 'DELETE',
+        'route' => ['maps.map_markers.destroy', $model->map_id, $model->id],
+        'style' => 'display:inline',
         'id' => 'delete-marker-confirm-form-' . $model->id]) !!}
     {!! Form::close() !!}
 

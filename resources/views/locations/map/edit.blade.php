@@ -1,8 +1,8 @@
 @extends('layouts.app', [
-    'title' => trans('locations.map.points.title', ['name' => $location->name]),
+    'title' => __('locations.map.points.title', ['name' => $location->name]),
     'description' => '',
     'breadcrumbs' => [
-        ['url' => Breadcrumb::index('locations'), 'label' => trans('locations.index.title')],
+        ['url' => Breadcrumb::index('locations'), 'label' => __('locations.index.title')],
         ['url' => route('locations.show', $location->id), 'label' => $location->name]
     ]
 ])
@@ -13,10 +13,10 @@
             <div class="panel panel-default">
                 <div class="panel-body">
                     <a href="{{ route('locations.show', [$location, '#tab_map']) }}" class="btn btn-default">
-                        <i class="fa-solid fa-arrow-left"></i> {{ trans('locations.map.points.return', ['name' => $location->name]) }}
+                        <i class="fa-solid fa-arrow-left"></i> {{ __('locations.map.points.return', ['name' => $location->name]) }}
                     </a>
 
-                    <p class="help-block">{{ trans('locations.map.helper') }}</p>
+                    <p class="help-block">{{ __('locations.map.helper') }}</p>
                     @include('partials.errors')
 
                     <div class="map map-admin" id="location-map-admin">
@@ -53,8 +53,8 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="{{ trans('crud.delete_modal.close') }}"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">{{ trans('locations.map.modal.title') }}</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('crud.delete_modal.close') }}"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">{{ __('locations.map.modal.title') }}</h4>
                 </div>
                 <div class="modal-body" id="map-point-body">
 

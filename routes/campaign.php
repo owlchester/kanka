@@ -34,7 +34,6 @@ Route::get('/maps/tree', 'Maps\MapController@tree')->name('maps.tree');
 //Route::get('/maps/{map}/map-points', 'Maps\MapController@mapPoints')->name('maps.map-points');
 
 // Character
-Route::get('/characters/random', 'CharacterController@random')->name('characters.random');
 Route::get('/characters/{character}/organisations', 'CharacterSubController@organisations')->name('characters.organisations');
 //Route::get('/characters/{character}/map-points', 'CharacterSubController@mapPoints')->name('characters.map-points');
 
