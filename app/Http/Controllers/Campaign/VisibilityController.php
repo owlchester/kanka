@@ -31,8 +31,8 @@ class VisibilityController extends Controller
     {
         $campaign = CampaignLocalization::getCampaign();
         $this->authorize('update', $campaign);
-
-        return view('campaigns.forms.modals.public', compact('campaign'));
+        $from = request()->get('from');
+        return view('campaigns.forms.modals.public', compact('campaign', 'from'));
     }
 
     public function save(StoreCampaignVisibility $request)
@@ -44,11 +44,20 @@ class VisibilityController extends Controller
             'is_public' => $request->get('is_public')
         ]);
 
+        $success = __('campaigns/public.update.' . ($campaign->isPublic() ? 'public' : 'private'), [
+            'public-campaigns' => link_to_route('front.public_campaigns', __('front.menu.campaigns'), null, ['target' => '_blank']),
+        ]);
+
+        if ($request->get('from') === 'overview') {
+            return redirect()
+                ->route('campaign')
+                ->with('success_raw', $success)
+                ;
+        }
+
         return redirect()
             ->back()
-            ->with('success_raw', __('campaigns/public.update.' . ($campaign->isPublic() ? 'public' : 'private'), [
-                'public-campaigns' => link_to_route('front.public_campaigns', __('front.menu.campaigns'), null, ['target' => '_blank']),
-            ]))
+            ->with('success_raw', $success)
         ;
     }
 

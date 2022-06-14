@@ -7,6 +7,7 @@ return [
         'back'              => 'Back',
         'bulk_actions'      => 'Bulk actions',
         'bulk_templates'    => 'Apply Attribute Template',
+        'change'            => 'Change',
         'copy'              => 'Copy',
         'copy_mention'      => 'Copy [ ] mention',
         'copy_to_campaign'  => 'Copy to Campaign',

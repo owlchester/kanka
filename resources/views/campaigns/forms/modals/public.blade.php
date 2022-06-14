@@ -36,4 +36,7 @@
 
     </div>
 </div>
+@if (isset($from) && $from === 'overview')
+    <input type="hidden" name="from" value="{{ $from }}" />
+@endif
 {!! Form::close() !!}
