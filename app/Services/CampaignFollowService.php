@@ -47,9 +47,6 @@ class CampaignFollowService
         if (empty($follow)) {
             return false;
         }
-        $campaign->follower--;
-        $campaign->save(); 
-
         return $follow->delete();
     }
 
@@ -63,8 +60,6 @@ class CampaignFollowService
         $follow = new CampaignFollower();
         $follow->campaign_id = $campaign->id;
         $follow->user_id = $user->id;
-        $campaign->follower++;
-        $campaign->save();   
         return $follow->save();
     }
 }

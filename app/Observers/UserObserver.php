@@ -111,8 +111,6 @@ class UserObserver
         }
         $followers = CampaignFollower::where('user_id', $user->id)->with('campaign')->get();
         foreach ($followers as $follower) {
-            $follower->campaign->follower--;
-            $follower->campaign->save();  
             $follower->delete();
         }
     }
