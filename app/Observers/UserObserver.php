@@ -6,6 +6,7 @@ use App\Facades\UserCache;
 use App\Jobs\Emails\GoodbyeEmailJob;
 use App\Jobs\Emails\WelcomeEmailJob;
 use App\Models\CampaignUser;
+use App\Models\CampaignFollower;
 use App\Models\UserLog;
 use App\Services\ImageService;
 use App\User;
@@ -107,6 +108,10 @@ class UserObserver
             if ($member->campaign->members()->count() == 0) {
                 $member->campaign->delete();
             }
+        }
+        $followers = CampaignFollower::where('user_id', $user->id)->with('campaign')->get();
+        foreach ($followers as $follower) {
+            $follower->delete();
         }
     }
 }

@@ -53,7 +53,7 @@
 
                                 @if ($campaign->isPublic())
                                 <dt>{{ __('campaigns.fields.followers') }}</dt>
-                                <dd>{{ \App\Facades\CampaignCache::followerCount() }}</dd>
+                                <dd>{{ $campaign->follower() }}</dd>
                                 @endif
                             </dl>
                         </div>

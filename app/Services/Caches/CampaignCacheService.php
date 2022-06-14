@@ -97,35 +97,6 @@ class CampaignCacheService extends BaseCache
      * Count the number of followers of a campaign. Cache if for 1 hours
      * @return int
      */
-    public function followerCount(): int
-    {
-        $key = 'campaign_' . $this->campaign->id . '_follower_count';
-        if ($this->has($key)) {
-            return $this->get($key);
-        }
-
-        $data = $this->campaign->followers()->count();
-        $this->forever($key, $data);
-        return $data;
-    }
-
-    /**
-     * @return $this
-     */
-    public function clearFollowerCount(): self
-    {
-        $key = 'campaign_' . $this->campaign->id . '_follower_count';
-        $this->forget(
-            $key
-        );
-        return $this;
-    }
-
-
-    /**
-     * Count the number of followers of a campaign. Cache if for 1 hours
-     * @return int
-     */
     public function settings(): CampaignSetting
     {
         $key = $this->settingsKey();

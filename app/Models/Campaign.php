@@ -48,6 +48,7 @@ use Illuminate\Support\Facades\Auth;
  * @property Carbon $updated_at
  * @property int $created_by
  * @property int $updated_by
+ * @property int $follower
  *
  * UI virtual Settings
  * @property bool $tooltip_family
@@ -548,5 +549,14 @@ class Campaign extends MiscModel
         }
 
         return empty($this->export_date) || !$this->export_date->isToday();
+    }
+
+    /**
+     * Get the value of the follower variable
+     * @return int
+     */
+    public function follower(): int
+    {
+        return (int) $this->follower;
     }
 }

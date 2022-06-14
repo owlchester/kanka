@@ -166,7 +166,7 @@ class FrontController extends Controller
     {
         $featured = Campaign::public()->front()->featured()->get();
         $campaigns = Campaign::public()
-            ->front()
+            ->front($request->get('sort_field_name'))
             ->featured(false)
             ->filterPublic($request->only(['language', 'system', 'is_boosted', 'is_open']))
             ->paginate();

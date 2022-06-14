@@ -90,14 +90,15 @@ trait CampaignScopes
      * @param $query
      * @return mixed
      */
-    public function scopeFront(Builder $query): Builder
+    public function scopeFront(Builder $query, string $sort = null): Builder
     {
         if (!app()->environment('local')) {
             $query
                 ->where('visible_entity_count', '>', 0);
         }
+        $defaultsort = $sort == 1 ? 'follower' : 'visible_entity_count';
         $query
-            ->orderBy('visible_entity_count', 'desc')
+            ->orderBy($defaultsort, 'desc')
             ->orderBy('name');
 
         return $query;

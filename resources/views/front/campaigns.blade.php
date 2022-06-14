@@ -59,6 +59,9 @@
  1 => __('front.campaigns.open.filters.open'), 0 => __('front.campaigns.open.filters.closed')], request()->get('is_open'), ['class' => 'form-control']) !!}
                     </div>
                     <div class="col-sm mb-1">
+                        {!! Form::select('sort_field_name', ['0' => __('front.campaigns.public.filters.entities'), '1' => __('front.campaigns.public.filters.followers')], request()->get('sort_field_name'), ['class' => 'form-control']) !!}
+                    </div>
+                    <div class="col-sm mb-1">
                         <input type="submit" class="btn btn-primary" value="{{ __('crud.actions.apply') }}" />
                     </div>
                 </div>
@@ -79,6 +82,7 @@
                     ->appends('language', request()->get('language'))
                     ->appends('system', request()->get('system'))
                     ->appends('is_boosted', request()->get('is_boosted'))
+                    ->appends('sort_field_name', request()->get('sort_field_name'))
                     ->onEachSide(2)
                     ->links() }}
                 @endif
