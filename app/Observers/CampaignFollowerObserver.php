@@ -16,7 +16,6 @@ class CampaignFollowerObserver
     public function created(CampaignFollower $campaignFollower)
     {
         UserCache::clearFollows();
-        CampaignCache::campaign($campaignFollower->campaign)->clearFollowerCount();
         $campaignFollower->campaign->follower++;
         $campaignFollower->campaign->save(); 
 
@@ -28,7 +27,6 @@ class CampaignFollowerObserver
     public function deleted(CampaignFollower $campaignFollower)
     {
         UserCache::clearFollows();
-        CampaignCache::campaign($campaignFollower->campaign)->clearFollowerCount();
         $campaignFollower->campaign->follower--;
         $campaignFollower->campaign->save(); 
     }
