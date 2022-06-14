@@ -216,7 +216,7 @@
                 {!! Form::open(['route' => ['maps.map_markers.store', $map], 'method' => 'POST', 'data-shortcut' => 1, 'id' => 'map-marker-form', 'class' => 'ajax-subform']) !!}
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal"
-                            aria-label="{{ trans('crud.delete_modal.close') }}"><span
+                            aria-label="{{ __('crud.delete_modal.close') }}"><span
                                 aria-hidden="true">&times;</span></button>
                         <h4 class="modal-title">
                             {{ __('maps/markers.create.title', ['name' => $map->name]) }}

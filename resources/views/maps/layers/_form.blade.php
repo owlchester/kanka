@@ -7,12 +7,12 @@ $typeOptions = [
 
 ?>
 <div class="form-group required">
-    <label>{{ trans('crud.fields.name') }}</label>
-    {!! Form::text('name', null, ['placeholder' => trans('maps/layers.placeholders.name'), 'class' => 'form-control', 'maxlength' => 191]) !!}
+    <label>{{ __('crud.fields.name') }}</label>
+    {!! Form::text('name', null, ['placeholder' => __('maps/layers.placeholders.name'), 'class' => 'form-control', 'maxlength' => 191]) !!}
 </div>
 
 <div class="form-group">
-    <label>{{ trans('crud.fields.entry') }}</label>
+    <label>{{ __('crud.fields.entry') }}</label>
     {!! Form::textarea('entry', null, ['class' => 'form-control html-editor', 'id' => 'layer-entry', 'name' => 'entry']) !!}
 </div>
 
@@ -30,8 +30,8 @@ $typeOptions = [
 
     <div class="col-sm-6">
         <div class="form-group">
-            <label>{{ trans('maps/layers.fields.position') }}</label>
-            {!! Form::number('position', null, ['placeholder' => trans('maps/layers.placeholders.position'), 'class' => 'form-control', 'maxlength' => 3]) !!}
+            <label>{{ __('maps/layers.fields.position') }}</label>
+            {!! Form::number('position', null, ['placeholder' => __('maps/layers.placeholders.position'), 'class' => 'form-control', 'maxlength' => 3]) !!}
         </div>
     </div>
 </div>

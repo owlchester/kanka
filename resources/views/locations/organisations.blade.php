@@ -1,5 +1,5 @@
 @extends('layouts.app', [
-    'title' => trans('locations.organisations.title', ['name' => $model->name]),
+    'title' => __('locations.organisations.title', ['name' => $model->name]),
     'breadcrumbs' => false,
     'mainTitle' => false,
     'miscModel' => $model,

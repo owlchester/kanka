@@ -9,21 +9,21 @@ if (isset($bulk) && (!isset($bulkTemplates) || $bulkTemplates)) {
                 </a>
             </li>';
 }
-if (!isset($datagrid) || $datagrid->bulkPermissions) {
+if (!isset($datagrid) || $datagrid->hasBulkPermissions()) {
   $dropdownActions[] = '<li class="dropdown-item">
                 <a href="#" class="bulk-permissions" id="datagrids-bulk-actions-permissions" data-toggle="ajax-modal" data-target="#bulk-permissions.modal" data-url="' . route('bulk.modal', ['view' => 'permissions']) . '">
                     <i class="fa-solid fa-cog"></i> ' .  __('crud.tabs.permissions') . '
                 </a>
             </li>';
 }
-if (!isset($datagrid) || $datagrid->bulkTransform) {
+if (!isset($datagrid) || $datagrid->hasBulkTransform()) {
    $dropdownActions[] = '<li class="dropdown-item">
                 <a href="#" class="bulk-copy-campaign" id="datagrids-bulk-actions-transform" data-toggle="ajax-modal" data-target="#bulk-transform.modal" data-url="' .  route('bulk.modal', ['view' => 'transform', 'type' => $name]) . '">
                     <i class="fa-solid fa-exchange-alt"></i> ' .  __('crud.actions.transform') . '
                 </a>
             </li>';
 }
-if (!isset($datagrid) || $datagrid->bulkCopyToCampaign) {
+if (!isset($datagrid) || $datagrid->hasBulkCopy()) {
    $dropdownActions[] = '<li class="dropdown-item">
                 <a href="#" class="bulk-copy-campaign" id="datagrids-bulk-actions-copy-campaign" data-toggle="ajax-modal" data-target="#bulk-permissions.modal" data-url="' .  route('bulk.modal', ['view' => 'copy_campaign', 'type' => $name]) . '">
                     <i class="fa-regular fa-clone"></i> ' .  __('crud.actions.copy_to_campaign') . '
@@ -58,7 +58,7 @@ if (!isset($datagrid) || $datagrid->bulkCopyToCampaign) {
         </a>
     @endcan
 
-    @if (!isset($datagrid) || $datagrid->bulkPrint)
+    @if (!isset($datagrid) || $datagrid->hasBulkPrint())
         {!! Form::button('<i class="fa-solid fa-print"></i> ' . __('crud.actions.print'), ['type' => 'submit', 'name' => 'datagrid-action', 'value' => 'print', 'class' => 'btn btn-primary', 'id' => 'datagrids-bulk-actions-print', 'disabled'=>'disabled']) !!}
     @endif
 </div>

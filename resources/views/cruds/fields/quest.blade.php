@@ -6,8 +6,6 @@
 $preset = null;
 if (isset($model) && $model->quest) {
     $preset = $model->quest;
-} elseif (isset($isRandom) && $isRandom) {
-    $preset = $random->generateForeign(\App\Models\Quest::class);
 } else {
     $preset = FormCopy::field('quest')->select();
 }

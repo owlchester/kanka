@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Datagrids;
-
 
 class RelationDatagrid extends Datagrid
 {

@@ -1337,6 +1337,20 @@ summary {
   position: unset;
 }
 
+.keyboard-shortcut {
+  padding: 0.2rem 0.4rem;
+  border: 1px solid var(--input-border-color);
+  border-radius: 5px;
+  margin-right: 5px;
+}
+
+.keyboard-shortcut.form-control-feedback {
+  line-height: 24px;
+  height: 30px;
+  width: 30px;
+  margin-top: 3px;
+}
+
 :root {
   --timeline-item-background: #fff;
   --timeline-element-border: #ddd;
@@ -3821,6 +3835,10 @@ body.ab-testing-second .ab-testing-a {
 
 .flex-wrap {
   flex-wrap: wrap;
+}
+
+.flex-grow {
+  flex-grow: 1;
 }
 
 .items-center {

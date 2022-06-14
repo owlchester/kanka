@@ -2,6 +2,7 @@
 
 namespace App\Policies;
 
+use App\Facades\CampaignLocalization;
 use App\Traits\AdminPolicyTrait;
 use App\User;
 use App\Models\Relation;
@@ -13,35 +14,35 @@ class RelationPolicy
     use AdminPolicyTrait;
 
     /**
-     * Determine whether the user can view the item.
+     * Determine whether the user can view the relation.
      *
      * @param  \App\User  $user
      * @param  \App\Models\Relation  $relation
-     * @return mixed
+     * @return bool
      */
     public function view(User $user, Relation $relation)
     {
-        return $user->campaign->id == $relation->owner->child->campaign_id &&
-            ($relation->is_private ? !$this->isAdmin($user) : true);
+        return true;
     }
 
     /**
      * Determine whether the user can create items.
      *
      * @param  \App\User  $user
-     * @return mixed
+     * @return bool
      */
     public function create(User $user)
     {
-        return $user->isAdmin();
+        $campaign = CampaignLocalization::getCampaign();
+        return $user->can('relations', $campaign);
     }
 
     /**
-     * Determine whether the user can update the item.
+     * Determine whether the user can update the relation.
      *
      * @param  \App\User  $user
      * @param  \App\Models\Relation  $relation
-     * @return mixed
+     * @return bool
      */
     public function update(User $user, Relation $relation)
     {
@@ -52,14 +53,19 @@ class RelationPolicy
     }
 
     /**
-     * Determine whether the user can delete the item.
+     * Determine whether the user can delete the relation.
      *
      * @param  \App\User  $user
      * @param  \App\Models\Relation  $relation
-     * @return mixed
+     * @return bool
      */
     public function delete(User $user, Relation $relation)
     {
+        // If the relation is empty, this call is comming from the bulk delete check
+        /*if (empty($relation) || empty($relation->id)) {
+            $campaign = CampaignLocalization::getCampaign();
+            return $user->can('relations', $campaign);
+        }*/
         if (empty($relation->owner) || empty($relation->owner->child)) {
             return false;
         }

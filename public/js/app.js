@@ -2516,6 +2516,8 @@ $(function () {
   "use strict";
 
   $(document).on('click', '.sidebar-toggle', function () {
+    $('.sidebar-toggle').pushMenu('toggle');
+
     if ($.AdminLTESidebarTweak.options.EnableRemember) {
       var toggleState = 'opened';
 
@@ -2526,7 +2528,7 @@ $(function () {
       var date = new Date();
       date.setTime(date.getTime() + 30 * 24 * 60 * 60 * 1000);
       var expires = " expires=" + date.toGMTString();
-      document.cookie = "toggleState=" + toggleState + "; path=/; secure; " + expires;
+      document.cookie = "toggleState=" + toggleState + "; path=/; samesite=lax; secure; " + expires;
     }
   });
 
@@ -4483,11 +4485,48 @@ $(document).ready(function () {
       initSaveKeyboardShortcut(this);
     }
   });
+  initKeyboardShortcuts();
 });
+
+function initKeyboardShortcuts() {
+  $(document).bind('keydown', function (e) {
+    var target = $(e.target); //console.log('which', e.which);
+
+    if (e.which === 161) {
+      // ] to toggle sidebar
+      if (isInputField(target)) {
+        return;
+      }
+
+      $('.sidebar-toggle').click();
+    } else if (e.which === 75) {
+      // k for search
+      if (isInputField(target)) {
+        return;
+      }
+
+      $('#live-search').focus();
+      return false; // don't add the k to the search field
+    } else if (e.which === 78) {
+      // n for quick creator. Don't re-open if already opened
+      if (isInputField(target) || ($('#entity-modal').data('bs.modal') || {}).isShown) {
+        return;
+      }
+
+      $('.quick-creator-button')[0].click();
+      return false; // don't add the k to the search field
+    }
+  });
+}
+
+function isInputField(ele) {
+  return ele.is('input') || ele.is('select') || ele.attr("contentEditable") == "true";
+}
 /**
  * Handle saving form
  * @param form
  */
+
 
 function initSaveKeyboardShortcut(form) {
   $(document).bind('keydown', function (e) {

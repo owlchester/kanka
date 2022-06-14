@@ -1,10 +1,10 @@
 <?php
 /** @var \App\Models\MapPoint $model */
 ?>@extends((isset($ajax) && $ajax ? 'layouts.ajax' : 'layouts.app'), [
-    'title' => trans('locations.map_points.edit.title', ['name' => $location->name]),
+    'title' => __('locations.map_points.edit.title', ['name' => $location->name]),
     'description' => '',
     'breadcrumbs' => [
-        ['url' => Breadcrumb::index('locations'), 'label' => trans('locations.index.title')],
+        ['url' => Breadcrumb::index('locations'), 'label' => __('locations.index.title')],
         ['url' => route('locations.show', [$location, '#map']), 'label' => $location->name]
     ]
 ])
@@ -16,7 +16,7 @@
     @include('locations.map_points._form')
 
     <div class="form-group">
-        <button class="btn btn-success">{{ trans('crud.save') }}</button>
+        <button class="btn btn-success">{{ __('crud.save') }}</button>
         @if(!isset($ajax))
             @include('partials.or_cancel', ['cancel' => route('locations.map_points.index', [$location])])
         @else
@@ -26,7 +26,7 @@
            <a href='{{ route('locations.map_points.destroy', [$location, $model]) }}' class='btn btn-block btn-danger map-point-delete'>{{ __('crud.click_modal.confirm') }}</a>"
             title="{{ __('crud.remove') }}"
         >
-            <i class="fa-solid fa-trash"></i> {{ trans('crud.remove') }}
+            <i class="fa-solid fa-trash"></i> {{ __('crud.remove') }}
         </a>
         @endif
     </div>

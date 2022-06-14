@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Datagrids\Filters\CharacterFilter;
 use App\Models\Character;
 use App\Http\Requests\StoreCharacter;
-use App\Services\RandomCharacterService;
 
 class CharacterController extends CrudController
 {
@@ -25,38 +24,6 @@ class CharacterController extends CrudController
      * @var string
      */
     protected $filter = CharacterFilter::class;
-
-    /**
-     * @var RandomCharacterService
-     */
-    protected $random;
-
-    /**
-     * CharacterController constructor.
-     * @param RandomCharacterService $random
-     */
-    public function __construct(RandomCharacterService $random)
-    {
-        $this->random = $random;
-
-        $this->indexActions[] = [
-            'label' => '<i class="ra ra-perspective-dice-random"></i> <span class="hidden-xs hidden-sm">' . __('characters.index.actions.random') . '</span>',
-            'route' => route('characters.random'),
-            'class' => 'default create-random-character',
-            'policy' => 'random'
-        ];
-
-        parent::__construct();
-    }
-
-    /**
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function random()
-    {
-        // We replace the source for the form prefill function in the view
-        return $this->crudCreate();
-    }
 
     /**
      * Store a newly created resource in storage.

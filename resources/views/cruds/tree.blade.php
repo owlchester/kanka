@@ -91,7 +91,7 @@
         {!! Form::close() !!}
     </div>
 
-    @include('cruds.datagrids.bulks.modals')
+    @includeWhen(auth()->check(), 'cruds.datagrids.bulks.modals')
 
     <input type="hidden" class="list-treeview" id="{{ $view }}-treeview" value="1" data-url="{{ route($route . '.tree') }}">
 @endsection

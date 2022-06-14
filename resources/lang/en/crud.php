@@ -257,6 +257,7 @@ return [
     ],
     'is_not_private'            => 'This entity isn\'t currently set to private.',
     'is_private'                => 'This entity is private and only visible to members of the campaign\'s Admin role.',
+    'keyboard-shortcut'         => 'Keyboard shortcut :code',
     'legacy'                    => 'Legacy',
     'linking_help'              => 'How can I link to other entities?',
     'manage'                    => 'Manage',

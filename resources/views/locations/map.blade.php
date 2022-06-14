@@ -1,9 +1,9 @@
 <?php /** @var \App\Models\Location $location */ ?>
 @extends('layouts.app', [
-    'title' => trans('locations.map.points.title', ['name' => $location->name]),
+    'title' => __('locations.map.points.title', ['name' => $location->name]),
     'description' => '',
     'breadcrumbs' => [
-        ['url' => Breadcrumb::index('locations'), 'label' => trans('locations.index.title')],
+        ['url' => Breadcrumb::index('locations'), 'label' => __('locations.index.title')],
         ['url' => route('locations.show', $location->id), 'label' => $location->name]
     ],
     'mainTitle' => false,
@@ -13,7 +13,7 @@
     <div class="row">
         <div class="col-md-12 text-right">
             <a href="{{ $location->getLink() }}" class="btn btn-default">
-                <i class="fa-solid fa-arrow-left"></i> <span class="hidden-xs">{{ trans('locations.map.points.return', ['name' => $location->name]) }}</span>
+                <i class="fa-solid fa-arrow-left"></i> <span class="hidden-xs">{{ __('locations.map.points.return', ['name' => $location->name]) }}</span>
             </a>
             @if ($location->map)
                 @can('update', $location)
@@ -31,12 +31,12 @@
         <div class="row">
             <div class="col-md-12" id="location-map-main">
                 <div class="map-zoom">
-                    <button id="map-zoom-in" class="btn btn-default" title="{{ trans('locations.map.actions.zoom_in') }}"><i class="fa-solid fa-plus"></i></button>
-                    <button id="map-zoom-out" class="btn btn-default" title="{{ trans('locations.map.actions.zoom_out') }}"><i class="fa-solid fa-minus"></i></button>
-                    <button id="map-zoom-reset" class="btn btn-default" title="{{ trans('locations.map.actions.zoom_reset') }}"><i class="fa-solid fa-undo"></i></button>
-                    <button id="map-toggle-hide" class="btn btn-default" title="{{ trans('locations.map.actions.toggle_hide') }}"><i class="fa-solid fa-eye-slash"></i></button>
-                    <button id="map-toggle-show" class="btn btn-default" style="display: none;" title="{{ trans('locations.map.actions.toggle_show') }}"><i class="fa-solid fa-eye"></i></button>
-                    <a href="{{ Storage::url($location->map) }}" target="_blank" class="btn btn-default" title="{{ trans('locations.map.actions.download') }}" download><i class="fa-solid fa-download"></i></a>
+                    <button id="map-zoom-in" class="btn btn-default" title="{{ __('locations.map.actions.zoom_in') }}"><i class="fa-solid fa-plus"></i></button>
+                    <button id="map-zoom-out" class="btn btn-default" title="{{ __('locations.map.actions.zoom_out') }}"><i class="fa-solid fa-minus"></i></button>
+                    <button id="map-zoom-reset" class="btn btn-default" title="{{ __('locations.map.actions.zoom_reset') }}"><i class="fa-solid fa-undo"></i></button>
+                    <button id="map-toggle-hide" class="btn btn-default" title="{{ __('locations.map.actions.toggle_hide') }}"><i class="fa-solid fa-eye-slash"></i></button>
+                    <button id="map-toggle-show" class="btn btn-default" style="display: none;" title="{{ __('locations.map.actions.toggle_show') }}"><i class="fa-solid fa-eye"></i></button>
+                    <a href="{{ Storage::url($location->map) }}" target="_blank" class="btn btn-default" title="{{ __('locations.map.actions.download') }}" download><i class="fa-solid fa-download"></i></a>
                 </div>
                 <div class="map-helper hidden-xs">
                     <p>{{ __('locations.map.helpers.view') }}</p>
@@ -91,8 +91,8 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="{{ trans('crud.delete_modal.close') }}" title="{{ trans('crud.delete_modal.close') }}"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="myModalLabel">{{ trans('locations.map.points.modal') }}</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('crud.delete_modal.close') }}" title="{{ __('crud.delete_modal.close') }}"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">{{ __('locations.map.points.modal') }}</h4>
                     </div>
                     <div class="modal-body">
                         <div class="modal-loading text-center">
@@ -108,7 +108,7 @@
     @else
         <div class="panel panel-default">
             <div class="panel-body">
-                <p class="help-block">{{ trans('locations.map.no_map') }}</p>
+                <p class="help-block">{{ __('locations.map.no_map') }}</p>
             </div>
         </div>
     @endif

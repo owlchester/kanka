@@ -3,7 +3,7 @@
     <p class="alert alert-warning">{!! __('locations.helpers.map_deprecated_2', ['boosted' => link_to_route('front.pricing', __('crud.boosted_campaigns'), '#boost')]) !!}</p>
 
     <p class="help-block">{{ __('locations.helpers.map') }}</p>
-    <label>{{ trans('locations.fields.map') }}</label>
+    <label>{{ __('locations.fields.map') }}</label>
     {!! Form::hidden('remove-map') !!}
     <div class="row">
         <div class="col-md-10">
@@ -11,7 +11,7 @@
                 {!! Form::file('map', array('class' => 'image form-control')) !!}
             </div>
             <div class="form-group">
-                {!! Form::text('map_url', null, ['placeholder' => trans('crud.placeholders.image_url'), 'class' => 'form-control']) !!}
+                {!! Form::text('map_url', null, ['placeholder' => __('crud.placeholders.image_url'), 'class' => 'form-control']) !!}
             </div>
 
             <p class="help-block">
@@ -25,8 +25,8 @@
             @if (!empty($model->map))
                 <div class="preview-v2">
                     <div class="image" style="background-image: url('{{ Img::crop(200, 120)->url($model->map) }}')">
-                        <a href="#" class="img-delete" data-target="remove-map" title="{{ trans('crud.remove') }}">
-                            <i class="fa-solid fa-trash"></i> {{ trans('crud.remove') }}
+                        <a href="#" class="img-delete" data-target="remove-map" title="{{ __('crud.remove') }}">
+                            <i class="fa-solid fa-trash"></i> {{ __('crud.remove') }}
                         </a>
                     </div>
                 </div>
@@ -39,9 +39,9 @@
         <div class="form-group">
             {!! Form::hidden('is_map_private', 0) !!}
             <label>{!! Form::checkbox('is_map_private', 1, empty($model) ? 0 : $model->is_map_private) !!}
-                {{ trans('locations.fields.is_map_private') }}
+                {{ __('locations.fields.is_map_private') }}
             </label>
-            <p class="help-block">{{ trans('locations.hints.is_map_private') }}</p>
+            <p class="help-block">{{ __('locations.hints.is_map_private') }}</p>
         </div>
     @endif
 

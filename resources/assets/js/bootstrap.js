@@ -79,6 +79,7 @@ $(function () {
     "use strict";
 
     $(document).on('click', '.sidebar-toggle', function () {
+        $('.sidebar-toggle').pushMenu('toggle');
         if($.AdminLTESidebarTweak.options.EnableRemember){
             var toggleState = 'opened';
             if($("body").hasClass('sidebar-collapse')){
@@ -88,7 +89,7 @@ $(function () {
             var date = new Date();
             date.setTime(date.getTime() + (30 * 24 * 60 * 60 * 1000));
             var expires = " expires=" + date.toGMTString();
-            document.cookie = "toggleState="+toggleState+"; path=/; secure; " + expires;
+            document.cookie = "toggleState="+toggleState+"; path=/; samesite=lax; secure; " + expires;
         }
     });
 

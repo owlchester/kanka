@@ -6,8 +6,6 @@
 $preset = null;
 if (isset($model) && $model->calendar) {
     $preset = $model->calendar;
-} elseif (isset($isRandom) && $isRandom) {
-    $preset = $random->generateForeign(\App\Models\Calendar::class);
 } else {
     $preset = FormCopy::field('calendar')->select();
 }

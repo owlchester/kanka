@@ -1,8 +1,8 @@
 @extends((isset($ajax) && $ajax ? 'layouts.ajax' : 'layouts.app'), [
-    'title' => trans('locations.map_points.create.title', ['name' => $location->name]),
+    'title' => __('locations.map_points.create.title', ['name' => $location->name]),
     'description' => '',
     'breadcrumbs' => [
-        ['url' => Breadcrumb::index('locations'), 'label' => trans('locations.index.title')],
+        ['url' => Breadcrumb::index('locations'), 'label' => __('locations.index.title')],
         ['url' => route('locations.show', [$location, '#map']), 'label' => $location->name]
     ]
 ])
@@ -14,7 +14,7 @@
     @include('locations.map_points._form')
 
     <div class="form-group point-save " style="display: none">
-        <button class="btn btn-success">{{ trans('crud.save') }}</button>
+        <button class="btn btn-success">{{ __('crud.save') }}</button>
         @includeWhen(!request()->ajax(), 'partials.or_cancel', ['cancel' => route('locations.map_points.index', [$location])])
     </div>
 
