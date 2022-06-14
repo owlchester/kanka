@@ -1,3 +1,4 @@
+<?php /** @var \App\Datagrids\Datagrid $datagrid */?>
 @inject('campaign', 'App\Services\CampaignService')
 
 {!! Form::open(['url' => route('bulk.process'), 'method' => 'POST']) !!}
@@ -11,12 +12,12 @@
 
                 <p class="mt-5">
                     {{ __('crud.bulk.delete.warning') }}
-                    @if(isset($datagrid) && !$datagrid->bulkPermissions)
+                    @if(isset($datagrid) && !$datagrid->hasBulkPermissions())
                         <br />{{ __('crud.delete_modal.permanent') }}
                     @endif
                 </p>
                 <div class="mt-5 recoverable">
-                    @includeWhen(!isset($datagrid) || $datagrid->bulkPermissions, 'layouts.callouts.recoverable')
+                    @includeWhen(!isset($datagrid) || $datagrid->hasBulkPermissions(), 'layouts.callouts.recoverable')
                 </div>
 
 

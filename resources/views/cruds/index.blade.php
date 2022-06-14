@@ -96,7 +96,7 @@
     </div>
 
 
-    @include('cruds.datagrids.bulks.modals')
+    @includeWhen(auth()->check(), 'cruds.datagrids.bulks.modals')
 @endsection
 
 
