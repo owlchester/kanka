@@ -47,7 +47,6 @@ class CampaignFollowService
         if (empty($follow)) {
             return false;
         }
-
         return $follow->delete();
     }
 

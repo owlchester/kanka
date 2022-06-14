@@ -31,6 +31,10 @@ $width = $featured ? 350 : 200;
                     <i class="fa-solid fa-pencil" aria-hidden="true"></i>
                     {{ number_format($campaign->visible_entity_count) }}
                 </span>
+                <span class="mr-3" title="{{ __('campaigns.fields.followers') }}" data-toggle="tooltip">
+                    <i class="fa-solid fa-eye" aria-hidden="true"></i>
+                    {{ number_format($campaign->follower) }}
+                </span>
                 @if ($campaign->locale)
                     <span class="mr-3" title="{{ __('languages.codes.' . $campaign->locale) }}" data-toggle="tooltip">
                         <i class="fa-solid fa-language" aria-hidden="true"></i>

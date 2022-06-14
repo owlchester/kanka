@@ -67,6 +67,7 @@ TEXT
         'system'                            => 'System',
         'theme'                             => 'Theme',
         'visibility'                        => 'Visibility',
+        'followers'                         => 'Followers',
     ],
     'following'                         => 'Following',
     'helpers'                           => [
