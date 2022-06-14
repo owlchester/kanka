@@ -111,6 +111,8 @@ return [
         'cannot_move_node_into_itself'  => 'The selected parent entity is invalid. This could be due to it having this entity as the parent.',
         'node_must_not_be_a_descendant' => 'Invalid node (tag, parent location): it would be a descendant of itself.',
         'unavailable_feature'           => 'Unavailable feature',
+        'banned'                        => 'This user has been banned',
+        'temp_ban'                      => '{1} This user is banned for :days day|[2,*] This user is banned for :days days'
     ],
     'export'                    => 'Export',
     'fields'                    => [
