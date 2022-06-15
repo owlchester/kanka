@@ -84,7 +84,6 @@
                                         <span class="sr-only">{{ __('crud.actions.actions') }}</span>
                                     </a>
                                     <ul class="dropdown-menu dropdown-menu-right" role="menu">
-                                        @if (!$relation->user->isBanned())
                                             @can('switch', $relation)
                                                 <li>
                                                     <a href="{{ route('identity.switch', $relation) }}" title="{{ __('campaigns.members.helpers.switch') }}" data-toggle="tooltip" class="switch-user">
@@ -94,7 +93,6 @@
                                                 </li>
                                                 <li class="divider"></li>
                                             @endcan
-                                        @endif
                                         @can('delete', $relation)
                                             <li>
                                                 <a href="#" class="text-red delete-confirm" title="{{ __('crud.remove') }}"

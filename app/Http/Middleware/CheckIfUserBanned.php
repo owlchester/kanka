@@ -20,15 +20,15 @@ class CheckIfUserBanned
     public function handle(Request $request, Closure $next)
     {
 
-        if (auth()->check() && auth()->user()->banned_until && auth()->user()->banned_until->isFuture()){
+        if (auth()->check() && auth()->user()->isBanned()){
 
             if (auth()->user()->banned_until < Carbon::now()->addDays(7)){
-                $days = auth()->user()->banned_until->diffInDays(Carbon::now()->addDays(7));
+                $days = auth()->user()->banned_until->diffInDays(Carbon::now());
                 auth()->logout();
-                return redirect()->route('login')->withErrors(trans_choice('crud.errors.temp_ban',$days,['days' => $days]));
+                return redirect()->route('login')->withErrors(trans_choice('auth.banned.temporary',$days,['days' => $days]));
             }
             auth()->logout();
-            return redirect()->route('login')->withErrors(__('crud.errors.banned'));
+            return redirect()->route('login')->withErrors(__('auth.banned.permanent'));
         }
 
         return $next($request);
