@@ -38,8 +38,11 @@
                             </div>
                             <div class="user-name text-break">
                                 <a href="{{ route('users.profile', $relation->user_id) }}" target="_blank">
-                                    {{ $relation->user->name }}
+                                    {{ $relation->user->name }} 
                                 </a>
+                                @if ($relation->user->isBanned())
+                                    <i class="fa-solid fa-ban" aria-hidden="true" data-toggle="tooltip" title = "{{ __('campaigns.members.fields.banned') }}"></i>
+                                @endif
                             </div>
                         </td>
                         <td>
@@ -81,15 +84,15 @@
                                         <span class="sr-only">{{ __('crud.actions.actions') }}</span>
                                     </a>
                                     <ul class="dropdown-menu dropdown-menu-right" role="menu">
-                                        @can('switch', $relation)
-                                            <li>
-                                                <a href="{{ route('identity.switch', $relation) }}" title="{{ __('campaigns.members.helpers.switch') }}" data-toggle="tooltip" class="switch-user">
-                                                    <i class="fa-solid fa-sign-in-alt" aria-hidden="true"></i>
-                                                    {{ __('campaigns.members.actions.switch') }}
-                                                </a>
-                                            </li>
-                                            <li class="divider"></li>
-                                        @endcan
+                                            @can('switch', $relation)
+                                                <li>
+                                                    <a href="{{ route('identity.switch', $relation) }}" title="{{ __('campaigns.members.helpers.switch') }}" data-toggle="tooltip" class="switch-user">
+                                                        <i class="fa-solid fa-sign-in-alt" aria-hidden="true"></i>
+                                                        {{ __('campaigns.members.actions.switch') }}
+                                                    </a>
+                                                </li>
+                                                <li class="divider"></li>
+                                            @endcan
                                         @can('delete', $relation)
                                             <li>
                                                 <a href="#" class="text-red delete-confirm" title="{{ __('crud.remove') }}"

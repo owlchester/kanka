@@ -79,6 +79,7 @@ class CampaignUserPolicy
             // Don't allow impersonating if we are already impersonating
             !Identity::isImpersonating()
             && UserCache::user($user)->admin() && !UserCache::user($campaignUser->user)->admin()
+            && !$campaignUser->user->isBanned()
         ;
     }
 }

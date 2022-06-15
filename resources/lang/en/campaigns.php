@@ -182,6 +182,7 @@ TEXT
             'name'          => 'User',
             'role'          => 'Role',
             'roles'         => 'Roles',
+            'banned'        => 'User is banned',
         ],
         'help'                  => 'Campaigns can have an unlimited amount of members in them.',
         'helpers'               => [

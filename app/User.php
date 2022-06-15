@@ -38,6 +38,7 @@ use Laravel\Passport\HasApiTokens;
  * @property int $booster_count
  * @property int $referral_id
  * @property Carbon $card_expires_at
+ * @property Carbon $banned_until
  * @property Collection $settings
  * @property Collection $profile
  *
@@ -109,6 +110,7 @@ class User extends \Illuminate\Foundation\Auth\User
      */
     protected $dates = [
         'last_login_at',
+        'banned_until',
     ];
 
     /**
@@ -521,5 +523,14 @@ class User extends \Illuminate\Foundation\Auth\User
             'type_id' => $type,
         ]);
         return $this;
+    }
+
+    /**
+     * Determine if the user is banned
+     * @return bool
+     */
+    public function isBanned(): bool
+    {
+        return ($this->banned_until && $this->banned_until->isFuture());
     }
 }

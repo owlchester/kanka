@@ -43,9 +43,11 @@ class Kernel extends HttpKernel
             \App\Http\Middleware\HttpsProtocol::class, // Force https in prod
             \App\Http\Middleware\LocaleChange::class, // Save language changing
             Tracking::class,
+            \App\Http\Middleware\CheckIfUserBanned::class,
         ],
 
         'api' => [
+            \App\Http\Middleware\CheckIfUserBanned::class,
             //Do this in the routes 'throttle:rate_limit,1',
             'bindings',
         ],
