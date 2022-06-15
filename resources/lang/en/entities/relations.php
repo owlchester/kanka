@@ -11,6 +11,7 @@ return [
             'editing'           => '{1} :count relation was updated.|[2,*] :count relation were updated.',
             'editing_partial'   => '{1} :count/:total relation was updated.|[2,*] :count/:total relation were updated.',
         ],
+        'delete_mirrored'      => 'Also delete mirrored relations.',
     ],
     'connections'       => [
         'map_point'         => 'Map point',

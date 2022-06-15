@@ -62,10 +62,10 @@ class RelationPolicy
     public function delete(User $user, Relation $relation)
     {
         // If the relation is empty, this call is comming from the bulk delete check
-        /*if (empty($relation) || empty($relation->id)) {
+        if (empty($relation) || empty($relation->id)) {
             $campaign = CampaignLocalization::getCampaign();
             return $user->can('relations', $campaign);
-        }*/
+        }
         if (empty($relation->owner) || empty($relation->owner->child)) {
             return false;
         }

@@ -87,11 +87,15 @@ class BulkService
     public function delete()
     {
         $model = $this->getEntity();
-
         foreach ($this->ids as $id) {
             $entity = $model->find($id);
             if (auth()->user()->can('delete', $entity)) {
                 //dd($entity->descendants);
+                if (request()->delete_mirrored && $entity->mirror_id){
+                    $mirror = $model->find($entity->mirror_id);
+                    $mirror->delete();
+                    $this->count++;
+                }
                 $entity->delete();
                 $this->count++;
             }
