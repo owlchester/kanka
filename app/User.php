@@ -540,14 +540,14 @@ class User extends \Illuminate\Foundation\Auth\User
      */
     public function hasAchievements(): bool
     {
-        return $this->hasRole('wordsmith');
+        return $this->isWordsmith();
     }
 
     /**
      * Determine if a user has the Wordsmith role
      * @return bool
      */
-    public function hasWordsmith(): bool
+    public function isWordsmith(): bool
     {
         return $this->hasRole('wordsmith');
     }
