@@ -34,13 +34,13 @@ trait CampaignScopes
     }
 
     /**
-     * @param $query
-     * @param $visibility
-     * @return mixed
+     * @param Builder $query
+     * @param bool $open
+     * @return Builder
      */
-    public function scopeOpen(Builder $query): Builder
+    public function scopeOpen(Builder $query, bool $open = true): Builder
     {
-        return $query->where('is_open', true);
+        return $query->where('is_open', $open);
     }
 
     /**
@@ -77,7 +77,7 @@ trait CampaignScopes
 
     /**
      * Public campaigns
-     * @param $query
+     * @param Builder|Campaign $query
      * @return mixed
      */
     public function scopePublic(Builder $query): Builder
@@ -105,7 +105,7 @@ trait CampaignScopes
     }
 
     /**
-     * @param Builder $query
+     * @param Builder|Campaign $query
      * @param array $options
      * @return Builder
      */
@@ -133,9 +133,9 @@ trait CampaignScopes
 
         $open = Arr::get($options, 'is_open');
         if ($open === '1') {
-            $query->where('is_open', true);
+            $query->open();
         } elseif ($open === '0') {
-            $query->where('is_open', false);
+            $query->open(false);
         }
 
         return $query;
