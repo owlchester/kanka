@@ -95,10 +95,23 @@ $loadedElements = [];
     </ul>
 @empty
     <div class="alert alert-warning">
-        <p>{{ __('timelines.helpers.no_era') }}</p>
+        <div class = "mb-2" >{{ __('timelines.helpers.no_era') }} </div>
+        @can('update', $timeline)  
+        <a href="{{ route('timelines.timeline_eras.create', ['timeline' => $model, 'from' => 'view']) }}" class="btn btn-warning btn-sm">
+            <i class="fa-solid fa-plus"></i> {{ __('timelines/eras.actions.add') }}
+        </a>
+        @endcan
     </div>
 @endforelse
-
+@if (!$timeline->eras->isEmpty())
+    @can('update', $timeline)
+        <div class="text-center mb-5">
+            <a href="{{ route('timelines.timeline_eras.create', ['timeline' => $model, 'from' => 'view']) }}" class="btn btn-primary btn-sm">
+                <i class="fa-solid fa-plus"></i> {{ __('timelines/eras.actions.add') }}
+            </a>
+        </div>
+    @endcan
+@endif
 
 
 @if(!isset($printing) && auth()->check())
