@@ -25,7 +25,7 @@
                         <h1 class="mb-3">{!! $user->displayName() !!}</h1>
                         @if ($user->isBanned())
                             <div class="alert alert-warning">
-                                {{__('users/profile.fields.banned')}} 
+                                {{__('users/profile.fields.banned')}}
                             </div>
                         @endif
                         @if (!empty($user->profile['bio']))
@@ -112,7 +112,7 @@
                     </div>
                     <div class="col-md-3">
 
-                        <div class="card">
+                        <div class="card mb-5">
                             <div class="card-body mx-auto text-center">
                                     <p>
                                         {!! __('users/profile.fields.member_since', ['date' => '<br />' . $user->created_at->format('M d, Y')]) !!}
@@ -131,6 +131,9 @@
     ]) !!}</p>
                             </div>
                         </div>
+
+
+                        @includeWhen($user->hasAchievements(), 'users._badges')
                     </div>
                 </div>
 

@@ -702,6 +702,27 @@ ul.pagination {
     transform: scale(1.1) rotate(8deg);
   }
 }
+.profile-badges {
+  .badge {
+    padding: 0.6rem;
+    font-size: 1.5rem;
+    border-radius: 9999px;
+    background-color: hsl(35, 68%, 49%);
+    color: white;
+
+    &:hover, &:focus, &:active {
+      transition: all 0.5s;
+      background-color: hsl(35, 96%, 38%);
+    }
+  }
+  .badge-wordsmith {
+    background-color: hsl(209, 26%, 56%);
+
+    &:hover, &:focus, &:active {
+      background-color: hsl(204, 32%, 42%);
+    }
+  }
+}
 
 /* Hover Effects on Card */
 

@@ -533,4 +533,13 @@ class User extends \Illuminate\Foundation\Auth\User
     {
         return ($this->banned_until && $this->banned_until->isFuture());
     }
+
+    /**
+     * Determine if the user has achievements to display on their profile page
+     * @return bool
+     */
+    public function hasAchievements(): bool
+    {
+        return false;
+    }
 }
