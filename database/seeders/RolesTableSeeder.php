@@ -53,5 +53,12 @@ class RolesTableSeeder extends Seeder
                     'display_name' => 'Partner',
                 ])->save();
         }
+
+        $role = Role::firstOrNew(['name' => 'wordsmith']);
+        if (!$role->exists) {
+            $role->fill([
+                    'display_name' => 'Wordsmith',
+                ])->save();
+        }
     }
 }
