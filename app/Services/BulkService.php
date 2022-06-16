@@ -91,9 +91,8 @@ class BulkService
             $entity = $model->find($id);
             if (auth()->user()->can('delete', $entity)) {
                 //dd($entity->descendants);
-                if (request()->delete_mirrored && $entity->mirror_id){
-                    $mirror = $model->find($entity->mirror_id);
-                    $mirror->delete();
+                if (request()->delete_mirrored && $entity->mirror){
+                    $entity->mirror->delete();
                     $this->count++;
                 }
                 $entity->delete();
