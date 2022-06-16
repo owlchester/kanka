@@ -94,11 +94,32 @@ $loadedElements = [];
     @endcan
     </ul>
 @empty
+    @php
+    $position = 0;
+    @endphp
     <div class="alert alert-warning">
-        <p>{{ __('timelines.helpers.no_era') }}</p>
+        <p>{{ __('timelines.helpers.no_era') }} </p>
+        @can('update', $timeline)
+        <br>  
+        <a href="{{ route('timelines.timeline_eras.create', ['timeline' => $model, 'from' => 'view']) }}" class="btn btn-warning btn-sm"
+            data-url="{{ route('timelines.timeline_eras.create', ['timeline' => $model]) }}"
+            data-backdrop="static">
+            <i class="fa-solid fa-plus"></i> {{ __('timelines/eras.actions.add') }}
+        </a>
+        @endcan
     </div>
 @endforelse
-
+@if($position)
+    @can('update', $timeline)
+        <div class="text-center mb-5">
+            <a href="{{ route('timelines.timeline_eras.create', ['timeline' => $model, 'from' => 'view']) }}" class="btn btn-primary btn-sm"
+                data-url="{{ route('timelines.timeline_eras.create', ['timeline' => $model]) }}"
+                data-backdrop="static">
+                <i class="fa-solid fa-plus"></i> {{ __('timelines/eras.actions.add') }}
+            </a>
+        </div>
+    @endcan
+@endif
 
 
 @if(!isset($printing) && auth()->check())

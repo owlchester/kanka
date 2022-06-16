@@ -47,12 +47,12 @@ class TimelineEraController extends Controller
     public function create(Timeline $timeline)
     {
         $this->authorize('update', $timeline);
-
         $ajax = request()->ajax();
+        $from = request()->get('from') == 'view' ? 'view' : null;
 
         return view(
             'timelines.eras.create',
-            compact('timeline', 'ajax')
+            compact('timeline', 'ajax', 'from')
         );
     }
 
@@ -76,10 +76,14 @@ class TimelineEraController extends Controller
         $data['timeline_id'] = $timeline->id;
         $new = $model->create($data);
 
+        if (request()->post('from') == 'view') {
+            return redirect()
+                ->route('timelines.show', [$timeline, '#' . $new->id])
+                ->withSuccess(__('timelines/eras.create.success', ['name' => $new->name]));
+        }
         return redirect()
             ->route('timelines.edit', [$timeline, '#tab_form-eras'])
             ->withSuccess(__('timelines/eras.create.success', ['name' => $new->name]));
-
     }
 
     /**

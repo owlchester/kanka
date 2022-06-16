@@ -40,7 +40,9 @@ __('timelines/eras.create.title')
                     <button class="btn btn-success" disabled><i class="fa-solid fa-spinner fa-spin"></i></button>
                 </div>
             </div>
-
+            @if (!empty($from))
+                <input type="hidden" name="from" value="{{ $from }}">
+            @endif
             {!! Form::close() !!}
         </div>
     </div>
