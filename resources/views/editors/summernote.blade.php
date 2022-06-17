@@ -36,8 +36,8 @@
         data-gallery-deselect-all="{{ __('voyager.generic.deselect_all') }}"
         data-gallery-error="generic.gallery.error"
 @if(isset($campaign) && $campaign->campaign() !== null)
-        data-gallery="{{ $campaign->campaign()->boosted(true) ? route('campaign.gallery.summernote') : null }}"
-    @if($campaign->campaign()->boosted(true)) data-gallery-upload="{{ route('campaign.gallery.ajax-upload') }}" @endif
+        data-gallery="{{ $campaign->campaign()->superboosted() ? route('campaign.gallery.summernote') : null }}"
+    @if($campaign->campaign()->superboosted()) data-gallery-upload="{{ route('campaign.gallery.ajax-upload') }}" @endif
 @endif
 @if (!empty($model) && !($model instanceof \App\Models\Campaign) && $model->entity)        data-attributes="{{ route('search.attributes', $model->entity) }}"
 @elseif (!empty($entity))        data-attributes="{{ route('search.attributes', $entity) }}"

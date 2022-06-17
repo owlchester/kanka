@@ -86,7 +86,7 @@ class EntityResource extends JsonResource
                 $data['child'] = 'Invalid child, please contact Jay on Discord with the following: EntityResource for #' . $entity->id;
             } else {
                 $campaign = CampaignLocalization::getCampaign();
-                $image = $campaign->boosted(true) && !empty($entity->image);
+                $image = $campaign->superboosted() && !empty($entity->image);
                 $data['child'] = [
                     'image' => $image ? $entity->image->path : $entity->child->image,
                     'image_full' => $image ? Img::resetCrop()->url($entity->image->path) : $entity->avatar(),
@@ -123,7 +123,7 @@ class EntityResource extends JsonResource
 
         $galleryImage = $misc->entity->image;
         $campaign = CampaignLocalization::getCampaign();
-        $superboosted = $campaign->boosted(true);
+        $superboosted = $campaign->superboosted();
         $boosted = $campaign->boosted();
 
         $merged = [

@@ -52,7 +52,7 @@
                                 {{ $log->created_at->diffForHumans() }}
                             </td>
                             <td class="text-right">
-                                @if ($campaign->boosted(true))
+                                @if ($campaign->superboosted())
                                     @if(!empty($log->changes))
                                         <a href="#log-{{ $log->id }}" data-toggle="collapse">
                                             <i class="fa-solid fa-scroll" aria-hidden="true"></i>
@@ -68,7 +68,7 @@
                             </td>
                         </tr>
 
-                        @if ($campaign->boosted(true) && !empty($log->changes))
+                        @if ($campaign->superboosted() && !empty($log->changes))
                         <tr id="log-{{ $log->id }}" class="collapse">
                             <td colspan="4">
                                 <dl class="dl-horizontal">
@@ -81,7 +81,7 @@
                         </tr>
                         @endif
                     @endforeach
-                    @if (!$campaign->boosted(true))
+                    @if (!$campaign->superboosted())
                     <tr id="log-cta" class="collapse">
                         <td colspan="4">
                                 <p class="help-block">{!! __('entities/logs.call-to-action', [

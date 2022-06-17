@@ -14,7 +14,7 @@ $conversation = $entity->child;
     @elseif ($entity->child->image)
         class="panel-heading panel-heading-entity"
         style="background-image: url('{{ $entity->child->getImageUrl() }}')"
-    @elseif($campaign->boosted(true) && !empty($entity->image))
+    @elseif($campaign->superboosted() && !empty($entity->image))
         class="panel-heading panel-heading-entity"
         style="background-image: url('{{ Img::crop(1200, 400)->url($entity->image->path) }}')"
     @else

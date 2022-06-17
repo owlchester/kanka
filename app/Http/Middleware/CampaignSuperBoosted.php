@@ -23,7 +23,7 @@ class CampaignSuperBoosted
             return redirect()->route('home');
         }
 
-        if (!$campaign->boosted(true)) {
+        if (!$campaign->superboosted()) {
             if ($request->is('api/*')) {
                 return response()->json([
                     'error' => 'This feature is reserved to superboosted campaigns.'

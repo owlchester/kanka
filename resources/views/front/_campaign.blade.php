@@ -14,7 +14,7 @@ $width = $featured ? 350 : 200;
                     @endif
                     @if ($campaign->boosted())
                         <i class="fa-solid fa-rocket" title="{{ __('front.campaigns.public.filters.is-boosted') }}" data-toggle="tooltip"></i>
-                    @elseif ($campaign->boosted(true))
+                    @elseif ($campaign->superboosted())
                         <i class="fa-solid fa-rocket" title="{{ __('front.campaigns.public.filters.is-superboosted') }}" data-toggle="tooltip"></i>
                     @endif
                 </div>

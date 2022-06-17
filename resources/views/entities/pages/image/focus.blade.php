@@ -25,7 +25,7 @@
         <div class="box-body">
 
             @if ($campaign->campaign()->boosted())
-                @if($campaign->campaign()->boosted(true) && empty($model->image) && !empty($entity->image_uuid))
+                @if($campaign->campaign()->superboosted() && empty($model->image) && !empty($entity->image_uuid))
                     <p class="alert alert-warning">
                         {{ __('entities/image.focus.warning') }}
                     </p>

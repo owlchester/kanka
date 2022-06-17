@@ -86,7 +86,7 @@ class ImageController extends Controller
             []
         );
 
-        if ($entity->campaign->boosted(true)) {
+        if ($entity->campaign->superboosted()) {
             if (request()->has('entity_image_uuid')) {
                 $entity->image_uuid = request()->get('entity_image_uuid');
             } else {

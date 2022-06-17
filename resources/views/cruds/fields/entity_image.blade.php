@@ -2,7 +2,7 @@
     <i class="fa-solid fa-rocket" title="{{ __('crud.tooltips.boosted_feature') }}" data-toggle="tooltip"></i>
     {{ __('fields.gallery-image.title') }}
 </label>
-@if ($campaign->campaign()->boosted(true))
+@if ($campaign->campaign()->superboosted())
     @php
     $preset = null;
     if (isset($model) && $model->entity && $model->entity->image_uuid) {

@@ -399,7 +399,7 @@ class Campaign extends MiscModel
      */
     public function maxEntityFiles(): int
     {
-        if ($this->boosted(true)) {
+        if ($this->superboosted()) {
             return config('entities.max_entity_files_superboosted');
         }
         if ($this->boosted()) {

@@ -24,13 +24,13 @@ $customName = !empty($widget->conf('text')) ? str_replace('{name}', $model->name
     @if ($widget->conf('entity-header') && $campaign->boosted() && $entity->header_image)
         class="panel-heading panel-heading-entity"
         style="background-image: url('{{ $entity->getImageUrl(1200, 400, 'header_image') }}')"
-    @elseif ($widget->conf('entity-header') && $campaign->boosted(true) && $entity->header)
+    @elseif ($widget->conf('entity-header') && $campaign->superboosted() && $entity->header)
         class="panel-heading panel-heading-entity"
         style="background-image: url('{{ Img::crop(1200, 400)->url($entity->header->path) }}')"
     @elseif ($model->image)
         class="panel-heading panel-heading-entity"
         style="background-image: url('{{ $widget->entity->child->getImageUrl() }}')"
-    @elseif($campaign->boosted(true) && !empty($entity->image))
+    @elseif($campaign->superboosted() && !empty($entity->image))
         class="panel-heading panel-heading-entity"
         style="background-image: url('{{ Img::crop(1200, 400)->url($entity->image->path) }}')"
     @else
