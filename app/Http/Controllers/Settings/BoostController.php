@@ -52,7 +52,7 @@ class BoostController extends Controller
             CampaignCache::campaign($campaign);
             $this->authorize('access', $campaign);
 
-            if ($campaign->boosted(true)) {
+            if ($campaign->superboosted()) {
                 return redirect()
                     ->route('settings.boost');
             }

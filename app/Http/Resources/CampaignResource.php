@@ -54,7 +54,7 @@ class CampaignResource extends JsonResource
             'default_images' => $campaign->default_images,
             'follower' => $campaign->follower,
             'boosted' => $campaign->boosted(),
-            'superboosted' => $campaign->boosted(true)
+            'superboosted' => $campaign->superboosted()
         ];
 
         CampaignCache::campaign($campaign)->user(auth()->user());

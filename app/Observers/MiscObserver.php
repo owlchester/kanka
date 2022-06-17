@@ -210,7 +210,7 @@ abstract class MiscObserver
             $log->impersonated_by = Identity::getImpersonatorId();
             $log->action = EntityLog::ACTION_UPDATE;
             // Full logs for superboosted campaigns. RIP sql server
-            if ($model->campaign->boosted(true)) {
+            if ($model->campaign->superboosted()) {
                 $logs = [];
                 $dirty = $model->getDirty();
                 foreach ($dirty as $attribute => $value) {

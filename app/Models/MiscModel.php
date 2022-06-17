@@ -240,7 +240,7 @@ abstract class MiscModel extends Model
         }
 
         $entity = $this->cachedEntity !== false ? $this->cachedEntity : $this->entity;
-        if ($campaign->boosted(true) && !empty($entity->image))  {
+        if ($campaign->superboosted() && !empty($entity->image))  {
             return Img::crop(40, 40)->url($entity->image->path);
         }
         elseif ($campaign->boosted() && Arr::has(CampaignCache::defaultImages(), $this->getEntityType())) {
@@ -661,7 +661,7 @@ abstract class MiscModel extends Model
 
         // Entity header?
         $campaign = CampaignLocalization::getCampaign();
-        $superboosted = $campaign->boosted(true);
+        $superboosted = $campaign->superboosted();
 
         if($campaign->boosted() && $this->entity->hasHeaderImage($superboosted)) {
             $classes[] = 'entity-with-banner';

@@ -13,7 +13,7 @@ $imageUrl = $imagePath = null;
 if ($model->image) {
     $imageUrl = $model->getOriginalImageUrl();
     $imagePath = $model->getImageUrl(250, 250);
-} elseif ($campaign->campaign()->boosted(true) && !empty($entity) && $entity->image) {
+} elseif ($campaign->campaign()->superboosted() && !empty($entity) && $entity->image) {
     $imageUrl = $entity->image->getUrl();
     $imagePath = Img::crop(250, 250)->url($entity->image->path);
 }
@@ -31,7 +31,7 @@ if (auth()->check() && auth()->user()->isAdmin()) {
     $buttonsClass ++;
 }
 
-$superboosted = $campaign->campaign()->boosted(true);
+$superboosted = $campaign->campaign()->superboosted();
 
 $hasBanner = false;
 if($campaign->campaign()->boosted() && $entity->hasHeaderImage($superboosted)) {
@@ -73,7 +73,7 @@ if($campaign->campaign()->boosted() && $entity->hasHeaderImage($superboosted)) {
                     </a>
                 </li>
                 <li>
-                    @if ($campaign->campaign()->boosted(true))
+                    @if ($campaign->campaign()->superboosted())
                     <a href="{{ route('entities.image.focus', $model->entity) }}">
                         {{ __('entities/image.actions.change_focus') }}
                     </a>
