@@ -133,4 +133,16 @@ class AuthController extends Controller
 
         return redirect()->route('home');
     }
+
+    /**
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function loginAsUser(User $user)
+    {
+        if (config('auth.user_list')) {
+            Auth::login($user, true);
+            return redirect()->route('home');
+        }
+        return redirect()->route('login');
+    }
 }
