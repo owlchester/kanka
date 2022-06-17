@@ -35,7 +35,7 @@ $defaultIndex = ($currentCampaign && $currentCampaign->defaultToNested()) || aut
                 <li class="quick-creator-element ab-testing-b" style="display: none" data-toggle="tooltip" title="{{ __('entities.creator.tooltip') }}">
                     <div data-url="{{ route('entity-creator.selection') }}" data-toggle="ajax-modal" data-target="#entity-modal" class="quick-creator-button my-auto">
                         <i class="fa-solid fa-plus"></i>
-                        {{ __('crud.actions.new') }}
+                        <span>{{ __('crud.actions.new') }}</span>
                     </div>
                 </li>
                 @endif
@@ -93,10 +93,10 @@ $defaultIndex = ($currentCampaign && $currentCampaign->defaultToNested()) || aut
     </aside>
     @if (auth()->check() && $currentCampaign->userIsMember())
         <section class="sidebar-creator">
-            <a href="#" data-url="{{ route('entity-creator.selection') }}" data-toggle="ajax-modal" data-target="#entity-modal" class="quick-creator-button flex items-center justify-center">
-                <i class="flex-none  fa-solid fa-plus ml-2" aria-hidden="true"></i>
+            <a href="#" data-url="{{ route('entity-creator.selection') }}" data-toggle="ajax-modal" data-target="#entity-modal" class="quick-creator-button flex items-center justify-center px-2">
+                <i class="flex-none  fa-solid fa-plus" aria-hidden="true"></i>
                 <span class="flex-grow"  data-toggle="tooltip" title="{{ __('entities.creator.tooltip') }}">{{ __('sidebar.new-entity') }}</span>
-                <span class="mr-2 flex-none keyboard-shortcut pull-right" data-toggle="tooltip" title="{!! __('crud.keyboard-shortcut', ['code' => '<code>N</code>']) !!}" data-html="true">N</span>
+                <span class="flex-none keyboard-shortcut pull-right" data-toggle="tooltip" title="{!! __('crud.keyboard-shortcut', ['code' => '<code>N</code>']) !!}" data-html="true">N</span>
             </a>
         </section>
     @endif
