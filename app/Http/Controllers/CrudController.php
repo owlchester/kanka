@@ -26,70 +26,38 @@ class CrudController extends Controller
 {
     use GuestAuthTrait, BulkControllerTrait;
 
-    /**
-     * The view where to find the resources
-     *
-     * @var string
-     */
+    /** @var string The view where to find the resources */
     protected $view = '';
 
-    /**
-     * The name of the route for the resource
-     *
-     * @var string
-     */
+    /** @var string The name of the route for the resource */
     protected $route = '';
 
-    /**
-     * @var Model
-     */
+    /** @var MiscModel|Model */
     protected $model = null;
 
-    /**
-     * Extra actions in the index view
-     *
-     * @var array
-     */
+    /** @var array Extra actions in the index view */
     protected $indexActions = [];
 
-    /**
-     * @var array
-     */
+    /** @var array */
     protected $filters = [];
     protected $filter;
 
-    /**
-     * @var FilterService
-     */
+    /** @var FilterService */
     protected $filterService;
 
-    /**
-     * If the permissions tab and pane is enabled or not.
-     * @var bool
-     */
+    /** @var bool If the permissions tab and pane is enabled or not. */
     protected $tabPermissions = true;
 
-    /**
-     * If the attributes tab and pane is enabled or not.
-     * @var bool
-     */
+    /** @var bool If the attributes tab and pane is enabled or not */
     protected $tabAttributes = true;
 
-    /**
-     * If the copy tab and pane is enabled or not.
-     * @var bool
-     */
+    /** @var bool If the copy tab and pane is enabled or not */
     protected $tabCopy = true;
 
-    /**
-     * If the boosted tab and pane is enabled or not.
-     * @var bool
-     */
+    /** @var bool If the boosted tab and pane is enabled or not */
     protected $tabBoosted = true;
 
-    /**
-     * @var bool Control if the form is "horizontal" (css class)
-     */
+    /** @var bool Control if the form is "horizontal" (css class) */
     protected $horizontalForm = false;
 
     /**
@@ -117,9 +85,7 @@ class CrudController extends Controller
      */
     public function __construct()
     {
-        //$this->middleware('auth');
         $this->middleware('campaign.member');
-
         $this->filterService = new FilterService();
     }
 
@@ -138,8 +104,6 @@ class CrudController extends Controller
      */
     public function crudIndex(Request $request)
     {
-        //$this->authorize('browse', $this->model);
-
         // Check that the module isn't disabled
         $campaign = CampaignLocalization::getCampaign();
         if (!empty($this->module) && !$campaign->enabled($this->module)) {
@@ -151,13 +115,13 @@ class CrudController extends Controller
         }
 
         /** @var MiscModel $model */
-        $model = new $this->model;
+        $model = new $this->model();
         $this->filterService->make($this->view, request()->all(), $model);
         $name = $this->view;
         $langKey = $this->langKey ?? $name;
         $actions = $this->indexActions;
         $filters = $this->filters;
-        $filter = !empty($this->filter) ? new $this->filter : null;
+        $filter = !empty($this->filter) ? new $this->filter() : null;
         $filterService = $this->filterService;
         $nestedView = method_exists($this, 'tree');
         $route = $this->route;
@@ -174,6 +138,7 @@ class CrudController extends Controller
         $datagrid = !empty($this->datagrid) ? new $this->datagrid : null;
 
         $base = $model
+            ->preparedSelect()
             ->preparedWith()
             ->search($this->filterService->search())
             ->order($this->filterService->order())

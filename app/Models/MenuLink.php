@@ -119,7 +119,7 @@ class MenuLink extends MiscModel
      * @param $query
      * @return mixed
      */
-    public function scopePreparedWith($query): Builder
+    public function scopePreparedWith(Builder $query): Builder
     {
         return $query->with([
             'entity',

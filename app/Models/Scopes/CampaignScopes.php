@@ -145,7 +145,7 @@ trait CampaignScopes
      * @param Builder $query
      * @return Builder
      */
-    public function scopePreparedWith($query)
+    public function scopePreparedWith(Builder $query)
     {
         return $query;
     }

@@ -9,6 +9,7 @@ use App\Traits\CalendarDateTrait;
 use App\Traits\CampaignTrait;
 use App\Traits\ExportableTrait;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Builder;
 
 /**
  * Class Quest
@@ -119,7 +120,7 @@ class Quest extends MiscModel
      * @param $query
      * @return mixed
      */
-    public function scopePreparedWith($query)
+    public function scopePreparedWith(Builder $query)
     {
         return $query->with([
             'entity',
@@ -133,6 +134,15 @@ class Quest extends MiscModel
 
             'calendar',
         ]);
+    }
+
+    /**
+     * Only select used fields in datagrids
+     * @return array
+     */
+    public function datagridSelectFields(): array
+    {
+        return ['quest_id', 'character_id', 'is_completed', 'calendar_id', 'calendar_year', 'calendar_month', 'calendar_day'];
     }
 
     /**

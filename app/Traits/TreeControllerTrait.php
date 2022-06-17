@@ -47,6 +47,7 @@ trait TreeControllerTrait
 
         $base = $model
             ->distinct()
+            ->preparedSelect()
             ->preparedWith()
             ->search(request()->get('search'))
             ->order($this->filterService->order());

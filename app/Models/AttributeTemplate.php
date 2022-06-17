@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\Concerns\Acl;
 use App\Models\Concerns\Nested;
 use App\Traits\CampaignTrait;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
@@ -127,6 +128,18 @@ class AttributeTemplate extends MiscModel
     public function setAttributeTemplateIdAttribute($value)
     {
         $this->setParentIdAttribute($value);
+    }
+
+    /**
+     * Performance with for datagrids
+     * @param $query
+     * @return mixed
+     */
+    public function scopePreparedSelect(Builder $query)
+    {
+        return $query
+            ->select(['id', 'name', 'is_private', 'attribute_template_id', 'entity_type_id'])
+            ;
     }
 
 

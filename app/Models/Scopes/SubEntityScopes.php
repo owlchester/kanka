@@ -5,12 +5,14 @@ namespace App\Models\Scopes;
 use App\Facades\CampaignLocalization;
 use App\Models\Campaign;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Arr;
 
 /**
  * Trait SubEntityScopes
  * @package App\Models\Scopes
  *
  * @method static self|Builder preparedWith()
+ * @method static self|Builder preparedSelect()
  * @method static self|Builder recent()
  * @method static self|Builder standardWith()
  * @method static self|Builder withApi()
@@ -20,10 +22,10 @@ trait SubEntityScopes
     /**
      * This call should be adapted in each entity model to add required "with()" statements to the query for performance
      * on the datagrids.
-     * @param $query
-     * @return mixed
+     * @param Builder $query
+     * @return Builder
      */
-    public function scopePreparedWith($query)
+    public function scopePreparedWith(Builder $query)
     {
         return $query->with([
             'entity',
@@ -31,19 +33,33 @@ trait SubEntityScopes
     }
 
     /**
-     * @param $query
-     * @return mixed
+     * @param Builder $query
+     * @return Builder
      */
-    public function scopeRecent($query)
+    public function scopePreparedSelect(Builder $query)
+    {
+        if (!method_exists($this, 'datagridSelectFields')) {
+            return $query;
+        }
+        $defaults = ['id', 'name', 'type', 'image', 'is_private'];
+        $fields = array_merge($defaults, $this->datagridSelectFields());
+        return $query->select($fields);
+    }
+
+    /**
+     * @param Builder $query
+     * @return Builder
+     */
+    public function scopeRecent(Builder $query)
     {
         return $query->orderBy('updated_at', 'desc');
     }
 
     /**
-     * @param $query
-     * @return mixed
+     * @param $Builder query
+     * @return Builder
      */
-    public function scopeStandardWith($query)
+    public function scopeStandardWith(Builder $query)
     {
         return $query->with('entity', 'entitiy.tags');
     }

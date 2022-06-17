@@ -9,6 +9,7 @@ use App\Models\Concerns\SortableTrait;
 use App\Models\Scopes\TagScopes;
 use App\Traits\CampaignTrait;
 use App\Traits\ExportableTrait;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Arr;
 
@@ -135,6 +136,29 @@ class Tag extends MiscModel
     }
 
     /**
+     * @param Builder $query
+     * @return Builder
+     */
+    public function scopePreparedWith(Builder $query)
+    {
+        return $query->with([
+            'tag',
+            'tag.entity',
+            'tags',
+            'descendants',
+        ]);
+    }
+
+    /**
+     * Only select used fields in datagrids
+     * @return array
+     */
+    public function datagridSelectFields(): array
+    {
+        return ['tag_id', 'colour'];
+    }
+
+    /**
      * Detach children when moving this entity from one campaign to another
      */
     public function detach()
@@ -160,7 +184,7 @@ class Tag extends MiscModel
         foreach ($this->entities()->pluck('entities.id')->toArray() as $entity) {
             $children[] = $entity;
         }
-        foreach ($this->descendants as $desc) {
+        foreach ($this->descendants()->with('entities')->get() as $desc) {
             foreach ($desc->entities()->pluck('entities.id')->toArray() as $entity) {
                 $children[] = $entity;
             }

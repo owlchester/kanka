@@ -153,10 +153,10 @@ class Character extends MiscModel
 
     /**
      * Performance with for datagrids
-     * @param $query
-     * @return mixed
+     * @param Builder$ query
+     * @return Builder
      */
-    public function scopePreparedWith($query)
+    public function scopePreparedWith(Builder $query)
     {
         return $query->with([
             'entity',
@@ -165,6 +165,15 @@ class Character extends MiscModel
             'families',
             'races',
         ]);
+    }
+
+    /**
+     * Only select used fields in datagrids
+     * @return array
+     */
+    public function datagridSelectFields(): array
+    {
+        return ['title', 'location_id', 'sex', 'is_dead'];
     }
 
     /**

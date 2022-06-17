@@ -7,6 +7,7 @@ use App\Models\Concerns\Acl;
 use App\Traits\CampaignTrait;
 use App\Traits\ExportableTrait;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Builder;
 
 /**
  * Class Item
@@ -129,7 +130,7 @@ class Item extends MiscModel
      * @param $query
      * @return mixed
      */
-    public function scopePreparedWith($query)
+    public function scopePreparedWith(Builder $query)
     {
         return $query->with([
             'entity',
@@ -139,6 +140,15 @@ class Item extends MiscModel
             'character',
             'character.entity'
         ]);
+    }
+
+    /**
+     * Only select used fields in datagrids
+     * @return array
+     */
+    public function datagridSelectFields(): array
+    {
+        return ['character_id', 'location_id', 'price', 'size'];
     }
 
     /**

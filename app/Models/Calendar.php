@@ -171,6 +171,15 @@ class Calendar extends MiscModel
     }
 
     /**
+     * Only select used fields in datagrids
+     * @return array
+     */
+    public function datagridSelectFields(): array
+    {
+        return ['calendar_id', 'date'];
+    }
+
+    /**
      * @param int $take
      * @return \Illuminate\Database\Eloquent\Collection|\Illuminate\Support\Collection
      */

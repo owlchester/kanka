@@ -12,6 +12,7 @@ use App\Models\Concerns\SortableTrait;
 use App\Models\Scopes\Starred;
 use App\Traits\VisibilityIDTrait;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 
 /**
  * Class Relation
@@ -168,7 +169,7 @@ class Relation extends Model
      * @param $query
      * @return mixed
      */
-    public function scopePreparedWith($query)
+    public function scopePreparedWith(Builder $query)
     {
         return $query
             ->with([
@@ -177,6 +178,18 @@ class Relation extends Model
             ])
             ->has('owner')
             ->has('target')
+        ;
+    }
+
+    /**
+     * Performance with for datagrids
+     * @param $query
+     * @return mixed
+     */
+    public function scopePreparedSelect(Builder $query)
+    {
+        return $query
+            ->select(['id', 'target_id', 'owner_id', 'relation', 'mirror_id', 'is_star', 'attitude', 'visibility_id'])
         ;
     }
 

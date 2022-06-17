@@ -11,7 +11,7 @@ trait TagScopes
      * @param Builder $query
      * @return mixed
      */
-    public function scopePreparedWith($query)
+    public function scopePreparedWith(Builder $query)
     {
         return $query->with([
             'entity',

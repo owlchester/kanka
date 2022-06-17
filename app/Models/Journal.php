@@ -9,6 +9,7 @@ use App\Traits\CalendarDateTrait;
 use App\Traits\CampaignTrait;
 use App\Traits\ExportableTrait;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Builder;
 
 /**
  * Class Journal
@@ -117,7 +118,7 @@ class Journal extends MiscModel
      * @param $query
      * @return mixed
      */
-    public function scopePreparedWith($query)
+    public function scopePreparedWith(Builder $query)
     {
         return $query->with([
             'entity',
@@ -127,6 +128,15 @@ class Journal extends MiscModel
             'journal', 'journal.entity',
             'calendar',
         ]);
+    }
+
+    /**
+     * Only select used fields in datagrids
+     * @return array
+     */
+    public function datagridSelectFields(): array
+    {
+        return ['journal_id', 'author_id', 'date', 'calendar_id', 'calendar_year', 'calendar_month', 'calendar_day'];
     }
 
     /**
