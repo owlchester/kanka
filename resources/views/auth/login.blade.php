@@ -13,7 +13,7 @@
 
     <form method="POST" action="{{ route('login') }}">
         {{ csrf_field() }}
-        <div>
+        <ul>
             @if(config('auth.user_list'))
                 @foreach (\App\User::limit(5)->orderBy('last_login_at', 'desc')->get() as $user)
                     <li>
@@ -21,7 +21,7 @@
                     </li>
                 @endforeach
             @endif
-        </div>
+        </ul>
         <div class="form-group has-feedback{{ $errors->has('email') ? ' has-error' : '' }}">
             @if(config('auth.user_list'))
                 <select id="email" name="email" class="form-control">
