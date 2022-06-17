@@ -13,4 +13,7 @@ return [
         'entities_created'  => 'This value is recalculated every day.',
     ],
     'title'     => ':name Profile',
+    'achievements'  =>[
+        'wordsmith'     => 'A true wordsmith! Winner of a worldbuilding prompt.'
+    ],
 ];
