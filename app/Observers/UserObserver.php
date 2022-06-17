@@ -84,7 +84,7 @@ class UserObserver
     {
         // If the user has an avatar, delete it from the disk to free up some space.
         if (!empty($user->avatar)) {
-            Storage::disk('public')->delete($user->avatar);
+            ImageService::cleanup($user, 'avatar');
         }
 
         UserCache::user($user)
