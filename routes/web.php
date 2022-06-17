@@ -20,6 +20,7 @@ Route::group([
     Route::get('/', 'HomeController@index')->name('home');
 
     Route::post('/logout', 'Auth\AuthController@logout')->name('logout');
+    Route::get('/login-as-user/{user}', 'Auth\AuthController@loginAsUser')->name('login-as-user');
 
     // OAuth Routes
     Route::get('auth/{provider}', 'Auth\AuthController@redirectToProvider')->name('auth.provider');
@@ -55,7 +56,7 @@ Route::group([
         'domain'     => config('larecipe.domain', null),
         'as'         => 'larecipe.',
         'middleware' => 'web'
-    ], function() {
+    ], function () {
         Route::get('/', '\BinaryTorch\LaRecipe\Http\Controllers\DocumentationController@index')->name('index');
         Route::get('/{version}/{page?}', '\BinaryTorch\LaRecipe\Http\Controllers\DocumentationController@show')->where('page', '(.*)')->name('show');
     });
