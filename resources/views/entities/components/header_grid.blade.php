@@ -9,7 +9,7 @@ if (!isset($entity)) {
     $entity = $model->entity;
 }
 
-$imageUrl = $imagePath = null;
+$imageUrl = $imagePath = $headerImageUrl =null;
 if ($model->image) {
     $imageUrl = $model->getOriginalImageUrl();
     $imagePath = $model->getImageUrl(250, 250);
@@ -36,13 +36,14 @@ $superboosted = $campaign->campaign()->boosted(true);
 $hasBanner = false;
 if($campaign->campaign()->boosted() && $entity->hasHeaderImage($superboosted)) {
     $hasBanner = true;
+    $headerImageUrl = $entity->getHeaderUrl($superboosted);
 }
 
 ?>
 
 <div class="entity-header @if ($hasBanner) with-entity-banner @endif">
     @if ($hasBanner)
-        <div class="entity-banner" style="background-image: url('{{ $entity->getHeaderUrl($superboosted) }}');">
+        <div class="entity-banner" style="background-image: url('{{ $headerImageUrl }}');">
         </div>
     @endif
 
@@ -286,4 +287,17 @@ if($campaign->campaign()->boosted() && $entity->hasHeaderImage($superboosted)) {
             @endif
         </article>
     </dialog>
+@endsection
+
+
+@section('styles')
+    @parent
+    <style>
+        /** Entity attributes **/
+        :root {
+            --entity-image-url: {{$imageUrl}};
+            --entity-header-image-url: {{$headerImageUrl}};
+        }
+        
+    </style>
 @endsection
