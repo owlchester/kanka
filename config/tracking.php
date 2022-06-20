@@ -29,12 +29,6 @@ return [
     'fb' => env('TRACKING_FB'),
 
     /*
-     * Reddit tracking pixel on homepage for reddit ads
-     * If empty, tracking will be disabled
-     */
-    'reddit' => env('TRACKING_REDDIT'),
-
-    /*
      * AdSense ID
      */
     'adsense' => env('TRACKING_ADSENSE'),
@@ -44,11 +38,6 @@ return [
     'adsense_footer' => env('TRACKING_ADSENSE_FOOTER'),
 
     /*
-     * Hotjar tracking
-     */
-    'hotjar' => env('TRACKING_HOTJAR'),
-
-    /**
      * Google optimize
      */
     'optimize' => env('TRACKING_OPTIMIZE')

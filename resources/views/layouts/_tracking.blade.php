@@ -62,29 +62,6 @@
             currency: 'USD',
         });
         @endif
-        @if (!empty(config('tracking.reddit')))
-        rdt('track', 'SignUp');
-        @endif
-    </script>
-@endif
-@if (!empty(config('tracking.reddit')))
-    <!-- Reddit Pixel -->
-    <script>
-        !function(w,d){if(!w.rdt){var p=w.rdt=function(){p.sendEvent?p.sendEvent.apply(p,arguments):p.callQueue.push(arguments)};p.callQueue=[];var t=d.createElement("script");t.src="https://www.redditstatic.com/ads/pixel.js",t.async=!0;var s=d.getElementsByTagName("script")[0];s.parentNode.insertBefore(t,s)}}(window,document);rdt('init','{{ config('tracking.reddit') }}');rdt('track', 'PageVisit');
-    </script>
-@endif
-
-@if(!empty(config('tracking.hotjar')))
-    <!-- Hotjar Tracking Code for http://kanka.io/ -->
-    <script>
-        (function(h,o,t,j,a,r){
-            h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
-            h._hjSettings={hjid:{{ config('tracking.hotjar') }},hjsv:6};
-            a=o.getElementsByTagName('head')[0];
-            r=o.createElement('script');r.async=1;
-            r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
-            a.appendChild(r);
-        })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
     </script>
 @endif
 
