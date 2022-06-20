@@ -33,10 +33,14 @@ return [
     'clear'             => [
         'action'    => 'Limpar tudo',
         'success'   => 'Notificações removidas.',
+        'title'     => 'Limpar notificações',
     ],
     'header'            => 'Você tem :count notificações.',
     'index'             => [
         'title' => 'Notificações',
+    ],
+    'map'               => [
+        'chunked'   => 'Mapa :name terminou de fragmentar e agora está pronto para uso.',
     ],
     'no_notifications'  => 'Não há notificações no momento.',
     'subscriptions'     => [

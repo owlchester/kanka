@@ -28,7 +28,6 @@ return [
         'status'    => 'Státusz',
         'type'      => 'Bővítmény típusa',
     ],
-    'helper'        => 'A Kanka közössége folyamatosan gyártja a menő bővítményeket a piactéren. Ha a kampányod megerősített, tudsz bővítményeket telepíteni a piactérről. Ezen a felületen tudod eltávolítani a kapmányod bővítményeit.',
     'import'        => [
         'created'   => 'Az alábbi entitásokat hoztuk létre:',
         'success'   => '{1} :count entitást importáltunk a :plugin bővítményből.|[2,*] :count entitást importáltunk a :plugin bővítményből.',

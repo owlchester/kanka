@@ -2,6 +2,12 @@
 
 return [
     'actions'       => [
+        'bulks'             => [
+            'disable'   => 'Desabilitar plugins',
+            'enable'    => 'Habilitar plugins',
+            'update'    => 'Atualizar plugins',
+        ],
+        'changelog'         => 'Histórico de registros',
         'disable'           => 'Desativar plug-in',
         'enable'            => 'Ativar plug-in',
         'go_to_marketplace' => 'Ir para o Mercado',
@@ -28,7 +34,6 @@ return [
         'status'    => 'Status',
         'type'      => 'Tipo de plug-in',
     ],
-    'helper'        => 'A comunidade Kanka está constantemente criando plug-ins incríveis em nosso mercado. Se sua campanha for impulsionada, você pode instalar plug-ins do marketplace. Use esta interface para desinstalar plug-ins em sua campanha.',
     'import'        => [
         'button'                => 'Importar',
         'created'               => 'Criada as seguintes entidades:',

@@ -6,13 +6,14 @@ return [
         'mode-table'    => 'Table of relations and connections',
     ],
     'bulk'              => [
-        'delete'    => '{1} Deleted :count relation.|[2,*] Deleted :count relations.',
-        'success'   => [
+        'delete'            => '{1} Deleted :count relation.|[2,*] Deleted :count relations.',
+        'delete_mirrored'   => 'Also delete mirrored relations.',
+        'success'           => [
             'editing'           => '{1} :count relation was updated.|[2,*] :count relation were updated.',
             'editing_partial'   => '{1} :count/:total relation was updated.|[2,*] :count/:total relation were updated.',
         ],
-        'delete_mirrored'      => 'Also delete mirrored relations.',
     ],
+    'call-to-action'    => 'Visually explore the relations of this entity and how it\'s connected to the rest of the campaign.',
     'connections'       => [
         'map_point'         => 'Map point',
         'mention'           => 'Mention',
@@ -76,7 +77,6 @@ return [
     'show'              => [
         'title' => ':name Connections',
     ],
-    'call-to-action'    => 'Visually explore the relations of this entity and how it\'s connected to the rest of the campaign.',
     'types'             => [
         'family_member'         => 'Family member',
         'organisation_member'   => 'Organisation Member',

@@ -19,10 +19,7 @@ return [
         'is_shown'  => 'Pokaż kategorię znaczników',
         'position'  => 'Kolejność',
     ],
-    'helper'        => [
-        'amount'            => 'Znacznik można przypisać do kategorii, co pozwala na przykład wyświetlić albo ukryć wszystkie sklepy w mieście. Mapa może posiadać do :amount kategorii.',
-        'boosted_campaign'  => 'Mapa :boosted może zawierać do :amount kategorii.',
-    ],
+    'helper'        => [],
     'hints'         => [
         'is_shown'  => 'Zaznacz, by ta kategoria znaczników wyświetlała się na mapie domyślnie.',
     ],

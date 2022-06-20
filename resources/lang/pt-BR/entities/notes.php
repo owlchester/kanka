@@ -46,4 +46,8 @@ return [
         'advanced'  => 'Permissões Avançadas',
         'title'     => 'Nota :name de :entity',
     ],
+    'states'        => [
+        'collapsed' => 'Recolhido',
+        'expanded'  => 'Expandido',
+    ],
 ];

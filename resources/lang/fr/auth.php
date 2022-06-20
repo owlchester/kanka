@@ -13,6 +13,10 @@ return [
     |
     */
 
+    'banned'    => [
+        'permanent' => 'Ton compte a été désactivé.',
+        'temporary' => '{1} Ton compte est désactivé pour :days jour.|[2,*] Ton compte est désactivé pour :days jours.',
+    ],
     'confirm'   => [
         'confirm'   => 'Confirmer',
         'error'     => 'Mot de passe invalid, merci de ressayer.',

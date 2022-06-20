@@ -45,10 +45,7 @@ return [
         'personality_visible'       => 'Sekce s popisem osobnosti postavy je nyní dostupná všem uživatelům.',
     ],
     'index'         => [
-        'actions'   => [
-            'random'    => 'Nová náhodná postava',
-        ],
-        'title'     => 'Postavy',
+        'title' => 'Postavy',
     ],
     'items'         => [
         'hint'  => 'Předměty přiřazené postavám se zobrazí zde.',

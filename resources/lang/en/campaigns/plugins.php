@@ -57,7 +57,7 @@ return [
         'updates'       => 'Updates',
         'your_version'  => 'Your version',
     ],
-    'pitch' => 'Install and manage plugins from the :marketplace.',
+    'pitch'         => 'Install and manage plugins from the :marketplace.',
     'status'        => [
         'disabled'  => 'Disabled',
         'enabled'   => 'Enabled',

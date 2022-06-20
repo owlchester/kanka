@@ -18,6 +18,10 @@ return [
         'template'              => 'Modelo',
         'value'                 => 'Valor',
     ],
+    'filters'       => [
+        'name'  => 'Nome do atributo',
+        'value' => 'Valor do atributo',
+    ],
     'helpers'       => [
         'delete_all'    => 'Tem certeza de que deseja excluir todos os atributos desta entidade?',
         'setup'         => 'Você pode representar elementos como PV ou inteligência de uma entidade com atributos. Adicione atributos manualmente clicando no botão :manage, ou aplique aqueles de um modelo de atributo.',
@@ -28,6 +32,10 @@ return [
     'index'         => [
         'success'   => 'Atributos de :entity atualizados.',
         'title'     => 'Atributos de :name',
+    ],
+    'live'          => [
+        'success'   => 'Atributo :attribute atualizado.',
+        'title'     => 'Atualizando :attribute',
     ],
     'placeholders'  => [
         'attribute' => 'Número de conquistas, Nível de Desafio, Iniciativa, População',
@@ -57,6 +65,7 @@ return [
         'block'     => 'Bloco',
         'checkbox'  => 'Caixa de seleção',
         'icon'      => 'Ícone',
+        'number'    => 'Número',
         'random'    => 'Aleatório',
         'section'   => 'Seção',
         'text'      => 'Texto multilinha',

@@ -28,7 +28,6 @@ return [
         'status'    => 'Estatus',
         'type'      => 'Tipo de plugin',
     ],
-    'helper'        => 'La comunidad de Kanka crea continuamente plugins estupendos para la tienda. Si tienes una campaña mejorada, puedes instalarle plugins de la tienda. Desde aquí puedes desinstalar los plugins de la campaña.',
     'import'        => [
         'button'                => 'Importar',
         'created'               => 'Se han creado las siguientes entidades:',

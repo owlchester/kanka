@@ -14,6 +14,9 @@ return [
     'conversation'          => 'Conversa',
     'conversations'         => 'Conversas',
     'creator'               => [
+        'actions'           => [
+            'create'    => 'Criar :type',
+        ],
         'back'              => 'Voltar para seleção',
         'duplicate'         => 'Já existem outras entidades deste tipo com o mesmo nome.',
         'name'              => [

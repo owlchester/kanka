@@ -28,7 +28,6 @@ return [
         'success_multiple'  => '{1} New entity :link created.|[2,*] New entities :link created.',
         'title'             => 'New Entity',
         'tooltip'           => 'Create a new entity without leaving the current page.',
-        'tooltip-shortcut'  => 'Keyboard shortcut: :code',
     ],
     'dice_roll'             => 'Dice Roll',
     'dice_rolls'            => 'Dice Rolls',

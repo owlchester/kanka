@@ -369,14 +369,7 @@ TEXT
         ],
         'title'     => ':name kampány',
     ],
-    'superboosted'                      => [
-        'gallery'   => [
-            'error' => [
-                'text'  => 'Képek feltöltése a szövegszerkesztőbe csak :superboosted kampányoknál elérhető.',
-                'title' => 'Kampány galéria kép feltöltés',
-            ],
-        ],
-    ],
+    'superboosted'                      => [],
     'ui'                                => [
         'other' => 'Egyéb',
     ],

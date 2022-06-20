@@ -33,10 +33,14 @@ return [
     'clear'             => [
         'action'    => 'Limpar todas',
         'success'   => 'Notificacións eliminadas.',
+        'title'     => 'Limpar notificacións',
     ],
     'header'            => 'Tes :count notificacións',
     'index'             => [
         'title' => 'Notificacións',
+    ],
+    'map'               => [
+        'chunked'   => 'O mapa ":name" terminou de ser fragmentado e xa pode ser usado.',
     ],
     'no_notifications'  => 'Non tes notificacións.',
     'subscriptions'     => [

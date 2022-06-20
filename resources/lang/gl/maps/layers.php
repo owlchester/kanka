@@ -21,9 +21,7 @@ return [
         'type'      => 'Tipo de capa',
     ],
     'helper'        => [
-        'amount'            => 'Podes engadir ata :amount capas nun mapa para alternar a imaxe de fondo mostrada baixo os marcadores.',
-        'boosted_campaign'  => 'As :boosted poden ter ata :amount capas.',
-        'is_real'           => 'As capas non están dispoñibles ao usar OpenStreetMaps.',
+        'is_real'   => 'As capas non están dispoñibles ao usar OpenStreetMaps.',
     ],
     'placeholders'  => [
         'name'      => 'Subsolo, nivel 2, naufraxio...',

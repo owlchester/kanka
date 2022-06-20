@@ -51,10 +51,7 @@ return [
         'personality_visible'       => 'Les traits de personnalités sont visibles pour tous.',
     ],
     'index'         => [
-        'actions'   => [
-            'random'    => 'Nouvelle Personne Aléatoire',
-        ],
-        'title'     => 'Personnes',
+        'title' => 'Personnes',
     ],
     'items'         => [
         'hint'  => 'Des objets peuvent être assignés à des personnages et seront affichés ici.',

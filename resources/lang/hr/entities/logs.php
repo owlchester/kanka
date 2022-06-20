@@ -15,5 +15,4 @@ return [
     'show'          => [
         'title' => 'Zapisi entiteta :name',
     ],
-    'superboosted'  => 'Entiteti ažurirani na :superboosted-campaigns vode cjelovite zapisnike promjena do :amount dana.',
 ];

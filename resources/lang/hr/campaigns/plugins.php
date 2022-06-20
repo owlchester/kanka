@@ -28,7 +28,6 @@ return [
         'status'    => 'Status',
         'type'      => 'Vrsta dodatka',
     ],
-    'helper'        => 'Kanka zajednica neprestano stvara nevjerojatne dodatke na našoj Tržnici. Ako je tvoja kampanja pojačana, dodatke možeš instalirati s Tržnice. Upotrijebi ovo sučelje za deinstalaciju dodataka u kampanji.',
     'import'        => [
         'created'   => 'Stvoreni sljedeći entiteti:',
         'success'   => '{1}Uvezen :count entitet iz dodatka :plugin.|[2,*]Uvezeno :count entiteta iz dodatka :plugin.',

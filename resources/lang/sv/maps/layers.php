@@ -20,10 +20,7 @@ return [
         'position'  => 'Position',
         'type'      => 'Lager typ',
     ],
-    'helper'        => [
-        'amount'            => 'Du kan lägga till upp till :amount lager till en karta för att byta bakgrundsbilden som visas under dina markörer.',
-        'boosted_campaign'  => ':boosted kan ha upp till :amount lager.',
-    ],
+    'helper'        => [],
     'placeholders'  => [
         'name'      => 'Underjorden, Nivå 2, Skeppsvrak',
         'position'  => 'Valfritt fält för att bestämma ordningen som lager visas i.',

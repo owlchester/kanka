@@ -339,14 +339,7 @@ TEXT
         ],
         'title'     => 'Kampanja :name',
     ],
-    'superboosted'                      => [
-        'gallery'   => [
-            'error' => [
-                'text'  => 'Učitavanje  slika u uređivač teksta je značajka dostupna samo :superboosted.',
-                'title' => 'Učitavanje slike galerije kampanje',
-            ],
-        ],
-    ],
+    'superboosted'                      => [],
     'ui'                                => [],
     'visibilities'                      => [
         'private'   => 'Privatna',

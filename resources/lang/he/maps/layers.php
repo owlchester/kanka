@@ -19,10 +19,7 @@ return [
     'fields'        => [
         'position'  => 'מיקום',
     ],
-    'helper'        => [
-        'amount'            => 'ניתן להוסיף עד :amount שכבות לכל מפה כדי להחליף את הרקע המופיע מתחת לסמנים.',
-        'boosted_campaign'  => ':boosted יכולות להוסיף עד :amount שכבות',
-    ],
+    'helper'        => [],
     'placeholders'  => [
         'name'      => 'מתחת לאדמה, קומה 2, חורבות',
         'position'  => 'שדה אופציונלי לבחירת סדר השכבות',

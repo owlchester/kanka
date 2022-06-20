@@ -6,12 +6,14 @@ return [
         'mode-table'    => 'Table des relations et connexions',
     ],
     'bulk'              => [
-        'delete'    => '{1} :count relation supprimée.|[2,*] :count relations supprimées.',
-        'success'   => [
+        'delete'            => '{1} :count relation supprimée.|[2,*] :count relations supprimées.',
+        'delete_mirrored'   => 'Ainsi que la relation miroir.',
+        'success'           => [
             'editing'           => '{1} :count relation modifiée.|[2,*] :count relations modifiées.',
             'editing_partial'   => '{1} :count/:total relation modifiée.|[2,*] :count/:total relations modifiées.',
         ],
     ],
+    'call-to-action'    => 'Explorer visuellement les relations d\'une entité et la manière dont elle est connectée au reste de la campagne.',
     'connections'       => [
         'map_point'         => 'Point de carte',
         'mention'           => 'Mention',
@@ -75,7 +77,6 @@ return [
     'show'              => [
         'title' => 'Relations de :name',
     ],
-    'teaser'            => 'Les campagnes boostées ont accès à l\'explorateur de relation. Cliquer pour en savoir plus sur les campagnes boostées.',
     'types'             => [
         'family_member'         => 'Membre de famille',
         'organisation_member'   => 'Membre d\'organisation',

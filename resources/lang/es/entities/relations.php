@@ -66,7 +66,6 @@ return [
     'show'          => [
         'title' => 'Relaciones de :name',
     ],
-    'teaser'        => 'Mejora la campaña para acceder al mapa de relaciones. Haz clic aquí para saber más sobre las campañas mejoradas.',
     'types'         => [
         'family_member'         => 'Familiar',
         'organisation_member'   => 'Miembro de organización',

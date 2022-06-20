@@ -19,7 +19,6 @@ return [
             'new'       => 'Nieuw Dashboard',
             'switch'    => 'Wissel naar dashboard',
         ],
-        'boosted'       => ':boosted_campaigns kan aangepaste dashboards maken voor elk van de campaign rollen.',
         'create'        => [
             'success'   => 'Nieuw campaign dashboard :name gemaakt.',
             'title'     => 'Nieuw Campaign Dashboard',

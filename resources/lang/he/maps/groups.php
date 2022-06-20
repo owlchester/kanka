@@ -18,10 +18,7 @@ return [
     'fields'        => [
         'position'  => 'מיקום',
     ],
-    'helper'        => [
-        'amount'            => 'ניתן לשייך סמן לקבוצה, לדוגמה כדי להציג או להסתיר את כל החנויות בעיר. ניתן להוסיף עד :amount מפות לכל מפה.',
-        'boosted_campaign'  => ':boosted יכולות להוסיף עד :amount קבוצות.',
-    ],
+    'helper'        => [],
     'placeholders'  => [
         'name'      => 'חנויות, אוצר, NPCs',
         'position'  => 'שדה אופציונלי לבחירת סדר הקבוצות',

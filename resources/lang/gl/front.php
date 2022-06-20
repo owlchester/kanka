@@ -20,9 +20,11 @@ return [
         'public'            => [
             'description'   => 'Bótalle un ollo ás campañas públicas para inspirarte.',
             'filters'       => [
-                'all'       => 'Estatus de potenciación',
-                'boosted'   => 'Campañas potenciadas',
-                'unboosted' => 'Campañas non potenciadas',
+                'all'               => 'Estatus de potenciación',
+                'boosted'           => 'Campañas potenciadas',
+                'is-boosted'        => 'Esta campaña está potenciada!',
+                'is-superboosted'   => 'Esta campaña está superpotenciada!',
+                'unboosted'         => 'Campañas non potenciadas',
             ],
             'no-results'    => 'Non se encontrou ningunha campaña pública con estes filtros. Por favor, inténtao de novo.',
             'title'         => 'Campañas públicas',
@@ -86,6 +88,7 @@ return [
             'recovery'              => 'Recuperación de entidades de ata 30 días',
             'relation-visualiser'   => 'Explora as relacións entre entidades visualmente',
             'sidebar'               => 'Reordena e personaliza a barra lateral da campaña',
+            'standard'              => 'Campaña estándar',
             'theme'                 => 'Tema de campaña fixo',
             'timeline_elements'     => 'Personaliza a icona e cor dos elementos das liñas temporais',
             'title'                 => 'Campañas potenciadas',

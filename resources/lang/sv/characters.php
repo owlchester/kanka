@@ -44,10 +44,7 @@ return [
         'personality_visible'       => 'Personlighetsdrag för denna karaktär är synliga för alla.',
     ],
     'index'         => [
-        'actions'   => [
-            'random'    => 'Ny Slumpad Karaktär',
-        ],
-        'title'     => 'Karktärer',
+        'title' => 'Karktärer',
     ],
     'items'         => [
         'hint'  => 'Föremål kan tilldelas till karaktärer och kommer visas här.',

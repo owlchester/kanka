@@ -19,7 +19,6 @@ return [
             'new'       => 'Nová nástěnka',
             'switch'    => 'Přepnout na nástěnku',
         ],
-        'boosted'       => ':boosted_campaigns mohou vytvářet samostatné nástěnky pro každou z rolí tažení',
         'create'        => [
             'success'   => 'Nová nástěnka :name tažení vytvořena.',
             'title'     => 'Nová nástěnka tažení',
@@ -95,11 +94,10 @@ return [
     ],
     'title'         => 'Nástěnka',
     'widgets'       => [
-        'actions'                   => [
+        'actions'       => [
             'advanced-options'  => 'Pokročilá nastavení',
         ],
-        'advanced_options_boosted'  => ':boosted_campaigns poskytují pokročilé funkce. Například zobrazení členů rodů nebo atributy objektů na nástěnce',
-        'calendar'                  => [
+        'calendar'      => [
             'actions'           => [
                 'next'      => 'Změnit datum na následující den',
                 'previous'  => 'Změnit datum na předchozí den',
@@ -108,16 +106,16 @@ return [
             'previous_events'   => 'Předchozí',
             'upcoming_events'   => 'Následující',
         ],
-        'campaign'                  => [
+        'campaign'      => [
             'helper'    => 'Tato součást ukazuje záhlaví nástěnky a výchozí nástěnka ji vždy obsahuje.',
         ],
-        'create'                    => [
+        'create'        => [
             'success'   => 'Součást nástěnky přidána.',
         ],
-        'delete'                    => [
+        'delete'        => [
             'success'   => 'Součást nástěnky odebrána.',
         ],
-        'fields'                    => [
+        'fields'        => [
             'dashboard'         => 'Nástěnka',
             'name'              => 'Vlastní název součásti nástěnky.',
             'optional-entity'   => 'Odkaz na objekt',
@@ -125,17 +123,17 @@ return [
             'text'              => 'Text',
             'width'             => 'Šířka',
         ],
-        'orders'                    => [
+        'orders'        => [
             'name_asc'  => 'Dle názvu vzestupně',
             'name_desc' => 'Dle názvu sestupně',
             'recent'    => 'Nedávno upravené',
         ],
-        'random'                    => [
+        'random'        => [
             'helpers'   => [
                 'name'  => 'Pomocí {name} lze odkázat na náhodný objekt',
             ],
         ],
-        'recent'                    => [
+        'recent'        => [
             'advanced_filter'   => 'Pokročilý filtr',
             'advanced_filters'  => [
                 'mentionless'   => 'Objekty bez odkazů (neobsahují odkazy na jiné objekty)',
@@ -159,13 +157,13 @@ return [
             'tags'              => 'Filtrovat seznam nedávno upravených objektů dle vybraných štítků.',
             'title'             => 'Nedávno upravené',
         ],
-        'unmentioned'               => [
+        'unmentioned'   => [
             'title' => 'Objekty bez odkazů',
         ],
-        'update'                    => [
+        'update'        => [
             'success'   => 'Součást nástěnky upravena.',
         ],
-        'widths'                    => [
+        'widths'        => [
             '0' => 'Automatická',
             '12'=> 'Plná (100%)',
             '3' => 'Úzká (25%)',

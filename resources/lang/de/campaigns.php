@@ -407,14 +407,7 @@ TEXT
         ],
         'title'     => 'Kampagne :name',
     ],
-    'superboosted'                      => [
-        'gallery'   => [
-            'error' => [
-                'text'  => 'Das Hochladen von Bildern im Texteditor ist eine Funktion, die nur verfügbar ist für: Superboosted.',
-                'title' => 'Hochladen von Kampagnengalerie-Bildern',
-            ],
-        ],
-    ],
+    'superboosted'                      => [],
     'themes'                            => [
         'none'  => 'Keine (standardmäßig Benutzereinstellungen)',
     ],

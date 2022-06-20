@@ -82,6 +82,7 @@ return [
         'delete'        => [
             'confirm'       => 'Ja, lösche meinen Account',
             'delete'        => 'Lösche meinen Account',
+            'goodbye'       => 'Wenn ja, schreiben Sie bitte :code in das Feld unten.',
             'helper'        => 'Durch das Löschen Ihres Kontos werden auch alle Kampagnen gelöscht, bei denen Sie das einzige Mitglied sind. Diese Aktion ist permanent und kann nicht rückgängig gemacht werden.',
             'subscribed'    => 'Bitte kündige dein :subscription , bevor du dein Konto löschst.',
             'title'         => 'Lösche deinen Account',

@@ -19,10 +19,7 @@ return [
         'is_shown'  => 'Visa gruppmarkörer',
         'position'  => 'Position',
     ],
-    'helper'        => [
-        'amount'            => 'En markör kan läggas till i en grupp, vilket t.ex. låter dig visa eller dölja alla Butiker i en stad. En karta kan ha upp till :amount grupper.',
-        'boosted_campaign'  => ':boosted kan ha upp till :amount grupper.',
-    ],
+    'helper'        => [],
     'hints'         => [
         'is_shown'  => 'Om ikryssad, gruppen visas som standard på kartan.',
     ],

@@ -20,10 +20,7 @@ return [
         'position'  => 'Pozicija',
         'type'      => 'Vrsta sloja',
     ],
-    'helper'        => [
-        'amount'            => 'Na kartu možeš dodati do :amount slojeva da bi promijenili pozadinsku sliku prikazanu ispod svojih markera.',
-        'boosted_campaign'  => ':boosted mogu imati do :amount slojeva.',
-    ],
+    'helper'        => [],
     'placeholders'  => [
         'name'      => 'Podzemlje, Razina 2, Olupina broda',
         'position'  => 'Neobavezno polje za postavljanje redoslijeda u kojem se slojevi pojavljuju.',

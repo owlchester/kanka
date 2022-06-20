@@ -39,6 +39,9 @@ return [
     'index'             => [
         'title' => 'Benachrichtigungen',
     ],
+    'map'               => [
+        'chunked'   => 'Karte :name ist mit dem aufteilen fertig und kann jetzt verwendet werden.',
+    ],
     'no_notifications'  => 'Es gibt aktuell keine Benachrichtigungen.',
     'subscriptions'     => [
         'charge_fail'   => 'Bei der Verarbeitung Ihrer Zahlungsmethode ist ein Fehler aufgetreten. Bitte warten Sie einen Moment, während wir es erneut versuchen. Wenn sich nichts ändert, kontaktieren Sie uns bitte.',

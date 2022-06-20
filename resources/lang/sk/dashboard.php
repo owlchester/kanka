@@ -19,7 +19,6 @@ return [
             'new'       => 'Nová nástenka',
             'switch'    => 'Prepnúť na nástenku',
         ],
-        'boosted'       => ':boosted_campaigns môžu mať viacero násteniek pre rôzne role v kampani.',
         'create'        => [
             'success'   => 'Nová nástenka :name kampane vytvorená.',
             'title'     => 'Nová nástenka kampane',
@@ -95,11 +94,10 @@ return [
     ],
     'title'         => 'Nástenka',
     'widgets'       => [
-        'actions'                   => [
+        'actions'       => [
             'advanced-options'  => 'Rozšírené možnosti',
         ],
-        'advanced_options_boosted'  => ':boosted_campaigns majú rozšírené možnosti ako zobrazovanie členov rodov alebo atribútov objektu na nástenke.',
-        'calendar'                  => [
+        'calendar'      => [
             'actions'           => [
                 'next'      => 'Zmeniť dátum na nasledujúci deň',
                 'previous'  => 'Zmeniť dátum na predošlý deň',
@@ -108,16 +106,16 @@ return [
             'previous_events'   => 'Predošlé',
             'upcoming_events'   => 'Nasledujúce',
         ],
-        'campaign'                  => [
+        'campaign'      => [
             'helper'    => 'Tento widget zobrazuje záhlavie kampane. Tento widget je vždy zobrazovaný na štandardnej nástenke.',
         ],
-        'create'                    => [
+        'create'        => [
             'success'   => 'Widget bol pridaný na nástenku.',
         ],
-        'delete'                    => [
+        'delete'        => [
             'success'   => 'Widget bol odstránený z nástenky.',
         ],
-        'fields'                    => [
+        'fields'        => [
             'class'             => 'Trieda CSS',
             'dashboard'         => 'Nástenka',
             'name'              => 'Vlastný názov widgetu',
@@ -126,20 +124,20 @@ return [
             'text'              => 'Text',
             'width'             => 'Šírka',
         ],
-        'helpers'                   => [
+        'helpers'       => [
             'class' => 'Definuj vlastnú triedu CSS priradenú widgetu.',
         ],
-        'orders'                    => [
+        'orders'        => [
             'name_asc'  => 'Názov vzostupne',
             'name_desc' => 'Názov zostupne',
             'recent'    => 'Posledne upravené',
         ],
-        'random'                    => [
+        'random'        => [
             'helpers'   => [
                 'name'  => 'Referencie na náhodný objekt môžeš vložiť pomocou {name}',
             ],
         ],
-        'recent'                    => [
+        'recent'        => [
             'advanced_filter'   => 'Rozšírený filter',
             'advanced_filters'  => [
                 'mentionless'   => 'Neobsahuje referencie (Objekty, ktoré nereferencujú iné)',
@@ -163,17 +161,17 @@ return [
             'tags'              => 'Filtrovať zoznam nedávno upravených objektov podľa určitých tagov.',
             'title'             => 'Nedávno upravené',
         ],
-        'tabs'                      => [
+        'tabs'          => [
             'advanced'  => 'Rozšírené',
             'setup'     => 'Nastavenie',
         ],
-        'unmentioned'               => [
+        'unmentioned'   => [
             'title' => 'Objekty bez referencií',
         ],
-        'update'                    => [
+        'update'        => [
             'success'   => 'Widget bol upravený.',
         ],
-        'widths'                    => [
+        'widths'        => [
             '0' => 'Automatická',
             '12'=> 'Plná (100%)',
             '3' => 'Mini (25%)',

@@ -43,48 +43,10 @@ return [
         'title'     => 'Integración en aplicacións',
     ],
     'boost'         => [
-        'available_boosts'  => 'Potenciadores dispoñíbeis: :amount / :max',
-        'benefits'          => [
-            'headers'   => [
-                'boosted'       => 'Beneficios dunha campaña potenciada',
-                'superboosted'  => 'Beneficios dunha campaña superpotenciada',
-            ],
-            'more'      => [
-                'boosted'       => 'Todas as funcionalidades dunha campaña potenciada',
-                'superboosted'  => 'Todas as funcionalidades dunha campaña superpotenciada',
-            ],
-            'third'     => 'Para potenciar unha campaña, vai á súa páxina e fai clic no botón :boost_button enriba do botón :edit_button.',
-        ],
-        'buttons'           => [
-            'boost'         => 'Potenciar',
-            'superboost'    => 'Superpotenciar',
-            'tooltips'      => [
-                'boost'         => 'Potenciar unha campaña usa :amount dos teus potenciadores',
-                'superboost'    => 'Superpotenciar unha campaña usa :amount dos teus potenciadores',
-            ],
-            'unboost'       => 'Despotenciar',
-        ],
-        'campaigns'         => 'Campañas potenciadas :count / :max',
-        'exceptions'        => [
+        'exceptions'    => [
             'already_boosted'       => 'A campaña ":name" xa está potenciada.',
             'exhausted_boosts'      => 'Non che quedan potenciadores. Elimina o teu potenciador dunha campaña antes de darllo a outra.',
             'exhausted_superboosts' => 'Non che quedan potenciadores. Precisas 3 potenciadores para superpotenciar unha campaña.',
-        ],
-        'modals'            => [
-            'more'  => [
-                'action'    => 'Máis potenciadores?',
-                'body'      => 'Podes obter máis potenciadores aumentando o teu nivel de subscripción, ou despotenciando unha campaña. Despotenciar unha campaña non elimina ningún dato, só os deshabilita ata que a volvas potenciar.',
-                'title'     => 'Conseguir máis potenciadores',
-            ],
-        ],
-        'success'           => [
-            'boost'         => 'Campaña ":name" potenciada.',
-            'delete'        => 'Quitouse o teu potenciador de ":name".',
-            'superboost'    => 'Campaña ":name" superpotenciada.',
-        ],
-        'title'             => 'Potenciar',
-        'unboost'           => [
-            'title' => 'Despotenciando unha campaña',
         ],
     ],
     'countries'     => [
@@ -123,10 +85,12 @@ return [
     'menu'          => [
         'account'               => 'Conta',
         'api'                   => 'API',
+        'appearance'            => 'Aparencia',
         'apps'                  => 'Aplicacións',
         'billing'               => 'Método de pagamento',
         'boosters'              => 'Potenciadores',
         'invoices'              => 'Facturas',
+        'notifications'         => 'Notificacións',
         'other'                 => 'Miscelánea',
         'patreon'               => 'Patreon',
         'payment_options'       => 'Opcións de pagamento',

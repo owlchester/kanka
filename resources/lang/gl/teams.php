@@ -4,8 +4,14 @@ return [
     'hall_of_fame'  => 'Salón da fama',
     'index'         => [
         'community'     => 'Comunidade',
+        'lead'          => 'Facendo a creación de mundos divertida e consistente',
         'title'         => 'Equipo',
         'translations'  => 'Traducións',
+    ],
+    'leads'         => [
+        'about'         => 'Kanka naceu da frustración coa creación de mundos e a multitude de notas espalladas en diferentes ferramentas, e a dificultade de compartir facilmente ese contido coas xogantes.',
+        'community'     => 'A comunidade sempre foi parte do noso ADN dende o día un. Mención especial a estas integrantes da comunidade!',
+        'translators'   => 'Kanka é traducida a unha variedade de linguas grazas á contribución destas xeniais persoas.',
     ],
     'patreon'       => [],
     'people'        => [

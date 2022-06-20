@@ -19,7 +19,6 @@ return [
             'new'       => 'Nou taulell',
             'switch'    => 'Canvia de taulell',
         ],
-        'boosted'       => 'Les :boosted_campaigns poden crear taulells personalitzats per a cadascun dels rols de la campanya.',
         'create'        => [
             'success'   => 'S\'ha creat el nou taulell :name.',
             'title'     => 'Nou taulell de campanya',
@@ -96,11 +95,10 @@ return [
     'title'         => 'Taulell de',
     'welcome'       => [],
     'widgets'       => [
-        'actions'                   => [
+        'actions'       => [
             'advanced-options'  => 'Opcions avançades',
         ],
-        'advanced_options_boosted'  => 'Les :boosted_campaigns tenen opcions avançades, com ara mostrar els membres d\'una família o els atributs de l\'entitat directament al taulell.',
-        'calendar'                  => [
+        'calendar'      => [
             'actions'           => [
                 'next'      => 'Canvia la data al dia següent',
                 'previous'  => 'Canvia la data al dia anterior',
@@ -109,16 +107,16 @@ return [
             'previous_events'   => 'Previ',
             'upcoming_events'   => 'Proper',
         ],
-        'campaign'                  => [
+        'campaign'      => [
             'helper'    => 'Aquest widget mostra la capçalera de la campanya i sempre es mostra al taulell per defecte.',
         ],
-        'create'                    => [
+        'create'        => [
             'success'   => 'S\'ha afegit el widget al taulell.',
         ],
-        'delete'                    => [
+        'delete'        => [
             'success'   => 'S\'ha eliminat el widget del taulell.',
         ],
-        'fields'                    => [
+        'fields'        => [
             'class'             => 'Classe CSS',
             'dashboard'         => 'Taulell',
             'name'              => 'Nom personalitzat pel widget',
@@ -127,20 +125,20 @@ return [
             'text'              => 'Text',
             'width'             => 'Amplada',
         ],
-        'helpers'                   => [
+        'helpers'       => [
             'class' => 'Definiu una classe CSS personalitzada per afegir-la al widget.',
         ],
-        'orders'                    => [
+        'orders'        => [
             'name_asc'  => 'Ascendent per nom',
             'name_desc' => 'Descendent per nom',
             'recent'    => 'Modificat recentment',
         ],
-        'random'                    => [
+        'random'        => [
             'helpers'   => [
                 'name'  => 'Podeu referenciar el nom de l\'entitat aleatòria amb {name}',
             ],
         ],
-        'recent'                    => [
+        'recent'        => [
             'advanced_filter'   => 'Filtre avançat',
             'advanced_filters'  => [
                 'mentionless'   => 'Sense mencions (entitats que no en mencionen cap altra)',
@@ -164,17 +162,17 @@ return [
             'tags'              => 'Filtra la llista de les entitats modificades recentment amb etiquetes específiques.',
             'title'             => 'Modificades recentment',
         ],
-        'tabs'                      => [
+        'tabs'          => [
             'advanced'  => 'Avançat',
             'setup'     => 'Configuració',
         ],
-        'unmentioned'               => [
+        'unmentioned'   => [
             'title' => 'Entitats no mencionades',
         ],
-        'update'                    => [
+        'update'        => [
             'success'   => 'S\'ha modificat el widget.',
         ],
-        'widths'                    => [
+        'widths'        => [
             '0' => 'Auto',
             '12'=> 'Completa (100%)',
             '3' => 'Quart (25%)',

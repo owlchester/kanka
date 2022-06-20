@@ -27,7 +27,6 @@ return [
         'status'    => 'Durum',
         'type'      => 'Eklenti türü',
     ],
-    'helper'        => 'Kanka topluluğu sürekli olarak marketimizde inanılmaz eklentiler yaratıyor. Eğer serüveniniz destekli ise, marketten eklentiler kurabilirsiniz. Serüveninizden eklenti kaldırmak için bu arayüzü kullanın.',
     'info'          => [
         'helper'        => 'Bir ekleninin yeni bir versiyonu çıktığında, serüveniniz için eklentiyi en son versiyonuna güncelleyebilirsiniz.',
         'title'         => ':plugin eklenti güncellemeleri',

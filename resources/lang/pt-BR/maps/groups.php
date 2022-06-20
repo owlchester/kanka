@@ -19,10 +19,7 @@ return [
         'is_shown'  => 'Mostrar marcadores do grupo',
         'position'  => 'Posição',
     ],
-    'helper'        => [
-        'amount'            => 'Um marcador pode ser anexado a um grupo, permitindo que você mostre ou oculte todas as lojas de uma cidade. Um mapa pode ter até :amount de grupos..',
-        'boosted_campaign'  => ':boosted pode ter até :amount grupos',
-    ],
+    'helper'        => [],
     'hints'         => [
         'is_shown'  => 'Se assinalado, os marcadores do grupo serão mostrados no mapa como padrão.',
     ],

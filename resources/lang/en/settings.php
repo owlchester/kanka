@@ -43,7 +43,7 @@ return [
         'title'     => 'App Integration',
     ],
     'boost'         => [
-        'exceptions'        => [
+        'exceptions'    => [
             'already_boosted'       => 'Campaign :name is already being boosted.',
             'exhausted_boosts'      => 'You are out of boosts to give. Remove your boost from a campaign before giving it to another.',
             'exhausted_superboosts' => 'You are out of boosts. You need 3 boosters to superboost a campaign.',

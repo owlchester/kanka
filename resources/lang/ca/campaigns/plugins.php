@@ -28,7 +28,6 @@ return [
         'status'    => 'Estat',
         'type'      => 'Tipus de plugin',
     ],
-    'helper'        => 'La comunitat de Kanka crea contínuament plugins molt guais pel Marketplace. Si la vostra campanya està millorada, hi podeu instal·lar plugins. Des d\'aquí podeu desinstal·lar els plugins de la campanya.',
     'import'        => [
         'button'                => 'Importa',
         'created'               => 'S\'han creat les entitats següents:',

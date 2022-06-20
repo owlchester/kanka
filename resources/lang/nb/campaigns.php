@@ -300,14 +300,7 @@ TEXT
         ],
         'title'     => 'Kampanje :name',
     ],
-    'superboosted'                      => [
-        'gallery'   => [
-            'error' => [
-                'text'  => 'Å laste opp bilder i tekst redigereren er en funskjon kun tilgjengelig til :superboosted.',
-                'title' => 'Kampanje Galleri Bildeopplasting',
-            ],
-        ],
-    ],
+    'superboosted'                      => [],
     'ui'                                => [],
     'visibilities'                      => [
         'private'   => 'Privat',

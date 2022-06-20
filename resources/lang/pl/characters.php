@@ -51,10 +51,7 @@ return [
         'personality_visible'       => 'Opis osobowości widoczny dla wszystkich.',
     ],
     'index'         => [
-        'actions'   => [
-            'random'    => 'Nowa losowa postać',
-        ],
-        'title'     => 'Postaci',
+        'title' => 'Postaci',
     ],
     'items'         => [
         'hint'  => 'Postaci można przypisać przedmioty - będą wyświetlane tutaj.',

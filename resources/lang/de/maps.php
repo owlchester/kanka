@@ -12,6 +12,14 @@ return [
     'destroy'       => [],
     'edit'          => [],
     'errors'        => [
+        'chunking'  => [
+            'error'     => 'Beim Aufteilen der Karte ist ein Fehler aufgetreten. Bitte kontaktiere das Team auf :discord für Unterstützung.',
+            'running'   => [
+                'edit'      => 'Die Karte kann nicht bearbeitet werden, während sie aufgeteilt wird.',
+                'explore'   => 'Die Karte kann nicht angezeigt werden, während sie aufgeteilt wird.',
+                'time'      => 'Dies kann je nach Größe der Karte einige Minuten bis mehrere Stunden dauern.',
+            ],
+        ],
         'dashboard' => [
             'missing'   => 'Diese Karte benötigt ein Bild, um im Dashboard gerendert werden zu können.',
         ],
@@ -20,25 +28,23 @@ return [
         ],
     ],
     'fields'        => [
-        'center_marker'     => 'Marker',
-        'center_x'          => 'Standard-Längengradposition',
-        'center_y'          => 'Standard-Breitengradposition',
-        'centering'         => 'Zentrierung',
-        'distance_measure'  => 'Abstandsmaß',
-        'distance_name'     => 'Entfernungseinheit',
-        'grid'              => 'Gitter',
-        'initial_zoom'      => 'Initial Zoom',
-        'is_real'           => 'Verwenden Sie OpenStreetMaps',
-        'map'               => 'Übergeordnete Karte',
-        'maps'              => 'Karten',
-        'max_zoom'          => 'Maximal Zoom',
-        'min_zoom'          => 'Minimal Zoom',
-        'name'              => 'Name',
-        'tabs'              => [
+        'center_marker' => 'Marker',
+        'center_x'      => 'Standard-Längengradposition',
+        'center_y'      => 'Standard-Breitengradposition',
+        'centering'     => 'Zentrierung',
+        'grid'          => 'Gitter',
+        'initial_zoom'  => 'Initial Zoom',
+        'is_real'       => 'Verwenden Sie OpenStreetMaps',
+        'map'           => 'Übergeordnete Karte',
+        'maps'          => 'Karten',
+        'max_zoom'      => 'Maximal Zoom',
+        'min_zoom'      => 'Minimal Zoom',
+        'name'          => 'Name',
+        'tabs'          => [
             'coordinates'   => 'Koordinaten',
             'marker'        => 'Marker',
         ],
-        'type'              => 'Typ',
+        'type'          => 'Typ',
     ],
     'helpers'       => [
         'center'            => 'Durch Ändern der folgenden Werte wird gesteuert, auf welchen Bereich der Karte der Fokus liegt. Wenn Sie diese Werte leer lassen, wird die Mitte der Karte fokussiert.',
@@ -67,18 +73,21 @@ return [
         'settings'  => 'Einstellungen',
     ],
     'placeholders'  => [
-        'center_marker'     => 'Leer lassen, um die Karte in der Mitte zu laden',
-        'center_x'          => 'Lassen Sie das Feld leer, um die Karte in der Mitte zu laden (X-Koordinate)',
-        'center_y'          => 'Lassen Sie das Feld leer, um die Karte in der Mitte zu laden (Y-Koordinate)',
-        'distance_measure'  => 'Einheiten pro Pixel',
-        'distance_name'     => 'Name der Entfernungseinheit (Kilometer, Meile)',
-        'grid'              => 'Abstand in Pixel zwischen Gitterelementen. Leer lassen, um das Raster auszublenden.',
-        'name'              => 'Name der Karte',
-        'type'              => 'Dungeon, Stadt, Galaxie',
+        'center_marker' => 'Leer lassen, um die Karte in der Mitte zu laden',
+        'center_x'      => 'Lassen Sie das Feld leer, um die Karte in der Mitte zu laden (X-Koordinate)',
+        'center_y'      => 'Lassen Sie das Feld leer, um die Karte in der Mitte zu laden (Y-Koordinate)',
+        'grid'          => 'Abstand in Pixel zwischen Gitterelementen. Leer lassen, um das Raster auszublenden.',
+        'name'          => 'Name der Karte',
+        'type'          => 'Dungeon, Stadt, Galaxie',
     ],
     'show'          => [
         'tabs'  => [
             'maps'  => 'Karten',
+        ],
+    ],
+    'tooltips'      => [
+        'chunking'  => [
+            'running'   => 'Die Karte wird aufgeteilt. Dieser Vorgang kann einige Minuten bis Stunden dauern.',
         ],
     ],
 ];

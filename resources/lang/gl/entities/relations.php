@@ -28,6 +28,7 @@ return [
         'option'    => 'Eliminar relación reflectida',
     ],
     'destroy'           => [
+        'mirrored'  => 'Isto tamén eliminará a relación reflectida, e é permanente.',
         'success'   => 'Relación ":target" eliminada de :entity.',
     ],
     'fields'            => [
@@ -74,7 +75,6 @@ return [
     'show'              => [
         'title' => 'Relacións de ":name"',
     ],
-    'teaser'            => 'Potencia a campaña para acceder ao diagrama de relacións. Fai clic para aprender máis sobre campañas potenciadas.',
     'types'             => [
         'family_member'         => 'Familiar',
         'organisation_member'   => 'Integrante da organización',

@@ -302,14 +302,7 @@ TEXT
         ],
         'title'     => ':name Serüveni',
     ],
-    'superboosted'                      => [
-        'gallery'   => [
-            'error' => [
-                'text'  => 'Metin düzenleyicide görsel yükleme yalnızca :superboosted serüvenler için mevcut bir özelliktir.',
-                'title' => 'Serüven Galerisi Görsel Yükleme',
-            ],
-        ],
-    ],
+    'superboosted'                      => [],
     'ui'                                => [],
     'visibilities'                      => [
         'private'   => 'Özel',

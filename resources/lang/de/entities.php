@@ -52,7 +52,7 @@ return [
         'event'         => 'neues Event',
         'family'        => 'neue Familie',
         'item'          => 'Neuer Gegenstand',
-        'journal'       => 'Neue Zeitschrift',
+        'journal'       => 'Neues Logbuch',
         'location'      => 'Neuer Ort',
         'note'          => 'Neue Notiz',
         'organisation'  => 'Neue Organisation',

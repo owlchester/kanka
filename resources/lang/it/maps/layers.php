@@ -19,10 +19,7 @@ return [
     'fields'        => [
         'position'  => 'Posizione',
     ],
-    'helper'        => [
-        'amount'            => 'Puoi aggiungere fino a :amount livelli su una mappa, per cambiare l\'immagine di sfondo mostrata sotto i tuoi marcatori.',
-        'boosted_campaign'  => ':boosted possono avere fino a :amount livelli.',
-    ],
+    'helper'        => [],
     'placeholders'  => [
         'name'      => 'Sotterranei, Livello 2, Relitto',
         'position'  => 'Campo opzionale per impostare l\'ordine in cui i livelli appaiono.',

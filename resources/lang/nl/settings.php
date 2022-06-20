@@ -43,39 +43,10 @@ return [
         'title'     => 'App Integratie',
     ],
     'boost'         => [
-        'benefits'      => [
-            'headers'   => [
-                'boosted'       => 'Boosted campaign voordelen',
-                'superboosted'  => 'Superboosted campaign voordelen',
-            ],
-            'more'      => [
-                'boosted'       => 'Alle boosted campaign functies',
-                'superboosted'  => 'Alle superboosted campaign functies',
-            ],
-            'third'     => 'Om een campaign een boost te geven, ga je naar de campaign pagina en klik je op de knop :boost_button boven de knop :edit_button.',
-        ],
-        'buttons'       => [
-            'boost'         => 'Boost',
-            'superboost'    => 'Superboost',
-            'tooltips'      => [
-                'boost'         => 'Het boosten van een campaign verbruikt :amount van je boosts',
-                'superboost'    => 'Het superboosten van een campaign verbruikt :amount van je boosts',
-            ],
-        ],
-        'campaigns'     => 'Boosted Campaigns :count / :max',
         'exceptions'    => [
             'already_boosted'       => 'Campaign :name is al boosted',
             'exhausted_boosts'      => 'Je hebt geen boosts meer om te geven. Haal je boost uit een campaign voordat je deze aan een andere geeft.',
             'exhausted_superboosts' => 'Je hebt geen boosts meer. Je hebt 3 boosters nodig om een campaign een superboost te geven.',
-        ],
-        'success'       => [
-            'boost'         => 'Campaign :name boosted.',
-            'delete'        => 'Je boost verwijderd van :name.',
-            'superboost'    => 'Campaign :name superboosted',
-        ],
-        'title'         => 'Boost',
-        'unboost'       => [
-            'title' => 'Een campaign unboosten',
         ],
     ],
     'countries'     => [

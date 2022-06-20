@@ -51,10 +51,7 @@ return [
         'personality_visible'       => 'Tutti possono vedere i tratti carattieriali di questo personaggio.',
     ],
     'index'         => [
-        'actions'   => [
-            'random'    => 'Nuovo Personaggio Casuale',
-        ],
-        'title'     => 'Personaggi',
+        'title' => 'Personaggi',
     ],
     'items'         => [
         'hint'  => 'Gli oggetti possono essere assegnati ai personaggi e risulteranno essere visibili nei loro dettagli.',

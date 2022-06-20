@@ -20,9 +20,7 @@ return [
     'placeholders'  => [
         'name'  => 'Nuevo alias',
     ],
-    'unboosted'     => [
-        'text'  => 'La funcionalidad de alias para búsquedas y menciones está reservada para :boosted-campaigns.',
-    ],
+    'unboosted'     => [],
     'update'        => [
         'success'   => 'Alias :name de :entity actualizado.',
         'title'     => 'Actualizar alias de :name',

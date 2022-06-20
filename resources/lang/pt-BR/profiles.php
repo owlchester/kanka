@@ -1,6 +1,11 @@
 <?php
 
 return [
+    'appearance'                    => [
+        'helpers'   => [
+            'pagination'    => 'Mude o número de elementos mostrado em várias listas.',
+        ],
+    ],
     'avatar'                        => [
         'success'   => 'Avatar atualizado',
     ],

@@ -20,9 +20,7 @@ return [
     'placeholders'  => [
         'name'  => 'Nowy alias',
     ],
-    'unboosted'     => [
-        'text'  => 'Dodawanie aliasów to funkcja dostępna w :boosted-campaigns.',
-    ],
+    'unboosted'     => [],
     'update'        => [
         'success'   => 'Zmieniono alias :name elementu :entity.',
         'title'     => 'Zmień alias :name',

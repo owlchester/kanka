@@ -43,41 +43,10 @@ return [
         'title'     => 'Integracija s aplikacijom',
     ],
     'boost'         => [
-        'available_boosts'  => 'Dozvoljena pojačanja: :amount / :max',
-        'benefits'          => [
-            'headers'   => [
-                'boosted'       => 'Prednosti pojačane kampanje',
-                'superboosted'  => 'Prednosti super pojačane kampanje',
-            ],
-            'more'      => [
-                'boosted'       => 'Sve funkcionalnosti pojačane kampanje',
-                'superboosted'  => 'Sve funkcionalnosti super pojačane kampanje',
-            ],
-            'third'     => 'Da biste pojačali kampanju, idite na stranicu kampanje i kliknite gumb ":boost_button" iznad gumba ":edit_button".',
-        ],
-        'buttons'           => [
-            'boost'         => 'Pojačaj',
-            'superboost'    => 'Super pojačanje',
-            'tooltips'      => [
-                'boost'         => 'Pojačanje kampanje troši {1} tvoje :amount pojačanje.|{2,4} tvoja :amount pojačanja.|{5,*} tvojih :amount pojačanja.',
-                'superboost'    => 'Super pojačanje kampanje troši {1} tvoje :amount pojačanje.|{2,4} tvoja :amount pojačanja.|{5,*} tvojih :amount pojačanja.',
-            ],
-            'unboost'       => 'Ukloni pojačanje',
-        ],
-        'campaigns'         => 'Pojačane kampanje :count / :max',
-        'exceptions'        => [
+        'exceptions'    => [
             'already_boosted'       => 'Kampanja :name je već pojačana.',
             'exhausted_boosts'      => 'Nemaš više pojačanja za pokloniti. Ukloni svoje pojačanje iz neke kampanje prije nego što ga daš drugoj.',
             'exhausted_superboosts' => 'Nemaš više pojačanja. Trebaš 3 pojačanja da bi super pojačao kampanju.',
-        ],
-        'success'           => [
-            'boost'         => 'Kampanja :name pojačana.',
-            'delete'        => 'Tvoje pojačanje je uklonjeno s :name.',
-            'superboost'    => 'Super pojačana kampanja :name',
-        ],
-        'title'             => 'Pojačanje',
-        'unboost'           => [
-            'title' => 'Poništavanje pojačavanja kampanje',
         ],
     ],
     'countries'     => [

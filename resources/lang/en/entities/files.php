@@ -1,23 +1,23 @@
 <?php
 
 return [
-    'create'    => [
+    'call-to-action'    => [
+        'boost'         => 'To upload more files, the campaign needs to be boosted.',
+        'error'         => 'This entity has reach the maximum number of files it can hold.',
+        'superboost'    => 'To upload more files, the campaign needs to be superboosted.',
+    ],
+    'create'            => [
         'success'   => 'File :file added.',
         'title'     => 'New file for :entity',
     ],
-    'call-to-action' => [
-        'error' => 'This entity has reach the maximum number of files it can hold.',
-        'boost' => 'To upload more files, the campaign needs to be boosted.',
-        'superboost' => 'To upload more files, the campaign needs to be superboosted.',
-    ],
-    'destroy'   => [
+    'destroy'           => [
         'success'   => 'File :file removed.',
     ],
-    'fields'    => [
+    'fields'            => [
         'file'  => 'File',
         'name'  => 'File name',
     ],
-    'update'    => [
+    'update'            => [
         'success'   => 'File :file updated.',
         'title'     => 'Update file :file for :entity',
     ],

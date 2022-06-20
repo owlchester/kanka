@@ -380,6 +380,9 @@ return [
         'timelines'     => 'Historie',
         'tooltip'       => 'Dymek',
     ],
+    'titles'                    => [
+        'editing'   => 'Edycja :name',
+    ],
     'tooltips'                  => [
         'boosted_feature'   => 'Dostępne po doładowaniu',
         'new_post'          => 'Dodaj do tego elementu nowy komentarz.',

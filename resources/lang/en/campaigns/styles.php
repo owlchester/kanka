@@ -12,7 +12,6 @@ return [
         'disable'   => '{1} Disabled :count style.|[2,*] Disabled :count styles.',
         'enable'    => '{1} Enabled :count style.|[2,*] Enabled :count styles.',
     ],
-    'pitch' => 'Create custom CSS styling to fully customise the look and feel of the campaign.',
     'create'    => [
         'success'   => 'New style created.',
         'title'     => 'New style',
@@ -36,6 +35,7 @@ return [
         'here'      => 'on our blog',
         'main'      => 'You can create custom CSS styling for your boosted campaign. These styles are loaded after any themes from the marketplace that are enabled for the campaign. You can learn more about styling your campaign :here.',
     ],
+    'pitch'     => 'Create custom CSS styling to fully customise the look and feel of the campaign.',
     'reorder'   => [
         'save'      => 'Save new order',
         'success'   => '{1} Reordered :count style.|[2,*] Reordered :count styles.',

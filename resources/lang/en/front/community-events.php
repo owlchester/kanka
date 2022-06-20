@@ -14,9 +14,9 @@ return [
         'comment'       => 'Comment',
         'entity_link'   => 'Link to the entity',
         'honorable'     => 'Honorable mention',
+        'jury'          => 'Guest jury :user',
         'rank'          => 'Rank',
         'submitter'     => 'Submitter',
-        'jury'          => 'Guest jury :user ',
     ],
     'index'         => [
         'ongoing'   => 'Ongoing prompts',

@@ -45,10 +45,7 @@ return [
         'personality_visible'       => 'Osobine ličnosti ovog lika su vidljive svima.',
     ],
     'index'         => [
-        'actions'   => [
-            'random'    => 'Novi nasumički lik',
-        ],
-        'title'     => 'Likovi',
+        'title' => 'Likovi',
     ],
     'items'         => [
         'hint'  => 'Predmeti se mogu dodijeliti na likove i bit će prikazani ovdje.',

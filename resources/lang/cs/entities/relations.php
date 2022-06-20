@@ -63,7 +63,6 @@ return [
     'show'          => [
         'title' => 'Vztahy objektu :name',
     ],
-    'teaser'        => 'Zvýhodněním (boost) tažení získáte přístup k průzkumníku souvislostí. Další informace o zvýhodněných (boosted) taženích získáš klepnutím.',
     'types'         => [
         'family_member'         => 'Člen rodu',
         'organisation_member'   => 'Člen organizace',

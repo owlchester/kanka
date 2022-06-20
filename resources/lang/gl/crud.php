@@ -92,9 +92,12 @@ return [
         'empty' => 'Nada que mostrar (aínda).',
     ],
     'delete_modal'              => [
-        'close' => 'Pechar',
-        'delete'=> 'Eliminar',
-        'title' => 'Confirmación de eliminación',
+        'close'             => 'Pechar',
+        'delete'            => 'Eliminar',
+        'description_v2'    => 'Estás eliminando ":tag".',
+        'permanent'         => 'Esta acción é permanente.',
+        'recoverable'       => 'As entidades poden ser recuperadas ata :day días despois nunha :boosted-campaign.',
+        'title'             => 'Confirmación de eliminación',
     ],
     'destroy_many'              => [
         'success'   => 'Eliminouse :count entidade|Elimináronse :count entidades.',
@@ -367,6 +370,7 @@ return [
         'mentions'      => 'Mencións',
         'menu'          => 'Menú',
         'notes'         => 'Entradas',
+        'overview'      => 'Vista xeral',
         'permissions'   => 'Permisos',
         'profile'       => 'Perfil',
         'quests'        => 'Misións',
@@ -375,6 +379,9 @@ return [
         'story'         => 'Entradas',
         'timelines'     => 'Liñas temporais',
         'tooltip'       => 'Previsualización emerxente',
+    ],
+    'titles'                    => [
+        'editing'   => 'Editando ":name"',
     ],
     'tooltips'                  => [
         'boosted_feature'   => 'Funcionalidade de campaña potenciada',

@@ -51,10 +51,7 @@ return [
         'personality_visible'       => 'Els trets de personalitat d\'aquest personatge són visibles per a tothom.',
     ],
     'index'         => [
-        'actions'   => [
-            'random'    => 'Nou personatge aleatori',
-        ],
-        'title'     => 'Personatges',
+        'title' => 'Personatges',
     ],
     'items'         => [
         'hint'  => 'Aquí es mostren els objectes assignats als personatges.',

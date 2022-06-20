@@ -6,7 +6,6 @@ return [
     ],
     'helpers'   => [
         'here'              => 'v našej dokumentácii',
-        'main'              => 'Boostnutá kampaň môže mať zmenené poradie a nastavenie bočného menu. O zmene nastavenia bočného menu sa vieš dozvedieť viac :here.',
         'mobile_reordering' => 'Zmena poradia bočného menu je možná iba na PC s monitorom.',
         'setup'             => 'Zmeň poradie, ikony a názvy prvkov bočného menu kampane. Štandardné nastavenie vieš navrátiť späť kliknutím na tlačidlo :reset na konci stránky.',
     ],

@@ -14,6 +14,7 @@ return [
         'add_year'          => 'Engadir un nome de ano',
         'set_today'         => 'Establecer como día actual',
         'today'             => 'Hoxe',
+        'update_weather'    => 'Actualizar clima',
     ],
     'checkboxes'    => [
         'is_recurring'  => 'Acontece cada ano',
@@ -68,6 +69,7 @@ return [
         'current_year'          => 'Ano actual',
         'date'                  => 'Data actual',
         'day'                   => 'Día',
+        'default_layout'        => 'Disposición por defecto',
         'has_leap_year'         => 'Ten anos bisestos',
         'intercalary'           => 'Días intercalares',
         'is_incrementing'       => 'Data incremental',
@@ -95,11 +97,12 @@ return [
         'year'                  => 'Ano',
     ],
     'helpers'       => [
-        'month_type'    => 'Os meses intercalares non usan días da semana, pero inflúen nas lúas e nas estacións.',
-        'moon_offset'   => 'Por defecto, a primeira lúa chea será no primeiro día do ano 0. Cambiar o seu retraso alterará cando aparece a primeira lúa chea. Este valor pode ser negativo ou positivo (ata a lonxitude do primeiro mes).',
-        'nested_parent' => 'Mostrando os calendarios de ":parent".',
-        'nested_without'=> 'Mostrando todos os calendarios que non teñen un calendario pai. Fai clic nunha fila para ver os seus descendentes.',
-        'start_offset'  => 'Por defecto, os calendarios comezan no primeiro día da semana no ano 0. Con este campo podes cambiar en que día comeza o calendario.',
+        'default_layout'    => 'Escolle a disposición que o calendario mostrará por defecto.',
+        'month_type'        => 'Os meses intercalares non usan días da semana, pero inflúen nas lúas e nas estacións.',
+        'moon_offset'       => 'Por defecto, a primeira lúa chea será no primeiro día do ano 0. Cambiar o seu retraso alterará cando aparece a primeira lúa chea. Este valor pode ser negativo ou positivo (ata a lonxitude do primeiro mes).',
+        'nested_parent'     => 'Mostrando os calendarios de ":parent".',
+        'nested_without'    => 'Mostrando todos os calendarios que non teñen un calendario pai. Fai clic nunha fila para ver os seus descendentes.',
+        'start_offset'      => 'Por defecto, os calendarios comezan no primeiro día da semana no ano 0. Con este campo podes cambiar en que día comeza o calendario.',
     ],
     'hints'         => [
         'event_length'      => 'Canto tempo dura un evento. Un evento non pode durar máis de dous meses.',
@@ -119,8 +122,10 @@ return [
         'title' => 'Calendarios',
     ],
     'layouts'       => [
-        'month' => 'Mes',
-        'year'  => 'Ano',
+        'month'     => 'Mes',
+        'monthly'   => 'Mensual por defecto',
+        'year'      => 'Ano',
+        'yearly'    => 'Anual por defecto',
     ],
     'modals'        => [
         'switcher'  => [
@@ -206,8 +211,12 @@ return [
         'weekdays'          => 'Número de días nunha semana',
     ],
     'show'          => [
-        'missing_details'   => 'Este calendario non puido ser mostrado. Os calendarios precisan polo menos 2 meses e 2 días da semana para ser mostrados correctamente.',
-        'tabs'              => [
+        'missing_details'       => 'Este calendario non puido ser mostrado. Os calendarios precisan polo menos 2 meses e 2 días da semana para ser mostrados correctamente.',
+        'moon_1first_quarter'   => ':moon en primeiro cuarto',
+        'moon_full'             => 'Lúa :moon chea',
+        'moon_last_quarter'     => ':moon en último cuarto',
+        'moon_new'              => 'Lúa :moon nova',
+        'tabs'                  => [
             'events'    => 'Eventos do calendario',
             'weather'   => 'Clima',
         ],

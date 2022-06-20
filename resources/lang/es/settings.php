@@ -43,48 +43,10 @@ return [
         'title'     => 'Integración de aplicaciones',
     ],
     'boost'         => [
-        'available_boosts'  => 'Mejoras disponibles: :amount / :max',
-        'benefits'          => [
-            'headers'   => [
-                'boosted'       => 'Beneficios de la campaña mejorada',
-                'superboosted'  => 'Beneficios de la campaña supermejorada',
-            ],
-            'more'      => [
-                'boosted'       => 'Todas las funcionalidades de las campañas mejoradas',
-                'superboosted'  => 'Todas las funcionalidades de las campañas supermejoradas',
-            ],
-            'third'     => 'Para mejorar una campaña, dirígete a la página de la campaña y haz clic en el botón de ":boost_button" que hay sobre el botón de ":edit_button".',
-        ],
-        'buttons'           => [
-            'boost'         => 'Mejorar',
-            'superboost'    => 'Supermejorar',
-            'tooltips'      => [
-                'boost'         => 'Mejorar una campaña usa hasta :amount de tus mejoras',
-                'superboost'    => 'Supermejorar una campaña usa :amount de tus mejoras',
-            ],
-            'unboost'       => 'Quitar mejoras',
-        ],
-        'campaigns'         => 'Campañas mejoradas :count / :max',
-        'exceptions'        => [
+        'exceptions'    => [
             'already_boosted'       => 'La campaña :name ya está mejorada.',
             'exhausted_boosts'      => 'Te has quedado sin mejoras. Elimina tu mejora de una campaña antes de dársela a otra.',
             'exhausted_superboosts' => 'Te has quedado sin mejoras. Necesitas 3 mejoras para supermejorar una campaña.',
-        ],
-        'modals'            => [
-            'more'  => [
-                'action'    => '¿Más mejoras?',
-                'body'      => 'Puedes obtener más mejoras subiendo el nivel de tu suscripción, o eliminando alguna de otra campaña. Al quitar una mejora de una campaña no se elimina ninguna información, sino que solo se esconden las funcionalidades mejoradas hasta que vuelvas a mejorarla.',
-                'title'     => 'Obtener más mejoras',
-            ],
-        ],
-        'success'           => [
-            'boost'         => 'Campaña :name mejorada.',
-            'delete'        => 'Tu mejora de :name se ha eliminado.',
-            'superboost'    => 'Campaña :name supermejorada',
-        ],
-        'title'             => 'Mejorar',
-        'unboost'           => [
-            'title' => 'Dejar de mejorar una campaña',
         ],
     ],
     'countries'     => [

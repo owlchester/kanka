@@ -56,6 +56,9 @@ return [
         'marker'        => 'Marqueur',
         'question'      => 'Point d\'interrogation',
     ],
+    'pitches'       => [
+        'poly'  => 'Dessines des formes polygonales personnalisées pour représenter les bordures et autres formes inégales.',
+    ],
     'placeholders'  => [
         'custom_icon'   => 'Essaie :example1 ou :example2',
         'custom_shape'  => '100,100, 200,240, 340,110',

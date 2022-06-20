@@ -21,9 +21,12 @@ return [
         'type'      => 'Type de couche',
     ],
     'helper'        => [
-        'amount'            => 'Ajouter jusqu\'à :amount couches sur une carte pour changer l\'image affichée sous les marqueurs.',
-        'boosted_campaign'  => 'Les :boosted peuvent avoir jusqu\'à :amount couches.',
-        'is_real'           => 'Les couches ne sont pas disponibles quand la carte utilise OpenStreetMaps.',
+        'amount_v2' => 'Définis des couches sur une carte pour changer l\'image d\'arrière-plan affichée sous les marqueurs.',
+        'is_real'   => 'Les couches ne sont pas disponibles quand la carte utilise OpenStreetMaps.',
+    ],
+    'pitch'         => [
+        'error' => 'Nombre maximal de couche atteins.',
+        'until' => 'Créer jusqu\'à :max couches pour chaque carte.',
     ],
     'placeholders'  => [
         'name'      => 'Sous-sol, Niveau 2, Epave',

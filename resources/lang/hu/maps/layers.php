@@ -20,10 +20,7 @@ return [
         'position'  => 'Elhelyezkedés',
         'type'      => 'Réteg típusa',
     ],
-    'helper'        => [
-        'amount'            => 'Legfeljebb :amount db réteget rendelhetsz egy térképhez, amelyek között váltogatva más-más kép jelenik meg a térképjelzők alatt.',
-        'boosted_campaign'  => ':boosted kampány rendelkezhet :amound db réteggel.',
-    ],
+    'helper'        => [],
     'placeholders'  => [
         'name'      => 'Pince, 2-ik emelet, Hajóroncs',
         'position'  => 'Opcionális mező annak meghatározására, hogy az egyes rétegek milyen sorrendben jelenjenek meg.',

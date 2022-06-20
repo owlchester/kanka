@@ -14,6 +14,7 @@ return [
         'comment'       => 'Commentaire',
         'entity_link'   => 'Liens vers l\'entité',
         'honorable'     => 'Mentions honorables',
+        'jury'          => 'Jury invité :user',
         'rank'          => 'Rang',
         'submitter'     => 'Participant',
     ],

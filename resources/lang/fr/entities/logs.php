@@ -1,20 +1,20 @@
 <?php
 
 return [
-    'actions'       => [
+    'actions'           => [
         'create'    => 'Créé',
         'delete'    => 'Supprimé',
         'restore'   => 'Restoré',
         'update'    => 'Mis à jour',
         'view'      => 'Voir les changements',
     ],
-    'fields'        => [
+    'call-to-action'    => 'Des journaux complets des changements sont disponibles pendant :amount jours pour les campagnes superboostées.',
+    'fields'            => [
         'action'    => 'Action',
         'date'      => 'Date',
     ],
-    'impersonated'  => 'Imité par :name',
-    'show'          => [
+    'impersonated'      => 'Imité par :name',
+    'show'              => [
         'title' => 'Journaux de l\'entité :name',
     ],
-    'superboosted'  => 'Les :superboosted-campaigns gardent une liste détaillée des modifications sur les entités pour :amont jours.',
 ];

@@ -19,10 +19,7 @@ return [
         'is_shown'  => 'Mostrar marcadores do grupo',
         'position'  => 'Posición',
     ],
-    'helper'        => [
-        'amount'            => 'Os marcadores asociados a un grupo poden ser mostrados ou ocultados todos á vez (por exemplo, para mostrar ou ocultar todas as tendas dunha cidade). Un mapa pode ter ata :amount grupos.',
-        'boosted_campaign'  => 'As :boosted poden ter ata :amount grupos.',
-    ],
+    'helper'        => [],
     'hints'         => [
         'is_shown'  => 'Se está seleccionado, os marcadores do grupo serán mostrados no mapa por defecto.',
     ],

@@ -18,7 +18,6 @@ return [
             'new'       => 'Yeni Ana Panel',
             'switch'    => 'Ana panele geç',
         ],
-        'boosted'       => ':boosted_campaigns serüvendeki rollerin her birine özel ana paneller yaratabilir.',
         'create'        => [
             'success'   => ':name adlı yeni serüven ana paneli yaratıldı.',
             'title'     => 'Yeni Serüven Ana Paneli',

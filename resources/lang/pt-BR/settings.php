@@ -43,48 +43,10 @@ return [
         'title'     => 'Integração de aplicativos',
     ],
     'boost'         => [
-        'available_boosts'  => 'Impulsões disponíveis: :amount / :max',
-        'benefits'          => [
-            'headers'   => [
-                'boosted'       => 'Benefícios da campanha Impulsionada',
-                'superboosted'  => 'Benefícios da campanha Super Impulsionada',
-            ],
-            'more'      => [
-                'boosted'       => 'Todos recursos de uma campanha Impulsionada',
-                'superboosted'  => 'Todos recursos de uma campanha Super Impulsionada',
-            ],
-            'third'     => 'Para impulsionar uma campanha, vá até a página da campanha e clique no botão ":boost_button" acima do botão ":edit_button".',
-        ],
-        'buttons'           => [
-            'boost'         => 'Impulsionamento',
-            'superboost'    => 'Super Impulso',
-            'tooltips'      => [
-                'boost'         => 'Impulsionar uma campanha usa :amount de seus impulsos',
-                'superboost'    => 'Super impulsionar uma campanha usa :amount de seus impulsos',
-            ],
-            'unboost'       => 'Deixar de impulsionar',
-        ],
-        'campaigns'         => 'Campanhas impulsionadas :count / :max',
-        'exceptions'        => [
+        'exceptions'    => [
             'already_boosted'       => 'Campanha :name já está sendo impulsionada',
             'exhausted_boosts'      => 'Você está sem impulsos para dar. Remova o impulso de uma campanha antes de dar a outra.',
             'exhausted_superboosts' => 'Você está sem impulsionamentos. Você precisa de 3 impulsos para tornar uma campanha Super Impulsionada.',
-        ],
-        'modals'            => [
-            'more'  => [
-                'action'    => 'Mais impulsionamentos?',
-                'body'      => 'Você pode obter mais impulsionamentos atualizando seu nível de assinatura ou removendo-os de uma campanha. O desbloqueio de uma campanha não exclui nenhuma das informações impulsionadas, apenas a desativa até que você impulsione essa campanha novamente.',
-                'title'     => 'Obtendo mais impulsionamentos',
-            ],
-        ],
-        'success'           => [
-            'boost'         => 'Campanha :name impulsionada',
-            'delete'        => 'Seu impulsionamento foi removido de :name',
-            'superboost'    => 'Campanha :name foi Super Impulsionada',
-        ],
-        'title'             => 'Impulso',
-        'unboost'           => [
-            'title' => 'Deixar de impulsionar uma campanha',
         ],
     ],
     'countries'     => [
@@ -123,9 +85,12 @@ return [
     'menu'          => [
         'account'               => 'Conta',
         'api'                   => 'API',
+        'appearance'            => 'Aparência',
         'apps'                  => 'Aplicativos',
         'billing'               => 'Formas de Pagamento',
+        'boosters'              => 'Impulsionamentos',
         'invoices'              => 'Faturas',
+        'notifications'         => 'Notificações',
         'other'                 => 'Outros',
         'patreon'               => 'Patreon',
         'payment_options'       => 'Formas de pagamento',
@@ -232,6 +197,10 @@ return [
             'new_card'      => 'Adicionar novo método de pagamento',
             'saved'         => ':brand terminando em :last4',
         ],
+        'periods'               => [
+            'monthly'   => 'Mensalmente',
+            'yearly'    => 'Anualmente',
+        ],
         'placeholders'          => [
             'reason'    => 'Opcionalmente, diga-nos por que você não está mais apoiando o Kanka. Estava faltando algum recurso? Sua situação financeira mudou?',
         ],
@@ -242,6 +211,7 @@ return [
         'sub_status'            => 'Informação da assinatura',
         'subscription'          => [
             'actions'   => [
+                'cancel'            => 'Cancelar inscrição',
                 'downgrading'       => 'Entre em contato conosco para fazer o downgrade',
                 'rollback'          => 'Mudar para Kobold',
                 'subscribe'         => 'Mudar para :tier mensalmente',

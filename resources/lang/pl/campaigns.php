@@ -403,14 +403,7 @@ TEXT
         ],
         'title'     => 'Kampania :name',
     ],
-    'superboosted'                      => [
-        'gallery'   => [
-            'error' => [
-                'text'  => 'Umieszczanie obrazów w edytorze tekstu możliwe jest tylko w :superboosted.',
-                'title' => 'Zamieszczanie obrazów w galerii kampanii',
-            ],
-        ],
-    ],
+    'superboosted'                      => [],
     'themes'                            => [
         'none'  => 'Brak (powrót do ustawień użytkownika)',
     ],

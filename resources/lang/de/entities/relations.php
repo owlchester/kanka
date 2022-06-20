@@ -28,6 +28,7 @@ return [
         'option'    => 'Gespiegelte Beziehung löschen',
     ],
     'destroy'           => [
+        'mirrored'  => 'Dadurch wird auch die gespiegelte Beziehung gelöscht und ist dauerhaft.',
         'success'   => 'Beziehung für :name entfernt',
     ],
     'fields'            => [
@@ -74,7 +75,6 @@ return [
     'show'              => [
         'title' => 'Beziehungen für :name',
     ],
-    'teaser'            => 'Boosten Sie die Kampagne, um Zugriff auf den Relations Visualizer zu erhalten. Klicken Sie hier, um mehr über Boost Kampagnen zu erfahren.',
     'types'             => [
         'family_member'         => 'Familienmitglied',
         'organisation_member'   => 'Organisationsmitlgied',

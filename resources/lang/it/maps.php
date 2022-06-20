@@ -11,13 +11,11 @@ return [
     ],
     'edit'          => [],
     'fields'        => [
-        'distance_measure'  => 'Valore di Distanza',
-        'distance_name'     => 'Unità di Lunghezza',
-        'grid'              => 'Griglia',
-        'map'               => 'Mappa Genitore',
-        'maps'              => 'Mappe',
-        'name'              => 'Nome',
-        'type'              => 'Tipo',
+        'grid'  => 'Griglia',
+        'map'   => 'Mappa Genitore',
+        'maps'  => 'Mappe',
+        'name'  => 'Nome',
+        'type'  => 'Tipo',
     ],
     'helpers'       => [
         'descendants'       => 'Questa lsita contiene tutte le mappe che sono discendenti di questa mappa, e non solo quelle direttamente sotto di essa.',
@@ -37,11 +35,9 @@ return [
         'settings'  => 'Opzioni',
     ],
     'placeholders'  => [
-        'distance_measure'  => 'Unità per pixel',
-        'distance_name'     => 'Nome dell\'unità di lunghezza (chilometro, miglio)',
-        'grid'              => 'Distanza in pixel tra gli elementi della griglia. Lascia vuoto per nascondere la griglia.',
-        'name'              => 'Nome della mappa',
-        'type'              => 'Dungeon, Città, Galassia',
+        'grid'  => 'Distanza in pixel tra gli elementi della griglia. Lascia vuoto per nascondere la griglia.',
+        'name'  => 'Nome della mappa',
+        'type'  => 'Dungeon, Città, Galassia',
     ],
     'show'          => [
         'tabs'  => [

@@ -15,5 +15,4 @@ return [
     'show'          => [
         'title' => 'Protokol změn objektu :name',
     ],
-    'superboosted'  => 'Objekty aktualizované u super-zvýhodněných (superboosted) tažení si udržují kompletní protokol změn po :amount dní.',
 ];

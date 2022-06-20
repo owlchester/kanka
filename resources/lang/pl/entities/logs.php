@@ -16,5 +16,4 @@ return [
     'show'          => [
         'title' => 'Rejestr Elementu :name',
     ],
-    'superboosted'  => 'Elementy w :superboosted-campaigns posiadając dziennik wszystkich zmian przeprowadzanych w ciągu :amount dni.',
 ];

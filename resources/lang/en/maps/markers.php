@@ -57,7 +57,7 @@ return [
         'question'      => 'Question icon',
     ],
     'pitches'       => [
-        'poly' => 'Draw custom polyong shapes to represent borders and other uneven shapes.',
+        'poly'  => 'Draw custom polyong shapes to represent borders and other uneven shapes.',
     ],
     'placeholders'  => [
         'custom_icon'   => 'Try :example1 or :example2',

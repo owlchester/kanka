@@ -51,10 +51,7 @@ return [
         'personality_visible'       => 'Osobnostné črty tejto postavy sú viditeľné pre všetkých.',
     ],
     'index'         => [
-        'actions'   => [
-            'random'    => 'Nová náhodná postava',
-        ],
-        'title'     => 'Postavy',
+        'title' => 'Postavy',
     ],
     'items'         => [
         'hint'  => 'Predmety môžu byť pridelené postavám a zobrazia sa na tomto mieste.',

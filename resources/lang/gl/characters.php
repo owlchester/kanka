@@ -51,10 +51,7 @@ return [
         'personality_visible'       => 'Os trazos de personalidade desta personaxe son visíbeis para todo o mundo.',
     ],
     'index'         => [
-        'actions'   => [
-            'random'    => 'Nova personaxe aleatoria',
-        ],
-        'title'     => 'Personaxes',
+        'title' => 'Personaxes',
     ],
     'items'         => [
         'hint'  => 'Os obxectos asignados a personaxes serán mostrados aquí.',

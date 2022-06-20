@@ -7,6 +7,7 @@ return [
             'enable'    => 'Activar extensións',
             'update'    => 'Actualizar extensións',
         ],
+        'changelog'         => 'Historial de cambios',
         'disable'           => 'Desactivar extensión',
         'enable'            => 'Activar extensión',
         'go_to_marketplace' => 'Ir ao mercado',
@@ -39,7 +40,6 @@ return [
         'status'    => 'Estado',
         'type'      => 'Tipo de extensión',
     ],
-    'helper'        => 'A comunidade de Kanka crea constantemente extensións incríbeis no noso mercado. Se a túa campaña está potenciada, podes instalar extensións dende o mercado. Usa esta interface para desinstalar as extensións da túa campaña.',
     'import'        => [
         'button'                => 'Importar',
         'created'               => 'As seguintes entidades foron creadas:',

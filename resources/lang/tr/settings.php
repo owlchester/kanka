@@ -42,29 +42,11 @@ return [
         'title'     => 'Uygulama Entegrasyonu',
     ],
     'boost'         => [
-        'benefits'      => [
-            'third' => 'Bir serüveni desteklemek için, serüvenin sayfasına gidin, ve ":edit_button" butonunun üstündeki ":boost_button" butonuna tıklayın.',
-        ],
-        'buttons'       => [
-            'boost'         => 'Destek',
-            'superboost'    => 'Süperdestek',
-            'tooltips'      => [
-                'boost'         => 'Bir serüveni desteklemek desteklerinizin :amount kadarını kullanır.',
-                'superboost'    => 'Bir serüveni süperdesteklemek desteklerinizin :amount kadarını kullanır.',
-            ],
-        ],
-        'campaigns'     => 'Desteklenen Serüvenler :count / :max',
         'exceptions'    => [
             'already_boosted'       => ':name serüveni zaten desteklenmiş.',
             'exhausted_boosts'      => 'Verecek desteğiniz kalmadı. Bir başka serüveni desteklemeden önce desteklerinizden birini kaldırın.',
             'exhausted_superboosts' => 'Desteğiniz tükenmiş. Bir serüveni süperdesteklemek için 3 desteğe ihtiyacınız var.',
         ],
-        'success'       => [
-            'boost'         => ':name serüveni desteklendi.',
-            'delete'        => ':name serüveninden destek kaldırıldı.',
-            'superboost'    => ':name serüveni süperdesteklendi.',
-        ],
-        'title'         => 'Destek',
     ],
     'countries'     => [
         'austria'       => 'Avusturya',

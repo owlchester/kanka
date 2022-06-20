@@ -91,9 +91,10 @@ return [
         'empty' => 'Nada para mostrar (ainda)',
     ],
     'delete_modal'              => [
-        'close' => 'Fechar',
-        'delete'=> 'Deletar',
-        'title' => 'Confirmação de apagamento',
+        'close'     => 'Fechar',
+        'delete'    => 'Deletar',
+        'permanent' => 'Essa ação é permanente.',
+        'title'     => 'Confirmação de apagamento',
     ],
     'destroy_many'              => [
         'success'   => 'Deletado :count entity|Deletado :count entities.',
@@ -365,6 +366,7 @@ return [
         'mentions'      => 'Menções',
         'menu'          => 'Menu',
         'notes'         => 'Notas da entidade',
+        'overview'      => 'Visão geral',
         'permissions'   => 'Permissões',
         'profile'       => 'Perfil',
         'quests'        => 'Missões',
@@ -373,6 +375,9 @@ return [
         'story'         => 'Visão Geral',
         'timelines'     => 'Linhas do Tempo',
         'tooltip'       => 'Dica',
+    ],
+    'titles'                    => [
+        'editing'   => 'Editando :name',
     ],
     'tooltips'                  => [
         'boosted_feature'   => 'Recurso da campanha impulsionada',

@@ -19,7 +19,6 @@ return [
             'new'       => 'neues Dashboard',
             'switch'    => 'zum Dashboard wechseln',
         ],
-        'boosted'       => ':boosted_campaigns kann benutzerdefinierte Dashboards für jede der Kampagnenrollen erstellen.',
         'create'        => [
             'success'   => 'Neues Kampagnen Dashboard :name erstellt',
             'title'     => 'Neues Kampagnen Dashboard',
@@ -96,11 +95,10 @@ return [
     'title'         => 'Dashboard',
     'welcome'       => [],
     'widgets'       => [
-        'actions'                   => [
+        'actions'       => [
             'advanced-options'  => 'Erweiterte Optionen',
         ],
-        'advanced_options_boosted'  => ':boosted_campaigns verfügt über erweiterte Optionen wie das Anzeigen von Mitgliedern einer Familie oder der Attribute der Objekt im Dashboard.',
-        'calendar'                  => [
+        'calendar'      => [
             'actions'           => [
                 'next'      => 'Datum auf nächsten Tag ändern',
                 'previous'  => 'Datum auf vorigen Tag ändern',
@@ -109,16 +107,16 @@ return [
             'previous_events'   => 'Vorige',
             'upcoming_events'   => 'Bevorstehende',
         ],
-        'campaign'                  => [
+        'campaign'      => [
             'helper'    => 'Dieses Widget zeigte den Kampagnenkopf an. Dieses Widget wird immer im Standard-Dashboard angezeigt.',
         ],
-        'create'                    => [
+        'create'        => [
             'success'   => 'Widget zum Dashboard hinzugefügt.',
         ],
-        'delete'                    => [
+        'delete'        => [
             'success'   => 'Widget vom Dashboard entfernt.',
         ],
-        'fields'                    => [
+        'fields'        => [
             'class'             => 'CSS-Klasse',
             'dashboard'         => 'Dashboard',
             'name'              => 'Benutzerdefinierter Widget-Name',
@@ -127,21 +125,21 @@ return [
             'text'              => 'Text',
             'width'             => 'Breite',
         ],
-        'helpers'                   => [
+        'helpers'       => [
             'class'     => 'Definieren Sie eine benutzerdefinierte CSS-Klasse, die dem Widget hinzugefügt wird.',
             'filters'   => 'Klicke hier, um mehr über die verfügbaren Filteroptionen zu erfahren.',
         ],
-        'orders'                    => [
+        'orders'        => [
             'name_asc'  => 'Name aufsteigend',
             'name_desc' => 'Name absteigend',
             'recent'    => 'Kürzlich modifiziert',
         ],
-        'random'                    => [
+        'random'        => [
             'helpers'   => [
                 'name'  => 'Sie können den Namen der zufälligen Objekte mit {name} referenzieren',
             ],
         ],
-        'recent'                    => [
+        'recent'        => [
             'advanced_filter'   => 'Erweiterter Filter',
             'advanced_filters'  => [
                 'mentionless'   => 'Erwähnungslos (Objekte, die andere Objekte nicht erwähnen)',
@@ -165,17 +163,17 @@ return [
             'tags'              => 'Filtern Sie die Liste der zuletzt geänderten Objekte nach bestimmten Tags.',
             'title'             => 'Vor kurzem aktualisiert',
         ],
-        'tabs'                      => [
+        'tabs'          => [
             'advanced'  => 'Erweitert',
             'setup'     => 'Setup',
         ],
-        'unmentioned'               => [
+        'unmentioned'   => [
             'title' => 'Unerwähnte Objekte',
         ],
-        'update'                    => [
+        'update'        => [
             'success'   => 'Widget angepasst.',
         ],
-        'widths'                    => [
+        'widths'        => [
             '0' => 'automatisch',
             '12'=> 'Komplett (100%)',
             '3' => 'winzig (25%)',

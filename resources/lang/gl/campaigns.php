@@ -197,6 +197,7 @@ TEXT
             'title'         => 'Convidar',
         ],
         'manage_roles'          => 'Administrar roles',
+        'removal'               => 'Estás eliminando a ":member" da campaña.',
         'roles'                 => [
             'member'    => 'Integrante',
             'owner'     => 'Administración',
@@ -271,6 +272,7 @@ TEXT
         ],
         'hints'         => [
             'campaign_not_public'   => 'O rol "Público" ten permisos pero a campaña é privada. Podes cambiar esta configuración na lapela "Compartir" ao editar a campaña.',
+            'empty_role'            => 'O rol aínda non ten ningunha integrante.',
             'role_permissions'      => 'Activa o rol ":name" para que poida facer as seguintes accións en todas as entidades.',
         ],
         'members'       => 'Integrantes',
@@ -324,8 +326,9 @@ TEXT
         ],
         'users'         => [
             'actions'   => [
-                'add'       => 'Engadir',
-                'remove'    => ':user do rol :role',
+                'add'           => 'Engadir',
+                'remove'        => ':user do rol :role',
+                'remove_user'   => 'Eliminar integrante do rol',
             ],
             'create'    => [
                 'success'   => 'Persoa engadida ao rol.',
@@ -344,6 +347,8 @@ TEXT
             'enable'    => 'Activar',
         ],
         'boosted'   => 'Esta función está en acceso anticipado e actualmente só dispoñíbel para :boosted.',
+        'disabled'  => 'O módulo :module está deshabilitado.',
+        'enabled'   => 'O módulo :module está habilitado',
         'errors'    => [
             'module-disabled'   => 'O módulo solicitado está actualmente deshabilitado na configuración da campaña. :fix.',
         ],
@@ -398,14 +403,7 @@ TEXT
         ],
         'title'     => 'Campaña ":name"',
     ],
-    'superboosted'                      => [
-        'gallery'   => [
-            'error' => [
-                'text'  => 'Subir imaxes no editor de texto só é posíbel para :superboosted.',
-                'title' => 'Subida de imaxes á galería da campaña',
-            ],
-        ],
-    ],
+    'superboosted'                      => [],
     'themes'                            => [
         'none'  => 'Ningún (usa a configuración de cada persoa)',
     ],

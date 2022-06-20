@@ -22,6 +22,8 @@ return [
             'filters'       => [
                 'all'               => 'Status de boost',
                 'boosted'           => 'Campagnes boostées',
+                'entities'          => 'Ordonner par le nombre d\'entité',
+                'followers'         => 'Ordonner par les abonnés',
                 'is-boosted'        => 'Cette campagne est boostée!',
                 'is-superboosted'   => 'Cette campagne est superboostée!',
                 'unboosted'         => 'Campagnes non-boostées',

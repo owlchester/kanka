@@ -57,6 +57,7 @@ return [
         'question'      => 'Interrogación',
     ],
     'placeholders'  => [
+        'custom_icon'   => 'Proba :example1 ou :example2',
         'custom_shape'  => '100,100 200,240 340,110',
         'name'          => 'Necesario se non hai ningunha entidade seleccionada',
     ],

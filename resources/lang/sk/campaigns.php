@@ -398,14 +398,7 @@ TEXT
         ],
         'title'     => 'Kampaň :name',
     ],
-    'superboosted'                      => [
-        'gallery'   => [
-            'error' => [
-                'text'  => 'Nahrávanie obrázkov v textovom editore je dostupné len pre :superboosted.',
-                'title' => 'Nahrávanie obrázkov do galérie kampane',
-            ],
-        ],
-    ],
+    'superboosted'                      => [],
     'themes'                            => [
         'none'  => 'Žiadna (štandardné nastavenie)',
     ],

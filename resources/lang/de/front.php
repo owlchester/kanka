@@ -166,7 +166,7 @@ return [
         ],
         'quests'            => [
             'description'   => 'Bereiten Sie Ihre nächste Sitzung vor oder protokollieren Sie Ereignisse mit unserer erweiterten Journalfunktion!',
-            'title'         => 'Quests & Zeitschriften',
+            'title'         => 'Quests & Logbücher',
         ],
         'relations'         => [
             'description'   => 'Jedes Objekt kann ein komplexes Netz an Beziehungen mit anderen Objekten haben. Inklusive geheimer Beziehungen, die für deine Spieler unsichtbar sind.',

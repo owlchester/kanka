@@ -19,7 +19,6 @@ return [
             'new'       => 'Novo taboleiro',
             'switch'    => 'Cambiar a outro taboleiro',
         ],
-        'boosted'       => 'As :boosted_campaigns poden crear taboleiros personalizados para cada un dos roles da campaña.',
         'create'        => [
             'success'   => 'Taboleiro ":name" creado.',
             'title'     => 'Novo taboleiro de campaña',
@@ -95,11 +94,10 @@ return [
     ],
     'title'         => 'Taboleiro',
     'widgets'       => [
-        'actions'                   => [
+        'actions'       => [
             'advanced-options'  => 'Opcións avanzadas',
         ],
-        'advanced_options_boosted'  => 'As :boosted_campaigns teñen opcións avanzadas, como mostrar as integrantes dunha familia ou os atributos dunha entidade no taboleiro de campaña.',
-        'calendar'                  => [
+        'calendar'      => [
             'actions'           => [
                 'next'      => 'Cambiar ao día seguinte',
                 'previous'  => 'Cambiar ao día anterior.',
@@ -108,16 +106,16 @@ return [
             'previous_events'   => 'Eventos pasados',
             'upcoming_events'   => 'Próximos eventos',
         ],
-        'campaign'                  => [
+        'campaign'      => [
             'helper'    => 'Este complemento mostrou a cabeceira da campaña. Este complemento sempre é mostrado no taboleiro por defecto.',
         ],
-        'create'                    => [
+        'create'        => [
             'success'   => 'Complemento engadido ao taboleiro.',
         ],
-        'delete'                    => [
+        'delete'        => [
             'success'   => 'Complemento eliminado do taboleiro.',
         ],
-        'fields'                    => [
+        'fields'        => [
             'class'             => 'Clase CSS',
             'dashboard'         => 'Taboleiro',
             'name'              => 'Nome personalizado',
@@ -126,20 +124,21 @@ return [
             'text'              => 'Texto',
             'width'             => 'Anchura',
         ],
-        'helpers'                   => [
-            'class' => 'Define unha clase CSS personalizada para este complemento.',
+        'helpers'       => [
+            'class'     => 'Define unha clase CSS personalizada para este complemento.',
+            'filters'   => 'Fai clic para aprender sobre as opcións de filtrado dispoñíbeis.',
         ],
-        'orders'                    => [
+        'orders'        => [
             'name_asc'  => 'Nome (ascendente)',
             'name_desc' => 'Nome (descendente)',
             'recent'    => 'Modificada recentemente',
         ],
-        'random'                    => [
+        'random'        => [
             'helpers'   => [
                 'name'  => 'Podes referenciar o nome da entidade aleatoria con {name}',
             ],
         ],
-        'recent'                    => [
+        'recent'        => [
             'advanced_filter'   => 'Filtro avanzado',
             'advanced_filters'  => [
                 'mentionless'   => 'Sen mencións (entidades que non mencionan a ningunha outra)',
@@ -163,17 +162,17 @@ return [
             'tags'              => 'Filtra a lista de entidades modificadas recentemente con etiquetas específicas.',
             'title'             => 'Modificadas recentemente',
         ],
-        'tabs'                      => [
+        'tabs'          => [
             'advanced'  => 'Avanzado',
             'setup'     => 'Configuración',
         ],
-        'unmentioned'               => [
+        'unmentioned'   => [
             'title' => 'Entidades non mencionadas',
         ],
-        'update'                    => [
+        'update'        => [
             'success'   => 'Complemento modificado.',
         ],
-        'widths'                    => [
+        'widths'        => [
             '0' => 'Automática',
             '12'=> 'Completa (100%)',
             '3' => 'Un cuarto (25%)',

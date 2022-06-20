@@ -32,7 +32,6 @@ return [
     'show'          => [
         'title' => ':name için İlişkiler',
     ],
-    'teaser'        => 'İlişkiler gezginine erişim için serüveninizi destekleyin. Destekli serüvenler hakkında daha fazla bilgi için tıklayın.',
     'types'         => [
         'family_member'         => 'Aile Üyesi',
         'organisation_member'   => 'Organizasyon Üyesi',

@@ -18,7 +18,6 @@ return [
             'new'       => 'Nytt Dashboard',
             'switch'    => 'Ändra till Dashboard',
         ],
-        'boosted'       => ':boosted_campaigns kan skapa anpassade Dashboards för var och en av kampanj rollerna.',
         'create'        => [
             'success'   => 'Nytt kampanjdashboard :name skapat.',
             'title'     => 'Nytt Kampanjdashboard',

@@ -32,7 +32,6 @@ return [
     'show'          => [
         'title' => 'Förbindelser för :name',
     ],
-    'teaser'        => 'Boosta kampanjen för att få tillgång till förbindelse utforskaren. Klicka för att lära dig mer om boostade kampanjer.',
     'types'         => [
         'family_member'         => 'Familjemedlem',
         'organisation_member'   => 'Organisationsmedlem',

@@ -1,6 +1,13 @@
 <?php
 
 return [
+    'appearance'                    => [
+        'helpers'   => [
+            'campaign-order'    => 'Cambia a orde no que aparecen as campañas listadas no selector de campaña.',
+            'date-format'       => 'Controla o formato da data real.',
+            'pagination'        => 'Cambia o número de elementos mostrados en varias listas.',
+        ],
+    ],
     'avatar'                        => [
         'success'   => 'Avatar actualizado.',
     ],
@@ -31,8 +38,12 @@ return [
         'new_password_confirmation' => 'Confirmación do novo contrasinal',
         'newsletter'                => 'Gustaríame recibir novas de Kanka por correo electrónico.',
         'password'                  => 'Contrasinal actual',
+        'profile-name'              => 'Nome do perfil',
         'settings'                  => 'Configuración',
         'theme'                     => 'Tema',
+    ],
+    'helpers'                       => [
+        'profile-name'  => 'Cambia a forma na que aparece o teu nome no teu :profile e no :marketplace. Se o deixas en branco, o teu nome de conta será usado no seu lugar.',
     ],
     'newsletter'                    => [
         'helpers'   => [
@@ -67,13 +78,17 @@ return [
         'password'                  => 'Escrebe o teu contrasinal actual para aplicar calquer cambio',
     ],
     'sections'                      => [
-        'delete'    => [
-            'delete'    => 'Eliminar a miña conta',
-            'helper'    => 'Eliminar a túa conta eliminará tamén calquera campaña na que non haxa máis integrantes ca ti. Esta acción é permanente e non pode desfacerse.',
-            'title'     => 'Elimina a túa conta',
-            'warning'   => 'Eliminando a túa conta, todos os teus datos perderanse. Seguro que queres facelo?',
+        'dangerzone'    => 'Zona perigosa',
+        'delete'        => [
+            'confirm'       => 'Eliminar a miña conta agora',
+            'delete'        => 'Eliminar a miña conta',
+            'goodbye'       => 'Se é así, escribe :code na caixa de abaixo.',
+            'helper'        => 'Eliminar a túa conta eliminará tamén calquera campaña na que non haxa máis integrantes ca ti. Esta acción é permanente e non pode desfacerse.',
+            'subscribed'    => 'Has de cancelar a túa :subscription antes de poder eliminar a túa conta.',
+            'title'         => 'Elimina a túa conta',
+            'warning'       => 'Eliminando a túa conta, todos os teus datos perderanse. Seguro que queres facelo?',
         ],
-        'password'  => [
+        'password'      => [
             'title' => 'Cambia o teu contrasinal',
         ],
     ],
@@ -100,6 +115,7 @@ return [
         'success'   => 'Configuración cambiada.',
     ],
     'theme'                         => [
+        'helper'    => 'Unha campaña cun estilo establecido sobreescribirá a túa preferencia.',
         'success'   => 'Tema cambiado.',
         'themes'    => [
             'dark'      => 'Escuro',
@@ -110,7 +126,7 @@ return [
     ],
     'title'                         => 'Actualiza o teu perfil',
     'workflows'                     => [
-        'created'   => 'Ir á entidade recén creada',
+        'created'   => 'Ir á entidade acabada de crear',
         'default'   => 'Lista de entidades',
     ],
 ];

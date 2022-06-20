@@ -19,7 +19,6 @@ return [
             'new'       => 'Nova naslovna ploča',
             'switch'    => 'Prebaci na naslovnu ploču',
         ],
-        'boosted'       => ':boosted_campaigns mogu stvoriti prilagođene naslovne ploče za svaku od uloga kampanje.',
         'create'        => [
             'success'   => 'Kreirana nova naslovna ploča :name.',
             'title'     => 'Nova naslovna ploča',
@@ -91,11 +90,10 @@ return [
     ],
     'title'         => 'Naslovna ploča',
     'widgets'       => [
-        'actions'                   => [
+        'actions'       => [
             'advanced-options'  => 'Napredne opcije',
         ],
-        'advanced_options_boosted'  => ':boosted_campaigns imaju napredne opcije poput prikazivanja članova obitelji ili atributa entiteta na naslovnoj ploči.',
-        'calendar'                  => [
+        'calendar'      => [
             'actions'           => [
                 'next'      => 'Promijeni trenutni datum na sljedeći dan',
                 'previous'  => 'Promijeni trenutni datum na prethodni dan',
@@ -104,33 +102,33 @@ return [
             'previous_events'   => 'Prošli događaji',
             'upcoming_events'   => 'Nadolazeći događaji',
         ],
-        'campaign'                  => [
+        'campaign'      => [
             'helper'    => 'Ovaj programčić prikazuje zaglavlje kampanje i uvijek se prikazuje zadanoj nadzornoj ploči.',
         ],
-        'create'                    => [
+        'create'        => [
             'success'   => 'Programčić dodan na naslovnu ploču.',
         ],
-        'delete'                    => [
+        'delete'        => [
             'success'   => 'Programčić uklonjen s naslovne ploče.',
         ],
-        'fields'                    => [
+        'fields'        => [
             'dashboard' => 'Naslovna ploča',
             'name'      => 'Proizvoljan naziv programčića',
             'order'     => 'Sortiranje',
             'text'      => 'Tekst',
             'width'     => 'Širina',
         ],
-        'orders'                    => [
+        'orders'        => [
             'name_asc'  => 'Po imenu uzlazno',
             'name_desc' => 'Po imenu silazno',
             'recent'    => 'Nedavno izmijenjeno',
         ],
-        'random'                    => [
+        'random'        => [
             'helpers'   => [
                 'name'  => 'Možeš referencirati nasumičan entitet s {ime}.',
             ],
         ],
-        'recent'                    => [
+        'recent'        => [
             'entity-header'     => 'Koristi zaglavlje entiteta kao sliku',
             'filters'           => 'Filteri',
             'full'              => 'Puna',
@@ -149,13 +147,13 @@ return [
             'tags'              => 'Filtrirajte popis nedavno izmijenjenih entiteta po navedenim oznakama.',
             'title'             => 'Nedavno izmijenjeno',
         ],
-        'unmentioned'               => [
+        'unmentioned'   => [
             'title' => 'Entiteti koji nisu nigdje spomenuti',
         ],
-        'update'                    => [
+        'update'        => [
             'success'   => 'Programčić ažuriran.',
         ],
-        'widths'                    => [
+        'widths'        => [
             '0' => 'Automatski',
             '12'=> 'Puna (100%)',
             '3' => 'Sićušna (25%)',

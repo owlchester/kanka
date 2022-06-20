@@ -40,7 +40,6 @@ return [
         'status'    => 'Status',
         'type'      => 'Rodzaj dodatku',
     ],
-    'helper'        => 'Społeczność Kanki bezustannie tworzy fantastyczne dodatki, umieszczane na targowisku.  Możesz je instalować bezpośrednio z targowiska do każdej doładowanej kampanii. To menu pozwala natomiast usuwać dodatki.',
     'import'        => [
         'button'                => 'Importuj',
         'created'               => 'Stworzono następujące elementy:',

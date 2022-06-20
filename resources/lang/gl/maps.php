@@ -12,6 +12,14 @@ return [
     'destroy'       => [],
     'edit'          => [],
     'errors'        => [
+        'chunking'  => [
+            'error'     => 'Houbo un erro ao fragmentar o mapa. Contacta co equipo de soporte no :discord.',
+            'running'   => [
+                'edit'      => 'O mapa non pode ser editado mentres está fragmentado.',
+                'explore'   => 'O mapa non pode ser mostrado mentres está fragmentado.',
+                'time'      => 'Isto pode levar dende uns minutos ata varias horas, dependendo do tamaño do mapa.',
+            ],
+        ],
         'dashboard' => [
             'missing'   => 'Este mapa precisa unha imaxe para poder ser mostrado no taboleiro.',
         ],
@@ -20,25 +28,23 @@ return [
         ],
     ],
     'fields'        => [
-        'center_marker'     => 'Marcador',
-        'center_x'          => 'Posición de lonxitude por defecto',
-        'center_y'          => 'Posición de latitude por defecto',
-        'centering'         => 'Centrado',
-        'distance_measure'  => 'Medida da distancia',
-        'distance_name'     => 'Unidade de distancia',
-        'grid'              => 'Reixa',
-        'initial_zoom'      => 'Zoom inicial',
-        'is_real'           => 'Usar OpenStreetMaps',
-        'map'               => 'Mapa superior',
-        'maps'              => 'Mapas',
-        'max_zoom'          => 'Zoom máximo',
-        'min_zoom'          => 'Zoom mínimo',
-        'name'              => 'Nome',
-        'tabs'              => [
+        'center_marker' => 'Marcador',
+        'center_x'      => 'Posición de lonxitude por defecto',
+        'center_y'      => 'Posición de latitude por defecto',
+        'centering'     => 'Centrado',
+        'grid'          => 'Reixa',
+        'initial_zoom'  => 'Zoom inicial',
+        'is_real'       => 'Usar OpenStreetMaps',
+        'map'           => 'Mapa superior',
+        'maps'          => 'Mapas',
+        'max_zoom'      => 'Zoom máximo',
+        'min_zoom'      => 'Zoom mínimo',
+        'name'          => 'Nome',
+        'tabs'          => [
             'coordinates'   => 'Coordenadas',
             'marker'        => 'Marcador',
         ],
-        'type'              => 'Tipo',
+        'type'          => 'Tipo',
     ],
     'helpers'       => [
         'center'            => 'Os seguintes valores controlan en que área do mapa está o foco. Deixar estes valores baleiros fará que o foco esté no centro.',
@@ -67,18 +73,21 @@ return [
         'settings'  => 'Configuración',
     ],
     'placeholders'  => [
-        'center_marker'     => 'Déixao baleiro para cargar o mapa no centro',
-        'center_x'          => 'Déixao baleiro para cargar o mapa no centro',
-        'center_y'          => 'Déixao baleiro para cargar o mapa no centro',
-        'distance_measure'  => 'Unidades por píxel',
-        'distance_name'     => 'Nome da unidade de distancia (quilómetro, milla...)',
-        'grid'              => 'Distancia en píxeis entre elementos da reixa. Deixar baleiro para ocultar a reixa.',
-        'name'              => 'Nome do mapa',
-        'type'              => 'Cripta, cidade, galaxia...',
+        'center_marker' => 'Déixao baleiro para cargar o mapa no centro',
+        'center_x'      => 'Déixao baleiro para cargar o mapa no centro',
+        'center_y'      => 'Déixao baleiro para cargar o mapa no centro',
+        'grid'          => 'Distancia en píxeis entre elementos da reixa. Deixar baleiro para ocultar a reixa.',
+        'name'          => 'Nome do mapa',
+        'type'          => 'Cripta, cidade, galaxia...',
     ],
     'show'          => [
         'tabs'  => [
             'maps'  => 'Mapas',
+        ],
+    ],
+    'tooltips'      => [
+        'chunking'  => [
+            'running'   => 'O mapa está sendo fragmentado. Este proceso pode levar dende minutos ata horas.',
         ],
     ],
 ];

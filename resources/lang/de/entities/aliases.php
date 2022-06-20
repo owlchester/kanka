@@ -20,9 +20,7 @@ return [
     'placeholders'  => [
         'name'  => 'Neuer Alias',
     ],
-    'unboosted'     => [
-        'text'  => 'Das Hinzufügen von Aliasen zu Objekten für Suchen und Erwähnungen ist :boosted-campaigns vorbehalten.',
-    ],
+    'unboosted'     => [],
     'update'        => [
         'success'   => 'Alias ​​:name für :entity aktualisiert.',
         'title'     => 'Alias ​​für :name aktualisieren',

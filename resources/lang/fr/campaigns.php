@@ -1,6 +1,9 @@
 <?php
 
 return [
+    'actions'                           => [
+        'boost' => 'Booster :name',
+    ],
     'create'                            => [
         'description'           => 'Créer une nouvelle campagne',
         'helper'                => [
@@ -175,6 +178,7 @@ TEXT
             'title' => 'Modifier membre :name',
         ],
         'fields'                => [
+            'banned'        => 'Compte suspendu',
             'joined'        => 'Rejoint',
             'last_login'    => 'Dernière connexion',
             'name'          => 'Utilisateur',
@@ -403,14 +407,7 @@ TEXT
         ],
         'title'     => 'Campagne :name',
     ],
-    'superboosted'                      => [
-        'gallery'   => [
-            'error' => [
-                'text'  => 'Uploader des images dans l\'éditeur de text est une fonctionnalité seulement accessible pour les :superboosted.',
-                'title' => 'Galerie de campagne',
-            ],
-        ],
-    ],
+    'superboosted'                      => [],
     'themes'                            => [
         'none'  => 'Aucun (utilise la configuration de l\'utilisateur)',
     ],

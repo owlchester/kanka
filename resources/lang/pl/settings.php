@@ -43,48 +43,10 @@ return [
         'title'     => 'Integracja z aplikacjami',
     ],
     'boost'         => [
-        'available_boosts'  => 'Dostępne doładowania. :amount / :max',
-        'benefits'          => [
-            'headers'   => [
-                'boosted'       => 'Korzyści doładowanej kampanii',
-                'superboosted'  => 'Korzyści turbodoładowanej kampanii',
-            ],
-            'more'      => [
-                'boosted'       => 'Wszystkie funkcje doładowanej kampanii',
-                'superboosted'  => 'Wszystkie funkcje turbodoładowanej kampanii',
-            ],
-            'third'     => 'By doładować kampanię, idź na jej stronę i kliknij ":boost_button" tuż nad ":edit_button".',
-        ],
-        'buttons'           => [
-            'boost'         => 'Doładuj',
-            'superboost'    => 'Turbodoładuj',
-            'tooltips'      => [
-                'boost'         => 'Doładowanie kampanii zużyje do :amount twoich doładowań',
-                'superboost'    => 'Turbodoładowanie kampanii zużyje :amount twoich doładowań',
-            ],
-            'unboost'       => 'Usuń doładowanie',
-        ],
-        'campaigns'         => 'Doładowane kampanie :count/:max',
-        'exceptions'        => [
+        'exceptions'    => [
             'already_boosted'       => 'Kampania :name jest już doładowana.',
             'exhausted_boosts'      => 'Nie masz już doładowań. Musisz usunąć doładowanie z którejś kampanii, by je ponownie wykorzystać.',
             'exhausted_superboosts' => 'Nie masz doładowań. Potrzebujesz 3, by turbodoładować kampanię.',
-        ],
-        'modals'            => [
-            'more'  => [
-                'action'    => 'Więcej doładowań?',
-                'body'      => 'Możesz zwiększyć liczbę dostępnych doładowań podnosząc poziom subskrypcji albo usuwając je z istniejących kampanii. Cofnięcie doładowania nie powoduje usunięcia związanych z nim treści, wyłącza je tylko do chwili ponownego doładowania.',
-                'title'     => 'Skąd wziąć więcej doładowań',
-            ],
-        ],
-        'success'           => [
-            'boost'         => 'Doładowano kampanię :name.',
-            'delete'        => 'Usunięto doładowanie kampanii :name.',
-            'superboost'    => 'Turbodoładowano kampanię :name',
-        ],
-        'title'             => 'Doładowanie',
-        'unboost'           => [
-            'title' => 'Usunięcie doładowania',
         ],
     ],
     'countries'     => [

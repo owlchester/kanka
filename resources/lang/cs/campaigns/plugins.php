@@ -28,7 +28,6 @@ return [
         'status'    => 'Stav',
         'type'      => 'Typ přídavného modulu',
     ],
-    'helper'        => 'Komunita kolem systému Kanka vytváří různé přídavné moduly. Zvýhodněná ("boosted") tažení mohou tyto moduly získat na tržišti. Zde pak lze přídavné moduly přidat nebo odebrat z tažení.',
     'import'        => [
         'created'   => 'Vytvořeny následující objekty:',
         'success'   => '{1} Naimportován jeden objekt z přídavného modulu :plugin.|[2,4] Naimportovány :count objekty z přídavného modulu :plugin.|[5,*] Naimportováno :count objektů z přídavného modulu :plugin.',

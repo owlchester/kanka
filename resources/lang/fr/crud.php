@@ -7,6 +7,7 @@ return [
         'back'              => 'Retour',
         'bulk_actions'      => 'Actions',
         'bulk_templates'    => 'Appliquer modèle d\'attribut',
+        'change'            => 'Changer',
         'copy'              => 'Copier',
         'copy_mention'      => 'Copier mention [ ]',
         'copy_to_campaign'  => 'Copier vers une campagne',
@@ -28,6 +29,7 @@ return [
     'add'                       => 'Ajouter',
     'alerts'                    => [
         'copy_attribute'    => 'La mention de l\'attribut à été copiée au presse-papier.',
+        'copy_invite'       => 'Le lien d\'invitation a été copié au presse-papier.',
         'copy_mention'      => 'La mention avancée de cette entité a été copiée au presse-papier.',
     ],
     'boosted'                   => 'Boosté',
@@ -257,6 +259,7 @@ return [
     ],
     'is_not_private'            => 'Cette entité n\'est pas privée.',
     'is_private'                => 'Cet élément est privé et pas visible.',
+    'keyboard-shortcut'         => 'Raccourci clavier :code',
     'legacy'                    => 'Ancien',
     'linking_help'              => 'Comment lier vers d\'autres éléments?',
     'manage'                    => 'Gérer',

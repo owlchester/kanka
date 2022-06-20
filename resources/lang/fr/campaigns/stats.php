@@ -12,6 +12,7 @@ return [
         ],
     ],
     'helper'        => 'Suis ta progression pour débloquer divers accomplissements pour la campagne. Ces chiffres sont mis à jour une fois toutes les 24 heures.',
+    'pitch'         => 'Suis ton progrès dans la worldbuilding de ton monde avec nos accomplissements.',
     'placeholder'   => ':amount de :target',
     'targets'       => [
         'calendars' => 'Créer :target calendriers',

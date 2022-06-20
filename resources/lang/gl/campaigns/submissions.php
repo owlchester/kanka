@@ -2,11 +2,13 @@
 
 return [
     'actions'       => [
-        'accept'    => 'Aceptar',
-        'reject'    => 'Rexeitar',
+        'accept'        => 'Aceptar',
+        'applications'  => 'Solicitudes: :status',
+        'change'        => 'Cambiar',
+        'reject'        => 'Rexeitar',
     ],
     'apply'         => [
-        'apply'         => 'Aplicar',
+        'apply'         => 'Solicitar',
         'help'          => 'A campaña está aberta a inscricións. A solicitude faise cubrindo o formulario. Notificarásete cando a administración da campaña revise a túa solicitude.',
         'remove_text'   => 'a túa solicitude',
         'success'       => [
@@ -23,9 +25,26 @@ return [
         'application'   => 'Solicitude de inscrición',
         'rejection'     => 'Razón do rexeitamento',
     ],
-    'helpers'       => [],
+    'helpers'       => [
+        'filter-helper'     => 'Esta campaña está aberta a novas inscricións!',
+        'modal'             => 'Unha campaña que estea aberta a inscricións e sexa pública permitirá a toda persoa visitante facer unha solicitude para unirse á campaña.',
+        'no_applications'   => 'Actualmente non hai solicitudes de inscrición pendentes. As visitantes poden solicitar unirse á campaña dende o seu taboleiro, facendo clic no botón :button.',
+        'not_open'          => 'A campaña non acepta solicitudes de inscrición actualmente.',
+        'open_not_public'   => 'A campaña está aberta a inscricións pero non é públic, co cal ninguén pode solicitar unirse. Podes cambiar isto editando a visibilidade da campaña na súa configuración.',
+    ],
     'placeholders'  => [
         'note'  => 'Escrebe a túa solicitude para unirte á campaña.',
+    ],
+    'statuses'      => [
+        'closed'    => 'Pechada',
+        'open'      => 'Aberta',
+    ],
+    'toggle'        => [
+        'closed'    => 'Pechada a inscricións',
+        'label'     => 'Estado',
+        'open'      => 'Aberta a inscricións',
+        'success'   => 'Estado de inscrición á campaña actualizado.',
+        'title'     => 'Estado de inscrición',
     ],
     'update'        => [
         'approve'   => 'Escolle o rol que terá a persoa ao unirse á túa campaña.',

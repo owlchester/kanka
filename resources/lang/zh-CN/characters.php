@@ -47,10 +47,7 @@ return [
         'personality_visible'       => '该角色的个性特征目前为所有人可见。',
     ],
     'index'         => [
-        'actions'   => [
-            'random'    => '新随机角色',
-        ],
-        'title'     => '角色',
+        'title' => '角色',
     ],
     'items'         => [
         'hint'  => '分配给该角色的道具将会展示在这里。',

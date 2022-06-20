@@ -31,10 +31,7 @@ return [
         'helper'    => 'A megerősített kampányok linkeket adhatnak az entitásokhoz, amelyek külső oldalakra mutatnak.',
         'title'     => ':name linkjei',
     ],
-    'unboosted'     => [
-        'text'  => 'Külső erőforrásra mutató link hozzáadása, ami közvetlenül az entitáson jelenik meg: ez a :boosted-campaigns számára van fenntartva.',
-        'title' => 'Megerősített kampány lehetőség',
-    ],
+    'unboosted'     => [],
     'update'        => [
         'success'   => ':name linket frissítettük.',
         'title'     => ':name link frissítése',

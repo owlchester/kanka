@@ -14,6 +14,7 @@ return [
         'add_year'          => 'Adicionar um nome para o ano',
         'set_today'         => 'Definir como dia atual',
         'today'             => 'Hoje',
+        'update_weather'    => 'Atualizar o clima',
     ],
     'checkboxes'    => [
         'is_recurring'  => 'Acontece todos os anos',
@@ -51,7 +52,12 @@ return [
         'success'   => 'Evento \':event\' adicionado ao calendário.',
     ],
     'events'        => [
-        'title' => 'Calendário :name Eventos',
+        'filters'   => [
+            'show_after'    => 'Mostrar hoje e depois',
+            'show_all'      => 'Mostrar tudo',
+            'show_before'   => 'Mostrar antes de hoje',
+        ],
+        'title'     => 'Calendário :name Eventos',
     ],
     'fields'        => [
         'calendar'              => 'Calendário Principal',
@@ -63,6 +69,7 @@ return [
         'current_year'          => 'Ano Atual',
         'date'                  => 'Data Atual',
         'day'                   => 'Dia',
+        'default_layout'        => 'Layout padrão',
         'has_leap_year'         => 'Tem anos bissextos',
         'intercalary'           => 'Dias intercalares',
         'is_incrementing'       => 'Data de Avanço',
@@ -90,11 +97,12 @@ return [
         'year'                  => 'Ano',
     ],
     'helpers'       => [
-        'month_type'    => 'Os meses intercalares não usam os dias da semana, mas ainda influenciam as luas e as estações.',
-        'moon_offset'   => 'Por padrão, a primeira lua cheia aparece no primeiro dia do ano 0. A alteração do deslocamento será alterada quando a primeira lua cheia for exibida. Este valor pode ser negativo (até a duração do primeiro mês) ou positivo (até a duração do primeiro mês).',
-        'nested_parent' => 'Mostrando os calendários de :parent.',
-        'nested_without'=> 'Mostrando todos os calendários que não tem um calendário-pai. Clique em uma linha para ver os calendários-filhos.',
-        'start_offset'  => 'Por padrão, o calendário começa no primeiro dia da semana do ano 0. A alteração deste campo influencia onde o primeiro dia do calendário é colocado.',
+        'default_layout'    => 'Selecione qual layout o calendário deve usar por padrão quando visualizado.',
+        'month_type'        => 'Os meses intercalares não usam os dias da semana, mas ainda influenciam as luas e as estações.',
+        'moon_offset'       => 'Por padrão, a primeira lua cheia aparece no primeiro dia do ano 0. A alteração do deslocamento será alterada quando a primeira lua cheia for exibida. Este valor pode ser negativo (até a duração do primeiro mês) ou positivo (até a duração do primeiro mês).',
+        'nested_parent'     => 'Mostrando os calendários de :parent.',
+        'nested_without'    => 'Mostrando todos os calendários que não tem um calendário-pai. Clique em uma linha para ver os calendários-filhos.',
+        'start_offset'      => 'Por padrão, o calendário começa no primeiro dia da semana do ano 0. A alteração deste campo influencia onde o primeiro dia do calendário é colocado.',
     ],
     'hints'         => [
         'event_length'      => 'Quanto tempo um evento deve durar. Um evento não pode durar mais de dois meses.',
@@ -114,8 +122,10 @@ return [
         'title' => 'Calendários',
     ],
     'layouts'       => [
-        'month' => 'Mês',
-        'year'  => 'Ano',
+        'month'     => 'Mês',
+        'monthly'   => 'Mensalmente por padrão',
+        'year'      => 'Ano',
+        'yearly'    => 'Anualmente por padrão',
     ],
     'modals'        => [
         'switcher'  => [
@@ -201,8 +211,12 @@ return [
         'weekdays'          => 'Número de dias na semana',
     ],
     'show'          => [
-        'missing_details'   => 'Este calendário não pôde ser exibido. Os calendários precisam de pelo menos 2 meses e 2 dias da semana para serem renderizados corretamente.',
-        'tabs'              => [
+        'missing_details'       => 'Este calendário não pôde ser exibido. Os calendários precisam de pelo menos 2 meses e 2 dias da semana para serem renderizados corretamente.',
+        'moon_1first_quarter'   => 'Lua minguante de :moon',
+        'moon_full'             => 'Lua cheia de :moon',
+        'moon_last_quarter'     => 'Lua crescente de :moon',
+        'moon_new'              => 'Lua nova de :moon',
+        'tabs'                  => [
             'events'    => 'Eventos de calendário',
             'weather'   => 'Clima',
         ],

@@ -22,11 +22,11 @@ return [
             'filters'       => [
                 'all'               => 'Boosted Status',
                 'boosted'           => 'Boosted campaigns',
+                'entities'          => 'Sort by entity count',
+                'followers'         => 'Sort by followers',
                 'is-boosted'        => 'This campaign is boosted!',
                 'is-superboosted'   => 'This campaign is superboosted!',
                 'unboosted'         => 'Unboosted campaigns',
-                'entities'          => 'Sort by entity count',
-                'followers'         => 'Sort by followers',
             ],
             'no-results'    => 'No public campaign with these filters could be found. Please try again.',
             'title'         => 'Public Campaigns',

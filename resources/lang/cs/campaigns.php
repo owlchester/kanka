@@ -376,14 +376,7 @@ TEXT
         ],
         'title'     => 'Kampaň :name',
     ],
-    'superboosted'                      => [
-        'gallery'   => [
-            'error' => [
-                'text'  => 'Nahrávat obrázky do textového editoru lze pouze u :superboosted kampaní.',
-                'title' => 'Nahrát obrázek do galerie Kampaně',
-            ],
-        ],
-    ],
+    'superboosted'                      => [],
     'ui'                                => [
         'other' => 'Ostatní',
     ],

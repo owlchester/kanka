@@ -44,10 +44,7 @@ return [
         'personality_visible'       => 'Persoonlijkheidskenmerken van dit personage zijn voor iedereen zichtbaar.',
     ],
     'index'         => [
-        'actions'   => [
-            'random'    => 'Nieuw Willekeurig Personage',
-        ],
-        'title'     => 'Personages',
+        'title' => 'Personages',
     ],
     'items'         => [
         'hint'  => 'Voorwerpen kunnen worden toegewezen aan personages en worden hier weergegeven.',

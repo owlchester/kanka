@@ -43,48 +43,10 @@ return [
         'title'     => 'Integració d\'aplicacions',
     ],
     'boost'         => [
-        'available_boosts'  => 'Millores disponibles: :amount/:max',
-        'benefits'          => [
-            'headers'   => [
-                'boosted'       => 'Beneficis de les campanyes millorades',
-                'superboosted'  => 'Beneficis de les campanyes supermillorades',
-            ],
-            'more'      => [
-                'boosted'       => 'Totes les funcionalitats de les campanyes millorades',
-                'superboosted'  => 'Totes les funcionalitats de les campanyes supermillorades',
-            ],
-            'third'     => 'Per a millorar una campanya, dirigiu-vos a la pàgina de la campanya i cliqueu el botó de ":boost_button" que hi ha sobre el botó de ":edit_button".',
-        ],
-        'buttons'           => [
-            'boost'         => 'Millora',
-            'superboost'    => 'Supermillora',
-            'tooltips'      => [
-                'boost'         => 'Millorar una campanya gasta :amount de les vostres millores',
-                'superboost'    => 'Supermillorar una campanya gasta :amount de les vostres millores',
-            ],
-            'unboost'       => 'Treure la millora',
-        ],
-        'campaigns'         => 'Campanyes millorades :count/:max',
-        'exceptions'        => [
+        'exceptions'    => [
             'already_boosted'       => 'La campanya :name ja està millorada.',
             'exhausted_boosts'      => 'Us heu quedat sense millores. Elimineu una millora d\'una campanya abans de donar-la-hi a una altra.',
             'exhausted_superboosts' => 'Us heu quedat sense millores. Calen 3 millores per a supermillorar una campanya.',
-        ],
-        'modals'            => [
-            'more'  => [
-                'action'    => 'Més millores?',
-                'body'      => 'Podeu obtenir més millores pujant el vostre nivell de subscripció o eliminant-ne alguna d\'una altra campanya. En treure la millora d\'una campanya, no s\'esborrarà cap informació; només romandrà oculta fins quan torneu a afegir-hi millores.',
-                'title'     => 'Obtenir més millores',
-            ],
-        ],
-        'success'           => [
-            'boost'         => 'S\'ha millorat la campanya :name.',
-            'delete'        => 'La vostra millora s\'ha tret de :name.',
-            'superboost'    => 'S\'ha supermillorat la campanya :name',
-        ],
-        'title'             => 'Millorar',
-        'unboost'           => [
-            'title' => 'Deixar de millorar una campanya',
         ],
     ],
     'countries'     => [

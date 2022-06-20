@@ -21,9 +21,7 @@ return [
         'type'      => 'Tipus de capa',
     ],
     'helper'        => [
-        'amount'            => 'Es poden afegir fins a :amount capes a un mapa per a canviar la imatge de fons que es mostra sota els marcadors.',
-        'boosted_campaign'  => 'Les :boosted poden tenir fins a :amount capes.',
-        'is_real'           => 'Les capes no estan habilitades amb l\'OpenStreetMaps.',
+        'is_real'   => 'Les capes no estan habilitades amb l\'OpenStreetMaps.',
     ],
     'placeholders'  => [
         'name'      => 'Subterrani, nivell 2, naufragi...',

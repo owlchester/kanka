@@ -16,5 +16,4 @@ return [
     'show'          => [
         'title' => 'Históricos da entidade :name',
     ],
-    'superboosted'  => 'Entidades atualizadas em :superboosted-campaigns keep mantém logs completos de mudanças por :amount dias.',
 ];

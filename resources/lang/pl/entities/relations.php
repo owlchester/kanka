@@ -74,7 +74,6 @@ return [
     'show'              => [
         'title' => 'Relacje elementu :name',
     ],
-    'teaser'            => 'Doładuj kampanię, by zyskać dostęp do grafu relacji. Kliknij, by dowiedzieć się więcej o doładowanych kampaniach.',
     'types'             => [
         'family_member'         => 'Członek rodziny',
         'organisation_member'   => 'Członek organizacji',

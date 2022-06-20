@@ -381,6 +381,9 @@ return [
         'timelines'     => 'Zeitstrahlen',
         'tooltip'       => 'Kurztip',
     ],
+    'titles'                    => [
+        'editing'   => ':name editieren',
+    ],
     'tooltips'                  => [
         'boosted_feature'   => 'boost Kampagnenfunktion',
         'new_post'          => 'Fügen Sie diesem Objekt einen neuen Beitrag hinzu.',

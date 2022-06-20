@@ -211,11 +211,12 @@ return [
         'weekdays'          => 'Anzahl der Tage in einer Woche',
     ],
     'show'          => [
-        'missing_details'   => 'Dieser Kalender konnte nicht angezeigt werden. Kalender brauchen mindestens 2 Monate und 2 Wochentage um korrekt generiert zu werden.',
-        'moon_full'         => ':moon Vollmond',
-        'moon_last_quarter' => ':moon abnehmend',
-        'moon_new'          => ':moon Neumond',
-        'tabs'              => [
+        'missing_details'       => 'Dieser Kalender konnte nicht angezeigt werden. Kalender brauchen mindestens 2 Monate und 2 Wochentage um korrekt generiert zu werden.',
+        'moon_1first_quarter'   => ':moon erstes Viertel',
+        'moon_full'             => ':moon Vollmond',
+        'moon_last_quarter'     => ':moon abnehmend',
+        'moon_new'              => ':moon Neumond',
+        'tabs'                  => [
             'events'    => 'Kalender Events',
             'weather'   => 'Wetter',
         ],

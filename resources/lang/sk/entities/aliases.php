@@ -20,9 +20,7 @@ return [
     'placeholders'  => [
         'name'  => 'Nový alias',
     ],
-    'unboosted'     => [
-        'text'  => 'Pridávanie aliasov k objektom pre hľadanie a referencie je rezervované pre :boosted-campaigns.',
-    ],
+    'unboosted'     => [],
     'update'        => [
         'success'   => 'Alias :name aktualizovaný pre :entity.',
         'title'     => 'Aktualizovať alias pre :name',

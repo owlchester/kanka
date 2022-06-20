@@ -41,7 +41,7 @@ return [
         'helpers'       => [
             'copy_widgets'  => 'Duplicate the widgets from the :name dashboard into this new one.',
         ],
-        'pitch'       => 'Create multiple dashboards with custom permissions for each role of the campaign.',
+        'pitch'         => 'Create multiple dashboards with custom permissions for each role of the campaign.',
         'placeholders'  => [
             'name'  => 'Name of the dashboard',
         ],
@@ -95,10 +95,10 @@ return [
     ],
     'title'         => 'Dashboard',
     'widgets'       => [
-        'actions'                   => [
+        'actions'       => [
             'advanced-options'  => 'Advanced options',
         ],
-        'calendar'                  => [
+        'calendar'      => [
             'actions'           => [
                 'next'      => 'Change date to next day',
                 'previous'  => 'Change date to previous day',
@@ -107,16 +107,16 @@ return [
             'previous_events'   => 'Previous',
             'upcoming_events'   => 'Upcoming',
         ],
-        'campaign'                  => [
+        'campaign'      => [
             'helper'    => 'This widget displays the campaign header. This widget is always shown on the default dashboard.',
         ],
-        'create'                    => [
+        'create'        => [
             'success'   => 'Widget added to the dashboard.',
         ],
-        'delete'                    => [
+        'delete'        => [
             'success'   => 'Widget removed from the dashboard.',
         ],
-        'fields'                    => [
+        'fields'        => [
             'class'             => 'CSS class',
             'dashboard'         => 'Dashboard',
             'name'              => 'Custom widget name',
@@ -125,21 +125,21 @@ return [
             'text'              => 'Text',
             'width'             => 'Width',
         ],
-        'helpers'                   => [
+        'helpers'       => [
             'class'     => 'Define a custom css class added to the widget.',
             'filters'   => 'Click to learn about the available filter options.',
         ],
-        'orders'                    => [
+        'orders'        => [
             'name_asc'  => 'Name ascending',
             'name_desc' => 'Name descending',
             'recent'    => 'Recently modified',
         ],
-        'random'                    => [
+        'random'        => [
             'helpers'   => [
                 'name'  => 'You can reference the random entity\'s name with {name}',
             ],
         ],
-        'recent'                    => [
+        'recent'        => [
             'advanced_filter'   => 'Advanced filter',
             'advanced_filters'  => [
                 'mentionless'   => 'Mentionless (entities that don\'t mention other entities)',
@@ -163,17 +163,17 @@ return [
             'tags'              => 'Filter the list of entities on specified tags.',
             'title'             => 'Entity list',
         ],
-        'tabs'                      => [
+        'tabs'          => [
             'advanced'  => 'Advanced',
             'setup'     => 'Setup',
         ],
-        'unmentioned'               => [
+        'unmentioned'   => [
             'title' => 'Unmentioned entities',
         ],
-        'update'                    => [
+        'update'        => [
             'success'   => 'Widget modified.',
         ],
-        'widths'                    => [
+        'widths'        => [
             '0' => 'Auto',
             '12'=> 'Full (100%)',
             '3' => 'Tiny (25%)',

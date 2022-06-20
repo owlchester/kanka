@@ -27,7 +27,6 @@ return [
         'status'    => 'Satus',
         'type'      => 'Plugin typ',
     ],
-    'helper'        => 'Kankas användare skapar konstant fantastiska plugins på vår marknadsplats. Om din kampanj är boostad så kan du installera plugins från marknadsplatsen. Använd detta gränssnitt för att avinstallera plugins från din kampanj.',
     'info'          => [
         'helper'        => 'När en ny version av en plugin släpps så kan du uppdatera den till den senaste versionen för din kampanj.',
         'title'         => 'Plugin :plugin uppdateringar',

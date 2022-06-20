@@ -19,9 +19,7 @@ return [
     'placeholders'  => [
         'name'  => 'Nou àlies',
     ],
-    'unboosted'     => [
-        'text'  => 'Els àlies estan reservats per a les :boosted-campaigns.',
-    ],
+    'unboosted'     => [],
     'update'        => [
         'success'   => 'S\'ha actualitzat l\'àlies :name de :entity.',
         'title'     => 'Actualitzar l\'àlies de :name',

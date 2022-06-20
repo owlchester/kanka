@@ -15,5 +15,4 @@ return [
     'show'          => [
         'title' => 'История объекта :name',
     ],
-    'superboosted'  => ':superboosted-campaigns позволяют хранить полную историю изменений объекта в течение :amount дней.',
 ];

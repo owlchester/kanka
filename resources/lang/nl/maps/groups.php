@@ -19,10 +19,7 @@ return [
         'is_shown'  => 'Toon groepsmarkeringen',
         'position'  => 'Positie',
     ],
-    'helper'        => [
-        'amount'            => 'Een markering kan aan een groep worden toegevoegd, zodat je alle Winkels van een stad kunt tonen of verbergen. Een kaart kan maximaal :amount groepen hebben.',
-        'boosted_campaign'  => ':boosted kan maximaal :amount groepen bevatten.',
-    ],
+    'helper'        => [],
     'hints'         => [
         'is_shown'  => 'Indien aangevinkt, worden de groepsmarkeringen standaard op de kaart getoond.',
     ],

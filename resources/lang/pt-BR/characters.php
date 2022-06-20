@@ -51,10 +51,7 @@ return [
         'personality_visible'       => 'Os traços de personalidade deste personagem estão visíveis para todos.',
     ],
     'index'         => [
-        'actions'   => [
-            'random'    => 'Novo Personagem Aleatório',
-        ],
-        'title'     => 'Personagens',
+        'title' => 'Personagens',
     ],
     'items'         => [
         'hint'  => 'Itens podem ser vinculados a personagens e serão mostrados aqui.',

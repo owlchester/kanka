@@ -43,48 +43,10 @@ return [
         'title'     => 'App Integráció',
     ],
     'boost'         => [
-        'available_boosts'  => 'Elérhető megerősítések: :amount / :max',
-        'benefits'          => [
-            'headers'   => [
-                'boosted'       => 'Megerősített kampány előnyei',
-                'superboosted'  => 'Szupererősített kampányok előnyei',
-            ],
-            'more'      => [
-                'boosted'       => 'Minden megerősített kampány lehetőség',
-                'superboosted'  => 'Minden szupererősített kampány lehetőség',
-            ],
-            'third'     => 'A kampány boost-olásához keresd fel a kampány oldalát, kattints a ":boost_button" gombra, amely a ":edit_button" felett helyezkedik el.',
-        ],
-        'buttons'           => [
-            'boost'         => 'Boost',
-            'superboost'    => 'Szupererősített',
-            'tooltips'      => [
-                'boost'         => 'Egy kampány megerősítése :amount megerősítés felhasználásával',
-                'superboost'    => 'Egy kampány szupererősítése :amount megerősítés felhasználásával',
-            ],
-            'unboost'       => 'Megerősítés visszavonása',
-        ],
-        'campaigns'         => 'Boost-olt kapányok száma: :count / :max',
-        'exceptions'        => [
+        'exceptions'    => [
             'already_boosted'       => ':name kampány már boost-olva van.',
             'exhausted_boosts'      => 'Elfogytak a kiosztható Boost-jaid. Vond vissza egy boost-od valamelyik kampányról, mielőtt egy újnak adnál egyet.',
             'exhausted_superboosts' => 'Nincs megerősítésed. 3 megerősítés szükséges a kampány szupererősítéséhez.',
-        ],
-        'modals'            => [
-            'more'  => [
-                'action'    => 'Több megerősítést szeretnél?',
-                'body'      => 'Több megerősítést kaphatsz a feliratkozási szinten emelésével vagy egy kampányról való levételével. Egy kampány megerősítésének visszavonása nem törli a plusz információkat, csak nem lesznek azok elérhetőek addig, amíg újra meg nem erősíted a kampányt.',
-                'title'     => 'Több megerősítés szerzése',
-            ],
-        ],
-        'success'           => [
-            'boost'         => ':name kampány boost-olva lett.',
-            'delete'        => 'Boost visszavonva innen: :name',
-            'superboost'    => ':name kampányt szupererősítettük.',
-        ],
-        'title'             => 'Boost',
-        'unboost'           => [
-            'title' => 'Kampány megerősítésének visszavonása',
         ],
     ],
     'countries'     => [

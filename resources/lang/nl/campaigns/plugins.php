@@ -27,7 +27,6 @@ return [
         'status'    => 'Status',
         'type'      => 'Plugin type',
     ],
-    'helper'        => 'De Kanka community maakt voortdurend geweldige plugins op onze marktplaats. Als je campaign een boost krijgt, kan je plugins van de marktplaats installeren. Gebruik deze interface om plugins in je campaign te verwijderen.',
     'info'          => [
         'helper'        => 'Wanneer er een nieuwe versie van een plugin wordt uitgebracht, kan je deze bijwerken naar de nieuwste versie voor je campaign.',
         'title'         => 'Plugin :plugin updates',

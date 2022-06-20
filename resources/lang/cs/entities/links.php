@@ -31,10 +31,7 @@ return [
         'helper'    => 'Zvýhodněná (boosted) tažení mohou objektům přidávat odkazy, vedoucí na externí stránky.',
         'title'     => 'Odkazy objektu :name',
     ],
-    'unboosted'     => [
-        'text'  => 'Přidávat odkazy, vedoucí na externí stránky, mohou pouze zvýhodněná (boosted) tažení.',
-        'title' => 'Funkce zvýhodněného (boosted) tažení',
-    ],
+    'unboosted'     => [],
     'update'        => [
         'success'   => 'Odkaz :name objektu :entity aktualizován',
         'title'     => 'Aktualizovat odkaz objektu :name',

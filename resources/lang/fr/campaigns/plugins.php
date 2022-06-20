@@ -40,7 +40,6 @@ return [
         'status'    => 'Status',
         'type'      => 'Type de plugin',
     ],
-    'helper'        => 'La communauté de Kanka est constamment en train d\'ajouter de nouveaux plugins incroyables sur le marketplace. Les campagnes boostées peuvent installer les plugins du marketplace. Cette interface permet de gérer les plugins installés sur la campagne.',
     'import'        => [
         'button'                => 'Importer',
         'created'               => 'Les entités suivantes ont été créées:',
@@ -58,6 +57,7 @@ return [
         'updates'       => 'Mises à jour',
         'your_version'  => 'Ta version',
     ],
+    'pitch'         => 'Installes et gères les plugins du :marketplace.',
     'status'        => [
         'disabled'  => 'Désactivé',
         'enabled'   => 'Activé',

@@ -327,14 +327,7 @@ TEXT
         ],
         'title'     => 'Campaign :name',
     ],
-    'superboosted'                      => [
-        'gallery'   => [
-            'error' => [
-                'text'  => 'Het uploaden van afbeeldingen in de text editor is een functie die alleen beschikbaar is voor :superboosted.',
-                'title' => 'Upload van Afbeeldingen in Campaign Galerij',
-            ],
-        ],
-    ],
+    'superboosted'                      => [],
     'ui'                                => [],
     'visibilities'                      => [
         'private'   => 'Privé',

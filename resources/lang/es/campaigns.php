@@ -392,14 +392,7 @@ TEXT
         ],
         'title'     => 'Campaña :name',
     ],
-    'superboosted'                      => [
-        'gallery'   => [
-            'error' => [
-                'text'  => 'Subir imágenes en el editor de texto es una funcionalidad disponible solo para las :superboosted.',
-                'title' => 'Subida de imágenes en la galería de campaña',
-            ],
-        ],
-    ],
+    'superboosted'                      => [],
     'ui'                                => [
         'boosted'           => 'Mejorada',
         'collapsed'         => [

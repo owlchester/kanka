@@ -310,14 +310,7 @@ TEXT
         ],
         'title'     => 'Kampanj :namn',
     ],
-    'superboosted'                      => [
-        'gallery'   => [
-            'error' => [
-                'text'  => 'Uppladdning av bilder i text redigeraren är en funktion endast tillgänglig för :superboosted.',
-                'title' => 'Kampanj Galleri Bild Uppladdning',
-            ],
-        ],
-    ],
+    'superboosted'                      => [],
     'ui'                                => [],
     'visibilities'                      => [
         'private'   => 'Privat',

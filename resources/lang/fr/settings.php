@@ -43,50 +43,10 @@ return [
         'title'     => 'Intégration d\'app',
     ],
     'boost'         => [
-        'available_boosts'  => 'Boosts disponibles: :amount / :max',
-        'benefits'          => [
-            'headers'   => [
-                'boosted'       => 'Avantages d\'une campagne boostée',
-                'superboosted'  => 'Avantages d\'une campagne superboostée',
-            ],
-            'more'      => [
-                'boosted'       => 'Toutes les fonctionnalités pour les campagnes boostées',
-                'superboosted'  => 'Toutes les fonctionnalités pour les campagnes superboostées',
-            ],
-            'third'     => 'Pour booster une campagne, aller sur la page de la campagne et cliquer sur le bouton ":boost_button" situé au dessus du bouton ":edit_button".',
-        ],
-        'buttons'           => [
-            'boost'         => 'Boost',
-            'superboost'    => 'Superboost',
-            'tooltips'      => [
-                'boost'         => 'Booster une campagne utilise :amount boosts.',
-                'superboost'    => 'Superbooster une campagne utilise :amount boosts.',
-            ],
-            'unboost'       => 'Débooster',
-        ],
-        'campaigns'         => 'Campagnes boostées :count / :max',
-        'exceptions'        => [
+        'exceptions'    => [
             'already_boosted'       => 'La campagne :name est déjà boostée.',
             'exhausted_boosts'      => 'Tu n\'as plus de boost disponible. Retire un boost d\'une campagne avant de pouvoir l\'attribuer à une autre.',
             'exhausted_superboosts' => 'Tu n\'as plus de boosts. Tu as besoin de 3 boosts pour superbooster une campagne.',
-        ],
-        'modals'            => [
-            'more'  => [
-                'action'    => 'Plus de boosters?',
-                'body'      => 'Tu peux recevoir plus de booster en changeant ton abonnement à Kanka, ou en les retirant d\'une campagne boostée. Débooster une campagne ne supprime pas les informations, mais les caches jusqu\'à ce que la campagne est à nouveau boostée.',
-                'title'     => 'Avoir plus de boosters',
-            ],
-        ],
-        'success'           => [
-            'boost'         => 'La campagne :name est boostée.',
-            'delete'        => 'Boost retiré de :name.',
-            'superboost'    => 'La campagne :name est superboostée.',
-        ],
-        'title'             => 'Boost',
-        'unboost'           => [
-            'confirm'   => 'Retirer le boost de la campagne ":tag".',
-            'data'      => 'Aucune donnée ne sera perdue.',
-            'title'     => 'Débooster une campagne',
         ],
     ],
     'countries'     => [

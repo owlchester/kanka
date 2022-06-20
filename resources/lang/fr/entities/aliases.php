@@ -17,12 +17,11 @@ return [
     'helpers'       => [
         'primary'   => 'Définir un ou plusieurs alias sur l\'entité la rentra trouvable avec la recherche global (tout en haut) et à travers les mentions.',
     ],
+    'pitch'         => 'Créés des alias vers cette entité pour facilement la trouver dans la recherche et les mentions.',
     'placeholders'  => [
         'name'  => 'Nouvel alias',
     ],
-    'unboosted'     => [
-        'text'  => 'Ajouter des aliases aux entités pour la recherche et les mentions est une fonctionnalité réservées aux :boosted-campaigns.',
-    ],
+    'unboosted'     => [],
     'update'        => [
         'success'   => 'Alias :name modifié pour :entity.',
         'title'     => 'Modifier l\'alias pour :name',

@@ -34,7 +34,6 @@ return [
     'show'          => [
         'title' => 'Relaties voor :name',
     ],
-    'teaser'        => 'Geef de campaign een boost om toegang te krijgen tot de relatiesverkenner. Klik voor meer informatie over boosted campaigns.',
     'types'         => [
         'family_member'         => 'Familielid',
         'organisation_member'   => 'Organisatie Lid',

@@ -57,6 +57,7 @@ return [
         'question'      => 'Questão',
     ],
     'placeholders'  => [
+        'custom_icon'   => 'Tente :example1 ou :example2',
         'custom_shape'  => '100,100 200,240 340,110',
         'name'          => 'Necessário se nenhuma entidade estiver selecionada',
     ],

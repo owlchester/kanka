@@ -43,48 +43,10 @@ return [
         'title'     => 'Integrácia aplikácie',
     ],
     'boost'         => [
-        'available_boosts'  => 'Dostupné boosty: :amount / :max',
-        'benefits'          => [
-            'headers'   => [
-                'boosted'       => 'Výhody boostnutej kampane',
-                'superboosted'  => 'Výhody superboostnutej kampane',
-            ],
-            'more'      => [
-                'boosted'       => 'Všetky výhody boostnutej kampane',
-                'superboosted'  => 'Všetky výhody superboostnutej kampane',
-            ],
-            'third'     => 'Ak chceš boostnuť kampaň, prejdi na stránku kampane a klikni na tlačidlo ":boost_button" nad tlačidlom ":edit_button".',
-        ],
-        'buttons'           => [
-            'boost'         => 'Boost',
-            'superboost'    => 'Superboost',
-            'tooltips'      => [
-                'boost'         => 'Boostnutie kampane používa :amount z tvojich boostov.',
-                'superboost'    => 'Superboostnutie kampane používa :amount z tvojich boostov',
-            ],
-            'unboost'       => 'Zruš boostnutie',
-        ],
-        'campaigns'         => 'Boostnuté kampane :count / :max',
-        'exceptions'        => [
+        'exceptions'    => [
             'already_boosted'       => 'Kampaň :name už je boostnutá.',
             'exhausted_boosts'      => 'Nemáš už žiadne boosty na rozdávanie. Odstráň najprv boost od existujúcej kampane pred priradením inej.',
             'exhausted_superboosts' => 'Došli ti boosty. Na superboostnutie kampane potrebuješ 3 boosty.',
-        ],
-        'modals'            => [
-            'more'  => [
-                'action'    => 'Viac boostov?',
-                'body'      => 'Viac boostov môžeš získať navýšením tvojej úrovne predplatného, alebo odstránením z kampane. Zrušenie boostnutia kampane nezmaže žiadne boostnuté informácie, iba ich deaktivuje, dokiaľ ju opäť neboostneš.',
-                'title'     => 'Získať viac boostov',
-            ],
-        ],
-        'success'           => [
-            'boost'         => 'Kampaň :name boostnutá',
-            'delete'        => 'Boost z kampane :name odstránený.',
-            'superboost'    => 'Kampaň :name superboostnutá',
-        ],
-        'title'             => 'Boost',
-        'unboost'           => [
-            'title' => 'Ukončiť boost kampane',
         ],
     ],
     'countries'     => [

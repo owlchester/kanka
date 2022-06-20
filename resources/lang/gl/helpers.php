@@ -23,6 +23,11 @@ return [
         'range'             => 'Os atributos de número poden ser configurados para só permitir valores nun rango numérico. Por exemplo, usa :example para limitar o atributo entre 1 e 10. Os valores do rango tamén poden referenciar outros atributos, por exemplo con :reference. Ao gardar un atributo, se o valor está fóra do rango, este axustarase automaticamente ao valor permitido máis próximo.',
         'title'             => 'Atributos',
     ],
+    'calendar-widget'   => [
+        'description'   => 'Non entendes por que o complemento do calendario mostra certos lembretes? Calcular que lembretes aparecen é complexo e consume recursos, polo que tomamos algúns atallos para evitar que o teu taboleiro tarde demasiado en cargar. Os lembretes que non son recurrentes sempre terán prioridade sobre os recurrentes, e os lembretes baseados en fases luares son ignorados completamente.',
+        'info'          => 'Por que aparecen estes lembretes?',
+        'title'         => 'Complemento de calendario',
+    ],
     'dice'              => [
         'description'               => 'As tiradas de dados xenéricas pódense realizar escrebendo "d20", "4d4+4", "d%" para percentiles e "df" para dados "fudge".',
         'description_attributes'    => 'Tamén é posíbel obter un atributo dunha personaxe usando a sintaxe {character.nome_do_atributo}. Por exemplo, {character.nivel}d6+{character.sabiduria}.',
@@ -81,6 +86,7 @@ return [
         'months'            => 'Escrebe :code para obter unha lista dos meses dos teus calendarios.',
         'options'           => 'Algunhas opcións son :options.',
         'overview'          => 'Liga facilmente entidades existentes escribindo :code e tres letras ou máis.',
+        'parameters'        => 'Tamén podes pasar parámetros á ligazón da entidade. Por exemplo, podes especificar o ano e o mes que serán mostrados nun calendario con :calendar. O mesmo pode ser feito coa orde das sublistas. Por exemplo, mostra as subfamilias dunha familia ordenadas pola súa localización con :sublist.',
         'title'             => 'Crear ligazóns a outras entidades e atallos.',
     ],
     'map'               => [],

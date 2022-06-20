@@ -1,14 +1,15 @@
 <?php
 
 return [
-    'actions'   => [
+    'actions'           => [
         'change_focus'  => 'Changer le point de focus',
         'replace_image' => 'Replacer l\'imager',
         'save-replace'  => 'Remplacer l\'image',
         'save_focus'    => 'Enregistrer le focus',
         'view'          => 'Voir l\'image',
     ],
-    'focus'     => [
+    'call-to-action'    => 'Cliquer sur l\'image de l\'entité pour définir le point de focus de l\'image. Ceci remplace l\'estimation automatique.',
+    'focus'             => [
         'breadcrumb'    => 'Focus d\'image',
         'helper'        => 'Cliquer sur l\'image pour définir le point de focus. Cliquer sur le point de focus pour le retirer.',
         'panel_title'   => 'Focus d\'image',
@@ -17,7 +18,7 @@ return [
         'unboosted'     => 'Définir un point de focus pour l\'image est réservé aux :boosted-campaigns.',
         'warning'       => 'Définir le point de focus n\'est pas possible lorsque l\'image de l\'entité viens de la gallerie.',
     ],
-    'replace'   => [
+    'replace'           => [
         'breadcrumb'    => 'Replacement d\'image',
         'panel_title'   => 'Replacement d\'image de l\'entité',
         'success'       => 'Image remplacée.',

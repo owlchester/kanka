@@ -2,7 +2,7 @@
 
 return [
     'actions'                           => [
-        'boost'     => 'Boost :name',
+        'boost' => 'Boost :name',
     ],
     'create'                            => [
         'description'           => 'Create a new campaign',
@@ -67,7 +67,6 @@ TEXT
         'system'                            => 'System',
         'theme'                             => 'Theme',
         'visibility'                        => 'Visibility',
-        'followers'                         => 'Followers',
     ],
     'following'                         => 'Following',
     'helpers'                           => [
@@ -177,12 +176,12 @@ TEXT
             'title' => 'Edit member :name',
         ],
         'fields'                => [
+            'banned'        => 'User is banned',
             'joined'        => 'Joined',
             'last_login'    => 'Last Login',
             'name'          => 'User',
             'role'          => 'Role',
             'roles'         => 'Roles',
-            'banned'        => 'User is banned',
         ],
         'help'                  => 'Campaigns can have an unlimited amount of members in them.',
         'helpers'               => [

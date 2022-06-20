@@ -19,7 +19,6 @@ return [
             'new'       => 'Nuevo tablero',
             'switch'    => 'Cambiar a otro tablero',
         ],
-        'boosted'       => 'Las :boosted_campaigns pueden crear tableros personalizados para cada uno de los roles de la campaña.',
         'create'        => [
             'success'   => 'Tablero :name creado.',
             'title'     => 'Nuevo tablero de campaña',
@@ -96,11 +95,10 @@ return [
     'title'         => 'Tablero de',
     'welcome'       => [],
     'widgets'       => [
-        'actions'                   => [
+        'actions'       => [
             'advanced-options'  => 'Opciones avanzadas',
         ],
-        'advanced_options_boosted'  => 'Las :boosted_campaigns tienen opciones avanzadas, como mostrar los miembros de una familia o los atributos de una entidad desde el tablero.',
-        'calendar'                  => [
+        'calendar'      => [
             'actions'           => [
                 'next'      => 'Cambiar fecha al día siguiente',
                 'previous'  => 'Cambiar fecha al día anterior',
@@ -109,16 +107,16 @@ return [
             'previous_events'   => 'Anterior',
             'upcoming_events'   => 'Próximo',
         ],
-        'campaign'                  => [
+        'campaign'      => [
             'helper'    => 'Este widget muestra el encabezado de la campaña. Siempre se muestra en el tablero por defecto.',
         ],
-        'create'                    => [
+        'create'        => [
             'success'   => 'Widget añadido al tablero.',
         ],
-        'delete'                    => [
+        'delete'        => [
             'success'   => 'Widget eliminado del tablero.',
         ],
-        'fields'                    => [
+        'fields'        => [
             'class'             => 'Clase CSS',
             'dashboard'         => 'Tablero',
             'name'              => 'Nombre personalizado del widget',
@@ -127,20 +125,20 @@ return [
             'text'              => 'Texto',
             'width'             => 'Anchura',
         ],
-        'helpers'                   => [
+        'helpers'       => [
             'class' => 'Define una clase CSS personalizada para este widget.',
         ],
-        'orders'                    => [
+        'orders'        => [
             'name_asc'  => 'Ascendente por nombre',
             'name_desc' => 'Descendiente por nombre',
             'recent'    => 'Recientemente modificadas',
         ],
-        'random'                    => [
+        'random'        => [
             'helpers'   => [
                 'name'  => 'Puedes referenciar el nombre de la entidad aleatoria con {name}',
             ],
         ],
-        'recent'                    => [
+        'recent'        => [
             'advanced_filter'   => 'Filtro avanzado',
             'advanced_filters'  => [
                 'mentionless'   => 'Sin menciones (entidades que no mencionan a otras)',
@@ -164,17 +162,17 @@ return [
             'tags'              => 'Filtra la lista de las entidades recientemente modificadas con etiquetas específicas.',
             'title'             => 'Modificado recientemente',
         ],
-        'tabs'                      => [
+        'tabs'          => [
             'advanced'  => 'Avanzado',
             'setup'     => 'Configuración',
         ],
-        'unmentioned'               => [
+        'unmentioned'   => [
             'title' => 'Entidades no mencionadas',
         ],
-        'update'                    => [
+        'update'        => [
             'success'   => 'Widget modificado.',
         ],
-        'widths'                    => [
+        'widths'        => [
             '0' => 'Auto',
             '12'=> 'Completa (100%)',
             '3' => 'Cuarto (25%)',

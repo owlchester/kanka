@@ -19,7 +19,6 @@ return [
             'new'       => 'Novo dashboard',
             'switch'    => 'Trocar para dashboard',
         ],
-        'boosted'       => ':bossted_campaigns podem criar dashboards customizados para cada cargo presente na campanha',
         'create'        => [
             'success'   => 'Novo dashboard :name criado',
             'title'     => 'Novo dashboard de campanha',
@@ -95,11 +94,10 @@ return [
     ],
     'title'         => 'Dashboard',
     'widgets'       => [
-        'actions'                   => [
+        'actions'       => [
             'advanced-options'  => 'Opções avançadas',
         ],
-        'advanced_options_boosted'  => ':boosted_campaigns têm opções avançadas, como mostrar membros de uma família ou atributos da entidade no dashboard.',
-        'calendar'                  => [
+        'calendar'      => [
             'actions'           => [
                 'next'      => 'Mudar data para o próximo dia',
                 'previous'  => 'Mudar data para o dia anterior',
@@ -108,16 +106,17 @@ return [
             'previous_events'   => 'Anterior',
             'upcoming_events'   => 'Próximo',
         ],
-        'campaign'                  => [
+        'campaign'      => [
             'helper'    => 'Este widget mostra o cabeçalho da campanha. Este widget é sempre mostrado no painel padrão.',
         ],
-        'create'                    => [
+        'create'        => [
             'success'   => 'Widget adicionado ao dashboard',
         ],
-        'delete'                    => [
+        'delete'        => [
             'success'   => 'Widget removido so dashboard',
         ],
-        'fields'                    => [
+        'fields'        => [
+            'class'             => 'Classe CSS',
             'dashboard'         => 'Dashboard',
             'name'              => 'Nome do widget personalizado',
             'optional-entity'   => 'Link para entidade',
@@ -125,17 +124,21 @@ return [
             'text'              => 'Texto',
             'width'             => 'Largura',
         ],
-        'orders'                    => [
+        'helpers'       => [
+            'class'     => 'Defina uma personalizada classe CSS adicionada ao widget.',
+            'filters'   => 'Clique para aprender sobre as opções de filtro disponíveis.',
+        ],
+        'orders'        => [
             'name_asc'  => 'Nome Ascendente',
             'name_desc' => 'Nome Descendente',
             'recent'    => 'Recentemente modificado',
         ],
-        'random'                    => [
+        'random'        => [
             'helpers'   => [
                 'name'  => 'Você pode fazer referência ao nome da entidade aleatória com {name}',
             ],
         ],
-        'recent'                    => [
+        'recent'        => [
             'advanced_filter'   => 'Filtro avançado',
             'advanced_filters'  => [
                 'mentionless'   => 'Sem Mencionar (entidades que não mencionam outras entidades)',
@@ -159,13 +162,17 @@ return [
             'tags'              => 'Filtre a lista de entidades modificadas recentemente em tags específicas.',
             'title'             => 'Modificado recentemente',
         ],
-        'unmentioned'               => [
+        'tabs'          => [
+            'advanced'  => 'Avançado',
+            'setup'     => 'Configurações',
+        ],
+        'unmentioned'   => [
             'title' => 'Entidades não mencionadas',
         ],
-        'update'                    => [
+        'update'        => [
             'success'   => 'Widget modificado',
         ],
-        'widths'                    => [
+        'widths'        => [
             '0' => 'Automático',
             '12'=> 'Inteiro (100%)',
             '3' => 'Minúsculo (25%)',

@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'actions'       => [
+    'actions'           => [
         'create'    => 'Create',
         'delete'    => 'Delete',
         'restore'   => 'Restore',
@@ -9,12 +9,12 @@ return [
         'view'      => 'View changes',
     ],
     'call-to-action'    => 'Full change logs for up to :amount day are available to superboosted campaigns.',
-    'fields'        => [
+    'fields'            => [
         'action'    => 'Action',
         'date'      => 'Date',
     ],
-    'impersonated'  => 'Impersonated by :name',
-    'show'          => [
+    'impersonated'      => 'Impersonated by :name',
+    'show'              => [
         'title' => ':name Logs',
     ],
 ];

@@ -45,10 +45,7 @@ return [
         'personality_visible'       => 'Ennek a karakternek a személyes jellemzőit mindenki láthatja.',
     ],
     'index'         => [
-        'actions'   => [
-            'random'    => 'Új véletlen karakter',
-        ],
-        'title'     => 'Karakterek',
+        'title' => 'Karakterek',
     ],
     'items'         => [
         'hint'  => 'A tárgyakat a karakterekhez rendelheted, és azokat itt mutatjuk meg.',

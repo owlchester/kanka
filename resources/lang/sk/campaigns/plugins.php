@@ -39,7 +39,6 @@ return [
         'status'    => 'Stav',
         'type'      => 'Typ pluginu',
     ],
-    'helper'        => 'Komunita okolo Kanky vytvára neustále úžasné pluginy, ktoré sú dostupné na Trhovisku. Ak máš boostnutú kampaň, môžeš si ich tam nainštalovať. Na tomto mieste ich potom môžeš odinštalovať z tvojej kampane.',
     'import'        => [
         'button'                => 'Importovať',
         'created'               => 'Nasledujúce objekty boli vytvorené:',

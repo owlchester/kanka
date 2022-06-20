@@ -392,14 +392,7 @@ TEXT
         ],
         'title'     => 'Campanya :name',
     ],
-    'superboosted'                      => [
-        'gallery'   => [
-            'error' => [
-                'text'  => 'Pujar imatges a l\'editor de text és una funcionalitat disponible només per a les :superboosted.',
-                'title' => 'Galeria d\'imatges de campanya',
-            ],
-        ],
-    ],
+    'superboosted'                      => [],
     'ui'                                => [
         'boosted'           => 'Millorada',
         'collapsed'         => [

@@ -44,10 +44,7 @@ return [
         'personality_visible'       => 'Bu karakterin kişilik özelliklere herkese görünür.',
     ],
     'index'         => [
-        'actions'   => [
-            'random'    => 'Yeni Rastgele Karakter',
-        ],
-        'title'     => 'Karakterler',
+        'title' => 'Karakterler',
     ],
     'items'         => [
         'hint'  => 'Eşyalar karakterlere atanabilir ve burada görüntülenebilir.',

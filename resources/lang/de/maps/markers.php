@@ -57,6 +57,7 @@ return [
         'question'      => 'Frage',
     ],
     'placeholders'  => [
+        'custom_icon'   => 'versuchen sie :example1 or :example2',
         'custom_shape'  => '100,100 200,240 340,110',
         'name'          => 'Name des Markers',
     ],

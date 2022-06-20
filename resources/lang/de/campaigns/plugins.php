@@ -40,7 +40,6 @@ return [
         'status'    => 'Status',
         'type'      => 'Plugin Typ',
     ],
-    'helper'        => 'Die Kanka-Community erstellt ständig erstaunliche Plugins auf unserem Marktplatz. Wenn Ihre Kampagne geboostet wird, können Sie Plugins vom Marktplatz installieren. Verwenden Sie diese Schnittstelle, um Plugins in Ihrer Kampagne zu deinstallieren.',
     'import'        => [
         'button'                => 'Importieren',
         'created'               => 'Folgende Objekte wurden erstellt:',

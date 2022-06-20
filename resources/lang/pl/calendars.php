@@ -212,11 +212,12 @@ return [
         'weekdays'          => 'Liczba dni w tygodniu',
     ],
     'show'          => [
-        'missing_details'   => 'Nie można wyświetlić kalendarza. Do poprawnego wyświetlania niezbędne są przynajmniej 2 miesiące posiadające po 2 dni tygodnia.',
-        'moon_full'         => ':moon - pełnia',
-        'moon_last_quarter' => ':moon - ostatnia kwadra',
-        'moon_new'          => ':moon - nów',
-        'tabs'              => [
+        'missing_details'       => 'Nie można wyświetlić kalendarza. Do poprawnego wyświetlania niezbędne są przynajmniej 2 miesiące posiadające po 2 dni tygodnia.',
+        'moon_1first_quarter'   => 'Pierwsza kwadra :moon',
+        'moon_full'             => ':moon - pełnia',
+        'moon_last_quarter'     => ':moon - ostatnia kwadra',
+        'moon_new'              => ':moon - nów',
+        'tabs'                  => [
             'events'    => 'Wydarzenia w kalendarzu',
             'weather'   => 'Pogoda',
         ],

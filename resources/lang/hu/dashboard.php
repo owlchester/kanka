@@ -19,7 +19,6 @@ return [
             'new'       => 'Új főoldal',
             'switch'    => 'Váltás a főoldalra',
         ],
-        'boosted'       => ':boosted_campaigns minden kampányszerep részére más főoldalt tudnak létrehozni.',
         'create'        => [
             'success'   => 'Az új kapmányfőoldalt :name néven létrehoztuk.',
             'title'     => 'Új kapmányfőoldal',
@@ -91,11 +90,10 @@ return [
     ],
     'title'         => 'Főoldal',
     'widgets'       => [
-        'actions'                   => [
+        'actions'       => [
             'advanced-options'  => 'Bővebb lehetőségek',
         ],
-        'advanced_options_boosted'  => ':boosted_campaigns részére bővebb lehetőségek állnak rendelkezésre, mint például egy család tagjainak megmutatása, vagy egy entitás tulajdonságainak megmutatása a főoldalon.',
-        'calendar'                  => [
+        'calendar'      => [
             'actions'           => [
                 'next'      => 'Átállítás a következő napra',
                 'previous'  => 'Átállítás az előző napra',
@@ -104,16 +102,16 @@ return [
             'previous_events'   => 'Előző',
             'upcoming_events'   => 'Küszöbön álló',
         ],
-        'campaign'                  => [
+        'campaign'      => [
             'helper'    => 'Ez a widget megmutatja a kampányfejlécet. Ez a widget mindig az alapértelmezett főoldalon lesz látható.',
         ],
-        'create'                    => [
+        'create'        => [
             'success'   => 'Hozzáadtuk a widget-et a főoldalhoz.',
         ],
-        'delete'                    => [
+        'delete'        => [
             'success'   => 'Eltávolítottuk a widget-et a főoldalról.',
         ],
-        'fields'                    => [
+        'fields'        => [
             'dashboard'         => 'Főoldal',
             'name'              => 'Egyéni widget név',
             'optional-entity'   => 'Link az entitáshoz',
@@ -121,17 +119,17 @@ return [
             'text'              => 'Szöveg',
             'width'             => 'Szélesség',
         ],
-        'orders'                    => [
+        'orders'        => [
             'name_asc'  => 'Növekvő nevek',
             'name_desc' => 'Csökkenő nevek',
             'recent'    => 'Éppen módosított',
         ],
-        'random'                    => [
+        'random'        => [
             'helpers'   => [
                 'name'  => 'Hivatkozhatsz a véletlen entitás nevére ezzel: {name}',
             ],
         ],
-        'recent'                    => [
+        'recent'        => [
             'entity-header'     => 'Használd az entitás fejlécet, mint képet',
             'filters'           => 'Szűrők',
             'full'              => 'Teljes',
@@ -150,13 +148,13 @@ return [
             'tags'              => 'Szűrés a mostanában módosított widget-ek között, meghatározott címkék alapján.',
             'title'             => 'Mostanában módosított',
         ],
-        'unmentioned'               => [
+        'unmentioned'   => [
             'title' => 'Nem említett entitások',
         ],
-        'update'                    => [
+        'update'        => [
             'success'   => 'Módosítottuk a widget-et.',
         ],
-        'widths'                    => [
+        'widths'        => [
             '0' => 'Auto',
             '12'=> 'Teljes',
             '3' => 'Apró',

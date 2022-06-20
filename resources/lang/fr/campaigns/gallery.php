@@ -22,6 +22,7 @@ return [
         'title' => 'Nouveau dossier',
     ],
     'no_folder'     => 'Sans dossier',
+    'pitch'         => 'Télécharge des images dans la galerie de la campagne directement depuis l\'éditeur de text.',
     'placeholders'  => [
         'search'    => 'Recherche d\'image...',
     ],

@@ -54,7 +54,6 @@ return [
     'show'          => [
         'title' => ':name viszonyai',
     ],
-    'teaser'        => 'Erősítsd meg a kampányodat, hogy hozzáférj a viszonyfelfedezőhöz. Klikkelj, hogy többet megtudj a megerősített kampányokról.',
     'types'         => [
         'family_member'         => 'Családtag',
         'organisation_member'   => 'Szervezeti tag',

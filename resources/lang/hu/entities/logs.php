@@ -15,5 +15,4 @@ return [
     'show'          => [
         'title' => ':name entitás előzményei',
     ],
-    'superboosted'  => 'A :superboosted-campaigns entitásairól a bejegyzéseket :amount napig megtarjuk.',
 ];

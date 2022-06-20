@@ -20,12 +20,12 @@ return [
         'position'  => 'Position',
     ],
     'helper'        => [
-        'amount_v2'    => 'Create marker groups and attach markers to them, enabling to quickly show or hide multiple markers with a single click.',
+        'amount_v2' => 'Create marker groups and attach markers to them, enabling to quickly show or hide multiple markers with a single click.',
     ],
     'hints'         => [
         'is_shown'  => 'If checked, the group markers will be shown on the map by default.',
     ],
-    'pitch' => [
+    'pitch'         => [
         'error' => 'Max number of groups reached.',
         'until' => 'Create up to :max groups to each map.',
     ],

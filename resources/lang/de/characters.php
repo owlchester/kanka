@@ -51,10 +51,7 @@ return [
         'personality_visible'       => 'Persönlichkeitsmerkmale dieses Charakters sind für alle sichtbar.',
     ],
     'index'         => [
-        'actions'   => [
-            'random'    => 'Neuen zufälligen Charakter',
-        ],
-        'title'     => 'Charaktere',
+        'title' => 'Charaktere',
     ],
     'items'         => [
         'hint'  => 'Items können einem Charakter hinzugefügt werden und werden dann hier dargestellt.',

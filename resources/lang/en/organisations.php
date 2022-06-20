@@ -6,18 +6,21 @@ return [
     ],
     'fields'        => [
         'image'         => 'Image',
+        'is_defunct'    => 'Defunct',
         'location'      => 'Location',
         'members'       => 'Members',
         'name'          => 'Name',
         'organisation'  => 'Parent Organisation',
         'organisations' => 'Sub Organisations',
         'type'          => 'Type',
-        'is_defunct'    => 'Defunct',
     ],
     'helpers'       => [
         'descendants'   => 'This list contains all organisations which are descendants of this organisation, and not only those directly under it.',
         'nested_parent' => 'Displaying the organisations of :parent.',
         'nested_without'=> 'Displaying all organisations that don\'t have a parent organisation. Click on a row to see the children organisations.',
+    ],
+    'hints'         => [
+        'is_defunct'    => 'This organisation is defunct.',
     ],
     'index'         => [
         'title' => 'Organisations',
@@ -80,8 +83,5 @@ return [
         'tabs'  => [
             'organisations' => 'Organisations',
         ],
-    ],
-    'hints'         => [
-        'is_defunct'    => 'This organisation is defunct.',
     ],
 ];

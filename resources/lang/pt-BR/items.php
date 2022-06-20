@@ -7,7 +7,7 @@ return [
     'destroy'       => [],
     'edit'          => [],
     'fields'        => [
-        'character' => 'Personagem',
+        'character' => 'Criador',
         'image'     => 'Imagem',
         'location'  => 'Local',
         'name'      => 'Nome',

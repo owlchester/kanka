@@ -43,50 +43,10 @@ return [
         'title'     => 'App Integration',
     ],
     'boost'         => [
-        'available_boosts'  => 'Verfügbare Boosts : :amount / :max',
-        'benefits'          => [
-            'headers'   => [
-                'boosted'       => 'Boost Kampagnenvorteile',
-                'superboosted'  => 'Supergeboostete Kampagnenvorteile',
-            ],
-            'more'      => [
-                'boosted'       => 'Alle Boost Kampagnenfunktionen',
-                'superboosted'  => 'Alle Superboost Kampagnenfunktionen',
-            ],
-            'third'     => 'Um eine Kampagne zu boosten, rufen Sie die Seite der Kampagne auf und klicken Sie auf die Schaltfläche ":boost_button" über der Schaltfläche ":edit_button".',
-        ],
-        'buttons'           => [
-            'boost'         => 'Boost',
-            'superboost'    => 'Superboost',
-            'tooltips'      => [
-                'boost'         => 'Das Boosten einer Kampagne verbraucht :amount Ihrer Boosts',
-                'superboost'    => 'Das Superboosten einer Kampagne verbraucht :amount Ihrer Boosts',
-            ],
-            'unboost'       => 'Unboost',
-        ],
-        'campaigns'         => 'Geboostete Kampagne :count / :max',
-        'exceptions'        => [
+        'exceptions'    => [
             'already_boosted'       => 'Kampagne :name ist bereits geboostet',
             'exhausted_boosts'      => 'Sie haben keine Boosts mehr zu geben. Entfernen Sie Ihren Boost aus einer Kampagne, bevor Sie ihn einer anderen geben.',
             'exhausted_superboosts' => 'Sie haben keine Boosts mehr. Sie benötigen 3 Booster, um eine Kampagne zu boosten.',
-        ],
-        'modals'            => [
-            'more'  => [
-                'action'    => 'mehr booster?',
-                'body'      => 'Sie können mehr Booster erhalten, indem Sie Ihre Abonnementstufe erhöhen oder sie aus einer Kampagne entfernen. Das Aufheben des Boostens einer Kampagne löscht keine der boosten Informationen, sondern deaktiviert sie nur, bis Sie diese Kampagne erneut boosten.',
-                'title'     => 'mehr booster erhalten',
-            ],
-        ],
-        'success'           => [
-            'boost'         => 'Kampagne :name geboostet',
-            'delete'        => 'Entferne den boost von :name',
-            'superboost'    => 'Kampagne :name supergeboostet',
-        ],
-        'title'             => 'Boost',
-        'unboost'           => [
-            'confirm'   => 'Unboost der Kampagne ":tag".',
-            'data'      => 'Es gehen keine Daten verloren.',
-            'title'     => 'Kampagnen boosting beenden',
         ],
     ],
     'countries'     => [

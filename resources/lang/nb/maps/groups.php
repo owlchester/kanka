@@ -19,10 +19,7 @@ return [
         'is_shown'  => 'Vis gruppe markører',
         'position'  => 'Posisjon',
     ],
-    'helper'        => [
-        'amount'            => 'En markør kan kobles til en gruppe, som gir deg muligheten til å vise eller skjule alle Butikker i en by. Et kart kan ha opp til :amount grupper.',
-        'boosted_campaign'  => ':boosted kan ha opp til :amount grupper.',
-    ],
+    'helper'        => [],
     'hints'         => [
         'is_shown'  => 'Hvis krysset av, kan gruppe markører bli vist på kartet som standard.',
     ],

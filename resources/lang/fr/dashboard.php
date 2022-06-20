@@ -19,7 +19,6 @@ return [
             'new'       => 'Nouveau',
             'switch'    => 'Basculer vers',
         ],
-        'boosted'       => 'Les :boosted_campaigns peuvent créer des tableaux de bords supplémentaires pour chaque rôle.',
         'create'        => [
             'success'   => 'Nouveau tableau de bord :name créé.',
             'title'     => 'Nouveau tableau de bord',
@@ -42,6 +41,7 @@ return [
         'helpers'       => [
             'copy_widgets'  => 'Dupliquer les widgets depuis :name vers ce nouveau tableau de bord.',
         ],
+        'pitch'         => 'Crées plusieurs tableaux de bord avec des permissions pour chaque rôle de la campagne.',
         'placeholders'  => [
             'name'  => 'Nom du tableau de bord',
         ],
@@ -96,11 +96,10 @@ return [
     'title'         => 'Tableau de bord',
     'welcome'       => [],
     'widgets'       => [
-        'actions'                   => [
+        'actions'       => [
             'advanced-options'  => 'Options avancées',
         ],
-        'advanced_options_boosted'  => 'Les :boosted_campaigns ont des options avancées tel que pouvoir afficher les enfants d\'une famille ou les attributs d\'une entité sur le tableau de bord.',
-        'calendar'                  => [
+        'calendar'      => [
             'actions'           => [
                 'next'      => 'Changer la date au prochain jour',
                 'previous'  => 'Changer la date au jour précédent',
@@ -109,16 +108,16 @@ return [
             'previous_events'   => 'Précédents',
             'upcoming_events'   => 'Prochainement',
         ],
-        'campaign'                  => [
+        'campaign'      => [
             'helper'    => 'Ce widget affiche l\'entête de campagne. Ce widget est tout le temps visible sur le tableau de bord de défaut.',
         ],
-        'create'                    => [
+        'create'        => [
             'success'   => 'Widget ajouté au tableau de bord.',
         ],
-        'delete'                    => [
+        'delete'        => [
             'success'   => 'Widget retiré du tableau de bord.',
         ],
-        'fields'                    => [
+        'fields'        => [
             'class'             => 'Classe CSS',
             'dashboard'         => 'Tableau de bord',
             'name'              => 'Nom de widget personnalisé',
@@ -127,21 +126,21 @@ return [
             'text'              => 'Texte',
             'width'             => 'Largeur',
         ],
-        'helpers'                   => [
+        'helpers'       => [
             'class'     => 'Définition d\'une classe css ajoutée au widget.',
             'filters'   => 'Cliquer pour en savoir plus sur les options de filtrage.',
         ],
-        'orders'                    => [
+        'orders'        => [
             'name_asc'  => 'Nom ascendant',
             'name_desc' => 'Nom descendant',
             'recent'    => 'Récemment modifié',
         ],
-        'random'                    => [
+        'random'        => [
             'helpers'   => [
                 'name'  => 'Le nom de l\'entité au hasard peut être référencé avec {name}',
             ],
         ],
-        'recent'                    => [
+        'recent'        => [
             'advanced_filter'   => 'Filtre avancé',
             'advanced_filters'  => [
                 'mentionless'   => 'Sans mention (entités qui ne mentionnent pas d\'autres entités)',
@@ -165,17 +164,17 @@ return [
             'tags'              => 'Filtrer la liste des entités récemment modifiées sur une ou plusieurs étiquettes.',
             'title'             => 'Récemment modifié',
         ],
-        'tabs'                      => [
+        'tabs'          => [
             'advanced'  => 'Avancé',
             'setup'     => 'Général',
         ],
-        'unmentioned'               => [
+        'unmentioned'   => [
             'title' => 'Entité non mentionnées',
         ],
-        'update'                    => [
+        'update'        => [
             'success'   => 'Widget modifié.',
         ],
-        'widths'                    => [
+        'widths'        => [
             '0' => 'Automatique',
             '12'=> 'Complet (100%)',
             '3' => 'Minuscule (25%)',

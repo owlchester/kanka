@@ -13,6 +13,10 @@ return [
     |
     */
 
+    'banned'    => [
+        'permanent' => 'You\'ve been permanently banned.',
+        'temporary' => '{1} You\'ve been banned for :days day|[2,*] You\'ve been banned for :days days',
+    ],
     'confirm'   => [
         'confirm'   => 'Confirm',
         'error'     => 'Invalid password, please try again.',
@@ -67,9 +71,4 @@ return [
         'title'     => 'Reset password',
     ],
     'throttle'  => 'Too many login attempts. Please try again in :seconds seconds.',
-    'banned'   => [
-        'permanent'    => 'You\'ve been permanently banned.',
-        'temporary'  => '{1} You\'ve been banned for :days day|[2,*] You\'ve been banned for :days days',
-    ],
-
 ];

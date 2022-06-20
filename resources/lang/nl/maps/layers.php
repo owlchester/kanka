@@ -20,10 +20,7 @@ return [
         'position'  => 'Positie',
         'type'      => 'Laag type',
     ],
-    'helper'        => [
-        'amount'            => 'Je kunt maximaal :amount lagen op een kaart toevoegen om de achtergrondafbeelding die onder je markeringen wordt weergegeven, te wisselen.',
-        'boosted_campaign'  => ':boosted kan maximaal :amount lagen bevatten.',
-    ],
+    'helper'        => [],
     'placeholders'  => [
         'name'      => 'Ondergronds, Niveau 2, Schipbreuk',
         'position'  => 'Optioneel veld om de volgorde in te stellen waarin de lagen verschijnen.',
