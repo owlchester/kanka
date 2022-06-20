@@ -11,8 +11,8 @@
                     <a href="{{ route('register') }}" class="btn btn-primary btn-lg ab-testing-a">
                         {{ __('front.master.call_to_action') }}
                     </a>
-                    <a href="{{ route('register') }}" class="btn btn-success btn-lg ab-testing-b">
-                        {{ __('front.master.call_to_action') }}
+                    <a href="{{ route('register') }}" class="btn btn-primary btn-lg ab-testing-b">
+                        {{ __('front.second_block.call_to_action') }}
                     </a>
                     @endif
                 </div>

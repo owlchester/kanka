@@ -129,8 +129,8 @@
                         </a>
                     </li>
                     <li class="ab-testing-b">
-                        <a href="{{ route('register') }}" class="btn btn-success btn-lg ab-testing-b">
-                            {{ __('front.menu.register') }}
+                        <a href="{{ route('register') }}" class="btn btn-primary btn-lg ab-testing-b">
+                            {{ __('front.menu.register_free') }}
                         </a>
                     </li>
                 @endif
@@ -239,8 +239,8 @@
                     <a href="{{ route('register') }}" class="btn btn-primary text-white ab-testing-a">
                         {{ __('front.menu.register') }}
                     </a>
-                    <a href="{{ route('register') }}" class="btn btn-success text-white ab-testing-b">
-                        {{ __('front.menu.register') }}
+                    <a href="{{ route('register') }}" class="btn btn-primary text-white ab-testing-b">
+                        {{ __('front.menu.register_free') }}
                     </a>
                     @endif
                 @endauth
@@ -267,8 +267,8 @@
                         </a>
                     </li>
                     <li class="ab-testing-b">
-                        <a href="{{ route('register') }}" class="btn btn-success text-white">
-                            {{ __('front.menu.register') }}
+                        <a href="{{ route('register') }}" class="btn btn-primary text-white">
+                            {{ __('front.menu.register_free') }}
                         </a>
                     </li>
                 @endif
