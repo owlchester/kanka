@@ -21,6 +21,9 @@
         @include('campaigns.roles._public')
     @else
     <div class="row">
+        <div class="col-md-12 col-lg-3">
+        @include('campaigns.roles._members')
+        </div>
         <div class="col-md-12 col-lg-9">
             <div class="box box-solid">
                 <div class="box-header with-border">

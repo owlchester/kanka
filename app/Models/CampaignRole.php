@@ -199,7 +199,7 @@ class CampaignRole extends Model
      * @param int $action
      * @return CampaignPermission
      */
-    protected function add(int $entityType, int $action): CampaignPermission
+    protected function add(int|null $entityType, int $action): CampaignPermission
     {
         return CampaignPermission::create([
             //'key' => $key,
