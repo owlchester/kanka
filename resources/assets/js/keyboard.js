@@ -12,20 +12,20 @@ function initKeyboardShortcuts() {
     $(document).bind('keydown', function(e) {
         let target = $(e.target);
         //console.log('which', e.which);
-        if (e.which === 161) {
+        if (e.key === ']') {
             // ] to toggle sidebar
             if (isInputField(target)) {
                 return;
             }
             $('.sidebar-toggle').click();
-        } else if (e.which === 75) {
+        } else if (e.key === 'k') {
             // k for search
             if (isInputField(target)) {
                 return;
             }
             $('#live-search').focus();
             return false; // don't add the k to the search field
-        } else if (e.which === 78) {
+        } else if (e.key === 'n') {
             // n for quick creator. Don't re-open if already opened
             if (isInputField(target) || ($('#entity-modal').data('bs.modal') || {}).isShown) {
                 return;
