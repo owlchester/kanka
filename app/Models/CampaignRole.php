@@ -143,7 +143,7 @@ class CampaignRole extends Model
             } else {
                 $action = Str::after($key, '_');
                 if ($module === 'campaign') {
-                    $module = null;
+                    $module = 0;
                 }
 
                 $this->add($module, $action);
@@ -198,8 +198,11 @@ class CampaignRole extends Model
      * @param int $action
      * @return CampaignPermission
      */
-    protected function add(int|null $entityType, int $action): CampaignPermission
+    protected function add(int $entityType, int $action): CampaignPermission
     {
+        if ($entityType === 0) {
+            $entityType = null;
+        }
         return CampaignPermission::create([
             //'key' => $key,
             'campaign_role_id' => $this->id,
