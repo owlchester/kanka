@@ -24,12 +24,12 @@
                     @endif
                 </th>
                 <th>
-                    @if(request()->get('order') == 'type')
+                    @if(request()->get('order') == 'type_id')
                         {{ __('crud.fields.entity_type') }}
 
                         <i class="fa-solid fa-arrow-down"></i>
                     @else
-                    <a href="{{ route('entities.relations.index', [$entity, 'mode' => 'table', '#entity-related', 'order' => 'type']) }}">
+                    <a href="{{ route('entities.relations.index', [$entity, 'mode' => 'table', '#entity-related', 'order' => 'type_id']) }}">
                         {{ __('crud.fields.entity_type') }}
                     </a>
                     @endif
