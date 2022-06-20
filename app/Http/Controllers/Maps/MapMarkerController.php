@@ -216,12 +216,23 @@ class MapMarkerController extends Controller
 
         $campaign = CampaignLocalization::getCampaign();
 
+        $name = $mapMarker->name;
+        if ($mapMarker->entity) {
+            $name = '<a href="' . $mapMarker->entity->url() . '" target="_blank">';
+            if (!empty($mapMarker->name)) {
+                $name .= $mapMarker->name;
+            } else {
+                $name .= $mapMarker->entity->name;
+            }
+            $name .= '</a>';
+        }
+
         return response()->json([
             'body' => view('maps.markers.details', [
                 'marker' => $mapMarker,
                 'campaign' => $campaign,
             ])->render(),
-            'name' => $mapMarker->name
+            'name' => $name
         ]);
     }
 
