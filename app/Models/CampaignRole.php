@@ -190,7 +190,6 @@ class CampaignRole extends Model
 
         $this->add($entityType, $action);
         return true;
-
     }
 
     /**
