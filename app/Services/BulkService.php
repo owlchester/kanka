@@ -91,7 +91,7 @@ class BulkService
             $entity = $model->find($id);
             if (auth()->user()->can('delete', $entity)) {
                 //dd($entity->descendants);
-                if (request()->delete_mirrored && $entity->mirror){
+                if (request()->delete_mirrored && $entity->mirror) {
                     $entity->mirror->delete();
                     $this->count++;
                 }
@@ -404,6 +404,11 @@ class BulkService
             // Same owner and target? no bueno
             if ($relation->owner_id == Arr::get($filledFields, 'target_id') || ($relation->target_id == Arr::get($filledFields, 'owner_id'))) {
                 continue;
+            }
+            if (request()->update_mirrored && $relation->mirror) {
+                $relation->mirror->update($filledFields);
+                $this->count++;
+                $this->total++;
             }
 
             $relation->update($filledFields);
