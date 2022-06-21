@@ -37,7 +37,7 @@ function initKeyboardShortcuts() {
 
 function isInputField(ele) {
     return ele.is('input') || ele.is('select') || ele.is('textarea') ||
-        ele.attr('contentEditable') == 'true' || ele.hasClass('CodeMirror');
+        ele.attr('contentEditable') === 'true' || ele.hasClass('CodeMirror');
 }
 
 /**
