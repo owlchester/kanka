@@ -406,14 +406,13 @@ class BulkService
                 continue;
             }
             if (request()->update_mirrored && $relation->mirror) {
-                $relation->mirror->update($filledFields);
+                $relation->mirror->update(\array_diff_key($filledFields, ["target_id" => "xy", "owner_id" => "xy"]));
                 $this->count++;
                 $this->total++;
             }
             $relation->update($filledFields);
             $this->count++;
         }
-
         return $this->count;
     }
 }
