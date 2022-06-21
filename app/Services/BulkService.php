@@ -406,7 +406,8 @@ class BulkService
                 continue;
             }
             if (request()->update_mirrored && $relation->mirror) {
-                $relation->mirror->update(\array_diff_key($filledFields, ["target_id" => "xy", "owner_id" => "xy"]));
+                $mirrorFields = Arr::except($filledFields, ['target_id', 'owner_id']);
+                $relation->mirror->update($mirrorFields);
                 $this->count++;
                 $this->total++;
             }
