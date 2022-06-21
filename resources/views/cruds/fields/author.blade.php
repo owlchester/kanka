@@ -7,6 +7,8 @@
     false,
     'journals.fields.author',
     'search.entities-with-relations',
-    'crud.placeholders.entity'
+    'crud.placeholders.entity',
+    null,
+    isset($dropdownParent) ? $dropdownParent : null
 ) !!}
 </div>

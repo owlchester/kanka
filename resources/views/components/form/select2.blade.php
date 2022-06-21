@@ -29,6 +29,7 @@ if (empty($selectedOption) && !empty($prefill)) {
     }
 }
 
+
 // Assume placeholder key
 $singularFieldName = str_replace('_id', '', $fieldId);
 $pluralField = \Illuminate\Support\Str::plural($singularFieldName);
@@ -69,6 +70,7 @@ $fieldUniqIdentifier = $fieldId . '_' . uniqid();
         'data-url' => route($searchRouteName, $searchParams),
         'data-placeholder' => __($placeholderKey),
         'data-language' => LaravelLocalization::getCurrentLocale(),
+        'data-dropdown-parent' => $dropdownParent ?: null,
     ]
 ) !!}
 
