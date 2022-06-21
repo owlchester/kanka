@@ -24,14 +24,14 @@
         /*[
             'field' => 'calendar_id',
             'label' => trans('calendars.fields.calendar'),
-            'visible' => $campaign->enabled('calendars'),
+            'visible' => $campaignService->enabled('calendars'),
             'render' => function($model) {
                 return $model->calendar ? $model->calendar->tooltipedLink() : null;
             },
         ],*/
         [
             'label' => trans('calendars.fields.calendars'),
-            'visible' => $campaign->enabled('calendars'),
+            'visible' => $campaignService->enabled('calendars'),
             'render' => function($model) {
                 return $model->calendars->count();
             },

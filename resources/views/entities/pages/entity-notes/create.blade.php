@@ -7,7 +7,7 @@
         __('entities/notes.actions.add')
     ]
 ])
-@inject('campaign', 'App\Services\CampaignService')
+@inject('campaignService', 'App\Services\CampaignService')
 
 
 @section('fullpage-form')

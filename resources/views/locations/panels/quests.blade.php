@@ -14,10 +14,10 @@
                 <th class="hidden-sm">{{ __('quests.fields.role') }}</th>
                 <th class="visible-sm">{{ __('quests.fields.type') }}</th>
                 <th class="visible-sm">{{ __('quests.fields.quest') }}</th>
-                @if ($campaign->enabled('locations'))
+                @if ($campaignService->enabled('locations'))
                     <th class="visible-sm">{{ __('quests.fields.locations') }}</th>
                 @endif
-                @if ($campaign->enabled('characters'))
+                @if ($campaignService->enabled('characters'))
                 <th>{{ __('quests.fields.characters') }}</th>
                 @endif
                 <th>{{ __('quests.fields.is_completed') }}</th>
@@ -40,12 +40,12 @@
                         {!! $quest->quest->tooltipedLink() !!}
                         @endif
                     </td>
-                    @if ($campaign->enabled('locations'))
+                    @if ($campaignService->enabled('locations'))
                         <td class="visible-sm">
                             {{ $quest->locations()->count() }}
                         </td>
                     @endif
-                    @if ($campaign->enabled('characters'))
+                    @if ($campaignService->enabled('characters'))
                     <td>
                         {{ $quest->characters()->count() }}
                     </td>

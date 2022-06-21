@@ -8,7 +8,7 @@ $assetCount = 0; ?>
     'miscModel' => $entity->child,
     'bodyClass' => 'entity-assets'
 ])
-@inject('campaign', 'App\Services\CampaignService')
+@inject('campaignService', 'App\Services\CampaignService')
 
 @section('entity-header-actions')
     @can('update', $entity->child)

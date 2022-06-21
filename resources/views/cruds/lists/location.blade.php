@@ -1,4 +1,4 @@
-@if ($campaign->enabled('locations') && $model->location)
+@if ($campaignService->enabled('locations') && $model->location)
     <li class="list-group-item">
         <b>
             <i class="ra ra-tower" title="{{ trans('crud.fields.location') }}"></i> <span class="visible-xs-inline">{{ trans('characters.fields.location') }}</span>

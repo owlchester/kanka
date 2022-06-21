@@ -14,7 +14,7 @@ __('maps/markers.edit.title', ['name' => $model->name])
 ]
 ])
 
-@inject('campaign', 'App\Services\CampaignService')
+@inject('campaignService', 'App\Services\CampaignService')
 @section('content')
     <div class="panel panel-default">
         @if ($ajax)

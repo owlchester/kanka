@@ -9,7 +9,7 @@
             <tr>
                 <th class="avatar"><br></th>
                 <th>{{ __('characters.fields.name') }}</th>
-                @if ($campaign->enabled('locations'))
+                @if ($campaignService->enabled('locations'))
                     <th class="hidden-sm hidden-xs">{{ __('characters.fields.location') }}</th>
                 @endif
                 @if ($allMembers)<th>{{ __('organisations.members.fields.organisation') }}</th>@endif
@@ -39,7 +39,7 @@
                         <br />
                         <i>{{ $relation->character->title }}</i>
                     </td>
-                    @if ($campaign->enabled('locations'))
+                    @if ($campaignService->enabled('locations'))
                         <td class="hidden-sm hidden-xs">
                             @if ($relation->character->location)
                                 {!! $relation->character->location->tooltipedLink() !!}

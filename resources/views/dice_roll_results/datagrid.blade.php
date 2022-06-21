@@ -22,12 +22,12 @@
             'type' => 'avatar',
             'parent' => 'character',
             'parent_route' => 'characters',
-            'visible' => $campaign->enabled('characters'),
+            'visible' => $campaignService->enabled('characters'),
         ],
         [
             'label' => trans('crud.fields.character'),
             'field' => 'diceRoll.character.name',
-            'visible' => $campaign->enabled('characters'),
+            'visible' => $campaignService->enabled('characters'),
             'render' => function($model) {
                 if ($model->diceRoll->character) {
                     return $model->diceRoll->character->tooltipedLink();
@@ -59,7 +59,7 @@
         'route' => 'dice_roll_results.index',
         'baseRoute' => 'dice_roll_results',
         'trans' => 'dice_rolls.fields.',
-        'campaign' => $campaign,
+        'campaignService' => $campaignService,
         'disableEntity' => true,
     ]
 ) !!}

@@ -11,7 +11,7 @@
                         {{ $model->parameters }}
                     </p>
                 @endif
-                @if ($campaign->enabled('characters') && $model->character)
+                @if ($campaignService->enabled('characters') && $model->character)
                     <p class="entity-character">
                         <b>{{ __('crud.fields.character') }}</b><br />
                         {!! $model->character->tooltipedLink() !!}

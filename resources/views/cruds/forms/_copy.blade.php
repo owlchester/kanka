@@ -5,7 +5,7 @@
         {{ __('crud.fields.copy_posts') }}
     </label>
 </div>
-@if ($campaign->campaign()->boosted())
+@if ($campaignService->campaign()->boosted())
     <div class="form-group">
         {!! Form::hidden('copy_source_links', null) !!}
         <label>{!! Form::checkbox('copy_source_links', 1, request()->filled('template')) !!}

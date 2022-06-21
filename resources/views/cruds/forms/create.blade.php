@@ -5,7 +5,7 @@
         __('crud.create'),
     ]
 ])
-@inject('campaign', 'App\Services\CampaignService')
+@inject('campaignService', 'App\Services\CampaignService')
 
 @section('fullpage-form')
 {!! Form::open([

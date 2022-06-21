@@ -8,7 +8,7 @@
     ]
 ])
 
-@inject('campaign', 'App\Services\CampaignService')
+@inject('campaignService', 'App\Services\CampaignService')
 
 @section('content')
     {!! Form::model($ability, [

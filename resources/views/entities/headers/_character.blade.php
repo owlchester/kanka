@@ -3,7 +3,7 @@
  * @var \App\Services\CampaignService $campaign
  */
 ?>
-@if (!$campaign->enabled('locations') || empty($model->location))
+@if (!$campaignService->enabled('locations') || empty($model->location))
     <?php return ?>
 @endif
 

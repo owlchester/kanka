@@ -29,7 +29,7 @@
 
 @include('cruds.fields.entry2')
 
-@if ($campaign->enabled('characters'))
+@if ($campaignService->enabled('characters'))
     <div class="form-group">
         {!! Form::members(
             'id',

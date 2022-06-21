@@ -1,4 +1,4 @@
-@if (!$campaign->enabled('notes'))
+@if (!$campaignService->enabled('notes'))
     <?php return ?>
 @endif
 

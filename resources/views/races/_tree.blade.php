@@ -17,7 +17,7 @@
         /*[
             'label' => __('characters.fields.race'),
             'field' => 'race.name',
-            'visible' => $campaign->enabled('races'),
+            'visible' => $campaignService->enabled('races'),
             'render' => function($model) {
                 if ($model->race) {
                     return $model->race->tooltipedLink();
@@ -33,7 +33,7 @@
         ],
         [
             'label' => __('races.fields.characters'),
-            'visible' => $campaign->enabled('characters'),
+            'visible' => $campaignService->enabled('characters'),
             'render' => function($model) {
                 return $model->characters()->count() . ' / ' . $model->allCharacters(true)->count();
             },
@@ -50,7 +50,7 @@
         'route' => 'races.tree',
         'baseRoute' => 'races',
         'trans' => 'races.fields.',
-        'campaign' => $campaign,
+        'campaignService' => $campaignService,
         'row' => [
             'data' => [
                 'data-children' => function($model) {

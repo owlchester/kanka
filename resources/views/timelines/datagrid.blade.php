@@ -39,6 +39,6 @@
         'route' => 'timelines.index',
         'baseRoute' => 'timelines',
         'trans' => 'timelines.fields.',
-        'campaign' => $campaign
+        'campaignService' => $campaignService
     ]
 ) !!}

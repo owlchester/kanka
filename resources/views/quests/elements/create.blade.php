@@ -7,7 +7,7 @@
         __('crud.create'),
     ]
 ])
-@inject('campaign', 'App\Services\CampaignService')
+@inject('campaignService', 'App\Services\CampaignService')
 
 
 @section('content')

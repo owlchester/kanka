@@ -32,7 +32,7 @@
         'route' => 'abilities.tree',
         'baseRoute' => 'abilities',
         'trans' => 'abilities.fields.',
-        'campaign' => $campaign,
+        'campaignService' => $campaignService,
         'row' => [
             'data' => [
                 'data-children' => function($model) {
