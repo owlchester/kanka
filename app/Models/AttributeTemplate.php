@@ -171,7 +171,7 @@ class AttributeTemplate extends MiscModel
             }
 
 
-            list ($type, $value) = \App\Facades\Attributes::randomAttribute($attribute->type, $attribute->value);
+            list ($type, $value) = \App\Facades\Attributes::randomAttribute($attribute->type_id, $attribute->value);
 
             Attribute::create([
                 'entity_id' => $entity->id,
@@ -180,7 +180,7 @@ class AttributeTemplate extends MiscModel
                 'default_order' => $lastOrder + $order,
                 'is_private' => $attribute->is_private,
                 'is_star' => $attribute->is_star,
-                'type' => $type,
+                'type_id' => $type,
             ]);
             $order++;
         }
@@ -192,7 +192,7 @@ class AttributeTemplate extends MiscModel
                 if (in_array($attribute->name, $existing)) {
                     continue;
                 }
-                list ($type, $value) = \App\Facades\Attributes::randomAttribute($attribute->type, $attribute->value);
+                list ($type, $value) = \App\Facades\Attributes::randomAttribute($attribute->type_id, $attribute->value);
 
                 Attribute::create([
                     'entity_id' => $entity->id,
@@ -201,7 +201,7 @@ class AttributeTemplate extends MiscModel
                     'default_order' => $order,
                     'is_private' => $attribute->is_private,
                     'is_star' => $attribute->is_star,
-                    'type' => $type,
+                    'type_id' => $type,
                 ]);
                 $order++;
             }

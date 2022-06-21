@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "03da4053f3bac16ff51462befd1f010b",
+    "content-hash": "ddefc2a2f852d208269a839b45aa1266",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -3077,16 +3077,16 @@
         },
         {
             "name": "ilestis/kanka-dnd5e-monster",
-            "version": "4.2",
+            "version": "4.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/owlchester/kanka-dnd5e-monster.git",
-                "reference": "438842c726deabe458bae96897c3de20c3398511"
+                "reference": "c5f30ac4b0b9db5bbd0e1c9626f2242fbf4df265"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/owlchester/kanka-dnd5e-monster/zipball/438842c726deabe458bae96897c3de20c3398511",
-                "reference": "438842c726deabe458bae96897c3de20c3398511",
+                "url": "https://api.github.com/repos/owlchester/kanka-dnd5e-monster/zipball/c5f30ac4b0b9db5bbd0e1c9626f2242fbf4df265",
+                "reference": "c5f30ac4b0b9db5bbd0e1c9626f2242fbf4df265",
                 "shasum": ""
             },
             "require": {
@@ -3116,7 +3116,7 @@
                     "homepage": "https://kanka.io"
                 }
             ],
-            "description": "A attribute template for D&D 5th edition monsters",
+            "description": "An attribute template for D&D 5th edition monsters",
             "homepage": "https://github.com/owlchester/kanka-dnd5e-monster",
             "keywords": [
                 "5e",
@@ -3126,9 +3126,9 @@
             ],
             "support": {
                 "issues": "https://github.com/owlchester/kanka-dnd5e-monster/issues",
-                "source": "https://github.com/owlchester/kanka-dnd5e-monster/tree/4.2"
+                "source": "https://github.com/owlchester/kanka-dnd5e-monster/tree/4.3"
             },
-            "time": "2022-04-17T23:18:06+00:00"
+            "time": "2022-06-06T21:56:08+00:00"
         },
         {
             "name": "intervention/image",

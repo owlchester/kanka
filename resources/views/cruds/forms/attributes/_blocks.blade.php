@@ -36,36 +36,7 @@ $actionBlock = 'col-xs-5 col-sm-4 col-md-3 col-lg-2';
 
                 <a class="text-danger attribute_delete pull-right" title="{{ __('crud.remove') }}"><i class="fa-solid fa-trash fa-2x"></i></a>
             </div>
-            {!! Form::hidden('attr_type[$TMP_ID$]', '') !!}
-        </div>
-    </div>
-    <!-- Block Section -->
-    <div class="form-group hidden" id="block_template">
-        <div class="row attribute_row">
-            <div class="{{ $nameBlock }}">
-                <div class="input-group">
-                <span class="input-group-addon hidden-xs hidden-sm">
-                    <span class="fa-solid fa-arrows-alt-v"></span>
-                    </span>
-                    {!! Form::text('attr_name[$TMP_ID$]', null, ['placeholder' => __('entities/attributes.placeholders.block'), 'class' => 'form-control', 'maxlength' => 191]) !!}
-                </div>
-            </div>
-            <div class="{{ $textBlock }}">
-                <div class="hidden">
-                    {!! Form::text('attr_value[$TMP_ID$]', null, ['placeholder' => __('entities/attributes.placeholders.value'), 'class' => 'form-control', 'maxlength' => 191]) !!}
-                </div>
-            </div>
-            <div class="{{ $actionBlock }}">
-                {!! Form::hidden('attr_is_star[$TMP_ID$]', false) !!}
-                <i class="far fa-star fa-2x mr-2"  data-toggle="star" data-tab="{{ __('entities/attributes.visibility.tab') }}" data-entry="{{ __('entities/attributes.visibility.entry') }}" title="{{ __('entities/attributes.visibility.tab') }}"></i>
-
-    @if($isAdmin)
-                {!! Form::hidden('attr_is_private[$TMP_ID$]', false) !!}
-                <i class="fa-solid fa-unlock-alt fa-2x" data-toggle="private" data-private="{{ __('entities/attributes.visibility.private') }}" data-public="{{ __('entities/attributes.visibility.public') }}"></i>
-    @endif
-                <a class="text-danger attribute_delete pull-right" title="{{ __('crud.remove') }}"><i class="fa-solid fa-trash fa-2x"></i></a>
-            </div>
-            {!! Form::hidden('attr_type[$TMP_ID$]', 'block') !!}
+            {!! Form::hidden('attr_type[$TMP_ID$]', \App\Models\Attribute::TYPE_STANDARD_ID) !!}
         </div>
     </div>
     <!-- Text Section -->
@@ -93,7 +64,7 @@ $actionBlock = 'col-xs-5 col-sm-4 col-md-3 col-lg-2';
                 <a class="text-danger attribute_delete pull-right" title="{{ __('crud.remove') }}"><i class="fa-solid fa-trash fa-2x"></i></a>
             </div>
 
-            {!! Form::hidden('attr_type[$TMP_ID$]', 'text') !!}
+            {!! Form::hidden('attr_type[$TMP_ID$]', \App\Models\Attribute::TYPE_TEXT_ID) !!}
         </div>
     </div>
     <!-- Number Section -->
@@ -121,7 +92,7 @@ $actionBlock = 'col-xs-5 col-sm-4 col-md-3 col-lg-2';
                 <a class="text-danger attribute_delete pull-right" title="{{ __('crud.remove') }}"><i class="fa-solid fa-trash fa-2x"></i></a>
             </div>
 
-            {!! Form::hidden('attr_type[$TMP_ID$]', 'number') !!}
+            {!! Form::hidden('attr_type[$TMP_ID$]', \App\Models\Attribute::TYPE_NUMBER_ID) !!}
         </div>
     </div>
     <div class="form-group hidden" id="checkbox_template">
@@ -149,7 +120,7 @@ $actionBlock = 'col-xs-5 col-sm-4 col-md-3 col-lg-2';
                 <a class="text-danger attribute_delete pull-right" title="{{ __('crud.remove') }}"><i class="fa-solid fa-trash fa-2x"></i></a>
             </div>
 
-            {!! Form::hidden('attr_type[$TMP_ID$]', 'checkbox') !!}
+            {!! Form::hidden('attr_type[$TMP_ID$]', \App\Models\Attribute::TYPE_CHECKBOX_ID) !!}
         </div>
     </div>
     <!-- Section -->
@@ -176,7 +147,7 @@ $actionBlock = 'col-xs-5 col-sm-4 col-md-3 col-lg-2';
     @endif
                 <a class="text-danger attribute_delete pull-right" title="{{ __('crud.remove') }}"><i class="fa-solid fa-trash fa-2x"></i></a>
             </div>
-            {!! Form::hidden('attr_type[$TMP_ID$]', 'section') !!}
+            {!! Form::hidden('attr_type[$TMP_ID$]', \App\Models\Attribute::TYPE_SECTION_ID) !!}
         </div>
     </div>
     <!-- Random -->
@@ -207,7 +178,7 @@ $actionBlock = 'col-xs-5 col-sm-4 col-md-3 col-lg-2';
                 @endif
                 <a class="text-danger attribute_delete pull-right" title="{{ __('crud.remove') }}"><i class="fa-solid fa-trash fa-2x"></i></a>
             </div>
-            {!! Form::hidden('attr_type[$TMP_ID$]', \App\Models\Attribute::TYPE_RANDOM) !!}
+            {!! Form::hidden('attr_type[$TMP_ID$]', \App\Models\Attribute::TYPE_RANDOM_ID) !!}
         </div>
     </div>
 </div>
