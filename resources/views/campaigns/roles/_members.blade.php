@@ -23,7 +23,7 @@
     <div class="box-body">
         @forelse ($members as $relation)
             <p>
-                @can('removeUser', $role)
+                @can('delete', $relation)
                     <a href="#" class="pull-right text-red delete-confirm" data-toggle="modal" data-name="{{ __('campaigns.roles.users.actions.remove', ['user' => $relation->user->name, 'role' => $role->name]) }}"
                             data-target="#delete-confirm" data-delete-target="campaign-role-member-{{ $relation->id }}"
                             title="{{ __('crud.remove') }}">
@@ -61,14 +61,14 @@
 
 @section('modals')
     @parent
-    @can('removeUser', $role)
-        @foreach ($members as $relation)
-            {!! Form::open([
-                    'method' => 'DELETE', 'route' => ['campaign_roles.campaign_role_users.destroy', 'campaign_role' => $role, 'campaign_role_user' => $relation->id],
-                    'style' => 'display:inline',
-                    'id' => 'campaign-role-member-' . $relation->id
-                ]) !!}
-            {!! Form::close() !!}
-        @endforeach
-    @endcan
+    @foreach ($members as $relation)
+        @can('delete', $relation)
+        {!! Form::open([
+                'method' => 'DELETE', 'route' => ['campaign_roles.campaign_role_users.destroy', 'campaign_role' => $role, 'campaign_role_user' => $relation->id],
+                'style' => 'display:inline',
+                'id' => 'campaign-role-member-' . $relation->id
+            ]) !!}
+        {!! Form::close() !!}
+        @endcan
+    @endforeach
 @endsection

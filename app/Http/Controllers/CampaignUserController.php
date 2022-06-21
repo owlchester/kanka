@@ -29,7 +29,7 @@ class CampaignUserController extends Controller
 
         $users = $campaign
             ->members()
-            ->with(['user', 'campaign', 'user.campaignRoles'])
+            ->with(['user', 'campaign', 'user.campaignRoles', 'user.campaignRoleUser'])
             ->paginate();
 
         $invitations = $campaign

@@ -3,6 +3,7 @@
 
 namespace App\Services\Caches;
 
+use App\Models\CampaignRoleUser;
 use App\User;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
@@ -20,10 +21,19 @@ class UserCacheService extends BaseCache
      */
     public function admin(): bool
     {
+        return $this->adminRole()
+            ->count() === 1;
+    }
+
+    /**
+     * Get the user's admin role in a current campaign
+     * @return Collection
+     */
+    public function adminRole(): Collection
+    {
         return $this->roles()
             ->where('campaign_id', $this->campaign->id)
-            ->where('is_admin', true)
-            ->count() === 1;
+            ->where('is_admin', true);
     }
 
     /**

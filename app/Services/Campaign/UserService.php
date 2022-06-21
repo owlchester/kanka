@@ -4,6 +4,7 @@
 namespace App\Services\Campaign;
 
 
+use App\Facades\CampaignCache;
 use App\Models\Campaign;
 use App\Models\CampaignRole;
 use App\Models\CampaignRoleUser;
@@ -32,17 +33,17 @@ class UserService
      */
     public function update(CampaignUser $user, CampaignRole $campaignRole): bool
     {
+        /** @var CampaignRoleUser $role */
         $role = CampaignRoleUser::where('user_id', $user->user_id)
             ->where('campaign_role_id', $campaignRole->id)
             ->first();
 
+        // Admin role being switched? Forget the cache
+        if ($campaignRole->isAdmin()) {
+            CampaignCache::campaign($campaignRole->campaign)->clearAdmins();
+        }
         // Delete existing role if not admin
         if ($role) {
-            // This check shouldn't happen since updating a campaign_role_user is forbidden if they
-            // are an admin.
-            if ($role->campaignRole->is_admin) {
-                dd('admin role, no no');
-            }
             $role->delete();
             return false;
         }

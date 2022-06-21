@@ -193,7 +193,7 @@ class Campaign extends MiscModel
     public function admins()
     {
         $users = [];
-        foreach ($this->roles()->with('users')->where('is_admin', '1')->get() as $role) {
+        foreach ($this->roles()->with(['users', 'users.user'])->where('is_admin', '1')->get() as $role) {
             foreach ($role->users as $user) {
                 if (!isset($users[$user->id])) {
                     $users[$user->user->id] = $user->user;
@@ -201,6 +201,15 @@ class Campaign extends MiscModel
             }
         }
         return $users;
+    }
+
+    /**
+     * Count the number of admins in a campaign. Used by the CampaignPolicy
+     * @return int
+     */
+    public function adminCount(): int
+    {
+        return count(CampaignCache::campaign($this)->admins());
     }
 
     /**

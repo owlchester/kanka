@@ -78,8 +78,17 @@ class CampaignRolePolicy
      */
     public function removeUser(User $user, CampaignRole $campaignRole)
     {
-        return $this->user($user, $campaignRole)
-            && ($campaignRole->is_admin ? $campaignRole->users()->count() > 1 : true);
+        if (!$this->user($user, $campaignRole)) {
+            return false;
+        }
+
+        // Non-admin role? Yep the user can modify the member
+        if (!$campaignRole->isAdmin()) {
+            return true;
+        }
+
+        // We have an admin role, time to do some weird stuff
+        return false;
     }
 
 

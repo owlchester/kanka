@@ -77,12 +77,10 @@ trait UserRelations
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     * @deprecated User::campaignRoleUser is deprecated
      */
     public function campaignRoleUser()
     {
-        return $this->hasMany('App\Models\CampaignRoleUser')
-            ->where('campaign_id', $this->campaign->id);
+        return $this->hasMany('App\Models\CampaignRoleUser');
     }
 
     /**
