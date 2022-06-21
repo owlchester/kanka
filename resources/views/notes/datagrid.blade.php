@@ -32,6 +32,6 @@
         'route' => 'notes.index',
         'baseRoute' => 'notes',
         'trans' => 'notes.fields.',
-        'campaign' => $campaign
+        'campaignService' => $campaignService
     ]
 ) !!}

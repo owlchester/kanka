@@ -1,4 +1,4 @@
-@if (!$campaign->enabled('calendars'))
+@if (!$campaignService->enabled('calendars'))
     <?php return ?>
 @endif
 

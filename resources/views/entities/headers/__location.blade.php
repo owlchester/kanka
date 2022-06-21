@@ -3,7 +3,7 @@
  * @var \App\Services\CampaignService $campaign
  */
 ?>
-@if ($campaign->enabled('locations') && $model->location)
+@if ($campaignService->enabled('locations') && $model->location)
     <div class="entity-header-sub pull-left">
         <i class="ra ra-tower" title="{{ __('crud.fields.location') }}"></i>
 

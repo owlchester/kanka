@@ -12,7 +12,7 @@
         'title',
         [
             'label' => __('characters.fields.families'),
-            'visible' => $campaign->enabled('families'),
+            'visible' => $campaignService->enabled('families'),
             'disableSort' => true,
             'render' => function($model) {
                 $families = [];
@@ -24,11 +24,11 @@
         ],
         [
             'type' => 'location',
-            'visible' => $campaign->enabled('locations'),
+            'visible' => $campaignService->enabled('locations'),
         ],
         [
             'label' => __('characters.fields.races'),
-            'visible' => $campaign->enabled('races'),
+            'visible' => $campaignService->enabled('races'),
             'disableSort' => true,
             'render' => function($model) {
                 $races = [];
@@ -65,7 +65,7 @@
         'route' => 'characters.index',
         'baseRoute' => 'characters',
         'trans' => 'characters.fields.',
-        'campaign' => $campaign
+        'campaignService' => $campaignService
     ]
 ) !!}
 

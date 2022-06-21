@@ -161,27 +161,12 @@ class CampaignService
     }
 
     /**
-     * Determine if the user is still part of the the current campaign
-     *
-     * @return bool True if the user is still part of the current campaign, false otherwise
-     */
-    public static function isUserPartOfCurrentCampaign()
-    {
-        $member = CampaignUser::campaignUser(
-            session()->get('campaign_id'),
-            auth()->user()->id
-        )
-            ->first();
-        return !empty($member);
-    }
-
-    /**
      * Shorthand to determine if a campaign has an entity enabled or not
      *
      * @param string $entity
      * @return bool
      */
-    public function enabled($entity = '')
+    public function enabled(string $entity = '')
     {
         return $this->campaign()->enabled($entity);
     }

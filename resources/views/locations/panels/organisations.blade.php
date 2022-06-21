@@ -34,7 +34,7 @@ if (request()->has('location_id')) {
                 <th class="avatar"><br /></th>
                 <th>{{ __('organisations.fields.name') }}</th>
                 <th>{{ __('organisations.fields.type') }}</th>
-                @if ($campaign->enabled('characters'))<th>{{ __('organisations.fields.members') }}</th>@endif
+                @if ($campaignService->enabled('characters'))<th>{{ __('organisations.fields.members') }}</th>@endif
                 <th>&nbsp;</th>
             </tr>
             @foreach ($r as $org)
@@ -47,7 +47,7 @@ if (request()->has('location_id')) {
                     </td>
                     <td>{{ $org->type }}</td>
 
-                    @if ($campaign->enabled('characters'))<td>
+                    @if ($campaignService->enabled('characters'))<td>
                         {{ $org->members()->count() }}
                     </td>@endif
                     <td class="text-right">

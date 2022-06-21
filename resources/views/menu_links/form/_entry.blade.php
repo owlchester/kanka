@@ -29,7 +29,7 @@ if (isset($model)) {
         <div class="form-group">
             <label class="control-label">{{ __('entities/links.fields.icon') }}</label>
 
-            @if($campaign->campaign()->boosted())
+            @if($campaignService->campaign()->boosted())
                 {!! Form::text(
                     'icon',
                     null,
@@ -47,7 +47,7 @@ if (isset($model)) {
             @else
                 @subscriber()
                 <p class="help-block">
-                    {!! __('callouts.booster.pitches.icon', ['boosted-campaign' => link_to_route('settings.boost', __('concept.boosted-campaign'), ['campaign' => $campaign->campaign()])]) !!}
+                    {!! __('callouts.booster.pitches.icon', ['boosted-campaign' => link_to_route('settings.boost', __('concept.boosted-campaign'), ['campaign' => $campaignService->campaign()])]) !!}
                 </p>
                 @else
                     <p class="help-block">

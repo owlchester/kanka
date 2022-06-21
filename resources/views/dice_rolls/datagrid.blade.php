@@ -39,6 +39,6 @@
         'route' => 'dice_rolls.index',
         'baseRoute' => 'dice_rolls',
         'trans' => 'dice_rolls.fields.',
-        'campaign' => $campaign,
+        'campaignService' => $campaignService,
     ]
 ) !!}

@@ -1,7 +1,7 @@
 @inject('entityService', 'App\Services\EntityService')
 <?php
 $entityTypes = ['' => ''];
-foreach ($entityService->getEnabledEntities($campaign->campaign()) as $entity) {
+foreach ($entityService->getEnabledEntities($campaignService->campaign()) as $entity) {
 $entityTypes[$entity] = __('entities.' . \Illuminate\Support\Str::plural($entity));
 }
 ?>

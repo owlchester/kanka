@@ -5,7 +5,7 @@
         __('crud.create'),
     ]
 ])
-@inject('campaign', 'App\Services\CampaignService')
+@inject('campaignService', 'App\Services\CampaignService')
 
 @section('fullpage-form')
     {!! Form::open(['method' => 'POST', 'enctype' => 'multipart/form-data', 'route' => ['relations.store'], 'data-shortcut' => '1', 'class' => 'entity-form' . (isset($horizontalForm) && $horizontalForm ? ' form-horizontal' : null), 'id' => 'entity-form']) !!}

@@ -12,7 +12,7 @@
     'miscModel' => $entity->child,
     'bodyClass' => 'entity-story-reorder'
 ])
-@inject('campaign', 'App\Services\CampaignService')
+@inject('campaignService', 'App\Services\CampaignService')
 
 
 @section('content')

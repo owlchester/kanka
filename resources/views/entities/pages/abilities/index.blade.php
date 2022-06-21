@@ -7,7 +7,7 @@
     'miscModel' => $entity->child,
     'bodyClass' => 'entity-abilities'
 ])
-@inject('campaign', 'App\Services\CampaignService')
+@inject('campaignService', 'App\Services\CampaignService')
 
 
 @section('entity-header-actions')

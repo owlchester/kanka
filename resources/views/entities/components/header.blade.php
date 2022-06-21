@@ -20,7 +20,7 @@ $imageUrl = $imagePath = null;
 if ($model->image) {
     $imageUrl = $model->getOriginalImageUrl();
     $imagePath = $model->getImageUrl(250, 250);
-} elseif ($campaign->campaign()->superboosted() && !empty($entity) && $entity->image) {
+} elseif ($campaignService->campaign()->superboosted() && !empty($entity) && $entity->image) {
     $imageUrl = $entity->image->getUrl();
     $imagePath = Img::crop(250, 250)->url($entity->image->path);
 }
@@ -38,13 +38,13 @@ if (auth()->check() && auth()->user()->isAdmin()) {
     $buttonsClass ++;
 }
 
-$superboosted = $campaign->campaign()->boosted();
+$superboosted = $campaignService->campaign()->boosted();
 
 ?>
 @if(!isset($printing))
 @section('entity-header')
 @endif
-    <div class="row entity-header @if (empty($imageUrl)) without-entity-image @endif @if($campaign->campaign()->boosted() && $entity->hasHeaderImage($superboosted)) with-entity-header"  style="background-image: url('{{ $entity->getHeaderUrl($superboosted) }}');@endif">
+    <div class="row entity-header @if (empty($imageUrl)) without-entity-image @endif @if($campaignService->campaign()->boosted() && $entity->hasHeaderImage($superboosted)) with-entity-header"  style="background-image: url('{{ $entity->getHeaderUrl($superboosted) }}');@endif">
 
         @if ($imageUrl)
         <div class="col-md-2 entity-image-col">

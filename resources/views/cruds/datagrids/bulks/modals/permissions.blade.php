@@ -1,4 +1,4 @@
-@inject('campaign', 'App\Services\CampaignService')
+@inject('campaignService', 'App\Services\CampaignService')
 
 {!! Form::open(['url' => route('bulk.process'), 'method' => 'POST']) !!}
 <div class="modal fade" id="bulk-permissions" tabindex="-1" role="dialog" aria-labelledby="clickConfirmLabel">

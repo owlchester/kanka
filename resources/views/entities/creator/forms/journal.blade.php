@@ -3,7 +3,7 @@
         @include('cruds.fields.type', ['base' => \App\Models\Journal::class, 'trans' => 'journals'])
     </div>
     <div class="col-md-6">
-        @if ($campaign->enabled('characters'))
+        @if ($campaignService->enabled('characters'))
             <div class="form-group">
                 {!! Form::select2(
                     'character_id',

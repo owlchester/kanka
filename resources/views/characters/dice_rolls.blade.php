@@ -11,7 +11,7 @@
 
 ])
 
-@inject('campaign', 'App\Services\CampaignService')
+@inject('campaignService', 'App\Services\CampaignService')
 
 @include('entities.components.header', ['model' => $model])
 @section('content')

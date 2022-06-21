@@ -13,7 +13,7 @@
 __('timelines/eras.create.title')
 ]
 ])
-@inject('campaign', 'App\Services\CampaignService')
+@inject('campaignService', 'App\Services\CampaignService')
 @section('content')
     <div class="panel panel-default">
         @if ($ajax)

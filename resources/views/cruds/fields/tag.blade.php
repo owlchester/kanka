@@ -1,4 +1,4 @@
-@if (!$campaign->enabled('tags'))
+@if (!$campaignService->enabled('tags'))
     <?php return ?>
 @endif
 

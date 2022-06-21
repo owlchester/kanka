@@ -15,7 +15,7 @@
         'date',
         [
             'type' => 'location',
-            'visible' => $campaign->enabled('locations'),
+            'visible' => $campaignService->enabled('locations'),
         ],
         [
             'label' => trans('events.fields.event'),
@@ -37,6 +37,6 @@
         'route' => 'events.index',
         'baseRoute' => 'events',
         'trans' => 'events.fields.',
-        'campaign' => $campaign
+        'campaignService' => $campaignService
     ]
 ) !!}

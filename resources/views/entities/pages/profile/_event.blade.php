@@ -29,7 +29,7 @@
                         {!! $model->event->tooltipedLink() !!}
                     </p>
                 @endif
-                @if ($campaign->enabled('characters') && $model->character)
+                @if ($campaignService->enabled('characters') && $model->character)
                     <p class="entity-character" data-foreign="{{ $model->character_id }}">
                         <b>{{ __('events.fields.character') }}</b><br />
                         {!! $model->character->tooltipedLink() !!}

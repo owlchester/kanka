@@ -1,6 +1,6 @@
 <?php /** @var \App\Models\MiscModel $model */?>
 
-@inject('campaign', 'App\Services\CampaignService')
+@inject('campaignService', 'App\Services\CampaignService')
 @php
 $headerImage = true;
 @endphp

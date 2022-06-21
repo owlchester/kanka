@@ -1,5 +1,5 @@
 <?php /** @var \App\Models\Tag $tag */?>
-@if ($campaign->enabled('tags') && $model->entity->tags()->count() > 0)
+@if ($campaignService->enabled('tags') && $model->entity->tags()->count() > 0)
     <li class="list-group-item entity-tags">
         <b>{{ __('crud.fields.tags') }}</b>
         <p>

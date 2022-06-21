@@ -17,12 +17,12 @@
         // Location
         [
             'type' => 'location',
-            'visible' => $campaign->enabled('locations'),
+            'visible' => $campaignService->enabled('locations'),
         ],
         // Character
         [
             'type' => 'character',
-            'visible' => $campaign->enabled('characters'),
+            'visible' => $campaignService->enabled('characters'),
         ],
         [
             'type' => 'is_private',
@@ -35,6 +35,6 @@
         'route' => 'items.index',
         'baseRoute' => 'items',
         'trans' => 'items.fields.',
-        'campaign' => $campaign
+        'campaignService' => $campaignService
     ]
 ) !!}

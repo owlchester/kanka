@@ -229,10 +229,10 @@ class Campaign extends MiscModel
     /**
      * Determine if a campaign has an entity enabled or not
      *
-     * @param $entity
+     * @param string $entity
      * @return bool
      */
-    public function enabled($entity): bool
+    public function enabled(string $entity): bool
     {
         // Can't disable attribute templates
         if ($entity == 'attribute_templates') {

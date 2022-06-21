@@ -47,7 +47,7 @@ $model = $entity->child;
     <div class="panel-body">
         @if ($widget->conf('full') === '1')
             <dl class="dl-horizontal">
-                @if ($campaign->enabled('characters') && !empty($model->character))
+                @if ($campaignService->enabled('characters') && !empty($model->character))
                     <dt>{{ __('quests.fields.character') }}</dt>
                     <dd>
                         {!! $model->character->tooltipedLink() !!}
@@ -66,7 +66,7 @@ $model = $entity->child;
         <div class="pinned-entity preview" data-toggle="preview" id="widget-preview-body-{{ $widget->id }}">
 
             <dl class="dl-horizontal">
-                @if ($campaign->enabled('characters') && !empty($model->character))
+                @if ($campaignService->enabled('characters') && !empty($model->character))
                     <dt>{{ __('quests.fields.character') }}</dt>
                     <dd>
                         {!! $model->character->tooltipedLink() !!}

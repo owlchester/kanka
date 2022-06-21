@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col-md-6">
         @include('cruds.fields.name', ['trans' => 'dice_rolls'])
-        @if ($campaign->enabled('characters'))
+        @if ($campaignService->enabled('characters'))
             <div class="form-group">
                 {!! Form::select2(
                     'character_id',

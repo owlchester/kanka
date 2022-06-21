@@ -13,7 +13,7 @@ $imageUrl = $imagePath = $headerImageUrl =null;
 if ($model->image) {
     $imageUrl = $model->getOriginalImageUrl();
     $imagePath = $model->getImageUrl(250, 250);
-} elseif ($campaign->campaign()->superboosted() && !empty($entity) && $entity->image) {
+} elseif ($campaignService->campaign()->superboosted() && !empty($entity) && $entity->image) {
     $imageUrl = $entity->image->getUrl();
     $imagePath = Img::crop(250, 250)->url($entity->image->path);
 }
@@ -31,10 +31,10 @@ if (auth()->check() && auth()->user()->isAdmin()) {
     $buttonsClass ++;
 }
 
-$superboosted = $campaign->campaign()->superboosted();
+$superboosted = $campaignService->campaign()->superboosted();
 
 $hasBanner = false;
-if($campaign->campaign()->boosted() && $entity->hasHeaderImage($superboosted)) {
+if($campaignService->campaign()->boosted() && $entity->hasHeaderImage($superboosted)) {
     $hasBanner = true;
     $headerImageUrl = $entity->getHeaderUrl($superboosted);
 }
@@ -74,7 +74,7 @@ if($campaign->campaign()->boosted() && $entity->hasHeaderImage($superboosted)) {
                     </a>
                 </li>
                 <li>
-                    @if ($campaign->campaign()->superboosted())
+                    @if ($campaignService->campaign()->superboosted())
                     <a href="{{ route('entities.image.focus', $model->entity) }}">
                         {{ __('entities/image.actions.change_focus') }}
                     </a>
@@ -276,8 +276,8 @@ if($campaign->campaign()->boosted() && $entity->hasHeaderImage($superboosted)) {
         <article>
             <p class="mb-1 text-justify">{{ __('entities/image.call-to-action') }}</p>
             @subscriber()
-            <a href="{{ route('settings.boost', ['campaign' => $campaign->campaign()]) }}" class="btn bg-maroon btn-block">
-                {!! __('callouts.booster.actions.boost', ['campaign' => $campaign->campaign()->name]) !!}
+            <a href="{{ route('settings.boost', ['campaign' => $campaignService->campaign()]) }}" class="btn bg-maroon btn-block">
+                {!! __('callouts.booster.actions.boost', ['campaign' => $campaignService->campaign()->name]) !!}
             </a>
             @else
                 <p class="mb-1 text-justify">{{ __('callouts.booster.limitation') }}</p>

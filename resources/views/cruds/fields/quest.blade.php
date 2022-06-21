@@ -1,4 +1,4 @@
-@if (!$campaign->enabled('quests'))
+@if (!$campaignService->enabled('quests'))
     <?php return ?>
 @endif
 

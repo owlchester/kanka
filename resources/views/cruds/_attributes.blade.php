@@ -7,7 +7,7 @@
 $layout = $model->entity->attributes()->where(['name' => '_layout'])->first();
 if ($layout) {
     $template = $attributeService->communityTemplate($layout->value);
-    $marketplaceTemplate = $attributeService->marketplaceTemplate($layout->value, $campaign->campaign());
+    $marketplaceTemplate = $attributeService->marketplaceTemplate($layout->value, $campaignService->campaign());
 }
 ?>
 

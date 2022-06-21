@@ -7,7 +7,7 @@
 
 ])
 
-@inject('campaign', 'App\Services\CampaignService')
+@inject('campaignService', 'App\Services\CampaignService')
 @section('content')
 
     <div class="box box-solid">
@@ -24,7 +24,7 @@
                 {{ __('dashboard.dashboards.default.text') }}
             @endif
         </div>
-        @if (true || $campaign->campaign()->boosted())
+        @if (true || $campaignService->campaign()->boosted())
         <div class="box-footer">
             <a class="btn btn-primary mr-2"
                  data-toggle="ajax-modal"
@@ -118,10 +118,10 @@
         <div class="row" id="widgets" data-url="{{ route('dashboard.reorder') }}">
             @if (empty($dashboard))
             <div class="col-md-12">
-                <div class="widget widget-campaign cover-background" @if($campaign->campaign()->header_image) style="background-image: url({{ Img::crop(1200, 400)->url($campaign->campaign()->header_image) }})" @endif
+                <div class="widget widget-campaign cover-background" @if($campaignService->campaign()->header_image) style="background-image: url({{ Img::crop(1200, 400)->url($campaignService->campaign()->header_image) }})" @endif
                     data-toggle="ajax-modal"
                      data-target="#large-modal"
-                     data-url="{{ route('campaigns.dashboard-header.edit', $campaign->campaign()) }}"
+                     data-url="{{ route('campaigns.dashboard-header.edit', $campaignService->campaign()) }}"
                 >
                     <div class="widget-overlay">
                         <span class="widget-type">{{ __('dashboard.setup.widgets.campaign') }}</span>

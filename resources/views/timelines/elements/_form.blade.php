@@ -1,5 +1,5 @@
 
-@inject('campaign', 'App\Services\CampaignService')
+@inject('campaignService', 'App\Services\CampaignService')
 
 <div class="form-group required">
     <label>{{ __('timelines/elements.fields.era') }}</label>
@@ -67,13 +67,13 @@
     <div class="col-md-6">
         <div class="form-group">
             <label>{{ __('timelines/elements.fields.icon') }}</label>
-            {!! Form::text('icon', null, ['class' => 'form-control', 'placeholder' => 'fa-solid fa-gem, ra ra-sword', 'disabled' => $campaign->campaign()->boosted() ? null : 'disabled']) !!}
+            {!! Form::text('icon', null, ['class' => 'form-control', 'placeholder' => 'fa-solid fa-gem, ra ra-sword', 'disabled' => $campaignService->campaign()->boosted() ? null : 'disabled']) !!}
                 <p class="help-block">{!! __('timelines/elements.helpers.icon', ['rpgawesome' => '<a href="https://nagoshiashumari.github.io/Rpg-Awesome/" target="_blank">RPG Awesome</a>', 'fontawesome' => '<a href="https://fontawesome.com/search?m=free&s=solid" target="_blank">Font Awesome</a>']) !!}</p>
 
-            @if (!$campaign->campaign()->boosted())
+            @if (!$campaignService->campaign()->boosted())
                 @subscriber()
                     <p class="help-block">
-                        <i class="fa-solid fa-rocket" aria-hidden="true"></i> {!! __('crud.errors.boosted_campaigns', ['boosted' => link_to_route('settings.boost', __('concept.boosted-campaign'), ['campaign' => $campaign->campaign()])]) !!}
+                        <i class="fa-solid fa-rocket" aria-hidden="true"></i> {!! __('crud.errors.boosted_campaigns', ['boosted' => link_to_route('settings.boost', __('concept.boosted-campaign'), ['campaign' => $campaignService->campaign()])]) !!}
                     </p>
                 @else
                     <p class="help-block">

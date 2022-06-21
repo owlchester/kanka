@@ -8,7 +8,7 @@
     'miscModel' => $entity->child,
     'bodyClass' => 'entity-inventory'
 ])
-@inject('campaign', 'App\Services\CampaignService')
+@inject('campaignService', 'App\Services\CampaignService')
 
 
 

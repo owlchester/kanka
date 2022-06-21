@@ -42,12 +42,12 @@ $hasOrg = request()->has('organisation_id');
             <tbody><tr>
                 <th class="avatar"><br></th>
                 <th>{{ __('characters.fields.name') }}</th>
-                @if ($campaign->enabled('locations'))
+                @if ($campaignService->enabled('locations'))
                 <th class="hidden-sm hidden-xs">{{ __('characters.fields.location') }}</th>
                 @endif
                 @if (!$hasOrg)<th>{{ __('organisations.members.fields.organisation') }}</th>@endif
                 <th>{{ __('organisations.members.fields.role') }}</th>
-                @if ($campaign->enabled('races'))
+                @if ($campaignService->enabled('races'))
                 <th class="hidden-sm hidden-xs">{{ __('characters.fields.race') }}</th>
                 @endif
                 <th>{{ __('characters.fields.is_dead') }}</th>
@@ -82,7 +82,7 @@ $hasOrg = request()->has('organisation_id');
                         {!! $relation->character->tooltipedLink() !!}<br />
                         <i>{{ $relation->character->title }}</i>
                     </td>
-                    @if ($campaign->enabled('locations'))
+                    @if ($campaignService->enabled('locations'))
                     <td class="hidden-sm hidden-xs">
                         @if ($relation->character->location)
                             {!! $relation->character->location->tooltipedLink() !!}
@@ -95,7 +95,7 @@ $hasOrg = request()->has('organisation_id');
                     </td>
                     @endif
                     <td>{{ $relation->role }}</td>
-                    @if ($campaign->enabled('races'))
+                    @if ($campaignService->enabled('races'))
                         <td class="hidden-sm hidden-xs">
                             @foreach ($relation->character->races as $race)
                                 {!! $race->tooltipedLink() !!}

@@ -10,7 +10,7 @@
     'mainTitle' => false,
     'miscModel' => $entity->child,
 ])
-@inject('campaign', 'App\Services\CampaignService')
+@inject('campaignService', 'App\Services\CampaignService')
 
 @section('content')
     @include('partials.errors')

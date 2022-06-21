@@ -5,7 +5,7 @@
     'mainTitle' => false,
 ])
 
-@inject('campaign', 'App\Services\CampaignService')
+@inject('campaignService', 'App\Services\CampaignService')
 
 @section('content')
     <div class="entity-grid">

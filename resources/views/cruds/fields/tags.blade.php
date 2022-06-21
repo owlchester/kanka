@@ -1,4 +1,4 @@
-@if ($campaign->enabled('tags'))
+@if ($campaignService->enabled('tags'))
     @if (isset($bulk) && $bulk)
         <div class="row">
             <div class="col-md-8">

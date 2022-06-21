@@ -13,7 +13,7 @@
                 <th>{{ __('journals.fields.name') }}</th>
                 <th class="hidden-sm">{{ __('journals.fields.type') }}</th>
                 <th class="hidden-sm">{{ __('journals.fields.date') }}</th>
-                @if ($campaign->enabled('characters'))
+                @if ($campaignService->enabled('characters'))
                 <th>{{ __('journals.fields.author') }}</th>
                 @endif
                 <th>&nbsp;</th>
@@ -28,7 +28,7 @@
                     </td>
                     <td class="hidden-sm">{{ $journal->type }}</td>
                     <td class="hidden-sm">{{ $journal->date }}</td>
-                    @if ($campaign->enabled('characters'))
+                    @if ($campaignService->enabled('characters'))
                     <td>
                         @if ($journal->character)
                             {!! $journal->character->tooltipedLink() !!}
