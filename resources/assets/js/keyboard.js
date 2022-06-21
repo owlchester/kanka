@@ -17,7 +17,7 @@ function initKeyboardShortcuts() {
             if (isInputField(target)) {
                 return;
             }
-            $('.sidebar-toggle').click();
+            $('.sidebar-toggle').click().blur();
         } else if (e.key === 'k') {
             // k for search
             if (isInputField(target)) {
@@ -31,13 +31,13 @@ function initKeyboardShortcuts() {
                 return;
             }
             $('.quick-creator-button')[0].click();
-            return false; // don't add the k to the search field
         }
     });
 }
 
 function isInputField(ele) {
-    return ele.is('input') || ele.is('select') || ele.attr("contentEditable") == "true"
+    return ele.is('input') || ele.is('select') || ele.is('textarea') ||
+        ele.attr('contentEditable') == 'true' || ele.hasClass('CodeMirror');
 }
 
 /**

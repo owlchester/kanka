@@ -21,9 +21,11 @@ function initGallery() {
     search.on('blur', function(e) {
         e.preventDefault();
         initSearch();
-    }).on('submit', function(e) {
-        e.preventDefault();
-        initSearch();
+    }).bind('keydown', function(e) {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            initSearch();
+        }
     });
 }
 
