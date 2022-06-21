@@ -410,7 +410,6 @@ class BulkService
                 $this->count++;
                 $this->total++;
             }
-
             $relation->update($filledFields);
             $this->count++;
         }
