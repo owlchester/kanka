@@ -530,10 +530,10 @@ class Entity extends Model
      */
     public function hasPins(): bool
     {
-        if (!$this->starredRelations->isEmpty()) {
+        if ($this->starredRelations->isNotEmpty()) {
             return true;
         }
-        if (!$this->accessAttributes() && $this->starredAttributes()->isEmpty()) {
+        if ($this->accessAttributes() && $this->starredAttributes()->isNotEmpty()) {
             return true;
         }
         return false;
