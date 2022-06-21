@@ -13,6 +13,7 @@
 @section('content')
     <div class="map map-explore" id="map{{ $map->id }}" style="width: 100%; height: 100%;">
     </div>
+    <div class="z"></div>
 
 
     @can('update', $map)
