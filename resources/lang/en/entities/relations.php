@@ -8,9 +8,10 @@ return [
     'bulk'              => [
         'delete'            => '{1} Deleted :count relation.|[2,*] Deleted :count relations.',
         'delete_mirrored'   => 'Also delete mirrored relations.',
+        'update_mirrored'   => 'Also update mirrored relations.',
         'success'           => [
-            'editing'           => '{1} :count relation was updated.|[2,*] :count relation were updated.',
-            'editing_partial'   => '{1} :count/:total relation was updated.|[2,*] :count/:total relation were updated.',
+            'editing'           => '{1} :count relation was updated.|[2,*] :count relations were updated.',
+            'editing_partial'   => '{1} :count/:total relation was updated.|[2,*] :count/:total relations were updated.',
         ],
     ],
     'call-to-action'    => 'Visually explore the relations of this entity and how it\'s connected to the rest of the campaign.',

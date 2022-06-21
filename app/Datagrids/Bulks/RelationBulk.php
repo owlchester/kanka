@@ -14,6 +14,7 @@ class RelationBulk extends Bulk
         'colour_picker',
         'pinned_choice',
         'visibility_id',
+        'update_mirrored',
     ];
     protected $mappings = [
         'colour',
