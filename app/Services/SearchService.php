@@ -271,7 +271,6 @@ class SearchService
                 'name' => $parsedName,
                 'type' => __('entities.' . $model->type()),
                 'model_type' => $model->type(),
-                'tooltip' => $model->tooltip(),
                 'url' => $model->url(),
                 'alias_id' => $model->alias_id,
             ];

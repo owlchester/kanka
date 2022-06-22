@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Facades\CampaignLocalization;
 use App\Models\Entity;
 use App\Traits\GuestAuthTrait;
 use Illuminate\Support\Facades\Auth;
@@ -24,8 +25,15 @@ class EntityTooltipController extends Controller
             $this->authorizeEntityForGuest(\App\Models\CampaignPermission::ACTION_READ, $entity->child);
         }
 
+        $campaign = CampaignLocalization::getCampaign();
+        $tooltip = view('entities.components.tooltip')
+            ->with('entity', $entity)
+            ->with('tags', $entity->tags)
+            ->with('campaign', $campaign)
+            ->render();
+
         return Response::json([
-            $entity->fullTooltip()
+            $tooltip
         ]);
     }
 }

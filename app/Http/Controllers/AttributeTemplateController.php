@@ -78,14 +78,4 @@ class AttributeTemplateController extends CrudController
     {
         return $this->crudDestroy($attributeTemplate);
     }
-
-    /**
-     * @param AttributeTemplate $attributeTemplate
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
-    public function attributeTemplates(AttributeTemplate $attributeTemplate)
-    {
-        return $this->menuView($attributeTemplate, 'attribute_templates');
-    }
 }

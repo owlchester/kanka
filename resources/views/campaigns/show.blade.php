@@ -9,7 +9,7 @@
 ])
 
 @section('og')
-    <meta property="og:description" content="{{ $campaign->tooltip() }}" />
+    <meta property="og:description" content="{{ $campaign->preview() }}" />
     @if ($campaign->image)<meta property="og:image" content="{{ Img::crop(280, 280)->url($campaign->image)  }}" />
     <meta property="og:image:width" content="280" />
     <meta property="og:image:height" content="280" />@endif

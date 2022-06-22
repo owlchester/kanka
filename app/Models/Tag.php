@@ -260,7 +260,7 @@ class Tag extends MiscModel
      * Get the tag's colour class
      * @return string colour css class
      */
-    public function colourClass()
+    public function colourClass(): string
     {
         if (!$this->hasColour()) {
             return 'color-white';
@@ -314,7 +314,7 @@ class Tag extends MiscModel
      */
     public function html(): string
     {
-        return '<span class="label ' . ($this->hasColour() ? $this->colourClass() : 'label-default') . '">'
+        return '<span class="label ' . ($this->hasColour() ? $this->colourClass() : 'color-tag label-default') . '">'
             . e($this->name) . '</span>';
     }
 
@@ -323,8 +323,9 @@ class Tag extends MiscModel
      */
     public function bubble(): string
     {
-        return '<span class="label label-tag-bubble ' . ($this->hasColour() ? $this->colourClass() : 'label-default') . '" title="'
-            . e($this->name) . '">' . ucfirst(substr(e($this->name), 0, 1)) . '</span>';
+        return '<span class="label label-tag-bubble ' .
+            ($this->hasColour() ? $this->colourClass() : 'color-tag label-default') . '" title="' .
+            e($this->name) . '">' . ucfirst(substr(e($this->name), 0, 1)) . '</span>';
     }
 
     /**

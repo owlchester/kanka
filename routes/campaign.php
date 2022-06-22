@@ -103,9 +103,6 @@ Route::post('/tags/{tag}/entity-add', 'TagController@entityStore')->name('tags.e
 Route::post('/bulk/process', 'BulkController@process')->name('bulk.process');
 Route::get('/bulk/modal', 'BulkController@modal')->name('bulk.modal');
 
-// Attribute Templates Menu
-Route::get('/attribute_templates/{attribute_template}/attribute_templates', 'AttributeTemplateController@attributeTemplates')->name('attribute_templates.attribute_templates');
-
 // Notes
 //Route::get('/notes/{note}/map-points', 'NoteController@mapPoints')->name('notes.map-points');
 Route::get('/notes/tree', 'NoteController@tree')->name('notes.tree');

@@ -342,33 +342,15 @@ class Character extends MiscModel
     }
 
     /**
-     * Tooltip name
-     * @return string
-     */
-    public function tooltipName(): string
-    {
-        // e() isn't enough, remove tags too to avoid ><script injections.
-        $str = $this->name;
-        if (!empty($this->families) && !CampaignLocalization::getCampaign()->tooltip_family) {
-            $families = [];
-            foreach ($this->families as $family) {
-                $families[] = $family->name;
-            }
-            $str .= ' - ' . implode(', ', $families);
-        }
-        return e(strip_tags(trim($str))) . ($this->is_dead ? ' <i class=\'ra ra-skull\'></i>' : null);
-    }
-
-    /**
      * Tooltip subtitle (character title)
      * @return string
      */
     public function tooltipSubtitle(): string
     {
-        if (!empty($this->title)) {
-            return e(strip_tags($this->title));
+        if (empty($this->title)) {
+            return '';
         }
-        return '';
+        return e(strip_tags($this->title));
     }
 
     /**

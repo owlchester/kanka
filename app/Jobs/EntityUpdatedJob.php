@@ -56,26 +56,6 @@ class EntityUpdatedJob implements ShouldQueue
             return;
         }
 
-        // Invalid cache
-        cache()->forget($entity->child->tooltipCacheKey());
-
-        if ($entity->type_id == config('entities.ids.tag')) {
-            /** @var Entity $child */
-//            foreach ($entity->child->allChildren()->get() as $child) {
-//                if ($child->child) {
-//                    cache()->forget($child->child->tooltipCacheKey());
-//                    cache()->forget($child->child->tooltipCacheKey('public'));
-//                }
-//            }
-        } elseif ($entity->type_id == config('entities.ids.family')) {
-            /** @var Family $family */
-            $family = $entity->child;
-            foreach ($family->members as $child) {
-                cache()->forget($child->tooltipCacheKey());
-                cache()->forget($child->tooltipCacheKey('public'));
-            }
-        }
-
         // Whenever an entity is updates, we always want to re-calculate the cached image.
         if (method_exists($entity, 'clearAvatarCache')) {
             $entity->clearAvatarCache();
