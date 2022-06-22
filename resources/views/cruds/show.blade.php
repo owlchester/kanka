@@ -15,7 +15,7 @@ $headerImage = true;
 ])
 
 @section('og')
-@if ($tooltip = $model->tooltip())<meta property="og:description" content="{{ $tooltip }}" />@endif
+@if ($tooltip = $model->entity->mappedPreview())<meta property="og:description" content="{{ $tooltip }}" />@endif
 @if ($model->image)<meta property="og:image" content="{{ $model->getImageUrl(0)  }}" />@endif
     <meta property="og:url" content="{{ $model->getLink()  }}" />
     <meta name="twitter:card" content="summary_large_image" />
