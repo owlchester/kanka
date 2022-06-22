@@ -37,7 +37,7 @@ class UserObserver
         }
 
         // Handle image. Let's use a service for this.
-        $folderno = floor($user->id / 1000);
+        $folderno = (int) floor($user->id / 1000);
         ImageService::handle($user, $user->getTable() . '/' . $folderno, 60, 'avatar');
     }
 
