@@ -36,6 +36,7 @@ return [
         'quests'        => 'Sub Quests',
         'role'          => 'Role',
         'type'          => 'Type',
+        'calendar_date' => 'Calendar Date',
     ],
     'helpers'       => [
         'is_completed'      => 'Select if the quest is considered as completed.',

@@ -27,7 +27,7 @@
         @endif
         @if ($model->hasCalendar())
             <div class="element profile-date">
-                <div class="title">{{ __('journals.fields.calendar_date') }}</div>
+                <div class="title">{{ __('quests.fields.calendar_date') }}</div>
                 <a href="{{ route('calendars.show', [$model->calendar_id, 'year' => $model->calendar_year, 'month' => $model->calendar_month]) }}">
                     {{ $model->getDate() }}
                 </a> 
