@@ -99,14 +99,6 @@ if (!isset($model) || !$model->boosted()) {
                 @endif
             </div>
         </div>
-        <div class="col-md-6 col-lg-4">
-            <div class="form-group">
-                <label>
-                    {{ __('campaigns.ui.fields.family_toolip') }}
-                </label>
-                {!! Form::select('ui_settings[tooltip_family]', [0 => __('campaigns.privacy.visible'), 1 => __('campaigns.privacy.hidden')], null, ['class' => 'form-control']) !!}
-            </div>
-        </div>
     </div>
 
     <hr />

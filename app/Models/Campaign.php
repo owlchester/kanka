@@ -343,14 +343,7 @@ class Campaign extends MiscModel
     }
 
     /**
-     * @return mixed
-     */
-    public function getTooltipFamilyAttribute()
-    {
-        return Arr::get($this->ui_settings, 'tooltip_family', false);
-    }
-
-    /**
+     * Determine if the campaign has images in tooltips.
      * @return mixed
      */
     public function getTooltipImageAttribute()
