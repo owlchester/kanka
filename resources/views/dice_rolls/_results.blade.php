@@ -5,7 +5,7 @@
     <div class="box-tools">
         @can('roll', $model)
             <a href="{{ route('dice_rolls.roll', ['dice_roll' => $model]) }}" class="btn btn-box-tool">
-                <i class="fa-solid fa-plus"></i> {{ trans('dice_rolls.results.actions.add') }}
+                <i class="fa-solid fa-plus"></i> {{ __('dice_rolls.results.actions.add') }}
             </a>
         @endcan
     </div>
@@ -13,9 +13,9 @@
 <div class="box-body">
 <table id="dice-rolls-results" class="table table-hover">
     <thead><tr>
-        <th>{{ trans('dice_rolls.results.fields.creator') }}</th>
-        <th>{{ trans('dice_rolls.results.fields.result') }}</th>
-        <th>{{ trans('dice_rolls.results.fields.date') }}</th>
+        <th>{{ __('dice_rolls.results.fields.creator') }}</th>
+        <th>{{ __('dice_rolls.results.fields.result') }}</th>
+        <th>{{ __('dice_rolls.results.fields.date') }}</th>
         <th class="text-right">
 
         </th>

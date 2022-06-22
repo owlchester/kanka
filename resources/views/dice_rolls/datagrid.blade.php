@@ -13,7 +13,7 @@
         'name',
         'parameters',
         [
-            'label' => trans('crud.fields.character'),
+            'label' => __('crud.fields.character'),
             'field' => 'character.name',
             'render' => function($model) {
                 if ($model->character) {
@@ -22,7 +22,7 @@
             }
         ],
         [
-            'label' => trans('dice_rolls.fields.rolls'),
+            'label' => __('dice_rolls.fields.rolls'),
             'render' => function($model) {
                 return $model->diceRollResults()->count();
             },
