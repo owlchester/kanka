@@ -69,8 +69,6 @@ class AttributeTemplate extends MiscModel
         'entity_type_id'
     ];
 
-    public $tooltipField = 'name';
-
     /**
      * Fields that can be filtered on
      * @var array

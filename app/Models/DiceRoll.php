@@ -69,12 +69,6 @@ class DiceRoll extends MiscModel
     protected $entityType = 'dice_roll';
 
     /**
-     * Field used for tooltips
-     * @var string
-     */
-    protected $tooltipField = 'name';
-
-    /**
      * Foreign relations to add to export
      * @var array
      */

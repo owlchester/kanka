@@ -12,7 +12,6 @@ use App\Models\Concerns\Orderable;
 use App\Models\Concerns\Paginatable;
 use App\Models\Concerns\Searchable;
 use App\Models\Concerns\Sortable;
-use App\Models\Concerns\Tooltip;
 use App\Models\Scopes\SubEntityScopes;
 use App\Traits\SourceCopiable;
 use Carbon\Carbon;
@@ -50,7 +49,7 @@ abstract class MiscModel extends Model
         Searchable,
         Orderable,
         Filterable,
-        Tooltip,
+        //Tooltip,
         Sortable,
         SubEntityScopes,
         SourceCopiable,
@@ -117,12 +116,6 @@ abstract class MiscModel extends Model
      * @var array
      */
     public $nullableForeignKeys = [];
-
-    /**
-     * Field used for tooltips
-     * @var string
-     */
-    protected $tooltipField = 'entry';
 
     /**
      * Default ordering
@@ -470,8 +463,9 @@ abstract class MiscModel extends Model
     }
 
     /**
-     * Get the entity link with ajax tooltip
-     * @param string $displayName
+     * Get the entity link with ajax tooltip.
+     * When coming from an entity first, call this method on the entity. It avoids some back and worth.
+     * @param null|string $displayName
      * @return string
      */
     public function tooltipedLink(string $displayName = null): string
@@ -484,7 +478,7 @@ abstract class MiscModel extends Model
             'data-url="' . route('entities.tooltip', $this->entity->id) . '" href="' .
             $this->getLink() . '">' .
             (!empty($displayName) ? $displayName : e($this->name)) .
-            '</a>';
+        '</a>';
     }
 
     /**

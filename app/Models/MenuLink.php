@@ -93,8 +93,6 @@ class MenuLink extends MiscModel
         'dashboard_id',
     ];
 
-    public $tooltipField = 'name';
-
     /**
      * Set to false if this entity type doesn't have relations
      * @var bool

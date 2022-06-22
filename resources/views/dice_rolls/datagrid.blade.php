@@ -17,7 +17,7 @@
             'field' => 'character.name',
             'render' => function($model) {
                 if ($model->character) {
-                    return '<a href="' . route('characters.show', $model->character_id) . '">' . e($model->character->name) . '</a>';
+                    return $model->character->tooltipedLink();
                 }
             }
         ],
