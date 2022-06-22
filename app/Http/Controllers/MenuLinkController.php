@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Datagrids\Actions\MenuLinkDatagridActions;
 use App\Http\Requests\StoreMenuLink;
 use App\Models\MenuLink;
+use Illuminate\Http\Request;
 
 class MenuLinkController extends CrudController
 {
@@ -39,12 +40,25 @@ class MenuLinkController extends CrudController
             'name',
         ];
 
-        $this->indexActions[] = [
-            'label' => '<i class="fa-solid fa-arrows-alt-v"></i> <span class="hidden-xs">' . __('timelines.actions.reorder') . '</span>',
-            'route' => route('quick-links.reorder'),
-            'class' => 'default',
-            'policy' => 'browse'
-        ];
+        $this->addNavAction(
+            route('quick-links.reorder'),
+            '<i class="fa-solid fa-arrows-alt-v"></i> <span class="hidden-xs">' . __('timelines.actions.reorder') . '</span>'
+        );
+    }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\RedirectResponse|mixed
+     * @throws \Psr\Container\ContainerExceptionInterface
+     * @throws \Psr\Container\NotFoundExceptionInterface
+     */
+    public function index(Request $request)
+    {
+        // Check that the user has permission to actually be here
+        if (auth()->guest() || !auth()->user()->can('browse', new MenuLink())) {
+            return redirect()->route('dashboard');
+        }
+        return $this->crudIndex($request);
     }
 
     /**

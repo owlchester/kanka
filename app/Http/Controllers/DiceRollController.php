@@ -34,12 +34,10 @@ class DiceRollController extends CrudController
     public function __construct()
     {
         parent::__construct();
-
-        $this->indexActions[] = [
-            'route' => route('dice_roll_results.index'),
-            'class' => 'default',
-            'label' => '<i class="fa-solid fa-list"></i> ' . __('dice_rolls.index.actions.results')
-        ];
+        $this->addNavAction(
+            route('dice_roll_results.index'),
+            '<i class="fa-solid fa-list"></i> ' . __('dice_rolls.index.actions.results')
+        );
     }
 
     /**

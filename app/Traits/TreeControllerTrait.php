@@ -23,20 +23,31 @@ trait TreeControllerTrait
      */
     public function tree(Request $request)
     {
-        /** @var MiscModel $model */
-        $model = new $this->model;
+        if (!$this->moduleEnabled()) {
+            return redirect()->route('dashboard')->with(
+                'error_raw',
+                __('campaigns.settings.errors.module-disabled', [
+                    'fix' => link_to_route('campaign.modules', __('crud.fix-this-issue'), ['#' . $this->module]),
+                ])
+            );
+        }
+
+        /**
+         * Prepare a lot of variables that will be shared over to the view
+         * @var MiscModel $model
+         */
+        $model = new $this->model();
         $this->filterService->make($this->view . 'tree', request()->all(), $model);
         $name = $this->view;
         $filters = $this->filters;
         $filterService = $this->filterService;
-        $filter = !empty($this->filter) ? new $this->filter : null;
+        $filter = !empty($this->filter) ? new $this->filter() : null;
         $langKey = $this->langKey ?? $name;
 
-        $actions = [[
-            'route' => route($this->route . '.index'),
-            'class' => 'default',
-            'label' => '<i class="fa-solid fa-list"></i> ' . __($this->view . '.index.title')
-        ]];
+        $this->addNavAction(
+            route($this->route . '.index'),
+            '<i class="fa-solid fa-list"></i> ' . __($this->view . '.index.title')
+        );
 
         // Entity templates
         $templates = null;
@@ -56,27 +67,25 @@ trait TreeControllerTrait
         $createOptions = [];
 
         /** @var Tag $model **/
-        $parentKey = $model->getTable() . '.' . (!empty($this->treeControllerParentKey) ? $this->treeControllerParentKey : $singularModel . '_id');
+        $parentKey = $model->getTable() . '.' . (!empty($this->treeControllerParentKey) ?
+                $this->treeControllerParentKey : $singularModel . '_id');
         $parent = null;
         if (request()->has('parent_id')) {
             $base->where([$parentKey => request()->get('parent_id')]);
 
             $parent = $model->with($singularModel)->where('id', request()->get('parent_id'))->first();
             if (!empty($parent) && !empty($parent->$singularModel)) {
-                // Go back to parent
-                $actions[] = [
-                    'route' => route($this->route . '.tree', ['parent_id' => $parent->$singularModel->id]),
-                    'class' => 'default',
-                    'label' => '<i class="fa-solid fa-arrow-left"></i> ' . $parent->$singularModel->name
-                ];
+                $this->addNavAction(
+                    route($this->route . '.tree', ['parent_id' => $parent->$singularModel->id]),
+                    '<i class="fa-solid fa-arrow-left"></i> ' . $parent->$singularModel->name
+                );
                 $createOptions['parent_id'] = $parent->id;
             } else {
                 // Go back to first level
-                $actions[] = [
-                    'route' => route($this->route . '.tree'),
-                    'class' => 'default',
-                    'label' => '<i class="fa-solid fa-arrow-left"></i> ' . __('crud.actions.back')
-                ];
+                $this->addNavAction(
+                    route($this->route . '.tree'),
+                    '<i class="fa-solid fa-arrow-left"></i> ' . __('crud.actions.back')
+                );
                 $createOptions['parent_id'] = null;
             }
         } else {
@@ -107,6 +116,7 @@ trait TreeControllerTrait
         $route = $this->route;
         $datagridActions = new $this->datagridActions();
         $bulk = $this->bulkModel();
+        $actions = $this->navActions;
 
         return view('cruds.tree', compact(
             'models',

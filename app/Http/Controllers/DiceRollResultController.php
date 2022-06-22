@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Datagrids\Actions\NoneDatagrid;
+use App\Datagrids\Actions\NoDatagridActions;
 use App\Models\DiceRollResult;
 use Illuminate\Http\Request;
 
@@ -27,11 +27,10 @@ class DiceRollResultController extends CrudController
     {
         parent::__construct();
 
-        $this->indexActions[] = [
-            'route' => route('dice_rolls.index'),
-            'class' => 'default',
-            'label' => '<i class="fa-solid fa-square"></i> ' . __('dice_rolls.index.actions.dice')
-        ];
+        $this->addNavAction(
+            route('dice_rolls.index'),
+            '<i class="fa-solid fa-square"></i> ' . __('dice_rolls.index.actions.dice')
+        );
     }
     /**
      * Display a listing of the resource.
@@ -46,10 +45,10 @@ class DiceRollResultController extends CrudController
         $this->filterService->make($this->view, request()->all(), $model);
         $name = $this->view;
         $langKey = $name;
-        $actions = $this->indexActions;
+        $actions = $this->navActions;
         $filters = $this->filters;
         $filterService = $this->filterService;
-        $datagrid = new NoneDatagrid();
+        $datagridActions = new NoDatagridActions();
 
         $base = $model
             ->search(request()->get('search'))
@@ -74,7 +73,7 @@ class DiceRollResultController extends CrudController
             'filteredCount',
             'unfilteredCount',
             'langKey',
-            'datagrid'
+            'datagridActions'
         ));
     }
 

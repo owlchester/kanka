@@ -20,7 +20,6 @@ use App\Traits\GuestAuthTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\Paginator;
-use Illuminate\Support\Facades\Auth;
 use LogicException;
 
 class CrudController extends Controller
@@ -35,9 +34,6 @@ class CrudController extends Controller
 
     /** @var MiscModel|Model */
     protected $model = null;
-
-    /** @var array Extra actions in the index view */
-    protected $indexActions = [];
 
     /** @var array */
     protected $filters = [];
@@ -60,6 +56,9 @@ class CrudController extends Controller
 
     /** @var bool Control if the form is "horizontal" (css class) */
     protected $horizontalForm = false;
+
+    /** @var array List of navigation actions on top of the datagrids */
+    protected $navActions = [];
 
     /**
      * A sorter object for subviews
@@ -104,9 +103,7 @@ class CrudController extends Controller
      */
     public function crudIndex(Request $request)
     {
-        // Check that the module isn't disabled
-        $campaign = CampaignLocalization::getCampaign();
-        if (!empty($this->module) && !$campaign->enabled($this->module)) {
+        if (!$this->moduleEnabled()) {
             return redirect()->route('dashboard')->with(
                 'error_raw',
                 __('campaigns.settings.errors.module-disabled', [
@@ -115,18 +112,22 @@ class CrudController extends Controller
             );
         }
 
-        /** @var MiscModel $model */
+        /**
+         * Prepare a lot of variables that will be shared over to the view
+         * @var MiscModel $model
+         */
         $model = new $this->model();
         $this->filterService->make($this->view, request()->all(), $model);
         $name = $this->view;
         $langKey = $this->langKey ?? $name;
-        $actions = $this->indexActions;
         $filters = $this->filters;
         $filter = !empty($this->filter) ? new $this->filter() : null;
         $filterService = $this->filterService;
         $nestedView = method_exists($this, 'tree');
         $route = $this->route;
         $bulk = $this->bulkModel();
+        $datagridActions = new $this->datagridActions();
+        $actions = $this->navActions;
 
         // Entity templates
         $templates = null;
@@ -135,7 +136,6 @@ class CrudController extends Controller
                 ->get();
         }
 
-        $datagridActions = new $this->datagridActions();
 
         $base = $model
             ->preparedSelect()
@@ -210,7 +210,7 @@ class CrudController extends Controller
                 $params['source'] = null;
             }
         }
-        $model = new $this->model;
+        $model = new $this->model();
         $templates = $this->buildAttributeTemplates($model->entityTypeId());
 
         $params['ajax'] = request()->ajax();
@@ -631,5 +631,32 @@ class CrudController extends Controller
         }
 
         return response()->json($data);
+    }
+
+    /**
+     * Detect if a module is enabled
+     * @return bool
+     */
+    protected function moduleEnabled(): bool
+    {
+        $campaign = CampaignLocalization::getCampaign();
+        return empty($this->module) || $campaign->enabled($this->module);
+    }
+
+    /**
+     * Add a button to the top of a datagrid
+     * @param $route
+     * @param string $label
+     * @param string $class
+     * @return $this
+     */
+    protected function addNavAction($route, string $label, string $class = 'default'): self
+    {
+        $this->navActions[] = [
+            'route' => $route,
+            'class' => $class,
+            'label' => $label
+        ];
+        return $this;
     }
 }
