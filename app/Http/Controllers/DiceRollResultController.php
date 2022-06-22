@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Datagrids\NoneDatagrid;
+use App\Datagrids\Actions\NoneDatagrid;
 use App\Models\DiceRollResult;
 use Illuminate\Http\Request;
 

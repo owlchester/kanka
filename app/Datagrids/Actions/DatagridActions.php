@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Datagrids;
+namespace App\Datagrids\Actions;
 
 /**
  * Datagrids
@@ -10,7 +10,7 @@ namespace App\Datagrids;
  * You can also add custom fields in the bulk delete modal by then testing on
  * @if (isset($datagrid) && $datagrid instanceof \App\Datagrids\RelationDatagrid)
  */
-abstract class Datagrid
+abstract class DatagridActions
 {
     /** @var bool */
     public $bulkPermissions = true;
@@ -27,6 +27,9 @@ abstract class Datagrid
     /** @var bool */
     public $bulkTemplate = true;
 
+    /** @var bool */
+    public $bulkEditing = true;
+
     /**
      * Determine if the datagrid has bulk permissions.
      * @return bool
@@ -34,6 +37,15 @@ abstract class Datagrid
     public function hasBulkPermissions(): bool
     {
         return $this->bulkPermissions;
+    }
+
+    /**
+     * Determine if the datagrid has bulk permissions.
+     * @return bool
+     */
+    public function hasBulkEditing(): bool
+    {
+        return $this->bulkEditing;
     }
 
     /**

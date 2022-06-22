@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Datagrids\ConversationDatagrid;
+use App\Datagrids\Actions\DeprecatedDatagridActions;
 use App\Datagrids\Filters\ConversationFilter;
 use App\Http\Requests\StoreConversation;
 use App\Models\Conversation;
@@ -23,7 +23,7 @@ class ConversationController extends CrudController
     protected $filter = ConversationFilter::class;
 
     /** @var string  */
-    protected $datagrid = ConversationDatagrid::class;
+    protected $datagridActions = DeprecatedDatagridActions::class;
 
     /**
      * Store a newly created resource in storage.

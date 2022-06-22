@@ -105,6 +105,7 @@ trait TreeControllerTrait
 
         $view = $this->view;
         $route = $this->route;
+        $datagridActions = new $this->datagridActions();
         $bulk = $this->bulkModel();
 
         return view('cruds.tree', compact(
@@ -123,7 +124,8 @@ trait TreeControllerTrait
             'filteredCount',
             'createOptions',
             'templates',
-            'parent'
+            'parent',
+            'datagridActions'
         ));
     }
 }

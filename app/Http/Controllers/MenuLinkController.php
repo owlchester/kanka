@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Datagrids\MenuLinkDatagrid;
+use App\Datagrids\Actions\MenuLinkDatagridActions;
 use App\Http\Requests\StoreMenuLink;
 use App\Models\MenuLink;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Session;
 
 class MenuLinkController extends CrudController
 {
@@ -21,8 +19,6 @@ class MenuLinkController extends CrudController
     protected $tabBoosted = false;
     protected $tabCopy = false;
 
-    protected $bulkTemplates = false;
-
     /**
      * @var string
      */
@@ -31,7 +27,7 @@ class MenuLinkController extends CrudController
     /**
      * @var string
      */
-    protected $datagrid = MenuLinkDatagrid::class;
+    protected $datagridActions = MenuLinkDatagridActions::class;
 
     /**
      * ItemController constructor.

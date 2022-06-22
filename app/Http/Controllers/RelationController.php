@@ -1,23 +1,15 @@
 <?php
 
-
 namespace App\Http\Controllers;
 
-
+use App\Datagrids\Actions\RelationDatagridActions;
 use App\Datagrids\Filters\RelationFilter;
-use App\Datagrids\RelationDatagrid;
 use App\Facades\CampaignLocalization;
-use App\Facades\FormCopy;
-use App\Http\Middleware\Campaign;
 use App\Http\Requests\StoreRelation;
 use App\Models\Relation;
-use Illuminate\Support\Facades\Auth;
 
 class RelationController extends CrudController
 {
-    /**
-     * @var string
-     */
     protected $view = 'relations';
     protected $route = 'relations';
     protected $langKey = 'entities/relations';
@@ -27,17 +19,11 @@ class RelationController extends CrudController
     protected $tabBoosted = false;
     protected $tabCopy = false;
 
-    protected $bulkTemplates = false;
-
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $model = \App\Models\Relation::class;
 
-    /**
-     * @var string
-     */
-    protected $datagrid = RelationDatagrid::class;
+    /** @var string The datagrid controlling the bulk actions*/
+    protected $datagridActions = RelationDatagridActions::class;
 
     /** @var string  */
     protected $filter = RelationFilter::class;
@@ -53,7 +39,7 @@ class RelationController extends CrudController
         $campaign = CampaignLocalization::getCampaign();
         $this->authorize('relations', $campaign);
 
-        $model = new $this->model;
+        $model = new $this->model();
 
         $params['ajax'] = request()->ajax();
         $params['tabPermissions'] = false;

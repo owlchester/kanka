@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Datagrids\Actions\DefaultDatagridActions;
 use App\Datagrids\Sorters\DatagridSorter;
 use App\Facades\CampaignLocalization;
 use App\Facades\Datagrid;
@@ -66,16 +67,13 @@ class CrudController extends Controller
      */
     protected $datagridSorter = null;
 
-    /** @var bool If the bulk templates button is available */
-    protected $bulkTemplates = true;
-
     /** @var bool If the auth check was already performed on this controller */
-    protected $alreadyAuthChecked = false;
+    protected bool $alreadyAuthChecked = false;
 
-    /**
-     * @var null
-     */
-    protected $datagrid = null;
+    /** @var null */
+    protected $datagridActions = DefaultDatagridActions::class;
+
+    /** @var array */
     protected $rows = [];
 
     /**
@@ -100,14 +98,17 @@ class CrudController extends Controller
 
     /**
      * @param Request $request
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\RedirectResponse
+     * @throws \Psr\Container\ContainerExceptionInterface
+     * @throws \Psr\Container\NotFoundExceptionInterface
      */
     public function crudIndex(Request $request)
     {
         // Check that the module isn't disabled
         $campaign = CampaignLocalization::getCampaign();
         if (!empty($this->module) && !$campaign->enabled($this->module)) {
-            return redirect()->route('dashboard')->with('error_raw',
+            return redirect()->route('dashboard')->with(
+                'error_raw',
                 __('campaigns.settings.errors.module-disabled', [
                     'fix' => link_to_route('campaign.modules', __('crud.fix-this-issue'), ['#' . $this->module]),
                 ])
@@ -126,7 +127,6 @@ class CrudController extends Controller
         $nestedView = method_exists($this, 'tree');
         $route = $this->route;
         $bulk = $this->bulkModel();
-        $bulkTemplates = $this->bulkTemplates;
 
         // Entity templates
         $templates = null;
@@ -135,7 +135,7 @@ class CrudController extends Controller
                 ->get();
         }
 
-        $datagrid = !empty($this->datagrid) ? new $this->datagrid : null;
+        $datagridActions = new $this->datagridActions();
 
         $base = $model
             ->preparedSelect()
@@ -181,8 +181,7 @@ class CrudController extends Controller
             'filteredCount',
             'unfilteredCount',
             'bulk',
-            'bulkTemplates',
-            'datagrid',
+            'datagridActions',
             'templates',
             'langKey'
         ));

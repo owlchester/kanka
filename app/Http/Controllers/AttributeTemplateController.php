@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Datagrids\Actions\AttributeTemplateDatagrid;
 use App\Datagrids\Filters\AttributeTemplateFilter;
 use App\Models\AttributeTemplate;
 use App\Http\Requests\StoreAttributeTemplate;

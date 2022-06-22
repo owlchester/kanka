@@ -18,7 +18,7 @@
                 </p>
                 <div class="mt-5 recoverable">
                     @includeWhen(!isset($datagrid) || $datagrid->hasBulkPermissions(), 'layouts.callouts.recoverable')
-                    @includeWhen(isset($datagrid) && $datagrid instanceof \App\Datagrids\RelationDatagrid, 'cruds.datagrids.bulks.modals._mirrored_checkbox')
+                    @includeWhen(isset($datagrid) && $datagrid instanceof \App\Datagrids\Actions\RelationDatagrid, 'cruds.datagrids.bulks.modals._mirrored_checkbox')
                 </div>
 
 

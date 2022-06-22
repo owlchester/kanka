@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Datagrids\DiceRollDatagrid;
+use App\Datagrids\Actions\DeprecatedDatagridActions;
 use App\Datagrids\Filters\DiceRollFilter;
+use App\Http\Requests\StoreDiceRoll;
 use App\Models\Character;
 use App\Models\DiceRoll;
-use App\Http\Requests\StoreDiceRoll;
 use App\Models\DiceRollResult;
 use Illuminate\Support\Facades\Auth;
 
@@ -26,7 +26,7 @@ class DiceRollController extends CrudController
     protected $filter = DiceRollFilter::class;
 
     /** @var string  */
-    protected $datagrid = DiceRollDatagrid::class;
+    protected $datagridActions = DeprecatedDatagridActions::class;
 
     /**
      * SectionController constructor.

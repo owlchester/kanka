@@ -5,8 +5,6 @@ return [
         'actions'           => 'Actions',
         'apply'             => 'Apply',
         'back'              => 'Back',
-        'bulk_templates'    => 'Apply attribute template',
-        'bulk_permissions'  => 'Change permissions',
         'change'            => 'Change',
         'copy'              => 'Copy',
         'copy_mention'      => 'Copy [ ] mention',
@@ -36,7 +34,9 @@ return [
     'boosted_campaigns'         => 'Boosted Campaigns',
     'bulk'                      => [
         'actions'       => [
-            'edit'  => 'Bulk Edit & Tagging',
+            'edit'  => 'Edit & tagging',
+            'templates'    => 'Apply attribute template',
+            'permissions'  => 'Change permissions',
         ],
         'age'           => [
             'helper'    => 'You can use + and - before the number to update the age by that amount.',
