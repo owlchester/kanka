@@ -228,7 +228,7 @@ class Relation extends Model
     }
 
     /** Fake entity type ID */
-    public function entityTypeID()
+    public function entityTypeID(): int
     {
         return 0;
     }

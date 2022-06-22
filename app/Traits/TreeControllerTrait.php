@@ -6,6 +6,7 @@ use App\Models\Entity;
 use App\Models\MiscModel;
 use App\Models\Tag;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Str;
 
 trait TreeControllerTrait
@@ -43,18 +44,12 @@ trait TreeControllerTrait
         $filterService = $this->filterService;
         $filter = !empty($this->filter) ? new $this->filter() : null;
         $langKey = $this->langKey ?? $name;
+        $templates = $this->loadTemplates($model);
 
         $this->addNavAction(
             route($this->route . '.index'),
             '<i class="fa-solid fa-list"></i> ' . __($this->view . '.index.title')
         );
-
-        // Entity templates
-        $templates = null;
-        if (auth()->check() && !empty($model->entityTypeID()) && auth()->user()->can('create', $model)) {
-            $templates = Entity::templates($model->entityTypeID())
-                ->get();
-        }
 
         $base = $model
             ->distinct()
@@ -64,7 +59,6 @@ trait TreeControllerTrait
             ->order($this->filterService->order());
 
         $singularModel = Str::singular($this->view);
-        $createOptions = [];
 
         /** @var Tag $model **/
         $parentKey = $model->getTable() . '.' . (!empty($this->treeControllerParentKey) ?
@@ -75,18 +69,17 @@ trait TreeControllerTrait
 
             $parent = $model->with($singularModel)->where('id', request()->get('parent_id'))->first();
             if (!empty($parent) && !empty($parent->$singularModel)) {
+                // Go back to previous parent
                 $this->addNavAction(
                     route($this->route . '.tree', ['parent_id' => $parent->$singularModel->id]),
                     '<i class="fa-solid fa-arrow-left"></i> ' . $parent->$singularModel->name
                 );
-                $createOptions['parent_id'] = $parent->id;
             } else {
                 // Go back to first level
                 $this->addNavAction(
                     route($this->route . '.tree'),
                     '<i class="fa-solid fa-arrow-left"></i> ' . __('crud.actions.back')
                 );
-                $createOptions['parent_id'] = null;
             }
         } else {
             $base->whereNull($parentKey);
@@ -100,6 +93,7 @@ trait TreeControllerTrait
             $models = $base->paginate();
             $filteredCount = $models->total();
         } else {
+            /** @var Paginator $models */
             $models = $base->paginate();
             $unfilteredCount = $filteredCount = $models->total();
         }
@@ -112,7 +106,6 @@ trait TreeControllerTrait
             ]);
         }
 
-        $view = $this->view;
         $route = $this->route;
         $datagridActions = new $this->datagridActions();
         $bulk = $this->bulkModel();
@@ -124,18 +117,16 @@ trait TreeControllerTrait
             'langKey',
             'model',
             'actions',
+            'filter',
             'filters',
             'filterService',
-            'filter',
-            'view',
+            'filteredCount',
+            'unfilteredCount',
             'route',
             'bulk',
-            'unfilteredCount',
-            'filteredCount',
-            'createOptions',
             'templates',
-            'parent',
-            'datagridActions'
+            'datagridActions',
+            'parent'
         ));
     }
 }

@@ -20,6 +20,7 @@ use App\Traits\GuestAuthTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Collection;
 use LogicException;
 
 class CrudController extends Controller
@@ -123,19 +124,10 @@ class CrudController extends Controller
         $filters = $this->filters;
         $filter = !empty($this->filter) ? new $this->filter() : null;
         $filterService = $this->filterService;
-        $nestedView = method_exists($this, 'tree');
         $route = $this->route;
         $bulk = $this->bulkModel();
         $datagridActions = new $this->datagridActions();
-        $actions = $this->navActions;
-
-        // Entity templates
-        $templates = null;
-        if (auth()->check() && !empty($model->entityTypeID()) && auth()->user()->can('create', $model)) {
-            $templates = Entity::templates($model->entityTypeID())
-                ->get();
-        }
-
+        $templates = $this->loadTemplates($model);
 
         $base = $model
             ->preparedSelect()
@@ -153,7 +145,8 @@ class CrudController extends Controller
 
             // Don't use total as it won't use the distinct() filters (typically when doing
             // left join on the entities table)
-            $filteredCount =  count($models); //->total()
+            $filteredCount =  $models->total();
+            //$filteredCount =  count($models); //->total()
         } else {
             /** @var Paginator $models */
             $models = $base->paginate();
@@ -168,22 +161,30 @@ class CrudController extends Controller
             ]);
         }
 
+        // Add a button to the tree view if the controller has it
+        if (method_exists($this, 'tree')) {
+            $this->addNavAction(
+                route($this->route . '.tree'),
+                '<i class="fa-solid fa-share-nodes" aria-hidden="true"></i> ' . __('crud.actions.explore_view')
+            );
+        }
+        $actions = $this->navActions;
+
         return view('cruds.index', compact(
             'models',
             'name',
+            'langKey',
             'model',
             'actions',
             'filter',
             'filters',
             'filterService',
-            'nestedView',
-            'route',
             'filteredCount',
             'unfilteredCount',
+            'route',
             'bulk',
-            'datagridActions',
             'templates',
-            'langKey'
+            'datagridActions',
         ));
     }
 
@@ -658,5 +659,21 @@ class CrudController extends Controller
             'label' => $label
         ];
         return $this;
+    }
+
+    /**
+     * Load a list of templates the user can create new entities from
+     * @param MiscModel $model
+     * @return Collection
+     */
+    protected function loadTemplates($model): Collection
+    {
+        // No valid user, or invalid entity type (ie relations)
+        if (auth()->guest() || empty($model->entityTypeID())) {
+            return new Collection();
+        } elseif (!auth()->user()->can('create', $model)) {
+            return new Collection();
+        }
+        return Entity::templates($model->entityTypeID())->get();
     }
 }

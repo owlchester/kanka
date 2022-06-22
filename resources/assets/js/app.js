@@ -104,14 +104,14 @@ function initTooltips() {
  * Go through table trs to add on click support
  */
 function treeViewInit() {
-    var treeViewLoader = $('.list-treeview');
+    let treeViewLoader = $('.list-treeview');
     if (treeViewLoader.length === 0) {
         return;
     }
 
-    var link = treeViewLoader.data('url');
+    let link = treeViewLoader.data('url');
     $.each($('.table-nested > tbody > tr'), function(index) {
-        var children = $(this).data('children');
+        let children = $(this).data('children');
         if (parseInt(children) > 0) {
             $(this).addClass('tr-hover');
             $(this).on('click', function (e) {
