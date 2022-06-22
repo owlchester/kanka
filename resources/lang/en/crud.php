@@ -5,12 +5,12 @@ return [
         'actions'           => 'Actions',
         'apply'             => 'Apply',
         'back'              => 'Back',
-        'bulk_actions'      => 'Bulk actions',
-        'bulk_templates'    => 'Apply Attribute Template',
+        'bulk_templates'    => 'Apply attribute template',
+        'bulk_permissions'  => 'Change permissions',
         'change'            => 'Change',
         'copy'              => 'Copy',
         'copy_mention'      => 'Copy [ ] mention',
-        'copy_to_campaign'  => 'Copy to Campaign',
+        'copy_to_campaign'  => 'Copy to campaign',
         'explore_view'      => 'Nested View',
         'export'            => 'Export (PDF)',
         'find_out_more'     => 'Find out more',
@@ -40,6 +40,9 @@ return [
         ],
         'age'           => [
             'helper'    => 'You can use + and - before the number to update the age by that amount.',
+        ],
+        'buttons'       => [
+            'label' => 'For selected',
         ],
         'delete'        => [
             'warning'   => 'You are deleting multiple entities.',

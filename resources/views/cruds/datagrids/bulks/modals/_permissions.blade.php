@@ -108,5 +108,9 @@ $actions = [
 </div>
 <div class="modal-footer">
     <a href="#" class="pull-left" data-dismiss="modal">{{ __('crud.cancel') }}</a>
-    <button class="btn btn-primary" type="submit" name="datagrid-action" value="permissions">{{ __('crud.click_modal.confirm') }}</button>
+    <button class="btn btn-success" type="submit">
+        <i class="fa-solid fa-cog" aria-hidden="true"></i>
+        {{ __('crud.actions.bulk_permissions') }}
+    </button>
 </div>
+<input type="hidden" name="datagrid-action" value="permissions" />

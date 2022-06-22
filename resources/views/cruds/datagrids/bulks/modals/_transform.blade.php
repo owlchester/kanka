@@ -16,5 +16,9 @@
 
 <div class="modal-footer">
     <a href="#" class="pull-left" data-dismiss="modal">{{ __('crud.cancel') }}</a>
-    <button class="btn btn-primary" type="submit" name="datagrid-action" value="transform">{{ __('entities/transform.actions.transform') }}</button>
+    <button class="btn btn-success" type="submit">
+        <i class="fa-solid fa-exchange-alt" aria-hidden="true"></i>
+        {{ __('entities/transform.actions.transform') }}
+    </button>
 </div>
+<input type="hidden" name="datagrid-action" value="transform" />

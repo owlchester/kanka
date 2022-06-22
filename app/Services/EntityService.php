@@ -33,13 +33,13 @@ use Illuminate\Support\Str;
 
 class EntityService
 {
-    /**
-     * @var array
-     */
-    protected $entities = [];
+    /** @var array */
+    protected array $entities = [];
 
-    protected $copied = false;
+    /** @var bool */
+    protected bool $copied = false;
 
+    /** @var Campaign */
     protected $campaign;
 
     /**
@@ -72,8 +72,12 @@ class EntityService
     }
 
     /** @var bool|array */
-    protected $cachedNewEntityTypes = false;
+    protected bool $cachedNewEntityTypes = false;
 
+    /**
+     * @param Campaign $campaign
+     * @return $this
+     */
     public function campaign(Campaign $campaign): self
     {
         $this->campaign = $campaign;
@@ -82,10 +86,10 @@ class EntityService
 
     /**
      * Get the entities
-     *
+     * @param array $excluded
      * @return array
      */
-    public function entities($excluded = null)
+    public function entities(array $excluded = []): array
     {
         if (empty($excluded)) {
             return $this->entities;
@@ -100,6 +104,9 @@ class EntityService
         return $entities;
     }
 
+    /**
+     * @return bool
+     */
     public function copied(): bool
     {
         return $this->copied;
@@ -110,9 +117,10 @@ class EntityService
      *
      * @param bool $singular
      * @param array $ignore
+     * @param bool $includeNull
      * @return array
      */
-    public function labelledEntities($singular = true, array $ignore = [], $includeNull = false)
+    public function labelledEntities(bool $singular = true, array $ignore = [], bool $includeNull = false): array
     {
         $labels = [];
         if ($includeNull) {
@@ -143,13 +151,12 @@ class EntityService
      * @param $entity
      * @return string
      */
-    public function singular($entity)
+    public function singular($entity): string
     {
         $singular = rtrim($entity, 's');
         if ($entity == 'families') {
             $singular = 'family';
-        }
-        elseif ($entity == 'abilities') {
+        } elseif ($entity == 'abilities') {
             $singular = 'ability';
         }
         return $singular;
@@ -159,10 +166,10 @@ class EntityService
      * Move an entity to another type or campaign
      *
      * @param Entity $entity
-     * @param String $target
+     * @param array $request
      * @return Entity
      */
-    public function move(Entity $entity, $request)
+    public function move(Entity $entity, array $request): Entity
     {
         return $this->moveCampaign(
             $entity,
@@ -192,7 +199,7 @@ class EntityService
      * @return Entity
      * @throws TranslatableException
      */
-    protected function moveCampaign(Entity $entity, int $campaignId, bool $copy)
+    protected function moveCampaign(Entity $entity, int $campaignId, bool $copy): Entity
     {
         // First we make sure we have access to the new campaign.
         $campaign = auth()->user()->campaigns()->where('campaign_id', $campaignId)->first();
@@ -225,8 +232,8 @@ class EntityService
 
         DB::beginTransaction();
         try {
-            // Made it so far, we can move the entity's campaign_id. We first need to remove all the relations and, since
-            // they won't make sense on the new campaign.
+            // Made it so far, we can move the entity's campaign_id. We first need to remove all the
+            // relations and, since they won't make sense on the new campaign.
             $entity->relationships()->delete();
             $entity->targetRelationships()->delete();
 
@@ -244,8 +251,8 @@ class EntityService
             $entity->campaign_id = $campaign->id;
             $entity->save();
 
-            // Finally, we can change and save the child. Should be all good. But tell the app not to create the entity to
-            // avoid silly duplicates and new entities.
+            // Finally, we can change and save the child. Should be all good. But tell the app not
+            // to create the entity to avoid silly duplicates and new entities.
             $child->savingObserver = false;
 
             // Update child second. We do this otherwise we'll have an old entity and a new one
@@ -335,7 +342,7 @@ class EntityService
             }
 
             // Timeline: copy eras
-            if($entity->child instanceof Timeline) {
+            if ($entity->child instanceof Timeline) {
                 /** @var TimelineEra $newEra **/
                 foreach ($entity->child->eras as $era) {
                     $newEra = $era->replicate();
@@ -362,6 +369,7 @@ class EntityService
     /**
      * @param Entity $entity
      * @param $target
+     * @param MiscModel|null $misc
      * @return Entity
      * @throws \Exception
      */
@@ -371,9 +379,8 @@ class EntityService
         if (!isset($this->entities[$target])) {
             throw new \Exception("Unknown target '$target' for transforming entity");
         }
-        /**
-         * @var $new MiscModel
-         */
+
+        /** @var $new MiscModel */
         $new = new $this->entities[$target]();
         $old = null;
         if (!empty($misc)) {
@@ -416,13 +423,19 @@ class EntityService
         $new->save();
 
         // If switching from an organisation to a family, we need to move the members?
-        if ($old->entityTypeId() == config('entities.ids.organisation') && $new->entityTypeId() == config('entities.ids.family')) {
+        if (
+            $old->entityTypeId() == config('entities.ids.organisation') &&
+            $new->entityTypeId() == config('entities.ids.family')
+        ) {
             /** @var Organisation $old */
             foreach ($old->members as $member) {
                 $member->delete();
                 $new->members()->attach($member->character_id);
             }
-        } elseif ($old->entityTypeId() == config('entities.ids.family') && $new->entityTypeId() == config('entities.ids.organisation')) {
+        } elseif (
+            $old->entityTypeId() == config('entities.ids.family') &&
+            $new->entityTypeId() == config('entities.ids.organisation')
+        ) {
             /** @var Family $old */
             foreach ($old->members as $character) {
                 $orgMember = new OrganisationMember();

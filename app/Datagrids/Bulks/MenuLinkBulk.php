@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Datagrids\Bulks;
-
 
 class MenuLinkBulk extends Bulk
 {

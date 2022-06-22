@@ -17,20 +17,19 @@ class BulkController extends Controller
 {
     use BulkControllerTrait;
 
-    /**
-     * @var BulkService
-     */
+    /** @var BulkService */
     protected $bulkService;
 
-    /**
-     * @var EntityService
-     */
+    /** @var EntityService */
     protected $entityService;
 
     /** @var BulkRequest */
     protected $request;
 
+    /** @var array */
     protected $routeParams = [];
+
+    /** @var null|string */
     protected $entity = null;
 
     /**

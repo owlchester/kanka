@@ -88,6 +88,8 @@
             </div>
         </div>
         {!! Form::hidden('entity', $name) !!}
+        {!! Form::hidden('datagrid-action', 'print') !!}
+        {!! Form::hidden('page', request()->get('page')) !!}
         {!! Form::close() !!}
     </div>
 

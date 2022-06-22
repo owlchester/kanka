@@ -4,7 +4,7 @@ $hasOthers = false;
 ?>
 <div class="dropdown datagrid-bulk-actions">
     <a class="dropdown-toggle btn btn-default disabled" data-toggle="dropdown" aria-expanded="false" data-tree="escape">
-        {{ __('crud.actions.bulk_actions') }}
+        {{ __('crud.bulk.buttons.label') }}
         <i class="fa-solid fa-caret-down"></i>
     </a>
     <ul class="dropdown-menu dropdown-menu-right" role="menu">

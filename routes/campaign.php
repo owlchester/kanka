@@ -258,7 +258,6 @@ Route::resources([
     'timelines' => 'Timelines\TimelineController',
     'timelines.timeline_eras' => 'Timelines\TimelineEraController',
     'timelines.timeline_elements' => 'Timelines\TimelineElementController',
-    'sections' => 'SectionController',
     'campaign_invites' => 'CampaignInviteController',
     'races' => 'RaceController',
     'relations' => 'RelationController',

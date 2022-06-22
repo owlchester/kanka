@@ -28,12 +28,17 @@
             </div>
             <div class="modal-footer">
                 <a href="#" class="pull-left" data-dismiss="modal">{{ __('crud.cancel') }}</a>
-                <button class="btn btn-primary" type="submit" name="datagrid-action" value="batch">{{ __('crud.click_modal.confirm') }}</button>
+                <button class="btn btn-success" type="submit">
+                    <i class="fa-solid fa-save" aria-hidden="true"></i>
+                    {{ __('crud.actions.apply') }}
+                </button>
             </div>
         </div>
     </div>
 </div>
-{!! Form::hidden('entity', $name) !!}
+<input type="hidden" name="datagrid-action" value="batch" />
+<input type="hidden" name="entity" value="{{ $name }}" />
+
 {!! Form::hidden('models', null, ['id' => 'datagrid-bulk-batch-models']) !!}
 {!! Form::close() !!}
 

@@ -51,24 +51,15 @@ $(document).ready(function () {
  * Register button handeling for bulk actions
  */
 function registerBulkActions() {
-    $('#datagrids-bulk-actions-permissions').on('click', function() {
-        setBulkModels('#datagrid-bulk-permission-models');
+    $('[data-bulk-action]').on('click', function() {
+        setBulkModels($(this).data('bulk-action'));
     });
-    $('#datagrids-bulk-actions-batch').on('click', function() {
-        setBulkModels('#datagrid-bulk-batch-models');
-    });
-    $('#datagrids-bulk-actions-delete').on('click', function() {
-        setBulkModels('#datagrid-bulk-delete-models');
-    });
-    $('#datagrids-bulk-actions-copy-campaign').on('click', function() {
-        setBulkModels('#datagrid-bulk-permission-models');
-    });
-    $('#datagrids-bulk-actions-templates').on('click', function() {
-        setBulkModels('#datagrid-bulk-permission-models');
-    });
-    $('#datagrids-bulk-actions-transform').on('click', function() {
-        setBulkModels('#datagrid-bulk-transform-models');
-    });
+    $('.bulk-print').on('click', function (e) {
+        e.preventDefault();
+        let form = $(this).closest('form');
+        form.find()
+        form.submit();
+    })
 }
 
 /**
@@ -83,7 +74,7 @@ function setBulkModels(modelField) {
         }
     });
 
-    $(modelField).val(values.toString());
+    $('#datagrid-bulk-' + modelField + '-models').val(values.toString());
 }
 
 

@@ -90,6 +90,7 @@
             </div>
             @endif
             {!! Form::hidden('entity', $name) !!}
+            {!! Form::hidden('datagrid-action', 'print') !!}
             {!! Form::hidden('page', request()->get('page')) !!}
         </div>
         {!! Form::close() !!}
