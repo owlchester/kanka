@@ -33,7 +33,7 @@ class LinkController extends Controller
     public function index(Entity $entity)
     {
         return redirect()
-            ->route('entities.assets', $entity);
+            ->route('entities.entity_assets.index', $entity);
     }
 
     /**
@@ -71,7 +71,7 @@ class LinkController extends Controller
         $link = EntityLink::create($data);
 
         return redirect()
-            ->route('entities.assets', $entity)
+            ->route('entities.entity_assets.index', $entity)
             ->with('success', __('entities/links.create.success', ['name' => $link->name, 'entity' => $entity->name]));
     }
 
@@ -99,7 +99,7 @@ class LinkController extends Controller
     public function show(Entity $entity, EntityLink $entityLink)
     {
         return redirect()
-            ->route('entities.assets', $entity);
+            ->route('entities.entity_assets.index', $entity);
     }
 
     /**
@@ -121,7 +121,7 @@ class LinkController extends Controller
             ]);
         }
         return redirect()
-            ->route('entities.assets', $entity)
+            ->route('entities.entity_assets.index', $entity)
             ->with('success', __('entities/links.update.success', ['name' => $entityLink->name, 'entity' => $entity->name]));
 
     }
@@ -145,7 +145,7 @@ class LinkController extends Controller
             ]);
         }
         return redirect()
-            ->route('entities.assets', $entity)
+            ->route('entities.entity_assets.index', $entity)
             ->with('success', __('entities/links.destroy.success', ['name' => $entityLink->name, 'entity' => $entity->name]));
 
     }

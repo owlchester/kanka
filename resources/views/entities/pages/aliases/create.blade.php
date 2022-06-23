@@ -4,12 +4,12 @@
     'breadcrumbs' => [
         ['url' => $entity->url('index'), 'label' => __($entity->pluralType() . '.index.title')],
         ['url' => $entity->url('show'), 'label' => $entity->name],
-        ['url' => route('entities.assets', $entity->id), 'label' => __('crud.tabs.assets')],
+        ['url' => route('entities.entity_assets.index', $entity->id), 'label' => __('crud.tabs.assets')],
     ]
 ])
 
 @section('content')
-    {!! Form::open(['route' => ['entities.entity_aliases.store', $entity], 'method' => 'POST', 'data-shortcut' => 1]) !!}
+    {!! Form::open(['route' => ['entities.entity_assets.store', $entity], 'method' => 'POST', 'data-shortcut' => 1]) !!}
     <div class="panel panel-default">
         @if (request()->ajax())
             <div class="panel-heading">

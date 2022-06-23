@@ -170,7 +170,10 @@ trait EntityScopes
 
         return $query
             ->with($related ? [
-                'attributes', 'notes', 'events', 'files', 'relationships', 'inventories', 'abilities', 'tags', 'links', 'image'] : ['tags', 'image'])
+                'attributes', 'notes', 'events',
+                'relationships', 'inventories', 'abilities',
+                'tags', 'image', 'assets',
+            ] : ['tags', 'image'])
         ;
     }
 
@@ -189,6 +192,6 @@ trait EntityScopes
             return $query;
         }
 
-        return $query->whereIn('type_id', $types);
+        return $query->whereIn($this->getTable() . '.type_id', $types);
     }
 }

@@ -6,6 +6,7 @@ use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Exceptions\ThrottleRequestsException;
+use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -151,6 +152,7 @@ class Handler extends ExceptionHandler
             ->json([
                 'code' => 500,
                 'error' => 'Unhandled API error. Contact us on Discord',
+                'hint' => Str::limit($exception->getMessage(), 100)
             ], 500);
     }
 }

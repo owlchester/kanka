@@ -4,11 +4,11 @@ namespace App\Http\Controllers\Api\v1;
 
 use App\Models\Campaign;
 use App\Models\Entity;
-use App\Http\Requests\StoreEntityLink as Request;
-use App\Http\Resources\EntityLinkResource as Resource;
-use App\Models\EntityLink;
+use App\Http\Requests\StoreEntityAsset as Request;
+use App\Http\Resources\EntityAssetResource as Resource;
+use App\Models\EntityAsset;
 
-class EntityLinkApiController extends ApiController
+class EntityAssetApiController extends ApiController
 {
     /**
      * @param Campaign $campaign
@@ -19,20 +19,20 @@ class EntityLinkApiController extends ApiController
     {
         $this->authorize('access', $campaign);
         $this->authorize('view', $entity->child);
-        return Resource::collection($entity->links);
+        return Resource::collection($entity->assets);
     }
 
     /**
      * @param Campaign $campaign
      * @param Entity $entity
-     * @param EntityLink $entityLink
+     * @param EntityAsset $entityAsset
      * @return Resource
      */
-    public function show(Campaign $campaign, Entity $entity, EntityLink $entityLink)
+    public function show(Campaign $campaign, Entity $entity, EntityAsset $entityAsset)
     {
         $this->authorize('access', $campaign);
         $this->authorize('view', $entity->child);
-        return new Resource($entityLink);
+        return new Resource($entityAsset);
     }
 
     /**
@@ -45,8 +45,9 @@ class EntityLinkApiController extends ApiController
     {
         $this->authorize('access', $campaign);
         $this->authorize('update', $entity->child);
-        $data = array_merge(['entity_id' => $entity->id], $request->all());
-        $model = EntityLink::create($data);
+        $data = $request->all();
+        $data['entity_id'] = $entity->id;
+        $model = EntityAsset::create($data);
         return new Resource($model);
     }
 
@@ -54,23 +55,23 @@ class EntityLinkApiController extends ApiController
      * @param Request $request
      * @param Campaign $campaign
      * @param Entity $entity
-     * @param EntityLink $entityLink
+     * @param EntityAsset $entityAsset
      * @return Resource
      */
-    public function update(Request $request, Campaign $campaign, Entity $entity, EntityLink $entityLink)
+    public function update(Request $request, Campaign $campaign, Entity $entity, EntityAsset $entityAsset)
     {
         $this->authorize('access', $campaign);
         $this->authorize('update', $entity->child);
-        $entityLink->update($request->all());
+        $entityAsset->update($request->all());
 
-        return new Resource($entityLink);
+        return new Resource($entityAsset);
     }
 
     /**
      * @param Request $request
      * @param Campaign $campaign
      * @param Entity $entity
-     * @param EntityLink $entityLink
+     * @param EntityAsset $entityAsset
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -78,11 +79,11 @@ class EntityLinkApiController extends ApiController
         \Illuminate\Http\Request $request,
         Campaign $campaign,
         Entity $entity,
-        EntityLink $entityLink
+        EntityAsset $entityAsset
     ) {
         $this->authorize('access', $campaign);
         $this->authorize('update', $entity->child);
-        $entityLink->delete();
+        $entityAsset->delete();
 
         return response()->json(null, 204);
     }

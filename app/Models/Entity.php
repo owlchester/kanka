@@ -317,9 +317,8 @@ class Entity extends Model
      * Entity assets: files and links
      * @return array
      */
-    public function assets(): Collection
+    /*public function assets(): Collection
     {
-        /** @var Collection $assets */
         $assets = $this->files;
         $campaign = CampaignLocalization::getCampaign();
         $links = $campaign->boosted() ? $this->links : [];
@@ -330,7 +329,7 @@ class Entity extends Model
         return $assets->sort(function ($a, $b) {
             return strcmp($a->name, $b->name);
         });
-    }
+    }*/
 
     /**
      * @param bool $superboosted

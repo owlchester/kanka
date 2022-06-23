@@ -391,8 +391,8 @@ abstract class MiscModel extends Model
         if ($this->entity->hasFiles()) {
             $items['third']['assets'] = [
                 'name' => 'crud.tabs.assets',
-                'route' => 'entities.assets',
-                'count' => $this->entity->files()->count() + ($campaign->boosted() ? $this->entity->links->count() : 0),
+                'route' => 'entities.entity_assets.index',
+                'count' => $this->entity->assets()->filtered($campaign->boosted())->count(),
                 'entity' => true,
                 'icon' => 'fa-solid fa-file',
             ];

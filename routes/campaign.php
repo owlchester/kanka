@@ -214,7 +214,7 @@ Route::get('/entities/{entity}/entity_abilities/import', 'Entity\AbilityControll
 Route::post('/entities/{entity}/entity_abilities/{entity_ability}/use', 'Entity\AbilityController@useCharge')->name('entities.entity_abilities.use');
 Route::get('/entities/{entity}/entity_abilities/reset', 'Entity\AbilityController@resetCharges')->name('entities.entity_abilities.reset');
 
-Route::get('/entities/{entity}/entity_links/{entity_link}/go', 'Entity\LinkController@go')->name('entities.entity_links.go');
+Route::get('/entities/{entity}/entity_assets/{entity_asset}/go', 'Entity\AssetController@go')->name('entities.entity_assets.go');
 Route::get('/entities/{entity}/quests', 'Entity\QuestController@index')->name('entities.quests');
 
 Route::get('/entities/{entity}/profile', 'Entity\ProfileController@index')
@@ -264,9 +264,10 @@ Route::resources([
     'entities.entity_abilities' => 'Entity\AbilityController',
     'entities.entity_notes' => 'EntityNoteController',
     'entities.entity_events' => 'EntityEventController',
-    'entities.entity_files' => 'EntityFileController',
-    'entities.entity_links' => 'Entity\LinkController',
-    'entities.entity_aliases' => 'Entity\AliasController',
+    //'entities.entity_files' => 'EntityFileController',
+    //'entities.entity_links' => 'Entity\LinkController',
+    //'entities.entity_aliases' => 'Entity\AliasController',
+    'entities.entity_assets' => 'Entity\AssetController',
     'entities.inventories' => 'Entity\InventoryController',
     'entities.relations' => 'Entity\RelationController',
 
@@ -372,7 +373,6 @@ Route::get('/entities/{entity}/transform', 'Entity\TransformController@index')->
 Route::post('/entities/{entity}/transform', 'Entity\TransformController@transform')->name('entities.transform');
 
 Route::get('/entities/{entity}/tooltip', 'EntityTooltipController@show')->name('entities.tooltip');
-Route::get('/entities/{entity}/assets', 'Entity\AssetController@index')->name('entities.assets');
 
 Route::get('/entities/{entity}/json-export', 'Entity\ExportController@json')->name('entities.json-export');
 
