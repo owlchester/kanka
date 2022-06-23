@@ -5,7 +5,7 @@
         <h3 class="card-title">
             {{ __('front/newsletter.title') }}
         </h3>
-        <div class="text-muted mb-2">{{ __('front/newsletter.headline') }}</div>
+        <div class="text-muted mb-2">{{ __('front/newsletter.headline', ['kanka' => config('app.name')]) }}</div>
 
         <a class="btn btn-light" data-toggle="collapse" href="#newsletter-collapse" role="button" aria-expanded="false" aria-controls="collapseExample">
             {{ __('front/newsletter.actions.learn_more') }}

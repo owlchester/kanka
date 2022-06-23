@@ -34,7 +34,6 @@
                                 @else
                                     {!! $model->content !!}
 
-
                                     <div class="vote-options mt-3 @if ($model->isVoting()) vote-ongoing @endif">
                                         @foreach ($model->options() as $key => $text)
                                             <div class="vote-option">
