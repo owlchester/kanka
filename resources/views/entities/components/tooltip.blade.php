@@ -20,7 +20,9 @@
 </div>
 @if ($tags->isNotEmpty())<div class="tooltip-tags">
     @foreach ($tags as $tag)
-        {!! $tag->html() !!}
+        <span class="tooltip-tag" data-id="{{ $tag->entity->id }}" data-tag-slug="{{ $tag->slug }}">
+            {!! $tag->html() !!}
+        </span>
     @endforeach
 </div>@endif
 <div class="tooltip-text">

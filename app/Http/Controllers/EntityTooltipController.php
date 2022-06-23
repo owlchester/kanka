@@ -28,7 +28,7 @@ class EntityTooltipController extends Controller
         $campaign = CampaignLocalization::getCampaign();
         $tooltip = view('entities.components.tooltip')
             ->with('entity', $entity)
-            ->with('tags', $entity->tags)
+            ->with('tags', $entity->tagsWithEntity())
             ->with('campaign', $campaign)
             ->render();
 
