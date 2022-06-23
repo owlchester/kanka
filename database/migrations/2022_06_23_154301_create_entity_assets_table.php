@@ -16,8 +16,8 @@ class CreateEntityAssetsTable extends Migration
         // Since mentions target aliases, we need to first improve aliases, and rename it, to keep IDs.
         Schema::table('entity_aliases', function (Blueprint $table) {
             $table->unsignedTinyInteger('type_id')->after('entity_id');
-            $table->json('metadata')->after('name')->nullable();
-            $table->unsignedSmallInteger('position')->default(0);
+            $table->text('metadata')->after('name')->nullable();
+            $table->unsignedSmallInteger('position')->nullable();
             $table->index(['type_id']);
         });
 
