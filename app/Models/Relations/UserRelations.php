@@ -29,6 +29,7 @@ use App\Models\UserApp;
  * @property Entity[] $entities
  * @property Plugin[] $plugins
  * @property UserApp[] $apps
+ * @property CollectionRole[] $roles
  */
 trait UserRelations
 {

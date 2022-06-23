@@ -1,5 +1,5 @@
 @extends('layouts.front', [
-    'title' => __('front.menu.terms'),
+    'title' => __('footer.terms'),
 ])
 
 @section('og')

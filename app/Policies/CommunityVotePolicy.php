@@ -32,7 +32,7 @@ class CommunityVotePolicy
         }
 
         if ($status == CommunityVote::STATUS_VOTING) {
-            return $user->isGoblin();
+            return $user->isGoblin() || $user->hasRole('admin');
         }
 
         // Scheduled and Draft are limited to admins
