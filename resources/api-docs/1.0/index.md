@@ -36,7 +36,6 @@
 - ## Entities
     - [Attributes](/api-docs/{{version}}/attributes)
     - [Entity Events](/api-docs/{{version}}/entity-events)
-    - [Entity Files](/api-docs/{{version}}/entity-files)
     - [Entity Inventory](/api-docs/{{version}}/inventory)
     - [Entity Mentions](/api-docs/{{version}}/entity-mentions)
     - [Entity Notes](/api-docs/{{version}}/entity-notes)
@@ -44,9 +43,8 @@
     - [Relations](/api-docs/{{version}}/relations)
     - [Inventory](/api-docs/{{version}}/entity-inventory)
     - [Entity Abilities](/api-docs/{{version}}/entity-abilities)
-    - [Entity Links](/api-docs/{{version}}/entity-links)
     - [Entity Image](/api-docs/{{version}}/entity-image)
-    - [Entity Aliases](/api-docs/{{version}}/entity-aliases)
+    - [Entity Assets](/api-docs/{{version}}/entity-assets)
 
 - ## Search
     - [Search](/api-docs/{{version}}/search)

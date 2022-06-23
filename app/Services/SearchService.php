@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Models\Calendar;
 use App\Models\Campaign;
 use App\Models\Entity;
+use App\Models\EntityAsset;
 use Illuminate\Support\Str;
 
 class SearchService
@@ -208,13 +209,14 @@ class SearchService
                 $query
                     ->select(['entities.*', 'ea.id as alias_id', 'ea.name as alias_name'])
                     ->distinct()
-                    ->leftJoin('entity_aliases as ea', function ($join) use ($cleanTerm) {
+                    ->leftJoin('entity_assets as ea', function ($join) use ($cleanTerm) {
                         $join->on('ea.entity_id', '=', 'entities.id');
                         if (Str::startsWith($this->term, '=')) {
                             $join->where('ea.name', $cleanTerm);
                         } else {
                             $join->where('ea.name', 'like', '%' . $this->term . '%');
                         }
+                        $join->where('ea.type_id', EntityAsset::TYPE_ALIAS);
                     })
                     ->where(function ($sub) use ($cleanTerm) {
                         if (Str::startsWith($this->term, '=')) {

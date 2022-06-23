@@ -142,7 +142,7 @@ abstract class MiscObserver
         }
         if (request()->has('copy_source_links') && request()->filled('copy_source_links')) {
             $source = $source ?? Entity::findOrFail($sourceId);
-            foreach ($source->links as $link) {
+            foreach ($source->assets()->link()->get() as $link) {
                 $link->copyTo($model->entity);
             }
         }

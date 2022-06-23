@@ -3,9 +3,11 @@
 namespace App\Services;
 
 use App\Exceptions\EntityFileException;
+use App\Http\Requests\StoreEntityAsset;
 use App\Http\Requests\StoreEntityFile;
 use App\Models\Campaign;
 use App\Models\Entity;
+use App\Models\EntityAsset;
 use App\Models\EntityFile;
 
 class EntityFileService
@@ -39,7 +41,7 @@ class EntityFileService
     /**
      * @param string $file
      */
-    public function upload(StoreEntityFile $request, $field = 'file', $folder = 'entities/files'): EntityFile
+    public function upload(StoreEntityAsset $request, $field = 'file', $folder = 'entities/files'): EntityAsset
     {
         // Already above max capacity?
         if ($this->entity->files->count() >= $this->campaign->maxEntityFiles()) {
@@ -54,13 +56,15 @@ class EntityFileService
             $name = $uploadedFile->getClientOriginalName();
         }
 
-        $file = new EntityFile();
+        $file = new EntityAsset();
+        $file->type_id = EntityAsset::TYPE_FILE;
         $file->entity_id = $this->entity->id;
-        $file->created_by = auth()->user()->id;
-        $file->path = $path;
+        $file->metadata = [
+            'path' => $path,
+            'size' => $uploadedFile->getSize(),
+            'type' => $uploadedFile->getMimeType(),
+        ];
         $file->name = $name;
-        $file->size = $uploadedFile->getSize();
-        $file->type = $uploadedFile->getMimeType();
         $file->visibility_id = $request->get('visibility_id', 1);
         $file->save();
         return $file;

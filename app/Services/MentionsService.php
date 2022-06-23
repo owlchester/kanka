@@ -313,7 +313,7 @@ class MentionsService
                 // An alias was used for this mention, so let's try and find it. ACL is handled directly
                 // on the EntityAlias object.
                 if (!empty($data['alias'])) {
-                    $alias = $entity->aliases()->where('id', $data['alias'])->first();
+                    $alias = $entity->assets()->alias()->where('id', $data['alias'])->first();
                     if (!empty($alias)) {
                         $data['text'] = $alias->name;
                     }

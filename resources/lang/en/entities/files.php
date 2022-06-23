@@ -11,14 +11,13 @@ return [
         'title'     => 'New file for :entity',
     ],
     'destroy'           => [
-        'success'   => 'File :file removed.',
+        'success'   => 'File :name removed.',
     ],
     'fields'            => [
         'file'  => 'File',
         'name'  => 'File name',
     ],
     'update'            => [
-        'success'   => 'File :file updated.',
-        'title'     => 'Update file :file for :entity',
+        'success'   => 'File :name updated.',
     ],
 ];

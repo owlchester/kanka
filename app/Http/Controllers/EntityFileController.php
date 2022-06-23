@@ -42,7 +42,7 @@ class EntityFileController extends Controller
     public function index(Entity $entity)
     {
         return redirect()
-            ->route('entities.assets', $entity);
+            ->route('entities.entity_assets.index', $entity);
     }
 
     /**
@@ -53,7 +53,7 @@ class EntityFileController extends Controller
     public function show(Entity $entity, EntityFile $entityFile)
     {
         return redirect()
-            ->route('entities.assets', $entity);
+            ->route('entities.entity_assets.index', $entity);
     }
 
     /**
@@ -97,16 +97,16 @@ class EntityFileController extends Controller
             $entity->load('files');
 
             return redirect()
-                ->route('entities.assets', $entity)
+                ->route('entities.entity_assets.index', $entity)
                 ->with('success', __('entities/files.create.success', ['file' => $file->name]));
 
         } catch (EntityFileException $e) {
             return redirect()
-                ->route('entities.assets', $entity)
+                ->route('entities.entity_assets.index', $entity)
                 ->with('error', __('crud.files.errors.' . $e->getMessage(), ['max' => $campaign->maxEntityFiles()]));
         } catch (\Exception $e) {
             return redirect()
-                ->route('entities.assets', $entity)
+                ->route('entities.entity_assets.index', $entity)
                 ->with('error', $e->getMessage());
         }
     }
@@ -139,7 +139,7 @@ class EntityFileController extends Controller
         $entityFile->update($request->only('name', 'visibility_id'));
 
         return redirect()
-            ->route('entities.assets', $entity)
+            ->route('entities.entity_assets.index', $entity)
             ->with('success', __('entities/files.update.success', ['file' => $entityFile->name]));
     }
 
@@ -158,7 +158,7 @@ class EntityFileController extends Controller
         $entityFile->delete();
 
         return redirect()
-            ->route('entities.assets', $entity)
+            ->route('entities.entity_assets.index', $entity)
             ->with('success', __('entities/files.destroy.success', ['file' => $entityFile->name]));
 
     }
