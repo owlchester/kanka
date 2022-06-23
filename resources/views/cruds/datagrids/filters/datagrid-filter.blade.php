@@ -182,7 +182,7 @@ $clipboardFilters = $filterService->clipboardFilters();
 
                 @if (auth()->check())
                 @if($activeFilters > 0)
-                <a href="#" class="btn btn-default mr-2" data-clipboard="{{ $clipboardFilters }}" data-toggle="tooltip" title="{{ __('crud.filters.copy_helper') }}">
+                <a href="#" class="btn btn-default mr-2" data-clipboard="{{ $clipboardFilters }}" data-toggle="tooltip" title="{{ __('crud.filters.copy_helper') }}" data-toast="{{ __('filters.alerts.copy') }}">
                     <i class="fa-solid fa-clipboard"></i> {{ __('crud.filters.copy_to_clipboard') }}
                 </a>
                 @else
