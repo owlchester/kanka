@@ -16,12 +16,12 @@ $currentCampaign = CampaignLocalization::getCampaign();
                        placeholder="{{ __('sidebar.search') }}" data-url="{{ route('search.live') }}"
                        data-empty="{{ __('search.no_results') }}"
                        tabindex="2">
-                <span class="keyboard-shortcut form-control-feedback">K</span>
+                <span class="keyboard-shortcut form-control-feedback hidden-xs hidden-sm">K</span>
 
-            </div>
                 <a href="#" class="live-search-close visible-xs visible-sm pull-right" name="search-close">
                     <i class="fa-solid fa-close"></i>
                 </a>
+            </div>
             {!! Form::close() !!}
         @endif
 

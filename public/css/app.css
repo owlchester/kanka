@@ -1488,11 +1488,19 @@ summary {
     width: 90%;
   }
 
+  .navbar-form {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
   .table-responsive {
     overflow-x: auto;
     overflow-y: auto;
     border: none;
     padding-bottom: 20px;
+  }
+  .keyboard-shortcut {
+    display: none;
   }
 }
 @media (max-width: 991px) {
