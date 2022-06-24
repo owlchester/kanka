@@ -276,7 +276,7 @@ if($campaign->campaign()->boosted() && $entity->hasHeaderImage($superboosted)) {
         <article>
             <p class="mb-1 text-justify">{{ __('entities/image.call-to-action') }}</p>
             @subscriber()
-            <a href="{{ route('settings.superboost', ['campaign' => $campaign->campaign(), 'superboost' => true]) }}" class="btn bg-maroon btn-block">
+            <a href="{{ route('settings.boost', ['campaign' => $campaign->campaign(), 'superboost' => true]) }}" class="btn bg-maroon btn-block">
                 {!! __('callouts.booster.actions.superboost', ['campaign' => $campaign->campaign()->name]) !!}
             </a>
             @else
