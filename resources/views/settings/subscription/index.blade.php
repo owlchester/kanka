@@ -16,11 +16,11 @@
     @if(session('sub_value'))
         <div class="text-center">
             <p>  
-                <a  href="{{ route('settings.boost') }}" class="btn btn-primary btn-lg mr-4">
+                <a  href="{{ route('settings.boost') }}" class="btn btn-primary btn-lg mr-4" target="blank">
                     <i class="fa-solid fa-rocket mr-1" aria-hidden="true"></i>     
                     {{ __('settings/boosters.ready.title') }}
                 </a>
-                <a  href="{{ route('settings.apps') }}" class="btn btn-primary btn-lg ml-4">
+                <a  href="{{ route('settings.apps') }}" class="btn btn-primary btn-lg ml-4" target="blank">
                     <i class="fa-brands fa-discord mr-1" aria-hidden="true"></i>     
                     {{ __('settings.apps.discord.unlock') }}
                 </a>
