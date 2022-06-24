@@ -267,7 +267,7 @@ if($campaign->campaign()->boosted() && $entity->hasHeaderImage($superboosted)) {
         <header>
             <h4 id="myModalLabel">
                 <i class="fa-solid fa-rocket mr-1" aria-hidden="true"></i>
-                {{ __('callouts.superbooster.titles.boosted') }}
+                {{ __('callouts.booster.titles.superboosted') }}
             </h4>
             <button type="button" class="rounded-full" onclick="this.closest('dialog').close('close')">
                 <i class="fa-solid fa-times" aria-hidden="true"></i>
