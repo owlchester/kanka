@@ -4,6 +4,7 @@ namespace App\Http\Resources;
 
 use App\User;
 use Illuminate\Http\Resources\Json\JsonResource;
+use App\Http\Resources\CampaignUserRoleResource;
 
 class UserResource extends JsonResource
 {
@@ -22,6 +23,7 @@ class UserResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'avatar' => $user->getAvatarUrl(),
+            'roles' => CampaignUserRoleResource::collection($user),
         ];
     }
 }
