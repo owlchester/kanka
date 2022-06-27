@@ -38,6 +38,7 @@ return [
                 'add'       => 'Your Discord account has been linked.',
                 'remove'    => 'Your Discord account has been unlinked.',
             ],
+            'unlock'    => 'Unlock Discord roles',   
             'text'      => 'Access your subscription roles automatically.',
         ],
         'title'     => 'App Integration',
