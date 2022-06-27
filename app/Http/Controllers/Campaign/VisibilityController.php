@@ -4,15 +4,10 @@ namespace App\Http\Controllers\Campaign;
 
 use App\Facades\CampaignCache;
 use App\Facades\CampaignLocalization;
-use App\Facades\Datagrid;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Campaigns\StoreCampaignVisibility;
 use App\Http\Requests\ReorderStyles;
-use App\Http\Requests\StoreCampaignStyle;
-use App\Http\Requests\StoreCampaignTheme;
-use App\Models\Campaign;
 use App\Models\CampaignStyle;
-use App\Services\Campaign\UserService;
 
 class VisibilityController extends Controller
 {
@@ -21,10 +16,9 @@ class VisibilityController extends Controller
      *
      * @return void
      */
-    public function __construct(UserService $userService)
+    public function __construct()
     {
         $this->middleware('auth');
-        $this->service = $userService;
     }
 
     public function edit()

@@ -5,7 +5,8 @@
 - [User Campaigns](#user-campaigns)
 - [Single Campaign](#campaign)
 - [Campaign Members](#campaign-members)
-
+- [Add Role To Member](#add-role-to-member)
+- [Remove Role From Member](#remove-role-from-member)
 <a name="user-campaigns"></a>
 ## User Campaigns
 
@@ -131,5 +132,35 @@ To get a list of all the members of a campaign, use the following endpoint.
             "avatar": "{url}"
         }
     ]
+}
+```
+<a name="add-role-to-member"></a>
+## Add Role To Member
+
+To add a role to a member of the campaign, use the following endpoint.
+
+| Method | URI | Headers |
+| :- |   :-   |  :-  |
+| POST | `campaigns/{id}/users` | Default |
+
+### Results
+```json
+{
+    "data": "role succesfully added to user"
+}
+```
+<a name="remove-role-from-member"></a>
+## Remove Role From Member
+
+To remove a role from a member of the campaign, use the following endpoint.
+
+| Method | URI | Headers |
+| :- |   :-   |  :-  |
+| DELETE | `campaigns/{id}/users` | Default |
+
+### Results
+```json
+{
+    "data": "role succesfully removed from user"
 }
 ```

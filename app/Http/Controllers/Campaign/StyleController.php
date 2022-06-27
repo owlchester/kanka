@@ -9,27 +9,21 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\ReorderStyles;
 use App\Http\Requests\StoreCampaignStyle;
 use App\Http\Requests\StoreCampaignTheme;
-use App\Models\Campaign;
 use App\Models\CampaignStyle;
-use App\Services\Campaign\UserService;
 
 class StyleController extends Controller
 {
-    /** @var UserService */
-    protected $service;
-
-    const MAX_THEMES = 30;
+    public const MAX_THEMES = 30;
 
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct(UserService $userService)
+    public function __construct()
     {
         $this->middleware('auth');
         $this->middleware('campaign.boosted', ['except' => 'index']);
-        $this->service = $userService;
     }
 
     /**
