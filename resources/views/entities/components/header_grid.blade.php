@@ -74,7 +74,7 @@ if($campaign->campaign()->boosted() && $entity->hasHeaderImage($superboosted)) {
                     </a>
                 </li>
                 <li>
-                    @if ($campaign->campaign()->superboosted())
+                    @if ($campaign->campaign()->boosted())
                     <a href="{{ route('entities.image.focus', $model->entity) }}">
                         {{ __('entities/image.actions.change_focus') }}
                     </a>
@@ -267,7 +267,7 @@ if($campaign->campaign()->boosted() && $entity->hasHeaderImage($superboosted)) {
         <header>
             <h4 id="myModalLabel">
                 <i class="fa-solid fa-rocket mr-1" aria-hidden="true"></i>
-                {{ __('callouts.booster.titles.superboosted') }}
+                {{ __('callouts.booster.titles.boosted') }}
             </h4>
             <button type="button" class="rounded-full" onclick="this.closest('dialog').close('close')">
                 <i class="fa-solid fa-times" aria-hidden="true"></i>
@@ -276,8 +276,8 @@ if($campaign->campaign()->boosted() && $entity->hasHeaderImage($superboosted)) {
         <article>
             <p class="mb-1 text-justify">{{ __('entities/image.call-to-action') }}</p>
             @subscriber()
-            <a href="{{ route('settings.boost', ['campaign' => $campaign->campaign(), 'superboost' => true]) }}" class="btn bg-maroon btn-block">
-                {!! __('callouts.booster.actions.superboost', ['campaign' => $campaign->campaign()->name]) !!}
+            <a href="{{ route('settings.boost', ['campaign' => $campaign->campaign()]) }}" class="btn bg-maroon btn-block">
+                {!! __('callouts.booster.actions.boost', ['campaign' => $campaign->campaign()->name]) !!}
             </a>
             @else
                 <p class="mb-1 text-justify">{{ __('callouts.booster.limitation') }}</p>
