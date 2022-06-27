@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Models;
-
 
 use App\Facades\Mentions;
 use App\Models\Concerns\Blameable;
@@ -45,10 +43,10 @@ class MapMarker extends Model
 {
     use Blameable, VisibilityIDTrait, Paginatable, SourceCopiable;
 
-    const SHAPE_MARKER = 1;
-    const SHAPE_LABEL = 2;
-    const SHAPE_CIRCLE = 3;
-    const SHAPE_POLY = 5;
+    public const SHAPE_MARKER = 1;
+    public const SHAPE_LABEL = 2;
+    public const SHAPE_CIRCLE = 3;
+    public const SHAPE_POLY = 5;
 
     /** Fillable fields */
     protected $fillable = [
@@ -134,6 +132,15 @@ class MapMarker extends Model
     }
 
     /**
+     * Determine if the marker is of the polygon type and has a custom shape
+     * @return bool
+     */
+    public function isPolygon(): bool
+    {
+        return $this->shape_id == MapMarker::SHAPE_POLY && !empty($this->custom_shape);
+    }
+
+    /**
      * Generate the marker for leaflet
      * @return string
      */
@@ -143,7 +150,7 @@ class MapMarker extends Model
             return $this->circleMarker();
         } elseif ($this->isLabel()) {
             return $this->labelMarker();
-        } elseif ($this->shape_id == MapMarker::SHAPE_POLY && !empty($this->custom_shape)) {
+        } elseif ($this->isPolygon()) {
             $coords = [];
             $segments = explode(' ', str_replace("\r\n", " ", $this->custom_shape));
             foreach ($segments as $segment) {
@@ -164,7 +171,7 @@ class MapMarker extends Model
             })' . $this->popup();
         }
 
-        return 'L.marker([' . ($this->latitude ). ', ' . $this->longitude . '], {
+        return 'L.marker([' . $this->latitude . ', ' . $this->longitude . '], {
             title: \'' . $this->markerTitle() . '\',
             opacity: ' . $this->floatOpacity() . ','
             . ($this->isDraggable() ? 'draggable: true,' : null) . '
@@ -195,7 +202,7 @@ class MapMarker extends Model
      */
     protected function labelMarker(): string
     {
-        return 'L.marker([' . ($this->latitude ). ', ' . $this->longitude . '], {
+        return 'L.marker([' . $this->latitude . ', ' . $this->longitude . '], {
                 opacity: 0,
                 icon: labelShapeIcon,'
             . ($this->editing ? null : null) . '
@@ -354,10 +361,10 @@ class MapMarker extends Model
         $icon = '`' . $iconShape . '<i class="fa-solid fa-map-pin"></i>`';
         if (!empty($this->custom_icon)) {
             if (Str::startsWith($this->custom_icon, '<i ')) {
-                $icon = '`' . $iconShape . '' . $this->custom_icon . '`';
+                $icon = '`' . $iconShape . $this->custom_icon . '`';
             } elseif (Str::startsWith($this->custom_icon, ['fa-', 'ra '])) {
                 $icon = '`' . $iconShape . ' <i class="' . $this->custom_icon . '" aria-hidden="true"></i>`';
-            } elseif(Str::startsWith($this->custom_icon, '<?xml')) {
+            } elseif (Str::startsWith($this->custom_icon, '<?xml')) {
                 $icon = 'L.Util.template(`<div class="custom-icon">' . $this->resizedCustomIcon() . '</div>`)';
             }
         } elseif ($this->icon == 2) {
@@ -369,7 +376,7 @@ class MapMarker extends Model
         }
 
         //dd($this->pin_size ?: 40);
-        $size = $this->pinSize(false);
+        $size = (int) $this->pinSize(false);
 
         return 'icon: L.divIcon({
                 html: ' . $icon . ',
