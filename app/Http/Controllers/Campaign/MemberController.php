@@ -6,12 +6,12 @@ use App\Facades\Identity;
 use App\Http\Controllers\Controller;
 use App\Models\CampaignRole;
 use App\Models\CampaignUser;
-use App\Services\Campaign\UserService;
+use App\Services\Campaign\MemberService;
 use Illuminate\Support\Facades\Request;
 
 class MemberController extends Controller
 {
-    /** @var UserService */
+    /** @var MemberService */
     protected $service;
 
     /**
@@ -19,10 +19,10 @@ class MemberController extends Controller
      *
      * @return void
      */
-    public function __construct(UserService $userService)
+    public function __construct(MemberService $memberService)
     {
         $this->middleware('auth');
-        $this->service = $userService;
+        $this->service = $memberService;
     }
 
     /**

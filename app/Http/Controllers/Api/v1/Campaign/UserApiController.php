@@ -3,14 +3,24 @@
 namespace App\Http\Controllers\Api\v1\Campaign;
 
 use App\Http\Controllers\Api\v1\ApiController;
+use App\Http\Requests\API\UpdateUserRole;
 use App\Http\Resources\UserResource;
 use App\Models\Campaign;
 use App\Models\CampaignRole;
 use App\Models\CampaignRoleUser;
+use App\Services\Campaign\MemberService;
 use Illuminate\Http\Request;
 
 class UserApiController extends ApiController
 {
+    /** @var MemberService */
+    protected $service;
+
+    public function __construct(MemberService $memberService)
+    {
+        $this->service = $memberService;
+    }
+
     public function index(Campaign $campaign)
     {
         $this->authorize('access', $campaign);
@@ -46,34 +56,27 @@ class UserApiController extends ApiController
         //return $hasRole;
         return compact('hasRole', 'user', 'role');
     }
+
     /**
      * Add a user to a role
      * @param Request $request
      * @param Campaign $campaign
      * @return void
      */
-    public function add(Request $request, Campaign $campaign)
+    public function add(UpdateUserRole $request, Campaign $campaign)
     {
-        $this->validate($request, [
-            'user_id' => 'required|exists:users,id',
-            'role_id' => 'required|exists:campaign_roles,id'
-        ]);
-        $userRoleInfo = $this->checkIfExists($request, $campaign);
-        $user = $userRoleInfo['user'];
-        $role = $userRoleInfo['role'];
-        $hasRole = $userRoleInfo['hasRole'];
-        if ($hasRole) {
-            return response()->json(['error' => 'User already in role.']);
-        }
-        // If both are valid, add the user to the role
-        $userRole = new CampaignRoleUser();
-        $userRole->user_id = $user->id;
-        $userRole->campaign_role_id = $request->post('role_id');
-        $userRole->save();
+        $result = $this->service
+            ->fromRequest($request)
+            ->campaign($campaign)
+            ->add();
 
-        return response()->json([
-            'data' => 'role succesfully added to user'
-        ]);
+        if ($result) {
+            return response()->json([
+                'data' => 'role successfully added to user'
+            ]);
+        }
+
+        return response()->json(['error' => 'Invalid input'], 422);
     }
 
     /**
@@ -82,26 +85,17 @@ class UserApiController extends ApiController
      * @param Campaign $campaign
      * @return void
      */
-    public function remove(Request $request, Campaign $campaign)
+    public function remove(UpdateUserRole $request, Campaign $campaign)
     {
-        $this->validate($request, [
-            'user_id' => 'required|exists:users,id',
-            'role_id' => 'required|exists:campaign_roles,id'
-        ]);
-        $userRoleInfo = $this->checkIfExists($request, $campaign);
-        $user = $userRoleInfo['user'];
-        $role = $userRoleInfo['role'];
-        $hasRole = $userRoleInfo['hasRole'];
-        if (!$hasRole) {
-            return response()->json(['error' => 'User isnt in role.']);
-        }
-        // If both are valid, remove user from the role
-        CampaignRoleUser::where('user_id', $user->id)
-        ->where('campaign_role_id', $role->id)
-        ->delete();
+        $result = $this->service
+            ->fromRequest($request)
+            ->campaign($campaign)
+            ->remove();
 
-        return response()->json([
-            'data' => 'role succesfully removed from user'
-        ]);
+        if ($result) {
+            return response()->json([
+                'data' => 'role successfully removed from the user'
+            ]);
+        }
     }
 }
