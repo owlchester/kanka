@@ -1,14 +1,11 @@
 <?php
 
-
 namespace App\Http\Controllers\Entity;
-
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreImageFocus;
 use App\Http\Requests\UpdateEntityImage;
 use App\Models\Entity;
-use App\Traits\GuestAuthTrait;
 use Illuminate\Support\Facades\Auth;
 
 class ImageController extends Controller
@@ -20,7 +17,7 @@ class ImageController extends Controller
      */
     public function focus(Entity $entity)
     {
-        if (!Auth::check()) {
+        if (!auth()->check()) {
             return abort(400);
         } else {
             $this->authorize('update', $entity->child);
@@ -58,7 +55,7 @@ class ImageController extends Controller
      */
     public function replace(Entity $entity)
     {
-        if (!Auth::check()) {
+        if (!auth()->check()) {
             return abort(400);
         } else {
             $this->authorize('update', $entity->child);

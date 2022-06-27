@@ -74,14 +74,14 @@ if($campaignService->campaign()->boosted() && $entity->hasHeaderImage($superboos
                     </a>
                 </li>
                 <li>
-                    @if ($campaignService->campaign()->superboosted())
+                    @if ($campaignService->campaign()->boosted())
                     <a href="{{ route('entities.image.focus', $model->entity) }}">
                         {{ __('entities/image.actions.change_focus') }}
                     </a>
                     @else
-                        <a href="#" data-toggle="dialog" data-target="booster-cta">
-                            {{ __('entities/image.actions.change_focus') }}
-                        </a>
+                    <a href="#" data-toggle="dialog" data-target="booster-cta">
+                        {{ __('entities/image.actions.change_focus') }}
+                    </a>
                     @endif
                 </li>
             </ul>
