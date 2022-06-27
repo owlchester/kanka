@@ -144,6 +144,7 @@ class PluginVersion extends Model
         // Prepare attributes
         $data = [];
         $ids = [];
+        $checkboxes = [];
         $this->entityAttributes = $entity->allAttributes;
         $allAttributes = [];
         foreach ($this->entityAttributes as $attr) {
@@ -155,6 +156,8 @@ class PluginVersion extends Model
             $ids[$name] = $attr->id;
             if ($attr->isText()) {
                 $data[$name] = nl2br($data[$name]);
+            } elseif ($attr->isCheckbox()) {
+                $checkboxes[] = $name;
             }
             //dump('mapping ' . $name . ' to ' . $attr->mappedValue());
 
@@ -177,12 +180,20 @@ class PluginVersion extends Model
         }
 
 
-        $html = preg_replace_callback('`\@liveAttribute\(\'(.*?[^)])\'\)`i', function ($matches) use ($data, $ids) {
+        $html = preg_replace_callback('`\@liveAttribute\(\'(.*?[^)])\'\)`i', function ($matches) use ($data, $ids, $checkboxes) {
             $attr = trim((string) $matches[1]);
             if (!isset($data[$attr])) {
                 return $matches[0];
             }
-            return '<span class="live-edit" data-id="' . $ids[$attr] . '">' . $data[$attr] . '</span>';
+            $value = $data[$attr];
+            if (in_array($attr, $checkboxes)) {
+                if ($data[$attr] === 'on') {
+                    $value = '<i class="fa-solid fa-check"></i>';
+                } else {
+                    $value = '<i class="fa-solid fa-times"></i>';
+                }
+            }
+            return '<span class="live-edit" data-id="' . $ids[$attr] . '">' . $value . '</span>';
         }, $html);
         //dd($html);
 
