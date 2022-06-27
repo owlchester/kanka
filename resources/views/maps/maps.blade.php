@@ -9,7 +9,7 @@
 
 @section('content')
     <div class="entity-grid">
-        @include('entities.components.header_grid', [
+        @include('entities.components.header', [
             'model' => $model,
             'breadcrumb' => [
                 ['url' => Breadcrumb::index('maps'), 'label' => __('maps.index.title')],

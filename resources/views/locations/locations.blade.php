@@ -11,7 +11,7 @@
     @include('partials.errors')
 
     <div class="entity-grid">
-        @include('entities.components.header_grid', [
+        @include('entities.components.header', [
             'model' => $model,
             'breadcrumb' => [
                 ['url' => Breadcrumb::index('locations'), 'label' => __('locations.index.title')],
