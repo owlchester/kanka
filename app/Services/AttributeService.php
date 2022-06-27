@@ -586,7 +586,7 @@ class AttributeService
     /**
      * @param $uuid
      * @param Campaign $campaign
-     * @return CampaignPlugin|\Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Model|object|null
+     * @return CampaignPlugin|null
      */
     public function marketplaceTemplate($uuid, Campaign $campaign)
     {
@@ -598,12 +598,20 @@ class AttributeService
             return null;
         }
 
+        /** @var CampaignPlugin $plugin */
         $plugin = CampaignPlugin::templates($campaign)
             ->select('campaign_plugins.*')
             ->leftJoin('plugin_versions as pv', 'pv.plugin_id', 'campaign_plugins.plugin_id')
             ->where('pv.uuid', $uuid)
             ->has('plugin')
             ->first();
+
+        // If the plugin is published, we're good. Otherwise, it's
+        if (!$plugin->renderable()) {
+            return null;
+        }
+
+
 
         return $plugin;
     }

@@ -64,4 +64,33 @@ class CampaignPlugin extends Model
     {
         return $this->plugin->isTheme() && $this->is_active;
     }
+
+    /**
+     * Determine if the plug is renderable. This is needed for character sheets in draft statuses, to only
+     * render a sheet for the author, as they can potentially add XSS injections.
+     * @return bool
+     */
+    public function renderable(): bool
+    {
+        if (!$this->plugin->isAttributeTemplate()) {
+            return false;
+        } elseif ($this->version->status_id === 3) {
+            // Published version? We good
+            return true;
+        }
+        // The user needs to be an author
+        return $this->isAuthor();
+    }
+
+    /**
+     * Check if the current user is an author of a plugin
+     * @return bool
+     */
+    public function isAuthor(): bool
+    {
+        if (auth()->guest()) {
+            return false;
+        }
+        return $this->plugin->created_by === auth()->user()->id;
+    }
 }

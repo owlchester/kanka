@@ -21,6 +21,7 @@ use Illuminate\Support\Str;
  * @property string $uuid
  * @property int $type_id
  * @property int $status_id
+ * @property int $created_by
  * @property string $name
  *
  * @property PluginVersion[]|Collection $versions
