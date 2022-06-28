@@ -363,20 +363,6 @@ class Character extends MiscModel
     }
 
     /**
-     * Determine if the appearance tab should be shown
-     * @return bool
-     */
-    public function showAppearance(): bool
-    {
-        if ($this->showAppearanceCache === null) {
-            $this->showAppearanceCache = !empty($this->age) || !empty($this->sex) ||
-                $this->entity->elapsedEvents->count() > 0 ||
-                $this->characterTraits()->appearance()->count() > 0;
-        }
-        return $this->showAppearanceCache;
-    }
-
-    /**
      * Determine if the character has profile data to be displayed
      * @return bool
      */
