@@ -47,9 +47,10 @@
             <div class="tab-content">
                 <div role="tabpanel" class="tab-pane active" id="card">
                     {!! Form::open(['route' => ['settings.subscription.subscribe'], 'method' => 'POST', 'id' => 'subscription-confirm']) !!}
+
                     @if (!$card)
                         <label>{{ __('settings.subscription.payment_method.card_name' )}}</label>
-                        {!! Form::text('card-holder-name', null, ['class' => 'form-control']) !!}
+                        {!! Form::text('card-holder-name', null, ['class' => 'form-control', 'class' => 'subscription-form']) !!}
 
                         <label>{{ __('settings.subscription.payment_method.card' )}}</label>
 
@@ -60,13 +61,39 @@
                         <div class="text-center mb-5">
                             <strong>{{ __('settings.subscription.fields.payment_method') }}</strong><br />
                             <i class="fa-solid fa-credit-card"></i> **** {{ $card->card->last4 }} {{ $card->card->exp_month }}/{{ $card->card->exp_year }}
-
                             <p><a href="{{ route('settings.billing') }}">{{ __('settings.subscription.payment_method.actions.change') }}</a></p>
                         </div>
+                        @if ($isDowngrading)
+
+                            <p class="help-block">
+                                {!! __('settings.subscription.cancel.text')!!}
+                            </p>
+
+                            <div class="form-group mb-5">
+                                <label>{{ __('settings.subscription.fields.reason') }}</label>
+                                {!! Form::select('reason', [
+                                    '' => __('crud.select'),
+                                    'financial' => __('settings.subscription.cancel.options.financial'),
+                                    'not_using' => __('settings.subscription.cancel.options.not_using'),
+                                    'missing_features' => __('settings.subscription.cancel.options.missing_features'),
+                                    'competitor' => __('settings.subscription.cancel.options.competitor'),
+                                    'custom' => __('settings.subscription.cancel.options.custom')
+                                ], null, ['class' => 'form-control mb-5', 'id' => 'downgrade-reason-select']) !!}
+                                {!! Form::textarea(
+                                    'reason_custom',
+                                    null,
+                                    [
+                                        'placeholder' => __('settings.subscription.placeholders.reason'),
+                                        'class' => 'form-control',
+                                        'style' => 'display: none',
+                                        'rows' => 4,
+                                        'id' => 'downgrade-reason-custom'
+                                    ]
+                                )!!}
+                            </div>
+
+                        @endif
                     @endif
-
-
-
                     <div class="text-center">
                         <button class="btn btn-lg btn-primary subscription-confirm-button" data-text="{{ __('settings.subscription.actions.subscribe') }}">
                             <span>{{ __('settings.subscription.actions.subscribe') }}</span>

@@ -210,7 +210,7 @@ class SubscriptionService
      * @param string|null $planID
      * @return $this
      */
-    public function finish($planID = null): self
+    public function finish($planID = null, string $reason = null, string $custom = null): self
     {
         if (empty($planID) && !empty($this->plan)) {
             $planID = $this->plan;
@@ -224,7 +224,7 @@ class SubscriptionService
         // If downgrading, send admins an email, and let stripe deal with the rest. A user update hook will be thrown
         // when the user really changes. Probably?
         if ($this->downgrading()) {
-            SubscriptionDowngradedEmailJob::dispatch($this->user);
+            SubscriptionDowngradedEmailJob::dispatch($this->user, $reason, $custom);
             $this->user->log(UserLog::TYPE_SUB_DOWNGRADE);
             return $this;
         }
@@ -691,7 +691,7 @@ class SubscriptionService
      * Determine if a user is downgrading
      * @return bool
      */
-    protected function downgrading(): bool
+    public function downgrading(): bool
     {
         // Elemental downgrading -> owl or wyv
         if ($this->user->isElemental() && in_array($this->tier, [Patreon::PLEDGE_OWLBEAR, Patreon::PLEDGE_WYVERN])) {
