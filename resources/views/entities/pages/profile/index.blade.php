@@ -14,7 +14,7 @@
 @section('entity-header-actions')
     @can('update', $model)
         <div class="header-buttons">
-            <a href="{{ $model->getLink('edit') }}" class="btn btn-warning">
+            <a href="{{ $model->getLink('edit') }}" class="btn btn-warning btn-sm">
                 {{ __('entities/profile.actions.edit_profile') }}
             </a>
         </div>

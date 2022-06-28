@@ -79,6 +79,18 @@ trait EntityRelations
     }
 
     /**
+     * Call $entity->entityAttributes to avoid multiple calls to the db
+     * @return mixed
+     */
+    public function entityAttributes()
+    {
+        return $this->attributes()
+            ->with('entity')
+            ->ordered()
+        ;
+    }
+
+    /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function attributeTemplate()
