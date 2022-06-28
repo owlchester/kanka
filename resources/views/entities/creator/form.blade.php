@@ -56,7 +56,7 @@
         </div>
         <div class="col-md-6">
 
-            <button class="btn btn-success rounded-full px-8 quick-creator-submit" id="quick-creator-submit-btn" data-text="{{ __('crud.create') }}" data-entity-type="{{ strtolower($entityType) }}">
+            <button class="btn btn-success rounded-full px-8 quick-creator-submit" id="quick-creator-submit-btn" data-text="{{ __('crud.create') }}" data-entity-type="{{ $singularType }}">
                 <span>
                     <i class="fa-solid fa-plus" aria-hidden="true"></i> {{ __('entities.creator.actions.create', ['type' => $entityType]) }}
                 </span>
@@ -65,7 +65,7 @@
         </div>
         @else
             <div class="text-center">
-            <button class="btn btn-success rounded-full px-8 quick-creator-submit" id="quick-creator-submit-btn" data-text="{{ __('crud.create') }}" data-entity-type="{{ strtolower($entityType) }}">
+            <button class="btn btn-success rounded-full px-8 quick-creator-submit" id="quick-creator-submit-btn" data-text="{{ __('crud.create') }}" data-entity-type="{{ $singularType }}">
                 <span>
                     <i class="fa-solid fa-plus" aria-hidden="true"></i> {{ __('entities.creator.actions.create', ['type' => $entityType]) }}
                 </span>
