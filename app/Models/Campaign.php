@@ -316,7 +316,7 @@ class Campaign extends MiscModel
      */
     public function entry()
     {
-        return Mentions::mapCampaign($this);
+        return Mentions::mapAny($this);
     }
 
     /**
@@ -324,7 +324,7 @@ class Campaign extends MiscModel
      */
     public function getEntryForEditionAttribute()
     {
-        return Mentions::editCampaign($this);
+        return Mentions::parseForEdit($this);
     }
 
     /**
@@ -332,14 +332,14 @@ class Campaign extends MiscModel
      */
     public function excerpt()
     {
-        return Mentions::mapCampaign($this, 'excerpt');
+        return Mentions::mapAny($this, 'excerpt');
     }
     /**
      * @return mixed
      */
     public function getExcerptForEditionAttribute()
     {
-        return Mentions::editCampaign($this, 'excerpt');
+        return Mentions::parseForEdit($this, 'excerpt');
     }
 
     /**

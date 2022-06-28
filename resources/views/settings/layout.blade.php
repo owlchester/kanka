@@ -118,7 +118,7 @@
             <div class="form-group">
                 {!! Form::hidden('advanced_mentions', 0) !!}
                 <label>
-                    {!! Form::checkbox('advanced_mentions', 1, auth()->user()->advancedMentions) !!}
+                    {!! Form::checkbox('advanced_mentions', 1, auth()->user()->alwaysAdvancedMentions()) !!}
                     {{ __('profiles.settings.fields.advanced_mentions') }}
                 </label>
                 <p class="help-block">{{ __('profiles.settings.hints.advanced_mentions') }}</p>

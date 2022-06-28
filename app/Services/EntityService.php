@@ -72,7 +72,7 @@ class EntityService
     }
 
     /** @var bool|array */
-    protected bool $cachedNewEntityTypes = false;
+    protected bool|array $cachedNewEntityTypes = false;
 
     /**
      * @param Campaign $campaign

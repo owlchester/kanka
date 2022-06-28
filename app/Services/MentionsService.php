@@ -18,25 +18,28 @@ class MentionsService
 {
     use MentionTrait;
 
-    protected $text = '';
-    protected $entities = [];
-    protected $attributes = [];
+    protected string $text = '';
+    protected array $entities = [];
+    protected array $attributes = [];
 
     /**
      * @var array
      */
-    protected $mentionedEntities = [];
-    protected $mentionedEntityTypes = [];
-    protected $mentionedAttributes = [];
+    protected array $mentionedEntities = [];
+    protected array $mentionedEntityTypes = [];
+    protected array $mentionedAttributes = [];
 
     /** @var array */
-    protected $validEntityTypes = [];
+    protected array $validEntityTypes = [];
 
     /** @var array Created new mentions to avoid duplicates */
-    protected $newEntityMentions = [];
+    protected array $newEntityMentions = [];
 
     /** @var bool New entities have been created from the mention parsing */
-    protected $createdNewEntities = false;
+    protected bool $createdNewEntities = false;
+
+    /** @var string Class used to inject and strip advanced mention name helpers */
+    public const ADVANCED_MENTION_CLASS = 'advanced-mention-name';
 
     /**
      * Map the mentions in an entity
@@ -44,7 +47,7 @@ class MentionsService
      * @param string $field
      * @return string
      */
-    public function map(MiscModel $model, $field = 'entry'): string
+    public function map(MiscModel $model, string $field = 'entry'): string
     {
         $this->text = !empty($model->$field) ? $model->$field : '';
         return $this->extractAndReplace();
@@ -56,7 +59,7 @@ class MentionsService
      * @param string $field
      * @return string
      */
-    public function mapEntity(Entity $entity, $field = 'tooltip'): string
+    public function mapEntity(Entity $entity, string $field = 'tooltip'): string
     {
         $this->text = !empty($entity->$field) ? $entity->$field : '';
         return $this->extractAndReplace();
@@ -75,7 +78,8 @@ class MentionsService
 
     /**
      * Map the mentions in any model
-     * @param EntityNote $entityNote
+     * @param Model $model
+     * @param string $field
      * @return string|string[]|null
      */
     public function mapAny(Model $model, string $field = 'entry')
@@ -98,43 +102,6 @@ class MentionsService
     }
 
     /**
-     * Map the mentions in an entity note
-     * @param EntityNote $entityNote
-     * @return string|string[]|null
-     */
-    public function mapCampaign(Campaign $campaign, string $field = 'entry')
-    {
-        $this->text = $campaign->$field;
-        return $this->extractAndReplace();
-    }
-
-    /**
-     * @param MiscModel $model
-     * @param string $field
-     * @return string|string[]|null
-     */
-    public function edit(MiscModel $model, string $field = 'entry')
-    {
-        return $this->editEntity($model, $field);
-    }
-    public function editEntityNote(EntityNote $entityNote, string $field = 'entry')
-    {
-        return $this->editEntity($entityNote, $field);
-    }
-    public function editMisc(MiscModel $model, string $field = 'entry')
-    {
-        return $this->editEntity($model, $field);
-    }
-    public function editCampaign(Campaign $campaign, string $field = 'entry')
-    {
-        return $this->editEntity($campaign, $field);
-    }
-    public function editAny(Model $model, string $field = 'entry')
-    {
-        return $this->editEntity($model, $field);
-    }
-
-    /**
      * If new entities were created from the mentions
      * @return bool
      */
@@ -144,18 +111,24 @@ class MentionsService
     }
 
     /**
+     * Parse a model's text for editing (transform mentions into advanced mentions, normal
+     * mentions visually, etc)
+     * @param Model $model
+     * @param string $field
+     * @return string
+     */
+    public function parseForEdit(Model $model, string $field = 'entry'): string
+    {
+        return $this->editEntity($model, $field);
+    }
+
+    /**
      * @param $model
      * @param string $field
      * @return string
      */
     protected function editEntity($model, string $field): string
     {
-        // Advance mode will send back the "codes"
-        if (Auth::user()->advancedMentions) {
-            return (string) $model->$field;
-        }
-
-        // Standard more we want to remap mentions
         $this->text = $model->$field;
         return $this->replaceForEdit();
     }
@@ -227,9 +200,28 @@ class MentionsService
             $text
         );
 
-        //dd($text);
+        // Remove advanced mention name blocks
+        //dump($text);
+        $text = preg_replace(
+            '`<span class="' . self::ADVANCED_MENTION_CLASS . '" data-name="([^"]*)"></span>`',
+            null,
+            $text
+        );
 
+        //dd($text);
         return $text;
+    }
+
+    /**
+     * Parse an entity and create the advanced mention helper bubble
+     * @param string $name
+     * @return string
+     */
+    public function advancedMentionHelper(string $name): string
+    {
+        $cleanEntityName = Str::replace(['"'], ['\''], $name);
+        return '<span class="' . self::ADVANCED_MENTION_CLASS . '" data-name="'
+            . $cleanEntityName . '"></span>';
     }
 
     /**
@@ -240,7 +232,7 @@ class MentionsService
     {
         // First let's prepare all mentions to do a single query on the entities table
         $this->mentionedEntities = [];
-        preg_replace_callback('`\[([a-z_]+):(.*?)\]`i' , function($matches) {
+        preg_replace_callback('`\[([a-z_]+):(.*?)\]`i' , function ($matches) {
             $segments = explode('|', $matches[2]);
             $id = (int) $segments[0];
             $entityType = $matches[1];
@@ -263,9 +255,10 @@ class MentionsService
         $this->prepareEntities();
 
         // Extract links from the entry to foreign
-        $this->text = preg_replace_callback('`\[([a-z_]+):(.*?)\]`i' , function($matches) {
+        $this->text = preg_replace_callback('`\[([a-z_]+):(.*?)\]`i' , function ($matches) {
             // Icons
-            if ($matches[1] == 'icon' && Str::startsWith($matches[2], ['fa ', 'fas ', 'far ', 'fab ', 'ra ', 'fa-solid ', 'fa-regular ', 'fa-brands '])) {
+            $fontAwesomes = ['fa ', 'fas ', 'far ', 'fab ', 'ra ', 'fa-solid ', 'fa-regular ', 'fa-brands '];
+            if ($matches[1] == 'icon' && Str::startsWith($matches[2], $fontAwesomes)) {
                 return '<i class="' . e($matches[2]) . '"></i>';
             }
 
@@ -279,7 +272,6 @@ class MentionsService
             if (empty($entity) || empty($entity->child)) {
                 $replace = Arr::get($data, 'text', '<i class="unknown-mention unknown-entity">' . __('crud.history.unknown') . '</i>');
             } else {
-
                 $routeOptions = [];
                 if (!empty($data['params'])) {
                     $routeParams = explode('&amp;', $data['params']);
@@ -347,7 +339,7 @@ class MentionsService
                         } elseif (is_string($foreign)) {
                             $data['text'] = $foreign;
                         }
-                    } elseif(isset($entity->$field) && is_string($entity->$field)) {
+                    } elseif (isset($entity->$field) && is_string($entity->$field)) {
                         $data['text'] = $entity->$field;
                     }
                 }
@@ -386,17 +378,39 @@ class MentionsService
     }
 
     /**
-     * @return string|string[]|null
+     * @return string
      */
-    protected function replaceForEdit()
+    protected function replaceForEdit(): string
     {
         // Extract links from the entry to foreign
-        $this->text = preg_replace_callback('`\[([a-z_]+):(.*?)\]`i' , function($matches) {
+        $this
+            ->parseMentionsForEdit()
+            ->parseAttributesForEdit();
+
+        return (string) $this->text;
+    }
+
+    /**
+     * Replace mentions of entities to a visual representation for the text editor
+     * @return $this
+     */
+    protected function parseMentionsForEdit(): self
+    {
+        $this->text = preg_replace_callback('`\[([a-z_]+):(.*?)\]`i', function ($matches) {
             $data = $this->extractData($matches);
 
             $hasCustom = Arr::has($data, 'custom');
-            if ($hasCustom) {
-                return $matches[0];
+
+            // If the user always wants advanced mentions, we force the [] syntax upon them
+            if ($hasCustom || auth()->user()->alwaysAdvancedMentions()) {
+                // Still need to show the target's name in the advanced mention
+                $entity = $this->entity($data['id']);
+                if (empty($entity) || empty($entity->child)) {
+                    return $matches[0];
+                }
+
+                $advancedName = $this->advancedMentionHelper($entity->name);
+                return Str::replaceLast(']', $advancedName . ']', $matches[0]);
             }
 
             // This was matched on an attribute
@@ -404,7 +418,6 @@ class MentionsService
                 return $matches[0];
             }
 
-            /** @var Entity $entity */
             $entity = $this->entity($data['id']);
 
             // No entity found, the user might not be allowed to see it
@@ -413,11 +426,25 @@ class MentionsService
             } else {
                 $name = $entity->name;
             }
-            return '<a href="#" class="mention" data-name="' . $name . '" data-mention="' . $matches[0] . '">' . $name . '</a>';
+            return '<a href="#" class="mention" data-name="' . $name . '" data-mention="' . $matches[0]
+                . '">' . $name . '</a>';
         }, $this->text);
 
+        return $this;
+    }
+
+    /**
+     * Replace mentions of attributes to a visual representation for the text editor
+     * @return $this
+     */
+    protected function parseAttributesForEdit(): self
+    {
+        // If the user has advanced mentions always on, don't replace attributes
+        if (auth()->user()->alwaysAdvancedMentions()) {
+            return $this;
+        }
         // Extract links from the entry to attribute
-        $this->text = preg_replace_callback('`\{attribute:(.*?)\}`i' , function($matches) {
+        $this->text = preg_replace_callback('`\{attribute:(.*?)\}`i', function ($matches) {
             $id = (int) $matches[1];
 
             /** @var Entity $entity */
@@ -429,15 +456,16 @@ class MentionsService
             } else {
                 $name = $attribute->name;
             }
-            return '<a href="#" class="attribute attribute-mention" data-attribute="' . $matches[0] . '">{' . $name . '}</a>';
+            return '<a href="#" class="attribute attribute-mention" data-attribute="' . $matches[0]
+                . '">{' . $name . '}</a>';
         }, $this->text);
 
-        return $this->text;
+        return $this;
     }
 
     /**
      * @param int $id
-     * @return mixed
+     * @return Entity
      */
     protected function entity(int $id)
     {
@@ -538,7 +566,7 @@ class MentionsService
     protected function mapAttributes()
     {
         $this->mentionedAttributes = [];
-        preg_replace_callback('`\{attribute:(.*?)\}`i' , function($matches) {
+        preg_replace_callback('`\{attribute:(.*?)\}`i' , function ($matches) {
             $id = (int) $matches[1];
             if (!in_array($id, $this->mentionedAttributes)) {
                 $this->mentionedAttributes[] = $id;
@@ -549,7 +577,7 @@ class MentionsService
         $this->prepareAttributes();
 
         // Extract links from the entry to foreign
-        $this->text = preg_replace_callback('`\{attribute:(.*?)\}`i' , function($matches) {
+        $this->text = preg_replace_callback('`\{attribute:(.*?)\}`i', function ($matches) {
             $id = (int) $matches[1];
 
             /** @var Attribute $attribute */
@@ -575,12 +603,12 @@ class MentionsService
             $toc = $tocGenerator->getHtmlMenu($this->text);
             $this->text = Str::replaceFirst('{table-of-contents}', '<div class="toc">' . $toc .  "</div>\n", $this->text);
         }
-
     }
 
     /**
      * Replace new entity mentions with entities.
-     * @param $data
+     * @param string $type
+     * @param string $name
      * @return string
      */
     protected function newEntityMention(string $type, string $name): string
@@ -613,6 +641,5 @@ class MentionsService
         $this->createdNewEntities = true;
 
         return '[' . $type . ':' . $new->entity->id . ']';
-
     }
 }

@@ -181,3 +181,18 @@ div.mce-fullscreen {
 .CodeMirror {
   resize: vertical;
 }
+
+
+.advanced-mention-name {
+  --advanced-mention-background: #383898;
+  --advanced-mention-text: white;
+  &:after {
+    margin-left: 0.1rem;
+    content: attr(data-name);
+    font-size: 0.7rem;
+    background-color: var(--advanced-mention-background);
+    color: var(--advanced-mention-text);
+    padding: 0.15rem;
+    border-radius: 0.25rem;
+  }
+}

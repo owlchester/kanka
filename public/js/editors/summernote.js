@@ -264,18 +264,19 @@ function attributeTemplate(item) {
 
 function hintContent(item) {
   if (item.id) {
-    var mention = '[' + item.model_type + ':' + item.id + ']';
+    var mention = '[' + item.model_type + ':' + item.id + item.advanced_mention + ']';
 
     if (item.alias_id) {
-      return '[' + item.model_type + ':' + item.id + '|alias:' + item.alias_id + ']';
+      mention = '[' + item.model_type + ':' + item.id + '|alias:' + item.alias_id + item.advanced_mention + ']';
+      return $('<span>' + mention + '</span>')[0];
     }
 
     if (summernoteConfig.data('advanced-mention')) {
-      return mention;
+      return $('<span>' + mention + '</span>')[0];
     }
 
     if (advancedRequest) {
-      return mention;
+      return $('<span>' + mention + '</span>')[0];
     }
 
     return $('<a />', {

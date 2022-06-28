@@ -64,7 +64,7 @@ class CampaignResource extends JsonResource
         }
 
         if ($this->withMentions) {
-            $data['entry_parsed'] = Mentions::mapCampaign($this->resource);
+            $data['entry_parsed'] = Mentions::mapAny($this->resource);
         }
 
         // Hide stuff like sidebar

@@ -84,7 +84,7 @@
     <div
             id="summernote-config"
             data-mention="{{ route('search.live') }}"
-            data-advanced-mention="{{ auth()->user()->advancedMentions }}"
+            data-advanced-mention="{{ auth()->user()->alwaysAdvancedMentions() }}"
             data-months="{{ route('search.calendar-months') }}"
             data-gallery-title="Superboosted Gallery"
             data-gallery-close="{{ __('crud.click_modal.close') }}"

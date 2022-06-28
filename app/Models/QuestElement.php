@@ -70,7 +70,7 @@ class QuestElement extends Model
      */
     public function getEntryForEditionAttribute()
     {
-        $text = Mentions::editAny($this, 'description');
+        $text = Mentions::parseForEdit($this, 'description');
         return $text;
     }
 

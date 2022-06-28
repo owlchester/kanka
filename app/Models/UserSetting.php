@@ -280,4 +280,13 @@ trait UserSetting
         }
         return (string) $this->settings['marketplace_name'];
     }
+
+    /**
+     * Determine if a user only wants advance mentions in their text editor
+     * @return bool
+     */
+    public function alwaysAdvancedMentions(): bool
+    {
+        return (bool) Arr::get($this->settings, 'advanced_mentions', false);
+    }
 }
