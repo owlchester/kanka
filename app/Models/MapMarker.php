@@ -359,7 +359,7 @@ class MapMarker extends Model
         $iconShape = '<div style="background-color: ' . $this->backgroundColour() . '" class="marker-pin"></div>';
 
         $icon = '`' . $iconShape . '<i class="fa-solid fa-map-pin"></i>`';
-        if (!empty($this->custom_icon)) {
+        if (!empty($this->custom_icon) && $this->map->campaign->boosted()) {
             if (Str::startsWith($this->custom_icon, '<i ')) {
                 $icon = '`' . $iconShape . $this->custom_icon . '`';
             } elseif (Str::startsWith($this->custom_icon, ['fa-', 'ra '])) {
@@ -519,6 +519,9 @@ class MapMarker extends Model
      */
     public function visible(): bool
     {
+        if ($this->isPolygon() && !$this->map->campaign->boosted()) {
+            return false;
+        }
         return empty($this->entity_id) || (!empty($this->entity) && !empty($this->entity->child));
     }
 
