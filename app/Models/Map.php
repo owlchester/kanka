@@ -239,7 +239,7 @@ class Map extends MiscModel
     public function markers()
     {
         return $this->hasMany('App\Models\MapMarker', 'map_id', 'id')
-            ->with(['map', 'map.campaign','entity']);
+            ->with(['map', 'map.campaign', 'entity']);
     }
 
     /**

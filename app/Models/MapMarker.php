@@ -519,7 +519,7 @@ class MapMarker extends Model
      */
     public function visible(): bool
     {
-        if (!$this->map->campaign->boosted() && $this->custom_shape) {
+        if ($this->isPolygon() && !$this->map->campaign->boosted()) {
             return false;
         }
         return empty($this->entity_id) || (!empty($this->entity) && !empty($this->entity->child));
