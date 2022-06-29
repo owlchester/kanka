@@ -86,6 +86,7 @@ class SubscriptionController extends Controller
         $intent = $request->user()->createSetupIntent();
         $cancel = $tier == Patreon::PLEDGE_KOBOLD;
         $user = $request->user();
+        $isDowngrading = $this->subscription->downgrading();
 
         return view('settings.subscription.change', compact(
             'tier',
@@ -94,7 +95,8 @@ class SubscriptionController extends Controller
             'card',
             'intent',
             'cancel',
-            'user'
+            'user',
+            'isDowngrading'
         ));
     }
 
@@ -112,7 +114,7 @@ class SubscriptionController extends Controller
                 ->period($request->get('period'))
                 ->coupon($request->get('coupon'))
                 ->change($request->all())
-                ->finish();
+                ->finish(null, $request->get('reason'), $request->get('custom'));
 
             $flash = 'subscribed';
             $routeOptions = ['success' => 1];
@@ -126,7 +128,7 @@ class SubscriptionController extends Controller
                 ->withSuccess(__('settings.subscription.success.' . $flash))
                 ->with('sub_tracking', $flash)
                 ->with('sub_value', $this->subscription->subscriptionValue());
-        } catch(IncompletePayment $exception) {
+        } catch (IncompletePayment $exception) {
             session()->put('subscription_callback', $request->get('payment_id'));
             return redirect()->route(
                 'cashier.payment',
