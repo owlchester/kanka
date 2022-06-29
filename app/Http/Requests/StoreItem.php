@@ -26,16 +26,17 @@ class StoreItem extends FormRequest
      */
     public function rules()
     {
-        return $this->clean([
+        $rules = [
             'name' => 'required|max:191',
             'type' => 'nullable|max:191',
-            'location_id', 'nullable|integer|exists:locations,id',
-            'character_id', 'nullable|integer|exists:character,id',
+            'location_id' => 'nullable|numeric|exists:locations,id',
+            'character_id' => 'nullable|numeric|exists:characters,id',
             'image' => 'mimes:jpeg,png,jpg,gif,webp|max:' . auth()->user()->maxUploadSize(),
             'image_url' => 'nullable|url|active_url',
             'template_id' => 'nullable',
             'price' => 'nullable|string|max:191',
             'size' => 'nullable|string|max:191',
-        ]);
+        ];
+        return $this->clean($rules);
     }
 }
