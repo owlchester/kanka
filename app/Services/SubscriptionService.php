@@ -124,9 +124,10 @@ class SubscriptionService
     }
 
     /**
+     * @param array $request
      * @return $this
      */
-    public function request(Request $request): self
+    public function request(array $request): self
     {
         $this->request = $request;
         return $this;
@@ -244,8 +245,8 @@ class SubscriptionService
         if ($this->downgrading()) {
             SubscriptionDowngradedEmailJob::dispatch(
                 $this->user,
-                $this->request->get('reason'),
-                $this->request->get('custom')
+                Arr::get($this->request, 'reason'),
+                Arr::get($this->request, 'reason_custom')
             );
             $this->user->log(UserLog::TYPE_SUB_DOWNGRADE);
             return $this;

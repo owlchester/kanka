@@ -9,15 +9,15 @@
     Changed subscription for user {{ $user->name }} (#{{ $user->id }}) <a href="mailto:{{ $user->email }}">{{ $user->email }}</a>.
 </p>
 @if (!empty($custom))
-        <p>
-            <strong>Reason provided: </strong><br />
-            {!! nl2br(e($custom)) !!}
-        </p>
-    @elseif ($reason)
-        <p>
-            <strong>Reason provided: </strong><br />
-            {{ $reason }}<br />
-        </p>
-    @endif
+    <p>
+        <strong>Reason provided: </strong><br />
+        {!! nl2br(e($custom)) !!}
+    </p>
+@elseif ($reason)
+    <p>
+        <strong>Reason provided: </strong><br />
+        {{ $reason }}<br />
+    </p>
+@endif
 </body>
 </html>
