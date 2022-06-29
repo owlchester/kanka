@@ -140,7 +140,7 @@ return [
             ],
             'text'      => 'Sorry to see you go! Cancelling your subscription will keep it active until your next billing cycle, after which you will lose your campaign boosts and other benefits related to supporting Kanka. Feel free to fill out the following form to inform us what we can do better, or what lead to your decision.',
         ],
-        'cancelled'             => 'Your subscription has been cancelled. You can renew a subscription once your current subscription ends.',
+        'cancelled'             => 'Your subscription has been cancelled. You can renew a subscription once your current subscription ends after :date.',
         'change'                => [
             'text'  => [
                 'monthly'   => 'You are subscribing at the :tier tier, billed monthly for :amount.',
