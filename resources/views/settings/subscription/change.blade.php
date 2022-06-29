@@ -66,7 +66,7 @@
                         @if ($isDowngrading)
 
                             <p class="help-block">
-                                {!! __('settings.subscription.cancel.text')!!}
+                                {!! __('settings.subscription.upgrade_downgrade.downgrade.provide_reason')!!}
                             </p>
 
                             <div class="form-group mb-5">
@@ -76,14 +76,13 @@
                                     'financial' => __('settings.subscription.cancel.options.financial'),
                                     'not_using' => __('settings.subscription.cancel.options.not_using'),
                                     'missing_features' => __('settings.subscription.cancel.options.missing_features'),
-                                    'competitor' => __('settings.subscription.cancel.options.competitor'),
                                     'custom' => __('settings.subscription.cancel.options.custom')
-                                ], null, ['class' => 'form-control mb-5', 'id' => 'downgrade-reason-select']) !!}
+                                ], null, ['class' => 'form-control mb-5 select-reveal-field', 'data-change-target' => '#downgrade-reason-custom']) !!}
                                 {!! Form::textarea(
                                     'reason_custom',
                                     null,
                                     [
-                                        'placeholder' => __('settings.subscription.placeholders.reason'),
+                                        'placeholder' => __('settings.subscription.placeholders.downgrade_reason'),
                                         'class' => 'form-control',
                                         'style' => 'display: none',
                                         'rows' => 4,
@@ -220,7 +219,7 @@
     'missing_features' => __('settings.subscription.cancel.options.missing_features'),
     'competitor' => __('settings.subscription.cancel.options.competitor'),
     'custom' => __('settings.subscription.cancel.options.custom')
-], null, ['class' => 'form-control mb-5', 'id' => 'cancel-reason-select']) !!}
+], null, ['class' => 'form-control mb-5 select-reveal-field', 'data-change-target' => '#cancel-reason-custom']) !!}
             {!! Form::textarea(
                 'reason_custom',
                 null,

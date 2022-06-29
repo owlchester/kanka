@@ -28,11 +28,12 @@ function initStripe() {
 
 function initCancelListener()
 {
-    $('#cancel-reason-select').change(function (e) {
+    $('.select-reveal-field').change(function (e) {
+        let target = $(this).data('change-target');
         if (this.value === 'custom') {
-            $('#cancel-reason-custom').show();
+            $(target).show();
         } else {
-            $('#cancel-reason-custom').hide();
+            $(target).hide();
         }
     });
 }

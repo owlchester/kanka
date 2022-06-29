@@ -114,7 +114,7 @@ class SubscriptionController extends Controller
                 ->period($request->get('period'))
                 ->coupon($request->get('coupon'))
                 ->change($request->all())
-                ->finish(null, $request->get('reason'), $request->get('custom'));
+                ->finish();
 
             $flash = 'subscribed';
             $routeOptions = ['success' => 1];

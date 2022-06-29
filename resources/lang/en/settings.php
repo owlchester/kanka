@@ -38,7 +38,7 @@ return [
                 'add'       => 'Your Discord account has been linked.',
                 'remove'    => 'Your Discord account has been unlinked.',
             ],
-            'unlock'    => 'Unlock Discord roles',   
+            'unlock'    => 'Unlock Discord roles',
             'text'      => 'Access your subscription roles automatically.',
         ],
         'title'     => 'App Integration',
@@ -205,6 +205,7 @@ return [
         ],
         'placeholders'          => [
             'reason'    => 'Optionally tell us why you are no longer supporting Kanka. Was a feature missing? Did your financial situation change?',
+            'downgrade_reason' => 'Optionally tell us why you are downgrading your subscription.',
         ],
         'plans'                 => [
             'cost_monthly'  => ':currency :amount billed monthly',
@@ -244,6 +245,7 @@ return [
                     'end'   => 'Your current tier will stay active until the end of your current billing cycle, after which you will be downgraded to your new tier.',
                 ],
                 'title'     => 'When downgrading to a lower tier',
+                'provide_reason' => 'If you can, please share with us why you are downgrading your subscription.'
             ],
             'upgrade'   => [
                 'bullets'   => [

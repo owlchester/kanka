@@ -63,6 +63,9 @@ class SubscriptionService
     /** @var int Value of the subscription */
     protected $subscriptionValue = 0;
 
+    /** @var Request The request object */
+    protected $request;
+
     /**
      * @param User $user
      * @return $this
@@ -120,6 +123,19 @@ class SubscriptionService
         return $this;
     }
 
+    /**
+     * @return $this
+     */
+    public function request(Request $request): self
+    {
+        $this->request = $request;
+        return $this;
+    }
+
+    /**
+     * @param $coupon
+     * @return $this
+     */
     public function coupon($coupon): self
     {
         if ($this->period === 'yearly' && !empty($coupon)) {
@@ -145,6 +161,8 @@ class SubscriptionService
         } elseif ($this->toElemental()) {
             $this->plan = $this->elementalPlanID();
         }
+
+        $this->request($request);
 
         // Switching to kobold?
         if (empty($this->plan)) {
@@ -210,7 +228,7 @@ class SubscriptionService
      * @param string|null $planID
      * @return $this
      */
-    public function finish($planID = null, string $reason = null, string $custom = null): self
+    public function finish($planID = null): self
     {
         if (empty($planID) && !empty($this->plan)) {
             $planID = $this->plan;
@@ -224,7 +242,11 @@ class SubscriptionService
         // If downgrading, send admins an email, and let stripe deal with the rest. A user update hook will be thrown
         // when the user really changes. Probably?
         if ($this->downgrading()) {
-            SubscriptionDowngradedEmailJob::dispatch($this->user, $reason, $custom);
+            SubscriptionDowngradedEmailJob::dispatch(
+                $this->user,
+                $this->request->get('reason'),
+                $this->request->get('custom')
+            );
             $this->user->log(UserLog::TYPE_SUB_DOWNGRADE);
             return $this;
         }
