@@ -14,6 +14,7 @@ class ItemFilter extends DatagridFilter
             ->add('type')
             ->add('price')
             ->add('size')
+            ->add('item_id')
             ->location()
             ->character()
             ->isPrivate()

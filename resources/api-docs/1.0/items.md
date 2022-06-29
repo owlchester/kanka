@@ -48,7 +48,8 @@ The list of returned items can be filtered. The available filters are available 
             "character_id": 2,
             "type": "Weapon",
             "price": "25 gp",
-            "size": "1 lb."
+            "size": "1 lb.",
+            "item_id": 2
         }
     ]
 }
@@ -85,7 +86,8 @@ To get the details of a single item, use the following endpoint.
         "character_id": 2,
         "type": "Weapon",
         "price": "25 gp",
-        "size": "1 lb."
+        "size": "1 lb.",
+        "item_id": 2
     }
 
 }
@@ -114,6 +116,7 @@ To create a item, use the following endpoint.
 | `size` | `string` | The item's size |
 | `tags` | `array` | Array of tag ids |
 | `is_private` | `boolean` | If the item is only visible to `admin` members of the campaign |
+| `item_id` | `integer` | The ID of the item's parent item, if it has one |
 | `image_url` | `string` | URL to a picture to be used for the item |
 | `entity_image_uuid` | `string` | Gallery image UUID for the entity image (limited to superboosted campaigns) |
 | `entity_header_uuid` | `string` | Gallery image UUID for the entity header (limited to superboosted campaigns) |

@@ -67,6 +67,8 @@ Route::get('/families/tree', 'FamilyController@tree')->name('families.tree');
 // Items menu
 //Route::get('/items/{item}/map-points', 'ItemController@mapPoints')->name('items.map-points');
 Route::get('/items/{item}/inventories', 'ItemController@inventories')->name('items.inventories');
+Route::get('/items/tree', 'ItemController@tree')->name('items.tree');
+Route::get('/items/{item}/items', 'ItemController@items')->name('items.items');
 
 // Quest menus
 Route::get('/quests/tree', 'QuestController@tree')->name('quests.tree');
