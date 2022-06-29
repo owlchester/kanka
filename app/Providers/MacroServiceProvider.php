@@ -1,22 +1,20 @@
 <?php
-/**
- * This class contains the custom macros that we can use in blade views.
- */
+
 namespace App\Providers;
 
 use App\Facades\AdCache;
 use App\Facades\CampaignLocalization;
-use App\Facades\EntityPermission;
-use App\Facades\Img;
-use App\Models\Entity;
 use App\User;
 use Carbon\Carbon;
-use Form;
+use Collective\Html\FormFacade as Form;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 
 /**
  * Class MacroServiceProvider
+ *
+ * This class contains the custom macros that we can use in blade views.
+ *
  * @package App\Providers
  */
 class MacroServiceProvider extends ServiceProvider
@@ -31,7 +29,7 @@ class MacroServiceProvider extends ServiceProvider
     }
 
     /**
-     *
+     * Add macros related for forms
      */
     protected function addFormDirectives()
     {
@@ -96,36 +94,6 @@ class MacroServiceProvider extends ServiceProvider
             'fieldId',
             'options' => []
         ]);
-
-        // Not used yet.
-        Form::component('private', 'components.form.private', [
-            'fieldId',
-        ]);
-
-        /*Form::function($fieldId, $searchRouteName, $prefill = null, $placeholderKey = null) {
-
-            $placeholderKey = empty($placeholderKey) ? 'crud.placeholders.' . trim($fieldId) : $placeholderKey;
-
-            $selectedOption = [];
-            if (!empty($prefill) && $prefill instanceof MiscModel) {
-                $selectedOption = [$prefill->id => $prefill->name];
-            } else {
-                // Old?
-            }
-
-            return Form::select2(
-                $fieldId,
-                $selectedOption,
-                [],
-                [
-                    'id' => $fieldId,
-                    'class' => 'form-control select2',
-                    'style' => 'width: 100%',
-                    'data-url' => route($searchRouteName),
-                    'data-placeholder' => trans($placeholderKey)
-                ]
-            );
-        });*/
     }
 
     /**
@@ -134,16 +102,6 @@ class MacroServiceProvider extends ServiceProvider
      */
     protected function addCustomBladeDirectives()
     {
-        /*Blade::if('renderOnce', function ($key) {
-            $key = 'render-once-key-' . $key;
-            return defined($key)? false : define($key, true);
-        });*/
-
-        // If a webp fallback is needed
-        Blade::if('nowebp', function () {
-            return Img::nowebp();
-        });
-
         // Tutorial modal handler
         Blade::if('tutorial', function (string $tutorial) {
             // Not logged in? Don't bother
@@ -163,7 +121,7 @@ class MacroServiceProvider extends ServiceProvider
         });
 
         /** @ads() to show ads */
-        Blade::if('ads', function(string $section = null) {
+        Blade::if('ads', function (string $section = null) {
             if (empty(config('tracking.adsense'))) {
                 return false;
             }
@@ -231,16 +189,16 @@ class MacroServiceProvider extends ServiceProvider
         /**
          * Condition to show actions or elements to users who is a subscriber
          */
-        Blade::if('subscriber', function() {
-           if (auth()->guest()) {
-               return true;
-           }
+        Blade::if('subscriber', function () {
+            if (auth()->guest()) {
+                return true;
+            }
 
-           if (request()->get('_booster') === '0') {
-               return false;
-           }
+            if (request()->get('_booster') === '0') {
+                return false;
+            }
 
-           return auth()->user()->hasBoosters();
+            return auth()->user()->hasBoosters();
         });
     }
 }
