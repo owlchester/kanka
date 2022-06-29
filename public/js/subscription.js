@@ -27,11 +27,13 @@ function initStripe() {
 }
 
 function initCancelListener() {
-  $('#cancel-reason-select').change(function (e) {
+  $('.select-reveal-field').change(function (e) {
+    var target = $(this).data('change-target');
+
     if (this.value === 'custom') {
-      $('#cancel-reason-custom').show();
+      $(target).show();
     } else {
-      $('#cancel-reason-custom').hide();
+      $(target).hide();
     }
   });
 } // When the modal is opened and loaded, inject stripe if needed and the form validator

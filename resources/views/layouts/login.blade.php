@@ -18,7 +18,7 @@
     <link href="{{ mix('css/auth.css') }}" rel="stylesheet">
     @if (!config('fontawesome.kit'))<link href="/vendor/fontawesome/6.0.0/css/all.min.css" rel="stylesheet">@endif
 </head>
-<body  class="hold-transition register-page @nowebp webpfallback @endnowebp">
+<body  class="hold-transition register-page">
 @include('layouts._tracking-fallback')
     <div class="login-box">
 

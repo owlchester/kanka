@@ -1283,6 +1283,13 @@ summary {
   margin-right: 5px;
 }
 
+.tooltip-inner {
+  padding: 3px 3px;
+}
+.tooltip-inner .tooltip-content {
+  padding: 0 5px;
+}
+
 .tooltip-tags {
   font-size: 1rem;
   line-height: 1.2;
@@ -2216,6 +2223,20 @@ div.mce-fullscreen {
 /** Code mirror **/
 .CodeMirror {
   resize: vertical;
+}
+
+.advanced-mention-name {
+  --advanced-mention-background: #383898;
+  --advanced-mention-text: white;
+}
+.advanced-mention-name:after {
+  margin-left: 0.1rem;
+  content: attr(data-name);
+  font-size: 0.7rem;
+  background-color: var(--advanced-mention-background);
+  color: var(--advanced-mention-text);
+  padding: 0.15rem;
+  border-radius: 0.25rem;
 }
 
 .box {
@@ -4641,7 +4662,7 @@ dialog {
   justify-content: space-between;
   align-items: flex-start;
   padding-block: 0.5rem;
-  padding-inline: 1.5rem;
+  padding-inline: 1rem;
   background-color: var(--dialog-header-background);
   color: var(--dialog-header-text);
 }

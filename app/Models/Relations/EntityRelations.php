@@ -62,6 +62,9 @@ use Illuminate\Database\Eloquent\Collection;
  */
 trait EntityRelations
 {
+    /** @var bool|Collection|Tag[] List of tags attached to the entity */
+    protected $tagsWithEntity = false;
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
@@ -222,8 +225,9 @@ trait EntityRelations
         );
     }
 
-    protected $tagsWithEntity = false;
-
+    /**
+     * @return Collection|Tag[]
+     */
     public function tagsWithEntity()
     {
         if ($this->tagsWithEntity === false) {

@@ -50,7 +50,7 @@
                 insert: function(item) {
                     // Attribute
                     if (item.value) {
-                        @if (auth()->user()->advancedMentions)
+                        @if (auth()->user()->alwaysAdvancedMentions())
                             return '{attribute:' + item.id + '}';
                         @else
                             return '<a href="#" class="attribute attribute-mention" data-attribute="{attribute:' + item.id + '}">{' + item.name + '}</a>'
@@ -58,7 +58,7 @@
                     }
                     else if (item.id) {
                         var mention = '[' + item.model_type + ':' + item.id + ']';
-                        @if (auth()->user()->advancedMentions)
+                        @if (auth()->user()->alwaysAdvancedMentions())
                         return mention;
                         @else
                         if (advancedRequest) {

@@ -20,6 +20,10 @@ class SubscriptionDowngradedEmailJob implements ShouldQueue
     /** @var int user id */
     public $userId;
 
+    /** @var string */
+    public $reason;
+    public $custom;
+
     /** @var int how many times the job can fail before quitting */
     public $tries = 3;
 
@@ -28,9 +32,11 @@ class SubscriptionDowngradedEmailJob implements ShouldQueue
      * @param User $user
      * @param bool $new if it's a new sub or a changed sub
      */
-    public function __construct(User $user)
+    public function __construct(User $user, string $reason = null, string $custom = null)
     {
         $this->userId = $user->id;
+        $this->reason = $reason;
+        $this->custom = $custom;
     }
 
     public function handle()
@@ -44,7 +50,7 @@ class SubscriptionDowngradedEmailJob implements ShouldQueue
         // Send an email to the admins
         Mail::to('hello@kanka.io')
             ->send(
-                new DowngradedSubscriptionMail($user)
+                new DowngradedSubscriptionMail($user, $this->reason, $this->custom)
             );
     }
 }

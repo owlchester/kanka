@@ -25,6 +25,7 @@
                 </div>
             </div>
         </div>
+        @if (request()->has('clients'))
         <div class="col-md-6">
 
             <div class="box box-solid">
@@ -34,6 +35,7 @@
                 </div>
             </div>
         </div>
+        @endif
     </div>
 @endsection
 

@@ -458,7 +458,7 @@ abstract class MiscModel extends Model
      */
     public function getEntryForEditionAttribute()
     {
-        $text = Mentions::edit($this);
+        $text = Mentions::parseForEdit($this);
         return $text;
     }
 

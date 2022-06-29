@@ -62,13 +62,6 @@ trait Picture
             }
         }
 
-        $nowebp = Img::nowebp();
-        $endsWith = Str::endsWith($avatar, '?webpfallback');
-        if (!$nowebp && $endsWith) {
-            $avatar = Str::replaceLast('?webpfallback', null, $avatar);
-        } elseif ($nowebp && !$endsWith) {
-            $avatar .= '?webpfallback';
-        }
         return $avatar;
     }
 
