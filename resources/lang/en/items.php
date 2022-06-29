@@ -12,7 +12,7 @@ return [
         'price'     => 'Price',
         'size'      => 'Size',
         'type'      => 'Type',
-        'item_id'   => 'Parent Item ID',
+        'item_id'   => 'Parent Item',
         'items'     => 'Sub Items',      
     ],
     'index'         => [
@@ -28,7 +28,7 @@ return [
         'price'     => 'Price of the item',
         'size'      => 'Size, Weight, Dimensions',
         'type'      => 'Weapon, Potion, Artefact',
-        'parent'    => 'ID of the parent item'
+        'parent'    => 'Parent Item'
     ],
     'show'          => [
         'tabs'  => [
@@ -36,6 +36,6 @@ return [
         ],
     ],
     'hints'         => [
-        'items'    => 'A web of interlocking items can be built using the Parent Item field.',
+        'items'    => 'Organise items by using the parent item field.',
     ],
 ];

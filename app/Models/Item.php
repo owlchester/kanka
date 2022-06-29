@@ -24,6 +24,7 @@ use Illuminate\Database\Eloquent\Builder;
  * @property Character $character
  * @property Location $location
  * @property Item[] $items
+ * @property Item $item
  */
 class Item extends MiscModel
 {
@@ -51,7 +52,13 @@ class Item extends MiscModel
         'location_id',
         'is_private',
     ];
-
+    protected $sortable = [
+        'name',
+        'type',
+        'price',
+        'size',
+        'item_id',
+    ];
     /**
      * Searchable fields
      * @var array
@@ -155,7 +162,7 @@ class Item extends MiscModel
      */
     public function datagridSelectFields(): array
     {
-        return ['character_id', 'location_id', 'price', 'size'];
+        return ['character_id', 'location_id', 'price', 'size', 'item_id'];
     }
 
     /**
@@ -189,6 +196,7 @@ class Item extends MiscModel
     {
         return $this->hasMany('App\Models\Inventory', 'item_id');
     }
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
@@ -196,6 +204,7 @@ class Item extends MiscModel
     {
         return $this->hasMany('App\Models\Item', 'item_id', 'id');
     }
+
     /**
      * Parent
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

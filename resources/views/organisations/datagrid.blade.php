@@ -17,10 +17,13 @@
         ],
         // Location
         [
-            'type' => 'avatar',
-            'parent' => 'location',
-            'parent_route' => 'locations',
-            'visible' => $campaignService->enabled('locations'),
+            'label' => __('quests.fields.quest'),
+            'field' => 'quest.name',
+            'render' => function($model) {
+                if ($model->quest) {
+                    return '<a href="' . route('quests.show', $model->quest->id) . '">' . e($model->quest->name) . '</a>';
+                }
+            }
         ],
         [
             'type' => 'location',

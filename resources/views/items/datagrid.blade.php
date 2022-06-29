@@ -12,6 +12,16 @@
         // Name
         'name',
         'type',
+        //Item_id
+        [
+            'label' => __('items.fields.item_id'),
+            'field' => 'item_id',
+            'render' => function($model) {
+                if ($model->item_id) {                    
+                    return '<a href="' . route('quests.show', $model->item_id) . '">' . e($model->item->name) . '</a>';
+                }
+            }
+        ],
         'price',
         'size',
         // Location
