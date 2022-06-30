@@ -9,8 +9,7 @@
 <div class="row">
     <div class="col-md-6">
         <div class="form-group">
-        <label>{{ __('items.fields.item_id') }}</label>
-        {!! Form::number('item_id', null, ['placeholder' => __('items.placeholders.parent'), 'class' => 'form-control']) !!}
+        @include('cruds.fields.item', ['parent' => true, 'from' => isset($model) ? $model : null, 'quickCreator' => true])
         </div>
     </div>
 </div>
