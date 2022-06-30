@@ -2201,7 +2201,7 @@ function initSpectrum() {
     return;
   }
 
-  $.each($('.spectrum'), function (i) {
+  $.each($('.spectrum'), function () {
     var _$$data;
 
     $(this).spectrum({
@@ -2235,7 +2235,7 @@ function treeViewInit() {
   }
 
   var link = treeViewLoader.data('url');
-  $.each($('.table-nested > tbody > tr'), function (index) {
+  $.each($('.table-nested > tbody > tr'), function () {
     var children = $(this).data('children');
 
     if (parseInt(children) > 0) {
@@ -2253,6 +2253,7 @@ function treeViewInit() {
 }
 /**
  * Save and manage tabs for when refreshing
+ * Move this to crud or forms
  */
 
 
@@ -2272,7 +2273,7 @@ function manageTabs() {
     var dataToggle = $(e.target).attr('ajax-modal');
     var nohash = $(e.target).data("nohash");
 
-    if (dataToggle && dataToggle == 'ajax-modal' || nohash) {
+    if (dataToggle && dataToggle === 'ajax-modal' || nohash) {
       // Modal? Don't do more.
       return true;
     } // We fake a tab_ to avoid page jumps from the browser
@@ -2371,6 +2372,54 @@ function initDialogs() {
       if (!isInDialog && event.target.tagName === 'DIALOG') {
         target.close();
       }
+    });
+  });
+  $('[data-toggle="dialog-ajax"]').click(function (e) {
+    e.preventDefault();
+    var target = $(this).data('target');
+    var url = $(this).data('url');
+    target = document.getElementById(target);
+    target.showModal();
+    target.addEventListener('click', function (event) {
+      var rect = target.getBoundingClientRect();
+      var isInDialog = rect.top <= event.clientY && event.clientY <= rect.top + rect.height && rect.left <= event.clientX && event.clientX <= rect.left + rect.width;
+
+      if (!isInDialog && event.target.tagName === 'DIALOG') {
+        target.close();
+      }
+    });
+    $.ajax({
+      url: url
+    }).done(function (success) {
+      $(target).html(success).show();
+      $('.btn-manage-perm').click(function (e) {
+        e.preventDefault();
+        target.close();
+        var permTarget = $(this).data('target');
+        $(permTarget).click();
+      }); // We should move this to a custom event handler?
+
+      $('#quick-privacy-select').change(function () {
+        var toggleUrl = $(this).data('url');
+        $.ajaxSetup({
+          headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+          }
+        });
+        $.ajax({
+          url: toggleUrl,
+          type: 'POST'
+        }).done(function (success) {
+          window.showToast(success.toast);
+
+          if (!success.status) {
+            $('body').addClass('kanka-entity-private');
+          } else {
+            $('body').removeClass('kanka-entity-private');
+          } //target.close();
+
+        });
+      });
     });
   });
 } // Splitting off the js files into logical blocks

@@ -70,3 +70,13 @@
     margin-left: 5px;
   }
 }
+
+/** Privacy popup **/
+.dynamic-list {
+  display: inline-block;
+  a:not(:last-of-type), span:not(:last-of-type) {
+    &:after {
+      content: ', ';
+    }
+  }
+}

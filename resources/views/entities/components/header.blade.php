@@ -125,11 +125,10 @@ if($campaignService->campaign()->boosted() && $entity->hasHeaderImage($superboos
                     @endif
 
                     @if (auth()->check() && auth()->user()->isAdmin())
-                        @if ($model->is_private)
-                            <i role="button" tabindex="0" class="fa-solid fa-lock entity-icons btn-popover" title="{{ __('entities/permissions.quick.title') }}" data-content="{{ __('entities/permissions.quick.private') }}"></i>
-                        @else
-                            <i role="button" tabindex="0" class="fa-solid fa-lock-open entity-icons btn-popover" title="{{ __('entities/permissions.quick.title') }}" data-content="{{ __('entities/permissions.quick.public') }}"></i>
-                        @endif
+                        <span role="button" tabindex="0" class="entity-icons entity-privacy-icon" data-toggle="dialog-ajax" data-url="{{ route('entities.quick-privacy', $model->entity) }}" data-target="quick-privacy">
+                            <i class="fa-solid fa-lock" title="{{ __('entities/permissions.quick.title') }}" data-toggle="tooltip"></i>
+                            <i class="fa-solid fa-lock-open" title="{{ __('entities/permissions.quick.title') }}" data-toggle="tooltip"></i>
+                        </span>
                     @endif
 
                     <div class="btn-group entity-actions">
@@ -158,7 +157,6 @@ if($campaignService->campaign()->boosted() && $entity->hasHeaderImage($superboos
                     @if ($model->entity)
                         @if(auth()->check())
                             @can('update', $model)
-
                                 <li>
                                     <a href="{{ route('entities.story.reorder', $model->entity->id) }}">
                                         <i class="fa-solid fa-list-ol"></i> {{ __('entities/story.reorder.icon_tooltip') }}
@@ -172,15 +170,15 @@ if($campaignService->campaign()->boosted() && $entity->hasHeaderImage($superboos
                                     </a>
                                 </li>
                         @if (auth()->user()->isAdmin())
-                                    <li>
-                                        <a href="{{ route('entities.template', $entity) }}">
-                                            @if($entity->is_template)
-                                                <i class="fa-regular fa-star" aria-hidden="true"></i> {{ __('entities/actions.templates.unset') }}
-                                            @else
-                                                <i class="fa-solid fa-star" aria-hidden="true"></i> {{ __('entities/actions.templates.set') }}
-                                            @endif
-                                        </a>
-                                    </li>
+                                <li>
+                                    <a href="{{ route('entities.template', $entity) }}">
+                                        @if($entity->is_template)
+                                            <i class="fa-regular fa-star" aria-hidden="true"></i> {{ __('entities/actions.templates.unset') }}
+                                        @else
+                                            <i class="fa-solid fa-star" aria-hidden="true"></i> {{ __('entities/actions.templates.set') }}
+                                        @endif
+                                    </a>
+                                </li>
                         @endif
                                 <li class="divider"></li>
                     @endif
@@ -285,6 +283,11 @@ if($campaignService->campaign()->boosted() && $entity->hasHeaderImage($superboos
                     {!! __('callouts.booster.learn-more') !!}
                 </a>
             @endif
+        </article>
+    </dialog>
+    <dialog class="dialog rounded-2xl text-center" id="quick-privacy">
+        <article class="loader text-center p-5">
+            <i class="fa-solid fa-spinner fa-spin fa-2x"></i>
         </article>
     </dialog>
 @endsection

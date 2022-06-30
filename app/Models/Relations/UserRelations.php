@@ -1,11 +1,10 @@
 <?php
 
-
 namespace App\Models\Relations;
-
 
 use App\Models\Campaign;
 use App\Models\CampaignBoost;
+use App\Models\CampaignPermission;
 use App\Models\CampaignRole;
 use App\Models\CampaignSubmission;
 use App\Models\Entity;
@@ -14,22 +13,24 @@ use App\Models\Plugin;
 use App\Models\Referral;
 use App\Models\Role;
 use App\Models\UserApp;
+use Illuminate\Database\Eloquent\Collection;
 
 /**
  * Trait UserRelations
  * @package App\Models\Relations
  *
- * @property CampaignBoost[] $boosts
+ * @property Collection|CampaignBoost[] $boosts
  * @property CampaignRole $campaignRoles
- * @property Campaign[] $campaigns
- * @property Campaign[] $following
+ * @property Collection|Campaign[] $campaigns
+ * @property Collection|Campaign[] $following
  * @property Campaign $lastCampaign
  * @property Referral $referrer
- * @property CampaignSubmission[] $submissions
- * @property Entity[] $entities
- * @property Plugin[] $plugins
- * @property UserApp[] $apps
- * @property CollectionRole[] $roles
+ * @property Collection|CampaignSubmission[] $submissions
+ * @property Collection|Entity[] $entities
+ * @property Collection|Plugin[] $plugins
+ * @property Collection|UserApp[] $apps
+ * @property Collection|Role[] $roles
+ * @property Collection|CampaignPermission[] $permissions
  */
 trait UserRelations
 {

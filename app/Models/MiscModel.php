@@ -406,7 +406,8 @@ abstract class MiscModel extends Model
                 'route' => 'entities.permissions',
                 'entity' => true,
                 'icon' => 'fa-solid fa-lock',
-                'ajax' => true
+                'ajax' => true,
+                'id' => 'entity-permissions-link'
             ];
         }
 

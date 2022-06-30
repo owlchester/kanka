@@ -1551,6 +1551,20 @@ summary {
   border: unset;
 }
 
+.entity-privacy-icon .fa-lock-open {
+  display: inline-block;
+}
+.entity-privacy-icon .fa-lock {
+  display: none;
+}
+
+.kanka-entity-private .entity-privacy-icon .fa-lock-open {
+  display: none;
+}
+.kanka-entity-private .entity-privacy-icon .fa-lock {
+  display: inline-block;
+}
+
 :root {
   --sidebar-section-background: none;
   --sidebar-section-padding: none;
@@ -1697,7 +1711,7 @@ summary {
 .entity-header .entity-name-header .entity-name-icons-3 {
   min-width: 100px;
 }
-.entity-header .entity-name-header i.entity-icons {
+.entity-header .entity-name-header .entity-icons {
   margin-left: 10px;
   font-size: 18px;
   cursor: pointer;
@@ -1734,7 +1748,7 @@ summary {
   text-shadow: rgba(0, 0, 0, 0.5) 0 1px 4px;
   color: white;
 }
-.entity-grid > .entity-header.with-entity-banner i.entity-icons {
+.entity-grid > .entity-header.with-entity-banner .entity-icons {
   color: white;
 }
 .entity-grid > .entity-header.with-entity-banner .entity-header-sub {
@@ -1784,7 +1798,7 @@ summary {
   .entity-header .entity-header-text {
     display: block;
   }
-  .entity-header .entity-name-header i.entity-icons {
+  .entity-header .entity-name-header .entity-icons {
     margin-bottom: 0;
   }
   .entity-header .entity-name {
@@ -1954,6 +1968,14 @@ body[class*=kanka-entity] .content-wrapper > .content {
 .kanka-entity-timeline > .box-header > .box-tools i {
   font-size: 14px;
   margin-left: 5px;
+}
+
+/** Privacy popup **/
+.dynamic-list {
+  display: inline-block;
+}
+.dynamic-list a:not(:last-of-type):after, .dynamic-list span:not(:last-of-type):after {
+  content: ", ";
 }
 
 :root {
@@ -4630,6 +4652,11 @@ body.ab-testing-second .ab-testing-a {
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
+}
+
+.line-through {
+  -webkit-text-decoration-line: line-through;
+          text-decoration-line: line-through;
 }
 
 dialog {
