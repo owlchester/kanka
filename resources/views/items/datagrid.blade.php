@@ -17,8 +17,8 @@
             'label' => __('items.fields.item_id'),
             'field' => 'item_id',
             'render' => function($model) {
-                if ($model->item_id) {                    
-                    return '<a href="' . route('quests.show', $model->item_id) . '">' . e($model->item->name) . '</a>';
+                if ($model->item) {                    
+                    return '<a href="' . route('items.show', $model->item_id) . '">' . e($model->item->name) . '</a>';
                 }
             }
         ],
