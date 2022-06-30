@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use App\Models\Concerns\Blameable;
-use App\Models\Concerns\Filterable;
+use App\Models\Concerns\HasFilters;
 use App\Models\Concerns\Orderable;
 use App\Models\Concerns\Paginatable;
 use App\Models\Concerns\Searchable;
@@ -41,7 +41,7 @@ class Relation extends Model
         Starred,
         Paginatable,
         Blameable,
-        Filterable,
+        HasFilters,
         Sortable,
         Searchable,
         Orderable,
@@ -83,19 +83,6 @@ class Relation extends Model
         'mirror_id',
         'visibility_id',
     ];
-
-    public $filterableColumns = [
-        'name',
-        'attitude',
-        'relation',
-        'owner_id',
-        'target_id',
-        'is_star',
-        'is_mirrored',
-    ];
-
-    // Reset the default filters since they don't apply here
-    public $defaultFilterableColumns = [];
 
     public $defaultOrderField = 'relation';
 
@@ -253,5 +240,31 @@ class Relation extends Model
     public function actionDeleteConfirmOptions(): string
     {
         return 'data-mirrored="' . $this->isMirrored() . '"';
+    }
+
+    /**
+     * Relations don't use the default filterable columns available to entities
+     * @return array
+     */
+    protected function defaultFilterableColumns(): array
+    {
+        return [];
+    }
+
+    /**
+     * Define the fields unique to this model that can be used on filters
+     * @return string[]
+     */
+    public function filterableColumns(): array
+    {
+        return [
+            'name',
+            'attitude',
+            'relation',
+            'owner_id',
+            'target_id',
+            'is_star',
+            'is_mirrored',
+        ];
     }
 }

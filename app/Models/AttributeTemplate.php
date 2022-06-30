@@ -69,17 +69,6 @@ class AttributeTemplate extends MiscModel
         'entity_type_id'
     ];
 
-    /**
-     * Fields that can be filtered on
-     * @var array
-     */
-    protected $filterableColumns = [
-        'name',
-        'attribute_template_id',
-        'tags',
-        'is_private',
-    ];
-
     /** @var bool Attribute templates don't have inventory, relations or abilities */
     public $hasRelations = false;
 
@@ -252,5 +241,16 @@ class AttributeTemplate extends MiscModel
             return true;
         }
         return false;
+    }
+
+    /**
+     * Define the fields unique to this model that can be used on filters
+     * @return string[]
+     */
+    public function filterableColumns(): array
+    {
+        return [
+            'attribute_template_id',
+        ];
     }
 }

@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Models\Concerns\Filterable;
+use App\Models\Concerns\HasFilters;
 use App\Models\Concerns\Searchable;
 use App\Models\Concerns\Sortable;
 use App\User;
@@ -18,7 +18,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class AdminInvite extends Model
 {
-    use Filterable, Sortable, Searchable;
+    use HasFilters, Sortable, Searchable;
 
     public $sortableColumns = [
         'token',

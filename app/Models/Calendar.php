@@ -101,14 +101,6 @@ class Calendar extends MiscModel
     protected $loadedMonthAliases = false;
 
     /**
-     * Fields that can be filtered on
-     * @var array
-     */
-    protected $filterableColumns = [
-        'calendar_id',
-    ];
-
-    /**
      * Entity type
      * @var string
      */
@@ -812,5 +804,16 @@ class Calendar extends MiscModel
     public function yearlyLayout(): bool
     {
         return !empty($this->parameters['layout']) && $this->parameters['layout'] === 'yearly';
+    }
+
+    /**
+     * Define the fields unique to this model that can be used on filters
+     * @return string[]
+     */
+    public function filterableColumns(): array
+    {
+        return [
+            'calendar_id',
+        ];
     }
 }

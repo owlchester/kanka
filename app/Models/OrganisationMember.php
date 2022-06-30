@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Models\Concerns\Filterable;
+use App\Models\Concerns\HasFilters;
 use App\Models\Concerns\Paginatable;
 use App\Models\Concerns\Privatable;
 use App\Models\Concerns\SortableTrait;
@@ -29,7 +29,7 @@ use Illuminate\Database\Query\Builder;
 class OrganisationMember extends Model
 {
     use Paginatable;
-    use Filterable;
+    use HasFilters;
     use SortableTrait;
     use Privatable;
 

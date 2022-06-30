@@ -72,18 +72,6 @@ class Item extends MiscModel
     protected $entityType = 'item';
 
     /**
-     * Fields that can be filtered on
-     * @var array
-     */
-    protected $filterableColumns = [
-        'location_id',
-        'character_id',
-        'price',
-        'size',
-        'item_id',
-    ];
-
-    /**
      * Fields that can be sorted on
      * @var array
      */
@@ -256,5 +244,20 @@ class Item extends MiscModel
         }
 
         return false;
+    }
+
+    /**
+     * Define the fields unique to this model that can be used on filters
+     * @return string[]
+     */
+    public function filterableColumns(): array
+    {
+        return [
+            'location_id',
+            'character_id',
+            'price',
+            'size',
+            'item_id',
+        ];
     }
 }

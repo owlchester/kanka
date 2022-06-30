@@ -38,8 +38,8 @@ class Conversation extends MiscModel
         'is_closed'
     ];
 
-    const TARGET_USERS = 1;
-    const TARGET_CHARACTERS = 2;
+    public const TARGET_USERS = 1;
+    public const TARGET_CHARACTERS = 2;
 
     /**
      * Entity type
@@ -52,15 +52,6 @@ class Conversation extends MiscModel
      * @var array
      */
     protected $searchableColumns  = ['name'];
-
-    /**
-     * Fields that can be filtered on
-     * @var array
-     */
-    protected $filterableColumns = [
-        'target_id',
-        'is_closed',
-    ];
 
     /**
      * Fields that can be sorted on
@@ -165,5 +156,17 @@ class Conversation extends MiscModel
     public function showProfileInfo(): bool
     {
         return true;
+    }
+
+    /**
+     * Define the fields unique to this model that can be used on filters
+     * @return string[]
+     */
+    public function filterableColumns(): array
+    {
+        return [
+            'target_id',
+            'is_closed',
+        ];
     }
 }

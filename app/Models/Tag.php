@@ -54,14 +54,6 @@ class Tag extends MiscModel
 
     protected $explicitFilters = ['tag_id'];
 
-    /**
-     * Fields that can be filtered on
-     * @var array
-     */
-    protected $filterableColumns = [
-        'colour',
-    ];
-
     protected $sortable = [
         'name',
         'tag.name',
@@ -338,5 +330,16 @@ class Tag extends MiscModel
             return true;
         }
         return false;
+    }
+
+    /**
+     * Define the fields unique to this model that can be used on filters
+     * @return string[]
+     */
+    public function filterableColumns(): array
+    {
+        return [
+            'colour',
+        ];
     }
 }

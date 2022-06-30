@@ -165,4 +165,14 @@ class ConversationMessage extends MiscModel
     {
         return $this->isGroupped;
     }
+
+    /**
+     * Define the fields unique to this model that can be used on filters
+     * @return string[]
+     */
+    public function filterableColumns(): array
+    {
+        return [
+        ];
+    }
 }

@@ -55,15 +55,6 @@ class Timeline extends MiscModel
     ];
 
     /**
-     * Fields that can be filtered on
-     * @var array
-     */
-    protected $filterableColumns = [
-        'calendar_id',
-        'timeline_id',
-    ];
-
-    /**
      * Fields that can be sorted on
      * @var array
      */
@@ -202,5 +193,17 @@ class Timeline extends MiscModel
     public function entityTypeId(): int
     {
         return (int) config('entities.ids.timeline');
+    }
+
+    /**
+     * Define the fields unique to this model that can be used on filters
+     * @return string[]
+     */
+    public function filterableColumns(): array
+    {
+        return [
+            'calendar_id',
+            'timeline_id',
+        ];
     }
 }

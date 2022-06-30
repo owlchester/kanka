@@ -20,16 +20,6 @@ class ConversationParticipant extends MiscModel
     ];
 
     /**
-     * Fields that can be filtered on
-     * @var array
-     */
-    protected $filterableColumns = [
-        'conversation_id',
-        'created_at',
-        'created_by',
-    ];
-
-    /**
      * We want to use the dice_roll entity type for permissions
      * @var string
      */
@@ -142,5 +132,17 @@ class ConversationParticipant extends MiscModel
         }
 
         return $this->loadedEntity;
+    }
+
+    /**
+     * Define the fields unique to this model that can be used on filters
+     * @return string[]
+     */
+    public function filterableColumns(): array
+    {
+        return [
+            'conversation_id',
+            'created_at',
+        ];
     }
 }

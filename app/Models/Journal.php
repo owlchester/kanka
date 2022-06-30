@@ -74,20 +74,6 @@ class Journal extends MiscModel
     protected $entityType = 'journal';
 
     /**
-     * Fields that can be filtered on
-     * @var array
-     */
-    protected $filterableColumns = [
-        'date',
-        'character_id',
-        'location_id',
-        'journal_id',
-        'author_id',
-        'date_start',
-        'date_end',
-    ];
-
-    /**
      * Fields that can be sorted on
      * @var array
      */
@@ -247,5 +233,22 @@ class Journal extends MiscModel
         }
 
         return false;
+    }
+
+    /**
+     * Define the fields unique to this model that can be used on filters
+     * @return string[]
+     */
+    public function filterableColumns(): array
+    {
+        return [
+            'date',
+            'character_id',
+            'location_id',
+            'journal_id',
+            'author_id',
+            'date_start',
+            'date_end',
+        ];
     }
 }

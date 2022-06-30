@@ -58,7 +58,7 @@ class AssetController extends Controller
     {
         $this->authorize('update', $entity->child);
 
-        $typeID = request()->get('type_id');
+        $typeID = (int) request()->get('type');
         if ($typeID == EntityAsset::TYPE_FILE) {
             return $this->createFile($entity);
         } elseif ($typeID == EntityAsset::TYPE_LINK) {

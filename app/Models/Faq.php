@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Models\Concerns\Filterable;
+use App\Models\Concerns\HasFilters;
 use App\Models\Concerns\Orderable;
 use App\Models\Concerns\Searchable;
 use App\Models\Concerns\Sortable;
@@ -25,12 +25,11 @@ class Faq extends Model
 {
     public $table = 'faq';
 
-    use  Orderable, Sortable, Filterable, Searchable;
+    use  Orderable, Sortable, Searchable;
 
 
     public $searchableColumns = ['question', 'answer'];
     public $sortableColumns = [];
-    public $filterableColumns = ['question', 'answer'];
 
     public $fillable = [
         'faq_category_id',

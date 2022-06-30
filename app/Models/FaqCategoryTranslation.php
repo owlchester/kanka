@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Models\Concerns\Filterable;
+use App\Models\Concerns\HasFilters;
 use App\Models\Concerns\Searchable;
 use App\Models\Concerns\Sortable;
 use Illuminate\Database\Eloquent\Model;

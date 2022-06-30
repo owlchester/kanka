@@ -48,16 +48,6 @@ class Event extends MiscModel
         'event_id',
     ];
 
-    /**
-     * Fields that can be filtered on
-     * @var array
-     */
-    protected $filterableColumns = [
-        'date',
-        'location_id',
-        'event_id',
-    ];
-
     protected $sortable = [
         'name',
         'date',
@@ -207,5 +197,18 @@ class Event extends MiscModel
         }
 
         return false;
+    }
+
+    /**
+     * Define the fields unique to this model that can be used on filters
+     * @return string[]
+     */
+    public function filterableColumns(): array
+    {
+        return [
+            'date',
+            'location_id',
+            'event_id',
+        ];
     }
 }

@@ -6,7 +6,7 @@ use App\Facades\CampaignCache;
 use App\Facades\CampaignLocalization;
 use App\Facades\Img;
 use App\Facades\Mentions;
-use App\Models\Concerns\Filterable;
+use App\Models\Concerns\HasFilters;
 use App\Models\Concerns\LastSync;
 use App\Models\Concerns\Orderable;
 use App\Models\Concerns\Paginatable;
@@ -48,7 +48,7 @@ abstract class MiscModel extends Model
     use Paginatable,
         Searchable,
         Orderable,
-        Filterable,
+        HasFilters,
         //Tooltip,
         Sortable,
         SubEntityScopes,
@@ -92,11 +92,6 @@ abstract class MiscModel extends Model
      * @var string Entity image path
      */
     public $entityImagePath;
-
-    /**
-     * @var array Filterable fields
-     */
-    protected $filterableColumns = [];
 
     /**
      * Fields that can be ordered on
