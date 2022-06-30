@@ -36,34 +36,31 @@
                 </div>
             </div>
         </div>
-        <div class="panel-body">
+        <div class="panel-footer text-right">
             <div class="form-group">
                 <div class="submit-group">
                     <input id="submit-mode" type="hidden" value="true"/>
-                    <div class="pull-right">
-                        <div class="btn-group">
-                            <button class="btn btn-success" id="form-submit-main">
-                                {{ __('crud.save') }}
-                            </button>
-                            <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown"
-                                    aria-expanded="false">
-                                    <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu" role="menu">
-                                <li>
-                                        <a href="#" class="dropdown-item form-submit-actions">
-                                            {{ __('crud.save') }}
-                                        </a>
-                                </li>
-                                <li>
-                                        <a href="#" class="dropdown-item form-submit-actions" data-action="submit-update">
-                                            {{ __('crud.save_and_update') }}
-                                        </a>
-                                </li>
-                            </ul>
-                        </div>
-                        @includeWhen(!request()->ajax(), 'partials.or_cancel')
+                    <div class="btn-group">
+                        <button class="btn btn-success" id="form-submit-main">
+                            {{ __('crud.save') }}
+                        </button>
+                        <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown"
+                            aria-expanded="false">                                <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" role="menu">
+                            <li>
+                                <a href="#" class="dropdown-item form-submit-actions">
+                                    {{ __('crud.save') }}
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="dropdown-item form-submit-actions" data-action="submit-update">
+                                    {{ __('crud.save_and_update') }}
+                                </a>
+                            </li>
+                        </ul>
                     </div>
+                    @includeWhen(!request()->ajax(), 'partials.or_cancel')
                 </div>
             </div>
         </div>
