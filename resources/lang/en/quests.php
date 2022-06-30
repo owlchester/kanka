@@ -36,7 +36,6 @@ return [
         'quests'        => 'Sub Quests',
         'role'          => 'Role',
         'type'          => 'Type',
-        'date_range'    => 'Date',
     ],
     'helpers'       => [
         'is_completed'      => 'Select if the quest is considered as completed.',

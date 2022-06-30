@@ -7,7 +7,7 @@ use App\Models\Entity;
 class JournalFilter extends DatagridFilter
 {
     /**
-     * CharacterFilter constructor.
+     * Filters available for journals
      */
     public function __construct()
     {
@@ -17,10 +17,10 @@ class JournalFilter extends DatagridFilter
             ->dateRange()
             ->add([
                     'field' => 'author_id',
-                    'label' => trans('journals.fields.author'),
+                    'label' => __('journals.fields.author'),
                     'type' => 'select2',
                     'route' => route('search.entities-with-relations'),
-                    'placeholder' =>  trans('journals.placeholders.author'),
+                    'placeholder' =>  __('journals.placeholders.author'),
                     'model' => Entity::class,
             ])
             ->location()

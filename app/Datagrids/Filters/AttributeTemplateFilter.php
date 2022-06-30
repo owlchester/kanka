@@ -2,13 +2,12 @@
 
 namespace App\Datagrids\Filters;
 
-
 use App\Models\AttributeTemplate;
 
 class AttributeTemplateFilter extends DatagridFilter
 {
     /**
-     * CharacterFilter constructor.
+     * Filters available for attribute templates
      */
     public function __construct()
     {

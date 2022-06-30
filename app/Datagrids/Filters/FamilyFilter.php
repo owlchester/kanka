@@ -7,7 +7,7 @@ use App\Models\Family;
 class FamilyFilter extends DatagridFilter
 {
     /**
-     * CharacterFilter constructor.
+     * Filters available for families
      */
     public function __construct()
     {
@@ -16,10 +16,10 @@ class FamilyFilter extends DatagridFilter
             ->add('type')
             ->add([
                 'field' => 'family_id',
-                'label' => trans('crud.fields.family'),
+                'label' => __('crud.fields.family'),
                 'type' => 'select2',
                 'route' => route('families.find'),
-                'placeholder' =>  trans('crud.placeholders.family'),
+                'placeholder' =>  __('crud.placeholders.family'),
                 'model' => Family::class,
             ])
             ->location()

@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Datagrids\Filters;
-
 
 use App\Models\Character;
 use App\Models\Journal;
@@ -10,12 +8,16 @@ use App\Models\Location;
 use App\Models\Tag;
 use Illuminate\Support\Facades\Auth;
 
+/**
+ * This abstract class sets up all the stuff needed for rendering filters on entity datagrids.
+ * Each entity has a class that extends this class and in the constructor sets the fields available.
+ * Filters that are re-used multiple times or have their own rendering logic are added as functions
+ * directly on this class.
+ */
 abstract class DatagridFilter
 {
-    /**
-     * @var array
-     */
-    protected $filters = [];
+    /** @var array Filters to be rendered */
+    protected array $filters = [];
 
     /**
      * Get the filters
@@ -44,10 +46,10 @@ abstract class DatagridFilter
     {
         $this->filters[] = [
             'field' => 'location_id',
-            'label' => trans('crud.fields.location'),
+            'label' => __('crud.fields.location'),
             'type' => 'select2',
             'route' => route('locations.find'),
-            'placeholder' =>  trans('crud.placeholders.location'),
+            'placeholder' =>  __('crud.placeholders.location'),
             'model' => Location::class,
         ];
         return $this;
@@ -61,10 +63,10 @@ abstract class DatagridFilter
     {
         $this->filters[] = [
             'field' => 'character_id',
-            'label' => trans('crud.fields.character'),
+            'label' => __('crud.fields.character'),
             'type' => 'select2',
             'route' => route('characters.find'),
-            'placeholder' =>  trans('crud.placeholders.character'),
+            'placeholder' =>  __('crud.placeholders.character'),
             'model' => Character::class,
         ];
         return $this;
@@ -78,10 +80,10 @@ abstract class DatagridFilter
     {
         $this->filters[] = [
             'field' => 'journal_id',
-            'label' => trans('journals.fields.journal'),
+            'label' => __('journals.fields.journal'),
             'type' => 'select2',
             'route' => route('journals.find'),
-            'placeholder' =>  trans('crud.placeholders.journal'),
+            'placeholder' =>  __('crud.placeholders.journal'),
             'model' => Journal::class,
         ];
         return $this;
@@ -95,10 +97,10 @@ abstract class DatagridFilter
     {
         $this->filters[] = [
             'field' => 'tags',
-            'label' => trans('crud.fields.tag'),
+            'label' => __('crud.fields.tag'),
             'type' => 'tag',
             'route' => route('tags.find'),
-            'placeholder' =>  trans('crud.placeholders.tag'),
+            'placeholder' =>  __('crud.placeholders.tag'),
             'model' => Tag::class,
         ];
         return $this;

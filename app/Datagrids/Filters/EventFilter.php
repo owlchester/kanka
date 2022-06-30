@@ -7,7 +7,7 @@ use App\Models\Event;
 class EventFilter extends DatagridFilter
 {
     /**
-     * CharacterFilter constructor.
+     * Filters available for events
      */
     public function __construct()
     {

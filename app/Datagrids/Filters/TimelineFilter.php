@@ -2,13 +2,12 @@
 
 namespace App\Datagrids\Filters;
 
-use App\Models\Calendar;
 use App\Models\Timeline;
 
 class TimelineFilter extends DatagridFilter
 {
     /**
-     * CharacterFilter constructor.
+     * Filters available for timelines
      */
     public function __construct()
     {

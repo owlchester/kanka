@@ -5,7 +5,7 @@ namespace App\Datagrids\Filters;
 class DiceRollFilter extends DatagridFilter
 {
     /**
-     * CharacterFilter constructor.
+     * Filters available for dice rolls
      */
     public function __construct()
     {

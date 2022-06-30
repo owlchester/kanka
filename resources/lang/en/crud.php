@@ -134,6 +134,7 @@ return [
         'copy_posts'            => 'Copy Posts (this includes the posts permissions)',
         'creator'               => 'Creator',
         'dice_roll'             => 'Dice Roll',
+        'date_range'            => 'Date range',
         'entity'                => 'Entity',
         'entity_type'           => 'Entity Type',
         'entry'                 => 'Entry',

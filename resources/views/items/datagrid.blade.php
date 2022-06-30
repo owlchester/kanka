@@ -14,10 +14,10 @@
         'type',
         //Item_id
         [
-            'label' => __('items.fields.item_id'),
+            'label' => __('items.fields.item'),
             'field' => 'item_id',
             'render' => function($model) {
-                if ($model->item) {                    
+                if ($model->item) {
                     return '<a href="' . route('items.show', $model->item_id) . '">' . e($model->item->name) . '</a>';
                 }
             }

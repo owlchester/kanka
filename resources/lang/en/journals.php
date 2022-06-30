@@ -12,7 +12,6 @@ return [
         'journals'  => 'Sub Journals',
         'name'      => 'Name',
         'type'      => 'Type',
-        'date_range'    => 'Date',
     ],
     'helpers'       => [
         'journals'      => 'Display all or only the direct sub journals of this journal.',

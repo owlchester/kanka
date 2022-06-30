@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Entity;
 
 use App\Http\Controllers\Controller;
-use App\Models\CampaignRole;
 use App\Models\Entity;
 use App\Services\Entity\PrivacyService;
 
@@ -14,13 +13,21 @@ use App\Services\Entity\PrivacyService;
 class PrivacyController extends Controller
 {
     /** @var PrivacyService */
-    protected $service;
+    protected PrivacyService $service;
 
+    /**
+     * @param PrivacyService $service
+     */
     public function __construct(PrivacyService $service)
     {
         $this->service = $service;
     }
 
+    /**
+     * @param Entity $entity
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
     public function index(Entity $entity)
     {
         $this->authorize('privacy', $entity);
@@ -33,7 +40,9 @@ class PrivacyController extends Controller
             ->with('model', $entity->child)
         ;
     }
+
     /**
+     * Toggle an entity's privacy setting
      * @param Entity $entity
      */
     public function toggle(Entity $entity)

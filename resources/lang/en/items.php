@@ -12,8 +12,8 @@ return [
         'price'     => 'Price',
         'size'      => 'Size',
         'type'      => 'Type',
-        'item_id'   => 'Parent Item',
-        'items'     => 'Sub Items',      
+        'item'      => 'Parent Item',
+        'items'     => 'Sub Items',
     ],
     'index'         => [
         'title' => 'Items',
@@ -24,6 +24,7 @@ return [
     'placeholders'  => [
         'character' => 'Choose a character',
         'location'  => 'Choose a location',
+        'item'      => 'Parent item',
         'name'      => 'Name of the item',
         'price'     => 'Price of the item',
         'size'      => 'Size, Weight, Dimensions',

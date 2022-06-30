@@ -7,7 +7,7 @@ use App\Models\Map;
 class MapFilter extends DatagridFilter
 {
     /**
-     * CharacterFilter constructor.
+     * Filters available for maps
      */
     public function __construct()
     {
@@ -16,10 +16,10 @@ class MapFilter extends DatagridFilter
             ->add('type')
             ->add([
                 'field' => 'map_id',
-                'label' => trans('crud.fields.map'),
+                'label' => __('crud.fields.map'),
                 'type' => 'select2',
                 'route' => route('maps.find'),
-                'placeholder' =>  trans('crud.placeholders.map'),
+                'placeholder' =>  __('crud.placeholders.map'),
                 'model' => Map::class,
             ])
             ->location()

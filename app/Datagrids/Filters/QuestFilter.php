@@ -2,13 +2,12 @@
 
 namespace App\Datagrids\Filters;
 
-
 use App\Models\Quest;
 
 class QuestFilter extends DatagridFilter
 {
     /**
-     * CharacterFilter constructor.
+     * Filters available for quests
      */
     public function __construct()
     {
@@ -20,10 +19,10 @@ class QuestFilter extends DatagridFilter
             ->character()
             ->add([
                 'field' => 'quest_id',
-                'label' => trans('quests.fields.quest'),
+                'label' => __('quests.fields.quest'),
                 'type' => 'select2',
                 'route' => route('quests.find'),
-                'placeholder' =>  trans('quests.placeholders.quest'),
+                'placeholder' =>  __('quests.placeholders.quest'),
                 'model' => Quest::class,
             ])
             ->isPrivate()

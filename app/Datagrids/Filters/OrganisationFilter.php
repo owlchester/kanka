@@ -7,7 +7,7 @@ use App\Models\Organisation;
 class OrganisationFilter extends DatagridFilter
 {
     /**
-     * CharacterFilter constructor.
+     * Filters available for organisations
      */
     public function __construct()
     {
@@ -17,10 +17,10 @@ class OrganisationFilter extends DatagridFilter
             ->location()
             ->add([
                 'field' => 'organisation_id',
-                'label' => trans('crud.fields.organisation'),
+                'label' => __('crud.fields.organisation'),
                 'type' => 'select2',
                 'route' => route('organisations.find'),
-                'placeholder' =>  trans('crud.placeholders.organisation'),
+                'placeholder' =>  __('crud.placeholders.organisation'),
                 'model' => Organisation::class,
             ])
             ->add('is_defunct')

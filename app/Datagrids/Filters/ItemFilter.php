@@ -2,10 +2,12 @@
 
 namespace App\Datagrids\Filters;
 
+use App\Models\Item;
+
 class ItemFilter extends DatagridFilter
 {
     /**
-     * CharacterFilter constructor.
+     * Filters available for items
      */
     public function __construct()
     {
@@ -14,7 +16,14 @@ class ItemFilter extends DatagridFilter
             ->add('type')
             ->add('price')
             ->add('size')
-            ->add('item_id')
+            ->add([
+                'field' => 'item_id',
+                'label' => __('items.fields.item'),
+                'type' => 'select2',
+                'route' => route('items.find'),
+                'placeholder' =>  __('items.placeholders.item'),
+                'model' => Item::class,
+            ])
             ->location()
             ->character()
             ->isPrivate()

@@ -5,7 +5,7 @@ namespace App\Datagrids\Filters;
 class ConversationFilter extends DatagridFilter
 {
     /**
-     * CharacterFilter constructor.
+     * Filters available for conversations
      */
     public function __construct()
     {
@@ -14,11 +14,11 @@ class ConversationFilter extends DatagridFilter
             ->add('type')
 //            ->add([
 //                'field' => 'target',
-//                'label' => trans('conversations.fields.target'),
+//                'label' => __('conversations.fields.target'),
 //                'valueKey' => 'conversations.targets.',
 //                'type' => 'select',
-//                'placeholder' =>  trans('conversations.placeholders.target'),
-//                'data' => trans('conversations.targets')
+//                'placeholder' =>  __('conversations.placeholders.target'),
+//                'data' => __('conversations.targets')
 //            ])
             ->add('is_closed')
             ->isPrivate()
