@@ -127,6 +127,10 @@ trait Filterable
                             ;
                         }
                     } elseif ($key === 'date_start' || $key === 'date_end') {
+                        // Don't apply twice if both fields are set
+                        if ($key === 'date_end' and !empty($params['date_start'])) {
+                            continue;
+                        }
                         if ($params['date_end'] && $params['date_start']) {
                             $query->whereBetween('date', [$params['date_start'],$params['date_end']]);
                         } elseif ($params['date_end']) {
