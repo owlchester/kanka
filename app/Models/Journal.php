@@ -83,6 +83,8 @@ class Journal extends MiscModel
         'location_id',
         'journal_id',
         'author_id',
+        'date_start',
+        'date_end',
     ];
 
     /**

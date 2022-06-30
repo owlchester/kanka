@@ -64,6 +64,7 @@ trait Filterable
      */
     public function scopeFilter(Builder $query, $params)
     {
+
         $fields = $this->getFilterableColumns();
         if (!is_array($params) or empty($params) or empty($fields)) {
             return $query;
@@ -124,6 +125,18 @@ trait Filterable
                                 ->leftJoin('entity_tags as et' . $v, "et$v.entity_id", 'e.id')
                                 ->where("et$v.tag_id", $v)
                             ;
+                        }
+                    } elseif ($key === 'date_start' || $key === 'date_end') {
+                        // Don't apply twice if both fields are set
+                        if ($key === 'date_end' and !empty($params['date_start'])) {
+                            continue;
+                        }
+                        if ($params['date_end'] && $params['date_start']) {
+                            $query->whereBetween('date', [$params['date_start'],$params['date_end']]);
+                        } elseif ($params['date_end']) {
+                            $query->whereDate('date', '=', $params['date_end']);
+                        } else {
+                            $query->whereDate('date', '=', $params['date_start']);
                         }
                     } elseif ($key == 'races') {
                         // "none" filter keys is handled later

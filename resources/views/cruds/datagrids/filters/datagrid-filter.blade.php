@@ -164,6 +164,16 @@ $clipboardFilters = $filterService->clipboardFilters();
                                     </div>
                                 @elseif ($field === 'date')
                                     <input type="date" class="form-control entity-list-filter" name="{{ $field }}" value="{{ $filterService->single($field) }}" />
+                                
+                                @elseif ($field === 'date_range')
+                                <div class="row">
+                                        <div class="col-xs-6">
+                                            <input type="date" class="form-control entity-list-filter" name="date_start" value="{{ $filterService->single('date_start') }}" />
+                                        </div>
+                                        <div class="col-xs-6">
+                                            <input type="date" class="form-control entity-list-filter" name="date_end" value="{{ $filterService->single('date_end') }}" />
+                                        </div>
+                                </div>
                                 @else
                                     <input type="text" class="form-control entity-list-filter" name="{{ $field }}" value="{{ $filterService->single($field) }}" />
                                 @endif

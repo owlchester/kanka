@@ -77,6 +77,8 @@ class Quest extends MiscModel
         'quest_id',
         'character_id',
         'is_completed',
+        'date_start',
+        'date_end',
     ];
 
     /**

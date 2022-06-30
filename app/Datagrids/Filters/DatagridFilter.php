@@ -168,7 +168,6 @@ abstract class DatagridFilter
         return $this;
     }
 
-
     /**
      * Add the attributes selector
      * @return $this
@@ -176,6 +175,16 @@ abstract class DatagridFilter
     protected function attributes(): self
     {
         $this->filters[] = 'attributes';
+        return $this;
+    }
+
+    /**
+     * Add the date range filter
+     * @return $this
+     */
+    protected function dateRange(): self
+    {
+        $this->filters[] = 'date_range';
         return $this;
     }
 }
