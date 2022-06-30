@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Facades\CampaignLocalization;
 use App\Models\Concerns\Acl;
+use App\Models\Concerns\SortableTrait;
 use App\Traits\CampaignTrait;
 use App\Traits\ExportableTrait;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -17,16 +18,20 @@ use Illuminate\Database\Eloquent\Builder;
  * @property string $price
  * @property string $size
  * @property string $weight
+ * @property integer $item_id
  * @property integer $character_id
  * @property integer $location_id
  * @property Character $character
  * @property Location $location
+ * @property Item[] $items
+ * @property Item $item
  */
 class Item extends MiscModel
 {
     use CampaignTrait,
         ExportableTrait,
         SoftDeletes,
+        SortableTrait,
         Acl
     ;
 
@@ -42,11 +47,18 @@ class Item extends MiscModel
         'entry',
         'price',
         'size',
+        'item_id',
         'character_id',
         'location_id',
         'is_private',
     ];
-
+    protected $sortable = [
+        'name',
+        'type',
+        'price',
+        'size',
+        'item_id',
+    ];
     /**
      * Searchable fields
      * @var array
@@ -68,6 +80,7 @@ class Item extends MiscModel
         'character_id',
         'price',
         'size',
+        'item_id',
     ];
 
     /**
@@ -79,6 +92,7 @@ class Item extends MiscModel
         'size',
         'location.name',
         'character.name',
+        'item_id',
     ];
 
     /**
@@ -148,7 +162,7 @@ class Item extends MiscModel
      */
     public function datagridSelectFields(): array
     {
-        return ['character_id', 'location_id', 'price', 'size'];
+        return ['character_id', 'location_id', 'price', 'size', 'item_id'];
     }
 
     /**
@@ -183,6 +197,22 @@ class Item extends MiscModel
         return $this->hasMany('App\Models\Inventory', 'item_id');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function items()
+    {
+        return $this->hasMany('App\Models\Item', 'item_id', 'id');
+    }
+
+    /**
+     * Parent
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function item()
+    {
+        return $this->belongsTo('App\Models\Item', 'item_id', 'id');
+    }
     /**
      * @return array
      */

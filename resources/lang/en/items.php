@@ -12,6 +12,8 @@ return [
         'price'     => 'Price',
         'size'      => 'Size',
         'type'      => 'Type',
+        'item_id'   => 'Parent Item',
+        'items'     => 'Sub Items',      
     ],
     'index'         => [
         'title' => 'Items',
@@ -26,10 +28,14 @@ return [
         'price'     => 'Price of the item',
         'size'      => 'Size, Weight, Dimensions',
         'type'      => 'Weapon, Potion, Artefact',
+        'parent'    => 'Parent Item'
     ],
     'show'          => [
         'tabs'  => [
             'inventories'   => 'Inventories',
         ],
+    ],
+    'hints'         => [
+        'items'    => 'Organise items by using the parent item field.',
     ],
 ];

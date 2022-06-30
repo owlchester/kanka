@@ -1,6 +1,8 @@
 @inject ('datagrid', 'App\Renderers\DatagridRenderer')
 
-{!! $datagrid->filters($filters)
+{!! $datagrid
+    ->filters($filters)
+    ->nested()
     ->render(
     $filterService,
     // Columns
@@ -12,16 +14,6 @@
         // Name
         'name',
         'type',
-        //Item_id
-        [
-            'label' => __('items.fields.item_id'),
-            'field' => 'item_id',
-            'render' => function($model) {
-                if ($model->item) {                    
-                    return '<a href="' . route('items.show', $model->item_id) . '">' . e($model->item->name) . '</a>';
-                }
-            }
-        ],
         'price',
         'size',
         // Location
@@ -45,6 +37,12 @@
         'route' => 'items.index',
         'baseRoute' => 'items',
         'trans' => 'items.fields.',
-        'campaignService' => $campaignService
+        'row' => [
+            'data' => [
+                'data-children' =>function($model){
+                    return $model->items->count();
+                }
+                ]
+            ]        
     ]
 ) !!}

@@ -10,9 +10,13 @@ use App\Models\Location;
 use App\Models\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use App\Traits\TreeControllerTrait;
+use App\Facades\Datagrid;
 
 class ItemController extends CrudController
 {
+    use TreeControllerTrait;
+
     /**
      * @var string
      */
@@ -91,5 +95,36 @@ class ItemController extends CrudController
     public function inventories(Item $item)
     {
         return $this->menuView($item, 'inventories');
+    }
+    /**
+     * @param Item $item
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    public function items(Item $item)
+    {
+        $this->authCheck($item);
+
+        $options = ['item' => $item];
+        $filters = [];
+
+        Datagrid::layout(\App\Renderers\Layouts\Item\Item::class)
+            ->route('items.items', $options);
+
+        $this->rows = $item
+            ->items()
+            ->sort(request()->only(['o', 'k']))
+            ->filter($filters)
+            ->with(['entity', 'entity.image'])
+            ->paginate(15);
+
+        return $this->datagridAjax();
+
+        // Ajax Datagrid
+        if (request()->ajax()) {
+            return $this->datagridAjax();
+        }
+        return $this
+            ->menuView($item, 'items');
     }
 }

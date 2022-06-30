@@ -18,6 +18,7 @@ class ItemResource extends EntityResource
             'type' => $this->type,
             'price' => $this->price,
             'size' => $this->size,
+            'item_id' => $this->item_id,
         ]);
     }
 }
