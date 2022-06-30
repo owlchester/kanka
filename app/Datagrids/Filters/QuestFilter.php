@@ -15,7 +15,7 @@ class QuestFilter extends DatagridFilter
         $this
             ->add('name')
             ->add('type')
-            ->add('date')
+            ->dateRange()
             ->add('is_completed')
             ->character()
             ->add([
@@ -27,7 +27,6 @@ class QuestFilter extends DatagridFilter
                 'model' => Quest::class,
             ])
             ->isPrivate()
-            ->date()
             ->hasImage()
             ->hasEntityNotes()
             ->hasEntityFiles()

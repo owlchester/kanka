@@ -14,7 +14,7 @@ class JournalFilter extends DatagridFilter
         $this
             ->add('name')
             ->add('type')
-            ->date()
+            ->dateRange()
             ->add([
                     'field' => 'author_id',
                     'label' => trans('journals.fields.author'),
