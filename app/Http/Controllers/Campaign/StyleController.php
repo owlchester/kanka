@@ -93,7 +93,7 @@ class StyleController extends Controller
         if ($request->has('submit-update')) {
             return redirect()
             ->route('campaign_styles.edit', [$style])
-            ->with('success', __('campaigns/styles.update.success', ['name' => $style->name]));
+            ->with('success', __('campaigns/styles.create.success', ['name' => $style->name]));
         }
         return redirect()
             ->route('campaign_styles.index')
