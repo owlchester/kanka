@@ -75,6 +75,9 @@
                     <li>
                         <a href="{{ route('front.newsletter') }}">{{ __('front.menu.newsletter') }}</a>
                     </li>
+                    <li>
+                        <a href="https://status.kanka.io" target="_blank">{{ __('footer.status') }}</a>
+                    </li>
                     @endif
 
                 </ul>
