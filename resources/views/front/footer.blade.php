@@ -59,11 +59,11 @@
                         <a href="//blog.kanka.io" target="_blank">{{ __('footer.blog') }}</a>
                     </li>
                     @if (config('services.stripe.enabled'))
+                            <li>
+                                <a href="//status.kanka.io" target="_blank">{{ __('footer.status') }}</a>
+                            </li>
                     <li>
                         <a href="{{ route('front.newsletter') }}">{{ __('front.menu.newsletter') }}</a>
-                    </li>
-                    <li>
-                        <a href="https://status.kanka.io" target="_blank">{{ __('footer.status') }}</a>
                     </li>
                     @endif
                 </ul>

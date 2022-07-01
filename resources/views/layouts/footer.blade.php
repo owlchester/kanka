@@ -73,10 +73,10 @@
 
                     @if (config('services.stripe.enabled'))
                     <li>
-                        <a href="{{ route('front.newsletter') }}">{{ __('front.menu.newsletter') }}</a>
+                        <a href="//status.kanka.io" target="_blank">{{ __('footer.status') }}</a>
                     </li>
                     <li>
-                        <a href="https://status.kanka.io" target="_blank">{{ __('footer.status') }}</a>
+                        <a href="{{ route('front.newsletter') }}">{{ __('front.menu.newsletter') }}</a>
                     </li>
                     @endif
 
