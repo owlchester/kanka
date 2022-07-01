@@ -142,7 +142,7 @@ class Handler extends ExceptionHandler
                 ], 403);
         } elseif ($exception instanceof NotFoundHttpException) {
             return response()
-                ->json(null, 404);
+                ->json(['error' => 'Page not found'], 404);
         } elseif ($exception instanceof ThrottleRequestsException) {
             return response()
                 ->json(['Too many requests. Limit requests to ' . auth()->user()->rateLimit

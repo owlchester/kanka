@@ -4,7 +4,6 @@ namespace App\Services;
 
 use App\Models\CampaignUser;
 use App\User;
-use Carbon\Carbon;
 
 class UserService
 {
@@ -52,10 +51,12 @@ class UserService
             // The user do not have any campaign
             // So we invite him to create a campaign
             return redirect()->route('start');
-        } else {
+        }
+
+        if ($user->last_campaign_id != $campaign->id) {
             $user->last_campaign_id = $campaign->id;
             $user->save();
-            return redirect()->route('home');
         }
+        return redirect()->route('home');
     }
 }

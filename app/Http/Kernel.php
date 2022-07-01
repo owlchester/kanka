@@ -47,7 +47,6 @@ class Kernel extends HttpKernel
         ],
 
         'api' => [
-            \App\Http\Middleware\CheckIfUserBanned::class,
             //Do this in the routes 'throttle:rate_limit,1',
             'bindings',
         ],

@@ -19,14 +19,18 @@ class UserResource extends JsonResource
         /** @var User $user */
         $user = $this->resource;
 
-        $campaign = CampaignLocalization::getCampaign();
-        $roles = $user->campaignRoles->where('campaign_id', $campaign->id);
-
-        return [
+        $data = [
             'id' => $user->id,
             'name' => $user->name,
             'avatar' => $user->getAvatarUrl(),
-            'role' => CampaignUserRoleResource::collection($roles)
         ];
+
+        $campaign = CampaignLocalization::getCampaign();
+        if ($campaign) {
+            $roles = $user->campaignRoles->where('campaign_id', $campaign->id);
+            $data['role'] =CampaignUserRoleResource::collection($roles);
+        }
+
+        return $data;
     }
 }

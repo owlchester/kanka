@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Facades\CampaignLocalization;
+use App\Http\Controllers\Api\v1\HealthController;
 use App\Models\Plugin;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
@@ -75,6 +76,10 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected function mapApiRoutes()
     {
+        Route::prefix('api')
+            ->namespace($this->namespace)
+            ->get('/health', [HealthController::class, 'index']);
+
         Route::prefix('api')
              ->middleware('api')
              ->namespace($this->namespace)
