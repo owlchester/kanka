@@ -90,6 +90,11 @@ class StyleController extends Controller
         $style->save();
         CampaignCache::clearStyles();
 
+        if ($request->has('submit-update')) {
+            return redirect()
+            ->route('campaign_styles.edit', [$style])
+            ->with('success', __('campaigns/styles.create.success', ['name' => $style->name]));
+        }
         return redirect()
             ->route('campaign_styles.index')
             ->with('success', __('campaigns/styles.create.success'));
@@ -112,6 +117,11 @@ class StyleController extends Controller
         $campaignStyle->update($request->only('name', 'content', 'is_enabled'));
         CampaignCache::clearStyles();
 
+        if ($request->has('submit-update')) {
+            return redirect()
+            ->route('campaign_styles.edit', [$campaignStyle])
+            ->with('success', __('campaigns/styles.update.success', ['name' => $campaignStyle->name]));
+        }
         return redirect()
             ->route('campaign_styles.index')
             ->with('success', __('campaigns/styles.update.success', ['name' => $campaignStyle->name]));
