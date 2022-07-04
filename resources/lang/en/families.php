@@ -18,7 +18,6 @@ return [
     ],
     'helpers'       => [
         'descendants'   => 'This list contains all families which are descendants of this family, and not only those directly under it.',
-        'nested_parent' => 'Displaying the families of :parent.',
         'nested_without'=> 'Displaying all families that don\'t have a parent family. Click on a row to see the children families.',
     ],
     'hints'         => [

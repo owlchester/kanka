@@ -15,6 +15,9 @@ return [
         'item'      => 'Parent Item',
         'items'     => 'Sub Items',
     ],
+    'helpers'       => [
+        'nested_without'=> 'Displaying all items that don\'t have a parent item. Click on a row to see the children items.',
+    ],
     'index'         => [
         'title' => 'Items',
     ],

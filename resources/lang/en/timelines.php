@@ -22,7 +22,6 @@ return [
         'type'          => 'Type',
     ],
     'helpers'       => [
-        'nested_parent'     => 'Displaying the timelines of :parent.',
         'nested_without'    => 'Displaying all timelines that don\'t have a parent timeline. Click on a row to see the children timelines.',
         'no_era'            => 'This timeline currently doesn\'t have any eras. Eras can be added in the timeline\'s edit screen, after which you can add elements here.',
         'reorder'           => 'Drag and drop elements of the era to reorder them.',

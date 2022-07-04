@@ -22,7 +22,6 @@ return [
         'type'      => 'Type',
     ],
     'helpers'       => [
-        'nested_parent' => 'Displaying the tags of :parent.',
         'nested_without'=> 'Displaying all tags that don\'t have a parent tag. Click on a row to see the children tags.',
         'no_children'   => 'There are currently no entities tagged with this tag.',
     ],

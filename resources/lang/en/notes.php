@@ -14,7 +14,6 @@ return [
         'type'          => 'Type',
     ],
     'helpers'       => [
-        'nested_parent' => 'Displaying the notes of :parent.',
         'nested_without'=> 'Displaying all notes that don\'t have a parent note. Click on a row to see the children notes.',
     ],
     'hints'         => [

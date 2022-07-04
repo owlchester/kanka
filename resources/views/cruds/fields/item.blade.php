@@ -18,7 +18,7 @@ if (isset($enableNew)) {
     $data['allowNew'] = $enableNew;
 }
 if (isset($parent) && $parent) {
-    $data['labelKey'] = 'items.fields.item_id';
+    $data['labelKey'] = 'items.fields.item';
 }
 if (isset($dropdownParent)) {
     $data['dropdownParent'] = $dropdownParent;
