@@ -120,7 +120,7 @@ class Organisation extends MiscModel
      */
     public function datagridSelectFields(): array
     {
-        return ['organisation_id', 'is_defunct'];
+        return ['organisation_id', 'is_defunct', 'location_id'];
     }
 
     /**
