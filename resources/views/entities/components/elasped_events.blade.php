@@ -57,7 +57,7 @@ foreach ($elapsed as $event) {
                     {{ $birth->readableDate() }}
                 </a> &#10013; <a href="{{ $death->calendar->getLink() }}?year={{ $death->year }}&month={{ $death->month }}" title="{{ $death->calendar->name }}" data-toggle="tooltip">
                     {{ $death->readableDate() }}
-                </a> ({{ $birth->calcElasped($death) }})
+                </a> ({{ $birth->calcElapsed($death) }})
             </span>
             <br class="clear" />
         </li>
@@ -68,7 +68,7 @@ foreach ($elapsed as $event) {
             <span class="pull-right">
                 <a href="{{ $birth->calendar->getLink() }}?year={{ $birth->year }}&month={{ $birth->month }}" title="{{ $birth->calendar->name }}" data-toggle="tooltip">
                 {{ $birth->readableDate() }}
-                </a> ({{ $birth->calcElasped() }})
+                </a> ({{ $birth->calcElapsed() }})
             </span>
             <br class="clear" />
         </li>
@@ -79,7 +79,7 @@ foreach ($elapsed as $event) {
             <span class="pull-right">
                 <a href="{{ $death->calendar->getLink() }}?year={{ $death->year }}&month={{ $death->month }}" title="{{ $death->calendar->name }}" data-toggle="tooltip">
                 {{ $death->readableDate() }}
-                </a> ({{ $death->calcElasped() }})
+                </a> ({{ $death->calcElapsed() }})
             </span>
             <br class="clear" />
         </li>

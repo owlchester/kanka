@@ -7,17 +7,17 @@ $calendars = \App\Models\Calendar::get();
 $onlyOneCalendar = count($calendars) == 1;
 $oldCalendarID = old('calendar_id');
 // Make sure the user has access to the source's calendar
-if (!empty($source) && $source->calendar) {
-    $oldCalendarID = $source->calendar->id;
+if (!empty($source) && $source->calendarReminder()) {
+    $oldCalendarID = $source->calendarReminder()->calendar_id;
 }
 $calendar = null;
 if (!empty($oldCalendarID)) {
-    $calendar = \App\Models\Calendar::findOrFail($oldCalendarID);
+    $calendar = \App\Models\Calendar::find($oldCalendarID);
 }
 ?>
 
 @if (isset($model) && $model->hasCalendarButNoAccess())
-    {!! Form::hidden('calendar_id', $model->calendar_id) !!}
+    {!! Form::hidden('calendar_id', $model->calendarReminder()->calendar_id) !!}
     {!! Form::hidden('calendar_skip', true) !!}
     @php return; @endphp
 @endif
@@ -31,12 +31,12 @@ if (!empty($oldCalendarID)) {
 
     <div class="entity-calendar-form" style="<?=((!isset($model) || !$model->hasCalendar()) && empty($oldCalendarID) ? "display: none" : null)?>">
         @if (count($calendars) == 1)
-            {!! Form::hidden('calendar_id', isset($model) && $model->hasCalendar() ? $model->calendar->id : FormCopy::field('calendar_id')->string(), ['id' => 'calendar_id']) !!}
+            {!! Form::hidden('calendar_id', isset($model) && $model->hasCalendar() ? $model->calendarReminder()->calendar_id : FormCopy::field('calendar_id')->string(), ['id' => 'calendar_id']) !!}
         @else
             <div class="form-group entity-calendar-selector">
                 {!! Form::select2(
                     'calendar_id',
-                    (isset($model) && $model->calendar ? $model->calendar : FormCopy::field('calendar')->select()),
+                    (isset($model) && $model->calendarReminder() && $model->calendarReminder()->calendar ? $model->calendarReminder()->calendar : FormCopy::field('calendar')->select()),
                     App\Models\Calendar::class,
                     false
                 ) !!}
@@ -55,7 +55,7 @@ if (!empty($oldCalendarID)) {
 
                     <div class="form-group">
                         <label>{{ __('calendars.fields.month') }}</label>
-                        {!! Form::select('calendar_month', (!empty($model) && $model->hasCalendar() ? $model->calendar->monthList(): (!empty($calendar) ? $calendar->monthList() : [])), FormCopy::field('calendar_month')->string(), ['class' => 'form-control']) !!}
+                        {!! Form::select('calendar_month', (!empty($model) && $model->hasCalendar() ? $model->calendarReminder()->calendar->monthList(): (!empty($calendar) ? $calendar->monthList() : [])), FormCopy::field('calendar_month')->string(), ['class' => 'form-control']) !!}
                     </div>
                 </div>
                 <div class="col-md-4 col-sm-6">
@@ -69,13 +69,13 @@ if (!empty($oldCalendarID)) {
                 <div class="col-md-4 col-sm-6">
                     <div class="form-group">
                         <label>{{ __('calendars.fields.length') }}</label>
-                        {!! Form::number('length', FormCopy::field('length')->string(), ['class' => 'form-control']) !!}
+                        {!! Form::number('calendar_length', FormCopy::field('calendar_length')->string(), ['class' => 'form-control']) !!}
                     </div>
                 </div>
                 <div class="col-md-4 col-sm-6">
                     <div class="form-group">
                         <label>{{ __('calendars.fields.colour') }}</label><br />
-                        {!! Form::text('calendar_colour', !empty($model) && $model->hasCalendar() ? $model->calendarColour : '#cccccc', ['class' => 'form-control spectrum', 'maxlength' => 7]) !!}
+                        {!! Form::text('calendar_colour', FormCopy::field('calendar_colour')->string(), ['class' => 'form-control spectrum', 'maxlength' => 7]) !!}
                     </div>
                 </div>
             </div>
@@ -83,7 +83,7 @@ if (!empty($oldCalendarID)) {
                 <div class="col-md-4 col-sm-6">
                     <div class="form-group">
                         <label>{{ __('calendars.fields.recurring_periodicity') }}</label>
-                         {!! Form::select('recurring_periodicity', (!empty($model) && $model->hasCalendar() ? $model->calendar->recurringOptions(): (!empty($calendar) ? $calendar->recurringOptions() : [])), null, ['class' => 'form-control']) !!}
+                         {!! Form::select('calendar_recurring_periodicity', (!empty($model) && $model->hasCalendar() ? $model->calendarReminder()->calendar->recurringOptions(): (!empty($calendar) ? $calendar->recurringOptions() : [])), null, ['class' => 'form-control']) !!}
                     </div>
                 </div>
             </div>
@@ -95,7 +95,7 @@ if (!empty($oldCalendarID)) {
         </div>
     </div>
 
-    <a href="#" id="entity-calendar-form-cancel" class="pull-right" style="@if (((isset($model) && $model->hasCalendar()) || empty($model))) && $onlyOneCalendar) @else display:none @endif">
+    <a href="#" id="entity-calendar-form-cancel" class="pull-right" style="@if ((((isset($model) && $model->hasCalendar()) || empty($model))) && $onlyOneCalendar) @else display:none @endif">
         {{ __('crud.remove') }}
     </a>
 </div>

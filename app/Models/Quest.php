@@ -120,8 +120,6 @@ class Quest extends MiscModel
             //'elements',
             'quest',
             'quest.entity',
-
-            'calendar',
         ]);
     }
 
@@ -222,7 +220,8 @@ class Quest extends MiscModel
      */
     public function showProfileInfo(): bool
     {
-        return !empty($this->type) || !empty($this->character) || !empty($this->date);
+        return !empty($this->type) || !empty($this->character) ||
+            !empty($this->date) || !empty($this->calendarReminder());
     }
 
     /**

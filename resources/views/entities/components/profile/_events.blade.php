@@ -56,7 +56,7 @@ foreach ($elapsed as $event) {
                 {{ $birth->readableDate() }}
             </a> &#10013; <a href="{{ $death->calendar->getLink() }}?year={{ $death->year }}&month={{ $death->month }}" title="{{ $death->calendar->name }}" data-toggle="tooltip">
                 {{ $death->readableDate() }}
-            </a> ({{ $birth->calcElasped($death) }})
+            </a> ({{ $birth->calcElapsed($death) }})
         </div>
 
     @elseif (!empty($birth))
@@ -64,7 +64,7 @@ foreach ($elapsed as $event) {
             <div class="title">{{ __('entities/events.types.birth') }}</div>
             <a href="{{ $birth->calendar->getLink() }}?year={{ $birth->year }}&month={{ $birth->month }}" title="{{ $birth->calendar->name }}" data-toggle="tooltip">
             {{ $birth->readableDate() }}
-            </a> ({{ $birth->calcElasped() }})
+            </a> ({{ $birth->calcElapsed() }})
         </div>
 
     @elseif (!empty($death))
@@ -72,7 +72,7 @@ foreach ($elapsed as $event) {
             <div class="title">{{ __('entities/events.types.death') }}</div>
             <a href="{{ $death->calendar->getLink() }}?year={{ $death->year }}&month={{ $death->month }}" title="{{ $death->calendar->name }}" data-toggle="tooltip">
             {{ $death->readableDate() }}
-            </a> (&#10013;{{ $death->calcElasped() }})
+            </a> (&#10013;{{ $death->calcElapsed() }})
         </div>
 
     @endif
