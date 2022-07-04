@@ -40,5 +40,8 @@ TEXT
         'ryan'      => [
             'title' => 'OG Community Member',
         ],
+        'itzamna'   => [
+            'title' => 'Junior Developer'
+        ],
     ],
 ];
