@@ -129,7 +129,8 @@ class MentionsService
      */
     protected function editEntity($model, string $field): string
     {
-        $this->text = $model->$field;
+        // We have to cast to a string for when the entity was created in the API with a NULL entry
+        $this->text = (string) $model->$field;
         return $this->replaceForEdit();
     }
 
