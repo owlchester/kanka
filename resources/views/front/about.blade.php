@@ -19,7 +19,7 @@
                     <p class="lead">{{ __('teams.leads.about') }}</p>
                 </div>
 
-                <h2 class="mb-3">{{ __('teams.index.title') }}</h2>
+                <h2 class="mb-3">{{ __('teams.index.founders') }}</h2>
 
                 <div class="row equal text-center">
                     <div class="col-xl-4 col-md-6 col-12 mb-4 offset-xl-2" id="jay">
@@ -45,12 +45,16 @@
                         </div>
                     </div>
                 </div>
+
+
+                <!--<h2 class="mb-3">{{ __('teams.index.title') }}</h2>-->
+
             </div>
         </div>
     </section>
     <section id="community" class="pt-1 bg-primary">
         <div class="container">
-            <div class="section-body">
+            <div class="section-body  text-center">
                 <h2>{{ __('teams.index.community') }}</h2>
                 <p class="lead">{{ __('teams.leads.community') }}</p>
                 <div class="row text-center">

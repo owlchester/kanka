@@ -6,6 +6,7 @@ return [
         'community'     => 'Community',
         'lead'          => 'Making worldbuilding fun and reliable',
         'title'         => 'Team',
+        'founders'      => 'Founders',
         'translations'  => 'Translations',
     ],
     'leads'         => [
