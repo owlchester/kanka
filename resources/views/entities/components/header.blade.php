@@ -147,6 +147,13 @@ if($campaignService->campaign()->boosted() && $entity->hasHeaderImage($superboos
                                         <i class="fa-solid fa-plus" aria-hidden="true"></i> {{ __('crud.actions.new') }}
                                     </a>
                                 </li>
+                                @if (\Illuminate\Support\Facades\Route::has($entity->pluralType() . '.tree'))
+                                    <li>
+                                        <a href="{{ route($entity->pluralType() . '.create', ['parent_id' => $model->id]) }}">
+                                            <i class="fa-solid fa-plus" aria-hidden="true"></i> {{ __('crud.actions.new_child') }}
+                                        </a>
+                                    </li>
+                                @endif
                                 <li>
                                     <a href="{{ route($entity->pluralType() . '.create', ['copy' => $model->id]) }}">
                                         <i class="fa-solid fa-copy" aria-hidden="true"></i> {{ __('crud.actions.copy') }}
