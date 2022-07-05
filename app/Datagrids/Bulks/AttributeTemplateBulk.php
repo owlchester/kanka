@@ -1,12 +1,10 @@
 <?php
 
-
 namespace App\Datagrids\Bulks;
-
 
 class AttributeTemplateBulk extends Bulk
 {
-    protected $fields = [
+    protected array $fields = [
         'name',
         //'attribute_template_id',
         //'tags',

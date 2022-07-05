@@ -1,12 +1,10 @@
 <?php
 
-
 namespace App\Datagrids\Bulks;
-
 
 class CalendarBulk extends Bulk
 {
-    protected $fields = [
+    protected array $fields = [
         'name',
         'type',
         'calendar_id',

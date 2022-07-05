@@ -1,12 +1,10 @@
 <?php
 
-
 namespace App\Datagrids\Bulks;
-
 
 class LocationBulk extends Bulk
 {
-    protected $fields = [
+    protected array $fields = [
         'name',
         'type',
         'parent_location_id',

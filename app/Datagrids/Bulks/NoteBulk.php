@@ -1,12 +1,10 @@
 <?php
 
-
 namespace App\Datagrids\Bulks;
-
 
 class NoteBulk extends Bulk
 {
-    protected $fields = [
+    protected array $fields = [
         'name',
         'type',
         'note_id',

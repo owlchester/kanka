@@ -1,12 +1,10 @@
 <?php
 
-
 namespace App\Datagrids\Bulks;
-
 
 class QuestBulk extends Bulk
 {
-    protected $fields = [
+    protected array $fields = [
         'name',
         'type',
         'quest_id',
@@ -16,7 +14,7 @@ class QuestBulk extends Bulk
         'private_choice',
     ];
 
-    protected $mappings = [
+    protected array $mappings = [
         'is_completed'
     ];
 }

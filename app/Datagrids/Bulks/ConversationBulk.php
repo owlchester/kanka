@@ -1,14 +1,10 @@
 <?php
 
-
 namespace App\Datagrids\Bulks;
-
 
 class ConversationBulk extends Bulk
 {
-    public $bulkCopyToCampaign = false;
-
-    protected $fields = [
+    protected array $fields = [
         'name',
         'tags',
         'private_choice',

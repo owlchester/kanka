@@ -1,12 +1,10 @@
 <?php
 
-
 namespace App\Datagrids\Bulks;
-
 
 class OrganisationBulk extends Bulk
 {
-    protected $fields = [
+    protected array $fields = [
         'name',
         'type',
         'location_id',
@@ -16,7 +14,7 @@ class OrganisationBulk extends Bulk
         'defunct_choice'
     ];
 
-    protected $mappings = [
+    protected array $mappings = [
         'is_defunct'
     ];
 }
