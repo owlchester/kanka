@@ -43,5 +43,11 @@ TEXT
         'itzamna'   => [
             'title' => 'Junior Developer'
         ],
+        'kaz'   => [
+            'title' => 'Bug Destroyer'
+        ],
+        'laura'   => [
+            'title' => 'Social Media'
+        ],
     ],
 ];
