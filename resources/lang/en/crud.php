@@ -18,6 +18,7 @@ return [
         'manage_links'      => 'Manage Links',
         'move'              => 'Move',
         'new'               => 'New',
+        'new_child'         => 'New child',
         'new_post'          => 'New post',
         'next'              => 'Next',
         'print'             => 'Print',
