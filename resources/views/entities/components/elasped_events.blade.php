@@ -13,12 +13,12 @@ $distinctCalendars = [];
 $birth = null;
 $death = null;
 foreach ($elapsed as $event) {
-    if (empty($event->calendar)) {
+    if (empty($event->calendar) || $event->isCalendarDate()) {
         continue;
     }
-    if ($event->type_id == 2) {
+    if ($event->isBirth()) {
         $distinctCalendars[$event->calendar_id]['birth'] = $event;
-    } elseif ($event->type_id == 3) {
+    } elseif ($event->isDeath()) {
         if (!isset($distinctCalendars[$event->calendar_id]['death'])) {
             $distinctCalendars[$event->calendar_id]['death'] = $event;
             continue;

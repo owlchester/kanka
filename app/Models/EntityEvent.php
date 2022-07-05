@@ -580,4 +580,31 @@ class EntityEvent extends MiscModel
     {
         return $this->cachedNext;
     }
+
+    /**
+     * Determine if an event is of the character birth type
+     * @return bool
+     */
+    public function isBirth(): bool
+    {
+        return $this->type_id === EntityEventType::BIRTH;
+    }
+
+    /**
+     * Determine if an event is of the character death type
+     * @return bool
+     */
+    public function isDeath(): bool
+    {
+        return $this->type_id === EntityEventType::DEATH;
+    }
+
+    /**
+     * Determine if an event is of the calendar date type
+     * @return bool
+     */
+    public function isCalendarDate(): bool
+    {
+        return $this->type_id === EntityEventType::CALENDAR_DATE;
+    }
 }

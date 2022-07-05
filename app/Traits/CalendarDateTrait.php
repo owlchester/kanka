@@ -180,9 +180,9 @@ trait CalendarDateTrait
         $reminder->type_id = EntityEventType::CALENDAR_DATE;
         try {
             $reminder->save();
-        } catch(\Exception $e) {
-            throw $e;
+        } catch (\Exception $e) {
             // Something went wrong, silence the issue
+            throw $e;
         }
     }
 
@@ -198,6 +198,6 @@ trait CalendarDateTrait
         if (!$this->entity) {
             return null;
         }
-        return $this->calendarDateEvent = $this->entity->events()->calendarDate()->first();
+        return $this->calendarDateEvent = $this->entity->calendarDateEvents->first();
     }
 }

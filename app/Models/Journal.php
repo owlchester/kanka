@@ -111,6 +111,7 @@ class Journal extends MiscModel
         return $query->with([
             'entity',
             'entity.image',
+            'entity.calendarDateEvents',
             'author',
             'location', 'location.entity',
             'journal', 'journal.entity',

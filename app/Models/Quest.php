@@ -114,6 +114,7 @@ class Quest extends MiscModel
         return $query->with([
             'entity',
             'entity.image',
+            'entity.calendarDateEvents',
             'quests',
             'character',
             'character.entity',
