@@ -657,7 +657,14 @@ class EntityService
         $model->forceSavedObserver = true;
         $model->is_private = $defaultPrivate;
         $model->save();
-
+        if ($model->entity->type() != 'tag') {
+            $tags = \App\Models\Tag::autoApplied()->get();
+            foreach ($tags as $tag) {
+                if ($tag && $tag->entity) {
+                    $model->entity->tags()->attach($tag->id);
+                }
+            }
+        }
         return $model;
     }
 }
