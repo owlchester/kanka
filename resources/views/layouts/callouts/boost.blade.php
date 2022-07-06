@@ -1,4 +1,4 @@
-@php $currentCampaign = $campaign instanceof \App\Models\Campaign ? $campaign : $campaignService->campaign() @endphp
+@php $currentCampaign = isset($campaign) && $campaign instanceof \App\Models\Campaign ? $campaign : $campaignService->campaign() @endphp
 <div class="grid gap-5 grid-cols-1 lg:grid-cols-2 booster-block mb-5">
     <div class="">
         <div class="booster-callout">
@@ -18,12 +18,12 @@
             <p>{{ __('callouts.booster.limitation') }}</p>
             @subscriber()
                 @if (isset($superboost))
-                    <a href="{{ route('settings.boost', ['campaign' => $campaign, 'superboost' => true]) }}" class="btn bg-maroon btn-lg">
-                        {!! __('callouts.booster.actions.superboost', ['campaign' => $campaign->name]) !!}
+                    <a href="{{ route('settings.boost', ['campaign' => $currentCampaign, 'superboost' => true]) }}" class="btn bg-maroon btn-lg">
+                        {!! __('callouts.booster.actions.superboost', ['campaign' => $currentCampaign->name]) !!}
                     </a>
                 @else
-                    <a href="{{ route('settings.boost', ['campaign' => $campaign]) }}" class="btn bg-maroon btn-lg">
-                        {!! __('callouts.booster.actions.boost', ['campaign' => $campaign->name]) !!}
+                    <a href="{{ route('settings.boost', ['campaign' => $currentCampaign]) }}" class="btn bg-maroon btn-lg">
+                        {!! __('callouts.booster.actions.boost', ['campaign' => $currentCampaign->name]) !!}
                     </a>
                 @endif
             @else

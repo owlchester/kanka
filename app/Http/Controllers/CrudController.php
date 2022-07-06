@@ -28,38 +28,38 @@ class CrudController extends Controller
     use GuestAuthTrait, BulkControllerTrait;
 
     /** @var string The view where to find the resources */
-    protected $view = '';
+    protected string $view = '';
 
     /** @var string The name of the route for the resource */
-    protected $route = '';
+    protected string $route = '';
 
     /** @var MiscModel|Model */
     protected $model = null;
 
     /** @var array */
-    protected $filters = [];
+    protected array $filters = [];
     protected $filter;
 
     /** @var FilterService */
     protected $filterService;
 
     /** @var bool If the permissions tab and pane is enabled or not. */
-    protected $tabPermissions = true;
+    protected bool $tabPermissions = true;
 
     /** @var bool If the attributes tab and pane is enabled or not */
-    protected $tabAttributes = true;
+    protected bool $tabAttributes = true;
 
     /** @var bool If the copy tab and pane is enabled or not */
-    protected $tabCopy = true;
+    protected bool $tabCopy = true;
 
     /** @var bool If the boosted tab and pane is enabled or not */
-    protected $tabBoosted = true;
+    protected bool $tabBoosted = true;
 
     /** @var bool Control if the form is "horizontal" (css class) */
-    protected $horizontalForm = false;
+    protected bool $horizontalForm = false;
 
     /** @var array List of navigation actions on top of the datagrids */
-    protected $navActions = [];
+    protected array $navActions = [];
 
     /**
      * A sorter object for subviews
@@ -74,7 +74,10 @@ class CrudController extends Controller
     protected $datagridActions = DefaultDatagridActions::class;
 
     /** @var array */
-    protected $rows = [];
+    protected array $rows = [];
+
+    /** @var bool Determine if the create/store procedure has a limit checking in place */
+    protected bool $hasLimitCheck = true;
 
     /**
      * Create a new controller instance.
@@ -201,6 +204,15 @@ class CrudController extends Controller
     {
         $this->authorize('create', $this->model);
 
+        if ($this->hasLimitCheck) {
+            if ($this->limitCheckReached()) {
+                $key = $this->view == 'menu_links' ? 'quick-links' : 'entities';
+                return view('cruds.forms.limit')
+                    ->with('key', $key)
+                    ->with('name', $this->view);
+            }
+        }
+
         if (!isset($params['source'])) {
             $copyId = request()->input('copy');
             if (!empty($copyId)) {
@@ -240,6 +252,12 @@ class CrudController extends Controller
         // For ajax requests, send back that the validation succeeded, so we can really send the form to be saved.
         if (request()->ajax()) {
             return response()->json(['success' => true]);
+        }
+
+        if ($this->hasLimitCheck) {
+            if ($this->limitCheckReached()) {
+                return redirect()->back();
+            }
         }
 
         try {
@@ -662,6 +680,16 @@ class CrudController extends Controller
     }
 
     /**
+     * Set the controller as having a limit check
+     * @return $this
+     */
+    protected function hasLimitCheck(bool $value = true): self
+    {
+        $this->hasLimitCheck = $value;
+        return $this;
+    }
+
+    /**
      * Load a list of templates the user can create new entities from
      * @param MiscModel $model
      * @return Collection
@@ -675,5 +703,14 @@ class CrudController extends Controller
             return new Collection();
         }
         return Entity::templates($model->entityTypeID())->get();
+    }
+
+    /**
+     * @return bool
+     */
+    protected function limitCheckReached(): bool
+    {
+        $campaign = CampaignLocalization::getCampaign();
+        return !$campaign->canHaveMoreEntities();
     }
 }

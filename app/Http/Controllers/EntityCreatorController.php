@@ -55,6 +55,15 @@ class EntityCreatorController extends Controller
         $singularType = Str::singular($type);
 
         $entityType = __('entities.' . $singularType);
+        $campaign = CampaignLocalization::getCampaign();
+
+        // Check limit
+        if (!in_array($type, ['tags', 'posts'])) {
+            if (!$campaign->canHaveMoreEntities()) {
+                return view('entities.creator.limit')
+                    ->with('key', 'entities');
+            }
+        }
 
         return view('entities.creator.form', [
             'type' => $type,

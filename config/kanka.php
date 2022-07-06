@@ -13,7 +13,7 @@ return [
          */
         'member_limit' => 10,
         'role_limit' => 3,
-        'quick_link_limit' => 3,
-        'entity_limit' => 200,
+        'quick_link_limit' => 1,
+        'entity_limit' => 10,
     ]
 ];

@@ -25,8 +25,8 @@ class LocationController extends CrudController
     /**
      * @var string
      */
-    protected $view = 'locations';
-    protected $route = 'locations';
+    protected string $view = 'locations';
+    protected string $route = 'locations';
     protected $module = 'locations';
 
     /** @var string Model */

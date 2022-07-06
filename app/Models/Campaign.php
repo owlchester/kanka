@@ -6,6 +6,7 @@ use App\Facades\CampaignCache;
 use App\Facades\Img;
 use App\Facades\Mentions;
 use App\Models\Concerns\Boosted;
+use App\Models\Concerns\CampaignLimit;
 use App\Models\Concerns\LastSync;
 use App\Models\Relations\CampaignRelations;
 use App\Models\Scopes\CampaignScopes;
@@ -62,6 +63,7 @@ class Campaign extends MiscModel
     use CampaignScopes,
         CampaignRelations,
         Boosted,
+        CampaignLimit,
         LastSync;
 
     /**
@@ -183,7 +185,7 @@ class Campaign extends MiscModel
      */
     public function owner()
     {
-        return $this->owners()->where('user_id', Auth::user()->id)->count() == 1;
+        return $this->owners()->where('user_id', auth()->user()->id)->count() == 1;
     }
 
     /**
@@ -227,7 +229,7 @@ class Campaign extends MiscModel
     public function role()
     {
         $member = $this->members()
-            ->where('user_id', Auth::user()->id)
+            ->where('user_id', auth()->user()->id)
             ->first();
         if ($member) {
             return $member->role;
@@ -236,7 +238,7 @@ class Campaign extends MiscModel
     }
 
     /**
-     * Determine if a campaign has an entity enabled or not
+     * Determine if a campaign has a module enabled or not
      *
      * @param string $entity
      * @return bool
@@ -274,7 +276,7 @@ class Campaign extends MiscModel
      */
     public function isFollowing(): bool
     {
-        return $this->followers()->where('user_id', Auth::user()->id)->count() === 1;
+        return $this->followers()->where('user_id', auth()->user()->id)->count() === 1;
     }
 
     /**
@@ -334,6 +336,7 @@ class Campaign extends MiscModel
     {
         return Mentions::mapAny($this, 'excerpt');
     }
+
     /**
      * @return mixed
      */
@@ -454,6 +457,7 @@ class Campaign extends MiscModel
     }
 
     /**
+     * Determine if a campaign has plugins of the theme type
      * @return bool
      */
     public function hasPluginTheme(): bool
@@ -470,20 +474,21 @@ class Campaign extends MiscModel
         return Arr::get($this->settings, 'default_visibility', 'all');
     }
 
+    /**
+     * Determine the campaign's default visibility_id select option
+     * @return int
+     */
     public function defaultVisibilityID(): int
     {
         $visibility = $this->default_visibility;
 
         if ($visibility == 'admin') {
             return Visibility::VISIBILITY_ADMIN;
-        }
-        elseif ($visibility == 'admin-self') {
+        } elseif ($visibility == 'admin-self') {
             return Visibility::VISIBILITY_ADMIN_SELF;
-        }
-        elseif ($visibility == 'members') {
+        } elseif ($visibility == 'members') {
             return Visibility::VISIBILITY_MEMBERS;
-        }
-        elseif ($visibility == 'self') {
+        } elseif ($visibility == 'self') {
             return Visibility::VISIBILITY_SELF;
         }
 
@@ -529,7 +534,13 @@ class Campaign extends MiscModel
         return $this;
     }
 
-
+    /**
+     * Get the campaign's image url
+     * @param int $width
+     * @param int|null $height
+     * @param string $field
+     * @return string
+     */
     public function getImageUrl(int $width = 400, int $height = null, string $field = 'image')
     {
         if (empty($this->$field)) {
@@ -560,64 +571,5 @@ class Campaign extends MiscModel
     public function follower(): int
     {
         return (int) $this->follower;
-    }
-
-    /**
-     * Determine if a campaign is grandfathered, aka has access to features before feature changes in
-     * the summer of 2022.
-     * @return bool
-     */
-    public function isGrandfathered(): bool
-    {
-        $grandfathered = config('kanka.campaigns.grandfathered');
-        return $this->id <= $grandfathered;
-    }
-
-    /**
-     * Get the member limit for the campaign
-     * @return int|null
-     */
-    public function memberLimit(): null|int
-    {
-        if ($this->isGrandfathered() || $this->boosted()) {
-            return null;
-        }
-        return config('kanka.campaigns.member_limit');
-    }
-
-    /**
-     * Get the role limit for the campaign
-     * @return int|null
-     */
-    public function roleLimit(): null|int
-    {
-        if ($this->isGrandfathered() || $this->boosted()) {
-            return null;
-        }
-        return config('kanka.campaigns.role_limit');
-    }
-
-    /**
-     * Get the quick link limit for the campaign
-     * @return int|null
-     */
-    public function quickLinkLimit(): null|int
-    {
-        if ($this->isGrandfathered() || $this->boosted()) {
-            return null;
-        }
-        return config('kanka.campaigns.quick_link_limit');
-    }
-
-    /**
-     * Get the limit of entities a campaign can have
-     * @return int|null
-     */
-    public function entityLimit(): null|int
-    {
-        if ($this->isGrandfathered() || $this->boosted()) {
-            return null;
-        }
-        return config('kanka.campaigns.entity_limit');
     }
 }

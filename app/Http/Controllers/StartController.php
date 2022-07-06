@@ -14,7 +14,7 @@ class StartController extends Controller
     /**
      * @var string
      */
-    protected $view = 'campaigns';
+    protected string $view = 'campaigns';
 
     /**
      * Create a new controller instance.

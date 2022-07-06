@@ -25,8 +25,8 @@ class FamilyController extends CrudController
     /**
      * @var string
      */
-    protected $view = 'families';
-    protected $route = 'families';
+    protected string $view = 'families';
+    protected string $route = 'families';
     protected $module = 'families';
 
     /**

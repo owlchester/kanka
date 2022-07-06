@@ -15,7 +15,7 @@ class OrganisationMemberController extends Controller
     /**
      * @var string
      */
-    protected $view = 'organisations.members';
+    protected string $view = 'organisations.members';
 
     /**
      * Create a new controller instance.

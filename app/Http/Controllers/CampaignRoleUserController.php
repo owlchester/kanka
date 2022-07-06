@@ -14,7 +14,7 @@ class CampaignRoleUserController extends Controller
     /**
      * @var string
      */
-    protected $view = 'campaigns.roles.users';
+    protected string $view = 'campaigns.roles.users';
 
     /**
      * Create a new controller instance.

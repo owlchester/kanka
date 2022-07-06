@@ -16,9 +16,9 @@ class CrudAttributeController extends Controller
 
     protected $tab = 'attributes';
 
-    protected $view = 'attributes';
+    protected string $view = 'attributes';
 
-    protected $route = '';
+    protected string $route = '';
 
     protected $type = '';
     /**

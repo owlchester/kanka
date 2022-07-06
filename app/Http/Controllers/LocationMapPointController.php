@@ -23,8 +23,8 @@ class LocationMapPointController extends Controller
     /**
      * @var string
      */
-    protected $view = 'locations.map_points';
-    protected $route = 'locations.map_points';
+    protected string $view = 'locations.map_points';
+    protected string $route = 'locations.map_points';
 
     /**
      * @var string

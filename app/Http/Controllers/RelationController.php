@@ -10,8 +10,8 @@ use App\Models\Relation;
 
 class RelationController extends CrudController
 {
-    protected $view = 'relations';
-    protected $route = 'relations';
+    protected string $view = 'relations';
+    protected string $route = 'relations';
     protected $langKey = 'entities/relations';
 
     protected $tabPermissions = false;

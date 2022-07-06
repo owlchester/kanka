@@ -3,31 +3,27 @@
 namespace App\Http\Controllers;
 
 use App\Datagrids\Actions\MenuLinkDatagridActions;
+use App\Facades\CampaignLocalization;
 use App\Http\Requests\StoreMenuLink;
+use App\Models\Campaign;
 use App\Models\MenuLink;
 use Illuminate\Http\Request;
 
 class MenuLinkController extends CrudController
 {
-    /**
-     * @var string
-     */
-    protected $view = 'menu_links';
-    protected $route = 'menu_links';
+    /** @var string Config for the crudController*/
+    protected string $view = 'menu_links';
+    protected string $route = 'menu_links';
 
     protected $tabPermissions = false;
     protected $tabAttributes = false;
     protected $tabBoosted = false;
     protected $tabCopy = false;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $model = \App\Models\MenuLink::class;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $datagridActions = MenuLinkDatagridActions::class;
 
     /**
@@ -42,7 +38,8 @@ class MenuLinkController extends CrudController
 
         $this->addNavAction(
             route('quick-links.reorder'),
-            '<i class="fa-solid fa-arrows-alt-v"></i> <span class="hidden-xs">' . __('timelines.actions.reorder') . '</span>'
+            '<i class="fa-solid fa-arrows-alt-v"></i> <span class="hidden-xs">' .
+                __('timelines.actions.reorder') . '</span>'
         );
     }
 
@@ -132,10 +129,20 @@ class MenuLinkController extends CrudController
         if (empty($route)) {
             return redirect()
                 ->route('dashboard')
-                ->with('error',
+                ->with(
+                    'error',
                     __('menu_links.random_no_entity')
                 );
         }
         return redirect()->to($route);
+    }
+
+    /**
+     * @return bool
+     */
+    protected function limitCheckReached(): bool
+    {
+        $campaign = CampaignLocalization::getCampaign();
+        return !$campaign->canHaveMoreQuickLinks();
     }
 }
