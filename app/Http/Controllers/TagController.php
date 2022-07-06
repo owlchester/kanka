@@ -36,6 +36,15 @@ class TagController extends CrudController
     protected $filter = TagFilter::class;
 
     /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        parent::__construct();
+        $this->hasLimitCheck(false);
+    }
+
+    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request

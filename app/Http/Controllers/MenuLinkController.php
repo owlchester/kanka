@@ -15,10 +15,10 @@ class MenuLinkController extends CrudController
     protected string $view = 'menu_links';
     protected string $route = 'menu_links';
 
-    protected $tabPermissions = false;
-    protected $tabAttributes = false;
-    protected $tabBoosted = false;
-    protected $tabCopy = false;
+    protected bool $tabPermissions = false;
+    protected bool $tabAttributes = false;
+    protected bool $tabBoosted = false;
+    protected bool $tabCopy = false;
 
     /** @var string */
     protected $model = \App\Models\MenuLink::class;
