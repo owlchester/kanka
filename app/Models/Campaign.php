@@ -561,4 +561,63 @@ class Campaign extends MiscModel
     {
         return (int) $this->follower;
     }
+
+    /**
+     * Determine if a campaign is grandfathered, aka has access to features before feature changes in
+     * the summer of 2022.
+     * @return bool
+     */
+    public function isGrandfathered(): bool
+    {
+        $grandfathered = config('kanka.campaigns.grandfathered');
+        return $this->id <= $grandfathered;
+    }
+
+    /**
+     * Get the member limit for the campaign
+     * @return int|null
+     */
+    public function memberLimit(): null|int
+    {
+        if ($this->isGrandfathered() || $this->boosted()) {
+            return null;
+        }
+        return config('kanka.campaigns.member_limit');
+    }
+
+    /**
+     * Get the role limit for the campaign
+     * @return int|null
+     */
+    public function roleLimit(): null|int
+    {
+        if ($this->isGrandfathered() || $this->boosted()) {
+            return null;
+        }
+        return config('kanka.campaigns.role_limit');
+    }
+
+    /**
+     * Get the quick link limit for the campaign
+     * @return int|null
+     */
+    public function quickLinkLimit(): null|int
+    {
+        if ($this->isGrandfathered() || $this->boosted()) {
+            return null;
+        }
+        return config('kanka.campaigns.quick_link_limit');
+    }
+
+    /**
+     * Get the limit of entities a campaign can have
+     * @return int|null
+     */
+    public function entityLimit(): null|int
+    {
+        if ($this->isGrandfathered() || $this->boosted()) {
+            return null;
+        }
+        return config('kanka.campaigns.entity_limit');
+    }
 }
