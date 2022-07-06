@@ -647,7 +647,6 @@ class EntityService
     public function makeNewMentionEntity(MiscModel $model, string $name)
     {
         $campaign = CampaignLocalization::getCampaign();
-
         $defaultPrivate = false;
         if (auth()->user()->isAdmin() && $campaign->entity_visibility) {
             $defaultPrivate = true;
@@ -657,13 +656,15 @@ class EntityService
         $model->forceSavedObserver = true;
         $model->is_private = $defaultPrivate;
         $model->save();
-        if ($model->entity->type() != 'tag') {
-            $tags = \App\Models\Tag::autoApplied()->get();
+        if ($model->entity->type_id !== config('entities.ids.tag')) {
+            $allTags = [];
+            $tags = \App\Models\Tag::autoApplied()->with('entity')->get();
             foreach ($tags as $tag) {
                 if ($tag && $tag->entity) {
-                    $model->entity->tags()->attach($tag->id);
+                    array_push($allTags, $tag->id);
                 }
             }
+            $model->entity->tags()->attach($allTags);
         }
         return $model;
     }

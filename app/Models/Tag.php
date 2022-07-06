@@ -337,6 +337,7 @@ class Tag extends MiscModel
     }
 
     /**
+     * Determine if the model is a tag that has to be applied to all newly created entities
      * @return bool
      */
     public function isAutoApplied(): bool

@@ -48,11 +48,11 @@
             'disableSort' => true,
         ],
         [
-            'label' => '<i class="fa-solid fa-tag" title="' . __('tags.fields.is_auto_applied') . '"></i>',
+            'label' => '<i class="fa-solid fa-tag" title="' . __('tags.fields.is_auto_applied') . '" data-toggle="tooltip"></i>',
             'field' => 'is_auto_applied',
             'render' => function($model) {
                 if ($model->isAutoApplied()) {
-                    return '<i class="fa-solid fa-tag" title="' . __('tags.fields.is_auto_applied') . '"></i>';
+                    return '<i class="fa-solid fa-tag" title="' . __('tags.fields.is_auto_applied') . '" data-toggle="tooltip"></i>';
                 }
                 return '';
             },
