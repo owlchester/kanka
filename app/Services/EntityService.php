@@ -74,6 +74,9 @@ class EntityService
     /** @var bool|array */
     protected bool|array $cachedNewEntityTypes = false;
 
+    /** @var bool|array */
+    protected bool|array $cachedTags = false;
+
     /**
      * @param Campaign $campaign
      * @return $this
@@ -609,7 +612,7 @@ class EntityService
         }
 
         if (!auth()->check()) {
-          return $this->cachedNewEntityTypes = [];
+            return $this->cachedNewEntityTypes = [];
         }
 
         // Save and keep the current campaign before updating the entity
@@ -640,6 +643,25 @@ class EntityService
     }
 
     /**
+     * @return array
+     */
+    public function getAutoApplyTags(): array
+    {
+        if ($this->cachedTags !== false) {
+            return $this->cachedTags;
+        }
+        $allTags = [];
+        $tags = \App\Models\Tag::autoApplied()->with('entity')->get();
+        foreach ($tags as $tag) {
+            if ($tag && $tag->entity) {
+                array_push($allTags, $tag->id);
+            }
+        }
+
+        return $this->cachedTags = $allTags;
+    }
+
+    /**
      * @param MiscModel $model
      * @param string $name
      * @return MiscModel
@@ -657,13 +679,7 @@ class EntityService
         $model->is_private = $defaultPrivate;
         $model->save();
         if ($model->entity->type_id !== config('entities.ids.tag')) {
-            $allTags = [];
-            $tags = \App\Models\Tag::autoApplied()->with('entity')->get();
-            foreach ($tags as $tag) {
-                if ($tag && $tag->entity) {
-                    array_push($allTags, $tag->id);
-                }
-            }
+            $allTags = $this->getAutoApplyTags();
             $model->entity->tags()->attach($allTags);
         }
         return $model;
