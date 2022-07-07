@@ -40,7 +40,15 @@ elseif(!empty($model) && !empty($model->entity)) {
             }
         }
     }
+} elseif (empty($model)) {
+    $tags = \App\Models\Tag::autoApplied()->with('entity')->get(); 
+    foreach ($tags as $tag) {    
+        if ($tag && $tag->entity) {
+            $selectedOption[$tag->id] = $tag;
+        }
+    }
 }
+
 ?>
 @if ($label)
 <label>{{ __('crud.fields.tags') }}
