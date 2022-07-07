@@ -9,34 +9,37 @@
 
 @section('content')
     @include('partials.errors')
+
+    @if ($full)
+        @include('entities.creator.limit', ['key' => 'entities'])
+    @else
     {!! Form::open(['route' => ['entities.transform', $entity->id], 'method' => 'POST']) !!}
 
     {{ csrf_field() }}
-    <div class="row">
-        <div class="col-md-10 col-lg-6">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h4 class="panel-title">{{ __('entities/transform.panel.title') }}</h4>
-                </div>
-                <div class="panel-body">
-                    <p class="help-block">
-                        {{ __('entities/transform.panel.description') }}
-                    </p>
-                    <div class="form-group">
-                        <label>{{ __('entities/transform.fields.target') }}</label>
-                        {!! Form::select('target', $entities, null, ['class' => 'form-control']) !!}
-                    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4 class="panel-title">{{ __('entities/transform.panel.title') }}</h4>
+        </div>
+        <div class="panel-body">
+            <p class="help-block">
+                {{ __('entities/transform.panel.description') }}
+            </p>
+            <div class="form-group">
+                <label>{{ __('entities/transform.fields.target') }}</label>
+                {!! Form::select('target', $entities, null, ['class' => 'form-control']) !!}
+            </div>
 
-                    <div class="form-group">
-                    </div>
-                </div>
-                <div class="panel-footer">
-                    <button class="btn btn-success pull-right">{{ __('entities/transform.actions.transform') }}</button>
-                    @includeWhen(!request()->ajax(), 'partials.footer_cancel')
-                </div>
+            <div class="form-group">
             </div>
         </div>
+        <div class="panel-footer">
+            @includeWhen(!request()->ajax(), 'partials.footer_cancel')
+            <button class="btn btn-success pull-right">
+                <i class="fa-solid fa-exchange-alt" aria-hidden="true"></i>
+                {{ __('entities/transform.actions.transform') }}
+            </button>
+        </div>
     </div>
-
     {!! Form::close() !!}
+    @endif
 @endsection

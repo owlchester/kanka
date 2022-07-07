@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Entity;
 
 use App\Exceptions\TranslatableException;
+use App\Facades\CampaignLocalization;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\TransformEntityRequest;
 use App\Models\Entity;
@@ -38,6 +39,13 @@ class TransformController extends Controller
         // Policies will always fail if they can't resolve the user.
         $this->authorize('move', $entity->child);
 
+        // Check that the campaign isn't full
+        $campaign = CampaignLocalization::getCampaign();
+        $full = false;
+        if (!$campaign->canHaveMoreEntities()) {
+            $full = true;
+        }
+
         $entities = $this->service
             ->labelledEntities(true, [$entity->pluralType(), 'menu_links', 'relations'], true);
 
@@ -46,7 +54,8 @@ class TransformController extends Controller
 
         return view('entities.pages.transform.index', compact(
             'entity',
-            'entities'
+            'entities',
+            'full'
         ));
     }
 
@@ -67,8 +76,7 @@ class TransformController extends Controller
             return redirect()
                 ->to($entity->url())
                 ->with('success', __('entities/transform.success', ['name' => $entity->name]));
-        }
-        catch (TranslatableException $ex) {
+        } catch (TranslatableException $ex) {
             return redirect()
                 ->route($entity->pluralType() . '.show', $entity->entity_id)
                 ->with('error', __($ex->getMessage(), ['name' => $entity->name]));
