@@ -22,6 +22,7 @@ class TagFilter extends DatagridFilter
                 'placeholder' =>  __('crud.placeholders.tag'),
                 'model' => Tag::class,
             ])
+            ->add('is_auto_applied')
             ->isPrivate()
             ->hasImage()
             ->hasEntityNotes()

@@ -19,6 +19,7 @@ class TagResource extends EntityResource
             'tag_id' => $this->tag_id,
             'colour' => $this->colour,
             'entities' => $this->entities()->distinct()->pluck('entities.id')->toArray(),
+            'is_auto_applied' => (bool) $this->is_auto_applied,
         ]);
     }
 }

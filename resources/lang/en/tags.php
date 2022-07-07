@@ -20,6 +20,7 @@ return [
         'tag'       => 'Parent Tag',
         'tags'      => 'Subtags',
         'type'      => 'Type',
+        'is_auto_applied' => 'Automatically apply to new entities',
     ],
     'helpers'       => [
         'nested_without'=> 'Displaying all tags that don\'t have a parent tag. Click on a row to see the children tags.',
@@ -28,6 +29,7 @@ return [
     'hints'         => [
         'children'  => 'This list contains all the entities that are assigned to this tag or the tag\'s children.',
         'tag'       => 'This list contains all the tags are children of this tag or its children tags.',
+        'is_auto_applied' => 'Check this option to automatically apply this tag to newly created entities.',
     ],
     'index'         => [
         'title' => 'Tags',
