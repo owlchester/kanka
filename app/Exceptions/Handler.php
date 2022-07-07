@@ -147,6 +147,13 @@ class Handler extends ExceptionHandler
             return response()
                 ->json(['Too many requests. Limit requests to ' . auth()->user()->rateLimit
                     . ' per minute or subscribe to unlock higher limits.'], 429);
+        } elseif ($exception instanceof CampaignFullException) {
+            return response()
+                ->json([
+                    'code' => 422,
+                    'error' => 'The campaign has reach the entity limit. Delete entities first, ' .
+                    'or boost it to unlock unlimited entities.'
+                ], 422);
         }
         return response()
             ->json([

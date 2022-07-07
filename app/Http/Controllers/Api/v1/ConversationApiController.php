@@ -47,6 +47,8 @@ class ConversationApiController extends ApiController
     {
         $this->authorize('access', $campaign);
         $this->authorize('create', Conversation::class);
+        $this->authorizeNewEntity($campaign);
+
         $model = Conversation::create($request->all());
         $this->crudSave($model);
         return new Resource($model);

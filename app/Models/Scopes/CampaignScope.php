@@ -2,6 +2,7 @@
 
 namespace App\Models\Scopes;
 
+use App\Traits\CampaignTrait;
 use Illuminate\Database\Eloquent\Scope;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
@@ -11,14 +12,14 @@ class CampaignScope implements Scope
 {
     /**
      * @param Builder $builder
-     * @param Model $model
+     * @param Model|CampaignTrait $model
      * @return Builder
      */
     public function apply(Builder $builder, Model $model)
     {
         if (!app()->runningInConsole()) {
             $campaign = CampaignLocalization::getCampaign();
-            if ($campaign) {
+            if ($campaign && $model->withCampaignLimit()) {
                 $builder->where($model->getTable() . '.campaign_id', '=', $campaign->id);
             }
             return $builder;

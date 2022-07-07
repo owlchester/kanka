@@ -4,32 +4,37 @@ namespace App\Services;
 
 use App\Facades\Attributes;
 use App\Models\Attribute;
-use App\Models\Campaign;
 use App\Models\Entity;
 use App\Models\EntityNote;
 use App\Models\MiscModel;
 use App\Traits\MentionTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
 class MentionsService
 {
     use MentionTrait;
 
+    /** @var string The text that is being parsed, usualy an entry field */
     protected string $text = '';
+
+    /** @var array|Entity[] List of entities */
     protected array $entities = [];
+
+    /** @var array|Attribute[] List of attributes */
     protected array $attributes = [];
 
-    /**
-     * @var array
-     */
+    /** @var array List of mentioned entities (their ids) */
     protected array $mentionedEntities = [];
+
+    /** @var array List of mentioned entity types (type_id) */
     protected array $mentionedEntityTypes = [];
+
+    /** @var array List of mentioned attributes (their ids) */
     protected array $mentionedAttributes = [];
 
-    /** @var array */
+    /** @var array List of valid entity types */
     protected array $validEntityTypes = [];
 
     /** @var array Created new mentions to avoid duplicates */
@@ -40,6 +45,19 @@ class MentionsService
 
     /** @var string Class used to inject and strip advanced mention name helpers */
     public const ADVANCED_MENTION_CLASS = 'advanced-mention-name';
+
+    /** @var EntityService */
+    protected EntityService $entityService;
+
+
+    /**
+     * Mentions Service constructor
+     * @param EntityService $entityService
+     */
+    public function __construct(EntityService $entityService)
+    {
+        $this->entityService = $entityService;
+    }
 
     /**
      * Map the mentions in an entity
@@ -615,16 +633,14 @@ class MentionsService
     protected function newEntityMention(string $type, string $name): string
     {
         if (empty($type) || empty($name)) {
-            return (string) $name;
+            return $name;
         }
 
-        /** @var EntityService $service */
-        $service = app()->make(EntityService::class);
-        $types = $service->newEntityTypes();
+        $types = $this->entityService->newEntityTypes();
 
         // Invalid type
         if (!isset($types[$type])) {
-            return (string) $name;
+            return $name;
         }
 
         // Do we already have it cached?
@@ -633,11 +649,17 @@ class MentionsService
             return "[$type:" . $this->newEntityMentions[$key] . ']';
         }
 
+        // Check that the campaign can still accommodate more entities
+        $campaign = \App\Facades\CampaignLocalization::getCampaign();
+        if (!$campaign->canHaveMoreEntities()) {
+            return $name;
+        }
+
         // Create the new misc  model
         /** @var MiscModel $newMisc */
         $newMisc = new $types[$type]();
 
-        $new = $service->makeNewMentionEntity($newMisc, $name);
+        $new = $this->entityService->makeNewMentionEntity($newMisc, $name);
         $this->newEntityMentions[$key] = $new->entity->id;
         $this->createdNewEntities = true;
 

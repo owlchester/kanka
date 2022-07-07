@@ -2,6 +2,8 @@
 
 namespace App\Models\Concerns;
 
+use App\Models\Entity;
+
 trait CampaignLimit
 {
     /**
@@ -57,6 +59,7 @@ trait CampaignLimit
      */
     public function entityLimit(): null|int
     {
+        return 72;
         if ($this->isGrandfathered() || $this->boosted()) {
             return null;
         }
@@ -112,6 +115,21 @@ trait CampaignLimit
         if (empty($limit)) {
             return true;
         }
-        return $this->entities()->whereNotIn('type_id', [config('entities.ids.tag')])->count() <= $limit;
+        // We don't use $this->entities, because we need to know a campaign's total entities when copying entities
+        // from one campaign to another.
+        return Entity::allCampaigns()
+            ->where('campaign_id', $this->id)
+            ->whereNotIn('type_id', [config('entities.ids.tag')])
+            ->count() <= $limit;
     }
+
+    /**
+     * Get the remaining entities a campaign can add
+     * @return int
+     */
+    /*public function remainingAvailableEntities(): int
+    {
+        $limit = $this->entityLimit();
+        return $limit - $this->entities()->whereNotIn('type_id', [config('entities.ids.tag')])->count();
+    }*/
 }

@@ -22,8 +22,7 @@ class CharacterApiController extends ApiController
             ->withApi()
             ->filter(request()->all())
             ->lastSync(request()->get('lastSync'))
-            ->paginate()
-        );
+            ->paginate());
     }
 
     /**
@@ -48,6 +47,8 @@ class CharacterApiController extends ApiController
     {
         $this->authorize('access', $campaign);
         $this->authorize('create', Character::class);
+        $this->authorizeNewEntity($campaign);
+
         $model = Character::create($request->all());
         $this->crudSave($model);
 

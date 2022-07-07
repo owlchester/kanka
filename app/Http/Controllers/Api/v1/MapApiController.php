@@ -47,6 +47,8 @@ class MapApiController extends ApiController
     {
         $this->authorize('access', $campaign);
         $this->authorize('create', Map::class);
+        $this->authorizeNewEntity($campaign);
+
         $model = Map::create($request->all());
         $this->crudSave($model);
         return new Resource($model);

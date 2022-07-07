@@ -49,6 +49,8 @@ class RaceApiController extends ApiController
     {
         $this->authorize('access', $campaign);
         $this->authorize('create', Race::class);
+        $this->authorizeNewEntity($campaign);
+
         $model = Race::create($request->all());
         $this->crudSave($model);
         return new Resource($model);

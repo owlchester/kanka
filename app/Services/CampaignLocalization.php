@@ -15,13 +15,11 @@ class CampaignLocalization
      */
     protected $campaignId = false;
 
-    /**
-     * @var bool|Campaign
-     */
-    protected $campaign = false;
+    /** @var Campaign|null The current campaign contact */
+    protected Campaign|null $campaign;
 
     /** @var int console campaign id */
-    protected $consoleCampaignId = 0;
+    protected int $consoleCampaignId = 0;
 
     /**
      * Set and return current locale.
@@ -30,7 +28,7 @@ class CampaignLocalization
      *
      * @return string Returns locale (if route has any) or null (if route does not have a locale)
      */
-    public function setCampaign($campaignId = null)
+    public function setCampaign($campaignId = null): string
     {
         if (empty($campaignId)) {
             // If the locale has not been passed through the function
@@ -47,7 +45,6 @@ class CampaignLocalization
         if (!empty($campaignId) && !is_numeric($campaignId)) {
             if (request()->segment(2) == 'campaign') {
                 return redirect()->to(app()->getLocale() . '/404');
-                throw new ModelNotFoundException();
             }
         }
 
@@ -66,7 +63,7 @@ class CampaignLocalization
      */
     public function getCampaign(bool $canAbort = true)
     {
-        if ($this->campaign !== false) {
+        if (isset($this->campaign)) {
             return $this->campaign;
         }
 

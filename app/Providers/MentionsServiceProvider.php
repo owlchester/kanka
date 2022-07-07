@@ -1,9 +1,8 @@
 <?php
 
-
 namespace App\Providers;
 
-
+use App\Services\EntityService;
 use App\Services\MentionsService;
 use Illuminate\Support\ServiceProvider;
 
@@ -18,7 +17,7 @@ class MentionsServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->singleton(MentionsService::class, function ($app) {
-            return new MentionsService();
+            return new MentionsService(new EntityService());
         });
 
         $this->app->alias(MentionsService::class, 'mentions');

@@ -33,14 +33,17 @@ use Illuminate\Support\Str;
 
 class EntityService
 {
-    /** @var array */
+    /** @var array List of entity types */
     protected array $entities = [];
 
-    /** @var bool */
+    /** @var bool If the process is copying an entity (this should be moved outside of this class) */
     protected bool $copied = false;
 
     /** @var Campaign */
-    protected $campaign;
+    protected Campaign $campaign;
+
+    /** @var bool|array */
+    protected bool|array $cachedNewEntityTypes = false;
 
     /**
      * EntityService constructor.
@@ -70,9 +73,6 @@ class EntityService
             'relations' => 'App\Models\Relation',
         ];
     }
-
-    /** @var bool|array */
-    protected bool|array $cachedNewEntityTypes = false;
 
     /**
      * @param Campaign $campaign
@@ -202,6 +202,7 @@ class EntityService
     protected function moveCampaign(Entity $entity, int $campaignId, bool $copy): Entity
     {
         // First we make sure we have access to the new campaign.
+        /** @var Campaign $campaign */
         $campaign = auth()->user()->campaigns()->where('campaign_id', $campaignId)->first();
         if (empty($campaign)) {
             throw new TranslatableException('entities/move.errors.unknown_campaign');
@@ -221,6 +222,12 @@ class EntityService
         if (!$copy && !auth()->user()->can('update', $entity->child)) {
             throw new TranslatableException('entities/move.errors.permission_update');
         }
+
+        // Make sure the target campaign still has space for this entity
+        if (!$campaign->canHaveMoreEntities()) {
+            throw new TranslatableException('entities/move.errors.campaign_full');
+        }
+        dd($campaign->canHaveMoreEntities());
 
         if ($copy) {
             $this->copied = true;

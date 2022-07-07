@@ -20,7 +20,6 @@ use App\Traits\TooltipTrait;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use RichanFongdasen\EloquentBlameable\BlameableTrait;
 
@@ -54,22 +53,6 @@ use RichanFongdasen\EloquentBlameable\BlameableTrait;
 class Entity extends Model
 {
     /**
-     * @var array
-     */
-    protected $fillable = [
-        'campaign_id',
-        'entity_id',
-        'name',
-        'type_id',
-        'is_private',
-        'is_attributes_private',
-        'header_image',
-        'image_uuid',
-        'header_uuid',
-        'is_template',
-    ];
-
-    /**
      * Traits
      */
     use CampaignTrait,
@@ -86,14 +69,26 @@ class Entity extends Model
         SortableTrait,
         Acl;
 
-    /**
-     * Searchable fields
-     * @var array
-     */
+    /** @var array Fields fillable in mass-create/update*/
+    protected $fillable = [
+        'campaign_id',
+        'entity_id',
+        'name',
+        'type_id',
+        'is_private',
+        'is_attributes_private',
+        'header_image',
+        'image_uuid',
+        'header_uuid',
+        'is_template',
+    ];
+
+    /** @var array Searchable fields */
     protected $searchableColumns = [
         'name',
     ];
 
+    /** @var string[] Fields that can be used to order by */
     protected $sortable = [
         'name',
         'type_id',

@@ -47,6 +47,8 @@ class AbilityApiController extends ApiController
     {
         $this->authorize('access', $campaign);
         $this->authorize('create', Ability::class);
+        $this->authorizeNewEntity($campaign);
+
         $model = Ability::create($request->all());
         $this->crudSave($model);
         return new Resource($model);

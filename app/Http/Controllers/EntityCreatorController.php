@@ -15,7 +15,7 @@ class EntityCreatorController extends Controller
     /**
      * @var EntityService
      */
-    protected $entityService;
+    protected EntityService $entityService;
 
     /**
      * Create a new controller instance.
@@ -90,6 +90,7 @@ class EntityCreatorController extends Controller
 
         $names = $request->get('names');
         $values = $request->all();
+        $campaign = CampaignLocalization::getCampaign();
 
         // Prepare the data
         unset($values['names']);
@@ -99,7 +100,7 @@ class EntityCreatorController extends Controller
             $values['entry'] = nl2br($values['entry']);
         } elseif ($values['entity'] == 'notes') {
             $values['entry'] = '';
-        }
+        }Because for security reasons,
 
         // Prepare the validator
         /** @var $validator FormRequest */
@@ -110,6 +111,9 @@ class EntityCreatorController extends Controller
         $createdEntities = $links = [];
         foreach ($names as $name) {
             if (empty($name)) {
+                continue;
+            } elseif (!in_array($type, ['tags', 'posts']) && !$campaign->canHaveMoreEntities()) {
+                // If it's an entity, and we've hit the limit, don't process it
                 continue;
             }
             $values['name'] = $name;
@@ -157,15 +161,15 @@ class EntityCreatorController extends Controller
      */
     protected function availableEntities(): array
     {
-
         $entities = [];
         /** @var Campaign $campaign */
         $campaign = CampaignLocalization::getCampaign();
 
         // Loop through the entities, check those enabled in the campaign, and where the user has create access.
-        foreach ($this->entityService->entities([
+        $types = [
             'calendars', 'conversations', 'tags', 'dice_rolls', 'menu_links'
-        ]) as $name => $class) {
+        ];
+        foreach ($this->entityService->entities($types) as $name => $class) {
             if ($campaign->enabled($name)) {
                 if (auth()->user()->can('create', $class)) {
                     $entities[$name] = $class;
@@ -176,10 +180,22 @@ class EntityCreatorController extends Controller
         return $entities;
     }
 
+    /**
+     * Validate an entity's request to make sure data doesn't contain erroneous info
+     * @param array $data
+     * @param array $rules
+     * @param array $messages
+     * @param array $customAttributes
+     * @return array
+     * @throws \Illuminate\Validation\ValidationException
+     */
     protected function validateEntity(array $data, array $rules, array $messages = [], array $customAttributes = [])
     {
         return $this->getValidationFactory()->make(
-            $data, $rules, $messages, $customAttributes
+            $data,
+            $rules,
+            $messages,
+            $customAttributes
         )->validate();
     }
 }
