@@ -228,6 +228,9 @@ section .btn-primary {
 .booster-cards .booster-card:nth-child(7) {
   background: linear-gradient(120deg, #72CB74, #72CBA1 90%), #D89595;
 }
+.booster-cards .booster-card:nth-child(8) {
+  background: linear-gradient(120deg, #72CBA1, #7291CE 90%), #D89595;
+}
 @media (min-width: 992px) {
   #mainNav {
     border-color: transparent;

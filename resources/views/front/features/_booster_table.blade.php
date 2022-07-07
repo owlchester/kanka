@@ -11,13 +11,25 @@
         <tbody>
         <tr>
             <td class="text">{{ __('front/boosters.perks.entity-count') }}</td>
-            <td><i class="fa-solid fa-infinity"></i></td>
+            <td>{{ config('kanka.campaigns.entity_limit') }}</td>
             <td><i class="fa-solid fa-infinity"></i></td>
             <td><i class="fa-solid fa-infinity"></i></td>
         </tr>
         <tr>
             <td class="text">{{ __('front/boosters.perks.member-count') }}</td>
+            <td>{{ config('kanka.campaigns.member_limit') }}</td>
             <td><i class="fa-solid fa-infinity"></i></td>
+            <td><i class="fa-solid fa-infinity"></i></td>
+        </tr>
+        <tr>
+            <td class="text">{{ __('front/boosters.perks.role-count') }}</td>
+            <td>{{ config('kanka.campaigns.role_limit') }}</td>
+            <td><i class="fa-solid fa-infinity"></i></td>
+            <td><i class="fa-solid fa-infinity"></i></td>
+        </tr>
+        <tr>
+            <td class="text">{{ __('front/boosters.perks.quick-links') }}</td>
+            <td>{{ config('kanka.campaigns.quick_link_limit') }}</td>
             <td><i class="fa-solid fa-infinity"></i></td>
             <td><i class="fa-solid fa-infinity"></i></td>
         </tr>

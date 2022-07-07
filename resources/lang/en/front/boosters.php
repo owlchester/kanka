@@ -14,6 +14,10 @@ return [
             'description'   => 'Set header images for entities, write custom tooltips, give them aliases for search and mentions, and upload more assets on each entity.',
             'title'         => 'Better entities',
         ],
+        'limits'        => [
+            'description' => 'Get ride of limits to the number of entities, members, roles and quick links in the campaign.',
+            'title' => 'Unlimited',
+        ],
         'gang'          => [
             'description'   => 'All members of the campaign get to enjoy it ad free, and also get access to larger file uploads.',
             'title'         => 'One for the gang',
@@ -45,6 +49,8 @@ return [
     'perks'             => [
         'entity-count'  => 'Number of created entities in a campaign',
         'member-count'  => 'Number of members in a campaign',
+        'quick-links'  => 'Number of custom quick links in a campaign',
+        'role-count'  => 'Number of roles in a campaign',
     ],
     'starting'          => 'Starting at USD :amount per month',
     'superboost'        => [
