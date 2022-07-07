@@ -18,24 +18,24 @@ class BulkService
     /**
      * @var EntityService
      */
-    protected $entityService;
+    protected EntityService $entityService;
 
     /**
      * @var PermissionService
      */
-    protected $permissionService;
+    protected PermissionService $permissionService;
 
     /** @var string Entity name */
-    protected $entityName;
+    protected string $entityName;
 
     /** @var array Ids of entities */
     protected $ids;
 
     /** @var int Total entities submitted for update */
-    protected $total = 0;
+    protected int $total = 0;
 
     /** @var int Total entities that were updated */
-    protected $count = 0;
+    protected int $count = 0;
 
     /**
      * BulkService constructor.
@@ -52,7 +52,7 @@ class BulkService
      * @param string $entityName
      * @return $this
      */
-    public function entity(string $entityName)
+    public function entity(string $entityName): self
     {
         $this->entityName = $entityName;
         return $this;
@@ -62,7 +62,7 @@ class BulkService
      * @param array $ids
      * @return $this
      */
-    public function entities(array $ids = [])
+    public function entities(array $ids = []): self
     {
         $this->ids = $ids;
         return $this;
@@ -79,12 +79,10 @@ class BulkService
 
     /**
      * Delete several entities
-     * @param string $entityName
-     * @param array $ids
      * @return int
      * @throws Exception
      */
-    public function delete()
+    public function delete(): int
     {
         $model = $this->getEntity();
         foreach ($this->ids as $id) {
@@ -104,12 +102,10 @@ class BulkService
     }
 
     /**
-     * @param $entityName
-     * @param array $ids
      * @return array
      * @throws Exception
      */
-    public function export()
+    public function export(): array
     {
         $model = $this->getEntity();
         $entities = [];

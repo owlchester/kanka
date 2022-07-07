@@ -12,4 +12,9 @@ class TagBulk extends Bulk
         'private_choice',
         'auto_applied_choice',
     ];
+
+
+    protected $mappings = [
+        'is_auto_applied'
+    ];
 }
