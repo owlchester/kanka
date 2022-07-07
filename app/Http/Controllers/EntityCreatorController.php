@@ -48,8 +48,13 @@ class EntityCreatorController extends Controller
     public function form($type)
     {
         // Make sure the user is allowed to create this kind of entity
-        $model = $this->entityService->getClass($type);
-        $this->authorize('create', $model);
+        if ($type == 'posts') {
+            $campaign = CampaignLocalization::getCampaign();
+            $this->authorize('recover', $campaign);
+        } else {
+            $model = $this->entityService->getClass($type);
+            $this->authorize('create', $model);
+        }
         $origin = request()->get('origin');
         $target = request()->get('target');
         $singularType = Str::singular($type);
@@ -75,6 +80,7 @@ class EntityCreatorController extends Controller
      */
     public function store(Request $request, $type)
     {
+        dd($request);
         // Make sure the user is allowed to create this kind of entity
         $class = $this->entityService->getClass($type);
         $this->authorize('create', $class);
