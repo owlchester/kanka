@@ -100,7 +100,7 @@ class EntityCreatorController extends Controller
             $values['entry'] = nl2br($values['entry']);
         } elseif ($values['entity'] == 'notes') {
             $values['entry'] = '';
-        }Because for security reasons,
+        }
 
         // Prepare the validator
         /** @var $validator FormRequest */

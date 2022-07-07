@@ -59,7 +59,6 @@ trait CampaignLimit
      */
     public function entityLimit(): null|int
     {
-        return 72;
         if ($this->isGrandfathered() || $this->boosted()) {
             return null;
         }
