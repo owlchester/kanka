@@ -235,6 +235,7 @@ return [
     'helpers'                   => [
         'copy_options'  => 'Copy the following related elements from the source to the new entity.',
         'linking'       => 'Linking to other entities',
+        'nested_parent' => 'Displaying the children of :parent.',
     ],
     'hidden'                    => 'Hidden',
     'hints'                     => [
