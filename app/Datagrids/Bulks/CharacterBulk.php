@@ -16,6 +16,7 @@ class CharacterBulk extends Bulk
         'age',
         'tags',
         'private_choice',
+        'organisations',
     ];
 
     protected $mappings = [
@@ -29,5 +30,6 @@ class CharacterBulk extends Bulk
     protected $belongsTo = [
         'races',
         'families',
+        'organisations'
     ];
 }

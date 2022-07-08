@@ -81,6 +81,10 @@ class MacroServiceProvider extends ServiceProvider
             'fieldId',
             'options' => []
         ]);
+        Form::component('organisations', 'components.form.organisations', [
+            'fieldId',
+            'options' => []
+        ]);
         Form::component('user', 'components.form.user', [
             'fieldId',
             'options' => []
