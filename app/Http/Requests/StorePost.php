@@ -25,7 +25,8 @@ class StorePost extends FormRequest
     {
         return [
             'name' => 'required|max:191',
-            'entity_id' => 'required',
+            'entity_id' => 'required|numeric|exists:entities,id',
+            'visibility_id' => 'nullable|exists:visibilities,id',
         ];
     }
 }

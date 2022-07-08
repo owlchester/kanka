@@ -6,8 +6,6 @@ return [
     ],
     'fields'        => [
         'name'          => 'Name',
-        'parent'        => 'Parent Entity',
-        'position'      => 'Position',
     ],
     'placeholders'  => [
         'name'  => 'Name of the post',

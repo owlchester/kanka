@@ -37,14 +37,14 @@
 
     @include('entities.creator.forms.' . $singularType)
 
-    @if ($type !== 'tags' && $type !== 'posts')
+    @if (!in_array($type, ['tags', 'posts']))
         <div id="quick-creator-tags-field">
     @include('cruds.fields.tags', ['dropdownParent' => '#quick-creator-tags-field'])
         </div>
     @endif
 
-    @if ($type !== 'posts')
-        @includeWhen(auth()->user()->isAdmin(), 'cruds.fields.privacy_callout')
+    @if ($type !== 'posts' && auth()->user()->isAdmin())
+        @include('cruds.fields.privacy_callout')
     @endif
 
     <div class="row my-5">

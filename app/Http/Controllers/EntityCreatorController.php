@@ -83,12 +83,12 @@ class EntityCreatorController extends Controller
     public function store(Request $request, $type)
     {
         // Make sure the user is allowed to create this kind of entity
-        if ($type != 'posts') {
-            $class = $this->entityService->getClass($type);
-            $this->authorize('create', $class);
-        } else {
+        if ($type == 'posts') {
             $campaign = CampaignLocalization::getCampaign();
             $this->authorize('recover', $campaign);
+        } else {
+            $class = $this->entityService->getClass($type);
+            $this->authorize('create', $class);
         }
 
         $names = $request->get('names');
@@ -125,6 +125,7 @@ class EntityCreatorController extends Controller
                 $new->crudSaved();
                 $new->entity->crudSaved();
             } else {
+                //If position = 0 the post's position is last, else the post's position is first.
                 if ($values['position'] == 0) {
                     $new = EntityNote::create($values);
                 } else {
