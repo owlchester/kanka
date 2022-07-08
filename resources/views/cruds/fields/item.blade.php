@@ -6,6 +6,8 @@
 $preset = null;
 if (isset($model) && $model->item) {
     $preset = $model->item;
+} elseif (isset($parent) && $parent) {
+    $preset = FormCopy::field('item')->select(true, \App\Models\Item::class);
 } else {
     $preset = FormCopy::field('item')->select();
 }

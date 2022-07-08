@@ -12,7 +12,7 @@
             {!! Form::foreignSelect(
                 'journal_id',
                 [
-                    'preset' => (isset($model) && $model->journal ? $model->journal : FormCopy::field('journal')->select()),
+                    'preset' => (isset($model) && $model->journal ? $model->journal : FormCopy::field('journal')->select(true, \App\Models\Journal::class)),
                     'class' => App\Models\Journal::class,
                     'enableNew' => true,
                     'labelKey' => __('journals.fields.journal'),
