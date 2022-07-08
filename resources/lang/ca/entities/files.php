@@ -14,6 +14,5 @@ return [
     ],
     'update'    => [
         'success'   => 'S\'ha actualitzat el fitxer :file.',
-        'title'     => 'Actualitza el fitxer :file de :entity',
     ],
 ];

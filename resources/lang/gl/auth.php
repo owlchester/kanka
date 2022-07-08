@@ -12,6 +12,10 @@ return [
     |
     */
 
+    'banned'    => [
+        'permanent' => 'Fuches expulsade permanentemente.',
+        'temporary' => '{1} Levas expulsade :days día|[2,*] Levas expulsade :days días.',
+    ],
     'confirm'   => [
         'confirm'   => 'Confirmar',
         'error'     => 'Contrasinal inválido, proba de novo.',

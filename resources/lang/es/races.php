@@ -21,8 +21,7 @@ return [
         'type'          => 'Tipo',
     ],
     'helpers'       => [
-        'nested_parent' => 'Mostrando razas de :parent.',
-        'nested_without'=> 'Mostrando todas las razas sin ningún superior. Haz clic sobre una fila para mostrar sus descendientes.',
+        'nested_without'    => 'Mostrando todas las razas sin ningún superior. Haz clic sobre una fila para mostrar sus descendientes.',
     ],
     'index'         => [
         'title' => 'Razas',

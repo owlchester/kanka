@@ -5,7 +5,6 @@ return [
         'actions'           => 'Azioni',
         'apply'             => 'Applica',
         'back'              => 'Indietro',
-        'bulk_templates'    => 'Applica modello attributo',
         'copy'              => 'Copia',
         'copy_mention'      => 'Copia [ ] menzione',
         'copy_to_campaign'  => 'Copia nella Campagna',

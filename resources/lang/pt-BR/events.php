@@ -20,9 +20,8 @@ return [
         'type'      => 'Tipo',
     ],
     'helpers'       => [
-        'date'          => 'Este campo pode conter qualquer coisa e não está vinculado aos calendários da campanha. Para vincular este evento a uma agenda, adicione-o na agenda ou na guia de lembretes deste evento.',
-        'nested_parent' => 'Mostrando os eventos de :parent.',
-        'nested_without'=> 'Mostrando todos os eventos que não tem um evento-pai. Clique em uma linha para ver os eventos-filhos.',
+        'date'              => 'Este campo pode conter qualquer coisa e não está vinculado aos calendários da campanha. Para vincular este evento a uma agenda, adicione-o na agenda ou na guia de lembretes deste evento.',
+        'nested_without'    => 'Mostrando todos os eventos que não tem um evento-pai. Clique em uma linha para ver os eventos-filhos.',
     ],
     'index'         => [
         'title' => 'Eventos',

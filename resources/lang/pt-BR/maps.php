@@ -49,7 +49,6 @@ return [
         'max_zoom'          => 'O máximo que um mapa pode ser ampliado. O valor padrão é :default, enquanto o maior valor permitido é :max.',
         'min_zoom'          => 'O máximo que um mapa pode ser diminuído. O valor padrão é :default, enquanto o menor valor permitido é :max.',
         'missing_image'     => 'Você precisa salvar o mapa com uma imagem antes de poder adicionar camadas e marcadores.',
-        'nested_parent'     => 'Mostrando os mapas de :parent.',
         'nested_without'    => 'Mostrando todos os mapas que não tem um mapa-pai. Clique em uma linha para ver os mapas-filhos.',
     ],
     'index'         => [

@@ -5,7 +5,6 @@ return [
         'actions'           => 'Akcije',
         'apply'             => 'Primijeni',
         'back'              => 'Natrag',
-        'bulk_templates'    => 'Primijeni Predložak atributa',
         'copy'              => 'Kopiraj',
         'copy_mention'      => 'Kopiraj [ ] spominjanje',
         'copy_to_campaign'  => 'Kopiraj u kampanju',

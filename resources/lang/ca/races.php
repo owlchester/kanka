@@ -21,8 +21,7 @@ return [
         'type'          => 'Tipus',
     ],
     'helpers'       => [
-        'nested_parent' => 'S\'estan mostrant les races de :parent.',
-        'nested_without'=> 'S\'estan mostrant les races sense pare. Feu clic a la fila d\'una raça per a mostrar-ne les descendents.',
+        'nested_without'    => 'S\'estan mostrant les races sense pare. Feu clic a la fila d\'una raça per a mostrar-ne les descendents.',
     ],
     'index'         => [
         'title' => 'Races',

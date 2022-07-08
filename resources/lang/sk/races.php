@@ -21,8 +21,7 @@ return [
         'type'          => 'Typ',
     ],
     'helpers'       => [
-        'nested_parent' => 'Zobraziť rasy :parent.',
-        'nested_without'=> 'Zobrazujú sa všetky rasy, ktoré nemajú nadradenú rasu. Kliknutím na riadok zobrazíš podradené rasy.',
+        'nested_without'    => 'Zobrazujú sa všetky rasy, ktoré nemajú nadradenú rasu. Kliknutím na riadok zobrazíš podradené rasy.',
     ],
     'index'         => [
         'title' => 'Rasy',

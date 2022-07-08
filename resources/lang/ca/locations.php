@@ -31,7 +31,6 @@ return [
         'families'          => 'Hi ha indrets on s\'assenten poderoses famílies.',
         'map'               => 'En afegir un mapa a un indret, s\'hi poden crear punts i enllaçar-los a altres entitats de la campanya.',
         'map_deprecated_2'  => 'Ara els mapes són un mòdul per si mateixos! Aquesta nova funció està actualment disponible com a accés anticipat a les :boosted. La interfície prèvia deixarà d\'estar disponible quan s\'obri l\'accés al nou mòdul, però continuareu podent editar mapes antics.',
-        'nested_parent'     => 'S\'estan mostrant els indrets de :parent.',
         'nested_without'    => 'S\'estan mostrant els indrets sense pare. Feu clic a la fila d\'un indret per a mostrar-ne els descendents.',
         'organisations'     => 'Veu totes les organitzacions d\'aquest indret i les seves sublocalizaciones, o només les que estan directament aquí.',
     ],

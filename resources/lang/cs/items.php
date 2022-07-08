@@ -14,9 +14,8 @@ return [
         'title' => 'Předměty',
     ],
     'placeholders'  => [
-        'location'  => 'Vyber lokaci',
-        'name'      => 'Název předmětu',
-        'price'     => 'Cena předmětu',
+        'name'  => 'Název předmětu',
+        'price' => 'Cena předmětu',
     ],
     'show'          => [
         'tabs'  => [

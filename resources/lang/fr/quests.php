@@ -41,7 +41,6 @@ return [
     ],
     'helpers'       => [
         'is_completed'      => 'Sélectionner si la quête est considérée comme completée.',
-        'nested_parent'     => 'Affichage des quêtes de :parent.',
         'nested_without'    => 'Affichage des quêtes sans parent. Cliquer sur une rangée pour afficher les quêtes enfants.',
     ],
     'hints'         => [

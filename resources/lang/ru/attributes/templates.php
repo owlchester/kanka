@@ -13,4 +13,5 @@ return [
         'kanka'         => 'Шаблоны Kanka',
         'marketplace'   => 'Шаблоны каталога',
     ],
+    'pitch'     => ':marketplace позволяет искать листы персонажей и добавлять их в кампанию с помощью :boosted-campaign.',
 ];

@@ -14,6 +14,5 @@ return [
     ],
     'update'    => [
         'success'   => 'Datoteka :file ažurirana.',
-        'title'     => 'Ažuriraj datoteku :file za :entity',
     ],
 ];

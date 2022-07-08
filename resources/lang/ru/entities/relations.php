@@ -72,6 +72,6 @@ return [
     ],
     'update'        => [
         'success'   => 'Связь ":target" объекта ":entity" обновлена.',
-        'title'     => 'Обновление связи :name',
+        'title'     => 'Редактирование связи :name',
     ],
 ];

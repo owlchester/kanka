@@ -30,14 +30,10 @@ return [
         'title' => 'Inventaires de l\'objet :name',
     ],
     'placeholders'  => [
-        'character' => 'Choix dun personnage',
-        'item'      => 'Objet parent',
-        'location'  => 'Choix d\'un lieu',
-        'name'      => 'Nom de l\'objet',
-        'parent'    => 'Objet parent',
-        'price'     => 'Prix de l\'objet',
-        'size'      => 'Taille, poids, dimensions.',
-        'type'      => 'Arme, Potion, Coffre',
+        'name'  => 'Nom de l\'objet',
+        'price' => 'Prix de l\'objet',
+        'size'  => 'Taille, poids, dimensions.',
+        'type'  => 'Arme, Potion, Coffre',
     ],
     'quests'        => [],
     'show'          => [

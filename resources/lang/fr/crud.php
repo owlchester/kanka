@@ -5,8 +5,6 @@ return [
         'actions'           => 'Actions',
         'apply'             => 'Appliquer',
         'back'              => 'Retour',
-        'bulk_actions'      => 'Actions',
-        'bulk_templates'    => 'Appliquer modèle d\'attribut',
         'change'            => 'Changer',
         'copy'              => 'Copier',
         'copy_mention'      => 'Copier mention [ ]',

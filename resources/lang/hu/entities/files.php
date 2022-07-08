@@ -14,6 +14,5 @@ return [
     ],
     'update'    => [
         'success'   => ':file állományt frissítettük.',
-        'title'     => ':entity :file állományának firssítése',
     ],
 ];

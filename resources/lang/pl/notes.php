@@ -16,8 +16,7 @@ return [
         'type'          => 'Rodzaj',
     ],
     'helpers'       => [
-        'nested_parent' => 'Wyświetlono notatki pochodzące od :parent.',
-        'nested_without'=> 'Wyświetlono wszystkie notatki nie posiadające źródła. Kliknij na rząd, by wyświetlić notatki pochodne.',
+        'nested_without'    => 'Wyświetlono wszystkie notatki nie posiadające źródła. Kliknij na rząd, by wyświetlić notatki pochodne.',
     ],
     'hints'         => [
         'is_pinned' => 'Na pulpicie można przypiąć do 3 notatek.',

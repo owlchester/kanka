@@ -31,7 +31,6 @@ return [
         'families'          => 'Locais podem ser a sede de famílias poderosas.',
         'map'               => 'Adicionar um mapa a um local permitirá colocar "pontos" no mapa, vinculando-os a outras entidades na campanha.',
         'map_deprecated_2'  => 'Os mapas agora são seu próprio módulo! Os mapas antigos ainda podem ser atualizados, mas todos os novos mapas vão para o novo módulo Mapas.',
-        'nested_parent'     => 'Mostrando os locais de :parent.',
         'nested_without'    => 'Mostrando todos os locais que não tem um local-pai. Clique em uma linha para ver os locais-filhos.',
         'organisations'     => 'Ver todas Organizações nesta localização e locais relacionados a ela, ou apenas aquelas localizadas  diretamente nela.',
     ],

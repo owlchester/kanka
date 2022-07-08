@@ -47,7 +47,6 @@ return [
         'max_zoom'          => 'A legmagasabb szint, amennyire be lehet zoomolni a térképen. Az alapértelmezett értéke: :default, míg a maximális zoom értéke: :max.',
         'min_zoom'          => 'A legalacsonyabb szint, amennyire ki lehet zoomolni a térképen. Az alapértelmezett értéke: :default, míg a legalacsonyabb zoom szint értéke: :min.',
         'missing_image'     => 'Tölts fel egy képet a térképhez mielőtt nekikezdenél újabb rétegeket, és térképjelzőket elhelyezni rajta!',
-        'nested_parent'     => ':parent térképeinek mutatása',
         'nested_without'    => 'Minden olyan térkép mutatása, aminek nincs szülője. Klikkelj egy sorra, hogy lásd a gyermektérképeit.',
     ],
     'index'         => [

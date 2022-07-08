@@ -31,7 +31,6 @@ return [
         'families'          => 'Hai lugares onde se asentan poderosas familias.',
         'map'               => 'Engadir un mapa a un lugar permitiraches colocar "Puntos" no mapa, os cales poden ligar a outras entidades da campaña.',
         'map_deprecated_2'  => 'Os mapas teñen agora o seu propio módulo! Os mapas antigos aínda poden actualizarse, pero todos os novos mapas irán no novo módulo Mapas.',
-        'nested_parent'     => 'Mostrando todos os lugares de :parent.',
         'nested_without'    => 'Mostrando todos os lugares que non teñen un lugar superior. Fai clic nunha fila para ver os seus descendentes.',
         'organisations'     => 'Ver todas as organizacións neste lugar e nos seus descendentes, ou só as que están directamente aquí.',
     ],

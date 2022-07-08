@@ -49,7 +49,6 @@ return [
         'max_zoom'          => 'Większość map można przybliżać. Domyślna wartość przybliżenia to :default, a najwyższa możliwa wynosi :max.',
         'min_zoom'          => 'Większość map można oddalać. Domyślna wartość oddalenia to :default, a najwyższa możliwa wynosi :min.',
         'missing_image'     => 'Zapisz obraz mapy zanim dodasz do niego znaczniki i warstwy.',
-        'nested_parent'     => 'Wyświetlono mapy pochodzące od :parent.',
         'nested_without'    => 'Wyświetlono wszystkie mapy nie posiadające źródła. Kliknij na rząd, by wyświetlić mapy pochodne.',
     ],
     'index'         => [

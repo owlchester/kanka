@@ -21,8 +21,7 @@ return [
         'type'          => 'Type',
     ],
     'helpers'       => [
-        'nested_parent' => 'Affichage des races de :parent.',
-        'nested_without'=> 'Affichage des races sans parent. Cliquer sur une rangée pour afficher les races enfants.',
+        'nested_without'    => 'Affichage des races sans parent. Cliquer sur une rangée pour afficher les races enfants.',
     ],
     'index'         => [
         'title' => 'Races',

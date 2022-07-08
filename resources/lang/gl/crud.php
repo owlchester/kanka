@@ -5,8 +5,6 @@ return [
         'actions'           => 'Accións',
         'apply'             => 'Aplicar',
         'back'              => 'Voltar',
-        'bulk_actions'      => 'Accións en bloque',
-        'bulk_templates'    => 'Aplicar Padrón de atributos',
         'copy'              => 'Copiar',
         'copy_mention'      => 'Copiar mención [ ]',
         'copy_to_campaign'  => 'Copiar a campaña',

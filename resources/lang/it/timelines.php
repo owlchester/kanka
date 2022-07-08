@@ -24,7 +24,6 @@ return [
         'type'          => 'Tipo',
     ],
     'helpers'       => [
-        'nested_parent'     => 'Linee temporali di :parent',
         'nested_without'    => 'Tutte le linee temporali che non hanno una linea temporale principale. Clicca su una riga per vedere le linee temporali figlie',
         'no_era'            => 'Attualmente questa linea temporale non ha ere. Le ere possono essere aggiunte nella schermata di modifica delle linee temporali, dove è possibile aggiungere elementi.',
         'reorder'           => 'Trascina gli elementi dell\'era per riordinarli.',

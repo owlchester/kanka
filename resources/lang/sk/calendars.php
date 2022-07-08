@@ -14,6 +14,7 @@ return [
         'add_year'          => 'Pridať názov roka',
         'set_today'         => 'Nastaviť aktuálny deň',
         'today'             => 'Dnes',
+        'update_weather'    => 'Aktualizovať počasie',
     ],
     'checkboxes'    => [
         'is_recurring'  => 'Opakuje sa ročne',
@@ -69,6 +70,7 @@ return [
         'current_year'          => 'Aktuálny rok',
         'date'                  => 'Aktuálny dátum',
         'day'                   => 'Deň',
+        'default_layout'        => 'Štandardné rozmiestnenie',
         'has_leap_year'         => 'Má priestupné roky',
         'intercalary'           => 'Priestupné dni',
         'is_incrementing'       => 'Narastajúce dni',
@@ -96,11 +98,11 @@ return [
         'year'                  => 'Rok',
     ],
     'helpers'       => [
-        'month_type'    => 'Priestupné mesiace nepoužívajú dni v týždni, ale ovplyvňujú družice a ročné obdobia.',
-        'moon_offset'   => 'Štandardne začína spln prvý deň v roku 0. Nastavenie posunu ovplyvňuje, kedy sa tento spln udeje. Hodnota môže byť negatívna (do max. dĺžky prvého mesiaca) alebo pozitívna (do max. dĺžky prvého mesiaca).',
-        'nested_parent' => 'Zobraziť kalendáre :parent.',
-        'nested_without'=> 'Zobraziť všetky kalendáre, ktoré nemajú nadradený kalendár. Kliknutím na riadok zobrazíš podradené kalendáre.',
-        'start_offset'  => 'Štandardne začína kalendár prvý deň v týždni v roku 0. Nastavenie tejto hodnoty ovplyvňuje, na ktorý deň v kalendári pripadne prvý deň.',
+        'default_layout'    => 'Zvoľ, ktoré rozmiestnenie kalendára sa má štandardne zobrazovať.',
+        'month_type'        => 'Priestupné mesiace nepoužívajú dni v týždni, ale ovplyvňujú družice a ročné obdobia.',
+        'moon_offset'       => 'Štandardne začína spln prvý deň v roku 0. Nastavenie posunu ovplyvňuje, kedy sa tento spln udeje. Hodnota môže byť negatívna (do max. dĺžky prvého mesiaca) alebo pozitívna (do max. dĺžky prvého mesiaca).',
+        'nested_without'    => 'Zobraziť všetky kalendáre, ktoré nemajú nadradený kalendár. Kliknutím na riadok zobrazíš podradené kalendáre.',
+        'start_offset'      => 'Štandardne začína kalendár prvý deň v týždni v roku 0. Nastavenie tejto hodnoty ovplyvňuje, na ktorý deň v kalendári pripadne prvý deň.',
     ],
     'hints'         => [
         'event_length'      => 'Ako dlho má trvať daná udalosť. Udalosť nemôže trvať dlhšie ako dva mesiace.',
@@ -120,8 +122,10 @@ return [
         'title' => 'Kalendáre',
     ],
     'layouts'       => [
-        'month' => 'Mesiac',
-        'year'  => 'Rok',
+        'month'     => 'Mesiac',
+        'monthly'   => 'Štandardne mesačné',
+        'year'      => 'Rok',
+        'yearly'    => 'Štandardne ročné',
     ],
     'modals'        => [
         'switcher'  => [
@@ -207,8 +211,12 @@ return [
         'weekdays'          => 'Počet dní v týždni',
     ],
     'show'          => [
-        'missing_details'   => 'Tento kalendár nie je možné zobraziť. Kalendár vyžaduje min. 2 mesiace a min. 2 dni v týždni, aby bol vytvorený.',
-        'tabs'              => [
+        'missing_details'       => 'Tento kalendár nie je možné zobraziť. Kalendár vyžaduje min. 2 mesiace a min. 2 dni v týždni, aby bol vytvorený.',
+        'moon_1first_quarter'   => ':moon prvá štvrtina',
+        'moon_full'             => ':moon spln',
+        'moon_last_quarter'     => ':moon posledná štvrtina',
+        'moon_new'              => ':moon nov',
+        'tabs'                  => [
             'events'    => 'Kalendárne udalosti',
             'weather'   => 'Počasie',
         ],

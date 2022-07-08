@@ -25,9 +25,8 @@ return [
         'type'              => 'Type',
     ],
     'helpers'       => [
-        'nested_parent' => 'Affichage des étiquettes de :parent.',
-        'nested_without'=> 'Affichage des étiquettes sans parent. Cliquer sur une rangée pour afficher les étiquettes enfants.',
-        'no_children'   => 'Il n\'y a actuellement aucune entité avec cette étiquette.',
+        'nested_without'    => 'Affichage des étiquettes sans parent. Cliquer sur une rangée pour afficher les étiquettes enfants.',
+        'no_children'       => 'Il n\'y a actuellement aucune entité avec cette étiquette.',
     ],
     'hints'         => [
         'children'          => 'Cette liste contient toutes les entités directement dans cette étiquette et toutes les étiquettes enfants.',

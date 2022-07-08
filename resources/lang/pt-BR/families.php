@@ -19,9 +19,8 @@ return [
         'type'      => 'Tipo',
     ],
     'helpers'       => [
-        'descendants'   => 'Esta lista contém todas as famílias que são descendentes desta família, e não apenas aquelas diretamente relacionadas a ela.',
-        'nested_parent' => 'Mostrando as famílias de :parent.',
-        'nested_without'=> 'Mostrando todas as famílias que não tem uma família-pai. Clique em uma linha para ver as famílias-filhos.',
+        'descendants'       => 'Esta lista contém todas as famílias que são descendentes desta família, e não apenas aquelas diretamente relacionadas a ela.',
+        'nested_without'    => 'Mostrando todas as famílias que não tem uma família-pai. Clique em uma linha para ver as famílias-filhos.',
     ],
     'hints'         => [
         'members'   => 'Os membros de uma família estão listados aqui. Um personagem pode ser adicionado a uma família editando o personagem desejado e usando a lista suspensa "Família".',

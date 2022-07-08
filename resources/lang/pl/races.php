@@ -21,8 +21,7 @@ return [
         'type'          => 'Rodzaj',
     ],
     'helpers'       => [
-        'nested_parent' => 'Wyświetlono rasy pochodzące od :parent.',
-        'nested_without'=> 'Wyświetlono wszystkie rasy nie posiadające źródła. Kliknij na rząd, by wyświetlić rasy pochodne.',
+        'nested_without'    => 'Wyświetlono wszystkie rasy nie posiadające źródła. Kliknij na rząd, by wyświetlić rasy pochodne.',
     ],
     'index'         => [
         'title' => 'Rasy',

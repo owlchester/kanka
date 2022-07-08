@@ -31,7 +31,6 @@ return [
         'families'          => 'Lokacije mogu biti sjedište moćnih obitelji.',
         'map'               => 'Dodavanje karte na lokaciju će omogućiti stavljanje "Točaka" na kartu, povezujući ih na druge entitete u kampanji.',
         'map_deprecated_2'  => 'Karte su sada vlastiti modul! Stare karte se i dalje mogu ažurirati, ali sve nove karte prelaze u novi modul Karte.',
-        'nested_parent'     => 'Prikaz lokacija od :parent.',
         'nested_without'    => 'Prikazuju se sve lokacije koje nemaju lokaciju roditelj. Klikni redak da bi vidio/la lokacije djecu.',
         'organisations'     => 'Pregledaj sve organizacije na ovoj lokaciji i njenim podlokacijama ili samo one locirane neposredno ovdje.',
     ],

@@ -19,9 +19,8 @@ return [
         'type'      => 'Typ',
     ],
     'helpers'       => [
-        'descendants'   => 'Seznam zobrazuje všechny rody, podřazené tomuto rodu, nejen přímo podléhající.',
-        'nested_parent' => 'Zobrazují se rody podřazené rodu :parent.',
-        'nested_without'=> 'Zobrazují se rody bez nadřazeného rodu. Klepnutím na řádek se zobrazí podřazené rody.',
+        'descendants'       => 'Seznam zobrazuje všechny rody, podřazené tomuto rodu, nejen přímo podléhající.',
+        'nested_without'    => 'Zobrazují se rody bez nadřazeného rodu. Klepnutím na řádek se zobrazí podřazené rody.',
     ],
     'hints'         => [
         'members'   => 'Zde se zobrazují členové rodu. Postavu lze přičlenit některému rodu na její kartě "Rod".',

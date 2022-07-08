@@ -31,9 +31,8 @@ return [
         'type'      => 'Typ',
     ],
     'helpers'       => [
-        'descendants'   => 'Diese Liste enthält alle Fähigkeiten, die vererbt werden, und nicht nur diejenigen, die sich auf der nächstniedrigeren Ebene befinden.',
-        'nested_parent' => 'Anzeigen der Fähigkeiten von :parent.',
-        'nested_without'=> 'Anzeigen aller Fähigkeiten, die keine übergeordnete Fähigkeit haben. Klicken Sie auf eine Zeile, um die Fähigkeiten untergeordneten Objekte anzuzeigen.',
+        'descendants'       => 'Diese Liste enthält alle Fähigkeiten, die vererbt werden, und nicht nur diejenigen, die sich auf der nächstniedrigeren Ebene befinden.',
+        'nested_without'    => 'Anzeigen aller Fähigkeiten, die keine übergeordnete Fähigkeit haben. Klicken Sie auf eine Zeile, um die Fähigkeiten untergeordneten Objekte anzuzeigen.',
     ],
     'index'         => [
         'title' => 'Fähigkeiten',

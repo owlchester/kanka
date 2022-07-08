@@ -19,9 +19,8 @@ return [
         'type'      => 'Tipus',
     ],
     'helpers'       => [
-        'descendants'   => 'Aquí es mostren totes les famílies que són descendents d\'aquesta família, no només les immediatament inferiors.',
-        'nested_parent' => 'S\'estan mostrant les famílies de :parent.',
-        'nested_without'=> 'S\'estan mostrant les famílies sense pare per defecte. Feu clic a la fila d\'una família per a mostrar-ne els descendents.',
+        'descendants'       => 'Aquí es mostren totes les famílies que són descendents d\'aquesta família, no només les immediatament inferiors.',
+        'nested_without'    => 'S\'estan mostrant les famílies sense pare per defecte. Feu clic a la fila d\'una família per a mostrar-ne els descendents.',
     ],
     'hints'         => [
         'members'   => 'Aquí es mostren els membres d\'una família. Es pot afegir un personatge a una família des del menú d\'edició d\'aquest, mitjançant el desplegable «Família».',

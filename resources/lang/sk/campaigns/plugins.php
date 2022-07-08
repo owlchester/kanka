@@ -7,6 +7,7 @@ return [
             'enable'    => 'Aktivovať pluginy',
             'update'    => 'Aktualizovať pluginy',
         ],
+        'changelog'         => 'História zmien',
         'disable'           => 'Deaktivovať plugin',
         'enable'            => 'Aktivovať plugin',
         'go_to_marketplace' => 'Prejsť do Trhoviska',
@@ -56,6 +57,7 @@ return [
         'updates'       => 'Aktualizácie',
         'your_version'  => 'Tvoja verzia',
     ],
+    'pitch'         => 'Inštaluj a spravuj pluginy z :marketplace.',
     'status'        => [
         'disabled'  => 'Deaktivovaný',
         'enabled'   => 'Aktivovaný',

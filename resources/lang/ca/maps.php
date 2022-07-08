@@ -49,7 +49,6 @@ return [
         'max_zoom'          => 'El màxim que es pot acostar un mapa. El valor per defecte és :default, mentre que el valor màxim permès és :max.',
         'min_zoom'          => 'El màxim que es pot allunyar un mapa. El valor per defecte és :default, mentre que el valor màxim permès és :min.',
         'missing_image'     => 'Cal guardar el mapa amb una imatge abans d\'afegir-hi capes i marcadors.',
-        'nested_parent'     => 'S\'estan mostrant els mapes de :parent.',
         'nested_without'    => 'S\'estan mostrant els mapes sense pare. Feu clic a la fila d\'un mapa per a mostrar-ne els descendents.',
     ],
     'index'         => [

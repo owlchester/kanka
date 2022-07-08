@@ -16,8 +16,7 @@ return [
         'type'          => 'Tipo',
     ],
     'helpers'       => [
-        'nested_parent' => 'Mostrando as notas de :parent.',
-        'nested_without'=> 'Mostrando todas as notas que não tem uma nota-pai. Clique em uma linha para ver as notas-filhos.',
+        'nested_without'    => 'Mostrando todas as notas que não tem uma nota-pai. Clique em uma linha para ver as notas-filhos.',
     ],
     'hints'         => [
         'is_pinned' => 'Até 3 notas podem ser fixadas no dashboard',

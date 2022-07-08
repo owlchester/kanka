@@ -16,8 +16,7 @@ return [
         'type'          => 'Típus',
     ],
     'helpers'       => [
-        'nested_parent' => ':parent jegyzeteinek mutatása',
-        'nested_without'=> 'Minden jegyeztet megmutat, aminek nincs szülője. Klikkelj egy sorra, hogy lásd a gyermekjegyzeteket.',
+        'nested_without'    => 'Minden jegyeztet megmutat, aminek nincs szülője. Klikkelj egy sorra, hogy lásd a gyermekjegyzeteket.',
     ],
     'hints'         => [
         'is_pinned' => 'A vezérlőpultra legfeljebb három jegyzetet emelhetsz ki.',

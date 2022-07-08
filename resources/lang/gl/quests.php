@@ -41,7 +41,6 @@ return [
     ],
     'helpers'       => [
         'is_completed'      => 'Selecciona se a misión é considerada completa.',
-        'nested_parent'     => 'Mostrando as misións de ":parent".',
         'nested_without'    => 'Mostrando todas as misións que non teñen unha misión superior. Fai clic nunha fila para ver as súas submisións.',
     ],
     'hints'         => [

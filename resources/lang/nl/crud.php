@@ -5,7 +5,6 @@ return [
         'actions'           => 'Acties',
         'apply'             => 'Toepassen',
         'back'              => 'Terug',
-        'bulk_templates'    => 'Pas Attribuutsjabloon toe',
         'copy'              => 'Kopieer',
         'copy_mention'      => 'Kopieer [ ] opmerking',
         'copy_to_campaign'  => 'Kopieer naar Campaign',

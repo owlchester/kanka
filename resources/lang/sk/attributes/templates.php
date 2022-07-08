@@ -13,4 +13,5 @@ return [
         'kanka'         => 'Šablóny od Kanky',
         'marketplace'   => 'Šablóny na trhovisku',
     ],
+    'pitch'     => 'Nájdi a pridaj denníky postáv z :marketplace k :boosted-campaign.',
 ];
