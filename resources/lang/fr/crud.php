@@ -20,6 +20,7 @@ return [
         'manage_links'      => 'Gérer les liens',
         'move'              => 'Déplacer',
         'new'               => 'Nouveau',
+        'new_child'         => 'Nouvel enfant',
         'new_post'          => 'Nouvelle entrée',
         'next'              => 'Suivant',
         'print'             => 'Imprimer',
@@ -36,10 +37,15 @@ return [
     'boosted_campaigns'         => 'Campagnes Boostées',
     'bulk'                      => [
         'actions'       => [
-            'edit'  => 'Opération de masse',
+            'edit'          => 'Opération de masse',
+            'permissions'   => 'Changer les permissions',
+            'templates'     => 'Appliquer un modèle d\'attributs',
         ],
         'age'           => [
             'helper'    => 'Il est possible de préfixer le numéro avec + ou - pour modifier l\'âge dynamiquement.',
+        ],
+        'buttons'       => [
+            'label' => 'Pour la sélection',
         ],
         'delete'        => [
             'warning'   => 'Es-tu sûr de vouloir supprimer les entités sélectionnées?',
@@ -131,6 +137,7 @@ return [
         'copy_permissions'      => 'Copier les permissions (cela ignore les permissions définies dans l\'onglet de permissions)',
         'copy_posts'            => 'Copier les notes (cela inclus les permissions des notes)',
         'creator'               => 'Créateur',
+        'date_range'            => 'Plage de dates',
         'dice_roll'             => 'Jet de dés',
         'entity'                => 'Entité',
         'entity_type'           => 'Type d\'entité',

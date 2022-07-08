@@ -17,11 +17,12 @@ return [
     'destroy'       => [],
     'edit'          => [],
     'fields'        => [
-        'children'  => 'Enfants',
-        'name'      => 'Nom',
-        'tag'       => 'Étiquette Parentale',
-        'tags'      => 'Étiquettes',
-        'type'      => 'Type',
+        'children'          => 'Enfants',
+        'is_auto_applied'   => 'Appliquer automatiquement aux nouvelles entités',
+        'name'              => 'Nom',
+        'tag'               => 'Étiquette Parentale',
+        'tags'              => 'Étiquettes',
+        'type'              => 'Type',
     ],
     'helpers'       => [
         'nested_parent' => 'Affichage des étiquettes de :parent.',
@@ -29,8 +30,9 @@ return [
         'no_children'   => 'Il n\'y a actuellement aucune entité avec cette étiquette.',
     ],
     'hints'         => [
-        'children'  => 'Cette liste contient toutes les entités directement dans cette étiquette et toutes les étiquettes enfants.',
-        'tag'       => 'Affichées ci-dessous sont toutes les étiquettes enfants de cette étiquette.',
+        'children'          => 'Cette liste contient toutes les entités directement dans cette étiquette et toutes les étiquettes enfants.',
+        'is_auto_applied'   => 'Si cette option est activée, les nouvelles entités auront automatiquement cette étiquette.',
+        'tag'               => 'Affichées ci-dessous sont toutes les étiquettes enfants de cette étiquette.',
     ],
     'index'         => [
         'title' => 'Étiquettes',
