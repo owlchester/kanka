@@ -98,6 +98,7 @@ class Item extends MiscModel
     public $nullableForeignKeys = [
         'location_id',
         'character_id',
+        'item_id',
     ];
 
 
