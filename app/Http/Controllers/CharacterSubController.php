@@ -36,7 +36,7 @@ class CharacterSubController extends CharacterController
             ->route('characters.organisations', [$character]);
 
         $this->rows = $character
-            ->organisations()
+            ->organisationMemberships()
             ->sort(request()->only(['o', 'k']))
             ->with(['character', 'character.entity', 'organisation', 'organisation.entity', 'organisation.location', 'organisation.location.entity'])
             ->has('organisation')

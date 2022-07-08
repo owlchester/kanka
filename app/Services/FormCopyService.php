@@ -133,7 +133,7 @@ class FormCopyService
     public function characterOrganisation()
     {
         if ($this->valid()) {
-            return $this->source->organisations()
+            return $this->source->organisationMemberships()
                 ->with('organisation')
                 ->has('organisation')
                 ->get();

@@ -286,7 +286,7 @@ class EntityRelationService
     {
         /** @var Character $character */
         $character = $this->entity->child;
-        $organisations = $character->organisations()
+        $organisations = $character->organisationMemberships()
             ->has('organisation')
             ->with(['organisation', 'organisation.entity'])
             ->get();
