@@ -19,15 +19,15 @@ use Stevebauman\Purify\Facades\Purify;
 class AttributeService
 {
     /** @var array */
-    protected $loadedAttributes = [];
+    protected array $loadedAttributes = [];
 
-    protected $loadedTemplates = [];
-    protected $loadedPlugins = [];
+    protected array $loadedTemplates = [];
+    protected array $loadedPlugins = [];
 
     protected $loadedEntity = null;
 
     /** @var Campaign */
-    protected $campaign;
+    protected Campaign $campaign;
 
     /** @var null|Collection */
     protected $calculatedAttributes = null;
@@ -36,7 +36,8 @@ class AttributeService
      * @param Campaign $campaign
      * @return $this
      */
-    public function campaign(Campaign $campaign): self {
+    public function campaign(Campaign $campaign): self
+    {
         $this->campaign = $campaign;
         return $this;
     }
@@ -59,8 +60,7 @@ class AttributeService
         try {
             $calculated = $this->entityAttributes()->get($attribute->name);
             return (string) $calculated['final'];
-
-        } catch(\Exception $e) {
+        } catch (\Exception $e) {
             //throw $e;
             return (string) $attribute->$field;
         }
@@ -182,7 +182,7 @@ class AttributeService
                 // Edit an existing attribute
                 /** @var \App\Models\Attribute $attribute */
                 $attribute = $existing[$id];
-                $attribute->type = $type;
+                $attribute->type_id = $type;
                 $attribute->name = $name;
                 $attribute->value = $value;
                 $attribute->is_private = $isPrivate;
@@ -232,7 +232,7 @@ class AttributeService
             $template = $this->getAttributeTemplate($templateId);
             $template->apply($entity);
             return $template->name;
-        } elseif(is_string($templateId)) {
+        } elseif (is_string($templateId)) {
             return $this->applyKankaTemplate($templateId, $entity);
         }
         return false;
@@ -308,9 +308,7 @@ class AttributeService
             ]);
         }
 
-
         return $template->name();
-
     }
 
     /**
@@ -458,7 +456,7 @@ class AttributeService
         }
         // Get templates from the plugins
         if ($campaign->boosted() && config('marketplace.enabled')) {
-            foreach(CampaignPlugin::templates($campaign)->get() as $plugin) {
+            foreach (CampaignPlugin::templates($campaign)->get() as $plugin) {
                 if (empty($plugin->plugin)) {
                     continue;
                 }
@@ -658,7 +656,7 @@ class AttributeService
             return [$type, $value];
         }
         // Remap the type to a number attribute
-        $type = Attribute::TYPE_NUMBER_ID;
+        $type = Attribute::TYPE_STANDARD_ID;
 
         try {
             // List of strings separated by commas
@@ -719,8 +717,6 @@ class AttributeService
             $data['loop'] = true;
         }
         return $data;
-
-
     }
 
     /**
@@ -777,7 +773,7 @@ class AttributeService
             $calculator = new StringCalc();
             $return = (string)$calculator->calculate($final);
             return $return;
-        } catch(Exception $e) {
+        } catch (Exception $e) {
             return $final;
         }
     }
