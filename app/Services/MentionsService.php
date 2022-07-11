@@ -72,7 +72,7 @@ class MentionsService
      */
     public function mapEntityNote(EntityNote $entityNote)
     {
-        $this->text = $entityNote->entry;
+        $this->text = (string) $entityNote->entry;
         return $this->extractAndReplace();
     }
 
@@ -84,7 +84,7 @@ class MentionsService
      */
     public function mapAny(Model $model, string $field = 'entry')
     {
-        $this->text = $model->{$field};
+        $this->text = (string) $model->{$field};
         return $this->extractAndReplace();
     }
 
@@ -95,7 +95,7 @@ class MentionsService
      */
     public function mapAttribute(Attribute $attribute)
     {
-        $this->text = $attribute->value;
+        $this->text = (string) $attribute->value;
         $attribute->value = $this->extractAndReplace();
 
         return Attributes::parse($attribute);
