@@ -717,7 +717,8 @@ class Calendar extends MiscModel
                                     ->whereNull('recurring_until')
                                     // Events that end in the future are fine, they could be reoccuring on this month
                                     ->orWhere('recurring_until', '>=', $this->currentYear());
-                            });
+                            })
+                            ->where('year', '<=', $this->currentYear());
                     });
                 })
                     ->orWhere(function ($ondate) {

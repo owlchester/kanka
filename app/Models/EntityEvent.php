@@ -396,6 +396,8 @@ class EntityEvent extends MiscModel
      * @param int $year
      * @param int $month
      * @param int $day
+     * @param array $months
+     * @param int $daysInYear
      * @return int
      */
     public function mostRecentOccurence(int $year, int $month, int $day, array $months, int $daysInYear): int
@@ -405,13 +407,13 @@ class EntityEvent extends MiscModel
         $reminderMonth = $this->month;
         $reminderDay = $this->day;
 
-        // Recurring? We need to switch arround the data a bit to figure out the most recent date
+        // Recurring? We need to switch around the data a bit to figure out the most recent date
         if (!empty($this->is_recurring)) {
             if ($this->recurringMonthly()) {
                 //dump('monthly');
                 $reminderMonth = $month;
                 $reminderYear = $year;
-                // If it reoccures monthly, we need to see if it happened "last month" or "this month".
+                // If it repeats monthly, we need to see if it happened "last month" or "this month".
                 //dump('Reminder ' . $reminderDay . ' > ' . $day);
                 if ($reminderDay > $day) {
                     $reminderMonth--;
@@ -445,12 +447,12 @@ class EntityEvent extends MiscModel
                 for ($m = 1; $m < $month; $m++) {
                     //dump('beginning of the year');
                     // Month status
-                    $monthData = $months[$m-1];
+                    $monthData = $months[$m - 1];
                     $days += $monthData['length'];
                 }
                 for ($m = $reminderMonth; $m <= $totalMounts; $m++) {
                     //dump('end of previous year');
-                    $monthData = $months[$m-1];
+                    $monthData = $months[$m - 1];
                     $days += $monthData['length'];
                     //dump('days increase by ' . $monthData['length']);
                 }
@@ -458,7 +460,7 @@ class EntityEvent extends MiscModel
                 // The event happened earlier this year
                 for ($m = $reminderMonth; $m < $month; $m++) {
                     //dump('previous month');
-                    $monthData = $months[$m-1];
+                    $monthData = $months[$m - 1];
                     $days += $monthData['length'];
                 }
             }
@@ -476,13 +478,17 @@ class EntityEvent extends MiscModel
     }
 
     /**
-     * Calculate when the next event is happening
-     * @param int $year
-     * @param int $month
+     * Calculate when this reminder happens next. We want the YYYYYYYMMMMDDDD format, and use that as a string to
+     * order by, instead of doing complicated math. Or do we? I don't know, I'm so confused. This is all super
+     * hard to calculate :(
+     * @param int $calendarYear
+     * @param int $calendarMonth
      * @param int $day
+     * @param array $months
+     * @param int $daysInYear
      * @return int
      */
-    public function nextUpcommingOccurence(int $year, int $month, int $day, array $months, int $daysInYear): int
+    public function nextUpcommingOccurence(int $calendarYear, int $calendarMonth, int $day, array $months, int $daysInYear): int
     {
         if ($this->cachedNext !== false) {
             return $this->cachedNext;
@@ -492,62 +498,113 @@ class EntityEvent extends MiscModel
         $reminderMonth = $this->month;
         $reminderDay = $this->day;
 
-        // Recurring? We need to switch arround the data a bit to figure out the most recent date
+        //dump("Event #" . $this->id . " " . $this->entity->name . ": " . $this->year . "-" . $this->month . "-" . $this->day);
+
+        // Recurring? We need to switch around the data a bit to figure out the most recent date
         if (!empty($this->is_recurring)) {
             if ($this->recurringMonthly()) {
-                $reminderMonth = $month;
-                $reminderYear = $year;
-                // If it reoccures monthly, we need to see if it happened "last month" or "this month".
+                $reminderMonth = $calendarMonth;
+                // Max to properly track reminders starting in the future
+                $reminderYear = max($reminderYear, $calendarYear);
+                // If it repeats monthly, we need to see if it happened "last month" or "this month".
                 //dump('Reminder ' . $reminderDay . ' > ' . $day);
                 if ($reminderDay < $day) {
                     $reminderMonth++;
                     // Switched to previous month?
                     if ($reminderMonth === count($months) - 1) {
-                        $reminderMonth = $month;
+                        $reminderMonth = $calendarMonth;
                         $reminderYear++;
                     }
                 }
             } else {
-                $reminderYear = $year;
-                $reminderMonth = $month;
-                // If it was earlier this year, it's next year
-                if ($reminderMonth === $month && $reminderDay < $day) {
+                // It's a yearly reoccurring event, so we need to put the reminder's date to the "next" available one
+                // in the future.
+                $reminderYear = $calendarYear; // Make sure it's the same year
+                // If the month is earlier from this year, we need to push the next occurrence to next year. The month
+                // stays the same
+                if ($reminderMonth === $calendarMonth && $reminderDay < $day) {
                     $reminderYear++;
                 }
             }
         }
-        // Diff in years between current year and reminder's year
-        $days = ($reminderYear - $year) * $daysInYear;
+
+        $days = 0;
+        // We loop on every extra year, ex 2000 to 2004
+        for ($y = $calendarYear; $y < $reminderYear; $y++) {
+            $days += $daysInYear;
+        }
+
+        // If the reminder happens "before" the same month / same date, we need to reduce the days by one year
+        // current: 2004-05-01 and reminder is 2005-03-15
+        if ($days > 0 && ($reminderMonth < $calendarMonth || ($reminderMonth === $calendarMonth && $reminderDay < $day))) {
+            $days -= $daysInYear;
+        }
+
+        // Now we need to loop on the remaining months.
+        $monthStart = $calendarMonth; // ex August
+        $monthEnd = $reminderMonth; // ex September
+        if ($reminderMonth < $calendarMonth) {
+            // The reminder's month is before the current calendar month, so we jumped a year.
+            // ex reminder is in April and calendar is currently in August
+            $monthStart = 1;
+            //$monthEnd = $reminderMonth;
+        }
+        //dump("Month start $monthStart and $monthEnd");
+        for ($m = $monthStart; $m < $monthEnd; $m++) {
+            $monthData = $months[$m - 1];
+            $days += $monthData['length'];
+        }
+
+        $days += ($reminderDay - $day);
+        return $this->cachedNext = $days;
+
+        // OLD CODE
+
+        // If the next occurrence is later this year, we just loop on the months
+        $days = 0;
+        if ($reminderYear === $calendarYear) {
+            for ($m = $reminderMonth; $m <= $calendarMonth; $m++) {
+                $monthData = $months[$m - 1];
+                $days += $monthData['length'];
+            }
+        } else {
+            // It's in the future,
+            for ($y = $calendarYear; $y < $reminderYear; $y++) {
+                $days += $daysInYear;
+            }
+        }
         // Not the same month? We need to do some math
-        if ($month != $reminderMonth) {
+        dump('Not the same month?' . $calendarMonth . ' != ' . $reminderMonth);
+        dump("Next reminder set to happen in " . $reminderYear . '-' . $reminderMonth . '-' . $reminderDay);
+        if ($calendarMonth != $reminderMonth) {
             //dump('month diff ' . $month . ' (current) vs ' . $reminderMonth . '(reminder)');
             //dump('amount of months ' . count($months));
             $totalMounts = count($months);
 
             // If the reminder was last year, cancel out one year
-            if ($reminderMonth > $month) {
-                $days -= $daysInYear;
-            }
+            //if (!empty($this->is_recurring) && $reminderMonth > $month) {
+            //    $days -= $daysInYear;
+            //}
 
             // Loop through the beginning of the year
-            for ($m = 1; $m < $month; $m++) {
+            /*for ($m = 1; $m < $calendarMonth; $m++) {
                 //dump('beginning of the year');
                 // Month status
                 $monthData = $months[$m-1];
                 $days += $monthData['length'];
-            }
-            for ($m = $reminderMonth; $m <= $totalMounts; $m++) {
+            }*/
+            // If the month is in the future, add for the rest of the year
+            dump($reminderMonth . ' vs ' . $totalMounts);
+            for ($m = $reminderMonth; $m <= $calendarMonth; $m++) {
                 //dump('end of previous year');
                 $monthData = $months[$m-1];
                 $days += $monthData['length'];
-                //dump('days increase by ' . $monthData['length']);
+                dump('days increase by ' . $monthData['length']);
             }
         }
 
         // Diff in days
         $days += ($reminderDay - $day);
-
-        //dump($days);
 
         return $this->cachedNext = $days;
     }

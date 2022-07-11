@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Services\Entity;
-
 
 use App\Models\Character;
 use App\Models\Conversation;
@@ -25,37 +23,37 @@ use Illuminate\Support\Str;
 class EntityRelationService
 {
     /** @var Entity */
-    protected $entity;
+    protected Entity $entity;
 
     /** @var array Entities */
-    protected $entities = [];
+    protected array $entities = [];
 
     /** @var array Relations */
-    protected $relations = [];
+    protected array $relations = [];
 
     /** @var array Loaded relation IDS */
-    protected $relationIds = [];
+    protected array $relationIds = [];
 
     /** @var array Loaded org members to avoid things getting messy */
-    protected $orgMembers = [];
+    protected array $orgMembers = [];
 
     /** @var array Mirrored IDs */
-    protected $mirrors = [];
+    protected array $mirrors = [];
 
-    protected $family = false;
-    protected $organisation = false;
+    protected bool $family = false;
+    protected bool $organisation = false;
 
     /** @var array Entities that have had their relations already loaded */
-    protected $entityIds = [];
+    protected array $entityIds = [];
 
     /** @var bool Enable or disable relations */
-    protected $withRelations = true;
+    protected bool $withRelations = true;
 
     /** @var bool Enable loading entities on relations */
-    protected $withEntity = false;
+    protected bool $withEntity = false;
 
     /** @var string|null  */
-    protected $option = null;
+    protected string|null $option = null;
 
     /**
      * @param Entity $entity
@@ -108,10 +106,8 @@ class EntityRelationService
         $entityHook = 'init' . ucfirst($this->entity->type());
         if (method_exists($this, $entityHook)) {
             $this->$entityHook();
-        }
-
-        // Other: just relations
-        else {
+        } else {
+            // Other: just relations
             $this->addEntity($this->entity)
                 ->withEntity();
 
@@ -141,15 +137,12 @@ class EntityRelationService
     protected function cleanup()
     {
         $relations = [];
-        foreach($this->relations as $relation) {
+        foreach ($this->relations as $relation) {
             if (
                 isset($this->entities[$relation['source']]) &&
                 isset($this->entities[$relation['target']])
             ) {
                 $relations[] = $relation;
-            } else {
-                //dump($relation);
-                //dd('wut');
             }
         }
 
@@ -158,6 +151,8 @@ class EntityRelationService
 
     /**
      * @param Entity $entity
+     * @param string|null $image
+     * @return $this
      */
     protected function addEntity(Entity $entity, string $image = null): self
     {
@@ -190,7 +185,7 @@ class EntityRelationService
 
     /**
      * @param Entity $entity
-     * @param bool $limitToExisting
+     * @return $this
      */
     protected function addRelations(Entity $entity): self
     {
@@ -238,7 +233,11 @@ class EntityRelationService
                 'type' => 'entity-relation',
                 'is_mirrored' => $relation->isMirrored(),
                 'shape' => $relation->isMirrored() ? 'none' : 'triangle',
-                'edit_url' => route('entities.relations.edit', ['entity' => $relation->owner_id, 'relation' => $relation, 'from' => $this->entity->id])
+                'edit_url' => route('entities.relations.edit', [
+                    'entity' => $relation->owner_id,
+                    'relation' => $relation,
+                    'from' => $this->entity->id
+                ])
             ];
 
             if ($relation->isMirrored()) {
@@ -253,7 +252,7 @@ class EntityRelationService
     /**
      * @return $this
      */
-    protected function addFamily() : self
+    protected function addFamily(): self
     {
         if (empty($this->entity->child->family)) {
             return $this;
@@ -282,7 +281,7 @@ class EntityRelationService
     /**
      * @return $this
      */
-    protected function addOrganisation() : self
+    protected function addOrganisation(): self
     {
         /** @var Character $character */
         $character = $this->entity->child;
@@ -332,7 +331,6 @@ class EntityRelationService
 
             // Show relations of org members if the target is shown here
             $this->addRelations($member->character->entity);
-
         }
     }
 
@@ -359,7 +357,7 @@ class EntityRelationService
                 ->addQuests()
                 ->addMapMarkers()
                 ->addAuthorJournals()
-        ;
+            ;
         }
         return $this;
     }
@@ -535,8 +533,9 @@ class EntityRelationService
         /** @var Organisation $organisation */
         $organisation = $entity->child;
 
-        /** @var OrganisationMember $member */
-        foreach ($organisation->members()->with(['character', 'character.entity'])->has('character')->get() as $member) {
+        /** @var OrganisationMember[] $members */
+        $members = $organisation->members()->with(['character', 'character.entity'])->has('character')->get();
+        foreach ($members as $member) {
             $this
                 ->addEntity($member->character->entity, $member->character->getImageUrl(80, 80))
                 ->addRelations($member->character->entity);
@@ -585,7 +584,6 @@ class EntityRelationService
      */
     protected function addCharacters(): self
     {
-        /** @var MiscModel $related */
         $related = $this->entity->child;
 
         foreach ($related->characters()->with('entity')->has('entity')->get() as $sub) {

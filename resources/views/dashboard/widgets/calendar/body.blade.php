@@ -72,6 +72,10 @@ $weather = $calendar->calendarWeather()
                             <i class="fa-solid fa-calendar" title="{{ $reminder->readableDate() }}" data-toggle="tooltip" data-placement="bottom"></i>
                         </div>
                         {{ link_to($reminder->entity->url(), $reminder->entity->name) }}
+
+                        @if (app()->environment('local'))
+                            ({{ $reminder->date() }}, {{ $reminder->daysAgo() }} days ago)
+                        @endif
                     </li>
                 @endforeach
             </ul>
@@ -104,6 +108,9 @@ $weather = $calendar->calendarWeather()
                             @endif
                         </div>
                         {{ link_to($reminder->entity->url(), $reminder->entity->name, ['title' => $reminder->comment, 'data-toggle' => 'tooltip']) }}
+                        @if (app()->environment('local'))
+                        ({{ $reminder->date() }}, in {{ $reminder->inDays() }} days)
+                        @endif
                     </li>
                 @endforeach
             </ul>
