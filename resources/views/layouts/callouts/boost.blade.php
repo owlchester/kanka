@@ -1,4 +1,4 @@
-@php $currentCampaign = $campaign instanceof \App\Models\Campaign ? $campaign : $campaign->campaign() @endphp
+@php $currentCampaign = $campaign instanceof \App\Models\Campaign ? $campaign : $campaignService->campaign() @endphp
 <div class="grid gap-5 grid-cols-1 lg:grid-cols-2 booster-block mb-5">
     <div class="">
         <div class="booster-callout">

@@ -19,9 +19,15 @@ return [
         'is_shown'  => 'Mostrar marcadores do grupo',
         'position'  => 'Posição',
     ],
-    'helper'        => [],
+    'helper'        => [
+        'amount_v2' => 'Crie grupos de marcadores e anexe marcadores a eles, permitindo mostrar ou ocultar rapidamente vários marcadores com um único clique.',
+    ],
     'hints'         => [
         'is_shown'  => 'Se assinalado, os marcadores do grupo serão mostrados no mapa como padrão.',
+    ],
+    'pitch'         => [
+        'error' => 'Número máximo de grupos alcançados.',
+        'until' => 'Crie até :max grupos para cada mapa.',
     ],
     'placeholders'  => [
         'name'      => 'Lojas, Tesouros, NPCs',

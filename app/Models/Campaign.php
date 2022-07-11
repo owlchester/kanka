@@ -193,7 +193,7 @@ class Campaign extends MiscModel
     public function admins()
     {
         $users = [];
-        foreach ($this->roles()->with('users')->where('is_admin', '1')->get() as $role) {
+        foreach ($this->roles()->with(['users', 'users.user'])->where('is_admin', '1')->get() as $role) {
             foreach ($role->users as $user) {
                 if (!isset($users[$user->id])) {
                     $users[$user->user->id] = $user->user;
@@ -201,6 +201,15 @@ class Campaign extends MiscModel
             }
         }
         return $users;
+    }
+
+    /**
+     * Count the number of admins in a campaign. Used by the CampaignPolicy
+     * @return int
+     */
+    public function adminCount(): int
+    {
+        return count(CampaignCache::campaign($this)->admins());
     }
 
     /**
@@ -229,10 +238,10 @@ class Campaign extends MiscModel
     /**
      * Determine if a campaign has an entity enabled or not
      *
-     * @param $entity
+     * @param string $entity
      * @return bool
      */
-    public function enabled($entity): bool
+    public function enabled(string $entity): bool
     {
         // Can't disable attribute templates
         if ($entity == 'attribute_templates') {
@@ -307,7 +316,7 @@ class Campaign extends MiscModel
      */
     public function entry()
     {
-        return Mentions::mapCampaign($this);
+        return Mentions::mapAny($this);
     }
 
     /**
@@ -315,7 +324,7 @@ class Campaign extends MiscModel
      */
     public function getEntryForEditionAttribute()
     {
-        return Mentions::editCampaign($this);
+        return Mentions::parseForEdit($this);
     }
 
     /**
@@ -323,25 +332,18 @@ class Campaign extends MiscModel
      */
     public function excerpt()
     {
-        return Mentions::mapCampaign($this, 'excerpt');
+        return Mentions::mapAny($this, 'excerpt');
     }
     /**
      * @return mixed
      */
     public function getExcerptForEditionAttribute()
     {
-        return Mentions::editCampaign($this, 'excerpt');
+        return Mentions::parseForEdit($this, 'excerpt');
     }
 
     /**
-     * @return mixed
-     */
-    public function getTooltipFamilyAttribute()
-    {
-        return Arr::get($this->ui_settings, 'tooltip_family', false);
-    }
-
-    /**
+     * Determine if the campaign has images in tooltips.
      * @return mixed
      */
     public function getTooltipImageAttribute()

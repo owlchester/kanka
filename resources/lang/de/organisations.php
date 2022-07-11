@@ -16,9 +16,8 @@ return [
         'type'          => 'Typ',
     ],
     'helpers'       => [
-        'descendants'   => 'Diese Liste enthält alle Organisationen, die direkt unter dieser Organisation und allen untergeordneten Organisationen sind.',
-        'nested_parent' => 'Anzeigen der Organisationen von :parent.',
-        'nested_without'=> 'Anzeigen aller Organisationen, die keine übergeordnete Organisation haben. Klicken Sie auf eine Zeile, um die untergeordneten Organisationen anzuzeigen.',
+        'descendants'       => 'Diese Liste enthält alle Organisationen, die direkt unter dieser Organisation und allen untergeordneten Organisationen sind.',
+        'nested_without'    => 'Anzeigen aller Organisationen, die keine übergeordnete Organisation haben. Klicken Sie auf eine Zeile, um die untergeordneten Organisationen anzuzeigen.',
     ],
     'index'         => [
         'title' => 'Organisationen',

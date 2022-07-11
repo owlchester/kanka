@@ -31,7 +31,6 @@ return [
         'families'          => 'A helyszínek befolyásos családok otthonául szolgálhatnak.',
         'map'               => 'Egy térképet hozzárendelve egy helyszínhez lehetőséged nyílik Térkép pontok elhelyezésére rajta, melyek más-más entitásokra hivatkozhatnak a kampányodban.',
         'map_deprecated_2'  => 'A Térképek már saját modullal rendelkeznek! A már meglévő, régi helyszín térképek továbbra is szerkeszthetőek maradnak, de minden új térkép már az Új Térkép modulba fognak kerülni.',
-        'nested_parent'     => ':parent helyszíneinek mutatása',
         'nested_without'    => 'Minden olyan helyszín mutatása, amelynek nincs szülője. Klikkelj egy sorra, hogy lásd a gyermekhelyszíneit.',
         'organisations'     => 'Megtekintheted az összes Szervezetet ezen a helyszínen, és ezek leszármazott helyszíneit, vagy csak azokat, amelyek közvetlenül itt találhatóak.',
     ],

@@ -24,7 +24,6 @@ return [
         'type'          => 'Tipus',
     ],
     'helpers'       => [
-        'nested_parent'     => 'S\'estan mostrant les línies de temps de :parent.',
         'nested_without'    => 'S\'estan mostrant les línies de temps sense pare. Feu clic a la fila d\'un mapa per a mostrar-ne les descendents.',
         'no_era'            => 'Aquesta línia de temps no té cap era actualment. Se\'n poden afegir a la pantalla d\'edició de la línia de temps.',
         'reorder'           => 'Agafeu i arrossegueu els elements de l\'era per a reordenar-los.',

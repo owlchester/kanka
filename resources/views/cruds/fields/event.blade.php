@@ -1,4 +1,4 @@
-@if (!$campaign->enabled('events'))
+@if (!$campaignService->enabled('events'))
     <?php return ?>
 @endif
 
@@ -6,6 +6,8 @@
 $preset = null;
 if (isset($model) && $model->event) {
     $preset = $model->event;
+} elseif (isset($parent) && $parent) {
+    $preset = FormCopy::field('event')->select(true, \App\Models\Event::class);
 } else {
     $preset = FormCopy::field('event')->select();
 }

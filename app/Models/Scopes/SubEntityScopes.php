@@ -43,7 +43,13 @@ trait SubEntityScopes
         }
         $defaults = ['id', 'name', 'type', 'image', 'is_private'];
         $fields = array_merge($defaults, $this->datagridSelectFields());
-        return $query->select($fields);
+
+        $tableName = $this->getTable();
+        $prefixedFields = [];
+        foreach ($fields as $field) {
+            $prefixedFields[] = $tableName . '.' . $field;
+        }
+        return $query->select($prefixedFields);
     }
 
     /**

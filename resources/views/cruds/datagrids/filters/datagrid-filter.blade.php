@@ -42,19 +42,8 @@ $clipboardFilters = $filterService->clipboardFilters();
                     @endif
                     @php $count++ @endphp
 
-                    @if (!is_array($field) && $field === 'attributes')
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>{{ __('entities/attributes.filters.name') }}</label>
-                                <input type="text" class="form-control entity-list-filter" name="attribute_name" value="{{ $filterService->single('attribute_name') }}" />
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>{{ __('entities/attributes.filters.value') }}</label>
-                                <input type="text" class="form-control entity-list-filter" name="attribute_value" value="{{ $filterService->single('attribute_value') }}" />
-                            </div>
-                        </div>
+                    @if ($field === 'attributes')
+                        @include('cruds.datagrids.filters._attributes')
                         @continue
                     @endif
                     <div class="col-md-6">
@@ -67,103 +56,25 @@ $clipboardFilters = $filterService->clipboardFilters();
                                     $modelclass = new $field['model'];
                                     $model = $modelclass->find($value);
                                 }?>
-                                @if ($field['type'] == 'tag')
-                                    <div class="row">
-                                        <div class="col-xs-8">
-                                            {!! Form::tags(
-                                                $field['field'],
-                                                [
-                                                    'id' => $field['field'] . '_' . uniqid(),
-                                                    'model' => null,
-                                                    'enableNew' => false,
-                                                    'allowClear' => 'false',
-                                                    'label' => false,
-                                                    'filterOptions' => $value,
-                                                    'class' => 'entity-list-filter'
-                                                ]
-                                            ) !!}
-                                        </div>
-                                        <div class="col-xs-4">
-                                            {!! Form::select(
-                                                $field['field'] . '_option',
-                                                [
-                                                    '' => __('crud.filters.options.include'),
-                                                    'exclude' => __('crud.filters.options.exclude'),
-                                                    'none' => __('crud.filters.options.none'),
-                                                ],
-                                                $filterService->single($field['field'] . '_option'), [
-                                                    'class' => 'form-control  entity-list-filter',
-                                            ]) !!}
-                                        </div>
-                                    </div>
-                                @elseif ($field['type'] == 'select')
-                                    <input type="hidden" name="{{ $field['id'] }}" value="" />
-                                    {!! Form::select(
-                                        $field['field'],
-                                        array_merge(['' => ''], $field['data']), // Add an empty option
-                                        $value,
-                                        [
-                                            'id' => $field['field'],
-                                            'class' => 'form-control select2 entity-list-filter',
-                                        ]
-                                    ) !!}
+                                @if ($field['type'] === 'tag')
+                                    @include('cruds.datagrids.filters._tag')
+                                @elseif ($field['type'] === 'select')
+                                    @include('cruds.datagrids.filters._select')
                                 @else
-                                    <div class="row">
-                                        <div class="col-xs-8">
-                                            {!! Form::select($field['field'], (!empty($model) ? [$model->id => $model->name] : []),
-                                                null,
-                                                [
-                                                    'id' => $field['field'],
-                                                    'class' => 'form-control select2 entity-list-filter',
-                                                    'data-url' => $field['route'],
-                                                    'data-placeholder' => $field['placeholder'],
-                                                ]
-                                            ) !!}
-                                        </div>
-                                        <div class="col-xs-4">
-                                            {!! Form::select(
-                                                $field['field'] . '_option',
-                                                [
-                                                    '' => __('crud.filters.options.include'),
-                                                    'exclude' => __('crud.filters.options.exclude'),
-                                                    'none' => __('crud.filters.options.none'),
-                                                ],
-                                                $filterService->single($field['field'] . '_option'), [
-                                                    'class' => 'form-control entity-list-filter',
-                                            ]) !!}
-                                        </div>
-                                    </div>
+                                    @include('cruds.datagrids.filters._array')
                                 @endif
                             @else
-                                <label>{{ __((in_array($field, ['is_private', 'has_image', 'has_attributes', 'has_entity_files', 'has_entity_notes']) ? 'crud.fields.' : $langKey . '.fields.') . $field) }}</label>
+                                <label>{{ __((in_array($field, ['is_private', 'has_image', 'has_attributes', 'has_entity_files', 'has_entity_notes', 'date_range']) ? 'crud.fields.' : $langKey . '.fields.') . $field) }}</label>
                                 @if ($filterService->isCheckbox($field))
-                                    <select class="filter-select form-control entity-list-filter" id="{{ $field }}" name="{{ $field }}">
-                                        <option value=""></option>
-                                        <option value="0" @if ($filterService->filterValue($field) === '0') selected="selected" @endif>{{ __('voyager.generic.no') }}</option>
-                                        <option value="1"  @if ($filterService->filterValue($field) === '1') selected="selected" @endif>{{ __('voyager.generic.yes') }}</option>
-                                    </select>
+                                    @include('cruds.datagrids.filters._choice')
                                 @elseif ($field === 'type' && !empty($entityModel))
-
-                                    <input type="text" class="form-control entity-list-filter" name="{{ $field }}" value="{{ $filterService->single($field) }}" autocomplete="off" list="entity-type-list" />
-                                    <div class="hidden">
-                                        <datalist id="entity-type-list">
-                                            @foreach (\App\Facades\EntityCache::typeSuggestion($entityModel) as $suggestion)
-                                                <option value="{{ $suggestion }}">{{ $suggestion }}</option>
-                                            @endforeach
-                                        </datalist>
-                                    </div>
+                                    @include('cruds.datagrids.filters._type')
                                 @elseif ($field === 'sex' && !empty($entityModel))
-
-                                    <input type="text" class="form-control entity-list-filter" name="{{ $field }}" value="{{ $filterService->single($field) }}" autocomplete="off" list="entity-gender-list" />
-                                    <div class="hidden">
-                                        <datalist id="entity-gender-list">
-                                            @foreach (\App\Facades\CharacterCache::genderSuggestion() as $suggestion)
-                                                <option value="{{ $suggestion }}">{{ $suggestion }}</option>
-                                            @endforeach
-                                        </datalist>
-                                    </div>
+                                    @include('cruds.datagrids.filters._sex')
                                 @elseif ($field === 'date')
-                                    <input type="date" class="form-control entity-list-filter" name="{{ $field }}" value="{{ $filterService->single($field) }}" />
+                                    @include('cruds.datagrids.filters._date')
+                                @elseif ($field === 'date_range')
+                                    @include('cruds.datagrids.filters._date-range')
                                 @else
                                     <input type="text" class="form-control entity-list-filter" name="{{ $field }}" value="{{ $filterService->single($field) }}" />
                                 @endif
@@ -181,21 +92,21 @@ $clipboardFilters = $filterService->clipboardFilters();
                 </a>
 
                 @if (auth()->check())
-                @if($activeFilters > 0)
-                <a href="#" class="btn btn-default mr-2" data-clipboard="{{ $clipboardFilters }}" data-toggle="tooltip" title="{{ __('crud.filters.copy_helper') }}">
-                    <i class="fa-solid fa-clipboard"></i> {{ __('crud.filters.copy_to_clipboard') }}
-                </a>
-                @else
-                    <div class="visible-lg-inline-block visible-md-inline-block visible-sm-inline-block mr-2" data-toggle="tooltip" title="{{ __('crud.filters.copy_helper_no_filters') }}">
-                    <a href="#" class="btn btn-default" style="pointer-events: none;" disabled >
+                    @if ($activeFilters > 0)
+                    <a href="#" class="btn btn-default mr-2" data-clipboard="{{ $clipboardFilters }}" data-toggle="tooltip" title="{{ __('crud.filters.copy_helper') }}" data-toast="{{ __('filters.alerts.copy') }}">
                         <i class="fa-solid fa-clipboard"></i> {{ __('crud.filters.copy_to_clipboard') }}
                     </a>
-                    </div>
-                @endif
+                    @else
+                        <div class="visible-lg-inline-block visible-md-inline-block visible-sm-inline-block mr-2" data-toggle="tooltip" title="{{ __('crud.filters.copy_helper_no_filters') }}">
+                        <a href="#" class="btn btn-default" style="pointer-events: none;" disabled >
+                            <i class="fa-solid fa-clipboard"></i> {{ __('crud.filters.copy_to_clipboard') }}
+                        </a>
+                        </div>
+                    @endif
 
-                <a href="{{ route('helpers.filters') }}" data-url="{{ route('helpers.filters') }}" data-toggle="ajax-modal" data-target="#entity-modal" title="{{ __('helpers.filters.title') }}">
-                    {{ __('helpers.filters.title') }} <i class="fa-solid fa-question-circle"></i>
-                </a>
+                    <a href="{{ route('helpers.filters') }}" data-url="{{ route('helpers.filters') }}" data-toggle="ajax-modal" data-target="#entity-modal" title="{{ __('helpers.filters.title') }}">
+                        {{ __('helpers.filters.title') }} <i class="fa-solid fa-question-circle"></i>
+                    </a>
                 @endif
             </div>
 
@@ -205,7 +116,7 @@ $clipboardFilters = $filterService->clipboardFilters();
                 </a>
 
                 @if (auth()->check())
-                    @if($activeFilters > 0)
+                    @if ($activeFilters > 0)
                     <a href="#" class="btn btn-default mr-2" data-clipboard="{{ $clipboardFilters }}" data-toggle="tooltip">
                         <i class="fa-solid fa-clipboard"></i> {{ __('crud.filters.mobile.copy') }}
                     </a>

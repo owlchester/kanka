@@ -27,7 +27,7 @@
     <div
         id="summernote-config"
         data-mention="{{ route('search.live') }}"
-        data-advanced-mention="{{ auth()->user()->advancedMentions }}"
+        data-advanced-mention="{{ auth()->user()->alwaysAdvancedMentions() }}"
         data-months="{{ route('search.calendar-months') }}"
         data-gallery-title="Superboosted Gallery"
         data-gallery-close="{{ __('crud.click_modal.close') }}"
@@ -35,9 +35,9 @@
         data-gallery-select-all="{{ __('voyager.generic.select_all') }}"
         data-gallery-deselect-all="{{ __('voyager.generic.deselect_all') }}"
         data-gallery-error="generic.gallery.error"
-@if(isset($campaign) && $campaign->campaign() !== null)
-        data-gallery="{{ $campaign->campaign()->superboosted() ? route('campaign.gallery.summernote') : null }}"
-    @if($campaign->campaign()->superboosted()) data-gallery-upload="{{ route('campaign.gallery.ajax-upload') }}" @endif
+@if(isset($campaignService) && $campaignService->campaign() !== null)
+        data-gallery="{{ $campaignService->campaign()->superboosted() ? route('campaign.gallery.summernote') : null }}"
+    @if($campaignService->campaign()->superboosted()) data-gallery-upload="{{ route('campaign.gallery.ajax-upload') }}" @endif
 @endif
 @if (!empty($model) && !($model instanceof \App\Models\Campaign) && $model->entity)        data-attributes="{{ route('search.attributes', $model->entity) }}"
 @elseif (!empty($entity))        data-attributes="{{ route('search.attributes', $entity) }}"
@@ -45,14 +45,14 @@
 @endif
         data-locale="{{ app()->getLocale() }}"></div>
 
-@if(isset($campaign) && $campaign instanceof \App\Services\CampaignService && $campaign->campaign() !== null)
+@if(isset($campaignService) && $campaignService instanceof \App\Services\CampaignService && $campaignService->campaign() !== null)
     <div class="modal fade" id="campaign-imageupload-error" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content rounded-2xl">
                 <div class="modal-body  text-center">
                     <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('crud.delete_modal.close') }}"><span aria-hidden="true">&times;</span></button>
 
-                    @include('layouts.callouts.boost-modal', ['texts' => [__('campaigns/gallery.pitch')], 'superboost' => true, 'campaign' => $campaign->campaign()])
+                    @include('layouts.callouts.boost-modal', ['texts' => [__('campaigns/gallery.pitch')], 'superboost' => true, 'campaign' => $campaignService->campaign()])
                 </div>
             </div>
         </div>

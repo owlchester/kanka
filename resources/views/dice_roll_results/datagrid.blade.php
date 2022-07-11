@@ -12,22 +12,16 @@
             'parent_route' => 'dice_rolls',
         ],
         [
-            'label' => trans('crud.fields.dice_roll'),
+            'label' => __('crud.fields.dice_roll'),
             'field' => 'diceRoll.name',
             'render' => function($model) {
                 return '<a href="' . route('dice_rolls.show', $model->dice_roll_id) . '">' . e($model->diceRoll->name) . '</a>';
             }
         ],
         [
-            'type' => 'avatar',
-            'parent' => 'character',
-            'parent_route' => 'characters',
-            'visible' => $campaign->enabled('characters'),
-        ],
-        [
-            'label' => trans('crud.fields.character'),
+            'label' => __('crud.fields.character'),
             'field' => 'diceRoll.character.name',
-            'visible' => $campaign->enabled('characters'),
+            'visible' => $campaignService->enabled('characters'),
             'render' => function($model) {
                 if ($model->diceRoll->character) {
                     return $model->diceRoll->character->tooltipedLink();
@@ -35,7 +29,7 @@
             }
         ],
         [
-            'label' => trans('crud.fields.creator'),
+            'label' => __('crud.fields.creator'),
             'field' => 'user.name',
             'render' => function($model) {
                 if ($model->user) {
@@ -45,7 +39,7 @@
         ],
         'results',
         [
-            'label' => trans('dice_rolls.results.fields.date'),
+            'label' => __('dice_rolls.results.fields.date'),
             'field' => 'created_at',
             'render' => function($model) {
                 return $model->updated_at->diffForHumans();
@@ -59,7 +53,7 @@
         'route' => 'dice_roll_results.index',
         'baseRoute' => 'dice_roll_results',
         'trans' => 'dice_rolls.fields.',
-        'campaign' => $campaign,
+        'campaignService' => $campaignService,
         'disableEntity' => true,
     ]
 ) !!}

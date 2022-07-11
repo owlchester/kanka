@@ -5,12 +5,10 @@ return [
         'actions'           => 'Actions',
         'apply'             => 'Apply',
         'back'              => 'Back',
-        'bulk_actions'      => 'Bulk actions',
-        'bulk_templates'    => 'Apply Attribute Template',
         'change'            => 'Change',
         'copy'              => 'Copy',
         'copy_mention'      => 'Copy [ ] mention',
-        'copy_to_campaign'  => 'Copy to Campaign',
+        'copy_to_campaign'  => 'Copy to campaign',
         'explore_view'      => 'Nested View',
         'export'            => 'Export (PDF)',
         'find_out_more'     => 'Find out more',
@@ -20,6 +18,7 @@ return [
         'manage_links'      => 'Manage Links',
         'move'              => 'Move',
         'new'               => 'New',
+        'new_child'         => 'New child',
         'new_post'          => 'New post',
         'next'              => 'Next',
         'print'             => 'Print',
@@ -36,10 +35,15 @@ return [
     'boosted_campaigns'         => 'Boosted Campaigns',
     'bulk'                      => [
         'actions'       => [
-            'edit'  => 'Bulk Edit & Tagging',
+            'edit'          => 'Edit & tagging',
+            'permissions'   => 'Change permissions',
+            'templates'     => 'Apply attribute template',
         ],
         'age'           => [
             'helper'    => 'You can use + and - before the number to update the age by that amount.',
+        ],
+        'buttons'       => [
+            'label' => 'For selected',
         ],
         'delete'        => [
             'warning'   => 'You are deleting multiple entities.',
@@ -126,10 +130,11 @@ return [
         'copy_abilities'        => 'Copy Abilities',
         'copy_attributes'       => 'Copy Attributes',
         'copy_inventory'        => 'Copy Inventory',
-        'copy_links'            => 'Copy Entity Links',
+        'copy_links'            => 'Copy Links',
         'copy_permissions'      => 'Copy Permissions (this will override values set in the permissions tab)',
         'copy_posts'            => 'Copy Posts (this includes the posts permissions)',
         'creator'               => 'Creator',
+        'date_range'            => 'Date range',
         'dice_roll'             => 'Dice Roll',
         'entity'                => 'Entity',
         'entity_type'           => 'Entity Type',
@@ -230,6 +235,7 @@ return [
     'helpers'                   => [
         'copy_options'  => 'Copy the following related elements from the source to the new entity.',
         'linking'       => 'Linking to other entities',
+        'nested_parent' => 'Displaying the children of :parent.',
     ],
     'hidden'                    => 'Hidden',
     'hints'                     => [

@@ -17,8 +17,11 @@
         @include($type . '.bulk.modals._copy_to_campaign')
     @endif
 </div>
-
 <div class="modal-footer">
     <a href="#" class="pull-left" data-dismiss="modal">{{ __('crud.cancel') }}</a>
-    <button class="btn btn-primary" type="submit" name="datagrid-action" value="copy-campaign">{{ __('entities/move.actions.copy') }}</button>
+    <button class="btn btn-success" type="submit">
+        <i class="fa-solid fa-clone" aria-hidden="true"></i>
+        {{ __('crud.actions.copy_to_campaign') }}
+    </button>
 </div>
+<input type="hidden" name="datagrid-action" value="copy-campaign" />

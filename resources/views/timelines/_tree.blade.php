@@ -48,7 +48,7 @@
         'route' => 'timelines.tree',
         'baseRoute' => 'timelines',
         'trans' => 'timelines.fields.',
-        'campaign' => $campaign,
+        'campaignService' => $campaignService,
         'row' => [
             'data' => [
                 'data-children' => function($model) {

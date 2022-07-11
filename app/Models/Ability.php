@@ -59,14 +59,6 @@ class Ability extends MiscModel
     ];
 
     /**
-     * Fields that can be filtered on
-     * @var array
-     */
-    protected $filterableColumns = [
-        'ability_id',
-    ];
-
-    /**
      * Fields that can be sorted on
      * @var array
      */
@@ -246,5 +238,17 @@ class Ability extends MiscModel
             return true;
         }
         return false;
+    }
+
+
+    /**
+     * Define the fields unique to this model that can be used on filters
+     * @return string[]
+     */
+    public function filterableColumns(): array
+    {
+        return [
+            'ability_id',
+        ];
     }
 }

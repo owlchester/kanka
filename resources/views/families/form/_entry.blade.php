@@ -30,7 +30,7 @@
 
 @include('cruds.fields.entry2')
 
-@if ($campaign->enabled('characters'))
+@if ($campaignService->enabled('characters'))
     <input type="hidden" name="sync_family_members" value="1">
     <div class="form-group">
         {!! Form::familyMembers(

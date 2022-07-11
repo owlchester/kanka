@@ -38,8 +38,7 @@ return [
         'type'          => 'Típus',
     ],
     'helpers'       => [
-        'nested_parent' => ':parent küldetéseinek mutatása',
-        'nested_without'=> 'Minden küldetést megmutat, aminek nincs szülője. Klikkelj egy sorra, hogy lásd a gyermekküldetéseit.',
+        'nested_without'    => 'Minden küldetést megmutat, aminek nincs szülője. Klikkelj egy sorra, hogy lásd a gyermekküldetéseit.',
     ],
     'hints'         => [
         'quests'    => 'A főküldetés és az alküldetések mezők használatával összefüggő küldetések hálóját építheted fel.',

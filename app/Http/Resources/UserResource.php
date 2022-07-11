@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Facades\CampaignLocalization;
 use App\User;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -18,10 +19,18 @@ class UserResource extends JsonResource
         /** @var User $user */
         $user = $this->resource;
 
-        return [
-            'id' => $this->id,
-            'name' => $this->name,
+        $data = [
+            'id' => $user->id,
+            'name' => $user->name,
             'avatar' => $user->getAvatarUrl(),
         ];
+
+        $campaign = CampaignLocalization::getCampaign();
+        if ($campaign) {
+            $roles = $user->campaignRoles->where('campaign_id', $campaign->id);
+            $data['role'] =CampaignUserRoleResource::collection($roles);
+        }
+
+        return $data;
     }
 }

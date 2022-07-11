@@ -5,8 +5,6 @@ return [
         'actions'           => 'Aktionen',
         'apply'             => 'Übernehmen',
         'back'              => 'Zurück',
-        'bulk_actions'      => 'Massenaktion',
-        'bulk_templates'    => 'Attributvorlage anwenden',
         'copy'              => 'Kopieren',
         'copy_mention'      => 'Kopie [] erwähnen',
         'copy_to_campaign'  => 'Kopiere zu Kampagne',

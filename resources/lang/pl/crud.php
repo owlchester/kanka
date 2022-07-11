@@ -5,8 +5,6 @@ return [
         'actions'           => 'Akcje',
         'apply'             => 'Zastosuj',
         'back'              => 'Cofnij',
-        'bulk_actions'      => 'Działania wspólne',
-        'bulk_templates'    => 'Zastosuj szablon cech',
         'copy'              => 'Kopiuj',
         'copy_mention'      => 'Kopiuj wzmiankę [ ]',
         'copy_to_campaign'  => 'Kopiuj do kampanii',

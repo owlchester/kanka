@@ -31,9 +31,8 @@ return [
         'type'      => 'Type',
     ],
     'helpers'       => [
-        'descendants'   => 'Cette liste contient tous les pouvoirs qui sont descendants de ce pouvoir, et pas seulement les descendants directs.',
-        'nested_parent' => 'Affichage des pouvoirs de :parent.',
-        'nested_without'=> 'Affichage des pouvoirs sans parent. Cliquer sur une rangée pour afficher les pouvoirs enfants.',
+        'descendants'       => 'Cette liste contient tous les pouvoirs qui sont descendants de ce pouvoir, et pas seulement les descendants directs.',
+        'nested_without'    => 'Affichage des pouvoirs sans parent. Cliquer sur une rangée pour afficher les pouvoirs enfants.',
     ],
     'index'         => [
         'title' => 'Pouvoirs',

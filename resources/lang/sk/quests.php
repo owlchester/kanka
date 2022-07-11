@@ -41,7 +41,6 @@ return [
     ],
     'helpers'       => [
         'is_completed'      => 'Zaškrtni, ak je daná úloha považovaná za splnenú.',
-        'nested_parent'     => 'Zobraziť úlohy :parent.',
         'nested_without'    => 'Zobraziť všetky úlohy, ktoré nemajú nadradenú úlohu. Kliknutím na riadok zobrazíš podradené úlohy.',
     ],
     'hints'         => [

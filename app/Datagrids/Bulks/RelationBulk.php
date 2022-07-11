@@ -1,12 +1,10 @@
 <?php
 
-
 namespace App\Datagrids\Bulks;
-
 
 class RelationBulk extends Bulk
 {
-    protected $fields = [
+    protected array $fields = [
         'owner_id',
         'target_id',
         'relation',
@@ -14,8 +12,9 @@ class RelationBulk extends Bulk
         'colour_picker',
         'pinned_choice',
         'visibility_id',
+        'update_mirrored',
     ];
-    protected $mappings = [
+    protected array $mappings = [
         'colour',
         'is_star',
     ];

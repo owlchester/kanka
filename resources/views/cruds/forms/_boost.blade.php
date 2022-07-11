@@ -4,7 +4,7 @@
         {{ __('fields.tooltip.name') }}
     </label>
 
-    @if($campaign->campaign()->boosted())
+    @if($campaignService->campaign()->boosted())
     <p class="help-block">
         {{ __('fields.tooltip.description') }}
     </p>
@@ -34,7 +34,7 @@ $tooltipTags = implode(', ', $tooltipTags);
         {{ __('fields.header-image.title') }}
     </label>
 
-    @if($campaign->campaign()->boosted())
+    @if($campaignService->campaign()->boosted())
         <div class="row">
             <div class="col-lg-6">
             <p class="help-block">{{ __('fields.header-image.description') }}</p>

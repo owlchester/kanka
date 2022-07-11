@@ -1,16 +1,15 @@
 <?php
 
-
 namespace App\Datagrids\Bulks;
-
 
 class ItemBulk extends Bulk
 {
-    protected $fields = [
+    protected array $fields = [
         'name',
         'type',
         'price',
         'size',
+        'item_id',
         'location_id',
         'character_id',
         'tags',

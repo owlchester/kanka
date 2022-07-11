@@ -25,6 +25,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property Location $location
  * @property Race $race
  * @property Race[] $races
+ * @property Organisation[] $organisations
+ * @property OrganisationMember[] $organisationMemberships
  */
 class Character extends MiscModel
 {
@@ -53,25 +55,6 @@ class Character extends MiscModel
         'is_personality_visible',
         'is_appearance_pinned',
         'is_personality_pinned',
-    ];
-
-    /**
-     * Fields that can be filtered on
-     * @var array
-     */
-    protected $filterableColumns = [
-        'title',
-        'age',
-        'sex',
-        'pronouns',
-        'location_id',
-        'is_dead',
-        'name',
-        'organisation_member',
-        'attributes',
-        'race',
-        'family',
-        'races',
     ];
 
     /**
@@ -208,9 +191,19 @@ class Character extends MiscModel
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function organisations()
+    public function organisationMemberships()
     {
         return $this->hasMany('App\Models\OrganisationMember', 'character_id', 'id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function organisations()
+    {
+        return $this->belongsToMany('App\Models\Organisation', 'organisation_member')
+            ->orderBy('organisation_member.id')
+            ->with('entity');
     }
 
     /**
@@ -283,7 +276,7 @@ class Character extends MiscModel
     public function pinnedMembers()
     {
         return $this
-            ->organisations()
+            ->organisationMemberships()
             ->has('organisation')
             ->with(['organisation', 'organisation.entity'])
             ->whereIn('pin_id', [OrganisationMember::PIN_CHARACTER, OrganisationMember::PIN_BOTH])
@@ -329,7 +322,7 @@ class Character extends MiscModel
             ] : null,
         ];
 
-        $count = $this->organisations()->has('organisation')->count();
+        $count = $this->organisationMemberships()->has('organisation')->count();
         if ($campaign->enabled('organisations') && ($count > 0 || $canEdit)) {
             $items['second']['organisations'] = [
                 'name' => 'characters.show.tabs.organisations',
@@ -342,33 +335,15 @@ class Character extends MiscModel
     }
 
     /**
-     * Tooltip name
-     * @return string
-     */
-    public function tooltipName(): string
-    {
-        // e() isn't enough, remove tags too to avoid ><script injections.
-        $str = $this->name;
-        if (!empty($this->families) && !CampaignLocalization::getCampaign()->tooltip_family) {
-            $families = [];
-            foreach ($this->families as $family) {
-                $families[] = $family->name;
-            }
-            $str .= ' - ' . implode(', ', $families);
-        }
-        return e(strip_tags(trim($str))) . ($this->is_dead ? ' <i class=\'ra ra-skull\'></i>' : null);
-    }
-
-    /**
      * Tooltip subtitle (character title)
      * @return string
      */
     public function tooltipSubtitle(): string
     {
-        if (!empty($this->title)) {
-            return e(strip_tags($this->title));
+        if (empty($this->title)) {
+            return '';
         }
-        return '';
+        return e(strip_tags($this->title));
     }
 
     /**
@@ -378,20 +353,6 @@ class Character extends MiscModel
     public function entityTypeId(): int
     {
         return (int) config('entities.ids.character');
-    }
-
-    /**
-     * Determine if the appearance tab should be shown
-     * @return bool
-     */
-    public function showAppearance(): bool
-    {
-        if ($this->showAppearanceCache === null) {
-            $this->showAppearanceCache = !empty($this->age) || !empty($this->sex) ||
-                $this->entity->elapsedEvents->count() > 0 ||
-                $this->characterTraits()->appearance()->count() > 0;
-        }
-        return $this->showAppearanceCache;
     }
 
     /**
@@ -431,5 +392,25 @@ class Character extends MiscModel
             return $classes;
         }
         return $classes . ' character-dead';
+    }
+
+    /**
+     * Define the fields unique to this model that can be used on filters
+     * @return string[]
+     */
+    public function filterableColumns(): array
+    {
+        return [
+            'title',
+            'age',
+            'sex',
+            'pronouns',
+            'location_id',
+            'is_dead',
+            'organisation_member',
+            'race',
+            'family',
+            'races',
+        ];
     }
 }

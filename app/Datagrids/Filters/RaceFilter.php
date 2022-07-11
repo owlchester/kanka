@@ -2,13 +2,12 @@
 
 namespace App\Datagrids\Filters;
 
-
 use App\Models\Race;
 
 class RaceFilter extends DatagridFilter
 {
     /**
-     * CharacterFilter constructor.
+     * Filters available for races
      */
     public function __construct()
     {
@@ -17,10 +16,10 @@ class RaceFilter extends DatagridFilter
             ->add('type')
             ->add([
                 'field' => 'race_id',
-                'label' => trans('characters.fields.race'),
+                'label' => __('characters.fields.race'),
                 'type' => 'select2',
                 'route' => route('races.find'),
-                'placeholder' =>  trans('crud.placeholders.race'),
+                'placeholder' =>  __('crud.placeholders.race'),
                 'model' => Race::class,
             ])
             ->isPrivate()

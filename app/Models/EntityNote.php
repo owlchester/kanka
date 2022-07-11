@@ -147,7 +147,7 @@ class EntityNote extends Model
      */
     public function getEntryForEditionAttribute()
     {
-        $text = Mentions::editEntityNote($this);
+        $text = Mentions::parseForEdit($this);
         return $text;
     }
 

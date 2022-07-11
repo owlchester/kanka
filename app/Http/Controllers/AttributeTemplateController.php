@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Datagrids\Actions\AttributeTemplateDatagrid;
 use App\Datagrids\Filters\AttributeTemplateFilter;
 use App\Models\AttributeTemplate;
 use App\Http\Requests\StoreAttributeTemplate;
-use App\Services\RandomAttributeTemplateService;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Session;
 
 class AttributeTemplateController extends CrudController
 {
@@ -79,15 +77,5 @@ class AttributeTemplateController extends CrudController
     public function destroy(AttributeTemplate $attributeTemplate)
     {
         return $this->crudDestroy($attributeTemplate);
-    }
-
-    /**
-     * @param AttributeTemplate $attributeTemplate
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
-    public function attributeTemplates(AttributeTemplate $attributeTemplate)
-    {
-        return $this->menuView($attributeTemplate, 'attribute_templates');
     }
 }

@@ -49,7 +49,6 @@ return [
         'max_zoom'          => 'Mapa môže byť priblížená maximálne na túto hodnotu. Štandardná hodnota je :default, najvyššia povolená hodnota je :max.',
         'min_zoom'          => 'Mapa môže byť oddialená maximálne na túto hodnotu. Štandardná hodnota je :default, najnižšia povolená hodnota je :max.',
         'missing_image'     => 'Na použitie vrstiev a značiek budeš musieť najprv pridať obrázok mapy.',
-        'nested_parent'     => 'Zobraziť mapy :parent.',
         'nested_without'    => 'Zobraziť všetky mapy, ktoré nemajú nadradenú mapu. Kliknutím na riadok zobrazíš podradené mapy.',
     ],
     'index'         => [

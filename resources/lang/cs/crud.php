@@ -5,7 +5,6 @@ return [
         'actions'           => 'Akce',
         'apply'             => 'Použít',
         'back'              => 'Zpět',
-        'bulk_templates'    => 'Použít šablonu atributů',
         'copy'              => 'Kopírovat',
         'copy_mention'      => 'Kopírovat odkaz typu [ ]',
         'copy_to_campaign'  => 'Kopírovat do tažení',

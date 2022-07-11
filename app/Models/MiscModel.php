@@ -6,13 +6,12 @@ use App\Facades\CampaignCache;
 use App\Facades\CampaignLocalization;
 use App\Facades\Img;
 use App\Facades\Mentions;
-use App\Models\Concerns\Filterable;
+use App\Models\Concerns\HasFilters;
 use App\Models\Concerns\LastSync;
 use App\Models\Concerns\Orderable;
 use App\Models\Concerns\Paginatable;
 use App\Models\Concerns\Searchable;
 use App\Models\Concerns\Sortable;
-use App\Models\Concerns\Tooltip;
 use App\Models\Scopes\SubEntityScopes;
 use App\Traits\SourceCopiable;
 use Carbon\Carbon;
@@ -49,8 +48,8 @@ abstract class MiscModel extends Model
     use Paginatable,
         Searchable,
         Orderable,
-        Filterable,
-        Tooltip,
+        HasFilters,
+        //Tooltip,
         Sortable,
         SubEntityScopes,
         SourceCopiable,
@@ -95,11 +94,6 @@ abstract class MiscModel extends Model
     public $entityImagePath;
 
     /**
-     * @var array Filterable fields
-     */
-    protected $filterableColumns = [];
-
-    /**
      * Fields that can be ordered on
      * @var array
      */
@@ -117,12 +111,6 @@ abstract class MiscModel extends Model
      * @var array
      */
     public $nullableForeignKeys = [];
-
-    /**
-     * Field used for tooltips
-     * @var string
-     */
-    protected $tooltipField = 'entry';
 
     /**
      * Default ordering
@@ -398,8 +386,8 @@ abstract class MiscModel extends Model
         if ($this->entity->hasFiles()) {
             $items['third']['assets'] = [
                 'name' => 'crud.tabs.assets',
-                'route' => 'entities.assets',
-                'count' => $this->entity->files()->count() + ($campaign->boosted() ? $this->entity->links->count() : 0),
+                'route' => 'entities.entity_assets.index',
+                'count' => $this->entity->assets()->filtered($campaign->boosted())->count(),
                 'entity' => true,
                 'icon' => 'fa-solid fa-file',
             ];
@@ -413,7 +401,8 @@ abstract class MiscModel extends Model
                 'route' => 'entities.permissions',
                 'entity' => true,
                 'icon' => 'fa-solid fa-lock',
-                'ajax' => true
+                'ajax' => true,
+                'id' => 'entity-permissions-link'
             ];
         }
 
@@ -465,13 +454,14 @@ abstract class MiscModel extends Model
      */
     public function getEntryForEditionAttribute()
     {
-        $text = Mentions::edit($this);
+        $text = Mentions::parseForEdit($this);
         return $text;
     }
 
     /**
-     * Get the entity link with ajax tooltip
-     * @param string $displayName
+     * Get the entity link with ajax tooltip.
+     * When coming from an entity first, call this method on the entity. It avoids some back and worth.
+     * @param null|string $displayName
      * @return string
      */
     public function tooltipedLink(string $displayName = null): string
@@ -484,7 +474,7 @@ abstract class MiscModel extends Model
             'data-url="' . route('entities.tooltip', $this->entity->id) . '" href="' .
             $this->getLink() . '">' .
             (!empty($displayName) ? $displayName : e($this->name)) .
-            '</a>';
+        '</a>';
     }
 
     /**

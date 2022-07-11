@@ -24,7 +24,6 @@ return [
         'type'          => 'Rodzaj',
     ],
     'helpers'       => [
-        'nested_parent'     => 'Wyświetlono historie pochodzące od :parent.',
         'nested_without'    => 'Wyświetlono wszystkie historie nie posiadające źródła. Kliknij na rząd, by wyświetlić historie pochodne.',
         'no_era'            => 'Ta historia nie ma obecnie żadnych epok. Możesz je dodać na ekranie edycji, a potem uzupełnić tutaj o kolejne elementy.',
         'reorder'           => 'Przeciągaj elementy epoki by zmieniać ich kolejność',

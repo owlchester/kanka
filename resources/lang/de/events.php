@@ -20,9 +20,8 @@ return [
         'type'      => 'Typ',
     ],
     'helpers'       => [
-        'date'          => 'Dieses Feld kann alles enthalten und ist nicht mit den Kalendern der Kampagne verknüpft. Um dieses Ereignis mit einem Kalender zu verknüpfen, fügen Sie es im Kalender oder auf der Registerkarte Erinnerungen dieses Ereignisses hinzu.',
-        'nested_parent' => 'Anzeigen der Ereignisse von :parent.',
-        'nested_without'=> 'Anzeigen aller Ereignisse ohne übergeordnetes Ereignis. Klicken Sie auf eine Zeile, um die untergeordneten Ereignisse anzuzeigen.',
+        'date'              => 'Dieses Feld kann alles enthalten und ist nicht mit den Kalendern der Kampagne verknüpft. Um dieses Ereignis mit einem Kalender zu verknüpfen, fügen Sie es im Kalender oder auf der Registerkarte Erinnerungen dieses Ereignisses hinzu.',
+        'nested_without'    => 'Anzeigen aller Ereignisse ohne übergeordnetes Ereignis. Klicken Sie auf eine Zeile, um die untergeordneten Ereignisse anzuzeigen.',
     ],
     'index'         => [
         'title' => 'Ereignisse',

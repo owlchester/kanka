@@ -16,9 +16,8 @@ return [
         'type'      => 'Típus',
     ],
     'helpers'       => [
-        'journals'      => 'Az összes vagy csak a közvetlen alnaplók mutatása',
-        'nested_parent' => ':parent naplóinak mutatása',
-        'nested_without'=> 'Minden olyan napló megmutatása, amelynek nincs szülőnaplója. Klikkelj egy sorra, hogy lásd a gyermeknaplókat.',
+        'journals'          => 'Az összes vagy csak a közvetlen alnaplók mutatása',
+        'nested_without'    => 'Minden olyan napló megmutatása, amelynek nincs szülőnaplója. Klikkelj egy sorra, hogy lásd a gyermeknaplókat.',
     ],
     'index'         => [
         'title' => 'Naplók',

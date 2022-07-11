@@ -24,9 +24,6 @@ class ImgService
     /** @var bool */
     protected $enabled;
 
-    /** @var bool if the device supports webp */
-    protected $nowebp;
-
     protected $focusX;
     protected $focusY;
 
@@ -124,26 +121,7 @@ class ImgService
 
         return config('thumbor.url') . $this->base . '/' . $sign . '/' . $this->crop . $filter
             . 'src/' . urlencode($img)
-            . ($this->nowebp() ? '?webpfallback' : null)
         ;
-    }
-
-    /**
-     * Safari / iPhone devices don't support webp
-     * @return bool
-     */
-    public function nowebp(): bool
-    {
-        if (!empty($this->nowebp)) {
-            return $this->nowebp;
-        }
-        // If the browser doesn't bother telling us, we assume they do
-        if (empty($_SERVER['HTTP_ACCEPT'])) {
-            return false;
-        }
-        $accept = strtolower($_SERVER['HTTP_ACCEPT']);
-
-        return $this->nowebp = !Str::contains($accept, 'image/webp');
     }
 
     /**

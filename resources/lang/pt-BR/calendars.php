@@ -100,7 +100,6 @@ return [
         'default_layout'    => 'Selecione qual layout o calendário deve usar por padrão quando visualizado.',
         'month_type'        => 'Os meses intercalares não usam os dias da semana, mas ainda influenciam as luas e as estações.',
         'moon_offset'       => 'Por padrão, a primeira lua cheia aparece no primeiro dia do ano 0. A alteração do deslocamento será alterada quando a primeira lua cheia for exibida. Este valor pode ser negativo (até a duração do primeiro mês) ou positivo (até a duração do primeiro mês).',
-        'nested_parent'     => 'Mostrando os calendários de :parent.',
         'nested_without'    => 'Mostrando todos os calendários que não tem um calendário-pai. Clique em uma linha para ver os calendários-filhos.',
         'start_offset'      => 'Por padrão, o calendário começa no primeiro dia da semana do ano 0. A alteração deste campo influencia onde o primeiro dia do calendário é colocado.',
     ],

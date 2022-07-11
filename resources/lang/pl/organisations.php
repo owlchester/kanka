@@ -16,9 +16,8 @@ return [
         'type'          => 'Rodzaj',
     ],
     'helpers'       => [
-        'descendants'   => 'Na liście znajdują się wszystkie organizacje wywodzące się od tej, nie tylko bezpośrednio.',
-        'nested_parent' => 'Wyświetlono organizacje pochodzące od :parent.',
-        'nested_without'=> 'Wyświetlono wszystkie organizacje nie posiadające źródła. Kliknij na rząd, by wyświetlić organizacje pochodne.',
+        'descendants'       => 'Na liście znajdują się wszystkie organizacje wywodzące się od tej, nie tylko bezpośrednio.',
+        'nested_without'    => 'Wyświetlono wszystkie organizacje nie posiadające źródła. Kliknij na rząd, by wyświetlić organizacje pochodne.',
     ],
     'index'         => [
         'title' => 'Organizacje',

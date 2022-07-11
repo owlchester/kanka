@@ -7,7 +7,7 @@ use App\Models\Location;
 class LocationFilter extends DatagridFilter
 {
     /**
-     * CharacterFilter constructor.
+     * Filters available for locations
      */
     public function __construct()
     {
@@ -16,10 +16,10 @@ class LocationFilter extends DatagridFilter
             ->add('type')
             ->add([
                 'field' => 'parent_location_id',
-                'label' => trans('crud.fields.location'),
+                'label' => __('crud.fields.location'),
                 'type' => 'select2',
                 'route' => route('locations.find'),
-                'placeholder' =>  trans('crud.placeholders.location'),
+                'placeholder' =>  __('crud.placeholders.location'),
                 'model' => Location::class,
             ])
             ->isPrivate()

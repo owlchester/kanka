@@ -23,7 +23,7 @@
     </style>
 </head>
 <body>
-@inject('campaign', 'App\Services\CampaignService')
+@inject('campaignService', 'App\Services\CampaignService')
     <?php $cpt = 0; ?>
     @foreach ($entities as $model)
         <?php $cpt++; $entity = $model->entity; ?>

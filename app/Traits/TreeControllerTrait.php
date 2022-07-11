@@ -6,6 +6,7 @@ use App\Models\Entity;
 use App\Models\MiscModel;
 use App\Models\Tag;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Str;
 
 trait TreeControllerTrait
@@ -23,27 +24,32 @@ trait TreeControllerTrait
      */
     public function tree(Request $request)
     {
-        /** @var MiscModel $model */
-        $model = new $this->model;
+        if (!$this->moduleEnabled()) {
+            return redirect()->route('dashboard')->with(
+                'error_raw',
+                __('campaigns.settings.errors.module-disabled', [
+                    'fix' => link_to_route('campaign.modules', __('crud.fix-this-issue'), ['#' . $this->module]),
+                ])
+            );
+        }
+
+        /**
+         * Prepare a lot of variables that will be shared over to the view
+         * @var MiscModel $model
+         */
+        $model = new $this->model();
         $this->filterService->make($this->view . 'tree', request()->all(), $model);
         $name = $this->view;
         $filters = $this->filters;
         $filterService = $this->filterService;
-        $filter = !empty($this->filter) ? new $this->filter : null;
+        $filter = !empty($this->filter) ? new $this->filter() : null;
         $langKey = $this->langKey ?? $name;
+        $templates = $this->loadTemplates($model);
 
-        $actions = [[
-            'route' => route($this->route . '.index'),
-            'class' => 'default',
-            'label' => '<i class="fa-solid fa-list"></i> ' . __($this->view . '.index.title')
-        ]];
-
-        // Entity templates
-        $templates = null;
-        if (auth()->check() && !empty($model->entityTypeID()) && auth()->user()->can('create', $model)) {
-            $templates = Entity::templates($model->entityTypeID())
-                ->get();
-        }
+        $this->addNavAction(
+            route($this->route . '.index'),
+            '<i class="fa-solid fa-list"></i> ' . __($this->view . '.index.title')
+        );
 
         $base = $model
             ->distinct()
@@ -53,31 +59,27 @@ trait TreeControllerTrait
             ->order($this->filterService->order());
 
         $singularModel = Str::singular($this->view);
-        $createOptions = [];
 
         /** @var Tag $model **/
-        $parentKey = $model->getTable() . '.' . (!empty($this->treeControllerParentKey) ? $this->treeControllerParentKey : $singularModel . '_id');
+        $parentKey = $model->getTable() . '.' . (!empty($this->treeControllerParentKey) ?
+                $this->treeControllerParentKey : $singularModel . '_id');
         $parent = null;
         if (request()->has('parent_id')) {
             $base->where([$parentKey => request()->get('parent_id')]);
 
             $parent = $model->with($singularModel)->where('id', request()->get('parent_id'))->first();
             if (!empty($parent) && !empty($parent->$singularModel)) {
-                // Go back to parent
-                $actions[] = [
-                    'route' => route($this->route . '.tree', ['parent_id' => $parent->$singularModel->id]),
-                    'class' => 'default',
-                    'label' => '<i class="fa-solid fa-arrow-left"></i> ' . $parent->$singularModel->name
-                ];
-                $createOptions['parent_id'] = $parent->id;
+                // Go back to previous parent
+                $this->addNavAction(
+                    route($this->route . '.tree', ['parent_id' => $parent->$singularModel->id]),
+                    '<i class="fa-solid fa-arrow-left"></i> ' . $parent->$singularModel->name
+                );
             } else {
                 // Go back to first level
-                $actions[] = [
-                    'route' => route($this->route . '.tree'),
-                    'class' => 'default',
-                    'label' => '<i class="fa-solid fa-arrow-left"></i> ' . __('crud.actions.back')
-                ];
-                $createOptions['parent_id'] = null;
+                $this->addNavAction(
+                    route($this->route . '.tree'),
+                    '<i class="fa-solid fa-arrow-left"></i> ' . __('crud.actions.back')
+                );
             }
         } else {
             $base->whereNull($parentKey);
@@ -91,6 +93,7 @@ trait TreeControllerTrait
             $models = $base->paginate();
             $filteredCount = $models->total();
         } else {
+            /** @var Paginator $models */
             $models = $base->paginate();
             $unfilteredCount = $filteredCount = $models->total();
         }
@@ -103,9 +106,10 @@ trait TreeControllerTrait
             ]);
         }
 
-        $view = $this->view;
         $route = $this->route;
+        $datagridActions = new $this->datagridActions();
         $bulk = $this->bulkModel();
+        $actions = $this->navActions;
 
         return view('cruds.tree', compact(
             'models',
@@ -113,16 +117,15 @@ trait TreeControllerTrait
             'langKey',
             'model',
             'actions',
+            'filter',
             'filters',
             'filterService',
-            'filter',
-            'view',
+            'filteredCount',
+            'unfilteredCount',
             'route',
             'bulk',
-            'unfilteredCount',
-            'filteredCount',
-            'createOptions',
             'templates',
+            'datagridActions',
             'parent'
         ));
     }

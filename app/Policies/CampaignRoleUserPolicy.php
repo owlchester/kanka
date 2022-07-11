@@ -2,6 +2,7 @@
 
 namespace App\Policies;
 
+use App\Facades\UserCache;
 use App\Models\Campaign;
 use App\Traits\AdminPolicyTrait;
 use App\User;
@@ -57,6 +58,14 @@ class CampaignRoleUserPolicy
      */
     public function delete(User $user, CampaignRoleUser $campaignRoleUser)
     {
-        return $user->campaign->id == $campaignRoleUser->campaign->id && $this->isAdmin($user);
+        // Don't delete yourself
+        if ($user->id === $campaignRoleUser->user_id) {
+            return false;
+        }
+        if (!$user->isAdmin()) {
+            return false;
+        }
+
+        return $campaignRoleUser->created_at->diffInMinutes() <= 15;
     }
 }

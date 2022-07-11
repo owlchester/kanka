@@ -38,8 +38,7 @@ return [
         'type'          => 'Tip',
     ],
     'helpers'       => [
-        'nested_parent' => 'Prikaz zadataka od :parent.',
-        'nested_without'=> 'Prikazuju se svi zadaci koji nemaju zadatak roditelj. Klikni redak da bi vidio/la zadatke djecu.',
+        'nested_without'    => 'Prikazuju se svi zadaci koji nemaju zadatak roditelj. Klikni redak da bi vidio/la zadatke djecu.',
     ],
     'hints'         => [
         'quests'    => 'Mreža isprepletenih zadataka se može napraviti korištenjem Zadatak roditelj polja.',

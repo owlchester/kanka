@@ -33,8 +33,6 @@ if ($attribute->isSection()) {
             @if ($attribute->isCheckbox())
                 {!! Form::hidden('attr_value[' . $id . ']', 0) !!}
                 {!! Form::checkbox('attr_value[' . $id . ']', 1, $attribute->value) !!}
-            @elseif ($attribute->isBlock())
-                {!! Form::hidden('attr_value[' . $id . ']', $attribute->value) !!}
             @elseif ($attribute->isText())
                 {!! Form::textarea('attr_value[' . $id . ']', $attribute->value, ['placeholder' => __('entities/attributes.placeholders.value'), 'class' => 'form-control kanka-mentions', 'rows' => 4, 'data-remote' => route('search.live')]) !!}
             @elseif ($attribute->isSection())
@@ -66,6 +64,6 @@ if ($attribute->isSection()) {
             @endcan
         </div>
 
-        {!! Form::hidden('attr_type[' . $id . ']', $attribute->type) !!}
+        {!! Form::hidden('attr_type[' . $id . ']', $attribute->type_id) !!}
     </div>
 </div>

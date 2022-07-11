@@ -5,7 +5,6 @@ return [
         'actions'           => 'Acciones',
         'apply'             => 'Aplicar',
         'back'              => 'Atrás',
-        'bulk_templates'    => 'Aplicar plantilla de atributos',
         'copy'              => 'Copiar',
         'copy_mention'      => 'Copiar mención [ ]',
         'copy_to_campaign'  => 'Copiar a campaña',

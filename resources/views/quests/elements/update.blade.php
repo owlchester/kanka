@@ -7,7 +7,7 @@
         trans('crud.update'),
     ]
 ])
-@inject('campaign', 'App\Services\CampaignService')
+@inject('campaignService', 'App\Services\CampaignService')
 
 @section('content')
     <div class="row">

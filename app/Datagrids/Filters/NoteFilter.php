@@ -7,7 +7,7 @@ use App\Models\Note;
 class NoteFilter extends DatagridFilter
 {
     /**
-     * CharacterFilter constructor.
+     * Filters available for notes
      */
     public function __construct()
     {
@@ -19,7 +19,7 @@ class NoteFilter extends DatagridFilter
                 'label' => __('notes.fields.note'),
                 'type' => 'select2',
                 'route' => route('notes.find'),
-                'placeholder' =>  trans('notes.placeholders.note'),
+                'placeholder' =>  __('notes.placeholders.note'),
                 'model' => Note::class,
             ])
             ->isPrivate()

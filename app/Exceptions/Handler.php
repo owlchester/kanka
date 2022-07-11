@@ -6,6 +6,7 @@ use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Exceptions\ThrottleRequestsException;
+use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -141,7 +142,7 @@ class Handler extends ExceptionHandler
                 ], 403);
         } elseif ($exception instanceof NotFoundHttpException) {
             return response()
-                ->json(null, 404);
+                ->json(['error' => 'Page not found'], 404);
         } elseif ($exception instanceof ThrottleRequestsException) {
             return response()
                 ->json(['Too many requests. Limit requests to ' . auth()->user()->rateLimit
@@ -151,6 +152,7 @@ class Handler extends ExceptionHandler
             ->json([
                 'code' => 500,
                 'error' => 'Unhandled API error. Contact us on Discord',
+                'hint' => Str::limit($exception->getMessage(), 100)
             ], 500);
     }
 }

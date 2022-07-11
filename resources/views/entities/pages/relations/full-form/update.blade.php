@@ -5,7 +5,7 @@
         __('crud.update'),
     ]
 ])
-@inject('campaign', 'App\Services\CampaignService')
+@inject('campaignService', 'App\Services\CampaignService')
 
 @section('fullpage-form')
     {!! Form::model($relation, ['method' => 'PATCH', 'enctype' => 'multipart/form-data', 'route' => ['relations.update', $relation], 'data-shortcut' => '1', 'class' => 'entity-form' . (isset($horizontalForm) && $horizontalForm ? ' form-horizontal' : null), 'id' => 'entity-form']) !!}

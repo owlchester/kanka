@@ -35,7 +35,7 @@ class AliasController extends Controller
     public function index(Entity $entity)
     {
         return redirect()
-            ->route('entities.assets', $entity);
+            ->route('entities.entity_assets.index', $entity);
     }
 
     /**
@@ -73,7 +73,7 @@ class AliasController extends Controller
         $link = EntityAlias::create($data);
 
         return redirect()
-            ->route('entities.assets', $entity)
+            ->route('entities.entity_assets.index', $entity)
             ->with('success', __('entities/aliases.create.success', ['name' => $link->name, 'entity' => $entity->name]));
     }
 
@@ -101,7 +101,7 @@ class AliasController extends Controller
     public function show(Entity $entity, EntityAlias $entityAlias)
     {
         return redirect()
-            ->route('entities.assets', $entity);
+            ->route('entities.entity_assets.index', $entity);
     }
 
     /**
@@ -123,7 +123,7 @@ class AliasController extends Controller
             ]);
         }
         return redirect()
-            ->route('entities.assets', $entity)
+            ->route('entities.entity_assets.index', $entity)
             ->with('success', __('entities/aliases.update.success', ['name' => $entityAlias->name, 'entity' => $entity->name]));
 
     }
@@ -147,7 +147,7 @@ class AliasController extends Controller
             ]);
         }
         return redirect()
-            ->route('entities.assets', $entity)
+            ->route('entities.entity_assets.index', $entity)
             ->with('success', __('entities/aliases.destroy.success', ['name' => $entityAlias->name, 'entity' => $entity->name]));
 
     }

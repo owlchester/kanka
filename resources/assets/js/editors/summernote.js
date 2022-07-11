@@ -277,15 +277,16 @@ function attributeTemplate(item) {
  */
 function hintContent(item) {
     if (item.id) {
-        let mention = '[' + item.model_type + ':' + item.id + ']';
+        let mention = '[' + item.model_type + ':' + item.id + item.advanced_mention + ']';
         if (item.alias_id) {
-            return '[' + item.model_type + ':' + item.id + '|alias:' + item.alias_id + ']';
+            mention = '[' + item.model_type + ':' + item.id + '|alias:' + item.alias_id + item.advanced_mention + ']';
+            return $('<span>' + mention + '</span>')[0];
         }
         if (summernoteConfig.data('advanced-mention')) {
-            return mention;
+            return $('<span>' + mention + '</span>')[0];
         }
         if (advancedRequest) {
-            return mention;
+            return $('<span>' + mention + '</span>')[0];
         }
         return $('<a />', {
             text: item.fullname,
@@ -294,9 +295,7 @@ function hintContent(item) {
             'data-name': item.fullname,
             'data-mention': mention,
         })[0];
-
-    }
-    else if (item.url) {
+    } else if (item.url) {
         if (item.tooltip) {
             return $('<a />', {
                 text: item.fullname,
@@ -310,8 +309,7 @@ function hintContent(item) {
             text: item.fullname,
             href: item.url,
         })[0];
-    }
-    else if (item.inject) {
+    } else if (item.inject) {
         return item.inject;
     }
     return item.fullname;

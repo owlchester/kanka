@@ -6,10 +6,8 @@ use App\Models\Campaign;
 use App\Models\CampaignPlugin;
 use App\Models\CampaignRole;
 use App\Models\CampaignSetting;
-use App\Models\Plugin;
 use App\Models\PluginVersion;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
 
 /**
@@ -91,6 +89,40 @@ class CampaignCacheService extends BaseCache
 
         $this->put($key, $data, 6 * 3600);
         return $data;
+    }
+
+    /**
+     * @return array
+     */
+    public function admins(): array
+    {
+        $key = $this->adminsKey();
+        if ($this->has($key)) {
+            return $this->get($key);
+        }
+
+        $data = $this->campaign->roles()->admin()->first()->users->pluck('id')->toArray();
+        $this->forever($key, $data);
+        return $data;
+    }
+
+    /**
+     * Forget about a campaign's admins
+     * @return $this
+     */
+    public function clearAdmins(): self
+    {
+        $this->forget($this->adminsKey());
+        return $this;
+    }
+
+    /**
+     * Campaign admin cache key
+     * @return string
+     */
+    protected function adminsKey(): string
+    {
+        return 'campaign_' . $this->campaign->id . '_admins';
     }
 
     /**
@@ -240,6 +272,9 @@ class CampaignCacheService extends BaseCache
         return (string) $css;
     }
 
+    /**
+     * @return int
+     */
     public function stylesTimestamp(): int
     {
         $key = $this->stylesTsKey();

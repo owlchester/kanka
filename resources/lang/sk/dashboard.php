@@ -41,6 +41,7 @@ return [
         'helpers'       => [
             'copy_widgets'  => 'Duplikovať widgety z nástenky :name na túto novú.',
         ],
+        'pitch'         => 'Vytvor viacero násteniek s vlastnými oprávneniami pre každú rolu v kampani.',
         'placeholders'  => [
             'name'  => 'Pomenovanie nástenky',
         ],
@@ -125,7 +126,8 @@ return [
             'width'             => 'Šírka',
         ],
         'helpers'       => [
-            'class' => 'Definuj vlastnú triedu CSS priradenú widgetu.',
+            'class'     => 'Definuj vlastnú triedu CSS priradenú widgetu.',
+            'filters'   => 'Klikni sem, ak chceš spoznať možnosti filtrovania.',
         ],
         'orders'        => [
             'name_asc'  => 'Názov vzostupne',

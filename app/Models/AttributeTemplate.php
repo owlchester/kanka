@@ -69,19 +69,6 @@ class AttributeTemplate extends MiscModel
         'entity_type_id'
     ];
 
-    public $tooltipField = 'name';
-
-    /**
-     * Fields that can be filtered on
-     * @var array
-     */
-    protected $filterableColumns = [
-        'name',
-        'attribute_template_id',
-        'tags',
-        'is_private',
-    ];
-
     /** @var bool Attribute templates don't have inventory, relations or abilities */
     public $hasRelations = false;
 
@@ -171,7 +158,7 @@ class AttributeTemplate extends MiscModel
             }
 
 
-            list ($type, $value) = \App\Facades\Attributes::randomAttribute($attribute->type, $attribute->value);
+            list ($type, $value) = \App\Facades\Attributes::randomAttribute($attribute->type_id, $attribute->value);
 
             Attribute::create([
                 'entity_id' => $entity->id,
@@ -180,7 +167,7 @@ class AttributeTemplate extends MiscModel
                 'default_order' => $lastOrder + $order,
                 'is_private' => $attribute->is_private,
                 'is_star' => $attribute->is_star,
-                'type' => $type,
+                'type_id' => $type,
             ]);
             $order++;
         }
@@ -192,7 +179,7 @@ class AttributeTemplate extends MiscModel
                 if (in_array($attribute->name, $existing)) {
                     continue;
                 }
-                list ($type, $value) = \App\Facades\Attributes::randomAttribute($attribute->type, $attribute->value);
+                list ($type, $value) = \App\Facades\Attributes::randomAttribute($attribute->type_id, $attribute->value);
 
                 Attribute::create([
                     'entity_id' => $entity->id,
@@ -201,7 +188,7 @@ class AttributeTemplate extends MiscModel
                     'default_order' => $order,
                     'is_private' => $attribute->is_private,
                     'is_star' => $attribute->is_star,
-                    'type' => $type,
+                    'type_id' => $type,
                 ]);
                 $order++;
             }
@@ -254,5 +241,16 @@ class AttributeTemplate extends MiscModel
             return true;
         }
         return false;
+    }
+
+    /**
+     * Define the fields unique to this model that can be used on filters
+     * @return string[]
+     */
+    public function filterableColumns(): array
+    {
+        return [
+            'attribute_template_id',
+        ];
     }
 }

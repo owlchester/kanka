@@ -20,9 +20,8 @@ return [
         'type'      => 'Type',
     ],
     'helpers'       => [
-        'date'          => 'Ce champ peut contenir n\'importe quelle valeur et n\'est pas lié aux calendriers de la campagne. Pour lier cet événement à un calendrier, il faut se rendre sur l\'onglet rappels de cet événement.',
-        'nested_parent' => 'Affichage des événements de :parent.',
-        'nested_without'=> 'Affichage des événements sans parent. Cliquer sur une rangée pour afficher les événements enfants.',
+        'date'              => 'Ce champ peut contenir n\'importe quelle valeur et n\'est pas lié aux calendriers de la campagne. Pour lier cet événement à un calendrier, il faut se rendre sur l\'onglet rappels de cet événement.',
+        'nested_without'    => 'Affichage des événements sans parent. Cliquer sur une rangée pour afficher les événements enfants.',
     ],
     'index'         => [
         'title' => 'Événements',

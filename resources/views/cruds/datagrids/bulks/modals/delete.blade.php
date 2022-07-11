@@ -1,5 +1,5 @@
 <?php /** @var \App\Datagrids\Datagrid $datagrid */?>
-@inject('campaign', 'App\Services\CampaignService')
+@inject('campaignService', 'App\Services\CampaignService')
 
 {!! Form::open(['url' => route('bulk.process'), 'method' => 'POST']) !!}
 <div class="modal fade" id="bulk-delete" tabindex="-1" role="dialog" aria-labelledby="clickConfirmLabel">
@@ -18,7 +18,7 @@
                 </p>
                 <div class="mt-5 recoverable">
                     @includeWhen(!isset($datagrid) || $datagrid->hasBulkPermissions(), 'layouts.callouts.recoverable')
-                    @includeWhen(isset($datagrid) && $datagrid instanceof \App\Datagrids\RelationDatagrid, 'cruds.datagrids.bulks.modals.mirrored_checkbox')
+                    @includeWhen(isset($datagrid) && $datagrid instanceof \App\Datagrids\Actions\RelationDatagrid, 'cruds.datagrids.bulks.modals._mirrored_checkbox')
                 </div>
 
 

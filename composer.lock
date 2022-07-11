@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "03da4053f3bac16ff51462befd1f010b",
+    "content-hash": "ddefc2a2f852d208269a839b45aa1266",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -2645,22 +2645,22 @@
         },
         {
             "name": "guzzlehttp/guzzle",
-            "version": "7.4.4",
+            "version": "7.4.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/guzzle.git",
-                "reference": "e3ff079b22820c2029d4c2a87796b6a0b8716ad8"
+                "reference": "1dd98b0564cb3f6bd16ce683cb755f94c10fbd82"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/e3ff079b22820c2029d4c2a87796b6a0b8716ad8",
-                "reference": "e3ff079b22820c2029d4c2a87796b6a0b8716ad8",
+                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/1dd98b0564cb3f6bd16ce683cb755f94c10fbd82",
+                "reference": "1dd98b0564cb3f6bd16ce683cb755f94c10fbd82",
                 "shasum": ""
             },
             "require": {
                 "ext-json": "*",
                 "guzzlehttp/promises": "^1.5",
-                "guzzlehttp/psr7": "^1.8.3 || ^2.1",
+                "guzzlehttp/psr7": "^1.9 || ^2.4",
                 "php": "^7.2.5 || ^8.0",
                 "psr/http-client": "^1.0",
                 "symfony/deprecation-contracts": "^2.2 || ^3.0"
@@ -2749,7 +2749,7 @@
             ],
             "support": {
                 "issues": "https://github.com/guzzle/guzzle/issues",
-                "source": "https://github.com/guzzle/guzzle/tree/7.4.4"
+                "source": "https://github.com/guzzle/guzzle/tree/7.4.5"
             },
             "funding": [
                 {
@@ -2765,7 +2765,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-06-09T21:39:15+00:00"
+            "time": "2022-06-20T22:16:13+00:00"
         },
         {
             "name": "guzzlehttp/promises",
@@ -2853,16 +2853,16 @@
         },
         {
             "name": "guzzlehttp/psr7",
-            "version": "2.3.0",
+            "version": "2.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/psr7.git",
-                "reference": "83260bb50b8fc753c72d14dc1621a2dac31877ee"
+                "reference": "13388f00956b1503577598873fffb5ae994b5737"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/psr7/zipball/83260bb50b8fc753c72d14dc1621a2dac31877ee",
-                "reference": "83260bb50b8fc753c72d14dc1621a2dac31877ee",
+                "url": "https://api.github.com/repos/guzzle/psr7/zipball/13388f00956b1503577598873fffb5ae994b5737",
+                "reference": "13388f00956b1503577598873fffb5ae994b5737",
                 "shasum": ""
             },
             "require": {
@@ -2886,7 +2886,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.3-dev"
+                    "dev-master": "2.4-dev"
                 }
             },
             "autoload": {
@@ -2948,7 +2948,7 @@
             ],
             "support": {
                 "issues": "https://github.com/guzzle/psr7/issues",
-                "source": "https://github.com/guzzle/psr7/tree/2.3.0"
+                "source": "https://github.com/guzzle/psr7/tree/2.4.0"
             },
             "funding": [
                 {
@@ -2964,7 +2964,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-06-09T08:26:02+00:00"
+            "time": "2022-06-20T21:43:11+00:00"
         },
         {
             "name": "hamcrest/hamcrest-php",
@@ -3077,16 +3077,16 @@
         },
         {
             "name": "ilestis/kanka-dnd5e-monster",
-            "version": "4.2",
+            "version": "4.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/owlchester/kanka-dnd5e-monster.git",
-                "reference": "438842c726deabe458bae96897c3de20c3398511"
+                "reference": "c5f30ac4b0b9db5bbd0e1c9626f2242fbf4df265"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/owlchester/kanka-dnd5e-monster/zipball/438842c726deabe458bae96897c3de20c3398511",
-                "reference": "438842c726deabe458bae96897c3de20c3398511",
+                "url": "https://api.github.com/repos/owlchester/kanka-dnd5e-monster/zipball/c5f30ac4b0b9db5bbd0e1c9626f2242fbf4df265",
+                "reference": "c5f30ac4b0b9db5bbd0e1c9626f2242fbf4df265",
                 "shasum": ""
             },
             "require": {
@@ -3116,7 +3116,7 @@
                     "homepage": "https://kanka.io"
                 }
             ],
-            "description": "A attribute template for D&D 5th edition monsters",
+            "description": "An attribute template for D&D 5th edition monsters",
             "homepage": "https://github.com/owlchester/kanka-dnd5e-monster",
             "keywords": [
                 "5e",
@@ -3126,9 +3126,9 @@
             ],
             "support": {
                 "issues": "https://github.com/owlchester/kanka-dnd5e-monster/issues",
-                "source": "https://github.com/owlchester/kanka-dnd5e-monster/tree/4.2"
+                "source": "https://github.com/owlchester/kanka-dnd5e-monster/tree/4.3"
             },
-            "time": "2022-04-17T23:18:06+00:00"
+            "time": "2022-06-06T21:56:08+00:00"
         },
         {
             "name": "intervention/image",

@@ -1,7 +1,7 @@
 @if ($status == \App\Services\SubscriptionService::STATUS_GRACE)
     <td colspan="4" class="text-center">
         <p class="help-block">
-            {{ __('settings.subscription.cancelled') }}
+            {{ __('settings.subscription.cancelled', ['date' => auth()->user()->subscription('kanka')->ends_at->isoFormat('lll')]) }}
         </p>
     </td>
     <?php return; ?>

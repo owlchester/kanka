@@ -21,8 +21,7 @@ return [
         'type'          => 'Tip',
     ],
     'helpers'       => [
-        'nested_parent' => 'Prikaz rasa od :parent.',
-        'nested_without'=> 'Prikazuju se sve rase koje nemaju rasu roditelj. Klikni redak da bi vidio/la rase djecu.',
+        'nested_without'    => 'Prikazuju se sve rase koje nemaju rasu roditelj. Klikni redak da bi vidio/la rase djecu.',
     ],
     'index'         => [
         'title' => 'Rase',

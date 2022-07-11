@@ -5,7 +5,7 @@ namespace App\Datagrids\Filters;
 class CalendarFilter extends DatagridFilter
 {
     /**
-     * CharacterFilter constructor.
+     * Filters available for calendars
      */
     public function __construct()
     {

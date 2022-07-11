@@ -1,4 +1,4 @@
-@if (!$campaign->enabled('quests'))
+@if (!$campaignService->enabled('quests'))
     <?php return ?>
 @endif
 
@@ -6,6 +6,8 @@
 $preset = null;
 if (isset($model) && $model->quest) {
     $preset = $model->quest;
+} elseif (isset($parent) && $parent) {
+    $preset = FormCopy::field('quest')->select(true, \App\Models\Quest::class);
 } else {
     $preset = FormCopy::field('quest')->select();
 }

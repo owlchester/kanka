@@ -10,7 +10,7 @@
     ],
     'mainTitle' => false,
 ])
-@inject('campaign', 'App\Services\CampaignService')
+@inject('campaignService', 'App\Services\CampaignService')
 
 @section('fullpage-form')
 {!! Form::model($model, [
@@ -89,7 +89,7 @@
     </div>
 
 
-    @if(!empty($model->entity) && $campaign->campaign()->hasEditingWarning())
+    @if(!empty($model->entity) && $campaignService->campaign()->hasEditingWarning())
         <input type="hidden" id="editing-keep-alive" data-url="{{ route('entities.keep-alive', $model->entity->id) }}" />
     @endif
 @endsection

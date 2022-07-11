@@ -63,6 +63,9 @@ class SubscriptionService
     /** @var int Value of the subscription */
     protected $subscriptionValue = 0;
 
+    /** @var Request The request object */
+    protected $request;
+
     /**
      * @param User $user
      * @return $this
@@ -120,6 +123,20 @@ class SubscriptionService
         return $this;
     }
 
+    /**
+     * @param array $request
+     * @return $this
+     */
+    public function request(array $request): self
+    {
+        $this->request = $request;
+        return $this;
+    }
+
+    /**
+     * @param $coupon
+     * @return $this
+     */
     public function coupon($coupon): self
     {
         if ($this->period === 'yearly' && !empty($coupon)) {
@@ -145,6 +162,8 @@ class SubscriptionService
         } elseif ($this->toElemental()) {
             $this->plan = $this->elementalPlanID();
         }
+
+        $this->request($request);
 
         // Switching to kobold?
         if (empty($this->plan)) {
@@ -224,7 +243,11 @@ class SubscriptionService
         // If downgrading, send admins an email, and let stripe deal with the rest. A user update hook will be thrown
         // when the user really changes. Probably?
         if ($this->downgrading()) {
-            SubscriptionDowngradedEmailJob::dispatch($this->user);
+            SubscriptionDowngradedEmailJob::dispatch(
+                $this->user,
+                Arr::get($this->request, 'reason'),
+                Arr::get($this->request, 'reason_custom')
+            );
             $this->user->log(UserLog::TYPE_SUB_DOWNGRADE);
             return $this;
         }
@@ -691,7 +714,7 @@ class SubscriptionService
      * Determine if a user is downgrading
      * @return bool
      */
-    protected function downgrading(): bool
+    public function downgrading(): bool
     {
         // Elemental downgrading -> owl or wyv
         if ($this->user->isElemental() && in_array($this->tier, [Patreon::PLEDGE_OWLBEAR, Patreon::PLEDGE_WYVERN])) {

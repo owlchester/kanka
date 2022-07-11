@@ -3,12 +3,11 @@
 namespace App\Datagrids\Filters;
 
 use App\Models\Entity;
-use App\Models\MiscModel;
 
 class RelationFilter extends DatagridFilter
 {
     /**
-     * CharacterFilter constructor.
+     * Filters available for relations
      */
     public function __construct()
     {

@@ -88,10 +88,9 @@ return [
         'weekdays'              => 'Hétköznapok',
     ],
     'helpers'       => [
-        'month_type'    => 'A naptárközi hónapok nem számolják a hét napjait, de a holdfázisokat és az évszakokat igen.',
-        'nested_parent' => ':parent naptárainak kijelzése',
-        'nested_without'=> 'Minden olyan naptár megmutatása, amelynek nincs szülő naptára. Klikkelj egy sorra, hogy lást a gyermeknaptárakat.',
-        'start_offset'  => 'Alapértelmezés szerint a naptár a 0-ik év első hétköznapjával kezdődik. Ezen mező értékének megváltoztatásával beállítható, hogy a naptár első napja hova essen.',
+        'month_type'        => 'A naptárközi hónapok nem számolják a hét napjait, de a holdfázisokat és az évszakokat igen.',
+        'nested_without'    => 'Minden olyan naptár megmutatása, amelynek nincs szülő naptára. Klikkelj egy sorra, hogy lást a gyermeknaptárakat.',
+        'start_offset'      => 'Alapértelmezés szerint a naptár a 0-ik év első hétköznapjával kezdődik. Ezen mező értékének megváltoztatásával beállítható, hogy a naptár első napja hova essen.',
     ],
     'hints'         => [
         'event_length'      => 'Mennyi ideig tart az esemény. Egy esemény nem lehet hosszabb két hónapnál.',

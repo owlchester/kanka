@@ -10,6 +10,7 @@ use App\Models\CampaignPermission;
 use App\Models\Conversation;
 use App\Models\EntityAbility;
 use App\Models\EntityAlias;
+use App\Models\EntityAsset;
 use App\Models\EntityEvent;
 use App\Models\EntityLink;
 use App\Models\EntityMention;
@@ -57,9 +58,13 @@ use Illuminate\Database\Eloquent\Collection;
  * @property User[] $users
  * @property CampaignPermission[] $permissions
  * @property EntityAlias[] $aliases
+ * @property EntityAsset[] $assets
  */
 trait EntityRelations
 {
+    /** @var bool|Collection|Tag[] List of tags attached to the entity */
+    protected $tagsWithEntity = false;
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
@@ -220,8 +225,9 @@ trait EntityRelations
         );
     }
 
-    protected $tagsWithEntity = false;
-
+    /**
+     * @return Collection|Tag[]
+     */
     public function tagsWithEntity()
     {
         if ($this->tagsWithEntity === false) {
@@ -459,6 +465,14 @@ trait EntityRelations
     public function aliases()
     {
         return $this->hasMany('App\Models\EntityAlias', 'entity_id', 'id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function assets()
+    {
+        return $this->hasMany(EntityAsset::class, 'entity_id', 'id');
     }
 
     /**

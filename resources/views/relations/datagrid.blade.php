@@ -12,7 +12,8 @@
             'label' => __('entities/relations.fields.owner'),
             'class' => null,
             'render' => function($model) {
-                return '<a href="' . $model->owner->url() . '">' . $model->owner->name . '</a>';
+                return $model->owner->tooltipedLink();
+                //return '<a href="' . $model->owner->url() . '">' . $model->owner->name . '</a>';
             }
         ],
         [
@@ -20,7 +21,8 @@
             'label' => __('entities/relations.fields.target'),
             'class' => null,
             'render' => function($model) {
-                return '<a href="' . $model->target->url() . '">' . $model->target->name . '</a>';
+                return $model->target->tooltipedLink();
+                //return '<a href="' . $model->target->url() . '">' . $model->target->name . '</a>';
             }
         ],
         [
@@ -67,7 +69,7 @@
         'route' => 'relations.index',
         'baseRoute' => 'relations',
         'trans' => 'relations.fields.',
-        'campaign' => $campaign,
+        'campaignService' => $campaignService,
         'disableEntity' => true,
     ]
 ) !!}

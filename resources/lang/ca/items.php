@@ -22,12 +22,10 @@ return [
         'title' => 'Inventaris de l\'objecte :name',
     ],
     'placeholders'  => [
-        'character' => 'Trieu un personatge',
-        'location'  => 'Trieu un indret',
-        'name'      => 'Nom de l\'objecte',
-        'price'     => 'Preu de l\'objecte',
-        'size'      => 'Grandària, pes, dimensions',
-        'type'      => 'Arma, poció, artefacte...',
+        'name'  => 'Nom de l\'objecte',
+        'price' => 'Preu de l\'objecte',
+        'size'  => 'Grandària, pes, dimensions',
+        'type'  => 'Arma, poció, artefacte...',
     ],
     'quests'        => [],
     'show'          => [

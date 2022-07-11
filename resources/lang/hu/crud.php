@@ -5,7 +5,6 @@ return [
         'actions'           => 'Műveletek',
         'apply'             => 'Alkalmaz',
         'back'              => 'Vissza',
-        'bulk_templates'    => 'Tulajdonságsablon alkalmazása',
         'copy'              => 'Másolás',
         'copy_mention'      => 'Említett [ ] másolása',
         'copy_to_campaign'  => 'Másolás Kampányba',

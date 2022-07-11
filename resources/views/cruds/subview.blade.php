@@ -1,10 +1,10 @@
 @section('og')
-    <meta property="og:description" content="{{ $model->tooltip() }}" />
+    @if ($tooltip = $model->entity->mappedPreview())<meta property="og:description" content="{{ $tooltip }}" />@endif
     @if ($model->image)<meta property="og:image" content="{{ $model->getImageUrl(0)  }}" />@endif
 
     <meta property="og:url" content="{{ $model->getLink()  }}" />
 @endsection
 
-@inject('campaign', 'App\Services\CampaignService')
+@inject('campaignService', 'App\Services\CampaignService')
 
 @include($fullview)

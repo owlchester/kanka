@@ -1,4 +1,4 @@
-<?php /** @var \App\Rules\EntityLink $link */?>
+<?php /** @var \App\Rules\EntityAsset $asset */?>
 
 <div class="sidebar-section-box entity-links">
     <div class="sidebar-section-title cursor" data-toggle="collapse" data-target="#sidebar-link-elements">
@@ -9,10 +9,10 @@
     </div>
     <div class="sidebar-elements collapse in" id="sidebar-link-elements">
         <ul class="list-unstyled">
-            @foreach ($model->entity->links()->ordered()->get() as $link)
-                <li data-target="{{ $link->id }}" data-visibility="{{ $link->visibility }}">
-                    <a href="{{ route('entities.entity_links.go', ['entity' => $model->entity->id, 'entity_link' => $link->id]) }}" title="{!! $link->name !!}" target="_blank" rel="noreferrer nofollow" class="entity-link">
-                        <i class="{{ $link->iconName() }} mr-2"></i> {!! $link->name !!}
+            @foreach ($model->entity->assets->where('type_id', \App\Models\EntityAsset::TYPE_LINK) as $asset)
+                <li data-target="{{ $asset->id }}" data-visibility="{{ $asset->visibility }}">
+                    <a href="{{ route('entities.entity_assets.go', ['entity' => $model->entity->id, 'entity_asset' => $asset]) }}" title="{!! $asset->name !!}" target="_blank" rel="noreferrer nofollow" class="entity-link">
+                        <i class="{{ $asset->icon() }} mr-2"></i> {!! $asset->name !!}
                     </a>
                 </li>
             @endforeach

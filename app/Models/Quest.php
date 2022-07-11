@@ -69,17 +69,6 @@ class Quest extends MiscModel
     protected $entityType = 'quest';
 
     /**
-     * Fields that can be filtered on
-     * @var array
-     */
-    protected $filterableColumns = [
-        'date',
-        'quest_id',
-        'character_id',
-        'is_completed',
-    ];
-
-    /**
      * Fields that can be sorted on
      * @var array
      */
@@ -234,5 +223,21 @@ class Quest extends MiscModel
     public function showProfileInfo(): bool
     {
         return !empty($this->type) || !empty($this->character) || !empty($this->date);
+    }
+
+    /**
+     * Define the fields unique to this model that can be used on filters
+     * @return string[]
+     */
+    public function filterableColumns(): array
+    {
+        return [
+            'date',
+            'quest_id',
+            'character_id',
+            'is_completed',
+            'date_start',
+            'date_end',
+        ];
     }
 }

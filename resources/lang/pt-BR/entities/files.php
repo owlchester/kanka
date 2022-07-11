@@ -1,19 +1,23 @@
 <?php
 
 return [
-    'create'    => [
+    'call-to-action'    => [
+        'boost'         => 'Para fazer upload de mais arquivos, a campanha precisa ser impulsionada.',
+        'error'         => 'Esta entidade atingiu o número máximo de arquivos que pode conter.',
+        'superboost'    => 'Para fazer upload de mais arquivos, a campanha precisa ser superimpulsionada.',
+    ],
+    'create'            => [
         'success'   => 'Arquivo :file adicionado.',
         'title'     => 'Novo arquivo para :entity',
     ],
-    'destroy'   => [
+    'destroy'           => [
         'success'   => 'Arquivo :file removido.',
     ],
-    'fields'    => [
+    'fields'            => [
         'file'  => 'Arquivo',
         'name'  => 'Nome do arquivo',
     ],
-    'update'    => [
+    'update'            => [
         'success'   => 'Arquivo :file atualizado.',
-        'title'     => 'Atualizar arquivo :file para :entity.',
     ],
 ];

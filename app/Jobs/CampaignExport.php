@@ -92,8 +92,8 @@ class CampaignExport implements ShouldQueue
             'entity',
             'entity.tags', 'entity.relationships',
             'entity.notes', 'entity.abilities',
-            'entity.events', 'entity.files',
-            'entity.aliases', 'entity.links',
+            'entity.events',
+            'entity.assets',
         ];
         foreach ($this->entity->entities() as $entity => $class) {
             if ($this->campaign->enabled($entity) && method_exists($class, 'export')) {

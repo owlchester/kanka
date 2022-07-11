@@ -26,7 +26,7 @@
                         {!! $model->quest->tooltipedLink() !!}
                     </p>
                 @endif
-                @if ($campaign->enabled('characters') && !empty($model->character))
+                @if ($campaignService->enabled('characters') && !empty($model->character))
                     <p class="entity-character" data-foreign="{{ $model->character_id }}">
                         <b>{{ trans('quests.fields.character') }}</b><br />
                     {!! $model->character->tooltipedLink() !!}

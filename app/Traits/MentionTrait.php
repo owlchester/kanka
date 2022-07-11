@@ -1,15 +1,11 @@
 <?php
 
-
 namespace App\Traits;
 
-
 use Illuminate\Support\Arr;
-use Illuminate\Support\Str;
 
 trait MentionTrait
 {
-
     /**
      * Extract the mentions from a text
      * @param String $entry
@@ -19,12 +15,12 @@ trait MentionTrait
     {
         $mentions = [];
 
-        preg_match_all('`\[([a-z]+):(.*?)\]`i' , $text, $segments);
+        preg_match_all('`\[([a-z]+):(.*?)\]`i', $text, $segments);
 
         foreach ($segments[1] as $id => $type) {
             $options = explode('|', $segments[2][$id]);
             $id = Arr::first($options);
-            $key = $type.'.' . $id;
+            $key = $type . '.' . $id;
 
             $data = [
                 'type' => $type,

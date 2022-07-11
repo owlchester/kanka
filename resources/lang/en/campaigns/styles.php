@@ -39,7 +39,7 @@ return [
     'reorder'   => [
         'save'      => 'Save new order',
         'success'   => '{1} Reordered :count style.|[2,*] Reordered :count styles.',
-        'title'     => 'Redorder styles',
+        'title'     => 'Reorder styles',
     ],
     'theme'     => [
         'success'   => 'Campaign theme updated.',

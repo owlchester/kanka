@@ -19,6 +19,8 @@ return [
         ],
         'back'              => 'Voltar para seleção',
         'duplicate'         => 'Já existem outras entidades deste tipo com o mesmo nome.',
+        'helper_v2'         => 'Crie rapidamente a base de uma nova entidade sem interromper seu fluxo atual.',
+        'missing'           => 'Não está vendo todos os tipos de entidade? Ele pode estar desabilitado, suas permissões podem não permitir ou não há suporte para criação rápida.',
         'name'              => [
             'new'       => 'Novo nome',
             'remove'    => 'Remover',

@@ -8,13 +8,13 @@
     'miscModel' => $model,
     'bodyClass' => 'entity-profile'
 ])
-@inject('campaign', 'App\Services\CampaignService')
+@inject('campaignService', 'App\Services\CampaignService')
 
 
 @section('entity-header-actions')
     @can('update', $model)
         <div class="header-buttons">
-            <a href="{{ $model->getLink('edit') }}" class="btn btn-warning">
+            <a href="{{ $model->getLink('edit') }}" class="btn btn-warning btn-sm">
                 {{ __('entities/profile.actions.edit_profile') }}
             </a>
         </div>
@@ -27,7 +27,7 @@
     @include('partials.ads.top')
 
     <div class="entity-grid">
-        @include('entities.components.header_grid', [
+        @include('entities.components.header', [
             'model' => $entity->child,
             'entity' => $entity,
             'breadcrumb' => [

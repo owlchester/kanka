@@ -7,7 +7,7 @@ use App\Models\Ability;
 class AbilityFilter extends DatagridFilter
 {
     /**
-     * CharacterFilter constructor.
+     * Filters available for abilities
      */
     public function __construct()
     {
@@ -16,10 +16,10 @@ class AbilityFilter extends DatagridFilter
             ->add('type')
             ->add([
                 'field' => 'ability_id',
-                'label' => trans('crud.fields.ability'),
+                'label' => __('crud.fields.ability'),
                 'type' => 'select2',
                 'route' => route('abilities.find'),
-                'placeholder' =>  trans('crud.placeholders.ability'),
+                'placeholder' =>  __('crud.placeholders.ability'),
                 'model' => Ability::class,
             ])
             ->isPrivate()

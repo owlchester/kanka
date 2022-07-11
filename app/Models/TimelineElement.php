@@ -106,7 +106,7 @@ class TimelineElement extends Model
      */
     public function getEntryForEditionAttribute()
     {
-        $text = Mentions::editAny($this);
+        $text = Mentions::parseForEdit($this);
         return $text;
     }
 

@@ -47,14 +47,6 @@ class Note extends MiscModel
     protected $searchableColumns = ['name', 'type', 'entry'];
 
     /**
-     * Fields that can be filtered on
-     * @var array
-     */
-    protected $filterableColumns = [
-        'note_id',
-    ];
-
-    /**
      * Entity type
      * @var string
      */
@@ -136,5 +128,16 @@ class Note extends MiscModel
     public function setNoteIdAttribute($value)
     {
         $this->setParentIdAttribute($value);
+    }
+
+    /**
+     * Define the fields unique to this model that can be used on filters
+     * @return string[]
+     */
+    public function filterableColumns(): array
+    {
+        return [
+            'note_id',
+        ];
     }
 }

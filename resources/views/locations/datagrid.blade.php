@@ -23,7 +23,7 @@
         ],
         [
             'label' => __('locations.fields.characters'),
-            'visible' => $campaign->enabled('characters'),
+            'visible' => $campaignService->enabled('characters'),
             'render' => function($model) {
                 $total = $model->characters->count();
                 foreach ($model->descendants()->with('characters')->get() as $child) {

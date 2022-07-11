@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col-md-6">
         @include('cruds.fields.name', ['trans' => 'dice_rolls'])
-        @if ($campaign->enabled('characters'))
+        @if ($campaignService->enabled('characters'))
             <div class="form-group">
                 {!! Form::select2(
                     'character_id',
@@ -14,9 +14,9 @@
         @include('cruds.fields.tags')
 
         <div class="form-group required">
-            <label>{{ trans('dice_rolls.fields.parameters') }}</label>
-            {!! Form::text('parameters', FormCopy::field('parameters')->string(), ['placeholder' => trans('dice_rolls.placeholders.parameters'), 'class' => 'form-control', 'maxlength' => 191]) !!}
-            <a href="{{ route('helpers.dice') }}" target="_blank">{{ trans('dice_rolls.hints.parameters') }}</a>
+            <label>{{ __('dice_rolls.fields.parameters') }}</label>
+            {!! Form::text('parameters', FormCopy::field('parameters')->string(), ['placeholder' => __('dice_rolls.placeholders.parameters'), 'class' => 'form-control', 'maxlength' => 191]) !!}
+            <a href="{{ route('helpers.dice') }}" target="_blank">{{ __('dice_rolls.hints.parameters') }}</a>
         </div>
     </div>
     <div class="col-md-6">

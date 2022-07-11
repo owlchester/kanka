@@ -41,7 +41,6 @@ return [
     ],
     'helpers'       => [
         'is_completed'      => 'Wybierz, jeżeli misję można uznać za ukończoną.',
-        'nested_parent'     => 'Wyświetlono misje pochodzące od :parent.',
         'nested_without'    => 'Wyświetlono wszystkie misje nie posiadające źródła. Kliknij na rząd, by wyświetlić misje pochodne.',
     ],
     'hints'         => [

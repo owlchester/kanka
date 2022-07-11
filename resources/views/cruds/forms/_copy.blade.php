@@ -5,14 +5,6 @@
         {{ __('crud.fields.copy_posts') }}
     </label>
 </div>
-@if ($campaign->campaign()->boosted())
-    <div class="form-group">
-        {!! Form::hidden('copy_source_links', null) !!}
-        <label>{!! Form::checkbox('copy_source_links', 1, request()->filled('template')) !!}
-            {{ __('crud.fields.copy_links') }}
-        </label>
-    </div>
-@endif
 <div class="form-group">
     {!! Form::hidden('copy_source_abilities', null) !!}
     <label>{!! Form::checkbox('copy_source_abilities', 1, request()->filled('template')) !!}
@@ -32,6 +24,14 @@
         {{ __('crud.fields.copy_permissions') }}
     </label>
 </div>
+@if ($campaignService->campaign()->boosted())
+    <div class="form-group">
+        {!! Form::hidden('copy_source_links', null) !!}
+        <label>{!! Form::checkbox('copy_source_links', 1, request()->filled('template')) !!}
+            {{ __('crud.fields.copy_links') }}
+        </label>
+    </div>
+@endif
 
 @if (view()->exists($name . '.form._copy'))
     @include($name . '.form._copy')

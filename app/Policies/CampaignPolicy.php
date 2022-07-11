@@ -172,12 +172,16 @@ class CampaignPolicy
      */
     public function leave(User $user, Campaign $campaign)
     {
+        if (Identity::isImpersonating()) {
+            return false;
+        }
+        if (!$campaign->userIsMember()) {
+            return false;
+        }
         return
             $user->campaign->id == $campaign->id &&
             // If we are not the owner, or that we are an owner but there are other owners
-            $campaign->userIsMember() && (!UserCache::user($user)->admin() || count($campaign->admins()) > 1) &&
-            // We also can't leave a campaign if we are not the real user
-            !Identity::isImpersonating();
+            (!UserCache::user($user)->admin() || $campaign->adminCount() > 1);
     }
 
     /**

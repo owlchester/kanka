@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Datagrids\Actions\DefaultDatagridActions;
 use App\Datagrids\Sorters\DatagridSorter;
 use App\Facades\CampaignLocalization;
 use App\Facades\Datagrid;
@@ -19,7 +20,7 @@ use App\Traits\GuestAuthTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\Paginator;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Collection;
 use LogicException;
 
 class CrudController extends Controller
@@ -34,9 +35,6 @@ class CrudController extends Controller
 
     /** @var MiscModel|Model */
     protected $model = null;
-
-    /** @var array Extra actions in the index view */
-    protected $indexActions = [];
 
     /** @var array */
     protected $filters = [];
@@ -60,22 +58,22 @@ class CrudController extends Controller
     /** @var bool Control if the form is "horizontal" (css class) */
     protected $horizontalForm = false;
 
+    /** @var array List of navigation actions on top of the datagrids */
+    protected $navActions = [];
+
     /**
      * A sorter object for subviews
      * @var null|DatagridSorter
      */
     protected $datagridSorter = null;
 
-    /** @var bool If the bulk templates button is available */
-    protected $bulkTemplates = true;
-
     /** @var bool If the auth check was already performed on this controller */
-    protected $alreadyAuthChecked = false;
+    protected bool $alreadyAuthChecked = false;
 
-    /**
-     * @var null
-     */
-    protected $datagrid = null;
+    /** @var null */
+    protected $datagridActions = DefaultDatagridActions::class;
+
+    /** @var array */
     protected $rows = [];
 
     /**
@@ -100,42 +98,36 @@ class CrudController extends Controller
 
     /**
      * @param Request $request
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\RedirectResponse
+     * @throws \Psr\Container\ContainerExceptionInterface
+     * @throws \Psr\Container\NotFoundExceptionInterface
      */
     public function crudIndex(Request $request)
     {
-        // Check that the module isn't disabled
-        $campaign = CampaignLocalization::getCampaign();
-        if (!empty($this->module) && !$campaign->enabled($this->module)) {
-            return redirect()->route('dashboard')->with('error_raw',
+        if (!$this->moduleEnabled()) {
+            return redirect()->route('dashboard')->with(
+                'error_raw',
                 __('campaigns.settings.errors.module-disabled', [
                     'fix' => link_to_route('campaign.modules', __('crud.fix-this-issue'), ['#' . $this->module]),
                 ])
             );
         }
 
-        /** @var MiscModel $model */
+        /**
+         * Prepare a lot of variables that will be shared over to the view
+         * @var MiscModel $model
+         */
         $model = new $this->model();
         $this->filterService->make($this->view, request()->all(), $model);
         $name = $this->view;
         $langKey = $this->langKey ?? $name;
-        $actions = $this->indexActions;
         $filters = $this->filters;
         $filter = !empty($this->filter) ? new $this->filter() : null;
         $filterService = $this->filterService;
-        $nestedView = method_exists($this, 'tree');
         $route = $this->route;
         $bulk = $this->bulkModel();
-        $bulkTemplates = $this->bulkTemplates;
-
-        // Entity templates
-        $templates = null;
-        if (auth()->check() && !empty($model->entityTypeID()) && auth()->user()->can('create', $model)) {
-            $templates = Entity::templates($model->entityTypeID())
-                ->get();
-        }
-
-        $datagrid = !empty($this->datagrid) ? new $this->datagrid : null;
+        $datagridActions = new $this->datagridActions();
+        $templates = $this->loadTemplates($model);
 
         $base = $model
             ->preparedSelect()
@@ -153,7 +145,8 @@ class CrudController extends Controller
 
             // Don't use total as it won't use the distinct() filters (typically when doing
             // left join on the entities table)
-            $filteredCount =  count($models); //->total()
+            $filteredCount =  $models->total();
+            //$filteredCount =  count($models); //->total()
         } else {
             /** @var Paginator $models */
             $models = $base->paginate();
@@ -168,23 +161,30 @@ class CrudController extends Controller
             ]);
         }
 
+        // Add a button to the tree view if the controller has it
+        if (method_exists($this, 'tree')) {
+            $this->addNavAction(
+                route($this->route . '.tree'),
+                '<i class="fa-solid fa-share-nodes" aria-hidden="true"></i> ' . __('crud.actions.explore_view')
+            );
+        }
+        $actions = $this->navActions;
+
         return view('cruds.index', compact(
             'models',
             'name',
+            'langKey',
             'model',
             'actions',
             'filter',
             'filters',
             'filterService',
-            'nestedView',
-            'route',
             'filteredCount',
             'unfilteredCount',
+            'route',
             'bulk',
-            'bulkTemplates',
-            'datagrid',
             'templates',
-            'langKey'
+            'datagridActions',
         ));
     }
 
@@ -211,7 +211,7 @@ class CrudController extends Controller
                 $params['source'] = null;
             }
         }
-        $model = new $this->model;
+        $model = new $this->model();
         $templates = $this->buildAttributeTemplates($model->entityTypeId());
 
         $params['ajax'] = request()->ajax();
@@ -632,5 +632,48 @@ class CrudController extends Controller
         }
 
         return response()->json($data);
+    }
+
+    /**
+     * Detect if a module is enabled
+     * @return bool
+     */
+    protected function moduleEnabled(): bool
+    {
+        $campaign = CampaignLocalization::getCampaign();
+        return empty($this->module) || $campaign->enabled($this->module);
+    }
+
+    /**
+     * Add a button to the top of a datagrid
+     * @param $route
+     * @param string $label
+     * @param string $class
+     * @return $this
+     */
+    protected function addNavAction($route, string $label, string $class = 'default'): self
+    {
+        $this->navActions[] = [
+            'route' => $route,
+            'class' => $class,
+            'label' => $label
+        ];
+        return $this;
+    }
+
+    /**
+     * Load a list of templates the user can create new entities from
+     * @param MiscModel $model
+     * @return Collection
+     */
+    protected function loadTemplates($model): Collection
+    {
+        // No valid user, or invalid entity type (ie relations)
+        if (auth()->guest() || empty($model->entityTypeID())) {
+            return new Collection();
+        } elseif (!auth()->user()->can('create', $model)) {
+            return new Collection();
+        }
+        return Entity::templates($model->entityTypeID())->get();
     }
 }

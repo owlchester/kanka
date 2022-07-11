@@ -24,7 +24,6 @@ return [
         'type'          => 'Tipo',
     ],
     'helpers'       => [
-        'nested_parent'     => 'Mostrando as linhas do tempo de :parent.',
         'nested_without'    => 'Mostrando todas as linhas do tempo que não tem uma linha do tempo pai. Clique em uma linha para ver as linhas do tempo filhos.',
         'no_era'            => 'Esta linha do tempo atualmente não tem nenhuma era. As eras podem ser adicionadas na tela de edição da linha do tempo, após o qual você pode adicionar elementos nela.',
         'reorder'           => 'Arraste e solte elementos da linha do tempo para reorganizá-los',

@@ -51,13 +51,11 @@ Route::apiResources([
     'campaigns.entities.attributes' => 'EntityAttributeApiController',
     'campaigns.entities.entity_notes' => 'EntityNoteApiController',
     'campaigns.entities.entity_events' => 'EntityEventApiController',
-    'campaigns.entities.entity_files' => 'EntityFileApiController',
     'campaigns.entities.relations' => 'EntityRelationApiController',
     'campaigns.entities.entity_tags' => 'EntityTagApiController',
     'campaigns.entities.inventory' => 'EntityInventoryApiController',
     'campaigns.entities.entity_abilities' => 'EntityAbilityApiController',
-    'campaigns.entities.entity_links' => 'EntityLinkApiController',
-    'campaigns.entities.entity_aliases' => 'EntityAliasApiController',
+    'campaigns.entities.entity_assets' => 'EntityAssetApiController',
 
     'campaigns.campaign_dashboard_widgets' => 'CampaignDashboardWidgetApiController',
     'campaigns.campaign_styles' => 'CampaignStyleApiController',
@@ -67,7 +65,6 @@ Route::apiResources([
 
 Route::post('campaigns/{campaign}/entities/{entity}/image', 'EntityImageApiController@put');
 Route::delete('campaigns/{campaign}/entities/{entity}/image', 'EntityImageApiController@destroy');
-Route::get('campaigns/{campaign}/users', 'CampaignUserApiController@index');
 Route::get('campaigns/{campaign}/relations', 'RelationApiController@index');
 Route::get('campaigns/{campaign}/search/{query}', 'SearchApiController@index');
 Route::get('profile', 'ProfileApiController@index');
@@ -78,6 +75,11 @@ Route::post('campaigns/{campaign}/entities/templates/{entity}/switch', 'EntityTe
 Route::get('campaigns/{campaign}/entities', 'EntityApiController@index');
 Route::get('campaigns/{campaign}/entities/{entity}', 'EntityApiController@show');
 Route::get('campaigns/{campaign}/entities/{entity}/mentions', 'EntityMentionApiController@index');
+
+
+Route::get('campaigns/{campaign}/users', 'Campaign\UserApiController@index');
+Route::post('campaigns/{campaign}/users', 'Campaign\UserApiController@add');
+Route::delete('campaigns/{campaign}/users', 'Campaign\UserApiController@remove');
 
 Route::get('visibilities', 'VisibilityController@index');
 

@@ -4,6 +4,7 @@ return [
     'hall_of_fame'  => 'Hall of Fame',
     'index'         => [
         'community'     => 'Community',
+        'founders'      => 'Founders',
         'lead'          => 'Making worldbuilding fun and reliable',
         'title'         => 'Team',
         'translations'  => 'Translations',
@@ -14,6 +15,9 @@ return [
         'translators'   => 'Kanka is translated to several languages thanks to these amazing contributors.',
     ],
     'people'        => [
+        'itzamna'   => [
+            'title' => 'Junior Developer',
+        ],
         'jay'       => [
             'text'  => <<<'TEXT'
 I created Kanka in October 2017 because there was no tool that easily allowed me to create a world with my friends and still allow me to control who could see or do what.
@@ -35,6 +39,12 @@ TEXT
         ],
         'joseph'    => [
             'title' => 'QA & Onboarding',
+        ],
+        'kaz'       => [
+            'title' => 'Bug Destroyer',
+        ],
+        'laura'     => [
+            'title' => 'Social Media',
         ],
         'ryan'      => [
             'title' => 'OG Community Member',

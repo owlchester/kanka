@@ -60,7 +60,6 @@ return [
         'max_zoom'          => 'La valeur maximale à laquelle la carte peut être agrandie. La valeur par défaut est de :default, et la valeur maximale est de :max.',
         'min_zoom'          => 'La valeur minimale à laquelle la carte peut être rétrécie. La valeur par défaut est de :default, et la valeur minimale est de :min.',
         'missing_image'     => 'Enregister la carte avec une image avant de pouvoir ajouter des couches et des marqueurs.',
-        'nested_parent'     => 'Affichage des cartes de :parent.',
         'nested_without'    => 'Affichage des cartes sans parent. Cliquer sur une rangée pour afficher les cartes enfants.',
     ],
     'index'         => [

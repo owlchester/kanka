@@ -16,9 +16,8 @@ return [
         'type'      => 'Tipo',
     ],
     'helpers'       => [
-        'journals'      => 'Mostrar todos os subcadernos ou só os descendentes directos deste caderno.',
-        'nested_parent' => 'Mostrando os cadernos de ":parent".',
-        'nested_without'=> 'Mostrando todos os cadernos que non teñen un caderno pai. Fai clic nunha fila para ver os seus descendentes.',
+        'journals'          => 'Mostrar todos os subcadernos ou só os descendentes directos deste caderno.',
+        'nested_without'    => 'Mostrando todos os cadernos que non teñen un caderno pai. Fai clic nunha fila para ver os seus descendentes.',
     ],
     'index'         => [
         'title' => 'Cadernos',

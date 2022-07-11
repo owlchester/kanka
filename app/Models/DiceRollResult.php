@@ -3,11 +3,11 @@
 namespace App\Models;
 
 use App\Facades\CampaignLocalization;
-use App\Models\Concerns\Filterable;
+use App\Models\Concerns\HasFilters;
 
 class DiceRollResult extends MiscModel
 {
-    use Filterable;
+    use HasFilters;
 
 
     //
@@ -16,17 +16,6 @@ class DiceRollResult extends MiscModel
         'created_by',
         'results',
         'is_private',
-    ];
-
-    /**
-     * Fields that can be filtered on
-     * @var array
-     */
-    protected $filterableColumns = [
-        'dice_roll_id',
-        'created_at',
-        'created_by',
-        'diceRoll-character_id',
     ];
 
     /**
@@ -99,5 +88,19 @@ class DiceRollResult extends MiscModel
     public function character()
     {
         return $this->diceRoll->character();
+    }
+
+    /**
+     * Define the fields unique to this model that can be used on filters
+     * @return string[]
+     */
+    public function filterableColumns(): array
+    {
+        return [
+            'dice_roll_id',
+            'created_at',
+            'created_by',
+            'diceRoll-character_id',
+        ];
     }
 }

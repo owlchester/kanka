@@ -1,6 +1,9 @@
 <?php
 
 return [
+    'actions'                           => [
+        'boost' => 'Potenciar ":name"',
+    ],
     'create'                            => [
         'description'           => 'Crear unha nova campaña',
         'helper'                => [
@@ -175,6 +178,7 @@ TEXT
             'title' => 'Editar integrante :name',
         ],
         'fields'                => [
+            'banned'        => 'A conta está vetada',
             'joined'        => 'Uniuse',
             'last_login'    => 'Última conexión',
             'name'          => 'Conta',

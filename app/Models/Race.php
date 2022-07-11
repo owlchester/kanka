@@ -57,14 +57,6 @@ class Race extends MiscModel
      */
     protected $entityType = 'race';
 
-    /**
-     * Fields that can be filtered on
-     * @var array
-     */
-    protected $filterableColumns = [
-        'race_id',
-    ];
-
     protected $sortableColumns = [
         'race.name',
     ];
@@ -198,5 +190,16 @@ class Race extends MiscModel
     public function entityTypeId(): int
     {
         return (int) config('entities.ids.race');
+    }
+
+    /**
+     * Define the fields unique to this model that can be used on filters
+     * @return string[]
+     */
+    public function filterableColumns(): array
+    {
+        return [
+            'race_id',
+        ];
     }
 }

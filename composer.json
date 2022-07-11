@@ -1,11 +1,12 @@
 {
-    "name": "ilestis/miscellany",
-    "description": "Kanka's RPG and worldbuilding tool",
+    "name": "owlchester/kanka",
+    "description": "The Kanka RPG and worldbuilding tool",
     "keywords": [
         "campaign",
         "rpg",
         "worldbuilding",
-        "kanka"
+        "kanka",
+        "dnd"
     ],
     "license": "MIT",
     "type": "project",

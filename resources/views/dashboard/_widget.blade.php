@@ -17,15 +17,15 @@ if ($widget->entity) {
          data-toggle="ajax-modal"
     @if($widget->widget == \App\Models\CampaignDashboardWidget::WIDGET_CAMPAIGN)
          data-target="#large-modal"
-         data-url="{{ route('campaigns.dashboard-header.edit', ['campaign' => $campaign->campaign(), 'campaignDashboardWidget' => $widget]) }}"
+         data-url="{{ route('campaigns.dashboard-header.edit', ['campaign' => $campaignService->campaign(), 'campaignDashboardWidget' => $widget]) }}"
     @else
          data-target="#edit-widget"
          data-url="{{ route('campaign_dashboard_widgets.edit', $widget) }}"
     @endif
     @if (!empty($background))
          style="background-image: url('{{ $background }}')"
-    @elseif ($widget->widget == \App\Models\CampaignDashboardWidget::WIDGET_CAMPAIGN && $campaign->campaign()->header_image)
-         style="background-image: url('{{ Img::crop(1200, 400)->url($campaign->campaign()->header_image) }}')"
+    @elseif ($widget->widget == \App\Models\CampaignDashboardWidget::WIDGET_CAMPAIGN && $campaignService->campaign()->header_image)
+         style="background-image: url('{{ Img::crop(1200, 400)->url($campaignService->campaign()->header_image) }}')"
     @endif
     >
         <div class="widget-overlay">

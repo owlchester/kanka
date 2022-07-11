@@ -18,24 +18,24 @@ class BulkService
     /**
      * @var EntityService
      */
-    protected $entityService;
+    protected EntityService $entityService;
 
     /**
      * @var PermissionService
      */
-    protected $permissionService;
+    protected PermissionService $permissionService;
 
     /** @var string Entity name */
-    protected $entityName;
+    protected string $entityName;
 
     /** @var array Ids of entities */
     protected $ids;
 
     /** @var int Total entities submitted for update */
-    protected $total = 0;
+    protected int $total = 0;
 
     /** @var int Total entities that were updated */
-    protected $count = 0;
+    protected int $count = 0;
 
     /**
      * BulkService constructor.
@@ -52,7 +52,7 @@ class BulkService
      * @param string $entityName
      * @return $this
      */
-    public function entity(string $entityName)
+    public function entity(string $entityName): self
     {
         $this->entityName = $entityName;
         return $this;
@@ -62,7 +62,7 @@ class BulkService
      * @param array $ids
      * @return $this
      */
-    public function entities(array $ids = [])
+    public function entities(array $ids = []): self
     {
         $this->ids = $ids;
         return $this;
@@ -79,19 +79,17 @@ class BulkService
 
     /**
      * Delete several entities
-     * @param string $entityName
-     * @param array $ids
      * @return int
      * @throws Exception
      */
-    public function delete()
+    public function delete(): int
     {
         $model = $this->getEntity();
         foreach ($this->ids as $id) {
             $entity = $model->find($id);
             if (auth()->user()->can('delete', $entity)) {
                 //dd($entity->descendants);
-                if (request()->delete_mirrored && $entity->mirror){
+                if (request()->delete_mirrored && $entity->mirror) {
                     $entity->mirror->delete();
                     $this->count++;
                 }
@@ -104,12 +102,10 @@ class BulkService
     }
 
     /**
-     * @param $entityName
-     * @param array $ids
      * @return array
      * @throws Exception
      */
-    public function export()
+    public function export(): array
     {
         $model = $this->getEntity();
         $entities = [];
@@ -405,11 +401,15 @@ class BulkService
             if ($relation->owner_id == Arr::get($filledFields, 'target_id') || ($relation->target_id == Arr::get($filledFields, 'owner_id'))) {
                 continue;
             }
-
+            if (request()->update_mirrored && $relation->mirror) {
+                $mirrorFields = Arr::except($filledFields, ['target_id', 'owner_id']);
+                $relation->mirror->update($mirrorFields);
+                $this->count++;
+                $this->total++;
+            }
             $relation->update($filledFields);
             $this->count++;
         }
-
         return $this->count;
     }
 }

@@ -16,9 +16,8 @@ return [
         'type'      => 'Typ',
     ],
     'helpers'       => [
-        'journals'      => 'Zobrazí všetky alebo len priamo podradené denníky tohto denníka.',
-        'nested_parent' => 'Zobraziť denníky :parent.',
-        'nested_without'=> 'Zobraziť všetky denníky, ktoré nemajú nadradený denník. Kliknutím na riadok zobrazíš podradené denníky.',
+        'journals'          => 'Zobrazí všetky alebo len priamo podradené denníky tohto denníka.',
+        'nested_without'    => 'Zobraziť všetky denníky, ktoré nemajú nadradený denník. Kliknutím na riadok zobrazíš podradené denníky.',
     ],
     'index'         => [
         'title' => 'Záznamy v denníku',

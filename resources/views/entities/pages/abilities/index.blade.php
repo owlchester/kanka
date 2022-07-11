@@ -7,7 +7,7 @@
     'miscModel' => $entity->child,
     'bodyClass' => 'entity-abilities'
 ])
-@inject('campaign', 'App\Services\CampaignService')
+@inject('campaignService', 'App\Services\CampaignService')
 
 
 @section('entity-header-actions')
@@ -39,7 +39,7 @@
     @include('partials.ads.top')
 
     <div class="entity-grid">
-        @include('entities.components.header_grid', [
+        @include('entities.components.header', [
             'model' => $entity->child,
             'entity' => $entity,
             'breadcrumb' => [

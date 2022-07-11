@@ -153,6 +153,7 @@ class AttributeService
      */
     public function saveMany(Entity $entity, $data)
     {
+        dd('ASS SM13');
         // Get the existing ones to build an array of ids
         $existing = [];
         foreach ($entity->attributes()->get() as $att) {
@@ -173,7 +174,7 @@ class AttributeService
             }
 
             $value = isset($values[$id]) ? $values[$id] : null ;
-            $type = isset($types[$id]) ? $types[$id] : null;
+            $typeID = isset($types[$id]) ? $types[$id] : null;
             $isPrivate = !empty($privates[$id]);
             $isStar = !empty($stars[$id]);
 
@@ -194,12 +195,12 @@ class AttributeService
             } else {
                 // Special case if the attribute is a random
                 if ($entity->typeId() != config('entities.ids.attribute_template')) {
-                    list ($type, $value) = $this->randomAttribute($type, $value);
+                    list ($typeID, $value) = $this->randomAttribute($typeID, $value);
                 }
 
                 $attribute = Attribute::create([
                     'entity_id' => $entity->id,
-                    'type' => $type,
+                    'type_id' => $typeID,
                     'name' => $name,
                     'value' => $value,
                     'is_private' => $isPrivate,
@@ -276,6 +277,7 @@ class AttributeService
                 $value = '';
             }
 
+            $type = $this->mapAttributeTypeToID($type);
             list($type, $value) = $this->randomAttribute($type, $value);
             $order++;
 
@@ -285,7 +287,7 @@ class AttributeService
                 'value' => $value,
                 'default_order' => $order,
                 'is_private' => $private,
-                'type' => $type,
+                'type_id' => $type,
                 'is_star' => $star
             ]);
         }
@@ -302,7 +304,7 @@ class AttributeService
                 'default_order' => $order,
                 'is_private' => false,
                 'is_star' => false,
-                'type' => null,
+                'type_id' => Attribute::TYPE_STANDARD_ID,
             ]);
         }
 
@@ -361,15 +363,18 @@ class AttributeService
 
             $name = Purify::clean($name, $purifyConfig);
             $value = Purify::clean($values[$id] ?? '', $purifyConfig);
-            $type = $types[$id] ?? '';
+            $typeID = $types[$id] ?? '';
             $isPrivate = !empty($privates[$id]);
             $isStar = !empty($stars[$id]);
+
+            // Save empty strings as null
+            $value = $value === '' ? null : $value;
 
             if (!empty($existing[$id])) {
                 // Edit an existing attribute
                 /** @var \App\Models\Attribute $attribute */
                 $attribute = $existing[$id];
-                $attribute->type = $type;
+                $attribute->type_id = $typeID;
                 $attribute->name = $name;
                 $attribute->setValue($value);
                 $attribute->is_private = (int) $isPrivate;
@@ -385,12 +390,12 @@ class AttributeService
             } else {
                 // Special case if the attribute is a random
                 if ($entity->typeId() != config('entities.ids.attribute_template')) {
-                    list ($type, $value) = $this->randomAttribute($type, $value);
+                    list ($typeID, $value) = $this->randomAttribute($typeID, $value);
                 }
 
                 $attribute = new Attribute([
                     'entity_id' => $entity->id,
-                    'type' => $type,
+                    'type_id' => $typeID,
                     'name' => $name,
                     'is_private' => $isPrivate,
                     'is_star' => $isStar,
@@ -484,7 +489,7 @@ class AttributeService
         // Kanka templates - deprecated as of 1.30
         /*$key = __('attributes/templates.list.kanka');
         foreach (config('attribute-templates.templates') as $code => $class) {
-            $template = new $class;
+            $template = new $class();
             $templates[$key][$code] = $template->name();
         }*/
 
@@ -495,7 +500,7 @@ class AttributeService
 
         // Marketplace campaigns
         $key = __('attributes/templates.list.marketplace');
-        foreach(CampaignPlugin::templates($this->campaign)->with(['plugin', 'plugin.user'])->get() as $plugin) {
+        foreach (CampaignPlugin::templates($this->campaign)->with(['plugin', 'plugin.user'])->get() as $plugin) {
             if (empty($plugin->plugin)) {
                 continue;
             }
@@ -539,7 +544,8 @@ class AttributeService
                 continue;
             }
 
-            $type = Arr::get($attribute, 'type', null);
+            $type = Arr::get($attribute, 'type', '');
+            $type = $this->mapAttributeTypeToID($type);
             $value = Arr::get($attribute, 'value', '');
 
 
@@ -553,7 +559,7 @@ class AttributeService
                 'value' => $value,
                 'default_order' => $order,
                 'is_private' => false,
-                'type' => $type != 'attribute' ? $type : '',
+                'type_id' => $type,
                 'is_star' => false
             ]);
         }
@@ -570,7 +576,7 @@ class AttributeService
                 'default_order' => $order,
                 'is_private' => false,
                 'is_star' => false,
-                'type' => null,
+                'type_id' => Attribute::TYPE_STANDARD_ID,
             ]);
         }
 
@@ -580,7 +586,7 @@ class AttributeService
     /**
      * @param $uuid
      * @param Campaign $campaign
-     * @return CampaignPlugin|\Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Model|object|null
+     * @return CampaignPlugin|null
      */
     public function marketplaceTemplate($uuid, Campaign $campaign)
     {
@@ -592,12 +598,20 @@ class AttributeService
             return null;
         }
 
+        /** @var CampaignPlugin $plugin */
         $plugin = CampaignPlugin::templates($campaign)
             ->select('campaign_plugins.*')
             ->leftJoin('plugin_versions as pv', 'pv.plugin_id', 'campaign_plugins.plugin_id')
             ->where('pv.uuid', $uuid)
             ->has('plugin')
             ->first();
+
+        // If the plugin is published, we're good. Otherwise, it's
+        if (!$plugin->renderable()) {
+            return null;
+        }
+
+
 
         return $plugin;
     }
@@ -619,7 +633,7 @@ class AttributeService
      * @param int $campaign
      * @return CampaignPlugin
      */
-    protected function getMarketplacePlugin(string $pluginUuid, $campaign)
+    protected function getMarketplacePlugin(string $pluginUuid, Campaign $campaign)
     {
         if (isset($this->loadedPlugins[$pluginUuid])) {
             return $this->loadedPlugins[$pluginUuid];
@@ -633,18 +647,18 @@ class AttributeService
 
     /**
      * Rewrite an attribute if it's a random value
-     * @param string $type
+     * @param int $type
      * @param string $value
      * @return array[string, string]
      */
-    public function randomAttribute($type, $value)
+    public function randomAttribute(int $type, $value): array
     {
         // Special case if the attribute is a random
-        if ($type != Attribute::TYPE_RANDOM) {
+        if ($type != Attribute::TYPE_RANDOM_ID) {
             return [$type, $value];
         }
-        // Remap the type to a standard attribute
-        $type = '';
+        // Remap the type to a number attribute
+        $type = Attribute::TYPE_NUMBER_ID;
 
         try {
             // List of strings separated by commas
@@ -677,7 +691,7 @@ class AttributeService
 
                 return [$type, mt_rand($min, $max)];
             }
-        } catch(\Exception $e) {
+        } catch (\Exception $e) {
             // Something went wrong, let's assume the random value is badly formatted
             return [$type, $value];
         }
@@ -812,5 +826,31 @@ class AttributeService
             return false;
         }
         return true;
+    }
+
+    /**
+     * @param string $type
+     * @return int
+     */
+    protected function mapAttributeTypeToID(string $type = null): int
+    {
+        if (empty($type) || $type === 'attribute') {
+            return Attribute::TYPE_STANDARD_ID;
+        }
+
+        if ($type === Attribute::TYPE_TEXT) {
+            return Attribute::TYPE_TEXT_ID;
+        } elseif ($type === Attribute::TYPE_CHECKBOX) {
+            return Attribute::TYPE_CHECKBOX_ID;
+        } elseif ($type === Attribute::TYPE_SECTION) {
+            return Attribute::TYPE_SECTION_ID;
+        } elseif ($type === Attribute::TYPE_RANDOM) {
+            return Attribute::TYPE_RANDOM;
+        } elseif ($type === Attribute::TYPE_NUMBER) {
+            return Attribute::TYPE_NUMBER_ID;
+        } elseif ($type === Attribute::TYPE_LIST) {
+            return Attribute::TYPE_LIST_ID;
+        }
+        dd('missing mapping for ' . $type);
     }
 }

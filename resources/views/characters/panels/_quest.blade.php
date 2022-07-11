@@ -6,7 +6,7 @@
             @if ($role)<th class="hidden-sm">{{ trans('quests.fields.role') }}</th>@endif
             <th class="visible-sm">{{ trans('quests.fields.type') }}</th>
             <th class="visible-sm">{{ trans('quests.fields.quest') }}</th>
-            @if ($campaign->enabled('locations'))
+            @if ($campaignService->enabled('locations'))
                 <th class="visible-sm">{{ trans('quests.fields.locations') }}</th>
             @endif
             <th>{{ trans('quests.fields.characters') }}</th>
@@ -32,7 +32,7 @@
                     {!! $quest->tooltipedLink() !!}
                 @endif
             </td>
-            @if ($campaign->enabled('locations'))
+            @if ($campaignService->enabled('locations'))
                 <td class="visible-sm">
                     {{ $quest->locations()->count() }}
                 </td>

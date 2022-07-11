@@ -9,13 +9,10 @@ use App\Models\OrganisationMember;
 use App\Models\Tag;
 use App\Services\SearchService;
 use Illuminate\Http\Request;
-use Response;
 
 class LiveController extends Controller
 {
-    /**
-     * @var SearchService
-     */
+    /** @var SearchService */
     protected $search;
 
     /**
@@ -38,7 +35,7 @@ class LiveController extends Controller
         $campaign = CampaignLocalization::getCampaign();
         $new = request()->has('new');
 
-        return Response::json(
+        return response()->json(
             $this->search
                 ->term($term)
                 ->type($type)
@@ -60,7 +57,7 @@ class LiveController extends Controller
         $term = trim($request->q);
         $campaign = CampaignLocalization::getCampaign();
 
-        return Response::json(
+        return response()->json(
             $this->search
                 ->term($term)
                 ->campaign($campaign)
@@ -84,7 +81,7 @@ class LiveController extends Controller
         $term = trim($request->q);
         $campaign = CampaignLocalization::getCampaign();
 
-        return Response::json(
+        return response()->json(
             $this->search
                 ->term($term)
                 ->campaign($campaign)
@@ -110,7 +107,7 @@ class LiveController extends Controller
             $exclude = $tag->entities->pluck('id')->toArray();
         }
 
-        return Response::json(
+        return response()->json(
             $this->search
                 ->term($term)
                 ->campaign($campaign)
@@ -130,7 +127,7 @@ class LiveController extends Controller
         $term = trim($request->q);
         $campaign = CampaignLocalization::getCampaign();
 
-        return Response::json(
+        return response()->json(
             $this->search
                 ->term($term)
                 ->campaign($campaign)
@@ -164,7 +161,7 @@ class LiveController extends Controller
         }
 
 
-        return Response::json(
+        return response()->json(
             $data
         );
     }

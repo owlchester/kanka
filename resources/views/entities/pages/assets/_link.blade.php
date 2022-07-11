@@ -1,19 +1,15 @@
-<?php /** @var \App\Models\EntityLink $asset */?>
-<div class="col-md-4 col-xs-6">
+<?php /** @var \App\Models\EntityAsset $asset */?>
+<div class="">
     <div class="entity-asset asset-link">
-        <a href="{{ route('entities.entity_links.go', [$entity, $asset]) }}" target="_blank" class="child icon">
-            @if($asset->icon)
-                <i class="{{ $asset->icon }}"></i>
-            @else
-                <i class="fa-solid fa-map"></i>
-            @endif
+        <a href="{{ route('entities.entity_assets.go', [$entity, $asset]) }}" target="_blank" class="child icon">
+            <i class="{{ $asset->icon() }}"></i>
         </a>
         <div class="child text">
             {!! $asset->name !!}<br />
-            <div class="url">{{ $asset->url }}</div>
+            <div class="url">{{ $asset->metadata['url'] }}</div>
 
             @if(auth()->check() && auth()->user()->can('update', $entity->child))
-                <a href="#" data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('entities.entity_links.edit', [$entity, $asset]) }}">
+                <a href="#" data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('entities.entity_assets.edit', [$entity, $asset]) }}">
                     <i class="fa-solid fa-pencil"></i>
                 </a>
             @endif

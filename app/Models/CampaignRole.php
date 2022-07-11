@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Concerns\Paginatable;
+use App\User;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -18,8 +19,13 @@ use Illuminate\Support\Str;
  * @property string $name
  * @property boolean $is_admin
  * @property boolean $is_public
+ * @property Campaign $campaign
  * @property Collection|CampaignPermission[] $permissions
  * @property Collection|CampaignDashboardRole[] $dashboardRoles
+ *
+ * @method static self|Builder admin(bool $with)
+ * @method static self|Builder public(bool $with)
+ * @method static self|Builder withoutAdmin()
  */
 class CampaignRole extends Model
 {
@@ -104,7 +110,17 @@ class CampaignRole extends Model
      */
     public function scopeWithoutAdmin($query)
     {
-        return $query->where('is_admin', false);
+        return $query->admin(false);
+    }
+
+    /**
+     * Get the admin role
+     * @param $query
+     * @return mixed
+     */
+    public function scopeAdmin($query, bool $with = true)
+    {
+        return $query->where('is_admin', $with);
     }
 
     /**

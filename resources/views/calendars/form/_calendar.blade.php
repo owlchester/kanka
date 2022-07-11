@@ -29,7 +29,7 @@
             if (isset($model) && $model->calendar) {
                 $preset = $model->calendar;
             } else {
-                $preset = FormCopy::field('calendar')->select();
+                $preset = FormCopy::field('calendar')->select(true, \App\Models\Calendar::class);
             }?>
             <div class="form-group">
                 <input type="hidden" name="calendar_id" value="" />

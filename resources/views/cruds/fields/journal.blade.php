@@ -1,4 +1,4 @@
-@if (!$campaign->enabled('journals'))
+@if (!$campaignService->enabled('journals'))
     <?php return ?>
 @endif
 

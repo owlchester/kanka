@@ -14,6 +14,5 @@ return [
     ],
     'update'    => [
         'success'   => 'Archivo :file actualizado.',
-        'title'     => 'Actualizar :file de :entity',
     ],
 ];

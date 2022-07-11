@@ -30,6 +30,6 @@
         'route' => 'calendars.index',
         'baseRoute' => 'calendars',
         'trans' => 'calendars.fields.',
-        'campaign' => $campaign
+        'campaignService' => $campaignService
     ]
 ) !!}

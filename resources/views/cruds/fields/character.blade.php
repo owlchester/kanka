@@ -1,4 +1,4 @@
-@if (!$campaign->enabled('characters'))
+@if (!$campaignService->enabled('characters'))
     @php return @endphp
 @endif
 

@@ -13,7 +13,7 @@
                 <th class="avatar"><br /></th>
                 <th>{{ __('items.fields.name') }}</th>
                 <th>{{ __('items.fields.type') }}</th>
-                @if ($campaign->enabled('characters'))<th>{{ __('crud.fields.character') }}</th>@endif
+                @if ($campaignService->enabled('characters'))<th>{{ __('crud.fields.character') }}</th>@endif
             </tr>
             @foreach ($r as $item)
                 <tr>
@@ -25,7 +25,7 @@
                     </td>
                     <td>{{ $item->type }}</td>
 
-                    @if ($campaign->enabled('characters'))<td>
+                    @if ($campaignService->enabled('characters'))<td>
                         @if ($item->character)
                             {!! $item->character->tooltipedLink() !!}
                         @endif

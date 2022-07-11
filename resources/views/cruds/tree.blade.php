@@ -7,7 +7,7 @@
     'canonical' => true,
     'bodyClass' => 'kanka-' . $name,
 ])
-@inject('campaign', 'App\Services\CampaignService')
+@inject('campaignService', 'App\Services\CampaignService')
 
 @section('content')
     <div class="row mb-5">
@@ -24,11 +24,11 @@
                         <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu">
-                        @if (!empty($templates) && !$templates->isEmpty())
+                        @if ($templates->isNotEmpty())
                         @foreach ($templates as $entityTemplate)
                             <li>
                                 <a href="{{ route($name . '.create', ['copy' => $entityTemplate->entity_id, 'template' => true]) }}" class="new-entity-from-template" data-entity-type="{{ $name }}">
-                                    <i class="fa-solid fa-star-o"></i> {{ $entityTemplate->name  }}</span>
+                                    <i class="fa-solid fa-star"></i> {{ $entityTemplate->name  }}</span>
                                 </a>
                             </li>
                         @endforeach
@@ -63,9 +63,9 @@
         {!! Form::open(['url' => route('bulk.process'), 'method' => 'POST']) !!}
         <div class="box-body">
             @if (!empty($parent))
-                <p class="help-block">{!! __($view . '.helpers.nested_parent', ['parent' => $parent->tooltipedLink()]) !!}</p>
+                <p class="help-block">{!! __('crud.helpers.nested_parent', ['parent' => $parent->tooltipedLink()]) !!}</p>
             @else
-                <p class="help-block">{{ __($view . '.helpers.nested_without') }}</p>
+                <p class="help-block">{{ __($langKey . '.helpers.nested_without') }}</p>
             @endif
         </div>
 
@@ -88,10 +88,12 @@
             </div>
         </div>
         {!! Form::hidden('entity', $name) !!}
+        {!! Form::hidden('datagrid-action', 'print') !!}
+        {!! Form::hidden('page', request()->get('page')) !!}
         {!! Form::close() !!}
     </div>
 
     @includeWhen(auth()->check(), 'cruds.datagrids.bulks.modals')
 
-    <input type="hidden" class="list-treeview" id="{{ $view }}-treeview" value="1" data-url="{{ route($route . '.tree') }}">
+    <input type="hidden" class="list-treeview" value="1" data-url="{{ route($route . '.tree') }}">
 @endsection

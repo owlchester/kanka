@@ -125,6 +125,7 @@ $specificTheme = null;
         crossorigin=""></script>
 <script src="/js/vendor/leaflet/leaflet.markercluster.js"></script>
 <script src="/js/vendor/leaflet/leaflet.markercluster.layersupport.js"></script>
+<script src="/js/vendor/leaflet/leaflet.zoomcss.js"></script>
 
 <script src="{{ mix('js/location/map-v3.js') }}" defer></script>
 @yield('scripts')

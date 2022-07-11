@@ -16,8 +16,7 @@ return [
         'type'          => 'Type',
     ],
     'helpers'       => [
-        'nested_parent' => 'Affichage des notes de :parent.',
-        'nested_without'=> 'Affichage des notes sans parent. Cliquer sur une rangée pour afficher les notes enfants.',
+        'nested_without'    => 'Affichage des notes sans parent. Cliquer sur une rangée pour afficher les notes enfants.',
     ],
     'hints'         => [
         'is_pinned' => 'Jusqu\'à 3 notes peuvent être affichées sur le tableau de bord en les épinglant.',

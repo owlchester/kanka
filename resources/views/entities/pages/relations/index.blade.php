@@ -8,7 +8,7 @@
     'miscModel' => $entity->child,
     'bodyClass' => 'entity-relations'
 ])
-@inject('campaign', 'App\Services\CampaignService')
+@inject('campaignService', 'App\Services\CampaignService')
 
 
 @section('entity-header-actions')
@@ -41,7 +41,7 @@
 
     <div class="entity-grid">
 
-        @include('entities.components.header_grid', [
+        @include('entities.components.header', [
             'model' => $entity->child,
             'entity' => $entity,
             'breadcrumb' => [
@@ -58,8 +58,8 @@
 
         <div class="entity-main-block">
 
-            @includeWhen($mode == 'map' || (empty($mode) && $campaign->campaign()->boosted()), 'entities.pages.relations._map')
-            @includeWhen($mode == 'table' || (empty($mode) && !$campaign->campaign()->boosted()), 'entities.pages.relations._relations')
+            @includeWhen($mode == 'map' || (empty($mode) && $campaignService->campaign()->boosted()), 'entities.pages.relations._map')
+            @includeWhen($mode == 'table' || (empty($mode) && !$campaignService->campaign()->boosted()), 'entities.pages.relations._relations')
         </div>
     </div>
 @endsection

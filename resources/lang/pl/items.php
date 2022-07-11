@@ -22,12 +22,10 @@ return [
         'title' => 'Ekwipunki przedmiotu :name',
     ],
     'placeholders'  => [
-        'character' => 'Wybierz postać',
-        'location'  => 'Wybierz miejsce',
-        'name'      => 'Nazwa przedmiotu',
-        'price'     => 'Cena przedmiotu',
-        'size'      => 'Wielkość, ciężar, wymiary',
-        'type'      => 'Broń, eliksir, artefakt',
+        'name'  => 'Nazwa przedmiotu',
+        'price' => 'Cena przedmiotu',
+        'size'  => 'Wielkość, ciężar, wymiary',
+        'type'  => 'Broń, eliksir, artefakt',
     ],
     'show'          => [
         'tabs'  => [

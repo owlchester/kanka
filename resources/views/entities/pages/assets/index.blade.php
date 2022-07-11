@@ -1,6 +1,6 @@
 <?php /** @var \App\Models\Entity $entity
- * @var \App\Models\EntityFile $asset */
-$assetCount = 0; ?>
+ * @var \App\Models\EntityAsset $asset */
+?>
 @extends('layouts.app', [
     'title' => __('entities/assets.show.title', ['name' => $entity->name]),
     'breadcrumbs' => false,
@@ -8,18 +8,18 @@ $assetCount = 0; ?>
     'miscModel' => $entity->child,
     'bodyClass' => 'entity-assets'
 ])
-@inject('campaign', 'App\Services\CampaignService')
+@inject('campaignService', 'App\Services\CampaignService')
 
 @section('entity-header-actions')
     @can('update', $entity->child)
         <div class="header-buttons">
-            <a href="#" class="btn btn-warning btn-sm" data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('entities.entity_aliases.create', [$entity]) }}">
+            <a href="#" class="btn btn-warning btn-sm" data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('entities.entity_assets.create', [$entity, 'type' => \App\Models\EntityAsset::TYPE_ALIAS]) }}">
                 <i class="fa-solid fa-plus"></i> {{ __('entities/assets.actions.alias') }}
             </a>
-            <a href="#" class="btn btn-warning btn-sm" data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('entities.entity_files.create', [$entity]) }}">
+            <a href="#" class="btn btn-warning btn-sm" data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('entities.entity_assets.create', [$entity, 'type' => \App\Models\EntityAsset::TYPE_FILE]) }}">
                 <i class="fa-solid fa-plus"></i> {{ __('entities/assets.actions.file') }}
             </a>
-            <a href="#" class="btn btn-warning btn-sm" data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('entities.entity_links.create', [$entity]) }}">
+            <a href="#" class="btn btn-warning btn-sm" data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('entities.entity_assets.create', [$entity, 'type' => \App\Models\EntityAsset::TYPE_LINK]) }}">
                 <i class="fa-solid fa-plus"></i> {{ __('entities/assets.actions.link') }}
             </a>
         </div>
@@ -31,7 +31,7 @@ $assetCount = 0; ?>
     @include('partials.ads.top')
 
     <div class="entity-grid">
-        @include('entities.components.header_grid', [
+        @include('entities.components.header', [
             'model' => $entity->child,
             'entity' => $entity,
             'breadcrumb' => [
@@ -49,16 +49,11 @@ $assetCount = 0; ?>
         <div class="entity-main-block">
 
             <div class="entity-assets">
-                <div class="row entity-assets-row">
-                    @foreach ($entity->assets() as $asset)
-                        @if($assetCount % 3 == 0)
-                </div><div class="row entity-assets-row">
-                    @endif
-                    @includeWhen($asset->isFile(), 'entities.pages.assets._file')
-                    @includeWhen($asset->isLink(), 'entities.pages.assets._link')
-                    @includeWhen($asset->isAlias(), 'entities.pages.assets._alias')
-
-                    @php $assetCount++ @endphp
+                <div class="grid grid-cols-3 gap-2 entity-assets-row">
+                    @foreach ($assets as $asset)
+                        @includeWhen($asset->isFile(), 'entities.pages.assets._file')
+                        @includeWhen($asset->isLink(), 'entities.pages.assets._link')
+                        @includeWhen($asset->isAlias(), 'entities.pages.assets._alias')
                     @endforeach
                 </div>
             </div>

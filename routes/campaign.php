@@ -67,6 +67,8 @@ Route::get('/families/tree', 'FamilyController@tree')->name('families.tree');
 // Items menu
 //Route::get('/items/{item}/map-points', 'ItemController@mapPoints')->name('items.map-points');
 Route::get('/items/{item}/inventories', 'ItemController@inventories')->name('items.inventories');
+Route::get('/items/tree', 'ItemController@tree')->name('items.tree');
+Route::get('/items/{item}/items', 'ItemController@items')->name('items.items');
 
 // Quest menus
 Route::get('/quests/tree', 'QuestController@tree')->name('quests.tree');
@@ -103,9 +105,6 @@ Route::post('/tags/{tag}/entity-add', 'TagController@entityStore')->name('tags.e
 Route::post('/bulk/process', 'BulkController@process')->name('bulk.process');
 Route::get('/bulk/modal', 'BulkController@modal')->name('bulk.modal');
 
-// Attribute Templates Menu
-Route::get('/attribute_templates/{attribute_template}/attribute_templates', 'AttributeTemplateController@attributeTemplates')->name('attribute_templates.attribute_templates');
-
 // Notes
 //Route::get('/notes/{note}/map-points', 'NoteController@mapPoints')->name('notes.map-points');
 Route::get('/notes/tree', 'NoteController@tree')->name('notes.tree');
@@ -141,7 +140,6 @@ Route::post('/entities/{entity}/attributes/live-edit/{attribute}/save', [\App\Ht
 
 Route::model('attribute', \App\Models\Attribute::class);
 
-Route::post('/entities/{entity}/toggle-privacy', [\App\Http\Controllers\Entity\PrivacyController::class, 'toggle'])->name('entities.privacy.toggle');
 
 Route::get('/entities/{entity}/story-reorder', [\App\Http\Controllers\Entity\StoryController::class, 'edit'])->name('entities.story.reorder');
 Route::post('/entities/{entity}/story-reorder', [\App\Http\Controllers\Entity\StoryController::class, 'save'])->name('entities.story.reorder-save');
@@ -153,6 +151,11 @@ Route::post('/entities/{entity}/image-focus', [\App\Http\Controllers\Entity\Imag
 
 Route::get('/entities/{entity}/image-replace', [\App\Http\Controllers\Entity\ImageController::class, 'replace'])->name('entities.image.replace');
 Route::post('/entities/{entity}/image-replace', [\App\Http\Controllers\Entity\ImageController::class, 'update'])->name('entities.image.replace.save');
+
+// Quick privacy toggle
+Route::get('/entities/{entity}/privacy', [\App\Http\Controllers\Entity\PrivacyController::class, 'index'])->name('entities.quick-privacy');
+Route::post('/entities/{entity}/privacy', [\App\Http\Controllers\Entity\PrivacyController::class, 'toggle'])->name('entities.quick-privacy.toggle');
+//Route::post('/entities/{entity}/toggle-privacy', [\App\Http\Controllers\Entity\PrivacyController::class, 'toggle'])->name('entities.privacy.toggle');
 
 
 // Entity update entry
@@ -217,7 +220,7 @@ Route::get('/entities/{entity}/entity_abilities/import', 'Entity\AbilityControll
 Route::post('/entities/{entity}/entity_abilities/{entity_ability}/use', 'Entity\AbilityController@useCharge')->name('entities.entity_abilities.use');
 Route::get('/entities/{entity}/entity_abilities/reset', 'Entity\AbilityController@resetCharges')->name('entities.entity_abilities.reset');
 
-Route::get('/entities/{entity}/entity_links/{entity_link}/go', 'Entity\LinkController@go')->name('entities.entity_links.go');
+Route::get('/entities/{entity}/entity_assets/{entity_asset}/go', 'Entity\AssetController@go')->name('entities.entity_assets.go');
 Route::get('/entities/{entity}/quests', 'Entity\QuestController@index')->name('entities.quests');
 
 Route::get('/entities/{entity}/profile', 'Entity\ProfileController@index')
@@ -258,7 +261,6 @@ Route::resources([
     'timelines' => 'Timelines\TimelineController',
     'timelines.timeline_eras' => 'Timelines\TimelineEraController',
     'timelines.timeline_elements' => 'Timelines\TimelineElementController',
-    'sections' => 'SectionController',
     'campaign_invites' => 'CampaignInviteController',
     'races' => 'RaceController',
     'relations' => 'RelationController',
@@ -268,9 +270,10 @@ Route::resources([
     'entities.entity_abilities' => 'Entity\AbilityController',
     'entities.entity_notes' => 'EntityNoteController',
     'entities.entity_events' => 'EntityEventController',
-    'entities.entity_files' => 'EntityFileController',
-    'entities.entity_links' => 'Entity\LinkController',
-    'entities.entity_aliases' => 'Entity\AliasController',
+    //'entities.entity_files' => 'EntityFileController',
+    //'entities.entity_links' => 'Entity\LinkController',
+    //'entities.entity_aliases' => 'Entity\AliasController',
+    'entities.entity_assets' => 'Entity\AssetController',
     'entities.inventories' => 'Entity\InventoryController',
     'entities.relations' => 'Entity\RelationController',
 
@@ -376,7 +379,6 @@ Route::get('/entities/{entity}/transform', 'Entity\TransformController@index')->
 Route::post('/entities/{entity}/transform', 'Entity\TransformController@transform')->name('entities.transform');
 
 Route::get('/entities/{entity}/tooltip', 'EntityTooltipController@show')->name('entities.tooltip');
-Route::get('/entities/{entity}/assets', 'Entity\AssetController@index')->name('entities.assets');
 
 Route::get('/entities/{entity}/json-export', 'Entity\ExportController@json')->name('entities.json-export');
 

@@ -31,9 +31,8 @@ return [
         'type'      => 'Tipo',
     ],
     'helpers'       => [
-        'descendants'   => 'Esta lista contém todas as habilidades que são descendentes dessa habilidade, e não apenas aquelas diretamente relacionadas a ela.',
-        'nested_parent' => 'Mostrando as habilidades de :parent.',
-        'nested_without'=> 'Mostrando todas as habilidades que não possuem uma habilidade-pai. Clique em uma linha para ver as habilidades-filhos.',
+        'descendants'       => 'Esta lista contém todas as habilidades que são descendentes dessa habilidade, e não apenas aquelas diretamente relacionadas a ela.',
+        'nested_without'    => 'Mostrando todas as habilidades que não possuem uma habilidade-pai. Clique em uma linha para ver as habilidades-filhos.',
     ],
     'index'         => [
         'title' => 'Habilidades',

@@ -9,7 +9,7 @@ use App\Models\Race;
 class CharacterFilter extends DatagridFilter
 {
     /**
-     * CharacterFilter constructor.
+     * Filters available for characters
      */
     public function __construct()
     {

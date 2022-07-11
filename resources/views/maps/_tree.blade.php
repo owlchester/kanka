@@ -39,7 +39,7 @@
         'route' => 'maps.tree',
         'baseRoute' => 'maps',
         'trans' => 'maps.fields.',
-        'campaign' => $campaign,
+        'campaignService' => $campaignService,
         'row' => [
             'data' => [
                 'data-children' => function($model) {

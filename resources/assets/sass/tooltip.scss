@@ -1,12 +1,19 @@
+.tooltip-inner {
+  padding: 3px 3px;
+  .tooltip-content {
+    padding: 0 5px;
+  }
+}
 .tooltip-tags {
+  font-size: 1rem;
+  line-height: 1.2;
   span {
-    margin: 2px;
     display: inline-block;
   }
 }
 
 .tooltip-ajax {
-  min-width: 320px;
+  min-width: 340px;
   text-align: left;
 
   .entity-tooltip-avatar {
@@ -27,7 +34,16 @@
   }
 
   .tooltip-text {
-    clear: both;
+    font-size: 0.8rem;
+
+    h1, h2, h3 {
+      font-size: 1.05rem;
+      margin: 0.3rem 0;
+    }
+    h4, h5, h6 {
+      font-size: 0.95rem;
+      margin: 0.3rem 0;
+    }
   }
 
   .entity-names {
@@ -36,13 +52,17 @@
 
   .entity-name {
     max-height: none;
-    font-size: 16pt;
+    font-size: 1.35rem;
     display: block;
   }
 
   .entity-subtitle {
-    font-size: 12pt;
+    font-size: 1.05rem;
     display: block;
+  }
+
+  .tooltip-tags {
+    margin-bottom: 0.3rem;
   }
 }
 

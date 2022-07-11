@@ -58,12 +58,12 @@ $sizeOptions = [
                 <div class="col-xs-6">
                     <div class="form-group">
                         <label>{{ __('maps/markers.fields.custom_icon') }}</label>
-                            {!! Form::text('custom_icon', \App\Facades\FormCopy::field('custom_icon')->string(), ['class' => 'form-control', 'placeholder' => __('maps/markers.placeholders.custom_icon', ['example1' => '"fa-solid fa-gem"', 'example2' => '"ra ra-sword"']), ($campaign->campaign()->boosted() ? null : 'disabled')]) !!}
+                            {!! Form::text('custom_icon', \App\Facades\FormCopy::field('custom_icon')->string(), ['class' => 'form-control', 'placeholder' => __('maps/markers.placeholders.custom_icon', ['example1' => '"fa-solid fa-gem"', 'example2' => '"ra ra-sword"']), ($campaignService->campaign()->boosted() ? null : 'disabled')]) !!}
                             <p class="help-block">{!! __('maps/markers.helpers.custom_icon', ['rpgawesome' => '<a href="https://nagoshiashumari.github.io/Rpg-Awesome/" target="_blank">RPG Awesome</a>', 'fontawesome' => '<a href="https://fontawesome.com/search?m=free&s=solid" target="_blank">Font Awesome</a>']) !!}</p>
-                        @if (!$campaign->campaign()->boosted())
+                        @if (!$campaignService->campaign()->boosted())
                             @subscriber()
                             <p class="help-block">
-                                <i class="fa-solid fa-rocket" aria-hidden="true"></i> {!! __('crud.errors.boosted_campaigns', ['boosted' => link_to_route('settings.boost', __('concept.boosted-campaign'), ['campaign' => $campaign->campaign()])]) !!}
+                                <i class="fa-solid fa-rocket" aria-hidden="true"></i> {!! __('crud.errors.boosted_campaigns', ['boosted' => link_to_route('settings.boost', __('concept.boosted-campaign'), ['campaign' => $campaignService->campaign()])]) !!}
                             </p>
                             @else
                             <p class="help-block">
@@ -122,13 +122,13 @@ $sizeOptions = [
         <div class="tab-pane @if($activeTab == 5) active @endif" id="marker-poly">
             <div class="form-group">
                 <label>{{ __('maps/markers.fields.custom_shape') }}</label>
-                @if ($campaign->campaign()->boosted())
+                @if ($campaignService->campaign()->boosted())
                     @if(isset($model))
                         <p class="help-block">{{ __('maps/markers.helpers.polygon.' . ($activeTab == 5 ? 'edit' : 'new')) }}</p>
                     @endif
                     {!! Form::textarea('custom_shape', \App\Facades\FormCopy::field('custom_shape')->string(), ['class' => 'form-control', 'rows' => 2, 'placeholder' => __('maps/markers.placeholders.custom_shape')]) !!}
                 @else
-                    @include('layouts.callouts.boost', ['texts' => [__('maps/markers.pitches.poly')], 'campaign' => $campaign->campaign()])
+                    @include('layouts.callouts.boost', ['texts' => [__('maps/markers.pitches.poly')], 'campaign' => $campaignService->campaign()])
                 @endif
             </div>
 

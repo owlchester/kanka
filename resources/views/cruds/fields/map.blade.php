@@ -1,4 +1,4 @@
-@if (!$campaign->enabled('maps'))
+@if (!$campaignService->enabled('maps'))
     <?php return ?>
 @endif
 
@@ -6,6 +6,8 @@
 $preset = null;
 if (isset($model) && $model->map) {
     $preset = $model->map;
+} elseif (isset($parent) && $parent) {
+    $preset = FormCopy::field('map')->select(true, \App\Models\Map::class);
 } else {
     $preset = FormCopy::field('map')->select();
 }

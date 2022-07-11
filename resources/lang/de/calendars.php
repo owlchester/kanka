@@ -100,7 +100,6 @@ return [
         'default_layout'    => 'Wählen Sie aus, welches Layout der Kalender standardmäßig verwenden soll, wenn er angezeigt wird.',
         'month_type'        => 'Schaltmonate benutzen keine Wochentage, aber beeinflussen trotzdem Monde und Jahreszeiten.',
         'moon_offset'       => 'Standardmäßig erscheint der erste Vollmond am ersten Tag des Jahres 0. Eine Verschiebung des Offsets , wird nach dem ersten Vollmond angezeigt. Dieser Wert kann negativ (bis zur Länge des ersten Monats) oder positiv (bis zur Länge des ersten Monats) sein.',
-        'nested_parent'     => 'Anzeigen der Kalender von :parent.',
         'nested_without'    => 'Anzeigen aller Kalender ohne übergeordneten Kalender. Klicken Sie auf eine Zeile, um die untergeordneten Kalender anzuzeigen.',
         'start_offset'      => 'Standardmäßig startet der Kalender am ersten Wochentag des Jahres 0. Das Ändern dieses Felds beeinflusst, wo der erste Tag des Kalenders platziert wird.',
     ],

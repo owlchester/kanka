@@ -1,5 +1,5 @@
 <?php /** @var \App\Models\Entity $entity
- * @var \App\Models\EntityLink $link */?>
+ * @var \App\Models\EntityAsset $link */?>
 @extends('layouts.app', [
     'title' => __('entities/links.show.title', ['name' => $entity->name]),
     'breadcrumbs' => [
@@ -10,7 +10,7 @@
     'mainTitle' => false,
     'miscModel' => $entity->child,
 ])
-@inject('campaign', 'App\Services\CampaignService')
+@inject('campaignService', 'App\Services\CampaignService')
 
 @section('content')
     @include('partials.errors')
@@ -33,8 +33,8 @@
 
                     @can('update', $entity->child)
                         <div class="pull-right">
-                            <a href="{{ route('entities.entity_links.create', $entity) }}" class="btn btn-sm btn-primary"
-                               data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('entities.entity_links.create', $entity) }}">
+                            <a href="{{ route('entities.entity_assets.create', $entity) }}" class="btn btn-sm btn-primary"
+                               data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('entities.entity_assets.create', $entity) }}">
                                 <i class="fa-solid fa-plus"></i> <span class="hidden-sm hidden-xs">{{ __('entities/links.actions.add') }}</span>
                                 <span class="visible-xs visible-sm">{{ __('crud.add') }}</span>
                             </a>
@@ -71,9 +71,9 @@
                                     </td>
                                     @can('update', $entity->child)
                                         <td class="text-right">
-                                            <a href="{{ route('entities.entity_links.edit', ['entity' => $entity, 'entity_link' => $link->id]) }}"
+                                            <a href="{{ route('entities.entity_assets.edit', ['entity' => $entity, 'entity_alias' => $link->id]) }}"
                                                data-toggle="ajax-modal" data-target="#entity-modal"
-                                               data-url="{{ route('entities.entity_links.edit', ['entity' => $entity, 'entity_link' => $link->id]) }}"
+                                               data-url="{{ route('entities.entity_assets.edit', ['entity' => $entity, 'entity_alias' => $link->id]) }}"
                                                title="{{ __('crud.edit') }}" class="btn btn-primary btn-xs">
                                                 <i class="fa-solid fa-edit"></i>
                                             </a>
@@ -82,7 +82,7 @@
                                                     data-target="#delete-confirm" data-delete-target="delete-form-link-{{ $link->id }}" title="{{ __('crud.remove') }}">
                                                 <i class="fa-solid fa-trash" aria-hidden="true"></i>
                                             </button>
-                                            {!! Form::open(['method' => 'DELETE', 'route' => ['entities.entity_links.destroy', 'entity' => $entity, 'entity_link' => $link], 'style' => 'display:inline', 'id' => 'delete-form-link-' . $link->id]) !!}
+                                            {!! Form::open(['method' => 'DELETE', 'route' => ['entities.entity_assets.destroy', 'entity' => $entity, 'entity_alias' => $link], 'style' => 'display:inline', 'id' => 'delete-form-link-' . $link->id]) !!}
                                             {!! Form::close() !!}
                                         </td>
                                     @endcan

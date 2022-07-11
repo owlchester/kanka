@@ -19,7 +19,7 @@ use Illuminate\Support\Str;
  * @property integer $entity_id
  * @property string $name
  * @property string $value
- * @property string $type
+ * @property int $type_id
  * @property integer $origin_attribute_id
  * @property integer $default_order
  * @property boolean $is_private
@@ -30,13 +30,20 @@ class Attribute extends Model
 {
     use OrderableTrait, Paginatable, Starred, Privatable;
 
-    const TYPE_BLOCK = 'block';
-    const TYPE_CHECKBOX = 'checkbox';
-    const TYPE_TEXT = 'text';
-    const TYPE_SECTION = 'section';
-    const TYPE_RANDOM = 'random';
-    const TYPE_NUMBER = 'number';
-    const TYPE_LIST = 'list';
+    public const TYPE_CHECKBOX = 'checkbox';
+    public const TYPE_SECTION = 'section';
+    public const TYPE_RANDOM = 'random';
+    public const TYPE_NUMBER = 'number';
+    public const TYPE_LIST = 'list';
+    public const TYPE_TEXT = 'text';
+
+    public const TYPE_STANDARD_ID = 1;
+    public const TYPE_TEXT_ID = 2;
+    public const TYPE_CHECKBOX_ID = 3;
+    public const TYPE_SECTION_ID = 4;
+    public const TYPE_RANDOM_ID = 5;
+    public const TYPE_NUMBER_ID = 6;
+    public const TYPE_LIST_ID = 7;
 
     /**
      * @var array
@@ -47,7 +54,7 @@ class Attribute extends Model
         'value',
         'is_private',
         'default_order',
-        'type',
+        'type_id',
         'origin_attribute_id',
         'api_key',
         'is_star',
@@ -97,7 +104,7 @@ class Attribute extends Model
      */
     public function mappedValue(): string
     {
-        if ($this->type == self::TYPE_SECTION) {
+        if ($this->type_id == self::TYPE_SECTION_ID) {
             return $this->name;
         }
         return Mentions::mapAttribute($this);
@@ -120,15 +127,7 @@ class Attribute extends Model
      */
     public function isDefault(): bool
     {
-        return empty($this->type);
-    }
-
-    /**
-     * @return bool
-     */
-    public function isBlock(): bool
-    {
-        return $this->type == self::TYPE_BLOCK;
+        return $this->type_id === self::TYPE_STANDARD_ID;
     }
 
     /**
@@ -136,7 +135,7 @@ class Attribute extends Model
      */
     public function isCheckbox(): bool
     {
-        return $this->type == self::TYPE_CHECKBOX;
+        return $this->type_id === self::TYPE_CHECKBOX_ID;
     }
 
     /**
@@ -144,14 +143,14 @@ class Attribute extends Model
      */
     public function isText(): bool
     {
-        return $this->type == self::TYPE_TEXT;
+        return $this->type_id === self::TYPE_TEXT_ID;
     }
     /**
      * @return bool
      */
     public function isSection(): bool
     {
-        return $this->type == self::TYPE_SECTION;
+        return $this->type_id === self::TYPE_SECTION_ID;
     }
 
     /**
@@ -159,7 +158,7 @@ class Attribute extends Model
      */
     public function isNumber(): bool
     {
-        return $this->type == self::TYPE_NUMBER;
+        return $this->type_id === self::TYPE_NUMBER_ID;
     }
 
     /**
@@ -167,7 +166,7 @@ class Attribute extends Model
      */
     public function isList(): bool
     {
-        return $this->type == self::TYPE_LIST;
+        return $this->type_id === self::TYPE_LIST_ID;
     }
 
     /**
@@ -200,7 +199,6 @@ class Attribute extends Model
         $name = preg_replace($this->listRegexp, '', $name);
 
         return (string) $name;
-
     }
 
     /**
@@ -307,6 +305,9 @@ class Attribute extends Model
         return $this;
     }
 
+    /**
+     * @return $this
+     */
     protected function calculateListConstraints(): self
     {
         if (!$this->listRange === null) {

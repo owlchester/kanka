@@ -41,6 +41,7 @@ return [
         'helpers'       => [
             'copy_widgets'  => 'Duplica os widgets do dashboard :name neste novo.',
         ],
+        'pitch'         => 'Crie vários dashboards com permissões personalizadas para cada função da campanha.',
         'placeholders'  => [
             'name'  => 'Nome do Dashboard',
         ],

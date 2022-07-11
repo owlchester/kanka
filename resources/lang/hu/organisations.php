@@ -16,9 +16,8 @@ return [
         'type'          => 'Típus',
     ],
     'helpers'       => [
-        'descendants'   => 'Ez a lista a szervezet összes leszármazott szervezetét tartalmazza, nem csak a közvetlen alszervezeit.',
-        'nested_parent' => ':parent szervezeteinek mutatása.',
-        'nested_without'=> 'Mutass meg minden szervezetet, aminek nincs szülője. Klikkelj egy sorra, hogy lásd a gyermekszervezeteit.',
+        'descendants'       => 'Ez a lista a szervezet összes leszármazott szervezetét tartalmazza, nem csak a közvetlen alszervezeit.',
+        'nested_without'    => 'Mutass meg minden szervezetet, aminek nincs szülője. Klikkelj egy sorra, hogy lásd a gyermekszervezeteit.',
     ],
     'index'         => [
         'title' => 'Szervezetek',

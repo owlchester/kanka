@@ -5,7 +5,7 @@ $pricingOptions = [
 if (isset($campaign) && $campaign instanceof \App\Models\Campaign) {
     $pricingOptions['callback'] = $campaign->id;
 } elseif (isset($campaign) && $campaign instanceof \App\Services\CampaignService) {
-    $pricingOptions['callback'] = $campaign->campaign()->id;
+    $pricingOptions['callback'] = $campaignService->campaign()->id;
 }
 @endphp
 @if(isset($callout) && $callout)

@@ -50,15 +50,6 @@ class Family extends MiscModel
     protected $searchableColumns = ['name', 'entry'];
 
     /**
-     * Fields that can be filtered on
-     * @var array
-     */
-    protected $filterableColumns = [
-        'location_id',
-        'family_id',
-    ];
-
-    /**
      * Fields that can be sorted on
      * @var array
      */
@@ -249,5 +240,17 @@ class Family extends MiscModel
             return true;
         }
         return false;
+    }
+
+    /**
+     * Define the fields unique to this model that can be used on filters
+     * @return string[]
+     */
+    public function filterableColumns(): array
+    {
+        return [
+            'location_id',
+            'family_id',
+        ];
     }
 }

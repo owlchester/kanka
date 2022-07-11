@@ -16,9 +16,8 @@ return [
         'type'      => 'Rodzaj',
     ],
     'helpers'       => [
-        'journals'      => 'Wyświetla wszystkie dzienniki pochodne, albo tylko pochodzące bezpośrednio od tego.',
-        'nested_parent' => 'Wyświetlono dzienniki pochodzące od :parent.',
-        'nested_without'=> 'Wyświetlono wszystkie dzienniki nie posiadające źródła. Kliknij na rząd, by wyświetlić dzienniki pochodne.',
+        'journals'          => 'Wyświetla wszystkie dzienniki pochodne, albo tylko pochodzące bezpośrednio od tego.',
+        'nested_without'    => 'Wyświetlono wszystkie dzienniki nie posiadające źródła. Kliknij na rząd, by wyświetlić dzienniki pochodne.',
     ],
     'index'         => [
         'title' => 'Dzienniki',

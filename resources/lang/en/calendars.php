@@ -99,7 +99,6 @@ return [
         'default_layout'    => 'Select which layout the calendar should use by default when viewed.',
         'month_type'        => 'Intercalary months don\'t use week days, but still influence moons and seasons.',
         'moon_offset'       => 'By default, the first fullmoon appears on the first day of year 0. Changing the offset will alter when the first full moon is displayed. This value can negative (up to the length of the first month) or positive (up to the length of the first month).',
-        'nested_parent'     => 'Displaying the calendars of :parent.',
         'nested_without'    => 'Displaying all calendars that don\'t have a parent calendar. Click on a row to see the children calendars.',
         'start_offset'      => 'By default, the calendar starts on the first weekday of year 0. Changing this field influences where the calendar\'s first day is placed.',
     ],

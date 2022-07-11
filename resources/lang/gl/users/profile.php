@@ -2,6 +2,8 @@
 
 return [
     'fields'    => [
+        'achievements'      => 'Logros',
+        'banned'            => 'Esta conta foi vetada',
         'entities_created'  => 'Entidades creadas :help :count',
         'member_since'      => 'Integrante dende :date',
         'public_campaigns'  => 'Campañas públicas',

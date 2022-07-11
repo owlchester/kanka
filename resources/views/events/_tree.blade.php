@@ -26,7 +26,7 @@
         ],*/
         [
             'type' => 'location',
-            'visible' => $campaign->enabled('locations'),
+            'visible' => $campaignService->enabled('locations'),
         ],
         [
             'label' => trans('events.fields.events'),
@@ -47,7 +47,7 @@
         'route' => 'events.tree',
         'baseRoute' => 'events',
         'trans' => 'events.fields.',
-        'campaign' => $campaign,
+        'campaignService' => $campaignService,
         'row' => [
             'data' => [
                 'data-children' => function($model) {

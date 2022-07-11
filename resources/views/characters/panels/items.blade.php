@@ -15,7 +15,7 @@
                 <th class="avatar"><br /></th>
                 <th>{{ trans('items.fields.name') }}</th>
                 <th class="hidden-xs">{{ trans('items.fields.type') }}</th>
-                @if ($campaign->enabled('locations'))
+                @if ($campaignService->enabled('locations'))
                     <th class="hidden-xs">{{ trans('crud.fields.location') }}</th>
                 @endif
                 <th>&nbsp;</th>
@@ -29,7 +29,7 @@
                         {!! $item->tooltipedLink() !!}
                     </td>
                     <td class="hidden-xs">{{ $item->type }}</td>
-                    @if ($campaign->enabled('locations'))
+                    @if ($campaignService->enabled('locations'))
                         <td class="hidden-xs">
                             @if ($item->location)
                                 {!! $item->location->tooltipedLink() !!}

@@ -1,16 +1,12 @@
 <?php
 
-
 namespace App\Models;
-
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Str;
-use Illuminate\View\Factory;
-use Illuminate\View\View;
 
 /**
  * Class PluginVersion
@@ -21,6 +17,7 @@ use Illuminate\View\View;
  * @property string $version
  * @property string $entry
  * @property string $content
+ * @property int $status_id
  * @property int $approved_by
  * @property Plugin $plugin
  */
@@ -147,6 +144,7 @@ class PluginVersion extends Model
         // Prepare attributes
         $data = [];
         $ids = [];
+        $checkboxes = [];
         $this->entityAttributes = $entity->allAttributes;
         $allAttributes = [];
         foreach ($this->entityAttributes as $attr) {
@@ -158,6 +156,8 @@ class PluginVersion extends Model
             $ids[$name] = $attr->id;
             if ($attr->isText()) {
                 $data[$name] = nl2br($data[$name]);
+            } elseif ($attr->isCheckbox()) {
+                $checkboxes[] = $name;
             }
             //dump('mapping ' . $name . ' to ' . $attr->mappedValue());
 
@@ -180,12 +180,20 @@ class PluginVersion extends Model
         }
 
 
-        $html = preg_replace_callback('`\@liveAttribute\(\'(.*?[^)])\'\)`i', function ($matches) use ($data, $ids) {
+        $html = preg_replace_callback('`\@liveAttribute\(\'(.*?[^)])\'\)`i', function ($matches) use ($data, $ids, $checkboxes) {
             $attr = trim((string) $matches[1]);
             if (!isset($data[$attr])) {
                 return $matches[0];
             }
-            return '<span class="live-edit" data-id="' . $ids[$attr] . '">' . $data[$attr] . '</span>';
+            $value = $data[$attr];
+            if (in_array($attr, $checkboxes)) {
+                if ($data[$attr] === 'on') {
+                    $value = '<i class="fa-solid fa-check"></i>';
+                } else {
+                    $value = '<i class="fa-solid fa-times"></i>';
+                }
+            }
+            return '<span class="live-edit" data-id="' . $ids[$attr] . '">' . $value . '</span>';
         }, $html);
         //dd($html);
 
@@ -195,16 +203,19 @@ class PluginVersion extends Model
         $errors = null;
 
         try {
-
             eval('?' . '>' . $html);
             $blade = ob_get_clean();
             return $blade;
         } catch (\Exception $e) {
-            while (ob_get_level() > $obLevel) ob_end_clean();
+            while (ob_get_level() > $obLevel) {
+                ob_end_clean();
+            }
             $errors = $e->getMessage();
             //throw $e;
         } catch (\Throwable $e) {
-            while (ob_get_level() > $obLevel) ob_end_clean();
+            while (ob_get_level() > $obLevel) {
+                ob_end_clean();
+            }
             $errors = $e->getMessage();
 
             //throw new FatalThrowableError($e);
@@ -304,20 +315,16 @@ class PluginVersion extends Model
         if (Str::contains($condition, '&gt;=')) {
             $segments = explode('&gt;=', $condition);
             return (int) trim($segments[0]) >= (int) trim($segments[1]);
-        }
-        elseif (Str::contains($condition, '&lt;=')) {
+        } elseif (Str::contains($condition, '&lt;=')) {
             $segments = explode('&lt;=', $condition);
             return (int) trim($segments[0]) <= (int) trim($segments[1]);
-        }
-        elseif (Str::contains($condition, '&gt;')) {
+        } elseif (Str::contains($condition, '&gt;')) {
             $segments = explode('&gt;', $condition);
             return (int) trim($segments[0]) > (int) trim($segments[1]);
-        }
-        elseif (Str::contains($condition, '&lt;')) {
+        } elseif (Str::contains($condition, '&lt;')) {
             $segments = explode('&lt;', $condition);
             return (int) trim($segments[0]) < (int) trim($segments[1]);
-        }
-        elseif (Str::contains($condition, '=')) {
+        } elseif (Str::contains($condition, '=')) {
             $segments = explode('=', $condition);
             return trim($segments[0]) == trim($segments[1]);
         }
@@ -329,8 +336,7 @@ class PluginVersion extends Model
         $condition = trim($matches[1]);
         if (Str::contains($condition, '<i class="missing">')) {
             return false;
-        }
-        elseif (empty($condition)) {
+        } elseif (empty($condition)) {
             return false;
         }
         return true;
@@ -343,11 +349,10 @@ class PluginVersion extends Model
      */
     public function scopePublishedVersions(Builder $query, int $pluginCreator)
     {
-        if ($pluginCreator == auth()->user()->id) {
+        if ($pluginCreator === auth()->user()->id) {
             return $query->whereIn('status_id', [1, 3]);
-        } else {
-            return $query->where('status_id', 3);
         }
+        return $query->where('status_id', 3);
     }
 
     /**
@@ -356,5 +361,14 @@ class PluginVersion extends Model
     public function entities()
     {
         return $this->hasMany(PluginVersionEntity::class);
+    }
+
+    /**
+     * Determine if the current version is a draft
+     * @return bool
+     */
+    public function isDraft(): bool
+    {
+        return $this->status_id === 1;
     }
 }

@@ -1,15 +1,18 @@
 <?php
 
-
 namespace App\Datagrids\Bulks;
 
 /**
  * Class Bulk
+ *
+ * This abstract class allows each sub object to define which fields are available in the
+ * bulk edit interface from the main entity type's datagrid.
  * @package App\Datagrids\Bulks
  */
 abstract class Bulk
 {
     /**
+     * The fields available for bulk edit, fallsback to a set of defaults
      * @return array
      */
     public function fields(): array
@@ -22,6 +25,7 @@ abstract class Bulk
     }
 
     /**
+     * The mapping, used for is_ fields to be able to unset a value. For example a character's is_dead status
      * @return array
      */
     public function mappings(): array
@@ -34,6 +38,7 @@ abstract class Bulk
     }
 
     /**
+     * The list of fields that are foreign fields, to be able to properly unset them if needed
      * @return array
      */
     public function belongsTo(): array
@@ -59,6 +64,7 @@ abstract class Bulk
     }
 
     /**
+     * Default fields that are available in the bulk edit interface if no other are defined.
      * @return array
      */
     protected function defaults(): array

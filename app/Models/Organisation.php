@@ -67,16 +67,6 @@ class Organisation extends MiscModel
     protected $entityType = 'organisation';
 
     /**
-     * Fields that can be filtered on
-     * @var array
-     */
-    protected $filterableColumns = [
-        'location_id',
-        'organisation_id',
-        'is_defunct',
-    ];
-
-    /**
      * Fields that can be sorted on
      * @var array
      */
@@ -130,7 +120,7 @@ class Organisation extends MiscModel
      */
     public function datagridSelectFields(): array
     {
-        return ['organisation_id', 'is_defunct'];
+        return ['organisation_id', 'is_defunct', 'location_id'];
     }
 
     /**
@@ -282,5 +272,18 @@ class Organisation extends MiscModel
     public function isDefunct(): bool
     {
         return (bool) $this->is_defunct;
+    }
+
+    /**
+     * Define the fields unique to this model that can be used on filters
+     * @return string[]
+     */
+    public function filterableColumns(): array
+    {
+        return [
+            'location_id',
+            'organisation_id',
+            'is_defunct',
+        ];
     }
 }

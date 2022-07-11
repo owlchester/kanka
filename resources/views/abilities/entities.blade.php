@@ -6,7 +6,7 @@
     'miscModel' => $model,
 ])
 
-@inject('campaign', 'App\Services\CampaignService')
+@inject('campaignService', 'App\Services\CampaignService')
 
 
 @section('entity-header-actions')
@@ -25,7 +25,7 @@
     @include('partials.errors')
 
     <div class="entity-grid">
-        @include('entities.components.header_grid', [
+        @include('entities.components.header', [
             'model' => $model,
             'breadcrumb' => [
                 ['url' => Breadcrumb::index('abilities'), 'label' => __('abilities.index.title')],

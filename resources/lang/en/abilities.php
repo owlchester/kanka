@@ -29,9 +29,8 @@ return [
         'type'      => 'Type',
     ],
     'helpers'       => [
-        'descendants'   => 'This list contains all abilities which are descendants of this ability, and not only those directly under it.',
-        'nested_parent' => 'Displaying the abilities of :parent.',
-        'nested_without'=> 'Displaying all abilities that don\'t have a parent ability. Click on a row to see the children abilities.',
+        'descendants'       => 'This list contains all abilities which are descendants of this ability, and not only those directly under it.',
+        'nested_without'    => 'Displaying all abilities that don\'t have a parent ability. Click on a row to see the children abilities.',
     ],
     'index'         => [
         'title' => 'Abilities',

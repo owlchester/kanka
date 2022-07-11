@@ -9,8 +9,8 @@ use Illuminate\Support\Facades\Facade;
  * Class Identity
  * @package App\Facades
  *
- * @method bool isImpersonating()
  * @see IdentityManager
+ * @mixin IdentityManager
  */
 class Identity extends Facade
 {

@@ -24,8 +24,7 @@ return [
         'type'      => 'Típus',
     ],
     'helpers'       => [
-        'nested_parent' => ':parent céduláinak megmutatása.',
-        'nested_without'=> 'Minden céldulát megmutat, aminek nincs szülője. Klikkelj egy sorra, hogy lásd a gyermekcéduláit.',
+        'nested_without'    => 'Minden céldulát megmutat, aminek nincs szülője. Klikkelj egy sorra, hogy lásd a gyermekcéduláit.',
     ],
     'hints'         => [
         'children'  => 'Ez a lista felsorol minden, a címkében és annak alcímkéiben közvetlenül szereplő entitást.',

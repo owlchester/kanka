@@ -1,5 +1,5 @@
 <?php /** @var \App\Models\Entity $entity
- * @var \App\Models\EntityLink $entityLink */?>
+ * @var \App\Models\EntityAsset $entityAsset */?>
 @extends('layouts.app', [
     'title' => __('entities/links.show.title', ['name' => $entity->name]),
     'breadcrumbs' => [
@@ -10,23 +10,24 @@
     'mainTitle' => false,
     'miscModel' => $entity->child,
 ])
-@inject('campaign', 'App\Services\CampaignService')
+@inject('campaignService', 'App\Services\CampaignService')
 
 @section('content')
+    <section class="content">
     <div class="box box-solid">
         <div class="box-body text-center ">
             {{ __('entities/links.helpers.leaving') }}
 
-
             <div class="margin-top">
-            <a href="{{ $entityLink->url }}" rel="noreferrer nofollow" class="btn btn-lg btn-primary">
-                {{ __('entities/links.helpers.goto', ['name' => $entityLink->name]) }}
-            </a>
+                <a href="{{ $entityAsset->metadata['url'] }}" rel="noreferrer nofollow" class="btn btn-lg btn-primary">
+                    {{ __('entities/links.helpers.goto', ['name' => $entityAsset->name]) }}
+                </a>
             </div>
         </div>
         <div class="box-footer text-center">
-            <p class="help-block">{{ __('entities/links.helpers.url', ['url' => $entityLink->url]) }}</p>
+            <p class="help-block">{{ __('entities/links.helpers.url', ['url' => $entityAsset->metadata['url']]) }}</p>
         </div>
 
     </div>
+    </section>
 @endsection

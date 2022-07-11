@@ -19,6 +19,15 @@
 
 <div class="row">
     <div class="col-md-6">
+        <div class="form-group">
+            {!! Form::hidden('is_auto_applied', 0) !!}
+            <label>{!! Form::checkbox('is_auto_applied', 1, $model->is_auto_applied ?? '' )!!}
+                {{ __('tags.fields.is_auto_applied') }}
+            </label>
+            <p class="help-block">{{ __('tags.hints.is_auto_applied') }}</p>
+        </div>
+    </div>
+    <div class="col-md-6">
         @include('cruds.fields.image')
     </div>
 </div>

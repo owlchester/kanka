@@ -113,7 +113,7 @@ class EntityResource extends JsonResource
     /**
      * Transform the resource into an array.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  array $prepared
      * @return array
      */
     public function entity(array $prepared = [])
@@ -174,11 +174,10 @@ class EntityResource extends JsonResource
             $merged['attributes'] = AttributeResource::collection($this->entity->attributes);
             $merged['entity_notes'] = EntityNoteResource::collection($this->entity->notes);
             $merged['entity_events'] = EntityEventResource::collection($this->entity->events);
-            $merged['entity_files'] = EntityFileResource::collection($this->entity->files);
             $merged['relations'] = RelationResource::collection($this->entity->relationships);
             $merged['inventory'] = InventoryResource::collection($this->entity->inventories);
             $merged['entity_abilities'] = EntityAbilityResource::collection($this->entity->abilities);
-            $merged['entity_links'] = EntityLinkResource::collection($this->entity->links);
+            $merged['entity_assets'] = EntityAssetResource::collection($this->entity->assets);
         }
 
         $final = array_merge($merged, $prepared);

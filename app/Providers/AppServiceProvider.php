@@ -30,6 +30,7 @@ use App\Models\DiceRoll;
 use App\Models\DiceRollResult;
 use App\Models\Entity;
 use App\Models\EntityAbility;
+use App\Models\EntityAsset;
 use App\Models\EntityEvent;
 use App\Models\EntityFile;
 use App\Models\EntityNote;
@@ -156,8 +157,7 @@ class AppServiceProvider extends ServiceProvider
         Event::observe(EventObserver::class);
         Entity::observe('App\Observers\EntityObserver');
         EntityAbility::observe('App\Observers\EntityAbilityObserver');
-        EntityFile::observe('App\Observers\EntityFileObserver');
-        EntityLink::observe('App\Observers\EntityLinkObserver');
+        EntityAsset::observe('App\Observers\EntityAssetObserver');
         EntityNote::observe('App\Observers\EntityNoteObserver');
         EntityEvent::observe('App\Observers\EntityEventObserver');
         Location::observe(LocationObserver::class);

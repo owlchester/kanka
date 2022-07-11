@@ -107,6 +107,10 @@
   .navbar-nav > .notifications-menu > .dropdown-menu {
     width: 90%;
   }
+  .navbar-form {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
 
   .table-responsive {
     overflow-x: auto;
@@ -116,6 +120,9 @@
     table {
     }
     padding-bottom: 20px;
+  }
+  .keyboard-shortcut {
+    display: none;
   }
 }
 

@@ -23,7 +23,6 @@ return [
         'type'          => 'Típus',
     ],
     'helpers'       => [
-        'nested_parent'     => ':parent idővonalainak megmutatása',
         'nested_without'    => 'Minden idővonal megmutatása, aminek nincs szülője. Klikkelj egy sorra, hogy lásd a gyermekidővonalait.',
         'reorder'           => 'Fogd és vidd az elemeket az átrendezésükhöz.',
         'reorder_tooltip'   => 'Klikkelj a fodg és vidd manuális sorbarendezés eléréséhez.',

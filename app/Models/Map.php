@@ -101,16 +101,6 @@ class Map extends MiscModel
         'map.name',
     ];
 
-
-    /**
-     * Fields that can be filtered on
-     * @var array
-     */
-    protected $filterableColumns = [
-        'map_id',
-        'location_id',
-    ];
-
     /**
      * Fields that can be sorted on
      * @var array
@@ -239,7 +229,7 @@ class Map extends MiscModel
     public function markers()
     {
         return $this->hasMany('App\Models\MapMarker', 'map_id', 'id')
-            ->with('entity');
+            ->with(['map', 'map.campaign', 'entity']);
     }
 
     /**
@@ -673,5 +663,17 @@ class Map extends MiscModel
     public function isClustered(): bool
     {
         return $this->has_clustering;
+    }
+
+    /**
+     * Define the fields unique to this model that can be used on filters
+     * @return string[]
+     */
+    public function filterableColumns(): array
+    {
+        return [
+            'map_id',
+            'location_id',
+        ];
     }
 }

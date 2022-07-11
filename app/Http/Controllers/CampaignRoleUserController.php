@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Facades\CampaignCache;
 use App\Facades\CampaignLocalization;
 use App\Models\Campaign;
 use App\Models\CampaignRole;
@@ -88,7 +89,7 @@ class CampaignRoleUserController extends Controller
     {
         $campaign = CampaignLocalization::getCampaign();
         $this->authorize('roles', $campaign);
-        $this->authorize('removeUser', $campaignRole);
+        $this->authorize('delete', $campaignRoleUser);
 
         $campaignRoleUser->delete();
         return redirect()->route('campaign_roles.show', $campaignRole)

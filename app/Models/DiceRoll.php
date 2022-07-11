@@ -38,14 +38,6 @@ class DiceRoll extends MiscModel
     protected $searchableColumns  = ['name'];
 
     /**
-     * Fields that can be filtered on
-     * @var array
-     */
-    protected $filterableColumns = [
-        'character_id',
-    ];
-
-    /**
      * Fields that can be sorted on
      * @var array
      */
@@ -67,12 +59,6 @@ class DiceRoll extends MiscModel
      * @var string
      */
     protected $entityType = 'dice_roll';
-
-    /**
-     * Field used for tooltips
-     * @var string
-     */
-    protected $tooltipField = 'name';
 
     /**
      * Foreign relations to add to export
@@ -123,5 +109,16 @@ class DiceRoll extends MiscModel
     public function showProfileInfo(): bool
     {
         return $this->parameters || $this->character;
+    }
+
+    /**
+     * Define the fields unique to this model that can be used on filters
+     * @return string[]
+     */
+    public function filterableColumns(): array
+    {
+        return [
+            'character_id',
+        ];
     }
 }

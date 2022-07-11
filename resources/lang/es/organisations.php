@@ -16,9 +16,8 @@ return [
         'type'          => 'Tipo',
     ],
     'helpers'       => [
-        'descendants'   => 'Esta lista contiene todas las organizaciones que descienden de esta organización, no solo las que están directamente por debajo.',
-        'nested_parent' => 'Mostrando organizaciones de :parent.',
-        'nested_without'=> 'Mostrando todas las organizaciones sin ningún superior. Haz clic sobre una fila para mostrar sus descendientes.',
+        'descendants'       => 'Esta lista contiene todas las organizaciones que descienden de esta organización, no solo las que están directamente por debajo.',
+        'nested_without'    => 'Mostrando todas las organizaciones sin ningún superior. Haz clic sobre una fila para mostrar sus descendientes.',
     ],
     'index'         => [
         'title' => 'Organizaciones',

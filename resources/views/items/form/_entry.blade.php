@@ -8,6 +8,13 @@
 </div>
 <div class="row">
     <div class="col-md-6">
+        <div class="form-group">
+        @include('cruds.fields.item', ['parent' => true, 'from' => isset($model) ? $model : null, 'quickCreator' => true])
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6">
         @include('cruds.fields.price', ['trans' => 'items'])
     </div>
     <div class="col-md-6">

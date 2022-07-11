@@ -16,7 +16,7 @@
     'miscModel' => $entity->child,
     'bodyClass' => 'entity-quests'
 ])
-@inject('campaign', 'App\Services\CampaignService')
+@inject('campaignService', 'App\Services\CampaignService')
 
 
 @include('entities.components.header', ['model' => $entity->child, 'entity' => $entity])
@@ -26,7 +26,7 @@
 
 
     <div class="entity-grid">
-        @include('entities.components.header_grid', [
+        @include('entities.components.header', [
             'model' => $entity->child,
             'entity' => $entity,
             'breadcrumb' => [

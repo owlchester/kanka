@@ -5,7 +5,7 @@
         trans('search.title'),
     ]
 ])
-@inject('campaign', 'App\Services\CampaignService')
+@inject('campaignService', 'App\Services\CampaignService')
 
 @section('content')
     {!! Form::open(array('route' => 'search', 'method'=>'GET')) !!}

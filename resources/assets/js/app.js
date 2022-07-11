@@ -80,7 +80,7 @@ function initSpectrum() {
         return;
     }
 
-    $.each($('.spectrum'), function (i) {
+    $.each($('.spectrum'), function () {
         $(this).spectrum({
             preferredFormat: "hex",
             showInput: true,
@@ -104,14 +104,14 @@ function initTooltips() {
  * Go through table trs to add on click support
  */
 function treeViewInit() {
-    var treeViewLoader = $('.list-treeview');
+    let treeViewLoader = $('.list-treeview');
     if (treeViewLoader.length === 0) {
         return;
     }
 
-    var link = treeViewLoader.data('url');
-    $.each($('.table-nested > tbody > tr'), function(index) {
-        var children = $(this).data('children');
+    let link = treeViewLoader.data('url');
+    $.each($('.table-nested > tbody > tr'), function () {
+        let children = $(this).data('children');
         if (parseInt(children) > 0) {
             $(this).addClass('tr-hover');
             $(this).on('click', function (e) {
@@ -128,10 +128,11 @@ function treeViewInit() {
 
 /**
  * Save and manage tabs for when refreshing
+ * Move this to crud or forms
  */
 function manageTabs() {
-    var tabLink = $('.nav-tabs li a');
-    tabLink.click(function(e) {
+    let tabLink = $('.nav-tabs li a');
+    tabLink.click(function (e) {
         e.preventDefault();
 
         // If tab isn't ajax request
@@ -141,13 +142,13 @@ function manageTabs() {
     });
 
     // store the currently selected tab in the hash value
-    tabLink.on("shown.bs.tab", function(e) {
+    tabLink.on("shown.bs.tab", function (e) {
         e.preventDefault();
-        var tabId = $(e.target).attr("href").substr(1);
-        var dataToggle = $(e.target).attr('ajax-modal');
-        var nohash = $(e.target).data("nohash");
+        let tabId = $(e.target).attr("href").substr(1);
+        let dataToggle = $(e.target).attr('ajax-modal');
+        let nohash = $(e.target).data("nohash");
 
-        if ((dataToggle && dataToggle == 'ajax-modal') || (nohash)) {
+        if ((dataToggle && dataToggle === 'ajax-modal') || (nohash)) {
             // Modal? Don't do more.
             return true;
         }
@@ -156,7 +157,7 @@ function manageTabs() {
     });
 
     // on load of the page: switch to the currently selected tab
-    var tabHash = window.location.hash.replace('tab_', '');
+    let tabHash = window.location.hash.replace('tab_', '');
     $('ul.nav-tabs > li > a[href="' + tabHash + '"]').tab('show');
 }
 
@@ -249,36 +250,88 @@ function initDialogs() {
         target.showModal();
 
         target.addEventListener('click', function (event) {
-            var rect = target.getBoundingClientRect();
-            var isInDialog=(rect.top <= event.clientY && event.clientY <= rect.top + rect.height
+            let rect = target.getBoundingClientRect();
+            let isInDialog=(rect.top <= event.clientY && event.clientY <= rect.top + rect.height
+                && rect.left <= event.clientX && event.clientX <= rect.left + rect.width);
+            if (!isInDialog && event.target.tagName === 'DIALOG') {
+                target.close();
+            }
+        });
+    });
+    $('[data-toggle="dialog-ajax"]').click(function (e) {
+        e.preventDefault();
+
+        let target = $(this).data('target');
+        let url = $(this).data('url');
+        target = document.getElementById(target);
+        target.showModal();
+
+        target.addEventListener('click', function (event) {
+            let rect = target.getBoundingClientRect();
+            let isInDialog=(rect.top <= event.clientY && event.clientY <= rect.top + rect.height
                 && rect.left <= event.clientX && event.clientX <= rect.left + rect.width);
             if (!isInDialog && event.target.tagName === 'DIALOG') {
                 target.close();
             }
         });
 
+        $.ajax({
+            url: url
+        }).done(function (success) {
+            $(target).html(success).show();
 
+            $('.btn-manage-perm').click(function (e) {
+                e.preventDefault();
+                target.close();
+                let permTarget = $(this).data('target');
+                $(permTarget).click();
+            });
+
+            // We should move this to a custom event handler?
+            $('#quick-privacy-select').change(function () {
+                let toggleUrl = $(this).data('url');
+
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+
+                $.ajax({
+                    url: toggleUrl,
+                    type: 'POST'
+                }).done( function (success) {
+                    window.showToast(success.toast);
+                    if (!success.status) {
+                        $('body').addClass('kanka-entity-private');
+                    } else {
+                        $('body').removeClass('kanka-entity-private');
+                    }
+                    //target.close();
+                });
+            });
+        });
     });
 }
 
 
 // Splitting off the js files into logical blocks
-require('./helpers')
-require('./keyboard')
-require('./crud')
-require('./calendar')
-require('./search')
-require('./notification')
-require('./quick-creator')
+require('./helpers');
+require('./keyboard');
+require('./crud');
+require('./calendar');
+require('./search');
+require('./notification');
+require('./quick-creator');
 //require('./tutorial')
-require('./datagrids')
-require('./quick-links')
-require('./members')
-require('./campaign')
-require('./clipboard')
-require('./toast')
-require('./sidebar')
-require('./banner')
-require('./timeline')
-require('./vendor')
-require('./ads')
+require('./datagrids');
+require('./quick-links');
+require('./members');
+require('./campaign');
+require('./clipboard');
+require('./toast');
+require('./sidebar');
+require('./banner');
+require('./timeline');
+require('./vendor');
+require('./ads');

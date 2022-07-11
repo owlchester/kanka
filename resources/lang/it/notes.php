@@ -16,8 +16,7 @@ return [
         'type'          => 'Tipo',
     ],
     'helpers'       => [
-        'nested_parent' => 'Visualizzazione delle note di :parent',
-        'nested_without'=> 'Visualizzazione delle note che non hanno una nota sovraordinata. Clicca su una fila per vedere le sottonote.',
+        'nested_without'    => 'Visualizzazione delle note che non hanno una nota sovraordinata. Clicca su una fila per vedere le sottonote.',
     ],
     'hints'         => [
         'is_pinned' => 'Fino a 3 note possono essere fissate per essere visualizzate nella dashboard.',

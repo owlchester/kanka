@@ -45,7 +45,7 @@ if (request()->has('location_id')) {
             <tbody><tr>
                 <th class="avatar"><br /></th>
                 <th>{{ __('families.fields.name') }}</th>
-                @if ($campaign->enabled('locations'))
+                @if ($campaignService->enabled('locations'))
                     <th>{{ __('crud.fields.location') }}</th>
                 @endif
                 <th>{{ __('crud.fields.family') }}</th>
@@ -60,7 +60,7 @@ if (request()->has('location_id')) {
                     <td>
                         {!! $family->tooltipedLink() !!}
                     </td>
-                    @if ($campaign->enabled('locations'))
+                    @if ($campaignService->enabled('locations'))
                         <td>
                             @if ($family->location)
                                 {!! $family->location->tooltipedLink() !!}

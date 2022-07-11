@@ -23,6 +23,7 @@ use Illuminate\Support\Arr;
  * @property int $tag_id
  * @property Tag $tag
  * @property Tag[] $tags
+ * @property bool $is_auto_applied
  */
 class Tag extends MiscModel
 {
@@ -54,19 +55,12 @@ class Tag extends MiscModel
 
     protected $explicitFilters = ['tag_id'];
 
-    /**
-     * Fields that can be filtered on
-     * @var array
-     */
-    protected $filterableColumns = [
-        'colour',
-    ];
-
     protected $sortable = [
         'name',
         'tag.name',
         'type',
         'colour',
+        'is_auto_applied',
     ];
 
     /**
@@ -76,6 +70,7 @@ class Tag extends MiscModel
     protected $sortableColumns = [
         'tag.name',
         'colour',
+        'is_auto_applied',
     ];
 
     /**
@@ -91,6 +86,7 @@ class Tag extends MiscModel
         'tag_id',
         'campaign_id',
         'is_private',
+        'is_auto_applied',
     ];
 
     /**
@@ -155,7 +151,7 @@ class Tag extends MiscModel
      */
     public function datagridSelectFields(): array
     {
-        return ['tag_id', 'colour'];
+        return ['tag_id', 'colour', 'is_auto_applied'];
     }
 
     /**
@@ -260,7 +256,7 @@ class Tag extends MiscModel
      * Get the tag's colour class
      * @return string colour css class
      */
-    public function colourClass()
+    public function colourClass(): string
     {
         if (!$this->hasColour()) {
             return 'color-white';
@@ -314,7 +310,7 @@ class Tag extends MiscModel
      */
     public function html(): string
     {
-        return '<span class="label ' . ($this->hasColour() ? $this->colourClass() : 'label-default') . '">'
+        return '<span class="label ' . ($this->hasColour() ? $this->colourClass() : 'color-tag label-default') . '">'
             . e($this->name) . '</span>';
     }
 
@@ -323,8 +319,9 @@ class Tag extends MiscModel
      */
     public function bubble(): string
     {
-        return '<span class="label label-tag-bubble ' . ($this->hasColour() ? $this->colourClass() : 'label-default') . '" title="'
-            . e($this->name) . '">' . ucfirst(substr(e($this->name), 0, 1)) . '</span>';
+        return '<span class="label label-tag-bubble ' .
+            ($this->hasColour() ? $this->colourClass() : 'color-tag label-default') . '" title="' .
+            e($this->name) . '">' . ucfirst(substr(e($this->name), 0, 1)) . '</span>';
     }
 
     /**
@@ -337,5 +334,26 @@ class Tag extends MiscModel
             return true;
         }
         return false;
+    }
+
+    /**
+     * Determine if the model is a tag that has to be applied to all newly created entities
+     * @return bool
+     */
+    public function isAutoApplied(): bool
+    {
+        return (bool) $this->is_auto_applied;
+    }
+
+    /**
+     * Define the fields unique to this model that can be used on filters
+     * @return string[]
+     */
+    public function filterableColumns(): array
+    {
+        return [
+            'colour',
+            'is_auto_applied',
+        ];
     }
 }

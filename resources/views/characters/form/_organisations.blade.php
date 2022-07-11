@@ -4,7 +4,7 @@
  * @var \App\Models\Character $model
  */
 $organisations = isset($model) ?
-    $model->organisations()->with('organisation')->has('organisation')->orderBy('role', 'ASC')->get() :
+    $model->organisationMemberships()->with('organisation')->has('organisation')->orderBy('role', 'ASC')->get() :
     FormCopy::characterOrganisation();
 $isAdmin = Auth::user()->isAdmin();
 

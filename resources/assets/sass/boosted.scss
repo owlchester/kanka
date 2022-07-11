@@ -17,6 +17,25 @@
     border: unset;
   }
 }
+.entity-privacy-icon {
+  .fa-lock-open {
+    display: inline-block;
+  }
+
+  .fa-lock {
+    display: none;
+  }
+}
+.kanka-entity-private {
+  .entity-privacy-icon {
+    .fa-lock-open {
+      display: none;
+    }
+    .fa-lock {
+      display: inline-block;
+    }
+  }
+}
 
 :root {
   --sidebar-section-background: none;
@@ -190,7 +209,7 @@
       min-width: 100px;
     }
 
-    i.entity-icons {
+    .entity-icons {
       margin-left: 10px;
       font-size: 18px;
       cursor: pointer;
@@ -242,7 +261,7 @@
     text-shadow: rgba(0, 0, 0, 0.5) 0 1px 4px;
     color: white;
   }
-  i.entity-icons {
+  .entity-icons {
     color: white;
   }
   .entity-header-sub {
@@ -302,7 +321,7 @@
        //float: right;
      }
 
-     i.entity-icons {
+     .entity-icons {
        margin-bottom: 0;
      }
    }

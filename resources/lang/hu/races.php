@@ -21,8 +21,7 @@ return [
         'type'          => 'Típus',
     ],
     'helpers'       => [
-        'nested_parent' => ':parent fajainak megmutatása.',
-        'nested_without'=> 'Megmutat minden fajt, aminek nincs szülője. Klikkelj egy sorra, hogy megnézd a gyermekfajait.',
+        'nested_without'    => 'Megmutat minden fajt, aminek nincs szülője. Klikkelj egy sorra, hogy megnézd a gyermekfajait.',
     ],
     'index'         => [
         'title' => 'Fajok',

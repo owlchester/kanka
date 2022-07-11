@@ -62,14 +62,6 @@ class Location extends MiscModel
     ];
 
     /**
-     * Fields that can be filtered on
-     * @var array
-     */
-    protected $filterableColumns = [
-        'parent_location_id',
-    ];
-
-    /**
      * Fields that can be sorted on
      * @var array
      */
@@ -427,5 +419,16 @@ class Location extends MiscModel
     public function showProfileInfo(): bool
     {
         return  !empty($this->type) || !$this->maps->isEmpty();
+    }
+
+    /**
+     * Define the fields unique to this model that can be used on filters
+     * @return string[]
+     */
+    public function filterableColumns(): array
+    {
+        return [
+            'parent_location_id',
+        ];
     }
 }

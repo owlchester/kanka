@@ -22,4 +22,14 @@ trait TagScopes
             'children',
         ]);
     }
+
+    /**
+     * Get tags that are auto applied to entities
+     * @param Builder $query
+     * @return mixed
+     */
+    public function scopeAutoApplied(Builder $query)
+    {
+        return $query->where('is_auto_applied', true);
+    }
 }

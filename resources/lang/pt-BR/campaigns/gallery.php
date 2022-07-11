@@ -22,6 +22,7 @@ return [
         'title' => 'Nova pasta',
     ],
     'no_folder'     => 'Sem pasta',
+    'pitch'         => 'Faça upload de imagens para a galeria da campanha diretamente do editor de texto.',
     'placeholders'  => [
         'search'    => 'Procurar nome da imagem...',
     ],

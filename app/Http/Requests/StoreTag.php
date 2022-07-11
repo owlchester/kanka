@@ -31,7 +31,7 @@ class StoreTag extends FormRequest
         $rules = [
             'name' => 'required|max:191',
             'type' => 'nullable|string|max:191',
-            'tag_id', 'nullable|integer|exists:tags,id',
+            'tag_id' => 'nullable|integer|exists:tags,id',
             'image' => 'mimes:jpeg,png,jpg,gif,webp|max:' . auth()->user()->maxUploadSize(),
             'image_url' => 'nullable|url|active_url',
             'template_id' => 'nullable',

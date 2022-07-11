@@ -1,6 +1,6 @@
 <?php /** @var \App\Models\MiscModel $model */?>
 
-@inject('campaign', 'App\Services\CampaignService')
+@inject('campaignService', 'App\Services\CampaignService')
 @php
     $headerImage = true;
 @endphp
@@ -45,7 +45,7 @@
                 })
     ])
         @includeWhen($entity->relationships->count() > 0, 'entities.pages.print._relations')
-        @includeWhen($entity->attributes->count() > 0, 'entities.pages.print._attributes')
+        @includeWhen($entity->attributes->count() > 0 && $entity->type_id !== config('entities.ids.attribute_template'), 'entities.pages.print._attributes')
         <div class="pagebreak"></div>
     @endforeach
 

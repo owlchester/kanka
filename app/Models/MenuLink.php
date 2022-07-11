@@ -93,8 +93,6 @@ class MenuLink extends MiscModel
         'dashboard_id',
     ];
 
-    public $tooltipField = 'name';
-
     /**
      * Set to false if this entity type doesn't have relations
      * @var bool
@@ -209,7 +207,7 @@ class MenuLink extends MiscModel
             } elseif ($this->menu === 'abilities') {
                 return route('entities.entity_abilities.index', $routeOptions);
             } elseif ($this->menu === 'assets') {
-                return route('entities.assets', $routeOptions);
+                return route('entities.entity_assets.index', $routeOptions);
             } elseif ($this->menu === 'reminders') {
                 return route('entities.entity_events.index', $routeOptions);
             }

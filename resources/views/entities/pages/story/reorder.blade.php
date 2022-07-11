@@ -12,14 +12,14 @@
     'miscModel' => $entity->child,
     'bodyClass' => 'entity-story-reorder'
 ])
-@inject('campaign', 'App\Services\CampaignService')
+@inject('campaignService', 'App\Services\CampaignService')
 
 
 @section('content')
     @include('partials.errors')
 
     <div class="entity-grid">
-        @include('entities.components.header_grid', [
+        @include('entities.components.header', [
             'model' => $entity->child,
             'entity' => $entity,
             'breadcrumb' => [

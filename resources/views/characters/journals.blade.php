@@ -10,7 +10,7 @@
     'miscModel' => $model,
 ])
 
-@inject('campaign', 'App\Services\CampaignService')
+@inject('campaignService', 'App\Services\CampaignService')
 @inject('dateRenderer', 'App\Renderers\DateRenderer')
 
 @include('entities.components.header', ['model' => $model])

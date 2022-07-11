@@ -2,71 +2,50 @@
 
 namespace App\Services;
 
+use App\Facades\Mentions;
 use App\Models\Calendar;
 use App\Models\Campaign;
 use App\Models\Entity;
+use App\Models\EntityAsset;
 use Illuminate\Support\Str;
 
 class SearchService
 {
-    /**
-     * The search term
-     * @var string
-     */
-    protected $term;
+    /** @var string The search term */
+    protected string $term;
 
-    /**
-     * The search entity type
-     * @var string
-     */
-    protected $type;
+    /** @var string The search entity type */
+    protected string $type;
 
-    /**
-     * The campaign
-     * @var Campaign
-     */
-    protected $campaign;
+    /** @var Campaign The current campaign */
+    protected Campaign $campaign;
 
-    /**
-     * Amount of results (sql limit)
-     * @var int
-     */
-    protected $limit = 10;
+    /** @var int Amount of results (sql limit) */
+    protected int $limit = 10;
 
-    /**
-     * @var EntityService
-     */
-    protected $entityService;
+    /** @var EntityService */
+    protected EntityService $entityService;
 
-    /**
-     * List of excluded entity types
-     * @var array
-     */
-    protected $excludedTypes = [];
+    /** @var array List of excluded entity types */
+    protected array $excludedTypes = [];
 
-    /**
-     * List of excluded entity ids
-     * @var array
-     */
-    protected $excludeIds = [];
+    /** @var array List of excluded entity ids */
+    protected array $excludeIds = [];
 
-    /**
-     * List of the only entity types desired
-     * @var array
-     */
-    protected $onlyTypes = [];
+    /** @var array List of the only entity types desired */
+    protected array $onlyTypes = [];
 
     /**
      * Set to true for a full result (rather than id => name)
      * @var bool
      */
-    protected $full = false;
+    protected bool $full = false;
 
     /**
      * Set to true to return new entity options
      * @var bool
      */
-    protected $new = false;
+    protected bool $new = false;
 
     /**
      * SearchService constructor.
@@ -82,7 +61,7 @@ class SearchService
      * @param $term
      * @return $this
      */
-    public function term($term)
+    public function term($term): self
     {
         $this->term = $term;
         return $this;
@@ -93,7 +72,7 @@ class SearchService
      * @param $type
      * @return $this
      */
-    public function type($type)
+    public function type($type): self
     {
         if (!empty($type)) {
             $typeID = config('entities.ids.' . $type);
@@ -106,7 +85,7 @@ class SearchService
      * @param Campaign $campaign
      * @return $this
      */
-    public function campaign(Campaign $campaign)
+    public function campaign(Campaign $campaign): self
     {
         $this->campaign = $campaign;
         return $this;
@@ -116,7 +95,7 @@ class SearchService
      * @param bool $new = false
      * @return $this
      */
-    public function new(bool $new = false)
+    public function new(bool $new = false): self
     {
         $this->new = $new;
         return $this;
@@ -126,7 +105,7 @@ class SearchService
      * @param int $limit
      * @return $this
      */
-    public function limit($limit = 10)
+    public function limit(int $limit = 10): self
     {
         $this->limit = $limit;
         return $this;
@@ -136,7 +115,7 @@ class SearchService
      * @param $types
      * @return $this
      */
-    public function exclude($types)
+    public function exclude($types): self
     {
         $this->excludedTypes = is_array($types) ? $types : [$types];
         return $this;
@@ -163,7 +142,7 @@ class SearchService
      * @param $types
      * @return $this
      */
-    public function only($types)
+    public function only($types): self
     {
         $this->onlyTypes = is_array($types) ? $types : [$types];
         return $this;
@@ -173,7 +152,7 @@ class SearchService
      * Set the result as full (live search, mentions)
      * @return $this
      */
-    public function full()
+    public function full(): self
     {
         $this->full = true;
         return $this;
@@ -208,13 +187,14 @@ class SearchService
                 $query
                     ->select(['entities.*', 'ea.id as alias_id', 'ea.name as alias_name'])
                     ->distinct()
-                    ->leftJoin('entity_aliases as ea', function ($join) use ($cleanTerm) {
+                    ->leftJoin('entity_assets as ea', function ($join) use ($cleanTerm) {
                         $join->on('ea.entity_id', '=', 'entities.id');
                         if (Str::startsWith($this->term, '=')) {
                             $join->where('ea.name', $cleanTerm);
                         } else {
                             $join->where('ea.name', 'like', '%' . $this->term . '%');
                         }
+                        $join->where('ea.type_id', EntityAsset::TYPE_ALIAS);
                     })
                     ->where(function ($sub) use ($cleanTerm) {
                         if (Str::startsWith($this->term, '=')) {
@@ -271,9 +251,9 @@ class SearchService
                 'name' => $parsedName,
                 'type' => __('entities.' . $model->type()),
                 'model_type' => $model->type(),
-                'tooltip' => $model->tooltip(),
                 'url' => $model->url(),
                 'alias_id' => $model->alias_id,
+                'advanced_mention' => Mentions::advancedMentionHelper($model->name),
             ];
         }
 
@@ -288,7 +268,7 @@ class SearchService
      * List of months in the calendars
      * @return array
      */
-    public function monthList()
+    public function monthList(): array
     {
         $searchResults = [];
 
@@ -314,7 +294,7 @@ class SearchService
      * List of elements that can be created on the fly
      * @return array
      */
-    protected function newOptions()
+    protected function newOptions(): array
     {
         $options = [];
         $term = str_replace('_', ' ', $this->term);

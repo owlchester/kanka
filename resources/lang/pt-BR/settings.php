@@ -178,6 +178,8 @@ return [
             'alternatives'          => 'Pague sua assinatura usando :method. Este método de pagamento não será renovado automaticamente no final da sua assinatura. :method disponível apenas em euros.',
             'alternatives_warning'  => 'Não é possível atualizar sua assinatura ao usar este método. Faça uma nova assinatura quando a atual terminar.',
             'alternatives_yearly'   => 'Devido às restrições em torno dos pagamentos recorrentes, :method está disponível apenas para assinaturas anuais',
+            'paypal'                => 'Quer usar o Paypal em vez disso? Contate-nos em :email se pretender assinar um plano anual através do Paypal.',
+            'stripe'                => 'Suas informações de cobrança são processadas e armazenadas com segurança por meio de :stripe.',
         ],
         'manage_subscription'   => 'Gerenciar assinatura',
         'payment_method'        => [

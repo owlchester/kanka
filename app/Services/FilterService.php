@@ -149,7 +149,10 @@ class FilterService
         $direction = Arr::get($this->data, 'desc');
 
         $sessionKey = 'filterService-order-' . $this->crud;
-        $this->order = session()->get($sessionKey);
+        $this->order = session()->get($sessionKey, []);
+        if ($this->order === null) {
+            $this->order = [];
+        }
 
         if (!empty($field)) {
             $this->order = [
@@ -222,39 +225,41 @@ class FilterService
      * Get the filters
      * @return array
      */
-    public function filters()
+    public function filters(): array
     {
         return $this->filters;
     }
 
     /**
      * Get the order data
-     * @return null
+     * @return array
      */
-    public function order()
+    public function order(): array
     {
         return $this->order;
     }
 
     /**
      * Get the search data
-     * @return null
+     * @return string
      */
-    public function search()
+    public function search(): string
     {
         return $this->search;
     }
 
     /**
+     * Determine if a filter is a checkbox
      * @param $field
      * @return bool
      */
-    public function isCheckbox($field)
+    public function isCheckbox($field): bool
     {
         return Str::startsWith($field, ['is_', 'has_']);
     }
 
     /**
+     * Get the active filters
      * @return array
      */
     public function activeFilters(): array
@@ -281,11 +286,12 @@ class FilterService
     }
 
     /**
+     * Determine if the request has active filters
      * @return bool
      */
     public function hasFilters(): bool
     {
-        return !empty($this->filters);
+        return $this->activeFiltersCount() > 0;
     }
 
     /**

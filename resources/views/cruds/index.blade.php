@@ -7,7 +7,7 @@
     'canonical' => true,
     'bodyClass' => 'kanka-' . $name,
 ])
-@inject('campaign', 'App\Services\CampaignService')
+@inject('campaignService', 'App\Services\CampaignService')
 
 
 @section('content')
@@ -25,11 +25,11 @@
                             <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu">
-                            @if (!empty($templates) && !$templates->isEmpty())
+                            @if ($templates->isNotEmpty())
                             @foreach ($templates as $entityTemplate)
                             <li>
                                 <a href="{{ route($route . '.create', ['copy' => $entityTemplate->entity_id, 'template' => true]) }}" class="new-entity-from-template" data-entity-type="{{ $name }}">
-                                    <i class="fa-solid fa-star-o"></i> {{ $entityTemplate->name  }}</span>
+                                    <i class="fa-solid fa-star"></i> {{ $entityTemplate->name  }}</span>
                                 </a>
                             </li>
                             @endforeach
@@ -51,12 +51,6 @@
                     </a>
                 @endif
             @endforeach
-
-            @if (!empty($nestedView) && $nestedView)
-                <a href="{{ route($route . '.tree') }}" class="btn pull-right btn-default mr-2">
-                    <i class="fa-solid fa-tree"></i> {{ __('crud.actions.explore_view') }}
-                </a>
-            @endif
         </div>
     </div>
 
@@ -90,6 +84,7 @@
             </div>
             @endif
             {!! Form::hidden('entity', $name) !!}
+            {!! Form::hidden('datagrid-action', 'print') !!}
             {!! Form::hidden('page', request()->get('page')) !!}
         </div>
         {!! Form::close() !!}

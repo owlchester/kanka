@@ -19,9 +19,8 @@ return [
         'type'      => 'Tipo',
     ],
     'helpers'       => [
-        'descendants'   => 'Aquí se muestran todas las familias que descienden de esta, no solo las inmediatamente inferiores.',
-        'nested_parent' => 'Mostrando familias de :parent.',
-        'nested_without'=> 'Mostrando todas las familias sin ningún superior. Haz clic sobre una fila para mostrar sus descendientes.',
+        'descendants'       => 'Aquí se muestran todas las familias que descienden de esta, no solo las inmediatamente inferiores.',
+        'nested_without'    => 'Mostrando todas las familias sin ningún superior. Haz clic sobre una fila para mostrar sus descendientes.',
     ],
     'hints'         => [
         'members'   => 'Aquí se muestran los miembros de la familia. Se puede añadir un personaje a una familia en el menú de edición de dicho personaje, usando el desplegable "Familia".',
