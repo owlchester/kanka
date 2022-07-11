@@ -4,27 +4,19 @@ namespace App\Traits;
 
 use App\Models\Calendar;
 use App\Models\EntityEvent;
+use App\Models\EntityEventType;
 use App\Models\MiscModel;
 
 /**
  * Trait CalendarDateTrait
  * @package App\Traits
  *
- * @property integer $calendar_year
- * @property integer $calendar_month
- * @property integer $calendar_day
- * @property integer $calendar_id
- * @property Calendar $calendar
+ * @property EntityEvent $calendarReminder
  */
 trait CalendarDateTrait
 {
-    /**
-     * @var bool
-     */
-    public $calendarDate = true;
-
-    protected $cachedCalendarEntityEvent = false;
-
+    /** @var bool|null|EntityEvent */
+    protected $calendarDateEvent = false;
 
     /**
      * On boot of the trait, inject the fillable fields.
@@ -41,33 +33,16 @@ trait CalendarDateTrait
     }
 
     /**
-     * @return mixed
-     */
-    public function calendar()
-    {
-        return $this->belongsTo('App\Models\Calendar', 'calendar_id');
-    }
-
-    /**
-     * Used to know a model is using this trait
-     * @return bool
-     */
-    public function hasCalendarDateTrait(): string
-    {
-        return true;
-    }
-
-    /**
      * @return bool
      */
     public function hasCalendar(): bool
     {
-        return !empty($this->calendar_id) && $this->calendar;
+        return !empty($this->calendarReminder()) && $this->calendarReminder()->calendar;
     }
 
     public function hasCalendarButNoAccess(): bool
     {
-        return !empty($this->calendar_id) && empty($this->calendar);
+        return !empty($this->calendarReminder()) && empty($this->calendarReminder()->calendar);
     }
 
     /**
@@ -75,32 +50,65 @@ trait CalendarDateTrait
      */
     public function getDate(): string
     {
-        return $this->calendar_year . '-' . $this->calendar_month . '-' . $this->calendar_day;
+        $reminder = $this->calendarReminder();
+        return $reminder->year . '-' . $reminder->month . '-' . $reminder->day;
     }
 
     /**
-     * @return |null
+     * @return null|int
      */
-    public function getLengthAttribute()
+    public function getCalendarIdAttribute(): int|null
     {
-        return $this->calendarEntityEvent() ? $this->calendarEntityEvent()->length : null;
+        return $this->calendarReminder() ? $this->calendarReminder()->calendar_id : null;
     }
 
     /**
-     * @return |null
+     * @return null|int
      */
-    public function getIsRecurringAttribute()
+    public function getCalendarYearAttribute(): int|null
     {
-        return $this->calendarEntityEvent() ? $this->calendarEntityEvent()->is_recurring : 0;
+        return $this->calendarReminder() ? $this->calendarReminder()->year : null;
+    }
+
+    /**
+     * @return null|int
+     */
+    public function getCalendarMonthAttribute(): int|null
+    {
+        return $this->calendarReminder() ? $this->calendarReminder()->month : null;
+    }
+
+    /**
+     * @return null|int
+     */
+    public function getCalendarDayAttribute(): int|null
+    {
+        return $this->calendarReminder() ? $this->calendarReminder()->day : null;
+    }
+
+    /**
+     * @return null|int
+     */
+    public function getCalendarLengthAttribute(): int|null
+    {
+        return $this->calendarReminder() ? $this->calendarReminder()->length : null;
+    }
+
+    /**
+     * @return bool
+     */
+    public function getCalendarIsRecurringAttribute(): bool
+    {
+        return $this->calendarReminder() ? $this->calendarReminder()->is_recurring : false;
     }
 
     /**
      * recurring_periodicity
-     * @return |null
+     * @return string|null
      */
-    public function getRecurringPeriodicityAttribute()
+    public function getCalendarRecurringPeriodicityAttribute(): string|null
     {
-        return $this->calendarEntityEvent() ? $this->calendarEntityEvent()->recurring_periodicity : '';
+        return $this->calendarReminder() ? $this->calendarReminder()->recurring_periodicity : null;
     }
 
     /**
@@ -109,29 +117,7 @@ trait CalendarDateTrait
      */
     public function getCalendarColourAttribute()
     {
-        return $this->calendarEntityEvent() ? $this->calendarEntityEvent()->colour : 'grey';
-    }
-
-    /**
-     * Get the synced event. Or at least try
-     * @return EntityEvent|\Illuminate\Database\Eloquent\Model|object|null
-     */
-    protected function calendarEntityEvent()
-    {
-        if ($this->cachedCalendarEntityEvent === false) {
-            $this->cachedCalendarEntityEvent = null;
-            if ($this->hasCalendar()) {
-                $this->cachedCalendarEntityEvent = EntityEvent::where([
-                    'entity_id' => $this->entity->id,
-                    'calendar_id' => $this->calendar->id,
-                    'year' => $this->calendar_year,
-                    'month' => $this->calendar_month,
-                    'day' => $this->calendar_day,
-                ])->first();
-            }
-        }
-
-        return $this->cachedCalendarEntityEvent;
+        return $this->calendarReminder() ? $this->calendarReminder()->colour : '#cccccc';
     }
 
     /**
@@ -161,42 +147,57 @@ trait CalendarDateTrait
         if (!request()->has('calendar_id')) {
             return;
         }
+        $calendarID = request()->post('calendar_id');
 
-        //dd('why');
         // We already had this event linked
-        /** @var EntityEvent $event */
-        $event = EntityEvent::where([
-            'calendar_id' => $previousCalendarId,
-            'entity_id' => $entity->id,
-            'year' => $this->getOriginal('calendar_year'),
-            'month' => $this->getOriginal('calendar_month'),
-            'day' => $this->getOriginal('calendar_day'),
-        ])->first();
-        if ($event) {
+        /** @var EntityEvent $reminder */
+        $reminder = $this->calendarReminder();
+        if ($reminder) {
             // We no longer have a calendar attached to this model
-            if (empty($this->calendar_id)) {
-                $event->delete();
-                unset($event);
+            if (empty($calendarID)) {
+                $reminder->delete();
+                return;
             }
-        } elseif ($this->hasCalendar()) {
-            $event = new EntityEvent();
-            $event->entity_id = $entity->id;
+        } else {
+            $reminder = new EntityEvent();
+            $reminder->entity_id = $entity->id;
         }
 
-        if (isset($event) && $event) {
-            $event->calendar_id = $this->calendar_id;
-            $event->year = $this->calendar_year;
-            $event->month = $this->calendar_month;
-            $event->day = $this->calendar_day;
-            $event->length = request()->post('length', 1);
-            $event->is_recurring = request()->post('is_recurring', false);
-            $event->recurring_periodicity = request()->post('recurring_periodicity', null);
-            $event->colour = request()->post('calendar_colour', null);
-            try {
-                $event->save();
-            } catch(\Exception $e) {
-                // Something went wrong, silence the issue
-            }
+        // Validate the calendar
+        $calendar = Calendar::find($calendarID);
+        if (empty($calendar) || $calendar->missingDetails()) {
+            return;
         }
+
+        $reminder->calendar_id = request()->get('calendar_id');
+        $reminder->year = request()->post('calendar_year', 1);
+        $reminder->month = request()->post('calendar_month', 1);
+        $reminder->day = request()->post('calendar_day', 1);
+        $reminder->length = request()->post('calendar_length', 1);
+        $reminder->is_recurring = request()->post('calendar_is_recurring', false);
+        $reminder->recurring_periodicity = request()->post('calendar_recurring_periodicity');
+        $reminder->colour = request()->post('calendar_colour', '#cccccc');
+        $reminder->type_id = EntityEventType::CALENDAR_DATE;
+        try {
+            $reminder->save();
+        } catch (\Exception $e) {
+            // Something went wrong, silence the issue
+            throw $e;
+        }
+    }
+
+    /**
+     * Refactor July 2022
+     * Get the reminder associated to the entity's "calendar date"
+     */
+    public function calendarReminder(): null|EntityEvent
+    {
+        if ($this->calendarDateEvent !== false) {
+            return $this->calendarDateEvent;
+        }
+        if (!$this->entity) {
+            return null;
+        }
+        return $this->calendarDateEvent = $this->entity->calendarDateEvents->first();
     }
 }

@@ -422,10 +422,10 @@ function loadCalendarDates(calendarID) {
             entityCalendarDayField.val(data.current.day);
             entityCalendarYearField.val(data.current.year);
 
-            $('select[name="recurring_periodicity"] option').remove();
+            $('select[name="calendar_recurring_periodicity"] option').remove();
             $.each(data.recurring, function (key, value) {
                 //console.log('moon', key, value);
-                $('select[name="recurring_periodicity"]').append('<option value="' + key + '">' + value + '</option>');
+                $('select[name="calendar_recurring_periodicity"]').append('<option value="' + key + '">' + value + '</option>');
             });
 
             $('input[name="length"]').val(1);

@@ -24,7 +24,7 @@ use Illuminate\Support\Str;
  * @property integer $year
  * @property boolean $is_recurring
  * @property integer $recurring_until
- * @property integer $recurring_periodicity
+ * @property string $recurring_periodicity
  * @property integer $type_id
  * @property integer $elapsed
  * @property boolean $is_private
@@ -34,9 +34,7 @@ use Illuminate\Support\Str;
  */
 class EntityEvent extends MiscModel
 {
-    /**
-     * Traits
-     */
+    /** Traits */
     use OrderableTrait, SortableTrait, VisibilityIDTrait, Blameable;
 
     /**
@@ -46,36 +44,13 @@ class EntityEvent extends MiscModel
     protected $orderTrigger = 'events/';
     protected $orderDefaultDir = 'desc';
 
-    /**
-     * @var string
-     */
+    /** @var string */
     public $table = 'entity_events';
 
-    /**
-     * Key used for the scopeAcl trait
-     * @var string
-     */
-    public $aclFieldName = 'entity_events.entity_id';
-
-    /**
-     * @var bool tell the AclTrait that this entity has no is_private field
-     */
-    public $aclIsPrivate = false;
-
-    /**
-     * If the ACL engine should use the "real" entity id (entities.id) or the
-     * @var bool
-     */
-    public $aclUseEntityID = true;
-
-    /**
-     * @var string Cached readable date
-     */
+    /** @var string Cached readable date */
     protected $readableDate;
 
-    /**
-     * @var array
-     */
+    /** @var array */
     protected $fillable = [
         'calendar_id',
         'entity_id',
@@ -193,7 +168,20 @@ class EntityEvent extends MiscModel
             ->orderBy('day', $order);
     }
 
+    public function scopeEntity(Builder $query, int $entity_id)
+    {
+        return $query->where('entity_id', $entity_id);
+    }
 
+    public function scopeCalendar(Builder $query, int $calendar_id)
+    {
+        return $query->where('calendar_id', $calendar_id);
+    }
+
+    public function scopeCalendarDate(Builder $query)
+    {
+        return $query->where('type_id', EntityEventType::CALENDAR_DATE);
+    }
 
     /**
      * @return string
@@ -348,8 +336,9 @@ class EntityEvent extends MiscModel
 
     /**
      * Calculate the elapsed time since the event happened
+     * @return int years
      */
-    public function calcElasped(EntityEvent $event = null)
+    public function calcElapsed(EntityEvent $event = null): int
     {
         if (!empty($event)) {
             $year = $event->year;
@@ -363,7 +352,7 @@ class EntityEvent extends MiscModel
 
         $years = $year - $this->year;
         if ($month < $this->month) {
-            return $years-1;
+            return $years - 1;
         }
         if ($month > $this->month) {
             return $years;
@@ -400,7 +389,7 @@ class EntityEvent extends MiscModel
      * @param int $daysInYear
      * @return int
      */
-    public function mostRecentOccurence(int $year, int $month, int $day, array $months, int $daysInYear): int
+    public function mostRecentOccurrence(int $year, int $month, int $day, array $months, int $daysInYear): int
     {
         //dump($this->entity->name);
         $reminderYear = $this->year;
@@ -488,7 +477,7 @@ class EntityEvent extends MiscModel
      * @param int $daysInYear
      * @return int
      */
-    public function nextUpcommingOccurence(int $calendarYear, int $calendarMonth, int $day, array $months, int $daysInYear): int
+    public function nextUpcomingOccurrence(int $calendarYear, int $calendarMonth, int $day, array $months, int $daysInYear): int
     {
         if ($this->cachedNext !== false) {
             return $this->cachedNext;
@@ -600,14 +589,14 @@ class EntityEvent extends MiscModel
             /*for ($m = 1; $m < $calendarMonth; $m++) {
                 //dump('beginning of the year');
                 // Month status
-                $monthData = $months[$m-1];
+                $monthData = $months[$m - 1];
                 $days += $monthData['length'];
             }*/
             // If the month is in the future, add for the rest of the year
             dump($reminderMonth . ' vs ' . $totalMonths);
             for ($m = $reminderMonth; $m <= $calendarMonth; $m++) {
                 //dump('end of previous year');
-                $monthData = $months[$m-1];
+                $monthData = $months[$m - 1];
                 $days += $monthData['length'];
                 dump('days increase by ' . $monthData['length']);
             }
@@ -620,6 +609,7 @@ class EntityEvent extends MiscModel
     }
 
     /**
+     * Determine if a reminder is recurring every year
      * @return bool
      */
     public function recurringYearly(): bool
@@ -628,6 +618,7 @@ class EntityEvent extends MiscModel
     }
 
     /**
+     * Determine if a reminder is recurring every month
      * @return bool
      */
     public function recurringMonthly(): bool
@@ -636,7 +627,7 @@ class EntityEvent extends MiscModel
     }
 
     /**
-     * How many days ago the last occurance was
+     * How many days ago the last occurrence was
      * @return int
      */
     public function daysAgo(): int
@@ -651,5 +642,32 @@ class EntityEvent extends MiscModel
     public function inDays(): int
     {
         return $this->cachedNext;
+    }
+
+    /**
+     * Determine if an event is of the character birth type
+     * @return bool
+     */
+    public function isBirth(): bool
+    {
+        return $this->type_id === EntityEventType::BIRTH;
+    }
+
+    /**
+     * Determine if an event is of the character death type
+     * @return bool
+     */
+    public function isDeath(): bool
+    {
+        return $this->type_id === EntityEventType::DEATH;
+    }
+
+    /**
+     * Determine if an event is of the calendar date type
+     * @return bool
+     */
+    public function isCalendarDate(): bool
+    {
+        return $this->type_id === EntityEventType::CALENDAR_DATE;
     }
 }

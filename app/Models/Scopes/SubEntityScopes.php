@@ -33,6 +33,13 @@ trait SubEntityScopes
     }
 
     /**
+     * Build the list of fields selected in the database for the datagrids.
+     * We do it this way to avoid loading `entry` and other fields that end up being
+     * useless for the datagrid, since we aren't displaying those fields. By not loading
+     * entry, we allow the db to send PHP a lot less data.
+     *
+     * This function builds a default list of fields available on all models, and each model
+     * can add extra fields in the datagridSelectFields() method declared on the models.
      * @param Builder $query
      * @return Builder
      */

@@ -685,7 +685,7 @@ class Calendar extends MiscModel
         return $reminders->sortBy(function ($reminder) {
             // For some reason, when using with(calendar), it loads the wrong ids?
             $reminder->calendar = $this;
-            return $reminder->nextUpcommingOccurence(
+            return $reminder->nextUpcomingOccurrence(
                 $this->currentYear(),
                 $this->currentMonth(),
                 $this->currentDay(),
@@ -755,7 +755,7 @@ class Calendar extends MiscModel
         return $reminders->sortBy(function ($reminder) {
             // For some reason, when using with(calendar), it loads the wrong ids?
             $reminder->calendar = $this;
-            return $reminder->mostRecentOccurence(
+            return $reminder->mostRecentOccurrence(
                 $this->currentYear(),
                 $this->currentMonth(),
                 $this->currentDay(),
