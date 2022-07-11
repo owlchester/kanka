@@ -1,3 +1,5 @@
+@inject('campaignService', 'App\Services\CampaignService')
+
 <div class="modal-body text-center">
     @include('partials.modals.close')
 
@@ -97,6 +99,13 @@
             <a href="#" class="rounded-lg quick-creator-selection" data-toggle="entity-creator" data-url="{{ route('entity-creator.form', ['type' => 'tags']) }}" data-entity-type="tag">
                 <i class="fa-solid fa-tags fa-2x"></i>
                 {{ __('entities.tag') }}
+            </a>
+        @endcan
+
+        @can('recover', $campaignService->campaign())
+            <a href="#" class="rounded-lg quick-creator-selection" data-toggle="entity-creator" data-url="{{ route('entity-creator.form', ['type' => 'posts']) }}" data-entity-type="post">
+                <i class="fa-solid fa-pen fa-2x"></i>
+                {{ __('entities.post') }}
             </a>
         @endcan
     </div>
