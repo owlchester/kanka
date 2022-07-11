@@ -532,23 +532,27 @@ class EntityEvent extends MiscModel
         // We loop on every extra year, ex 2000 to 2004
         for ($y = $calendarYear; $y < $reminderYear; $y++) {
             $days += $daysInYear;
+            //dump("Add a year");
         }
 
         // If the reminder happens "before" the same month / same date, we need to reduce the days by one year
         // current: 2004-05-01 and reminder is 2005-03-15
-        if ($days > 0 && ($reminderMonth < $calendarMonth || ($reminderMonth === $calendarMonth && $reminderDay < $day))) {
+        if ($days > 0 && ($reminderMonth < $calendarMonth)) {
             $days -= $daysInYear;
+            //dump("Remove a year");
         }
 
         // Now we need to loop on the remaining months.
         $monthStart = $calendarMonth; // ex August
         $monthEnd = $reminderMonth; // ex September
+        //dump("Comparing $reminderMonth < $calendarMonth");
         if ($reminderMonth < $calendarMonth) {
             // The reminder's month is before the current calendar month, so we jumped a year.
             // ex reminder is in April and calendar is currently in August
             $monthStart = 1;
             $totalMonths = count($months);
             // We still need to add days to the end of the current year before switching to the next one
+            //dump("Backfilling $calendarMonth to $totalMonths");
             for ($m = $calendarMonth; $m <= $totalMonths; $m++) {
                 $monthData = $months[$m - 1];
                 $days += $monthData['length'];
