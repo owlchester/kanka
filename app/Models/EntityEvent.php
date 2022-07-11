@@ -547,6 +547,12 @@ class EntityEvent extends MiscModel
             // The reminder's month is before the current calendar month, so we jumped a year.
             // ex reminder is in April and calendar is currently in August
             $monthStart = 1;
+            $totalMonths = count($months);
+            // We still need to add days to the end of the current year before switching to the next one
+            for ($m = $calendarMonth; $m <= $totalMonths; $m++) {
+                $monthData = $months[$m - 1];
+                $days += $monthData['length'];
+            }
             //$monthEnd = $reminderMonth;
         }
         //dump("Month start $monthStart and $monthEnd");
@@ -579,7 +585,7 @@ class EntityEvent extends MiscModel
         if ($calendarMonth != $reminderMonth) {
             //dump('month diff ' . $month . ' (current) vs ' . $reminderMonth . '(reminder)');
             //dump('amount of months ' . count($months));
-            $totalMounts = count($months);
+            $totalMonths = count($months);
 
             // If the reminder was last year, cancel out one year
             //if (!empty($this->is_recurring) && $reminderMonth > $month) {
@@ -594,7 +600,7 @@ class EntityEvent extends MiscModel
                 $days += $monthData['length'];
             }*/
             // If the month is in the future, add for the rest of the year
-            dump($reminderMonth . ' vs ' . $totalMounts);
+            dump($reminderMonth . ' vs ' . $totalMonths);
             for ($m = $reminderMonth; $m <= $calendarMonth; $m++) {
                 //dump('end of previous year');
                 $monthData = $months[$m-1];
