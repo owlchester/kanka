@@ -299,7 +299,7 @@ class CampaignDashboardWidget extends Model
                 ->make($entityType, $this->filterOptions(), $model);
 
             $models = $model
-                ->select('id')
+                ->select($model->getTable() . '.id')
                 ->filter($filterService->filters())
                 ->get();
 
@@ -343,7 +343,7 @@ class CampaignDashboardWidget extends Model
                 ->make($entityType, $this->filterOptions(), $model);
 
             $models = $model
-                ->select('id')
+                ->select($model->getTable() . '.id')
                 ->filter($filterService->filters())
                 ->get();
 

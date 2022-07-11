@@ -846,6 +846,8 @@ class AttributeService
             return Attribute::TYPE_NUMBER_ID;
         } elseif ($type === Attribute::TYPE_LIST) {
             return Attribute::TYPE_LIST_ID;
+        } elseif ($type === 'block') {
+            return Attribute::TYPE_TEXT_ID;
         }
         dd('missing mapping for ' . $type);
     }
