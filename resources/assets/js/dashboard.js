@@ -9,21 +9,24 @@ var btnAddWidget;
 var modalContentButtons, modalContentTarget, modalContentSpinner;
 
 var widgetVisible = new IntersectionObserver(function(entries) {
-    // isIntersecting is true when element and viewport are overlapping
-    // isIntersecting is false when element and viewport don't overlap
-    if(entries[0].isIntersecting === true) {
-        //console.log('Element has just become visible in screen', entries[0]);
-        renderWidget(entries[0].target);
-    }
+    entries.forEach(entry => {
+        if(entry.isIntersecting) {
+            renderWidget(entries[0].target);
+        }
+    });
 }, { threshold: [0] });
 
 $(document).ready(function() {
 
     if ($('.widget-render').length > 0) {
-        widgetVisible.observe(document.querySelector('.widget-render'));
+        document.querySelectorAll('.widget-render').forEach((i) => {
+            if (i) {
+                widgetVisible.observe(i);
+            }
+        });
     }
 
-    $('.preview-switch').click(function(e) {
+    $('.preview-switch').click(function (e) {
         e.preventDefault();
 
         var preview = $('#widget-preview-body-' + $(this).data('widget'));
