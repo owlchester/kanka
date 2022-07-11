@@ -20,6 +20,8 @@
                 </div>
 
                 @include('front._pricing')
+
+                <p class="mt-5 mb-1">{{ __('front/pricing.cards.description') }}
             </div>
         </div>
     </section>
