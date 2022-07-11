@@ -493,7 +493,7 @@ class EntityRelationService
 
         if ($this->loadRelated()) {
             $this->addOrganisationMembers($this->entity, true);
-            $this->addOrganisation()
+            $this
                 ->addParent()
                 ->addOrganisations()
                 ->addLocation()
