@@ -56,6 +56,9 @@ return [
         'marker'        => 'Marcador',
         'question'      => 'Questão',
     ],
+    'pitches'       => [
+        'poly'  => 'Desenhe formas poligonais personalizadas para representar bordas e outras formas irregulares.',
+    ],
     'placeholders'  => [
         'custom_icon'   => 'Tente :example1 ou :example2',
         'custom_shape'  => '100,100 200,240 340,110',

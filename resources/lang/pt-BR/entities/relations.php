@@ -6,12 +6,14 @@ return [
         'mode-table'    => 'Tabela de relações e conexões',
     ],
     'bulk'              => [
-        'delete'    => '{1} :count relação deletada. |[2,*] :count relações deletadas.',
-        'success'   => [
+        'delete'            => '{1} :count relação deletada. |[2,*] :count relações deletadas.',
+        'delete_mirrored'   => 'Também deleta relações espelhadas.',
+        'success'           => [
             'editing'           => '{1} :count relação foi atualizada. |[2,*] :count relações foram atualizadas.',
             'editing_partial'   => '{1} :count/:total relação foi atualizada. |[2,*] :count/:total relações foram atualizadas.',
         ],
     ],
+    'call-to-action'    => 'Explore visualmente as relações dessa entidade e como ela está conectada ao restante da campanha.',
     'connections'       => [
         'map_point'         => 'Ponto do mapa',
         'mention'           => 'Menção',
