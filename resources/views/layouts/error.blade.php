@@ -134,7 +134,7 @@
 <script>
     WebFont.load({
         google: {
-            families: ['Lato', 'Catamaran:100,200,300,400,500,600,700,800,900', 'Muli']
+            families: ['Lato', 'Catamaran:100,200,300,400,500,600,700,800,900']
         }
     });
     var loadDeferredStyles = function() {
