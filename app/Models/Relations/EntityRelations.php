@@ -465,7 +465,8 @@ trait EntityRelations
      */
     public function links()
     {
-        return $this->hasMany('App\Models\EntityLink', 'entity_id', 'id');
+        return $this->assets
+            ->where('type_id', EntityAsset::TYPE_LINK);
     }
 
     /**
