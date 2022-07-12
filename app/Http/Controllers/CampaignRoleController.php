@@ -54,6 +54,12 @@ class CampaignRoleController extends Controller
     {
         $this->authorize('create', CampaignRole::class);
         $campaign = CampaignLocalization::getCampaign();
+        if (!$campaign->canHaveMoreRoles()) {
+            return view('cruds.forms.limit')
+                ->with('key', 'roles')
+                ->with('skipImage', true)
+                ->with('name', 'campaign_roles');
+        }
         $ajax = request()->ajax();
 
         return view($this->view . '.create', ['model' => $campaign, 'ajax' => $ajax]);
@@ -67,6 +73,13 @@ class CampaignRoleController extends Controller
      */
     public function store(StoreCampaignRole $request)
     {
+        $campaign = CampaignLocalization::getCampaign();
+        if (!$campaign->canHaveMoreRoles()) {
+            return view('cruds.forms.limit')
+                ->with('key', 'roles')
+                ->with('skipImage', true)
+                ->with('name', 'campaign_roles');
+        }
         $this->authorize('create', CampaignRole::class);
         $role = CampaignRole::create($request->all());
         return redirect()->route('campaign_roles.index')
