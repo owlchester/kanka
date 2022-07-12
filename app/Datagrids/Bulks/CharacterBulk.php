@@ -14,9 +14,9 @@ class CharacterBulk extends Bulk
         'sex',
         'dead_choice',
         'age',
+        'organisations',
         'tags',
         'private_choice',
-        'organisations',
     ];
 
     protected $mappings = [
