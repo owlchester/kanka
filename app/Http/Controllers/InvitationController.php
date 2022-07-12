@@ -6,6 +6,7 @@ use App\Exceptions\RequireLoginException;
 use App\Models\CampaignInvite;
 use App\Services\CampaignService;
 use App\Services\InviteService;
+use App\Facades\CampaignLocalization;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
@@ -53,9 +54,16 @@ class InvitationController extends Controller
         } catch (\Exception $e) {
             if (auth()->guest()) {
                 return redirect()->route('login')->withErrors($e->getMessage());
-            } else {
-                return redirect()->route('home')->withErrors($e->getMessage());
             }
+            // Let's redirect the user to their first campaign, to handle the error message, or on start otherwise
+            $campaign = auth()->user()->campaigns->first();
+            if (!$campaign) {
+                return redirect()->route('start')->withError($e->getMessage());
+            }
+            CampaignLocalization::setCampaign($campaign->id);
+            return redirect()
+                ->to(CampaignLocalization::getUrl($campaign->id))
+                ->withError($e->getMessage());
         }
     }
 }
