@@ -13,8 +13,7 @@ class TagBulk extends Bulk
         'auto_applied_choice',
     ];
 
-
-    protected $mappings = [
+    protected array $booleans = [
         'is_auto_applied'
     ];
 }

@@ -19,15 +19,15 @@ class CharacterBulk extends Bulk
         'private_choice',
     ];
 
-    protected $mappings = [
+    protected array $booleans = [
         'is_dead'
     ];
 
-    protected $maths = [
+    protected array $maths = [
         'age'
     ];
 
-    protected $belongsTo = [
+    protected array $foreignRelations = [
         'races',
         'families',
         'organisations'

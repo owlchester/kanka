@@ -25,26 +25,26 @@ abstract class Bulk
     }
 
     /**
-     * The mapping, used for is_ fields to be able to unset a value. For example a character's is_dead status
+     * The mapping, used for is_/has_ fields to be able to unset a value. For example a character's is_dead status
      * @return array
      */
-    public function mappings(): array
+    public function booleans(): array
     {
-        if (isset($this->mappings)) {
-            return $this->mappings;
+        if (isset($this->booleans)) {
+            return $this->booleans;
         }
 
         return [];
     }
 
     /**
-     * The list of fields that are foreign fields, to be able to properly unset them if needed
+     * The list of fields that are foreign fields, to be able to properly unset(detach) them if needed
      * @return array
      */
-    public function belongsTo(): array
+    public function foreignRelations(): array
     {
-        if (isset($this->belongsTo)) {
-            return $this->belongsTo;
+        if (isset($this->foreignRelations)) {
+            return $this->foreignRelations;
         }
 
         return [];

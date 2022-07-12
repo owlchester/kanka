@@ -14,7 +14,7 @@ class OrganisationBulk extends Bulk
         'defunct_choice'
     ];
 
-    protected array $mappings = [
+    protected array $booleans = [
         'is_defunct'
     ];
 }
