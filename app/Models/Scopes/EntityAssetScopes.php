@@ -7,11 +7,11 @@ use Illuminate\Database\Eloquent\Builder;
 
 /**
  *
- * @method self|Builder type(int $type)
- * @method self|Builder filtered(bool $typeboosted)
- * @method self|Builder alias()
- * @method self|Builder file()
- * @method self|Builder link()
+ * @method static self|Builder type(int $type)
+ * @method static self|Builder filtered(bool $typeboosted)
+ * @method static self|Builder alias()
+ * @method static self|Builder file()
+ * @method static self|Builder link()
  */
 trait EntityAssetScopes
 {
