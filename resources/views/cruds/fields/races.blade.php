@@ -34,11 +34,8 @@ if (isset($from)) {
 @endphp
 <input type="hidden" name="save_races" value="1">
 <div class="form-group">
-    {!! Form::races(
-        'id',
-        [
-            'model' => isset($model) ? $model : FormCopy::model(),
-            'source' => $source
-        ]
-    ) !!}
+    @include('components.form.races', ['options' => [
+        'model' => $model ?? FormCopy::model(),
+        'source' => $source ?? null
+    ]])
 </div>

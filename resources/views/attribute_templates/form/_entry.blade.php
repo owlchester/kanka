@@ -14,11 +14,9 @@
             <p class="help-block">{{ __('attribute_templates.hints.parent_attribute_template') }}</p>
         </div>
         <div class="form-group">
-            {!! Form::entityType(
-                'entity_type_id',
-                [
-                    'model' => (isset($model) && $model->entityType ? $model->entityType : FormCopy::field('entityType')->related()),
-            ]) !!}
+            @include('components.form.entity_types', ['options' => [
+                'model' => (isset($model) && $model->entityType ? $model->entityType : FormCopy::field('entityType')->related())
+            ]])
             <p class="help-block">{{ __('attribute_templates.hints.entity_type') }}</p>
         </div>
 
