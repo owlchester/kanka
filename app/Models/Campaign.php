@@ -405,12 +405,12 @@ class Campaign extends MiscModel
     public function maxEntityFiles(): int
     {
         if ($this->superboosted()) {
-            return config('entities.max_entity_files_superboosted');
+            return config('limits.campaigns.files.superboosted');
         }
         if ($this->boosted()) {
-            return config('entities.max_entity_files_boosted');
+            return config('limits.campaigns.files.boosted');
         }
-        return config('entities.max_entity_files');
+        return config('limits.campaigns.files.standard');
     }
 
     /**

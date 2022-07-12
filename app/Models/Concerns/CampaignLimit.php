@@ -13,7 +13,7 @@ trait CampaignLimit
      */
     public function isGrandfathered(): bool
     {
-        $grandfathered = config('kanka.campaigns.grandfathered');
+        $grandfathered = config('limits.campaigns.grandfathered');
         return $this->id <= $grandfathered;
     }
 
@@ -26,7 +26,7 @@ trait CampaignLimit
         if ($this->isGrandfathered() || $this->boosted()) {
             return null;
         }
-        return config('kanka.campaigns.member_limit');
+        return config('limits.campaigns.members');
     }
 
     /**
@@ -38,7 +38,7 @@ trait CampaignLimit
         if ($this->isGrandfathered() || $this->boosted()) {
             return null;
         }
-        return config('kanka.campaigns.role_limit');
+        return config('limits.campaigns.roles');
     }
 
     /**
@@ -50,7 +50,7 @@ trait CampaignLimit
         if ($this->isGrandfathered() || $this->boosted()) {
             return null;
         }
-        return config('kanka.campaigns.quick_link_limit');
+        return config('limits.campaigns.quick-links');
     }
 
     /**
@@ -62,7 +62,7 @@ trait CampaignLimit
         if ($this->isGrandfathered() || $this->boosted()) {
             return null;
         }
-        return config('kanka.campaigns.entity_limit');
+        return config('limits.campaigns.entities');
     }
 
     /**

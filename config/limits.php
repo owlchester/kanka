@@ -11,9 +11,18 @@ return [
         /**
          * Limits in place for non-grandfathered unboosted campaigns
          */
-        'member_limit' => 10,
-        'role_limit' => 3,
-        'quick_link_limit' => 3,
-        'entity_limit' => 250,
+        'members' => 10,
+        'roles' => 3,
+        'quick-links' => 3,
+        'entities' => 250,
+
+        /**
+         * Entities have a limited number of files (a type of entity_asset) available on each entity
+         */
+        'files' => [
+            'standard' => 3,
+            'boosted' => 5,
+            'superboosted' => 10
+        ]
     ]
 ];
