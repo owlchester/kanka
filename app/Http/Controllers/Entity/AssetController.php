@@ -152,7 +152,7 @@ class AssetController extends Controller
             $entityAsset->update($data);
             $type = 'aliases';
         } elseif ($entityAsset->isLink()) {
-            $data = $request->only(['name', 'metadata[url]', 'metadata[icon]', 'visibility_id']);
+            $data = $request->only(['name', 'metadata.url', 'metadata.icon', 'visibility_id']);
             $entityAsset->update($data);
             $type = 'links';
         } elseif ($entityAsset->isFile()) {
