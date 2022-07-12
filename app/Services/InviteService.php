@@ -66,6 +66,10 @@ class InviteService
             throw new Exception(__('campaigns.invites.error.inactive_token'));
         }
 
+        if (!$invite->campaign->canHaveMoreMembers()) {
+            throw new Exception(__('campaigns/limits.members'));
+        }
+
         if (auth()->guest()) {
             Session::put('invite_token', $invite->token);
             throw new RequireLoginException(__('campaigns.invites.error.login'));
