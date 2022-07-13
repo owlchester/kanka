@@ -1,5 +1,5 @@
 @inject('attributeService', 'App\Services\AttributeService')
-
+@inject('campaignService', 'App\Services\CampaignService')
 
 <div class="entity-grid">
 
@@ -19,6 +19,7 @@
         @includeWhen($model->entity->entityAttributes->count() > 0, 'entities.pages.attributes._story', ['entity' => $model->entity])
 
         @include('cruds.partials.mentions')
+        @includeWhen($model->abilities()->has('ability')->count() > 0, 'abilities.panels.abilities')
         @include('entities.pages.logs.history')
     </div>
 
