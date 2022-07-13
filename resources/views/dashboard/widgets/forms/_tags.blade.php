@@ -5,7 +5,7 @@
                 'model' => isset($model) ? $model : null,
                 'enableNew' => false,
                 'helper' => __('dashboard.widgets.recent.tags'),
-                'enableAutoTags' => null,
+                'enableAutoTags' => false,
             ]
         ) !!}
     <p class="help-block visible-xs visible-sm">
