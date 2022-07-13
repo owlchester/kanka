@@ -58,7 +58,8 @@
                                 'tag_id',
                                 [
                                     'model' => isset($model) ? $model : null,
-                                    'enableNew' => false
+                                    'enableNew' => false,
+                                    'enableAutoTags' => null,
                                 ]
                             ) !!}
                         <input type="hidden" name="save_tags" value="1" />
