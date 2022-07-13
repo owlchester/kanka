@@ -28,10 +28,32 @@
                     @include('partials.footer_cancel')
 
                     <div class="pull-right">
-                        <button class="btn btn-success">
-                            <i class="fa-solid fa-save" aria-hidden="true"></i>
-                            {{ __('crud.create') }}
-                        </button>
+                        <input id="submit-mode" type="hidden" value="true"/>
+                        <div class="btn-group">
+                            <button class="btn btn-success" id="form-submit-main">
+                                {{ __('crud.save') }}
+                            </button>
+                            <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" role="menu">
+                                <li>
+                                    <a href="#" class="dropdown-item form-submit-actions">
+                                        {{ __('crud.save') }}
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="dropdown-item form-submit-actions" data-action="submit-update">
+                                        {{ __('crud.save_and_update') }}
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="dropdown-item form-submit-actions" data-action="submit-new">
+                                        {{ __('crud.save_and_new') }}
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
