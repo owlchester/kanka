@@ -122,16 +122,11 @@
                     </a>
                 </li>
                 @if(config('auth.register_enabled'))
-                    <li class="ab-testing-a">
-                        <a href="{{ route('register') }}" class="btn btn-primary btn-lg ab-testing-a">
-                            {{ __('front.menu.register') }}
-                        </a>
-                    </li>
-                    <li class="ab-testing-b">
-                        <a href="{{ route('register') }}" class="btn btn-primary btn-lg ab-testing-b">
-                            {{ __('front.menu.register_free') }}
-                        </a>
-                    </li>
+                <li class="">
+                    <a href="{{ route('register') }}" class="btn btn-primary">
+                        {{ __('front.menu.register_free') }}
+                    </a>
+                </li>
                 @endif
             @endauth
         </ul>
@@ -235,10 +230,7 @@
                         {{ __('front.menu.login') }}
                     </a>
                     @if(config('auth.register_enabled'))
-                    <a href="{{ route('register') }}" class="btn btn-primary text-white ab-testing-a">
-                        {{ __('front.menu.register') }}
-                    </a>
-                    <a href="{{ route('register') }}" class="btn btn-primary text-white ab-testing-b">
+                    <a href="{{ route('register') }}" class="btn btn-primary text-white">
                         {{ __('front.menu.register_free') }}
                     </a>
                     @endif
@@ -260,12 +252,7 @@
                     </a>
                 </li>
                 @if(config('auth.register_enabled'))
-                    <li class="ab-testing-a">
-                        <a href="{{ route('register') }}" class="btn btn-primary text-white">
-                            {{ __('front.menu.register') }}
-                        </a>
-                    </li>
-                    <li class="ab-testing-b">
+                    <li class="">
                         <a href="{{ route('register') }}" class="btn btn-primary text-white">
                             {{ __('front.menu.register_free') }}
                         </a>
