@@ -17,13 +17,14 @@ $boost = isset($boost) ? $boost : $campaign->boosts->first();?>
         </a>
 
         <p class="my-1">
-            <i class="fa-solid fa-rocket" aria-hidden="true"></i>
             @if ($campaign->superboosted())
+                <i class="fa-solid fa-rocket" aria-hidden="true"></i>
                 {!! __('settings/boosters.campaign.superboosted', [
     'user' => link_to_route('users.profile', $boost->user->displayName(), $boost->user_id, ['target' => '_blank']),
     'time' => $boost->created_at->format('M Y')
     ]) !!}
             @elseif ($campaign->boosted())
+                <i class="fa-solid fa-rocket" aria-hidden="true"></i>
                 {!! __('settings/boosters.campaign.boosted', [
         'user' => link_to_route('users.profile', $boost->user->displayName(), $boost->user_id, ['target' => '_blank']),
     'time' => $boost->created_at->format('M Y')
