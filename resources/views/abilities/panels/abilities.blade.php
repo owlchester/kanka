@@ -1,4 +1,5 @@
 <?php
+// Only get the data by AJAX if this is included with a 'onload' param
 $datagridOptions = [];
     if (!empty($onload)) {
     $routeOptions = [
