@@ -303,11 +303,15 @@ trait HasFilters
             // If it isn't the first term, we need to re-extract the search operators
             if (!$firstTerm) {
                 $this->extractSearchOperator($searchTerm, $key);
+            } else {
+                // However, if it's the first, since we use $this->>filterValue for the actual query, we need to replace
+                // it with the search term. Other wise searching for !Game;!DND won't work.
+                $this->filterValue = $searchTerm;
             }
             $query->where(
                 $this->getTable() . '.' . $key,
                 $this->filterOperator,
-                ($this->filterOperator == '=' ? $this->filterValue : "%$searchTerm%")
+                ($this->filterOperator == '=' ? $this->filterValue : "%{$this->filterValue}%")
             );
             $firstTerm = false;
         }
