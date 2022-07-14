@@ -62,7 +62,7 @@
                                 </dt>
                                 <dd>
                                     {{ number_format(\App\Facades\CampaignCache::entityCount()) }}
-                                    <i class="fa-solid fa-question-circle" data-toggle="tooltip" title="{{ __('campaigns.helpers.entity_count') }}"></i>
+                                    <i class="fa-solid fa-question-circle" data-toggle="tooltip" title="{{ __('campaigns.helpers.entity_count_v2') }}"></i> / @if ($limit = $campaign->entityLimit()) {{ number_format($limit) }} @else <i class="fa-solid fa-infinity" aria-hidden="true" title="{{ __('campaigns.helpers.entity_count_infinity') }}" data-toggle="tooltip"></i>@endif
                                 </dd>
 
                                 @if ($campaign->isPublic())
