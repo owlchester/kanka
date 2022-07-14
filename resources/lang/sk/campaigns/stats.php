@@ -12,6 +12,7 @@ return [
         ],
     ],
     'helper'        => 'Zaznamenávaj svoj postup pri odomykaní rôznych úspechov pre tvoju kampaň. Tieto štatistiky sú aktualizované každých 24 hodín.',
+    'pitch'         => 'Zaznamenávaj postup tvorby tvojho sveta voči našim úspechom kampane.',
     'placeholder'   => ':amount z :target',
     'targets'       => [
         'calendars' => 'Vytvoriť :target kalendárov',

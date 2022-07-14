@@ -89,7 +89,7 @@ class CharacterObserver extends MiscObserver
 
         /** @var OrganisationMember $org */
         $existing = [];
-        foreach ($character->organisations()->has('organisation')->get() as $org) {
+        foreach ($character->organisationMemberships()->has('organisation')->get() as $org) {
             $existing[$org->id] = $org;
         }
 

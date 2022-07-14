@@ -45,7 +45,7 @@ class CharacterResource extends EntityResource
         ];
 
         if (request()->get('related', false)) {
-            $character['organisations'] = new CharacterOrganisationResource($model->organisations()->has('organisation')->get());
+            $character['organisations'] = new CharacterOrganisationResource($model->organisationMemberships()->has('organisation')->get());
         }
         return $this->entity($character);
     }

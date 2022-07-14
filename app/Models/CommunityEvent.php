@@ -118,7 +118,7 @@ class CommunityEvent extends Model
      */
     public function hasRankedResults(): bool
     {
-        return !$this->rankedResults->isEmpty();
+        return !$this->rankedResults->where('rank', 1)->isEmpty();
     }
 
     /**

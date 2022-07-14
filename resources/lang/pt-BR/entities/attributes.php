@@ -8,7 +8,8 @@ return [
         'remove_all'        => 'Deletar tudo',
     ],
     'errors'        => [
-        'loop'  => 'Existe um loop infinito no cálculo desse atributo!',
+        'loop'      => 'Existe um loop infinito no cálculo desse atributo!',
+        'too_many'  => 'Há muitos campos nesta entidade, não é possível adicionar mais atributos. Exclua alguns atributos primeiro antes de poder adicionar mais.',
     ],
     'fields'        => [
         'attribute'             => 'Atributo',
@@ -45,8 +46,9 @@ return [
             'class' => 'FontAwesome ou RPG Awesome class: fas fa-users',
             'name'  => 'Nome do Ícone',
         ],
+        'number'    => 'Nome do número',
         'random'    => [
-            'name'  => 'Nome do Atributo',
+            'name'  => 'Nome do atributo',
             'value' => '1-100 ou lista de valores separados por vírgula',
         ],
         'section'   => 'Nome da seleção',

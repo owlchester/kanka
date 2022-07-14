@@ -22,12 +22,10 @@ return [
         'title' => 'Voorwerp :name Inventories',
     ],
     'placeholders'  => [
-        'character' => 'Kies een personage',
-        'location'  => 'Kies een locatie',
-        'name'      => 'Naam van het voorwerp',
-        'price'     => 'Prijs van het voorwerp',
-        'size'      => 'Grootte, Gewicht, Afmeting',
-        'type'      => 'Wapen, Potion, Artefact',
+        'name'  => 'Naam van het voorwerp',
+        'price' => 'Prijs van het voorwerp',
+        'size'  => 'Grootte, Gewicht, Afmeting',
+        'type'  => 'Wapen, Potion, Artefact',
     ],
     'show'          => [
         'tabs'  => [

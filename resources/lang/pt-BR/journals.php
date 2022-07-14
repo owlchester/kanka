@@ -16,9 +16,8 @@ return [
         'type'      => 'Tipo',
     ],
     'helpers'       => [
-        'journals'      => 'Mostrar todos ou somente os jornais secundários deste Jornal',
-        'nested_parent' => 'Mostrando os jornais de :parent.',
-        'nested_without'=> 'Mostrando todos os jornais que não tem um jornal-pai. Clique em uma linha para ver os jornais-filhos.',
+        'journals'          => 'Mostrar todos ou somente os jornais secundários deste Jornal',
+        'nested_without'    => 'Mostrando todos os jornais que não tem um jornal-pai. Clique em uma linha para ver os jornais-filhos.',
     ],
     'index'         => [
         'title' => 'Jornais',

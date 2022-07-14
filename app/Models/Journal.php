@@ -111,10 +111,10 @@ class Journal extends MiscModel
         return $query->with([
             'entity',
             'entity.image',
+            'entity.calendarDateEvents',
             'author',
             'location', 'location.entity',
             'journal', 'journal.entity',
-            'calendar',
         ]);
     }
 
@@ -229,6 +229,9 @@ class Journal extends MiscModel
         }
 
         if (!empty($this->author) || !empty($this->location)) {
+            return true;
+        }
+        if (!empty($this->calendarReminder)) {
             return true;
         }
 

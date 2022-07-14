@@ -24,8 +24,7 @@ return [
         'type'      => 'Tipo',
     ],
     'helpers'       => [
-        'nested_parent' => 'Mostrando etiquetas de :parent.',
-        'nested_without'=> 'Mostrando todas las etiquetas sin ningún superior. Haz clic sobre una fila para mostrar sus descendientes.',
+        'nested_without'    => 'Mostrando todas las etiquetas sin ningún superior. Haz clic sobre una fila para mostrar sus descendientes.',
     ],
     'hints'         => [
         'children'  => 'Aquí se muestran todas las entidades que pertenecen directamente a esta etiqueta y a todas las etiquetas anidadas.',

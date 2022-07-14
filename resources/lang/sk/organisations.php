@@ -16,9 +16,8 @@ return [
         'type'          => 'Typ',
     ],
     'helpers'       => [
-        'descendants'   => 'Tento zoznam obsahuje všetky organizácie, ktoré sú podradené tejto a všetkým podradeným organizáciám.',
-        'nested_parent' => 'Zobraziť organizácie :parent.',
-        'nested_without'=> 'Zobraziť všetky organizácie, ktoré nemajú nadradenú organizáciu. Kliknutím na riadok zobrazíš podradené organizácie.',
+        'descendants'       => 'Tento zoznam obsahuje všetky organizácie, ktoré sú podradené tejto a všetkým podradeným organizáciám.',
+        'nested_without'    => 'Zobraziť všetky organizácie, ktoré nemajú nadradenú organizáciu. Kliknutím na riadok zobrazíš podradené organizácie.',
     ],
     'index'         => [
         'title' => 'Organizácie',

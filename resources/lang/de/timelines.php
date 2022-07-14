@@ -24,7 +24,6 @@ return [
         'type'          => 'Typ',
     ],
     'helpers'       => [
-        'nested_parent'     => 'Anzeigen der Zeitleisten von :parent.',
         'nested_without'    => 'Anzeigen aller Zeitleisten ohne übergeordnete Zeitleiste. Klicken Sie auf eine Zeile, um die untergeordneten Zeitleisten anzuzeigen.',
         'no_era'            => 'Diese Zeitachse hat derzeit keine Epochen. Epochen können im Bearbeitungsbildschirm der Zeitstrahlen hinzugefügt werden, danach können Sie hier Elemente hinzufügen.',
         'reorder'           => 'Ziehen Sie Elemente der Epoche per Drag & Drop, um sie neu zu ordnen.',

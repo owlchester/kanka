@@ -13,12 +13,12 @@ $distinctCalendars = [];
 $birth = null;
 $death = null;
 foreach ($elapsed as $event) {
-    if (empty($event->calendar)) {
+    if (empty($event->calendar) || $event->isCalendarDate()) {
         continue;
     }
-    if ($event->type_id == 2) {
+    if ($event->isBirth()) {
         $distinctCalendars[$event->calendar_id]['birth'] = $event;
-    } elseif ($event->type_id == 3) {
+    } elseif ($event->isDeath()) {
         if (!isset($distinctCalendars[$event->calendar_id]['death'])) {
             $distinctCalendars[$event->calendar_id]['death'] = $event;
             continue;
@@ -57,7 +57,7 @@ foreach ($elapsed as $event) {
                     {{ $birth->readableDate() }}
                 </a> &#10013; <a href="{{ $death->calendar->getLink() }}?year={{ $death->year }}&month={{ $death->month }}" title="{{ $death->calendar->name }}" data-toggle="tooltip">
                     {{ $death->readableDate() }}
-                </a> ({{ $birth->calcElasped($death) }})
+                </a> ({{ $birth->calcElapsed($death) }})
             </span>
             <br class="clear" />
         </li>
@@ -68,7 +68,7 @@ foreach ($elapsed as $event) {
             <span class="pull-right">
                 <a href="{{ $birth->calendar->getLink() }}?year={{ $birth->year }}&month={{ $birth->month }}" title="{{ $birth->calendar->name }}" data-toggle="tooltip">
                 {{ $birth->readableDate() }}
-                </a> ({{ $birth->calcElasped() }})
+                </a> ({{ $birth->calcElapsed() }})
             </span>
             <br class="clear" />
         </li>
@@ -79,7 +79,7 @@ foreach ($elapsed as $event) {
             <span class="pull-right">
                 <a href="{{ $death->calendar->getLink() }}?year={{ $death->year }}&month={{ $death->month }}" title="{{ $death->calendar->name }}" data-toggle="tooltip">
                 {{ $death->readableDate() }}
-                </a> ({{ $death->calcElasped() }})
+                </a> ({{ $death->calcElapsed() }})
             </span>
             <br class="clear" />
         </li>

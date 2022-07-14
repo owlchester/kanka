@@ -36,9 +36,6 @@
     </thead>
     <tbody>
     @foreach ($reminders as $relation)
-        @if(!$relation->calendar->entity)
-            @continue
-        @endif
         <tr>
             <td>
                 <a class="entity-image" style="background-image: url('{{ $relation->calendar->getImageUrl(40) }}');" title="{{ $relation->calendar->name }}" href="{{ route('calendars.show', $relation->calendar->id) }}"></a>
@@ -57,9 +54,9 @@
                 @if ($relation->is_recurring)
                     <i class="fa-solid fa-redo" title="{{ __('calendars.fields.is_recurring') }}"></i>
                 @endif
-                @if ($relation->type_id == 2)
+                @if ($relation->isBirth())
                     <i class="fa-solid fa-birthday-cake" title="{{ __('entities/events.types.birth') }}"></i>
-                @elseif ($relation->type_id == 3)
+                @elseif ($relation->isDeath())
                     <i class="fa-solid fa-skull" title="{{ __('entities/events.types.death') }}"></i>
                 @endif
             </td>

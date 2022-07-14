@@ -19,9 +19,8 @@ return [
         'type'      => 'Rodzaj',
     ],
     'helpers'       => [
-        'descendants'   => 'Na liście znajdują się wszystkie rodziny wywodzące się od tej rodziny, nie tylko bezpośrednio.',
-        'nested_parent' => 'Wyświetlono rodziny pochodzące od :parent.',
-        'nested_without'=> 'Wyświetlono wszystkie rodziny nie posiadające źródła. Kliknij na rząd, by wyświetlić rodziny pochodne.',
+        'descendants'       => 'Na liście znajdują się wszystkie rodziny wywodzące się od tej rodziny, nie tylko bezpośrednio.',
+        'nested_without'    => 'Wyświetlono wszystkie rodziny nie posiadające źródła. Kliknij na rząd, by wyświetlić rodziny pochodne.',
     ],
     'hints'         => [
         'members'   => 'Lista członków rodziny. Aby dodać postać do rodziny, wybierz ją z listy w pozycji "Rodzina" podczas edycji tej postaci.',

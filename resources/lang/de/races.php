@@ -21,8 +21,7 @@ return [
         'type'          => 'Typ',
     ],
     'helpers'       => [
-        'nested_parent' => 'Anzeigen der Spezies von :parent.',
-        'nested_without'=> 'Anzeige aller Spezies, die keine übergeordnete Spezies haben. Klicken Sie auf eine Zeile, um die untergeordneten Spezies anzuzeigen.',
+        'nested_without'    => 'Anzeige aller Spezies, die keine übergeordnete Spezies haben. Klicken Sie auf eine Zeile, um die untergeordneten Spezies anzuzeigen.',
     ],
     'index'         => [
         'title' => 'Spezies',

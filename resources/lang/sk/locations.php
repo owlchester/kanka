@@ -31,7 +31,6 @@ return [
         'families'          => 'Miesta môžu byť sídlami mocných rodov.',
         'map'               => 'Pridaním mapy k danému miestu na nej môžeš umiestniť body a prepojiť ich s inými objektami kampane.',
         'map_deprecated_2'  => 'Mapy sú teraz samostatný modul! Staré mapy môžeš ešte stále upravovať, ale nové mapy sa zobrazia už v novom module Mapy.',
-        'nested_parent'     => 'Zobraziť miesta :parent.',
         'nested_without'    => 'Zobraziť všetky miesta, ktoré nemajú nadradené miesto. Kliknutím na riadok zobrazíš podradené miesta.',
         'organisations'     => 'Zobraz všetky organizácie na tomto mieste a jemu podradených miestach, alebo iba tie nachádzajúce sa priamo na tomto mieste.',
     ],

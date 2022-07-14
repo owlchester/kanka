@@ -16,6 +16,9 @@ class DatalayerService
     /** @var bool If the user is newly registered */
     protected $newSubcriber = false;
 
+    /** @var bool If the user is newly cancelled */
+    protected $newCancelledSubcriber = false;
+
     /**
      * @return string
      */
@@ -37,6 +40,10 @@ class DatalayerService
             $data['userTier'] = !empty(auth()->user()->patreon_pledge) ? auth()->user()->patreon_pledge : null;
             $data['userSubbed'] = !empty(auth()->user()->patreon_pledge) ? 'true' : 'false';
             $data['userID'] = auth()->user()->id;
+
+            if ($this->newCancelledSubcriber) {
+                $data['newCancelled'] = '1';
+            }
         }
         return json_encode($data);
     }
@@ -103,6 +110,16 @@ class DatalayerService
     public function newSubscriber(): self
     {
         $this->newSubcriber = true;
+        return $this;
+    }
+
+    /**
+     * Trigger the user as being newly cancelled
+     * @return $this
+     */
+    public function newCancelledSubscriber(): self
+    {
+        $this->newCancelledSubcriber = true;
         return $this;
     }
 

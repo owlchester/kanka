@@ -63,12 +63,14 @@ class EntityNoteObserver
      */
     public function creating(EntityNote $entityNote)
     {
-        // Make sure we're adding this note at the end of other notes
-        $last = $entityNote->entity->notes()
-            ->where('id', '!=', $entityNote->id)
-            ->orderBy('position', 'desc')
-            ->first();
-        $entityNote->position = $last ? ($last->position + 1) : 1;
+        if (!$entityNote->position == 1) {
+            // Make sure we're adding this note at the end of other notes
+            $last = $entityNote->entity->notes()
+                ->where('id', '!=', $entityNote->id)
+                ->orderBy('position', 'desc')
+                ->first();
+            $entityNote->position = $last ? ($last->position + 1) : 1;
+        }
     }
 
     /**

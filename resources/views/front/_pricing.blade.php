@@ -161,10 +161,7 @@
                     </li>
                 </ul>
 
-                <a href="{{ route('settings.subscription') }}" target="_blank" class="btn btn-block btn-primary text-uppercase ab-testing-a">
-                    {{ __('front.pricing.actions.subscribe') }}
-                </a>
-                <a href="{{ route('settings.subscription') }}" target="_blank" class="btn btn-block btn-success text-uppercase ab-testing-b">
+                <a href="{{ route('settings.subscription') }}" class="btn btn-block btn-primary text-uppercase">
                     {{ __('front.pricing.actions.subscribe') }}
                 </a>
             </div>

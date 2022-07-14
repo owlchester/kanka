@@ -2,11 +2,9 @@
     <p class="help-block">{{ __('campaigns.helpers.systems') }}</p>
 
     <div class="form-group">
-        {!! Form::rpg_systems(
-            'rpg_system_id',
-            [
-                'model' => $model
-            ]
-        ) !!}
+
+        @include('components.form.rpg_systems', ['options' => [
+            'model' => $model ?? null,
+        ]])
     </div>
 </div>

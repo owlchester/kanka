@@ -7,6 +7,7 @@ $selectedOption = [];
 
 $model = Arr::get($options, 'model', null);
 $enableNew = Arr::get($options, 'enableNew', true);
+$enableAutoTags = Arr::get($options, 'enableAutoTags', true);
 $label = Arr::get($options, 'label', true);
 $filterOptions = Arr::get($options, 'filterOptions', []);
 $dropdownParent = Arr::get($options, 'dropdownParent', '#app');
@@ -40,7 +41,15 @@ elseif(!empty($model) && !empty($model->entity)) {
             }
         }
     }
+} elseif (empty($model) && $enableAutoTags) {
+    $tags = \App\Models\Tag::autoApplied()->with('entity')->get(); 
+    foreach ($tags as $tag) {    
+        if ($tag && $tag->entity) {
+            $selectedOption[$tag->id] = $tag;
+        }
+    }
 }
+
 ?>
 @if ($label)
 <label>{{ __('crud.fields.tags') }}

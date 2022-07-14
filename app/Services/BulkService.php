@@ -18,24 +18,24 @@ class BulkService
     /**
      * @var EntityService
      */
-    protected $entityService;
+    protected EntityService $entityService;
 
     /**
      * @var PermissionService
      */
-    protected $permissionService;
+    protected PermissionService $permissionService;
 
     /** @var string Entity name */
-    protected $entityName;
+    protected string $entityName;
 
     /** @var array Ids of entities */
     protected $ids;
 
     /** @var int Total entities submitted for update */
-    protected $total = 0;
+    protected int $total = 0;
 
     /** @var int Total entities that were updated */
-    protected $count = 0;
+    protected int $count = 0;
 
     /**
      * BulkService constructor.
@@ -52,7 +52,7 @@ class BulkService
      * @param string $entityName
      * @return $this
      */
-    public function entity(string $entityName)
+    public function entity(string $entityName): self
     {
         $this->entityName = $entityName;
         return $this;
@@ -62,7 +62,7 @@ class BulkService
      * @param array $ids
      * @return $this
      */
-    public function entities(array $ids = [])
+    public function entities(array $ids = []): self
     {
         $this->ids = $ids;
         return $this;
@@ -79,12 +79,10 @@ class BulkService
 
     /**
      * Delete several entities
-     * @param string $entityName
-     * @param array $ids
      * @return int
      * @throws Exception
      */
-    public function delete()
+    public function delete(): int
     {
         $model = $this->getEntity();
         foreach ($this->ids as $id) {
@@ -104,12 +102,10 @@ class BulkService
     }
 
     /**
-     * @param $entityName
-     * @param array $ids
      * @return array
      * @throws Exception
      */
-    public function export()
+    public function export(): array
     {
         $model = $this->getEntity();
         $entities = [];
@@ -220,19 +216,25 @@ class BulkService
             }
         }
 
-        foreach ($bulk->mappings() as $field) {
+        // Loop on boolean fields that can be true, false or null
+        foreach ($bulk->booleans() as $field) {
+            // Field wasn't provided in request, ignore
             if (!Arr::has($fields, $field)) {
                 continue;
             }
             $value = Arr::get($fields, $field);
-            if (Str::startsWith($field, 'is_') && $value === null) {
+            // If the field is a boolean type is_ or has_ and the value is null, we skip updating it
+            if (Str::startsWith($field, ['is_', 'has_']) && $value === null) {
                 // Do nothing
             } else {
+                // We don't skip it for example for the relationship colour
                 $filledFields[$field] = $value;
             }
         }
 
-        foreach ($bulk->belongsTo() as $relation) {
+        // Loop on all the bulk fields that are foreign relations
+        foreach ($bulk->foreignRelations() as $relation) {
+            // Field wasn't provided in request, ignore
             if (!Arr::has($fields, $relation)) {
                 continue;
             }
@@ -249,7 +251,7 @@ class BulkService
             $filledFields['is_private'] = $fields['is_private'] === "0";
         }
 
-        // Mathable fields
+        // List of fields that can have +/- math operations, like a character's age
         $maths = $bulk->maths();
 
         // Handle tags differently

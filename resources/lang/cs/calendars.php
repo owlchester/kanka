@@ -87,10 +87,9 @@ return [
         'weekdays'              => 'Názvy dnů v týdnu',
     ],
     'helpers'       => [
-        'month_type'    => 'Přestupné měsíce souvisí s oběhem měsíců a ročními obdobími, ale nerespektují dny v týdnu.',
-        'nested_parent' => 'Zobrazuje kalendáře, podřazené kalendáři :parent',
-        'nested_without'=> 'Kalendáře, které nemají nadřazený kalendář (jsou na vrcholu stromu kalendářů). Klepnutím na řádek se zobrazí podřazené kalendáře.',
-        'start_offset'  => 'V roce 0 kalendář obvykle začíná prvním dnem týdne. Tato hodnota ovlivňuje, který den týdne připadne na první den kalendáře',
+        'month_type'        => 'Přestupné měsíce souvisí s oběhem měsíců a ročními obdobími, ale nerespektují dny v týdnu.',
+        'nested_without'    => 'Kalendáře, které nemají nadřazený kalendář (jsou na vrcholu stromu kalendářů). Klepnutím na řádek se zobrazí podřazené kalendáře.',
+        'start_offset'      => 'V roce 0 kalendář obvykle začíná prvním dnem týdne. Tato hodnota ovlivňuje, který den týdne připadne na první den kalendáře',
     ],
     'hints'         => [
         'event_length'      => 'Doba trvání události. Událost nemůže trvat déle než dva měsíce.',

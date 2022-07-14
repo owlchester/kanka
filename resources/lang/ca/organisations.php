@@ -16,9 +16,8 @@ return [
         'type'          => 'Tipus',
     ],
     'helpers'       => [
-        'descendants'   => 'Aquí es mostren totes les organitzacions que descendeixen d\'aquesta organització, no només les directament inferiors.',
-        'nested_parent' => 'S\'estan mostrant les organitzacions de :parent.',
-        'nested_without'=> 'S\'estan mostrant les organitzacions sense pare. Feu clic a la fila d\'una organització per a mostrar-ne les descendents.',
+        'descendants'       => 'Aquí es mostren totes les organitzacions que descendeixen d\'aquesta organització, no només les directament inferiors.',
+        'nested_without'    => 'S\'estan mostrant les organitzacions sense pare. Feu clic a la fila d\'una organització per a mostrar-ne les descendents.',
     ],
     'index'         => [
         'title' => 'Organitzacions',

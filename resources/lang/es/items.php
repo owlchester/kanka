@@ -22,12 +22,10 @@ return [
         'title' => 'Inventarios del objeto :name',
     ],
     'placeholders'  => [
-        'character' => 'Seleccionar personaje',
-        'location'  => 'Elige un lugar',
-        'name'      => 'Nombre del objeto',
-        'price'     => 'Precio del objeto',
-        'size'      => 'Tamaño, peso, dimensiones',
-        'type'      => 'Arma, Poción, Artefacto...',
+        'name'  => 'Nombre del objeto',
+        'price' => 'Precio del objeto',
+        'size'  => 'Tamaño, peso, dimensiones',
+        'type'  => 'Arma, Poción, Artefacto...',
     ],
     'quests'        => [],
     'show'          => [

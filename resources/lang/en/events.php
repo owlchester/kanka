@@ -18,8 +18,8 @@ return [
         'type'      => 'Type',
     ],
     'helpers'       => [
-        'date'          => 'This field can contain anything and is not linked to the campaign\'s calendars. To link this event to a calendar, go add it on the calendar or on the reminders subpage of this event.',
-        'nested_without'=> 'Displaying all events that don\'t have a parent event. Click on a row to see the children events.',
+        'date'              => 'This field can contain anything and is not linked to the campaign\'s calendars. To link this event to a calendar, go add it on the calendar or on the reminders subpage of this event.',
+        'nested_without'    => 'Displaying all events that don\'t have a parent event. Click on a row to see the children events.',
     ],
     'index'         => [
         'title' => 'Events',

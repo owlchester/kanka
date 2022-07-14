@@ -251,6 +251,7 @@ return [
         'pricing'       => 'Prix',
         'privacy'       => 'Politique de confidentialité',
         'register'      => 'Inscription',
+        'register_free' => 'Inscription gratuite',
         'releases'      => 'Mises à jour',
         'roadmap'       => 'Roadmap',
     ],

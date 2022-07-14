@@ -22,12 +22,10 @@ return [
         'title' => 'Objekty s predmetom :name',
     ],
     'placeholders'  => [
-        'character' => 'Vyber postavu',
-        'location'  => 'Vyber miesto',
-        'name'      => 'Názov predmetu',
-        'price'     => 'Cena predmetu',
-        'size'      => 'veľkosť, váha, rozmery',
-        'type'      => 'zbraň, elixír, artefakt',
+        'name'  => 'Názov predmetu',
+        'price' => 'Cena predmetu',
+        'size'  => 'veľkosť, váha, rozmery',
+        'type'  => 'zbraň, elixír, artefakt',
     ],
     'show'          => [
         'tabs'  => [

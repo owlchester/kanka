@@ -31,9 +31,8 @@ return [
         'type'      => 'Typ',
     ],
     'helpers'       => [
-        'descendants'   => 'Seznam všech objektů, které jsou podřazeny tomuto objektu v libovolné hloubce. Nejen těch, které spadají přímo pod tento objekt.',
-        'nested_parent' => 'Seznam schopností nadřazeného objektu :parent',
-        'nested_without'=> 'Seznam všech schopností bez nadřazené schopnosti (jsou na vrcholu stromu schopností). Klepnutím na řádek se zobrazí podřazené schopnosti.',
+        'descendants'       => 'Seznam všech objektů, které jsou podřazeny tomuto objektu v libovolné hloubce. Nejen těch, které spadají přímo pod tento objekt.',
+        'nested_without'    => 'Seznam všech schopností bez nadřazené schopnosti (jsou na vrcholu stromu schopností). Klepnutím na řádek se zobrazí podřazené schopnosti.',
     ],
     'index'         => [
         'title' => 'Schopnosti',

@@ -21,6 +21,7 @@ return [
     'tooltip'           => [
         'boosted-description'   => 'Substitua a dica de ferramenta gerada automaticamente da entidade com uma :boosted-campaign.',
         'description'           => 'Substitua a dica de ferramenta gerada automaticamente da entidade pelo texto a seguir.',
+        'helper'                => 'Os seguintes elementos HTML são permitidos nas dicas de ferramentas: :tags',
         'name'                  => 'Dica de ferramenta',
     ],
 ];

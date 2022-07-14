@@ -16,9 +16,8 @@ return [
         'type'          => 'Tip',
     ],
     'helpers'       => [
-        'descendants'   => 'Popis sadrži sve organizacije koje su unutar trenutne organizacije, a ne samo one koje su direktno ispod nje.',
-        'nested_parent' => 'Prikaz organizacije od :parent.',
-        'nested_without'=> 'Prikazuju se sve organizacije koje nemaju organizaciju roditelj. Klikni redak da bi vidio/la organizacije djecu.',
+        'descendants'       => 'Popis sadrži sve organizacije koje su unutar trenutne organizacije, a ne samo one koje su direktno ispod nje.',
+        'nested_without'    => 'Prikazuju se sve organizacije koje nemaju organizaciju roditelj. Klikni redak da bi vidio/la organizacije djecu.',
     ],
     'index'         => [
         'title' => 'Organizacije',

@@ -22,12 +22,10 @@ return [
         'title' => 'Item :name inventários',
     ],
     'placeholders'  => [
-        'character' => 'Escolha um personagem',
-        'location'  => 'Escolha um local',
-        'name'      => 'Nome do item',
-        'price'     => 'Preço do item',
-        'size'      => 'Tamanho, Peso, Dimensões',
-        'type'      => 'Arma, Poção, Artefato',
+        'name'  => 'Nome do item',
+        'price' => 'Preço do item',
+        'size'  => 'Tamanho, Peso, Dimensões',
+        'type'  => 'Arma, Poção, Artefato',
     ],
     'show'          => [
         'tabs'  => [

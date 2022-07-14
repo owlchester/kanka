@@ -22,12 +22,10 @@ return [
         'title' => 'Gegenstand :name Objekte',
     ],
     'placeholders'  => [
-        'character' => 'Wähle einen Charakter',
-        'location'  => 'Wähle einen Ort',
-        'name'      => 'Name des Gegenstands',
-        'price'     => 'Preis des Gegenstandes',
-        'size'      => 'Größe, Gewicht, Maße',
-        'type'      => 'Waffe, Trank, Artefakt',
+        'name'  => 'Name des Gegenstands',
+        'price' => 'Preis des Gegenstandes',
+        'size'  => 'Größe, Gewicht, Maße',
+        'type'  => 'Waffe, Trank, Artefakt',
     ],
     'show'          => [
         'tabs'  => [

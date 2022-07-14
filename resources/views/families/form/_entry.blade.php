@@ -33,13 +33,10 @@
 @if ($campaignService->enabled('characters'))
     <input type="hidden" name="sync_family_members" value="1">
     <div class="form-group">
-        {!! Form::familyMembers(
-            'id',
-            [
-                'model' => isset($model) ? $model : FormCopy::model(),
-                'source' => $source
-            ]
-        ) !!}
+        @include('components.form.family_members', ['options' => [
+            'model' => $model ?? FormCopy::model(),
+            'source' => $source ?? null,
+        ]])
     </div>
 @endif
 

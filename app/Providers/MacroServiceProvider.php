@@ -54,46 +54,6 @@ class MacroServiceProvider extends ServiceProvider
             'fieldId',
             'options' => []
         ]);
-
-        Form::component('abilities', 'components.form.abilities', [
-            'fieldId',
-            'options' => []
-        ]);
-
-        Form::component('rpg_systems', 'components.form.rpg_systems', [
-            'fieldId',
-            'options' => []
-        ]);
-
-        Form::component('members', 'components.form.members', [
-            'fieldId',
-            'options' => []
-        ]);
-        Form::component('races', 'components.form.races', [
-            'fieldId',
-            'options' => []
-        ]);
-        Form::component('families', 'components.form.families', [
-            'fieldId',
-            'options' => []
-        ]);
-        Form::component('familyMembers', 'components.form.family_members', [
-            'fieldId',
-            'options' => []
-        ]);
-        Form::component('user', 'components.form.user', [
-            'fieldId',
-            'options' => []
-        ]);
-        Form::component('role', 'components.form.role', [
-            'fieldId',
-            'options' => []
-        ]);
-
-        Form::component('entityType', 'components.form.entity_types', [
-            'fieldId',
-            'options' => []
-        ]);
     }
 
     /**

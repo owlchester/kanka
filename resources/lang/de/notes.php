@@ -16,8 +16,7 @@ return [
         'type'          => 'Typ',
     ],
     'helpers'       => [
-        'nested_parent' => 'Anzeigen der Notizen von :parent.',
-        'nested_without'=> 'Anzeigen aller Notizen ohne übergeordnete Notiz. Klicken Sie auf eine Zeile, um die untergeordneten Notizen anzuzeigen.',
+        'nested_without'    => 'Anzeigen aller Notizen ohne übergeordnete Notiz. Klicken Sie auf eine Zeile, um die untergeordneten Notizen anzuzeigen.',
     ],
     'hints'         => [
         'is_pinned' => 'Bis zu 3 Notizen können angepinnt werden und werden dann auf dem Dashboard angezeigt.',

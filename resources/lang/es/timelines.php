@@ -24,7 +24,6 @@ return [
         'type'          => 'Tipo',
     ],
     'helpers'       => [
-        'nested_parent'     => 'Mostrando las líneas de tiempo de :parent.',
         'nested_without'    => 'Mostrando todas las líneas de tiempo sin ningún superior. Haz clic sobre una fila para mostrar sus descendientes.',
         'reorder'           => 'Arrastra los elementos de la era para reordenarlos.',
         'reorder_tooltip'   => 'Haz clic para habilitar la reordenación manual de los elementos mediante arrastrar y soltar.',

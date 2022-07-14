@@ -13,4 +13,5 @@ return [
         'kanka'         => 'Padróns de Kanka',
         'marketplace'   => 'Padróns do mercado',
     ],
+    'pitch'     => 'Atopa e engade follas de personaxe dende o :marketplace nunha :boosted-campaign.',
 ];

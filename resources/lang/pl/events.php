@@ -20,9 +20,8 @@ return [
         'type'      => 'Rodzaj',
     ],
     'helpers'       => [
-        'date'          => 'W tym polu można umieścić wszystko - nie jest związane z kalendarzami kampanii. By umieścić je w kalendarzu, dodaj je ręcznie w menu kalendarza albo zakładce "Ważne daty" wydarzenia.',
-        'nested_parent' => 'Wyświetlono wydarzenia pochodzące od :parent.',
-        'nested_without'=> 'Wyświetlono wszystkie wydarzenia nie posiadające źródła. Kliknij na rząd, by wyświetlić wydarzenia pochodne.',
+        'date'              => 'W tym polu można umieścić wszystko - nie jest związane z kalendarzami kampanii. By umieścić je w kalendarzu, dodaj je ręcznie w menu kalendarza albo zakładce "Ważne daty" wydarzenia.',
+        'nested_without'    => 'Wyświetlono wszystkie wydarzenia nie posiadające źródła. Kliknij na rząd, by wyświetlić wydarzenia pochodne.',
     ],
     'index'         => [
         'title' => 'Wydarzenia',

@@ -24,8 +24,7 @@ return [
         'type'      => 'Tipus',
     ],
     'helpers'       => [
-        'nested_parent' => 'S\'estan mostrant les etiquetes de :parent.',
-        'nested_without'=> 'S\'estan mostrant les etiquetes sense pare. Feu clic a la fila d\'un mapa per a mostrar-ne les descendents.',
+        'nested_without'    => 'S\'estan mostrant les etiquetes sense pare. Feu clic a la fila d\'un mapa per a mostrar-ne les descendents.',
     ],
     'hints'         => [
         'children'  => 'Aquí es mostren totes les entitats que pertanyen directament a aquesta etiqueta i a totes les etiquetes niades.',

@@ -9,7 +9,7 @@ $model = Arr::get($options, 'model', null);
 $options = \App\Models\RpgSystem::ordered()->get();
 
 // Try to load what was sent with the form first, in case there was a form validation error
-$previous = old($fieldId);
+$previous = old('rpg_systems[]');
 if (!empty($previous)) {
     //dd($previous);
 }

@@ -8,6 +8,7 @@ return [
     'edit'          => [],
     'fields'        => [
         'image'         => 'Imagem',
+        'is_defunct'    => 'Extinta',
         'location'      => 'Local',
         'members'       => 'Membros',
         'name'          => 'Nome',
@@ -16,9 +17,11 @@ return [
         'type'          => 'Tipo',
     ],
     'helpers'       => [
-        'descendants'   => 'Esta lista contém todas organizações que descendem desta organização, e não apenas aquelas diretamente relacionadas a ela.',
-        'nested_parent' => 'Mostrando as organizações de :parent.',
-        'nested_without'=> 'Mostrando todas as organizações que não tem uma organização-pai. Clique em uma linha para ver as organizações-filhos.',
+        'descendants'       => 'Esta lista contém todas organizações que descendem desta organização, e não apenas aquelas diretamente relacionadas a ela.',
+        'nested_without'    => 'Mostrando todas as organizações que não tem uma organização-pai. Clique em uma linha para ver as organizações-filhos.',
+    ],
+    'hints'         => [
+        'is_defunct'    => 'Esta organização está extinta.',
     ],
     'index'         => [
         'title' => 'Organizações',

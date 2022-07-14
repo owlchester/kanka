@@ -22,12 +22,10 @@ return [
         'title' => 'Inventari dell\'oggetto :name',
     ],
     'placeholders'  => [
-        'character' => 'Scegli un personaggio',
-        'location'  => 'Scegli un luogo',
-        'name'      => 'Nome dell\'oggetto',
-        'price'     => 'Prezzo dell\'oggetto',
-        'size'      => 'Taglia, Peso, Dimensioni',
-        'type'      => 'Arma, Pozione, Artefatto',
+        'name'  => 'Nome dell\'oggetto',
+        'price' => 'Prezzo dell\'oggetto',
+        'size'  => 'Taglia, Peso, Dimensioni',
+        'type'  => 'Arma, Pozione, Artefatto',
     ],
     'show'          => [
         'tabs'  => [

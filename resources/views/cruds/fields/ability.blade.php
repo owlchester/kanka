@@ -6,6 +6,8 @@
 $preset = null;
 if (isset($model) && $model->ability) {
     $preset = $model->ability;
+} elseif (isset($parent) && $parent) {
+    $preset = FormCopy::field('ability')->select(true, \App\Models\Ability::class);
 } else {
     $preset = FormCopy::field('ability')->select();
 }

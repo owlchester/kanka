@@ -23,6 +23,7 @@ use Illuminate\Support\Arr;
  * @property int $tag_id
  * @property Tag $tag
  * @property Tag[] $tags
+ * @property bool $is_auto_applied
  */
 class Tag extends MiscModel
 {
@@ -59,6 +60,7 @@ class Tag extends MiscModel
         'tag.name',
         'type',
         'colour',
+        'is_auto_applied',
     ];
 
     /**
@@ -68,6 +70,7 @@ class Tag extends MiscModel
     protected $sortableColumns = [
         'tag.name',
         'colour',
+        'is_auto_applied',
     ];
 
     /**
@@ -83,6 +86,7 @@ class Tag extends MiscModel
         'tag_id',
         'campaign_id',
         'is_private',
+        'is_auto_applied',
     ];
 
     /**
@@ -147,7 +151,7 @@ class Tag extends MiscModel
      */
     public function datagridSelectFields(): array
     {
-        return ['tag_id', 'colour'];
+        return ['tag_id', 'colour', 'is_auto_applied'];
     }
 
     /**
@@ -333,6 +337,15 @@ class Tag extends MiscModel
     }
 
     /**
+     * Determine if the model is a tag that has to be applied to all newly created entities
+     * @return bool
+     */
+    public function isAutoApplied(): bool
+    {
+        return (bool) $this->is_auto_applied;
+    }
+
+    /**
      * Define the fields unique to this model that can be used on filters
      * @return string[]
      */
@@ -340,6 +353,7 @@ class Tag extends MiscModel
     {
         return [
             'colour',
+            'is_auto_applied',
         ];
     }
 }

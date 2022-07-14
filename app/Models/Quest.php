@@ -114,14 +114,13 @@ class Quest extends MiscModel
         return $query->with([
             'entity',
             'entity.image',
+            'entity.calendarDateEvents',
             'quests',
             'character',
             'character.entity',
             //'elements',
             'quest',
             'quest.entity',
-
-            'calendar',
         ]);
     }
 
@@ -183,21 +182,19 @@ class Quest extends MiscModel
         foreach ($this->elements as $child) {
             $child->delete();
         }
-
         foreach ($this->quests as $quest) {
             $quest->quest_id = null;
             $quest->save();
         }
-        return parent::detach();
+        parent::detach();
     }
 
     /**
+     * @param array $items
      * @return array
      */
     public function menuItems(array $items = []): array
     {
-        $campaign = CampaignLocalization::getCampaign();
-
         $count = $this->elements()->with('entity')->has('entity')->count();
         $items['second']['elements'] = [
             'name' => 'quests.show.tabs.elements',
@@ -222,7 +219,8 @@ class Quest extends MiscModel
      */
     public function showProfileInfo(): bool
     {
-        return !empty($this->type) || !empty($this->character) || !empty($this->date);
+        return !empty($this->type) || !empty($this->character) ||
+            !empty($this->date) || !empty($this->calendarReminder());
     }
 
     /**

@@ -88,6 +88,19 @@ class QuestElementController extends Controller
         $element = new QuestElement;
         $element = $element->create($data);
 
+        if ($request->has('submit-update')) {
+            return redirect()
+            ->route('quests.quest_elements.edit', ['quest_element' => $element, 'quest' => $quest])
+            ->with('success', __('quests.elements.create.success', [
+                'entity' => $element->name()
+            ]));
+        } elseif ($request->has('submit-new')) {
+            return redirect()
+            ->route('quests.quest_elements.create', [$quest])
+            ->with('success', __('quests.elements.create.success', [
+                'entity' => $element->name()
+            ]));
+        }
         return redirect()
             ->route('quests.quest_elements.index', $quest)
             ->with('success', __('quests.elements.create.success', [
@@ -139,6 +152,19 @@ class QuestElementController extends Controller
         $questElement->update($data);
         $questElement->refresh();
 
+        if ($request->has('submit-update')) {
+            return redirect()
+            ->route('quests.quest_elements.edit', ['quest_element' => $questElement, 'quest' => $quest])
+            ->with('success', __('quests.elements.edit.success', [
+                'entity' => $questElement->name()
+            ]));
+        } elseif ($request->has('submit-new')) {
+            return redirect()
+            ->route('quests.quest_elements.create', [$quest])
+            ->with('success', __('quests.elements.create.success', [
+                'entity' => $questElement->name()
+            ]));
+        }
         return redirect()
             ->route('quests.quest_elements.index', $quest)
             ->with('success', __('quests.elements.edit.success', [

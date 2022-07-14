@@ -13,4 +13,5 @@ return [
         'kanka'         => 'Modelos do Kanka',
         'marketplace'   => 'Modelos do Mercado',
     ],
+    'pitch'     => 'Encontre e adicione fichas de personagens do :marketplace em uma :boosted-campaign.',
 ];

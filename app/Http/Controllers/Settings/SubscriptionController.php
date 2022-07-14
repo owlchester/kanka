@@ -49,8 +49,12 @@ class SubscriptionController extends Controller
         $gaTrackingEvent = null;
         if (!empty($tracking)) {
             $gaTrackingEvent = 'TJhYCMDErpYDEOaOq7oC';
-            DataLayer::newSubscriber();
-            DataLayer::add('userSubValue', session('sub_value'));
+            if ($tracking === 'subscribed') {
+                DataLayer::newSubscriber();
+                DataLayer::add('userSubValue', session('sub_value'));
+            } else {
+                DataLayer::newCancelledSubscriber();
+            }
         }
 
         return view('settings.subscription.index', compact(

@@ -14,7 +14,7 @@ class QuestBulk extends Bulk
         'private_choice',
     ];
 
-    protected array $mappings = [
+    protected array $booleans = [
         'is_completed'
     ];
 }

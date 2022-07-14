@@ -10,5 +10,10 @@ class TagBulk extends Bulk
         'colour',
         'tag_id',
         'private_choice',
+        'auto_applied_choice',
+    ];
+
+    protected array $booleans = [
+        'is_auto_applied'
     ];
 }

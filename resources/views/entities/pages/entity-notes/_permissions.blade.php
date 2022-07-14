@@ -108,7 +108,7 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="user">{{ __('crud.permissions.fields.member') }}</label>
-                        {!! Form::user('user', ['dropdownParent' => '#entity-note-new-user']) !!}
+                        @include('components.form.user', ['options' => ['dropdownParent' => '#entity-note-new-user']])
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -130,7 +130,9 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="user">{{ __('crud.permissions.fields.role') }}</label>
-                        {!! Form::role('role', ['dropdownParent' => '#entity-note-new-role']) !!}
+                        @include('components.form.role', ['options' => [
+                            'dropdownParent' => '#entity-note-new-role'
+                        ]])
                     </div>
                 </div>
                 <div class="modal-footer">

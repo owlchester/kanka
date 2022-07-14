@@ -4,6 +4,7 @@ return [
     'hall_of_fame'  => 'Hall of Fame',
     'index'         => [
         'community'     => 'Communauté',
+        'founders'      => 'Fondateurs',
         'lead'          => 'Worldbuilding amusant et fiable',
         'title'         => 'L\'équipe',
         'translations'  => 'Traductions',
@@ -15,6 +16,9 @@ return [
     ],
     'patreon'       => [],
     'people'        => [
+        'itzamna'   => [
+            'title' => 'Développeur Junior',
+        ],
         'jay'       => [
             'text'  => <<<'TEXT'
 J'ai créé Kanka en octobre 2017 car il n'y avait aucun outil qui me permettait de facilement créer mon monde et de le partager avec mes joueurs tout en ayant le contrôle des permissions.
@@ -35,6 +39,12 @@ TEXT
         ],
         'joseph'    => [
             'title' => 'QA & Onboarding',
+        ],
+        'kaz'       => [
+            'title' => 'Destroyeur de bug',
+        ],
+        'laura'     => [
+            'title' => 'Social Media',
         ],
         'ryan'      => [
             'title' => 'Community Manager & Lead QA',

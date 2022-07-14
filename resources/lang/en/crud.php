@@ -35,9 +35,9 @@ return [
     'boosted_campaigns'         => 'Boosted Campaigns',
     'bulk'                      => [
         'actions'       => [
-            'edit'  => 'Edit & tagging',
-            'templates'    => 'Apply attribute template',
-            'permissions'  => 'Change permissions',
+            'edit'          => 'Edit & tagging',
+            'permissions'   => 'Change permissions',
+            'templates'     => 'Apply attribute template',
         ],
         'age'           => [
             'helper'    => 'You can use + and - before the number to update the age by that amount.',
@@ -134,8 +134,8 @@ return [
         'copy_permissions'      => 'Copy Permissions (this will override values set in the permissions tab)',
         'copy_posts'            => 'Copy Posts (this includes the posts permissions)',
         'creator'               => 'Creator',
-        'dice_roll'             => 'Dice Roll',
         'date_range'            => 'Date range',
+        'dice_roll'             => 'Dice Roll',
         'entity'                => 'Entity',
         'entity_type'           => 'Entity Type',
         'entry'                 => 'Entry',
@@ -235,6 +235,7 @@ return [
     'helpers'                   => [
         'copy_options'  => 'Copy the following related elements from the source to the new entity.',
         'linking'       => 'Linking to other entities',
+        'nested_parent' => 'Displaying the children of :parent.',
     ],
     'hidden'                    => 'Hidden',
     'hints'                     => [

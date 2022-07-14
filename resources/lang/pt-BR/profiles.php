@@ -3,7 +3,9 @@
 return [
     'appearance'                    => [
         'helpers'   => [
-            'pagination'    => 'Mude o número de elementos mostrado em várias listas.',
+            'campaign-order'    => 'Altere a ordem em que as campanhas são listadas no alternador de campanhas.',
+            'date-format'       => 'Controle o formato de data para data real.',
+            'pagination'        => 'Mude o número de elementos mostrado em várias listas.',
         ],
     ],
     'avatar'                        => [
@@ -27,6 +29,7 @@ return [
     ],
     'fields'                        => [
         'avatar'                    => 'Avatar',
+        'bio'                       => 'Biografia',
         'email'                     => 'Email',
         'hide_subscription'         => 'Esconder meu nome do :hall_of_fame.',
         'last_login_share'          => 'Mostrar a outros membros da campanha a última vez que estive online.',
@@ -35,8 +38,12 @@ return [
         'new_password_confirmation' => 'Confirmação da Nova Senha',
         'newsletter'                => 'Eu desejo ser contatado via email esporadicamente.',
         'password'                  => 'Senha atual',
+        'profile-name'              => 'Nome do perfil',
         'settings'                  => 'Configurações',
         'theme'                     => 'Tema',
+    ],
+    'helpers'                       => [
+        'profile-name'  => 'Altere a forma como o seu nome aparece no seu :profile e no :marketplace. Se deixado em branco, o nome da sua conta será usado.',
     ],
     'newsletter'                    => [
         'helpers'   => [
@@ -63,6 +70,7 @@ return [
         'success'   => 'Senha atualizada',
     ],
     'placeholders'                  => [
+        'bio'                       => 'Uma pequena biografia sua exibida em seu perfil público.',
         'email'                     => 'Seu endereço de email',
         'name'                      => 'Seu nome como exibido',
         'new_password'              => 'Sua nova senha',
@@ -70,13 +78,17 @@ return [
         'password'                  => 'Forneça sua senha atual para qualquer mudança',
     ],
     'sections'                      => [
-        'delete'    => [
-            'delete'    => 'Deletar minha conta',
-            'helper'    => 'Deletar sua conta também deletará quaisquer campanhas que você é o único membro dela. Essa ação é permanente e não pode ser desfeita.',
-            'title'     => 'Deletar sua conta',
-            'warning'   => 'Deletando sua conta, todos os seus dados serão perdidos. Você tem certeza?',
+        'dangerzone'    => 'Zona de Perigo',
+        'delete'        => [
+            'confirm'       => 'Excluir minha conta agora',
+            'delete'        => 'Excluir minha conta',
+            'goodbye'       => 'Em caso afirmativo, escreva :code na caixa abaixo.',
+            'helper'        => 'Deletar sua conta também deletará quaisquer campanhas que você é o único membro dela. Essa ação é permanente e não pode ser desfeita.',
+            'subscribed'    => 'Cancele sua :subscription antes de poder excluir sua conta.',
+            'title'         => 'Deletar sua conta',
+            'warning'       => 'Deletando sua conta, todos os seus dados serão perdidos. Você tem certeza?',
         ],
-        'password'  => [
+        'password'      => [
             'title' => 'Alterar sua senha',
         ],
     ],
@@ -91,7 +103,9 @@ return [
             'pagination'                    => 'Paginação (elementos por página)',
         ],
         'helpers'   => [
+            'bio'       => 'A biografia está visível no seu :link.',
             'editor_v2' => 'O uso do editor de texto legado (TinyMCE) não oferece suporte a menções em dispositivos móveis e não oferece suporte a alguns recursos como a galeria da campanha.',
+            'profile'   => 'perfil público',
         ],
         'hints'     => [
             'advanced_mentions'     => 'Se ativado, menções vão sempre ser mostradas como [entity:123] quando editando a entidade.',
@@ -101,6 +115,7 @@ return [
         'success'   => 'Configurações alteradas com sucesso.',
     ],
     'theme'                         => [
+        'helper'    => 'Uma campanha com um tema definido substituirá sua preferência.',
         'success'   => 'Tema alterado com sucesso.',
         'themes'    => [
             'dark'      => 'Escuro',

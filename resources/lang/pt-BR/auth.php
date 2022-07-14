@@ -1,6 +1,10 @@
 <?php
 
 return [
+    'banned'    => [
+        'permanent' => 'Você foi banido permanentemente.',
+        'temporary' => '{1} Você foi banido por :days dia|[2,*] Você foi banido por :days dias',
+    ],
     'confirm'   => [
         'confirm'   => 'Confirmar',
         'error'     => 'Senha inválida, por favor tente novamente.',

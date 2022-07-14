@@ -38,8 +38,16 @@ class PrivacyService
                 ->where('action', CampaignPermission::ACTION_READ)
                 ->where('entity_type_id', $this->entity->type_id);
             if ($perm->count() > 0) {
-                $data['roles'][] = $role->name;
-                continue;
+                // Add unless it's on the entity denied
+                $subPerm = $role->permissions
+                    ->where('action', CampaignPermission::ACTION_READ)
+                    ->where('entity_id', $this->entity->id)
+                    ->where('access', 0);
+                if ($subPerm->count() === 0) {
+                    $data['roles'][] = $role->name;
+                    continue;
+                }
+
             }
             // Specific entity
             $perm = $role->permissions

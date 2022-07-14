@@ -124,6 +124,9 @@
         'id' => 'sidebar-help',
         'title' => __('campaigns.show.tabs.sidebar'),
         'textes' => [
-            __('campaigns/sidebar.helpers.setup', ['reset' => '<strong>' . __('campaigns/sidebar.actions.reset') . '</strong>'])
+            __('campaigns/sidebar.helpers.setup', ['reset' => '<strong>' . __('campaigns/sidebar.actions.reset') . '</strong>']),
+            __('campaigns/sidebar.helpers.icons', [
+                'link' => link_to('https://fontawesome.com/search?m=free&s=solid', 'FontAwesome', ['target' => '_blank'])
+            ])
     ]])
 @endsection

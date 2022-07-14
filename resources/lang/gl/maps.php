@@ -57,7 +57,6 @@ return [
         'max_zoom'          => 'O máximo que pode ser ampliado o mapa. O valor por defecto é :default, e o máximo permitido é :max.',
         'min_zoom'          => 'O valor mínimo de zoom permitido. O valor por defecto é :default, mentres que o valor mínimo permito é :min.',
         'missing_image'     => 'Garda o mapa cunha imaxe antes de engadir capas e marcadores.',
-        'nested_parent'     => 'Mostrando os mapas de ":parent".',
         'nested_without'    => 'Mostrando todos os mapas que non teñen un mapa superior. Fai clic nunha fila para ver os seus descendentes.',
     ],
     'index'         => [

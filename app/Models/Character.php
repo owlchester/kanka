@@ -25,6 +25,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property Location $location
  * @property Race $race
  * @property Race[] $races
+ * @property Organisation[] $organisations
+ * @property OrganisationMember[] $organisationMemberships
  */
 class Character extends MiscModel
 {
@@ -189,9 +191,19 @@ class Character extends MiscModel
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function organisations()
+    public function organisationMemberships()
     {
         return $this->hasMany('App\Models\OrganisationMember', 'character_id', 'id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function organisations()
+    {
+        return $this->belongsToMany('App\Models\Organisation', 'organisation_member')
+            ->orderBy('organisation_member.id')
+            ->with('entity');
     }
 
     /**
@@ -264,7 +276,7 @@ class Character extends MiscModel
     public function pinnedMembers()
     {
         return $this
-            ->organisations()
+            ->organisationMemberships()
             ->has('organisation')
             ->with(['organisation', 'organisation.entity'])
             ->whereIn('pin_id', [OrganisationMember::PIN_CHARACTER, OrganisationMember::PIN_BOTH])
@@ -310,7 +322,7 @@ class Character extends MiscModel
             ] : null,
         ];
 
-        $count = $this->organisations()->has('organisation')->count();
+        $count = $this->organisationMemberships()->has('organisation')->count();
         if ($campaign->enabled('organisations') && ($count > 0 || $canEdit)) {
             $items['second']['organisations'] = [
                 'name' => 'characters.show.tabs.organisations',

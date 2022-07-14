@@ -38,8 +38,8 @@ return [
                 'add'       => 'Your Discord account has been linked.',
                 'remove'    => 'Your Discord account has been unlinked.',
             ],
-            'unlock'    => 'Unlock Discord roles',
             'text'      => 'Access your subscription roles automatically.',
+            'unlock'    => 'Unlock Discord roles',
         ],
         'title'     => 'App Integration',
     ],
@@ -204,8 +204,8 @@ return [
             'yearly'    => 'Yearly',
         ],
         'placeholders'          => [
-            'reason'    => 'Optionally tell us why you are no longer supporting Kanka. Was a feature missing? Did your financial situation change?',
-            'downgrade_reason' => 'Optionally tell us why you are downgrading your subscription.',
+            'downgrade_reason'  => 'Optionally tell us why you are downgrading your subscription.',
+            'reason'            => 'Optionally tell us why you are no longer supporting Kanka. Was a feature missing? Did your financial situation change?',
         ],
         'plans'                 => [
             'cost_monthly'  => ':currency :amount billed monthly',
@@ -225,8 +225,8 @@ return [
             'alternative'   => 'Your payment was registered. You will get a notification as soon as it is processed and your subscription is active.',
             'callback'      => 'Your subscription was successful. Your account will be updated as soon as our payment provider informs us of the change (this might take a few minutes).',
             'cancel'        => 'Your subscription was cancelled. It will continue to be active until the end of your current billing period.',
-            'currency'      => 'Your prefered currency setting was updated.',
-            'subscribed'    => 'Your subscription was successful. Don\'t forget to subscribe to the Community Vote newsletter to be notified when a vote goes live. You can change your newsletter settings in your Profile page.',
+            'currency'      => 'Your preferred currency setting was updated.',
+            'subscribed'    => 'Your subscription was successful! Don\'t forget to subscribe to the Community Vote newsletter to be notified when a vote goes live. Also, you can check out our discord and become part of the community',
         ],
         'tiers'                 => 'Subscription Tiers',
         'trial_period'          => 'Yearly subscriptions have a 14 day cancellation policy. Contact us at :email if you wish to cancel your yearly subscription and get a refund.',
@@ -241,11 +241,11 @@ return [
                 'title'     => 'When cancelling your subscription',
             ],
             'downgrade' => [
-                'bullets'   => [
+                'bullets'           => [
                     'end'   => 'Your current tier will stay active until the end of your current billing cycle, after which you will be downgraded to your new tier.',
                 ],
-                'title'     => 'When downgrading to a lower tier',
-                'provide_reason' => 'If you can, please share with us why you are downgrading your subscription.'
+                'provide_reason'    => 'If you can, please share with us why you are downgrading your subscription.',
+                'title'             => 'When downgrading to a lower tier',
             ],
             'upgrade'   => [
                 'bullets'   => [

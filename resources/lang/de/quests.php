@@ -41,7 +41,6 @@ return [
     ],
     'helpers'       => [
         'is_completed'      => 'Wählen Sie aus, ob die Quest als abgeschlossen gilt.',
-        'nested_parent'     => 'Anzeigen der Quests von :parent.',
         'nested_without'    => 'Anzeigen aller Quests, die keine übergeordnete Quest haben. Klicken Sie auf eine Zeile, um die Quests für Kinder anzuzeigen.',
     ],
     'hints'         => [

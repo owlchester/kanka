@@ -39,6 +39,7 @@ return [
                 'remove'    => 'Compte Discord délié.',
             ],
             'text'      => 'Accès aux rôles automatique.',
+            'unlock'    => 'Accès aux rôles Discord',
         ],
         'title'     => 'Intégration d\'app',
     ],
@@ -204,7 +205,8 @@ return [
             'yearly'    => 'Annuel',
         ],
         'placeholders'          => [
-            'reason'    => '(optionnelle) dis-nous pourquoi tu ne souhaites plus être abonné à Kanka. Manquait-il une fonctionnalité? Ta situation financière a-t-elle changé?',
+            'downgrade_reason'  => '(facultatif) dis-nous pourquoi tu downgrade ton abonnement.',
+            'reason'            => '(facultatif) dis-nous pourquoi tu ne souhaites plus être abonné à Kanka. Manquait-il une fonctionnalité? Ta situation financière a-t-elle changé?',
         ],
         'plans'                 => [
             'cost_monthly'  => ':currency :amount facturé mensuellement',
@@ -240,10 +242,11 @@ return [
                 'title'     => 'Lors de l\'annulation d\'un abonnement',
             ],
             'downgrade' => [
-                'bullets'   => [
+                'bullets'           => [
                     'end'   => 'L\'abonnement actuel reste actif jusqu\'à la fin du cycle de paiement, après quoi le nouvel abonnement sera mis en place.',
                 ],
-                'title'     => 'Lors du passage à un niveau inférieur',
+                'provide_reason'    => 'Si tu peux, partages avec nous pourquoi tu downgrades ton abonnement.',
+                'title'             => 'Lors du passage à un niveau inférieur',
             ],
             'upgrade'   => [
                 'bullets'   => [

@@ -375,7 +375,7 @@ class Entity extends Model
      */
     public function hasLinks(): bool
     {
-        return $this->links->count() > 0;
+        return $this->links()->count() > 0;
     }
 
     /**

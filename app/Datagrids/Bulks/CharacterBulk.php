@@ -14,20 +14,22 @@ class CharacterBulk extends Bulk
         'sex',
         'dead_choice',
         'age',
+        'organisations',
         'tags',
         'private_choice',
     ];
 
-    protected $mappings = [
+    protected array $booleans = [
         'is_dead'
     ];
 
-    protected $maths = [
+    protected array $maths = [
         'age'
     ];
 
-    protected $belongsTo = [
+    protected array $foreignRelations = [
         'races',
         'families',
+        'organisations'
     ];
 }

@@ -13,7 +13,7 @@ $model = $widget->entity->child;
                     {{ $widget->entity->name }}
                 </a>
             </h3>
-            @if ($campaignService->enabled('characters') && !empty($model->character))
+            @if ($campaign->enabled('characters') && !empty($model->character))
             <h5 class="widget-user-desc">
                 {!! $model->character->tooltipedLink() !!}
             </h5>

@@ -373,6 +373,15 @@ trait EntityRelations
     }
 
     /**
+     * Calendar Date Events are used by Journals and Quests to link them directly to a calendar
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function calendarDateEvents()
+    {
+        return $this->events()->with('calendar')->calendarDate();
+    }
+
+    /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function elapsedEvents()
@@ -456,7 +465,8 @@ trait EntityRelations
      */
     public function links()
     {
-        return $this->hasMany('App\Models\EntityLink', 'entity_id', 'id');
+        return $this->assets
+            ->where('type_id', EntityAsset::TYPE_LINK);
     }
 
     /**

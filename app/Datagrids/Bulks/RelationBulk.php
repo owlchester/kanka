@@ -14,7 +14,8 @@ class RelationBulk extends Bulk
         'visibility_id',
         'update_mirrored',
     ];
-    protected array $mappings = [
+
+    protected array $booleans = [
         'colour',
         'is_star',
     ];

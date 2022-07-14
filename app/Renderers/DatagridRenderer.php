@@ -306,7 +306,7 @@ class DatagridRenderer
 
     /**
      * @param $column
-     * @param $model
+     * @param MiscModel|Journal $model
      * @return string
      */
     private function renderColumn($column, $model)
@@ -389,7 +389,12 @@ class DatagridRenderer
             } elseif ($type == 'calendar_date') {
                 $class = 'hidden-xs hidden-sm';
                 if ($model->hasCalendar()) {
-                    $content = $this->dateRenderer->render($model->getDate());
+                    $reminder = $model->calendarReminder();
+                    $content = link_to_route(
+                        'calendars.show',
+                        $this->dateRenderer->render($model->getDate()),
+                        [$reminder->calendar_id, 'month' => $reminder->month, 'year' => $reminder->year]
+                    );
                 }
             } else {
                 // Exception

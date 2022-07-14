@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Facades\CampaignLocalization;
 use App\Models\Campaign;
 use App\Models\MiscModel;
+use App\Models\EntityNote;
+use App\Models\Entity;
 use App\Services\EntityService;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Request;
@@ -48,8 +50,13 @@ class EntityCreatorController extends Controller
     public function form($type)
     {
         // Make sure the user is allowed to create this kind of entity
-        $model = $this->entityService->getClass($type);
-        $this->authorize('create', $model);
+        if ($type == 'posts') {
+            $campaign = CampaignLocalization::getCampaign();
+            $this->authorize('recover', $campaign);
+        } else {
+            $model = $this->entityService->getClass($type);
+            $this->authorize('create', $model);
+        }
         $origin = request()->get('origin');
         $target = request()->get('target');
         $singularType = Str::singular($type);
@@ -85,8 +92,13 @@ class EntityCreatorController extends Controller
     public function store(Request $request, $type)
     {
         // Make sure the user is allowed to create this kind of entity
-        $class = $this->entityService->getClass($type);
-        $this->authorize('create', $class);
+        if ($type == 'posts') {
+            $campaign = CampaignLocalization::getCampaign();
+            $this->authorize('recover', $campaign);
+        } else {
+            $class = $this->entityService->getClass($type);
+            $this->authorize('create', $class);
+        }
 
         $names = $request->get('names');
         $values = $request->all();
@@ -117,15 +129,25 @@ class EntityCreatorController extends Controller
                 continue;
             }
             $values['name'] = $name;
+            if ($type != 'posts') {
+                $this->validateEntity($values, $validator->rules());
 
-            $this->validateEntity($values, $validator->rules());
-
-            /** @var MiscModel $model */
-            $model = new $class;
-            $new = $model->create($values);
-            $new->crudSaved();
-            $new->entity->crudSaved();
-
+                /** @var MiscModel $model */
+                $model = new $class;
+                $new = $model->create($values);
+                $new->crudSaved();
+                $new->entity->crudSaved();
+            } else {
+                //If position = 0 the post's position is last, else the post's position is first.
+                if ($values['position'] == 0) {
+                    $new = EntityNote::create($values);
+                } else {
+                    $entity = Entity::find($values['entity_id']);
+                    $entity->notes()->increment('position');
+                    $values['position'] = 1;
+                    $new = EntityNote::create($values);
+                }
+            }
             $createdEntities[] = $new;
             $links[] = link_to($new->entity->url(), $new->name);
         }

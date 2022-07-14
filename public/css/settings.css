@@ -13,37 +13,6 @@
   align-items: center;
   background-image: url(https://images.kanka.io/app/1c6fDq53wSDholuJWNiHMb9zKBQ=/550x120/smart/src/images%2Fbackgrounds%2Fmountain-background-medium.jpg);
 }
-.row .campaign .campaign-name {
-  display: block;
-  margin-bottom: 10px;
-}
-.row .campaign .actions {
-  text-align: center;
-}
-.row .campaign .actions a, .row .campaign .actions span {
-  font-size: 14pt;
-  color: #fff;
-  text-shadow: rgba(0, 0, 0, 0.7) 0px 1px 4px;
-  cursor: pointer;
-}
-.row .campaign .actions .btn {
-  font-size: 10pt;
-  text-shadow: none;
-}
-.row .campaign form {
-  display: inline;
-}
-
-.campaign.clickable {
-  cursor: pointer;
-}
-.campaign.clickable:hover {
-  box-shadow: 0 6px 6px rgba(50, 50, 93, 0.3), 0 1px 3px rgba(0, 0, 0, 0.08);
-}
-
-.campaign.selected {
-  box-shadow: 0 6px 6px rgba(50, 50, 93, 0.8), 0 1px 3px rgba(0, 0, 0, 0.08);
-}
 
 .campaign-list .campaign {
   background-color: var(--box-background);

@@ -1,6 +1,9 @@
 <?php
 
 return [
+    'actions'                           => [
+        'boost' => 'Boostnuť :name',
+    ],
     'create'                            => [
         'description'           => 'Vytvoriť novú kampaň',
         'helper'                => [
@@ -175,6 +178,7 @@ TEXT
             'title' => 'Upraviť člena :name',
         ],
         'fields'                => [
+            'banned'        => 'Užívateľ má zákaz',
             'joined'        => 'Súčasťou od',
             'last_login'    => 'Posledné prihlásenie',
             'name'          => 'Užívateľ',
@@ -197,6 +201,7 @@ TEXT
             'title'         => 'Pozvať',
         ],
         'manage_roles'          => 'Spravovať roly užívateľov',
+        'removal'               => 'Odstraňuješ ":member" z kampane.',
         'roles'                 => [
             'member'    => 'Člen',
             'owner'     => 'Administrátor',
@@ -271,6 +276,7 @@ TEXT
         ],
         'hints'         => [
             'campaign_not_public'   => 'Verejná rola má oprávnenia, ale kampaň je súkromná. Tieto nastavenia počas úpravy kampane nájdeš na karte Zdieľanie.',
+            'empty_role'            => 'Táto rola nemá zatiaľ žiadnych členov.',
             'role_permissions'      => 'Umožniť role :name nasledujúce akcie pre všetky objekty.',
         ],
         'members'       => 'Členovia',
@@ -324,8 +330,9 @@ TEXT
         ],
         'users'         => [
             'actions'   => [
-                'add'       => 'Pridať',
-                'remove'    => ':user z role :role',
+                'add'           => 'Pridať',
+                'remove'        => ':user z role :role',
+                'remove_user'   => 'Odstrániť užívateľa z role',
             ],
             'create'    => [
                 'success'   => 'Užívateľ bol priradený k roli.',
@@ -344,6 +351,8 @@ TEXT
             'enable'    => 'Aktivovať',
         ],
         'boosted'   => 'Táto funkcia je aktuálne v beta verzii a dostupná iba pre :boosted.',
+        'disabled'  => 'Modul :module je deaktivovaný.',
+        'enabled'   => 'Modul :module je aktivovaný.',
         'errors'    => [
             'module-disabled'   => 'Požadovaný modul je aktuálne v nastaveniach kampane deaktivovaný. :fix.',
         ],

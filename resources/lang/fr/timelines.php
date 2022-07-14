@@ -24,7 +24,6 @@ return [
         'type'          => 'Type',
     ],
     'helpers'       => [
-        'nested_parent'     => 'Affichage des chronologies de :parent.',
         'nested_without'    => 'Affichage des chronologies sans parent. Cliquer sur une rangée pour afficher les chronologies enfants.',
         'no_era'            => 'Cette chronologie ne possède pas d\'ères. Les ères peuvent être ajoutées dans l\'interface d\'édition de la chronologie, après quoi des éléments pourront être ajouté ici.',
         'reorder'           => 'Glisser déposer les éléments de l\'ère pour les réorganiser.',

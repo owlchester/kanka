@@ -12,6 +12,10 @@ return [
     |
     */
 
+    'banned'    => [
+        'permanent' => 'Máš permanentný zákaz.',
+        'temporary' => '{1} Máš zákaz na :days deň.|[2,4] Máš zákaz na :days dni.|[5,*] Máš zákaz na :days dní.',
+    ],
     'confirm'   => [
         'confirm'   => 'Potvrdiť',
         'error'     => 'Nesprávne heslo, prosím skús ešte raz.',

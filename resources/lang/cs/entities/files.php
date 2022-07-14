@@ -14,6 +14,5 @@ return [
     ],
     'update'    => [
         'success'   => 'Soubor :file aktualizován.',
-        'title'     => 'Aktualizovat soubor :file objektu :entity',
     ],
 ];

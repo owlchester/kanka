@@ -47,7 +47,7 @@ class EntityEventController extends Controller
         if (empty($entity->child)) {
             abort(404);
         }
-        if (Auth::check()) {
+        if (auth()->check()) {
             $this->authorize('view', $entity->child);
         } else {
             $this->authorizeForGuest(\App\Models\CampaignPermission::ACTION_READ, $entity->child, $entity->typeId());
@@ -55,6 +55,7 @@ class EntityEventController extends Controller
         $reminders = $entity
             ->events()
             ->has('calendar')
+            ->has('calendar.entity')
             ->with(['calendar', 'calendar.entity', 'entity'])
             ->order(request()->get('order'), 'events/date')
             ->paginate();

@@ -16,9 +16,8 @@ return [
         'type'      => 'Tip',
     ],
     'helpers'       => [
-        'journals'      => 'Prikaži sve ili samo izravnu djecu dnevnike ovog dnevnika.',
-        'nested_parent' => 'Prikaz dnevnika od :parent.',
-        'nested_without'=> 'Prikazuju se svi dnevnici koji nemaju dnevnik roditelj. Klikni redak da bi vidio/la dnevnike djecu.',
+        'journals'          => 'Prikaži sve ili samo izravnu djecu dnevnike ovog dnevnika.',
+        'nested_without'    => 'Prikazuju se svi dnevnici koji nemaju dnevnik roditelj. Klikni redak da bi vidio/la dnevnike djecu.',
     ],
     'index'         => [
         'title' => 'Dnevnici',

@@ -7,6 +7,7 @@ $types = \App\Models\EntityType::all();
 
 $showEmpty = Arr::get($options, 'show-empty', true);
 $model = Arr::get($options, 'model', null);
+$fieldId = 'entity_type_id';
 ?>
 
 <label>{{ trans('crud.fields.entity_type') }}</label>

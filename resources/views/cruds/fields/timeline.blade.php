@@ -6,6 +6,8 @@
 $preset = null;
 if (isset($model) && $model->timeline) {
     $preset = $model->timeline;
+} elseif (isset($parent) && $parent) {
+    $preset = FormCopy::field('timeline')->select(true, \App\Models\Timeline::class);
 } else {
     $preset = FormCopy::field('timeline')->select();
 }

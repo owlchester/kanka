@@ -5,7 +5,6 @@ return [
         'actions'           => 'Accions',
         'apply'             => 'Aplica',
         'back'              => 'Enrere',
-        'bulk_templates'    => 'Aplica una plantilla d\'atributs',
         'copy'              => 'Copia',
         'copy_mention'      => 'Copia la menció [ ]',
         'copy_to_campaign'  => 'Copia a una campanya',

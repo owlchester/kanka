@@ -22,6 +22,7 @@ return [
         'title' => 'Nový priečinok',
     ],
     'no_folder'     => 'Bez priečinku',
+    'pitch'         => 'Nahraj obrázky do galérie kampane priamo z textového editoru.',
     'placeholders'  => [
         'search'    => 'Hľadať názov obrázku...',
     ],

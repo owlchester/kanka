@@ -22,12 +22,10 @@ return [
         'title' => ':name Eşyası Envanterleri',
     ],
     'placeholders'  => [
-        'character' => 'Bir karakter seçin',
-        'location'  => 'Bir konum seçin',
-        'name'      => 'Eşyanın adı',
-        'price'     => 'Eşyanın fiyatı',
-        'size'      => 'Boyut, Ağırlık, Ölçüler',
-        'type'      => 'Silah, İksir, Artifakt',
+        'name'  => 'Eşyanın adı',
+        'price' => 'Eşyanın fiyatı',
+        'size'  => 'Boyut, Ağırlık, Ölçüler',
+        'type'  => 'Silah, İksir, Artifakt',
     ],
     'show'          => [
         'tabs'  => [
