@@ -1,11 +1,16 @@
 <?php
-$datagridOptions = [
-    $model,
-    'init' => 1
-];
-$datagridOptions = Datagrid::initOptions($datagridOptions);
+$datagridOptions = [];
+    if (!empty($onload)) {
+    $routeOptions = [
+        $model,
+        'init' => 1,
+    ];
+    $routeOptions = Datagrid::initOptions($routeOptions);
+    $datagridOptions =
+        ['datagridUrl' => route('abilities.abilities', $routeOptions)]
+    ;
+}
 ?>
-
 <div class="box box-solid" id="abilities-abilities">
     <div class="box-header">
         <h3 class="box-title">
@@ -14,6 +19,6 @@ $datagridOptions = Datagrid::initOptions($datagridOptions);
     </div>
 
     <div id="datagrid-parent" class="table-responsive">
-        @include('layouts.datagrid._table', ['datagridUrl' => route('abilities.abilities', $datagridOptions)])
+        @include('layouts.datagrid._table', $datagridOptions)
     </div>
 </div>
