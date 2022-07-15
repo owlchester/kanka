@@ -11,7 +11,6 @@ $assets = $model->entity->assets->where('is_pinned', 1)->where('type_id', 1);
             <a href="{{ Storage::url($asset->metadata['path']) }}" target="_blank" class="child icon" >
                 {{ $asset->name }}
             </a>
-            </strong>
         </li>
     @endforeach
 @endif
