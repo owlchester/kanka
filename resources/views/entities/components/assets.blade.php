@@ -3,15 +3,14 @@
  * @var \App\Models\MiscModel $model
  * @var \App\Models\EntityAsset $asset
  */
-$attributes = $model->entity->assets->where('is_pinned', 1)->where('type_id', 1);
+$assets = $model->entity->assets->where('is_pinned', 1)->where('type_id', 1);
 ?>
-@if (count($attributes) > 0)
-    @foreach ($attributes as $attribute)
-        <li class="list-group-item pinned-attribute data-attribute="{{ $attribute->name }}" data-target="{{ $attribute->id }}">
-            <strong title="{{ __('entities/attributes.fields.is_star') }}">
-                <a href="{{ Storage::url($attribute->metadata['path']) }}" target="_blank" class="child icon" >
-                    {{ $attribute->name }}
-                </a>
+@if (count($assets) > 0)
+    @foreach ($assets as $asset)
+        <li class="list-group-item pinned-asset data-asset="{{ $asset->name }}" data-target="{{ $asset->id }}">
+            <a href="{{ Storage::url($asset->metadata['path']) }}" target="_blank" class="child icon" >
+                {{ $asset->name }}
+            </a>
             </strong>
         </li>
     @endforeach
