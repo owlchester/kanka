@@ -3,7 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Models\Calendar;
-use App\Models\Campaign;
+use App\Models\JobLog;
 use Illuminate\Console\Command;
 
 class CalendarAdvancer extends Command
@@ -22,12 +22,11 @@ class CalendarAdvancer extends Command
      */
     protected $description = 'Increment the date of all advancing calendars.';
 
-    /**
-     * @var int
-     */
-    protected $count = 0;
+    /** @var int Calendars that were advanced */
+    protected int $count = 0;
 
-    protected $errors = [];
+    /** @var array Errors that happened */
+    protected array $errors = [];
 
     /**
      * Create a new command instance.
@@ -50,7 +49,6 @@ class CalendarAdvancer extends Command
             /** @var Calendar $calendar*/
             foreach ($calendars as $calendar) {
                 try {
-
                     $calendar->addDay();
                     $this->count++;
                 } catch (\Exception $e) {
@@ -59,13 +57,26 @@ class CalendarAdvancer extends Command
             }
         });
 
-        $this->info("Advanced {$this->count} calendars.");
+        $log = "Advanced {$this->count} calendars.";
+        $this->info($log);
 
         if (!empty($this->errors)) {
             $this->error('Errors for ' . count($this->errors) . ' calendars.');
             $this->error(implode(', ', array_keys($this->errors)));
+
+            $log .= '<br />' . 'Errors for ' . count($this->errors) . ' calendars.';
+            $log .= '<br />' . implode(', ', array_keys($this->errors));
         }
 
-        return true;
+        if (!config('app.log_jobs')) {
+            return 0;
+        }
+
+        JobLog::create([
+            'name' => 'calendar-advancer',
+            'result' => $log,
+        ]);
+
+        return 0;
     }
 }

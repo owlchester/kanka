@@ -4,7 +4,6 @@ namespace App\Console\Commands;
 
 use App\Models\Entity;
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
 class ChildlessEntities extends Command

@@ -135,6 +135,11 @@ return [
     'version' => env('APP_VERSION', '@develop'),
 
     /*
+     * Determine if cron job results need to be logged in the database
+     */
+    'log_jobs' => env('APP_LOG_JOBS', false),
+
+    /*
     |-------------------------------------------
     | API Version
     |-------------------------------------------

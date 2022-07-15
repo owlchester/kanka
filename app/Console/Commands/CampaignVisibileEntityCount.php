@@ -24,7 +24,8 @@ class CampaignVisibileEntityCount extends Command
      */
     protected $description = 'Update the visible entity count for campaigns';
 
-    protected $count = 0;
+    /** @var int Number of processed elements */
+    protected int $count = 0;
 
     /**
      * Create a new command instance.

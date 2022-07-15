@@ -54,6 +54,10 @@ class CampaignFollowerCount extends Command
         return 0;
     }
 
+    /**
+     * @param Campaign $campaign
+     * @return void
+     */
     protected function processCampaign(Campaign $campaign)
     {
         $campaign->follower = $campaign->followers->count();

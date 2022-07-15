@@ -1,11 +1,8 @@
 <?php
 
-
 namespace App\Jobs;
 
-
 use App\Models\Entity;
-use App\Models\Family;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -56,7 +53,7 @@ class EntityUpdatedJob implements ShouldQueue
             return;
         }
 
-        // Whenever an entity is updates, we always want to re-calculate the cached image.
+        // Whenever an entity is updated, we always want to re-calculate the cached image.
         if (method_exists($entity, 'clearAvatarCache')) {
             $entity->clearAvatarCache();
         }
@@ -66,5 +63,4 @@ class EntityUpdatedJob implements ShouldQueue
     {
         // Sentry will handle this
     }
-
 }

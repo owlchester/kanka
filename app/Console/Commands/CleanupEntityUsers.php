@@ -23,7 +23,7 @@ class CleanupEntityUsers extends Command
     protected $description = 'Cleanup old entity-user entries';
 
     /** @var int number of cleaned up logs */
-    protected $count = 0;
+    protected int $count = 0;
 
     /**
      * Create a new command instance.

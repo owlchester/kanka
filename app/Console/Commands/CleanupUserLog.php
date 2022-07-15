@@ -22,6 +22,9 @@ class CleanupUserLog extends Command
      */
     protected $description = 'Cleanup old user logs';
 
+    /** @var int Number of processed elements */
+    protected int $count = 0;
+
     /**
      * Create a new command instance.
      *

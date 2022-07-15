@@ -32,9 +32,9 @@ class CleanupTrashed extends Command
      *
      * @var RecoveryService
      */
-    protected $service;
+    protected RecoveryService $service;
 
-    protected $limit = null;
+    protected null|int $limit = null;
 
     /**
      * Create a new command instance.
@@ -149,21 +149,6 @@ class CleanupTrashed extends Command
             }
         }
 
-        return true;
+        return 0;
     }
 }
-
-
-/**
- * All x
- * Ability x
- * AttrTemp (by all)
- * Event x
- * Family x
- * Journal x
- * Location x
- * Map x
- * Note x
- * Organisation x
- * Timeline x
- */

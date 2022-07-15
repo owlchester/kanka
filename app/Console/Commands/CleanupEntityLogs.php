@@ -24,7 +24,7 @@ class CleanupEntityLogs extends Command
     protected $description = 'Cleanup entity log details';
 
     /** @var int number of cleaned up logs */
-    protected $count = 0;
+    protected int $count = 0;
 
     /**
      * Create a new command instance.
@@ -72,7 +72,7 @@ class CleanupEntityLogs extends Command
         } catch (\Exception $e) {
             $this->error($e->getMessage());
             DB::rollBack();
-        }         
+        }
         $this->info('Cleaned up ' . $this->count . ' entity logs.');
         return 0;
     }

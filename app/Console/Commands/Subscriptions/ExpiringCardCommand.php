@@ -24,7 +24,7 @@ class ExpiringCardCommand extends Command
     protected $description = 'Alert subscribers who have an old card set up in their settings';
 
     /** @var int Number of alerts sent */
-    protected $count = 0;
+    protected int $count = 0;
 
     /**
      * Create a new command instance.
