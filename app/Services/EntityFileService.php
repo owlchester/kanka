@@ -66,6 +66,7 @@ class EntityFileService
         ];
         $file->name = $name;
         $file->visibility_id = $request->get('visibility_id', 1);
+        $file->is_pinned = $request->get('is_pinned', 1);
         $file->save();
         return $file;
     }

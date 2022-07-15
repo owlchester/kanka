@@ -25,6 +25,7 @@ class EntityAssetResource extends EntityChild
             'name' => $asset->name,
             'metadata' => $asset->metadata,
             'visibility_id' => $asset->visibility_id,
+            'is_pinned' => (bool) $asset->is_pinned,
         ]);
     }
 }

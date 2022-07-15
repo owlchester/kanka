@@ -21,6 +21,7 @@ if (auth()->check() && auth()->user()->can('update', $model)) {
         <div class="sidebar-elements collapse in" id="sidebar-pinned-elements">
 
             <ul class="pins m-0 p-0">
+                @includeWhen($model->entity->assets, 'entities.components.assets')
                 @include('entities.components.relations')
                 @includeWhen(method_exists($model, 'pinnedMembers') && !$model->pinnedMembers->isEmpty(), 'entities.components.members')
                 @includeWhen($model->entity->accessAttributes(), 'entities.components.attributes')

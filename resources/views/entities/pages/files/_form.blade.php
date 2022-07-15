@@ -28,4 +28,5 @@
 </div>
 
 @include('cruds.fields.visibility_id', ['model' => $entityAsset ?? null])
+@include('cruds.fields.is_pinned', ['model' => $entity ?? null])
 
