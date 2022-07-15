@@ -42,7 +42,7 @@ return [
     ],
     'show'          => [
         'tabs'  => [
-            'abilities' => 'Abilities',
+            'abilities' => 'Sub abilities',
             'entities'  => 'Entities',
         ],
     ],
