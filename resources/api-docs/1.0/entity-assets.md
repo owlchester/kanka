@@ -44,6 +44,7 @@ You can get a list of all the assets of an entity by using the following endpoin
             "created_by": 1,
             "entity_id": 309,
             "id": 2,
+            "is_pinned": false,
             "visibility_id": "1",
             "name": "The BEST",
             "metadata": [],
@@ -73,6 +74,7 @@ To get the details of a single entity-asset, use the following endpoint.
         "created_by": 1,
         "entity_id": 309,
         "id": 2,
+        "is_pinned": false,
         "visibility_id": "1",
         "name": "The BEST",
         "updated_at":  "2022-01-31T13:48:54.000000Z",
@@ -102,7 +104,7 @@ To create an asset, use the following endpoint.
 | `type_id` | `required` | The type of asset being created.
 | `visibility_id` | `int` | The visibility id: 1 `all`, 2 `self`, 3 `admin`, 4 `self-admin` or 5 `members`. |
 | `metadata` | `array` | `metadata.icon` and `metadata.url` are required for `links`. |
-
+| `is_pinned` | `bool` | Controls wether or not an asset is shown and linked to on the pins tab in the overview of the entity, exlcusive to file assets (`type_id: 1`). |
 
 ### Results
 

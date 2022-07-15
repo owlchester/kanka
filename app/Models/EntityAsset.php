@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Facades\Img;
 use App\Models\Concerns\Blameable;
 use App\Models\Scopes\EntityAssetScopes;
+use App\Models\Scopes\Pinned;
 use App\Traits\VisibilityIDTrait;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
@@ -19,6 +20,7 @@ use Illuminate\Support\Str;
  * @property Carbon $created_at
  * @property Carbon $updated_at
  * @property Entity $entity
+ * @property bool $is_pinned
  *
  */
 class EntityAsset extends Model
@@ -27,7 +29,7 @@ class EntityAsset extends Model
     public const TYPE_LINK = 2;
     public const TYPE_ALIAS = 3;
 
-    use VisibilityIDTrait, EntityAssetScopes, Blameable;
+    use VisibilityIDTrait, EntityAssetScopes, Blameable, Pinned;
 
     public $fillable = [
         'type_id',
@@ -35,6 +37,7 @@ class EntityAsset extends Model
         'name',
         'metadata',
         'visibility_id',
+        'is_pinned',
     ];
 
     public $casts = [

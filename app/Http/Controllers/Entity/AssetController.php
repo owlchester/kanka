@@ -114,7 +114,6 @@ class AssetController extends Controller
             return redirect()
                 ->route('entities.entity_assets.index', $entity)
                 ->with('success', __('entities/files.create.success', ['file' => $file->name]));
-
         } catch (EntityFileException $e) {
             return redirect()
                 ->route('entities.entity_assets.index', $entity)
@@ -156,7 +155,7 @@ class AssetController extends Controller
             $entityAsset->update($data);
             $type = 'links';
         } elseif ($entityAsset->isFile()) {
-            $data = $request->only(['name', 'visibility_id']);
+            $data = $request->only(['name', 'visibility_id', 'is_pinned']);
             $entityAsset->update($data);
         }
 
