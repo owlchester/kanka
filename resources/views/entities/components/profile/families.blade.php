@@ -20,5 +20,7 @@
         @endif
 
         @include('entities.components.profile._type')
+        @include('entities.components.profile._events')
+
     </div>
 </div>

@@ -13,6 +13,7 @@
 
     <div class="sidebar-elements collapse in" id="sidebar-profile-elements">
         @include('entities.components.profile._type')
+        @include('entities.components.profile._events')
 
         @if (!$model->maps->isEmpty())
             <div class="profile-maps">

@@ -16,7 +16,7 @@ foreach ($elapsed as $event) {
     if (empty($event->calendar) || $event->isCalendarDate()) {
         continue;
     }
-    if ($event->isBirth()) {
+    if ($event->isBirth() || $event->isFounded()) {
         $distinctCalendars[$event->calendar_id]['birth'] = $event;
     } elseif ($event->isDeath()) {
         if (!isset($distinctCalendars[$event->calendar_id]['death'])) {
@@ -49,7 +49,6 @@ foreach ($elapsed as $event) {
 @foreach ($distinctCalendars as $calendarId => $calendarEvents)
     @php $birth = $calendarEvents['birth'] ?? null; $death = $calendarEvents['death'] ?? null; @endphp
     @if (!empty($birth) && !empty($death))
-
         <div class="element profile-life">
             <div class="title">{{ __('characters.fields.life') }}</div>
             <a href="{{ $birth->calendar->getLink() }}?year={{ $birth->year }}&month={{ $birth->month }}" title="{{ $birth->calendar->name }}" data-toggle="tooltip">
@@ -61,7 +60,11 @@ foreach ($elapsed as $event) {
 
     @elseif (!empty($birth))
         <div class="element profile-life profile-birth">
-            <div class="title">{{ __('entities/events.types.birth') }}</div>
+            @if ($event->isBirth())
+                <div class="title">{{ __('entities/events.types.birth') }}</div>
+            @else
+                <div class="title">{{ __('entities/events.types.founded') }}</div>
+            @endif
             <a href="{{ $birth->calendar->getLink() }}?year={{ $birth->year }}&month={{ $birth->month }}" title="{{ $birth->calendar->name }}" data-toggle="tooltip">
             {{ $birth->readableDate() }}
             </a> ({{ $birth->calcElapsed() }})
@@ -74,6 +77,5 @@ foreach ($elapsed as $event) {
             {{ $death->readableDate() }}
             </a> (&#10013;{{ $death->calcElapsed() }})
         </div>
-
     @endif
 @endforeach

@@ -17,6 +17,7 @@ return [
     'types'     => [
         'birth'     => 'Birth',
         'death'     => 'Death',
+        'founded'   => 'Founded',
         'primary'   => 'Primary',
     ],
 ];
