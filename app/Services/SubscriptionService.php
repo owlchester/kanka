@@ -551,7 +551,9 @@ class SubscriptionService
         }
         $this->user = $source->user;
 
-        // user was deleted
+        // user was deleted. The welterbrand check can probably be removed, it's because the old code looked for a
+        // source with the charge ID, and welterbrand was our first subscriber without a charge ID, so it would
+        // always trigger his subscription and cancel it incorrectly.
         if (empty($this->user) || $this->user->id == 27078) {
             Log::info('Subscription charge failed for welterbrand');
             return true;
