@@ -920,7 +920,7 @@ class EntityRelationService
      */
     protected function loadRelations(): bool
     {
-        return in_array($this->option, ['related', 'mentions', '']);
+        return !$this->loadOnlyRelations();
     }
 
     /**
