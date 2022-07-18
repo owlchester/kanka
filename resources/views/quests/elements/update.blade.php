@@ -34,7 +34,7 @@
                             <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                                 <span class="caret"></span>
                             </button>
-                            <ul class="dropdown-menu" role="menu">
+                            <ul class="dropdown-menu dropdown-menu-right" role="menu">
                                 <li>
                                     <a href="#" class="dropdown-item form-submit-actions">
                                         {{ __('crud.save') }}
