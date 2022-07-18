@@ -65,6 +65,7 @@ return [
         'mentions'  => 'Relations + related + mentions',
         'related'   => 'Relations + related',
         'relations' => 'Relations',
+        'only_relations' => 'Only relations',
         'show'      => 'Show',
     ],
     'panels'            => [
