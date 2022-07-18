@@ -35,7 +35,7 @@ class FailedSubscriptionMail extends Mailable
     public function build()
     {
         return $this
-            ->from(['address' => 'no-reply@kanka.io', 'name' => 'Kanka Admin'])
+            ->from(['address' => 'hello@kanka.io', 'name' => 'Kanka Admin'])
             ->subject('Subscription: Failed ' . $this->user->patreon_pledge)
             ->view('emails.subscriptions.failed.html');
     }

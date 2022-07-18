@@ -538,15 +538,17 @@ class SubscriptionService
     public function chargeFailed(array $payload)
     {
         /** @var SubscriptionSource $source */
-        $source = SubscriptionSource::where('charge_id', Arr::get($payload, 'data.object.charge'))
-            ->first();
-        if (empty($source)) {
+        $chargeID = Arr::get($payload, 'data.object.charge');
+        if (empty($chargeID)) {
             // If the source is empty, means this is a failed charge for a credit card, not a sofort payment.
             $this->failed();
             return false;
         }
 
-
+        $source = SubscriptionSource::where('charge_id', $chargeID)->first();
+        if (empty($source)) {
+            throw new Exception('Unhandled charge fail? ChargeID: ' . $chargeID);
+        }
         $this->user = $source->user;
 
         // user was deleted
