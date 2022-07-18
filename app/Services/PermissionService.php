@@ -417,10 +417,10 @@ class PermissionService
                                 //'key' => $entity->type() . '_' . $perm . '_' . $entity->child->id,
                                 'user_id' => $userId,
                                 'campaign_id' => $entity->campaign_id,
-                                //'entity_type_id' => $entity->type_id,
                                 'entity_id' => $entity->id,
+                                //'entity_type_id' => $entity->type_id,
                                 'misc_id' => $entity->child->id,
-                                'action' => $action,
+                                'action' => $perm,
                                 'access' => true,
                             ]);
                         } else {
@@ -442,7 +442,7 @@ class PermissionService
                                 'entity_id' => $entity->id,
                                 //'entity_type_id' => $entity->type_id,
                                 'misc_id' => $entity->child->id,
-                                'action' => $action,
+                                'action' => $perm,
                                 'access' => false
                             ]);
                         } else {

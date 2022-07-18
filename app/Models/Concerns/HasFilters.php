@@ -303,6 +303,7 @@ trait HasFilters
             // If it isn't the first term, we need to re-extract the search operators
             if (!$firstTerm) {
                 $this->extractSearchOperator($searchTerm, $key);
+                $searchTerm = $this->filterValue;
             }
             $query->where(
                 $this->getTable() . '.' . $key,

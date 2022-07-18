@@ -295,7 +295,7 @@ function hintContent(item) {
             href: '#',
             class: 'mention',
             'data-name': item.fullname,
-            'data-mention': mention,
+            'data-mention': '[' + item.model_type + ':' + item.id + ']',
         })[0];
     } else if (item.url) {
         if (item.tooltip) {

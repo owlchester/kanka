@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Jobs\Emails;
-
 
 use App\Mail\Subscription\Admin\FailedSubscriptionMail;
 use App\Mail\Subscription\User\FailedUserSubscriptionMail;
@@ -62,7 +60,7 @@ class SubscriptionFailedEmailJob implements ShouldQueue
 
         // Send an email to the user
         Mail::to($user->email)
-            ->bcc('hello@kanka.io')
+            //->bcc('hello@kanka.io')
             ->send(
                 new FailedUserSubscriptionMail($user)
             );
