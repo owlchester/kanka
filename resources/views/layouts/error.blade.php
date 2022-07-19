@@ -5,10 +5,10 @@
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="{{ __('front.meta.description') }}">
+    <meta name="description" content="{{ __('front.meta.description', ['kanka' => config('app.name')]) }}">
     <meta name="author" content="{{ config('app.name') }}">
 
-    <meta property="og:title" content="{{ $title ?? __('front.meta.title') }} - {{ config('app.name') }}" />
+    <meta property="og:title" content="{{ $title ?? __('front.meta.title', ['kanka' => config('app.name')]) }} - {{ config('app.name') }}" />
     <meta property="og:site_name" content="{{ config('app.site_name') }}" />
 
     <title>{{ $error }} - {{ config('app.name', 'Kanka') }}</title>
