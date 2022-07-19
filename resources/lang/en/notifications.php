@@ -16,7 +16,7 @@ return [
         ],
         'deleted'               => 'The campaign :campaign was deleted.',
         'export'                => 'An export of a campaign is available. The link is available for :time minutes.',
-        'export_error'          => 'An error occurred while exporting your campaign assets. Please contact us if this problem persists.',
+        'export_error'          => 'An error occurred while exporting your campaign entities. Please contact us if this problem persists.',
         'join'                  => ':user joined the campaign :campaign.',
         'leave'                 => ':user left the campaign :campaign.',
         'plugin'                => [

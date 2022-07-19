@@ -30,7 +30,7 @@ trait ExportableTrait
         // Entity values
         if (!empty($this->entity)) {
             // Todo: put these in with()
-            $foreigns = ['notes', 'relationships', 'abilities', 'events', 'files', 'tags', 'aliases', 'links'];
+            $foreigns = ['notes', 'relationships', 'abilities', 'events', 'tags', 'assets'];
             foreach ($foreigns as $foreign) {
                 foreach ($this->entity->$foreign as $model) {
                     $json[$foreign][] = $model->toArray();
