@@ -112,7 +112,10 @@ class EntityRelationService
                 ->withEntity();
 
             if ($this->loadRelations()) {
-                $this->addRelations($this->entity);
+                $this
+                    ->addRelations($this->entity)
+                    ->withEntity(false)
+                    ->relatedRelations();
             }
 
             if ($this->loadRelated()) {
