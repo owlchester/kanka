@@ -53,10 +53,10 @@ class SubscriptionFailedEmailJob implements ShouldQueue
         ));
 
         // Send an email to the admins
-        Mail::to('hello@kanka.io')
+        /*Mail::to('hello@kanka.io')
             ->send(
                 new FailedSubscriptionMail($user)
-            );
+            );*/
 
         // Send an email to the user
         Mail::to($user->email)
