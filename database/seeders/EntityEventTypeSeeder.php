@@ -13,7 +13,7 @@ class EntityEventTypeSeeder extends Seeder
      */
     public function run()
     {
-        $types = ['primary', 'birth', 'death', 'calendar_date'];
+        $types = ['primary', 'birth', 'death', 'calendar_date', 'founded'];
         $created = 0;
         foreach ($types as $name) {
             $type = \App\Models\EntityEventType::firstOrNew([

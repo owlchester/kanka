@@ -14,5 +14,7 @@
     <div class="sidebar-elements collapse in" id="sidebar-profile-elements">
         @include('entities.components.profile._location')
         @include('entities.components.profile._type')
+        @include('entities.components.profile._events')
+
     </div>
 </div>

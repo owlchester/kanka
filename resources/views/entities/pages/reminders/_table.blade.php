@@ -58,6 +58,8 @@
                     <i class="fa-solid fa-birthday-cake" title="{{ __('entities/events.types.birth') }}"></i>
                 @elseif ($relation->isDeath())
                     <i class="fa-solid fa-skull" title="{{ __('entities/events.types.death') }}"></i>
+                @elseif ($relation->isFounded())
+                    <i class="fa-solid fa-building-columns" title="{{ __('entities/events.types.birth') }}"></i>
                 @endif
             </td>
             <td class="text-right">
