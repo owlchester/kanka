@@ -4,6 +4,7 @@
 
 $options = [
     '' => __('entities/relations.options.relations'),
+    'only_relations' => __('entities/relations.options.only_relations'),
     'related' => __('entities/relations.options.related'),
     'mentions' => __('entities/relations.options.mentions'),
 ];

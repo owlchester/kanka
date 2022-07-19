@@ -73,7 +73,7 @@ class RelationController extends Controller
         }
 
         $option = request()->get('option', null);
-        if (!in_array($option, ['related', 'mentions'])) {
+        if (!in_array($option, ['related', 'mentions', 'only_relations'])) {
             $option = null;
         }
 

@@ -67,7 +67,7 @@ class EntityRelationService
 
     public function option(string $option = null): self
     {
-        if (!in_array($option, ['related', 'mentions'])) {
+        if (!in_array($option, ['related', 'mentions', 'only_relations'])) {
             $option = null;
         }
         $this->option = $option;
@@ -127,7 +127,6 @@ class EntityRelationService
         $this->addMentions();
 
         $this->cleanup();
-
         return ['relations' => $this->relations, 'entities' => $this->entities];
     }
 
@@ -420,14 +419,17 @@ class EntityRelationService
     {
         $this->addEntity($this->entity)
             ->withEntity();
-
         if ($this->loadRelations()) {
             $this
                 ->addRelations($this->entity)
                 ->withEntity(false)
                 ->relatedRelations();
         }
-
+        if ($this->loadOnlyRelations()) {
+            $this
+            ->addRelations($this->entity)
+            ->withEntity(false);
+        }
         if ($this->loadRelated()) {
             $this->addFamily()
                 ->addOrganisation()
@@ -918,7 +920,7 @@ class EntityRelationService
      */
     protected function loadRelations(): bool
     {
-        return true;
+        return !$this->loadOnlyRelations();
     }
 
     /**
@@ -935,5 +937,13 @@ class EntityRelationService
     protected function loadMentions(): bool
     {
         return $this->option == 'mentions';
+    }
+
+    /**
+     * @return bool
+     */
+    protected function loadOnlyRelations(): bool
+    {
+        return $this->option == 'only_relations';
     }
 }
