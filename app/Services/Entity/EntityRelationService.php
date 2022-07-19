@@ -116,6 +116,10 @@ class EntityRelationService
                     ->addRelations($this->entity)
                     ->withEntity(false)
                     ->relatedRelations();
+            } elseif ($this->loadOnlyRelations()) {
+                $this
+                    ->addRelations($this->entity)
+                    ->withEntity(false);
             }
 
             if ($this->loadRelated()) {
@@ -348,6 +352,10 @@ class EntityRelationService
             $this
                 ->addRelations($this->entity)
                 ->withEntity(false);
+        } elseif ($this->loadOnlyRelations()) {
+            $this
+                ->addRelations($this->entity)
+                ->withEntity(false);
         }
 
         if ($this->loadRelated()) {
@@ -427,11 +435,10 @@ class EntityRelationService
                 ->addRelations($this->entity)
                 ->withEntity(false)
                 ->relatedRelations();
-        }
-        if ($this->loadOnlyRelations()) {
+        } elseif ($this->loadOnlyRelations()) {
             $this
-            ->addRelations($this->entity)
-            ->withEntity(false);
+                ->addRelations($this->entity)
+                ->withEntity(false);
         }
         if ($this->loadRelated()) {
             $this->addFamily()
@@ -457,6 +464,10 @@ class EntityRelationService
             ->withEntity();
 
         if ($this->loadRelations()) {
+            $this
+                ->addRelations($this->entity)
+                ->withEntity(false);
+        } elseif ($this->loadOnlyRelations()) {
             $this
                 ->addRelations($this->entity)
                 ->withEntity(false);
@@ -491,6 +502,10 @@ class EntityRelationService
             ->withEntity();
 
         if ($this->loadRelations()) {
+            $this
+                ->addRelations($this->entity)
+                ->withEntity(false);
+        } elseif ($this->loadOnlyRelations()) {
             $this
                 ->addRelations($this->entity)
                 ->withEntity(false);
