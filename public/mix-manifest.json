@@ -20,6 +20,7 @@
     "/js/gallery.js": "/js/gallery.js?id=d1b0d7081a5a4f4c22cd3510e629b5d2",
     "/js/editors/summernote.js": "/js/editors/summernote.js?id=221310cab588f850e93f64b756becece",
     "/css/vendor.css": "/css/vendor.css?id=9b0b73887286653b88d407ecc7bf31a1",
+    "/css/map-v3.css": "/css/map-v3.css?id=57f28c5cf98badf6cc0c92abf01fef9c",
     "/css/app.css": "/css/app.css?id=e3823a01c0cf63a361db4acd4752d3dd",
     "/css/relations.css": "/css/relations.css?id=7dd40537d93d0c58a5d98701bb98fe87",
     "/css/front.css": "/css/front.css?id=c254483339a140f8ca846baa8fad8781",
@@ -41,6 +42,5 @@
     "/css/assets.css": "/css/assets.css?id=e0fcf0488f5bea824afcdcd35fa7f55c",
     "/js/jquery.fileupload.js": "/js/jquery.fileupload.js?id=20a07a657cad26703a1bce484cb8af89",
     "/js/jquery.iframe-transport.js": "/js/jquery.iframe-transport.js?id=f371e8d9f57329f90114d7b52dd5c7a4",
-    "/js/vendor/jquery.ui.widget.js": "/js/vendor/jquery.ui.widget.js?id=3d0f0f5ca5d86c5a4b4fc33cda374a17",
-    "/css/map-v3.css": "/css/map-v3.css?id=2fd496496a566aaf0dae72677929ed3e"
+    "/js/vendor/jquery.ui.widget.js": "/js/vendor/jquery.ui.widget.js?id=3d0f0f5ca5d86c5a4b4fc33cda374a17"
 }

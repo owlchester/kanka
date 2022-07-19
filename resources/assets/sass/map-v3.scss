@@ -1,7 +1,8 @@
 $mapSidebarWidth: 380px;
 
 :root {
-  --map-hero-ratio: 2/1;
+    --map-hero-ratio: 2/1;
+    --map-ruler-color: #de0000;
 }
 
 .map {
@@ -318,7 +319,6 @@ $mapSidebarWidth: 380px;
     background-repeat: no-repeat;
     background-position: center;
     background-image: url("/images/vendor/leaflet/ruler/icon-colored.png");
-    border-color: chartreuse !important;
 }
 .leaflet-bar{
     background-color: #ffffff;
@@ -326,7 +326,7 @@ $mapSidebarWidth: 380px;
 .result-tooltip{
     background-color: white;
     border-width: medium;
-    border-color: #de0000;
+    border-color: var(--map-ruler-color);
     font-size: smaller;
 }
 .moving-tooltip{
@@ -334,7 +334,7 @@ $mapSidebarWidth: 380px;
     background-clip: padding-box;
     opacity: 0.5;
     border: dotted;
-    border-color: red;
+    border-color: var(--map-ruler-color);;
     font-size: smaller;
 }
 .plus-length{
