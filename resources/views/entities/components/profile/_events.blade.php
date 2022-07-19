@@ -59,6 +59,7 @@ foreach ($elapsed as $event) {
         </div>
 
     @elseif (!empty($birth))
+        @php $yearsAgo = $birth->calcElapsed() @endphp
         <div class="element profile-life profile-birth">
             @if ($event->isBirth())
                 <div class="title">{{ __('entities/events.types.birth') }}</div>
@@ -67,7 +68,7 @@ foreach ($elapsed as $event) {
             @endif
             <a href="{{ $birth->calendar->getLink() }}?year={{ $birth->year }}&month={{ $birth->month }}" title="{{ $birth->calendar->name }}" data-toggle="tooltip">
             {{ $birth->readableDate() }}
-            </a> ({{ $birth->calcElapsed() }})
+            </a> ({{ $event->isBirth() ? $yearsAgo : trans_choice('entities/events.years-ago', $yearsAgo, ['count' => $yearsAgo]) }})
         </div>
 
     @elseif (!empty($death))

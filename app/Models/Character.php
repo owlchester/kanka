@@ -369,6 +369,9 @@ class Character extends MiscModel
         if (!$this->races->isEmpty() || !$this->families->isEmpty()) {
             return true;
         }
+        if (!$this->entity->elapsedEvents->isEmpty()) {
+            return true;
+        }
         return false;
     }
 

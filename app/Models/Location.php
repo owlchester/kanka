@@ -171,9 +171,9 @@ class Location extends MiscModel
      */
     public function maps()
     {
-        return $this->hasMany('App\Models\Map', 'location_id', 'id');
+        return $this->hasMany('App\Models\Map', 'location_id', 'id')
+            ->select(['id', 'name']);
     }
-
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
@@ -418,7 +418,7 @@ class Location extends MiscModel
      */
     public function showProfileInfo(): bool
     {
-        return  !empty($this->type) || !$this->maps->isEmpty();
+        return  !empty($this->type) || !$this->maps->isEmpty() || !$this->entity->elapsedEvents->isEmpty();
     }
 
     /**
