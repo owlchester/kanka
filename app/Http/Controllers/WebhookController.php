@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Http\Controllers;
-
 
 use App\Jobs\Emails\SubscriptionDeletedEmailJob;
 use App\Jobs\SubscriptionEndJob;
@@ -12,7 +10,7 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Log;
 use Laravel\Cashier\Http\Controllers\WebhookController as CashierController;
 
-class WebhookController  extends CashierController
+class WebhookController extends CashierController
 {
     /**
      * Handle an updated subscription (for example when managing 3d secure payments)
@@ -34,8 +32,10 @@ class WebhookController  extends CashierController
             $status = Arr::get($data, 'status', false);
 
             Log::debug('Customer Sub Updated Status ' . $status);
-            // If the status is past_due, we need to remind the user to update their credit card info
-            if ($status != 'past_due') {
+            // If the status is past_due, we need to remind the user to update their credit card info.
+            // Also if the user is cancelling, we've already handled that in Kanka, we don't need to handle it here, but
+            // stripe will still tell us about it.
+            if ($status != 'past_due' && !$this->isCancelling($payload)) {
                 $service->user($user)->webhook()->finish($payload['data']['object']['plan']['id']);
             }
         }
@@ -54,7 +54,6 @@ class WebhookController  extends CashierController
 
         // User notification. Maybe even an email
         if ($user = $this->getUserByStripeId($payload['data']['object']['customer'])) {
-
             // Notify admin
             SubscriptionDeletedEmailJob::dispatch($user);
 
@@ -80,7 +79,7 @@ class WebhookController  extends CashierController
 
             $source = SubscriptionSource::where(['user_id' => $user->id, 'charge_id', $charge])->first();
             if ($source) {
-
+                // Do something?
             }
         }
 
