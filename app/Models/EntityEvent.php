@@ -654,7 +654,7 @@ class EntityEvent extends MiscModel
     }
 
     /**
-     * Determine if an event is of the character birth type
+     * Determine if an event is of the entity foundation type
      * @return bool
      */
     public function isFounded(): bool

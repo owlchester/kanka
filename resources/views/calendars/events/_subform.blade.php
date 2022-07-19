@@ -82,7 +82,7 @@ if (isset($colourAppendTo) && request()->ajax()) {
         <p class="help-block">{!! __('entities/events.helpers.characters', ['more' => link_to_route('helpers.age', __('crud.actions.find_out_more'), null, ['target' => '_blank'])]) !!}</p>
     </div>
 @endif
-@if (!empty($entity) && $entity->typeId() == config('entities.ids.location') || $entity->typeId() == config('entities.ids.family') || $entity->typeId() == config('entities.ids.organisation'))
+@if (in_array($entity->typeId(), [config('entities.ids.location'), config('entities.ids.family'), config('entities.ids.organisation')]))
     <div class="form-group">
         <label>{{ __('entities/events.fields.type') }}</label>
         {!! Form::select('type_id', [null => '', 5 => __('entities/events.types.founded')], (isset($entityEvent) ? $entityEvent->type_id : null), ['class' => 'form-control']) !!}
