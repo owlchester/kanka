@@ -111,18 +111,9 @@ class EntityRelationService
             $this->addEntity($this->entity)
                 ->withEntity();
 
-            if ($this->loadRelations()) {
-                $this
-                    ->addRelations($this->entity)
-                    ->withEntity(false)
-                    ->relatedRelations();
-            } elseif ($this->loadOnlyRelations()) {
-                $this
-                    ->addRelations($this->entity)
-                    ->withEntity(false);
-            }
+            $this->loadRelations();
 
-            if ($this->loadRelated()) {
+            if ($this->withRelated()) {
                 $this->addParent()
                     ->addLocation()
                     ->addQuests()
@@ -346,19 +337,10 @@ class EntityRelationService
     protected function initFamily(): self
     {
         $this->addEntity($this->entity)
-            ->withEntity();
+            ->withEntity()
+            ->loadRelations();
 
-        if ($this->loadRelations()) {
-            $this
-                ->addRelations($this->entity)
-                ->withEntity(false);
-        } elseif ($this->loadOnlyRelations()) {
-            $this
-                ->addRelations($this->entity)
-                ->withEntity(false);
-        }
-
-        if ($this->loadRelated()) {
+        if ($this->withRelated()) {
             $this->addFamilyMembers($this->entity->child, true);
 
             $this->addFamilies()
@@ -429,18 +411,10 @@ class EntityRelationService
     protected function initCharacter(): self
     {
         $this->addEntity($this->entity)
-            ->withEntity();
-        if ($this->loadRelations()) {
-            $this
-                ->addRelations($this->entity)
-                ->withEntity(false)
-                ->relatedRelations();
-        } elseif ($this->loadOnlyRelations()) {
-            $this
-                ->addRelations($this->entity)
-                ->withEntity(false);
-        }
-        if ($this->loadRelated()) {
+            ->withEntity()
+            ->loadRelations();
+
+        if ($this->withRelated()) {
             $this->addFamily()
                 ->addOrganisation()
                 ->addItems()
@@ -461,19 +435,10 @@ class EntityRelationService
     protected function initLocation(): self
     {
         $this->addEntity($this->entity)
-            ->withEntity();
+            ->withEntity()
+            ->loadRelations();;
 
-        if ($this->loadRelations()) {
-            $this
-                ->addRelations($this->entity)
-                ->withEntity(false);
-        } elseif ($this->loadOnlyRelations()) {
-            $this
-                ->addRelations($this->entity)
-                ->withEntity(false);
-        }
-
-        if ($this->loadRelated()) {
+        if ($this->withRelated()) {
             $this->relatedRelations()
                 ->addCharacters()
                 ->addItems()
@@ -499,19 +464,10 @@ class EntityRelationService
     protected function initOrganisation(): self
     {
         $this->addEntity($this->entity)
-            ->withEntity();
+            ->withEntity()
+            ->loadRelations();
 
-        if ($this->loadRelations()) {
-            $this
-                ->addRelations($this->entity)
-                ->withEntity(false);
-        } elseif ($this->loadOnlyRelations()) {
-            $this
-                ->addRelations($this->entity)
-                ->withEntity(false);
-        }
-
-        if ($this->loadRelated()) {
+        if ($this->withRelated()) {
             $this->addOrganisationMembers($this->entity, true);
             $this
                 ->addParent()
@@ -531,11 +487,11 @@ class EntityRelationService
         $this->addEntity($this->entity)
             ->withEntity();
 
-        if ($this->loadRelations()) {
+        if ($this->withRelations()) {
             $this->addRelations($this->entity);
         }
 
-        if ($this->loadRelated()) {
+        if ($this->withRelated()) {
             $this->addParent()
                 ->addLocation()
                 ->addQuests()
@@ -904,7 +860,7 @@ class EntityRelationService
      */
     protected function addMentions(): self
     {
-        if (!$this->loadMentions()) {
+        if (!$this->withMentions()) {
             return $this;
         }
 
@@ -936,15 +892,15 @@ class EntityRelationService
     /**
      * @return bool
      */
-    protected function loadRelations(): bool
+    protected function withRelations(): bool
     {
-        return !$this->loadOnlyRelations();
+        return !$this->onlyRelations();
     }
 
     /**
      * @return bool
      */
-    protected function loadRelated(): bool
+    protected function withRelated(): bool
     {
         return in_array($this->option, ['related', 'mentions']);
     }
@@ -952,16 +908,35 @@ class EntityRelationService
     /**
      * @return bool
      */
-    protected function loadMentions(): bool
+    protected function withMentions(): bool
     {
-        return $this->option == 'mentions';
+        return $this->option === 'mentions';
     }
 
     /**
      * @return bool
      */
-    protected function loadOnlyRelations(): bool
+    protected function onlyRelations(): bool
     {
-        return $this->option == 'only_relations';
+        return $this->option === 'only_relations';
+    }
+
+    /**
+     * Load the entity's relations, along with optionally the relation's relations
+     * @return $this
+     */
+    protected function loadRelations(): self
+    {
+        $this
+            ->addRelations($this->entity)
+            ->withEntity(false);
+
+        if ($this->withRelations()) {
+            $this->relatedRelations();
+        } elseif ($this->onlyRelations()) {
+            // Just requested the entity's relations and target entities, nothing else
+        }
+
+        return $this;
     }
 }
