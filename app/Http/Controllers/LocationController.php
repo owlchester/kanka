@@ -3,9 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Datagrids\Filters\LocationFilter;
-use App\Datagrids\Sorters\LocationCharacterSorter;
-use App\Datagrids\Sorters\LocationFamilySorter;
-use App\Datagrids\Sorters\LocationLocationSorter;
 use App\Facades\Datagrid;
 use App\Http\Requests\StoreLocation;
 use App\Models\Location;
@@ -20,6 +17,7 @@ class LocationController extends CrudController
      * Tree / Nested Mode
      */
     use TreeControllerTrait;
+
     protected $treeControllerParentKey = 'parent_location_id';
 
     /**
@@ -174,6 +172,7 @@ class LocationController extends CrudController
 
         $this->rows = $location
             ->allCharacters()
+            ->select(['id', 'image', 'name', 'title', 'type','location_id', 'is_dead', 'is_private'])
             ->sort(request()->only(['o', 'k']))
             ->filter($filters)
             ->with(['location', 'location.entity', 'families', 'families.entity', 'races', 'races.entity', 'entity', 'entity.tags', 'entity.image'])
@@ -220,6 +219,7 @@ class LocationController extends CrudController
 
         $this->rows = $location
             ->descendants()
+            ->select(['id', 'image', 'name', 'type', 'parent_location_id', 'is_private'])
             ->sort(request()->only(['o', 'k']))
             ->filter($filters)
             ->with(['location', 'location.entity', 'entity', 'entity.tags', 'entity.image'])

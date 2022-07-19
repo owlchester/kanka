@@ -16,7 +16,7 @@ class EntityCacheService extends BaseCache
      * In-memory entity cache
      * @var array
      */
-    protected $entities = [];
+    protected array $entities = [];
 
     /**
      * @param MiscModel $model
