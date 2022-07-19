@@ -71,6 +71,17 @@
             @endif
         @endforeach
 
+    @if ($map->hasDistanceUnit())
+    var rulerOptions = {
+        lengthUnit: {
+            factor: {{ $map->config['distance_measure'] }},
+            display: '{{ $map->config['distance_name'] ?? 'Km' }}',
+            decimal: 2
+        },
+    };
+    L.control.ruler(rulerOptions).addTo(window.map);
+    @endif
+
 @if ($map->isClustered())
         map{{ $map->id }}.addLayer(clusterMarkers{{ $map->id }});
 

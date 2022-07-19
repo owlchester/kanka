@@ -123,6 +123,44 @@ if (isset($model) && $model->isChunked()) {
 <hr />
 
 <div class="row">
+    <div class="col-sm-6">
+        <div class="form-group">
+            <label>{{ __('maps.fields.distance_name') }}</label>
+            {!! Form::text(
+                'config[distance_name]',
+                FormCopy::field('config[distance_name]')->string(),
+                [
+                    'placeholder' => __('maps.placeholders.distance_name'),
+                    'class' => 'form-control',
+                    'maxlength' => 20
+                ]
+                ) !!}
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="form-group">
+            <label>
+                {{ __('maps.fields.distance_measure') }}
+                <i class="fa-solid fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" title="{{ __('maps.helpers.distance_measure') }}"></i>
+            </label>
+            {!! Form::number(
+            'config[distance_measure]',
+            FormCopy::field('config[distance_measure]')->string(),
+            [
+                'class' => 'form-control',
+                'min' => 0.01,
+                'max' => 100.99,
+                'step' => 0.01,
+            ]
+            ) !!}
+            <p class="help-block visible-xs visible-sm">{{ __('maps.helpers.distance_measure') }}</p>
+        </div>
+    </div>
+</div>
+
+<hr />
+
+<div class="row">
     <div class="col-sm-12 nav-tabs-custom" style="box-shadow: none">
         <div class="form-group">
             <label>{{ __('maps.fields.centering') }}</label>
