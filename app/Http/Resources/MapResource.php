@@ -32,6 +32,7 @@ class MapResource extends EntityResource
             'layers' => MapLayerResource::collection($model->layers),
             'groups' => MapGroupResource::collection($model->groups),
             'is_real' => (bool) $model->is_real,
+            'config' => $model->config,
         ]);
     }
 }

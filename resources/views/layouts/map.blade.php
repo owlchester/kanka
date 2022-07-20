@@ -40,6 +40,7 @@ $specificTheme = null;
           integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
           crossorigin=""/>
 
+
 @if (!empty($themeOverride) && in_array($themeOverride, ['dark', 'midnight', 'base']))
     @php $specificTheme = $themeOverride; @endphp
     @if(request()->get('_theme') != 'base')
@@ -126,6 +127,7 @@ $specificTheme = null;
 <script src="/js/vendor/leaflet/leaflet.markercluster.js"></script>
 <script src="/js/vendor/leaflet/leaflet.markercluster.layersupport.js"></script>
 <script src="/js/vendor/leaflet/leaflet.zoomcss.js"></script>
+<script src="/js/vendor/leaflet/leaflet.ruler.js"></script>
 
 <script src="{{ mix('js/location/map-v3.js') }}" defer></script>
 @yield('scripts')

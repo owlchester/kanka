@@ -22,8 +22,6 @@ use Illuminate\Support\Facades\Storage;
  * @property int $width
  * @property int $height
  * @property int $grid
- * @property string $distance_name
- * @property int $distance_measure
  * @property int $min_zoom
  * @property int $max_zoom
  * @property int $initial_zoom
@@ -33,6 +31,7 @@ use Illuminate\Support\Facades\Storage;
  * @property bool $is_real
  * @property bool $has_clustering
  * @property int $chunking_status
+ * @property array $config
  * @property Map $map
  * @property Map[] $maps
  * @property Location $location
@@ -77,8 +76,6 @@ class Map extends MiscModel
         'is_private',
         'height',
         'width',
-        'distance_name',
-        'distance_measure',
         'min_zoom',
         'max_zoom',
         'initial_zoom',
@@ -86,7 +83,12 @@ class Map extends MiscModel
         'center_y',
         'center_marker_id',
         'is_real',
-        'has_clustering'
+        'has_clustering',
+        'config',
+    ];
+
+    public $casts = [
+        'config' => 'array',
     ];
 
     /**
@@ -675,5 +677,10 @@ class Map extends MiscModel
             'map_id',
             'location_id',
         ];
+    }
+
+    public function hasDistanceUnit(): bool
+    {
+        return !empty($this->config['distance_measure']);
     }
 }
