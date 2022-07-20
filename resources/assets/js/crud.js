@@ -785,13 +785,18 @@ function initSpectrum() {
  *
  */
 function registerStoryActions() {
-    let posts = $('.entity-notes .entity-content');
+    let posts = $('.entity-notes');
     $('.btn-post-collapse').unbind('click').click(function (e) {
         posts.each(function (i) {
-            if ($(this).hasClass('in')) {
-                $(this).removeClass('in');
-                $(this).prev().find('.fa-chevron-up').hide();
-                $(this).prev().find('.fa-chevron-down').show();
+            let body = $(this).find('.entity-content');
+            if (body.hasClass('in')) {
+                body.removeClass('in');
+                body.prev().find('.fa-chevron-up').hide();
+                body.prev().find('.fa-chevron-down').show();
+            }
+            let header = $(this).find('.entity-note-toggle');
+            if (!header.hasClass('collapsed')) {
+                header.addClass('collapsed');
             }
         });
         return false;
@@ -799,10 +804,16 @@ function registerStoryActions() {
 
     $('.btn-post-expand').unbind('click').click(function (e) {
         posts.each(function (i) {
-            if (!$(this).hasClass('in')) {
-                $(this).addClass('in');
-                $(this).prev().find('.fa-chevron-up').show();
-                $(this).prev().find('.fa-chevron-down').hide();
+            let body = $(this).find('.entity-content');
+            if (!body.hasClass('in')) {
+                body.addClass('in');
+                body.prev().find('.fa-chevron-up').show();
+                body.prev().find('.fa-chevron-down').hide();
+                body.css('height', '');
+            }
+            let header = $(this).find('.entity-note-toggle');
+            if (header.hasClass('collapsed')) {
+                header.removeClass('collapsed');
             }
         });
         return false;
