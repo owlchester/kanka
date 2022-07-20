@@ -19,8 +19,8 @@ class EventController extends CrudController
     /**
      * @var string
      */
-    protected $view = 'events';
-    protected $route = 'events';
+    protected string $view = 'events';
+    protected string $route = 'events';
     protected $module = 'events';
 
     /** @var string Model */

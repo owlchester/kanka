@@ -28,38 +28,38 @@ class CrudController extends Controller
     use GuestAuthTrait, BulkControllerTrait;
 
     /** @var string The view where to find the resources */
-    protected $view = '';
+    protected string $view = '';
 
     /** @var string The name of the route for the resource */
-    protected $route = '';
+    protected string $route = '';
 
     /** @var MiscModel|Model */
     protected $model = null;
 
     /** @var array */
-    protected $filters = [];
+    protected array $filters = [];
     protected $filter;
 
     /** @var FilterService */
     protected $filterService;
 
     /** @var bool If the permissions tab and pane is enabled or not. */
-    protected $tabPermissions = true;
+    protected bool $tabPermissions = true;
 
     /** @var bool If the attributes tab and pane is enabled or not */
-    protected $tabAttributes = true;
+    protected bool $tabAttributes = true;
 
     /** @var bool If the copy tab and pane is enabled or not */
-    protected $tabCopy = true;
+    protected bool $tabCopy = true;
 
     /** @var bool If the boosted tab and pane is enabled or not */
-    protected $tabBoosted = true;
+    protected bool $tabBoosted = true;
 
     /** @var bool Control if the form is "horizontal" (css class) */
-    protected $horizontalForm = false;
+    protected bool $horizontalForm = false;
 
     /** @var array List of navigation actions on top of the datagrids */
-    protected $navActions = [];
+    protected array $navActions = [];
 
     /**
      * A sorter object for subviews
@@ -74,7 +74,7 @@ class CrudController extends Controller
     protected $datagridActions = DefaultDatagridActions::class;
 
     /** @var array */
-    protected $rows = [];
+    protected array $rows = [];
 
     /**
      * Create a new controller instance.

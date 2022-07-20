@@ -28,7 +28,7 @@
             {{ __('crud.cancel') }}
         </button>
 
-        <button class="btn btn-success">{{ __('campaigns.roles.actions.save') }}</button>
+        <button class="btn btn-success">{{ __('campaigns.roles.actions.add') }}</button>
     </div>
     {!! Form::hidden('campaign_id', CampaignLocalization::getCampaign()->id) !!}
 

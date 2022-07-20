@@ -15,7 +15,7 @@ class CharacterOrganisationController extends Controller
     /**
      * @var string
      */
-    protected $view = 'characters.organisations';
+    protected string $view = 'characters.organisations';
 
     /**
      * Create a new controller instance.

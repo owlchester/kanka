@@ -19,8 +19,8 @@ class OrganisationController extends CrudController
     /**
      * @var string
      */
-    protected $view = 'organisations';
-    protected $route = 'organisations';
+    protected string $view = 'organisations';
+    protected string $route = 'organisations';
     protected $module = 'organisations';
 
     /** @var string */

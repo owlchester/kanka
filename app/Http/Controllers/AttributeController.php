@@ -19,12 +19,12 @@ class AttributeController extends CrudAttributeController
     /**
      * @var string
      */
-    protected $view = '';
+    protected string $view = '';
 
     /**
      * @var string
      */
-    protected $route = '_attributes';
+    protected string $route = '_attributes';
 
     /**
      * Redirect tab after manipulating

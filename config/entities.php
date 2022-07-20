@@ -1,9 +1,6 @@
 <?php
 
 return [
-    'max_entity_files' => 3,
-    'max_entity_files_boosted' => 5,
-    'max_entity_files_superboosted' => 10,
     'hard_delete' => env('APP_ENTITY_HARD_DELETE', 30),
     'logs' => env('APP_ENTITY_FULL_LOGS', 30),
     'logs_delete' => env('APP_ENTITY_LOGS_DELETE', 365),

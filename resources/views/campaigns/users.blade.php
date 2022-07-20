@@ -15,7 +15,9 @@
             @include('campaigns._menu', ['active' => 'users'])
         </div>
         <div class="col-md-9">
-            @include('campaigns._users')
+            @include('campaigns.members._users')
+
+            @include('campaigns.members._invites')
         </div>
     </div>
 @endsection

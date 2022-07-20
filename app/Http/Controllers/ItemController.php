@@ -20,8 +20,8 @@ class ItemController extends CrudController
     /**
      * @var string
      */
-    protected $view = 'items';
-    protected $route = 'items';
+    protected string $view = 'items';
+    protected string $route = 'items';
     protected $module = 'items';
 
     /** @var string Model */

@@ -11,9 +11,9 @@ class CrudRelationController extends Controller
     /**
      * @var string
      */
-    protected $view = '';
+    protected string $view = '';
 
-    protected $route = '';
+    protected string $route = '';
 
     /**
      * @var Model

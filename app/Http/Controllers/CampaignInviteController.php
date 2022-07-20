@@ -37,12 +37,14 @@ class CampaignInviteController extends Controller
         $this->authorize('invite', $campaign);
         $ajax = request()->ajax();
 
-        $typeID = CampaignInvite::TYPE_LINK;
-        if (request()->get('type_id') == CampaignInvite::TYPE_EMAIL) {
-            $typeID = CampaignInvite::TYPE_EMAIL;
+        if (!$campaign->canHaveMoreMembers()) {
+            return view('cruds.forms.limit')
+                ->with('key', 'members')
+                ->with('skipImage', true)
+                ->with('name', 'campaign_roles');
         }
 
-        return view('campaigns.invites.create', compact('campaign', 'ajax', 'typeID'));
+        return view('campaigns.invites.create', compact('campaign', 'ajax'));
     }
 
     /**

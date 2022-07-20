@@ -12,8 +12,8 @@ class AttributeTemplateController extends CrudController
     /**
      * @var string
      */
-    protected $view = 'attribute_templates';
-    protected $route = 'attribute_templates';
+    protected string $view = 'attribute_templates';
+    protected string $route = 'attribute_templates';
 
     /**
      * @var string

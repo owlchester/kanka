@@ -25,8 +25,8 @@ class TagController extends CrudController
     /**
      * @var string
      */
-    protected $view = 'tags';
-    protected $route = 'tags';
+    protected string $view = 'tags';
+    protected string $route = 'tags';
     protected $module = 'tags';
 
     /** @var string Model */
@@ -34,6 +34,15 @@ class TagController extends CrudController
 
     /** @var string Filter */
     protected $filter = TagFilter::class;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        parent::__construct();
+        $this->hasLimitCheck(false);
+    }
 
     /**
      * Store a newly created resource in storage.

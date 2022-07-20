@@ -47,6 +47,7 @@ class TimelineApiController extends ApiController
     {
         $this->authorize('access', $campaign);
         $this->authorize('create', Timeline::class);
+
         $model = Timeline::create($request->all());
         $this->crudSave($model);
         return new Resource($model);

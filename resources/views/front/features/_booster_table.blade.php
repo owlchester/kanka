@@ -17,7 +17,19 @@
         </tr>
         <tr>
             <td class="text">{{ __('front/boosters.perks.member-count') }}</td>
+            <td>{{ config('limits.campaigns.members') }}</td>
             <td><i class="fa-solid fa-infinity"></i></td>
+            <td><i class="fa-solid fa-infinity"></i></td>
+        </tr>
+        <tr>
+            <td class="text">{{ __('front/boosters.perks.role-count') }}</td>
+            <td>{{ config('limits.campaigns.roles') }}</td>
+            <td><i class="fa-solid fa-infinity"></i></td>
+            <td><i class="fa-solid fa-infinity"></i></td>
+        </tr>
+        <tr>
+            <td class="text">{{ __('front/boosters.perks.quick-links') }}</td>
+            <td>{{ config('limits.campaigns.quick-links') }}</td>
             <td><i class="fa-solid fa-infinity"></i></td>
             <td><i class="fa-solid fa-infinity"></i></td>
         </tr>

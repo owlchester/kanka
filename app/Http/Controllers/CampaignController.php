@@ -21,7 +21,7 @@ class CampaignController extends Controller
     /**
      * @var string
      */
-    protected $view = 'campaigns';
+    protected string $view = 'campaigns';
 
     /** @var CampaignService  */
     protected $campaignService;

@@ -76,6 +76,16 @@
                     </div>
 
                     <div class="text-center booster-card">
+                        <h5>{{ __('front/boosters.blocks.limits.title') }}</h5>
+                        <p>
+                            {!! __('front/boosters.blocks.limits.description') !!}
+                        </p>
+                        <div class="img-thumbnail">
+                            <i class="fa-solid fa-infinity" aria-hidden="true"></i>
+                        </div>
+                    </div>
+
+                    <div class="text-center booster-card">
                         <h5>{{ __('front/boosters.blocks.defaults.title') }}</h5>
                         <p>
                             {!! __('front/boosters.blocks.defaults.description') !!}
@@ -106,7 +116,7 @@
                              class="img-thumbnail" alt="{{ __('front/boosters.blocks.icons.title') }}" loading="lazy" />
                     </div>
 
-                    <div class="text-center booster-card centered">
+                    <div class="text-center booster-card">
                         <h5>{{ __('front/boosters.blocks.relations.title') }}</h5>
                         <p>
                             {!! __('front/boosters.blocks.relations.description') !!}

@@ -19,7 +19,7 @@
         @include('campaigns.invites._form')
     </div>
     <div class="modal-footer">
-        <a href="#" type="button" class="block mr-5" data-dismiss="modal">
+        <a href="#" type="button" class="btn btn-default pull-left" data-dismiss="modal">
             {{ __('crud.cancel') }}
         </a>
 
@@ -28,6 +28,6 @@
             {{ __('campaigns.invites.create.buttons.create') }}
         </button>
     </div>
-    {!! Form::hidden('type_id', $typeID) !!}
+    {!! Form::hidden('type_id', \App\Models\CampaignInvite::TYPE_LINK) !!}
     {!! Form::close() !!}
 @endsection

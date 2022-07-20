@@ -6,25 +6,27 @@
  */
 ?>
 @if (auth()->user()->can('invite', $campaign))
-    <div class="box box-solid">
-        <div class="box-header with-border">
-            <h3 class="box-title">
-                {{ __('campaigns.members.invite.title') }}
-            </h3>
-            <div class="box-tools">
-                <button class="btn btn-box-tool" data-toggle="dialog"
-                        data-target="invite-help">
-                    <i class="fa-solid fa-question-circle" aria-hidden="true"></i>
-                    <span class="hidden-xs hidden-md">{{ __('campaigns.members.actions.help') }}</span>
-                </button>
 
-                <a href="{{ route('campaign_invites.create') }}" class="btn btn-primary btn-sm"
-                   data-toggle="ajax-modal" data-target="#small-modal" data-url="{{ route('campaign_invites.create', ['type' => 'link']) }}">
-                    <i class="fa-solid fa-user-plus" aria-hidden="true"></i>
-                    <span class="hidden-xs hidden-md">{{ __('campaigns.invites.actions.link') }}</span>
-                </a>
-            </div>
+    <div class="mb-1">
+        <div class="pull-right">
+            <button class="btn btn-default btn-sm" data-toggle="dialog"
+                    data-target="invite-help">
+                <i class="fa-solid fa-question-circle" aria-hidden="true"></i>
+                <span class="hidden-xs hidden-md">{{ __('campaigns.members.actions.help') }}</span>
+            </button>
+
+            <a href="{{ route('campaign_invites.create') }}" class="btn btn-primary btn-sm"
+               data-toggle="ajax-modal" data-target="#small-modal" data-url="{{ route('campaign_invites.create', ['type' => 'link']) }}">
+                <i class="fa-solid fa-user-plus" aria-hidden="true"></i>
+                <span class="hidden-xs hidden-md">{{ __('campaigns.invites.actions.link') }}</span>
+            </a>
         </div>
+        <h3 class="mt-0 inline-block">
+            {{ __('campaigns.members.invite.title') }}
+        </h3>
+    </div>
+
+    <div class="box box-solid">
         @if($invitations->count() > 0)
             <div class="box-body no-padding">
                 <div class="table-responsive">
@@ -66,7 +68,7 @@
 
                                 <td class="text-right">
                                     {!! Form::open(['method' => 'DELETE','route' => ['campaign_invites.destroy', $relation->id],'style'=>'display:inline']) !!}
-                                    <button class="btn btn-xs btn-danger">
+                                    <button class="btn btn-sm btn-danger">
                                         <i class="fa-solid fa-trash" aria-hidden="true"></i> <span  class="hidden-xs hidden-md">{{ __('crud.remove') }}</span>
                                     </button>
                                     {!! Form::close() !!}

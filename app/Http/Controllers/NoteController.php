@@ -20,8 +20,8 @@ class NoteController extends CrudController
     /**
      * @var string
      */
-    protected $view = 'notes';
-    protected $route = 'notes';
+    protected string $view = 'notes';
+    protected string $route = 'notes';
     protected $module = 'notes';
 
     /** @var string */

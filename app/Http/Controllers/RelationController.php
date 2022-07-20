@@ -10,14 +10,14 @@ use App\Models\Relation;
 
 class RelationController extends CrudController
 {
-    protected $view = 'relations';
-    protected $route = 'relations';
+    protected string $view = 'relations';
+    protected string $route = 'relations';
     protected $langKey = 'entities/relations';
 
-    protected $tabPermissions = false;
-    protected $tabAttributes = false;
-    protected $tabBoosted = false;
-    protected $tabCopy = false;
+    protected bool $tabPermissions = false;
+    protected bool $tabAttributes = false;
+    protected bool $tabBoosted = false;
+    protected bool $tabCopy = false;
 
     /** @var string */
     protected $model = \App\Models\Relation::class;

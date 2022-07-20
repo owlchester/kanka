@@ -12,8 +12,8 @@ class ConversationController extends CrudController
     /**
      * @var string
      */
-    protected $view = 'conversations';
-    protected $route = 'conversations';
+    protected string $view = 'conversations';
+    protected string $route = 'conversations';
     protected $module = 'conversations';
 
     /** @var string Model */

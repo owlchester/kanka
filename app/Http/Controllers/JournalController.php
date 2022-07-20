@@ -19,8 +19,8 @@ class JournalController extends CrudController
     /**
      * @var string
      */
-    protected $view = 'journals';
-    protected $route = 'journals';
+    protected string $view = 'journals';
+    protected string $route = 'journals';
     protected $module = 'journals';
 
     /** @var string Model*/

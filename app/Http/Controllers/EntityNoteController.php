@@ -13,10 +13,10 @@ class EntityNoteController extends Controller
     use GuestAuthTrait;
 
     /** @var string */
-    protected $view = '';
+    protected string $view = '';
 
     /** @var string */
-    protected $route = 'entity_notes';
+    protected string $route = 'entity_notes';
 
     /**
      * Crud view path

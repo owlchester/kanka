@@ -22,14 +22,7 @@ class RelationController extends Controller
      */
     use GuestAuthTrait;
 
-    /**
-     * @var
-     */
-    protected $transKey;
-
-    /**
-     * @var
-     */
+    /** @var */
     protected $viewPath;
 
     /** @var EntityRelationService */

@@ -47,6 +47,7 @@ class EventApiController extends ApiController
     {
         $this->authorize('access', $campaign);
         $this->authorize('create', Event::class);
+
         $model = Event::create($request->all());
         $this->crudSave($model);
         return new Resource($model);

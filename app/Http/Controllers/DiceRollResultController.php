@@ -11,8 +11,8 @@ class DiceRollResultController extends CrudController
     /**
      * @var string
      */
-    protected $view = 'dice_roll_results';
-    protected $route = 'dice_roll_results';
+    protected string $view = 'dice_roll_results';
+    protected string $route = 'dice_roll_results';
 
     /** @var string Model */
     protected $model = \App\Models\DiceRollResult::class;
