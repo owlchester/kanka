@@ -90,7 +90,7 @@ return [
         'title'             => 'Linking to other entities with mentions',
     ],
     'pins'              => [
-        'description'   => 'Entities can have relations and attributes pinned to the right of their overview. To pin an element, go and edit the relation or attributes and set the pinned value on those.',
+        'description'   => 'Entities can have relations, attributes, and files pinned to the right of their overview. To pin an element, go and edit it and set them as pinned.',
         'title'         => 'Entity Pins',
     ],
     'public'            => 'Watch a tutorial video on Youtube explaining public campaigns.',
