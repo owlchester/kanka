@@ -6,6 +6,12 @@
     </label>
 </div>
 <div class="form-group">
+    {!! Form::hidden('replace_mentions', null) !!}
+    <label>{!! Form::checkbox('replace_mentions', 1, true) !!}
+        {{ __('crud.fields.replace_mentions') }}
+    </label>
+</div>
+<div class="form-group">
     {!! Form::hidden('copy_source_abilities', null) !!}
     <label>{!! Form::checkbox('copy_source_abilities', 1, request()->filled('template')) !!}
         {{ __('crud.fields.copy_abilities') }}

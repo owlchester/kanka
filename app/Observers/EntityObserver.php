@@ -117,7 +117,6 @@ class EntityObserver
         } elseif (request()->has('copy_source_permissions') && request()->filled('copy_source_permissions')) {
             return;
         }
-
         $data = request()->only('role', 'user', 'is_attributes_private', 'permissions_too_many');
 
         // If the user granted/assigned themselves read/write permissions on the entity, we need to make sure they
@@ -156,7 +155,32 @@ class EntityObserver
             'is_attributes_private'
         );
         $this->attributeService->saveEntity($data, $entity);
-
+        $sourceId = request()->post('copy_source_id');
+        if (request()->has('replace_mentions') && request()->filled('replace_mentions')) {
+            $source = $source ?? Entity::findOrFail($sourceId);
+            $sourceAttributes = [];
+            $entityAttributes = [];
+            foreach ($source->attributes as $attribute) {
+                array_push($sourceAttributes, '{attribute:' . $attribute->id . '}');
+            }
+            foreach ($entity->attributes as $attribute) {
+                array_push($entityAttributes, '{attribute:' . $attribute->id . '}');
+            }
+            $attributes = array_combine($sourceAttributes, $entityAttributes);
+            $entry = $entity->child->entry;
+            foreach ($attributes as $sourceAttribute => $entityAttribute) {
+                $entry = str_replace($sourceAttribute, $entityAttribute, $entry);
+            }
+            $entity->child->update(['entry' => $entry]);
+            foreach ($entity->notes as $note) {
+                $entry = $note->entry;
+                foreach ($attributes as $sourceAttribute => $entityAttribute) {
+                    $entry = str_replace($sourceAttribute, $entityAttribute, $entry);
+                    $note->entry =  $entry;
+                }
+                $note->update();
+            }
+        }
         return $this;
     }
 
