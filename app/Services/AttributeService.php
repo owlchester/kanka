@@ -841,7 +841,7 @@ class AttributeService
         } elseif ($type === Attribute::TYPE_SECTION) {
             return Attribute::TYPE_SECTION_ID;
         } elseif ($type === Attribute::TYPE_RANDOM) {
-            return Attribute::TYPE_RANDOM;
+            return Attribute::TYPE_RANDOM_ID;
         } elseif ($type === Attribute::TYPE_NUMBER) {
             return Attribute::TYPE_NUMBER_ID;
         } elseif ($type === Attribute::TYPE_LIST) {
