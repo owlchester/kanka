@@ -13,6 +13,7 @@ use App\Services\AttributeService;
 use App\Services\ImageService;
 use App\Services\PermissionService;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class EntityObserver
 {
@@ -157,7 +158,7 @@ class EntityObserver
         $this->attributeService->saveEntity($data, $entity);
         $sourceId = request()->post('copy_source_id');
         if (request()->has('replace_mentions') && request()->filled('replace_mentions')) {
-            $source = $source ?? Entity::findOrFail($sourceId);
+            $source = Entity::findOrFail($sourceId);
             $sourceAttributes = [];
             $entityAttributes = [];
             foreach ($source->attributes as $attribute) {
@@ -167,17 +168,10 @@ class EntityObserver
                 array_push($entityAttributes, '{attribute:' . $attribute->id . '}');
             }
             $attributes = array_combine($sourceAttributes, $entityAttributes);
-            $entry = $entity->child->entry;
-            foreach ($attributes as $sourceAttribute => $entityAttribute) {
-                $entry = str_replace($sourceAttribute, $entityAttribute, $entry);
-            }
+            $entry = Str::replace($sourceAttributes, $entityAttributes, $entity->child->entry);
             $entity->child->update(['entry' => $entry]);
             foreach ($entity->notes as $note) {
-                $entry = $note->entry;
-                foreach ($attributes as $sourceAttribute => $entityAttribute) {
-                    $entry = str_replace($sourceAttribute, $entityAttribute, $entry);
-                    $note->entry =  $entry;
-                }
+                $note->entry = Str::replace($sourceAttributes, $entityAttributes, $note->entry);
                 $note->update();
             }
         }
