@@ -165,6 +165,7 @@ return [
         'position'              => 'Position',
         'privacy'               => 'Privacy',
         'race'                  => 'Race',
+        'replace_mentions'      => 'Replace attribute mentions in the entry with those of the new entity',
         'tag'                   => 'Tag',
         'tags'                  => 'Tags',
         'timeline'              => 'Timeline',

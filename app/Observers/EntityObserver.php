@@ -13,6 +13,7 @@ use App\Services\AttributeService;
 use App\Services\ImageService;
 use App\Services\PermissionService;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class EntityObserver
 {
@@ -117,7 +118,6 @@ class EntityObserver
         } elseif (request()->has('copy_source_permissions') && request()->filled('copy_source_permissions')) {
             return;
         }
-
         $data = request()->only('role', 'user', 'is_attributes_private', 'permissions_too_many');
 
         // If the user granted/assigned themselves read/write permissions on the entity, we need to make sure they
@@ -156,7 +156,25 @@ class EntityObserver
             'is_attributes_private'
         );
         $this->attributeService->saveEntity($data, $entity);
-
+        $sourceId = request()->post('copy_source_id');
+        if (request()->has('replace_mentions') && request()->filled('replace_mentions')) {
+            $source = Entity::findOrFail($sourceId);
+            $sourceAttributes = [];
+            $entityAttributes = [];
+            foreach ($source->attributes as $attribute) {
+                array_push($sourceAttributes, '{attribute:' . $attribute->id . '}');
+            }
+            foreach ($entity->attributes as $attribute) {
+                array_push($entityAttributes, '{attribute:' . $attribute->id . '}');
+            }
+            $attributes = array_combine($sourceAttributes, $entityAttributes);
+            $entry = Str::replace($sourceAttributes, $entityAttributes, $entity->child->entry);
+            $entity->child->update(['entry' => $entry]);
+            foreach ($entity->notes as $note) {
+                $note->entry = Str::replace($sourceAttributes, $entityAttributes, $note->entry);
+                $note->update();
+            }
+        }
         return $this;
     }
 
