@@ -110,6 +110,7 @@ trait CampaignLimit
      */
     public function canHaveMoreEntities(): bool
     {
+        return false;
         $limit = $this->entityLimit();
         if (empty($limit)) {
             return true;

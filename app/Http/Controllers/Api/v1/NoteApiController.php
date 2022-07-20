@@ -47,7 +47,6 @@ class NoteApiController extends ApiController
     {
         $this->authorize('access', $campaign);
         $this->authorize('create', Note::class);
-        $this->authorizeNewEntity($campaign);
 
         $model = Note::create($request->all());
         $this->crudSave($model);

@@ -47,7 +47,6 @@ class JournalApiController extends ApiController
     {
         $this->authorize('access', $campaign);
         $this->authorize('create', Journal::class);
-        $this->authorizeNewEntity($campaign);
 
         $model = Journal::create($request->all());
         $this->crudSave($model);

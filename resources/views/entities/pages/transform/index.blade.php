@@ -10,9 +10,6 @@
 @section('content')
     @include('partials.errors')
 
-    @if ($full)
-        @include('entities.creator.limit', ['key' => 'entities'])
-    @else
     {!! Form::open(['route' => ['entities.transform', $entity->id], 'method' => 'POST']) !!}
 
     {{ csrf_field() }}
@@ -41,5 +38,4 @@
         </div>
     </div>
     {!! Form::close() !!}
-    @endif
 @endsection

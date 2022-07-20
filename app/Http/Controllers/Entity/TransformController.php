@@ -41,10 +41,6 @@ class TransformController extends Controller
 
         // Check that the campaign isn't full
         $campaign = CampaignLocalization::getCampaign();
-        $full = false;
-        if (!$campaign->canHaveMoreEntities()) {
-            $full = true;
-        }
 
         $entities = $this->service
             ->labelledEntities(true, [$entity->pluralType(), 'menu_links', 'relations'], true);
@@ -55,7 +51,6 @@ class TransformController extends Controller
         return view('entities.pages.transform.index', compact(
             'entity',
             'entities',
-            'full'
         ));
     }
 

@@ -1,25 +1,31 @@
 <?php /**
  * @var \App\Models\CampaignUser[] $users
  * @var \App\Models\CampaignRole[] $roles
+ * @var \App\Models\Campaign $campaign
  */
 
 ?>
-@if (!$campaign->canHaveMoreMembers())
 <div class="mb-2">
+    <button class="btn btn-default btn-sm pull-right" data-toggle="dialog"
+            data-target="members-help">
+        <i class="fa-solid fa-question-circle" aria-hidden="true"></i>
+        {{ __('campaigns.members.actions.help') }}
+    </button>
+    <h3 class="mt-0 inline-block">
+        {{ __('campaigns.show.tabs.members') }} <small>({{ $users->total() }} / @if ($limit = $campaign->memberLimit()){{ $limit }}@else<i class="fa-solid fa-infinity"></i>@endif)</small>
+    </h3>
+</div>
+
+@if (!$campaign->canHaveMoreMembers())
+<div class="m-2">
     <div class="">
         <div class="booster-callout">
 
             <p>{{ __('campaigns/limits.members') }}</p>
             @subscriber()
-                @if (isset($superboost))
-                    <a href="{{ route('settings.boost', ['campaign' => $campaign, 'superboost' => true]) }}" class="btn bg-maroon btn-lg">
-                        {!! __('callouts.booster.actions.superboost', ['campaign' => $campaign->name]) !!}
-                    </a>
-                @else
-                    <a href="{{ route('settings.boost', ['campaign' => $campaign]) }}" class="btn bg-maroon btn-lg">
-                        {!! __('callouts.booster.actions.boost', ['campaign' => $campaign->name]) !!}
-                    </a>
-                @endif
+                <a href="{{ route('settings.boost', ['campaign' => $campaign]) }}" class="btn bg-maroon btn-lg">
+                    {!! __('callouts.booster.actions.boost', ['campaign' => $campaign->name]) !!}
+                </a>
             @else
                 <a href="{{ route('front.boosters') }}" target="_blank" class="btn bg-maroon btn-lg">
                     {!! __('callouts.booster.learn-more') !!}
@@ -29,20 +35,8 @@
     </div>
 </div>
 @endif
-<div class="box box-solid">
-    <div class="box-header with-border">
-        <h3 class="box-title">
-            <i class="fa-solid fa-users"></i> {{ __('campaigns.show.tabs.members') }}
-        </h3>
-        <div class="box-tools">
-            <button class="btn btn-box-tool" data-toggle="dialog"
-                    data-target="members-help">
-                <i class="fa-solid fa-question-circle" aria-hidden="true"></i>
-                    {{ __('campaigns.members.actions.help') }}
-            </button>
-        </div>
-    </div>
 
+<div class="box box-solid mb-8">
     <div class="box-body no-padding">
         <div class="table-responsive">
             <table id="campaign-members" class="table table-hover table-striped">
@@ -166,7 +160,7 @@
             __('campaigns.members.help'),
             (auth()->check() && auth()->user()->isAdmin() ? __('campaigns.members.helpers.admin', [
         'link' => link_to_route('front.faqs.index', __('front.menu.kb'), null, ['target' => '_blank']),
-        'button' => '<code><i class="fa-solid fa-sign-in-alt" aria-hidden="true"></i>' . __('campaigns.members.actions.switch') . '</code>']) : null),
+        'button' => '<code><i class="fa-solid fa-sign-in-alt" aria-hidden="true"></i> ' . __('campaigns.members.actions.switch') . '</code>']) : null),
         ]
     ])
 

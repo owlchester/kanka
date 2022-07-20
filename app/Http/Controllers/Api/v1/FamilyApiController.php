@@ -47,7 +47,6 @@ class FamilyApiController extends ApiController
     {
         $this->authorize('access', $campaign);
         $this->authorize('create', Family::class);
-        $this->authorizeNewEntity($campaign);
 
         $model = Family::create($request->all());
         $this->crudSave($model);

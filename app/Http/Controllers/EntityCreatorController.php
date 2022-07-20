@@ -64,14 +64,6 @@ class EntityCreatorController extends Controller
         $entityType = __('entities.' . $singularType);
         $campaign = CampaignLocalization::getCampaign();
 
-        // Check limit
-        if (!in_array($type, ['tags', 'posts'])) {
-            if (!$campaign->canHaveMoreEntities()) {
-                return view('entities.creator.limit')
-                    ->with('key', 'entities');
-            }
-        }
-
         return view('entities.creator.form', [
             'type' => $type,
             'singularType' => $singularType,
@@ -124,16 +116,14 @@ class EntityCreatorController extends Controller
         foreach ($names as $name) {
             if (empty($name)) {
                 continue;
-            } elseif (!in_array($type, ['tags', 'posts']) && !$campaign->canHaveMoreEntities()) {
-                // If it's an entity, and we've hit the limit, don't process it
-                continue;
             }
+
             $values['name'] = $name;
             if ($type != 'posts') {
                 $this->validateEntity($values, $validator->rules());
 
                 /** @var MiscModel $model */
-                $model = new $class;
+                $model = new $class();
                 $new = $model->create($values);
                 $new->crudSaved();
                 $new->entity->crudSaved();

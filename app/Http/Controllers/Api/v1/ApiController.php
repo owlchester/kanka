@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers\Api\v1;
 
-use App\Exceptions\CampaignFullException;
 use App\Http\Controllers\Controller;
-use App\Models\Campaign;
 use App\Models\MiscModel;
 
 class ApiController extends Controller
@@ -22,19 +20,5 @@ class ApiController extends Controller
         if ($model->entity) {
             $model->entity->crudSaved();
         }
-    }
-
-    /**
-     * @param Campaign $campaign
-     * @return void
-     * @throws CampaignFullException
-     */
-    protected function authorizeNewEntity(Campaign $campaign)
-    {
-        if ($campaign->canHaveMoreEntities()) {
-            return;
-        }
-
-        throw new CampaignFullException();
     }
 }
