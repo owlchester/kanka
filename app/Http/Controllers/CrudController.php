@@ -19,6 +19,7 @@ use App\Traits\BulkControllerTrait;
 use App\Traits\GuestAuthTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Collection;
 use LogicException;
@@ -73,8 +74,8 @@ class CrudController extends Controller
     /** @var null */
     protected $datagridActions = DefaultDatagridActions::class;
 
-    /** @var array */
-    protected array $rows = [];
+    /** @var array|LengthAwarePaginator */
+    protected $rows = [];
 
     /**
      * Create a new controller instance.
