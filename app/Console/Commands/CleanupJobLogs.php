@@ -2,28 +2,27 @@
 
 namespace App\Console\Commands;
 
-use App\Models\EntityUser;
 use App\Models\JobLog;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
 
-class CleanupEntityUsers extends Command
+class CleanupJobLogs extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'cleanup:entity-users';
+    protected $signature = 'cleanup:job-logs';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Cleanup old entity-user entries';
+    protected $description = 'Cleanup old job logs';
 
-    /** @var int number of cleaned up logs */
+    /** @var int Number of processed elements */
     protected int $count = 0;
 
     /**
@@ -43,20 +42,10 @@ class CleanupEntityUsers extends Command
      */
     public function handle()
     {
-        $this->count = EntityUser::keepAlive()
-            ->where('updated_at', '<=', Carbon::now()->subDays(1)->toDateString())
+        $this->count = JobLog::where('created_at', '<=', Carbon::now()->subMonths(2)->toDateString())
             ->delete();
-        $log = "Cleaned up {$this->count} entity users.";
-        $this->info($log);
+        $this->info('Cleaned up ' . $this->count . ' job logs.');
 
-        if (!config('app.log_jobs')) {
-            return 0;
-        }
-
-        JobLog::create([
-            'name' => 'cleanup-entity-users',
-            'result' => $log,
-        ]);
         return 0;
     }
 }

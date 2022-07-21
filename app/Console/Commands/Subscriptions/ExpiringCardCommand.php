@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands\Subscriptions;
 
+use App\Models\JobLog;
 use App\Jobs\Emails\Subscriptions\ExpiringCardAlert;
 use App\User;
 use Carbon\Carbon;
@@ -44,7 +45,8 @@ class ExpiringCardCommand extends Command
     public function handle()
     {
         $now = Carbon::now()->endOfMonth();
-        $this->info('Looking for cards expiring on ' . $now->format('Y-m-d'));
+        $log = "Looking for cards expiring on {$now->format('Y-m-d')}";
+        $this->info($log);
 
         User::where('card_expires_at', $now)
             ->with('subscriptions')
@@ -55,6 +57,17 @@ class ExpiringCardCommand extends Command
             });
 
         $this->info('Alerted ' . $this->count . ' subscribers.');
+        $log .= '<br />' . 'Alerted ' . $this->count . ' subscribers.';
+
+        if (!config('app.log_jobs')) {
+            return 0;
+        }
+
+        JobLog::create([
+            'name' => 'expiring-card-command',
+            'result' => $log,
+        ]);
+
         return 0;
     }
 

@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use App\Models\Entity;
 use App\Models\MiscModel;
+use App\Models\JobLog;
 use App\Services\RecoveryService;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
@@ -70,10 +71,11 @@ class CleanupTrashed extends Command
             }
             $entityTypeIDs[] = $id;
         }
-
-        $this->info('Looking for deleted entities (' . $types . ') where deleted_at <= ' . $delay);
+        $log = "Looking for deleted entities ({$types}) where deleted_at <= {$delay}";
+        $this->info($log);
         if (!empty($this->limit)) {
             $this->info('- Limit: ' . $this->limit);
+            $log .= '<br />' .  '- Limit: ' . $this->limit;
         }
 
         // Stats stuff for developing
@@ -87,16 +89,18 @@ class CleanupTrashed extends Command
                 ->select(DB::raw('count(*) as tot'))
                 ->get();
             $this->info('Total ' . $firstTypeTable . ' ' . number_format($res[0]->tot, 0, '.', '\''));
+            $log .= '<br />' . 'Total ' . $firstTypeTable . ' ' . number_format($res[0]->tot, 0, '.', '\'');
             $res = DB::table('entities')
                 ->select(DB::raw('count(*) as tot'))
                 ->where('type_id', $firstTypeID)
                 ->get();
             $entityCount = $res[0]->tot;
             $this->info('Total entities (type_id=' . $firstTypeID . ')' . number_format($entityCount, 0, '.', '\''));
+            $log .= '<br />' . 'Total entities (type_id=' . $firstTypeID . ')' . number_format($entityCount, 0, '.', '\'');
         }
 
         // Dump each time a query is made
-        DB::listen(function($query) {
+        DB::listen(function ($query) {
             //if (Str::startsWith($query->sql, "select * from `entities` where `type` in")) {
             //    dump(Str::replaceArray('?', $query->bindings, $query->sql));
             //}
@@ -124,30 +128,41 @@ class CleanupTrashed extends Command
             DB::commit();
         } catch (\Exception $e) {
             $this->error($e->getMessage());
+            $log .= '<br />' . $e->getMessage();
             DB::rollBack();
         }
 
         $this->info('');
         $this->info('Deleted ' . $this->service->count() . ' trashed entities.');
-
+        $log .= '<br />' . 'Deleted ' . $this->service->count() . ' trashed entities.';
         // Stats checkup for developing
         if ($types !== 'all') {
             $res = DB::table($firstTypeTable)
                 ->select(DB::raw('count(*) as tot'))
                 ->get();
             $this->info('Total ' . $firstTypeTable . ' ' . number_format($res[0]->tot, 0, '.', '\''));
+            $log .= '<br />' . 'Total ' . $firstTypeTable . ' ' . number_format($res[0]->tot, 0, '.', '\'');
             $res = DB::table('entities')
                 ->select(DB::raw('count(*) as tot'))
                 ->where('type_id', $firstTypeID)
                 ->get();
             $endEntityCount = $res[0]->tot;
             $this->info('Total entities (type_id=' . $firstTypeID . ') ' . number_format($endEntityCount, 0, '.', '\''));
-
+            $log .= '<br />' . 'Total entities (type_id=' . $firstTypeID . ') ' . number_format($endEntityCount, 0, '.', '\'');
             if ($entityCount - $this->service->count() !== $endEntityCount) {
                 $this->error('Entity count mismatch ' . $entityCount . ' - ' . $this->service->count() . ' != ' . $endEntityCount);
-
+                $log .= '<br />' . 'Entity count mismatch ' . $entityCount . ' - ' . $this->service->count() . ' != ' . $endEntityCount;
             }
         }
+
+        if (!config('app.log_jobs')) {
+            return 0;
+        }
+
+        JobLog::create([
+            'name' => 'cleanup-trashed',
+            'result' => $log,
+        ]);
 
         return 0;
     }

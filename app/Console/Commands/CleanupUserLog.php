@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Models\UserLog;
+use App\Models\JobLog;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
 
@@ -45,7 +46,18 @@ class CleanupUserLog extends Command
         $this->count = UserLog::where('created_at', '<=', Carbon::now()->subMonths(6)->toDateString())
             ->delete();
 
-        $this->info('Cleaned up ' . $this->count . ' user logs.');
+        $log = "Cleaned up {$this->count} user logs.";
+        $this->info($log);
+
+        if (!config('app.log_jobs')) {
+            return 0;
+        }
+
+        JobLog::create([
+            'name' => 'cleanup-user-log',
+            'result' => $log,
+        ]);
+
         return 0;
     }
 }

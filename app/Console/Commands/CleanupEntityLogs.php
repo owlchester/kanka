@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Models\EntityLog;
+use App\Models\JobLog;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
@@ -60,8 +61,8 @@ class CleanupEntityLogs extends Command
                 ') limit ' . count($entityIds);
                 DB::statement($statement);
             });
-
-        $this->info('Cleaned up ' . $this->count . ' entity logs.');
+        $log = "Cleaned up {$this->count} entity logs.";
+        $this->info($log);
 
         DB::beginTransaction();
         try {
@@ -74,6 +75,16 @@ class CleanupEntityLogs extends Command
             DB::rollBack();
         }
         $this->info('Cleaned up ' . $this->count . ' entity logs.');
+        $log .= '<br />' . 'Cleaned up ' . $this->count . ' entity logs.';
+        if (!config('app.log_jobs')) {
+            return 0;
+        }
+
+        JobLog::create([
+            'name' => 'cleanup-entity-logs',
+            'result' => $log,
+        ]);
+
         return 0;
     }
 }
