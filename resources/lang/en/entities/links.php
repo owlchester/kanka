@@ -19,10 +19,15 @@ return [
         'url'       => 'URL',
     ],
     'helpers'           => [
-        'goto'      => 'Go to :name',
         'icon'      => 'You can customise the icon displayed for the link. Use any of the free icons from :fontawesome or leave this field blank for the default.',
-        'leaving'   => 'You are about to leave Kanka and go to another domain. The page you are leaving to was provided by a user and isn\'t vetted by our website.',
-        'url'       => 'The url you are about to go to is :url.',
+    ],
+    'go' => [
+        'title' => 'Leaving Kanka',
+        'description' => 'This link will take you to :link. Are you sure you want to go there?',
+        'actions' => [
+            'confirm' => 'I\'m sure',
+            'trust' => 'Don\'t ask me again',
+        ],
     ],
     'placeholders'      => [
         'name'  => 'DNDBeyond',

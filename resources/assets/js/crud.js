@@ -77,6 +77,7 @@ $(document).ready(function () {
     registerSidebarActions();
     registerEditWarning();
     registerEditKeepAlive();
+    registerTrustDomain();
 });
 
 /**
@@ -952,5 +953,27 @@ function keepAlivePulse() {
     .done(function(result) {
         //console.log('kept alive');
         setTimeout(keepAlivePulse, keepAliveTimer);
+    });
+}
+
+function registerTrustDomain() {
+    $('.domain-trust').click(function (e) {
+        let cookieName = 'kanka_trusted_domains';
+
+        let keyValue = document.cookie.match('(^|;) ?' + cookieName + '=([^;]*)(;|$)');
+        keyValue = keyValue ? keyValue[2] : '';
+
+        // If not yet in it
+        let newDomain = $(this).data('domain');
+        if (!keyValue.includes(newDomain)) {
+            if (keyValue) {
+                keyValue += '|';
+            }
+            keyValue += newDomain;
+        }
+
+        let expires = new Date();
+        expires.setTime(expires.getTime() + (30 * 24 * 60 * 60 * 1000));
+        document.cookie = cookieName + '=' + keyValue + ';expires=' + expires.toUTCString() + ';sameSite=Strict';
     });
 }

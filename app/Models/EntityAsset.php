@@ -129,4 +129,19 @@ class EntityAsset extends Model
         $new->entity_id = $target->id;
         return $new->save();
     }
+
+    /**
+     * Get the url's domain (skip the rest)
+     * @return string
+     */
+    public function urlDomain(): string
+    {
+        $url = $this->metadata['url'];
+        try {
+            $params = parse_url($url);
+            return $params['host'];
+        } catch (\Exception $e) {
+            return '';
+        }
+    }
 }

@@ -3384,6 +3384,7 @@ $(document).ready(function () {
   registerSidebarActions();
   registerEditWarning();
   registerEditKeepAlive();
+  registerTrustDomain();
 });
 /**
  * Re-register any events that need to be binded when a modal is loaded
@@ -4238,6 +4239,28 @@ function keepAlivePulse() {
   }).done(function (result) {
     //console.log('kept alive');
     setTimeout(keepAlivePulse, keepAliveTimer);
+  });
+}
+
+function registerTrustDomain() {
+  $('.domain-trust').click(function (e) {
+    var cookieName = 'kanka_trusted_domains';
+    var keyValue = document.cookie.match('(^|;) ?' + cookieName + '=([^;]*)(;|$)');
+    keyValue = keyValue ? keyValue[2] : ''; // If not yet in it
+
+    var newDomain = $(this).data('domain');
+
+    if (!keyValue.includes(newDomain)) {
+      if (keyValue) {
+        keyValue += '|';
+      }
+
+      keyValue += newDomain;
+    }
+
+    var expires = new Date();
+    expires.setTime(expires.getTime() + 30 * 24 * 60 * 60 * 1000);
+    document.cookie = cookieName + '=' + keyValue + ';expires=' + expires.toUTCString() + ';sameSite=Strict';
   });
 }
 

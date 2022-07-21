@@ -12,6 +12,6 @@ class EncryptCookies extends Middleware
      * @var array
      */
     protected $except = [
-        //
+        'kanka_trusted_domains' // used for the trusted domains entity links that is set in javascript
     ];
 }

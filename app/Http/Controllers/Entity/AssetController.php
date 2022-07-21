@@ -6,19 +6,13 @@ use App\Exceptions\EntityFileException;
 use App\Facades\CampaignLocalization;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreEntityAsset;
-use App\Http\Requests\StoreEntityLink;
 use App\Models\Entity;
-use App\Models\EntityAlias;
 use App\Models\EntityAsset;
-use App\Models\EntityLink;
 use App\Services\EntityFileService;
 use App\Traits\GuestAuthTrait;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
-use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Str;
-use function Symfony\Component\Translation\t;
 
 class AssetController extends Controller
 {
@@ -274,6 +268,15 @@ class AssetController extends Controller
         $url = $entityAsset->metadata['url'];
         if (Str::startsWith($url, config('app.url')) && !Str::contains($url, 'entity_links/')) {
             return redirect()->to($url);
+        }
+
+        // If the domain is trusted for the user, we don't need the confirmation, just go
+        $trusted = Cookie::get('kanka_trusted_domains');
+        if ($trusted) {
+            $domains = explode('|', $trusted);
+            if (in_array($entityAsset->urlDomain(), $domains)) {
+                return redirect()->to($url);
+            }
         }
 
         return view('entities.pages.links.go', compact(
