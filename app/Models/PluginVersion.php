@@ -24,12 +24,12 @@ use Illuminate\Support\Str;
 class PluginVersion extends Model
 {
     /** @var Entity */
-    protected $entity;
+    protected Entity $entity;
 
     /** @var Attribute[] */
     protected $entityAttributes;
 
-    protected $templateAttributes = [];
+    protected array $templateAttributes = [];
 
     /**
      * @var string[]
@@ -100,12 +100,12 @@ class PluginVersion extends Model
         return $html;
     }
 
+    /**
+     * @return string
+     */
     public function css(): string
     {
         $css = (string) $this->css;
-
-
-
         return $css;
     }
 
@@ -119,12 +119,18 @@ class PluginVersion extends Model
         $html = $this->content;
         $html = str_replace(['&lt;', '&gt;', '&amp;&amp;'], ['<', '>', '&&'], $html);
 
+        // Loop on every variable to be rendered in the
         $html = preg_replace_callback('`\{(.*?[^\!])\}`i', function ($matches) {
             $name = trim((string) $matches[1]);
-            if(Str::startsWith($name, '{')) {
+            // If it's a {{ }} case, nothing more to do
+            if (Str::startsWith($name, '{')) {
                 return '{' . $name . ' }';
             }
 
+            // However, if it's an attribute being generated à la ${"member$i"}, we need to skip it
+            if (Str::startsWith($name, '"') && Str::contains($name, '$')) {
+                return '{' . $name . '}';
+            }
             $this->templateAttributes[$name] = null;
             return '{{ $' . $name . ' }}';
         }, $html);
@@ -179,7 +185,6 @@ class PluginVersion extends Model
             $data[$name] = null;
         }
 
-
         $html = preg_replace_callback('`\@liveAttribute\(\'(.*?[^)])\'\)`i', function ($matches) use ($data, $ids, $checkboxes) {
             $attr = trim((string) $matches[1]);
             if (!isset($data[$attr])) {
@@ -220,10 +225,9 @@ class PluginVersion extends Model
 
             //throw new FatalThrowableError($e);
         }
-
         return '<div class="alert alert-danger">
             ' . __('attributes/templates.errors.marketplace.rendering') . (!empty($errors) ?
-                '<br /><br />' . __('attributes/templates.errors.marketplace.hint') . ': ' . $errors : null) . '
+                '<br /><br />' . __('attributes/templates.errors.marketplace.hint') . ': ' . $errors . ' (line ' . $e->getLine() . ')' : null) . '
         </div>';
     }
 
