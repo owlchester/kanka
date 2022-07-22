@@ -64,7 +64,7 @@ class ExpiringCardCommand extends Command
         }
 
         JobLog::create([
-            'name' => 'expiring-card-command',
+            'name' => $this->signature,
             'result' => $log,
         ]);
 

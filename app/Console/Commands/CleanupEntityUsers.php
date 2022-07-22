@@ -54,7 +54,7 @@ class CleanupEntityUsers extends Command
         }
 
         JobLog::create([
-            'name' => 'cleanup-entity-users',
+            'name' => $this->signature,
             'result' => $log,
         ]);
         return 0;

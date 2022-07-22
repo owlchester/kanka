@@ -62,7 +62,7 @@ class CampaignVisibileEntityCount extends Command
         $this->info($log);
         if (config('app.log_jobs')) {
             JobLog::create([
-                'name' => 'campaign-visible-entity-count',
+                'name' => $this->signature,
                 'result' => $log,
             ]);
         }

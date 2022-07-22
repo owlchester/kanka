@@ -160,7 +160,7 @@ class CleanupTrashed extends Command
         }
 
         JobLog::create([
-            'name' => 'cleanup-trashed',
+            'name' => $this->signature,
             'result' => $log,
         ]);
 

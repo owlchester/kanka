@@ -88,7 +88,7 @@ class UpcomingYearlyCommand extends Command
         }
 
         JobLog::create([
-            'name' => 'upcoming-yearly-command',
+            'name' => $this->signature,
             'result' => $log,
         ]);
 

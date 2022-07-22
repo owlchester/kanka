@@ -54,7 +54,7 @@ class CleanupUserLog extends Command
         }
 
         JobLog::create([
-            'name' => 'cleanup-user-log',
+            'name' => $this->signature,
             'result' => $log,
         ]);
 

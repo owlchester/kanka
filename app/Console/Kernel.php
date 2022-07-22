@@ -8,7 +8,6 @@ use App\Console\Commands\CleanupEntityLogs;
 use App\Console\Commands\CleanupEntityUsers;
 use App\Console\Commands\CleanupTrashed;
 use App\Console\Commands\CleanupUserLog;
-use App\Console\Commands\CleanupJobLog;
 use App\Console\Commands\Subscriptions\ExpiringCardCommand;
 use App\Console\Commands\Subscriptions\UpcomingYearlyCommand;
 use Illuminate\Console\Scheduling\Schedule;
@@ -41,7 +40,6 @@ class Kernel extends ConsoleKernel
         $schedule->command(CleanupEntityLogs::class)->dailyAt('03:30');
         $schedule->command(CleanupEntityUsers::class)->dailyAt('03:35');
         $schedule->command(CleanupUserLog::class)->dailyAt('03:45');
-        $schedule->command(CleanupJobLog::class)->weeklyOn(1, '03:55');
         $schedule->command(CleanupTrashed::class)->dailyAt('02:15');
         $schedule->command(UpcomingYearlyCommand::class)->dailyAt('06:30');
         $schedule->command(ExpiringCardCommand::class)->monthlyOn(1, '02:00');
