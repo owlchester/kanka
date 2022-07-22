@@ -6,6 +6,7 @@ use App\Models\Campaign;
 use App\Models\CampaignPermission;
 use App\Models\CampaignRole;
 use App\Models\Entity;
+use App\Models\JobLog;
 use Illuminate\Console\Command;
 
 class CampaignVisibileEntityCount extends Command
@@ -57,8 +58,14 @@ class CampaignVisibileEntityCount extends Command
                 $campaign->save();
             }
         });
-
-        $this->info('Updated ' . $this->count . ' public campaigns.');
+        $log = "Updated {$this->count} public campaigns.";
+        $this->info($log);
+        if (config('app.log_jobs')) {
+            JobLog::create([
+                'name' => $this->signature,
+                'result' => $log,
+            ]);
+        }
     }
 
     /**

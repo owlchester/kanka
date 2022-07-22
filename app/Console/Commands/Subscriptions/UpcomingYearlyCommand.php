@@ -4,6 +4,7 @@ namespace App\Console\Commands\Subscriptions;
 
 use App\Jobs\Emails\Subscriptions\UpcomingYearlyAlert;
 use App\Models\UserLog;
+use App\Models\JobLog;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
 use Laravel\Cashier\Subscription;
@@ -51,7 +52,8 @@ class UpcomingYearlyCommand extends Command
         ];
 
         $now = Carbon::now()->addMonth();
-        $this->info('Looking for active yearly subscriptions created on month ' . $now->month . ' and day ' . $now->day);
+        $log = "Looking for active yearly subscriptions created on month {$now->month} and day {$now->day}";
+        $this->info($log);
         //$this->info('Plans: ' . implode('\', \'', $plans));
         $subscriptions = Subscription::whereIn('stripe_plan', $plans)
             ->where('stripe_status', 'active')
@@ -79,6 +81,17 @@ class UpcomingYearlyCommand extends Command
         }
 
         $this->info('Notified ' . $count . ' users.');
+        $log .= '<br />' . 'Notified ' . $count . ' users.';
+
+        if (!config('app.log_jobs')) {
+            return 0;
+        }
+
+        JobLog::create([
+            'name' => $this->signature,
+            'result' => $log,
+        ]);
+
         return 0;
     }
 }

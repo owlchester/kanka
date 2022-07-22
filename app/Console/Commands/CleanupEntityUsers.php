@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Models\EntityUser;
+use App\Models\JobLog;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
 
@@ -45,8 +46,17 @@ class CleanupEntityUsers extends Command
         $this->count = EntityUser::keepAlive()
             ->where('updated_at', '<=', Carbon::now()->subDays(1)->toDateString())
             ->delete();
+        $log = "Cleaned up {$this->count} entity users.";
+        $this->info($log);
 
-        $this->info('Cleaned up ' . $this->count . ' entity users.');
+        if (!config('app.log_jobs')) {
+            return 0;
+        }
+
+        JobLog::create([
+            'name' => $this->signature,
+            'result' => $log,
+        ]);
         return 0;
     }
 }

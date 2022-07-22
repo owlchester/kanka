@@ -73,7 +73,7 @@ class CalendarAdvancer extends Command
         }
 
         JobLog::create([
-            'name' => 'calendar-advancer',
+            'name' => $this->signature,
             'result' => $log,
         ]);
 
