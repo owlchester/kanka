@@ -175,6 +175,7 @@ Route::post('/campaign_roles/{campaign_role}/toggle/{entity}/{action}', 'Campaig
 // Impersonator
 Route::get('/members/switch/{campaign_user}', 'Campaign\MemberController@switch')->name('identity.switch');
 Route::get('/members/back', 'Campaign\MemberController@back')->name('identity.back');
+Route::get('/members/switch/{campaign_user}/{entity}', 'Campaign\MemberController@switch')->name('identity.switch-entity');
 
 
 Route::post('/campaign_users/{campaign_user}/update-role/{campaign_role}', 'Campaign\MemberController@updateRoles')->name('campaign_users.update-roles');

@@ -6,6 +6,7 @@ use App\Facades\Identity;
 use App\Http\Controllers\Controller;
 use App\Models\CampaignRole;
 use App\Models\CampaignUser;
+use App\Models\Entity;
 use App\Services\Campaign\MemberService;
 use Illuminate\Support\Facades\Request;
 
@@ -29,11 +30,15 @@ class MemberController extends Controller
      * Switch to a member of the campaign
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function switch(CampaignUser $campaignUser)
+    public function switch(CampaignUser $campaignUser, Entity $entity)
     {
         $this->authorize('switch', $campaignUser);
 
         if (Identity::switch($campaignUser)) {
+            if ($entity) {
+                return redirect()
+                    ->to($entity->url());
+            }
             return redirect()
                 ->route('dashboard');
         }

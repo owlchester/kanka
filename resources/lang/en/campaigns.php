@@ -168,6 +168,7 @@ TEXT
             'help'          => 'Help',
             'remove'        => 'Remove from campaign',
             'switch'        => 'View campaign as user',
+            'switch-entity' => 'View as',
             'switch-back'   => 'Back to my user',
         ],
         'create'                => [
