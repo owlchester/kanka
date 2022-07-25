@@ -1,158 +1,26 @@
-<a href="https://kanka.io/#gh-light-mode-only" target="_blank">
-  <img src="./.github/logo.png" alt="Kanka" width="125" height="129">
-</a>
-
-# Kanka <!-- omit in toc -->
+# Kanka
+# [![Kanka](./.github/logo.png)](https://kanka.io/en-US)
 
 [![Minimum PHP Version](http://img.shields.io/badge/php-%3E%3D%208.0-8892BF.svg)](https://php.net/)
-[![Discord](https://img.shields.io/discord/413623253366603777.svg)](https://discord.gg/rhsyZJ4)
+[![Discord](https://img.shields.io/discord/413623253366603777.svg)](https://kanka.io/go/discord)
 
-This repository is the code source of [Kanka](https://kanka.io/en-US), a collaborative world building and campaign management tool tailored for tabletop RPG players and storytellers.
+[Kanka](https://kanka.io/en-US) in a collaborative world building and campaign management tool tailored for tabletop RPG players and storytellers. This repository is the primary source for development of the Kanka platform. It's written in PHP, a mix of VueJS and jQuery, and runs with a MySQL database. A new version is released on average twice a month.
 
-- [Run](#run)
-- [Concepts](#concepts)
-  - [Structure](#structure)
-  - [Sub content](#sub-content)
-  - [Assets](#assets)
-- [Development](#development)
-  - [Issues](#issues)
-  - [Standards](#standards)
-  - [Migrations](#migrations)
-  - [GIT](#git)
-  - [Production](#production)
-- [Translations](#translations)
-  - [Vue translations](#vue-translations)
-  - [Database Backup](#database-backup)
-- [Testing](#testing)
+<img width="900" alt="kanka-hero" src="https://images.kanka.io/app/77003-OIULLJT7wNJlfE9jeualk=/900x562/smart/src/images%2Ffront%2Fdevices-preview-hd.png">
 
-## Run
+This repository hosts the core Kanka web application. If you've encountered and issue, please contact us on [Discord](https://kanka.io/go/discord).
 
-See [documentation](./docs/running.md).
+## Install Kanka
 
-## Concepts
+- [Installing & Running Kanka](./docs/running.md).
 
-The app revolves around the concept of `Entities`. These include, for example:
+## Getting involved
 
-* Characters
-* Items
-* Locations
+- [Contribute to Kanka](./docs/contributing.md)
+- [Translating Kanka](./docs/translating.md)
 
-### Structure
+## Technical guides
 
-Each entity is split between two tables:
+- [Compiling assets](./docs/assets.md)
 
-* The `entity` table, which contains some generic information available to all entities (name, id)
-* A table for the specific data of the entity.
-
-### Sub content
-
-Most entities can have n-to-n relations to other entities.
-
-For example, there are `Relations` that link two entities together, as well as `Attributes` which contain n-to-1 custom data of an entity.
-
-### Assets
-
-Assets can be compiled by following the [Laravel Documentation](https://laravel.com/docs/7.x/mix)
-
-You'll need to install the various node packages first:
-> yarn install
-
-Select2 needs to be forced to 4.0.5 because newer builds (4.0.7) break:
-
-> yarn install select2@4.0.5 --save
-
-The following will produce assets for development:
-
-> yarn run dev
-
-The following will produce assets for production:
-
-> yarn run prod
-
-## Development
-
-The following rules apply when developing the application.
-
-### Issues
-
-To discuss an issue, please use [Discord](https://discord.gg/rhsyZJ4).
-All improvements, features and bugs must be related to a ticket on the trello. Each PR must contain a link to the trello ticket (see [contributing](./docs/CONTRIBUTING.md)).
-
-### Standards
-
-Code must follow PSR-4 recommendations.
-
-### Migrations
-
-All migrations should have a working `down()` function. Exceptions can be permitted for migrations that alter lots of content.
-
-### GIT
-
-Development should be done on your own fork of the repository in the `develop` branch, with substantial new features done in a separate branch.
-
-**Tagging** is only done on the main branch.
-
-### Production
-
-Once a feature is ready and tested, the admin will merge it into the main branch. There is no auto-deploy to the servers.
-
-## Translations
-
-To work on translations, execute the following command to clean your translations and re-import them.
-
-```sh
-php artisan translations:reset
-php artisan translations:import
-```
-
-In the database, change your user's `is_translator` to `true`._Navigate to `/translations` to start working on your translations. Add your new language to `app/config/laravel-translation-manager.php` if needed.
-
-When you are finished, export your changes.
-
-```sh
-php artisan translations:export *
-```
-
-### Vue translations
-
-To generate the vue translations:
-
-```sh
-    php artisan vue-i18n:generate
-```
-
-### Database Backup
-
-To back up your database in a gzip file, Kanka uses the [laravel backup manager](https://github.com/backup-manager/laravel). Execute the following command (adapt to your config):
-
-```sh
-    php artisan db:backup --database=mysql --destination=s3 --compression=gzip --destinationPath=prod/ --timestamp="d-m-Y"
-```
-
-To restore a db, use the following:
-
-```sh
-    php artisan db:restore
-```
-
-## Testing
-
-The configuration for PHPUnit-Tests is in the file /phpunit.xml.
-Before the first run you have to run
-
-```sh
-php artisan setupTestDB --env=testing
-```
-
-to create and set up the TestDatabase. Also if the Database-Schema changes or new migrations are added, you have to reset the Testing Database with this command.
-
-The Configuration for the TestEnvironment can be found in the files /phpunit.xml and .env.testing.
-The Environment-Variables in both files need to be the same.
-
-If everything is set up correctly, you can run the tests by just calling
-
-```sh
-phpunit
-```
-
-in the project directory.
+For any other questions, mail us directly at [hello@kanka.io](mailto:hello@kanka.io). We look forward to hearing from you!
