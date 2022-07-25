@@ -30,7 +30,7 @@ class MemberController extends Controller
      * Switch to a member of the campaign
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function switch(CampaignUser $campaignUser, Entity $entity)
+    public function switch(CampaignUser $campaignUser, Entity $entity = null)
     {
         $this->authorize('switch', $campaignUser);
 
