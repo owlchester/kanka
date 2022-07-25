@@ -155,7 +155,8 @@
                 )
             ]),
             __('campaigns.roles.helper.2'),
-            __('campaigns.roles.helper.3')
+            __('campaigns.roles.helper.3'),
+            __('campaigns.roles.helper.4'),
         ]
     ])
 @endsection
