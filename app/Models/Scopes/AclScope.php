@@ -89,7 +89,6 @@ class AclScope implements Scope
         } elseif ($model instanceof MiscModel) {
             return $this->applyToMisc($query, $model);
         }
-        dd($model);
 
         return $query;
     }
@@ -140,6 +139,7 @@ class AclScope implements Scope
                 ->whereNotIn($table . '.' . $primaryKey, Permissions::deniedModels())
             ;
         }
+
 
         return $query
             ->whereIn($table . '.' . $primaryKey, Permissions::allowedModels())

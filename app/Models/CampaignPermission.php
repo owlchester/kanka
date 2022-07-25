@@ -200,9 +200,14 @@ class CampaignPermission extends Model
             return 'campaign_' . $this->action;
         }
 
-        // If there is no entity attached,
+        // If there is no entity attached, just go entity type + action
         if (!$this->misc_id) {
             return $this->entity_type_id . '_' . $this->action;
+        }
+        // Jul 2022: Found out a bug that if the entity_type_id isn't set even on user perms, denying misc_id 2 would
+        // deny all (families, orgs, tags) with ID 2. Due to Kanka's size, very low collusion size, but still
+        if ($this->entity_type_id) {
+            return '_' . $this->action . '_' . $this->entity_type_id . '_' . $this->misc_id;
         }
         return '_' . $this->action . '_' . $this->misc_id;
     }

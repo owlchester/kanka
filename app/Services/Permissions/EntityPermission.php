@@ -42,7 +42,7 @@ class EntityPermission
     /**
      * @var array Entity Ids
      */
-    protected $cachedEntityIds = [];
+    protected array $cachedEntityIds = [];
 
     /**
      * @var bool is admin
@@ -52,17 +52,15 @@ class EntityPermission
     /**
      * @var bool permissions were loaded
      */
-    protected $loadedAll = false;
+    protected bool $loadedAll = false;
 
     /**
      * @var int campaign id of the loaded permissions (required for when moving entities between campaigns)
      */
-    protected $loadedCampaignId = 0;
+    protected int $loadedCampaignId = 0;
 
     /**
      * Creates new instance.
-     *
-     * @throws UnsupportedLocaleException
      */
     public function __construct()
     {
