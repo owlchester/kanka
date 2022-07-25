@@ -19,6 +19,7 @@ class MenuLinkController extends CrudController
     protected bool $tabAttributes = false;
     protected bool $tabBoosted = false;
     protected bool $tabCopy = false;
+    protected bool $hasLimitCheck = true;
 
     /** @var string */
     protected $model = \App\Models\MenuLink::class;

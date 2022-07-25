@@ -77,6 +77,9 @@ class CrudController extends Controller
     /** @var array|LengthAwarePaginator */
     protected $rows = [];
 
+    /** @var bool Determine if the create/store procedure has a limit checking in place */
+    protected bool $hasLimitCheck = false;
+
     /**
      * Create a new controller instance.
      *
@@ -202,6 +205,15 @@ class CrudController extends Controller
     {
         $this->authorize('create', $this->model);
 
+        if ($this->hasLimitCheck) {
+            if ($this->limitCheckReached()) {
+                $key = $this->view == 'menu_links' ? 'quick-links' : 'entities';
+                return view('cruds.forms.limit')
+                    ->with('key', $key)
+                    ->with('name', $this->view);
+            }
+        }
+
         if (!isset($params['source'])) {
             $copyId = request()->input('copy');
             if (!empty($copyId)) {
@@ -241,6 +253,12 @@ class CrudController extends Controller
         // For ajax requests, send back that the validation succeeded, so we can really send the form to be saved.
         if (request()->ajax()) {
             return response()->json(['success' => true]);
+        }
+
+        if ($this->hasLimitCheck) {
+            if ($this->limitCheckReached()) {
+                return redirect()->back();
+            }
         }
 
         try {
@@ -659,6 +677,16 @@ class CrudController extends Controller
             'class' => $class,
             'label' => $label
         ];
+        return $this;
+    }
+
+    /**
+     * Set the controller as having a limit check
+     * @return $this
+     */
+    protected function hasLimitCheck(bool $value = true): self
+    {
+        $this->hasLimitCheck = $value;
         return $this;
     }
 
