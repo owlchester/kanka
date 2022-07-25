@@ -75,7 +75,7 @@ trait CampaignLimit
         if (empty($limit)) {
             return true;
         }
-        return $this->roles()->count() <= $limit;
+        return $this->roles()->count() < $limit;
     }
 
     /**
@@ -88,7 +88,7 @@ trait CampaignLimit
         if (empty($limit)) {
             return true;
         }
-        return $this->members()->count() <= $limit;
+        return $this->members()->count() < $limit;
     }
 
     /**
@@ -101,7 +101,7 @@ trait CampaignLimit
         if (empty($limit)) {
             return true;
         }
-        return $this->menuLinks()->count() <= $limit;
+        return $this->menuLinks()->count() < $limit;
     }
 
     /**
