@@ -108,6 +108,12 @@ $permissionService->campaign($campaignService->campaign());
                     <div class="entity-image pull-left" style="background-image: url({{ $member->user->getAvatarUrl() }})" title="{{ $member->user->name }}">
                     </div>
                     <div class="user-name">{{ $member->user->name }}</div>
+                    @can('switch', $member)
+                        <a class="btn btn-default btn-sm" href="{{ route('identity.switch-entity', [$member, $entity]) }}" title="{{ __('campaigns.members.helpers.switch') }}" data-toggle="tooltip">                          
+                            <i class="fa-solid fa-sign-in-alt" aria-hidden="true"></i>
+                            {{ __('campaigns.members.actions.switch-entity') }}
+                        </a>
+                     @endcan
                 </div>
                 <div class="col-sm-2 text-center">
                     <span class="visible-xs-inline visible-sm-inline">{{ __('crud.permissions.actions.read') }}</span>
