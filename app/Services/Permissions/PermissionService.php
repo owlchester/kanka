@@ -19,7 +19,7 @@ class PermissionService
     protected Campaign $campaign;
 
     /** @var User */
-    protected User $user;
+    protected $user;
 
     /** @var int CampaignPermission::ACTION_READ etc */
     protected int $action;

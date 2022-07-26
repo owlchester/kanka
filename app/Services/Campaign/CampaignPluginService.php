@@ -305,6 +305,7 @@ class CampaignPluginService
                             $model->races()->attach($race);
                         }
                     }
+                    continue;
                 }
                 if (empty($value)) {
                     $model->$field = null;
