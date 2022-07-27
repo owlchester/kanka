@@ -279,7 +279,7 @@ return [
         'description'   => 'All core features are free, but supporting :kanka helps us deliver frequent updates and improvements for all users.',
         'tier'          => [
             'free'  => 'Free',
-            'month' => 'Month',
+            'month' => 'month',
         ],
         'title'         => 'Pricing',
     ],
