@@ -52,7 +52,7 @@ object-assign
  */
 
 /*!
- * jQuery UI :data 1.13.1
+ * jQuery UI :data 1.13.2
  * http://jqueryui.com
  *
  * Copyright jQuery Foundation and other contributors
@@ -61,7 +61,7 @@ object-assign
  */
 
 /*!
- * jQuery UI Draggable 1.13.1
+ * jQuery UI Draggable 1.13.2
  * http://jqueryui.com
  *
  * Copyright jQuery Foundation and other contributors
@@ -70,7 +70,7 @@ object-assign
  */
 
 /*!
- * jQuery UI Mouse 1.13.1
+ * jQuery UI Mouse 1.13.2
  * http://jqueryui.com
  *
  * Copyright jQuery Foundation and other contributors
@@ -79,7 +79,7 @@ object-assign
  */
 
 /*!
- * jQuery UI Scroll Parent 1.13.1
+ * jQuery UI Scroll Parent 1.13.2
  * http://jqueryui.com
  *
  * Copyright jQuery Foundation and other contributors
@@ -88,7 +88,7 @@ object-assign
  */
 
 /*!
- * jQuery UI Sortable 1.13.1
+ * jQuery UI Sortable 1.13.2
  * http://jqueryui.com
  *
  * Copyright jQuery Foundation and other contributors
@@ -97,7 +97,7 @@ object-assign
  */
 
 /*!
- * jQuery UI Widget 1.13.1
+ * jQuery UI Widget 1.13.2
  * http://jqueryui.com
  *
  * Copyright jQuery Foundation and other contributors
