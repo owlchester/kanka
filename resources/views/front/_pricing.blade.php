@@ -77,7 +77,7 @@
 {{--                    </li>--}}
                 </ul>
 
-                <a href="{{ route('settings.subscription') }}" target="_blank" class="btn btn-block btn-primary text-uppercase btn-owlbear">
+                <a href="{{ route('settings.subscription') }}" class="btn btn-block btn-primary text-uppercase btn-owlbear">
                     {{ __('front.pricing.actions.subscribe') }}
                 </a>
             </div>
@@ -120,7 +120,7 @@
 {{--                    </li>--}}
                 </ul>
 
-                <a href="{{ route('settings.subscription') }}" target="_blank" class="btn btn-block btn-primary text-uppercase btn-wyvern">
+                <a href="{{ route('settings.subscription') }}" class="btn btn-block btn-primary text-uppercase btn-wyvern">
                     {{ __('front.pricing.actions.subscribe') }}
                 </a>
             </div>
