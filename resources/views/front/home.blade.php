@@ -38,16 +38,17 @@
                 <h2>{{ __('front.features.title') }}</h2>
                 <p class="text-muted">{{ __('front.features.description', ['kanka' => config('app.name')]) }}</p>
             </div>
-            <div class="row">
+
+            <div class="row ab-testing-a">
                 <div class="col-12 col-lg-4 col-md-6 mb-2">
                     <div class="card">
                         <div class="card-body">
-                        <h3>{{ __('front.features.free.title') }}</h3>
-                        <p class="text-muted">
-                            {!! __('front/features.free.description', [
-            'bonuses' => link_to_route('front.pricing', __('front.features.free.bonuses'), ['#paid-features']),
-        ]) !!}
-                        </p>
+                            <h3>{{ __('front.features.free.title') }}</h3>
+                            <p class="text-muted">
+                                {!! __('front/features.free.description', [
+                'bonuses' => link_to_route('front.pricing', __('front.features.free.bonuses'), ['#paid-features']),
+            ]) !!}
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -69,6 +70,42 @@
                             {!! __('front/features.entity.description') !!}
                         </p>
                         </div>
+                    </div>
+                </div>
+            </div>
+            <div class="ab-testing-b">
+                <div class="row mb-5">
+                    <div class="col-12 col-xl-4">
+                        <h3>{{ __('front/features.dashboards.title') }}</h3>
+                        <p class="text-muted">
+                            {!! __('front/features.dashboards.description', [
+        'boosted-campaigns' => link_to_route('front.pricing', __('crud.boosted_campaigns'), '#boost'),
+    ]) !!}
+                        </p>
+                        <a href="{{ route('front.features.dashboards') }}">
+                            <i class="fa-solid fa-chevron-right"></i>
+                            {{ __('front.features.learn_more_about') }}
+                        </a>
+                    </div>
+                    <div class="col-12 col-xl-8">
+                        <a href="https://kanka-app-assets.s3.amazonaws.com/images/features/dashboard-hd.jpg" target="_blank">
+                            <img alt="Kanka dashboard" src="https://images.kanka.io/app/I953tDG_2cMATvI3dd4joD3hOqs=/825x464/smart/src/images%2Ffeatures%2Fdashboard-crop-hd.jpg" class="img-fluid shadow mb-2 rounded d-none d-lg-block" loading="lazy" >
+                            <img alt="Kanka dashboard" src="https://images.kanka.io/app/zXQF2JO3vCediym8xg2ObAly3pc=/540x303/smart/src/images%2Ffeatures%2Fdashboard-crop-hd.jpg" class="d-lg-none img-fluid shadow mb-2 rounded" loading="lazy" >
+                        </a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 col-md-6" id="collaborative">
+                        <h3>{{ __('front.features.collaborative.title') }}</h3>
+                        <p class="text-muted">
+                            {{ __('front/features.collaborative.description') }}
+                        </p>
+                    </div>
+                    <div class="col-md-6 col-12" id="modular">
+                        <h3>{{ __('front.features.modular.title') }}</h3>
+                        <p class="text-muted">
+                            {{ __('front/features.modular.description') }}
+                        </p>
                     </div>
                 </div>
             </div>

@@ -149,7 +149,7 @@ header.reduced-masthead.master-sm {
 }*/
 
 h1, h2, h3, h4, h5, h6, .card-title, .card-price {
-  font-family: Catamaran,Helvetica,Arial,sans-serif !important;
+  font-family: Roboto,Arial,sans-serif !important;
   font-weight: 200;
   letter-spacing: 1px;
   word-break: break-word;
@@ -626,7 +626,7 @@ ul.pagination {
     opacity: 0.7;
   }
   .btn {
-    font-size: 80%;
+    font-size: 90%;
     border-radius: 5rem;
     letter-spacing: .1rem;
     font-weight: bold;
@@ -635,6 +635,7 @@ ul.pagination {
     transition: all 0.2s;
     white-space: normal;
     word-break: break-word;
+
   }
 
   a.feature {
@@ -796,7 +797,6 @@ ul.pagination {
   #testimonials .items .card {
     width: calc(60% - 5px);
   }
-
 }
 
 @media (min-width: 992px) {
