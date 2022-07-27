@@ -537,12 +537,15 @@ ul.pagination {
   }
 
   .card-image {
-    width: 80px;
-    height: 80px;
+      margin-top: -75px;
+    width: 100px;
+    height: 100px;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: 50% 50%;
     display: block;
+  margin-right: auto;
+  margin-left: auto;
   }
 
   .subscription-kobold {
@@ -578,17 +581,10 @@ ul.pagination {
         border-radius: 1rem;
         transition: all 0.2s;
         box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
-
-        .flex-initial {
-            margin-left: 0.5rem;
-        }
-        .flex {
-            height: 120px;
-        }
     }
 
   hr {
-    margin: 1.25rem auto;
+    margin: 0.75rem auto 1.75rem;
     max-width: 250px;
   }
 
@@ -599,7 +595,7 @@ ul.pagination {
     font-weight: bold;
   }
   .card-price {
-    font-size: 2rem;
+    font-size: 1.8rem;
     margin: 0;
   }
 
@@ -792,7 +788,7 @@ ul.pagination {
   .pricing {
     .card-body {
       ul {
-        min-height: 360px;
+        min-height: 270px;
         margin-left: 25px;
       }
     }

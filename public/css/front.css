@@ -470,12 +470,15 @@ ul.pagination li span {
   bottom: 20px;
 }
 .card .card-image {
-  width: 80px;
-  height: 80px;
+  margin-top: -75px;
+  width: 100px;
+  height: 100px;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: 50% 50%;
   display: block;
+  margin-right: auto;
+  margin-left: auto;
 }
 .card .subscription-kobold {
   background-image: url(https://images.kanka.io/app/qys-P4Qdr8__OVuiejzh5grC3dg=/200x200/src/images%2Ftiers%2Fkobold-325.png);
@@ -508,14 +511,8 @@ ul.pagination li span {
   transition: all 0.2s;
   box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
 }
-.pricing .card .flex-initial {
-  margin-left: 0.5rem;
-}
-.pricing .card .flex {
-  height: 120px;
-}
 .pricing hr {
-  margin: 1.25rem auto;
+  margin: 0.75rem auto 1.75rem;
   max-width: 250px;
 }
 .pricing .card-title {
@@ -525,7 +522,7 @@ ul.pagination li span {
   font-weight: bold;
 }
 .pricing .card-price {
-  font-size: 2rem;
+  font-size: 1.8rem;
   margin: 0;
 }
 .pricing .card-price .period {
@@ -692,7 +689,7 @@ ul.pagination li span {
 
 @media (min-width: 768px) {
   .pricing .card-body ul {
-    min-height: 360px;
+    min-height: 270px;
     margin-left: 25px;
   }
 
