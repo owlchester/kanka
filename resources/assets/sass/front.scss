@@ -183,10 +183,10 @@ section {
       color: $KankaBlue;
     }
   }
-  .btn-primary {
+  /*.btn-primary {
     background-color: $KankaIconMiddle;
     border: 1px solid $KankaBlue;
-  }
+  }*/
 }
 
 .booster-cards {
@@ -537,15 +537,12 @@ ul.pagination {
   }
 
   .card-image {
-    margin-top: -75px;
-    width: 100px;
-    height: 100px;
+    width: 80px;
+    height: 80px;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: 50% 50%;
     display: block;
-    margin-right: auto;
-    margin-left: auto;
   }
 
   .subscription-kobold {
@@ -576,18 +573,24 @@ ul.pagination {
 
 .pricing {
 
-  .card {
-    border: none;
-    border-radius: 1rem;
-    transition: all 0.2s;
-    box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
-  }
+    .card {
+        border: none;
+        border-radius: 1rem;
+        transition: all 0.2s;
+        box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
+
+        .flex-initial {
+            margin-left: 0.5rem;
+        }
+        .flex {
+            height: 120px;
+        }
+    }
 
   hr {
     margin: 1.25rem auto;
     max-width: 250px;
   }
-
 
   .card-title {
     margin: 0.5rem 0;
@@ -604,6 +607,22 @@ ul.pagination {
     font-size: 0.8rem;
   }
 
+    .card-ribbon {
+        padding: 2px;
+        border-radius: 5px;
+        color: white;
+        text-transform: uppercase;
+        letter-spacing: 0.15rem;
+        font-size: 0.8rem;
+        margin-bottom: 1.1rem;
+    }
+    .card-most-popular {
+        background-color: #007bff;
+    }
+    .card-best-value {
+        background-color: #D81B60;
+    }
+
   ul li {
     margin-bottom: 0.75rem;
   }
@@ -616,7 +635,7 @@ ul.pagination {
     letter-spacing: .1rem;
     font-weight: bold;
     padding: 1rem;
-    opacity: 0.7;
+    //opacity: 0.7;
     transition: all 0.2s;
     white-space: normal;
     word-break: break-word;
@@ -625,6 +644,10 @@ ul.pagination {
   a.feature {
     text-decoration: underline;
   }
+}
+
+.ab-testing-second .card .hr-ribbon {
+    display: none;
 }
 
 .feature-item i {
@@ -770,6 +793,7 @@ ul.pagination {
     .card-body {
       ul {
         min-height: 360px;
+        margin-left: 25px;
       }
     }
   }
@@ -819,6 +843,16 @@ ul.pagination {
       }
     }
   }
+}
+
+.flex {
+    display: flex;
+}
+.flex-none {
+    flex: none;
+}
+.flex-initial {
+    flex: 0 1 auto;
 }
 
 @import "community-votes";
