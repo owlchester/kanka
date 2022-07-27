@@ -87,6 +87,7 @@
     <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"></noscript>
     <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.1/cookieconsent.min.css" media="print" onload="this.media='all'" />
     @if (!config('fontawesome.kit'))<link href="/vendor/fontawesome/6.0.0/css/all.min.css" rel="stylesheet">@endif
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
 
     @yield('styles')
 </head>
