@@ -16,7 +16,9 @@ if (auth()->check() && auth()->user()->can('update', $model)) {
             <i class="fa-solid fa-chevron-down"></i>
 
             {{ __('entities/pins.title') }}
-            <i class="fa-solid fa-question-circle pull-right" data-toggle="ajax-modal" role="button" data-target="#entity-modal" data-url="{{ route('helpers.pins') }}"></i>
+            <a href="//docs.kanka.io/en/latest/features/profile-sidebar.html" target="_blank">
+                <i class="fa-solid fa-question-circle pull-right" ></i>
+            </a>
         </div>
         <div class="sidebar-elements collapse in" id="sidebar-pinned-elements">
 

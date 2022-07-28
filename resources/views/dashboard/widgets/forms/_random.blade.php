@@ -31,10 +31,9 @@
                     <div class="form-group recent-filters" style="@if (empty($model) || empty($model->conf('entity'))) display: none @else @endif">
                         <label>
                             {{ __('dashboard.widgets.recent.filters') }}
-                            <a href="{{ route('helpers.widget-filters') }}" target="_blank">
+                            <a href="//docs.kanka.io/en/latest/guides/dashboard.html" target="_blank">
                                 <i class="fa-solid fa-question-circle" title="{{ __('dashboard.widgets.helpers.filters') }}" data-toggle="tooltip"></i>
                             </a>
-
                         </label>
                         {!! Form::text('config[filters]', null, ['class' => 'form-control', 'maxlength' => 191]) !!}
                     </div>

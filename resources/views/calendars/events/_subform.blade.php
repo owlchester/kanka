@@ -79,6 +79,6 @@ if (isset($colourAppendTo) && request()->ajax()) {
     <div class="form-group">
         <label>{{ __('entities/events.fields.type') }}</label>
         {!! Form::select('type_id', [null => '', 2 => __('entities/events.types.birth'), 3 =>  __('entities/events.types.death')], (isset($entityEvent) ? $entityEvent->type_id : null), ['class' => 'form-control']) !!}
-        <p class="help-block">{!! __('entities/events.helpers.characters', ['more' => link_to_route('helpers.age', __('crud.actions.find_out_more'), null, ['target' => '_blank'])]) !!}</p>
+        <p class="help-block">{!! __('entities/events.helpers.characters', ['more' => link_to('https://docs.kanka.io/en/latest/advanced/age.html', __('crud.actions.find_out_more'), null, ['target' => '_blank'])]) !!}</p>
     </div>
 @endif

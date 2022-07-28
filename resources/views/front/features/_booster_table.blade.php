@@ -47,7 +47,7 @@
         </tr>
         <tr>
             <td class="text">
-                {!! link_to('https://kanka.io/' . app()->getLocale() . '/campaign/20000/notes/151346#entity-note-body-149581', __('front.features.boosts.css'), ['target' => '_blank']) !!}
+                {!! link_to('//docs.kanka.io/en/latest/features/campaigns/theming.html', __('front.features.boosts.css'), ['target' => '_blank']) !!}
             </td>
             <td></td>
             <td><i class="fa-solid fa-check-circle"></i></td>
@@ -125,7 +125,7 @@
         </tr>
         <tr>
             <td class="text">
-                {!! link_to('https://kanka.io/' . app()->getLocale() . '/campaign/20000/notes/156620', __('front.features.boosts.sidebar'), ['target' => '_blank']) !!}
+                {!! link_to('//docs.kanka.io/en/latest/features/campaigns/sidebar.html', __('front.features.boosts.sidebar'), ['target' => '_blank']) !!}
             </td>
             <td></td>
             <td><i class="fa-solid fa-check-circle"></i></td>

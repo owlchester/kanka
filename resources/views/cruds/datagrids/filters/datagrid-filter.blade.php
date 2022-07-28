@@ -104,7 +104,7 @@ $clipboardFilters = $filterService->clipboardFilters();
                         </div>
                     @endif
 
-                    <a href="{{ route('helpers.filters') }}" data-url="{{ route('helpers.filters') }}" data-toggle="ajax-modal" data-target="#entity-modal" title="{{ __('helpers.filters.title') }}">
+                    <a href="//docs.kanka.io/en/latest/advanced/filters.html" target="_blank" title="{{ __('helpers.filters.title') }}">
                         {{ __('helpers.filters.title') }} <i class="fa-solid fa-question-circle"></i>
                     </a>
                 @endif
@@ -126,7 +126,7 @@ $clipboardFilters = $filterService->clipboardFilters();
                     </a>
                     @endif
 
-                    <a href="{{ route('helpers.filters') }}" data-url="{{ route('helpers.filters') }}" data-toggle="ajax-modal" data-target="#entity-modal" title="{{ __('helpers.filters.title') }}">
+                    <a href="//docs.kanka.io/en/latest/advanced/filters.html" target="_blank" title="{{ __('helpers.filters.title') }}">
                         <i class="fa-solid fa-question-circle"></i>
                     </a>
                 @endif

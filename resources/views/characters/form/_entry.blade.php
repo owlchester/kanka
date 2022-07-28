@@ -29,7 +29,7 @@
         <div class="form-group">
             <label>{{ __('characters.fields.age') }}</label>
             {!! Form::text('age', FormCopy::field('age')->string(), ['placeholder' => __('characters.placeholders.age'), 'class' => 'form-control', 'maxlength' => 25]) !!}
-            <p class="help-block">{!! __('characters.helpers.age', ['more' => link_to_route('helpers.age', __('crud.actions.find_out_more'))]) !!}</p>
+            <p class="help-block">{!! __('characters.helpers.age', ['more' => link_to('https://docs.kanka.io/en/latest/advanced/age.html', __('crud.actions.find_out_more'), ['target' => '_blank'])]) !!}</p>
         </div>
     </div>
 

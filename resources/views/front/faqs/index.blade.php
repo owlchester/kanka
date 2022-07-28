@@ -36,7 +36,7 @@
                 <i class="fab fa-discord"></i>
                 {{ __('front.help.discord') }}
             </a>
-            <a href="{{ route('documentation') }}" class="btn btn-light d-block d-sm-inline-block m-1">
+            <a href="//docs.kanka.io/en/latest/index.html" target="_blank" class="btn btn-light d-block d-sm-inline-block m-1">
                 <i class="fa-solid fa-book"></i>
                 {{ __('front.help.documentation') }}
             </a>

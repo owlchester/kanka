@@ -26,6 +26,21 @@ class ConversationController extends CrudController
     protected $datagridActions = DeprecatedDatagridActions::class;
 
     /**
+     * Controller constructor.
+     */
+    public function __construct()
+    {
+        parent::__construct();
+
+        $this->addNavAction(
+            '//docs.kanka.io/en/latest/entities/conversations.html',
+            '<i class="fa-solid fa-question-circle"></i> ' . __('crud.actions.help'),
+            'default',
+            true
+        );
+    }
+
+    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request

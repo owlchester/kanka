@@ -44,6 +44,12 @@ class MenuLinkController extends CrudController
             route('quick-links.reorder'),
             '<i class="fa-solid fa-arrows-alt-v"></i> <span class="hidden-xs">' . __('timelines.actions.reorder') . '</span>'
         );
+        $this->addNavAction(
+            '//docs.kanka.io/en/latest/advanced/quick-links.html',
+            '<i class="fa-solid fa-question-circle"></i> <span class="hidden-xs">' . __('crud.actions.help') . '</span>',
+            'default',
+            true
+        );
     }
 
     /**

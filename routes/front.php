@@ -43,28 +43,7 @@ Route::resources([
     'community-events.community-event-entries' => 'Front\CommunityEventEntryController',
 ]);
 
-// Todo: replace with a general handler helper/{helper} ?
 Route::group(['prefix' => 'helper'], function () {
-    Route::get('/link', [\App\Http\Controllers\HelperController::class, 'link'])
-        ->name('helpers.link');
-    Route::get('/dice', [\App\Http\Controllers\HelperController::class, 'dice'])
-        ->name('helpers.dice');
-    Route::get('/filters', [\App\Http\Controllers\HelperController::class, 'filters'])
-        ->name('helpers.filters');
-    Route::get('/age', [\App\Http\Controllers\HelperController::class, 'age'])
-        ->name('helpers.age');
-    Route::get('/attributes', [\App\Http\Controllers\HelperController::class, 'attributes'])
-        ->name('helpers.attributes');
-    Route::get('/entity-templates', [\App\Http\Controllers\HelperController::class, 'entityTemplates'])
-        ->name('helpers.entity-templates');
-    Route::get('/widget-filters', [\App\Http\Controllers\HelperController::class, 'widgetFilters'])
-        ->name('helpers.widget-filters');
-    Route::get('/pins', [\App\Http\Controllers\HelperController::class, 'pins'])
-        ->name('helpers.pins');
-    Route::get('/visibility', [\App\Http\Controllers\HelperController::class, 'visibility'])
-        ->name('helpers.visibility');
-    Route::get('/calendar-widget', [\App\Http\Controllers\HelperController::class, 'calendarWidget'])
-        ->name('helpers.calendar-widget');
     Route::get('/api-filters', [\App\Http\Controllers\HelperController::class, 'apiFilters'])
         ->name('helpers.api-filters');
 });
