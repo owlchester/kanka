@@ -13,7 +13,7 @@
             <strong>Reason provided: </strong><br />
             {!! nl2br(e($custom)) !!}
         </p>
-    @elseif ($reason)
+    @elseif (!empty($reason))
         <p>
             <strong>Reason provided: </strong><br />
             {{ $reason }}<br />
