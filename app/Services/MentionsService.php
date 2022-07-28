@@ -297,6 +297,8 @@ class MentionsService
                         $page = $data['page'];
                         if ($page === 'relations') {
                             $page = 'relations.index';
+                        } elseif ($page === 'assets') {
+                            $page = 'entity_assets.index';
                         }
                         $url = route('entities.' . $page, array_merge([$entity->id], $routeOptions));
                     } else {
