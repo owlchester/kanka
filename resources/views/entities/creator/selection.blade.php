@@ -102,5 +102,10 @@
     </div>
 
     <p class="help-block my-5">{{ __('entities.creator.missing') }}</p>
+
+    <a href="//docs.kanka.io/en/latest/features/quick-creator.html" target="_blank">
+        <i class="fa-solid fa-external-link aria-hidden="true"></i>
+        {{ __('front/newsletter.actions.learn_more') }}
+    </a>
 </div>
 

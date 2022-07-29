@@ -446,12 +446,19 @@ class SidebarService
             if (!isset($element['route'])) {
                 $element['route'] = $name . '.index';
             }
-            $layout[$name] = $element;
 
             // No children? Nothing more to do
             if (empty($children)) {
+                // If this is a level 0 element like "Notes", the module still needs to be checked
+                if (!isset($element['module']) && !$this->withDisabled) {
+                    if (!$this->campaign->enabled($name)) {
+                        continue;
+                    }
+                }
+                $layout[$name] = $element;
                 continue;
             }
+            $layout[$name] = $element;
             $layout[$name]['children'] = [];
             foreach ($children as $childName) {
                 $child = $this->customElement($childName);
