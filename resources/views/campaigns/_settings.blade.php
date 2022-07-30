@@ -4,11 +4,11 @@
 @endphp
 <div class="text-right mb-5">
 
-    <button class="btn btn-default" data-toggle="dialog"
-            data-target="settings-help">
+    <a href="//docs.kanka.io/en/latest/features/campaigns/modules.html"
+       target="_blank" class="btn btn-default">
         <i class="fa-solid fa-question-circle" aria-hidden="true"></i>
         {!! __('campaigns.members.actions.help') !!}
-    </button>
+    </a>
 </div>
 
 <div class="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
@@ -71,20 +71,3 @@
     </div>
 </div>
 
-
-
-@section('modals')
-    @parent
-
-    @include('partials.helper-modal', [
-        'id' => 'settings-help',
-        'title' => __('campaigns.show.tabs.settings'),
-        'textes' => [
-            __('campaigns.settings.helper', ['admin' => link_to_route(
-        'campaigns.campaign_roles.admin',
-        \Illuminate\Support\Arr::get($role, 'name', __('campaigns.roles.admin_role')),
-        null,
-        ['target' => '_blank']
-)]),
-    ]])
-@endsection
