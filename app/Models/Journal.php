@@ -231,7 +231,7 @@ class Journal extends MiscModel
         if (!empty($this->author) || !empty($this->location)) {
             return true;
         }
-        if (!empty($this->calendarReminder)) {
+        if (!empty($this->calendarReminder())) {
             return true;
         }
 
