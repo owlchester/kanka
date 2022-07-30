@@ -108,8 +108,9 @@ $permissionService->campaign($campaignService->campaign());
                     <div class="entity-image pull-left" style="background-image: url({{ $member->user->getAvatarUrl() }})" title="{{ $member->user->name }}">
                     </div>
                     <div class="user-name">{{ $member->user->name }}</div>
-                    @if (request()->ajax() && isset($entity))
+                    @if (isset($entity))
                         @can('switch', $member)
+                            <br class="visible-xs visible-sm m-3" />
                             <a class="btn btn-default btn-sm" href="{{ route('identity.switch-entity', [$member, $entity]) }}" title="{{ __('campaigns.members.helpers.switch') }}" data-toggle="tooltip">
                                 <i class="fa-solid fa-sign-in-alt" aria-hidden="true"></i>
                                 {{ __('campaigns.members.actions.switch-entity') }}
