@@ -169,11 +169,13 @@ trait CalendarDateTrait
             return;
         }
 
+        $length = request()->post('calendar_length', 1);
+        $length = max(1, $length);
         $reminder->calendar_id = request()->get('calendar_id');
         $reminder->year = request()->post('calendar_year', 1);
         $reminder->month = request()->post('calendar_month', 1);
         $reminder->day = request()->post('calendar_day', 1);
-        $reminder->length = request()->post('calendar_length', 1);
+        $reminder->length = $length;
         $reminder->is_recurring = request()->post('calendar_is_recurring', false);
         $reminder->recurring_periodicity = request()->post('calendar_recurring_periodicity');
         $reminder->colour = request()->post('calendar_colour', '#cccccc');
