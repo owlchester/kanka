@@ -61,8 +61,8 @@ class StoryService
                 }
                 $story->settings = $settings;
             }
-            if (isset($data['visibility'])) {
-               $story->visibility = $data['visibility'];
+            if (isset($data['visibility_id'])) {
+               $story->visibility_id = $data['visibility_id'];
             }
 
             $story->position = $position;
