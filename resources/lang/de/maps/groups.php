@@ -19,9 +19,15 @@ return [
         'is_shown'  => 'Zeige Gruppenmarker',
         'position'  => 'Position',
     ],
-    'helper'        => [],
+    'helper'        => [
+        'amount_v2' => 'Erstelle Markierungsgruppen und füge ihnen Markierungen hinzu, sodass man mit einem einzigen Klick schnell mehrere Markierungen ein- oder ausblenden kann.',
+    ],
     'hints'         => [
         'is_shown'  => 'Wenn diese Option aktiviert ist, werden die Gruppenmarker standardmäßig auf der Karte angezeigt.',
+    ],
+    'pitch'         => [
+        'error' => 'Maximale Anzahl an Gruppen erreicht.',
+        'until' => 'Erstelle bis zu :max-Gruppen für jede Karte.',
     ],
     'placeholders'  => [
         'name'      => 'Geschäfte, Schatz, NSC,',

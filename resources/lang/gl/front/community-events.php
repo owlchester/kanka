@@ -14,6 +14,7 @@ return [
         'comment'       => 'Comentario',
         'entity_link'   => 'Ligazón á entidade',
         'honorable'     => 'Mención honorábel',
+        'jury'          => 'Tribunal convidade',
         'rank'          => 'Rango',
         'submitter'     => 'Participante',
     ],

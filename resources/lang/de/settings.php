@@ -39,6 +39,7 @@ return [
                 'remove'    => 'Ihr Discord-Konto wurde nicht verbunden.',
             ],
             'text'      => 'Greifen Sie automatisch auf Ihre Abonnementrollen zu.',
+            'unlock'    => 'Schalte Discord-Rollen frei',
         ],
         'title'     => 'App Integration',
     ],
@@ -204,7 +205,8 @@ return [
             'yearly'    => 'Jährlich',
         ],
         'placeholders'          => [
-            'reason'    => 'Sagen Sie uns optional, warum Sie Kanka nicht mehr unterstützen. Fehlt eine Funktion? Hat sich Ihre finanzielle Situation geändert?',
+            'downgrade_reason'  => 'Teile uns optional mit, warum du dein Abonnement herabstufst.',
+            'reason'            => 'Sagen Sie uns optional, warum Sie Kanka nicht mehr unterstützen. Fehlt eine Funktion? Hat sich Ihre finanzielle Situation geändert?',
         ],
         'plans'                 => [
             'cost_monthly'  => ':currency :amount monatlich abgerechnet',
@@ -240,10 +242,11 @@ return [
                 'title'     => 'Wenn Sie Ihr Abonnement kündigen',
             ],
             'downgrade' => [
-                'bullets'   => [
+                'bullets'           => [
                     'end'   => 'Ihre aktuelle Stufe bleibt bis zum Ende Ihres aktuellen Abrechnungszyklus aktiv. Danach werden Sie auf Ihre neue Stufe herabgestuft.',
                 ],
-                'title'     => 'Beim Downgrade auf eine niedrigere Stufe',
+                'provide_reason'    => 'Wenn möglich, teile uns bitte mit, warum du dein Abonnement herabstufst.',
+                'title'             => 'Beim Downgrade auf eine niedrigere Stufe',
             ],
             'upgrade'   => [
                 'bullets'   => [

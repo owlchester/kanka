@@ -19,9 +19,15 @@ return [
         'is_shown'  => 'Mostrar marcadores do grupo',
         'position'  => 'Posición',
     ],
-    'helper'        => [],
+    'helper'        => [
+        'amount_v2' => 'Crea grupos de marcadores e asígnalles marcadores, permitindo mostrar ou ocultar rapidamente varios marcadores cun só clic.',
+    ],
     'hints'         => [
         'is_shown'  => 'Se está seleccionado, os marcadores do grupo serán mostrados no mapa por defecto.',
+    ],
+    'pitch'         => [
+        'error' => 'Número máximo de grupos alcanzado.',
+        'until' => 'Crea ata :max grupos en cada mapa.',
     ],
     'placeholders'  => [
         'name'      => 'Tendas, tesouros, PNXs...',

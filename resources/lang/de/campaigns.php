@@ -1,6 +1,9 @@
 <?php
 
 return [
+    'actions'                           => [
+        'boost' => 'Boost :name',
+    ],
     'create'                            => [
         'description'           => 'Erstelle eine neue Kampagne',
         'helper'                => [
@@ -175,6 +178,7 @@ TEXT
             'title' => 'Bearbeite Mitglied :name',
         ],
         'fields'                => [
+            'banned'        => 'Benutzer ist gesperrt',
             'joined'        => 'Beigetreten',
             'last_login'    => 'Letzter Login',
             'name'          => 'Nutzer',

@@ -19,6 +19,5 @@ return [
     ],
     'update'            => [
         'success'   => 'Файл ":file" обновлен.',
-        'title'     => 'Редактирование файла :file объекта :entity',
     ],
 ];

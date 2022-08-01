@@ -22,6 +22,7 @@ return [
         'title' => 'Novo cartafol',
     ],
     'no_folder'     => 'Ningún cartafol',
+    'pitch'         => 'Sube imaxes directamente á galería da campaña dende o editor de texto.',
     'placeholders'  => [
         'search'    => 'Buscar nome de imaxe...',
     ],
@@ -34,7 +35,7 @@ return [
         'add'           => 'Engadir nova',
         'new_folder'    => 'Novo cartafol',
         'or'            => 'ou',
-        'select_file'   => 'Selecciona un arquivo',
-        'well'          => 'Solta aquí un arquivo para subilo',
+        'select_file'   => 'Selecciona un ficheiro',
+        'well'          => 'Solta aquí un ficheiro para subilo',
     ],
 ];

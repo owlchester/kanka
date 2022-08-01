@@ -35,7 +35,7 @@ return [
         'organisations'     => 'Ver todas as organizacións neste lugar e nos seus descendentes, ou só as que están directamente aquí.',
     ],
     'hints'         => [
-        'is_map_private'    => 'Un mapa privado só será visíbel para a Administración da campaña.',
+        'is_map_private'    => 'Un mapa privado só será visible para a administración da campaña.',
     ],
     'index'         => [
         'title' => 'Lugares',

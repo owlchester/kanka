@@ -12,6 +12,7 @@ return [
         ],
     ],
     'helper'        => 'Verfolgen Sie Ihren Fortschritt, um verschiedene Erfolge für Ihre Kampagne freizuschalten. Diese Nummern werden alle 24 Stunden aktualisiert.',
+    'pitch'         => 'Verfolge deinen Fortschritt beim Weltenbau anhand unserer Kampagnenerfolge.',
     'placeholder'   => ':amount von :target',
     'targets'       => [
         'calendars' => 'Erstelle :target Kalender',

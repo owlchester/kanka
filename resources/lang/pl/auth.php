@@ -12,6 +12,10 @@ return [
     |
     */
 
+    'banned'    => [
+        'permanent' => 'Twoje konto zostało trwale zablokowane.',
+        'temporary' => '{1} Twoje konto zostało zablokowane na :days dzień|[2,*] Twoje konto zostało zablokowane na :days dni.',
+    ],
     'confirm'   => [
         'confirm'   => 'Potwierdź',
         'error'     => 'Niewłaściwe hasło, spróbuj jeszcze raz',

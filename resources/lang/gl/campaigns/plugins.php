@@ -14,7 +14,7 @@ return [
         'import'            => 'Importar',
         'remove'            => 'Eliminar extensión',
         'update'            => 'Actualizar extensión',
-        'update_available'  => 'Actualización dispoñíbel!',
+        'update_available'  => 'Actualización dispoñible!',
     ],
     'bulks'         => [
         'delete'    => '{1} :count extensión eliminada.|[2,*] :count extensións eliminadas.',
@@ -57,6 +57,7 @@ return [
         'updates'       => 'Actualizacións',
         'your_version'  => 'A túa versión',
     ],
+    'pitch'         => 'Instala e xestiona extensións dende o :marketplace',
     'status'        => [
         'disabled'  => 'Desactivada',
         'enabled'   => 'Activada',

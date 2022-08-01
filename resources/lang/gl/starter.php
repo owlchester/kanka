@@ -14,7 +14,7 @@ return [
         'traits'    => 'Sempre manipulará a verdade para gañar vantaxe.',
     ],
     'character2'    => [
-        'fears'     => 'Crear a maior explosión posíbel',
+        'fears'     => 'Crear a maior explosión posible',
         'history'   => 'Este é unha personaxe de exemplo. Dende pequena, a Irwie sempre lle fascinaron os explosivos, e dedicou a súa carreira a esa arte.',
         'name'      => 'Irwie Gemstone (exemplo)',
         'race'      => 'Gnoma',

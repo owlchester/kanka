@@ -35,6 +35,7 @@ return [
         'here'      => 'auf unserem Blog',
         'main'      => 'Sie können das CSS Design für Ihre geboostete Kampagne anpassen. Falls Sie Themes aus dem Marktplatz in Ihrer Kampagne verwenden, dann wird Ihr angepasstes Design nach diesen Themes geladen. Mehr über das Erstellen eigener Designs für Ihre Kampagne finden Sie :here.',
     ],
+    'pitch'     => 'Erstelle ein benutzerdefiniertes CSS-Design, um das Erscheinungsbild der Kampagne vollständig anzupassen.',
     'reorder'   => [
         'save'      => 'neue Reihenfolge speichern',
         'success'   => '{1} neu angeordnet :count style.|[2,*] neu angeordnet :count styles.',

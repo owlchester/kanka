@@ -5,6 +5,7 @@ return [
         'actions'           => 'Aktionen',
         'apply'             => 'Übernehmen',
         'back'              => 'Zurück',
+        'change'            => 'Ändern',
         'copy'              => 'Kopieren',
         'copy_mention'      => 'Kopie [] erwähnen',
         'copy_to_campaign'  => 'Kopiere zu Kampagne',
@@ -17,6 +18,7 @@ return [
         'manage_links'      => 'Links verwalten',
         'move'              => 'Verschieben',
         'new'               => 'Neu',
+        'new_child'         => 'neues Unterobjekt',
         'new_post'          => 'Neue Objektnotiz',
         'next'              => 'Weiter',
         'print'             => 'Drucken',
@@ -26,16 +28,22 @@ return [
     'add'                       => 'Hinzufügen',
     'alerts'                    => [
         'copy_attribute'    => 'Die Erwähnung des Attributs wurde in Ihre Zwischenablage kopiert.',
+        'copy_invite'       => 'Der Einladungslink zur Kampagne wurde in deine Zwischenablage kopiert.',
         'copy_mention'      => 'Die erweiterte Erwähnung dieses Objekts wurde in Ihre Zwischenablage kopiert.',
     ],
     'boosted'                   => 'geboostet',
     'boosted_campaigns'         => 'geboostete Kampagne',
     'bulk'                      => [
         'actions'       => [
-            'edit'  => 'Bearbeitung vieler Objekte',
+            'edit'          => 'Bearbeitung vieler Objekte',
+            'permissions'   => 'Berechtigungen ändern',
+            'templates'     => 'Attributvorlage anwenden',
         ],
         'age'           => [
             'helper'    => 'Sie können + und - vor der Nummer verwenden, um das Alter dynamisch zu aktualisieren.',
+        ],
+        'buttons'       => [
+            'label' => 'Für ausgewählt',
         ],
         'delete'        => [
             'warning'   => 'Möchten Sie die ausgewählten Objekte wirklich löschen?',
@@ -127,6 +135,7 @@ return [
         'copy_permissions'      => 'Berechtigungen kopieren (dies überschreibt die auf der Registerkarte Berechtigungen festgelegten Werte)',
         'copy_posts'            => 'Beiträge kopieren (dies umfasst die Berechtigungen für Beiträge)',
         'creator'               => 'Ersteller',
+        'date_range'            => 'Datumsbereich',
         'dice_roll'             => 'Würfelwürf',
         'entity'                => 'Objekt',
         'entity_type'           => 'Objekttyp',
@@ -255,6 +264,7 @@ return [
     ],
     'is_not_private'            => 'Dieses Objekt ist derzeit nicht auf privat eingestellt.',
     'is_private'                => 'Dieses Objekt ist privat und nicht von Zuschauern einsehbar.',
+    'keyboard-shortcut'         => 'Tastaturkürzel: Code',
     'legacy'                    => 'Erbe',
     'linking_help'              => 'Wie kann ich zu anderen Objekten verlinken?',
     'manage'                    => 'Verwalten',

@@ -13,4 +13,5 @@ return [
         'kanka'         => 'Kanka Vorlagen',
         'marketplace'   => 'Marktplatzvorlagen',
     ],
+    'pitch'     => 'Suche und füge Charakterbögen auf dem :marketplace einer :boosted-Kampagne hinzu.',
 ];

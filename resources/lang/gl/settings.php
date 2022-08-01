@@ -175,9 +175,9 @@ return [
             'reason'            => 'Razón',
         ],
         'helpers'               => [
-            'alternatives'          => 'Paga a túa subscripción usando :method. Este método de pagamento non se renovará automáticamente ao final da túa subscripción. :method só está dispoñíbel en Euros.',
-            'alternatives_warning'  => 'Mellorar a túa subscripción usando este método non é posíbel. Por favor, crea unha nova subscripción ao rematar a actual.',
-            'alternatives_yearly'   => 'Debido a restricións nos pagamentos recurrentes, :method só está dispoíbel para subcripcións anuais.',
+            'alternatives'          => 'Paga a túa subscripción usando :method. Este método de pagamento non se renovará automáticamente ao final da túa subscripción. :method só está dispoñible en Euros.',
+            'alternatives_warning'  => 'Mellorar a túa subscripción usando este método non é posible. Por favor, crea unha nova subscripción ao rematar a actual.',
+            'alternatives_yearly'   => 'Debido a restricións nos pagamentos recurrentes, :method só está dispoñible para subcripcións anuais.',
             'paypal'                => 'Prefires usar Paypal? Contáctanos en :email se desexas subscribirte a un plan anual usando Paypal.',
             'stripe'                => 'A túa información de facturación é procesada e almacenada de xeito seguro mediante :stripe.',
         ],
@@ -234,7 +234,7 @@ return [
             'cancel'    => [
                 'bullets'   => [
                     'bonuses'   => 'Os teus beneficios continúan habilitados ata o final do teu periodo de pagamento.',
-                    'boosts'    => 'O mesmo pasa coas túas campañas potenciadas. Unha vez a campaña deixa de estar potenciada, as funcionalidades da potenciación fanse invisíbeis mais non son eliminadas.',
+                    'boosts'    => 'O mesmo pasa coas túas campañas potenciadas. Unha vez a campaña deixa de estar potenciada, as funcionalidades da potenciación fanse invisibles mais non son eliminadas.',
                     'kobold'    => 'Para cancelar a túa subscripción, cambia ao nivel Kobold.',
                 ],
                 'title'     => 'Ao cancelar a túa subscripción',

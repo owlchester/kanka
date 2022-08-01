@@ -6,7 +6,7 @@ return [
         'title'         => 'Idade e Morte da personaxe',
     ],
     'api-filters'       => [
-        'description'   => 'Os seguintes filtros están dispoñíbeis no punto API :name.',
+        'description'   => 'Os seguintes filtros están dispoñibles no punto API :name.',
         'title'         => 'Filtros API',
     ],
     'attributes'        => [
@@ -17,7 +17,7 @@ return [
         'math'              => 'Tamén podes usar matemáticas básicas. Por exemplo, :example multiplicaría os atributos :level e :con desta entidade. Se queres arredondar cara arriba ou cara abaixo, podes usar :ceil ou :floor respectivamente.',
         'name'              => 'Podes referenciar o nome da entidade con :name. Se xa existe un atributo con ese nome, usarase ese atributo no seu lugar.',
         'pinned'            => 'Fixar un atributo usando a icona :icon fará que apareza no menú da entidade baixo a súa imaxe.',
-        'private'           => 'Os atributos privados usando o :icon serán visíbeis só para a administración da campaña.',
+        'private'           => 'Os atributos privados usando o :icon serán visibles só para a administración da campaña.',
         'random'            => 'Ao crear ou editar un padrón de atributos, podes definir atributos aleatorios. Estes poden ser un valor aleatorio entre dous números separados por :dash, ou un valor aleatorio dunha listaxe de valores separados por :comma. O valor do atributo é determinado ao aplicar o padrón a unha entidade, ou cando a entidade é gardada.',
         'random_examples'   => 'Por exemplo, se queres un número entre o 1 e o 100, usa :number. Se queres un valor de entre unha serie de opcións, usa :list.',
         'range'             => 'Os atributos de número poden ser configurados para só permitir valores nun rango numérico. Por exemplo, usa :example para limitar o atributo entre 1 e 10. Os valores do rango tamén poden referenciar outros atributos, por exemplo con :reference. Ao gardar un atributo, se o valor está fóra do rango, este axustarase automaticamente ao valor permitido máis próximo.',
@@ -30,12 +30,12 @@ return [
     ],
     'dice'              => [
         'description'               => 'As tiradas de dados xenéricas pódense realizar escrebendo "d20", "4d4+4", "d%" para percentiles e "df" para dados "fudge".',
-        'description_attributes'    => 'Tamén é posíbel obter un atributo dunha personaxe usando a sintaxe {character.nome_do_atributo}. Por exemplo, {character.nivel}d6+{character.sabiduria}.',
-        'more'                      => 'Podes ver todas as opcións dispoñíbeis na páxina da extensión de tiradas de dados.',
+        'description_attributes'    => 'Tamén é posible obter un atributo dunha personaxe usando a sintaxe {character.nome_do_atributo}. Por exemplo, {character.nivel}d6+{character.sabiduria}.',
+        'more'                      => 'Podes ver todas as opcións dispoñibles na páxina da extensión de tiradas de dados.',
         'title'                     => 'Tiradas de dados',
     ],
     'entity_templates'  => [
-        'description'   => 'Ao crear novas entidades, podes crear unha basada nun padrón en vez de empezala dende cero. Para definir unha entidade como un padrón, ábrea e fai clic en :link no botón de :action arriba á dereita. Ao ver unha lista de entidades, os padróns dese tipo de entidade estarán dispoñíbeis xunto ao botón de :new. Podes ter múltiples padróns para cada tipo de entidade.',
+        'description'   => 'Ao crear novas entidades, podes crear unha basada nun padrón en vez de empezala dende cero. Para definir unha entidade como un padrón, ábrea e fai clic en :link no botón de :action arriba á dereita. Ao ver unha lista de entidades, os padróns dese tipo de entidade estarán dispoñibles xunto ao botón de :new. Podes ter múltiples padróns para cada tipo de entidade.',
         'link'          => 'Como definir padróns',
         'remove'        => 'Para eliminar unha entidade padrón, fai clic no botón de :remove que estará no lugar do :link previamente descrito.',
         'title'         => 'Padróns de entidade',
@@ -44,7 +44,7 @@ return [
         'attributes'    => [
             'exclude'   => '!Nivel',
             'first'     => 'Podes filtrar entidades segundo os seus atributos. Os campos de búsqueda deben coincidir exactamente co nome e/ou valor do atributo. Cando o valor non é especificado, búscanse entidades que teñan un atributo co nome especificado. Podes escribir ":exclude" para excluít entidades entidades cun atributo chamado "Nivel".',
-            'second'    => 'O filtro non evalúa cálculos de atributos. Se un atributo ten un valor de :code, buscar polo resultado dese cálculo non é posíbel.',
+            'second'    => 'O filtro non evalúa cálculos de atributos. Se un atributo ten un valor de :code, buscar polo resultado dese cálculo non é posible.',
         ],
         'clipboard'     => 'Cando os filtros están activos, o botón de copiar ao portapapeis tamén o está. Este botón copia os filtros ao teu portapapeis, e así podes usalos en filtros de complementos do taboleiro ou en filtros de accesos directos.',
         'description'   => 'Podes usar filtros para limitar o número de resultados que se mostran nas listas. Os campos de texto ofrecen opcións variadas para controlar en detalle o que é excluído polo filtro.',

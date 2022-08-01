@@ -22,6 +22,8 @@ return [
             'filters'       => [
                 'all'               => 'geboosteter Status',
                 'boosted'           => 'geboostete Kampagne',
+                'entities'          => 'Nach Objektanzahl sortieren',
+                'followers'         => 'Nach Followern sortieren',
                 'is-boosted'        => 'Die Kampagne ist geboostet!',
                 'is-superboosted'   => 'Die Kampagne ist supergeboostet!',
                 'unboosted'         => 'nicht geboostete Kampagne',
@@ -249,6 +251,7 @@ return [
         'pricing'       => 'Preisgestaltung',
         'privacy'       => 'Datenschutzbestimmung',
         'register'      => 'Registrieren',
+        'register_free' => 'Kostenlos registrieren',
         'releases'      => 'Versionen',
         'roadmap'       => 'Roadmap',
     ],

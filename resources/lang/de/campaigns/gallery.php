@@ -22,6 +22,7 @@ return [
         'title' => 'neuer Ordner',
     ],
     'no_folder'     => 'kein Ordner',
+    'pitch'         => 'Lade Bilder direkt aus dem Texteditor in die Galerie der Kampagne hoch.',
     'placeholders'  => [
         'search'    => 'Bildname suchen ...',
     ],

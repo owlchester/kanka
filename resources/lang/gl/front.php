@@ -7,7 +7,7 @@ return [
     'campaigns'             => [
         'description_full'  => 'Moitas das campañas en Kanka son públicas para que todas as poidan ver. Esta páxina contén unha lista de todas as campañas públicas, así como algunas campañas destacadas da comunidade.',
         'featured'          => [
-            'description'   => 'A nosa comunidade crea cousas incríbeis que nos encanta mostrar nas Campañas Destacadas. Asegúrate de voltar de vez en cando para ver máis campañas destacadas.',
+            'description'   => 'A nosa comunidade crea cousas incribles que nos encanta mostrar nas Campañas Destacadas. Asegúrate de voltar de vez en cando para ver máis campañas destacadas.',
             'title'         => 'Campañas Destacadas',
         ],
         'open'              => [
@@ -22,6 +22,8 @@ return [
             'filters'       => [
                 'all'               => 'Estatus de potenciación',
                 'boosted'           => 'Campañas potenciadas',
+                'entities'          => 'Ordenar por número de entidades',
+                'followers'         => 'Ordenar por número de seguidores',
                 'is-boosted'        => 'Esta campaña está potenciada!',
                 'is-superboosted'   => 'Esta campaña está superpotenciada!',
                 'unboosted'         => 'Campañas non potenciadas',
@@ -77,8 +79,8 @@ return [
             'css'                   => 'CSS personalizado da campaña',
             'dashboards'            => 'Establecer taboleiros personalizados para os roles da campaña',
             'description'           => 'Certos niveis de mecenazgo otorgan potenciadores que poden ser usados para potenciar campañas. Estes potenciadores otorgan os seguintes beneficios.',
-            'entity-aliases'        => 'Pon alias ás entidades para unha procura máis flexíbel.',
-            'entity_files_v2'       => 'Número máximo de arquivos subidos por entidade',
+            'entity-aliases'        => 'Pon alias ás entidades para unha procura máis flexible.',
+            'entity_files_v2'       => 'Número máximo de ficheiros subidos por entidade',
             'entity_links'          => 'Pon ligazóns a recursos e páxinas externas nas entidades',
             'header_image'          => 'Imaxe de cabeceira nas entidades',
             'images'                => 'Establecer imaxes por defecto personalizadas nas entidades',
@@ -93,7 +95,7 @@ return [
             'timeline_elements'     => 'Personaliza a icona e cor dos elementos das liñas temporais',
             'title'                 => 'Campañas potenciadas',
             'tooltip'               => 'Previsualizacións emerxentes personalizadas: mostrar imaxe, cambiar texto',
-            'upload'                => 'Tamaño de arquivos subidos ampliado para todas as membras',
+            'upload'                => 'Tamaño de ficheiros subidos ampliado para todas as membras',
         ],
         'boosts_v2'         => [
             'description'       => 'Os nosos niveis de pagamento danche acceso a potenciadores, os cales podes usar para potenciar ou superpotenciar campañas. Facelo desbloquea os seguintes beneficios para unha campaña.',
@@ -156,7 +158,7 @@ return [
             'pagination'        => 'Aumento dos resultados por páxina',
             'pagination_help'   => 'Este é o número máximo de resultados mostrados por páxina, non o límite de entidades por campaña.',
             'title'             => 'Funcionalidades de pago',
-            'upload_limit'      => 'Tamaño máximo de arquivos subidos',
+            'upload_limit'      => 'Tamaño máximo dos ficheiros subidos',
             'upload_limit_map'  => 'Tamaño máximo de mapas subidos',
             'users_roles'       => 'Número de usuarios, roles, e controis de permisos',
         ],
@@ -169,7 +171,7 @@ return [
             'title'         => 'Misións e Cadernos',
         ],
         'relations'         => [
-            'description'   => 'Cada entidade pode ter unha complexa rede de relacións con outras entidades, incluíndo relacións segredas invisíbeis para as xogadoras.',
+            'description'   => 'Cada entidade pode ter unha complexa rede de relacións con outras entidades, incluíndo relacións segredas invisibles para as xogantes.',
             'title'         => 'Relacións',
         ],
         'rpg'               => [
@@ -190,7 +192,7 @@ return [
             'description'   => 'Representa visualmente as liñas temporais dos teus mundos, imperios, familias nobres, ou incluso dunha personaxe.',
             'title'         => 'Liñas temporais',
         ],
-        'title'             => 'Funcionalidades potentes e flexíbeis',
+        'title'             => 'Potentes e flexibles funcionalidades',
         'unlimited'         => 'Ilimitadas',
         'updates'           => [
             'title' => 'Actualizacións frecuentes',
@@ -200,7 +202,7 @@ return [
         ],
     ],
     'first_block'           => [
-        'description'   => 'Kanka está dispoñíbel en calquera dispositivo e é actualizada frecuentemente con novas funcionalidades e melloras. Esquécete de perder notas desperdigadas, en Kanka terás todo nun só lugar, doado de atopar e fácilmente accesíbel.',
+        'description'   => 'Kanka está dispoñible en calquera dispositivo e é actualizada frecuentemente con novas funcionalidades e melloras. Esquécete de perder notas desperdigadas, en Kanka terás todo nun só lugar, doado de atopar e facilmente accesible.',
         'title'         => 'Unha nova maneira de monitorizar a creación de mundo e as campañas de rol.',
     ],
     'footer'                => [
@@ -211,7 +213,7 @@ return [
         ],
     ],
     'help'                  => [
-        'description'   => 'Estamos aquí en caso de que precises axuda. Contáctanos usando algún dos seguintes métodos e te atenderemos o antes posíbel.',
+        'description'   => 'Estamos aquí en caso de que precises axuda. Contáctanos usando algún dos seguintes métodos e te atenderemos o antes posible.',
         'discord'       => 'Únete ao noso Discord',
         'documentation' => 'Comproba a documentación',
         'email'         => 'Envíanos un correo electrónico',
@@ -249,15 +251,16 @@ return [
         'pricing'       => 'Prezos',
         'privacy'       => 'Política de privacidade',
         'register'      => 'Rexistrarse',
+        'register_free' => 'Rexístrate gratis',
         'releases'      => 'Lanzamentos',
         'roadmap'       => 'Folla de ruta',
     ],
     'meta'                  => [
-        'description'   => 'Kanka é un administrador flexíbel de campañas de rol e creación de mundos.',
+        'description'   => 'Kanka é un administrador flexible de campañas de rol e creación de mundos.',
         'title'         => 'Kanka - Xestión de campañas de rol e creación de mundos',
     ],
     'partners'              => [
-        'description'   => 'Asociámonos con algunhas incríbeis ferramentas e comunidades que comparten os nosos obxectivos e valores.',
+        'description'   => 'Asociámonos con algunhas incribles ferramentas e comunidades que comparten os nosos obxectivos e valores.',
         'title'         => 'Socias',
     ],
     'pricing'               => [
@@ -270,9 +273,9 @@ return [
             'boosters'      => 'Potenciadores de campaña',
             'core'          => 'Acceso a todas as funcionalidades principais',
             'huge_maps'     => 'Tamaño enorme de mapa (:size)',
-            'huge_uploads'  => 'Moito máis tamaño de arquivos subidos',
+            'huge_uploads'  => 'Moito máis tamaño de ficheiros subidos',
             'no_boosters'   => 'Sen potenciadores de campaña',
-            'unlimited'     => 'Campañas e arquivos subidos ilimitados',
+            'unlimited'     => 'Campañas e ficheiros subidos ilimitados',
             'updates'       => 'Actualizacións e melloras frecuentes',
         ],
         'description'   => 'Todas as funcionalidades principais son gratuítas, mais apoiar a Kanka axúdanos a dar actualizacións e melloras frecuentes a todas as usuarias.',

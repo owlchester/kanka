@@ -2,7 +2,7 @@
 
 return [
     'helpers'   => [
-        'main'  => 'As campañas públicas son visíbeis para toda persoa cunha ligazón á campaña ou a través da páxina de :public-campaigns. Os permisos para quen vexa a campaña desta forma son controlados co rol :public-role.',
+        'main'  => 'As campañas públicas son visibles para toda persoa cunha ligazón á campaña ou a través da páxina de :public-campaigns. Os permisos para quen vexa a campaña desta forma son controlados co rol :public-role.',
     ],
     'title'     => 'Cambiar a visibilidade da campaña',
     'update'    => [

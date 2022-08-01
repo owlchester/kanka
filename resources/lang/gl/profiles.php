@@ -109,7 +109,7 @@ return [
         ],
         'hints'     => [
             'advanced_mentions'     => 'Ao activalo, as mencións sempre serán mostradas como [entity:123] ao editar unha entidade.',
-            'default_nested'        => 'Activa esta opción se queres que as listas de entidades sexan mostradas na vista en árbore por defecto (cando sexa posíbel).',
+            'default_nested'        => 'Activa esta opción se queres que as listas de entidades sexan mostradas na vista en árbore por defecto (cando sexa posible).',
             'new_entity_workflow'   => 'Ao crear unha nova entidade, o fluxo por defecto é redireccionarte á lista de entidades. Podes cambiar isto para ir directamente á nova entidade que acabas de crear.',
         ],
         'success'   => 'Configuración cambiada.',

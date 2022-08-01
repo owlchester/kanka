@@ -31,10 +31,11 @@ return [
         'order'         => 'Orde',
     ],
     'helpers'   => [
-        'css_moved' => 'O campo CSS moveuse a unha interface máis flexíbel que pode ser atopada no menú da campaña :link.',
+        'css_moved' => 'O campo CSS moveuse a unha interface máis flexible que pode ser atopada no menú da campaña :link.',
         'here'      => 'no noso blogue',
         'main'      => 'Podes crear estilos CSS personalizados para as túas campañas potenciadas. Estes estilos son cargados despois de calquera estilo importado do mercado que estea habilitado na campaña. Podes aprender máis sobre como estilar a túa campaña :here.',
     ],
+    'pitch'     => 'Crea os teus propios estilos CSS para personalizar completamente a estética da túa campaña.',
     'reorder'   => [
         'save'      => 'Gardar nova orde',
         'success'   => '{1} :count estilo reordenado.|[2,*] :count estilos reordenados.',

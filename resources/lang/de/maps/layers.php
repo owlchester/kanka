@@ -21,7 +21,12 @@ return [
         'type'      => 'Ebenentyp',
     ],
     'helper'        => [
+        'amount_v2' => 'Lade Ebenen auf eine Karte hoch, um das unter den Markierungen angezeigte Hintergrundbild zu wechseln.',
         'is_real'   => 'Ebenen sind bei Verwendung von OpenStreetMaps nicht verfügbar.',
+    ],
+    'pitch'         => [
+        'error' => 'Maximale Anzahl an Ebenen erreicht.',
+        'until' => 'Lade bis zu :max-Layer auf jede Karte hoch.',
     ],
     'placeholders'  => [
         'name'      => 'Untergrund, Ebene 2, Schiffbruch',

@@ -13,4 +13,5 @@ return [
         'kanka'         => 'Szablony Kanki',
         'marketplace'   => 'Szablony z Targowiska',
     ],
+    'pitch'     => 'Wyszukaj i dodaj do :boosted-campaign karty postaci z :marketplace',
 ];

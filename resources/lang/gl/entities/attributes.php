@@ -77,8 +77,8 @@ return [
     ],
     'visibility'    => [
         'entry'     => 'O atributo é mostrado no menú da entidade.',
-        'private'   => 'Atributo só visíbel para a Administración.',
-        'public'    => 'Atributo visíbel a toda persoa integrante da campaña.',
+        'private'   => 'Atributo só visible para a administración da campaña.',
+        'public'    => 'Atributo visible a toda persoa integrante da campaña.',
         'tab'       => 'O atributo é mostrado na lapela "Atributos".',
     ],
 ];

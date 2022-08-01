@@ -9,11 +9,19 @@ return [
     'fields'        => [
         'character' => 'Personaxe',
         'image'     => 'Imaxe',
+        'item'      => 'Obxecto pai',
+        'items'     => 'Obxectos fillos',
         'location'  => 'Localización',
         'name'      => 'Nome',
         'price'     => 'Prezo',
         'size'      => 'Tamaño',
         'type'      => 'Tipo',
+    ],
+    'helpers'       => [
+        'nested_without'    => 'Mostrando todos os obxectos que non teñen un obxecto pai. Fai clic nunha fila para ver os seus fillos.',
+    ],
+    'hints'         => [
+        'items' => 'Organiza obxectos usando o campo de obxecto pai.',
     ],
     'index'         => [
         'title' => 'Obxectos',

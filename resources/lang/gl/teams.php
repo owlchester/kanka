@@ -4,6 +4,7 @@ return [
     'hall_of_fame'  => 'Salón da fama',
     'index'         => [
         'community'     => 'Comunidade',
+        'founders'      => 'Fundadores',
         'lead'          => 'Facendo a creación de mundos divertida e consistente',
         'title'         => 'Equipo',
         'translations'  => 'Traducións',
@@ -15,6 +16,9 @@ return [
     ],
     'patreon'       => [],
     'people'        => [
+        'itzamna'   => [
+            'title' => 'Desenvolvedor Junior',
+        ],
         'jay'       => [
             'text'  => <<<'TEXT'
 Creei Kanka en outubro do 2017 porque non había unha ferramenta que me permitise crear un mundo facilmente coas miñas amizades e que ao mesmo tempo me deixase controlar quen pode ver ou facer cada cousa.
@@ -36,8 +40,14 @@ TEXT
         'joseph'    => [
             'title' => 'Garantía de calidade e Incorporacións',
         ],
+        'kaz'       => [
+            'title' => 'Destrutor de bugs',
+        ],
+        'laura'     => [
+            'title' => 'Redes sociais',
+        ],
         'ryan'      => [
-            'title' => 'Xerente da comunidade e Líder de Garantía de calidade',
+            'title' => 'Integrante da comunidade orixinal',
         ],
     ],
 ];

@@ -1,6 +1,10 @@
 <?php
 
 return [
+    'banned'    => [
+        'permanent' => 'Du wurdest dauerhaft gesperrt.',
+        'temporary' => '{1} Du wurdest gesperrt für :days day|[2,*] Du wurdest gesperrt für :days days',
+    ],
     'confirm'   => [
         'confirm'   => 'Bestätigung',
         'error'     => 'Falsche Kennwort. Bitte versuchen Sie es erneut.',

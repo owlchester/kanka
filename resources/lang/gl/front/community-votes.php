@@ -16,7 +16,7 @@ return [
         'title' => 'Votacións recentes',
     ],
     'show'          => [
-        'restricted'    => 'As votacións da comunidade só están dispoñíbeis para usuarias que apoian a Kanka.',
+        'restricted'    => 'As votacións da comunidade só están dispoñibles para utentes que apoian a Kanka.',
         'title'         => 'Votación da Comunidade - :name',
         'vote_count'    => '{1} :number participantes votaron.|[2,*] :number participantes votaron.',
         'voted_lasted'  => 'A votación durou dende as :from GMT ata as :until GMT.',

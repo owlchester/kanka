@@ -8,6 +8,7 @@ return [
     'edit'          => [],
     'fields'        => [
         'image'         => 'Bild',
+        'is_defunct'    => 'stillgelegt',
         'location'      => 'Ort',
         'members'       => 'Mitglieder',
         'name'          => 'Name',
@@ -18,6 +19,9 @@ return [
     'helpers'       => [
         'descendants'       => 'Diese Liste enthält alle Organisationen, die direkt unter dieser Organisation und allen untergeordneten Organisationen sind.',
         'nested_without'    => 'Anzeigen aller Organisationen, die keine übergeordnete Organisation haben. Klicken Sie auf eine Zeile, um die untergeordneten Organisationen anzuzeigen.',
+    ],
+    'hints'         => [
+        'is_defunct'    => 'Diese Organisation ist aufgelöst.',
     ],
     'index'         => [
         'title' => 'Organisationen',

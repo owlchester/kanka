@@ -14,7 +14,7 @@ return [
         'community_vote'    => 'Votacións da comunidade',
         'discord'           => 'Roles de Discord',
         'feature_influence' => 'Influencia sobre novas funcionalidades',
-        'file_size'         => 'Subir arquivos de ata :size',
+        'file_size'         => 'Subir ficheiros de ata :size',
         'hall_of_fame'      => 'Salón da fama',
         'map_size'          => 'Subir mapas de ata :size',
         'nice_image'        => 'Imaxes por defecto nas entidades',

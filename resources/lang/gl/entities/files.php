@@ -1,18 +1,23 @@
 <?php
 
 return [
-    'create'    => [
-        'success'   => 'Arquivo ":file" engadido.',
-        'title'     => 'Novo arquivo para ":entity"',
+    'call-to-action'    => [
+        'boost'         => 'Para subir máis ficheiros, a campaña debe ser potenciada.',
+        'error'         => 'Esta entidade chegou ao número máximo de ficheiros que pode conter.',
+        'superboost'    => 'Para subir máis ficheiros, a campaña debe ser superpotenciada.',
     ],
-    'destroy'   => [
-        'success'   => 'Arquivo ":file" eliminado.',
+    'create'            => [
+        'success'   => 'Ficheiro ":file" engadido.',
+        'title'     => 'Novo ficheiro para ":entity"',
     ],
-    'fields'    => [
-        'file'  => 'Arquivo',
-        'name'  => 'Nome do arquivo',
+    'destroy'           => [
+        'success'   => 'Ficheiro ":file" eliminado.',
     ],
-    'update'    => [
-        'success'   => 'Arquivo ":file" actualizado.',
+    'fields'            => [
+        'file'  => 'Ficheiro',
+        'name'  => 'Nome do ficheiro',
+    ],
+    'update'            => [
+        'success'   => 'Ficheiro ":file" actualizado.',
     ],
 ];

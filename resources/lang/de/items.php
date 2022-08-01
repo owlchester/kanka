@@ -9,11 +9,19 @@ return [
     'fields'        => [
         'character' => 'Charakter',
         'image'     => 'Bild',
+        'item'      => 'übergeordneter Gegenstand',
+        'items'     => 'untergeortneter Gegenstand',
         'location'  => 'Ort',
         'name'      => 'Name',
         'price'     => 'Preis',
         'size'      => 'Größe',
         'type'      => 'Typ',
+    ],
+    'helpers'       => [
+        'nested_without'    => 'Alle Gegenstände anzeigen, die keinen übergeordneten Gegenstand haben. Klicke auf eine Zeile, um die untergeordneten Elemente anzuzeigen.',
+    ],
+    'hints'         => [
+        'items' => 'Organisiere Gegenstände mithilfe des übergeordneten Gegenstandfelds.',
     ],
     'index'         => [
         'title' => 'Gegenstände',

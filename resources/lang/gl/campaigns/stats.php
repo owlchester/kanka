@@ -12,6 +12,7 @@ return [
         ],
     ],
     'helper'        => 'Segue o teu progreso cara desbloquear varios logros na túa campaña. Estes números son actualizados cada 24 horas.',
+    'pitch'         => 'Leva conta do progreso no teu mundo cos nosos logros de campaña.',
     'placeholder'   => ':amount de :target',
     'targets'       => [
         'calendars' => 'Crea :target calendarios',

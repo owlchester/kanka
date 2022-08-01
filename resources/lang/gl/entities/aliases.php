@@ -17,6 +17,7 @@ return [
     'helpers'       => [
         'primary'   => 'Establecer un ou máis alias nunha entidade fará que poida ser encontrada na barra de procura global e a través de mencións.',
     ],
+    'pitch'         => 'Crea aliases desta entidade para encontrala facilmente na barra de búsqueda ou nas mencións.',
     'placeholders'  => [
         'name'  => 'Novo alias',
     ],

@@ -37,7 +37,7 @@ TEXT
     ],
     'errors'                            => [
         'access'        => 'Non tes acceso a esta campaña.',
-        'superboosted'  => 'Esta funcionalidade só está dispoñíbel para campañas superpotenciadas.',
+        'superboosted'  => 'Esta funcionalidade só está dispoñible para campañas superpotenciadas.',
         'unknown_id'    => 'Campaña descoñecida.',
     ],
     'export'                            => [],
@@ -57,7 +57,7 @@ TEXT
         'image'                             => 'Imaxe',
         'locale'                            => 'Lingua',
         'name'                              => 'Nome',
-        'nested'                            => 'Mostrar as listaxes de entidades en árbore, cando sexa posíbel',
+        'nested'                            => 'Mostrar as listaxes de entidades en árbore, cando sexa posible',
         'open'                              => 'Aberta a solicitudes',
         'past_featured'                     => 'Campaña destacada previamente',
         'post_collapsed'                    => 'As novas entradas nas entidades estarán colapsadas por defecto.',
@@ -82,15 +82,15 @@ TEXT
         'entity_privacy'                    => 'Selecciona a privacidade por defecto das novas entidades.',
         'excerpt'                           => 'O limiar da campaña mostrarase no taboleiro principal. Escrebe unhas poucas liñas introducindo o teu mundo. Se este campo está baleiro, os primeiros 1000 caracteres da descrición da campaña serán usados.',
         'header_image'                      => 'Imaxe mostrada como fondo no taboleiro da campaña.',
-        'hide_history'                      => 'Habilita está opción para que o historial das entidades só sexa visíbel pola administración da campaña.',
-        'hide_members'                      => 'Habilita esta opción para que a lista de integrantes da campaña só sexa visíbel pola administración da campaña.',
+        'hide_history'                      => 'Habilita está opción para que o historial das entidades só sexa visible pola administración da campaña.',
+        'hide_members'                      => 'Habilita esta opción para que a lista de integrantes da campaña só sexa visible pola administración da campaña.',
         'locale'                            => 'A lingua na que está escrita a túa campaña. Isto úsase para xerar contido e agrupar campañas públicas.',
         'name'                              => 'A túa campaña ou mundo pode ter calquer nome sempre que conteña polo menos catro letras ou números.',
         'permissions_tab'                   => 'Controla a privacidade e visiblidade por defecto de elementos novos coas seguintes opcións.',
         'public_campaign_filters'           => 'Axuda a outras persoas a atopar a campaña entre outras campañas públicas proporcionando a seguinte información.',
         'public_no_visibility'              => 'Coidado! A túa campaña é pública, pero o rol Público da campaña non pode acceder nada. :fix.',
         'related_visibility'                => 'A visibilidade por defecto ao crear un elemento con este campo (entradas, relacións, habilidades, etc.)',
-        'system'                            => 'Se a túa campaña é públicamente visíbel, o sistema é mostrado na páxina de :link.',
+        'system'                            => 'Se a túa campaña é publicamente visible, o sistema é mostrado na páxina de :link.',
         'systems'                           => 'Para evitar unha sobrecarga de opcións, algunhas funcións de Kanka só están dispoñibles para sistemas RPG específicos (por exemplo, o bloque de estadísticas de monstros para D&D 5e). Engadir sistemas soportados aquí habilitará as súas funcións.',
         'theme'                             => 'Forza o tema da campaña, invalidando a preferencia da persoa usuaria.',
         'view_public'                       => 'Para ver a túa campaña como a vería unha persoa externa, abre :link nunha xanela de incógnito.',
@@ -161,7 +161,7 @@ TEXT
     ],
     'leave'                             => [
         'confirm'   => 'Seguro que queres abandonar a campaña ":name"? Non poderás volver acceder a ela, excepto se alguén da administración te convida de novo.',
-        'error'     => 'Non foi posíbel abandonar a campaña.',
+        'error'     => 'Non foi posible abandonar a campaña.',
         'success'   => 'Abandonaches a campaña.',
     ],
     'members'                           => [
@@ -237,11 +237,11 @@ TEXT
     'privacy'                           => [
         'hidden'    => 'Oculta',
         'private'   => 'Privada',
-        'visible'   => 'Visíbel',
+        'visible'   => 'Visible',
     ],
     'public'                            => [
         'helpers'   => [
-            'introduction'  => 'As campañas son privadas por defecto, e poden facerse públicas. Deste xeito, todo o mundo pode acceder a elas, e ademais aparecen na páxina de :public-campaigns se teñen entidades visíbeis ao rol :public-role. Unha campaña pública é visíbel a todo o mundo, pero para que o seu contido sexa visíbel, o rol :public-role precisa os permisos adecuados.',
+            'introduction'  => 'As campañas son privadas por defecto, e poden facerse públicas. Deste xeito, todo o mundo pode acceder a elas, e ademais aparecen na páxina de :public-campaigns se teñen entidades visibles ao rol :public-role. Unha campaña pública é visible a todo o mundo, pero para que o seu contido sexa visible, o rol :public-role precisa os permisos adecuados.',
         ],
     ],
     'roles'                             => [
@@ -350,7 +350,7 @@ TEXT
         'actions'   => [
             'enable'    => 'Activar',
         ],
-        'boosted'   => 'Esta función está en acceso anticipado e actualmente só dispoñíbel para :boosted.',
+        'boosted'   => 'Esta función está en acceso anticipado e actualmente só dispoñible para :boosted.',
         'disabled'  => 'O módulo :module está deshabilitado.',
         'enabled'   => 'O módulo :module está habilitado',
         'errors'    => [
@@ -422,8 +422,8 @@ TEXT
             'list'      => 'Interface de listas',
         ],
         'entity_history'    => [
-            'hidden'    => 'Só visíbel para a administración da campaña',
-            'visible'   => 'Visíbel a integrantes da campaña',
+            'hidden'    => 'Só visible para a administración da campaña',
+            'visible'   => 'Visible a integrantes da campaña',
         ],
         'fields'            => [
             'connections'       => 'Interface de conexións entre entidades por defecto',
@@ -438,11 +438,11 @@ TEXT
             'connections'       => 'Selecciona a interface por defecto que é mostrada ao facer clic na subpáxina de conexións dunha entidade.',
             'other'             => 'Outras opcións visuais para a campaña.',
             'post_collapsed'    => 'Selecciona se, por defecto, as entradas estarán colapsadas ou expandidas ao ser creadas.',
-            'tooltip'           => 'Controla a información que é visíbel na descrición emerxente ao poñer o cursor sobre o nome dunha entidade.',
+            'tooltip'           => 'Controla a información que é visible na descrición emerxente ao poñer o cursor sobre o nome dunha entidade.',
         ],
         'members'           => [
-            'hidden'    => 'Só visíbel para a administración da campaña',
-            'visible'   => 'Visíbel a integrantes da campaña',
+            'hidden'    => 'Só visible para a administración da campaña',
+            'visible'   => 'Visible a integrantes da campaña',
         ],
         'nested'            => [
             'default'   => 'Por defecto',

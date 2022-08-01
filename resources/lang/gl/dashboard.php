@@ -41,6 +41,7 @@ return [
         'helpers'       => [
             'copy_widgets'  => 'Copia os complementos do taboleiro ":name" neste novo taboleiro.',
         ],
+        'pitch'         => 'Crea múltiples taboleiros con permisos personalizados para cada rol da campaña.',
         'placeholders'  => [
             'name'  => 'Nome do taboleiro',
         ],
@@ -51,7 +52,7 @@ return [
         'visibility'    => [
             'default'   => 'Por defecto',
             'none'      => 'Non',
-            'visible'   => 'Visíbel',
+            'visible'   => 'Visible',
         ],
     ],
     'helpers'       => [
@@ -126,7 +127,7 @@ return [
         ],
         'helpers'       => [
             'class'     => 'Define unha clase CSS personalizada para este complemento.',
-            'filters'   => 'Fai clic para aprender sobre as opcións de filtrado dispoñíbeis.',
+            'filters'   => 'Fai clic para aprender sobre as opcións de filtrado dispoñibles.',
         ],
         'orders'        => [
             'name_asc'  => 'Nome (ascendente)',

@@ -143,7 +143,7 @@ return [
                 'month'         => 'Mensual',
                 'newmoon'       => 'Lúa nova',
                 'newmoon_name'  => 'Lúa :moon nova',
-                'none'          => 'Ningunha',
+                'none'          => 'Non',
                 'unnamed_moon'  => 'Lúa :number',
                 'year'          => 'Anual',
             ],

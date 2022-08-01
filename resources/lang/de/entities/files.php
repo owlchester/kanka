@@ -1,18 +1,23 @@
 <?php
 
 return [
-    'create'    => [
+    'call-to-action'    => [
+        'boost'         => 'Um mehr Dateien hochzuladen, muss die Kampagne geboostet werden.',
+        'error'         => 'Dieses Objekt hat die maximale Anzahl an Dateien erreicht, die es verwalten kann.',
+        'superboost'    => 'Um mehr Dateien hochzuladen, muss die Kampagne supergeboostet werden.',
+    ],
+    'create'            => [
         'success'   => 'Date :file hinzugefügt',
         'title'     => 'Neue Datei für :entity',
     ],
-    'destroy'   => [
+    'destroy'           => [
         'success'   => 'Datei :file entfernt',
     ],
-    'fields'    => [
+    'fields'            => [
         'file'  => 'Datei',
         'name'  => 'Dateiname',
     ],
-    'update'    => [
+    'update'            => [
         'success'   => 'Datei :file aktualisiert',
     ],
 ];

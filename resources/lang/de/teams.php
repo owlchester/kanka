@@ -4,6 +4,7 @@ return [
     'hall_of_fame'  => 'Ruhmeshalle',
     'index'         => [
         'community'     => 'Community',
+        'founders'      => 'Gründer',
         'lead'          => 'Worldbuilding macht Spaß und ist bewährt',
         'title'         => 'Team',
         'translations'  => 'Übersetzungen',
@@ -15,6 +16,9 @@ return [
     ],
     'patreon'       => [],
     'people'        => [
+        'itzamna'   => [
+            'title' => 'Junior-Entwickler',
+        ],
         'jay'       => [
             'text'  => <<<'TEXT'
 Ich habe Kanka im Oktober 2017 erstellt, weil es kein Tool gab, mit dem ich mit meinen Freunden eine Welt erschaffen und trotzdem steuern konnte, wer was sehen oder tun konnte.
@@ -35,6 +39,12 @@ TEXT
         ],
         'joseph'    => [
             'title' => 'Qualitätskontrolle und Einarbeitung',
+        ],
+        'kaz'       => [
+            'title' => 'Fehlerzerstörer',
+        ],
+        'laura'     => [
+            'title' => 'Sozialmedien',
         ],
         'ryan'      => [
             'title' => 'Community Manager und Qualitätskontrollleiter',

@@ -394,7 +394,7 @@ TEXT
             'achievements'      => 'Достижения',
             'applications'      => 'Заявки',
             'campaign'          => 'Кампания',
-            'default-images'    => 'Иконки по умолчанию',
+            'default-images'    => 'Эскизы',
             'export'            => 'Экспорт',
             'information'       => 'Информация',
             'members'           => 'Участники',

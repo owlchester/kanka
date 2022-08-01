@@ -11,7 +11,7 @@ return [
         'title'         => 'Atributos',
     ],
     'boosters'      => [
-        'description'   => 'Algunhas funcionalidades só están dispoñíbeis para campañas potenciadas. Cando unha persoa se subscribe a Kanka, esta gaña certo número de potenciadores que pode usar en unha ou varias campañas. Estes potenciadores poden ser movidos de campaña a campaña a vontade, e duran ata que a persoa deixe de estar subscrita a Kanka.',
+        'description'   => 'Algunhas funcionalidades só están dispoñibles para campañas potenciadas. Cando unha persoa se subscribe a Kanka, esta gaña certo número de potenciadores que pode usar en unha ou varias campañas. Estes potenciadores poden ser movidos de campaña a campaña a vontade, e duran ata que a persoa deixe de estar subscrita a Kanka.',
         'link'          => 'Mira todas as funcionalidades potenciadas na nosa páxina de prezos.',
         'title'         => 'Potenciadores de campaña',
     ],
@@ -41,7 +41,7 @@ return [
         'title' => 'Dirección de xogo',
     ],
     'inventory'     => [
-        'description'   => 'Cada entidade pode ter o seu propio inventario. Esta funcionalidade é usada para xestionar cousas como as posesións dunha personaxe, o inventario dunha tenda, a recompensa dunha misión, a fortuna dunha familia, ou calquera cousa que se che ocurra. Os inventarios interaccionan cos obxectos da túa campaña, pero tamén é flexíbel e permite engadir obxectos sen ter que crear entidades para eles.',
+        'description'   => 'Cada entidade pode ter o seu propio inventario. Esta funcionalidade é usada para xestionar cousas como as posesións dunha personaxe, o inventario dunha tenda, a recompensa dunha misión, a fortuna dunha familia, ou calquera cousa que se che ocurra. Os inventarios interaccionan cos obxectos da túa campaña, pero tamén é flexible e permite engadir obxectos sen ter que crear entidades para eles.',
         'title'         => 'Inventarios',
     ],
     'journals'      => [

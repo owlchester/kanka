@@ -41,6 +41,7 @@ return [
         'helpers'       => [
             'copy_widgets'  => 'Duplizieren Sie die Widgets aus dem :name -Dashboard in dieses neue.',
         ],
+        'pitch'         => 'Erstelle mehrere Dashboards mit benutzerdefinierten Berechtigungen für jede Rolle der Kampagne.',
         'placeholders'  => [
             'name'  => 'Name des Dashboards',
         ],

@@ -3,7 +3,7 @@
 return [
     'actions'   => [
         'alias' => 'Alias',
-        'file'  => 'Arquivo',
+        'file'  => 'Ficheiro',
         'link'  => 'Ligazón',
     ],
     'show'      => [

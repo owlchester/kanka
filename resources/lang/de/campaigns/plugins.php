@@ -57,6 +57,7 @@ return [
         'updates'       => 'Aktualisierungen',
         'your_version'  => 'Deine Version',
     ],
+    'pitch'         => 'Installiere und verwalte Plug-ins vom :marketplace.',
     'status'        => [
         'disabled'  => 'Deaktiviert',
         'enabled'   => 'Aktviert',
