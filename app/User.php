@@ -255,6 +255,10 @@ class User extends \Illuminate\Foundation\Auth\User
     public function maxUploadSize($readable = false, $what = 'image')
     {
         $campaign = CampaignLocalization::getCampaign();
+        // Test for jay
+        if ($this->id === 1) {
+            return $readable ? '100MB' : 102400;
+        }
         if ($this->isPatron() || ($campaign && $campaign->boosted())) {
             // Elementals get massive upload sizes
             if ($this->isElemental()) {

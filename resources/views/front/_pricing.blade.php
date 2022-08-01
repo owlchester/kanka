@@ -1,5 +1,3 @@
-
-
 <div class="row pricing mt-5 pt-5">
     <div class="col-lg-3 col-md-4 ">
         <div class="card mb-5 mb-lg-0">
@@ -77,7 +75,7 @@
 {{--                    </li>--}}
                 </ul>
 
-                <a href="{{ route('settings.subscription') }}" target="_blank" class="btn btn-block btn-primary text-uppercase btn-owlbear">
+                <a href="{{ route('settings.subscription') }}" class="btn btn-block btn-primary text-uppercase btn-owlbear">
                     {{ __('front.pricing.actions.subscribe') }}
                 </a>
             </div>
@@ -120,7 +118,7 @@
 {{--                    </li>--}}
                 </ul>
 
-                <a href="{{ route('settings.subscription') }}" target="_blank" class="btn btn-block btn-primary text-uppercase btn-wyvern">
+                <a href="{{ route('settings.subscription') }}" class="btn btn-block btn-primary text-uppercase btn-wyvern">
                     {{ __('front.pricing.actions.subscribe') }}
                 </a>
             </div>

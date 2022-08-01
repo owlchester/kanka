@@ -35,7 +35,7 @@
                             <li class="divider"></li>
                         @endif
                         <li>
-                            <a href="{{ route('helpers.entity-templates') }}" data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('helpers.entity-templates') }}">
+                            <a href="//docs.kanka.io/en/latest/guides/templates.html" target="_blank">
                                 <i class="fa-solid fa-external-link"></i> {{ __('helpers.entity_templates.link') }}
                             </a>
                         </li>

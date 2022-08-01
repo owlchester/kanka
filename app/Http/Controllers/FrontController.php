@@ -183,7 +183,7 @@ class FrontController extends Controller
     public function documentation()
     {
         return redirect()
-            ->to(app()->getLocale() . '/campaign/' . 20000);
+            ->to('https://docs.kanka.io/en/latest');
     }
 
     /**

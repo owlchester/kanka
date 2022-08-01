@@ -46,7 +46,7 @@
                         </li>
                     @endif
                     <li>
-                        <a href="{{ route('documentation') }}">{{ __('front.menu.documentation') }}</a>
+                        <a href="//docs.kanka.io/en/latest/index.html" target="_blank">{{ __('front.menu.documentation') }}</a>
                     </li>
                     <li>
                         <a href="/{{ app()->getLocale() }}{{ config('larecipe.docs.route') }}/1.0/overview" target="_blank">{{ __('front.features.api.link') }}</a>

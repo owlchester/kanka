@@ -23,6 +23,18 @@ class AttributeTemplateController extends CrudController
     /** @var string */
     protected $filter = AttributeTemplateFilter::class;
 
+    public function __construct()
+    {
+        parent::__construct();
+
+        $this->addNavAction(
+            '//docs.kanka.io/en/latest/entities/attribute-templates.html',
+            '<i class="fa-solid fa-question-circle"></i> <span class="hidden-xs">' . __('crud.actions.help') . '</span>',
+            'default',
+            true
+        );
+    }
+
     /**
      * Store a newly created resource in storage.
      *

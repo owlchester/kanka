@@ -37,15 +37,9 @@ $visibilityUniqueID = uniqid('visibility_');
 <div class="form-group">
     <label for="{{ $visibilityUniqueID }}">
         {{ __('crud.fields.visibility') }}
-        @if(request()->ajax())
-        <a href="{{ route('helpers.visibility') }}" data-toggle="tooltip" target="_blank" title="{{ __('visibilities.tooltip') }}">
-            <i class="fa-solid fa-question-circle"></i>
-        </a>
-        @else
-        <a href="{{ route('helpers.visibility') }}" data-url="{{ route('helpers.visibility') }}" data-toggle="ajax-modal" data-target="#entity-modal" target="_blank">
+        <a href="//docs.kanka.io/en/latest/advanced/visibility.html" target="_blank">
             <i class="fa-solid fa-question-circle" data-toggle="tooltip" title="{{ __('visibilities.tooltip') }}"></i>
         </a>
-        @endif
     </label>
     {{ Form::select('visibility_id', $options, empty($model) ? CampaignLocalization::getCampaign()->defaultVisibilityID() : $model->visibility_id, ['class' => 'form-control', 'id' => $visibilityUniqueID]) }}
 </div>

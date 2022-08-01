@@ -3,6 +3,7 @@
 namespace App\Http\Resources;
 
 use App\Models\EntityAsset;
+use Illuminate\Support\Facades\Storage;
 
 class EntityAssetResource extends EntityChild
 {
@@ -17,7 +18,7 @@ class EntityAssetResource extends EntityChild
         /** @var EntityAsset $asset */
         $asset = $this->resource;
 
-        return $this->entity([
+        $data = $this->entity([
             'type_id' => $asset->type_id,
             '_file' => $asset->isFile(),
             '_link' => $asset->isLink(),
@@ -27,5 +28,11 @@ class EntityAssetResource extends EntityChild
             'visibility_id' => $asset->visibility_id,
             'is_pinned' => (bool) $asset->is_pinned,
         ]);
+
+        if ($asset->isFile()) {
+            $data['_url'] = Storage::url($asset->metadata['path']);
+        }
+
+        return $data;
     }
 }

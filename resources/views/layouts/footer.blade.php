@@ -57,7 +57,7 @@
                         <a href="{{ route('front.faqs.index') }}">{{ __('front.menu.kb') }}</a>
                     </li>@endif
                     <li>
-                        <a href="{{ route('documentation') }}">{{ __('front.menu.documentation') }}</a>
+                        <a href="//docs.kanka.io/en/latest/index.html" target="_blank">{{ __('front.menu.documentation') }}</a>
                     </li>
                     @if(config('app.admin'))
                     <li>

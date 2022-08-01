@@ -8,6 +8,6 @@
         </div>
     </div>
     <div class="panel-footer">
-        <a href="{{ route('helpers.link') }}" data-toggle="tooltip" title="{{ trans('helpers.link.description') }}" target="_blank">{{ trans('crud.linking_help') }}</a>
+        <a href="//docs.kanka.io/en/latest/features/mentions.html" target="_blank" title="{{ trans('helpers.link.description') }}">{{ __('crud.linking_help') }}</a>
     </div>
 </div>

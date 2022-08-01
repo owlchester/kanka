@@ -44,10 +44,7 @@
 ]) !!}
 </div>
 
-<a href="{{ route('helpers.attributes') }}" data-url="{{ route('helpers.attributes') }}" data-toggle="ajax-modal" data-target="#entity-modal" title="{{ __('helpers.attributes.description', [
-    'mention' => '[entity:id]',
-    'attribute' => '{' . __('helpers.attributes.level') . '}',
-]) }}">
+<a href="//docs.kanka.io/en/latest/features/attributes.html" target="_blank">
     {{ __('helpers.attributes.link') }} <i class="fa-solid fa-question-circle"></i>
 </a>
 <a href="#" class="btn btn-danger pull-right" data-toggle="modal" data-target="#attributes-delete-all-confirm">

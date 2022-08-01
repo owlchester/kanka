@@ -36,7 +36,7 @@
                             <li class="divider"></li>
                             @endif
                             <li>
-                                <a href="{{ route('helpers.entity-templates') }}" data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('helpers.entity-templates') }}">
+                                <a href="//docs.kanka.io/en/latest/guides/templates.html" target="_blank">
                                     <i class="fa-solid fa-external-link"></i> {{ __('helpers.entity_templates.link') }}
                                 </a>
                             </li>
@@ -46,7 +46,7 @@
             @endcan
             @foreach ($actions as $action)
                 @if (empty($action['policy']) || (auth()->check() && auth()->user()->can($action['policy'], $model)))
-                    <a href="{{ $action['route'] }}" class="btn pull-right btn-{{ $action['class'] }} mr-2">
+                    <a href="{{ $action['route'] }}" class="btn pull-right btn-{{ $action['class'] }} mr-2" @if ($action['blank'])target="_blank"@endif>
                         {!! $action['label'] !!}
                     </a>
                 @endif

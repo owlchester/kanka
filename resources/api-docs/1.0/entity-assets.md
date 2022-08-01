@@ -56,6 +56,17 @@ You can get a list of all the assets of an entity by using the following endpoin
 }
 ```
 
+## Virtual properties
+
+Assets also contain the following virtual properties provided by the API.
+
+| Property | Type | Value |
+| :- |   :-   |  :-  |
+|`_file` | `boolean` | If the asset is of the file type |
+|`_link` | `boolean` | If the asset is of the link type |
+|`_alias` | `boolean` | If the asset is of the alias type |
+|`_url` | `null|string` | If it's a file, the fullpath URL |
+
 
 <a name="entity-asset"></a>
 ## Entity Asset

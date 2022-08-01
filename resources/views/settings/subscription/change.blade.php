@@ -49,12 +49,15 @@
                     {!! Form::open(['route' => ['settings.subscription.subscribe'], 'method' => 'POST', 'id' => 'subscription-confirm']) !!}
 
                     @if (!$card)
-                        <label>{{ __('settings.subscription.payment_method.card_name' )}}</label>
-                        {!! Form::text('card-holder-name', null, ['class' => 'form-control', 'class' => 'subscription-form']) !!}
+                        <div class="form-group">
+                            <label>{{ __('settings.subscription.payment_method.card_name' )}}</label>
+                            {!! Form::text('card-holder-name', null, ['class' => 'form-control']) !!}
+                        </div>
 
-                        <label>{{ __('settings.subscription.payment_method.card' )}}</label>
-
-                        <div id="card-element" class="mb-5">
+                        <div class="form-group">
+                            <label>{{ __('settings.subscription.payment_method.card' )}}</label>
+                            <div id="card-element" class="mb-5">
+                        </div>
 
                         </div>
                     @else

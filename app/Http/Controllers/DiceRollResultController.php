@@ -21,7 +21,7 @@ class DiceRollResultController extends CrudController
     protected $filter = DiceRollResult::class;
 
     /**
-     * SectionController constructor.
+     * Controller constructor.
      */
     public function __construct()
     {
