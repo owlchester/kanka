@@ -18,6 +18,7 @@ class TimelineEraResource extends EntityResource
     {
         /** @var TimelineEra $era */
         $era = $this->resource;
+
         return [
             'id' => $era->id,
             'name' => $era->name,
@@ -26,7 +27,7 @@ class TimelineEraResource extends EntityResource
             'entry' => $era->entry,
             'entry_parsed' => Mentions::mapAny($era),
             'end_year' => $era->end_year,
-            'elements' => TimelineElementResource::collection($era->elements),
+            'elements' => $era->elements ? TimelineElementResource::collection($era->elements) : [],
             'is_collapsed' => (bool) $era->is_collapsed,
         ];
     }

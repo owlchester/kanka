@@ -21,6 +21,7 @@
     </div>
     @if ($tags->isNotEmpty())<div class="tooltip-tags">
         @foreach ($tags as $tag)
+            @if (!$tag->entity) @continue @endif
             <span class="tooltip-tag" data-id="{{ $tag->entity->id }}" data-tag-slug="{{ $tag->slug }}">
                 {!! $tag->html() !!}
             </span>
