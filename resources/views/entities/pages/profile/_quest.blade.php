@@ -35,7 +35,7 @@
                 @if ($model->is_completed)
                     <p class="entity-completed">
                         <b>{{ trans('quests.fields.is_completed') }}</b><br />
-                        {{ trans('voyager.generic.yes') }}
+                        {{ trans('general.yes') }}
                     </p>
                 @endif
 

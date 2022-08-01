@@ -26,7 +26,7 @@
             <div id="mc_embed_signup">
                 <form action="https://kanka.us19.list-manage.com/subscribe/post?u=e971e01b5e0f6f2597dad7d8f&amp;id=2fb0754d39" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
                     <div id="mc_embed_signup_scroll">
-                        <div class="indicates-required"><span class="asterisk">*</span> {{ __('voyager.generic.required') }}</div>
+                        <div class="indicates-required"><span class="asterisk">*</span> {{ __('general.required') }}</div>
                         <div class="mc-field-group">
                             <label for="mce-EMAIL">{{ __('auth.login.fields.email') }}  <span class="asterisk">*</span>
                             </label>

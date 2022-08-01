@@ -290,7 +290,6 @@ TEXT
             'enable'    => 'Omogući',
         ],
         'boosted'   => 'Ova funkcionalnost je u testnoj verziji i trenutno je dostupna samo za :boosted.',
-        'helper'    => 'Svi moduli kampanje mogu se omogućiti ili onemogućiti po volji. Onemogućivanje modula će jednostavno sakriti elemente sučelja koji se na njega odnose, a postojeći entiteti bit će skriveni, ali i dalje postojati u pozadini, u slučaju da se predomislite. Te promjene utječu na sve korisnike kampanje, uključujući administratore.',
         'helpers'   => [
             'abilities'     => 'Stvori sposobnosti, bilo da su to podvizi, čarolije ili moći koje se mogu dodijeliti entitetima.',
             'calendars'     => 'Mjesto za definiranje kalendara tvog svijeta.',

@@ -259,7 +259,6 @@ TEXT
             'enable'    => 'Skru på',
         ],
         'boosted'   => 'Denne funksjonen er i tidlig tilgang og kun tilgjengelig for :boosted.',
-        'helper'    => 'Alle moduler i en kampanje kan bli skrudd av eller på når man ønsker. Ved å slå av en modul skjuler man alle grensesnitts elementer relatert til det, og tidligere eksisterende objekter blir skjult men finnes enda i bakgrunnen i tilfelle du ombestemmer deg. Disse endringene påvirker alle brukere i kampanjen, inkludert Administratorer.',
         'helpers'   => [
             'abilities'     => 'Opprett Egenskaper, om det er feats, spells, eller krefter som kan tildeles objekter.',
             'calendars'     => 'Et sted som definerer kalenderene i din verden.',

@@ -355,7 +355,6 @@ TEXT
         'errors'    => [
             'module-disabled'   => 'O módulo solicitado está actualmente deshabilitado na configuración da campaña. :fix.',
         ],
-        'helper'    => 'Todos os módulos dunha campaña poden ser habilitados ou deshabilitados a vontade. Deshabilitar un módulo simplemente ocultará todos os elementos da interface relacionados con el, e as entidades preexistentes seguirán existindo pero ocultas, no caso de que cambies de parecer. Este cambio afecta a todas as persoas integrantes dunha campaña, incluíndo a Administración.',
         'helpers'   => [
             'abilities'     => 'Crea habilidades (talentos, feitizos, poderes...) que poden ser asignados a entidades.',
             'calendars'     => 'Un lugar para definir os calendarios do teu mundo.',

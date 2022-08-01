@@ -261,7 +261,6 @@ TEXT
             'enable'    => 'Etkinleştir',
         ],
         'boosted'   => 'Bu özellik şu anda erken erişimde ve yalnızca :boosted aracılığı ile mevcut.',
-        'helper'    => 'Bir serüvenin tüm modülleri istediğiniz zaman etkinletirilebilir ya da devre dışı bırakılabilir. Bir modülü devre dışı bırakmak onunla alakalı bütün arayüz ögelerini saklar, ve halihazırda mevcut varlıklar ileride fikrinizi değiştirmeniz durumuna karşı arka planda varlıklarını korur ama saklanır. Bu değişiklikler serüveninizin tüm üyelerini, Yöneticiler dahil olmak üzere, etkiler.',
         'helpers'   => [
             'abilities'     => 'Varlıklara atayabileceğiniz yetenekler oluşturun; hünerler, büyüler, ya da güçler gibi.',
             'calendars'     => 'Dünyanızın takvimlerini tanımlayabileceğiniz bir yer.',

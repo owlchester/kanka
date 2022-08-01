@@ -342,7 +342,6 @@ TEXT
         'errors'    => [
             'module-disabled'   => 'O módulo solicitado está atualmente desabilitado nas configurações da campanha. :fix.',
         ],
-        'helper'    => 'Você pode facilmente desabilitar elementos da sua campanha que serão escondidos. Se você já havia criado elementos nas categorias que desabilitar, eles não serão deletados, apenas ocultados.',
         'helpers'   => [
             'abilities'     => 'Crie habilidades, sejam talentos, feitiços ou poderes que podem ser atribuídos a entidades.',
             'calendars'     => 'Um lugar para definir todos os calendários do seu mundo.',

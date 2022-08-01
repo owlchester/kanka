@@ -319,7 +319,6 @@ TEXT
             'enable'    => 'Engedélyezés',
         ],
         'boosted'   => 'Ez a lehetőség egyelőre béta állapotban van, így csak :boosted számára elérhető.',
-        'helper'    => 'A kampány minden modulját lehet ki-be kapcsolgatni. Ha kikapcsolod, egyszerűen csak eltűnik a hozzátartozó felület, de a létrehozott entitások megmaradnak a háttérben, ha esetleg meggondolnád magadat. Ez a változás a kampány minden felhasználóját érinti, beleértve az Admin felhasználókat is.',
         'helpers'   => [
             'abilities'     => 'Entitásokhoz kapcsolható képességek létrehozása, legyen akár különleges képesség, varázslat vagy varázsaltos erő.',
             'calendars'     => 'Egy hely, ahol a világod naptárát alkothatod meg.',

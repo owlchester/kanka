@@ -341,7 +341,6 @@ TEXT
             'enable'    => 'Habilitar',
         ],
         'boosted'   => 'Esta función está en beta y actualmente solo está disponible para las :boosted.',
-        'helper'    => 'Puedes activar o desactivar fácilmente todos los módulos de una campaña. Desactivar un módulo solo ocultará sus elementos relacionados, no los eliminará. Este cambio afecta a todos los usuarios de una campaña, incluyendo a los Administradores.',
         'helpers'   => [
             'abilities'     => 'Crea habilidades, proezas, hechizos o poderes y asígnalos a entidades.',
             'calendars'     => 'El sitio para definir los calendarios de tu mundo.',

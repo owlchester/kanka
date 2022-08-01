@@ -359,7 +359,6 @@ TEXT
         'errors'    => [
             'module-disabled'   => 'Das angeforderte Modul ist derzeit in den Kampagneneinstellungen deaktiviert. :fix.',
         ],
-        'helper'    => 'Du kannst einfach Elemente von deiner Kampagne abschalten, die dann versteckt werden. Wenn du bereits Objekte in dieser Kategorie angelegt hast, werden diese nicht gelöscht, nur versteckt.',
         'helpers'   => [
             'abilities'     => 'Erstellen Sie Fähigkeiten, seien es Talente, Zauber oder Kräfte, die Objekten zugewiesen werden können.',
             'calendars'     => 'Der Ort, um die Kalender deiner Welt zu erstellen.',

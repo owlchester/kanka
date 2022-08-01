@@ -12,7 +12,7 @@ $attributes = isset($entity) ? $entity->starredAttributes() : $model->entity->st
                 @if ($attribute->value)
                     <i class="fa-solid fa-check pull-right"></i>
                 @else
-                    <span class="pull-right">{{ __('voyager.generic.no') }}</span>
+                    <span class="pull-right">{{ __('general.no') }}</span>
                 @endif
             @endif
             <strong title="{{ __('entities/attributes.fields.is_star') }}">{{ $attribute->name() }}</strong>

@@ -6,17 +6,17 @@ return [
         'title'         => 'API Filters',
     ],
     'calendar-widget'   => [
-        'info'          => 'Why are these reminders being shown?',
-        'title'         => 'Calendar Widget',
+        'info'  => 'Why are these reminders being shown?',
+        'title' => 'Calendar Widget',
     ],
     'entity_templates'  => [
-        'link'          => 'How to set templates',
+        'link'  => 'How to set templates',
     ],
     'filters'           => [
-        'title'         => 'How to use filters',
+        'title' => 'How to use filters',
     ],
     'link'              => [
-        'description'       => 'You can easily link to other entities in your campaign using the following shorthands.',
+        'description'   => 'You can easily link to other entities in your campaign using the following shorthands.',
     ],
     'public'            => 'Watch a tutorial video on Youtube explaining public campaigns.',
     'troubleshooting'   => [

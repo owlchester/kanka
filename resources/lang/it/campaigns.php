@@ -276,7 +276,6 @@ TEXT
             'enable'    => 'Abilita',
         ],
         'boosted'   => 'Questa funzionalità è in beta e al momento è disponibile solo per :boosted.',
-        'helper'    => 'Tutti i moduli di una campagna possono essere abilitati o disabilitati a proprio piacimento. Disabilitare un modulo nasconderà gli elementi dell\'interfaccia ad esso correlati, le entità esistenti saranno nascoste ma continueranno ad esistere, nel caso cambiassi idea. Questo cambiamento riguarda tutti i membri della campagna, inclusi i membri Proprietario.',
         'helpers'   => [
             'abilities'     => 'Crea abilità, siano esse talenti, incantesimi o poteri che possono essere assegnati alle entità.',
             'calendars'     => 'Un\'area dove definire i calendari del tuo mondo.',

@@ -269,7 +269,6 @@ TEXT
             'enable'    => 'Lägg till',
         ],
         'boosted'   => 'Denna funktion är i early access och endast tillgänglig för :boosted.',
-        'helper'    => 'Alla moduler i en kampanj kan aktiveras och inaktiveras när man vill. Inaktivera en modul kommer bara dölja gränssnitts elementen relaterade till den och redan existerande entiteter kommer döljas men dom existerar fortfarande i bakgrunden, utifall du ändrar dig. Dessa ändringar påverkar alla användare i kampanjen, även Admin användare.',
         'helpers'   => [
             'abilities'     => 'Skapa förmågor, det kan vara bedrifter, trollformler eller krafter som kan tilldelas till entiteter.',
             'calendars'     => 'En plats att definiera kalendrarna från din värld.',

@@ -326,7 +326,6 @@ TEXT
             'enable'    => 'Zapnout',
         ],
         'boosted'   => 'Tato funkce je součástí předběžného přístupu a je dostupná pouze zvýhodněným (:boosted) tažením.',
-        'helper'    => 'Všechny moduly tažení lze vypnout či zapnout. Vypnutí modulu pouze skryje související prvky rozhraní a přidružené objekty, aniž by se smazaly. Toto se projeví u všech členů tažení, včetně správců.',
         'helpers'   => [
             'abilities'     => 'Tvorba schopností, kouzel či dovedností, které lze přiřadit objektům.',
             'calendars'     => 'Tvorba kalendářů, které se používají ve tvém světu.',

@@ -197,7 +197,7 @@ class FilterService
         }
         if (!empty($this->filters) && isset($this->filters[$key])) {
             if ($this->isCheckbox($key)) {
-                return $this->filters[$key] == '1' ? trans('voyager.generic.yes') : trans('voyager.generic.no');
+                return $this->filters[$key] == '1' ? __('general.yes') : __('general.no');
             }
             return $this->filters[$key];
         }

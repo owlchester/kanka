@@ -89,8 +89,8 @@
             data-gallery-title="Superboosted Gallery"
             data-gallery-close="{{ __('crud.click_modal.close') }}"
             data-gallery-add="{{ __('crud.add') }}"
-            data-gallery-select-all="{{ __('voyager.generic.select_all') }}"
-            data-gallery-deselect-all="{{ __('voyager.generic.deselect_all') }}"
+            data-gallery-select-all="{{ __('general.select_all') }}"
+            data-gallery-deselect-all="{{ __('general.deselect_all') }}"
             data-gallery-error="generic.gallery.error"
             data-locale="{{ app()->getLocale() }}">
     </div>

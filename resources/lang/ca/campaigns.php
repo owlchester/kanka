@@ -341,7 +341,6 @@ TEXT
             'enable'    => 'Habilita',
         ],
         'boosted'   => 'Aquesta funció encara és en beta i només està disponible per a les :boosted.',
-        'helper'    => 'Es poden activar o desactivar fàcilment tots els mòduls d\'una campanya. Desactivar un mòdulo només n\'amaga els elements relacionats, no els elimina pas. Aquest canvi afecta a tots els usuaris d\'una campanya, inclosos els administradors.',
         'helpers'   => [
             'abilities'     => 'Crea habilitats, proeses, encanteris o poders i els assigna a entitats.',
             'calendars'     => 'El lloc per a definir els calendaris del món.',

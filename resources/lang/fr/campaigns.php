@@ -355,7 +355,6 @@ TEXT
         'errors'    => [
             'module-disabled'   => 'Le module demandé est actuellement désactivé dans la configuration de la campagne. :fix.',
         ],
-        'helper'    => 'Tu peux facilement modifier les éléments disponibles pour la campagne. Les éléments déjà créés seront simplement cachés',
         'helpers'   => [
             'abilities'     => 'Créer des pouvoirs, compétences, sorts, etc. qui peuvent être assignés aux entités.',
             'calendars'     => 'Un endroit pour définir les calendriers de ton monde.',

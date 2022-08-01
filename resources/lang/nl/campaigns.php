@@ -279,7 +279,6 @@ TEXT
             'enable'    => 'Inschakelen',
         ],
         'boosted'   => 'Deze functie is in vroege toegang en momenteel alleen beschikbaar voor :boosted.',
-        'helper'    => 'Alle modules van een campaign kunnen naar believen worden in- of uitgeschakeld. Als je een module uitschakelt, worden de interface-elementen die eraan gerelateerd zijn eenvoudig verborgen, en reeds bestaande entiteiten zullen verborgen zijn maar nog steeds op de achtergrond bestaan, voor het geval je van gedachten verandert. Deze wijzigingen zijn van invloed op alle gebruikers van een campaign, inclusief beheerders.',
         'helpers'   => [
             'abilities'     => 'Maak vaardigheden, of het nu gaat om prestaties, spreuken of krachten die aan entiteiten kunnen worden toegewezen.',
             'calendars'     => 'Een plek om de kalenders van je wereld te definiëren.',
