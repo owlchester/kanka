@@ -158,7 +158,9 @@ return array(
         'validation-inline',
         'pagination',
         'passwords',
+        'randomisers.characters',
         'backup::notifications',
+        'faq',
         'tutorials.actions',
         'tutorials.home',
         'tutorials.characters'

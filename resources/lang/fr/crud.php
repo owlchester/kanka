@@ -166,6 +166,7 @@ return [
         'position'              => 'Position',
         'privacy'               => 'Visibilité',
         'race'                  => 'Race',
+        'replace_mentions'      => 'Remplace les mentions d\'attributs avec ceux de la nouvelle entité.',
         'tag'                   => 'Etiquette',
         'tags'                  => 'Etiquettes',
         'timeline'              => 'Chronologie',
@@ -236,6 +237,7 @@ return [
     'helpers'                   => [
         'copy_options'  => 'Copier les éléments liés suivant de la source à la nouvelle entité.',
         'linking'       => 'Lier d\'autres entités',
+        'nested_parent' => 'Affichage des enfants de :parent.',
     ],
     'hidden'                    => 'Caché',
     'hints'                     => [

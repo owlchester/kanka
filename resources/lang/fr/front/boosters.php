@@ -22,6 +22,10 @@ return [
             'description'   => 'Met en valeur tes cartes et tes chronologies grâce avec de la couleur et des milliers d\'icônes fournies par :fontawesome et :rpgawesome.',
             'title'         => 'Délicieuses icônes',
         ],
+        'limits'        => [
+            'description'   => 'Se débarrasse des limites de membres, rôles, et liens rapides de la campagne.',
+            'title'         => 'Illimité',
+        ],
         'peace-of-mind' => [
             'description'   => 'Changé d\'avis après avoir supprimé une entité? Pas de problème! Les entités supprimées peuvent être restaurées pendant :amount jours.',
             'title'         => 'Tranquillité d\'esprit',
@@ -45,6 +49,8 @@ return [
     'perks'             => [
         'entity-count'  => 'Nombre d\'entités créées dans une campagne',
         'member-count'  => 'Nombre de membre dans une campagne',
+        'quick-links'   => 'Nombre de liens rapides d\'une campagne',
+        'role-count'    => 'Nombre de rôle d\'une campagne',
     ],
     'starting'          => 'Dès USD :amount par mois',
     'superboost'        => [

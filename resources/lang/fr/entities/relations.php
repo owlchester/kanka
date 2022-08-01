@@ -62,10 +62,11 @@ return [
         'title' => 'Relations',
     ],
     'options'           => [
-        'mentions'  => 'Relations + liés + mentions',
-        'related'   => 'Relations + liés',
-        'relations' => 'Relations',
-        'show'      => 'Afficher',
+        'mentions'          => 'Défaut + liés + mentions',
+        'only_relations'    => 'Seule les relations directes',
+        'related'           => 'Défaut + liés',
+        'relations'         => 'Défaut',
+        'show'              => 'Afficher',
     ],
     'panels'            => [
         'related'   => 'Liés',

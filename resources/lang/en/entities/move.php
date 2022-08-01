@@ -6,7 +6,6 @@ return [
         'move'  => 'Move',
     ],
     'errors'        => [
-        'full'              => 'The target campaign is full. Delete entities first, or boost it to unlock unlimited entities.',
         'permission'        => 'You aren\'t allowed to create entities of that type in the target campaign.',
         'permission_update' => 'You aren\'t allowed to move this entity.',
         'same_campaign'     => 'You need to select another campaign to move the entity to.',

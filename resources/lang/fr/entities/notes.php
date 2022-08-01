@@ -27,6 +27,7 @@ return [
         'creator'   => 'Créé par',
         'entry'     => 'Entrée',
         'name'      => 'Nom',
+        'position'  => 'Position',
     ],
     'footer'        => [
         'created'   => 'Créé par :user au :date',

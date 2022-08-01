@@ -78,6 +78,8 @@ TEXT
         'character_personality_visibility'  => 'Lors de la création d\'un nouveau personnage en tant qu\'admin, sélectionner la visibilité par défaut des traits de personnalités.',
         'css'                               => 'Définir du code CSS pour la campagne qui sera chargé sur chaque page. Abuser de cette fonctionnalité peut mener à une suppression du CSS. Les abus répétés peuvent mener à une suppression de la campagne.',
         'dashboard'                         => 'Contrôler la manière dont l\'en-tête de campagne s\'affiche sur le tableau de bord.',
+        'entity_count_infinity'             => 'Cette campagne n\'a pas de limite sur le nombre d\'entité.',
+        'entity_count_v2'                   => 'Ce chiffre est recalculé toutes les six heures et ignore les étiquettes.',
         'entity_privacy'                    => 'Lors de la création d\'une nouvelle entité en tant qu\'admin, sélectionner la visibilité par défaut de la nouvelle entité.',
         'excerpt'                           => 'Le contenu de ce champ sera affiché sur le tableau de bord dans le widget d\'en-tête de campagne. Si ce champ est vide, les 1000 premiers caractères de la description de la campagne seront utilisés à la place.',
         'header_image'                      => 'Image affichée en arrière-plan de l\'en-tête de campagne sur le tableau de bord.',
@@ -169,6 +171,7 @@ TEXT
             'remove'        => 'Retirer de la campagne',
             'switch'        => 'Basculer',
             'switch-back'   => 'Retour à mon compte',
+            'switch-entity' => 'Basculer',
         ],
         'create'                => [
             'title' => 'Ajouter un membre à la campagne',
@@ -272,6 +275,7 @@ TEXT
             '1' => 'Une campagne peut avoir autant de rôles que désiré. Le rôle "Admin" a automatiquement accès à tout dans une campagne, et chaque autre rôle peut être configuré pour avoir des accès spécifiques à divers entités (personnages, lieux, etc).',
             '2' => 'Les entités individuelles peuvent avoir leurs propres permissions sous l\'onglet "Permissions" de celles-ci. Cet onglet apparait dès le moment qu\'une campagne a plusieurs membres ou rôles.',
             '3' => 'Il y a deux options possibles. Soit le mode "opt-out", ou les rôles ont le droit de lire toutes les entités, couplé à l\'option "Privé" sur les entités pour les cacher. Sinon, il est possible de ne pas donner de droits généraux aux rôles, et à la place donner des rôles individuellement sur les entités pour les rendre visibles.',
+            '4' => 'Les campagne boostées ont un nombre illimité de rôles.',
         ],
         'hints'         => [
             'campaign_not_public'   => 'Le rôle Public a des permissions mais la campagne est privée. La campagne peut être rendue publique sous l\'onglet Partager en modifiant la campagne.',

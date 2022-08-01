@@ -18,6 +18,14 @@ return [
         'position'  => 'Position',
         'url'       => 'URL',
     ],
+    'go'                => [
+        'actions'       => [
+            'confirm'   => 'Je suis sûr',
+            'trust'     => 'Ne plus me demander',
+        ],
+        'description'   => 'Ce lien te redirige vers :link. Es-tu sûr de vouloir y aller?',
+        'title'         => 'Départ de Kanka',
+    ],
     'helpers'           => [
         'icon'  => 'Personaliser l\'icône affichée pour le lien. Utiliser les options de :fontawesome ou laisser le champ vide.',
     ],
