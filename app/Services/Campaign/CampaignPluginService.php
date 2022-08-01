@@ -309,13 +309,16 @@ class CampaignPluginService
                 }
                 if (empty($value)) {
                     $model->$field = null;
-                } elseif(isset($this->miscIds[$value])) {
+                } elseif (isset($this->miscIds[$value])) {
                     $model->$field = $this->miscIds[$value];
                 }
             } elseif (in_array($field, $blocks)) {
                 $this->importBlock($field, $value, $model);
             } elseif ($field == 'tags') {
                 $this->importTags($value, $model);
+            } elseif ($field == 'tooltip') {
+                $model->entity->tooltip = $value;
+                $model->entity->save();
             } elseif ($field == 'is_private' && $this->forcePrivate) {
                 // Skip
             } else {
