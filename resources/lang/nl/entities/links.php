@@ -18,10 +18,7 @@ return [
         'url'       => 'URL',
     ],
     'helpers'       => [
-        'goto'      => 'Ga naar :name',
-        'icon'      => 'Je kunt het pictogram dat voor de link wordt weergegeven, aanpassen. Gebruik een van de gratis pictogrammen van :fontawesome of laat dit veld leeg als standaard.',
-        'leaving'   => 'Je staat op het punt Kanka te verlaten en naar een ander domein te gaan. De pagina waarnaar je vertrekt, is door een gebruiker geleverd en is niet doorgelicht door onze website.',
-        'url'       => 'De url waar je naartoe gaat is :url.',
+        'icon'  => 'Je kunt het pictogram dat voor de link wordt weergegeven, aanpassen. Gebruik een van de gratis pictogrammen van :fontawesome of laat dit veld leeg als standaard.',
     ],
     'placeholders'  => [
         'name'  => 'DNDBeyond',

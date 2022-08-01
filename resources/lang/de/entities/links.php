@@ -19,10 +19,7 @@ return [
         'url'       => 'URL',
     ],
     'helpers'           => [
-        'goto'      => 'gehe zu :name',
-        'icon'      => 'Sie können das für den Link angezeigte Symbol anpassen. Verwenden Sie eines der kostenlosen Symbole von :fontawesome oder lassen Sie dieses Feld für die Standardeinstellung leer.',
-        'leaving'   => 'Sie verlassen Kanka und wechseln zu einer anderen Domain. Die Seite, die Sie verlassen, wurde von einem Benutzer bereitgestellt und wird von unserer Website nicht überprüft.',
-        'url'       => 'Die URL, zu der Sie gehen, lautet :url.',
+        'icon'  => 'Sie können das für den Link angezeigte Symbol anpassen. Verwenden Sie eines der kostenlosen Symbole von :fontawesome oder lassen Sie dieses Feld für die Standardeinstellung leer.',
     ],
     'placeholders'      => [
         'name'  => 'DNDBeyond',

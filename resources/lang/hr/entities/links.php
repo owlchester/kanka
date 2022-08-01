@@ -18,10 +18,7 @@ return [
         'url'       => 'URL',
     ],
     'helpers'       => [
-        'goto'      => 'Idi na :name',
-        'icon'      => 'Možeš prilagoditi ikonu prikazanu za poveznicu. Upotrijebi bilo koju besplatnu ikonu od :fontawesome ili ostavi prazno polje za korištenje zadanih postavki.',
-        'leaving'   => 'Upravo ćeš napustiti Kanku i otići na drugu domenu. Stranicu na koju odlaziš je naveo neki korisnik i naša web stranica ju nije provjerila.',
-        'url'       => 'URL koji ćeš otvoriti je :url.',
+        'icon'  => 'Možeš prilagoditi ikonu prikazanu za poveznicu. Upotrijebi bilo koju besplatnu ikonu od :fontawesome ili ostavi prazno polje za korištenje zadanih postavki.',
     ],
     'placeholders'  => [
         'name'  => 'DNDBeyond',

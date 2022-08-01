@@ -78,7 +78,6 @@ TEXT
         'character_personality_visibility'  => 'Selecciona a privacidade por defecto dos trazos de personalidade ao crear novas personaxes.',
         'css'                               => 'Escrebe o teu propio CSS para as páxinas da túa campaña. Ten en conta que calquer abuso desta ferramenta pode levar á eliminación do teu CSS personalizado. Ofensas repetidas ou graves poden levar á eliminación da túa campaña.',
         'dashboard'                         => 'Personaliza a forma na que se mostra o taboleiro da campaña completando os seguintes campos.',
-        'entity_count'                      => 'Este número é actualizado cada seis horas.',
         'entity_privacy'                    => 'Selecciona a privacidade por defecto das novas entidades.',
         'excerpt'                           => 'O limiar da campaña mostrarase no taboleiro principal. Escrebe unhas poucas liñas introducindo o teu mundo. Se este campo está baleiro, os primeiros 1000 caracteres da descrición da campaña serán usados.',
         'header_image'                      => 'Imaxe mostrada como fondo no taboleiro da campaña.',

@@ -7,9 +7,9 @@ return [
     'call-to-action'    => 'Customise the order, icons and names of elements in the campaign\'s sidebar.',
     'helpers'           => [
         'here'              => 'in our documentation',
+        'icons'             => 'Use the class of icons on :link.',
         'mobile_reordering' => 'Reordering of the sidebar is only possible on desktop devices.',
         'setup'             => 'Customise the order, icons and names of elements in the campaign\'s sidebar. You can always reset to the default setup by using the :reset button at the end of the page.',
-        'icons'             => 'Use the class of icons on :link.'
     ],
     'reset'             => [
         'success'   => 'Campaign sidebar setup reset.',

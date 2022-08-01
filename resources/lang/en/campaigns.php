@@ -76,8 +76,8 @@ TEXT
         'character_personality_visibility'  => 'When creating a new character as an admin, select the default privacy setting for its personality traits.',
         'css'                               => 'Write your own CSS that will be loaded into the pages of your campaign. Please note that any abuse of this feature can lead to a removal of your custom CSS. Repeated or grave offenses can lead to a removal of your campaign.',
         'dashboard'                         => 'Customise the way the campaign dashboard widget is displayed by filling out the following fields.',
-        'entity_count_v2'                   => 'This number is recalculated every six hours and ignores tags.',
         'entity_count_infinity'             => 'This campaign has no limit to the number of entities.',
+        'entity_count_v2'                   => 'This number is recalculated every six hours and ignores tags.',
         'entity_privacy'                    => 'When creating a new entity as an admin, select the default privacy setting of the new entity.',
         'excerpt'                           => 'The contents of this field will be displayed on the dashboard in the campaign header widget, so write a few sentences introducing your world. If this field is empty, the first 1000 characters of the campaign\'s entry field will be used instead.',
         'header_image'                      => 'Image displayed as a background in the campaign header dashboard widget.',
@@ -168,8 +168,8 @@ TEXT
             'help'          => 'Help',
             'remove'        => 'Remove from campaign',
             'switch'        => 'View campaign as user',
-            'switch-entity' => 'View as',
             'switch-back'   => 'Back to my user',
+            'switch-entity' => 'View as',
         ],
         'create'                => [
             'title' => 'Add a member to your campaign',
@@ -271,7 +271,7 @@ TEXT
             '1' => 'A campaign is split up into several roles. The :admin role automatically has access to everything in a campaign, but every other role can have specific permissions on different types of entities (character, location, etc).',
             '2' => 'Entities can have more fine-tuned permissions by viewing the "Permissions" tab of an entity. This tab appears once your campaign has several roles or members.',
             '3' => 'One can either go with an "opt-out" system, where roles are given access to viewing all of the entities, and use the "Private" checkbox on entities to hide them. Or one can not give roles many permissions, but set each entity to be visible individually.',
-            '4' => 'Boosted campaigns can have an unlimited amount of roles.'
+            '4' => 'Boosted campaigns can have an unlimited amount of roles.',
         ],
         'hints'         => [
             'campaign_not_public'   => 'The public role has permissions but the campaign is private. You can change this setting on the Sharing tab when editing the campaign.',

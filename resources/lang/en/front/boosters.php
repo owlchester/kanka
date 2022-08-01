@@ -14,10 +14,6 @@ return [
             'description'   => 'Set header images for entities, write custom tooltips, give them aliases for search and mentions, and upload more assets on each entity.',
             'title'         => 'Better entities',
         ],
-        'limits'        => [
-            'description' => 'Get ride of limits to the number of entities, members, roles and quick links in the campaign.',
-            'title' => 'Unlimited',
-        ],
         'gang'          => [
             'description'   => 'All members of the campaign get to enjoy it ad free, and also get access to larger file uploads.',
             'title'         => 'One for the gang',
@@ -25,6 +21,10 @@ return [
         'icons'         => [
             'description'   => 'Make maps and timelines pop with access to custom colours and thousands of icons through :fontawesome and :rpgawesome.',
             'title'         => 'Stupid sexy icons',
+        ],
+        'limits'        => [
+            'description'   => 'Get ride of limits to the number of entities, members, roles and quick links in the campaign.',
+            'title'         => 'Unlimited',
         ],
         'peace-of-mind' => [
             'description'   => 'Deleted an entity and changed your mind? No problem! Recover deleted entities for up to :amount days.',
@@ -49,8 +49,8 @@ return [
     'perks'             => [
         'entity-count'  => 'Number of created entities in a campaign',
         'member-count'  => 'Number of members in a campaign',
-        'quick-links'  => 'Number of custom quick links in a campaign',
-        'role-count'  => 'Number of roles in a campaign',
+        'quick-links'   => 'Number of custom quick links in a campaign',
+        'role-count'    => 'Number of roles in a campaign',
     ],
     'starting'          => 'Starting at USD :amount per month',
     'superboost'        => [

@@ -78,7 +78,6 @@ TEXT
         'character_personality_visibility'  => 'Keď vytváraš ako admin novú postavu, tu môžeš zvoliť štandardné nastavenie pre jej osobnostné črty.',
         'css'                               => 'Napíš svoj vlastný CSS, ktorý sa nahrá do stránok tvojej kampane. Prosím, uvedom si, že hociktoré zneužitie tejto funkcionality môže viesť k odstráneniu tvojho užívateľského CSS kódu. Opakované alebo závažné porušenia môžu viesť k odstráneniu tvojej kampane.',
         'dashboard'                         => 'Prispôsob zobrazenie widgetu na nástenke vyplnením týchto údajov.',
-        'entity_count'                      => 'Toto číslo sa aktualizuje každých 6 hodín.',
         'entity_privacy'                    => 'Keď vytváraš ako admin nový objekt, tu môžeš zvoliť jeho štandardné nastavenie súkromia.',
         'excerpt'                           => 'Krátky popis kampane sa zobrazí na nástenke, napíš teda pár pár viet ako úvod do tvojho sveta. Nemusíš sa rozpisovať, stačí pár slov.',
         'header_image'                      => 'Obrázok, ktorý sa bude zobrazovať na pozadí widgetu pre záhlavie kampane na nástenke.',

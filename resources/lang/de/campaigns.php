@@ -78,7 +78,6 @@ TEXT
         'character_personality_visibility'  => 'Wählen Sie beim Erstellen eines neuen Charakters als Administrator die standardmäßige Privatsphäreeinstellung für seine Persönlichkeitsmerkmale aus.',
         'css'                               => 'Schreibe dein eigenes CSS, das du auf die Seiten deiner Kampagne laden kannst. Bitte beachte, dass jeder Missbrauch dieser Funktion dazu führen kann, dass dein benutzerdefiniertes CSS entfernt wird. Wiederholungen oder schwerwiegende Verstöße können dazu führen, dass deine Kampagne entfernt wird.',
         'dashboard'                         => 'Passen Sie die Anzeige des Kampagnen-Dashboard-Widgets an, indem Sie die folgenden Felder ausfüllen.',
-        'entity_count'                      => 'Diese Nummer wird alle sechs Stunden aktualisiert.',
         'entity_privacy'                    => 'Wählen Sie beim Erstellen eines neuen Objekts als Administrator die standardmäßige Privatsphäreeinstellungen der neuen Objekte aus.',
         'excerpt'                           => 'Die Kampagnenzusammenfassung wird im Dashboard angezeigt. Schreib daher ein paar Sätze, die deine Welt vorstellen. Idealerweise hältst du es kurz und informativ.',
         'header_image'                      => 'Das Bild wird im Widget des Kampagnen-Header-Dashboards als Hintergrund angezeigt.',

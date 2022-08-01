@@ -18,10 +18,7 @@ return [
         'url'       => 'URL',
     ],
     'helpers'       => [
-        'goto'      => 'Prejsť na :name',
-        'icon'      => 'Môžeš zmeniť zobrazovaný symbol linku. Použi jeden z voľne dostupných symbolov :fontawesome, alebo ponechaj pole prázdne pre štandardný symbol.',
-        'leaving'   => 'Opúšťaš Kanku a smeruješ na inú doménu. Stránka, na ktorú smeruješ, bola poskytnutá užívateľom a nie je nami overovaná.',
-        'url'       => 'URL, na ktorú smerujete, je :url.',
+        'icon'  => 'Môžeš zmeniť zobrazovaný symbol linku. Použi jeden z voľne dostupných symbolov :fontawesome, alebo ponechaj pole prázdne pre štandardný symbol.',
     ],
     'placeholders'  => [
         'name'  => 'DNDBeyond',

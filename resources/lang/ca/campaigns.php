@@ -73,7 +73,6 @@ TEXT
         'character_personality_visibility'  => 'Fes que la personalitat dels nous personatges sigui privada per defecte per als administradors.',
         'css'                               => 'Escriviu CSS propi per a les pàgines de la campanya. Tingueu en compte que abusar d\'aquesta eina pot comportar l\'eliminació del CSS personalitzat. Els incompliments repetits o greus poden comportar l\'eliminació de la campanya.',
         'dashboard'                         => 'Personalitzeu la forma en què es mostra el widget al taulell mitjançant els següents camps.',
-        'entity_count'                      => 'Aquest número s\'actualitza cada sis hores.',
         'entity_privacy'                    => 'Fes que les entitats noves siguin privades per defecte per als administradors.',
         'excerpt'                           => 'L\'extracte de la campanya es mostrarà al taulell principal. Escriviu unes línies per introduïr el món.',
         'header_image'                      => 'Imatge mostrada com a fons a la capçalera de la campanya.',

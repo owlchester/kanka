@@ -75,7 +75,6 @@ TEXT
         'character_personality_visibility'  => 'Wybierz domyślą widoczność cech osobowości nowych postaci, tworzonych przez adminów.',
         'css'                               => 'Twórz własne style CSS do używania w kampanii. Uwaga - nadużywanie tej opcji może poskutkować usunięciem stworzonych stylów. Powtarzające się albo poważne wykroczenia mogą spowodować usunięcie kampanii.',
         'dashboard'                         => 'Dostosuj sposób wyświetlania widżetów na pulpicie kampanii wypełniając poniższe pola',
-        'entity_count'                      => 'Wartość aktualizowana co sześć godzin.',
         'entity_privacy'                    => 'Wybierz domyślą dostępność nowych elementów, tworzonych przez adminów.',
         'excerpt'                           => 'Podsumowanie kampanii będzie wyświetlane na pulpicie, więc poświęć mu kilka zdań. Najlepiej, gdy jest krótkie i dobitne.',
         'header_image'                      => 'Obraz wyświetlany w tle nagłówka pulpitu kampanii',

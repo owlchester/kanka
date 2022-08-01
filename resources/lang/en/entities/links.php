@@ -18,16 +18,16 @@ return [
         'position'  => 'Position',
         'url'       => 'URL',
     ],
-    'helpers'           => [
-        'icon'      => 'You can customise the icon displayed for the link. Use any of the free icons from :fontawesome or leave this field blank for the default.',
-    ],
-    'go' => [
-        'title' => 'Leaving Kanka',
-        'description' => 'This link will take you to :link. Are you sure you want to go there?',
-        'actions' => [
-            'confirm' => 'I\'m sure',
-            'trust' => 'Don\'t ask me again',
+    'go'                => [
+        'actions'       => [
+            'confirm'   => 'I\'m sure',
+            'trust'     => 'Don\'t ask me again',
         ],
+        'description'   => 'This link will take you to :link. Are you sure you want to go there?',
+        'title'         => 'Leaving Kanka',
+    ],
+    'helpers'           => [
+        'icon'  => 'You can customise the icon displayed for the link. Use any of the free icons from :fontawesome or leave this field blank for the default.',
     ],
     'placeholders'      => [
         'name'  => 'DNDBeyond',

@@ -18,10 +18,7 @@ return [
         'url'       => 'URL',
     ],
     'helpers'       => [
-        'goto'      => 'Přejít na :name',
-        'icon'      => 'Můžeš změnit ikonu zobrazenou u odkazu. Můžeš použít jakoukoli z volně dostupných ikon od :fontawesome nebo nechat toto pole prázdné a použije se výchozí ikona.',
-        'leaving'   => 'Opouštíš systém Kanka. Stránku, na kterou míříš, zadal jiný uživatel a my nemůžeme garantovat její bezpečnost.',
-        'url'       => 'Stránka na kterou míříš ukazuje na toto URL: :url',
+        'icon'  => 'Můžeš změnit ikonu zobrazenou u odkazu. Můžeš použít jakoukoli z volně dostupných ikon od :fontawesome nebo nechat toto pole prázdné a použije se výchozí ikona.',
     ],
     'placeholders'  => [
         'name'  => 'DNDBeyond',

@@ -73,7 +73,6 @@ TEXT
         'character_personality_visibility'  => 'Selecciona la privacidad por defecto para los rasgos de personalidad al crear un nuevo personaje como administrador.',
         'css'                               => 'Escribe tu propio CSS para las páginas de tu campaña. Ten en cuenta que abusar de esta herramienta puede llevar a la eliminación de tu CSS personalizado. Incumplimientos repetidos o graves pueden llevar a la eliminación de tu campaña.',
         'dashboard'                         => 'Personaliza la forma en que el widget se muestra en el tablero rellenando los campos siguientes.',
-        'entity_count'                      => 'Este número se actualiza cada seis horas.',
         'entity_privacy'                    => 'Selecciona la privacidad por defecto al crear nuevas entidades como administrador.',
         'excerpt'                           => 'El extracto de la campaña se mostrará en el tablero principal. Escribe unas pocas líneas para introducir tu mundo. Si lo dejas en blanco, se mostrarán los primeros 1.000 caracteres de la descripción de la campaña.',
         'header_image'                      => 'La imagen que se muestra como fondo en el widget de la cabecera del tablero.',

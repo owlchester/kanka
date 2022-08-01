@@ -19,10 +19,7 @@ return [
         'url'       => 'URL',
     ],
     'helpers'           => [
-        'goto'      => 'Ir para :name',
-        'icon'      => 'Você pode personalizar o ícone exibido para o link. Use qualquer um dos ícones gratuitos de :fontawesome ou deixe este campo em branco para o padrão.',
-        'leaving'   => 'Você está prestes a deixar Kanka e ir para outro domínio. A página para a qual você está saindo foi fornecida por um usuário e não é controlada pelo nosso site.',
-        'url'       => 'A url que você está prestes a acessar é :url.',
+        'icon'  => 'Você pode personalizar o ícone exibido para o link. Use qualquer um dos ícones gratuitos de :fontawesome ou deixe este campo em branco para o padrão.',
     ],
     'placeholders'      => [
         'name'  => 'DNDBeyond',

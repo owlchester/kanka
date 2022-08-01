@@ -18,10 +18,7 @@ return [
         'url'       => 'URL',
     ],
     'helpers'       => [
-        'goto'      => 'Gå till :name',
-        'icon'      => 'Du kan anpassa ikonen som visas för länken. Använd någon gratis ikon från :fontawesome eller lämna detta fält blankt för att använda standard ikonen.',
-        'leaving'   => 'Du är påväg att lämna Kanka och gå till en annan domän. Sidan du är på väg till angavs av en användare och är inte kontrollerad av vår hemsida.',
-        'url'       => 'url:en du kommer gå till är :url.',
+        'icon'  => 'Du kan anpassa ikonen som visas för länken. Använd någon gratis ikon från :fontawesome eller lämna detta fält blankt för att använda standard ikonen.',
     ],
     'placeholders'  => [
         'name'  => 'DNDBeyond',

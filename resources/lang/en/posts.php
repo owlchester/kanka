@@ -5,13 +5,13 @@ return [
         'title' => 'New Post',
     ],
     'fields'        => [
-        'name'          => 'Name',
+        'name'  => 'Name',
     ],
     'placeholders'  => [
         'name'  => 'Name of the post',
     ],
-    'position'         => [
+    'position'      => [
         'first' => 'First',
-        'last'  => 'Last'
+        'last'  => 'Last',
     ],
 ];

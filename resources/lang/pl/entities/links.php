@@ -18,10 +18,7 @@ return [
         'url'       => 'URL',
     ],
     'helpers'       => [
-        'goto'      => 'Idź do :name',
-        'icon'      => 'Możesz dostosować ikonę wyświetlaną przy odnośniku. Użyj dowolnej ikony z :fontawesome albo zostaw to pole puste, by wyświetlać ikonę domyślną.',
-        'leaving'   => 'Zaraz opuścisz Kankę i przejdziesz do strony zewnętrznej. Strona ta została załączona przez użytkownika i nie jest przez nas kontrolowana.',
-        'url'       => 'Adres do którego zamierzasz przejść to :url.',
+        'icon'  => 'Możesz dostosować ikonę wyświetlaną przy odnośniku. Użyj dowolnej ikony z :fontawesome albo zostaw to pole puste, by wyświetlać ikonę domyślną.',
     ],
     'placeholders'  => [
         'name'  => 'DNDBeyond',
