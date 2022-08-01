@@ -605,7 +605,7 @@ class AttributeService
             ->first();
 
         // If the plugin is published, we're good. Otherwise, it's
-        if (!$plugin->renderable()) {
+        if (!$plugin || !$plugin->renderable()) {
             return null;
         }
 
