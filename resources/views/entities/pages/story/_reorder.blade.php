@@ -73,7 +73,7 @@ if ($firstNote && $firstNote->position >= 0) {
         $options = [\App\Models\Visibility::VISIBILITY_ADMIN_SELF => __('crud.visibilities.admin-self')];
     }
 @endphp
-                        <select name="posts[{{ $note->id }}][visibility]" class="form-control">
+                        <select name="posts[{{ $note->id }}][visibility_id]" class="form-control">
                             @foreach ($options as $key => $value)
                                 <option value="{{ $key }}" @if ($key == $note->visibility_id) selected="selected" @endif>
                                     {{ $value }}
