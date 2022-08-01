@@ -1,12 +1,9 @@
 <?php
 
-
 namespace App\Services\Caches;
 
-use App\Models\CampaignRoleUser;
 use App\User;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 /**

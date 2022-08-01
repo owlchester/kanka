@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Facades\Img;
+use App\Facades\SingleUserCache;
 use App\Facades\UserCache;
 use App\Models\Campaign;
 use App\Facades\CampaignLocalization;
@@ -487,7 +488,7 @@ class User extends \Illuminate\Foundation\Auth\User
      */
     public function createdEntitiesCount(): string
     {
-        return (string) number_format(UserCache::user($this)->entitiesCreatedCount());
+        return (string) number_format(SingleUserCache::user($this)->entitiesCreatedCount());
     }
 
     public function hasPlugins(): bool
