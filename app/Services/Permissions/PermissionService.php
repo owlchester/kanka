@@ -10,41 +10,40 @@ use App\Models\CampaignRole;
 use App\Models\Entity;
 use App\Models\EntityNotePermission;
 use App\User;
-use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 
 class PermissionService
 {
     /** @var Campaign */
-    protected Campaign $campaign;
+    protected $campaign;
 
     /** @var User */
     protected $user;
 
     /** @var int CampaignPermission::ACTION_READ etc */
-    protected int $action;
+    protected $action;
 
     /** @var array Entity IDs and Types the user can access */
-    protected array $entityIds = [];
-    protected array $entityTypes = [];
-    protected array $entityTypesIds = [];
-    protected array $deniedIds = [];
-    protected array $allowedModels = [];
-    protected array $deniedModels = [];
-    protected bool $loadedPermissions = false;
+    protected $entityIds = [];
+    protected $entityTypes = [];
+    protected $entityTypesIds = [];
+    protected $deniedIds = [];
+    protected $allowedModels = [];
+    protected $deniedModels = [];
+    protected $loadedPermissions = false;
 
     /** @var array Permissions for posts */
-    protected array $allowedPostIDs = [];
-    protected array $deniedPostIDs = [];
-    protected bool $loadedPosts = false;
+    protected $allowedPostIDs = [];
+    protected $deniedPostIDs = [];
+    protected $loadedPosts = false;
 
-    protected bool $loadedRoles = false;
-    protected bool $admin = false;
+    protected $loadedRoles = false;
+    protected $admin = false;
 
-    protected bool $granted = false;
+    protected $granted = false;
 
-    /** @var null|int the entity type if provided to limit queries */
-    protected null|int $entityType = null;
+    /** @var null|string the entity type if provided to limit queries */
+    protected $entityType = null;
 
     /**
      * @param Campaign $campaign
@@ -151,15 +150,13 @@ class PermissionService
     public function allowedModels(): array
     {
         $this->loadPermissions();
-        // July 2022: Found out we have misc_id collusion if entity_type is empty
-        return Arr::get($this->allowedModels, $this->entityType, []);
+        return $this->allowedModels;
     }
 
     public function deniedModels(): array
     {
         $this->loadPermissions();
-        // July 2022: Found out we have misc_id collusion if entity_type is empty
-        return Arr::get($this->deniedModels, $this->entityType, []);
+        return $this->deniedModels;
     }
 
     public function canRole(): bool
@@ -347,11 +344,11 @@ class PermissionService
         } elseif ($permission->access && !in_array($permission->entity_id, $this->entityIds)) {
             // This permission targets an entity directly
             $this->entityIds[] = $permission->entity_id;
-            $this->allowedModels[$permission->entity_type_id][] = $permission->misc_id;
+            $this->allowedModels[] = $permission->misc_id;
         } elseif (!$permission->access && !in_array($permission->entity_id, $this->deniedIds)) {
             // This permission targets an entity directly
             $this->deniedIds[] = $permission->entity_id;
-            $this->deniedModels[$permission->entity_type_id][] = $permission->misc_id;
+            $this->deniedModels[] = $permission->misc_id;
         }
     }
 
@@ -390,16 +387,13 @@ class PermissionService
         if ($permission->access) {
             if (!in_array($permission->entity_id, $this->entityIds)) {
                 $this->entityIds[] = $permission->entity_id;
-                $this->allowedModels[$permission->entity_type_id][] = $permission->misc_id;
+                $this->allowedModels[] = $permission->misc_id;
             }
             // If the user was denied through a role but has access through a direct permissions, still allow them
             if (($key = array_search($permission->entity_id, $this->deniedIds)) !== false) {
                 unset($this->deniedIds[$key]);
-                // July 2022 bug fix, old values in the db still have an empty entity_type_id
-                if (isset($permission->entity_type_id)) {
-                    if (($key = array_search($permission->misc_id, $this->deniedModels[$permission->entity_type_id])) !== false) {
-                        unset($this->deniedModels[$key]);
-                    }
+                if (($key = array_search($permission->misc_id, $this->deniedModels)) !== false) {
+                    unset($this->deniedModels[$key]);
                 }
             }
             return;
@@ -407,7 +401,7 @@ class PermissionService
 
         if (!$permission->access && !in_array($permission->entity_id, $this->deniedIds)) {
             $this->deniedIds[] = $permission->entity_id;
-            $this->deniedModels[$permission->entity_type_id][] = $permission->misc_id;
+            $this->deniedModels[] = $permission->misc_id;
         }
     }
 
