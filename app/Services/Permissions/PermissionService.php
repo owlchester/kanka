@@ -395,8 +395,11 @@ class PermissionService
             // If the user was denied through a role but has access through a direct permissions, still allow them
             if (($key = array_search($permission->entity_id, $this->deniedIds)) !== false) {
                 unset($this->deniedIds[$key]);
-                if (($key = array_search($permission->misc_id, $this->deniedModels[$permission->entity_type_id])) !== false) {
-                    unset($this->deniedModels[$key]);
+                // July 2022 bug fix, old values in the db still have an empty entity_type_id
+                if (isset($permission->entity_type_id)) {
+                    if (($key = array_search($permission->misc_id, $this->deniedModels[$permission->entity_type_id])) !== false) {
+                        unset($this->deniedModels[$key]);
+                    }
                 }
             }
             return;
