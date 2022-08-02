@@ -86,14 +86,14 @@
     <h2 class="mt-5">
         {{ __('settings/boosters.ready.title') }}
 
-        @if (auth()->user()->hasBoosters())
+        @if (auth()->user()->hasBoosters() || !empty(auth()->user()->booster_count))
             <div class="label bg-maroon ml-3" data-toggle="tooltip" title="{{ __('settings/boosters.ready.available') }}">
                 <i class="fa-solid fa-rocket" aria-hidden="true"></i>
                 {{ auth()->user()->availableBoosts() }}
             </div>
         @endif
     </h2>
-    @if (!auth()->user()->hasBoosters())
+    @if (!auth()->user()->isGoblin())
     <p>{!! __('settings/boosters.ready.pricing', [
     'amount' => '<strong>' . __('settings/boosters.ready.pricing-amount', [
         'currency' => auth()->user()->currencySymbol(),
