@@ -233,7 +233,9 @@ class EntityRelationService
                 'edit_url' => route('entities.relations.edit', [
                     'entity' => $relation->owner_id,
                     'relation' => $relation,
-                    'from' => $this->entity->id
+                    'from' => $this->entity->id,
+                    'mode' => 'map',
+                    'option' => $this->option
                 ])
             ];
 
