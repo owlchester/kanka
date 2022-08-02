@@ -200,7 +200,6 @@ class RelationController extends Controller
     public function update(StoreRelation $request, Entity $entity, Relation $relation)
     {
         $this->authorize('update', $entity->child);
-
         $data = $request->only(['target_id', 'attitude', 'relation', 'colour', 'is_star', 'two_way', 'visibility_id']);
 
         $relation->update($data);
@@ -213,6 +212,9 @@ class RelationController extends Controller
                 $redirect = [$from];
                 if (!empty($mode)) {
                     $redirect['mode'] = $mode;
+                }
+                if (request()->has('option')) {
+                    $redirect['option'] = request()->get('option');
                 }
 
                 return redirect()
@@ -228,6 +230,9 @@ class RelationController extends Controller
         $redirect = [$entity];
         if (!empty($mode)) {
             $redirect['mode'] = $mode;
+        }
+        if (request()->has('option')) {
+            $redirect['option'] = request()->get('option');
         }
         return redirect()
             ->route('entities.relations.index', $redirect)
@@ -245,6 +250,12 @@ class RelationController extends Controller
     public function destroy(Entity $entity, Relation $relation)
     {
         $this->authorize('update', $entity->child);
+
+        if (request()->has('mode')) {
+            $mode = request()->get('mode');
+        } else {
+            $mode = $this->getModeOption();
+        }
 
         $deletedMirror = false;
         if (request()->get('remove_mirrored') === '1' && $relation->isMirrored()) {
@@ -264,9 +275,15 @@ class RelationController extends Controller
         }
 
         $relation->delete();
-
+        $redirect = [$entity];
+        if (!empty($mode)) {
+            $redirect['mode'] = $mode;
+        }
+        if (request()->has('option')) {
+            $redirect['option'] = request()->get('option');
+        }
         return redirect()
-            ->route('entities.relations.index', [$entity->id])
+            ->route('entities.relations.index', $redirect)
             ->with('success', trans('entities/relations.destroy.success', [
                 'target' => $relation->target->name,
                 'entity' => $entity->name
