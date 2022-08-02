@@ -213,8 +213,8 @@ class RelationController extends Controller
                 if (!empty($mode)) {
                     $redirect['mode'] = $mode;
                 }
-                if (request()->option) {
-                    $redirect['option'] = request()->option;
+                if (request()->has('option')) {
+                    $redirect['option'] = request()->get('option');
                 }
 
                 return redirect()
@@ -231,8 +231,8 @@ class RelationController extends Controller
         if (!empty($mode)) {
             $redirect['mode'] = $mode;
         }
-        if (request()->option) {
-            $redirect['option'] = request()->option;
+        if (request()->has('option')) {
+            $redirect['option'] = request()->get('option');
         }
         return redirect()
             ->route('entities.relations.index', $redirect)
@@ -251,8 +251,8 @@ class RelationController extends Controller
     {
         $this->authorize('update', $entity->child);
 
-        if (request()->mode) {
-            $mode = request()->mode;
+        if (request()->has('mode')) {
+            $mode = request()->get('mode');
         } else {
             $mode = $this->getModeOption();
         }
@@ -279,8 +279,8 @@ class RelationController extends Controller
         if (!empty($mode)) {
             $redirect['mode'] = $mode;
         }
-        if (request()->option) {
-            $redirect['option'] = request()->option;
+        if (request()->has('option')) {
+            $redirect['option'] = request()->get('option');
         }
         return redirect()
             ->route('entities.relations.index', $redirect)

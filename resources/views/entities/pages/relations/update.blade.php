@@ -68,8 +68,8 @@
         <input type="hidden" name="from" value="{{ $from }}" />
     @endif
     {!! Form::hidden('owner_id', $entity->id) !!}
-    {!! Form::hidden('option', request()->option) !!}
-    {!! Form::hidden('mode', request()->mode) !!}
+    {!! Form::hidden('option', request()->get('option')) !!}
+    {!! Form::hidden('mode', request()->get('mode')) !!}
 
     {!! Form::close() !!}
     {!! Form::open([
