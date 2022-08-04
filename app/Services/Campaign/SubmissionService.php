@@ -66,7 +66,7 @@ class SubmissionService
                         'reason' => $rejection
                     ]));
         } else {
-            $this->approve((int) Arr::get($data, 'role_id'));
+            $this->approve((int) Arr::get($data, 'role_id'), $data);
         }
 
         $this->submission->delete();
@@ -97,7 +97,7 @@ class SubmissionService
      * @param int $roleID
      * @return $this
      */
-    protected function approve(int $roleID): self
+    protected function approve(int $roleID, $data): self
     {
 
         // Add the user to the campaign
@@ -111,6 +111,7 @@ class SubmissionService
             'user_id' => $this->submission->user_id,
             'campaign_role_id' => $roleID
         ]);
+        $message = $this->purify(Arr::get($data, 'message'));
 
         // Notify the user
         $this->submission
@@ -122,6 +123,7 @@ class SubmissionService
                     'green',
                     [
                         'campaign' => $this->campaign->name,
+                        'reason'   => $message,
                         'link' => route('dashboard'),
                     ]
                 )

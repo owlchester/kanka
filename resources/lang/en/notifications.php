@@ -3,7 +3,7 @@
 return [
     'campaign'          => [
         'application'           => [
-            'approved'  => 'Your application to the :campaign campaign has been approved.',
+            'approved'  => 'Your application to the :campaign campaign has been approved. Message provided: :reason',
             'new'       => 'New application for :campaign.',
             'rejected'  => 'Your application to the :campaign campaign has been rejected. Reason provided: :reason',
         ],
