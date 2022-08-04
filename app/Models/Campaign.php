@@ -373,6 +373,14 @@ class Campaign extends MiscModel
     /**
      * @return mixed
      */
+    public function defaultToConnectionMode(): int
+    {
+        return (int) Arr::get($this->ui_settings, 'connections_mode', false);
+    }
+
+    /**
+     * @return mixed
+     */
     public function getHideMembersAttribute()
     {
         return Arr::get($this->ui_settings, 'hide_members', false);
