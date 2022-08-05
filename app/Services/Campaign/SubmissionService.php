@@ -57,16 +57,20 @@ class SubmissionService
 
             // Notify the user
             $rejection = $this->purify(Arr::get($data, 'rejection'));
-
+            if ($rejection == '') {
+                $key = 'campaign.application.rejected_no_message';
+            } else {
+                $key = 'campaign.application.rejected';
+            }
             $this->submission
                 ->user
                 ->notify(
-                    new Header('campaign.application.rejected', 'user', 'red', [
+                    new Header($key, 'user', 'red', [
                         'campaign' => $this->campaign->name,
                         'reason' => $rejection
                     ]));
         } else {
-            $this->approve((int) Arr::get($data, 'role_id'), $data);
+            $this->approve((int) Arr::get($data, 'role_id'), $this->purify(Arr::get($data, 'message')));
         }
 
         $this->submission->delete();
@@ -95,9 +99,10 @@ class SubmissionService
 
     /**
      * @param int $roleID
+     * @param string $message
      * @return $this
      */
-    protected function approve(int $roleID, $data): self
+    protected function approve(int $roleID, string $message = ''): self
     {
 
         // Add the user to the campaign
@@ -111,14 +116,18 @@ class SubmissionService
             'user_id' => $this->submission->user_id,
             'campaign_role_id' => $roleID
         ]);
-        $message = $this->purify(Arr::get($data, 'message'));
-
+        //$message = $this->purify(Arr::get($data, 'message'));
+        if ($message == '') {
+            $key = 'campaign.application.approved_no_message';
+        } else {
+            $key = 'campaign.application.approved';
+        }
         // Notify the user
         $this->submission
             ->user
             ->notify(
                 new Header(
-                    'campaign.application.approved',
+                    $key,
                     'user',
                     'green',
                     [
