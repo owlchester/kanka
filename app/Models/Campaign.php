@@ -375,7 +375,7 @@ class Campaign extends MiscModel
      */
     public function defaultToConnectionMode(): int
     {
-        return (int) Arr::get($this->ui_settings, 'connections_mode', false);
+        return (int) Arr::get($this->ui_settings, 'connections_mode', 0);
     }
 
     /**

@@ -417,12 +417,6 @@ TEXT
         'connections'       => [
             'explorer'  => 'Relations explorer (if available, for boosted campaigns)',
             'list'      => 'List interface',
-            'default'   => 'Default',
-            'direct'    => 'Only direct relations',
-            'related'   => 'Default + related',
-            'mentions'  => 'Default + related + mentions',
-
-
         ],
         'entity_history'    => [
             'hidden'    => 'Only visible to campaign admins',
