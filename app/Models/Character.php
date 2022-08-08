@@ -8,6 +8,7 @@ use App\Models\Concerns\SortableTrait;
 use App\Traits\CampaignTrait;
 use App\Traits\ExportableTrait;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
@@ -21,12 +22,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property bool $is_personality_visible
  * @property bool $is_appearance_pinned
  * @property bool $is_personality_pinned
- * @property Family[] $families
+ * @property Collection|Family[] $families
  * @property Location $location
  * @property Race $race
- * @property Race[] $races
- * @property Organisation[] $organisations
- * @property OrganisationMember[] $organisationMemberships
+ * @property Collection|Race[] $races
+ * @property Collection|Organisation[] $organisations
+ * @property Collection|OrganisationMember[] $organisationMemberships
  */
 class Character extends MiscModel
 {

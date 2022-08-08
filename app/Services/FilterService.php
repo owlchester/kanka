@@ -15,37 +15,37 @@ class FilterService
      * The filters as saved in the session
      * @var array
      */
-    protected $filters = [];
+    protected array $filters = [];
 
     /**
      * The order as saved in the session
      * @var array
      */
-    protected $order = [];
+    protected array $order = [];
 
     /**
      * The request data
      * @var array
      */
-    protected $data = [];
+    protected array $data = [];
 
     /**
      * The index crud for session keys
      * @var string
      */
-    protected $crud = '';
+    protected string $crud = '';
 
     /**
      * Search option
      * @var string
      */
-    protected $search = '';
+    protected string $search = '';
 
     /**
      * If the filters are stored in the session
      * @var bool
      */
-    protected $session = true;
+    protected bool $session = true;
 
     /**
      * @param string $crud
@@ -375,6 +375,11 @@ class FilterService
                 }
 
                 foreach ($val as $arrValue) {
+                    // If it's an array in an array, we don't support it.
+                    // For example calling the page with tags[bla][bli][blo]
+                    if (is_array($arrValue)) {
+                        continue;
+                    }
                     $filters[] = $key . '[]=' . $arrValue;
                 }
             }
