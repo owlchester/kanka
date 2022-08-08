@@ -6,7 +6,7 @@
 * @var \Illuminate\Database\Eloquent\Collection $pinnedNotes
 */
 ?>
-<div class="entity-note-{{ $note->id }} entity-note-position-{{ $note->position }}" data-visibility="{{ $note->visibility }}">
+<div class="entity-note-{{ $note->id }} entity-note-position-{{ $note->position }}" data-visibility="{{ $note->visibility }}" data-position="{{ $note->position }}">
     <div class="box box-solid entity-note" id="post-{{ $note->id }}">
         <div class="box-header with-border">
             <h3 class="box-title cursor entity-note-toggle" data-toggle="collapse" data-target="#entity-note-body-{{ $note->id }}" data-short="entity-note-toggle-{{ $note->id }}">
