@@ -39,6 +39,10 @@ class EntityAbilityObserver
                 ->defaultOrder()
                 ->get();
             foreach ($abilities as $next) {
+                // No access, skip
+                if (!$next->ability || !$entityAbility->ability) {
+                    continue;
+                }
                 // Check the ability's parent to only move stuff in the same "group"
                 if ($next->ability->ability_id != $entityAbility->ability->ability_id) {
                     continue;

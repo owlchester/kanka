@@ -249,6 +249,7 @@ if($campaignService->campaign()->boosted() && $entity->hasHeaderImage($superboos
         @if($entityTags->count() > 0)
         <div class="entity-tags entity-header-line">
             @foreach ($entityTags as $tag)
+                @if (!$tag->entity) @continue @endif
                 <a href="{{ route('tags.show', $tag) }}" data-toggle="tooltip-ajax"
                    data-id="{{ $tag->entity->id }}" data-url="{{ route('entities.tooltip', $tag->entity->id) }}"
                    data-tag-slug="{{ $tag->slug }}"

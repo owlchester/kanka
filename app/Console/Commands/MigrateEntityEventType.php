@@ -8,6 +8,7 @@ use App\Models\Journal;
 use App\Models\Quest;
 use Illuminate\Console\Command;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Arr;
 
 class MigrateEntityEventType extends Command
 {
@@ -74,14 +75,17 @@ class MigrateEntityEventType extends Command
             return;
         }
 
+        // Since the trait overrides the $model->calendar_id attribute, we need this workaround
+        $attributes = $model->getAttributes();
+
         // Find the reminder that fits the entity
         /** @var EntityEvent $reminder */
         $reminder = EntityEvent::select('id')->where([
             'entity_id' => $model->entity->id,
-            'calendar_id' => $model->calendar_id,
-            'year' => $model->calendar_year,
-            'month' => $model->calendar_month,
-            'day' => $model->calendar_day,
+            'calendar_id' => Arr::get($attributes, 'calendar_id'),
+            'year' => Arr::get($attributes, 'calendar_year'),
+            'month' => Arr::get($attributes, 'calendar_month'),
+            'day' => Arr::get($attributes, 'calendar_day'),
         ])->first();
 
         if (!$reminder) {

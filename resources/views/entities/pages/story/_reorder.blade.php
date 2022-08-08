@@ -57,25 +57,25 @@ if ($firstNote && $firstNote->position >= 0) {
                     <div class="icons">
 @php
     $options = [];
-    $options['all'] = __('crud.visibilities.all');
+    $options[\App\Models\Visibility::VISIBILITY_ALL] = __('crud.visibilities.all');
 
     if (auth()->user()->isAdmin()) {
-        $options['admin'] = __('crud.visibilities.admin');
-        $options['members'] = __('crud.visibilities.members');
+        $options[\App\Models\Visibility::VISIBILITY_ADMIN] = __('crud.visibilities.admin');
+        $options[\App\Models\Visibility::VISIBILITY_MEMBERS] = __('crud.visibilities.members');
     }
     if ($note->created_by == auth()->user()->id) {
-        $options['self'] = __('crud.visibilities.self');
-        $options['admin-self'] = __('crud.visibilities.admin-self');
+        $options[\App\Models\Visibility::VISIBILITY_SELF] = __('crud.visibilities.self');
+        $options[\App\Models\Visibility::VISIBILITY_ADMIN_SELF] = __('crud.visibilities.admin-self');
     }
 
     // If it's a visibility self & admin and we're not the creator, we can't change this
     if ($note->visibility === \App\Models\Visibility::VISIBILITY_ADMIN_SELF_STR && $note->created_by !== auth()->user()->id) {
-        $options = ['admin-self' => __('crud.visibilities.admin-self')];
+        $options = [\App\Models\Visibility::VISIBILITY_ADMIN_SELF => __('crud.visibilities.admin-self')];
     }
 @endphp
-                        <select name="posts[{{ $note->id }}][visibility]" class="form-control">
+                        <select name="posts[{{ $note->id }}][visibility_id]" class="form-control">
                             @foreach ($options as $key => $value)
-                                <option value="{{ $key }}" @if ($key == $note->visibility) selected="selected" @endif>
+                                <option value="{{ $key }}" @if ($key == $note->visibility_id) selected="selected" @endif>
                                     {{ $value }}
                                 </option>
                             @endforeach

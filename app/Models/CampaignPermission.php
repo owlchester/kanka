@@ -206,9 +206,9 @@ class CampaignPermission extends Model
         }
         // Jul 2022: Found out a bug that if the entity_type_id isn't set even on user perms, denying misc_id 2 would
         // deny all (families, orgs, tags) with ID 2. Due to Kanka's size, very low collusion size, but still
-        if ($this->entity_type_id) {
+        /*if ($this->entity_type_id) {
             return '_' . $this->action . '_' . $this->entity_type_id . '_' . $this->misc_id;
-        }
+        }*/
         return '_' . $this->action . '_' . $this->misc_id;
     }
 

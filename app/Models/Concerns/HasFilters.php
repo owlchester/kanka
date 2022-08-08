@@ -29,7 +29,7 @@ trait HasFilters
     protected $joinedEntity = false;
 
     protected string $key;
-    protected string|array $filterValue;
+    protected string|array|null $filterValue;
 
     /** @var string|null Some filters have a fellow _option field that can define more in detail what is needed */
     protected string|null $filterOption;

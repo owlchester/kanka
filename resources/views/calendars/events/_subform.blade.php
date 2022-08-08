@@ -82,7 +82,7 @@ if (isset($colourAppendTo) && request()->ajax()) {
         <p class="help-block">{!! __('entities/events.helpers.characters', ['more' => link_to('https://docs.kanka.io/en/latest/advanced/age.html', __('crud.actions.find_out_more'), null, ['target' => '_blank'])]) !!}</p>
     </div>
 @endif
-@if (in_array($entity->typeId(), [config('entities.ids.location'), config('entities.ids.family'), config('entities.ids.organisation')]))
+@if (!empty($entity) && in_array($entity->typeId(), [config('entities.ids.location'), config('entities.ids.family'), config('entities.ids.organisation')]))
     <div class="form-group">
         <label>{{ __('entities/events.fields.type') }}</label>
         {!! Form::select('type_id', [null => '', 5 => __('entities/events.types.founded')], (isset($entityEvent) ? $entityEvent->type_id : null), ['class' => 'form-control']) !!}

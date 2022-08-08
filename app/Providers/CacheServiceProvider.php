@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Providers;
-
 
 use App\Services\Caches\AdCacheService;
 use App\Services\Caches\CampaignCacheService;
@@ -11,6 +9,7 @@ use App\Services\Caches\EntityCacheService;
 use App\Services\Caches\FrontCacheService;
 use App\Services\Caches\PostCacheService;
 use App\Services\Caches\UserCacheService;
+use App\Services\Caches\SingleUserCacheService;
 use Illuminate\Support\ServiceProvider;
 
 class CacheServiceProvider extends ServiceProvider
@@ -31,6 +30,9 @@ class CacheServiceProvider extends ServiceProvider
         $this->app->singleton(UserCacheService::class, function ($app) {
             return new UserCacheService();
         });
+        $this->app->singleton(SingleUserCacheService::class, function ($app) {
+            return new SingleUserCacheService();
+        });
         $this->app->singleton(PostCacheService::class, function ($app) {
             return new PostCacheService();
         });
@@ -41,6 +43,7 @@ class CacheServiceProvider extends ServiceProvider
         $this->app->alias(EntityCacheService::class, 'entitycache');
         $this->app->alias(CampaignCacheService::class, 'campaigncache');
         $this->app->alias(UserCacheService::class, 'usercache');
+        $this->app->alias(SingleUserCacheService::class, 'singleusercache');
         $this->app->alias(PostCacheService::class, 'postcache');
         $this->app->alias(CharacterCacheService::class, 'charactercache');
         $this->app->alias(FrontCacheService::class, 'frontcache');
