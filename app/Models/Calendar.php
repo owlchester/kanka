@@ -107,12 +107,6 @@ class Calendar extends MiscModel
     protected $entityType = 'calendar';
 
     /**
-     * Searchable fields
-     * @var array
-     */
-    protected $searchableColumns  = ['name', 'entry', 'type'];
-
-    /**
      * @var bool|array
      */
     protected $cachedCurrentDate = false;

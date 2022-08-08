@@ -84,7 +84,7 @@ class Entity extends Model
     ];
 
     /** @var array Searchable fields */
-    protected $searchableColumns = [
+    protected array $searchableColumns = [
         'name',
     ];
 

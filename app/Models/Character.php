@@ -93,7 +93,7 @@ class Character extends MiscModel
      * Searchable fields
      * @var array
      */
-    protected $searchableColumns = ['name', 'title', 'entry'];
+    protected array $searchableColumns = ['name', 'title', 'type', 'entry'];
 
     /**
      * Casting for order by

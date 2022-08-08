@@ -1,14 +1,13 @@
 @extends('layouts.app', [
-    'title' => trans('search.title'),
-    'description' => trans('search.description'),
+    'title' => __('search.title'),
     'breadcrumbs' => [
-        trans('search.title'),
+        __('search.title'),
     ]
 ])
 @inject('campaignService', 'App\Services\CampaignService')
 
 @section('content')
-    {!! Form::open(array('route' => 'search', 'method'=>'GET')) !!}
+    {!! Form::open(['route' => 'search', 'method' => 'GET']) !!}
 
             <div class="box box-solid">
                 <div class="box-body">
@@ -17,7 +16,7 @@
 
                         <div class="input-group-btn">
                         <button type="submit" class="btn btn-primary">
-                            <i class="fa-solid fa-search"></i> {{ trans('crud.search') }}
+                            <i class="fa-solid fa-search"></i> {{ __('crud.search') }}
                         </button>
                         </div>
                     </div>
@@ -26,7 +25,7 @@
     {!! Form::close() !!}
 
     <div class="row">
-        @foreach ($results as $element => $values)
+        @forelse ($results as $element => $values)
             @if (!empty($values) && count($values) > 0)
                 @if ($element == 'characters')
                     <div class="col-md-12">
@@ -36,7 +35,7 @@
                     <div class="box box-solid">
                         <div class="box-header with-border">
                             <h3 class="box-title">
-                                {{ trans('entities.' . $element) }}
+                                {{ __('entities.' . $element) }}
                                 <span class="badge bg-blue">{{ count($values) }}</span>
                             </h3>
                         </div>
@@ -46,6 +45,7 @@
                     </div>
                 </div>
             @endif
-        @endforeach
+        @empty
+        @endforelse
     </div>
 @endsection

@@ -70,7 +70,7 @@ class Attribute extends Model
      * Searchable fields
      * @var array
      */
-    protected $searchableColumns = [
+    protected array $searchableColumns = [
         'name'
     ];
 

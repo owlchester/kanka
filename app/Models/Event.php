@@ -106,12 +106,6 @@ class Event extends MiscModel
     protected $entityType = 'event';
 
     /**
-     * Searchable fields
-     * @var array
-     */
-    protected $searchableColumns  = ['name', 'entry', 'type'];
-
-    /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function campaign()

@@ -46,12 +46,6 @@ class Race extends MiscModel
     ];
 
     /**
-     * Searchable fields
-     * @var array
-     */
-    protected $searchableColumns  = ['name', 'type', 'entry'];
-
-    /**
      * Entity type
      * @var string
      */

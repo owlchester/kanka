@@ -48,12 +48,6 @@ class Ability extends MiscModel
         'charges'
     ];
 
-    /**
-     * Searchable fields
-     * @var array
-     */
-    protected $searchableColumns = ['name', 'entry'];
-
     protected $sortable = [
         'name',
         'type',

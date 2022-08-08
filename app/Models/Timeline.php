@@ -42,12 +42,6 @@ class Timeline extends MiscModel
         'timeline_id',
     ];
 
-    /**
-     * Searchable fields
-     * @var array
-     */
-    protected $searchableColumns = ['name', 'entry'];
-
     protected $sortable = [
         'name',
         'type',

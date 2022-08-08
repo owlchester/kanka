@@ -37,17 +37,6 @@ class Tag extends MiscModel
     ;
 
     /**
-     * Searchable fields
-     * @var array
-     */
-    protected $searchableColumns  = [
-        'name',
-        'type',
-        'entry',
-        'colour'
-    ];
-
-    /**
      * Entity type
      * @var string
      */
