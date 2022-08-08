@@ -144,7 +144,7 @@ class FilterService
      */
     protected function prepareOrder(array $availableFields = []): self
     {
-        // Get all of the posted data. We need to see if any of it is part of a filter.
+        // Get all the posted data. We need to see if any of it is part of a filter.
         $field = Arr::get($this->data, 'order');
         $direction = Arr::get($this->data, 'desc');
 
@@ -154,7 +154,7 @@ class FilterService
             $this->order = [];
         }
 
-        if (!empty($field)) {
+        if (!empty($field) && is_string($field)) {
             $this->order = [
                 $field => empty($direction) ? 'ASC' : 'DESC'
             ];
