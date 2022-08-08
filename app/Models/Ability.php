@@ -9,6 +9,7 @@ use App\Models\Concerns\Nested;
 use App\Models\Concerns\SortableTrait;
 use App\Traits\CampaignTrait;
 use App\Traits\ExportableTrait;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Arr;
@@ -19,8 +20,9 @@ use Illuminate\Support\Arr;
  * @property int $ability_id
  * @property string $charges
  * @property Ability $ability
- * @property Ability[] $descendants
- * @property Ability[] $abilities
+ * @property Collection|Ability[] $descendants
+ * @property Collection|Ability[] $abilities
+ * @property Collection|Entity[] $entities
  */
 class Ability extends MiscModel
 {
@@ -108,6 +110,7 @@ class Ability extends MiscModel
         return $query->with([
             'entity',
             'entity.image',
+            'entities',
             'ability',
             'abilities',
             'ability.entity',
@@ -141,14 +144,15 @@ class Ability extends MiscModel
 
     public function entities()
     {
-        return $this->hasManyThrough(
-            'App\Models\Entity',
-            'App\Models\EntityAbility',
-            'ability_id',
-            'id',
-            'id',
-            'entity_id'
-        );
+        return $this
+            ->belongsToMany(Entity::class, 'entity_abilities')
+            ->withPivot('visibility_id');
+
+        return $this->belongsToMany('App\Models\Entity', 'campaign_plugins', 'campaign_id', 'plugin_id')
+            //->using('App\Models\CampaignPlugin')
+            ->withPivot('is_active')
+            ->withPivot('plugin_version_id')
+            ;
     }
 
     /**
@@ -222,7 +226,7 @@ class Ability extends MiscModel
         $entityAbility = EntityAbility::create([
             'ability_id' => $this->id,
             'entity_id' => $entityId,
-            'visibility' => Arr::get($request, 'visibility', 'all'),
+            'visibility_id' => Arr::get($request, 'visibility_id', Visibility::VISIBILITY_ALL),
         ]);
 
         return $entityAbility !== false;
