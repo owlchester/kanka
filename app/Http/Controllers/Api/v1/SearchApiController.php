@@ -12,7 +12,7 @@ class SearchApiController extends ApiController
     /**
      * @var EntityService
      */
-    protected $entity;
+    protected EntityService $entity;
 
     /**
      * Create a new controller instance.
@@ -25,8 +25,10 @@ class SearchApiController extends ApiController
     }
 
     /**
+     * @param Request $request
      * @param Campaign $campaign
-     * @return Collection
+     * @param $search
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function index(Request $request, Campaign $campaign, $search)
@@ -34,8 +36,8 @@ class SearchApiController extends ApiController
         $this->authorize('access', $campaign);
 
         $term = trim($search);
-        $enabledEntities = $this->entity->getEnabledEntities($campaign);
-        $models = Entity::whereIn('type', $enabledEntities)->where('name', 'like', "%$term%")->limit(10)->get();
+        $enabledEntities = $this->entity->campaign($campaign)->getEnabledEntitiesID();
+        $models = Entity::whereIn('type_id', $enabledEntities)->where('name', 'like', "%$term%")->limit(10)->get();
 
         return \App\Http\Resources\Entity::collection($models);
     }
