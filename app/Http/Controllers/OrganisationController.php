@@ -137,8 +137,10 @@ class OrganisationController extends CrudController
             ->{$base}()
             ->with([
                 'organisation', 'organisation.entity',
+                'parent', 'parent.character',
                 'character', 'character.entity', 'character.entity.image'])
             ->has('character')
+            ->has('character.entity')
             ->sort(request()->only(['o', 'k']))
             ->paginate(15);
 
