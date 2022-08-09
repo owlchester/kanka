@@ -118,9 +118,9 @@ class SubmissionService
         ]);
         //$message = $this->purify(Arr::get($data, 'message'));
         if ($message == '') {
-            $key = 'campaign.application.approved_no_message';
-        } else {
             $key = 'campaign.application.approved';
+        } else {
+            $key = 'campaign.application.approved_message';
         }
         // Notify the user
         $this->submission

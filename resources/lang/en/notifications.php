@@ -3,8 +3,8 @@
 return [
     'campaign'          => [
         'application'           => [
-            'approved'  => 'Your application to the :campaign campaign has been approved. Message provided: :reason',
-            'approved_no_message'  => 'Your application to the :campaign campaign has been approved.',
+            'approved_message'  => 'Your application to the :campaign campaign has been approved. Message provided: :reason',
+            'approved'  => 'Your application to the :campaign campaign has been approved.',
             'new'       => 'New application for :campaign.',
             'rejected'  => 'Your application to the :campaign campaign has been rejected. Reason provided: :reason',
             'rejected_no_message'  => 'Your application to the :campaign campaign has been rejected.',
