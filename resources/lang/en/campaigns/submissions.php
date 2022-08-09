@@ -24,6 +24,7 @@ return [
     'fields'        => [
         'application'   => 'Application',
         'rejection'     => 'Rejection reason',
+        'approval'      => 'Approval reason',
     ],
     'helpers'       => [
         'filter-helper'     => 'This campaign is open to applications!',

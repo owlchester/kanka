@@ -3,9 +3,12 @@
 return [
     'campaign'          => [
         'application'           => [
+            'approved_message'  => 'Your application to the :campaign campaign has been approved. Message provided: :reason',
             'approved'  => 'Your application to the :campaign campaign has been approved.',
             'new'       => 'New application for :campaign.',
             'rejected'  => 'Your application to the :campaign campaign has been rejected. Reason provided: :reason',
+            'rejected_no_message'  => 'Your application to the :campaign campaign has been rejected.',
+
         ],
         'asset_export'          => 'An export of a campaign assets is available. The link is available for :time minutes.',
         'asset_export_error'    => 'An error occurred while exporting the campaign assets. This happens on large campaigns.',

@@ -22,7 +22,10 @@
                     <label>{{ __('campaigns.members.fields.role') }}</label>
                     {!! Form::select('role_id', $campaign->roles()->where('is_public', false)->orderBy('is_admin')->pluck('name', 'id'), null, ['class' => 'form-control']) !!}
                 </div>
-
+                <div class="form-group">
+                    <label>{{ __('campaigns/submissions.fields.approval') }}</label>
+                    {!! Form::text('message', null, ['class' => 'form-control', 'maxlength' => 191]) !!}
+                </div>
                 <input type="submit" class="btn btn-primary" value="{{ __('campaigns/submissions.actions.accept') }}" />
             @else
                 <p>{{ __('campaigns/submissions.update.reject') }}</p>
