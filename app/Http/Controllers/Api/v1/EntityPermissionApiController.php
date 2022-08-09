@@ -64,9 +64,8 @@ class EntityPermissionApiController extends ApiController
         $this->authorize('access', $campaign);
         $this->authorize('update', $entity->child);
 
-        $this->apiPermissionService->saveEntity($request, $entity);
-        //$model = CampaignPermission::create($request->all());
-        return  response()->json('Permissions successfully created.');
+        $model = $this->apiPermissionService->saveEntity($request, $entity);
+        return Resource::collection($model);
     }
 
     /**
@@ -80,7 +79,7 @@ class EntityPermissionApiController extends ApiController
     {
         $this->authorize('access', $campaign);
         $this->authorize('update', $entity->child);
-        $permission->update($request->all());
+        $permission->update($request->only('access', 'action'));
 
         return new Resource($permission);
     }

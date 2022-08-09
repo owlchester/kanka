@@ -14,11 +14,13 @@ class EntityPermissionResource extends EntityChild
      */
     public function toArray($request)
     {
-        return $this->entity([
+        return [
             'role' => $this->campaign_role_id,
             'user' => $this->user_id,
             'action' => $this->action,
-            'access' => $this->access,
-        ]);
+            'access' => (bool) $this->access,
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at,
+        ];
     }
 }

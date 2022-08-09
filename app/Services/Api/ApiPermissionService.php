@@ -11,34 +11,12 @@ use Illuminate\Support\Facades\DB;
 
 class ApiPermissionService
 {
-    /**
-     * Set the entity type
-     * @param string $type
-     * @return PermissionService
-     */
-    public function type(int $type): self
-    {
-        $this->type = $type;
-        return $this;
-    }
-
-    /**
-     * Set the role
-     * @param CampaignRole $role
-     * @return $this
-     */
-    public function role(CampaignRole $role): self
-    {
-        $this->role = $role;
-        return $this;
-    }
-
      /**
      * Get the permissions of an entity
      * @param Entity $entity
      * @return mixed
      */
-    public function entityPermissions(Entity $entity): array
+    protected function entityPermissions(Entity $entity): array
     {
         if (!empty($this->cachedPermissions)) {
             return $this->cachedPermissions;
@@ -62,6 +40,7 @@ class ApiPermissionService
     {
          // First, let's get all the stuff for this entity
         $permissions = $this->entityPermissions($entity);
+        $model = [];
         // Next, start looping the data
         foreach ($request->all() as $permission) {
             if (!empty($permission['campaign_role_id'])) {
@@ -76,9 +55,9 @@ class ApiPermissionService
                 $permission['entity_type_id'] = $entity->type_id;
                 $permission['entity_id'] = $entity->id;
                 $permission['misc_id'] = $entity->child->id;
-                CampaignPermission::create($permission);
+                array_push($model, CampaignPermission::create($permission));
             }
         }
-        return;
+        return $model;
     }
 }
