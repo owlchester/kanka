@@ -124,6 +124,18 @@ if (!isset($model) || !$model->boosted()) {
         <div class="col-md-6 col-lg-4">
             <div class="form-group">
                 <label>
+                    {{ __('campaigns.ui.fields.connections_mode') }}
+                    <i class="fa-solid fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" title="{{ __('campaigns.ui.helpers.connections_mode') }}"></i>
+
+                </label>
+                {!! Form::select('ui_settings[connections_mode]', [0 => __('campaigns.ui.collapsed.default'), 1 => __('entities/relations.options.only_relations'), 2 => __('entities/relations.options.related'), 3 => __('entities/relations.options.mentions')], null, ['class' => 'form-control']) !!}
+                <p class="help-block visible-xs visible-sm">{{ __('campaigns.ui.helpers.connections_mode') }}</p>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+            <div class="form-group">
+                <label>
                     {{ __('campaigns.ui.fields.nested') }}
                 </label>
                 {!! Form::select('ui_settings[nested]', [0 => __('campaigns.ui.nested.default'), 1 => __('campaigns.ui.nested.nested')], (!isset($model) ? 1 : null), ['class' => 'form-control']) !!}

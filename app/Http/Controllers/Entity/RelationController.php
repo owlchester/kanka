@@ -95,7 +95,16 @@ class RelationController extends Controller
 
             $connectionService = $this->connectionService;
         }
-
+        $defaultToMap = !$campaign->boosted() || ($campaign->boosted() && $campaign->defaultToConnectionMode());
+        if ($mode != 'table' && empty($option) && $defaultToMap) {
+            if ($campaign->defaultToConnectionMode() == 1) {
+                $option = 'only_relations';
+            } elseif ($campaign->defaultToConnectionMode() == 2) {
+                $option = 'related';
+            } elseif ($campaign->defaultToConnectionMode() == 3) {
+                $option = 'mentions';
+            }
+        }
         $campaign = CampaignLocalization::getCampaign();
 
         return view('entities.pages.relations.index', compact(
