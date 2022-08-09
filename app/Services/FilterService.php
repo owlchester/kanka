@@ -19,9 +19,9 @@ class FilterService
 
     /**
      * The order as saved in the session
-     * @var array
+     * @var array|null
      */
-    protected array $order = [];
+    protected array|null $order = [];
 
     /**
      * The request data
