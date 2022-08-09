@@ -40,6 +40,7 @@
     - [Entity Mentions](/api-docs/{{version}}/entity-mentions)
     - [Entity Notes](/api-docs/{{version}}/entity-notes)
     - [Entity Tags](/api-docs/{{version}}/entity-tags)
+    - [Entity Permissions](/api-docs/{{version}}/entity-permissions)
     - [Relations](/api-docs/{{version}}/relations)
     - [Inventory](/api-docs/{{version}}/entity-inventory)
     - [Entity Abilities](/api-docs/{{version}}/entity-abilities)
