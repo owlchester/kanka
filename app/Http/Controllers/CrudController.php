@@ -149,7 +149,7 @@ class CrudController extends Controller
 
             // Don't use total as it won't use the distinct() filters (typically when doing
             // left join on the entities table)
-            $filteredCount =  $models->total();
+            $filteredCount = $models->total();
             //$filteredCount =  count($models); //->total()
         } else {
             /** @var Paginator $models */
@@ -704,6 +704,6 @@ class CrudController extends Controller
         } elseif (!auth()->user()->can('create', $model)) {
             return new Collection();
         }
-        return Entity::templates($model->entityTypeID())->get();
+        return Entity::select('id', 'name', 'entity_id')->templates($model->entityTypeID())->get();
     }
 }

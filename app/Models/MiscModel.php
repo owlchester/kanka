@@ -228,14 +228,12 @@ abstract class MiscModel extends Model
         }
 
         $entity = $this->cachedEntity !== false ? $this->cachedEntity : $this->entity;
-        if ($campaign->superboosted() && !empty($entity->image))  {
+        if ($campaign->superboosted() && !empty($entity->image)) {
             return Img::crop(40, 40)->url($entity->image->path);
-        }
-        elseif ($campaign->boosted() && Arr::has(CampaignCache::defaultImages(), $this->getEntityType())) {
+        } elseif ($campaign->boosted() && Arr::has(CampaignCache::defaultImages(), $this->getEntityType())) {
             return Img::crop(40, 40)->url(CampaignCache::defaultImages()[$this->getEntityType()]['path']);
-        }
-        // Goblins and above have nicer icons
-        elseif (auth()->check() && auth()->user()->isGoblin()) {
+        } elseif (auth()->check() && auth()->user()->isGoblin()) {
+            // Goblins and above have nicer icons
             return asset('/images/defaults/patreon/' . $this->getTable() . ($width !== 400 ? '_thumb' : null) . '.png');
         }
 

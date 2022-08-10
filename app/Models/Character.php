@@ -142,11 +142,21 @@ class Character extends MiscModel
     public function scopePreparedWith(Builder $query)
     {
         return $query->with([
-            'entity',
-            'entity.image',
-            'location',
-            'families',
-            'races',
+            'entity' => function ($sub) {
+                $sub->select('id', 'name', 'entity_id', 'type_id', 'image_uuid');
+            },
+            'entity.image' => function ($sub) {
+                $sub->select('campaign_id', 'id', 'ext');
+            },
+            'location' => function ($sub) {
+                $sub->select('id', 'name');
+            },
+            'families' => function ($sub) {
+                $sub->select('families.id', 'families.name');
+            },
+            'races' => function ($sub) {
+                $sub->select('races.id', 'races.name');
+            },
         ]);
     }
 
@@ -164,7 +174,8 @@ class Character extends MiscModel
      */
     public function location()
     {
-        return $this->belongsTo('App\Models\Location', 'location_id', 'id')
+        return $this
+            ->belongsTo('App\Models\Location', 'location_id', 'id')
             ->with('entity');
     }
 

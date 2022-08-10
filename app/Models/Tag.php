@@ -137,11 +137,30 @@ class Tag extends MiscModel
      */
     public function scopePreparedWith(Builder $query)
     {
+
         return $query->with([
-            'tag',
-            'tag.entity',
-            'tags',
-            'descendants',
+            'entity' => function ($sub) {
+                $sub->select('id', 'name', 'entity_id', 'type_id', 'image_uuid');
+            },
+            'entity.image' => function ($sub) {
+                $sub->select('campaign_id', 'id', 'ext');
+            },
+            'tag' => function ($sub) {
+                $sub->select('id', 'name');
+            },
+            'tag.entity' => function ($sub) {
+                $sub->select('id', 'name', 'entity_id', 'type_id');
+            },
+            'tags' => function ($sub) {
+                $sub->select('id', 'tag_id');
+            },
+            'descendants' => function ($sub) {
+                $sub->select('id', 'tag_id');
+            },
+            'descendants.entities' => function ($sub) {
+                $sub->select('entities.id', 'entities.name', 'entities.entity_id', 'entities.type_id');
+            },
+            'entities',
         ]);
     }
 
@@ -177,10 +196,10 @@ class Tag extends MiscModel
     public function allChildren($withTags = false)
     {
         $children = [];
-        foreach ($this->entities()->pluck('entities.id')->toArray() as $entity) {
+        foreach ($this->entities->pluck('entities.id')->toArray() as $entity) {
             $children[] = $entity;
         }
-        foreach ($this->descendants()->with('entities')->get() as $desc) {
+        foreach ($this->descendants as $desc) {
             foreach ($desc->entities()->pluck('entities.id')->toArray() as $entity) {
                 $children[] = $entity;
             }
@@ -232,14 +251,6 @@ class Tag extends MiscModel
                 'count' => $count
             ];
         }
-        /*$count = $this->allChildren()->count();
-        if ($campaign->enabled('characters')) {
-            $items['children'] = [
-                'name' => 'tags.show.tabs.children',
-                'route' => 'tags.children',
-                'count' => $count
-            ];
-        }*/
         return parent::menuItems($items);
     }
 

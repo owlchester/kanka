@@ -7,29 +7,18 @@
     $filterService,
     // Columns
     [
-        // Avatar
         [
             'type' => 'avatar'
         ],
-        // Name
         'name',
         'type',
         'date',
-        /*[
-            'label' => trans('events.fields.event'),
-            'field' => 'event.name',
-            'render' => function($model) {
-                if ($model->event) {
-                    return $model->event->entity->tooltipedLink();
-                }
-            }
-        ],*/
         [
             'type' => 'location',
             'visible' => $campaignService->enabled('locations'),
         ],
         [
-            'label' => trans('events.fields.events'),
+            'label' => __('events.fields.events'),
             'field' => 'event.name',
             'render' => function($model) {
                 return $model->descendants->count();
