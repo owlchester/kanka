@@ -15,8 +15,9 @@ class EntityPermissionResource extends EntityChild
     public function toArray($request)
     {
         return [
-            'role' => $this->campaign_role_id,
-            'user' => $this->user_id,
+            'id'   => $this->id,
+            'campaign_role_id' => $this->campaign_role_id,
+            'user_id' => $this->user_id,
             'action' => $this->action,
             'access' => (bool) $this->access,
             'created_at' => $this->created_at,

@@ -22,8 +22,9 @@ You can get a list of all the entity-permissions of an entity by using the follo
 {
     "data": [
         {
-            "role": 115,
-            "user": null,
+            "id": 37,
+            "campaign_role_id": 115,
+            "user_id": null,
             "action": 1,
             "access": true,
             "created_at": "2022-07-25T16:21:38.000000Z",
@@ -67,12 +68,13 @@ To create an entity-tag, use the following endpoint.
 {
     "data": [
         {
-            "role": null,
-            "user": 30,
-            "action": 4,
+            "id": 37,
+            "campaign_role_id": 115,
+            "user_id": null,
+            "action": 1,
             "access": true,
-            "created_at": "2022-08-09T17:08:42.000000Z",
-            "updated_at": "2022-08-09T17:08:42.000000Z"
+            "created_at": "2022-07-25T16:21:38.000000Z",
+            "updated_at": "2022-07-25T17:36:21.000000Z"
         }
     ],
 }
