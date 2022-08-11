@@ -120,8 +120,8 @@ trait HasFilters
                     $this->filterDateRange($query, $key, $params);
                 } elseif ($key == 'races') {
                     $this->filterRaces($query, $value);
-                } elseif ($key == 'location_id' && $this->filterOption('children')) {
-                    $this->filterLocations($query, $value);
+                } elseif ($key == 'location_id') {
+                    $this->filterLocations($query, $value, $key);
                 } elseif ($key == 'tag_id') {
                     $query = $this->joinEntity($query);
                     $query
@@ -433,16 +433,21 @@ trait HasFilters
      * @param string|null $value
      * @return void
      */
-    protected function filterLocations(Builder $query, string $value = null): void
+    protected function filterLocations(Builder $query, string $value = null, $key): void
     {
+
         if ($this->filterOption('children')) {
             $location = Location::find($value);
+            if (empty($location)) {
+                return;
+            }
             $locationIds = $location->descendants->pluck('id')->toArray();
             array_unshift($locationIds, $location->id);
             $query->whereIn($this->getTable() . '.location_id', $locationIds)->distinct();
 
             return;
         }
+        $this->filterFallback($query, $key);
     }
     /**
      * Filter characters on a single race
@@ -456,25 +461,25 @@ trait HasFilters
             $query->whereRaw('(select count(*) from character_race as cr where cr.character_id = ' .
                 $this->getTable() . '.id and cr.race_id = ' . ((int) $value) . ') = 0');
             return;
-        } elseif ($this->filterOption('children')) {
+        }
+
+        $query
+        ->select($this->getTable() . '.*')
+        ->leftJoin('character_race as cr', function ($join) {
+            $join->on('cr.character_id', '=', $this->getTable() . '.id');
+        });
+
+        if ($this->filterOption('children')) {
             $races = Race::find($value);
+            if (empty($races)) {
+                return;
+            }
             $raceIds = $races->descendants->pluck('id')->toArray();
             array_unshift($raceIds, $races->id);
-
-            $query
-            ->select($this->getTable() . '.*')
-            ->leftJoin('character_race as cr', function ($join) {
-                $join->on('cr.character_id', '=', $this->getTable() . '.id');
-            })->whereIn('cr.race_id', $raceIds)->distinct();
-
+            $query->whereIn('cr.race_id', $raceIds)->distinct();
             return;
         }
-        $query
-            ->select($this->getTable() . '.*')
-            ->leftJoin('character_race as cr1', function ($join) {
-                $join->on('cr1.character_id', '=', $this->getTable() . '.id');
-            })
-            ->where('cr1.race_id', $value);
+        $query->where('cr.race_id', $value);
     }
 
     /**
@@ -489,24 +494,26 @@ trait HasFilters
             $query->whereRaw('(select count(*) from character_family as cf where cf.character_id = ' .
                 $this->getTable() . '.id and cf.family_id = ' . ((int) $value) . ') = 0');
             return;
-        } elseif ($this->filterOption('children')) {
+        }
+
+        $query
+        ->select($this->getTable() . '.*')
+        ->leftJoin('character_family as cf', function ($join) {
+            $join->on('cf.character_id', '=', $this->getTable() . '.id');
+        });
+
+        if ($this->filterOption('children')) {
             $families = Family::find($value);
+            if (empty($families)) {
+                return;
+            }
             $familyIds = $families->descendants->pluck('id')->toArray();
             array_unshift($familyIds, $families->id);
-            $query
-            ->select($this->getTable() . '.*')
-            ->leftJoin('character_family as fm', function ($join) {
-                $join->on('fm.character_id', '=', $this->getTable() . '.id');
-            })->whereIn('fm.family_id', $familyIds)->distinct();
+            $query->whereIn('cf.family_id', $familyIds)->distinct();
 
             return;
         }
-        $query
-            ->select($this->getTable() . '.*')
-            ->leftJoin('character_family as cf', function ($join) {
-                $join->on('cf.character_id', '=', $this->getTable() . '.id');
-            })
-            ->where('cf.family_id', $value);
+        $query->where('cf.family_id', $value);
     }
 
     /**
@@ -589,25 +596,26 @@ trait HasFilters
                 ->whereRaw('(select count(*) from organisation_member as ome where ome.character_id = ' .
                     $this->getTable() . '.id and ome.organisation_id in (' . (int) $value . ')) = 0');
             return;
-        } elseif ($this->filterOption('children')) {
+        }
+
+        $query
+        ->select($this->getTable() . '.*')
+        ->leftJoin('organisation_member as om', function ($join) {
+            $join->on('om.character_id', '=', $this->getTable() . '.id');
+        });
+
+        if ($this->filterOption('children')) {
             $organisations = Organisation::find($value);
+            if (empty($organisations)) {
+                return;
+            }
             $organisationIds = $organisations->descendants->pluck('id')->toArray();
             array_unshift($organisationIds, $organisations->id);
-
-            $query
-            ->select($this->getTable() . '.*')
-            ->leftJoin('organisation_member as om', function ($join) {
-                $join->on('om.character_id', '=', $this->getTable() . '.id');
-            })->whereIn('om.organisation_id', $organisationIds)->distinct();
+            $query->whereIn('om.organisation_id', $organisationIds)->distinct();
 
             return;
         }
-        $query
-            ->select($this->getTable() . '.*')
-            ->leftJoin('organisation_member as om', function ($join) {
-                $join->on('om.character_id', '=', $this->getTable() . '.id');
-            })
-            ->where('om.organisation_id', $value);
+        $query->where('om.organisation_id', $value);
     }
 
     /**

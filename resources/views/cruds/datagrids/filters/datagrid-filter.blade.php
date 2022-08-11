@@ -60,8 +60,6 @@ $clipboardFilters = $filterService->clipboardFilters();
                                     @include('cruds.datagrids.filters._tag')
                                 @elseif ($field['type'] === 'select')
                                     @include('cruds.datagrids.filters._select')
-                                @elseif ($field['label'] === 'Location' || $field['label'] === 'Family' || $field['label'] === 'Race' || $field['label'] === 'Organisation')
-                                    @include('cruds.datagrids.filters._location')
                                 @else
                                     @include('cruds.datagrids.filters._array')
                                 @endif
