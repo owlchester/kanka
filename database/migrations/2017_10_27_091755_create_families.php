@@ -13,10 +13,6 @@ class CreateFamilies extends Migration
      */
     public function up()
     {
-        // Cleanup
-        Schema::dropIfExists('family_member');
-        Schema::dropIfExists('families');
-
         Schema::create('families', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
@@ -40,20 +36,6 @@ class CreateFamilies extends Migration
             // Indexes
             $table->index(['name', 'slug']);
         });
-
-        Schema::create('family_member', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('character_id')->unsigned()->notNull();
-            $table->integer('family_id')->unsigned()->notNull();
-            $table->timestamps();
-
-            // Indexes
-            //$table->index(['type']);
-
-            // Foreign
-            $table->foreign('character_id')->references('id')->on('characters')->onDelete('cascade');
-            $table->foreign('family_id')->references('id')->on('families')->onDelete('cascade');
-        });
     }
 
     /**
@@ -63,7 +45,6 @@ class CreateFamilies extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('family_member');
         Schema::dropIfExists('families');
     }
 }
