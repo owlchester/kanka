@@ -120,7 +120,7 @@ trait HasFilters
                     $this->filterDateRange($query, $key, $params);
                 } elseif ($key == 'races') {
                     $this->filterRaces($query, $value);
-                } elseif ($key == 'location_id') {
+                } elseif ($key == 'location_id' && $this->filterOption('children')) {
                     $this->filterLocations($query, $value);
                 } elseif ($key == 'tag_id') {
                     $query = $this->joinEntity($query);
@@ -435,42 +435,13 @@ trait HasFilters
      */
     protected function filterLocations(Builder $query, string $value = null): void
     {
-        $key = 'location_id';
-        if ($this->filterOption('exclude')) {
-            $query->where(function ($subquery) use ($key) {
-                return $subquery->where(
-                    $this->getTable() . '.' . $key,
-                    '!=',
-                    $this->filterValue
-                )->orWhereNull($this->getTable() . '.' . $key);
-            });
-
-            return;
-        } elseif ($this->filterOption('children')) {
+        if ($this->filterOption('children')) {
             $location = Location::find($value);
             $locationIds = $location->descendants->pluck('id')->toArray();
             array_unshift($locationIds, $location->id);
             $query->whereIn($this->getTable() . '.location_id', $locationIds)->distinct();
 
             return;
-        }
-        $searchTerms = explode(';', $this->filterValue);
-        $firstTerm = true;
-        foreach ($searchTerms as $searchTerm) {
-            if (empty($searchTerm) && $searchTerm != '0') {
-                continue;
-            }
-            // If it isn't the first term, we need to re-extract the search operators
-            if (!$firstTerm) {
-                $this->extractSearchOperator($searchTerm, $key);
-                $searchTerm = $this->filterValue;
-            }
-            $query->where(
-                $this->getTable() . '.' . $key,
-                $this->filterOperator,
-                ($this->filterOperator == '=' ? $this->filterValue : "%$searchTerm%")
-            );
-            $firstTerm = false;
         }
     }
     /**
