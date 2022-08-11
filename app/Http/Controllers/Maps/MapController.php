@@ -152,8 +152,7 @@ class MapController extends CrudController
         } else {
             $this->authorizeForGuest(\App\Models\CampaignPermission::ACTION_READ, $map);
         }
-
-        if (empty($map->image)) {
+        if (empty($map->image) && !$map->isReal()) {
             return redirect()->back()->withError(__('maps.errors.explore.missing'));
         }
         if ($map->isChunked()) {
