@@ -457,29 +457,24 @@ trait HasFilters
      */
     protected function filterRace(Builder $query, string $value = null): void
     {
+        $ids = [$value];
         if ($this->filterOption('exclude')) {
             $query->whereRaw('(select count(*) from character_race as cr where cr.character_id = ' .
                 $this->getTable() . '.id and cr.race_id = ' . ((int) $value) . ') = 0');
             return;
+        } elseif ($this->filterOption('children')) {
+            $race = Race::find($value);
+            if (!empty($race)) {
+                $raceIds = $race->descendants->pluck('id')->toArray();
+                array_push($raceIds, $race->id);
+                $ids = $raceIds;
+            }
         }
-
         $query
         ->select($this->getTable() . '.*')
         ->leftJoin('character_race as cr', function ($join) {
             $join->on('cr.character_id', '=', $this->getTable() . '.id');
-        });
-
-        if ($this->filterOption('children')) {
-            $races = Race::find($value);
-            if (empty($races)) {
-                return;
-            }
-            $raceIds = $races->descendants->pluck('id')->toArray();
-            array_unshift($raceIds, $races->id);
-            $query->whereIn('cr.race_id', $raceIds)->distinct();
-            return;
-        }
-        $query->where('cr.race_id', $value);
+        })->whereIn('cr.race_id', $ids)->distinct();
     }
 
     /**
@@ -490,30 +485,24 @@ trait HasFilters
      */
     protected function filterFamily(Builder $query, string $value = null): void
     {
+        $ids = [$value];
         if ($this->filterOption('exclude')) {
             $query->whereRaw('(select count(*) from character_family as cf where cf.character_id = ' .
                 $this->getTable() . '.id and cf.family_id = ' . ((int) $value) . ') = 0');
             return;
+        } elseif ($this->filterOption('children')) {
+            $family = Family::find($value);
+            if (!empty($family)) {
+                $familyIds = $family->descendants->pluck('id')->toArray();
+                array_push($familyIds, $family->id);
+                $ids = $familyIds;
+            }
         }
-
         $query
         ->select($this->getTable() . '.*')
         ->leftJoin('character_family as cf', function ($join) {
             $join->on('cf.character_id', '=', $this->getTable() . '.id');
-        });
-
-        if ($this->filterOption('children')) {
-            $families = Family::find($value);
-            if (empty($families)) {
-                return;
-            }
-            $familyIds = $families->descendants->pluck('id')->toArray();
-            array_unshift($familyIds, $families->id);
-            $query->whereIn('cf.family_id', $familyIds)->distinct();
-
-            return;
-        }
-        $query->where('cf.family_id', $value);
+        })->whereIn('cf.family_id', $ids)->distinct();
     }
 
     /**
@@ -591,31 +580,25 @@ trait HasFilters
      */
     protected function filterOrganisationMember(Builder $query, string $value = null): void
     {
+        $ids = [$value];
         if ($this->filterOption('exclude')) {
             $query
                 ->whereRaw('(select count(*) from organisation_member as ome where ome.character_id = ' .
                     $this->getTable() . '.id and ome.organisation_id in (' . (int) $value . ')) = 0');
             return;
+        } elseif ($this->filterOption('children')) {
+            $organisation = Organisation::find($value);
+            if (!empty($organisation)) {
+                $organisationIds = $organisation->descendants->pluck('id')->toArray();
+                array_push($organisationIds, $organisation->id);
+                $ids = $organisationIds;
+            }
         }
-
         $query
         ->select($this->getTable() . '.*')
         ->leftJoin('organisation_member as om', function ($join) {
             $join->on('om.character_id', '=', $this->getTable() . '.id');
-        });
-
-        if ($this->filterOption('children')) {
-            $organisations = Organisation::find($value);
-            if (empty($organisations)) {
-                return;
-            }
-            $organisationIds = $organisations->descendants->pluck('id')->toArray();
-            array_unshift($organisationIds, $organisations->id);
-            $query->whereIn('om.organisation_id', $organisationIds)->distinct();
-
-            return;
-        }
-        $query->where('om.organisation_id', $value);
+        })->whereIn('om.organisation_id', $ids)->distinct();
     }
 
     /**
