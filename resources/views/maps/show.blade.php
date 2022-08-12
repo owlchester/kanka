@@ -14,7 +14,7 @@
     <div class="entity-story-block">
         @include('entities.components.notes', ['withEntry' => true])
 
-        @if (!empty($model->image))
+        @if (!empty($model->image) || $model->isReal())
             <div class="row">
                 <div class="col-md-12">
                         @if ($model->isChunked() && $model->chunkingError())
