@@ -16,6 +16,7 @@
         </div>
         <div class="col-md-9">
             @include('campaigns._roles')
+            @include('campaigns.roles.index')
         </div>
     </div>
 @endsection
