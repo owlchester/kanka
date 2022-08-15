@@ -11,29 +11,23 @@
         ) !!}
     </div>
     <div class="col-xs-4">
+        @php
+        $options = [
+            '' => __('crud.filters.options.include'),
+            'exclude' => __('crud.filters.options.exclude'),
+            'none' => __('crud.filters.options.none'),
+            ];
+        @endphp
         @if (isset($field['withChildren']) && $field['withChildren'] === true )
-            {!! Form::select(
-                $field['field'] . '_option',
-                [
-                    '' => __('crud.filters.options.include'),
-                    'children' => __('crud.filters.options.children'),
-                    'exclude' => __('crud.filters.options.exclude'),
-                    'none' => __('crud.filters.options.none'),
-                ],
-                $filterService->single($field['field'] . '_option'), [
-                    'class' => 'form-control entity-list-filter',
-            ]) !!}
-        @else
-            {!! Form::select(
-                $field['field'] . '_option',
-                [
-                    '' => __('crud.filters.options.include'),
-                    'exclude' => __('crud.filters.options.exclude'),
-                    'none' => __('crud.filters.options.none'),
-                ],
-                $filterService->single($field['field'] . '_option'), [
-                    'class' => 'form-control entity-list-filter',
-            ]) !!}
+        @php
+            $options['children'] = __('crud.filters.options.children')
+        @endphp
         @endif
+            {!! Form::select(
+                $field['field'] . '_option',
+                $options,
+                $filterService->single($field['field'] . '_option'), [
+                    'class' => 'form-control entity-list-filter',
+            ]) !!}
     </div>
 </div>
