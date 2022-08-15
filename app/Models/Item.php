@@ -136,12 +136,27 @@ class Item extends MiscModel
     public function scopePreparedWith(Builder $query)
     {
         return $query->with([
-            'entity',
-            'entity.image',
-            'location',
-            'location.entity',
-            'character',
-            'character.entity'
+            'entity' => function ($sub) {
+                $sub->select('id', 'name', 'entity_id', 'type_id', 'image_uuid');
+            },
+            'entity.image' => function ($sub) {
+                $sub->select('campaign_id', 'id', 'ext');
+            },
+            'location' => function ($sub) {
+                $sub->select('id', 'name');
+            },
+            'location.entity' => function ($sub) {
+                $sub->select('id', 'name', 'entity_id', 'type_id');
+            },
+            'character' => function ($sub) {
+                $sub->select('id', 'name');
+            },
+            'character.entity' => function ($sub) {
+                $sub->select('id', 'name', 'entity_id', 'type_id');
+            },
+            'items' => function ($sub) {
+                $sub->select('id', 'name', 'item_id');
+            },
         ]);
     }
 

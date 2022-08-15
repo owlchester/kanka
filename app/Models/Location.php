@@ -108,12 +108,24 @@ class Location extends MiscModel
     public function scopePreparedWith(Builder $query)
     {
         return $query->with([
-            'entity',
-            'entity.image',
-            'parentLocation',
-            'parentLocation.entity',
-            'locations',
-            'characters'
+            'entity' => function ($sub) {
+                $sub->select('id', 'name', 'entity_id', 'type_id', 'image_uuid');
+            },
+            'entity.image' => function ($sub) {
+                $sub->select('campaign_id', 'id', 'ext');
+            },
+            'parentLocation' => function ($sub) {
+                $sub->select('id', 'name');
+            },
+            'parentLocation.entity' => function ($sub) {
+                $sub->select('id', 'name', 'entity_id', 'type_id');
+            },
+            'locations' => function ($sub) {
+                $sub->select('id', 'parent_location_id');
+            },
+            'characters' => function ($sub) {
+                $sub->select('id', 'location_id');
+            },
         ]);
     }
 

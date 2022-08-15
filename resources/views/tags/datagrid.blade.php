@@ -24,7 +24,7 @@
             }
         ],
         [
-            'label' => trans('crud.fields.tag'),
+            'label' => __('tags.fields.tag'),
             'field' => 'tag.name',
             'render' => function($model) {
                 if ($model->tag) {
@@ -33,16 +33,16 @@
             }
         ],
         [
-            'label' => trans('tags.fields.tags'),
+            'label' => __('tags.fields.tags'),
             'render' => function($model) {
-               return $model->tags->count();
+                return $model->tags->count();
             },
             'disableSort' => true,
         ],
         [
-            'label' => trans('tags.fields.children'),
+            'label' => __('tags.fields.children'),
             'render' => function($model) {
-                $total = $model->allChildren()->count();
+                $total = $model->entities->count();
                 return $total;
             },
             'disableSort' => true,

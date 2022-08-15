@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\Concerns\Acl;
 use App\Traits\CampaignTrait;
 use App\Traits\ExportableTrait;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
@@ -121,6 +122,25 @@ class Calendar extends MiscModel
      * @var bool|Collection
      */
     protected $cachedRecurringEvents = false;
+
+    /**
+     * @param Builder $query
+     * @return Builder
+     */
+    public function scopePreparedWith(Builder $query)
+    {
+        return $query->with([
+            'entity' => function ($sub) {
+                $sub->select('id', 'name', 'entity_id', 'type_id', 'image_uuid');
+            },
+            'entity.image' => function ($sub) {
+                $sub->select('campaign_id', 'id', 'ext');
+            },
+            'calendars' => function ($sub) {
+                $sub->select('id', 'name', 'calendar_id');
+            }
+        ]);
+    }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
