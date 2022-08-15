@@ -16,7 +16,7 @@
             '' => __('crud.filters.options.include'),
             'exclude' => __('crud.filters.options.exclude'),
             'none' => __('crud.filters.options.none'),
-            ];
+        ];
         @endphp
         @if (isset($field['withChildren']) && $field['withChildren'] === true )
         @php
@@ -27,7 +27,7 @@
                 $field['field'] . '_option',
                 $options,
                 $filterService->single($field['field'] . '_option'), [
-                    'class' => 'form-control entity-list-filter',
+                    'class' => 'form-control entity-list-option',
             ]) !!}
     </div>
 </div>
