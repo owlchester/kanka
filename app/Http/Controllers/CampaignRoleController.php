@@ -168,13 +168,11 @@ class CampaignRoleController extends Controller
      * @param  \App\Models\CampaignRole  $campaignRole
      * @return \Illuminate\Http\Response
      */
-    public function destroy(CampaignRole $campaignRole, bool $bulk = false)
+    public function destroy(CampaignRole $campaignRole)
     {
         $this->authorize('delete', $campaignRole);
         $campaignRole->delete();
-        if ($bulk === true) {
-            return;
-        }
+
         return redirect()->route('campaign_roles.index')
             ->with('success_raw', __($this->view . '.destroy.success', ['name' => $campaignRole->name]));
     }
@@ -289,7 +287,7 @@ class CampaignRoleController extends Controller
     public function bulk()
     {
         $campaign = CampaignLocalization::getCampaign();
-        $this->authorize('recover', $campaign);
+        $this->authorize('roles', $campaign);
 
         $action = request()->get('action');
         $models = request()->get('model');
@@ -306,7 +304,7 @@ class CampaignRoleController extends Controller
             }
 
             if ($action === 'delete' && !$plugin->isAdmin() && !$plugin->isPublic()) {
-                $this->destroy($plugin, true);
+                $plugin->delete();
                 $count++;
             }
         }

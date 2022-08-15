@@ -59,8 +59,7 @@ class CampaignRole extends Layout
                     }
                     if ($model->is_public && !$campaign->is_public && $model->permissions->whereNull('entity_id')->count() > 0) {
 
-                        $html = $html
-                            . '<div class="hidden-xs"> <i class="fa-solid fa-exclamation-triangle" data-toggle="tooltip" title="'
+                        $html .= '<div class="hidden-xs"> <i class="fa-solid fa-exclamation-triangle" data-toggle="tooltip" title="'
                             . __('campaigns.roles.hints.campaign_not_public')
                             . '"></i></div> <div class="visible-xs"> 
                                 <i class="fa-solid fa-exclamation-triangle" data-toggle="collapse" data-target="#campaign-public-warning"></i>
