@@ -23,6 +23,7 @@ class CharacterFilter extends DatagridFilter
                 'route' => route('families.find'),
                 'placeholder' =>  __('crud.placeholders.family'),
                 'model' => Family::class,
+                'withChildren' => true,
             ])
             ->location()
             ->add([
@@ -32,6 +33,7 @@ class CharacterFilter extends DatagridFilter
                 'route' => route('races.find'),
                 'placeholder' =>  __('crud.placeholders.race'),
                 'model' => Race::class,
+                'withChildren' => true,
             ])
             ->add([
                 'field' => 'organisation_member',
@@ -40,6 +42,8 @@ class CharacterFilter extends DatagridFilter
                 'route' => route('organisations.find'),
                 'placeholder' =>  __('crud.placeholders.organisation'),
                 'model' => Organisation::class,
+                'withChildren' => true,
+
             ])
             ->add('type')
             ->add('age')

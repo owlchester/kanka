@@ -217,6 +217,7 @@ return [
             'exclude'   => 'Exclude',
             'include'   => 'Include',
             'none'      => 'None',
+            'children'  => 'With children'
         ],
         'show'                      => 'Show Filters',
         'sorting'                   => [

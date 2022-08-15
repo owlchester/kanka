@@ -51,6 +51,7 @@ abstract class DatagridFilter
             'route' => route('locations.find'),
             'placeholder' =>  __('crud.placeholders.location'),
             'model' => Location::class,
+            'withChildren' => true,
         ];
         return $this;
     }

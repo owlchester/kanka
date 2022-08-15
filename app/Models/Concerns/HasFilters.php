@@ -5,6 +5,10 @@ namespace App\Models\Concerns;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
+use App\Models\Location;
+use App\Models\Family;
+use App\Models\Race;
+use App\Models\Organisation;
 
 /**
  * HasFilters
@@ -116,6 +120,8 @@ trait HasFilters
                     $this->filterDateRange($query, $key, $params);
                 } elseif ($key == 'races') {
                     $this->filterRaces($query, $value);
+                } elseif ($key == 'location_id') {
+                    $this->filterLocations($query, $value, $key);
                 } elseif ($key == 'tag_id') {
                     $query = $this->joinEntity($query);
                     $query
@@ -421,7 +427,28 @@ trait HasFilters
             ;
         }
     }
+    /**
+     * Filter on characters on multiple locations
+     * @param Builder $query
+     * @param string|null $value
+     * @return void
+     */
+    protected function filterLocations(Builder $query, string $value = null, $key): void
+    {
 
+        if ($this->filterOption('children')) {
+            $location = Location::find($value);
+            if (empty($location)) {
+                return;
+            }
+            $locationIds = $location->descendants->pluck('id')->toArray();
+            array_unshift($locationIds, $location->id);
+            $query->whereIn($this->getTable() . '.location_id', $locationIds)->distinct();
+
+            return;
+        }
+        $this->filterFallback($query, $key);
+    }
     /**
      * Filter characters on a single race
      * @param Builder $query
@@ -430,17 +457,24 @@ trait HasFilters
      */
     protected function filterRace(Builder $query, string $value = null): void
     {
+        $ids = [$value];
         if ($this->filterOption('exclude')) {
             $query->whereRaw('(select count(*) from character_race as cr where cr.character_id = ' .
                 $this->getTable() . '.id and cr.race_id = ' . ((int) $value) . ') = 0');
             return;
+        } elseif ($this->filterOption('children')) {
+            $race = Race::find($value);
+            if (!empty($race)) {
+                $raceIds = $race->descendants->pluck('id')->toArray();
+                array_push($raceIds, $race->id);
+                $ids = $raceIds;
+            }
         }
         $query
-            ->select($this->getTable() . '.*')
-            ->leftJoin('character_race as cr1', function ($join) {
-                $join->on('cr1.character_id', '=', $this->getTable() . '.id');
-            })
-            ->where('cr1.race_id', $value);
+        ->select($this->getTable() . '.*')
+        ->leftJoin('character_race as cr', function ($join) {
+            $join->on('cr.character_id', '=', $this->getTable() . '.id');
+        })->whereIn('cr.race_id', $ids)->distinct();
     }
 
     /**
@@ -451,17 +485,24 @@ trait HasFilters
      */
     protected function filterFamily(Builder $query, string $value = null): void
     {
+        $ids = [$value];
         if ($this->filterOption('exclude')) {
             $query->whereRaw('(select count(*) from character_family as cf where cf.character_id = ' .
                 $this->getTable() . '.id and cf.family_id = ' . ((int) $value) . ') = 0');
             return;
+        } elseif ($this->filterOption('children')) {
+            $family = Family::find($value);
+            if (!empty($family)) {
+                $familyIds = $family->descendants->pluck('id')->toArray();
+                array_push($familyIds, $family->id);
+                $ids = $familyIds;
+            }
         }
         $query
-            ->select($this->getTable() . '.*')
-            ->leftJoin('character_family as cf', function ($join) {
-                $join->on('cf.character_id', '=', $this->getTable() . '.id');
-            })
-            ->where('cf.family_id', $value);
+        ->select($this->getTable() . '.*')
+        ->leftJoin('character_family as cf', function ($join) {
+            $join->on('cf.character_id', '=', $this->getTable() . '.id');
+        })->whereIn('cf.family_id', $ids)->distinct();
     }
 
     /**
@@ -539,18 +580,25 @@ trait HasFilters
      */
     protected function filterOrganisationMember(Builder $query, string $value = null): void
     {
+        $ids = [$value];
         if ($this->filterOption('exclude')) {
             $query
                 ->whereRaw('(select count(*) from organisation_member as ome where ome.character_id = ' .
                     $this->getTable() . '.id and ome.organisation_id in (' . (int) $value . ')) = 0');
             return;
+        } elseif ($this->filterOption('children')) {
+            $organisation = Organisation::find($value);
+            if (!empty($organisation)) {
+                $organisationIds = $organisation->descendants->pluck('id')->toArray();
+                array_push($organisationIds, $organisation->id);
+                $ids = $organisationIds;
+            }
         }
         $query
-            ->select($this->getTable() . '.*')
-            ->leftJoin('organisation_member as om', function ($join) {
-                $join->on('om.character_id', '=', $this->getTable() . '.id');
-            })
-            ->where('om.organisation_id', $value);
+        ->select($this->getTable() . '.*')
+        ->leftJoin('organisation_member as om', function ($join) {
+            $join->on('om.character_id', '=', $this->getTable() . '.id');
+        })->whereIn('om.organisation_id', $ids)->distinct();
     }
 
     /**
