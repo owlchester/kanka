@@ -261,6 +261,10 @@ TEXT
             'success'   => 'Role :name updated.',
             'title'     => 'Edit role :name',
         ],
+        'bulks'         => [
+            'delete'    => '{1} Removed :count role.|[2,*] Removed :count roles.',
+            'edit'      => '{1} Updated :count role.|[2,*] Updated :count roles.',
+        ],
         'fields'        => [
             'name'          => 'Name',
             'permissions'   => 'Permissions',

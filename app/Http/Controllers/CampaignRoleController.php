@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Facades\EntitySetup;
 use App\Models\Campaign;
 use App\Facades\CampaignLocalization;
+use App\Facades\Datagrid;
 use App\Models\CampaignRole;
 use App\Http\Requests\StoreCampaignRole;
 use Illuminate\Http\Request;
@@ -33,16 +34,32 @@ class CampaignRoleController extends Controller
     public function index()
     {
         $campaign = CampaignLocalization::getCampaign();
+        Datagrid::layout(\App\Renderers\Layouts\Campaign\CampaignRole::class);
+
         $this->authorize('roles', $campaign);
 
         $roles = $campaign->roles()
+            ->sort(request()->only(['o', 'k']))
             ->with(['users', 'permissions', 'campaign'])
             ->orderBy('is_admin', 'DESC')
             ->orderBy('is_public', 'DESC')
             ->orderBy('name')
             ->paginate();
 
-        return view('campaigns.roles', compact('campaign', 'roles'));
+        $rows = $roles;
+
+        // Ajax Datagrid
+        if (request()->ajax()) {
+            $html = view('campaigns.roles._table')->with('rows', $rows)->render();
+            $deletes = view('layouts.datagrid.delete-forms')->with('models', Datagrid::deleteForms())->render();
+            return response()->json([
+                'success' => true,
+                'html' => $html,
+                'deletes' => $deletes,
+            ]);
+        }
+
+        return view('campaigns.roles', compact('campaign', 'rows', 'roles'));
     }
 
     /**
@@ -154,8 +171,8 @@ class CampaignRoleController extends Controller
     public function destroy(CampaignRole $campaignRole)
     {
         $this->authorize('delete', $campaignRole);
-
         $campaignRole->delete();
+
         return redirect()->route('campaign_roles.index')
             ->with('success_raw', __($this->view . '.destroy.success', ['name' => $campaignRole->name]));
     }
@@ -260,5 +277,40 @@ class CampaignRoleController extends Controller
                 'entities' => EntitySetup::plural($entityType)
             ]),
         ]);
+    }
+
+    /**
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Psr\Container\ContainerExceptionInterface
+     * @throws \Psr\Container\NotFoundExceptionInterface
+     */
+    public function bulk()
+    {
+        $campaign = CampaignLocalization::getCampaign();
+        $this->authorize('roles', $campaign);
+
+        $action = request()->get('action');
+        $models = request()->get('model');
+        if (!in_array($action, ['edit', 'delete']) || empty($models)) {
+            return redirect()
+                ->route('campaign_roles.index');
+        }
+        $count = 0;
+        foreach ($models as $id) {
+            /** @var CampaignRole $role */
+            $role = CampaignRole::find($id);
+            if (empty($role)) {
+                continue;
+            }
+
+            if ($action === 'delete' && !$role->isAdmin() && !$role->isPublic()) {
+                $role->delete();
+                $count++;
+            }
+        }
+
+        return redirect()
+            ->route('campaign_roles.index')
+            ->with('success', trans_choice('campaigns.roles.bulks.' . $action, $count, ['count' => $count]));
     }
 }
