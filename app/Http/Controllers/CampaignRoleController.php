@@ -50,7 +50,7 @@ class CampaignRoleController extends Controller
 
         // Ajax Datagrid
         if (request()->ajax()) {
-            $html = view('campaigns.plugins._table')->with('rows', $rows)->render();
+            $html = view('campaigns.roles._table')->with('rows', $rows)->render();
             $deletes = view('layouts.datagrid.delete-forms')->with('models', Datagrid::deleteForms())->render();
             return response()->json([
                 'success' => true,
@@ -297,14 +297,14 @@ class CampaignRoleController extends Controller
         }
         $count = 0;
         foreach ($models as $id) {
-            /** @var CampaignRole $plugin */
-            $plugin = CampaignRole::find($id);
-            if (empty($plugin)) {
+            /** @var CampaignRole $role */
+            $role = CampaignRole::find($id);
+            if (empty($role)) {
                 continue;
             }
 
-            if ($action === 'delete' && !$plugin->isAdmin() && !$plugin->isPublic()) {
-                $plugin->delete();
+            if ($action === 'delete' && !$role->isAdmin() && !$role->isPublic()) {
+                $role->delete();
                 $count++;
             }
         }
