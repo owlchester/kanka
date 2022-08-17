@@ -33,6 +33,8 @@ return [
         'start_year'    => 'Year the era starts. Leave blank if this is the first era.',
     ],
     'reorder'       => [
-        'success'   => 'Elements of the :era era reordered.',
+        'success'       => 'Elements of the :era era reordered.',
+        'eras_success'  => 'Timeline eras succesfully reordered.',
+        'title'         => 'Reorder Eras',
     ],
 ];
