@@ -14,7 +14,7 @@ class UpdateTimelineErasAddPosition extends Migration
     public function up()
     {
         Schema::table('timeline_eras', function (Blueprint $table) {
-            $table->unsignedTinyInteger('position');
+            $table->unsignedTinyInteger('position')->nullable();
             $table->index('position');        
         });
     }

@@ -41,6 +41,9 @@
                         </div>
                         <div class="name">
                             {!! $era->name !!}
+                            <span class="text-sm">
+                                {!! $era->ages()!!}
+                            </span>
                         </div>
                     </div>
                 @endforeach

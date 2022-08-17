@@ -182,11 +182,13 @@ class Timeline extends MiscModel
             'route' => 'timelines.timelines',
             'count' => $this->descendants()->count()
         ];
-        $items['second']['reorder'] = [
-            'name' => 'timelines.fields.reorder',
-            'route' => 'timeline-eras.reorder',
-            'count' => $this->descendants()->count()
-        ];
+        if (auth()->check() && auth()->user()->can('permission', $this)) {
+            $items['second']['reorder'] = [
+                'name' => 'timelines.fields.reorder',
+                'route' => 'timeline-eras.reorder',
+                'count' => $this->descendants()->count()
+            ];
+        }
 
         return parent::menuItems($items);
     }

@@ -72,14 +72,14 @@ class TimelineService
 
         $position = 1;
         foreach ($ids as $id) {
-            /** @var TimelineEra $link */
-            $link = TimelineEra::where('id', $id)->first();
-            if (empty($link)) {
+            /** @var TimelineEra $era */
+            $era = TimelineEra::find($id);
+            if (empty($era)) {
                 continue;
             }
 
-            $link->position = $position;
-            $link->save();
+            $era->position = $position;
+            $era->save();
             $position++;
         }
 
