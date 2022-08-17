@@ -54,14 +54,17 @@ The list of returned timelines can be filtered. The available filters are availa
                 "abbreviation": "AD",
                 "start_year": 0,
                 "end_year": null,
-                "elements": []
+                "elements": [],
+                "position": 1
               },
               {
                 "name": "Before Christ",
                 "abbreviation": "BC",
                 "start_year": null,
                 "end_year": 0,
-                "elements": []
+                "elements": [],
+                "position": 2
+
               }
             ]
         }
@@ -119,14 +122,18 @@ To get the details of a single timeline, use the following endpoint.
             "abbreviation": "AD",
             "start_year": 0,
             "end_year": null,
-            "elements": []
+            "elements": [],
+            "position": 1
+
           },
           {
             "name": "Before Christ",
             "abbreviation": "BC",
             "start_year": null,
             "end_year": 0,
-            "elements": []
+            "elements": [],
+            "position": 1
+
           }
         ]
     }

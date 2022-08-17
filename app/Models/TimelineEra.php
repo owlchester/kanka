@@ -60,6 +60,7 @@ class TimelineEra extends Model
     public function scopeOrdered(Builder $query, bool $revertOrder = false)
     {
         return $query
+            ->orderBy('position', ($revertOrder ? 'desc' : 'asc'))
             ->orderBy('start_year', ($revertOrder ? 'asc' : 'desc'))
             ->orderBy('end_year', ($revertOrder ? 'desc' : 'asc'))
             ->orderBy('name');

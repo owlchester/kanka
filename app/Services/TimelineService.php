@@ -7,6 +7,7 @@ namespace App\Services;
 use App\Models\Timeline;
 use App\Models\TimelineElement;
 use App\Models\TimelineEra;
+use App\Http\Requests\ReorderTimelineEras;
 
 class TimelineService
 {
@@ -56,5 +57,32 @@ class TimelineService
                 $position += 1;
             }
         }
+    }
+
+    /**
+     * @param array $data
+     * @return bool
+     */
+    public function reorder(ReorderTimelineEras $request): bool
+    {
+        $ids = $request->get('timeline_era');
+        if (empty($ids)) {
+            return false;
+        }
+
+        $position = 1;
+        foreach ($ids as $id) {
+            /** @var TimelineEra $link */
+            $link = TimelineEra::where('id', $id)->first();
+            if (empty($link)) {
+                continue;
+            }
+
+            $link->position = $position;
+            $link->save();
+            $position++;
+        }
+
+        return true;
     }
 }
