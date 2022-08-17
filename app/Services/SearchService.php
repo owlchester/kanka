@@ -261,7 +261,13 @@ class SearchService
             return $this->newOptions();
         }
 
-        return $searchResults;
+        foreach ($searchResults as $result) {
+            if (strtolower($result['name']) == $cleanTerm) {
+                return $searchResults;
+            }
+        }
+
+        return $searchResults + $this->newOptions();
     }
 
     /**
