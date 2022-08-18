@@ -262,12 +262,16 @@ class SearchService
         }
 
         foreach ($searchResults as $result) {
-            if (strtolower($result['name']) == $cleanTerm) {
+            if (strtolower($result['name']) == $cleanTerm && $this->new) {
                 return $searchResults;
             }
         }
 
-        return $searchResults + $this->newOptions();
+        if ($this->new) {
+            return array_merge(array_values($searchResults), array_values($this->newOptions()));
+        }
+
+        return $searchResults;
     }
 
     /**
