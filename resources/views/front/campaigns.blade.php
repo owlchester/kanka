@@ -72,9 +72,11 @@
                 @else
                 <div class="row">
                     @foreach ($campaigns as $camp)
-                        <div class="col-sm-6">
-                            @include('front._campaign', ['campaign' => $camp, 'featured' => false])
-                        </div>
+                        @if (!$camp->isHidden())
+                            <div class="col-sm-6">
+                                @include('front._campaign', ['campaign' => $camp, 'featured' => false])
+                            </div>
+                        @endif
                     @endforeach
                 </div>
 

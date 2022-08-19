@@ -223,6 +223,24 @@ class CampaignController extends Controller
     }
 
     /**
+     * Hide a campaign
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    public function hideCampaign()
+    {
+        $campaign = CampaignLocalization::getCampaign();
+        $this->authorize('update', $campaign);
+
+        try {
+            $this->campaignService->hide($campaign);
+            return redirect()->route('home');
+        } catch (\Exception $e) {
+            return redirect()->route('campaign')->withErrors($e->getMessage());
+        }
+    }
+
+    /**
      * Get the campaign css
      * @return Response
      */

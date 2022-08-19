@@ -103,9 +103,11 @@
 
                             <div class="row">
                                 @foreach ($campaigns as $campaign)
-                                    <div class="col-xl-6 col-12">
-                                        @include('front._campaign', ['campaign' => $campaign, 'featured' => false])
-                                    </div>
+                                    @if (!$campaign->isHidden())
+                                        <div class="col-xl-6 col-12">
+                                            @include('front._campaign', ['campaign' => $campaign, 'featured' => false])
+                                        </div>
+                                    @endif
                                 @endforeach
                             </div>
                         @endif

@@ -128,6 +128,27 @@ class CampaignService
         self::switchToNext();
     }
 
+ /**
+     * Hide a campaign
+     * @param Campaign $campaign
+     * @throws Exception
+     */
+    public function hide(Campaign $campaign)
+    {
+        // Notify admins
+        $this->notify(
+            $campaign,
+            'leave',
+            'user',
+            'yellow',
+            [
+                'user' => 'test',
+                'campaign' => $campaign->name,
+                'link' => $campaign->getMiddlewareLink()
+            ]
+        );
+    }
+
     /**
      * Switch to the last campaign the user used
      * @param User|null $userParam

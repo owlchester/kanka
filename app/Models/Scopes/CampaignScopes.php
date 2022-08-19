@@ -20,6 +20,7 @@ use Illuminate\Support\Arr;
  * @method static self|Builder filterPublic(array $filters)
  * @method static self|Builder open()
  * @method static self|Builder unboosted()
+ * @method static self|Builder hidden()
  */
 trait CampaignScopes
 {
@@ -161,5 +162,14 @@ trait CampaignScopes
             return $sub->where('boost_count', 0)
                 ->orWhereNull('boost_count');
         });
+    }
+    /**
+     * @param Builder $query
+     * @param int $hidden
+     * @return mixed
+     */
+    public function scopeHidden(Builder $query, $hidden = 1)
+    {
+        return $query->where(['is_hidden' => $hidden]);
     }
 }
