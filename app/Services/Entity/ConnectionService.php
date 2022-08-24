@@ -104,6 +104,7 @@ class ConnectionService
             ->loadFamilies()
             ->loadTimelines()
             ->loadAuthoredJournals()
+            ->loadRaces()
         ;
     }
 
@@ -250,6 +251,16 @@ class ConnectionService
             $entity = $sub->entity;
             $this->ids[] = $entity->id;
             $this->reasons[$entity->id][] = __('entities.organisation');
+        }
+        return $this;
+    }
+    protected function loadRaces(): self
+    {
+        $elements = $this->entity->child->races()->with(['entity'])->has('entity')->get();
+        foreach ($elements as $sub) {
+            $entity = $sub->entity;
+            $this->ids[] = $entity->id;
+            $this->reasons[$entity->id][] = __('entities.race');
         }
         return $this;
     }

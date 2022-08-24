@@ -14,9 +14,12 @@ class RaceResource extends EntityResource
      */
     public function toArray($request)
     {
+        $locationIDs = $this->resource->locations()->pluck('locations.id');
+
         return $this->entity([
             'type' => $this->type,
-            'race_id' => $this->race_id
+            'race_id' => $this->race_id,
+            'locations' => $locationIDs
         ]);
     }
 }

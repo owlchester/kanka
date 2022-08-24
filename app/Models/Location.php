@@ -126,6 +126,7 @@ class Location extends MiscModel
             'characters' => function ($sub) {
                 $sub->select('id', 'location_id');
             },
+            'races'
         ]);
     }
 
@@ -442,5 +443,13 @@ class Location extends MiscModel
         return [
             'parent_location_id',
         ];
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function races()
+    {
+        return $this->belongsToMany('App\Models\Race', 'race_location');
     }
 }

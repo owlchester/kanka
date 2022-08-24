@@ -20,6 +20,8 @@ use Illuminate\Database\Eloquent\Builder;
  * @property int $race_id
  * @property Race $race
  * @property Race[] $races
+ * @property Location $location
+ * @property Location[] $locations
  */
 class Race extends MiscModel
 {
@@ -110,6 +112,9 @@ class Race extends MiscModel
             },
             'races' => function ($sub) {
                 $sub->select('id', 'name', 'race_id');
+            },
+            'locations' => function ($sub) {
+                $sub->select('locations.id', 'locations.name');
             },
             'characters',
             'descendants'
@@ -207,6 +212,27 @@ class Race extends MiscModel
     {
         return [
             'race_id',
+            'locations_id'
         ];
+    }
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function locations()
+    {
+        return $this->belongsToMany('App\Models\Location', 'race_location');
+    }
+    /**
+     * Determine if the model has profile data to be displayed
+     * @return bool
+     */
+    public function showProfileInfo(): bool
+    {
+
+        if ($this->locations) {
+            return true;
+        }
+
+        return false;
     }
 }
