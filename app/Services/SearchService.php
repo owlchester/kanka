@@ -256,12 +256,19 @@ class SearchService
                 'advanced_mention' => Mentions::advancedMentionHelper($model->name),
             ];
         }
-
-        if (empty($searchResults) && $this->new) {
+        if (!$this->new) {
+            return $searchResults;
+        } elseif (empty($searchResults) && $this->new) {
             return $this->newOptions();
         }
 
-        return $searchResults;
+        foreach ($searchResults as $result) {
+            if (strtolower($result['name']) == $cleanTerm) {
+                return $searchResults;
+            }
+        }
+
+        return array_merge(array_values($searchResults), array_values($this->newOptions()));
     }
 
     /**
