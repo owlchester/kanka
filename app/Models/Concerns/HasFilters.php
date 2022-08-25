@@ -122,9 +122,11 @@ trait HasFilters
                 } elseif ($key == 'races') {
                     $this->filterRaces($query, $value);
                 } elseif ($key == 'location_id') {
-                    $this->filterLocations($query, $value, $key);
-                } elseif ($key == 'locations_id') {
-                    $this->filterLocation($query, $value, $key);
+                    if ($this instanceof Race) {
+                        $this->filterRaceLocations($query, $value);
+                    } else {
+                        $this->filterLocations($query, $value, $key);
+                    }
                 } elseif ($key == 'tag_id') {
                     $query = $this->joinEntity($query);
                     $query
@@ -438,7 +440,6 @@ trait HasFilters
      */
     protected function filterLocations(Builder $query, string $value = null, $key): void
     {
-
         if ($this->filterOption('children')) {
             $location = Location::find($value);
             if (empty($location)) {
@@ -459,7 +460,7 @@ trait HasFilters
      * @param string|null $value
      * @return void
      */
-    protected function filterLocation(Builder $query, string $value = null, $key): void
+    protected function filterRaceLocations(Builder $query, string $value = null): void
     {
         $ids = [$value];
         if ($this->filterOption('exclude')) {

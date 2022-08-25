@@ -47,7 +47,7 @@ class RaceObserver extends MiscObserver
         }
 
         $locations = request()->get('locations', []);
-        $newFamilies = [];
+        $newLocations = [];
         foreach ($locations as $id) {
             // Existing race, do nothing
             if (!empty($existing[$id])) {
@@ -63,9 +63,9 @@ class RaceObserver extends MiscObserver
             if (empty($location)) {
                 continue;
             }
-            $newFamilies[] = $location->id;
+            $newLocations[] = $location->id;
         }
-        $race->locations()->attach($newFamilies);
+        $race->locations()->attach($newLocations);
 
         // Detach the remaining
         if (!empty($existing)) {

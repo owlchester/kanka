@@ -254,6 +254,7 @@ class ConnectionService
         }
         return $this;
     }
+
     protected function loadRaces(): self
     {
         $elements = $this->entity->child->races()->with(['entity'])->has('entity')->get();

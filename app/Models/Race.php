@@ -212,7 +212,7 @@ class Race extends MiscModel
     {
         return [
             'race_id',
-            'locations_id'
+            'location_id'
         ];
     }
     /**
@@ -228,11 +228,10 @@ class Race extends MiscModel
      */
     public function showProfileInfo(): bool
     {
-
         if ($this->locations) {
             return true;
         }
 
-        return false;
+        return parent::showProfile();
     }
 }

@@ -24,7 +24,7 @@ class RaceFilter extends DatagridFilter
                 'model' => Race::class,
             ])
             ->add([
-                'field' => 'locations_id',
+                'field' => 'location_id',
                 'label' => __('crud.fields.location'),
                 'type' => 'select2',
                 'route' => route('locations.find'),
