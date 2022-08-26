@@ -51,7 +51,22 @@ trait CalendarDateTrait
     public function getDate(): string
     {
         $reminder = $this->calendarReminder();
-        return $reminder->year . '-' . $reminder->month . '-' . $reminder->day;
+        $months = $reminder->calendar->months();
+        $count = 0;
+        $monthCount = 1;
+        foreach ($months as $month) {
+            if ($month["type"] == "standard") {
+                $count++;
+            }
+            if ($monthCount == $reminder->month) {
+
+                if ($month["type"] == "intercalary") {
+                    return $reminder->year . '-' . $month["name"] . '-' . $reminder->day;
+                }
+                return $reminder->year . '-' . $count . '-' . $reminder->day;
+            }
+            $monthCount++;
+        }
     }
 
     /**
