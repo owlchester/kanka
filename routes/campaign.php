@@ -328,6 +328,8 @@ Route::post('/timelines/{timeline}/timeline-era/{timeline_era}/reorder', 'Timeli
 Route::get('/search', 'SearchController@search')->name('search');
 
 // Misc Model Search
+Route::get('/search/entities', 'Search\MiscController@entities')->name('entities.find');
+
 Route::get('/search/calendars', 'Search\MiscController@calendars')->name('calendars.find');
 Route::get('/search/characters', 'Search\MiscController@characters')->name('characters.find');
 Route::get('/search/campaigns', 'Search\MiscController@campaigns')->name('campaigns.find');
@@ -380,6 +382,8 @@ Route::get('/dashboard/widgets/{campaignDashboardWidget}/render', [\App\Http\Con
 // Move
 Route::get('/entities/{entity}/move', 'Entity\MoveController@index')->name('entities.move');
 Route::post('/entities/{entity}/move', 'Entity\MoveController@move')->name('entities.move');
+Route::get('/entities/{entity}/entity_notes/{entity_note}/move', 'Entity\PostMoveController@index')->name('entity_notes.move');
+Route::post('/entities/{entity}/entity_notes/{entity_note}/move', 'Entity\PostMoveController@move')->name('entity_notes.move');
 
 // Transform
 Route::get('/entities/{entity}/transform', 'Entity\TransformController@index')->name('entities.transform');

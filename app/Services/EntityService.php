@@ -690,4 +690,20 @@ class EntityService
         }
         return $model;
     }
+
+    /**
+     * Move an entity note to another entity
+     *
+     * @param EntityNote $entity
+     * @param array $request
+     * @return EntityNote
+     */
+    public function moveEntityNote(EntityNote $entity_note, array $request): EntityNote
+    {
+        return $this->moveCampaign(
+            $entity_note,
+            $request['campaign'],
+            Arr::get($request, 'copy', false)
+        );
+    }
 }

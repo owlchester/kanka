@@ -51,4 +51,13 @@ return [
         'collapsed' => 'Collapsed',
         'expanded'  => 'Expanded',
     ],
+    'move'          => [
+        'move'                  => 'Move',
+        'description'           => 'Select an entity you want to move or make a copy of this post in.',
+        'description_bulk_copy' => 'Select an entity you want to copy the selected posts to.',
+        'title'                 => 'Move or copy a post to another entity',
+        'entity'                => 'Target entity',
+        'copy'                  => 'Create a copy on the target entity',
+        'select_one'            => 'Select an entity'
+    ],
 ];

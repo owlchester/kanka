@@ -45,6 +45,13 @@
                                 <i class="fa-solid fa-link"></i> {{ __('entities/notes.copy_mention.copy_with_name') }}
                             </a>
                         </li>
+                        @if(auth()->user()->isAdmin())
+                        <li>
+                            <a href="{{ route('entity_notes.move', ['entity' => $entity, 'entity_note' => $note, 'from' => 'main']) }}" title="{{ __('crud.edit') }}">
+                                <i class="fa-solid fa-edit"></i> {{ __('entities/notes.move.move') }}
+                            </a>
+                        </li>
+                        @endif
                         <li class="divider"></li>
                         <li>
                             <a href="{{ route('entities.story.reorder', ['entity' => $entity]) }}" title="{{ __('entities/story.reorder.icon_tooltip') }}">

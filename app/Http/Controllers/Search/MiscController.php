@@ -352,4 +352,15 @@ class MiscController extends Controller
 
         return Response::json($formatted);
     }
+
+    /**
+     * @param Request $request
+     * @return mixed
+     */
+    public function entities(Request $request)
+    {
+        $term = trim($request->q);
+        $exclude = $request->has('exclude') ? [$request->get('exclude')] : [];
+        return $this->buildSearchResults($term, \App\Models\Entity::class, $exclude);
+    }
 }
