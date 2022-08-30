@@ -17,6 +17,7 @@ return [
         'race'          => 'Parent Race',
         'races'         => 'Sub Races',
         'type'          => 'Type',
+        'locations'     => 'Locations',
     ],
     'helpers'       => [
         'nested_without'    => 'Displaying all races that don\'t have a parent race. Click on a row to see the children races.',

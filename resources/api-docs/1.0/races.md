@@ -45,7 +45,12 @@ The list of returned races can be filtered. The available filters are available 
             "updated_at":  "2019-08-29T13:48:54.000000Z",
             "updated_by": 1,
             "race_id": 3,
-            "type": null
+            "type": null,
+            "locations": [
+                67,
+                66,
+                65
+            ]
         }
     ]
 }
@@ -79,7 +84,12 @@ To get the details of a single race, use the following endpoint.
         "updated_at":  "2019-08-29T13:48:54.000000Z",
         "updated_by": 1,
         "race_id": 3,
-        "type": "Humanoid"
+        "type": "Humanoid",
+        "locations": [
+            67,
+            66,
+            65
+        ]
     }
 
 }

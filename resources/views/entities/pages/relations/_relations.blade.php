@@ -38,7 +38,6 @@
     </div>
 </div>
 
-
 @includeWhen(!$connections->isEmpty(), 'entities.pages.relations._connections')
 
 

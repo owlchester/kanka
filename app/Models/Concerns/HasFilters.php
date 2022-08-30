@@ -9,6 +9,7 @@ use App\Models\Location;
 use App\Models\Family;
 use App\Models\Race;
 use App\Models\Organisation;
+use App\Models\RaceLocation;
 
 /**
  * HasFilters
@@ -121,7 +122,11 @@ trait HasFilters
                 } elseif ($key == 'races') {
                     $this->filterRaces($query, $value);
                 } elseif ($key == 'location_id') {
-                    $this->filterLocations($query, $value, $key);
+                    if ($this instanceof Race) {
+                        $this->filterRaceLocations($query, $value);
+                    } else {
+                        $this->filterLocations($query, $value, $key);
+                    }
                 } elseif ($key == 'tag_id') {
                     $query = $this->joinEntity($query);
                     $query
@@ -435,7 +440,6 @@ trait HasFilters
      */
     protected function filterLocations(Builder $query, string $value = null, $key): void
     {
-
         if ($this->filterOption('children')) {
             $location = Location::find($value);
             if (empty($location)) {
@@ -449,6 +453,36 @@ trait HasFilters
         }
         $this->filterFallback($query, $key);
     }
+
+    /**
+     * Filter characters on a single Location
+     * @param Builder $query
+     * @param string|null $value
+     * @return void
+     */
+    protected function filterRaceLocations(Builder $query, string $value = null): void
+    {
+        $ids = [$value];
+        if ($this->filterOption('exclude')) {
+            $query->whereRaw('(select count(*) from race_location as cr where cr.race_id = ' .
+                $this->getTable() . '.id and cr.location_id = ' . ((int) $value) . ') = 0');
+            return;
+        } elseif ($this->filterOption('children')) {
+            $race = Location::find($value);
+            if (!empty($race)) {
+                $raceIds = $race->descendants->pluck('id')->toArray();
+                array_push($raceIds, $race->id);
+                $ids = $raceIds;
+            }
+        }
+        $query
+        ->select($this->getTable() . '.*')
+        ->leftJoin('race_location as cr', function ($join) {
+            $join->on('cr.race_id', '=', $this->getTable() . '.id');
+        })->whereIn('cr.location_id', $ids)->distinct();
+    }
+
+
     /**
      * Filter characters on a single race
      * @param Builder $query

@@ -10,6 +10,19 @@
         <i class="fa-solid fa-chevron-down"></i>
         {{ __('crud.tabs.profile') }}
     </div>
+    @if (!$model->locations->isEmpty())
+            <div class="element profile-location">
+                <div class="title">{{ __('races.fields.locations') }}</div>
+                @php $existingRaces = []; @endphp
+                @foreach ($model->locations as $location)
+                    @if(!empty($existingLocations[$location->id]))
+                        @continue
+                    @endif
+                    @php $existingLocations[$location->id] = true; @endphp
+                    {!! $location->tooltipedLink() !!}
+                @endforeach
+            </div>
+    @endif
 
     <div class="sidebar-elements collapse in" id="sidebar-profile-elements">
         @include('entities.components.profile._type')
