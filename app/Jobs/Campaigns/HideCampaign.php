@@ -36,6 +36,7 @@ class HideCampaign implements ShouldQueue
      */
     public function handle()
     {
+        $service = app()->make(\App\Services\CampaignService::class);
         $campaign = Campaign::find($this->campaign);
         if (!$campaign) {
             // Campaign wasn't found
@@ -43,7 +44,8 @@ class HideCampaign implements ShouldQueue
         }
 
         Campaign::observe(CampaignObserver::class);
-        $campaign->hideCampaign();
+
+        $service->hide($campaign);
 
         Log::info('Campaign #' . $this->campaign . ' hidden (job)');
     }
