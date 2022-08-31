@@ -136,17 +136,29 @@ class CampaignService
     public function hide(Campaign $campaign)
     {
         // Notify admins
-        $this->notify(
-            $campaign,
-            'leave',
-            'user',
-            'yellow',
-            [
-                'user' => 'test',
-                'campaign' => $campaign->name,
-                'link' => $campaign->getMiddlewareLink()
-            ]
-        );
+        if ($campaign->isHidden()) {
+            $this->notify(
+                $campaign,
+                'hidden',
+                'eye-slash',
+                'yellow',
+                [
+                    'campaign' => $campaign->name,
+                    'link' => $campaign->getMiddlewareLink()
+                ]
+            );
+        } elseif (!$campaign->isHidden()) {
+            $this->notify(
+                $campaign,
+                'shown',
+                'eye',
+                'green',
+                [
+                    'campaign' => $campaign->name,
+                    'link' => $campaign->getMiddlewareLink()
+                ]
+            );
+        }
     }
 
     /**

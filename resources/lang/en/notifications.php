@@ -22,6 +22,8 @@ return [
         'export_error'          => 'An error occurred while exporting your campaign entities. Please contact us if this problem persists.',
         'join'                  => ':user joined the campaign :campaign.',
         'leave'                 => ':user left the campaign :campaign.',
+        'hidden'                => 'The campaign :campaign has been hidden from the public.',
+        'shown'                 => 'The campaign :campaign is now shown to the public.',
         'plugin'                => [
             'deleted'   => 'The plugin :plugin was deleted from the marketplace and removed from your campaign :campaign.',
         ],
