@@ -67,6 +67,7 @@ trait CalendarDateTrait
             }
             $monthCount++;
         }
+        return $reminder->year . '-' . $reminder->month . '-' . $reminder->day;
     }
 
     /**
