@@ -328,8 +328,6 @@ Route::post('/timelines/{timeline}/timeline-era/{timeline_era}/reorder', 'Timeli
 Route::get('/search', 'SearchController@search')->name('search');
 
 // Misc Model Search
-Route::get('/search/entities', 'Search\MiscController@entities')->name('entities.find');
-
 Route::get('/search/calendars', 'Search\MiscController@calendars')->name('calendars.find');
 Route::get('/search/characters', 'Search\MiscController@characters')->name('characters.find');
 Route::get('/search/campaigns', 'Search\MiscController@campaigns')->name('campaigns.find');
@@ -361,7 +359,7 @@ Route::get('/search/attributes/{entity}', 'Search\AttributeSearchController@inde
 
 // Global Entity Search
 Route::get('/search/reminder-entities', 'Search\LiveController@reminderEntities')->name('search.entities-with-reminders');
-Route::get('/search/relation-entities', 'Search\LiveController@relationEntities')->name('search.entities-with-relations');
+Route::get('/search/relation-entities', 'Search\LiveController@relationEntities')->name('search.entities-with-relations'); //use this one.
 Route::get('/search/tag-children', 'Search\LiveController@tagChildren')->name('search.tag-children');
 Route::get('/search/organisation-member', 'Search\LiveController@organisationMembers')->name('search.organisation-member');
 Route::get('/search/months', 'Search\CalendarController@months')->name('search.calendar-months');

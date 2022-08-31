@@ -1,5 +1,5 @@
 @extends('layouts.app', [
-    'title' => __('entities/move.title', ['name' => $entity_note->name]),
+    'title' => __('entities/move.title', ['name' => $entityNote->name]),
     'breadcrumbs' => [
         ['url' => route($entity->pluralType() . '.index'), 'label' => __($entity->pluralType() . '.index.title')],
         ['url' => route($entity->pluralType() . '.show', [$entity->entity_id]), 'label' => $entity->name],
@@ -9,7 +9,7 @@
 
 @section('content')
     @include('partials.errors')
-    {!! Form::open(['route' => ['entity_notes.move', $entity->id, $entity_note->id], 'method' => 'POST']) !!}
+    {!! Form::open(['route' => ['entity_notes.move', $entity->id, $entityNote->id], 'method' => 'POST']) !!}
 
     {{ csrf_field() }}
     <div class="row">
@@ -22,7 +22,7 @@
 
                     <div class="form-group">
                         <label>{{ __('entities/notes.move.entity') }}</label>
-                        <select name="entity" class="form-control select2" data-tags="true" data-url="{{ route('entities.find') }}" data-allow-clear="false" data-allow-new="false" data-placeholder="{{ __('entities/notes.move.description') }}">
+                        <select name="entity" class="form-control select2" data-tags="true" data-url="{{ route('search.entities-with-relations') }}" data-allow-clear="false" data-allow-new="false" data-placeholder="{{ __('entities/notes.move.description') }}">
                         </select>
                     </div>
 

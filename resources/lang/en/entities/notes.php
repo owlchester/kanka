@@ -58,6 +58,7 @@ return [
         'title'                 => 'Move or copy a post to another entity',
         'entity'                => 'Target entity',
         'copy'                  => 'Create a copy on the target entity',
-        'select_one'            => 'Select an entity'
+        'select_one'            => 'Select an entity',
+        'success'               => 'Post \':name\' moved to :entity succesfully.'
     ],
 ];
