@@ -12,7 +12,7 @@ class ProfileController extends Controller
      */
     public function show(User $user)
     {
-        $campaigns = $user->campaigns()->public()->front()->paginate();
+        $campaigns = $user->campaigns()->public()->where('is_hidden', 0)->front()->paginate();
 
         return view('users.profile')
             ->with('user', $user)

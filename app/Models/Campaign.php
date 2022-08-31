@@ -99,7 +99,6 @@ class Campaign extends MiscModel
         'ui_settings',
         'settings',
         'is_open',
-        'is_pinned',
     ];
 
     protected $casts = [

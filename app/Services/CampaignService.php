@@ -147,7 +147,7 @@ class CampaignService
                     'link' => $campaign->getMiddlewareLink()
                 ]
             );
-        } elseif (!$campaign->isHidden()) {
+        } else {
             $this->notify(
                 $campaign,
                 'shown',
