@@ -52,13 +52,14 @@ return [
         'expanded'  => 'Expanded',
     ],
     'move'          => [
-        'move'                  => 'Move',
+        'move'                  => 'Move or copy to another entity',
         'description'           => 'Select an entity you want to move or make a copy of this post in.',
-        'description_bulk_copy' => 'Select an entity you want to copy the selected posts to.',
         'title'                 => 'Move or copy a post to another entity',
         'entity'                => 'Target entity',
         'copy'                  => 'Create a copy on the target entity',
         'select_one'            => 'Select an entity',
-        'success'               => 'Post \':name\' moved to :entity succesfully.'
+        'move_success'          => 'Post \':name\' moved to :entity succesfully.',
+        'copy_success'          => 'Post \':name\' copied to :entity succesfully.',
+
     ],
 ];

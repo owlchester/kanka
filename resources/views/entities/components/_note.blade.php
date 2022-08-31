@@ -48,7 +48,7 @@
                         @if(auth()->user()->isAdmin())
                         <li>
                             <a href="{{ route('entity_notes.move', ['entity' => $entity, 'entity_note' => $note, 'from' => 'main']) }}" title="{{ __('crud.edit') }}">
-                                <i class="fa-solid fa-edit"></i> {{ __('entities/notes.move.move') }}
+                                <i class="fa-solid fa-arrows-left-right"></i> {{ __('entities/notes.move.move') }}
                             </a>
                         </li>
                         @endif

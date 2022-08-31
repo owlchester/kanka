@@ -19,22 +19,15 @@
                     <h4 class="panel-title">{{ __('entities/notes.move.title') }}</h4>
                 </div>
                 <div class="panel-body">
-
                     <div class="form-group">
                         <label>{{ __('entities/notes.move.entity') }}</label>
-                        <select name="entity" class="form-control select2" data-tags="true" data-url="{{ route('search.entities-with-relations') }}" data-allow-clear="false" data-allow-new="false" data-placeholder="{{ __('entities/notes.move.description') }}">
-                        </select>
+                        <select name="entity" class="form-control select2" data-tags="true" data-url="{{ route('search.entities-with-relations') }}" data-allow-clear="false" data-allow-new="false" data-placeholder="{{ __('entities/notes.move.description') }}"></select>
                     </div>
-
-                    @can('update', $entity->child)
-                        <div class="form-group form-check">
-                            <label>{!! Form::checkbox('copy', 1, true) !!}
-                                {{ __('entities/notes.move.copy') }}
-                            </label>
-                        </div>
-                    @else
-                        {!! Form::hidden('copy', 1) !!}
-                    @endcan
+                    <div class="form-group form-check">
+                        <label>{!! Form::checkbox('copy', 1, true) !!}
+                            {{ __('entities/notes.move.copy') }}
+                        </label>
+                    </div>
                 </div>
                 <div class="panel-footer text-right">
                     <button class="btn btn-success">@can('update', $entity->child) {{ __('entities/move.actions.move') }} @else  {{ __('entities/move.actions.copy') }} @endcan</button>

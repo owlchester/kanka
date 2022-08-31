@@ -7,10 +7,6 @@ use App\Models\EntityNote;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Storage;
-use App\Exceptions\TranslatableException;
-use App\Facades\CampaignLocalization;
-use Illuminate\Support\Str;
 
 class EntityNoteService
 {

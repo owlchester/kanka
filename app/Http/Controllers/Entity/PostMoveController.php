@@ -10,16 +10,10 @@ use App\Models\Entity;
 use App\Facades\CampaignLocalization;
 use App\Models\EntityNote;
 use App\Services\EntityNoteService;
-use App\Traits\GuestAuthTrait;
 use Illuminate\Support\Facades\Auth;
 
 class PostMoveController extends Controller
 {
-    /**
-     * Guest Auth Trait
-     */
-    use GuestAuthTrait;
-
     /** @var EntityNoteService */
     protected $service;
 
@@ -42,7 +36,7 @@ class PostMoveController extends Controller
         $this->authorize('view', $entity->child);
         $campaign = CampaignLocalization::getCampaign()->entities()->get();
 
-        return view('entities.pages.move.entity_notes.index', compact(
+        return view('entities.pages.entity-notes.move.index', compact(
             'entity',
             'entityNote',
             'campaign',
@@ -59,12 +53,20 @@ class PostMoveController extends Controller
     {
 
         $newEntity = Entity::where(['id' => $request['entity']])->first();
+        $this->authorize('update', $newEntity->child);
         try {
             $newNote = $this->service
                 ->moveEntityNote($entityNote, $request->only('entity', 'copy'));
+            if (isset($request['copy'])) {
+                return redirect()
+                ->route($newEntity->pluralType() . '.show', [$newEntity->child->id, '#post-' . $newNote->id])
+                ->with('success', __('entities/notes.move.copy_success', ['name' => $newNote->name,
+                'entity' => $newEntity->name
+                ]));
+            }
             return redirect()
                 ->route($newEntity->pluralType() . '.show', [$newEntity->child->id, '#post-' . $newNote->id])
-                ->with('success', __('entities/notes.move.success', ['name' => $newNote->name,
+                ->with('success', __('entities/notes.move.move_success', ['name' => $newNote->name,
                 'entity' => $newEntity->name
             ]));
         } catch (TranslatableException $ex) {
