@@ -28,6 +28,13 @@ class EntityNoteService
             $newNote->savedObserver = false;
             $newNote->save();
 
+            // Also replicate permissions
+            foreach ($entityNote->permissions as $perm) {
+                $newPerm = $perm->replicate(['entity_note_id']);
+                $newPerm->entity_note_id = $newNote->id;
+                $newPerm->save();
+            }
+
             return $newNote;
         } else {
             $entityNote->entity_id = Arr::get($request, 'entity');

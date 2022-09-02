@@ -57,16 +57,13 @@ class PostMoveController extends Controller
         try {
             $newNote = $this->service
                 ->moveEntityNote($entityNote, $request->only('entity', 'copy'));
+            $success = 'move_success';
             if (isset($request['copy'])) {
-                return redirect()
-                ->route($newEntity->pluralType() . '.show', [$newEntity->child->id, '#post-' . $newNote->id])
-                ->with('success', __('entities/notes.move.copy_success', ['name' => $newNote->name,
-                'entity' => $newEntity->name
-                ]));
+                $success = 'copy_success';
             }
             return redirect()
                 ->route($newEntity->pluralType() . '.show', [$newEntity->child->id, '#post-' . $newNote->id])
-                ->with('success', __('entities/notes.move.move_success', ['name' => $newNote->name,
+                ->with('success', __('entities/notes.move.' . $success, ['name' => $newNote->name,
                 'entity' => $newEntity->name
             ]));
         } catch (TranslatableException $ex) {
