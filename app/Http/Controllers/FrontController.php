@@ -164,7 +164,7 @@ class FrontController extends Controller
      */
     public function campaigns(Request $request)
     {
-        $featured = Campaign::public()->where('is_hidden', 0)->front()->featured()->get();
+        $featured = Campaign::public()->front()->featured()->get();
         $campaigns = Campaign::public()
             ->where('is_hidden', 0)
             ->front($request->get('sort_field_name'))

@@ -99,6 +99,7 @@ trait CampaignScopes
         }
         $defaultsort = $sort == 1 ? 'follower' : 'visible_entity_count';
         $query
+            ->where('is_hidden', 0)
             ->orderBy($defaultsort, 'desc')
             ->orderBy('name');
 
