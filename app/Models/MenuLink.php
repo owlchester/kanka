@@ -59,6 +59,8 @@ class MenuLink extends MiscModel
         'random_entity_type',
         'icon',
         'dashboard_id',
+        'css',
+        'parent',
         'options',
     ];
 
@@ -358,6 +360,22 @@ class MenuLink extends MiscModel
     public function isValidDashboard(): bool
     {
         return Dashboard::getDashboard($this->dashboard_id) !== null;
+    }
+
+    /**
+     * @param Campaign $campaign
+     * @return string
+     */
+    public function customClass(Campaign $campaign): string
+    {
+        if (!$campaign->boosted()) {
+            return '';
+        }
+        if (empty($this->css)) {
+            return '';
+        }
+
+        return (string) $this->css;
     }
 
     /**

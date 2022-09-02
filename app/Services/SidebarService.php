@@ -658,4 +658,20 @@ class SidebarService
     {
         return 'campaign_' . $this->campaign->id . '_sidebar';
     }
+    /**
+     * @return array
+     */
+    public function elements(): array
+    {
+        $labels = [];
+        $placeholder[] = __('menu_links.placeholders.name');
+        $keys = array_keys($this->elements);
+        foreach ($this->elements as $element) {
+            $labels[] = __($element['label']);
+        }
+        $selectElements = array_combine($keys, $labels);
+        unset($selectElements['menu_links']);
+
+        return $placeholder + $selectElements;
+    }
 }

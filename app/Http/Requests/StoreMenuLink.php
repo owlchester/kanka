@@ -35,6 +35,8 @@ class StoreMenuLink extends FormRequest
             'dashboard_id' => 'required_without_all:entity_id,type,random_entity_type',
             'icon' => ['nullable', new FontAwesomeIcon],
             'tab' => 'nullable',
+            'parent' => 'nullable|string|max:25',
+            'css' => 'nullable|string|max:191',
             'filters' => 'nullable|string|max:191',
             'menu' => 'nullable|string|max:45',
             'position' => 'nullable|integer|min:1|max:99',

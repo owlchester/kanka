@@ -45,7 +45,6 @@ $defaultIndex = ($currentCampaign && $currentCampaign->defaultToNested()) || aut
                         @includeWhen($currentCampaign->enabled('menu_links'), 'layouts.sidebars.quick-links', $element)
                         @continue
                     @endif
-
                     <li class="{{ (!isset($element['route']) || $element['route'] !== false ? $sidebar->active($name) : null) }} section-{{ $name }}">
                         @if ($element['route'] !== false)
                             @php
@@ -64,7 +63,11 @@ $defaultIndex = ($currentCampaign && $currentCampaign->defaultToNested()) || aut
                                 {!! $element['custom_label'] ?: $element['label'] !!}
                             </span>
                         @endif
-
+                        @if($currentCampaign->boosted())
+                            <ul class="sidebar-submenu">
+                                @include('layouts.sidebars._quick-links')
+                            </ul>
+                        @endif
                         @if (empty($element['children']))
                             @continue
                         @endif
@@ -82,6 +85,9 @@ $defaultIndex = ($currentCampaign && $currentCampaign->defaultToNested()) || aut
                                     {!! $child['custom_label'] ?: $child['label'] !!}
                                 </a>
                             </li>
+                            @if($currentCampaign->boosted())
+                                @include('layouts.sidebars._quick-links')
+                            @endif
                         @endforeach
                         </ul>
                     </li>

@@ -2,8 +2,10 @@
  * @var \App\Models\MenuLink $model
  * @var \App\Services\EntityService $entityService
  * @var \App\Services\CampaignService $campaign
+ * @var \App\Services\SidebarService $sidebar
  */
 
+$campaign = CampaignLocalization::getCampaign(false);
 $tab = empty($model) || old('entity_id') || $model->entity_id ? 'entity' : 'type';
 
 $isEntity = $isDashboard = $isRandom = $isList = false;
@@ -19,10 +21,30 @@ if (isset($model)) {
     }
 }
 ?>
-
+@inject('sidebar', 'App\Services\SidebarService')
 <div class="row">
     <div class="col-md-6">
         @include('cruds.fields.name', ['trans' => 'menu_links'])
+        @if($campaignService->campaign()->boosted())
+            <div class="form-group">
+                <label class="control-label">{{ __('entities/links.fields.parent') }}</label>
+                {{ Form::select('parent', $sidebar->campaign($campaign)->elements(),empty($model) ? $sidebar->campaign($campaign)->elements()[0] : $model->parent, ['class' => 'form-control', 'id' => 'visibility']) }}
+
+                <p class="help-block">
+                    {!! __('entities/links.helpers.parent') !!}
+                </p>
+            </div>
+            <div class="form-group">
+                <label for="config[class]">
+                    {{ __('dashboard.widgets.fields.class') }}
+                    <i class="fa-solid fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" title="{{ __('dashboard.widgets.helpers.class') }}"></i>
+                </label>
+                {!! Form::text('css', null, ['class' => 'form-control', 'id' => 'config[class]']) !!}
+                <p class="help-block visible-xs visible-sm">
+                    {{ __('dashboard.widgets.helpers.class') }}
+                </p>
+            </div>
+        @endif        
     </div>
     <div class="col-md-6">
 

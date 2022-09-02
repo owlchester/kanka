@@ -21,6 +21,7 @@ return [
         'selector'          => 'Quick Link Configuration',
         'tab'               => 'Tab',
         'type'              => 'Entity List',
+        'parent'            => 'After',
     ],
     'helpers'           => [
         'dashboard'         => 'Have the quick link target one of the campaign\'s custom dashboards.',
