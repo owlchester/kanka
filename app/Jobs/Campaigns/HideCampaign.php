@@ -10,14 +10,13 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Storage;
 
 class HideCampaign implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     /** @var int */
-    protected $campaign;
+    protected int $campaign;
 
     /**queue
      * Create a new job instance.
@@ -43,9 +42,9 @@ class HideCampaign implements ShouldQueue
             Log::warning('Hide Campaign: unknown #' . $this->campaign . '.');
         }
 
-        Campaign::observe(CampaignObserver::class);
+        //Campaign::observe(CampaignObserver::class);
 
-        $service->hide($campaign);
+        $service->hidden($campaign);
 
         Log::info('Campaign #' . $this->campaign . ' hidden (job)');
     }

@@ -129,36 +129,31 @@ class CampaignService
     }
 
  /**
-     * Hide a campaign
+     * Notify the campaign admins that the campaign was forcibly hidden/made visible
      * @param Campaign $campaign
      * @throws Exception
      */
-    public function hide(Campaign $campaign)
+    public function hidden(Campaign $campaign)
     {
-        // Notify admins
+        $colour = 'green';
+        $icon = 'eye';
+        $key = 'shown';
         if ($campaign->isHidden()) {
-            $this->notify(
-                $campaign,
-                'hidden',
-                'eye-slash',
-                'yellow',
-                [
-                    'campaign' => $campaign->name,
-                    'link' => $campaign->getMiddlewareLink()
-                ]
-            );
-        } else {
-            $this->notify(
-                $campaign,
-                'shown',
-                'eye',
-                'green',
-                [
-                    'campaign' => $campaign->name,
-                    'link' => $campaign->getMiddlewareLink()
-                ]
-            );
+            $colour = 'yellow';
+            $icon = 'eye-slash';
+            $key = 'hidden';
         }
+
+        $this->notify(
+            $campaign,
+            $key,
+            $icon,
+            $colour,
+            [
+                'campaign' => $campaign->name,
+                'link' => $campaign->getMiddlewareLink()
+            ]
+        );
     }
 
     /**

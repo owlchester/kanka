@@ -223,16 +223,6 @@ class CampaignController extends Controller
     }
 
     /**
-     * Hide a campaign
-     * @param Campaign $campaign
-     * @throws Exception
-     */
-    public function hide(Campaign $campaign)
-    {
-        //For some reason, if deleted notifications arent sent.
-    }
-
-    /**
      * Get the campaign css
      * @return Response
      */
