@@ -50,6 +50,7 @@ use Illuminate\Support\Facades\Auth;
  * @property int $created_by
  * @property int $updated_by
  * @property int $follower
+ * @property bool $is_hidden
  *
  * UI virtual Settings
  * @property bool $tooltip_family
@@ -311,6 +312,15 @@ class Campaign extends MiscModel
                     $this->featured_until->isAfter(Carbon::today())
             )
         );
+    }
+
+    /**
+     * Determine if a campaign is hidden
+     * @return bool
+     */
+    public function isHidden(): bool
+    {
+        return $this->is_hidden;
     }
 
     /**
