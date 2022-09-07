@@ -92,46 +92,50 @@
                 </h3>
             </div>
             <div class="box-body">
-                <!-- google2fa -->
-                <p>{{ __('settings.account.2fa.helper') }}</p>
-                @if(!$user->PasswordSecurity && auth()->user()->subscribed('kanka') || auth()->user()->subscription('kanka')->cancelled())
-                    {{ __('settings.account.2fa.enable_instructions') }}
-                    </div>
-                <form method="POST" action="{{ route('generate2faSecretCode') }}">
-                    @csrf
-                    <div class="box-footer text-right">
-                        <button type="submit" class="btn btn-primary" name="button">{{ __('settings.account.2fa.generate_qr') }}</button>
-                    </div>
-                </form>
-
-                @elseif(!$user->PasswordSecurity->google2fa_enable && auth()->user()->subscribed('kanka') || auth()->user()->subscription('kanka')->cancelled())
-                    <p>{{ __('settings.account.2fa.activation_helper') }}</p>
-
-                    <p><label>{{ __('settings.account.2fa.activation_instructions') }}</label></p>
-                    
-                    {!! $user->PasswordSecurity->getGoogleQR() !!}
-
-                    <p><label>{{ __('settings.account.2fa.activation_instructions_2') }}</label></p>
-
-                    <form method="POST" action="{{ route('enable2fa') }}">
+                @if (auth()->user()->isSocialLogin())
+                    <p>{{ __('settings.account.2fa.social') }}</p>
+                @else
+                    <!-- google2fa -->
+                    <p>{{ __('settings.account.2fa.helper') }}</p>
+                    @if(!$user->PasswordSecurity && auth()->user()->subscribed('kanka') || auth()->user()->subscription('kanka')->cancelled())
+                        {{ __('settings.account.2fa.enable_instructions') }}
+                        </div>
+                    <form method="POST" action="{{ route('generate2faSecretCode') }}">
                         @csrf
-
-                        <div class="form-row">
-                            <input type="password" class="form-control" name="verifyCode" id="verifyCode" required>
-                        </div>
-                        </div>
                         <div class="box-footer text-right">
-                            <button type="submit" class="btn btn-primary" name="button">{{ __('settings.account.2fa.enable') }}</button>
+                            <button type="submit" class="btn btn-primary" name="button">{{ __('settings.account.2fa.generate_qr') }}</button>
                         </div>
                     </form>
 
-                @elseif($user->PasswordSecurity->google2fa_enable)
-                    <p><b>{{ __('settings.account.2fa.enabled') }}</b></p>
-                    @csrf
+                    @elseif(!$user->PasswordSecurity->google2fa_enable && auth()->user()->subscribed('kanka') || auth()->user()->subscription('kanka')->cancelled())
+                        <p>{{ __('settings.account.2fa.activation_helper') }}</p>
 
-                    <button class="btn btn-danger pull-right" data-toggle="modal" data-target="#deactivate-2fa">
-                        <i class="fa-solid fa-exclamation-triangle" aria-hidden="true"></i> {{ __('settings.account.2fa.disable') }}
-                    </button>
+                        <p><label>{{ __('settings.account.2fa.activation_instructions') }}</label></p>
+                        
+                        {!! $user->PasswordSecurity->getGoogleQR() !!}
+
+                        <p><label>{{ __('settings.account.2fa.activation_instructions_2') }}</label></p>
+
+                        <form method="POST" action="{{ route('enable2fa') }}">
+                            @csrf
+
+                            <div class="form-row">
+                                <input type="password" class="form-control" name="verifyCode" id="verifyCode" required>
+                            </div>
+                            </div>
+                            <div class="box-footer text-right">
+                                <button type="submit" class="btn btn-primary" name="button">{{ __('settings.account.2fa.enable') }}</button>
+                            </div>
+                        </form>
+
+                    @elseif($user->PasswordSecurity->google2fa_enable)
+                        <p><b>{{ __('settings.account.2fa.enabled') }}</b></p>
+                        @csrf
+
+                        <button class="btn btn-danger pull-right" data-toggle="modal" data-target="#deactivate-2fa">
+                            <i class="fa-solid fa-exclamation-triangle" aria-hidden="true"></i> {{ __('settings.account.2fa.disable') }}
+                        </button>
+                    @endif
                 @endif
             </div>
         </div>

@@ -21,6 +21,7 @@ return [
             'disable_helper'            => 'If you want to disable Two Factor Authentication click the button below, keep in mind that this will leave your account vulnerable to anyone that knows your login information.',
             'disable'                   => 'Disable 2FA',
             'disable_confirm'           => 'Disable 2FA Now',
+            'social'                    => 'Kanka two factor authentication is only enabled for users that login using their e-mail and password.'
         ],
         'email_success'     => 'Email updated.',
         'password'          => 'Change password',
