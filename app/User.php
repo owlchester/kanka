@@ -556,4 +556,9 @@ class User extends \Illuminate\Foundation\Auth\User
     {
         return $this->hasRole('wordsmith');
     }
+      // A User hasOne Google2FA
+    public function PasswordSecurity()
+    {
+        return $this->hasOne('App\Models\PasswordSecurity');
+    }
 }

@@ -53,6 +53,7 @@ class RouteServiceProvider extends ServiceProvider
         $this->mapPartnerRoutes();
         $this->mapAuthRoutes();
         $this->mapLocalessRoutes();
+        $this->mapGoogle2FARoutes();
     }
 
     /**
@@ -67,6 +68,19 @@ class RouteServiceProvider extends ServiceProvider
         Route::middleware('web')
             ->namespace($this->namespace)
             ->group(base_path('routes/web.php'));
+    }
+    /**
+     * Define the general "Google2FA" routes for the application.
+     *
+     * These routes all receive session state, CSRF protection, etc.
+     *
+     * @return void
+     */
+    protected function mapGoogle2FARoutes()
+    {
+        Route::middleware(['web', 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath', 'localizeDatetime','auth', '2fa'])
+            ->namespace($this->namespace)
+            ->group(base_path('routes/google2fa.php'));
     }
 
     /**

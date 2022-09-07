@@ -31,6 +31,7 @@ return [
         'fields'                => [
             'email'     => 'Email',
             'password'  => 'Password',
+            '2fa'       => 'Authenticator app OTP',
         ],
         'login_with_facebook'   => 'Login with Facebook',
         'login_with_google'     => 'Login with Google',
@@ -41,6 +42,8 @@ return [
         'remember_me'           => 'Remember me',
         'submit'                => 'Login',
         'title'                 => 'Login',
+        'cancel'                => 'Cancel',
+        '2fa'                   => 'Two Factor Authentication'
     ],
     'register'  => [
         'already_account'           => 'Already have an account?',
