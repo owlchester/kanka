@@ -6,6 +6,8 @@
  */
 $currentCampaign = CampaignLocalization::getCampaign();
 $defaultIndex = ($currentCampaign && $currentCampaign->defaultToNested()) || auth()->check() && auth()->user()->defaultNested ? 'tree' : 'index';
+
+$links = $currentCampaign->menuLinks()->with(['target'])->ordered()->get();
 ?>
 @if (!empty($currentCampaign))
     @php \App\Facades\Dashboard::campaign($currentCampaign); @endphp
@@ -42,7 +44,7 @@ $defaultIndex = ($currentCampaign && $currentCampaign->defaultToNested()) || aut
 
                 @foreach ($sidebar->campaign($currentCampaign)->layout() as $name => $element)
                     @if ($name === 'menu_links')
-                        @includeWhen($currentCampaign->enabled('menu_links'), 'layouts.sidebars.quick-links', $element)
+                        @includeWhen($currentCampaign->enabled('menu_links'), 'layouts.sidebars.quick-links', ['links' => $links, 'element' => $element])
                         @continue
                     @endif
                     <li class="{{ (!isset($element['route']) || $element['route'] !== false ? $sidebar->active($name) : null) }} section-{{ $name }}">
@@ -63,9 +65,9 @@ $defaultIndex = ($currentCampaign && $currentCampaign->defaultToNested()) || aut
                                 {!! $element['custom_label'] ?: $element['label'] !!}
                             </span>
                         @endif
-                        @if($currentCampaign->boosted())
+                        @if ($currentCampaign->boosted())
                             <ul class="sidebar-submenu">
-                                @include('layouts.sidebars._quick-links')
+                                @include('layouts.sidebars._quick-links',['links' => $links])
                             </ul>
                         @endif
                         @if (empty($element['children']))
@@ -85,8 +87,8 @@ $defaultIndex = ($currentCampaign && $currentCampaign->defaultToNested()) || aut
                                     {!! $child['custom_label'] ?: $child['label'] !!}
                                 </a>
                             </li>
-                            @if($currentCampaign->boosted())
-                                @include('layouts.sidebars._quick-links')
+                            @if ($currentCampaign->boosted())
+                                @include('layouts.sidebars._quick-links',['links' => $links])
                             @endif
                         @endforeach
                         </ul>

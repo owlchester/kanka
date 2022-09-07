@@ -25,7 +25,7 @@ if (isset($model)) {
 <div class="row">
     <div class="col-md-6">
         @include('cruds.fields.name', ['trans' => 'menu_links'])
-        @if($campaignService->campaign()->boosted())
+        @if ($campaignService->campaign()->boosted())
             <div class="form-group">
                 <label class="control-label">{{ __('entities/links.fields.parent') }}</label>
                 {{ Form::select('parent', $sidebar->campaign($campaign)->elements(),empty($model) ? $sidebar->campaign($campaign)->elements()[0] : $model->parent, ['class' => 'form-control', 'id' => 'visibility']) }}
