@@ -6,6 +6,7 @@
         {{ __('settings.subscription.change.title') }}
     </h4>
 </div>
+
 <div class="modal-body">
     @if (!$cancel)
         <h4>{!! __('settings.subscription.change.text.' . $period, ['tier' => "<strong>$tier</strong>", 'amount' => "<strong>$amount</strong>"]) !!}</h4>
@@ -208,9 +209,11 @@
             </p>
     @else
         {!! Form::open(['route' => ['settings.subscription.subscribe'], 'method' => 'POST', 'id' => 'cancellation-confirm', 'class' => 'subscription-form']) !!}
-
+        @php
+            $endDate = date($user->date_format, $user->upcomingInvoice()->period_end);
+        @endphp
         <p class="help-block">
-            {!! __('settings.subscription.cancel.text')!!}
+            {!! __('settings.subscription.cancel.text', ['date' => $endDate])!!}
         </p>
 
         <div class="form-group mb-5">
@@ -218,18 +221,19 @@
             {!! Form::select('reason', [
     '' => __('crud.select'),
     'financial' => __('settings.subscription.cancel.options.financial'),
+    'not_for' => __('settings.subscription.cancel.options.not_for'),
     'not_using' => __('settings.subscription.cancel.options.not_using'),
     'missing_features' => __('settings.subscription.cancel.options.missing_features'),
     'competitor' => __('settings.subscription.cancel.options.competitor'),
     'custom' => __('settings.subscription.cancel.options.custom')
-], null, ['class' => 'form-control mb-5 select-reveal-field', 'data-change-target' => '#cancel-reason-custom']) !!}
+], null, ['class' => 'form-control mb-5']) !!}
             {!! Form::textarea(
                 'reason_custom',
                 null,
                 [
                     'placeholder' => __('settings.subscription.placeholders.reason'),
                     'class' => 'form-control',
-                    'style' => 'display: none',
+                    'style' => 'display: inline',
                     'rows' => 4,
                     'id' => 'cancel-reason-custom'
                 ]

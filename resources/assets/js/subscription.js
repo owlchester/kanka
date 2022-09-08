@@ -26,18 +26,6 @@ function initStripe() {
     elements = stripe.elements();
 }
 
-function initCancelListener()
-{
-    $('.select-reveal-field').change(function (e) {
-        let target = $(this).data('change-target');
-        if (this.value === 'custom') {
-            $(target).show();
-        } else {
-            $(target).hide();
-        }
-    });
-}
-
 // When the modal is opened and loaded, inject stripe if needed and the form validator
 function initConfirmListener()
 {

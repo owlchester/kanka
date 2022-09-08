@@ -41,7 +41,7 @@ class CancelledUserSubscriptionMail extends Mailable
     public function build()
     {
         return $this
-            ->from(['address' => 'hello@kanka.io', 'name' => 'Kanka Team'])
+            ->from(['address' => 'no-reply@kanka.io', 'name' => 'Kanka Team'])
             ->subject('Subscription: Cancelled ' . $this->user->patreon_pledge)
             ->view('emails.subscriptions.cancelled.user-html');
     }
