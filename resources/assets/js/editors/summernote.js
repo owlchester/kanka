@@ -21,13 +21,15 @@ window.initSummernote = function() {
             ['style', ['style']],
             ['font', ['bold', 'italic', 'underline', 'strikethrough', 'clear']],
             ['color', ['color']],
+            ['aroba', ['aroba']],
             ['para', ['ul', 'ol', 'kanka-indent', 'kanka-outdent', 'paragraph']],
             ['table', ['table', 'spoiler', 'tableofcontent']],
             ['insert', ['link', 'picture', 'video', 'embed', 'hr']],
             //['dir', ['ltr', 'rtl']],
             ['view', ['fullscreen', 'codeview', 'help']],
-            summernoteConfig.data('gallery') !== '' ? ['extensions', ['gallery']] : null,
+            summernoteConfig.data('gallery') !== '' ? ['extensions', ['summernoteGallery']] : null,
         ],
+
         popover: {
             table: [
                 ['add', ['addRowDown', 'addRowUp', 'addColLeft', 'addColRight']],
@@ -49,7 +51,7 @@ window.initSummernote = function() {
                 console.log('blury');
             },*/
         },
-        gallery: {
+        summernoteGallery: {
             source: {
                 // data: [],
                 url: summernoteConfig.data('gallery'),
@@ -58,7 +60,7 @@ window.initSummernote = function() {
             },
             modal: {
                 loadOnScroll: true,
-                maxHeight: 300,
+                maxHeight: 350,
                 title: summernoteConfig.data('gallery-title'),
                 close_text: summernoteConfig.data('gallery-close'),
                 ok_text: summernoteConfig.data('gallery-add'),
