@@ -233,7 +233,6 @@
                 [
                     'placeholder' => __('settings.subscription.placeholders.reason'),
                     'class' => 'form-control',
-                    'style' => 'display: inline',
                     'rows' => 4,
                     'id' => 'cancel-reason-custom'
                 ]

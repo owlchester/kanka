@@ -13,7 +13,6 @@ $(document).ready(function() {
     initPeriodToggle();
     $('#subscribe-confirm').on('shown.bs.modal', () => {
         initConfirmListener();
-        initCancelListener();
     });
 });
 
