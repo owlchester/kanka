@@ -66,9 +66,7 @@ $links = $currentCampaign->menuLinks()->with(['target'])->ordered()->get();
                             </span>
                         @endif
                         @if ($currentCampaign->boosted())
-                            <ul class="sidebar-submenu">
-                                @include('layouts.sidebars._quick-links',['links' => $links])
-                            </ul>
+                            @include('layouts.sidebars._quick-links',['links' => $links])
                         @endif
                         @if (empty($element['children']))
                             @continue
@@ -87,9 +85,7 @@ $links = $currentCampaign->menuLinks()->with(['target'])->ordered()->get();
                                     {!! $child['custom_label'] ?: $child['label'] !!}
                                 </a>
                             </li>
-                            @if ($currentCampaign->boosted())
-                                @include('layouts.sidebars._quick-links',['links' => $links])
-                            @endif
+                            @includeWhen($currentCampaign->boosted(), 'layouts.sidebars._quick-links',['links' => $links])
                         @endforeach
                         </ul>
                     </li>
