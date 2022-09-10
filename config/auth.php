@@ -109,10 +109,4 @@ return [
      * If set to true, show a dropdown of users for the login instead of a text field
      */
     'user_list' => env('APP_LOGIN_LIST', false),
-
-
-    /**
-     * If set to false, two factor authentication is disabled.
-     */
-    '2fa_enabled' => env('APP_2FA', false),
 ];

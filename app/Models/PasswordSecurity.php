@@ -15,7 +15,6 @@ use BaconQrCode\Writer;
 
 class PasswordSecurity extends Model
 {
-    //Table Name
     protected $table = 'password_securities';
 
     /**
@@ -27,12 +26,17 @@ class PasswordSecurity extends Model
         'user_id', 'google2fa_enable', 'google2fa_secret',
     ];
 
-    // A Google2FA belongsTo a user
+    /**
+    * A Google2FA belongsTo a user
+    */
     public function user()
     {
         return $this->belongsTo('App\User');
     }
 
+    /**
+    * Generates the QR code for 2FA
+    */
     public function getGoogleQR()
     {
         if (Auth::guest()) {

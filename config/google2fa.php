@@ -5,7 +5,7 @@ return [
     /*
      * Enable / disable Google2FA.
      */
-    'enabled' => env('OTP_ENABLED', true),
+    'enabled' => env('OTP_ENABLED', false),
 
     /*
      * Lifetime in minutes.

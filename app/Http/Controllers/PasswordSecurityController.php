@@ -9,6 +9,18 @@ use App\Models\PasswordSecurity;
 
 class PasswordSecurityController extends Controller
 {
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('2fa');
+    }
+    /*
+    * Creates authentication code for 2fa activation
+    */
     public function show2faForm()
     {
         if (Auth::guest()) {
@@ -38,6 +50,9 @@ class PasswordSecurityController extends Controller
         return view('settings.account')->with('data', $data);
     }
 
+    /*
+    * Generates secret code for 2fa
+    */
     public function generate2faSecretCode(Request $request)
     {
         $user = Auth::user();
@@ -50,11 +65,12 @@ class PasswordSecurityController extends Controller
             'google2fa_enable' => 0,
             'google2fa_secret' => $google2Fa->generateSecretKey()
         ]);
-
-        return redirect()->route('settings.account')->with('success', 'Success, you secret key has been generated. Please verify to enable');
+        return redirect()->route('settings.account')->with('success', __('settings.account.2fa.success_key'));
     }
 
-
+    /*
+    * Enables 2fa for the current user.
+    */
     public function enable2fa(Request $request)
     {
         $user = Auth::user();
@@ -68,14 +84,17 @@ class PasswordSecurityController extends Controller
         if ($valid) {
             $user->PasswordSecurity->google2fa_enable = 1;
             $user->PasswordSecurity->save();
-            return redirect()->route('settings.account')->with('success', 'Success, 2FA is anabled.');
+            return redirect()->route('settings.account')->with('success', __('settings.account.2fa.success_enable'));
 
         // Else redirect with invalid code error
         } else {
-            return redirect()->route('settings.account')->with('error', 'Invalid Code, try again.');
+            return redirect()->route('settings.account')->with('error', __('settings.account.2fa.error_enable'));
         }
     }
 
+    /*
+    * Disables 2fa for the current user.
+    */
     public function disable2fa(Request $request)
     {
         $user = Auth::user();
@@ -84,10 +103,12 @@ class PasswordSecurityController extends Controller
         $user->PasswordSecurity->google2fa_enable = 0;
         $user->PasswordSecurity->save();
 
-        return redirect()->route('settings.account')->with('success', 'Success 2FA is disabled.');
+        return redirect()->route('settings.account')->with('success', __('settings.account.2fa.success_disable'));
     }
 
-
+    /*
+    * Aborts login of user with 2fa enabled.
+    */
     public function cancel2FA(Request $request)
     {
 

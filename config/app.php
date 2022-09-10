@@ -232,9 +232,6 @@ return [
         App\Providers\DatagridRendererProvider::class,
         App\Providers\PermissionsServiceProvider::class,
         App\Providers\EntitySetupServiceProvider::class,
-        /*
-        * Google 2FA
-        */
         PragmaRX\Google2FALaravel\ServiceProvider::class,
 
     ],
