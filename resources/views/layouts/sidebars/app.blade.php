@@ -7,11 +7,12 @@
 $currentCampaign = CampaignLocalization::getCampaign();
 $defaultIndex = ($currentCampaign && $currentCampaign->defaultToNested()) || auth()->check() && auth()->user()->defaultNested ? 'tree' : 'index';
 
-$links = $currentCampaign->menuLinks()->with(['target'])->ordered()->get();
+$campaignQuickLinks = $currentCampaign->menuLinks()->with(['target'])->ordered()->get();
 ?>
 @if (!empty($currentCampaign))
     @php \App\Facades\Dashboard::campaign($currentCampaign); @endphp
     @inject('sidebar', 'App\Services\SidebarService')
+    @php $sidebar->prepareQuickLinks($currentCampaign)@endphp
     <aside class="main-sidebar main-sidebar-placeholder @if(auth()->check() && $currentCampaign->userIsMember())main-sidebar-member @else main-sidebar-public @endif" @if ($currentCampaign->image) style="background-image: url({{ Img::crop(280, 210)->url($currentCampaign->image) }})" @endif>
         <section class="sidebar-campaign">
             <div class="campaign-block">
@@ -44,7 +45,7 @@ $links = $currentCampaign->menuLinks()->with(['target'])->ordered()->get();
 
                 @foreach ($sidebar->campaign($currentCampaign)->layout() as $name => $element)
                     @if ($name === 'menu_links')
-                        @includeWhen($currentCampaign->enabled('menu_links'), 'layouts.sidebars.quick-links', ['links' => $links, 'element' => $element])
+                        @includeWhen($sidebar->hasQuickLinks('menu_links'), 'layouts.sidebars.quick-links', ['links' => $sidebar->quickLinks('menu_links')])
                         @continue
                     @endif
                     <li class="{{ (!isset($element['route']) || $element['route'] !== false ? $sidebar->active($name) : null) }} section-{{ $name }}">
@@ -65,10 +66,8 @@ $links = $currentCampaign->menuLinks()->with(['target'])->ordered()->get();
                                 {!! $element['custom_label'] ?: $element['label'] !!}
                             </span>
                         @endif
-                        @includeWhen($currentCampaign->enabled('menu_links') && $currentCampaign->boosted(), 'layouts.sidebars._quick-links', ['links' => $links])
-                        @if (empty($element['children']))
-                            @continue
-                        @endif
+                        @if (!empty($element['children']))
+
                         <ul class="sidebar-submenu">
                         @foreach($element['children'] as $childName => $child)
                             <li class="{{ (!isset($child['route']) || $child['route'] !== false ? $sidebar->active($childName) : null) }} subsection section-{{ $childName }}">
@@ -83,9 +82,12 @@ $links = $currentCampaign->menuLinks()->with(['target'])->ordered()->get();
                                     {!! $child['custom_label'] ?: $child['label'] !!}
                                 </a>
                             </li>
-                            @includeWhen($currentCampaign->enabled('menu_links') && $currentCampaign->boosted(), 'layouts.sidebars._quick-links', ['links' => $links])
+                            @includeWhen($sidebar->hasQuickLinks($childName), 'layouts.sidebars._quick-links', ['links' => $sidebar->quickLinks($childName)])
                         @endforeach
                         </ul>
+                        @endif
+
+                        @includeWhen($sidebar->hasQuickLinks($name), 'layouts.sidebars._quick-links', ['links' => $sidebar->quickLinks($name)])
                     </li>
                 @endforeach
             </ul>

@@ -11,6 +11,12 @@ use Stevebauman\Purify\Facades\Purify;
 
 class SidebarService
 {
+    /**
+     * List of the campaign's quick links
+     * @var array
+     */
+    protected $quickLinks = [];
+
     protected $rules = [
         'dashboard' => [
             null,
@@ -670,5 +676,51 @@ class SidebarService
             $labels[$key] = __($element['label']);
         }
         return $labels;
+    }
+
+    /**
+     * Prepare the quick links by figuring out where they will be rendered
+     * @param Campaign $campaign
+     * @return void
+     */
+    public function prepareQuickLinks(Campaign $campaign): void
+    {
+        $this->quickLinks = [];
+
+        // Quick menu module not activated on the campaign, no need to go further
+        if (!$campaign->enabled('menu_links')) {
+            return;
+        }
+        $quickLinks = $campaign->menuLinks()->with(['target'])->ordered()->get();
+        foreach ($quickLinks as $quickLink) {
+            $parent = 'menu_links';
+            if (!empty($quickLink->parent) && $campaign->boosted()) {
+                $parent = $quickLink->parent;
+            }
+            $this->quickLinks[$parent][] = $quickLink;
+        }
+    }
+
+    /**
+     * Get the quick links for a specified section/parent
+     * @param string|null $parent
+     * @return array
+     */
+    public function quickLinks(string $parent = null): array
+    {
+        if (!$this->hasQuickLinks($parent)) {
+            return [];
+        }
+        return $this->quickLinks[$parent];
+    }
+
+    /**
+     * Determine if a section has quick links in it
+     * @param string $parent
+     * @return bool
+     */
+    public function hasQuickLinks(string $parent): bool
+    {
+        return array_key_exists($parent, $this->quickLinks) && !empty($this->quickLinks[$parent]);
     }
 }
