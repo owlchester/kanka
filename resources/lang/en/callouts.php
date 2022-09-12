@@ -11,6 +11,9 @@ return [
         'multiple'      => 'To access these features, the campaign needs to be boosted.',
         'pitches'       => [
             'icon'  => 'Unlock millions of custom icons from FontAwesome with a :boosted-campaign.',
+            'link-parent' => 'Place a quick link exactly where you want it in the sidebar with a :boosted-campaign.',
+            'element-class' => 'Give this element a custom CSS class with a :boosted-campaign.',
+
         ],
         'titles'        => [
             'boosted'       => 'Boosted feature',
