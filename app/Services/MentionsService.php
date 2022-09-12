@@ -387,7 +387,9 @@ class MentionsService
                             . ' data-entity-tags="' . implode(' ', $tagClasses) . '"'
                             . '>'
                             . $entityName
+                            . '<div class="mention-entry-content">'
                             . $parsedTargetEntry
+                            . '</div>'
                             . '</div>';
                     } elseif (isset($entity->child->$field)) {
                         $foreign = $entity->child->$field;
