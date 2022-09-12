@@ -4,6 +4,7 @@ namespace App\Policies;
 
 use App\Facades\UserCache;
 use App\Models\Campaign;
+use App\Models\CampaignRole;
 use App\Traits\AdminPolicyTrait;
 use App\User;
 use App\Models\CampaignRoleUser;
@@ -56,16 +57,19 @@ class CampaignRoleUserPolicy
      * @param  \App\Models\CampaignRoleUser  $campaignRoleUser
      * @return mixed
      */
-    public function delete(User $user, CampaignRoleUser $campaignRoleUser)
+    public function delete(User $user, CampaignRoleUser $campaignRoleUser, CampaignRole $campaignRole)
     {
         // Don't delete yourself
         if ($user->id === $campaignRoleUser->user_id) {
             return false;
         }
+        // If not an admin, don't allow removing
         if (!$user->isAdmin()) {
             return false;
         }
 
-        return $campaignRoleUser->created_at->diffInMinutes() <= 15;
+        // User is an admin, only allow deleting if the role is the admin role and the user
+        // was added less than 15 minutes ago (aka by accident)
+        return !$campaignRole->isAdmin() || $campaignRoleUser->created_at->diffInMinutes() <= 15;
     }
 }
