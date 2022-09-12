@@ -579,6 +579,17 @@ summary { display: list-item; }
     margin-bottom: 0;
   }
 }
+.table-compact {
+    width: auto;
+}
+.table-right {
+    width: auto;
+    float: right;
+}
+.table-centered {
+    margin-left: auto;
+    margin-right: auto;
+}
 
 .user-role-update {
   .btn {

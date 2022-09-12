@@ -34,7 +34,8 @@ window.initSummernote = function() {
             table: [
                 ['add', ['addRowDown', 'addRowUp', 'addColLeft', 'addColRight']],
                 ['delete', ['deleteRow', 'deleteCol', 'deleteTable']],
-                ['custom', ['tableHeaders']]
+                ['custom', ['tableHeaders']],
+                ['custom', ['tableStyles']]
             ],
         },
         callbacks: {

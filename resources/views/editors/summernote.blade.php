@@ -7,6 +7,7 @@
     <script src="/vendor/summernote/plugin/summernote-gallery-kanka.min.js" defer></script>
     <script src="/vendor/summernote/plugin/summernote-toc-kanka/summernote-toc.js" defer></script>
     <script src="/vendor/summernote/plugin/summernote-aroba-kanka/summernote-aroba.js" defer></script>
+    <script src="/vendor/summernote/plugin/summernote-table-ext.js" defer></script>
     <script src="/vendor/summernote/plugin/spoiler/summernote-spoiler.js" defer></script>
 {{--    <script src="/vendor/summernote/plugin/rtl/summernote-ext-rtl.js" defer></script>--}}
 

@@ -15,7 +15,6 @@ $(document).ready(function () {
   initPeriodToggle();
   $('#subscribe-confirm').on('shown.bs.modal', function () {
     initConfirmListener();
-    initCancelListener();
   });
 }); // Initialize the stripe API
 
@@ -24,18 +23,6 @@ function initStripe() {
   stripe = Stripe(token.val()); // Create an instance of Elements.
 
   elements = stripe.elements();
-}
-
-function initCancelListener() {
-  $('.select-reveal-field').change(function (e) {
-    var target = $(this).data('change-target');
-
-    if (this.value === 'custom') {
-      $(target).show();
-    } else {
-      $(target).hide();
-    }
-  });
 } // When the modal is opened and loaded, inject stripe if needed and the form validator
 
 
