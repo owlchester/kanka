@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\v1;
 
 use App\Models\Campaign;
+use App\User;
 use App\Models\Entity;
 use App\Http\Requests\StoreEntityPermission as Request;
 use App\Http\Resources\EntityPermissionResource as Resource;
@@ -100,4 +101,21 @@ class EntityPermissionApiController extends ApiController
 
         return response()->json(null, 204);
     }
+
+    /**
+     * @param Campaign $campaign
+     * @param Entity $entity
+     * @param CampaignPermission $permission
+     * @return Resource
+     */
+    public function test(Request $request, Campaign $campaign)
+    {
+        dd('test');
+        $campaign = auth()->user()->campaigns()->where('campaign_id', $campaignId)->first();
+
+        $this->authorize('access', $campaign);
+        $this->authorize('view', $entity->child);
+        return new Resource($permission);
+    }
+
 }

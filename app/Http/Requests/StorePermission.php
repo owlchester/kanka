@@ -25,7 +25,6 @@ class StorePermission extends FormRequest
     {
         return [
             'entity_id' => 'required|exists:entities,id',
-            ''
         ];
     }
 }

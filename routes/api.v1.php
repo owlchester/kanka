@@ -82,7 +82,8 @@ Route::get('campaigns/{campaign}/users', 'Campaign\UserApiController@index');
 Route::post('campaigns/{campaign}/users', 'Campaign\UserApiController@add');
 Route::delete('campaigns/{campaign}/users', 'Campaign\UserApiController@remove');
 
-Route::get('visibilities', 'VisibilityController@index');
+Route::post('campaigns/{campaign}/permissions/test', 'EntityPermissionApiController@test');
 
+Route::get('visibilities', 'VisibilityController@index');
 
 //Route::get('campaigns/{campaign}/settings', 'CampaignSettingApiController@index');
