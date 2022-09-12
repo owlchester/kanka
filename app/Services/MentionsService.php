@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Facades\Attributes;
+use App\Facades\Mentions;
 use App\Models\Attribute;
 use App\Models\Entity;
 use App\Models\EntityNote;
@@ -49,6 +50,8 @@ class MentionsService
     /** @var EntityService */
     protected EntityService $entityService;
 
+    /** @var bool When false, parsing field:entry won't render mentions */
+    protected bool $enableEntryField = true;
 
     /**
      * Mentions Service constructor
@@ -349,6 +352,12 @@ class MentionsService
                     $dataUrl = Str::replaceFirst('campaign/', $lang . '/campaign/', $dataUrl);
                 }
 
+                // Add tags as a class
+                foreach ($entity->tags as $tag) {
+                    $tagClasses[] = 'id-' . $tag->id;
+                    $tagClasses[] = Str::slug($tag->name);
+                }
+
                 // Referencing a custom field on the entity
                 if (!empty($data['field'])) {
                     $field = $data['field'];
@@ -356,10 +365,31 @@ class MentionsService
                     if ($field == 'gender') {
                         $field = 'sex';
                     }
-                    /*if ($field === 'entry') {
-                        $data['text'] = 'bob';
-                    } else*/
-                    if (isset($entity->child->$field)) {
+                    if ($field === 'entry') {
+                        if ($this->enableEntryField) {
+                            $this->lockEntryRendering();
+                            $parsedTargetEntry = $entity->child->entry();
+                            $this->unlockEntryRendering();
+                        } else {
+                            $parsedTargetEntry = $entity->child->entry;
+                        }
+                        $cssClasses[] = 'mention-field-entry';
+                        $entityName = '<a href="' . $url . '"'
+                            . ' class="entity-mention-name block mb-2"'
+                            . ' data-toggle="tooltip-ajax"'
+                            . ' data-id="' . $entity->id . '"'
+                            . ' data-url="' . $dataUrl . '"'
+                            . '>'
+                            . Arr::get($data, 'text', $entity->name)
+                            . '</a>';
+                        ;
+                        return '<div class="' . implode(' ', $cssClasses) . '"'
+                            . ' data-entity-tags="' . implode(' ', $tagClasses) . '"'
+                            . '>'
+                            . $entityName
+                            . $parsedTargetEntry
+                            . '</div>';
+                    } elseif (isset($entity->child->$field)) {
                         $foreign = $entity->child->$field;
                         if ($foreign instanceof Model) {
                             if (isset($foreign->name) && !empty($foreign->name)) {
@@ -373,12 +403,6 @@ class MentionsService
                     }
 
                     $cssClasses[] = 'mention-field-' . Str::slug($field);
-                }
-
-                // Add tags as a class
-                foreach ($entity->tags as $tag) {
-                    $tagClasses[] = 'id-' . $tag->id;
-                    $tagClasses[] = Str::slug($tag->name);
                 }
 
                 $replace = '<a href="' . $url . '"'
@@ -681,5 +705,23 @@ class MentionsService
         $this->createdNewEntities = true;
 
         return '[' . $type . ':' . $new->entity->id . ']';
+    }
+
+    /**
+     * Protect from rendering future field:entry mentions to avoid endless loops
+     * @return void
+     */
+    protected function lockEntryRendering(): void
+    {
+        $this->enableEntryField = false;
+    }
+
+    /**
+     * Re-enable rendering field:entry mentions
+     * @return void
+     */
+    protected function unlockEntryRendering(): void
+    {
+        $this->enableEntryField = true;
     }
 }
