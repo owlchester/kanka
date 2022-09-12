@@ -262,8 +262,9 @@ class SearchService
             return $this->newOptions();
         }
 
+        $lowerCleanTerm = strtolower($cleanTerm);
         foreach ($searchResults as $result) {
-            if (strtolower($result['name']) == $cleanTerm) {
+            if (strtolower($result['name']) == $lowerCleanTerm) {
                 return $searchResults;
             }
         }
