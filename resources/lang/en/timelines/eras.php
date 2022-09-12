@@ -35,6 +35,7 @@ return [
     'reorder'       => [
         'success'       => 'Elements of the :era era reordered.',
         'eras_success'  => 'Timeline eras succesfully reordered.',
-        'title'         => 'Reorder Eras',
+        'title'         => 'Reorder timeline eras',
+        'menu'          => 'Reorder eras',
     ],
 ];
