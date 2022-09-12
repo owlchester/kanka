@@ -19,9 +19,7 @@ return [
         'random'            => 'Random',
         'random_type'       => 'Random Entity Type',
         'selector'          => 'Quick Link Configuration',
-        'tab'               => 'Tab',
         'type'              => 'Entity List',
-        'parent'            => 'Parent element',
     ],
     'helpers'           => [
         'dashboard'         => 'Have the quick link target one of the campaign\'s custom dashboards.',
