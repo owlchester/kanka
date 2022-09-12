@@ -59,13 +59,14 @@ class CampaignRoleUserPolicy
      */
     public function delete(User $user, CampaignRoleUser $campaignRoleUser, CampaignRole $campaignRole)
     {
-        // Don't delete yourself
-        if ($user->id === $campaignRoleUser->user_id) {
-            return false;
-        }
-        // If not an admin, don't allow removing
+        // Only campaign admins can remove a user from a campaign role
         if (!$user->isAdmin()) {
             return false;
+        }
+
+        // Only allow removing yourself from the non-admin role
+        if ($user->id === $campaignRoleUser->user_id) {
+            return !$campaignRole->isAdmin() ;
         }
 
         // User is an admin, only allow deleting if the role is the admin role and the user
