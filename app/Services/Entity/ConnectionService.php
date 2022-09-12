@@ -1,24 +1,21 @@
 <?php
 
-
 namespace App\Services\Entity;
 
-
 use App\Models\Entity;
-use Illuminate\Support\Arr;
 
 class ConnectionService
 {
     /**
      * @var Entity
      */
-    protected $entity;
+    protected Entity $entity;
 
-    protected $ids = [];
+    protected array $ids = [];
 
-    protected $reasons = [];
+    protected array $reasons = [];
 
-    protected $order = 'name';
+    protected string $order = 'name';
 
     /**
      * @param Entity $entity
@@ -117,6 +114,15 @@ class ConnectionService
             ->loadTimelines()
             ->loadAuthoredJournals()
             ->loadQuests()
+        ;
+    }
+
+
+    protected function initRace()
+    {
+        $this
+            ->loadChildRaces()
+            ->loadRaceLocations()
         ;
     }
 
@@ -262,6 +268,28 @@ class ConnectionService
             $entity = $sub->entity;
             $this->ids[] = $entity->id;
             $this->reasons[$entity->id][] = __('entities.race');
+        }
+        return $this;
+    }
+
+    protected function loadChildRaces(): self
+    {
+        $elements = $this->entity->child->races()->with(['entity'])->has('entity')->get();
+        foreach ($elements as $sub) {
+            $entity = $sub->entity;
+            $this->ids[] = $entity->id;
+            $this->reasons[$entity->id][] = __('entities.race');
+        }
+        return $this;
+    }
+
+    protected function loadRaceLocations(): self
+    {
+        $elements = $this->entity->child->locations()->with(['entity'])->has('entity')->get();
+        foreach ($elements as $sub) {
+            $entity = $sub->entity;
+            $this->ids[] = $entity->id;
+            $this->reasons[$entity->id][] = __('entities.location');
         }
         return $this;
     }
