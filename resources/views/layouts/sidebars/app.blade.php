@@ -55,19 +55,17 @@ $links = $currentCampaign->menuLinks()->with(['target'])->ordered()->get();
                                 $route = \Illuminate\Support\Str::beforeLast($route, '.') . '.' . $defaultIndex;
                             }
                             @endphp
-                        <a href="{{ route($route) }}">
-                            <i class="{{ $element['custom_icon'] ?: $element['icon']  }}"></i>
-                            {!! $element['custom_label'] ?: $element['label']  !!}
-                        </a>
+                            <a href="{{ route($route) }}">
+                                <i class="{{ $element['custom_icon'] ?: $element['icon']  }}"></i>
+                                {!! $element['custom_label'] ?: $element['label']  !!}
+                            </a>
                         @else
                             <span>
                                 <i class="{{ $element['custom_icon'] ?: $element['icon'] }}"></i>
                                 {!! $element['custom_label'] ?: $element['label'] !!}
                             </span>
                         @endif
-                        @if ($currentCampaign->boosted())
-                            @include('layouts.sidebars._quick-links',['links' => $links])
-                        @endif
+                        @includeWhen($currentCampaign->enabled('menu_links') && $currentCampaign->boosted(), 'layouts.sidebars._quick-links', ['links' => $links])
                         @if (empty($element['children']))
                             @continue
                         @endif
@@ -85,7 +83,7 @@ $links = $currentCampaign->menuLinks()->with(['target'])->ordered()->get();
                                     {!! $child['custom_label'] ?: $child['label'] !!}
                                 </a>
                             </li>
-                            @includeWhen($currentCampaign->boosted(), 'layouts.sidebars._quick-links',['links' => $links])
+                            @includeWhen($currentCampaign->enabled('menu_links') && $currentCampaign->boosted(), 'layouts.sidebars._quick-links', ['links' => $links])
                         @endforeach
                         </ul>
                     </li>

@@ -15,8 +15,7 @@ class UpdateMenuLinksAddParentAddCss extends Migration
     {
         Schema::table('menu_links', function (Blueprint $table) {
             $table->string('parent', 25)->nullable();
-            $table->string('css', 191)->nullable();
-
+            $table->string('css', 40)->nullable();
         });
     }
 
@@ -28,8 +27,8 @@ class UpdateMenuLinksAddParentAddCss extends Migration
     public function down()
     {
         Schema::table('menu_links', function (Blueprint $table) {
-            $table->dropColumn('position');
-            $table->dropColumn('position');
+            $table->dropColumn('parent');
+            $table->dropColumn('css');
         });
     }
 }

@@ -17,7 +17,7 @@ return [
         'name'      => 'Name',
         'position'  => 'Position',
         'url'       => 'URL',
-        'parent'    => 'After',
+        'parent'    => 'Parent element',
     ],
     'go'                => [
         'actions'       => [

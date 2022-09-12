@@ -12,7 +12,7 @@
     @endif
     <ul class="sidebar-submenu">
         @foreach ($links as $menuLink)
-            @if ((!$menuLink->parent) || ($menuLink->parent && !$currentCampaign->boosted()))
+            @if ((!$menuLink->parent || $menuLink->parent === 'menu_links') || ($menuLink->parent && !$currentCampaign->boosted()))
                 @include('layouts.sidebars._quick-link',['menuLink' => $menuLink])
             @endif
         @endforeach

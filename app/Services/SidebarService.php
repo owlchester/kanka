@@ -658,20 +658,17 @@ class SidebarService
     {
         return 'campaign_' . $this->campaign->id . '_sidebar';
     }
+
     /**
+     * Available parents for placing a quick link
      * @return array
      */
-    public function elements(): array
+    public function availableParents(): array
     {
         $labels = [];
-        $placeholder[] = __('menu_links.placeholders.name');
-        $keys = array_keys($this->elements);
-        foreach ($this->elements as $element) {
-            $labels[] = __($element['label']);
+        foreach ($this->elements as $key => $element) {
+            $labels[$key] = __($element['label']);
         }
-        $selectElements = array_combine($keys, $labels);
-        unset($selectElements['menu_links']);
-
-        return $placeholder + $selectElements;
+        return $labels;
     }
 }

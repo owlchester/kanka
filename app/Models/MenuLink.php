@@ -22,6 +22,8 @@ use Illuminate\Support\Str;
  * @property string $type
  * @property string $icon
  * @property string $filters
+ * @property string $parent
+ * @property string $css
  * @property string $random_entity_type
  * @property integer $position
  * @property integer $dashboard_id

@@ -25,29 +25,8 @@ if (isset($model)) {
 <div class="row">
     <div class="col-md-6">
         @include('cruds.fields.name', ['trans' => 'menu_links'])
-        @if ($campaignService->campaign()->boosted())
-            <div class="form-group">
-                <label class="control-label">{{ __('entities/links.fields.parent') }}</label>
-                {{ Form::select('parent', $sidebar->campaign($campaign)->elements(),empty($model) ? $sidebar->campaign($campaign)->elements()[0] : $model->parent, ['class' => 'form-control', 'id' => 'visibility']) }}
-
-                <p class="help-block">
-                    {!! __('entities/links.helpers.parent') !!}
-                </p>
-            </div>
-            <div class="form-group">
-                <label for="config[class]">
-                    {{ __('dashboard.widgets.fields.class') }}
-                    <i class="fa-solid fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" title="{{ __('dashboard.widgets.helpers.class') }}"></i>
-                </label>
-                {!! Form::text('css', null, ['class' => 'form-control', 'id' => 'config[class]']) !!}
-                <p class="help-block visible-xs visible-sm">
-                    {{ __('dashboard.widgets.helpers.class') }}
-                </p>
-            </div>
-        @endif        
     </div>
     <div class="col-md-6">
-
         <div class="form-group">
             <label class="control-label">{{ __('entities/links.fields.icon') }}</label>
 
@@ -77,6 +56,57 @@ if (isset($model)) {
                     </p>
                 @endsubscriber
 
+            @endif
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <div class="form-group">
+            <label class="control-label">
+                {{ __('entities/links.fields.parent') }}
+                <i class="fa-solid fa-question-circle hidden-xs hidden-sm" title="{!! __('entities/links.helpers.parent') !!}" data-toggle="tooltip"></i>
+            </label>
+            @if ($campaignService->campaign()->boosted())
+                {{ Form::select('parent', $sidebar->campaign($campaign)->availableParents(), (empty($model) || empty($model->parent) ? 'menu_links' : $model->parent), ['class' => 'form-control']) }}
+
+                <p class="help-block visible-xs visible-sm">
+                    {!! __('entities/links.helpers.parent') !!}
+                </p>
+            @else
+                @subscriber()
+                    <p class="help-block">
+                        {!! __('callouts.booster.pitches.link-parent', ['boosted-campaign' => link_to_route('settings.boost', __('concept.boosted-campaign'), ['campaign' => $campaignService->campaign()])]) !!}
+                    </p>
+                @else
+                    <p class="help-block">
+                        {!! __('callouts.booster.pitches.link-parent', ['boosted-campaign' => link_to_route('front.boosters', __('concept.boosted-campaign'))]) !!}
+                    </p>
+                @endsubscriber
+            @endif
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group">
+            <label for="config[class]">
+                {{ __('dashboard.widgets.fields.class') }}
+                <i class="fa-solid fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" title="{{ __('dashboard.widgets.helpers.class') }}"></i>
+            </label>
+            @if ($campaignService->campaign()->boosted())
+                {!! Form::text('css', null, ['class' => 'form-control', 'id' => 'config[class]', 'maxlength' => 45]) !!}
+                <p class="help-block visible-xs visible-sm">
+                    {{ __('dashboard.widgets.helpers.class') }}
+                </p>
+            @else
+                @subscriber()
+                    <p class="help-block">
+                        {!! __('callouts.booster.pitches.element-class', ['boosted-campaign' => link_to_route('settings.boost', __('concept.boosted-campaign'), ['campaign' => $campaignService->campaign()])]) !!}
+                    </p>
+                @else
+                    <p class="help-block">
+                        {!! __('callouts.booster.pitches.element-class', ['boosted-campaign' => link_to_route('front.boosters', __('concept.boosted-campaign'))]) !!}
+                    </p>
+                @endsubscriber
             @endif
         </div>
     </div>
