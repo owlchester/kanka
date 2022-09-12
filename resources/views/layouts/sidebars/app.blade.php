@@ -6,8 +6,6 @@
  */
 $currentCampaign = CampaignLocalization::getCampaign();
 $defaultIndex = ($currentCampaign && $currentCampaign->defaultToNested()) || auth()->check() && auth()->user()->defaultNested ? 'tree' : 'index';
-
-$campaignQuickLinks = $currentCampaign->menuLinks()->with(['target'])->ordered()->get();
 ?>
 @if (!empty($currentCampaign))
     @php \App\Facades\Dashboard::campaign($currentCampaign); @endphp
