@@ -48,13 +48,13 @@ class PasswordSecurity extends Model
         $google2FaUrl = '';
 
         // If User has 2FA current disabled generate QR code
-        if (isset($user->PasswordSecurity)) {
+        if (isset($user->passwordSecurity)) {
             $google2Fa = new Google2FA();
             //$google2Fa->setAllowInsecureCallToGoogleApis(true);
             $google2FaUrl = $google2Fa->getQRCodeUrl(
                 $user->name,
                 $user->email,
-                $user->PasswordSecurity->google2fa_secret
+                $user->passwordSecurity->google2fa_secret
             );
         }
         $renderer = new ImageRenderer(

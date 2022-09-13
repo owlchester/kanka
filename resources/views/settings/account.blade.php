@@ -90,23 +90,23 @@
                     {{ __('settings.account.2fa.title') }}
                 </h3>
             </div>
-            @if (!auth()->user()->subscribed('kanka') && !isset($user->PasswordSecurity->google2fa_enable))
+            @if (!auth()->user()->isPatron() && !isset($user->passwordSecurity->google2fa_enable))
                 <div class="box-body">
                     <p>
-                        {!! __('subscription.benefits.2fa', [
+                        {!! __('callouts.subscribe.pitch-2fa', [
                             'more' => link_to_route('front.pricing', __('subscription.benefits.more'), '#paid-features', ['target' => '_blank']),
                             'boosters' => link_to_route('front.boosters', __('subscription.benefits.boosters'), '', ['target' => '_blank'])
                         ]) !!}
                     </p>
                 </div>
-            @elseif (auth()->user()->subscribed('kanka') || auth()->user()->subscription('kanka')->cancelled() || $user->PasswordSecurity->google2fa_enable)
+            @elseif (auth()->user()->isPatron()|| $user->passwordSecurity->google2fa_enable)
                 <div class="box-body">
                     @if (auth()->user()->isSocialLogin())
-                        <p>{{ __('settings.account.2fa.social') }}</p>
+                        <p class="text-help">{{ __('settings.account.2fa.social') }}</p>
                     @else
                         <!-- google2fa -->
                         <p>{{ __('settings.account.2fa.helper') }}</p>
-                        @if(!$user->PasswordSecurity && auth()->user()->subscribed('kanka') || auth()->user()->subscription('kanka')->cancelled())
+                        @if(!$user->passwordSecurity && auth()->user()->isPatron() || auth()->user()->subscription('kanka')->cancelled())
                             {{ __('settings.account.2fa.enable_instructions') }}
                             </div>
                         <form method="POST" action="{{ route('generate2faSecretCode') }}">
@@ -116,12 +116,12 @@
                             </div>
                         </form>
 
-                        @elseif(!$user->PasswordSecurity->google2fa_enable && auth()->user()->subscribed('kanka') || auth()->user()->subscription('kanka')->cancelled())
+                        @elseif(!$user->passwordSecurity->google2fa_enable && auth()->user()->isPatron() || auth()->user()->subscription('kanka')->cancelled())
                             <p>{{ __('settings.account.2fa.activation_helper') }}</p>
 
                             <p><label>{{ __('settings.account.2fa.activation_instructions') }}</label></p>
                             
-                            {!! $user->PasswordSecurity->getGoogleQR() !!}
+                            {!! $user->passwordSecurity->getGoogleQR() !!}
 
                             <p><label>{{ __('settings.account.2fa.activation_instructions_2') }}</label></p>
 
@@ -137,7 +137,7 @@
                                 </div>
                             </form>
 
-                        @elseif($user->PasswordSecurity->google2fa_enable)
+                        @elseif($user->passwordSecurity->google2fa_enable)
                             <p><b>{{ __('settings.account.2fa.enabled') }}</b></p>
                             @csrf
 
@@ -216,7 +216,7 @@
             </div>
         </div>
     </div>
-    @if(isset($user->PasswordSecurity->google2fa_enable))
+    @if(isset($user->passwordSecurity->google2fa_enable))
         <div class="modal fade" id="deactivate-2fa" tabindex="-1" role="dialog" aria-labelledby="deactivate2FALabel">
             <div class="modal-dialog" role="document">
                 <div class="modal-content rounded-2xl">

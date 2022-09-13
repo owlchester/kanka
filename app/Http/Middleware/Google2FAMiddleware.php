@@ -22,7 +22,7 @@ class Google2FAMiddleware
         if (!config('google2fa.enabled')) {
             return $next($request);
         }
-        if ($request->is('cancel-2fa')) {
+        if ($request->is('*/settings/security/cancel-2fa')) {
             auth()->logout();
             return $next($request);
         }
