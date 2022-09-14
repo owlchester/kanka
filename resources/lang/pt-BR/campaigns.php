@@ -1,6 +1,9 @@
 <?php
 
 return [
+    'actions'                           => [
+        'boost' => 'Impulsionar :name',
+    ],
     'create'                            => [
         'description'           => 'Criar uma nova Campanha',
         'helper'                => [
@@ -45,6 +48,7 @@ TEXT
         'css'                               => 'CSS',
         'description'                       => 'Descrição',
         'entity_count'                      => 'Número de entidades',
+        'entity_privacy'                    => 'Privacidade padrão da nova entidade',
         'entry'                             => 'Descrição da campanha',
         'excerpt'                           => 'Resumo',
         'followers'                         => 'Seguidores',
@@ -66,24 +70,30 @@ TEXT
     ],
     'following'                         => 'Seguindo',
     'helpers'                           => [
-        'boost_required'            => 'Este recurso requer que a campanha seja impulsionada. Mais informações na página :settings.',
-        'boosted'                   => 'Alguns recursos requerem que a campanha esteja sendo impulsionada. Mais informações na página :settings.',
-        'css'                       => 'Escreva seu próprio CSS que será carregado nas páginas de sua campanha. Observe que qualquer abuso desse recurso pode levar à remoção do seu CSS personalizado. Ofensas repetidas ou graves podem levar à remoção de sua campanha.',
-        'dashboard'                 => 'Personalize a forma como o widget do dashboard da campanha é exibido preenchendo os campos a seguir.',
-        'excerpt'                   => 'O resumo da campanha será exibido no painel, então escreva algumas frases apresentando o seu mundo. Mantenha-o curto para obter os melhores resultados.',
-        'header_image'              => 'Imagem exibida como plano de fundo no widget cabeçalho da campanha do dashboard.',
-        'hide_history'              => 'Habilite esta opção para ocultar o histórico de entidades para membros não administradores da campanha.',
-        'hide_members'              => 'Habilite esta opção para ocultar a lista de membros da campanha para membros não administradores.',
-        'locale'                    => 'O idioma em que sua campanha está escrita. É usado para gerar conteúdo e agrupar campanhas públicas.',
-        'name'                      => 'Sua campanha/mundo pode ter qualquer nome, desde que contenha pelo menos 4 letras ou números.',
-        'public_campaign_filters'   => 'Ajude outras pessoas a encontrar a campanha entre outras campanhas públicas, fornecendo as seguintes informações.',
-        'public_no_visibility'      => 'Atenção! Sua campanha é pública, mas a função pública da campanha não pode acessar nada. :fix.',
-        'related_visibility'        => 'Visibilidade padrão ao criar um novo elemento com este campo (notas de entidade, relações, habilidades, etc)',
-        'system'                    => 'Se a sua campanha estiver publicamente visível, o sistema será mostrado na página :link.',
-        'systems'                   => 'Para evitar sobrecarregar os usuários com opções, alguns recursos do Kanka estão disponíveis apenas com sistemas de RPG específicos (ou seja, o bloco de estatísticas do monstro D&D 5e). Adicionar sistemas suportados aqui habilitará esses recursos.',
-        'theme'                     => 'Force o tema da campanha, substituindo a preferência do usuário.',
-        'view_public'               => 'Para visualizar sua campanha como um visualizador público faria, abra :link em uma janela anônima.',
-        'visibility'                => 'Tornar uma campanha pública significa que qualquer pessoa com um link para ela poderá vê-la.',
+        'boost_required'                    => 'Este recurso requer que a campanha seja impulsionada. Mais informações na página :settings.',
+        'boost_required_multi'              => 'Esses recursos exigem que a campanha seja impulsionada. Mais informações na página :settings.',
+        'boosted'                           => 'Alguns recursos requerem que a campanha esteja sendo impulsionada. Mais informações na página :settings.',
+        'character_personality_visibility'  => 'Ao criar um novo personagem como administrador, selecione a configuração de privacidade padrão para seus traços de personalidade.',
+        'css'                               => 'Escreva seu próprio CSS que será carregado nas páginas de sua campanha. Observe que qualquer abuso desse recurso pode levar à remoção do seu CSS personalizado. Ofensas repetidas ou graves podem levar à remoção de sua campanha.',
+        'dashboard'                         => 'Personalize a forma como o widget do dashboard da campanha é exibido preenchendo os campos a seguir.',
+        'entity_count_infinity'             => 'Esta campanha não tem limite de número de entidades.',
+        'entity_count_v2'                   => 'Esse número é recalculado a cada seis horas e ignora as tags.',
+        'entity_privacy'                    => 'Ao criar uma nova entidade como administrador, selecione a configuração de privacidade padrão da nova entidade.',
+        'excerpt'                           => 'O resumo da campanha será exibido no painel, então escreva algumas frases apresentando o seu mundo. Mantenha-o curto para obter os melhores resultados.',
+        'header_image'                      => 'Imagem exibida como plano de fundo no widget cabeçalho da campanha do dashboard.',
+        'hide_history'                      => 'Habilite esta opção para ocultar o histórico de entidades para membros não administradores da campanha.',
+        'hide_members'                      => 'Habilite esta opção para ocultar a lista de membros da campanha para membros não administradores.',
+        'locale'                            => 'O idioma em que sua campanha está escrita. É usado para gerar conteúdo e agrupar campanhas públicas.',
+        'name'                              => 'Sua campanha/mundo pode ter qualquer nome, desde que contenha pelo menos 4 letras ou números.',
+        'permissions_tab'                   => 'Controle as configurações padrão de privacidade e visibilidade de novos elementos com as seguintes opções.',
+        'public_campaign_filters'           => 'Ajude outras pessoas a encontrar a campanha entre outras campanhas públicas, fornecendo as seguintes informações.',
+        'public_no_visibility'              => 'Atenção! Sua campanha é pública, mas a função pública da campanha não pode acessar nada. :fix.',
+        'related_visibility'                => 'Visibilidade padrão ao criar um novo elemento com este campo (notas de entidade, relações, habilidades, etc)',
+        'system'                            => 'Se a sua campanha estiver publicamente visível, o sistema será mostrado na página :link.',
+        'systems'                           => 'Para evitar sobrecarregar os usuários com opções, alguns recursos do Kanka estão disponíveis apenas com sistemas de RPG específicos (ou seja, o bloco de estatísticas do monstro D&D 5e). Adicionar sistemas suportados aqui habilitará esses recursos.',
+        'theme'                             => 'Force o tema da campanha, substituindo a preferência do usuário.',
+        'view_public'                       => 'Para visualizar sua campanha como um visualizador público faria, abra :link em uma janela anônima.',
+        'visibility'                        => 'Tornar uma campanha pública significa que qualquer pessoa com um link para ela poderá vê-la.',
     ],
     'index'                             => [
         'actions'   => [
@@ -159,6 +169,7 @@ TEXT
             'remove'        => 'Remover da campanha',
             'switch'        => 'Trocar',
             'switch-back'   => 'Voltar para meu usuário',
+            'switch-entity' => 'Visualizar como',
         ],
         'create'                => [
             'title' => 'Adicionar um membro a sua campanha',
@@ -167,6 +178,7 @@ TEXT
             'title' => 'Editar membro :name',
         ],
         'fields'                => [
+            'banned'        => 'Usuário está banido',
             'joined'        => 'Juntou-se em',
             'last_login'    => 'Último login',
             'name'          => 'Usuário',
@@ -189,6 +201,7 @@ TEXT
             'title'         => 'Convidar',
         ],
         'manage_roles'          => 'Gerenciar funções de usuário',
+        'removal'               => 'Você está removendo ":member" da campanha.',
         'roles'                 => [
             'member'    => 'Membro',
             'owner'     => 'Dono',
@@ -260,9 +273,11 @@ TEXT
             '1' => 'Uma campanha pode ter quantos cargos quiser. O cargo de "Administrador" tem automaticamente acesso a tudo de uma campanha, mas cada outro cargo pode ter permissões específicas em cada tipo de entidade (personagem, local, etc).',
             '2' => 'Entidades podem ter permissões mais refinadas visualizando a aba "Permissões" dessa entidade. Essa aba aparece uma vez que sua campanha tenha vários cargos ou membros.',
             '3' => 'Pode-se optar pelo sistema de "exclusão", onde o acesso para visualização de todas as entidades é dado aos cargos, e usar a caixa de seleção "Privado" nas entidades para escondê-las. Ou pode-se optar por não dar aos cargos muitas permissões, mas configurar cada entidade ser visível individualmente.',
+            '4' => 'Campanhas impulsionadas podem ter uma quantidade ilimitada de funções.',
         ],
         'hints'         => [
             'campaign_not_public'   => 'A função pública tem permissões, mas a campanha é privada. Você pode alterar essa configuração na guia Compartilhamento ao editar a campanha.',
+            'empty_role'            => 'A função ainda não tem membros.',
             'role_permissions'      => 'Habilitar o cargo \':name\' a fazer as seguintes ações em todas as entidades.',
         ],
         'members'       => 'Membros',

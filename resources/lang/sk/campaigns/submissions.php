@@ -2,8 +2,10 @@
 
 return [
     'actions'       => [
-        'accept'    => 'Schváliť',
-        'reject'    => 'Odmietnuť',
+        'accept'        => 'Schváliť',
+        'applications'  => 'Prihlášky: :status',
+        'change'        => 'Zmeniť',
+        'reject'        => 'Odmietnuť',
     ],
     'apply'         => [
         'apply'         => 'Použiť',
@@ -23,9 +25,26 @@ return [
         'application'   => 'Prihláška',
         'rejection'     => 'Dôvod odmietnutia',
     ],
-    'helpers'       => [],
+    'helpers'       => [
+        'filter-helper'     => 'Kampaň prijíma prihlášky!',
+        'modal'             => 'Do kampane, ktorá je verejná a prijíma prihlášky, si môžu podať prihlášku noví užívatelia.',
+        'no_applications'   => 'Aktuálne neevidujeme žiadne prihlášky do tvojej kampane. Užívatelia si môžu podať prihlášku navštívením nástenky a kliknutím na tlačidlo :button.',
+        'not_open'          => 'Kampaň aktuálne neprijíma prihlášky.',
+        'open_not_public'   => 'Kampaň prijíma prihlášky, ale nie je verejná, takže si nikto nevie prihlášku podať. Toto vieš zmeniť úpravou nastavení kampane.',
+    ],
     'placeholders'  => [
         'note'  => 'Spíš tvoju prihlášku na vstup do kampane',
+    ],
+    'statuses'      => [
+        'closed'    => 'Neprijíma',
+        'open'      => 'Prijíma',
+    ],
+    'toggle'        => [
+        'closed'    => 'Neprijímať prihlášky',
+        'label'     => 'Stav',
+        'open'      => 'Prijíma prihlášky',
+        'success'   => 'Stav kampane ohľadom prihlášok aktualizovaný.',
+        'title'     => 'Stav prihlášok',
     ],
     'update'        => [
         'approve'   => 'Vyber rolu užívateľa, ktorú bude mať v tvojej kampani.',

@@ -57,6 +57,7 @@ return [
         'updates'       => 'Aktualizacje',
         'your_version'  => 'Używana wersja',
     ],
+    'pitch'         => 'Instaluj i zarządzaj dodatkami z :marketplace.',
     'status'        => [
         'disabled'  => 'Niektywny',
         'enabled'   => 'Aktywny',

@@ -35,6 +35,7 @@ return [
         'here'      => 'z naszego bloga',
         'main'      => 'Możesz tworzyć własne style CSS w doładowanych kampaniach. Będą ładowane po załadowaniu stylów pobranych z targowiska. Więcej o tworzeniu stylów dowiesz się :here.',
     ],
+    'pitch'     => 'Twórz własne style CSS by nadać kampanii indywidualny charakter.',
     'reorder'   => [
         'save'      => 'Zapisz kolejność',
         'success'   => '{1} Zmieniono kolejność :count stylu.|[2,*] Zmieniono kolejność :count stylów.',

@@ -1,10 +1,21 @@
 <?php
 
 return [
-    'actions'   => [
+    'actions'           => [
         'reset' => 'Restaurar ao padrão',
     ],
-    'helpers'   => [
-        'here'  => 'em nossa documentação',
+    'call-to-action'    => 'Personalize a ordem, os ícones e os nomes dos elementos na barra lateral da campanha.',
+    'helpers'           => [
+        'here'              => 'em nossa documentação',
+        'icons'             => 'Use a classe de ícones em :link.',
+        'mobile_reordering' => 'A reordenação da barra lateral só é possível em dispositivos desktop.',
+        'setup'             => 'Personalize a ordem, os ícones e os nomes dos elementos na barra lateral da campanha. Você sempre pode redefinir para a configuração padrão usando o botão :reset no final da página.',
     ],
+    'reset'             => [
+        'success'   => 'Redefinição da configuração da barra lateral da campanha.',
+        'title'     => 'Redefinir a configuração da barra lateral',
+        'warning'   => 'Tem certeza de que deseja redefinir a barra lateral da sua campanha para os valores padrão?',
+    ],
+    'success'           => 'Configuração da barra lateral da campanha salva.',
+    'title'             => 'Configuração da barra lateral da campanha :campaign',
 ];

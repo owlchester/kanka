@@ -22,6 +22,7 @@ return [
         'title' => 'Nowy katalog',
     ],
     'no_folder'     => 'Brak katalogu',
+    'pitch'         => 'Zamieszczaj ilustracje kampanii bezpośrednio z poziomu edytora tekstu',
     'placeholders'  => [
         'search'    => 'Wyszukaj obraz po nazwie',
     ],

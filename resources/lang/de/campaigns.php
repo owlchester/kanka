@@ -78,6 +78,8 @@ TEXT
         'character_personality_visibility'  => 'Wählen Sie beim Erstellen eines neuen Charakters als Administrator die standardmäßige Privatsphäreeinstellung für seine Persönlichkeitsmerkmale aus.',
         'css'                               => 'Schreibe dein eigenes CSS, das du auf die Seiten deiner Kampagne laden kannst. Bitte beachte, dass jeder Missbrauch dieser Funktion dazu führen kann, dass dein benutzerdefiniertes CSS entfernt wird. Wiederholungen oder schwerwiegende Verstöße können dazu führen, dass deine Kampagne entfernt wird.',
         'dashboard'                         => 'Passen Sie die Anzeige des Kampagnen-Dashboard-Widgets an, indem Sie die folgenden Felder ausfüllen.',
+        'entity_count_infinity'             => 'Bei dieser Kampagne ist die Anzahl der Objekte unbegrenzt.',
+        'entity_count_v2'                   => 'Diese Zahl wird alle sechs Stunden neu berechnet und ignoriert Tags.',
         'entity_privacy'                    => 'Wählen Sie beim Erstellen eines neuen Objekts als Administrator die standardmäßige Privatsphäreeinstellungen der neuen Objekte aus.',
         'excerpt'                           => 'Die Kampagnenzusammenfassung wird im Dashboard angezeigt. Schreib daher ein paar Sätze, die deine Welt vorstellen. Idealerweise hältst du es kurz und informativ.',
         'header_image'                      => 'Das Bild wird im Widget des Kampagnen-Header-Dashboards als Hintergrund angezeigt.',
@@ -169,6 +171,7 @@ TEXT
             'remove'        => 'aus Kampagne entfernen',
             'switch'        => 'Wechseln',
             'switch-back'   => 'Zurück zu meinem User',
+            'switch-entity' => 'Anzeigen als',
         ],
         'create'                => [
             'title' => 'Füge ein Mitglied zu deiner Kampagne hinzu.',
@@ -276,6 +279,7 @@ TEXT
             '1' => 'Eine Kampagne kann so viele Rollen haben, wie du willst. Die "Admin" Rolle hat automatisch Zugriff auf alles in einer Kampagne, aber jede andere Rolle kann spezielle Berechtigungen auf unterschiedliche Typen von Objekten (Charaktere, Orte, etc.) haben.',
             '2' => 'Objekte können feiner abgestimmte Berechtigungen haben, die du im "Berechtigungen" Tab des Objekts einstellen kannst. Dieser Tab erscheint, wenn du mehrere Rollen in deiner Kampagne hast.',
             '3' => 'Man kann entweder ein "opt-out" System verwenden, in dem Rollen lesenden Zugriff auf alle Objekte bekommen und mit der "Privat" Checkbox bestimmte Objekte ausgeblendet werden. Oder man gibt Rollen wenige Berechtigungen und setzt jedes Objekt explizit auf sichtbar.',
+            '4' => 'Boosted-Kampagnen können eine unbegrenzte Anzahl von Rollen haben.',
         ],
         'hints'         => [
             'campaign_not_public'   => 'Die öffentliche Rolle hat Berechtigungen, aber die Kampagne ist privat. Sie können diese Einstellung auf der Registerkarte Freigabe ändern, wenn Sie die Kampagne bearbeiten.',

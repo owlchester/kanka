@@ -78,6 +78,8 @@ TEXT
         'character_personality_visibility'  => 'Selecciona a privacidade por defecto dos trazos de personalidade ao crear novas personaxes.',
         'css'                               => 'Escrebe o teu propio CSS para as páxinas da túa campaña. Ten en conta que calquer abuso desta ferramenta pode levar á eliminación do teu CSS personalizado. Ofensas repetidas ou graves poden levar á eliminación da túa campaña.',
         'dashboard'                         => 'Personaliza a forma na que se mostra o taboleiro da campaña completando os seguintes campos.',
+        'entity_count_infinity'             => 'Esta campaña non ten límite no número de entidades.',
+        'entity_count_v2'                   => 'Este número é recalculado cada seis horas e ignora as etiquetas.',
         'entity_privacy'                    => 'Selecciona a privacidade por defecto das novas entidades.',
         'excerpt'                           => 'O limiar da campaña mostrarase no taboleiro principal. Escrebe unhas poucas liñas introducindo o teu mundo. Se este campo está baleiro, os primeiros 1000 caracteres da descrición da campaña serán usados.',
         'header_image'                      => 'Imaxe mostrada como fondo no taboleiro da campaña.',
@@ -167,8 +169,9 @@ TEXT
         'actions'               => [
             'help'          => 'Axuda',
             'remove'        => 'Eliminar da campaña',
-            'switch'        => 'Ver como',
+            'switch'        => 'Ver campaña como',
             'switch-back'   => 'Voltar á miña conta',
+            'switch-entity' => 'Ver como',
         ],
         'create'                => [
             'title' => 'Engade unha persoa á túa campaña.',
@@ -272,6 +275,7 @@ TEXT
             '1' => 'Unha campaña pode ter tantos roles como queiras. As persoas co rol de "Administración" teñen automaticamente acceso a todo dentro da campaña, pero todos os demáis roles poden ter permisos específicos en diferentes tipos de entidades (personaxes, lugares, etc.).',
             '2' => 'Podes asignar permisos máis específicos a unha entidade mediante a lapela "Permisos". Esta lapela aparece unha vez a túa campaña ten varios roles ou integrantes.',
             '3' => 'Pódese usar un sistema de exclusión, no que se da acceso a todas as entidades, e marcar a caixa "Privada" nas entidades para ocultalas. Tamén se pode dar poucos permisos aos roles e configurar a visibilidade de cada entidade individualmente.',
+            '4' => 'As campañas potenciadas poden ter un número ilimitado de roles.',
         ],
         'hints'         => [
             'campaign_not_public'   => 'O rol "Público" ten permisos pero a campaña é privada. Podes cambiar esta configuración na lapela "Compartir" ao editar a campaña.',
