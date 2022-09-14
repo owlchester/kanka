@@ -185,11 +185,11 @@ class Tag extends MiscModel
     public function allChildren($withTags = false)
     {
         $children = [];
-        foreach ($this->entities->pluck('entities.id')->toArray() as $entity) {
+        foreach ($this->entities->pluck('id')->toArray() as $entity) {
             $children[] = $entity;
         }
         foreach ($this->descendants as $desc) {
-            foreach ($desc->entities()->pluck('entities.id')->toArray() as $entity) {
+            foreach ($desc->entities()->pluck('id')->toArray() as $entity) {
                 $children[] = $entity;
             }
         }
