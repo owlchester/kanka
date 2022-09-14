@@ -33,6 +33,9 @@ return [
         'start_year'    => 'L\'année durant laquelle l\'ère commence. Laisser vide si c\'est la première ère.',
     ],
     'reorder'       => [
-        'success'   => 'Les éléments de l\'ère :name ont été réorganisés.',
+        'eras_success'  => 'Les ères ont été réordonné avec succès.',
+        'menu'          => 'Réordonner les ères',
+        'success'       => 'Les éléments de l\'ère :name ont été réorganisés.',
+        'title'         => 'Réordonner les ères de la chronologie',
     ],
 ];

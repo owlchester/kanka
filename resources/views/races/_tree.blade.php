@@ -35,7 +35,7 @@
             'label' => __('races.fields.characters'),
             'visible' => $campaignService->enabled('characters'),
             'render' => function($model) {
-                return $model->characters()->count() . ' / ' . $model->allCharacters(true)->count();
+                return $model->characters->count() . ' / ' . $model->allCharacters(true)->count();
             },
             'disableSort' => true,
         ],

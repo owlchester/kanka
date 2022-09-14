@@ -48,6 +48,17 @@ class AssetController extends Controller
         ));
     }
 
+    /**
+     * No unique "show", redirect
+     * @param Entity $entity
+     * @param EntityAsset $entityAsset
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function show(Entity $entity, EntityAsset $entityAsset)
+    {
+        return redirect()->route('entities.entity_assets.index', $entity);
+    }
+
     public function create(Entity $entity)
     {
         $this->authorize('update', $entity->child);

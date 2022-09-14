@@ -66,7 +66,7 @@ class SubmissionController extends Controller
         $note = $this->service
             ->campaign($campaign)
             ->submission($campaignSubmission)
-            ->process($request->only('role_id', 'rejection', 'action'));
+            ->process($request->only('role_id', 'rejection', 'action', 'message'));
 
         return redirect()->route('campaign_submissions.index')
             ->with('success', __('campaigns/submissions.update.' . $note));

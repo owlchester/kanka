@@ -31,6 +31,7 @@ return [
         'main'      => 'Você pode criar um estilo CSS personalizado para sua campanha impulsionada. Esses estilos são carregados após quaisquer temas do mercado que estiverem habilitados para a campanha. Você pode aprender mais sobre como estilizar sua campanha :here.',
     ],
     'reorder'   => [
+        'save'  => 'Salvar nova ordem',
         'title' => 'Reordenar estilos',
     ],
     'theme'     => [

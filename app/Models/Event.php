@@ -81,12 +81,30 @@ class Event extends MiscModel
     public function scopePreparedWith(Builder $query)
     {
         return $query->with([
-            'entity',
-            'entity.image',
-            'location',
-            'location.entity',
-            'event',
-            'event.entity'
+            'entity' => function ($sub) {
+                $sub->select('id', 'name', 'entity_id', 'type_id', 'image_uuid');
+            },
+            'entity.image' => function ($sub) {
+                $sub->select('campaign_id', 'id', 'ext');
+            },
+            'location' => function ($sub) {
+                $sub->select('id', 'name');
+            },
+            'location.entity' => function ($sub) {
+                $sub->select('id', 'name', 'entity_id', 'type_id');
+            },
+            'event' => function ($sub) {
+                $sub->select('id', 'name');
+            },
+            'event.entity' => function ($sub) {
+                $sub->select('id', 'name', 'entity_id', 'type_id');
+            },
+            'descendants' => function ($sub) {
+                $sub->select('id', 'name', 'event_id');
+            },
+            'events' => function ($sub) {
+                $sub->select('id', 'name', 'event_id');
+            },
         ]);
     }
 

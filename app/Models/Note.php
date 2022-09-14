@@ -64,10 +64,21 @@ class Note extends MiscModel
     public function scopePreparedWith(Builder $query)
     {
         return $query->with([
-            'entity',
-            'entity.image',
-            'note',
-            'note.entity',
+            'entity' => function ($sub) {
+                $sub->select('id', 'name', 'entity_id', 'type_id', 'image_uuid');
+            },
+            'entity.image' => function ($sub) {
+                $sub->select('campaign_id', 'id', 'ext');
+            },
+            'note' => function ($sub) {
+                $sub->select('id', 'name');
+            },
+            'note.entity' => function ($sub) {
+                $sub->select('id', 'name', 'entity_id', 'type_id');
+            },
+            'notes' => function ($sub) {
+                $sub->select('id', 'note_id');
+            },
         ]);
     }
 

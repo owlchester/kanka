@@ -2,8 +2,10 @@
  * @var \App\Models\MenuLink $model
  * @var \App\Services\EntityService $entityService
  * @var \App\Services\CampaignService $campaign
+ * @var \App\Services\SidebarService $sidebar
  */
 
+$campaign = CampaignLocalization::getCampaign(false);
 $tab = empty($model) || old('entity_id') || $model->entity_id ? 'entity' : 'type';
 
 $isEntity = $isDashboard = $isRandom = $isList = false;
@@ -19,13 +21,12 @@ if (isset($model)) {
     }
 }
 ?>
-
+@inject('sidebar', 'App\Services\SidebarService')
 <div class="row">
     <div class="col-md-6">
         @include('cruds.fields.name', ['trans' => 'menu_links'])
     </div>
     <div class="col-md-6">
-
         <div class="form-group">
             <label class="control-label">{{ __('entities/links.fields.icon') }}</label>
 
@@ -55,6 +56,57 @@ if (isset($model)) {
                     </p>
                 @endsubscriber
 
+            @endif
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <div class="form-group">
+            <label class="control-label">
+                {{ __('entities/links.fields.parent') }}
+                <i class="fa-solid fa-question-circle hidden-xs hidden-sm" title="{!! __('entities/links.helpers.parent') !!}" data-toggle="tooltip"></i>
+            </label>
+            @if ($campaignService->campaign()->boosted())
+                {{ Form::select('parent', $sidebar->campaign($campaign)->availableParents(), (empty($model) || empty($model->parent) ? 'menu_links' : $model->parent), ['class' => 'form-control']) }}
+
+                <p class="help-block visible-xs visible-sm">
+                    {!! __('entities/links.helpers.parent') !!}
+                </p>
+            @else
+                @subscriber()
+                    <p class="help-block">
+                        {!! __('callouts.booster.pitches.link-parent', ['boosted-campaign' => link_to_route('settings.boost', __('concept.boosted-campaign'), ['campaign' => $campaignService->campaign()])]) !!}
+                    </p>
+                @else
+                    <p class="help-block">
+                        {!! __('callouts.booster.pitches.link-parent', ['boosted-campaign' => link_to_route('front.boosters', __('concept.boosted-campaign'))]) !!}
+                    </p>
+                @endsubscriber
+            @endif
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group">
+            <label for="config[class]">
+                {{ __('dashboard.widgets.fields.class') }}
+                <i class="fa-solid fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" title="{{ __('dashboard.widgets.helpers.class') }}"></i>
+            </label>
+            @if ($campaignService->campaign()->boosted())
+                {!! Form::text('css', null, ['class' => 'form-control', 'id' => 'config[class]', 'maxlength' => 45]) !!}
+                <p class="help-block visible-xs visible-sm">
+                    {{ __('dashboard.widgets.helpers.class') }}
+                </p>
+            @else
+                @subscriber()
+                    <p class="help-block">
+                        {!! __('callouts.booster.pitches.element-class', ['boosted-campaign' => link_to_route('settings.boost', __('concept.boosted-campaign'), ['campaign' => $campaignService->campaign()])]) !!}
+                    </p>
+                @else
+                    <p class="help-block">
+                        {!! __('callouts.booster.pitches.element-class', ['boosted-campaign' => link_to_route('front.boosters', __('concept.boosted-campaign'))]) !!}
+                    </p>
+                @endsubscriber
             @endif
         </div>
     </div>

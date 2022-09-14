@@ -18,6 +18,14 @@ return [
         'position'  => 'Posición',
         'url'       => 'URL',
     ],
+    'go'                => [
+        'actions'       => [
+            'confirm'   => 'Si',
+            'trust'     => 'Non me preguntes de novo',
+        ],
+        'description'   => 'Esta ligazón levarate a :link. Tes certeza de querer entrar aí?',
+        'title'         => 'Saíndo de Kanka',
+    ],
     'helpers'           => [
         'icon'  => 'Podes personalizar a icona mostrada da ligazón. Usa algunha das iconas gratuítas de :fontawesome ou deixa este campo en branco para mostrar a icona por defecto.',
     ],

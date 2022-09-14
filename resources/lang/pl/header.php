@@ -11,4 +11,11 @@ return [
     ],
     'profile'           => 'Profil',
     'toggle_navigation' => 'Przełącz nawigację',
+    'user'              => [
+        'impersonating' => 'Podszywasz się pod :user',
+        'settings'      => 'Ustawienia',
+        'sign-out'      => 'Wyloguj',
+        'signed-in'     => 'Zalogowano jako :user',
+        'your-profile'  => 'Twój profil',
+    ],
 ];

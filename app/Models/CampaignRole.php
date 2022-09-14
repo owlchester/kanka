@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\SortableTrait;
 use App\Models\Concerns\Paginatable;
 use App\User;
 use Illuminate\Database\Eloquent\Collection;
@@ -29,7 +30,7 @@ use Illuminate\Support\Str;
  */
 class CampaignRole extends Model
 {
-    use Paginatable;
+    use Paginatable, SortableTrait;
 
     /**
      * @var array
@@ -40,7 +41,13 @@ class CampaignRole extends Model
         'is_public',
         'name',
     ];
-
+    /**
+     * @var array
+     */
+    public $sortable = [
+        'name',
+        'is_admin',
+    ];
     /**
      * Determine if the campaign role is the campaign's public role
      * @return bool
@@ -220,5 +227,13 @@ class CampaignRole extends Model
             'entity_type_id' => $entityType
             //'campaign_id' => $campaign->id,
         ]);
+    }
+    /**
+     * @param string $sub
+     * @return string
+     */
+    public function url(string $sub): string
+    {
+        return 'campaign_roles.' . $sub;
     }
 }

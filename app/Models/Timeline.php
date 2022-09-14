@@ -81,7 +81,6 @@ class Timeline extends MiscModel
      */
     protected $entityType = 'timeline';
 
-
     /**
      * Performance with for datagrids
      * @param $query
@@ -90,11 +89,22 @@ class Timeline extends MiscModel
     public function scopePreparedWith(Builder $query)
     {
         return $query->with([
-            'entity',
-            'entity.image',
-            'calendar',
-            'calendar.entity',
-            'eras',
+            'entity' => function ($sub) {
+                $sub->select('id', 'name', 'entity_id', 'type_id', 'image_uuid');
+            },
+            'entity.image' => function ($sub) {
+                $sub->select('campaign_id', 'id', 'ext');
+            },
+            'timeline' => function ($sub) {
+                $sub->select('id', 'name', 'timeline_id');
+            },
+            'timeline.entity',
+            'eras' => function ($sub) {
+                $sub->select('id', 'timeline_id');
+            },
+            'timelines' => function ($sub) {
+                $sub->select('id', 'name', 'timeline_id');
+            }
         ]);
     }
 
@@ -176,6 +186,13 @@ class Timeline extends MiscModel
             'route' => 'timelines.timelines',
             'count' => $this->descendants()->count()
         ];
+        if (auth()->check() && auth()->user()->can('update', $this)) {
+            $items['second']['reorder'] = [
+                'name' => 'timelines/eras.reorder.menu',
+                'route' => 'timeline-eras.reorder',
+                'count' => $this->descendants()->count()
+            ];
+        }
 
         return parent::menuItems($items);
     }

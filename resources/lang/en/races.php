@@ -13,6 +13,7 @@ return [
     ],
     'fields'        => [
         'characters'    => 'Characters',
+        'locations'     => 'Locations',
         'name'          => 'Name',
         'race'          => 'Parent Race',
         'races'         => 'Sub Races',

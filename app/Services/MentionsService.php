@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Facades\Attributes;
+use App\Facades\Mentions;
 use App\Models\Attribute;
 use App\Models\Entity;
 use App\Models\EntityNote;
@@ -49,6 +50,8 @@ class MentionsService
     /** @var EntityService */
     protected EntityService $entityService;
 
+    /** @var bool When false, parsing field:entry won't render mentions */
+    protected bool $enableEntryField = true;
 
     /**
      * Mentions Service constructor
@@ -154,7 +157,7 @@ class MentionsService
 
     /**
      * Replace span mentions into [entity:123] blocks
-     * @param string $text
+     * @param $text
      * @return string
      */
     public function codify($text): string
@@ -251,7 +254,7 @@ class MentionsService
     {
         // First let's prepare all mentions to do a single query on the entities table
         $this->mentionedEntities = [];
-        preg_replace_callback('`\[([a-z_]+):(.*?)\]`i' , function ($matches) {
+        preg_replace_callback('`\[([a-z_]+):(.*?)\]`i', function ($matches) {
             $segments = explode('|', $matches[2]);
             $id = (int) $segments[0];
             $entityType = $matches[1];
@@ -274,7 +277,7 @@ class MentionsService
         $this->prepareEntities();
 
         // Extract links from the entry to foreign
-        $this->text = preg_replace_callback('`\[([a-z_]+):(.*?)\]`i' , function ($matches) {
+        $this->text = preg_replace_callback('`\[([a-z_]+):(.*?)\]`i', function ($matches) {
             // Icons
             $fontAwesomes = ['fa ', 'fas ', 'far ', 'fab ', 'ra ', 'fa-solid ', 'fa-regular ', 'fa-brands '];
             if ($matches[1] == 'icon' && Str::startsWith($matches[2], $fontAwesomes)) {
@@ -285,11 +288,16 @@ class MentionsService
 
             /** @var Entity $entity */
             $entity = $this->entity($data['id']);
-            $cssClasses = [];
+            $tagClasses = [];
+            $cssClasses = ['entity-mention'];
 
             // No entity found, the user might not be allowed to see it
             if (empty($entity) || empty($entity->child)) {
-                $replace = Arr::get($data, 'text', '<i class="unknown-mention unknown-entity">' . __('crud.history.unknown') . '</i>');
+                $replace = Arr::get(
+                    $data,
+                    'text',
+                    '<i class="unknown-mention unknown-entity">' . __('crud.history.unknown') . '</i>'
+                );
             } else {
                 $routeOptions = [];
                 if (!empty($data['params'])) {
@@ -344,6 +352,12 @@ class MentionsService
                     $dataUrl = Str::replaceFirst('campaign/', $lang . '/campaign/', $dataUrl);
                 }
 
+                // Add tags as a class
+                foreach ($entity->tags as $tag) {
+                    $tagClasses[] = 'id-' . $tag->id;
+                    $tagClasses[] = Str::slug($tag->name);
+                }
+
                 // Referencing a custom field on the entity
                 if (!empty($data['field'])) {
                     $field = $data['field'];
@@ -351,7 +365,33 @@ class MentionsService
                     if ($field == 'gender') {
                         $field = 'sex';
                     }
-                    if (isset($entity->child->$field)) {
+                    if ($field === 'entry') {
+                        if ($this->enableEntryField) {
+                            $this->lockEntryRendering();
+                            $parsedTargetEntry = $entity->child->entry();
+                            $this->unlockEntryRendering();
+                        } else {
+                            $parsedTargetEntry = $entity->child->entry;
+                        }
+                        $cssClasses[] = 'mention-field-entry';
+                        $entityName = '<a href="' . $url . '"'
+                            . ' class="entity-mention-name block mb-2"'
+                            . ' data-toggle="tooltip-ajax"'
+                            . ' data-id="' . $entity->id . '"'
+                            . ' data-url="' . $dataUrl . '"'
+                            . '>'
+                            . Arr::get($data, 'text', $entity->name)
+                            . '</a>';
+                        ;
+                        return '<div class="' . implode(' ', $cssClasses) . '"'
+                            . ' data-entity-tags="' . implode(' ', $tagClasses) . '"'
+                            . '>'
+                            . $entityName
+                            . '<div class="mention-entry-content">'
+                            . $parsedTargetEntry
+                            . '</div>'
+                            . '</div>';
+                    } elseif (isset($entity->child->$field)) {
                         $foreign = $entity->child->$field;
                         if ($foreign instanceof Model) {
                             if (isset($foreign->name) && !empty($foreign->name)) {
@@ -363,17 +403,13 @@ class MentionsService
                     } elseif (isset($entity->$field) && is_string($entity->$field)) {
                         $data['text'] = $entity->$field;
                     }
-                }
 
-                // Add tags as a class
-                foreach ($entity->tags as $tag) {
-                    $cssClasses[] = 'id-' . $tag->id;
-                    $cssClasses[] = Str::slug($tag->name);
+                    $cssClasses[] = 'mention-field-' . Str::slug($field);
                 }
 
                 $replace = '<a href="' . $url . '"'
-                    . ' class="entity-mention"'
-                    . ' data-entity-tags="' . implode(' ', $cssClasses) . '"'
+                    . ' class="' . implode(' ', $cssClasses) . '"'
+                    . ' data-entity-tags="' . implode(' ', $tagClasses) . '"'
                     . ' data-toggle="tooltip-ajax"'
                     . ' data-id="' . $entity->id . '"'
                     . ' data-url="' . $dataUrl . '"'
@@ -587,7 +623,7 @@ class MentionsService
     protected function mapAttributes()
     {
         $this->mentionedAttributes = [];
-        preg_replace_callback('`\{attribute:(.*?)\}`i' , function ($matches) {
+        preg_replace_callback('`\{attribute:(.*?)\}`i', function ($matches) {
             $id = (int) $matches[1];
             if (!in_array($id, $this->mentionedAttributes)) {
                 $this->mentionedAttributes[] = $id;
@@ -608,7 +644,8 @@ class MentionsService
             if (empty($attribute)) {
                 $replace = '<i class="unknown-mention unknown-attribute">' . __('crud.history.unknown') . '</i>';
             } else {
-                $replace = '<span class="attribute attribute-mention" title="' . e($attribute->name) . '" data-toggle="tooltip">' . $attribute->mappedValue() . '</span>';
+                $replace = '<span class="attribute attribute-mention" title="' . e($attribute->name)
+                    . '" data-toggle="tooltip">' . $attribute->mappedValue() . '</span>';
             }
             return $replace;
         }, $this->text);
@@ -622,7 +659,11 @@ class MentionsService
 
             $this->text = $markupFixer->fix($this->text);
             $toc = $tocGenerator->getHtmlMenu($this->text);
-            $this->text = Str::replaceFirst('{table-of-contents}', '<div class="toc">' . $toc .  "</div>\n", $this->text);
+            $this->text = Str::replaceFirst(
+                '{table-of-contents}',
+                '<div class="toc">' . $toc .  "</div>\n",
+                $this->text
+            );
         }
     }
 
@@ -666,5 +707,23 @@ class MentionsService
         $this->createdNewEntities = true;
 
         return '[' . $type . ':' . $new->entity->id . ']';
+    }
+
+    /**
+     * Protect from rendering future field:entry mentions to avoid endless loops
+     * @return void
+     */
+    protected function lockEntryRendering(): void
+    {
+        $this->enableEntryField = false;
+    }
+
+    /**
+     * Re-enable rendering field:entry mentions
+     * @return void
+     */
+    protected function unlockEntryRendering(): void
+    {
+        $this->enableEntryField = true;
     }
 }

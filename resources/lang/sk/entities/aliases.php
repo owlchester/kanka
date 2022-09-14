@@ -17,6 +17,7 @@ return [
     'helpers'       => [
         'primary'   => 'Nastavením jedného alebo viacerých aliasov objektu ho umožňuje nájsť v rámci celkového hľadania (horná lišta) a cez referencie.',
     ],
+    'pitch'         => 'Vytvor prezývky pre tento objekt, aby hľadanie a referencovanie bolo jednoduchšie.',
     'placeholders'  => [
         'name'  => 'Nový alias',
     ],

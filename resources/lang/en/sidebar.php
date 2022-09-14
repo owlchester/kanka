@@ -26,7 +26,7 @@ return [
     'journals'              => 'Journals',
     'locations'             => 'Locations',
     'manage_links'          => 'Manage Links',
-    'new-entity'            => 'Create new entity',
+    'new-entity'            => 'New entity',
     'notes'                 => 'Notes',
     'organisations'         => 'Organisations',
     'other'                 => 'Other',

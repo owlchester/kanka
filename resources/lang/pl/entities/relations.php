@@ -6,12 +6,15 @@ return [
         'mode-table'    => 'Tabela relacji i powiązań',
     ],
     'bulk'              => [
-        'delete'    => '{1} Usunięto :count relację.|[2,3,4] Usunięto :count relacje.|[5,*] Usunięto :count relacji.',
-        'success'   => [
+        'delete'            => '{1} Usunięto :count relację.|[2,3,4] Usunięto :count relacje.|[5,*] Usunięto :count relacji.',
+        'delete_mirrored'   => 'Usuń również drugą stronę relacji.',
+        'success'           => [
             'editing'           => '{1} Zmienono :count relację.|[2,3,4] Zmienono :count relacje.|[5,*] Zmienono :count relacji.',
             'editing_partial'   => '{1} Zmienono :count/:total relację.|[2,3,4] Zmienono :count/:total relacje.|[5,*] Zmienono :count/:total relacji.',
         ],
+        'update_mirrored'   => 'Zmień również drugą stronę relacji.',
     ],
+    'call-to-action'    => 'Zobacz rozkład rozmaitych relacji, łączących elementy kampanii.',
     'connections'       => [
         'map_point'         => 'Punkt na mapie',
         'mention'           => 'Wzmianka',
@@ -28,6 +31,7 @@ return [
         'option'    => 'Usuń relację obustronną.',
     ],
     'destroy'           => [
+        'mirrored'  => 'Usunie również drugą stronę relacji. Tej akcji nie można cofnąć.',
         'success'   => 'Usunięto relację :target elementu :entity.',
     ],
     'fields'            => [
@@ -58,10 +62,11 @@ return [
         'title' => 'Relacje',
     ],
     'options'           => [
-        'mentions'  => 'Relacje + związki + wzmianki',
-        'related'   => 'Relacje + związki',
-        'relations' => 'Relacje',
-        'show'      => 'Pokaż',
+        'mentions'          => 'Relacje + związki + wzmianki',
+        'only_relations'    => 'Tylko relacje bezpośrednie',
+        'related'           => 'Relacje + związki',
+        'relations'         => 'Relacje',
+        'show'              => 'Pokaż',
     ],
     'panels'            => [
         'related'   => 'Związki',

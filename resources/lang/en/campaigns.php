@@ -250,6 +250,10 @@ TEXT
             'save'          => 'Save role',
         ],
         'admin_role'    => 'admin role',
+        'bulks'         => [
+            'delete'    => '{1} Removed :count role.|[2,*] Removed :count roles.',
+            'edit'      => '{1} Updated :count role.|[2,*] Updated :count roles.',
+        ],
         'create'        => [
             'success'   => 'Role :name created.',
             'title'     => 'New role',
@@ -424,6 +428,7 @@ TEXT
         ],
         'fields'            => [
             'connections'       => 'Default entity\'s connections interface',
+            'connections_mode'  => 'Default relations explorer mode',
             'entity_history'    => 'Entity\'s history logs',
             'entity_image'      => 'Entity\'s image',
             'family_toolip'     => 'Character\'s family',
@@ -433,6 +438,7 @@ TEXT
         ],
         'helpers'           => [
             'connections'       => 'When clicking on the connections subpage of an entity, select the default interface showed.',
+            'connections_mode'  => 'When viewing the relation explorer of an entity, define the default mode that is selected.',
             'other'             => 'Other visual options for the campaign.',
             'post_collapsed'    => 'When creating a new post on an entity, select the collapsed field\'s default value.',
             'tooltip'           => 'Control which information is visibile when hovering an entity\'s name in their tooltip.',

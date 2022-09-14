@@ -166,6 +166,7 @@ return [
         'position'              => 'Posición',
         'privacy'               => 'Privacidade',
         'race'                  => 'Raza',
+        'replace_mentions'      => 'Substitúe as mencións de atributos na entrada cos da nova entidade.',
         'tag'                   => 'Etiqueta',
         'tags'                  => 'Etiquetas',
         'timeline'              => 'Liña temporal',
@@ -236,6 +237,7 @@ return [
     'helpers'                   => [
         'copy_options'  => 'Copiar os seguintes elementos relacionados dende a fonte á nova entidade.',
         'linking'       => 'Ligar outras entidades',
+        'nested_parent' => 'Mostrando as entidades fillas de ":parent".',
     ],
     'hidden'                    => 'Oculto',
     'hints'                     => [

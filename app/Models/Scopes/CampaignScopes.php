@@ -15,11 +15,12 @@ use Illuminate\Support\Arr;
  * @method static self|Builder admin()
  * @method static self|Builder public()
  * @method static self|Builder top()
- * @method static self|Builder front(int $sort = null)
+ * @method static self|Builder front(string $sort = null)
  * @method static self|Builder featured(bool $featured = true)
  * @method static self|Builder filterPublic(array $filters)
  * @method static self|Builder open()
  * @method static self|Builder unboosted()
+ * @method static self|Builder hidden()
  */
 trait CampaignScopes
 {
@@ -99,6 +100,7 @@ trait CampaignScopes
         }
         $defaultSort = $sort == 1 ? 'follower' : 'visible_entity_count';
         $query
+            ->where('is_hidden', 0)
             ->orderBy($defaultSort, 'desc')
             ->orderBy('name');
 
@@ -148,7 +150,7 @@ trait CampaignScopes
      * @param Builder $query
      * @return Builder
      */
-    public function scopePreparedWith(Builder $query)
+    public function scopePreparedWith(Builder $query): Builder
     {
         return $query;
     }
@@ -164,5 +166,14 @@ trait CampaignScopes
             return $sub->where('boost_count', 0)
                 ->orWhereNull('boost_count');
         });
+    }
+    /**
+     * @param Builder $query
+     * @param int $hidden
+     * @return mixed
+     */
+    public function scopeHidden(Builder $query, $hidden = 1): Builder
+    {
+        return $query->where(['is_hidden' => $hidden]);
     }
 }

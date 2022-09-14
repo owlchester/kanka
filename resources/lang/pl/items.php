@@ -9,11 +9,19 @@ return [
     'fields'        => [
         'character' => 'Postać',
         'image'     => 'Obraz',
+        'item'      => 'Przedmiot źródłowy',
+        'items'     => 'Przedmiot pochodny',
         'location'  => 'Miejsce',
         'name'      => 'Nazwa',
         'price'     => 'Cena',
         'size'      => 'Rozmiar',
         'type'      => 'Rodzaj',
+    ],
+    'helpers'       => [
+        'nested_without'    => 'Wyświetla przedmioty nie posiadające źródła. Kliknij na rząd by zobaczyć przedmioty pochodne.',
+    ],
+    'hints'         => [
+        'items' => 'Porządkuj przedmioty według źródeł',
     ],
     'index'         => [
         'title' => 'Przedmioty',

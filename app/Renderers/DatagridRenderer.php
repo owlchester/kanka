@@ -7,10 +7,9 @@ use App\Models\Campaign;
 use App\Models\Entity;
 use App\Models\MiscModel;
 use App\Services\FilterService;
-use Collective\Html\FormFacade;
+use App\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\Auth;
 use Collective\Html\FormFacade as Form;
 use Illuminate\Support\Str;
 
@@ -20,7 +19,7 @@ class DatagridRenderer
      * Columns
      * @var array
      */
-    protected $columns = [];
+    protected array $columns = [];
 
     /**
      * Data
@@ -32,34 +31,37 @@ class DatagridRenderer
      * Options
      * @var array
      */
-    protected $options = [];
+    protected array $options = [];
 
     /**
      * User
      * @var \Illuminate\Contracts\Auth\Authenticatable|null
      */
-    protected $user;
+    protected User|null $user;
 
     /**
      * @var FilterService null
      */
-    protected $filterService = null;
+    protected FilterService|null $filterService = null;
 
     protected $filters = null;
 
-    protected $dateRenderer;
+    protected DateRenderer $dateRenderer;
 
     /** @var Campaign|bool */
     protected $campaign = false;
 
     /**
-     * @var null
+     * @var null|string
      */
-    protected $nestedFilter = null;
+    protected null|string $nestedFilter = null;
 
+    /**
+     * @param DateRenderer $dateRenderer
+     */
     public function __construct(DateRenderer $dateRenderer)
     {
-        $this->user = Auth::user();
+        $this->user = auth()->user();
         $this->dateRenderer = $dateRenderer;
     }
 
@@ -270,13 +272,14 @@ class DatagridRenderer
 
     /**
      * @param Model $model
+     * @return string
      */
-    private function renderRow(Model $model)
+    private function renderRow(Model $model): string
     {
         $useEntity = $this->getOption('disableEntity') !== true;
         // Should never happen...
         if ($useEntity && empty($model->entity)) {
-            return;
+            return '';
             $model->save();
             $model->refresh();
         }
@@ -514,7 +517,7 @@ class DatagridRenderer
      * @param string $key
      * @return $this
      */
-    public function nested($key = 'parent_id')
+    public function nested(string $key = 'parent_id')
     {
         $this->nestedFilter = $key;
         return $this;

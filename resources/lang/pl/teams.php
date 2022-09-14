@@ -4,10 +4,20 @@ return [
     'hall_of_fame'  => 'Galeria Sław',
     'index'         => [
         'community'     => 'Społeczność',
+        'founders'      => 'Założyciele',
+        'lead'          => 'Solidne i przyjemne tworzenie światów.',
         'title'         => 'Zespół',
         'translations'  => 'Tłumaczenie',
     ],
+    'leads'         => [
+        'about'         => 'Kanka zrodziła się z frustracji, wywołanej rozproszeniem notatek z sesji po różnych narzędziach i trudności w przekazywaniu ich graczom.',
+        'community'     => 'Od samego początku w tworzeniu Kanki brała udział społeczność. Dziękujemy jej wspaniałym członkom!',
+        'translators'   => 'Kankę przełożyło na liczne języki to oto grono tłumaczy.',
+    ],
     'people'        => [
+        'itzamna'   => [
+            'title' => 'Młodszy developer',
+        ],
         'jay'       => [
             'text'  => <<<'TEXT'
 Stworzyłem Kankę w październiku 2017, ponieważ nie znalazłem narzędzia, które pozwoliłoby mi tworzyć światy wspólnie z przyjaciółmi, zachowując przy tym kontrolę nad tym, kto widzi które treści.
@@ -28,6 +38,12 @@ TEXT
         ],
         'joseph'    => [
             'title' => 'Testy i wdrażanie pracowników',
+        ],
+        'kaz'       => [
+            'title' => 'Pogromca bugów',
+        ],
+        'laura'     => [
+            'title' => 'Media Społecznościowe',
         ],
         'ryan'      => [
             'title' => 'Zarządzanie społecznością i główny tester',

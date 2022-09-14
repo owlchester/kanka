@@ -214,6 +214,7 @@ return [
             'copy'  => 'Clipboard',
         ],
         'options'                   => [
+            'children'  => 'With children',
             'exclude'   => 'Exclude',
             'include'   => 'Include',
             'none'      => 'None',

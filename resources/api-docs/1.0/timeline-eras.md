@@ -70,17 +70,16 @@ To get the details of a single era effect, use the following endpoint.
 ```json
 {
     "data": {
-        "id": 1,
-        "timeline_id": 1,
-        "name": "Anno Domani",
-        "abbreviation": "AD",
+        "id": 26,
+        "name": "Third era",
+        "abbreviation": null,
         "start_year": null,
-        "end_year": 0,
-        "visibility": "all",
-        "elements": [],,
-        "created_by": 1,
-        "created_at": "2020-08-05 14:32:59",
-        "updated_at": "2020-08-05 14:33:22"
+        "entry": "<p>Lorem ipsum dolor sit amet</p>",
+        "entry_parsed": "<p>Lorem ipsum dolor sit amet</p>",
+        "end_year": null,
+        "elements": [],
+        "is_collapsed": false,
+        "position": 2
     }
 
 }

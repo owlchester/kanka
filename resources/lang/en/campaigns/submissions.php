@@ -23,6 +23,7 @@ return [
     ],
     'fields'        => [
         'application'   => 'Application',
+        'approval'      => 'Approval reason',
         'rejection'     => 'Rejection reason',
     ],
     'helpers'       => [

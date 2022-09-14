@@ -14,6 +14,7 @@ return [
     'resources'         => 'Recursos',
     'security'          => 'Segurança',
     'server_time'       => 'Horário do servidor :time:',
+    'status'            => 'Status do serviço',
     'terms'             => 'Termos',
     'translator_call'   => 'Kanka é traduzido em outros idiomas graças à nossa incrível comunidade. Se você quiser ajudar a traduzir Kanka para o seu idioma, entre em contato conosco no :discord!',
     'whats-new'         => 'Novidades',

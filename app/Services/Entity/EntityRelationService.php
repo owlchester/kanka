@@ -118,7 +118,8 @@ class EntityRelationService
                     ->addLocation()
                     ->addQuests()
                     ->addAuthorJournals()
-                    ->addMapMarkers();
+                    ->addMapMarkers()
+                    ->addLocations();
             }
         }
 
@@ -233,7 +234,9 @@ class EntityRelationService
                 'edit_url' => route('entities.relations.edit', [
                     'entity' => $relation->owner_id,
                     'relation' => $relation,
-                    'from' => $this->entity->id
+                    'from' => $this->entity->id,
+                    'mode' => 'map',
+                    'option' => $this->option
                 ])
             ];
 
@@ -450,6 +453,7 @@ class EntityRelationService
                 ->addMapMarkers()
                 ->addMaps()
                 ->addAuthorJournals()
+                ->addRaces()
             ;
         }
 
@@ -834,6 +838,50 @@ class EntityRelationService
         }
         return $this;
     }
+
+    protected function addRaces(): self
+    {
+        /** @var Race $race */
+        $race = $this->entity->child;
+
+        foreach ($race->races()->with('entity')->has('entity')->get() as $subrace) {
+            $this->addEntity($subrace->entity);
+            $this->addRelations($subrace->entity);
+
+            $this->relations[] = [
+                'source' => $subrace->entity->id,
+                'target' => $this->entity->id,
+                'text' => __('races.fields.race'),
+                'colour' => '#ccc',
+                'attitude' => null,
+                'type' => 'sub-race',
+                'shape' => 'triangle',
+            ];
+        }
+        return $this;
+    }
+    protected function addLocations(): self
+    {
+        /** @var Location $location */
+        $race = $this->entity->child;
+
+        foreach ($race->locations()->with('entity')->has('entity')->get() as $subrace) {
+            $this->addEntity($subrace->entity);
+            $this->addRelations($subrace->entity);
+
+            $this->relations[] = [
+                'source' => $subrace->entity->id,
+                'target' => $this->entity->id,
+                'text' => __('races.fields.race'),
+                'colour' => '#ccc',
+                'attitude' => null,
+                'type' => 'sub-race',
+                'shape' => 'triangle',
+            ];
+        }
+        return $this;
+    }
+
 
     /**
      * Load relations between linked entities

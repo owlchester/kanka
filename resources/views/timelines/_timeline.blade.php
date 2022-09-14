@@ -4,7 +4,7 @@
  * @var \App\Models\TimelineEra $era
  * @var \App\Models\TimelineElement $element
  */
-$eras = $timeline->eras()->ordered($timeline->revert_order)->get();
+$eras = $timeline->eras()->ordered()->get();
 $loadedElements = [];
 ?>
 @forelse ($eras as $era)

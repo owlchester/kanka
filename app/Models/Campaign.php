@@ -50,6 +50,7 @@ use Illuminate\Support\Facades\Auth;
  * @property int $created_by
  * @property int $updated_by
  * @property int $follower
+ * @property bool $is_hidden
  *
  * UI virtual Settings
  * @property bool $tooltip_family
@@ -314,6 +315,15 @@ class Campaign extends MiscModel
     }
 
     /**
+     * Determine if a campaign is hidden
+     * @return bool
+     */
+    public function isHidden(): bool
+    {
+        return $this->is_hidden;
+    }
+
+    /**
      * @return mixed
      */
     public function entry()
@@ -368,6 +378,14 @@ class Campaign extends MiscModel
     public function defaultToConnection(): bool
     {
         return (bool) Arr::get($this->ui_settings, 'connections', false);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function defaultToConnectionMode(): int
+    {
+        return (int) Arr::get($this->ui_settings, 'connections_mode', 0);
     }
 
     /**

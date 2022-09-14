@@ -15,6 +15,7 @@ return [
     'fields'            => [
         'icon'      => 'Icon',
         'name'      => 'Name',
+        'parent'    => 'Parent element',
         'position'  => 'Position',
         'url'       => 'URL',
     ],
@@ -27,7 +28,8 @@ return [
         'title'         => 'Leaving Kanka',
     ],
     'helpers'           => [
-        'icon'  => 'You can customise the icon displayed for the link. Use any of the free icons from :fontawesome or leave this field blank for the default.',
+        'icon'      => 'You can customise the icon displayed for the link. Use any of the free icons from :fontawesome or leave this field blank for the default.',
+        'parent'    => 'Display this quick link after an element of the sidebar, rather than in the quick links section of the sidebar.',
     ],
     'placeholders'      => [
         'name'  => 'DNDBeyond',

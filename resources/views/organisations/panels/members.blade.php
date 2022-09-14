@@ -57,7 +57,7 @@ $all = $model->allMembers()->has('character')->count();
         </div>
     </div>
 
-    @if ($direct === 0)
+    @if ($direct === 0 && !$allMembers)
         <div class="box-body">
 
             <p class="help-block">

@@ -39,6 +39,7 @@ return [
                 'remove'    => 'Odłączono konto Discord.',
             ],
             'text'      => 'Automatyczny dostęp do poziomu subskrypcji.',
+            'unlock'    => 'Odblokuj role na Discordzie',
         ],
         'title'     => 'Integracja z aplikacjami',
     ],
@@ -85,10 +86,12 @@ return [
     'menu'          => [
         'account'               => 'Konto',
         'api'                   => 'API',
+        'appearance'            => 'Wygląd',
         'apps'                  => 'Aplikacje',
         'billing'               => 'Metoda płatności',
         'boosters'              => 'Doładowania',
         'invoices'              => 'Rachunki',
+        'notifications'         => 'Powiadomienia',
         'other'                 => 'Inne',
         'patreon'               => 'Patreon',
         'payment_options'       => 'Opcje płatności',
@@ -202,7 +205,8 @@ return [
             'yearly'    => 'Roczne',
         ],
         'placeholders'          => [
-            'reason'    => 'Jeżeli chcesz, powiedz nam dlaczego rezygnujesz ze wspierania Kanki. Czy brakuje ci jakichś funkcji, czy też zmieniła się twoja sytuacja finansowa?',
+            'downgrade_reason'  => 'Jeśli chcesz, powiedz nam czemu zmniejszasz poziom subskrybcji',
+            'reason'            => 'Jeżeli chcesz, powiedz nam dlaczego rezygnujesz ze wspierania Kanki. Czy brakuje ci jakichś funkcji, czy też zmieniła się twoja sytuacja finansowa?',
         ],
         'plans'                 => [
             'cost_monthly'  => ':currency :amount rozliczane miesięcznie',
@@ -238,10 +242,11 @@ return [
                 'title'     => 'Gdy anulujesz subskrypcję',
             ],
             'downgrade' => [
-                'bullets'   => [
+                'bullets'           => [
                     'end'   => 'Twój poziom zostanie aktywny do końca okresu rozliczeniowego, po czym zostanie odpowiednio zmniejszony.',
                 ],
-                'title'     => 'Gdy obniżasz subskrypcję',
+                'provide_reason'    => 'Powiedz nam proszę, dlaczego zmniejszasz poziom subskrypcji - o ile to możliwe.',
+                'title'             => 'Gdy obniżasz subskrypcję',
             ],
             'upgrade'   => [
                 'bullets'   => [

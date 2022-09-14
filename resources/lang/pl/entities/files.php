@@ -1,18 +1,23 @@
 <?php
 
 return [
-    'create'    => [
+    'call-to-action'    => [
+        'boost'         => 'By dodawać kolejne elementy, należy doładować kampanię.',
+        'error'         => 'Ten element nie może posiadać więcej plików.',
+        'superboost'    => 'By dodać kolejne pliki należy turbodoładować kampanię.',
+    ],
+    'create'            => [
         'success'   => 'Dodano plik :file.',
         'title'     => 'Nowy plik elementu :entity',
     ],
-    'destroy'   => [
+    'destroy'           => [
         'success'   => 'Usunięto plik :file.',
     ],
-    'fields'    => [
+    'fields'            => [
         'file'  => 'Plik',
         'name'  => 'Nazwa pliku',
     ],
-    'update'    => [
+    'update'            => [
         'success'   => 'Zaktualizowano plik :file.',
     ],
 ];

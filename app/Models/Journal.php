@@ -103,12 +103,29 @@ class Journal extends MiscModel
     public function scopePreparedWith(Builder $query)
     {
         return $query->with([
-            'entity',
-            'entity.image',
+            'entity' => function ($sub) {
+                $sub->select('id', 'name', 'entity_id', 'type_id', 'image_uuid');
+            },
+            'entity.image' => function ($sub) {
+                $sub->select('campaign_id', 'id', 'ext');
+            },
             'entity.calendarDateEvents',
             'author',
-            'location', 'location.entity',
-            'journal', 'journal.entity',
+            'location' => function ($sub) {
+                $sub->select('id', 'name');
+            },
+            'location.entity' => function ($sub) {
+                $sub->select('id', 'name', 'entity_id', 'type_id');
+            },
+            'journal' => function ($sub) {
+                $sub->select('id', 'name');
+            },
+            'journal.entity' => function ($sub) {
+                $sub->select('id', 'name', 'entity_id', 'type_id');
+            },
+            'journals' => function ($sub) {
+                $sub->select('id', 'journal_id');
+            },
         ]);
     }
 

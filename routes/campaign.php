@@ -171,6 +171,7 @@ Route::post('/entities/{entity}/keep-alive', 'Entity\EditingController@keepAlive
 // Permission save
 Route::post('/campaign_roles/{campaign_role}/savePermissions', 'CampaignRoleController@savePermissions')->name('campaign_roles.savePermissions');
 Route::post('/campaign_roles/{campaign_role}/toggle/{entity}/{action}', 'CampaignRoleController@toggle')->name('campaign_roles.toggle');
+Route::post('/campaign_roles/bulk', 'CampaignRoleController@bulk')->name('campaign_roles.bulk');
 
 // Impersonator
 Route::get('/members/switch/{campaign_user}', 'Campaign\MemberController@switch')->name('identity.switch');
@@ -208,6 +209,11 @@ Route::post('/gallery/folder', 'Campaign\GalleryController@folder')
 
 Route::get('/menu_links/{menu_link}/random', 'MenuLinkController@random')
     ->name('menu_links.random');
+
+Route::get('/timelines/{timeline}/timeline-eras/reorder', [\App\Http\Controllers\Timelines\TimelineEraController::class, 'reorderEras'])
+    ->name('timeline-eras.reorder');
+Route::post('/timelines/{timeline}/timeline-eras/reorder', [\App\Http\Controllers\Timelines\TimelineEraController::class, 'save'])
+    ->name('timeline-eras.reorder-save');
 
 Route::get('/quick-links/reorder', [\App\Http\Controllers\QuickLinkController::class, 'reorder'])
     ->name('quick-links.reorder');
@@ -353,7 +359,7 @@ Route::get('/search/attributes/{entity}', 'Search\AttributeSearchController@inde
 
 // Global Entity Search
 Route::get('/search/reminder-entities', 'Search\LiveController@reminderEntities')->name('search.entities-with-reminders');
-Route::get('/search/relation-entities', 'Search\LiveController@relationEntities')->name('search.entities-with-relations');
+Route::get('/search/relation-entities', 'Search\LiveController@relationEntities')->name('search.entities-with-relations'); //use this one.
 Route::get('/search/tag-children', 'Search\LiveController@tagChildren')->name('search.tag-children');
 Route::get('/search/ability-entities', 'Search\LiveController@abilityEntities')->name('search.ability-entities');
 Route::get('/search/organisation-member', 'Search\LiveController@organisationMembers')->name('search.organisation-member');
@@ -375,6 +381,8 @@ Route::get('/dashboard/widgets/{campaignDashboardWidget}/render', [\App\Http\Con
 // Move
 Route::get('/entities/{entity}/move', 'Entity\MoveController@index')->name('entities.move');
 Route::post('/entities/{entity}/move', 'Entity\MoveController@move')->name('entities.move');
+Route::get('/entities/{entity}/entity_notes/{entity_note}/move', 'Entity\PostMoveController@index')->name('entity_notes.move');
+Route::post('/entities/{entity}/entity_notes/{entity_note}/move', 'Entity\PostMoveController@move')->name('entity_notes.move');
 
 // Transform
 Route::get('/entities/{entity}/transform', 'Entity\TransformController@index')->name('entities.transform');

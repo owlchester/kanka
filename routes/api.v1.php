@@ -56,6 +56,7 @@ Route::apiResources([
     'campaigns.entities.inventory' => 'EntityInventoryApiController',
     'campaigns.entities.entity_abilities' => 'EntityAbilityApiController',
     'campaigns.entities.entity_assets' => 'EntityAssetApiController',
+    'campaigns.entities.entity_permissions' => 'EntityPermissionApiController',
 
     'campaigns.campaign_dashboard_widgets' => 'CampaignDashboardWidgetApiController',
     'campaigns.campaign_styles' => 'CampaignStyleApiController',
@@ -83,5 +84,8 @@ Route::delete('campaigns/{campaign}/users', 'Campaign\UserApiController@remove')
 
 Route::get('visibilities', 'VisibilityController@index');
 
+Route::get('version', function() { return config('app.version'); });
+
+Route::post('campaigns/{campaign}/permissions/test', 'EntityPermissionApiController@test');
 
 //Route::get('campaigns/{campaign}/settings', 'CampaignSettingApiController@index');

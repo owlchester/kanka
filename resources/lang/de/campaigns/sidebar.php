@@ -7,6 +7,7 @@ return [
     'call-to-action'    => 'Passe die Reihenfolge, Symbole und Namen der Elemente in der Seitenleiste der Kampagne an.',
     'helpers'           => [
         'here'              => 'in unserer Dokumentation',
+        'icons'             => 'Verwende die Symbolklasse auf :link.',
         'mobile_reordering' => 'Die Neuordnung der Seitenleiste ist nur auf Desktop-Geräten möglich.',
         'setup'             => 'Passen Sie die Reihenfolge, die Symbole und die Namen der Elemente der Seitenleiste der Kampagne an. Sie können jederzeit auf die Standardeinstellungen zurücksetzen, indem Sie die Schaltfläche :reset am Ende der Seite verwenden.',
     ],

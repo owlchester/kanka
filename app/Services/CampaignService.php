@@ -128,6 +128,34 @@ class CampaignService
         self::switchToNext();
     }
 
+ /**
+     * Notify the campaign admins that the campaign was forcibly hidden/made visible
+     * @param Campaign $campaign
+     * @throws Exception
+     */
+    public function hidden(Campaign $campaign)
+    {
+        $colour = 'green';
+        $icon = 'eye';
+        $key = 'shown';
+        if ($campaign->isHidden()) {
+            $colour = 'yellow';
+            $icon = 'eye-slash';
+            $key = 'hidden';
+        }
+
+        $this->notify(
+            $campaign,
+            $key,
+            $icon,
+            $colour,
+            [
+                'campaign' => $campaign->name,
+                'link' => $campaign->getMiddlewareLink()
+            ]
+        );
+    }
+
     /**
      * Switch to the last campaign the user used
      * @param User|null $userParam

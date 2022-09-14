@@ -102,12 +102,21 @@ class Ability extends MiscModel
     public function scopePreparedWith(Builder $query)
     {
         return $query->with([
-            'entity',
-            'entity.image',
-            'entities',
-            'ability',
-            'abilities',
-            'ability.entity',
+            'entity' => function ($sub) {
+                $sub->select('id', 'name', 'entity_id', 'type_id', 'image_uuid');
+            },
+            'entity.image' => function ($sub) {
+                $sub->select('campaign_id', 'id', 'ext');
+            },
+            'ability' => function ($sub) {
+                $sub->select('id', 'name');
+            },
+            'ability.entity' => function ($sub) {
+                $sub->select('id', 'name', 'entity_id', 'type_id');
+            },
+            'abilities' => function ($sub) {
+                $sub->select('id', 'name', 'ability_id');
+            },
         ]);
     }
 

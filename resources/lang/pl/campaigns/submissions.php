@@ -2,8 +2,10 @@
 
 return [
     'actions'       => [
-        'accept'    => 'Akceptuj',
-        'reject'    => 'Odrzuć',
+        'accept'        => 'Akceptuj',
+        'applications'  => 'Zgłoszenie :status',
+        'change'        => 'Zmień',
+        'reject'        => 'Odrzuć',
     ],
     'apply'         => [
         'apply'         => 'Zgłoszenie',
@@ -23,9 +25,26 @@ return [
         'application'   => 'Zgłoszenie',
         'rejection'     => 'Powód odrzucenia',
     ],
-    'helpers'       => [],
+    'helpers'       => [
+        'filter-helper'     => 'Kampania otwarta na zgłoszenia!',
+        'modal'             => 'Do kampanii publicznej, którą otwarto na zgłoszenia, mogą się zgłaszać nowi uczestnicy.',
+        'no_applications'   => 'W tej kampanii nie ma oczekujących zgłoszeń. Nowi uczestnicy mogą zgłaszać się, wchodząc na pulpit kampanii i klikając na :button.',
+        'not_open'          => 'Kampania nie przyjmuje zgłoszeń.',
+        'open_not_public'   => 'Kampanię otwarto na zgłoszenia, ale nie jest publiczna, więc nikt nie może się zgłosić. Zmień ten stan rzeczy edytując ustawienia kampanii.',
+    ],
     'placeholders'  => [
         'note'  => 'Napisz zgłoszenie, by dołączyć do kampanii',
+    ],
+    'statuses'      => [
+        'closed'    => 'Zamknięta',
+        'open'      => 'Otwarta',
+    ],
+    'toggle'        => [
+        'closed'    => 'Zamknięta na zgłoszenia',
+        'label'     => 'Status',
+        'open'      => 'Otwarta na zgłoszenia',
+        'success'   => 'Zmieniono status kampanii.',
+        'title'     => 'Status zgłoszenia',
     ],
     'update'        => [
         'approve'   => 'Wybierz rolę, którą otrzymają uczestnicy dodawani do kampanii.',

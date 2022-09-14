@@ -23,7 +23,7 @@ return [
             'title'         => 'Stupid sexy icons',
         ],
         'limits'        => [
-            'description'   => 'Get ride of limits to the number of members, roles, and quick links in the campaign.',
+            'description'   => 'Get rid of limits to the number of members, roles, and quick links in the campaign.',
             'title'         => 'Unlimited',
         ],
         'peace-of-mind' => [

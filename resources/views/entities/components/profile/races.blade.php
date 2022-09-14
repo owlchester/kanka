@@ -12,6 +12,23 @@
     </div>
 
     <div class="sidebar-elements collapse in" id="sidebar-profile-elements">
+
+        @if ($campaignService->enabled('locations') && !$model->locations->isEmpty())
+            <div class="element profile-location">
+                <div class="title">
+                    {{ __('races.fields.locations') }}
+                </div>
+                @php $existingRaces = []; @endphp
+                @foreach ($model->locations as $location)
+                    @if(!empty($existingLocations[$location->id]))
+                        @continue
+                    @endif
+                    @php $existingLocations[$location->id] = true; @endphp
+                    {!! $location->tooltipedLink() !!}
+                @endforeach
+            </div>
+        @endif
+
         @include('entities.components.profile._type')
     </div>
 </div>

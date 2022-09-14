@@ -22,6 +22,8 @@ return [
             'filters'       => [
                 'all'               => 'Doładowanie',
                 'boosted'           => 'Kampanie doładowane',
+                'entities'          => 'Sortuj według liczby elementów',
+                'followers'         => 'Sortuj według liczby obserwujących',
                 'is-boosted'        => 'Tę kampanię doładowano!',
                 'is-superboosted'   => 'Tę kampanię trubodoładowano!',
                 'unboosted'         => 'Niedoładowane',
@@ -249,6 +251,7 @@ return [
         'pricing'       => 'Cena',
         'privacy'       => 'Prywatność',
         'register'      => 'Rejestracja',
+        'register_free' => 'Darmowa rejestracja',
         'releases'      => 'Aktualizacje',
         'roadmap'       => 'Plany',
     ],
