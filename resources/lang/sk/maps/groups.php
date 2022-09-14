@@ -19,9 +19,15 @@ return [
         'is_shown'  => 'Zobraziť značky skupiny',
         'position'  => 'Pozícia',
     ],
-    'helper'        => [],
+    'helper'        => [
+        'amount_v2' => 'Vytvor skupiny značiek a pridaj im značky, čím budeš môcť jedným kliknutím tieto zobraziť alebo skryť.',
+    ],
     'hints'         => [
         'is_shown'  => 'Aktivovaním sa značky skupiny zobrazia na mape automaticky.',
+    ],
+    'pitch'         => [
+        'error' => 'Dosiahnutý max. počet skupín.',
+        'until' => 'Vytvor na každej mape až :max skupín.',
     ],
     'placeholders'  => [
         'name'      => 'Obchody, Poklady, NPC',

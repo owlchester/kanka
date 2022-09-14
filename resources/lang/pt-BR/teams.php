@@ -4,10 +4,20 @@ return [
     'hall_of_fame'  => 'Hall da Fama',
     'index'         => [
         'community'     => 'Comunidade',
+        'founders'      => 'Fundadores',
+        'lead'          => 'Tornando a construção de mundo divertida e confiável',
         'title'         => 'Time',
         'translations'  => 'Traduções',
     ],
+    'leads'         => [
+        'about'         => 'Kanka nasceu de uma frustração com a construção de mundos e notas de sessão espalhadas em várias ferramentas, e a dificuldade de compartilhar facilmente esse conteúdo com os jogadores.',
+        'community'     => 'A comunidade faz parte do nosso DNA desde o primeiro dia. Saudações especiais para esses membros da comunidade!',
+        'translators'   => 'Kanka é traduzido para vários idiomas graças a esses incríveis colaboradores.',
+    ],
     'people'        => [
+        'itzamna'   => [
+            'title' => 'Desenvolvedor Junior',
+        ],
         'jay'       => [
             'text'  => <<<'TEXT'
 Eu criei o Kanka em outubro de 2017 porque não havia nenhuma ferramenta que me permitisse criar facilmente um mundo com meus amigos e ainda me permitir controlar quem pode ver ou fazer o quê.

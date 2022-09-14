@@ -8,6 +8,7 @@ return [
     'edit'          => [],
     'fields'        => [
         'image'         => 'Obraz',
+        'is_defunct'    => 'Nie funkcjonuje',
         'location'      => 'Miejsce',
         'members'       => 'Członkowie',
         'name'          => 'Nazwa',
@@ -18,6 +19,9 @@ return [
     'helpers'       => [
         'descendants'       => 'Na liście znajdują się wszystkie organizacje wywodzące się od tej, nie tylko bezpośrednio.',
         'nested_without'    => 'Wyświetlono wszystkie organizacje nie posiadające źródła. Kliknij na rząd, by wyświetlić organizacje pochodne.',
+    ],
+    'hints'         => [
+        'is_defunct'    => 'Ta organizacja obecnie nie działa',
     ],
     'index'         => [
         'title' => 'Organizacje',

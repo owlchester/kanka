@@ -4,10 +4,20 @@ return [
     'hall_of_fame'  => 'Sieň slávy',
     'index'         => [
         'community'     => 'Komunita',
+        'founders'      => 'Založené',
+        'lead'          => 'Tvorba svetov - zábavná a spoľahlivá',
         'title'         => 'Tím',
         'translations'  => 'Preklady',
     ],
+    'leads'         => [
+        'about'         => 'Kanka vznikla z frustrácie z tvorby svetov a tisícky poznámok roztratených po mnohých rozličných nástrojoch a zároveň z dôvodu ako ich jednoducho sprostredkovať hráčstvu.',
+        'community'     => 'Komunita bola súčasťou našej DNA od prvého dňa. Špeciálne pozdravujeme týchto členov a členky našej komunity!',
+        'translators'   => 'Kanka je prekladaná do niekoľkých jazykov vďaka týmto úžasným prispievajúcim osobám.',
+    ],
     'people'        => [
+        'itzamna'   => [
+            'title' => 'Juniorský vývojár',
+        ],
         'jay'       => [
             'text'  => <<<'TEXT'
 Kanku som vytvoril v októbri 2017, pretože neexistoval nástroj, ktorý by mi dovoľoval vytvoriť svet spolu s mojimi priateľmi a zároveň mi poskytoval kontrolu nad tým, kto čo uvidí.
@@ -28,6 +38,12 @@ TEXT
         ],
         'joseph'    => [
             'title' => 'Zabezpečenie kvality a onboarding',
+        ],
+        'kaz'       => [
+            'title' => 'Ničiteľ bugov',
+        ],
+        'laura'     => [
+            'title' => 'Sociálne médiá',
         ],
         'ryan'      => [
             'title' => 'Manažér komunity a zabezpečenia kvality',

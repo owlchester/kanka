@@ -166,6 +166,7 @@ return [
         'position'              => 'Position',
         'privacy'               => 'Privat',
         'race'                  => 'Spezies',
+        'replace_mentions'      => 'Ersetze die Attributerwähnungen im Eintrag durch die des neuen Objekts',
         'tag'                   => 'Tag',
         'tags'                  => 'Tags',
         'timeline'              => 'Zeitstrahl',
@@ -236,6 +237,7 @@ return [
     'helpers'                   => [
         'copy_options'  => 'Kopieren Sie die folgenden verwandten Elemente aus der Quelle in das neue Objekt.',
         'linking'       => 'Verknüpfung mit anderen Objekten',
+        'nested_parent' => 'Anzeige der untergeordneten Objekte von :parent.',
     ],
     'hidden'                    => 'Versteckt',
     'hints'                     => [

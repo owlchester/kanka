@@ -14,6 +14,7 @@ return [
         'comment'       => 'Komentarz',
         'entity_link'   => 'Odnośnik do elementu',
         'honorable'     => 'Wyróżnienie',
+        'jury'          => 'Sędzia gościnny :user',
         'rank'          => 'Ranga',
         'submitter'     => 'Zgłaszający',
     ],

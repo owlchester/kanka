@@ -17,6 +17,7 @@ return [
     'helpers'       => [
         'primary'   => 'Wyposażenie elementu w jeden lub więcej aliasów pozwoli wyszukiwać go za pomocą globalnego wyszukiwania (górny pasek) oraz przez wzmianki.',
     ],
+    'pitch'         => 'Możliwość nadawania elementom aliasów pozwala łatwo je wyszukiwać i tworzyć wzmianki.',
     'placeholders'  => [
         'name'  => 'Nowy alias',
     ],

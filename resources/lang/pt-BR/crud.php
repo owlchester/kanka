@@ -154,6 +154,7 @@ return [
         'position'              => 'Posição',
         'privacy'               => 'Privacidade',
         'race'                  => 'Raça',
+        'replace_mentions'      => 'Substitua as menções de atributo na entrada pelas da nova entidade',
         'tag'                   => 'Tag',
         'tags'                  => 'Tags',
         'timeline'              => 'Linha do Tempo',

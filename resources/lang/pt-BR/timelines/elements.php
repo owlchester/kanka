@@ -1,6 +1,10 @@
 <?php
 
 return [
+    'copy_mention'  => [
+        'copy_with_name'    => 'Copie a menção avançada com o nome do elemento',
+        'success'           => 'Menção avançada ao elemento copiada para a área de transferência.',
+    ],
     'create'        => [
         'success'   => 'Elemento adicionado à linha do tempo',
         'title'     => 'Novo elemento da linha do tempo',

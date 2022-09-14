@@ -22,6 +22,10 @@ return [
             'description'   => 'Lasse Karten und Zeitleisten mit Zugriff auf benutzerdefinierte Farben und Tausende von Symbolen über :fontawesome und :rpgawesome hervorstechen.',
             'title'         => 'Dumme sexy Icons',
         ],
+        'limits'        => [
+            'description'   => 'Überwinde Limits für die Anzahl der Mitglieder, Rollen und Quick Links in der Kampagne.',
+            'title'         => 'unbegrenzt',
+        ],
         'peace-of-mind' => [
             'description'   => 'Du hast ein Objekt gelöscht und deine Meinung geändert? Kein Problem! Stelle gelöschte Objekte für bis zu :amount Tage wieder her.',
             'title'         => 'Seelenfrieden',
@@ -45,6 +49,8 @@ return [
     'perks'             => [
         'entity-count'  => 'Anzahl der erstellten Objekte in einer Kampagne',
         'member-count'  => 'Anzahl der Mitglieder in einer Kampagne',
+        'quick-links'   => 'Anzahl der benutzerdefinierten Quicklinks in einer Kampagne',
+        'role-count'    => 'Anzahl der Rollen in einer Kampagne',
     ],
     'starting'          => 'Ab USD :amount pro Monat',
     'superboost'        => [

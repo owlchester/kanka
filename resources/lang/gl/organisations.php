@@ -8,6 +8,7 @@ return [
     'edit'          => [],
     'fields'        => [
         'image'         => 'Imaxe',
+        'is_defunct'    => 'Extinta',
         'location'      => 'Localización',
         'members'       => 'Integrantes',
         'name'          => 'Nome',
@@ -18,6 +19,9 @@ return [
     'helpers'       => [
         'descendants'       => 'Esta lista contén todas as organizacións que son descendentes desta organización, non só as descendentes directas.',
         'nested_without'    => 'Mostrando todas as organizacións que non teñen unhas organización superior. Fai clic nunha fila para ver as súas descendentes.',
+    ],
+    'hints'         => [
+        'is_defunct'    => 'Esta organización está extinta.',
     ],
     'index'         => [
         'title' => 'Organizacións',

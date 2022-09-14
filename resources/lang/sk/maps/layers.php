@@ -21,7 +21,12 @@ return [
         'type'      => 'Typ vrstvy',
     ],
     'helper'        => [
+        'amount_v2' => 'Nahraj vrstvy k mape, ak chceš zmeniť obrázok v pozadí značiek.',
         'is_real'   => 'Vrstvy nie sú dostupné, ak používaš OpenStreetMaps.',
+    ],
+    'pitch'         => [
+        'error' => 'Dosiahnutý max. počet vrstiev.',
+        'until' => 'Nahraj ku každej mape až :max vrstiev.',
     ],
     'placeholders'  => [
         'name'      => 'Podsvetie, Úroveň 2, Vrak lode',

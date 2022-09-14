@@ -41,6 +41,7 @@ return [
         'helpers'       => [
             'copy_widgets'  => 'Skopiuj widżety z pulpitu :name na ten nowy pulpit.',
         ],
+        'pitch'         => 'Konfiguruj wiele pulpitów, z uprawnieniami dla różnych ról kampanii.',
         'placeholders'  => [
             'name'  => 'Nazwa pulpitu',
         ],
