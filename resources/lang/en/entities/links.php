@@ -15,9 +15,9 @@ return [
     'fields'            => [
         'icon'      => 'Icon',
         'name'      => 'Name',
+        'parent'    => 'Parent element',
         'position'  => 'Position',
         'url'       => 'URL',
-        'parent'    => 'Parent element',
     ],
     'go'                => [
         'actions'       => [
@@ -28,8 +28,8 @@ return [
         'title'         => 'Leaving Kanka',
     ],
     'helpers'           => [
-        'icon'  => 'You can customise the icon displayed for the link. Use any of the free icons from :fontawesome or leave this field blank for the default.',
-        'parent'  => 'Place this quick link after an element of the sidebar, rather than in the quick links section of the sidebar.',
+        'icon'      => 'You can customise the icon displayed for the link. Use any of the free icons from :fontawesome or leave this field blank for the default.',
+        'parent'    => 'Display this quick link after an element of the sidebar, rather than in the quick links section of the sidebar.',
     ],
     'placeholders'      => [
         'name'  => 'DNDBeyond',

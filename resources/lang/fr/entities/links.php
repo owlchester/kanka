@@ -15,6 +15,7 @@ return [
     'fields'            => [
         'icon'      => 'Icone',
         'name'      => 'Nom',
+        'parent'    => 'Position',
         'position'  => 'Position',
         'url'       => 'URL',
     ],
@@ -27,7 +28,8 @@ return [
         'title'         => 'Départ de Kanka',
     ],
     'helpers'           => [
-        'icon'  => 'Personaliser l\'icône affichée pour le lien. Utiliser les options de :fontawesome ou laisser le champ vide.',
+        'icon'      => 'Personaliser l\'icône affichée pour le lien. Utiliser les options de :fontawesome ou laisser le champ vide.',
+        'parent'    => 'Afficher ce lien après un élément de la navigation, au lieu de l\'afficher dans la section des liens rapides.',
     ],
     'placeholders'      => [
         'name'  => 'DNDBeyond',

@@ -16,10 +16,10 @@ return [
         'title'     => 'New post for :name',
     ],
     'destroy'       => [
-        'success'   => 'Post \':name\' for :entity removed.',
+        'success'   => 'Post :name for :entity removed.',
     ],
     'edit'          => [
-        'success'   => 'Post \':name\' for :entity updated.',
+        'success'   => 'Post :name for :entity updated.',
         'title'     => 'Update post for :name',
     ],
     'fields'        => [
@@ -40,6 +40,16 @@ return [
     'index'         => [
         'title' => 'Posts for :name',
     ],
+    'move'          => [
+        'copy'          => 'Create a copy on the target entity',
+        'copy_success'  => 'Post :name copied to :entity successfully.',
+        'description'   => 'Select an entity you want to move or make a copy of this post in.',
+        'entity'        => 'Target entity',
+        'move'          => 'Move or copy to another entity',
+        'move_success'  => 'Post :name moved to :entity successfully.',
+        'select_one'    => 'Select an entity',
+        'title'         => 'Move or copy a post to another entity',
+    ],
     'placeholders'  => [
         'name'  => 'Name of the post, observation or remark',
     ],
@@ -50,16 +60,5 @@ return [
     'states'        => [
         'collapsed' => 'Collapsed',
         'expanded'  => 'Expanded',
-    ],
-    'move'          => [
-        'move'                  => 'Move or copy to another entity',
-        'description'           => 'Select an entity you want to move or make a copy of this post in.',
-        'title'                 => 'Move or copy a post to another entity',
-        'entity'                => 'Target entity',
-        'copy'                  => 'Create a copy on the target entity',
-        'select_one'            => 'Select an entity',
-        'move_success'          => 'Post \':name\' moved to :entity succesfully.',
-        'copy_success'          => 'Post \':name\' copied to :entity succesfully.',
-
     ],
 ];

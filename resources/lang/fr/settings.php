@@ -134,10 +134,11 @@ return [
         'cancel'                => [
             'options'   => [
                 'competitor'        => 'Passer à un concurrent',
-                'custom'            => 'Autre (merci de spécifier)',
-                'financial'         => 'Situation financière à changé',
+                'custom'            => 'Autre',
+                'financial'         => 'L\'abonnement est trop cher',
                 'missing_features'  => 'Fonctionnalités manquantes',
-                'not_using'         => 'N\'utilise pas actuellement Kanka',
+                'not_for'           => 'L\'abonnement n\'est pas pour moi',
+                'not_using'         => 'Je n\'utilise pas Kanka actuellement',
             ],
             'text'      => 'Désolé de te voir partir! L\'annulation de ton abonnement le gardera actif jusqu\'au la fin du mois payé, après quoi tu perdras les bonus de ta campagne et les autres avantages liés au soutien de Kanka. N\'hésite pas à remplir le formulaire suivant pour nous informer de ce que nous pouvons améliorer, ou ce qui a conduit à ta décision.',
         ],

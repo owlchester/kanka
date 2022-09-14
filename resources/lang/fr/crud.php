@@ -215,6 +215,7 @@ return [
             'copy'  => 'Presse-papier',
         ],
         'options'                   => [
+            'children'  => 'Avec enfants',
             'exclude'   => 'Exclure',
             'include'   => 'Inclure',
             'none'      => 'Aucun(e)',

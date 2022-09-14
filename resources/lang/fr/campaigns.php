@@ -254,6 +254,10 @@ TEXT
             'save'          => 'Enregistrer le rôle',
         ],
         'admin_role'    => 'rôle admin',
+        'bulks'         => [
+            'delete'    => '{1} :count rôle retiré.|[2,*] :count rôles retirés.',
+            'edit'      => '{1} :count rôle modifié.|[2,*] :count rôles modifiés.',
+        ],
         'create'        => [
             'success'   => 'Rôle :name créé.',
             'title'     => 'Créer un nouveau rôle pour :name',
@@ -429,6 +433,7 @@ TEXT
         ],
         'fields'            => [
             'connections'       => 'Interface de connection d\'une entité',
+            'connections_mode'  => 'Mode par défaut d\'outil de visualisation de relation',
             'entity_history'    => 'Historique d\'une entité',
             'entity_image'      => 'Image d\'une entité',
             'family_toolip'     => 'Famille d\'un personnage',
@@ -438,6 +443,7 @@ TEXT
         ],
         'helpers'           => [
             'connections'       => 'Interface qui s\'affiche par défaut en cliquant sur la page connexions d\'une page.',
+            'connections_mode'  => 'Modifier le mode affiché par défaut lorsque l\'outil de visualisation de relation d\'une entité est ouvert.',
             'other'             => 'Autres options visuelles de la campagne.',
             'post_collapsed'    => 'Lors de la création d\'une nouvelle entrée sur une entité, sélection de l\'affichage par défaut.',
             'tooltip'           => 'Définir quelles options sont visibles en lors du survol du nom d\'une entité.',
