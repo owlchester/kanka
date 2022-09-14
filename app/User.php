@@ -240,17 +240,16 @@ class User extends \Illuminate\Foundation\Auth\User
     /**
      * Get max file size of user
      * @param bool $readable
-     * @return int|string
+     * @return string|int
      */
-    public function maxUploadSize(bool $readable = false): int|string
+    public function maxUploadSize(bool $readable = false): string|int
     {
         $campaign = CampaignLocalization::getCampaign();
         if (!$this->isPatron() && (empty($campaign) || !$campaign->boosted())) {
             $min = config('limits.filesize.image');
             return $readable ? $min . 'MB' : ($min * 1024);
-        }
-        // Elementals get massive upload sizes
-        if ($this->isElemental()) {
+        } elseif ($this->isElemental()) {
+            // Anders gets higher upload sizes until we handle this in the db.
             if ($this->id === 34122) {
                 return $readable ? '100MB' : 102400;
             }
@@ -260,7 +259,6 @@ class User extends \Illuminate\Foundation\Auth\User
         }
         // Allow kobolds and goblins to have the Owlbear sizes
         return $readable ? '8MB' : 8192;
-
     }
 
     /**
@@ -274,8 +272,8 @@ class User extends \Illuminate\Foundation\Auth\User
         // Not a subscriber and not in a boosted campaign get the default
         if (!$this->isPatron() && (empty($campaign) || !$campaign->boosted())) {
             return $readable ? '3MB' : 3072;
-        }
-        elseif ($this->isElemental()) {
+        } elseif ($this->isElemental()) {
+            // Anders gets higher upload sizes until we handle this in the db.
             if ($this->id === 34122) {
                 return $readable ? '100MB' : 102400;
             }
