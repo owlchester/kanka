@@ -246,7 +246,8 @@ class User extends \Illuminate\Foundation\Auth\User
     {
         $campaign = CampaignLocalization::getCampaign();
         if (!$this->isPatron() && (empty($campaign) || !$campaign->boosted())) {
-            return $readable ? '1MB' : 2048;
+            $min = config('limits.filesize.image');
+            return $readable ? $min . 'MB' : ($min * 1024);
         }
         // Elementals get massive upload sizes
         if ($this->isElemental()) {
