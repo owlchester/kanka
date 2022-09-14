@@ -13,7 +13,7 @@ class ThemesTableSeeder extends Seeder
      */
     public function run()
     {
-        $themes = ['default', 'dark', 'future', 'midnight'];
+        $themes = ['default', 'dark', 'midnight'];
         $created = 0;
         foreach ($themes as $theme) {
             $type = \App\Models\Theme::firstOrNew([
