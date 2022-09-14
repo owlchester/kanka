@@ -43,7 +43,7 @@ $defaultIndex = ($currentCampaign && $currentCampaign->defaultToNested()) || aut
 
                 @foreach ($sidebar->campaign($currentCampaign)->layout() as $name => $element)
                     @if ($name === 'menu_links')
-                        @includeWhen($sidebar->hasQuickLinks('menu_links'), 'layouts.sidebars.quick-links', ['links' => $sidebar->quickLinks('menu_links')])
+                        @includeWhen($currentCampaign->enabled('menu_links'), 'layouts.sidebars.quick-links', ['links' => $sidebar->quickLinks('menu_links')])
                         @continue
                     @endif
                     <li class="{{ (!isset($element['route']) || $element['route'] !== false ? $sidebar->active($name) : null) }} section-{{ $name }}">
