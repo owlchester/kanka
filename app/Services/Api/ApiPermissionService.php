@@ -4,6 +4,9 @@
 namespace App\Services\Api;
 
 use App\Models\CampaignPermission;
+use App\User;
+use App\Facades\EntityPermission;
+use App\Models\Campaign;
 use App\Models\CampaignRole;
 use App\Models\Entity;
 
@@ -59,5 +62,44 @@ class ApiPermissionService
             }
         }
         return $model;
+    }
+
+    /**
+     * @param $request
+     * @param Campaign $campaign
+     */
+    public function entityPermissionTest($request, Campaign $campaign)
+    {
+        $previousUser = 0;
+
+        foreach ($request->all() as $test) {
+            $entityTypeId = null;
+            $entity = null;
+            $entityId = null;
+            if (!isset($user) || $user != $previousUser) {
+                $user = User::find($test['user_id']);
+                EntityPermission::resetPermissions();
+            }
+
+            if (isset($test['entity_type_id'])) {
+                $entityTypeId = $test['entity_type_id'];
+            } else {
+                $entity = Entity::find($test['entity_id']);
+                $entityTypeId = $entity->type_id;
+                $entityId = $entity->id;
+            }
+
+            $permission = EntityPermission::hasPermission($entityTypeId, $test['action'], $user, $entity, $campaign);
+
+            $permissionTest[] = ([
+                'entity_type_id' => $entityTypeId,
+                'entity_id' => $entityId,
+                'user_id' => $test['user_id'],
+                'action'  => $test['action'],
+                'can'     => $permission,
+            ]);
+            $previousUser = $user;
+        }
+        return $permissionTest;
     }
 }
