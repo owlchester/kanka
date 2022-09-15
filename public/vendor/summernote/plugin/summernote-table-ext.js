@@ -18,7 +18,7 @@
             tableStyles: {
                 tooltip: "Table style",
                 stylesExclusive: ["Basic", "Bordered"],
-                stylesInclusive: ["Striped", "Condensed", "Hoverable", "Compact", "Centered", "Right centered"]
+                stylesInclusive: ["Striped", "Condensed", "Hoverable", "Compact", "Centered", "Right aligned"]
             }
         }
     });
