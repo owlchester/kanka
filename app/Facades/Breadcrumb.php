@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Facades;
-
 
 use Illuminate\Support\Facades\Facade;
 
@@ -10,8 +8,7 @@ use Illuminate\Support\Facades\Facade;
  * Class Breadcrumb
  * @package App\Facades
  *
- * @see \App\Services\BreadcrumService
- * @mixin \App\Services\BreadcrumService
+ * @see \App\Services\BreadcrumbService
  */
 class Breadcrumb extends Facade
 {

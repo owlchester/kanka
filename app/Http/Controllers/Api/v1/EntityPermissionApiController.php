@@ -11,11 +11,7 @@ use App\Services\Api\ApiPermissionService;
 
 class EntityPermissionApiController extends ApiController
 {
-    /**
-     *
-     * @var ApiPermissionService
-     */
-    protected $apiPermissionService;
+    protected ApiPermissionService $apiPermissionService;
 
     /**
      * Create a new controller instance.
@@ -56,7 +52,8 @@ class EntityPermissionApiController extends ApiController
     /**
      * @param Request $request
      * @param Campaign $campaign
-     * @return Resource
+     * @param Entity $entity
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function store(Request $request, Campaign $campaign, Entity $entity)

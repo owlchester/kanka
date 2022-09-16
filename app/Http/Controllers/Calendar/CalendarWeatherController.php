@@ -42,12 +42,12 @@ class CalendarWeatherController extends Controller
         $ajax = request()->ajax();
         $date = request()->get('date');
         list($year, $month, $day) = explode('-', $date);
-        if (substr($date, 0, 1) == '-') {
+        if (str_starts_with($date, '-')) {
             list($year, $month, $day) = explode('-', trim($date, '-'));
             $year = -$year;
         }
 
-        $weather = $this->calendarService->findWeather($calendar, $year, $month, $day);
+        $weather = $this->calendarService->findWeather($calendar, (int) $year, (int) $month, (int) $day);
 
         return view('calendars.weather.' . (!empty($weather) ? 'edit' : 'create'), compact(
             'calendar',

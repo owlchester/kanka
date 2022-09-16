@@ -82,7 +82,7 @@ class CampaignPermission extends Model
 
     /**
      * Optional entity
-     * @return mixed
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function entity()
     {

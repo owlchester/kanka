@@ -28,7 +28,8 @@ class CharacterApiController extends ApiController
     /**
      * @param Campaign $campaign
      * @param Character $character
-     * @return Resource
+     * @return CharacterResource
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function show(Campaign $campaign, Character $character)
     {
@@ -40,7 +41,7 @@ class CharacterApiController extends ApiController
     /**
      * @param Request $request
      * @param Campaign $campaign
-     * @return Resource
+     * @return CharacterResource
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function store(Request $request, Campaign $campaign)
@@ -58,7 +59,8 @@ class CharacterApiController extends ApiController
      * @param Request $request
      * @param Campaign $campaign
      * @param Character $character
-     * @return Resource
+     * @return CharacterResource
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function update(Request $request, Campaign $campaign, Character $character)
     {

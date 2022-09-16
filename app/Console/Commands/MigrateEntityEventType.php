@@ -86,7 +86,7 @@ class MigrateEntityEventType extends Command
             'year' => Arr::get($attributes, 'calendar_year'),
             'month' => Arr::get($attributes, 'calendar_month'),
             'day' => Arr::get($attributes, 'calendar_day'),
-        ])->first();
+        ])->first() ?? null;
 
         if (empty($reminder)) {
             $this->error('Invalid reminder for ' . get_class($model) . ' #' . $model->id);

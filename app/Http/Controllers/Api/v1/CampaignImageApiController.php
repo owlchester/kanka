@@ -59,10 +59,11 @@ class CampaignImageApiController extends ApiController
     }
 
     /**
-     * @param Request $request
+     * @param GalleryImageUpdate $request
      * @param Campaign $campaign
      * @param Image $image
      * @return Resource
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function update(GalleryImageUpdate $request, Campaign $campaign, Image $image)
     {

@@ -47,9 +47,8 @@ class CampaignController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function index(Request $request)
     {
@@ -58,9 +57,8 @@ class CampaignController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function create()
     {
@@ -71,10 +69,9 @@ class CampaignController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param StoreCampaign $request
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function store(StoreCampaign $request)
     {
@@ -90,6 +87,7 @@ class CampaignController extends Controller
 
         DB::beginTransaction();
         try {
+            /** @var Campaign $campaign */
             $campaign = Campaign::create($data);
             auth()->user()->setCurrentCampaign($campaign);
 
@@ -109,13 +107,11 @@ class CampaignController extends Controller
             return redirect()
                 ->to(app()->getLocale() . '/campaign/' . $campaign->id . '/campaigns/' . $campaign->id . '/edit')
                 ->with('success', __($this->view . '.create.success'));
-        }
-        elseif ($request->has('submit-new')) {
+        } elseif ($request->has('submit-new')) {
             return redirect()
                 ->route('start')
                 ->with('success', __($this->view . '.create.success'));
-        }
-        elseif ($first) {
+        } elseif ($first) {
             $user = auth()->user();
             $user->save();
             return redirect()->to(app()->getLocale() . '/' . $campaign->getMiddlewareLink());
@@ -126,10 +122,8 @@ class CampaignController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  Campaign  $campaign
-     * @return \Illuminate\Http\Response
+     * @param Campaign $campaign
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function show(Campaign $campaign)
     {
@@ -137,10 +131,9 @@ class CampaignController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  Campaign  $campaign
-     * @return \Illuminate\Http\Response
+     * @param Campaign $campaign
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function edit(Campaign $campaign)
     {
@@ -150,11 +143,10 @@ class CampaignController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  Campaign  $campaign
-     * @return \Illuminate\Http\Response
+     * @param StoreCampaign $request
+     * @param Campaign $campaign
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function update(StoreCampaign $request, Campaign $campaign)
     {
@@ -190,10 +182,9 @@ class CampaignController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  Campaign  $campaign
-     * @return \Illuminate\Http\Response
+     * @param Campaign $campaign
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function destroy(Campaign $campaign)
     {

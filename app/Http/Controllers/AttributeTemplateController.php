@@ -36,10 +36,8 @@ class AttributeTemplateController extends CrudController
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param StoreAttributeTemplate $request
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(StoreAttributeTemplate $request)
     {
@@ -69,10 +67,8 @@ class AttributeTemplateController extends CrudController
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\AttributeTemplate  $attributeTemplate
+     * @param StoreAttributeTemplate $request
+     * @param AttributeTemplate $attributeTemplate
      * @return \Illuminate\Http\Response
      */
     public function update(StoreAttributeTemplate $request, AttributeTemplate $attributeTemplate)

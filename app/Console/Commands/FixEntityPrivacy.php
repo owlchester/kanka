@@ -83,22 +83,23 @@ class FixEntityPrivacy extends Command
 
     protected function fix(Entity $entity, string $type)
     {
-        // Sanity check
-        if (empty($entity->child)) {
+        /** @var MiscModel $child */
+        $child = $entity->child;
+        if (empty($child)) {
             $this->warn('Unexpected situation for entity #' . $entity->id . ' missing child or child deleted?');
             return;
-        } elseif ($entity->child->name != $entity->name) {
+        } elseif ($child->name != $entity->name) {
             $this->warn('Unexpected situation for entity #' . $entity->id  . ' name mismatch');
         }
-        if ($entity->is_private == $entity->child->is_private) {
-            dd('Unexpected situation for entity #' . $entity->id . ' and child ' . $type . ' #'  . $entity->child->id);
+        if ($entity->is_private == $child->is_private) {
+            dd('Unexpected situation for entity #' . $entity->id . ' and child ' . $type . ' #'  . $child->id);
         }
 
         //$this->info('want to fix entity id ' . $entity->id . ' that has private ' . $entity->is_private . ' where child has private ' . $entity->$type->is_private);
         //$this->info('type is ' . $type . ' and child id is ' . $entity->$type->id);
         //dd('?');
 
-        $this->queue($entity->id, $entity->child->is_private);
+        $this->queue($entity->id, (int) $child->is_private);
     }
 
     protected function queue(int $entity, int $private)

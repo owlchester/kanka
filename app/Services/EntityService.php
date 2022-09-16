@@ -520,10 +520,10 @@ class EntityService
 
     /**
      * Get an entity object string based on the entity type
-     * @param $entity
+     * @param string $entity
      * @return mixed
      */
-    public function getClass($entity)
+    public function getClass(string $entity)
     {
         return Arr::get($this->entities, $entity, false);
     }

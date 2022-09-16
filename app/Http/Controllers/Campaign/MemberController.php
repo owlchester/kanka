@@ -27,8 +27,11 @@ class MemberController extends Controller
     }
 
     /**
-     * Switch to a member of the campaign
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * Switch to another member
+     * @param CampaignUser $campaignUser
+     * @param Entity|null $entity
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function switch(CampaignUser $campaignUser, Entity $entity = null)
     {
@@ -62,8 +65,10 @@ class MemberController extends Controller
     }
 
     /**
-     * @param Request $request
+     * @param CampaignUser $campaignUser
+     * @param CampaignRole $campaignRole
      * @return \Illuminate\Http\RedirectResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function updateRoles(CampaignUser $campaignUser, CampaignRole $campaignRole)
     {

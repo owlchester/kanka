@@ -34,9 +34,9 @@ class AuthController extends Controller
     }
 
     /**
-     * Redirect the user to the GitHub authentication page.
-     *
-     * @return Response
+     * Redirect the user to the service authentication page.
+     * @param $provider
+     * @return \Illuminate\Http\RedirectResponse|\Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function redirectToProvider($provider)
     {
@@ -45,7 +45,7 @@ class AuthController extends Controller
         }
         try {
             return Socialite::driver($provider)->redirect();
-        } catch(\Exception $e) {
+        } catch (\Exception $e) {
             return redirect()->route('login')->withErrors('Error contacting ' . ucfirst($provider) . '.');
         }
     }
@@ -54,9 +54,10 @@ class AuthController extends Controller
      * Obtain the user information from provider.  Check if the user already exists in our
      * database by looking up their provider_id in the database.
      * If the user exists, log them in. Otherwise, create a new user then log them in. After that
-     * redirect them to the authenticated users homepage.
+     * redirect them to the authenticated user's homepage.
      *
-     * @return Response
+     * @param $provider
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function handleProviderCallback($provider)
     {
@@ -83,11 +84,11 @@ class AuthController extends Controller
     /**
      * If a user has registered before using social auth, return the user
      * else, create a new user object.
-     * @param  $user Socialite user object
-     * @param $provider Social auth provider
+     * @param mixed $user Socialite user object
+     * @param mixed $provider Social auth provider
      * @return  User
      */
-    public function findOrCreateUser($user, $provider)
+    public function findOrCreateUser(mixed $user, mixed $provider)
     {
         $authUser = User::where('provider_id', $user->id)->first();
         if ($authUser) {

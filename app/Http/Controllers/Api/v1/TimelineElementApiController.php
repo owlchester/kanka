@@ -35,8 +35,9 @@ class TimelineElementApiController extends ApiController
     }
 
     /**
-     * @param StoreTimelineElement $retimelineElement
+     * @param Request $request
      * @param Campaign $campaign
+     * @param Timeline $timeline
      * @return Resource
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -49,7 +50,7 @@ class TimelineElementApiController extends ApiController
     }
 
     /**
-     * @param StoreTimelineElement $retimelineElement
+     * @param Request $request
      * @param Campaign $campaign
      * @param TimelineElement $timelineElement
      * @return Resource
@@ -68,8 +69,9 @@ class TimelineElementApiController extends ApiController
     }
 
     /**
-     * @param Request
+     * @param \Illuminate\Http\Request $request
      * @param Campaign $campaign
+     * @param Timeline $timeline
      * @param TimelineElement $timelineElement
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException

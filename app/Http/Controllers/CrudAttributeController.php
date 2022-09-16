@@ -22,7 +22,7 @@ class CrudAttributeController extends Controller
 
     protected $type = '';
     /**
-     * @var Entity
+     * @var string
      */
     protected $model = \App\Models\Attribute::class;
 

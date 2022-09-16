@@ -51,7 +51,7 @@ class ApplyController extends Controller
 
         /** @var CampaignSubmission $submission */
         $submission = auth()->user()->submissions()->first();
-        if ($submission) {
+        if (!empty($submission)) {
             $submission->update(['text' => $request->get('application')]);
             $success = __('campaigns/submissions.apply.success.update');
         } else {
@@ -75,7 +75,7 @@ class ApplyController extends Controller
 
         /** @var CampaignSubmission $submission */
         $submission = auth()->user()->submissions()->first();
-        if ($submission) {
+        if (!empty($submission)) {
             $submission->delete();
         }
         return redirect()->route('dashboard')->with('success', __('campaigns/submissions.apply.success.remove'));

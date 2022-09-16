@@ -20,7 +20,7 @@ class AbilityController extends CrudController
      */
     protected string $view = 'abilities';
     protected string $route = 'abilities';
-    protected $module = 'abilities';
+    protected string $module = 'abilities';
 
     /**
      * Crud models
@@ -53,9 +53,7 @@ class AbilityController extends CrudController
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Character  $ability
+     * @param Ability $ability
      * @return \Illuminate\Http\Response
      */
     public function show(Ability $ability)
@@ -75,10 +73,8 @@ class AbilityController extends CrudController
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Ability $ability
+     * @param StoreAbility $request
+     * @param Ability $ability
      * @return \Illuminate\Http\Response
      */
     public function update(StoreAbility $request, Ability $ability)
@@ -87,9 +83,7 @@ class AbilityController extends CrudController
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Character  $ability
+     * @param Ability $ability
      * @return \Illuminate\Http\Response
      */
     public function destroy(Ability $ability)
@@ -99,7 +93,7 @@ class AbilityController extends CrudController
 
     /**
      * @param Ability $ability
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\JsonResponse|\Illuminate\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function abilities(Ability $ability)
@@ -110,8 +104,8 @@ class AbilityController extends CrudController
             ->route('abilities.abilities', [$ability]);
 
         $this->rows = $ability
-            ->descendants()
             ->sort(request()->only(['o', 'k']))
+            ->descendants()
             ->with(['entity', 'entity.image', 'ability', 'ability.entity'])
             ->has('entity')
             ->paginate();
@@ -127,7 +121,7 @@ class AbilityController extends CrudController
 
     /**
      * @param Ability $ability
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\JsonResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function entities(Ability $ability)

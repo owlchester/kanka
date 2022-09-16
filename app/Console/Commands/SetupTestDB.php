@@ -37,7 +37,6 @@ class SetupTestDB extends Command
         $mysql->query('DROP DATABASE IF EXISTS `' . $_ENV['DB_DATABASE'] . '`');
         $mysql->query('CREATE DATABASE `' . $_ENV['DB_DATABASE'] . '`');
 
-        /** @var PendingCommand $tets */
         Artisan::call('migrate:fresh', ['--drop-views' => true]);
     }
 }

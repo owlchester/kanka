@@ -34,7 +34,7 @@ class CrudController extends Controller
     /** @var string The name of the route for the resource */
     protected string $route = '';
 
-    /** @var MiscModel|Model */
+    /** @var MiscModel|Model|string|null */
     protected $model = null;
 
     /** @var array */
@@ -74,7 +74,7 @@ class CrudController extends Controller
     /** @var null */
     protected $datagridActions = DefaultDatagridActions::class;
 
-    /** @var array|LengthAwarePaginator */
+    /** @var array|LengthAwarePaginator|\Illuminate\Contracts\Pagination\LengthAwarePaginator */
     protected $rows = [];
 
     /** @var bool Determine if the create/store procedure has a limit checking in place */

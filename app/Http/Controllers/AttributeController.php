@@ -64,9 +64,9 @@ class AttributeController extends CrudAttributeController
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
+     * @param Entity $entity
+     * @param Attribute $attribute
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function create(Entity $entity, Attribute $attribute)
     {
@@ -74,10 +74,9 @@ class AttributeController extends CrudAttributeController
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param StoreAttribute $request
+     * @param Entity $entity
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(StoreAttribute $request, Entity $entity)
     {
@@ -86,9 +85,8 @@ class AttributeController extends CrudAttributeController
 
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Character  $character
+     * @param Entity $entity
+     * @param Attribute $attribute
      * @return \Illuminate\Http\Response
      */
     public function edit(Entity $entity, Attribute $attribute)
@@ -97,11 +95,10 @@ class AttributeController extends CrudAttributeController
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Character  $character
-     * @return \Illuminate\Http\Response
+     * @param StoreAttribute $request
+     * @param Entity $entity
+     * @param Attribute $attribute
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(StoreAttribute $request, Entity $entity, Attribute $attribute)
     {
@@ -109,10 +106,9 @@ class AttributeController extends CrudAttributeController
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\CharacterAttribute  $characterAttribute
-     * @return \Illuminate\Http\Response
+     * @param Entity $entity
+     * @param Attribute $attribute
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy(Entity $entity, Attribute $attribute)
     {

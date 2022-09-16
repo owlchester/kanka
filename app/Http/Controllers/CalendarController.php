@@ -42,10 +42,10 @@ class CalendarController extends CrudController
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store the new calendar in the db
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param StoreCalendar $request
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(StoreCalendar $request)
     {
@@ -55,7 +55,7 @@ class CalendarController extends CrudController
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Character  $character
+     * @param  \App\Models\Calendar $calendar
      * @return \Illuminate\Http\Response
      */
     public function show(Calendar $calendar)
@@ -66,7 +66,7 @@ class CalendarController extends CrudController
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Character  $character
+     * @param  \App\Models\Calendar $calendar
      * @return \Illuminate\Http\Response
      */
     public function edit(Calendar $calendar)
@@ -77,8 +77,8 @@ class CalendarController extends CrudController
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Character  $character
+     * @param  StoreCalendar  $request
+     * @param  Calendar $calendar
      * @return \Illuminate\Http\Response
      */
     public function update(StoreCalendar $request, Calendar $calendar)
@@ -89,7 +89,7 @@ class CalendarController extends CrudController
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Character  $character
+     * @param  Calendar $calendar
      * @return \Illuminate\Http\Response
      */
     public function destroy(Calendar $calendar)
@@ -105,7 +105,7 @@ class CalendarController extends CrudController
         $ajax = request()->ajax();
         $date = request()->get('date');
         list($year, $month, $day) = explode('-', $date);
-        if (substr($date, 0, 1) == '-') {
+        if (str_starts_with($date, '-')) {
             list($year, $month, $day) = explode('-', trim($date, '-'));
             $year = -$year;
         }
@@ -121,9 +121,9 @@ class CalendarController extends CrudController
     }
 
     /**
-     * @param Request $request
+     * @param AddCalendarEvent $request
      * @param Calendar $calendar
-     * @return \Illuminate\Http\RedirectResponse
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
      */
     public function eventStore(AddCalendarEvent $request, Calendar $calendar)
     {
@@ -213,10 +213,12 @@ class CalendarController extends CrudController
     }
 
     /**
-     * Set the date as today
+     * Set the day as today
      * @param Calendar $calendar
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return \Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws \Psr\Container\ContainerExceptionInterface
+     * @throws \Psr\Container\NotFoundExceptionInterface
      */
     public function today(Calendar $calendar)
     {

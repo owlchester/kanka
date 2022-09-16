@@ -30,7 +30,7 @@ class BulkController extends Controller
     protected $routeParams = [];
 
     /** @var null|string */
-    protected $entity = null;
+    protected null|string $entity = null;
 
     /**
      * BulkController constructor.
@@ -108,9 +108,8 @@ class BulkController extends Controller
             $campaign = CampaignLocalization::getCampaign();
             /** @var AttributeService $service */
             $service = app()->make('App\Services\AttributeService');
-            $templates = $service->campaign(CampaignLocalization::getCampaign())->templateList($campaign);
-        }
-        elseif (request()->get('view') === 'transform') {
+            $templates = $service->campaign(CampaignLocalization::getCampaign())->templateList();
+        } elseif (request()->get('view') === 'transform') {
             $entities = $this->entityService
                 ->labelledEntities(true, [Str::plural($type), 'menu_links', 'relations'], true);
             $entities[''] = __('entities/transform.fields.select_one');
@@ -118,7 +117,10 @@ class BulkController extends Controller
 
         $campaign = CampaignLocalization::getCampaign();
         return view('cruds.datagrids.bulks.modals._' . $request->get('view'), compact(
-            'campaign', 'templates', 'type', 'entities'
+            'campaign',
+            'templates',
+            'type',
+            'entities'
         ));
     }
 
@@ -130,7 +132,7 @@ class BulkController extends Controller
     protected function batch()
     {
         $entityClass = $this->entityService->getClass($this->entity);
-        $entityObj = new $entityClass;
+        $entityObj = new $entityClass();
         $langFile = $this->entity === 'relations' ? 'entities/relations.bulk.success.' : 'crud.bulk.success.';
         $models = $this->models();
 

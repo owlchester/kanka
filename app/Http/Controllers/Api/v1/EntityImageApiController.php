@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Http\Controllers\Api\v1;
-
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\API\UploadEntityImage;
@@ -24,16 +22,24 @@ class EntityImageApiController extends Controller
 
         // Let the service handle everything
         ImageService::handle($child);
-        $child->update(['image']);
+        $child->update(['image' => $child->image]);
 
         return response()->json([
             'entity_id' => $entity->id,
             'child_id' => $child->id,
-            'image_full' => !empty($child->image) ? $child->getImageUrl(0) : ($entity->image ? $entity->image->getImagePath(0) : null),
+            'image_full' => !empty($child->image) ? $child->getImageUrl(0) :
+                (!empty($entity->image) ? $entity->image->getImagePath(0) : null),
             'image_thumb' => $child->getImageUrl(40),
-        ],200);
+        ]);
     }
 
+    /**
+     * @param Request $request
+     * @param Campaign $campaign
+     * @param Entity $entity
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
     public function destroy(Request $request, Campaign $campaign, Entity $entity)
     {
         $this->authorize('access', $campaign);
@@ -45,12 +51,13 @@ class EntityImageApiController extends Controller
         // Let the service handle everything
         ImageService::cleanup($child);
 
-        $child->update(['image']);
+        $child->update(['image' => $child->image]);
 
         return response()->json([
             'entity_id' => $entity->id,
             'child_id' => $child->id,
-            'image_full' => !empty($child->image) ? $child->getImageUrl(0) : ($entity->image ? $entity->image->getImagePath(0) : null),
+            'image_full' => !empty($child->image) ? $child->getImageUrl(0) :
+                (!empty($entity->image) ? $entity->image->getImagePath(0) : null),
             'image_thumb' => $child->getImageUrl(40),
         ],200);
     }

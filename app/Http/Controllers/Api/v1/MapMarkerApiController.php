@@ -35,8 +35,9 @@ class MapMarkerApiController extends ApiController
     }
 
     /**
-     * @param StoreMapMarker $remapMarker
+     * @param Request $request
      * @param Campaign $campaign
+     * @param Map $map
      * @return Resource
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -51,10 +52,12 @@ class MapMarkerApiController extends ApiController
     }
 
     /**
-     * @param StoreMapMarker $remapMarker
+     * @param Request $request
      * @param Campaign $campaign
+     * @param Map $map
      * @param MapMarker $mapMarker
      * @return Resource
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function update(
         Request $request,
@@ -70,8 +73,9 @@ class MapMarkerApiController extends ApiController
     }
 
     /**
-     * @param Request
+     * @param \Illuminate\Http\Request $request
      * @param Campaign $campaign
+     * @param Map $map
      * @param MapMarker $mapMarker
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
