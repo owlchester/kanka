@@ -44,13 +44,13 @@ class CampaignRoleController extends Controller
             ->orderBy('is_admin', 'DESC')
             ->orderBy('is_public', 'DESC')
             ->orderBy('name')
-            ->paginate();
+            ->paginate(5);
 
         $rows = $roles;
 
         // Ajax Datagrid
         if (request()->ajax()) {
-            $html = view('campaigns.roles._table')->with('rows', $rows)->render();
+            $html = view('layouts.datagrid._table')->with('rows', $rows)->render();
             $deletes = view('layouts.datagrid.delete-forms')->with('models', Datagrid::deleteForms())->render();
             return response()->json([
                 'success' => true,
