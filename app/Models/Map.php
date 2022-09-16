@@ -61,9 +61,7 @@ class Map extends MiscModel
     public const CHUNKING_FINISHED = 2;
     public const CHUNKING_ERROR = 3;
 
-    /**
-     * @var array
-     */
+    /** @var string[]  */
     protected $fillable = [
         'name',
         'slug',

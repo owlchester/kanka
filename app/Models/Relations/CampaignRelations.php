@@ -43,8 +43,8 @@ use Illuminate\Support\Collection;
  * Trait CampaignRelations
  * @package App\Models\Relations
  *
- * @property User[] $users
- * @property User[] $followers
+ * @property Collection|User[] $users
+ * @property Collection|User[] $followers
  * @property RpgSystem $rpgSystem
  * @property Collection|CampaignRole[] $roles
  *

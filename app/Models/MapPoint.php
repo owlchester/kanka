@@ -55,6 +55,7 @@ class MapPoint extends Model
         'target_entity_id'
     ];
 
+    /** @var string[]  */
     protected $fillable = [
         'location_id',
         'target_entity_id',

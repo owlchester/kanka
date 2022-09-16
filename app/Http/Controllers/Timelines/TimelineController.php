@@ -26,6 +26,8 @@ class TimelineController extends CrudController
     /** @var string */
     protected $filter = TimelineFilter::class;
 
+    protected $module = 'timelines';
+
     /**
      * @param StoreTimeline $request
      * @return \Illuminate\Http\RedirectResponse

@@ -33,9 +33,7 @@ class Quest extends MiscModel
         Acl
     ;
 
-    /**
-     * @var array
-     */
+    /** @var string[]  */
     protected $fillable = [
         'campaign_id',
         'quest_id',

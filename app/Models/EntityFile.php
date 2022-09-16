@@ -33,9 +33,7 @@ class EntityFile extends Model
         EntityAsset
     ;
 
-    /**
-     * @var array
-     */
+    /** @var string[]  */
     protected $fillable = [
         'entity_id',
         'name',

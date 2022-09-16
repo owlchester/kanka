@@ -70,7 +70,7 @@ class MigrateEntityEventType extends Command
     protected function parse(Journal|Quest $model): void
     {
         // No entity? Eh
-        if (!$model->entity) {
+        if (empty($model->entity)) {
             $this->error('Invalid entity for ' . get_class($model) . ' #' . $model->id);
             return;
         }
@@ -88,7 +88,7 @@ class MigrateEntityEventType extends Command
             'day' => Arr::get($attributes, 'calendar_day'),
         ])->first();
 
-        if (!$reminder) {
+        if (empty($reminder)) {
             $this->error('Invalid reminder for ' . get_class($model) . ' #' . $model->id);
             return;
         }

@@ -20,7 +20,7 @@ class DiceRoll extends MiscModel
         Acl
     ;
 
-    //
+    /** @var string[]  */
     protected $fillable = [
         'name',
         'slug',

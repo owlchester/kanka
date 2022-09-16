@@ -27,7 +27,7 @@ class MapGroup extends Model
 {
     use VisibilityIDTrait, Blameable, Paginatable;
 
-    /** Fillable fields */
+    /** @var string[]  */
     protected $fillable = [
         'map_id',
         'name',

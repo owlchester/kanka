@@ -12,7 +12,8 @@ class EntityInventoryApiController extends ApiController
 {
     /**
      * @param Campaign $campaign
-     * @return Collection
+     * @param Entity $entity
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function index(Campaign $campaign, Entity $entity)

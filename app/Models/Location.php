@@ -39,9 +39,7 @@ class Location extends MiscModel
     ;
 
 
-    /**
-     * @var array
-     */
+    /** @var string[]  */
     protected $fillable = [
         'name',
         'slug',

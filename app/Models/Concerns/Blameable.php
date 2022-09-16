@@ -24,13 +24,13 @@ trait Blameable
      *
      * @return array
      */
-    public function blameable() :array
+    /*public function blameable() :array
     {
         if (property_exists($this, 'blameable')) {
             return (array) static::$blameable;
         }
         return [];
-    }
+    }*/
 
     /**
      * Boot the trait's observers

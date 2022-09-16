@@ -51,7 +51,7 @@ class TimelineService
         foreach ($ids as $id) {
             /** @var TimelineElement $element */
             $element = $era->elements()->where('id', $id)->first();
-            if ($element) {
+            if (!empty($element)) {
                 $element->position = $position;
                 $element->save();
                 $position += 1;
@@ -60,7 +60,7 @@ class TimelineService
     }
 
     /**
-     * @param array $data
+     * @param ReorderTimelineEras $request
      * @return bool
      */
     public function reorder(ReorderTimelineEras $request): bool

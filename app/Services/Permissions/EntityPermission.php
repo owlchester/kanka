@@ -161,10 +161,10 @@ class EntityPermission
 
     /**
      * Determine the permission for a user to interact with an entity
-     * @param string $modelName
-     * @param string $action
-     * @param User $user
-     * @param null $entity
+     * @param int $entityType
+     * @param int $action
+     * @param User|null $user
+     * @param MiscModel|null $entity
      * @param Campaign|null $campaign
      * @return bool
      */

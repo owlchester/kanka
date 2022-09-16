@@ -48,9 +48,7 @@ class CampaignPermission extends Model
      */
     protected $cachedSegments = false;
 
-    /**
-     * @var array
-     */
+    /** @var string[]  */
     protected $fillable = [
         'campaign_role_id',
         'campaign_id',

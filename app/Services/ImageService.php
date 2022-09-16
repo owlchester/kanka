@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\Entity;
+use App\Models\Map;
 use App\Models\MiscModel;
 use App\Sanitizers\SvgAllowedAttributes;
 use Illuminate\Database\Eloquent\Model;
@@ -16,10 +17,12 @@ use Exception;
 class ImageService
 {
     /**
-     * @param MiscModel $model
+     * @param MiscModel|Map|Model $model
      * @param string $folder
+     * @param int $thumbSize
+     * @param string $field
      */
-    public static function handle(Model $model, string $folder = '', $thumbSize = 60, $field = 'image')
+    public static function handle(MiscModel|Map|Model $model, string $folder = '', int $thumbSize = 60, string $field = 'image')
     {
         // A user can create entities and tags dynamically when creating or updating another entity, so make sure
         // the loop is only called when sending the data for this specific entity type

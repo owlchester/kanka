@@ -6,6 +6,7 @@ use App\Models\Entity;
 use App\Models\MiscModel;
 use App\Models\Tag;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Str;
 
@@ -20,7 +21,9 @@ trait TreeControllerTrait
     /**
      * Tree / Exploration mode
      * @param Request $request
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\RedirectResponse
+     * @throws \Psr\Container\ContainerExceptionInterface
+     * @throws \Psr\Container\NotFoundExceptionInterface
      */
     public function tree(Request $request)
     {
@@ -43,7 +46,7 @@ trait TreeControllerTrait
         $filters = $this->filters;
         $filterService = $this->filterService;
         $filter = !empty($this->filter) ? new $this->filter() : null;
-        $langKey = $this->langKey ?? $name;
+        $langKey = isset($this->langKey) ? $this->langKey : $name;
         $templates = $this->loadTemplates($model);
 
         $this->addNavAction(
@@ -52,11 +55,11 @@ trait TreeControllerTrait
         );
 
         $base = $model
-            ->distinct()
             ->preparedSelect()
             ->preparedWith()
             ->search(request()->get('search'))
-            ->order($this->filterService->order());
+            ->order($this->filterService->order())
+            ->distinct();
 
         $singularModel = Str::singular($this->view);
 
@@ -93,7 +96,7 @@ trait TreeControllerTrait
             $models = $base->paginate();
             $filteredCount = $models->total();
         } else {
-            /** @var Paginator $models */
+            /** @var LengthAwarePaginator $models */
             $models = $base->paginate();
             $unfilteredCount = $filteredCount = $models->total();
         }

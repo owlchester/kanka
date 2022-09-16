@@ -37,9 +37,7 @@ class Journal extends MiscModel
         Acl
     ;
 
-    /**
-     * @var array
-     */
+    /** @var string[]  */
     protected $fillable = [
         'name',
         'campaign_id',

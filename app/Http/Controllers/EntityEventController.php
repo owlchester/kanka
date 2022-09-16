@@ -57,7 +57,7 @@ class EntityEventController extends Controller
             ->has('calendar')
             ->has('calendar.entity')
             ->with(['calendar', 'calendar.entity', 'entity'])
-            ->order(request()->get('order'), 'events/date')
+            ->ordered(request()->get('order'), 'events/date')
             ->paginate();
 
         return view('entities.pages.reminders.index', compact(

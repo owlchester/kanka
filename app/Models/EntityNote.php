@@ -41,7 +41,7 @@ class EntityNote extends Model
     use Paginatable, Blameable, Acl;
     use VisibilityIDTrait;
 
-    /** @var array */
+    /** @var string[]  */
     protected $fillable = [
         'entity_id',
         'name',

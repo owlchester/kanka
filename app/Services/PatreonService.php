@@ -4,9 +4,6 @@ namespace App\Services;
 
 use App\User;
 use Illuminate\Support\Arr;
-use Patreon\API;
-use Patreon\OAuth;
-use Exception;
 use App\Models\Role;
 
 /**
@@ -34,55 +31,6 @@ class PatreonService
     {
         $this->user = $user;
         return $this;
-    }
-
-    /**
-     * @param $code
-     * @throws Exception
-     */
-    public function link($code)
-    {
-        if (empty($code)) {
-            throw new Exception('missing_code');
-        }
-
-        $clientId = config('patreon.client_id');
-        $clientSecret = config('patreon.client_secret');
-        $redirectUri = url('/settings/patreon-callback');
-
-        $oauth = new OAuth($clientId, $clientSecret);
-        $tokens = $oauth->get_tokens($code, $redirectUri);
-
-        if (empty($tokens['access_token'])) {
-            throw new Exception('invalid_token');
-        }
-
-        $api = new API($tokens['access_token']);
-        $patreon = $api->fetch_user();
-        $patron = $patreon->get('data');
-
-        if ($patron->has('relationships.pledges')) {
-            // Some pledge object that doesn't provide exact details
-            $pledge = $patron->relationship('pledges')->get(0)->resolve($patreon);
-
-            // This value is useless, probably.
-            $this->user->pledge = $pledge->get('id');
-
-            $this->user->patreonEmail = $patron->attribute('email');
-            $this->user->patreonFullname = $patron->attribute('full_name');
-            // Lowest tier is owlbear, elementals get a manual switch
-            $this->user->patreon_pledge = 'Owlbear';
-            $this->user->update(['settings', 'patreon_pledge']);
-
-            // We're so far, good. Let's add the user to the Patreon group
-            if ($pledge && !$this->user->hasRole($this->patreonRoleName)) {
-                $this->user->roles()->attach($this->getRole()->id);
-            }
-
-            return true;
-        }
-
-        throw new Exception('no_pledge');
     }
 
     /**
@@ -117,9 +65,12 @@ class PatreonService
     }
 
     /**
-     * @return array
+     * @return array|array[]
+     * @throws \Psr\Container\ContainerExceptionInterface
+     * @throws \Psr\Container\NotFoundExceptionInterface
+     * @throws \Psr\SimpleCache\InvalidArgumentException
      */
-    public function patrons()
+    public function patrons(): array
     {
         $cacheKey = 'about_subscribers';
         if (cache()->has($cacheKey)) {

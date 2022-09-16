@@ -55,8 +55,8 @@ class ImgService
     }
 
     /**
-     * @param int $width
-     * @param int $height
+     * @param int $x
+     * @param int $y
      * @return $this
      */
     public function focus(int $x, int $y): self
@@ -79,10 +79,10 @@ class ImgService
      * @param string|null $base
      * @return $this
      */
-    public function base(string $base = 'user'): self
+    public function base(string|null $base = 'user'): self
     {
 //        if (!empty($this->s3)) {
-//            return $this;
+//            return $this;w
 //        }
         $this->base = $base;
         if ($base === 'app') {

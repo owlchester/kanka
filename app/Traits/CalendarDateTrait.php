@@ -28,7 +28,7 @@ trait CalendarDateTrait
 //        });
 
         static::saved(function (MiscModel $model) {
-            $model->syncEntityEventOnSaved();
+            $this->syncEntityEventOnSaved();
         });
     }
 
@@ -129,7 +129,7 @@ trait CalendarDateTrait
 
     /**
      * recurring_periodicity
-     * @return |null
+     * @return null|string
      */
     public function getCalendarColourAttribute()
     {
@@ -138,14 +138,13 @@ trait CalendarDateTrait
 
     /**
      * Sync the entity event if the model has the calendar date trait
-     * @param $model
+     * @param void
      */
-    protected function syncEntityEventOnSaved()
+    protected function syncEntityEventOnSaved(): void
     {
         // If we don't have an entity, not exactly sure what's going on. Skip the entity event
         // observer and let the user report it instead of throwing an ugly error at them.
-        $entity = $this->entity;
-        if (empty($entity)) {
+        if (empty($this->entity)) {
             return;
         }
 
@@ -155,6 +154,7 @@ trait CalendarDateTrait
             return;
         }
 
+        $entity = $this->entity;
         $previousCalendarId = $this->getOriginal('calendar_id');
 
         // Previously, this lookup was only triggered when the calendar_id or date was dirty. However this excludes just
@@ -168,7 +168,7 @@ trait CalendarDateTrait
         // We already had this event linked
         /** @var EntityEvent $reminder */
         $reminder = $this->calendarReminder();
-        if ($reminder) {
+        if (!empty($reminder)) {
             // We no longer have a calendar attached to this model
             if (empty($calendarID)) {
                 $reminder->delete();
@@ -180,19 +180,20 @@ trait CalendarDateTrait
         }
 
         // Validate the calendar
+        /** @var Calendar $calendar */
         $calendar = Calendar::find($calendarID);
         if (empty($calendar) || $calendar->missingDetails()) {
             return;
         }
 
-        $length = request()->post('calendar_length', 1);
+        $length = request()->post('calendar_length', '1');
         $length = max(1, $length);
         $reminder->calendar_id = request()->get('calendar_id');
-        $reminder->year = request()->post('calendar_year', 1);
-        $reminder->month = request()->post('calendar_month', 1);
-        $reminder->day = request()->post('calendar_day', 1);
+        $reminder->year = request()->post('calendar_year', '1');
+        $reminder->month = request()->post('calendar_month', '1');
+        $reminder->day = request()->post('calendar_day', '1');
         $reminder->length = $length;
-        $reminder->is_recurring = request()->post('calendar_is_recurring', false);
+        $reminder->is_recurring = request()->post('calendar_is_recurring', '0');
         $reminder->recurring_periodicity = request()->post('calendar_recurring_periodicity');
         $reminder->colour = request()->post('calendar_colour', '#cccccc');
         $reminder->type_id = EntityEventType::CALENDAR_DATE;

@@ -11,7 +11,7 @@ class ConversationParticipant extends MiscModel
      */
     protected $loadedEntity = false;
 
-    //
+    /** @var string[]  */
     protected $fillable = [
         'conversation_id',
         'created_by',

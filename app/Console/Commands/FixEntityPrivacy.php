@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Models\Entity;
+use App\Models\MiscModel;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
@@ -86,8 +87,7 @@ class FixEntityPrivacy extends Command
         if (empty($entity->child)) {
             $this->warn('Unexpected situation for entity #' . $entity->id . ' missing child or child deleted?');
             return;
-        }
-        elseif ($entity->child->name != $entity->name) {
+        } elseif ($entity->child->name != $entity->name) {
             $this->warn('Unexpected situation for entity #' . $entity->id  . ' name mismatch');
         }
         if ($entity->is_private == $entity->child->is_private) {

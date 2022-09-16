@@ -8,13 +8,15 @@ trait ExportableTrait
 {
     /**
      * Prepares the data of an entity to json.
+     * @return string
+     * @throws Exception
      */
-    public function export()
+    public function export(): string
     {
         $json = $this->toArray();
 
         // Foreign attributes? character's traits and stuff
-        if (isset($this->foreignExport)) {
+        if (property_exists($this, 'foreignExport')) {
             foreach ($this->foreignExport as $foreign) {
                 $json[$foreign] = [];
                 try {

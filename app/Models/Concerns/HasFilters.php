@@ -398,10 +398,10 @@ trait HasFilters
     /**
      * Filter on characters on multiple races
      * @param Builder $query
-     * @param string|null $value
+     * @param string|array|null $value
      * @return void
      */
-    protected function filterRaces(Builder $query, string $value = null): void
+    protected function filterRaces(Builder $query, string|array $value = null): void
     {
         // "none" filter keys is handled later
         if ($this->filterOption('none')) {
@@ -432,15 +432,18 @@ trait HasFilters
             ;
         }
     }
+
     /**
      * Filter on characters on multiple locations
      * @param Builder $query
      * @param string|null $value
+     * @param string|null $key
      * @return void
      */
-    protected function filterLocations(Builder $query, string $value = null, $key): void
+    protected function filterLocations(Builder $query, string $value = null, string $key = null): void
     {
         if ($this->filterOption('children')) {
+            /** @var Location $location */
             $location = Location::find($value);
             if (empty($location)) {
                 return;
@@ -468,6 +471,7 @@ trait HasFilters
                 $this->getTable() . '.id and cr.location_id = ' . ((int) $value) . ') = 0');
             return;
         } elseif ($this->filterOption('children')) {
+            /** @var Location $location */
             $race = Location::find($value);
             if (!empty($race)) {
                 $raceIds = $race->descendants->pluck('id')->toArray();
@@ -497,6 +501,7 @@ trait HasFilters
                 $this->getTable() . '.id and cr.race_id = ' . ((int) $value) . ') = 0');
             return;
         } elseif ($this->filterOption('children')) {
+            /** @var Race $race */
             $race = Race::find($value);
             if (!empty($race)) {
                 $raceIds = $race->descendants->pluck('id')->toArray();
@@ -525,6 +530,7 @@ trait HasFilters
                 $this->getTable() . '.id and cf.family_id = ' . ((int) $value) . ') = 0');
             return;
         } elseif ($this->filterOption('children')) {
+            /** @var Family $family */
             $family = Family::find($value);
             if (!empty($family)) {
                 $familyIds = $family->descendants->pluck('id')->toArray();

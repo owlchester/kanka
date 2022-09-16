@@ -69,7 +69,7 @@ class Entity extends Model
         SortableTrait,
         Acl;
 
-    /** @var array Fields fillable in mass-create/update*/
+    /** @var string[]  */
     protected $fillable = [
         'campaign_id',
         'entity_id',
@@ -117,7 +117,7 @@ class Entity extends Model
 
     /**
      * Get the child entity
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany|\Illuminate\Database\Eloquent\Relations\HasOne
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany|\Illuminate\Database\Eloquent\Relations\HasOne|MiscModel
      */
     public function child()
     {

@@ -20,7 +20,7 @@ use Illuminate\Database\Eloquent\Collection;
  * @package App\Models\Relations
  *
  * @property Collection|CampaignBoost[] $boosts
- * @property CampaignRole $campaignRoles
+ * @property Collection|CampaignRoles[] $campaignRoles
  * @property Collection|Campaign[] $campaigns
  * @property Collection|Campaign[] $following
  * @property Campaign $lastCampaign

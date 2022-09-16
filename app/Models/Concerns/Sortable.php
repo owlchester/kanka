@@ -1,13 +1,11 @@
 <?php
 
-
 namespace App\Models\Concerns;
-
 
 trait Sortable
 {
     /**
-     * @return mixed
+     * @return array
      */
     public function sortableColumns(): array
     {

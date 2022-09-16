@@ -3,7 +3,11 @@
 namespace App\Traits;
 
 use Illuminate\Support\Str;
+use Illuminate\Database\Eloquent\Builder;
 
+/**
+ * @method static self|Builder order(string|null $data, string $defaultField)
+ */
 trait OrderableTrait
 {
     /**
@@ -14,11 +18,12 @@ trait OrderableTrait
 //    protected $orderTrigger = '';
 
     /**
-     * @param $query
-     * @param $data
+     * @param Builder $query
+     * @param string|null $data
+     * @param string $defaultField
      * @return mixed
      */
-    public function scopeOrder($query, $data, $defaultField = 'name')
+    public function scopeOrdered(Builder $query, string|null $data, string $defaultField = 'name')
     {
         // No token? Next.
         if (strpos($data, $this->orderTrigger) === false) {

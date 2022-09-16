@@ -38,7 +38,7 @@ class Character extends MiscModel
         Acl
     ;
 
-    //
+    /** @var string[]  */
     protected $fillable = [
         'name',
         'slug',

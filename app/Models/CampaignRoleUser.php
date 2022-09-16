@@ -19,9 +19,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class CampaignRoleUser extends Model
 {
-    /**
-     * @var array
-     */
+    /** @var string[]  */
     protected $fillable = [
         'campaign_role_id',
         'user_id',

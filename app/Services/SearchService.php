@@ -7,6 +7,7 @@ use App\Models\Calendar;
 use App\Models\Campaign;
 use App\Models\Entity;
 use App\Models\EntityAsset;
+use App\Models\MiscModel;
 use Illuminate\Support\Str;
 
 class SearchService
@@ -58,10 +59,10 @@ class SearchService
 
     /**
      * The search term as requested by the user
-     * @param $term
+     * @param string|null $term
      * @return $this
      */
-    public function term($term): self
+    public function term(string $term = null): self
     {
         $this->term = $term;
         return $this;
@@ -69,10 +70,10 @@ class SearchService
 
     /**
      * The search entity type as requested by the user
-     * @param $type
+     * @param int|null $type
      * @return $this
      */
-    public function type($type): self
+    public function type(int $type = null): self
     {
         if (!empty($type)) {
             $typeID = config('entities.ids.' . $type);
@@ -225,6 +226,7 @@ class SearchService
 
         $searchResults = [];
         foreach ($query->get() as $model) {
+            /** @var MiscModel $model */
             // Force having a child for "ghost" entities.
             if (empty($model->child)) {
                 continue;

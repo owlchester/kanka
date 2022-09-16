@@ -17,10 +17,10 @@ trait CampaignTrait
     protected bool $withCampaignLimit = true;
 
     /**
-     * @param $builder
-     * @return mixed
+     * @param Builder $builder
+     * @return Builder
      */
-    public function scopeAllCampaigns($builder)
+    public function scopeAllCampaigns(Builder $builder): Builder
     {
         $this->withCampaignLimit = false;
         return $builder;

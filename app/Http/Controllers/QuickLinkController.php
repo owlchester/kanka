@@ -14,11 +14,6 @@ use Illuminate\Http\Request;
 
 class QuickLinkController extends Controller
 {
-    /**
-     * Guest Auth Trait
-     */
-    use GuestAuthTrait;
-
     /** @var MenuLinkService */
     protected $service;
 

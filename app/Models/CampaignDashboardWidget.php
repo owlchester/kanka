@@ -57,9 +57,7 @@ class CampaignDashboardWidget extends Model
      */
     use CampaignTrait;
 
-    /**
-     * @var array
-     */
+    /** @var string[]  */
     protected $fillable = [
         'campaign_id',
         'entity_id',

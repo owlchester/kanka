@@ -28,7 +28,7 @@ class AttributeTemplate extends MiscModel
 
     /**
      * Fields that can be mass-assigned
-     * @var array
+     * @var string[]
      */
     protected $fillable = [
         'name',

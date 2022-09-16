@@ -83,10 +83,10 @@ class DatalayerService
 
     /**
      * @param string $key
-     * @param $value
+     * @param mixed $value
      * @return $this
      */
-    public function add(string $key, $value): self
+    public function add(string $key, mixed $value): self
     {
         $this->additional[$key] = $value;
         return $this;

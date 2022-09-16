@@ -48,9 +48,7 @@ class Relation extends Model
         SortableTrait
     ;
 
-    /**
-     * @var array
-     */
+    /** @var string[]  */
     protected $fillable = [
         'campaign_id',
         'owner_id',

@@ -8,10 +8,10 @@ trait MentionTrait
 {
     /**
      * Extract the mentions from a text
-     * @param String $entry
-     * @return mixed
+     * @param string|null $text
+     * @return array
      */
-    public function extract($text)
+    public function extract(string $text = null): array
     {
         $mentions = [];
 
@@ -29,7 +29,7 @@ trait MentionTrait
 
             if (count($options) > 1) {
                 // Skip the first segment
-                Arr::forget($options, 0);
+                $options = array_shift($options);
                 foreach ($options as $option) {
                     $subSegments = explode(':', $option);
                     if (count($subSegments) === 1) {
@@ -75,7 +75,7 @@ trait MentionTrait
         }
 
         // Skip the first segment
-        Arr::forget($segments, 0);
+        $segments = array_shift($segments);
         foreach ($segments as $option) {
             $subSegments = explode(':', $option);
             if (count($subSegments) === 1) {

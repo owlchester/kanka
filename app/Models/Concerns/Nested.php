@@ -31,16 +31,16 @@ trait Nested
     /**
      * Pending operation.
      *
-     * @var array
+     * @var array|null
      */
-    protected $pending;
+    protected array|null $pending;
 
     /**
      * Whether the node has moved since last save.
      *
      * @var bool
      */
-    protected $moved = false;
+    protected bool $moved = false;
 
     /**
      * @var \Carbon\Carbon
@@ -52,7 +52,7 @@ trait Nested
      *
      * @var int
      */
-    public static $actionsPerformed = 0;
+    public static int $actionsPerformed = 0;
 
     /**
      * Sign on model events.
@@ -462,7 +462,7 @@ trait Nested
      *
      * @return self
      */
-    public function appendOrPrependTo(self $parent, $prepend = false)
+    public function appendOrPrependTo(self $parent, bool $prepend = false)
     {
         $this->assertNodeExists($parent)
             ->assertNotDescendant($parent)
@@ -478,7 +478,7 @@ trait Nested
      *
      * @param self $node
      *
-     * @return $this
+     * @return self
      */
     public function afterNode(self $node)
     {
@@ -490,7 +490,7 @@ trait Nested
      *
      * @param self $node
      *
-     * @return $this
+     * @return self
      */
     public function beforeNode(self $node)
     {
@@ -548,13 +548,13 @@ trait Nested
     }
 
     /**
-     * @param $lft
-     * @param $rgt
-     * @param $parentId
+     * @param int $lft
+     * @param int $rgt
+     * @param int $parentId
      *
      * @return $this
      */
-    public function rawNode($lft, $rgt, $parentId)
+    public function rawNode(int $lft, int $rgt, int $parentId)
     {
         $this->setLft($lft)->setRgt($rgt)->setParentId($parentId);
 
@@ -686,9 +686,9 @@ trait Nested
     /**
      * Restore the descendants.
      *
-     * @param $deletedAt
+     * @param string $deletedAt
      */
-    protected function restoreDescendants($deletedAt)
+    protected function restoreDescendants(string $deletedAt)
     {
         $this->descendants()
             ->where($this->getDeletedAtColumn(), '>=', $deletedAt)
@@ -722,11 +722,10 @@ trait Nested
     }
 
     /**
-     * @param string $table
-     *
-     * @return QueryBuilder
+     * @param string|null $table
+     * @return mixed
      */
-    public function newScopedQuery($table = null)
+    public function newScopedQuery(string $table = null)
     {
         return $this->applyNestedSetScope($this->newQuery(), $table);
     }
@@ -756,7 +755,7 @@ trait Nested
     }
 
     /**
-     * @return array
+     * @return null
      */
     protected function getScopeAttributes()
     {
@@ -945,7 +944,7 @@ trait Nested
      *
      * @param array $columns
      *
-     * @return self
+     * @return Model|null
      */
     public function getNextNode(array $columns = [ '*' ])
     {
@@ -959,7 +958,7 @@ trait Nested
      *
      * @param array $columns
      *
-     * @return self
+     * @return Model|null
      */
     public function getPrevNode(array $columns = [ '*' ])
     {
@@ -969,7 +968,7 @@ trait Nested
     /**
      * @param array $columns
      *
-     * @return Collection
+     * @return \Illuminate\Database\Eloquent\Collection
      */
     public function getAncestors(array $columns = [ '*' ])
     {
@@ -979,7 +978,7 @@ trait Nested
     /**
      * @param array $columns
      *
-     * @return Collection|self[]
+     * @return \Illuminate\Database\Eloquent\Collection
      */
     public function getDescendants(array $columns = [ '*' ])
     {
@@ -989,7 +988,7 @@ trait Nested
     /**
      * @param array $columns
      *
-     * @return Collection|self[]
+     * @return \Illuminate\Database\Eloquent\Collection
      */
     public function getSiblings(array $columns = [ '*' ])
     {
@@ -998,8 +997,7 @@ trait Nested
 
     /**
      * @param array $columns
-     *
-     * @return Collection|self[]
+     * @return \Illuminate\Database\Eloquent\Collection|QueryBuilder[]
      */
     public function getNextSiblings(array $columns = [ '*' ])
     {
@@ -1008,8 +1006,7 @@ trait Nested
 
     /**
      * @param array $columns
-     *
-     * @return Collection|self[]
+     * @return \Illuminate\Database\Eloquent\Collection|QueryBuilder[]
      */
     public function getPrevSiblings(array $columns = [ '*' ])
     {
@@ -1018,8 +1015,7 @@ trait Nested
 
     /**
      * @param array $columns
-     *
-     * @return self
+     * @return Model|QueryBuilder|object|null
      */
     public function getNextSibling(array $columns = [ '*' ])
     {
@@ -1028,8 +1024,7 @@ trait Nested
 
     /**
      * @param array $columns
-     *
-     * @return self
+     * @return Model|QueryBuilder|object|null
      */
     public function getPrevSibling(array $columns = [ '*' ])
     {
@@ -1152,11 +1147,11 @@ trait Nested
     }
 
     /**
-     * @param $value
+     * @param int $value
      *
      * @return $this
      */
-    public function setLft($value)
+    public function setLft(int $value)
     {
         $this->attributes[$this->getLftName()] = $value;
 
@@ -1164,11 +1159,11 @@ trait Nested
     }
 
     /**
-     * @param $value
+     * @param int $value
      *
      * @return $this
      */
-    public function setRgt($value)
+    public function setRgt(int $value)
     {
         $this->attributes[$this->getRgtName()] = $value;
 
@@ -1176,11 +1171,11 @@ trait Nested
     }
 
     /**
-     * @param $value
+     * @param int $value
      *
      * @return $this
      */
-    public function setParentId($value)
+    public function setParentId(int $value)
     {
         $this->attributes[$this->getParentIdName()] = $value;
 

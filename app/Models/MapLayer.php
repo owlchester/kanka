@@ -36,7 +36,7 @@ class MapLayer extends Model
     /** @var bool If set to false, skip the saving observer */
     public $savingObserver = true;
 
-    /** Fillable fields */
+    /** @var string[]  */
     protected $fillable = [
         'map_id',
         'name',

@@ -44,9 +44,7 @@ class MenuLink extends MiscModel
      */
     public $table = 'menu_links';
 
-    /**
-     * @var array
-     */
+    /** @var string[]  */
     protected $fillable = [
         'campaign_id',
         'entity_id',

@@ -29,9 +29,7 @@ class CampaignUser extends Pivot
      */
     public $table = 'campaign_user';
 
-    /**
-     * @var array
-     */
+    /** @var string[]  */
     protected $fillable = ['user_id', 'campaign_id'];
 
     /**

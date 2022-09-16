@@ -7,6 +7,7 @@ use App\Facades\SingleUserCache;
 use App\Facades\UserCache;
 use App\Models\Campaign;
 use App\Facades\CampaignLocalization;
+use App\Models\CampaignRole;
 use App\Models\Concerns\Tutorial;
 use App\Models\Patreon;
 use App\Models\Relations\UserRelations;
@@ -63,7 +64,7 @@ class User extends \Illuminate\Foundation\Auth\User
 
     protected static $currentCampaign = false;
 
-    public $additional_attributes = [
+    public array $additional_attributes = [
         'patreon_fullname',
         //'patreon_email'
     ];
@@ -71,7 +72,7 @@ class User extends \Illuminate\Foundation\Auth\User
     /**
      * The attributes that are mass assignable.
      *
-     * @var array
+     * @var string[]
      */
     protected $fillable = [
         'name',
@@ -180,20 +181,21 @@ class User extends \Illuminate\Foundation\Auth\User
     }
 
     /**
-     * @param null $campaignId
-     * @return mixed
+     * @param int|null $campaignId
+     * @return string
      */
-    public function rolesList($campaignId = null): string
+    public function rolesList(int $campaignId = null): string
     {
-        if (empty($campaignId) && !empty($this->campaign)) {
+        if ($campaignId === null && !empty($this->campaign)) {
             $campaignId = $this->campaign->id;
         }
-        $roles = $this->campaignRoles->where('campaign_id', $campaignId);
 
+        /** @var CampaignRole[] $roles */
+        $roles = $this->campaignRoles->where('campaign_id', $campaignId);
         $roleLinks = [];
-        foreach($roles as $role) {
+        foreach ($roles as $role) {
             if (auth()->user()->isAdmin()) {
-                $roleLinks[] = link_to_route('campaign_roles.show', $role->name, $role->id);
+                $roleLinks[] = link_to_route('campaign_roles.show', $role->name, [$role->id]);
             } else {
                 $roleLinks[] = $role->name;
             }
@@ -540,7 +542,7 @@ class User extends \Illuminate\Foundation\Auth\User
      */
     public function isBanned(): bool
     {
-        return ($this->banned_until && $this->banned_until->isFuture());
+        return !empty($this->banned_until) && $this->banned_until->isFuture();
     }
 
     /**

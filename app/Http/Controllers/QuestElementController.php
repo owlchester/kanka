@@ -21,7 +21,8 @@ class QuestElementController extends Controller
 
     /**
      * @param Quest $quest
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function index(Quest $quest)
     {
@@ -55,9 +56,9 @@ class QuestElementController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
+     * @param Quest $quest
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function create(Quest $quest)
     {
@@ -70,10 +71,10 @@ class QuestElementController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param StoreQuestElement $request
+     * @param Quest $quest
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function store(StoreQuestElement $request, Quest $quest)
     {
@@ -84,8 +85,7 @@ class QuestElementController extends Controller
         ]);
         $data['quest_id'] = $quest->id;
 
-        /** @var QuestElement $element */
-        $element = new QuestElement;
+        $element = new QuestElement();
         $element = $element->create($data);
 
         if ($request->has('submit-update')) {
@@ -140,7 +140,8 @@ class QuestElementController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Element  $element
+     * @param  \App\Models\Quest  $quest
+     * @param  \App\Models\QuestElement  $questElement
      * @return \Illuminate\Http\Response
      */
     public function update(StoreQuestElement $request, Quest $quest, QuestElement $questElement)
@@ -173,10 +174,10 @@ class QuestElementController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\QuestElement  $questElement
-     * @return \Illuminate\Http\Response
+     * @param Quest $quest
+     * @param QuestElement $questElement
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function destroy(Quest $quest, QuestElement $questElement)
     {

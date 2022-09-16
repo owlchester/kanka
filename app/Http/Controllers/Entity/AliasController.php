@@ -18,11 +18,6 @@ use Illuminate\Support\Str;
 
 class AliasController extends Controller
 {
-    /**
-     * Guest Auth Trait
-     */
-    use GuestAuthTrait;
-
     public function __construct()
     {
         $this->middleware('campaign.boosted', ['except' => 'create']);

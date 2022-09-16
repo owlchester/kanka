@@ -62,9 +62,7 @@ class Tag extends MiscModel
         'is_auto_applied',
     ];
 
-    /**
-     * @var array
-     */
+    /** @var string[]  */
     protected $fillable = [
         'name',
         'slug',

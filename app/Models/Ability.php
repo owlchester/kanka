@@ -34,9 +34,7 @@ class Ability extends MiscModel
         SortableTrait
     ;
 
-    /**
-     * @var array
-     */
+    /** @var string[]  */
     protected $fillable = [
         'name',
         'slug',

@@ -26,7 +26,7 @@ use Illuminate\Database\Eloquent\Builder;
  */
 class TimelineEra extends Model
 {
-    /** Fillable fields */
+    /** @var string[]  */
     protected $fillable = [
         'timeline_id',
         'name',

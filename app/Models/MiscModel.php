@@ -678,4 +678,13 @@ abstract class MiscModel extends Model
         }
         return 'entity-private';
     }
+
+    /**
+     * Boilerplate
+     * @return int
+     */
+    public function entityTypeId(): int
+    {
+        return 0;
+    }
 }

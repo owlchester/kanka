@@ -33,9 +33,7 @@ class Race extends MiscModel
         SortableTrait
     ;
 
-    /**
-     * @var array
-     */
+    /** @var string[]  */
     protected $fillable = [
         'name',
         'campaign_id',

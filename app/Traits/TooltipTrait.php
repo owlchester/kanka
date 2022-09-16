@@ -30,7 +30,7 @@ trait TooltipTrait
      */
     public function ajaxTooltip(): string
     {
-        if (!$this->child) {
+        if (empty($this->child)) {
             return '';
         }
 

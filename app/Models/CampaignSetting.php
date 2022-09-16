@@ -12,9 +12,7 @@ class CampaignSetting extends Model
      */
     public $table = 'campaign_settings';
 
-    /**
-     * @var array
-     */
+    /** @var string[]  */
     protected $fillable = [
         'abilities',
         'campaign_id',

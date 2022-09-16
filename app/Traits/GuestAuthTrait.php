@@ -11,28 +11,34 @@ trait GuestAuthTrait
 {
     /**
      * Secondary Authentication for Guest users
-     * @param $action
-     * @param $model
+     * @param int $action
+     * @param MiscModel|null $model
+     * @param int|null $modelType
+     * @return void
      */
-    protected function authorizeForGuest(int $action, $model, int $modelType = null)
+    protected function authorizeForGuest(int $action, MiscModel $model = null, int $modelType = null)
     {
         $campaign = CampaignLocalization::getCampaign();
         if (empty($modelType)) {
-            $mainModel = new $this->model;
+            if (!isset($this->model)) {
+                abort(403);
+            }
+            $mainModel = new $this->model();
             $modelType = $mainModel->entityTypeId();
         }
         $permission = EntityPermission::hasPermission($modelType, $action, null, $model, $campaign);
 
         if ($campaign->id != $model->campaign_id || !$permission) {
             // Raise an error
-            abort('403');
+            abort(403);
         }
     }
 
     /**
      * Secondary Authentication for Guest users
-     * @param string $action
-     * @param MiscModel $model = null
+     * @param int $action
+     * @param MiscModel|null $model
+     * @return void
      */
     protected function authorizeEntityForGuest(int $action, MiscModel $model = null)
     {
@@ -46,7 +52,7 @@ trait GuestAuthTrait
 
         if ($campaign->id != $model->campaign_id || !$permission) {
             // Raise an error
-            abort('403');
+            abort(403);
         }
     }
 }

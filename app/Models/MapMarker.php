@@ -49,7 +49,7 @@ class MapMarker extends Model
     public const SHAPE_CIRCLE = 3;
     public const SHAPE_POLY = 5;
 
-    /** Fillable fields */
+    /** @var string[]  */
     protected $fillable = [
         'map_id',
         'name',
