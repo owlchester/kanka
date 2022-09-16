@@ -56,6 +56,7 @@ class CampaignInviteController extends Controller
         $campaign = CampaignLocalization::getCampaign();
         $this->authorize('invite', $campaign);
 
+        /** @var CampaignInvite $invitation */
         $invitation = CampaignInvite::create(
             $request->only('email', 'role_id', 'type_id', 'validity')
         );

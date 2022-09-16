@@ -25,21 +25,13 @@ class CharacterController extends CrudController
      */
     protected $filter = CharacterFilter::class;
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(StoreCharacter $request)
     {
         return $this->crudStore($request);
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Character  $character
+     * @param Character $character
      * @return \Illuminate\Http\Response
      */
     public function show(Character $character)
@@ -48,9 +40,7 @@ class CharacterController extends CrudController
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Character  $character
+     * @param Character $character
      * @return \Illuminate\Http\Response
      */
     public function edit(Character $character)
@@ -59,10 +49,8 @@ class CharacterController extends CrudController
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Character  $character
+     * @param StoreCharacter $request
+     * @param Character $character
      * @return \Illuminate\Http\Response
      */
     public function update(StoreCharacter $request, Character $character)
@@ -71,9 +59,7 @@ class CharacterController extends CrudController
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Character  $character
+     * @param Character $character
      * @return \Illuminate\Http\Response
      */
     public function destroy(Character $character)

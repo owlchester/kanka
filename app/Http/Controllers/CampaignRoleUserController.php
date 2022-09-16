@@ -33,9 +33,9 @@ class CampaignRoleUserController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
+     * @param CampaignRole $campaignRole
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function create(CampaignRole $campaignRole)
     {
@@ -47,10 +47,10 @@ class CampaignRoleUserController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param StoreCampaignRoleUser $request
+     * @param CampaignRole $campaignRole
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function store(StoreCampaignRoleUser $request, CampaignRole $campaignRole)
     {
@@ -68,10 +68,9 @@ class CampaignRoleUserController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Campaign  $campaign
-     * @return \Illuminate\Http\Response
+     * @param CampaignRole $campaignRole
+     * @param CampaignRoleUser $campaignRoleUser
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function show(CampaignRole $campaignRole, CampaignRoleUser $campaignRoleUser)
     {
@@ -80,10 +79,10 @@ class CampaignRoleUserController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\CampaignRole  $campaignRole
-     * @return \Illuminate\Http\Response
+     * @param CampaignRole $campaignRole
+     * @param CampaignRoleUser $campaignRoleUser
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function destroy(CampaignRole $campaignRole, CampaignRoleUser $campaignRoleUser)
     {

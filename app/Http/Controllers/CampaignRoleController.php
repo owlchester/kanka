@@ -29,7 +29,8 @@ class CampaignRoleController extends Controller
     }
 
     /**
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\JsonResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function index()
     {
@@ -63,9 +64,8 @@ class CampaignRoleController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function create()
     {
@@ -83,10 +83,9 @@ class CampaignRoleController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param StoreCampaignRole $request
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\RedirectResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function store(StoreCampaignRole $request)
     {
@@ -127,10 +126,9 @@ class CampaignRoleController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Campaign  $campaign
-     * @return \Illuminate\Http\Response
+     * @param CampaignRole $campaignRole
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function edit(CampaignRole $campaignRole)
     {
@@ -146,11 +144,10 @@ class CampaignRoleController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Campaign  $campaign
-     * @return \Illuminate\Http\Response
+     * @param StoreCampaignRole $request
+     * @param CampaignRole $campaignRole
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function update(StoreCampaignRole $request, CampaignRole $campaignRole)
     {
@@ -163,10 +160,9 @@ class CampaignRoleController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\CampaignRole  $campaignRole
-     * @return \Illuminate\Http\Response
+     * @param CampaignRole $campaignRole
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function destroy(CampaignRole $campaignRole)
     {
@@ -179,7 +175,6 @@ class CampaignRoleController extends Controller
 
     /**
      * @param Request $request
-     * @param Campaign $campaign
      * @param CampaignRole $campaignRole
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
@@ -196,7 +191,7 @@ class CampaignRoleController extends Controller
 
     /**
      * campaign/<id>/campaign_roles/admin fast url
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function admin()
@@ -211,7 +206,7 @@ class CampaignRoleController extends Controller
 
     /**
      * campaign/<id>/campaign_roles/admin fast url
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function public()
@@ -299,7 +294,7 @@ class CampaignRoleController extends Controller
         foreach ($models as $id) {
             /** @var CampaignRole $role */
             $role = CampaignRole::find($id);
-            if (empty($role)) {
+            if ($role === null) {
                 continue;
             }
 

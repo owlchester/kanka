@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Models\Ability;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class AbilityResource extends EntityResource
@@ -14,11 +15,14 @@ class AbilityResource extends EntityResource
      */
     public function toArray($request)
     {
+        /** @var Ability $ability */
+        $ability = $this->resource;
+
         return $this->entity([
-            'type' => $this->type,
-            'ability_id' => $this->ability_id,
-            'charges' => $this->charges,
-            'abilities' => $this->descendants()->pluck('id')->toArray()
+            'type' => $ability->type,
+            'ability_id' => $ability->ability_id,
+            'charges' => $ability->charges,
+            'abilities' => $ability->descendants()->pluck('id')->toArray()
         ]);
     }
 }
