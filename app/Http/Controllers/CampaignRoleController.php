@@ -44,7 +44,7 @@ class CampaignRoleController extends Controller
             ->orderBy('is_admin', 'DESC')
             ->orderBy('is_public', 'DESC')
             ->orderBy('name')
-            ->paginate(5);
+            ->paginate();
 
         $rows = $roles;
 
