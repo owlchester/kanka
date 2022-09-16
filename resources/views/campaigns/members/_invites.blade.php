@@ -16,7 +16,7 @@
             </button>
 
             <a href="{{ route('campaign_invites.create') }}" class="btn btn-primary btn-sm"
-               data-toggle="ajax-modal" data-target="#small-modal" data-url="{{ route('campaign_invites.create', ['type' => 'link']) }}">
+               data-toggle="ajax-modal" data-target="#small-modal" data-url="{{ route('campaign_invites.create') }}">
                 <i class="fa-solid fa-user-plus" aria-hidden="true"></i>
                 <span class="hidden-xs hidden-md">{{ __('campaigns.invites.actions.link') }}</span>
             </a>
@@ -33,7 +33,7 @@
                     <table id="campaign-invites" class="table table-hover table-striped">
                         <thead>
                         <tr>
-                            <th>{{ __('campaigns.invites.fields.type') }}</th>
+                            <th>{{ __('campaigns.invites.fields.token') }}</th>
                             <th class="hidden-xs hidden-sm">{{ __('campaigns.invites.fields.usage') }}</th>
                             <th>{{ __('campaigns.invites.fields.role') }}</th>
                             <th class="hidden-xs hidden-md">{{ __('campaigns.invites.fields.created') }}</th>
@@ -46,15 +46,12 @@
                         @foreach ($invitations as $relation)
                             <tr>
                                 <td>
-                                    @if($relation->isEmail())<span class="hidden-sm hidden-xs">{{ $relation->email }}</span>
-                                    @else
-                                        <a href="{{ route('campaigns.join', ['token' => $relation->token]) }}">
-                                            {{ substr($relation->token, 0, 6) . '...' }}
-                                        </a>
-                                        <a href="#" title="{{ __('campaigns.invites.actions.copy') }}" data-clipboard="{{ route('campaigns.join', ['token' => $relation->token]) }}" data-toggle="tooltip" data-toast="{{ __('crud.alerts.copy_invite') }}">
-                                            <i class="fa-solid fa-copy"></i>
-                                        </a>
-                                    @endif
+                                    <a href="{{ route('campaigns.join', ['token' => $relation->token]) }}">
+                                        {{ substr($relation->token, 0, 6) . '...' }}
+                                    </a>
+                                    <a href="#" title="{{ __('campaigns.invites.actions.copy') }}" data-clipboard="{{ route('campaigns.join', ['token' => $relation->token]) }}" data-toggle="tooltip" data-toast="{{ __('crud.alerts.copy_invite') }}">
+                                        <i class="fa-solid fa-copy"></i>
+                                    </a>
                                 </td>
                                 <td class="hidden-xs hidden-sm">
                                     {{ $relation->validity !== null ? $relation->validity : __('campaigns.invites.unlimited_validity') }}
