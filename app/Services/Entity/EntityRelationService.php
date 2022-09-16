@@ -10,6 +10,7 @@ use App\Models\EntityMention;
 use App\Models\Family;
 use App\Models\Item;
 use App\Models\Journal;
+use App\Models\Location;
 use App\Models\Map;
 use App\Models\MapMarker;
 use App\Models\MiscModel;
@@ -860,12 +861,19 @@ class EntityRelationService
         }
         return $this;
     }
+
+    /**
+     * @return $this
+     */
     protected function addLocations(): self
     {
         /** @var Location $location */
-        $race = $this->entity->child;
+        $child = $this->entity->child;
+        if (!method_exists($child, 'locations')) {
+            return $this;
+        }
 
-        foreach ($race->locations()->with('entity')->has('entity')->get() as $subrace) {
+        foreach ($child->locations()->with('entity')->has('entity')->get() as $subrace) {
             $this->addEntity($subrace->entity);
             $this->addRelations($subrace->entity);
 

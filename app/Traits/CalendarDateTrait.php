@@ -6,6 +6,7 @@ use App\Models\Calendar;
 use App\Models\EntityEvent;
 use App\Models\EntityEventType;
 use App\Models\MiscModel;
+use Illuminate\Support\Arr;
 
 /**
  * Trait CalendarDateTrait
@@ -55,12 +56,12 @@ trait CalendarDateTrait
         $count = 0;
         $monthCount = 1;
         foreach ($months as $month) {
-            if ($month["type"] == "standard") {
+            $monthType = Arr::get($month, 'type');
+            if ($monthType === 'standard') {
                 $count++;
             }
             if ($monthCount == $reminder->month) {
-
-                if ($month["type"] == "intercalary") {
+                if ($monthType === 'intercalary') {
                     return $reminder->year . '-' . $month["name"] . '-' . $reminder->day;
                 }
                 return $reminder->year . '-' . $count . '-' . $reminder->day;
