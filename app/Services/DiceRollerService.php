@@ -2,15 +2,13 @@
 
 namespace App\Services;
 
-use App\Models\Attribute;
 use App\Models\DiceRoll;
-use App\Models\Entity;
 use DiceCalc\Calc;
 
 class DiceRollerService
 {
     /**
-     * @param $query
+     * @param DiceRoll $diceRoll
      * @return mixed
      */
     public function roll(DiceRoll $diceRoll)

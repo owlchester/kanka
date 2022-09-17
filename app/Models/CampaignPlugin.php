@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $created_by
  * @property int $plugin_id
  * @property int $plugin_version_id
+ * @property string $name
  * @property bool $is_active
  * @property Plugin $plugin
  * @property Campaign $campaign

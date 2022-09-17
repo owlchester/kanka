@@ -20,17 +20,16 @@ class StartController extends Controller
      * Create a new controller instance.
      *
      * CampaignController constructor.
-     * @param CampaignService $campaignService
      */
-    public function __construct(CampaignService $campaignService)
+    public function __construct()
     {
         $this->middleware('auth');
     }
 
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function index(Request $request)
     {
@@ -50,10 +49,9 @@ class StartController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param StoreCampaign $request
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function store(StoreCampaign $request)
     {
@@ -73,6 +71,6 @@ class StartController extends Controller
         }
 
         return redirect()->route('home')
-            ->with('success', trans($this->view . '.create.' . ($first ? 'success_first_time' : 'success')));
+            ->with('success', __($this->view . '.create.success'));
     }
 }

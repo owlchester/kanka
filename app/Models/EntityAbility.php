@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Facades\CampaignLocalization;
 use App\Models\Concerns\Blameable;
 use App\Traits\VisibilityIDTrait;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
@@ -12,14 +13,18 @@ use Illuminate\Database\Eloquent\Model;
  * Class EntityAbility
  * @package App\Models
  *
+ * @property int $id
  * @property integer $entity_id
  * @property integer $ability_id
  * @property integer $charges
  * @property integer $position
  * @property string $note
  * @property integer $created_by
- * @property Ability $ability
- * @property Entity $entity
+ * @property integer $updated_by
+ * @property Carbon $created_at
+ * @property Carbon $updated_at
+ * @property Ability|null $ability
+ * @property Entity|null $entity
  *
  * @method static Builder|self defaultOrder()
  */

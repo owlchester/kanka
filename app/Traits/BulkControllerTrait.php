@@ -11,7 +11,7 @@ trait BulkControllerTrait
 {
     /**
      * Get the Bulk model of an entity
-     * @param MiscModel|string|null $model
+     * @param MiscModel|null $modelClass
      * @return Bulk
      */
     protected function bulkModel(MiscModel $modelClass = null): Bulk
@@ -20,9 +20,10 @@ trait BulkControllerTrait
             return new $this->bulk();
         }
 
-        if ($modelClass) {
+        if ($modelClass !== null) {
             $bulkClass = 'App\Datagrids\Bulks\\' . Str::studly(Str::singular($modelClass->getTable())) . 'Bulk';
         } else {
+            // @phpstan-ignore-next-line
             $model = new $this->model();
             $bulkClass = 'App\Datagrids\Bulks\\' . Str::studly(Str::singular($model->getTable())) . 'Bulk';
         }

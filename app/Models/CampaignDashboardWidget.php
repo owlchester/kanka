@@ -129,20 +129,20 @@ class CampaignDashboardWidget extends Model
     }
 
     /**
-     * @param $query
-     * @return mixed
+     * @param Builder $query
+     * @return Builder
      */
-    public function scopePositioned($query)
+    public function scopePositioned(Builder $query): Builder
     {
         return $query->with(['entity', 'tags:id'])
             ->orderBy('position', 'asc');
     }
 
     /**
-     * @param $query
-     * @return mixed
+     * @param Builder $query
+     * @return Builder
      */
-    public function scopeOnDashboard(Builder $query, CampaignDashboard $dashboard = null)
+    public function scopeOnDashboard(Builder $query, CampaignDashboard $dashboard = null): Builder
     {
         if (empty($dashboard)) {
             return $query->whereNull('dashboard_id');
@@ -152,7 +152,7 @@ class CampaignDashboardWidget extends Model
     }
 
     /**
-     * @param $value
+     * @param string $value
      */
     public function conf($value)
     {
@@ -237,30 +237,18 @@ class CampaignDashboardWidget extends Model
         ];
 
         // Preview, check the linked entity
-        $entity = !empty($entity) ? $entity : $this->entity;
+        $entity = !empty($entity) ? $entity : $this->entity; // @phpstan-ignore-line
         return !empty($entity) && in_array($entity->typeId(), $types);
     }
 
     /**
      * Get the entities of a widget
-     * @return Entity[]|Builder[]|\Illuminate\Database\Eloquent\Collection
-     * @throws \Illuminate\Contracts\Container\BindingResolutionException
      */
     public function entities()
     {
-        /** @var Entity $base */
         $base = new Entity();
 
         $excludedTypes = [];
-        if (empty($entityType)) {
-            // Todo: this didn't work for 6 months and no one complained
-            /*$excludedTypes = [
-                config('entities.ids.tag'),
-                config('entities.ids.conversation'),
-                config('entities.ids.attribute_template'),
-                config('entities.ids.dice_roll'),
-            ];*/
-        }
 
         if ($this->filterUnmentioned()) {
             $base = $base->unmentioned()

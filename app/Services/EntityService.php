@@ -7,6 +7,7 @@ use App\Models\Campaign;
 use App\Models\CampaignPermission;
 use App\Models\Character;
 use App\Models\CharacterTrait;
+use App\Models\Conversation;
 use App\Models\Entity;
 use App\Models\EntityNote;
 use App\Models\Event;
@@ -151,10 +152,10 @@ class EntityService
     }
 
     /**
-     * @param $entity
+     * @param string $entity
      * @return string
      */
-    public function singular($entity): string
+    public function singular(string $entity): string
     {
         $singular = rtrim($entity, 's');
         if ($entity == 'families') {
@@ -205,7 +206,7 @@ class EntityService
     protected function moveCampaign(Entity $entity, int $campaignId, bool $copy): Entity
     {
         // First we make sure we have access to the new campaign.
-        /** @var Campaign $campaign */
+        /** @var Campaign|null $campaign */
         $campaign = auth()->user()->campaigns()->where('campaign_id', $campaignId)->first();
         if (empty($campaign)) {
             throw new TranslatableException('entities/move.errors.unknown_campaign');
@@ -250,7 +251,7 @@ class EntityService
             // won't make sense on the new campaign either.
             /* @var MiscModel $child */
             $child = $entity->child;
-            $child->permissions()->delete();
+            $entity->permissions()->delete();
 
             // Detach is a custom function on a child to remove itself from where it is parent to other entities.
             $child->detach();
@@ -352,8 +353,8 @@ class EntityService
 
             // Timeline: copy eras
             if ($entity->child instanceof Timeline) {
-                /** @var TimelineEra $newEra **/
                 foreach ($entity->child->eras as $era) {
+                    /** @var TimelineEra $newEra **/
                     $newEra = $era->replicate();
                     $newEra->timeline_id = $newModel->id;
                     $newEra->save();
@@ -377,24 +378,23 @@ class EntityService
 
     /**
      * @param Entity $entity
-     * @param $target
+     * @param string $target
      * @param MiscModel|null $misc
      * @return Entity
      * @throws \Exception
      */
-    protected function moveType(Entity $entity, $target, MiscModel $misc = null)
+    protected function moveType(Entity $entity, string $target, MiscModel $misc = null)
     {
         // Create new model
         if (!isset($this->entities[$target])) {
             throw new \Exception("Unknown target '$target' for transforming entity");
         }
 
-        /** @var $new MiscModel */
+        /** @var MiscModel|Location|Item $new */
         $new = new $this->entities[$target]();
-        $old = null;
-        if (!empty($misc)) {
-            $old = $misc;
-        } else {
+        /** @var MiscModel|Family|Organisation|Character|null $old */
+        $old = $misc;
+        if (empty($misc)) {
             $old = $entity->child;
         }
 
@@ -436,7 +436,6 @@ class EntityService
             $old->entityTypeId() == config('entities.ids.organisation') &&
             $new->entityTypeId() == config('entities.ids.family')
         ) {
-            /** @var Organisation $old */
             foreach ($old->members as $member) {
                 $member->delete();
                 $new->members()->attach($member->character_id);
@@ -445,7 +444,6 @@ class EntityService
             $old->entityTypeId() == config('entities.ids.family') &&
             $new->entityTypeId() == config('entities.ids.organisation')
         ) {
-            /** @var Family $old */
             foreach ($old->members as $character) {
                 $orgMember = new OrganisationMember();
                 $orgMember->character_id = $character->id;
@@ -496,8 +494,8 @@ class EntityService
     }
 
     /**
-     * @param $name
-     * @param $target
+     * @param string $name
+     * @param string $target
      * @return MiscModel
      * @throws \Exception
      */
@@ -509,7 +507,7 @@ class EntityService
         }
 
         /**
-         * @var $new MiscModel
+         * @var MiscModel $new
          */
         $new = new $this->entities[$target]();
         $new->name = $name;
@@ -521,7 +519,7 @@ class EntityService
     /**
      * Get an entity object string based on the entity type
      * @param string $entity
-     * @return mixed
+     * @return string|bool
      */
     public function getClass(string $entity)
     {
@@ -530,8 +528,8 @@ class EntityService
 
     /**
      * Get an entity object string based on the entity type
-     * @param $entity
-     * @return mixed
+     * @param string $class
+     * @return string|false
      */
     public function getName(string $class): string|false
     {
@@ -659,7 +657,7 @@ class EntityService
         $allTags = [];
         $tags = \App\Models\Tag::autoApplied()->with('entity')->get();
         foreach ($tags as $tag) {
-            if ($tag && $tag->entity) {
+            if ($tag->entity !== null) {
                 array_push($allTags, $tag->id);
             }
         }

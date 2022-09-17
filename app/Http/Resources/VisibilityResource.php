@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Models\Visibility;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class VisibilityResource extends JsonResource
@@ -14,9 +15,11 @@ class VisibilityResource extends JsonResource
      */
     public function toArray($request)
     {
+        /** @var Visibility $model */
+        $model = $this->resource;
         return [
-            'id' => $this->id,
-            'code' => $this->code,
+            'id' => $model->id,
+            'code' => $model->code,
         ];
     }
 }

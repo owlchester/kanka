@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Models\DiceRoll;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class DiceRollResource extends EntityResource
@@ -14,10 +15,12 @@ class DiceRollResource extends EntityResource
      */
     public function toArray($request)
     {
+        /** @var DiceRoll $model */
+        $model = $this->resource;
         return $this->entity([
-            'system' => $this->system,
-            'parameters' => $this->parameters,
-            'rolls' => $this->diceRollResults()->pluck('results')->toArray()
+            'system' => $model->system,
+            'parameters' => $model->parameters,
+            'rolls' => $model->diceRollResults()->pluck('results')->toArray()
         ]);
     }
 }

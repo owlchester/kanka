@@ -43,7 +43,7 @@ class AttributeService
     }
 
     /**
-     * @param Entity $entity
+     * @param Attribute $attribute
      * @param string $field
      * @return string
      */
@@ -148,79 +148,8 @@ class AttributeService
 
     /**
      * @param Entity $entity
-     * @param $data
-     * @throws \Exception
-     */
-    public function saveMany(Entity $entity, $data)
-    {
-        dd('ASS SM13');
-        // Get the existing ones to build an array of ids
-        $existing = [];
-        foreach ($entity->attributes()->get() as $att) {
-            $existing[$att->id] = $att;
-        }
-
-        $order = 0;
-        $names = Arr::get($data, 'attr_name', []);
-        $values = Arr::get($data, 'attr_value', []);
-        $types = Arr::get($data, 'attr_type', []);
-        $privates = Arr::get($data, 'attr_is_private', []);
-        $stars = Arr::get($data, 'attr_is_star', []);
-
-        foreach ($names as $id => $name) {
-            // Skip empties, which are probably the templates
-            if (empty($name)) {
-                continue;
-            }
-
-            $value = isset($values[$id]) ? $values[$id] : null ;
-            $typeID = isset($types[$id]) ? $types[$id] : null;
-            $isPrivate = !empty($privates[$id]);
-            $isStar = !empty($stars[$id]);
-
-            if (!empty($existing[$id])) {
-                // Edit an existing attribute
-                /** @var \App\Models\Attribute $attribute */
-                $attribute = $existing[$id];
-                $attribute->type_id = $type;
-                $attribute->name = $name;
-                $attribute->value = $value;
-                $attribute->is_private = $isPrivate;
-                $attribute->is_star = $isStar;
-                $attribute->default_order = $order;
-                $attribute->save();
-
-                // Remove it from the list of existing ids so it doesn't get deleted
-                unset($existing[$id]);
-            } else {
-                // Special case if the attribute is a random
-                if ($entity->typeId() != config('entities.ids.attribute_template')) {
-                    list ($typeID, $value) = $this->randomAttribute($typeID, $value);
-                }
-
-                $attribute = Attribute::create([
-                    'entity_id' => $entity->id,
-                    'type_id' => $typeID,
-                    'name' => $name,
-                    'value' => $value,
-                    'is_private' => $isPrivate,
-                    'is_star' => $isStar,
-                    'default_order' => $order,
-                ]);
-            }
-            $order++;
-        }
-
-        // Remaining existing have been deleted
-        foreach ($existing as $id => $attribute) {
-            $attribute->delete();
-        }
-    }
-
-    /**
-     * @param Entity $entity
-     * @param $request
-     * @return string
+     * @param int|string $templateId
+     * @return string|bool
      */
     public function apply(Entity $entity, $templateId)
     {
@@ -250,7 +179,7 @@ class AttributeService
             return false;
         }
         /** @var Template $template */
-        $template = new $templates[$templateName];
+        $template = new $templates[$templateName]();
         $order = $entity->attributes()->count();
 
         $existing = array_values($entity->attributes()->pluck('name')->toArray());
@@ -312,8 +241,8 @@ class AttributeService
     }
 
     /**
-     * @param $template
-     * @return bool
+     * @param string $template
+     * @return bool|Template
      */
     public function communityTemplate($template)
     {
@@ -327,7 +256,7 @@ class AttributeService
 
     /**
      * Add form attributes to an entity
-     * @param $request
+     * @param array $request
      * @param Entity $entity
      * @return int
      * @throws \Exception
@@ -451,7 +380,7 @@ class AttributeService
         $templates = [];
 
         foreach (config('attribute-templates.templates') as $code => $class) {
-            $template = new $class;
+            $template = new $class();
             $templates[$code] = $template->name();
         }
         // Get templates from the plugins
@@ -512,7 +441,7 @@ class AttributeService
     }
 
     /**
-     * @param int $id
+     * @param string $uuid
      * @param Entity $entity
      * @return false|\Illuminate\Database\Eloquent\HigherOrderBuilderProxy|mixed
      */
@@ -582,7 +511,7 @@ class AttributeService
     }
 
     /**
-     * @param $uuid
+     * @param string $uuid
      * @param Campaign $campaign
      * @return CampaignPlugin|null
      */
@@ -627,9 +556,9 @@ class AttributeService
     }
 
     /**
-     * @param int $pluginId
-     * @param int $campaign
-     * @return CampaignPlugin
+     * @param string $pluginUuid
+     * @param Campaign $campaign
+     * @return CampaignPlugin|null
      */
     protected function getMarketplacePlugin(string $pluginUuid, Campaign $campaign)
     {
@@ -780,7 +709,7 @@ class AttributeService
 
     /**
      * Check if an attribute is part of a loop
-     * @param $name
+     * @param string $name
      * @return bool
      */
     public function isLoop($name): bool
@@ -825,7 +754,7 @@ class AttributeService
     }
 
     /**
-     * @param string $type
+     * @param string|null $type
      * @return int
      */
     protected function mapAttributeTypeToID(string $type = null): int

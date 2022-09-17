@@ -260,9 +260,9 @@ class PluginController extends Controller
         $this->service->campaign($campaign);
         $count = 0;
         foreach ($models as $id) {
-            /** @var Plugin $plugin */
+            /** @var Plugin|null $plugin */
             $plugin = Plugin::find($id);
-            if ($plugin === null) {
+            if (empty($plugin)) {
                 continue;
             }
             if ($action === 'enable') {

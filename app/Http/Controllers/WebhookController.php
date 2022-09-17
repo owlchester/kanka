@@ -6,6 +6,7 @@ use App\Jobs\Emails\SubscriptionDeletedEmailJob;
 use App\Jobs\SubscriptionEndJob;
 use App\Models\SubscriptionSource;
 use App\Services\SubscriptionService;
+use App\User;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Log;
 use Laravel\Cashier\Http\Controllers\WebhookController as CashierController;
@@ -14,9 +15,6 @@ class WebhookController extends CashierController
 {
     /**
      * Handle an updated subscription (for example when managing 3d secure payments)
-     *
-     * @param array $payload
-     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function handleCustomerSubscriptionUpdated(array $payload)
     {
@@ -44,8 +42,6 @@ class WebhookController extends CashierController
 
     /**
      * Handle a deleted subscription
-     * @param array $payload
-     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function handleCustomerSubscriptionDeleted(array $payload)
     {
@@ -53,6 +49,7 @@ class WebhookController extends CashierController
         $response = parent::handleCustomerSubscriptionDeleted($payload);
 
         // User notification. Maybe even an email
+        /** @var User $user */
         if ($user = $this->getUserByStripeId($payload['data']['object']['customer'])) {
             // Notify admin
             SubscriptionDeletedEmailJob::dispatch($user);
@@ -74,6 +71,7 @@ class WebhookController extends CashierController
     {
         // User notification. Maybe even an email
         Log::debug('succeeded charge', $payload);
+        /** @var User $user */
         if ($user = $this->getUserByStripeId($payload['data']['object']['customer'])) {
             $charge = $payload['data']['object']['charge'];
 
@@ -104,6 +102,7 @@ class WebhookController extends CashierController
      */
     public function handleChargeFailed(array $payload)
     {
+        /** @var User $user */
         if ($user = $this->getUserByStripeId($payload['data']['object']['customer'])) {
             /** @var SubscriptionService $subscription */
             $subscription = app()->make(SubscriptionService::class);
@@ -117,10 +116,10 @@ class WebhookController extends CashierController
 
     /**
      * Check if a request is to cancel a user
-     * @param $data
+     * @param array $data
      * @return bool
      */
-    protected function isCancelling($data): bool
+    protected function isCancelling(array $data): bool
     {
         Log::debug('data', $data);
         $cancel = Arr::get($data, 'object.canceled_at', null);

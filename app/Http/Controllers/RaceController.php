@@ -29,10 +29,8 @@ class RaceController extends CrudController
     protected $filter = RaceFilter::class;
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param StoreRace $request
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(StoreRace $request)
     {
@@ -40,10 +38,6 @@ class RaceController extends CrudController
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Character  $character
-     * @return \Illuminate\Http\Response
      */
     public function show(Race $race)
     {
@@ -51,10 +45,6 @@ class RaceController extends CrudController
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Character  $character
-     * @return \Illuminate\Http\Response
      */
     public function edit(Race $race)
     {
@@ -62,11 +52,6 @@ class RaceController extends CrudController
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Character  $character
-     * @return \Illuminate\Http\Response
      */
     public function update(StoreRace $request, Race $race)
     {
@@ -74,10 +59,6 @@ class RaceController extends CrudController
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Character  $character
-     * @return \Illuminate\Http\Response
      */
     public function destroy(Race $race)
     {
@@ -85,8 +66,6 @@ class RaceController extends CrudController
     }
 
     /**
-     * @param Race $race
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function characters(Race $race)
     {
@@ -126,8 +105,6 @@ class RaceController extends CrudController
     }
 
     /**
-     * @param Race $race
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function races(Race $race)
     {
@@ -137,8 +114,8 @@ class RaceController extends CrudController
             ->route('races.races', [$race]);
 
         $this->rows = $race
-            ->descendants()
             ->sort(request()->only(['o', 'k']))
+            ->descendants()
             ->with(['entity', 'characters'])
             ->paginate();
 

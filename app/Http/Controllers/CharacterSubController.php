@@ -11,7 +11,7 @@ class CharacterSubController extends CharacterController
 {
     /**
      * @param Character $character
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function profile(Character $character)
@@ -25,7 +25,7 @@ class CharacterSubController extends CharacterController
 
     /**
      * @param Character $character
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\JsonResponse|\Illuminate\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function organisations(Character $character)

@@ -17,28 +17,28 @@ use Illuminate\Support\Str;
  * @package App\Models
  *
  * @property Map $map
- * @property Entity $entity
+ * @property Entity|null $entity
  * @property int $id
  * @property int $map_id
- * @property int $entity_id
+ * @property int|null $entity_id
  * @property string $name
  * @property string $entry
  * @property int $longitude
  * @property int $latitude
  * @property string $colour
  * @property string $font_colour
- * @property int $shape_id
- * @property int $size_id
- * @property int $icon
+ * @property int|null $shape_id
+ * @property int|null $size_id
+ * @property int|null $icon
  * @property string $custom_icon
  * @property string $custom_shape
- * @property int $circle_radius
+ * @property int|null $circle_radius
  * @property bool $is_draggable
  * @property array $polygon_style
  * @property float $opacity
- * @property int $group_id
- * @property int $pin_size
- * @property MapGroup $group
+ * @property int|null $group_id
+ * @property int|null $pin_size
+ * @property MapGroup|null $group
  */
 class MapMarker extends Model
 {

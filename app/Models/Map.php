@@ -17,8 +17,8 @@ use Illuminate\Support\Facades\Storage;
 /**
  * Class Ability
  * @package App\Models
- * @property int $map_id
- * @property int $location_id
+ * @property int|null $map_id
+ * @property int|null $location_id
  * @property int $width
  * @property int $height
  * @property int $grid
@@ -32,13 +32,13 @@ use Illuminate\Support\Facades\Storage;
  * @property bool $has_clustering
  * @property int $chunking_status
  * @property array $config
- * @property Map $map
+ * @property Map|null $map
  * @property Map[] $maps
- * @property Location $location
- * @property MapLayer[] $layers
- * @property MapMarker[] $markers
+ * @property Location|null $location
+ * @property Collection|MapLayer[] $layers
+ * @property Collection|MapMarker[] $markers
  * @property MapMarker $center_marker
- * @property MapGroup[] $groups
+ * @property Collection|MapGroup[] $groups
  * @property [] $grids
  */
 class Map extends MiscModel
@@ -158,7 +158,7 @@ class Map extends MiscModel
      * @param $query
      * @return mixed
      */
-    public function scopePreparedWith(Builder $query)
+    public function scopePreparedWith(Builder $query): Builder
     {
         return $query->with([
             'entity',

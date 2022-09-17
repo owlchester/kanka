@@ -14,8 +14,8 @@ use Illuminate\Support\Collection;
  * Class Note
  * @package App\Models
  *
- * @property int $note_id
- * @property Note $note
+ * @property int|null $note_id
+ * @property Note|null $note
  * @property Note[]|Collection $notes
  */
 class Note extends MiscModel
@@ -56,10 +56,10 @@ class Note extends MiscModel
 
     /**
      * Performance with for datagrids
-     * @param $query
-     * @return mixed
+     * @param Builder $query
+     * @return Builder
      */
-    public function scopePreparedWith(Builder $query)
+    public function scopePreparedWith(Builder $query): Builder
     {
         return $query->with([
             'entity' => function ($sub) {
@@ -126,7 +126,7 @@ class Note extends MiscModel
 
     /**
      * Specify parent id attribute mutator
-     * @param $value
+     * @param int $value
      */
     public function setNoteIdAttribute($value)
     {

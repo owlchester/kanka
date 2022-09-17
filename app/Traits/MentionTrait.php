@@ -29,7 +29,7 @@ trait MentionTrait
 
             if (count($options) > 1) {
                 // Skip the first segment
-                $options = array_shift($options);
+                unset($options[0]);
                 foreach ($options as $option) {
                     $subSegments = explode(':', $option);
                     if (count($subSegments) === 1) {
@@ -75,7 +75,7 @@ trait MentionTrait
         }
 
         // Skip the first segment
-        $segments = array_shift($segments);
+        unset($segments[0]);
         foreach ($segments as $option) {
             $subSegments = explode(':', $option);
             if (count($subSegments) === 1) {

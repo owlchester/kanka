@@ -3,6 +3,7 @@
 namespace App\Observers;
 
 use App\Facades\CharacterCache;
+use App\Models\Character;
 use App\Models\CharacterTrait;
 use App\Models\Family;
 use App\Models\MiscModel;
@@ -27,9 +28,11 @@ class CharacterObserver extends MiscObserver
     }
 
     /**
-     * @param MiscModel $model
+     * @param MiscModel|Character $character
+     * @param $trait
+     * @return $this
      */
-    protected function saveTraits(MiscModel $character, $trait = 'personality'): self
+    protected function saveTraits(MiscModel|Character $character, string $trait = 'personality'): self
     {
         // Users who can edit the character but can't access personality traits shouldn't be allowed to
         // change those traitrs.
@@ -76,10 +79,10 @@ class CharacterObserver extends MiscObserver
 
     /**
      * Save a character's organisations
-     * @param MiscModel $character
+     * @param Character $character
      * @throws \Exception
      */
-    protected function saveOrganisations(MiscModel $character): self
+    protected function saveOrganisations(Character $character): self
     {
         // If the organisations array isn't provided, skip this feature. The crud interface will always provide one,
         // and the api calls will provide one if necessary.
@@ -163,9 +166,9 @@ class CharacterObserver extends MiscObserver
     }
 
     /**
-     * @param MiscModel $character
+     * @param Character $character
      */
-    protected function saveRaces(MiscModel $character): self
+    protected function saveRaces(Character $character): self
     {
         if (!request()->has('save_races') && !request()->has('races')) {
             return $this;
@@ -221,15 +224,14 @@ class CharacterObserver extends MiscObserver
     }
 
     /**
-     * @param MiscModel $character
+     * @param Character $character
      */
-    protected function saveFamilies(MiscModel $character): self
+    protected function saveFamilies(Character $character): self
     {
         if (!request()->has('save_families') && !request()->has('families')) {
             return $this;
         }
 
-        /** @var Family $families */
         $existing = [];
         $unique = [];
         $recreate = [];
@@ -279,9 +281,9 @@ class CharacterObserver extends MiscObserver
     }
 
     /**
-     * @param MiscModel $model
+     * @param MiscModel|Character $model
      */
-    public function saved(MiscModel $model)
+    public function saved(MiscModel|Character $model)
     {
         parent::saved($model);
 

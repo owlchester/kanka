@@ -68,7 +68,7 @@ class CalendarObserver extends MiscObserver
         $yearCount = 0;
         $yearValues = request()->post('year_number', []);
         $yearNames = request()->post('year_name', []);
-        if ($yearValues && !empty($yearValues)) {
+        if (!empty($yearValues)) {
             foreach ($yearValues as $year) {
                 if (empty($year)) {
                     continue;
@@ -85,7 +85,7 @@ class CalendarObserver extends MiscObserver
         $weekCount = 0;
         $weekValues = request()->post('week_number', []);
         $weekNames = request()->post('week_name', []);
-        if ($weekValues && !empty($weekValues)) {
+        if (!empty($weekValues)) {
             foreach ($weekValues as $week) {
                 if (empty($week)) {
                     continue;
@@ -163,9 +163,9 @@ class CalendarObserver extends MiscObserver
         $model->seasons = json_encode($seasons);
 
         // Calculate date
-        $year = request()->post('current_year', 1);
-        $month = ltrim(request()->post('current_month', 1), 0);
-        $day = ltrim(request()->post('current_day', 1), 0);
+        $year = request()->post('current_year', '1');
+        $month = ltrim(request()->post('current_month', '1'), '0');
+        $day = ltrim(request()->post('current_day', '1'), '0');
 
         // Empty values
         if ($year === null) {

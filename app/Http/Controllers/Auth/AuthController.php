@@ -35,8 +35,7 @@ class AuthController extends Controller
 
     /**
      * Redirect the user to the service authentication page.
-     * @param $provider
-     * @return \Illuminate\Http\RedirectResponse|\Symfony\Component\HttpFoundation\RedirectResponse
+     * @param string $provider
      */
     public function redirectToProvider($provider)
     {
@@ -56,8 +55,7 @@ class AuthController extends Controller
      * If the user exists, log them in. Otherwise, create a new user then log them in. After that
      * redirect them to the authenticated user's homepage.
      *
-     * @param $provider
-     * @return \Illuminate\Http\RedirectResponse
+     * @param string $provider
      */
     public function handleProviderCallback($provider)
     {
@@ -98,7 +96,7 @@ class AuthController extends Controller
         // Make sure the email doesn't already exist
         $emailExists = User::where('email', $user->email)->first();
         if ($emailExists) {
-            throw new \Exception(null, 1);
+            throw new \Exception('', 1);
         }
 
         // Only allow creating if it's set that way

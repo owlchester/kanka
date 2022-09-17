@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Notifications\Header;
+use App\User;
 
 class NotificationController extends Controller
 {
@@ -22,25 +23,29 @@ class NotificationController extends Controller
     public function index()
     {
         // Set all notifications as read
+        /** @var User $user */
         $user = auth()->user();
 
         $notifications = $user->notifications()->paginate();
+        // @phpstan-ignore-next-line
         $user->unreadNotifications->markAsRead();
 
         return view('notifications.index', compact('notifications'));
     }
 
     /**
-     * Refresh the notification list
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return \Illuminate\Http\JsonResponse
      */
     public function refresh()
     {
+        /** @var User $user */
         $user = auth()->user();
+        // @phpstan-ignore-next-line
         $unreadNotifications = count($user->unreadNotifications);
 
         // User is requesting to mark all notifications as read
         if (request()->has('read-all')) {
+            // @phpstan-ignore-next-line
             $user->unreadNotifications->markAsRead();
             $unreadNotifications = 0;
         }

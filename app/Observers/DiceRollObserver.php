@@ -2,15 +2,15 @@
 
 namespace App\Observers;
 
-use App\Models\Campaign;
+use App\Models\DiceRoll;
 use App\Models\MiscModel;
 
 class DiceRollObserver extends MiscObserver
 {
     /**
-     * @param Campaign $campaign
+     * @param DiceRoll|MiscModel $model
      */
-    public function saving(MiscModel $model)
+    public function saving(DiceRoll|MiscModel $model)
     {
         parent::saving($model);
         $model->system = 'standard';

@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Models\MiscModel;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class ModelResource extends JsonResource
@@ -16,14 +17,16 @@ class ModelResource extends JsonResource
      */
     public function entity(array $prepared = [])
     {
+        /** @var MiscModel $model */
+        $model = $this->resource;
         $merged = [
-            'id' => $this->id,
-            'is_private' => (bool) $this->is_private,
+            'id' => $model->id,
+            'is_private' => (bool) $model->is_private,
 
-            'created_at' => $this->created_at,
-            'created_by' => $this->created_by,
-            'updated_at' => $this->updated_at,
-            'updated_by' => $this->updated_by,
+            'created_at' => $model->created_at,
+            'created_by' => $model->created_by,
+            'updated_at' => $model->updated_at,
+            'updated_by' => $model->updated_by,
         ];
 
         // Foreign elements

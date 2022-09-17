@@ -18,8 +18,8 @@ use Illuminate\Support\Facades\Auth;
  * @property int $user_id
  * @property string $message
  *
- * @property Character $character
- * @property User $user
+ * @property Character|null $character
+ * @property User|null $user
  * @property Conversation $conversation
  */
 class ConversationMessage extends MiscModel

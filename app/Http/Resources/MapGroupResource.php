@@ -2,6 +2,8 @@
 
 namespace App\Http\Resources;
 
+use App\Models\MapGroup;
+
 class MapGroupResource extends ModelResource
 {
     /**
@@ -12,12 +14,14 @@ class MapGroupResource extends ModelResource
      */
     public function toArray($request)
     {
+        /** @var MapGroup $model */
+        $model = $this->resource;
         return $this->entity([
-            'map_id' => $this->map_id,
-            'name' => $this->name,
-            'position' => (int) $this->position,
-            'visibility_id' => $this->visibility_id,
-            'is_shown' => (bool) $this->is_shown,
+            'map_id' => $model->map_id,
+            'name' => $model->name,
+            'position' => (int) $model->position,
+            'visibility_id' => $model->visibility_id,
+            'is_shown' => (bool) $model->is_shown,
         ]);
     }
 }

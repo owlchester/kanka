@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Models\Race;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class RaceResource extends EntityResource
@@ -14,11 +15,13 @@ class RaceResource extends EntityResource
      */
     public function toArray($request)
     {
-        $locationIDs = $this->resource->locations()->pluck('locations.id');
+        /** @var Race $model */
+        $model = $this->resource;
+        $locationIDs = $model->locations()->pluck('locations.id');
 
         return $this->entity([
-            'type' => $this->type,
-            'race_id' => $this->race_id,
+            'type' => $model->type,
+            'race_id' => $model->race_id,
             'locations' => $locationIDs
         ]);
     }

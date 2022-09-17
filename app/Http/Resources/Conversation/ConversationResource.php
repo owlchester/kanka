@@ -1,14 +1,11 @@
 <?php
 
-
 namespace App\Http\Resources\Conversation;
 
+use App\Models\Conversation;
 use App\Models\ConversationMessage;
 use Illuminate\Http\Resources\Json\JsonResource;
-use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\Auth;
-
 
 class ConversationResource extends JsonResource
 {
@@ -23,7 +20,10 @@ class ConversationResource extends JsonResource
         $oldest = $request->get('oldest', null);
         $newest = $request->get('newest', null);
 
-        $messages = new Collection($this->messages()->default($oldest, $newest)->get());
+        /** @var Conversation $resource */
+        $resource = $this->resource;
+
+        $messages = new Collection($resource->messages()->default($oldest, $newest)->get());
         $messages = $messages->reverse();
 
         $data = [];
@@ -51,7 +51,7 @@ class ConversationResource extends JsonResource
         $first = $messages->first();
         $previous = false;
         if ($first) {
-            $previous = $this->messages()->where('id', '<', $first->id)->count() > 0;
+            $previous = $resource->messages()->where('id', '<', $first->id)->count() > 0;
         }
 
         return [

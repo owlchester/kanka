@@ -292,7 +292,7 @@ class CampaignRoleController extends Controller
         }
         $count = 0;
         foreach ($models as $id) {
-            /** @var CampaignRole $role */
+            /** @var CampaignRole|null $role */
             $role = CampaignRole::find($id);
             if ($role === null) {
                 continue;

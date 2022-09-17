@@ -46,8 +46,6 @@ class CrudAttributeController extends Controller
 
     /**
      * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
      */
     public function crudIndex(Entity $entity)
     {
@@ -71,9 +69,6 @@ class CrudAttributeController extends Controller
     }
 
     /**
-     * @param Entity $entity
-     * @param Attribute $attribute
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function crudCreate(Entity $entity, Attribute $attribute)
     {
@@ -92,9 +87,6 @@ class CrudAttributeController extends Controller
     }
 
     /**
-     * @param Entity $entity
-     * @param Request $request
-     * @return \Illuminate\Http\RedirectResponse
      */
     public function crudStore(Request $request, Entity $entity)
     {
@@ -113,9 +105,6 @@ class CrudAttributeController extends Controller
 
     /**
      * Show the form for editing the specified resource.
-     *
-     * @param  \App\Entitys\Family  $character
-     * @return \Illuminate\Http\Response
      */
     public function crudEdit(Entity $entity, Attribute $model)
     {
@@ -135,10 +124,6 @@ class CrudAttributeController extends Controller
     }
 
     /**
-     * @param Request $request
-     * @param Entity $model
-     * @param Entity $attribute
-     * @return \Illuminate\Http\RedirectResponse
      */
     public function crudUpdate(Request $request, Entity $entity, Attribute $attribute)
     {
@@ -153,9 +138,6 @@ class CrudAttributeController extends Controller
     }
 
     /**
-     * @param Entity $model
-     * @param Entity $attribute
-     * @return \Illuminate\Http\RedirectResponse
      */
     public function crudDestroy(Entity $entity, Attribute $attribute)
     {
@@ -172,8 +154,6 @@ class CrudAttributeController extends Controller
 
     /**
      * Save many attributes at the same time
-     *
-     * @param Entity $entity
      */
     public function saveMany(Entity $entity)
     {

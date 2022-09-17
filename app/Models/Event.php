@@ -14,11 +14,11 @@ use Illuminate\Database\Eloquent\Builder;
  * Class Event
  * @package App\Models
  *
- * @property int $event_id
- * @property int $location_id
+ * @property int|null $event_id
+ * @property int|null $location_id
  * @property string $date
- * @property Location $location
- * @property Event $event
+ * @property Location|null $location
+ * @property Event|null $event
  * @property Event[] $events
  * @property Event[] $descendants
  */
@@ -76,7 +76,7 @@ class Event extends MiscModel
      * @param $query
      * @return mixed
      */
-    public function scopePreparedWith(Builder $query)
+    public function scopePreparedWith(Builder $query): Builder
     {
         return $query->with([
             'entity' => function ($sub) {

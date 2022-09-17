@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Models\Location;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class LocationResource extends EntityResource
@@ -14,11 +15,13 @@ class LocationResource extends EntityResource
      */
     public function toArray($request)
     {
+        /** @var Location $model */
+        $model = $this->resource;
         return $this->entity([
-            'type' => $this->type,
-            'map' => $this->getImageUrl(0, 0, 'map'),
-            'is_map_private' => $this->is_map_private,
-            'parent_location_id' => $this->parent_location_id,
+            'type' => $model->type,
+            'map' => $model->getImageUrl(0, 0, 'map'),
+            'is_map_private' => $model->is_map_private,
+            'parent_location_id' => $model->parent_location_id,
         ]);
     }
 }

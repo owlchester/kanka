@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Models\CampaignPermission;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class EntityPermissionResource extends EntityChild
@@ -14,14 +15,16 @@ class EntityPermissionResource extends EntityChild
      */
     public function toArray($request)
     {
+        /** @var CampaignPermission $model */
+        $model = $this->resource;
         return [
-            'id'   => $this->id,
-            'campaign_role_id' => $this->campaign_role_id,
-            'user_id' => $this->user_id,
-            'action' => $this->action,
-            'access' => (bool) $this->access,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
+            'id'   => $model->id,
+            'campaign_role_id' => $model->campaign_role_id,
+            'user_id' => $model->user_id,
+            'action' => $model->action,
+            'access' => (bool) $model->access,
+            'created_at' => $model->created_at,
+            'updated_at' => $model->updated_at,
         ];
     }
 }

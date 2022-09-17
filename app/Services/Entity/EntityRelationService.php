@@ -3,6 +3,7 @@
 namespace App\Services\Entity;
 
 use App\Models\Character;
+use App\Models\Concerns\Nested;
 use App\Models\Conversation;
 use App\Models\DiceRoll;
 use App\Models\Entity;
@@ -17,6 +18,7 @@ use App\Models\MiscModel;
 use App\Models\Organisation;
 use App\Models\OrganisationMember;
 use App\Models\QuestElement;
+use App\Models\Race;
 use App\Models\Relation;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
@@ -156,7 +158,7 @@ class EntityRelationService
     protected function addEntity(Entity $entity, string $image = null): self
     {
         //dump('add entity ' . $entity->name);
-        if (Arr::has($this->entities, $entity->id)) {
+        if (Arr::has($this->entities, (string) $entity->id)) {
             return $this;
         }
         if (empty($entity->child)) {
@@ -189,7 +191,7 @@ class EntityRelationService
     protected function addRelations(Entity $entity): self
     {
         //dump('add relations for ' . $entity->name);
-        if (Arr::has($this->entityIds, $entity->id)) {
+        if (Arr::has($this->entityIds, (string) $entity->id)) {
             return $this;
         }
         $this->entityIds[$entity->id] = true;
@@ -204,7 +206,7 @@ class EntityRelationService
             ->get();
 
         foreach ($relations as $relation) {
-            if (!$relation->target) {
+            if ($relation->target === null) {
                 continue;
             }
 
@@ -291,7 +293,7 @@ class EntityRelationService
             ->with(['organisation', 'organisation.entity'])
             ->get();
         foreach ($organisations as $org) {
-            if ($org->organisation && $org->organisation->entity) {
+            if ($org->organisation !== null && $org->organisation->entity !== null) {
                 $this->addOrganisationRelations($org->organisation);
             }
         }
@@ -299,11 +301,11 @@ class EntityRelationService
     }
 
     /**
-     * @param Organisation $organisation
+     * @param Organisation|null $organisation
      */
-    protected function addOrganisationRelations(Organisation $organisation)
+    protected function addOrganisationRelations(Organisation $organisation = null)
     {
-        if (empty($organisation) || empty($organisation->entity)) {
+        if (empty($organisation) || $organisation->entity === null) {
             return;
         }
         $this->organisation()->addEntity($organisation->entity);
@@ -345,7 +347,9 @@ class EntityRelationService
             ->loadRelations();
 
         if ($this->withRelated()) {
-            $this->addFamilyMembers($this->entity->child, true);
+            /** @var Family $family */
+            $family = $this->entity->child;
+            $this->addFamilyMembers($family);
 
             $this->addFamilies()
                 ->addParent()
@@ -440,7 +444,7 @@ class EntityRelationService
     {
         $this->addEntity($this->entity)
             ->withEntity()
-            ->loadRelations();;
+            ->loadRelations();
 
         if ($this->withRelated()) {
             $this->relatedRelations()
@@ -473,7 +477,7 @@ class EntityRelationService
             ->loadRelations();
 
         if ($this->withRelated()) {
-            $this->addOrganisationMembers($this->entity, true);
+            $this->addOrganisationMembers($this->entity);
             $this
                 ->addParent()
                 ->addOrganisations()
@@ -565,6 +569,7 @@ class EntityRelationService
      */
     protected function addCharacters(): self
     {
+        /** @var Location $related */
         $related = $this->entity->child;
 
         foreach ($related->characters()->with('entity')->has('entity')->get() as $sub) {
@@ -589,8 +594,10 @@ class EntityRelationService
      */
     protected function addItems(): self
     {
+        /** @var Item $parent */
+        $parent = $this->entity->child;
         /** @var Item $item */
-        foreach ($this->entity->child->items()->with('entity')->has('entity')->get() as $item) {
+        foreach ($parent->items()->with('entity')->has('entity')->get() as $item) {
             $this->addEntity($item->entity);
             $this->relations[] = [
                 'source' => $this->entity->id,
@@ -610,8 +617,10 @@ class EntityRelationService
      */
     protected function addJournals(): self
     {
+        /** @var Journal $parent */
+        $parent = $this->entity->child;
         /** @var Journal $journal */
-        foreach ($this->entity->child->journals()->with('entity')->has('entity')->get() as $journal) {
+        foreach ($parent->journals()->with('entity')->has('entity')->get() as $journal) {
             $this->addEntity($journal->entity);
             $this->relations[] = [
                 'source' => $this->entity->id,
@@ -714,7 +723,7 @@ class EntityRelationService
      */
     protected function addChildren(string $parent): self
     {
-        /** @var Map $related */
+        /** @var MiscModel $children */
         $children = Str::plural($parent);
         if (!method_exists($this->entity->child, $children)) {
             return $this;
@@ -740,8 +749,10 @@ class EntityRelationService
      */
     protected function addDiceRolls(): self
     {
+        /** @var Character $parent */
+        $parent = $this->entity->child;
         /** @var DiceRoll $related */
-        foreach ($this->entity->child->diceRolls()->with('entity')->has('entity')->get() as $related) {
+        foreach ($parent->diceRolls()->with('entity')->has('entity')->get() as $related) {
             $this->addEntity($related->entity);
             $this->relations[] = [
                 'source' => $this->entity->id,
@@ -761,8 +772,10 @@ class EntityRelationService
      */
     protected function addConversations(): self
     {
+        /** @var Character $parent */
+        $parent = $this->entity->child;
         /** @var Conversation $related */
-        foreach ($this->entity->child->conversations()->with('entity')->has('entity')->get() as $related) {
+        foreach ($parent->conversations()->with('entity')->has('entity')->get() as $related) {
             $this->addEntity($related->entity);
             $this->relations[] = [
                 'source' => $this->entity->id,
@@ -803,8 +816,10 @@ class EntityRelationService
      */
     protected function addMaps(): self
     {
+        /** @var Map $parent */
+        $parent = $this->entity->child;
         /** @var Map $related */
-        foreach ($this->entity->child->maps()->with(['entity'])->has('entity')->get() as $related) {
+        foreach ($parent->maps()->with(['entity'])->has('entity')->get() as $related) {
             $this->addEntity($related->entity);
             $this->relations[] = [
                 'source' => $this->entity->id,
@@ -867,7 +882,7 @@ class EntityRelationService
      */
     protected function addLocations(): self
     {
-        /** @var Location $location */
+        /** @var Location $child */
         $child = $this->entity->child;
         if (!method_exists($child, 'locations')) {
             return $this;
@@ -898,8 +913,8 @@ class EntityRelationService
     protected function relatedRelations(): self
     {
         // Go through the entities loaded and re-check their relations
-        /** @var Relation $relation */
         $relatedEntityIds = [];
+        /** @var Relation $relation */
         foreach ($this->relations as $relation) {
             $relatedEntityIds[] = $relation['target'];
         }

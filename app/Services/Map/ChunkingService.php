@@ -23,6 +23,7 @@ class ChunkingService
 
     protected int $maxZoom = 8;
     protected int $minZoom = 8;
+    protected int $levelMin = 0;
 
     protected int $maxBound = 0;
 
@@ -204,13 +205,12 @@ class ChunkingService
         }
 
         unset($image);
-        unset($tmp);
     }
 
     /**
      * Define the minimum and maximum zoom level based on the image dimensions
      * @param int $max
-     * @return $this
+     * @return self
      */
     protected function zoomLevels(int $max): self
     {

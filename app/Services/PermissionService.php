@@ -20,7 +20,7 @@ class PermissionService
 {
     use CampaignAware;
 
-    /** @var array Users with a role */
+    /** @var bool|array Users with a role */
     private $users = false;
 
     /** @var int */
@@ -34,14 +34,6 @@ class PermissionService
      * @var bool|array
      */
     private $basePermissions = false;
-
-    /** @var array */
-    public $entityActions = [
-        'read',
-        'edit',
-        'delete',
-        'entity-note'
-    ];
 
     /** @var bool|array  */
     protected $cachedPermissions = false;
@@ -160,7 +152,6 @@ class PermissionService
     /**
      * Determine if the loaded role has the permission to do a specific action on the
      * specified entity type (->type())
-     * @param CampaignRole $role
      * @param int $action
      * @return bool
      */
@@ -230,10 +221,10 @@ class PermissionService
     }
 
     /**
-     * @param $request
+     * @param array $request
      * @param Entity $entity
      */
-    public function saveEntity($request, Entity $entity)
+    public function saveEntity(array $request, Entity $entity)
     {
         // First, let's get all the stuff for this entity
         $permissions = $this->entityPermissions($entity);
@@ -473,7 +464,7 @@ class PermissionService
     /**
      * Get the permissions of an entity
      * @param Entity $entity
-     * @return mixed
+     * @return array
      */
     public function entityPermissions(Entity $entity): array
     {
@@ -502,7 +493,7 @@ class PermissionService
     }
 
     /**
-     * @param string $action
+     * @param int $action
      * @param int $role
      * @param int $user
      * @return bool
@@ -548,7 +539,7 @@ class PermissionService
     }
 
     /**
-     * @param string $action
+     * @param int $action
      * @param int $user
      * @return string
      */
@@ -559,9 +550,9 @@ class PermissionService
     }
 
     /**
-     * @param string $action
+     * @param int $action
      * @param int $user
-     * @return string
+     * @return bool
      */
     public function inheritedRoleAccess(int $action, int $user): bool
     {
@@ -572,7 +563,7 @@ class PermissionService
     /**
      * @param string $type
      * @param int $user
-     * @param string $action
+     * @param int $action
      * @return string
      */
     public function selected(string $type, int $user, int $action): string

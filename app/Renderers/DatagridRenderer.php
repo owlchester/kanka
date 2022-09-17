@@ -5,43 +5,27 @@ namespace App\Renderers;
 use App\Facades\CampaignLocalization;
 use App\Models\Campaign;
 use App\Models\Entity;
+use App\Models\Journal;
+use App\Models\Location;
 use App\Models\MiscModel;
 use App\Services\FilterService;
 use App\User;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Arr;
 use Collective\Html\FormFacade as Form;
 use Illuminate\Support\Str;
 
 class DatagridRenderer
 {
-    /**
-     * Columns
-     * @var array
-     */
     protected array $columns = [];
 
-    /**
-     * Data
-     * @var array
-     */
-    protected $data = [];
+    protected LengthAwarePaginator|array $data = [];
 
-    /**
-     * Options
-     * @var array
-     */
     protected array $options = [];
 
-    /**
-     * User
-     * @var \Illuminate\Contracts\Auth\Authenticatable|null
-     */
     protected User|null $user;
 
-    /**
-     * @var FilterService null
-     */
     protected FilterService|null $filterService = null;
 
     protected $filters = null;
@@ -116,13 +100,10 @@ class DatagridRenderer
     }
 
     /**
-     * @param $column
+     * @param string|array $column
      */
     private function renderHeadColumn($column)
     {
-        $html = null;
-        $class = null;
-
         // Easy mode: A string. We want to return it directly since it's so easy.
         if (is_string($column)) {
             if ($column == 'name') {
@@ -137,19 +118,22 @@ class DatagridRenderer
             return null;
         }
 
+        $html = null;
+        $class = null;
+
         if (!empty($column['type'])) {
             // We have a type so we know what to do
             $type = $column['type'];
             $class = $column['type'];
             if ($type == 'avatar') {
                 $class = !empty($column['parent']) ? 'avatar hidden-xs hidden-sm' : $class;
-                $html = null;
+                //$html = null;
             } elseif ($type == 'location') {
                 $class .= '  hidden-xs hidden-sm';
-                $html = $this->route('location.name',  __('crud.fields.location'));
+                $html = $this->route('location.name', __('crud.fields.location'));
             } elseif ($type == 'organisation') {
                 $class .= '  hidden-xs hidden-sm';
-                $html = $this->route('organisation.name',  __('crud.fields.organisation'));
+                $html = $this->route('organisation.name', __('crud.fields.organisation'));
             } elseif ($type == 'character') {
                 $class .= '  hidden-xs hidden-sm';
                 $html = $this->route(
@@ -202,12 +186,11 @@ class DatagridRenderer
     }
 
     /**
-     * @param $label
-     * @param null $field
-     * @param array $options
+     * @param string|null $label
+     * @param string|null $field
      * @return string
      */
-    private function route($field = null, $label = null, $options = [])
+    private function route(string $field = null, string $label = null)
     {
         // Field is label
         if (empty($label)) {
@@ -271,10 +254,10 @@ class DatagridRenderer
     }
 
     /**
-     * @param Model $model
+     * @param Model|MiscModel $model
      * @return string
      */
-    private function renderRow(Model $model): string
+    private function renderRow(Model|MiscModel $model): string
     {
         $useEntity = $this->getOption('disableEntity') !== true;
         // Should never happen...
@@ -308,11 +291,11 @@ class DatagridRenderer
     }
 
     /**
-     * @param $column
-     * @param MiscModel|Journal $model
+     * @param string|array $column
+     * @param MiscModel|Journal|Location $model
      * @return string
      */
-    private function renderColumn($column, $model)
+    private function renderColumn(string|array $column, $model)
     {
         $class = null;
         $content = null;
@@ -435,7 +418,7 @@ class DatagridRenderer
      * @param string $field
      * @return array|\Illuminate\Contracts\Translation\Translator|null|string
      */
-    private function trans($field = '')
+    private function trans(string $field = '')
     {
         $trans = $this->getOption('trans');
         if (!empty($trans)) {
@@ -449,7 +432,7 @@ class DatagridRenderer
      * @param MiscModel $model
      * @return string
      */
-    private function renderEntityActionRow(MiscModel $model)
+    private function renderEntityActionRow(MiscModel $model): string
     {
         $content = '';
         $actions = $model->datagridActions($this->getCampaign());
@@ -467,11 +450,10 @@ class DatagridRenderer
         ';
         }
 
-
         return '<td class="text-center table-actions">' . $content . '</td>';
     }
 
-    private function renderActionRow($model)
+    private function renderActionRow($model): string
     {
         $actions = '';
         if ($this->user && $this->user->can('update', $model)) {
@@ -486,12 +468,12 @@ class DatagridRenderer
 
     /**
      * Determin if a column is a boolean column
-     * @param $column
+     * @param string $column
      * @return bool
      */
-    private function isBoolean($column)
+    private function isBoolean(string $column)
     {
-        return substr($column, 0, 3) == 'is_' || substr($column, 0, 4) == 'has_';
+        return Str::startsWith($column, ['is_', 'has_']);
     }
 
     /**
@@ -517,7 +499,7 @@ class DatagridRenderer
      * @param string $key
      * @return $this
      */
-    public function nested(string $key = 'parent_id')
+    public function nested(string $key = 'parent_id'): self
     {
         $this->nestedFilter = $key;
         return $this;
@@ -536,7 +518,7 @@ class DatagridRenderer
     /**
      * @return Campaign
      */
-    protected function getCampaign()
+    protected function getCampaign(): Campaign
     {
         if ($this->campaign === false) {
             $this->campaign = CampaignLocalization::getCampaign();

@@ -15,7 +15,7 @@ use Illuminate\Support\Str;
  * @property integer $created_by
  * @property integer $impersonated_by
  * @property integer $action
- * @property string $changes
+ * @property string|array  $changes
  * @property Entity $entity
  * @property User $user
  * @property User $impersonator
@@ -23,10 +23,10 @@ use Illuminate\Support\Str;
  */
 class EntityLog extends Model
 {
-    const ACTION_CREATE = 1;
-    const ACTION_UPDATE = 2;
-    const ACTION_DELETE = 3;
-    const ACTION_RESTORE = 4;
+    public const ACTION_CREATE = 1;
+    public const ACTION_UPDATE = 2;
+    public const ACTION_DELETE = 3;
+    public const ACTION_RESTORE = 4;
 
     public $fillable = [
         'entity_id',

@@ -39,10 +39,10 @@ use RichanFongdasen\EloquentBlameable\BlameableTrait;
  * @property boolean $is_attributes_private
  * @property string $tooltip
  * @property string $header_image
- * @property string $image_uuid
- * @property string $header_uuid
+ * @property string|null $image_uuid
+ * @property string|null $header_uuid
  * @property boolean $is_template
- * @property string $marketplace_uuid
+ * @property string|null $marketplace_uuid
  * @property integer $focus_x
  * @property integer $focus_y
  *
@@ -131,7 +131,7 @@ class Entity extends Model
 
     /**
      * Child attribute
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany|\Illuminate\Database\Eloquent\Relations\HasOne
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany|\Illuminate\Database\Eloquent\Relations\HasOne|MiscModel
      */
     public function getChildAttribute()
     {

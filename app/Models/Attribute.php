@@ -8,6 +8,7 @@ use App\Models\Concerns\Paginatable;
 use App\Models\Concerns\Privatable;
 use App\Models\Scopes\Starred;
 use App\Traits\OrderableTrait;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 
@@ -25,6 +26,7 @@ use Illuminate\Support\Str;
  * @property boolean $is_private
  * @property boolean $is_star
  * @property string $api_key
+ * @property Entity|null $entity
  */
 class Attribute extends Model
 {
@@ -82,7 +84,7 @@ class Attribute extends Model
     protected $mappedName = false;
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function entity()
     {
@@ -90,7 +92,7 @@ class Attribute extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function origin()
     {
@@ -179,11 +181,11 @@ class Attribute extends Model
     }
 
     /**
-     * @param $query
-     * @param int $star
+     * @param Builder $query
+     * @param string $order
      * @return mixed
      */
-    public function scopeOrdered($query, $order = 'asc')
+    public function scopeOrdered(Builder $query, string $order = 'asc'): Builder
     {
         return $query->orderBy('default_order', $order);
     }
@@ -201,7 +203,7 @@ class Attribute extends Model
 
     /**
      * Set the value of the attribute. Validates if there are constraints
-     * @param $value
+     * @param mixed $value
      * @return $this
      */
     public function setValue($value): self
@@ -332,7 +334,7 @@ class Attribute extends Model
     }
 
     /**
-     * @return array|null
+     * @return array
      */
     public function listRange(): array
     {

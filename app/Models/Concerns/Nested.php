@@ -26,6 +26,11 @@ use LogicException;
  * We don't want descendants to be deleted when a parent is deleted, simply detached. We have a bug somewhere else
  * breaking trees (might be due to permissions when editing children) but to simplify our first step is to make
  * sure children don't get deleted on the cleanup process.
+ *
+ * @property int $_lft
+ * @property int $_rgt
+ * @property \Illuminate\Database\Eloquent\Collection $descendants
+ * @property \Illuminate\Database\Eloquent\Collection $children
  */
 trait Nested
 {
@@ -193,6 +198,7 @@ trait Nested
      */
     protected function getLowerBound()
     {
+        // @phpstan-ignore-next-line
         return (int)$this->newNestedSetQuery()->max($this->getRgtName());
     }
 
@@ -287,10 +293,11 @@ trait Nested
     /**
      * Get query for descendants of the node.
      *
-     * @return DescendantsRelation
+     * @return DescendantsRelation|Builder
      */
     public function descendants()
     {
+        // @phpstan-ignore-next-line
         return new DescendantsRelation($this->newQuery(), $this);
     }
 
@@ -376,10 +383,11 @@ trait Nested
     /**
      * Get query ancestors of the node.
      *
-     * @return  AncestorsRelation
+     * @return  AncestorsRelation|Builder
      */
     public function ancestors()
     {
+        // @phpstan-ignore-next-line
         return new AncestorsRelation($this->newQuery(), $this);
     }
 
@@ -442,6 +450,7 @@ trait Nested
      */
     public function appendToNode(self $parent)
     {
+        // @phpstan-ignore-next-line
         return $this->appendOrPrependTo($parent);
     }
 
@@ -573,7 +582,7 @@ trait Nested
     {
         $sibling = $this->prevSiblings()
             ->defaultOrder('desc')
-            ->skip($amount - 1)
+            ->skip($amount - 1) // @phpstan-ignore-line
             ->first();
 
         if ( ! $sibling) return false;
@@ -592,7 +601,7 @@ trait Nested
     {
         $sibling = $this->nextSiblings()
             ->defaultOrder()
-            ->skip($amount - 1)
+            ->skip($amount - 1) // @phpstan-ignore-line
             ->first();
 
         if ( ! $sibling) return false;
@@ -624,8 +633,6 @@ trait Nested
      * @since 2.0
      *
      * @param int $position
-     *
-     * @return int
      */
     protected function moveNode($position)
     {
@@ -693,7 +700,7 @@ trait Nested
     {
         $this->descendants()
             ->where($this->getDeletedAtColumn(), '>=', $deletedAt)
-            ->restore();
+            ->restore(); // @phpstan-ignore-line
     }
 
     /**
@@ -739,10 +746,12 @@ trait Nested
      */
     public function applyNestedSetScope($query, $table = null)
     {
+        // @phpstan-ignore-next-line
         if ( ! $scoped = $this->getScopeAttributes()) {
             return $query;
         }
 
+        // @phpstan-ignore-next-line
         if ( ! $table) {
             $table = $this->getTable();
         }
@@ -833,7 +842,7 @@ trait Nested
     /**
      * Get number of descendant nodes.
      *
-     * @return int
+     * @return int|float
      */
     public function getDescendantCount()
     {
@@ -867,6 +876,7 @@ trait Nested
      */
     public function isRoot()
     {
+        // @phpstan-ignore-next-line
         return is_null($this->getParentId());
     }
 
@@ -998,7 +1008,6 @@ trait Nested
 
     /**
      * @param array $columns
-     * @return \Illuminate\Database\Eloquent\Collection|QueryBuilder[]
      */
     public function getNextSiblings(array $columns = [ '*' ])
     {
@@ -1007,7 +1016,6 @@ trait Nested
 
     /**
      * @param array $columns
-     * @return \Illuminate\Database\Eloquent\Collection|QueryBuilder[]
      */
     public function getPrevSiblings(array $columns = [ '*' ])
     {
@@ -1227,6 +1235,7 @@ trait Nested
      */
     protected function assertSameScope(self $node)
     {
+        // @phpstan-ignore-next-line
         if ( ! $scoped = $this->getScopeAttributes()) {
             return;
         }

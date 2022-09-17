@@ -25,9 +25,6 @@ class CampaignRoleUser extends Model
         'user_id',
     ];
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
-     */
     public function campaignRole()
     {
         return $this->belongsTo('App\Models\CampaignRole', 'campaign_role_id', 'id');

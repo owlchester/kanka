@@ -3,7 +3,6 @@
 namespace App\Http\Resources;
 
 use App\Models\CharacterTrait;
-use Illuminate\Http\Resources\Json\JsonResource;
 
 class CharacterTraitResource extends EntityResource
 {
@@ -15,14 +14,16 @@ class CharacterTraitResource extends EntityResource
      */
     public function toArray($request)
     {
+        /** @var CharacterTrait $resource */
+        $resource = $this->resource;
         return [
-            'id' => $this->id,
-            'name' => $this->name,
-            'entry' => $this->entry,
-            'section_id' => $this->section_id,
-            'section' => $this->section_id == CharacterTrait::SECTION_APPEARANCE ? 'appearance' : 'personality',
+            'id' => $resource->id,
+            'name' => $resource->name,
+            'entry' => $resource->entry,
+            'section_id' => $resource->section_id,
+            'section' => $resource->section_id == CharacterTrait::SECTION_APPEARANCE ? 'appearance' : 'personality',
             //'is_private' => (bool) $this->is_private,
-            'default_order' => $this->default_order,
+            'default_order' => $resource->default_order,
         ];
     }
 }

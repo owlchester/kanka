@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Facades\UserCache;
+use App\Models\Campaign;
 use App\Models\CampaignUser;
 use App\Exceptions\RequireLoginException;
 use App\Models\CampaignInvite;
@@ -81,8 +82,8 @@ class InviteService
     }
 
     /**
-     * @param string $token
-     * @return bool
+     * @param string|null $token
+     * @return bool|Campaign
      */
     public function join(string $token = null)
     {

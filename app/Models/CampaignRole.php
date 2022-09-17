@@ -4,7 +4,6 @@ namespace App\Models;
 
 use App\Models\Concerns\SortableTrait;
 use App\Models\Concerns\Paginatable;
-use App\User;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -91,31 +90,31 @@ class CampaignRole extends Model
 
     /**
      * Filter on a campaign role's public status
-     * @param $query
+     * @param Builder $query
      * @param int $value
-     * @return mixed
+     * @return Builder
      */
-    public function scopePublic($query, $value = 1)
+    public function scopePublic(Builder $query, int $value = 1): Builder
     {
         return $query->where('is_public', $value);
     }
 
     /**
      * Get all roles except admin
-     * @param $query
-     * @return mixed
+     * @param Builder $query
+     * @return Builder
      */
-    public function scopeWithoutAdmin($query)
+    public function scopeWithoutAdmin(Builder $query): Builder
     {
         return $query->admin(false);
     }
 
     /**
      * Get the admin role
-     * @param $query
-     * @return mixed
+     * @param Builder $query
+     * @return Builder
      */
-    public function scopeAdmin($query, bool $with = true)
+    public function scopeAdmin(Builder$query, bool $with = true): Builder
     {
         return $query->where('is_admin', $with);
     }
@@ -159,7 +158,7 @@ class CampaignRole extends Model
                     $module = 0;
                 }
 
-                $this->add($module, $action);
+                $this->add($module, (int) $action);
             }
         }
 
@@ -177,7 +176,7 @@ class CampaignRole extends Model
      * @param string|null $search
      * @return Builder
      */
-    public function scopeSearch(Builder $builder, string $search = null)
+    public function scopeSearch(Builder $builder, string $search = null): Builder
     {
         return $builder
             ->where('name', 'like', "%$search%");
@@ -187,7 +186,7 @@ class CampaignRole extends Model
      * Toggle an entity's action permission
      * @param int $entityType
      * @param int $action
-     * @return void
+     * @return bool
      */
     public function toggle(int $entityType, int $action): bool
     {

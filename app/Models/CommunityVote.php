@@ -1,7 +1,4 @@
 <?php
-/**
- * Description of
- */
 
 namespace App\Models;
 
@@ -26,6 +23,7 @@ use Spatie\Feed\FeedItem;
  * @property string $options
  * @property Carbon $published_at
  * @property Carbon $visible_at
+ * @property Carbon $updated_at
  *
  * @property Collection $ballots
  * @property string $link
@@ -34,10 +32,10 @@ class CommunityVote extends Model implements Feedable
 {
     use CommunityVoteScopes;
 
-    const STATUS_DRAFT = 'draft';
-    const STATUS_SCHEDULED = 'scheduled';
-    const STATUS_VOTING = 'voting';
-    const STATUS_PUBLISHED = 'published';
+    public const STATUS_DRAFT = 'draft';
+    public const STATUS_SCHEDULED = 'scheduled';
+    public const STATUS_VOTING = 'voting';
+    public const STATUS_PUBLISHED = 'published';
 
     protected $cachedStatus = false;
     protected $cachedResults = false;
@@ -151,6 +149,7 @@ class CommunityVote extends Model implements Feedable
             $votes = $this->ballots()->groupBy('vote')->select('vote', \DB::raw('count(*) as total'))->get();
 
             foreach ($votes as $vote) {
+                // @phpstan-ignore-next-line
                 $this->cachedResults[$vote->vote] = floor(($vote->total / $totalBallots) * 100);
             }
         }
@@ -164,7 +163,7 @@ class CommunityVote extends Model implements Feedable
     public function toFeedItem(): FeedItem
     {
         return FeedItem::create()
-            ->id($this->id)
+            ->id((string) $this->id)
             ->title($this->name)
             ->summary($this->excerpt)
             ->updated($this->updated_at)

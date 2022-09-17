@@ -117,8 +117,8 @@ class BulkService
 
     /**
      * Set permissions for several entities
-     * @param array $users
-     * @param array $roles
+     * @param array $permissions
+     * @param bool $override
      * @return int number of updated entities
      */
     public function permissions(array $permissions = [], bool $override = true): int
@@ -298,7 +298,7 @@ class BulkService
 
             // We have to still update the entity object (except for menu links)
             // Todo: refactor into a trait or function
-            if ($entity->entity) {
+            if (!empty($entity->entity)) {
                 $realEntity = $entity->entity;
 
                 $realEntity->is_private = $entity->is_private;
@@ -375,6 +375,7 @@ class BulkService
             throw new Exception("Unknown entity name {$this->entityName}.");
         }
 
+        /** @var MiscModel|null $model */
         $model = new $entity();
         if (empty($model)) {
             throw new Exception("Couldn't create a class from {$this->entity}.");
@@ -396,6 +397,7 @@ class BulkService
             unset($filledFields['colour']);
         }
 
+        /** @var Relation $relation */
         foreach ($relations as $relation) {
             $this->total++;
             if (!auth()->user()->can('update', $relation)) {

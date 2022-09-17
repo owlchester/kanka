@@ -56,12 +56,12 @@ class RelationPolicy
      * Determine whether the user can delete the relation.
      *
      * @param  \App\User  $user
-     * @param  \App\Models\Relation  $relation
+     * @param  \App\Models\Relation|null  $relation
      * @return bool
      */
-    public function delete(User $user, Relation $relation)
+    public function delete(User $user, Relation|null $relation)
     {
-        // If the relation is empty, this call is comming from the bulk delete check
+        // If the relation is empty, this call is coming from the bulk delete check
         if (empty($relation) || empty($relation->id)) {
             $campaign = CampaignLocalization::getCampaign();
             return $user->can('relations', $campaign);

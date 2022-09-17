@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Models\Relations;
-
 
 use App\Models\Ability;
 use App\Models\Calendar;
@@ -65,6 +63,7 @@ use Illuminate\Support\Collection;
  * @property Collection|CampaignDashboard[] $dashboards
  * @property Collection|CampaignSubmission[] $submissions
  * @property Collection|CampaignStyle[] $styles
+ * @property Collection|RpgSystem[] $rpgSystems
  */
 trait CampaignRelations
 {

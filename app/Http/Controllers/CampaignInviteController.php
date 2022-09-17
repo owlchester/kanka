@@ -60,6 +60,7 @@ class CampaignInviteController extends Controller
 
         $data = $request->only('role_id', 'validity');
         $data['campaign_id'] = $campaign->id;
+        /** @var CampaignInvite $invitation */
         $invitation = CampaignInvite::create($data);
 
         $link = route('campaigns.join', $invitation->token);

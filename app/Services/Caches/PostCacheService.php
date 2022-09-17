@@ -1,17 +1,14 @@
 <?php
 
-
 namespace App\Services\Caches;
-
 
 use App\Models\AppRelease;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\DB;
 
 class PostCacheService extends BaseCache
 {
     /**
-     * @return Collection
+     * @return mixed
      */
     public function latest()
     {
@@ -20,7 +17,7 @@ class PostCacheService extends BaseCache
         }
         $key = 'latest_releases';
         if ($this->has($key)) {
-           return $this->get($key);
+            return $this->get($key);
         }
 
         $date = Carbon::now();

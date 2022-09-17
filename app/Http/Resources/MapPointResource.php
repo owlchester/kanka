@@ -15,20 +15,22 @@ class MapPointResource extends JsonResource
      */
     public function toArray($request)
     {
+        /** @var MapPoint $model */
+        $model = $this->resource;
         return [
-            'target_entity_id' => $this->target_entity_id,
-            'name' => $this->name,
-            'axis_x' => $this->axis_x,
-            'axis_y' => $this->axis_y,
-            'colour' => $this->colour,
-            'icon' => $this->icon,
-            'shape' => $this->shape_id == MapPoint::SHAPE_CIRCLE ? 'circle' : 'square',
-            'shape_id' => $this->shape_id,
-            'size_id' => $this->size_id,
-            'size' => $this->size(),
+            'target_entity_id' => $model->target_entity_id,
+            'name' => $model->name,
+            'axis_x' => $model->axis_x,
+            'axis_y' => $model->axis_y,
+            'colour' => $model->colour,
+            'icon' => $model->icon,
+            'shape' => $model->shape_id == MapPoint::SHAPE_CIRCLE ? 'circle' : 'square',
+            'shape_id' => $model->shape_id,
+            'size_id' => $model->size_id,
+            'size' => $model->size(),
 
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
+            'created_at' => $model->created_at,
+            'updated_at' => $model->updated_at,
         ];
     }
 }

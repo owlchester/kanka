@@ -88,9 +88,6 @@ class LocationController extends CrudController
 
     /**
      * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
      */
     public function store(StoreLocation $request)
     {
@@ -99,9 +96,6 @@ class LocationController extends CrudController
 
     /**
      * Display the specified resource.
-     *
-     * @param  \App\Models\Location  $location
-     * @return \Illuminate\Http\Response
      */
     public function show(Location $location)
     {
@@ -110,9 +104,6 @@ class LocationController extends CrudController
 
     /**
      * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Character  $location
-     * @return \Illuminate\Http\Response
      */
     public function edit(Location $location)
     {
@@ -121,10 +112,6 @@ class LocationController extends CrudController
 
     /**
      * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Character  $location
-     * @return \Illuminate\Http\Response
      */
     public function update(StoreLocation $request, Location $location)
     {
@@ -133,9 +120,6 @@ class LocationController extends CrudController
 
     /**
      * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Character  $location
-     * @return \Illuminate\Http\Response
      */
     public function destroy(Location $location)
     {

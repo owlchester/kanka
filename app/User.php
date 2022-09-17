@@ -28,7 +28,7 @@ use Laravel\Passport\HasApiTokens;
  * @property int $id
  * @property string $name
  * @property string $email
- * @property integer $last_campaign_id
+ * @property integer|null $last_campaign_id
  * @property string $avatar
  * @property string $provider
  * @property integer $provider_id
@@ -36,20 +36,22 @@ use Laravel\Passport\HasApiTokens;
  * @property integer $welcome_campaign_id
  * @property boolean $newsletter
  * @property boolean $has_last_login_sharing
- * @property string $patreon_pledge
+ * @property string|null $patreon_pledge
  * @property int $booster_count
  * @property int $referral_id
- * @property Carbon $card_expires_at
- * @property Carbon $banned_until
- * @property Collection $settings
- * @property Collection $profile
+ * @property Carbon|string|null $card_expires_at
+ * @property Carbon|string|null $banned_until
+ * @property Collection|array $settings
+ * @property Collection|array $profile
  *
  * Virtual (from \App\Models\UserSetting)
  * @property bool $advancedMentions
  * @property bool $defaultNested
  * @property string $campaignSwitcherOrderBy
- * @property string $patreon_fullname
- * @property string $patreon_email
+ * @property string|null $patreon_fullname
+ * @property string|null $patreon_email
+ *
+ * @property string $stripe_id
  */
 class User extends \Illuminate\Foundation\Auth\User
 {

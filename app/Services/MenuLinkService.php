@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Services;
-
 
 use App\Http\Requests\ReorderMenuLinks;
 use App\Models\MenuLink;
@@ -10,7 +8,7 @@ use App\Models\MenuLink;
 class MenuLinkService
 {
     /**
-     * @param array $data
+     * @param ReorderMenuLinks $request
      * @return bool
      */
     public function reorder(ReorderMenuLinks $request): bool
@@ -22,7 +20,7 @@ class MenuLinkService
 
         $position = 1;
         foreach ($ids as $id) {
-            /** @var MenuLink $link */
+            /** @var MenuLink|null $link */
             $link = MenuLink::where('id', $id)->first();
             if (empty($link)) {
                 continue;

@@ -6,6 +6,7 @@ namespace App\Models;
 
 use App\Traits\CampaignTrait;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -16,8 +17,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $name
  * @property int $created_by
  *
- * @property CampaignDashboardWidget[] $widgets
- * @property CampaignDashboardRole[] $roles
+ * @property CampaignDashboardWidget[]|Collection $widgets
+ * @property CampaignDashboardRole[]|Collection $roles
  *
  * @method static Builder|self exclude(CampaignDashboard $campaignDashboard)
  */
@@ -63,7 +64,6 @@ class CampaignDashboard extends Model
      */
     public function permission(CampaignRole $role, bool $default = false): bool
     {
-        /** @var CampaignDashboardRole $role */
         $dashboardRole = $this->roles->where('campaign_role_id', $role->id)
             ->first();
 

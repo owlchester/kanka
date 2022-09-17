@@ -32,7 +32,7 @@ class UpcomingYearlyAlert implements ShouldQueue
     public function handle()
     {
         // User deleted their account already? Sure thing
-        /** @var User $user */
+        /** @var User|null $user */
         $user = User::find($this->user);
         if (empty($user)) {
             return;

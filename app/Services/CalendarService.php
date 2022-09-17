@@ -18,7 +18,7 @@ class CalendarService
      * Add an event to a calendar, and return the new calendar_event model
      * @param Calendar $calendar
      * @param array $data
-     * @return EntityEvent
+     * @return EntityEvent|bool
      */
     public function addEvent(Calendar $calendar, $data = [])
     {
@@ -54,9 +54,9 @@ class CalendarService
         // Make sure we don't already have a weather effect on this date
         $weather = $this->findWeather(
             $calendar,
-            $request->post('year'),
-            $request->post('month'),
-            $request->post('day')
+            (int) $request->post('year'),
+            (int) $request->post('month'),
+            (int) $request->post('day')
         );
 
         if (!$weather) {
@@ -103,10 +103,10 @@ class CalendarService
 
     /**
      * @param array $data
-     * @return Event
+     * @return Entity|bool|null
      * @throws Exception
      */
-    protected function entity($data = [])
+    protected function entity(array $data = [])
     {
         if (empty($data['entity_id']) && !empty($data['name'])) {
             // Create an event

@@ -11,21 +11,22 @@ use App\Models\CampaignRoleUser;
 use App\Models\CampaignUser;
 use App\Notifications\Header;
 use App\User;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 
 class TroubleshootingService
 {
-    /** @var Campaign */
-    protected $campaign;
+    /** @var Campaign|Model */
+    protected Campaign $campaign;
 
     /** @var User */
-    protected $user;
+    protected User $user;
 
     /**
-     * @param $campaignID
+     * @param int $campaignID
      * @return $this
      */
-    public function campaign($campaignID): self
+    public function campaign(int $campaignID): self
     {
         $this->campaign = Campaign::findOrFail($campaignID);
         return $this;

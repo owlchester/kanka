@@ -12,9 +12,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * Class AttributeTemplate
  * @package App\Models
  *
- * @property integer $attribute_template_id
- * @property integer $entity_type_id
- * @property AttributeTemplate $attributeTemplate
+ * @property integer|null $attribute_template_id
+ * @property integer|null $entity_type_id
+ * @property AttributeTemplate|null $attributeTemplate
  * @property AttributeTemplate[] $attributeTemplates
  * @property EntityType $entityType
  */
@@ -110,7 +110,7 @@ class AttributeTemplate extends MiscModel
 
     /**
      * Specify parent id attribute mutator
-     * @param $value
+     * @param int $value
      */
     public function setAttributeTemplateIdAttribute($value)
     {
@@ -119,10 +119,10 @@ class AttributeTemplate extends MiscModel
 
     /**
      * Performance with for datagrids
-     * @param $query
+     * @param Builder $query
      * @return mixed
      */
-    public function scopePreparedSelect(Builder $query)
+    public function scopePreparedSelect(Builder $query): Builder
     {
         return $query
             ->select(['id', 'name', 'is_private', 'attribute_template_id', 'entity_type_id'])

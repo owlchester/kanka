@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Models;
-
 
 use App\Facades\Img;
 use App\Models\Concerns\Blameable;
@@ -23,7 +21,7 @@ use Illuminate\Database\Eloquent\Builder;
  * @property int $position
  * @property int $height
  * @property int $width
- * @property int $type_id
+ * @property int|null $type_id
  *
  * @property Map $map
  *

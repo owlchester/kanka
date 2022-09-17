@@ -6,8 +6,6 @@ use App\Models\CampaignUser;
 use App\Models\UserLog;
 use App\User;
 use Illuminate\Foundation\Application;
-use \App\Facades\CampaignLocalization;
-
 
 class IdentityManager
 {
@@ -87,10 +85,10 @@ class IdentityManager
     }
 
     /**
-     * @param $id
-     * @return mixed
+     * @param int $id
+     * @return User
      */
-    protected function findUserById($id): User
+    protected function findUserById(int $id): User
     {
         return User::findOrFail($id);
     }
@@ -114,8 +112,7 @@ class IdentityManager
     }
 
     /**
-     * @param   void
-     * @return  int|null
+     * @return mixed
      */
     public function getImpersonatorId()
     {
@@ -123,8 +120,7 @@ class IdentityManager
     }
 
     /**
-     * @param   void
-     * @return  int|null
+     * @return mixed
      */
     public function getCampaignId()
     {

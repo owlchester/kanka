@@ -29,8 +29,6 @@ class TimelineController extends CrudController
     protected $module = 'timelines';
 
     /**
-     * @param StoreTimeline $request
-     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(StoreTimeline $request)
     {
@@ -39,9 +37,6 @@ class TimelineController extends CrudController
 
     /**
      * Display the specified resource.
-     *
-     * @param  \App\Models\Timeline  $timeline
-     * @return \Illuminate\Http\Response
      */
     public function show(Timeline $timeline)
     {
@@ -50,9 +45,6 @@ class TimelineController extends CrudController
 
     /**
      * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Timeline  $timeline
-     * @return \Illuminate\Http\Response
      */
     public function edit(Timeline $timeline)
     {
@@ -61,10 +53,6 @@ class TimelineController extends CrudController
 
     /**
      * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Timeline  $timeline
-     * @return \Illuminate\Http\Response
      */
     public function update(StoreTimeline $request, Timeline $timeline)
     {
@@ -73,9 +61,6 @@ class TimelineController extends CrudController
 
     /**
      * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Timeline  $timeline
-     * @return \Illuminate\Http\Response
      */
     public function destroy(Timeline $timeline)
     {
@@ -84,7 +69,7 @@ class TimelineController extends CrudController
 
     /**
      * @param Timeline $timeline
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\JsonResponse|\Illuminate\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function timelines(Timeline $timeline)
@@ -95,8 +80,8 @@ class TimelineController extends CrudController
             ->route('timelines.timelines', [$timeline]);
 
         $this->rows = $timeline
-            ->descendants()
             ->sort(request()->only(['o', 'k']))
+            ->descendants() // @phpstan-ignore-line
             ->with(['entity', 'timeline', 'timeline.entity'])
             ->paginate();
 

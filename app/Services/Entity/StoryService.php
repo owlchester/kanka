@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Services\Entity;
-
 
 use App\Http\Requests\ReorderStories;
 use App\Models\Entity;
@@ -24,7 +22,7 @@ class StoryService
     }
 
     /**
-     * @param array $data
+     * @param ReorderStories $request
      * @return bool
      */
     public function reorder(ReorderStories $request): bool
@@ -45,7 +43,7 @@ class StoryService
                 continue;
             }
             $id = $data['id'];
-            /** @var EntityNote $story */
+            /** @var EntityNote|null $story */
             $story = $this->entity->notes->where('id', $id)->first();
             if (empty($story)) {
                 continue;
@@ -62,7 +60,7 @@ class StoryService
                 $story->settings = $settings;
             }
             if (isset($data['visibility_id'])) {
-               $story->visibility_id = $data['visibility_id'];
+                $story->visibility_id = $data['visibility_id'];
             }
 
             // We want the first post after the story to always have the "1" position

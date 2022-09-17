@@ -17,10 +17,10 @@ use Illuminate\Database\Eloquent\Builder;
  *
  * @property Race[] $descendants
  *
- * @property int $race_id
- * @property Race $race
+ * @property int|null $race_id
+ * @property Race|null $race
  * @property Race[] $races
- * @property Location $location
+ * @property Location|null $location
  * @property Location[] $locations
  */
 class Race extends MiscModel
@@ -80,7 +80,7 @@ class Race extends MiscModel
 
     /**
      * Specify parent id attribute mutator
-     * @param $value
+     * @param int $value
      * @throws \Exception
      */
     public function setRaceIdAttribute($value)
@@ -90,10 +90,10 @@ class Race extends MiscModel
 
     /**
      * Performance with for datagrids
-     * @param $query
-     * @return mixed
+     * @param Builder $query
+     * @return Builder
      */
-    public function scopePreparedWith(Builder $query)
+    public function scopePreparedWith(Builder $query): Builder
     {
         return $query->with([
             'entity' => function ($sub) {
@@ -124,7 +124,6 @@ class Race extends MiscModel
 
     /**
      * Characters belonging to this race
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function characters()
     {
@@ -133,7 +132,6 @@ class Race extends MiscModel
 
     /**
      * Parent Race
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function race()
     {
@@ -142,7 +140,6 @@ class Race extends MiscModel
 
     /**
      * Children Races
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function races()
     {
@@ -170,7 +167,7 @@ class Race extends MiscModel
     }
 
     /**
-     * @return array
+     * Menu elements for the rendering
      */
     public function menuItems(array $items = []): array
     {
@@ -189,7 +186,6 @@ class Race extends MiscModel
 
     /**
      * Get the entity_type id from the entity_types table
-     * @return int
      */
     public function entityTypeId(): int
     {
@@ -207,16 +203,17 @@ class Race extends MiscModel
             'location_id'
         ];
     }
+
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     * Races have multiple locations
      */
     public function locations()
     {
         return $this->belongsToMany('App\Models\Location', 'race_location');
     }
+
     /**
      * Determine if the model has profile data to be displayed
-     * @return bool
      */
     public function showProfileInfo(): bool
     {

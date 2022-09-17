@@ -6,6 +6,7 @@ use App\Facades\CampaignLocalization;
 use App\Facades\EntityCache;
 use App\Facades\Identity;
 use App\Facades\Mentions;
+use App\Models\Concerns\Nested;
 use App\Models\Conversation;
 use App\Models\Entity;
 use App\Models\EntityLog;
@@ -13,6 +14,7 @@ use App\Models\Location;
 use App\Models\MiscModel;
 use App\Services\EntityMappingService;
 use App\Services\ImageService;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Str;
 
 abstract class MiscObserver
@@ -131,10 +133,10 @@ abstract class MiscObserver
 
         // Copying options
         $sourceId = request()->post('copy_source_id');
-        /** @var Entity $source */
 
         // Copy entity notes from source?
         if (request()->has('copy_source_notes') && request()->filled('copy_source_notes')) {
+            /** @var Entity $source */
             $source = $source ?? Entity::findOrFail($sourceId);
             foreach ($source->notes as $note) {
                 $note->copyTo($model->entity);
@@ -167,7 +169,7 @@ abstract class MiscObserver
     }
 
     /**
-     * @param MiscModel $model
+     * @param MiscModel|SoftDeletes $model
      */
     public function deleted(MiscModel $model)
     {
@@ -296,6 +298,7 @@ abstract class MiscObserver
 
             /** @var MiscModel $relationModel */
             $relationModel = new $relationClass();
+            /** @var MiscModel $result */
             $result = $relationModel->where('id', $original)->firstOrFail();
             return $result->name;
         }
@@ -305,7 +308,7 @@ abstract class MiscObserver
     }
 
     /**
-     * @param MiscModel $model
+     * @param MiscModel|Nested $model
      * @param string $field
      */
     protected function cleanupTree(MiscModel $model, string $field = 'parent_id')

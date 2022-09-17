@@ -3,15 +3,13 @@
 namespace App\Services\Caches;
 
 use App\User;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Relations\Concerns\InteractsWithPivotTable;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 
-/**
- * @property \App\User $user
- */
 class UserCacheService extends BaseCache
 {
-
     /**
      * Check if a user is an admin of a campaign
      * @return bool
@@ -44,7 +42,7 @@ class UserCacheService extends BaseCache
             return $this->get($key);
         }
 
-        /** @var \Illuminate\Database\Query\Builder $query */
+        /** @var Builder|mixed $query */
         $query = $this->user->campaigns();
         $data = [];
 

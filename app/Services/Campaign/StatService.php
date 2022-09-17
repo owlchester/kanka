@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Services\Campaign;
-
 
 use App\Models\Campaign;
 use Illuminate\Support\Facades\Cache;
@@ -201,7 +199,7 @@ class StatService
 
         // Reorder by achieved or close
         usort($achievements, function ($a, $b) {
-            return $a['score'] < $b['score'];
+            return strcmp((string) $a['score'], (string) $b['score']);
         });
 
         return $achievements;

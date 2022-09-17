@@ -23,6 +23,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Log;
 use Laravel\Cashier\PaymentMethod;
+use Stripe\Card;
 use Stripe\Charge;
 use Stripe\Customer as StripeCustomer;
 use Stripe\Source;
@@ -36,13 +37,13 @@ class SubscriptionService
     public const STATUS_GRACE = 2;
     public const STATUS_CANCELLED = 3;
 
-    /** @var User */
+    /** @var User|null */
     protected $user;
 
     /** @var string */
     protected $tier;
 
-    /** @var string*/
+    /** @var string|null */
     protected $plan = null;
 
     /** @var string monthly/yearly */
@@ -63,7 +64,7 @@ class SubscriptionService
     /** @var int Value of the subscription */
     protected $subscriptionValue = 0;
 
-    /** @var Request The request object */
+    /** @var array|Request The request object */
     protected $request;
 
     /**
@@ -134,10 +135,10 @@ class SubscriptionService
     }
 
     /**
-     * @param $coupon
+     * @param string|null $coupon
      * @return $this
      */
-    public function coupon($coupon): self
+    public function coupon(string $coupon = null): self
     {
         if ($this->period === 'yearly' && !empty($coupon)) {
             $this->coupon = $coupon;
@@ -149,7 +150,7 @@ class SubscriptionService
      * Change plans
      *
      * @param array $request
-     * @return $this
+     * @return self
      */
     public function change(array $request): self
     {
@@ -179,7 +180,8 @@ class SubscriptionService
 
         // Save the expiration date on the user for alerts about expiring cards
         $payment = $this->user->defaultPaymentMethod();
-        if ($payment && $payment instanceof PaymentMethod) {
+        if ($payment instanceof PaymentMethod) {
+            /** @var Card $card */
             $card = $payment->asStripePaymentMethod()->card;
             $expiresAt = Carbon::createFromDate($card->exp_year, $card->exp_month)->endOfMonth();
             $this->user->card_expires_at = $expiresAt;
@@ -192,12 +194,13 @@ class SubscriptionService
     }
 
     /**
-     * @param $planID
-     * @param $paymentID
-     * @return bool
-     * @throws \Laravel\CashierExceptions\PaymentActionRequired
-     * @throws \Laravel\CashierExceptions\PaymentFailure
-     * @throws \Laravel\CashierExceptions\SubscriptionUpdateFailure
+     * @param string $planID
+     * @param string $paymentID
+     * @return $this
+     * @throws \Laravel\Cashier\Exceptions\IncompletePayment
+     * @throws \Laravel\Cashier\Exceptions\PaymentActionRequired
+     * @throws \Laravel\Cashier\Exceptions\PaymentFailure
+     * @throws \Laravel\Cashier\Exceptions\SubscriptionUpdateFailure
      */
     public function subscribe($planID, $paymentID): self
     {
@@ -260,7 +263,7 @@ class SubscriptionService
 
         // Add the necessary roles and patreon data
         $this->user->patreon_pledge = $plan;
-        $this->user->update(['patreon_pledge']);
+        $this->user->update(['patreon_pledge' => $plan]);
 
         // We're so far, good. Let's add the user to the Patreon group
         $role = Role::where('name', '=', 'patreon')->first();
@@ -302,7 +305,7 @@ class SubscriptionService
     /**
      * @param Request $request
      * @return Source
-     * @throws \StripeException\ApiErrorException
+     * @throws \Stripe\Exception\ApiErrorException
      */
     public function prepare(Request $request): Source
     {
@@ -358,11 +361,9 @@ class SubscriptionService
     {
         if (!$this->user->subscribed('kanka')) {
             return self::STATUS_UNSUBSCRIBED;
-        }
-        elseif ($this->user->subscription('kanka')->onGracePeriod()) {
+        } elseif ($this->user->subscription('kanka')->onGracePeriod()) {
             return self::STATUS_GRACE;
-        }
-        elseif ($this->user->subscription('kanka')->cancelled()) {
+        } elseif ($this->user->subscription('kanka')->cancelled()) {
             return self::STATUS_CANCELLED;
         }
 
@@ -400,11 +401,9 @@ class SubscriptionService
     {
         if ($this->user->subscribedToPlan($this->owlbearPlans(), 'kanka')) {
             return Patreon::PLEDGE_OWLBEAR;
-        }
-        elseif ($this->user->subscribedToPlan($this->wyvernPlans(), 'kanka')) {
+        } elseif ($this->user->subscribedToPlan($this->wyvernPlans(), 'kanka')) {
             return Patreon::PLEDGE_WYVERN;
-        }
-        elseif ($this->user->subscribedToPlan($this->elementalPlans(), 'kanka')) {
+        } elseif ($this->user->subscribedToPlan($this->elementalPlans(), 'kanka')) {
             return Patreon::PLEDGE_ELEMENTAL;
         }
 
@@ -415,6 +414,7 @@ class SubscriptionService
     /**
      * Cancel the user's subscription to Kanka
      * @param string|null $reason
+     * @param string|null $custom
      * @return bool
      */
     public function cancel(string $reason = null, string $custom = null): bool
@@ -427,6 +427,7 @@ class SubscriptionService
         // Dispatch the job when the subscription actually ends
         SubscriptionEndJob::dispatch($this->user)
             ->delay(
+                // @phpstan-ignore-next-line
                 $this->user->subscription('kanka')->ends_at
             );
 
@@ -447,8 +448,9 @@ class SubscriptionService
     }
 
     /**
-     * @param Request $request
-     * @throws Exception
+     * @param array $payload
+     * @return bool
+     * @throws \Stripe\Exception\ApiErrorException
      */
     public function sourceCharge(array $payload)
     {
@@ -476,9 +478,10 @@ class SubscriptionService
             $source->status = $charge->status;
             $source->save();
 
-            // While the payment is pending, it can take up to two days for it to complete. So we'll assume that the user is properly subscribed.
+            // While the payment is pending, it can take up to two days for it to complete. So we'll assume
+            // that the user is properly subscribed.
             $this->user->patreon_pledge = $source->tier;
-            $this->user->update(['patreon_pledge']);
+            $this->user->update(['patreon_pledge' => $source->tier]);
 
             // We're so far, good. Let's add the user to the Patreon group
             $role = Role::where('name', '=', 'patreon')->first();
@@ -516,7 +519,6 @@ class SubscriptionService
                 )
             );
         } catch(Exception $e) {
-
             $this->user->notify(
                 new Header(
                     'subscriptions.charge_fail',
@@ -534,10 +536,11 @@ class SubscriptionService
     /**
      * About 0.2% of sofort payments fail, so we need to handle them.
      * @param array $payload
+     * @return bool
+     * @throws Exception
      */
     public function chargeFailed(array $payload)
     {
-        /** @var SubscriptionSource $source */
         $chargeID = Arr::get($payload, 'data.object.charge');
         if (empty($chargeID)) {
             // If the source is empty, means this is a failed charge for a credit card, not a sofort payment.
@@ -545,6 +548,7 @@ class SubscriptionService
             return false;
         }
 
+        /** @var SubscriptionSource|null $source */
         $source = SubscriptionSource::where('charge_id', $chargeID)->first();
         if (empty($source)) {
             throw new Exception('Unhandled charge fail? ChargeID: ' . $chargeID);
@@ -675,17 +679,17 @@ class SubscriptionService
     }
 
     /**
-     * @param string $tier = null
+     * @param string|null $tier
      * @return array
      */
     public function yearlyPlans(string $tier = null): array
     {
-        if (!empty($only)) {
+        /*if (!empty($only)) {
             return [
                 config('subscription.' . strtolower($tier). '.eur.yearly'),
                 config('subscription.' . strtolower($tier). '.usd.yearly'),
             ];
-        }
+        }*/
         return [
             config('subscription.owlbear.eur.yearly'),
             config('subscription.owlbear.usd.yearly'),
@@ -736,7 +740,7 @@ class SubscriptionService
 
     /**
      * Determine if a user is upgrading their plan to a higher tier
-     * @param $plan
+     * @param string $plan
      * @return bool
      */
     protected function upgrading($plan): bool
@@ -761,11 +765,12 @@ class SubscriptionService
         }
 
         // Check if the user's active sub is from before the current date
-        /** @var \Laravel\Cashier\Subscription $sub */
+        /** @var \Laravel\Cashier\Subscription|null $sub */
         $sub = \Laravel\Cashier\Subscription::where('user_id', $this->user->id)->where('stripe_status', 'active')->first();
-        if (empty($sub)) {
+        if ($sub === null) {
             return false;
         }
+        // @phpstan-ignore-next-line
         return $sub->created_at->lessThan(Carbon::yesterday());
     }
 

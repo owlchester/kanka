@@ -32,9 +32,6 @@ class LocationMapPointController extends Controller
     protected $model = \App\Models\MapPoint::class;
 
     /**
-     * @param Request $request
-     * @param Location $location
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index(Request $request, Location $location)
     {
@@ -43,8 +40,6 @@ class LocationMapPointController extends Controller
     }
 
     /**
-     * @param Location $location
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function create(Location $location)
     {
@@ -55,10 +50,6 @@ class LocationMapPointController extends Controller
     }
 
     /**
-     * @param Location $location
-     * @param MapPoint $mapPoint
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function show(Location $location, MapPoint $mapPoint)
     {
@@ -76,9 +67,6 @@ class LocationMapPointController extends Controller
 
     /**
      * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
      */
     public function store(StoreMapPoint $request, Location $location)
     {
@@ -105,9 +93,6 @@ class LocationMapPointController extends Controller
 
     /**
      * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\MapPoint  $mapPoint
-     * @return \Illuminate\Http\Response
      */
     public function edit(Location $location, MapPoint $mapPoint)
     {
@@ -120,11 +105,6 @@ class LocationMapPointController extends Controller
 
     /**
      * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Location  $location
-     * @param  \App\Models\MapPoint  $mapPoint
-     * @return \Illuminate\Http\Response
      */
     public function update(StoreMapPoint $request, Location $location, MapPoint $mapPoint)
     {
@@ -151,11 +131,6 @@ class LocationMapPointController extends Controller
 
     /**
      * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Location  $location
-     * @param  \App\Models\MapPoint  $mapPoint
-     * @return \Illuminate\Http\Response
      */
     public function move(MoveLocationMapPoint $request, Location $location, MapPoint $mapPoint)
     {
@@ -173,10 +148,6 @@ class LocationMapPointController extends Controller
 
     /**
      * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Location  $location
-     * @param  \App\Models\MapPoint  $mapPoint
-     * @return \Illuminate\Http\Response
      */
     public function destroy(Location $location, MapPoint $mapPoint)
     {

@@ -44,7 +44,7 @@ class CalendarWeatherController extends Controller
         list($year, $month, $day) = explode('-', $date);
         if (str_starts_with($date, '-')) {
             list($year, $month, $day) = explode('-', trim($date, '-'));
-            $year = -$year;
+            $year = '-' . $year;
         }
 
         $weather = $this->calendarService->findWeather($calendar, (int) $year, (int) $month, (int) $day);

@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Models\Relations;
 
 use App\Models\Attribute;
@@ -34,31 +33,33 @@ use Illuminate\Database\Eloquent\Collection;
  * @package App\Models\Relations
  *
  * @property Conversation $conversation
- * @property Tag[] $tags
- * @property EntityTag[] $entityTags
- * @property EntityNote[] $notes
- * @property EntityMention[] $mentions
- * @property Inventory[] $inventories
- * @property EntityMention[] $targetMentions
- * @property EntityAbility[] $abilities
- * @property EntityLink[] $links
- * @property CampaignDashboardWidget[] $widgets
- * @property MiscModel $child
+ * @property Tag[]|Collection $tags
+ * @property EntityTag[]|Collection $entityTags
+ * @property EntityNote[]|Collection $notes
+ * @property EntityMention[]|Collection $mentions
+ * @property Inventory[]|Collection $inventories
+ * @property EntityMention[]|Collection $targetMentions
+ * @property EntityAbility[]|Collection $abilities
+ * @property EntityLink[]|Collection $links
+ * @property CampaignDashboardWidget[]|Collection $widgets
+ * @property Attribute[]|Collection $entityAttributes
+ * @property MiscModel|null $child
  * @property User $updater
  * @property Campaign $campaign
  * @property Map $map
  * @property Timeline $timeline
  * @property Quest $quest
+ * @property Attribute[]|Collection $allAttributes
  * @property Attribute[]|Collection $starredAttributes
  * @property Relation[]|Collection $starredRelations
  * @property Relation[]|Collection $relations
- * @property EntityEvent[] $elapsedEvents
+ * @property EntityEvent[]|Collection $elapsedEvents
  * @property Image $image
  * @property Image $header
- * @property User[] $users
- * @property CampaignPermission[] $permissions
- * @property EntityAlias[] $aliases
- * @property EntityAsset[] $assets
+ * @property User[]|Collection $users
+ * @property CampaignPermission[]|Collection $permissions
+ * @property EntityAlias[]|Collection $aliases
+ * @property EntityAsset[]|Collection $assets
  */
 trait EntityRelations
 {
@@ -91,7 +92,7 @@ trait EntityRelations
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
     public function attributeTemplate()
     {
@@ -203,7 +204,7 @@ trait EntityRelations
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\hasOne
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
     public function tag()
     {
@@ -254,7 +255,7 @@ trait EntityRelations
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\hasOne
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function inventories()
     {
@@ -262,7 +263,7 @@ trait EntityRelations
     }
 
     /**
-     * @return mixed
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function timelines()
     {
@@ -270,7 +271,7 @@ trait EntityRelations
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\hasOne
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function abilities()
     {
@@ -278,7 +279,7 @@ trait EntityRelations
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\hasOne
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function quests()
     {
@@ -286,7 +287,7 @@ trait EntityRelations
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\hasOne
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
     public function conversation()
     {
@@ -294,7 +295,7 @@ trait EntityRelations
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\hasOne
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
     public function race()
     {
@@ -302,7 +303,7 @@ trait EntityRelations
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\hasOne
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function campaign()
     {
@@ -310,7 +311,7 @@ trait EntityRelations
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\hasOne
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function widgets()
     {
@@ -445,7 +446,7 @@ trait EntityRelations
     }
 
     /**
-     * @return mixed
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
     public function image()
     {
@@ -453,7 +454,7 @@ trait EntityRelations
     }
 
     /**
-     * @return mixed
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
     public function header()
     {
@@ -461,7 +462,7 @@ trait EntityRelations
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return EntityAsset[]|Collection
      */
     public function links()
     {

@@ -45,9 +45,6 @@ class MapController extends CrudController
 
     /**
      * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
      */
     public function store(StoreMap $request)
     {
@@ -56,9 +53,6 @@ class MapController extends CrudController
 
     /**
      * Display the specified resource.
-     *
-     * @param  \App\Models\Character  $map
-     * @return \Illuminate\Http\Response
      */
     public function show(Map $map)
     {
@@ -67,9 +61,6 @@ class MapController extends CrudController
 
     /**
      * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Map $map
-     * @return \Illuminate\Http\Response
      */
     public function edit(Map $map)
     {
@@ -84,10 +75,6 @@ class MapController extends CrudController
 
     /**
      * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Map $map
-     * @return \Illuminate\Http\Response
      */
     public function update(StoreMap $request, Map $map)
     {
@@ -96,9 +83,6 @@ class MapController extends CrudController
 
     /**
      * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Character  $map
-     * @return \Illuminate\Http\Response
      */
     public function destroy(Map $map)
     {
@@ -106,9 +90,6 @@ class MapController extends CrudController
     }
 
     /**
-     * @param Map $map
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function maps(Map $map)
     {
@@ -141,9 +122,6 @@ class MapController extends CrudController
 
     /**
      * Exploration view for a map
-     * @param Map $map
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function explore(Map $map)
     {
@@ -172,8 +150,6 @@ class MapController extends CrudController
 
     /**
      * Map ticker for updates to pointers
-     * @param Map $map
-     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function ticker(Map $map)
     {
@@ -203,10 +179,7 @@ class MapController extends CrudController
     }
 
     /**
-     * @param Map $map
-     * @return \Symfony\Component\HttpFoundation\BinaryFileResponse
-     * @throws \Psr\Container\ContainerExceptionInterface
-     * @throws \Psr\Container\NotFoundExceptionInterface
+     * Load only a chunk of the map and cache it for the user
      */
     public function chunks(Map $map)
     {

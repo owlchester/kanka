@@ -27,21 +27,12 @@ class EntityNoteController extends Controller
     /** @var string */
     protected $model = \App\Models\EntityNote::class;
 
-    /**
-     * @param Entity $entity
-     * @return \Illuminate\Http\Response
-     */
     public function index(Entity $entity)
     {
         $this->authorize('browse', [$entity->child]);
         return redirect()->to($entity->url());
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create(Entity $entity, EntityNote $entityNote)
     {
         $this->authorize('entity-note', [$entity->child, 'add']);
@@ -59,12 +50,6 @@ class EntityNoteController extends Controller
         ));
     }
 
-    /**
-     * @param Entity $entity
-     * @param EntityNote $entityNote
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
     public function show(Entity $entity, EntityNote $entityNote)
     {
         // Policies will always fail if they can't resolve the user.
@@ -79,12 +64,6 @@ class EntityNoteController extends Controller
         return redirect()->to($entity->url());
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(StoreEntityNote $request, Entity $entity)
     {
         $this->authorize('entity-note', [$entity->child, 'add']);
@@ -113,13 +92,6 @@ class EntityNoteController extends Controller
             ]));
     }
 
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Character  $character
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Entity $entity, EntityNote $entityNote)
     {
         $this->authorize('entity-note', [$entity->child, 'edit', $entityNote]);
@@ -140,13 +112,6 @@ class EntityNoteController extends Controller
         ));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Character  $character
-     * @return \Illuminate\Http\Response
-     */
     public function update(StoreEntityNote $request, Entity $entity, EntityNote $entityNote)
     {
         $this->authorize('entity-note', [$entity->child, 'edit', $entityNote]);
@@ -172,12 +137,6 @@ class EntityNoteController extends Controller
             ]));
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\CharacterAttribute  $characterAttribute
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Entity $entity, EntityNote $entityNote)
     {
         $this->authorize('entity-note', [$entity->child, 'delete']);

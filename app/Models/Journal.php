@@ -17,12 +17,12 @@ use Illuminate\Database\Eloquent\Builder;
  *
  * @property int $id
  * @property string $date
- * @property int $character_id
- * @property int $journal_id
- * @property int $author_id
- * @property Character $character
- * @property Entity $author
- * @property Journal $journal
+ * @property int|null $character_id
+ * @property int|null $journal_id
+ * @property int|null $author_id
+ * @property Character|null $character
+ * @property Entity|null $author
+ * @property Journal|null $journal
  * @property Journal[] $journals
  * @property Journal[] $descendants
  */
@@ -98,7 +98,7 @@ class Journal extends MiscModel
      * @param $query
      * @return mixed
      */
-    public function scopePreparedWith(Builder $query)
+    public function scopePreparedWith(Builder $query): Builder
     {
         return $query->with([
             'entity' => function ($sub) {

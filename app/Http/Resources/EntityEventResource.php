@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Models\EntityEvent;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class EntityEventResource extends EntityChild
@@ -14,21 +15,23 @@ class EntityEventResource extends EntityChild
      */
     public function toArray($request)
     {
+        /** @var EntityEvent $model */
+        $model = $this->resource;
         return $this->entity([
-            'calendar_id' => $this->calendar_id,
-            'date' => $this->date(),
-            'day' => $this->day,
-            'month' => $this->month,
-            'year' => $this->year,
-            'length' => $this->length,
-            'comment' => $this->comment,
-            'is_recurring' => (bool) $this->is_recurring,
-            'recurring_until' => $this->recurring_until,
-            'recurring_periodicity' => $this->recurring_periodicity,
-            'colour' => $this->colour,
-            'type_id' => $this->type_id,
-            'visibility' => $this->visibility,
-            'created_by' => $this->created_by,
+            'calendar_id' => $model->calendar_id,
+            'date' => $model->date(),
+            'day' => $model->day,
+            'month' => $model->month,
+            'year' => $model->year,
+            'length' => $model->length,
+            'comment' => $model->comment,
+            'is_recurring' => (bool) $model->is_recurring,
+            'recurring_until' => $model->recurring_until,
+            'recurring_periodicity' => $model->recurring_periodicity,
+            'colour' => $model->colour,
+            'type_id' => $model->type_id,
+            'visibility_id' => $model->visibility_id,
+            'created_by' => $model->created_by,
         ]);
     }
 }

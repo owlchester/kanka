@@ -2,11 +2,11 @@
 
 namespace App\Observers;
 
-use App\Models\MiscModel;
+use App\Models\Event;
 
 class EventObserver extends MiscObserver
 {
-    public function deleting(MiscModel $event)
+    public function deleting(Event $event)
     {
         /**
          * We need to do this ourselves and not let mysql to it (set null), because the nested wants to delete

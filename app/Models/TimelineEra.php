@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
@@ -11,12 +10,12 @@ use Illuminate\Database\Eloquent\Builder;
  * @package App\Models
  *
  * @property int $id
- * @property int $timeline_id
+ * @property int|null $timeline_id
  * @property string $name
  * @property string $entry
  * @property string $abbreviation
- * @property int $start_year
- * @property int $end_year
+ * @property string|int $start_year
+ * @property string|int $end_year
  * @property bool $is_collapsed
  *
  * @property Timeline $timeline

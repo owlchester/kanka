@@ -48,7 +48,7 @@ class SubscriptionNewElementalEmailJob implements ShouldQueue
     public function handle()
     {
         // User deleted their account already? Sure thing
-        /** @var User $user */
+        /** @var User|null $user */
         $user = User::find($this->userId);
         if (empty($user)) {
             return;
@@ -57,7 +57,7 @@ class SubscriptionNewElementalEmailJob implements ShouldQueue
         // Send an email to the admins
         Mail::to($user->email)
             ->send(
-                new NewElementalSubscriptionMail($user, $this->period, $this->new)
+                new NewElementalSubscriptionMail($user)
             );
     }
 }

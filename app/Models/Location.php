@@ -8,6 +8,7 @@ use App\Models\Concerns\Nested;
 use App\Models\Concerns\SortableTrait;
 use App\Traits\CampaignTrait;
 use App\Traits\ExportableTrait;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Storage;
@@ -16,17 +17,18 @@ use Exception;
 /**
  * Class Location
  * @package App\Models
- * @var string $name
- * @var string $type
- * @var string $entry
- * @var string $image
- * @var string $map
- * @var boolean $is_private
- * @var boolean $is_map_private
- * @var integer $parent_location_id
- * @var Location $parentLocation
- * @var Map[] $maps
- * @property Location[] $descendants
+ * @property string $name
+ * @property string $type
+ * @property string $entry
+ * @property string $image
+ * @property string|null $map
+ * @property boolean $is_private
+ * @property boolean $is_map_private
+ * @property integer|null $parent_location_id
+ * @property Location|null $parentLocation
+ * @property Map[] $maps
+ * @property Location[]|Collection $descendants
+ * @property Location[] $locations
  */
 class Location extends MiscModel
 {
@@ -97,7 +99,7 @@ class Location extends MiscModel
      * @param $query
      * @return mixed
      */
-    public function scopePreparedWith(Builder $query)
+    public function scopePreparedWith(Builder $query): Builder
     {
         return $query->with([
             'entity' => function ($sub) {

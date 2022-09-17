@@ -20,7 +20,7 @@ class ConversationObserver extends MiscObserver
     }
 
     /**
-     * @param Campaign $campaign
+     * @param MiscModel $model
      */
     public function saving(MiscModel $model)
     {
@@ -32,6 +32,6 @@ class ConversationObserver extends MiscObserver
      */
     public function creating(MiscModel $model)
     {
-        $model->created_by = auth()->user()->id;
+        //$model->created_by = auth()->user()->id;
     }
 }

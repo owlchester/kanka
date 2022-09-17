@@ -25,9 +25,9 @@ use Illuminate\Support\Arr;
 trait CampaignScopes
 {
     /**
-     * @param $query
+     * @param Builder $query
      * @param int $visibility
-     * @return mixed
+     * @return Builder
      */
     public function scopeVisibility(Builder $query, int $visibility): Builder
     {
@@ -46,8 +46,8 @@ trait CampaignScopes
 
     /**
      * Admin crud datagrid
-     * @param $query
-     * @return mixed
+     * @param Builder $query
+     * @return Builder
      */
     public function scopeAdmin(Builder $query): Builder
     {
@@ -56,8 +56,8 @@ trait CampaignScopes
 
     /**
      * Featured Campaigns
-     * @param $query
-     * @return mixed
+     * @param Builder $query
+     * @return Builder
      */
     public function scopeFeatured(Builder $query, $featured = true): Builder
     {
@@ -78,8 +78,8 @@ trait CampaignScopes
 
     /**
      * Public campaigns
-     * @param Builder|Campaign $query
-     * @return mixed
+     * @param Builder $query
+     * @return Builder
      */
     public function scopePublic(Builder $query): Builder
     {
@@ -170,9 +170,9 @@ trait CampaignScopes
     /**
      * @param Builder $query
      * @param int $hidden
-     * @return mixed
+     * @return Builder
      */
-    public function scopeHidden(Builder $query, $hidden = 1): Builder
+    public function scopeHidden(Builder $query, int $hidden = 1): Builder
     {
         return $query->where(['is_hidden' => $hidden]);
     }

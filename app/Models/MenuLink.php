@@ -17,19 +17,20 @@ use Illuminate\Support\Str;
  *
  * @property integer $campaign_id
  * @property string $name
- * @property string $tab
- * @property string $menu
- * @property string $type
+ * @property string|null $tab
+ * @property string|null $menu
+ * @property string|null $type
  * @property string $icon
  * @property string $filters
  * @property string $parent
  * @property string $css
  * @property string $random_entity_type
  * @property integer $position
- * @property integer $dashboard_id
+ * @property integer|null $dashboard_id
+ * @property integer|null $entity_id
  * @property array $options
- * @property CampaignDashboard $dashboard
- * @property Entity $target
+ * @property CampaignDashboard|null $dashboard
+ * @property Entity|null $target
  * @property boolean $is_private
  * @property array $optionsAllowedKeys
  *

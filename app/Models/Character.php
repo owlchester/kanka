@@ -23,11 +23,14 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property bool $is_appearance_pinned
  * @property bool $is_personality_pinned
  * @property Collection|Family[] $families
- * @property Location $location
- * @property Race $race
+ * @property Location|null $location
+ * @property Race|null $race
  * @property Collection|Race[] $races
  * @property Collection|Organisation[] $organisations
  * @property Collection|OrganisationMember[] $organisationMemberships
+ * @property Collection|ConversationParticipant[] $conversationParticipants
+ * @property Collection|Journal[] $journals
+ * @property Collection|Item[] $items
  */
 class Character extends MiscModel
 {
@@ -137,10 +140,10 @@ class Character extends MiscModel
 
     /**
      * Performance with for datagrids
-     * @param Builder$ query
+     * @param Builder $query
      * @return Builder
      */
-    public function scopePreparedWith(Builder $query)
+    public function scopePreparedWith(Builder $query): Builder
     {
         return $query->with([
             'entity' => function ($sub) {
@@ -283,7 +286,6 @@ class Character extends MiscModel
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Collection|OrganisationMember[]|Builder
      */
     public function pinnedMembers()
     {

@@ -42,8 +42,8 @@ trait CalendarWeatherScopes
     {
         return $builder
             ->where('calendar_id', $calendarId)
-            ->year($year)
-            ->month($month)
+            ->year($year) // @phpstan-ignore-line
+            ->month($month) // @phpstan-ignore-line
             ->where('day', $day);
     }
 }

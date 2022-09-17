@@ -5,15 +5,15 @@ namespace App\Observers;
 use App\Facades\CampaignLocalization;
 use App\Models\MenuLink;
 use App\Models\MiscModel;
-use App\Models\Tag;
 
 class MenuLinkObserver
 {
     use PurifiableTrait;
+
     /**
-     * @param MiscModel $model
+     * @param MiscModel|MenuLink $model
      */
-    public function saving(MiscModel $model)
+    public function saving(MiscModel|MenuLink $model)
     {
         if (!$model->savingObserver) {
             return;

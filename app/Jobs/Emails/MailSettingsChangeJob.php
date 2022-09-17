@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Jobs\Emails;
-
 
 use App\Services\NewsletterService;
 use App\User;
@@ -39,7 +37,7 @@ class MailSettingsChangeJob implements ShouldQueue
     public function handle()
     {
         // User deleted their account already? Sure thing
-        /** @var User $user */
+        /** @var User|null $user */
         $user = User::find($this->userId);
         if (empty($user)) {
             return;

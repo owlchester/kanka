@@ -71,9 +71,9 @@ class VisibilityController extends Controller
 
         $count = 0;
         foreach ($models as $id) {
-            /** @var CampaignStyle $style */
+            /** @var CampaignStyle|null $style */
             $style = CampaignStyle::find($id);
-            if ($style === null) {
+            if (empty($style)) {
                 continue;
             }
             if ($action === 'enable' && !$style->is_enabled) {

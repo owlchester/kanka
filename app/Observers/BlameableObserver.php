@@ -4,7 +4,6 @@ namespace App\Observers;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\Auth;
 
 class BlameableObserver
 {
@@ -15,6 +14,7 @@ class BlameableObserver
     {
         // We need the auth check because of workers having no user
         if (auth()->check()) {
+            // @phpstan-ignore-next-line
             $model->created_by = auth()->user()->id;
         }
     }
@@ -26,6 +26,7 @@ class BlameableObserver
     {
         // Some models don't have an updated_by.
         if (Arr::exists($model->getAttributes(), 'updated_by') && auth()->check()) {
+            // @phpstan-ignore-next-line
             $model->updated_by = auth()->user()->id;
         }
     }
@@ -36,6 +37,7 @@ class BlameableObserver
     public function deleting(Model $model): void
     {
         if (auth()->check()) {
+            // @phpstan-ignore-next-line
             $model->deleted_by = auth()->user()->id;
         }
     }

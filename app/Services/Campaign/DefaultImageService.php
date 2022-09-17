@@ -64,7 +64,7 @@ class DefaultImageService
         $image->created_by = $request->user()->id;
         $image->id = $uuid;
         $image->ext = $source->extension();
-        $image->size = ceil($source->getSize() / 1024); // kb
+        $image->size = (int) ceil($source->getSize() / 1024); // kb
         $image->name = substr($source->getFileName(), 0, 45);
         $image->is_default = true;
         $image->save();
@@ -95,7 +95,7 @@ class DefaultImageService
             $images = [];
         }
 
-        /** @var Image $image */
+        /** @var Image|null $image */
         $image = Image::find($images[$this->type]);
         if (empty($image)) {
             return false;

@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Facades\CampaignLocalization;
 use App\Models\Concerns\Acl;
 use App\Models\Concerns\SortableTrait;
 use App\Traits\CalendarDateTrait;
@@ -10,18 +9,19 @@ use App\Traits\CampaignTrait;
 use App\Traits\ExportableTrait;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Collection;
 
 /**
  * Class Quest
  * @package App\Models
- * @property integer $quest_id
- * @property integer $character_id
+ * @property integer|null $quest_id
+ * @property integer|null $character_id
  * @property boolean $is_completed
  * @property string $date
- * @property Character $character
- * @property Quest $quest
- * @property Quest[] $quests
- * @property QuestElement[] $elements
+ * @property Character|null $character
+ * @property Quest|null $quest
+ * @property Quest[]|Collection $quests
+ * @property QuestElement[]|Collection $elements
  */
 class Quest extends MiscModel
 {
@@ -98,10 +98,10 @@ class Quest extends MiscModel
 
     /**
      * Performance with for datagrids
-     * @param $query
-     * @return mixed
+     * @param Builder $query
+     * @return Builder
      */
-    public function scopePreparedWith(Builder $query)
+    public function scopePreparedWith(Builder $query): Builder
     {
         return $query->with([
             'entity',
@@ -151,7 +151,7 @@ class Quest extends MiscModel
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * The character, aka "Quest Giver"
      */
     public function character()
     {
@@ -159,7 +159,7 @@ class Quest extends MiscModel
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * Elements of the quest
      */
     public function elements()
     {

@@ -2,8 +2,7 @@
 
 namespace App\Http\Resources;
 
-use Illuminate\Http\Resources\Json\JsonResource;
-use Illuminate\Support\Facades\Storage;
+use App\Models\EntityLink;
 
 class EntityLinkResource extends EntityChild
 {
@@ -15,12 +14,14 @@ class EntityLinkResource extends EntityChild
      */
     public function toArray($request)
     {
+        /** @var EntityLink $model */
+        $model = $this->resource;
         return $this->entity([
-            'name' => $this->name,
-            'visibility_id' => $this->visibility_id,
-            'url' => $this->url,
-            'icon' => $this->icon,
-            'position' => $this->position,
+            'name' => $model->name,
+            'visibility_id' => $model->visibility_id,
+            'url' => $model->url,
+            'icon' => $model->icon,
+            'position' => $model->position,
         ]);
     }
 }

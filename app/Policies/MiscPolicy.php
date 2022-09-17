@@ -9,6 +9,7 @@ use App\Facades\EntityPermission;
 use App\Models\CampaignPermission;
 use App\Models\Entity;
 use App\Models\EntityNote;
+use App\Models\MiscModel;
 use App\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 use Illuminate\Support\Facades\Auth;
@@ -38,7 +39,7 @@ class MiscPolicy
      * Determine whether the user can view the entity.
      *
      * @param  \App\User  $user
-     * @param  \App\Models\Entity  $entity
+     * @param  \App\Models\MiscModel $entity
      * @return mixed
      */
     public function view(User $user, $entity)
@@ -63,7 +64,7 @@ class MiscPolicy
     /**
      * Determine whether the user can create entities.
      * @param User $user
-     * @param null $model
+     * @param MiscModel|null $entity
      * @param Campaign|null $campaign
      * @return bool
      */
@@ -83,7 +84,7 @@ class MiscPolicy
      * Determine whether the user can update the entity.
      *
      * @param  \App\User  $user
-     * @param  \App\Models\Entity  $entity
+     * @param  \App\Models\MiscModel $entity
      * @return mixed
      */
     public function update(User $user, $entity)
@@ -96,7 +97,7 @@ class MiscPolicy
      * Determine whether the user can delete the entity.
      *
      * @param  \App\User  $user
-     * @param  \App\Models\Entity  $entity
+     * @param  \App\Models\MiscModel $entity
      * @return mixed
      */
     public function delete(User $user, $entity)
@@ -107,22 +108,22 @@ class MiscPolicy
 
     /**
      * @param User|null $user
-     * @param $entity
+     * @param MiscModel $entity
      * @param string $subAction
      * @return bool
      */
-    public function attribute(?User $user, $entity, $subAction = 'browse')
+    public function attribute(?User $user, $entity, string $subAction = 'browse')
     {
         return $this->relatedElement($user, $entity, $subAction);
     }
 
     /**
      * @param User $user
-     * @param $entity
+     * @param MiscModel $entity
      * @param string $subAction
      * @return bool
      */
-    public function relatedElement(?User $user, $entity, $subAction = 'browse')
+    public function relatedElement(?User $user, $entity, string $subAction = 'browse')
     {
         if ($subAction == 'browse') {
             return $user && $this->view($user, $entity);
@@ -133,16 +134,21 @@ class MiscPolicy
 
     /**
      * @param User $user
+     * @param MiscModel $entity
+     * @param string $subAction
      * @return mixed
      */
-    public function relation(User $user, $entity, $subAction = 'browse')
+    public function relation(User $user, $entity, string $subAction = 'browse')
     {
         return $this->relatedElement($user, $entity, $subAction);
     }
 
     /**
      * @param User $user
-     * @return mixed
+     * @param MiscModel $entity
+     * @param string|null $action
+     * @param EntityNote|null $entityNote
+     * @return bool
      */
     public function entityNote(User $user, $entity, string $action = null, EntityNote $entityNote = null)
     {
@@ -157,7 +163,7 @@ class MiscPolicy
      * Determine whether the user can update the entity.
      *
      * @param  \App\User  $user
-     * @param  \App\Models\Entity  $entity
+     * @param  \App\Models\MiscModel $entity
      * @return mixed
      */
     public function permission(User $user, $entity)

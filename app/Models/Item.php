@@ -18,13 +18,13 @@ use Illuminate\Database\Eloquent\Builder;
  * @property string $price
  * @property string $size
  * @property string $weight
- * @property integer $item_id
- * @property integer $character_id
- * @property integer $location_id
- * @property Character $character
- * @property Location $location
+ * @property integer|null $item_id
+ * @property integer|null $character_id
+ * @property integer|null $location_id
+ * @property Character|null $character
+ * @property Location|null $location
  * @property Item[] $items
- * @property Item $item
+ * @property Item|null $item
  */
 class Item extends MiscModel
 {
@@ -126,7 +126,7 @@ class Item extends MiscModel
      * @param $query
      * @return mixed
      */
-    public function scopePreparedWith(Builder $query)
+    public function scopePreparedWith(Builder $query): Builder
     {
         return $query->with([
             'entity' => function ($sub) {

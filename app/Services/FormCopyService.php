@@ -2,8 +2,11 @@
 
 namespace App\Services;
 
+use App\Models\Character;
 use App\Models\Family;
 use App\Models\MiscModel;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class FormCopyService
@@ -12,7 +15,7 @@ use App\Models\MiscModel;
 class FormCopyService
 {
     /**
-     * @var MiscModel|null
+     * @var MiscModel|Model|Character|null
      */
     protected $source;
 
@@ -29,7 +32,7 @@ class FormCopyService
     protected $entity = false;
 
     /**
-     * @param MiscModel|null $source
+     * @param Model|MiscModel|Character|null $source
      * @return $this
      */
     public function source($source = null): self
@@ -89,8 +92,9 @@ class FormCopyService
 
         $parent = request()->get('parent_id', false);
         if ($checkForParent && $parent !== false) {
-            /** @var Family $class */
-            $class = new $parentClass;
+            /** @var Model $class */
+            $class = new $parentClass();
+            /** @var MiscModel|null $parent */
             $parent = $class->find($parent);
             if ($parent) {
                 return [$parent->id => $parent->name];
@@ -102,7 +106,7 @@ class FormCopyService
 
     /**
      * Character traits
-     * @return array
+     * @return array|Collection
      */
     public function characterPersonality()
     {
@@ -114,8 +118,7 @@ class FormCopyService
 
     /**
      * Character traits
-     * @param null $entity
-     * @return array
+     * @return array|Collection
      */
     public function characterAppearance()
     {
@@ -127,8 +130,7 @@ class FormCopyService
 
     /**
      * Character organisations
-     * @param null $entity
-     * @return array
+     * @return array|Collection
      */
     public function characterOrganisation()
     {
@@ -142,7 +144,6 @@ class FormCopyService
     }
 
     /**
-     * @param string $field
      * @param bool $default
      * @return bool
      */
@@ -158,7 +159,6 @@ class FormCopyService
 
     /**
      * Prefill model for custom blade directives
-     * @param null $entity
      * @return null
      */
     public function model()
@@ -172,7 +172,6 @@ class FormCopyService
 
     /**
      * Prefill model for custom blade directives
-     * @param null $entity
      * @return null
      */
     public function related()
@@ -222,7 +221,6 @@ class FormCopyService
     }
 
     /**
-     * @param bool $attributeValue
      * @return mixed
      */
     private function getValue()
@@ -239,7 +237,6 @@ class FormCopyService
     }
 
     /**
-     * @param bool $attributeValue
      * @return mixed
      */
     private function getValues()

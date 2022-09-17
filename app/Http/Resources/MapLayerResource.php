@@ -2,6 +2,8 @@
 
 namespace App\Http\Resources;
 
+use App\Models\MapLayer;
+
 class MapLayerResource extends ModelResource
 {
     /**
@@ -12,15 +14,17 @@ class MapLayerResource extends ModelResource
      */
     public function toArray($request)
     {
+        /** @var MapLayer $model */
+        $model = $this->resource;
         return $this->entity([
-            'map_id' => (int) $this->map_id,
-            'name' => $this->name,
-            'position' => (int) $this->position,
-            'width' => (int) $this->width,
-            'height' => (int) $this->height,
-            'visibility_id' => $this->visibility_id,
-            'type_id' => (bool) $this->type_id,
-            'type' => (string) $this->typeName(),
+            'map_id' => (int) $model->map_id,
+            'name' => $model->name,
+            'position' => (int) $model->position,
+            'width' => (int) $model->width,
+            'height' => (int) $model->height,
+            'visibility_id' => $model->visibility_id,
+            'type_id' => (bool) $model->type_id,
+            'type' => (string) $model->typeName(),
         ]);
     }
 }

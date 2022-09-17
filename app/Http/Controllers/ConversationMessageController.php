@@ -14,7 +14,7 @@ class ConversationMessageController extends Controller
 {
     /**
      * @param Conversation $conversation
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return ConversationResource
      */
     public function index(Conversation $conversation)
     {
@@ -26,7 +26,7 @@ class ConversationMessageController extends Controller
     /**
      * @param StoreConversationMessage $request
      * @param Conversation $conversation
-     * @return \Illuminate\Http\RedirectResponse
+     * @return ConversationResource
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function store(StoreConversationMessage $request, Conversation $conversation)
@@ -57,15 +57,13 @@ class ConversationMessageController extends Controller
         if (request()->ajax()) {
             return new ConversationMessageResource($conversationMessage);
         }
-
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Conversation  $conversation
-     * @param  \App\Models\ConversationMessage  $conversationMessage
-     * @return \Illuminate\Http\Response
+     * @param Conversation $conversation
+     * @param ConversationMessage $conversationMessage
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function destroy(Conversation $conversation, ConversationMessage $conversationMessage)
     {

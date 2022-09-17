@@ -26,6 +26,7 @@ class ImageService
     {
         // A user can create entities and tags dynamically when creating or updating another entity, so make sure
         // the loop is only called when sending the data for this specific entity type
+        // @phpstan-ignore-next-line
         if ($model->saveImageObserver === false) {
             return;
         }
@@ -128,8 +129,8 @@ class ImageService
                 $model->$field = $path;
 
                 if (!empty($sizes) && array_key_exists('height', $model->getAttributes())) {
-                    $model->width = $sizes[0];
-                    $model->height = $sizes[1];
+                    $model->width = $sizes[0]; // @phpstan-ignore-line
+                    $model->height = $sizes[1]; // @phpstan-ignore-line
                 }
             }
         } catch (Exception $e) {

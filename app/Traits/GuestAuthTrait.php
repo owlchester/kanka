@@ -20,7 +20,7 @@ trait GuestAuthTrait
     {
         $campaign = CampaignLocalization::getCampaign();
         if (empty($modelType)) {
-            if (!isset($this->model)) {
+            if (!property_exists($this, 'model')) {
                 abort(403);
             }
             $mainModel = new $this->model();

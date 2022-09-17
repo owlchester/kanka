@@ -6,6 +6,7 @@ use App\Models\Calendar;
 use App\Models\EntityEvent;
 use App\Models\EntityEventType;
 use App\Models\MiscModel;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
 
 /**
@@ -13,10 +14,14 @@ use Illuminate\Support\Arr;
  * @package App\Traits
  *
  * @property EntityEvent $calendarReminder
+ * @property int|null $calendar_id
+ * @property int|null $calendar_year
+ * @property int|null $calendar_month
+ * @property int|null $calendar_day
  */
 trait CalendarDateTrait
 {
-    /** @var bool|null|EntityEvent */
+    /** @var Model|bool|null|EntityEvent */
     protected $calendarDateEvent = false;
 
     /**
@@ -28,8 +33,8 @@ trait CalendarDateTrait
 //            $model->fillCalendarFieldsOnSave();
 //        });
 
-        static::saved(function (MiscModel $model) {
-            $this->syncEntityEventOnSaved();
+        static::saved(function ($model) {
+            $model->syncEntityEventOnSaved();
         });
     }
 
@@ -38,12 +43,12 @@ trait CalendarDateTrait
      */
     public function hasCalendar(): bool
     {
-        return !empty($this->calendarReminder()) && $this->calendarReminder()->calendar;
+        return $this->calendarReminder() !== null && $this->calendarReminder()->calendar !== null;
     }
 
     public function hasCalendarButNoAccess(): bool
     {
-        return !empty($this->calendarReminder()) && empty($this->calendarReminder()->calendar);
+        return $this->calendarReminder() !== null && $this->calendarReminder()->calendar === null;
     }
 
     /**
@@ -139,7 +144,9 @@ trait CalendarDateTrait
 
     /**
      * Sync the entity event if the model has the calendar date trait
-     * @param void
+     * @return void
+     * @throws \Psr\Container\ContainerExceptionInterface
+     * @throws \Psr\Container\NotFoundExceptionInterface
      */
     protected function syncEntityEventOnSaved(): void
     {
@@ -167,11 +174,10 @@ trait CalendarDateTrait
         $calendarID = request()->post('calendar_id');
 
         // We already had this event linked
-        /** @var EntityEvent $reminder */
         $reminder = $this->calendarReminder();
-        if (!empty($reminder)) {
+        if ($reminder !== null) {
             // We no longer have a calendar attached to this model
-            if (empty($calendarID)) {
+            if ($calendarID === null) {
                 $reminder->delete();
                 return;
             }
@@ -181,20 +187,20 @@ trait CalendarDateTrait
         }
 
         // Validate the calendar
-        /** @var Calendar $calendar */
+        /** @var Calendar|null $calendar */
         $calendar = Calendar::find($calendarID);
-        if (empty($calendar) || $calendar->missingDetails()) {
+        if ($calendar === null || $calendar->missingDetails()) {
             return;
         }
 
         $length = request()->post('calendar_length', '1');
         $length = max(1, $length);
         $reminder->calendar_id = request()->get('calendar_id');
-        $reminder->year = request()->post('calendar_year', '1');
-        $reminder->month = request()->post('calendar_month', '1');
-        $reminder->day = request()->post('calendar_day', '1');
+        $reminder->year = (int) request()->post('calendar_year', '1');
+        $reminder->month = (int) request()->post('calendar_month', '1');
+        $reminder->day = (int) request()->post('calendar_day', '1');
         $reminder->length = $length;
-        $reminder->is_recurring = request()->post('calendar_is_recurring', '0');
+        $reminder->is_recurring = (bool) request()->post('calendar_is_recurring', '0');
         $reminder->recurring_periodicity = request()->post('calendar_recurring_periodicity');
         $reminder->colour = request()->post('calendar_colour', '#cccccc');
         $reminder->type_id = EntityEventType::CALENDAR_DATE;
@@ -215,7 +221,7 @@ trait CalendarDateTrait
         if ($this->calendarDateEvent !== false) {
             return $this->calendarDateEvent;
         }
-        if (!$this->entity) {
+        if ($this->entity === null) {
             return null;
         }
         return $this->calendarDateEvent = $this->entity->calendarDateEvents->first();

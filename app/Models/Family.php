@@ -7,17 +7,18 @@ use App\Models\Concerns\Nested;
 use App\Models\Concerns\SortableTrait;
 use App\Traits\CampaignTrait;
 use App\Traits\ExportableTrait;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Builder;
 
 /**
  * Class Family
  * @package App\Models
- * @property int $family_id
- * @property Character[] $members
+ * @property int|null $family_id
+ * @property Collection|Character[] $members
  * @property Family $family
- * @property Family[] $families
- * @property Family[] $descendants
+ * @property Collection|Family[] $families
+ * @property Collection|Family[] $descendants
  */
 class Family extends MiscModel
 {
@@ -103,7 +104,7 @@ class Family extends MiscModel
      * @param $query
      * @return mixed
      */
-    public function scopePreparedWith(Builder $query)
+    public function scopePreparedWith(Builder $query): Builder
     {
         return $query->with([
             'entity',

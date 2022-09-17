@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Models\EntityTag;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class EntityTagResource extends JsonResource
@@ -14,10 +15,12 @@ class EntityTagResource extends JsonResource
      */
     public function toArray($request)
     {
+        /** @var EntityTag $model */
+        $model = $this->resource;
         return [
-            'id' => $this->id,
-            'entity_id' => $this->entity_id,
-            'tag_id' => $this->tag_id
+            'id' => $model->id,
+            'entity_id' => $model->entity_id,
+            'tag_id' => $model->tag_id
         ];
     }
 }

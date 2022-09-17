@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Models\EntityAlias;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Facades\Storage;
 
@@ -15,9 +16,11 @@ class EntityAliasResource extends EntityChild
      */
     public function toArray($request)
     {
+        /** @var EntityAlias $model */
+        $model = $this->resource;
         return $this->entity([
-            'name' => $this->name,
-            'visibility_id' => $this->visibility_id,
+            'name' => $model->name,
+            'visibility_id' => $model->visibility_id,
         ]);
     }
 }

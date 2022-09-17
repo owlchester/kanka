@@ -17,8 +17,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $description
  * @property string $role
  * @property string $colour
- * @property Quest $quest
- * @property Entity $entity
+ * @property Quest|null $quest
+ * @property Entity|null $entity
  *
  */
 class QuestElement extends Model

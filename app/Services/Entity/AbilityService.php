@@ -1,17 +1,15 @@
 <?php
 
-
 namespace App\Services\Entity;
-
 
 use App\Facades\Mentions;
 use App\Models\Ability;
 use App\Models\Attribute;
+use App\Models\Character;
 use App\Models\Entity;
 use App\Models\EntityAbility;
 use ChrisKonnertz\StringCalc\StringCalc;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\Auth;
 use Exception;
 
 class AbilityService
@@ -19,11 +17,11 @@ class AbilityService
     /** @var Entity */
     protected $entity;
 
-    /** @var array */
-    protected $attributes = false;
+    /** @var Collection|bool */
+    protected Collection|bool $attributes = false;
 
     /** @var array All the abilities of this entity, nicely prepared */
-    protected $abilities = [
+    protected array $abilities = [
         'parents' => [],
         'abilities' => [],
         'meta' => []
@@ -44,7 +42,6 @@ class AbilityService
      */
     public function abilities(): array
     {
-        /** @var EntityAbility $ability */
         $abilities = $this->entity->abilities()
             ->select('entity_abilities.*')
             ->with(['ability',
@@ -56,6 +53,7 @@ class AbilityService
             ->join('abilities as a', 'a.id', 'entity_abilities.ability_id')
             ->defaultOrder()
             ->get();
+        /** @var EntityAbility $ability */
         foreach ($abilities as $ability) {
             // Can't read the ability? skip
             if (empty($ability->ability)) {
@@ -87,6 +85,7 @@ class AbilityService
     public function resetCharges(): self
     {
         $usedAbilities = $this->entity->abilities()->where('charges', '>', 0)->get();
+        /** @var Ability $ability */
         foreach ($usedAbilities as $ability) {
             $ability->charges = null;
             $ability->save();
@@ -115,11 +114,10 @@ class AbilityService
     }
 
     /**
-     * @param Ability $ability
+     * @param EntityAbility $entityAbility
      */
     protected function add(EntityAbility $entityAbility): void
     {
-        /** @var Ability $parent */
         $ability = $entityAbility->ability;
         $parent = $ability->ability;
         if (!empty($parent)) {
@@ -143,7 +141,7 @@ class AbilityService
     }
 
     /**
-     * @param Ability $ability
+     * @param EntityAbility $entityAbility
      * @return array
      */
     protected function format(EntityAbility $entityAbility): array
@@ -155,9 +153,10 @@ class AbilityService
             'type' => $entityAbility->ability->type,
             'charges' => $this->parseCharges($entityAbility->ability),
             'used_charges' => $entityAbility->charges,
-            'note' => nl2br($this->mapAttributes(
-                Mentions::mapAny($entityAbility, 'note'), false)
-            ),
+            'note' => nl2br((string) $this->mapAttributes(
+                Mentions::mapAny($entityAbility, 'note'),
+                false
+            )),
             'visibility_id' => $entityAbility->visibility_id,
             'created_by' => $entityAbility->created_by,
             'attributes' => $this->attributes($entityAbility->ability->entity),
@@ -219,7 +218,7 @@ class AbilityService
         }
         try {
             return $this->mapAttributes($ability->charges);
-        } catch(\Exception $e) {
+        } catch (\Exception $e) {
             return null;
         }
     }
@@ -233,15 +232,15 @@ class AbilityService
         $entry = $ability->entry();
         try {
             return $this->mapAttributes($entry, false);
-        } catch(\Exception $e) {
+        } catch (\Exception $e) {
             return $entry;
         }
     }
 
     /**
-     * @param Ability $ability
      * @param string $haystack
-     * @return float|int
+     * @param bool $calc
+     * @return float|int|string|null
      * @throws \ChrisKonnertz\StringCalc\Exceptions\ContainerException
      * @throws \ChrisKonnertz\StringCalc\Exceptions\NotFoundException
      */
@@ -293,7 +292,9 @@ class AbilityService
         if ($this->entity->typeId() !== config('entities.ids.character')) {
             throw new Exception('not_character');
         }
-        if (empty($this->entity->child->races)) {
+        /** @var Character $character */
+        $character = $this->entity->child;
+        if (empty($character->races)) {
             throw new Exception('no_race');
         }
         $count = 0;
@@ -303,14 +304,15 @@ class AbilityService
         $existingIds = [];
         foreach ($abilities as $ability) {
             // The ability is soft deleted so we can skip it
+            // @phpstan-ignore-next-line
             if (empty($ability) || empty($ability->ability)) {
                 continue;
             }
             $existingIds[] = $ability->ability_id;
         }
 
-        /** @var EntityAbility[] $abilities */
-        foreach ($this->entity->child->races()->with('entity')->get() as $race) {
+        foreach ($character->races()->with('entity')->get() as $race) {
+            /** @var EntityAbility[] $abilities */
             $abilities = $race->entity->abilities;
             $count = 0;
             foreach ($abilities as $ability) {

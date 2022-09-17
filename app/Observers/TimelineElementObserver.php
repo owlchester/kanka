@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Observers;
-
 
 use App\Facades\Mentions;
 use App\Models\TimelineElement;
@@ -24,7 +22,7 @@ class TimelineElementObserver
 
         if (empty($timelineElement->position) || $timelineElement->position < 1) {
             $timelineElement->position = 1;
-            /** @var TimelineElement $last */
+            /** @var TimelineElement|null $last */
             $last = $timelineElement->era->elements()->orderByDesc('position')->first();
             if ($last) {
                 $timelineElement->position = $last->position+1;

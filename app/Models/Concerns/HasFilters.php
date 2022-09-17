@@ -212,7 +212,7 @@ trait HasFilters
             ->distinct()
             ->leftJoin('entities as e', function ($join) {
                 $join->on('e.entity_id', '=', $this->getTable() . '.id');
-                $join->where('e.type_id', '=', $this->entityTypeID())
+                $join->where('e.type_id', '=', $this->entityTypeID()) // @phpstan-ignore-line
                     ->whereRaw('e.campaign_id = ' . $this->getTable() . '.campaign_id');
             })
             ->groupBy($this->getTable() . '.id')
@@ -471,7 +471,7 @@ trait HasFilters
                 $this->getTable() . '.id and cr.location_id = ' . ((int) $value) . ') = 0');
             return;
         } elseif ($this->filterOption('children')) {
-            /** @var Location $location */
+            /** @var Location|null $location */
             $race = Location::find($value);
             if (!empty($race)) {
                 $raceIds = $race->descendants->pluck('id')->toArray();
@@ -501,7 +501,7 @@ trait HasFilters
                 $this->getTable() . '.id and cr.race_id = ' . ((int) $value) . ') = 0');
             return;
         } elseif ($this->filterOption('children')) {
-            /** @var Race $race */
+            /** @var Race|null $race */
             $race = Race::find($value);
             if (!empty($race)) {
                 $raceIds = $race->descendants->pluck('id')->toArray();
@@ -530,7 +530,7 @@ trait HasFilters
                 $this->getTable() . '.id and cf.family_id = ' . ((int) $value) . ') = 0');
             return;
         } elseif ($this->filterOption('children')) {
-            /** @var Family $family */
+            /** @var Family|null $family */
             $family = Family::find($value);
             if (!empty($family)) {
                 $familyIds = $family->descendants->pluck('id')->toArray();
@@ -630,6 +630,7 @@ trait HasFilters
                     $this->getTable() . '.id and ome.organisation_id in (' . (int) $value . ')) = 0');
             return;
         } elseif ($this->filterOption('children')) {
+            /** @var Organisation|null $organisation */
             $organisation = Organisation::find($value);
             if (!empty($organisation)) {
                 $organisationIds = $organisation->descendants->pluck('id')->toArray();

@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Datagrids\Filters\AbilityFilter;
-use App\Datagrids\Sorters\AbilityAbilitySorter;
-use App\Datagrids\Sorters\AbilityEntitySorter;
 use App\Facades\Datagrid;
 use App\Http\Requests\StoreAbilityEntity;
 use App\Http\Requests\StoreAbility;
@@ -43,9 +41,6 @@ class AbilityController extends CrudController
 
     /**
      * Store a newly created resource in storage.
-     *
-     * @param StoreAbility $request
-     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(StoreAbility $request)
     {
@@ -53,8 +48,6 @@ class AbilityController extends CrudController
     }
 
     /**
-     * @param Ability $ability
-     * @return \Illuminate\Http\Response
      */
     public function show(Ability $ability)
     {
@@ -63,9 +56,6 @@ class AbilityController extends CrudController
 
     /**
      * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Ability $ability
-     * @return \Illuminate\Http\Response
      */
     public function edit(Ability $ability)
     {
@@ -73,9 +63,6 @@ class AbilityController extends CrudController
     }
 
     /**
-     * @param StoreAbility $request
-     * @param Ability $ability
-     * @return \Illuminate\Http\Response
      */
     public function update(StoreAbility $request, Ability $ability)
     {
@@ -83,8 +70,6 @@ class AbilityController extends CrudController
     }
 
     /**
-     * @param Ability $ability
-     * @return \Illuminate\Http\Response
      */
     public function destroy(Ability $ability)
     {
@@ -92,9 +77,6 @@ class AbilityController extends CrudController
     }
 
     /**
-     * @param Ability $ability
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\JsonResponse|\Illuminate\View\View
-     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function abilities(Ability $ability)
     {
@@ -120,9 +102,6 @@ class AbilityController extends CrudController
     }
 
     /**
-     * @param Ability $ability
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\JsonResponse
-     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function entities(Ability $ability)
     {
@@ -147,9 +126,6 @@ class AbilityController extends CrudController
     }
 
     /**
-     * @param Ability $ability
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function entityAdd(Ability $ability)
     {
@@ -168,10 +144,6 @@ class AbilityController extends CrudController
     }
 
     /**
-     * @param StoreAbilityEntity $request
-     * @param Ability $ability
-     * @return \Illuminate\Http\RedirectResponse
-     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function entityStore(StoreAbilityEntity $request, Ability $ability)
     {

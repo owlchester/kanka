@@ -100,6 +100,7 @@ class DatalayerService
         if (empty(request()->route())) {
             return '';
         }
+        // @phpstan-ignore-next-line
         return (string) request()->route()->getName();
     }
 

@@ -1,11 +1,8 @@
 <?php
 
-
 namespace App\Services\Campaign;
 
-
 use App\Facades\CampaignCache;
-use App\Http\Resources\QuestElementResource;
 use App\Models\Campaign;
 use App\Models\CampaignPlugin;
 use App\Models\Character;
@@ -16,16 +13,10 @@ use App\Models\EntityTag;
 use App\Models\MiscModel;
 use App\Models\OrganisationMember;
 use App\Models\Plugin;
-use App\Models\PluginVersion;
 use App\Models\PluginVersionEntity;
-use App\Models\QuestCharacter;
 use App\Models\QuestElement;
-use App\Models\QuestItem;
-use App\Models\QuestLocation;
-use App\Models\QuestOrganisation;
 use App\Models\Race;
 use App\Models\Relation;
-use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Log;
@@ -85,7 +76,7 @@ class CampaignPluginService
     }
 
     /**
-     * @param array
+     * @param array $options
      * @return $this
      */
     public function options(array $options): self
@@ -496,9 +487,9 @@ class CampaignPluginService
     /**
      * @param string $block
      * @param array|null $values
-     * @param MiscModel $model
+     * @param Character $model
      */
-    protected function importBlock(string $block, array $values = null, MiscModel $model)
+    protected function importBlock(string $block, array $values = null, Character $model)
     {
         if (empty($values)) {
             return;

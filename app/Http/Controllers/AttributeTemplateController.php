@@ -36,8 +36,6 @@ class AttributeTemplateController extends CrudController
     }
 
     /**
-     * @param StoreAttributeTemplate $request
-     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(StoreAttributeTemplate $request)
     {
@@ -46,9 +44,6 @@ class AttributeTemplateController extends CrudController
 
     /**
      * Display the specified resource.
-     *
-     * @param  \App\Models\AttributeTemplate  $attributeTemplate
-     * @return \Illuminate\Http\Response
      */
     public function show(AttributeTemplate $attributeTemplate)
     {
@@ -57,9 +52,6 @@ class AttributeTemplateController extends CrudController
 
     /**
      * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\AttributeTemplate  $attributeTemplate
-     * @return \Illuminate\Http\Response
      */
     public function edit(AttributeTemplate $attributeTemplate)
     {
@@ -67,9 +59,6 @@ class AttributeTemplateController extends CrudController
     }
 
     /**
-     * @param StoreAttributeTemplate $request
-     * @param AttributeTemplate $attributeTemplate
-     * @return \Illuminate\Http\Response
      */
     public function update(StoreAttributeTemplate $request, AttributeTemplate $attributeTemplate)
     {
@@ -78,9 +67,6 @@ class AttributeTemplateController extends CrudController
 
     /**
      * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\AttributeTemplate  $attributeTemplate
-     * @return \Illuminate\Http\Response
      */
     public function destroy(AttributeTemplate $attributeTemplate)
     {

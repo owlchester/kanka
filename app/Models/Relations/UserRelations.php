@@ -20,11 +20,11 @@ use Illuminate\Database\Eloquent\Collection;
  * @package App\Models\Relations
  *
  * @property Collection|CampaignBoost[] $boosts
- * @property Collection|CampaignRoles[] $campaignRoles
+ * @property Collection|CampaignRole[] $campaignRoles
  * @property Collection|Campaign[] $campaigns
  * @property Collection|Campaign[] $following
- * @property Campaign $lastCampaign
- * @property Referral $referrer
+ * @property Campaign|null $lastCampaign
+ * @property Referral|null $referrer
  * @property Collection|CampaignSubmission[] $submissions
  * @property Collection|Entity[] $entities
  * @property Collection|Plugin[] $plugins

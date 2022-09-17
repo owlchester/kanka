@@ -9,9 +9,9 @@ use App\Models\MiscModel;
 class FamilyObserver extends MiscObserver
 {
     /**
-     * @param MiscModel $model
+     * @param MiscModel|Family $model
      */
-    public function saved(MiscModel $model)
+    public function saved(MiscModel|Family $model)
     {
         parent::saved($model);
 
@@ -45,7 +45,7 @@ class FamilyObserver extends MiscObserver
             if (!empty($existing[$id])) {
                 unset($existing[$id]);
             } else {
-                /** @var Character $character */
+                /** @var Character|null $character */
                 $character = Character::find($id);
                 if (!empty($character)) {
                     $new[] = $character->id;
@@ -63,9 +63,9 @@ class FamilyObserver extends MiscObserver
     }
 
     /**
-     * @param $family
+     * @param Family $family
      */
-    public function deleting(MiscModel $family)
+    public function deleting(Family $family)
     {
         /**
          * We need to do this ourselves and not let mysql to it (set null), because the nested wants to delete

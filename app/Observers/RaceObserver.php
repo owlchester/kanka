@@ -10,7 +10,7 @@ use Illuminate\Support\Collection;
 class RaceObserver extends MiscObserver
 {
     /**
-     * @param MiscModel $model
+     * @param MiscModel|Race $model
      */
     public function crudSaved(MiscModel $model)
     {
@@ -19,15 +19,14 @@ class RaceObserver extends MiscObserver
     }
 
     /**
-     * @param MiscModel $race
+     * @param Race $race
      */
-    protected function saveLocations(MiscModel $race): self
+    protected function saveLocations(Race $race): self
     {
         if (!request()->has('save_locations') && !request()->has('locations')) {
             return $this;
         }
 
-        /** @var Location $locations */
         $existing = [];
         $unique = [];
         $recreate = [];
@@ -86,12 +85,11 @@ class RaceObserver extends MiscObserver
     /**
      * @param Race $race
      */
-    public function deleting(MiscModel $race)
+    public function deleting(Race $race)
     {
         /**
          * We need to do this ourselves and not let mysql to it (set null), because the plugin wants to delete
          * all descendants when deleting the parent, which is stupid.
-         * @var Race $sub
          */
         foreach ($race->races as $sub) {
             $sub->race_id = null;

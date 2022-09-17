@@ -105,7 +105,7 @@ class EntityCacheService extends BaseCache
 
     /**
      * Type suggestion cache key
-     * @param MiscModel $model
+     * @param string $type
      * @return string
      */
     protected function typeSuggestionKey(string $type): string

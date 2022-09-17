@@ -21,13 +21,13 @@ class LocationObserver extends MiscObserver
         }
 
         // Handle map. Let's use a service for this.
-        ImageService::handle($model, $model->getTable(), false, 'map');
+        ImageService::handle($model, $model->getTable(), 0, 'map');
     }
 
     /**
      * @param Location $location
      */
-    public function deleting(MiscModel $location)
+    public function deleting(Location $location)
     {
         /**
          * We need to do this ourselves and not let mysql to it (set null), because the nested wants to delete
@@ -43,9 +43,9 @@ class LocationObserver extends MiscObserver
 
     /**
      * Delete the map when the entity is deleted
-     * @param MiscModel $model
+     * @param MiscModel|Location $model
      */
-    public function deleted(MiscModel $model)
+    public function deleted(MiscModel|Location $model)
     {
         parent::deleted($model);
 

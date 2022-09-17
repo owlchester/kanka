@@ -67,7 +67,7 @@ class GalleryService
         $image->created_by = $request->user()->id;
         $image->id = $uuid;
         $image->ext = $source->extension();
-        $image->size = ceil($source->getSize() / 1024); // kb
+        $image->size = (int) ceil($source->getSize() / 1024); // kb
         $image->name = substr($name, 0, 45);
         $image->folder_id = $request->post('folder_id');
         $image->visibility_id = $this->campaign->defaultVisibilityID();
@@ -83,8 +83,8 @@ class GalleryService
     }
 
     /**
-     * @param string $name
-     * @return $this
+     * @param array $options
+     * @return Image
      */
     public function update(array $options): Image
     {
@@ -110,7 +110,7 @@ class GalleryService
         $folder->folder_id = $request->post('folder_id');
         $folder->is_folder = true;
         $folder->created_by = $request->user()->id;
-        $folder->visibility_id = $request->post('visibility_id');
+        $folder->visibility_id = (int) $request->post('visibility_id');
         $folder->save();
 
         return $folder;

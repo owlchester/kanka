@@ -13,8 +13,8 @@ class NoteObserver extends MiscObserver
     public function saving(MiscModel $model)
     {
         parent::saving($model);
-
     }
+
     /**
      * @param Note $note
      */

@@ -10,6 +10,7 @@ use App\Renderers\Layouts\Columns\Standard;
 use App\Renderers\Layouts\Header;
 use App\Renderers\Layouts\Layout;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Routing\Route;
 use Illuminate\Support\Str;
 
 class DatagridRenderer2
@@ -41,10 +42,10 @@ class DatagridRenderer2
     }
 
     /**
-     * @param $layout
+     * @param string|Layout $layout
      * @return $this
      */
-    public function layout($layout): self
+    public function layout(string|Layout $layout): self
     {
         if (is_string($layout)) {
             $layout = new $layout();
@@ -66,7 +67,6 @@ class DatagridRenderer2
     }
 
     /**
-     * @param string $route
      * @param array|null $options
      * @return $this
      */
@@ -77,9 +77,7 @@ class DatagridRenderer2
     }
 
     /**
-     * @param string $route
-     * @param array|null $options
-     * @return $this
+     * @return array
      */
     public function getActionParams(): array
     {
@@ -109,7 +107,7 @@ class DatagridRenderer2
     }
 
     /**
-     * @param Model $data
+     * @param Model $model
      * @return array|Column[]
      */
     public function columns(Model $model): array
@@ -215,7 +213,9 @@ class DatagridRenderer2
             return $this->routeName;
         }
 
-        return request()->route()->getName();
+        /** @var Route $route */
+        $route = request()->route();
+        return $route->getName();
     }
 
     /**

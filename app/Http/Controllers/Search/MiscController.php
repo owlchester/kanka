@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Character;
 use App\Models\Entity;
 use App\Models\MapMarker;
+use App\Models\Tag;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -56,7 +57,7 @@ class MiscController extends Controller
     {
         $term = trim($request->q);
 
-        /** @var Builder $modelClass */
+        /** @var Builder|Character $modelClass */
         $modelClass = new Character();
         if (empty($term)) {
             $models = $modelClass
@@ -292,7 +293,7 @@ class MiscController extends Controller
             $entity = Entity::findOrFail($request->get('exclude-entity'));
             $exclude = $entity->abilities->pluck('ability_id')->toArray();
         } elseif ($request->has('exclude')) {
-            $exclude = $request->has('exclude') ? [$request->get('exclude')] : [];
+            $exclude = [$request->get('exclude')];
         }
         return $this->buildSearchResults($term, \App\Models\Ability::class, $exclude);
     }
@@ -317,8 +318,8 @@ class MiscController extends Controller
      */
     protected function buildSearchResults($term, $class, array $excludes = [])
     {
-        /** @var Builder $modelClass */
-        $modelClass = new $class;
+        /** @var Builder|Tag $modelClass */
+        $modelClass = new $class();
         if (empty($term)) {
             $models = $modelClass->whereNotIn('id', $excludes)
                 ->limit(10)

@@ -47,9 +47,8 @@ class Header
                 ->render();
         } catch (\Exception $e) {
             throw $e;
-            return $e->getMessage();
+            //return $e->getMessage();
         }
-
     }
 
     public function css(): string|null
@@ -120,7 +119,7 @@ class Header
             return route($route, $options);
         } catch (\Exception $e) {
             throw $e;
-            return 'invalid';
+            //return 'invalid';
         }
     }
 

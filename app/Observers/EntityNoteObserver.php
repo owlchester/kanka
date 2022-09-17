@@ -110,9 +110,9 @@ class EntityNoteObserver
 
     /**
      * @param EntityNote $entityNote
-     * @return false
+     * @return bool
      */
-    public function savePermissions(EntityNote $entityNote)
+    public function savePermissions(EntityNote $entityNote): bool
     {
         if (!request()->has('permissions') || !auth()->user()->isAdmin()) {
             return false;
@@ -180,5 +180,7 @@ class EntityNoteObserver
         foreach ($existing as $oldPermission) {
             $oldPermission->delete();
         }
+
+        return true;
     }
 }

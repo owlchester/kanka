@@ -18,10 +18,10 @@ use Stevebauman\Purify\Facades\Purify;
  * @property bool $mail_release
  * @property string $patreon_email
  * @property string $patreon_fullname
- * @property int $patreon_pledge
+ * @property int|null $patreon_pledge
  * @property string $newEntityWorkflow
  * @property string $campaignSwitcherOrderBy
- * @property int $pledge
+ * @property int|null $pledge
  * @property string $marketplaceName
  */
 trait UserSetting
@@ -32,7 +32,7 @@ trait UserSetting
     }
 
     /**
-     * @param $value
+     * @param string|null $value
      */
     public function setPledgeAttribute($value)
     {
@@ -41,7 +41,7 @@ trait UserSetting
 
     /**
      * Last read release
-     * @param $value
+     * @param string|null $value
      */
     public function setReleaseAttribute($value)
     {
@@ -49,7 +49,7 @@ trait UserSetting
     }
 
     /**
-     * @param $value
+     * @param string|null $value
      */
     public function setPatreonEmailAttribute($value)
     {
@@ -57,7 +57,7 @@ trait UserSetting
     }
 
     /**
-     * @param $value
+     * @param string|null $value
      */
     public function setPatreonFullnameAttribute($value)
     {
@@ -89,7 +89,7 @@ trait UserSetting
     }
 
     /**
-     * @param $value
+     * @param string|null $value
      */
     public function setEditorAttribute($value)
     {
@@ -105,7 +105,7 @@ trait UserSetting
     }
 
     /**
-     * @param $value
+     * @param string|null $value
      */
     public function setNewEntityWorkflowAttribute($value)
     {
@@ -121,7 +121,7 @@ trait UserSetting
     }
 
     /**
-     * @param $value
+     * @param string|null $value
      */
     public function setDefaultNestedAttribute($value)
     {
@@ -137,7 +137,7 @@ trait UserSetting
     }
 
     /**
-     * @param $value
+     * @param string|null $value
      */
     public function setCampaignSwitcherOrderByAttribute($value)
     {
@@ -153,7 +153,7 @@ trait UserSetting
     }
 
     /**
-     * @param $value
+     * @param string|null $value
      */
     public function setAdvancedMentionsAttribute($value)
     {
@@ -170,7 +170,7 @@ trait UserSetting
 
 
     /**
-     * @param $value
+     * @param string|null $value
      */
     public function setMailNewsletterAttribute($value)
     {
@@ -186,7 +186,7 @@ trait UserSetting
     }
 
     /**
-     * @param $value
+     * @param string|null $value
      */
     public function setMailReleaseAttribute($value)
     {
@@ -203,7 +203,7 @@ trait UserSetting
 
 
     /**
-     * @param $value
+     * @param string|null $value
      */
     public function setMailVoteAttribute($value)
     {
@@ -219,8 +219,8 @@ trait UserSetting
     }
 
     /**
-     * @param $key
-     * @param $value
+     * @param string|null $key
+     * @param string|null $value
      */
     protected function setSettingsOption($key, $value)
     {
@@ -229,7 +229,7 @@ trait UserSetting
 
     /**
      * Save the user settings into the array mutator
-     * @param $data
+     * @param array $data
      * @return $this
      */
     public function saveSettings($data): self
@@ -253,7 +253,7 @@ trait UserSetting
     }
 
     /**
-     * @param $data
+     * @param array $data
      * @return $this
      */
     public function updateSettings($data): self

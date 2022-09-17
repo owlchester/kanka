@@ -25,7 +25,7 @@ trait SubEntityScopes
      * @param Builder $query
      * @return Builder
      */
-    public function scopePreparedWith(Builder $query)
+    public function scopePreparedWith(Builder $query): Builder
     {
         return $query->with([
             'entity',
@@ -43,7 +43,7 @@ trait SubEntityScopes
      * @param Builder $query
      * @return Builder
      */
-    public function scopePreparedSelect(Builder $query)
+    public function scopePreparedSelect(Builder $query): Builder
     {
         if (!method_exists($this, 'datagridSelectFields')) {
             return $query;
@@ -63,16 +63,16 @@ trait SubEntityScopes
      * @param Builder $query
      * @return Builder
      */
-    public function scopeRecent(Builder $query)
+    public function scopeRecent(Builder $query): Builder
     {
         return $query->orderBy('updated_at', 'desc');
     }
 
     /**
-     * @param $Builder query
+     * @param Builder $query
      * @return Builder
      */
-    public function scopeStandardWith(Builder $query)
+    public function scopeStandardWith(Builder $query): Builder
     {
         return $query->with('entity', 'entitiy.tags');
     }
@@ -81,7 +81,7 @@ trait SubEntityScopes
      * @param Builder $query
      * @return Builder
      */
-    public function scopeWithApi(Builder $query)
+    public function scopeWithApi(Builder $query): Builder
     {
         $relations = [
             'entity',

@@ -31,7 +31,7 @@ use Illuminate\Support\Str;
  * @property string $name
  * @property string $type
  * @property string $slug
- * @property Entity $entity
+ * @property Entity|null $entity
  * @property string $entry
  * @property string $image
  * @property string $tooltip
@@ -145,16 +145,6 @@ abstract class MiscModel extends Model
             return '<span title="' . e($this->name) . '">' . substr(e($this->name), 0, 28) . '...</span>';
         }
         return $this->name;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function permissions()
-    {
-        dd('PM6 - Error 4');
-        return CampaignPermission::where('table_name', $this->entity->pluralType())
-            ->where('key', 'like', '%_' . $this->id);
     }
 
     /**

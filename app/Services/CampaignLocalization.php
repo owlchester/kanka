@@ -11,7 +11,7 @@ class CampaignLocalization
     /**
      * Current campaign id.
      *
-     * @var string
+     * @var string|int|bool
      */
     protected $campaignId = false;
 
@@ -24,8 +24,7 @@ class CampaignLocalization
     /**
      * Set and return current locale.
      *
-     * @param string $locale Locale to set the App to (optional)
-     *
+     * @param string|int|null $campaignId
      * @return string Returns locale (if route has any) or null (if route does not have a locale)
      */
     public function setCampaign($campaignId = null): string
@@ -70,7 +69,9 @@ class CampaignLocalization
         // Some pages like helper pages don't have a campaign in the url
         $this->campaign = null;
         if (is_numeric($this->campaignId) && !empty($this->campaignId)) {
-            $this->campaign = Campaign::find((int) $this->campaignId);
+            /** @var Campaign|null $campaign */
+            $campaign = Campaign::find((int) $this->campaignId);
+            $this->campaign = $campaign;
             // If we're looking for a campaign that doesn't exist, just 404
             if (empty($this->campaign) && $canAbort) {
                 throw new ModelNotFoundException();
@@ -92,10 +93,10 @@ class CampaignLocalization
     /**
      * Get the url of the campaign
      * @param int $campaignId
-     * @param string $with = null
+     * @param string|null $with
      * @return string
      */
-    public function getUrl($campaignId, $with = null)
+    public function getUrl(int $campaignId, string $with = null)
     {
         return app()->getLocale() . '/' . $this->setCampaign($campaignId) . (!empty($with) ? "/$with" : null);
     }

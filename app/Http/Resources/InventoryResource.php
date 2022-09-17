@@ -2,6 +2,8 @@
 
 namespace App\Http\Resources;
 
+use App\Models\Inventory;
+
 class InventoryResource extends EntityChild
 {
     /**
@@ -12,15 +14,17 @@ class InventoryResource extends EntityChild
      */
     public function toArray($request)
     {
+        /** @var Inventory $model */
+        $model = $this->resource;
         return $this->entity([
-            'item_id' => $this->item_id,
-            'name' => $this->name,
-            'position' => $this->position,
-            'amount' => $this->amount,
-            'visibility_id' => $this->visibility_id,
-            'is_equipped' => (bool) $this->is_equipped,
-            'copy_item_entry' => (bool) $this->copy_item_entry,
-            'description' => $this->description
+            'item_id' => $model->item_id,
+            'name' => $model->name,
+            'position' => $model->position,
+            'amount' => $model->amount,
+            'visibility_id' => $model->visibility_id,
+            'is_equipped' => (bool) $model->is_equipped,
+            'copy_item_entry' => (bool) $model->copy_item_entry,
+            'description' => $model->description
         ]);
     }
 }

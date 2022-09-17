@@ -46,9 +46,6 @@ class TagController extends CrudController
 
     /**
      * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
      */
     public function store(StoreTag $request)
     {
@@ -57,9 +54,6 @@ class TagController extends CrudController
 
     /**
      * Display the specified resource.
-     *
-     * @param  \App\Models\Tag  $tag
-     * @return \Illuminate\Http\Response
      */
     public function show(Tag $tag)
     {
@@ -68,9 +62,6 @@ class TagController extends CrudController
 
     /**
      * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Character  $tag
-     * @return \Illuminate\Http\Response
      */
     public function edit(Tag $tag)
     {
@@ -79,10 +70,6 @@ class TagController extends CrudController
 
     /**
      * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Character  $tag
-     * @return \Illuminate\Http\Response
      */
     public function update(StoreTag $request, Tag $tag)
     {
@@ -91,9 +78,6 @@ class TagController extends CrudController
 
     /**
      * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Character  $tag
-     * @return \Illuminate\Http\Response
      */
     public function destroy(Tag $tag)
     {
@@ -102,7 +86,7 @@ class TagController extends CrudController
 
     /**
      * @param Tag $tag
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\JsonResponse|\Illuminate\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function tags(Tag $tag)
@@ -119,8 +103,8 @@ class TagController extends CrudController
             ->route('tags.tags', $options);
 
         $this->rows = $tag
-            ->descendants()
             ->sort(request()->only(['o', 'k']))
+            ->descendants()
             ->filter($filters)
             ->with(['entity', 'entity.tags', 'entity.image', 'tag', 'tag.entity'])
             ->paginate();
@@ -135,7 +119,7 @@ class TagController extends CrudController
 
     /**
      * @param Tag $tag
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\JsonResponse|\Illuminate\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function children(Tag $tag)

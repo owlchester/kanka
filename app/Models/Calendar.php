@@ -30,7 +30,7 @@ use Illuminate\Support\Str;
  *
  * @property EntityEvent[] $calendarEvents
  * @property CalendarWeather[] $calendarWeather
- * @property Calendar $calendar
+ * @property Calendar|null $calendar
  */
 class Calendar extends MiscModel
 {
@@ -119,7 +119,7 @@ class Calendar extends MiscModel
      * @param Builder $query
      * @return Builder
      */
-    public function scopePreparedWith(Builder $query)
+    public function scopePreparedWith(Builder $query): Builder
     {
         return $query->with([
             'entity' => function ($sub) {
@@ -239,7 +239,7 @@ class Calendar extends MiscModel
 
     /**
      * Get the weekdays
-     * @return null
+     * @return null|array
      */
     public function weekdays()
     {
@@ -254,7 +254,7 @@ class Calendar extends MiscModel
 
     /**
      * Get the weekdays
-     * @return null
+     * @return null|array
      */
     public function years()
     {
@@ -269,7 +269,7 @@ class Calendar extends MiscModel
 
     /**
      * Get the moons
-     * @return null
+     * @return null|array
      */
     public function moons()
     {
@@ -281,7 +281,7 @@ class Calendar extends MiscModel
 
     /**
      * Get the seasons
-     * @return null
+     * @return null|array
      */
     public function seasons()
     {
@@ -293,7 +293,7 @@ class Calendar extends MiscModel
 
     /**
      * Get the weeks
-     * @return null
+     * @return null|array
      */
     public function weeks()
     {
@@ -305,7 +305,7 @@ class Calendar extends MiscModel
 
     /**
      * Get the month aliases
-     * @return null
+     * @return null|array
      */
     public function monthAliases()
     {
@@ -316,7 +316,7 @@ class Calendar extends MiscModel
     }
 
     /**
-     * @param $value
+     * @param string $value
      * @return mixed
      */
     public function currentDate($value)
@@ -381,10 +381,11 @@ class Calendar extends MiscModel
         $years = $this->years();
 
         try {
-            return $day . ' ' .
+            $return = $day . ' ' .
                 (isset($months[$month - 1]) ? $months[$month - 1]['name'] : $month) . ', ' .
                 (isset($years[$year]) ? $years[$year] : $year) . ' ' .
                 $this->suffix;
+            return $return;
         } catch (\Exception $e) {
             return $this->date;
         }
@@ -519,8 +520,8 @@ class Calendar extends MiscModel
         $date = ltrim($this->date, '-');
         $this->cachedCurrentDate = explode('-', $date);
 
-        if (substr($this->date, 0, 1) == '-') {
-            $this->cachedCurrentDate[0] = -$this->cachedCurrentDate[0];
+        if (str_starts_with($this->date, '-')) {
+            $this->cachedCurrentDate[0] = '-' . $this->cachedCurrentDate[0];
         }
 
         return $this->cachedCurrentDate;
@@ -539,16 +540,15 @@ class Calendar extends MiscModel
         $isNegativeYear = Str::startsWith($date, '-');
         $date = explode('-', ltrim($date, '-'));
 
-        try {
-            $dates = [
-                $isNegativeYear ? -$date[0] : $date[0],
-                $date[1],
-                $date[2]
-            ];
-            return $dates;
-        } catch (\Exception $e) {
+        if (count($date) !== 3) {
             return [1, 1, 1];
         }
+
+        return [
+            $isNegativeYear ? '-' . $date[0] : $date[0],
+            $date[1],
+            $date[2]
+        ];
     }
 
     /**

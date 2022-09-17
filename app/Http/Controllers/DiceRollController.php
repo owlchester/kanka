@@ -48,10 +48,9 @@ class DiceRollController extends CrudController
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param StoreDiceRoll $request
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function store(StoreDiceRoll $request)
     {
@@ -59,10 +58,9 @@ class DiceRollController extends CrudController
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\DiceRoll  $diceRoll
-     * @return \Illuminate\Http\Response
+     * @param DiceRoll $diceRoll
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function show(DiceRoll $diceRoll)
     {
@@ -70,10 +68,10 @@ class DiceRollController extends CrudController
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\DiceRoll  $diceRoll
-     * @return \Illuminate\Http\Response
+     * @param DiceRoll $diceRoll
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws \Illuminate\Contracts\Container\BindingResolutionException
      */
     public function edit(DiceRoll $diceRoll)
     {
@@ -81,11 +79,13 @@ class DiceRollController extends CrudController
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\DiceRoll  $diceRoll
-     * @return \Illuminate\Http\Response
+     * @param StoreDiceRoll $request
+     * @param DiceRoll $diceRoll
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws \Illuminate\Contracts\Container\BindingResolutionException
+     * @throws \Psr\Container\ContainerExceptionInterface
+     * @throws \Psr\Container\NotFoundExceptionInterface
      */
     public function update(StoreDiceRoll $request, DiceRoll $diceRoll)
     {
@@ -93,10 +93,9 @@ class DiceRollController extends CrudController
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\DiceRoll  $diceRoll
-     * @return \Illuminate\Http\Response
+     * @param DiceRoll $diceRoll
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function destroy(DiceRoll $diceRoll)
     {

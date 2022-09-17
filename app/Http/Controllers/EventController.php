@@ -29,57 +29,26 @@ class EventController extends CrudController
     /** @var string Filter */
     protected $filter = EventFilter::class;
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(StoreEvent $request)
     {
         return $this->crudStore($request);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Character  $character
-     * @return \Illuminate\Http\Response
-     */
     public function show(Event $event)
     {
         return $this->crudShow($event);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Character  $character
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Event $event)
     {
         return $this->crudEdit($event);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Character  $character
-     * @return \Illuminate\Http\Response
-     */
     public function update(StoreEvent $request, Event $event)
     {
         return $this->crudUpdate($request, $event);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Character  $character
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Event $event)
     {
         return $this->crudDestroy($event);

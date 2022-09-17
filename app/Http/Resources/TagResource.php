@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Models\Tag;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class TagResource extends EntityResource
@@ -14,12 +15,14 @@ class TagResource extends EntityResource
      */
     public function toArray($request)
     {
+        /** @var Tag $model */
+        $model = $this->resource;
         return $this->entity([
-            'type' => $this->type,
-            'tag_id' => $this->tag_id,
-            'colour' => $this->colour,
-            'entities' => $this->entities()->distinct()->pluck('entities.id')->toArray(),
-            'is_auto_applied' => (bool) $this->is_auto_applied,
+            'type' => $model->type,
+            'tag_id' => $model->tag_id,
+            'colour' => $model->colour,
+            'entities' => $model->entities()->distinct()->pluck('entities.id')->toArray(),
+            'is_auto_applied' => (bool) $model->is_auto_applied,
         ]);
     }
 }

@@ -10,6 +10,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Laravel\Cashier\PaymentMethod;
+use Stripe\Card;
 
 class SubscriptionApiController extends Controller
 {
@@ -43,8 +44,9 @@ class SubscriptionApiController extends Controller
 
     /**
      * Adds a payment method to the current user.
-     *
-     * @param Request $request The request data from the user.
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Laravel\Cashier\Exceptions\CustomerAlreadyCreated
      */
     public function paymentMethods(Request $request)
     {
@@ -62,6 +64,7 @@ class SubscriptionApiController extends Controller
         // Save the expiration date on the user for alerts about expiring cards
         $payment = $user->defaultPaymentMethod();
         if ($payment && $payment instanceof PaymentMethod) {
+            /** @var Card $card */
             $card = $payment->asStripePaymentMethod()->card;
             $expiresAt = Carbon::createFromDate($card->exp_year, $card->exp_month)->endOfMonth();
             $user->card_expires_at = $expiresAt;

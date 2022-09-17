@@ -31,8 +31,6 @@ class CharacterController extends CrudController
     }
 
     /**
-     * @param Character $character
-     * @return \Illuminate\Http\Response
      */
     public function show(Character $character)
     {
@@ -40,8 +38,6 @@ class CharacterController extends CrudController
     }
 
     /**
-     * @param Character $character
-     * @return \Illuminate\Http\Response
      */
     public function edit(Character $character)
     {
@@ -49,9 +45,6 @@ class CharacterController extends CrudController
     }
 
     /**
-     * @param StoreCharacter $request
-     * @param Character $character
-     * @return \Illuminate\Http\Response
      */
     public function update(StoreCharacter $request, Character $character)
     {
@@ -59,8 +52,6 @@ class CharacterController extends CrudController
     }
 
     /**
-     * @param Character $character
-     * @return \Illuminate\Http\Response
      */
     public function destroy(Character $character)
     {

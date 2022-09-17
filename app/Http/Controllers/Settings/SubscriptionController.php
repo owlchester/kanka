@@ -106,9 +106,6 @@ class SubscriptionController extends Controller
 
     /**
      * Subscribe
-     *
-     * @param UserSubscribeStore $request
-     * @return \Illuminate\Http\JsonResponse
      */
     public function subscribe(UserSubscribeStore $request)
     {
@@ -136,10 +133,10 @@ class SubscriptionController extends Controller
             session()->put('subscription_callback', $request->get('payment_id'));
             return redirect()->route(
                 'cashier.payment',
+                // @phpstan-ignore-next-line
                 [$exception->payment->id, 'redirect' => route('settings.subscription.callback')]
             );
-        }
-        catch (\Exception $e) {
+        } catch (\Exception $e) {
             // Error? json
             return response()->json([
                 'error' => true,
@@ -149,7 +146,7 @@ class SubscriptionController extends Controller
     }
 
     /**
-     * @param Request $request
+     * @param UserAltSubscribeStore $request
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      * @throws \Stripe\Exception\ApiErrorException
      */
@@ -161,6 +158,7 @@ class SubscriptionController extends Controller
             ->method($request->get('method'))
             ->prepare($request);
 
+        // @phpstan-ignore-next-line
         return redirect($source->redirect->url);
     }
 

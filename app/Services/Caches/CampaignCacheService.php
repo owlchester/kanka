@@ -127,7 +127,7 @@ class CampaignCacheService extends BaseCache
 
     /**
      * Count the number of followers of a campaign. Cache if for 1 hours
-     * @return int
+     * @return CampaignSetting
      */
     public function settings(): CampaignSetting
     {
@@ -185,8 +185,7 @@ class CampaignCacheService extends BaseCache
 
     /**
      * Get the public campaign systems and cache them for a day
-     * @param string|null $type
-     * @return int
+     * @return array
      */
     public function systems(): array
     {
@@ -195,6 +194,7 @@ class CampaignCacheService extends BaseCache
             return $this->get($key);
         }
 
+        // @phpstan-ignore-next-line
         $data = Campaign::selectRaw('system, count(*) as cpt')
             ->public()
             ->whereNotNull('system')
@@ -221,9 +221,9 @@ class CampaignCacheService extends BaseCache
 
     /**
      * List of themes the campaign has activated
-     * @return PluginVersion|mixed|null
+     * @return string|bool
      */
-    public function themes(): string
+    public function themes(): string|bool
     {
         if (!config('marketplace.enabled')) {
             return false;
@@ -234,7 +234,6 @@ class CampaignCacheService extends BaseCache
             return (string) $this->get($key);
         }
 
-        /** @var CampaignPlugin $plugin */
         $theme = '';
         $plugins = CampaignPlugin::leftJoin('plugins as p', 'p.id', 'plugin_id')
             ->where('campaign_id', $this->campaign->id)
@@ -243,9 +242,10 @@ class CampaignCacheService extends BaseCache
             ->with('version')
             ->has('plugin')
             ->get();
+        /** @var CampaignPlugin $plugin */
         foreach ($plugins as $plugin) {
             $theme .= "/** plugin: " . e($plugin->name) . " #" . e($plugin->version->version) . " **/\n";
-            $theme .= $plugin->version->content."\n\n";
+            $theme .= $plugin->version->content . "\n\n";
         }
 
         $this->forever($key, $theme);

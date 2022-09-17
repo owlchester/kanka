@@ -120,10 +120,10 @@ class QuestElementController extends Controller
 
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\QuestElement  $element
-     * @return \Illuminate\Http\Response
+     * @param Quest $quest
+     * @param QuestElement $questElement
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function edit(Quest $quest, QuestElement $questElement)
     {
@@ -137,12 +137,11 @@ class QuestElementController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Quest  $quest
-     * @param  \App\Models\QuestElement  $questElement
-     * @return \Illuminate\Http\Response
+     * @param StoreQuestElement $request
+     * @param Quest $quest
+     * @param QuestElement $questElement
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function update(StoreQuestElement $request, Quest $quest, QuestElement $questElement)
     {

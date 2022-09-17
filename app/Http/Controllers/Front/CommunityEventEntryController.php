@@ -22,9 +22,6 @@ class CommunityEventEntryController extends Controller
     }
 
     /**
-     * @param StoreCommunityEventEntry $request
-     * @param CommunityEvent $communityEvent
-     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(StoreCommunityEventEntry $request, CommunityEvent $communityEvent)
     {
@@ -46,10 +43,6 @@ class CommunityEventEntryController extends Controller
 
     /**
      * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\CommunityEventEntry  $communityEventEntry
-     * @return \Illuminate\Http\Response
      */
     public function update(StoreCommunityEventEntry $request, CommunityEvent $communityEvent, CommunityEventEntry $communityEventEntry)
     {
@@ -69,9 +62,6 @@ class CommunityEventEntryController extends Controller
 
     /**
      * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\CommunityEvent $communityEvent
-     * @return \Illuminate\Http\Response
      */
     public function destroy(CommunityEvent $communityEvent, CommunityEventEntry $communityEventEntry)
     {
@@ -83,5 +73,4 @@ class CommunityEventEntryController extends Controller
             ->route('community-events.show', [$communityEvent, '#event-form'])
             ->with('success', __('front/community-events.participate.success.removed'));
     }
-
 }

@@ -113,7 +113,7 @@ class SearchService
     }
 
     /**
-     * @param $types
+     * @param array|string|null $types
      * @return $this
      */
     public function exclude($types): self
@@ -140,7 +140,7 @@ class SearchService
     }
 
     /**
-     * @param $types
+     * @param array|string $types
      * @return $this
      */
     public function only($types): self
@@ -225,16 +225,18 @@ class SearchService
             ->limit($this->limit);
 
         $searchResults = [];
+        /** @var Entity $model */
         foreach ($query->get() as $model) {
-            /** @var MiscModel $model */
+            /** @var MiscModel|null $child */
             // Force having a child for "ghost" entities.
-            if (empty($model->child)) {
+            $child = $model->child;
+            if ($child === null) {
                 continue;
             }
             $img = '';
-            if (!empty($model->child->image)) {
+            if (!empty($child->image)) {
                 $img = '<span class="entity-image" style="background-image: url(\''
-                    . $model->child->getImageUrl(40) . '\');"></span> ';
+                    . $child->getImageUrl(40) . '\');"></span> ';
             }
 
             $parsedName = str_replace('&#039;', '\'', e($model->name));
@@ -254,13 +256,13 @@ class SearchService
                 'type' => __('entities.' . $model->type()),
                 'model_type' => $model->type(),
                 'url' => $model->url(),
-                'alias_id' => $model->alias_id,
+                'alias_id' => $model->alias_id, // @phpstan-ignore-line
                 'advanced_mention' => Mentions::advancedMentionHelper($model->name),
             ];
         }
         if (!$this->new) {
             return $searchResults;
-        } elseif (empty($searchResults) && $this->new) {
+        } elseif (empty($searchResults)) {
             return $this->newOptions();
         }
 

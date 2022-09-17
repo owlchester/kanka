@@ -4,6 +4,13 @@ namespace App\Models;
 
 use App\User;
 
+/**
+ * @property int $id
+ * @property int $conversation_id
+ * @property int $created_by
+ * @property int|null $character_id
+ * @property int|null $user_id
+ */
 class ConversationParticipant extends MiscModel
 {
     /**

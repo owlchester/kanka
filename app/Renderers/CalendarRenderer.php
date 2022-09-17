@@ -14,67 +14,67 @@ class CalendarRenderer
     /**
      * @var Calendar
      */
-    protected $calendar;
+    protected Calendar $calendar;
 
     /**
      * Segments of the date
-     * @var array
+     * @var bool
      */
-    protected $segments = false;
+    protected bool $segments = false;
 
     /**
      * Current month
      * @var integer
      */
-    protected $month;
+    protected int $month;
 
     /**
      * Current Year
      * @var integer
      */
-    protected $year;
+    protected int $year;
 
     /**
      * Full moons
      * @var array
      */
-    protected $moons = [];
+    protected array $moons = [];
 
     /**
      * Weather
      * @var array
      */
-    protected $weather = [];
+    protected array $weather = [];
 
     /**
      * Season Changes
      * @var array
      */
-    protected $seasons = [];
+    protected array $seasons = [];
 
     /**
      * Named Weeks
      * @var array
      */
-    protected $weeks = [];
+    protected array $weeks = [];
 
     /**
      * Array of weirdly recurring events
      * @var array
      */
-    protected $recurring = [];
+    protected array $recurring = [];
 
     /**
      * Layout option
      * @var string
      */
-    protected $layout = 'year';
+    protected string $layout = 'year';
 
     /**
      * Events displayed on the calendar view
      * @var array
      */
-    protected $events = [];
+    protected array $events = [];
 
     /**
      * Initializer
@@ -603,7 +603,7 @@ class CalendarRenderer
 
                 // Fill out the next month beginning if needed
                 // Only add at the beginning if we don't reset on first day of the week
-                if (!$this->calendar->reset === 'month') {
+                if (!$this->calendar->reset == 'month') {
                     for ($d = 0; $d < $currentPosition; $d++) {
                         $data[] = [];
                     }
@@ -670,47 +670,48 @@ class CalendarRenderer
     /**
      * Build the current month and year segments
      */
-    protected function buildCurrentSegments()
+    protected function buildCurrentSegments(): void
     {
-        if ($this->segments === false) {
-            $this->segments = true;
-
-            $segments = $this->splitDate($this->calendar->date);
-            $this->setMonth($segments[1])
-                ->setYear($segments[0]);
-
-            if (request()->filled('month')) {
-                $this->setMonth((int) request()->input('month'));
-            }
-            if (request()->filled('year')) {
-                $this->setYear((int) request()->input('year'));
-            }
-
-            if (empty($this->getMonth())) {
-                $this->setMonth(1);
-            }
-
-            // If the month is too big? Then use the max
-            if ($this->getMonth() > count($this->calendar->months())) {
-                $this->setMonth(count($this->calendar->months()));
-            }
-
-            // Yearly layout does things a bit differently, reset month to first
-            $this->layout = request()->get('layout', $this->calendar->defaultLayout());
-            if ($this->isYearlyLayout()) {
-                $this->setMonth(1);
-            }
-
-            $this->buildFullmoons();
-            $this->buildSeasons();
-            $this->buildWeeks();
-            $this->buildWeather();
+        if ($this->segments === true) {
+            return;
         }
+        $this->segments = true;
+
+        $segments = $this->splitDate($this->calendar->date);
+        $this->setMonth($segments[1])
+            ->setYear($segments[0]);
+
+        if (request()->filled('month')) {
+            $this->setMonth((int) request()->input('month'));
+        }
+        if (request()->filled('year')) {
+            $this->setYear((int) request()->input('year'));
+        }
+
+        if (empty($this->getMonth())) {
+            $this->setMonth(1);
+        }
+
+        // If the month is too big? Then use the max
+        if ($this->getMonth() > count($this->calendar->months())) {
+            $this->setMonth(count($this->calendar->months()));
+        }
+
+        // Yearly layout does things a bit differently, reset month to first
+        $this->layout = request()->get('layout', $this->calendar->defaultLayout());
+        if ($this->isYearlyLayout()) {
+            $this->setMonth(1);
+        }
+
+        $this->buildFullmoons();
+        $this->buildSeasons();
+        $this->buildWeeks();
+        $this->buildWeather();
     }
 
     /**
      * Calculate the month starting offset
-     * @return float
+     * @return int
      */
     protected function weekStartOffset(): int
     {
@@ -740,7 +741,6 @@ class CalendarRenderer
      */
     protected function events(): array
     {
-        /** @var EntityEvent $event */
         $this->events = [];
         $reminders = $this->getReminders($this->calendar);
         $this->parseReminders($reminders);
@@ -922,9 +922,9 @@ class CalendarRenderer
 
     /**
      * Get the current year
-     * @return mixed
+     * @return int
      */
-    protected function getYear($add = 0)
+    protected function getYear($add = 0): int
     {
         return (int) $this->year + (int) $add;
     }
@@ -932,15 +932,15 @@ class CalendarRenderer
     /**
      * Get the current month
      * @param int $add
-     * @return int|mixed
+     * @return int
      */
-    protected function getMonth($add = 0)
+    protected function getMonth($add = 0): int
     {
         return $this->month + $add;
     }
 
     /**
-     * @param $year
+     * @param int $year
      */
     protected function setYear(int $year): self
     {
@@ -949,7 +949,7 @@ class CalendarRenderer
     }
 
     /**
-     * @param $month
+     * @param int $month
      */
     protected function setMonth(int $month): self
     {
@@ -959,13 +959,13 @@ class CalendarRenderer
 
     /**
      * Split the date into segments. Handle negative years
-     * @param $date
+     * @param string $date
      * @return array
      */
-    protected function splitDate($date)
+    protected function splitDate(string $date)
     {
         $segments = explode('-', ltrim($date, '-'));
-        if (substr($date, 0, 1) === '-') {
+        if (str_starts_with($date, '-')) {
             $segments[0] = '-' . $segments[0];
         }
         return $segments;
@@ -1139,7 +1139,7 @@ class CalendarRenderer
      * @param float $start
      * @param array $moon
      */
-    protected function addMoonPhases($start, array $moon): void
+    protected function addMoonPhases(float $start, array $moon): void
     {
         // Full & New Moon
         $this->addMoonPhase($start, $moon, 'full', 'far fa-circle');
@@ -1156,12 +1156,12 @@ class CalendarRenderer
     }
 
     /**
-     * @param string $nextFullMoon
+     * @param float $nextFullMoon
      * @param array $moon
-     * @param string $type = 'full
-     * @param string $class = 'far fa-circle'
+     * @param string $type
+     * @param string $class
      */
-    protected function addMoonPhase(string $nextFullMoon, array $moon, string $type = 'full', string $class = 'fa-regular fa-circle'): void
+    protected function addMoonPhase(float $nextFullMoon, array $moon, string $type = 'full', string $class = 'fa-regular fa-circle'): void
     {
         // Moons can be float so we "floor" them
         $nextFullMoon = floor($nextFullMoon);

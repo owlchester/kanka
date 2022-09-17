@@ -49,7 +49,7 @@ class Faq extends Model
      * @param $query
      * @return mixed
      */
-    public function scopePreparedWith(Builder $query)
+    public function scopePreparedWith(Builder $query): Builder
     {
         return $query;
     }

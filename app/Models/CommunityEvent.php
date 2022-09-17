@@ -58,9 +58,9 @@ class CommunityEvent extends Model
     /**
      * Get the image (or default image) of an entity
      * @param int $width = 200
-     * @param int $width = null
-     * @param string $field = 'image'
-     * @return string
+     * @param int|null $height
+     * @param string $field
+     * @return string|null
      */
     public function getImageUrl(int $width = 400, int $height = null, string $field = 'image')
     {
@@ -96,7 +96,6 @@ class CommunityEvent extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Builder
      */
     public function rankedResults()
     {

@@ -17,9 +17,9 @@ use Illuminate\Support\Arr;
 /**
  * Class Ability
  * @package App\Models
- * @property int $ability_id
+ * @property int|null $ability_id
  * @property string $charges
- * @property Ability $ability
+ * @property Ability|null $ability
  * @property Collection|Ability[] $descendants
  * @property Collection|Ability[] $abilities
  * @property Collection|Entity[] $entities
@@ -85,7 +85,7 @@ class Ability extends MiscModel
 
     /**
      * Specify parent id attribute mutator
-     * @param $value
+     * @param int $value
      */
     public function setAbilityIdAttribute($value)
     {
@@ -94,10 +94,10 @@ class Ability extends MiscModel
 
     /**
      * Performance with for datagrids
-     * @param $query
-     * @return mixed
+     * @param Builder $query
+     * @return Builder
      */
-    public function scopePreparedWith(Builder $query)
+    public function scopePreparedWith(Builder $query): Builder
     {
         return $query->with([
             'entity' => function ($sub) {
@@ -148,12 +148,6 @@ class Ability extends MiscModel
         return $this
             ->belongsToMany(Entity::class, 'entity_abilities')
             ->withPivot('visibility_id');
-
-        return $this->belongsToMany('App\Models\Entity', 'campaign_plugins', 'campaign_id', 'plugin_id')
-            //->using('App\Models\CampaignPlugin')
-            ->withPivot('is_active')
-            ->withPivot('plugin_version_id')
-            ;
     }
 
     /**

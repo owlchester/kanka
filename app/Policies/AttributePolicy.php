@@ -24,48 +24,11 @@ class AttributePolicy
      * Determine whether the user can view the characterAttribute.
      *
      * @param  \App\User  $user
-     * @param  \App\Models\Attribute  $characterAttribute
-     * @return mixed
+     * @param  \App\Models\Attribute  $attribute
+     * @return bool
      */
     public function view(User $user, Attribute $attribute)
     {
         return $user->campaign->id == $attribute->entity->campaign_id;
-    }
-
-    /**
-     * Determine whether the user can create characterAttributes.
-     *
-     * @param  \App\User  $user
-     * @return mixed
-     */
-    public function create(User $user)
-    {
-        return $this->checkPermission('add', $user);
-    }
-
-    /**
-     * Determine whether the user can update the characterAttribute.
-     *
-     * @param  \App\User  $user
-     * @param  \App\Models\Attribute  $attribute
-     * @return mixed
-     */
-    public function update(User $user, Attribute $attribute)
-    {
-        return $user->campaign->id == $attribute->entity->campaign_id &&
-            $this->checkPermission('edit', $user);
-    }
-
-    /**
-     * Determine whether the user can delete the characterAttribute.
-     *
-     * @param  \App\User  $user
-     * @param  \App\Models\Attribute  $attribute
-     * @return mixed
-     */
-    public function delete(User $user, Attribute  $attribute)
-    {
-        return $user->campaign->id == $attribute->entity->campaign_id &&
-            $this->checkPermission('delete', $user);
     }
 }

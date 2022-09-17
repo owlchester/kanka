@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Str;
@@ -20,6 +21,8 @@ use Illuminate\Support\Str;
  * @property string $table_name
  * @property bool $access
  * @property integer $misc_id
+ * @property Carbon $created_at
+ * @property Carbon $updated_at
  *
  * @property Campaign $campaign
  * @property CampaignRole $campaignRole
@@ -90,21 +93,21 @@ class CampaignPermission extends Model
     }
 
     /**
-     * @param $query
+     * @param Builder $query
      * @param array $roleIds
-     * @return mixed
+     * @return Builder
      */
-    public function scopeRoleIDs(Builder $query, array $roleIds)
+    public function scopeRoleIDs(Builder $query, array $roleIds): Builder
     {
         return $query->whereIn('campaign_role_id', $roleIds);
     }
 
     /**
-     * @param $query
-     * @param array $roleIds
-     * @return mixed
+     * @param Builder $query
+     * @param int $action
+     * @return Builder
      */
-    public function scopeAction(Builder $query, int $action)
+    public function scopeAction(Builder $query, int $action): Builder
     {
         return $query->whereIn('action', $action);
     }
@@ -167,8 +170,10 @@ class CampaignPermission extends Model
     /**
      * Copy an entity inventory to another target
      * @param Entity $target
+     * @param int $from
+     * @param int $to
      */
-    public function copyTo(Entity $target, string $from, string $to)
+    public function copyTo(Entity $target, int $from, int $to)
     {
         $new = $this->replicate(['entity_id']);
         $new->entity_id = $target->id;

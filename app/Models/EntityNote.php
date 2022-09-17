@@ -10,6 +10,7 @@ use App\Traits\VisibilityIDTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Collection;
 
 /**
  * Class Attribute
@@ -21,16 +22,16 @@ use Illuminate\Support\Arr;
  * @property string $entry
  * @property int $visibility_id
  * @property integer $created_by
- * @property integer $location_id
- * @property string $marketplace_uuid
+ * @property integer|null $location_id
+ * @property string|null $marketplace_uuid
  * @property boolean $is_private
  * @property boolean $is_pinned
  * @property integer $position
  * @property array $settings
- * @property Entity $entity
- * @property Location $location
- * @property EntityMention[] $mentions
- * @property EntityNotePermission[] $permissions
+ * @property Entity|null $entity
+ * @property Location|null $location
+ * @property EntityMention[]|Collection $mentions
+ * @property EntityNotePermission[]|Collection $permissions
  * @property [] $settings
  *
  * @method static Builder|self pinned()

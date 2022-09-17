@@ -3,13 +3,15 @@
 namespace App\Models;
 
 use App\Models\Concerns\Paginatable;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class CharacterTrait
  * @package App\Models
  *
- * @property integer $character_id
+ * @property int $id
+ * @property int $character_id
  * @property string $name
  * @property string $entry
  * @property int $section_id
@@ -20,8 +22,8 @@ class CharacterTrait extends Model
 {
     use Paginatable;
 
-    const SECTION_APPEARANCE = 1;
-    const SECTION_PERSONALITY = 2;
+    public const SECTION_APPEARANCE = 1;
+    public const SECTION_PERSONALITY = 2;
 
     /** @var string[]  */
     protected $fillable = [
@@ -36,7 +38,6 @@ class CharacterTrait extends Model
 
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
     public function character()
     {
@@ -44,19 +45,19 @@ class CharacterTrait extends Model
     }
 
     /**
-     * @param $query
-     * @return mixed
+     * @param Builder $query
+     * @return Builder
      */
-    public function scopePersonality($query)
+    public function scopePersonality(Builder $query): Builder
     {
         return $query->where('section_id', self::SECTION_PERSONALITY);
     }
 
     /**
-     * @param $query
-     * @return mixed
+     * @param Builder $query
+     * @return Builder
      */
-    public function scopeAppearance($query)
+    public function scopeAppearance(Builder $query): Builder
     {
         return $query->where('section_id', self::SECTION_APPEARANCE);
     }

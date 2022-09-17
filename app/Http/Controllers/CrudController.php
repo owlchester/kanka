@@ -71,7 +71,7 @@ class CrudController extends Controller
     /** @var bool If the auth check was already performed on this controller */
     protected bool $alreadyAuthChecked = false;
 
-    /** @var null */
+    /** @var string|null */
     protected $datagridActions = DefaultDatagridActions::class;
 
     /** @var array|LengthAwarePaginator|\Illuminate\Contracts\Pagination\LengthAwarePaginator */
@@ -92,8 +92,10 @@ class CrudController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
-     * @return mixed
+     * @param Request $request
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\RedirectResponse
+     * @throws \Psr\Container\ContainerExceptionInterface
+     * @throws \Psr\Container\NotFoundExceptionInterface
      */
     public function index(Request $request)
     {
@@ -112,6 +114,7 @@ class CrudController extends Controller
             return redirect()->route('dashboard')->with(
                 'error_raw',
                 __('campaigns.settings.errors.module-disabled', [
+                    // @phpstan-ignore-next-line
                     'fix' => link_to_route('campaign.modules', __('crud.fix-this-issue'), ['#' . $this->module]),
                 ])
             );
@@ -124,7 +127,7 @@ class CrudController extends Controller
         $model = new $this->model();
         $this->filterService->make($this->view, request()->all(), $model);
         $name = $this->view;
-        $langKey = $this->langKey ?? $name;
+        $langKey = $this->langKey ?? $name; // @phpstan-ignore-line
         $filters = $this->filters;
         $filter = !empty($this->filter) ? new $this->filter() : null;
         $filterService = $this->filterService;
@@ -217,7 +220,7 @@ class CrudController extends Controller
         if (!isset($params['source'])) {
             $copyId = request()->input('copy');
             if (!empty($copyId)) {
-                $model = new $this->model;
+                $model = new $this->model();
                 $params['source'] = $model->findOrFail($copyId);
                 FormCopy::source($params['source']);
             } else {
@@ -240,11 +243,10 @@ class CrudController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
      * @param Request $request
-     * @param bool $redirectToCreated
-     * @return \Illuminate\Http\RedirectResponse
+     * @param $redirectToCreated
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function crudStore(Request $request, $redirectToCreated = false)
     {
@@ -263,7 +265,7 @@ class CrudController extends Controller
 
         try {
             /** @var MiscModel $model */
-            $model = new $this->model;
+            $model = new $this->model();
             $new = $model->create($request->all());
 
             // Fire an event for the Entity Observer.
@@ -327,10 +329,9 @@ class CrudController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Character  $character
-     * @return \Illuminate\Http\Response
+     * @param Model $model
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function crudShow(Model $model)
     {
@@ -364,10 +365,10 @@ class CrudController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\MiscModel  $model
-     * @return \Illuminate\Http\Response
+     * @param Model $model
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws \Illuminate\Contracts\Container\BindingResolutionException
      */
     public function crudEdit(Model $model)
     {
@@ -403,11 +404,13 @@ class CrudController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Character  $character
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param Model $model
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws \Illuminate\Contracts\Container\BindingResolutionException
+     * @throws \Psr\Container\ContainerExceptionInterface
+     * @throws \Psr\Container\NotFoundExceptionInterface
      */
     public function crudUpdate(Request $request, Model $model)
     {
@@ -481,10 +484,9 @@ class CrudController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Character  $character
-     * @return \Illuminate\Http\Response
+     * @param Model $model
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function crudDestroy(Model $model)
     {

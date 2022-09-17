@@ -4,7 +4,6 @@ namespace App\Policies;
 
 use App\User;
 use App\Models\Character;
-use Illuminate\Auth\Access\HandlesAuthorization;
 
 class CharacterPolicy extends MiscPolicy
 {
@@ -12,17 +11,17 @@ class CharacterPolicy extends MiscPolicy
 
     /**
      * @param User $user
-     * @param Entity $entity
+     * @param Character $entity
      * @return bool
      */
-    public function personality(User $user, $entity)
+    public function personality(User $user, Character $entity)
     {
         return $entity->is_personality_visible || $user->isAdmin();
     }
 
     /**
      * @param User $user
-     * @return mixed
+     * @return bool
      */
     public function random(User $user)
     {
@@ -31,9 +30,11 @@ class CharacterPolicy extends MiscPolicy
 
     /**
      * @param User $user
-     * @return mixed
+     * @param Character $entity
+     * @param string $subAction
+     * @return bool|mixed
      */
-    public function organisation(User $user, $entity, $subAction = 'browse')
+    public function organisation(User $user, Character $entity, string $subAction = 'browse')
     {
         return  $this->update($user, $entity);
     }

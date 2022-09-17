@@ -125,7 +125,6 @@ class BulkController extends Controller
     }
 
     /**
-     * @param $entity
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Exception
      */

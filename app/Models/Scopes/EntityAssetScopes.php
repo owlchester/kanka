@@ -33,14 +33,14 @@ trait EntityAssetScopes
 
     public function scopeFile(Builder $query)
     {
-        $query->type(EntityAsset::TYPE_FILE);
+        $this->type(EntityAsset::TYPE_FILE);
     }
     public function scopeLink(Builder $query)
     {
-        $query->type(EntityAsset::TYPE_LINK);
+        $this->type(EntityAsset::TYPE_LINK);
     }
     public function scopeAlias(Builder $query)
     {
-        $query->type(EntityAsset::TYPE_ALIAS);
+        $this->type(EntityAsset::TYPE_ALIAS);
     }
 }

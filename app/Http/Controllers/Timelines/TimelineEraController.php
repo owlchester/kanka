@@ -195,9 +195,10 @@ class TimelineEraController extends Controller
     }
 
     /**
-     * @param Request $request
-     * @param Model $model
-     * @return \Illuminate\Http\RedirectResponse
+     * @param Timeline $timeline
+     * @param ReorderTimelineEras $request
+     * @return mixed
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function save(Timeline $timeline, ReorderTimelineEras $request)
     {

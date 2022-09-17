@@ -15,7 +15,7 @@ use Illuminate\Support\Str;
  * @property integer $target_entity_id
  * @property integer $axis_x
  * @property integer $axis_y
- * @property string $name
+ * @property string|null $name
  * @property string $colour
  * @property int $size_id
  * @property int $shape_id

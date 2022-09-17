@@ -2,6 +2,8 @@
 
 namespace App\Http\Resources;
 
+use App\Models\MapMarker;
+
 class MapMarkerResource extends ModelResource
 {
     /**
@@ -12,25 +14,27 @@ class MapMarkerResource extends ModelResource
      */
     public function toArray($request)
     {
+        /** @var MapMarker $model */
+        $model = $this->resource;
         return $this->entity([
-            'map_id' => $this->map_id,
-            'name' => $this->name,
-            'entity_id' => $this->entity_id,
-            'longitude' => $this->longitude,
-            'latitude' => $this->latitude,
-            'colour' => $this->colour,
-            'font_colour' => $this->font_colour,
-            'shape_id' => $this->shape_id,
-            'size_id' => $this->size_id,
-            'pin_size' => $this->pin_size,
-            'icon' => $this->icon,
-            'custom_icon' => $this->custom_icon,
-            'custom_shape' => $this->custom_shape,
-            'is_draggable' => (bool) $this->is_draggable,
-            'opacity' => $this->opacity,
-            'circle_radius' => $this->circle_radius,
-            'polygon_style' => $this->polygon_style,
-            'visibility_id' => $this->visibility_id
+            'map_id' => $model->map_id,
+            'name' => $model->name,
+            'entity_id' => $model->entity_id,
+            'longitude' => $model->longitude,
+            'latitude' => $model->latitude,
+            'colour' => $model->colour,
+            'font_colour' => $model->font_colour,
+            'shape_id' => $model->shape_id,
+            'size_id' => $model->size_id,
+            'pin_size' => $model->pin_size,
+            'icon' => $model->icon,
+            'custom_icon' => $model->custom_icon,
+            'custom_shape' => $model->custom_shape,
+            'is_draggable' => (bool) $model->is_draggable,
+            'opacity' => $model->opacity,
+            'circle_radius' => $model->circle_radius,
+            'polygon_style' => $model->polygon_style,
+            'visibility_id' => $model->visibility_id
         ]);
     }
 }

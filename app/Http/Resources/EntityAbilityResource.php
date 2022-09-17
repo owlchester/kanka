@@ -2,7 +2,7 @@
 
 namespace App\Http\Resources;
 
-use Illuminate\Support\Facades\Storage;
+use App\Models\EntityAbility;
 
 class EntityAbilityResource extends EntityChild
 {
@@ -14,17 +14,19 @@ class EntityAbilityResource extends EntityChild
      */
     public function toArray($request)
     {
+        /** @var EntityAbility $model */
+        $model = $this->resource;
         return [
-            'id' => $this->id,
-            'visibility' => $this->visibility,
-            'charges' => $this->charges,
-            'ability_id' => $this->ability_id,
-            'position' => $this->position,
-            'note' => $this->note,
-            'created_at' => $this->created_at,
-            'created_by' => $this->created_by,
-            'updated_at' => $this->updated_at,
-            'updated_by' => $this->updated_by,
+            'id' => $model->id,
+            'visibility_id' => $model->visibility_id,
+            'charges' => $model->charges,
+            'ability_id' => $model->ability_id,
+            'position' => $model->position,
+            'note' => $model->note,
+            'created_at' => $model->created_at,
+            'created_by' => $model->created_by,
+            'updated_at' => $model->updated_at,
+            'updated_by' => $model->updated_by,
         ];
     }
 }

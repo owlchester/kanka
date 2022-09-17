@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\User;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class ProfileResource extends JsonResource
@@ -14,17 +15,19 @@ class ProfileResource extends JsonResource
      */
     public function toArray($request)
     {
+        /** @var User $model */
+        $model = $this->resource;
         return [
-            'id' => $this->id,
-            'name' => $this->name,
-            'avatar' => $this->getAvatarUrl(),
-            'avatar_thumb' => $this->getAvatarUrl(true),
-            'locale' => $this->locale,
-            'timezone' => $this->timezone,
-            'date_format' => $this->date_format,
-            'default_pagination' => $this->default_pagination,
-            'last_campaign_id' => $this->last_campaign_id,
-            'is_patreon' => $this->hasRole('patreon')
+            'id' => $model->id,
+            'name' => $model->name,
+            'avatar' => $model->getAvatarUrl(200),
+            'avatar_thumb' => $model->getAvatarUrl(),
+            'locale' => $model->locale,
+            'timezone' => $model->timezone,
+            'date_format' => $model->date_format,
+            'default_pagination' => $model->default_pagination,
+            'last_campaign_id' => $model->last_campaign_id,
+            'is_patreon' => $model->hasRole('patreon')
         ];
     }
 }

@@ -23,21 +23,21 @@ use Illuminate\Support\Str;
 trait EntityScopes
 {
     /**
-     * @param $query
-     * @return mixed
+     * @param Builder$query
+     * @return Builder
      */
-    public function scopeRecentlyModified(Builder $query)
+    public function scopeRecentlyModified(Builder $query): Builder
     {
         return $query
             ->orderBy($this->getTable() . '.updated_at', 'desc');
     }
 
     /**
-     * @param $query
-     * @param int $type
-     * @return mixed
+     * @param Builder $query
+     * @param int|null $type
+     * @return Builder
      */
-    public function scopeType(Builder $query, int $type = null)
+    public function scopeType(Builder $query, int $type = null): Builder
     {
         if (empty($type)) {
             return $query;
@@ -46,10 +46,10 @@ trait EntityScopes
     }
 
     /**
-     * @param $query
-     * @return mixed
+     * @param Builder $query
+     * @return Builder
      */
-    public function scopeStandardWith(Builder $query)
+    public function scopeStandardWith(Builder $query): Builder
     {
         return $query->with('tags');
     }

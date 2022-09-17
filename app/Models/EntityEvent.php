@@ -23,7 +23,7 @@ use Illuminate\Support\Str;
  * @property integer $month
  * @property integer $year
  * @property boolean $is_recurring
- * @property integer $recurring_until
+ * @property integer|null $recurring_until
  * @property string $recurring_periodicity
  * @property integer $type_id
  * @property integer $elapsed

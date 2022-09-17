@@ -3,11 +3,8 @@
 namespace App\Services;
 
 use App\Facades\UserCache;
-use App\Jobs\CampaignAssetExport;
 use App\Models\Campaign;
 use App\Models\CampaignUser;
-use App\Exceptions\TranslatableException;
-use App\Jobs\CampaignExport;
 use App\Models\UserLog;
 use App\Notifications\Header;
 use App\User;
@@ -23,7 +20,7 @@ class CampaignService
 
     /**
      * The user's current Campaign
-     * @var Campaign
+     * @var Campaign|bool
      */
     protected $campaign = false;
 
@@ -79,16 +76,18 @@ class CampaignService
      */
     public function leave(Campaign $campaign)
     {
+        /** @var CampaignUser|null $member */
         $member = CampaignUser::where('campaign_id', $campaign->id)
             ->where('user_id', auth()->user()->id)
             ->first();
         if (empty($member)) {
             // Shouldn't be able to leave a campaign they aren't a part of...?
             // Switch to the next available campaign?
+            /** @var CampaignUser|null $member */
             $member = CampaignUser::where('user_id', auth()->user()->id)->first();
             if ($member) {
                 // Just switch to the first one available.
-                self::switchCampaign($member->campaign_id);
+                self::switchCampaign($member->campaign);
             } else {
                 // Need to create a new campaign
                 session()->forget('campaign_id');
@@ -162,6 +161,7 @@ class CampaignService
      */
     public static function switchToLast($userParam = null)
     {
+        /** @var User|null $user */
         $user = $userParam ?: auth()->user();
         if (!$user) {
             return;

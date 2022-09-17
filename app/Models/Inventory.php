@@ -11,15 +11,15 @@ use Illuminate\Database\Eloquent\Model;
  * @package App\Models
  *
  * @property integer $entity_id
- * @property integer $item_id
+ * @property integer|null $item_id
  * @property string $name
  * @property integer $amount
  * @property string $position
  * @property string $description
  * @property bool $is_equipped
  * @property bool $copy_item_entry
- * @property Item $item
- * @property Entity $entity
+ * @property Item|null $item
+ * @property Entity|null $entity
  */
 class Inventory extends Model
 {
