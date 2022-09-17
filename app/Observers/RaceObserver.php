@@ -15,7 +15,9 @@ class RaceObserver extends MiscObserver
     public function crudSaved(MiscModel $model)
     {
         parent::crudSaved($model);
-        $this->saveLocations($model);
+        /** @var Race $race */
+        $race = $model;
+        $this->saveLocations($race);
     }
 
     /**

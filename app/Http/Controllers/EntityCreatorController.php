@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Facades\CampaignLocalization;
+use App\Http\Requests\StoreCharacter;
 use App\Models\Campaign;
 use App\Models\MiscModel;
 use App\Models\EntityNote;
@@ -101,7 +102,7 @@ class EntityCreatorController extends Controller
 
         // Prepare the validator
         $requestValidator = '\App\Http\Requests\Store' . ucfirst(Str::singular($type));
-        /** @var FormRequest $validator */
+        /** @var FormRequest|StoreCharacter $validator */
         $validator = new $requestValidator();
 
         // Now loop on each name and create entities

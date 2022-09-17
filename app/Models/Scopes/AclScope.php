@@ -118,10 +118,10 @@ class AclScope implements Scope
     /**
      * Permission scope on a Misc model
      * @param Builder $query
-     * @param Model|MiscModel $model
+     * @param MiscModel $model
      * @return Builder
      */
-    protected function applyToMisc(Builder $query, Model|MiscModel $model): Builder
+    protected function applyToMisc(Builder $query, MiscModel $model): Builder
     {
         $table = $model->getTable();
         $primaryKey = 'id';
@@ -176,7 +176,7 @@ class AclScope implements Scope
         return $query
             // Ignore the Visibility scope because we're overriding it here with the permission engine of posts
             ->withoutGlobalScope(VisibilityIDScope::class)
-            ->where(function ($sub) use ($model, $table) {
+            ->where(function ($sub) use ($table) {
             $visibilities = Permissions::isAdmin()
                 ? [Visibility::VISIBILITY_ALL, Visibility::VISIBILITY_ADMIN,
                     Visibility::VISIBILITY_ADMIN_SELF, Visibility::VISIBILITY_MEMBERS]

@@ -10,6 +10,7 @@ class DiceRollObserver extends MiscObserver
     public function saving(DiceRoll|MiscModel $model)
     {
         parent::saving($model);
+        // @phpstan-ignore-next-line
         $model->system = 'standard';
     }
 }

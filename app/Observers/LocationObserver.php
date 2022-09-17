@@ -44,7 +44,7 @@ class LocationObserver extends MiscObserver
 
     /**
      * Delete the map when the entity is deleted
-     * @param MiscModel|SoftDeletes $model
+     * @param MiscModel|Location $model
      */
     public function deleted(MiscModel $model)
     {

@@ -2,14 +2,14 @@
 
 namespace App\Observers;
 
-use App\Models\Concerns\Uuid;
+use App\Models\Plugin;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 
 class UuidObserver
 {
     /**
-     * @param Model|Uuid $model
+     * @param Model|Plugin $model
      * @return void
      */
     public function creating(Model $model)

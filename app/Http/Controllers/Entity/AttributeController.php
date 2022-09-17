@@ -10,7 +10,6 @@ use App\Models\Attribute;
 use App\Models\Entity;
 use App\Services\AttributeService;
 use App\Traits\GuestAuthTrait;
-use Illuminate\Support\Facades\Auth;
 use Stevebauman\Purify\Facades\Purify;
 
 /**
@@ -20,14 +19,8 @@ class AttributeController extends Controller
 {
     use GuestAuthTrait;
 
-    /** @var string */
-    protected $transKey;
-
-    /** @var string */
-    protected $viewPath;
-
     /** @var AttributeService */
-    protected $service;
+    protected AttributeService $service;
 
     /**
      * AttributeController constructor.
@@ -175,11 +168,6 @@ class AttributeController extends Controller
     }
 
     /**
-     * @param Entity $entity
-     * @return \Illuminate\Http\Response|\never
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     * @throws \Psr\Container\ContainerExceptionInterface
-     * @throws \Psr\Container\NotFoundExceptionInterface
      */
     public function liveEdit(Entity $entity)
     {

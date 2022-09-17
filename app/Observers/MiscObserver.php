@@ -6,6 +6,7 @@ use App\Facades\CampaignLocalization;
 use App\Facades\EntityCache;
 use App\Facades\Identity;
 use App\Facades\Mentions;
+use App\Models\Character;
 use App\Models\Concerns\Nested;
 use App\Models\Conversation;
 use App\Models\Entity;
@@ -137,7 +138,7 @@ abstract class MiscObserver
         // Copy entity notes from source?
         if (request()->has('copy_source_notes') && request()->filled('copy_source_notes')) {
             /** @var Entity $source */
-            $source = $source ?? Entity::findOrFail($sourceId);
+            $source = Entity::findOrFail($sourceId);
             foreach ($source->notes as $note) {
                 $note->copyTo($model->entity);
             }
@@ -169,7 +170,7 @@ abstract class MiscObserver
     }
 
     /**
-     * @param MiscModel|SoftDeletes $model
+     * @param MiscModel|Character $model
      */
     public function deleted(MiscModel $model)
     {
@@ -308,7 +309,7 @@ abstract class MiscObserver
     }
 
     /**
-     * @param MiscModel|Nested $model
+     * @param MiscModel|Location $model
      * @param string $field
      */
     protected function cleanupTree(MiscModel $model, string $field = 'parent_id')

@@ -194,7 +194,6 @@ class CampaignCacheService extends BaseCache
             return $this->get($key);
         }
 
-        // @phpstan-ignore-next-line
         $data = Campaign::selectRaw('system, count(*) as cpt')
             ->public()
             ->whereNotNull('system')

@@ -224,6 +224,8 @@ trait CalendarDateTrait
         if ($this->entity === null) {
             return null;
         }
-        return $this->calendarDateEvent = $this->entity->calendarDateEvents->first();
+        /** @var EntityEvent|null $reminder */
+        $reminder = $this->entity->calendarDateEvents->first();
+        return $this->calendarDateEvent = $reminder;
     }
 }

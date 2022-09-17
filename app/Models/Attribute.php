@@ -74,12 +74,12 @@ class Attribute extends Model
         'name'
     ];
 
-    protected $numberRange = '`\[range:(-?[0-9]+),(-?[0-9]+)\]`i';
+    protected string $numberRange = '`\[range:(-?[0-9]+),(-?[0-9]+)\]`i';
     protected int|null|bool $numberMax = null;
     protected int|null|bool $numberMin = null;
 
-    protected $listRegexp = '`\[range:(.*)\]`i';
-    protected $listRange = null;
+    protected string $listRegexp = '`\[range:(.*)\]`i';
+    protected mixed $listRange = null;
 
     protected $mappedName = false;
 

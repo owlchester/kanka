@@ -204,7 +204,7 @@ class MiscPolicy
     }
 
     /**
-     * @param string $action
+     * @param int $action
      * @param User $user
      * @param Entity|MiscModel|null $entity
      * @param Campaign|null $campaign

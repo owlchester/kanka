@@ -124,8 +124,8 @@ class Item extends MiscModel
 
     /**
      * Performance with for datagrids
-     * @param $query
-     * @return mixed
+     * @param Builder $query
+     * @return Builder mixed
      */
     public function scopePreparedWith(Builder $query): Builder
     {

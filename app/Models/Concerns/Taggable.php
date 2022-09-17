@@ -27,5 +27,4 @@ trait Taggable
     {
         return $this->belongsToMany(Tag::class);
     }
-
 }

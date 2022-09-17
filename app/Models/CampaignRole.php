@@ -23,7 +23,7 @@ use Illuminate\Support\Str;
  * @property Campaign $campaign
  * @property Collection|CampaignPermission[] $permissions
  * @property Collection|CampaignDashboardRole[] $dashboardRoles
- * @property Collection|User[] $users
+ * @property Collection|CampaignRoleUser[] $users
  *
  * @method static self|Builder admin(bool $with)
  * @method static self|Builder public(bool $with)

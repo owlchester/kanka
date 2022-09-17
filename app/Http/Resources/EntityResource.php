@@ -17,10 +17,10 @@ class EntityResource extends JsonResource
     use ApiSync;
 
     /** @var bool If the entity should come with related objects */
-    public $withRelated = false;
+    public bool $withRelated = false;
 
     /** @var bool If the entity comes with the misc model */
-    public $withMisc = false;
+    public bool $withMisc = false;
 
     /**
      * Get related objects for this entity
@@ -164,13 +164,12 @@ class EntityResource extends JsonResource
         // Foreign elements
         $attributes = $misc->getAttributes();
         if (array_key_exists('location_id', $attributes)) {
-            $merged['location_id'] = $misc->location_id;
+            $merged['location_id'] = $misc->location_id; // @phpstan-ignore-line
         }
         if (array_key_exists('character_id', $attributes)) {
-            $merged['character_id'] = $misc->character_id;
+            $merged['character_id'] = $misc->character_id; // @phpstan-ignore-line
         }
 
-        /** @var MiscModel $this */
         if (request()->get('related', false) || $this->withRelated) {
             $merged['attributes'] = AttributeResource::collection($misc->entity->attributes);
             $merged['entity_notes'] = EntityNoteResource::collection($misc->entity->notes);

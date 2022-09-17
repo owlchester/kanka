@@ -111,7 +111,6 @@ class DashboardController extends Controller
             ]);
         }
 
-        // @phpstan-ignore-next-line
         $entities = \App\Models\Entity::unmentioned()
             ->inTags($widget->tags->pluck('id')->toArray())
             ->type($widget->conf('entity'))

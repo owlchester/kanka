@@ -22,7 +22,7 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @property Faq[]|Collection $faqs
  * @property FaqCategoryTranslation[]|Collection $translations
- * @property FaqCategoryTranslation|Collection $localeTranslation
+ * @property FaqCategoryTranslation|null $localeTranslation
  */
 class FaqCategory extends Model
 {
@@ -65,8 +65,8 @@ class FaqCategory extends Model
 
     /**
      * @param Builder $query
-     * @param string $locale
-     * @return mixed
+     * @param string $order
+     * @return Builder
      */
     public function scopeOrdered(Builder $query, $order = 'ASC')
     {
@@ -152,7 +152,7 @@ class FaqCategory extends Model
     }
 
     /**
-     * @param $locale
+     * @param string $locale
      * @return mixed
      */
     public function translatedCount($locale)

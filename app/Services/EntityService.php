@@ -390,9 +390,9 @@ class EntityService
             throw new \Exception("Unknown target '$target' for transforming entity");
         }
 
-        /** @var MiscModel|Location|Item $new */
+        /** @var MiscModel|Location|Item|Family|Organisation|Character $new */
         $new = new $this->entities[$target]();
-        /** @var MiscModel|Family|Organisation|Character|null $old */
+        /** @var MiscModel|Location|Item|Family|Organisation|Character|null $old */
         $old = $misc;
         if (empty($misc)) {
             $old = $entity->child;
@@ -410,11 +410,9 @@ class EntityService
         }
 
         // Special import for location parent_location_id
-        // @phpstan-ignore-next-line
         if (in_array('location_id', $fillable) && empty($new->location_id) && !empty($old->parent_location_id)) {
             $new->location_id = $old->parent_location_id;
         }
-        // @phpstan-ignore-next-line
         if (in_array('parent_location_id', $fillable) && empty($new->parent_location_id) && !empty($old->location_id)) {
             $new->parent_location_id = $old->location_id;
         }
@@ -438,7 +436,6 @@ class EntityService
             $old->entityTypeId() == config('entities.ids.organisation') &&
             $new->entityTypeId() == config('entities.ids.family')
         ) {
-            // @phpstan-ignore-next-line
             foreach ($old->members as $member) {
                 $member->delete();
                 $new->members()->attach($member->character_id);
@@ -447,7 +444,6 @@ class EntityService
             $old->entityTypeId() == config('entities.ids.family') &&
             $new->entityTypeId() == config('entities.ids.organisation')
         ) {
-            // @phpstan-ignore-next-line
             foreach ($old->members as $character) {
                 $orgMember = new OrganisationMember();
                 $orgMember->character_id = $character->id;
@@ -458,9 +454,7 @@ class EntityService
             }
         } else {
             // Remove members when they aren't characters
-            // @phpstan-ignore-next-line
             if (isset($old->members)) {
-                // @phpstan-ignore-next-line
                 foreach ($old->members as $member) {
                     // We make sure this isn't a character, because a family has members which are
                     // directly characters while orgs have members which are an in between entity.
@@ -472,7 +466,6 @@ class EntityService
         }
         // Remove a character from conversations
         if ($old->entityTypeId() === config('entities.ids.character')) {
-            // @phpstan-ignore-next-line
             foreach ($old->conversationParticipants as $conPar) {
                 $conPar->delete();
             }

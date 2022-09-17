@@ -3,7 +3,6 @@
 namespace App\Models\Scopes;
 
 use App\Models\Location;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Scope;
 use Illuminate\Database\Eloquent\Builder;
 use App\Facades\CampaignLocalization;
@@ -12,7 +11,7 @@ class CampaignScope implements Scope
 {
     /**
      * @param Builder $builder
-     * @param Model|Location $model
+     * @param Location $model
      */
     public function apply(Builder $builder, $model)
     {

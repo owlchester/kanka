@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Exceptions\EntityFileException;
 use App\Facades\CampaignLocalization;
 use App\Http\Requests\RenameEntityFile;
+use App\Http\Requests\StoreEntityAsset;
 use App\Http\Requests\StoreEntityFile;
 use App\Http\Requests\UpdateEntityFile;
 use App\Models\EntityFile;
@@ -80,7 +81,7 @@ class EntityFileController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreEntityFile $request, Entity $entity)
+    public function store(StoreEntityAsset $request, Entity $entity)
     {
         $this->authorize('update', $entity->child);
         $campaign = CampaignLocalization::getCampaign();

@@ -11,20 +11,6 @@ use Illuminate\Support\Facades\Auth;
 class CommunityEventController extends Controller
 {
     /**
-     * @var CommunityEventService
-     */
-    protected $service;
-
-    /**
-     * CommunityEventController constructor.
-     * @param CommunityEventService $service
-     */
-    public function __construct(CommunityVoteService $service)
-    {
-        //$this->service = $service;
-    }
-
-    /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index()
@@ -92,22 +78,5 @@ class CommunityEventController extends Controller
     public function destroy($post)
     {
         //
-    }
-
-    public function event(Request $request, CommunityEvent $communityEvent)
-    {
-        $this->middleware(['auth', 'identity']);
-        $this->authorize('event', $communityEvent);
-
-        $data = $this->service->cast(
-            $communityEvent,
-            Auth::user(),
-            $request->post('event', null)
-        );
-
-        return response()->json([
-            'success' => true,
-            'data' => $data
-        ]);
     }
 }

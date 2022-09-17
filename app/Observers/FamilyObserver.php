@@ -15,8 +15,9 @@ class FamilyObserver extends MiscObserver
     {
         parent::saved($model);
 
-        // Save members
-        $this->saveMembers($model);
+        /** @var Family $family */
+        $family = $model;
+        $this->saveMembers($family);
     }
 
     /**

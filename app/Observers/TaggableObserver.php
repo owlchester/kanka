@@ -2,7 +2,7 @@
 
 namespace App\Observers;
 
-use App\Models\Entity;
+use App\Models\MenuLink;
 use App\Models\MiscModel;
 use App\Models\Tag;
 use Illuminate\Database\Eloquent\Model;
@@ -18,10 +18,10 @@ class TaggableObserver
     }
 
     /**
-     * @param Model|Entity $model
+     * @param Model|MenuLink $model
      * @return void
      */
-    protected function saveTags(Model $model)
+    protected function saveTags(Model|MenuLink $model)
     {
         if (!request()->has('save_tags')) {
             return;

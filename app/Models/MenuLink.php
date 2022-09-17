@@ -21,8 +21,8 @@ use Illuminate\Support\Str;
  * @property string|null $menu
  * @property string|null $type
  * @property string $icon
- * @property string $filters
- * @property string $parent
+ * @property string|null $filters
+ * @property string|null $parent
  * @property string $css
  * @property string $random_entity_type
  * @property integer $position

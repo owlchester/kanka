@@ -168,7 +168,7 @@ class AttributeService
     }
 
     /**
-     * @param string $template
+     * @param string $templateName
      * @param Entity $entity
      * @return false|string
      */
@@ -525,7 +525,8 @@ class AttributeService
             return null;
         }
 
-        /** @var CampaignPlugin $plugin */
+        /** @var CampaignPlugin|null $plugin */
+        // @phpstan-ignore-next-line
         $plugin = CampaignPlugin::templates($campaign)
             ->select('campaign_plugins.*')
             ->leftJoin('plugin_versions as pv', 'pv.plugin_id', 'campaign_plugins.plugin_id')
@@ -534,7 +535,7 @@ class AttributeService
             ->first();
 
         // If the plugin is published, we're good. Otherwise, it's
-        if (!$plugin || !$plugin->renderable()) {
+        if (empty($plugin) || !$plugin->renderable()) {
             return null;
         }
 
@@ -552,7 +553,7 @@ class AttributeService
         if (isset($this->loadedTemplates[$templateId])) {
             return $this->loadedTemplates[$templateId];
         }
-        /** @var AttributeTemplate $attribute */
+        /** @var AttributeTemplate $attributeTemplate */
         $attributeTemplate = AttributeTemplate::findOrFail($templateId);
         return $this->loadedTemplates[$templateId] = $attributeTemplate;
     }

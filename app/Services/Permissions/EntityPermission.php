@@ -10,6 +10,7 @@ use App\Models\CampaignRole;
 use App\Models\Entity;
 use App\Models\MiscModel;
 use App\User;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Arr;
 
 class EntityPermission
@@ -35,7 +36,7 @@ class EntityPermission
     protected $roleIds = false;
 
     /**
-     * @var array|bool The roles of the user
+     * @var array|bool|Collection The roles of the user
      */
     protected $roles = [];
 
@@ -140,23 +141,6 @@ class EntityPermission
             }
         }
         return $ids;
-    }
-
-    /**
-     * @param MiscModel|null $model
-     * @param Campaign|null $campaign
-     * @return bool
-     */
-    public function canViewMisc(MiscModel $model = null, Campaign $campaign = null)
-    {
-        // Make sure we can see the entity we're trying to show the user. We do it this way because we
-        // are looping through entities which doesn't allow using the acl trait before hand.
-        if (auth()->check()) {
-            return auth()->user()->can('view', $model);
-        } elseif (!empty($model)) {
-            return self::hasPermission($model->getEntityType(), CampaignPermission::ACTION_READ, null, $model, $campaign);
-        }
-        return false;
     }
 
     /**

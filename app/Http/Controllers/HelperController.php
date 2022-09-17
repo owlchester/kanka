@@ -19,11 +19,11 @@ class HelperController
         // Try creating the object
         try {
             $className = "\App\Models\\" . Str::camel($type);
-            /** @var MiscModel $misc */
             $misc = new \ReflectionClass($className);
             if (!$misc->isInstantiable()) {
                 abort(404);
             }
+            /** @var MiscModel $misc */
             $misc = new $className();
             if (!$misc instanceof MiscModel) {
                 abort(404);

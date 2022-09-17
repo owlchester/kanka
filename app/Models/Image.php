@@ -199,7 +199,7 @@ class Image extends Model
     }
 
     /**
-     * @param Builder
+     * @param Builder $query
      * @return Builder
      */
     public function scopeDefaultOrder(Builder $query): Builder

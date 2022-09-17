@@ -255,6 +255,7 @@ class CrudController extends Controller
         }
 
         if ($this->hasLimitCheck) {
+            // @phpstan-ignore-next-line
             if ($this->limitCheckReached()) {
                 return redirect()->back();
             }
@@ -331,12 +332,13 @@ class CrudController extends Controller
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function crudShow(Model $model)
+    public function crudShow(Model|MiscModel $model)
     {
         // Policies will always fail if they can't resolve the user.
         if (auth()->check()) {
             $this->authorize('view', $model);
         } else {
+            /** @var MiscModel $model */
             $this->authorizeForGuest(\App\Models\CampaignPermission::ACTION_READ, $model);
         }
         $name = $this->view;
@@ -368,7 +370,7 @@ class CrudController extends Controller
      * @throws \Illuminate\Auth\Access\AuthorizationException
      * @throws \Illuminate\Contracts\Container\BindingResolutionException
      */
-    public function crudEdit(Model $model)
+    public function crudEdit(Model|MiscModel $model)
     {
         $this->authorize('update', $model);
 
@@ -410,7 +412,7 @@ class CrudController extends Controller
      * @throws \Psr\Container\ContainerExceptionInterface
      * @throws \Psr\Container\NotFoundExceptionInterface
      */
-    public function crudUpdate(Request $request, Model $model)
+    public function crudUpdate(Request $request, Model|MiscModel $model)
     {
         $this->authorize('update', $model);
 
@@ -486,7 +488,7 @@ class CrudController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function crudDestroy(Model $model)
+    public function crudDestroy(Model|MiscModel $model)
     {
         $this->authorize('delete', $model);
 

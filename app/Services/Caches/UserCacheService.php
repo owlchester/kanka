@@ -4,7 +4,6 @@ namespace App\Services\Caches;
 
 use App\User;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Relations\Concerns\InteractsWithPivotTable;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 

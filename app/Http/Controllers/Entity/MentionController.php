@@ -16,10 +16,6 @@ class MentionController extends Controller
      */
     use GuestAuthTrait;
 
-    protected $transKey;
-
-    protected $viewPath;
-
     /**
      * @param Entity $entity
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
@@ -43,30 +39,6 @@ class MentionController extends Controller
             'ajax',
             'entity',
             'mentions'
-        ));
-    }
-
-    /**
-     * @param MiscModel $model
-     */
-    protected function show(MiscModel $model)
-    {
-        // Policies will always fail if they can't resolve the user.
-        if (auth()->check()) {
-            $this->authorize('view', $model);
-        } else {
-            $this->authorizeForGuest(\App\Models\CampaignPermission::ACTION_READ, $model);
-        }
-
-        $mentions = $model->entity->targetMentions()->paginate();
-        $trans = $this->transKey;
-        $view = $this->viewPath;
-
-        return view('cruds.mentions', compact(
-            'model',
-            'mentions',
-            'trans',
-            'view'
         ));
     }
 }

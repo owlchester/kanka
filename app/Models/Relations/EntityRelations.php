@@ -54,6 +54,7 @@ use Illuminate\Database\Eloquent\Collection;
  * @property Relation[]|Collection $starredRelations
  * @property Relation[]|Collection $relations
  * @property EntityEvent[]|Collection $elapsedEvents
+ * @property EntityEvent[]|Collection $calendarDateEvents
  * @property Image|null $image
  * @property Image|null $header
  * @property User[]|Collection $users

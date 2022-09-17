@@ -246,7 +246,7 @@ class Entity extends Model
     public function isType($types): bool
     {
         if (!is_array($types)) {
-            $types[] = $types;
+            $types = [$types];
         }
 
         return in_array($this->type_id, $types);
@@ -359,10 +359,12 @@ class Entity extends Model
 
     /**
      * Get the entity's image url (local or gallery)
-     * @param $boosted
+     * @param bool $boosted
+     * @param int $width
+     * @param int $height
      * @return string
      */
-    public function getEntityImageUrl($boosted = false, int $width = 200, int $height = 200): string
+    public function getEntityImageUrl(bool $boosted = false, int $width = 200, int $height = 200): string
     {
         if ($boosted && $this->image) {
             return Img::crop($width, $height)->url($this->image->path);

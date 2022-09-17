@@ -91,6 +91,7 @@ class EntityEvent extends MiscModel
     }
 
     /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo|\Illuminate\Database\Eloquent\Relations\HasOne
      */
     public function entity()
     {
@@ -198,6 +199,7 @@ class EntityEvent extends MiscModel
                     (isset($years[$this->year]) ? $years[$this->year] : $this->year) . ' ' .
                     $this->calendar->suffix;
             } catch (\Exception $e) {
+                // @phpstan-ignore-next-line
                 $this->readableDate = $this->date();
             }
         }

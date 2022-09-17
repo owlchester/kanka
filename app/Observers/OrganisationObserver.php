@@ -16,8 +16,9 @@ class OrganisationObserver extends MiscObserver
     {
         parent::saved($model);
 
-        // Save members
-        $this->saveMembers($model);
+        /** @var Organisation $org */
+        $org = $model;
+        $this->saveMembers($org);
     }
 
     /**
