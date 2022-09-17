@@ -86,7 +86,7 @@ class Item extends MiscModel
 
     /**
      * Nullable values (foreign keys)
-     * @var array
+     * @var string[]
      */
     public $nullableForeignKeys = [
         'location_id',
@@ -103,22 +103,23 @@ class Item extends MiscModel
 
     ];
 
-    public function tooltip($limit = 250, $stripSpecial = true)
+    /**
+     * Tooltip subtitle (item price/size)
+     * @return string
+     */
+    public function tooltipSubtitle(): string
     {
-        $tooltip = parent::tooltip($limit, $stripSpecial);
-
         $extra = [];
         if (!empty($this->price)) {
-            $extra[] = __('items.fields.price') . ': ' . htmlentities($this->price);
+            $extra[] = __('items.fields.price') . ': ' . e($this->price);
         }
         if (!empty($this->size)) {
-            $extra[] = __('items.fields.size') . ': ' . htmlentities($this->size);
+            $extra[] = __('items.fields.size') . ': ' . e($this->size);
         }
-        if (!empty($extra)) {
-            $tooltip .= '<br /><p>' . implode('<br />', $extra) . '</p>';
+        if (empty($extra)) {
+            return '';
         }
-
-        return $tooltip;
+        return implode('<br />', $extra);
     }
 
     /**
@@ -179,7 +180,7 @@ class Item extends MiscModel
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasManyThrough
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function itemQuests()
     {
@@ -195,7 +196,7 @@ class Item extends MiscModel
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function items()
     {

@@ -16,23 +16,26 @@ class CharacterObserver extends MiscObserver
     public function crudSaved(MiscModel|Character $model)
     {
         parent::crudSaved($model);
-        $this->saveTraits($model, 'personality')
-            ->saveTraits($model, 'appearance')
-            ->saveOrganisations($model)
-            ->saveRaces($model)
-            ->saveFamilies($model)
+
+        /** @var Character $model */
+        $character = $model;
+        $this->saveTraits($character, 'personality')
+            ->saveTraits($character, 'appearance')
+            ->saveOrganisations($character)
+            ->saveRaces($character)
+            ->saveFamilies($character)
         ;
     }
 
     /**
      * @param Character $character
-     * @param $trait
+     * @param string $trait
      * @return $this
      */
     protected function saveTraits(Character $character, string $trait = 'personality'): self
     {
         // Users who can edit the character but can't access personality traits shouldn't be allowed to
-        // change those traitrs.
+        // change those traits.
         if ($trait == 'personality' && !auth()->user()->can('personality', $character)) {
             return $this;
         }
@@ -87,8 +90,8 @@ class CharacterObserver extends MiscObserver
             return $this;
         }
 
-        /** @var OrganisationMember $org */
         $existing = [];
+        /** @var OrganisationMember $org */
         foreach ($character->organisationMemberships()->has('organisation')->get() as $org) {
             $existing[$org->id] = $org;
         }
@@ -171,10 +174,10 @@ class CharacterObserver extends MiscObserver
             return $this;
         }
 
-        /** @var Race $races */
         $existing = [];
         $unique = [];
         $recreate = [];
+        /** @var Race $race */
         foreach ($character->races as $race) {
             // If it already exists, we have an issue
             if (!empty($existing[$race->id])) {

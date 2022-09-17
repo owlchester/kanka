@@ -11,9 +11,9 @@ class MenuLinkObserver
     use PurifiableTrait;
 
     /**
-     * @param MiscModel|MenuLink $model
+     * @param MenuLink $model
      */
-    public function saving(MiscModel|MenuLink $model)
+    public function saving(MenuLink $model)
     {
         if (!$model->savingObserver) {
             return;
@@ -21,7 +21,7 @@ class MenuLinkObserver
 
         $model->campaign_id = CampaignLocalization::getCampaign()->id;
         //$model->icon = $this->purify($model->icon);
-        $model->tab = strtolower(trim($model->tab, '#'));
+        //$model->tab = strtolower(trim($model->tab, '#'));
 
         // Handle empty or wrong positions
         if (empty($model->position)) {
@@ -33,7 +33,7 @@ class MenuLinkObserver
         // Handle the entity type or direct entity
         if (!empty($model->type)) {
             $model->entity_id = null;
-            $model->tab = null;
+            //$model->tab = null;
             $model->menu = '';
         } else {
             $model->type = null;

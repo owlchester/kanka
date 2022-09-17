@@ -62,7 +62,7 @@ class Ability extends MiscModel
 
     /**
      * Nullable values (foreign keys)
-     * @var array
+     * @var string[]
      */
     public $nullableForeignKeys = [
         'ability_id',

@@ -120,6 +120,7 @@ class CalendarRenderer
 
         $routeOptions = ['calendar' => $this->calendar, 'month' => $month, 'year' => $year];
         if ($this->calendar->defaultLayout() === 'year') {
+            // @phpstan-ignore-next-line
             $routeOptions['layout'] = $this->isYearlyLayout() ? 'year' : 'month';
         }
         return route(
@@ -169,7 +170,7 @@ class CalendarRenderer
         $year = $this->getYear($next ? 1 : -1);
 
         if ($this->isYearlyLayout()) {
-            return $year;
+            return (string) $year;
         }
 
         $months = $this->calendar->months();
@@ -254,6 +255,7 @@ class CalendarRenderer
 
         $routeOptions = ['calendar' => $this->calendar, 'month' => $month, 'year' => $year];
         if ($this->calendar->yearlyLayout()) {
+            // @phpstan-ignore-next-line
             $routeOptions['layout'] = $this->isYearlyLayout() ? 'year' : 'month';
         }
         return route(
@@ -728,7 +730,7 @@ class CalendarRenderer
         }
 
         $totalDays = $negativeYear ? abs($totalDays) : $totalDays;
-        $offset = floor($totalDays % $weekLength);
+        $offset = (int) floor($totalDays % $weekLength);
 
         // If we are in a negative year, we need to reduce the offset from the week length, as we want the last
         // month before the calendar really "starts" to end on the last day of the week.
@@ -832,7 +834,7 @@ class CalendarRenderer
             }
 
             // Make sure the user can actually see the requested event
-            if (!$event->entity || !$event->entity->child) {
+            if (empty($event->entity) || empty($event->entity->child)) {
                 continue;
             }
             // If the event reoccurs each month, let's add it everywhere
@@ -1244,7 +1246,7 @@ class CalendarRenderer
         // week starts
         $weekNumber = floor($daysInAYear / $weekdaysCount) + 1;
 
-        return $weekNumber;
+        return (int) $weekNumber;
     }
 
     /**

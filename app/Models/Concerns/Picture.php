@@ -43,7 +43,7 @@ trait Picture
     }
 
     /**
-     * @param $avatar
+     * @param string $avatar
      * @return string
      */
     protected function avatarUrl(string $avatar)

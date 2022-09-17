@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Facades;
-
 
 use App\Models\Campaign;
 use App\Models\CampaignDashboard;

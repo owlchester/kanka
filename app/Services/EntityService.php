@@ -410,9 +410,11 @@ class EntityService
         }
 
         // Special import for location parent_location_id
+        // @phpstan-ignore-next-line
         if (in_array('location_id', $fillable) && empty($new->location_id) && !empty($old->parent_location_id)) {
             $new->location_id = $old->parent_location_id;
         }
+        // @phpstan-ignore-next-line
         if (in_array('parent_location_id', $fillable) && empty($new->parent_location_id) && !empty($old->location_id)) {
             $new->parent_location_id = $old->location_id;
         }
@@ -436,6 +438,7 @@ class EntityService
             $old->entityTypeId() == config('entities.ids.organisation') &&
             $new->entityTypeId() == config('entities.ids.family')
         ) {
+            // @phpstan-ignore-next-line
             foreach ($old->members as $member) {
                 $member->delete();
                 $new->members()->attach($member->character_id);
@@ -444,6 +447,7 @@ class EntityService
             $old->entityTypeId() == config('entities.ids.family') &&
             $new->entityTypeId() == config('entities.ids.organisation')
         ) {
+            // @phpstan-ignore-next-line
             foreach ($old->members as $character) {
                 $orgMember = new OrganisationMember();
                 $orgMember->character_id = $character->id;
@@ -454,7 +458,9 @@ class EntityService
             }
         } else {
             // Remove members when they aren't characters
+            // @phpstan-ignore-next-line
             if (isset($old->members)) {
+                // @phpstan-ignore-next-line
                 foreach ($old->members as $member) {
                     // We make sure this isn't a character, because a family has members which are
                     // directly characters while orgs have members which are an in between entity.
@@ -466,12 +472,13 @@ class EntityService
         }
         // Remove a character from conversations
         if ($old->entityTypeId() === config('entities.ids.character')) {
+            // @phpstan-ignore-next-line
             foreach ($old->conversationParticipants as $conPar) {
                 $conPar->delete();
             }
         }
 
-        // Update entity to it's new type. We don't use a new entity to keep all mentions, attributes and
+        // Update entity to its new type. We don't use a new entity to keep all mentions, attributes and
         // other related elements attached.
         $entity->type_id = $new->entityTypeID();
         $entity->entity_id = $new->id;

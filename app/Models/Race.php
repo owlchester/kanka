@@ -64,7 +64,7 @@ class Race extends MiscModel
 
     /**
      * Nullable values (foreign keys)
-     * @var array
+     * @var string[]
      */
     public $nullableForeignKeys = [
         'race_id',
@@ -222,6 +222,6 @@ class Race extends MiscModel
             return true;
         }
 
-        return parent::showProfile();
+        return parent::showProfileInfo();
     }
 }

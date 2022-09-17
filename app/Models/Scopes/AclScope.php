@@ -101,8 +101,9 @@ class AclScope implements Scope
      */
     protected function applyToEntity(Builder $query, Model $model): Builder
     {
+        // @phpstan-ignore-next-line
         return $query
-            ->private(false) // @phpstan-ignore-line
+            ->private(false)
             ->where(function ($subquery) {
                 return $subquery
                     ->where(function ($sub) {

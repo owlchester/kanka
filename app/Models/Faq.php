@@ -2,10 +2,11 @@
 
 namespace App\Models;
 
-use App\Models\Concerns\HasFilters;
 use App\Models\Concerns\Orderable;
 use App\Models\Concerns\Searchable;
 use App\Models\Concerns\Sortable;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 
@@ -18,8 +19,8 @@ use Illuminate\Support\Str;
  * @property string $locale
  * @property string $question
  * @property string $answer
- * @property FaqTranslation[] $translations
- * @property FaqTranslation $localeTranslation
+ * @property FaqTranslation[]|Collection $translations
+ * @property FaqTranslation|null $localeTranslation
  */
 class Faq extends Model
 {
@@ -46,8 +47,8 @@ class Faq extends Model
     /**
      * This call should be adapted in each entity model to add required "with()" statements to the query for performance
      * on the datagrids.
-     * @param $query
-     * @return mixed
+     * @param Builder $query
+     * @return Builder
      */
     public function scopePreparedWith(Builder $query): Builder
     {
@@ -55,37 +56,36 @@ class Faq extends Model
     }
 
     /**
-     * @param $query
+     * @param Builder $query
      * @param bool $visible
-     * @return mixed
+     * @return Builder
      */
-    public function scopeVisible($query, $visible = true)
+    public function scopeVisible(Builder $query, bool $visible = true): Builder
     {
         return $query->where('is_visible', $visible);
     }
 
     /**
-     * @param $query
+     * @param Builder $query
      * @param string $locale
-     * @return mixed
+     * @return Builder
      */
-    public function scopeLocale($query, $locale = 'en')
+    public function scopeLocale(Builder $query, string $locale = 'en'): Builder
     {
         return $query->where('locale', $locale);
     }
 
     /**
-     * @param $query
-     * @param string $locale
-     * @return mixed
+     * @param Builder $query
+     * @param string $order
+     * @return Builder
      */
-    public function scopeOrdered($query, $order = 'ASC')
+    public function scopeOrdered(Builder $query, $order = 'ASC'): Builder
     {
         return $query->orderBy('order', $order);
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function category()
     {
@@ -93,7 +93,6 @@ class Faq extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function translations()
     {
@@ -118,15 +117,6 @@ class Faq extends Model
             return $this->cachedSlug;
         }
         return $this->cachedSlug = Str::slug($this->question);
-    }
-
-    /**
-     * @param $query
-     * @return mixed
-     */
-    public function scopeAdmin($query)
-    {
-        return $query;
     }
 
     /**

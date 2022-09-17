@@ -35,8 +35,9 @@ use Laravel\Passport\HasApiTokens;
  * @property string $last_login_at
  * @property integer $welcome_campaign_id
  * @property boolean $newsletter
- * @property boolean $has_last_login_sharing
+ * @property boolean $has_last_login_sharingw
  * @property string|null $patreon_pledge
+ * @property string|null $timezone
  * @property int $booster_count
  * @property int $referral_id
  * @property Carbon|string|null $card_expires_at

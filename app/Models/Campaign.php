@@ -526,7 +526,7 @@ class Campaign extends MiscModel
     public function hasEditingWarning(): bool
     {
         $members = CampaignCache::members();
-        return !empty($members) && $members->count() > 1;
+        return $members !== null && $members->count() > 1;
     }
 
     /**

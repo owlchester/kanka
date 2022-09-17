@@ -344,24 +344,28 @@ class DatagridRenderer
             } elseif ($type == 'location') {
                 $class = 'hidden-xs hidden-sm';
                 if (method_exists($model, 'location')) {
+                    // @phpstan-ignore-next-line
                     $content = $model->location?->tooltipedLink();
                 } elseif (method_exists($model, 'parentLocation')) {
+                    // @phpstan-ignore-next-line
                     $content = $model->parentLocation?->tooltipedLink();
                 }
             } elseif ($type == 'character') {
                 $class = 'hidden-xs hidden-sm';
                 if (method_exists($model, 'character')) {
+                    // @phpstan-ignore-next-line
                     $content = $model->character?->tooltipedLink();
                 }
             } elseif ($type == 'organisation') {
                 $class = 'hidden-xs hidden-sm';
                 if (method_exists($model, 'organisation')) {
+                    // @phpstan-ignore-next-line
                     $content = $model->organisation?->tooltipedLink();
                 }
             } elseif ($type == 'entity') {
                 $class = 'hidden-xs hidden-sm';
                 if ($model->entity) {
-                    $content = $model->entity?->tooltipedLink();
+                    $content = $model->entity->tooltipedLink();
                 }
             } elseif ($type == 'is_private') {
                 // Viewer can't see private
@@ -373,8 +377,11 @@ class DatagridRenderer
                     '<br />';
             } elseif ($type == 'calendar_date') {
                 $class = 'hidden-xs hidden-sm';
+                // @phpstan-ignore-next-line
                 if ($model->hasCalendar()) {
+                    // @phpstan-ignore-next-line
                     $reminder = $model->calendarReminder();
+                    // @phpstan-ignore-next-line
                     $content = link_to_route(
                         'calendars.show',
                         $this->dateRenderer->render($model->getDate()),
@@ -415,7 +422,7 @@ class DatagridRenderer
 
     /**
      * @param string $field
-     * @return array|\Illuminate\Contracts\Translation\Translator|null|string
+     * @return string
      */
     private function trans(string $field = '')
     {

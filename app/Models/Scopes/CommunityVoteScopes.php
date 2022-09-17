@@ -39,19 +39,21 @@ trait CommunityVoteScopes
      */
     public function scopeVoting(Builder $builder): Builder
     {
+        // @phpstan-ignore-next-line
         return $builder
             ->where('published_at', '>=', Carbon::now())
-            ->visible();// @phpstan-ignore-line
+            ->visible();
     }
 
     /**
      * @param Builder $builder
-     * @return mixed
+     * @return Builder
      */
     public function scopeRecent(Builder $builder): Builder
     {
+        // @phpstan-ignore-next-line
         return $builder
-            ->published() // @phpstan-ignore-line
+            ->published()
             ->orderBy('published_at', 'DESC')
             ->take(5);
     }

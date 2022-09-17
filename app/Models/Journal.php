@@ -83,7 +83,7 @@ class Journal extends MiscModel
 
     /**
      * Nullable values (foreign keys)
-     * @var array
+     * @var string[]
      */
     public $nullableForeignKeys = [
         'location_id',
@@ -95,8 +95,8 @@ class Journal extends MiscModel
 
     /**
      * Performance with for datagrids
-     * @param $query
-     * @return mixed
+     * @param Builder $query
+     * @return Builder
      */
     public function scopePreparedWith(Builder $query): Builder
     {
@@ -220,7 +220,7 @@ class Journal extends MiscModel
 
     /**
      * Specify parent id attribute mutator
-     * @param $value
+     * @param int $value
      */
     public function setJournalIdAttribute($value)
     {

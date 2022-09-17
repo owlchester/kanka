@@ -161,7 +161,6 @@ class AbilityService
             'created_by' => $entityAbility->created_by,
             'attributes' => $this->attributes($entityAbility->ability->entity),
             'images' => [
-                // @phpstan-ignore-next-line
                 'has' => !empty($entityAbility->ability->image) || $entityAbility->ability->entity->image,
                 'thumb' => $entityAbility->ability->getImageUrl(120),
                 'url' => !empty($entityAbility->ability->image) ? $entityAbility->ability->getOriginalImageUrl() : null,

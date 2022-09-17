@@ -139,7 +139,7 @@ class EntityMappingService
     }
 
     /**
-     * @param MiscModel $model
+     * @param MiscModel|EntityNote|Campaign $model
      * @param int $target
      */
     protected function createNewMention($model, int $target)

@@ -206,7 +206,7 @@ class MiscPolicy
     /**
      * @param string $action
      * @param User $user
-     * @param Entity|null $entity
+     * @param Entity|MiscModel|null $entity
      * @param Campaign|null $campaign
      * @return bool
      */

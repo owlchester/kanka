@@ -74,6 +74,7 @@ class RelationController extends Controller
         $ajax = request()->ajax();
 
         $rows = $connections = $connectionService = [];
+        // @phpstan-ignore-next-line
         $defaultToTable = !$campaign->boosted() || ($campaign->boosted() && $campaign->defaultToConnection());
         if ($mode == 'table' || (empty($mode) && $defaultToTable)) {
             $mode = 'table';
@@ -94,6 +95,7 @@ class RelationController extends Controller
 
             $connectionService = $this->connectionService;
         }
+        // @phpstan-ignore-next-line
         $defaultToMap = !$campaign->boosted() || ($campaign->boosted() && $campaign->defaultToConnectionMode());
         if ($mode != 'table' && empty($option) && $defaultToMap) {
             if ($campaign->defaultToConnectionMode() == 1) {

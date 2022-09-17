@@ -102,6 +102,7 @@ class TagController extends CrudController
         Datagrid::layout(\App\Renderers\Layouts\Tag\Tag::class)
             ->route('tags.tags', $options);
 
+        // @phpstan-ignore-next-line
         $this->rows = $tag
             ->sort(request()->only(['o', 'k']))
             ->descendants()

@@ -5,6 +5,7 @@ namespace App\Observers;
 use App\Models\Location;
 use App\Models\MiscModel;
 use App\Services\ImageService;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class LocationObserver extends MiscObserver
 {
@@ -43,9 +44,9 @@ class LocationObserver extends MiscObserver
 
     /**
      * Delete the map when the entity is deleted
-     * @param MiscModel|Location $model
+     * @param MiscModel|SoftDeletes $model
      */
-    public function deleted(MiscModel|Location $model)
+    public function deleted(MiscModel $model)
     {
         parent::deleted($model);
 

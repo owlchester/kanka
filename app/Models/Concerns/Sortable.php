@@ -17,7 +17,7 @@ trait Sortable
      */
     protected function customSortableColumns(): array
     {
-        if (isset($this->sortableColumns)) {
+        if (property_exists($this, 'sortableColumns')) {
             return $this->sortableColumns;
         }
 

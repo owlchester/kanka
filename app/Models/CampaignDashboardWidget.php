@@ -238,7 +238,7 @@ class CampaignDashboardWidget extends Model
 
         // Preview, check the linked entity
         $entity = !empty($entity) ? $entity : $this->entity;
-        return !empty($entity) && in_array($entity->typeId(), $types);
+        return $entity !== null && in_array($entity->typeId(), $types);
     }
 
     /**
@@ -284,7 +284,6 @@ class CampaignDashboardWidget extends Model
                 ->session(false)
                 ->make($entityType, $this->filterOptions(), $model);
 
-            // @phpstan-ignore-next-line
             $models = $model
                 ->select($model->getTable() . '.id')
                 ->filter($filterService->filters())
@@ -329,7 +328,6 @@ class CampaignDashboardWidget extends Model
                 ->session(false)
                 ->make($entityType, $this->filterOptions(), $model);
 
-            // @phpstan-ignore-next-line
             $models = $model
                 ->select($model->getTable() . '.id')
                 ->filter($filterService->filters())

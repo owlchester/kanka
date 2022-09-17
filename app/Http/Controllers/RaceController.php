@@ -113,11 +113,12 @@ class RaceController extends CrudController
         Datagrid::layout(\App\Renderers\Layouts\Race\Race::class)
             ->route('races.races', [$race]);
 
+        // @phpstan-ignore-next-line
         $this->rows = $race
             ->sort(request()->only(['o', 'k']))
             ->descendants()
             ->with(['entity', 'characters'])
-            ->paginate();
+            ->paginate(15);
 
         // Ajax Datagrid
         if (request()->ajax()) {

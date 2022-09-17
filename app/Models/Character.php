@@ -24,6 +24,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property bool $is_personality_pinned
  * @property Collection|Family[] $families
  * @property Location|null $location
+ * @property int|null $location_id
  * @property Race|null $race
  * @property Collection|Race[] $races
  * @property Collection|Organisation[] $organisations
@@ -129,7 +130,7 @@ class Character extends MiscModel
 
     /**
      * Nullable values (foreign keys)
-     * @var array
+     * @var string[]
      */
     public $nullableForeignKeys = [
         'location_id',

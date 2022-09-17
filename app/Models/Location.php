@@ -26,9 +26,14 @@ use Exception;
  * @property boolean $is_map_private
  * @property integer|null $parent_location_id
  * @property Location|null $parentLocation
- * @property Map[] $maps
+ * @property Map[]|Collection $maps
  * @property Location[]|Collection $descendants
- * @property Location[] $locations
+ * @property Location[]|Collection $locations
+ * @property Character[]|Collection $characters
+ * @property Organisation[]|Collection $organisations
+ * @property Family[]|Collection $families
+ * @property Item[]|Collection $items
+ * @property MapPoint[]|Collection $mapPoints
  */
 class Location extends MiscModel
 {
@@ -78,7 +83,7 @@ class Location extends MiscModel
 
     /**
      * Nullable values (foreign keys)
-     * @var array
+     * @var string[]
      */
     public $nullableForeignKeys = [
         'parent_location_id',
@@ -96,8 +101,8 @@ class Location extends MiscModel
 
     /**
      * Performance with for datagrids
-     * @param $query
-     * @return mixed
+     * @param Builder $query
+     * @return Builder
      */
     public function scopePreparedWith(Builder $query): Builder
     {
@@ -158,6 +163,13 @@ class Location extends MiscModel
     }
 
     /**
+     */
+    public function races()
+    {
+        return $this->belongsToMany('App\Models\Race', 'race_location');
+    }
+
+    /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function locationAttributes()
@@ -166,7 +178,6 @@ class Location extends MiscModel
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function items()
     {
@@ -272,7 +283,7 @@ class Location extends MiscModel
 
     /**
      * Specify parent id attribute mutator
-     * @param $value
+     * @param int $value
      */
     public function setParentLocationIdAttribute($value)
     {
@@ -394,11 +405,11 @@ class Location extends MiscModel
     /**
      * @return array
      */
-    public function legend()
+    public function legend(): array
     {
         $sortedPoints = [];
-        /** @var MapPoint $point */
         $points = $this->mapPoints()->with(['targetEntity', 'location'])->get();
+        /** @var MapPoint $point */
         foreach ($points as $point) {
             if ($point->visible()) {
                 $sortedPoints[] = $point;
@@ -437,13 +448,5 @@ class Location extends MiscModel
         return [
             'parent_location_id',
         ];
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function races()
-    {
-        return $this->belongsToMany('App\Models\Race', 'race_location');
     }
 }

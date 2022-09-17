@@ -5,6 +5,7 @@ namespace App\Http\Resources;
 use App\Facades\CampaignLocalization;
 use App\Facades\Img;
 use App\Facades\Mentions;
+use App\Models\Item;
 use App\Models\Location;
 use App\Models\MiscModel;
 use App\Services\Api\ApiService;
@@ -82,7 +83,7 @@ class EntityResource extends JsonResource
         }
 
         if (request()->get('related', false) || request()->get('image', false)) {
-            if (!$entity->child) {
+            if (empty($entity->child)) {
                 $data['child'] = 'Invalid child, please contact Jay on Discord with the following: EntityResource for #' . $entity->id;
             } else {
                 $campaign = CampaignLocalization::getCampaign();
@@ -118,7 +119,7 @@ class EntityResource extends JsonResource
      */
     public function entity(array $prepared = [])
     {
-        /** @var MiscModel $misc */
+        /** @var MiscModel|Item $misc */
         $misc = $this->resource;
 
         $galleryImage = $misc->entity->image;
@@ -137,7 +138,7 @@ class EntityResource extends JsonResource
             'focus_y' => $misc->entity->focus_y,
 
             // Image
-            'image_full' => !empty($misc->image) ? $misc->getImageUrl(0) : ($misc->entity->image ? $misc->entity->image->getImagePath(0) : null),
+            'image_full' => !empty($misc->image) ? $misc->getImageUrl(0) : $misc->entity->image?->getImagePath(0),
             'image_thumb' => $misc->getImageUrl(40),
             'has_custom_image' => !empty($misc->image) || !empty($galleryImage),
             'image_uuid' => $superboosted && $misc->entity->image ? $misc->entity->image->id : null,
@@ -166,7 +167,7 @@ class EntityResource extends JsonResource
             $merged['location_id'] = $misc->location_id;
         }
         if (array_key_exists('character_id', $attributes)) {
-            $merged['character_id'] = $this->character_id;
+            $merged['character_id'] = $misc->character_id;
         }
 
         /** @var MiscModel $this */

@@ -46,7 +46,7 @@ class Note extends MiscModel
 
     /**
      * Fields that can be set to null (foreign keys)
-     * @var array
+     * @var string[]
      */
     public $nullableForeignKeys = [
         'note_id',

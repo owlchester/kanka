@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Concerns\SortableTrait;
 use App\Models\Concerns\Paginatable;
+use App\User;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -22,6 +23,7 @@ use Illuminate\Support\Str;
  * @property Campaign $campaign
  * @property Collection|CampaignPermission[] $permissions
  * @property Collection|CampaignDashboardRole[] $dashboardRoles
+ * @property Collection|User[] $users
  *
  * @method static self|Builder admin(bool $with)
  * @method static self|Builder public(bool $with)
@@ -106,15 +108,17 @@ class CampaignRole extends Model
      */
     public function scopeWithoutAdmin(Builder $query): Builder
     {
+        // @phpstan-ignore-next-line
         return $query->admin(false);
     }
 
     /**
      * Get the admin role
      * @param Builder $query
+     * @param bool $with
      * @return Builder
      */
-    public function scopeAdmin(Builder$query, bool $with = true): Builder
+    public function scopeAdmin(Builder $query, bool $with = true): Builder
     {
         return $query->where('is_admin', $with);
     }

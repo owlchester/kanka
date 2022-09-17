@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\User;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 
@@ -90,20 +91,20 @@ class EntityLog extends Model
     }
 
     /**
-     * @param $query
-     * @return mixed
+     * @param Builder $query
+     * @return Builder
      */
-    public function scopeRecent($query)
+    public function scopeRecent(Builder $query)
     {
         return $query->orderBy('created_at', 'DESC')->orderBy('id', 'DESC');
     }
 
     /**
-     * @param $query
-     * @param $action
-     * @return mixed
+     * @param Builder $query
+     * @param int $action
+     * @return Builder
      */
-    public function scopeAction($query, $action)
+    public function scopeAction(Builder $query, int $action)
     {
         return $query->where(['action' => $action]);
     }

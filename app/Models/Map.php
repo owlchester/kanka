@@ -39,7 +39,7 @@ use Illuminate\Support\Facades\Storage;
  * @property Collection|MapMarker[] $markers
  * @property MapMarker $center_marker
  * @property Collection|MapGroup[] $groups
- * @property [] $grids
+ * @property array $grids
  */
 class Map extends MiscModel
 {
@@ -105,7 +105,7 @@ class Map extends MiscModel
 
     /**
      * Nullable values (foreign keys)
-     * @var array
+     * @var string[]
      */
     public $nullableForeignKeys = [
         'map_id',
@@ -146,7 +146,7 @@ class Map extends MiscModel
 
     /**
      * Specify parent id attribute mutator
-     * @param $value
+     * @param int $value
      */
     public function setMapIdAttribute($value)
     {
@@ -155,8 +155,8 @@ class Map extends MiscModel
 
     /**
      * Performance with for datagrids
-     * @param $query
-     * @return mixed
+     * @param Builder $query
+     * @return Builder
      */
     public function scopePreparedWith(Builder $query): Builder
     {
@@ -227,7 +227,7 @@ class Map extends MiscModel
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
     public function center_marker()
     {
@@ -414,7 +414,7 @@ class Map extends MiscModel
 
     /**
      * Maximum zoom of a map
-     * @return int
+     * @return float
      */
     public function maxZoom(): float
     {
@@ -673,6 +673,6 @@ class Map extends MiscModel
     public function hasDistanceUnit(): bool
     {
         return false;
-        return !empty($this->config['distance_measure']);
+        //return !empty($this->config['distance_measure']);
     }
 }

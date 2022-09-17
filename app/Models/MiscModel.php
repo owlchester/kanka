@@ -37,13 +37,12 @@ use Illuminate\Support\Str;
  * @property string $tooltip
  * @property string $header_image
  * @property boolean $is_private
- * @property [] $nullableForeignKeys
+ * @property string[] $nullableForeignKeys
  * @property Carbon $created_at
  * @property Carbon $updated_at
  * @property Campaign $campaign
  * @property int $created_by
  * @property int $updated_by
- * @mixin \Illuminate\Database\Eloquent\Builder
  */
 abstract class MiscModel extends Model
 {
@@ -110,7 +109,7 @@ abstract class MiscModel extends Model
 
     /**
      * Fields that can be set to null (foreign keys)
-     * @var array
+     * @var string[]
      */
     public $nullableForeignKeys = [];
 

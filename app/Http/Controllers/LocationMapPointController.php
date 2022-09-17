@@ -137,8 +137,8 @@ class LocationMapPointController extends Controller
         $this->authorize('update', $location);
 
 
-        $mapPoint->axis_x = $request->post('axis_x', 1);
-        $mapPoint->axis_y = $request->post('axis_y', 1);
+        $mapPoint->axis_x = $request->post('axis_x', '1');
+        $mapPoint->axis_y = $request->post('axis_y', '1');
         $mapPoint->save();
 
         return response()->json([
@@ -167,7 +167,7 @@ class LocationMapPointController extends Controller
 
     /**
      * @param Request $request
-     * @param MiscModel $model
+     * @param MapPoint $model
      * @return array
      */
     protected function prepareData(Request $request, MapPoint $model)

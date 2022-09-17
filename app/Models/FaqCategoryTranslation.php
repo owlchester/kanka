@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\Concerns\HasFilters;
 use App\Models\Concerns\Searchable;
 use App\Models\Concerns\Sortable;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -29,20 +30,20 @@ class FaqCategoryTranslation extends Model
     ];
 
     /**
-     * @param $query
+     * @param Builder $query
      * @param string $locale
-     * @return mixed
+     * @return Builder
      */
-    public function scopeLocale($query, $locale = 'en')
+    public function scopeLocale(Builder $query, string $locale = 'en'): Builder
     {
         return $query->where('locale', $locale);
     }
     /**
-     * @param $query
-     * @param string $locale
-     * @return mixed
+     * @param Builder $query
+     * @param int $category
+     * @return Builder
      */
-    public function scopeCategoryID($query, int $category)
+    public function scopeCategoryID(Builder $query, int $category): Builder
     {
         return $query->where('faq_category_id', $category);
     }

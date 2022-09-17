@@ -240,7 +240,7 @@ class Entity extends Model
     }
 
     /**
-     * @param $types
+     * @param array|int $types
      * @return bool
      */
     public function isType($types): bool

@@ -64,7 +64,7 @@ class Event extends MiscModel
 
     /**
      * Nullable values (foreign keys)
-     * @var array
+     * @var string[]
      */
     public $nullableForeignKeys = [
         'location_id',
@@ -73,8 +73,8 @@ class Event extends MiscModel
 
     /**
      * Performance with for datagrids
-     * @param $query
-     * @return mixed
+     * @param Builder $query
+     * @return Builder
      */
     public function scopePreparedWith(Builder $query): Builder
     {
@@ -169,9 +169,10 @@ class Event extends MiscModel
     {
         return 'event_id';
     }
+
     /**
      * Specify parent id attribute mutator
-     * @param $value
+     * @param int $value
      */
     public function setEventIdAttribute($value)
     {

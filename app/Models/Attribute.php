@@ -19,7 +19,7 @@ use Illuminate\Support\Str;
  * @property integer $id
  * @property integer $entity_id
  * @property string $name
- * @property string $value
+ * @property string|null $value
  * @property int $type_id
  * @property integer $origin_attribute_id
  * @property integer $default_order
@@ -75,8 +75,8 @@ class Attribute extends Model
     ];
 
     protected $numberRange = '`\[range:(-?[0-9]+),(-?[0-9]+)\]`i';
-    protected $numberMax = null;
-    protected $numberMin = null;
+    protected int|null|bool $numberMax = null;
+    protected int|null|bool $numberMin = null;
 
     protected $listRegexp = '`\[range:(.*)\]`i';
     protected $listRange = null;
@@ -183,7 +183,7 @@ class Attribute extends Model
     /**
      * @param Builder $query
      * @param string $order
-     * @return mixed
+     * @return Builder
      */
     public function scopeOrdered(Builder $query, string $order = 'asc'): Builder
     {
@@ -276,7 +276,7 @@ class Attribute extends Model
      */
     protected function calculateNumberConstraints(): self
     {
-        if (!$this->numberMax === null) {
+        if ($this->numberMax !== null) {
             return $this;
         }
 

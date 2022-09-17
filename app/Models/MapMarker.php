@@ -156,7 +156,7 @@ class MapMarker extends Model
             $segments = explode(' ', str_replace("\r\n", " ", $this->custom_shape));
             foreach ($segments as $segment) {
                 $coord = explode(',', $segment);
-                if (!empty($coord) && !empty($coord[0]) && !empty($coord[1])) {
+                if (!empty($coord[0]) && !empty($coord[1])) {
                     $coords[] = '[' . $coord[0] . ', ' . Str::before($coord[1], ' ') . ']';
                 }
             }
@@ -415,7 +415,7 @@ class MapMarker extends Model
                 }
                 return '<a href="' . $url . '">' . e($this->entity->name) . '</a>';
             }
-            return $link ? e($this->entity->name) : str_replace("'", "\'", $this->entity->name);
+            return str_replace("'", "\'", $this->entity->name);
         }
         return $link ? e($this->name) : str_replace("'", "\'", $this->name);
     }

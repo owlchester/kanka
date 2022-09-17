@@ -58,7 +58,7 @@ class Timeline extends MiscModel
 
     /**
      * Nullable values (foreign keys)
-     * @var array
+     * @var string[]
      */
     public $nullableForeignKeys = [
         'calendar_id',

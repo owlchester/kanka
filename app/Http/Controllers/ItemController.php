@@ -77,10 +77,9 @@ class ItemController extends CrudController
     {
         return $this->menuView($item, 'inventories');
     }
+
     /**
      * @param Item $item
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function items(Item $item)
     {
@@ -102,10 +101,10 @@ class ItemController extends CrudController
         return $this->datagridAjax();
 
         // Ajax Datagrid
-        if (request()->ajax()) {
+        /*if (request()->ajax()) {
             return $this->datagridAjax();
         }
         return $this
-            ->menuView($item, 'items');
+            ->menuView($item, 'items');*/
     }
 }

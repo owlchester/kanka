@@ -79,9 +79,10 @@ class TimelineController extends CrudController
         Datagrid::layout(\App\Renderers\Layouts\Timeline\Timeline::class)
             ->route('timelines.timelines', [$timeline]);
 
+        // @phpstan-ignore-next-line
         $this->rows = $timeline
             ->sort(request()->only(['o', 'k']))
-            ->descendants() // @phpstan-ignore-line
+            ->descendants()
             ->with(['entity', 'timeline', 'timeline.entity'])
             ->paginate();
 

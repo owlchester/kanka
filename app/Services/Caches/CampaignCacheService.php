@@ -18,9 +18,9 @@ class CampaignCacheService extends BaseCache
 {
     /**
      * Members of a campaign
-     * @return Collection
+     * @return Collection|null
      */
-    public function members(): Collection
+    public function members(): Collection|null
     {
         $key = $this->membersKey();
         if ($this->has($key)) {

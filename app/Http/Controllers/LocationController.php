@@ -60,7 +60,7 @@ class LocationController extends CrudController
             $this->authorizeForGuest(\App\Models\CampaignPermission::ACTION_READ, $location);
             // Extra check for private maps
             if ($location->is_map_private) {
-                abort('403');
+                abort(403);
             }
         }
 
@@ -138,8 +138,6 @@ class LocationController extends CrudController
 
     /**
      * @param Location $location
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function characters(Location $location)
     {
@@ -149,7 +147,7 @@ class LocationController extends CrudController
         $filters = [];
         if (request()->has('location_id')) {
             $options['location_id'] = $location->id;
-            $filters['location_id'] = $location->id;;
+            $filters['location_id'] = $location->id;
         }
         Datagrid::layout(\App\Renderers\Layouts\Location\Character::class)
             ->route('locations.characters', $options);
@@ -175,8 +173,6 @@ class LocationController extends CrudController
 
     /**
      * @param Location $location
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function items(Location $location)
     {
@@ -185,8 +181,6 @@ class LocationController extends CrudController
 
     /**
      * @param Location $location
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function locations(Location $location)
     {
@@ -201,6 +195,7 @@ class LocationController extends CrudController
         Datagrid::layout(\App\Renderers\Layouts\Location\Location::class)
             ->route('locations.locations', $options);
 
+        // @phpstan-ignore-next-line
         $this->rows = $location
             ->descendants()
             ->select(['id', 'image', 'name', 'type', 'parent_location_id', 'is_private'])
@@ -252,9 +247,6 @@ class LocationController extends CrudController
 
     /**
      * Display the specified resource.
-     *
-     * @param  \App\Models\Location  $location
-     * @return \Illuminate\Http\Response
      */
     public function mapPoints(Location $location)
     {

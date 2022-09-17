@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -77,34 +78,34 @@ class EntityMention extends Model
     /**
      * @return bool
      */
-    public function isCampaign()
+    public function isCampaign(): bool
     {
         return !empty($this->campaign_id);
     }
 
     /**
-     * @param $query
-     * @return mixed
+     * @param Builder $query
+     * @return Builder
      */
-    public function scopeEntity($query)
+    public function scopeEntity(Builder $query)
     {
         return $query->whereNotNull('entity_mentions.entity_id');
     }
 
     /**
-     * @param $query
+     * @param Builder $query
      * @return mixed
      */
-    public function scopeEntityNote($query)
+    public function scopeEntityNote(Builder $query)
     {
         return $query->whereNotNull('entity_mentions.entity_note_id');
     }
 
     /**
-     * @param $query
+     * @param Builder $query
      * @return mixed
      */
-    public function scopeCampaign($query)
+    public function scopeCampaign(Builder $query)
     {
         return $query->whereNotNull('entity_mentions.campaign_id');
     }

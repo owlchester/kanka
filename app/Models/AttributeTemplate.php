@@ -62,7 +62,7 @@ class AttributeTemplate extends MiscModel
 
     /**
      * Fields that can be set to null (foreign keys)
-     * @var array
+     * @var string[]
      */
     public $nullableForeignKeys = [
         'attribute_template_id',
@@ -120,7 +120,7 @@ class AttributeTemplate extends MiscModel
     /**
      * Performance with for datagrids
      * @param Builder $query
-     * @return mixed
+     * @return Builder
      */
     public function scopePreparedSelect(Builder $query): Builder
     {
@@ -173,6 +173,7 @@ class AttributeTemplate extends MiscModel
         }
 
         // Loop through parents
+        /** @var Tag $children */
         foreach ($this->ancestors()->with('entity')->get() as $children) {
             foreach ($children->entity->attributes()->orderBy('default_order', 'ASC')->get() as $attribute) {
                 // Don't re-create existing attributes.

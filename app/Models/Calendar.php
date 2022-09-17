@@ -386,7 +386,7 @@ class Calendar extends MiscModel
                 (isset($years[$year]) ? $years[$year] : $year) . ' ' .
                 $this->suffix;
             return $return;
-        } catch (\Exception $e) {
+        } catch (\Exception $e) { // @phpstan-ignore-line
             return $this->date;
         }
     }

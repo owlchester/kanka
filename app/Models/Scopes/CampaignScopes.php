@@ -83,6 +83,7 @@ trait CampaignScopes
      */
     public function scopePublic(Builder $query): Builder
     {
+        // @phpstan-ignore-next-line
         return $query->visibility(Campaign::VISIBILITY_PUBLIC);
     }
 

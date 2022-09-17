@@ -80,7 +80,7 @@ class Quest extends MiscModel
 
     /**
      * Nullable values (foreign keys)
-     * @var array
+     * @var string[]
      */
     public $nullableForeignKeys = [
         'character_id',
@@ -143,7 +143,6 @@ class Quest extends MiscModel
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function quests()
     {

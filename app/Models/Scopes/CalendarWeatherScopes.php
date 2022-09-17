@@ -40,10 +40,11 @@ trait CalendarWeatherScopes
      */
     public function scopeDated(Builder $builder, int $calendarId, int $year, int $month, int $day)
     {
+        // @phpstan-ignore-next-line
         return $builder
             ->where('calendar_id', $calendarId)
-            ->year($year) // @phpstan-ignore-line
-            ->month($month) // @phpstan-ignore-line
+            ->year($year)
+            ->month($month)
             ->where('day', $day);
     }
 }

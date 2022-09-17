@@ -71,8 +71,6 @@ class OrganisationController extends CrudController
 
     /**
      * @param Organisation $organisation
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function organisations(Organisation $organisation)
     {
@@ -81,6 +79,7 @@ class OrganisationController extends CrudController
         Datagrid::layout(\App\Renderers\Layouts\Organisation\Organisation::class)
             ->route('organisations.organisations', [$organisation]);
 
+        // @phpstan-ignore-next-line
         $this->rows = $organisation
             ->descendants()
             ->sort(request()->only(['o', 'k']))
@@ -100,8 +99,6 @@ class OrganisationController extends CrudController
 
     /**
      * @param Organisation $organisation
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function members(Organisation $organisation)
     {

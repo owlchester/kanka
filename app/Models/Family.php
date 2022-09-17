@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\Builder;
  * Class Family
  * @package App\Models
  * @property int|null $family_id
+ * @property int|null $location_id
  * @property Collection|Character[] $members
  * @property Family $family
  * @property Collection|Family[] $families
@@ -68,7 +69,7 @@ class Family extends MiscModel
 
     /**
      * Nullable values (foreign keys)
-     * @var array
+     * @var string[]
      */
     public $nullableForeignKeys = [
         'location_id',
@@ -92,7 +93,7 @@ class Family extends MiscModel
 
     /**
      * Specify parent id attribute mutator
-     * @param $value
+     * @param int $value
      */
     public function setFamilyIdAttribute($value)
     {
@@ -101,8 +102,8 @@ class Family extends MiscModel
 
     /**
      * Performance with for datagrids
-     * @param $query
-     * @return mixed
+     * @param Builder $query
+     * @return Builder
      */
     public function scopePreparedWith(Builder $query): Builder
     {
@@ -134,7 +135,6 @@ class Family extends MiscModel
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function members()
     {

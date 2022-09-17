@@ -208,11 +208,13 @@ trait HasFilters
 
         $this->joinedEntity = true;
 
+        // @phpstan-ignore-next-line
         return $query
             ->distinct()
             ->leftJoin('entities as e', function ($join) {
                 $join->on('e.entity_id', '=', $this->getTable() . '.id');
-                $join->where('e.type_id', '=', $this->entityTypeID()) // @phpstan-ignore-line
+                // @phpstan-ignore-next-line
+                $join->where('e.type_id', '=', $this->entityTypeID())
                     ->whereRaw('e.campaign_id = ' . $this->getTable() . '.campaign_id');
             })
             ->groupBy($this->getTable() . '.id')

@@ -37,8 +37,8 @@ class PermissionService
 
     /**
      * Set the entity type
-     * @param string $type
-     * @return PermissionService
+     * @param int $type
+     * @return $this
      */
     public function type(int $type): self
     {
@@ -335,7 +335,7 @@ class PermissionService
     }
 
     /**
-     * @param $request
+     * @param array $request
      * @param Entity $entity
      * @param bool $override
      */
@@ -507,7 +507,7 @@ class PermissionService
                 'users' => []
             ];
 
-            /** @var CampaignRole $role */
+            /** @var CampaignRole $campaignRole */
             foreach ($this->campaign->roles()->with(['users', 'permissions'])->get() as $campaignRole) {
                 $campaignPermissions = $campaignRole->permissions
                     ->whereNull('entity_id')

@@ -88,6 +88,7 @@ class JournalController extends CrudController
         Datagrid::layout(\App\Renderers\Layouts\Journal\Journal::class)
             ->route('journals.journals', $options);
 
+        // @phpstan-ignore-next-line
         $this->rows = $journal
             ->sort(request()->only(['o', 'k']))
             ->filter($filters)

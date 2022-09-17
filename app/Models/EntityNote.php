@@ -32,7 +32,6 @@ use Illuminate\Support\Collection;
  * @property Location|null $location
  * @property EntityMention[]|Collection $mentions
  * @property EntityNotePermission[]|Collection $permissions
- * @property [] $settings
  *
  * @method static Builder|self pinned()
  */
@@ -152,10 +151,10 @@ class EntityNote extends Model
     }
 
     /**
-     * @param $query
-     * @return mixed
+     * @param Builder $query
+     * @return Builder
      */
-    public function scopeOrdered($query)
+    public function scopeOrdered(Builder $query)
     {
         return $query
             ->orderBy('position');

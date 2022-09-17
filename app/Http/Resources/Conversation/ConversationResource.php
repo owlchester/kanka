@@ -30,7 +30,6 @@ class ConversationResource extends JsonResource
         $previous = null;
         /** @var ConversationMessage $message */
         foreach ($messages as $message) {
-            /** @var ConversationMessageResource $msg */
             $message->grouppedWith($previous);
             $data[] = new ConversationMessageResource($message);
 //            [

@@ -16,8 +16,9 @@ use Illuminate\Database\Eloquent\Builder;
  * Class Organisation
  * @package App\Models
  *
- * @property int $organisation_id
- * @property Organisation $organisation
+ * @property int|null $organisation_id
+ * @property int|null $location_id
+ * @property Organisation|null $organisation
  * @property Collection|OrganisationMember[] $members
  * @property Collection|Organisation[] $descendants
  * @property Collection|Organisation[] $organisations
@@ -79,7 +80,7 @@ class Organisation extends MiscModel
 
     /**
      * Nullable values (foreign keys)
-     * @var array
+     * @var string[]
      */
     public $nullableForeignKeys = [
         'location_id',

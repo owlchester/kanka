@@ -89,7 +89,7 @@ class MenuLink extends MiscModel
 
     /**
      * Nullable values (foreign keys)
-     * @var array
+     * @var string[]
      */
     public $nullableForeignKeys = [
         'entity_id',
@@ -117,8 +117,8 @@ class MenuLink extends MiscModel
 
     /**
      * Performance with for datagrids
-     * @param $query
-     * @return mixed
+     * @param Builder $query
+     * @return Builder
      */
     public function scopePreparedWith(Builder $query): Builder
     {
@@ -228,7 +228,7 @@ class MenuLink extends MiscModel
     protected function getIndexRoute(): string
     {
         $filters = $this->filters . '&_clean=true&_from=quicklink&quick-link=' . $this->id;
-        $nestedType = (!empty($this->options['is_nested']) && $this->options['is_nested'] ? 'tree' : 'index');
+        $nestedType = (!empty($this->options['is_nested']) && $this->options['is_nested'] == '1' ? 'tree' : 'index');
 
         $routeName = Str::plural($this->type) . ".$nestedType";
         if ($nestedType === 'tree' && !Route::has($routeName)) {
@@ -252,10 +252,10 @@ class MenuLink extends MiscModel
     }
 
     /**
-     * @param $query
+     * @param Builder $query
      * @return Builder
      */
-    public function scopeOrdered($query): Builder
+    public function scopeOrdered(Builder $query): Builder
     {
         return $query
             ->orderBy('position', 'ASC')
@@ -272,10 +272,10 @@ class MenuLink extends MiscModel
     }
 
     /**
-     * @param $query
-     * @return mixed
+     * @param Builder $query
+     * @return Builder
      */
-    public function scopeStandardWith($query): Builder
+    public function scopeStandardWith(Builder $query): Builder
     {
         return $query->with('entity');
     }
@@ -313,7 +313,6 @@ class MenuLink extends MiscModel
     }
 
     /**
-     * @return string
      */
     public function randomEntity()
     {
@@ -323,7 +322,7 @@ class MenuLink extends MiscModel
             $entityTypeID = config('entities.ids.' . $entityType);
         }
 
-        /** @var Entity $entity */
+        /** @var Entity|null $entity */
         $entity = Entity::
             inTags($this->tags->pluck('id')->toArray())
             ->type($entityTypeID)

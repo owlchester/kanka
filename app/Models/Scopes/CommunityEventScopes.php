@@ -9,10 +9,10 @@ use Illuminate\Database\Eloquent\Builder;
  * Trait CommunityVoteScopes
  * @package App\Models\Scopes
  *
- * @method self|Builder ongoing()
- * @method self|Builder finished()
- * @method self recent()
- * @method self visible()
+ * @method static self|Builder ongoing()
+ * @method static self|Builder finished()
+ * @method static self|Builder recent()
+ * @method static self|Builder visible()
  *
  */
 trait CommunityEventScopes
@@ -41,6 +41,7 @@ trait CommunityEventScopes
      */
     public function scopeVoting(Builder $builder)
     {
+        // @phpstan-ignore-next-line
         return $builder
             ->where('published_at', '>=', Carbon::now())
             ->visible();
@@ -52,6 +53,7 @@ trait CommunityEventScopes
      */
     public function scopeRecent(Builder $builder)
     {
+        // @phpstan-ignore-next-line
         return $builder
             ->published()
             ->orderBy('published_at', 'DESC')

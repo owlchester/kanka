@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Services;
-
 
 use App\Facades\CampaignCache;
 use App\Facades\UserCache;
@@ -47,7 +45,7 @@ class DashboardService
     /**
      * Get the current or default dashboard for the user
      * @param int|null $dashboard
-     * @return null
+     * @return null|CampaignDashboard
      */
     public function getDashboard(int $dashboard = null)
     {
@@ -291,7 +289,7 @@ class DashboardService
      * Validate that a requested dashboard is available to the user
      * @param array $available
      * @param int $dashboard
-     * @return null
+     * @return null|CampaignDashboard
      */
     protected function validateDashboard(array $available, int $dashboard)
     {

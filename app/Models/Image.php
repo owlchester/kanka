@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Models;
-
 
 use App\Facades\Img;
 use App\Models\Concerns\LastSync;
@@ -10,6 +8,7 @@ use App\Traits\CampaignTrait;
 use App\Traits\VisibilityIDTrait;
 use App\User;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -33,6 +32,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property Campaign $campaign
  * @property Image[] $folders
  * @property Image[] $images
+ * @property Entity[] $entities
+ * @property Entity[] $headers
  *
  *
  * @property int $visibility_id
@@ -184,11 +185,11 @@ class Image extends Model
     }
 
     /**
-     * @param $query
-     * @param $folderUuid
-     * @return mixed
+     * @param Builder $query
+     * @param string|null $folderUuid
+     * @return Builder
      */
-    public function scopeImageFolder($query, $folderUuid)
+    public function scopeImageFolder(Builder $query, string $folderUuid = null): Builder
     {
         if (empty($folderUuid)) {
             return $query->whereNull('folder_id');
@@ -198,10 +199,10 @@ class Image extends Model
     }
 
     /**
-     * @param $query
-     * @return mixed
+     * @param Builder
+     * @return Builder
      */
-    public function scopeDefaultOrder($query)
+    public function scopeDefaultOrder(Builder $query): Builder
     {
         return $query
             ->orderBy('is_folder', 'desc')
@@ -209,10 +210,10 @@ class Image extends Model
     }
 
     /**
-     * @param $query
-     * @return mixed
+     * @param Builder $query
+     * @return Builder
      */
-    public function scopeFolders($query)
+    public function scopeFolders(Builder $query): Builder
     {
         return $query
             ->where('is_folder', true)

@@ -64,8 +64,6 @@ class FamilyController extends CrudController
 
     /**
      * @param Family $family
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function families(Family $family)
     {
@@ -77,6 +75,7 @@ class FamilyController extends CrudController
         Datagrid::layout(\App\Renderers\Layouts\Family\Family::class)
             ->route('families.families', $options);
 
+        // @phpstan-ignore-next-line
         $this->rows = $family
             ->descendants()
             ->sort(request()->only(['o', 'k']))
@@ -95,8 +94,6 @@ class FamilyController extends CrudController
 
     /**
      * @param Family $family
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function members(Family $family)
     {
