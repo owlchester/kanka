@@ -23,7 +23,8 @@ trait SortableTrait
     {
         if (empty($filters)) {
             if (empty($defaultOrder)) {
-                return $this->defaultOrder();
+                // @phpstan-ignore-next-line
+                return $query->defaultOrder();
             }
             foreach ($defaultOrder as $field => $order) {
                 $query->orderBy($field, $order);
@@ -53,7 +54,8 @@ trait SortableTrait
         if (Str::contains($key, '.')) {
             $segments = explode('.', $key);
             if (count($segments) == 2) {
-                return $this->sortOnForeign($key, $order);
+                // @phpstan-ignore-next-line
+                return $query->sortOnForeign($key, $order);
             }
         }
 
