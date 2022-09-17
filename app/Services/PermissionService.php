@@ -2,14 +2,11 @@
 
 namespace App\Services;
 
-use App\Models\Campaign;
 use App\Models\CampaignPermission;
 use App\Models\CampaignRole;
 use App\Models\Entity;
-use App\Models\MiscModel;
 use App\Traits\CampaignAware;
 use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
 /**

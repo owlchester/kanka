@@ -237,7 +237,7 @@ class CampaignDashboardWidget extends Model
         ];
 
         // Preview, check the linked entity
-        $entity = !empty($entity) ? $entity : $this->entity; // @phpstan-ignore-line
+        $entity = !empty($entity) ? $entity : $this->entity;
         return !empty($entity) && in_array($entity->typeId(), $types);
     }
 
@@ -275,7 +275,7 @@ class CampaignDashboardWidget extends Model
         if (!empty($entityType) && !empty($this->config['filters'])) {
 
             $className = 'App\Models\\' . Str::studly($entityType);
-            /** @var MiscModel $model */
+            /** @var MiscModel|Character $model */
             $model = new $className();
 
             /** @var FilterService $filterService */
@@ -284,6 +284,7 @@ class CampaignDashboardWidget extends Model
                 ->session(false)
                 ->make($entityType, $this->filterOptions(), $model);
 
+            // @phpstan-ignore-next-line
             $models = $model
                 ->select($model->getTable() . '.id')
                 ->filter($filterService->filters())
@@ -328,6 +329,7 @@ class CampaignDashboardWidget extends Model
                 ->session(false)
                 ->make($entityType, $this->filterOptions(), $model);
 
+            // @phpstan-ignore-next-line
             $models = $model
                 ->select($model->getTable() . '.id')
                 ->filter($filterService->filters())

@@ -168,6 +168,7 @@ class Tag extends MiscModel
      */
     public function detach()
     {
+        /** @var Tag $child */
         foreach ($this->allChildren(true)->get() as $child) {
             $child->tags()->detach($this->id);
 //            if (!empty($child->child)) {

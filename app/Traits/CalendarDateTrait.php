@@ -21,7 +21,7 @@ use Illuminate\Support\Arr;
  */
 trait CalendarDateTrait
 {
-    /** @var Model|bool|null|EntityEvent */
+    /** @var bool|null|EntityEvent */
     protected $calendarDateEvent = false;
 
     /**

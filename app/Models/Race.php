@@ -8,6 +8,7 @@ use App\Models\Concerns\Nested;
 use App\Models\Concerns\SortableTrait;
 use App\Traits\CampaignTrait;
 use App\Traits\ExportableTrait;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Builder;
 
@@ -15,7 +16,7 @@ use Illuminate\Database\Eloquent\Builder;
  * Class Race
  * @package App\Models
  *
- * @property Race[] $descendants
+ * @property Race[]|Collection $descendants
  *
  * @property int|null $race_id
  * @property Race|null $race

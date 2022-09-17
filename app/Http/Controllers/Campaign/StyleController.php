@@ -184,7 +184,7 @@ class StyleController extends Controller
 
         $count = 0;
         foreach ($models as $id) {
-            /** @var CampaignStyle $style */
+            /** @var CampaignStyle|null $style */
             $style = CampaignStyle::find($id);
             if ($style === null) {
                 continue;

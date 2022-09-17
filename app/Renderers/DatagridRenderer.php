@@ -8,6 +8,7 @@ use App\Models\Entity;
 use App\Models\Journal;
 use App\Models\Location;
 use App\Models\MiscModel;
+use App\Models\Relation;
 use App\Services\FilterService;
 use App\User;
 use Illuminate\Database\Eloquent\Model;
@@ -254,17 +255,15 @@ class DatagridRenderer
     }
 
     /**
-     * @param Model|MiscModel $model
+     * @param MiscModel|Relation $model
      * @return string
      */
-    private function renderRow(Model|MiscModel $model): string
+    private function renderRow(MiscModel|Relation $model): string
     {
         $useEntity = $this->getOption('disableEntity') !== true;
         // Should never happen...
         if ($useEntity && empty($model->entity)) {
             return '';
-            $model->save();
-            $model->refresh();
         }
 
         $html = '<tr data-id="' . $model->id . '" '
@@ -293,7 +292,7 @@ class DatagridRenderer
     /**
      * @param string|array $column
      * @param MiscModel|Journal|Location $model
-     * @return string
+     * @return string|null
      */
     private function renderColumn(string|array $column, $model)
     {
@@ -344,25 +343,25 @@ class DatagridRenderer
                 }
             } elseif ($type == 'location') {
                 $class = 'hidden-xs hidden-sm';
-                if ($model->location) {
-                    $content = $model->location->tooltipedLink();
-                } elseif ($model->parentLocation) {
-                    $content = $model->parentLocation->tooltipedLink();
+                if (method_exists($model, 'location')) {
+                    $content = $model->location?->tooltipedLink();
+                } elseif (method_exists($model, 'parentLocation')) {
+                    $content = $model->parentLocation?->tooltipedLink();
                 }
             } elseif ($type == 'character') {
                 $class = 'hidden-xs hidden-sm';
-                if ($model->character) {
-                    $content = $model->character->tooltipedLink();
+                if (method_exists($model, 'character')) {
+                    $content = $model->character?->tooltipedLink();
                 }
             } elseif ($type == 'organisation') {
                 $class = 'hidden-xs hidden-sm';
-                if ($model->organisation) {
-                    $content = $model->organisation->tooltipedLink();
+                if (method_exists($model, 'organisation')) {
+                    $content = $model->organisation?->tooltipedLink();
                 }
             } elseif ($type == 'entity') {
                 $class = 'hidden-xs hidden-sm';
                 if ($model->entity) {
-                    $content = $model->entity->tooltipedLink();
+                    $content = $model->entity?->tooltipedLink();
                 }
             } elseif ($type == 'is_private') {
                 // Viewer can't see private

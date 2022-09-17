@@ -5,6 +5,7 @@ namespace App\Http\Resources;
 use App\Facades\CampaignLocalization;
 use App\Facades\Img;
 use App\Facades\Mentions;
+use App\Models\Location;
 use App\Models\MiscModel;
 use App\Services\Api\ApiService;
 use Carbon\Carbon;
@@ -69,15 +70,14 @@ class EntityResource extends JsonResource
             'updated_by' => $entity->updated_by,
         ];
 
-        /** @var MiscModel $this */
         if (request()->get('related', false)) {
-            $data['attributes'] = AttributeResource::collection($this->attributes);
-            $data['entity_notes'] = EntityNoteResource::collection($this->notes);
-            $data['entity_events'] = EntityEventResource::collection($this->events);
+            $data['attributes'] = AttributeResource::collection($entity->attributes);
+            $data['entity_notes'] = EntityNoteResource::collection($entity->notes);
+            $data['entity_events'] = EntityEventResource::collection($entity->events);
             //$data['entity_files'] = EntityFileResource::collection($this->files);
-            $data['relations'] = RelationResource::collection($this->relationships);
-            $data['inventory'] = InventoryResource::collection($this->inventories);
-            $data['entity_abilities'] = EntityAbilityResource::collection($this->abilities);
+            $data['relations'] = RelationResource::collection($entity->relationships);
+            $data['inventory'] = InventoryResource::collection($entity->inventories);
+            $data['entity_abilities'] = EntityAbilityResource::collection($entity->abilities);
             //$data['entity_links'] = EntityLinkResource::collection($entity->links);
         }
 
@@ -129,8 +129,8 @@ class EntityResource extends JsonResource
         $merged = [
             'id' => $misc->id,
             'name' => $misc->name,
-            'entry' => $this->hasEntry() ? $misc->entry : null,
-            'entry_parsed' => $misc->hasEntry() ? Mentions::map($this->resource) : null,
+            'entry' => $misc->hasEntry() ? $misc->entry : null,
+            'entry_parsed' => $misc->hasEntry() ? Mentions::map($misc) : null,
             'tooltip' => $boosted ? ($misc->entity->tooltip ?: null) : null,
             'image' => $misc->image,
             'focus_x' => $misc->entity->focus_x,
@@ -147,11 +147,11 @@ class EntityResource extends JsonResource
             'header_uuid' => $superboosted && $misc->entity->header ? $misc->entity->header->id : null,
             'has_custom_header' => $misc->entity->hasHeaderImage($superboosted),
 
-            'is_private' => (bool) $this->is_private,
-            'is_template' => (bool) $this->entity->is_template,
+            'is_private' => (bool) $misc->is_private,
+            'is_template' => (bool) $misc->entity->is_template,
 
-            'entity_id' => $this->entity->id,
-            'tags' => $this->entity->tags()->pluck('tags.id')->toArray(),
+            'entity_id' => $misc->entity->id,
+            'tags' => $misc->entity->tags()->pluck('tags.id')->toArray(),
 
 
             'created_at' => $misc->created_at,
@@ -163,7 +163,7 @@ class EntityResource extends JsonResource
         // Foreign elements
         $attributes = $misc->getAttributes();
         if (array_key_exists('location_id', $attributes)) {
-            $merged['location_id'] = $this->location_id;
+            $merged['location_id'] = $misc->location_id;
         }
         if (array_key_exists('character_id', $attributes)) {
             $merged['character_id'] = $this->character_id;
@@ -171,13 +171,13 @@ class EntityResource extends JsonResource
 
         /** @var MiscModel $this */
         if (request()->get('related', false) || $this->withRelated) {
-            $merged['attributes'] = AttributeResource::collection($this->entity->attributes);
-            $merged['entity_notes'] = EntityNoteResource::collection($this->entity->notes);
-            $merged['entity_events'] = EntityEventResource::collection($this->entity->events);
-            $merged['relations'] = RelationResource::collection($this->entity->relationships);
-            $merged['inventory'] = InventoryResource::collection($this->entity->inventories);
-            $merged['entity_abilities'] = EntityAbilityResource::collection($this->entity->abilities);
-            $merged['entity_assets'] = EntityAssetResource::collection($this->entity->assets);
+            $merged['attributes'] = AttributeResource::collection($misc->entity->attributes);
+            $merged['entity_notes'] = EntityNoteResource::collection($misc->entity->notes);
+            $merged['entity_events'] = EntityEventResource::collection($misc->entity->events);
+            $merged['relations'] = RelationResource::collection($misc->entity->relationships);
+            $merged['inventory'] = InventoryResource::collection($misc->entity->inventories);
+            $merged['entity_abilities'] = EntityAbilityResource::collection($misc->entity->abilities);
+            $merged['entity_assets'] = EntityAssetResource::collection($misc->entity->assets);
         }
 
         $final = array_merge($merged, $prepared);

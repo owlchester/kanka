@@ -16,10 +16,8 @@ use Illuminate\Support\Str;
 
 class TroubleshootingService
 {
-    /** @var Campaign|Model */
     protected Campaign $campaign;
 
-    /** @var User */
     protected User $user;
 
     /**

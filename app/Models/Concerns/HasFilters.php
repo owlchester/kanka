@@ -443,7 +443,7 @@ trait HasFilters
     protected function filterLocations(Builder $query, string $value = null, string $key = null): void
     {
         if ($this->filterOption('children')) {
-            /** @var Location $location */
+            /** @var Location|null $location */
             $location = Location::find($value);
             if (empty($location)) {
                 return;
@@ -471,7 +471,7 @@ trait HasFilters
                 $this->getTable() . '.id and cr.location_id = ' . ((int) $value) . ') = 0');
             return;
         } elseif ($this->filterOption('children')) {
-            /** @var Location|null $location */
+            /** @var Location|null $race */
             $race = Location::find($value);
             if (!empty($race)) {
                 $raceIds = $race->descendants->pluck('id')->toArray();

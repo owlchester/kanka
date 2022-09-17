@@ -16,14 +16,8 @@ class MentionController extends Controller
      */
     use GuestAuthTrait;
 
-    /**
-     * @var
-     */
     protected $transKey;
 
-    /**
-     * @var
-     */
     protected $viewPath;
 
     /**
@@ -53,9 +47,7 @@ class MentionController extends Controller
     }
 
     /**
-     * @param Model $model
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @param MiscModel $model
      */
     protected function show(MiscModel $model)
     {

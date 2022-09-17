@@ -168,7 +168,7 @@ class AttributeService
     }
 
     /**
-     * @param $template
+     * @param string $template
      * @param Entity $entity
      * @return false|string
      */
@@ -304,8 +304,8 @@ class AttributeService
                 $attribute->type_id = $typeID;
                 $attribute->name = $name;
                 $attribute->setValue($value);
-                $attribute->is_private = (int) $isPrivate;
-                $attribute->is_star = (int) $isStar;
+                $attribute->is_private = $isPrivate;
+                $attribute->is_star = $isStar;
                 $attribute->default_order = $order;
                 if ($attribute->isDirty()) {
                     $touch = true;
@@ -363,8 +363,8 @@ class AttributeService
     public function applyEntityTemplates(Entity $entity, $order = 0)
     {
         $typeId = $entity->typeId();
-        /** @var AttributeTemplate $template */
         $templates = AttributeTemplate::where(['entity_type_id' => $typeId])->get();
+        /** @var AttributeTemplate $template */
         foreach ($templates as $template) {
             $order = $template->apply($entity, $order);
         }
@@ -552,7 +552,9 @@ class AttributeService
         if (isset($this->loadedTemplates[$templateId])) {
             return $this->loadedTemplates[$templateId];
         }
-        return $this->loadedTemplates[$templateId] = AttributeTemplate::findOrFail($templateId);
+        /** @var AttributeTemplate $attribute */
+        $attributeTemplate = AttributeTemplate::findOrFail($templateId);
+        return $this->loadedTemplates[$templateId] = $attributeTemplate;
     }
 
     /**
@@ -649,7 +651,7 @@ class AttributeService
     }
 
     /**
-     * @param string $value
+     * @param array $data
      * @param array $from
      * @return string
      * @throws \ChrisKonnertz\StringCalc\Exceptions\ContainerException

@@ -41,6 +41,8 @@ use Illuminate\Support\Str;
  * @property Carbon $created_at
  * @property Carbon $updated_at
  * @property Campaign $campaign
+ * @property int $created_by
+ * @property int $updated_by
  * @mixin \Illuminate\Database\Eloquent\Builder
  */
 abstract class MiscModel extends Model

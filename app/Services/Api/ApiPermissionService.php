@@ -1,20 +1,19 @@
 <?php
 
-
 namespace App\Services\Api;
 
 use App\Models\CampaignPermission;
-use App\Models\CampaignRole;
 use App\Models\Entity;
-
-use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
 
 class ApiPermissionService
 {
+    protected $cachedPermissions;
+
      /**
      * Get the permissions of an entity
      * @param Entity $entity
-     * @return mixed
+     * @return array
      */
     protected function entityPermissions(Entity $entity): array
     {
@@ -32,8 +31,9 @@ class ApiPermissionService
 
         return $this->cachedPermissions = $permissions;
     }
+
     /**
-     * @param $request
+     * @param Request $request
      * @param Entity $entity
      */
     public function saveEntity($request, Entity $entity)

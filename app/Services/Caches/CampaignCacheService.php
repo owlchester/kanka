@@ -235,6 +235,7 @@ class CampaignCacheService extends BaseCache
         }
 
         $theme = '';
+        // @phpstan-ignore-next-line
         $plugins = CampaignPlugin::leftJoin('plugins as p', 'p.id', 'plugin_id')
             ->where('campaign_id', $this->campaign->id)
             ->where('p.type_id', 1)

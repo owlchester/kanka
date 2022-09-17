@@ -463,6 +463,7 @@ trait Nested
      */
     public function prependToNode(self $parent)
     {
+        // @phpstan-ignore-next-line
         return $this->appendOrPrependTo($parent, true);
     }
 
@@ -580,9 +581,10 @@ trait Nested
      */
     public function up($amount = 1)
     {
+        // @phpstan-ignore-next-line
         $sibling = $this->prevSiblings()
             ->defaultOrder('desc')
-            ->skip($amount - 1) // @phpstan-ignore-line
+            ->skip($amount - 1)
             ->first();
 
         if ( ! $sibling) return false;
@@ -599,9 +601,10 @@ trait Nested
      */
     public function down($amount = 1)
     {
+        // @phpstan-ignore-next-line
         $sibling = $this->nextSiblings()
             ->defaultOrder()
-            ->skip($amount - 1) // @phpstan-ignore-line
+            ->skip($amount - 1)
             ->first();
 
         if ( ! $sibling) return false;
@@ -698,9 +701,10 @@ trait Nested
      */
     protected function restoreDescendants(string $deletedAt)
     {
+        // @phpstan-ignore-next-line
         $this->descendants()
             ->where($this->getDeletedAtColumn(), '>=', $deletedAt)
-            ->restore(); // @phpstan-ignore-line
+            ->restore();
     }
 
     /**
@@ -1235,8 +1239,8 @@ trait Nested
      */
     protected function assertSameScope(self $node)
     {
-        // @phpstan-ignore-next-line
-        if ( ! $scoped = $this->getScopeAttributes()) {
+        return;
+        /*if ( ! $scoped = $this->getScopeAttributes()) {
             return;
         }
 
@@ -1244,7 +1248,7 @@ trait Nested
             if ($this->getAttribute($attr) != $node->getAttribute($attr)) {
                 throw new LogicException('Nodes must be in the same scope');
             }
-        }
+        }*/
     }
 
     /**

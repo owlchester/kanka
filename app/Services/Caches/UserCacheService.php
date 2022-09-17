@@ -139,9 +139,11 @@ class UserCacheService extends BaseCache
                 $data = $query->orderBy('name', 'desc')->get();
                 break;
             case 'date_joined':
+                // @phpstan-ignore-next-line
                 $data = $query->withPivot('created_at')->orderBy('pivot_created_at', 'asc')->get();
                 break;
             case 'r_date_joined':
+                // @phpstan-ignore-next-line
                 $data = $query->withPivot('created_at')->orderBy('pivot_created_at', 'desc')->get();
                 break;
             case 'date_created':

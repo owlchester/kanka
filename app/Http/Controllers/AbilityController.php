@@ -85,6 +85,7 @@ class AbilityController extends CrudController
         Datagrid::layout(\App\Renderers\Layouts\Ability\Ability::class)
             ->route('abilities.abilities', [$ability]);
 
+        // @phpstan-ignore-next-line
         $this->rows = $ability
             ->sort(request()->only(['o', 'k']))
             ->descendants()

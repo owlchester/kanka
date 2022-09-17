@@ -13,10 +13,7 @@ use Illuminate\Support\Collection;
 
 class CharacterObserver extends MiscObserver
 {
-    /**
-     * @param MiscModel $model
-     */
-    public function crudSaved(MiscModel $model)
+    public function crudSaved(MiscModel|Character $model)
     {
         parent::crudSaved($model);
         $this->saveTraits($model, 'personality')
@@ -28,11 +25,11 @@ class CharacterObserver extends MiscObserver
     }
 
     /**
-     * @param MiscModel|Character $character
+     * @param Character $character
      * @param $trait
      * @return $this
      */
-    protected function saveTraits(MiscModel|Character $character, string $trait = 'personality'): self
+    protected function saveTraits(Character $character, string $trait = 'personality'): self
     {
         // Users who can edit the character but can't access personality traits shouldn't be allowed to
         // change those traitrs.

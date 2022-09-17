@@ -15,7 +15,7 @@ class Entity extends EntityChild
         /** @var \App\Models\Entity $model */
         $model = $this->resource;
 
-        if (!$model->child) {
+        if (empty($model->child)) {
             return ['error' => 'KA7: Entity #' . $model->id . ' missing child.'];
         }
         return [

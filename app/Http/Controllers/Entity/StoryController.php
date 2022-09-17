@@ -46,9 +46,6 @@ class StoryController extends Controller
     }
 
     /**
-     * @param Request $request
-     * @param Model $model
-     * @return \Illuminate\Http\RedirectResponse
      */
     public function save(ReorderStories $request, Entity $entity)
     {
@@ -63,6 +60,9 @@ class StoryController extends Controller
             ->with('success', __('entities/story.reorder.success'));
     }
 
+    /**
+     * Load more posts to display to the user (partial view)
+     */
     public function more(Entity $entity)
     {
         $this->authorize('view', $entity->child);
@@ -73,7 +73,5 @@ class StoryController extends Controller
             ->with('entity', $entity)
             ->with('model', $entity->child)
             ->with('pinnedNotes', $notes);
-
     }
-
 }

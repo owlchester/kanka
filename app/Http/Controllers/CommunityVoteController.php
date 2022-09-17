@@ -63,7 +63,7 @@ class CommunityVoteController extends Controller
 
         $data = $this->service->cast(
             $communityVote,
-            auth()->user,
+            $request->user(),
             $request->post('vote', null)
         );
 

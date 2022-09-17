@@ -63,9 +63,9 @@ class FormService
 
         $parent = request()->get('parent_id', false);
         if ($checkForParent && $parent !== false) {
-            /** @var Family $class */
+            /** @var MiscModel $class */
             $class = new $parentClass();
-            /** @var MiscModel $parent */
+            /** @var MiscModel|null $parent */
             $parent = $class->find($parent);
             if ($parent) {
                 return [$parent->id => $parent->name];

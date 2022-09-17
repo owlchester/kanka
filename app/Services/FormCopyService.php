@@ -29,7 +29,7 @@ class FormCopyService
      * If the field comes from the entity
      * @var bool
      */
-    protected $entity = false;
+    protected bool $entity = false;
 
     /**
      * @param Model|MiscModel|Character|null $source
@@ -111,6 +111,7 @@ class FormCopyService
     public function characterPersonality()
     {
         if ($this->valid()) {
+            // @phpstan-ignore-next-line
             return $this->source->characterTraits()->personality()->get();
         }
         return [];
@@ -123,6 +124,7 @@ class FormCopyService
     public function characterAppearance()
     {
         if ($this->valid()) {
+            // @phpstan-ignore-next-line
             return $this->source->characterTraits()->appearance()->get();
         }
         return [];
@@ -135,6 +137,7 @@ class FormCopyService
     public function characterOrganisation()
     {
         if ($this->valid()) {
+            // @phpstan-ignore-next-line
             return $this->source->organisationMemberships()
                 ->with('organisation')
                 ->has('organisation')
@@ -231,6 +234,7 @@ class FormCopyService
 
         if ($this->entity === true) {
             $this->entity = false;
+            // @phpstan-ignore-next-line
             return $this->source->entity->getAttributeValue($this->field);
         }
         return $this->source->getAttributeValue($this->field);
@@ -247,6 +251,7 @@ class FormCopyService
 
         if ($this->entity === true) {
             $this->entity = false;
+            // @phpstan-ignore-next-line
             return $this->source->entity->{$this->field};
         }
         return $this->source->{$this->field};

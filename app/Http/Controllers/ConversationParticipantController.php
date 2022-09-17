@@ -29,7 +29,7 @@ class ConversationParticipantController extends Controller
             ->route('conversations.show', $conversation)
             ->with('success', trans('conversations.participants.create.success', [
                 'name' => $conversation->name,
-                'entity' => $participant->entity()->name
+                'entity' => $participant->name()
             ]));
     }
 
@@ -54,7 +54,7 @@ class ConversationParticipantController extends Controller
 
         $conversationParticipant->update($request->all());
 
-        return redirect()->route('conversations.show', [$conversation->child->id, $this->tab])
+        return redirect()->route('conversations.show', [$conversation->id])
             ->with('success', trans('crud.notes.edit.success', [
                 'name' => $conversationParticipant->name, 'entity' => $conversation->name
             ]));

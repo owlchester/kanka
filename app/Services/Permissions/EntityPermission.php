@@ -30,12 +30,12 @@ class EntityPermission
     protected $cached = [];
 
     /**
-     * @var array|boolean
+     * @var array|bool
      */
     protected $roleIds = false;
 
     /**
-     * @var array The roles of the user
+     * @var array|bool The roles of the user
      */
     protected $roles = [];
 
@@ -143,11 +143,11 @@ class EntityPermission
     }
 
     /**
-     * @param MiscModel $model
+     * @param MiscModel|null $model
      * @param Campaign|null $campaign
      * @return bool
      */
-    public function canViewMisc(MiscModel $model, Campaign $campaign = null)
+    public function canViewMisc(MiscModel $model = null, Campaign $campaign = null)
     {
         // Make sure we can see the entity we're trying to show the user. We do it this way because we
         // are looping through entities which doesn't allow using the acl trait before hand.
@@ -244,8 +244,6 @@ class EntityPermission
 
     /**
      * Determine if a user is part of a role that can do an action on all entities of a campaign
-     * @param string $action
-     * @param string $model
      * @return bool
      */
     public function canRole(string $action, string $modelName, $user = null, Campaign $campaign = null): bool
@@ -300,14 +298,14 @@ class EntityPermission
             return;
         }
 
-        /** @var CampaignRole $role */
         $campaignRoleIDs = [];
+        /** @var CampaignRole $role */
         foreach ($this->roles as $role) {
             $campaignRoleIDs[] = $role->id;
         }
         if (!empty($campaignRoleIDs)) {
-            /** @var CampaignPermission $permission */
             $permissions = \App\Facades\RolePermission::rolesPermissions($campaignRoleIDs);
+            /** @var CampaignPermission $permission */
             foreach ($permissions as $permission) {
                 $this->cached[$permission->key()] = $permission->access;
                 if (!empty($permission->entity_id)) {

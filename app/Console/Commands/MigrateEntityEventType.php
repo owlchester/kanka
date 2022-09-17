@@ -79,7 +79,7 @@ class MigrateEntityEventType extends Command
         $attributes = $model->getAttributes();
 
         // Find the reminder that fits the entity
-        /** @var EntityEvent $reminder */
+        /** @var EntityEvent|null $reminder */
         $reminder = EntityEvent::select('id')->where([
             'entity_id' => $model->entity->id,
             'calendar_id' => Arr::get($attributes, 'calendar_id'),

@@ -66,6 +66,7 @@ class EventController extends CrudController
         Datagrid::layout(\App\Renderers\Layouts\Event\Event::class)
             ->route('events.events', [$event]);
 
+        // @phpstan-ignore-next-line
         $this->rows = $event
             ->descendants()
             ->sort(request()->only(['o', 'k']))

@@ -90,9 +90,6 @@ class InventoryController extends Controller
     }
 
     /**
-     * @param Request $request
-     * @param Model $model
-     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(StoreInventory $request, Entity $entity)
     {
@@ -113,9 +110,6 @@ class InventoryController extends Controller
     }
 
     /**
-     * @param Entity $entity
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function edit(Entity $entity, Inventory $inventory)
     {
@@ -131,9 +125,6 @@ class InventoryController extends Controller
     }
 
     /**
-     * @param Request $request
-     * @param Model $model
-     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(StoreInventory $request, Entity $entity, Inventory $inventory)
     {
@@ -154,9 +145,6 @@ class InventoryController extends Controller
     }
 
     /**
-     * @param Model $model
-     * @param Model $relation
-     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy(Entity $entity, Inventory $inventory)
     {

@@ -5,6 +5,9 @@ namespace App\Models;
 use App\Facades\CampaignLocalization;
 use App\Models\Concerns\HasFilters;
 
+/**
+ * @property DiceRoll|null $diceRoll
+ */
 class DiceRollResult extends MiscModel
 {
     use HasFilters;

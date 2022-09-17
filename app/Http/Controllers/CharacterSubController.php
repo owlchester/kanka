@@ -2,17 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Datagrids\Sorters\CharacterOrganisationSorter;
 use App\Facades\Datagrid;
 use App\Models\Character;
-use Illuminate\Support\Facades\Auth;
 
 class CharacterSubController extends CharacterController
 {
     /**
-     * @param Character $character
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
-     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function profile(Character $character)
     {
@@ -24,9 +19,6 @@ class CharacterSubController extends CharacterController
     }
 
     /**
-     * @param Character $character
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\JsonResponse|\Illuminate\View\View
-     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function organisations(Character $character)
     {
@@ -53,9 +45,6 @@ class CharacterSubController extends CharacterController
     }
 
     /**
-     * @param Character $character
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function map(Character $character)
     {

@@ -161,6 +161,7 @@ class AbilityService
             'created_by' => $entityAbility->created_by,
             'attributes' => $this->attributes($entityAbility->ability->entity),
             'images' => [
+                // @phpstan-ignore-next-line
                 'has' => !empty($entityAbility->ability->image) || $entityAbility->ability->entity->image,
                 'thumb' => $entityAbility->ability->getImageUrl(120),
                 'url' => !empty($entityAbility->ability->image) ? $entityAbility->ability->getOriginalImageUrl() : null,
@@ -317,7 +318,7 @@ class AbilityService
             $count = 0;
             foreach ($abilities as $ability) {
                 // If it's deleted or already on this entity, skip
-                if (empty($ability) || empty($ability->ability) || in_array($ability->ability_id, $existingIds)) {
+                if (empty($ability->ability) || in_array($ability->ability_id, $existingIds)) {
                     continue;
                 }
                 $new = $ability->replicate(['entity_id']);

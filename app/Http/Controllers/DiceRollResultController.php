@@ -34,14 +34,12 @@ class DiceRollResultController extends CrudController
     }
     /**
      * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
     {
         //$this->authorize('browse', $this->model);
 
-        $model = new $this->model;
+        $model = new $this->model();
         $this->filterService->make($this->view, request()->all(), $model);
         $name = $this->view;
         $langKey = $name;
@@ -79,9 +77,6 @@ class DiceRollResultController extends CrudController
 
     /**
      * Display the specified resource.
-     *
-     * @param  \App\Models\DiceRoll  $diceRoll
-     * @return \Illuminate\Http\Response
      */
     public function show(DiceRollResult $diceRollResult)
     {

@@ -108,10 +108,6 @@ class EntityEventController extends Controller
     }
 
     /**
-     * @param AddCalendarEvent $request
-     * @param Entity $entity
-     * @return \Illuminate\Http\RedirectResponse
-     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function store(AddCalendarEvent $request, Entity $entity)
     {
@@ -125,7 +121,7 @@ class EntityEventController extends Controller
         $reminder->entity_id = $entity->id;
         $reminder->save();
 
-        $next = request()->post('next', false);
+        $next = request()->post('next', '0');
         if ($next == 'entity.events') {
             return redirect()
                 ->route('entities.entity_events.index', $entity)
@@ -138,12 +134,6 @@ class EntityEventController extends Controller
     }
 
     /**
-     * @param Entity $entity
-     * @param EntityEvent $entityEvent
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     * @throws \Psr\Container\ContainerExceptionInterface
-     * @throws \Psr\Container\NotFoundExceptionInterface
      */
     public function edit(Entity $entity, EntityEvent $entityEvent)
     {
@@ -174,13 +164,6 @@ class EntityEventController extends Controller
     }
 
     /**
-     * @param UpdateCalendarEvent $request
-     * @param Entity $entity
-     * @param EntityEvent $entityEvent
-     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     * @throws \Psr\Container\ContainerExceptionInterface
-     * @throws \Psr\Container\NotFoundExceptionInterface
      */
     public function update(UpdateCalendarEvent $request, Entity $entity, EntityEvent $entityEvent)
     {
@@ -200,7 +183,7 @@ class EntityEventController extends Controller
             $routeOptions['month'] = request()->post('month');
         }
 
-        $next = request()->post('next', false);
+        $next = request()->post('next', '0');
         if ($next == 'calendars.events') {
             return redirect()
                 ->route('calendars.events', $entityEvent->calendar)
@@ -219,10 +202,6 @@ class EntityEventController extends Controller
     }
 
     /**
-     * @param Entity $entity
-     * @param EntityEvent $entityEvent
-     * @return \Illuminate\Http\RedirectResponse
-     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function destroy(Entity $entity, EntityEvent $entityEvent)
     {
@@ -230,7 +209,7 @@ class EntityEventController extends Controller
         $entityEvent->delete();
         $success = __('calendars.event.destroy', ['name' => $entityEvent->calendar->name]);
 
-        $next = request()->post('next', false);
+        $next = request()->post('next', '0');
         if ($next == 'calendars.events') {
             return redirect()
                 ->route('calendars.events', $entityEvent->calendar)

@@ -22,7 +22,6 @@ class RelationController extends Controller
      */
     use GuestAuthTrait;
 
-    /** @var */
     protected $viewPath;
 
     /** @var EntityRelationService */
@@ -139,8 +138,8 @@ class RelationController extends Controller
     }
 
     /**
-     * @param Request $request
-     * @param Model $model
+     * @param StoreRelation $request
+     * @param Entity $entity
      * @return \Illuminate\Http\RedirectResponse
      */
     public function store(StoreRelation $request, Entity $entity)
@@ -180,9 +179,6 @@ class RelationController extends Controller
     }
 
     /**
-     * @param Entity $entity
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function edit(Entity $entity, Relation $relation)
     {
@@ -202,9 +198,6 @@ class RelationController extends Controller
     }
 
     /**
-     * @param Request $request
-     * @param Model $model
-     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(StoreRelation $request, Entity $entity, Relation $relation)
     {
@@ -252,9 +245,6 @@ class RelationController extends Controller
     }
 
     /**
-     * @param Model $model
-     * @param Model $relation
-     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy(Entity $entity, Relation $relation)
     {

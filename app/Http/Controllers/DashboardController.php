@@ -12,7 +12,6 @@ use Illuminate\Support\Facades\Auth;
 class DashboardController extends Controller
 {
     /**
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
      */
     public function index()
     {
@@ -76,8 +75,7 @@ class DashboardController extends Controller
     }
 
     /**
-     * @param $id
-     * @return bool
+     * @param int $id
      */
     public function recent($id)
     {
@@ -100,11 +98,11 @@ class DashboardController extends Controller
     }
 
     /**
-     * @param $id
-     * @return bool
+     * @param int $id
      */
     public function unmentioned($id)
     {
+        /** @var CampaignDashboardWidget $widget */
         $widget = CampaignDashboardWidget::findOrFail($id);
         $campaign = CampaignLocalization::getCampaign();
         if ($widget->widget != CampaignDashboardWidget::WIDGET_UNMENTIONED) {
@@ -113,6 +111,7 @@ class DashboardController extends Controller
             ]);
         }
 
+        // @phpstan-ignore-next-line
         $entities = \App\Models\Entity::unmentioned()
             ->inTags($widget->tags->pluck('id')->toArray())
             ->type($widget->conf('entity'))

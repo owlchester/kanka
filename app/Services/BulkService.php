@@ -378,7 +378,7 @@ class BulkService
         /** @var MiscModel|null $model */
         $model = new $entity();
         if (empty($model)) {
-            throw new Exception("Couldn't create a class from {$this->entity}.");
+            throw new Exception("Couldn't create a class from {$entity}.");
         }
 
         return $model;

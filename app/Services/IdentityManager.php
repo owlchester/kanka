@@ -6,6 +6,7 @@ use App\Models\CampaignUser;
 use App\Models\UserLog;
 use App\User;
 use Illuminate\Foundation\Application;
+use App\Facades\CampaignLocalization;
 
 class IdentityManager
 {

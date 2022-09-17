@@ -503,7 +503,7 @@ class MentionsService
         $this->text = preg_replace_callback('`\{attribute:(.*?)\}`i', function ($matches) {
             $id = (int) $matches[1];
 
-            /** @var Attribute|null $entity */
+            /** @var Attribute|null $attribute */
             $attribute = $this->attribute($id);
 
             // No entity found, the user might not be allowed to see it

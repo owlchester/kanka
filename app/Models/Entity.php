@@ -43,8 +43,8 @@ use RichanFongdasen\EloquentBlameable\BlameableTrait;
  * @property string|null $header_uuid
  * @property boolean $is_template
  * @property string|null $marketplace_uuid
- * @property integer $focus_x
- * @property integer $focus_y
+ * @property integer|null $focus_x
+ * @property integer|null $focus_y
  *
  * @property Carbon $created_at
  * @property Carbon $updated_at

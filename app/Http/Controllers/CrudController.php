@@ -209,6 +209,7 @@ class CrudController extends Controller
         $this->authorize('create', $this->model);
 
         if ($this->hasLimitCheck) {
+            // @phpstan-ignore-next-line
             if ($this->limitCheckReached()) {
                 $key = $this->view == 'menu_links' ? 'quick-links' : 'entities';
                 return view('cruds.forms.limit')
@@ -243,12 +244,8 @@ class CrudController extends Controller
     }
 
     /**
-     * @param Request $request
-     * @param $redirectToCreated
-     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
-     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function crudStore(Request $request, $redirectToCreated = false)
+    public function crudStore(Request $request, bool $redirectToCreated = false)
     {
         $this->authorize('create', $this->model);
 
@@ -266,6 +263,7 @@ class CrudController extends Controller
         try {
             /** @var MiscModel $model */
             $model = new $this->model();
+            /** @var MiscModel $new */
             $new = $model->create($request->all());
 
             // Fire an event for the Entity Observer.
@@ -280,7 +278,7 @@ class CrudController extends Controller
                 'name' => link_to_route(
                     $this->view . '.show',
                     e($new->name),
-                    $new
+                    [$new->id]
                 )
             ]);
 
@@ -329,7 +327,7 @@ class CrudController extends Controller
     }
 
     /**
-     * @param Model $model
+     * @param Model|MiscModel $model
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -351,8 +349,8 @@ class CrudController extends Controller
             }
             if (Permissions::user(auth()->user())->campaign(CampaignLocalization::getCampaign())->isAdmin()) {
                 dd('CCS16 - Error');
-                $model->save();
-                $model->load('entity');
+                //$model->save();
+                //$model->load('entity');
             } else {
                 abort(404);
             }
@@ -365,7 +363,7 @@ class CrudController extends Controller
     }
 
     /**
-     * @param Model $model
+     * @param Model|MiscModel $model
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      * @throws \Illuminate\Contracts\Container\BindingResolutionException
@@ -405,7 +403,7 @@ class CrudController extends Controller
 
     /**
      * @param Request $request
-     * @param Model $model
+     * @param Model|MiscModel $model
      * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      * @throws \Illuminate\Contracts\Container\BindingResolutionException
@@ -445,7 +443,7 @@ class CrudController extends Controller
                 /** @var MultiEditingService $editingService */
                 $editingService = app()->make(MultiEditingService::class);
                 $editingService->entity($model->entity)
-                    ->user(auth()->user())
+                    ->user($request->user())
                     ->finish();
             }
 
@@ -484,7 +482,7 @@ class CrudController extends Controller
     }
 
     /**
-     * @param Model $model
+     * @param Model|MiscModel $model
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -506,7 +504,7 @@ class CrudController extends Controller
     }
 
     /**
-     * @param $model
+     * @param MiscModel $model
      * @param $view
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException
@@ -608,13 +606,13 @@ class CrudController extends Controller
      */
     protected function datagridSorter(string $datagridSorter): self
     {
-        $this->datagridSorter = new $datagridSorter;
+        $this->datagridSorter = new $datagridSorter();
         $this->datagridSorter->request(request()->all());
         return $this;
     }
 
     /**
-     * @param $model
+     * @param MiscModel $model
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     protected function authCheck($model)

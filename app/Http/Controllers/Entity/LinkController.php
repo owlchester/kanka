@@ -58,9 +58,6 @@ class LinkController extends Controller
     }
 
     /**
-     * @param Request $request
-     * @param Model $model
-     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(StoreEntityLink $request, Entity $entity)
     {
@@ -77,9 +74,6 @@ class LinkController extends Controller
     }
 
     /**
-     * @param Entity $entity
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function edit(Entity $entity, EntityLink $entityLink)
     {
@@ -93,9 +87,6 @@ class LinkController extends Controller
 
     /**
      * Show exists but doesn't do anything, redirect to main view
-     * @param Entity $entity
-     * @param EntityLink $entityLink
-     * @return \Illuminate\Http\RedirectResponse
      */
     public function show(Entity $entity, EntityLink $entityLink)
     {
@@ -104,9 +95,6 @@ class LinkController extends Controller
     }
 
     /**
-     * @param Request $request
-     * @param Model $model
-     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(StoreEntityLink $request, Entity $entity, EntityLink $entityLink)
     {
@@ -124,13 +112,9 @@ class LinkController extends Controller
         return redirect()
             ->route('entities.entity_assets.index', $entity)
             ->with('success', __('entities/links.update.success', ['name' => $entityLink->name, 'entity' => $entity->name]));
-
     }
 
     /**
-     * @param Model $model
-     * @param Model $relation
-     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy(Entity $entity, EntityLink $entityLink)
     {
@@ -148,14 +132,9 @@ class LinkController extends Controller
         return redirect()
             ->route('entities.entity_assets.index', $entity)
             ->with('success', __('entities/links.destroy.success', ['name' => $entityLink->name, 'entity' => $entity->name]));
-
     }
 
     /**
-     * @param Entity $entity
-     * @param EntityLink $entityLink
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
-     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function go(Entity $entity, EntityLink $entityLink)
     {
