@@ -210,7 +210,7 @@ class MapPoint extends Model
     public function visible(): bool
     {
         if ($this->hasTarget()) {
-            return !empty($this->targetEntity) && $this->targetEntity->child;
+            return !empty($this->targetEntity) && !empty($this->targetEntity->child);
         }
         return true;
     }

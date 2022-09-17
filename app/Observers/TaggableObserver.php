@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Model;
 class TaggableObserver
 {
     /**
-     * @param MiscModel|Model $model
+     * @param Model $model
      */
     public function saved(Model $model)
     {
@@ -18,11 +18,12 @@ class TaggableObserver
     }
 
     /**
-     * @param Model|MenuLink $model
+     * @param Model $model
      * @return void
      */
-    protected function saveTags(Model|MenuLink $model)
+    protected function saveTags(Model $model)
     {
+        /** @var MenuLink $model */
         if (!request()->has('save_tags')) {
             return;
         }

@@ -41,7 +41,7 @@ class CommunityEventController extends Controller
     }
 
     /**
-     * @param $id
+     * @param int $id
      * @param string $slug
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException

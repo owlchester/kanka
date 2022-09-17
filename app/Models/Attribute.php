@@ -310,7 +310,7 @@ class Attribute extends Model
      */
     protected function calculateListConstraints(): self
     {
-        if (!$this->listRange === null) {
+        if ($this->listRange !== null) {
             return $this;
         }
 

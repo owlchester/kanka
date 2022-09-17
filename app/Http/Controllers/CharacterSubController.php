@@ -9,17 +9,6 @@ class CharacterSubController extends CharacterController
 {
     /**
      */
-    public function profile(Character $character)
-    {
-        $this->authCheck($character);
-
-        return view('characters.profile')
-            ->with('model', $character)
-            ->with('name', $this->view);
-    }
-
-    /**
-     */
     public function organisations(Character $character)
     {
         $this->authCheck($character);

@@ -198,8 +198,8 @@ class EntityEvent extends MiscModel
                     (isset($months[$this->month - 1]) ? $months[$this->month - 1]['name'] : $this->month) . ', ' .
                     (isset($years[$this->year]) ? $years[$this->year] : $this->year) . ' ' .
                     $this->calendar->suffix;
-            } catch (\Exception $e) {
                 // @phpstan-ignore-next-line
+            } catch (\Exception $e) {
                 $this->readableDate = $this->date();
             }
         }

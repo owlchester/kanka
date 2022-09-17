@@ -374,11 +374,12 @@ class CrudController extends Controller
     {
         $this->authorize('update', $model);
 
+        /** @var MiscModel $model */
         $campaign = CampaignLocalization::getCampaign();
         $editingUsers = null;
 
-        /** @var MultiEditingService $editingService */
         if ($campaign->hasEditingWarning() && $model->entity) {
+            /** @var MultiEditingService $editingService */
             $editingService = app()->make(MultiEditingService::class);
             $editingUsers = $editingService->entity($model->entity)->user(auth()->user())->users();
             // If no one is editing the entity, we are now editing it
@@ -422,6 +423,7 @@ class CrudController extends Controller
         }
 
         try {
+            /** @var MiscModel $model */
             $data = $this->prepareData($request, $model);
             $model->update($data);
 
@@ -437,7 +439,7 @@ class CrudController extends Controller
                 'name' => link_to_route(
                     $this->route . '.show',
                     e($model->name),
-                    $model
+                    [$model]
                 )
             ]);
 
@@ -490,6 +492,7 @@ class CrudController extends Controller
      */
     public function crudDestroy(Model|MiscModel $model)
     {
+        /** @var MiscModel $model */
         $this->authorize('delete', $model);
 
         $model->delete();
@@ -507,7 +510,7 @@ class CrudController extends Controller
 
     /**
      * @param MiscModel $model
-     * @param $view
+     * @param string $view
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -575,7 +578,7 @@ class CrudController extends Controller
 
     /**
      * Get a list of all attribute templates available for this entity type.
-     * @param $type
+     * @param string $type
      * @return array
      */
     protected function buildAttributeTemplates($type): array
@@ -589,7 +592,7 @@ class CrudController extends Controller
         foreach ($templates as $attr) {
             $attributeTemplates[] = $attr;
             $ids[] = $attr->id;
-            /** @var AttributeResource $child */
+            /** @var AttributeTemplate $child */
             foreach ($attr->ancestors()->with('entity')->get() as $child) {
                 if (!in_array($child->id, $ids)) {
                     $ids[] = $child->id;
@@ -603,7 +606,7 @@ class CrudController extends Controller
 
     /**
      * Set the datagrid sorter for sub views
-     * @param string $datagridFilter
+     * @param string $datagridSorter
      * @return $this
      */
     protected function datagridSorter(string $datagridSorter): self
@@ -667,7 +670,7 @@ class CrudController extends Controller
 
     /**
      * Add a button to the top of a datagrid
-     * @param $route
+     * @param string $route
      * @param string $label
      * @param string $class
      * @return $this

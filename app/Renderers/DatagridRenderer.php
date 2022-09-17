@@ -377,11 +377,9 @@ class DatagridRenderer
                     '<br />';
             } elseif ($type == 'calendar_date') {
                 $class = 'hidden-xs hidden-sm';
-                // @phpstan-ignore-next-line
+                /** @var Journal $model */
                 if ($model->hasCalendar()) {
-                    // @phpstan-ignore-next-line
                     $reminder = $model->calendarReminder();
-                    // @phpstan-ignore-next-line
                     $content = link_to_route(
                         'calendars.show',
                         $this->dateRenderer->render($model->getDate()),
@@ -409,7 +407,7 @@ class DatagridRenderer
     }
 
     /**
-     * @param $option
+     * @param string $option
      * @return mixed|null
      */
     private function getOption($option)

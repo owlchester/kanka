@@ -29,18 +29,6 @@ class ModelResource extends JsonResource
             'updated_by' => $model->updated_by,
         ];
 
-        // Foreign elements
-        $attributes = $model->getAttributes();
-        if (method_exists($this, 'tags')) {
-            $merged['tags'] = TagResource::collection($this->tags);
-        }
-        if (array_key_exists('location_id', $attributes)) {
-            $merged['location_id'] = $model->location_id;
-        }
-        if (array_key_exists('character_id', $attributes)) {
-            $merged['character_id'] = $model->character_id;
-        }
-
         $final = array_merge($prepared, $merged);
         ksort($final);
         return $final;

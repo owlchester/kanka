@@ -50,6 +50,7 @@ class LocationObserver extends MiscObserver
     {
         parent::deleted($model);
 
+        /** @var Location $model */
         if ($model->trashed()) {
             return;
         }

@@ -64,7 +64,7 @@ class OrganisationObserver extends MiscObserver
             if (!empty($existing[$id])) {
                 unset($existing[$id]);
             } else {
-                /** @var Character $character */
+                /** @var Character|null $character */
                 $character = Character::find($id);
                 if (!empty($character)) {
                     $new[] = $character->id;

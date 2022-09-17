@@ -9,11 +9,12 @@ use Illuminate\Support\Str;
 class UuidObserver
 {
     /**
-     * @param Model|Plugin $model
+     * @param Model $model
      * @return void
      */
     public function creating(Model $model)
     {
+        /** @var Plugin $model */
         $model->uuid = Str::uuid();
     }
 }

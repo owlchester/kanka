@@ -83,7 +83,7 @@ class FixEntityPrivacy extends Command
 
     protected function fix(Entity $entity, string $type)
     {
-        /** @var MiscModel $child */
+        /** @var MiscModel|null $child */
         $child = $entity->child;
         if (empty($child)) {
             $this->warn('Unexpected situation for entity #' . $entity->id . ' missing child or child deleted?');

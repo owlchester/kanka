@@ -23,6 +23,7 @@ class WebhookController extends CashierController
 
         // User setup
         if ($user = $this->getUserByStripeId($payload['data']['object']['customer'])) {
+            /** @var User $user */
             /** @var SubscriptionService $service */
             $service = app()->make('App\Services\SubscriptionService');
 
@@ -49,14 +50,14 @@ class WebhookController extends CashierController
         $response = parent::handleCustomerSubscriptionDeleted($payload);
 
         // User notification. Maybe even an email
-        /** @var User $user */
         if ($user = $this->getUserByStripeId($payload['data']['object']['customer'])) {
+            /** @var User $user */
             // Notify admin
             SubscriptionDeletedEmailJob::dispatch($user);
 
             // Set the subscription to end when it's supposed to end (admittedly, this is already passed)
             SubscriptionEndJob::dispatch($user)->delay(
-                $user->subscription('kanka')->ends_at
+                $user->subscription('kanka')->ends_at // @phpstan-ignore-line
             );
         }
 
@@ -71,8 +72,8 @@ class WebhookController extends CashierController
     {
         // User notification. Maybe even an email
         Log::debug('succeeded charge', $payload);
-        /** @var User $user */
         if ($user = $this->getUserByStripeId($payload['data']['object']['customer'])) {
+            /** @var User $user */
             $charge = $payload['data']['object']['charge'];
 
             $source = SubscriptionSource::where(['user_id' => $user->id, 'charge_id', $charge])->first();
@@ -102,8 +103,8 @@ class WebhookController extends CashierController
      */
     public function handleChargeFailed(array $payload)
     {
-        /** @var User $user */
         if ($user = $this->getUserByStripeId($payload['data']['object']['customer'])) {
+            /** @var User $user */
             /** @var SubscriptionService $subscription */
             $subscription = app()->make(SubscriptionService::class);
             $subscription

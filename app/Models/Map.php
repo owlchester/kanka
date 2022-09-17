@@ -422,7 +422,7 @@ class Map extends MiscModel
             if ($this->isChunked()) {
                 return 13;
             }
-            if ($this->isChunked() || $this->isReal()) {
+            if ($this->isReal()) {
                 return self::MAX_ZOOM_REAL;
             }
             return 2.75;

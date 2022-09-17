@@ -12,6 +12,7 @@ class CampaignScope implements Scope
     /**
      * @param Builder $builder
      * @param Location $model
+     * @return Builder
      */
     public function apply(Builder $builder, $model)
     {

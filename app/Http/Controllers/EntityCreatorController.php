@@ -78,6 +78,7 @@ class EntityCreatorController extends Controller
     public function store(Request $request, $type)
     {
         // Make sure the user is allowed to create this kind of entity
+        $class = null;
         if ($type == 'posts') {
             $campaign = CampaignLocalization::getCampaign();
             $this->authorize('recover', $campaign);
@@ -102,7 +103,7 @@ class EntityCreatorController extends Controller
 
         // Prepare the validator
         $requestValidator = '\App\Http\Requests\Store' . ucfirst(Str::singular($type));
-        /** @var FormRequest|StoreCharacter $validator */
+        /** @var StoreCharacter $validator */
         $validator = new $requestValidator();
 
         // Now loop on each name and create entities

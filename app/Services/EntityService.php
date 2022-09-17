@@ -390,9 +390,9 @@ class EntityService
             throw new \Exception("Unknown target '$target' for transforming entity");
         }
 
-        /** @var MiscModel|Location|Item|Family|Organisation|Character $new */
+        /** @var MiscModel $new */
         $new = new $this->entities[$target]();
-        /** @var MiscModel|Location|Item|Family|Organisation|Character|null $old */
+        /** @var MiscModel $old */
         $old = $misc;
         if (empty($misc)) {
             $old = $entity->child;
@@ -410,9 +410,13 @@ class EntityService
         }
 
         // Special import for location parent_location_id
+        /** @var Location $old */
+        /** @var Item $new */
         if (in_array('location_id', $fillable) && empty($new->location_id) && !empty($old->parent_location_id)) {
             $new->location_id = $old->parent_location_id;
         }
+        /** @var Item $old */
+        /** @var Location $new */
         if (in_array('parent_location_id', $fillable) && empty($new->parent_location_id) && !empty($old->location_id)) {
             $new->parent_location_id = $old->location_id;
         }
@@ -432,6 +436,8 @@ class EntityService
         $new->save();
 
         // If switching from an organisation to a family, we need to move the members?
+        /** @var Organisation|Family $old */
+        /** @var Family|Organisation $new */
         if (
             $old->entityTypeId() == config('entities.ids.organisation') &&
             $new->entityTypeId() == config('entities.ids.family')
@@ -454,6 +460,7 @@ class EntityService
             }
         } else {
             // Remove members when they aren't characters
+            /** @var Family $old */
             if (isset($old->members)) {
                 foreach ($old->members as $member) {
                     // We make sure this isn't a character, because a family has members which are
@@ -465,6 +472,7 @@ class EntityService
             }
         }
         // Remove a character from conversations
+        /** @var Character $old */
         if ($old->entityTypeId() === config('entities.ids.character')) {
             foreach ($old->conversationParticipants as $conPar) {
                 $conPar->delete();

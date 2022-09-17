@@ -180,6 +180,7 @@ abstract class MiscObserver
         }
 
         // If soft deleting, don't really delete the image
+        /** @var Location $model */
         if ($model->trashed()) {
             return;
         }
@@ -321,6 +322,7 @@ abstract class MiscObserver
         $model->refresh();
 
         // Check that we have no descendants anymore.
+        /** @var Location $model */
         if ($model->descendants()->count() === 0) {
             return;
         }
