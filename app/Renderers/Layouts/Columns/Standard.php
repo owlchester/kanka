@@ -2,18 +2,22 @@
 
 namespace App\Renderers\Layouts\Columns;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
+use Closure;
 
 class Standard extends Column
 {
-    const CHARACTER = 'character';
-    const IMAGE = 'image';
-    const ENTITYLINK = 'entitylink';
-    const VISIBILITY = 'visibility';
-    const DATE = 'date';
+    public const CHARACTER = 'character';
+    public const IMAGE = 'image';
+    public const ENTITYLINK = 'entitylink';
+    public const VISIBILITY = 'visibility';
+    public const VISIBILITY_PIVOT = 'visibility_pivot';
+    public const DATE = 'date';
 
+    /**
+     * @return string
+     */
     public function __toString(): string
     {
         if (!isset($this->config['render'])) {
@@ -21,11 +25,9 @@ class Standard extends Column
         }
 
         $render = $this->config['render'];
-        if ($render instanceof \Closure) {
+        if ($render instanceof Closure) {
             return (string) $render($this->model);
-        }
-
-        elseif ($this->defined($render)) {
+        } elseif ($this->defined($render)) {
             return $this->view($render, Arr::get($this->config, 'with'));
         }
 
@@ -48,11 +50,15 @@ class Standard extends Column
             self::IMAGE,
             self::ENTITYLINK,
             self::VISIBILITY,
+            self::VISIBILITY_PIVOT,
             self::DATE,
         ]);
     }
+
     /**
      * Render a defined view
+     * @param string $view
+     * @param array|null $extra
      * @return string
      */
     protected function view(string $view, array $extra = null): string
@@ -62,5 +68,4 @@ class Standard extends Column
             ->with('with', $extra)
             ->render();
     }
-
 }

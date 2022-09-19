@@ -49,14 +49,6 @@ class CampaignRole extends Model
         'is_admin',
     ];
     /**
-     * Searchable fields
-     * @var array
-     */
-    protected $searchableColumns = [
-        'name'
-    ];
-
-    /**
      * Determine if the campaign role is the campaign's public role
      * @return bool
      */

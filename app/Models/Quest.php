@@ -91,12 +91,6 @@ class Quest extends MiscModel
     ];
 
     /**
-     * Searchable fields
-     * @var array
-     */
-    protected $searchableColumns  = ['name', 'type', 'entry'];
-
-    /**
      * Foreign relations to add to export
      * @var array
      */

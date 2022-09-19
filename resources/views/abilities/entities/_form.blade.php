@@ -7,13 +7,13 @@
         App\Models\Entity::class,
         false,
         'crud.fields.entity',
-        'search.tag-children',
+        'search.ability-entities',
         'entities/relations.placeholders.target',
         $model
     ) !!}
 </div>
 
-@include('cruds.fields.visibility_id')
+@include('cruds.fields.visibility_id', ['model' => null])
 
 <div class="form-group">
     <button class="btn btn-success">{{ __('crud.save') }}</button>

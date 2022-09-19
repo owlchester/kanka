@@ -44,12 +44,6 @@ class Family extends MiscModel
     ];
 
     /**
-     * Searchable fields
-     * @var array
-     */
-    protected $searchableColumns = ['name', 'entry'];
-
-    /**
      * Fields that can be sorted on
      * @var array
      */

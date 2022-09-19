@@ -24,5 +24,9 @@ return [
             'boosted' => 5,
             'superboosted' => 10
         ]
+    ],
+
+    'filesize' => [
+        'image' => env('APP_IMAGE_SIZE_MB', 1),
     ]
 ];

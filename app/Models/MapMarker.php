@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Facades\CampaignLocalization;
 use App\Facades\Mentions;
 use App\Models\Concerns\Blameable;
 use App\Models\Concerns\Paginatable;
@@ -359,7 +360,9 @@ class MapMarker extends Model
         $iconShape = '<div style="background-color: ' . $this->backgroundColour() . '" class="marker-pin"></div>';
 
         $icon = '`' . $iconShape . '<i class="fa-solid fa-map-pin"></i>`';
-        if (!empty($this->custom_icon) && $this->map->campaign->boosted()) {
+
+        $campaign = CampaignLocalization::getCampaign();
+        if (!empty($this->custom_icon) && $campaign->boosted()) {
             if (Str::startsWith($this->custom_icon, '<i ')) {
                 $icon = '`' . $iconShape . $this->custom_icon . '`';
             } elseif (Str::startsWith($this->custom_icon, ['fa-', 'ra '])) {
@@ -519,7 +522,12 @@ class MapMarker extends Model
      */
     public function visible(): bool
     {
-        if ($this->isPolygon() && !$this->map->campaign->boosted()) {
+        $campaign = CampaignLocalization::getCampaign();
+        if ($this->isPolygon() && !$campaign->boosted()) {
+            return false;
+        }
+        // Part of a private group, don't show either
+        if (!empty($this->group_id) && !$this->group) {
             return false;
         }
         return empty($this->entity_id) || (!empty($this->entity) && !empty($this->entity->child));

@@ -76,7 +76,7 @@ class MapGroup extends Model
     {
         $data = [];
         /** @var MapMarker[] $markers */
-        $markers = $this->markers()->with('entity')->get();
+        $markers = $this->markers()->with('entity', 'group')->get();
         foreach ($markers as $marker) {
             if ($marker->visible()) {
                 $data[] = 'marker' . $marker->id;

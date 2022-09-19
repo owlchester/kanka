@@ -38,12 +38,6 @@ class Location extends MiscModel
         Acl
     ;
 
-    /**
-     * Searchable fields
-     * @var array
-     */
-    protected $searchableColumns  = ['name', 'entry', 'type'];
-
 
     /**
      * @var array

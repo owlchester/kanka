@@ -1,6 +1,13 @@
 <?php
 
 return [
+    'appearance'                    => [
+        'helpers'   => [
+            'campaign-order'    => 'Zmeň poradie, v ktorom sa kampane zobrazujú v prepínači kampaní.',
+            'date-format'       => 'Kontroluj formát dátumu pre reálny dátum.',
+            'pagination'        => 'Zmeň počet prvkov zobrazovaných v zoznamoch.',
+        ],
+    ],
     'avatar'                        => [
         'success'   => 'Avatar aktualizovaný.',
     ],
@@ -31,8 +38,12 @@ return [
         'new_password_confirmation' => 'Potvrdiť nové heslo',
         'newsletter'                => 'Prajem si, aby ste ma niekedy kontaktovali mailom.',
         'password'                  => 'Súčasné heslo',
+        'profile-name'              => 'Profilové meno',
         'settings'                  => 'Nastavenia',
         'theme'                     => 'Téma',
+    ],
+    'helpers'                       => [
+        'profile-name'  => 'Zmeň, ako vyzerá tvoje meno na tvojom :profile a :marketplace. Ak ho ponecháš prázdne, bude sa používať meno tvojho konta.',
     ],
     'newsletter'                    => [
         'helpers'   => [
@@ -67,13 +78,17 @@ return [
         'password'                  => 'Zadaj tvoje aktuálne heslo',
     ],
     'sections'                      => [
-        'delete'    => [
-            'delete'    => 'Odstrániť moje konto',
-            'helper'    => 'Odstránenie tvojho konta odstráni aj všetky kampane, ktorých si jediným členom. Táto akcia je trvalá a nemôže byť vrátená späť.',
-            'title'     => 'Odstránenie môjho konta',
-            'warning'   => 'Odstránením tvojho konta sa odstránia aj všetky tvoje údaje. Chceš to naozaj urobiť?',
+        'dangerzone'    => 'Nebezpečná zóna',
+        'delete'        => [
+            'confirm'       => 'Áno, odstráň moje konto',
+            'delete'        => 'Odstrániť moje konto',
+            'goodbye'       => 'Ak to chceš, prepíš :code do políčka nižšie.',
+            'helper'        => 'Odstránenie tvojho konta odstráni aj všetky kampane, ktorých si jediným členom. Táto akcia je trvalá a nemôže byť vrátená späť.',
+            'subscribed'    => 'Prosím, ukonči tvoje preplatné, aby bolo možné odstrániť tvoje konto.',
+            'title'         => 'Odstránenie môjho konta',
+            'warning'       => 'Odstránením tvojho konta sa odstránia aj všetky tvoje údaje. Chceš to naozaj urobiť?',
         ],
-        'password'  => [
+        'password'      => [
             'title' => 'Zmena hesla',
         ],
     ],
@@ -100,6 +115,7 @@ return [
         'success'   => 'Nastavenia zmenené.',
     ],
     'theme'                         => [
+        'helper'    => 'Kampaň s nastavenou témou prepíše tvoje nastavenia.',
         'success'   => 'Téma zmenená.',
         'themes'    => [
             'dark'      => 'Dark',

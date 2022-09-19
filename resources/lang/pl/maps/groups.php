@@ -19,9 +19,15 @@ return [
         'is_shown'  => 'Pokaż kategorię znaczników',
         'position'  => 'Kolejność',
     ],
-    'helper'        => [],
+    'helper'        => [
+        'amount_v2' => 'Twórz grupy i dodawaj do nich znaczniki - można je wówczas ukryć albo wyświetlić jednym kliknięciem.',
+    ],
     'hints'         => [
         'is_shown'  => 'Zaznacz, by ta kategoria znaczników wyświetlała się na mapie domyślnie.',
+    ],
+    'pitch'         => [
+        'error' => 'Stworzono maksymalną liczbę grup.',
+        'until' => 'Utwórz do :max grup na każdej mapie.',
     ],
     'placeholders'  => [
         'name'      => 'Sklepy, skarby, BNi.',

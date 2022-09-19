@@ -18,6 +18,14 @@ return [
         'position'  => 'Posição',
         'url'       => 'URL',
     ],
+    'go'                => [
+        'actions'       => [
+            'confirm'   => 'Tenho certeza',
+            'trust'     => 'Não me pergunte novamente',
+        ],
+        'description'   => 'Este link irá levá-lo para :link. Tem certeza que quer ir lá?',
+        'title'         => 'Deixando Kanka',
+    ],
     'helpers'           => [
         'icon'  => 'Você pode personalizar o ícone exibido para o link. Use qualquer um dos ícones gratuitos de :fontawesome ou deixe este campo em branco para o padrão.',
     ],

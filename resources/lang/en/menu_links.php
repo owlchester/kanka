@@ -19,7 +19,6 @@ return [
         'random'            => 'Random',
         'random_type'       => 'Random Entity Type',
         'selector'          => 'Quick Link Configuration',
-        'tab'               => 'Tab',
         'type'              => 'Entity List',
     ],
     'helpers'           => [

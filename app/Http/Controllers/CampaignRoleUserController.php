@@ -89,7 +89,7 @@ class CampaignRoleUserController extends Controller
     {
         $campaign = CampaignLocalization::getCampaign();
         $this->authorize('roles', $campaign);
-        $this->authorize('delete', $campaignRoleUser);
+        $this->authorize('delete', [$campaignRoleUser, $campaignRole]);
 
         $campaignRoleUser->delete();
         return redirect()->route('campaign_roles.show', $campaignRole)

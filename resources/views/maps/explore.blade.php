@@ -178,7 +178,7 @@
         }
 
         .marker-{{ $marker->id }} .marker-pin::after {
-            @if ($marker->entity && $marker->icon == 4)background-image: url('{{ $marker->entity->child->getImageUrl(400) }}');
+            @if (!empty($marker->entity_id) && $marker->entity && $marker->icon == 4)background-image: url('{{ $marker->entity->child->getImageUrl(400) }}');
 
                 @if (!empty($marker->pin_size))
                     width: {{ $marker->pinSize(false) - 4 }}px;
@@ -189,9 +189,9 @@
             @endif
         }
 
-        @endif
+    @endif
 
-        @if (!empty($marker->pin_size)).marker-{{ $marker->id }} .marker-pin {
+    @if (!empty($marker->pin_size)).marker-{{ $marker->id }} .marker-pin {
             width: {{ $marker->pinSize() }};
             height: {{ $marker->pinSize() }};
             margin: -{{ $marker->pinSize(false) / 2 }}px 0 0 -{{ $marker->pinSize(false) / 2 }}px;
@@ -200,7 +200,6 @@
         .marker-{{ $marker->id }} i {
             font-size: {{ $marker->pinSize(false) / 2 }}px;
         }
-
     @endif
 @endforeach
     </style>

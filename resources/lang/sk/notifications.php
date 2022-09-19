@@ -33,10 +33,14 @@ return [
     'clear'             => [
         'action'    => 'Vymazať všetky',
         'success'   => 'Notifikácie vymazané.',
+        'title'     => 'Vymazať notifikácie',
     ],
     'header'            => '{1} Máš :count notifikáciu.|[2,4] Máš :count notifikácie.|[5,*] Máš :count notifikácií.',
     'index'             => [
         'title' => 'Notifikácie',
+    ],
+    'map'               => [
+        'chunked'   => 'Mapa :name ukončila rozmieňanie a je teraz použiteľná.',
     ],
     'no_notifications'  => 'Aktuálne neexistujú žiadne notifikácie.',
     'subscriptions'     => [

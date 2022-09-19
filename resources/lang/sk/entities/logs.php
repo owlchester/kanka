@@ -1,19 +1,20 @@
 <?php
 
 return [
-    'actions'       => [
+    'actions'           => [
         'create'    => 'Vytvoriť',
         'delete'    => 'Zmazať',
         'restore'   => 'Obnoviť',
         'update'    => 'Upraviť',
         'view'      => 'Zobraziť zmeny',
     ],
-    'fields'        => [
+    'call-to-action'    => 'Log s plným záznamom zmien za posledných :amount dní je dostupný pre superboosted kampane.',
+    'fields'            => [
         'action'    => 'Akcia',
         'date'      => 'Dátum',
     ],
-    'impersonated'  => 'Vydáva sa za :name',
-    'show'          => [
+    'impersonated'      => 'Vydáva sa za :name',
+    'show'              => [
         'title' => 'Objekt :name Log',
     ],
 ];

@@ -4,10 +4,10 @@ $redirect = [];
 if (request()->get('layout') === 'year') {
     $redirect[] = 'layout=year';
 }
-if (request()->has('year')) {
+if (request()->has('year') && is_numeric(request()->has('year'))) {
     $redirect[] = 'year=' . request()->get('year');
 }
-if (request()->has('month')) {
+if (request()->has('month') && is_numeric(request()->has('month'))) {
     $redirect[] = 'month=' . request()->get('month');
 }
 if (!empty($redirect)) {

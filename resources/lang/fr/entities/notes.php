@@ -16,10 +16,10 @@ return [
         'title'     => 'Nouvelle Note pour :name',
     ],
     'destroy'       => [
-        'success'   => 'La note \':name\' a été retirée.',
+        'success'   => 'La note :name a été retirée.',
     ],
     'edit'          => [
-        'success'   => 'La note \':name\' pour :entity a été modifiée.',
+        'success'   => 'La note :name pour :entity a été modifiée.',
         'title'     => 'Modifier la note pour :name',
     ],
     'fields'        => [
@@ -39,6 +39,16 @@ return [
     ],
     'index'         => [
         'title' => 'Notes pour :name',
+    ],
+    'move'          => [
+        'copy'          => 'Créer une copie sur l\'entité cible',
+        'copy_success'  => 'La note :name a été copiée vers :entity avec succès.',
+        'description'   => 'Sélectionnes une entité vers laquelle la note doit être déplacée ou copiée.',
+        'entity'        => 'Entité cible',
+        'move'          => 'Déplacer ou copier vers une autre entité',
+        'move_success'  => 'La note :name a été déplacée vers :entity avec succès.',
+        'select_one'    => 'Choix d\'une entité',
+        'title'         => 'Déplacer ou copier vers une autre entité',
     ],
     'placeholders'  => [
         'name'  => 'Nom de la note, observation ou remarque',

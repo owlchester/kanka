@@ -5,6 +5,9 @@ return [
         'description'   => 'The following filters are available for the :name API endpoint.',
         'title'         => 'API Filters',
     ],
+    'attributes'        => [
+        'link'  => 'Attribute options',
+    ],
     'calendar-widget'   => [
         'info'  => 'Why are these reminders being shown?',
         'title' => 'Calendar Widget',

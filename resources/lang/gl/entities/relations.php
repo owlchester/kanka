@@ -62,10 +62,11 @@ return [
         'title' => 'Relacións',
     ],
     'options'           => [
-        'mentions'  => 'Relacións + relacionadas + mencións',
-        'related'   => 'Relacións + relacionadas',
-        'relations' => 'Relacións',
-        'show'      => 'Mostrar',
+        'mentions'          => 'Relacións + relacionadas + mencións',
+        'only_relations'    => 'Só relacións directas',
+        'related'           => 'Relacións + relacionadas',
+        'relations'         => 'Relacións',
+        'show'              => 'Mostrar',
     ],
     'panels'            => [
         'related'   => 'Relacionadas',

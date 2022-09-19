@@ -187,7 +187,7 @@ class AbilityController extends CrudController
             $redirectUrlOptions['ability_id'] = $ability->id;
         }
 
-        $ability->attachEntity($request->only('entity_id', 'visibility'));
+        $ability->attachEntity($request->only('entity_id', 'visibility_id'));
         return redirect()->route('abilities.entities', ['ability' => $ability->id])
             ->with('success', trans('abilities.children.create.success', ['name' => $ability->name]));
     }

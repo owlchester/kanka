@@ -5,6 +5,7 @@ return [
         'actions'           => 'Akcje',
         'apply'             => 'Zastosuj',
         'back'              => 'Cofnij',
+        'change'            => 'Zmień',
         'copy'              => 'Kopiuj',
         'copy_mention'      => 'Kopiuj wzmiankę [ ]',
         'copy_to_campaign'  => 'Kopiuj do kampanii',
@@ -17,6 +18,7 @@ return [
         'manage_links'      => 'Zarządzaj odnośnikami',
         'move'              => 'Zmień lub przenieś',
         'new'               => 'Nowe',
+        'new_child'         => 'Nowy element pochodny',
         'new_post'          => 'Nowy komentarz',
         'next'              => 'Następne',
         'print'             => 'Drukuj',
@@ -26,16 +28,22 @@ return [
     'add'                       => 'Dodaj',
     'alerts'                    => [
         'copy_attribute'    => 'Wzmianka cechy została skopiowana do schowka.',
+        'copy_invite'       => 'Skopiowano do schowka odnośnik zaproszenia.',
         'copy_mention'      => 'Zaawansowana wzmianka elementu została skopiowana do schowka.',
     ],
     'boosted'                   => 'Doładowana',
     'boosted_campaigns'         => 'Doładowanie kampanie',
     'bulk'                      => [
         'actions'       => [
-            'edit'  => 'Edytuj zaznaczone',
+            'edit'          => 'Edytuj zaznaczone',
+            'permissions'   => 'Zmiana uprawnień',
+            'templates'     => 'Zastosuj szablon cech',
         ],
         'age'           => [
             'helper'    => 'Możesz dodać liczbę poprzedzoną znakiem + lub -, by zmienić wiek o tyle lat.',
+        ],
+        'buttons'       => [
+            'label' => 'Dla wybranych',
         ],
         'delete'        => [
             'warning'   => 'Czy na pewno usunąć wybrane elementy?',
@@ -127,6 +135,7 @@ return [
         'copy_permissions'      => 'Kopiuj uprawnienia (zastąpią obecnie obowiązujące uprawnienia)',
         'copy_posts'            => 'Kopiuj komentarze (oraz ich uprawnienia)',
         'creator'               => 'Tworzenie',
+        'date_range'            => 'Zakres dat',
         'dice_roll'             => 'Rzut kośćmi',
         'entity'                => 'Element',
         'entity_type'           => 'Rodzaj elementu',
@@ -157,6 +166,7 @@ return [
         'position'              => 'Kolejność',
         'privacy'               => 'Tajne',
         'race'                  => 'Rasa',
+        'replace_mentions'      => 'Zamień wzmianki o cechach tego elementu wzmiankami nowego elementu',
         'tag'                   => 'Etykieta',
         'tags'                  => 'Etykiety',
         'timeline'              => 'Historia',
@@ -227,6 +237,7 @@ return [
     'helpers'                   => [
         'copy_options'  => 'Skopiuj następujące elementy elementu źródłowego do nowego elementu.',
         'linking'       => 'Łącza do innych elementów',
+        'nested_parent' => 'Wyświetl pochodne :parent',
     ],
     'hidden'                    => 'Ukryte',
     'hints'                     => [
@@ -255,6 +266,7 @@ return [
     ],
     'is_not_private'            => 'Ten element nie jest obecnie tajny.',
     'is_private'                => 'Ten element jest tajny, a zatem widoczny tylko dla uczestników posiadających rolę administratora.',
+    'keyboard-shortcut'         => 'Skrót klawiaturowy :code',
     'legacy'                    => 'Poprzednia wersja',
     'linking_help'              => 'Jak tworzyć linki do innych elementów?',
     'manage'                    => 'Zarządzaj',

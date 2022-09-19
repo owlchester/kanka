@@ -13,7 +13,7 @@
         'name',
         'type',
         [
-            'label' => trans('crud.fields.ability'),
+            'label' => __('crud.fields.ability'),
             'field' => 'ability.name',
             'render' => function($model) {
                 if ($model->ability) {
@@ -22,9 +22,16 @@
             }
         ],
         [
-            'label' => '<i class="fa-solid fa-users" title="' . trans('abilities.fields.abilities') . '"></i>',
+            'label' => '<i class="ra ra-fire-symbol" title="' . __('abilities.fields.abilities') . '"></i>',
             'render' => function($model) {
                 return $model->abilities->count();
+            },
+            'disableSort' => true,
+        ],
+        [
+            'label' => '<i class="fa-solid fa-user" title="' . __('abilities.show.tabs.entities') . '"></i>',
+            'render' => function($model) {
+                return $model->entities->count();
             },
             'disableSort' => true,
         ],

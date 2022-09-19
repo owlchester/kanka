@@ -14,6 +14,7 @@ return [
         'comment'       => 'Komentár',
         'entity_link'   => 'Link k objektu',
         'honorable'     => 'Čestná zmienka',
+        'jury'          => 'Hosťovský rozhodca :user',
         'rank'          => 'Poradie',
         'submitter'     => 'Prispievateľ',
     ],

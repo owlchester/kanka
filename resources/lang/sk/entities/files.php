@@ -1,18 +1,23 @@
 <?php
 
 return [
-    'create'    => [
+    'call-to-action'    => [
+        'boost'         => 'Ak chceš nahrať viac súborov, musí byť kampaň boostnutá.',
+        'error'         => 'Tento objekt má max. počet súborov, ktoré mu môže byť pridelený.',
+        'superboost'    => 'Ak chceš nahrať viac súborov, musí byť kampaň superboostnutá.',
+    ],
+    'create'            => [
         'success'   => 'Súbor :file pridaný.',
         'title'     => 'Nový súbor pre :entity',
     ],
-    'destroy'   => [
+    'destroy'           => [
         'success'   => 'Súbor :file odstránený.',
     ],
-    'fields'    => [
+    'fields'            => [
         'file'  => 'Súbor',
         'name'  => 'Meno súboru',
     ],
-    'update'    => [
+    'update'            => [
         'success'   => 'Súbor :file aktualizovaný.',
     ],
 ];

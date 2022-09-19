@@ -42,7 +42,7 @@ function quickCreatorUI() {
 }
 
 function quickCreatorDuplicateName() {
-    $('#entity-creator-form input[name="names[]"]').unbind('focusout').focusout(function(e) {
+    $('#entity-creator-form input[name="names[]"]').unbind('focusout').focusout(function() {
         // Don't bother if the user didn't set any value
         if (!$(this).val()) {
             return;
@@ -106,7 +106,7 @@ function quickCreatorSubformHandler() {
             url: $(this).attr('action'),
             data: $(this).serialize(),
             context: this
-        }).done(function (result, textStatus, xhr) {
+        }).done(function (result) {
             // New entity was created, let's follow that redirect
             if (typeof result === 'object') {
                 $('#' + result._target).children().remove().end().append(
@@ -125,8 +125,8 @@ function quickCreatorSubformHandler() {
             quickCreatorUI();
 
         }).fail(function (err) {
+            /** @property {string} responseJSON - json errors from response  */
             if (err.responseJSON.errors) {
-
                 let errors = err.responseJSON.errors;
 
                 let errorKeys = Object.keys(errors);
@@ -136,7 +136,7 @@ function quickCreatorSubformHandler() {
                     if (name === 'name') {
                         name = 'names[]';
                     }
-                    var errorSelector = $('#entity-creator-form input[name="' + name + '"]');
+                    let errorSelector = $('#entity-creator-form :input[name="' + name + '"]');
                     if (errorSelector.length > 0) {
                         errorSelector.addClass('input-error').parent().parent().append('<div class="text-danger">' + errors[i][0] + '</div>');
                     } else {
@@ -154,7 +154,7 @@ function quickCreatorSubformHandler() {
                     // Switch tabs/pane
                     $('.tab-content .active').removeClass('active');
                     $('.nav-tabs li.active').removeClass('active');
-                    var firstPane = $('[name="' + firstItem + '"').closest('.tab-pane');
+                    let firstPane = $('[name="' + firstItem + '"').closest('.tab-pane');
                     firstPane.addClass('active');
                     $('a[href="#' + firstPane.attr('id') + '"]').closest('li').addClass('active');
                 }

@@ -17,19 +17,21 @@ return [
     'destroy'       => [],
     'edit'          => [],
     'fields'        => [
-        'children'  => 'Filhos',
-        'name'      => 'Nome',
-        'tag'       => 'Tag Principal',
-        'tags'      => 'Subtags',
-        'type'      => 'Tipo',
+        'children'          => 'Filhos',
+        'is_auto_applied'   => 'Aplicar automaticamente a novas entidades',
+        'name'              => 'Nome',
+        'tag'               => 'Tag Principal',
+        'tags'              => 'Subtags',
+        'type'              => 'Tipo',
     ],
     'helpers'       => [
         'nested_without'    => 'Mostrando todas as tags que não tem uma tag-pai. Clique em uma linha para ver as tags-filhos.',
         'no_children'       => 'No momento, não há entidades marcadas com esta tag.',
     ],
     'hints'         => [
-        'children'  => 'Esta lista contém todas entidades diretamente relacionadas a esta tag e todas tags aninhadas nela.',
-        'tag'       => 'Exibidas abaixo estão todas as tags diretamente relacionadas a ela.',
+        'children'          => 'Esta lista contém todas entidades diretamente relacionadas a esta tag e todas tags aninhadas nela.',
+        'is_auto_applied'   => 'Marque esta opção para aplicar automaticamente esta tag a entidades recém-criadas.',
+        'tag'               => 'Exibidas abaixo estão todas as tags diretamente relacionadas a ela.',
     ],
     'index'         => [
         'title' => 'Tags',

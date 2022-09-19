@@ -27,6 +27,7 @@ return [
         'creator'   => 'Twórca',
         'entry'     => 'Szczegóły',
         'name'      => 'Nazwa',
+        'position'  => 'Ustawienie',
     ],
     'footer'        => [
         'created'   => 'Stworzony przez :user dnia :date',

@@ -62,10 +62,11 @@ return [
         'title' => 'Beziehungen',
     ],
     'options'           => [
-        'mentions'  => 'Beziehungen + verbundene + erwähnt',
-        'related'   => 'Beziehungen + verbundene',
-        'relations' => 'Beziehungen',
-        'show'      => 'zeige',
+        'mentions'          => 'Beziehungen + verbundene + erwähnt',
+        'only_relations'    => 'Nur direkte Beziehungen',
+        'related'           => 'Beziehungen + verbundene',
+        'relations'         => 'Beziehungen',
+        'show'              => 'zeige',
     ],
     'panels'            => [
         'related'   => 'verbunden',

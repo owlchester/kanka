@@ -37,17 +37,6 @@ class Tag extends MiscModel
     ;
 
     /**
-     * Searchable fields
-     * @var array
-     */
-    protected $searchableColumns  = [
-        'name',
-        'type',
-        'entry',
-        'colour'
-    ];
-
-    /**
      * Entity type
      * @var string
      */
@@ -196,7 +185,7 @@ class Tag extends MiscModel
     public function allChildren($withTags = false)
     {
         $children = [];
-        foreach ($this->entities->pluck('entities.id')->toArray() as $entity) {
+        foreach ($this->entities->pluck('id')->toArray() as $entity) {
             $children[] = $entity;
         }
         foreach ($this->descendants as $desc) {

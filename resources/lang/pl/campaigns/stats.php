@@ -12,6 +12,7 @@ return [
         ],
     ],
     'helper'        => 'Śledź swoje postępy i odblokowuj osiągnięcia twórcy kampanii! Wartości aktualizowane są co 24 godziny.',
+    'pitch'         => 'Osiągnięcia kampanii pozwalają śledzić postępy w budowaniu świata.',
     'placeholder'   => ':amount z :target',
     'targets'       => [
         'calendars' => 'Stwórz kalendarze: :target',

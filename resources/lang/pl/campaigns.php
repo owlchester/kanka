@@ -1,6 +1,9 @@
 <?php
 
 return [
+    'actions'                           => [
+        'boost' => 'Doładuj :name',
+    ],
     'create'                            => [
         'description'           => 'Utwórz nową kampanię',
         'helper'                => [
@@ -75,6 +78,8 @@ TEXT
         'character_personality_visibility'  => 'Wybierz domyślą widoczność cech osobowości nowych postaci, tworzonych przez adminów.',
         'css'                               => 'Twórz własne style CSS do używania w kampanii. Uwaga - nadużywanie tej opcji może poskutkować usunięciem stworzonych stylów. Powtarzające się albo poważne wykroczenia mogą spowodować usunięcie kampanii.',
         'dashboard'                         => 'Dostosuj sposób wyświetlania widżetów na pulpicie kampanii wypełniając poniższe pola',
+        'entity_count_infinity'             => 'W tej kampanii nie obowiązuje limit elementów.',
+        'entity_count_v2'                   => 'Liczba elementów jest aktualizowana co sześć godzin i nie obejmuje etykiet.',
         'entity_privacy'                    => 'Wybierz domyślą dostępność nowych elementów, tworzonych przez adminów.',
         'excerpt'                           => 'Podsumowanie kampanii będzie wyświetlane na pulpicie, więc poświęć mu kilka zdań. Najlepiej, gdy jest krótkie i dobitne.',
         'header_image'                      => 'Obraz wyświetlany w tle nagłówka pulpitu kampanii',
@@ -166,6 +171,7 @@ TEXT
             'remove'        => 'Usuń z kampanii',
             'switch'        => 'Przełącz',
             'switch-back'   => 'Powrót do profilu',
+            'switch-entity' => 'Zobacz jako',
         ],
         'create'                => [
             'title' => 'Dodaj uczestnika kampanii',
@@ -174,6 +180,7 @@ TEXT
             'title' => 'Edytuj uczestnika :name',
         ],
         'fields'                => [
+            'banned'        => 'Użytkownik zablokowany',
             'joined'        => 'Dołączył(a)',
             'last_login'    => 'Ostatnie logowanie',
             'name'          => 'Użytkownik',
@@ -268,6 +275,7 @@ TEXT
             '1' => 'Kampania może posiadać dowodnie dużo ról. "Administrator" posiada automatycznie dostęp do wszystkich elementów kampanii, ale inne role mogą być ograniczone tylko do części elementów (postaci, miejsc, itd.).',
             '2' => 'Uprawnienia rozmaitych elementów można dodatkowo modyfikować w zakładce "Uprawnienia". Pojawi się ona, kiedy w kampanii przybędzie ról lub członków.',
             '3' => 'Ustawieniami można zarządzać globalnie, zapewniając rolom uprawienia dostępu do całych kategorii elementów kampanii i ukrywając część z nich za pomocą opcji "Tajne", albo lokalnie, włączając ręcznie widoczność konkretnych elementów.',
+            '4' => 'Liczba ról w kampaniach doładowanych nie jest ograniczona.',
         ],
         'hints'         => [
             'campaign_not_public'   => 'Ustawiono uprawnienia roli Publiczność, ale kampania jest prywatna. Możesz to zmienić z pomocą zakładki Udostępnij w menu edycji kampanii.',

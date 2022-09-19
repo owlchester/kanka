@@ -573,6 +573,9 @@ trait HasFilters
         }
 
         foreach ($value as $v) {
+            if (!is_numeric($v)) {
+                continue;
+            }
             $v = (int) $v;
             $query
                 ->leftJoin('entity_tags as et' . $v, "et$v.entity_id", 'e.id')

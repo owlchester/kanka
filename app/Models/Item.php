@@ -59,11 +59,6 @@ class Item extends MiscModel
         'size',
         'item_id',
     ];
-    /**
-     * Searchable fields
-     * @var array
-     */
-    protected $searchableColumns  = ['name', 'type', 'entry', 'price', 'size'];
 
     /**
      * Entity type

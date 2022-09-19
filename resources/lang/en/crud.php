@@ -214,10 +214,10 @@ return [
             'copy'  => 'Clipboard',
         ],
         'options'                   => [
+            'children'  => 'With children',
             'exclude'   => 'Exclude',
             'include'   => 'Include',
             'none'      => 'None',
-            'children'  => 'With children'
         ],
         'show'                      => 'Show Filters',
         'sorting'                   => [

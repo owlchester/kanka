@@ -129,6 +129,7 @@ class EntityCreatorController extends Controller
                 $new->entity->crudSaved();
             } else {
                 //If position = 0 the post's position is last, else the post's position is first.
+                $this->validateEntity($values, $validator->rules());
                 if ($values['position'] == 0) {
                     $new = EntityNote::create($values);
                 } else {

@@ -87,20 +87,21 @@ trait CampaignScopes
     }
 
     /**
-     * Campaigns for the frontend
-     * @param $query
-     * @return mixed
+     * Filtered campaigns for the front end
+     * @param Builder $query
+     * @param int|null $sort
+     * @return Builder
      */
-    public function scopeFront(Builder $query, string $sort = null): Builder
+    public function scopeFront(Builder $query, int $sort = null): Builder
     {
         if (!app()->environment('local')) {
             $query
                 ->where('visible_entity_count', '>', 0);
         }
-        $defaultsort = $sort == 1 ? 'follower' : 'visible_entity_count';
+        $defaultSort = $sort == 1 ? 'follower' : 'visible_entity_count';
         $query
             ->where('is_hidden', 0)
-            ->orderBy($defaultsort, 'desc')
+            ->orderBy($defaultSort, 'desc')
             ->orderBy('name');
 
         return $query;
@@ -130,7 +131,9 @@ trait CampaignScopes
         if ($boosted === "1") {
             $query->where('boost_count', '>=', 1);
         } elseif ($boosted === "0") {
-            $query->where(function($sub) { return $sub->where('boost_count', 0)->orWhereNull('boost_count'); });
+            $query->where(function($sub) {
+                return $sub->where('boost_count', 0)->orWhereNull('boost_count');
+            });
         }
 
         $open = Arr::get($options, 'is_open');
@@ -147,7 +150,7 @@ trait CampaignScopes
      * @param Builder $query
      * @return Builder
      */
-    public function scopePreparedWith(Builder $query)
+    public function scopePreparedWith(Builder $query): Builder
     {
         return $query;
     }
@@ -169,7 +172,7 @@ trait CampaignScopes
      * @param int $hidden
      * @return mixed
      */
-    public function scopeHidden(Builder $query, $hidden = 1)
+    public function scopeHidden(Builder $query, $hidden = 1): Builder
     {
         return $query->where(['is_hidden' => $hidden]);
     }

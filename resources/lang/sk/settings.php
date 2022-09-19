@@ -39,6 +39,7 @@ return [
                 'remove'    => 'Tvoje Discord konto bolo odpojené.',
             ],
             'text'      => 'Pristupuj automaticky k tvojej roli predplatného.',
+            'unlock'    => 'Odblokovať roly v Discorde',
         ],
         'title'     => 'Integrácia aplikácie',
     ],
@@ -85,10 +86,12 @@ return [
     'menu'          => [
         'account'               => 'Konto',
         'api'                   => 'API',
+        'appearance'            => 'Vzhľad',
         'apps'                  => 'Apps',
         'billing'               => 'Spôsob platby',
         'boosters'              => 'Boosty',
         'invoices'              => 'Faktúry',
+        'notifications'         => 'Upozornenia',
         'other'                 => 'Iné',
         'patreon'               => 'Patreon',
         'payment_options'       => 'Možnosti platby',
@@ -202,7 +205,8 @@ return [
             'yearly'    => 'Ročne',
         ],
         'placeholders'          => [
-            'reason'    => 'Alternatívne nám daj vedieť, prečo už nepodporuješ Kanku. Chýbala ti nejaká funkcionalita? Zmenila sa tvoja finančná situácia?',
+            'downgrade_reason'  => 'Alternatívne nám daj vedieť, prečo znižuješ úroveň tvojho predplatného.',
+            'reason'            => 'Alternatívne nám daj vedieť, prečo už nepodporuješ Kanku. Chýbala ti nejaká funkcionalita? Zmenila sa tvoja finančná situácia?',
         ],
         'plans'                 => [
             'cost_monthly'  => ':amount :currency účtovaných mesačne',
@@ -238,10 +242,11 @@ return [
                 'title'     => 'Čo obnáša zrušenie predplatného',
             ],
             'downgrade' => [
-                'bullets'   => [
+                'bullets'           => [
                     'end'   => 'Tvoja aktuálna úroveň ostáva aktívna do konca aktuálneho platobného obdobia. Potom bude znížená na novú úroveň.',
                 ],
-                'title'     => 'Pri prechode na nižšiu úroveň',
+                'provide_reason'    => 'Ak sa dá, daj nám prosím vedieť, prečo znižuješ úroveň tvojho predplatného.',
+                'title'             => 'Pri prechode na nižšiu úroveň',
             ],
             'upgrade'   => [
                 'bullets'   => [

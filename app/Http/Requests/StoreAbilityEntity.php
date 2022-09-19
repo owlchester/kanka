@@ -26,7 +26,7 @@ class StoreAbilityEntity extends FormRequest
         return [
             'ability_id' => 'required|exists:entities,id',
             'entity_id' => 'required|exists:entities,id|different:ability_id',
-            'visibility' => 'required|string',
+            'visibility_id' => 'required|exists:visibilities,id',
         ];
     }
 }

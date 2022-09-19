@@ -27,6 +27,7 @@ return [
         'creator'   => 'Autor/ka',
         'entry'     => 'Hodnota',
         'name'      => 'Názov',
+        'position'  => 'Pozícia',
     ],
     'footer'        => [
         'created'   => 'Vytvorené :user dňa :date',

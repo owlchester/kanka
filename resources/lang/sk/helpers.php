@@ -7,6 +7,10 @@ return [
         'title'         => 'API filtre',
     ],
     'attributes'        => [],
+    'calendar-widget'   => [
+        'info'  => 'Prečo sa zobrazujú tieto pripomenutia?',
+        'title' => 'Kalendárový widget',
+    ],
     'dice'              => [],
     'entity_templates'  => [
         'link'  => 'Ako nastaviť šablóny',

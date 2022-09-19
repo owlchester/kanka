@@ -39,6 +39,7 @@ return [
                 'remove'    => 'A túa conta de Discord foi desligada.',
             ],
             'text'      => 'Accede aos teus roles de subscripción automáticamente.',
+            'unlock'    => 'Desbloquear roles de Discord',
         ],
         'title'     => 'Integración en aplicacións',
     ],
@@ -204,7 +205,8 @@ return [
             'yearly'    => 'Anual',
         ],
         'placeholders'          => [
-            'reason'    => 'Opcionalmente, cóntanos por que deixas de apoiar a Kanka. Faltouche algunha función? Cambiou a túa situación financieira?',
+            'downgrade_reason'  => 'Opcionalmente, cóntanos por que estás reducindo a túa subscripción.',
+            'reason'            => 'Opcionalmente, cóntanos por que deixas de apoiar a Kanka. Faltouche algunha función? Cambiou a túa situación financieira?',
         ],
         'plans'                 => [
             'cost_monthly'  => ':amount :currency cobrados mensualmente',
@@ -240,10 +242,11 @@ return [
                 'title'     => 'Ao cancelar a túa subscripción',
             ],
             'downgrade' => [
-                'bullets'   => [
+                'bullets'           => [
                     'end'   => 'O teu nivel actual permanecerá activo ata o final do teu actual periodo de pagamento, despois do cal serás baixado ao teu novo nivel.',
                 ],
-                'title'     => 'Ao cambiar a un nivel máis baixo',
+                'provide_reason'    => 'Por favor, comparte connosco o motivo polo que estás reducindo a túa subscripción.',
+                'title'             => 'Ao cambiar a un nivel máis baixo',
             ],
             'upgrade'   => [
                 'bullets'   => [

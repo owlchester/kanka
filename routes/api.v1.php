@@ -85,5 +85,6 @@ Route::delete('campaigns/{campaign}/users', 'Campaign\UserApiController@remove')
 Route::post('campaigns/{campaign}/permissions/test', 'EntityPermissionApiController@test');
 
 Route::get('visibilities', 'VisibilityController@index');
+Route::get('version', function() { return config('app.version'); });
 
 //Route::get('campaigns/{campaign}/settings', 'CampaignSettingApiController@index');

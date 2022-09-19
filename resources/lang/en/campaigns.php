@@ -250,6 +250,10 @@ TEXT
             'save'          => 'Save role',
         ],
         'admin_role'    => 'admin role',
+        'bulks'         => [
+            'delete'    => '{1} Removed :count role.|[2,*] Removed :count roles.',
+            'edit'      => '{1} Updated :count role.|[2,*] Updated :count roles.',
+        ],
         'create'        => [
             'success'   => 'Role :name created.',
             'title'     => 'New role',
@@ -260,10 +264,6 @@ TEXT
         'edit'          => [
             'success'   => 'Role :name updated.',
             'title'     => 'Edit role :name',
-        ],
-        'bulks'         => [
-            'delete'    => '{1} Removed :count role.|[2,*] Removed :count roles.',
-            'edit'      => '{1} Updated :count role.|[2,*] Updated :count roles.',
         ],
         'fields'        => [
             'name'          => 'Name',
@@ -428,7 +428,7 @@ TEXT
         ],
         'fields'            => [
             'connections'       => 'Default entity\'s connections interface',
-            'connections_mode'   => 'Default relations explorer mode',
+            'connections_mode'  => 'Default relations explorer mode',
             'entity_history'    => 'Entity\'s history logs',
             'entity_image'      => 'Entity\'s image',
             'family_toolip'     => 'Character\'s family',

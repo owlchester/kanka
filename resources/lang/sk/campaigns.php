@@ -78,6 +78,8 @@ TEXT
         'character_personality_visibility'  => 'Keď vytváraš ako admin novú postavu, tu môžeš zvoliť štandardné nastavenie pre jej osobnostné črty.',
         'css'                               => 'Napíš svoj vlastný CSS, ktorý sa nahrá do stránok tvojej kampane. Prosím, uvedom si, že hociktoré zneužitie tejto funkcionality môže viesť k odstráneniu tvojho užívateľského CSS kódu. Opakované alebo závažné porušenia môžu viesť k odstráneniu tvojej kampane.',
         'dashboard'                         => 'Prispôsob zobrazenie widgetu na nástenke vyplnením týchto údajov.',
+        'entity_count_infinity'             => 'Táto kampaň nemá obmedzenie počtu objektov.',
+        'entity_count_v2'                   => 'Toto číslo je prepočítavané každých 6 hodín a ignoruje kategórie.',
         'entity_privacy'                    => 'Keď vytváraš ako admin nový objekt, tu môžeš zvoliť jeho štandardné nastavenie súkromia.',
         'excerpt'                           => 'Krátky popis kampane sa zobrazí na nástenke, napíš teda pár pár viet ako úvod do tvojho sveta. Nemusíš sa rozpisovať, stačí pár slov.',
         'header_image'                      => 'Obrázok, ktorý sa bude zobrazovať na pozadí widgetu pre záhlavie kampane na nástenke.',
@@ -169,6 +171,7 @@ TEXT
             'remove'        => 'Odstrániť z kampane',
             'switch'        => 'Prepnúť',
             'switch-back'   => 'Prepnúť späť',
+            'switch-entity' => 'Zobraziť ako',
         ],
         'create'                => [
             'title' => 'Pridať člena do tvojej kampane',
@@ -272,6 +275,7 @@ TEXT
             '1' => 'Kampani môže byť priradených viacero rolí. Rola "Admin" má automaticky prístup ku všetkému v kampani, ale každej inej roli môžu byť pridelené špecifické oprávnenia na rôzne typy objektov (postavy, miesta, atď.)',
             '2' => 'Objekty môžu mať oveľa detailnejšie nastavenie oprávnení, ktoré vieš nastaviť v karte "Oprávnenia" objektu. Táto karta sa zobrazí, ak máš v kampani viacero rolí alebo členov.',
             '3' => 'Môžeš použiť "opt-out" systém, v ktorom všetky roly dostanú práva na čítanie na všetky objekty a niektoré objekty potom nastavíš ako "Súkromné", čím ich skryješ. Alebo rolám nedáš veľa oprávnení a následne ich nastavíš individuálne pre každý objekt.',
+            '4' => 'Boostnuté kampane môžu mať neobmedzený počet rolí.',
         ],
         'hints'         => [
             'campaign_not_public'   => 'Verejná rola má oprávnenia, ale kampaň je súkromná. Tieto nastavenia počas úpravy kampane nájdeš na karte Zdieľanie.',

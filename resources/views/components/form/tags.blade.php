@@ -34,7 +34,7 @@ elseif(!empty($model) && !empty($model->entity)) {
     }
 } elseif (!empty($filterOptions)) {
     foreach ($filterOptions as $tagId) {
-        if (!empty($tagId)) {
+        if (!empty($tagId) && is_numeric($tagId)) {
             $tag = \App\Models\Tag::find($tagId);
             if ($tag && $tag->entity) {
                 $selectedOption[$tag->id] = $tag;
@@ -42,8 +42,8 @@ elseif(!empty($model) && !empty($model->entity)) {
         }
     }
 } elseif (empty($model) && $enableAutoTags) {
-    $tags = \App\Models\Tag::autoApplied()->with('entity')->get(); 
-    foreach ($tags as $tag) {    
+    $tags = \App\Models\Tag::autoApplied()->with('entity')->get();
+    foreach ($tags as $tag) {
         if ($tag && $tag->entity) {
             $selectedOption[$tag->id] = $tag;
         }

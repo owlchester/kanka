@@ -11,10 +11,6 @@
     <div class="col-md-6">
         @include('cruds.fields.race', ['parent' => true, 'from' => isset($model) ? $model : null, 'quickCreator' => true])
     </div>
-</div>
-
-<div class="row">
-
     <div class="col-md-6">
         @include('cruds.fields.locations', ['parent' => true, 'from' => isset($model) ? $model : null, 'quickCreator' => true])
     </div>

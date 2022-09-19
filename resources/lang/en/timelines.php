@@ -20,7 +20,6 @@ return [
         'timeline'      => 'Parent Timeline',
         'timelines'     => 'Timelines',
         'type'          => 'Type',
-        'reorder'       => 'Reorder',
     ],
     'helpers'       => [
         'nested_without'    => 'Displaying all timelines that don\'t have a parent timeline. Click on a row to see the children timelines.',

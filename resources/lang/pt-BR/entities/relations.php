@@ -12,6 +12,7 @@ return [
             'editing'           => '{1} :count relação foi atualizada. |[2,*] :count relações foram atualizadas.',
             'editing_partial'   => '{1} :count/:total relação foi atualizada. |[2,*] :count/:total relações foram atualizadas.',
         ],
+        'update_mirrored'   => 'Atualize também as relações espelhadas.',
     ],
     'call-to-action'    => 'Explore visualmente as relações dessa entidade e como ela está conectada ao restante da campanha.',
     'connections'       => [
@@ -61,10 +62,11 @@ return [
         'title' => 'Relações',
     ],
     'options'           => [
-        'mentions'  => 'Relações + relacionados + menções',
-        'related'   => 'Relações + relacionados',
-        'relations' => 'Relações',
-        'show'      => 'Mostrar',
+        'mentions'          => 'Relações + relacionados + menções',
+        'only_relations'    => 'Apenas relações diretas',
+        'related'           => 'Relações + relacionados',
+        'relations'         => 'Relações',
+        'show'              => 'Mostrar',
     ],
     'panels'            => [
         'related'   => 'Relacionados',

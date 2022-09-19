@@ -10,6 +10,7 @@ $defaultIndex = ($currentCampaign && $currentCampaign->defaultToNested()) || aut
 @if (!empty($currentCampaign))
     @php \App\Facades\Dashboard::campaign($currentCampaign); @endphp
     @inject('sidebar', 'App\Services\SidebarService')
+    @php $sidebar->prepareQuickLinks($currentCampaign)@endphp
     <aside class="main-sidebar main-sidebar-placeholder @if(auth()->check() && $currentCampaign->userIsMember())main-sidebar-member @else main-sidebar-public @endif" @if ($currentCampaign->image) style="background-image: url({{ Img::crop(280, 210)->url($currentCampaign->image) }})" @endif>
         <section class="sidebar-campaign">
             <div class="campaign-block">
@@ -42,10 +43,9 @@ $defaultIndex = ($currentCampaign && $currentCampaign->defaultToNested()) || aut
 
                 @foreach ($sidebar->campaign($currentCampaign)->layout() as $name => $element)
                     @if ($name === 'menu_links')
-                        @includeWhen($currentCampaign->enabled('menu_links'), 'layouts.sidebars.quick-links', $element)
+                        @includeWhen($currentCampaign->enabled('menu_links'), 'layouts.sidebars.quick-links', ['links' => $sidebar->quickLinks('menu_links')])
                         @continue
                     @endif
-
                     <li class="{{ (!isset($element['route']) || $element['route'] !== false ? $sidebar->active($name) : null) }} section-{{ $name }}">
                         @if ($element['route'] !== false)
                             @php
@@ -54,20 +54,18 @@ $defaultIndex = ($currentCampaign && $currentCampaign->defaultToNested()) || aut
                                 $route = \Illuminate\Support\Str::beforeLast($route, '.') . '.' . $defaultIndex;
                             }
                             @endphp
-                        <a href="{{ route($route) }}">
-                            <i class="{{ $element['custom_icon'] ?: $element['icon']  }}"></i>
-                            {!! $element['custom_label'] ?: $element['label']  !!}
-                        </a>
+                            <a href="{{ route($route) }}">
+                                <i class="{{ $element['custom_icon'] ?: $element['icon']  }}"></i>
+                                {!! $element['custom_label'] ?: $element['label']  !!}
+                            </a>
                         @else
                             <span>
                                 <i class="{{ $element['custom_icon'] ?: $element['icon'] }}"></i>
                                 {!! $element['custom_label'] ?: $element['label'] !!}
                             </span>
                         @endif
+                        @if (!empty($element['children']))
 
-                        @if (empty($element['children']))
-                            @continue
-                        @endif
                         <ul class="sidebar-submenu">
                         @foreach($element['children'] as $childName => $child)
                             <li class="{{ (!isset($child['route']) || $child['route'] !== false ? $sidebar->active($childName) : null) }} subsection section-{{ $childName }}">
@@ -82,8 +80,12 @@ $defaultIndex = ($currentCampaign && $currentCampaign->defaultToNested()) || aut
                                     {!! $child['custom_label'] ?: $child['label'] !!}
                                 </a>
                             </li>
+                            @includeWhen($sidebar->hasQuickLinks($childName), 'layouts.sidebars._quick-links', ['links' => $sidebar->quickLinks($childName)])
                         @endforeach
                         </ul>
+                        @endif
+
+                        @includeWhen($sidebar->hasQuickLinks($name), 'layouts.sidebars._quick-links', ['links' => $sidebar->quickLinks($name)])
                     </li>
                 @endforeach
             </ul>

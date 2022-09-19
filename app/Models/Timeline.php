@@ -42,12 +42,6 @@ class Timeline extends MiscModel
         'timeline_id',
     ];
 
-    /**
-     * Searchable fields
-     * @var array
-     */
-    protected $searchableColumns = ['name', 'entry'];
-
     protected $sortable = [
         'name',
         'type',
@@ -194,7 +188,7 @@ class Timeline extends MiscModel
         ];
         if (auth()->check() && auth()->user()->can('update', $this)) {
             $items['second']['reorder'] = [
-                'name' => 'timelines.fields.reorder',
+                'name' => 'timelines/eras.reorder.menu',
                 'route' => 'timeline-eras.reorder',
                 'count' => $this->descendants()->count()
             ];
