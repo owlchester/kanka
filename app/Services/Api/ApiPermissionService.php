@@ -68,10 +68,10 @@ class ApiPermissionService
      * @param $request
      * @param Campaign $campaign
      */
-    public function entityPermissionTest($request, Campaign $campaign)
+    public function entityPermissionTest($request, Campaign $campaign): array
     {
         $previousUser = 0;
-
+        $permissionTest = [];
         foreach ($request->all() as $test) {
             $entityTypeId = null;
             $entity = null;

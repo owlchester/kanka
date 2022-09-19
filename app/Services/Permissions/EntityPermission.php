@@ -332,6 +332,10 @@ class EntityPermission
         //dump('finished loading entities:');
         //dump($this->cachedEntityIds);
     }
+
+    /**
+     * Reset all chached permissions.
+     */
     public function resetPermissions(): void
     {
         // Reset the values keeping score

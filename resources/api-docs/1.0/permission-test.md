@@ -33,7 +33,7 @@ You can test a campaign user's permissions for an entity or an entity type by us
 | :- |  :-  |
 | `1` | The user is able to `read` the entity/entity type  |
 | `2` | The user is able to `edit` the entity/entity type  |
-| `3` | The user is able to `add` to the entity/entity type |
+| `3` | The user is able to `create` the entity type |
 | `4` | The user is able to `delete` the entity/entity type |
 
 

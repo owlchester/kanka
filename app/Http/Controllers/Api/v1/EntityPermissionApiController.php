@@ -8,7 +8,6 @@ use App\Models\Entity;
 use App\Http\Requests\StoreEntityPermission as Request;
 use App\Http\Requests\PermissionTestRequest;
 use App\Http\Resources\EntityPermissionResource as Resource;
-use App\Http\Resources\EntityPermissionTestResource;
 use App\Models\CampaignPermission;
 use App\Services\Api\ApiPermissionService;
 
@@ -113,6 +112,6 @@ class EntityPermissionApiController extends ApiController
     public function test(PermissionTestRequest $request, Campaign $campaign)
     {
         $permissionTest = $this->apiPermissionService->entityPermissionTest($request, $campaign);
-        return EntityPermissionTestResource::collection($permissionTest);
+        return response()->json($permissionTest);
     }
 }

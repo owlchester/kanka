@@ -30,13 +30,13 @@ class PermissionTestRequest extends FormRequest
             '*.entity_type_id' => 'required_without:*.entity_id|integer|exists:entity_types,id',
             '*.action' => 'required|integer|exists:campaign_permissions,action',
             //'*.user_id' => 'required|integer|exists:campaign_user,user_id',
-            '*.user_id' => ['required','integer',
-            Rule::exists('campaign_user')->where(function ($query) {
-                $query->where('user_id', $this->input('*.user_id'))->where('campaign_id', CampaignLocalization::getCampaign()->id);
-            }),
+            '*.user_id' => [
+                'required',
+                'integer',
+                Rule::exists('campaign_user')->where(function ($query) {
+                    $query->where('user_id', $this->input('*.user_id'))->where('campaign_id', CampaignLocalization::getCampaign()->id);
+                }),
             ],
-
-
         ];
     }
 }
