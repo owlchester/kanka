@@ -51,8 +51,12 @@ class PasswordSecurity extends Model
         if (isset($user->passwordSecurity)) {
             $google2Fa = new Google2FA();
             //$google2Fa->setAllowInsecureCallToGoogleApis(true);
+            $appName = config('app.name');
+            if (!app()->environment('prod')) {
+                $appName .= ':' . app()->environment();
+            }
             $google2FaUrl = $google2Fa->getQRCodeUrl(
-                $user->name,
+                $appName,
                 $user->email,
                 $user->passwordSecurity->google2fa_secret
             );

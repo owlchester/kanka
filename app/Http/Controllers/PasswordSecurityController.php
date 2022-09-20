@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Settings\UserEnableTfa;
+use App\User;
 use Illuminate\Http\Request;
 use PragmaRX\Google2FA\Google2FA;
 use Illuminate\Support\Facades\Auth;
@@ -20,42 +22,11 @@ class PasswordSecurityController extends Controller
     }
 
     /*
-    * Creates authentication code for 2fa activation
-    */
-    public function show2faForm()
-    {
-        if (Auth::guest()) {
-            return;
-        }
-
-        $user = Auth::user();
-
-        $google2FaUrl = '';
-
-        // If User has 2FA current disabled generate QR code
-        if (isset($user->passwordSecurity)) {
-            $google2Fa = new Google2FA();
-            $google2Fa->setAllowInsecureCallToGoogleApis(true);
-            $google2FaUrl = $google2Fa->getQRCodeGoogleUrl(
-                $user->name,
-                $user->email,
-                $user->passwordSecurity->google2fa_secret
-            );
-        }
-
-        $data = array(
-            'user' => $user,
-            'google2FaUrl' => $google2FaUrl
-        );
-
-        return view('settings.account')->with('data', $data);
-    }
-
-    /*
     * Generates secret code for 2fa
     */
     public function generate2faSecretCode(Request $request)
     {
+        /** @var User $user */
         $user = Auth::user();
 
         $google2Fa = new Google2FA();
@@ -72,25 +43,26 @@ class PasswordSecurityController extends Controller
     /*
     * Enables 2fa for the current user.
     */
-    public function enable2fa(Request $request)
+    public function enable2fa(UserEnableTfa $request)
     {
-        $user = Auth::user();
+        /** @var User $user */
+        $user = $request->user();
 
         // Enable Google2FA if Google Authenticator code matches secret
         $google2Fa = new Google2FA();
-        $secret = $request->input('verifyCode');
+        $secret = $request->input('otp');
         $valid = $google2Fa->verifyKey($user->passwordSecurity->google2fa_secret, $secret);
 
         // If Google2FA code is valid enable Google2FA
         if ($valid) {
-            $user->passwordSecurity->google2fa_enable = 1;
-            $user->passwordSecurity->save();
+            $user->passwordSecurity->update(['google2fa_enable' => 1]);
+            // Don't directly request 2FA from the user, but instead log them out to confirm that it works
+            auth()->logout();
+            session()->flush();
+            return redirect()->route('login')->with('success', __('settings.account.2fa.success_enable'));
             return redirect()->route('settings.account')->with('success', __('settings.account.2fa.success_enable'));
-
-        // Else redirect with invalid code error
-        } else {
-            return redirect()->route('settings.account')->with('error', __('settings.account.2fa.error_enable'));
         }
+        return redirect()->route('settings.account')->with('error', __('settings.account.2fa.error_enable'));
     }
 
     /*
@@ -98,6 +70,7 @@ class PasswordSecurityController extends Controller
     */
     public function disable2fa(Request $request)
     {
+        /** @var User $user */
         $user = Auth::user();
 
         // Update disabling Google2FA
@@ -112,6 +85,6 @@ class PasswordSecurityController extends Controller
     */
     public function cancel2FA(Request $request)
     {
-        return redirect()->route('home');
+        return redirect()->route('login');
     }
 }

@@ -1,7 +1,6 @@
 @extends('layouts.login', ['title' => __('auth.login.title')])
 
 @section('content')
-
     <h1>{{ __('auth.login.title') }}</h1>
 
     @if (session()->has('info'))
@@ -9,7 +8,7 @@
             {{ session()->get('info') }}
         </div>
     @endif
-    @include('partials.errors')
+    @include('partials.success')
 
     <form method="POST" action="{{ route('login') }}">
         {{ csrf_field() }}

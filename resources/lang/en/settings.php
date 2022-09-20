@@ -9,22 +9,24 @@ return [
         ],
         'email'             => 'Change email',
         '2fa'               => [
+            'fields' => [
+                'qrcode' => 'Scan the following QR Code with your Google Authenticator App to generate a One Time Password',
+                'otp' => 'Enter the One Time Password (OTP) provided by the Google Authenticator'
+            ],
             'title'                     => 'Two Factor Authentication',
-            'helper'                    => 'Two factor authentication (2FA) strengthens access security by requiring two methods (also referred to as factors) to verify your identity.',
-            'enable_instructions'       => 'To start the activation process, click the generate secret button to generate your authentication QR code, then scan it into the Google Authenticator App',
+            'helper'                    => 'Two factor authentication (2FA) strengthens access security by requiring two methods (also referred to as factors) to verify your identity on each login.',
+            'enable_instructions'       => 'To start the activation process, click the generate secret button to generate your authentication QR code, then scan it into the Google Authenticator App (:ios, :android)',
             'generate_qr'               => 'Generate QR Code',
-            'activation_instructions'   => 'Scan the following QR Code with your Google Authenticator App:',
             'activation_helper'         => 'To continue with the activation process for Two Factor Authentication on your Account, please do the following:',
-            'activation_instructions_2' => 'Enter the OTP provided by the Google Authenticator app to enable 2FA:',
             'enabled'                   => 'Two Factor Authentication is currently enabled on your account.',
             'enable'                    => 'Enable 2FA',
             'disable_helper'            => 'If you want to disable Two Factor Authentication click the button below, keep in mind that this will leave your account vulnerable to anyone that knows your login information.',
             'disable'                   => 'Disable 2FA',
             'disable_confirm'           => 'Disable 2FA Now',
-            'social'                    => 'Kanka two factor authentication is only enabled for users that login using their e-mail and password. Change your login method in your Account settings.',
-            'success_key'               => 'QR Code succesfully generated, please verify to activate 2FA',
-            'success_enable'            => 'Two Factor Authentication enabled successfully',
-            'success_disable'           => 'Two Factor Authentication has been disabled',
+            'social'                    => 'Kanka two factor authentication is only enabled for users that login using their e-mail and password. Change your login method in your account settings before being able to enable this option.',
+            'success_key'               => 'QR Code successfully generated, please verify to activate two factor authentication.',
+            'success_enable'            => 'Two Factor Authentication enabled successfully. Please log in again.',
+            'success_disable'           => 'Two Factor Authentication has been disabled.',
             'error_enable'              => 'Invalid Code, try again',
 
 

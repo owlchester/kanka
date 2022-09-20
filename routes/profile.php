@@ -111,40 +111,36 @@ Route::get(
 Google2FA
 --------------------------------------------------------------------------
 */
-
-// Display 2FA form if User has generated Google2FA
-Route::get('/security/2fa', 'PasswordSecurityController@show2faForm');
-
-Route::post('/security/cancel-2fa', 'PasswordSecurityController@cancel2FA')->name('cancel-2fa');
+Route::post('/security/cancel2fa', 'PasswordSecurityController@cancel2FA')->name('auth.cancel-2fa');
 
 
 // Generate a new Google2FA code if a User does not already have one
 Route::post('/security/generate2faSecret', [
     'uses' => 'PasswordSecurityController@generate2faSecretCode',
-    'as'   => 'generate2faSecretCode'
+    'as'   => 'settings.security.generate-2fa'
 ]);
 
 // Enable 2FA for User
 Route::post('/security/enable2fa', [
     'uses' => 'PasswordSecurityController@enable2fa',
-    'as'   => 'enable2fa'
+    'as'   => 'settings.security.enable-2fa'
 ]);
 
 // Disable 2FA for User
 Route::post('/security/disable2fa', [
     'uses' => 'PasswordSecurityController@disable2fa',
-    'as'   => 'disable2fa'
+    'as'   => 'settings.security.disable-2fa'
 ]);
 
 // Verify 2FA if User has it enabled
 Route::post('/security/verify2fa', function() {
     return redirect()->route('home');
-})->name('verify2fa')->middleware('2fa');
+})->name('auth.verify-tfa')->middleware('2fa');
 
 
 Route::get('/security/verify2fa', function() {
     return redirect(URL()->previous());
-})->name('verify2fa')->middleware('2fa');
+})->name('auth.verify-tfa')->middleware('2fa');
 
 /*
 --------------------------------------------------------------------------

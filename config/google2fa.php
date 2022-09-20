@@ -57,7 +57,7 @@ return [
     /*
      * One Time Password View.
      */
-    'view' => 'auth.2fagoogle',
+    'view' => 'auth.otp',
 
     /*
      * One Time Password error message.

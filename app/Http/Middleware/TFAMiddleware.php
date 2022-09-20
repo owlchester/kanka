@@ -7,14 +7,13 @@ use App\Models\Google2FAAuthentication;
 
 use Closure;
 
-class Google2FAMiddleware
+class TFAMiddleware
 {
     /**
     * Handle an incoming request.
     *
-    * @param  \Illuminate\Http\Request  $request
-    * @param  \Closure  $next
-    * @param  string|null  $guard
+    * @param  \Illuminate\Http\Request $request
+    * @param  \Closure $next
     * @return mixed
     */
     public function handle($request, Closure $next)

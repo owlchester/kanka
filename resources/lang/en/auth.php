@@ -43,7 +43,6 @@ return [
         'submit'                => 'Login',
         'title'                 => 'Login',
         'cancel'                => 'Cancel',
-        '2fa'                   => 'Two Factor Authentication'
     ],
     'register'  => [
         'already_account'           => 'Already have an account?',
@@ -72,6 +71,10 @@ return [
         'send'      => 'Send Password Reset Link',
         'submit'    => 'Reset password',
         'title'     => 'Reset password',
+    ],
+    'tfa' => [
+        'title'                   => 'Two Factor Authentication',
+        'helper' => 'Two factor authenciation is enabled. Please provide the One Time Password (OTP) provided by your authenticator app.'
     ],
     'throttle'  => 'Too many login attempts. Please try again in :seconds seconds.',
 ];
