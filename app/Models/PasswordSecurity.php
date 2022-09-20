@@ -20,10 +20,12 @@ class PasswordSecurity extends Model
     /**
     * The attributes that are mass assignable.
     *
-    * @var array
+    * @var string[]
     */
     protected $fillable = [
-        'user_id', 'google2fa_enable', 'google2fa_secret',
+        'user_id',
+        'google2fa_enable',
+        'google2fa_secret',
     ];
 
     /**

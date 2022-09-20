@@ -148,7 +148,7 @@ class EntityPermission
      * @param int $entityType
      * @param int $action
      * @param User|null $user
-     * @param MiscModel|null $entity
+     * @param MiscModel|Entity|null $entity
      * @param Campaign|null $campaign
      * @return bool
      */
@@ -160,7 +160,7 @@ class EntityPermission
             return true;
         }
 
-        // Check if we have permission to `action` all of the entities of this type first. The user
+        // Check if we have permission to `action` all the entities of this type first. The user
         // might be able to view all quests, but have a specific quest set to denied. This is why
         // we need to check the specific permissions too.
         if ($entityType === 0) {

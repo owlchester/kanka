@@ -3,6 +3,7 @@
 namespace App\Services\Api;
 
 use App\Models\CampaignPermission;
+use App\Models\MiscModel;
 use App\User;
 use App\Facades\EntityPermission;
 use App\Models\Campaign;
@@ -75,6 +76,7 @@ class ApiPermissionService
         $permissionTest = [];
         foreach ($request->all() as $test) {
             $entityTypeId = null;
+            /** @var Entity|MiscModel|null $entity */
             $entity = null;
             $entityId = null;
             if (!isset($user) || $user != $previousUser) {

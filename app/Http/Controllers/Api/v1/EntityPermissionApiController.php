@@ -101,10 +101,9 @@ class EntityPermissionApiController extends ApiController
     }
 
     /**
+     * @param PermissionTestRequest $request
      * @param Campaign $campaign
-     * @param Entity $entity
-     * @param CampaignPermission $permission
-     * @return Resource
+     * @return \Illuminate\Http\JsonResponse
      */
     public function test(PermissionTestRequest $request, Campaign $campaign)
     {
