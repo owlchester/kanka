@@ -4,6 +4,7 @@ namespace App\Services\Map;
 
 use App\Models\Map;
 use App\Notifications\Header;
+use App\User;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
@@ -237,7 +238,9 @@ class ChunkingService
         $this->map->save();
         Log::info('Saved map #' . $this->map->id);
         if ($this->map->entity->creator) {
-            $this->map->entity->creator->notify(new Header(
+            /** @var User $user */
+            $user = $this->map->entity->creator;
+            $user->notify(new Header(
                 'map.chunked',
                 'fas fa-map',
                 'green',
