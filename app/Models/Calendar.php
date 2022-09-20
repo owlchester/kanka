@@ -108,12 +108,6 @@ class Calendar extends MiscModel
     protected $entityType = 'calendar';
 
     /**
-     * Searchable fields
-     * @var array
-     */
-    protected $searchableColumns  = ['name', 'entry', 'type'];
-
-    /**
      * @var bool|array
      */
     protected $cachedCurrentDate = false;
@@ -670,30 +664,32 @@ class Calendar extends MiscModel
                             });
                     });
                 })
-                    ->orWhere(function ($ondate) {
-                        // Not recurring
-                        $ondate
-                            ->where('is_recurring', false)
-                            ->where(function ($date) {
-                                // An event that happens before this year
-                                $date
-                                    ->where('year', '>', $this->currentYear())
-                                    ->orWhere(function ($subdate) {
-                                        // An event that happens this year but after this month
-                                        $subdate
-                                            ->where('year', $this->currentYear())
-                                            ->where('month', '>', $this->currentMonth());
-                                    })
-                                    ->orWhere(function ($subdate) {
-                                        // An event that happens this year after this year
-                                        $subdate
-                                            ->where('year', $this->currentYear())
-                                            ->where('month', $this->currentMonth())
-                                            ->where('day', '>=', $this->currentDay());
-                                    });
-                            });
-                    });
+                ->orWhere(function ($ondate) {
+                    // Not recurring
+                    $ondate
+                        ->where('is_recurring', false)
+                        ->where(function ($date) {
+                            // An event that happens before this year
+                            $date
+                                ->where('year', '>', $this->currentYear())
+                                ->orWhere(function ($subdate) {
+                                    // An event that happens this year but after this month
+                                    $subdate
+                                        ->where('year', $this->currentYear())
+                                        ->where('month', '>', $this->currentMonth());
+                                })
+                                ->orWhere(function ($subdate) {
+                                    // An event that happens this year after this year
+                                    $subdate
+                                        ->where('year', $this->currentYear())
+                                        ->where('month', $this->currentMonth())
+                                        ->where('day', '>=', $this->currentDay());
+                                });
+                        });
+                });
             })
+            // Skip events that were on months which no longer exist
+            ->where('month', '<=', count($this->months()))
             ->orderBy('year', 'asc')
             ->orderBy('month', 'asc')
             ->orderBy('day', 'asc')
@@ -765,6 +761,8 @@ class Calendar extends MiscModel
                             });
                     });
             })
+            // Skip events that were on months which no longer exist
+            ->where('month', '<=', count($this->months()))
             ->orderBy('year', 'desc')
             ->orderBy('month', 'desc')
             ->orderBy('day', 'desc')

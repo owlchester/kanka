@@ -2,13 +2,9 @@
  * @var \App\Models\TimelineEra $era */?>
 @extends('layouts.' . (request()->ajax() ? 'ajax' : 'app'), [
     'title' => __('timelines/eras.reorder.title'),
-    'description' => '',
-    'breadcrumbs' => [
-        ['url' => Breadcrumb::index('timelines'), 'label' => __('timelines.index.title')],
-        ['url' => route('timelines.show', $timeline->id), 'label' => $timeline->name],
-        __('timelines/eras.reorder.title')
-    ],
+    'breadcrumbs' => false,
     'mainTitle' => false,
+    'miscModel' => $timeline,
     'bodyClass' => 'timeline-eras-reorder'
 ])
 @inject('campaignService', 'App\Services\CampaignService')
@@ -17,47 +13,22 @@
 @section('content')
     @include('partials.errors')
 
-    {!! Form::open([
-        'route' => ['timeline-eras.reorder-save', $timeline],
-        'method' => 'POST',
-    ]) !!}
-    <div class="box box-solid box-entity-story-reorder">
-        <div class="box-header">
-            <h3 class="box-title">
-                {{ __('timelines/eras.reorder.title') }}
-            </h3>
-        </div>
-        <div class="box-body">
-            <div class="element-live-reorder">
-                @foreach($eras as $era)
-                    <div class="element" data-id="{{ $era->id }}">
-                        {!! Form::hidden('timeline_era[]', $era->id) !!}
-                        <div class="dragger">
-                            <span class="fa-solid fa-ellipsis-v visible-md visible-lg"></span>
-                            <div class="visible-xs visible-sm">
-                                <span class="fa-solid fa-arrow-up"></span><br />
-                                <span class="fa-solid fa-arrow-down"></span>
-                            </div>
-                        </div>
-                        <div class="name">
-                            {!! $era->name !!}
-                            <span class="text-sm">
-                                {!! $era->ages()!!}
-                            </span>
-                        </div>
-                    </div>
-                @endforeach
-            </div>
-        </div>
-        <div class="box-footer">
+    <div class="entity-grid">
+        @include('entities.components.header', [
+            'model' => $timeline,
+            'breadcrumb' => [
+        ['url' => Breadcrumb::index('timelines'), 'label' => __('timelines.index.title')],
+        ['url' => route('timelines.show', $timeline->id), 'label' => $timeline->name],
+        __('timelines/eras.reorder.title')
+            ]
+        ])
 
-            <button class="btn btn-primary btn-block">
-                {{ __('crud.save') }}
-            </button>
+        @include('timelines._menu', ['active' => 'reorder', 'model' => $timeline])
 
+        <div class="entity-main-block">
+            @include('timelines.eras._reorder')
         </div>
     </div>
-    {!! Form::close() !!}
 @endsection
 
 

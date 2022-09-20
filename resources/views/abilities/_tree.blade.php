@@ -15,9 +15,16 @@
         'name',
         'type',
         [
-            'label' => trans('abilities.fields.abilities'),
+            'label' => '<i class="ra ra-fire-symbol" title="' . __('abilities.fields.abilities') . '"></i>',
             'render' => function($model) {
                 return $model->abilities->count();
+            },
+            'disableSort' => true,
+        ],
+        [
+            'label' => '<i class="fa-solid fa-user" title="' . __('abilities.show.tabs.entities') . '"></i>',
+            'render' => function($model) {
+                return $model->entities->count();
             },
             'disableSort' => true,
         ],

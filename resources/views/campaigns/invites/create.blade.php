@@ -2,12 +2,12 @@
     'title' => __('campaigns.invites.create.title', ['campaign' => $campaign->name]),
     'breadcrumbs' => [
         ['url' => route('campaign'), 'label' => __('campaigns.index.title')],
-        ['url' => route('campaign_users.index'), 'label' => trans('campaigns.show.tabs.members')]
+        ['url' => route('campaign_users.index'), 'label' => __('campaigns.show.tabs.members')]
     ]
 ])
 
 @section('content')
-    {!! Form::open(array('route' => ['campaign_invites.store'], 'method' => 'POST')) !!}
+    {!! Form::open(['route' => ['campaign_invites.store'], 'method' => 'POST']) !!}
     <div class="modal-body">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">×</span>
@@ -28,6 +28,5 @@
             {{ __('campaigns.invites.create.buttons.create') }}
         </button>
     </div>
-    {!! Form::hidden('type_id', \App\Models\CampaignInvite::TYPE_LINK) !!}
     {!! Form::close() !!}
 @endsection

@@ -39,6 +39,7 @@ return [
                 'remove'    => 'Sua conta do Discord foi desvinculada com sucesso.',
             ],
             'text'      => 'Acesse seus cargos de assinatura automaticamente.',
+            'unlock'    => 'Desbloquear funções do Discord',
         ],
         'title'     => 'Integração de aplicativos',
     ],
@@ -204,7 +205,8 @@ return [
             'yearly'    => 'Anualmente',
         ],
         'placeholders'          => [
-            'reason'    => 'Opcionalmente, diga-nos por que você não está mais apoiando o Kanka. Estava faltando algum recurso? Sua situação financeira mudou?',
+            'downgrade_reason'  => 'Opcionalmente, diga-nos por que você está fazendo o downgrade de sua assinatura.',
+            'reason'            => 'Opcionalmente, diga-nos por que você não está mais apoiando o Kanka. Estava faltando algum recurso? Sua situação financeira mudou?',
         ],
         'plans'                 => [
             'cost_monthly'  => ':currency :amount cobrado mensalmente',
@@ -240,10 +242,11 @@ return [
                 'title'     => 'Quando for cancelar sua assinatura',
             ],
             'downgrade' => [
-                'bullets'   => [
+                'bullets'           => [
                     'end'   => 'Seu nível atual permanecerá ativo até o final do seu ciclo de faturamento atual, após o qual você será rebaixado para o novo nível.',
                 ],
-                'title'     => 'Ao fazer downgrade para um nível menor',
+                'provide_reason'    => 'Se puder, compartilhe conosco por que está fazendo o downgrade de sua assinatura.',
+                'title'             => 'Ao fazer downgrade para um nível menor',
             ],
             'upgrade'   => [
                 'bullets'   => [

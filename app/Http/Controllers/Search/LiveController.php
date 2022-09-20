@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Search;
 
 use App\Facades\CampaignLocalization;
 use App\Http\Controllers\Controller;
+use App\Models\Ability;
 use App\Models\Organisation;
 use App\Models\OrganisationMember;
 use App\Models\Tag;
@@ -105,6 +106,33 @@ class LiveController extends Controller
             /** @var Tag $tag */
             $tag = Tag::findOrFail($request->get('exclude'));
             $exclude = $tag->entities->pluck('id')->toArray();
+        }
+
+        return response()->json(
+            $this->search
+                ->term($term)
+                ->campaign($campaign)
+                ->exclude([config('entities.ids.tag')])
+                ->excludeIds($exclude)
+                ->find()
+        );
+    }
+
+    /**
+     * Filter on entities which aren't part of an ability
+     * @param Request $request
+     * @return mixed
+     */
+    public function abilityEntities(Request $request)
+    {
+        $term = trim($request->q);
+        $campaign = CampaignLocalization::getCampaign();
+
+        $exclude = [];
+        if ($request->has('exclude')) {
+            /** @var Ability $ability */
+            $ability = Ability::findOrFail($request->get('exclude'));
+            $exclude = $ability->entities->pluck('id')->toArray();
         }
 
         return response()->json(

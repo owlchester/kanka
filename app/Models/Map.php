@@ -91,12 +91,6 @@ class Map extends MiscModel
         'config' => 'array',
     ];
 
-    /**
-     * Searchable fields
-     * @var array
-     */
-    protected $searchableColumns = ['name', 'entry'];
-
     protected $sortable = [
         'name',
         'type',
@@ -231,7 +225,7 @@ class Map extends MiscModel
     public function markers()
     {
         return $this->hasMany('App\Models\MapMarker', 'map_id', 'id')
-            ->with(['map', 'map.campaign', 'entity']);
+            ->with(['entity', 'group']);
     }
 
     /**
@@ -344,8 +338,7 @@ class Map extends MiscModel
         $markers = new Collection();
         $groups = [];
 
-        /** @var MapMarker $marker */
-        foreach ($this->markers()->with(['group', 'entity'])->get() as $marker) {
+        foreach ($this->markers as $marker) {
             if (!$marker->visible()) {
                 continue;
             }

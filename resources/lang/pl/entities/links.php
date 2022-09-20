@@ -1,35 +1,44 @@
 <?php
 
 return [
-    'actions'       => [
+    'actions'           => [
         'add'   => 'Dodaj odnośnik',
     ],
-    'create'        => [
+    'call-to-action'    => 'Dodaj odnośnik do zasobów zewnętrznych, na przykład DnDBeyond. Zostanie wyświetlony bezpośrednio w opisie elementu.',
+    'create'            => [
         'success'   => 'Dodano odnośnik :name do elementu :entity.',
         'title'     => 'Dodaj odnośnik do :name',
     ],
-    'destroy'       => [
+    'destroy'           => [
         'success'   => 'Usunięto odnośnik :name z elementu :entity.',
     ],
-    'fields'        => [
+    'fields'            => [
         'icon'      => 'Ikona',
         'name'      => 'Nazwa',
         'position'  => 'Kolejność',
         'url'       => 'URL',
     ],
-    'helpers'       => [
+    'go'                => [
+        'actions'       => [
+            'confirm'   => 'Tak, na pewno',
+            'trust'     => 'Nie pytaj ponownie',
+        ],
+        'description'   => 'Ten odnośnik prowadzi do :link. Czy na pewno chcesz tam trafić?',
+        'title'         => 'Opuszczasz Kankę',
+    ],
+    'helpers'           => [
         'icon'  => 'Możesz dostosować ikonę wyświetlaną przy odnośniku. Użyj dowolnej ikony z :fontawesome albo zostaw to pole puste, by wyświetlać ikonę domyślną.',
     ],
-    'placeholders'  => [
+    'placeholders'      => [
         'name'  => 'DNDBeyond',
         'url'   => 'https://dndbeyond.com/character-url',
     ],
-    'show'          => [
+    'show'              => [
         'helper'    => 'W doładowanych kampaniach można dodawać elementom odnośniki do stron zewnętrznych.',
         'title'     => 'Odnośniki elementu :name',
     ],
-    'unboosted'     => [],
-    'update'        => [
+    'unboosted'         => [],
+    'update'            => [
         'success'   => 'Zaktualizowano odnośnik :name dla elementu :entity.',
         'title'     => 'Aktualizacja odnośnika elementu :name',
     ],

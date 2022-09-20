@@ -1,6 +1,13 @@
 <?php
 
 return [
+    'appearance'                    => [
+        'helpers'   => [
+            'campaign-order'    => 'Zmienia kolejność wyświetlania kampanii w menu bocznym.',
+            'date-format'       => 'Sposób zapisywania prawdziwej daty.',
+            'pagination'        => 'Zmienia liczbę elementów wyświetlanych na różnych listach.',
+        ],
+    ],
     'avatar'                        => [
         'success'   => 'Zmieniono awatar.',
     ],
@@ -31,8 +38,12 @@ return [
         'new_password_confirmation' => 'Potwierdź nowe hasło',
         'newsletter'                => 'Chcę dostawać okazjonalne emaile',
         'password'                  => 'Obecne hasło',
+        'profile-name'              => 'Nazwa profilu',
         'settings'                  => 'Ustawienia',
         'theme'                     => 'Motyw',
+    ],
+    'helpers'                       => [
+        'profile-name'  => 'Zmienia nazwę wyświetlaną w twoim :profile i na :marketplace. Jeżeli wiersz jest pusty, użyta zostanie nazwa konta.',
     ],
     'newsletter'                    => [
         'helpers'   => [
@@ -67,13 +78,17 @@ return [
         'password'                  => 'Potwierdź zmianę wpisując hasło',
     ],
     'sections'                      => [
-        'delete'    => [
-            'delete'    => 'Usuń konto',
-            'helper'    => 'Usunięcie konta spowoduje również usunięcie wszystkich kampanii, których jesteś jednym członkiem. To działanie nieodwracalne, którego nie można cofnąć.',
-            'title'     => 'Usuwanie konta',
-            'warning'   => 'Po usunięciu konta wszystkie dane zostaną wykasowane. Czy na pewno chcesz to zrobić?',
+        'dangerzone'    => 'Uwaga!',
+        'delete'        => [
+            'confirm'       => 'Usuń teraz moje konto',
+            'delete'        => 'Usuń konto',
+            'goodbye'       => 'Jeśli tak, przepisz :code w polu poniżej.',
+            'helper'        => 'Usunięcie konta spowoduje również usunięcie wszystkich kampanii, których jesteś jednym członkiem. To działanie nieodwracalne, którego nie można cofnąć.',
+            'subscribed'    => 'Anuluj :suscription zanim możliwe będzie usunięcie konta.',
+            'title'         => 'Usuwanie konta',
+            'warning'       => 'Po usunięciu konta wszystkie dane zostaną wykasowane. Czy na pewno chcesz to zrobić?',
         ],
-        'password'  => [
+        'password'      => [
             'title' => 'Zmiana hasła',
         ],
     ],
@@ -100,6 +115,7 @@ return [
         'success'   => 'Zmieniono ustawienia.',
     ],
     'theme'                         => [
+        'helper'    => 'Motyw kampanii ma pierwszeństwo przed własnymi ustawieniami.',
         'success'   => 'Zmieniono motyw.',
         'themes'    => [
             'dark'      => 'Ciemny',

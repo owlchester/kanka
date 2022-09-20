@@ -573,8 +573,8 @@ class EntityEvent extends MiscModel
             }
         }
         // Not the same month? We need to do some math
-        dump('Not the same month?' . $calendarMonth . ' != ' . $reminderMonth);
-        dump("Next reminder set to happen in " . $reminderYear . '-' . $reminderMonth . '-' . $reminderDay);
+        //dump('Not the same month?' . $calendarMonth . ' != ' . $reminderMonth);
+        //dump("Next reminder set to happen in " . $reminderYear . '-' . $reminderMonth . '-' . $reminderDay);
         if ($calendarMonth != $reminderMonth) {
             //dump('month diff ' . $month . ' (current) vs ' . $reminderMonth . '(reminder)');
             //dump('amount of months ' . count($months));
@@ -593,12 +593,12 @@ class EntityEvent extends MiscModel
                 $days += $monthData['length'];
             }*/
             // If the month is in the future, add for the rest of the year
-            dump($reminderMonth . ' vs ' . $totalMonths);
+            //dump($reminderMonth . ' vs ' . $totalMonths);
             for ($m = $reminderMonth; $m <= $calendarMonth; $m++) {
                 //dump('end of previous year');
                 $monthData = $months[$m - 1];
                 $days += $monthData['length'];
-                dump('days increase by ' . $monthData['length']);
+                //dump('days increase by ' . $monthData['length']);
             }
         }
 

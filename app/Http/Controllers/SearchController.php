@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Character;
 use App\Models\MiscModel;
 use App\Services\CampaignService;
 use App\Services\EntityService;
@@ -15,17 +16,17 @@ class SearchController extends Controller
     /**
      * @var CampaignService
      */
-    protected $campaign;
+    protected CampaignService $campaign;
 
     /**
      * @var EntityService
      */
-    protected $entity;
+    protected EntityService $entity;
 
     /**
      * @var FilterService
      */
-    protected $filterService;
+    protected FilterService $filterService;
 
     /**
      * Create a new controller instance.
@@ -44,13 +45,18 @@ class SearchController extends Controller
     }
 
     /**
-     * Old search page results
+     * Old deprecated search page
      * @param Request $request
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\RedirectResponse
      */
     public function search(Request $request)
     {
-        $term = trim($request->q);
+        $term = $request->get('q');
+        if (empty($term) || !is_string($term)) {
+            return view('search.index')
+                ->with('results', []);
+        }
+        $term = trim($term);
         $results = [];
         $resultCount = 0;
         $active = '';
@@ -60,7 +66,8 @@ class SearchController extends Controller
 
         foreach ($this->entity->entities(['menu_links']) as $element => $class) {
             if ($this->campaign->enabled($element)) {
-                $model = new $class;
+                /** @var MiscModel|Character $model */
+                $model = new $class();
                 $results[$element] = $model->search($term)->limit(5)->get();
                 $active = count($results[$element]) > 0 && empty($active) ? $element : $active;
                 $resultCount += count($results[$element]);

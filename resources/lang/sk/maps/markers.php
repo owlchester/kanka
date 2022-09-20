@@ -56,7 +56,11 @@ return [
         'marker'        => 'Značka',
         'question'      => 'Otáznik',
     ],
+    'pitches'       => [
+        'poly'  => 'Nakresli vlastné mnohouholníkové tvary, ktoré stvárňujú hranice alebo nepravidelné objekty.',
+    ],
     'placeholders'  => [
+        'custom_icon'   => 'Vyskúšaj :example1 alebo :example2',
         'custom_shape'  => '100,100 200,240 340,110',
         'name'          => 'Povinný ak nie je zvolený žiaden objekt',
     ],

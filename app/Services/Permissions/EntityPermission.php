@@ -192,7 +192,12 @@ class EntityPermission
 
         // Check if we have permission to do this action for exactly this entity
         if (!empty($entity)) {
-            $entityKey = '_' . $action . '_' . $entity->id;
+            //Check if $entity is an entity type.
+            if (isset($entity->type_id)) {
+                $entityKey = '_' . $action . '_' . $entity->entity_id;
+            } else {
+                $entityKey = '_' . $action . '_' . $entity->id;
+            }
             if (isset($this->cached[$entityKey])) {
                 $perm = $this->cached[$entityKey];
             }
@@ -285,12 +290,8 @@ class EntityPermission
             return;
         }
 
-        // Reset the values keeping score
-        $this->loadedAll = true;
+        $this->resetPermissions();
         $this->loadedCampaignId = $campaign->id;
-        $this->cached = [];
-        $this->roleIds = false;
-        $this->userIsAdmin = false;
 
         // Loop through the roles to build a list of ids, and check if one of our roles is an admin
         $roleIds = $this->getRoleIds($campaign, $user);
@@ -330,5 +331,17 @@ class EntityPermission
 
         //dump('finished loading entities:');
         //dump($this->cachedEntityIds);
+    }
+
+    /**
+     * Reset all chached permissions.
+     */
+    public function resetPermissions(): void
+    {
+        // Reset the values keeping score
+        $this->loadedAll = true;
+        $this->cached = [];
+        $this->roleIds = false;
+        $this->userIsAdmin = false;
     }
 }

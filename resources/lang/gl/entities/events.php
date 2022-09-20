@@ -6,6 +6,7 @@ return [
     ],
     'helpers'   => [
         'characters'    => 'Establecer o tipo como data de nacemento ou de morte calculará a idade da personaxe automáticamente. :more.',
+        'founding'      => 'Establecer o tipo como :type calculará a idade da entidade automaticamente a partir da data na que foi fundada.',
         'no_events'     => 'Esta interface mostra todos os calendarios aos que esta entidade está ligadamediante lembretes.',
     ],
     'show'      => [
@@ -17,6 +18,8 @@ return [
     'types'     => [
         'birth'     => 'Nacemento',
         'death'     => 'Morte',
+        'founded'   => 'Fundación',
         'primary'   => 'Primario',
     ],
+    'years-ago' => '{1} fai :count ano|[2,*] fai :count anos',
 ];

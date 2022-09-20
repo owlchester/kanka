@@ -54,7 +54,7 @@ class NewSubscriptionMail extends Mailable
 
         $subject = 'Subscription: ' . $action . ' ' . ucfirst($this->period) . ' ' . $this->user->patreon_pledge;
         return $this
-            ->from(['address' => 'no-reply@kanka.io', 'name' => 'Kanka Admin'])
+            ->from(['address' => 'hello@kanka.io', 'name' => 'Kanka Admin'])
             ->subject($subject)
             ->view('emails.subscriptions.' . ($this->new ? 'new' : 'changed') . '.html');
     }

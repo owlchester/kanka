@@ -56,7 +56,11 @@ return [
         'marker'        => 'Znacznik',
         'question'      => 'Pytajnik',
     ],
+    'pitches'       => [
+        'poly'  => 'Rysuj własne wielokąty, reprezentujące granice albo nieregularne obszary.',
+    ],
     'placeholders'  => [
+        'custom_icon'   => 'Spróbuj :example1 albo :example2',
         'custom_shape'  => '100,100 200,240 340,110',
         'name'          => 'Wymagana, jeżeli nie powiązano z żadnym elementem',
     ],

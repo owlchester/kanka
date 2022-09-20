@@ -22,6 +22,10 @@ return [
             'description'   => 'Fai que os teus mapas e liñas temporais luzan con acceso a cores personalizados e miles de iconas de :fontawesome e :rpgawesome.',
             'title'         => 'Cores e iconas',
         ],
+        'limits'        => [
+            'description'   => 'Elimina os límines no número de integrantes, roles, e accesos directos na túa campaña.',
+            'title'         => 'Sen límites',
+        ],
         'peace-of-mind' => [
             'description'   => 'Eliminaches unha entidade e cambiaches de parecer? Non hai problema! Recupera entidades eliminadas ata :amoun días despois.',
             'title'         => 'Paz mental',
@@ -45,6 +49,8 @@ return [
     'perks'             => [
         'entity-count'  => 'Número de entidades creadas nunha campaña',
         'member-count'  => 'Número de integrantes nunha campaña',
+        'quick-links'   => 'Número de accesos directos personalizados nunha campaña',
+        'role-count'    => 'Número de roles nunha campaña',
     ],
     'starting'          => 'A partir de :amount US$ por mes',
     'superboost'        => [

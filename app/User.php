@@ -238,48 +238,51 @@ class User extends \Illuminate\Foundation\Auth\User
     }
 
     /**
-     * Get the user's avatar
-     * @return string
-     */
-    public function getAvatar()
-    {
-        return "<span class=\"entity-image\" style=\"background-image: url('" .
-            $this->getAvatarUrl(40) . "');\" title=\"" . e($this->name) . "\"></span>";
-    }
-
-
-    /**
      * Get max file size of user
      * @param bool $readable
-     * @return int|string
+     * @return string|int
      */
-    public function maxUploadSize($readable = false, $what = 'image')
+    public function maxUploadSize(bool $readable = false): string|int
     {
         $campaign = CampaignLocalization::getCampaign();
-        // Test for jay
-        if ($this->id === 1) {
-            return $readable ? '100MB' : 102400;
-        }
-        if ($this->isPatron() || ($campaign && $campaign->boosted())) {
-            // Elementals get massive upload sizes
-            if ($this->isElemental()) {
-                if ($this->id === 34122) {
-                    return $readable ? '100MB' : 102400;
-                }
-                return $readable ? '25MB' : 25600;
-            } elseif ($this->isWyvern()) {
-                if ($what == 'map') {
-                    return $readable ? '20mb' : 20480;
-                }
-                return $readable ? '15MB' : 15360;
-            } elseif ($what == 'map') {
-                return $readable ? '10MB' : 10240;
+        if (!$this->isPatron() && (empty($campaign) || !$campaign->boosted())) {
+            $min = config('limits.filesize.image');
+            return $readable ? $min . 'MB' : ($min * 1024);
+        } elseif ($this->isElemental()) {
+            // Anders gets higher upload sizes until we handle this in the db.
+            if ($this->id === 34122) {
+                return $readable ? '100MB' : 102400;
             }
-            return $readable ? '8MB' : 8192;
-        } elseif ($what == 'map') {
-            return $readable ? '3MB' : 3072;
+            return $readable ? '25MB' : 25600;
+        } elseif ($this->isWyvern()) {
+            return $readable ? '15MB' : 15360;
         }
-        return $readable ? '1MB' : 2048;
+        // Allow kobolds and goblins to have the Owlbear sizes
+        return $readable ? '8MB' : 8192;
+    }
+
+    /**
+     * Determine the max upload size for a map
+     * @param bool $readable
+     * @return string|int
+     */
+    public function mapUploadSize(bool $readable = false): string|int
+    {
+        $campaign = CampaignLocalization::getCampaign();
+        // Not a subscriber and not in a boosted campaign get the default
+        if (!$this->isPatron() && (empty($campaign) || !$campaign->boosted())) {
+            return $readable ? '3MB' : 3072;
+        } elseif ($this->isElemental()) {
+            // Anders gets higher upload sizes until we handle this in the db.
+            if ($this->id === 34122) {
+                return $readable ? '100MB' : 102400;
+            }
+            return $readable ? '50MB' : 51200;
+        } elseif ($this->isWyvern()) {
+            return $readable ? '20mb' : 20480;
+        }
+        // We allow Kobolds and Goblins to have 10MB
+        return $readable ? '10MB' : 10240;
     }
 
     /**
@@ -315,11 +318,12 @@ class User extends \Illuminate\Foundation\Auth\User
      */
     public function isElemental(): bool
     {
+        if (!empty($this->patreon_pledge) && $this->patreon_pledge == Patreon::PLEDGE_ELEMENTAL) {
+            return true;
+        }
         // We check the campaign and roles for 61105 because of a special Elemental subscriber.
         $campaign = CampaignLocalization::getCampaign(false);
-
-        return (!empty($this->patreon_pledge) && $this->patreon_pledge == Patreon::PLEDGE_ELEMENTAL) ||
-            (!empty($campaign) && $this->campaignRoles->where('campaign_id', $campaign->id)->where('id', '61105')->count() == 1);
+        return (!empty($campaign) && $this->campaignRoles->where('campaign_id', $campaign->id)->where('id', '61105')->count() == 1);
     }
 
     /**

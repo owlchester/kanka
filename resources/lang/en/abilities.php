@@ -22,8 +22,8 @@ return [
         'title' => 'Entities with the :name ability',
     ],
     'fields'        => [
-        'abilities' => 'Abilities',
-        'ability'   => 'Parent Ability',
+        'abilities' => 'Sub abilities',
+        'ability'   => 'Parent ability',
         'charges'   => 'Charges',
         'name'      => 'Name',
         'type'      => 'Type',

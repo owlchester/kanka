@@ -1,14 +1,15 @@
 <?php
 
 return [
-    'actions'   => [
+    'actions'           => [
         'change_focus'  => 'Zmień punkt centralny',
         'replace_image' => 'Zamień obraz',
         'save-replace'  => 'Zamień obraz',
         'save_focus'    => 'Zapisz punkt centralny',
         'view'          => 'Zobacz obraz',
     ],
-    'focus'     => [
+    'call-to-action'    => 'Kliknij na obraz elementu by ustawić centralny punkt wyświetlania, zamiast korzystać z wybranego automatycznie.',
+    'focus'             => [
         'breadcrumb'    => 'Punkt centralny',
         'helper'        => 'Kliknij na obraz by wskazać punkt centralny. Kliknij na punkt centralny, by go usunąć.',
         'panel_title'   => 'Punkt centralny',
@@ -17,7 +18,7 @@ return [
         'unboosted'     => 'Punkt centalny można ustawiać tylko w :boosted-campaigns',
         'warning'       => 'Nie można ustawić punktu centralnego dla obrazów elementów dodawanych z galerii.',
     ],
-    'replace'   => [
+    'replace'           => [
         'breadcrumb'    => 'Zmiana obrazu',
         'panel_title'   => 'Zmiana obrazu elementu',
         'success'       => 'Zmieniono obraz.',

@@ -15,11 +15,12 @@ use Illuminate\Support\Arr;
  * @method static self|Builder admin()
  * @method static self|Builder public()
  * @method static self|Builder top()
- * @method static self|Builder front()
+ * @method static self|Builder front(string $sort = null)
  * @method static self|Builder featured(bool $featured = true)
  * @method static self|Builder filterPublic(array $filters)
  * @method static self|Builder open()
  * @method static self|Builder unboosted()
+ * @method static self|Builder hidden()
  */
 trait CampaignScopes
 {
@@ -86,19 +87,21 @@ trait CampaignScopes
     }
 
     /**
-     * Campaigns for the frontend
-     * @param $query
-     * @return mixed
+     * Filtered campaigns for the front end
+     * @param Builder $query
+     * @param int|null $sort
+     * @return Builder
      */
-    public function scopeFront(Builder $query, string $sort = null): Builder
+    public function scopeFront(Builder $query, int $sort = null): Builder
     {
         if (!app()->environment('local')) {
             $query
                 ->where('visible_entity_count', '>', 0);
         }
-        $defaultsort = $sort == 1 ? 'follower' : 'visible_entity_count';
+        $defaultSort = $sort == 1 ? 'follower' : 'visible_entity_count';
         $query
-            ->orderBy($defaultsort, 'desc')
+            ->where('is_hidden', 0)
+            ->orderBy($defaultSort, 'desc')
             ->orderBy('name');
 
         return $query;
@@ -128,7 +131,9 @@ trait CampaignScopes
         if ($boosted === "1") {
             $query->where('boost_count', '>=', 1);
         } elseif ($boosted === "0") {
-            $query->where(function($sub) { return $sub->where('boost_count', 0)->orWhereNull('boost_count'); });
+            $query->where(function($sub) {
+                return $sub->where('boost_count', 0)->orWhereNull('boost_count');
+            });
         }
 
         $open = Arr::get($options, 'is_open');
@@ -145,7 +150,7 @@ trait CampaignScopes
      * @param Builder $query
      * @return Builder
      */
-    public function scopePreparedWith(Builder $query)
+    public function scopePreparedWith(Builder $query): Builder
     {
         return $query;
     }
@@ -161,5 +166,14 @@ trait CampaignScopes
             return $sub->where('boost_count', 0)
                 ->orWhereNull('boost_count');
         });
+    }
+    /**
+     * @param Builder $query
+     * @param int $hidden
+     * @return mixed
+     */
+    public function scopeHidden(Builder $query, $hidden = 1): Builder
+    {
+        return $query->where(['is_hidden' => $hidden]);
     }
 }

@@ -13,7 +13,7 @@ class Entity extends Layout
      */
     public function columns(): array
     {
-        $columns = [
+        return [
             'image' => [
                 'render' => Standard::IMAGE
             ],
@@ -29,9 +29,10 @@ class Entity extends Layout
                     return __('entities.' . $model->pluralType());
                 }
             ],
-
+            'visibility' => [
+                'label' => 'crud.fields.visibility',
+                'render' => Standard::VISIBILITY_PIVOT,
+            ]
         ];
-
-        return $columns;
     }
 }

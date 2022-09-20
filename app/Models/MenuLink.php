@@ -22,6 +22,8 @@ use Illuminate\Support\Str;
  * @property string $type
  * @property string $icon
  * @property string $filters
+ * @property string $parent
+ * @property string $css
  * @property string $random_entity_type
  * @property integer $position
  * @property integer $dashboard_id
@@ -59,6 +61,8 @@ class MenuLink extends MiscModel
         'random_entity_type',
         'icon',
         'dashboard_id',
+        'css',
+        'parent',
         'options',
     ];
 
@@ -358,6 +362,22 @@ class MenuLink extends MiscModel
     public function isValidDashboard(): bool
     {
         return Dashboard::getDashboard($this->dashboard_id) !== null;
+    }
+
+    /**
+     * @param Campaign $campaign
+     * @return string
+     */
+    public function customClass(Campaign $campaign): string
+    {
+        if (!$campaign->boosted()) {
+            return '';
+        }
+        if (empty($this->css)) {
+            return '';
+        }
+
+        return (string) $this->css;
     }
 
     /**

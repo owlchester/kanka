@@ -33,10 +33,14 @@ return [
     'clear'             => [
         'action'    => 'Usuń wszystkie',
         'success'   => 'Usunięto powiadomienia',
+        'title'     => 'Wyczyść powiadomienia',
     ],
     'header'            => 'Masz :count powiadomień.',
     'index'             => [
         'title' => 'Powiadommienia',
+    ],
+    'map'               => [
+        'chunked'   => 'Zakończono przetwarzanie mapy :name i można już jej używać.',
     ],
     'no_notifications'  => 'Nie masz powiadomień',
     'subscriptions'     => [

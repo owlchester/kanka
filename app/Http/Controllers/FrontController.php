@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Facades\FrontCache;
+use App\Http\Requests\FilterPublicCampaignRequest;
 use App\Models\Campaign;
 use App\Services\ReferralService;
 use Carbon\Carbon;
@@ -27,7 +28,7 @@ class FrontController extends Controller
     public function index()
     {
         // Don't want unlogged people to think about this url
-        if(!auth()->check()) {
+        if (!auth()->check()) {
             return redirect()->route('home');
         }
         $campaigns = FrontCache::featured();
@@ -162,11 +163,12 @@ class FrontController extends Controller
      * Public Campaigns
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function campaigns(Request $request)
+    public function campaigns(FilterPublicCampaignRequest $request)
     {
         $featured = Campaign::public()->front()->featured()->get();
+        $sort = (int) $request->get('sort_field_name');
         $campaigns = Campaign::public()
-            ->front($request->get('sort_field_name'))
+            ->front($sort)
             ->featured(false)
             ->filterPublic($request->only(['language', 'system', 'is_boosted', 'is_open']))
             ->paginate();

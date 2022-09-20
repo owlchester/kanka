@@ -6,12 +6,15 @@ return [
         'mode-table'    => 'Tabuľka vzťahov a prepojení',
     ],
     'bulk'              => [
-        'delete'    => '{1} :count vzťah odstránený.|[2,4] :count vzťahy odstránené.|[5,*] :count vzťahov odstránených.',
-        'success'   => [
+        'delete'            => '{1} :count vzťah odstránený.|[2,4] :count vzťahy odstránené.|[5,*] :count vzťahov odstránených.',
+        'delete_mirrored'   => 'Odstrániť aj zrkadlené vzťahy.',
+        'success'           => [
             'editing'           => '{1} :count vzťah aktualizovaný.|[2,4] :count vzťahy aktualizované.|[5,*] :count vzťahov aktualizovaných.',
             'editing_partial'   => '{1} :count/:total vzťah aktualizovaný.|[2,4] :count/:total vzťahy aktualizované.|[5,*] :count/:total vzťahov aktualizovaných.',
         ],
+        'update_mirrored'   => 'Aktualizovať aj zrkadlené vzťahy.',
     ],
+    'call-to-action'    => 'Vizuálne objavuj vzťahy tohto objektu a ako je prepojený s ostatkom kampane.',
     'connections'       => [
         'map_point'         => 'Bod na mape',
         'mention'           => 'Referencia',
@@ -28,6 +31,7 @@ return [
         'option'    => 'Odstrániť zrkadlený vzťah',
     ],
     'destroy'           => [
+        'mirrored'  => 'Toto tiež odstráni zrkadlené vzťahy a natrvalo.',
         'success'   => 'Vzťah pre :name odstránený',
     ],
     'fields'            => [
@@ -58,10 +62,11 @@ return [
         'title' => 'Vzťahy',
     ],
     'options'           => [
-        'mentions'  => 'Vzťahy + Prepojené + Referencie',
-        'related'   => 'Vzťahy + Prepojené',
-        'relations' => 'Vzťahy',
-        'show'      => 'Zobraziť',
+        'mentions'          => 'Vzťahy + Prepojené + Referencie',
+        'only_relations'    => 'Iba priame vzťahy',
+        'related'           => 'Vzťahy + Prepojené',
+        'relations'         => 'Vzťahy',
+        'show'              => 'Zobraziť',
     ],
     'panels'            => [
         'related'   => 'Prepojené',

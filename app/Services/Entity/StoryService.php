@@ -41,7 +41,7 @@ class StoryService
 
         foreach ($posts as $id => $data) {
             // We only want to process posts
-            if (!is_array($data) || $data === 'story') {
+            if (!is_array($data) || $data == 'story' || $id === 'story') {
                 continue;
             }
             $id = $data['id'];
@@ -63,6 +63,11 @@ class StoryService
             }
             if (isset($data['visibility_id'])) {
                $story->visibility_id = $data['visibility_id'];
+            }
+
+            // We want the first post after the story to always have the "1" position
+            if ($position === 0) {
+                $position = 1;
             }
 
             $story->position = $position;

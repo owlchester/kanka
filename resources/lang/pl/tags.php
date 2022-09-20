@@ -17,19 +17,21 @@ return [
     'destroy'       => [],
     'edit'          => [],
     'fields'        => [
-        'children'  => 'Pochodne',
-        'name'      => 'Nazwa',
-        'tag'       => 'Etykieta źródłowa',
-        'tags'      => 'Etykiety pochodne',
-        'type'      => 'Rodzaj',
+        'children'          => 'Pochodne',
+        'is_auto_applied'   => 'Dodawaj automatycznie',
+        'name'              => 'Nazwa',
+        'tag'               => 'Etykieta źródłowa',
+        'tags'              => 'Etykiety pochodne',
+        'type'              => 'Rodzaj',
     ],
     'helpers'       => [
         'nested_without'    => 'Wyświetlono wszystkie etykiety nie posiadające źródła. Kliknij na rząd, by wyświetlić etykiety pochodne.',
         'no_children'       => 'Obecnie nie oznaczono tą etykietą żadnych elementów.',
     ],
     'hints'         => [
-        'children'  => 'Na liście znajdują się wszystkie elementy posiadające tę etykietę i etykiety pochodne.',
-        'tag'       => 'Na liście znajdują się wszystkie elementy posiadające tę etykietę.',
+        'children'          => 'Na liście znajdują się wszystkie elementy posiadające tę etykietę i etykiety pochodne.',
+        'is_auto_applied'   => 'Zaznacz by dodawać tę etykietę automatycznie do nowych elementów.',
+        'tag'               => 'Na liście znajdują się wszystkie elementy posiadające tę etykietę.',
     ],
     'index'         => [
         'title' => 'Etykiety',

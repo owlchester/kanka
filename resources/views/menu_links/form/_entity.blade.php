@@ -60,28 +60,24 @@ asort($menus);
 $menus = array_merge(['' => __('crud.tabs.story')], $menus);
 ?>
 <p class="help-block">{!! __('menu_links.helpers.entity', [
-    'tab' => '<code>' . __('menu_links.fields.tab') . '</code>',
     'menu' => '<code>' . __('menu_links.fields.menu') . '</code>',
     ]) !!}</p>
-<div class="form-group required">
-    {!! Form::select2(
-        'entity_id',
-        (!empty($model) && $model->target ? $model->target : null),
-        App\Models\Entity::class,
-        false,
-        'menu_links.fields.entity',
-        'search.entities-with-relations',
-        'menu_links.placeholders.entity'
-    ) !!}
-</div>
 
 <div class="row">
-    <div class="col-md-6" style="display:none">
-        <div class="form-group">
-            <label>{{ trans('menu_links.fields.tab') }}</label>
-            {!! Form::select('tab', $tabs, null, ['class' => 'form-control']) !!}
+    <div class="col-md-6">
+        <div class="form-group required">
+            {!! Form::select2(
+                'entity_id',
+                (!empty($model) && $model->target ? $model->target : null),
+                App\Models\Entity::class,
+                false,
+                'menu_links.fields.entity',
+                'search.entities-with-relations',
+                'menu_links.placeholders.entity'
+            ) !!}
         </div>
     </div>
+
     <div class="col-md-6">
         <div class="form-group">
             <label>{{ trans('menu_links.fields.menu') }}</label>

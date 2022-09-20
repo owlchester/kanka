@@ -49,7 +49,7 @@ class AttributeTemplate extends MiscModel
      * Searchable fields
      * @var array
      */
-    protected $searchableColumns  = ['name'];
+    protected array $searchableColumns  = ['name'];
 
     /**
      * Fields that can be sorted on

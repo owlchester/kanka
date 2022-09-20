@@ -18,6 +18,7 @@ return [
         'manage_links'      => 'Spravovať linky',
         'move'              => 'Premiestniť',
         'new'               => 'Nový',
+        'new_child'         => 'Nový podobjekt',
         'new_post'          => 'Nová poznámka objektu',
         'next'              => 'Ďalej',
         'print'             => 'Tlačiť',
@@ -34,10 +35,15 @@ return [
     'boosted_campaigns'         => 'Boostnuté kampane',
     'bulk'                      => [
         'actions'       => [
-            'edit'  => 'Hromadná úprava a kategórie',
+            'edit'          => 'Hromadná úprava a kategórie',
+            'permissions'   => 'Zmeniť oprávnenia',
+            'templates'     => 'Aplikovať šablónu atribútov',
         ],
         'age'           => [
             'helper'    => 'Môžeš použiť + a - pred číslom na úpravu veku o danú hodnotu.',
+        ],
+        'buttons'       => [
+            'label' => 'Pre vybrané',
         ],
         'delete'        => [
             'warning'   => 'Naozaj chceš odstrániť vybrané objekty?',
@@ -129,6 +135,7 @@ return [
         'copy_permissions'      => 'Kopírovať oprávnenia (tieto majú prioritu pred nastavenými v karte oprávnení)',
         'copy_posts'            => 'Kopírovať príspevky (inkl. ich oprávnení)',
         'creator'               => 'Autor',
+        'date_range'            => 'Obdobie',
         'dice_roll'             => 'Hod kockou',
         'entity'                => 'Objekt',
         'entity_type'           => 'Typ objektu',
@@ -159,6 +166,7 @@ return [
         'position'              => 'Pozícia',
         'privacy'               => 'Súkromie',
         'race'                  => 'Rasa',
+        'replace_mentions'      => 'Zameniť referencie atribútov v zázname za tie nového objektu.',
         'tag'                   => 'Kategória',
         'tags'                  => 'Kategórie',
         'timeline'              => 'Časová os',
@@ -229,6 +237,7 @@ return [
     'helpers'                   => [
         'copy_options'  => 'Kopírovať nasledujúce prepojené prvky zo zdroja do nového objektu.',
         'linking'       => 'Prepojenia s inými objektami',
+        'nested_parent' => 'Zobrazenie podobjektov :parent.',
     ],
     'hidden'                    => 'Skrytý',
     'hints'                     => [

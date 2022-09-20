@@ -64,6 +64,7 @@ return [
     'notes'                 => 'Notatki',
     'organisation'          => 'Organizacja',
     'organisations'         => 'Organizacje',
+    'post'                  => 'Komentarz',
     'quest'                 => 'Misja',
     'quests'                => 'Misje',
     'race'                  => 'Rasa',

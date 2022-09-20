@@ -154,12 +154,13 @@ return [
         'cancel'                => [
             'options'   => [
                 'competitor'        => 'Switching to a competitor',
-                'custom'            => 'Other (please specify)',
-                'financial'         => 'Financial situation changed',
+                'custom'            => 'Other',
+                'financial'         => 'Subscription is too expensive',
                 'missing_features'  => 'Missing features',
+                'not_for'           => 'Subscription is not for me',
                 'not_using'         => 'Not currently using Kanka',
             ],
-            'text'      => 'Sorry to see you go! Cancelling your subscription will keep it active until your next billing cycle, after which you will lose your campaign boosts and other benefits related to supporting Kanka. Feel free to fill out the following form to inform us what we can do better, or what lead to your decision.',
+            'text'      => 'Sorry to see you go! Cancelling your subscription will keep it active until :date, after which you will lose your campaign boosts and other benefits related to supporting Kanka. Feel free to fill out the following form to inform us what we can do better, or what lead to your decision.',
         ],
         'cancelled'             => 'Your subscription has been cancelled. You can renew a subscription once your current subscription ends after :date.',
         'change'                => [

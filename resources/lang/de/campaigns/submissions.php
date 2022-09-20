@@ -3,7 +3,7 @@
 return [
     'actions'       => [
         'accept'        => 'akzeptieren',
-        'applications'  => 'Anwendung: :status',
+        'applications'  => 'Bewerbungen: :status',
         'change'        => 'Änderung',
         'reject'        => 'ablehnen',
     ],

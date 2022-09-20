@@ -359,8 +359,9 @@ Route::get('/search/attributes/{entity}', 'Search\AttributeSearchController@inde
 
 // Global Entity Search
 Route::get('/search/reminder-entities', 'Search\LiveController@reminderEntities')->name('search.entities-with-reminders');
-Route::get('/search/relation-entities', 'Search\LiveController@relationEntities')->name('search.entities-with-relations');
+Route::get('/search/relation-entities', 'Search\LiveController@relationEntities')->name('search.entities-with-relations'); //use this one.
 Route::get('/search/tag-children', 'Search\LiveController@tagChildren')->name('search.tag-children');
+Route::get('/search/ability-entities', 'Search\LiveController@abilityEntities')->name('search.ability-entities');
 Route::get('/search/organisation-member', 'Search\LiveController@organisationMembers')->name('search.organisation-member');
 Route::get('/search/months', 'Search\CalendarController@months')->name('search.calendar-months');
 Route::get('/search/live', 'Search\LiveController@index')->name('search.live');
@@ -380,6 +381,8 @@ Route::get('/dashboard/widgets/{campaignDashboardWidget}/render', [\App\Http\Con
 // Move
 Route::get('/entities/{entity}/move', 'Entity\MoveController@index')->name('entities.move');
 Route::post('/entities/{entity}/move', 'Entity\MoveController@move')->name('entities.move');
+Route::get('/entities/{entity}/entity_notes/{entity_note}/move', 'Entity\PostMoveController@index')->name('entity_notes.move');
+Route::post('/entities/{entity}/entity_notes/{entity_note}/move', 'Entity\PostMoveController@move')->name('entity_notes.move');
 
 // Transform
 Route::get('/entities/{entity}/transform', 'Entity\TransformController@index')->name('entities.transform');

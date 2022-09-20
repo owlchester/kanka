@@ -7,6 +7,10 @@ return [
         'title'         => 'Filtry API',
     ],
     'attributes'        => [],
+    'calendar-widget'   => [
+        'info'  => 'Czemu wciąż to widzę?',
+        'title' => 'Widżet kalendarza',
+    ],
     'dice'              => [],
     'entity_templates'  => [
         'link'  => 'Jak stworzyć szablon',

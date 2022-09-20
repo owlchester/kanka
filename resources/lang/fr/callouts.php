@@ -10,7 +10,9 @@ return [
         'limitation'    => 'Pour accéder à cette fonctionnalité, la campagne doit être boostée.',
         'multiple'      => 'Pour accéder à cette fonctionnalité, la campagne doit être superboostée.',
         'pitches'       => [
-            'icon'  => 'Débloques des milliers d\'icônes de FontAwesome avec une :boosted-campaign.',
+            'element-class' => 'Cette élément peut être personnalisé avec une classe CSS dans une :boosted-campaign.',
+            'icon'          => 'Débloques des milliers d\'icônes de FontAwesome avec une :boosted-campaign.',
+            'link-parent'   => 'L\'emplacement d\'un menu rapide dans la navigation peut être personnalisé avec une :boosted-campaign.',
         ],
         'titles'        => [
             'boosted'       => 'Fonctionnalité boostée',
