@@ -83,7 +83,8 @@
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
             "@php artisan package:discover"
-        ]
+        ],
+        "test:types": "phpstan analyse --ansi --memory-limit 256M"
     },
     "config": {
         "preferred-install": "dist",
