@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Api\v1;
 
 use App\Models\Campaign;
+use App\User;
 use App\Models\Entity;
 use App\Http\Requests\StoreEntityPermission as Request;
+use App\Http\Requests\PermissionTestRequest;
 use App\Http\Resources\EntityPermissionResource as Resource;
 use App\Models\CampaignPermission;
 use App\Services\Api\ApiPermissionService;
@@ -96,5 +98,17 @@ class EntityPermissionApiController extends ApiController
         $permission->delete();
 
         return response()->json(null, 204);
+    }
+
+    /**
+     * @param Campaign $campaign
+     * @param Entity $entity
+     * @param CampaignPermission $permission
+     * @return Resource
+     */
+    public function test(PermissionTestRequest $request, Campaign $campaign)
+    {
+        $permissionTest = $this->apiPermissionService->entityPermissionTest($request, $campaign);
+        return response()->json($permissionTest);
     }
 }

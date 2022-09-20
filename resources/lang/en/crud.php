@@ -9,6 +9,8 @@ return [
         'copy'              => 'Copy',
         'copy_mention'      => 'Copy [ ] mention',
         'copy_to_campaign'  => 'Copy to campaign',
+        'disable'           => 'Disable',
+        'enable'            => 'Enable',
         'explore_view'      => 'Nested View',
         'export'            => 'Export (PDF)',
         'find_out_more'     => 'Find out more',

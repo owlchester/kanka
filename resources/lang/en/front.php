@@ -160,6 +160,7 @@ return [
             'upload_limit'      => 'Upload sizes',
             'upload_limit_map'  => 'Map upload sizes',
             'users_roles'       => 'Number of users, roles and permission controls',
+            '2fa'               => 'Access to Two Factor Authentication'
         ],
         'public'            => [
             'description'   => 'Permissions can be set for modules, or for each single entity. Campaigns can also be <a href=":url">set to public</a> for the whole world to see.',
