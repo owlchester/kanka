@@ -10,23 +10,28 @@ return [
         'email'             => 'Change email',
         '2fa'               => [
             'fields' => [
-                'qrcode' => 'Scan the following QR Code with your Google Authenticator App to generate a One Time Password',
-                'otp' => 'Enter the One Time Password (OTP) provided by the Google Authenticator'
+                'qrcode' => 'Scan the following QR Code with your authenticator app to generate a One Time Password (OTP)',
+                'otp' => 'Enter the One Time Password (OTP) provided by the authenticator app'
             ],
-            'title'                     => 'Two Factor Authentication',
-            'helper'                    => 'Two factor authentication (2FA) strengthens access security by requiring two methods (also referred to as factors) to verify your identity on each login.',
-            'enable_instructions'       => 'To start the activation process, click the generate secret button to generate your authentication QR code, then scan it into the Google Authenticator App (:ios, :android)',
+            'actions' => [
+                'disable' => 'Disable two-factor authentication',
+                'finish'    => 'Finish setup and log in',
+            ],
+            'learn_more'                => 'Learn more about two-factor authentication.',
+            'title'                     => 'Two-factor authentication',
+            'helper'                    => 'Two-factor authentication (2FA) strengthens access security by requiring two methods (also referred to as factors) to verify your identity on each login.',
+            'enable_instructions'       => 'To start the activation process, click the generate secret button to generate your authentication QR code, then scan it into the Google Authenticator App (:ios, :android), or another similar authenticator app.',
             'generate_qr'               => 'Generate QR Code',
-            'activation_helper'         => 'To continue with the activation process for Two Factor Authentication on your Account, please do the following:',
-            'enabled'                   => 'Two Factor Authentication is currently enabled on your account.',
-            'enable'                    => 'Enable 2FA',
-            'disable_helper'            => 'If you want to disable Two Factor Authentication click the button below, keep in mind that this will leave your account vulnerable to anyone that knows your login information.',
-            'disable'                   => 'Disable 2FA',
-            'disable_confirm'           => 'Disable 2FA Now',
-            'social'                    => 'Kanka two factor authentication is only enabled for users that login using their e-mail and password. Change your login method in your account settings before being able to enable this option.',
-            'success_key'               => 'QR Code successfully generated, please verify to activate two factor authentication.',
-            'success_enable'            => 'Two Factor Authentication enabled successfully. Please log in again.',
-            'success_disable'           => 'Two Factor Authentication has been disabled.',
+            'activation_helper'         => 'To finish setting up your account\'s two-factor authentication, please follow these instructions.',
+            'enabled'                   => 'Two-factor authentication is currently enabled on your account.',
+            'disable' => [
+                'title' => 'Disable two-factor authentication',
+                'helper' => 'If you want to disable two-factor authentication click the button below, keep in mind that this will leave your account vulnerable to anyone that knows your login information.',
+            ],
+            'social'                    => 'Kanka two-factor authentication is only enabled for users that login using their e-mail and password. Change your login method in your account settings before being able to enable this option.',
+            'success_key'               => 'Your secure QR code was successfully generated. Please complete your setup to activate two-factor authentication.',
+            'success_enable'            => 'Two-factor authentication enabled successfully. Please log in again.',
+            'success_disable'           => 'Two-factor authentication has been disabled.',
             'error_enable'              => 'Invalid Code, try again',
 
 
