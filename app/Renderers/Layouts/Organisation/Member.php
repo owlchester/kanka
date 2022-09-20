@@ -48,13 +48,13 @@ class Member extends Layout
                 }
             ],
             'location' => [
-                //'key' => 'character.location.name',
                 'label' => 'characters.fields.location',
+                'class' => self::ONLY_DESKTOP,
                 'render' => function ($model) {
-                    if (!$model->location) {
+                    if (!$model->character->location) {
                         return null;
                     }
-                    return $model->location->tooltipedLink();
+                    return $model->character->location->tooltipedLink();
                 },
             ],
             'pinned' => [
@@ -71,7 +71,6 @@ class Member extends Layout
                 }
             ],
         ];
-
         return $columns;
     }
 
