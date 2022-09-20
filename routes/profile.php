@@ -135,12 +135,12 @@ Route::post('/security/disable2fa', [
 // Verify 2FA if User has it enabled
 Route::post('/security/verify2fa', function() {
     return redirect()->route('home');
-})->name('auth.verify-tfa')->middleware('2fa');
+})->name('auth.verify-2fa')->middleware('2fa');
 
 
-Route::get('/security/verify2fa', function() {
+/*Route::get('/security/verify2fa', function() {
     return redirect(URL()->previous());
-})->name('auth.verify-tfa')->middleware('2fa');
+})->name('auth.verify-2fa')->middleware('2fa');*/
 
 /*
 --------------------------------------------------------------------------

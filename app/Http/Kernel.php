@@ -43,14 +43,14 @@ class Kernel extends HttpKernel
             \App\Http\Middleware\LocaleChange::class, // Save language changing
             Tracking::class,
             \App\Http\Middleware\CheckIfUserBanned::class,
-            \App\Http\Middleware\TFAMiddleware::class,
+            \App\Http\Middleware\OTPMiddleware::class,
         ],
 
         'api' => [
             //Do this in the routes 'throttle:rate_limit,1',
             'bindings',
         ],
-        // Used for localless routes like our sitemaps, go/, auth/callbacks, webhooks
+        // Used for locale-less routes like our sitemaps, go/, auth/callbacks, webhooks
         'minimum' => [
             \App\Http\Middleware\EncryptCookies::class,
             \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
@@ -94,7 +94,7 @@ class Kernel extends HttpKernel
         'password.confirm' => PasswordConfirm::class,
         'subscriptions' => \App\Http\Middleware\Subscriptions::class,
         'fullsetup' => FullSetup::class,
-        '2fa' => \App\Http\Middleware\TFAMiddleware::class,
+        '2fa' => \App\Http\Middleware\OTPMiddleware::class,
 
     ];
 }

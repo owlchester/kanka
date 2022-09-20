@@ -52,7 +52,7 @@
                 </div>
                 <div class="form-group required">
                     <label>{{ __('settings.account.2fa.fields.otp') }}</label>
-                    {!! Form::text('otp', null, ['class' => 'form-control', 'maxlength' => 8]) !!}
+                    {!! Form::password('otp', ['class' => 'form-control', 'maxlength' => 12]) !!}
                 </div>
             </div>
             <div class="box-footer text-right">

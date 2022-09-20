@@ -6,7 +6,6 @@ use App\Http\Requests\Settings\UserEnableTfa;
 use App\User;
 use Illuminate\Http\Request;
 use PragmaRX\Google2FA\Google2FA;
-use Illuminate\Support\Facades\Auth;
 use App\Models\PasswordSecurity;
 
 class PasswordSecurityController extends Controller
@@ -27,7 +26,7 @@ class PasswordSecurityController extends Controller
     public function generate2faSecretCode(Request $request)
     {
         /** @var User $user */
-        $user = Auth::user();
+        $user = $request->user();
 
         $google2Fa = new Google2FA();
 
@@ -56,11 +55,10 @@ class PasswordSecurityController extends Controller
         // If Google2FA code is valid enable Google2FA
         if ($valid) {
             $user->passwordSecurity->update(['google2fa_enable' => 1]);
-            // Don't directly request 2FA from the user, but instead log them out to confirm that it works
+            // 2FA is enabled, log out the user and ask them to set up.
             auth()->logout();
             session()->flush();
             return redirect()->route('login')->with('success', __('settings.account.2fa.success_enable'));
-            return redirect()->route('settings.account')->with('success', __('settings.account.2fa.success_enable'));
         }
         return redirect()->route('settings.account')->with('error', __('settings.account.2fa.error_enable'));
     }
@@ -71,7 +69,7 @@ class PasswordSecurityController extends Controller
     public function disable2fa(Request $request)
     {
         /** @var User $user */
-        $user = Auth::user();
+        $user = $request->user();
 
         // Update disabling Google2FA
         $user->passwordSecurity->google2fa_enable = 0;

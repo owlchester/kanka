@@ -13,7 +13,7 @@
 
         {!! Form::open(['route' => 'auth.verify-2fa', 'method' => 'POST']) !!}
             <div class="form-group{{ $errors->has('one_time_password') ? ' has-error' : '' }}">
-                <input id="one_time_password" type="password" class="form-control" name="one_time_password" required>
+                <input id="one_time_password" type="password" class="form-control" name="one_time_password" required autofocus>
 
                 @if ($errors->has('password'))
                     <span class="help-block text-red">

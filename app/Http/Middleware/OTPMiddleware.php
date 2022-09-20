@@ -4,10 +4,10 @@ namespace App\Http\Middleware;
 
 use App\Models\Google2FAAuthentication;
 
-
 use Closure;
+use App\Facades\Identity;
 
-class TFAMiddleware
+class OTPMiddleware
 {
     /**
     * Handle an incoming request.
@@ -23,6 +23,10 @@ class TFAMiddleware
         }
         if ($request->is('*/settings/security/cancel-2fa')) {
             auth()->logout();
+            return $next($request);
+        }
+        // If the user is impersonating someone that has 2FA, don't ask for the user's OTP
+        if ($request->user() && Identity::isImpersonating()) {
             return $next($request);
         }
         // Send requested loggin User to Google2FA Authentication Support
