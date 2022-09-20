@@ -560,4 +560,12 @@ class User extends \Illuminate\Foundation\Auth\User
     {
         return $this->hasRole('wordsmith');
     }
+
+    /**
+     * Check if user has 2FA.
+     */
+    public function passwordSecurity()
+    {
+        return $this->hasOne('App\Models\PasswordSecurity');
+    }
 }

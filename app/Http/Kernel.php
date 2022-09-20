@@ -43,6 +43,7 @@ class Kernel extends HttpKernel
             \App\Http\Middleware\LocaleChange::class, // Save language changing
             Tracking::class,
             \App\Http\Middleware\CheckIfUserBanned::class,
+            \App\Http\Middleware\Google2FAMiddleware::class,
         ],
 
         'api' => [
@@ -93,5 +94,7 @@ class Kernel extends HttpKernel
         'password.confirm' => PasswordConfirm::class,
         'subscriptions' => \App\Http\Middleware\Subscriptions::class,
         'fullsetup' => FullSetup::class,
+        '2fa' => \App\Http\Middleware\Google2FAMiddleware::class,
+
     ];
 }
