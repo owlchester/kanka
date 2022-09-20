@@ -122,16 +122,12 @@ class InviteService
             ]);
         }
 
-        // Check the type. Links have a number of usage (validity)
-        if (!$invite->isEmail()) {
-            if (!empty($invite->validity)) {
-                $invite->validity--;
-                if ($invite->validity <= 0) {
-                    $invite->is_active = false;
-                }
+        // Invitation links can have a set number of usage (validity)
+        if (!empty($invite->validity)) {
+            $invite->validity--;
+            if ($invite->validity <= 0) {
+                $invite->is_active = false;
             }
-        } else {
-            $invite->is_active = false;
         }
         $invite->save();
 

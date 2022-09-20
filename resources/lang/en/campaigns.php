@@ -105,26 +105,18 @@ TEXT
     ],
     'invites'                           => [
         'actions'               => [
-            'add'   => 'Email invite',
             'copy'  => 'Copy the link to your clipboard',
             'link'  => 'Invite people',
         ],
         'create'                => [
             'buttons'       => [
                 'create'    => 'Generate link',
-                'send'      => 'Send invite',
             ],
-            'success'       => 'Invitation sent.',
             'success_link'  => 'Link created: :link',
             'title'         => 'Invite friends to :campaign',
         ],
         'destroy'               => [
             'success'   => 'Invitation removed.',
-        ],
-        'email'                 => [
-            'link_text' => 'Join :name\'s campaign',
-            'subject'   => ':name has invited you to join their \':campaign\' campaign on kanka.io! Use the following link to accept their invitation.',
-            'title'     => 'Invitation from :name',
         ],
         'error'                 => [
             'already_member'    => 'You are already a member of that campaign.',
@@ -133,22 +125,11 @@ TEXT
             'login'             => 'Please log in or register to join the campaign.',
         ],
         'fields'                => [
-            'created'   => 'Sent',
-            'email'     => 'Email',
+            'created'   => 'Created',
             'role'      => 'Role',
+            'token'     => 'Token',
             'type'      => 'Type',
             'usage'     => 'Expires after',
-        ],
-        'helpers'               => [
-            'email'     => 'Our emails are often flagged as spam and can take up to a few hours before appearing in the inbox.',
-            'validity'  => 'How many users can use this link before it is deactivated. Leave blank for unlimited',
-        ],
-        'placeholders'          => [
-            'email' => 'Email address of the person you wish to invite',
-        ],
-        'types'                 => [
-            'email' => 'Email',
-            'link'  => 'Link',
         ],
         'unlimited_validity'    => 'Unlimited',
         'usages'                => [

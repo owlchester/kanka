@@ -27,9 +27,9 @@ class CampaignInviteController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
+     * Create a new invitation link form
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function create()
     {
@@ -48,35 +48,43 @@ class CampaignInviteController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * Save the new invitation link to the database
+     * @param StoreCampaignInvite $request
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function store(StoreCampaignInvite $request)
     {
         $campaign = CampaignLocalization::getCampaign();
         $this->authorize('invite', $campaign);
 
-        $invitation = CampaignInvite::create(
-            $request->only('email', 'role_id', 'type_id', 'validity')
-        );
+        $data = $request->only('role_id', 'validity');
+        $data['campaign_id'] = $campaign->id;
+        $invitation = CampaignInvite::create($data);
+
+        $link = route('campaigns.join', $invitation->token);
+        $copy = link_to('#', '<i class="fa-solid fa-copy"></i> ' . __('campaigns.invites.actions.copy'), [
+            'data-clipboard' => $link,
+            'data-toggle' => 'tooltip',
+            'data-toast' => __('crud.alerts.copy_invite'),
+            'title' => __('campaigns.invites.actions.copy')
+        ], null, false);
 
         return redirect()->route('campaign_users.index')
             ->with(
                 'success_raw',
                 __(
-                    'campaigns.invites.create.' . ($invitation->isEmail() ? 'success' : 'success_link'),
-                    ['link' => link_to_route('campaigns.join', route('campaigns.join', $invitation->token), $invitation->token)]
+                    'campaigns.invites.create.success_link',
+                    ['link' => $copy]
                 )
             );
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\CampaignInvite  $campaignUser
-     * @return \Illuminate\Http\Response
+     * Remove an invitation link
+     * @param CampaignInvite $campaignInvite
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function destroy(CampaignInvite $campaignInvite)
     {
@@ -84,6 +92,6 @@ class CampaignInviteController extends Controller
 
         $campaignInvite->delete();
         return redirect()->route('campaign_users.index')
-            ->with('success', trans('campaigns.invites.destroy.success'));
+            ->with('success', __('campaigns.invites.destroy.success'));
     }
 }
