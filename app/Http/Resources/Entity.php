@@ -2,6 +2,8 @@
 
 namespace App\Http\Resources;
 
+use Illuminate\Support\Str;
+
 class Entity extends EntityChild
 {
     /**
@@ -18,6 +20,11 @@ class Entity extends EntityChild
         if (empty($model->child)) {
             return ['error' => 'KA7: Entity #' . $model->id . ' missing child.'];
         }
+
+        $url = $model->url();
+        $lang = request()->header('kanka-locale', auth()->user()->locale ?? 'en');
+        $url = Str::replaceFirst('campaign/', $lang . '/campaign/', $url);
+
         return [
             'id' => $model->child->id,
             'entity_id' => $model->id,
@@ -38,6 +45,11 @@ class Entity extends EntityChild
             'created_by' => $model->created_by,
             'updated_at' => $model->child->updated_at,
             'updated_by' => $model->updated_by,
+
+            'urls' => [
+                'view' => $url,
+                'api' => route('campaigns.' . $model->pluralType() . '.show', [$model->campaign_id, $model->entity_id]),
+            ]
         ];
     }
 }
