@@ -16,7 +16,7 @@
             <div class="col-xs-3 col-sm-4">10 mb</div>
         </div>
         <div class="row">
-            <div class="col-xs-9 col-sm-8">{{ __('front.features.patreon.discord') }}</div>
+            <div class="col-xs-9 col-sm-8">{!! __('front.features.patreon.discord', ['discord' => link_to(config('social.discord'), 'Discord', ['target' => '_blank'])]) !!}</div>
             <div class="col-xs-3 col-sm-4"><i class="fa-solid fa-check-circle"></i></div>
         </div>
         <div class="row">

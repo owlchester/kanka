@@ -39,6 +39,7 @@ use Laravel\Passport\HasApiTokens;
  * @property boolean $has_last_login_sharingw
  * @property string|null $pledge
  * @property string|null $timezone
+ * @property string|null $currency
  * @property int $booster_count
  * @property int $referral_id
  * @property Carbon|string|null $card_expires_at
@@ -251,7 +252,7 @@ class User extends \Illuminate\Foundation\Auth\User
     public function maxUploadSize(bool $readable = false): string|int
     {
         $campaign = CampaignLocalization::getCampaign();
-        if (!$this->isPatron() && (empty($campaign) || !$campaign->boosted())) {
+        if (!$this->isSubscriber() && (empty($campaign) || !$campaign->boosted())) {
             $min = config('limits.filesize.image');
             return $readable ? $min . 'MB' : ($min * 1024);
         } elseif ($this->isElemental()) {
@@ -276,7 +277,7 @@ class User extends \Illuminate\Foundation\Auth\User
     {
         $campaign = CampaignLocalization::getCampaign();
         // Not a subscriber and not in a boosted campaign get the default
-        if (!$this->isPatron() && (empty($campaign) || !$campaign->boosted())) {
+        if (!$this->isSubscriber() && (empty($campaign) || !$campaign->boosted())) {
             return $readable ? '3MB' : 3072;
         } elseif ($this->isElemental()) {
             // Anders gets higher upload sizes until we handle this in the db.
@@ -292,10 +293,10 @@ class User extends \Illuminate\Foundation\Auth\User
     }
 
     /**
-     * Determine if a user is a patron
+     * Determine if a user is a subscriber
      * @return bool
      */
-    public function isPatron(): bool
+    public function isSubscriber(): bool
     {
         return $this->hasRole('patreon') || $this->hasRole('admin');
     }
@@ -388,7 +389,7 @@ class User extends \Illuminate\Foundation\Auth\User
             $base += $this->booster_count;
         }
 
-        if (!$this->isPatron()) {
+        if (!$this->isSubscriber()) {
             return $base;
         }
 
@@ -436,7 +437,7 @@ class User extends \Illuminate\Foundation\Auth\User
     public function showAds(): bool
     {
         // Patrons and subs don't have ads
-        if ($this->isPatron()) {
+        if ($this->isSubscriber()) {
             return false;
         }
 
