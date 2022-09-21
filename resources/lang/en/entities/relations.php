@@ -13,6 +13,7 @@ return [
             'editing_partial'   => '{1} :count/:total relation was updated.|[2,*] :count/:total relations were updated.',
         ],
         'update_mirrored'   => 'Also update mirrored relations.',
+        'unmirror'          => 'Unmirror mirrored relations.',
     ],
     'call-to-action'    => 'Visually explore the relations of this entity and how it\'s connected to the rest of the campaign.',
     'connections'       => [

@@ -415,6 +415,14 @@ class BulkService
                 $this->count++;
                 $this->total++;
             }
+            if (request()->unmirror && $relation->mirror) {
+                $relation->mirror->update(['mirror_id' => null]);
+                $filledFields['mirror_id'] = null;
+                if (!request()->update_mirrored) {
+                    $this->count++;
+                    $this->total++;
+                }
+            }
             $relation->update($filledFields);
             $this->count++;
         }

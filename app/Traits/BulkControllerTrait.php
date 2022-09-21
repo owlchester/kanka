@@ -5,16 +5,17 @@ namespace App\Traits;
 use App\Datagrids\Bulks\Bulk;
 use App\Datagrids\Bulks\DefaultBulk;
 use App\Models\MiscModel;
+use App\Models\Relation;
 use Illuminate\Support\Str;
 
 trait BulkControllerTrait
 {
     /**
      * Get the Bulk model of an entity
-     * @param MiscModel|null $modelClass
+     * @param MiscModel|Relation|null $modelClass
      * @return Bulk
      */
-    protected function bulkModel(MiscModel $modelClass = null): Bulk
+    protected function bulkModel(MiscModel|Relation $modelClass = null): Bulk
     {
         if (isset($this->bulk) && !empty($this->bulk)) {
             return new $this->bulk();
