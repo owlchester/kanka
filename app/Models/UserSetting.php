@@ -18,10 +18,8 @@ use Stevebauman\Purify\Facades\Purify;
  * @property bool $mail_release
  * @property string $patreon_email
  * @property string $patreon_fullname
- * @property int|null $patreon_pledge
  * @property string $newEntityWorkflow
  * @property string $campaignSwitcherOrderBy
- * @property int|null $pledge
  * @property string $marketplaceName
  */
 trait UserSetting
@@ -29,14 +27,6 @@ trait UserSetting
     public function settings()
     {
         return new Collection($this->settings);
-    }
-
-    /**
-     * @param string|null $value
-     */
-    public function setPledgeAttribute($value)
-    {
-        $this->setSettingsOption('pledge', $value);
     }
 
     /**

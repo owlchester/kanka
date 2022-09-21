@@ -36,7 +36,7 @@ class DeletedSubscriptionMail extends Mailable
     {
         return $this
             ->from(['address' => 'hello@kanka.io', 'name' => 'Kanka Admin'])
-            ->subject('Subscription: Failed too many times ' . $this->user->patreon_pledge)
+            ->subject('Subscription: Failed too many times ' . $this->user->pledge)
             ->view('emails.subscriptions.deleted.html');
     }
 }

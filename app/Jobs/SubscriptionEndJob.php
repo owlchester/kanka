@@ -49,7 +49,7 @@ class SubscriptionEndJob implements ShouldQueue
         }
 
         // Cleanup the user
-        $user->patreon_pledge = '';
+        $user->pledge = null;
         $user->save();
 
         // Cleanup the campaign boosts

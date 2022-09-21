@@ -2,6 +2,8 @@
 
 namespace App\Services;
 
+use App\Models\Patreon;
+use App\Models\Pledge;
 use App\User;
 use Illuminate\Support\Arr;
 use App\Models\Role;
@@ -58,13 +60,13 @@ class PatreonService
         $this->user->pledge = null;
         $this->user->patreon_email = null;
         $this->user->patreon_fullname = null;
-        $this->user->patreon_pledge = null;
         $this->user->save();
 
         return true;
     }
 
     /**
+     * Get a list of subscribers
      * @return array
      */
     public function patrons(): array
@@ -92,13 +94,16 @@ class PatreonService
         }
 
         $ids = $role->users()->pluck('id');
-        $users = User::select(['patreon_pledge', 'name', 'settings'])->whereIn('id', $ids)->orderBy('name', 'ASC')->get();
+        $users = User::select(['pledge', 'name', 'settings'])->whereIn('id', $ids)->orderBy('name', 'ASC')->get();
         /** @var User $user */
         foreach ($users as $user) {
+            if (empty($user->pledge) || $user->pledge === Pledge::KOBOLD) {
+                continue;
+            }
             if (Arr::get($user, 'settings.hide_subscription', false)) {
                 continue;
             }
-            $patrons[$user->patreon_pledge ?: 'Kobold'][] = $user->name;
+            $patrons[$user->pledge][] = $user->name;
         }
 
         // Cache for a day

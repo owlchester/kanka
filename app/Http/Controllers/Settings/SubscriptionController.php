@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Settings\UserAltSubscribeStore;
 use App\Http\Requests\Settings\UserSubscribeStore;
 use App\Models\Patreon;
+use App\Models\Pledge;
 use App\Services\SubscriptionService;
 use App\User;
 use Illuminate\Http\Request;
@@ -88,7 +89,7 @@ class SubscriptionController extends Controller
             $request->user()->createAsStripeCustomer();
         }
         $intent = $request->user()->createSetupIntent();
-        $cancel = $tier == Patreon::PLEDGE_KOBOLD;
+        $cancel = $tier == Pledge::KOBOLD;
         $user = $request->user();
         $isDowngrading = $this->subscription->downgrading();
 

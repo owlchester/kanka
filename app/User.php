@@ -10,6 +10,7 @@ use App\Facades\CampaignLocalization;
 use App\Models\CampaignRole;
 use App\Models\Concerns\Tutorial;
 use App\Models\Patreon;
+use App\Models\Pledge;
 use App\Models\Relations\UserRelations;
 use App\Models\Scopes\UserScope;
 use App\Models\UserLog;
@@ -36,7 +37,7 @@ use Laravel\Passport\HasApiTokens;
  * @property integer $welcome_campaign_id
  * @property boolean $newsletter
  * @property boolean $has_last_login_sharingw
- * @property string|null $patreon_pledge
+ * @property string|null $pledge
  * @property string|null $timezone
  * @property int $booster_count
  * @property int $referral_id
@@ -93,7 +94,7 @@ class User extends \Illuminate\Foundation\Auth\User
         'locale', // Keep this for the LocaleChange middleware
         'last_login_at',
         'has_last_login_sharing',
-        'patreon_pledge',
+        'pledge',
         'referral_id',
         'profile',
         'settings',
@@ -314,7 +315,7 @@ class User extends \Illuminate\Foundation\Auth\User
      */
     public function isGoblin(): bool
     {
-        return !empty($this->patreon_pledge) && $this->patreon_pledge !== Patreon::PLEDGE_KOBOLD;
+        return !empty($this->pledge) && $this->pledge !== Pledge::PLEDGE_KOBOLD;
     }
 
     /**
@@ -323,7 +324,7 @@ class User extends \Illuminate\Foundation\Auth\User
      */
     public function isElemental(): bool
     {
-        if (!empty($this->patreon_pledge) && $this->patreon_pledge == Patreon::PLEDGE_ELEMENTAL) {
+        if (!empty($this->pledge) && $this->pledge == Pledge::ELEMENTAL) {
             return true;
         }
         // We check the campaign and roles for 61105 because of a special Elemental subscriber.
@@ -336,7 +337,7 @@ class User extends \Illuminate\Foundation\Auth\User
      */
     public function isOwlbear(): bool
     {
-        return !empty($this->patreon_pledge) && $this->patreon_pledge == Patreon::PLEDGE_OWLBEAR;
+        return !empty($this->pledge) && $this->pledge == Pledge::OWLBEAR;
     }
 
     /**
@@ -344,7 +345,7 @@ class User extends \Illuminate\Foundation\Auth\User
      */
     public function isWyvern(): bool
     {
-        return !empty($this->patreon_pledge) && $this->patreon_pledge == Patreon::PLEDGE_WYVERN;
+        return !empty($this->pledge) && $this->pledge == Pledge::WYVERN;
     }
 
     /**
@@ -396,15 +397,15 @@ class User extends \Illuminate\Foundation\Auth\User
         }
 
         $levels = [
-            Patreon::PLEDGE_KOBOLD => 0,
-            Patreon::PLEDGE_GOBLIN => 1,
-            Patreon::PLEDGE_OWLBEAR => 3,
-            Patreon::PLEDGE_WYVERN => 6,
-            Patreon::PLEDGE_ELEMENTAL => 10,
+            Pledge::KOBOLD => 0,
+            Pledge::GOBLIN => 1,
+            Pledge::OWLBEAR => 3,
+            Pledge::WYVERN => 6,
+            Pledge::ELEMENTAL => 10,
         ];
 
         // Default 3 for admins and owlbears
-        return Arr::get($levels, $this->patreon_pledge, 0) + $base;
+        return Arr::get($levels, $this->pledge, 0) + $base;
     }
 
     /**
