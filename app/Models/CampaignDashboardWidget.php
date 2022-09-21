@@ -433,10 +433,9 @@ class CampaignDashboardWidget extends Model
     }
 
     /**
-     * @param Campaign $campaign
      * @return string
      */
-    public function customSize(Campaign $campaign): string
+    public function customSize(): string
     {
         if (empty($this->conf('size'))) {
             return 'h3';
