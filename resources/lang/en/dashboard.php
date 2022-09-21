@@ -124,6 +124,7 @@ return [
             'order'             => 'Ordering',
             'text'              => 'Text',
             'width'             => 'Width',
+            'size'              => 'Size',
         ],
         'helpers'       => [
             'class'     => 'Define a custom css class added to the widget.',
