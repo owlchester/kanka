@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\Pledge;
 use App\User;
 use App\Models\Role;
 
@@ -15,11 +16,6 @@ class PatreonService
      * @var User
      */
     protected User $user;
-
-    /**
-     * @var string
-     */
-    protected string $patreonRoleName = 'patreon';
 
     /**
      * Set the user
@@ -37,7 +33,7 @@ class PatreonService
      */
     protected function getRole()
     {
-        return Role::where('name', '=', $this->patreonRoleName)->first();
+        return Role::where('name', '=', Pledge::ROLE)->first();
     }
 
     /**
@@ -50,7 +46,7 @@ class PatreonService
             return false;
         }
 
-        if ($this->user->hasRole($this->patreonRoleName)) {
+        if ($this->user->hasRole(Pledge::ROLE)) {
             $this->user->roles()->detach($this->getRole()->id);
         }
 

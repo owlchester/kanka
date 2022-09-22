@@ -13,18 +13,18 @@ class PatreonController extends Controller
     /**
      * @var PatreonService
      */
-    protected $patreon;
+    protected $service;
 
     /**
      * Create a new controller instance.
      *
-     * @param PatreonService $patreon
+     * @param PatreonService $service
      * @return void
      */
-    public function __construct(PatreonService $patreon)
+    public function __construct(PatreonService $service)
     {
         $this->middleware(['auth', 'identity']);
-        $this->patreon = $patreon;
+        $this->service = $service;
     }
 
     /**
@@ -41,7 +41,7 @@ class PatreonController extends Controller
      */
     public function unlink(Request $request)
     {
-        $this->patreon->user($request->user())->unlink();
+        $this->service->user($request->user())->unlink();
         return redirect()->route('settings.patreon')
             ->with('success', __('settings.patreon.remove.success'));
     }

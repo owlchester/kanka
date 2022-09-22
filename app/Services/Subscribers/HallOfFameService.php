@@ -28,7 +28,7 @@ class HallOfFameService
         ];
 
         /** @var Role|null $role */
-        $role = Role::where(['name' => 'patreon'])->first();
+        $role = Role::where(['name' => Pledge::ROLE])->first();
 
         // No subscriber role? Local instance or not properly set up. Let's just avoid throwing an error.
         if ($role === null) {

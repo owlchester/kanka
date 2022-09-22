@@ -10,6 +10,9 @@ class Pledge
     public const WYVERN = 'Wyvern';
     public const ELEMENTAL = 'Elemental';
 
+    /** @var string Role name for subscribers. For legacy reasons, called Patreon. */
+    public const ROLE = 'patreon';
+
     /**
      * @return array
      */

@@ -290,7 +290,7 @@ class User extends \Illuminate\Foundation\Auth\User
      */
     public function isSubscriber(): bool
     {
-        return $this->hasRole('patreon') || $this->hasRole('admin');
+        return $this->hasRole(Pledge::ROLE) || $this->hasRole('admin');
     }
 
     /**
@@ -299,7 +299,7 @@ class User extends \Illuminate\Foundation\Auth\User
      */
     public function isLegacyPatron(): bool
     {
-        return $this->hasRole('patreon') && !empty($this->patreon_email);
+        return $this->hasRole(Pledge::ROLE) && !empty($this->patreon_email);
     }
 
     /**

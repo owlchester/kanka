@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use App\Models\Pledge;
 use App\Notifications\Header;
 use App\Services\DiscordService;
 use App\User;
@@ -60,7 +61,7 @@ class SubscriptionEndJob implements ShouldQueue
 
         // Cleanup the subscriber role
         /** @var Role $role */
-        $role = Role::where('name', 'patreon')->first();
+        $role = Role::where('name', Pledge::ROLE)->first();
         $user->roles()->detach($role->id);
 
         // Notify the user in app about the change

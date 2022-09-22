@@ -259,13 +259,13 @@ class SubscriptionService
         // Determine if the pledge was changed or not
         $new = !$this->upgrading($plan);
 
-        // Add the necessary roles and patreon data
+        // Add the necessary roles and pledge data
         $this->user->pledge = $plan;
         $this->user->update(['pledge' => $plan]);
 
-        // We're so far, good. Let's add the user to the Patreon group
-        $role = Role::where('name', '=', 'patreon')->first();
-        if ($role && !$this->user->hasRole('patreon')) {
+        // We're so far, good. Let's add the user to the subscriber group
+        $role = Role::where('name', '=', Pledge::ROLE)->first();
+        if ($role && !$this->user->hasRole(Pledge::ROLE)) {
             $this->user->roles()->attach($role->id);
         }
 
@@ -481,9 +481,9 @@ class SubscriptionService
             $this->user->pledge = $source->tier;
             $this->user->update(['pledge' => $source->tier]);
 
-            // We're so far, good. Let's add the user to the Patreon group
-            $role = Role::where('name', '=', 'patreon')->first();
-            if ($role && !$this->user->hasRole('patreon')) {
+            // We're so far, good. Let's add the user to the subscriber group
+            $role = Role::where('name', '=', Pledge::ROLE)->first();
+            if ($role && !$this->user->hasRole(Pledge::ROLE)) {
                 $this->user->roles()->attach($role->id);
             }
 

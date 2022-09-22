@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Pledge;
 use Illuminate\Database\Seeder;
 use App\Models\Role;
 
@@ -40,7 +41,7 @@ class RolesTableSeeder extends Seeder
                 ])->save();
         }
 
-        $role = Role::firstOrNew(['name' => 'patreon']);
+        $role = Role::firstOrNew(['name' => Pledge::ROLE]);
         if (!$role->exists) {
             $role->fill([
                     'display_name' => 'Patreon',
