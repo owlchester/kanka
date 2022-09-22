@@ -31,6 +31,13 @@ function initKeyboardShortcuts() {
                 return;
             }
             $('.quick-creator-button')[0].click();
+        } else if (e.key === 'Escape') {
+            // ESC to close quick creator selection modal
+            let modal = $('#entity-modal');
+            if (modal.has('.entity-creator').length === 1) {
+              modal.modal('hide');
+            }
+            return;
         }
     });
 }
