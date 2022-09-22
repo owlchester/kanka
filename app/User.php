@@ -9,12 +9,11 @@ use App\Models\Campaign;
 use App\Facades\CampaignLocalization;
 use App\Models\CampaignRole;
 use App\Models\Concerns\Tutorial;
-use App\Models\Patreon;
 use App\Models\Pledge;
-use App\Models\Relations\UserRelations;
 use App\Models\Scopes\UserScope;
 use App\Models\UserLog;
 use App\Models\UserSetting;
+use App\Models\Relations\UserRelations;
 use Carbon\Carbon;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Arr;
@@ -51,8 +50,6 @@ use Laravel\Passport\HasApiTokens;
  * @property bool $advancedMentions
  * @property bool $defaultNested
  * @property string $campaignSwitcherOrderBy
- * @property string|null $patreon_fullname
- * @property string|null $patreon_email
  *
  * @property string $stripe_id
  */
@@ -68,11 +65,6 @@ class User extends \Illuminate\Foundation\Auth\User
     ;
 
     protected static $currentCampaign = false;
-
-    public array $additional_attributes = [
-        'patreon_fullname',
-        //'patreon_email'
-    ];
 
     /**
      * The attributes that are mass assignable.
@@ -302,10 +294,10 @@ class User extends \Illuminate\Foundation\Auth\User
     }
 
     /**
-     * Determine if a user has a patreon-synced set up
+     * Determine if a user has a legacy patreon sync set up
      * @return bool
      */
-    public function hasPatreonSync(): bool
+    public function isLegacyPatron(): bool
     {
         return $this->hasRole('patreon') && !empty($this->patreon_email);
     }
@@ -316,7 +308,7 @@ class User extends \Illuminate\Foundation\Auth\User
      */
     public function isGoblin(): bool
     {
-        return !empty($this->pledge) && $this->pledge !== Pledge::PLEDGE_KOBOLD;
+        return !empty($this->pledge) && $this->pledge !== Pledge::KOBOLD;
     }
 
     /**

@@ -16,7 +16,7 @@
         </div>
     </div>
 
-    @if(auth()->user()->hasPatreonSync())
+    @if(auth()->user()->isLegacyPatron())
         @includeIf('settings._' . strtolower(auth()->user()->pledge ?: 'kobold'))
 
     <div class="text-center">

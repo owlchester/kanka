@@ -39,7 +39,7 @@
                 ]) !!}
             </p>
             <dl class="dl-horizontal">
-                @if ($user->hasPatreonSync())
+                @if ($user->isLegacyPatron())
                     <dt>{{ __('settings.subscription.fields.plan') }}</dt>
                     <dd>{{ $user->pledge }}</dd>
                     <dt>{{ __('settings.subscription.fields.billing') }}</dt>
@@ -249,7 +249,7 @@
                         </div>
                     </th>
                 </tr>
-                @if ($user->hasPatreonSync())
+                @if ($user->isLegacyPatron())
                     <tr>
                         <td class="text-center" colspan="4">
                             <div class="alert alert-warning">

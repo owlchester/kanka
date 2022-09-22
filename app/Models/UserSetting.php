@@ -17,7 +17,6 @@ use Stevebauman\Purify\Facades\Purify;
  * @property bool $mail_vote
  * @property bool $mail_release
  * @property string $patreon_email
- * @property string $patreon_fullname
  * @property string $newEntityWorkflow
  * @property string $campaignSwitcherOrderBy
  * @property string $marketplaceName
@@ -36,30 +35,6 @@ trait UserSetting
     public function setReleaseAttribute($value)
     {
         $this->setSettingsOption('app_release', $value);
-    }
-
-    /**
-     * @param string|null $value
-     */
-    public function setPatreonEmailAttribute($value)
-    {
-        $this->setSettingsOption('patreon_email', $value);
-    }
-
-    /**
-     * @param string|null $value
-     */
-    public function setPatreonFullnameAttribute($value)
-    {
-        $this->setSettingsOption('patreon_fullname', $value);
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getPatreonFullnameAttribute()
-    {
-        return Arr::get($this->settings, 'patreon_fullname', '');
     }
 
     /**

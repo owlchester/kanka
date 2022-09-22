@@ -1,10 +1,8 @@
 <?php
 
-
 namespace App\Services;
 
 
-use App\Http\Requests\Settings\UserSubscribeStore;
 use App\Jobs\DiscordRoleJob;
 use App\Jobs\Emails\SubscriptionCancelEmailJob;
 use App\Jobs\Emails\SubscriptionCreatedEmailJob;
@@ -12,7 +10,6 @@ use App\Jobs\Emails\SubscriptionDowngradedEmailJob;
 use App\Jobs\Emails\SubscriptionFailedEmailJob;
 use App\Jobs\Emails\SubscriptionNewElementalEmailJob;
 use App\Jobs\SubscriptionEndJob;
-use App\Models\Patreon;
 use App\Models\Pledge;
 use App\Models\Role;
 use App\Models\SubscriptionSource;

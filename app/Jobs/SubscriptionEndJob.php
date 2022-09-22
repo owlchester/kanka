@@ -58,7 +58,7 @@ class SubscriptionEndJob implements ShouldQueue
             $boostService->campaign($boost->campaign)->unboost($boost);
         }
 
-        // Cleanup the patreon role
+        // Cleanup the subscriber role
         /** @var Role $role */
         $role = Role::where('name', 'patreon')->first();
         $user->roles()->detach($role->id);
