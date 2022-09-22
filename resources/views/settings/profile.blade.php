@@ -55,7 +55,7 @@
                             {{ __('profiles.fields.last_login_share') }}</label>
                     </div>
 
-                    @if (auth()->user()->isPatron())
+                    @if (auth()->user()->isSubscriber())
                         <div class="form-group checkbox">
                             <label>
                                 {!! Form::hidden('settings[hide_subscription]', 0) !!}

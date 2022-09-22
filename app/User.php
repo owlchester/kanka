@@ -9,11 +9,11 @@ use App\Models\Campaign;
 use App\Facades\CampaignLocalization;
 use App\Models\CampaignRole;
 use App\Models\Concerns\Tutorial;
-use App\Models\Patreon;
-use App\Models\Relations\UserRelations;
+use App\Models\Pledge;
 use App\Models\Scopes\UserScope;
 use App\Models\UserLog;
 use App\Models\UserSetting;
+use App\Models\Relations\UserRelations;
 use Carbon\Carbon;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Arr;
@@ -36,8 +36,9 @@ use Laravel\Passport\HasApiTokens;
  * @property integer $welcome_campaign_id
  * @property boolean $newsletter
  * @property boolean $has_last_login_sharingw
- * @property string|null $patreon_pledge
+ * @property string|null $pledge
  * @property string|null $timezone
+ * @property string|null $currency
  * @property int $booster_count
  * @property int $referral_id
  * @property Carbon|string|null $card_expires_at
@@ -49,8 +50,6 @@ use Laravel\Passport\HasApiTokens;
  * @property bool $advancedMentions
  * @property bool $defaultNested
  * @property string $campaignSwitcherOrderBy
- * @property string|null $patreon_fullname
- * @property string|null $patreon_email
  *
  * @property string $stripe_id
  */
@@ -66,11 +65,6 @@ class User extends \Illuminate\Foundation\Auth\User
     ;
 
     protected static $currentCampaign = false;
-
-    public array $additional_attributes = [
-        'patreon_fullname',
-        //'patreon_email'
-    ];
 
     /**
      * The attributes that are mass assignable.
@@ -93,7 +87,7 @@ class User extends \Illuminate\Foundation\Auth\User
         'locale', // Keep this for the LocaleChange middleware
         'last_login_at',
         'has_last_login_sharing',
-        'patreon_pledge',
+        'pledge',
         'referral_id',
         'profile',
         'settings',
@@ -250,7 +244,7 @@ class User extends \Illuminate\Foundation\Auth\User
     public function maxUploadSize(bool $readable = false): string|int
     {
         $campaign = CampaignLocalization::getCampaign();
-        if (!$this->isPatron() && (empty($campaign) || !$campaign->boosted())) {
+        if (!$this->isSubscriber() && (empty($campaign) || !$campaign->boosted())) {
             $min = config('limits.filesize.image');
             return $readable ? $min . 'MB' : ($min * 1024);
         } elseif ($this->isElemental()) {
@@ -275,7 +269,7 @@ class User extends \Illuminate\Foundation\Auth\User
     {
         $campaign = CampaignLocalization::getCampaign();
         // Not a subscriber and not in a boosted campaign get the default
-        if (!$this->isPatron() && (empty($campaign) || !$campaign->boosted())) {
+        if (!$this->isSubscriber() && (empty($campaign) || !$campaign->boosted())) {
             return $readable ? '3MB' : 3072;
         } elseif ($this->isElemental()) {
             // Anders gets higher upload sizes until we handle this in the db.
@@ -291,21 +285,21 @@ class User extends \Illuminate\Foundation\Auth\User
     }
 
     /**
-     * Determine if a user is a patron
+     * Determine if a user is a subscriber
      * @return bool
      */
-    public function isPatron(): bool
+    public function isSubscriber(): bool
     {
-        return $this->hasRole('patreon') || $this->hasRole('admin');
+        return $this->hasRole(Pledge::ROLE) || $this->hasRole('admin');
     }
 
     /**
-     * Determine if a user has a patreon-synced set up
+     * Determine if a user has a legacy patreon sync set up
      * @return bool
      */
-    public function hasPatreonSync(): bool
+    public function isLegacyPatron(): bool
     {
-        return $this->hasRole('patreon') && !empty($this->patreon_email);
+        return $this->hasRole(Pledge::ROLE) && !empty($this->patreon_email);
     }
 
     /**
@@ -314,7 +308,7 @@ class User extends \Illuminate\Foundation\Auth\User
      */
     public function isGoblin(): bool
     {
-        return !empty($this->patreon_pledge) && $this->patreon_pledge !== Patreon::PLEDGE_KOBOLD;
+        return !empty($this->pledge) && $this->pledge !== Pledge::KOBOLD;
     }
 
     /**
@@ -323,7 +317,7 @@ class User extends \Illuminate\Foundation\Auth\User
      */
     public function isElemental(): bool
     {
-        if (!empty($this->patreon_pledge) && $this->patreon_pledge == Patreon::PLEDGE_ELEMENTAL) {
+        if (!empty($this->pledge) && $this->pledge == Pledge::ELEMENTAL) {
             return true;
         }
         // We check the campaign and roles for 61105 because of a special Elemental subscriber.
@@ -336,7 +330,7 @@ class User extends \Illuminate\Foundation\Auth\User
      */
     public function isOwlbear(): bool
     {
-        return !empty($this->patreon_pledge) && $this->patreon_pledge == Patreon::PLEDGE_OWLBEAR;
+        return !empty($this->pledge) && $this->pledge == Pledge::OWLBEAR;
     }
 
     /**
@@ -344,7 +338,7 @@ class User extends \Illuminate\Foundation\Auth\User
      */
     public function isWyvern(): bool
     {
-        return !empty($this->patreon_pledge) && $this->patreon_pledge == Patreon::PLEDGE_WYVERN;
+        return !empty($this->pledge) && $this->pledge == Pledge::WYVERN;
     }
 
     /**
@@ -387,7 +381,7 @@ class User extends \Illuminate\Foundation\Auth\User
             $base += $this->booster_count;
         }
 
-        if (!$this->isPatron()) {
+        if (!$this->isSubscriber()) {
             return $base;
         }
 
@@ -396,15 +390,15 @@ class User extends \Illuminate\Foundation\Auth\User
         }
 
         $levels = [
-            Patreon::PLEDGE_KOBOLD => 0,
-            Patreon::PLEDGE_GOBLIN => 1,
-            Patreon::PLEDGE_OWLBEAR => 3,
-            Patreon::PLEDGE_WYVERN => 6,
-            Patreon::PLEDGE_ELEMENTAL => 10,
+            Pledge::KOBOLD => 0,
+            Pledge::GOBLIN => 1,
+            Pledge::OWLBEAR => 3,
+            Pledge::WYVERN => 6,
+            Pledge::ELEMENTAL => 10,
         ];
 
         // Default 3 for admins and owlbears
-        return Arr::get($levels, $this->patreon_pledge, 0) + $base;
+        return Arr::get($levels, $this->pledge, 0) + $base;
     }
 
     /**
@@ -435,7 +429,7 @@ class User extends \Illuminate\Foundation\Auth\User
     public function showAds(): bool
     {
         // Patrons and subs don't have ads
-        if ($this->isPatron()) {
+        if ($this->isSubscriber()) {
             return false;
         }
 

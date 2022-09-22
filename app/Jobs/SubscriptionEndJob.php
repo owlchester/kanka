@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use App\Models\Pledge;
 use App\Notifications\Header;
 use App\Services\DiscordService;
 use App\User;
@@ -49,7 +50,7 @@ class SubscriptionEndJob implements ShouldQueue
         }
 
         // Cleanup the user
-        $user->patreon_pledge = '';
+        $user->pledge = null;
         $user->save();
 
         // Cleanup the campaign boosts
@@ -58,9 +59,9 @@ class SubscriptionEndJob implements ShouldQueue
             $boostService->campaign($boost->campaign)->unboost($boost);
         }
 
-        // Cleanup the patreon role
+        // Cleanup the subscriber role
         /** @var Role $role */
-        $role = Role::where('name', 'patreon')->first();
+        $role = Role::where('name', Pledge::ROLE)->first();
         $user->roles()->detach($role->id);
 
         // Notify the user in app about the change

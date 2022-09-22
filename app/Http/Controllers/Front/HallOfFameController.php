@@ -3,23 +3,22 @@
 namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
-use App\Services\PatreonService;
+use App\Services\Subscribers\HallOfFameService;
 
 /**
  * Hall of fame - Front facing subscriber list
  */
 class HallOfFameController extends Controller
 {
-    /** @var PatreonService */
-    protected $service;
+    /** @var HallOfFameService */
+    protected HallOfFameService $service;
 
     /**
-     * @param PatreonService $service
+     * @param HallOfFameService $service
      */
-    public function __construct(PatreonService $service)
+    public function __construct(HallOfFameService $service)
     {
         $this->middleware('fullsetup');
-
         $this->service = $service;
     }
 
@@ -28,7 +27,7 @@ class HallOfFameController extends Controller
      */
     public function index()
     {
-        $patrons = $this->service->patrons();
-        return view('front.hall_of_fame', compact('patrons'));
+        $subscribers = $this->service->subscribers();
+        return view('front.hall_of_fame', compact('subscribers'));
     }
 }

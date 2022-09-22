@@ -29,7 +29,7 @@
                     </div>
 
                     <div class="row text-center">
-                        @foreach (\Illuminate\Support\Arr::get($patrons, 'Elemental', []) as $user)
+                        @foreach (\Illuminate\Support\Arr::get($subscribers, 'Elemental', []) as $user)
                             <div class="col-lg-3 col-md-4 col-6 text-truncate">{{ $user }}</div>
                         @endforeach
                     </div>
@@ -42,7 +42,7 @@
                     </div>
 
                     <div class="row text-center">
-                        @foreach (\Illuminate\Support\Arr::get($patrons, 'Wyvern', []) as $user)
+                        @foreach (\Illuminate\Support\Arr::get($subscribers, 'Wyvern', []) as $user)
                             <div class="col-lg-3 col-md-4 col-6 text-truncate">{{ $user }}</div>
                         @endforeach
                     </div>
@@ -55,7 +55,7 @@
                     </div>
 
                     <div class="row text-center">
-                        @foreach (\Illuminate\Support\Arr::get($patrons, 'Owlbear', []) as $user)
+                        @foreach (\Illuminate\Support\Arr::get($subscribers, 'Owlbear', []) as $user)
                             <div class="col-lg-2 col-md-3 col-sm-4 col-6 text-truncate">{{ $user }}</div>
                         @endforeach
                     </div>
@@ -69,7 +69,7 @@
                     </div>
 
                     <div class="row text-center">
-                        @foreach (\Illuminate\Support\Arr::get($patrons, 'Goblin', []) as $user)
+                        @foreach (\Illuminate\Support\Arr::get($subscribers, 'Goblin', []) as $user)
                             <div class="col-lg-2 col-md-3 col-sm-4 col-6 text-truncate">{{ $user }}</div>
                         @endforeach
                     </div>

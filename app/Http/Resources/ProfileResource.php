@@ -27,7 +27,7 @@ class ProfileResource extends JsonResource
             'date_format' => $model->date_format,
             'default_pagination' => $model->default_pagination,
             'last_campaign_id' => $model->last_campaign_id,
-            'is_patreon' => $model->hasRole('patreon')
+            'is_patreon' => $model->isSubscriber()
         ];
     }
 }
