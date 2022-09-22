@@ -461,7 +461,6 @@ class CampaignPluginService
      * @param MiscModel $model
      * @param PluginVersionEntity $entity
      * @return MiscModel
-     * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
      */
     protected function importImage(MiscModel $model, PluginVersionEntity $entity)
     {
