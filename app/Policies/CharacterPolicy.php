@@ -21,15 +21,6 @@ class CharacterPolicy extends MiscPolicy
 
     /**
      * @param User $user
-     * @return bool
-     */
-    public function random(User $user)
-    {
-        return $this->create($user);
-    }
-
-    /**
-     * @param User $user
      * @param Character $entity
      * @param string $subAction
      * @return bool|mixed

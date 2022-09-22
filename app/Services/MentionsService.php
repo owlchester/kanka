@@ -271,6 +271,7 @@ class MentionsService
                 }
                 $this->mentionedEntityTypes[] = $matches[1];
             }
+            return $matches[0];
         }, $this->text);
 
         // Pre-fetch all the entities
@@ -627,6 +628,7 @@ class MentionsService
             if (!in_array($id, $this->mentionedAttributes)) {
                 $this->mentionedAttributes[] = $id;
             }
+            return $matches[0];
         }, $this->text);
 
         // Pre-fetch all the entities

@@ -6,6 +6,7 @@ use App\Models\Ability;
 use App\Models\Calendar;
 use App\Models\CampaignDashboard;
 use App\Models\CampaignDashboardWidget;
+use App\Models\CampaignFollower;
 use App\Models\CampaignPlugin;
 use App\Models\CampaignRole;
 use App\Models\CampaignSetting;
@@ -80,7 +81,7 @@ trait CampaignRelations
      */
     public function followers()
     {
-        return $this->belongsToMany('App\User', 'campaign_followers')->using('App\Models\CampaignFollower');
+        return $this->belongsToMany('App\User', 'campaign_followers')->using(CampaignFollower::class);
     }
 
     /**

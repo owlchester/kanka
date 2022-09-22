@@ -19,23 +19,13 @@ class Handler extends ExceptionHandler
     /**
      * A list of the exception types that are not reported.
      *
-     * @var string[]
+     * @var array<int, class-string<\Throwable>>
      */
     protected $dontReport = [
         \League\OAuth2\Server\Exception\OAuthServerException::class,
         \Symfony\Component\Console\Exception\NamespaceNotFoundException::class,
         \Symfony\Component\Console\Exception\CommandNotFoundException::class,
         NotFoundHttpException::class,
-    ];
-
-    /**
-     * A list of the inputs that are never flashed for validation exceptions.
-     *
-     * @var string[]
-     */
-    protected $dontFlash = [
-        'password',
-        'password_confirmation',
     ];
 
     /**

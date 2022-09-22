@@ -91,7 +91,6 @@ class SitemapService
         foreach ($features as $campaign) {
             $links[] = LaravelLocalization::localizeURL($campaign->getMiddlewareLink(), $this->locale);
         }
-        // @phpstan-ignore-next-line
         foreach ($campaigns as $campaign) {
             $links[] = LaravelLocalization::localizeURL($campaign->getMiddlewareLink(), $this->locale);
         }

@@ -127,7 +127,7 @@ class CrudController extends Controller
         $model = new $this->model();
         $this->filterService->make($this->view, request()->all(), $model);
         $name = $this->view;
-        $langKey = $this->langKey ?? $name; // @phpstan-ignore-line
+        $langKey = $this->langKey ?? $name;
         $filters = $this->filters;
         $filter = !empty($this->filter) ? new $this->filter() : null;
         $filterService = $this->filterService;
