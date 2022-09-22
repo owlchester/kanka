@@ -9,7 +9,7 @@ use Illuminate\Support\ServiceProvider;
 
 class PurifySetupProvider extends ServiceProvider
 {
-    const DEFINITION_ID = 'trix-editor';
+    const DEFINITION_ID = 'kanka';
     const DEFINITION_REV = 1;
 
     /**

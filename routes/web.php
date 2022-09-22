@@ -45,7 +45,7 @@ Route::group([
 
     // 3rd party
     Route::group(['middleware' => ['auth', 'translator'], 'prefix' => 'translations'], function () {
-        Translator::routes();
+        //Translator::routes();
         Route::get('/faq', 'Translations\FaqController@index')->name('translations.faq.index');
         Route::post('/faq-save', 'Translations\FaqController@save')->name('translations.faq.save');
     });
