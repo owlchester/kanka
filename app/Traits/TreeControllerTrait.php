@@ -13,12 +13,6 @@ use Illuminate\Support\Str;
 trait TreeControllerTrait
 {
     /**
-     * This can be overwritten in the controller to specify the parent key
-     * @var string
-     */
-    //protected $treeControllerParentKey = '';
-
-    /**
      * Tree / Exploration mode
      * @param Request $request
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\RedirectResponse

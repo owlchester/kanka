@@ -88,11 +88,11 @@ class SubscriptionApiController extends Controller
         if ($user->hasPaymentMethod()) {
             foreach ($user->paymentMethods() as $method) {
                 array_push($methods, [
-                    'id' => $method->id,
-                    'brand' => $method->card->brand,
-                    'last_four' => $method->card->last4,
-                    'exp_month' => $method->card->exp_month,
-                    'exp_year' => $method->card->exp_year,
+                    'id' => $method->id, // @phpstan-ignore-line
+                    'brand' => $method->card->brand, // @phpstan-ignore-line
+                    'last_four' => $method->card->last4, // @phpstan-ignore-line
+                    'exp_month' => $method->card->exp_month, // @phpstan-ignore-line
+                    'exp_year' => $method->card->exp_year, // @phpstan-ignore-line
                 ]);
             }
         }
@@ -113,6 +113,7 @@ class SubscriptionApiController extends Controller
         $paymentMethods = $user->paymentMethods();
 
         foreach ($paymentMethods as $method) {
+            // @phpstan-ignore-next-line
             if ($method->id == $paymentMethodID) {
                 $method->delete();
                 break;

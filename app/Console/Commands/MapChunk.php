@@ -37,8 +37,6 @@ class MapChunk extends Command
 
     /**
      * @return int
-     * @throws \Illuminate\Contracts\Container\BindingResolutionException
-     * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
      */
     public function handle()
     {
@@ -57,8 +55,6 @@ class MapChunk extends Command
     /**
      * @param int $mapID
      * @return \Illuminate\Foundation\Bus\PendingDispatch
-     * @throws \Illuminate\Contracts\Container\BindingResolutionException
-     * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
      */
     protected function dispatch(int $mapID)
     {

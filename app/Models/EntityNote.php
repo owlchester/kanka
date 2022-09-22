@@ -55,7 +55,7 @@ class EntityNote extends Model
         'location_id',
     ];
 
-    /** @var string[]  */
+    /** @var array<string, string>  */
     public $casts = [
         'settings' => 'array'
     ];

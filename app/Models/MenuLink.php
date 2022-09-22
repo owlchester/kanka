@@ -67,7 +67,7 @@ class MenuLink extends MiscModel
 
     /**
      * The attributes that should be cast.
-     * @var array
+     * @var array<string, string>
      */
     protected $casts = [
         'options' => 'array',

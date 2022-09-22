@@ -45,7 +45,6 @@ class ChunkingService
 
     /**
      * @return bool
-     * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
      */
     public function chunk(): bool
     {
@@ -271,7 +270,6 @@ class ChunkingService
     /**
      * Open the original image
      * @return $this
-     * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
      */
     protected function openOriginal(): self
     {

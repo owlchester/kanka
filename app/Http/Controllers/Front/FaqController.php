@@ -15,6 +15,7 @@ class FaqController extends Controller
      */
     public function index()
     {
+        // @phpstan-ignore-next-line
         $categories = FaqCategory::visible()->ordered()->with(['localeTranslation', 'faqs', 'faqs.localeTranslation'])->get();
 
         return view('front.faqs.index', compact('categories'));

@@ -32,7 +32,7 @@ return [
 
         /*
         |--------------------------------------------------------------------------
-        | Core.SerializerPath
+        | serializer
         |--------------------------------------------------------------------------
         |
         | The HTML purifier serializer cache path.
@@ -148,8 +148,8 @@ return [
         //'AutoFormat.RemoveEmpty.Predicate' => ['iframe' => false],
 
         // To allow max-width and max-height on images. This might cause imageattacks?
-        'HTML.MaxImgLength'   => NULL,
-        'CSS.MaxImgLength'   => NULL,
+        'HTML.MaxImgLength'   => null,
+        'CSS.MaxImgLength'   => null,
 
         // Allow links that target blank
         'Attr.AllowedFrameTargets' => ['_blank'],

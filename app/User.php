@@ -96,7 +96,7 @@ class User extends \Illuminate\Foundation\Auth\User
     /**
      * The attributes that should be hidden for arrays.
      *
-     * @var array
+     * @var array<int, string>
      */
     protected $hidden = [
         'password', 'remember_token', 'card_expires_at',
@@ -114,7 +114,7 @@ class User extends \Illuminate\Foundation\Auth\User
 
     /**
      * Casted variables
-     * @var string[]
+     * @var array<string, string>
      */
     protected $casts = [
         'settings' => 'array',
