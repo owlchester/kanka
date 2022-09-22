@@ -369,8 +369,16 @@ return array(
     'language_dirs' => array(
         'lang' => '/lang/{locale}/{group}',
         'packages' => '/lang/vendor/{package}/{locale}/{group}',
-        'workbench' => null,
-        'vendor' => null,
+        'workbench' => [
+            'include' => '*/*',
+            'root' => '/workbench/{vendor}/{package}',
+            'files' => 'lang/{locale}/{group}',
+        ],
+        'vendor' => [
+            'include' => [],
+            'root' => '/vendor/{vendor}/{package}',
+            'files' => 'lang/{locale}/{group}',
+        ],
         /*
          * add packages that need special mapping to their language files because they don't use the standard Laravel
          * layout for the version that you are using or just plain not Laravel layout. Add '__merge' key with names of
