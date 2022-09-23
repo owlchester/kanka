@@ -77,6 +77,10 @@ img.profile-user-img {
     margin-top: 0;
     margin-bottom: 0;
     font-size: 0.75rem;
+
+      > li + li:before {
+          content: ">";
+      }
   }
 
   h1 {

@@ -44,7 +44,7 @@
                 <div class="box-body">
                     <p>{!! $element->entry() !!}</p>
                 </div>
-                <div class="box-footer text-right">
+                <div class="box-footer text-right clearfix">
                     <div class="pull-left">
                         {!! $element->visibilityIcon() !!}
                     </div>

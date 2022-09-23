@@ -321,6 +321,10 @@ body .main-sidebar, body .left-side {
     margin-left: 0;
   }
 
+  .sidebar-open .main-sidebar {
+    transform: translate(0);
+  }
+
   .sidebar-open .content-wrapper, .sidebar-open .main-footer {
     transform: translate(280px, 0);
   }
