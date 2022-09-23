@@ -11,6 +11,8 @@ $(document).ready(function() {
 function initKeyboardShortcuts() {
     $(document).bind('keydown', function(e) {
         let target = $(e.target);
+        let entityModal = $('#entity-modal');
+        let quickCreatorButton = $('.quick-creator-button');
         //console.log('which', e.which);
         if (e.key === ']') {
             // ] to toggle sidebar
@@ -25,24 +27,25 @@ function initKeyboardShortcuts() {
             }
             $('#live-search').focus();
             return false; // don't add the k to the search field
-        } else if (e.key === 'n') {
+        } else if (e.key === 'n' && quickCreatorButton.length > 0) {
             // n for quick creator. Don't re-open if already opened
-            if (isInputField(target) || ($('#entity-modal').data('bs.modal') || {}).isShown) {
+            if (isInputField(target) || (entityModal.data('bs.modal') || {}).isShown) {
                 return;
             }
-            $('.quick-creator-button')[0].click();
+            quickCreatorButton[0].click();
         } else if (e.key === 'Escape') {
             // ESC to close quick creator selection modal
-            let modal = $('#entity-modal');
-            if (modal.has('.entity-creator').length === 1) {
-              modal.modal('hide');
+            if (entityModal.has('.entity-creator').length === 1) {
+                entityModal.modal('hide');
             }
-            return;
         }
     });
 }
 
 function isInputField(ele) {
+    if (ele.length === 0) {
+        return false;
+    }
     return ele.is('input') || ele.is('select') || ele.is('textarea') ||
         ele.attr('contentEditable') === 'true' || ele.hasClass('CodeMirror');
 }
