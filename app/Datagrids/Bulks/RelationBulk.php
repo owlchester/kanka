@@ -13,6 +13,7 @@ class RelationBulk extends Bulk
         'pinned_choice',
         'visibility_id',
         'update_mirrored',
+        'unmirror',
     ];
 
     protected array $booleans = [

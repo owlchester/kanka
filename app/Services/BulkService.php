@@ -259,7 +259,10 @@ class BulkService
         $tagIds = Arr::get($fields, 'tags', []);
 
         if ($this->entityName === 'relations') {
-            return $this->updateRelations($filledFields);
+            $mirrorOptions = [];
+            $mirrorOptions['unmirror'] = (bool) Arr::get($fields, 'unmirror', '0');
+            $mirrorOptions['update_mirrored'] = (bool) Arr::get($fields, 'update_mirrored', '0');
+            return $this->updateRelations($filledFields, $mirrorOptions);
         }
 
         // Todo: move model fetch above to actually use with()
@@ -386,9 +389,10 @@ class BulkService
 
     /**
      * @param array $filledFields
+     * @param array $mirrorOptions
      * @return int
      */
-    protected function updateRelations(array $filledFields)
+    protected function updateRelations(array $filledFields, $mirrorOptions)
     {
         $relations = Relation::whereIn('id', $this->ids)->get();
 
@@ -409,11 +413,19 @@ class BulkService
             if ($relation->owner_id == Arr::get($filledFields, 'target_id') || ($relation->target_id == Arr::get($filledFields, 'owner_id'))) {
                 continue;
             }
-            if (request()->update_mirrored && $relation->mirror) {
+            if ($mirrorOptions['update_mirrored'] && $relation->mirror) {
                 $mirrorFields = Arr::except($filledFields, ['target_id', 'owner_id']);
                 $relation->mirror->update($mirrorFields);
                 $this->count++;
                 $this->total++;
+            }
+            if ($mirrorOptions['unmirror'] && $relation->mirror) {
+                $relation->mirror->update(['mirror_id' => null]);
+                $filledFields['mirror_id'] = null;
+                if (!$mirrorOptions['update_mirrored']) {
+                    $this->count++;
+                    $this->total++;
+                }
             }
             $relation->update($filledFields);
             $this->count++;
