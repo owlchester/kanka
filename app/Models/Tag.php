@@ -312,7 +312,7 @@ class Tag extends MiscModel
      */
     public function html(): string
     {
-        return '<span class="label ' . ($this->hasColour() ? $this->colourClass() : 'color-tag label-default') . '">'
+        return '<span class="badge label ' . ($this->hasColour() ? $this->colourClass() : 'color-tag label-default') . '">'
             . e($this->name) . '</span>';
     }
 

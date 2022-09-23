@@ -100,11 +100,15 @@ img.profile-user-img {
 }
 // I hate my life
 .navbar {
+    margin-bottom: 0;
   .sidebar-toggle {
     background-color: var(--main-navbar-background);
     margin-left: -30px;
     padding: 15px 20px;
     border-radius: 9999px;
+    background-image: none;
+    float: left;
+    font-family: fontAwesome;
     &:before {
       content: "\f100";
     }
@@ -798,6 +802,7 @@ summary { display: list-item; }
 @import "editor";
 @import "box";
 @import "conversation";
+@import 'quest';
 @import "ads";
 @import "campaign";
 @import "attributes/attributes";

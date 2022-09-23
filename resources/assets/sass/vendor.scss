@@ -3,7 +3,7 @@
 
 
 // Import admin-lte css
-@import "~admin-lte/dist/css/AdminLTE.css";
+//@import "~admin-lte/dist/css/AdminLTE.css";
 
 // Select 2
 @import "~select2/dist/css/select2.css";
@@ -110,6 +110,16 @@
 }
 .select2-selection__rendered .color-white {
   color: #000 !important;
+}
+.select2-container--default.select2-container--focus,
+.select2-selection.select2-container--focus,
+.select2-container--default:focus,
+.select2-selection:focus,
+.select2-container--default:active,
+.select2-selection:active,
+.select2-dropdown .select2-search__field:focus,
+.select2-search--inline .select2-search__field:focus {
+    outline: none;
 }
 
 @media (max-width: 767px) {
