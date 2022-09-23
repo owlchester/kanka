@@ -260,9 +260,8 @@ class BulkService
 
         if ($this->entityName === 'relations') {
             $mirrorOptions = [];
-            $mirrorOptions['unmirror'] = request()->unmirror;
-            $mirrorOptions['update_mirrored'] = request()->update_mirrored;
-
+            $mirrorOptions['unmirror'] = (bool) Arr::get($fields, 'unmirror', '0');
+            $mirrorOptions['update_mirrored'] = (bool) Arr::get($fields, 'update_mirrored', '0');
             return $this->updateRelations($filledFields, $mirrorOptions);
         }
 
