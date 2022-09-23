@@ -7,7 +7,7 @@
 
 @section('content')
     @include('partials.errors')
-    <div class="callout callout-info">
+    <div class="alert alert-info">
         <p>{{ __('settings.api.helper') }}</p>
         <a href="/{{ app()->getLocale() }}{{ config('larecipe.docs.route') }}/1.0/overview" class="btn btn-info" target="_blank">
             <i class="fa-solid fa-external-link-square" aria-hidden="true"></i>

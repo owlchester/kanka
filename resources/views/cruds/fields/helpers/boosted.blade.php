@@ -8,6 +8,6 @@
         $pricingOptions['callback'] = $campaignService->campaign()->id;
     }
 @endphp
-<div class="callout callout-info">
+<div class="alert alert-info">
     {!! __($key, ['boosted-campaign' => link_to_route('front.pricing', __('concept.boosted-campaign'), $pricingOptions)]) !!}
 </div>

@@ -1,5 +1,5 @@
 @if(isset($callout) && $callout)
-    <div class="callout callout-info">
+    <div class="alert alert-info">
         <h4><i class="fa-solid fa-rocket"></i> {{ __('crud.errors.unavailable_feature') }}</h4>
         <p>
             {!! __('crud.errors.boosted_campaigns', ['boosted' => link_to_route('front.boosters', __('crud.superboosted_campaigns'), '#superboosted')]) !!}

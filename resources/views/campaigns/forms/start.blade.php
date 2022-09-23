@@ -14,7 +14,7 @@
                 </h3>
             </div>
             <div class="box-body">
-                <div class="callout callout-info">
+                <div class="alert alert-info">
                     <p>{!! nl2br(__('campaigns.create.helper.welcome')) !!}</p>
                 </div>
                 <div class="form-group required">
