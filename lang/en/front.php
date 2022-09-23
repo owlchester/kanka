@@ -152,7 +152,7 @@ return [
             'free'              => 'Free',
             'hall_of_fame'      => 'Name in the :link',
             'impact'            => 'High impact of future features (through Discord)',
-            'monthly_vote'      => 'Monthly community vote',
+            'monthly_vote'      => 'Participate in community votes',
             'no_ads'            => 'No ads will be displayed',
             'pagination'        => 'Increased pagination results',
             'pagination_help'   => 'This is the maximum number of results shown per page, not the limit on the number of entities per campaign.',
@@ -160,7 +160,8 @@ return [
             'upload_limit'      => 'Upload sizes',
             'upload_limit_map'  => 'Map upload sizes',
             'users_roles'       => 'Number of users, roles and permission controls',
-            '2fa'               => 'Access to Two Factor Authentication'
+            '2fa'               => 'Access to Two Factor Authentication',
+            'click-me'        => 'Click me to learn more about this feature.',
         ],
         'public'            => [
             'description'   => 'Permissions can be set for modules, or for each single entity. Campaigns can also be <a href=":url">set to public</a> for the whole world to see.',

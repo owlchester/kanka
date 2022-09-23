@@ -433,6 +433,18 @@ class CampaignDashboardWidget extends Model
     }
 
     /**
+     * @return string
+     */
+    public function customSize(): string
+    {
+        if (empty($this->conf('size'))) {
+            return 'h3';
+        }
+
+        return (string) $this->conf('size');
+    }
+
+    /**
      * @return bool
      */
     protected function filterUnmentioned(): bool

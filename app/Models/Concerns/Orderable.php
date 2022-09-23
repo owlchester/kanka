@@ -11,13 +11,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 trait Orderable
 {
     /**
-     * Default ordering
-     * @var string
-     */
-    //protected $defaultOrderField = 'name';
-    //protected $defaultOrderDirection = 'asc';
-
-    /**
      * @param Builder $query
      * @param array|null $data
      * @return mixed

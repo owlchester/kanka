@@ -1,10 +1,8 @@
 <?php
 
-
 namespace App\Services;
 
 
-use App\Http\Requests\Settings\UserSubscribeStore;
 use App\Jobs\DiscordRoleJob;
 use App\Jobs\Emails\SubscriptionCancelEmailJob;
 use App\Jobs\Emails\SubscriptionCreatedEmailJob;
@@ -12,7 +10,7 @@ use App\Jobs\Emails\SubscriptionDowngradedEmailJob;
 use App\Jobs\Emails\SubscriptionFailedEmailJob;
 use App\Jobs\Emails\SubscriptionNewElementalEmailJob;
 use App\Jobs\SubscriptionEndJob;
-use App\Models\Patreon;
+use App\Models\Pledge;
 use App\Models\Role;
 use App\Models\SubscriptionSource;
 use App\Models\UserLog;
@@ -85,7 +83,7 @@ class SubscriptionService
     public function tier(string $tier): self
     {
         $this->tier = $tier;
-        if (!in_array($tier, Patreon::pledges())) {
+        if (!in_array($tier, Pledge::pledges())) {
             throw new Exception("Unknown tier level '$tier'.");
         }
         return $this;
@@ -255,19 +253,19 @@ class SubscriptionService
             return $this;
         }
 
-        $plan = in_array($planID, $this->elementalPlans()) ? Patreon::PLEDGE_ELEMENTAL :
-            (in_array($planID, $this->wyvernPlans()) ? Patreon::PLEDGE_WYVERN : Patreon::PLEDGE_OWLBEAR);
+        $plan = in_array($planID, $this->elementalPlans()) ? Pledge::ELEMENTAL :
+            (in_array($planID, $this->wyvernPlans()) ? Pledge::WYVERN : Pledge::OWLBEAR);
 
         // Determine if the pledge was changed or not
         $new = !$this->upgrading($plan);
 
-        // Add the necessary roles and patreon data
-        $this->user->patreon_pledge = $plan;
-        $this->user->update(['patreon_pledge' => $plan]);
+        // Add the necessary roles and pledge data
+        $this->user->pledge = $plan;
+        $this->user->update(['pledge' => $plan]);
 
-        // We're so far, good. Let's add the user to the Patreon group
-        $role = Role::where('name', '=', 'patreon')->first();
-        if ($role && !$this->user->hasRole('patreon')) {
+        // We're so far, good. Let's add the user to the subscriber group
+        $role = Role::where('name', '=', Pledge::ROLE)->first();
+        if ($role && !$this->user->hasRole(Pledge::ROLE)) {
             $this->user->roles()->attach($role->id);
         }
 
@@ -281,7 +279,7 @@ class SubscriptionService
         }
 
         SubscriptionCreatedEmailJob::dispatch($this->user, $period, $new);
-        if ($plan == Patreon::PLEDGE_ELEMENTAL) {
+        if ($plan == Pledge::ELEMENTAL) {
             SubscriptionNewElementalEmailJob::dispatch($this->user, $period, $new);
         }
 
@@ -400,15 +398,15 @@ class SubscriptionService
     public function currentPlan(): string
     {
         if ($this->user->subscribedToPlan($this->owlbearPlans(), 'kanka')) {
-            return Patreon::PLEDGE_OWLBEAR;
+            return Pledge::OWLBEAR;
         } elseif ($this->user->subscribedToPlan($this->wyvernPlans(), 'kanka')) {
-            return Patreon::PLEDGE_WYVERN;
+            return Pledge::WYVERN;
         } elseif ($this->user->subscribedToPlan($this->elementalPlans(), 'kanka')) {
-            return Patreon::PLEDGE_ELEMENTAL;
+            return Pledge::ELEMENTAL;
         }
 
         // Free user?
-        return Patreon::PLEDGE_KOBOLD;
+        return Pledge::KOBOLD;
     }
 
     /**
@@ -459,7 +457,7 @@ class SubscriptionService
             ->firstOrFail();
         $this->user($source->user);
 
-        $amount = $source->tier === Patreon::PLEDGE_ELEMENTAL ? 25 : ($source->tier === Patreon::PLEDGE_WYVERN ? 10 : 5);
+        $amount = $source->tier === Pledge::ELEMENTAL ? 25 : ($source->tier === Pledge::WYVERN ? 10 : 5);
         $amount = ($amount * ($source->period === 'yearly' ? 11 : 1)) * 100;
 
         try {
@@ -480,12 +478,12 @@ class SubscriptionService
 
             // While the payment is pending, it can take up to two days for it to complete. So we'll assume
             // that the user is properly subscribed.
-            $this->user->patreon_pledge = $source->tier;
-            $this->user->update(['patreon_pledge' => $source->tier]);
+            $this->user->pledge = $source->tier;
+            $this->user->update(['pledge' => $source->tier]);
 
-            // We're so far, good. Let's add the user to the Patreon group
-            $role = Role::where('name', '=', 'patreon')->first();
-            if ($role && !$this->user->hasRole('patreon')) {
+            // We're so far, good. Let's add the user to the subscriber group
+            $role = Role::where('name', '=', Pledge::ROLE)->first();
+            if ($role && !$this->user->hasRole(Pledge::ROLE)) {
                 $this->user->roles()->attach($role->id);
             }
 
@@ -725,7 +723,7 @@ class SubscriptionService
     public function downgrading(): bool
     {
         // Elemental downgrading -> owl or wyv
-        if ($this->user->isElemental() && in_array($this->tier, [Patreon::PLEDGE_OWLBEAR, Patreon::PLEDGE_WYVERN])) {
+        if ($this->user->isElemental() && in_array($this->tier, [Pledge::OWLBEAR, Pledge::WYVERN])) {
             return true;
         }
 
@@ -735,7 +733,7 @@ class SubscriptionService
         }
 
         // Cancelling
-        return $this->tier === Patreon::PLEDGE_KOBOLD;
+        return $this->tier === Pledge::KOBOLD;
     }
 
     /**
@@ -745,9 +743,9 @@ class SubscriptionService
      */
     protected function upgrading($plan): bool
     {
-        if ($this->user->patreon_pledge == Patreon::PLEDGE_OWLBEAR && in_array($plan, [Patreon::PLEDGE_WYVERN, Patreon::PLEDGE_ELEMENTAL])) {
+        if ($this->user->pledge == Pledge::OWLBEAR && in_array($plan, [Pledge::WYVERN, Pledge::ELEMENTAL])) {
             return true;
-        } elseif ($this->user->patreon_pledge == Patreon::PLEDGE_WYVERN && $plan == Patreon::PLEDGE_ELEMENTAL) {
+        } elseif ($this->user->pledge == Pledge::WYVERN && $plan == Pledge::ELEMENTAL) {
             return true;
         }
         return false;
@@ -779,7 +777,7 @@ class SubscriptionService
      */
     protected function toOwlbear(): bool
     {
-        return $this->tier == Patreon::PLEDGE_OWLBEAR;
+        return $this->tier == Pledge::OWLBEAR;
     }
 
     /**
@@ -787,7 +785,7 @@ class SubscriptionService
      */
     protected function toWyvern(): bool
     {
-        return $this->tier == Patreon::PLEDGE_WYVERN;
+        return $this->tier == Pledge::WYVERN;
     }
 
     /**
@@ -795,6 +793,6 @@ class SubscriptionService
      */
     protected function toElemental(): bool
     {
-        return $this->tier == Patreon::PLEDGE_ELEMENTAL;
+        return $this->tier == Pledge::ELEMENTAL;
     }
 }

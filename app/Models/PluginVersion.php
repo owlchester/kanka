@@ -19,6 +19,7 @@ use Illuminate\Support\Str;
  * @property string $version
  * @property string $entry
  * @property string $content
+ * @property string $css
  * @property Carbon $updated_at
  * @property int $status_id
  * @property int $approved_by
@@ -36,7 +37,7 @@ class PluginVersion extends Model
     protected array $templateAttributes = [];
 
     /**
-     * @var string[]
+     * @var array<string, string>
      */
     protected $casts = [
         'json' => 'array'
@@ -95,10 +96,10 @@ class PluginVersion extends Model
         }, $html);
 
         $html = preg_replace_callback('`@empty\((.*?)\)(.*?)@endempty`si', function ($matches) {
-            return $this->emptyBlock($matches);
+            return (string) $this->emptyBlock($matches);
         }, $html);
         $html = preg_replace_callback('`@notempty\((.*?)\)(.*?)@endnotempty`si', function ($matches) {
-            return !$this->emptyBlock($matches);
+            return (string) !$this->emptyBlock($matches);
         }, $html);
 
         return $html;

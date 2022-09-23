@@ -21,6 +21,7 @@ class FaqController extends Controller
         $categories = [];
         $lang = request()->get('lang');
         if (!empty($lang)) {
+            // @phpstan-ignore-next-line
             $categories = FaqCategory::ordered()->with(['translations', 'faqs', 'faqs.translations'])->get();
         }
 

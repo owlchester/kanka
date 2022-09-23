@@ -3,8 +3,9 @@
 namespace App\Http\Resources;
 
 use App\Models\CharacterTrait;
+use Illuminate\Http\Resources\Json\JsonResource;
 
-class CharacterTraitResource extends EntityResource
+class CharacterTraitResource extends JsonResource
 {
     /**
      * Transform the resource into an array.

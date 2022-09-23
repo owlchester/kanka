@@ -2,15 +2,8 @@
 
 namespace App\Providers;
 
-use App\Models\Campaign;
-use App\Models\CampaignBoost;
-use App\Models\CampaignUser;
-use App\Policies\CampaignBoostPolicy;
-use App\Policies\CampaignPolicy;
-use App\Policies\CampaignUserPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Laravel\Passport\Passport;
-use Illuminate\Support\Facades\Auth;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 class AuthServiceProvider extends ServiceProvider
@@ -35,12 +28,12 @@ class AuthServiceProvider extends ServiceProvider
 
     /**
      * The policy mappings for the application.
-     *
-     * @var array
+     * Laravel auto-discoveres policies if the Model is named \App\Models\XYZ and the police is \App\Policies\XYZPolicy
      */
     protected $policies = [
-        'App\Model' => 'App\Policies\ModelPolicy',
-        CampaignUser::class => CampaignUserPolicy::class,
+        //'App\Model' => 'App\Policies\ModelPolicy',
+        //'App\Models\CampaignPermission' => 'App\Policies\CampaignPermission',
+        /*CampaignUser::class => CampaignUserPolicy::class,
         Campaign::class => CampaignPolicy::class,
         CampaignBoost::class => CampaignBoostPolicy::class,
         'App\Models\Ability' => 'App\Policies\AbilityPolicy',
@@ -49,8 +42,6 @@ class AuthServiceProvider extends ServiceProvider
         'App\Models\CampaignInvite' => 'App\Policies\CampaignInvitePolicy',
         'App\Models\CampaignRole' => 'App\Policies\CampaignRolePolicy',
         'App\Models\CampaignRoleUser' => 'App\Policies\CampaignRoleUserPolicy',
-        'App\Models\CampaignPermission' => 'App\Policies\CampaignPermission',
-        //'App\Models\CampaignPlugin' => 'App\Policies\CampaignPluginPolicy',
         'App\Models\CommunityVote' => 'App\Policies\CommunityVotePolicy',
         'App\Models\Character' => 'App\Policies\CharacterPolicy',
         'App\Models\Conversation' => 'App\Policies\ConversationPolicy',
@@ -58,7 +49,6 @@ class AuthServiceProvider extends ServiceProvider
         'App\Models\DiceRoll' => 'App\Policies\DiceRollPolicy',
         'App\Models\DiceRollResult' => 'App\Policies\DiceRollResultPolicy',
         'App\Models\Event' => 'App\Policies\EventPolicy',
-        //'App\Models\EntityFile' => 'App\Policies\EntityFile',
         'App\Models\Entity' => 'App\Policies\EntityPolicy',
         'App\Models\Family' => 'App\Policies\FamilyPolicy',
         'App\Models\Item' => 'App\Policies\ItemPolicy',
@@ -75,10 +65,10 @@ class AuthServiceProvider extends ServiceProvider
         'App\Models\Race' => 'App\Policies\RacePolicy',
         'App\Models\Tag' => 'App\Policies\TagPolicy',
         'App\Models\Timeline' => 'App\Policies\TimelinePolicy',
-        'App\Models\Relation' => 'App\Policies\RelationPolicy',
+        'App\Models\Relation' => 'App\Policies\RelationPolicy',*/
 
         // Front
-        'App\Models\CommunityEventEntry' => 'App\Policies\CommunityEventEntryPolicy',
+        //'App\Models\CommunityEventEntry' => 'App\Policies\CommunityEventEntryPolicy',
     ];
 
     /**

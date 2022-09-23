@@ -501,7 +501,7 @@ class SidebarService
 
         if (!empty($icons)) {
             $ui['sidebar']['icons'] = $icons;
-        } elseif (isset($ui['sidebar']['icons'])) {
+        } elseif (isset($ui['sidebar']['icons'])) { // @phpstan-ignore-line
             unset($ui['sidebar']['icons']);
         }
 

@@ -73,7 +73,7 @@ class Calendar extends MiscModel
         'calendar_id',
     ];
 
-    /** @var string[] */
+    /** @var array<string, string> */
     public $casts = [
         'parameters' => 'array'
     ];
@@ -433,8 +433,8 @@ class Calendar extends MiscModel
         $months = $this->months();
 
         if (!empty($segments[2])) {
-            $day = $segments[2] + 1;
-            if ($day > $months[$month-1]['length']) {
+            $day = ((int) $segments[2]) + 1;
+            if ($day > $months[$month - 1]['length']) {
                 $day = 1;
                 $month++;
             }
@@ -468,7 +468,7 @@ class Calendar extends MiscModel
                 $month = count($months);
                 $year--;
             }
-            $day = $months[$month-1]['length'];
+            $day = $months[$month - 1]['length'];
         }
 
         $this->date = $year . '-' . $month . '-' . $day;

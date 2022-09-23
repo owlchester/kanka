@@ -97,7 +97,7 @@ class MacroServiceProvider extends ServiceProvider
             }
 
             // Subscribed users don't have ads
-            if (auth()->user()->isPatron()) {
+            if (auth()->user()->isSubscriber()) {
                 return false;
             }
 
@@ -132,7 +132,7 @@ class MacroServiceProvider extends ServiceProvider
             }
 
             // Subscribed users don't have ads
-            if (auth()->user()->isPatron()) {
+            if (auth()->user()->isSubscriber()) {
                 return false;
             }
 

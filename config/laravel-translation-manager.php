@@ -367,10 +367,18 @@ return array(
      * Please read above before changing.
      */
     'language_dirs' => array(
-        'lang' => '/resources/lang/{locale}/{group}',
-        'packages' => '/resources/lang/vendor/{package}/{locale}/{group}',
-        'workbench' => null,
-        'vendor' => null,
+        'lang' => '/lang/{locale}/{group}',
+        'packages' => '/lang/vendor/{package}/{locale}/{group}',
+        'workbench' => [
+            'include' => '*/*',
+            'root' => '/workbench/{vendor}/{package}',
+            'files' => 'lang/{locale}/{group}',
+        ],
+        'vendor' => [
+            'include' => [],
+            'root' => '/vendor/{vendor}/{package}',
+            'files' => 'lang/{locale}/{group}',
+        ],
         /*
          * add packages that need special mapping to their language files because they don't use the standard Laravel
          * layout for the version that you are using or just plain not Laravel layout. Add '__merge' key with names of
@@ -387,10 +395,6 @@ return array(
          * package, then it will be expected to be in the vendor directory. If it is not then no language files will be
          * loaded for it. Therefore only include in vendor section if it is not actually located in workbench.
          */
-        'caouecs/laravel-lang' => [
-            '__merge' => ['vendor', 'workbench',],
-            'files' => 'src/{locale}/{group}',
-        ],
         /*
          * This one requires a very different definition. The file names are the locale.php, therefore more guts are
          * exposed when defining the mapping of this one. Including a hard-coded value for the {group} since the only

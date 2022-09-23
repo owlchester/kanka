@@ -16,9 +16,6 @@
 
             <p class="help-block">
                 {{ __('crud.hints.image_limitations', ['formats' => 'jpg, png, gif, webp, svg', 'size' => auth()->user()->mapUploadSize(true)]) }}
-                @if (!auth()->user()->hasRole('patreon'))
-                    <a href="{{ config('patreon.url') }}" target="_blank">{{ __('crud.hints.image_patreon') }}</a>
-                @endif
             </p>
         </div>
         <div class="col-md-2">

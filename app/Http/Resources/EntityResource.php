@@ -11,6 +11,7 @@ use App\Models\MiscModel;
 use App\Services\Api\ApiService;
 use Carbon\Carbon;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Str;
 
 class EntityResource extends JsonResource
 {
@@ -127,6 +128,10 @@ class EntityResource extends JsonResource
         $superboosted = $campaign->superboosted();
         $boosted = $campaign->boosted();
 
+        $url = $misc->getLink();
+        $lang = request()->header('kanka-locale', auth()->user()->locale ?? 'en');
+        $url = Str::replaceFirst('campaign/', $lang . '/campaign/', $url);
+
         $merged = [
             'id' => $misc->id,
             'name' => $misc->name,
@@ -154,11 +159,15 @@ class EntityResource extends JsonResource
             'entity_id' => $misc->entity->id,
             'tags' => $misc->entity->tags()->pluck('tags.id')->toArray(),
 
-
             'created_at' => $misc->created_at,
             'created_by' => $misc->entity->created_by,
             'updated_at' => $misc->updated_at,
             'updated_by' => $misc->entity->updated_by,
+
+            'urls' => [
+                'view' => $url,
+                'api' => route('campaigns.' . $misc->entity->pluralType() . '.show', [$misc->campaign_id, $misc->id]),
+            ]
         ];
 
         // Foreign elements

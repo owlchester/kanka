@@ -11,13 +11,6 @@ use Illuminate\Database\Eloquent\Builder;
 trait OrderableTrait
 {
     /**
-     * Trigger for filtering based on the order request.
-     * Example: 'relations/'
-     * @var string
-     */
-//    protected $orderTrigger = '';
-
-    /**
      * @param Builder $query
      * @param string|null $data
      * @param string $defaultField

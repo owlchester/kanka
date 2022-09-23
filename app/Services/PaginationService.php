@@ -21,7 +21,7 @@ class PaginationService
             45 => 45
         ];
 
-        if (auth()->check() && auth()->user()->isPatron()) {
+        if (auth()->check() && auth()->user()->isSubscriber()) {
             $options[self::$MAX] = self::$MAX;
         }
 
@@ -34,6 +34,6 @@ class PaginationService
      */
     public function max()
     {
-        return auth()->check() && auth()->user()->isPatron() ? self::$MAX : 45;
+        return auth()->check() && auth()->user()->isSubscriber() ? self::$MAX : 45;
     }
 }

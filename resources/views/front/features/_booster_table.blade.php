@@ -28,7 +28,12 @@
             <td><i class="fa-solid fa-infinity"></i></td>
         </tr>
         <tr>
-            <td class="text">{{ __('front/boosters.perks.quick-links') }}</td>
+            <td class="text">
+                {{ __('front/boosters.perks.quick-links') }}
+                <a href="https://docs.kanka.io/en/latest/advanced/quick-links.html" target="_blank">
+                    <i class="fa-solid fa-question-circle" title="{{ __('front.features.patreon.click-me') }}" data-toggle="tooltip"></i>
+                </a>
+            </td>
             <td>{{ config('limits.campaigns.quick-links') }}</td>
             <td><i class="fa-solid fa-infinity"></i></td>
             <td><i class="fa-solid fa-infinity"></i></td>
@@ -40,7 +45,12 @@
             <td>8 MB</td>
         </tr>
         <tr>
-            <td class="text">{{ __('front.features.boosts.no_ads') }}</td>
+            <td class="text">
+                {{ __('front.features.boosts.no_ads') }}
+                <a href="https://docs.kanka.io/en/latest/articles/ads.html" target="_blank">
+                    <i class="fa-solid fa-question-circle" title="{{ __('front.features.patreon.click-me') }}" data-toggle="tooltip"></i>
+                </a>
+            </td>
             <td></td>
             <td><i class="fa-solid fa-check-circle"></i></td>
             <td><i class="fa-solid fa-check-circle"></i></td>
@@ -59,7 +69,10 @@
         </tr>
         <tr>
             <td class="text">
-                {!! link_to('//docs.kanka.io/en/latest/features/campaigns/theming.html', __('front.features.boosts.css'), ['target' => '_blank']) !!}
+                {{ __('front.features.boosts.css') }}
+                <a href="https://docs.kanka.io/en/latest/features/campaigns/theming.html" target="_blank">
+                    <i class="fa-solid fa-question-circle" title="{{ __('front.features.patreon.click-me') }}" data-toggle="tooltip"></i>
+                </a>
             </td>
             <td></td>
             <td><i class="fa-solid fa-check-circle"></i></td>
@@ -98,7 +111,12 @@
             <td><i class="fa-solid fa-check-circle"></i></td>
         </tr>
         <tr>
-            <td class="text">{{ __('front.features.boosts.entity-aliases') }}</td>
+            <td class="text">
+                {{ __('front.features.boosts.entity-aliases') }}
+                <a href="https://docs.kanka.io/en/latest/features/aliases.html" target="_blank">
+                    <i class="fa-solid fa-question-circle" title="{{ __('front.features.patreon.click-me') }}" data-toggle="tooltip"></i>
+                </a>
+            </td>
             <td></td>
             <td><i class="fa-solid fa-check-circle"></i></td>
             <td><i class="fa-solid fa-check-circle"></i></td>
@@ -116,14 +134,19 @@
             <td><i class="fa-solid fa-check-circle"></i></td>
         </tr>
         <tr>
-            <td class="text">{{ __('front.features.boosts.recovery', ['amount' => config('entities.hard_delete')]) }}</td>
+            <td class="text">
+                {{ __('front.features.boosts.recovery', ['amount' => config('entities.hard_delete')]) }}
+                <a href="https://docs.kanka.io/en/latest/features/campaigns/recovery.html" target="_blank">
+                    <i class="fa-solid fa-question-circle" title="{{ __('front.features.patreon.click-me') }}" data-toggle="tooltip"></i>
+                </a>
+            </td>
             <td></td>
             <td><i class="fa-solid fa-check-circle"></i></td>
             <td><i class="fa-solid fa-check-circle"></i></td>
         </tr>
         <tr>
             <td class="text">
-                {!! link_to_route('front.features.relations', __('front.features.boosts.relation-visualiser'), ['target' => '_blank']) !!}
+                {!! link_to_route('front.features.relations', __('front.features.boosts.relation-visualiser'), [], ['target' => '_blank']) !!}
             </td>
             <td></td>
             <td><i class="fa-solid fa-check-circle"></i></td>
@@ -137,26 +160,38 @@
         </tr>
         <tr>
             <td class="text">
-                {!! link_to('//docs.kanka.io/en/latest/features/campaigns/sidebar.html', __('front.features.boosts.sidebar'), ['target' => '_blank']) !!}
+                {{ __('front.features.boosts.sidebar') }}
+                <a href="https://docs.kanka.io/en/latest/features/campaigns/sidebar.html" target="_blank">
+                    <i class="fa-solid fa-question-circle" title="{{ __('front.features.patreon.click-me') }}" data-toggle="tooltip"></i>
+                </a>
             </td>
             <td></td>
             <td><i class="fa-solid fa-check-circle"></i></td>
             <td><i class="fa-solid fa-check-circle"></i></td>
         </tr>
         <tr id="superboost">
-            <td class="text">{{ __('front.features.superboosts.gallery') }}</td>
+            <td class="text">
+                {{ __('front.features.superboosts.gallery') }}
+            </td>
             <td></td>
             <td></td>
             <td><i class="fa-solid fa-check-circle"></i></td>
         </tr>
         <tr>
-            <td class="text">{{ __('front.features.superboosts.logs', ['amount' => config('entities.logs')]) }}</td>
+            <td class="text">
+                {{ __('front.features.superboosts.logs', ['amount' => config('entities.logs')]) }}
+            </td>
             <td></td>
             <td></td>
             <td><i class="fa-solid fa-check-circle"></i></td>
         </tr>
         <tr>
-            <td class="text">{{ __('front.features.superboosts.stats') }}</td>
+            <td class="text">
+                {{ __('front.features.superboosts.stats') }}
+                <a href="https://docs.kanka.io/en/latest/features/campaigns/achievements.html" target="_blank">
+                    <i class="fa-solid fa-question-circle" title="{{ __('front.features.patreon.click-me') }}" data-toggle="tooltip"></i>
+                </a>
+            </td>
             <td></td>
             <td></td>
             <td><i class="fa-solid fa-check-circle"></i></td>

@@ -20,7 +20,8 @@ trait LastSync
         if (empty($lastSync)) {
             return $query;
         }
-        $tableName = with(new static)->getTable();
+        // @phpstan-ignore-next-line
+        $tableName = (with(new static()))->getTable();
         return $query->where($tableName . '.updated_at', '>', $lastSync);
     }
 }

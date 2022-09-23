@@ -81,13 +81,6 @@ class Character extends MiscModel
     ];
 
     /**
-     * Hidden from export
-     * @var array
-     */
-    protected $hidden = [
-    ];
-
-    /**
      * Entity type
      * @var string
      */

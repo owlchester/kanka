@@ -155,7 +155,6 @@ class StatService
      */
     public function title(int $amount, int $level = 1): string
     {
-        $level = 1;
         $targets = $level == 1 ? $this->primaryTargets : ($level == 2 ? $this->secondaryTargets : $this->tertiaryTargets);
         foreach ($targets as $target) {
             if ($amount > $target) {

@@ -45,14 +45,21 @@
                 <td>10</td>
             </tr>
             <tr>
-                <td class="text">{{ __('front.features.patreon.no_ads') }}</td>
+                <td class="text">
+                    {{ __('front.features.patreon.no_ads') }}
+                    <a href="https://docs.kanka.io/en/latest/articles/ads.html" target="_blank">
+                        <i class="fa-solid fa-question-circle" title="{{ __('front.features.patreon.click-me') }}" data-toggle="tooltip"></i>
+                    </a>
+                </td>
                 <td></td>
                 <td><i class="fa-solid fa-check-circle"></i></td>
                 <td><i class="fa-solid fa-check-circle"></i></td>
                 <td><i class="fa-solid fa-check-circle"></i></td>
             </tr>
             <tr>
-                <td class="text">{!! __('front.features.patreon.discord', ['discord' => link_to(config('social.discord'), 'Discord', ['target' => '_blank'])]) !!}</td>
+                <td class="text">
+                    {!! __('front.features.patreon.discord', ['discord' => link_to(config('social.discord'), 'Discord', ['target' => '_blank'])]) !!}
+                </td>
                 <td></td>
                 <td><i class="fa-solid fa-check-circle"></i></td>
                 <td><i class="fa-solid fa-check-circle"></i></td>
@@ -62,6 +69,9 @@
                 <td class="text">
                     <a href="{{ route('community-votes.index') }}">
                         {{ __('front.features.patreon.monthly_vote') }}
+                    </a>
+                    <a href="https://docs.kanka.io/en/latest/articles/community-vote.html" target="_blank">
+                        <i class="fa-solid fa-question-circle" title="{{ __('front.features.patreon.click-me') }}" data-toggle="tooltip"></i>
                     </a>
                 </td>
                 <td></td>
@@ -91,21 +101,34 @@
                 <td><i class="fa-solid fa-check-circle"></i></td>
             </tr>
             <tr>
-                <td class="text">{{ __('front.features.patreon.pagination') }} <i class="fa-solid fa-question-circle-o" title="{{ __('front.features.patreon.pagination_help') }}"></i></td>
+                <td class="text">
+                    {{ __('front.features.patreon.pagination') }}
+                    <i class="fa-solid fa-question-circle" title="{{ __('front.features.patreon.pagination_help') }}" data-toggle="tooltip"></i>
+                </td>
                 <td></td>
                 <td><i class="fa-solid fa-check-circle"></i></td>
                 <td><i class="fa-solid fa-check-circle"></i></td>
                 <td><i class="fa-solid fa-check-circle"></i></td>
             </tr>
             <tr>
-                <td class="text">{{ __('front.features.patreon.2fa') }} <i class="fa-solid fa-question-circle-o" title="{{ __('front.features.patreon.pagination_help') }}"></i></td>
+                <td class="text">
+                    {{ __('front.features.patreon.2fa') }}
+                    <a href="https://docs.kanka.io/en/latest/account/security/two-factor-authentication.html" target="_blank">
+                        <i class="fa-solid fa-question-circle" title="{{ __('front.features.patreon.click-me') }}" data-toggle="tooltip"></i>
+                    </a>
+                </td>
                 <td></td>
-                <td><i class="fa-solid fa-check-circle"></i></td>
+                <td></td>
                 <td><i class="fa-solid fa-check-circle"></i></td>
                 <td><i class="fa-solid fa-check-circle"></i></td>
             </tr>
             <tr>
-                <td class="text">{{ __('front.features.patreon.curation') }}</td>
+                <td class="text">
+                    {{ __('front.features.patreon.curation') }}
+                    <a href="https://docs.kanka.io/en/latest/articles/community-vote.html" target="_blank">
+                        <i class="fa-solid fa-question-circle" title="{{ __('front.features.patreon.click-me') }}" data-toggle="tooltip"></i>
+                    </a>
+                </td>
                 <td></td>
                 <td></td>
                 <td></td>

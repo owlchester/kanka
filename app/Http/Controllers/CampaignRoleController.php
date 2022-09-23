@@ -112,6 +112,7 @@ class CampaignRoleController extends Controller
         $this->authorize('view', $campaignRole);
 
         $campaign = CampaignLocalization::getCampaign();
+        // @phpstan-ignore-next-line
         $members = $campaignRole
             ->users()
             ->with('user')

@@ -133,6 +133,7 @@ class AttributeService
         // Loop through the attributes and calculate the values
         foreach ($this->calculatedAttributes as $name => $attribute) {
             try {
+                // @phpstan-ignore-next-line
                 $this->calculatedAttributes[$name] = $this->calculateAttribute($attribute);
             } catch (\Exception $e) {
                 $attribute['loop'] = true;
@@ -427,6 +428,7 @@ class AttributeService
 
         // Marketplace campaigns
         $key = __('attributes/templates.list.marketplace');
+        // @phpstan-ignore-next-line
         foreach (CampaignPlugin::templates($this->campaign)->with(['plugin', 'plugin.user'])->get() as $plugin) {
             if (empty($plugin->plugin)) {
                 continue;
