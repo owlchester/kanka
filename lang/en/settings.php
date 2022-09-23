@@ -1,4 +1,4 @@
-<?php
+f<?php
 
 return [
     'account'       => [
@@ -161,7 +161,7 @@ return [
         'cancel'                => [
             'options'   => [
                 'competitor'        => 'Switching to a competitor',
-                'custom'            => 'Other',
+                'other'             => 'Other',
                 'financial'         => 'Subscription is too expensive',
                 'missing_features'  => 'Missing features',
                 'not_for'           => 'Subscription is not for me',
