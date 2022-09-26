@@ -79,7 +79,8 @@ return [
             . 'code[style|class|id],'
             . 'font[color|style],'
             . 'summary[class|style|id],details[class|style|id|open],'
-            . 'iframe[src|width|height|style|class|scrolling|id]', // only use this with HTML.SafeIframe
+            . 'iframe[src|width|height|style|class|scrolling|id],' // only use this with HTML.SafeIframe
+            . 'figure[class],figcaption[class]',
 
         /*
         |--------------------------------------------------------------------------

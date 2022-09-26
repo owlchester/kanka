@@ -729,7 +729,8 @@ class AttributeService
     }
 
     /**
-     * Prepare a custom HTML purifying config for attributes
+     * Prepare a custom HTML purifying config for attributes. We remove all custom fields that are added to purify.php
+     * and in PurifySetupProvider.
      * @return array
      */
     protected function purifyConfig(): array
@@ -740,6 +741,8 @@ class AttributeService
         $purifyConfig['HTML.Allowed'] = preg_replace('`,summary\[(.*?)\]`', '$2', $purifyConfig['HTML.Allowed']);
         $purifyConfig['HTML.Allowed'] = preg_replace('`,table\[(.*?)\]`', '$2', $purifyConfig['HTML.Allowed']);
         $purifyConfig['HTML.Allowed'] = preg_replace('`,details\[(.*?)\]`', '$2', $purifyConfig['HTML.Allowed']);
+        $purifyConfig['HTML.Allowed'] = preg_replace('`,figure\[(.*?)\]`', '$2', $purifyConfig['HTML.Allowed']);
+        $purifyConfig['HTML.Allowed'] = preg_replace('`,figcaption\[(.*?)\]`', '$2', $purifyConfig['HTML.Allowed']);
         return $purifyConfig;
     }
 
