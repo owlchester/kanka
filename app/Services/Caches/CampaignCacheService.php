@@ -245,6 +245,9 @@ class CampaignCacheService extends BaseCache
         /** @var CampaignPlugin $plugin */
         foreach ($plugins as $plugin) {
             $theme .= "/** plugin: " . e($plugin->name) . " #" . e($plugin->version->version) . " **/\n";
+            $theme .= $plugin->version->fonts . "\n\n";
+        }
+        foreach ($plugins as $plugin) {
             $theme .= $plugin->version->content . "\n\n";
         }
 
