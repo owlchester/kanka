@@ -19,6 +19,7 @@ use Illuminate\Support\Str;
  * @property string $version
  * @property string $entry
  * @property string $content
+ * @property string $fonts
  * @property string $css
  * @property Carbon $updated_at
  * @property int $status_id
