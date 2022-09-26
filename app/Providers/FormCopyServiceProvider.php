@@ -3,7 +3,6 @@
 namespace App\Providers;
 
 use App\Services\FormCopyService;
-use App\Services\MentionsService;
 use Illuminate\Support\ServiceProvider;
 
 /**
