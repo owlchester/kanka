@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Concerns\Acl;
 use App\Models\Concerns\Nested;
+use App\Services\AttributeService;
 use App\Traits\CampaignTrait;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -150,6 +151,9 @@ class AttributeTemplate extends MiscModel
             }
         }
 
+        /** @var AttributeService $attributeService */
+        $attributeService = app()->make(AttributeService::class);
+
         /** @var Attribute $attribute */
         foreach ($this->entity->attributes()->orderBy('default_order', 'ASC')->get() as $attribute) {
             // Don't re-create existing attributes.
@@ -158,7 +162,7 @@ class AttributeTemplate extends MiscModel
             }
 
 
-            list ($type, $value) = \App\Facades\Attributes::randomAttribute($attribute->type_id, $attribute->value);
+            list ($type, $value) = $attributeService->randomAttribute($attribute->type_id, $attribute->value);
 
             Attribute::create([
                 'entity_id' => $entity->id,
@@ -180,7 +184,7 @@ class AttributeTemplate extends MiscModel
                 if (in_array($attribute->name, $existing)) {
                     continue;
                 }
-                list ($type, $value) = \App\Facades\Attributes::randomAttribute($attribute->type_id, $attribute->value);
+                list ($type, $value) = $attributeService->randomAttribute($attribute->type_id, $attribute->value);
 
                 Attribute::create([
                     'entity_id' => $entity->id,

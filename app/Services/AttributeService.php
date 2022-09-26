@@ -7,30 +7,16 @@ use App\Models\AttributeTemplate;
 use App\Models\Campaign;
 use App\Models\CampaignPlugin;
 use App\Models\Entity;
-use App\Models\Plugin;
-use ChrisKonnertz\StringCalc\StringCalc;
 use Illuminate\Support\Arr;
-use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Kanka\Dnd5eMonster\Template;
-use Exception;
 use Stevebauman\Purify\Facades\Purify;
 
 class AttributeService
 {
-    /** @var array */
-    protected array $loadedAttributes = [];
-
     protected array $loadedTemplates = [];
     protected array $loadedPlugins = [];
-
-    protected $loadedEntity = null;
-
-    /** @var Campaign */
     protected Campaign $campaign;
-
-    /** @var null|Collection */
-    protected $calculatedAttributes = null;
 
     /**
      * @param Campaign $campaign
@@ -43,111 +29,7 @@ class AttributeService
     }
 
     /**
-     * @param Attribute $attribute
-     * @param string $field
-     * @return string
-     */
-    public function parse(Attribute $attribute, string $field = 'value'): string
-    {
-        if (!$this->validField($attribute->$field)) {
-            return (string) $attribute->$field;
-        }
-
-        if ($this->loadedEntity === null || $this->loadedEntity->id != $attribute->entity_id) {
-            $this->loadedEntity = $attribute->entity;
-        }
-
-        try {
-            $calculated = $this->entityAttributes()->get($attribute->name);
-            return (string) $calculated['final'];
-        } catch (\Exception $e) {
-            //throw $e;
-            return (string) $attribute->$field;
-        }
-    }
-
-    /**
-     * Replace references in an attribute name with attribute values for ranges
-     * @param Attribute $attribute
-     * @param string $field
-     * @return string
-     * @throws \ChrisKonnertz\StringCalc\Exceptions\ContainerException
-     * @throws \ChrisKonnertz\StringCalc\Exceptions\NotFoundException
-     */
-    public function map(Attribute $attribute, string $field = 'name'): string
-    {
-        if (!$this->validField($attribute->$field)) {
-            return (string) $attribute->$field;
-        }
-
-        if ($this->loadedEntity === null || $this->loadedEntity->id != $attribute->entity_id) {
-            $this->loadedEntity = $attribute->entity;
-        }
-
-        try {
-            // Prepare all the attributes and calculates them
-            $this->entityAttributes();
-
-            $data = [
-                'name' => $attribute->name,
-                'value' => $attribute->$field,
-            ];
-            $value = $this->calculateAttributeValue($data);
-            return $value;
-        } catch (Exception $e) {
-            return $this->$field;
-        }
-    }
-
-    /**
-     * Load all the entity attributes and pre-calculate the values
-     * @return array|\Illuminate\Support\Collection
-     */
-    protected function entityAttributes()
-    {
-        if (isset($this->loadedAttributes[$this->loadedEntity->id])) {
-            return $this->loadedAttributes[$this->loadedEntity->id];
-        }
-
-        $baseAttributes = $this->loadedEntity->attributes()->orderBy('default_order')->pluck('value', 'name');
-
-        $this->calculatedAttributes = new Collection();
-
-        // Prepare our attributes with first level references
-        foreach ($baseAttributes as $name => $value) {
-            $references = [];
-            preg_match_all('`\{(.*?)\}`i', $value, $references);
-
-            // Cleanup attribute name to remove range stuff
-            $name = preg_replace('`\[range:(.*)\]`i', '', $name);
-
-            $this->calculatedAttributes->put($name, [
-                'value' => $value,
-                'loop' => false,
-                'name' => $name,
-                'final' => null,
-                'references' => !empty($references[1]) ? $references[1] : [],
-            ]);
-        }
-
-        // Loop through the attributes and calculate the values
-        foreach ($this->calculatedAttributes as $name => $attribute) {
-            try {
-                // @phpstan-ignore-next-line
-                $this->calculatedAttributes[$name] = $this->calculateAttribute($attribute);
-            } catch (\Exception $e) {
-                $attribute['loop'] = true;
-                $attribute['final'] = $attribute['value'];
-                $this->calculatedAttributes[$name] = $attribute;
-            }
-        }
-
-        //dd($this->calculatedAttributes);
-
-        return $this->loadedAttributes[$this->loadedEntity->id] = $this->calculatedAttributes;
-    }
-
-    /**
+     * Apply a template to an entity
      * @param Entity $entity
      * @param int|string $templateId
      * @return string|bool
@@ -162,86 +44,13 @@ class AttributeService
             $template = $this->getAttributeTemplate($templateId);
             $template->apply($entity);
             return $template->name;
-        } elseif (is_string($templateId)) {
-            return $this->applyKankaTemplate($templateId, $entity);
         }
         return false;
     }
 
     /**
-     * @param string $templateName
-     * @param Entity $entity
-     * @return false|string
-     */
-    protected function applyKankaTemplate($templateName, Entity $entity)
-    {
-        $templates = config('attribute-templates.templates');
-        if (!Arr::exists($templates, $templateName)) {
-            return false;
-        }
-        /** @var Template $template */
-        $template = new $templates[$templateName]();
-        $order = $entity->attributes()->count();
-
-        $existing = array_values($entity->attributes()->pluck('name')->toArray());
-        foreach ($template->attributes() as $name => $attribute) {
-            // If the config is simply a name, we default to a small varchar
-            if (!is_array($attribute)) {
-                $name = $attribute;
-                $attribute = [];
-            }
-
-            // Don't re-create existing attributes.
-            if (in_array($name, $existing)) {
-                continue;
-            }
-
-            $type = Arr::get($attribute, 'type', null);
-            $private = Arr::get($attribute, 'is_private', false);
-            $star = Arr::get($attribute, 'is_star', false);
-
-            // Value is based on the translation. This can get confusing
-            $translationKey = $template->alias() . '::template.values.' . $name;
-            $value = __($translationKey);
-            if ($value == $translationKey) {
-                $value = '';
-            }
-
-            $type = $this->mapAttributeTypeToID($type);
-            list($type, $value) = $this->randomAttribute($type, $value);
-            $order++;
-
-            Attribute::create([
-                'entity_id' => $entity->id,
-                'name' => $name,
-                'value' => $value,
-                'default_order' => $order,
-                'is_private' => $private,
-                'type_id' => $type,
-                'is_star' => $star
-            ]);
-        }
-
-        // Layout attribute for rendering
-        $layout = '_layout';
-        if (!in_array($layout, $existing)) {
-            $order++;
-
-            Attribute::create([
-                'entity_id' => $entity->id,
-                'name' => '_layout',
-                'value' => $templateName,
-                'default_order' => $order,
-                'is_private' => false,
-                'is_star' => false,
-                'type_id' => Attribute::TYPE_STANDARD_ID,
-            ]);
-        }
-
-        return $template->name();
-    }
-
-    /**
+     * Deprecated as of 1.30
+     * Get a community template base on its name to render properly
      * @param string $template
      * @return bool|Template
      */
@@ -250,7 +59,7 @@ class AttributeService
         $templates = config('attribute-templates.templates');
         if (Arr::exists($templates, $template)) {
             /** @var Template $template */
-            return new $templates[$template];
+            return new $templates[$template]();
         }
         return false;
     }
@@ -356,12 +165,12 @@ class AttributeService
     }
 
     /**
-     * Apply an entity's templates on creation
+     * Apply attribute templates to a new entity
      * @param Entity $entity
      * @param int $order
      * @return int
      */
-    public function applyEntityTemplates(Entity $entity, $order = 0)
+    public function applyEntityTemplates(Entity $entity, int $order = 0): int
     {
         $typeId = $entity->typeId();
         $templates = AttributeTemplate::where(['entity_type_id' => $typeId])->get();
@@ -373,6 +182,7 @@ class AttributeService
     }
 
     /**
+     * Deprecated?
      * @param Campaign $campaign
      * @return array
      */
@@ -401,6 +211,9 @@ class AttributeService
     }
 
     /**
+     * Build a list of templates:
+     * - First display attribute templates from the campaign
+     * - Then display character sheets from the marketplace installed on the campaign
      * @return array
      */
     public function templateList(): array
@@ -443,6 +256,8 @@ class AttributeService
     }
 
     /**
+     * Apply a marketplace character sheet on an entity based on its uuid.
+     * @todo: move to a separate service
      * @param string $uuid
      * @param Entity $entity
      * @return false|\Illuminate\Database\Eloquent\HigherOrderBuilderProxy|mixed
@@ -513,6 +328,7 @@ class AttributeService
     }
 
     /**
+     * Get a character sheet marketplace plugin model from the db based on its uuid
      * @param string $uuid
      * @param Campaign $campaign
      * @return CampaignPlugin|null
@@ -541,12 +357,11 @@ class AttributeService
             return null;
         }
 
-
-
         return $plugin;
     }
 
     /**
+     * Get an attribute template model from the campaign based on its ID
      * @param int $templateId
      * @return AttributeTemplate
      */
@@ -561,6 +376,7 @@ class AttributeService
     }
 
     /**
+     * Get a marketplace plugin's model based on its UUID
      * @param string $pluginUuid
      * @param Campaign $campaign
      * @return CampaignPlugin|null
@@ -632,103 +448,6 @@ class AttributeService
     }
 
     /**
-     * @param array $data
-     * @return array
-     */
-    protected function calculateAttribute(array $data)
-    {
-        if (empty($data['references'])) {
-            $data['final'] = $data['value'];
-            return $data;
-        }
-
-        try {
-            $data['final'] = $this->calculateAttributeValue($data, []);
-        } catch (Exception $e) {
-            //dump($e->getMessage());
-            //dd('oh these is a loop in here');
-            $data['final'] = 0;
-            $data['loop'] = true;
-        }
-        return $data;
-    }
-
-    /**
-     * @param array $data
-     * @param array $from
-     * @return string
-     * @throws \ChrisKonnertz\StringCalc\Exceptions\ContainerException
-     * @throws \ChrisKonnertz\StringCalc\Exceptions\NotFoundException
-     */
-    protected function calculateAttributeValue(array $data, array $from = []): string
-    {
-        // If the final version is already calculated, use that
-
-        //dump('parsing ' . $data['name'] . ' value ' . $data['value']);
-
-        // First detect any loops going on here
-        if (in_array($data['name'], $from)) {
-            throw new Exception('loop detected on ' . $data['name']);
-        }
-
-        // Replace any attribute references
-        $final = preg_replace_callback('`\{(.*?)\}`i', function ($matches) use ($data, $from) {
-            $text = $matches[1];
-            //dump('checking for a reference called ' . $text);
-            if ($ref = $this->calculatedAttributes->get($text)) {
-                //dump('has an attribute called it!');
-                if (!empty($ref['final'])) {
-                    //dump('has a final version too');
-                    return $ref['final'];
-                } elseif ($ref['loop']) {
-                    return 0;
-                }
-                //dump('calculating final version for ' . $text . ' with value ' . $ref['value']);
-                $newFrom = $from;
-                $newFrom[] = $data['name'];
-
-                    $ref['final'] = $this->calculateAttributeValue($ref, $newFrom);
-                    $this->calculatedAttributes[$text] = $ref;
-                    return $ref['final'];
-                /*} catch (Exception $e) {
-                    $ref['loop'] = true;
-                    $ref['final'] = $ref['value'];
-                    $this->calculatedAttributes[$text] = $ref;
-                    return 0;
-                }*/
-            }
-            if ($text == 'name') {
-                return (string) $this->loadedEntity->name;
-            }
-            return 0;
-        }, $data['value']);
-
-        try {
-            $calculator = new StringCalc();
-            $return = (string)$calculator->calculate($final);
-            return $return;
-        } catch (Exception $e) {
-            return $final;
-        }
-    }
-
-    /**
-     * Check if an attribute is part of a loop
-     * @param string $name
-     * @return bool
-     */
-    public function isLoop($name): bool
-    {
-        if (empty($this->calculatedAttributes)) {
-            return false;
-        }
-        if ($ref = $this->calculatedAttributes->get($name)) {
-            return $ref['loop'];
-        }
-        return false;
-    }
-
-    /**
      * Prepare a custom HTML purifying config for attributes. We remove all custom fields that are added to purify.php
      * and in PurifySetupProvider.
      * @return array
@@ -747,22 +466,8 @@ class AttributeService
     }
 
     /**
-     * @param string $value
-     * @return bool
-     */
-    protected function validField(string $value): bool
-    {
-        if (!Str::contains($value, ['{', '}'])) {
-            return false;
-        }
-        if (Str::contains($value, ['<', '>'])) {
-            return false;
-        }
-        return true;
-    }
-
-    /**
-     * @param string|null $type
+     * Map an attribute type from it's string representation to an ID (as saved in the DB)
+     * @param string|null $type the string type of attribute to be converted to an int
      * @return int
      */
     protected function mapAttributeTypeToID(string $type = null): int

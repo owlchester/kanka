@@ -1,11 +1,8 @@
 <?php
 
-
 namespace App\Providers;
 
-
 use App\Services\DashboardService;
-use App\Services\MentionsService;
 use Illuminate\Support\ServiceProvider;
 
 class DashboardServiceProvider extends ServiceProvider

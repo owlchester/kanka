@@ -124,50 +124,6 @@ class AttributeController extends Controller
     }
 
     /**
-     * @param Entity $entity
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function template(Entity $entity)
-    {
-        $this->authorize('update', $entity->child);
-        $this->authorize('attributes', $entity);
-
-        $parentRoute = $entity->pluralType();
-        $ajax = request()->ajax();
-        $campaign = CampaignLocalization::getCampaign();
-        $communityTemplates = $this->service->templates($campaign);
-
-
-        return view('entities.pages.attributes.template', compact(
-            'communityTemplates',
-            'entity',
-            'parentRoute',
-            'ajax'
-        ));
-    }
-
-    /**
-     * @param ApplyAttributeTemplate $request
-     * @param Entity $entity
-     */
-    public function applyTemplate(ApplyAttributeTemplate $request, Entity $entity)
-    {
-        dd('EA-AT 044');
-        /*$this->authorize('update', $entity->child);
-        $templateName = $this->service->apply($entity, $request->get('template_id'));
-
-        if (!$templateName) {
-            return redirect()->back()->with('error', __('entities/attributes.template.error'));
-        }
-
-        return redirect()
-            ->route('entities.attributes', $entity->id)
-            ->with('success', __('entities/attributes.template.success', [
-                'name' => $templateName, 'entity' => $entity->child->name
-            ]));*/
-    }
-
-    /**
      */
     public function liveEdit(Entity $entity)
     {

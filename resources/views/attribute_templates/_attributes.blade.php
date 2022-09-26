@@ -2,7 +2,7 @@
 <?php
 /**
  * @var \App\Services\AttributeService $attributeService
- * @var \App\Models\MiscModel $model
+ * @var \App\Models\AttributeTemplate $model
  */
 $layout = $model->entity->attributes()->where(['name' => '_layout'])->first();
 if ($layout) {

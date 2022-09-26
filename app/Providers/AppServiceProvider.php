@@ -2,10 +2,6 @@
 
 namespace App\Providers;
 
-use App\Facades\AdCache;
-use App\Facades\CampaignLocalization;
-use App\Facades\EntityPermission;
-use App\Facades\Img;
 use App\Models\Ability;
 use App\Models\CalendarWeather;
 use App\Models\Campaign;
@@ -32,7 +28,6 @@ use App\Models\Entity;
 use App\Models\EntityAbility;
 use App\Models\EntityAsset;
 use App\Models\EntityEvent;
-use App\Models\EntityFile;
 use App\Models\EntityNote;
 use App\Models\Family;
 use App\Http\Validators\HashValidator;
@@ -75,10 +70,7 @@ use App\Observers\OrganisationObserver;
 use App\Observers\UserObserver;
 use App\Models\Organisation;
 use App\Models\OrganisationMember;
-use App\Models\EntityLink;
 use App\User;
-use Carbon\Carbon;
-use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\ServiceProvider;

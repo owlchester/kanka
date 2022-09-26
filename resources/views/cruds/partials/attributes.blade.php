@@ -46,7 +46,7 @@ $inSection = false;
                 {!! $attribute->mappedValue() !!}
             @endif
 
-            @if($attributeService->isLoop($attribute->name))
+            @if(\App\Facades\Attributes::isLoop($attribute->name))
                 <i class="fa-solid fa-warning" title="{{ __('entities/attributes.errors.loop') }}" data-toggle="tooltip"></i>
             @endif
         </dd>
