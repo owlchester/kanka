@@ -13,8 +13,9 @@ $(document).ready(function () {
  */
 window.initSummernote = function() {
 
-    var $summernote = $('.html-editor').summernote({
+    const $summernote = $('.html-editor').summernote({
         height: '300px',
+        maximumImageFileSize: parseInt(summernoteConfig.data('filesize')) * 1024,
         lang: editorLang(summernoteConfig.data('locale')),
         hintSelect: 'next',
         toolbar: [
