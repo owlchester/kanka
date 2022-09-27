@@ -71,7 +71,6 @@ $(function () {
     "use strict";
 
     $(document).on('click', '.sidebar-toggle', function () {
-        let sidebar = $('.sidebar-toggle');
         let body = $('body');
         let windowWidth = $(window).width();
         let isMobile = windowWidth < 767;
@@ -89,22 +88,22 @@ $(function () {
             }
         }
 
-        var toggleState = 'opened';
+        let toggleState = 'opened';
         if(body.hasClass('sidebar-collapse')){
             toggleState = 'closed';
         }
 
-        var date = new Date();
+        let date = new Date();
         date.setTime(date.getTime() + (30 * 24 * 60 * 60 * 1000));
-        var expires = " expires=" + date.toGMTString();
+        let expires = " expires=" + date.toGMTString();
         document.cookie = "toggleState="+toggleState+"; path=/; secure; samesite=lax; " + expires;
 
     });
 
-    var re = new RegExp('toggleState' + "=([^;]+)");
-    var value = re.exec(document.cookie);
-    var toggleState = (value != null) ? unescape(value[1]) : null;
-    var windowWidth = $(window).width();
+    let re = new RegExp('toggleState' + "=([^;]+)");
+    let value = re.exec(document.cookie);
+    let toggleState = (value != null) ? unescape(value[1]) : null;
+    let windowWidth = $(window).width();
     if (toggleState === 'closed' || windowWidth < 767){
         $("body").addClass('sidebar-collapse hold-transition').delay(100).queue(function(){
             $(this).removeClass('hold-transition');
