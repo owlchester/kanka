@@ -244,8 +244,8 @@ class CampaignCacheService extends BaseCache
             ->get();
         /** @var CampaignPlugin $plugin */
         foreach ($plugins as $plugin) {
-            $theme .= "/** plugin: " . e($plugin->name) . " #" . e($plugin->version->version) . " fonts **/\n";
             if ($plugin->version->fonts) {
+                $theme .= "/** plugin: " . e($plugin->name) . " #" . e($plugin->version->version) . " fonts **/\n";
                 $theme .= $plugin->version->fonts . "\n\n";
             }
         }
