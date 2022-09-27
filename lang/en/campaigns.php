@@ -20,9 +20,12 @@ TEXT
         'title'                 => 'New Campaign',
     ],
     'destroy'                           => [
-        'action'    => 'Delete campaign',
-        'helper'    => 'You can only delete the campaign if you are the only member in it.',
-        'success'   => 'Campaign removed.',
+        'action'            => 'Delete campaign',
+        'confirm'           => 'Are you sure you want to delete :campaign? This action is permanent and can\'t be recovered.',
+        'confirm-button'    => 'Yes, delete the campaign',
+        'helper-v2'         => 'This campaign can\'t be deleted while there are other members in it. Remove the other members first and try again.',
+        'success'           => 'Campaign removed.',
+        'title'             => 'Delete a campaign',
     ],
     'edit'                              => [
         'success'   => 'Campaign updated.',
@@ -140,9 +143,13 @@ TEXT
         ],
     ],
     'leave'                             => [
-        'confirm'   => 'Are you sure you want to leave the :name campaign? You won\'t be able to access it anymore, unless an admin of the campaign invites you again.',
-        'error'     => 'Can\'t leave the campaign.',
-        'success'   => 'You have left the campaign.',
+        'confirm'           => 'Are you sure you want to leave the :name campaign? You won\'t be able to access it anymore, unless an admin of the campaign invites you again.',
+        'confirm-button'    => 'Yes, leave the campaign',
+        'error'             => 'Can\'t leave the campaign.',
+        'fix'               => 'Go to the campaign members',
+        'no-admin-left'     => 'Leaving the campaign isn\'t possible because doing so would leave it without any admins. Add another member to the admin role first.',
+        'success'           => 'You have left the campaign.',
+        'title'             => 'Leaving the campaign',
     ],
     'members'                           => [
         'actions'               => [
