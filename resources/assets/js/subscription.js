@@ -67,7 +67,7 @@ function initConfirmListener()
         }
 
         e.preventDefault();
-        formSubmitBtn.addClass('disabled')
+        formSubmitBtn.addClass('disabled');
         formSubmitBtn.find('span').hide();
         formSubmitBtn.find('.spinner').show();
 
@@ -106,7 +106,7 @@ function initConfirmListener()
         }.bind(this));
     });
 
-    $('.subscription-form').submit(function (e) {
+    $('.subscription-form').submit(function () {
         formSubmitBtn.addClass('disabled')
             .find('span').hide()
             .parent().find('.spinner').show();
@@ -120,7 +120,7 @@ function initConfirmListener()
     couponError = $('#coupon-invalid');
     couponId = $('#coupon');
 
-    couponBtn.click(function (e) {
+    couponBtn.click(function () {
         checkCoupon();
     });
     couponField.change(function() {

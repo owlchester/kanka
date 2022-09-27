@@ -24,13 +24,13 @@ $(document).ready(function() {
  */
 function initSearchEngine() {
     // Set the Options for "Bloodhound" suggestion engine
-    searchEngine = new Bloodhound({
+    searchEngine = new window.Bloodhound({
         remote: {
             url: liveSearchField.data('url') + '?q=%QUERY%',
             wildcard: '%QUERY%'
         },
-        datumTokenizer: Bloodhound.tokenizers.whitespace('q'),
-        queryTokenizer: Bloodhound.tokenizers.whitespace
+        datumTokenizer: window.Bloodhound.tokenizers.whitespace('q'),
+        queryTokenizer: window.Bloodhound.tokenizers.whitespace
     });
 }
 /**
@@ -54,17 +54,18 @@ function initLiveSearch() {
         // the key from the array we want to display (name,id,email,etc...)
         templates: {
             empty: [
-                '<div class="list-group search-results-dropdown">'
-                + '<div class="list-group-item">' + liveSearchField.data('empty') + '</div>'
-                + '</div>'
+                '<div class="list-group search-results-dropdown">' +
+                '<div class="list-group-item">' + liveSearchField.data('empty') + '</div>' +
+                '</div>'
             ],
             header: [
                 ''
             ],
             suggestion: function (data) {
-                return '<a href="' + data.url + '" class="list-group-item" title="' + data.tooltip
-                    + '" data-toggle="tooltip">'
-                    + data.image + data.name + ' (' + data.type + ')</a>'
+                return '<a href="' + data.url + '" class="list-group-item" title="' + data.tooltip +
+                    '" data-toggle="tooltip">' +
+                    data.image + data.name + ' (' + data.type + ')</a>'
+                ;
             }
         }
     })

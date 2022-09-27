@@ -23,7 +23,7 @@ function init() {
 }
 
 function handle(element) {
-  $(element).change(function (e) {
+  $(element).change(function () {
     var name = this.name;
     var data = {};
     data[name] = this.checked ? 1 : 0;

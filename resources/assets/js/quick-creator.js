@@ -1,7 +1,7 @@
 var quickCreatorModalID = '#entity-modal';
 var quickCreatorSubmitBtn;
 
-$(document).ready(function (e) {
+$(document).ready(function () {
     $(document).on('shown.bs.modal shown.bs.popover', function() {
         quickCreatorUI();
     });
@@ -55,7 +55,7 @@ function quickCreatorDuplicateName() {
             context: this
         }).done(function (res) {
             if (res.length > 0) {
-                let entities = Object.keys(res).map(function (k) { return '<a href="' + res[k].url + '">' + res[k].name + '</a>'}).join(', ');
+                let entities = Object.keys(res).map(function (k) { return '<a href="' + res[k].url + '">' + res[k].name + '</a>'; }).join(', ');
                 $(this).parent().parent().find('.duplicate-entities').html(entities);
                 $(this).parent().parent().find('.duplicate-entity-warning').fadeIn();
             } else {
@@ -206,7 +206,7 @@ function quickCreatorNameHandler() {
     $('[data-toggle="tooltip"]').tooltip();
 
     $('.btn-extra-name-remove').unbind('click').click(function (e) {
-        e.preventDefault;
+        e.preventDefault();
 
         $(this).parent().parent().parent().remove();
     });

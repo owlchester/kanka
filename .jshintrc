@@ -1,0 +1,15 @@
+{
+    "undef": true,
+    "esversion": 11,
+    "unused": true,
+    "browser": true,
+    "node": true,
+    "globals": {
+        "$": false,
+        "document": false,
+        "require": false,
+        "jQuery": false,
+        "CodeMirror": false,
+        "Stripe": false
+    }
+}

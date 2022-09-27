@@ -14,7 +14,7 @@ function initBannerPromoDismiss()
         $.post({
             url: $(this).data('url'),
             method: 'POST',
-        }).done(function(data) {
+        }).done(function() {
         });
     });
 }

@@ -29,19 +29,6 @@ function initGallery() {
     });
 }
 
-function loadGallery(url) {
-    $.ajax({
-        url: url,
-        dataType: 'json'
-    }).done(function (data) {
-        console.log('data', data);
-        gallery.html(data.content);
-
-        loader.hide();
-        gallery.show();
-    });
-}
-
 /**
  *
  */
@@ -127,7 +114,7 @@ function buildErrors(data) {
 function registerEvents() {
     $('#gallery-images li')
         .unbind('click')
-        .on('click', function (e) {
+        .on('click', function () {
             let folder = $(this).data('folder');
             if (folder) {
                 window.location = folder;

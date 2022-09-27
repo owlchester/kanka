@@ -66,27 +66,15 @@ if (token) {
 //     key: 'your-pusher-key'
 // });
 
-
+/**
+ * When clicking on the sidebar, save the new state in a cookie so that the next page load auto-collapsed
+ */
 $(function () {
     "use strict";
 
     $(document).on('click', '.sidebar-toggle', function () {
+        $('.sidebar-menu').pushMenu('toggle');
         let body = $('body');
-        let windowWidth = $(window).width();
-        let isMobile = windowWidth < 767;
-        if (isMobile) {
-            if (body.hasClass('sidebar-open')) {
-                body.removeClass('sidebar-open');
-            } else {
-                body.addClass('sidebar-open');
-            }
-        } else {
-            if (!body.hasClass('sidebar-collapse')) {
-                body.addClass('sidebar-collapse');
-            } else {
-                body.removeClass('sidebar-collapse');
-            }
-        }
 
         let toggleState = 'opened';
         if(body.hasClass('sidebar-collapse')){
@@ -102,9 +90,8 @@ $(function () {
 
     let re = new RegExp('toggleState' + "=([^;]+)");
     let value = re.exec(document.cookie);
-    let toggleState = (value != null) ? unescape(value[1]) : null;
-    let windowWidth = $(window).width();
-    if (toggleState === 'closed' || windowWidth < 767){
+    let toggleState = (value != null) ? decodeURI(value[1]) : null;
+    if (toggleState === 'closed'){
         $("body").addClass('sidebar-collapse hold-transition').delay(100).queue(function(){
             $(this).removeClass('hold-transition');
         });

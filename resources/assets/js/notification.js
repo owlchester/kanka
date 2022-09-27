@@ -72,7 +72,7 @@ function refreshNotifications(url = false) {
 }
 
 function handleReadAll() {
-    $('#header-notification-mark-all-as-read').click(function (e) {
+    $('#header-notification-mark-all-as-read').click(function () {
         refreshNotifications($(this).data('url'));
     });
 }

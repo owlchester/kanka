@@ -2460,7 +2460,7 @@ function initBannerPromoDismiss() {
     $.post({
       url: $(this).data('url'),
       method: 'POST'
-    }).done(function (data) {});
+    }).done(function () {});
   });
 }
 
@@ -2530,29 +2530,17 @@ if (token) {
 //     key: 'your-pusher-key'
 // });
 
+/**
+ * When clicking on the sidebar, save the new state in a cookie so that the next page load auto-collapsed
+ */
+
 
 $(function () {
   "use strict";
 
   $(document).on('click', '.sidebar-toggle', function () {
+    $('.sidebar-menu').pushMenu('toggle');
     var body = $('body');
-    var windowWidth = $(window).width();
-    var isMobile = windowWidth < 767;
-
-    if (isMobile) {
-      if (body.hasClass('sidebar-open')) {
-        body.removeClass('sidebar-open');
-      } else {
-        body.addClass('sidebar-open');
-      }
-    } else {
-      if (!body.hasClass('sidebar-collapse')) {
-        body.addClass('sidebar-collapse');
-      } else {
-        body.removeClass('sidebar-collapse');
-      }
-    }
-
     var toggleState = 'opened';
 
     if (body.hasClass('sidebar-collapse')) {
@@ -2566,10 +2554,9 @@ $(function () {
   });
   var re = new RegExp('toggleState' + "=([^;]+)");
   var value = re.exec(document.cookie);
-  var toggleState = value != null ? unescape(value[1]) : null;
-  var windowWidth = $(window).width();
+  var toggleState = value != null ? decodeURI(value[1]) : null;
 
-  if (toggleState === 'closed' || windowWidth < 767) {
+  if (toggleState === 'closed') {
     $("body").addClass('sidebar-collapse hold-transition').delay(100).queue(function () {
       $(this).removeClass('hold-transition');
     });
@@ -2587,7 +2574,7 @@ $(function () {
 var calendarAddMonth, calendarAddWeekday, calendarAddYear, calendarTemplateMonth, calendarTemplateWeekday, calendarTemplateYear, calendarLeapYear;
 var calendarAddMoon, calendarTemplateMoon;
 var calendarAddSeason, calendarTemplateSeason;
-var calendarWeek, calendarTemplateWeek;
+var calendarAddWeek, calendarTemplateWeek;
 var calendarAddEpoch, calendarTemplateEpoch;
 var calendarAddIntercalary, calendarTemplateIntercalary, calendarSortIntercalary;
 var calendarYearSwitcher, calendarYearSwitcherField, calendarEventModal;
@@ -2706,7 +2693,7 @@ function initCalendarForm() {
 }
 
 function calendarDeleteRowHandler() {
-  $.each($('.month-delete'), function (index) {
+  $.each($('.month-delete'), function () {
     $(this).unbind('click'); // remove previous bindings
 
     $(this).on('click', function (e) {
@@ -2731,7 +2718,7 @@ function calendarDeleteRowHandler() {
 function initCalendarEventBlock() {
   $('.calendar-event-block').each(function () {
     if ($(this).data('toggle') !== 'ajax-modal' && $(this).data('url')) {
-      $(this).click(function (e) {
+      $(this).click(function () {
         window.location = $(this).data('url');
       });
     }
@@ -2739,7 +2726,7 @@ function initCalendarEventBlock() {
 }
 
 function initCalendarEventModal() {
-  $('select[name="recurring_periodicity"]').change(function (e) {
+  $('select[name="recurring_periodicity"]').change(function () {
     if (this.value) {
       $('#add_event_recurring_until').show();
     } else {
@@ -2793,7 +2780,7 @@ function initCalendarEventModal() {
       cache: false,
       contentType: false,
       processData: false
-    }).done(function (res) {
+    }).done(function () {
       // If the validation succeeded, we can really submit the form
       reminderFormValid = true;
       reminderForm.submit();
@@ -3012,9 +2999,7 @@ function registerSidebarSetup() {
       }
     }
   });
-  $('form.sidebar-setup').on('submit', function (e) {
-    var sortedIDs = $('ul.sidebar-sortable').sortable("toArray"); //console.log('sortedIDs', sortedIDs);
-
+  $('form.sidebar-setup').on('submit', function () {
     return true;
   });
 }
@@ -3296,7 +3281,6 @@ var entityCalendarMonthField, entityCalendarYearField, entityCalendarDayField;
 var entityCalendarCancel, entityCalendarLoading, entityCalendarSubForm;
 var entityCalendarModalForm;
 var entityName;
-var toggablePanels;
 var validEntityForm = false,
     validRelationForm = false; // Keep alive when editing
 
@@ -3341,8 +3325,7 @@ $(document).ready(function () {
   }
 
   registerFormSubmitAnimation();
-  registerEntityCalendarForm(); //registerToggablePanels();
-
+  registerEntityCalendarForm();
   registerEntityFormSubmit();
   registerEntityCalendarModal();
   registerModalLoad();
@@ -3372,7 +3355,7 @@ function registerEntityNameCheck() {
     return;
   }
 
-  entityName.focusout(function (e) {
+  entityName.focusout(function () {
     // Don't bother if the user didn't set any value
     if (!$(this).val()) {
       return;
@@ -3494,7 +3477,7 @@ function registerPrivateCheckboxes() {
     } // On click toggle
 
 
-    $(this).click(function (e) {
+    $(this).click(function () {
       if ($(this).hasClass('fa-lock')) {
         // Unlock
         $(this).removeClass('fa-lock').addClass('fa-unlock-alt').prop('title', $(this).data('public'));
@@ -3643,8 +3626,7 @@ function registerEntityCalendarModal() {
 
 
     loadCalendarDates(entityCalendarField.val());
-  });
-  var defaultCalendarId = entityCalendarAdd.data('default-calendar');
+  }); //var defaultCalendarId = entityCalendarAdd.data('default-calendar');
 
   if (entityCalendarField.val()) {
     entityCalendarCancel.show();
@@ -3703,26 +3685,6 @@ function calendarHideSubform() {
   $('input[name="calendar_year"]').val(null);
 }
 /**
- * Some panels can have their body toggled
- */
-
-
-function registerToggablePanels() {
-  toggablePanels = $('.panel-toggable');
-  $.each(toggablePanels, function () {
-    $(this).on('click', function () {
-      $(this).parent().children('.panel-body').fadeToggle();
-      var i = $(this).find('i.fa');
-
-      if (i.hasClass('fa-caret-down')) {
-        i.removeClass('fa-caret-down').addClass('fa-caret-left');
-      } else {
-        i.removeClass('fa-caret-left').addClass('fa-caret-down');
-      }
-    });
-  });
-}
-/**
  * If we change something on a form, avoid losing data when going away.
  */
 
@@ -3767,7 +3729,7 @@ function registerEntityFormSubmit() {
       url: $(this).attr('action'),
       method: $(this).attr('method'),
       data: $(this).serialize()
-    }).done(function (res) {
+    }).done(function () {
       //console.log('good?');
       // If the validation succeeded, we can really submit the form
       validEntityForm = true;
@@ -3847,7 +3809,7 @@ function resetEntityFormSubmitAnimation() {
   var submit = $('#entity-form').find('.btn-success');
 
   if (submit.length > 0) {
-    $.each(submit, function (su) {
+    $.each(submit, function () {
       $(this).removeAttr('disabled');
 
       if ($(this).data('reset')) {
@@ -3878,7 +3840,7 @@ function registerRelationFormSubmit() {
       url: $(this).attr('action'),
       method: $(this).attr('method'),
       data: $(this).serialize()
-    }).done(function (res) {
+    }).done(function () {
       // If the validation succeeded, we can really submit the form
       validRelationForm = true;
       $('#relation-form').submit();
@@ -3922,7 +3884,7 @@ function resetRelationFormSubmitAnimation() {
   var submit = $('#relation-form').find('.btn-success');
 
   if (submit.length > 0) {
-    $.each(submit, function (su) {
+    $.each(submit, function () {
       $(this).removeAttr('disabled');
 
       if ($(this).data('reset')) {
@@ -3989,7 +3951,6 @@ function registerEntityNotePerms() {
   }
 
   registerEntityNoteDeleteEvents();
-  var perm = $('select[name="permission"]');
   btn.on('click', function (ev) {
     ev.preventDefault();
     var type = $(this).data('type');
@@ -4041,8 +4002,8 @@ function initSpectrum() {
 
 function registerStoryActions() {
   var posts = $('.entity-notes');
-  $('.btn-post-collapse').unbind('click').click(function (e) {
-    posts.each(function (i) {
+  $('.btn-post-collapse').unbind('click').click(function () {
+    posts.each(function () {
       var body = $(this).find('.entity-content');
 
       if (body.hasClass('in')) {
@@ -4059,8 +4020,8 @@ function registerStoryActions() {
     });
     return false;
   });
-  $('.btn-post-expand').unbind('click').click(function (e) {
-    posts.each(function (i) {
+  $('.btn-post-expand').unbind('click').click(function () {
+    posts.each(function () {
       var body = $(this).find('.entity-content');
 
       if (!body.hasClass('in')) {
@@ -4085,7 +4046,7 @@ function registerStoryActions() {
 
 
 function registerSidebarActions() {
-  $('.sidebar-section-title').click(function (e) {
+  $('.sidebar-section-title').click(function () {
     if ($(this).next().hasClass('in')) {
       $(this).find('.fa-chevron-down').hide();
       $(this).find('.fa-chevron-right').show();
@@ -4108,7 +4069,7 @@ function registerStoryLoadMore() {
     $(this).hide();
     $.ajax({
       url: $(this).data('url')
-    }).done(function (result, textStatus, xhr) {
+    }).done(function (result) {
       btn.parent().remove();
 
       if (result) {
@@ -4116,7 +4077,7 @@ function registerStoryLoadMore() {
         registerStoryLoadMore();
         registerStoryActions();
       }
-    }).fail(function (result, textStatus, xhr) {
+    }).fail(function () {
       //console.log('modal ajax error', result);
       $('#story-more-spinner').hide();
       btn.show();
@@ -4155,7 +4116,7 @@ function registerEditWarning() {
       url: $(this).data('url'),
       type: 'POST',
       context: this
-    }).done(function (result, textStatus, xhr) {
+    }).done(function () {
       multiEditingModal.modal('hide');
     });
   });
@@ -4206,14 +4167,14 @@ function keepAlivePulse() {
   $.ajax({
     url: keepAliveUrl,
     type: 'POST'
-  }).done(function (result) {
+  }).done(function () {
     //console.log('kept alive');
     setTimeout(keepAlivePulse, keepAliveTimer);
   });
 }
 
 function registerTrustDomain() {
-  $('.domain-trust').click(function (e) {
+  $('.domain-trust').click(function () {
     var cookieName = 'kanka_trusted_domains';
     var keyValue = document.cookie.match('(^|;) ?' + cookieName + '=([^;]*)(;|$)');
     keyValue = keyValue ? keyValue[2] : ''; // If not yet in it
@@ -4266,7 +4227,7 @@ $(document).ready(function () {
   var crudDelete = $('#datagrid-select-all');
 
   if (crudDelete.length > 0) {
-    crudDelete.click(function (e) {
+    crudDelete.click(function () {
       if ($(this).prop('checked')) {
         $.each($("input[name='model[]']"), function () {
           $(this).prop('checked', true);
@@ -4366,7 +4327,7 @@ function registerDatagrids2() {
     $('.datagrid-spinner').show();
     datagrid2Form.submit();
   });
-  $('#datagrid-action-confirm').click(function (e) {
+  $('#datagrid-action-confirm').click(function () {
     $('#datagrid-bulk-delete').modal('hide');
     datagrid2Form.submit();
   });
@@ -4379,7 +4340,7 @@ function registerDatagrids2() {
 
 
 function initDatagrid2Ajax() {
-  $.each($('table[data-render="datagrid2"]'), function (i) {
+  $.each($('table[data-render="datagrid2"]'), function () {
     datagrid2Table = $(this);
     $(this).find('thead a').click(function (e) {
       e.preventDefault();
@@ -4492,7 +4453,7 @@ window.ajaxTooltip = function () {
     html: true,
     sanitize: false
   });
-  $('[data-toggle="tooltip-ajax"]').click(function (e) {
+  $('[data-toggle="tooltip-ajax"]').click(function () {
     $(this).tooltip('hide');
   });
 };
@@ -4597,7 +4558,7 @@ $(document).ready(function () {
     return;
   }
 
-  $.each($('.form-members'), function (index) {
+  $.each($('.form-members'), function () {
     var allowClear = $(this).data('allow-clear');
     $(this).select2({
       tags: true,
@@ -4620,7 +4581,7 @@ $(document).ready(function () {
         },
         cache: true
       },
-      createTag: function createTag(params) {
+      createTag: function createTag() {
         return undefined;
       }
     });
@@ -4778,7 +4739,7 @@ function refreshNotifications() {
 }
 
 function handleReadAll() {
-  $('#header-notification-mark-all-as-read').click(function (e) {
+  $('#header-notification-mark-all-as-read').click(function () {
     refreshNotifications($(this).data('url'));
   });
 }
@@ -4795,7 +4756,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
 
 var quickCreatorModalID = '#entity-modal';
 var quickCreatorSubmitBtn;
-$(document).ready(function (e) {
+$(document).ready(function () {
   $(document).on('shown.bs.modal shown.bs.popover', function () {
     quickCreatorUI();
   });
@@ -4974,7 +4935,7 @@ function quickCreatorExtraName() {
 function quickCreatorNameHandler() {
   $('[data-toggle="tooltip"]').tooltip();
   $('.btn-extra-name-remove').unbind('click').click(function (e) {
-    e.preventDefault;
+    e.preventDefault();
     $(this).parent().parent().parent().remove();
   });
 }
@@ -5042,13 +5003,13 @@ $(document).ready(function () {
 
 function initSearchEngine() {
   // Set the Options for "Bloodhound" suggestion engine
-  searchEngine = new Bloodhound({
+  searchEngine = new window.Bloodhound({
     remote: {
       url: liveSearchField.data('url') + '?q=%QUERY%',
       wildcard: '%QUERY%'
     },
-    datumTokenizer: Bloodhound.tokenizers.whitespace('q'),
-    queryTokenizer: Bloodhound.tokenizers.whitespace
+    datumTokenizer: window.Bloodhound.tokenizers.whitespace('q'),
+    queryTokenizer: window.Bloodhound.tokenizers.whitespace
   });
 }
 /**
@@ -5129,6 +5090,8 @@ function submitEnter(ev) {
   \****************************************/
 /***/ (() => {
 
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+
 $(document).ready(function () {
   registerSidebarEvents();
 });
@@ -5159,6 +5122,169 @@ function registerSidebarEvents() {
     down.removeClass('flipped');
   });
 }
+/* PushMenu()
+ * Legacy menu from AdminLTE 2.0
+ * ==========
+ * Adds the push menu functionality to the sidebar.
+ *
+ * @usage: $('.btn').pushMenu(options)
+ *          or add [data-toggle="push-menu"] to any button
+ *          Pass any option as data-option="value"
+ */
+
+
++function ($) {
+  'use strict';
+
+  var DataKey = 'lte.pushmenu';
+  var Default = {
+    collapseScreenSize: 767,
+    expandOnHover: false,
+    expandTransitionDelay: 200
+  };
+  var Selector = {
+    collapsed: '.sidebar-collapse',
+    open: '.sidebar-open',
+    mainSidebar: '.main-sidebar',
+    contentWrapper: '.content-wrapper',
+    searchInput: '.sidebar-form .form-control',
+    button: '[data-toggle="push-menu"]',
+    mini: '.sidebar-mini',
+    expanded: '.sidebar-expanded-on-hover',
+    layoutFixed: '.fixed'
+  };
+  var ClassName = {
+    collapsed: 'sidebar-collapse',
+    open: 'sidebar-open',
+    mini: 'sidebar-mini',
+    expanded: 'sidebar-expanded-on-hover',
+    expandFeature: 'sidebar-mini-expand-feature',
+    layoutFixed: 'fixed'
+  };
+  var Event = {
+    expanded: 'expanded.pushMenu',
+    collapsed: 'collapsed.pushMenu'
+  }; // PushMenu Class Definition
+  // =========================
+
+  var PushMenu = function PushMenu(options) {
+    this.options = options;
+    this.init();
+  };
+
+  PushMenu.prototype.init = function () {
+    if (this.options.expandOnHover || $('body').is(Selector.mini + Selector.layoutFixed)) {
+      this.expandOnHover();
+      $('body').addClass(ClassName.expandFeature);
+    }
+
+    $(Selector.contentWrapper).click(function () {
+      // Enable hide menu when clicking on the content-wrapper on small screens
+      if ($(window).width() <= this.options.collapseScreenSize && $('body').hasClass(ClassName.open)) {
+        this.close();
+      }
+    }.bind(this)); // __Fix for android devices
+
+    $(Selector.searchInput).click(function (e) {
+      e.stopPropagation();
+    });
+  };
+
+  PushMenu.prototype.toggle = function () {
+    var windowWidth = $(window).width();
+    var isOpen = !$('body').hasClass(ClassName.collapsed);
+
+    if (windowWidth <= this.options.collapseScreenSize) {
+      isOpen = $('body').hasClass(ClassName.open);
+    }
+
+    if (!isOpen) {
+      this.open();
+    } else {
+      this.close();
+    }
+  };
+
+  PushMenu.prototype.open = function () {
+    var windowWidth = $(window).width();
+
+    if (windowWidth > this.options.collapseScreenSize) {
+      $('body').removeClass(ClassName.collapsed).trigger($.Event(Event.expanded));
+    } else {
+      $('body').addClass(ClassName.open).trigger($.Event(Event.expanded));
+    }
+  };
+
+  PushMenu.prototype.close = function () {
+    var windowWidth = $(window).width();
+
+    if (windowWidth > this.options.collapseScreenSize) {
+      $('body').addClass(ClassName.collapsed).trigger($.Event(Event.collapsed));
+    } else {
+      $('body').removeClass(ClassName.open + ' ' + ClassName.collapsed).trigger($.Event(Event.collapsed));
+    }
+  };
+
+  PushMenu.prototype.expandOnHover = function () {
+    $(Selector.mainSidebar).hover(function () {
+      if ($('body').is(Selector.mini + Selector.collapsed) && $(window).width() > this.options.collapseScreenSize) {
+        this.expand();
+      }
+    }.bind(this), function () {
+      if ($('body').is(Selector.expanded)) {
+        this.collapse();
+      }
+    }.bind(this));
+  };
+
+  PushMenu.prototype.expand = function () {
+    setTimeout(function () {
+      $('body').removeClass(ClassName.collapsed).addClass(ClassName.expanded);
+    }, this.options.expandTransitionDelay);
+  };
+
+  PushMenu.prototype.collapse = function () {
+    setTimeout(function () {
+      $('body').removeClass(ClassName.expanded).addClass(ClassName.collapsed);
+    }, this.options.expandTransitionDelay);
+  }; // PushMenu Plugin Definition
+  // ==========================
+
+
+  function Plugin(option) {
+    return this.each(function () {
+      var $this = $(this);
+      var data = $this.data(DataKey);
+
+      if (!data) {
+        var options = $.extend({}, Default, $this.data(), _typeof(option) == 'object' && option);
+        $this.data(DataKey, data = new PushMenu(options));
+      }
+
+      if (option === 'toggle') data.toggle();
+    });
+  }
+
+  var old = $.fn.pushMenu;
+  $.fn.pushMenu = Plugin;
+  $.fn.pushMenu.Constructor = PushMenu; // No Conflict Mode
+  // ================
+
+  $.fn.pushMenu.noConflict = function () {
+    $.fn.pushMenu = old;
+    return this;
+  }; // Data API
+  // ========
+
+
+  $(document).on('click', Selector.button, function (e) {
+    e.preventDefault();
+    Plugin.call($(this), 'toggle');
+  });
+  $(window).on('load', function () {
+    Plugin.call($(Selector.button));
+  });
+}(jQuery);
 
 /***/ }),
 
@@ -5171,7 +5297,7 @@ function registerSidebarEvents() {
 $(document).ready(function () {
   window.initTags = function () {
     //console.log('form-tags loop');
-    $.each($('.form-tags'), function (index) {
+    $.each($('.form-tags'), function () {
       var dropdownParent = $(this).data('dropdown-parent');
 
       if ($(this).hasClass("select2-hidden-accessible")) {

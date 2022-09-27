@@ -141,13 +141,13 @@ function initLiveAttributes() {
 
     // Add the live-edit-parsed attribute to variables to confirm that they are valid
     let uid = 1;
-    $.each($('.live-edit'), function (i) {
+    $.each($('.live-edit'), function () {
         $(this).addClass('live-edit-parsed');
         $(this).attr('data-uid', uid);
         uid++;
     });
 
-    $('.live-edit-parsed').unbind('click').click(function (e) {
+    $('.live-edit-parsed').unbind('click').click(function () {
         //console.log('clicked on live edit parsed');
 
         let id = $(this).data('id');
@@ -156,7 +156,7 @@ function initLiveAttributes() {
         let url = liveEditURL + '?id=' + id + '&uid=' + $(this).data('uid');
         $.ajax({
             url: url
-        }).done(function (result, textStatus, xhr) {
+        }).done(function (result) {
             let params = {};
             liveEditModal.find('.modal-content').html(result);
             liveEditModal.modal(params);
@@ -179,9 +179,9 @@ function initLiveAttributes() {
                     //console.log('looking for', '[data-uid="' + result.uid + '"]', target);
                     target.html(result.value);
 
-                    window.showToast(result.success)
+                    window.showToast(result.success);
 
-                }).fail(function (result, textStatus, xhr) {
+                }).fail(function (result) {
                     //alert('error! check console logs');
                     console.error('live-edit-error', result);
 

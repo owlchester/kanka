@@ -1,7 +1,7 @@
 var calendarAddMonth, calendarAddWeekday, calendarAddYear, calendarTemplateMonth, calendarTemplateWeekday, calendarTemplateYear, calendarLeapYear;
 var calendarAddMoon, calendarTemplateMoon;
 var calendarAddSeason, calendarTemplateSeason;
-var calendarWeek, calendarTemplateWeek;
+var calendarAddWeek, calendarTemplateWeek;
 var calendarAddEpoch, calendarTemplateEpoch;
 var calendarAddIntercalary, calendarTemplateIntercalary, calendarSortIntercalary;
 var calendarYearSwitcher, calendarYearSwitcherField, calendarEventModal;
@@ -167,7 +167,7 @@ function initCalendarForm() {
 }
 
 function calendarDeleteRowHandler() {
-    $.each($('.month-delete'), function (index) {
+    $.each($('.month-delete'), function () {
         $(this).unbind('click'); // remove previous bindings
         $(this).on('click', function(e) {
             if ($(this).data('remove') === 4) {
@@ -192,7 +192,7 @@ function calendarDeleteRowHandler() {
 function initCalendarEventBlock() {
     $('.calendar-event-block').each(function() {
         if ($(this).data('toggle') !== 'ajax-modal' && $(this).data('url')) {
-            $(this).click(function (e) {
+            $(this).click(function () {
                 window.location = $(this).data('url');
             });
         }
@@ -200,7 +200,7 @@ function initCalendarEventBlock() {
 }
 
 function initCalendarEventModal() {
-    $('select[name="recurring_periodicity"]').change(function (e) {
+    $('select[name="recurring_periodicity"]').change(function () {
         if (this.value) {
             $('#add_event_recurring_until').show();
         } else {
@@ -263,7 +263,7 @@ function initCalendarEventModal() {
             cache: false,
             contentType: false,
             processData: false
-        }).done(function (res) {
+        }).done(function () {
             // If the validation succeeded, we can really submit the form
             reminderFormValid = true;
             reminderForm.submit();

@@ -29,18 +29,6 @@ function initGallery() {
     }
   });
 }
-
-function loadGallery(url) {
-  $.ajax({
-    url: url,
-    dataType: 'json'
-  }).done(function (data) {
-    console.log('data', data);
-    gallery.html(data.content);
-    loader.hide();
-    gallery.show();
-  });
-}
 /**
  *
  */
@@ -121,7 +109,7 @@ function buildErrors(data) {
 }
 
 function registerEvents() {
-  $('#gallery-images li').unbind('click').on('click', function (e) {
+  $('#gallery-images li').unbind('click').on('click', function () {
     var folder = $(this).data('folder');
 
     if (folder) {

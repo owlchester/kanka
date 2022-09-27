@@ -45,8 +45,8 @@ $(document).ready(function() {
             url: $(this).data('url'),
             method: 'POST',
             context: this,
-        }).done(function(data) {
-            $(this).closest('.box').fadeOut("normal", function (e) {
+        }).done(function() {
+            $(this).closest('.box').fadeOut("normal", function () {
                 $(this).remove();
 
                 if ($('.dashboard-releases .box').length === 0) {
@@ -87,12 +87,12 @@ function initDashboardAdminUI() {
     modalContentTarget = $('#modal-content-target');
     modalContentSpinner = $('#modal-content-spinner');
 
-    $('.entity-creator > a').click(function(e) {
+    $('.entity-creator > a').click(function() {
         loadModalForm($(this).data('url'));
     });
 
     // Reset the modal
-    btnAddWidget.click(function(e) {
+    btnAddWidget.click(function() {
         modalContentSpinner.hide();
         modalContentTarget.html('');
         modalContentButtons.show();
@@ -100,13 +100,13 @@ function initDashboardAdminUI() {
 
     $('#widgets').sortable({
         items: '.widget-draggable',
-        stop: function(event, ui) {
+        stop: function() {
             // Allow ajax requests to use the X_CSRF_TOKEN for deletes
             $.post({
                 url: $('#widgets').data('url'),
                 dataType: 'json',
                 data: $('input[name="widgets[]"]').serialize()
-            }).done(function(data) {
+            }).done(function() {
 
             });
         }
@@ -154,7 +154,7 @@ function loadModalForm(url) {
 
 function initWidgetSubform() {
     // Recent entities: filter field dynamic display
-    $('.recent-entity-type').change(function (e) {
+    $('.recent-entity-type').change(function () {
         if (this.value) {
             $('.recent-filters').show();
         } else {
@@ -260,11 +260,11 @@ function initFollow()
 }
 
 function removePreviewExpander() {
-    $.each($('[data-toggle="preview"]'), function(i) {
+    $.each($('[data-toggle="preview"]'), function() {
         // If we are exactly the max-height, some content is hidden
         // console.log('compare', $(this).height(), 'vs', $(this).css('max-height'));
         if ($(this).height() === parseInt($(this).css('max-height'))) {
-            $(this).next().removeClass('hidden')
+            $(this).next().removeClass('hidden');
         } else {
             $(this).removeClass('pinned-entity preview');
         }

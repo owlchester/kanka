@@ -22,8 +22,6 @@ var entityCalendarModalForm;
 
 var entityName;
 
-var toggablePanels;
-
 var validEntityForm = false, validRelationForm = false;
 
 // Keep alive when editing
@@ -65,7 +63,6 @@ $(document).ready(function () {
 
     registerFormSubmitAnimation();
     registerEntityCalendarForm();
-    //registerToggablePanels();
     registerEntityFormSubmit();
     registerEntityCalendarModal();
     registerModalLoad();
@@ -94,12 +91,12 @@ function registerEntityNameCheck() {
     if (entityName.data('live-disabled')) {
         return;
     }
-    entityName.focusout(function (e) {
+    entityName.focusout(function () {
         // Don't bother if the user didn't set any value
         if (!$(this).val()) {
             return;
         }
-        var entityCreatorDuplicateWarning = $('.duplicate-entity-warning');
+        let entityCreatorDuplicateWarning = $('.duplicate-entity-warning');
         let currentEntityID = $(this).data('id');
         let url = $(this).data('live') +
             '?q=' + encodeURIComponent($(this).val()) +
@@ -114,9 +111,8 @@ function registerEntityNameCheck() {
             if (res.length > 0) {
                 let entities = Object.keys(res)
                     // Filter out what isn't itself
-                    .filter(function (k) { return !currentEntityID || currentEntityID != res[k].id })
-                    .map(function (k) { return '<a href="' + res[k].url + '">' + res[k].name + '</a>' })
-
+                    .filter(function (k) { return !currentEntityID || currentEntityID != res[k].id; })
+                    .map(function (k) { return '<a href="' + res[k].url + '">' + res[k].name + '</a>'; });
 
                 if (entities.length > 0) {
                     $('#duplicate-entities').html(entities.join(', '));
@@ -235,7 +231,7 @@ function registerPrivateCheckboxes() {
         }
 
         // On click toggle
-        $(this).click(function (e) {
+        $(this).click(function () {
             if ($(this).hasClass('fa-lock')) {
                 // Unlock
                 $(this).removeClass('fa-lock').addClass('fa-unlock-alt').prop('title', $(this).data('public'));
@@ -252,8 +248,8 @@ function registerPrivateCheckboxes() {
  *
  */
 function registerEntityFormActions() {
-    var entityFormMainButton = $('#form-submit-main')
-    var entityFormSubmitMode = $('#submit-mode');
+    let entityFormMainButton = $('#form-submit-main');
+    let entityFormSubmitMode = $('#submit-mode');
     if (entityFormSubmitMode == undefined) {
         throw new Error("No submit mode hidden input found");
     }
@@ -302,7 +298,7 @@ function registerFormSubmitAnimation() {
             }
 
             return true;
-        })
+        });
     });
 }
 
@@ -389,7 +385,7 @@ function registerEntityCalendarModal() {
         loadCalendarDates(entityCalendarField.val());
     });
 
-    var defaultCalendarId = entityCalendarAdd.data('default-calendar');
+    //var defaultCalendarId = entityCalendarAdd.data('default-calendar');
     if (entityCalendarField.val()) {
         entityCalendarCancel.show();
         entityCalendarSubForm.fadeIn();
@@ -452,29 +448,10 @@ function calendarHideSubform() {
 }
 
 /**
- * Some panels can have their body toggled
- */
-function registerToggablePanels() {
-    toggablePanels = $('.panel-toggable');
-    $.each(toggablePanels, function () {
-        $(this).on('click', function () {
-            $(this).parent().children('.panel-body').fadeToggle();
-            var i = $(this).find('i.fa');
-            if (i.hasClass('fa-caret-down')) {
-                i.removeClass('fa-caret-down').addClass('fa-caret-left');
-            } else {
-                i.removeClass('fa-caret-left').addClass('fa-caret-down');
-            }
-        });
-
-    });
-}
-
-/**
  * If we change something on a form, avoid losing data when going away.
  */
 function registerUnsavedChanges() {
-    var save = $('#form-submit-main');
+    let save = $('#form-submit-main');
 
     // Save every input change
     $(document).on('change', ':input', function () {
@@ -515,7 +492,7 @@ function registerEntityFormSubmit() {
             url: $(this).attr('action'),
             method: $(this).attr('method'),
             data: $(this).serialize()
-        }).done(function (res) {
+        }).done(function () {
             //console.log('good?');
             // If the validation succeeded, we can really submit the form
             validEntityForm = true;
@@ -595,11 +572,11 @@ function registerEntityFormSubmit() {
 function resetEntityFormSubmitAnimation() {
     var submit = $('#entity-form').find('.btn-success');
     if (submit.length > 0) {
-        $.each(submit, function (su) {
+        $.each(submit, function () {
             $(this).removeAttr('disabled');
             if ($(this).data('reset')) {
                 $(this).find('.spinner').hide()
-                    .parent().find('span').show()
+                    .parent().find('span').show();
             }
         });
     }
@@ -627,7 +604,7 @@ function registerRelationFormSubmit() {
             url: $(this).attr('action'),
             method: $(this).attr('method'),
             data: $(this).serialize()
-        }).done(function (res) {
+        }).done(function () {
             // If the validation succeeded, we can really submit the form
             validRelationForm = true;
             $('#relation-form').submit();
@@ -671,7 +648,7 @@ function registerRelationFormSubmit() {
 function resetRelationFormSubmitAnimation() {
     var submit = $('#relation-form').find('.btn-success');
     if (submit.length > 0) {
-        $.each(submit, function (su) {
+        $.each(submit, function () {
             $(this).removeAttr('disabled');
             if ($(this).data('reset')) {
                 $(this).html($(this).data('reset'));
@@ -729,8 +706,6 @@ function registerEntityNotePerms() {
     }
     registerEntityNoteDeleteEvents();
 
-    let perm = $('select[name="permission"]');
-
     btn.on('click', function (ev) {
         ev.preventDefault();
         let type = $(this).data('type');
@@ -787,8 +762,8 @@ function initSpectrum() {
  */
 function registerStoryActions() {
     let posts = $('.entity-notes');
-    $('.btn-post-collapse').unbind('click').click(function (e) {
-        posts.each(function (i) {
+    $('.btn-post-collapse').unbind('click').click(function () {
+        posts.each(function () {
             let body = $(this).find('.entity-content');
             if (body.hasClass('in')) {
                 body.removeClass('in');
@@ -803,8 +778,8 @@ function registerStoryActions() {
         return false;
     });
 
-    $('.btn-post-expand').unbind('click').click(function (e) {
-        posts.each(function (i) {
+    $('.btn-post-expand').unbind('click').click(function () {
+        posts.each(function () {
             let body = $(this).find('.entity-content');
             if (!body.hasClass('in')) {
                 body.addClass('in');
@@ -825,7 +800,7 @@ function registerStoryActions() {
  * Sidebars elements can be collapsed after the page has been loaded
  */
 function registerSidebarActions() {
-    $('.sidebar-section-title').click(function (e) {
+    $('.sidebar-section-title').click(function () {
         if ($(this).next().hasClass('in')) {
             $(this).find('.fa-chevron-down').hide();
             $(this).find('.fa-chevron-right').show();
@@ -850,14 +825,14 @@ function registerStoryLoadMore() {
 
         $.ajax({
             url: $(this).data('url')
-        }).done(function (result, textStatus, xhr) {
+        }).done(function (result) {
             btn.parent().remove();
             if (result) {
                 $('.entity-notes').append(result);
                 registerStoryLoadMore();
                 registerStoryActions();
             }
-        }).fail(function (result, textStatus, xhr) {
+        }).fail(function () {
             //console.log('modal ajax error', result);
             $('#story-more-spinner').hide();
             btn.show();
@@ -898,7 +873,7 @@ function registerEditWarning() {
             url: $(this).data('url'),
             type: 'POST',
             context: this
-        }).done(function (result, textStatus, xhr) {
+        }).done(function () {
             multiEditingModal.modal('hide');
         });
     });
@@ -950,14 +925,14 @@ function keepAlivePulse() {
         url: keepAliveUrl,
         type: 'POST'
     })
-    .done(function(result) {
+    .done(function() {
         //console.log('kept alive');
         setTimeout(keepAlivePulse, keepAliveTimer);
     });
 }
 
 function registerTrustDomain() {
-    $('.domain-trust').click(function (e) {
+    $('.domain-trust').click(function () {
         let cookieName = 'kanka_trusted_domains';
 
         let keyValue = document.cookie.match('(^|;) ?' + cookieName + '=([^;]*)(;|$)');

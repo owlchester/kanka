@@ -61,7 +61,7 @@ function registerModules() {
 
             $(this).find('.loading').hide();
             $(this).find('p').show();
-            $(this).removeClass('box-loading')
+            $(this).removeClass('box-loading');
         });
     });
 }
@@ -135,12 +135,8 @@ function registerSidebarSetup() {
         }
     });
 
-    $('form.sidebar-setup').on('submit', function (e) {
-        var sortedIDs = $('ul.sidebar-sortable').sortable( "toArray" );
-        //console.log('sortedIDs', sortedIDs);
-
+    $('form.sidebar-setup').on('submit', function () {
         return true;
-
     });
 }
 

@@ -1,7 +1,7 @@
 $(document).ready(function() {
     window.initTags = function() {
         //console.log('form-tags loop');
-        $.each($('.form-tags'), function (index) {
+        $.each($('.form-tags'), function () {
 
             let dropdownParent = $(this).data('dropdown-parent');
 
@@ -44,7 +44,7 @@ $(document).ready(function() {
                         id: term,
                         text: term,
                         newTag: true // add additional parameters
-                    }
+                    };
                 },
                 templateSelection : function (state, container) {
                     if (state.newTag) {
