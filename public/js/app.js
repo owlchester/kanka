@@ -2535,7 +2535,6 @@ $(function () {
   "use strict";
 
   $(document).on('click', '.sidebar-toggle', function () {
-    var sidebar = $('.sidebar-toggle');
     var body = $('body');
     var windowWidth = $(window).width();
     var isMobile = windowWidth < 767;
