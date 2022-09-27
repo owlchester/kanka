@@ -183,7 +183,6 @@ function addListeners() {
 
     // highlight on hover
     cy.nodes().on('mouseover', function(e) {
-        console.log('mouseover');
         entity = cy.getElementById(e.target.id());
         entity.addClass('node-hover');
     });
@@ -193,7 +192,7 @@ function addListeners() {
         entity.removeClass('node-hover');
     });
 
-    // Double click on an edge to edit it
+    // Double-click on an edge to edit it
     cy.on('tap', 'edge', function (e) {
         let editUrl = e.target.data().edit_url;
         if (!editUrl) {

@@ -87,6 +87,9 @@ mix.js('resources/assets/js/app.js', 'public/js')
     //         tailwindcss('./tailwind.config.js')
     //     ]
     // })
+    .options({
+        processCssUrls: false
+    })
     .version()
 ;
 

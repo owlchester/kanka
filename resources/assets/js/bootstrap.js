@@ -14,7 +14,6 @@ try {
 
 } catch (e) {}
 
-require('admin-lte');
 require('select2');
 //require('bootstrap-datepicker');
 //require('eonasdan-bootstrap-datetimepicker');
@@ -67,44 +66,48 @@ if (token) {
 //     key: 'your-pusher-key'
 // });
 
-$.AdminLTESidebarTweak = {};
-
-$.AdminLTESidebarTweak.options = {
-    EnableRemember: true,
-    NoTransitionAfterReload: true
-    //Removes the transition after page reload.
-};
 
 $(function () {
     "use strict";
 
     $(document).on('click', '.sidebar-toggle', function () {
-        $('.sidebar-toggle').pushMenu('toggle');
-        if($.AdminLTESidebarTweak.options.EnableRemember){
-            var toggleState = 'opened';
-            if($("body").hasClass('sidebar-collapse')){
-                toggleState = 'closed';
+        let sidebar = $('.sidebar-toggle');
+        let body = $('body');
+        let windowWidth = $(window).width();
+        let isMobile = windowWidth < 767;
+        if (isMobile) {
+            if (body.hasClass('sidebar-open')) {
+                body.removeClass('sidebar-open');
+            } else {
+                body.addClass('sidebar-open');
             }
-
-            var date = new Date();
-            date.setTime(date.getTime() + (30 * 24 * 60 * 60 * 1000));
-            var expires = " expires=" + date.toGMTString();
-            document.cookie = "toggleState="+toggleState+"; path=/; samesite=lax; secure; " + expires;
+        } else {
+            if (!body.hasClass('sidebar-collapse')) {
+                body.addClass('sidebar-collapse');
+            } else {
+                body.removeClass('sidebar-collapse');
+            }
         }
+
+        var toggleState = 'opened';
+        if(body.hasClass('sidebar-collapse')){
+            toggleState = 'closed';
+        }
+
+        var date = new Date();
+        date.setTime(date.getTime() + (30 * 24 * 60 * 60 * 1000));
+        var expires = " expires=" + date.toGMTString();
+        document.cookie = "toggleState="+toggleState+"; path=/; secure; samesite=lax; " + expires;
+
     });
 
-    if($.AdminLTESidebarTweak.options.EnableRemember){
-        var re = new RegExp('toggleState' + "=([^;]+)");
-        var value = re.exec(document.cookie);
-        var toggleState = (value != null) ? unescape(value[1]) : null;
-        if(toggleState == 'closed'){
-            if($.AdminLTESidebarTweak.options.NoTransitionAfterReload){
-                $("body").addClass('sidebar-collapse hold-transition').delay(100).queue(function(){
-                    $(this).removeClass('hold-transition');
-                });
-            }else{
-                $("body").addClass('sidebar-collapse');
-            }
-        }
+    var re = new RegExp('toggleState' + "=([^;]+)");
+    var value = re.exec(document.cookie);
+    var toggleState = (value != null) ? unescape(value[1]) : null;
+    var windowWidth = $(window).width();
+    if (toggleState === 'closed' || windowWidth < 767){
+        $("body").addClass('sidebar-collapse hold-transition').delay(100).queue(function(){
+            $(this).removeClass('hold-transition');
+        });
     }
 });
