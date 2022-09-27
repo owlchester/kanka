@@ -138,7 +138,7 @@ $seoTitle = isset($seoTitle) ? $seoTitle : (isset($title) ? $title : null);
 
     </div>
 
-    <!-- Modal -->
+    <!-- Default modal used throughout the app -->
     <div class="modal fade" id="entity-modal" role="dialog" aria-labelledby="deleteConfirmLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content rounded-2xl"></div>
@@ -150,9 +150,10 @@ $seoTitle = isset($seoTitle) ? $seoTitle : (isset($title) ? $title : null);
         </div>
     </div>
 
+    <!-- Extra-large modal on desktop for more data -->
     <div class="modal fade" id="large-modal" role="dialog" aria-labelledby="deleteConfirmLabel">
         <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content" id="large-modal-content"></div>
+            <div class="modal-content rounded-2xl" id="large-modal-content"></div>
         </div>
     </div>
 
@@ -171,7 +172,6 @@ $seoTitle = isset($seoTitle) ? $seoTitle : (isset($title) ? $title : null);
         </div>
         @endfor
         <div class="toast-success">
-
             <span class="toast-message">
                 Last message
                 <i class="fa-solid fa-times" data-toggle="dismiss"></i>

@@ -1,3 +1,4 @@
+<!-- The delete confirmation modal, can be configured to show custom text and options -->
 <div class="modal fade" id="delete-confirm" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content rounded-2xl">
