@@ -297,24 +297,19 @@
     padding: 10px;
     margin-bottom: 0;
   }
-
   .campaign-header .campaign-content > .campaign-head a.campaign-link {
     margin-right: 0;
   }
-
   .campaign-header.campaign-imaged-header {
     padding: 20px 10px;
   }
-
   .campaign-header.campaign-imaged-header .campaign-header-content {
     padding: 10px;
   }
-
   .dashboard-actions {
     float: unset;
     display: block;
   }
-
   .campaign-header .social-bar {
     text-align: unset;
   }
@@ -335,7 +330,6 @@
   overflow-wrap: break-word;
   word-wrap: break-word;
   -webkit-hyphens: auto;
-      -ms-hyphens: auto;
           hyphens: auto;
   word-break: break-all;
   white-space: normal;

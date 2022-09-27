@@ -263,7 +263,6 @@ section a:hover {
   #mainNav .dropdown-menu .dropdown-item:hover {
     background-color: #112B6B;
   }
-
   .booster-cards {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
@@ -673,7 +672,6 @@ ul.pagination li span {
   overflow-wrap: break-word;
   word-wrap: break-word;
   -webkit-hyphens: auto;
-      -ms-hyphens: auto;
           hyphens: auto;
   white-space: normal;
 }
@@ -692,7 +690,6 @@ ul.pagination li span {
     min-height: 270px;
     margin-left: 25px;
   }
-
   #testimonials .items .card {
     width: calc(60% - 5px);
   }
@@ -703,11 +700,9 @@ ul.pagination li span {
     margin-bottom: 0.25rem;
     box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.3);
   }
-
   .pricing .card:hover .btn {
     opacity: 1;
   }
-
   #testimonials .items .card {
     width: calc(32% - 3px);
   }
@@ -716,7 +711,6 @@ ul.pagination li span {
   #mainNav {
     top: 0;
   }
-
   .topbar {
     padding: 0 15px;
     background-color: #fff;

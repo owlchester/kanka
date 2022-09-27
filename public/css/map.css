@@ -197,22 +197,3 @@
 .select2-results__option .fa, .select2-results__option .ra {
   font-size: 1.8em;
 }
-
-@-webkit-keyframes ping {
-  from {
-    transform: scale(1);
-    -ms-transform: scale(1);
-    /* IE 9 */
-    -webkit-transform: scale(1);
-    /* Safari and Chrome */
-    -o-transform: scale(1);
-    /* Opera */
-    -moz-transform: scale(1);
-    /* Firefox */
-  }
-  to {
-    /* Firefox */
-    box-shadow: 0 0 15px darkred;
-    border-color: darkred;
-  }
-}

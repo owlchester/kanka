@@ -1056,10 +1056,8 @@ summary {
 }
 
 .tutorial-highlight {
-  box-shadow: 0 0 10px #fff, -10px 0 20px #f0f, 10px 0 20px #0ff;
-  /* outer right cyan */
-  -webkit-animation: tutorial-glow 10s linear infinite;
-          animation: tutorial-glow 10s linear infinite;
+  box-shadow: 0 0 10px #fff, -10px 0 20px #f0f, 10px 0 20px #0ff; /* outer right cyan */
+  animation: tutorial-glow 10s linear infinite;
   /*&:before {
       content: '';
       position: absolute;
@@ -1073,33 +1071,15 @@ summary {
   }*/
 }
 
-@-webkit-keyframes tutorial-glow {
-  0% {
-    box-shadow: 0 0 10px #fff, -10px 0 20px #f0f, 10px 0 20px #0ff;
-    /* outer right cyan */
-  }
-  50% {
-    box-shadow: 0 0 10px #fff, -10px 0 20px #0ff, 10px 0 20px #f0f;
-    /* outer right cyan */
-  }
-  100% {
-    box-shadow: 0 0 10px #fff, -10px 0 20px #f0f, 10px 0 20px #0ff;
-    /* outer right cyan */
-  }
-}
-
 @keyframes tutorial-glow {
   0% {
-    box-shadow: 0 0 10px #fff, -10px 0 20px #f0f, 10px 0 20px #0ff;
-    /* outer right cyan */
+    box-shadow: 0 0 10px #fff, -10px 0 20px #f0f, 10px 0 20px #0ff; /* outer right cyan */
   }
   50% {
-    box-shadow: 0 0 10px #fff, -10px 0 20px #0ff, 10px 0 20px #f0f;
-    /* outer right cyan */
+    box-shadow: 0 0 10px #fff, -10px 0 20px #0ff, 10px 0 20px #f0f; /* outer right cyan */
   }
   100% {
-    box-shadow: 0 0 10px #fff, -10px 0 20px #f0f, 10px 0 20px #0ff;
-    /* outer right cyan */
+    box-shadow: 0 0 10px #fff, -10px 0 20px #f0f, 10px 0 20px #0ff; /* outer right cyan */
   }
 }
 .privacy-callout {
@@ -1108,7 +1088,6 @@ summary {
 .privacy-callout label {
   -webkit-user-select: none;
      -moz-user-select: none;
-      -ms-user-select: none;
           user-select: none;
   margin: 0;
 }
@@ -1166,8 +1145,7 @@ summary {
   font-family: "Font Awesome 6 Free";
   font-weight: 900;
   border-width: 2px;
-  -webkit-animation: fa-spin 2s linear infinite;
-          animation: fa-spin 2s linear infinite;
+  animation: fa-spin 2s linear infinite;
   content: "\f110";
 }
 
@@ -1472,7 +1450,6 @@ summary {
     display: block;
     width: auto;
   }
-
   footer.main-footer .footer {
     background: transparent;
     padding: 3px;
@@ -1480,11 +1457,9 @@ summary {
   footer.main-footer .footer .email {
     margin: 10px 0;
   }
-
   .navbar-nav .campaign-menu .campaign-image {
     margin-right: 0px;
   }
-
   .navbar-nav .menu .campaign-image {
     margin-right: 4px;
   }
@@ -1495,18 +1470,15 @@ summary {
   .navbar-nav .campaign-menu a.campaign-selector {
     filter: unset;
   }
-
   .navbar .sidebar-toggle {
     margin-left: 0;
   }
   .navbar .sidebar-toggle:before {
     content: "\f100";
   }
-
   .main-sidebar {
     padding-top: 50px;
   }
-
   .content-header {
     padding-top: 5px;
   }
@@ -1536,7 +1508,6 @@ summary {
   .content-header .form-group {
     margin-bottom: 0;
   }
-
   .dl-force-mobile dt {
     float: left;
     width: 120px;
@@ -1549,16 +1520,13 @@ summary {
   .dl-force-mobile dd {
     margin-left: 140px;
   }
-
   .navbar-nav > .notifications-menu > .dropdown-menu {
     width: 90%;
   }
-
   .navbar-form {
     padding-top: 0;
     padding-bottom: 0;
   }
-
   .table-responsive {
     overflow-x: auto;
     overflow-y: auto;
@@ -1573,22 +1541,18 @@ summary {
   .content-header > .breadcrumb {
     background-color: transparent;
   }
-
   .nav-tabs-custom ul.nav-tabs {
     display: inline-flex;
     width: 100%;
     overflow-x: auto;
-    -ms-overflow-style: none;
-    /*// IE 10+*/
-    overflow: -moz-scrollbars-none;
-    /*// Firefox*/
+    -ms-overflow-style: none; /*// IE 10+*/
+    overflow: -moz-scrollbars-none; /*// Firefox*/
   }
   .nav-tabs-custom .form-group {
     margin-bottom: 0;
   }
   .nav-tabs-custom .nav-tabs::-webkit-scrollbar {
-    display: none;
-    /*Safari and Chrome*/
+    display: none; /*Safari and Chrome*/
   }
 }
 /**
@@ -1643,7 +1607,6 @@ summary {
   border-bottom: 1px solid var(--input-border-color);
   -webkit-user-select: none;
      -moz-user-select: none;
-      -ms-user-select: none;
           user-select: none;
 }
 .sidebar-section-box .sidebar-elements {
@@ -4317,99 +4280,75 @@ body.ab-testing-second .ab-testing-a {
   .md\:grid-cols-1 {
     grid-template-columns: repeat(1, minmax(0, 1fr));
   }
-
   .md\:col-span-1 {
     grid-column: span 1/span 1;
   }
-
   .md\:grid-cols-2 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
-
   .md\:col-span-2 {
     grid-column: span 2/span 2;
   }
-
   .md\:grid-cols-3 {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
-
   .md\:col-span-3 {
     grid-column: span 3/span 3;
   }
-
   .md\:grid-cols-4 {
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
-
   .md\:col-span-4 {
     grid-column: span 4/span 4;
   }
-
   .md\:grid-cols-5 {
     grid-template-columns: repeat(5, minmax(0, 1fr));
   }
-
   .md\:col-span-5 {
     grid-column: span 5/span 5;
   }
-
   .md\:grid-cols-6 {
     grid-template-columns: repeat(6, minmax(0, 1fr));
   }
-
   .md\:col-span-6 {
     grid-column: span 6/span 6;
   }
-
   .md\:grid-cols-7 {
     grid-template-columns: repeat(7, minmax(0, 1fr));
   }
-
   .md\:col-span-7 {
     grid-column: span 7/span 7;
   }
-
   .md\:grid-cols-8 {
     grid-template-columns: repeat(8, minmax(0, 1fr));
   }
-
   .md\:col-span-8 {
     grid-column: span 8/span 8;
   }
-
   .md\:grid-cols-9 {
     grid-template-columns: repeat(9, minmax(0, 1fr));
   }
-
   .md\:col-span-9 {
     grid-column: span 9/span 9;
   }
-
   .md\:grid-cols-10 {
     grid-template-columns: repeat(10, minmax(0, 1fr));
   }
-
   .md\:col-span-10 {
     grid-column: span 10/span 10;
   }
-
   .md\:grid-cols-11 {
     grid-template-columns: repeat(11, minmax(0, 1fr));
   }
-
   .md\:col-span-11 {
     grid-column: span 11/span 11;
   }
-
   .md\:grid-cols-12 {
     grid-template-columns: repeat(12, minmax(0, 1fr));
   }
-
   .md\:col-span-12 {
     grid-column: span 12/span 12;
   }
-
   .md\:col-auto {
     grid-column: auto;
   }
@@ -4418,99 +4357,75 @@ body.ab-testing-second .ab-testing-a {
   .lg\:grid-cols-1 {
     grid-template-columns: repeat(1, minmax(0, 1fr));
   }
-
   .lg\:col-span-1 {
     grid-column: span 1/span 1;
   }
-
   .lg\:grid-cols-2 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
-
   .lg\:col-span-2 {
     grid-column: span 2/span 2;
   }
-
   .lg\:grid-cols-3 {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
-
   .lg\:col-span-3 {
     grid-column: span 3/span 3;
   }
-
   .lg\:grid-cols-4 {
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
-
   .lg\:col-span-4 {
     grid-column: span 4/span 4;
   }
-
   .lg\:grid-cols-5 {
     grid-template-columns: repeat(5, minmax(0, 1fr));
   }
-
   .lg\:col-span-5 {
     grid-column: span 5/span 5;
   }
-
   .lg\:grid-cols-6 {
     grid-template-columns: repeat(6, minmax(0, 1fr));
   }
-
   .lg\:col-span-6 {
     grid-column: span 6/span 6;
   }
-
   .lg\:grid-cols-7 {
     grid-template-columns: repeat(7, minmax(0, 1fr));
   }
-
   .lg\:col-span-7 {
     grid-column: span 7/span 7;
   }
-
   .lg\:grid-cols-8 {
     grid-template-columns: repeat(8, minmax(0, 1fr));
   }
-
   .lg\:col-span-8 {
     grid-column: span 8/span 8;
   }
-
   .lg\:grid-cols-9 {
     grid-template-columns: repeat(9, minmax(0, 1fr));
   }
-
   .lg\:col-span-9 {
     grid-column: span 9/span 9;
   }
-
   .lg\:grid-cols-10 {
     grid-template-columns: repeat(10, minmax(0, 1fr));
   }
-
   .lg\:col-span-10 {
     grid-column: span 10/span 10;
   }
-
   .lg\:grid-cols-11 {
     grid-template-columns: repeat(11, minmax(0, 1fr));
   }
-
   .lg\:col-span-11 {
     grid-column: span 11/span 11;
   }
-
   .lg\:grid-cols-12 {
     grid-template-columns: repeat(12, minmax(0, 1fr));
   }
-
   .lg\:col-span-12 {
     grid-column: span 12/span 12;
   }
-
   .lg\:col-auto {
     grid-column: auto;
   }
@@ -4519,99 +4434,75 @@ body.ab-testing-second .ab-testing-a {
   .xl\:grid-cols-1 {
     grid-template-columns: repeat(1, minmax(0, 1fr));
   }
-
   .xl\:col-span-1 {
     grid-column: span 1/span 1;
   }
-
   .xl\:grid-cols-2 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
-
   .xl\:col-span-2 {
     grid-column: span 2/span 2;
   }
-
   .xl\:grid-cols-3 {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
-
   .xl\:col-span-3 {
     grid-column: span 3/span 3;
   }
-
   .xl\:grid-cols-4 {
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
-
   .xl\:col-span-4 {
     grid-column: span 4/span 4;
   }
-
   .xl\:grid-cols-5 {
     grid-template-columns: repeat(5, minmax(0, 1fr));
   }
-
   .xl\:col-span-5 {
     grid-column: span 5/span 5;
   }
-
   .xl\:grid-cols-6 {
     grid-template-columns: repeat(6, minmax(0, 1fr));
   }
-
   .xl\:col-span-6 {
     grid-column: span 6/span 6;
   }
-
   .xl\:grid-cols-7 {
     grid-template-columns: repeat(7, minmax(0, 1fr));
   }
-
   .xl\:col-span-7 {
     grid-column: span 7/span 7;
   }
-
   .xl\:grid-cols-8 {
     grid-template-columns: repeat(8, minmax(0, 1fr));
   }
-
   .xl\:col-span-8 {
     grid-column: span 8/span 8;
   }
-
   .xl\:grid-cols-9 {
     grid-template-columns: repeat(9, minmax(0, 1fr));
   }
-
   .xl\:col-span-9 {
     grid-column: span 9/span 9;
   }
-
   .xl\:grid-cols-10 {
     grid-template-columns: repeat(10, minmax(0, 1fr));
   }
-
   .xl\:col-span-10 {
     grid-column: span 10/span 10;
   }
-
   .xl\:grid-cols-11 {
     grid-template-columns: repeat(11, minmax(0, 1fr));
   }
-
   .xl\:col-span-11 {
     grid-column: span 11/span 11;
   }
-
   .xl\:grid-cols-12 {
     grid-template-columns: repeat(12, minmax(0, 1fr));
   }
-
   .xl\:col-span-12 {
     grid-column: span 12/span 12;
   }
-
   .xl\:col-auto {
     grid-column: auto;
   }
@@ -4673,17 +4564,10 @@ body.ab-testing-second .ab-testing-a {
 .form-floating > .form-control::-moz-placeholder {
   color: transparent;
 }
-.form-floating > .form-control:-ms-input-placeholder {
-  color: transparent;
-}
 .form-floating > .form-control::placeholder {
   color: transparent;
 }
 .form-floating > .form-control:not(:-moz-placeholder-shown) {
-  padding-top: 26px;
-  padding-bottom: 10px;
-}
-.form-floating > .form-control:not(:-ms-input-placeholder) {
   padding-top: 26px;
   padding-bottom: 10px;
 }
@@ -4700,10 +4584,6 @@ body.ab-testing-second .ab-testing-a {
   padding-bottom: 10px;
 }
 .form-floating > .form-control:not(:-moz-placeholder-shown) ~ label {
-  opacity: 0.65;
-  transform: scale(0.85) translateY(-0.5rem) translateX(0.15rem);
-}
-.form-floating > .form-control:not(:-ms-input-placeholder) ~ label {
   opacity: 0.65;
   transform: scale(0.85) translateY(-0.5rem) translateX(0.15rem);
 }
@@ -4733,13 +4613,11 @@ body.ab-testing-second .ab-testing-a {
 .select-none {
   -webkit-user-select: none;
      -moz-user-select: none;
-      -ms-user-select: none;
           user-select: none;
 }
 
 .line-through {
-  -webkit-text-decoration-line: line-through;
-          text-decoration-line: line-through;
+  text-decoration-line: line-through;
 }
 
 dialog {
@@ -4811,15 +4689,6 @@ dialog {
 .dialog:not([open]) {
   pointer-events: none;
   opacity: 0;
-}
-
-.dialog::-webkit-backdrop {
-  -webkit-backdrop-filter: blur(6px);
-          backdrop-filter: blur(6px);
-  -webkit-transition: -webkit-backdrop-filter 0.5s ease;
-  transition: -webkit-backdrop-filter 0.5s ease;
-  transition: backdrop-filter 0.5s ease;
-  transition: backdrop-filter 0.5s ease, -webkit-backdrop-filter 0.5s ease;
 }
 
 .dialog::backdrop {

@@ -291,11 +291,9 @@
   #map-body .navbar .sidebar-toggle {
     margin-left: 0;
   }
-
   #map-body .main-header .navbar-static-top {
     margin-left: 380px;
   }
-
   #map-body.sidebar-collapse .main-header .navbar-static-top {
     margin-left: 0;
   }
@@ -334,15 +332,13 @@
 .leaflet-ruler {
   height: 48px;
   width: 48px;
-  background-image: url("/images/vendor/leaflet/ruler/icon.png");
-  /* <div>Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div> */
+  background-image: url("/images/vendor/leaflet/ruler/icon.png"); /* <div>Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div> */
   background-repeat: no-repeat;
   background-position: center;
 }
 
 .leaflet-ruler:hover {
-  background-image: url("/images/vendor/leaflet/ruler/icon-colored.png");
-  /* <div>Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div> */
+  background-image: url("/images/vendor/leaflet/ruler/icon-colored.png"); /* <div>Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div> */
 }
 
 .leaflet-ruler-clicked {

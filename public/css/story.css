@@ -4,7 +4,6 @@
   background-color: rgba(0, 0, 0, 0.1);
   margin-bottom: 10px;
   padding: 10px;
-  cursor: -webkit-grab;
   cursor: grab;
   flex-wrap: nowrap;
   align-items: center;
