@@ -64,7 +64,7 @@ function initSubforms() {
       contentType: false,
       processData: false,
       async: false
-    }).done(function (res) {
+    }).done(function () {
       // If the validation succeeded, confirm its validity
       currentAjaxForm.attr('is-valid', true);
       currentAjaxForm.off('submit'); //console.log('form is valid?', currentAjaxForm, currentAjaxForm.attr('is-valid'));

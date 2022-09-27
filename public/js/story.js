@@ -7,7 +7,7 @@ $(document).ready(function () {
   var selector = $('.element-live-reorder');
   selector.sortable(); //selector.disableSelection();
 
-  $('.fa-arrow-up').click(function (e) {
+  $('.fa-arrow-up').click(function () {
     var $current = $(this).closest('div.element');
     var $previous = $current.prev('div.element');
 
@@ -17,7 +17,7 @@ $(document).ready(function () {
 
     return false;
   });
-  $('.fa-arrow-down').click(function (e) {
+  $('.fa-arrow-down').click(function () {
     var $current = $(this).closest('div.element');
     var $previous = $current.next('div.element');
 
@@ -46,7 +46,7 @@ function initImageFocus() {
     $('input[name="focus_x"]').val(parseInt(posX));
     $('input[name="focus_y"]').val(parseInt(posY));
   });
-  $('.focus').click(function (e) {
+  $('.focus').click(function () {
     $('.focus').hide();
     $('input[name="focus_x"]').val();
     $('input[name="focus_y"]').val();

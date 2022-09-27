@@ -102,7 +102,7 @@ function initConfirmListener() {
       }
     }.bind(this));
   });
-  $('.subscription-form').submit(function (e) {
+  $('.subscription-form').submit(function () {
     formSubmitBtn.addClass('disabled').find('span').hide().parent().find('.spinner').show();
     return true;
   });
@@ -111,7 +111,7 @@ function initConfirmListener() {
   couponSuccess = $('#coupon-success');
   couponError = $('#coupon-invalid');
   couponId = $('#coupon');
-  couponBtn.click(function (e) {
+  couponBtn.click(function () {
     checkCoupon();
   });
   couponField.change(function () {

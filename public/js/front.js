@@ -60,7 +60,7 @@ function vote(element) {
     vote: element
   };
   selected = element;
-  $.post(ajaxUrl.val(), data).done(function (result, textStatus, xhr) {
+  $.post(ajaxUrl.val(), data).done(function (result) {
     if (element) {
       $(".vote-body[data-option='" + selected + "']").addClass('vote-selected');
     }
@@ -68,7 +68,7 @@ function vote(element) {
     if (result.data) {
       updateStats(result.data);
     }
-  }).fail(function (result, textStatus, xhr) {// console.log('map point error', result);
+  }).fail(function () {// console.log('map point error', result);
   });
 }
 

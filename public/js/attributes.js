@@ -287,19 +287,19 @@ function initLiveAttributes() {
   }); // Add the live-edit-parsed attribute to variables to confirm that they are valid
 
   var uid = 1;
-  $.each($('.live-edit'), function (i) {
+  $.each($('.live-edit'), function () {
     $(this).addClass('live-edit-parsed');
     $(this).attr('data-uid', uid);
     uid++;
   });
-  $('.live-edit-parsed').unbind('click').click(function (e) {
+  $('.live-edit-parsed').unbind('click').click(function () {
     //console.log('clicked on live edit parsed');
     var id = $(this).data('id');
     liveEditCurrentUID = $(this).data('uid');
     var url = liveEditURL + '?id=' + id + '&uid=' + $(this).data('uid');
     $.ajax({
       url: url
-    }).done(function (result, textStatus, xhr) {
+    }).done(function (result) {
       var params = {};
       liveEditModal.find('.modal-content').html(result);
       liveEditModal.modal(params); //console.log('child', liveEditModal.find('form'));
@@ -318,7 +318,7 @@ function initLiveAttributes() {
 
           target.html(result.value);
           window.showToast(result.success);
-        }).fail(function (result, textStatus, xhr) {
+        }).fail(function (result) {
           //alert('error! check console logs');
           console.error('live-edit-error', result);
           liveEditModal.find('.modal-content').html('');
