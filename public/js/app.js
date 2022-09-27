@@ -3214,14 +3214,6 @@ function deleteConfirm() {
         $('#delete-confirm-form').submit();
       }
     });
-  }); // Delete confirm dialog
-
-  $.each($('.click-confirm'), function (index) {
-    $(this).click(function (e) {
-      var name = $(this).data('message');
-      $('#click-confirm-text').text(name);
-      $('#click-confirm-url').attr('href', $(this).data('url'));
-    });
   });
 }
 

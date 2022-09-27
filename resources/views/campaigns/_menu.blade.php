@@ -242,7 +242,7 @@ if (auth()->check()) {
                         {!! Form::open(['method' => 'DELETE', 'route' => ['campaigns.leave', $campaign->id]]) !!}
                         <div class="py-5">
                             <button type="button" class="btn px-8 rounded-full mr-5" data-dismiss="modal">{{ __('crud.cancel') }}</button>
-                            <button type="submit" class="btn btn-danger delete-confirm-submit px-8 ml-5 rounded-full">
+                            <button type="submit" class="btn btn-danger px-8 ml-5 rounded-full">
                                 <span class="fa-solid fa-sign-out-alt"></span>
                                 {{ __('campaigns.leave.confirm-button') }}
                             </button>
@@ -275,7 +275,7 @@ if (auth()->check()) {
                             {!! Form::open(['method' => 'DELETE', 'route' => ['campaigns.destroy', $campaign->id]]) !!}
                             <div class="py-5">
                                 <button type="button" class="btn px-8 rounded-full mr-5" data-dismiss="modal">{{ __('crud.cancel') }}</button>
-                                <button type="submit" class="btn btn-danger delete-confirm-submit px-8 ml-5 rounded-full">
+                                <button type="submit" class="btn btn-danger px-8 ml-5 rounded-full">
                                     <span class="fa-solid fa-sign-out-alt"></span>
                                     {{ __('campaigns.destroy.confirm-button') }}
                                 </button>
