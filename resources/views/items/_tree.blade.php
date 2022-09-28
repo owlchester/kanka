@@ -34,7 +34,7 @@
     $models,
     // Options
     [
-        'route' => 'items.index',
+        'route' => 'items.tree',
         'baseRoute' => 'items',
         'trans' => 'items.fields.',
         'row' => [

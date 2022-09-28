@@ -186,6 +186,7 @@ class SidebarService
         'items' => [
             'icon' => 'ra ra-gem-pendant',
             'label' => 'sidebar.items',
+            'tree' => true,
         ],
         'events' => [
             'icon' => 'fa-solid fa-bolt',
