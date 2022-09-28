@@ -20,6 +20,25 @@ You can test a campaign user's permissions for an entity or an entity type by us
 
 ### Body
 
+A JSON body containing multiple objects.
+
+```
+[
+    {
+        //Read a specific entity
+        "user_id": 3,
+        "entity_id": 52,
+        "action": 1
+    },
+    {
+        // Create a new character
+        "user_id": 3,
+        "entity_type_id": 1,
+        "action": 3
+    }
+]
+```
+
 | Parameter | Type | Details |
 | :- |   :-   |  :-  |
 | `user_id` | `integer` | The ID number of the user |
