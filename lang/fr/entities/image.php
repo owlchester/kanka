@@ -16,12 +16,12 @@ return [
         'success'       => 'Point de focus mis à jour.',
         'title'         => 'Focus d\'image pour l\'entité :name',
         'unboosted'     => 'Définir un point de focus pour l\'image est réservé aux :boosted-campaigns.',
-        'warning'       => 'Définir le point de focus n\'est pas possible lorsque l\'image de l\'entité viens de la gallerie.',
+        'warning'       => 'Définir le point de focus n\'est pas possible lorsque l\'image de l\'entité vient de la galerie.',
     ],
     'replace'           => [
-        'breadcrumb'    => 'Replacement d\'image',
-        'panel_title'   => 'Replacement d\'image de l\'entité',
+        'breadcrumb'    => 'Remplacement d\'image',
+        'panel_title'   => 'Remplacement d\'image de l\'entité',
         'success'       => 'Image remplacée.',
-        'title'         => 'Replacement d\'image pour :name',
+        'title'         => 'Remplacement d\'image pour :name',
     ],
 ];

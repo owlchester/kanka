@@ -2,16 +2,16 @@
 
 return [
     'gallery'           => [
-        'placeholder'   => 'Choix d\'une image depuis la galerie',
+        'placeholder'   => 'Choix d\'une image de la galerie',
     ],
     'gallery-header'    => [
-        'boosted-description'   => 'Afficher une image d\'entête depuis la galerie avec une :superboosted-campaign.',
-        'description'           => 'Si l\'entité n\'a pas d\'image d\'entête, affiche une image depuis la galerie.',
+        'boosted-description'   => 'Afficher une image d\'entête de la galerie avec une :superboosted-campaign.',
+        'description'           => 'Si l\'entité n\'a pas d\'image d\'entête, affiche une image de la galerie.',
     ],
     'gallery-image'     => [
-        'boosted-description'   => 'Afficher une image depuis la galerie avec une :superboosted-campaign.',
-        'description'           => 'Si l\'entité n\'a pas d\'image, affiche une image depuis la galerie.',
-        'title'                 => 'Image de gallerie',
+        'boosted-description'   => 'Afficher une image de la galerie avec une :superboosted-campaign.',
+        'description'           => 'Si l\'entité n\'a pas d\'image, affiche une image de la galerie.',
+        'title'                 => 'Replacer l\'image de l\'entité',
     ],
     'header-image'      => [
         'boosted-description'   => 'Afficher une image d\'arrière plan dans l\'entête de l\'entité avec une :boosted-campaign.',

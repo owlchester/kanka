@@ -144,7 +144,7 @@ return [
         'excerpt'               => 'Extrait',
         'family'                => 'Famille',
         'files'                 => 'Fichiers',
-        'gallery_header'        => 'Entête de gallerie',
+        'gallery_header'        => 'Entête de la galerie',
         'gallery_image'         => 'Galerie d\'image',
         'has_attributes'        => 'Possède des attributs',
         'has_entity_files'      => 'Possède des fichiers',
@@ -186,7 +186,7 @@ return [
         'files'     => 'Fichiers uploadés',
         'hints'     => [
             'limit'         => 'Chaque entité peut avoir un nombre maximal de :max fichiers uploadés.',
-            'limitations'   => 'Formats supportés: :formats. Taille maximale: :size',
+            'limitations'   => 'Formats pris en charge: :formats. Taille maximale: :size',
         ],
         'title'     => 'Fichiers d\'entité pour :name',
     ],
@@ -244,7 +244,7 @@ return [
     'hints'                     => [
         'attribute_template'    => 'Appliquer un modèle d\'attribut lors de la création ou l\'édition de cette entité.',
         'calendar_date'         => 'Une date de calendrier permet un triage plus facile dans les listes, et garde à jour un événement de calendrier dans le calendrier sélectionné.',
-        'gallery_header'        => 'Si l\'entité n\'a pas d\'entête, afficher une image depuis la gallerie de la campagne.',
+        'gallery_header'        => 'Si l\'entité n\'a pas d\'entête, afficher une image depuis la galerie de la campagne.',
         'gallery_image'         => 'Si l\'entité n\'a pas d\'image, afficher une image depuis la galerie de la campagne.',
         'header_image'          => 'Cette image s\'affiche au-delà de l\'entité. Les images larges mènent a un meilleur résultat.',
         'image_limitations'     => 'Formats supportés: :formats. Taille maximale: :size.',

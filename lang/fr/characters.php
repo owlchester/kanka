@@ -51,7 +51,7 @@ return [
         'personality_visible'       => 'Les traits de personnalités sont visibles pour tous.',
     ],
     'index'         => [
-        'title' => 'Personnes',
+        'title' => 'Personnages',
     ],
     'items'         => [
         'hint'  => 'Des objets peuvent être assignés à des personnages et seront affichés ici.',
