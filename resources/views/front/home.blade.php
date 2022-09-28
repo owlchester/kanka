@@ -39,41 +39,8 @@
                 <p class="text-muted">{{ __('front.features.description', ['kanka' => config('app.name')]) }}</p>
             </div>
 
-            <div class="row ab-testing-a">
-                <div class="col-12 col-lg-4 col-md-6 mb-2">
-                    <div class="card">
-                        <div class="card-body">
-                            <h3>{{ __('front.features.free.title') }}</h3>
-                            <p class="text-muted">
-                                {!! __('front/features.free.description', [
-                'bonuses' => link_to_route('front.pricing', __('front.features.free.bonuses'), ['#paid-features']),
-            ]) !!}
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-lg-4 col-md-6 mb-2">
-                    <div class="card">
-                        <div class="card-body">
-                        <h3>{{ __('front.features.collaborative.title') }}</h3>
-                        <p class="text-muted">
-                            {!! __('front/features.collaborative.description') !!}
-                        </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-lg-4 col-md-6 mb-2">
-                    <div class="card">
-                        <div class="card-body">
-                        <h3>{{ __('front/features.entity.title') }}</h3>
-                        <p class="text-muted">
-                            {!! __('front/features.entity.description') !!}
-                        </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="ab-testing-b">
+
+            <div class="">
                 <div class="row mb-5">
                     <div class="col-12 col-xl-4">
                         <h3>{{ __('front/features.dashboards.title') }}</h3>
