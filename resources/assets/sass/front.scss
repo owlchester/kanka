@@ -28,7 +28,7 @@ header.masthead.masthead-half {
   padding-top: 0;
   padding-bottom: 0;
 }
-header.masthead-img {
+/*header.masthead-img {
   background-color: $KankaDarkBlue;
   background-image: url(https://images.kanka.io/app/fRvHCH-8nraqMOxYiqN7rOJtq7I=/src/images%2Fbackgrounds%2Fmountain-background-desktop.jpg);
   background-position: top left;
@@ -51,10 +51,7 @@ header.masthead-img {
   p {
     font-size: 22px;
   }
-}
-header.masthead-img.webpfallback {
-  background-image: url(https://images.kanka.io/app/fRvHCH-8nraqMOxYiqN7rOJtq7I=/src/images%2Fbackgrounds%2Fmountain-background-desktop.jpg?webpfallback) !important;
-}
+}*/
 section.cta {
 
   background: linear-gradient(to left, #3f44a1, $KankaDarkBlue) !important;
@@ -302,6 +299,17 @@ section {
       grid-column: 2/3;
     }
   }
+
+
+    header.masthead.masthead-b {
+        height: auto;
+        min-height: unset;
+        padding: 100px 0;
+        h1 {
+            margin-bottom: 50px;
+        }
+
+    }
 }
 
 footer {
@@ -487,7 +495,6 @@ ul.pagination {
 }
 
 
-
 .partners {
   a {
     display: block;
@@ -560,22 +567,9 @@ ul.pagination {
   .subscription-elemental {
     background-image: url(https://images.kanka.io/app/E6iultkgKe86CZBAiybu8nT9mwM=/200x200/src/images%2Ftiers%2Felemental-325.png);
   }
-  .subscription-kobold.webpfallback {
-    background-image: url(https://images.kanka.io/app/qys-P4Qdr8__OVuiejzh5grC3dg=/200x200/src/images%2Ftiers%2Fkobold-325.png?webpfallback);
-  }
-  .subscription-owlbear.webpfallback {
-    background-image: url(https://images.kanka.io/app/pNUdiAGfWMlNpLnX7ZMJhnA4hFs=/200x200/src/images%2Ftiers%2Fowlbear-325.png?webpfallback);
-  }
-  .subscription-wyvern.webpfallback {
-    background-image: url(https://images.kanka.io/app/JVelJ-uk9KRXYsOL4XgIxmB96V4=/200x200/src/images%2Ftiers%2Fwyvern-325.png?webpfallback);
-  }
-  .subscription-elemental.webpfallback {
-    background-image: url(https://images.kanka.io/app/E6iultkgKe86CZBAiybu8nT9mwM=/200x200/src/images%2Ftiers%2Felemental-325.png?webpfallback);
-  }
 }
 
 .pricing {
-
     .card {
         border: none;
         border-radius: 1rem;

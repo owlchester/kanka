@@ -11,7 +11,7 @@
 @endsection
 
 @section('content')
-    @include('front.master')
+    @include('front.hero')
 
     <section class="bg-primary text-center" id="novel">
         <div class="container">
