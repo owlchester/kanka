@@ -21,11 +21,7 @@ if (isset($size) && $size == 'map') {
             {!! Form::file('image', array('class' => 'image form-control')) !!}
         </div>
         <div class="form-group">
-            @if(empty($source))
-                {!! Form::text('image_url', null, ['placeholder' => __('crud.placeholders.image_url'), 'class' => 'form-control']) !!}
-            @else
-                {!! Form::text('image_url', $source->getOriginalImageUrl(), ['placeholder' => __('crud.placeholders.image_url'), 'class' => 'form-control']) !!}
-            @endif
+        {!! Form::text('image_url', ((!empty($source) && $source->image) ? $source->getOriginalImageUrl() : ''), ['placeholder' => __('crud.placeholders.image_url'), 'class' => 'form-control']) !!}
             <p class="help-block">
                 {{ __('crud.hints.image_limitations', ['formats' => $formats, 'size' => (isset($size) ? auth()->user()->mapUploadSize(true) : auth()->user()->maxUploadSize(true))]) }}
 @php $currentCampaign = \App\Facades\CampaignLocalization::getCampaign(false); @endphp
