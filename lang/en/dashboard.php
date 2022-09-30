@@ -78,6 +78,9 @@ return [
             'back_to_dashboard' => 'Back to dashboard',
             'edit'              => 'Edit a widget',
         ],
+        'reorder'   => [
+            'success'   => 'Widgets reordered.',
+        ],
         'title'     => 'Dashboard Setup',
         'tutorial'  => [
             'blog'  => 'our tutorial',

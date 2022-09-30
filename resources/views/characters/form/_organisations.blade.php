@@ -123,3 +123,4 @@ $statuses = [
         <hr class="visible-xs" />
     </div>
 @endsection
+

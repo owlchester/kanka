@@ -1,44 +1,6 @@
-var calendarAddMonth, calendarAddWeekday, calendarAddYear, calendarTemplateMonth, calendarTemplateWeekday, calendarTemplateYear, calendarLeapYear;
-var calendarAddMoon, calendarTemplateMoon;
-var calendarAddSeason, calendarTemplateSeason;
-var calendarAddWeek, calendarTemplateWeek;
-var calendarAddEpoch, calendarTemplateEpoch;
-var calendarAddIntercalary, calendarTemplateIntercalary, calendarSortIntercalary;
 var calendarYearSwitcher, calendarYearSwitcherField, calendarEventModal;
-var calendarSortMonths, calendarSortWeekdays, calendarSortYears, calendarSortMoons, calendarSortSeasons, calendarSortEpochs;
 var reminderFormValid = false, reminderForm;
 $(document).ready(function() {
-    // Form
-    calendarAddMonth = $('#add_month');
-    if (calendarAddMonth.length === 1) {
-        calendarAddWeekday = $('#add_weekday');
-        calendarAddYear = $('#add_year');
-        calendarAddMoon = $('#add_moon');
-        calendarAddSeason = $('#add_season');
-        calendarAddEpoch = $('#add_epoch');
-        calendarAddIntercalary = $('#add_intercalary');
-        calendarAddWeek = $('#add_week');
-        calendarTemplateMonth = $('#template_month');
-        calendarTemplateWeekday = $('#template_weekday');
-        calendarTemplateYear = $('#template_year');
-        calendarTemplateMoon = $('#template_moon');
-        calendarTemplateSeason = $('#template_season');
-        calendarTemplateEpoch = $('#template_epoch');
-        calendarTemplateIntercalary = $('#template_intercalary');
-        calendarTemplateWeek = $('#template_week');
-        calendarLeapYear = $('input[name="has_leap_year"]');
-
-        calendarSortMonths = $(".calendar-months");
-        calendarSortWeekdays = $(".calendar-weekdays");
-        calendarSortYears = $(".calendar-years");
-        calendarSortMoons = $(".calendar-moons");
-        calendarSortSeasons = $(".calendar-seasons");
-        calendarSortEpochs = $(".calendar-epochs");
-        calendarSortIntercalary = $(".calendar-intercalaries");
-
-        initCalendarForm();
-    }
-
     // View
     calendarYearSwitcher = $('#calendar-year-switcher');
     if (calendarYearSwitcher.length === 1) {
@@ -58,136 +20,6 @@ $(document).ready(function() {
 
     registerKeyboardShortcuts();
 });
-
-/**
- * Initialize the calendar
- */
-function initCalendarForm() {
-    calendarAddMonth.on('click', function(e) {
-        e.preventDefault();
-
-        $(this).before('<div class="form-group">' +
-            calendarTemplateMonth.html() +
-        '</div>');
-
-        // Handle deleting already loaded blocks
-        calendarDeleteRowHandler();
-
-        return false;
-    });
-
-    calendarAddWeekday.on('click', function(e) {
-        e.preventDefault();
-
-        $(this).before('<div class="form-group">' +
-            calendarTemplateWeekday.html() +
-            '</div>');
-
-
-        // Handle deleting already loaded blocks
-        calendarDeleteRowHandler();
-
-        return false;
-    });
-
-    calendarAddYear.on('click', function(e) {
-        e.preventDefault();
-
-        $(this).before('<div class="form-group">' +
-            calendarTemplateYear.html() +
-            '</div>');
-
-
-        // Handle deleting already loaded blocks
-        calendarDeleteRowHandler();
-
-        return false;
-    });
-
-    calendarLeapYear.on('click', function() {
-        $('#calendar-leap-year').toggle();
-    });
-
-    calendarAddMoon.on('click', function(e) {
-        e.preventDefault();
-
-        $(this).before('<div class="form-group">' +
-            calendarTemplateMoon.html() +
-            '</div>');
-
-        // Handle deleting already loaded blocks
-        calendarDeleteRowHandler();
-
-        return false;
-    });
-
-
-    calendarAddSeason.on('click', function(e) {
-        e.preventDefault();
-
-        $(this).before('<div class="form-group">' +
-            calendarTemplateSeason.html() +
-            '</div>');
-
-        // Handle deleting already loaded blocks
-        calendarDeleteRowHandler();
-
-        return false;
-    });
-
-    calendarAddIntercalary.on('click', function(e) {
-        e.preventDefault();
-
-        $(this).before('<div class="form-group">' +
-            calendarTemplateIntercalary.html() +
-            '</div>');
-
-        // Handle deleting already loaded blocks
-        calendarDeleteRowHandler();
-
-        return false;
-    });
-
-    calendarAddWeek.on('click', function(e) {
-        e.preventDefault();
-
-        $(this).before('<div class="form-group">' +
-            calendarTemplateWeek.html() +
-            '</div>');
-
-        // Handle deleting already loaded blocks
-        calendarDeleteRowHandler();
-
-        return false;
-    });
-
-
-    // Handle deleting already loaded points
-    calendarDeleteRowHandler();
-}
-
-function calendarDeleteRowHandler() {
-    $.each($('.month-delete'), function () {
-        $(this).unbind('click'); // remove previous bindings
-        $(this).on('click', function(e) {
-            if ($(this).data('remove') === 4) {
-                $(this).parent().parent().parent().parent().remove();
-            } else {
-                $(this).parent().parent().parent().remove();
-            }
-            e.preventDefault();
-            return false;
-        });
-    });
-
-    calendarSortMonths.sortable();
-    calendarSortWeekdays.sortable();
-    calendarSortYears.sortable();
-    calendarSortMoons.sortable();
-    calendarSortSeasons.sortable();
-    calendarSortIntercalary.sortable();
-    //calendarSortWeek.sortable();
-}
 
 function initCalendarEventBlock() {
     $('.calendar-event-block').each(function() {
@@ -246,13 +78,6 @@ function initCalendarEventModal() {
         $(this).find('.btn-success').prop('disabled', true);
         $(this).find('.btn-success span').hide();
         $(this).find('.btn-success i.fa').show();
-
-        // Allow ajax requests to use the X_CSRF_TOKEN for deletes
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
 
         let formData = new FormData(this);
 

@@ -16,7 +16,6 @@
         "bootstrap-sass": "^3.4.3",
         "bread-compressor-cli": "^1.1.0",
         "jquery": "^3.4.1",
-        "jquery-ui": "^1.13.2",
         "laravel-mix": "^6.0.6",
         "lodash": "^4.17.21",
         "postcss": "^8.4.13",
@@ -41,6 +40,7 @@
         "rpg-awesome": "^0.2.0",
         "sass-loader": "^8.0.0",
         "select2": "^4.0.8",
+        "sortablejs": "^1.15.0",
         "spectrum-colorpicker": "^1.8.1",
         "tributejs": "^5.1.3"
     }

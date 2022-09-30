@@ -172,3 +172,4 @@ function initPeriodToggle() {
 }
 /******/ })()
 ;
+//# sourceMappingURL=subscription.js.map

@@ -41,7 +41,7 @@
                     </p>
 
 
-                    <ul class="sidebar-sortable">
+                    <ul class="sidebar-sortable nested-sortable">
                     @foreach ($layout as $name => $setup)
                         <li class="@if (isset($setup['fixed'])) fixed @endif" id="{{ $name }}">
                             <i class="{{ $setup['custom_icon'] ?: $setup['icon'] }}"></i>
@@ -56,7 +56,7 @@
                             @endif
                             <input type="hidden" name="order[{{ $name }}_start]" value="1" />
                             {!! Form::hidden('section_' . $name . '_start', 1) !!}
-                            <ul class="sidebar-sortable">
+                            <ul class="sidebar-sortable nested-sortable">
                                 @foreach ($setup['children'] as $childName => $child)
                                     <li id="{{ $childName }}">
                                         <i class="{{ $child['custom_icon'] ?: $child['icon'] }}"></i>

@@ -8,12 +8,6 @@ $(document).ready(function() {
 
 function init()
 {
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
-
     api = $('#newsletter-api').val();
     handle($('input[name="mail_release"]'));
     handle($('input[name="mail_newsletter"]'));

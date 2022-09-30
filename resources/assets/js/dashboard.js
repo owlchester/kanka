@@ -1,4 +1,5 @@
 import ajaxModal from "./components/ajax-modal";
+import Sortable from "sortablejs";
 
 /**
  * Dashboard
@@ -56,13 +57,6 @@ $(document).ready(function() {
         });
     });
 
-    // Ajax requests
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
-
     if ($('.campaign-dashboard-widgets').length === 1) {
         initDashboardAdminUI();
     }
@@ -98,16 +92,18 @@ function initDashboardAdminUI() {
         modalContentButtons.show();
     });
 
-    $('#widgets').sortable({
-        items: '.widget-draggable',
-        stop: function() {
+    let el = document.getElementById('widgets');
+    let list = new Sortable(el, {
+        onEnd: function (/**Event*/evt) {
             // Allow ajax requests to use the X_CSRF_TOKEN for deletes
             $.post({
                 url: $('#widgets').data('url'),
                 dataType: 'json',
                 data: $('input[name="widgets[]"]').serialize()
-            }).done(function() {
-
+            }).done(function(res) {
+                if (res.success && res.message) {
+                    window.showToast(res.message);
+                }
             });
         }
     });
@@ -190,17 +186,11 @@ function initDashboardRecent() {
  */
 function initDashboardCalendars()
 {
-    $('.widget-calendar-switch').click(function(e) {
+    $('.widget-calendar-switch').unbind('click').click(function(e) {
         e.preventDefault();
 
         var url = $(this).data('url'),
             widget = $(this).data('widget');
-
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
 
         $('#widget-body-' + widget).find('.widget-body').hide();
         $('#widget-body-' + widget).find('.widget-loading').show();

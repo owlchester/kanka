@@ -30,15 +30,3 @@
         </div>
     </div>
 @endsection
-
-
-
-@section('styles')
-    @parent
-    <link href="{{ mix('css/story.css') }}" rel="stylesheet">
-@endsection
-
-@section('scripts')
-    @parent
-    <script src="{{ mix('js/story.js') }}" defer></script>
-@endsection

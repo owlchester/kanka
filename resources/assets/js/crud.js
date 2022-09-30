@@ -4,12 +4,7 @@
 
 import ajaxModal from "./components/ajax-modal";
 
-// Character
-var characterAddPersonality, characterTemplatePersonality;
-var characterAddAppearance, characterTemplateAppearance;
-var characterSortPersonality, characterSortAppearance;
 var entityFormActions;
-var characterAddOrganisation, characterTemplateOrganisation, characterOrganisations;
 
 
 var multiEditingModal;
@@ -31,22 +26,7 @@ var keepAliveEnabled = true;
 
 $(document).ready(function () {
 
-    characterSortPersonality = $('.character-personality');
-    characterSortAppearance = $('.character-appearance');
-    characterOrganisations = $('.character-organisations');
-
-    characterAddPersonality = $('#add_personality');
-    if (characterAddPersonality.length === 1) {
-        initCharacterPersonality();
-    }
-    characterAddAppearance = $('#add_appearance');
-    if (characterAddAppearance.length === 1) {
-        initCharacterAppearance();
-    }
-    characterAddOrganisation = $('#add_organisation');
-    if (characterAddOrganisation.length === 1) {
-        initCharacterOrganisation();
-    }
+    registerDynamicRows();
 
     ajaxModal();
 
@@ -125,125 +105,6 @@ function registerEntityNameCheck() {
     });
 }
 
-/**
- *
- */
-function initCharacterPersonality() {
-    characterTemplatePersonality = $('#template_personality');
-    characterAddPersonality.on('click', function (e) {
-        e.preventDefault();
-
-        $(characterSortPersonality).append('<div class="form-group">' +
-            characterTemplatePersonality.html() +
-            '</div>');
-
-        // Handle deleting already loaded blocks
-        characterDeleteRowHandler();
-
-        return false;
-    });
-
-    characterDeleteRowHandler();
-}
-
-/**
- *
- */
-function initCharacterAppearance() {
-    characterTemplateAppearance = $('#template_appearance');
-    characterAddAppearance.on('click', function (e) {
-        e.preventDefault();
-
-        $(characterSortAppearance).append('<div class="form-group">' +
-            characterTemplateAppearance.html() +
-            '</div>');
-
-        // Handle deleting already loaded blocks
-        characterDeleteRowHandler();
-
-        return false;
-    });
-
-    characterDeleteRowHandler();
-}
-
-/**
- *
- */
-function initCharacterOrganisation() {
-    characterTemplateOrganisation = $('#template_organisation');
-    characterAddOrganisation.on('click', function (e) {
-        e.preventDefault();
-
-        $(characterOrganisations).append('<div class="form-group">' +
-            characterTemplateOrganisation.html() +
-            '</div>');
-
-        // Replace the temp class with the real class. We need this to avoid having two select2 fields
-        characterOrganisations.find('.tmp-org').removeClass('tmp-org').addClass('select2');
-
-        // Handle deleting already loaded blocks
-        characterDeleteRowHandler();
-        registerPrivateCheckboxes();
-
-        return false;
-    });
-
-    characterDeleteRowHandler();
-}
-
-/**
- *
- */
-function characterDeleteRowHandler() {
-    $.each($('.personality-delete'), function () {
-        $(this).unbind('click'); // remove previous bindings
-        $(this).on('click', function (e) {
-            e.preventDefault();
-            $(this).closest('.parent-delete-row').remove();
-        });
-    });
-
-    $.each($('.member-delete'), function () {
-        $(this).unbind('click');
-        $(this).on('click', function (e) {
-            e.preventDefault();
-            $(this).closest('.form-group').remove();
-        });
-    });
-
-    // Always re-calc the sortable traits
-    characterSortPersonality.sortable();
-    characterSortAppearance.sortable();
-    window.initForeignSelect();
-}
-
-/**
- *
- */
-function registerPrivateCheckboxes() {
-    $.each($('[data-toggle="private"]'), function () {
-        // Add the title first
-        if ($(this).hasClass('fa-lock')) {
-            $(this).prop('title', $(this).data('private'));
-        } else {
-            $(this).prop('title', $(this).data('public'));
-        }
-
-        // On click toggle
-        $(this).click(function () {
-            if ($(this).hasClass('fa-lock')) {
-                // Unlock
-                $(this).removeClass('fa-lock').addClass('fa-unlock-alt').prop('title', $(this).data('public'));
-                $(this).parent().find('input:hidden').val("0");
-            } else {
-                // Lock
-                $(this).removeClass('fa-unlock-alt').addClass('fa-lock').prop('title', $(this).data('private'));
-                $(this).parent().find('input:hidden').val("1");
-            }
-        });
-    });
-}
 /**
  *
  */
@@ -481,13 +342,6 @@ function registerEntityFormSubmit() {
 
         e.preventDefault();
 
-        // Allow ajax requests to use the X_CSRF_TOKEN for deletes
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-
         $.ajax({
             url: $(this).attr('action'),
             method: $(this).attr('method'),
@@ -590,15 +444,7 @@ function registerRelationFormSubmit() {
         if (validRelationForm) {
             return true;
         }
-
         e.preventDefault();
-
-        // Allow ajax requests to use the X_CSRF_TOKEN for deletes
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
 
         $.ajax({
             url: $(this).attr('action'),
@@ -863,12 +709,6 @@ function registerEditWarning() {
         confirmEditWarningModal();
         keepAliveEnabled = true;
 
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-
         $.ajax({
             url: $(this).data('url'),
             type: 'POST',
@@ -915,12 +755,6 @@ function keepAlivePulse() {
         return;
     }
 
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
-
     $.ajax({
         url: keepAliveUrl,
         type: 'POST'
@@ -950,5 +784,39 @@ function registerTrustDomain() {
         let expires = new Date();
         expires.setTime(expires.getTime() + (30 * 24 * 60 * 60 * 1000));
         document.cookie = cookieName + '=' + keyValue + ';expires=' + expires.toUTCString() + ';sameSite=Strict';
+    });
+}
+
+/**
+ * Register a listened to add dynamic rows in the forms
+ */
+function registerDynamicRows() {
+    $('.dynamic-row-add').on('click', function(e) {
+        e.preventDefault();
+
+        let target = $(this).data('target');
+        let template = $(this).data('template');
+        //console.log('target', target, $('.' + target));
+        //console.log('template', template, $('#' + template));
+        $('.' + target).append('<div class="form-group">' +
+            $('#' + template).html() +
+            '</div>');
+
+        registerDynamicRowDelete();
+        return false;
+    });
+    registerDynamicRowDelete();
+}
+
+/**
+ * Register a listener to delete a dynamically added row in the forms
+ */
+function registerDynamicRowDelete() {
+    $.each($('.dynamic-row-delete'), function () {
+        $(this).unbind('click'); // remove previous bindings
+        $(this).on('click', function (e) {
+            e.preventDefault();
+            $(this).closest('.parent-delete-row').remove();
+        });
     });
 }

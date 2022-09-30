@@ -26,7 +26,7 @@ if ($firstNote && $firstNote->position >= 0) {
         </h3>
     </div>
     <div class="box-body">
-        <div class="element-live-reorder">
+        <div class="element-live-reorder sortable-elements">
             @includeWhen($startWithStory, 'entities.pages.story.reorder._story')
 
             @foreach($notes as $note)
@@ -38,11 +38,7 @@ if ($firstNote && $firstNote->position >= 0) {
                 <div class="element" data-id="{{ $note->id }}">
                     {!! Form::hidden('posts[' . $note->id . '][id]', $note->id) !!}
                     <div class="dragger">
-                        <span class="fa-solid fa-ellipsis-v visible-md visible-lg"></span>
-                        <div class="visible-xs visible-sm">
-                            <span class="fa-solid fa-arrow-up"></span><br />
-                            <span class="fa-solid fa-arrow-down"></span>
-                        </div>
+                        <span class="fa-solid fa-ellipsis-v"></span>
                     </div>
                     <div class="name">
                         {!! $note->name !!}

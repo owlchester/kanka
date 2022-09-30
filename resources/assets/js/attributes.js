@@ -1,3 +1,5 @@
+import Sortable from "sortablejs";
+
 /**
  * When adding a new attribute, we give it a negative id to avoid issues with checkboxes losing information
  * @type {number}
@@ -82,7 +84,8 @@ function initAttributeUI()
  */
 function initAttributeHandlers() {
 
-    $('.entity-attributes').sortable({});
+    let el = document.querySelector('.entity-attributes');
+    Sortable.create(el);
 
     $.each($('.attribute_delete'), function() {
         $(this).unbind('click');
@@ -132,12 +135,6 @@ function initLiveAttributes() {
 
     liveEditURL = config.data('live');
     liveEditModal = $('#live-attribute-modal');
-
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
 
     // Add the live-edit-parsed attribute to variables to confirm that they are valid
     let uid = 1;

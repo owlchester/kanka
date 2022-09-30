@@ -57,7 +57,8 @@ class DashboardSetupController extends Controller
         }
 
         return response()->json([
-            'success' => true
+            'success' => true,
+            'message' => __('dashboard.setup.reorder.success')
         ]);
     }
 }

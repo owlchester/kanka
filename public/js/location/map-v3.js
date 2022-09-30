@@ -176,13 +176,7 @@ function initMapExplore() {
   sidebarMarker = $('#sidebar-marker');
   markerModal = $('#map-marker-modal');
   markerModalTitle = $('#map-marker-modal-title');
-  markerModalContent = $('#map-marker-modal-content'); // Allow ajax requests to use the X_CSRF_TOKEN for moves
-
-  $.ajaxSetup({
-    headers: {
-      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    }
-  });
+  markerModalContent = $('#map-marker-modal-content');
 
   window.markerDetails = function (url) {
     showSidebar();
@@ -324,3 +318,4 @@ function registerModes() {
 
 /******/ })()
 ;
+//# sourceMappingURL=map-v3.js.map

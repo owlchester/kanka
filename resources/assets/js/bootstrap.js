@@ -15,17 +15,12 @@ try {
 } catch (e) {}
 
 require('select2');
-//require('bootstrap-datepicker');
-//require('eonasdan-bootstrap-datetimepicker');
 require('spectrum-colorpicker');
 
 
 
 // require('corejs-typeahead');
 // Bloodhound = require('corejs-typeahead/dist/bloodhound.js');
-
-require('jquery-ui/ui/widgets/draggable');
-require('jquery-ui/ui/widgets/sortable');
 
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
@@ -47,6 +42,11 @@ let token = document.head.querySelector('meta[name="csrf-token"]');
 
 if (token) {
     window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': token.content
+        }
+    });
 } else {
     console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
 }

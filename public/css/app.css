@@ -2433,6 +2433,42 @@ div.mce-fullscreen {
   width: 100%;
 }
 
+.element-live-reorder .element {
+  display: flex;
+  flex-flow: row wrap;
+  background-color: rgba(0, 0, 0, 0.1);
+  margin-bottom: 10px;
+  padding: 10px;
+  cursor: grab;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+}
+.element-live-reorder .element .dragger {
+  padding-right: 10px;
+}
+.element-live-reorder .element .name {
+  overflow: hidden;
+  flex-grow: 1;
+}
+.element-live-reorder .element .name i {
+  min-width: 20px;
+}
+.element-live-reorder .element .name i.ra {
+  display: var(--fa-display, inline-block);
+}
+.element-live-reorder .element .state {
+  padding: 0 10px;
+  align-self: flex-end;
+}
+.element-live-reorder .element .icons {
+  align-self: flex-end;
+}
+.element-live-reorder .element select {
+  height: 28px;
+  padding: 3px 6px;
+}
+
 ul.sidebar-sortable, ul.sidebar-sortable ul {
   list-style: none;
   margin: 0;
@@ -4934,3 +4970,5 @@ html:has(dialog[open]) {
     right: 10px;
   }
 }
+
+/*# sourceMappingURL=app.css.map*/
