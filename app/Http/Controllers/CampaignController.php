@@ -6,6 +6,7 @@ use App\Facades\CampaignCache;
 use App\Facades\CampaignLocalization;
 use App\Models\Campaign;
 use App\Http\Requests\StoreCampaign;
+use App\Http\Requests\DeleteCampaign;
 use App\Models\UserLog;
 use App\Services\CampaignService;
 use App\Services\EntityService;
@@ -183,10 +184,11 @@ class CampaignController extends Controller
 
     /**
      * @param Campaign $campaign
+     * @param DeleteCampaign $request
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function destroy(Campaign $campaign)
+    public function destroy(Campaign $campaign, DeleteCampaign $request)
     {
         $this->authorize('delete', $campaign);
 
