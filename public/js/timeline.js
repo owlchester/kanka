@@ -26,3 +26,4 @@ function registerTimelineEvents() {
 }
 /******/ })()
 ;
+//# sourceMappingURL=timeline.js.map

@@ -125,3 +125,4 @@ function resetSubformSubmitAnimation(form) {
 }
 /******/ })()
 ;
+//# sourceMappingURL=ajax-subforms.js.map

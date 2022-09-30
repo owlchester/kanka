@@ -1,4 +1,5 @@
 import ajaxModal from "./components/ajax-modal";
+import Sortable from "sortablejs";
 
 /**
  * Dashboard
@@ -98,7 +99,22 @@ function initDashboardAdminUI() {
         modalContentButtons.show();
     });
 
-    $('#widgets').sortable({
+    let el = document.getElementById('widgets');
+    let list = new Sortable(el, {
+        onEnd: function (/**Event*/evt) {
+            // Allow ajax requests to use the X_CSRF_TOKEN for deletes
+            $.post({
+                url: $('#widgets').data('url'),
+                dataType: 'json',
+                data: $('input[name="widgets[]"]').serialize()
+            }).done(function(res) {
+                if (res.success && res.message) {
+                    window.showToast(res.message);
+                }
+            });
+        }
+    });
+    /*$('#widgets').sortable({
         items: '.widget-draggable',
         stop: function() {
             // Allow ajax requests to use the X_CSRF_TOKEN for deletes
@@ -110,7 +126,7 @@ function initDashboardAdminUI() {
 
             });
         }
-    });
+    });*/
 
     $(document).on('shown.bs.modal shown.bs.popover', function() {
         let summernoteConfig = $('#summernote-config');

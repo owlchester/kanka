@@ -74,12 +74,7 @@ use App\Facades\Datagrid ?>
 @endsection
 
 
-@section('styles')
-    @parent
-    <link href="{{ mix('css/story.css') }}" rel="stylesheet">
-@endsection
-
 @section('scripts')
     @parent
-    <script src="{{ mix('js/story.js') }}" defer></script>
+    <script src="{{ mix('js/utility/sortable.js') }}" defer></script>
 @endsection

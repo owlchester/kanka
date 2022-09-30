@@ -17,3 +17,4 @@ function registerBoosters() {
 }
 /******/ })()
 ;
+//# sourceMappingURL=settings.js.map

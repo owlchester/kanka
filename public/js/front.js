@@ -188,3 +188,4 @@ __webpack_require__(/*! ./community-votes */ "./resources/assets/js/community-vo
 
 /******/ })()
 ;
+//# sourceMappingURL=front.js.map

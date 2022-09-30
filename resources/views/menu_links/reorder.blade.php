@@ -32,11 +32,7 @@
                     <div class="element" data-id="{{ $link->id }}">
                         {!! Form::hidden('menu_link[]', $link->id) !!}
                         <div class="dragger">
-                            <span class="fa-solid fa-ellipsis-v visible-md visible-lg"></span>
-                            <div class="visible-xs visible-sm">
-                                <span class="fa-solid fa-arrow-up"></span><br />
-                                <span class="fa-solid fa-arrow-down"></span>
-                            </div>
+                            <span class="fa-solid fa-ellipsis-v"></span>
                         </div>
                         <div class="name">
                             <i class="{{ $link->icon() }}"></i> {!! $link->name !!}
@@ -61,14 +57,7 @@
     {!! Form::close() !!}
 @endsection
 
-
-
-@section('styles')
-    @parent
-    <link href="{{ mix('css/story.css') }}" rel="stylesheet">
-@endsection
-
 @section('scripts')
     @parent
-    <script src="{{ mix('js/story.js') }}" defer></script>
+    <script src="{{ mix('js/utility/sortable.js') }}" defer></script>
 @endsection

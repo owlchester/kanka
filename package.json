@@ -41,6 +41,7 @@
         "rpg-awesome": "^0.2.0",
         "sass-loader": "^8.0.0",
         "select2": "^4.0.8",
+        "sortablejs": "^1.15.0",
         "spectrum-colorpicker": "^1.8.1",
         "tributejs": "^5.1.3"
     }

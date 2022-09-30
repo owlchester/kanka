@@ -334,4 +334,4 @@ require('./sidebar');
 require('./banner');
 require('./timeline');
 require('./vendor');
-require('./ads');
+//require('./ads');

@@ -127,3 +127,4 @@ function registerEvents() {
 }
 /******/ })()
 ;
+//# sourceMappingURL=gallery.js.map

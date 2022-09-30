@@ -756,3 +756,4 @@ function initMapLegend() {
 }
 /******/ })()
 ;
+//# sourceMappingURL=map.js.map

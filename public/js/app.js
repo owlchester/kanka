@@ -2054,43 +2054,6 @@ module.exports = {
 
 /***/ }),
 
-/***/ "./resources/assets/js/ads.js":
-/*!************************************!*\
-  !*** ./resources/assets/js/ads.js ***!
-  \************************************/
-/***/ (() => {
-
-$(document).ready(function () {
-  initAdManager();
-});
-
-function initAdManager() {
-  return;
-  var ads = $('.nativead-manager');
-
-  if (ads.lenght === 0) {
-    return;
-  }
-
-  $.each(ads, function () {// This ad
-
-    /*console.log('found an ad', $(this));
-     let ad = $(this);
-     let url = $(this).data('url');
-      console.log('wat', $(this).data('src'));
-     let video = document.createElement('video');
-     video.id = 'webmvid';
-     video.source.src = $(this).data('src');
-     video.type = 'video/webm';
-     video.control = false
-     video.removeAttribute("poster");
-     video.appendTo($(this));
-     console.log(video);*/
-  });
-}
-
-/***/ }),
-
 /***/ "./resources/assets/js/app.js":
 /*!************************************!*\
   !*** ./resources/assets/js/app.js ***!
@@ -2436,9 +2399,7 @@ __webpack_require__(/*! ./banner */ "./resources/assets/js/banner.js");
 
 __webpack_require__(/*! ./timeline */ "./resources/assets/js/timeline.js");
 
-__webpack_require__(/*! ./vendor */ "./resources/assets/js/vendor.js");
-
-__webpack_require__(/*! ./ads */ "./resources/assets/js/ads.js");
+__webpack_require__(/*! ./vendor */ "./resources/assets/js/vendor.js"); //require('./ads');
 
 /***/ }),
 
@@ -57194,3 +57155,4 @@ module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"P
 /******/ 	
 /******/ })()
 ;
+//# sourceMappingURL=app.js.map

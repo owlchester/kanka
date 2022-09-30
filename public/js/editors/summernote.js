@@ -410,3 +410,4 @@ function buildErrors(data) {
 }
 /******/ })()
 ;
+//# sourceMappingURL=summernote.js.map

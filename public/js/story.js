@@ -4,29 +4,6 @@ var __webpack_exports__ = {};
   !*** ./resources/assets/js/story.js ***!
   \**************************************/
 $(document).ready(function () {
-  var selector = $('.element-live-reorder');
-  selector.sortable(); //selector.disableSelection();
-
-  $('.fa-arrow-up').click(function () {
-    var $current = $(this).closest('div.element');
-    var $previous = $current.prev('div.element');
-
-    if ($previous.length !== 0) {
-      $current.insertBefore($previous);
-    }
-
-    return false;
-  });
-  $('.fa-arrow-down').click(function () {
-    var $current = $(this).closest('div.element');
-    var $previous = $current.next('div.element');
-
-    if ($previous.length !== 0) {
-      $current.insertAfter($previous);
-    }
-
-    return false;
-  });
   initImageFocus();
 });
 
@@ -54,3 +31,4 @@ function initImageFocus() {
 }
 /******/ })()
 ;
+//# sourceMappingURL=story.js.map
