@@ -1,3 +1,5 @@
+import Sortable from "sortablejs";
+
 $(document).ready(function() {
     initRpgSystems();
     registerModules();
@@ -124,20 +126,29 @@ function registerCodeMirror() {
 }
 
 function registerSidebarSetup() {
-    $('ul.sidebar-sortable').sortable({
-        connectWith: 'ul.sidebar-sortable',
-        placeholder: 'placeholder',
-        //items: 'li:not(.fixed)',
-        stop: function (e, ui) {
-            if (ui.item.first().hasClass('fixed') && ui.item.parents('.fixed').length > 0) {
-                $('ul.sidebar-sortable').sortable("cancel");
-            }
-        }
-    });
+    let nestedSortables = [].slice.call(document.querySelectorAll('.nested-sortable'));
 
-    $('form.sidebar-setup').on('submit', function () {
-        return true;
-    });
+    // Loop through each nested sortable element
+    for (let i = 0; i < nestedSortables.length; i++) {
+        new Sortable(nestedSortables[i], {
+            group: 'nested',
+            animation: 150,
+            fallbackOnBody: true,
+            swapThreshold: 0.65,
+
+            // Attempt to drag a filtered element
+            onMove: function (/**Event*/evt, /**Event*/originalEvent) {
+                let self = evt.dragged;
+                let target = evt.related;
+                // Couldn't figure out how to do this in pure js, so falling back on jQuery
+                let targetParentIsFixed = $(target).parents('.fixed').length > 0;
+                if (self.classList.contains('fixed') && targetParentIsFixed) {
+                    return false;
+                }
+                return true;
+            },
+        });
+    }
 }
 
 function registerCampaignExport() {

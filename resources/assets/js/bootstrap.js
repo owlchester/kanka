@@ -22,8 +22,6 @@ require('spectrum-colorpicker');
 // require('corejs-typeahead');
 // Bloodhound = require('corejs-typeahead/dist/bloodhound.js');
 
-require('jquery-ui/ui/widgets/sortable');
-
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
  * to our Laravel back-end. This library automatically handles sending the
