@@ -3895,10 +3895,13 @@ function registerTrustDomain() {
     document.cookie = cookieName + '=' + keyValue + ';expires=' + expires.toUTCString() + ';sameSite=Strict';
   });
 }
+/**
+ * Register a listened to add dynamic rows in the forms
+ */
+
 
 function registerDynamicRows() {
   $('.dynamic-row-add').on('click', function (e) {
-    console.log('dynamic row add');
     e.preventDefault();
     var target = $(this).data('target');
     var template = $(this).data('template'); //console.log('target', target, $('.' + target));
@@ -3910,6 +3913,10 @@ function registerDynamicRows() {
   });
   registerDynamicRowDelete();
 }
+/**
+ * Register a listener to delete a dynamically added row in the forms
+ */
+
 
 function registerDynamicRowDelete() {
   $.each($('.dynamic-row-delete'), function () {
@@ -5096,7 +5103,11 @@ $(document).ready(function () {
 /*!*****************************************!*\
   !*** ./resources/assets/js/timeline.js ***!
   \*****************************************/
-/***/ (() => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var sortablejs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! sortablejs */ "./node_modules/sortablejs/modular/sortable.esm.js");
 
 $(document).ready(function () {
   registerTimelineEvents();
@@ -5106,15 +5117,11 @@ $(document).ready(function () {
  */
 
 function registerTimelineEvents() {
-  $('.timeline-toggle').on('click', function () {
-    var id = $(this).data('short');
-    $('#' + id + "-show").toggle();
-    $('#' + id + "-hide").toggle();
-  });
   $('.timeline-era-reorder').on('click', function (e) {
     e.preventDefault();
     var eraId = $(this).data('era-id');
-    $('#era-items-' + eraId + '').sortable();
+    var el = document.querySelector('#era-items-' + eraId);
+    sortablejs__WEBPACK_IMPORTED_MODULE_0__["default"].create(el);
     $(this).parent().hide();
     $('#era-items-' + eraId + '-save-reorder').show();
   });
@@ -5175,8 +5182,8 @@ window.initSortable = function () {
   }
 
   for (i = 0; i < dragndropArea.length; ++i) {
-    console.log('re-init', dragndropArea[i]);
-    var sortable = sortablejs__WEBPACK_IMPORTED_MODULE_0__["default"].create(dragndropArea[i]);
+    //console.log('re-init', dragndropArea[i]);
+    sortablejs__WEBPACK_IMPORTED_MODULE_0__["default"].create(dragndropArea[i]);
   }
 };
 

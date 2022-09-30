@@ -6,8 +6,8 @@ window.initSortable = function() {
         return;
     }
     for (i = 0; i < dragndropArea.length; ++i) {
-        console.log('re-init', dragndropArea[i]);
-        var sortable = Sortable.create(dragndropArea[i]);
+        //console.log('re-init', dragndropArea[i]);
+        Sortable.create(dragndropArea[i]);
     }
 }
 

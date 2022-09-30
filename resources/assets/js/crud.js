@@ -814,10 +814,11 @@ function registerTrustDomain() {
     });
 }
 
-
+/**
+ * Register a listened to add dynamic rows in the forms
+ */
 function registerDynamicRows() {
     $('.dynamic-row-add').on('click', function(e) {
-        console.log('dynamic row add');
         e.preventDefault();
 
         let target = $(this).data('target');
@@ -834,6 +835,9 @@ function registerDynamicRows() {
     registerDynamicRowDelete();
 }
 
+/**
+ * Register a listener to delete a dynamically added row in the forms
+ */
 function registerDynamicRowDelete() {
     $.each($('.dynamic-row-delete'), function () {
         $(this).unbind('click'); // remove previous bindings
