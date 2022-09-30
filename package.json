@@ -16,7 +16,6 @@
         "bootstrap-sass": "^3.4.3",
         "bread-compressor-cli": "^1.1.0",
         "jquery": "^3.4.1",
-        "jquery-ui": "^1.13.2",
         "laravel-mix": "^6.0.6",
         "lodash": "^4.17.21",
         "postcss": "^8.4.13",
