@@ -39,13 +39,6 @@ function registerModules() {
         $(this).find('.loading').show();
         $(this).find('p').hide();
 
-
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-
         $.ajax({
             method: 'post',
             url: $(this).data('url'),
@@ -84,12 +77,6 @@ function registerRoles() {
     $('.public-permission').click(function (e) {
         e.preventDefault();
         $(this).addClass('loading');
-
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
 
         $.ajax({
             method: 'post',
@@ -165,12 +152,6 @@ function registerCampaignExport() {
         e.preventDefault();
         spinner.show();
         exportBtn.hide();
-
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
 
         $.ajax({
             url: exportBtn.data('url'),

@@ -57,13 +57,6 @@ $(document).ready(function() {
         });
     });
 
-    // Ajax requests
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
-
     if ($('.campaign-dashboard-widgets').length === 1) {
         initDashboardAdminUI();
     }
@@ -193,17 +186,11 @@ function initDashboardRecent() {
  */
 function initDashboardCalendars()
 {
-    $('.widget-calendar-switch').click(function(e) {
+    $('.widget-calendar-switch').unbind('click').click(function(e) {
         e.preventDefault();
 
         var url = $(this).data('url'),
             widget = $(this).data('widget');
-
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
 
         $('#widget-body-' + widget).find('.widget-body').hide();
         $('#widget-body-' + widget).find('.widget-loading').show();

@@ -95,13 +95,6 @@ function quickCreatorSubformHandler() {
             .find('span').hide()
             .parent().find('i').show();
 
-        // Allow ajax requests to use the X_CSRF_TOKEN for deletes
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-
         $.post({
             url: $(this).attr('action'),
             data: $(this).serialize(),

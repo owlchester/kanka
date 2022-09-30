@@ -278,12 +278,6 @@ function initDialogs() {
             $('#quick-privacy-select').change(function () {
                 let toggleUrl = $(this).data('url');
 
-                $.ajaxSetup({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    }
-                });
-
                 $.ajax({
                     url: toggleUrl,
                     type: 'POST'

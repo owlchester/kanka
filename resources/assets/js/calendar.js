@@ -79,13 +79,6 @@ function initCalendarEventModal() {
         $(this).find('.btn-success span').hide();
         $(this).find('.btn-success i.fa').show();
 
-        // Allow ajax requests to use the X_CSRF_TOKEN for deletes
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-
         let formData = new FormData(this);
 
         $.ajax({

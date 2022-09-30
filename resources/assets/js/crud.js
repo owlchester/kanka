@@ -342,13 +342,6 @@ function registerEntityFormSubmit() {
 
         e.preventDefault();
 
-        // Allow ajax requests to use the X_CSRF_TOKEN for deletes
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-
         $.ajax({
             url: $(this).attr('action'),
             method: $(this).attr('method'),
@@ -451,15 +444,7 @@ function registerRelationFormSubmit() {
         if (validRelationForm) {
             return true;
         }
-
         e.preventDefault();
-
-        // Allow ajax requests to use the X_CSRF_TOKEN for deletes
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
 
         $.ajax({
             url: $(this).attr('action'),
@@ -724,12 +709,6 @@ function registerEditWarning() {
         confirmEditWarningModal();
         keepAliveEnabled = true;
 
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-
         $.ajax({
             url: $(this).data('url'),
             type: 'POST',
@@ -775,12 +754,6 @@ function keepAlivePulse() {
         setTimeout(keepAlivePulse, keepAliveTimer);
         return;
     }
-
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
 
     $.ajax({
         url: keepAliveUrl,

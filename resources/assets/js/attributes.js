@@ -136,12 +136,6 @@ function initLiveAttributes() {
     liveEditURL = config.data('live');
     liveEditModal = $('#live-attribute-modal');
 
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
-
     // Add the live-edit-parsed attribute to variables to confirm that they are valid
     let uid = 1;
     $.each($('.live-edit'), function () {

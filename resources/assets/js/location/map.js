@@ -60,13 +60,6 @@ function initLocationMap() {
         initMapAdmin();
     }
 
-    // Allow ajax requests to use the X_CSRF_TOKEN for deletes
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
-
     initMapControls();
     initPointClick();
     initMapModeSwitch();

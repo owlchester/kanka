@@ -2334,11 +2334,6 @@ function initDialogs() {
 
       $('#quick-privacy-select').change(function () {
         var toggleUrl = $(this).data('url');
-        $.ajaxSetup({
-          headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-          }
-        });
         $.ajax({
           url: toggleUrl,
           type: 'POST'
@@ -2407,11 +2402,6 @@ function initBannerPromoDismiss() {
   $('#banner-notification-dismiss').click(function (e) {
     e.preventDefault();
     $('.banner-notification').fadeOut();
-    $.ajaxSetup({
-      headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-      }
-    });
     $.post({
       url: $(this).data('url'),
       method: 'POST'
@@ -2464,6 +2454,11 @@ var token = document.head.querySelector('meta[name="csrf-token"]');
 
 if (token) {
   window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
+  $.ajaxSetup({
+    headers: {
+      'X-CSRF-TOKEN': token.content
+    }
+  });
 } else {
   console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
 }
@@ -2594,13 +2589,7 @@ function initCalendarEventModal() {
     e.preventDefault();
     $(this).find('.btn-success').prop('disabled', true);
     $(this).find('.btn-success span').hide();
-    $(this).find('.btn-success i.fa').show(); // Allow ajax requests to use the X_CSRF_TOKEN for deletes
-
-    $.ajaxSetup({
-      headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-      }
-    });
+    $(this).find('.btn-success i.fa').show();
     var formData = new FormData(this);
     $.ajax({
       url: $(this).attr('action'),
@@ -2733,11 +2722,6 @@ function registerModules() {
     $(this).addClass('box-loading');
     $(this).find('.loading').show();
     $(this).find('p').hide();
-    $.ajaxSetup({
-      headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-      }
-    });
     $.ajax({
       method: 'post',
       url: $(this).data('url'),
@@ -2778,11 +2762,6 @@ function registerRoles() {
   $('.public-permission').click(function (e) {
     e.preventDefault();
     $(this).addClass('loading');
-    $.ajaxSetup({
-      headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-      }
-    });
     $.ajax({
       method: 'post',
       url: $(this).data('url'),
@@ -2865,11 +2844,6 @@ function registerCampaignExport() {
     e.preventDefault();
     spinner.show();
     exportBtn.hide();
-    $.ajaxSetup({
-      headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-      }
-    });
     $.ajax({
       url: exportBtn.data('url'),
       method: 'POST'
@@ -3435,13 +3409,7 @@ function registerEntityFormSubmit() {
       return true;
     }
 
-    e.preventDefault(); // Allow ajax requests to use the X_CSRF_TOKEN for deletes
-
-    $.ajaxSetup({
-      headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-      }
-    });
+    e.preventDefault();
     $.ajax({
       url: $(this).attr('action'),
       method: $(this).attr('method'),
@@ -3546,13 +3514,7 @@ function registerRelationFormSubmit() {
       return true;
     }
 
-    e.preventDefault(); // Allow ajax requests to use the X_CSRF_TOKEN for deletes
-
-    $.ajaxSetup({
-      headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-      }
-    });
+    e.preventDefault();
     $.ajax({
       url: $(this).attr('action'),
       method: $(this).attr('method'),
@@ -3824,11 +3786,6 @@ function registerEditWarning() {
     e.preventDefault();
     confirmEditWarningModal();
     keepAliveEnabled = true;
-    $.ajaxSetup({
-      headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-      }
-    });
     $.ajax({
       url: $(this).data('url'),
       type: 'POST',
@@ -3876,11 +3833,6 @@ function keepAlivePulse() {
     return;
   }
 
-  $.ajaxSetup({
-    headers: {
-      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    }
-  });
   $.ajax({
     url: keepAliveUrl,
     type: 'POST'
@@ -4585,13 +4537,7 @@ function quickCreatorSubformHandler() {
   quickCreatorExtraName();
   $('#entity-creator-form').submit(function (e) {
     e.preventDefault();
-    quickCreatorSubmitBtn.prop('disabled', true).find('span').hide().parent().find('i').show(); // Allow ajax requests to use the X_CSRF_TOKEN for deletes
-
-    $.ajaxSetup({
-      headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-      }
-    });
+    quickCreatorSubmitBtn.prop('disabled', true).find('span').hide().parent().find('i').show();
     $.post({
       url: $(this).attr('action'),
       data: $(this).serialize(),

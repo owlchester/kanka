@@ -60,13 +60,6 @@ function initMapExplore()
     markerModalTitle = $('#map-marker-modal-title');
     markerModalContent = $('#map-marker-modal-content');
 
-    // Allow ajax requests to use the X_CSRF_TOKEN for moves
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
-
     window.markerDetails = function(url) {
         showSidebar();
         if (window.kankaIsMobile.matches) {
