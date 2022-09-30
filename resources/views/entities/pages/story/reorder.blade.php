@@ -39,8 +39,3 @@
         </div>
     </div>
 @endsection
-
-@section('scripts')
-    @parent
-    <script src="{{ mix('js/utility/sortable.js') }}" defer></script>
-@endsection

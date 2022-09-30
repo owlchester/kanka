@@ -9,7 +9,7 @@
         </h3>
     </div>
     <div class="box-body">
-        <div class="element-live-reorder">
+        <div class="element-live-reorder sortable-elements">
             @foreach($eras as $era)
                 <div class="element" data-id="{{ $era->id }}">
                     {!! Form::hidden('timeline_era[]', $era->id) !!}

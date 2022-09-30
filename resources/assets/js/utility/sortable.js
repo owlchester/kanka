@@ -1,4 +1,17 @@
 import Sortable from 'sortablejs';
 
-var dragndropArea = document.querySelector('.element-live-reorder');
-var sortable = Sortable.create(dragndropArea);
+window.initSortable = function() {
+    var dragndropArea = document.querySelectorAll('.sortable-elements'), i;
+    if (dragndropArea.length === 0) {
+        return;
+    }
+    for (i = 0; i < dragndropArea.length; ++i) {
+        console.log('re-init', dragndropArea[i]);
+        var sortable = Sortable.create(dragndropArea[i]);
+    }
+}
+
+$(document).ready(() => {
+    window.initSortable();
+});
+

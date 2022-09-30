@@ -114,19 +114,6 @@ function initDashboardAdminUI() {
             });
         }
     });
-    /*$('#widgets').sortable({
-        items: '.widget-draggable',
-        stop: function() {
-            // Allow ajax requests to use the X_CSRF_TOKEN for deletes
-            $.post({
-                url: $('#widgets').data('url'),
-                dataType: 'json',
-                data: $('input[name="widgets[]"]').serialize()
-            }).done(function() {
-
-            });
-        }
-    });*/
 
     $(document).on('shown.bs.modal shown.bs.popover', function() {
         let summernoteConfig = $('#summernote-config');

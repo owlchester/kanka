@@ -1,43 +1,13 @@
-var calendarAddMonth, calendarAddWeekday, calendarAddYear, calendarTemplateMonth, calendarTemplateWeekday, calendarTemplateYear, calendarLeapYear;
-var calendarAddMoon, calendarTemplateMoon;
-var calendarAddSeason, calendarTemplateSeason;
-var calendarAddWeek, calendarTemplateWeek;
-var calendarAddEpoch, calendarTemplateEpoch;
-var calendarAddIntercalary, calendarTemplateIntercalary, calendarSortIntercalary;
+import Sortable from "sortablejs";
+
+var calendarAddMonth, calendarLeapYear;
 var calendarYearSwitcher, calendarYearSwitcherField, calendarEventModal;
-var calendarSortMonths, calendarSortWeekdays, calendarSortYears, calendarSortMoons, calendarSortSeasons, calendarSortEpochs;
 var reminderFormValid = false, reminderForm;
 $(document).ready(function() {
     // Form
-    calendarAddMonth = $('#add_month');
-    if (calendarAddMonth.length === 1) {
-        calendarAddWeekday = $('#add_weekday');
-        calendarAddYear = $('#add_year');
-        calendarAddMoon = $('#add_moon');
-        calendarAddSeason = $('#add_season');
-        calendarAddEpoch = $('#add_epoch');
-        calendarAddIntercalary = $('#add_intercalary');
-        calendarAddWeek = $('#add_week');
-        calendarTemplateMonth = $('#template_month');
-        calendarTemplateWeekday = $('#template_weekday');
-        calendarTemplateYear = $('#template_year');
-        calendarTemplateMoon = $('#template_moon');
-        calendarTemplateSeason = $('#template_season');
-        calendarTemplateEpoch = $('#template_epoch');
-        calendarTemplateIntercalary = $('#template_intercalary');
-        calendarTemplateWeek = $('#template_week');
-        calendarLeapYear = $('input[name="has_leap_year"]');
+    calendarLeapYear = $('input[name="has_leap_year"]');
 
-        calendarSortMonths = $(".calendar-months");
-        calendarSortWeekdays = $(".calendar-weekdays");
-        calendarSortYears = $(".calendar-years");
-        calendarSortMoons = $(".calendar-moons");
-        calendarSortSeasons = $(".calendar-seasons");
-        calendarSortEpochs = $(".calendar-epochs");
-        calendarSortIntercalary = $(".calendar-intercalaries");
-
-        initCalendarForm();
-    }
+    initCalendarForm();
 
     // View
     calendarYearSwitcher = $('#calendar-year-switcher');
@@ -63,97 +33,15 @@ $(document).ready(function() {
  * Initialize the calendar
  */
 function initCalendarForm() {
-    calendarAddMonth.on('click', function(e) {
+    $('.calendar-add-template').on('click', function(e) {
+        console.log('what');
         e.preventDefault();
 
-        $(this).before('<div class="form-group">' +
-            calendarTemplateMonth.html() +
+        let target = $(this).data('target');
+        let template = $(this).data('template');
+        $(target).append('<div class="form-group">' +
+            $(template).html() +
         '</div>');
-
-        // Handle deleting already loaded blocks
-        calendarDeleteRowHandler();
-
-        return false;
-    });
-
-    calendarAddWeekday.on('click', function(e) {
-        e.preventDefault();
-
-        $(this).before('<div class="form-group">' +
-            calendarTemplateWeekday.html() +
-            '</div>');
-
-
-        // Handle deleting already loaded blocks
-        calendarDeleteRowHandler();
-
-        return false;
-    });
-
-    calendarAddYear.on('click', function(e) {
-        e.preventDefault();
-
-        $(this).before('<div class="form-group">' +
-            calendarTemplateYear.html() +
-            '</div>');
-
-
-        // Handle deleting already loaded blocks
-        calendarDeleteRowHandler();
-
-        return false;
-    });
-
-    calendarLeapYear.on('click', function() {
-        $('#calendar-leap-year').toggle();
-    });
-
-    calendarAddMoon.on('click', function(e) {
-        e.preventDefault();
-
-        $(this).before('<div class="form-group">' +
-            calendarTemplateMoon.html() +
-            '</div>');
-
-        // Handle deleting already loaded blocks
-        calendarDeleteRowHandler();
-
-        return false;
-    });
-
-
-    calendarAddSeason.on('click', function(e) {
-        e.preventDefault();
-
-        $(this).before('<div class="form-group">' +
-            calendarTemplateSeason.html() +
-            '</div>');
-
-        // Handle deleting already loaded blocks
-        calendarDeleteRowHandler();
-
-        return false;
-    });
-
-    calendarAddIntercalary.on('click', function(e) {
-        e.preventDefault();
-
-        $(this).before('<div class="form-group">' +
-            calendarTemplateIntercalary.html() +
-            '</div>');
-
-        // Handle deleting already loaded blocks
-        calendarDeleteRowHandler();
-
-        return false;
-    });
-
-    calendarAddWeek.on('click', function(e) {
-        e.preventDefault();
-
-        $(this).before('<div class="form-group">' +
-            calendarTemplateWeek.html() +
-            '</div>');
 
         // Handle deleting already loaded blocks
         calendarDeleteRowHandler();
@@ -180,13 +68,8 @@ function calendarDeleteRowHandler() {
         });
     });
 
-    calendarSortMonths.sortable();
-    calendarSortWeekdays.sortable();
-    calendarSortYears.sortable();
-    calendarSortMoons.sortable();
-    calendarSortSeasons.sortable();
-    calendarSortIntercalary.sortable();
-    //calendarSortWeek.sortable();
+    // Re-init the sortable elements
+    window.initSortable();
 }
 
 function initCalendarEventBlock() {

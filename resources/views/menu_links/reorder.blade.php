@@ -27,7 +27,7 @@
             </h3>
         </div>
         <div class="box-body">
-            <div class="element-live-reorder">
+            <div class="element-live-reorder sortable-elements">
                 @foreach($links as $link)
                     <div class="element" data-id="{{ $link->id }}">
                         {!! Form::hidden('menu_link[]', $link->id) !!}
@@ -55,9 +55,4 @@
         </div>
     </div>
     {!! Form::close() !!}
-@endsection
-
-@section('scripts')
-    @parent
-    <script src="{{ mix('js/utility/sortable.js') }}" defer></script>
 @endsection

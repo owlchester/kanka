@@ -26,7 +26,7 @@ if ($firstNote && $firstNote->position >= 0) {
         </h3>
     </div>
     <div class="box-body">
-        <div class="element-live-reorder">
+        <div class="element-live-reorder sortable-elements">
             @includeWhen($startWithStory, 'entities.pages.story.reorder._story')
 
             @foreach($notes as $note)

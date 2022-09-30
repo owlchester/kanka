@@ -36,7 +36,7 @@ if (!empty($moonNames)) {
 } elseif (isset($source)) {
     $moons = $source->moons();
 }?>
-<div class="calendar-moons">
+<div class="calendar-moons sortable-elements">
     @foreach ($moons as $fullmoon)
         <div class="form-group">
             <div class="row">
@@ -69,7 +69,7 @@ if (!empty($moonNames)) {
         {!! Form::hidden('moon_id[]', $fullmoon['id']) !!}
     @endforeach
 </div>
-<a class="btn btn-default" id="add_moon" href="#" title="{{ __('calendars.actions.add_moon') }}">
+<a class="btn btn-default calendar-add-template" data-template="#template_moon" data-target=".calendar-moons" href="#" title="{{ __('calendars.actions.add_moon') }}">
     <i class="fa-solid fa-plus"></i> {{ __('calendars.actions.add_moon') }}
 </a>
 
@@ -78,7 +78,12 @@ if (!empty($moonNames)) {
 <div class="form-group" id="template_moon" style="display: none">
     <div class="row">
         <div class="col-md-6">
-            {!! Form::text('moon_name[]', null, ['class' => 'form-control', 'placeholder' => __('calendars.parameters.moon.name')]) !!}
+            <div class="input-group">
+                <span class="input-group-addon">
+                    <span class="fa-solid fa-arrows-alt-v"></span>
+                </span>
+                {!! Form::text('moon_name[]', null, ['class' => 'form-control', 'placeholder' => __('calendars.parameters.moon.name')]) !!}
+            </div>
         </div>
         <div class="col-md-2">
             {!! Form::number('moon_fullmoon[]', null, ['class' => 'form-control', 'placeholder' => __('calendars.parameters.moon.fullmoon'), 'step' => '0.01', 'min' => 1]) !!}

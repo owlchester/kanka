@@ -36,7 +36,7 @@ if (!empty($names)) {
 } elseif (isset($source)) {
     $months = $source->months();
 }?>
-<div class="calendar-months">
+<div class="calendar-months sortable-elements">
     @foreach ($months as $month)
         <div class="form-group">
             <div class="row">
@@ -72,7 +72,7 @@ if (!empty($names)) {
         </div>
     @endforeach
 </div>
-<a class="btn btn-default" id="add_month" href="#" title="{{ __('calendars.actions.add_month') }}">
+<a class="btn btn-default calendar-add-template" data-template="#template_month" data-target=".calendar-months" href="#" title="{{ __('calendars.actions.add_month') }}">
     <i class="fa-solid fa-plus"></i> {{ __('calendars.actions.add_month') }}
 </a>
 
@@ -81,7 +81,12 @@ if (!empty($names)) {
 <div class="form-group" id="template_month" style="display: none">
     <div class="row">
         <div class="col-md-6">
-            {!! Form::text('month_name[]', null, ['class' => 'form-control', 'placeholder' => __('calendars.parameters.month.name')]) !!}
+            <div class="input-group">
+                <span class="input-group-addon cursor">
+                    <span class="fa-solid fa-arrows-alt-v"></span>
+                </span>
+                {!! Form::text('month_name[]', null, ['class' => 'form-control', 'placeholder' => __('calendars.parameters.month.name')]) !!}
+            </div>
         </div>
         <div class="col-md-2">
             {!! Form::number('month_length[]', null, ['class' => 'form-control', 'placeholder' => __('calendars.parameters.month.length')]) !!}

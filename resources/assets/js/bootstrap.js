@@ -15,8 +15,6 @@ try {
 } catch (e) {}
 
 require('select2');
-//require('bootstrap-datepicker');
-//require('eonasdan-bootstrap-datetimepicker');
 require('spectrum-colorpicker');
 
 
@@ -24,7 +22,6 @@ require('spectrum-colorpicker');
 // require('corejs-typeahead');
 // Bloodhound = require('corejs-typeahead/dist/bloodhound.js');
 
-require('jquery-ui/ui/widgets/draggable');
 require('jquery-ui/ui/widgets/sortable');
 
 /**

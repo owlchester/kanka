@@ -1,7 +1,6 @@
 <?php /** @var \App\Models\Calendar $model */?>
 <div class="row">
     <div class="col-md-6">
-
         <div class="form-group required">
             <label>{{ __('calendars.fields.weekdays') }}</label>
             <p class="help-block">{{ __('calendars.hints.weekdays') }}</p>
@@ -21,7 +20,7 @@
         } elseif (isset($source)) {
             $weekdays = $source->weekdays();
         } ?>
-        <div class="calendar-weekdays">
+        <div class="calendar-weekdays sortable-elements">
             @foreach ($weekdays as $weekday)
                 <div class="form-group">
                     <div class="input-group">
@@ -38,7 +37,7 @@
                 </div>
             @endforeach
         </div>
-        <a class="btn btn-default" id="add_weekday" href="#" title="{{ __('calendars.actions.add_weekday') }}">
+        <a class="btn btn-default calendar-add-template" data-template="#template_weekday" data-target=".calendar-weekdays" href="#" title="{{ __('calendars.actions.add_weekday') }}">
             <i class="fa-solid fa-plus"></i> {{ __('calendars.actions.add_weekday') }}
         </a>
     </div>
@@ -70,7 +69,7 @@
         } elseif (isset($source)) {
             $weeks = $source->weeks();
         } ?>
-        <div class="calendar-weeks">
+        <div class="calendar-weeks sortable-elements">
             @foreach ($weeks as $week => $name)
                 <div class="form-group">
                     <div class="row">
@@ -96,7 +95,7 @@
                 </div>
             @endforeach
         </div>
-        <a class="btn btn-default" id="add_week" href="#" title="{{ __('calendars.actions.add_week') }}">
+        <a class="btn btn-default calendar-add-template" data-template="#template_week" data-target=".calendar-weeks" href="#" title="{{ __('calendars.actions.add_week') }}">
             <i class="fa-solid fa-plus"></i> {{ __('calendars.actions.add_week') }}
         </a>
     </div>
@@ -106,6 +105,9 @@
     @parent
     <div class="form-group" id="template_weekday" style="display: none">
         <div class="input-group">
+            <span class="input-group-addon">
+                <span class="fa-solid fa-arrows-alt-v"></span>
+            </span>
             {!! Form::text('weekday[]', null, ['class' => 'form-control']) !!}
             <span class="input-group-btn">
                 <span href="#" class="month-delete btn btn-danger" title="{{ __('crud.remove') }}">
@@ -118,7 +120,12 @@
     <div class="form-group" id="template_week" style="display: none">
         <div class="row">
             <div class="col-md-4">
-                {!! Form::number('week_number[]', null, ['class' => 'form-control', 'placeholder' => __('calendars.parameters.weeks.number')]) !!}
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        <span class="fa-solid fa-arrows-alt-v"></span>
+                    </span>
+                    {!! Form::number('week_number[]', null, ['class' => 'form-control', 'placeholder' => __('calendars.parameters.weeks.number')]) !!}
+                </div>
             </div>
             <div class="col-md-8">
                 <div class="input-group">

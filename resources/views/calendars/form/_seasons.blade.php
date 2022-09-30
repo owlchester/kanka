@@ -28,7 +28,7 @@ if (!empty($seasonNames)) {
 } elseif (isset($source)) {
     $seasons = $source->seasons();
 }?>
-<div class="calendar-seasons">
+<div class="calendar-seasons sortable-elements">
     @foreach ($seasons as $season)
         <div class="form-group">
             <div class="row">
@@ -57,7 +57,7 @@ if (!empty($seasonNames)) {
         </div>
     @endforeach
 </div>
-<a class="btn btn-default" id="add_season" href="#" title="{{ __('calendars.actions.add_season') }}">
+<a class="btn btn-default calendar-add-template" data-template="#template_season" data-target=".calendar-seasons" href="#" title="{{ __('calendars.actions.add_season') }}">
     <i class="fa-solid fa-plus"></i> {{ __('calendars.actions.add_season') }}
 </a>
 
@@ -66,7 +66,12 @@ if (!empty($seasonNames)) {
 <div class="form-group" id="template_season" style="display: none">
     <div class="row">
         <div class="col-md-6">
-            {!! Form::text('season_name[]', null, ['class' => 'form-control', 'placeholder' => __('calendars.parameters.seasons.name')]) !!}
+            <div class="input-group">
+                <span class="input-group-addon cursor">
+                    <span class="fa-solid fa-arrows-alt-v"></span>
+                </span>
+                {!! Form::text('season_name[]', null, ['class' => 'form-control', 'placeholder' => __('calendars.parameters.seasons.name')]) !!}
+            </div>
         </div>
         <div class="col-md-3">
             {!! Form::number('season_month[]', null, ['class' => 'form-control', 'placeholder' => __('calendars.parameters.seasons.month')]) !!}

@@ -92,7 +92,7 @@
         } elseif (isset($source)) {
             $years = $source->years();
         } ?>
-        <div class="calendar-years">
+        <div class="calendar-years sortable-elements">
             @foreach ($years as $year => $name)
                 <div class="form-group">
                     <div class="row">
@@ -118,7 +118,7 @@
                 </div>
             @endforeach
         </div>
-        <a class="btn btn-default" id="add_year" href="#" title="{{ __('calendars.actions.add_year') }}">
+        <a class="btn btn-default calendar-add-template" data-template="#template_year" data-target=".calendar-years" href="#" title="{{ __('calendars.actions.add_year') }}">
             <i class="fa-solid fa-plus"></i> {{ __('calendars.actions.add_year') }}
         </a>
 

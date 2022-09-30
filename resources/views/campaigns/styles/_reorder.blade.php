@@ -11,7 +11,7 @@
     </div>
     <div class="box-body">
 
-        <div class="element-live-reorder">
+        <div class="element-live-reorder sortable-elements">
             @foreach($reorderStyles as $style)
                 <div class="element" data-id="{{ $style->id }}">
                     {!! Form::hidden('style[]', $style->id) !!}

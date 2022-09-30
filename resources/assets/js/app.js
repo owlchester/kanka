@@ -1,10 +1,3 @@
-/**
- * First we will load all of this project's JavaScript dependencies which
- * includes Vue and other libraries. It is a great starting point when
- * building robust, powerful web applications using Vue and Laravel.
- */
-
-
 require('./bootstrap');
 
 import deleteConfirm from './components/delete-confirm.js';
@@ -22,17 +15,13 @@ $(document).ready(function() {
         initTooltips();
     }
 
-    /*$('[data-toggle="popover"]').popover({
-        sanitize: false,
-    });*/
-
     window.initForeignSelect();
     initSpectrum();
-    initSubmenuSwitcher()
+    initSubmenuSwitcher();
 
-
-    if ($('#delete-confirm-form').length > 0) {
-        $('#delete-confirm-form').on('keyup keypress', function (e) {
+    let deleteConfirmForms = $('#delete-confirm-form');
+    if (deleteConfirmForms.length > 0) {
+        deleteConfirmForms.on('keyup keypress', function (e) {
             var keyCode = e.keyCode || e.which;
             if (keyCode === 13) {
                 e.preventDefault();
@@ -161,13 +150,8 @@ function manageTabs() {
     $('ul.nav-tabs > li > a[href="' + tabHash + '"]').tab('show');
 }
 
-function resetSubmitButton(id) {
-    var newEntitySaveButton = $(id);
-    newEntitySaveButton.text(newEntitySaveButton.data('text')).prop('disabled', false);
-}
-
 function initImageRemoval() {
-    $.each($('.img-delete'), function (index) {
+    $.each($('.img-delete'), function () {
         $(this).unbind('click').click(function (e) {
             e.preventDefault();
             $('input[name=' + $(this).data('target') + ']')[0].value = 1;
@@ -193,10 +177,13 @@ function initAjaxPagination() {
             initAjaxPagination();
         });
         return false;
-    })
+    });
 }
 
-
+/**
+ * Popover delete confirmation with button, rather than a modal. Used for displaying a confirmation
+ * in a modal.
+ */
 function initDynamicDelete() {
     $('.btn-dynamic-delete').popover({
         html: true,
@@ -216,7 +203,7 @@ function initDynamicDelete() {
         placement: 'bottom',
         sanitize: false,
         trigger: 'focus'
-    })
+    });
 }
 
 
@@ -251,8 +238,8 @@ function initDialogs() {
 
         target.addEventListener('click', function (event) {
             let rect = target.getBoundingClientRect();
-            let isInDialog=(rect.top <= event.clientY && event.clientY <= rect.top + rect.height
-                && rect.left <= event.clientX && event.clientX <= rect.left + rect.width);
+            let isInDialog=(rect.top <= event.clientY && event.clientY <= rect.top + rect.height &&
+                rect.left <= event.clientX && event.clientX <= rect.left + rect.width);
             if (!isInDialog && event.target.tagName === 'DIALOG') {
                 target.close();
             }
@@ -268,8 +255,8 @@ function initDialogs() {
 
         target.addEventListener('click', function (event) {
             let rect = target.getBoundingClientRect();
-            let isInDialog=(rect.top <= event.clientY && event.clientY <= rect.top + rect.height
-                && rect.left <= event.clientX && event.clientX <= rect.left + rect.width);
+            let isInDialog=(rect.top <= event.clientY && event.clientY <= rect.top + rect.height &&
+                rect.left <= event.clientX && event.clientX <= rect.left + rect.width);
             if (!isInDialog && event.target.tagName === 'DIALOG') {
                 target.close();
             }
@@ -334,4 +321,5 @@ require('./sidebar');
 require('./banner');
 require('./timeline');
 require('./vendor');
+require('./utility/sortable')
 //require('./ads');
