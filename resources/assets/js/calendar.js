@@ -1,14 +1,6 @@
-import Sortable from "sortablejs";
-
-var calendarAddMonth, calendarLeapYear;
 var calendarYearSwitcher, calendarYearSwitcherField, calendarEventModal;
 var reminderFormValid = false, reminderForm;
 $(document).ready(function() {
-    // Form
-    calendarLeapYear = $('input[name="has_leap_year"]');
-
-    initCalendarForm();
-
     // View
     calendarYearSwitcher = $('#calendar-year-switcher');
     if (calendarYearSwitcher.length === 1) {
@@ -28,49 +20,6 @@ $(document).ready(function() {
 
     registerKeyboardShortcuts();
 });
-
-/**
- * Initialize the calendar
- */
-function initCalendarForm() {
-    $('.calendar-add-template').on('click', function(e) {
-        console.log('what');
-        e.preventDefault();
-
-        let target = $(this).data('target');
-        let template = $(this).data('template');
-        $(target).append('<div class="form-group">' +
-            $(template).html() +
-        '</div>');
-
-        // Handle deleting already loaded blocks
-        calendarDeleteRowHandler();
-
-        return false;
-    });
-
-
-    // Handle deleting already loaded points
-    calendarDeleteRowHandler();
-}
-
-function calendarDeleteRowHandler() {
-    $.each($('.month-delete'), function () {
-        $(this).unbind('click'); // remove previous bindings
-        $(this).on('click', function(e) {
-            if ($(this).data('remove') === 4) {
-                $(this).parent().parent().parent().parent().remove();
-            } else {
-                $(this).parent().parent().parent().remove();
-            }
-            e.preventDefault();
-            return false;
-        });
-    });
-
-    // Re-init the sortable elements
-    window.initSortable();
-}
 
 function initCalendarEventBlock() {
     $('.calendar-event-block').each(function() {

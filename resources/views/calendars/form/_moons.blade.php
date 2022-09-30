@@ -38,7 +38,7 @@ if (!empty($moonNames)) {
 }?>
 <div class="calendar-moons sortable-elements">
     @foreach ($moons as $fullmoon)
-        <div class="form-group">
+        <div class="form-group parent-delete-row">
             <div class="row">
                 <div class="col-md-6">
                     <div class="input-group">
@@ -58,7 +58,7 @@ if (!empty($moonNames)) {
                     <div class="input-group">
                         {!! Form::number('moon_offset[]', $fullmoon['offset'], ['class' => 'form-control']) !!}
                         <span class="input-group-btn">
-                            <span class="month-delete btn btn-danger" data-remove="4" title="{{ __('crud.remove') }}">
+                            <span class="dynamic-row-delete btn btn-danger" data-remove="4" title="{{ __('crud.remove') }}">
                                 <i class="fa-solid fa-trash"></i>
                             </span>
                         </span>
@@ -69,39 +69,41 @@ if (!empty($moonNames)) {
         {!! Form::hidden('moon_id[]', $fullmoon['id']) !!}
     @endforeach
 </div>
-<a class="btn btn-default calendar-add-template" data-template="#template_moon" data-target=".calendar-moons" href="#" title="{{ __('calendars.actions.add_moon') }}">
+<a class="btn btn-default dynamic-row-add" data-template="template_moon" data-target="calendar-moons" href="#" title="{{ __('calendars.actions.add_moon') }}">
     <i class="fa-solid fa-plus"></i> {{ __('calendars.actions.add_moon') }}
 </a>
 
 @section('modals')
     @parent
-<div class="form-group" id="template_moon" style="display: none">
-    <div class="row">
-        <div class="col-md-6">
-            <div class="input-group">
-                <span class="input-group-addon">
-                    <span class="fa-solid fa-arrows-alt-v"></span>
-                </span>
-                {!! Form::text('moon_name[]', null, ['class' => 'form-control', 'placeholder' => __('calendars.parameters.moon.name')]) !!}
-            </div>
-        </div>
-        <div class="col-md-2">
-            {!! Form::number('moon_fullmoon[]', null, ['class' => 'form-control', 'placeholder' => __('calendars.parameters.moon.fullmoon'), 'step' => '0.01', 'min' => 1]) !!}
-        </div>
-        <div class="col-md-2">
-            {!! Form::select('moon_colour[]', \App\Facades\FormCopy::colours(false), 'grey', ['class' => 'form-control']) !!}
-        </div>
-        <div class="col-md-2">
-            <div class="input-group">
-                {!! Form::number('moon_offset[]', 0, ['class' => 'form-control', 'placeholder' => __('calendars.parameters.moon.offset')]) !!}
-                <span class="input-group-btn">
-                    <span class="month-delete btn btn-danger" data-remove="4" title="{{ __('crud.remove') }}">
-                        <i class="fa-solid fa-trash"></i>
+<div id="template_moon" style="display: none">
+    <div class="form-group parent-delete-row">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        <span class="fa-solid fa-arrows-alt-v"></span>
                     </span>
-                </span>
+                    {!! Form::text('moon_name[]', null, ['class' => 'form-control', 'placeholder' => __('calendars.parameters.moon.name')]) !!}
+                </div>
+            </div>
+            <div class="col-md-2">
+                {!! Form::number('moon_fullmoon[]', null, ['class' => 'form-control', 'placeholder' => __('calendars.parameters.moon.fullmoon'), 'step' => '0.01', 'min' => 1]) !!}
+            </div>
+            <div class="col-md-2">
+                {!! Form::select('moon_colour[]', \App\Facades\FormCopy::colours(false), 'grey', ['class' => 'form-control']) !!}
+            </div>
+            <div class="col-md-2">
+                <div class="input-group">
+                    {!! Form::number('moon_offset[]', 0, ['class' => 'form-control', 'placeholder' => __('calendars.parameters.moon.offset')]) !!}
+                    <span class="input-group-btn">
+                        <span class="dynamic-row-delete btn btn-danger" data-remove="4" title="{{ __('crud.remove') }}">
+                            <i class="fa-solid fa-trash"></i>
+                        </span>
+                    </span>
+                </div>
             </div>
         </div>
+        {!! Form::hidden('moon_id[]', null) !!}
     </div>
-    {!! Form::hidden('moon_id[]', null) !!}
 </div>
 @endsection

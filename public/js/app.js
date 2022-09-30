@@ -2520,21 +2520,13 @@ $(function () {
 /*!*****************************************!*\
   !*** ./resources/assets/js/calendar.js ***!
   \*****************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+/***/ (() => {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var sortablejs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! sortablejs */ "./node_modules/sortablejs/modular/sortable.esm.js");
-
-var calendarAddMonth, calendarLeapYear;
 var calendarYearSwitcher, calendarYearSwitcherField, calendarEventModal;
 var reminderFormValid = false,
     reminderForm;
 $(document).ready(function () {
-  // Form
-  calendarLeapYear = $('input[name="has_leap_year"]');
-  initCalendarForm(); // View
-
+  // View
   calendarYearSwitcher = $('#calendar-year-switcher');
 
   if (calendarYearSwitcher.length === 1) {
@@ -2553,43 +2545,6 @@ $(document).ready(function () {
 
   registerKeyboardShortcuts();
 });
-/**
- * Initialize the calendar
- */
-
-function initCalendarForm() {
-  $('.calendar-add-template').on('click', function (e) {
-    console.log('what');
-    e.preventDefault();
-    var target = $(this).data('target');
-    var template = $(this).data('template');
-    $(target).append('<div class="form-group">' + $(template).html() + '</div>'); // Handle deleting already loaded blocks
-
-    calendarDeleteRowHandler();
-    return false;
-  }); // Handle deleting already loaded points
-
-  calendarDeleteRowHandler();
-}
-
-function calendarDeleteRowHandler() {
-  $.each($('.month-delete'), function () {
-    $(this).unbind('click'); // remove previous bindings
-
-    $(this).on('click', function (e) {
-      if ($(this).data('remove') === 4) {
-        $(this).parent().parent().parent().parent().remove();
-      } else {
-        $(this).parent().parent().parent().remove();
-      }
-
-      e.preventDefault();
-      return false;
-    });
-  }); // Re-init the sortable elements
-
-  window.initSortable();
-}
 
 function initCalendarEventBlock() {
   $('.calendar-event-block').each(function () {
@@ -3143,13 +3098,8 @@ __webpack_require__.r(__webpack_exports__);
 /**
  * Crud
  */
- // Character
 
-var characterAddPersonality, characterTemplatePersonality;
-var characterAddAppearance, characterTemplateAppearance;
-var characterSortPersonality, characterSortAppearance;
 var entityFormActions;
-var characterAddOrganisation, characterTemplateOrganisation, characterOrganisations;
 var multiEditingModal; // Entity Calendar
 
 var entityCalendarAdd, entityCalendarForm, entityCalendarField;
@@ -3165,27 +3115,7 @@ var keepAliveTimer = 300 * 1000; // 5 minutes
 var keepAliveUrl;
 var keepAliveEnabled = true;
 $(document).ready(function () {
-  characterSortPersonality = $('.character-personality');
-  characterSortAppearance = $('.character-appearance');
-  characterOrganisations = $('.character-organisations');
-  characterAddPersonality = $('#add_personality');
-
-  if (characterAddPersonality.length === 1) {
-    initCharacterPersonality();
-  }
-
-  characterAddAppearance = $('#add_appearance');
-
-  if (characterAddAppearance.length === 1) {
-    initCharacterAppearance();
-  }
-
-  characterAddOrganisation = $('#add_organisation');
-
-  if (characterAddOrganisation.length === 1) {
-    initCharacterOrganisation();
-  }
-
+  registerDynamicRows();
   (0,_components_ajax_modal__WEBPACK_IMPORTED_MODULE_0__["default"])();
   entityFormActions = $('.form-submit-actions');
 
@@ -3257,111 +3187,6 @@ function registerEntityNameCheck() {
         }
       } else {
         entityCreatorDuplicateWarning.hide();
-      }
-    });
-  });
-}
-/**
- *
- */
-
-
-function initCharacterPersonality() {
-  characterTemplatePersonality = $('#template_personality');
-  characterAddPersonality.on('click', function (e) {
-    e.preventDefault();
-    $(characterSortPersonality).append('<div class="form-group">' + characterTemplatePersonality.html() + '</div>'); // Handle deleting already loaded blocks
-
-    characterDeleteRowHandler();
-    return false;
-  });
-  characterDeleteRowHandler();
-}
-/**
- *
- */
-
-
-function initCharacterAppearance() {
-  characterTemplateAppearance = $('#template_appearance');
-  characterAddAppearance.on('click', function (e) {
-    e.preventDefault();
-    $(characterSortAppearance).append('<div class="form-group">' + characterTemplateAppearance.html() + '</div>'); // Handle deleting already loaded blocks
-
-    characterDeleteRowHandler();
-    return false;
-  });
-  characterDeleteRowHandler();
-}
-/**
- *
- */
-
-
-function initCharacterOrganisation() {
-  characterTemplateOrganisation = $('#template_organisation');
-  characterAddOrganisation.on('click', function (e) {
-    e.preventDefault();
-    $(characterOrganisations).append('<div class="form-group">' + characterTemplateOrganisation.html() + '</div>'); // Replace the temp class with the real class. We need this to avoid having two select2 fields
-
-    characterOrganisations.find('.tmp-org').removeClass('tmp-org').addClass('select2'); // Handle deleting already loaded blocks
-
-    characterDeleteRowHandler();
-    registerPrivateCheckboxes();
-    return false;
-  });
-  characterDeleteRowHandler();
-}
-/**
- *
- */
-
-
-function characterDeleteRowHandler() {
-  $.each($('.personality-delete'), function () {
-    $(this).unbind('click'); // remove previous bindings
-
-    $(this).on('click', function (e) {
-      e.preventDefault();
-      $(this).closest('.parent-delete-row').remove();
-    });
-  });
-  $.each($('.member-delete'), function () {
-    $(this).unbind('click');
-    $(this).on('click', function (e) {
-      e.preventDefault();
-      $(this).closest('.form-group').remove();
-    });
-  }); // Always re-calc the sortable traits
-
-  characterSortPersonality.sortable();
-  characterSortAppearance.sortable();
-  window.initForeignSelect();
-}
-/**
- *
- */
-
-
-function registerPrivateCheckboxes() {
-  $.each($('[data-toggle="private"]'), function () {
-    // Add the title first
-    if ($(this).hasClass('fa-lock')) {
-      $(this).prop('title', $(this).data('private'));
-    } else {
-      $(this).prop('title', $(this).data('public'));
-    } // On click toggle
-
-
-    $(this).click(function () {
-      if ($(this).hasClass('fa-lock')) {
-        // Unlock
-        $(this).removeClass('fa-lock').addClass('fa-unlock-alt').prop('title', $(this).data('public'));
-        $(this).parent().find('input:hidden').val("0");
-      } else {
-        // Lock
-        $(this).removeClass('fa-unlock-alt').addClass('fa-lock').prop('title', $(this).data('private'));
-        $(this).parent().find('input:hidden').val("1");
       }
     });
   });
@@ -4068,6 +3893,32 @@ function registerTrustDomain() {
     var expires = new Date();
     expires.setTime(expires.getTime() + 30 * 24 * 60 * 60 * 1000);
     document.cookie = cookieName + '=' + keyValue + ';expires=' + expires.toUTCString() + ';sameSite=Strict';
+  });
+}
+
+function registerDynamicRows() {
+  $('.dynamic-row-add').on('click', function (e) {
+    console.log('dynamic row add');
+    e.preventDefault();
+    var target = $(this).data('target');
+    var template = $(this).data('template'); //console.log('target', target, $('.' + target));
+    //console.log('template', template, $('#' + template));
+
+    $('.' + target).append('<div class="form-group">' + $('#' + template).html() + '</div>');
+    registerDynamicRowDelete();
+    return false;
+  });
+  registerDynamicRowDelete();
+}
+
+function registerDynamicRowDelete() {
+  $.each($('.dynamic-row-delete'), function () {
+    $(this).unbind('click'); // remove previous bindings
+
+    $(this).on('click', function (e) {
+      e.preventDefault();
+      $(this).closest('.parent-delete-row').remove();
+    });
   });
 }
 
