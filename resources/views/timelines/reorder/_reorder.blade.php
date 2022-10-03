@@ -3,7 +3,6 @@
         'route' => ['timelines.reorder-save', $timeline],
         'method' => 'POST',
     ]) !!}
-
 <div class="box box-solid box-entity-story-reorder">
     <div class="box-header">
         <h3 class="box-title">
