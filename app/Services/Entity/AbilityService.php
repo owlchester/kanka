@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Services\Entity;
-
 
 use App\Facades\Mentions;
 use App\Models\Ability;
@@ -11,7 +9,6 @@ use App\Models\Entity;
 use App\Models\EntityAbility;
 use ChrisKonnertz\StringCalc\StringCalc;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\Auth;
 use Exception;
 
 class AbilityService
@@ -19,7 +16,7 @@ class AbilityService
     /** @var Entity */
     protected $entity;
 
-    /** @var array */
+    /** @var array|bool */
     protected $attributes = false;
 
     /** @var array All the abilities of this entity, nicely prepared */
@@ -115,35 +112,36 @@ class AbilityService
     }
 
     /**
-     * @param Ability $ability
+     * @param EntityAbility $entityAbility
      */
     protected function add(EntityAbility $entityAbility): void
     {
         /** @var Ability $parent */
         $ability = $entityAbility->ability;
         $parent = $ability->ability;
-        if (!empty($parent)) {
-            if (!isset($this->abilities['parents'][$parent->id])) {
-                $this->abilities['parents'][$parent->id] = [
-                    'id' => $parent->id,
-                    'name' => $parent->name,
-                    'type' => $parent->type,
-                    'image' => $parent->getImageUrl(),
-                    'has_image' => !empty($parent->image),
-                    'entry' => $parent->entry(),
-                    'parent' => true,
-                    'abilities' => [],
-                ];
-            }
-
-            $this->abilities['parents'][$parent->id]['abilities'][] = $this->format($entityAbility);
-        } else {
-            $this->abilities['abilities'][$ability->id] = $this->format($entityAbility);
+        if (empty($parent)) {
+            $this->abilities['abilities'][] = $this->format($entityAbility);
+            return;
         }
+
+        if (!isset($this->abilities['parents'][$parent->id])) {
+            $this->abilities['parents'][$parent->id] = [
+                'id' => $parent->id,
+                'name' => $parent->name,
+                'type' => $parent->type,
+                'image' => $parent->getImageUrl(),
+                'has_image' => !empty($parent->image),
+                'entry' => $parent->entry(),
+                'parent' => true,
+                'abilities' => [],
+            ];
+        }
+        // Add to their parent's abilities
+        $this->abilities['parents'][$parent->id]['abilities'][] = $this->format($entityAbility);
     }
 
     /**
-     * @param Ability $ability
+     * @param EntityAbility $entityAbility
      * @return array
      */
     protected function format(EntityAbility $entityAbility): array
@@ -156,8 +154,9 @@ class AbilityService
             'charges' => $this->parseCharges($entityAbility->ability),
             'used_charges' => $entityAbility->charges,
             'note' => nl2br($this->mapAttributes(
-                Mentions::mapAny($entityAbility, 'note'), false)
-            ),
+                Mentions::mapAny($entityAbility, 'note'),
+                false
+            )),
             'visibility_id' => $entityAbility->visibility_id,
             'created_by' => $entityAbility->created_by,
             'attributes' => $this->attributes($entityAbility->ability->entity),
@@ -219,7 +218,7 @@ class AbilityService
         }
         try {
             return $this->mapAttributes($ability->charges);
-        } catch(\Exception $e) {
+        } catch (\Exception $e) {
             return null;
         }
     }
@@ -233,7 +232,7 @@ class AbilityService
         $entry = $ability->entry();
         try {
             return $this->mapAttributes($entry, false);
-        } catch(\Exception $e) {
+        } catch (\Exception $e) {
             return $entry;
         }
     }
@@ -324,7 +323,6 @@ class AbilityService
                 $count++;
             }
         }
-
 
         return $count;
     }
