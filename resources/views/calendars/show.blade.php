@@ -30,7 +30,7 @@ if (!empty($redirect)) {
             </a>
         @endcan
         @can('entity-note', [$model, 'add'])
-            <a href="{{ route('entities.entity_notes.create', $model->entity) }}" class="btn btn-warning btn-sm btn-new-entity"
+            <a href="{{ route('entities.entity_notes.create', $model->entity) }}" class="btn btn-warning btn-sm btn-new-post"
                data-entity-type="post" data-toggle="tooltip" title="{{ __('crud.tooltips.new_post') }}">
                 <i class="fa-solid fa-plus"></i> {{ __('crud.actions.new_post') }}
             </a>

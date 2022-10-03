@@ -3868,23 +3868,8 @@ var __webpack_exports__ = {};
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var sortablejs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! sortablejs */ "./node_modules/sortablejs/modular/sortable.esm.js");
 
-$(document).ready(function () {
-  registerTimelineEvents();
-});
-/**
- * Timeline toggle support
- */
-
-function registerTimelineEvents() {
-  $('.timeline-era-reorder').on('click', function (e) {
-    e.preventDefault();
-    var eraId = $(this).data('era-id');
-    var el = document.querySelector('#era-items-' + eraId);
-    sortablejs__WEBPACK_IMPORTED_MODULE_0__["default"].create(el);
-    $(this).parent().hide();
-    $('#era-items-' + eraId + '-save-reorder').show();
-  });
-}
+/*$(document).ready(function() {
+});*/
 })();
 
 /******/ })()

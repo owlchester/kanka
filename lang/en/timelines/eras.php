@@ -32,10 +32,4 @@ return [
         'name'          => 'Modern Era, Bronz Age, Galactic Wars',
         'start_year'    => 'Year the era starts. Leave blank if this is the first era.',
     ],
-    'reorder'       => [
-        'eras_success'  => 'Eras successfully reordered.',
-        'menu'          => 'Reorder eras',
-        'success'       => 'Elements of the :era era reordered.',
-        'title'         => 'Reorder timeline eras',
-    ],
 ];

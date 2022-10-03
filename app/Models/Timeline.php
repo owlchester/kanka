@@ -187,9 +187,8 @@ class Timeline extends MiscModel
         ];
         if (auth()->check() && auth()->user()->can('update', $this)) {
             $items['second']['reorder'] = [
-                'name' => 'timelines/eras.reorder.menu',
-                'route' => 'timeline-eras.reorder',
-                'count' => $this->descendants()->count()
+                'name' => 'timelines.show.tabs.reorder',
+                'route' => 'timelines.reorder',
             ];
         }
 
