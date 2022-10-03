@@ -271,10 +271,10 @@ if (auth()->check()) {
 
                         @if (auth()->user()->can('delete', $campaign))
                             <p class="mt-5">{!! __('campaigns.destroy.confirm', ['campaign' => '<strong>' . $campaign->name . '</strong>']) !!}
-                            <p class="help-block"> {{ __('campaigns.destroy.hint', ['code' => 'delete']) }} </p>
+                            <p class="help-block"> {!! __('campaigns.destroy.hint', ['code' => '<code>delete</code>']) !!} </p>
                             {!! Form::open(['method' => 'DELETE', 'route' => ['campaigns.destroy', $campaign->id]]) !!}
                             <div class="form-group required">
-                                {!! Form::text('delete',null, ['class' => 'form-control','required']) !!}
+                                {!! Form::text('delete', null, ['class' => 'form-control', 'required']) !!}
                             </div>
                             <div class="py-5">
                                 <button type="button" class="btn px-8 rounded-full mr-5" data-dismiss="modal">{{ __('crud.cancel') }}</button>

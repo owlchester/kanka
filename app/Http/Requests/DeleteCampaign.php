@@ -25,7 +25,6 @@ class DeleteCampaign extends FormRequest
      */
     public function rules()
     {
-        $user = Auth::user();
         $rules = [
             'delete' => ['string', new CampaignDelete],
         ];
