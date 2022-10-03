@@ -18,7 +18,7 @@ jobs:
   build:
     strategy:
       matrix:
-        php: ["8.2"]
+        php: ["8.1"]
         laravel: ["^9.0"]
         
     # The type of runner that the job will run on
