@@ -2440,12 +2440,20 @@ div.mce-fullscreen {
   margin-bottom: 10px;
   padding: 10px;
   cursor: grab;
-  flex-wrap: nowrap;
   align-items: center;
   justify-content: center;
 }
 .element-live-reorder .element .dragger {
   padding-right: 10px;
+}
+.element-live-reorder .element .rounded-icon i {
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  font-size: 15px;
+  line-height: 30px;
+  text-align: center;
+  display: block;
 }
 .element-live-reorder .element .name {
   overflow: hidden;
@@ -2467,6 +2475,10 @@ div.mce-fullscreen {
 .element-live-reorder .element select {
   height: 28px;
   padding: 3px 6px;
+}
+.element-live-reorder .element .children {
+  flex: 0 0 100%;
+  margin-top: 15px;
 }
 
 ul.sidebar-sortable, ul.sidebar-sortable ul {

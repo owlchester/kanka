@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ReorderTimelineEras extends FormRequest
+class ReorderTimeline extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.

@@ -209,10 +209,10 @@ Route::post('/gallery/folder', 'Campaign\GalleryController@folder')
 Route::get('/menu_links/{menu_link}/random', 'MenuLinkController@random')
     ->name('menu_links.random');
 
-Route::get('/timelines/{timeline}/timeline-eras/reorder', [\App\Http\Controllers\Timelines\TimelineEraController::class, 'reorderEras'])
-    ->name('timeline-eras.reorder');
-Route::post('/timelines/{timeline}/timeline-eras/reorder', [\App\Http\Controllers\Timelines\TimelineEraController::class, 'save'])
-    ->name('timeline-eras.reorder-save');
+Route::get('/timelines/{timeline}/reorder', [\App\Http\Controllers\Timelines\TimelineReorderController::class, 'index'])
+    ->name('timelines.reorder');
+Route::post('/timelines/{timeline}/reorder', [\App\Http\Controllers\Timelines\TimelineReorderController::class, 'save'])
+    ->name('timelines.reorder-save');
 
 Route::get('/quick-links/reorder', [\App\Http\Controllers\QuickLinkController::class, 'reorder'])
     ->name('quick-links.reorder');
@@ -322,7 +322,7 @@ if(config('marketplace.enabled')) {
     Route::post('/plugins/bulk', 'Campaign\PluginController@bulk')->name('campaign_plugins.bulk');
 }
 
-Route::post('/timelines/{timeline}/timeline-era/{timeline_era}/reorder', 'Timelines\TimelineEraController@reorder')->name('timelines.reorder');
+//Route::post('/timelines/{timeline}/timeline-era/{timeline_era}/reorder', 'Timelines\TimelineEraController@reorder')->name('timelines.reorder');
 // Old Search
 Route::get('/search', 'SearchController@search')->name('search');
 

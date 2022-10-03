@@ -17,9 +17,11 @@ use Illuminate\Database\Eloquent\Builder;
  * @property string|int $start_year
  * @property string|int $end_year
  * @property bool $is_collapsed
+ * @property int|null $position
  *
  * @property Timeline $timeline
  * @property TimelineElement[] $elements
+ * @property TimelineElement[] $orderedElements
  *
  * @method static self|Builder ordered()
  */
@@ -50,6 +52,15 @@ class TimelineEra extends Model
     public function elements()
     {
         return $this->hasMany(TimelineElement::class, 'era_id');
+    }
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function orderedElements()
+    {
+        return $this->elements()
+            ->ordered()
+        ;
     }
 
     /**

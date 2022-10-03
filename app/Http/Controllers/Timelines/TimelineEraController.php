@@ -1,16 +1,11 @@
 <?php
 
-
 namespace App\Http\Controllers\Timelines;
-
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreTimelineEra;
-use App\Http\Requests\ReorderTimelineEras;
 use App\Models\Timeline;
 use App\Models\TimelineEra;
-use App\Services\TimelineService;
-use Illuminate\Http\Request;
 
 class TimelineEraController extends Controller
 {
@@ -23,14 +18,6 @@ class TimelineEraController extends Controller
         'end_year',
         'is_collapsed',
     ];
-
-    /** @var TimelineService */
-    protected $service;
-
-    public function __construct(TimelineService $timelineService)
-    {
-        $this->service = $timelineService;
-    }
 
     public function index(Timeline $timeline)
     {
@@ -159,55 +146,5 @@ class TimelineEraController extends Controller
         return redirect()
             ->route('timelines.edit', [$timeline, '#tab_form-eras'])
             ->withSuccess(__('timelines/eras.delete.success', ['name' => $timelineEra->name]));
-    }
-
-    /**
-     * @param Timeline $timeline
-     * @param TimelineEra $timelineEra
-     * @return mixed
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
-    public function reorder(Timeline $timeline, TimelineEra $timelineEra)
-    {
-        $this->authorize('update', $timelineEra->timeline);
-
-        $this->service->reorderEra($timelineEra, request()->post('element_ids', []));
-        return redirect()
-            ->route('timelines.show', [$timeline, '#era-' . $timelineEra->id])
-            ->withSuccess(__('timelines/eras.reorder.success', ['era' => $timelineEra->name]));
-    }
-
-    /**
-     * @param Timeline $timeline
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
-    public function reorderEras(Timeline $timeline)
-    {
-        $this->authorize('update', $timeline);
-
-        $eras = $timeline->eras()->ordered()->get();
-
-        return view('timelines.eras.reorder', compact(
-            'eras',
-            'timeline'
-        ));
-    }
-
-    /**
-     * @param Timeline $timeline
-     * @param ReorderTimelineEras $request
-     * @return mixed
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
-    public function save(Timeline $timeline, ReorderTimelineEras $request)
-    {
-        $this->authorize('update', $timeline);
-
-        $this->service
-            ->reorder($request);
-        return redirect()
-            ->route('timelines.show', [$timeline])
-            ->withSuccess(__('timelines/eras.reorder.eras_success'));
     }
 }

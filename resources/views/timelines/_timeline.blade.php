@@ -4,7 +4,7 @@
  * @var \App\Models\TimelineEra $era
  * @var \App\Models\TimelineElement $element
  */
-$eras = $timeline->eras()->ordered()->get();
+$eras = $timeline->eras()->with(['orderedElements', 'orderedElements.entity'])->ordered()->get();
 $loadedElements = [];
 ?>
 @forelse ($eras as $era)
@@ -52,12 +52,8 @@ $loadedElements = [];
         </div>
     </div>
 
-    @can('update', $timeline)
-        {!! Form::open(['route' => ['timelines.reorder', $timeline, $era], 'method' => 'POST']) !!}
-    @endcan
-
     <ul class="timeline collapse {{ $era->is_collapsed ? 'out' : 'in' }}" id="era-items-{{ $era->id }}">
-    @foreach($era->elements()->ordered()->get() as $element)
+    @foreach($era->orderedElements as $element)
         @php
             $position = $element->position + 1;
             $loadedElements[] = $element;
@@ -77,26 +73,13 @@ $loadedElements = [];
                 <i class="fa-solid fa-plus"></i>
                 <span class="hidden-xs inline">{!! __('timelines.actions.add_element', ['era' => $era->name]) !!}</span>
             </a>
-            @if($era->elements()->count() > 1)
-            <a href="#" class="timeline-era-reorder btn btn-default btn-sm" data-era-id="{{ $era->id }}" data-toggle="tooltip" title="{{ __('timelines.helpers.reorder_tooltip') }}">
-                <i class="fa-solid fa-arrows-alt-v"></i> {{ __('timelines.actions.reorder') }}
-            </a>
-            @endif
         </div>
-        <div style="display:none;" class="text-center mb-5" id="era-items-{{ $era->id }}-save-reorder">
-            <p class="text-muted">{{ __('timelines.helpers.reorder') }}</p>
-
-            <button type="submit" class="btn btn-primary">
-                {{ __('timelines.actions.save_order') }}
-            </button>
-        </div>
-        {!! Form::close() !!}
     @endcan
     </ul>
 @empty
     <div class="alert alert-warning">
         <div class = "mb-2" >{{ __('timelines.helpers.no_era') }} </div>
-        @can('update', $timeline)  
+        @can('update', $timeline)
         <a href="{{ route('timelines.timeline_eras.create', ['timeline' => $model, 'from' => 'view']) }}" class="btn btn-warning btn-sm">
             <i class="fa-solid fa-plus"></i> {{ __('timelines/eras.actions.add') }}
         </a>

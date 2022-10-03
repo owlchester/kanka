@@ -6,13 +6,24 @@
         margin-bottom: 10px;
         padding: 10px;
         cursor: grab;
-        flex-wrap: nowrap;
+        //flex-wrap: nowrap;
         align-items: center;
         justify-content: center;
 
         .dragger {
             padding-right: 10px;
             //align-self: flex-start;
+        }
+        .rounded-icon {
+            i {
+                border-radius: 50%;
+                width: 30px;
+                height: 30px;
+                font-size: 15px;
+                line-height: 30px;
+                text-align: center;
+                display: block;
+            }
         }
 
         .name {
@@ -40,6 +51,11 @@
         select {
             height: 28px;
             padding: 3px 6px;
+        }
+
+        .children {
+            flex: 0 0 100%;
+            margin-top: 15px;
         }
     }
 }

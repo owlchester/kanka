@@ -2,12 +2,26 @@
 
 namespace App\Services;
 
+use App\Models\Timeline;
 use App\Models\TimelineElement;
 use App\Models\TimelineEra;
-use App\Http\Requests\ReorderTimelineEras;
+use App\Http\Requests\ReorderTimeline;
+use Illuminate\Support\Arr;
 
 class TimelineService
 {
+    protected Timeline $timeline;
+
+    /**
+     * @param Timeline $timeline
+     * @return $this
+     */
+    public function timeline(Timeline $timeline): self
+    {
+        $this->timeline = $timeline;
+        return $this;
+    }
+
     /**
      * @param TimelineElement $timelineElement
      * @param boolean $replace
@@ -35,35 +49,13 @@ class TimelineService
     }
 
     /**
-     * @param TimelineEra $era
-     * @param array $ids
-     */
-    public function reorderEra(TimelineEra $era, array $ids)
-    {
-        if (empty($ids) || !is_array($ids)) {
-            return;
-        }
-
-        $position = 1;
-        foreach ($ids as $id) {
-            /** @var TimelineElement|null $element */
-            $element = $era->elements()->where('id', $id)->first();
-            if ($element === null) {
-                continue;
-            }
-            $element->position = $position;
-            $element->save();
-            $position += 1;
-        }
-    }
-
-    /**
-     * @param ReorderTimelineEras $request
+     * @param ReorderTimeline $request
      * @return bool
      */
-    public function reorder(ReorderTimelineEras $request): bool
+    public function reorder(ReorderTimeline $request): bool
     {
         $ids = $request->get('timeline_era');
+        $elementIds = $request->get('timeline_element');
         if (empty($ids)) {
             return false;
         }
@@ -72,14 +64,38 @@ class TimelineService
         foreach ($ids as $id) {
             /** @var TimelineEra|null $era */
             $era = TimelineEra::find($id);
-            if ($era === null) {
+            if ($era === null || $era->timeline_id !== $this->timeline->id) {
                 continue;
             }
 
             $era->position = $position;
             $era->save();
             $position++;
+
+            // Reorder elements
+            $elements = Arr::get($elementIds, $id, []);
+            if (empty($elements)) {
+                continue;
+            }
+            $elementPosition = 1;
+            //dump($elements);
+            foreach ($elements as $elementId) {
+                /** @var TimelineElement|null $element */
+                $element = TimelineElement::find($elementId);
+                if ($element === null || $element->timeline_id !== $this->timeline->id) {
+                    continue;
+                }
+
+                // Reposition
+                //dump("Reposition $element->name (# $element->id) to $elementPosition");
+                $element->position = $elementPosition;
+                $element->save();
+
+                $elementPosition++;
+            }
         }
+
+        //dd('w');
 
         return true;
     }
