@@ -215,8 +215,13 @@ trait CalendarDateTrait
             return $this->calendarDateEvent;
         }
         if (!$this->entity) {
-            return null;
+            return $this->calendarDateEvent = null;
         }
-        return $this->calendarDateEvent = $this->entity->calendarDateEvents->first();
+        $this->calendarDateEvent = $this->entity->calendarDateEvents->first();
+        if (!$this->calendarDateEvent->calendar) {
+            return $this->calendarDateEvent = null;
+        }
+
+        return $this->calendarDateEvent;
     }
 }
