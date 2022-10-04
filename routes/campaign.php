@@ -348,7 +348,6 @@ Route::get('/search/maps', 'Search\MiscController@maps')->name('maps.find');
 Route::get('/search/markers', 'Search\MiscController@markers')->name('markers.find');
 Route::get('/search/attribute-templates', 'Search\MiscController@attributeTemplates')->name('attribute_templates.find');
 Route::get('/search/images', 'Search\ImageSearchController@index')->name('images.find');
-Route::get('/search/quest-elements', 'Search\MiscController@questElements')->name('quest_elements.find');
 
 Route::get('/search/members', 'Search\CampaignSearchController@members')->name('find.campaign.members');
 Route::get('/search/roles', 'Search\CampaignSearchController@roles')->name('find.campaign.roles');

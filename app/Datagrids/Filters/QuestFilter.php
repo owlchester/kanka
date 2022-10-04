@@ -28,9 +28,9 @@ class QuestFilter extends DatagridFilter
             ])
             ->add([
                 'field' => 'quest_elements',
-                'label' => __('quests.fields.entity'),
+                'label' => __('crud.fields.entity'),
                 'type' => 'select2',
-                'route' => route('quest_elements.find'),
+                'route' => route('search.entities-with-relations'),
                 'placeholder' =>  __('quests.placeholders.entity'),
                 'model' => Entity::class,
             ])

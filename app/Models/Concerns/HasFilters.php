@@ -552,8 +552,6 @@ trait HasFilters
      */
     protected function filterQuestElementRoles(Builder $query): void
     {
-        $query = $this->joinEntity($query);
-
         // No attribute with this name
         if ($this->filterOperator === 'not like') {
             $query

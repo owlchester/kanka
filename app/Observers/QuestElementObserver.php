@@ -3,6 +3,7 @@
 namespace App\Observers;
 
 use App\Facades\Mentions;
+use App\Facades\QuestCache;
 use App\Models\QuestElement;
 use App\Models\Visibility;
 use App\Traits\VisibilityIDTrait;
@@ -26,6 +27,7 @@ class QuestElementObserver
         if (empty($questElement->visibility_id)) {
             $questElement->visibility_id = Visibility::VISIBILITY_ALL;
         }
+        QuestCache::clearSuggestion();
     }
 
     /**
@@ -34,5 +36,6 @@ class QuestElementObserver
     public function creating(QuestElement $questElement)
     {
         $questElement->created_by = auth()->user()->id;
+        QuestCache::clearSuggestion();
     }
 }

@@ -36,7 +36,6 @@ return [
         'quests'        => 'Sub Quests',
         'role'          => 'Role',
         'type'          => 'Type',
-        'entity'        => 'Entity',
         'element_role'  => 'Role',
     ],
     'helpers'       => [
