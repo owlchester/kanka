@@ -44,28 +44,33 @@
     padding: 0;
     list-style: none;
 
-    &:before {
-        content: '';
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        width: 4px;
-        background: #ddd;
-        left: 31px;
-        margin: 0;
-        border-radius: 2px;
-    }
-
     > li {
         position: relative;
         margin-right: 10px;
-        margin-bottom: 15px;
+        padding-bottom: 15px;
 
-        &:before, &:after {
+        &:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: #ddd;
+            left: 31px;
+            margin: 0;
+            border-radius: 2px;
+        }
+
+        &:last-of-type {
+            &:before {
+                content: ' ';
+                display: table;
+            }
+        }
+
+        &:after {
             content: " ";
             display: table;
-        }
-        &:after {
             clear: both;
         }
 

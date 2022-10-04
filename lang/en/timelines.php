@@ -2,7 +2,7 @@
 
 return [
     'actions'       => [
-        'add_element'   => 'Add to era :era',
+        'add_element'   => 'Add element to era :era',
         'back'          => 'Back to :name',
         'edit'          => 'Edit timeline',
         'save_order'    => 'Save new order',

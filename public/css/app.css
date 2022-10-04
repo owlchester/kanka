@@ -1391,7 +1391,12 @@ summary {
   padding: 0;
   list-style: none;
 }
-.timeline:before {
+.timeline > li {
+  position: relative;
+  margin-right: 10px;
+  padding-bottom: 15px;
+}
+.timeline > li:before {
   content: "";
   position: absolute;
   top: 0;
@@ -1402,16 +1407,13 @@ summary {
   margin: 0;
   border-radius: 2px;
 }
-.timeline > li {
-  position: relative;
-  margin-right: 10px;
-  margin-bottom: 15px;
-}
-.timeline > li:before, .timeline > li:after {
+.timeline > li:last-of-type:before {
   content: " ";
   display: table;
 }
 .timeline > li:after {
+  content: " ";
+  display: table;
   clear: both;
 }
 .timeline > li .timeline-item {
