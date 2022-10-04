@@ -3680,7 +3680,7 @@ function initSpectrum() {
 
 
 function registerStoryActions() {
-  var posts = $('.entity-notes');
+  var posts = $('.entity-notes > div');
   $('.btn-post-collapse').unbind('click').click(function () {
     posts.each(function () {
       var body = $(this).find('.entity-content');

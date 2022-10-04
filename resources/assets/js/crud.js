@@ -607,7 +607,7 @@ function initSpectrum() {
  *
  */
 function registerStoryActions() {
-    let posts = $('.entity-notes');
+    let posts = $('.entity-notes > div');
     $('.btn-post-collapse').unbind('click').click(function () {
         posts.each(function () {
             let body = $(this).find('.entity-content');
