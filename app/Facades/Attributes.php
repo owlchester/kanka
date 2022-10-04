@@ -24,6 +24,3 @@ class Attributes extends Facade
         return 'attributes';
     }
 }
-{
-
-}
