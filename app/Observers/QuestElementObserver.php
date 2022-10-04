@@ -27,7 +27,6 @@ class QuestElementObserver
         if (empty($questElement->visibility_id)) {
             $questElement->visibility_id = Visibility::VISIBILITY_ALL;
         }
-        QuestCache::clearSuggestion();
     }
 
     /**
@@ -36,6 +35,13 @@ class QuestElementObserver
     public function creating(QuestElement $questElement)
     {
         $questElement->created_by = auth()->user()->id;
+    }
+
+    /**
+     * @param QuestElement $questElement
+     */
+    public function saved()
+    {
         QuestCache::clearSuggestion();
     }
 }
