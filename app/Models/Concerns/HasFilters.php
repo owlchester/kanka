@@ -140,6 +140,10 @@ trait HasFilters
                     $this->filterRace($query, $value);
                 } elseif ($key == 'family') {
                     $this->filterFamily($query, $value);
+                } elseif ($key == 'quest_elements') {
+                    $this->filterQuestElements($query, $value);
+                } elseif ($key == 'element_role') {
+                    $this->filterQuestElementRoles($query, $value);
                 } elseif ($key == 'has_image') {
                     $this->filterHasImage($query, $value);
                 } elseif ($key == 'has_entity_notes') {
@@ -518,6 +522,52 @@ trait HasFilters
         })->whereIn('cr.race_id', $ids)->distinct();
     }
 
+    /**
+     * Filter quests based on ther elements.
+     * @param Builder $query
+     * @param string|null $value
+     * @return void
+     */
+    protected function filterQuestElements(Builder $query, string $value = null): void
+    {
+        $ids = [$value];
+        if ($this->filterOption('exclude')) {
+            $query->whereRaw('(select count(*) from quest_elements as qe where qe.quest_id = ' .
+                $this->getTable() . '.id and qe.entity_id = ' . ((int) $value) . ') = 0');
+            return;
+        }
+
+        $query
+        ->select($this->getTable() . '.*')
+        ->leftJoin('quest_elements as qe', function ($join) {
+            $join->on('qe.quest_id', '=', $this->getTable() . '.id');
+        })->whereIn('qe.entity_id', $ids)->distinct();
+    }
+
+    /**
+     * Filter on the attributes of an entity
+     * @param Builder $query
+     * @param string $key
+     * @return void
+     */
+    protected function filterQuestElementRoles(Builder $query): void
+    {
+        $query = $this->joinEntity($query);
+
+        // No attribute with this name
+        if ($this->filterOperator === 'not like') {
+            $query
+                ->whereRaw('(select count(*) from quest_elements as qe where qe.quest_id =' . $this->getTable() . '.id and qe.role = \''
+                    . ($this->filterValue) . '\') = 0');
+            return;
+        }
+        $query
+            ->select($this->getTable() . '.*')
+            ->leftJoin('quest_elements as qe', function ($join) {
+                $join->on('qe.quest_id', '=', $this->getTable() . '.id');
+            })
+            ->where('qe.role', 'rat');
+    }
     /**
      * Filter characters on a single family
      * @param Builder $query

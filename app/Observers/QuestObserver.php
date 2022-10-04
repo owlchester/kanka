@@ -2,6 +2,7 @@
 
 namespace App\Observers;
 
+use App\Facades\QuestCache;
 use App\Models\Entity;
 use App\Models\MiscModel;
 use App\Models\Quest;
