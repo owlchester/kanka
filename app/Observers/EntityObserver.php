@@ -68,6 +68,9 @@ class EntityObserver
             return;
         }
         $ids = request()->post('tags', []);
+        if (!is_array($ids)) { // People sent weird stuff through the API
+            $ids = [];
+        }
 
         // Only use tags the user can actually view. This way admins can
         // have tags on entities that the user doesn't know about.
