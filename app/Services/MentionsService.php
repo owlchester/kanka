@@ -116,6 +116,10 @@ class MentionsService
      */
     public function mapAttribute(Attribute $attribute)
     {
+        if (str_contains($attribute->value, $attribute->mentionName())) {
+            return Attributes::parse($attribute);
+        }
+
         $this->text = (string) $attribute->value;
         $attribute->value = $this->extractAndReplace();
 
