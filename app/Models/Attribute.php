@@ -209,7 +209,6 @@ class Attribute extends Model
     public function setValue($value): self
     {
         $this->value = $value;
-
         // Check if there is a constraint
         if (!$this->validConstraints()) {
             return $this;
@@ -242,6 +241,14 @@ class Attribute extends Model
     {
         $this->calculateConstraints();
         return $this->numberMin;
+    }
+
+    /**
+     * @return string
+     */
+    public function mentionName()
+    {
+        return '{attribute:' . $this->id . '}';
     }
 
     /**

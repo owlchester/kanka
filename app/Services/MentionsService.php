@@ -116,6 +116,11 @@ class MentionsService
      */
     public function mapAttribute(Attribute $attribute)
     {
+        //Check if the attribute is trying to call itself as a value, if so, ignore it to avoid an infinite loop.
+        if (str_contains($attribute->value, $attribute->mentionName())) {
+            return Attributes::parse($attribute);
+        }
+
         $this->text = (string) $attribute->value;
         $attribute->value = $this->extractAndReplace();
 
