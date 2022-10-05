@@ -12,10 +12,10 @@ if (!isset($entity)) {
 $imageUrl = $imagePath = $headerImageUrl =null;
 if ($model->image) {
     $imageUrl = $model->getOriginalImageUrl();
-    $imagePath = $model->thumbnail(600);
+    $imagePath = $model->thumbnail(250);
 } elseif ($campaignService->campaign()->superboosted() && !empty($entity) && $entity->image) {
     $imageUrl = $entity->image->getUrl();
-    $imagePath = Img::crop(600, 600)->url($entity->image->path);
+    $imagePath = Img::crop(250, 250)->url($entity->image->path);
 }
 /** @var \App\Models\Tag[] $entityTags */
 $entityTags = $entity->tagsWithEntity();

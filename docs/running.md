@@ -74,6 +74,8 @@ First, go to [localhost:9000](http://localhost:9000). This is where your files w
 
 Create a new bucket called `kanka`. This will redirect you to the new `kanka` bucket. Click on the top right cogwheel icon to access the bucket's config interface. On this page, change the `Access Policy` from `private` to `public`. Without this, uploaded file won't be visible in the browser.
 
+Next up, create a second bucket called `thumbnails`. Same as before, go back and set it's `Access Policy` from `private` to `public`. This bucket will contain your thumbnails.
+
 #### Database setup
 
 Now that the bucket is set up, go back to your console run the following commands. The first will set up your security key used to encode session cookies.

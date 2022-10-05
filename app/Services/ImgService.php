@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Services;
-
 
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -11,6 +9,9 @@ class ImgService
 {
     /** @var string  */
     protected $crop = '';
+
+    /** @var bool If true, running locally with docker/minio */
+    protected bool $local = false;
 
     /** @var bool Called from console */
     protected $console = false;
@@ -30,6 +31,7 @@ class ImgService
     public function __construct()
     {
         $this->enabled = !empty(config('thumbor.key'));
+        $this->local = config('thumbor.key') === 'local';
     }
 
     /**
@@ -118,6 +120,12 @@ class ImgService
         }
         $thumborUrl = $this->crop . $filter . $full;
         $sign = $this->sign($thumborUrl);
+
+        // If we're on a local instance, it's a lot easier, everything is in minio
+        if ($this->local) {
+            return config('thumbor.url') . 'unsafe/' . $this->crop . $filter
+                . app()->environment() . '/' . urlencode($img);
+        }
 
         return config('thumbor.url') . $this->base . '/' . $sign . '/' . $this->crop . $filter
             . 'src/' . urlencode($img)
