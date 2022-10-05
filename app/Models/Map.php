@@ -672,7 +672,7 @@ class Map extends MiscModel
 
     public function hasDistanceUnit(): bool
     {
-        return false;
-        //return !empty($this->config['distance_measure']);
+        //return false;
+        return !empty($this->config['distance_measure']);
     }
 }

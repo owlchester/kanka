@@ -41,7 +41,7 @@
             this._choice = false;
             this._defaultCursor = this._map._container.style.cursor;
             this._allLayers = L.layerGroup();
-            this._maxZoom = this._map.getMaxZoom();  // Sets maxzoom to standardize the calculation - cc 05032018
+            this._maxZoom = this._map.getMaxZoom();
             return this._container;
         },
         onRemove: function() {
@@ -81,6 +81,7 @@
         },
         _clicked: function(e) {
             this._clickedLatLong = e.latlng;
+            //console.log('Clicked', this._clickedLatLong);
             this._clickedPoints.push(this._clickedLatLong);
             L.circleMarker(this._clickedLatLong, this.options.circleMarker).addTo(this._pointLayer);
             if(this._clickCount > 0 && !e.latlng.equals(this._clickedPoints[this._clickedPoints.length - 2])){
@@ -110,6 +111,7 @@
             if (this._clickedLatLong){
                 L.DomEvent.off(this._container, 'click', this._toggleMeasure, this);
                 this._movingLatLong = e.latlng;
+                //console.log('New position', this._movingLatLong);
                 if (this._tempLine){
                     this._map.removeLayer(this._tempLine);
                     this._map.removeLayer(this._tempPoint);
@@ -148,10 +150,44 @@
             var toRadian = Math.PI / 180;
             // haversine formula
             // bearing
+            var y = Math.sin((l2-l1)*toRadian) * Math.cos(f2*toRadian);
+            var x = Math.cos(f1*toRadian)*Math.sin(f2*toRadian) - Math.sin(f1*toRadian)*Math.cos(f2*toRadian)*Math.cos((l2-l1)*toRadian);
+            var brng = Math.atan2(y, x)*((this.options.angleUnit.factor ? this.options.angleUnit.factor/2 : 180)/Math.PI);
+            brng += brng < 0 ? (this.options.angleUnit.factor ? this.options.angleUnit.factor : 360) : 0;
+
+            // distance
+            var R = this.options.lengthUnit.factor ? 6371 * this.options.lengthUnit.factor : 6371; // kilometres
+            var deltaF = (f2 - f1)*toRadian;
+            var deltaL = (l2 - l1)*toRadian;
+            var a = Math.sin(deltaF/2) * Math.sin(deltaF/2) + Math.cos(f1*toRadian) * Math.cos(f2*toRadian) * Math.sin(deltaL/2) * Math.sin(deltaL/2);
+            var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+            var distance = R * c;
+
+            // New calculations by mapping the Earth-based standard to the relative points of the default Map CRS system - cc 05032018
+            var pt1 = L.CRS.Simple.latLngToPoint(this._clickedLatLong, this._maxZoom); // point 1 where clicked at max zoom level - cc 05032018
+            var pt2 = L.CRS.Simple.latLngToPoint(this._movingLatLong, this._maxZoom); // point 2 where clicked at max zoom level - cc 05032018
+            distance = pt1.distanceTo(pt2)*(this.options.lengthUnit.factor ? this.options.lengthUnit.factor : 1)/this._maxZoom;  // sets distance and multiplies based on factor in options  - cc 05032018
+            //console.log('Points', pt1, pt2);
+            //console.log('Lat', this._clickedLatLong.lat, 'now', this._movingLatLong.lat);
+            //console.log('Long', this._clickedLatLong.lng, 'now', this._movingLatLong.lng);
+            //console.log(pt1.y, pt2.y);
+            //console.log('Distance between them', pt1.distanceTo(pt2));
+            this._result = {
+                Bearing: brng,
+                Distance: distance
+            };
+
+            return;
+            var f1 = this._clickedLatLong.lat, l1 = this._clickedLatLong.lng, f2 = this._movingLatLong.lat, l2 = this._movingLatLong.lng;
+            var toRadian = Math.PI / 180;
+            // haversine formula
+            // bearing
             var deltaL = (l2 - l1)*toRadian;
             var deltaF = (f2 - f1)*toRadian;
             var y = Math.sin(deltaL) * Math.cos(f2*toRadian);
             var x = Math.cos(f1*toRadian)*Math.sin(f2*toRadian) - Math.sin(f1*toRadian)*Math.cos(f2*toRadian)*Math.cos((l2-l1)*toRadian);
+
+            console.log('Map Ruler', y, x);
             var brng = Math.atan2(y, x)*((this.options.angleUnit.factor ? this.options.angleUnit.factor/2 : 180)/Math.PI);
             brng += brng < 0 ? (this.options.angleUnit.factor ? this.options.angleUnit.factor : 360) : 0;
             // distance
