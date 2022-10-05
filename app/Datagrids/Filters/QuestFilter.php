@@ -3,6 +3,7 @@
 namespace App\Datagrids\Filters;
 
 use App\Models\Quest;
+use App\Models\Entity;
 
 class QuestFilter extends DatagridFilter
 {
@@ -25,6 +26,15 @@ class QuestFilter extends DatagridFilter
                 'placeholder' =>  __('quests.placeholders.quest'),
                 'model' => Quest::class,
             ])
+            ->add([
+                'field' => 'quest_elements',
+                'label' => __('crud.fields.entity'),
+                'type' => 'select2',
+                'route' => route('search.entities-with-relations'),
+                'placeholder' =>  __('quests.placeholders.entity'),
+                'model' => Entity::class,
+            ])
+            ->add('element_role')
             ->isPrivate()
             ->hasImage()
             ->hasEntityNotes()

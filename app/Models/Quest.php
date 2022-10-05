@@ -227,6 +227,8 @@ class Quest extends MiscModel
             'is_completed',
             'date_start',
             'date_end',
+            'quest_elements',
+            'element_role',
         ];
     }
 }
