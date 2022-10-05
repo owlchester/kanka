@@ -37,7 +37,7 @@ trait Picture
             return '';
         }
         // Todo: we are caching with the user's nicer image here
-        $avatar = $this->child->withEntity($this)->getImageUrl(40);
+        $avatar = $this->child->withEntity($this)->thumbnail();
         Cache::forever($this->avatarCacheKey($thumb, $field), $avatar);
         return $avatar;
     }

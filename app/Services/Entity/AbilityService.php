@@ -126,7 +126,7 @@ class AbilityService
                     'id' => $parent->id,
                     'name' => $parent->name,
                     'type' => $parent->type,
-                    'image' => $parent->getImageUrl(),
+                    'image' => $parent->thumbnail(200),
                     'has_image' => !empty($parent->image),
                     'entry' => $parent->entry(),
                     'parent' => true,
@@ -162,7 +162,7 @@ class AbilityService
             'attributes' => $this->attributes($entityAbility->ability->entity),
             'images' => [
                 'has' => !empty($entityAbility->ability->image) || $entityAbility->ability->entity->image,
-                'thumb' => $entityAbility->ability->getImageUrl(120),
+                'thumb' => $entityAbility->ability->thumbnail(120),
                 'url' => !empty($entityAbility->ability->image) ? $entityAbility->ability->getOriginalImageUrl() : null,
             ],
             'actions' => [

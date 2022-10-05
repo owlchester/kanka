@@ -20,7 +20,7 @@ if (empty($calendar)) {
        </h3>
     </div>
     @else
-        <div class="panel-heading panel-heading-entity" style="background-image: url('{{ $widget->entity->child->getImageUrl() }}')">
+        <div class="panel-heading panel-heading-entity" style="background-image: url('{{ $widget->entity->child->thumbnail(600) }}')">
             <h3 class="panel-title">
                 {{ link_to($calendar->getLink(), $entity->name) }}
             </h3>

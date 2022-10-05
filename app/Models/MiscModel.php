@@ -167,13 +167,13 @@ abstract class MiscModel extends Model
     }
 
     /**
-     * Get the image (or default image) of an entity
-     * @param int $width = 200
-     * @param int $width = null
-     * @param string $field = 'image'
+     * Get the thumbnail (or default image) of an entity
+     * @param int $width If 0, get the full-sized version
+     * @param int|null $height
+     * @param string $field
      * @return string
      */
-    public function getImageUrl(int $width = 400, int $height = null, string $field = 'image')
+    public function thumbnail(int $width = 40, int $height = null, string $field = 'image')
     {
         if (empty($this->$field)) {
             return $this->getImageFallback($width);

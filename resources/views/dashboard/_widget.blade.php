@@ -4,9 +4,9 @@ $background = null;
 
 if ($widget->entity) {
     if (!empty($widget->entity->child->image)) {
-        $background = $widget->entity->child->getImageUrl();
+        $background = $widget->entity->child->thumbnail(600);
     } elseif (!empty($widget->entity->image)) {
-        $background = Img::crop(250, 250)->url($widget->entity->image->path);
+        $background = Img::crop(600, 600)->url($widget->entity->image->path);
     }
 }
 ?>

@@ -30,7 +30,7 @@
             @foreach ($members as $relation)
                 <tr data-entity-id="{{ $relation->character->entity->id }}" data-type="{{ \Illuminate\Support\Str::slug($relation->character->type) }}" data-entity-type="{{ $relation->character->entity->type() }}">
                     <td>
-                        <a class="entity-image" style="background-image: url('{{ $relation->character->getImageUrl(40) }}');" title="{{ $relation->character->name }}" href="{{ route('characters.show', $relation->character->id) }}"></a>
+                        <a class="entity-image" style="background-image: url('{{ $relation->character->thumbnail() }}');" title="{{ $relation->character->name }}" href="{{ route('characters.show', $relation->character->id) }}"></a>
                     </td>
                     <td>
                         @if ($relation->character->is_private) <i class="fa-solid fa-lock" title="{{ __('crud.is_private') }}" data-toggle="tooltip"></i> @endif

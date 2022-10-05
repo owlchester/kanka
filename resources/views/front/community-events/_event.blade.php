@@ -5,7 +5,7 @@
 ?>
 <div class="card mb-3 @if($ongoing) voting @endif">
     @if (!empty($model->image))
-        <img class="card-img-top" src="{{ $model->getImageUrl(1200, 280) }}" alt="{{ $model->name }}">
+        <img class="card-img-top" src="{{ $model->thumbnail(1200, 280) }}" alt="{{ $model->name }}">
     @endif
     <div class="card-body">
         <a href="{{ route('community-events.show', $model) }}">

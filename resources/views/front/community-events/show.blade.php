@@ -13,7 +13,7 @@
     <meta property="og:description" content="{{ $model->excerpt }}" />
     <meta property="og:url" content="{{ route('community-events.show', $model) }}" />
     @if ($model->image)
-        <meta property="og:image" content="{{ $model->getImageUrl(280, 280)  }}" />
+        <meta property="og:image" content="{{ $model->thumbnail(280, 280)  }}" />
         <meta property="og:image:type" content="image/png" />
         <meta property="og:image:width" content="280" />
         <meta property="og:image:height" content="280" />
@@ -26,7 +26,7 @@
         <div class="container">
             <div class="card mb-4">
                 @if (!empty($model->image))
-                    <img class="card-img-top" src="{{ $model->getImageUrl(1200, 280) }}" alt="{{ $model->name }}">
+                    <img class="card-img-top" src="{{ $model->thumbnail(1200, 280) }}" alt="{{ $model->name }}">
                 @endif
                 <div class="card-body">
                     <h2 class="card-title mb-1">

@@ -143,8 +143,8 @@ class EntityResource extends JsonResource
             'focus_y' => $misc->entity->focus_y,
 
             // Image
-            'image_full' => !empty($misc->image) ? $misc->getImageUrl(0) : $misc->entity->image?->getImagePath(0),
-            'image_thumb' => $misc->getImageUrl(40),
+            'image_full' => !empty($misc->image) ? $misc->thumbnail(0) : $misc->entity->image?->getImagePath(0),
+            'image_thumb' => $misc->thumbnail(),
             'has_custom_image' => !empty($misc->image) || !empty($galleryImage),
             'image_uuid' => $superboosted && $misc->entity->image ? $misc->entity->image->id : null,
 

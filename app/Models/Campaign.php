@@ -543,13 +543,13 @@ class Campaign extends MiscModel
     }
 
     /**
-     * Get the campaign's image url
+     * Get the campaign's thumbnail url
      * @param int $width
      * @param int|null $height
      * @param string $field
      * @return string
      */
-    public function getImageUrl(int $width = 400, int $height = null, string $field = 'image')
+    public function thumbnail(int $width = 400, int $height = null, string $field = 'image')
     {
         if (empty($this->$field)) {
             return '';

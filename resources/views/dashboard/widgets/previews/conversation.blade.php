@@ -10,10 +10,10 @@ $conversation = $entity->child;
     <div
     @if ($widget->conf('entity-header') && $campaign->boosted() && $entity->header_image)
         class="panel-heading panel-heading-entity"
-        style="background-image: url('{{ $entity->getImageUrl(1200, 400, 'header_image') }}')"
+        style="background-image: url('{{ $entity->thumbnail(1200, 400, 'header_image') }}')"
     @elseif ($entity->child->image)
         class="panel-heading panel-heading-entity"
-        style="background-image: url('{{ $entity->child->getImageUrl() }}')"
+        style="background-image: url('{{ $entity->child->thumbnail(400) }}')"
     @elseif($campaign->superboosted() && !empty($entity->image))
         class="panel-heading panel-heading-entity"
         style="background-image: url('{{ Img::crop(1200, 400)->url($entity->image->path) }}')"
@@ -75,7 +75,7 @@ $conversation = $entity->child;
                 @if (!empty($message->user_id))
                     <img class="direct-chat-img" src="{{ $message->user->getAvatarUrl() }}" alt="{{ $message->user->name }}">
                 @elseif (!empty($message->character_id))
-                    <img class="direct-chat-img" src="{{ $message->character->getImageUrl(40) }}" alt="{{ $message->character->name }}">
+                    <img class="direct-chat-img" src="{{ $message->character->thumbnail() }}" alt="{{ $message->character->name }}">
                 @endif
                 <div class="direct-chat-text">
                     {{ $message->message }}

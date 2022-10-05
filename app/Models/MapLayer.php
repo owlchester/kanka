@@ -66,11 +66,11 @@ class MapLayer extends Model
 
     /**
      * Get the image (or default image) of an entity
-     * @param int $width = 200
-     * @param int $width = null
+     * @param int $width
+     * @param int|null $width
      * @return string
      */
-    public function getImageUrl(int $width = 400, int $height = null)
+    public function thumbnail(int $width = 400, int $height = null)
     {
         return Img::crop($width, (!empty($height) ? $height : $width))->url($this->image);
     }

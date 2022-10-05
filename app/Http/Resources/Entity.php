@@ -29,8 +29,8 @@ class Entity extends EntityChild
             'id' => $model->child->id,
             'entity_id' => $model->id,
             'name' => $model->name,
-            'image' => $model->child->getImageUrl(0),
-            'image_thumb' => $model->child->getImageUrl(40),
+            'image' => $model->child->thumbnail(0),
+            'image_thumb' => $model->child->thumbnail(),
             'has_custom_image' => !empty($model->child->image),
 
             'type' => $model->type(),

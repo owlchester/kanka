@@ -19,7 +19,7 @@ class LocationResource extends EntityResource
         $model = $this->resource;
         return $this->entity([
             'type' => $model->type,
-            'map' => $model->getImageUrl(0, 0, 'map'),
+            'map' => $model->thumbnail(0, 0, 'map'),
             'is_map_private' => $model->is_map_private,
             'parent_location_id' => $model->parent_location_id,
         ]);

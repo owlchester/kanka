@@ -236,7 +236,7 @@ class SearchService
             $img = '';
             if (!empty($child->image)) {
                 $img = '<span class="entity-image" style="background-image: url(\''
-                    . $child->getImageUrl(40) . '\');"></span> ';
+                    . $child->thumbnail() . '\');"></span> ';
             }
 
             $parsedName = str_replace('&#039;', '\'', e($model->name));

@@ -274,10 +274,10 @@ class Entity extends Model
     /**
      * Get the image (or default image) of an entity
      * @param int $width = 200
-     * @param int $height = null (null takes width)
+     * @param int|null $height
      * @return string
      */
-    public function getImageUrl(int $width = 400, $height = null, $field = 'header_image'): string
+    public function thumbnail(int $width = 400, int $height = null, $field = 'header_image'): string
     {
         if (empty($this->$field)) {
             return '';
@@ -369,7 +369,7 @@ class Entity extends Model
         if ($boosted && $this->image) {
             return Img::crop($width, $height)->url($this->image->path);
         }
-        return $this->child->getImageUrl($width, $height);
+        return $this->child->thumbnail($width, $height);
     }
 
     /**
@@ -387,7 +387,7 @@ class Entity extends Model
     public function getHeaderUrl(bool $superboosted = false): string
     {
         if (!empty($this->header_image)) {
-            return $this->getImageUrl(1200, 400, 'header_image');
+            return $this->thumbnail(1200, 400, 'header_image');
         }
 
         if (!$superboosted) {
