@@ -116,8 +116,8 @@ class MentionsService
      */
     public function mapAttribute(Attribute $attribute)
     {
-        //Check if the attribute is trying to call itself as a value, if so, ignore it to avoid an infinite loop.
-        if (str_contains($attribute->value, $attribute->mentionName())) {
+        // If the attribute mentions itself in the value, don't do any parsing, it would cause an endless loop.
+        if (Str::contains($attribute->value, $attribute->mentionName())) {
             return Attributes::parse($attribute);
         }
 
