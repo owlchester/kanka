@@ -126,7 +126,7 @@ class AbilityService
                     'id' => $parent->id,
                     'name' => $parent->name,
                     'type' => $parent->type,
-                    'image' => $parent->thumbnail(200),
+                    'image' => $parent->thumbnail(120),
                     'has_image' => !empty($parent->image),
                     'entry' => $parent->entry(),
                     'parent' => true,
