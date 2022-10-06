@@ -530,6 +530,10 @@ trait HasFilters
      */
     protected function filterQuestElements(Builder $query, string $value = null): void
     {
+        // "none" filter keys is handled later
+        if ($this->filterOption('none')) {
+            return;
+        }
         $ids = [$value];
         if ($this->filterOption('exclude')) {
             $query->whereRaw('(select count(*) from quest_elements as qe where qe.quest_id = ' .
@@ -710,7 +714,7 @@ trait HasFilters
             return;
         }
         // Left join shenanigans
-        if (!in_array($key, ['organisation_member', 'race', 'family', 'tags'])) {
+        if (!in_array($key, ['organisation_member', 'race', 'family', 'tags', 'quest_elements'])) {
             $query->whereNull($this->getTable() . '.' . $key);
         } elseif ($key === 'tags') {
             $query = $this->joinEntity($query);
@@ -738,6 +742,13 @@ trait HasFilters
                     $join->on('cf2.character_id', '=', $this->getTable() . '.id');
                 })
                 ->where('cf2.family_id', null);
+        } elseif ($key === 'quest_elements') {
+            $query
+                ->select($this->getTable() . '.*')
+                ->leftJoin('quest_elements as qe2', function ($join) {
+                    $join->on('qe2.quest_id', '=', $this->getTable() . '.id');
+                })
+                ->where('qe2.entity_id', null);
         }
     }
 }
