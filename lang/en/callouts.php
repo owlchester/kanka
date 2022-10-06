@@ -20,8 +20,8 @@ return [
         ],
     ],
     'subscribe' => [
+        'pitch-2fa'     => 'Subscribe to unlock secure logins with two-factor authentication and many :more.',
         'pitch-image'   => 'Subscribe to unlock up to :max MB file upload sizes.',
         'share-booster' => 'Boost :campaign to increase the file upload size for all members of the campaign.',
-        'pitch-2fa'     => 'Subscribe to unlock secure logins with two-factor authentication and many :more.',
     ],
 ];

@@ -125,9 +125,9 @@ return [
             'name'              => 'Custom widget name',
             'optional-entity'   => 'Link to entity',
             'order'             => 'Ordering',
+            'size'              => 'Size',
             'text'              => 'Text',
             'width'             => 'Width',
-            'size'              => 'Size',
         ],
         'helpers'       => [
             'class'     => 'Define a custom css class added to the widget.',

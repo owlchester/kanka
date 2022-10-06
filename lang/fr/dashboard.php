@@ -78,6 +78,9 @@ return [
             'back_to_dashboard' => 'Retour au tableau de bord',
             'edit'              => 'Modifier un widget',
         ],
+        'reorder'   => [
+            'success'   => 'Widgets réordonnés.',
+        ],
         'title'     => 'Configuration du tableau de bord de campagne',
         'tutorial'  => [
             'blog'  => 'notre tutoriel',
@@ -123,6 +126,7 @@ return [
             'name'              => 'Nom de widget personnalisé',
             'optional-entity'   => 'Liens vers une entité',
             'order'             => 'Ordre d\'affichage',
+            'size'              => 'Taille',
             'text'              => 'Texte',
             'width'             => 'Largeur',
         ],

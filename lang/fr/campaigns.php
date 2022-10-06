@@ -20,9 +20,13 @@ TEXT
         'title'                 => 'Nouvelle Campagne',
     ],
     'destroy'                           => [
-        'action'    => 'Supprimer la campagne',
-        'helper'    => 'Seules les campagnes dont tu es le seul membre peuvent être supprimées.',
-        'success'   => 'Campagne supprimée.',
+        'action'            => 'Supprimer la campagne',
+        'confirm'           => 'Es-tu sûr de vouloir supprimer la campagne :campaign? Cette action est permanente.',
+        'confirm-button'    => 'Suppression permanente de la campagne',
+        'helper-v2'         => 'Cette campaign ne peut pas être supprimée tant qu\'elle a d\'autre membre. Retires les autres membres en premier et ressayes.',
+        'hint'              => 'Si tu es sûr, saisis :code dans le champ suivant.',
+        'success'           => 'Campagne supprimée.',
+        'title'             => 'Supprimer une campagne',
     ],
     'edit'                              => [
         'success'   => 'Campagne modifiée.',
@@ -107,26 +111,18 @@ TEXT
     ],
     'invites'                           => [
         'actions'               => [
-            'add'   => 'Inviter',
             'copy'  => 'Copier le lien dans le presse-papier.',
             'link'  => 'Nouveau Lien',
         ],
         'create'                => [
             'buttons'       => [
                 'create'    => 'Créer une invitation',
-                'send'      => 'Envoyer une invitation',
             ],
-            'success'       => 'Invitation envoyée.',
             'success_link'  => 'Liens créé: :link',
             'title'         => 'Invite un ami à la campagne',
         ],
         'destroy'               => [
             'success'   => 'Invitation annulée.',
-        ],
-        'email'                 => [
-            'link_text' => 'Joindre la campagne :name',
-            'subject'   => ':name t\'as invité à rejoindre la campagne \':campagne\' sur kanka.io! Utilise ce lien pour accepter son invitation.',
-            'title'     => 'Invitation de :name',
         ],
         'error'                 => [
             'already_member'    => 'Tu es déjà un membre de cette campagne.',
@@ -136,21 +132,10 @@ TEXT
         ],
         'fields'                => [
             'created'   => 'Envoyé',
-            'email'     => 'Email',
             'role'      => 'Rôle',
+            'token'     => 'Jeton',
             'type'      => 'Type',
             'usage'     => 'Nombre max d\'utilisation',
-        ],
-        'helpers'               => [
-            'email'     => 'Les emails de Kanka sont souvent traités comme du spam et peuvent prendre jusqu\'à quelques heures avant d\'apparaître dans ta boîte aux lettres.',
-            'validity'  => 'Nombre de fois que le lien peut être utilisé avant d\'être désactivé. Laisser vide pour illimité.',
-        ],
-        'placeholders'          => [
-            'email' => 'L\'adresse email de ton ami',
-        ],
-        'types'                 => [
-            'email' => 'Email',
-            'link'  => 'Lien',
         ],
         'unlimited_validity'    => 'Illimité',
         'usages'                => [
@@ -161,9 +146,13 @@ TEXT
         ],
     ],
     'leave'                             => [
-        'confirm'   => 'Es-tu sûr de vouloir quitter :name? Tu n\'auras plus accès aux données, sauf si un Admin de la campagne t\'invite à nouveau.',
-        'error'     => 'Impossible de quitter la campagne.',
-        'success'   => 'Tu as quitté la campagne.',
+        'confirm'           => 'Es-tu sûr de vouloir quitter la campagne :name? Tu n\'auras plus accès aux données, sauf si un admin de la campagne t\'invite à nouveau.',
+        'confirm-button'    => 'Oui, quitter la campagne',
+        'error'             => 'Impossible de quitter la campagne.',
+        'fix'               => 'Aller aux membres de la campagne',
+        'no-admin-left'     => 'Quitter la campagne n\'est pas possible car celle-ci se retrouverait sans admin. Ajoute un autre membre au rôle admin en premier.',
+        'success'           => 'Tu as quitté la campagne.',
+        'title'             => 'Quitter la campagne',
     ],
     'members'                           => [
         'actions'               => [

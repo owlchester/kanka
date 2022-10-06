@@ -29,6 +29,7 @@ return [
     ],
     'login'     => [
         'fields'                => [
+            '2fa'       => 'Code à usage unique',
             'email'     => 'Adresse Email',
             'password'  => 'Mot de passe',
         ],
@@ -69,6 +70,10 @@ return [
         'send'      => 'M\'envoyer un mail de réinitialisation de mot de passe',
         'submit'    => 'Enregistrer',
         'title'     => 'Réinitialisation du mot de passe',
+    ],
+    'tfa'       => [
+        'helper'    => 'L\'authentification à deux facteurs est activée. Prière d\'indiquer le code à usage unique fourni par l\'application d\'authentification.',
+        'title'     => 'Authentification à deux facteurs',
     ],
     'throttle'  => 'Trop d\'essais. Veuillez réessayer dans :seconds secondes.',
 ];

@@ -29,9 +29,9 @@ return [
     ],
     'login'     => [
         'fields'                => [
+            '2fa'       => 'One time password',
             'email'     => 'Email',
             'password'  => 'Password',
-            '2fa'       => 'Authenticator app OTP',
         ],
         'login_with_facebook'   => 'Login with Facebook',
         'login_with_google'     => 'Login with Google',
@@ -42,7 +42,6 @@ return [
         'remember_me'           => 'Remember me',
         'submit'                => 'Login',
         'title'                 => 'Login',
-        'cancel'                => 'Cancel',
     ],
     'register'  => [
         'already_account'           => 'Already have an account?',
@@ -72,9 +71,9 @@ return [
         'submit'    => 'Reset password',
         'title'     => 'Reset password',
     ],
-    'tfa' => [
-        'title'                   => 'Two Factor Authentication',
-        'helper' => 'Two factor authenciation is enabled. Please provide the One Time Password (OTP) provided by your authenticator app.'
+    'tfa'       => [
+        'helper'    => 'Two-factor authentication is enabled. Please provide the One Time Password (OTP) provided by your authenticator app.',
+        'title'     => 'Two-Factor Authentication',
     ],
     'throttle'  => 'Too many login attempts. Please try again in :seconds seconds.',
 ];

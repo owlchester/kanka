@@ -34,7 +34,7 @@
         {!! Form::open(['route' => 'auth.cancel-2fa', 'method' => 'POST']) !!}
             <div class="form-group">
                 <button type="submit" class="btn btn-block btn-danger">
-                    {{ __('auth.login.cancel') }}
+                    {{ __('crud.cancel') }}
                 </button>
             </div>
         {!! Form::close() !!}
