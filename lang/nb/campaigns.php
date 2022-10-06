@@ -78,20 +78,14 @@ TEXT
     ],
     'invites'                           => [
         'actions'               => [
-            'add'   => 'Inviter',
             'copy'  => 'Kopier lenken til ditt dashbord',
             'link'  => 'Ny lenke',
         ],
         'create'                => [
-            'success'   => 'Invitasjon sendt.',
-            'title'     => 'Inviter noen til din kampanje',
+            'title' => 'Inviter noen til din kampanje',
         ],
         'destroy'               => [
             'success'   => 'Invitasjon fjernet.',
-        ],
-        'email'                 => [
-            'subject'   => ':name har invitert deg til sin kampanje på kanka.io! Bruk følgende lenke for å akseptere invitasjonen.',
-            'title'     => 'Invitasjon fra :name',
         ],
         'error'                 => [
             'already_member'    => 'Du er allerede medlem i den kampanjen.',
@@ -101,20 +95,8 @@ TEXT
         ],
         'fields'                => [
             'created'   => 'Sendt',
-            'email'     => 'Epost',
             'role'      => 'Rolle',
             'type'      => 'Type',
-        ],
-        'helpers'               => [
-            'email'     => 'Våre eposter er ofte markert som søppelpost og det kan ta opp til et par timer før den dukker opp i innboksen din.',
-            'validity'  => 'Hvor mange brukere som kan bruke denne lenken før den er utgått. La stå tom for ubegrenset.',
-        ],
-        'placeholders'          => [
-            'email' => 'Epost addresse til personen du ønsker å invitere',
-        ],
-        'types'                 => [
-            'email' => 'Epost',
-            'link'  => 'Lenke',
         ],
         'unlimited_validity'    => 'Ubegrenset',
     ],

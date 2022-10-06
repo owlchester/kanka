@@ -30,7 +30,5 @@ return [
         'name'          => 'Modern Çağ, Bronz Çağı, Galaktik Savaşlar',
         'start_year'    => 'Çağın başladığı yıl. Eğer bu çağ ilk çağ ise boş bırakın.',
     ],
-    'reorder'       => [
-        'success'   => ':era çağının elementleri tekrardan sıralandı.',
-    ],
+    'reorder'       => [],
 ];

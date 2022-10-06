@@ -19,7 +19,6 @@ return [
         'random'        => 'Aleatorio',
         'random_type'   => 'Tipo de entidad aleatorio',
         'selector'      => 'Configuración del acceso directo',
-        'tab'           => 'Pestaña',
         'type'          => 'Tipo de entidad',
     ],
     'helpers'           => [

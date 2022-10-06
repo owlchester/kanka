@@ -79,20 +79,14 @@ TEXT
     ],
     'invites'                           => [
         'actions'               => [
-            'add'   => 'Davet Et',
             'copy'  => 'Linki panoya kopyala',
             'link'  => 'Yeni Link',
         ],
         'create'                => [
-            'success'   => 'Davet gönderildi.',
-            'title'     => 'Birini serüveninize davet edin',
+            'title' => 'Birini serüveninize davet edin',
         ],
         'destroy'               => [
             'success'   => 'Davet kaldırıldı.',
-        ],
-        'email'                 => [
-            'subject'   => ':name sizi kanka.io\'daki \':campaign\' serüvenine katılmanız için davet etti! Kabul etmek için aşağıdaki linke tıklayın.',
-            'title'     => ':name tarafından davet',
         ],
         'error'                 => [
             'already_member'    => 'Zaten bu serüvenin bir üyesisiniz.',
@@ -102,20 +96,8 @@ TEXT
         ],
         'fields'                => [
             'created'   => 'Gönderildi',
-            'email'     => 'E-posta',
             'role'      => 'Rol',
             'type'      => 'Tür',
-        ],
-        'helpers'               => [
-            'email'     => 'E-postalarımız sık sık spam olarak işaretlenir ve gelen kutunuzda belirmesi birkaç saati bulabilir.',
-            'validity'  => 'Bu link geçersiz kılınana kadar kaç tane kullanıcının bu linki kullanabileceği. Sınırsız olması için boş bırakın.',
-        ],
-        'placeholders'          => [
-            'email' => 'Davet etmek istediğiniz kişinin e-posta adresi',
-        ],
-        'types'                 => [
-            'email' => 'E-posta',
-            'link'  => 'Link',
         ],
         'unlimited_validity'    => 'Sınırsız',
     ],

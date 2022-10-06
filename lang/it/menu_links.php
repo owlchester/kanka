@@ -14,7 +14,6 @@ return [
         'menu'      => 'Menù',
         'name'      => 'Nome',
         'position'  => 'Posizione',
-        'tab'       => 'Tab',
         'type'      => 'Tipo di entità',
     ],
     'helpers'       => [

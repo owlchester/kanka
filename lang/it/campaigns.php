@@ -18,7 +18,6 @@ TEXT
     ],
     'destroy'                           => [
         'action'    => 'Elimina campagna',
-        'helper'    => 'Puoi eliminare la campagna solo se sei un partecipante.',
         'success'   => 'Campagna eliminata.',
     ],
     'edit'                              => [
@@ -79,21 +78,14 @@ TEXT
     ],
     'invites'                           => [
         'actions'               => [
-            'add'   => 'Invita',
             'copy'  => 'Copia il collegamento nei tuoi appunti',
         ],
         'create'                => [
-            'success'       => 'Invito inviato.',
             'success_link'  => 'Link creato: :link',
             'title'         => 'Invita qualcuno nella tua campagna',
         ],
         'destroy'               => [
             'success'   => 'Invito rimosso.',
-        ],
-        'email'                 => [
-            'link_text' => 'Unisciti alla campagna di :name',
-            'subject'   => ':name ti ha invitato ad unirti alla sua campagna \':campaign\' su kanka.io! Usa il seguente link per accettare il suo invito.',
-            'title'     => 'Invito da parte di :name',
         ],
         'error'                 => [
             'already_member'    => 'Sei già un membro di questa campagna.',
@@ -103,20 +95,8 @@ TEXT
         ],
         'fields'                => [
             'created'   => 'Inviato',
-            'email'     => 'E-Mail',
             'role'      => 'Ruolo',
             'type'      => 'Tipo',
-        ],
-        'helpers'               => [
-            'email'     => 'Le nostre mail sono spesso marcate come spam e possono impiegare fino a qualche ora prima che appaiano nella tua casella di posta.',
-            'validity'  => 'Quanti utenti possono usare questo link prima che sia disattivato. Lascia questo campo vuoto per non porre alcun limite.',
-        ],
-        'placeholders'          => [
-            'email' => 'Indirizzo e-mail della persona che desideri invitare',
-        ],
-        'types'                 => [
-            'email' => 'E-Mail',
-            'link'  => 'Collegamento',
         ],
         'unlimited_validity'    => 'Nessun Limite',
         'usages'                => [

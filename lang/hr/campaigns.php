@@ -18,7 +18,6 @@ TEXT
     ],
     'destroy'                           => [
         'action'    => 'Obriši kampanju',
-        'helper'    => 'Kampanju možeš obrisati samo ako si njen jedini član.',
         'success'   => 'Kampanja uklonjena.',
     ],
     'edit'                              => [
@@ -90,26 +89,18 @@ TEXT
     ],
     'invites'                           => [
         'actions'               => [
-            'add'   => 'Pozovi',
             'copy'  => 'Kopiraj poveznicu u međuspremnik',
             'link'  => 'Nova poveznica',
         ],
         'create'                => [
             'buttons'       => [
                 'create'    => 'Kreiraj pozivnicu',
-                'send'      => 'Pošalji pozivnicu',
             ],
-            'success'       => 'Pozivnica poslana.',
             'success_link'  => 'Poveznica kreirana: :link',
             'title'         => 'Pozovi nekoga u svoju kampanju',
         ],
         'destroy'               => [
             'success'   => 'Pozivnica uklonjena.',
-        ],
-        'email'                 => [
-            'link_text' => 'Prodruži se kampanji :name.',
-            'subject'   => ':name te pozvao da se priključiš kampanji ":campaign" na kanka.io! Iskoristi sljedeću poveznicu da bi prihvatio njihovu pozivnicu.',
-            'title'     => 'Pozivnica od :name',
         ],
         'error'                 => [
             'already_member'    => 'Već si član te kampanje.',
@@ -119,20 +110,8 @@ TEXT
         ],
         'fields'                => [
             'created'   => 'Poslano',
-            'email'     => 'Email',
             'role'      => 'Uloga',
             'type'      => 'Tip',
-        ],
-        'helpers'               => [
-            'email'     => 'Naše email poruke su često označene kao neželjena pošta i može im trebati i do nekoliko sati prije nego se pojave u tvojem poštanskom sandučiću.',
-            'validity'  => 'Koliko korisnika može iskoristiti ovu poveznicu prije nego se deaktivira. Ostavi prazno za neograničeno',
-        ],
-        'placeholders'          => [
-            'email' => 'Email adresa osobe koju želiš pozvati',
-        ],
-        'types'                 => [
-            'email' => 'Email',
-            'link'  => 'Pozivnica',
         ],
         'unlimited_validity'    => 'Neograničeno',
     ],

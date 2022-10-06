@@ -20,7 +20,6 @@ return [
         'random'            => 'Aleatorio',
         'random_type'       => 'Tipo de entidade aleatorio',
         'selector'          => 'Configuración do acceso directo',
-        'tab'               => 'Lapela',
         'type'              => 'Tipo de entidade',
     ],
     'helpers'           => [

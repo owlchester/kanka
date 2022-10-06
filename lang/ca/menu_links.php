@@ -19,7 +19,6 @@ return [
         'random'        => 'Aleatori',
         'random_type'   => 'Tipus aleatori d\'entitat',
         'selector'      => 'Configuració dels enllaços directes',
-        'tab'           => 'Pestanya',
         'type'          => 'Tipus d\'entitat',
     ],
     'helpers'           => [

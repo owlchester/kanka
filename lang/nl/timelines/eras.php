@@ -30,7 +30,5 @@ return [
         'name'          => 'Moderne Tijdperk, Bronze Tijdperk, Galactische Oorlogen',
         'start_year'    => 'Jaar waarin het tijdperk begint. Laat leeg als dit het eerste tijdperk is.',
     ],
-    'reorder'       => [
-        'success'   => 'Elementen van het :era tijdperk opnieuw gerangschikt.',
-    ],
+    'reorder'       => [],
 ];

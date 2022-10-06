@@ -32,7 +32,5 @@ return [
         'name'          => 'Novovek, Doba bronzová, Galaktické vojny',
         'start_year'    => 'Rok, kedy začína daný vek. Ponechaj prázdny, ak je to prvý vek.',
     ],
-    'reorder'       => [
-        'success'   => 'Prvky veku :era boli nanovo usporiadané.',
-    ],
+    'reorder'       => [],
 ];

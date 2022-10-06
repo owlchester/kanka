@@ -134,7 +134,6 @@ return [
         'cancel'                => [
             'options'   => [
                 'competitor'        => 'Marcho á competencia',
-                'custom'            => 'Outra (por favor, especifique)',
                 'financial'         => 'Cambio a miña situación financieira',
                 'missing_features'  => 'Faltan funcionalidades',
                 'not_using'         => 'Non estou usando Kanka',

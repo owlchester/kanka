@@ -187,7 +187,6 @@ return [
         'calendar_date'         => 'La data di un calendario permette un semplice filtro nelle liste e mantiene un evento nel calendario selezionato.',
         'header_image'          => 'Questa immagine è posizionata sopra all\' entità. Per un miglior risultato, utilizza un\'immagine larga.',
         'image_limitations'     => 'Formati supportati: :formats. Dimensione massima del file: :size.',
-        'image_patreon'         => 'Aumentare la dimensione massima dei file?',
         'is_star'               => 'Gli elementi fissati appariranno nel menù dell\'entità',
         'tooltip'               => 'Sostituisci il tooltip generato automaticamente con il seguente contenuto.',
         'visibility'            => 'Impostare la visibilità agli amministratori significa che solamente i membri del ruolo "Proprietario" della campagna potranno visualizzarlo. Impostarlo a "Te stesso" significa che solo tu potrai vederlo.',

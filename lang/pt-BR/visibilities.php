@@ -1,8 +1,6 @@
 <?php
 
 return [
-    'helpers'   => [
-        'title' => 'Visibilidade',
-    ],
+    'helpers'   => [],
     'tooltip'   => 'Clique para aprender sobre as várias opções de visibilidade.',
 ];

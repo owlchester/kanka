@@ -134,7 +134,6 @@ return [
         'cancel'                => [
             'options'   => [
                 'competitor'        => 'Prechádzam ku konkurencii',
-                'custom'            => 'Iný (prosím špecifikuj)',
                 'financial'         => 'Moja finančná situácia sa zmenila',
                 'missing_features'  => 'Chýbajú mi funkcionality',
                 'not_using'         => 'Aktuálne Kanku nevyužívam',

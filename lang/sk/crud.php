@@ -247,7 +247,6 @@ return [
         'gallery_image'         => 'Ak objekt nemá obrázok, zobraziť namiesto toho obrázok z galérie kampane.',
         'header_image'          => 'Tento obrázok je umiestnený nad objekt. Odporúčame používať obrázok na šírku.',
         'image_limitations'     => 'Podporované formáty: :formats. Max. veľkosť súboru: :size.',
-        'image_patreon'         => 'Chceš zvýšiť limit pre veľkosť súborov?',
         'image_recommendation'  => 'Odporúčané rozmery: :width x :height px.',
         'is_star'               => 'Pripnuté objekty sa zobrazia v menu objektu.',
         'tooltip'               => 'Nahradiť automaticky generovaný obsah bubliny týmto obsahom.',

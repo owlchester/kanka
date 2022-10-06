@@ -18,7 +18,6 @@ TEXT
     ],
     'destroy'                           => [
         'action'    => 'Elimina la campanya',
-        'helper'    => 'Només podeu eliminar la campanya si sou l\'únic membre que en resta.',
         'success'   => 'S\'ha eliminat la campanya.',
     ],
     'edit'                              => [
@@ -100,26 +99,18 @@ TEXT
     ],
     'invites'                           => [
         'actions'               => [
-            'add'   => 'Convida',
             'copy'  => 'Copia l\'enllaç al porta-retalls',
             'link'  => 'Nou enllaç',
         ],
         'create'                => [
             'buttons'       => [
                 'create'    => 'Crea una invitació',
-                'send'      => 'Envia l\'invitació',
             ],
-            'success'       => 'S\'ha enviat la invitació.',
             'success_link'  => 'S\'ha creat l\'enllaç. :link',
             'title'         => 'Invitacions a la campanya',
         ],
         'destroy'               => [
             'success'   => 'S\'ha eliminat la invitació.',
-        ],
-        'email'                 => [
-            'link_text' => 'Uniu-vos a la campanya de :name',
-            'subject'   => ':name us ha convidat a unir-vos a la seva campanya «:campaign» a kanka.io! Cliqueu el següent enllaç per acceptar la seva invitació.',
-            'title'     => 'Invitació de :name',
         ],
         'error'                 => [
             'already_member'    => 'Ja sou membre d\'aquesta campanya.',
@@ -129,21 +120,9 @@ TEXT
         ],
         'fields'                => [
             'created'   => 'Enviat',
-            'email'     => 'Correu electrònic',
             'role'      => 'Rol',
             'type'      => 'Tipus',
             'usage'     => 'Nombre màxim d\'usos',
-        ],
-        'helpers'               => [
-            'email'     => 'Pot ser que els nostres correus es marquin com a spam i poden trigar unes hores fins aparèixer a la safata d\'entrada.',
-            'validity'  => 'Quants usuaris poden utilitzar aquest enllaç abans que es desactivi. Deixeu-ho en blanc perquè sigui il·limitat.',
-        ],
-        'placeholders'          => [
-            'email' => 'Adreça electrònica de la persona a qui voleu convidar',
-        ],
-        'types'                 => [
-            'email' => 'Correu electrònic',
-            'link'  => 'Enllaç',
         ],
         'unlimited_validity'    => 'Il·limitat',
         'usages'                => [

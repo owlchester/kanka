@@ -5,7 +5,6 @@ return [
         'add_element'   => 'Pridať prvok k veku :era',
         'back'          => 'Späť k :name',
         'edit'          => 'Upraviť časovú os',
-        'reorder'       => 'Upraviť poradie',
         'save_order'    => 'Uložiť nové poradie',
     ],
     'create'        => [
@@ -26,8 +25,6 @@ return [
     'helpers'       => [
         'nested_without'    => 'Zobrazujú sa všetky časové osy, ktoré nemajú nadradenú časovú os. Kliknutím na riadok zobrazíš podradené časové osy.',
         'no_era'            => 'Táto časová os nemá žiadne veky. Veky môžu byť pridané na časovú os v režime úprav a následne do nich vložené prvky na osi.',
-        'reorder'           => 'Pretiahni prvky vo veku pomocou Drag & Drop a usporiadaj ich podľa seba.',
-        'reorder_tooltip'   => 'Kliknutím aktivuješ ručné usporiadanie prvkov pomocou Drag & Drop.',
         'reverse_order'     => 'Aktivovaním zobrazíš veky v spätnom chronologickom poradí (najstarší vek ako prvý).',
     ],
     'index'         => [

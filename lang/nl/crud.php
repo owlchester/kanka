@@ -195,7 +195,6 @@ return [
         'gallery_image'         => 'Als de entiteit geen afbeelding heeft, geef je in plaats daarvan een afbeelding uit de campaign galerij weer.',
         'header_image'          => 'Deze afbeelding wordt boven de entiteit geplaatst. Gebruik een brede afbeelding voor de beste resultaten.',
         'image_limitations'     => 'Ondersteunde formaten: :formats. Max Bestandsgrootte: :size.',
-        'image_patreon'         => 'Limiet voor bestandsgrootte verhogen?',
         'is_star'               => 'Vastgezette elementen verschijnen in het menu van de entiteit',
         'tooltip'               => 'Vervang de automatisch gegenereerde tooltip door de volgende inhoud.',
         'visibility'            => 'Als je de zichtbaarheid instelt op beheerder, kunnen alleen leden met de campaign rol Beheerder dit zien. Als je het op zichzelf instelt, betekent dit dat alleen jij dit kunt zien.',

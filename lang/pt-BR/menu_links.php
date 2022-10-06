@@ -20,7 +20,6 @@ return [
         'random'            => 'Aleatório',
         'random_type'       => 'Tipo aleatório de entidade',
         'selector'          => 'Configuração do Link Rápido',
-        'tab'               => 'Aba',
         'type'              => 'Tipo de entidade',
     ],
     'helpers'           => [

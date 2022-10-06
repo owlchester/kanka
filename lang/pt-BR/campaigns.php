@@ -21,7 +21,6 @@ TEXT
     ],
     'destroy'                           => [
         'action'    => 'Deletar Campanha',
-        'helper'    => 'Você apenas pode deletar a campanha se for o único membro nela',
         'success'   => 'Campanha removida',
     ],
     'edit'                              => [
@@ -105,26 +104,18 @@ TEXT
     ],
     'invites'                           => [
         'actions'               => [
-            'add'   => 'Convidar',
             'copy'  => 'Copiar link para sua área de transferência',
             'link'  => 'Novo Link',
         ],
         'create'                => [
             'buttons'       => [
                 'create'    => 'Criar convite',
-                'send'      => 'Enviar convite',
             ],
-            'success'       => 'Convite enviado.',
             'success_link'  => 'Link criado :link',
             'title'         => 'Convide alguém para sua campanha',
         ],
         'destroy'               => [
             'success'   => 'Convite removido',
-        ],
-        'email'                 => [
-            'link_text' => 'Entrar na campanha :name',
-            'subject'   => ':name convidou você para juntar-se a sua campanha \':campaign\' no kanka.io! Use o link a seguir para aceitar o seu convite.',
-            'title'     => 'Convite de :name',
         ],
         'error'                 => [
             'already_member'    => 'Você já é um membro dessa campanha.',
@@ -134,21 +125,9 @@ TEXT
         ],
         'fields'                => [
             'created'   => 'Enviado',
-            'email'     => 'Email',
             'role'      => 'Cargo',
             'type'      => 'Tipo',
             'usage'     => 'Número máximo de usos',
-        ],
-        'helpers'               => [
-            'email'     => 'Nossos e-mails são frequentemente sinalizados como spam e podem levar algumas horas antes de aparecerem na sua caixa de entrada.',
-            'validity'  => 'Quantos usuários podem usar esse link antes que seja desativado.',
-        ],
-        'placeholders'          => [
-            'email' => 'Email da pessoa que você deseja convidar',
-        ],
-        'types'                 => [
-            'email' => 'Email',
-            'link'  => 'Link',
         ],
         'unlimited_validity'    => 'Ilimitado',
         'usages'                => [

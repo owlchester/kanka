@@ -5,7 +5,6 @@ return [
         'add_element'   => 'Aggiungi all\'era :era',
         'back'          => 'Torna a :nome',
         'edit'          => 'Modifica linea temporale',
-        'reorder'       => 'Riordina',
         'save_order'    => 'Salva nuovo ordine',
     ],
     'create'        => [
@@ -26,8 +25,6 @@ return [
     'helpers'       => [
         'nested_without'    => 'Tutte le linee temporali che non hanno una linea temporale principale. Clicca su una riga per vedere le linee temporali figlie',
         'no_era'            => 'Attualmente questa linea temporale non ha ere. Le ere possono essere aggiunte nella schermata di modifica delle linee temporali, dove è possibile aggiungere elementi.',
-        'reorder'           => 'Trascina gli elementi dell\'era per riordinarli.',
-        'reorder_tooltip'   => 'Clicca per abilitare il riordino degli elementi trascinandoli.',
         'reverse_order'     => 'Abilita per visualizzare le ere in ordine cronologico inverso (prima l\'era più antica)',
     ],
     'index'         => [

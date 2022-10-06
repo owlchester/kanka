@@ -5,7 +5,6 @@ return [
         'add_element'   => 'Elem hozzáadása az korszakhoz: :era',
         'back'          => 'Vissza ide: :name',
         'edit'          => 'Idővonal szerkesztése',
-        'reorder'       => 'Átrendezés',
         'save_order'    => 'Új sorrend mentése',
     ],
     'create'        => [
@@ -24,8 +23,6 @@ return [
     ],
     'helpers'       => [
         'nested_without'    => 'Minden idővonal megmutatása, aminek nincs szülője. Klikkelj egy sorra, hogy lásd a gyermekidővonalait.',
-        'reorder'           => 'Fogd és vidd az elemeket az átrendezésükhöz.',
-        'reorder_tooltip'   => 'Klikkelj a fodg és vidd manuális sorbarendezés eléréséhez.',
         'reverse_order'     => 'Pipáld ki, hogy a korszakok fordított időrendi sorrendben jelenjenek meg. (A legrégebbi korszak legelőször.)',
     ],
     'index'         => [

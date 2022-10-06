@@ -18,7 +18,6 @@ return [
         'random'        => 'Nasumično',
         'random_type'   => 'Nasumičan tip entiteta',
         'selector'      => 'Konfiguracija brzih poveznica',
-        'tab'           => 'Kartica',
         'type'          => 'Tip entiteta',
     ],
     'helpers'       => [

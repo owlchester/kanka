@@ -18,7 +18,6 @@ TEXT
     ],
     'destroy'                           => [
         'action'    => 'Kampány törlése',
-        'helper'    => 'Csak akkor törölheted a kampányt, ha te vagy az egyetlen tagja.',
         'success'   => 'A kampányt eltávolítottuk.',
     ],
     'edit'                              => [
@@ -92,26 +91,18 @@ TEXT
     ],
     'invites'                           => [
         'actions'               => [
-            'add'   => 'Meghívó',
             'copy'  => 'Másold ki ezt a linket a vágólapra!',
             'link'  => 'Új link',
         ],
         'create'                => [
             'buttons'       => [
                 'create'    => 'Meghívó létrehozása',
-                'send'      => 'Meghívó küldése',
             ],
-            'success'       => 'A meghívót elküldtük.',
             'success_link'  => 'Link létrehozva: :link',
             'title'         => 'Hívj meg valakit a kampányodba!',
         ],
         'destroy'               => [
             'success'   => 'A meghívót eltávolítottuk.',
-        ],
-        'email'                 => [
-            'link_text' => 'Csatlakozz :name kampányához',
-            'subject'   => ':name meghívott, hogy csatlakozz a \':campaign\' nevű kampányához a kanka.io oldalon! Használd az alábbi linket a csatlakozkáshoz!',
-            'title'     => 'Meghívó :name nevű felhasználótól',
         ],
         'error'                 => [
             'already_member'    => 'Már tagja vagy annak a kampánynak.',
@@ -121,20 +112,8 @@ TEXT
         ],
         'fields'                => [
             'created'   => 'Küldés',
-            'email'     => 'Email',
             'role'      => 'Szerep',
             'type'      => 'Típus',
-        ],
-        'helpers'               => [
-            'email'     => 'A leveleinket gyakran spamként (szemétként) azonosítják, és eltelhet pár óra, amíg megjelenik a bejövő üzenetek között.',
-            'validity'  => 'Hány felhasználó tudja használni ezt a linket, mielőtt deaktviálódik.',
-        ],
-        'placeholders'          => [
-            'email' => 'Az illető email-címe, aki meg szeretnél hívni.',
-        ],
-        'types'                 => [
-            'email' => 'Email',
-            'link'  => 'Link',
         ],
         'unlimited_validity'    => 'Korlátlan',
         'usages'                => [

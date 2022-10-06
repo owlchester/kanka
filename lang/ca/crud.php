@@ -229,7 +229,6 @@ return [
         'gallery_image'         => 'Si l\'entitat no té imatge, mostra una imatge de la galeria de la campanya.',
         'header_image'          => 'Aquesta imatge es troba sobre la entitat. Per a obtenir resultats millors, feu servir una imatge apaisada.',
         'image_limitations'     => 'Formats acceptats: :formats. Tamany màxim del fitxer: :size.',
-        'image_patreon'         => '¿Com s\'augmenta el tamany màxim dels fitxers?',
         'image_recommendation'  => 'Dimensions recomanades: :width per :height px.',
         'is_star'               => 'Els elements fixats es mostraran al menú principal de l\'entitat.',
         'tooltip'               => 'Reemplaça la descripció emergent automàtica amb el contingut següent.',

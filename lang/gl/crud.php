@@ -247,7 +247,6 @@ return [
         'gallery_image'         => 'Se a entidade non ten imaxe, mostra unha imaxe da galería da campaña no seu lugar.',
         'header_image'          => 'Esta imaxe é situada enriba da entidade. Para obter os mellores resultados, usa unha imaxe ancha.',
         'image_limitations'     => 'Formatos soportados: :formats. Tamaño máximo do ficheiro: :size.',
-        'image_patreon'         => 'Queres aumentar o tamaño máximo dos ficheiros?',
         'image_recommendation'  => 'Dimensións recomendadas: :width x :height px.',
         'is_star'               => 'Os elementos fixados aparecerán no menú da entidade',
         'tooltip'               => 'Substitúe a previsualización emerxente por defecto polo seguinte contido.',

@@ -18,7 +18,6 @@ TEXT
     ],
     'destroy'                           => [
         'action'    => 'Eliminar campaña',
-        'helper'    => 'Solo puedes eliminar la campaña si eres el único miembro en ella.',
         'success'   => 'Campaña eliminada.',
     ],
     'edit'                              => [
@@ -100,26 +99,18 @@ TEXT
     ],
     'invites'                           => [
         'actions'               => [
-            'add'   => 'Invitar',
             'copy'  => 'Copiar el enlace al portapapeles',
             'link'  => 'Nuevo enlace',
         ],
         'create'                => [
             'buttons'       => [
                 'create'    => 'Crear invitación',
-                'send'      => 'Enviar invitación',
             ],
-            'success'       => 'Invitación enviada.',
             'success_link'  => 'Link creado. :link',
             'title'         => 'Invita a alguien a tu campaña',
         ],
         'destroy'               => [
             'success'   => 'Invitación eliminada.',
-        ],
-        'email'                 => [
-            'link_text' => 'Unirse a la campaña de :name',
-            'subject'   => '¡:name te ha invitado a que te unas a su campaña ":campaign" en kanka.io! Usa el siguiente enlace para aceptar su invitación.',
-            'title'     => 'Invitación de :name',
         ],
         'error'                 => [
             'already_member'    => 'Ya eres miembro de esta campaña.',
@@ -129,21 +120,9 @@ TEXT
         ],
         'fields'                => [
             'created'   => 'Enviado',
-            'email'     => 'Correo electrónico',
             'role'      => 'Rol',
             'type'      => 'Tipo',
             'usage'     => 'Número máximo de usos',
-        ],
-        'helpers'               => [
-            'email'     => 'Puede ser que nuestros correos se marquen como spam y pueden tardar unas horas hasta aparecer en tu buzón de entrada.',
-            'validity'  => 'Cuántos usuarios pueden usar este enlace antes de que se desactive. Déjalo en blanco para que sea ilimitado.',
-        ],
-        'placeholders'          => [
-            'email' => 'Correo electrónico de la persona a la que quieres invitar',
-        ],
-        'types'                 => [
-            'email' => 'Correo electrónico',
-            'link'  => 'Enlace',
         ],
         'unlimited_validity'    => 'Ilimitado',
         'usages'                => [

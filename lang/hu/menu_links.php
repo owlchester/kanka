@@ -19,7 +19,6 @@ return [
         'random'        => 'Véletlenszerű',
         'random_type'   => 'Véletlen entitástípus',
         'selector'      => 'Gyors linkkonfigurálás',
-        'tab'           => 'Lapfül',
         'type'          => 'Entitás típusa',
     ],
     'helpers'       => [

@@ -16,7 +16,6 @@ return [
         'position'      => 'Position',
         'random'        => 'Slumpmässig',
         'random_type'   => 'Slumpmässig Entitetstyp',
-        'tab'           => 'Flik',
         'type'          => 'Entitetstyp',
     ],
     'helpers'       => [

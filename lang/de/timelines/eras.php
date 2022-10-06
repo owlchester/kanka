@@ -32,7 +32,5 @@ return [
         'name'          => 'Moderne, Bronzzeit, Galaktische Kriege',
         'start_year'    => 'Jahr, in dem die Epoche beginnt. Lassen Sie das Feld leer, wenn dies die erste Epoche ist.',
     ],
-    'reorder'       => [
-        'success'   => 'Elemente der :era Epoche  neu geordnet.',
-    ],
+    'reorder'       => [],
 ];

@@ -21,7 +21,6 @@ TEXT
     ],
     'destroy'                           => [
         'action'    => 'Eliminar campaña',
-        'helper'    => 'Só podes eliminar a campaña se non hai máis persoas nela.',
         'success'   => 'Campaña eliminada.',
     ],
     'edit'                              => [
@@ -107,26 +106,18 @@ TEXT
     ],
     'invites'                           => [
         'actions'               => [
-            'add'   => 'Convidar por correo electrónico',
             'copy'  => 'Copiar a ligazón ao portapapeis',
             'link'  => 'Nova ligazón',
         ],
         'create'                => [
             'buttons'       => [
                 'create'    => 'Crear convite',
-                'send'      => 'Enviar convite',
             ],
-            'success'       => 'Convite enviado.',
             'success_link'  => 'Ligazón creada: :link',
             'title'         => 'Convida alguén á túa campaña.',
         ],
         'destroy'               => [
             'success'   => 'Convite eliminado.',
-        ],
-        'email'                 => [
-            'link_text' => 'Unirse á campaña de :name',
-            'subject'   => ':name convidoute a unirte á súa campaña ":campaign" en kanka.io! Usa a seguinte ligazón para aceptar o seu convite.',
-            'title'     => 'Convite de :name',
         ],
         'error'                 => [
             'already_member'    => 'Xa es integrante desta campaña.',
@@ -136,21 +127,9 @@ TEXT
         ],
         'fields'                => [
             'created'   => 'Enviado',
-            'email'     => 'Correo electrónico',
             'role'      => 'Rol',
             'type'      => 'Tipo',
             'usage'     => 'Número máximo de usos',
-        ],
-        'helpers'               => [
-            'email'     => 'Os nosos correos son frecuentemente marcados como spam e poden tardar unhas horas ata aparecer na túa caixa de entrada.',
-            'validity'  => 'Cantas persoas poden usar esta ligazón antes de que se desactive. Déixao en branco para que non haxa límite.',
-        ],
-        'placeholders'          => [
-            'email' => 'Enderezo de correo electrónico da persoa que queres convidar',
-        ],
-        'types'                 => [
-            'email' => 'Correo electrónico',
-            'link'  => 'Ligazón',
         ],
         'unlimited_validity'    => 'Ilimitado',
         'usages'                => [

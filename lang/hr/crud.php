@@ -212,7 +212,6 @@ return [
         'gallery_image'         => 'Ako entitet nema sliku, umjesto toga prikaži sliku iz galerije kampanje.',
         'header_image'          => 'Ova se slika postavlja iznad entiteta. Za najbolje rezultate koristite široku sliku.',
         'image_limitations'     => 'Podržani formati: :formats. Maksimalna veličina datoteke: :size.',
-        'image_patreon'         => 'Povećaj ograničenje veličine datoteke?',
         'is_star'               => 'Prikvačeni elementi pojavit će se na izborniku entiteta',
         'tooltip'               => 'Zamijeni automatski generirani kratki opis sljedećim sadržajem.',
         'visibility'            => 'Postavljanje vidljivosti na "Administratori" znači da će samo članovi kampanje u ulozi Administrator vidjeti ovo. Postavljanje vidljivosti na "Samo ja" znači da samo ti vidiš ovo.',

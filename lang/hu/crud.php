@@ -223,7 +223,6 @@ return [
         'gallery_image'         => 'Ha az entitásnak nincs képe, tegyél ki egy képet a kampány galériájából.',
         'header_image'          => 'Ez a kép az entitás fölött fog megjelenni. Érdemes széles képet választani.',
         'image_limitations'     => 'Támogatott formátumok: :formats. Maximális állományméret: :size.',
-        'image_patreon'         => 'Megnöveled az állományméret korlátját?',
         'is_star'               => 'Kitűzött elemek az entitás menüjén jelennek meg',
         'tooltip'               => 'Lecseréli az automatikusan generált tooltip szöveget az alábbi tartalommal.',
         'visibility'            => 'Ha a láthatóságot Admin-ra állítod, akkor csak az Admin jogú felhasználók tudják megnézni ezt. \'Magam\'-ra állítva csak te láthatod.',

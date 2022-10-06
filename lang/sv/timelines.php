@@ -5,7 +5,6 @@ return [
         'add_element'   => 'Lägg till i era :era',
         'back'          => 'Tillbaka till :name',
         'edit'          => 'Redigera tidslinje',
-        'reorder'       => 'Ändra ordning',
         'save_order'    => 'Spara ny ordning',
     ],
     'create'        => [
@@ -21,9 +20,7 @@ return [
         'type'          => 'Typ',
     ],
     'helpers'       => [
-        'reorder'           => 'Dra och släpp element för eran för att ändra ordningen.',
-        'reorder_tooltip'   => 'Klicka för att kunna manuellt ändra ordningen av element genom att dra och släppa.',
-        'reverse_order'     => 'Aktivera för att se eror i omvänd kronologisk ordning (äldsta eran först)',
+        'reverse_order' => 'Aktivera för att se eror i omvänd kronologisk ordning (äldsta eran först)',
     ],
     'index'         => [
         'title' => 'Tidslinjer',

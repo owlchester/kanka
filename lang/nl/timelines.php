@@ -5,7 +5,6 @@ return [
         'add_element'   => 'Voeg toe aan tijdperk :era',
         'back'          => 'Terug naar :name',
         'edit'          => 'Wijzig tijdlijn',
-        'reorder'       => 'Herordenen',
         'save_order'    => 'Nieuwe volgorde opslaan',
     ],
     'create'        => [
@@ -23,9 +22,7 @@ return [
         'type'          => 'Type',
     ],
     'helpers'       => [
-        'reorder'           => 'Sleep en drop elementen uit het tijdperk om ze opnieuw te ordenen.',
-        'reorder_tooltip'   => 'Klik om handmatige herschikking van elementen met slepen en droppen in te schakelen.',
-        'reverse_order'     => 'Schakel in om tijdperken in omgekeerde chronologische volgorde weer te geven (eerst het oudere tijdperk)',
+        'reverse_order' => 'Schakel in om tijdperken in omgekeerde chronologische volgorde weer te geven (eerst het oudere tijdperk)',
     ],
     'index'         => [
         'title' => 'Tijdlijnen',

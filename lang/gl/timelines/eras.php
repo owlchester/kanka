@@ -32,7 +32,5 @@ return [
         'name'          => 'Era moderna, Idade de bronce, Guerras galácticas...',
         'start_year'    => 'Ano no que comeza a era. Déixao en branco se esta é a primeira era.',
     ],
-    'reorder'       => [
-        'success'   => 'Elementos da era ":era" reordenados.',
-    ],
+    'reorder'       => [],
 ];

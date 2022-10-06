@@ -30,7 +30,5 @@ return [
         'name'          => 'Modern kor, Bronz kor, Galaktikus Háborúk',
         'start_year'    => 'Az év, amellyel a korszak megkezdődik. Hagyd üresen, ha ez a korszak az aktuális.',
     ],
-    'reorder'       => [
-        'success'   => ':era éra elemeit átrendeztük.',
-    ],
+    'reorder'       => [],
 ];

@@ -18,7 +18,6 @@ TEXT
     ],
     'destroy'                           => [
         'action'    => 'Verwijder campaign',
-        'helper'    => 'Je kunt de campaign alleen verwijderen als je het enige lid bent.',
         'success'   => 'Campaign verwijderd.',
     ],
     'edit'                              => [
@@ -87,24 +86,17 @@ TEXT
     ],
     'invites'                           => [
         'actions'               => [
-            'add'   => 'Uitnodigen',
             'copy'  => 'Kopieer de link naar je klembord',
             'link'  => 'Nieuwe Link',
         ],
         'create'                => [
             'buttons'   => [
                 'create'    => 'Maak uitnodiging',
-                'send'      => 'Verstuur uitnodiging',
             ],
-            'success'   => 'Uitnodiging verstuurd.',
             'title'     => 'Nodig iemand uit voor je campaign',
         ],
         'destroy'               => [
             'success'   => 'Uitnodiging verwijderd.',
-        ],
-        'email'                 => [
-            'subject'   => ':name heeft je uitgenodigd om deel te nemen aan hun campaign \':campaign\' op kanka.io! Gebruik de volgende link om hun uitnodiging te accepteren.',
-            'title'     => 'Uitnodiging van :name',
         ],
         'error'                 => [
             'already_member'    => 'Je bent al lid van die campaign.',
@@ -114,20 +106,8 @@ TEXT
         ],
         'fields'                => [
             'created'   => 'Verstuurd',
-            'email'     => 'E-mail',
             'role'      => 'Rol',
             'type'      => 'Type',
-        ],
-        'helpers'               => [
-            'email'     => 'Onze e-mails worden vaak gemarkeerd als spam en het kan enkele uren duren voordat ze in je inbox verschijnen.',
-            'validity'  => 'Hoeveel gebruikers kunnen deze link gebruiken voordat deze wordt gedeactiveerd. Laat leeg voor onbeperkt',
-        ],
-        'placeholders'          => [
-            'email' => 'E-mailadres van de persoon die je wilt uitnodigen',
-        ],
-        'types'                 => [
-            'email' => 'E-mail',
-            'link'  => 'Link',
         ],
         'unlimited_validity'    => 'Onbeperkt',
     ],

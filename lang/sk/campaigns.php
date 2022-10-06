@@ -21,7 +21,6 @@ TEXT
     ],
     'destroy'                           => [
         'action'    => 'Odstrániť kampaň',
-        'helper'    => 'Kampaň môžeš odstrániť iba ak si jediný člen v nej.',
         'success'   => 'Kampaň odstránená.',
     ],
     'edit'                              => [
@@ -107,26 +106,18 @@ TEXT
     ],
     'invites'                           => [
         'actions'               => [
-            'add'   => 'Pozvať',
             'copy'  => 'Kopírovať link do schránky',
             'link'  => 'Nový link',
         ],
         'create'                => [
             'buttons'       => [
                 'create'    => 'Vytvoriť pozvánku',
-                'send'      => 'Zaslať pozvánku',
             ],
-            'success'       => 'Pozvánka zaslaná.',
             'success_link'  => 'Link vytvorený: :link',
             'title'         => 'Pozvať niekoho k tvojej kampani',
         ],
         'destroy'               => [
             'success'   => 'Pozvánka odstránená.',
-        ],
-        'email'                 => [
-            'link_text' => 'Pridať sa do kampane :name',
-            'subject'   => ':name ťa pozval/a, aby si sa pridal/a do jeho kampane :campaign na kanka.io! Pozvánku môžeš akceptovať kliknutím na nasledujúci link.',
-            'title'     => 'Pozvánka od :name',
         ],
         'error'                 => [
             'already_member'    => 'Už si súčasťou tejto kampane.',
@@ -136,21 +127,9 @@ TEXT
         ],
         'fields'                => [
             'created'   => 'Zaslať',
-            'email'     => 'E-mail',
             'role'      => 'Rola',
             'type'      => 'Typ',
             'usage'     => 'Max. počet použití',
-        ],
-        'helpers'               => [
-            'email'     => 'Naše e-maily sú často označované ako spam a môže sa stať, že sa v tvojej doručenej pošte objavia až o pár hodín neskôr.',
-            'validity'  => 'Koľko používateľov môže použiť tento link, dokiaľ mu nevyprší platnosť.',
-        ],
-        'placeholders'          => [
-            'email' => 'E-mailová adresa osoby, ktorú chceš pozvať',
-        ],
-        'types'                 => [
-            'email' => 'E-mail',
-            'link'  => 'Link',
         ],
         'unlimited_validity'    => 'Neobmedzený',
         'usages'                => [

@@ -18,7 +18,6 @@ TEXT
     ],
     'destroy'                           => [
         'action'    => 'Ta bort Kampanj',
-        'helper'    => 'Du kan bara ta bort kampanjen om du är den enda medlemmen i den.',
         'success'   => 'Kampanj borttagen.',
     ],
     'edit'                              => [
@@ -84,20 +83,14 @@ TEXT
     ],
     'invites'                           => [
         'actions'               => [
-            'add'   => 'Bjud in',
             'copy'  => 'Kopiera länken till dina urklipp',
             'link'  => 'Ny länk',
         ],
         'create'                => [
-            'success'   => 'Inbjudan skickad.',
-            'title'     => 'Bjud in någon till din kampanj',
+            'title' => 'Bjud in någon till din kampanj',
         ],
         'destroy'               => [
             'success'   => 'Inbjudan borttagen.',
-        ],
-        'email'                 => [
-            'subject'   => ':name har bjudit in dig till sin kampanj \':campaign\' på kanka.io! Använd följande länk för att acceptera deras inbjudan.',
-            'title'     => 'Inbjudan från :name',
         ],
         'error'                 => [
             'already_member'    => 'Du är redan medlem i den kampanjen.',
@@ -107,20 +100,8 @@ TEXT
         ],
         'fields'                => [
             'created'   => 'Skickat',
-            'email'     => 'Epost',
             'role'      => 'Roll',
             'type'      => 'Typ',
-        ],
-        'helpers'               => [
-            'email'     => 'Våra mail blir ofta flaggade som skräppost och kan ta upp till några timmar att dyka upp i din inkorg.',
-            'validity'  => 'Hur många användare som kan använda denna länk innan den inaktiveras. Lämna tomt för obegränsat',
-        ],
-        'placeholders'          => [
-            'email' => 'Epost adress till personen du vill bjuda in.',
-        ],
-        'types'                 => [
-            'email' => 'Epost',
-            'link'  => 'Länk',
         ],
         'unlimited_validity'    => 'Obegränsad',
     ],

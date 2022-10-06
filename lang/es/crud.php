@@ -230,7 +230,6 @@ return [
         'gallery_image'         => 'Si la entidad no tiene imagen, muestra una imagen de la galería en su lugar.',
         'header_image'          => 'Esta imagen está situada sobre la entidad. Para obtener mejores resultados, usa una imagen apaisada.',
         'image_limitations'     => 'Formatos soportados: :formats. Tamaño máximo del archivo: :size.',
-        'image_patreon'         => '¿Cómo se puede aumentar el tamaño máximo de los archivos?',
         'image_recommendation'  => 'Dimensiones recomendadas: :width por :height px.',
         'is_star'               => 'Los elementos fijados aparecerán en el menú principal de la entidad.',
         'tooltip'               => 'Reemplaza la descripción emergente automática con el siguiente contenido.',

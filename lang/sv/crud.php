@@ -187,7 +187,6 @@ return [
         'calendar_date'         => 'Ett kalenderdatum tillåter enkel filtrering i listor, och upprätthåller också ett kalender händelse i den valda kalendern.',
         'header_image'          => 'Denna bild är placerad över entiteten. För bästa resultat, använd en bred bild.',
         'image_limitations'     => 'Stöda format: :formats. Max filstorlek: :size.',
-        'image_patreon'         => 'Utöka filstorleks gräns?',
         'is_star'               => 'Fastnålade element kommer bara visas på entitetens meny',
         'tooltip'               => 'Ersätt de automatiskt genererade inforutorna med följande innehåll.',
         'visibility'            => 'Att sätta synligheten till \'admin\' betyder att bara medlemmar i Admin rollen för kampanjen kan se detta. Att sätta den till \'Jag själv\' betyder att bara du själv kan se detta.',

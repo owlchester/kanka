@@ -32,7 +32,5 @@ return [
         'name'          => 'Età Moderna, Età del Bronzo, Guerre Galattiche',
         'start_year'    => 'Anno in cui l\'era comincia. Lasciare vuoto se questa è la prima era.',
     ],
-    'reorder'       => [
-        'success'   => 'Elementi dell\'era :era riordinati.',
-    ],
+    'reorder'       => [],
 ];

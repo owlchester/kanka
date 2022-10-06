@@ -21,7 +21,6 @@ TEXT
     ],
     'destroy'                           => [
         'action'    => 'Kampagne löschen',
-        'helper'    => 'Sie können die Kampagne nur löschen, wenn Sie das einzige Mitglied in der Kampagne sind.',
         'success'   => 'Kampagne gelöscht',
     ],
     'edit'                              => [
@@ -107,26 +106,18 @@ TEXT
     ],
     'invites'                           => [
         'actions'               => [
-            'add'   => 'Einladung',
             'copy'  => 'Kopieren Sie den Link in Ihre Zwischenablage',
             'link'  => 'Neuer Link',
         ],
         'create'                => [
             'buttons'       => [
                 'create'    => 'Einladung erstellen',
-                'send'      => 'sende Einladung',
             ],
-            'success'       => 'Einladung verschickt.',
             'success_link'  => 'Link :link erstellt',
             'title'         => 'Lade jemanden zu deiner Kampagne ein',
         ],
         'destroy'               => [
             'success'   => 'Einladung entfernt.',
-        ],
-        'email'                 => [
-            'link_text' => ':name´s Kampagne beigetreten',
-            'subject'   => ':name hat dich eingeladen, seiner Kampagne \':campaign\' auf kanka.io beizutreten! Nutze den folgenden Link, um die Einladung anzunehmen.',
-            'title'     => 'Einladung von :name',
         ],
         'error'                 => [
             'already_member'    => 'Du bist bereits Mitglied dieser Kampagne',
@@ -136,21 +127,9 @@ TEXT
         ],
         'fields'                => [
             'created'   => 'Senden',
-            'email'     => 'Email',
             'role'      => 'Rolle',
             'type'      => 'Typ',
             'usage'     => 'Maximale Anzahl von Verwendungen',
-        ],
-        'helpers'               => [
-            'email'     => 'Unsere E-Mails werden häufig als Spam gekennzeichnet und können sich bis zu einigen Stunden verzögern, bevor sie in Ihrem Posteingang angezeigt werden.',
-            'validity'  => 'Wie viele Nutzer können diesen Link benutzen, bevor er ausläuft.',
-        ],
-        'placeholders'          => [
-            'email' => 'Email Adresse der Person, die du zu der Kampagne einladen möchtest',
-        ],
-        'types'                 => [
-            'email' => 'Email',
-            'link'  => 'Link',
         ],
         'unlimited_validity'    => 'Unbegrenzt',
         'usages'                => [

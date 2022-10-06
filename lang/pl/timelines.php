@@ -5,7 +5,6 @@ return [
         'add_element'   => 'Dodaj do epoki :era',
         'back'          => 'Powrót do :name',
         'edit'          => 'Edytuj historię',
-        'reorder'       => 'Zmień kolejność',
         'save_order'    => 'Zapisz nową kolejność',
     ],
     'create'        => [
@@ -26,8 +25,6 @@ return [
     'helpers'       => [
         'nested_without'    => 'Wyświetlono wszystkie historie nie posiadające źródła. Kliknij na rząd, by wyświetlić historie pochodne.',
         'no_era'            => 'Ta historia nie ma obecnie żadnych epok. Możesz je dodać na ekranie edycji, a potem uzupełnić tutaj o kolejne elementy.',
-        'reorder'           => 'Przeciągaj elementy epoki by zmieniać ich kolejność',
-        'reorder_tooltip'   => 'Kliknij by włączyć ręczną zmianę kolejności poprzez przeciąganie elementów.',
         'reverse_order'     => 'Zaznacz by wyświetlać epoki w odwróconym porządku chronologicznym (od najdawniejszej)',
     ],
     'index'         => [

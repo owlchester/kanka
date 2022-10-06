@@ -30,7 +30,5 @@ return [
         'name'          => 'Moderna Eran, Bronsåldern, Galaktiska Krigen',
         'start_year'    => 'År eran startar. Lämna blank om detta är första eran.',
     ],
-    'reorder'       => [
-        'success'   => 'Element av :era erans ordning ändrad.',
-    ],
+    'reorder'       => [],
 ];

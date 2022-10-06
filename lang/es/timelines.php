@@ -5,7 +5,6 @@ return [
         'add_element'   => 'Añadir elemento a la era :era',
         'back'          => 'Volver a :name',
         'edit'          => 'Editar línea de tiempo',
-        'reorder'       => 'Reordenar',
         'save_order'    => 'Guardar orden nuevo',
     ],
     'create'        => [
@@ -25,8 +24,6 @@ return [
     ],
     'helpers'       => [
         'nested_without'    => 'Mostrando todas las líneas de tiempo sin ningún superior. Haz clic sobre una fila para mostrar sus descendientes.',
-        'reorder'           => 'Arrastra los elementos de la era para reordenarlos.',
-        'reorder_tooltip'   => 'Haz clic para habilitar la reordenación manual de los elementos mediante arrastrar y soltar.',
         'reverse_order'     => 'Habilitar para mostrar las eras en orden cronológico inverso (la era más antigua primero)',
     ],
     'index'         => [

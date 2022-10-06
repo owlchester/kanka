@@ -20,7 +20,6 @@ return [
         'random'            => 'Losowy',
         'random_type'       => 'Losowy typ elementu',
         'selector'          => 'Konfiguracja skrótu',
-        'tab'               => 'Zakładka',
         'type'              => 'Typ elementu',
     ],
     'helpers'           => [

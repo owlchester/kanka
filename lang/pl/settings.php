@@ -134,7 +134,6 @@ return [
         'cancel'                => [
             'options'   => [
                 'competitor'        => 'Wybieram produkt konkurencji',
-                'custom'            => 'Inne (jakie?)',
                 'financial'         => 'Moja sytuacja finansowa się zmieniła',
                 'missing_features'  => 'Nie ma opcji, których potrzebuję',
                 'not_using'         => 'Nie używam ostatnio Kanki',

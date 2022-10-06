@@ -18,7 +18,6 @@ TEXT
     ],
     'destroy'                           => [
         'action'    => 'Odstranit Kampaň',
-        'helper'    => 'Kampaň lze odstranit pouze pokud jsi jejím jediným členem.',
         'success'   => 'Kampaň odstraněna.',
     ],
     'edit'                              => [
@@ -96,26 +95,18 @@ TEXT
     ],
     'invites'                           => [
         'actions'               => [
-            'add'   => 'E-mailová pozvánka',
             'copy'  => 'Kopírovat odkaz do schánky',
             'link'  => 'Nový odkaz',
         ],
         'create'                => [
             'buttons'       => [
                 'create'    => 'Vytvořit pozvánku',
-                'send'      => 'Zaslat pozvánku',
             ],
-            'success'       => 'Pozvánka odeslána',
             'success_link'  => 'Vytvořen odkaz: :link',
             'title'         => 'Pozvat někoho ke tvému tažení',
         ],
         'destroy'               => [
             'success'   => 'Pozvánka odstraněna',
-        ],
-        'email'                 => [
-            'link_text' => 'Připojit se k tažení uživatele :name',
-            'subject'   => 'Uživatel :name ti posílá pozvánku, aby ses připojil k jeho tažení s názvem ":campaign", které vytváří v systému https://kanka.io . Chceš-li se k němu připojit, klepni na následující odkaz.',
-            'title'     => 'Pozvánka od uživatele :name',
         ],
         'error'                 => [
             'already_member'    => 'Už jsi členem tohoto tažení.',
@@ -125,21 +116,9 @@ TEXT
         ],
         'fields'                => [
             'created'   => 'Odesláno',
-            'email'     => 'E-mail',
             'role'      => 'Role',
             'type'      => 'Typ',
             'usage'     => 'Maximální počet použití',
-        ],
-        'helpers'               => [
-            'email'     => 'Naše emailové zprávy často padají do spamu a někdy může jejich doručení trvat až několik hodin.',
-            'validity'  => 'Počet uživatelů, kteří mohou tento odkaz použít před jeho zneplatněním. Pokud pole ponecháte prázdné, bude mít pozvánka neomezenou platnost.',
-        ],
-        'placeholders'          => [
-            'email' => 'E-mailová adresa uživatele, kterého chceš pozvat',
-        ],
-        'types'                 => [
-            'email' => 'E-mail',
-            'link'  => 'Odkaz',
         ],
         'unlimited_validity'    => 'Neomezené použití',
         'usages'                => [

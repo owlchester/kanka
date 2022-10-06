@@ -18,7 +18,6 @@ return [
         'random'        => 'Willekeurig',
         'random_type'   => 'Willekeurig Entiteit Type',
         'selector'      => 'Quick Link Configuratie',
-        'tab'           => 'Tabblad',
         'type'          => 'Entiteit Type',
     ],
     'helpers'       => [

@@ -225,7 +225,6 @@ return [
         'gallery_image'         => 'Pokud objekt nemá vlastní obrázek, zobrazí se místo něj obrázek z galerie tažení.',
         'header_image'          => 'Tento obrázek se zobrazuje nad objektem. Doporučujeme použít širokoúhlý obrázek.',
         'image_limitations'     => 'Podporované formáty: :formats. Maximální velikost souboru: :size',
-        'image_patreon'         => 'Chceš zvýšit omezení na velikost souborů?',
         'is_star'               => 'Připnuté objekty se zobrazí na stránce popisu objektu.',
         'tooltip'               => 'Nahradí automaticky generované informační bubliny následujícím obsahem. Případný HTML kód bude odebrán. Je ale možné použít pokročilý typ odkazů na objekty.',
         'visibility'            => 'Nastavení viditelnosti pouze pro "správce" znamená, že pouze členové role "Správce" si jej budou moci zobrazit. Při nastavení viditelnosti na "Vlastník" bude objekt viditelný jen pro tebe.',

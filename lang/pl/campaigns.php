@@ -21,7 +21,6 @@ TEXT
     ],
     'destroy'                           => [
         'action'    => 'Usuń kampanię',
-        'helper'    => 'Możesz usunąć wyłącznie kampanię, której jesteś jedynym uczestnikiem.',
         'success'   => 'Kampania usunięta.',
     ],
     'edit'                              => [
@@ -107,26 +106,18 @@ TEXT
     ],
     'invites'                           => [
         'actions'               => [
-            'add'   => 'Zaproś',
             'copy'  => 'Skopiuj odnośnik do schowka',
             'link'  => 'Nowy odnośnik',
         ],
         'create'                => [
             'buttons'       => [
                 'create'    => 'Stwórz zaproszenie',
-                'send'      => 'Wyślij zaproszenie',
             ],
-            'success'       => 'Wysłano zaproszenie.',
             'success_link'  => 'Stworzono odnośnik :link',
             'title'         => 'Zaproś kogoś do udziału w kampanii',
         ],
         'destroy'               => [
             'success'   => 'Usunięto zaproszenie.',
-        ],
-        'email'                 => [
-            'link_text' => 'Dołącz do kampanii :name\'s',
-            'subject'   => ':name zaprasza cię do udziału w kampanii \':campaign\' na platformie kanka.io! By przyjąć zaproszenie, użyj załączonego odnośnika.',
-            'title'     => 'Zaproszenie od :name',
         ],
         'error'                 => [
             'already_member'    => 'Bierzesz już udział w tej kampanii.',
@@ -136,21 +127,9 @@ TEXT
         ],
         'fields'                => [
             'created'   => 'Wysłano',
-            'email'     => 'Email',
             'role'      => 'Rola',
             'type'      => 'Rodzaj',
             'usage'     => 'Maksymalna liczba użyć',
-        ],
-        'helpers'               => [
-            'email'     => 'Nasze emaile często uważane są za spam i może minąć kilka godzin, zanim trafią do adresata.',
-            'validity'  => 'Liczba użytkowników, która może wykorzystać odnośnik zanim przestanie działać. Brak wpisu oznacza brak ograniczenia.',
-        ],
-        'placeholders'          => [
-            'email' => 'Adres email osoby, którą chcesz zaprosić',
-        ],
-        'types'                 => [
-            'email' => 'Email',
-            'link'  => 'Odnośnik',
         ],
         'unlimited_validity'    => 'Nieograniczona',
         'usages'                => [
