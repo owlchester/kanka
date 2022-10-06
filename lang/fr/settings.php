@@ -2,6 +2,32 @@
 
 return [
     'account'       => [
+        '2fa'               => [
+            'actions'               => [
+                'disable'   => 'Désactiver l\'authentification à deux facteurs',
+                'finish'    => 'Termine la configuration et connecte-toi',
+            ],
+            'activation_helper'     => 'Pour terminer la configuration de l\'authentification à deux facteurs de ton compte, suis ces instructions.',
+            'disable'               => [
+                'helper'    => 'S tu souhaites désactiver l\'authentification à deux facteurs, clique sur le bouton ci-dessous. Garde à l\'esprit que cela rendra ton compte vulnérable à toute personne connaissant tes informations de connexion.',
+                'title'     => 'Désactiver l\'authentification à deux facteurs',
+            ],
+            'enable_instructions'   => 'Pour démarrer le processus d\'activation, génère un code QR d\'authentification, puis scanne-le dans l\'application Google Authenticator (:ios, :android) ou une autre application d\'authentification similaire.',
+            'enabled'               => 'L\'authentification à deux facteurs est actuellement activée sur ton compte.',
+            'error_enable'          => 'Code invalide, ressaye',
+            'fields'                => [
+                'otp'       => 'Saisi le mot de passe à usage unique fourni par l\'application d\'authentification',
+                'qrcode'    => 'Scanne le code QR suivant avec ton application d\'authentification pour générer un mot de passe à usage unique',
+            ],
+            'generate_qr'           => 'Générer un code QR',
+            'helper'                => 'L\'authentification à deux facteurs renforce la sécurité d\'accès en exigeant deux méthodes (également appelées facteurs) pour vérifier ton identité à chaque connexion.',
+            'learn_more'            => 'En savoir plus sur l\'authentification à deux facteurs.',
+            'social'                => 'L\'authentification à deux facteurs Kanka n\'est activée que pour les utilisateurs qui se connectent à l\'aide de leur adresse e-mail et de leur mot de passe. Modifie ta méthode de connexion dans les paramètres de ton compte avant de pouvoir activer cette option.',
+            'success_disable'       => 'L\'authentification à deux facteurs est désactivée.',
+            'success_enable'        => 'L\'authentification à deux facteurs est maintenant activée. Reconnecte-toi pour terminer le processus.',
+            'success_key'           => 'Ton code QR a été généré. Pour terminer la configuration, suis les étapes suivantes.',
+            'title'                 => 'Authentification à deux facteurs',
+        ],
         'actions'           => [
             'social'            => 'Changer au login Kanka',
             'update_email'      => 'Modifier l\'email',
@@ -134,11 +160,11 @@ return [
         'cancel'                => [
             'options'   => [
                 'competitor'        => 'Passer à un concurrent',
-                'custom'            => 'Autre',
                 'financial'         => 'L\'abonnement est trop cher',
                 'missing_features'  => 'Fonctionnalités manquantes',
                 'not_for'           => 'L\'abonnement n\'est pas pour moi',
                 'not_using'         => 'Je n\'utilise pas Kanka actuellement',
+                'other'             => 'Autre',
             ],
             'text'      => 'Désolé de te voir partir! L\'annulation de ton abonnement le gardera actif jusqu\'au la fin du mois payé, après quoi tu perdras les bonus de ta campagne et les autres avantages liés au soutien de Kanka. N\'hésite pas à remplir le formulaire suivant pour nous informer de ce que nous pouvons améliorer, ou ce qui a conduit à ta décision.',
         ],

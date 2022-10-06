@@ -6,7 +6,9 @@ return [
         'description'   => 'Les filtres suivants sont disponibles pour l\'API :name.',
         'title'         => 'Filtres d\'API',
     ],
-    'attributes'        => [],
+    'attributes'        => [
+        'link'  => 'Options des attributs',
+    ],
     'calendar-widget'   => [
         'info'  => 'Pour quoi ces événements sont-ils affichés?',
         'title' => 'Widget de calendrier',

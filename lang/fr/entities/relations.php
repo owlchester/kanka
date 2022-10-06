@@ -12,6 +12,7 @@ return [
             'editing'           => '{1} :count relation modifiée.|[2,*] :count relations modifiées.',
             'editing_partial'   => '{1} :count/:total relation modifiée.|[2,*] :count/:total relations modifiées.',
         ],
+        'unmirror'          => 'Délier les relations miroirs.',
         'update_mirrored'   => 'Aussi modifier les relations miroirs',
     ],
     'call-to-action'    => 'Explorer visuellement les relations d\'une entité et la manière dont elle est connectée au reste de la campagne.',

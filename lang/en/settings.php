@@ -2,40 +2,38 @@
 
 return [
     'account'       => [
+        '2fa'               => [
+            'actions'               => [
+                'disable'   => 'Disable two-factor authentication',
+                'finish'    => 'Finish setup and log in',
+            ],
+            'activation_helper'     => 'To finish setting up your account\'s two-factor authentication, please follow these instructions.',
+            'disable'               => [
+                'helper'    => 'If you want to disable two-factor authentication click the button below. Keep in mind that this will leave your account vulnerable to anyone that knows your login information.',
+                'title'     => 'Disable two-factor authentication',
+            ],
+            'enable_instructions'   => 'To start the activation process, generate your authentication QR code, then scan it into the Google Authenticator App (:ios, :android), or another similar authenticator app.',
+            'enabled'               => 'Two-factor authentication is currently enabled on your account.',
+            'error_enable'          => 'Invalid Code, try again',
+            'fields'                => [
+                'otp'       => 'Enter the One Time Password (OTP) provided by the authenticator app',
+                'qrcode'    => 'Scan the following QR Code with your authenticator app to generate a One Time Password (OTP)',
+            ],
+            'generate_qr'           => 'Generate QR code',
+            'helper'                => 'Two-factor authentication (2FA) strengthens access security by requiring two methods (also referred to as factors) to verify your identity on each login.',
+            'learn_more'            => 'Learn more about two-factor authentication.',
+            'social'                => 'Kanka two-factor authentication is only enabled for users that login using their e-mail and password. Change your login method in your account settings before being able to enable this option.',
+            'success_disable'       => 'Two-factor authentication successfully disabled.',
+            'success_enable'        => 'Two-factor authentication enabled successfully. Please log in again to finish the setup.',
+            'success_key'           => 'Your secure QR code was successfully generated. Please complete your setup to activate two-factor authentication.',
+            'title'                 => 'Two-factor authentication',
+        ],
         'actions'           => [
             'social'            => 'Switch to Kanka Login',
             'update_email'      => 'Update email',
             'update_password'   => 'Update password',
         ],
         'email'             => 'Change email',
-        '2fa'               => [
-            'fields' => [
-                'qrcode' => 'Scan the following QR Code with your authenticator app to generate a One Time Password (OTP)',
-                'otp' => 'Enter the One Time Password (OTP) provided by the authenticator app'
-            ],
-            'actions' => [
-                'disable' => 'Disable two-factor authentication',
-                'finish'    => 'Finish setup and log in',
-            ],
-            'learn_more'                => 'Learn more about two-factor authentication.',
-            'title'                     => 'Two-factor authentication',
-            'helper'                    => 'Two-factor authentication (2FA) strengthens access security by requiring two methods (also referred to as factors) to verify your identity on each login.',
-            'enable_instructions'       => 'To start the activation process, click the generate secret button to generate your authentication QR code, then scan it into the Google Authenticator App (:ios, :android), or another similar authenticator app.',
-            'generate_qr'               => 'Generate QR Code',
-            'activation_helper'         => 'To finish setting up your account\'s two-factor authentication, please follow these instructions.',
-            'enabled'                   => 'Two-factor authentication is currently enabled on your account.',
-            'disable' => [
-                'title' => 'Disable two-factor authentication',
-                'helper' => 'If you want to disable two-factor authentication click the button below, keep in mind that this will leave your account vulnerable to anyone that knows your login information.',
-            ],
-            'social'                    => 'Kanka two-factor authentication is only enabled for users that login using their e-mail and password. Change your login method in your account settings before being able to enable this option.',
-            'success_key'               => 'Your secure QR code was successfully generated. Please complete your setup to activate two-factor authentication.',
-            'success_enable'            => 'Two-factor authentication enabled successfully. Please log in again.',
-            'success_disable'           => 'Two-factor authentication has been disabled.',
-            'error_enable'              => 'Invalid Code, try again',
-
-
-        ],
         'email_success'     => 'Email updated.',
         'password'          => 'Change password',
         'password_success'  => 'Password updated.',
@@ -161,11 +159,11 @@ return [
         'cancel'                => [
             'options'   => [
                 'competitor'        => 'Switching to a competitor',
-                'other'             => 'Other',
                 'financial'         => 'Subscription is too expensive',
                 'missing_features'  => 'Missing features',
                 'not_for'           => 'Subscription is not for me',
                 'not_using'         => 'Not currently using Kanka',
+                'other'             => 'Other',
             ],
             'text'      => 'Sorry to see you go! Cancelling your subscription will keep it active until :date, after which you will lose your campaign boosts and other benefits related to supporting Kanka. Feel free to fill out the following form to inform us what we can do better, or what lead to your decision.',
         ],

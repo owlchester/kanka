@@ -31,6 +31,7 @@ return [
         'copy_elements' => 'Copier les éléments de la quête',
         'date'          => 'Date',
         'description'   => 'Description',
+        'element_role'  => 'Rôle',
         'image'         => 'Image',
         'is_completed'  => 'Completée',
         'name'          => 'Nom',
@@ -50,11 +51,12 @@ return [
         'title' => 'Quêtes',
     ],
     'placeholders'  => [
-        'date'  => 'Date réelle de la quête',
-        'name'  => 'Nom de la quête',
-        'quest' => 'Quête Parentale',
-        'role'  => 'Le rôle de l\'entité dans la quête.',
-        'type'  => 'Principale, side quest, personnage',
+        'date'      => 'Date réelle de la quête',
+        'entity'    => 'Nom d\'un élément dans la quête',
+        'name'      => 'Nom de la quête',
+        'quest'     => 'Quête Parentale',
+        'role'      => 'Le rôle de l\'entité dans la quête.',
+        'type'      => 'Principale, side quest, personnage',
     ],
     'show'          => [
         'actions'   => [

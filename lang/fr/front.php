@@ -143,8 +143,10 @@ return [
             'title'         => 'Journaux',
         ],
         'patreon'           => [
+            '2fa'               => 'Accès à l\'authentification à deux facteurs',
             'api_calls'         => 'Limite de requête API (90)',
             'boosts'            => 'Boosters de campagne',
+            'click-me'          => 'En savoir plus sur cette fonctionnalité.',
             'curation'          => 'Aide à l\'établissement des votes communtaires',
             'default_image'     => 'Images par défaut pour les entités',
             'description'       => 'Soutenir Kanka à travers un abonnement débloque pour un compte les fonctionnalités suivantes.',

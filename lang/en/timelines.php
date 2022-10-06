@@ -33,13 +33,13 @@ return [
         'type'  => 'Primary, World chronicle, Kingdom legacy',
     ],
     'reorder'       => [
-        'success' => 'Timeline successfully reordered.',
-        'title' => 'Reorder the timeline',
+        'success'   => 'Timeline successfully reordered.',
+        'title'     => 'Reorder the timeline',
     ],
     'show'          => [
         'tabs'  => [
+            'reorder'   => 'Reorder timeline',
             'timelines' => 'Timelines',
-            'reorder'   => 'Reorder timeline'
         ],
     ],
     'timelines'     => [

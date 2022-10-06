@@ -142,8 +142,10 @@ return [
             'title'         => 'Journals',
         ],
         'patreon'           => [
+            '2fa'               => 'Access to Two Factor Authentication',
             'api_calls'         => 'Increased API calls (90 per minute)',
             'boosts'            => 'Campaign Boosters',
+            'click-me'          => 'Learn more about this feature.',
             'curation'          => 'Help curate the community vote items',
             'default_image'     => 'Nicer default images for entities in lists',
             'description'       => 'Supporting :kanka with a subscription gives you access to the following features and improvements.',
@@ -160,8 +162,6 @@ return [
             'upload_limit'      => 'Upload sizes',
             'upload_limit_map'  => 'Map upload sizes',
             'users_roles'       => 'Number of users, roles and permission controls',
-            '2fa'               => 'Access to Two Factor Authentication',
-            'click-me'        => 'Click me to learn more about this feature.',
         ],
         'public'            => [
             'description'   => 'Permissions can be set for modules, or for each single entity. Campaigns can also be <a href=":url">set to public</a> for the whole world to see.',
