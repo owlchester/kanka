@@ -2155,6 +2155,14 @@ div.mce-fullscreen {
   border: none;
 }
 
+img.note-float-right {
+  float: right;
+}
+
+img.note-float-left {
+  float: right;
+}
+
 .note-hint-item .entity-hint {
   display: grid;
   align-items: center;

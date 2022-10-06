@@ -38,6 +38,12 @@ window.initSummernote = function() {
                 ['custom', ['tableHeaders']],
                 ['custom', ['tableStyles']]
             ],
+            image: [
+                ['image', ['resizeFull', 'resizeHalf', 'resizeQuarter', 'resizeNone']],
+                ['float', ['floatLeft', 'floatRight', 'floatNone']],
+                ['remove', ['removeMedia']],
+                ['custom', ['imageAttributes']],
+            ],
         },
         callbacks: {
             onImageUpload: function (files) {

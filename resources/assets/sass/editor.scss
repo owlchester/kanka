@@ -45,6 +45,13 @@ div.mce-fullscreen {
   //color: var(--summernote-editable-text);
 }
 
+img.note-float-right {
+    float: right;
+}
+img.note-float-left {
+    float: right;
+}
+
 .note-hint-item {
   .entity-hint {
     display: grid;
