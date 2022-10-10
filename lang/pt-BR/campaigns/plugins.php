@@ -16,6 +16,12 @@ return [
         'update'            => 'Atualizar plug-in',
         'update_available'  => 'Atualização disponível!',
     ],
+    'bulks'         => [
+        'delete'    => '{1} Removido :count plugin.|[2,*] Removidos :count plugins.',
+        'disable'   => '{1} Desabilitado :count plugin.|[2,*] Desabilitados :count plugins.',
+        'enable'    => '{1} Habilitado :count plugin.|[2,*] Habilitados :count plugins.',
+        'update'    => '{1} Atualizado :count plugin.|[2,*] Atualizados :count plugins.',
+    ],
     'destroy'       => [
         'success'   => 'Plug-in :plugin removido',
     ],
@@ -51,6 +57,7 @@ return [
         'updates'       => 'Atualizações',
         'your_version'  => 'Sua versão',
     ],
+    'pitch'         => 'Instale e gerencie plugins do :marketplace.',
     'status'        => [
         'disabled'  => 'Desativado',
         'enabled'   => 'Ativado',

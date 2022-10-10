@@ -10,7 +10,9 @@ return [
         'limitation'    => 'Para acceder a esta funcionalidade, a campaña ten que estar potenciada.',
         'multiple'      => 'Para acceder a estas funcionalidades, a campaña ten que estar potenciada.',
         'pitches'       => [
-            'icon'  => 'Desbloquea miles de iconas personalizadas de FontAwesome cunha :boosted-campaign.',
+            'element-class' => 'Dalle a este elemento unha clase CSS personalizada cunha :boosted-campaign.',
+            'icon'          => 'Desbloquea miles de iconas personalizadas de FontAwesome cunha :boosted-campaign.',
+            'link-parent'   => 'Coloca un acceso directo na posición da barra lateral que queiras cunha :boosted-campaign.',
         ],
         'titles'        => [
             'boosted'       => 'Funcionalidade potenciada',

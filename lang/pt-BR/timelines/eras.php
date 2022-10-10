@@ -17,9 +17,9 @@ return [
     ],
     'fields'        => [
         'abbreviation'  => 'Abreviação',
-        'end_year'      => 'Ano inicial',
+        'end_year'      => 'Ano Final',
         'is_collapsed'  => 'Colapsado',
-        'start_year'    => 'Ano final',
+        'start_year'    => 'Ano Inicial',
     ],
     'helpers'       => [
         'eras'          => 'Uma linha do tempo precisa ser criada antes que eras possam ser adicionadas a ela.',
@@ -32,5 +32,9 @@ return [
         'name'          => 'Era Moderna, Idade do Bronze, Guerras Galácticas',
         'start_year'    => 'Ano na qual a era começa. Deixe em branco se esta for a primeira era.',
     ],
-    'reorder'       => [],
+    'reorder'       => [
+        'eras_success'  => 'Eras reordenadas com sucesso.',
+        'menu'          => 'Reordenar eras',
+        'title'         => 'Reordenar eras da linha do tempo',
+    ],
 ];

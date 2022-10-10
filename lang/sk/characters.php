@@ -105,7 +105,7 @@ return [
         'sex'               => 'Pohlavie',
         'title'             => 'Titul',
         'traits'            => 'Vlastnosti',
-        'type'              => 'NPC, postava hráča, božstvo',
+        'type'              => 'NPC, hráčska postava, božstvo',
     ],
     'quests'        => [
         'helpers'   => [

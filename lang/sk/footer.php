@@ -9,7 +9,7 @@ return [
         'title' => 'Zvoľ tvoj jazyk',
     ],
     'platform'          => 'Platforma',
-    'press-kit'         => 'Tlačový balíček',
+    'press-kit'         => 'Mediálny balíček',
     'privacy'           => 'Ochrana osobných údajov',
     'resources'         => 'Zdroje',
     'security'          => 'Bezpečnosť',

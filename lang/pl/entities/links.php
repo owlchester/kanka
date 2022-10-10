@@ -15,6 +15,7 @@ return [
     'fields'            => [
         'icon'      => 'Ikona',
         'name'      => 'Nazwa',
+        'parent'    => 'Element źródłowy',
         'position'  => 'Kolejność',
         'url'       => 'URL',
     ],
@@ -27,7 +28,8 @@ return [
         'title'         => 'Opuszczasz Kankę',
     ],
     'helpers'           => [
-        'icon'  => 'Możesz dostosować ikonę wyświetlaną przy odnośniku. Użyj dowolnej ikony z :fontawesome albo zostaw to pole puste, by wyświetlać ikonę domyślną.',
+        'icon'      => 'Możesz dostosować ikonę wyświetlaną przy odnośniku. Użyj dowolnej ikony z :fontawesome albo zostaw to pole puste, by wyświetlać ikonę domyślną.',
+        'parent'    => 'Wyświetla skrót po tym elemencie w menu bocznym, a nie w sekcji "Skróty".',
     ],
     'placeholders'      => [
         'name'  => 'DNDBeyond',

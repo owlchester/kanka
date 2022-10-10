@@ -3,7 +3,7 @@
 return [
     'avatar'            => 'Изображение пользователя',
     'logout'            => 'Выйти',
-    'member_since'      => 'Присоединился :date',
+    'member_since'      => 'На Kanka с :date',
     'notifications'     => [
         'header'    => 'Уведомления',
         'mark_read' => 'Все прочитано',
@@ -11,4 +11,11 @@ return [
     ],
     'profile'           => 'Профиль',
     'toggle_navigation' => 'Показать/скрыть навигацию',
+    'user'              => [
+        'impersonating' => 'Тестирование пользователя :user',
+        'settings'      => 'Настройки',
+        'sign-out'      => 'Выйти',
+        'signed-in'     => 'Вход как :user',
+        'your-profile'  => 'Ваш профиль',
+    ],
 ];

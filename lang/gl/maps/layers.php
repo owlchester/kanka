@@ -21,7 +21,12 @@ return [
         'type'      => 'Tipo de capa',
     ],
     'helper'        => [
+        'amount_v2' => 'Engade capas a un mapa para trocar a imaxe de fondo mostrada baixo os marcadores.',
         'is_real'   => 'As capas non están dispoñibles ao usar OpenStreetMaps.',
+    ],
+    'pitch'         => [
+        'error' => 'Número máximo de capas alcanzado.',
+        'until' => 'Sube ata :max capas en cada mapa.',
     ],
     'placeholders'  => [
         'name'      => 'Subsolo, nivel 2, naufraxio...',

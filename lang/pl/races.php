@@ -15,6 +15,7 @@ return [
     'edit'          => [],
     'fields'        => [
         'characters'    => 'Postaci',
+        'locations'     => 'Umiejscowienie',
         'name'          => 'Nazwa',
         'race'          => 'Rasa źródłowa',
         'races'         => 'Rasy pochodne',

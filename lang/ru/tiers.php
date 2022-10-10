@@ -1,6 +1,12 @@
 <?php
 
 return [
+    'actions'   => [
+        'subscribe' => [
+            'monthly'   => 'Месячная подписка :tier',
+            'yearly'    => 'Годовая подписка :tier',
+        ],
+    ],
     'current'   => 'Это ваша текущая подписка.',
     'features'  => [
         'api_requests'      => ':amount API запросов в минуту',
@@ -16,5 +22,16 @@ return [
         'pagination'        => 'До :amount результатов на странице',
         'vote_influence'    => 'Приоритет в голосованиях',
     ],
+    'periods'   => [
+        'monthly'   => 'Месячная',
+        'yearly'    => 'Годовая',
+    ],
     'pricing'   => ':currency :amount/месяц',
+    'ribbons'   => [
+        'best-value'    => 'Выгодно',
+        'popular'       => 'Популярно',
+    ],
+    'toggle'    => [
+        'yearly'    => 'Годовая (месяц бесплатно!)',
+    ],
 ];

@@ -233,6 +233,10 @@ TEXT
             'save'          => 'Zapisz rolę',
         ],
         'admin_role'    => 'administrator',
+        'bulks'         => [
+            'delete'    => '{1} Usunięto :count rolę.|[2,3,4] Usunięto :count role.|[5,*] Usunięto :count ról.',
+            'edit'      => '{1} Zmieniono :count rolę.|[2,3,4] Zmieniono :count role.|[5,*] Zmieniono :count ról.',
+        ],
         'create'        => [
             'success'   => 'Stworzono rolę.',
             'title'     => 'Stwórz nową rolę dla :name',
@@ -408,6 +412,7 @@ TEXT
         ],
         'fields'            => [
             'connections'       => 'Domyślny interfejs powiązań elementu',
+            'connections_mode'  => 'Domyślny tryb wyświetlania relacji',
             'entity_history'    => 'Historia edycji elementu',
             'entity_image'      => 'Ilustracja elementu',
             'family_toolip'     => 'Rodzina postaci',
@@ -417,6 +422,7 @@ TEXT
         ],
         'helpers'           => [
             'connections'       => 'Wybierz domyślny sposób wyświetlania powiązań po wejściu na odpowiednią podstronę elementu.',
+            'connections_mode'  => 'Określ domyślny sposób wyświetlania relacji elementu z innymi.',
             'other'             => 'Inne opcje wizualne kampanii',
             'post_collapsed'    => 'Wybierz sposób wyświetlania nowych komentarzy do elementów.',
             'tooltip'           => 'Wybierz informacje widoczne po najechaniu kursorem na nazwę elementu na liście',

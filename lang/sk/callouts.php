@@ -10,7 +10,9 @@ return [
         'limitation'    => 'Pre prístup k tejto funkcionalite je nutné boostnuť kampaň.',
         'multiple'      => 'Pre prístup k týmto funkcionalitám je nutné boostnuť kampaň.',
         'pitches'       => [
-            'icon'  => 'Odomkni milióny ikoniek z FontAwesome :boosted-campaign.',
+            'element-class' => 'Pridaj tomuto prvku vlastnú CSS triedu, ak máš :boosted-campaign.',
+            'icon'          => 'Odomkni milióny ikoniek z FontAwesome, ak máš :boosted-campaign.',
+            'link-parent'   => 'Nastav pozíciu rýchleho linku presne podľa seba, ak máš :boosted-campaign.',
         ],
         'titles'        => [
             'boosted'       => 'Boostnutá funkcia',

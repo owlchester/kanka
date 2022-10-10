@@ -23,6 +23,7 @@ return [
     ],
     'fields'        => [
         'application'   => 'Solicitude de inscrición',
+        'approval'      => 'Razón da aprobación',
         'rejection'     => 'Razón do rexeitamento',
     ],
     'helpers'       => [

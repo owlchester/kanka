@@ -233,6 +233,10 @@ TEXT
             'save'          => 'Uložiť rolu',
         ],
         'admin_role'    => 'Rola administrátora',
+        'bulks'         => [
+            'delete'    => '{1} Odstránená :count rola.|[2,4] Odstránené :count roly.|[5,*] Odstránených :count rolí.',
+            'edit'      => '{1} Aktualizovaná :count rola.|[2,4] Aktualizované :count roly.|[5,*] Aktualizovaných :count rolí.',
+        ],
         'create'        => [
             'success'   => 'Rola vytvorená.',
             'title'     => 'Vytvoriť novú rolu pre :name',
@@ -408,6 +412,7 @@ TEXT
         ],
         'fields'            => [
             'connections'       => 'Štandardné rozhranie vzťahov objektu',
+            'connections_mode'  => 'Štandardný mód prehliadača vzťahov',
             'entity_history'    => 'Protokol histórie objektu',
             'entity_image'      => 'Obrázok objektu',
             'family_toolip'     => 'Rod postavy',
@@ -417,6 +422,7 @@ TEXT
         ],
         'helpers'           => [
             'connections'       => 'Ak klikneš na podstránku so vzťahmi objektu, vyber si štandardné zobrazené rozhranie.',
+            'connections_mode'  => 'Keď zobrazuješ prehliadač vzťahov objektu, definuj štandardný zvolený mód.',
             'other'             => 'Ďalšie možnosti zobrazenia kampane.',
             'post_collapsed'    => 'Keď vytváraš novú poznámku k objektu, zvoľ štandardnú hodnotu pre zbalené pole.',
             'tooltip'           => 'Kontroluj, ktoré informácie budú viditeľné v bubline, ak sa kurzorom postavíš na názov objektu.',

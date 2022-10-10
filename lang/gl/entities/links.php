@@ -15,6 +15,7 @@ return [
     'fields'            => [
         'icon'      => 'Icona',
         'name'      => 'Nome',
+        'parent'    => 'Elemento superior',
         'position'  => 'Posición',
         'url'       => 'URL',
     ],
@@ -27,7 +28,8 @@ return [
         'title'         => 'Saíndo de Kanka',
     ],
     'helpers'           => [
-        'icon'  => 'Podes personalizar a icona mostrada da ligazón. Usa algunha das iconas gratuítas de :fontawesome ou deixa este campo en branco para mostrar a icona por defecto.',
+        'icon'      => 'Podes personalizar a icona mostrada da ligazón. Usa algunha das iconas gratuítas de :fontawesome ou deixa este campo en branco para mostrar a icona por defecto.',
+        'parent'    => 'Mostra este acceso directo despois dun elemento determinado da barra lateral, en lugar de mostralo na sección de accesos directos.',
     ],
     'placeholders'      => [
         'name'  => 'DNDBeyond',

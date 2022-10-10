@@ -215,6 +215,7 @@ return [
             'copy'  => 'Schowek',
         ],
         'options'                   => [
+            'children'  => 'Z pochodnymi',
             'exclude'   => 'Nie zawiera',
             'include'   => 'Zawiera',
             'none'      => 'Brak',

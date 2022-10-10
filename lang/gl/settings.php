@@ -136,6 +136,7 @@ return [
                 'competitor'        => 'Marcho á competencia',
                 'financial'         => 'Cambio a miña situación financieira',
                 'missing_features'  => 'Faltan funcionalidades',
+                'not_for'           => 'A subscripción non é para min',
                 'not_using'         => 'Non estou usando Kanka',
             ],
             'text'      => 'Lamentamos verte marchar! Cancelar a túa subscripción manteraa activa ata o próximio ciclo de facturación, tras o cal perderás todas as túas potenciacións de campaña e outros beneficios ligados a apoiar a Kanka. Podes cubrir o seguinte formulario para informarnos de como podemos mellorar, ou do que causou a túa decisión.',

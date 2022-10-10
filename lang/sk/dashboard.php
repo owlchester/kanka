@@ -160,7 +160,7 @@ return [
             'show_members'      => 'Zobraziť členov',
             'show_relations'    => 'Zobraziť pripnuté vzťahy',
             'singular'          => 'Jednotlivý objekt',
-            'tags'              => 'Filtrovať zoznam nedávno upravených objektov podľa určitých tagov.',
+            'tags'              => 'Filtrovať zoznam nedávno upravených objektov podľa vybraných kategórií.',
             'title'             => 'Nedávno upravené',
         ],
         'tabs'          => [

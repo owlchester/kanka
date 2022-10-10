@@ -15,6 +15,7 @@ return [
     'edit'          => [],
     'fields'        => [
         'characters'    => 'Postavy',
+        'locations'     => 'Miesta',
         'name'          => 'Názov',
         'race'          => 'Nadradená rasa',
         'races'         => 'Podrasy',

@@ -10,7 +10,9 @@ return [
         'limitation'    => 'Para acessar esse recurso, a campanha precisa ser impulsionada.',
         'multiple'      => 'Para acessar esses recursos, a campanha precisa ser impulsionada.',
         'pitches'       => [
-            'icon'  => 'Desbloqueie milhões de ícones personalizados do FontAwesome com uma :boosted-campaign.',
+            'element-class' => 'Dê a este elemento uma classe CSS personalizada com uma :boosted-campaign.',
+            'icon'          => 'Desbloqueie milhões de ícones personalizados do FontAwesome com uma :boosted-campaign.',
+            'link-parent'   => 'Coloque um link rápido exatamente onde você deseja na barra lateral com uma :boosted-campaign.',
         ],
         'titles'        => [
             'boosted'       => 'Recurso impulsionado.',

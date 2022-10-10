@@ -15,6 +15,7 @@ return [
     'edit'          => [],
     'fields'        => [
         'characters'    => 'Персонажи',
+        'locations'     => 'Локации',
         'name'          => 'Название',
         'race'          => 'Родительская раса',
         'races'         => 'Подрасы',

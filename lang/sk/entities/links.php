@@ -15,6 +15,7 @@ return [
     'fields'            => [
         'icon'      => 'Symbol',
         'name'      => 'Názov',
+        'parent'    => 'Nadradený prvok',
         'position'  => 'Pozícia',
         'url'       => 'URL',
     ],
@@ -27,7 +28,8 @@ return [
         'title'         => 'Opúšťam Kanku',
     ],
     'helpers'           => [
-        'icon'  => 'Môžeš zmeniť zobrazovaný symbol linku. Použi jeden z voľne dostupných symbolov :fontawesome, alebo ponechaj pole prázdne pre štandardný symbol.',
+        'icon'      => 'Môžeš zmeniť zobrazovaný symbol linku. Použi jeden z voľne dostupných symbolov :fontawesome, alebo ponechaj pole prázdne pre štandardný symbol.',
+        'parent'    => 'Zobrazí tento rýchly link po prvku v bočnom menu, namiesto v sekcii pre rýchle linky bočného menu.',
     ],
     'placeholders'      => [
         'name'  => 'DNDBeyond',

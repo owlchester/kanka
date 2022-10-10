@@ -215,6 +215,7 @@ return [
             'copy'  => 'Portapapeis',
         ],
         'options'                   => [
+            'children'  => 'Con descendentes',
             'exclude'   => 'Excluír',
             'include'   => 'Incluír',
             'none'      => 'Ningún',

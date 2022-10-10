@@ -136,6 +136,7 @@ return [
                 'competitor'        => 'Wybieram produkt konkurencji',
                 'financial'         => 'Moja sytuacja finansowa się zmieniła',
                 'missing_features'  => 'Nie ma opcji, których potrzebuję',
+                'not_for'           => 'Subskrybuję dla kogoś innego',
                 'not_using'         => 'Nie używam ostatnio Kanki',
             ],
             'text'      => 'Szkoda, że rezygnujesz! Po zaniechaniu subskrypcji konto pozostanie aktywne do końca okresu rozliczeniowego. Potem stracisz doładowania i inne korzyści wynikające ze wspierania Kanki. Wypełniając poniższy formularz nasz nam znać, co możemy poprawić i dlaczego rezygnujesz.',

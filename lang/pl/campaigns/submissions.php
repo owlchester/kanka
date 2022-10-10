@@ -23,6 +23,7 @@ return [
     ],
     'fields'        => [
         'application'   => 'Zgłoszenie',
+        'approval'      => 'Powód akceptacji',
         'rejection'     => 'Powód odrzucenia',
     ],
     'helpers'       => [

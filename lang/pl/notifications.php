@@ -3,9 +3,11 @@
 return [
     'campaign'          => [
         'application'           => [
-            'approved'  => 'Zatwierdzono twoje zgłoszenie do kampanii :campaign.',
-            'new'       => 'Nowe zgłoszenie do udziału w kampanii :campaign.',
-            'rejected'  => 'Odrzucono twoje zgłoszenie do kampanii :campaign. Oto powód: :reason',
+            'approved'              => 'Zatwierdzono twoje zgłoszenie do kampanii :campaign.',
+            'approved_message'      => 'Twoje zgłoszenie do kampanii :campaign zostało przyjęte. Dołączono wiadomość: :reason.',
+            'new'                   => 'Nowe zgłoszenie do udziału w kampanii :campaign.',
+            'rejected'              => 'Odrzucono twoje zgłoszenie do kampanii :campaign. Oto powód: :reason',
+            'rejected_no_message'   => 'Twoje zgłoszenie do kampanii :campaign zostało odrzucone.',
         ],
         'asset_export'          => 'Można pobrać wyeksportowane pliki kampanii. Odnośnik będzie dostępny przez :time minut.',
         'asset_export_error'    => 'Podczas eksportowania składników kampanii wystąpił błąd. To się zdarza, jeżeli kampania jest bardzo duża.',
@@ -17,6 +19,7 @@ return [
         'deleted'               => 'Usunięto kampanię :campaign',
         'export'                => 'Można pobrać wyeksportowaną kampanię. Odnośnik będzie dostępny przez :time minut.',
         'export_error'          => 'Podczas eksportowania plików kampanii wystąpił błąd. Jeżeli będzie się powtarzał, skontaktuj się z nami. To się zdarza w dużych kampaniach posiadających duże obrazy.',
+        'hidden'                => 'Kampania :campaign została usunięta z listy kampanii publicznych.',
         'join'                  => ':user dołącza do kampanii :campaign.',
         'leave'                 => ':user opuszcza do kampanię :campaign.',
         'plugin'                => [
@@ -26,6 +29,7 @@ return [
             'add'       => 'Nadano ci rolę :role w kampanii :campaign.',
             'remove'    => 'Odebrano ci rolę :role w kampanii :campaign.',
         ],
+        'shown'                 => 'Kampania :campaign została dodana do listy kampanii publicznych.',
         'troubleshooting'       => [
             'joined'    => ':user z zespołu Kanki dołączył do kampanii :campaign',
         ],

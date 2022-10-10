@@ -40,6 +40,16 @@ return [
     'index'         => [
         'title' => 'Entradas de ":name"',
     ],
+    'move'          => [
+        'copy'          => 'Crea unha copia da entidade obxectivo',
+        'copy_success'  => 'Entrada ":name" copiada a ":entity" con éxito.',
+        'description'   => 'Selecciona unha entidade á que queiras copiar ou mover esta entrada.',
+        'entity'        => 'Entidade obxectivo',
+        'move'          => 'Mover ou copiar a outra entidade',
+        'move_success'  => 'Entrada ":name" movida a "entity" con éxito.',
+        'select_one'    => 'Selecciona unha entidade',
+        'title'         => 'Move ou copia unha entrada a outra entidade',
+    ],
     'placeholders'  => [
         'name'  => 'Nome da entrada, observación ou comentario.',
     ],

@@ -23,6 +23,7 @@ return [
     ],
     'fields'        => [
         'application'   => 'Prihláška',
+        'approval'      => 'Dôvod schválenia',
         'rejection'     => 'Dôvod odmietnutia',
     ],
     'helpers'       => [

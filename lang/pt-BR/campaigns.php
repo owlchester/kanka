@@ -50,6 +50,7 @@ TEXT
         'entity_privacy'                    => 'Privacidade padrão da nova entidade',
         'entry'                             => 'Descrição da campanha',
         'excerpt'                           => 'Resumo',
+        'featured'                          => 'Campanha em destaque',
         'followers'                         => 'Seguidores',
         'header_image'                      => 'Cabeçalho',
         'image'                             => 'Imagem',
@@ -57,6 +58,7 @@ TEXT
         'name'                              => 'Nome',
         'nested'                            => 'Listas de entidades padrão para aninhadas quando disponíveis',
         'open'                              => 'Aberta a inscrições',
+        'past_featured'                     => 'Campanha anterior em destaque',
         'post_collapsed'                    => 'Novas notas em entidades são colapsadas por padrão.',
         'public'                            => 'Visibilidade da campanha',
         'public_campaign_filters'           => 'Filtros de Campanhas públicas',
@@ -231,6 +233,10 @@ TEXT
             'save'          => 'Salvar função',
         ],
         'admin_role'    => 'Cargo de Administrador',
+        'bulks'         => [
+            'delete'    => '{1} Removido :count cargo.|[2,*] Removidos :count cargos.',
+            'edit'      => '{1} Atualizado :count cargo.|[2,*] Atualizados :count cargos.',
+        ],
         'create'        => [
             'success'   => 'Cargo criado',
             'title'     => 'Criar um novo cargo para :name',
@@ -406,6 +412,7 @@ TEXT
         ],
         'fields'            => [
             'connections'       => 'Interface padrão de conexões da entidade',
+            'connections_mode'  => 'Modo explorador de relações padrão',
             'entity_history'    => 'Registro de históricos da entidades.',
             'entity_image'      => 'Imagem da entidade',
             'family_toolip'     => 'Família do personagem',
@@ -415,6 +422,7 @@ TEXT
         ],
         'helpers'           => [
             'connections'       => 'Ao clicar na subpágina de conexões de uma entidade, selecione a interface padrão mostrada.',
+            'connections_mode'  => 'Ao visualizar o gerenciador de relações de uma entidade, defina o modo padrão selecionado.',
             'other'             => 'Outras opções visuais para a campanha.',
             'post_collapsed'    => 'Ao criar uma nova postagem em uma entidade, selecione o valor padrão do campo colapsado.',
             'tooltip'           => 'Controle quais informações ficam visíveis ao passar o mouse sobre o nome de uma entidade em sua dica de ferramenta.',

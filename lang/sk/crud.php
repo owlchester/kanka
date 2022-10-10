@@ -215,6 +215,7 @@ return [
             'copy'  => 'Schránka',
         ],
         'options'                   => [
+            'children'  => 'S podradenými',
             'exclude'   => 'Vylúčiť',
             'include'   => 'Zahrnúť',
             'none'      => 'Žiadne',

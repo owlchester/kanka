@@ -7,6 +7,10 @@ return [
         'title'         => 'Фильтры API',
     ],
     'attributes'        => [],
+    'calendar-widget'   => [
+        'info'  => 'Почему здесь показаны эти события?',
+        'title' => 'Виджет календаря',
+    ],
     'dice'              => [],
     'entity_templates'  => [
         'link'  => 'Как создавать шаблоны',

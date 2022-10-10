@@ -56,6 +56,9 @@ return [
         'marker'        => 'Marcador',
         'question'      => 'Interrogación',
     ],
+    'pitches'       => [
+        'poly'  => 'Debuxa formas poligonais personalizadas para representar fronteiras e outras formas irregulares.',
+    ],
     'placeholders'  => [
         'custom_icon'   => 'Proba :example1 ou :example2',
         'custom_shape'  => '100,100 200,240 340,110',

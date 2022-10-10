@@ -9,5 +9,5 @@ return [
     'description'   => 'Ďakujeme za tvoj záujem o :kanka! Prosím, použi nasledujúce zdroje, ak o nás chceš písať.',
     'logos'         => 'Logá',
     'more'          => 'Potrebuješ viac zdrojov alebo pomoc? Napíš nám na :email',
-    'title'         => 'Tlačový balíček',
+    'title'         => 'Mediálny balíček',
 ];

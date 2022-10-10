@@ -15,6 +15,7 @@ return [
     'edit'          => [],
     'fields'        => [
         'characters'    => 'Personaxes',
+        'locations'     => 'Localizacións',
         'name'          => 'Nome',
         'race'          => 'Raza nai',
         'races'         => 'Subrazas',

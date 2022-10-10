@@ -15,6 +15,7 @@ return [
     'fields'            => [
         'icon'      => 'Ícone',
         'name'      => 'Nome',
+        'parent'    => 'Elemento pai',
         'position'  => 'Posição',
         'url'       => 'URL',
     ],
@@ -27,7 +28,8 @@ return [
         'title'         => 'Deixando Kanka',
     ],
     'helpers'           => [
-        'icon'  => 'Você pode personalizar o ícone exibido para o link. Use qualquer um dos ícones gratuitos de :fontawesome ou deixe este campo em branco para o padrão.',
+        'icon'      => 'Você pode personalizar o ícone exibido para o link. Use qualquer um dos ícones gratuitos de :fontawesome ou deixe este campo em branco para o padrão.',
+        'parent'    => 'Exiba este link rápido após um elemento da barra lateral, ao invés na seção de links rápidos da barra lateral.',
     ],
     'placeholders'      => [
         'name'  => 'DNDBeyond',

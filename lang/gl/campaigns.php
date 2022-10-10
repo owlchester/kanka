@@ -233,6 +233,10 @@ TEXT
             'save'          => 'Gardar rol',
         ],
         'admin_role'    => 'rol de administración',
+        'bulks'         => [
+            'delete'    => '{1} :count rol eliminado.|[2,*] :count roles eliminados.',
+            'edit'      => '{1} :count rol actualizado.|[2,*] :count roles actualizados.',
+        ],
         'create'        => [
             'success'   => 'Rol ":name" creado.',
             'title'     => 'Crear un novo rol para :name',
@@ -408,6 +412,7 @@ TEXT
         ],
         'fields'            => [
             'connections'       => 'Interface de conexións entre entidades por defecto',
+            'connections_mode'  => 'Modo por defecto do explorador de relacións',
             'entity_history'    => 'Historial de cambios da entidade',
             'entity_image'      => 'Imaxe da entidade',
             'family_toolip'     => 'Familia da personaxe',
@@ -417,6 +422,7 @@ TEXT
         ],
         'helpers'           => [
             'connections'       => 'Selecciona a interface por defecto que é mostrada ao facer clic na subpáxina de conexións dunha entidade.',
+            'connections_mode'  => 'Ao visualizar o explorador de relacións dunha entidade, establece o modo no que aparece por defecto.',
             'other'             => 'Outras opcións visuais para a campaña.',
             'post_collapsed'    => 'Selecciona se, por defecto, as entradas estarán colapsadas ou expandidas ao ser creadas.',
             'tooltip'           => 'Controla a información que é visible na descrición emerxente ao poñer o cursor sobre o nome dunha entidade.',

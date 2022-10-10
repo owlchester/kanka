@@ -136,6 +136,7 @@ return [
                 'competitor'        => 'Mudar para um concorrente',
                 'financial'         => 'Situação financeira alterada',
                 'missing_features'  => 'Recursos ausentes',
+                'not_for'           => 'Assinatura não é para mim',
                 'not_using'         => 'Não estou usando o Kanka no momento',
             ],
             'text'      => 'Lamentamos ver você ir! O cancelamento de sua assinatura a manterá ativa até o próximo ciclo de faturamento, após o qual você perderá os impulsionamentos à sua campanha e outros benefícios relacionados ao suporte ao Kanka. Sinta-se à vontade para preencher o formulário a seguir para nos informar o que podemos fazer melhor ou o que levou à sua decisão.',
