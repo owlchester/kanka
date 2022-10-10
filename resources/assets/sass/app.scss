@@ -43,8 +43,10 @@
 }
 // for the content panel
 .content-wrapper {
-  margin-right: auto;
-  margin-left: auto;
+    margin-right: auto;
+    margin-left: auto;
+    height: auto;
+    min-height: 100%
 }
 .content {
   min-height: 250px;
