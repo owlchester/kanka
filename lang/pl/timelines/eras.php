@@ -32,9 +32,5 @@ return [
         'name'          => 'Nowoczesność, epoka brązu, wojny galaktyczne',
         'start_year'    => 'Rok rozpoczęcia epoki. Pozostaw puste, jeżeli to pierwsza epoka historii.',
     ],
-    'reorder'       => [
-        'eras_success'  => 'Zmieniono kolejność epok.',
-        'menu'          => 'Kolejność epok',
-        'title'         => 'Zmień kolejność epok',
-    ],
+    'reorder'       => [],
 ];
