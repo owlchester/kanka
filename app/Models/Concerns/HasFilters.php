@@ -551,16 +551,16 @@ trait HasFilters
     /**
      * Filter on the attributes of an entity
      * @param Builder $query
-     * @param string $key
+     * @param string|null $value
      * @return void
      */
-    protected function filterQuestElementRoles(Builder $query): void
+    protected function filterQuestElementRoles(Builder $query, string $value = null): void
     {
         // No attribute with this name
         if ($this->filterOperator === 'not like') {
             $query
                 ->whereRaw('(select count(*) from quest_elements as qe where qe.quest_id =' . $this->getTable() . '.id and qe.role = \''
-                    . ($this->filterValue) . '\') = 0');
+                    . $value . '\') = 0');
             return;
         }
         $query
@@ -568,7 +568,7 @@ trait HasFilters
             ->leftJoin('quest_elements as qe', function ($join) {
                 $join->on('qe.quest_id', '=', $this->getTable() . '.id');
             })
-            ->where('qe.role', 'rat');
+            ->where('qe.role', $value);
     }
     /**
      * Filter characters on a single family
