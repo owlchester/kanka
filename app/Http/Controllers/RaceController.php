@@ -115,8 +115,8 @@ class RaceController extends CrudController
 
         // @phpstan-ignore-next-line
         $this->rows = $race
-            ->sort(request()->only(['o', 'k']))
             ->descendants()
+            ->sort(request()->only(['o', 'k']))
             ->with(['entity', 'characters'])
             ->paginate(15);
 

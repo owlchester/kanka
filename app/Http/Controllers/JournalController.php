@@ -90,10 +90,10 @@ class JournalController extends CrudController
 
         // @phpstan-ignore-next-line
         $this->rows = $journal
+            ->allJournals()
             ->sort(request()->only(['o', 'k']))
             ->filter($filters)
             ->with(['entity', 'character'])
-            ->allJournals()
             ->paginate();
 
         // Ajax Datagrid

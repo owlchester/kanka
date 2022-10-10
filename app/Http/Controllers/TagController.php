@@ -104,8 +104,8 @@ class TagController extends CrudController
 
         // @phpstan-ignore-next-line
         $this->rows = $tag
-            ->sort(request()->only(['o', 'k']))
             ->descendants()
+            ->sort(request()->only(['o', 'k']))
             ->filter($filters)
             ->with(['entity', 'entity.tags', 'entity.image', 'tag', 'tag.entity'])
             ->paginate();

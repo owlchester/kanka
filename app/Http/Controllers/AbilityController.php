@@ -87,8 +87,8 @@ class AbilityController extends CrudController
 
         // @phpstan-ignore-next-line
         $this->rows = $ability
-            ->sort(request()->only(['o', 'k']))
             ->descendants()
+            ->sort(request()->only(['o', 'k']))
             ->with(['entity', 'entity.image', 'ability', 'ability.entity'])
             ->has('entity')
             ->paginate();
