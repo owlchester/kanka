@@ -7,7 +7,7 @@
         <div class="box box-widget">
             <div class="box-header with-border">
                 <div class="user-block">
-                    <img class="img-circle" src="/images/favicon/apple-touch-icon-76x76.png" alt="Kanka" title="Kanka">
+                    <img class="img-circle" src="/images/favicon/favicon-32x32.png" alt="Kanka" title="Kanka">
                     <span class="username">
                         <a href="{{ $release->link }}" target="_blank">{!! $release->name !!}</a>
                     </span>
