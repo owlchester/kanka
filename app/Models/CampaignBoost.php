@@ -22,9 +22,7 @@ class CampaignBoost extends Model
 {
     use Paginatable, SoftDeletes;
 
-    /**
-     * @var array
-     */
+    /** @var string[]  */
     protected $fillable = ['user_id', 'campaign_id'];
 
     /**

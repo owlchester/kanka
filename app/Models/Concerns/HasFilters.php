@@ -140,6 +140,10 @@ trait HasFilters
                     $this->filterRace($query, $value);
                 } elseif ($key == 'family') {
                     $this->filterFamily($query, $value);
+                } elseif ($key == 'quest_elements') {
+                    $this->filterQuestElements($query, $value);
+                } elseif ($key == 'element_role') {
+                    $this->filterQuestElementRoles($query, $value);
                 } elseif ($key == 'has_image') {
                     $this->filterHasImage($query, $value);
                 } elseif ($key == 'has_entity_notes') {
@@ -208,10 +212,12 @@ trait HasFilters
 
         $this->joinedEntity = true;
 
+        // @phpstan-ignore-next-line
         return $query
             ->distinct()
             ->leftJoin('entities as e', function ($join) {
                 $join->on('e.entity_id', '=', $this->getTable() . '.id');
+                // @phpstan-ignore-next-line
                 $join->where('e.type_id', '=', $this->entityTypeID())
                     ->whereRaw('e.campaign_id = ' . $this->getTable() . '.campaign_id');
             })
@@ -398,10 +404,10 @@ trait HasFilters
     /**
      * Filter on characters on multiple races
      * @param Builder $query
-     * @param string|null $value
+     * @param string|array|null $value
      * @return void
      */
-    protected function filterRaces(Builder $query, string $value = null): void
+    protected function filterRaces(Builder $query, string|array $value = null): void
     {
         // "none" filter keys is handled later
         if ($this->filterOption('none')) {
@@ -432,15 +438,18 @@ trait HasFilters
             ;
         }
     }
+
     /**
      * Filter on characters on multiple locations
      * @param Builder $query
      * @param string|null $value
+     * @param string|null $key
      * @return void
      */
-    protected function filterLocations(Builder $query, string $value = null, $key): void
+    protected function filterLocations(Builder $query, string $value = null, string $key = null): void
     {
         if ($this->filterOption('children')) {
+            /** @var Location|null $location */
             $location = Location::find($value);
             if (empty($location)) {
                 return;
@@ -468,6 +477,7 @@ trait HasFilters
                 $this->getTable() . '.id and cr.location_id = ' . ((int) $value) . ') = 0');
             return;
         } elseif ($this->filterOption('children')) {
+            /** @var Location|null $race */
             $race = Location::find($value);
             if (!empty($race)) {
                 $raceIds = $race->descendants->pluck('id')->toArray();
@@ -497,6 +507,7 @@ trait HasFilters
                 $this->getTable() . '.id and cr.race_id = ' . ((int) $value) . ') = 0');
             return;
         } elseif ($this->filterOption('children')) {
+            /** @var Race|null $race */
             $race = Race::find($value);
             if (!empty($race)) {
                 $raceIds = $race->descendants->pluck('id')->toArray();
@@ -512,6 +523,54 @@ trait HasFilters
     }
 
     /**
+     * Filter quests based on ther elements.
+     * @param Builder $query
+     * @param string|null $value
+     * @return void
+     */
+    protected function filterQuestElements(Builder $query, string $value = null): void
+    {
+        // "none" filter keys is handled later
+        if ($this->filterOption('none')) {
+            return;
+        }
+        $ids = [$value];
+        if ($this->filterOption('exclude')) {
+            $query->whereRaw('(select count(*) from quest_elements as qe where qe.quest_id = ' .
+                $this->getTable() . '.id and qe.entity_id = ' . ((int) $value) . ') = 0');
+            return;
+        }
+
+        $query
+        ->select($this->getTable() . '.*')
+        ->leftJoin('quest_elements as qe', function ($join) {
+            $join->on('qe.quest_id', '=', $this->getTable() . '.id');
+        })->whereIn('qe.entity_id', $ids)->distinct();
+    }
+
+    /**
+     * Filter on the attributes of an entity
+     * @param Builder $query
+     * @param string $key
+     * @return void
+     */
+    protected function filterQuestElementRoles(Builder $query): void
+    {
+        // No attribute with this name
+        if ($this->filterOperator === 'not like') {
+            $query
+                ->whereRaw('(select count(*) from quest_elements as qe where qe.quest_id =' . $this->getTable() . '.id and qe.role = \''
+                    . ($this->filterValue) . '\') = 0');
+            return;
+        }
+        $query
+            ->select($this->getTable() . '.*')
+            ->leftJoin('quest_elements as qe', function ($join) {
+                $join->on('qe.quest_id', '=', $this->getTable() . '.id');
+            })
+            ->where('qe.role', 'rat');
+    }
+    /**
      * Filter characters on a single family
      * @param Builder $query
      * @param string|null $value
@@ -525,6 +584,7 @@ trait HasFilters
                 $this->getTable() . '.id and cf.family_id = ' . ((int) $value) . ') = 0');
             return;
         } elseif ($this->filterOption('children')) {
+            /** @var Family|null $family */
             $family = Family::find($value);
             if (!empty($family)) {
                 $familyIds = $family->descendants->pluck('id')->toArray();
@@ -624,6 +684,7 @@ trait HasFilters
                     $this->getTable() . '.id and ome.organisation_id in (' . (int) $value . ')) = 0');
             return;
         } elseif ($this->filterOption('children')) {
+            /** @var Organisation|null $organisation */
             $organisation = Organisation::find($value);
             if (!empty($organisation)) {
                 $organisationIds = $organisation->descendants->pluck('id')->toArray();
@@ -653,7 +714,7 @@ trait HasFilters
             return;
         }
         // Left join shenanigans
-        if (!in_array($key, ['organisation_member', 'race', 'family', 'tags'])) {
+        if (!in_array($key, ['organisation_member', 'race', 'family', 'tags', 'quest_elements'])) {
             $query->whereNull($this->getTable() . '.' . $key);
         } elseif ($key === 'tags') {
             $query = $this->joinEntity($query);
@@ -681,6 +742,13 @@ trait HasFilters
                     $join->on('cf2.character_id', '=', $this->getTable() . '.id');
                 })
                 ->where('cf2.family_id', null);
+        } elseif ($key === 'quest_elements') {
+            $query
+                ->select($this->getTable() . '.*')
+                ->leftJoin('quest_elements as qe2', function ($join) {
+                    $join->on('qe2.quest_id', '=', $this->getTable() . '.id');
+                })
+                ->where('qe2.entity_id', null);
         }
     }
 }

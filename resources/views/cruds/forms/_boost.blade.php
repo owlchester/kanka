@@ -52,9 +52,6 @@ $tooltipTags = implode(', ', $tooltipTags);
                         <p class="help-block">
                             {{ __('crud.hints.image_limitations', ['formats' => 'PNG, JPG, GIF, WebP', 'size' => auth()->user()->maxUploadSize(true)]) }}
                             {{ __('crud.hints.image_recommendation', ['width' => '1200', 'height' => '400']) }}
-                            @if (!auth()->user()->hasRole('patreon'))
-                                <a href="{{ route('settings.patreon') }}">{{ __('crud.hints.image_patreon') }}</a>
-                            @endif
                         </p>
                     </div>
 
@@ -62,7 +59,7 @@ $tooltipTags = implode(', ', $tooltipTags);
                 <div class="col-md-2">
                     @if (!empty($model->entity) && !empty($model->entity->header_image))
                         <div class="preview-v2">
-                            <div class="image" style="background-image: url('{{ $model->entity->getImageUrl(80, null) }}')" title="{{ $model->name }}">
+                            <div class="image" style="background-image: url('{{ $model->entity->thumbnail(120) }}')" title="{{ $model->name }}">
                                 <a href="#" class="img-delete" data-target="remove-header_image" title="{{ __('crud.remove') }}">
                                     <i class="fa-solid fa-trash"></i> {{ __('crud.remove') }}
                                 </a>

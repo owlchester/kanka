@@ -14,19 +14,13 @@ try {
 
 } catch (e) {}
 
-require('admin-lte');
 require('select2');
-//require('bootstrap-datepicker');
-//require('eonasdan-bootstrap-datetimepicker');
 require('spectrum-colorpicker');
 
 
 
 // require('corejs-typeahead');
 // Bloodhound = require('corejs-typeahead/dist/bloodhound.js');
-
-require('jquery-ui/ui/widgets/draggable');
-require('jquery-ui/ui/widgets/sortable');
 
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
@@ -48,6 +42,11 @@ let token = document.head.querySelector('meta[name="csrf-token"]');
 
 if (token) {
     window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': token.content
+        }
+    });
 } else {
     console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
 }
@@ -67,44 +66,34 @@ if (token) {
 //     key: 'your-pusher-key'
 // });
 
-$.AdminLTESidebarTweak = {};
-
-$.AdminLTESidebarTweak.options = {
-    EnableRemember: true,
-    NoTransitionAfterReload: true
-    //Removes the transition after page reload.
-};
-
+/**
+ * When clicking on the sidebar, save the new state in a cookie so that the next page load auto-collapsed
+ */
 $(function () {
     "use strict";
 
     $(document).on('click', '.sidebar-toggle', function () {
-        $('.sidebar-toggle').pushMenu('toggle');
-        if($.AdminLTESidebarTweak.options.EnableRemember){
-            var toggleState = 'opened';
-            if($("body").hasClass('sidebar-collapse')){
-                toggleState = 'closed';
-            }
+        $('.sidebar-menu').pushMenu('toggle');
+        let body = $('body');
 
-            var date = new Date();
-            date.setTime(date.getTime() + (30 * 24 * 60 * 60 * 1000));
-            var expires = " expires=" + date.toGMTString();
-            document.cookie = "toggleState="+toggleState+"; path=/; samesite=lax; secure; " + expires;
+        let toggleState = 'opened';
+        if(body.hasClass('sidebar-collapse')){
+            toggleState = 'closed';
         }
+
+        let date = new Date();
+        date.setTime(date.getTime() + (30 * 24 * 60 * 60 * 1000));
+        let expires = " expires=" + date.toGMTString();
+        document.cookie = "toggleState="+toggleState+"; path=/; secure; samesite=lax; " + expires;
+
     });
 
-    if($.AdminLTESidebarTweak.options.EnableRemember){
-        var re = new RegExp('toggleState' + "=([^;]+)");
-        var value = re.exec(document.cookie);
-        var toggleState = (value != null) ? unescape(value[1]) : null;
-        if(toggleState == 'closed'){
-            if($.AdminLTESidebarTweak.options.NoTransitionAfterReload){
-                $("body").addClass('sidebar-collapse hold-transition').delay(100).queue(function(){
-                    $(this).removeClass('hold-transition');
-                });
-            }else{
-                $("body").addClass('sidebar-collapse');
-            }
-        }
+    let re = new RegExp('toggleState' + "=([^;]+)");
+    let value = re.exec(document.cookie);
+    let toggleState = (value != null) ? decodeURI(value[1]) : null;
+    if (toggleState === 'closed'){
+        $("body").addClass('sidebar-collapse hold-transition').delay(100).queue(function(){
+            $(this).removeClass('hold-transition');
+        });
     }
 });

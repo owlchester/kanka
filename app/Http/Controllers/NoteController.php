@@ -11,10 +11,8 @@ use Illuminate\Support\Facades\Session;
 
 class NoteController extends CrudController
 {
-    /**
-     * Tree / Nested Mode
-     */
     use TreeControllerTrait;
+
     protected $treeControllerParentKey = 'note_id';
 
     /**
@@ -31,10 +29,8 @@ class NoteController extends CrudController
     protected $filter = NoteFilter::class;
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param StoreNote $request
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(StoreNote $request)
     {
@@ -42,10 +38,6 @@ class NoteController extends CrudController
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Character  $character
-     * @return \Illuminate\Http\Response
      */
     public function show(Note $note)
     {
@@ -53,10 +45,6 @@ class NoteController extends CrudController
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Note $note
-     * @return \Illuminate\Http\Response
      */
     public function edit(Note $note)
     {
@@ -64,11 +52,6 @@ class NoteController extends CrudController
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Note $note
-     * @return \Illuminate\Http\Response
      */
     public function update(StoreNote $request, Note $note)
     {
@@ -76,10 +59,6 @@ class NoteController extends CrudController
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Character  $character
-     * @return \Illuminate\Http\Response
      */
     public function destroy(Note $note)
     {

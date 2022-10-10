@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Models;
-
 
 use App\Models\Concerns\SortableTrait;
 use App\User;
@@ -26,9 +24,9 @@ use Illuminate\Support\Str;
  *
  * @property PluginVersion[]|Collection $versions
  * @property PluginVersion $version
- * @property User $user
+ * @property User|null $user
  *
- * @method static|Builder highlighted(string $uuid)
+ * @method static self|Builder highlighted(string $uuid)
  */
 class Plugin extends Model
 {
@@ -71,7 +69,7 @@ class Plugin extends Model
         return $this->cachedHasUpdate = $this
                 ->versions
                 ->whereIn('status_id', $statuses)
-                ->where('id', '>', $this->pivot->plugin_version_id)
+                ->where('id', '>', $this->pivot->plugin_version_id) // @phpstan-ignore-line
                 ->count() > 0;
     }
 
@@ -132,9 +130,9 @@ class Plugin extends Model
     }
 
     /**
-     * @param $query
-     * @param string|null $highlighted
-     * @return mixed
+     * @param Builder $query
+     * @param string|null $uuid
+     * @return Builder
      */
     public function scopeHighlighted(Builder $query, string $uuid = null)
     {

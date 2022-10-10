@@ -39,7 +39,7 @@
 
             @if (!$campaign->isOpen() || !$campaign->isPublic() || $submissions->isEmpty())
                 @if(!$campaign->isOpen())
-                    <div class="callout callout-warning">
+                    <div class="alert alert-warning">
                         <p>{!! __('campaigns/submissions.helpers.not_open') !!}</p>
                         <p>
                             <button data-url="{{ route('campaign-applications') }}" data-target="#small-modal" data-toggle="ajax-modal" class="btn btn-warning">
@@ -50,7 +50,7 @@
                     </div>
                 @else
                     @if(!$campaign->isPublic())
-                        <div class="callout callout-warning">
+                        <div class="alert alert-warning">
                             <p>{{ __('campaigns/submissions.helpers.open_not_public') }}</p>
                             @if (auth()->user()->can('update', $campaign))
                             <a href="{{ route('campaigns.edit', [$campaign->id, '#tab_form-public']) }}" class="btn btn-warning">
@@ -59,7 +59,7 @@
                             @endif
                         </div>
                     @elseif ($submissions->isEmpty())
-                        <div class="callout callout-info">
+                        <div class="alert alert-info">
                             {!! __('campaigns/submissions.helpers.no_applications', ['button' => '<code><i class="fa-solid fa-door-open"></i> ' . __('dashboard.actions.join') . '</code>']) !!}
                         </div>
                     @endif

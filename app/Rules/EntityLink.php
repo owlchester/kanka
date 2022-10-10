@@ -59,10 +59,11 @@ class EntityLink implements Rule
             return false;
         }
 
-        // Are we targetting an entity or a misc?
+        // Are we targeting an entity or a misc?
         $entity = null;
         if ($segments[3] === 'entities') {
-            /** @var Entity $entity */
+            /** @var Entity|null $entity */
+            // @phpstan-ignore-next-line
             $entity = Entity::where('id', (int) $segments[4])
                 ->where('campaign_id', $campaign->id)
                 ->allCampaigns()
@@ -73,6 +74,7 @@ class EntityLink implements Rule
             if (empty($entityTypeID)) {
                 return false;
             }
+            // @phpstan-ignore-next-line
             $entity = Entity::where('entity_id', (int) $segments[4])
                 ->allCampaigns()
                 ->withInvisible()

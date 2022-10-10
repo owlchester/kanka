@@ -53,7 +53,7 @@ class SingleUserCacheService
      * Wrapper for the cache forever method. Don't actually store forever as data from inactive users doesn't
      * need to be kept somewhere.
      * @param string $key
-     * @param $data
+     * @param mixed $data
      * @param int $days
      * @return bool
      */

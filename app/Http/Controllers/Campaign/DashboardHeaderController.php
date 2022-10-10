@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Http\Controllers\Campaign;
-
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UpdateCampaignHeader;
@@ -12,10 +10,10 @@ use App\Models\CampaignDashboardWidget;
 class DashboardHeaderController extends Controller
 {
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  Campaign  $campaign
-     * @return \Illuminate\Http\Response
+     * @param Campaign $campaign
+     * @param CampaignDashboardWidget|null $campaignDashboardWidget
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function edit(Campaign $campaign, ?CampaignDashboardWidget $campaignDashboardWidget)
     {
@@ -37,11 +35,11 @@ class DashboardHeaderController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  Campaign  $campaign
-     * @return \Illuminate\Http\Response
+     * @param UpdateCampaignHeader $request
+     * @param Campaign $campaign
+     * @param CampaignDashboardWidget|null $campaignDashboardWidget
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function update(UpdateCampaignHeader $request, Campaign $campaign, ?CampaignDashboardWidget $campaignDashboardWidget)
     {

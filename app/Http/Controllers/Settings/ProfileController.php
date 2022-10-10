@@ -21,7 +21,8 @@ class ProfileController extends Controller
     }
 
     /**
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @param Request $request
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function index(Request $request)
     {
@@ -30,20 +31,13 @@ class ProfileController extends Controller
     }
 
     /**
-     * @param $request
+     * @param StoreSettingsProfile $request
      * @return \Illuminate\Http\RedirectResponse
      */
     public function update(StoreSettingsProfile $request)
     {
         /** @var User $user */
         $user = $request->user();
-        /*$settings = $user->settings();
-        if ($user->isPatron() && $request->has('settings.hide_subscription') && $request->input('settings.hide_subscription') == '1') {
-            $settings->put('hide_subscription', true);
-        } else {
-            $settings->forget('hide_subscription');
-        }
-        $user->settings = $settings;*/
 
         $user->saveSettings($request->only(['settings.hide_subscription', 'settings.marketplace_name']))
             ->update($request->only('name', 'has_last_login_sharing', 'avatar', 'profile'));

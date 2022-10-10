@@ -4,6 +4,7 @@ namespace App\Traits;
 
 use App\Facades\CampaignLocalization;
 use App\Facades\Mentions;
+use App\Models\MiscModel;
 use Illuminate\Support\Str;
 
 trait TooltipTrait
@@ -30,7 +31,7 @@ trait TooltipTrait
      */
     public function ajaxTooltip(): string
     {
-        if (!$this->child) {
+        if (empty($this->child)) {
             return '';
         }
 
@@ -50,7 +51,9 @@ trait TooltipTrait
             }
         }
 
-        $text = $this->child->entry();
+        /** @var MiscModel $child */
+        $child = $this->child;
+        $text = $child->entry();
         $text = strip_tags($text, $this->allowedTooltipTags());
         $text = Str::limit($text, 500);
         return $text;

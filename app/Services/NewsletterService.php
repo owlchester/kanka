@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Services;
-
 
 use App\User;
 use Illuminate\Support\Arr;
@@ -20,7 +18,7 @@ class NewsletterService
     /** @var string List name */
     public $listName = 'subscribers';
 
-    /** @var User */
+    /** @var User|null */
     protected $user;
 
     /** @var string */
@@ -64,7 +62,7 @@ class NewsletterService
     }
 
     /**
-     * @param $options
+     * @param array $options
      * @return bool
      */
     public function update($options): bool

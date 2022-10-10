@@ -35,7 +35,7 @@ class WelcomeEmail extends Mailable
     public function build()
     {
         return $this
-            ->from(['address' => 'no-reply@kanka.io', 'name' => 'Kanka Support'])
+            ->from(['address' => 'no-reply@kanka.io', 'name' => 'Kanka.io'])
             ->subject(__('emails/welcome.title'))
             ->view('emails.welcome.html')
             ->text('emails.welcome.text');

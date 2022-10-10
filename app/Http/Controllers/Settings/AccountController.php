@@ -67,7 +67,7 @@ class AccountController extends Controller
      */
     public function social(StoreSettingsAccountSocial $request)
     {
-        if (empty(Auth()->user()->provider)) {
+        if (empty(auth()->user()->provider)) {
             return redirect()
                 ->route('settings.account')
                 ->with('error', __('settings.account.social.error'));
@@ -76,7 +76,7 @@ class AccountController extends Controller
         $data['provider'] = null;
         $data['provider_id'] = null;
 
-        Auth::user()->update($data);
+        auth()->user()->update($data);
         auth()->user()->log(UserLog::TYPE_SOCIAL_SWITCH);
 
         return redirect()
@@ -85,10 +85,8 @@ class AccountController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Character  $character
-     * @return \Illuminate\Http\Response
+     * @param DeleteSettingsAccount $request
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy(DeleteSettingsAccount $request)
     {

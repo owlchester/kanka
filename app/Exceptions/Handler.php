@@ -19,23 +19,13 @@ class Handler extends ExceptionHandler
     /**
      * A list of the exception types that are not reported.
      *
-     * @var array
+     * @var array<int, class-string<\Throwable>>
      */
     protected $dontReport = [
         \League\OAuth2\Server\Exception\OAuthServerException::class,
         \Symfony\Component\Console\Exception\NamespaceNotFoundException::class,
         \Symfony\Component\Console\Exception\CommandNotFoundException::class,
         NotFoundHttpException::class,
-    ];
-
-    /**
-     * A list of the inputs that are never flashed for validation exceptions.
-     *
-     * @var array
-     */
-    protected $dontFlash = [
-        'password',
-        'password_confirmation',
     ];
 
     /**
@@ -147,13 +137,6 @@ class Handler extends ExceptionHandler
             return response()
                 ->json(['Too many requests. Limit requests to ' . auth()->user()->rateLimit
                     . ' per minute or subscribe to unlock higher limits.'], 429);
-        } elseif ($exception instanceof CampaignFullException) {
-            return response()
-                ->json([
-                    'code' => 422,
-                    'error' => 'The campaign has reach the entity limit. Delete entities first, ' .
-                    'or boost it to unlock unlimited entities.'
-                ], 422);
         }
         return response()
             ->json([

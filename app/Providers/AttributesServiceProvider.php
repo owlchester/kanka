@@ -1,10 +1,8 @@
 <?php
 
-
 namespace App\Providers;
 
-
-use App\Services\AttributeService;
+use App\Services\AttributeMentionService;
 use Illuminate\Support\ServiceProvider;
 
 class AttributesServiceProvider extends ServiceProvider
@@ -17,10 +15,10 @@ class AttributesServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton(AttributeService::class, function ($app) {
-            return new AttributeService();
+        $this->app->singleton(AttributeMentionService::class, function ($app) {
+            return new AttributeMentionService();
         });
 
-        $this->app->alias(AttributeService::class, 'attributes');
+        $this->app->alias(AttributeMentionService::class, 'attributes');
     }
 }

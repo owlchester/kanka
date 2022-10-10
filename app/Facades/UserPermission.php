@@ -12,7 +12,6 @@ use Illuminate\Support\Facades\Facade;
  * @package App\Facades
  *
  * @see \App\Services\Permissions\UserPermission
- * @mixin \App\Services\Permissions\UserPermission
  */
 class UserPermission extends Facade
 {

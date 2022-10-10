@@ -83,7 +83,7 @@
                 </span>
 
                 <ul class="sidebar-submenu">
-                    @if (auth()->user()->hasPatreonSync())<li class="{{ $sidebar->settings('patreon') }} subsection">
+                    @if (auth()->user()->isLegacyPatron())<li class="{{ $sidebar->settings('patreon') }} subsection">
                         <a href="{{ route('settings.patreon') }}">
                             <i class="fa-brands fa-patreon"></i>
                             {{ __('settings.menu.patreon') }}

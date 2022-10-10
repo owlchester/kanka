@@ -37,7 +37,7 @@
                 @endif
             </p>
         @empty
-            <div class="callout callout-info">
+            <div class="alert alert-info">
                 <p>{{__('campaigns.roles.hints.empty_role')}}</p>
 
                 @can('user', $role)

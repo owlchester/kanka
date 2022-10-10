@@ -31,9 +31,6 @@ class OrganisationController extends CrudController
 
     /**
      * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
      */
     public function store(StoreOrganisation $request)
     {
@@ -42,9 +39,6 @@ class OrganisationController extends CrudController
 
     /**
      * Display the specified resource.
-     *
-     * @param  \App\Models\Character  $character
-     * @return \Illuminate\Http\Response
      */
     public function show(Organisation $organisation)
     {
@@ -53,9 +47,6 @@ class OrganisationController extends CrudController
 
     /**
      * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Organisation $organisation
-     * @return \Illuminate\Http\Response
      */
     public function edit(Organisation $organisation)
     {
@@ -64,10 +55,6 @@ class OrganisationController extends CrudController
 
     /**
      * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Organisation $organisation
-     * @return \Illuminate\Http\Response
      */
     public function update(StoreOrganisation $request, Organisation $organisation)
     {
@@ -76,9 +63,6 @@ class OrganisationController extends CrudController
 
     /**
      * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Character  $character
-     * @return \Illuminate\Http\Response
      */
     public function destroy(Organisation $organisation)
     {
@@ -87,8 +71,6 @@ class OrganisationController extends CrudController
 
     /**
      * @param Organisation $organisation
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function organisations(Organisation $organisation)
     {
@@ -97,6 +79,7 @@ class OrganisationController extends CrudController
         Datagrid::layout(\App\Renderers\Layouts\Organisation\Organisation::class)
             ->route('organisations.organisations', [$organisation]);
 
+        // @phpstan-ignore-next-line
         $this->rows = $organisation
             ->descendants()
             ->sort(request()->only(['o', 'k']))
@@ -116,8 +99,6 @@ class OrganisationController extends CrudController
 
     /**
      * @param Organisation $organisation
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function members(Organisation $organisation)
     {

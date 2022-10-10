@@ -4,6 +4,7 @@ namespace App\Services\Permissions;
 
 use App\Models\CampaignPermission;
 use App\Models\CampaignRole;
+use Illuminate\Database\Eloquent\Collection;
 
 class RolePermission
 {
@@ -40,7 +41,7 @@ class RolePermission
     }
 
     /**
-     * @return array
+     * @return Collection|CampaignPermission[]|array
      */
     public function permissions()
     {

@@ -51,6 +51,8 @@ class SignImageCommand extends Command
             $width = Str::before($full, 'x');
             $height = Str::after($full, 'x');
         }
+        $width = (int) $width;
+        $height = (int) $height;
 
         if (!empty($height)) {
             $url = Img::console()->base($base)->crop($width, $height)->url($img);

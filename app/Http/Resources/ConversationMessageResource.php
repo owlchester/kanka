@@ -2,7 +2,7 @@
 
 namespace App\Http\Resources;
 
-use Illuminate\Http\Resources\Json\JsonResource;
+use App\Models\ConversationMessage;
 
 class ConversationMessageResource extends ModelResource
 {
@@ -14,12 +14,14 @@ class ConversationMessageResource extends ModelResource
      */
     public function toArray($request)
     {
+        /** @var ConversationMessage $resource */
+        $resource = $this->resource;
         return [
-            'conversation_id' => $this->conversation_id,
-            'created_by' => $this->created_by,
-            'character_id' => $this->character_id,
-            'user_id' => $this->user_id,
-            'message' => $this->message
+            'conversation_id' => $resource->conversation_id,
+            'created_by' => $resource->created_by,
+            'character_id' => $resource->character_id,
+            'user_id' => $resource->user_id,
+            'message' => $resource->message
         ];
     }
 }

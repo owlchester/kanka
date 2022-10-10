@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Models;
-
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
@@ -15,12 +13,13 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $created_by
  * @property int $plugin_id
  * @property int $plugin_version_id
+ * @property string $name
  * @property bool $is_active
  * @property Plugin $plugin
  * @property Campaign $campaign
  * @property PluginVersion $version
  *
- * @method Builder|CampaignPlugin templates(Campaign $campaign)
+ * @method static self|Builder templates(Campaign $campaign)
  */
 class CampaignPlugin extends Model
 {

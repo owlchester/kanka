@@ -23,9 +23,10 @@ class EntityLinkObserver
         if (!empty($entityLink->position)) {
             $entityLink->position = (int) $entityLink->position;
         } else {
-            $lastLink = $entityLink->entity->links()->orderByDesc('position')->first();
+            /** @var EntityLink|null $lastLink */
+            $lastLink = $entityLink->entity->links()->sortByDesc('position')->first();
             if ($lastLink) {
-                $entityLink->position = (int)$lastLink->position + 1;
+                $entityLink->position = (int) $lastLink->position + 1;
             } else {
                 $entityLink->position = 1;
             }

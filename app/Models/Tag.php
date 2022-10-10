@@ -12,6 +12,7 @@ use App\Traits\ExportableTrait;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Collection;
 
 /**
  * Class Tag
@@ -20,10 +21,12 @@ use Illuminate\Support\Arr;
  * @property string $name
  * @property string $type
  * @property string $colour
- * @property int $tag_id
- * @property Tag $tag
- * @property Tag[] $tags
+ * @property int|null $tag_id
+ * @property Tag|null $tag
+ * @property Tag[]|Collection $tags
  * @property bool $is_auto_applied
+ *
+ * @property Entity[]|Collection $entities
  */
 class Tag extends MiscModel
 {
@@ -62,9 +65,7 @@ class Tag extends MiscModel
         'is_auto_applied',
     ];
 
-    /**
-     * @var array
-     */
+    /** @var string[]  */
     protected $fillable = [
         'name',
         'slug',
@@ -80,7 +81,7 @@ class Tag extends MiscModel
 
     /**
      * Nullable values (foreign keys)
-     * @var array
+     * @var string[]
      */
     public $nullableForeignKeys = [
         'tag_id',
@@ -112,7 +113,7 @@ class Tag extends MiscModel
 
     /**
      * Specify parent id attribute mutator
-     * @param $value
+     * @param int $value
      * @throws \Exception
      */
     public function setTagIdAttribute($value)
@@ -124,7 +125,7 @@ class Tag extends MiscModel
      * @param Builder $query
      * @return Builder
      */
-    public function scopePreparedWith(Builder $query)
+    public function scopePreparedWith(Builder $query): Builder
     {
 
         return $query->with([
@@ -167,6 +168,7 @@ class Tag extends MiscModel
      */
     public function detach()
     {
+        /** @var Tag $child */
         foreach ($this->allChildren(true)->get() as $child) {
             $child->tags()->detach($this->id);
 //            if (!empty($child->child)) {
@@ -180,9 +182,9 @@ class Tag extends MiscModel
     /**
      * Get all the children
      * @param bool $withTags
-     * @return array
+     * @return Builder
      */
-    public function allChildren($withTags = false)
+    public function allChildren(bool $withTags = false)
     {
         $children = [];
         foreach ($this->entities->pluck('id')->toArray() as $entity) {
@@ -310,7 +312,7 @@ class Tag extends MiscModel
      */
     public function html(): string
     {
-        return '<span class="label ' . ($this->hasColour() ? $this->colourClass() : 'color-tag label-default') . '">'
+        return '<span class="badge label ' . ($this->hasColour() ? $this->colourClass() : 'color-tag label-default') . '">'
             . e($this->name) . '</span>';
     }
 

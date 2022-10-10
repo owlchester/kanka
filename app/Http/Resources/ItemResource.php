@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Models\Item;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class ItemResource extends EntityResource
@@ -14,11 +15,13 @@ class ItemResource extends EntityResource
      */
     public function toArray($request)
     {
+        /** @var Item $model */
+        $model = $this->resource;
         return $this->entity([
-            'type' => $this->type,
-            'price' => $this->price,
-            'size' => $this->size,
-            'item_id' => $this->item_id,
+            'type' => $model->type,
+            'price' => $model->price,
+            'size' => $model->size,
+            'item_id' => $model->item_id,
         ]);
     }
 }

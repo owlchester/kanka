@@ -36,13 +36,11 @@ class MapChunk extends Command
     }
 
     /**
-     * Execute the console command.
-     *
      * @return int
      */
     public function handle()
     {
-        $mapID = $this->argument('map');
+        $mapID = (int) $this->argument('map');
         $map = Map::find($mapID);
         if (empty($map)) {
             $this->error('Unknown map #' . $mapID);
@@ -57,15 +55,13 @@ class MapChunk extends Command
     /**
      * @param int $mapID
      * @return \Illuminate\Foundation\Bus\PendingDispatch
-     * @throws \Illuminate\Contracts\Container\BindingResolutionException
-     * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
      */
     protected function dispatch(int $mapID)
     {
         return ChunkMapJob::dispatch($mapID);
 
         /** @var ChunkingService $service */
-        $service = app()->make(ChunkingService::class);
+        /*$service = app()->make(ChunkingService::class);
 
         $map = Map::find($mapID);
         if (empty($map)) {
@@ -84,6 +80,6 @@ class MapChunk extends Command
             Log::info('Chunked map #' . $mapID . ' in ' . $elapsed . ' minutes.');
         } catch (\Exception $e) {
             throw $e;
-        }
+        }*/
     }
 }

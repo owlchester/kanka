@@ -10,14 +10,13 @@ use App\Models\CampaignRole;
 use App\Models\Entity;
 use App\Models\EntityNotePermission;
 use App\User;
-use Illuminate\Support\Str;
 
 class PermissionService
 {
     /** @var Campaign */
     protected $campaign;
 
-    /** @var User */
+    /** @var User|null */
     protected $user;
 
     /** @var int CampaignPermission::ACTION_READ etc */
@@ -42,7 +41,7 @@ class PermissionService
 
     protected $granted = false;
 
-    /** @var null|string the entity type if provided to limit queries */
+    /** @var null|int the entity type if provided to limit queries */
     protected $entityType = null;
 
     /**
@@ -168,7 +167,6 @@ class PermissionService
     /**
      * Grant a permission ad-hoc
      * @param Entity $entity
-     * @param string $action
      * @return $this
      */
     public function grant(Entity $entity): self
@@ -199,10 +197,10 @@ class PermissionService
         }
         $this->loadedPosts = true;
 
-        /** @var EntityNotePermission $perm */
         $perms = EntityNotePermission::select(['entity_note_id', 'permission'])
             ->where('user_id', $this->user->id)
             ->get();
+        /** @var EntityNotePermission $perm */
         foreach ($perms as $perm) {
             if ($perm->permission === 2) {
                 $this->deniedPostIDs[] = $perm->entity_note_id;
@@ -229,7 +227,7 @@ class PermissionService
 
     /**
      * Load the permissions of the user (roles and personal permissions)
-     * @return bool
+     * @return $this
      */
     private function loadPermissions(): self
     {
@@ -399,10 +397,9 @@ class PermissionService
             return;
         }
 
-        if (!$permission->access && !in_array($permission->entity_id, $this->deniedIds)) {
+        if (!in_array($permission->entity_id, $this->deniedIds)) {
             $this->deniedIds[] = $permission->entity_id;
             $this->deniedModels[] = $permission->misc_id;
         }
     }
-
 }

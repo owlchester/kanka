@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Models;
-
 
 use App\Models\Concerns\Acl;
 use App\Models\Concerns\Nested;
@@ -11,14 +9,15 @@ use App\Traits\CampaignTrait;
 use App\Traits\ExportableTrait;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Collection;
 
 /**
- * @property TimelineEra[] $eras
+ * @property TimelineEra[]|Collection $eras
  * @property bool $revert_order
- * @property int $timeline_id
- * @property Timeline $timeline
- * @property Timeline[] $timelines
- * @property Timeline[] $descendants
+ * @property int|null $timeline_id
+ * @property Timeline|null $timeline
+ * @property Timeline[]|Collection $timelines
+ * @property Timeline[]|Collection $descendants
  */
 class Timeline extends MiscModel
 {
@@ -59,7 +58,7 @@ class Timeline extends MiscModel
 
     /**
      * Nullable values (foreign keys)
-     * @var array
+     * @var string[]
      */
     public $nullableForeignKeys = [
         'calendar_id',
@@ -83,10 +82,10 @@ class Timeline extends MiscModel
 
     /**
      * Performance with for datagrids
-     * @param $query
-     * @return mixed
+     * @param Builder $query
+     * @return Builder
      */
-    public function scopePreparedWith(Builder $query)
+    public function scopePreparedWith(Builder $query): Builder
     {
         return $query->with([
             'entity' => function ($sub) {
@@ -169,7 +168,7 @@ class Timeline extends MiscModel
 
     /**
      * Specify parent id attribute mutator
-     * @param $value
+     * @param int|null $value
      */
     public function setTimelineIdAttribute($value)
     {
@@ -188,9 +187,8 @@ class Timeline extends MiscModel
         ];
         if (auth()->check() && auth()->user()->can('update', $this)) {
             $items['second']['reorder'] = [
-                'name' => 'timelines/eras.reorder.menu',
-                'route' => 'timeline-eras.reorder',
-                'count' => $this->descendants()->count()
+                'name' => 'timelines.show.tabs.reorder',
+                'route' => 'timelines.reorder',
             ];
         }
 

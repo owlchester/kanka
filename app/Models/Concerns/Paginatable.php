@@ -29,6 +29,7 @@ trait Paginatable
         }
 
         // Currently exporting single or bulk? Rise limit to 100.
+        // @phpstan-ignore-next-line
         $request = request()->route()->getAction();
         if (!empty($request['as']) && in_array($request['as'], ['entities.export', 'bulk.process'])) {
             return 100;

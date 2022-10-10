@@ -8,6 +8,7 @@ use App\Models\Concerns\Paginatable;
 use App\Models\Concerns\Privatable;
 use App\Models\Scopes\Starred;
 use App\Traits\OrderableTrait;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 
@@ -18,13 +19,14 @@ use Illuminate\Support\Str;
  * @property integer $id
  * @property integer $entity_id
  * @property string $name
- * @property string $value
+ * @property string|null $value
  * @property int $type_id
  * @property integer $origin_attribute_id
  * @property integer $default_order
  * @property boolean $is_private
  * @property boolean $is_star
  * @property string $api_key
+ * @property Entity|null $entity
  */
 class Attribute extends Model
 {
@@ -45,9 +47,7 @@ class Attribute extends Model
     public const TYPE_NUMBER_ID = 6;
     public const TYPE_LIST_ID = 7;
 
-    /**
-     * @var array
-     */
+    /** @var string[]  */
     protected $fillable = [
         'entity_id',
         'name',
@@ -74,17 +74,17 @@ class Attribute extends Model
         'name'
     ];
 
-    protected $numberRange = '`\[range:(-?[0-9]+),(-?[0-9]+)\]`i';
-    protected $numberMax = null;
-    protected $numberMin = null;
+    protected string $numberRange = '`\[range:(-?[0-9]+),(-?[0-9]+)\]`i';
+    protected mixed $numberMax = null;
+    protected mixed $numberMin = null;
 
-    protected $listRegexp = '`\[range:(.*)\]`i';
-    protected $listRange = null;
+    protected string $listRegexp = '`\[range:(.*)\]`i';
+    protected mixed $listRange = null;
 
     protected $mappedName = false;
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function entity()
     {
@@ -92,7 +92,7 @@ class Attribute extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function origin()
     {
@@ -100,6 +100,7 @@ class Attribute extends Model
     }
 
     /**
+     * Get an entity's value parsed of mentions
      * @return string
      */
     public function mappedValue(): string
@@ -111,6 +112,7 @@ class Attribute extends Model
     }
 
     /**
+     * Get an entity's name parsed of mentions
      * @return string
      */
     public function mappedName(): string
@@ -123,6 +125,7 @@ class Attribute extends Model
     }
 
     /**
+     * Determine if an attribute is of the standard input field type
      * @return bool
      */
     public function isDefault(): bool
@@ -131,6 +134,7 @@ class Attribute extends Model
     }
 
     /**
+     * Determine if an attribute is of the "checkbox" type
      * @return bool
      */
     public function isCheckbox(): bool
@@ -139,13 +143,16 @@ class Attribute extends Model
     }
 
     /**
+     * Determine if an attribute is of the "text" type
      * @return bool
      */
     public function isText(): bool
     {
         return $this->type_id === self::TYPE_TEXT_ID;
     }
+
     /**
+     * Determine if an attribute is of the "section" type
      * @return bool
      */
     public function isSection(): bool
@@ -154,6 +161,7 @@ class Attribute extends Model
     }
 
     /**
+     * Determine if an attribute is of the "number" type
      * @return bool
      */
     public function isNumber(): bool
@@ -162,6 +170,7 @@ class Attribute extends Model
     }
 
     /**
+     * Determine if an attribute is of the "list" type
      * @return bool
      */
     public function isList(): bool
@@ -172,6 +181,7 @@ class Attribute extends Model
     /**
      * Copy an attribute to another target
      * @param Entity $target
+     * @return bool
      */
     public function copyTo(Entity $target)
     {
@@ -181,11 +191,11 @@ class Attribute extends Model
     }
 
     /**
-     * @param $query
-     * @param int $star
-     * @return mixed
+     * @param Builder $query
+     * @param string $order
+     * @return Builder
      */
-    public function scopeOrdered($query, $order = 'asc')
+    public function scopeOrdered(Builder $query, string $order = 'asc'): Builder
     {
         return $query->orderBy('default_order', $order);
     }
@@ -203,13 +213,12 @@ class Attribute extends Model
 
     /**
      * Set the value of the attribute. Validates if there are constraints
-     * @param $value
+     * @param mixed $value
      * @return $this
      */
     public function setValue($value): self
     {
         $this->value = $value;
-
         // Check if there is a constraint
         if (!$this->validConstraints()) {
             return $this;
@@ -245,6 +254,16 @@ class Attribute extends Model
     }
 
     /**
+     * Generate the attribute's mention syntax
+     * @return string
+     */
+    public function mentionName(): string
+    {
+        return '{attribute:' . $this->id . '}';
+    }
+
+    /**
+     * Determine if an attribute's value is inside its numeric constraints (for ranged attributes)
      * @return bool
      */
     public function validConstraints(): bool
@@ -257,6 +276,7 @@ class Attribute extends Model
     }
 
     /**
+     * Determine an attribute's constraints (for ranged and listed attributes)
      * @return $this
      */
     protected function calculateConstraints(): self
@@ -276,7 +296,7 @@ class Attribute extends Model
      */
     protected function calculateNumberConstraints(): self
     {
-        if (!$this->numberMax === null) {
+        if ($this->numberMax !== null) {
             return $this;
         }
 
@@ -306,11 +326,12 @@ class Attribute extends Model
     }
 
     /**
+     * Generate a list of values possible for an attribute
      * @return $this
      */
     protected function calculateListConstraints(): self
     {
-        if (!$this->listRange === null) {
+        if ($this->listRange !== null) {
             return $this;
         }
 
@@ -334,7 +355,7 @@ class Attribute extends Model
     }
 
     /**
-     * @return array|null
+     * @return array
      */
     public function listRange(): array
     {

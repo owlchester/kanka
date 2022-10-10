@@ -4,12 +4,7 @@
 
 import ajaxModal from "./components/ajax-modal";
 
-// Character
-var characterAddPersonality, characterTemplatePersonality;
-var characterAddAppearance, characterTemplateAppearance;
-var characterSortPersonality, characterSortAppearance;
 var entityFormActions;
-var characterAddOrganisation, characterTemplateOrganisation, characterOrganisations;
 
 
 var multiEditingModal;
@@ -22,8 +17,6 @@ var entityCalendarModalForm;
 
 var entityName;
 
-var toggablePanels;
-
 var validEntityForm = false, validRelationForm = false;
 
 // Keep alive when editing
@@ -33,22 +26,7 @@ var keepAliveEnabled = true;
 
 $(document).ready(function () {
 
-    characterSortPersonality = $('.character-personality');
-    characterSortAppearance = $('.character-appearance');
-    characterOrganisations = $('.character-organisations');
-
-    characterAddPersonality = $('#add_personality');
-    if (characterAddPersonality.length === 1) {
-        initCharacterPersonality();
-    }
-    characterAddAppearance = $('#add_appearance');
-    if (characterAddAppearance.length === 1) {
-        initCharacterAppearance();
-    }
-    characterAddOrganisation = $('#add_organisation');
-    if (characterAddOrganisation.length === 1) {
-        initCharacterOrganisation();
-    }
+    registerDynamicRows();
 
     ajaxModal();
 
@@ -65,7 +43,6 @@ $(document).ready(function () {
 
     registerFormSubmitAnimation();
     registerEntityCalendarForm();
-    //registerToggablePanels();
     registerEntityFormSubmit();
     registerEntityCalendarModal();
     registerModalLoad();
@@ -94,12 +71,12 @@ function registerEntityNameCheck() {
     if (entityName.data('live-disabled')) {
         return;
     }
-    entityName.focusout(function (e) {
+    entityName.focusout(function () {
         // Don't bother if the user didn't set any value
         if (!$(this).val()) {
             return;
         }
-        var entityCreatorDuplicateWarning = $('.duplicate-entity-warning');
+        let entityCreatorDuplicateWarning = $('.duplicate-entity-warning');
         let currentEntityID = $(this).data('id');
         let url = $(this).data('live') +
             '?q=' + encodeURIComponent($(this).val()) +
@@ -114,9 +91,8 @@ function registerEntityNameCheck() {
             if (res.length > 0) {
                 let entities = Object.keys(res)
                     // Filter out what isn't itself
-                    .filter(function (k) { return !currentEntityID || currentEntityID != res[k].id })
-                    .map(function (k) { return '<a href="' + res[k].url + '">' + res[k].name + '</a>' })
-
+                    .filter(function (k) { return !currentEntityID || currentEntityID != res[k].id; })
+                    .map(function (k) { return '<a href="' + res[k].url + '">' + res[k].name + '</a>'; });
 
                 if (entities.length > 0) {
                     $('#duplicate-entities').html(entities.join(', '));
@@ -132,128 +108,9 @@ function registerEntityNameCheck() {
 /**
  *
  */
-function initCharacterPersonality() {
-    characterTemplatePersonality = $('#template_personality');
-    characterAddPersonality.on('click', function (e) {
-        e.preventDefault();
-
-        $(characterSortPersonality).append('<div class="form-group">' +
-            characterTemplatePersonality.html() +
-            '</div>');
-
-        // Handle deleting already loaded blocks
-        characterDeleteRowHandler();
-
-        return false;
-    });
-
-    characterDeleteRowHandler();
-}
-
-/**
- *
- */
-function initCharacterAppearance() {
-    characterTemplateAppearance = $('#template_appearance');
-    characterAddAppearance.on('click', function (e) {
-        e.preventDefault();
-
-        $(characterSortAppearance).append('<div class="form-group">' +
-            characterTemplateAppearance.html() +
-            '</div>');
-
-        // Handle deleting already loaded blocks
-        characterDeleteRowHandler();
-
-        return false;
-    });
-
-    characterDeleteRowHandler();
-}
-
-/**
- *
- */
-function initCharacterOrganisation() {
-    characterTemplateOrganisation = $('#template_organisation');
-    characterAddOrganisation.on('click', function (e) {
-        e.preventDefault();
-
-        $(characterOrganisations).append('<div class="form-group">' +
-            characterTemplateOrganisation.html() +
-            '</div>');
-
-        // Replace the temp class with the real class. We need this to avoid having two select2 fields
-        characterOrganisations.find('.tmp-org').removeClass('tmp-org').addClass('select2');
-
-        // Handle deleting already loaded blocks
-        characterDeleteRowHandler();
-        registerPrivateCheckboxes();
-
-        return false;
-    });
-
-    characterDeleteRowHandler();
-}
-
-/**
- *
- */
-function characterDeleteRowHandler() {
-    $.each($('.personality-delete'), function () {
-        $(this).unbind('click'); // remove previous bindings
-        $(this).on('click', function (e) {
-            e.preventDefault();
-            $(this).closest('.parent-delete-row').remove();
-        });
-    });
-
-    $.each($('.member-delete'), function () {
-        $(this).unbind('click');
-        $(this).on('click', function (e) {
-            e.preventDefault();
-            $(this).closest('.form-group').remove();
-        });
-    });
-
-    // Always re-calc the sortable traits
-    characterSortPersonality.sortable();
-    characterSortAppearance.sortable();
-    window.initForeignSelect();
-}
-
-/**
- *
- */
-function registerPrivateCheckboxes() {
-    $.each($('[data-toggle="private"]'), function () {
-        // Add the title first
-        if ($(this).hasClass('fa-lock')) {
-            $(this).prop('title', $(this).data('private'));
-        } else {
-            $(this).prop('title', $(this).data('public'));
-        }
-
-        // On click toggle
-        $(this).click(function (e) {
-            if ($(this).hasClass('fa-lock')) {
-                // Unlock
-                $(this).removeClass('fa-lock').addClass('fa-unlock-alt').prop('title', $(this).data('public'));
-                $(this).parent().find('input:hidden').val("0");
-            } else {
-                // Lock
-                $(this).removeClass('fa-unlock-alt').addClass('fa-lock').prop('title', $(this).data('private'));
-                $(this).parent().find('input:hidden').val("1");
-            }
-        });
-    });
-}
-/**
- *
- */
 function registerEntityFormActions() {
-    var entityFormMainButton = $('#form-submit-main')
-    var entityFormSubmitMode = $('#submit-mode');
+    let entityFormMainButton = $('#form-submit-main');
+    let entityFormSubmitMode = $('#submit-mode');
     if (entityFormSubmitMode == undefined) {
         throw new Error("No submit mode hidden input found");
     }
@@ -302,7 +159,7 @@ function registerFormSubmitAnimation() {
             }
 
             return true;
-        })
+        });
     });
 }
 
@@ -389,7 +246,7 @@ function registerEntityCalendarModal() {
         loadCalendarDates(entityCalendarField.val());
     });
 
-    var defaultCalendarId = entityCalendarAdd.data('default-calendar');
+    //var defaultCalendarId = entityCalendarAdd.data('default-calendar');
     if (entityCalendarField.val()) {
         entityCalendarCancel.show();
         entityCalendarSubForm.fadeIn();
@@ -452,29 +309,10 @@ function calendarHideSubform() {
 }
 
 /**
- * Some panels can have their body toggled
- */
-function registerToggablePanels() {
-    toggablePanels = $('.panel-toggable');
-    $.each(toggablePanels, function () {
-        $(this).on('click', function () {
-            $(this).parent().children('.panel-body').fadeToggle();
-            var i = $(this).find('i.fa');
-            if (i.hasClass('fa-caret-down')) {
-                i.removeClass('fa-caret-down').addClass('fa-caret-left');
-            } else {
-                i.removeClass('fa-caret-left').addClass('fa-caret-down');
-            }
-        });
-
-    });
-}
-
-/**
  * If we change something on a form, avoid losing data when going away.
  */
 function registerUnsavedChanges() {
-    var save = $('#form-submit-main');
+    let save = $('#form-submit-main');
 
     // Save every input change
     $(document).on('change', ':input', function () {
@@ -504,18 +342,11 @@ function registerEntityFormSubmit() {
 
         e.preventDefault();
 
-        // Allow ajax requests to use the X_CSRF_TOKEN for deletes
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-
         $.ajax({
             url: $(this).attr('action'),
             method: $(this).attr('method'),
             data: $(this).serialize()
-        }).done(function (res) {
+        }).done(function () {
             //console.log('good?');
             // If the validation succeeded, we can really submit the form
             validEntityForm = true;
@@ -595,11 +426,11 @@ function registerEntityFormSubmit() {
 function resetEntityFormSubmitAnimation() {
     var submit = $('#entity-form').find('.btn-success');
     if (submit.length > 0) {
-        $.each(submit, function (su) {
+        $.each(submit, function () {
             $(this).removeAttr('disabled');
             if ($(this).data('reset')) {
                 $(this).find('.spinner').hide()
-                    .parent().find('span').show()
+                    .parent().find('span').show();
             }
         });
     }
@@ -613,21 +444,13 @@ function registerRelationFormSubmit() {
         if (validRelationForm) {
             return true;
         }
-
         e.preventDefault();
-
-        // Allow ajax requests to use the X_CSRF_TOKEN for deletes
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
 
         $.ajax({
             url: $(this).attr('action'),
             method: $(this).attr('method'),
             data: $(this).serialize()
-        }).done(function (res) {
+        }).done(function () {
             // If the validation succeeded, we can really submit the form
             validRelationForm = true;
             $('#relation-form').submit();
@@ -671,7 +494,7 @@ function registerRelationFormSubmit() {
 function resetRelationFormSubmitAnimation() {
     var submit = $('#relation-form').find('.btn-success');
     if (submit.length > 0) {
-        $.each(submit, function (su) {
+        $.each(submit, function () {
             $(this).removeAttr('disabled');
             if ($(this).data('reset')) {
                 $(this).html($(this).data('reset'));
@@ -729,8 +552,6 @@ function registerEntityNotePerms() {
     }
     registerEntityNoteDeleteEvents();
 
-    let perm = $('select[name="permission"]');
-
     btn.on('click', function (ev) {
         ev.preventDefault();
         let type = $(this).data('type');
@@ -786,9 +607,9 @@ function initSpectrum() {
  *
  */
 function registerStoryActions() {
-    let posts = $('.entity-notes');
-    $('.btn-post-collapse').unbind('click').click(function (e) {
-        posts.each(function (i) {
+    let posts = $('.entity-notes > div');
+    $('.btn-post-collapse').unbind('click').click(function () {
+        posts.each(function () {
             let body = $(this).find('.entity-content');
             if (body.hasClass('in')) {
                 body.removeClass('in');
@@ -803,8 +624,8 @@ function registerStoryActions() {
         return false;
     });
 
-    $('.btn-post-expand').unbind('click').click(function (e) {
-        posts.each(function (i) {
+    $('.btn-post-expand').unbind('click').click(function () {
+        posts.each(function () {
             let body = $(this).find('.entity-content');
             if (!body.hasClass('in')) {
                 body.addClass('in');
@@ -825,7 +646,7 @@ function registerStoryActions() {
  * Sidebars elements can be collapsed after the page has been loaded
  */
 function registerSidebarActions() {
-    $('.sidebar-section-title').click(function (e) {
+    $('.sidebar-section-title').click(function () {
         if ($(this).next().hasClass('in')) {
             $(this).find('.fa-chevron-down').hide();
             $(this).find('.fa-chevron-right').show();
@@ -850,14 +671,14 @@ function registerStoryLoadMore() {
 
         $.ajax({
             url: $(this).data('url')
-        }).done(function (result, textStatus, xhr) {
+        }).done(function (result) {
             btn.parent().remove();
             if (result) {
                 $('.entity-notes').append(result);
                 registerStoryLoadMore();
                 registerStoryActions();
             }
-        }).fail(function (result, textStatus, xhr) {
+        }).fail(function () {
             //console.log('modal ajax error', result);
             $('#story-more-spinner').hide();
             btn.show();
@@ -888,17 +709,11 @@ function registerEditWarning() {
         confirmEditWarningModal();
         keepAliveEnabled = true;
 
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-
         $.ajax({
             url: $(this).data('url'),
             type: 'POST',
             context: this
-        }).done(function (result, textStatus, xhr) {
+        }).done(function () {
             multiEditingModal.modal('hide');
         });
     });
@@ -940,24 +755,18 @@ function keepAlivePulse() {
         return;
     }
 
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
-
     $.ajax({
         url: keepAliveUrl,
         type: 'POST'
     })
-    .done(function(result) {
+    .done(function() {
         //console.log('kept alive');
         setTimeout(keepAlivePulse, keepAliveTimer);
     });
 }
 
 function registerTrustDomain() {
-    $('.domain-trust').click(function (e) {
+    $('.domain-trust').click(function () {
         let cookieName = 'kanka_trusted_domains';
 
         let keyValue = document.cookie.match('(^|;) ?' + cookieName + '=([^;]*)(;|$)');
@@ -975,5 +784,39 @@ function registerTrustDomain() {
         let expires = new Date();
         expires.setTime(expires.getTime() + (30 * 24 * 60 * 60 * 1000));
         document.cookie = cookieName + '=' + keyValue + ';expires=' + expires.toUTCString() + ';sameSite=Strict';
+    });
+}
+
+/**
+ * Register a listened to add dynamic rows in the forms
+ */
+function registerDynamicRows() {
+    $('.dynamic-row-add').on('click', function(e) {
+        e.preventDefault();
+
+        let target = $(this).data('target');
+        let template = $(this).data('template');
+        //console.log('target', target, $('.' + target));
+        //console.log('template', template, $('#' + template));
+        $('.' + target).append('<div class="form-group">' +
+            $('#' + template).html() +
+            '</div>');
+
+        registerDynamicRowDelete();
+        return false;
+    });
+    registerDynamicRowDelete();
+}
+
+/**
+ * Register a listener to delete a dynamically added row in the forms
+ */
+function registerDynamicRowDelete() {
+    $.each($('.dynamic-row-delete'), function () {
+        $(this).unbind('click'); // remove previous bindings
+        $(this).on('click', function (e) {
+            e.preventDefault();
+            $(this).closest('.parent-delete-row').remove();
+        });
     });
 }

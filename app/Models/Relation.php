@@ -20,16 +20,18 @@ use Illuminate\Database\Eloquent\Builder;
  * @property int $id
  * @property string $relation
  * @property int $attitude
- * @property int $mirror_id
+ * @property int|null $mirror_id
  * @property int $owner_id
  * @property int $target_id
  * @property bool $is_star
  * @property string $colour
  * @property string $marketplace_uuid
  *
- * @property Relation $mirror
- * @property Entity $target
+ * @property Relation|null $mirror
+ * @property Entity|null $target
  * @property Entity $owner
+ * @property int $created_at
+ * @property int $updated_at
  */
 class Relation extends Model
 {
@@ -48,9 +50,7 @@ class Relation extends Model
         SortableTrait
     ;
 
-    /**
-     * @var array
-     */
+    /** @var string[]  */
     protected $fillable = [
         'campaign_id',
         'owner_id',
@@ -87,13 +87,15 @@ class Relation extends Model
     public $defaultOrderField = 'relation';
 
     /**
-     * @param $query
-     * @param int $star
-     * @return mixed
+     * @param Builder $query
+     * @param string $order
+     * @return Builder
      */
-    public function scopeOrdered($query, $order = 'asc')
+    public function scopeOrdered(Builder$query, $order = 'asc'): Builder
     {
-        return $query->orderBy('relation', $order)->orderBy('attitude', 'asc');
+        return $query
+            ->orderBy('relation', $order)
+            ->orderBy('attitude', 'asc');
     }
 
     /**
@@ -153,10 +155,10 @@ class Relation extends Model
 
     /**
      * Performance with for datagrids
-     * @param $query
-     * @return mixed
+     * @param Builder $query
+     * @return Builder
      */
-    public function scopePreparedWith(Builder $query)
+    public function scopePreparedWith(Builder $query): Builder
     {
         return $query
             ->with([
@@ -170,10 +172,10 @@ class Relation extends Model
 
     /**
      * Performance with for datagrids
-     * @param $query
-     * @return mixed
+     * @param Builder $query
+     * @return Builder
      */
-    public function scopePreparedSelect(Builder $query)
+    public function scopePreparedSelect(Builder $query): Builder
     {
         return $query
             ->select(['id', 'target_id', 'owner_id', 'relation', 'mirror_id', 'is_star', 'attitude', 'visibility_id'])
@@ -182,7 +184,7 @@ class Relation extends Model
 
     /**
      * When setting the colour, remove the '#' from the db
-     * @param $colour
+     * @param string $colour
      */
     public function setColourAttribute($colour)
     {
@@ -190,8 +192,7 @@ class Relation extends Model
     }
 
     /**
-     * When setting the colour, remove the '#' from the db
-     * @param $colour
+     * When getting the colour, remove the '#' from the db
      */
     public function getColourAttribute(): string
     {
@@ -222,7 +223,6 @@ class Relation extends Model
 
     /**
      * Functions for the datagrid2
-     * @param string $where
      * @return string
      */
     public function deleteName(): string

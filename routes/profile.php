@@ -105,3 +105,45 @@ Route::get(
     'campaign_boosts/{campaign_boost}/confirm',
     [\App\Http\Controllers\CampaignBoostController::class, 'confirm']
 )->name('campaign_boost.confirm-destroy');
+
+/*
+--------------------------------------------------------------------------
+Google2FA
+--------------------------------------------------------------------------
+*/
+Route::post('/security/cancel2fa', 'PasswordSecurityController@cancel2FA')->name('auth.cancel-2fa');
+
+
+// Generate a new Google2FA code if a User does not already have one
+Route::post('/security/generate2faSecret', [
+    'uses' => 'PasswordSecurityController@generate2faSecretCode',
+    'as'   => 'settings.security.generate-2fa'
+]);
+
+// Enable 2FA for User
+Route::post('/security/enable2fa', [
+    'uses' => 'PasswordSecurityController@enable2fa',
+    'as'   => 'settings.security.enable-2fa'
+]);
+
+// Disable 2FA for User
+Route::post('/security/disable2fa', [
+    'uses' => 'PasswordSecurityController@disable2fa',
+    'as'   => 'settings.security.disable-2fa'
+]);
+
+// Verify 2FA if User has it enabled
+Route::post('/security/verify2fa', function() {
+    return redirect()->route('home');
+})->name('auth.verify-2fa')->middleware('2fa');
+
+
+/*Route::get('/security/verify2fa', function() {
+    return redirect(URL()->previous());
+})->name('auth.verify-2fa')->middleware('2fa');*/
+
+/*
+--------------------------------------------------------------------------
+Google2FA
+--------------------------------------------------------------------------
+*/

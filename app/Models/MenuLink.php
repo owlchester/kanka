@@ -17,19 +17,20 @@ use Illuminate\Support\Str;
  *
  * @property integer $campaign_id
  * @property string $name
- * @property string $tab
- * @property string $menu
- * @property string $type
+ * @property string|null $tab
+ * @property string|null $menu
+ * @property string|null $type
  * @property string $icon
- * @property string $filters
- * @property string $parent
+ * @property string|null $filters
+ * @property string|null $parent
  * @property string $css
  * @property string $random_entity_type
  * @property integer $position
- * @property integer $dashboard_id
+ * @property integer|null $dashboard_id
+ * @property integer|null $entity_id
  * @property array $options
- * @property CampaignDashboard $dashboard
- * @property Entity $target
+ * @property CampaignDashboard|null $dashboard
+ * @property Entity|null $target
  * @property boolean $is_private
  * @property array $optionsAllowedKeys
  *
@@ -44,9 +45,7 @@ class MenuLink extends MiscModel
      */
     public $table = 'menu_links';
 
-    /**
-     * @var array
-     */
+    /** @var string[]  */
     protected $fillable = [
         'campaign_id',
         'entity_id',
@@ -68,7 +67,7 @@ class MenuLink extends MiscModel
 
     /**
      * The attributes that should be cast.
-     * @var array
+     * @var array<string, string>
      */
     protected $casts = [
         'options' => 'array',
@@ -90,7 +89,7 @@ class MenuLink extends MiscModel
 
     /**
      * Nullable values (foreign keys)
-     * @var array
+     * @var string[]
      */
     public $nullableForeignKeys = [
         'entity_id',
@@ -118,8 +117,8 @@ class MenuLink extends MiscModel
 
     /**
      * Performance with for datagrids
-     * @param $query
-     * @return mixed
+     * @param Builder $query
+     * @return Builder
      */
     public function scopePreparedWith(Builder $query): Builder
     {
@@ -229,7 +228,7 @@ class MenuLink extends MiscModel
     protected function getIndexRoute(): string
     {
         $filters = $this->filters . '&_clean=true&_from=quicklink&quick-link=' . $this->id;
-        $nestedType = (!empty($this->options['is_nested']) && $this->options['is_nested'] ? 'tree' : 'index');
+        $nestedType = (!empty($this->options['is_nested']) && $this->options['is_nested'] == '1' ? 'tree' : 'index');
 
         $routeName = Str::plural($this->type) . ".$nestedType";
         if ($nestedType === 'tree' && !Route::has($routeName)) {
@@ -253,10 +252,10 @@ class MenuLink extends MiscModel
     }
 
     /**
-     * @param $query
+     * @param Builder $query
      * @return Builder
      */
-    public function scopeOrdered($query): Builder
+    public function scopeOrdered(Builder $query): Builder
     {
         return $query
             ->orderBy('position', 'ASC')
@@ -273,10 +272,10 @@ class MenuLink extends MiscModel
     }
 
     /**
-     * @param $query
-     * @return mixed
+     * @param Builder $query
+     * @return Builder
      */
-    public function scopeStandardWith($query): Builder
+    public function scopeStandardWith(Builder $query): Builder
     {
         return $query->with('entity');
     }
@@ -314,7 +313,6 @@ class MenuLink extends MiscModel
     }
 
     /**
-     * @return string
      */
     public function randomEntity()
     {
@@ -324,7 +322,7 @@ class MenuLink extends MiscModel
             $entityTypeID = config('entities.ids.' . $entityType);
         }
 
-        /** @var Entity $entity */
+        /** @var Entity|null $entity */
         $entity = Entity::
             inTags($this->tags->pluck('id')->toArray())
             ->type($entityTypeID)

@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
@@ -11,22 +10,24 @@ use Illuminate\Database\Eloquent\Builder;
  * @package App\Models
  *
  * @property int $id
- * @property int $timeline_id
+ * @property int|null $timeline_id
  * @property string $name
  * @property string $entry
  * @property string $abbreviation
- * @property int $start_year
- * @property int $end_year
+ * @property string|int $start_year
+ * @property string|int $end_year
  * @property bool $is_collapsed
+ * @property int|null $position
  *
  * @property Timeline $timeline
  * @property TimelineElement[] $elements
+ * @property TimelineElement[] $orderedElements
  *
  * @method static self|Builder ordered()
  */
 class TimelineEra extends Model
 {
-    /** Fillable fields */
+    /** @var string[]  */
     protected $fillable = [
         'timeline_id',
         'name',
@@ -51,6 +52,15 @@ class TimelineEra extends Model
     public function elements()
     {
         return $this->hasMany(TimelineElement::class, 'era_id');
+    }
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function orderedElements()
+    {
+        return $this->elements()
+            ->ordered()
+        ;
     }
 
     /**

@@ -20,7 +20,7 @@ class NewsletterApiController extends Controller
     }
 
     /**
-     * @param Request $request
+     * @param NewsletterStore $request
      * @return \Illuminate\Http\JsonResponse
      */
     public function update(NewsletterStore $request)

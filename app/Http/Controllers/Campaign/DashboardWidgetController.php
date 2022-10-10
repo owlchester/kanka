@@ -41,9 +41,10 @@ class DashboardWidgetController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws \Psr\Container\ContainerExceptionInterface
+     * @throws \Psr\Container\NotFoundExceptionInterface
      */
     public function create()
     {
@@ -114,10 +115,10 @@ class DashboardWidgetController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param StoreCampaignDashboardWidget $request
+     * @param CampaignDashboardWidget $campaignDashboardWidget
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function update(StoreCampaignDashboardWidget $request, CampaignDashboardWidget $campaignDashboardWidget)
     {
@@ -138,10 +139,10 @@ class DashboardWidgetController extends Controller
 
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param \Illuminate\Http\Request $request
+     * @param CampaignDashboardWidget $campaignDashboardWidget
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function destroy(\Illuminate\Http\Request $request, CampaignDashboardWidget $campaignDashboardWidget)
     {
@@ -159,7 +160,7 @@ class DashboardWidgetController extends Controller
      * Get a list of available entities
      * @return array
      */
-    private function buildEntities()
+    private function buildEntities(): array
     {
         $entities = [
             '' => 'All',

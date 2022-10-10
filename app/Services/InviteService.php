@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Facades\UserCache;
+use App\Models\Campaign;
 use App\Models\CampaignUser;
 use App\Exceptions\RequireLoginException;
 use App\Models\CampaignInvite;
@@ -81,8 +82,8 @@ class InviteService
     }
 
     /**
-     * @param string $token
-     * @return bool
+     * @param string|null $token
+     * @return bool|Campaign
      */
     public function join(string $token = null)
     {
@@ -122,16 +123,12 @@ class InviteService
             ]);
         }
 
-        // Check the type. Links have a number of usage (validity)
-        if (!$invite->isEmail()) {
-            if (!empty($invite->validity)) {
-                $invite->validity--;
-                if ($invite->validity <= 0) {
-                    $invite->is_active = false;
-                }
+        // Invitation links can have a set number of usage (validity)
+        if (!empty($invite->validity)) {
+            $invite->validity--;
+            if ($invite->validity <= 0) {
+                $invite->is_active = false;
             }
-        } else {
-            $invite->is_active = false;
         }
         $invite->save();
 

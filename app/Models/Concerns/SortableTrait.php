@@ -9,18 +9,21 @@ use Illuminate\Support\Str;
 /**
  * @method static self|Builder sort(array $filters, array $defaultOrder = [])
  * @method static self|Builder defaultOrder()
+ * @method static self|Builder sortOnForeign(string $key, string $order)
  */
 trait SortableTrait
 {
     /**
      * @param Builder $query
      * @param array $filters
+     * @param array $defaultOrder
      * @return Builder
      */
-    public function scopeSort(Builder $query, array $filters, array $defaultOrder = [])
+    public function scopeSort(Builder $query, array $filters, array $defaultOrder = []): Builder
     {
         if (empty($filters)) {
             if (empty($defaultOrder)) {
+                // @phpstan-ignore-next-line
                 return $query->defaultOrder();
             }
             foreach ($defaultOrder as $field => $order) {
@@ -51,6 +54,7 @@ trait SortableTrait
         if (Str::contains($key, '.')) {
             $segments = explode('.', $key);
             if (count($segments) == 2) {
+                // @phpstan-ignore-next-line
                 return $query->sortOnForeign($key, $order);
             }
         }
@@ -68,7 +72,7 @@ trait SortableTrait
      * @param Builder $query
      * @return Builder
      */
-    public function scopeDefaultOrder(Builder $query)
+    public function scopeDefaultOrder(Builder $query): Builder
     {
         if (!isset($this->defaultSort)) {
             return $query;

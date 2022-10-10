@@ -22,7 +22,7 @@
             @foreach ($r as $journal)
                 <tr>
                     <td>
-                        <a class="entity-image" style="background-image: url('{{ $journal->getImageUrl(40) }}');" title="{{ $journal->name }}" href="{{ route('journals.show', $journal->id) }}"></a>
+                        <a class="entity-image" style="background-image: url('{{ $journal->thumbnail() }}');" title="{{ $journal->name }}" href="{{ route('journals.show', $journal->id) }}"></a>
                     </td>
                     <td>
                         {!! $journal->tooltipedLink() !!}

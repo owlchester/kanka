@@ -44,7 +44,7 @@
                 {{ $relation->relation }}
             </td>
             <td>
-                <a class="entity-image" style="background-image: url('{{ $relation->target->child->getImageUrl(40) }}');" title="{{ $relation->target->child->name }}" href="{{ $relation->target->url() }}"></a>
+                <a class="entity-image" style="background-image: url('{{ $relation->target->child->thumbnail() }}');" title="{{ $relation->target->child->name }}" href="{{ $relation->target->url() }}"></a>
             </td>
             <td>
                 {!! $relation->target->tooltipedLink() !!}

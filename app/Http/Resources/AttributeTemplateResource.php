@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Models\AttributeTemplate;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class AttributeTemplateResource extends EntityResource
@@ -14,9 +15,12 @@ class AttributeTemplateResource extends EntityResource
      */
     public function toArray($request)
     {
+        /** @var AttributeTemplate $model */
+        $model = $this->resource;
+
         return $this->entity([
-            'entity_type_id' => $this->entity_type_id,
-            'attribute_template' => $this->attribute_template_id,
+            'entity_type_id' => $model->entity_type_id,
+            'attribute_template' => $model->attribute_template_id,
         ]);
     }
 }

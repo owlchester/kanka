@@ -18,7 +18,7 @@
             @foreach ($r as $map)
                 <tr>
                     <td>
-                        <a class="entity-image" style="background-image: url('{{ $map->getImageUrl(40) }}');" title="{{ $map->name }}" href="{{ route('maps.show', $map->id) }}"></a>
+                        <a class="entity-image" style="background-image: url('{{ $map->thumbnail() }}');" title="{{ $map->name }}" href="{{ route('maps.show', $map->id) }}"></a>
                     </td>
                     <td>
                         {!! $map->tooltipedLink() !!}

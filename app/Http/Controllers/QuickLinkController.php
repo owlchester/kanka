@@ -14,11 +14,6 @@ use Illuminate\Http\Request;
 
 class QuickLinkController extends Controller
 {
-    /**
-     * Guest Auth Trait
-     */
-    use GuestAuthTrait;
-
     /** @var MenuLinkService */
     protected $service;
 
@@ -32,8 +27,7 @@ class QuickLinkController extends Controller
     }
 
     /**
-     * @param Entity $entity
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function reorder()
@@ -48,9 +42,9 @@ class QuickLinkController extends Controller
     }
 
     /**
-     * @param Request $request
-     * @param Model $model
+     * @param ReorderMenuLinks $request
      * @return \Illuminate\Http\RedirectResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function save(ReorderMenuLinks $request)
     {

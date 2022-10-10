@@ -2,7 +2,14 @@
 
 namespace App\Services\Entity;
 
+use App\Models\Character;
 use App\Models\Entity;
+use App\Models\Family;
+use App\Models\Item;
+use App\Models\Journal;
+use App\Models\Map;
+use App\Models\Organisation;
+use App\Models\Race;
 
 class ConnectionService
 {
@@ -164,7 +171,9 @@ class ConnectionService
 
     protected function loadMaps(): self
     {
-        $elements = $this->entity->child->maps()->with(['entity'])->has('entity')->get();
+        /** @var Map $parent */
+        $parent = $this->entity->child;
+        $elements = $parent->maps()->with(['entity'])->has('entity')->get();
         foreach ($elements as $sub) {
             $entity = $sub->entity;
             $this->ids[] = $entity->id;
@@ -175,7 +184,9 @@ class ConnectionService
 
     protected function loadParentMaps(): self
     {
-        $elements = $this->entity->child->map()->with(['entity'])->has('entity')->get();
+        /** @var Map $parent */
+        $parent = $this->entity->child;
+        $elements = $parent->map()->with(['entity'])->has('entity')->get();
         foreach ($elements as $sub) {
             $entity = $sub->entity;
             $this->ids[] = $entity->id;
@@ -186,7 +197,9 @@ class ConnectionService
 
     protected function loadDicerolls(): self
     {
-        $elements = $this->entity->child->diceRolls()->with(['entity'])->has('entity')->get();
+        /** @var Character $parent */
+        $parent = $this->entity->child;
+        $elements = $parent->diceRolls()->with(['entity'])->has('entity')->get();
         foreach ($elements as $sub) {
             $entity = $sub->entity;
             $this->ids[] = $entity->id;
@@ -197,7 +210,9 @@ class ConnectionService
 
     protected function loadConversations(): self
     {
-        $elements = $this->entity->child->conversations()->with(['entity'])->has('entity')->get();
+        /** @var Character $parent */
+        $parent = $this->entity->child;
+        $elements = $parent->conversations()->with(['entity'])->has('entity')->get();
         foreach ($elements as $sub) {
             $entity = $sub->entity;
             $this->ids[] = $entity->id;
@@ -208,7 +223,9 @@ class ConnectionService
 
     protected function loadItems(): self
     {
-        $elements = $this->entity->child->items()->with(['entity'])->has('entity')->get();
+        /** @var Item $parent */
+        $parent = $this->entity->child;
+        $elements = $parent->items()->with(['entity'])->has('entity')->get();
         foreach ($elements as $sub) {
             $entity = $sub->entity;
             $this->ids[] = $entity->id;
@@ -219,7 +236,9 @@ class ConnectionService
 
     protected function loadJournals(): self
     {
-        $elements = $this->entity->child->journals()->with(['entity'])->has('entity')->get();
+        /** @var Journal $parent */
+        $parent = $this->entity->child;
+        $elements = $parent->journals()->with(['entity'])->has('entity')->get();
         foreach ($elements as $sub) {
             $entity = $sub->entity;
             $this->ids[] = $entity->id;
@@ -241,7 +260,9 @@ class ConnectionService
 
     protected function loadFamilies(): self
     {
-        $elements = $this->entity->child->families()->with(['entity'])->has('entity')->get();
+        /** @var Family $parent */
+        $parent = $this->entity->child;
+        $elements = $parent->families()->with(['entity'])->has('entity')->get();
         foreach ($elements as $sub) {
             $entity = $sub->entity;
             $this->ids[] = $entity->id;
@@ -252,7 +273,9 @@ class ConnectionService
 
     protected function loadOrganisations(): self
     {
-        $elements = $this->entity->child->organisations()->with(['entity'])->has('entity')->get();
+        /** @var Organisation $parent */
+        $parent = $this->entity->child;
+        $elements = $parent->organisations()->with(['entity'])->has('entity')->get();
         foreach ($elements as $sub) {
             $entity = $sub->entity;
             $this->ids[] = $entity->id;
@@ -263,7 +286,9 @@ class ConnectionService
 
     protected function loadRaces(): self
     {
-        $elements = $this->entity->child->races()->with(['entity'])->has('entity')->get();
+        /** @var Race $parent */
+        $parent = $this->entity->child;
+        $elements = $parent->races()->with(['entity'])->has('entity')->get();
         foreach ($elements as $sub) {
             $entity = $sub->entity;
             $this->ids[] = $entity->id;
@@ -274,7 +299,9 @@ class ConnectionService
 
     protected function loadChildRaces(): self
     {
-        $elements = $this->entity->child->races()->with(['entity'])->has('entity')->get();
+        /** @var Race $parent */
+        $parent = $this->entity->child;
+        $elements = $parent->races()->with(['entity'])->has('entity')->get();
         foreach ($elements as $sub) {
             $entity = $sub->entity;
             $this->ids[] = $entity->id;
@@ -285,7 +312,9 @@ class ConnectionService
 
     protected function loadRaceLocations(): self
     {
-        $elements = $this->entity->child->locations()->with(['entity'])->has('entity')->get();
+        /** @var Race $parent */
+        $parent = $this->entity->child;
+        $elements = $parent->locations()->with(['entity'])->has('entity')->get();
         foreach ($elements as $sub) {
             $entity = $sub->entity;
             $this->ids[] = $entity->id;

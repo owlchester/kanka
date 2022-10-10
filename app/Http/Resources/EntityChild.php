@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Models\MiscModel;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class EntityChild extends JsonResource
@@ -11,21 +12,22 @@ class EntityChild extends JsonResource
     /**
      * Transform the resource into an array.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return array
      */
     public function entity(array $prepared = [])
     {
+        /** @var MiscModel $model */
+        $model = $this->resource;
         $merged = [
-            'id' => $this->id,
+            'id' => $model->id,
 
-            'is_private' => (bool) $this->is_private,
-            'entity_id' => $this->entity->id,
+            'is_private' => (bool) $model->is_private,
+            'entity_id' => $model->entity->id,
 
-            'created_at' => $this->created_at,
-            'created_by' => $this->created_by,
-            'updated_at' => $this->updated_at,
-            'updated_by' => $this->updated_by,
+            'created_at' => $model->created_at,
+            'created_by' => $model->created_by,
+            'updated_at' => $model->updated_at,
+            'updated_by' => $model->updated_by,
         ];
 
         $final = array_merge($prepared, $merged);

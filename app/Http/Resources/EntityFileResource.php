@@ -2,7 +2,7 @@
 
 namespace App\Http\Resources;
 
-use Illuminate\Http\Resources\Json\JsonResource;
+use App\Models\EntityFile;
 use Illuminate\Support\Facades\Storage;
 
 class EntityFileResource extends EntityChild
@@ -15,12 +15,14 @@ class EntityFileResource extends EntityChild
      */
     public function toArray($request)
     {
+        /** @var EntityFile $model */
+        $model = $this->resource;
         return $this->entity([
-            'name' => $this->name,
-            'visibility_id' => $this->visibility_id,
-            'type' => $this->type,
-            'path' => Storage::url($this->path),
-            'size' => $this->size,
+            'name' => $model->name,
+            'visibility_id' => $model->visibility_id,
+            'type' => $model->type,
+            'path' => Storage::url($model->path),
+            'size' => $model->size,
         ]);
     }
 }

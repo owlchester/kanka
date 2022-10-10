@@ -10,6 +10,7 @@ use App\Models\CampaignRole;
 use App\Models\Entity;
 use App\Models\MiscModel;
 use App\User;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Arr;
 
 class EntityPermission
@@ -30,12 +31,12 @@ class EntityPermission
     protected $cached = [];
 
     /**
-     * @var array|boolean
+     * @var array|bool
      */
     protected $roleIds = false;
 
     /**
-     * @var array The roles of the user
+     * @var array|bool|Collection The roles of the user
      */
     protected $roles = [];
 
@@ -143,28 +144,11 @@ class EntityPermission
     }
 
     /**
-     * @param MiscModel $model
-     * @param Campaign|null $campaign
-     * @return bool
-     */
-    public function canViewMisc(MiscModel $model, Campaign $campaign = null)
-    {
-        // Make sure we can see the entity we're trying to show the user. We do it this way because we
-        // are looping through entities which doesn't allow using the acl trait before hand.
-        if (auth()->check()) {
-            return auth()->user()->can('view', $model);
-        } elseif (!empty($model)) {
-            return self::hasPermission($model->getEntityType(), CampaignPermission::ACTION_READ, null, $model, $campaign);
-        }
-        return false;
-    }
-
-    /**
      * Determine the permission for a user to interact with an entity
-     * @param string $modelName
-     * @param string $action
-     * @param User $user
-     * @param null $entity
+     * @param int $entityType
+     * @param int $action
+     * @param User|null $user
+     * @param MiscModel|Entity|null $entity
      * @param Campaign|null $campaign
      * @return bool
      */
@@ -176,7 +160,7 @@ class EntityPermission
             return true;
         }
 
-        // Check if we have permission to `action` all of the entities of this type first. The user
+        // Check if we have permission to `action` all the entities of this type first. The user
         // might be able to view all quests, but have a specific quest set to denied. This is why
         // we need to check the specific permissions too.
         if ($entityType === 0) {
@@ -192,7 +176,12 @@ class EntityPermission
 
         // Check if we have permission to do this action for exactly this entity
         if (!empty($entity)) {
-            $entityKey = '_' . $action . '_' . $entity->id;
+            //Check if $entity is an entity type.
+            if (isset($entity->type_id)) {
+                $entityKey = '_' . $action . '_' . $entity->entity_id;
+            } else {
+                $entityKey = '_' . $action . '_' . $entity->id;
+            }
             if (isset($this->cached[$entityKey])) {
                 $perm = $this->cached[$entityKey];
             }
@@ -244,8 +233,6 @@ class EntityPermission
 
     /**
      * Determine if a user is part of a role that can do an action on all entities of a campaign
-     * @param string $action
-     * @param string $model
      * @return bool
      */
     public function canRole(string $action, string $modelName, $user = null, Campaign $campaign = null): bool
@@ -285,12 +272,8 @@ class EntityPermission
             return;
         }
 
-        // Reset the values keeping score
-        $this->loadedAll = true;
+        $this->resetPermissions();
         $this->loadedCampaignId = $campaign->id;
-        $this->cached = [];
-        $this->roleIds = false;
-        $this->userIsAdmin = false;
 
         // Loop through the roles to build a list of ids, and check if one of our roles is an admin
         $roleIds = $this->getRoleIds($campaign, $user);
@@ -300,14 +283,14 @@ class EntityPermission
             return;
         }
 
-        /** @var CampaignRole $role */
         $campaignRoleIDs = [];
+        /** @var CampaignRole $role */
         foreach ($this->roles as $role) {
             $campaignRoleIDs[] = $role->id;
         }
         if (!empty($campaignRoleIDs)) {
-            /** @var CampaignPermission $permission */
             $permissions = \App\Facades\RolePermission::rolesPermissions($campaignRoleIDs);
+            /** @var CampaignPermission $permission */
             foreach ($permissions as $permission) {
                 $this->cached[$permission->key()] = $permission->access;
                 if (!empty($permission->entity_id)) {
@@ -330,5 +313,17 @@ class EntityPermission
 
         //dump('finished loading entities:');
         //dump($this->cachedEntityIds);
+    }
+
+    /**
+     * Reset all chached permissions.
+     */
+    public function resetPermissions(): void
+    {
+        // Reset the values keeping score
+        $this->loadedAll = true;
+        $this->cached = [];
+        $this->roleIds = false;
+        $this->userIsAdmin = false;
     }
 }

@@ -8,6 +8,7 @@ use App\Models\Concerns\Nested;
 use App\Models\Concerns\SortableTrait;
 use App\Traits\CampaignTrait;
 use App\Traits\ExportableTrait;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Builder;
 
@@ -15,11 +16,12 @@ use Illuminate\Database\Eloquent\Builder;
  * Class Organisation
  * @package App\Models
  *
- * @property int $organisation_id
- * @property Organisation $organisation
- * @property OrganisationMember[] $members
- * @property Organisation[] $descendants
- * @property Organisation[] $organisations
+ * @property int|null $organisation_id
+ * @property int|null $location_id
+ * @property Organisation|null $organisation
+ * @property Collection|OrganisationMember[] $members
+ * @property Collection|Organisation[] $descendants
+ * @property Collection|Organisation[] $organisations
  * @property bool $is_defunct
  */
 class Organisation extends MiscModel
@@ -32,9 +34,7 @@ class Organisation extends MiscModel
         Acl
     ;
 
-    /**
-     * @var array
-     */
+    /** @var string[]  */
     protected $fillable = [
         'name',
         'slug',
@@ -80,7 +80,7 @@ class Organisation extends MiscModel
 
     /**
      * Nullable values (foreign keys)
-     * @var array
+     * @var string[]
      */
     public $nullableForeignKeys = [
         'location_id',
@@ -91,10 +91,10 @@ class Organisation extends MiscModel
 
     /**
      * Performance with for datagrids
-     * @param $query
-     * @return mixed
+     * @param Builder $query
+     * @return Builder
      */
-    public function scopePreparedWith(Builder $query)
+    public function scopePreparedWith(Builder $query): Builder
     {
         return $query
             ->with([
@@ -118,7 +118,6 @@ class Organisation extends MiscModel
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Eloquent\Relations\HasMany[]|OrganisationMember[]
      */
     public function pinnedMembers()
     {
@@ -158,7 +157,7 @@ class Organisation extends MiscModel
 
     /**
      * Specify parent id attribute mutator
-     * @param $value
+     * @param int $value
      */
     public function setOrganisationIdAttribute($value)
     {
@@ -211,7 +210,7 @@ class Organisation extends MiscModel
      */
     public function detach()
     {
-        foreach ($this->children(true)->get() as $child) {
+        foreach ($this->children()->get() as $child) {
             $child->organisations()->detatch($this->id);
         }
         foreach ($this->members as $child) {
@@ -226,9 +225,6 @@ class Organisation extends MiscModel
      */
     public function menuItems(array $items = []): array
     {
-        $campaign = CampaignLocalization::getCampaign();
-        $canEdit = auth()->check() && auth()->user()->can('update', $this);
-
         $count = $this->descendants()->count();
         if ($count > 0) {
             $items['second']['organisations'] = [

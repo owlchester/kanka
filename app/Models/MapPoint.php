@@ -13,16 +13,18 @@ use Illuminate\Support\Str;
  * @property integer $id
  * @property integer $location_id
  * @property integer $target_entity_id
- * @property integer $axis_x
- * @property integer $axis_y
- * @property string $name
+ * @property string $axis_x
+ * @property string $axis_y
+ * @property string|null $name
  * @property string $colour
  * @property int $size_id
  * @property int $shape_id
+ * @property int $created_at
+ * @property int $updated_at
  * @property string $icon
  *
- * @property Location $location
- * @property Entity $targetEntity
+ * @property Location|null $location
+ * @property Entity|null $targetEntity
  */
 class MapPoint extends Model
 {
@@ -49,12 +51,13 @@ class MapPoint extends Model
 
     /**
      * Nullable values (foreign keys)
-     * @var array
+     * @var string[]
      */
     public $nullableForeignKeys = [
         'target_entity_id'
     ];
 
+    /** @var string[]  */
     protected $fillable = [
         'location_id',
         'target_entity_id',
@@ -102,7 +105,7 @@ class MapPoint extends Model
                 . 'data-toggle="tooltip-ajax" '
                 . 'data-id="' . $this->target_entity_id . '" ';
             if($this->icon == 'entity') {
-                $style .= "background-image: url('" . $this->targetEntity->child->getImageUrl(40) . "');";
+                $style .= "background-image: url('" . $this->targetEntity->child->thumbnail() . "');";
                 $marker = '';
             }
         }
@@ -207,7 +210,7 @@ class MapPoint extends Model
     public function visible(): bool
     {
         if ($this->hasTarget()) {
-            return $this->targetEntity && $this->targetEntity->child;
+            return !empty($this->targetEntity) && !empty($this->targetEntity->child);
         }
         return true;
     }

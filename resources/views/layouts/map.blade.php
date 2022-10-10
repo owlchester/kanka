@@ -127,7 +127,11 @@ $specificTheme = null;
 <script src="/js/vendor/leaflet/leaflet.markercluster.js"></script>
 <script src="/js/vendor/leaflet/leaflet.markercluster.layersupport.js"></script>
 <script src="/js/vendor/leaflet/leaflet.zoomcss.js"></script>
+@if ($map->isReal())
 <script src="/js/vendor/leaflet/leaflet.ruler.js"></script>
+@else
+    <script src="/js/vendor/leaflet/leaflet.ruler-kanka.js"></script>
+@endif
 
 <script src="{{ mix('js/location/map-v3.js') }}" defer></script>
 @yield('scripts')

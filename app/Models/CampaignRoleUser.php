@@ -19,17 +19,12 @@ use Illuminate\Database\Eloquent\Model;
  */
 class CampaignRoleUser extends Model
 {
-    /**
-     * @var array
-     */
+    /** @var string[]  */
     protected $fillable = [
         'campaign_role_id',
         'user_id',
     ];
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
-     */
     public function campaignRole()
     {
         return $this->belongsTo('App\Models\CampaignRole', 'campaign_role_id', 'id');

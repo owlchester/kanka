@@ -42,10 +42,7 @@ class CalendarController extends CrudController
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * Store the new calendar in the db
      */
     public function store(StoreCalendar $request)
     {
@@ -54,9 +51,6 @@ class CalendarController extends CrudController
 
     /**
      * Display the specified resource.
-     *
-     * @param  \App\Models\Character  $character
-     * @return \Illuminate\Http\Response
      */
     public function show(Calendar $calendar)
     {
@@ -65,9 +59,6 @@ class CalendarController extends CrudController
 
     /**
      * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Character  $character
-     * @return \Illuminate\Http\Response
      */
     public function edit(Calendar $calendar)
     {
@@ -76,10 +67,6 @@ class CalendarController extends CrudController
 
     /**
      * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Character  $character
-     * @return \Illuminate\Http\Response
      */
     public function update(StoreCalendar $request, Calendar $calendar)
     {
@@ -88,15 +75,11 @@ class CalendarController extends CrudController
 
     /**
      * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Character  $character
-     * @return \Illuminate\Http\Response
      */
     public function destroy(Calendar $calendar)
     {
         return $this->crudDestroy($calendar);
     }
-
 
     public function event(Calendar $calendar)
     {
@@ -105,9 +88,9 @@ class CalendarController extends CrudController
         $ajax = request()->ajax();
         $date = request()->get('date');
         list($year, $month, $day) = explode('-', $date);
-        if (substr($date, 0, 1) == '-') {
+        if (str_starts_with($date, '-')) {
             list($year, $month, $day) = explode('-', trim($date, '-'));
-            $year = -$year;
+            $year = "-$year";
         }
 
 
@@ -121,9 +104,6 @@ class CalendarController extends CrudController
     }
 
     /**
-     * @param Request $request
-     * @param Calendar $calendar
-     * @return \Illuminate\Http\RedirectResponse
      */
     public function eventStore(AddCalendarEvent $request, Calendar $calendar)
     {
@@ -152,8 +132,6 @@ class CalendarController extends CrudController
     }
 
     /**
-     * @param Calendar $calendar
-     * @return mixed
      */
     public function monthList(Calendar $calendar)
     {
@@ -169,9 +147,6 @@ class CalendarController extends CrudController
     }
 
     /**
-     * @param Calendar $calendar
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function events(Calendar $calendar)
     {
@@ -213,10 +188,7 @@ class CalendarController extends CrudController
     }
 
     /**
-     * Set the date as today
-     * @param Calendar $calendar
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * Set the day as today
      */
     public function today(Calendar $calendar)
     {

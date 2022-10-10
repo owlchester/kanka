@@ -11,7 +11,7 @@ class ItemApiController extends ApiController
 {
     /**
      * @param Campaign $campaign
-     * @return Collection
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function index(Campaign $campaign)
@@ -48,6 +48,7 @@ class ItemApiController extends ApiController
         $this->authorize('access', $campaign);
         $this->authorize('create', Item::class);
 
+        /** @var Item $model */
         $model = Item::create($request->all());
         $this->crudSave($model);
         return new Resource($model);

@@ -57,3 +57,8 @@
 @if (request()->has('redirect'))
     {!! Form::hidden('redirect', request()->get('redirect')) !!}
 @endif
+
+@section('scripts')
+    @parent
+    <script src="{{ mix('js/forms/calendar.js') }}" defer></script>
+@endsection

@@ -26,7 +26,7 @@ class Conversation extends MiscModel
         Acl
     ;
 
-    //
+    /** @var string[]  */
     protected $fillable = [
         'name',
         'image',

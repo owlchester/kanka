@@ -17,12 +17,12 @@ use Illuminate\Database\Eloquent\Builder;
  *
  * @property int $id
  * @property string $date
- * @property int $character_id
- * @property int $journal_id
- * @property int $author_id
- * @property Character $character
- * @property Entity $author
- * @property Journal $journal
+ * @property int|null $character_id
+ * @property int|null $journal_id
+ * @property int|null $author_id
+ * @property Character|null $character
+ * @property Entity|null $author
+ * @property Journal|null $journal
  * @property Journal[] $journals
  * @property Journal[] $descendants
  */
@@ -37,9 +37,7 @@ class Journal extends MiscModel
         Acl
     ;
 
-    /**
-     * @var array
-     */
+    /** @var string[]  */
     protected $fillable = [
         'name',
         'campaign_id',
@@ -85,7 +83,7 @@ class Journal extends MiscModel
 
     /**
      * Nullable values (foreign keys)
-     * @var array
+     * @var string[]
      */
     public $nullableForeignKeys = [
         'location_id',
@@ -97,10 +95,10 @@ class Journal extends MiscModel
 
     /**
      * Performance with for datagrids
-     * @param $query
-     * @return mixed
+     * @param Builder $query
+     * @return Builder
      */
-    public function scopePreparedWith(Builder $query)
+    public function scopePreparedWith(Builder $query): Builder
     {
         return $query->with([
             'entity' => function ($sub) {
@@ -222,7 +220,7 @@ class Journal extends MiscModel
 
     /**
      * Specify parent id attribute mutator
-     * @param $value
+     * @param int $value
      */
     public function setJournalIdAttribute($value)
     {

@@ -11,16 +11,12 @@
     </div>
     <div class="box-body">
 
-        <div class="element-live-reorder">
+        <div class="element-live-reorder sortable-elements">
             @foreach($reorderStyles as $style)
                 <div class="element" data-id="{{ $style->id }}">
                     {!! Form::hidden('style[]', $style->id) !!}
                     <div class="dragger">
-                        <span class="fa-solid fa-ellipsis-v visible-md visible-lg"></span>
-                        <div class="visible-xs visible-sm">
-                            <span class="fa-solid fa-arrow-up"></span><br />
-                            <span class="fa-solid fa-arrow-down"></span>
-                        </div>
+                        <span class="fa-solid fa-ellipsis-v"></span>
                     </div>
                     <div class="name">
                         {!! $style->name !!}

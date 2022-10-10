@@ -7,17 +7,19 @@ use App\Models\Concerns\Nested;
 use App\Models\Concerns\SortableTrait;
 use App\Traits\CampaignTrait;
 use App\Traits\ExportableTrait;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Builder;
 
 /**
  * Class Family
  * @package App\Models
- * @property int $family_id
- * @property Character[] $members
+ * @property int|null $family_id
+ * @property int|null $location_id
+ * @property Collection|Character[] $members
  * @property Family $family
- * @property Family[] $families
- * @property Family[] $descendants
+ * @property Collection|Family[] $families
+ * @property Collection|Family[] $descendants
  */
 class Family extends MiscModel
 {
@@ -29,9 +31,7 @@ class Family extends MiscModel
         Acl
     ;
 
-    /**
-     * @var array
-     */
+    /** @var string[]  */
     protected $fillable = [
         'name',
         'slug',
@@ -69,7 +69,7 @@ class Family extends MiscModel
 
     /**
      * Nullable values (foreign keys)
-     * @var array
+     * @var string[]
      */
     public $nullableForeignKeys = [
         'location_id',
@@ -93,7 +93,7 @@ class Family extends MiscModel
 
     /**
      * Specify parent id attribute mutator
-     * @param $value
+     * @param int $value
      */
     public function setFamilyIdAttribute($value)
     {
@@ -102,10 +102,10 @@ class Family extends MiscModel
 
     /**
      * Performance with for datagrids
-     * @param $query
-     * @return mixed
+     * @param Builder $query
+     * @return Builder
      */
-    public function scopePreparedWith(Builder $query)
+    public function scopePreparedWith(Builder $query): Builder
     {
         return $query->with([
             'entity',
@@ -135,7 +135,6 @@ class Family extends MiscModel
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function members()
     {

@@ -41,7 +41,7 @@ window.ajaxTooltip = function() {
         sanitize: false
     });
 
-    $('[data-toggle="tooltip-ajax"]').click(function (e) {
+    $('[data-toggle="tooltip-ajax"]').click(function () {
         $(this).tooltip('hide');
     });
 };

@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Services;
-
 
 use App\Models\UserApp;
 use App\User;
@@ -21,18 +19,18 @@ use Illuminate\Support\Facades\Log;
 class DiscordService
 {
     /** @var User */
-    protected $user;
+    protected User $user;
 
-    /** @var UserApp */
+    /** @var UserApp|null */
     protected $app;
 
     /** @var string  */
-    protected $url = 'https://discord.com/api/v6/';
+    protected string $url = 'https://discord.com/api/v6/';
 
     /** @var mixed */
     protected $me = false;
 
-    protected $logs = [];
+    protected array $logs = [];
 
     /**
      * @param User $user
@@ -115,7 +113,7 @@ class DiscordService
 
     /**
      * Save the user app
-     * @param $data
+     * @param object $data
      */
     protected function saveUserApp($data): self
     {

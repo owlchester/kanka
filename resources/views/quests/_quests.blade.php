@@ -33,7 +33,7 @@ if($subquests->count() == 0) {
             @foreach ($subquests as $subquest)
                 <tr class="{{ $subquest->rowClasses() }}">
                     <td>
-                        <a class="entity-image" style="background-image: url('{{ $subquest->getImageUrl(40) }}');" title="{{ $subquest->name }}" href="{{ route('quests.show', $subquest->id) }}"></a>
+                        <a class="entity-image" style="background-image: url('{{ $subquest->thumbnail() }}');" title="{{ $subquest->name }}" href="{{ route('quests.show', $subquest->id) }}"></a>
                     </td>
                     <td>
                         @if ($subquest->is_private)

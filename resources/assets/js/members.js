@@ -3,7 +3,7 @@ $(document).ready(function() {
         return;
     }
 
-    $.each($('.form-members'), function (index) {
+    $.each($('.form-members'), function () {
 
         let allowClear = $(this).data('allow-clear');
 
@@ -28,7 +28,7 @@ $(document).ready(function() {
                 },
                 cache: true
             },
-            createTag: function(params) {
+            createTag: function() {
                 return undefined;
             }
         });

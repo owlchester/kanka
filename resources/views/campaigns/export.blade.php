@@ -37,10 +37,10 @@
 
                 </div>
             </div>
-            <div class="callout callout-success" id="campaign-export-success" style="display: none"></div>
-            <div class="callout callout-danger " id="campaign-export-error" style="display: none"></div>
+            <div class="alert alert-success" id="campaign-export-success" style="display: none"></div>
+            <div class="alert alert-danger " id="campaign-export-error" style="display: none"></div>
             @else
-            <div class="callout callout-warning">
+            <div class="alert alert-warning">
                 {{ __('campaigns/export.errors.limit') }}
             </div>
             @endif

@@ -22,7 +22,6 @@ class RelationController extends Controller
      */
     use GuestAuthTrait;
 
-    /** @var */
     protected $viewPath;
 
     /** @var EntityRelationService */
@@ -75,6 +74,7 @@ class RelationController extends Controller
         $ajax = request()->ajax();
 
         $rows = $connections = $connectionService = [];
+        // @phpstan-ignore-next-line
         $defaultToTable = !$campaign->boosted() || ($campaign->boosted() && $campaign->defaultToConnection());
         if ($mode == 'table' || (empty($mode) && $defaultToTable)) {
             $mode = 'table';
@@ -95,6 +95,7 @@ class RelationController extends Controller
 
             $connectionService = $this->connectionService;
         }
+        // @phpstan-ignore-next-line
         $defaultToMap = !$campaign->boosted() || ($campaign->boosted() && $campaign->defaultToConnectionMode());
         if ($mode != 'table' && empty($option) && $defaultToMap) {
             if ($campaign->defaultToConnectionMode() == 1) {
@@ -139,8 +140,8 @@ class RelationController extends Controller
     }
 
     /**
-     * @param Request $request
-     * @param Model $model
+     * @param StoreRelation $request
+     * @param Entity $entity
      * @return \Illuminate\Http\RedirectResponse
      */
     public function store(StoreRelation $request, Entity $entity)
@@ -180,9 +181,6 @@ class RelationController extends Controller
     }
 
     /**
-     * @param Entity $entity
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function edit(Entity $entity, Relation $relation)
     {
@@ -202,9 +200,6 @@ class RelationController extends Controller
     }
 
     /**
-     * @param Request $request
-     * @param Model $model
-     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(StoreRelation $request, Entity $entity, Relation $relation)
     {
@@ -252,9 +247,6 @@ class RelationController extends Controller
     }
 
     /**
-     * @param Model $model
-     * @param Model $relation
-     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy(Entity $entity, Relation $relation)
     {

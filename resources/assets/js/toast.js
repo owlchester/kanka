@@ -22,4 +22,4 @@ window.showToast = function(message, css) {
         $container.fadeOut();
     }, 3000);
     registerToastDismiss();
-}
+};

@@ -12,7 +12,7 @@ class OrganisationMemberApiController extends ApiController
 {
     /**
      * @param Campaign $campaign
-     * @return Collection
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function index(Campaign $campaign, Organisation $organisation)
@@ -35,8 +35,9 @@ class OrganisationMemberApiController extends ApiController
     }
 
     /**
-     * @param StoreOrganisationMember $reorganisationMember
+     * @param Request $request
      * @param Campaign $campaign
+     * @param Organisation $organisation
      * @return Resource
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -49,10 +50,12 @@ class OrganisationMemberApiController extends ApiController
     }
 
     /**
-     * @param StoreOrganisationMember $reorganisationMember
+     * @param Request $request
      * @param Campaign $campaign
+     * @param Organisation $organisation
      * @param OrganisationMember $organisationMember
      * @return Resource
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function update(
         Request $request,
@@ -68,8 +71,9 @@ class OrganisationMemberApiController extends ApiController
     }
 
     /**
-     * @param Request
+     * @param \Illuminate\Http\Request $request
      * @param Campaign $campaign
+     * @param Organisation $organisation
      * @param OrganisationMember $organisationMember
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException

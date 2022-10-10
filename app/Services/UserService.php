@@ -26,7 +26,7 @@ class UserService
             $campaign = $user->lastCampaign;
 
             // No campaign yet
-            if (empty($campaign)) {
+            if ($campaign === null) {
                 return redirect()->route('home');
             }
 

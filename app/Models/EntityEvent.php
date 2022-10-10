@@ -23,7 +23,7 @@ use Illuminate\Support\Str;
  * @property integer $month
  * @property integer $year
  * @property boolean $is_recurring
- * @property integer $recurring_until
+ * @property integer|null $recurring_until
  * @property string $recurring_periodicity
  * @property integer $type_id
  * @property integer $elapsed
@@ -50,7 +50,7 @@ class EntityEvent extends MiscModel
     /** @var string Cached readable date */
     protected $readableDate;
 
-    /** @var array */
+    /** @var string[]  */
     protected $fillable = [
         'calendar_id',
         'entity_id',
@@ -91,7 +91,7 @@ class EntityEvent extends MiscModel
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo|\Illuminate\Database\Eloquent\Relations\HasOne
      */
     public function entity()
     {
@@ -198,6 +198,7 @@ class EntityEvent extends MiscModel
                     (isset($months[$this->month - 1]) ? $months[$this->month - 1]['name'] : $this->month) . ', ' .
                     (isset($years[$this->year]) ? $years[$this->year] : $this->year) . ' ' .
                     $this->calendar->suffix;
+                // @phpstan-ignore-next-line
             } catch (\Exception $e) {
                 $this->readableDate = $this->date();
             }
@@ -364,8 +365,6 @@ class EntityEvent extends MiscModel
 
     /**
      * Functions for the datagrid2
-     * @param string $where
-     * @return string
      */
     public function deleteName(): string
     {
@@ -555,56 +554,6 @@ class EntityEvent extends MiscModel
         }
 
         $days += ($reminderDay - $day);
-        return $this->cachedNext = $days;
-
-        // OLD CODE
-
-        // If the next occurrence is later this year, we just loop on the months
-        $days = 0;
-        if ($reminderYear === $calendarYear) {
-            for ($m = $reminderMonth; $m <= $calendarMonth; $m++) {
-                $monthData = $months[$m - 1];
-                $days += $monthData['length'];
-            }
-        } else {
-            // It's in the future,
-            for ($y = $calendarYear; $y < $reminderYear; $y++) {
-                $days += $daysInYear;
-            }
-        }
-        // Not the same month? We need to do some math
-        //dump('Not the same month?' . $calendarMonth . ' != ' . $reminderMonth);
-        //dump("Next reminder set to happen in " . $reminderYear . '-' . $reminderMonth . '-' . $reminderDay);
-        if ($calendarMonth != $reminderMonth) {
-            //dump('month diff ' . $month . ' (current) vs ' . $reminderMonth . '(reminder)');
-            //dump('amount of months ' . count($months));
-            $totalMonths = count($months);
-
-            // If the reminder was last year, cancel out one year
-            //if (!empty($this->is_recurring) && $reminderMonth > $month) {
-            //    $days -= $daysInYear;
-            //}
-
-            // Loop through the beginning of the year
-            /*for ($m = 1; $m < $calendarMonth; $m++) {
-                //dump('beginning of the year');
-                // Month status
-                $monthData = $months[$m - 1];
-                $days += $monthData['length'];
-            }*/
-            // If the month is in the future, add for the rest of the year
-            //dump($reminderMonth . ' vs ' . $totalMonths);
-            for ($m = $reminderMonth; $m <= $calendarMonth; $m++) {
-                //dump('end of previous year');
-                $monthData = $months[$m - 1];
-                $days += $monthData['length'];
-                //dump('days increase by ' . $monthData['length']);
-            }
-        }
-
-        // Diff in days
-        $days += ($reminderDay - $day);
-
         return $this->cachedNext = $days;
     }
 

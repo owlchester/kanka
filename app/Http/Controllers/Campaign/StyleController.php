@@ -125,7 +125,6 @@ class StyleController extends Controller
         return redirect()
             ->route('campaign_styles.index')
             ->with('success', __('campaigns/styles.update.success', ['name' => $campaignStyle->name]));
-
     }
 
     public function destroy(CampaignStyle $campaignStyle)
@@ -139,7 +138,6 @@ class StyleController extends Controller
         return redirect()
             ->route('campaign_styles.index')
             ->with('success', __('campaigns/styles.delete.success', ['name' => $campaignStyle->name]));
-
     }
 
     public function theme()
@@ -186,9 +184,9 @@ class StyleController extends Controller
 
         $count = 0;
         foreach ($models as $id) {
-            /** @var CampaignStyle $style */
+            /** @var CampaignStyle|null $style */
             $style = CampaignStyle::find($id);
-            if (empty($style)) {
+            if ($style === null) {
                 continue;
             }
             if ($action === 'enable' && !$style->is_enabled) {

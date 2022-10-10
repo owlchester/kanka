@@ -2,9 +2,12 @@
 
 namespace App\Services;
 
+use App\Models\Character;
 use App\Models\Entity;
 use App\Models\Family;
 use App\Models\MiscModel;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Model;
 
 class FormService
 {
@@ -25,8 +28,8 @@ class FormService
 
     /**
      * Prefill the field with the copies values
-     * @param $field
-     * @param null $entity
+     * @param string $field
+     * @param MiscModel|Entity|null $entity
      * @param null $default
      * @return mixed|null
      */
@@ -42,8 +45,10 @@ class FormService
 
     /**
      * Prefill a select dropdown
-     * @param $field
-     * @param null $entity
+     * @param string $field
+     * @param null|MiscModel|Model $entity
+     * @param bool $checkForParent
+     * @param null $parentClass
      * @return array
      */
     public function prefillSelect($field, $entity = null, $checkForParent = false, $parentClass = null)
@@ -58,8 +63,9 @@ class FormService
 
         $parent = request()->get('parent_id', false);
         if ($checkForParent && $parent !== false) {
-            /** @var Family $class */
-            $class = new $parentClass;
+            /** @var MiscModel $class */
+            $class = new $parentClass();
+            /** @var MiscModel|null $parent */
             $parent = $class->find($parent);
             if ($parent) {
                 return [$parent->id => $parent->name];
@@ -71,12 +77,12 @@ class FormService
 
     /**
      * Character traits
-     * @param null $entity
-     * @return array
+     * @param null|MiscModel|Character $entity
+     * @return array|Collection
      */
     public function prefillCharacterPersonality($entity = null)
     {
-        if ($entity instanceof MiscModel) {
+        if ($entity instanceof Character) {
             return $entity->characterTraits()->personality()->get();
         }
         return [];
@@ -84,12 +90,12 @@ class FormService
 
     /**
      * Character traits
-     * @param null $entity
-     * @return array
+     * @param null|MiscModel|Character $entity
+     * @return array|Collection
      */
     public function prefillCharacterAppearance($entity = null)
     {
-        if ($entity instanceof MiscModel) {
+        if ($entity instanceof Character) {
             return $entity->characterTraits()->appearance()->get();
         }
         return [];
@@ -97,8 +103,8 @@ class FormService
 
     /**
      * Character organisations
-     * @param null $entity
-     * @return array
+     * @param null|Character $entity
+     * @return array|Collection
      */
     public function prefillCharacterOrganisation($entity = null)
     {
@@ -112,8 +118,8 @@ class FormService
     }
 
     /**
-     * @param $field
-     * @param null $entity
+     * @param string $field
+     * @param null|MiscModel $entity
      */
     public function prefillBoolean($field, $entity = null)
     {
@@ -127,8 +133,8 @@ class FormService
 
     /**
      * Prefill model for custom blade directives
-     * @param null $entity
-     * @return null
+     * @param null|MiscModel $entity
+     * @return null|MiscModel
      */
     public function prefillModel($entity = null)
     {
@@ -147,7 +153,7 @@ class FormService
      */
     public function prefillEntity(string $field, $entity = null)
     {
-        if ($entity instanceof MiscModel && $entity->entity) {
+        if ($entity instanceof MiscModel && !empty($entity->entity)) {
             return $entity->entity->$field;
         }
 
@@ -164,7 +170,7 @@ class FormService
         ];
         $colourKeys = config('colours.keys');
         foreach ($colourKeys as $colour) {
-            $colours[$colour] = trans('colours.' . $colour);
+            $colours[$colour] = __('colours.' . $colour);
         }
 
         return $colours;

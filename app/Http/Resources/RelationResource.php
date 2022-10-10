@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Models\Relation;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class RelationResource extends JsonResource
@@ -16,21 +17,23 @@ class RelationResource extends JsonResource
      */
     public function toArray($request)
     {
+        /** @var Relation $model */
+        $model = $this->resource;
         return [
-            'id' => $this->id,
-            'owner_id' => $this->owner_id,
-            'target_id' => $this->target_id,
-            'relation' => $this->relation,
-            'attitude' => $this->attitude,
-            'colour' => $this->colour,
+            'id' => $model->id,
+            'owner_id' => $model->owner_id,
+            'target_id' => $model->target_id,
+            'relation' => $model->relation,
+            'attitude' => $model->attitude,
+            'colour' => $model->colour,
             //'is_private' => (bool) $this->is_private,
-            'visibility' => $this->visibility,
-            'is_star' => (bool) $this->is_star,
-            'mirror_id' => $this->mirror_id,
+            'visibility_id' => $model->visibility_id,
+            'is_star' => (bool) $model->is_star,
+            'mirror_id' => $model->mirror_id,
 
-            'created_at' => $this->created_at,
-            'created_by' => $this->created_by,
-            'updated_at' => $this->updated_at,
+            'created_at' => $model->created_at,
+            'created_by' => $model->created_by,
+            'updated_at' => $model->updated_at,
         ];
     }
 }

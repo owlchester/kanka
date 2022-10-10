@@ -27,10 +27,10 @@ class RpgSystem extends Model
 
     /**
      * Default query for list of rpg systems
-     * @param $query
-     * @return mixed
+     * @param Builder $query
+     * @return Builder
      */
-    public function scopeOrdered(Builder $query)
+    public function scopeOrdered(Builder $query): Builder
     {
         return $query->whereNull('deleted_at')
             ->orderBy('sort_order', 'ASC');

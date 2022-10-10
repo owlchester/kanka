@@ -15,9 +15,6 @@ class QuestController extends Controller
     use GuestAuthTrait;
 
     /**
-     * @param Entity $entity
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function index(Entity $entity)
     {

@@ -38,7 +38,7 @@ class TimelineElement extends Model
     use VisibilityIDTrait,
         Blameable;
 
-    /** Fillable fields */
+    /** @var string[]  */
     protected $fillable = [
         'timeline_id',
         'era_id',

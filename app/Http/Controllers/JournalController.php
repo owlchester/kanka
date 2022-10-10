@@ -31,9 +31,6 @@ class JournalController extends CrudController
 
     /**
      * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
      */
     public function store(StoreJournal $request)
     {
@@ -42,9 +39,6 @@ class JournalController extends CrudController
 
     /**
      * Display the specified resource.
-     *
-     * @param  \App\Models\Journal  $character
-     * @return \Illuminate\Http\Response
      */
     public function show(Journal $journal)
     {
@@ -53,9 +47,6 @@ class JournalController extends CrudController
 
     /**
      * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Journal  $character
-     * @return \Illuminate\Http\Response
      */
     public function edit(Journal $journal)
     {
@@ -64,10 +55,6 @@ class JournalController extends CrudController
 
     /**
      * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Journal  $character
-     * @return \Illuminate\Http\Response
      */
     public function update(StoreJournal $request, Journal $journal)
     {
@@ -76,9 +63,6 @@ class JournalController extends CrudController
 
     /**
      * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Journal  $character
-     * @return \Illuminate\Http\Response
      */
     public function destroy(Journal $journal)
     {
@@ -86,10 +70,9 @@ class JournalController extends CrudController
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Location  $location
-     * @return \Illuminate\Http\Response
+     * @param Journal $journal
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\JsonResponse|\Illuminate\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function journals(Journal $journal)
     {
@@ -99,17 +82,18 @@ class JournalController extends CrudController
         $filters = [];
         if (request()->has('journal_id')) {
             $options['journal_id'] = $journal->id;
-            $filters['journal_id'] = $journal->id;;
+            $filters['journal_id'] = $journal->id;
         }
 
         Datagrid::layout(\App\Renderers\Layouts\Journal\Journal::class)
             ->route('journals.journals', $options);
 
+        // @phpstan-ignore-next-line
         $this->rows = $journal
-            ->allJournals()
-            ->filter($filters)
             ->sort(request()->only(['o', 'k']))
+            ->filter($filters)
             ->with(['entity', 'character'])
+            ->allJournals()
             ->paginate();
 
         // Ajax Datagrid

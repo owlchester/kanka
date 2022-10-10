@@ -46,7 +46,7 @@
                 @endif
                 <tr>
                     <td>
-                        <a class="entity-image" style="background-image: url('{{ $element->timeline->getImageUrl(40) }}');" title="{{ $element->timeline->name }}" href="{{ $element->timeline->getLink() }}"></a>
+                        <a class="entity-image" style="background-image: url('{{ $element->timeline->thumbnail() }}');" title="{{ $element->timeline->name }}" href="{{ $element->timeline->getLink() }}"></a>
                     </td>
                     <td class="breakable">
                         {!! $element->timeline->tooltipedLink() !!}

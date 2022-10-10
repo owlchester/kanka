@@ -17,28 +17,28 @@ use Illuminate\Support\Str;
  * @package App\Models
  *
  * @property Map $map
- * @property Entity $entity
+ * @property Entity|null $entity
  * @property int $id
  * @property int $map_id
- * @property int $entity_id
+ * @property int|null $entity_id
  * @property string $name
  * @property string $entry
  * @property int $longitude
  * @property int $latitude
  * @property string $colour
  * @property string $font_colour
- * @property int $shape_id
- * @property int $size_id
- * @property int $icon
+ * @property int|null $shape_id
+ * @property int|null $size_id
+ * @property int|null $icon
  * @property string $custom_icon
  * @property string $custom_shape
- * @property int $circle_radius
+ * @property int|null $circle_radius
  * @property bool $is_draggable
  * @property array $polygon_style
  * @property float $opacity
- * @property int $group_id
- * @property int $pin_size
- * @property MapGroup $group
+ * @property int|null $group_id
+ * @property int|null $pin_size
+ * @property MapGroup|null $group
  */
 class MapMarker extends Model
 {
@@ -49,7 +49,7 @@ class MapMarker extends Model
     public const SHAPE_CIRCLE = 3;
     public const SHAPE_POLY = 5;
 
-    /** Fillable fields */
+    /** @var string[]  */
     protected $fillable = [
         'map_id',
         'name',
@@ -156,7 +156,7 @@ class MapMarker extends Model
             $segments = explode(' ', str_replace("\r\n", " ", $this->custom_shape));
             foreach ($segments as $segment) {
                 $coord = explode(',', $segment);
-                if (!empty($coord) && !empty($coord[0]) && !empty($coord[1])) {
+                if (!empty($coord[0]) && !empty($coord[1])) {
                     $coords[] = '[' . $coord[0] . ', ' . Str::before($coord[1], ' ') . ']';
                 }
             }
@@ -353,7 +353,7 @@ class MapMarker extends Model
         $iconStyles[] = 'background-color: ' . $this->backgroundColour();
         /*if ($this->entity && $this->icon == 4 && $this->entity->child) {
             $entityImage = '<div class="marker-entity" style="background-image: url(' .
-                $this->entity->child->getImageUrl(400) .
+                $this->entity->child->thumbnail(400) .
             ');"></div>';
         }*/
 
@@ -415,7 +415,7 @@ class MapMarker extends Model
                 }
                 return '<a href="' . $url . '">' . e($this->entity->name) . '</a>';
             }
-            return $link ? e($this->entity->name) : str_replace("'", "\'", $this->entity->name);
+            return str_replace("'", "\'", $this->entity->name);
         }
         return $link ? e($this->name) : str_replace("'", "\'", $this->name);
     }

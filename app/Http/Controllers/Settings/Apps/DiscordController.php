@@ -19,7 +19,7 @@ class DiscordController extends Controller
     /**
      * @var DiscordService
      */
-    protected $discord;
+    protected DiscordService $discord;
 
     public function __construct(DiscordService $discord)
     {
@@ -54,7 +54,8 @@ class DiscordController extends Controller
 
     public function setup()
     {
-        $this->discord->setup();
+        dd('what?');
+        //$this->discord->setup();
     }
 
     /**

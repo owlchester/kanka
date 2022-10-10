@@ -30,7 +30,8 @@ class SubscriptionDowngradedEmailJob implements ShouldQueue
     /**
      * WelcomeEmailJob constructor.
      * @param User $user
-     * @param bool $new if it's a new sub or a changed sub
+     * @param string|null $reason
+     * @param string|null $custom
      */
     public function __construct(User $user, string $reason = null, string $custom = null)
     {

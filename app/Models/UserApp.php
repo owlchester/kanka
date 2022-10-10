@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Models;
-
 
 use App\User;
 use Carbon\Carbon;
@@ -20,7 +18,7 @@ use Illuminate\Database\Eloquent\Builder;
  * @property string $refresh_token
  * @property Carbon $expires_at
  * @property string $identifier
- * @property string $settings
+ * @property string|array $settings
  *
  * @property User $user
  *
@@ -48,20 +46,20 @@ class UserApp extends Model
     ];
 
     /**
-     * @param $query
+     * @param Builder $query
      * @param string $type
-     * @return mixed
+     * @return Builder
      */
-    public function scopeApp($query, string $type)
+    public function scopeApp(Builder $query, string $type): Builder
     {
         return $query->where('app', $type);
     }
 
     /**
-     * @param $query
-     * @return UserApp
+     * @param Builder $query
+     * @return Builder
      */
-    public function scopeDiscord($query)
+    public function scopeDiscord(Builder $query): Builder
     {
         return $this->app('discord');
     }

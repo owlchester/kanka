@@ -68,10 +68,14 @@ class EntityObserver
             return;
         }
         $ids = request()->post('tags', []);
+        if (!is_array($ids)) { // People sent weird stuff through the API
+            $ids = [];
+        }
 
         // Only use tags the user can actually view. This way admins can
         // have tags on entities that the user doesn't know about.
         $existing = [];
+        /** @var Tag $tag */
         foreach ($entity->tags()->with('entity')->has('entity')->get() as $tag) {
             if ($tag->entity) {
                 $existing[$tag->id] = $tag->name;
@@ -84,6 +88,7 @@ class EntityObserver
             if (!empty($existing[$id])) {
                 unset($existing[$id]);
             } else {
+                /** @var Tag|null $tag */
                 $tag = Tag::find($id);
                 // Create the tag if the user has permission to do so
                 if (empty($tag) && $canCreateTags) {
@@ -253,7 +258,7 @@ class EntityObserver
 
 
         // Handle map. Let's use a service for this.
-        ImageService::entity($entity, 'campaign/' . $entity->campaign_id, false, 'header_image');
+        ImageService::entity($entity, 'campaign/' . $entity->campaign_id, 0, 'header_image');
 
         // Superboosted image gallery selection
         if ($campaign->superboosted()) {

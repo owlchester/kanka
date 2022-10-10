@@ -17,7 +17,6 @@
                     <div class="header-content mx-auto">
                         <h1 class="mb-5">{!! __("faq.$key.question") !!}</h1>
                         <p class="mb-5">{!! nl2br(__("faq.$key.answer", [
-                            'patreon' => link_to(config('patreon.url'), 'Patreon', ['target' => '_blank']),
                             'discord' => link_to(config('social.discord'), 'Discord', ['target' => '_blank']),
                             'boosters' => link_to_route('front.pricing', __('front.features.patreon.boosts'), ['#boost']),
                             'public-campaigns' => link_to_route('front.public_campaigns', __('front.menu.campaigns')),

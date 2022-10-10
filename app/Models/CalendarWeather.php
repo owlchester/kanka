@@ -36,7 +36,7 @@ class CalendarWeather extends Model
     public $table = 'calendar_weather';
 
     /**
-     * @var array
+     * @var string[]
      */
     public $fillable = [
         'calendar_id',

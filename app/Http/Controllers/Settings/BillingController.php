@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Http\Controllers\Settings;
-
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Settings\UserBillingStore;
@@ -13,12 +11,10 @@ class BillingController extends Controller
 {
     /**
      * BillingController constructor.
-     * @param SubscriptionService $service
      */
-    public function __construct(SubscriptionService $service)
+    public function __construct()
     {
         $this->middleware(['auth', 'identity', 'subscriptions']);
-        $this->subscription = $service;
     }
 
     /**

@@ -12,7 +12,7 @@ class QuestApiController extends ApiController
 {
     /**
      * @param Campaign $campaign
-     * @return Collection
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function index(Campaign $campaign)
@@ -49,6 +49,7 @@ class QuestApiController extends ApiController
         $this->authorize('access', $campaign);
         $this->authorize('create', Quest::class);
 
+        /** @var Quest $model */
         $model = Quest::create($request->all());
         $this->crudSave($model);
         return new Resource($model);

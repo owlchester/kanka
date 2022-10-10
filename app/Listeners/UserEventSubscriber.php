@@ -8,7 +8,6 @@ use App\Services\InviteService;
 use App\Services\StarterService;
 use App\User;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\Session;
 use Exception;
 
 /**
@@ -91,7 +90,6 @@ class UserEventSubscriber
     }
 
     /**
-     * @param $event
      */
     public function onUserRegistered($event)
     {
@@ -105,8 +103,6 @@ class UserEventSubscriber
 
     /**
      * Register the listeners for the subscriber.
-     *
-     * @param  Illuminate\Events\Dispatcher  $events
      */
     public function subscribe($events)
     {

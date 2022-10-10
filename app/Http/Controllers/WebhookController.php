@@ -6,6 +6,7 @@ use App\Jobs\Emails\SubscriptionDeletedEmailJob;
 use App\Jobs\SubscriptionEndJob;
 use App\Models\SubscriptionSource;
 use App\Services\SubscriptionService;
+use App\User;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Log;
 use Laravel\Cashier\Http\Controllers\WebhookController as CashierController;
@@ -14,9 +15,6 @@ class WebhookController extends CashierController
 {
     /**
      * Handle an updated subscription (for example when managing 3d secure payments)
-     *
-     * @param array $payload
-     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function handleCustomerSubscriptionUpdated(array $payload)
     {
@@ -25,6 +23,7 @@ class WebhookController extends CashierController
 
         // User setup
         if ($user = $this->getUserByStripeId($payload['data']['object']['customer'])) {
+            /** @var User $user */
             /** @var SubscriptionService $service */
             $service = app()->make('App\Services\SubscriptionService');
 
@@ -44,8 +43,6 @@ class WebhookController extends CashierController
 
     /**
      * Handle a deleted subscription
-     * @param array $payload
-     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function handleCustomerSubscriptionDeleted(array $payload)
     {
@@ -54,12 +51,13 @@ class WebhookController extends CashierController
 
         // User notification. Maybe even an email
         if ($user = $this->getUserByStripeId($payload['data']['object']['customer'])) {
+            /** @var User $user */
             // Notify admin
             SubscriptionDeletedEmailJob::dispatch($user);
 
             // Set the subscription to end when it's supposed to end (admittedly, this is already passed)
             SubscriptionEndJob::dispatch($user)->delay(
-                $user->subscription('kanka')->ends_at
+                $user->subscription('kanka')->ends_at // @phpstan-ignore-line
             );
         }
 
@@ -75,6 +73,7 @@ class WebhookController extends CashierController
         // User notification. Maybe even an email
         Log::debug('succeeded charge', $payload);
         if ($user = $this->getUserByStripeId($payload['data']['object']['customer'])) {
+            /** @var User $user */
             $charge = $payload['data']['object']['charge'];
 
             $source = SubscriptionSource::where(['user_id' => $user->id, 'charge_id', $charge])->first();
@@ -105,6 +104,7 @@ class WebhookController extends CashierController
     public function handleChargeFailed(array $payload)
     {
         if ($user = $this->getUserByStripeId($payload['data']['object']['customer'])) {
+            /** @var User $user */
             /** @var SubscriptionService $subscription */
             $subscription = app()->make(SubscriptionService::class);
             $subscription
@@ -117,10 +117,10 @@ class WebhookController extends CashierController
 
     /**
      * Check if a request is to cancel a user
-     * @param $data
+     * @param array $data
      * @return bool
      */
-    protected function isCancelling($data): bool
+    protected function isCancelling(array $data): bool
     {
         Log::debug('data', $data);
         $cancel = Arr::get($data, 'object.canceled_at', null);

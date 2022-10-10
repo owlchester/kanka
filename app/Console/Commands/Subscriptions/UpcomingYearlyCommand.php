@@ -55,6 +55,8 @@ class UpcomingYearlyCommand extends Command
         $log = "Looking for active yearly subscriptions created on month {$now->month} and day {$now->day}";
         $this->info($log);
         //$this->info('Plans: ' . implode('\', \'', $plans));
+
+        /** @var Subscription[] $subscriptions */
         $subscriptions = Subscription::whereIn('stripe_plan', $plans)
             ->where('stripe_status', 'active')
             ->whereRaw('month(created_at) = ' . $now->month)
@@ -65,15 +67,15 @@ class UpcomingYearlyCommand extends Command
             ->get()
         ;
 
-        /** @var Subscription $subscription */
         $count = 0;
         foreach ($subscriptions as $subscription) {
-            $this->info('User #' . $subscription->user_id . ' ' . $subscription->user->name);
+            $userId = $subscription->user_id; // @phpstan-ignore-line
+            $this->info('User #' . $userId . ' ' . $subscription->user->name); // @phpstan-ignore-line
 
-            UpcomingYearlyAlert::dispatch($subscription->user);
+            UpcomingYearlyAlert::dispatch($subscription->user); // @phpstan-ignore-line
 
             UserLog::create([
-                'user_id' => $subscription->user_id,
+                'user_id' => $userId,
                 'type_id' => UserLog::NOTIFY_YEARLY_SUB,
             ]);
 

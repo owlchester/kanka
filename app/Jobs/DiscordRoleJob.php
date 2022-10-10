@@ -37,9 +37,6 @@ class DiscordRoleJob implements ShouldQueue
 
     /**
      * CampaignExport constructor.
-     * @param Campaign $campaign
-     * @param User $user
-     * @param EntityService $entityService
      */
     public function __construct(User $user, bool $add = true)
     {

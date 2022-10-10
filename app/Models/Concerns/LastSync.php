@@ -11,16 +11,17 @@ trait LastSync
 {
     /**
      * Used by the API to get models updated since a previous date
-     * @param $query
-     * @param $lastSync
-     * @return mixed
+     * @param Builder $query
+     * @param string $lastSync
+     * @return Builder
      */
-    public function scopeLastSync(Builder $query, $lastSync = null)
+    public function scopeLastSync(Builder $query, $lastSync = null): Builder
     {
         if (empty($lastSync)) {
             return $query;
         }
-        $tableName = with(new static)->getTable();
+        // @phpstan-ignore-next-line
+        $tableName = (with(new static()))->getTable();
         return $query->where($tableName . '.updated_at', '>', $lastSync);
     }
 }

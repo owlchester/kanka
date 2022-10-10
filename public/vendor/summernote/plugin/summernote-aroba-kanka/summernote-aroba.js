@@ -53,7 +53,7 @@
                 '<p class="text-center">',
                 'Create mentions to other entities of the campaign by typing <code>@</code> followed by at least three letters.',
                 '<br /><br />',
-                'Search for entities with spaces by replacing <code>&nbsp;</code> with <code>_</code>. For example, <code>@Drizzt_Do\'Urden</code>.',
+                'Search for entities with spaces by replacing <code>&nbsp;</code> with <code>_</code>. For example, <code>@Kanka_is_awesome</code>.',
                 '</p>',
             ].join('');
 

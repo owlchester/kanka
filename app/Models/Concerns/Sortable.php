@@ -1,13 +1,11 @@
 <?php
 
-
 namespace App\Models\Concerns;
-
 
 trait Sortable
 {
     /**
-     * @return mixed
+     * @return array
      */
     public function sortableColumns(): array
     {
@@ -19,7 +17,7 @@ trait Sortable
      */
     protected function customSortableColumns(): array
     {
-        if (isset($this->sortableColumns)) {
+        if (property_exists($this, 'sortableColumns')) {
             return $this->sortableColumns;
         }
 

@@ -5,12 +5,15 @@ namespace App\Models;
 use App\Facades\CampaignLocalization;
 use App\Models\Concerns\HasFilters;
 
+/**
+ * @property DiceRoll|null $diceRoll
+ */
 class DiceRollResult extends MiscModel
 {
     use HasFilters;
 
 
-    //
+    /** @var string[]  */
     protected $fillable = [
         'dice_roll_id',
         'created_by',

@@ -38,9 +38,9 @@ class CharacterOrganisationController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
+     * @param Character $character
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function create(Character $character)
     {
@@ -51,10 +51,10 @@ class CharacterOrganisationController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param StoreOrganisationMember $request
+     * @param Character $character
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function store(StoreOrganisationMember $request, Character $character)
     {
@@ -66,28 +66,23 @@ class CharacterOrganisationController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Character  $character
-     * @return \Illuminate\Http\Response
+     * @param Character $character
+     * @param OrganisationMember $organisationMember
+     * @return void
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function show(Character $character, OrganisationMember $organisationMember)
     {
         $this->authorize('organisation', [$character, 'read']);
 
         dd('wut');
-
-        return view($this->view . '.show', [
-            'model' => $character,
-            'member' => $organisationMember
-        ]);
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Character  $character
-     * @return \Illuminate\Http\Response
+     * @param Character $character
+     * @param CharacterOrganisation $characterOrganisation
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function edit(Character $character, CharacterOrganisation $characterOrganisation)
     {
@@ -102,11 +97,11 @@ class CharacterOrganisationController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Character  $character
-     * @return \Illuminate\Http\Response
+     * @param StoreOrganisationMember $request
+     * @param Character $character
+     * @param CharacterOrganisation $characterOrganisation
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function update(
         StoreOrganisationMember $request,
@@ -127,10 +122,12 @@ class CharacterOrganisationController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\OrganisationMember  $organisationMember
-     * @return \Illuminate\Http\Response
+     * @param Character $character
+     * @param CharacterOrganisation $characterOrganisation
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws \Psr\Container\ContainerExceptionInterface
+     * @throws \Psr\Container\NotFoundExceptionInterface
      */
     public function destroy(Character $character, CharacterOrganisation $characterOrganisation)
     {

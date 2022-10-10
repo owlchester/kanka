@@ -37,57 +37,26 @@ class FamilyController extends CrudController
     /** @var string Filter */
     protected $filter = FamilyFilter::class;
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(StoreFamily $request)
     {
         return $this->crudStore($request);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Character  $family
-     * @return \Illuminate\Http\Response
-     */
     public function show(Family $family)
     {
         return $this->crudShow($family);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Family $family
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Family $family)
     {
         return $this->crudEdit($family);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Family $family
-     * @return \Illuminate\Http\Response
-     */
     public function update(StoreFamily $request, Family $family)
     {
         return $this->crudUpdate($request, $family);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Character  $family
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Family $family)
     {
         return $this->crudDestroy($family);
@@ -95,8 +64,6 @@ class FamilyController extends CrudController
 
     /**
      * @param Family $family
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function families(Family $family)
     {
@@ -108,6 +75,7 @@ class FamilyController extends CrudController
         Datagrid::layout(\App\Renderers\Layouts\Family\Family::class)
             ->route('families.families', $options);
 
+        // @phpstan-ignore-next-line
         $this->rows = $family
             ->descendants()
             ->sort(request()->only(['o', 'k']))
@@ -126,8 +94,6 @@ class FamilyController extends CrudController
 
     /**
      * @param Family $family
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function members(Family $family)
     {

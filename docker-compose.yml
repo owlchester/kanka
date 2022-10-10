@@ -75,6 +75,51 @@ services:
             test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
             retries: 3
             timeout: 5s
+    thumbor:
+        image: 'beeyev/thumbor-s3:7.1-slim-alpine'
+        tty: true
+        ports:
+            - '${FORWARD_THUMBOR_PORT:-8888}:8888'
+        volumes:
+            - 'sail-thumbor:/data'
+        networks:
+            - sail
+        environment:
+            - LOG_LEVEL=info
+            #- SECURITY_KEY=kanka
+
+            - LOADER=thumbor_aws.loader
+            - AWS_LOADER_REGION_NAME=local
+            - AWS_LOADER_BUCKET_NAME=kanka
+            - AWS_LOADER_S3_ACCESS_KEY_ID=sail
+            - AWS_LOADER_S3_SECRET_ACCESS_KEY=password
+            - AWS_LOADER_S3_ENDPOINT_URL=http://minio:9000/
+
+            - RESULT_STORAGE=thumbor_aws.result_storage
+            - AWS_RESULT_STORAGE_BUCKET_NAME=thumbnails
+            - AWS_RESULT_STORAGE_S3_ACCESS_KEY_ID=sail
+            - AWS_RESULT_STORAGE_S3_SECRET_ACCESS_KEY=password
+            - AWS_RESULT_STORAGE_S3_ENDPOINT_URL=http://minio:9000/
+
+            # Result Storage prefix path
+            - AWS_RESULT_STORAGE_ROOT_PATH=rs
+
+            - RESULT_STORAGE_STORES_UNSAFE=True
+            - ALLOW_UNSAFE_URL=True
+
+            # Expiration in seconds of generated images in the result storage. (2629746 is a month is seconds)
+            - 'RESULT_STORAGE_EXPIRATION_SECONDS=2629746'
+            - 'QUALITY=80'
+
+            - AUTO_WEBP=True
+            - RESPECT_ORIENTATION=True
+            - MAX_AGE=86400
+            - HTTP_LOADER_VALIDATE_CERTS=False
+
+            # The image we use doesn't come with numpy, so no face_detector possible
+            #- DETECTORS=['thumbor.detectors.face_detector']
+        depends_on:
+            - minio
 networks:
     sail:
         driver: bridge
@@ -84,4 +129,6 @@ volumes:
     sail-redis:
         driver: local
     sail-minio:
+        driver: local
+    sail-thumbor:
         driver: local

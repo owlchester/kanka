@@ -12,26 +12,22 @@ use Illuminate\Database\Eloquent\Builder;
  * Class CampaignUser
  * @package App\Models
  *
+ * @property int $id
  * @property int $user_id
  * @property int $campaign_id
  * @property User $user
  * @property Campaign $campaign
  * @property Carbon $created_at
  *
- * @method static|self campaignUser(int $campaignID, int $userID)
+ * @method static Builder|self campaignUser(int $campaignID, int $userID)
  */
 class CampaignUser extends Pivot
 {
     use Paginatable;
 
-    /**
-     * @var string
-     */
     public $table = 'campaign_user';
 
-    /**
-     * @var array
-     */
+    /** @var string[]  */
     protected $fillable = ['user_id', 'campaign_id'];
 
     /**

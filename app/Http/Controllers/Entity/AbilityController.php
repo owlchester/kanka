@@ -79,8 +79,8 @@ class AbilityController extends Controller
     }
 
     /**
-     * @param Request $request
-     * @param Model $model
+     * @param StoreEntityAbility $request
+     * @param Entity $entity
      * @return \Illuminate\Http\RedirectResponse
      */
     public function store(StoreEntityAbility $request, Entity $entity)
@@ -90,11 +90,11 @@ class AbilityController extends Controller
         $data = $request->only(['abilities', 'ability_id', 'visibility_id']);
         $data['entity_id'] = $entity->id;
 
-        /** @var EntityAbility $entityAbility */
         $success = '';
         if (is_array($data['abilities'])) {
             $abilities = [];
             foreach ($data['abilities'] as $abilityId) {
+                /** @var Ability|null $ability */
                 $ability = Ability::find($abilityId);
                 if ($ability) {
                     $entityAbility = EntityAbility::create([
@@ -183,8 +183,6 @@ class AbilityController extends Controller
     /**
      * @param Entity $entity
      * @param EntityAbility $entityAbility
-     * @return \Illuminate\Http\JsonResponse
-     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function destroy(Entity $entity, EntityAbility $entityAbility)
     {
@@ -223,7 +221,7 @@ class AbilityController extends Controller
         return response()->json([
             'success' => $this->service
                 ->entity($entity)
-                ->useCharge($entityAbility, $request->post('used'))
+                ->useCharge($entityAbility, (int) $request->post('used'))
         ]);
     }
 

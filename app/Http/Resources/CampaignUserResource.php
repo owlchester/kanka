@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Models\CampaignUser;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class CampaignUserResource extends JsonResource
@@ -14,9 +15,12 @@ class CampaignUserResource extends JsonResource
      */
     public function toArray($request)
     {
+        /** @var CampaignUser $resource */
+        $resource = $this->resource;
+
         return [
-            'id' => $this->id,
-            'user' => new UserResource($this->user),
+            'id' => $resource->id,
+            'user' => new UserResource($resource->user),
         ];
     }
 }

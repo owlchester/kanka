@@ -26,10 +26,6 @@ class QuestController extends CrudController
     protected $filter = QuestFilter::class;
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
      */
     public function store(StoreQuest $request)
     {
@@ -37,10 +33,6 @@ class QuestController extends CrudController
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Character  $character
-     * @return \Illuminate\Http\Response
      */
     public function show(Quest $quest)
     {
@@ -48,10 +40,6 @@ class QuestController extends CrudController
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Character  $character
-     * @return \Illuminate\Http\Response
      */
     public function edit(Quest $quest)
     {
@@ -59,11 +47,6 @@ class QuestController extends CrudController
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Character  $character
-     * @return \Illuminate\Http\Response
      */
     public function update(StoreQuest $request, Quest $quest)
     {
@@ -71,10 +54,6 @@ class QuestController extends CrudController
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Character  $character
-     * @return \Illuminate\Http\Response
      */
     public function destroy(Quest $quest)
     {
@@ -82,9 +61,6 @@ class QuestController extends CrudController
     }
 
     /**
-     * @param Quest $quest
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function quests(Quest $quest)
     {
@@ -103,7 +79,7 @@ class QuestController extends CrudController
             ->with(['entity', 'entity.image'])
             ->paginate(15);
 
-        return $this->datagridAjax();
+        //return $this->datagridAjax();
 
         // Ajax Datagrid
         if (request()->ajax()) {

@@ -1,20 +1,16 @@
 <?php
 
-
 namespace App\Facades;
 
-
-use App\Models\Attribute;
-use App\Models\Entity;
-use App\Services\AttributeService;
+use App\Services\AttributeMentionService;
 use Illuminate\Support\Facades\Facade;
 
 /**
- * Class Img
+ * Class Attributes
  * @package App\Facades
  *
- * @see AttributeService
- * @mixin AttributeService
+ * @see AttributeMentionService
+ * @mixin AttributeMentionService
  */
 class Attributes extends Facade
 {
@@ -27,7 +23,4 @@ class Attributes extends Facade
     {
         return 'attributes';
     }
-}
-{
-
 }

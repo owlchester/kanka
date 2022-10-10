@@ -10,7 +10,7 @@ class TagObserver extends MiscObserver
     /**
      * @param Tag $model
      */
-    public function deleting(MiscModel $model)
+    public function deleting(Tag $model)
     {
         // Update sub tags to clean them up
         foreach ($model->tags as $child) {

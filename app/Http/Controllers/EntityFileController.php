@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Exceptions\EntityFileException;
 use App\Facades\CampaignLocalization;
 use App\Http\Requests\RenameEntityFile;
+use App\Http\Requests\StoreEntityAsset;
 use App\Http\Requests\StoreEntityFile;
 use App\Http\Requests\UpdateEntityFile;
 use App\Models\EntityFile;
@@ -79,11 +80,8 @@ class EntityFileController extends Controller
 
     /**
      * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
      */
-    public function store(StoreEntityFile $request, Entity $entity)
+    public function store(StoreEntityAsset $request, Entity $entity)
     {
         $this->authorize('update', $entity->child);
         $campaign = CampaignLocalization::getCampaign();
@@ -127,10 +125,6 @@ class EntityFileController extends Controller
     }
 
     /**
-     * @param Request $request
-     * @param Entity $entity
-     * @param EntityFile $entityFile
-     * @throws \RenameEntityFile\Auth\Access\AuthorizationException
      */
     public function update(UpdateEntityFile $request, Entity $entity, EntityFile $entityFile)
     {
@@ -145,11 +139,6 @@ class EntityFileController extends Controller
 
     /**
      * Remove the EntityFile
-     *
-     * @param Entity $entity
-     * @param EntityFile $entityFile
-     * @return \Illuminate\Http\JsonResponse
-     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function destroy(Entity $entity, EntityFile $entityFile)
     {
@@ -160,6 +149,5 @@ class EntityFileController extends Controller
         return redirect()
             ->route('entities.entity_assets.index', $entity)
             ->with('success', __('entities/files.destroy.success', ['file' => $entityFile->name]));
-
     }
 }

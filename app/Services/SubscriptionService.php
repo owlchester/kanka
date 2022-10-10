@@ -1,10 +1,8 @@
 <?php
 
-
 namespace App\Services;
 
 
-use App\Http\Requests\Settings\UserSubscribeStore;
 use App\Jobs\DiscordRoleJob;
 use App\Jobs\Emails\SubscriptionCancelEmailJob;
 use App\Jobs\Emails\SubscriptionCreatedEmailJob;
@@ -12,7 +10,7 @@ use App\Jobs\Emails\SubscriptionDowngradedEmailJob;
 use App\Jobs\Emails\SubscriptionFailedEmailJob;
 use App\Jobs\Emails\SubscriptionNewElementalEmailJob;
 use App\Jobs\SubscriptionEndJob;
-use App\Models\Patreon;
+use App\Models\Pledge;
 use App\Models\Role;
 use App\Models\SubscriptionSource;
 use App\Models\UserLog;
@@ -23,6 +21,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Log;
 use Laravel\Cashier\PaymentMethod;
+use Stripe\Card;
 use Stripe\Charge;
 use Stripe\Customer as StripeCustomer;
 use Stripe\Source;
@@ -36,13 +35,13 @@ class SubscriptionService
     public const STATUS_GRACE = 2;
     public const STATUS_CANCELLED = 3;
 
-    /** @var User */
+    /** @var User|null */
     protected $user;
 
     /** @var string */
     protected $tier;
 
-    /** @var string*/
+    /** @var string|null */
     protected $plan = null;
 
     /** @var string monthly/yearly */
@@ -63,7 +62,7 @@ class SubscriptionService
     /** @var int Value of the subscription */
     protected $subscriptionValue = 0;
 
-    /** @var Request The request object */
+    /** @var array|Request The request object */
     protected $request;
 
     /**
@@ -84,7 +83,7 @@ class SubscriptionService
     public function tier(string $tier): self
     {
         $this->tier = $tier;
-        if (!in_array($tier, Patreon::pledges())) {
+        if (!in_array($tier, Pledge::pledges())) {
             throw new Exception("Unknown tier level '$tier'.");
         }
         return $this;
@@ -134,10 +133,10 @@ class SubscriptionService
     }
 
     /**
-     * @param $coupon
+     * @param string|null $coupon
      * @return $this
      */
-    public function coupon($coupon): self
+    public function coupon(string $coupon = null): self
     {
         if ($this->period === 'yearly' && !empty($coupon)) {
             $this->coupon = $coupon;
@@ -149,7 +148,7 @@ class SubscriptionService
      * Change plans
      *
      * @param array $request
-     * @return $this
+     * @return self
      */
     public function change(array $request): self
     {
@@ -179,7 +178,8 @@ class SubscriptionService
 
         // Save the expiration date on the user for alerts about expiring cards
         $payment = $this->user->defaultPaymentMethod();
-        if ($payment && $payment instanceof PaymentMethod) {
+        if ($payment instanceof PaymentMethod) {
+            /** @var Card $card */
             $card = $payment->asStripePaymentMethod()->card;
             $expiresAt = Carbon::createFromDate($card->exp_year, $card->exp_month)->endOfMonth();
             $this->user->card_expires_at = $expiresAt;
@@ -192,12 +192,13 @@ class SubscriptionService
     }
 
     /**
-     * @param $planID
-     * @param $paymentID
-     * @return bool
-     * @throws \Laravel\CashierExceptions\PaymentActionRequired
-     * @throws \Laravel\CashierExceptions\PaymentFailure
-     * @throws \Laravel\CashierExceptions\SubscriptionUpdateFailure
+     * @param string $planID
+     * @param string $paymentID
+     * @return $this
+     * @throws \Laravel\Cashier\Exceptions\IncompletePayment
+     * @throws \Laravel\Cashier\Exceptions\PaymentActionRequired
+     * @throws \Laravel\Cashier\Exceptions\PaymentFailure
+     * @throws \Laravel\Cashier\Exceptions\SubscriptionUpdateFailure
      */
     public function subscribe($planID, $paymentID): self
     {
@@ -252,19 +253,19 @@ class SubscriptionService
             return $this;
         }
 
-        $plan = in_array($planID, $this->elementalPlans()) ? Patreon::PLEDGE_ELEMENTAL :
-            (in_array($planID, $this->wyvernPlans()) ? Patreon::PLEDGE_WYVERN : Patreon::PLEDGE_OWLBEAR);
+        $plan = in_array($planID, $this->elementalPlans()) ? Pledge::ELEMENTAL :
+            (in_array($planID, $this->wyvernPlans()) ? Pledge::WYVERN : Pledge::OWLBEAR);
 
         // Determine if the pledge was changed or not
         $new = !$this->upgrading($plan);
 
-        // Add the necessary roles and patreon data
-        $this->user->patreon_pledge = $plan;
-        $this->user->update(['patreon_pledge']);
+        // Add the necessary roles and pledge data
+        $this->user->pledge = $plan;
+        $this->user->update(['pledge' => $plan]);
 
-        // We're so far, good. Let's add the user to the Patreon group
-        $role = Role::where('name', '=', 'patreon')->first();
-        if ($role && !$this->user->hasRole('patreon')) {
+        // We're so far, good. Let's add the user to the subscriber group
+        $role = Role::where('name', '=', Pledge::ROLE)->first();
+        if ($role && !$this->user->hasRole(Pledge::ROLE)) {
             $this->user->roles()->attach($role->id);
         }
 
@@ -278,7 +279,7 @@ class SubscriptionService
         }
 
         SubscriptionCreatedEmailJob::dispatch($this->user, $period, $new);
-        if ($plan == Patreon::PLEDGE_ELEMENTAL) {
+        if ($plan == Pledge::ELEMENTAL) {
             SubscriptionNewElementalEmailJob::dispatch($this->user, $period, $new);
         }
 
@@ -302,7 +303,7 @@ class SubscriptionService
     /**
      * @param Request $request
      * @return Source
-     * @throws \StripeException\ApiErrorException
+     * @throws \Stripe\Exception\ApiErrorException
      */
     public function prepare(Request $request): Source
     {
@@ -358,11 +359,9 @@ class SubscriptionService
     {
         if (!$this->user->subscribed('kanka')) {
             return self::STATUS_UNSUBSCRIBED;
-        }
-        elseif ($this->user->subscription('kanka')->onGracePeriod()) {
+        } elseif ($this->user->subscription('kanka')->onGracePeriod()) {
             return self::STATUS_GRACE;
-        }
-        elseif ($this->user->subscription('kanka')->cancelled()) {
+        } elseif ($this->user->subscription('kanka')->cancelled()) {
             return self::STATUS_CANCELLED;
         }
 
@@ -399,22 +398,21 @@ class SubscriptionService
     public function currentPlan(): string
     {
         if ($this->user->subscribedToPlan($this->owlbearPlans(), 'kanka')) {
-            return Patreon::PLEDGE_OWLBEAR;
-        }
-        elseif ($this->user->subscribedToPlan($this->wyvernPlans(), 'kanka')) {
-            return Patreon::PLEDGE_WYVERN;
-        }
-        elseif ($this->user->subscribedToPlan($this->elementalPlans(), 'kanka')) {
-            return Patreon::PLEDGE_ELEMENTAL;
+            return Pledge::OWLBEAR;
+        } elseif ($this->user->subscribedToPlan($this->wyvernPlans(), 'kanka')) {
+            return Pledge::WYVERN;
+        } elseif ($this->user->subscribedToPlan($this->elementalPlans(), 'kanka')) {
+            return Pledge::ELEMENTAL;
         }
 
         // Free user?
-        return Patreon::PLEDGE_KOBOLD;
+        return Pledge::KOBOLD;
     }
 
     /**
      * Cancel the user's subscription to Kanka
      * @param string|null $reason
+     * @param string|null $custom
      * @return bool
      */
     public function cancel(string $reason = null, string $custom = null): bool
@@ -427,6 +425,7 @@ class SubscriptionService
         // Dispatch the job when the subscription actually ends
         SubscriptionEndJob::dispatch($this->user)
             ->delay(
+                // @phpstan-ignore-next-line
                 $this->user->subscription('kanka')->ends_at
             );
 
@@ -447,8 +446,9 @@ class SubscriptionService
     }
 
     /**
-     * @param Request $request
-     * @throws Exception
+     * @param array $payload
+     * @return bool
+     * @throws \Stripe\Exception\ApiErrorException
      */
     public function sourceCharge(array $payload)
     {
@@ -457,7 +457,7 @@ class SubscriptionService
             ->firstOrFail();
         $this->user($source->user);
 
-        $amount = $source->tier === Patreon::PLEDGE_ELEMENTAL ? 25 : ($source->tier === Patreon::PLEDGE_WYVERN ? 10 : 5);
+        $amount = $source->tier === Pledge::ELEMENTAL ? 25 : ($source->tier === Pledge::WYVERN ? 10 : 5);
         $amount = ($amount * ($source->period === 'yearly' ? 11 : 1)) * 100;
 
         try {
@@ -476,13 +476,14 @@ class SubscriptionService
             $source->status = $charge->status;
             $source->save();
 
-            // While the payment is pending, it can take up to two days for it to complete. So we'll assume that the user is properly subscribed.
-            $this->user->patreon_pledge = $source->tier;
-            $this->user->update(['patreon_pledge']);
+            // While the payment is pending, it can take up to two days for it to complete. So we'll assume
+            // that the user is properly subscribed.
+            $this->user->pledge = $source->tier;
+            $this->user->update(['pledge' => $source->tier]);
 
-            // We're so far, good. Let's add the user to the Patreon group
-            $role = Role::where('name', '=', 'patreon')->first();
-            if ($role && !$this->user->hasRole('patreon')) {
+            // We're so far, good. Let's add the user to the subscriber group
+            $role = Role::where('name', '=', Pledge::ROLE)->first();
+            if ($role && !$this->user->hasRole(Pledge::ROLE)) {
                 $this->user->roles()->attach($role->id);
             }
 
@@ -516,7 +517,6 @@ class SubscriptionService
                 )
             );
         } catch(Exception $e) {
-
             $this->user->notify(
                 new Header(
                     'subscriptions.charge_fail',
@@ -534,10 +534,11 @@ class SubscriptionService
     /**
      * About 0.2% of sofort payments fail, so we need to handle them.
      * @param array $payload
+     * @return bool
+     * @throws Exception
      */
     public function chargeFailed(array $payload)
     {
-        /** @var SubscriptionSource $source */
         $chargeID = Arr::get($payload, 'data.object.charge');
         if (empty($chargeID)) {
             // If the source is empty, means this is a failed charge for a credit card, not a sofort payment.
@@ -545,6 +546,7 @@ class SubscriptionService
             return false;
         }
 
+        /** @var SubscriptionSource|null $source */
         $source = SubscriptionSource::where('charge_id', $chargeID)->first();
         if (empty($source)) {
             throw new Exception('Unhandled charge fail? ChargeID: ' . $chargeID);
@@ -675,17 +677,17 @@ class SubscriptionService
     }
 
     /**
-     * @param string $tier = null
+     * @param string|null $tier
      * @return array
      */
     public function yearlyPlans(string $tier = null): array
     {
-        if (!empty($only)) {
+        /*if (!empty($only)) {
             return [
                 config('subscription.' . strtolower($tier). '.eur.yearly'),
                 config('subscription.' . strtolower($tier). '.usd.yearly'),
             ];
-        }
+        }*/
         return [
             config('subscription.owlbear.eur.yearly'),
             config('subscription.owlbear.usd.yearly'),
@@ -721,7 +723,7 @@ class SubscriptionService
     public function downgrading(): bool
     {
         // Elemental downgrading -> owl or wyv
-        if ($this->user->isElemental() && in_array($this->tier, [Patreon::PLEDGE_OWLBEAR, Patreon::PLEDGE_WYVERN])) {
+        if ($this->user->isElemental() && in_array($this->tier, [Pledge::OWLBEAR, Pledge::WYVERN])) {
             return true;
         }
 
@@ -731,19 +733,19 @@ class SubscriptionService
         }
 
         // Cancelling
-        return $this->tier === Patreon::PLEDGE_KOBOLD;
+        return $this->tier === Pledge::KOBOLD;
     }
 
     /**
      * Determine if a user is upgrading their plan to a higher tier
-     * @param $plan
+     * @param string $plan
      * @return bool
      */
     protected function upgrading($plan): bool
     {
-        if ($this->user->patreon_pledge == Patreon::PLEDGE_OWLBEAR && in_array($plan, [Patreon::PLEDGE_WYVERN, Patreon::PLEDGE_ELEMENTAL])) {
+        if ($this->user->pledge == Pledge::OWLBEAR && in_array($plan, [Pledge::WYVERN, Pledge::ELEMENTAL])) {
             return true;
-        } elseif ($this->user->patreon_pledge == Patreon::PLEDGE_WYVERN && $plan == Patreon::PLEDGE_ELEMENTAL) {
+        } elseif ($this->user->pledge == Pledge::WYVERN && $plan == Pledge::ELEMENTAL) {
             return true;
         }
         return false;
@@ -761,11 +763,12 @@ class SubscriptionService
         }
 
         // Check if the user's active sub is from before the current date
-        /** @var \Laravel\Cashier\Subscription $sub */
+        /** @var \Laravel\Cashier\Subscription|null $sub */
         $sub = \Laravel\Cashier\Subscription::where('user_id', $this->user->id)->where('stripe_status', 'active')->first();
-        if (empty($sub)) {
+        if ($sub === null) {
             return false;
         }
+        // @phpstan-ignore-next-line
         return $sub->created_at->lessThan(Carbon::yesterday());
     }
 
@@ -774,7 +777,7 @@ class SubscriptionService
      */
     protected function toOwlbear(): bool
     {
-        return $this->tier == Patreon::PLEDGE_OWLBEAR;
+        return $this->tier == Pledge::OWLBEAR;
     }
 
     /**
@@ -782,7 +785,7 @@ class SubscriptionService
      */
     protected function toWyvern(): bool
     {
-        return $this->tier == Patreon::PLEDGE_WYVERN;
+        return $this->tier == Pledge::WYVERN;
     }
 
     /**
@@ -790,6 +793,6 @@ class SubscriptionService
      */
     protected function toElemental(): bool
     {
-        return $this->tier == Patreon::PLEDGE_ELEMENTAL;
+        return $this->tier == Pledge::ELEMENTAL;
     }
 }

@@ -116,6 +116,11 @@ class MentionsService
      */
     public function mapAttribute(Attribute $attribute)
     {
+        // If the attribute mentions itself in the value, don't do any parsing, it would cause an endless loop.
+        if (Str::contains($attribute->value, $attribute->mentionName())) {
+            return Attributes::parse($attribute);
+        }
+
         $this->text = (string) $attribute->value;
         $attribute->value = $this->extractAndReplace();
 
@@ -144,11 +149,11 @@ class MentionsService
     }
 
     /**
-     * @param $model
+     * @param Model $model
      * @param string $field
      * @return string
      */
-    protected function editEntity($model, string $field): string
+    protected function editEntity(Model $model, string $field): string
     {
         // We have to cast to a string for when the entity was created in the API with a NULL entry
         $this->text = (string) $model->$field;
@@ -157,10 +162,10 @@ class MentionsService
 
     /**
      * Replace span mentions into [entity:123] blocks
-     * @param $text
+     * @param string|null $text
      * @return string
      */
-    public function codify($text): string
+    public function codify(string|null $text): string
     {
         if (empty($text)) {
             $text = '';
@@ -226,7 +231,7 @@ class MentionsService
         //dump($text);
         $text = preg_replace(
             '`<span class="' . self::ADVANCED_MENTION_CLASS . '" data-name="([^"]*)"></span>`',
-            null,
+            '',
             $text
         );
 
@@ -271,6 +276,7 @@ class MentionsService
                 }
                 $this->mentionedEntityTypes[] = $matches[1];
             }
+            return $matches[0];
         }, $this->text);
 
         // Pre-fetch all the entities
@@ -286,7 +292,6 @@ class MentionsService
 
             $data = $this->extractData($matches);
 
-            /** @var Entity $entity */
             $entity = $this->entity($data['id']);
             $tagClasses = [];
             $cssClasses = ['entity-mention'];
@@ -504,7 +509,7 @@ class MentionsService
         $this->text = preg_replace_callback('`\{attribute:(.*?)\}`i', function ($matches) {
             $id = (int) $matches[1];
 
-            /** @var Entity $entity */
+            /** @var Attribute|null $attribute */
             $attribute = $this->attribute($id);
 
             // No entity found, the user might not be allowed to see it
@@ -522,24 +527,24 @@ class MentionsService
 
     /**
      * @param int $id
-     * @return Entity
+     * @return Entity|null
      */
-    protected function entity(int $id)
+    protected function entity(int $id): Entity|null
     {
-        if (!Arr::has($this->entities, $id)) {
+        if (!Arr::has($this->entities, (string) $id)) {
             $this->entities[$id] = Entity::where(['id' => $id])->first();
         }
 
-        return Arr::get($this->entities, $id, null);
+        return Arr::get($this->entities, $id);
     }
 
     /**
      * @param int $id
-     * @return mixed
+     * @return Attribute|null
      */
-    protected function attribute(int $id)
+    protected function attribute(int $id): Attribute|null
     {
-        if (!Arr::has($this->attributes, $id)) {
+        if (!Arr::has($this->attributes, (string) $id)) {
             $this->attributes[$id] = Attribute::where(['id' => $id])->first();
         }
 
@@ -628,6 +633,7 @@ class MentionsService
             if (!in_array($id, $this->mentionedAttributes)) {
                 $this->mentionedAttributes[] = $id;
             }
+            return $matches[0];
         }, $this->text);
 
         // Pre-fetch all the entities
@@ -636,8 +642,6 @@ class MentionsService
         // Extract links from the entry to foreign
         $this->text = preg_replace_callback('`\{attribute:(.*?)\}`i', function ($matches) {
             $id = (int) $matches[1];
-
-            /** @var Attribute $attribute */
             $attribute = $this->attribute($id);
 
             // No entity found, the user might not be allowed to see it

@@ -38,8 +38,8 @@ class AclScope implements Scope
     /**
      * Add the with-invisible extension to the builder.
      *
-     * @param  \Illuminate\Database\Eloquent\Builder  $builder
-     * @return Builder
+     * @param  Builder $builder
+     * @return void
      */
     protected function addWithInvisible(Builder $builder)
     {
@@ -96,11 +96,12 @@ class AclScope implements Scope
     /**
      * Permission scope on an Entity model
      * @param Builder $query
-     * @param $model
+     * @param Model $model
      * @return Builder
      */
     protected function applyToEntity(Builder $query, Model $model): Builder
     {
+        // @phpstan-ignore-next-line
         return $query
             ->private(false)
             ->where(function ($subquery) {
@@ -117,10 +118,10 @@ class AclScope implements Scope
     /**
      * Permission scope on a Misc model
      * @param Builder $query
-     * @param Model $model
+     * @param MiscModel $model
      * @return Builder
      */
-    protected function applyToMisc(Builder $query, Model $model): Builder
+    protected function applyToMisc(Builder $query, MiscModel $model): Builder
     {
         $table = $model->getTable();
         $primaryKey = 'id';
@@ -135,7 +136,7 @@ class AclScope implements Scope
 
         // If the user has a role which can read all entities, only check on denied elements
         if (Permissions::canRole()) {
-            return $query->private(false)
+            return $query->private(false) // @phpstan-ignore-line
                 ->whereNotIn($table . '.' . $primaryKey, Permissions::deniedModels())
             ;
         }
@@ -150,7 +151,7 @@ class AclScope implements Scope
     /**
      * Map the misc model to the entity type. Should move this somewhere else?
      * @param MiscModel $model
-     * @return string|false
+     * @return int
      */
     protected function entityType(MiscModel $model): int
     {
@@ -175,13 +176,13 @@ class AclScope implements Scope
         return $query
             // Ignore the Visibility scope because we're overriding it here with the permission engine of posts
             ->withoutGlobalScope(VisibilityIDScope::class)
-            ->where(function ($sub) use ($model, $table) {
+            ->where(function ($sub) use ($table) {
             $visibilities = Permissions::isAdmin()
                 ? [Visibility::VISIBILITY_ALL, Visibility::VISIBILITY_ADMIN,
                     Visibility::VISIBILITY_ADMIN_SELF, Visibility::VISIBILITY_MEMBERS]
                 : [Visibility::VISIBILITY_ALL, Visibility::VISIBILITY_MEMBERS];
             $sub
-                ->where(function ($self) use ($model, $table) {
+                ->where(function ($self) use ($table) {
                     $self
                         ->whereIn($table . '.visibility_id', [
                             Visibility::VISIBILITY_SELF,

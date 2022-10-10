@@ -6,7 +6,7 @@ use App\Facades\Mentions;
 use App\Models\TimelineElement;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class TimelineElementResource extends EntityResource
+class TimelineElementResource extends JsonResource
 {
     /**
      * Transform the resource into an array.

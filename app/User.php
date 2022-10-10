@@ -7,12 +7,13 @@ use App\Facades\SingleUserCache;
 use App\Facades\UserCache;
 use App\Models\Campaign;
 use App\Facades\CampaignLocalization;
+use App\Models\CampaignRole;
 use App\Models\Concerns\Tutorial;
-use App\Models\Patreon;
-use App\Models\Relations\UserRelations;
+use App\Models\Pledge;
 use App\Models\Scopes\UserScope;
 use App\Models\UserLog;
 use App\Models\UserSetting;
+use App\Models\Relations\UserRelations;
 use Carbon\Carbon;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Arr;
@@ -27,28 +28,30 @@ use Laravel\Passport\HasApiTokens;
  * @property int $id
  * @property string $name
  * @property string $email
- * @property integer $last_campaign_id
+ * @property integer|null $last_campaign_id
  * @property string $avatar
  * @property string $provider
  * @property integer $provider_id
  * @property string $last_login_at
  * @property integer $welcome_campaign_id
  * @property boolean $newsletter
- * @property boolean $has_last_login_sharing
- * @property string $patreon_pledge
+ * @property boolean $has_last_login_sharingw
+ * @property string|null $pledge
+ * @property string|null $timezone
+ * @property string|null $currency
  * @property int $booster_count
  * @property int $referral_id
- * @property Carbon $card_expires_at
- * @property Carbon $banned_until
- * @property Collection $settings
- * @property Collection $profile
+ * @property Carbon|string|null $card_expires_at
+ * @property Carbon|string|null $banned_until
+ * @property Collection|array $settings
+ * @property Collection|array $profile
  *
  * Virtual (from \App\Models\UserSetting)
  * @property bool $advancedMentions
  * @property bool $defaultNested
  * @property string $campaignSwitcherOrderBy
- * @property string $patreon_fullname
- * @property string $patreon_email
+ *
+ * @property string $stripe_id
  */
 class User extends \Illuminate\Foundation\Auth\User
 {
@@ -63,15 +66,10 @@ class User extends \Illuminate\Foundation\Auth\User
 
     protected static $currentCampaign = false;
 
-    public $additional_attributes = [
-        'patreon_fullname',
-        //'patreon_email'
-    ];
-
     /**
      * The attributes that are mass assignable.
      *
-     * @var array
+     * @var string[]
      */
     protected $fillable = [
         'name',
@@ -89,7 +87,7 @@ class User extends \Illuminate\Foundation\Auth\User
         'locale', // Keep this for the LocaleChange middleware
         'last_login_at',
         'has_last_login_sharing',
-        'patreon_pledge',
+        'pledge',
         'referral_id',
         'profile',
         'settings',
@@ -98,7 +96,7 @@ class User extends \Illuminate\Foundation\Auth\User
     /**
      * The attributes that should be hidden for arrays.
      *
-     * @var array
+     * @var array<int, string>
      */
     protected $hidden = [
         'password', 'remember_token', 'card_expires_at',
@@ -116,7 +114,7 @@ class User extends \Illuminate\Foundation\Auth\User
 
     /**
      * Casted variables
-     * @var string[]
+     * @var array<string, string>
      */
     protected $casts = [
         'settings' => 'array',
@@ -180,20 +178,21 @@ class User extends \Illuminate\Foundation\Auth\User
     }
 
     /**
-     * @param null $campaignId
-     * @return mixed
+     * @param int|null $campaignId
+     * @return string
      */
-    public function rolesList($campaignId = null): string
+    public function rolesList(int $campaignId = null): string
     {
-        if (empty($campaignId) && !empty($this->campaign)) {
+        if ($campaignId === null && !empty($this->campaign)) {
             $campaignId = $this->campaign->id;
         }
-        $roles = $this->campaignRoles->where('campaign_id', $campaignId);
 
+        /** @var CampaignRole[] $roles */
+        $roles = $this->campaignRoles->where('campaign_id', $campaignId);
         $roleLinks = [];
-        foreach($roles as $role) {
+        foreach ($roles as $role) {
             if (auth()->user()->isAdmin()) {
-                $roleLinks[] = link_to_route('campaign_roles.show', $role->name, $role->id);
+                $roleLinks[] = link_to_route('campaign_roles.show', $role->name, [$role->id]);
             } else {
                 $roleLinks[] = $role->name;
             }
@@ -238,66 +237,69 @@ class User extends \Illuminate\Foundation\Auth\User
     }
 
     /**
-     * Get the user's avatar
-     * @return string
-     */
-    public function getAvatar()
-    {
-        return "<span class=\"entity-image\" style=\"background-image: url('" .
-            $this->getAvatarUrl(40) . "');\" title=\"" . e($this->name) . "\"></span>";
-    }
-
-
-    /**
      * Get max file size of user
      * @param bool $readable
-     * @return int|string
+     * @return string|int
      */
-    public function maxUploadSize($readable = false, $what = 'image')
+    public function maxUploadSize(bool $readable = false): string|int
     {
         $campaign = CampaignLocalization::getCampaign();
-        // Test for jay
-        if ($this->id === 1) {
-            return $readable ? '100MB' : 102400;
-        }
-        if ($this->isPatron() || ($campaign && $campaign->boosted())) {
-            // Elementals get massive upload sizes
-            if ($this->isElemental()) {
-                if ($this->id === 34122) {
-                    return $readable ? '100MB' : 102400;
-                }
-                return $readable ? '25MB' : 25600;
-            } elseif ($this->isWyvern()) {
-                if ($what == 'map') {
-                    return $readable ? '20mb' : 20480;
-                }
-                return $readable ? '15MB' : 15360;
-            } elseif ($what == 'map') {
-                return $readable ? '10MB' : 10240;
+        if (!$this->isSubscriber() && (empty($campaign) || !$campaign->boosted())) {
+            $min = config('limits.filesize.image');
+            return $readable ? $min . 'MB' : ($min * 1024);
+        } elseif ($this->isElemental()) {
+            // Anders gets higher upload sizes until we handle this in the db.
+            if ($this->id === 34122) {
+                return $readable ? '100MB' : 102400;
             }
-            return $readable ? '8MB' : 8192;
-        } elseif ($what == 'map') {
-            return $readable ? '3MB' : 3072;
+            return $readable ? '25MB' : 25600;
+        } elseif ($this->isWyvern()) {
+            return $readable ? '15MB' : 15360;
         }
-        return $readable ? '1MB' : 2048;
+        // Allow kobolds and goblins to have the Owlbear sizes
+        return $readable ? '8MB' : 8192;
     }
 
     /**
-     * Determine if a user is a patron
-     * @return bool
+     * Determine the max upload size for a map
+     * @param bool $readable
+     * @return string|int
      */
-    public function isPatron(): bool
+    public function mapUploadSize(bool $readable = false): string|int
     {
-        return $this->hasRole('patreon') || $this->hasRole('admin');
+        $campaign = CampaignLocalization::getCampaign();
+        // Not a subscriber and not in a boosted campaign get the default
+        if (!$this->isSubscriber() && (empty($campaign) || !$campaign->boosted())) {
+            return $readable ? '3MB' : 3072;
+        } elseif ($this->isElemental()) {
+            // Anders gets higher upload sizes until we handle this in the db.
+            if ($this->id === 34122) {
+                return $readable ? '100MB' : 102400;
+            }
+            return $readable ? '50MB' : 51200;
+        } elseif ($this->isWyvern()) {
+            return $readable ? '20mb' : 20480;
+        }
+        // We allow Kobolds and Goblins to have 10MB
+        return $readable ? '10MB' : 10240;
     }
 
     /**
-     * Determine if a user has a patreon-synced set up
+     * Determine if a user is a subscriber
      * @return bool
      */
-    public function hasPatreonSync(): bool
+    public function isSubscriber(): bool
     {
-        return $this->hasRole('patreon') && !empty($this->patreon_email);
+        return $this->hasRole(Pledge::ROLE) || $this->hasRole('admin');
+    }
+
+    /**
+     * Determine if a user has a legacy patreon sync set up
+     * @return bool
+     */
+    public function isLegacyPatron(): bool
+    {
+        return $this->hasRole(Pledge::ROLE) && !empty($this->patreon_email);
     }
 
     /**
@@ -306,7 +308,7 @@ class User extends \Illuminate\Foundation\Auth\User
      */
     public function isGoblin(): bool
     {
-        return !empty($this->patreon_pledge) && $this->patreon_pledge !== Patreon::PLEDGE_KOBOLD;
+        return !empty($this->pledge) && $this->pledge !== Pledge::KOBOLD;
     }
 
     /**
@@ -315,11 +317,12 @@ class User extends \Illuminate\Foundation\Auth\User
      */
     public function isElemental(): bool
     {
+        if (!empty($this->pledge) && $this->pledge == Pledge::ELEMENTAL) {
+            return true;
+        }
         // We check the campaign and roles for 61105 because of a special Elemental subscriber.
         $campaign = CampaignLocalization::getCampaign(false);
-
-        return (!empty($this->patreon_pledge) && $this->patreon_pledge == Patreon::PLEDGE_ELEMENTAL) ||
-            (!empty($campaign) && $this->campaignRoles->where('campaign_id', $campaign->id)->where('id', '61105')->count() == 1);
+        return (!empty($campaign) && $this->campaignRoles->where('campaign_id', $campaign->id)->where('id', '61105')->count() == 1);
     }
 
     /**
@@ -327,7 +330,7 @@ class User extends \Illuminate\Foundation\Auth\User
      */
     public function isOwlbear(): bool
     {
-        return !empty($this->patreon_pledge) && $this->patreon_pledge == Patreon::PLEDGE_OWLBEAR;
+        return !empty($this->pledge) && $this->pledge == Pledge::OWLBEAR;
     }
 
     /**
@@ -335,7 +338,7 @@ class User extends \Illuminate\Foundation\Auth\User
      */
     public function isWyvern(): bool
     {
-        return !empty($this->patreon_pledge) && $this->patreon_pledge == Patreon::PLEDGE_WYVERN;
+        return !empty($this->pledge) && $this->pledge == Pledge::WYVERN;
     }
 
     /**
@@ -378,7 +381,7 @@ class User extends \Illuminate\Foundation\Auth\User
             $base += $this->booster_count;
         }
 
-        if (!$this->isPatron()) {
+        if (!$this->isSubscriber()) {
             return $base;
         }
 
@@ -387,15 +390,15 @@ class User extends \Illuminate\Foundation\Auth\User
         }
 
         $levels = [
-            Patreon::PLEDGE_KOBOLD => 0,
-            Patreon::PLEDGE_GOBLIN => 1,
-            Patreon::PLEDGE_OWLBEAR => 3,
-            Patreon::PLEDGE_WYVERN => 6,
-            Patreon::PLEDGE_ELEMENTAL => 10,
+            Pledge::KOBOLD => 0,
+            Pledge::GOBLIN => 1,
+            Pledge::OWLBEAR => 3,
+            Pledge::WYVERN => 6,
+            Pledge::ELEMENTAL => 10,
         ];
 
         // Default 3 for admins and owlbears
-        return Arr::get($levels, $this->patreon_pledge, 0) + $base;
+        return Arr::get($levels, $this->pledge, 0) + $base;
     }
 
     /**
@@ -426,7 +429,7 @@ class User extends \Illuminate\Foundation\Auth\User
     public function showAds(): bool
     {
         // Patrons and subs don't have ads
-        if ($this->isPatron()) {
+        if ($this->isSubscriber()) {
             return false;
         }
 
@@ -536,7 +539,7 @@ class User extends \Illuminate\Foundation\Auth\User
      */
     public function isBanned(): bool
     {
-        return ($this->banned_until && $this->banned_until->isFuture());
+        return !empty($this->banned_until) && $this->banned_until->isFuture();
     }
 
     /**
@@ -555,5 +558,13 @@ class User extends \Illuminate\Foundation\Auth\User
     public function isWordsmith(): bool
     {
         return $this->hasRole('wordsmith');
+    }
+
+    /**
+     * Check if user has 2FA.
+     */
+    public function passwordSecurity()
+    {
+        return $this->hasOne('App\Models\PasswordSecurity');
     }
 }

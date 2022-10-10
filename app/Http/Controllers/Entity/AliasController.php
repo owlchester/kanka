@@ -5,24 +5,11 @@ namespace App\Http\Controllers\Entity;
 use App\Facades\CampaignLocalization;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreEntityAlias;
-use App\Http\Requests\StoreEntityLink;
 use App\Models\Entity;
 use App\Models\EntityAlias;
-use App\Models\EntityLink;
-use App\Traits\GuestAuthTrait;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Http\Request;
-use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Str;
 
 class AliasController extends Controller
 {
-    /**
-     * Guest Auth Trait
-     */
-    use GuestAuthTrait;
-
     public function __construct()
     {
         $this->middleware('campaign.boosted', ['except' => 'create']);
@@ -59,9 +46,6 @@ class AliasController extends Controller
     }
 
     /**
-     * @param Request $request
-     * @param Model $model
-     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(StoreEntityAlias $request, Entity $entity)
     {
@@ -70,6 +54,7 @@ class AliasController extends Controller
         $data = $request->only(['name', 'visibility_id']);
         $data['entity_id'] = $entity->id;
 
+        /** @var EntityAlias $link */
         $link = EntityAlias::create($data);
 
         return redirect()
@@ -78,9 +63,6 @@ class AliasController extends Controller
     }
 
     /**
-     * @param Entity $entity
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function edit(Entity $entity, EntityAlias $entityAlias)
     {
@@ -94,9 +76,6 @@ class AliasController extends Controller
 
     /**
      * Show exists but doesn't do anything, redirect to main view
-     * @param Entity $entity
-     * @param EntityLink $entityLink
-     * @return \Illuminate\Http\RedirectResponse
      */
     public function show(Entity $entity, EntityAlias $entityAlias)
     {
@@ -105,9 +84,6 @@ class AliasController extends Controller
     }
 
     /**
-     * @param Request $request
-     * @param Model $model
-     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(StoreEntityAlias $request, Entity $entity, EntityAlias $entityAlias)
     {
@@ -125,13 +101,9 @@ class AliasController extends Controller
         return redirect()
             ->route('entities.entity_assets.index', $entity)
             ->with('success', __('entities/aliases.update.success', ['name' => $entityAlias->name, 'entity' => $entity->name]));
-
     }
 
     /**
-     * @param Model $model
-     * @param Model $relation
-     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy(Entity $entity, EntityAlias $entityAlias)
     {
@@ -149,6 +121,5 @@ class AliasController extends Controller
         return redirect()
             ->route('entities.entity_assets.index', $entity)
             ->with('success', __('entities/aliases.destroy.success', ['name' => $entityAlias->name, 'entity' => $entity->name]));
-
     }
 }

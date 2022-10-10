@@ -11,7 +11,7 @@ class MenuLinkApiController extends ApiController
 {
     /**
      * @param Campaign $campaign
-     * @return Collection
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function index(Campaign $campaign)
@@ -45,6 +45,8 @@ class MenuLinkApiController extends ApiController
     {
         $this->authorize('access', $campaign);
         $this->authorize('create', MenuLink::class);
+
+        /** @var MenuLink $model */
         $model = MenuLink::create($request->all());
         $this->crudSave($model);
         return new Resource($model);

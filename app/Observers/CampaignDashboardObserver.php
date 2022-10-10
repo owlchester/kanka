@@ -29,7 +29,7 @@ class CampaignDashboardObserver
     {
         $sourceId = request()->post('source');
         if (request()->has('copy_widgets') && request()->filled('copy_widgets')) {
-            /** @var CampaignDashboard $source */
+            /** @var CampaignDashboard|null $source */
             $source = CampaignDashboard::find($sourceId);
             if (empty($source)) {
                 return;

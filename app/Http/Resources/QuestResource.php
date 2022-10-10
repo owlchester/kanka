@@ -2,7 +2,7 @@
 
 namespace App\Http\Resources;
 
-use Illuminate\Http\Resources\Json\JsonResource;
+use App\Models\Quest;
 
 class QuestResource extends EntityResource
 {
@@ -14,18 +14,20 @@ class QuestResource extends EntityResource
      */
     public function toArray($request)
     {
+        /** @var Quest $model */
+        $model = $this->resource;
         return $this->entity([
-            'type' => $this->type,
-            'date' => $this->date,
-            'is_completed' => (bool) $this->is_completed,
-            'quest_id' => $this->quest_id,
-            'character_id' => $this->character_id,
-            'calendar_id' => $this->calendar_id,
-            'calendar_year' => $this->calendar_year,
-            'calendar_month' => $this->calendar_month,
-            'calendar_day' => $this->calendar_day,
-            'elements_count' => $this->elements->count(),
-            'elements' => QuestElementResource::collection($this->elements)
+            'type' => $model->type,
+            'date' => $model->date,
+            'is_completed' => (bool) $model->is_completed,
+            'quest_id' => $model->quest_id,
+            'character_id' => $model->character_id,
+            'calendar_id' => $model->calendar_id,
+            'calendar_year' => $model->calendar_year,
+            'calendar_month' => $model->calendar_month,
+            'calendar_day' => $model->calendar_day,
+            'elements_count' => $model->elements->count(),
+            'elements' => QuestElementResource::collection($model->elements)
         ]);
     }
 }

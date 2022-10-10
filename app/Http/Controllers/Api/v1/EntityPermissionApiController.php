@@ -3,19 +3,17 @@
 namespace App\Http\Controllers\Api\v1;
 
 use App\Models\Campaign;
+use App\User;
 use App\Models\Entity;
 use App\Http\Requests\StoreEntityPermission as Request;
+use App\Http\Requests\PermissionTestRequest;
 use App\Http\Resources\EntityPermissionResource as Resource;
 use App\Models\CampaignPermission;
 use App\Services\Api\ApiPermissionService;
 
 class EntityPermissionApiController extends ApiController
 {
-    /**
-     *
-     * @var ApiPermissionService
-     */
-    protected $apiPermissionService;
+    protected ApiPermissionService $apiPermissionService;
 
     /**
      * Create a new controller instance.
@@ -30,7 +28,7 @@ class EntityPermissionApiController extends ApiController
 
     /**
      * @param Campaign $campaign
-     * @return Collection
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function index(Campaign $campaign, Entity $entity)
@@ -56,7 +54,8 @@ class EntityPermissionApiController extends ApiController
     /**
      * @param Request $request
      * @param Campaign $campaign
-     * @return Resource
+     * @param Entity $entity
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function store(Request $request, Campaign $campaign, Entity $entity)
@@ -99,5 +98,16 @@ class EntityPermissionApiController extends ApiController
         $permission->delete();
 
         return response()->json(null, 204);
+    }
+
+    /**
+     * @param PermissionTestRequest $request
+     * @param Campaign $campaign
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function test(PermissionTestRequest $request, Campaign $campaign)
+    {
+        $permissionTest = $this->apiPermissionService->entityPermissionTest($request, $campaign);
+        return response()->json($permissionTest);
     }
 }

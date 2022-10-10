@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 
@@ -16,10 +17,10 @@ class EntityType extends Model
     ];
 
     /**
-     * @param $query
+     * @param Builder $query
      * @return mixed
      */
-    public function scopeEnabled($query)
+    public function scopeEnabled(Builder $query)
     {
         return $query
             ->where(['is_enabled' => true])

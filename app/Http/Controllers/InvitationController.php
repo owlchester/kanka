@@ -35,7 +35,7 @@ class InvitationController extends Controller
     }
 
     /**
-     * @param $token
+     * @param string $token
      * @return \Illuminate\Http\RedirectResponse
      */
     public function join($token)

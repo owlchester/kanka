@@ -139,5 +139,6 @@
 @endsection
 
 @section('styles')
+    <!-- Needed to show the icons instead of the checkbox input fields -->
     <link href="/vendor/pretty-checkbox/pretty-checkbox.min.css" rel="stylesheet">
 @endsection

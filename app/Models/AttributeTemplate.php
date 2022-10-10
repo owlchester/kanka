@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Concerns\Acl;
 use App\Models\Concerns\Nested;
+use App\Services\AttributeService;
 use App\Traits\CampaignTrait;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -12,9 +13,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * Class AttributeTemplate
  * @package App\Models
  *
- * @property integer $attribute_template_id
- * @property integer $entity_type_id
- * @property AttributeTemplate $attributeTemplate
+ * @property integer|null $attribute_template_id
+ * @property integer|null $entity_type_id
+ * @property AttributeTemplate|null $attributeTemplate
  * @property AttributeTemplate[] $attributeTemplates
  * @property EntityType $entityType
  */
@@ -28,7 +29,7 @@ class AttributeTemplate extends MiscModel
 
     /**
      * Fields that can be mass-assigned
-     * @var array
+     * @var string[]
      */
     protected $fillable = [
         'name',
@@ -62,7 +63,7 @@ class AttributeTemplate extends MiscModel
 
     /**
      * Fields that can be set to null (foreign keys)
-     * @var array
+     * @var string[]
      */
     public $nullableForeignKeys = [
         'attribute_template_id',
@@ -110,7 +111,7 @@ class AttributeTemplate extends MiscModel
 
     /**
      * Specify parent id attribute mutator
-     * @param $value
+     * @param int $value
      */
     public function setAttributeTemplateIdAttribute($value)
     {
@@ -119,10 +120,10 @@ class AttributeTemplate extends MiscModel
 
     /**
      * Performance with for datagrids
-     * @param $query
-     * @return mixed
+     * @param Builder $query
+     * @return Builder
      */
-    public function scopePreparedSelect(Builder $query)
+    public function scopePreparedSelect(Builder $query): Builder
     {
         return $query
             ->select(['id', 'name', 'is_private', 'attribute_template_id', 'entity_type_id'])
@@ -150,6 +151,9 @@ class AttributeTemplate extends MiscModel
             }
         }
 
+        /** @var AttributeService $attributeService */
+        $attributeService = app()->make(AttributeService::class);
+
         /** @var Attribute $attribute */
         foreach ($this->entity->attributes()->orderBy('default_order', 'ASC')->get() as $attribute) {
             // Don't re-create existing attributes.
@@ -158,7 +162,7 @@ class AttributeTemplate extends MiscModel
             }
 
 
-            list ($type, $value) = \App\Facades\Attributes::randomAttribute($attribute->type_id, $attribute->value);
+            list ($type, $value) = $attributeService->randomAttribute($attribute->type_id, $attribute->value);
 
             Attribute::create([
                 'entity_id' => $entity->id,
@@ -173,13 +177,14 @@ class AttributeTemplate extends MiscModel
         }
 
         // Loop through parents
+        /** @var Tag $children */
         foreach ($this->ancestors()->with('entity')->get() as $children) {
             foreach ($children->entity->attributes()->orderBy('default_order', 'ASC')->get() as $attribute) {
                 // Don't re-create existing attributes.
                 if (in_array($attribute->name, $existing)) {
                     continue;
                 }
-                list ($type, $value) = \App\Facades\Attributes::randomAttribute($attribute->type_id, $attribute->value);
+                list ($type, $value) = $attributeService->randomAttribute($attribute->type_id, $attribute->value);
 
                 Attribute::create([
                     'entity_id' => $entity->id,

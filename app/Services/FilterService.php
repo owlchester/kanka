@@ -50,7 +50,7 @@ class FilterService
     /**
      * @param string $crud
      * @param array $requestData
-     * @param Model $model
+     * @param Model|MiscModel $model
      * @throws \Exception
      */
     public function make(string $crud, array $requestData, Model $model)
@@ -62,7 +62,7 @@ class FilterService
             throw new \Exception('Model ' . $model . ' doesn\'t implement the Filterable trait.');
         }
         $this->prepareFilters($model->getFilterableColumns())
-            ->prepareOrder($model->sortableColumns())
+            ->prepareOrder($model->sortableColumns()) // @phpstan-ignore-line
             ->prepareSearch();
     }
 
@@ -185,8 +185,8 @@ class FilterService
     }
 
     /**
-     * @param $key
-     * @param null $default
+     * @param string|array $key
+     * @param null|string $default
      * @return array|\Illuminate\Contracts\Translation\Translator|mixed|string|null
      * @throws \Exception
      */
@@ -205,8 +205,8 @@ class FilterService
     }
 
     /**
-     * @param $key
-     * @param $default
+     * @param string|array $key
+     * @param string|null $default
      * @return mixed
      * @throws \Exception
      */
@@ -250,10 +250,10 @@ class FilterService
 
     /**
      * Determine if a filter is a checkbox
-     * @param $field
+     * @param string $field
      * @return bool
      */
-    public function isCheckbox($field): bool
+    public function isCheckbox(string $field): bool
     {
         return Str::startsWith($field, ['is_', 'has_']);
     }

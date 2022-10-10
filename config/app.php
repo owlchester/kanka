@@ -232,6 +232,8 @@ return [
         App\Providers\DatagridRendererProvider::class,
         App\Providers\PermissionsServiceProvider::class,
         App\Providers\EntitySetupServiceProvider::class,
+        PragmaRX\Google2FALaravel\ServiceProvider::class,
+
     ],
 
     /*
@@ -286,11 +288,8 @@ return [
         'Html' => Collective\Html\HtmlFacade::class,
         'Purify' => Stevebauman\Purify\Facades\Purify::class,
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
-        //'Sentry' => Sentry\SentryLaravel\SentryFacade::class,
         'Image' => Intervention\Image\Facades\Image::class,
         'LaravelLocalization' => Mcamara\LaravelLocalization\Facades\LaravelLocalization::class,
-        //'PDF' => Barryvdh\DomPDF\Facade::class,
-        //'Zipper' => Chumper\Zipper\Zipper::class,
 
         // Custom
         'CampaignLocalization' => App\Facades\CampaignLocalization::class,
@@ -307,6 +306,7 @@ return [
         'Attributes' => App\Facades\Attributes::class,
         'Datagrid' => App\Facades\Datagrid::class,
         'EntitySetup' => App\Facades\EntitySetup::class,
+        'Google2FA' => PragmaRX\Google2FALaravel\Facade::class,
     ],
 
 ];

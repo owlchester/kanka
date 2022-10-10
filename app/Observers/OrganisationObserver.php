@@ -10,20 +10,21 @@ use App\Models\OrganisationMember;
 class OrganisationObserver extends MiscObserver
 {
     /**
-     * @param MiscModel $model
+     * @param Organisation|MiscModel $model
      */
-    public function saved(MiscModel $model)
+    public function saved(MiscModel|Organisation $model)
     {
         parent::saved($model);
 
-        // Save members
-        $this->saveMembers($model);
+        /** @var Organisation $org */
+        $org = $model;
+        $this->saveMembers($org);
     }
 
     /**
      * @param Organisation $organisation
      */
-    public function deleting(MiscModel $organisation)
+    public function deleting(Organisation $organisation)
     {
         /**
          * We need to do this ourselves and not let mysql to it (set null), because the nested wants to delete
@@ -63,6 +64,7 @@ class OrganisationObserver extends MiscObserver
             if (!empty($existing[$id])) {
                 unset($existing[$id]);
             } else {
+                /** @var Character|null $character */
                 $character = Character::find($id);
                 if (!empty($character)) {
                     $new[] = $character->id;

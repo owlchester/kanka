@@ -10,6 +10,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Laravel\Cashier\PaymentMethod;
+use Stripe\Card;
 
 class SubscriptionApiController extends Controller
 {
@@ -43,8 +44,9 @@ class SubscriptionApiController extends Controller
 
     /**
      * Adds a payment method to the current user.
-     *
-     * @param Request $request The request data from the user.
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Laravel\Cashier\Exceptions\CustomerAlreadyCreated
      */
     public function paymentMethods(Request $request)
     {
@@ -62,6 +64,7 @@ class SubscriptionApiController extends Controller
         // Save the expiration date on the user for alerts about expiring cards
         $payment = $user->defaultPaymentMethod();
         if ($payment && $payment instanceof PaymentMethod) {
+            /** @var Card $card */
             $card = $payment->asStripePaymentMethod()->card;
             $expiresAt = Carbon::createFromDate($card->exp_year, $card->exp_month)->endOfMonth();
             $user->card_expires_at = $expiresAt;
@@ -85,11 +88,11 @@ class SubscriptionApiController extends Controller
         if ($user->hasPaymentMethod()) {
             foreach ($user->paymentMethods() as $method) {
                 array_push($methods, [
-                    'id' => $method->id,
-                    'brand' => $method->card->brand,
-                    'last_four' => $method->card->last4,
-                    'exp_month' => $method->card->exp_month,
-                    'exp_year' => $method->card->exp_year,
+                    'id' => $method->id, // @phpstan-ignore-line
+                    'brand' => $method->card->brand, // @phpstan-ignore-line
+                    'last_four' => $method->card->last4, // @phpstan-ignore-line
+                    'exp_month' => $method->card->exp_month, // @phpstan-ignore-line
+                    'exp_year' => $method->card->exp_year, // @phpstan-ignore-line
                 ]);
             }
         }
@@ -110,6 +113,7 @@ class SubscriptionApiController extends Controller
         $paymentMethods = $user->paymentMethods();
 
         foreach ($paymentMethods as $method) {
+            // @phpstan-ignore-next-line
             if ($method->id == $paymentMethodID) {
                 $method->delete();
                 break;

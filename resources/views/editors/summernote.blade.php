@@ -9,6 +9,7 @@
     <script src="/vendor/summernote/plugin/summernote-aroba-kanka/summernote-aroba.js" defer></script>
     <script src="/vendor/summernote/plugin/summernote-table-ext.js" defer></script>
     <script src="/vendor/summernote/plugin/spoiler/summernote-spoiler.js" defer></script>
+    <script src="/vendor/summernote/plugin/summernote-image-attribute.js" defer></script>
 {{--    <script src="/vendor/summernote/plugin/rtl/summernote-ext-rtl.js" defer></script>--}}
 
     @if (app()->getLocale() == 'ca')
@@ -37,6 +38,7 @@
         data-gallery-select-all="{{ __('general.select_all') }}"
         data-gallery-deselect-all="{{ __('general.deselect_all') }}"
         data-gallery-error="generic.gallery.error"
+        data-filesize="{{ auth()->user()->maxUploadSize() }}"
 @if(isset($campaignService) && $campaignService->campaign() !== null)
         data-gallery="{{ $campaignService->campaign()->superboosted() ? route('campaign.gallery.summernote') : null }}"
     @if($campaignService->campaign()->superboosted()) data-gallery-upload="{{ route('campaign.gallery.ajax-upload') }}" @endif

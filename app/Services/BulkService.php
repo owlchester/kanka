@@ -117,8 +117,8 @@ class BulkService
 
     /**
      * Set permissions for several entities
-     * @param array $users
-     * @param array $roles
+     * @param array $permissions
+     * @param bool $override
      * @return int number of updated entities
      */
     public function permissions(array $permissions = [], bool $override = true): int
@@ -259,7 +259,10 @@ class BulkService
         $tagIds = Arr::get($fields, 'tags', []);
 
         if ($this->entityName === 'relations') {
-            return $this->updateRelations($filledFields);
+            $mirrorOptions = [];
+            $mirrorOptions['unmirror'] = (bool) Arr::get($fields, 'unmirror', '0');
+            $mirrorOptions['update_mirrored'] = (bool) Arr::get($fields, 'update_mirrored', '0');
+            return $this->updateRelations($filledFields, $mirrorOptions);
         }
 
         // Todo: move model fetch above to actually use with()
@@ -298,7 +301,7 @@ class BulkService
 
             // We have to still update the entity object (except for menu links)
             // Todo: refactor into a trait or function
-            if ($entity->entity) {
+            if (!empty($entity->entity)) {
                 $realEntity = $entity->entity;
 
                 $realEntity->is_private = $entity->is_private;
@@ -375,9 +378,10 @@ class BulkService
             throw new Exception("Unknown entity name {$this->entityName}.");
         }
 
+        /** @var MiscModel|null $model */
         $model = new $entity();
         if (empty($model)) {
-            throw new Exception("Couldn't create a class from {$this->entity}.");
+            throw new Exception("Couldn't create a class from {$entity}.");
         }
 
         return $model;
@@ -385,9 +389,10 @@ class BulkService
 
     /**
      * @param array $filledFields
+     * @param array $mirrorOptions
      * @return int
      */
-    protected function updateRelations(array $filledFields)
+    protected function updateRelations(array $filledFields, $mirrorOptions)
     {
         $relations = Relation::whereIn('id', $this->ids)->get();
 
@@ -396,6 +401,7 @@ class BulkService
             unset($filledFields['colour']);
         }
 
+        /** @var Relation $relation */
         foreach ($relations as $relation) {
             $this->total++;
             if (!auth()->user()->can('update', $relation)) {
@@ -407,11 +413,19 @@ class BulkService
             if ($relation->owner_id == Arr::get($filledFields, 'target_id') || ($relation->target_id == Arr::get($filledFields, 'owner_id'))) {
                 continue;
             }
-            if (request()->update_mirrored && $relation->mirror) {
+            if ($mirrorOptions['update_mirrored'] && $relation->mirror) {
                 $mirrorFields = Arr::except($filledFields, ['target_id', 'owner_id']);
                 $relation->mirror->update($mirrorFields);
                 $this->count++;
                 $this->total++;
+            }
+            if ($mirrorOptions['unmirror'] && $relation->mirror) {
+                $relation->mirror->update(['mirror_id' => null]);
+                $filledFields['mirror_id'] = null;
+                if (!$mirrorOptions['update_mirrored']) {
+                    $this->count++;
+                    $this->total++;
+                }
             }
             $relation->update($filledFields);
             $this->count++;

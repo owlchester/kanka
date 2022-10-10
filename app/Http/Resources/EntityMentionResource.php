@@ -2,8 +2,7 @@
 
 namespace App\Http\Resources;
 
-use Illuminate\Http\Resources\Json\JsonResource;
-use Illuminate\Support\Facades\Storage;
+use App\Models\EntityMention;
 
 class EntityMentionResource extends EntityChild
 {
@@ -15,11 +14,13 @@ class EntityMentionResource extends EntityChild
      */
     public function toArray($request)
     {
+        /** @var EntityMention $model */
+        $model = $this->resource;
         return [
-            'entity_id' => $this->entity_id,
-            'entity_note_id' => $this->entity_note_id,
-            'campaign_id' => $this->campaign_id,
-            'target_id' => $this->target_id,
+            'entity_id' => $model->entity_id,
+            'entity_note_id' => $model->entity_note_id,
+            'campaign_id' => $model->campaign_id,
+            'target_id' => $model->target_id,
         ];
     }
 }

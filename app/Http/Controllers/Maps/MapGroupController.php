@@ -12,9 +12,6 @@ use App\Models\MapGroup;
 class MapGroupController extends Controller
 {
     /**
-     * @param Map $map
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
-     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function create(Map $map)
     {
@@ -36,10 +33,6 @@ class MapGroupController extends Controller
     }
 
     /**
-     * @param Map $map
-     * @param StoreMapGroup $request
-     * @return mixed
-     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function store(Map $map, StoreMapGroup $request)
     {
@@ -68,10 +61,6 @@ class MapGroupController extends Controller
     }
 
     /**
-     * @param Map $map
-     * @param MapGroup $mapGroup
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function edit(Map $map, MapGroup $mapGroup)
     {
@@ -87,11 +76,6 @@ class MapGroupController extends Controller
     }
 
     /**
-     * @param StoreMapGroup $request
-     * @param Map $map
-     * @param MapGroup $mapGroup
-     * @return \Illuminate\Http\JsonResponse
-     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function update(StoreMapGroup $request, Map $map, MapGroup $mapGroup)
     {
@@ -110,10 +94,6 @@ class MapGroupController extends Controller
     }
 
     /**
-     * @param Map $map
-     * @param MapGroup $mapGroup
-     * @return mixed
-     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function destroy(Map $map, MapGroup $mapGroup)
     {

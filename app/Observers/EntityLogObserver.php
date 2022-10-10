@@ -29,7 +29,7 @@ class EntityLogObserver
         $log->action = EntityLog::ACTION_CREATE;
         $log->save();
 
-        $entity->is_created_now = true;
+        //$entity->is_created_now = true;
     }
 
     /**

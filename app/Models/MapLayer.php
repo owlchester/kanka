@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Models;
-
 
 use App\Facades\Img;
 use App\Models\Concerns\Blameable;
@@ -23,7 +21,7 @@ use Illuminate\Database\Eloquent\Builder;
  * @property int $position
  * @property int $height
  * @property int $width
- * @property int $type_id
+ * @property int|null $type_id
  *
  * @property Map $map
  *
@@ -36,7 +34,7 @@ class MapLayer extends Model
     /** @var bool If set to false, skip the saving observer */
     public $savingObserver = true;
 
-    /** Fillable fields */
+    /** @var string[]  */
     protected $fillable = [
         'map_id',
         'name',
@@ -68,11 +66,11 @@ class MapLayer extends Model
 
     /**
      * Get the image (or default image) of an entity
-     * @param int $width = 200
-     * @param int $width = null
+     * @param int $width
+     * @param int|null $width
      * @return string
      */
-    public function getImageUrl(int $width = 400, int $height = null)
+    public function thumbnail(int $width = 400, int $height = null)
     {
         return Img::crop($width, (!empty($height) ? $height : $width))->url($this->image);
     }

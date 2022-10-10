@@ -1,1 +1,2 @@
-(()=>{var e;function t(t){$(t).change((function(t){var n={};n[this.name]=this.checked?1:0,$.post(e,n)}))}$(document).ready((function(){1===$("#newsletter-api").length&&($.ajaxSetup({headers:{"X-CSRF-TOKEN":$('meta[name="csrf-token"]').attr("content")}}),e=$("#newsletter-api").val(),t($('input[name="mail_release"]')),t($('input[name="mail_newsletter"]')),t($('input[name="mail_vote"]')))}))})();
+(()=>{var e;function n(n){$(n).change((function(){var n={};n[this.name]=this.checked?1:0,$.post(e,n)}))}$(document).ready((function(){1===$("#newsletter-api").length&&(e=$("#newsletter-api").val(),n($('input[name="mail_release"]')),n($('input[name="mail_newsletter"]')),n($('input[name="mail_vote"]')))}))})();
+//# sourceMappingURL=profile.js.map

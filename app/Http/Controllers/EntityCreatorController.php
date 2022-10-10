@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Facades\CampaignLocalization;
+use App\Http\Requests\StoreCharacter;
 use App\Models\Campaign;
 use App\Models\MiscModel;
 use App\Models\EntityNote;
@@ -43,9 +44,7 @@ class EntityCreatorController extends Controller
     }
 
     /**
-     * @param $type
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @param string $type
      */
     public function form($type)
     {
@@ -75,15 +74,11 @@ class EntityCreatorController extends Controller
     }
 
     /**
-     * @param $type
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Http\JsonResponse|\Illuminate\View\View
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     * @throws \Psr\Container\ContainerExceptionInterface
-     * @throws \Psr\Container\NotFoundExceptionInterface
      */
     public function store(Request $request, $type)
     {
         // Make sure the user is allowed to create this kind of entity
+        $class = null;
         if ($type == 'posts') {
             $campaign = CampaignLocalization::getCampaign();
             $this->authorize('recover', $campaign);
@@ -107,8 +102,8 @@ class EntityCreatorController extends Controller
         }
 
         // Prepare the validator
-        /** @var $validator FormRequest */
         $requestValidator = '\App\Http\Requests\Store' . ucfirst(Str::singular($type));
+        /** @var StoreCharacter $validator */
         $validator = new $requestValidator();
 
         // Now loop on each name and create entities
@@ -124,6 +119,7 @@ class EntityCreatorController extends Controller
 
                 /** @var MiscModel $model */
                 $model = new $class();
+                /** @var MiscModel $new */
                 $new = $model->create($values);
                 $new->crudSaved();
                 $new->entity->crudSaved();

@@ -33,25 +33,25 @@ class MigratePermissions extends Command
         parent::__construct();
     }
 
-    protected $count = 0;
-    protected $types = [];
+    protected int $count = 0;
+    protected array $types = [];
 
     /** @var int[] deletable permissions */
-    protected $delete = [];
+    protected array $delete = [];
 
     /** @var array link the old action to the new int */
-    protected $map = [
-      'read' => CampaignPermission::ACTION_READ,
-      'edit' => CampaignPermission::ACTION_EDIT,
-      'add' => CampaignPermission::ACTION_ADD,
-      'delete' => CampaignPermission::ACTION_DELETE,
-      'entity-note' => CampaignPermission::ACTION_POSTS,
-      'entity-notes' => CampaignPermission::ACTION_POSTS,
-      'permission' => CampaignPermission::ACTION_PERMS,
-      'manage' => CampaignPermission::ACTION_MANAGE,
-      'dashboard' => CampaignPermission::ACTION_DASHBOARD,
-      'members' => CampaignPermission::ACTION_MEMBERS,
-      'gallery' => CampaignPermission::ACTION_GALLERY,
+    protected array $map = [
+        'read' => CampaignPermission::ACTION_READ,
+        'edit' => CampaignPermission::ACTION_EDIT,
+        'add' => CampaignPermission::ACTION_ADD,
+        'delete' => CampaignPermission::ACTION_DELETE,
+        'entity-note' => CampaignPermission::ACTION_POSTS,
+        'entity-notes' => CampaignPermission::ACTION_POSTS,
+        'permission' => CampaignPermission::ACTION_PERMS,
+        'manage' => CampaignPermission::ACTION_MANAGE,
+        'dashboard' => CampaignPermission::ACTION_DASHBOARD,
+        'members' => CampaignPermission::ACTION_MEMBERS,
+        'gallery' => CampaignPermission::ACTION_GALLERY,
     ];
 
     /**
@@ -120,7 +120,7 @@ class MigratePermissions extends Command
                         $this->count++;
                     } catch (\Exception $e) {
                         dump($model->id);
-                        throw $e;
+                        //throw $e;
                         $this->error('Error on #' . $model->id . '. Action(): ' . $model->action() . '. Key: ' . $model->key);
                     }
                 }
@@ -203,11 +203,11 @@ class MigratePermissions extends Command
     }
 
     /**
-     * @param $id
-     * @param $campaignID
-     * @param $action
-     * @param $miscID
-     * @param $entityType
+     * @param int $id
+     * @param int $campaignID
+     * @param int $action
+     * @param int|null $miscID
+     * @param int|null $entityType
      */
     protected function update(int $id, int $campaignID, int $action, int $miscID = null, int $entityType = null)
     {

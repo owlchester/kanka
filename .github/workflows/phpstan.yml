@@ -1,0 +1,53 @@
+name: "PHPstan"
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the "develop" branch
+  push:
+    branches: [ "develop" ]
+  pull_request:
+    branches: [ "develop" ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+
+  # This workflow contains a single job called "build"
+  build:
+    strategy:
+      matrix:
+        php: ["8.1"]
+        laravel: ["^9.0"]
+        
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+
+      - name: "Setup PHP"
+        uses: "shivammathur/setup-php@v2"
+        with:
+          php-version: "${{ matrix.php }}"
+          extensions: "dom, curl, libxml, mbstring, zip, fileinfo"
+          tools: "composer:v2"
+          coverage: "none"
+
+      - name: "Change Composer config minimum-stability"
+        run: "composer config minimum-stability stable"
+
+      - name: "Change Composer config prefer-stable"
+        run: "composer config prefer-stable false"
+
+      - name: "Require PHPStan dev version"
+        run: "composer require phpstan/phpstan:@dev --no-update --no-interaction --no-progress"
+
+      - name: "Install highest dependencies from composer.json"
+        run: "composer update --with='illuminate/contracts:${{ matrix.laravel }}' --no-interaction --no-progress"
+
+      - name: "Execute static analysis"
+        run: "composer run-script test:types"

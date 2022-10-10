@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\User;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 
@@ -15,7 +16,7 @@ use Illuminate\Support\Str;
  * @property integer $created_by
  * @property integer $impersonated_by
  * @property integer $action
- * @property string $changes
+ * @property string|array  $changes
  * @property Entity $entity
  * @property User $user
  * @property User $impersonator
@@ -23,10 +24,10 @@ use Illuminate\Support\Str;
  */
 class EntityLog extends Model
 {
-    const ACTION_CREATE = 1;
-    const ACTION_UPDATE = 2;
-    const ACTION_DELETE = 3;
-    const ACTION_RESTORE = 4;
+    public const ACTION_CREATE = 1;
+    public const ACTION_UPDATE = 2;
+    public const ACTION_DELETE = 3;
+    public const ACTION_RESTORE = 4;
 
     public $fillable = [
         'entity_id',
@@ -90,20 +91,20 @@ class EntityLog extends Model
     }
 
     /**
-     * @param $query
-     * @return mixed
+     * @param Builder $query
+     * @return Builder
      */
-    public function scopeRecent($query)
+    public function scopeRecent(Builder $query)
     {
         return $query->orderBy('created_at', 'DESC')->orderBy('id', 'DESC');
     }
 
     /**
-     * @param $query
-     * @param $action
-     * @return mixed
+     * @param Builder $query
+     * @param int $action
+     * @return Builder
      */
-    public function scopeAction($query, $action)
+    public function scopeAction(Builder $query, int $action)
     {
         return $query->where(['action' => $action]);
     }

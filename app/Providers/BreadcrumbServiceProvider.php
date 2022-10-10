@@ -1,11 +1,8 @@
 <?php
 
-
 namespace App\Providers;
 
-
 use App\Services\BreadcrumbService;
-use App\Services\MentionsService;
 use Illuminate\Support\ServiceProvider;
 
 class BreadcrumbServiceProvider extends ServiceProvider

@@ -57,7 +57,7 @@ class SubscriptionSource extends Model
      */
     public function plan(): string
     {
-        if ($this->tier === Patreon::PLEDGE_ELEMENTAL) {
+        if ($this->tier === Pledge::ELEMENTAL) {
             if ($this->period === 'yearly') {
                 return config('subscription.elemental.eur.yearly');
             }

@@ -1,3 +1,5 @@
+import Sortable from "sortablejs";
+
 $(document).ready(function() {
     initRpgSystems();
     registerModules();
@@ -37,13 +39,6 @@ function registerModules() {
         $(this).find('.loading').show();
         $(this).find('p').hide();
 
-
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-
         $.ajax({
             method: 'post',
             url: $(this).data('url'),
@@ -61,7 +56,7 @@ function registerModules() {
 
             $(this).find('.loading').hide();
             $(this).find('p').show();
-            $(this).removeClass('box-loading')
+            $(this).removeClass('box-loading');
         });
     });
 }
@@ -82,12 +77,6 @@ function registerRoles() {
     $('.public-permission').click(function (e) {
         e.preventDefault();
         $(this).addClass('loading');
-
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
 
         $.ajax({
             method: 'post',
@@ -124,24 +113,29 @@ function registerCodeMirror() {
 }
 
 function registerSidebarSetup() {
-    $('ul.sidebar-sortable').sortable({
-        connectWith: 'ul.sidebar-sortable',
-        placeholder: 'placeholder',
-        //items: 'li:not(.fixed)',
-        stop: function (e, ui) {
-            if (ui.item.first().hasClass('fixed') && ui.item.parents('.fixed').length > 0) {
-                $('ul.sidebar-sortable').sortable("cancel");
-            }
-        }
-    });
+    let nestedSortables = [].slice.call(document.querySelectorAll('.nested-sortable'));
 
-    $('form.sidebar-setup').on('submit', function (e) {
-        var sortedIDs = $('ul.sidebar-sortable').sortable( "toArray" );
-        //console.log('sortedIDs', sortedIDs);
+    // Loop through each nested sortable element
+    for (let i = 0; i < nestedSortables.length; i++) {
+        new Sortable(nestedSortables[i], {
+            group: 'nested',
+            animation: 150,
+            fallbackOnBody: true,
+            swapThreshold: 0.65,
 
-        return true;
-
-    });
+            // Attempt to drag a filtered element
+            onMove: function (/**Event*/evt, /**Event*/originalEvent) {
+                let self = evt.dragged;
+                let target = evt.related;
+                // Couldn't figure out how to do this in pure js, so falling back on jQuery
+                let targetParentIsFixed = $(target).parents('.fixed').length > 0;
+                if (self.classList.contains('fixed') && targetParentIsFixed) {
+                    return false;
+                }
+                return true;
+            },
+        });
+    }
 }
 
 function registerCampaignExport() {
@@ -158,12 +152,6 @@ function registerCampaignExport() {
         e.preventDefault();
         spinner.show();
         exportBtn.hide();
-
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
 
         $.ajax({
             url: exportBtn.data('url'),

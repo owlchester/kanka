@@ -4,7 +4,6 @@ namespace App\Policies;
 
 use App\User;
 use App\Models\Location;
-use Illuminate\Auth\Access\HandlesAuthorization;
 
 class LocationPolicy extends MiscPolicy
 {
@@ -13,10 +12,10 @@ class LocationPolicy extends MiscPolicy
     /**
      * Determine if a user can interact with the location's map
      * @param User $user
-     * @param Location $location
+     * @param Location|null $location
      * @return bool
      */
-    public function map(User $user, Location $location)
+    public function map(User $user, Location $location = null)
     {
         // New location? All good.
         if (empty($location)) {

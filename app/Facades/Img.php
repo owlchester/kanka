@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Facades;
-
 
 use App\Services\ImgService;
 use Illuminate\Support\Facades\Facade;

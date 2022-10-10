@@ -5,6 +5,7 @@ namespace App\Observers;
 use App\Models\Location;
 use App\Models\MiscModel;
 use App\Services\ImageService;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class LocationObserver extends MiscObserver
 {
@@ -21,13 +22,13 @@ class LocationObserver extends MiscObserver
         }
 
         // Handle map. Let's use a service for this.
-        ImageService::handle($model, $model->getTable(), false, 'map');
+        ImageService::handle($model, $model->getTable(), 0, 'map');
     }
 
     /**
      * @param Location $location
      */
-    public function deleting(MiscModel $location)
+    public function deleting(Location $location)
     {
         /**
          * We need to do this ourselves and not let mysql to it (set null), because the nested wants to delete
@@ -43,12 +44,13 @@ class LocationObserver extends MiscObserver
 
     /**
      * Delete the map when the entity is deleted
-     * @param MiscModel $model
+     * @param MiscModel|Location $model
      */
     public function deleted(MiscModel $model)
     {
         parent::deleted($model);
 
+        /** @var Location $model */
         if ($model->trashed()) {
             return;
         }

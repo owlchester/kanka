@@ -27,7 +27,6 @@ class EntityAbilityObserver
 
         // Position isn't empty, move the rest
         if ($entityAbility->position !== null) {
-            /** @var EntityAbility[] $abilities */
             $position = $entityAbility->position;
             $abilities = EntityAbility::select('entity_abilities.*')
                 ->with(['ability'])
@@ -38,6 +37,7 @@ class EntityAbilityObserver
                 ->where('position', '>=', $position)
                 ->defaultOrder()
                 ->get();
+            /** @var EntityAbility $next */
             foreach ($abilities as $next) {
                 // No access, skip
                 if (!$next->ability || !$entityAbility->ability) {

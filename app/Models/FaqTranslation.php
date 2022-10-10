@@ -6,6 +6,7 @@ use App\Models\Concerns\HasFilters;
 use App\Models\Concerns\Orderable;
 use App\Models\Concerns\Searchable;
 use App\Models\Concerns\Sortable;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 
@@ -33,7 +34,7 @@ class FaqTranslation extends Model
     ];
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function faq()
     {
@@ -41,21 +42,21 @@ class FaqTranslation extends Model
     }
 
     /**
-     * @param $query
+     * @param Builder $query
      * @param string $locale
-     * @return mixed
+     * @return Builder
      */
-    public function scopeLocale($query, $locale = 'en')
+    public function scopeLocale(Builder $query, string $locale = 'en'): Builder
     {
         return $query->where('locale', $locale);
     }
 
     /**
-     * @param $query
-     * @param string $locale
-     * @return mixed
+     * @param Builder $query
+     * @param int $faq
+     * @return Builder
      */
-    public function scopeFaqID($query, int $faq)
+    public function scopeFaqID(Builder $query, int $faq): Builder
     {
         return $query->where('faq_id', $faq);
     }

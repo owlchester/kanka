@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Providers;
-
 
 use App\Services\ImgService;
 use Illuminate\Support\ServiceProvider;

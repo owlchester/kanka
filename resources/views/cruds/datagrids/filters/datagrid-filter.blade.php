@@ -73,6 +73,8 @@ $clipboardFilters = $filterService->clipboardFilters();
                                     @include('cruds.datagrids.filters._sex')
                                 @elseif ($field === 'date')
                                     @include('cruds.datagrids.filters._date')
+                                @elseif ($field === 'element_role')
+                                    @include('cruds.datagrids.filters._element-role')
                                 @elseif ($field === 'date_range')
                                     @include('cruds.datagrids.filters._date-range')
                                 @else

@@ -13,7 +13,7 @@
 
         <div class="box box-solid">
             <div class="box-body">
-                @include('cruds._attributes')
+                @include('attribute_templates._attributes')
             </div>
         </div>
         @include('entities.components.notes')

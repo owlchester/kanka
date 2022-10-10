@@ -34,7 +34,7 @@ class CrudController extends Controller
     /** @var string The name of the route for the resource */
     protected string $route = '';
 
-    /** @var MiscModel|Model */
+    /** @var MiscModel|Model|string|null */
     protected $model = null;
 
     /** @var array */
@@ -71,10 +71,10 @@ class CrudController extends Controller
     /** @var bool If the auth check was already performed on this controller */
     protected bool $alreadyAuthChecked = false;
 
-    /** @var null */
+    /** @var string|null */
     protected $datagridActions = DefaultDatagridActions::class;
 
-    /** @var array|LengthAwarePaginator */
+    /** @var array|LengthAwarePaginator|\Illuminate\Contracts\Pagination\LengthAwarePaginator */
     protected $rows = [];
 
     /** @var bool Determine if the create/store procedure has a limit checking in place */
@@ -92,8 +92,10 @@ class CrudController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
-     * @return mixed
+     * @param Request $request
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\RedirectResponse
+     * @throws \Psr\Container\ContainerExceptionInterface
+     * @throws \Psr\Container\NotFoundExceptionInterface
      */
     public function index(Request $request)
     {
@@ -112,6 +114,7 @@ class CrudController extends Controller
             return redirect()->route('dashboard')->with(
                 'error_raw',
                 __('campaigns.settings.errors.module-disabled', [
+                    // @phpstan-ignore-next-line
                     'fix' => link_to_route('campaign.modules', __('crud.fix-this-issue'), ['#' . $this->module]),
                 ])
             );
@@ -206,6 +209,7 @@ class CrudController extends Controller
         $this->authorize('create', $this->model);
 
         if ($this->hasLimitCheck) {
+            // @phpstan-ignore-next-line
             if ($this->limitCheckReached()) {
                 $key = $this->view == 'menu_links' ? 'quick-links' : 'entities';
                 return view('cruds.forms.limit')
@@ -217,7 +221,7 @@ class CrudController extends Controller
         if (!isset($params['source'])) {
             $copyId = request()->input('copy');
             if (!empty($copyId)) {
-                $model = new $this->model;
+                $model = new $this->model();
                 $params['source'] = $model->findOrFail($copyId);
                 FormCopy::source($params['source']);
             } else {
@@ -240,13 +244,8 @@ class CrudController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param Request $request
-     * @param bool $redirectToCreated
-     * @return \Illuminate\Http\RedirectResponse
      */
-    public function crudStore(Request $request, $redirectToCreated = false)
+    public function crudStore(Request $request, bool $redirectToCreated = false)
     {
         $this->authorize('create', $this->model);
 
@@ -256,6 +255,7 @@ class CrudController extends Controller
         }
 
         if ($this->hasLimitCheck) {
+            // @phpstan-ignore-next-line
             if ($this->limitCheckReached()) {
                 return redirect()->back();
             }
@@ -263,7 +263,8 @@ class CrudController extends Controller
 
         try {
             /** @var MiscModel $model */
-            $model = new $this->model;
+            $model = new $this->model();
+            /** @var MiscModel $new */
             $new = $model->create($request->all());
 
             // Fire an event for the Entity Observer.
@@ -278,7 +279,7 @@ class CrudController extends Controller
                 'name' => link_to_route(
                     $this->view . '.show',
                     e($new->name),
-                    $new
+                    [$new->id]
                 )
             ]);
 
@@ -327,17 +328,17 @@ class CrudController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Character  $character
-     * @return \Illuminate\Http\Response
+     * @param Model|MiscModel $model
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function crudShow(Model $model)
+    public function crudShow(Model|MiscModel $model)
     {
         // Policies will always fail if they can't resolve the user.
         if (auth()->check()) {
             $this->authorize('view', $model);
         } else {
+            /** @var MiscModel $model */
             $this->authorizeForGuest(\App\Models\CampaignPermission::ACTION_READ, $model);
         }
         $name = $this->view;
@@ -350,8 +351,8 @@ class CrudController extends Controller
             }
             if (Permissions::user(auth()->user())->campaign(CampaignLocalization::getCampaign())->isAdmin()) {
                 dd('CCS16 - Error');
-                $model->save();
-                $model->load('entity');
+                //$model->save();
+                //$model->load('entity');
             } else {
                 abort(404);
             }
@@ -364,20 +365,21 @@ class CrudController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\MiscModel  $model
-     * @return \Illuminate\Http\Response
+     * @param Model|MiscModel $model
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws \Illuminate\Contracts\Container\BindingResolutionException
      */
-    public function crudEdit(Model $model)
+    public function crudEdit(Model|MiscModel $model)
     {
         $this->authorize('update', $model);
 
+        /** @var MiscModel $model */
         $campaign = CampaignLocalization::getCampaign();
         $editingUsers = null;
 
-        /** @var MultiEditingService $editingService */
         if ($campaign->hasEditingWarning() && $model->entity) {
+            /** @var MultiEditingService $editingService */
             $editingService = app()->make(MultiEditingService::class);
             $editingUsers = $editingService->entity($model->entity)->user(auth()->user())->users();
             // If no one is editing the entity, we are now editing it
@@ -403,13 +405,15 @@ class CrudController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Character  $character
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param Model|MiscModel $model
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws \Illuminate\Contracts\Container\BindingResolutionException
+     * @throws \Psr\Container\ContainerExceptionInterface
+     * @throws \Psr\Container\NotFoundExceptionInterface
      */
-    public function crudUpdate(Request $request, Model $model)
+    public function crudUpdate(Request $request, Model|MiscModel $model)
     {
         $this->authorize('update', $model);
 
@@ -419,6 +423,7 @@ class CrudController extends Controller
         }
 
         try {
+            /** @var MiscModel $model */
             $data = $this->prepareData($request, $model);
             $model->update($data);
 
@@ -434,7 +439,7 @@ class CrudController extends Controller
                 'name' => link_to_route(
                     $this->route . '.show',
                     e($model->name),
-                    $model
+                    [$model]
                 )
             ]);
 
@@ -442,7 +447,7 @@ class CrudController extends Controller
                 /** @var MultiEditingService $editingService */
                 $editingService = app()->make(MultiEditingService::class);
                 $editingService->entity($model->entity)
-                    ->user(auth()->user())
+                    ->user($request->user())
                     ->finish();
             }
 
@@ -481,13 +486,13 @@ class CrudController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Character  $character
-     * @return \Illuminate\Http\Response
+     * @param Model|MiscModel $model
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function crudDestroy(Model $model)
+    public function crudDestroy(Model|MiscModel $model)
     {
+        /** @var MiscModel $model */
         $this->authorize('delete', $model);
 
         $model->delete();
@@ -504,8 +509,8 @@ class CrudController extends Controller
     }
 
     /**
-     * @param $model
-     * @param $view
+     * @param MiscModel $model
+     * @param string $view
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -573,7 +578,7 @@ class CrudController extends Controller
 
     /**
      * Get a list of all attribute templates available for this entity type.
-     * @param $type
+     * @param string $type
      * @return array
      */
     protected function buildAttributeTemplates($type): array
@@ -587,7 +592,7 @@ class CrudController extends Controller
         foreach ($templates as $attr) {
             $attributeTemplates[] = $attr;
             $ids[] = $attr->id;
-            /** @var AttributeResource $child */
+            /** @var AttributeTemplate $child */
             foreach ($attr->ancestors()->with('entity')->get() as $child) {
                 if (!in_array($child->id, $ids)) {
                     $ids[] = $child->id;
@@ -601,18 +606,18 @@ class CrudController extends Controller
 
     /**
      * Set the datagrid sorter for sub views
-     * @param string $datagridFilter
+     * @param string $datagridSorter
      * @return $this
      */
     protected function datagridSorter(string $datagridSorter): self
     {
-        $this->datagridSorter = new $datagridSorter;
+        $this->datagridSorter = new $datagridSorter();
         $this->datagridSorter->request(request()->all());
         return $this;
     }
 
     /**
-     * @param $model
+     * @param MiscModel $model
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     protected function authCheck($model)
@@ -665,7 +670,7 @@ class CrudController extends Controller
 
     /**
      * Add a button to the top of a datagrid
-     * @param $route
+     * @param string $route
      * @param string $label
      * @param string $class
      * @return $this

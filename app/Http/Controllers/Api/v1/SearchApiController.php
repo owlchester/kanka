@@ -27,11 +27,11 @@ class SearchApiController extends ApiController
     /**
      * @param Request $request
      * @param Campaign $campaign
-     * @param $search
+     * @param string|null $search
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function index(Request $request, Campaign $campaign, $search)
+    public function index(Request $request, Campaign $campaign, string $search = null)
     {
         $this->authorize('access', $campaign);
 

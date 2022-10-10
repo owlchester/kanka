@@ -28,8 +28,9 @@ class PluginController extends Controller
     }
 
     /**
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\JsonResponse
+     * @throws \Psr\Container\ContainerExceptionInterface
+     * @throws \Psr\Container\NotFoundExceptionInterface
      */
     public function index()
     {
@@ -142,7 +143,7 @@ class PluginController extends Controller
 
         $response = \Illuminate\Support\Facades\Response::make($themes);
         $response->header('Content-Type', 'text/css');
-        $response->header('Expires', Carbon::now()->addMonth(1)->toDateTimeString());
+        $response->header('Expires', Carbon::now()->addMonth()->toDateTimeString());
         $month = 2592000;
         $response->header('Cache-Control', 'public, max_age=' . $month);
 
@@ -151,7 +152,7 @@ class PluginController extends Controller
 
     /**
      * @param Plugin $plugin
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function updateInfo(Plugin $plugin)
@@ -234,7 +235,7 @@ class PluginController extends Controller
         }
         catch (\Exception $e) {
             return redirect()->route('campaign_plugins.index')
-                ->withError('campaigns/plugins.import.errors.' . $e->getMessage(), ['plugin' => $plugin->name]);
+                ->withError(__('campaigns/plugins.import.errors.' . $e->getMessage(), ['plugin' => $plugin->name]));
         }
     }
 
@@ -259,7 +260,7 @@ class PluginController extends Controller
         $this->service->campaign($campaign);
         $count = 0;
         foreach ($models as $id) {
-            /** @var Plugin $plugin */
+            /** @var Plugin|null $plugin */
             $plugin = Plugin::find($id);
             if (empty($plugin)) {
                 continue;

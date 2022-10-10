@@ -6,14 +6,11 @@ use Illuminate\Support\Str;
 
 class DateRenderer
 {
-    /**
-     * @var string
-     */
-    protected $format = 'y-m-d';
+    protected string $format = 'y-m-d';
 
-    protected $delimiter = '-';
+    protected string $delimiter = '-';
 
-    public function render($date): string
+    public function render(string $date = null): string
     {
         if (auth()->check()) {
             $this->format = strtolower(auth()->user()->date_format);
@@ -27,6 +24,7 @@ class DateRenderer
 
         $this->delimiter = $this->format[1];
 
+        // @phpstan-ignore-next-line
         $to = explode($this->delimiter, $this->format);
 
         try {
@@ -40,11 +38,12 @@ class DateRenderer
     }
 
     /**
-     * @param $date
-     * @param $segment
+     * @param array $date
+     * @param string $segment
+     * @param bool $addDelimiter
      * @return string
      */
-    protected function addSegment($date, $segment, $addDelimiter = true)
+    protected function addSegment(array $date, string $segment, bool $addDelimiter = true)
     {
         $value = null;
         if ($segment == 'y') {

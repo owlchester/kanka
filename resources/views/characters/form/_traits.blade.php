@@ -4,7 +4,7 @@ $role = \App\Facades\CampaignCache::adminRole();
 <div class="row">
     <div class="col-md-6">
         <label>{{ __('characters.sections.appearance') }}</label>
-        <div class="character-appearance">
+        <div class="character-appearance sortable-elements">
             @foreach ((isset($model) ? $model->characterTraits()->appearance()->orderBy('default_order', 'ASC')->get() : FormCopy::characterAppearance()) as $trait)
                 <div class="form-group parent-delete-row">
                     <div class="row">
@@ -29,7 +29,7 @@ $role = \App\Facades\CampaignCache::adminRole();
                                     'spellcheck' => 'true'
                                 ]) !!}
                                 <span class="input-group-btn">
-                                    <span class="personality-delete btn btn-danger" title="{{ __('crud.remove') }}">
+                                    <span class="dynamic-row-delete btn btn-danger" title="{{ __('crud.remove') }}">
                                         <i class="fa-solid fa-trash"></i>
                                     </span>
                                 </span>
@@ -39,7 +39,7 @@ $role = \App\Facades\CampaignCache::adminRole();
                 </div>
             @endforeach
         </div>
-        <a class="btn btn-default btn-block" id="add_appearance" href="#" title="{{ __('characters.actions.add_appearance') }}">
+        <a class="btn btn-default btn-block dynamic-row-add" data-template="template_appearance" data-target="character-appearance" href="#" title="{{ __('characters.actions.add_appearance') }}">
             <i class="fa-solid fa-plus"></i> {{ __('characters.actions.add_appearance') }}
         </a>
 
@@ -59,7 +59,7 @@ $role = \App\Facades\CampaignCache::adminRole();
     <div class="col-md-6">
         <label>{{ __('characters.sections.personality') }}</label>
         @if (!isset($model) || auth()->user()->can('personality', $model))
-            <div class="character-personality">
+            <div class="character-personality sortable-elements">
                 @foreach ((isset($model) ? $model->characterTraits()->personality()->orderBy('default_order', 'ASC')->get() : FormCopy::characterPersonality()) as $trait)
                     <div class="parent-delete-row mb-5">
                         <div class="form-group">
@@ -73,7 +73,7 @@ $role = \App\Facades\CampaignCache::adminRole();
                                     'spellcheck' => 'true'
                                 ]) !!}
                                 <span class="input-group-btn">
-                                <span class="personality-delete btn btn-danger" title="{{ __('crud.remove') }}">
+                                <span class="dynamic-row-delete btn btn-danger" title="{{ __('crud.remove') }}">
                                     <i class="fa-solid fa-trash"></i>
                                 </span>
                             </span>
@@ -90,7 +90,7 @@ $role = \App\Facades\CampaignCache::adminRole();
                     </div>
                 @endforeach
             </div>
-            <a class="btn btn-default btn-block" id="add_personality" href="#" title="{{ __('characters.actions.add_personality') }}">
+            <a class="btn btn-default btn-block dynamic-row-add" data-template="template_personality" data-target="character-personality" href="#" title="{{ __('characters.actions.add_personality') }}">
                 <i class="fa-solid fa-plus"></i> {{ __('characters.actions.add_personality') }}
             </a>
 
@@ -155,7 +155,7 @@ $role = \App\Facades\CampaignCache::adminRole();
                                 'spellcheck' => 'true'
                             ]) !!}
                             <span class="input-group-btn">
-                                    <span class="personality-delete btn btn-danger" title="{{ __('crud.remove') }}">
+                                    <span class="dynamic-row-delete btn btn-danger" title="{{ __('crud.remove') }}">
                                         <i class="fa-solid fa-trash"></i>
                                     </span>
                                 </span>
@@ -177,7 +177,7 @@ $role = \App\Facades\CampaignCache::adminRole();
                             'spellcheck' => 'true'
                         ]) !!}
                         <span class="input-group-btn">
-                                    <span class="personality-delete btn btn-danger" title="{{ __('crud.remove') }}">
+                                    <span class="dynamic-row-delete btn btn-danger" title="{{ __('crud.remove') }}">
                                         <i class="fa-solid fa-trash"></i>
                                     </span>
                                 </span>

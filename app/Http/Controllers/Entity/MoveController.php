@@ -49,7 +49,7 @@ class MoveController extends Controller
     }
 
     /**
-     * @param TransformEntityRequest $request
+     * @param MoveEntityRequest $request
      * @param Entity $entity
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
@@ -67,8 +67,7 @@ class MoveController extends Controller
             return redirect()
                 ->route($entity->pluralType() . '.index')
                 ->with('success', __('entities/move.success' . ($copied ? '_copy' : null), ['name' => $entity->name]));
-        }
-        catch (TranslatableException $ex) {
+        } catch (TranslatableException $ex) {
             return redirect()
                 ->route($entity->pluralType() . '.show', $entity->entity_id)
                 ->with('error', __($ex->getMessage(), ['name' => $entity->name]));

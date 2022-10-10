@@ -4,6 +4,16 @@ namespace App\Models;
 
 use App\User;
 
+/**
+ * @property int $id
+ * @property int $conversation_id
+ * @property int $created_by
+ * @property int|null $character_id
+ * @property Character|null $character
+ * @property int|null $user_id
+ * @property User|null $user
+ *
+ */
 class ConversationParticipant extends MiscModel
 {
     /**
@@ -11,7 +21,7 @@ class ConversationParticipant extends MiscModel
      */
     protected $loadedEntity = false;
 
-    //
+    /** @var string[]  */
     protected $fillable = [
         'conversation_id',
         'created_by',
@@ -70,7 +80,7 @@ class ConversationParticipant extends MiscModel
             return link_to_route(
                 'characters.show',
                 $this->character->name,
-                $this->character
+                [$this->character]
             );
         } else {
             return trans('conversations.messages.author_unknown');
@@ -88,7 +98,7 @@ class ConversationParticipant extends MiscModel
     }
 
     /**
-     * @return string
+     * @return int|null
      */
     public function target()
     {
@@ -101,9 +111,6 @@ class ConversationParticipant extends MiscModel
         return !empty($this->user_id);
     }
 
-    /**
-     * @return mixed
-     */
     public function id()
     {
         $entity = $this->loadEntity();

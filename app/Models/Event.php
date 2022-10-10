@@ -14,11 +14,11 @@ use Illuminate\Database\Eloquent\Builder;
  * Class Event
  * @package App\Models
  *
- * @property int $event_id
- * @property int $location_id
+ * @property int|null $event_id
+ * @property int|null $location_id
  * @property string $date
- * @property Location $location
- * @property Event $event
+ * @property Location|null $location
+ * @property Event|null $event
  * @property Event[] $events
  * @property Event[] $descendants
  */
@@ -32,9 +32,7 @@ class Event extends MiscModel
         Acl
     ;
 
-    /**
-     * @var array
-     */
+    /** @var string[]  */
     protected $fillable = [
         'campaign_id',
         'name',
@@ -66,7 +64,7 @@ class Event extends MiscModel
 
     /**
      * Nullable values (foreign keys)
-     * @var array
+     * @var string[]
      */
     public $nullableForeignKeys = [
         'location_id',
@@ -75,10 +73,10 @@ class Event extends MiscModel
 
     /**
      * Performance with for datagrids
-     * @param $query
-     * @return mixed
+     * @param Builder $query
+     * @return Builder
      */
-    public function scopePreparedWith(Builder $query)
+    public function scopePreparedWith(Builder $query): Builder
     {
         return $query->with([
             'entity' => function ($sub) {
@@ -171,9 +169,10 @@ class Event extends MiscModel
     {
         return 'event_id';
     }
+
     /**
      * Specify parent id attribute mutator
-     * @param $value
+     * @param int $value
      */
     public function setEventIdAttribute($value)
     {

@@ -7,6 +7,7 @@ use App\Models\Calendar;
 use App\Models\Campaign;
 use App\Models\Entity;
 use App\Models\EntityAsset;
+use App\Models\MiscModel;
 use Illuminate\Support\Str;
 
 class SearchService
@@ -58,10 +59,10 @@ class SearchService
 
     /**
      * The search term as requested by the user
-     * @param $term
+     * @param string|null $term
      * @return $this
      */
-    public function term($term): self
+    public function term(string $term = null): self
     {
         $this->term = $term;
         return $this;
@@ -69,10 +70,10 @@ class SearchService
 
     /**
      * The search entity type as requested by the user
-     * @param $type
+     * @param int|null $type
      * @return $this
      */
-    public function type($type): self
+    public function type(int $type = null): self
     {
         if (!empty($type)) {
             $typeID = config('entities.ids.' . $type);
@@ -112,7 +113,7 @@ class SearchService
     }
 
     /**
-     * @param $types
+     * @param array|string|null $types
      * @return $this
      */
     public function exclude($types): self
@@ -139,7 +140,7 @@ class SearchService
     }
 
     /**
-     * @param $types
+     * @param array|string $types
      * @return $this
      */
     public function only($types): self
@@ -224,15 +225,18 @@ class SearchService
             ->limit($this->limit);
 
         $searchResults = [];
+        /** @var Entity $model */
         foreach ($query->get() as $model) {
+            /** @var MiscModel|null $child */
             // Force having a child for "ghost" entities.
-            if (empty($model->child)) {
+            $child = $model->child;
+            if ($child === null) {
                 continue;
             }
             $img = '';
-            if (!empty($model->child->image)) {
+            if (!empty($child->image)) {
                 $img = '<span class="entity-image" style="background-image: url(\''
-                    . $model->child->getImageUrl(40) . '\');"></span> ';
+                    . $child->thumbnail() . '\');"></span> ';
             }
 
             $parsedName = str_replace('&#039;', '\'', e($model->name));
@@ -252,13 +256,13 @@ class SearchService
                 'type' => __('entities.' . $model->type()),
                 'model_type' => $model->type(),
                 'url' => $model->url(),
-                'alias_id' => $model->alias_id,
+                'alias_id' => $model->alias_id, // @phpstan-ignore-line
                 'advanced_mention' => Mentions::advancedMentionHelper($model->name),
             ];
         }
         if (!$this->new) {
             return $searchResults;
-        } elseif (empty($searchResults) && $this->new) {
+        } elseif (empty($searchResults)) {
             return $this->newOptions();
         }
 

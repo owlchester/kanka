@@ -1,20 +1,17 @@
 <?php
 
-
 namespace App\Http\Controllers\Settings;
-
 
 use App\Facades\DataLayer;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Settings\UserAltSubscribeStore;
 use App\Http\Requests\Settings\UserSubscribeStore;
-use App\Models\Patreon;
+use App\Models\Pledge;
 use App\Services\SubscriptionService;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Log;
 use Laravel\Cashier\Exceptions\IncompletePayment;
 
 class SubscriptionController extends Controller
@@ -88,7 +85,7 @@ class SubscriptionController extends Controller
             $request->user()->createAsStripeCustomer();
         }
         $intent = $request->user()->createSetupIntent();
-        $cancel = $tier == Patreon::PLEDGE_KOBOLD;
+        $cancel = $tier == Pledge::KOBOLD;
         $user = $request->user();
         $isDowngrading = $this->subscription->downgrading();
 
@@ -106,9 +103,6 @@ class SubscriptionController extends Controller
 
     /**
      * Subscribe
-     *
-     * @param UserSubscribeStore $request
-     * @return \Illuminate\Http\JsonResponse
      */
     public function subscribe(UserSubscribeStore $request)
     {
@@ -136,10 +130,10 @@ class SubscriptionController extends Controller
             session()->put('subscription_callback', $request->get('payment_id'));
             return redirect()->route(
                 'cashier.payment',
+                // @phpstan-ignore-next-line
                 [$exception->payment->id, 'redirect' => route('settings.subscription.callback')]
             );
-        }
-        catch (\Exception $e) {
+        } catch (\Exception $e) {
             // Error? json
             return response()->json([
                 'error' => true,
@@ -149,7 +143,7 @@ class SubscriptionController extends Controller
     }
 
     /**
-     * @param Request $request
+     * @param UserAltSubscribeStore $request
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      * @throws \Stripe\Exception\ApiErrorException
      */
@@ -161,6 +155,7 @@ class SubscriptionController extends Controller
             ->method($request->get('method'))
             ->prepare($request);
 
+        // @phpstan-ignore-next-line
         return redirect($source->redirect->url);
     }
 

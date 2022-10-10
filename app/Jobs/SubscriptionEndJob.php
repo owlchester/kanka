@@ -1,9 +1,8 @@
 <?php
 
-
 namespace App\Jobs;
 
-
+use App\Models\Pledge;
 use App\Notifications\Header;
 use App\Services\DiscordService;
 use App\User;
@@ -25,7 +24,7 @@ class SubscriptionEndJob implements ShouldQueue
      */
     public $tries = 1;
 
-    /** @var User  */
+    /** @var int  */
     public $userId;
 
     /** @var bool */
@@ -43,29 +42,30 @@ class SubscriptionEndJob implements ShouldQueue
      */
     public function handle()
     {
-        $this->user = User::find($this->userId);
-        if (empty($this->user) || $this->userId == 27078) {
+        /** @var User|null $user */
+        $user = User::find($this->userId);
+        if (empty($user) || $this->userId == 27078) {
             // User deleted their account already.
             return;
         }
 
         // Cleanup the user
-        $this->user->patreon_pledge = '';
-        $this->user->save();
+        $user->pledge = null;
+        $user->save();
 
         // Cleanup the campaign boosts
         $boostService = app()->make('App\Services\CampaignBoostService');
-        foreach ($this->user->boosts()->with('campaign')->get() as $boost) {
+        foreach ($user->boosts()->with('campaign')->get() as $boost) {
             $boostService->campaign($boost->campaign)->unboost($boost);
         }
 
-        // Cleanup the patreon role
+        // Cleanup the subscriber role
         /** @var Role $role */
-        $role = Role::where('name', 'patreon')->first();
-        $this->user->roles()->detach($role->id);
+        $role = Role::where('name', Pledge::ROLE)->first();
+        $user->roles()->detach($role->id);
 
         // Notify the user in app about the change
-        $this->user->notify(
+        $user->notify(
             new Header(
                 'subscriptions.' . ($this->cancelled ? 'failed' : 'ended'),
                 'fa-solid fa-credit-card',
@@ -76,7 +76,7 @@ class SubscriptionEndJob implements ShouldQueue
         // Lastly, cleanup any discord stuff
         /** @var DiscordService $discord */
         $discord = app()->make('App\Services\DiscordService');
-        $discord->user($this->user)->removeRoles();
+        $discord->user($user)->removeRoles();
 
     }
 }

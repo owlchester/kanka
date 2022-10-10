@@ -43,7 +43,7 @@
                     <i class="fa-solid fa-bullseye fa-2x"></i>
                 </div>
 
-                <img class="focus-image" src="{{ $model->getImageUrl(0) }}" alt="img" />
+                <img class="focus-image" src="{{ $model->thumbnail(0) }}" alt="img" />
             </div>
 
             {!! Form::open([

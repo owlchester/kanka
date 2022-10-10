@@ -13,7 +13,7 @@ use App\Models\Visibility;
  *
  * @package App\Traits
  *
- * @property string $visibility_id
+ * @property string|int|null $visibility_id
  */
 trait VisibilityIDTrait
 {

@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Services;
-
 
 use App\Models\Campaign;
 use App\Models\CampaignFollower;
@@ -38,7 +36,7 @@ class CampaignFollowService
      */
     public function remove(Campaign $campaign, User $user): bool
     {
-        /** @var CampaignFollower $follow */
+        /** @var CampaignFollower|null $follow */
         $follow = CampaignFollower::where([
             'campaign_id' => $campaign->id,
             'user_id' => $user->id
@@ -47,7 +45,8 @@ class CampaignFollowService
         if (empty($follow)) {
             return false;
         }
-        return $follow->delete();
+        $follow->delete();
+        return true;
     }
 
     /**

@@ -111,7 +111,7 @@ trait CampaignLimit
     public function canHaveMoreEntities(): bool
     {
         return false;
-        $limit = $this->entityLimit();
+        /*$limit = $this->entityLimit();
         if (empty($limit)) {
             return true;
         }
@@ -120,7 +120,7 @@ trait CampaignLimit
         return Entity::allCampaigns()
             ->where('campaign_id', $this->id)
             ->whereNotIn('type_id', [config('entities.ids.tag')])
-            ->count() <= $limit;
+            ->count() <= $limit;*/
     }
 
     /**

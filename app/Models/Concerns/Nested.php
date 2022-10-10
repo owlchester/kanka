@@ -4,6 +4,7 @@
 namespace App\Models\Concerns;
 
 use Exception;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection as EloquentCollection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -25,13 +26,18 @@ use LogicException;
  * We don't want descendants to be deleted when a parent is deleted, simply detached. We have a bug somewhere else
  * breaking trees (might be due to permissions when editing children) but to simplify our first step is to make
  * sure children don't get deleted on the cleanup process.
+ *
+ * @property int $_lft
+ * @property int $_rgt
+ * @property \Illuminate\Database\Eloquent\Collection $descendants
+ * @property \Illuminate\Database\Eloquent\Collection $children
  */
 trait Nested
 {
     /**
      * Pending operation.
      *
-     * @var array
+     * @var mixed
      */
     protected $pending;
 
@@ -40,7 +46,7 @@ trait Nested
      *
      * @var bool
      */
-    protected $moved = false;
+    protected bool $moved = false;
 
     /**
      * @var \Carbon\Carbon
@@ -52,7 +58,7 @@ trait Nested
      *
      * @var int
      */
-    public static $actionsPerformed = 0;
+    public static int $actionsPerformed = 0;
 
     /**
      * Sign on model events.
@@ -192,6 +198,7 @@ trait Nested
      */
     protected function getLowerBound()
     {
+        // @phpstan-ignore-next-line
         return (int)$this->newNestedSetQuery()->max($this->getRgtName());
     }
 
@@ -286,10 +293,11 @@ trait Nested
     /**
      * Get query for descendants of the node.
      *
-     * @return DescendantsRelation
+     * @return DescendantsRelation|Builder
      */
     public function descendants()
     {
+        // @phpstan-ignore-next-line
         return new DescendantsRelation($this->newQuery(), $this);
     }
 
@@ -375,10 +383,11 @@ trait Nested
     /**
      * Get query ancestors of the node.
      *
-     * @return  AncestorsRelation
+     * @return  AncestorsRelation|Builder
      */
     public function ancestors()
     {
+        // @phpstan-ignore-next-line
         return new AncestorsRelation($this->newQuery(), $this);
     }
 
@@ -441,6 +450,7 @@ trait Nested
      */
     public function appendToNode(self $parent)
     {
+        // @phpstan-ignore-next-line
         return $this->appendOrPrependTo($parent);
     }
 
@@ -453,6 +463,7 @@ trait Nested
      */
     public function prependToNode(self $parent)
     {
+        // @phpstan-ignore-next-line
         return $this->appendOrPrependTo($parent, true);
     }
 
@@ -462,7 +473,7 @@ trait Nested
      *
      * @return self
      */
-    public function appendOrPrependTo(self $parent, $prepend = false)
+    public function appendOrPrependTo(self $parent, bool $prepend = false)
     {
         $this->assertNodeExists($parent)
             ->assertNotDescendant($parent)
@@ -478,7 +489,7 @@ trait Nested
      *
      * @param self $node
      *
-     * @return $this
+     * @return self
      */
     public function afterNode(self $node)
     {
@@ -490,7 +501,7 @@ trait Nested
      *
      * @param self $node
      *
-     * @return $this
+     * @return self
      */
     public function beforeNode(self $node)
     {
@@ -548,13 +559,13 @@ trait Nested
     }
 
     /**
-     * @param $lft
-     * @param $rgt
-     * @param $parentId
+     * @param int $lft
+     * @param int $rgt
+     * @param int $parentId
      *
      * @return $this
      */
-    public function rawNode($lft, $rgt, $parentId)
+    public function rawNode(int $lft, int $rgt, int $parentId)
     {
         $this->setLft($lft)->setRgt($rgt)->setParentId($parentId);
 
@@ -570,6 +581,7 @@ trait Nested
      */
     public function up($amount = 1)
     {
+        // @phpstan-ignore-next-line
         $sibling = $this->prevSiblings()
             ->defaultOrder('desc')
             ->skip($amount - 1)
@@ -589,6 +601,7 @@ trait Nested
      */
     public function down($amount = 1)
     {
+        // @phpstan-ignore-next-line
         $sibling = $this->nextSiblings()
             ->defaultOrder()
             ->skip($amount - 1)
@@ -623,8 +636,6 @@ trait Nested
      * @since 2.0
      *
      * @param int $position
-     *
-     * @return int
      */
     protected function moveNode($position)
     {
@@ -686,10 +697,11 @@ trait Nested
     /**
      * Restore the descendants.
      *
-     * @param $deletedAt
+     * @param string $deletedAt
      */
-    protected function restoreDescendants($deletedAt)
+    protected function restoreDescendants(string $deletedAt)
     {
+        // @phpstan-ignore-next-line
         $this->descendants()
             ->where($this->getDeletedAtColumn(), '>=', $deletedAt)
             ->restore();
@@ -722,11 +734,10 @@ trait Nested
     }
 
     /**
-     * @param string $table
-     *
-     * @return QueryBuilder
+     * @param string|null $table
+     * @return mixed
      */
-    public function newScopedQuery($table = null)
+    public function newScopedQuery(string $table = null)
     {
         return $this->applyNestedSetScope($this->newQuery(), $table);
     }
@@ -739,10 +750,12 @@ trait Nested
      */
     public function applyNestedSetScope($query, $table = null)
     {
+        // @phpstan-ignore-next-line
         if ( ! $scoped = $this->getScopeAttributes()) {
             return $query;
         }
 
+        // @phpstan-ignore-next-line
         if ( ! $table) {
             $table = $this->getTable();
         }
@@ -756,7 +769,7 @@ trait Nested
     }
 
     /**
-     * @return array
+     * @return null
      */
     protected function getScopeAttributes()
     {
@@ -833,7 +846,7 @@ trait Nested
     /**
      * Get number of descendant nodes.
      *
-     * @return int
+     * @return int|float
      */
     public function getDescendantCount()
     {
@@ -867,6 +880,7 @@ trait Nested
      */
     public function isRoot()
     {
+        // @phpstan-ignore-next-line
         return is_null($this->getParentId());
     }
 
@@ -945,7 +959,7 @@ trait Nested
      *
      * @param array $columns
      *
-     * @return self
+     * @return Model|null
      */
     public function getNextNode(array $columns = [ '*' ])
     {
@@ -959,7 +973,7 @@ trait Nested
      *
      * @param array $columns
      *
-     * @return self
+     * @return Model|null
      */
     public function getPrevNode(array $columns = [ '*' ])
     {
@@ -969,7 +983,7 @@ trait Nested
     /**
      * @param array $columns
      *
-     * @return Collection
+     * @return \Illuminate\Database\Eloquent\Collection
      */
     public function getAncestors(array $columns = [ '*' ])
     {
@@ -979,7 +993,7 @@ trait Nested
     /**
      * @param array $columns
      *
-     * @return Collection|self[]
+     * @return \Illuminate\Database\Eloquent\Collection
      */
     public function getDescendants(array $columns = [ '*' ])
     {
@@ -989,7 +1003,7 @@ trait Nested
     /**
      * @param array $columns
      *
-     * @return Collection|self[]
+     * @return \Illuminate\Database\Eloquent\Collection
      */
     public function getSiblings(array $columns = [ '*' ])
     {
@@ -998,8 +1012,6 @@ trait Nested
 
     /**
      * @param array $columns
-     *
-     * @return Collection|self[]
      */
     public function getNextSiblings(array $columns = [ '*' ])
     {
@@ -1008,8 +1020,6 @@ trait Nested
 
     /**
      * @param array $columns
-     *
-     * @return Collection|self[]
      */
     public function getPrevSiblings(array $columns = [ '*' ])
     {
@@ -1018,8 +1028,7 @@ trait Nested
 
     /**
      * @param array $columns
-     *
-     * @return self
+     * @return Model|QueryBuilder|object|null
      */
     public function getNextSibling(array $columns = [ '*' ])
     {
@@ -1028,8 +1037,7 @@ trait Nested
 
     /**
      * @param array $columns
-     *
-     * @return self
+     * @return Model|QueryBuilder|object|null
      */
     public function getPrevSibling(array $columns = [ '*' ])
     {
@@ -1152,11 +1160,11 @@ trait Nested
     }
 
     /**
-     * @param $value
+     * @param int $value
      *
      * @return $this
      */
-    public function setLft($value)
+    public function setLft(int $value)
     {
         $this->attributes[$this->getLftName()] = $value;
 
@@ -1164,11 +1172,11 @@ trait Nested
     }
 
     /**
-     * @param $value
+     * @param int $value
      *
      * @return $this
      */
-    public function setRgt($value)
+    public function setRgt(int $value)
     {
         $this->attributes[$this->getRgtName()] = $value;
 
@@ -1176,11 +1184,11 @@ trait Nested
     }
 
     /**
-     * @param $value
+     * @param int|null $value
      *
      * @return $this
      */
-    public function setParentId($value)
+    public function setParentId(int|null $value)
     {
         $this->attributes[$this->getParentIdName()] = $value;
 
@@ -1231,7 +1239,8 @@ trait Nested
      */
     protected function assertSameScope(self $node)
     {
-        if ( ! $scoped = $this->getScopeAttributes()) {
+        return;
+        /*if ( ! $scoped = $this->getScopeAttributes()) {
             return;
         }
 
@@ -1239,7 +1248,7 @@ trait Nested
             if ($this->getAttribute($attr) != $node->getAttribute($attr)) {
                 throw new LogicException('Nodes must be in the same scope');
             }
-        }
+        }*/
     }
 
     /**

@@ -38,8 +38,8 @@ class ImageController extends Controller
     {
         $this->authorize('update', $entity->child);
 
-        $entity->focus_x = $request->post('focus_x');
-        $entity->focus_y = $request->post('focus_y');
+        $entity->focus_x = (int) $request->post('focus_x');
+        $entity->focus_y = (int) $request->post('focus_y');
         $entity->save();
 
 

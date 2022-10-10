@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\CommunityVote;
 use App\Services\CommunityVoteService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class CommunityVoteController extends Controller
 {
@@ -39,28 +38,7 @@ class CommunityVoteController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * @param $id
+     * @param int $id
      * @param string $slug
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException
@@ -78,40 +56,6 @@ class CommunityVoteController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\ $post
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($post)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\  $post
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $post)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\ $post
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($post)
-    {
-        //
-    }
-
     public function vote(Request $request, CommunityVote $communityVote)
     {
         $this->middleware(['auth', 'identity']);
@@ -119,7 +63,7 @@ class CommunityVoteController extends Controller
 
         $data = $this->service->cast(
             $communityVote,
-            Auth::user(),
+            $request->user(),
             $request->post('vote', null)
         );
 
@@ -127,6 +71,5 @@ class CommunityVoteController extends Controller
             'success' => true,
             'data' => $data
         ]);
-
     }
 }

@@ -15,9 +15,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class EntityTag extends Model
 {
-    /**
-     * @var array
-     */
+    /** @var string[]  */
     protected $fillable = [
         'entity_id',
         'tag_id',

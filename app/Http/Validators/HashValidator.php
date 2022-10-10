@@ -1,15 +1,15 @@
-<?php namespace App\Http\Validators;
+<?php
+namespace App\Http\Validators;
 
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use \Illuminate\Validation\Validator;
 
 class HashValidator extends Validator
 {
     /**
-     * @param $attribute
-     * @param $value
-     * @param $parameters
+     * @param string $attribute
+     * @param string $value
+     * @param array $parameters
      * @return mixed
      */
     public function validateHash($attribute, $value, $parameters)

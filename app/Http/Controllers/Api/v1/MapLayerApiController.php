@@ -12,7 +12,7 @@ class MapLayerApiController extends ApiController
 {
     /**
      * @param Campaign $campaign
-     * @return Collection
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function index(Campaign $campaign, Map $map)
@@ -35,8 +35,9 @@ class MapLayerApiController extends ApiController
     }
 
     /**
-     * @param StoreMapLayer $remapLayer
+     * @param Request $request
      * @param Campaign $campaign
+     * @param Map $map
      * @return Resource
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -49,10 +50,12 @@ class MapLayerApiController extends ApiController
     }
 
     /**
-     * @param StoreMapLayer $remapLayer
+     * @param Request $request
      * @param Campaign $campaign
+     * @param Map $map
      * @param MapLayer $mapLayer
      * @return Resource
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function update(
         Request $request,
@@ -68,8 +71,9 @@ class MapLayerApiController extends ApiController
     }
 
     /**
-     * @param Request
+     * @param \Illuminate\Http\Request $request
      * @param Campaign $campaign
+     * @param Map $map
      * @param MapLayer $mapLayer
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException

@@ -22,7 +22,7 @@ class CampaignPolicy
      *
      * @param  User  $user
      * @param  Campaign  $campaign
-     * @return mixed
+     * @return bool
      */
     public function view(User $user, Campaign $campaign): bool
     {
@@ -48,7 +48,7 @@ class CampaignPolicy
      * Determine whether the user can create campaigns.
      *
      * @param  User  $user
-     * @return mixed
+     * @return bool
      */
     public function create(User $user): bool
     {
@@ -60,7 +60,7 @@ class CampaignPolicy
      *
      * @param  User  $user
      * @param  Campaign  $campaign
-     * @return mixed
+     * @return bool
      */
     public function update(User $user, Campaign $campaign): bool
     {
@@ -75,7 +75,7 @@ class CampaignPolicy
      *
      * @param  User  $user
      * @param  Campaign  $campaign
-     * @return mixed
+     * @return bool
      */
     public function roles(User $user, Campaign $campaign): bool
     {
@@ -90,7 +90,7 @@ class CampaignPolicy
      *
      * @param  User  $user
      * @param  Campaign  $campaign
-     * @return mixed
+     * @return bool
      */
     public function delete(User $user, Campaign $campaign): bool
     {
@@ -190,7 +190,7 @@ class CampaignPolicy
      * @param Campaign $campaign
      * @return bool
      */
-    public function follow(User $user, Campaign $campaign)
+    public function follow(?User $user, Campaign $campaign)
     {
         if (empty($user)) {
             return false;
@@ -283,13 +283,12 @@ class CampaignPolicy
     }
 
     /**
-     * @param string $action
+     * @param int $action
      * @param User $user
-     * @param Entity|null $entity
      * @param Campaign|null $campaign
      * @return bool
      */
-    protected function checkPermission($action, User $user, Campaign $campaign = null)
+    protected function checkPermission(int $action, User $user, Campaign $campaign = null)
     {
         return EntityPermission::hasPermission(0, $action, $user, null, $campaign);
     }

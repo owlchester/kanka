@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Models\Family;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class FamilyResource extends EntityResource
@@ -14,10 +15,12 @@ class FamilyResource extends EntityResource
      */
     public function toArray($request)
     {
+        /** @var Family $model */
+        $model = $this->resource;
         return $this->entity([
-            'type' => $this->type,
-            'family_id' => $this->family_id,
-            'members' => $this->members()->pluck('character_id')->toArray()
+            'type' => $model->type,
+            'family_id' => $model->family_id,
+            'members' => $model->members()->pluck('character_id')->toArray()
         ]);
     }
 }

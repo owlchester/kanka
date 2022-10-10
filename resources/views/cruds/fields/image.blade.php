@@ -21,10 +21,9 @@ if (isset($size) && $size == 'map') {
             {!! Form::file('image', array('class' => 'image form-control')) !!}
         </div>
         <div class="form-group">
-            {!! Form::text('image_url', null, ['placeholder' => __('crud.placeholders.image_url'), 'class' => 'form-control']) !!}
-
+        {!! Form::text('image_url', ((!empty($source) && $source->image) ? $source->getOriginalImageUrl() : ''), ['placeholder' => __('crud.placeholders.image_url'), 'class' => 'form-control']) !!}
             <p class="help-block">
-                {{ __('crud.hints.image_limitations', ['formats' => $formats, 'size' => auth()->user()->maxUploadSize(true, (isset($size) ? $size : 'image'))]) }}
+                {{ __('crud.hints.image_limitations', ['formats' => $formats, 'size' => (isset($size) ? auth()->user()->mapUploadSize(true) : auth()->user()->maxUploadSize(true))]) }}
 @php $currentCampaign = \App\Facades\CampaignLocalization::getCampaign(false); @endphp
                 @subscriber()
                     @if ($currentCampaign && !$currentCampaign->boosted())
@@ -44,7 +43,7 @@ if (isset($size) && $size == 'map') {
     @if (!empty($model->image))
     <div class="col-md-2">
         <div class="preview-v2">
-            <div class="image" style="background-image: url('{{ $model->getImageUrl(200, 120) }}')" title="{{ $model->name }}">
+            <div class="image" style="background-image: url('{{ $model->thumbnail(120) }}')" title="{{ $model->name }}">
                 @if (empty($imageRequired) || !$imageRequired)
                 <a href="#" class="img-delete" data-target="remove-image" title="{{ __('crud.remove') }}">
                     <i class="fa-solid fa-trash"></i> {{ __('crud.remove') }}

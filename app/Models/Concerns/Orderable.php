@@ -5,24 +5,22 @@ namespace App\Models\Concerns;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
+/**
+ * @method static self|Builder order(array|null $data)
+ */
 trait Orderable
 {
     /**
-     * Default ordering
-     * @var string
-     */
-    //protected $defaultOrderField = 'name';
-    //protected $defaultOrderDirection = 'asc';
-
-    /**
-     * @param $query
-     * @param $field
+     * @param Builder $query
+     * @param array|null $data
      * @return mixed
      */
-    public function scopeOrder(Builder $query, $data)
+    public function scopeOrder(Builder $query, array|null $data)
     {
         // Default
+        // @phpstan-ignore-next-line
         $field = $this->defaultOrderField ?: 'name';
+        // @phpstan-ignore-next-line
         $direction = $this->defaultOrderDirection ?: 'asc';
 
         if (!empty($data) && auth()->check()) {
@@ -74,7 +72,7 @@ trait Orderable
 //                }
 
                 // If the field has a casting
-                if (!empty($this->orderCasting[$field])) {
+                if (property_exists($this, 'orderCasting') && !empty($this->orderCasting[$field])) {
                     return $query->orderByRaw(
                         'cast(' . $this->getTable() . '.' . $field . ' as ' . $this->orderCasting[$field] . ')'
                         . $direction

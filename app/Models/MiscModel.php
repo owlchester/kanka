@@ -31,17 +31,18 @@ use Illuminate\Support\Str;
  * @property string $name
  * @property string $type
  * @property string $slug
- * @property Entity $entity
+ * @property Entity|null $entity
  * @property string $entry
  * @property string $image
  * @property string $tooltip
  * @property string $header_image
  * @property boolean $is_private
- * @property [] $nullableForeignKeys
+ * @property string[] $nullableForeignKeys
  * @property Carbon $created_at
  * @property Carbon $updated_at
  * @property Campaign $campaign
- * @mixin \Illuminate\Database\Eloquent\Builder
+ * @property int $created_by
+ * @property int $updated_by
  */
 abstract class MiscModel extends Model
 {
@@ -108,7 +109,7 @@ abstract class MiscModel extends Model
 
     /**
      * Fields that can be set to null (foreign keys)
-     * @var array
+     * @var string[]
      */
     public $nullableForeignKeys = [];
 
@@ -148,16 +149,6 @@ abstract class MiscModel extends Model
     }
 
     /**
-     * @return mixed
-     */
-    public function permissions()
-    {
-        dd('PM6 - Error 4');
-        return CampaignPermission::where('table_name', $this->entity->pluralType())
-            ->where('key', 'like', '%_' . $this->id);
-    }
-
-    /**
      * Model's relation to a campaign
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
@@ -176,13 +167,13 @@ abstract class MiscModel extends Model
     }
 
     /**
-     * Get the image (or default image) of an entity
-     * @param int $width = 200
-     * @param int $width = null
-     * @param string $field = 'image'
+     * Get the thumbnail (or default image) of an entity
+     * @param int $width If 0, get the full-sized version
+     * @param int|null $height
+     * @param string $field
      * @return string
      */
-    public function getImageUrl(int $width = 400, int $height = null, string $field = 'image')
+    public function thumbnail(int $width = 40, int $height = null, string $field = 'image')
     {
         if (empty($this->$field)) {
             return $this->getImageFallback($width);
@@ -677,5 +668,14 @@ abstract class MiscModel extends Model
             return '';
         }
         return 'entity-private';
+    }
+
+    /**
+     * Boilerplate
+     * @return int
+     */
+    public function entityTypeId(): int
+    {
+        return 0;
     }
 }

@@ -43,6 +43,7 @@ class CampaignFollowerCount extends Command
      */
     public function handle()
     {
+        // @phpstan-ignore-next-line
         Campaign::public()->with('followers')->chunk(500, function ($campaigns) {
             foreach ($campaigns as $campaign) {
                 $this->processCampaign($campaign);

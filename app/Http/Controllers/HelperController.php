@@ -8,7 +8,6 @@ use Illuminate\Support\Str;
 class HelperController
 {
     /**
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function apiFilters()
     {
@@ -20,30 +19,27 @@ class HelperController
         // Try creating the object
         try {
             $className = "\App\Models\\" . Str::camel($type);
-            /** @var MiscModel $misc */
             $misc = new \ReflectionClass($className);
             if (!$misc->isInstantiable()) {
                 abort(404);
             }
-            $misc = new $className;
+            /** @var MiscModel $misc */
+            $misc = new $className();
             if (!$misc instanceof MiscModel) {
                 abort(404);
             }
             $filters = $misc->getFilterableColumns();
 
             return view('helpers.api-filters', compact(
-                'filters', 'type'
+                'filters',
+                'type'
             ));
-        } catch(\Exception $e) {
+        } catch (\Exception $e) {
             abort(404);
         }
-
-        abort(404);
     }
 
     /**
-     * @param string $view
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     protected function render(string $helper)
     {

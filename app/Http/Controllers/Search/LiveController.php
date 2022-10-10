@@ -30,9 +30,12 @@ class LiveController extends Controller
      */
     public function index(Request $request)
     {
-        $term = trim($request->q);
-        $type = trim($request->type);
-        $exclude = trim($request->exclude);
+        $term = trim($request->get('q'));
+        $type = $request->get('type', null);
+        if (!empty($type)) {
+            $type = (int) trim($type);
+        }
+        $exclude = trim($request->get('exclude'));
         $campaign = CampaignLocalization::getCampaign();
         $new = request()->has('new');
 
@@ -177,7 +180,7 @@ class LiveController extends Controller
         $exclude = [];
         $data = [];
         if ($request->has('exclude')) {
-            /** @var Organisation $tag */
+            /** @var Organisation $org */
             $org = Organisation::findOrFail($request->get('exclude'));
             /** @var OrganisationMember $member */
             foreach ($org->members()->with('character')->has('character')->get() as $member) {

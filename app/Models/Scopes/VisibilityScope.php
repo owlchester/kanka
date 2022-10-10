@@ -33,7 +33,7 @@ class VisibilityScope implements Scope
      * Add the with-invisible extension to the builder.
      *
      * @param  \Illuminate\Database\Eloquent\Builder  $builder
-     * @return Builder
+     * @return void
      */
     protected function addWithInvisible(Builder $builder)
     {

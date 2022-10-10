@@ -27,7 +27,7 @@ class PrivacyService
     {
         $data = ['roles' => [], 'users' => []];
 
-        /** @var CampaignRole $role */
+        /** @var CampaignRole[] $roles */
         $roles = $this->entity->campaign->roles()->with('permissions')->get();
         foreach ($roles as $role) {
             if ($role->isAdmin()) {
@@ -59,7 +59,7 @@ class PrivacyService
             }
         }
 
-        /** @var User $user */
+        /** @var User[] $users[] */
         $users = $this->entity->campaign->users()->with('permissions')->get();
         foreach ($users as $user) {
             // Specific entity

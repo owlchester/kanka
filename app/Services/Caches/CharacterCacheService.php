@@ -1,18 +1,14 @@
 <?php
 
-
 namespace App\Services\Caches;
 
-
 use App\Models\Character;
-use App\Models\MiscModel;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 
 class CharacterCacheService extends BaseCache
 {
     /**
-     * @param MiscModel $model
      * @return array
      */
     public function genderSuggestion(): array

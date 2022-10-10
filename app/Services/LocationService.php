@@ -40,7 +40,7 @@ class LocationService
             $current = $model->$attribute->id;
         }
 
-        $recent = $this->location->where('id', '<>', $current)->recent()->take(10)->get();
+        $recent = $this->location->recent()->where('id', '<>', $current)->take(10)->get();
         foreach ($recent as $r) {
             $this->values[$r->id] = $r->name;
         }

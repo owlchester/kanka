@@ -51,10 +51,6 @@ class MenuLinkController extends CrudController
     }
 
     /**
-     * @param Request $request
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\RedirectResponse|mixed
-     * @throws \Psr\Container\ContainerExceptionInterface
-     * @throws \Psr\Container\NotFoundExceptionInterface
      */
     public function index(Request $request)
     {
@@ -67,9 +63,6 @@ class MenuLinkController extends CrudController
 
     /**
      * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
      */
     public function store(StoreMenuLink $request)
     {
@@ -78,9 +71,6 @@ class MenuLinkController extends CrudController
 
     /**
      * Redirect to the edit screen
-     *
-     * @param  \App\Models\Character  $character
-     * @return \Illuminate\Http\Response
      */
     public function show(MenuLink $menuLink)
     {
@@ -92,9 +82,6 @@ class MenuLinkController extends CrudController
 
     /**
      * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Character  $character
-     * @return \Illuminate\Http\Response
      */
     public function edit(MenuLink $menuLink)
     {
@@ -103,10 +90,6 @@ class MenuLinkController extends CrudController
 
     /**
      * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Character  $character
-     * @return \Illuminate\Http\Response
      */
     public function update(StoreMenuLink $request, MenuLink $menuLink)
     {
@@ -115,9 +98,6 @@ class MenuLinkController extends CrudController
 
     /**
      * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Character  $character
-     * @return \Illuminate\Http\Response
      */
     public function destroy(MenuLink $menuLink)
     {

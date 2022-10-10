@@ -39,12 +39,12 @@ use RichanFongdasen\EloquentBlameable\BlameableTrait;
  * @property boolean $is_attributes_private
  * @property string $tooltip
  * @property string $header_image
- * @property string $image_uuid
- * @property string $header_uuid
+ * @property string|null $image_uuid
+ * @property string|null $header_uuid
  * @property boolean $is_template
- * @property string $marketplace_uuid
- * @property integer $focus_x
- * @property integer $focus_y
+ * @property string|null $marketplace_uuid
+ * @property integer|null $focus_x
+ * @property integer|null $focus_y
  *
  * @property Carbon $created_at
  * @property Carbon $updated_at
@@ -69,7 +69,7 @@ class Entity extends Model
         SortableTrait,
         Acl;
 
-    /** @var array Fields fillable in mass-create/update*/
+    /** @var string[]  */
     protected $fillable = [
         'campaign_id',
         'entity_id',
@@ -117,7 +117,7 @@ class Entity extends Model
 
     /**
      * Get the child entity
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany|\Illuminate\Database\Eloquent\Relations\HasOne
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany|\Illuminate\Database\Eloquent\Relations\HasOne|MiscModel
      */
     public function child()
     {
@@ -131,7 +131,7 @@ class Entity extends Model
 
     /**
      * Child attribute
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany|\Illuminate\Database\Eloquent\Relations\HasOne
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany|\Illuminate\Database\Eloquent\Relations\HasOne|MiscModel
      */
     public function getChildAttribute()
     {
@@ -240,13 +240,13 @@ class Entity extends Model
     }
 
     /**
-     * @param $types
+     * @param array|int $types
      * @return bool
      */
     public function isType($types): bool
     {
         if (!is_array($types)) {
-            $types[] = $types;
+            $types = [$types];
         }
 
         return in_array($this->type_id, $types);
@@ -274,10 +274,10 @@ class Entity extends Model
     /**
      * Get the image (or default image) of an entity
      * @param int $width = 200
-     * @param int $height = null (null takes width)
+     * @param int|null $height
      * @return string
      */
-    public function getImageUrl(int $width = 400, $height = null, $field = 'header_image'): string
+    public function thumbnail(int $width = 400, int $height = null, $field = 'header_image'): string
     {
         if (empty($this->$field)) {
             return '';
@@ -359,15 +359,17 @@ class Entity extends Model
 
     /**
      * Get the entity's image url (local or gallery)
-     * @param $boosted
+     * @param bool $boosted
+     * @param int $width
+     * @param int $height
      * @return string
      */
-    public function getEntityImageUrl($boosted = false, int $width = 200, int $height = 200): string
+    public function getEntityImageUrl(bool $boosted = false, int $width = 200, int $height = 200): string
     {
         if ($boosted && $this->image) {
             return Img::crop($width, $height)->url($this->image->path);
         }
-        return $this->child->getImageUrl($width, $height);
+        return $this->child->thumbnail($width, $height);
     }
 
     /**
@@ -385,7 +387,7 @@ class Entity extends Model
     public function getHeaderUrl(bool $superboosted = false): string
     {
         if (!empty($this->header_image)) {
-            return $this->getImageUrl(1200, 400, 'header_image');
+            return $this->thumbnail(1200, 400, 'header_image');
         }
 
         if (!$superboosted) {

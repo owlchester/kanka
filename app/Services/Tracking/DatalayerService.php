@@ -37,8 +37,8 @@ class DatalayerService
 
         if (auth()->check()) {
             $data['userType'] = 'registered';
-            $data['userTier'] = !empty(auth()->user()->patreon_pledge) ? auth()->user()->patreon_pledge : null;
-            $data['userSubbed'] = !empty(auth()->user()->patreon_pledge) ? 'true' : 'false';
+            $data['userTier'] = !empty(auth()->user()->pledge) ? auth()->user()->pledge : null;
+            $data['userSubbed'] = !empty(auth()->user()->pledge) ? 'true' : 'false';
             $data['userID'] = auth()->user()->id;
 
             if ($this->newCancelledSubcriber) {
@@ -83,10 +83,10 @@ class DatalayerService
 
     /**
      * @param string $key
-     * @param $value
+     * @param mixed $value
      * @return $this
      */
-    public function add(string $key, $value): self
+    public function add(string $key, mixed $value): self
     {
         $this->additional[$key] = $value;
         return $this;

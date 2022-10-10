@@ -17,7 +17,7 @@ class LocaleChange
     protected $disabledLangs = ['he'];
 
     /**
-     * @param $request
+     * @param Request $request
      * @param Closure $next
      * @return \Illuminate\Http\RedirectResponse|mixed
      */

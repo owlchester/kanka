@@ -4,6 +4,7 @@ namespace App\Services\Map;
 
 use App\Models\Map;
 use App\Notifications\Header;
+use App\User;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
@@ -23,6 +24,7 @@ class ChunkingService
 
     protected int $maxZoom = 8;
     protected int $minZoom = 8;
+    protected int $levelMin = 0;
 
     protected int $maxBound = 0;
 
@@ -43,7 +45,6 @@ class ChunkingService
 
     /**
      * @return bool
-     * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
      */
     public function chunk(): bool
     {
@@ -204,13 +205,12 @@ class ChunkingService
         }
 
         unset($image);
-        unset($tmp);
     }
 
     /**
      * Define the minimum and maximum zoom level based on the image dimensions
      * @param int $max
-     * @return $this
+     * @return self
      */
     protected function zoomLevels(int $max): self
     {
@@ -237,7 +237,9 @@ class ChunkingService
         $this->map->save();
         Log::info('Saved map #' . $this->map->id);
         if ($this->map->entity->creator) {
-            $this->map->entity->creator->notify(new Header(
+            /** @var User $user */
+            $user = $this->map->entity->creator;
+            $user->notify(new Header(
                 'map.chunked',
                 'fas fa-map',
                 'green',
@@ -268,7 +270,6 @@ class ChunkingService
     /**
      * Open the original image
      * @return $this
-     * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
      */
     protected function openOriginal(): self
     {

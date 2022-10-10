@@ -10,7 +10,7 @@ class EntityFileObserver
     use PurifiableTrait;
 
     /**
-     * @param EntityFile $EntityFile
+     * @param EntityFile $entityFile
      */
     public function creating(EntityFile $entityFile)
     {

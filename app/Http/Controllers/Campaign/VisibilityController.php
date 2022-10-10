@@ -39,7 +39,7 @@ class VisibilityController extends Controller
         ]);
 
         $success = __('campaigns/public.update.' . ($campaign->isPublic() ? 'public' : 'private'), [
-            'public-campaigns' => link_to_route('front.public_campaigns', __('front.menu.campaigns'), null, ['target' => '_blank']),
+            'public-campaigns' => link_to_route('front.public_campaigns', __('front.menu.campaigns'), [], ['target' => '_blank']),
         ]);
 
         if ($request->get('from') === 'overview') {
@@ -71,7 +71,7 @@ class VisibilityController extends Controller
 
         $count = 0;
         foreach ($models as $id) {
-            /** @var CampaignStyle $style */
+            /** @var CampaignStyle|null $style */
             $style = CampaignStyle::find($id);
             if (empty($style)) {
                 continue;

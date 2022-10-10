@@ -39,9 +39,9 @@
                 ]) !!}
             </p>
             <dl class="dl-horizontal">
-                @if ($user->hasPatreonSync())
+                @if ($user->isLegacyPatron())
                     <dt>{{ __('settings.subscription.fields.plan') }}</dt>
-                    <dd>{{ $user->patreon_pledge }}</dd>
+                    <dd>{{ $user->pledge }}</dd>
                     <dt>{{ __('settings.subscription.fields.billing') }}</dt>
                     <dd>By Patreon</dd>
                 @else
@@ -49,17 +49,17 @@
                     <dd>{{ $currentPlan }}</dd>
                     <dt>{{ __('settings.subscription.fields.billing') }}</dt>
                     <dd>
-                    @if ($user->subscribedToPlan($service->yearlyPlans(\App\Models\Patreon::PLEDGE_OWLBEAR), 'kanka'))
+                    @if ($user->subscribedToPlan($service->yearlyPlans(\App\Models\Pledge::OWLBEAR), 'kanka'))
                         {{ __('settings.subscription.plans.cost_yearly', ['amount' => 55.00, 'currency' => $currency]) }}
-                    @elseif ($user->subscribedToPlan($service->monthlyPlans(\App\Models\Patreon::PLEDGE_OWLBEAR), 'kanka'))
+                    @elseif ($user->subscribedToPlan($service->monthlyPlans(\App\Models\Pledge::OWLBEAR), 'kanka'))
                         {{ __('settings.subscription.plans.cost_monthly', ['amount' => 5.00, 'currency' => $currency]) }}
-                    @elseif ($user->subscribedToPlan($service->yearlyPlans(\App\Models\Patreon::PLEDGE_WYVERN), 'kanka'))
+                    @elseif ($user->subscribedToPlan($service->yearlyPlans(\App\Models\Pledge::WYVERN), 'kanka'))
                         {{ __('settings.subscription.plans.cost_yearly', ['amount' => 110.00, 'currency' => $currency]) }}
-                    @elseif ($user->subscribedToPlan($service->monthlyPlans(\App\Models\Patreon::PLEDGE_WYVERN), 'kanka'))
+                    @elseif ($user->subscribedToPlan($service->monthlyPlans(\App\Models\Pledge::WYVERN), 'kanka'))
                         {{ __('settings.subscription.plans.cost_monthly', ['amount' => 10.00, 'currency' => $currency]) }}
-                    @elseif ($user->subscribedToPlan($service->yearlyPlans(\App\Models\Patreon::PLEDGE_ELEMENTAL), 'kanka'))
+                    @elseif ($user->subscribedToPlan($service->yearlyPlans(\App\Models\Pledge::ELEMENTAL), 'kanka'))
                         {{ __('settings.subscription.plans.cost_yearly', ['amount' => 275.00, 'currency' => $currency]) }}
-                    @elseif ($user->subscribedToPlan($service->monthlyPlans(\App\Models\Patreon::PLEDGE_ELEMENTAL), 'kanka'))
+                    @elseif ($user->subscribedToPlan($service->monthlyPlans(\App\Models\Pledge::ELEMENTAL), 'kanka'))
                         {{ __('settings.subscription.plans.cost_monthly', ['amount' => 25.00, 'currency' => $currency]) }}
                     @else
                         {{ __('front.pricing.tier.free') }}
@@ -249,7 +249,7 @@
                         </div>
                     </th>
                 </tr>
-                @if ($user->hasPatreonSync())
+                @if ($user->isLegacyPatron())
                     <tr>
                         <td class="text-center" colspan="4">
                             <div class="alert alert-warning">

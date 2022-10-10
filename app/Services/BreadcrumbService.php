@@ -1,14 +1,12 @@
 <?php
 
-
 namespace App\Services;
-
 
 use App\Models\Campaign;
 
 class BreadcrumbService
 {
-    /** @var Campaign */
+    /** @var Campaign|null */
     protected $campaign;
 
     /**

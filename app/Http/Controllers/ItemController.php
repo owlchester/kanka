@@ -32,9 +32,6 @@ class ItemController extends CrudController
 
     /**
      * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
      */
     public function store(StoreItem $request)
     {
@@ -43,9 +40,6 @@ class ItemController extends CrudController
 
     /**
      * Display the specified resource.
-     *
-     * @param  \App\Models\Character  $character
-     * @return \Illuminate\Http\Response
      */
     public function show(Item $item)
     {
@@ -54,9 +48,6 @@ class ItemController extends CrudController
 
     /**
      * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Character  $character
-     * @return \Illuminate\Http\Response
      */
     public function edit(Item $item)
     {
@@ -65,10 +56,6 @@ class ItemController extends CrudController
 
     /**
      * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Character  $character
-     * @return \Illuminate\Http\Response
      */
     public function update(StoreItem $request, Item $item)
     {
@@ -77,9 +64,6 @@ class ItemController extends CrudController
 
     /**
      * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Character  $character
-     * @return \Illuminate\Http\Response
      */
     public function destroy(Item $item)
     {
@@ -88,18 +72,14 @@ class ItemController extends CrudController
 
     /**
      * Display the specified resource.
-     *
-     * @param  \App\Models\Location  $location
-     * @return \Illuminate\Http\Response
      */
     public function inventories(Item $item)
     {
         return $this->menuView($item, 'inventories');
     }
+
     /**
      * @param Item $item
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function items(Item $item)
     {
@@ -121,10 +101,10 @@ class ItemController extends CrudController
         return $this->datagridAjax();
 
         // Ajax Datagrid
-        if (request()->ajax()) {
+        /*if (request()->ajax()) {
             return $this->datagridAjax();
         }
         return $this
-            ->menuView($item, 'items');
+            ->menuView($item, 'items');*/
     }
 }

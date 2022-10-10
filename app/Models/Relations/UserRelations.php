@@ -9,6 +9,7 @@ use App\Models\CampaignRole;
 use App\Models\CampaignSubmission;
 use App\Models\Entity;
 use App\Models\EntityUser;
+use App\Models\PasswordSecurity;
 use App\Models\Plugin;
 use App\Models\Referral;
 use App\Models\Role;
@@ -20,17 +21,18 @@ use Illuminate\Database\Eloquent\Collection;
  * @package App\Models\Relations
  *
  * @property Collection|CampaignBoost[] $boosts
- * @property CampaignRole $campaignRoles
+ * @property Collection|CampaignRole[] $campaignRoles
  * @property Collection|Campaign[] $campaigns
  * @property Collection|Campaign[] $following
- * @property Campaign $lastCampaign
- * @property Referral $referrer
+ * @property Campaign|null $lastCampaign
+ * @property Referral|null $referrer
  * @property Collection|CampaignSubmission[] $submissions
  * @property Collection|Entity[] $entities
  * @property Collection|Plugin[] $plugins
  * @property Collection|UserApp[] $apps
  * @property Collection|Role[] $roles
  * @property Collection|CampaignPermission[] $permissions
+ * @property PasswordSecurity|null $passwordSecurity
  */
 trait UserRelations
 {

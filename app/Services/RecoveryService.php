@@ -1,30 +1,27 @@
 <?php
 
-
 namespace App\Services;
-
 
 use App\Models\Entity;
 use App\Models\Location;
 use App\Models\MiscModel;
 use Carbon\Carbon;
-use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 
 class RecoveryService
 {
     /** @var array Entity IDs to be deleted */
-    protected $entityIds = [];
+    protected array $entityIds = [];
 
     /** @var array Child IDs to be deleted */
-    protected $childIds = [];
+    protected array $childIds = [];
 
     /** @var int Number of total deleted entities */
-    protected $count = 0;
+    protected int $count = 0;
 
     /**
-     * @param array $params
-     * @return $count
+     * @param array $ids
+     * @return int
      */
     public function recover(array $ids): int
     {
@@ -85,6 +82,7 @@ class RecoveryService
             return false;
         }
 
+        // @phpstan-ignore-next-line
         $child = $entity->child()->onlyTrashed()->first();
         if (!$child) {
             return false;
@@ -105,9 +103,8 @@ class RecoveryService
      */
     public function trash(Entity $entity)
     {
-        //dump('Entity #' . $entity->id);
-
         /** @var MiscModel $child */
+        // @phpstan-ignore-next-line
         $child = $entity->child()->onlyTrashed()->first();
         $this->trashChild($entity, $child);
 
@@ -121,7 +118,8 @@ class RecoveryService
     }
 
     /**
-     * @param MiscModel|null $child
+     * @param Entity $entity
+     * @param MiscModel|Location|null $child
      * @throws \Exception
      */
     protected function trashChild(Entity $entity, MiscModel $child = null)
@@ -141,6 +139,7 @@ class RecoveryService
             // Detach children of this entity. Usually this is already done in the model observer, because
             // if the parent is deleted in a node, the children aren't available.
             /** @var MiscModel $subChild */
+            // @phpstan-ignore-next-line
             foreach ($child->children as $subChild) {
                 // In console mode, we don't have the campaign_id restriction. We've had cases where this script
                 // found entities form other campaigns.
@@ -159,8 +158,8 @@ class RecoveryService
 
             // Clean up the parent and tree to avoid the nested plugin to delete every child
             $child->$parentField = null;
-            $child->_lft = null;
-            $child->_rgt = null;
+            $child->_lft = null; // @phpstan-ignore-line
+            $child->_rgt = null; // @phpstan-ignore-line
 
             $child->timestamps = false;
             $child->savingObserver = false;

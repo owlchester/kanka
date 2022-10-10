@@ -22,7 +22,7 @@ $(document).ready(function () {
     // Multi-delete
     var crudDelete = $('#datagrid-select-all');
     if (crudDelete.length > 0) {
-        crudDelete.click(function (e) {
+        crudDelete.click(function () {
             if ($(this).prop('checked')) {
                 $.each($("input[name='model[]']"), function () {
                     $(this).prop('checked', true);
@@ -57,9 +57,9 @@ function registerBulkActions() {
     $('.bulk-print').on('click', function (e) {
         e.preventDefault();
         let form = $(this).closest('form');
-        form.find()
+        form.find();
         form.submit();
-    })
+    });
 }
 
 /**
@@ -127,7 +127,7 @@ function registerDatagrids2() {
         datagrid2Form.submit();
     });
 
-    $('#datagrid-action-confirm').click(function (e) {
+    $('#datagrid-action-confirm').click(function () {
         $('#datagrid-bulk-delete').modal('hide');
         datagrid2Form.submit();
     });
@@ -140,7 +140,7 @@ function registerDatagrids2() {
  *
  */
 function initDatagrid2Ajax() {
-    $.each($('table[data-render="datagrid2"]'), function (i) {
+    $.each($('table[data-render="datagrid2"]'), function () {
         datagrid2Table = $(this);
         $(this).find('thead a').click(function (e) {
             e.preventDefault();

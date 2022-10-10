@@ -12,7 +12,7 @@ class CampaignSearchService
     /**
      * @var Campaign
      */
-    protected $campaign;
+    protected Campaign $campaign;
 
     /**
      * @param Campaign $campaign
@@ -26,7 +26,7 @@ class CampaignSearchService
 
     /**
      * List of roles in a campaign
-     * @param string $query Search term
+     * @param string|null $query Search term
      * @return array
      */
     public function roles(string $query = null): array
@@ -41,7 +41,7 @@ class CampaignSearchService
 
     /**
      * List of members in a campaign
-     * @param string $query Search term
+     * @param string|null $query Search term
      * @return array
      */
     public function members(string $query = null): array
@@ -54,7 +54,7 @@ class CampaignSearchService
             $result[] = [
                 'id' => $member->user->id,
                 'name' => $member->user->name,
-                'avatar' => $member->user->getImageUrl(40)
+                'avatar' => $member->user->getAvatarUrl()
             ];
         }
 

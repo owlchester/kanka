@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Services\Campaign;
-
 
 use App\Models\Campaign;
 use Illuminate\Support\Facades\Cache;
@@ -157,7 +155,6 @@ class StatService
      */
     public function title(int $amount, int $level = 1): string
     {
-        $level = 1;
         $targets = $level == 1 ? $this->primaryTargets : ($level == 2 ? $this->secondaryTargets : $this->tertiaryTargets);
         foreach ($targets as $target) {
             if ($amount > $target) {
@@ -201,7 +198,7 @@ class StatService
 
         // Reorder by achieved or close
         usort($achievements, function ($a, $b) {
-            return $a['score'] < $b['score'];
+            return strcmp((string) $a['score'], (string) $b['score']);
         });
 
         return $achievements;

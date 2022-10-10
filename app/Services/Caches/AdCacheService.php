@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Cache;
 
 class AdCacheService
 {
-    /** @var Ad|null */
+    /** @var Ad|bool|null */
     protected $ad;
 
     /**
@@ -34,7 +34,7 @@ class AdCacheService
 
     /**
      * Check if there is an ad to be displayed
-     * @param string $section
+     * @param int $section
      * @return bool
      * @throws \Psr\Container\ContainerExceptionInterface
      * @throws \Psr\Container\NotFoundExceptionInterface
@@ -77,7 +77,7 @@ class AdCacheService
 
     /**
      * Ad cache key for section
-     * @param string $section
+     * @param int $section
      * @return string
      */
     protected function cacheKey(int $section): string

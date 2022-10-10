@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Settings;
 
 use App\Http\Controllers\Controller;
+use App\User;
 use Illuminate\Http\Request;
 
 class InvoiceController extends Controller
@@ -21,6 +22,7 @@ class InvoiceController extends Controller
      */
     public function index(Request $request)
     {
+        /** @var User $user */
         $user = $request->user();
         $invoices = !empty($user->stripe_id) ? $user->invoicesIncludingPending() : [];
 
@@ -31,12 +33,14 @@ class InvoiceController extends Controller
 
     /**
      * @param Request $request
-     * @param $invoice
+     * @param string $invoice
      * @return mixed
      */
     public function download(Request $request, $invoice)
     {
-        return $request->user()->downloadInvoice($invoice, [
+        /** @var User $user */
+        $user = $request->user();
+        return $user->downloadInvoice($invoice, [
             'vendor' => 'Kanka.io',
             'product' => 'Kanka Monthly Subscription',
         ]);

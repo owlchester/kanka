@@ -2,7 +2,9 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Blade;
@@ -17,22 +19,26 @@ use Illuminate\Support\Str;
  * @property string $version
  * @property string $entry
  * @property string $content
+ * @property string $fonts
+ * @property string $css
+ * @property Carbon $updated_at
  * @property int $status_id
  * @property int $approved_by
  * @property Plugin $plugin
+ * @property string|array $json
  */
 class PluginVersion extends Model
 {
     /** @var Entity */
     protected Entity $entity;
 
-    /** @var Attribute[] */
+    /** @var Collection|Attribute[] */
     protected $entityAttributes;
 
     protected array $templateAttributes = [];
 
     /**
-     * @var string[]
+     * @var array<string, string>
      */
     protected $casts = [
         'json' => 'array'
@@ -91,10 +97,10 @@ class PluginVersion extends Model
         }, $html);
 
         $html = preg_replace_callback('`@empty\((.*?)\)(.*?)@endempty`si', function ($matches) {
-            return $this->emptyBlock($matches);
+            return (string) $this->emptyBlock($matches);
         }, $html);
         $html = preg_replace_callback('`@notempty\((.*?)\)(.*?)@endnotempty`si', function ($matches) {
-            return !$this->emptyBlock($matches);
+            return (string) !$this->emptyBlock($matches);
         }, $html);
 
         return $html;
@@ -154,7 +160,7 @@ class PluginVersion extends Model
         $this->entityAttributes = $entity->allAttributes;
         $allAttributes = [];
         foreach ($this->entityAttributes as $attr) {
-            $name = str_replace(' ', null, $attr->name);
+            $name = str_replace(' ', '', $attr->name);
             if (Str::contains($name, '[range:')) {
                 $name = Str::before($name, '[range:');
             }
@@ -237,7 +243,7 @@ class PluginVersion extends Model
      */
     protected function attribute(string $name): string
     {
-        /** @var Attribute $attr */
+        /** @var Attribute|null $attr */
         $attr = $this->entityAttributes->where('name', $name)->first();
         if (!empty($attr)) {
             if ($attr->isText()) {
@@ -251,7 +257,7 @@ class PluginVersion extends Model
 
     /**
      * If Else block
-     * @param $matches
+     * @param array $matches
      * @return mixed
      */
     protected function ifElseBlock(array $matches)
@@ -279,7 +285,7 @@ class PluginVersion extends Model
 
     /**
      * If block
-     * @param $matches
+     * @param array $matches
      * @return mixed|null
      */
     protected function ifBlock(array $matches)

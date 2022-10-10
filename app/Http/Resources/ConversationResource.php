@@ -3,14 +3,12 @@
 namespace App\Http\Resources;
 
 use App\Models\Conversation;
-use Illuminate\Http\Resources\Json\JsonResource;
 
 class ConversationResource extends EntityResource
 {
     /**
      * Transform the resource into an array.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return array
      */
     public function toArray($request)

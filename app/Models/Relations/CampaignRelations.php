@@ -1,13 +1,12 @@
 <?php
 
-
 namespace App\Models\Relations;
-
 
 use App\Models\Ability;
 use App\Models\Calendar;
 use App\Models\CampaignDashboard;
 use App\Models\CampaignDashboardWidget;
+use App\Models\CampaignFollower;
 use App\Models\CampaignPlugin;
 use App\Models\CampaignRole;
 use App\Models\CampaignSetting;
@@ -43,8 +42,8 @@ use Illuminate\Support\Collection;
  * Trait CampaignRelations
  * @package App\Models\Relations
  *
- * @property User[] $users
- * @property User[] $followers
+ * @property Collection|User[] $users
+ * @property Collection|User[] $followers
  * @property RpgSystem $rpgSystem
  * @property Collection|CampaignRole[] $roles
  *
@@ -65,6 +64,7 @@ use Illuminate\Support\Collection;
  * @property Collection|CampaignDashboard[] $dashboards
  * @property Collection|CampaignSubmission[] $submissions
  * @property Collection|CampaignStyle[] $styles
+ * @property Collection|RpgSystem[] $rpgSystems
  */
 trait CampaignRelations
 {
@@ -81,7 +81,7 @@ trait CampaignRelations
      */
     public function followers()
     {
-        return $this->belongsToMany('App\User', 'campaign_followers')->using('App\Models\CampaignFollower');
+        return $this->belongsToMany('App\User', 'campaign_followers')->using(CampaignFollower::class);
     }
 
     /**

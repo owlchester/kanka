@@ -18,13 +18,13 @@ use Illuminate\Database\Eloquent\Builder;
  * @property string $price
  * @property string $size
  * @property string $weight
- * @property integer $item_id
- * @property integer $character_id
- * @property integer $location_id
- * @property Character $character
- * @property Location $location
+ * @property integer|null $item_id
+ * @property integer|null $character_id
+ * @property integer|null $location_id
+ * @property Character|null $character
+ * @property Location|null $location
  * @property Item[] $items
- * @property Item $item
+ * @property Item|null $item
  */
 class Item extends MiscModel
 {
@@ -35,9 +35,7 @@ class Item extends MiscModel
         Acl
     ;
 
-    /**
-     * @var array
-     */
+    /** @var string[]  */
     protected $fillable = [
         'name',
         'campaign_id',
@@ -88,7 +86,7 @@ class Item extends MiscModel
 
     /**
      * Nullable values (foreign keys)
-     * @var array
+     * @var string[]
      */
     public $nullableForeignKeys = [
         'location_id',
@@ -105,30 +103,31 @@ class Item extends MiscModel
 
     ];
 
-    public function tooltip($limit = 250, $stripSpecial = true)
+    /**
+     * Tooltip subtitle (item price/size)
+     * @return string
+     */
+    public function tooltipSubtitle(): string
     {
-        $tooltip = parent::tooltip($limit, $stripSpecial);
-
         $extra = [];
         if (!empty($this->price)) {
-            $extra[] = __('items.fields.price') . ': ' . htmlentities($this->price);
+            $extra[] = __('items.fields.price') . ': ' . e($this->price);
         }
         if (!empty($this->size)) {
-            $extra[] = __('items.fields.size') . ': ' . htmlentities($this->size);
+            $extra[] = __('items.fields.size') . ': ' . e($this->size);
         }
-        if (!empty($extra)) {
-            $tooltip .= '<br /><p>' . implode('<br />', $extra) . '</p>';
+        if (empty($extra)) {
+            return '';
         }
-
-        return $tooltip;
+        return implode('<br />', $extra);
     }
 
     /**
      * Performance with for datagrids
-     * @param $query
-     * @return mixed
+     * @param Builder $query
+     * @return Builder mixed
      */
-    public function scopePreparedWith(Builder $query)
+    public function scopePreparedWith(Builder $query): Builder
     {
         return $query->with([
             'entity' => function ($sub) {
@@ -181,7 +180,7 @@ class Item extends MiscModel
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasManyThrough
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function itemQuests()
     {
@@ -197,7 +196,7 @@ class Item extends MiscModel
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function items()
     {

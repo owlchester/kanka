@@ -21,11 +21,11 @@ class TutorialController extends Controller
 
     /**
      * @param string $key
-     * @param $next
+     * @param string|null $next
      * @return \Illuminate\Http\JsonResponse
      * @throws \Throwable
      */
-    public function done(string $key, $next = null)
+    public function done(string $key, string $next = null)
     {
         return $this->service
             ->user(auth()->user())
@@ -48,7 +48,7 @@ class TutorialController extends Controller
     }
 
     /**
-     * @return \Illuminate\Http\RedirectResponse
+     * @return void
      */
     public function reset()
     {

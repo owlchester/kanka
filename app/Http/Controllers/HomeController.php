@@ -22,8 +22,6 @@ class HomeController extends Controller
 
     /**
      * Show the application dashboard.
-     *
-     * @return \Illuminate\Http\Response
      */
     public function index()
     {
@@ -34,7 +32,6 @@ class HomeController extends Controller
     }
 
     /**
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
      */
     protected function front()
     {
@@ -44,12 +41,11 @@ class HomeController extends Controller
     }
 
     /**
-     * @return \Illuminate\Http\RedirectResponse|void
      */
     protected function back()
     {
         $campaignId = session()->get('campaign_id');
-        if (empty($campaignId) || !isset($campaignId) || !auth()->user()->hasCampaigns()) {
+        if (empty($campaignId) || !auth()->user()->hasCampaigns()) {
             return redirect()->route('start');
         }
 
@@ -77,7 +73,5 @@ class HomeController extends Controller
 
         // No campaign? Ok, go to start.
         return redirect()->route('start');
-
-        abort(500);
     }
 }

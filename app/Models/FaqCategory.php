@@ -5,6 +5,8 @@ namespace App\Models;
 use App\Models\Concerns\HasFilters;
 use App\Models\Concerns\Searchable;
 use App\Models\Concerns\Sortable;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -18,9 +20,9 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $order
  * @property bool $is_visible
  *
- * @property Faq[] $faqs
- * @property FaqCategoryTranslation[] $translations
- * @property FaqCategoryTranslation $localeTranslation
+ * @property Faq[]|Collection $faqs
+ * @property FaqCategoryTranslation[]|Collection $translations
+ * @property FaqCategoryTranslation|null $localeTranslation
  */
 class FaqCategory extends Model
 {
@@ -42,31 +44,31 @@ class FaqCategory extends Model
 
 
     /**
-     * @param $query
+     * @param Builder $query
      * @param bool $visible
      * @return mixed
      */
-    public function scopeVisible($query, $visible = true)
+    public function scopeVisible(Builder $query, $visible = true)
     {
         return $query->where('is_visible', $visible);
     }
 
     /**
-     * @param $query
+     * @param Builder $query
      * @param string $locale
      * @return mixed
      */
-    public function scopeLocale($query, $locale = 'en')
+    public function scopeLocale(Builder $query, $locale = 'en')
     {
         return $query->where('locale', $locale);
     }
 
     /**
-     * @param $query
-     * @param string $locale
-     * @return mixed
+     * @param Builder $query
+     * @param string $order
+     * @return Builder
      */
-    public function scopeOrdered($query, $order = 'ASC')
+    public function scopeOrdered(Builder $query, $order = 'ASC')
     {
         return $query->orderBy('order', $order);
     }
@@ -105,7 +107,7 @@ class FaqCategory extends Model
     }
 
     /**
-     * @return Faq[]
+     * @return Faq[]|Collection
      */
     public function sortedFaqs()
     {
@@ -146,11 +148,11 @@ class FaqCategory extends Model
      */
     public function untranslated(string $locale): bool
     {
-        return $this->faqCount()<> $this->translatedCount($locale);
+        return $this->faqCount() <> $this->translatedCount($locale);
     }
 
     /**
-     * @param $locale
+     * @param string $locale
      * @return mixed
      */
     public function translatedCount($locale)

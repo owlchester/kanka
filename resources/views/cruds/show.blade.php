@@ -16,7 +16,7 @@ $headerImage = true;
 
 @section('og')
 @if ($tooltip = $model->entity->mappedPreview())<meta property="og:description" content="{{ $tooltip }}" />@endif
-@if ($model->image)<meta property="og:image" content="{{ $model->getImageUrl(0)  }}" />@endif
+@if ($model->image)<meta property="og:image" content="{{ $model->thumbnail(200)  }}" />@endif
     <meta property="og:url" content="{{ $model->getLink()  }}" />
     <meta name="twitter:card" content="summary_large_image" />
 @endsection
@@ -38,7 +38,7 @@ $headerImage = true;
             </a>
         @endcan
         @can('entity-note', [$model, 'add'])
-        <a href="{{ route('entities.entity_notes.create', $model->entity) }}" class="btn btn-warning btn-sm btn-new-entity"
+        <a href="{{ route('entities.entity_notes.create', $model->entity) }}" class="btn btn-warning btn-sm btn-new-post"
            data-entity-type="post" data-toggle="tooltip" title="{{ __('crud.tooltips.new_post') }}">
             <i class="fa-solid fa-plus"></i> {{ __('crud.actions.new_post') }}
         </a>

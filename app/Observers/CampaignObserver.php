@@ -79,13 +79,14 @@ class CampaignObserver
 
         // Handle image. Let's use a service for this.
         ImageService::handle($campaign, 'campaigns');
-        ImageService::handle($campaign, 'campaigns', true, 'header_image');
+        ImageService::handle($campaign, 'campaigns', 0, 'header_image');
     }
 
     /**
      * @param Campaign $campaign
      */
-    public function creating(Campaign $campaign) {
+    public function creating(Campaign $campaign)
+    {
         $campaign->created_by = auth()->user()->id;
     }
 

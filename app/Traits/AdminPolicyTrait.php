@@ -3,15 +3,16 @@
 namespace App\Traits;
 
 use App\Facades\CampaignLocalization;
+use App\Models\CampaignRole;
 use App\User;
 
 trait AdminPolicyTrait
 {
     /**
      * Cached value of the check
-     * @var null|boolean
+     * @var bool|null
      */
-    protected $cachedAdminPolicy = null;
+    protected bool|null $cachedAdminPolicy = null;
 
     /**
      * Determine if a user is admin of a campaign
@@ -23,6 +24,7 @@ trait AdminPolicyTrait
         if ($this->cachedAdminPolicy === null) {
             $this->cachedAdminPolicy = false;
             $campaign = CampaignLocalization::getCampaign(false);
+            /** @var CampaignRole[] $roles */
             $roles = $user->campaignRoles->where('campaign_id', $campaign->id);
             foreach ($roles as $role) {
                 if ($role->is_admin) {

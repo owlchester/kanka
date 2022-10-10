@@ -1,9 +1,8 @@
 <?php
 
-
 namespace App\Observers;
 
-
+use App\Models\MenuLink;
 use App\Models\MiscModel;
 use App\Models\Tag;
 use Illuminate\Database\Eloquent\Model;
@@ -11,15 +10,20 @@ use Illuminate\Database\Eloquent\Model;
 class TaggableObserver
 {
     /**
-     * @param MiscModel $menuLink
+     * @param Model $model
      */
     public function saved(Model $model)
     {
         $this->saveTags($model);
     }
 
+    /**
+     * @param Model $model
+     * @return void
+     */
     protected function saveTags(Model $model)
     {
+        /** @var MenuLink $model */
         if (!request()->has('save_tags')) {
             return;
         }
@@ -39,6 +43,7 @@ class TaggableObserver
             if (!empty($existing[$id])) {
                 unset($existing[$id]);
             } else {
+                /** @var Tag $tag */
                 $tag = Tag::findOrFail($id);
                 $new[] = $tag->id;
             }

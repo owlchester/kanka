@@ -2,6 +2,7 @@
 
 namespace App\Renderers\Layouts\Columns;
 
+use App\Models\MiscModel;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
 
@@ -10,7 +11,7 @@ use Illuminate\Support\Arr;
  */
 abstract class Column
 {
-    /** @var Model */
+    /** @var Model|MiscModel */
     protected $model;
 
     /** @var array */

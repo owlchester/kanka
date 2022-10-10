@@ -18,9 +18,9 @@ class CampaignCacheService extends BaseCache
 {
     /**
      * Members of a campaign
-     * @return Collection
+     * @return Collection|null
      */
-    public function members(): Collection
+    public function members(): Collection|null
     {
         $key = $this->membersKey();
         if ($this->has($key)) {
@@ -127,7 +127,7 @@ class CampaignCacheService extends BaseCache
 
     /**
      * Count the number of followers of a campaign. Cache if for 1 hours
-     * @return int
+     * @return CampaignSetting
      */
     public function settings(): CampaignSetting
     {
@@ -185,8 +185,7 @@ class CampaignCacheService extends BaseCache
 
     /**
      * Get the public campaign systems and cache them for a day
-     * @param string|null $type
-     * @return int
+     * @return array
      */
     public function systems(): array
     {
@@ -221,9 +220,9 @@ class CampaignCacheService extends BaseCache
 
     /**
      * List of themes the campaign has activated
-     * @return PluginVersion|mixed|null
+     * @return string|bool
      */
-    public function themes(): string
+    public function themes(): string|bool
     {
         if (!config('marketplace.enabled')) {
             return false;
@@ -234,8 +233,8 @@ class CampaignCacheService extends BaseCache
             return (string) $this->get($key);
         }
 
-        /** @var CampaignPlugin $plugin */
         $theme = '';
+        // @phpstan-ignore-next-line
         $plugins = CampaignPlugin::leftJoin('plugins as p', 'p.id', 'plugin_id')
             ->where('campaign_id', $this->campaign->id)
             ->where('p.type_id', 1)
@@ -243,9 +242,16 @@ class CampaignCacheService extends BaseCache
             ->with('version')
             ->has('plugin')
             ->get();
+        /** @var CampaignPlugin $plugin */
         foreach ($plugins as $plugin) {
-            $theme .= "/** plugin: " . e($plugin->name) . " #" . e($plugin->version->version) . " **/\n";
-            $theme .= $plugin->version->content."\n\n";
+            if ($plugin->version->fonts) {
+                $theme .= "/** plugin: " . e($plugin->name) . " #" . e($plugin->version->version) . " fonts **/\n";
+                $theme .= $plugin->version->fonts . "\n\n";
+            }
+        }
+        foreach ($plugins as $plugin) {
+            $theme .= "/** plugin: " . e($plugin->name) . " #" . e($plugin->version->version) . " code **/\n";
+            $theme .= $plugin->version->content . "\n\n";
         }
 
         $this->forever($key, $theme);

@@ -13,7 +13,7 @@ class CalendarWeatherApiController extends ApiController
     /**
      * @param Campaign $campaign
      * @param Calendar $calendar
-     * @return Collection
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function index(Campaign $campaign, Calendar $calendar)

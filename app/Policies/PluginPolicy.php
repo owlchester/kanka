@@ -28,10 +28,12 @@ class PluginPolicy
 
     public function enable(User $user, Plugin $plugin)
     {
+        // @phpstan-ignore-next-line
         return UserCache::user($user)->admin() && $plugin->isTheme() && !$plugin->pivot->is_active;
     }
     public function disable(User $user, Plugin $plugin)
     {
+        // @phpstan-ignore-next-line
         return UserCache::user($user)->admin() && $plugin->isTheme() && $plugin->pivot->is_active;
     }
 

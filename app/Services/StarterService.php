@@ -31,7 +31,7 @@ class StarterService
     }
 
     /**
-     * @return $this
+     * @return Campaign
      */
     public function createCampaign(): Campaign
     {
@@ -41,6 +41,7 @@ class StarterService
             'excerpt' => '',
             'ui_settings' => ['nested' => true]
         ];
+        /** @var Campaign $campaign */
         $campaign = Campaign::create($data);
         $this->user->setCurrentCampaign($campaign);
 

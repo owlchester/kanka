@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Models\Journal;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class JournalResource extends EntityResource
@@ -14,15 +15,17 @@ class JournalResource extends EntityResource
      */
     public function toArray($request)
     {
+        /** @var Journal $model */
+        $model = $this->resource;
         return $this->entity([
-            'journal_id' => $this->journal_id,
-            'date' => $this->date,
-            'type' => $this->type,
-            'author_id' => $this->author,
-            'calendar_id' => $this->calendar_id,
-            'calendar_year' => $this->calendar_year,
-            'calendar_month' => $this->calendar_month,
-            'calendar_day' => $this->calendar_day,
+            'journal_id' => $model->journal_id,
+            'date' => $model->date,
+            'type' => $model->type,
+            'author_id' => $model->author,
+            'calendar_id' => $model->calendar_id,
+            'calendar_year' => $model->calendar_year,
+            'calendar_month' => $model->calendar_month,
+            'calendar_day' => $model->calendar_day,
         ]);
     }
 }

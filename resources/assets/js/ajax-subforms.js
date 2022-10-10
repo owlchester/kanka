@@ -45,13 +45,6 @@ function initSubforms() {
         currentAjaxForm.find('.submit-group').hide();
         currentAjaxForm.find('.submit-animation').show();
 
-        // Allow ajax requests to use the X_CSRF_TOKEN for deletes
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-
         //send request to server
         let formData = new FormData(this);
         $.ajax({
@@ -62,10 +55,10 @@ function initSubforms() {
             contentType: false,
             processData: false,
             async: false
-        }).done(function (res) {
+        }).done(function () {
             // If the validation succeeded, confirm its validity
             currentAjaxForm.attr('is-valid', true);
-            currentAjaxForm.off('submit')
+            currentAjaxForm.off('submit');
             //console.log('form is valid?', currentAjaxForm, currentAjaxForm.attr('is-valid'));
             // resubmit the form
             currentAjaxForm.submit();

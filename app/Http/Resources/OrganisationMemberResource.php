@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Models\OrganisationMember;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class OrganisationMemberResource extends ModelResource
@@ -14,12 +15,14 @@ class OrganisationMemberResource extends ModelResource
      */
     public function toArray($request)
     {
+        /** @var OrganisationMember $model */
+        $model = $this->resource;
         return $this->entity([
-            'role' => $this->role,
-            'organisation_id' => $this->organisation_id,
-            'pin_id' => $this->pin_id,
-            'status_id' => $this->status_id,
-            'parent_id' => $this->parent_id,
+            'role' => $model->role,
+            'organisation_id' => $model->organisation_id,
+            'pin_id' => $model->pin_id,
+            'status_id' => $model->status_id,
+            'parent_id' => $model->parent_id,
         ]);
     }
 }

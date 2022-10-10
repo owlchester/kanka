@@ -2,8 +2,7 @@
 
 namespace App\Http\Resources;
 
-use App\Facades\Mentions;
-use Illuminate\Http\Resources\Json\JsonResource;
+use App\Models\EntityNote;
 
 class EntityNoteResource extends EntityChild
 {
@@ -15,14 +14,16 @@ class EntityNoteResource extends EntityChild
      */
     public function toArray($request)
     {
+        /** @var EntityNote $model */
+        $model = $this->resource;
         return $this->entity([
-            'name' => $this->name,
-            'visibility_id' => (int) $this->visibility_id,
-            'entry' => $this->entry,
-            'entry_parsed' => $this->entry(),
+            'name' => $model->name,
+            'visibility_id' => (int) $model->visibility_id,
+            'entry' => $model->entry,
+            'entry_parsed' => $model->entry(),
 //            'is_pinned' => (bool) $this->is_pinned,
-            'position' => $this->position,
-            'settings' => $this->settings,
+            'position' => $model->position,
+            'settings' => $model->settings,
         ]);
     }
 }

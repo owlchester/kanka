@@ -183,17 +183,16 @@ function addListeners() {
 
     // highlight on hover
     cy.nodes().on('mouseover', function(e) {
-        console.log('mouseover');
         entity = cy.getElementById(e.target.id());
         entity.addClass('node-hover');
     });
 
     // stop highlight on hover
-    cy.nodes().on('mouseout', function(e) {
+    cy.nodes().on('mouseout', function() {
         entity.removeClass('node-hover');
     });
 
-    // Double click on an edge to edit it
+    // Double-click on an edge to edit it
     cy.on('tap', 'edge', function (e) {
         let editUrl = e.target.data().edit_url;
         if (!editUrl) {
@@ -216,16 +215,16 @@ function addListeners() {
     });
 
     // stop highlight on hover
-    cy.edges().on('mouseout', function(e) {
+    cy.edges().on('mouseout', function() {
         relation.style('label', '');
         relation.style('overlay-opacity', 0);
     });
 }
 
 
-function getAttitudeFromWidth(width) {
+/*function getAttitudeFromWidth(width) {
     return (((width - 2) / 2) * 100) - 100;
-}
+}*/
 
 function getWidthFromAttitude(attitude) {
     return (((attitude + 100) / 100) * 2) + 2;
@@ -245,7 +244,7 @@ async function displayOnLoad() {
 }
 
 function initRelationFormModal() {
-    $('input[name="two_way"]').on('click', function(e) {
+    $('input[name="two_way"]').on('click', function() {
         $('#two-way-relation').toggle();
     });
 }

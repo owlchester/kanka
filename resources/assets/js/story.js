@@ -1,26 +1,4 @@
 $(document).ready(function () {
-    let selector = $('.element-live-reorder');
-    selector.sortable();
-    //selector.disableSelection();
-
-    $('.fa-arrow-up').click(function (e) {
-        let $current = $(this).closest('div.element')
-        let $previous = $current.prev('div.element');
-        if ($previous.length !== 0) {
-            $current.insertBefore($previous);
-        }
-        return false;
-    });
-    $('.fa-arrow-down').click(function (e) {
-        let $current = $(this).closest('div.element')
-        let $previous = $current.next('div.element');
-        if ($previous.length !== 0) {
-            $current.insertAfter($previous);
-        }
-        return false;
-    });
-
-
     initImageFocus();
 });
 
@@ -41,7 +19,7 @@ function initImageFocus() {
         $('input[name="focus_y"]').val(parseInt(posY));
     });
 
-    $('.focus').click(function (e) {
+    $('.focus').click(function () {
         $('.focus').hide();
         $('input[name="focus_x"]').val();
         $('input[name="focus_y"]').val();

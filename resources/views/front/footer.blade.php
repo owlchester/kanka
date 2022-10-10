@@ -29,9 +29,9 @@
                     <li>
                         <a href="//marketplace.kanka.io" target="_blank">{{ __('front.menu.marketplace') }}</a>
                     </li>
-                    <li>
+                    <!--<li>
                         <a href="//loot.kanka.io" target="_blank">{{ __('front.menu.merch') }}</a>
-                    </li>
+                    </li>-->
                 </ul>
             </div>
 

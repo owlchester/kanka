@@ -35,7 +35,7 @@ class CleanupTrashed extends Command
      */
     protected RecoveryService $service;
 
-    protected null|int $limit = null;
+    protected int|null $limit = null;
 
     /**
      * Create a new command instance.
@@ -57,9 +57,11 @@ class CleanupTrashed extends Command
     {
         $delay = Carbon::now()->subDays(config('entities.hard_delete'))->toDateString();
         $types = $this->argument('types');
-        $this->limit = $this->argument('limit');
+        $this->limit = (int) $this->argument('limit');
         $typeList = explode(',', $types);
         $entityTypeIDs = [];
+        $firstTypeTable = $firstTypeID = null;
+
         foreach ($typeList as $entityType) {
             if ($entityType === 'all') {
                 continue;

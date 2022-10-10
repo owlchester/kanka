@@ -19,7 +19,7 @@ use Illuminate\Support\Str;
  * @property array $metadata
  * @property Carbon $created_at
  * @property Carbon $updated_at
- * @property Entity $entity
+ * @property Entity|null $entity
  * @property bool $is_pinned
  *
  */

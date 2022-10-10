@@ -12,7 +12,7 @@
                 <div class="col-lg-6 col-12">
                     <div class="campaign-container campaign-boosted">
                         <a class="campaign featured-campaign" href="{{ url(app()->getLocale() . '/' . $campaign->getMiddlewareLink()) }}" title="{!! $campaign->name !!}">
-                            <div class="campaign-image campaign-placeholder"  @if ($campaign->image) style="background-image: url('{{ $campaign->getImageUrl(900, 200) }}')" @endif>
+                            <div class="campaign-image campaign-placeholder"  @if ($campaign->image) style="background-image: url('{{ $campaign->thumbnail(900, 200) }}')" @endif>
 
                             </div>
                             <div class="bottom">

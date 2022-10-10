@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\Campaign;
+use App\Models\Entity;
 use App\Models\MenuLink;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Cache;
@@ -15,9 +16,9 @@ class SidebarService
      * List of the campaign's quick links
      * @var array
      */
-    protected $quickLinks = [];
+    protected array $quickLinks = [];
 
-    protected $rules = [
+    protected array $rules = [
         'dashboard' => [
             null,
             'dashboard',
@@ -107,45 +108,7 @@ class SidebarService
         ],
     ];
 
-    /**
-     * Admin menu
-     * @var array
-     */
-    protected $adminRules = [
-        'faqs' => [
-            'faqs'
-        ],
-        'users' => [
-            'users',
-        ],
-        'app-releases' => [
-            'app-releases',
-        ],
-        'community-events' => [
-            'community-events',
-        ],
-        'community-votes' => [
-            'community-votes',
-        ],
-        'patrons' => [
-            'patrons',
-        ],
-        'faq' => [
-            'faq',
-            'faqs',
-        ],
-        'faq-categories' => [
-            'faq-categories',
-        ],
-        'cache' => [
-            'cache',
-        ],
-        'referrals' => [
-            'referrals',
-        ],
-    ];
-
-    protected $elements = [
+    protected array $elements = [
         'dashboard' => [
             'icon' => 'fa-solid fa-th-large',
             'label' => 'sidebar.dashboard',
@@ -223,6 +186,7 @@ class SidebarService
         'items' => [
             'icon' => 'ra ra-gem-pendant',
             'label' => 'sidebar.items',
+            'tree' => true,
         ],
         'events' => [
             'icon' => 'fa-solid fa-bolt',
@@ -320,7 +284,7 @@ class SidebarService
     protected $campaign;
 
     /** @var bool */
-    protected $withDisabled = false;
+    protected bool $withDisabled = false;
 
     public function campaign(Campaign $campaign): self
     {
@@ -335,9 +299,11 @@ class SidebarService
     }
 
     /**
-     * @param $menu
+     * @param string $menu
+     * @param string $class
+     * @return string
      */
-    public function active($menu = '', $class = 'active'): string
+    public function active($menu = '', string $class = 'active'): string
     {
         if (empty($this->rules[$menu])) {
             return '';
@@ -355,6 +321,7 @@ class SidebarService
 
         // Entities? It's complicated
         if (request()->segment(4) == 'entities') {
+            /** @var Entity $entity */
             $entity = request()->route('entity');
             if ($entity->pluralType() == $menu) {
                 return " $class";
@@ -408,26 +375,6 @@ class SidebarService
                 return $css;
             }
         }
-        return null;
-    }
-
-    /**
-     * @param $menu
-     * @param string $class
-     * @return string|null
-     */
-    public function admin($menu, $class = 'active')
-    {
-        if (empty($this->adminRules[$menu])) {
-            return null;
-        }
-
-        foreach ($this->adminRules[$menu] as $rule) {
-            if (request()->segment(3) == $rule) {
-                return " $class";
-            }
-        }
-
         return null;
     }
 
@@ -539,8 +486,7 @@ class SidebarService
             if (Str::endsWith($field, '_label')) {
                 $labels[Str::before($field, '_label')] = Purify::clean(strip_tags($value));
                 continue;
-            }
-            elseif (Str::endsWith($field, '_icon')) {
+            } elseif (Str::endsWith($field, '_icon')) {
                 $icons[Str::before($field, '_icon')] = Purify::clean(strip_tags($value));
                 continue;
             }
@@ -550,13 +496,13 @@ class SidebarService
         // Save the new data to the campaign config
         if (!empty($labels)) {
             $ui['sidebar']['labels'] = $labels;
-        } elseif (isset($ui['sidebar']['labels'])) {
+        } elseif (isset($ui['sidebar']['labels'])) { // @phpstan-ignore-line
             unset($ui['sidebar']['labels']);
         }
 
         if (!empty($icons)) {
             $ui['sidebar']['icons'] = $icons;
-        } elseif (isset($ui['sidebar']['icons'])) {
+        } elseif (isset($ui['sidebar']['icons'])) { // @phpstan-ignore-line
             unset($ui['sidebar']['icons']);
         }
 
@@ -691,7 +637,7 @@ class SidebarService
         if (!$campaign->enabled('menu_links')) {
             return;
         }
-        $quickLinks = $campaign->menuLinks()->with(['target'])->ordered()->get();
+        $quickLinks = $campaign->menuLinks()->ordered()->with(['target'])->get();
         foreach ($quickLinks as $quickLink) {
             $parent = 'menu_links';
             if (!empty($quickLink->parent) && $campaign->boosted()) {

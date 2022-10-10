@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\v1;
 
 use App\Http\Controllers\Controller;
 use App\Models\MiscModel;
+use Illuminate\Database\Eloquent\Model;
 
 class ApiController extends Controller
 {
@@ -17,7 +18,7 @@ class ApiController extends Controller
         $model->crudSaved();
 
         // MenuLink have no entity attached to them.
-        if ($model->entity) {
+        if (!empty($model->entity)) {
             $model->entity->crudSaved();
         }
     }

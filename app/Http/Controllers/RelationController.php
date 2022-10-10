@@ -22,7 +22,7 @@ class RelationController extends CrudController
     /** @var string */
     protected $model = \App\Models\Relation::class;
 
-    /** @var string The datagrid controlling the bulk actions*/
+    /** @var string|null The datagrid controlling the bulk actions*/
     protected $datagridActions = RelationDatagridActions::class;
 
     /** @var string  */
@@ -34,6 +34,10 @@ class RelationController extends CrudController
         $this->middleware('auth');
     }
 
+    /**
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
     public function create()
     {
         $campaign = CampaignLocalization::getCampaign();

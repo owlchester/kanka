@@ -10,7 +10,6 @@ use App\Models\Attribute;
 use App\Models\Entity;
 use App\Services\AttributeService;
 use App\Traits\GuestAuthTrait;
-use Illuminate\Support\Facades\Auth;
 use Stevebauman\Purify\Facades\Purify;
 
 /**
@@ -20,14 +19,8 @@ class AttributeController extends Controller
 {
     use GuestAuthTrait;
 
-    /** @var string */
-    protected $transKey;
-
-    /** @var string */
-    protected $viewPath;
-
     /** @var AttributeService */
-    protected $service;
+    protected AttributeService $service;
 
     /**
      * AttributeController constructor.
@@ -131,56 +124,6 @@ class AttributeController extends Controller
     }
 
     /**
-     * @param Entity $entity
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function template(Entity $entity)
-    {
-        $this->authorize('update', $entity->child);
-        $this->authorize('attributes', $entity);
-
-        $parentRoute = $entity->pluralType();
-        $ajax = request()->ajax();
-        $campaign = CampaignLocalization::getCampaign();
-        $communityTemplates = $this->service->templates($campaign);
-
-
-        return view('entities.pages.attributes.template', compact(
-            'communityTemplates',
-            'entity',
-            'parentRoute',
-            'ajax'
-        ));
-    }
-
-    /**
-     * @param ApplyAttributeTemplate $request
-     * @param Entity $entity
-     * @return \Illuminate\Http\RedirectResponse
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
-    public function applyTemplate(ApplyAttributeTemplate $request, Entity $entity)
-    {
-        $this->authorize('update', $entity->child);
-        $templateName = $this->service->apply($entity, $request->only(['template_id', 'template']));
-
-        if (!$templateName) {
-            return redirect()->back()->with('error', __('entities/attributes.template.error'));
-        }
-
-        return redirect()
-            ->route('entities.attributes', $entity->id)
-            ->with('success', __('entities/attributes.template.success', [
-                'name' => $templateName, 'entity' => $entity->child->name
-            ]));
-    }
-
-    /**
-     * @param Entity $entity
-     * @return \Illuminate\Http\Response|\never
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     * @throws \Psr\Container\ContainerExceptionInterface
-     * @throws \Psr\Container\NotFoundExceptionInterface
      */
     public function liveEdit(Entity $entity)
     {

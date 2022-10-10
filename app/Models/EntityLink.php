@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\Concerns\EntityAsset;
 use App\Traits\VisibilityIDTrait;
 use App\User;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -58,10 +59,10 @@ class EntityLink extends Model
     }
 
     /**
-     * @param $query
+     * @param Builder $query
      * @return mixed
      */
-    public function scopeOrdered($query)
+    public function scopeOrdered(Builder $query)
     {
         return $query->orderBy('position', 'ASC');
     }

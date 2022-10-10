@@ -3,15 +3,12 @@
 namespace App\Services\Caches;
 
 use App\User;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 
-/**
- * @property \App\User $user
- */
 class UserCacheService extends BaseCache
 {
-
     /**
      * Check if a user is an admin of a campaign
      * @return bool
@@ -44,7 +41,7 @@ class UserCacheService extends BaseCache
             return $this->get($key);
         }
 
-        /** @var \Illuminate\Database\Query\Builder $query */
+        /** @var Builder|mixed $query */
         $query = $this->user->campaigns();
         $data = [];
 
@@ -141,9 +138,11 @@ class UserCacheService extends BaseCache
                 $data = $query->orderBy('name', 'desc')->get();
                 break;
             case 'date_joined':
+                // @phpstan-ignore-next-line
                 $data = $query->withPivot('created_at')->orderBy('pivot_created_at', 'asc')->get();
                 break;
             case 'r_date_joined':
+                // @phpstan-ignore-next-line
                 $data = $query->withPivot('created_at')->orderBy('pivot_created_at', 'desc')->get();
                 break;
             case 'date_created':

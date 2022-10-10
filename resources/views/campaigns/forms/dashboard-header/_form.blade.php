@@ -29,15 +29,25 @@
                 <p class="help-block">
                     {{ __('crud.hints.image_limitations', ['formats' => 'PNG, JPG, GIF, WebP', 'size' => auth()->user()->maxUploadSize(true)]) }}
                     {{ __('crud.hints.image_recommendation', ['width' => '1200', 'height' => '400']) }}
-                    @if (!auth()->user()->hasRole('patreon'))
-                        <a href="{{ route('settings.patreon') }}">{{ __('crud.hints.image_patreon') }}</a>
+                    @php $currentCampaign = \App\Facades\CampaignLocalization::getCampaign(false); @endphp
+                    @subscriber()
+                        @if ($currentCampaign && !$currentCampaign->boosted())
+                            <p>
+                                <a href="{{ route('settings.boost', ['campaign' => $currentCampaign]) }}">
+                                    <i class="fa-solid fa-rocket" aria-hidden="true"></i>
+                                    {!! __('callouts.subscribe.share-booster', ['campaign' => $currentCampaign->name]) !!}
+                                </a>
+                            </p>
+                        @endif
+                    @else
+                        <a href="{{ route('front.pricing') }}">{{ __('callouts.subscribe.pitch-image', ['max' => 25]) }}</a>
                     @endif
                 </p>
             </div>
             <div class="col-md-2">
                 @if (!empty($model->header_image))
                     <div class="preview-v2">
-                        <div class="image" style="background-image: url('{{ $model->getImageUrl(200, 160, 'header_image') }}')" title="{{ $model->name }}">
+                        <div class="image" style="background-image: url('{{ $model->thumbnail(200, 160, 'header_image') }}')" title="{{ $model->name }}">
                             <a href="#" class="img-delete" data-target="remove-header_image" title="{{ __('crud.remove') }}">
                                 <i class="fa-solid fa-trash"></i> {{ __('crud.remove') }}
                             </a>

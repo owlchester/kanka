@@ -21,7 +21,11 @@ if (isset($single) && $single) {
     /** Kanka map {{ $map->id }} setup **/
     var bounds{{ $map->id }} = {{ $map->bounds() }};
     var maxBounds{{ $map->id }} = {{ $map->bounds(true) }};
+    @if ($map->isReal())
+    var baseLayer{{ $map->id }} = L.imageOverlay('', bounds{{ $map->id }});
+    @else
     var baseLayer{{ $map->id }} = L.imageOverlay('{{ Storage::url($map->image) }}', bounds{{ $map->id }});
+    @endif
 
     /** Layers Init **/
 @foreach ($map->layers as $layer)

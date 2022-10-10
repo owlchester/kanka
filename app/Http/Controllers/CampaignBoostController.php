@@ -14,16 +14,16 @@ class CampaignBoostController extends Controller
     /**
      * @var CampaignBoostService
      */
-    protected $campaignBoostService;
+    protected CampaignBoostService $campaignBoostService;
 
     /**
      * @var CampaignService
      */
-    protected $campaignService;
+    protected CampaignService $campaignService;
 
     /**
-     * CampaignBoostController constructor.
      * @param CampaignBoostService $campaignBoostService
+     * @param CampaignService $campaignService
      */
     public function __construct(CampaignBoostService $campaignBoostService, CampaignService $campaignService)
     {
@@ -39,11 +39,6 @@ class CampaignBoostController extends Controller
         $superboost = request()->has('superboost');
         $cost = $superboost ? 3 : 1;
 
-        // Check if the campaign is already boosted
-        if (!$campaign) {
-            abort(404);
-        }
-
         return view('settings.boosters.create')
             ->with('campaign', $campaign)
             ->with('superboost', $superboost)
@@ -53,13 +48,14 @@ class CampaignBoostController extends Controller
     }
 
     /**
-     * @param $campaign
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function store(\Illuminate\Http\Request $request)
     {
         $campaignId = $request->get('campaign_id');
+        /** @var Campaign $campaign */
         $campaign = Campaign::findOrFail((int) $campaignId);
         CampaignCache::campaign($campaign);
         $this->authorize('access', $campaign);
@@ -93,6 +89,11 @@ class CampaignBoostController extends Controller
         }
     }
 
+    /**
+     * @param CampaignBoost $campaignBoost
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
     public function edit(CampaignBoost $campaignBoost)
     {
         $this->authorize('destroy', $campaignBoost);
@@ -103,13 +104,15 @@ class CampaignBoostController extends Controller
             ->with('cost', 2)
         ;
     }
+
     /**
      * @param \Illuminate\Http\Request $request
      * @param CampaignBoost $campaignBoost
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function update(\Illuminate\Http\Request $request, CampaignBoost $campaignBoost) {
+    public function update(\Illuminate\Http\Request $request, CampaignBoost $campaignBoost)
+    {
         $campaign = $campaignBoost->campaign;
 
         // If the user created the boost, allow them to update it. We don't check the campaign because there is

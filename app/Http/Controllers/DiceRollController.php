@@ -48,10 +48,9 @@ class DiceRollController extends CrudController
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param StoreDiceRoll $request
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function store(StoreDiceRoll $request)
     {
@@ -59,10 +58,9 @@ class DiceRollController extends CrudController
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\DiceRoll  $diceRoll
-     * @return \Illuminate\Http\Response
+     * @param DiceRoll $diceRoll
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function show(DiceRoll $diceRoll)
     {
@@ -70,10 +68,10 @@ class DiceRollController extends CrudController
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\DiceRoll  $diceRoll
-     * @return \Illuminate\Http\Response
+     * @param DiceRoll $diceRoll
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws \Illuminate\Contracts\Container\BindingResolutionException
      */
     public function edit(DiceRoll $diceRoll)
     {
@@ -81,11 +79,13 @@ class DiceRollController extends CrudController
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\DiceRoll  $diceRoll
-     * @return \Illuminate\Http\Response
+     * @param StoreDiceRoll $request
+     * @param DiceRoll $diceRoll
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws \Illuminate\Contracts\Container\BindingResolutionException
+     * @throws \Psr\Container\ContainerExceptionInterface
+     * @throws \Psr\Container\NotFoundExceptionInterface
      */
     public function update(StoreDiceRoll $request, DiceRoll $diceRoll)
     {
@@ -93,10 +93,9 @@ class DiceRollController extends CrudController
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\DiceRoll  $diceRoll
-     * @return \Illuminate\Http\Response
+     * @param DiceRoll $diceRoll
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function destroy(DiceRoll $diceRoll)
     {
@@ -138,56 +137,5 @@ class DiceRollController extends CrudController
 
         return redirect()->route('dice_rolls.show', $diceRoll)
             ->with('success', trans('dice_rolls.destroy.dice_roll'));
-    }
-
-    /**
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
-    public function rolls()
-    {
-        $actions = [[
-            'route' => route('dice_rolls.index'),
-            'class' => 'default',
-            'label' => '<i class="fa-solid fa-block"></i> ' . __('dice_rolls.index.actions.dice')
-        ]];
-
-        $filters = [
-            [
-                'field' => 'dice_roll_id',
-                'label' => trans('crud.fields.dice_roll'),
-                'type' => 'select2',
-                'route' => route('dice_rolls.find'),
-                'placeholder' =>  trans('crud.placeholders.dice_roll'),
-                'model' => DiceRoll::class,
-            ],
-            [
-                'field' => 'diceRoll-character_id',
-                'label' => trans('crud.fields.character'),
-                'type' => 'select2',
-                'route' => route('characters.find'),
-                'placeholder' =>  trans('crud.placeholders.character'),
-                'model' => Character::class,
-            ],
-        ];
-
-        $this->authorize('browse', $this->model);
-
-        // Add the is_private filter only for admins.
-//        if (Auth::user()->isAdmin()) {
-//            $this->filters[] = 'is_private';
-//        }
-
-        $model = new DiceRollResult();
-        $this->filterService->prepare('dice_rolls-rolls', request()->all(), $model->getFilterableColumns());
-        $name = $this->view . '.rolls';
-        $filterService = $this->filterService;
-
-        $models = $model
-            ->search(request()->get('search'))
-            ->filter($this->filterService->filters())
-            ->order($this->filterService->order())
-            ->paginate();
-        return view('cruds.index', compact('models', 'name', 'model', 'actions', 'filters', 'filterService'));
     }
 }

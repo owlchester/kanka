@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\Concerns\Blameable;
 use App\Models\Concerns\LastSync;
 use App\User;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Auth;
 
 /**
@@ -18,8 +19,8 @@ use Illuminate\Support\Facades\Auth;
  * @property int $user_id
  * @property string $message
  *
- * @property Character $character
- * @property User $user
+ * @property Character|null $character
+ * @property User|null $user
  * @property Conversation $conversation
  */
 class ConversationMessage extends MiscModel
@@ -28,7 +29,7 @@ class ConversationMessage extends MiscModel
 
     public $isGroupped = false;
 
-    //
+    /** @var string[]  */
     protected $fillable = [
         'conversation_id',
         'created_by',
@@ -88,7 +89,7 @@ class ConversationMessage extends MiscModel
     }
 
     /**
-     * @return string
+     * @return int|null
      */
     public function target()
     {
@@ -97,7 +98,7 @@ class ConversationMessage extends MiscModel
     }
 
     /**
-     * @return string
+     * @return string|null
      */
     public function author()
     {
@@ -109,7 +110,7 @@ class ConversationMessage extends MiscModel
         return null;
     }
     /**
-     * @return string
+     * @return int|null
      */
     public function authorID(): int|null
     {
@@ -122,11 +123,11 @@ class ConversationMessage extends MiscModel
     }
 
     /**
-     * @param $query
-     * @param null $oldestId
-     * @param null $newestId
+     * @param Builder $query
+     * @param null|int $oldestId
+     * @param null|int $newestId
      */
-    public function scopeDefault($query, $oldestId = null, $newestId = null)
+    public function scopeDefault(Builder $query, $oldestId = null, $newestId = null)
     {
         $query->with(['user', 'character'])
             ->latest()

@@ -1,7 +1,4 @@
 <?php
-/**
- * Description of
- */
 
 namespace App\Models;
 
@@ -16,9 +13,9 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $community_event_id
  * @property int $user
  * @property string $vote
+ * @property int $created_by
  *
  * @property CommunityEvent $event
- * @property User $created_by
  */
 class CommunityEventEntry extends Model
 {

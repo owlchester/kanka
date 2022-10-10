@@ -10,6 +10,7 @@ use App\Models\MiscModel;
 
 use App\Traits\MentionTrait;
 use Exception;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 
@@ -21,13 +22,13 @@ class EntityMappingService
      * If exceptions should be thrown. Probably not.
      * @var bool
      */
-    protected $throwExceptions = true;
+    protected bool $throwExceptions = true;
 
     /**
      * If the app is verbose
      * @var bool
      */
-    public $verbose = false;
+    public bool $verbose = false;
 
     /**
      * Set errors and verbose to silent
@@ -53,7 +54,6 @@ class EntityMappingService
 
     /**
      * @param EntityNote $entityNote
-     * @return int
      * @throws Exception
      */
     public function mapEntityNote(EntityNote $entityNote)
@@ -67,7 +67,7 @@ class EntityMappingService
     }
 
     /**
-     * @param $model
+     * @param MiscModel|Entity|EntityNote|Campaign $model
      * @return int
      * @throws Exception
      */
@@ -109,7 +109,7 @@ class EntityMappingService
                 $campaignId = $model->entity->campaign_id;
             }
 
-            /** @var Entity $entity */
+            /** @var Entity|null $target */
             $target = Entity::where([
                 'type_id' => $singularType, 'id' => $id, 'campaign_id' => $campaignId
             ])->first();
@@ -139,7 +139,7 @@ class EntityMappingService
     }
 
     /**
-     * @param $model
+     * @param MiscModel|EntityNote|Campaign $model
      * @param int $target
      */
     protected function createNewMention($model, int $target)
@@ -169,9 +169,9 @@ class EntityMappingService
     }
 
     /**
-     * @param string $message
+     * @param string|null $message
      */
-    protected function log($message = '')
+    protected function log(string $message = null)
     {
         if ($this->verbose === true) {
             echo $message;

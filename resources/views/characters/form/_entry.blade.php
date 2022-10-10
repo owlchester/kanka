@@ -69,7 +69,6 @@
     </div>
 </div>
 
-
 <div class="row">
     <div class="col-md-6">
         @include('cruds.fields.tags')
@@ -80,3 +79,9 @@
 </div>
 
 @includeWhen(auth()->user()->isAdmin(), 'cruds.fields.privacy_callout')
+
+
+@section('scripts')
+    @parent
+    <script src="{{ mix('js/forms/character.js') }}" defer></script>
+@endsection

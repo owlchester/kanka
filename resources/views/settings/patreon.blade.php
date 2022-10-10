@@ -16,8 +16,8 @@
         </div>
     </div>
 
-    @if(auth()->user()->hasPatreonSync())
-        @includeIf('settings._' . strtolower(auth()->user()->patreon_pledge ?: 'kobold'))
+    @if(auth()->user()->isLegacyPatron())
+        @includeIf('settings._' . strtolower(auth()->user()->pledge ?: 'kobold'))
 
     <div class="text-center">
         <button class="btn btn-danger" data-toggle="modal"

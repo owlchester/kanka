@@ -26,8 +26,8 @@ use Illuminate\Support\Facades\Auth;
  * @property string $locale
  * @property string $entry
  * @property string $image
- * @property string $export_path
- * @property Carbon $export_date
+ * @property string|null $export_path
+ * @property Carbon|string $export_date
  * @property int $visibility_id
  * @property bool $entity_visibility
  * @property bool $entity_personality_visibility
@@ -77,9 +77,7 @@ class Campaign extends MiscModel
     public const LAYER_COUNT_MIN = 1;
     public const LAYER_COUNT_MAX = 10;
 
-    /**
-     * @var array
-     */
+    /** @var string[]  */
     protected $fillable = [
         'name',
         'slug',
@@ -179,14 +177,6 @@ class Campaign extends MiscModel
     public function unusedInvites()
     {
         return $this->invites()->where('is_active', true);
-    }
-
-    /**
-     * @return bool
-     */
-    public function owner()
-    {
-        return $this->owners()->where('user_id', auth()->user()->id)->count() == 1;
     }
 
     /**
@@ -365,7 +355,7 @@ class Campaign extends MiscModel
     }
 
     /**
-     * @return mixed
+     * @return bool
      */
     public function defaultToNested(): bool
     {
@@ -373,7 +363,7 @@ class Campaign extends MiscModel
     }
 
     /**
-     * @return mixed
+     * @return bool
      */
     public function defaultToConnection(): bool
     {
@@ -381,7 +371,7 @@ class Campaign extends MiscModel
     }
 
     /**
-     * @return mixed
+     * @return int
      */
     public function defaultToConnectionMode(): int
     {
@@ -458,7 +448,7 @@ class Campaign extends MiscModel
 
         $data = [];
         foreach ($this->default_images as $type => $uuid) {
-            /** @var Image $image */
+            /** @var Image|null $image */
             $image = $images->where('id', $uuid)->first();
             if (empty($image)) {
                 continue;
@@ -536,7 +526,7 @@ class Campaign extends MiscModel
     public function hasEditingWarning(): bool
     {
         $members = CampaignCache::members();
-        return !empty($members) && $members->count() > 1;
+        return $members !== null && $members->count() > 1;
     }
 
     /**
@@ -553,13 +543,13 @@ class Campaign extends MiscModel
     }
 
     /**
-     * Get the campaign's image url
+     * Get the campaign's thumbnail url
      * @param int $width
      * @param int|null $height
      * @param string $field
      * @return string
      */
-    public function getImageUrl(int $width = 400, int $height = null, string $field = 'image')
+    public function thumbnail(int $width = 400, int $height = null, string $field = 'image')
     {
         if (empty($this->$field)) {
             return '';

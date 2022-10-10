@@ -12,7 +12,7 @@ class TimelineEraApiController extends ApiController
 {
     /**
      * @param Campaign $campaign
-     * @return Collection
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function index(Campaign $campaign, Timeline $timeline)
@@ -35,8 +35,9 @@ class TimelineEraApiController extends ApiController
     }
 
     /**
-     * @param StoreTimelineEra $retimelineEra
+     * @param Request $request
      * @param Campaign $campaign
+     * @param Timeline $timeline
      * @return Resource
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -49,10 +50,12 @@ class TimelineEraApiController extends ApiController
     }
 
     /**
-     * @param StoreTimelineEra $retimelineEra
+     * @param Request $request
      * @param Campaign $campaign
+     * @param Timeline $timeline
      * @param TimelineEra $timelineEra
      * @return Resource
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function update(
         Request $request,
@@ -68,8 +71,9 @@ class TimelineEraApiController extends ApiController
     }
 
     /**
-     * @param Request
+     * @param \Illuminate\Http\Request $request
      * @param Campaign $campaign
+     * @param Timeline $timeline
      * @param TimelineEra $timelineEra
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException

@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Datagrids\Filters\AbilityFilter;
-use App\Datagrids\Sorters\AbilityAbilitySorter;
-use App\Datagrids\Sorters\AbilityEntitySorter;
 use App\Facades\Datagrid;
 use App\Http\Requests\StoreAbilityEntity;
 use App\Http\Requests\StoreAbility;
@@ -20,7 +18,7 @@ class AbilityController extends CrudController
      */
     protected string $view = 'abilities';
     protected string $route = 'abilities';
-    protected $module = 'abilities';
+    protected string $module = 'abilities';
 
     /**
      * Crud models
@@ -43,9 +41,6 @@ class AbilityController extends CrudController
 
     /**
      * Store a newly created resource in storage.
-     *
-     * @param StoreAbility $request
-     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(StoreAbility $request)
     {
@@ -53,10 +48,6 @@ class AbilityController extends CrudController
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Character  $ability
-     * @return \Illuminate\Http\Response
      */
     public function show(Ability $ability)
     {
@@ -65,9 +56,6 @@ class AbilityController extends CrudController
 
     /**
      * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Ability $ability
-     * @return \Illuminate\Http\Response
      */
     public function edit(Ability $ability)
     {
@@ -75,11 +63,6 @@ class AbilityController extends CrudController
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Ability $ability
-     * @return \Illuminate\Http\Response
      */
     public function update(StoreAbility $request, Ability $ability)
     {
@@ -87,10 +70,6 @@ class AbilityController extends CrudController
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Character  $ability
-     * @return \Illuminate\Http\Response
      */
     public function destroy(Ability $ability)
     {
@@ -98,9 +77,6 @@ class AbilityController extends CrudController
     }
 
     /**
-     * @param Ability $ability
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function abilities(Ability $ability)
     {
@@ -109,9 +85,10 @@ class AbilityController extends CrudController
         Datagrid::layout(\App\Renderers\Layouts\Ability\Ability::class)
             ->route('abilities.abilities', [$ability]);
 
+        // @phpstan-ignore-next-line
         $this->rows = $ability
-            ->descendants()
             ->sort(request()->only(['o', 'k']))
+            ->descendants()
             ->with(['entity', 'entity.image', 'ability', 'ability.entity'])
             ->has('entity')
             ->paginate();
@@ -126,9 +103,6 @@ class AbilityController extends CrudController
     }
 
     /**
-     * @param Ability $ability
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function entities(Ability $ability)
     {
@@ -153,9 +127,6 @@ class AbilityController extends CrudController
     }
 
     /**
-     * @param Ability $ability
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function entityAdd(Ability $ability)
     {
@@ -174,10 +145,6 @@ class AbilityController extends CrudController
     }
 
     /**
-     * @param StoreAbilityEntity $request
-     * @param Ability $ability
-     * @return \Illuminate\Http\RedirectResponse
-     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function entityStore(StoreAbilityEntity $request, Ability $ability)
     {

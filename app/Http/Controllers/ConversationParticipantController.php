@@ -9,8 +9,6 @@ use App\Models\ConversationParticipant;
 class ConversationParticipantController extends Controller
 {
     /**
-     * @param Conversation $conversation
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index(Conversation $conversation)
     {
@@ -19,10 +17,6 @@ class ConversationParticipantController extends Controller
     }
 
     /**
-     * @param StoreConversationParticipant $request
-     * @param Conversation $conversation
-     * @return \Illuminate\Http\RedirectResponse
-     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function store(StoreConversationParticipant $request, Conversation $conversation)
     {
@@ -35,17 +29,12 @@ class ConversationParticipantController extends Controller
             ->route('conversations.show', $conversation)
             ->with('success', trans('conversations.participants.create.success', [
                 'name' => $conversation->name,
-                'entity' => $participant->entity()->name
+                'entity' => $participant->name()
             ]));
     }
 
 
-
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Character  $character
-     * @return \Illuminate\Http\Response
      */
     public function edit(Conversation $conversation, ConversationParticipant $conversationParticipant)
     {
@@ -55,11 +44,6 @@ class ConversationParticipantController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Character  $character
-     * @return \Illuminate\Http\Response
      */
     public function update(
         StoreConversationParticipant $request,
@@ -70,18 +54,13 @@ class ConversationParticipantController extends Controller
 
         $conversationParticipant->update($request->all());
 
-        return redirect()->route($conversation->pluralType() . '.show', [$conversation->child->id, $this->tab])
+        return redirect()->route('conversations.show', [$conversation->id])
             ->with('success', trans('crud.notes.edit.success', [
                 'name' => $conversationParticipant->name, 'entity' => $conversation->name
             ]));
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Conversation  $conversation
-     * @param  \App\Models\ConversationParticipant  $conversationParticipant
-     * @return \Illuminate\Http\Response
      */
     public function destroy(Conversation $conversation, ConversationParticipant $conversationParticipant)
     {
