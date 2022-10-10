@@ -140,6 +140,8 @@ trait HasFilters
                     $this->filterRace($query, $value);
                 } elseif ($key == 'family') {
                     $this->filterFamily($query, $value);
+                } elseif ($key == 'character_organisation') {
+                    $this->filterCharacterOrganisation($query, $value);
                 } elseif ($key == 'quest_elements') {
                     $this->filterQuestElements($query, $value);
                 } elseif ($key == 'element_role') {
@@ -700,6 +702,29 @@ trait HasFilters
     }
 
     /**
+     * Filter characters belonging to specific organisations
+     * @param Builder $query
+     * @param string|null $value
+     * @return void
+     */
+    protected function filterCharacterOrganisation(Builder $query, string $value = null): void
+    {
+        $ids = [$value];
+        if ($this->filterOption('exclude')) {
+            $query
+                ->whereRaw('(select count(*) from organisation_member as ome where ome.organisation_id = ' .
+                    $this->getTable() . '.id and ome.character_id in (' . (int) $value . ')) = 0');
+            return;
+        }
+
+        $query
+        ->select($this->getTable() . '.*')
+        ->leftJoin('organisation_member as om', function ($join) {
+            $join->on('om.organisation_id', '=', $this->getTable() . '.id');
+        })->whereIn('om.character_id', $ids)->distinct();
+    }
+
+    /**
      * Filter on entities that have one of the targets as "none" selected
      * @param Builder $query
      * @param string $key
@@ -714,7 +739,7 @@ trait HasFilters
             return;
         }
         // Left join shenanigans
-        if (!in_array($key, ['organisation_member', 'race', 'family', 'tags', 'quest_elements'])) {
+        if (!in_array($key, ['organisation_member', 'race', 'family', 'tags', 'quest_elements', 'character_organisation'])) {
             $query->whereNull($this->getTable() . '.' . $key);
         } elseif ($key === 'tags') {
             $query = $this->joinEntity($query);
@@ -749,6 +774,13 @@ trait HasFilters
                     $join->on('qe2.quest_id', '=', $this->getTable() . '.id');
                 })
                 ->where('qe2.entity_id', null);
+        } elseif ($key === 'character_organisation') {
+            $query
+                ->select($this->getTable() . '.*')
+                ->leftJoin('organisation_member as om2', function ($join) {
+                    $join->on('om2.organisation_id', '=', $this->getTable() . '.id');
+                })
+                ->where('om2.character_id', null);
         }
     }
 }
