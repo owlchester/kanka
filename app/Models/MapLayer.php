@@ -67,7 +67,7 @@ class MapLayer extends Model
     /**
      * Get the image (or default image) of an entity
      * @param int $width
-     * @param int|null $width
+     * @param int|null $height
      * @return string
      */
     public function thumbnail(int $width = 400, int $height = null)
