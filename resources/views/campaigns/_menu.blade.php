@@ -239,7 +239,7 @@ if (auth()->check()) {
                     @if(auth()->user()->can('leave', $campaign))
                         <p class="mt-5">{!! __('campaigns.leave.confirm', ['name' => '<strong>' . $campaign->name . '</strong>']) !!}
 
-                        {!! Form::open(['method' => 'DELETE', 'route' => ['campaigns.leave', $campaign->id]]) !!}
+                        {!! Form::open(['method' => 'GET', 'route' => ['campaigns.leave', $campaign->id]]) !!}
                         <div class="py-5">
                             <button type="button" class="btn px-8 rounded-full mr-5" data-dismiss="modal">{{ __('crud.cancel') }}</button>
                             <button type="submit" class="btn btn-danger px-8 ml-5 rounded-full">
@@ -260,7 +260,7 @@ if (auth()->check()) {
     </div>
     @endif
 
-    @if (auth()->user()->can('roles', $campaign))
+    @if (auth()->check() && auth()->user()->can('roles', $campaign))
         <div class="modal fade" id="campaign-delete-confirm" tabindex="-1" role="dialog" aria-labelledby="clickConfirmLabel">
             <div class="modal-dialog" role="document">
                 <div class="modal-content rounded-2xl text-center">
