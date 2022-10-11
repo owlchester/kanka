@@ -142,6 +142,8 @@ trait HasFilters
                     $this->filterFamily($query, $value);
                 } elseif ($key == 'character_organisation') {
                     $this->filterCharacterOrganisation($query, $value);
+                } elseif ($key == 'character_family') {
+                    $this->filterCharacterFamily($query, $value);
                 } elseif ($key == 'quest_elements') {
                     $this->filterQuestElements($query, $value);
                 } elseif ($key == 'element_role') {
@@ -712,8 +714,8 @@ trait HasFilters
         $ids = [$value];
         if ($this->filterOption('exclude')) {
             $query
-                ->whereRaw('(select count(*) from organisation_member as ome where ome.organisation_id = ' .
-                    $this->getTable() . '.id and ome.character_id in (' . (int) $value . ')) = 0');
+                ->whereRaw('(select count(*) from organisation_member as om where om.organisation_id = ' .
+                    $this->getTable() . '.id and om.character_id in (' . (int) $value . ')) = 0');
             return;
         }
 
@@ -722,6 +724,29 @@ trait HasFilters
         ->leftJoin('organisation_member as om', function ($join) {
             $join->on('om.organisation_id', '=', $this->getTable() . '.id');
         })->whereIn('om.character_id', $ids)->distinct();
+    }
+
+    /**
+     * Filter characters belonging to specific families
+     * @param Builder $query
+     * @param string|null $value
+     * @return void
+     */
+    protected function filterCharacterFamily(Builder $query, string $value = null): void
+    {
+        $ids = [$value];
+        if ($this->filterOption('exclude')) {
+            $query
+                ->whereRaw('(select count(*) from character_family as cf where cf.family_id = ' .
+                    $this->getTable() . '.id and cf.character_id in (' . (int) $value . ')) = 0');
+            return;
+        }
+
+        $query
+        ->select($this->getTable() . '.*')
+        ->leftJoin('character_family as cf', function ($join) {
+            $join->on('cf.family_id', '=', $this->getTable() . '.id');
+        })->whereIn('cf.character_id', $ids)->distinct();
     }
 
     /**
@@ -739,7 +764,7 @@ trait HasFilters
             return;
         }
         // Left join shenanigans
-        if (!in_array($key, ['organisation_member', 'race', 'family', 'tags', 'quest_elements', 'character_organisation'])) {
+        if (!in_array($key, ['organisation_member', 'race', 'family', 'tags', 'quest_elements', 'character_organisation', 'character_family'])) {
             $query->whereNull($this->getTable() . '.' . $key);
         } elseif ($key === 'tags') {
             $query = $this->joinEntity($query);
@@ -781,6 +806,13 @@ trait HasFilters
                     $join->on('om2.organisation_id', '=', $this->getTable() . '.id');
                 })
                 ->where('om2.character_id', null);
+        } elseif ($key === 'character_family') {
+            $query
+                ->select($this->getTable() . '.*')
+                ->leftJoin('character_family as cf2', function ($join) {
+                    $join->on('cf2.family_id', '=', $this->getTable() . '.id');
+                })
+                ->where('cf2.character_id', null);
         }
     }
 }
