@@ -3,6 +3,7 @@
 namespace App\Datagrids\Filters;
 
 use App\Models\Family;
+use App\Models\Character;
 
 class FamilyFilter extends DatagridFilter
 {
@@ -23,6 +24,14 @@ class FamilyFilter extends DatagridFilter
                 'model' => Family::class,
             ])
             ->location()
+            ->add([
+                'field' => 'character_family',
+                'label' => __('crud.fields.character'),
+                'type' => 'select2',
+                'route' => route('characters.find'),
+                'placeholder' =>  __('crud.placeholders.character'),
+                'model' => Character::class,
+            ])
             ->isPrivate()
             ->hasImage()
             ->hasEntityNotes()
