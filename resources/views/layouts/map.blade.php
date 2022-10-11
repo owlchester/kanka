@@ -75,7 +75,7 @@ $specificTheme = null;
         <aside class="main-sidebar">
             <section class="sidebar" style="height: auto">
 
-                <div id="sidebar-content">
+                <div id="sidebar-content" class="sidebar-menu">
                     <div id="sidebar-map">
                         <div class="marker-details">
                             <h3 class="marker-name">{{ $map->name }}</h3>

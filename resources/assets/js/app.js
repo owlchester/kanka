@@ -1,4 +1,4 @@
-require('./bootstrap');
+require('./vendor');
 
 import deleteConfirm from './components/delete-confirm.js';
 import dynamicMentions from "./mention";
@@ -358,6 +358,5 @@ require('./toast');
 require('./sidebar');
 require('./banner');
 require('./timeline');
-require('./vendor');
-require('./utility/sortable')
+require('./utility/sortable');
 //require('./ads');

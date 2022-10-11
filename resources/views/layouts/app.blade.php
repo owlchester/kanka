@@ -161,24 +161,7 @@ $seoTitle = isset($seoTitle) ? $seoTitle : (isset($title) ? $title : null);
 
     @yield('modals')
 
-    <div class="toast-container">@if (false)
-       @for ($i = 0; $i < 5; $i++)
-        <div class="toast-success">
-            <span class="toast-message">
-                {{ $i }} message to the user spam
-
-                <i class="fa-solid fa-times" data-toggle="dismiss"></i>
-            </span>
-        </div>
-        @endfor
-        <div class="toast-success">
-            <span class="toast-message">
-                Last message
-                <i class="fa-solid fa-times" data-toggle="dismiss"></i>
-            </span>
-        </div>
-        @endif
-    </div>
+    <div class="toast-container"></div>
 
 @if (config('fontawesome.kit'))
     <script src="https://kit.fontawesome.com/{{ config('fontawesome.kit') }}.js" crossorigin="anonymous"></script>
