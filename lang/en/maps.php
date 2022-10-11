@@ -53,6 +53,7 @@ return [
         'chunked_zoom'      => 'Automatically cluster markers together when they are close to each other.',
         'descendants'       => 'This list contains all maps which are descendants of this map, and not only those directly under it.',
         'distance_measure'  => 'Giving the map a distance measurement will enable the measurement tool in the exploration mode.',
+        'distance_measure_2'=> 'For 100 pixels to measure 1 kilometer, input a value of 0.0041.',
         'grid'              => 'Define a grid size that will be displayed in the exploration mode.',
         'has_clustering'    => 'Automatically cluster markers together when they are close to each other.',
         'initial_zoom'      => 'The initial zoom level a map is loaded with. The default value is :default, while the highest allowed value is :max and the lowest allowed value is :min.',

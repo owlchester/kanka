@@ -142,19 +142,19 @@ if (isset($model) && $model->isChunked()) {
         <div class="form-group">
             <label>
                 {{ __('maps.fields.distance_measure') }}
-                <i class="fa-solid fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" title="{{ __('maps.helpers.distance_measure') }}"></i>
+                <i class="fa-solid fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" title="{{ __('maps.helpers.distance_measure') . ' ' . __('maps.helpers.distance_measure_2')}}"></i>
             </label>
             {!! Form::number(
             'config[distance_measure]',
             FormCopy::field('config[distance_measure]')->string(),
             [
                 'class' => 'form-control',
-                'min' => 0.01,
+                'min' => 0.0001,
                 'max' => 100.99,
-                'step' => 0.01,
+                'step' => 0.0001,
             ]
             ) !!}
-            <p class="help-block visible-xs visible-sm">{{ __('maps.helpers.distance_measure') }}</p>
+            <p class="help-block visible-xs visible-sm">{{ __('maps.helpers.distance_measure') . ' ' . __('maps.helpers.distance_measure_2') }}</p>
         </div>
     </div>
 </div>
