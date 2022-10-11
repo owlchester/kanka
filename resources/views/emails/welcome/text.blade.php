@@ -12,11 +12,9 @@
     'discord' => 'Discord (https:' . config('social.discord') . ')',
 ]) !!}
 
-{!! __('emails/welcome.section_3', [
-    'faq' => __('front.faq.title') . ' (' . route('front.faqs.index') . ')',
-]) !!}
-
-{!! __('emails/welcome.section_4', [
+{!! __('emails/welcome.section_4_v2', [
+    'knowledge-base' => __('front.menu.title') . ' (' . route('front.faqs.index') . ')',
+    'documentation' => __('front.menu.documentation') . ' (https://docs.kanka.io/en/latest/index.html)',
     'youtube' => __('emails/welcome.section_5') . ' (https:' . config('social.youtube') . ')',
 ]) !!}
 
