@@ -113,21 +113,6 @@ $mapSidebarWidth: 380px;
     .sidebar {
         li {
             height: unset;
-            margin: 0;
-            padding: 0;
-            min-height: unset;
-
-            a.map-legend-marker {
-                font-size: 0.8rem;
-                padding: unset;
-                margin: unset;
-                text-transform: unset;
-
-                &:hover {
-                    background-color: unset;
-                    text-decoration: underline;
-                }
-            }
         }
         a {
             color: var(--sidebar-link);
