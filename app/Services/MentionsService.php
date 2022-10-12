@@ -121,10 +121,10 @@ class MentionsService
             return Attributes::parse($attribute);
         }
 
-        $this->text = (string) $attribute->value;
-        $attribute->value = $this->extractAndReplace();
+        //Called in this order to avoid a bug that would render an attribute mention inside an attribute wrong.
+        $this->text = Attributes::parse($attribute);
 
-        return Attributes::parse($attribute);
+        return $this->extractAndReplace();
     }
 
     /**
@@ -411,7 +411,6 @@ class MentionsService
 
                     $cssClasses[] = 'mention-field-' . Str::slug($field);
                 }
-
                 $replace = '<a href="' . $url . '"'
                     . ' class="' . implode(' ', $cssClasses) . '"'
                     . ' data-entity-tags="' . implode(' ', $tagClasses) . '"'
