@@ -14,28 +14,13 @@ if (isset($model) && $model->race) {
 if (!isset($source)) {
     $source = null;
 }
-
-$data = [
-    'preset' => $preset,
-    'class' => App\Models\Race::class,
-];
-if (isset($enableNew)) {
-    $data['allowNew'] = $enableNew;
-}
-if (isset($parent) && $parent) {
-    $data['labelKey'] = 'races.fields.race';
-}
-if (isset($dropdownParent)) {
-    $data['dropdownParent'] = $dropdownParent;
-}
-if (isset($from)) {
-    $data['from'] = $from;
-}
 @endphp
 <input type="hidden" name="save_races" value="1">
 <div class="form-group">
     @include('components.form.races', ['options' => [
         'model' => $model ?? FormCopy::model(),
-        'source' => $source ?? null
+        'source' => $source ?? null,
+        'quickCreator' => $quickCreator ?? false,
+        'modelClass' => \App\Models\Race::class
     ]])
 </div>

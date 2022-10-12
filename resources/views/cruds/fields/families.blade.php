@@ -6,6 +6,7 @@
 <div class="form-group">
     @include('components.form.families', ['options' => [
         'model' => $model ?? FormCopy::model(),
-        'source' => $source ?? null
+        'source' => $source ?? null,
+        'quickCreator' => $quickCreator ?? false
     ]])
 </div>

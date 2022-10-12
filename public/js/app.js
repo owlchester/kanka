@@ -4545,7 +4545,18 @@ function quickCreatorSubformHandler() {
     }).done(function (result) {
       // New entity was created, let's follow that redirect
       if (_typeof(result) === 'object') {
-        $('#' + result._target).children().remove().end().append(new Option(result._name, result._id)).val(result._id).trigger('change');
+        var option = new Option(result._name, result._id);
+        var field = $('#' + result._target);
+
+        if (result._multi) {
+          var selectedValues = field.val();
+          selectedValues.push(result._id);
+          field.append(option).val(selectedValues);
+        } else {
+          field.children().remove().end().append(option).val(result._id);
+        }
+
+        field.trigger('change');
         $(quickCreatorModalID).find('.modal-content').html('').show();
         $(quickCreatorModalID).find('.modal-spinner').hide();
         $(quickCreatorModalID).modal('toggle');

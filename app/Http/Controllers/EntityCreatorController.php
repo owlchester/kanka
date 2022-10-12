@@ -58,6 +58,7 @@ class EntityCreatorController extends Controller
         }
         $origin = request()->get('origin');
         $target = request()->get('target');
+        $multi = request()->get('multi');
         $singularType = Str::singular($type);
 
         $entityType = __('entities.' . $singularType);
@@ -70,6 +71,7 @@ class EntityCreatorController extends Controller
             'source' => null,
             'origin' => $origin,
             'target' => $target,
+            'multi' => $multi
         ]);
     }
 
@@ -93,6 +95,7 @@ class EntityCreatorController extends Controller
 
         // Prepare the data
         unset($values['names']);
+        unset($values['_multi']);
         unset($values['_target']);  // Remove target as we need that for something else
 
         if (!empty($values['entry'])) {
@@ -155,6 +158,7 @@ class EntityCreatorController extends Controller
                 '_target' => $request->get('_target'),
                 '_id' => $first->id,
                 '_name' => $first->name,
+                '_multi' => $request->get('_multi'),
             ]);
         }
 
