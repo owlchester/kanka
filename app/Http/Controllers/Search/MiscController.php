@@ -316,17 +316,21 @@ class MiscController extends Controller
      * @param array $excludes
      * @return mixed
      */
-    protected function buildSearchResults($term, $class, array $excludes = [])
+    protected function buildSearchResults(string $term, string $class, array $excludes = [])
     {
         /** @var Builder|Tag $modelClass */
         $modelClass = new $class();
         if (empty($term)) {
-            $models = $modelClass->whereNotIn('id', $excludes)
+            $models = $modelClass
+                ->with(['entity', 'entity.image'])
+                ->whereNotIn('id', $excludes)
                 ->limit(10)
                 ->orderBy('updated_at', 'DESC')
                 ->get();
         } else {
-            $models = $modelClass->whereNotIn('id', $excludes);
+            $models = $modelClass
+                ->with(['entity2', 'entity.image'])
+                ->whereNotIn('id', $excludes);
             // Exact match
             if (Str::startsWith($term, '=')) {
                 $models->where('name', ltrim($term, '='));
@@ -339,13 +343,18 @@ class MiscController extends Controller
         }
         $formatted = [];
 
+        /** @var \App\Models\MiscModel $model */
         foreach ($models as $model) {
+
             $format = [
                 'id' => $model->id,
-                'text' => $model->name
+                'text' => $model->name,
             ];
             if ($class === 'App\Models\Tag' && $model->hasColour()) {
                 $format['colour'] = $model->colourClass();
+            }
+            if (method_exists($model, 'thumbnail')) {
+                $format['image'] = $model->thumbnail();
             }
 
             $formatted[] = $format;

@@ -43,7 +43,7 @@ $(document).ready(function() {
                 templateResult: function (item) {
                     var $span = '';
                     if (item.image) {
-                        $span = $("<span><img src='" + item.image + "' width='40' height='40'/> " + item.text + "</span>");
+                        $span = $("<span><img src='" + item.image + "' width='24' height='24' class='rounded-full'/> " + item.text + "</span>");
                     } else {
                         $span = $("<span>" + item.text + "</span>");
                     }
