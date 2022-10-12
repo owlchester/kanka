@@ -1,2 +1,175 @@
-(()=>{var e,n,i,o,a,t,s,d,r,c=!1;function l(){var e=t.val(),n=t.data("url");a.prop("disabled",!0).find(".check").hide().parent().find(".spinner").show(),e||o.removeClass("disabled").prop("disabled",!1),$.ajax({url:n+"?coupon="+e,context:this}).done((function(e){if(a.prop("disabled",!1).find(".check").show().parent().find(".spinner").hide(),o.removeClass("disabled").prop("disabled",!1),!e.valid)return s.hide(),d.show(),void r.val("");d.hide(),s.html(e.discount).show(),r.val(e.coupon)}))}$(document).ready((function(){var p;p=$("#stripe-token"),e=Stripe(p.val()),n=e.elements(),$('input[name="period"]').change((function(){var e=$("#pricing-overview");console.log("checked?",this.checked),this.checked?e.removeClass("period-month").addClass("period-year"):e.removeClass("period-year").addClass("period-month")})),$("#subscribe-confirm").on("shown.bs.modal",(function(){!function(){if(o=$(".subscription-confirm-button"),1===$("#card-element").length){if(!i){var p={base:{color:"#555555",fontFamily:'"Helvetica Neue", Helvetica, sans-serif',fontSmoothing:"antialiased",fontSize:"14px","::placeholder":{color:"#777777"}},invalid:{color:"#fa755a",iconColor:"#fa755a"}};i=n.create("card",{hidePostalCode:!0,style:p})}i.mount("#card-element")}$("#subscription-confirm").submit((function(n){if(c)return!0;n.preventDefault(),o.addClass("disabled"),o.find("span").hide(),o.find(".spinner").show();var a=$('input[name="subscription-intent-token"]'),t=$(".alert-danger");t.hide();var s=$('input[name="payment_id"]');if(s.val())return c=!0,$("#subscription-confirm").submit(),!1;e.confirmCardSetup(a.val(),{payment_method:{card:i,billing_details:{name:$('input[name="card-holder-name"]').val()}}}).then(function(e){if(e.error)return o.removeClass("disabled").text(o.data("text")),t.text(e.error.message).show(),!1;s.val(e.setupIntent.payment_method),c=!0,$("#subscription-confirm").submit()}.bind(this))})),$(".subscription-form").submit((function(){return o.addClass("disabled").find("span").hide().parent().find(".spinner").show(),!0})),a=$("#coupon-check-btn"),t=$("#coupon-check"),s=$("#coupon-success"),d=$("#coupon-invalid"),r=$("#coupon"),a.click((function(){l()})),t.change((function(){l()})),t.focus((function(){o.addClass("disabled").prop("disabled",!0)})),t.focusout((function(){t.val()||o.removeClass("disabled").prop("disabled",!1)}))}()}))}))})();
+/******/ (() => { // webpackBootstrap
+var __webpack_exports__ = {};
+/*!*********************************************!*\
+  !*** ./resources/assets/js/subscription.js ***!
+  \*********************************************/
+// Strip variables for the page
+var stripe, elements, card; // Form status
+
+var formSubmit = false;
+var formSubmitBtn; // Coupon stuff
+
+var couponBtn, couponField, couponSuccess, couponError, couponId;
+$(document).ready(function () {
+  initStripe();
+  initPeriodToggle();
+  $('#subscribe-confirm').on('shown.bs.modal', function () {
+    initConfirmListener();
+  });
+}); // Initialize the stripe API
+
+function initStripe() {
+  var token = $('#stripe-token');
+  stripe = Stripe(token.val()); // Create an instance of Elements.
+
+  elements = stripe.elements();
+} // When the modal is opened and loaded, inject stripe if needed and the form validator
+
+
+function initConfirmListener() {
+  formSubmitBtn = $('.subscription-confirm-button');
+  var cardSelector = $('#card-element');
+
+  if (cardSelector.length === 1) {
+    // First time opening the modal, initiate a new card
+    if (!card) {
+      // Custom styling can be passed to options when creating an Element.
+      // (Note that this demo uses a wider set of styles than the guide below.)
+      var style = {
+        base: {
+          color: '#555555',
+          fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
+          fontSmoothing: 'antialiased',
+          fontSize: '14px',
+          '::placeholder': {
+            color: '#777777'
+          }
+        },
+        invalid: {
+          color: '#fa755a',
+          iconColor: '#fa755a'
+        }
+      }; // Create an instance of the card Element.
+
+      card = elements.create('card', {
+        hidePostalCode: true,
+        style: style
+      });
+    } // Add an instance of the card Element into the `card-element` <div>.
+
+
+    card.mount('#card-element');
+  }
+
+  $('#subscription-confirm').submit(function (e) {
+    // If we've passed the strip validation, we can go further
+    if (formSubmit) {
+      return true;
+    }
+
+    e.preventDefault();
+    formSubmitBtn.addClass('disabled');
+    formSubmitBtn.find('span').hide();
+    formSubmitBtn.find('.spinner').show();
+    var intentToken = $('input[name="subscription-intent-token"]');
+    var errorMessage = $('.alert-danger');
+    errorMessage.hide(); // If the form already has a payment id, we don't need stripe to add the new one
+
+    var cardID = $('input[name="payment_id"]');
+
+    if (cardID.val()) {
+      formSubmit = true;
+      $('#subscription-confirm').submit();
+      return false;
+    }
+
+    stripe.confirmCardSetup(intentToken.val(), {
+      payment_method: {
+        card: card,
+        billing_details: {
+          name: $('input[name="card-holder-name"]').val()
+        }
+      }
+    }).then(function (result) {
+      if (result.error) {
+        formSubmitBtn.removeClass('disabled').text(formSubmitBtn.data('text'));
+        errorMessage.text(result.error.message).show();
+        return false;
+      } else {
+        cardID.val(result.setupIntent.payment_method);
+        formSubmit = true;
+        $('#subscription-confirm').submit();
+      }
+    }.bind(this));
+  });
+  $('.subscription-form').submit(function () {
+    formSubmitBtn.addClass('disabled').find('span').hide().parent().find('.spinner').show();
+    return true;
+  });
+  couponBtn = $('#coupon-check-btn');
+  couponField = $('#coupon-check');
+  couponSuccess = $('#coupon-success');
+  couponError = $('#coupon-invalid');
+  couponId = $('#coupon');
+  couponBtn.click(function () {
+    checkCoupon();
+  });
+  couponField.change(function () {
+    checkCoupon();
+  });
+  couponField.focus(function () {
+    formSubmitBtn.addClass('disabled').prop('disabled', true);
+  });
+  couponField.focusout(function () {
+    var coupon = couponField.val();
+
+    if (!coupon) {
+      formSubmitBtn.removeClass('disabled').prop('disabled', false);
+    }
+  });
+}
+
+function checkCoupon() {
+  var coupon = couponField.val();
+  var url = couponField.data('url');
+  couponBtn.prop('disabled', true).find('.check').hide().parent().find('.spinner').show();
+
+  if (!coupon) {
+    formSubmitBtn.removeClass('disabled').prop('disabled', false);
+  }
+
+  $.ajax({
+    url: url + '?coupon=' + coupon,
+    context: this
+  }).done(function (result) {
+    couponBtn.prop('disabled', false).find('.check').show().parent().find('.spinner').hide();
+    formSubmitBtn.removeClass('disabled').prop('disabled', false);
+
+    if (!result.valid) {
+      couponSuccess.hide();
+      couponError.show();
+      couponId.val('');
+      return;
+    }
+
+    couponError.hide();
+    couponSuccess.html(result.discount).show();
+    couponId.val(result.coupon);
+  });
+}
+
+function initPeriodToggle() {
+  $('input[name="period"]').change(function () {
+    var box = $('#pricing-overview');
+    console.log('checked?', this.checked);
+
+    if (this.checked) {
+      box.removeClass('period-month').addClass('period-year');
+    } else {
+      box.removeClass('period-year').addClass('period-month');
+    }
+  });
+}
+/******/ })()
+;
 //# sourceMappingURL=subscription.js.map
