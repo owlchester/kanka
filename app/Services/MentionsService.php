@@ -122,6 +122,7 @@ class MentionsService
         }
 
         $this->text = (string) $attribute->value;
+        $this->text = Attributes::parse($attribute);
         $attribute->value = $this->extractAndReplace();
 
         return Attributes::parse($attribute);
@@ -411,7 +412,6 @@ class MentionsService
 
                     $cssClasses[] = 'mention-field-' . Str::slug($field);
                 }
-
                 $replace = '<a href="' . $url . '"'
                     . ' class="' . implode(' ', $cssClasses) . '"'
                     . ' data-entity-tags="' . implode(' ', $tagClasses) . '"'
