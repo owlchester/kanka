@@ -21,7 +21,7 @@
             @elseif (!auth()->user()->isSubscriber())
                 <div class="box-body">
                     <p>
-                        {{ __('settings.account.2fa.helper') }} {!! link_to('https://docs.kanka.io/account/security/two-factor-authentication', __('settings.account.2fa.learn_more')) !!}
+                        {{ __('settings.account.2fa.helper') }} {!! link_to('https://docs.kanka.io/en/latest/account/security/two-factor-authentication.html', __('settings.account.2fa.learn_more')) !!}
                     </p>
 
                     <p>
