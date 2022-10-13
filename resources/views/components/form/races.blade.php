@@ -6,28 +6,26 @@ use Illuminate\Support\Arr;
 $selectedOption = [];
 
 $model = Arr::get($options, 'model');
-$source = Arr::get($options, 'source');
 $quickCreator = Arr::get($options, 'quickCreator', false);
-$modelClass = Arr::get($options, 'modelClass');
 
 // Try to load what was sent with the form first, in case there was a form validation error
 $previous = old('races[]');
+$fieldUniqIdentifier = 'races_' . uniqid();
+
 if (!empty($previous)) {
     //dd($previous);
 }
 // If we didn't get anything, and there is a model sent, use that
 elseif(!empty($model)) {
-    /** @var \App\Models\OrganisationMember $member */
+    /** @var \App\Models\Race $race */
     foreach ($model->races as $race) {
         $selectedOption[$race->id] = strip_tags($race->name);
     }
 }
 
 if ($quickCreator) {
-    $quickCreator = auth()->user()->can('create', new $modelClass());
+    $quickCreator = auth()->user()->can('create', new \App\Models\Race());
 }
-
-$fieldUniqIdentifier = 'races_' . uniqid();
 ?>
 <label>{{ __('characters.fields.races') }}</label>
 

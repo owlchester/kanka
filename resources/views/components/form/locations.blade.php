@@ -8,27 +8,25 @@ $selectedOption = [];
 $model = Arr::get($options, 'model');
 $source = Arr::get($options, 'source');
 $quickCreator = Arr::get($options, 'quickCreator', false);
-$modelClass = Arr::get($options, 'modelClass');
 
 // Try to load what was sent with the form first, in case there was a form validation error
 $previous = old('locations[]');
+$fieldUniqIdentifier = 'locations_' . uniqid();
 
 if (!empty($previous)) {
     //dd($previous);
 }
 // If we didn't get anything, and there is a model sent, use that
 elseif(!empty($model)) {
-    /** @var \App\Models\RaceLocation $location */
-
+    /** @var \App\Models\Location $location */
     foreach ($model->locations as $location) {
-
         $selectedOption[$location->id] = strip_tags($location->name);
     }
 }
+
 if ($quickCreator) {
     $quickCreator = auth()->user()->can('create', new \App\Models\Location());
 }
-$fieldUniqIdentifier = 'locations_' . uniqid();
 ?>
 <label>{{ __('races.fields.locations') }}</label>
 
