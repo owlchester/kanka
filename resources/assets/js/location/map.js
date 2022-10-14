@@ -65,7 +65,7 @@ function initLocationMap() {
     initMapModeSwitch();
     initMovePoints();
     disableMovePoints();
-    initAddPoints();
+    //initAddPoints();
     initMapScroll();
     resizeMapToPage();
     initMapLegend();
@@ -100,6 +100,7 @@ function initMapAdmin() {
  */
 function initMapControls() {
     if (mapDraggable.length === 1) {
+
         $('#draggable-map').draggable({
             drag: function () {
                 mapIsMoving = true;
@@ -328,7 +329,7 @@ function hideMapPointDetails() {
  * Switch between Admin and View Mode
  */
 function initMapModeSwitch() {
-    mapAdminMode.click(function(e) {
+    mapAdminMode.click(function() {
         $(this).hide();
         mapAdminModeActivated = true;
         mapViewMode.show();
@@ -338,7 +339,7 @@ function initMapModeSwitch() {
         hideMapPointDetails();
     });
 
-    mapViewMode.click(function(e) {
+    mapViewMode.click(function() {
         $(this).hide();
         mapAdminModeActivated = false;
         mapAdminMode.show();
@@ -760,7 +761,7 @@ function initIconSelect() {
  * Clicking on a map legend should center the map on the point
  */
 function initMapLegend() {
-    $(".map-point-legend").click(function(e) {
+    $(".map-point-legend").click(function() {
         // Reposition the map to center on the clicked part
         let target = $($(this).attr('href'));
         // let targetPosition = target.position();
