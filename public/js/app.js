@@ -3925,11 +3925,36 @@ var datagrid2Observer = new IntersectionObserver(function (entries) {
   threshold: [0]
 });
 $(document).ready(function () {
-  // Multi-delete
+  registerBulkDelete();
+  registerBulkActions();
+  toggleCrudMultiDelete();
+  registerDatagrids2();
+});
+/**
+ * Register button handeling for bulk actions
+ */
+
+function registerBulkActions() {
+  $('[data-bulk-action]').on('click', function () {
+    setBulkModels($(this).data('bulk-action'));
+  });
+  $('.bulk-print').on('click', function (e) {
+    e.preventDefault();
+    var form = $(this).closest('form');
+    form.find();
+    form.submit();
+  });
+}
+/**
+ * Register the handler for checking the bulk-delete checkboxes
+ */
+
+
+function registerBulkDelete() {
   var crudDelete = $('#datagrid-select-all');
 
   if (crudDelete.length > 0) {
-    crudDelete.click(function () {
+    crudDelete.unbind('click').click(function () {
       if ($(this).prop('checked')) {
         $.each($("input[name='model[]']"), function () {
           $(this).prop('checked', true);
@@ -3949,24 +3974,6 @@ $(document).ready(function () {
       toggleCrudMultiDelete();
       e.preventDefault();
     });
-  });
-  registerBulkActions();
-  toggleCrudMultiDelete();
-  registerDatagrids2();
-});
-/**
- * Register button handeling for bulk actions
- */
-
-function registerBulkActions() {
-  $('[data-bulk-action]').on('click', function () {
-    setBulkModels($(this).data('bulk-action'));
-  });
-  $('.bulk-print').on('click', function (e) {
-    e.preventDefault();
-    var form = $(this).closest('form');
-    form.find();
-    form.submit();
   });
 }
 /**
@@ -4053,6 +4060,7 @@ function initDatagrid2Ajax() {
       datagrid2Reorder($(this));
     });
   });
+  registerBulkDelete();
 }
 /**
  *

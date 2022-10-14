@@ -19,29 +19,7 @@ var datagrid2Observer = new IntersectionObserver(function(entries) {
 
 
 $(document).ready(function () {
-    // Multi-delete
-    var crudDelete = $('#datagrid-select-all');
-    if (crudDelete.length > 0) {
-        crudDelete.click(function () {
-            if ($(this).prop('checked')) {
-                $.each($("input[name='model[]']"), function () {
-                    $(this).prop('checked', true);
-                });
-            } else {
-                $.each($("input[name='model[]']"), function () {
-                    $(this).prop('checked', false);
-                });
-            }
-            toggleCrudMultiDelete();
-        });
-    }
-    $.each($("input[name='model[]']"), function () {
-        $(this).change(function (e) {
-            toggleCrudMultiDelete();
-            e.preventDefault();
-        });
-    });
-
+    registerBulkDelete();
     registerBulkActions();
     toggleCrudMultiDelete();
     registerDatagrids2();
@@ -59,6 +37,33 @@ function registerBulkActions() {
         let form = $(this).closest('form');
         form.find();
         form.submit();
+    });
+}
+
+/**
+ * Register the handler for checking the bulk-delete checkboxes
+ */
+function registerBulkDelete() {
+    var crudDelete = $('#datagrid-select-all');
+    if (crudDelete.length > 0) {
+        crudDelete.unbind('click').click(function () {
+            if ($(this).prop('checked')) {
+                $.each($("input[name='model[]']"), function () {
+                    $(this).prop('checked', true);
+                });
+            } else {
+                $.each($("input[name='model[]']"), function () {
+                    $(this).prop('checked', false);
+                });
+            }
+            toggleCrudMultiDelete();
+        });
+    }
+    $.each($("input[name='model[]']"), function () {
+        $(this).change(function (e) {
+            toggleCrudMultiDelete();
+            e.preventDefault();
+        });
     });
 }
 
@@ -151,6 +156,8 @@ function initDatagrid2Ajax() {
             datagrid2Reorder($(this));
         });
     });
+    registerBulkDelete();
+
 }
 
 /**
