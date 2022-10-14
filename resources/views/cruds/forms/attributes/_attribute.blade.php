@@ -18,7 +18,7 @@ if ($attribute->isSection()) {
     <div class="row attribute_row">
         <div class="col-xs-12 col-sm-4">
             <div class="input-group">
-                <span class="input-group-addon hidden-xs hidden-sm">
+                <span class="input-group-addon">
                     <span class="fa-solid fa-arrows-alt-v"></span>
                 </span>
                 @if($attribute->name == '_layout')

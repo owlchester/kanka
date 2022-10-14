@@ -12,7 +12,7 @@ $actionBlock = 'col-xs-5 col-sm-4 col-md-3 col-lg-2';
         <div class="row attribute_row">
             <div class="{{ $nameBlock }}">
                 <div class="input-group">
-                    <span class="input-group-addon hidden-xs hidden-sm">
+                    <span class="input-group-addon">
                         <span class="fa-solid fa-arrows-alt-v"></span>
                     </span>
                     {!! Form::text('attr_name[$TMP_ID$]', null, [
@@ -44,7 +44,7 @@ $actionBlock = 'col-xs-5 col-sm-4 col-md-3 col-lg-2';
         <div class="row attribute_row">
             <div class="{{ $nameBlock }}">
                 <div class="input-group">
-                    <span class="input-group-addon hidden-xs hidden-sm">
+                    <span class="input-group-addon">
                         <span class="fa-solid fa-arrows-alt-v"></span>
                     </span>
                     {!! Form::text('attr_name[$TMP_ID$]', null, ['placeholder' => __('entities/attributes.placeholders.block'), 'class' => 'form-control', 'maxlength' => 191]) !!}
@@ -72,7 +72,7 @@ $actionBlock = 'col-xs-5 col-sm-4 col-md-3 col-lg-2';
         <div class="row attribute_row">
             <div class="{{ $nameBlock }}">
                 <div class="input-group">
-                    <span class="input-group-addon hidden-xs hidden-sm">
+                    <span class="input-group-addon">
                         <span class="fa-solid fa-arrows-alt-v"></span>
                     </span>
                     {!! Form::text('attr_name[$TMP_ID$]', null, ['placeholder' => __('entities/attributes.placeholders.number'), 'class' => 'form-control', 'maxlength' => 191]) !!}
@@ -99,7 +99,7 @@ $actionBlock = 'col-xs-5 col-sm-4 col-md-3 col-lg-2';
         <div class="row attribute_row">
             <div class="{{ $nameBlock }}">
                 <div class="input-group">
-                    <span class="input-group-addon hidden-xs hidden-sm">
+                    <span class="input-group-addon">
                         <span class="fa-solid fa-arrows-alt-v"></span>
                     </span>
                     {!! Form::text('attr_name[$TMP_ID$]', null, ['placeholder' => __('entities/attributes.placeholders.checkbox'), 'class' => 'form-control', 'maxlength' => 191]) !!}
@@ -128,7 +128,7 @@ $actionBlock = 'col-xs-5 col-sm-4 col-md-3 col-lg-2';
         <div class="row attribute_row">
             <div class="{{ $nameBlock }}">
                 <div class="input-group">
-                    <span class="input-group-addon hidden-xs hidden-sm">
+                    <span class="input-group-addon">
                         <span class="fa-solid fa-arrows-alt-v"></span>
                     </span>
                     {!! Form::text('attr_name[$TMP_ID$]', null, ['placeholder' => __('entities/attributes.placeholders.section'), 'class' => 'form-control', 'maxlength' => 191]) !!}
@@ -155,7 +155,7 @@ $actionBlock = 'col-xs-5 col-sm-4 col-md-3 col-lg-2';
         <div class="row attribute_row">
             <div class="{{ $nameBlock }}">
                 <div class="input-group">
-                    <span class="input-group-addon hidden-xs hidden-sm">
+                    <span class="input-group-addon">
                         <span class="fa-solid fa-arrows-alt-v"></span>
                     </span>
                     {!! Form::text('attr_name[$TMP_ID$]', null, [
