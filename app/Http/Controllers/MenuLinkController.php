@@ -40,7 +40,7 @@ class MenuLinkController extends CrudController
         $this->addNavAction(
             route('quick-links.reorder'),
             '<i class="fa-solid fa-arrows-alt-v"></i> <span class="hidden-xs">' .
-                __('timelines.actions.reorder') . '</span>'
+                __('menu_links.reorder.title') . '</span>'
         );
         $this->addNavAction(
             '//docs.kanka.io/en/latest/advanced/quick-links.html',

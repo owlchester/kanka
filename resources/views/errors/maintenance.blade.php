@@ -64,7 +64,7 @@
                     <h1 class="display-4" id="maintenance">Server maintenance</h1>
 
                     <p class="lead">Kanka is currently unavailable due to planned server maintenance.</p>
-                    <p class="lead">This maintenance is planned to last from <a href="https://everytimezone.com/s/2e4402fb" target="_blank" style="text-decoration: underline"><i class="fa-solid fa-external-link"></i> 15:00 UTC</a> to 17:00 UTC.</p>
+                    <p class="lead">This maintenance is planned to last from <a href="https://everytimezone.com/s/fce7c091" target="_blank" style="text-decoration: underline"><i class="fa-solid fa-external-link"></i> 14:00 UTC</a> to 16:00 UTC.</p>
 
                     <p class="lead">Join us over on our {!! link_to(config('social.discord'), 'Discord') !!} to be notified as soon as the maintenance is over.</p>
                 </div>
