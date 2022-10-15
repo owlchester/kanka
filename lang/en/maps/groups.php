@@ -4,6 +4,9 @@ return [
     'actions'       => [
         'add'   => 'Add a new group',
     ],
+    'bulks'         => [
+        'delete'    => '{1} Removed :count group.|[2,*] Removed :count groups.',
+    ],
     'create'        => [
         'success'   => 'Group :name created.',
         'title'     => 'New Group',
@@ -32,5 +35,10 @@ return [
     'placeholders'  => [
         'name'      => 'Shops, Treasure, NPCs',
         'position'  => 'Optional field to set the order in which the groups appear.',
+    ],
+    'reorder'   => [
+        'save'      => 'Save new order',
+        'success'   => '{1} Reordered :count group.|[2,*] Reordered :count groups.',
+        'title'     => 'Reorder groups',
     ],
 ];

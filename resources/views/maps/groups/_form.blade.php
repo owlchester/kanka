@@ -16,5 +16,5 @@
 
 <div class="form-group">
     <label>{{ __('maps/groups.fields.position') }}</label>
-    {!! Form::number('position', null, ['placeholder' => __('maps/groups.placeholders.position'), 'class' => 'form-control', 'maxlength' => 3]) !!}
+    {!! Form::select('position', isset($map) ? $map->groupPositionOptions() : [], (!empty($group) ? $group : null), ['class' => 'form-control']) !!}
 </div>

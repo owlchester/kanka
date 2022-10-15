@@ -259,6 +259,11 @@ class Map extends MiscModel
             'route' => 'maps.maps',
             'count' => $this->maps()->count()
         ];
+        $items['third']['groups'] = [
+            'name' => 'maps.panels.groups',
+            'route' => 'maps.groups',
+            'count' => $this->groups()->count()
+        ];
         return parent::menuItems($items);
     }
 
@@ -301,6 +306,20 @@ class Map extends MiscModel
         $groups = $this->groups->sortBy('name');
         foreach ($groups as $group) {
             $options[$group->id] = $group->name;
+        }
+        return $options;
+    }
+
+    /**
+     * @return array|string[]
+     */
+    public function groupPositionOptions(): array
+    {
+        $options = [null => ''];
+        $options = [1 => 'First'];
+        $groups = $this->groups->sortBy('position');
+        foreach ($groups as $group) {
+            $options[$group->position + 1] = 'After ' . $group->name;
         }
         return $options;
     }
