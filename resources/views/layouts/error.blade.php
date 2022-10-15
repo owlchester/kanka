@@ -92,7 +92,6 @@
 
             <div class="row">
                 <div class="col-12 col-sm-6">
-
                     <h1 class="display-4" id="{{ $error }}">{{ __('errors.' . $error . '.title') }}</h1>
 
                     @if (is_array(__('errors.' . $error . '.body')))
