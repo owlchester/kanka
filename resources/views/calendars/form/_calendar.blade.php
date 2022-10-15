@@ -92,7 +92,7 @@
         } elseif (isset($source)) {
             $years = $source->years();
         } ?>
-        <div class="calendar-years sortable-elements">
+        <div class="calendar-years sortable-elements" data-handle=".input-group-addon">
             @foreach ($years as $year => $name)
                 <div class="form-group parent-delete-row">
                     <div class="row">

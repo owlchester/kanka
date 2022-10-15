@@ -36,7 +36,7 @@ if (!empty($moonNames)) {
 } elseif (isset($source)) {
     $moons = $source->moons();
 }?>
-<div class="calendar-moons sortable-elements">
+<div class="calendar-moons sortable-elements" data-handle=".input-group-addon">
     @foreach ($moons as $fullmoon)
         <div class="form-group parent-delete-row">
             <div class="row">

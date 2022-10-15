@@ -36,7 +36,7 @@ if (!empty($names)) {
 } elseif (isset($source)) {
     $months = $source->months();
 }?>
-<div class="calendar-months sortable-elements">
+<div class="calendar-months sortable-elements" data-handle=".input-group-addon">
     @foreach ($months as $month)
         <div class="form-group parent-delete-row">
             <div class="row">
