@@ -17,14 +17,33 @@ $actions = [
     'deny' => __('crud.permissions.actions.bulk_entity.deny'),
     'inherit' => __('crud.permissions.actions.bulk_entity.inherit'),
 ];
+
+$role = \App\Facades\CampaignCache::adminRole();
 @endphp
 
-<p class="help-block">
+@includeWhen(auth()->user()->isAdmin(), 'cruds.fields.privacy_callout', ['privacyToggle' => true])
+
+<p class="help-block mt-5 mb-5">
     {!! __('crud.permissions.helpers.setup', [
         'allow' => '<code>' . __('crud.permissions.actions.bulk_entity.allow') . '</code>',
         'deny' => '<code>' . __('crud.permissions.actions.bulk_entity.deny') . '</code>',
         'inherit' => '<code>' . __('crud.permissions.actions.bulk_entity.inherit') . '</code>',
     ]) !!}
 </p>
+
+@php
+$hidden = false;
+if (!empty($source) && $source->is_private) {
+    $hidden = true;
+} elseif (!empty($model) && $model->is_private) {
+    $hidden = true;
+}
+@endphp
+<div class="alert alert-warning" id="entity-is-private" style="{{ !$hidden ? 'display: none' : null }}">
+    <strong>{{ __('entities/permissions.privacy.warning') }}</strong>
+    <p>{!! __('entities/permissions.privacy.text', [
+    'admin' => link_to_route('campaigns.campaign_roles.admin', \Illuminate\Support\Arr::get($role, 'name', __('campaigns.roles.admin_role')), null)
+]) !!}</p>
+</div>
 
 @include('cruds.permissions.permissions_table', ['skipUsers' => true, 'campaign'])

@@ -17,4 +17,8 @@ return [
         'title'             => 'Permission overview',
         'viewable-by'       => 'Viewable by',
     ],
+    'privacy' => [
+        'warning' => 'Warning',
+        'text' => 'This entity is set to private. Custom permissions can still be defined, but as long as the entity is private, those will be ignored, and only members of the campaign\'s :admin role will be able to see the entity.',
+    ]
 ];

@@ -48,5 +48,3 @@
 
 <hr />
 @include('cruds.forms._calendar', ['source' => $source])
-
-@includeWhen(auth()->user()->isAdmin(), 'cruds.fields.privacy_callout')
