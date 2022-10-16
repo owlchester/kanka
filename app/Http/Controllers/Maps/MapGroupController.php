@@ -192,15 +192,22 @@ class MapGroupController extends Controller
      */
     public function bulk()
     {
-
         $action = request()->get('action');
         $models = request()->get('model');
+
         $map = MapGroup::find($models[0])->map()->first();
         $this->authorize('update', $map);
 
-        if (!in_array($action, ['delete']) || empty($models)) {
+        if (!in_array($action, ['delete', 'edit', 'patch']) || empty($models)) {
             return redirect()
                 ->route('maps.groups');
+        }
+
+        if ($action === 'edit') {
+            return view('layouts.datagrid.bulks.update')
+                ->with('route', route('maps.groups.bulk'))
+                ->with('view', '_map-group')
+                ->with('models', $models);
         }
 
         $count = 0;
@@ -214,13 +221,16 @@ class MapGroupController extends Controller
             if ($action === 'delete') {
                 $mapGroup->delete();
                 $count++;
+            } elseif ($action === 'patch') {
+                $mapGroup->batch(request()->except('models', 'action'));
+                $count++;
             }
         }
 
         return redirect()
             ->route('maps.groups', ['map' => $map])
             ->with('success', trans_choice('maps/groups.bulks.' . $action, $count, ['count' => $count]))
-            ;
+        ;
     }
 
     /**

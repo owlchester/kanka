@@ -102,6 +102,27 @@ function toggleCrudMultiDelete()
  *
  */
 function registerDatagrids2() {
+    $('.datagrid-bulk').click(function (e) {
+        e.preventDefault();
+
+        datagrid2Form = $(this).closest('form');
+
+        let models = [];
+        $.each($("input[name='model[]']"), function () {
+            if ($(this).prop('checked')) {
+                models.push($(this).val());
+            }
+        });
+        console.log('models', models);
+        $.ajax({
+            url: $(this).data('url'),
+            method: 'POST',
+            data: {model: models}
+        }).done(function (response) {
+            $('#entity-modal').find('.modal-content').html(response);
+            $('#entity-modal').modal();
+        });
+    })
     $('.datagrid-submit').click(function (e) {
         e.preventDefault();
 
@@ -110,9 +131,6 @@ function registerDatagrids2() {
 
         let action = datagrid2Form.find('input[name="action"]');
         action.val($(this).data('action'));
-
-        //console.log('action', action);
-        //console.log('me', $(this).data('action'));
 
         if ($(this).data('action') === 'delete') {
             if (datagrid2DeleteConfirm === false) {

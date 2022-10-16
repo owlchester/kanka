@@ -172,6 +172,8 @@ class DatagridRenderer2
                 if (auth()->check() && auth()->user()->isAdmin()) {
                     $this->bulks[] = $bulk;
                 }
+            } elseif ($bulk === Layout::ACTION_EDIT) {
+                $this->bulks[] = $bulk;
             }
         }
 

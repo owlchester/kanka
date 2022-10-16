@@ -113,4 +113,14 @@ class MapGroup extends Model
     {
         return [$this->map_id, $this->id];
     }
+
+    /**
+     * Patch an entity from the datagrid2 batch editing
+     * @param array $data
+     * @return bool
+     */
+    public function patch(array $data): bool
+    {
+        return $this->update($data);
+    }
 }

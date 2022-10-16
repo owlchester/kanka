@@ -56,6 +56,7 @@ class Group extends Layout
     public function bulks(): array
     {
         return [
+            self::ACTION_EDIT,
             self::ACTION_DELETE,
         ];
     }
