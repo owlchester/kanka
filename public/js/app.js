@@ -3908,8 +3908,6 @@ function registerDynamicRowDelete() {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_ajax_modal__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/ajax-modal */ "./resources/assets/js/components/ajax-modal.js");
-// id="datagrids-bulk-actions-permissions"
-// id="datagrids-bulk-actions-edit
 
 var datagrid2DeleteConfirm = false;
 var datagrid2Form;
@@ -4020,7 +4018,7 @@ function registerDatagrids2() {
     });
     console.log('models', models);
     $.ajax({
-      url: $(this).data('url'),
+      url: datagrid2Form.attr('action') + '?action=edit',
       method: 'POST',
       data: {
         model: models

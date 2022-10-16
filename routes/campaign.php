@@ -33,7 +33,7 @@ Route::post('/maps/{map}/{map_marker}/move', 'Maps\MapMarkerController@move')->n
 Route::get('/maps/tree', 'Maps\MapController@tree')->name('maps.tree');
 //Route::get('/maps/{map}/map-points', 'Maps\MapController@mapPoints')->name('maps.map-points');
 Route::get('/maps/{map}/groups', 'Maps\MapGroupController@groups')->name('maps.groups');
-Route::post('/maps/groups/bulk', 'Maps\MapGroupController@bulk')->name('maps.groups.bulk');
+Route::post('/maps/{map}/groups/bulk', 'Maps\MapGroupController@bulk')->name('maps.groups.bulk');
 Route::post('/maps/groups/reorder', 'Maps\MapGroupController@reorder')->name('maps.groups.reorder-save');
 
 // Character

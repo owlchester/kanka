@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Maps;
 
 use App\Facades\CampaignLocalization;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Datagrid2\BulkControllerTrait;
 use App\Http\Requests\StoreMapGroup;
 use App\Facades\Datagrid;
 use App\Http\Requests\ReorderGroups;
@@ -11,9 +12,12 @@ use App\Datagrids\Actions\GroupDatagridActions;
 use App\Models\Campaign;
 use App\Models\Map;
 use App\Models\MapGroup;
+use Illuminate\Http\Request;
 
 class MapGroupController extends Controller
 {
+    use BulkControllerTrait;
+
     /** @var string|null The datagrid controlling the bulk actions*/
     protected $datagridActions = GroupDatagridActions::class;
 
@@ -186,46 +190,25 @@ class MapGroupController extends Controller
     }
 
     /**
-     * @return \Illuminate\Http\RedirectResponse
-     * @throws \Psr\Container\ContainerExceptionInterface
-     * @throws \Psr\Container\NotFoundExceptionInterface
+     * @param Request $request
+     * @param Map $map
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\RedirectResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function bulk()
+    public function bulk(Request $request, Map $map)
     {
-        $action = request()->get('action');
-        $models = request()->get('model');
-
-        $map = MapGroup::find($models[0])->map()->first();
         $this->authorize('update', $map);
-
-        if (!in_array($action, ['delete', 'edit', 'patch']) || empty($models)) {
-            return redirect()
-                ->route('maps.groups');
+        $action = $request->get('action');
+        $models = $request->get('model');
+        if (!in_array($action, $this->validBulkActions()) || empty($models)) {
+            return redirect()->back();
         }
 
         if ($action === 'edit') {
-            return view('layouts.datagrid.bulks.update')
-                ->with('route', route('maps.groups.bulk'))
-                ->with('view', '_map-group')
-                ->with('models', $models);
+            return $this->bulkBatch(route('maps.groups.bulk', ['map' => $map]), '_map-group', $models);
         }
 
-        $count = 0;
-        foreach ($models as $id) {
-            /** @var MapGroup|null $mapGroup */
-            $mapGroup = MapGroup::find($id);
-            if (empty($mapGroup)) {
-                continue;
-            }
-
-            if ($action === 'delete') {
-                $mapGroup->delete();
-                $count++;
-            } elseif ($action === 'patch') {
-                $mapGroup->batch(request()->except('models', 'action'));
-                $count++;
-            }
-        }
+        $count = $this->bulkProcess($request, MapGroup::class);
 
         return redirect()
             ->route('maps.groups', ['map' => $map])

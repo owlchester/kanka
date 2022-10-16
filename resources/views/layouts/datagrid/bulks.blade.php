@@ -12,7 +12,7 @@ $hasOthers = false;
         @foreach (\App\Facades\Datagrid::bulks() as $bulk)
             @if ($bulk === \App\Renderers\Layouts\Layout::ACTION_EDIT)
                 <li>
-                    <a href="#" class="datagrid-bulk" data-action="edit" data-url="{{ route('maps.groups.bulk', ['action' => 'edit']) }}">
+                    <a href="#" class="datagrid-bulk" data-action="edit">
                         <i class="fa-solid fa-pencil"></i> {{ __('crud.bulk.actions.edit') }}
                     </a>
                 </li>

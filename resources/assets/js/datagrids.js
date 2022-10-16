@@ -1,6 +1,3 @@
-// id="datagrids-bulk-actions-permissions"
-// id="datagrids-bulk-actions-edit
-
 import ajaxModal from "./components/ajax-modal";
 
 var datagrid2DeleteConfirm = false;
@@ -107,6 +104,7 @@ function registerDatagrids2() {
 
         datagrid2Form = $(this).closest('form');
 
+
         let models = [];
         $.each($("input[name='model[]']"), function () {
             if ($(this).prop('checked')) {
@@ -115,14 +113,15 @@ function registerDatagrids2() {
         });
         console.log('models', models);
         $.ajax({
-            url: $(this).data('url'),
+            url: datagrid2Form.attr('action') + '?action=edit',
             method: 'POST',
             data: {model: models}
         }).done(function (response) {
             $('#entity-modal').find('.modal-content').html(response);
             $('#entity-modal').modal();
         });
-    })
+    });
+
     $('.datagrid-submit').click(function (e) {
         e.preventDefault();
 

@@ -5,7 +5,7 @@ if (request()->has('map_id')) {
 }
 ?>
 <div class="box box-solid" id="map-groups">
-    @if(Datagrid::hasBulks()) {!! Form::open(['route' => 'maps.groups.bulk']) !!} @endif
+    @if(Datagrid::hasBulks()) {!! Form::open(['route' => ['maps.groups.bulk', 'map' => $model]]) !!} @endif
     <div class="box-header with-border">
         <h3 class="box-title">
             {{ __('maps.panels.groups') }}
