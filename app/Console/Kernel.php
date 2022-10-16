@@ -5,9 +5,7 @@ namespace App\Console;
 use App\Console\Commands\CalendarAdvancer;
 use App\Console\Commands\CampaignVisibileEntityCount;
 use App\Console\Commands\CleanupEntityLogs;
-use App\Console\Commands\CleanupEntityUsers;
 use App\Console\Commands\CleanupTrashed;
-use App\Console\Commands\CleanupUserLog;
 use App\Console\Commands\Subscriptions\ExpiringCardCommand;
 use App\Console\Commands\Subscriptions\UpcomingYearlyCommand;
 use Illuminate\Console\Scheduling\Schedule;
@@ -40,10 +38,8 @@ class Kernel extends ConsoleKernel
         $schedule->command('backup:clean')->daily()->at('01:00');
         $schedule->command('backup:run')->twiceDaily(2, 14);
 
-        //$schedule->command('model:prune')->daily();
+        $schedule->command('model:prune')->daily();
         $schedule->command(CleanupEntityLogs::class)->dailyAt('03:30');
-        $schedule->command(CleanupEntityUsers::class)->dailyAt('03:35');
-        $schedule->command(CleanupUserLog::class)->dailyAt('03:45');
         $schedule->command(CleanupTrashed::class)->dailyAt('02:15');
     }
 

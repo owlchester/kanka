@@ -1,11 +1,9 @@
 <?php
 
-
 namespace App\Models;
 
-
 use App\User;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\MassPrunable;
 use Illuminate\Database\Eloquent\Relations\Pivot;
 use Illuminate\Database\Eloquent\Builder;
 
@@ -27,25 +25,42 @@ use Illuminate\Database\Eloquent\Builder;
  */
 class EntityUser extends Pivot
 {
+    use MassPrunable;
+
     const TYPE_KEEPALIVE = 1;
 
-    public function user() {
+    public function user()
+    {
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    public function entity() {
+    public function entity()
+    {
         return $this->belongsTo(Entity::class, 'entity_id');
     }
 
-    public function scopeKeepAlive(Builder $query) {
+    public function scopeKeepAlive(Builder $query)
+    {
         return $query->where('type_id', self::TYPE_KEEPALIVE);
     }
 
-    public function scopeUserID(Builder $query, int $userID) {
+    public function scopeUserID(Builder $query, int $userID)
+    {
         return $query->where('user_id', $userID);
     }
 
-    public function scopeCampaignID(Builder $query, int $campaignID) {
+    public function scopeCampaignID(Builder $query, int $campaignID)
+    {
         return $query->where('campaign_id', $campaignID);
+    }
+
+    /**
+     * Automatically prune old elements from the db
+     * @return Builder
+     */
+    public function prunable(): Builder
+    {
+        return static::keepAlive()
+            ->where('created_at', '<=', now()->subDay());
     }
 }

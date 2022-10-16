@@ -45,7 +45,11 @@ class CleanupEntityLogs extends Command
     public function handle()
     {
         $amount = config('entities.logs');
-        $delay = config('entities.logs_delete');
+
+        /**
+         * We don't delete logs here (that's handled by the MassPrunable trait), but instead, we remove
+         * the changelogs that are available to superboosted campaigns for up to $amount(30) days.
+         */
         EntityLog::
             where('created_at', '<=', Carbon::now()->subDays($amount)->toDateString())
             ->whereNotNull('changes')
@@ -64,18 +68,6 @@ class CleanupEntityLogs extends Command
         $log = "Cleaned up {$this->count} entity logs.";
         $this->info($log);
 
-        DB::beginTransaction();
-        try {
-            $this->count = EntityLog::
-                where('updated_at', '<=', Carbon::now()->subDays($delay)->toDateString())
-                ->delete();
-            DB::commit();
-        } catch (\Exception $e) {
-            $this->error($e->getMessage());
-            DB::rollBack();
-        }
-        $this->info('Cleaned up ' . $this->count . ' entity logs.');
-        $log .= '<br />' . 'Cleaned up ' . $this->count . ' entity logs.';
         if (!config('app.log_jobs')) {
             return 0;
         }

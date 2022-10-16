@@ -19,7 +19,7 @@ class CleanupTrashed extends Command
      *
      * @var string
      */
-    protected $signature = 'cleanup:trashed {types=all} {limit=0}';
+    protected $signature = 'cleanup:trashed';
 
     /**
      * The console command description.
@@ -34,8 +34,6 @@ class CleanupTrashed extends Command
      * @var RecoveryService
      */
     protected RecoveryService $service;
-
-    protected int|null $limit = null;
 
     /**
      * Create a new command instance.
@@ -56,71 +54,16 @@ class CleanupTrashed extends Command
     public function handle()
     {
         $delay = Carbon::now()->subDays(config('entities.hard_delete'))->toDateString();
-        $types = $this->argument('types');
-        $this->limit = (int) $this->argument('limit');
-        $typeList = explode(',', $types);
-        $entityTypeIDs = [];
-        $firstTypeTable = $firstTypeID = null;
-
-        foreach ($typeList as $entityType) {
-            if ($entityType === 'all') {
-                continue;
-            }
-            $id = config('entities.ids.' . $entityType);
-            if (empty($id)) {
-                $this->warn('Unknown entity type ' . $entityType);
-                continue;
-            }
-            $entityTypeIDs[] = $id;
-        }
-        $log = "Looking for deleted entities ({$types}) where deleted_at <= {$delay}";
-        $this->info($log);
-        if (!empty($this->limit)) {
-            $this->info('- Limit: ' . $this->limit);
-            $log .= '<br />' .  '- Limit: ' . $this->limit;
-        }
-
-        // Stats stuff for developing
-        $entityCount = $endEntityCount = 0;
-        if ($types !== 'all') {
-            $firstType = Arr::first($typeList);
-            $firstTypeTable = Str::plural($firstType);
-            $firstTypeID = Arr::first($entityTypeIDs);
-
-            $res = DB::table($firstTypeTable)
-                ->select(DB::raw('count(*) as tot'))
-                ->get();
-            $this->info('Total ' . $firstTypeTable . ' ' . number_format($res[0]->tot, 0, '.', '\''));
-            $log .= '<br />' . 'Total ' . $firstTypeTable . ' ' . number_format($res[0]->tot, 0, '.', '\'');
-            $res = DB::table('entities')
-                ->select(DB::raw('count(*) as tot'))
-                ->where('type_id', $firstTypeID)
-                ->get();
-            $entityCount = $res[0]->tot;
-            $this->info('Total entities (type_id=' . $firstTypeID . ')' . number_format($entityCount, 0, '.', '\''));
-            $log .= '<br />' . 'Total entities (type_id=' . $firstTypeID . ')' . number_format($entityCount, 0, '.', '\'');
-        }
-
-        // Dump each time a query is made
-        DB::listen(function ($query) {
-            //if (Str::startsWith($query->sql, "select * from `entities` where `type` in")) {
-            //    dump(Str::replaceArray('?', $query->bindings, $query->sql));
-            //}
-        });
+        $log = '';
 
         DB::beginTransaction();
         try {
-            Entity::inTypes($entityTypeIDs)
-                ->onlyTrashed()
+            Entity::onlyTrashed()
                 ->where('deleted_at', '<=', $delay)
                 ->allCampaigns()
-                ->limit($this->limit)
                 // chunkById allows us to safely delete elements in a chunk
                 // see https://stackoverflow.com/questions/32700537/eloquent-chunk-missing-half-the-results
                 ->chunkById(1000, function ($entities) {
-                    if (!empty($this->limit) && $this->service->count() >= $this->limit) {
-                        return;
-                    }
                     $this->info('Chunk deleting ' . count($entities) . ' entities.');
                     foreach ($entities as $entity) {
                         //dump($entity->name . ' (' . $entity->type() . ')');
@@ -137,25 +80,6 @@ class CleanupTrashed extends Command
         $this->info('');
         $this->info('Deleted ' . $this->service->count() . ' trashed entities.');
         $log .= '<br />' . 'Deleted ' . $this->service->count() . ' trashed entities.';
-        // Stats checkup for developing
-        if ($types !== 'all') {
-            $res = DB::table($firstTypeTable)
-                ->select(DB::raw('count(*) as tot'))
-                ->get();
-            $this->info('Total ' . $firstTypeTable . ' ' . number_format($res[0]->tot, 0, '.', '\''));
-            $log .= '<br />' . 'Total ' . $firstTypeTable . ' ' . number_format($res[0]->tot, 0, '.', '\'');
-            $res = DB::table('entities')
-                ->select(DB::raw('count(*) as tot'))
-                ->where('type_id', $firstTypeID)
-                ->get();
-            $endEntityCount = $res[0]->tot;
-            $this->info('Total entities (type_id=' . $firstTypeID . ') ' . number_format($endEntityCount, 0, '.', '\''));
-            $log .= '<br />' . 'Total entities (type_id=' . $firstTypeID . ') ' . number_format($endEntityCount, 0, '.', '\'');
-            if ($entityCount - $this->service->count() !== $endEntityCount) {
-                $this->error('Entity count mismatch ' . $entityCount . ' - ' . $this->service->count() . ' != ' . $endEntityCount);
-                $log .= '<br />' . 'Entity count mismatch ' . $entityCount . ' - ' . $this->service->count() . ' != ' . $endEntityCount;
-            }
-        }
 
         if (!config('app.log_jobs')) {
             return 0;

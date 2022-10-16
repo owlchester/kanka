@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\User;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\MassPrunable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 
@@ -24,6 +25,8 @@ use Illuminate\Support\Str;
  */
 class EntityLog extends Model
 {
+    use MassPrunable;
+
     public const ACTION_CREATE = 1;
     public const ACTION_UPDATE = 2;
     public const ACTION_DELETE = 3;
@@ -109,6 +112,12 @@ class EntityLog extends Model
         return $query->where(['action' => $action]);
     }
 
+    /**
+     * Replace the field edited with it's translated name
+     * @param string $transKey
+     * @param string $attribute
+     * @return string
+     */
     public function attributeKey(string $transKey, string $attribute): string
     {
         // Try with crud first
@@ -120,5 +129,15 @@ class EntityLog extends Model
         }
 
         return __($transKey . '.fields.' . $name);
+    }
+
+    /**
+     * Automatically prune old elements from the db
+     * @return Builder
+     */
+    public function prunable(): Builder
+    {
+        $delay = config('entities.logs_delete');
+        return static::where('updated_at', '<=', now()->subDays($delay));
     }
 }
