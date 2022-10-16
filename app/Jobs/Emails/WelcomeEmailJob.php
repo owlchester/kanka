@@ -43,7 +43,6 @@ class WelcomeEmailJob implements ShouldQueue
     {
         $this->userId = $user->id;
         $this->language = $language;
-        Log::info('Welcome Email Job constructed');
     }
 
     /**
@@ -51,7 +50,6 @@ class WelcomeEmailJob implements ShouldQueue
      */
     public function handle()
     {
-        Log::info('Welcome Email Job handle');
         $user = User::find($this->userId);
         // In a dev environment, it's possible that the queue wasn't running and
         // the user was deleted before we even get to send the welcome email.
