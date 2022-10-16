@@ -32,20 +32,19 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')
-        //          ->hourly();
-
         $schedule->command(CalendarAdvancer::class)->dailyAt('00:00');
         $schedule->command(CampaignVisibileEntityCount::class)->dailyAt('01:00');
-        $schedule->command(CleanupEntityLogs::class)->dailyAt('03:30');
-        $schedule->command(CleanupEntityUsers::class)->dailyAt('03:35');
-        $schedule->command(CleanupUserLog::class)->dailyAt('03:45');
-        $schedule->command(CleanupTrashed::class)->dailyAt('02:15');
         $schedule->command(UpcomingYearlyCommand::class)->dailyAt('06:30');
         $schedule->command(ExpiringCardCommand::class)->monthlyOn(1, '02:00');
 
         $schedule->command('backup:clean')->daily()->at('01:00');
         $schedule->command('backup:run')->twiceDaily(2, 14);
+
+        //$schedule->command('model:prune')->daily();
+        $schedule->command(CleanupEntityLogs::class)->dailyAt('03:30');
+        $schedule->command(CleanupEntityUsers::class)->dailyAt('03:35');
+        $schedule->command(CleanupUserLog::class)->dailyAt('03:45');
+        $schedule->command(CleanupTrashed::class)->dailyAt('02:15');
     }
 
     /**
