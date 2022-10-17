@@ -312,7 +312,7 @@ class Map extends MiscModel
         $options = [1 => __('maps/groups.placeholders.position')];
         $groups = $this->groups->sortBy('position');
         foreach ($groups as $group) {
-            $options[$group->position + 1] = __('maps/groups.placeholders.position_list') . $group->name;
+            $options[$group->position + 1] = __('maps/groups.placeholders.position_list', ['name' => $group->name]);
         }
         return $options;
     }

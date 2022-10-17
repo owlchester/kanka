@@ -35,7 +35,7 @@ return [
     'placeholders'  => [
         'name'           => 'Shops, Treasure, NPCs',
         'position'       => 'First',
-        'position_list'  => 'After ',
+        'position_list'  => 'After :name',
     ],
     'reorder'   => [
         'save'      => 'Save new order',
