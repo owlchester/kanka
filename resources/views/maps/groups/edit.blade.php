@@ -25,12 +25,14 @@ __('maps/groups.edit.title', ['name' => $model->name])
                 </h4>
             </div>
         @endif
-        <div class="panel-body">
+            <div class= @if ($ajax) "modal-body" @else "panel-body" @endif>        
             @include('partials.errors')
             {!! Form::model($model, ['route' => ['maps.map_groups.update', 'map' => $map, 'map_group' => $model], 'method' => 'PATCH', 'id' => 'map-group-form', 'enctype' => 'multipart/form-data', 'class' => 'ajax-subform']) !!}
-                @include('maps.groups._form')
-                <div class="pull-right">
-                    <div class="form-group">
+                <div class="panel-body">
+                    @include('maps.groups._form')
+                </div>
+                <div class="panel-footer">
+                    <div class="pull-right form-group">
                         <div class="btn-group">
                             <input id="submit-mode" type="hidden" value="true"/>
                             <button class="btn btn-success" id="form-submit-main" data-target="{{ isset($target) ? $target : null }}">
@@ -67,7 +69,7 @@ __('maps/groups.edit.title', ['name' => $model->name])
                         </div>
                         @includeWhen(!request()->ajax(), 'partials.or_cancel')
                     </div>
-                </div>
+                @includeWhen(request()->ajax(), 'partials.footer_cancel')
             {!! Form::close() !!}
         </div>
     </div>

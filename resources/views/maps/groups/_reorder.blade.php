@@ -11,7 +11,7 @@
         <div class="box-body">
 
             <div class="element-live-reorder sortable-elements">
-                @foreach($reorderGroups as $group)
+                @foreach($rows as $group)
                     <div class="element" data-id="{{ $group->id }}">
                         {!! Form::hidden('group[]', $group->id) !!}
                         <div class="dragger">
