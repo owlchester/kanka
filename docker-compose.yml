@@ -35,10 +35,12 @@ services:
             MYSQL_ROOT_HOST: "%"
             MYSQL_DATABASE: '${DB_DATABASE}'
             MYSQL_USER: '${DB_USERNAME}'
-            MYSQL_PASSWORD: '${DB_PASSWORD}'
+            MYSQL_PASSWORD: '${DB_PASSWOKRD}'
             MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
         volumes:
+            #- './.sail/logs/slow-queries.log:/var/lib/mysql/mysql-slow.log:rw'
             - 'sail-mariadb:/var/lib/mysql'
+            #- './.sail/mariadb/my.cnf:/etc/mysql/my.cnf:ro'
             - './vendor/laravel/sail/database/mysql/create-testing-database.sh:/docker-entrypoint-initdb.d/10-create-testing-database.sh'
         networks:
             - sail
