@@ -254,7 +254,7 @@ class Map extends MiscModel
         if (auth()->check() && auth()->user()->can('update', $this)) {
             $items['second']['groups'] = [
                 'name' => 'maps.panels.groups',
-                'route' => 'maps.groups.index',
+                'route' => 'maps.map_groups.index',
                 'count' => $this->groups()->count()
             ];
         }
@@ -309,12 +309,11 @@ class Map extends MiscModel
      */
     public function groupPositionOptions(): array
     {
-        $options = [null => __('maps/groups.placeholders.position'), 1 => 'First'];
+        $options = [1 => __('maps/groups.placeholders.position')];
         $groups = $this->groups->sortBy('position');
         foreach ($groups as $group) {
-            $options[$group->position + 1] = 'After ' . $group->name;
+            $options[$group->position + 1] = __('maps/groups.placeholders.position_list') . $group->name;
         }
-        array_pop($options);
         return $options;
     }
 

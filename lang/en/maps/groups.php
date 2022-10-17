@@ -33,8 +33,9 @@ return [
         'until' => 'Create up to :max groups to each map.',
     ],
     'placeholders'  => [
-        'name'      => 'Shops, Treasure, NPCs',
-        'position'  => 'Last',
+        'name'           => 'Shops, Treasure, NPCs',
+        'position'       => 'First',
+        'position_list'  => 'After ',
     ],
     'reorder'   => [
         'save'      => 'Save new order',

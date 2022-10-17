@@ -29,7 +29,7 @@ class MapGroupController extends Controller
         $model = $map;
 
         Datagrid::layout(\App\Renderers\Layouts\Map\Group::class)
-            ->route('maps.groups.index', $options);
+            ->route('maps.map_groups.index', $options);
         $rows = $map
             ->groups()
             ->sort(request()->only(['o', 'k']), ['position' => 'asc'])
@@ -103,7 +103,7 @@ class MapGroupController extends Controller
         }
 
         return redirect()
-            ->route('maps.groups.index', $map)
+            ->route('maps.map_groups.index', $map)
             ->withSuccess(__('maps/groups.create.success', ['name' => $new->name]));
     }
 
@@ -150,7 +150,7 @@ class MapGroupController extends Controller
         }
 
         return redirect()
-            ->route('maps.groups.index', $map)
+            ->route('maps.map_groups.index', $map)
             ->withSuccess(__('maps/groups.edit.success', ['name' => $mapGroup->name]));
     }
 
@@ -163,7 +163,7 @@ class MapGroupController extends Controller
         $mapGroup->delete();
 
         return redirect()
-            ->route('maps.groups.index', [$map])
+            ->route('maps.map_groups.index', [$map])
             ->withSuccess(__('maps/groups.delete.success', ['name' => $mapGroup->name]));
     }
 
@@ -211,7 +211,7 @@ class MapGroupController extends Controller
         $count = $this->bulkProcess($request, MapGroup::class);
 
         return redirect()
-            ->route('maps.groups.index', ['map' => $map])
+            ->route('maps.map_groups.index', ['map' => $map])
             ->with('success', trans_choice('maps/groups.bulks.' . $action, $count, ['count' => $count]))
         ;
     }
@@ -235,7 +235,7 @@ class MapGroupController extends Controller
         $map = $group->map()->first();
         $order--;
         return redirect()
-            ->route('maps.groups.index', ['map' => $map])
+            ->route('maps.map_groups.index', ['map' => $map])
             ->with('success', trans_choice('maps/groups.reorder.success', $order, ['count' => $order]));
     }
 }
