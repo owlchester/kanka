@@ -23,5 +23,3 @@
         @include('cruds.fields.image')
     </div>
 </div>
-
-@includeWhen(auth()->user()->isAdmin(), 'cruds.fields.privacy_callout')

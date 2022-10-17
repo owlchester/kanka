@@ -3134,6 +3134,7 @@ $(document).ready(function () {
   registerEditWarning();
   registerEditKeepAlive();
   registerTrustDomain();
+  registerPrivacyToggle();
 });
 /**
  * Re-register any events that need to be binded when a modal is loaded
@@ -3897,6 +3898,18 @@ function registerDynamicRowDelete() {
   });
 }
 
+function registerPrivacyToggle() {
+  $('input[data-toggle="entity-privacy"]').change(function () {
+    var selector = $('#entity-is-private');
+
+    if ($(this).prop('checked')) {
+      selector.show();
+    } else {
+      selector.hide();
+    }
+  });
+}
+
 /***/ }),
 
 /***/ "./resources/assets/js/datagrids.js":
@@ -3923,11 +3936,36 @@ var datagrid2Observer = new IntersectionObserver(function (entries) {
   threshold: [0]
 });
 $(document).ready(function () {
-  // Multi-delete
+  registerBulkDelete();
+  registerBulkActions();
+  toggleCrudMultiDelete();
+  registerDatagrids2();
+});
+/**
+ * Register button handeling for bulk actions
+ */
+
+function registerBulkActions() {
+  $('[data-bulk-action]').on('click', function () {
+    setBulkModels($(this).data('bulk-action'));
+  });
+  $('.bulk-print').on('click', function (e) {
+    e.preventDefault();
+    var form = $(this).closest('form');
+    form.find();
+    form.submit();
+  });
+}
+/**
+ * Register the handler for checking the bulk-delete checkboxes
+ */
+
+
+function registerBulkDelete() {
   var crudDelete = $('#datagrid-select-all');
 
   if (crudDelete.length > 0) {
-    crudDelete.click(function () {
+    crudDelete.unbind('click').click(function () {
       if ($(this).prop('checked')) {
         $.each($("input[name='model[]']"), function () {
           $(this).prop('checked', true);
@@ -3947,24 +3985,6 @@ $(document).ready(function () {
       toggleCrudMultiDelete();
       e.preventDefault();
     });
-  });
-  registerBulkActions();
-  toggleCrudMultiDelete();
-  registerDatagrids2();
-});
-/**
- * Register button handeling for bulk actions
- */
-
-function registerBulkActions() {
-  $('[data-bulk-action]').on('click', function () {
-    setBulkModels($(this).data('bulk-action'));
-  });
-  $('.bulk-print').on('click', function (e) {
-    e.preventDefault();
-    var form = $(this).closest('form');
-    form.find();
-    form.submit();
   });
 }
 /**
@@ -4071,6 +4091,7 @@ function initDatagrid2Ajax() {
       datagrid2Reorder($(this));
     });
   });
+  registerBulkDelete();
 }
 /**
  *
@@ -4563,7 +4584,18 @@ function quickCreatorSubformHandler() {
     }).done(function (result) {
       // New entity was created, let's follow that redirect
       if (_typeof(result) === 'object') {
-        $('#' + result._target).children().remove().end().append(new Option(result._name, result._id)).val(result._id).trigger('change');
+        var option = new Option(result._name, result._id);
+        var field = $('#' + result._target);
+
+        if (result._multi) {
+          var selectedValues = field.val();
+          selectedValues.push(result._id);
+          field.append(option).val(selectedValues);
+        } else {
+          field.children().remove().end().append(option).val(result._id);
+        }
+
+        field.trigger('change');
         $(quickCreatorModalID).find('.modal-content').html('').show();
         $(quickCreatorModalID).find('.modal-spinner').hide();
         $(quickCreatorModalID).modal('toggle');

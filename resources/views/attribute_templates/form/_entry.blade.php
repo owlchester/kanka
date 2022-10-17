@@ -19,7 +19,5 @@
             ]])
             <p class="help-block">{{ __('attribute_templates.hints.entity_type') }}</p>
         </div>
-
-        @includeWhen(auth()->user()->isAdmin(), 'cruds.fields.privacy_callout')
     </div>
 </div>

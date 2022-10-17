@@ -23,4 +23,3 @@ $targets = [
     </div>
 </div>
 @include('cruds.fields.closed')
-@includeWhen(auth()->user()->isAdmin(), 'cruds.fields.privacy_callout')

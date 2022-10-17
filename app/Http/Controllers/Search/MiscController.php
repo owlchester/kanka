@@ -329,7 +329,7 @@ class MiscController extends Controller
                 ->get();
         } else {
             $models = $modelClass
-                ->with(['entity2', 'entity.image'])
+                ->with(['entity', 'entity.image'])
                 ->whereNotIn('id', $excludes);
             // Exact match
             if (Str::startsWith($term, '=')) {

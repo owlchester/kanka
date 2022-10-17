@@ -55,6 +55,7 @@ $(document).ready(function () {
     registerEditWarning();
     registerEditKeepAlive();
     registerTrustDomain();
+    registerPrivacyToggle();
 });
 
 /**
@@ -818,5 +819,16 @@ function registerDynamicRowDelete() {
             e.preventDefault();
             $(this).closest('.parent-delete-row').remove();
         });
+    });
+}
+
+function registerPrivacyToggle() {
+    $('input[data-toggle="entity-privacy"]').change(function () {
+        let selector = $('#entity-is-private');
+        if ($(this).prop('checked')) {
+            selector.show();
+        } else {
+            selector.hide();
+        }
     });
 }

@@ -26,5 +26,3 @@
         @include('cruds.fields.image', ['size' => 'map'])
     </div>
 </div>
-
-@includeWhen(auth()->user()->isAdmin(), 'cruds.fields.privacy_callout')
