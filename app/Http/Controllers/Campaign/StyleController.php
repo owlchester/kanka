@@ -231,7 +231,5 @@ class StyleController extends Controller
             ->route('campaign_styles.index')
             ->with('success', trans_choice('campaigns/styles.reorder.success', $order, ['count' => $order]))
             ;
-
-
     }
 }

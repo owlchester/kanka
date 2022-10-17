@@ -1,6 +1,3 @@
-// id="datagrids-bulk-actions-permissions"
-// id="datagrids-bulk-actions-edit
-
 import ajaxModal from "./components/ajax-modal";
 
 var datagrid2DeleteConfirm = false;
@@ -107,6 +104,29 @@ function toggleCrudMultiDelete()
  *
  */
 function registerDatagrids2() {
+    $('.datagrid-bulk').click(function (e) {
+        e.preventDefault();
+
+        datagrid2Form = $(this).closest('form');
+
+
+        let models = [];
+        $.each($("input[name='model[]']"), function () {
+            if ($(this).prop('checked')) {
+                models.push($(this).val());
+            }
+        });
+        console.log('models', models);
+        $.ajax({
+            url: datagrid2Form.attr('action') + '?action=edit',
+            method: 'POST',
+            data: {model: models}
+        }).done(function (response) {
+            $('#entity-modal').find('.modal-content').html(response);
+            $('#entity-modal').modal();
+        });
+    });
+
     $('.datagrid-submit').click(function (e) {
         e.preventDefault();
 
@@ -115,9 +135,6 @@ function registerDatagrids2() {
 
         let action = datagrid2Form.find('input[name="action"]');
         action.val($(this).data('action'));
-
-        //console.log('action', action);
-        //console.log('me', $(this).data('action'));
 
         if ($(this).data('action') === 'delete') {
             if (datagrid2DeleteConfirm === false) {

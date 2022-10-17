@@ -10,7 +10,13 @@ $hasOthers = false;
     <ul class="dropdown-menu dropdown-menu-right" role="menu">
 
         @foreach (\App\Facades\Datagrid::bulks() as $bulk)
-            @if ($bulk === \App\Renderers\Layouts\Layout::ACTION_DELETE)
+            @if ($bulk === \App\Renderers\Layouts\Layout::ACTION_EDIT)
+                <li>
+                    <a href="#" class="datagrid-bulk" data-action="edit">
+                        <i class="fa-solid fa-pencil"></i> {{ __('crud.bulk.actions.edit') }}
+                    </a>
+                </li>
+            @elseif ($bulk === \App\Renderers\Layouts\Layout::ACTION_DELETE)
                 @if ($hasOthers) <li class="divider"></li> @endif
             <li>
                 <a href="#" class="text-red datagrid-submit" data-action="delete">

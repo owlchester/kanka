@@ -25,22 +25,52 @@ __('maps/groups.create.title')
                 </h4>
             </div>
         @endif
-        <div class="panel-body">
+        <div class= @if ($ajax) "modal-body" @else "panel-body" @endif>        
             @include('partials.errors')
-
-            {!! Form::open(['route' => ['maps.map_groups.store', $map], 'method' => 'POST', 'id' => 'map-group-form', 'enctype' => 'multipart/form-data', 'class' => 'ajax-subform']) !!}
-            @include('maps.groups._form', ['model' => null])
-
-            <div class="form-group">
-                <div class="submit-group">
-                    <button class="btn btn-success">{{ __('crud.save') }}</button>
-                    @includeWhen(!request()->ajax(), 'partials.or_cancel')
+            {!! Form::open(['route' => ['maps.map_groups.store', $map], 'method' => 'POST', 'data-shortcut' => 1]) !!}
+                <div class="panel-body">
+                    @include('maps.groups._form', ['model' => null, 'map' => $map])
                 </div>
-                <div class="submit-animation" style="display: none;">
-                    <button class="btn btn-success" disabled><i class="fa-solid fa-spinner fa-spin"></i></button>
+                <div class="panel-footer">
+                    <div class="pull-right form-group">
+                        <div class="btn-group">
+                            <input id="submit-mode" type="hidden" value="true"/>
+                            <button class="btn btn-success" id="form-submit-main" data-target="{{ isset($target) ? $target : null }}">
+                                {{ __('crud.save') }}
+                            </button>
+                            <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" role="menu">
+                                <li>
+                                    <button type="submit" name="submit" value="save" class="dropdown-item">
+                                        {{ __('crud.save') }}
+                                    </button>
+                                </li>
+                                <li>
+                                    <button type="submit" name="submit" value="update" class="dropdown-item">
+                                        {{ __('crud.save_and_update') }}
+                                    </button>
+                                </li>
+                                <li>
+                                    <button type="submit" name="submit" value="new" class="dropdown-item">
+                                        {{ __('crud.save_and_new') }}
+                                    </button>
+                                </li>
+                                <li>
+                                    <button type="submit" name="submit" value="explore" class="dropdown-item">
+                                        {{ __('maps/markers.actions.save_and_explore') }}  
+                                    </button>
+                                </li>
+                            </ul>
+                            <div class="submit-animation" style="display: none;">
+                                <button class="btn btn-success" disabled><i class="fa-solid fa-spinner fa-spin"></i></button>
+                            </div>
+                        </div>
+                        @includeWhen(!request()->ajax(), 'partials.or_cancel')
+                    </div>
                 </div>
-            </div>
-
+                @includeWhen(request()->ajax(), 'partials.footer_cancel')
             {!! Form::close() !!}
         </div>
     </div>

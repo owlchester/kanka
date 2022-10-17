@@ -3921,8 +3921,6 @@ function registerPrivacyToggle() {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_ajax_modal__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/ajax-modal */ "./resources/assets/js/components/ajax-modal.js");
-// id="datagrids-bulk-actions-permissions"
-// id="datagrids-bulk-actions-edit
 
 var datagrid2DeleteConfirm = false;
 var datagrid2Form;
@@ -4029,13 +4027,33 @@ function toggleCrudMultiDelete() {
 
 
 function registerDatagrids2() {
+  $('.datagrid-bulk').click(function (e) {
+    e.preventDefault();
+    datagrid2Form = $(this).closest('form');
+    var models = [];
+    $.each($("input[name='model[]']"), function () {
+      if ($(this).prop('checked')) {
+        models.push($(this).val());
+      }
+    });
+    console.log('models', models);
+    $.ajax({
+      url: datagrid2Form.attr('action') + '?action=edit',
+      method: 'POST',
+      data: {
+        model: models
+      }
+    }).done(function (response) {
+      $('#entity-modal').find('.modal-content').html(response);
+      $('#entity-modal').modal();
+    });
+  });
   $('.datagrid-submit').click(function (e) {
     e.preventDefault();
     datagrid2Form = $(this).closest('form'); //console.log('form', form);
 
     var action = datagrid2Form.find('input[name="action"]');
-    action.val($(this).data('action')); //console.log('action', action);
-    //console.log('me', $(this).data('action'));
+    action.val($(this).data('action'));
 
     if ($(this).data('action') === 'delete') {
       if (datagrid2DeleteConfirm === false) {

@@ -577,6 +577,23 @@ summary { display: list-item; }
   margin-right: 10px;
   width: 14px;
 }
+button.dropdown-item {
+    background: none;
+    border: none;
+    padding: 3px 20px;
+    display: block;
+    width: 100%;
+    font-weight: 400;
+    line-height: 1.6;
+    white-space: nowrap;
+    color: var(--dropdown-link);
+    text-align: left;
+
+    &:hover {
+        background-color: var(--dropdown-hover-background);
+        color: var(--dropdown-hover-text);
+    }
+}
 
 .table .table-actions .dropdown-toggle i {
   margin: 3px 10px;

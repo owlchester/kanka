@@ -6,6 +6,7 @@ namespace App\Models;
 use App\Models\Concerns\Blameable;
 use App\Models\Concerns\Paginatable;
 use App\Traits\VisibilityIDTrait;
+use App\Models\Concerns\SortableTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 
@@ -25,7 +26,17 @@ use Illuminate\Database\Eloquent\Builder;
  */
 class MapGroup extends Model
 {
-    use VisibilityIDTrait, Blameable, Paginatable;
+    use VisibilityIDTrait, Blameable, Paginatable, SortableTrait;
+
+    protected $sortable = [
+        'name',
+        'position',
+    ];
+
+    protected $sortableColumns = [
+        'name',
+        'position',
+    ];
 
     /** @var string[]  */
     protected $fillable = [
@@ -84,5 +95,53 @@ class MapGroup extends Model
         }
 
         return implode(',', $data);
+    }
+
+    /**
+     * Functions for the datagrid2
+     * @return string
+     */
+    public function deleteName(): string
+    {
+        return (string) $this->name;
+    }
+    public function url(string $where): string
+    {
+        return 'maps.map_groups.' . $where;
+    }
+    public function routeParams(array $options = []): array
+    {
+        return [$this->map_id, $this->id];
+    }
+
+    /**
+     * Patch an entity from the datagrid2 batch editing
+     * @param array $data
+     * @return bool
+     */
+    public function patch(array $data): bool
+    {
+        return $this->update($data);
+    }
+
+    /**
+     * Override the get link
+     * @return string
+     */
+    public function getLink(): string
+    {
+        return route('maps.map_groups.edit', ['map' => $this->map_id, $this->id]);
+    }
+
+    /**
+     * Override the tooltiped link for the datagrid
+     * @param string|null $displayName
+     * @return string
+     */
+    public function tooltipedLink(string $displayName = null): string
+    {
+        return '<a href="' . $this->getLink() . '">' .
+            (!empty($displayName) ? $displayName : e($this->name)) .
+        '</a>';
     }
 }
