@@ -96,14 +96,6 @@ class Map extends MiscModel
     ];
 
     /**
-     * Fields that can be sorted on
-     * @var array
-     */
-    protected $sortableColumns = [
-        'map.name',
-    ];
-
-    /**
      * Nullable values (foreign keys)
      * @var string[]
      */
@@ -259,11 +251,13 @@ class Map extends MiscModel
             'route' => 'maps.maps',
             'count' => $this->maps()->count()
         ];
-        $items['third']['groups'] = [
-            'name' => 'maps.panels.groups',
-            'route' => 'maps.groups',
-            'count' => $this->groups()->count()
-        ];
+        if (auth()->check() && auth()->user()->can('update', $this)) {
+            $items['second']['groups'] = [
+                'name' => 'maps.panels.groups',
+                'route' => 'maps.groups.index',
+                'count' => $this->groups()->count()
+            ];
+        }
         return parent::menuItems($items);
     }
 
@@ -315,12 +309,12 @@ class Map extends MiscModel
      */
     public function groupPositionOptions(): array
     {
-        $options = [null => ''];
-        $options = [1 => 'First'];
+        $options = [null => __('maps/groups.placeholders.position'), 1 => 'First'];
         $groups = $this->groups->sortBy('position');
         foreach ($groups as $group) {
             $options[$group->position + 1] = 'After ' . $group->name;
         }
+        array_pop($options);
         return $options;
     }
 

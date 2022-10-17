@@ -1,9 +1,4 @@
-<?php
-$filters = [];
-if (request()->has('map_id')) {
-    $filters['map_id'] = request()->get('map_id');
-}
-?>
+
 <div class="box box-solid" id="map-groups">
     @if(Datagrid::hasBulks()) {!! Form::open(['route' => ['maps.groups.bulk', 'map' => $model]]) !!} @endif
     <div class="box-header with-border">

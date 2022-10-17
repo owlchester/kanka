@@ -17,6 +17,9 @@ class Group extends Layout
             'name' => [
                 'key' => 'name',
                 'label' => 'crud.fields.name',
+                'render' => function ($model) {
+                    return $model->tooltipedLink();
+                },
             ],
             'position' => [
                 'key' => 'position',

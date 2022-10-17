@@ -34,7 +34,7 @@ return [
     ],
     'placeholders'  => [
         'name'      => 'Shops, Treasure, NPCs',
-        'position'  => 'Optional field to set the order in which the groups appear.',
+        'position'  => 'Last',
     ],
     'reorder'   => [
         'save'      => 'Save new order',

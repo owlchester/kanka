@@ -1,7 +1,7 @@
 
 <div class="form-group required">
     <label>{{ __('crud.fields.name') }}</label>
-    {!! Form::text('name', null, ['placeholder' => __('maps/groups.placeholders.name'), 'class' => 'form-control', 'maxlength' => 191]) !!}
+    {!! Form::text('name', null, ['placeholder' => __('maps/groups.placeholders.name'), 'class' => 'form-control', 'maxlength' => 191, 'required' => true]) !!}
 </div>
 
 @include('cruds.fields.visibility_id')

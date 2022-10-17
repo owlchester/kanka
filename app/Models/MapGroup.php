@@ -123,4 +123,25 @@ class MapGroup extends Model
     {
         return $this->update($data);
     }
+
+    /**
+     * Override the get link
+     * @return string
+     */
+    public function getLink(): string
+    {
+        return route('maps.map_groups.edit', ['map' => $this->map_id, $this->id]);
+    }
+
+    /**
+     * Override the tooltiped link for the datagrid
+     * @param string|null $displayName
+     * @return string
+     */
+    public function tooltipedLink(string $displayName = null): string
+    {
+        return '<a href="' . $this->getLink() . '">' .
+            (!empty($displayName) ? $displayName : e($this->name)) .
+        '</a>';
+    }
 }

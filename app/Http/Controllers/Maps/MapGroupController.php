@@ -8,7 +8,6 @@ use App\Http\Controllers\Datagrid2\BulkControllerTrait;
 use App\Http\Requests\StoreMapGroup;
 use App\Facades\Datagrid;
 use App\Http\Requests\ReorderGroups;
-use App\Datagrids\Actions\GroupDatagridActions;
 use App\Models\Campaign;
 use App\Models\Map;
 use App\Models\MapGroup;
@@ -18,30 +17,29 @@ class MapGroupController extends Controller
 {
     use BulkControllerTrait;
 
-    /** @var string|null The datagrid controlling the bulk actions*/
-    protected $datagridActions = GroupDatagridActions::class;
-
     /**
      * Index
      */
-    public function groups(Map $map)
+    public function index(Map $map)
     {
+        $this->authorize('update', $map);
+
         $campaign = CampaignLocalization::getCampaign();
-        $options = ['map' => $map];
+        $options = ['map' => $map->id];
         $model = $map;
 
         Datagrid::layout(\App\Renderers\Layouts\Map\Group::class)
-            ->route('maps.groups', $options);
+            ->route('maps.groups.index', $options);
         $rows = $map
             ->groups()
             ->sort(request()->only(['o', 'k']), ['position' => 'asc'])
+            ->with(['map'])
             ->paginate(15);
         if (request()->ajax()) {
             return $this->datagridAjax($rows);
         }
-        $reorderGroups = $map->groups()->orderBy('position')->get();
 
-        return view('maps.groups.groups', compact('campaign', 'rows', 'model', 'reorderGroups'));
+        return view('maps.groups.index', compact('campaign', 'rows', 'model'));
     }
 
     /**
@@ -84,7 +82,9 @@ class MapGroupController extends Controller
         }
         $model = new MapGroup();
         $data = $request->only('name', 'position', 'entry', 'visibility_id', 'is_shown');
-        $map->groups()->where('position', '>', $data['position'] - 1)->increment('position');
+        if ($data['position']) {
+            $map->groups()->where('position', '>', $data['position'] - 1)->increment('position');
+        }
         $data['map_id'] = $map->id;
         $new = $model->create($data);
 
@@ -103,7 +103,7 @@ class MapGroupController extends Controller
         }
 
         return redirect()
-            ->route('maps.groups', $map)
+            ->route('maps.groups.index', $map)
             ->withSuccess(__('maps/groups.create.success', ['name' => $new->name]));
     }
 
@@ -150,7 +150,7 @@ class MapGroupController extends Controller
         }
 
         return redirect()
-            ->route('maps.groups', $map)
+            ->route('maps.groups.index', $map)
             ->withSuccess(__('maps/groups.edit.success', ['name' => $mapGroup->name]));
     }
 
@@ -163,7 +163,7 @@ class MapGroupController extends Controller
         $mapGroup->delete();
 
         return redirect()
-            ->route('maps.groups', [$map])
+            ->route('maps.groups.index', [$map])
             ->withSuccess(__('maps/groups.delete.success', ['name' => $mapGroup->name]));
     }
 
@@ -211,7 +211,7 @@ class MapGroupController extends Controller
         $count = $this->bulkProcess($request, MapGroup::class);
 
         return redirect()
-            ->route('maps.groups', ['map' => $map])
+            ->route('maps.groups.index', ['map' => $map])
             ->with('success', trans_choice('maps/groups.bulks.' . $action, $count, ['count' => $count]))
         ;
     }
@@ -235,7 +235,7 @@ class MapGroupController extends Controller
         $map = $group->map()->first();
         $order--;
         return redirect()
-            ->route('maps.groups', ['map' => $map])
+            ->route('maps.groups.index', ['map' => $map])
             ->with('success', trans_choice('maps/groups.reorder.success', $order, ['count' => $order]));
     }
 }
