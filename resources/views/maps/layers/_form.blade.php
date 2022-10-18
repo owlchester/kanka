@@ -8,7 +8,7 @@ $typeOptions = [
 ?>
 <div class="form-group required">
     <label>{{ __('crud.fields.name') }}</label>
-    {!! Form::text('name', null, ['placeholder' => __('maps/layers.placeholders.name'), 'class' => 'form-control', 'maxlength' => 191]) !!}
+    {!! Form::text('name', null, ['placeholder' => __('maps/layers.placeholders.name'), 'class' => 'form-control', 'maxlength' => 191, 'required' => true]) !!}
 </div>
 
 <div class="form-group">
@@ -23,6 +23,11 @@ $typeOptions = [
     {{ Form::select('type_id', $typeOptions, null, ['class' => 'form-control', 'id' => 'type_id']) }}
 </div>
 
+@php 
+    $options = $map->layerPositionOptions();
+    $last = array_key_last($options);
+@endphp
+
 <div class="row">
     <div class="col-sm-6">
         @include('cruds.fields.visibility_id')
@@ -31,7 +36,7 @@ $typeOptions = [
     <div class="col-sm-6">
         <div class="form-group">
             <label>{{ __('maps/layers.fields.position') }}</label>
-            {!! Form::number('position', null, ['placeholder' => __('maps/layers.placeholders.position'), 'class' => 'form-control', 'maxlength' => 3]) !!}
+            {!! Form::select('position', $options, (!empty($layer) ? $layer : $last), ['class' => 'form-control']) !!}
         </div>
     </div>
 </div>

@@ -5,6 +5,9 @@ return [
         'add'   => 'Add a new layer',
     ],
     'base'          => 'Base Layer',
+    'bulks'         => [
+        'delete'    => '{1} Removed :count layer.|[2,*] Removed :count layers.',
+    ],
     'create'        => [
         'success'   => 'Layer :name created.',
         'title'     => 'New Layer',
@@ -30,7 +33,13 @@ return [
     ],
     'placeholders'  => [
         'name'      => 'Underground, Level 2, Shipwreck',
-        'position'  => 'Optional field to set the order in which the layers appear.',
+        'position'  => 'First',
+        'position_list'  => 'After :name',
+    ],
+    'reorder'   => [
+        'save'      => 'Save new order',
+        'success'   => '{1} Reordered :count layer.|[2,*] Reordered :count layers.',
+        'title'     => 'Reorder layers',
     ],
     'short_types'   => [
         'overlay'       => 'Overlay',

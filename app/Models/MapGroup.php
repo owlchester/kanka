@@ -33,11 +33,6 @@ class MapGroup extends Model
         'position',
     ];
 
-    protected $sortableColumns = [
-        'name',
-        'position',
-    ];
-
     /** @var string[]  */
     protected $fillable = [
         'map_id',

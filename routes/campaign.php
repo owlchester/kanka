@@ -35,6 +35,10 @@ Route::get('/maps/tree', 'Maps\MapController@tree')->name('maps.tree');
 Route::post('/maps/{map}/groups/bulk', 'Maps\MapGroupController@bulk')->name('maps.groups.bulk');
 Route::post('/maps/groups/reorder', 'Maps\MapGroupController@reorder')->name('maps.groups.reorder-save');
 
+Route::get('/maps/{map}/layers', 'Maps\MapLayerController@layers')->name('maps.layers');
+Route::post('/maps/{map}/layers/bulk', 'Maps\MapLayerController@bulk')->name('maps.layers.bulk');
+Route::post('/maps/layers/reorder', 'Maps\MapLayerController@reorder')->name('maps.layers.reorder-save');
+
 // Character
 Route::get('/characters/{character}/organisations', 'CharacterSubController@organisations')->name('characters.organisations');
 //Route::get('/characters/{character}/map-points', 'CharacterSubController@mapPoints')->name('characters.map-points');
