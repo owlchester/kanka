@@ -12,6 +12,7 @@ return [
             'editing'           => '{1} :count vzťah aktualizovaný.|[2,4] :count vzťahy aktualizované.|[5,*] :count vzťahov aktualizovaných.',
             'editing_partial'   => '{1} :count/:total vzťah aktualizovaný.|[2,4] :count/:total vzťahy aktualizované.|[5,*] :count/:total vzťahov aktualizovaných.',
         ],
+        'unmirror'          => 'Odstrániť zrkadlené prepojenia.',
         'update_mirrored'   => 'Aktualizovať aj zrkadlené vzťahy.',
     ],
     'call-to-action'    => 'Vizuálne objavuj vzťahy tohto objektu a ako je prepojený s ostatkom kampane.',

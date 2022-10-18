@@ -78,6 +78,9 @@ return [
             'back_to_dashboard' => 'Voltar ao taboleiro',
             'edit'              => 'Editar complemento',
         ],
+        'reorder'   => [
+            'success'   => 'Complementos reordenados.',
+        ],
         'title'     => 'Configuración do taboleiro de campaña',
         'tutorial'  => [
             'blog'  => 'o noso tutorial',
@@ -122,6 +125,7 @@ return [
             'name'              => 'Nome personalizado',
             'optional-entity'   => 'Ligazón a entidade',
             'order'             => 'Orde',
+            'size'              => 'Tamaño',
             'text'              => 'Texto',
             'width'             => 'Anchura',
         ],

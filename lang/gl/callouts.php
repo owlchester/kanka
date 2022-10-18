@@ -20,6 +20,7 @@ return [
         ],
     ],
     'subscribe' => [
+        'pitch-2fa'     => 'Subscríbete para iniciar sesión de forma segura con autentificación en dous factores, e moito :máis.',
         'pitch-image'   => 'Subscríbete para desbloquear ata :max MB de subida de ficheiros.',
         'share-booster' => 'Potencia ":campaign" para aumentar o tamaño máximo de subida de ficheiros para todas as integrantes da campaña.',
     ],

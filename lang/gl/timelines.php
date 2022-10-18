@@ -34,8 +34,13 @@ return [
         'name'  => 'Nome da liña temporal',
         'type'  => 'Primaria, crónica do mundo, legado dun reino...',
     ],
+    'reorder'       => [
+        'success'   => 'Liña temporal reordenada exitosamente.',
+        'title'     => 'Reordenar a liña temporal',
+    ],
     'show'          => [
         'tabs'  => [
+            'reorder'   => 'Reordenar liña temporal',
             'timelines' => 'Liñas temporais',
         ],
     ],

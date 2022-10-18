@@ -16,6 +16,6 @@ return [
         'settings'      => 'Настройки',
         'sign-out'      => 'Выйти',
         'signed-in'     => 'Вход как :user',
-        'your-profile'  => 'Ваш профиль',
+        'your-profile'  => 'Мой профиль',
     ],
 ];

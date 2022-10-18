@@ -143,8 +143,10 @@ return [
             'title'         => 'Denníkové záznamy',
         ],
         'patreon'           => [
+            '2fa'               => 'Prístup na dvojstupňové overenie identity',
             'api_calls'         => 'Vyšší počet API volaní (90)',
             'boosts'            => 'Boosty pre kampane',
+            'click-me'          => 'Zisti viac o tejto funkcionalite',
             'curation'          => 'Navrhuj komunitné hlasovania',
             'default_image'     => 'Pekné prednastavené obrázky pre objekty',
             'description'       => 'Podporou Kanky malou mesačnou sumou nám umožníš ju ďalej zlepšovať a zároveň to v konte odomkne tieto výhody.',

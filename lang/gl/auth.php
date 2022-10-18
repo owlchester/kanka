@@ -28,6 +28,7 @@ return [
     ],
     'login'     => [
         'fields'                => [
+            '2fa'       => 'Contrasinal de uso único',
             'email'     => 'Enderezo de correo electrónico',
             'password'  => 'Contrasinal',
         ],
@@ -68,6 +69,10 @@ return [
         'send'      => 'Enviar ligazón de restablecemento do contrasinal',
         'submit'    => 'Restablecer contrasinal',
         'title'     => 'Restablecer contrasinal',
+    ],
+    'tfa'       => [
+        'helper'    => 'A autentificación en dous factores está activada. Por favor, introduce o contrasinal de uso único (OTP) proporcionada pola túa aplicación de autentificación.',
+        'title'     => 'Autentificación en dous factores',
     ],
     'throttle'  => 'Demasiados intentos de acceso. Por favor, inténtao de novo en :seconds segundos.',
 ];

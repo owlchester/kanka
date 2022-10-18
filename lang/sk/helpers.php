@@ -6,7 +6,9 @@ return [
         'description'   => 'Nasledujúce filtre sú dostupné pre koncový bod API :name.',
         'title'         => 'API filtre',
     ],
-    'attributes'        => [],
+    'attributes'        => [
+        'link'  => 'Možnosti atribútu',
+    ],
     'calendar-widget'   => [
         'info'  => 'Prečo sa zobrazujú tieto pripomenutia?',
         'title' => 'Kalendárový widget',

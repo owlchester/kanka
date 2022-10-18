@@ -31,6 +31,7 @@ return [
         'copy_elements' => 'Kopírovať objekty priradené úlohám',
         'date'          => 'Dátum',
         'description'   => 'Popis',
+        'element_role'  => 'Rola',
         'image'         => 'Obrázok',
         'is_completed'  => 'Splnená',
         'name'          => 'Názov',
@@ -50,11 +51,12 @@ return [
         'title' => 'Úlohy',
     ],
     'placeholders'  => [
-        'date'  => 'Reálny dátum zadania úlohy',
-        'name'  => 'Názov úlohy',
-        'quest' => 'Nadradená úloha',
-        'role'  => 'Rola objektu v úlohe',
-        'type'  => 'príbeh postavy, bočná úloha, hlavný dej',
+        'date'      => 'Reálny dátum zadania úlohy',
+        'entity'    => 'Názov prvku v úlohe',
+        'name'      => 'Názov úlohy',
+        'quest'     => 'Nadradená úloha',
+        'role'      => 'Rola objektu v úlohe',
+        'type'      => 'príbeh postavy, bočná úloha, hlavný dej',
     ],
     'show'          => [
         'actions'   => [

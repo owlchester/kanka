@@ -31,6 +31,7 @@ return [
         'copy_elements' => 'Copiar elementos ligados á misión',
         'date'          => 'Data',
         'description'   => 'Descrición',
+        'element_role'  => 'Rol',
         'image'         => 'Imaxe',
         'is_completed'  => 'Completada',
         'name'          => 'Nome',
@@ -50,11 +51,12 @@ return [
         'title' => 'Misións',
     ],
     'placeholders'  => [
-        'date'  => 'Data do mundo real para a misión',
-        'name'  => 'Nome da misión',
-        'quest' => 'Misión superior',
-        'role'  => 'O rol desta entidade na misión',
-        'type'  => 'Arco de personaxe, Misión secundaria, Historia principal...',
+        'date'      => 'Data do mundo real para a misión',
+        'entity'    => 'Nome dun elemento da misión',
+        'name'      => 'Nome da misión',
+        'quest'     => 'Misión superior',
+        'role'      => 'O rol desta entidade na misión',
+        'type'      => 'Arco de personaxe, Misión secundaria, Historia principal...',
     ],
     'show'          => [
         'actions'   => [
