@@ -10,7 +10,7 @@
     </div>
 @endif
 
-@if (auth()->guest() || !auth()->user()->settings()->get('banner_das_migration'))
+@if (false)
 <div class="bg-orange banner-notification">
     <span>
         @if (auth()->check())
