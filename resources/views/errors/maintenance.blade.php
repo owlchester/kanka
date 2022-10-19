@@ -60,7 +60,7 @@
     <div class="container">
         <div class="section-body mt-5">
             <div class="row">
-                <div class="col-12 col-sm-6">
+                <div class="col-12 col-sm-6" style="display: none">
                     <h1 class="display-4" id="maintenance">Server maintenance</h1>
 
                     <p class="lead">Kanka is currently unavailable due to planned server maintenance.</p>
@@ -69,7 +69,7 @@
                     <p class="lead">Join us over on our {!! link_to(config('social.discord'), 'Discord') !!} to be notified as soon as the maintenance is over.</p>
                 </div>
 
-                <div class="col-12 col-sm-6" style="display: none">
+                <div class="col-12 col-sm-6">
 
                     <h1 class="display-4" id="maintenance">{{ __('errors.503.title') }}</h1>
 
