@@ -22,4 +22,5 @@ yarn-error.log
 .vscode
 .phpunit.result.cache
 *.sql
+/.sail
 

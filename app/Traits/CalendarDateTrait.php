@@ -221,11 +221,14 @@ trait CalendarDateTrait
         if ($this->calendarDateEvent !== false) {
             return $this->calendarDateEvent;
         }
-        if ($this->entity === null) {
-            return null;
+        if (!$this->entity) {
+            return $this->calendarDateEvent = null;
         }
-        /** @var EntityEvent|null $reminder */
-        $reminder = $this->entity->calendarDateEvents->first();
-        return $this->calendarDateEvent = $reminder;
+        $this->calendarDateEvent = $this->entity->calendarDateEvents->first();
+        if (!$this->calendarDateEvent || !$this->calendarDateEvent->calendar) {
+            return $this->calendarDateEvent = null;
+        }
+
+        return $this->calendarDateEvent;
     }
 }

@@ -102,7 +102,8 @@ class EntityAbility extends Model
         return $query
             ->orderBy('position')
             ->orderBy('a.type')
-            ->orderBy('a.name');
+            ->orderBy('a.name')
+        ;
     }
 
     /**

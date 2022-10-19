@@ -1,3 +1,6 @@
+$(window).ready(function () {
+    initBannerPromoDismiss();
+});
 
 function initBannerPromoDismiss()
 {

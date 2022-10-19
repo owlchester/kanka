@@ -45,7 +45,7 @@
                 <div class="card-image subscription-owlbear"></div>
                 <div class="card-title text-muted text-uppercase text-center">Owlbear</div>
                 <div class="card-price text-center">$5<span class="period"> / {{ __('front.pricing.tier.month') }}</span></div>
-                <div class="card-ribbon card-most-popular text-center ab-testing-b">{{ __('tiers.ribbons.popular') }}</div>
+                <div class="card-ribbon card-most-popular text-center">{{ __('tiers.ribbons.popular') }}</div>
                 <hr class="hr-ribbon" />
                 <ul class="fa-ul">
                     <li>
@@ -88,7 +88,7 @@
                 <div class="card-image subscription-wyvern"></div>
                 <div class="card-title text-muted text-uppercase text-center">Wyvern</div>
                 <div class="card-price text-center">$10<span class="period"> / {{ __('front.pricing.tier.month') }}</span></div>
-                <div class="card-ribbon card-best-value text-center ab-testing-b">{{ __('tiers.ribbons.best-value') }}</div>
+                <div class="card-ribbon card-best-value text-center">{{ __('tiers.ribbons.best-value') }}</div>
                 <hr class="hr-ribbon" />
                 <ul class="fa-ul">
                     <li>

@@ -10,6 +10,12 @@
 ])
 
 @section('content')
+
+    <div class="alert alert-warning alert-dismissable">
+        <strong>Deprecation notice</strong>
+        <p>This feature is deprecated since July 2020, and will be completely removed from Kanka on the 1st of January 2023. Please recreate your maps in the {!! link_to_route('maps.index', __('entities.maps')) !!} module by then.</p>
+    </div>
+
     <div class="row">
         <div class="col-md-12 text-right">
             <a href="{{ $location->getLink() }}" class="btn btn-default">
@@ -46,7 +52,7 @@
                         <i class="fa-solid fa-spin fa-spinner fa-4x"></i>
                     </div>
 
-                    <div id="draggable-map">
+                    <div id="draggable-map" draggable="true">
                         <div class="map-container">
                             <img src="{{ Img::url($location->map) }}" alt="{{ $location->name }}" id="location-map-image" data-url="{{ route('locations.map_points.create', $location) }}" @if ($location->isMapSvg()) style="width: {{ $location->mapWidth()}};" @endif />
                             @foreach ($location->mapPoints()->with(['targetEntity', 'location'])->get() as $point)
@@ -115,6 +121,7 @@
 @endsection
 
 @section('scripts')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js" integrity="sha512-57oZ/vW8ANMjR/KQ6Be9v/+/h6bq9/l3f0Oc7vn6qMqyhvPd1cvKBRWWpzu0QoneImqr2SkmO4MSqU+RpHom3Q==" crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
     <script src="{{ mix('js/location/map.js') }}" defer></script>
     <script src="{{ asset('js/vendor/jquery.ui.touch-punch.min.js') }}" defer></script>
 @endsection

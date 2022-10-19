@@ -2,7 +2,6 @@
 
 namespace App\Models\Concerns;
 
-
 use App\Models\Scopes\PrivateScope;
 
 trait Privatable

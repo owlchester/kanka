@@ -3,9 +3,11 @@
 return [
     'campaign'          => [
         'application'           => [
-            'approved'  => 'A túa solicitude de inscrición na campaña ":campaign" foi aprobada.',
-            'new'       => 'Nova solicitude de inscrición en ":campaign".',
-            'rejected'  => 'A túa solicitude de inscrición na campaña ":campaign" foi rexeitada. Motivo: :reason',
+            'approved'              => 'A túa solicitude de inscrición na campaña ":campaign" foi aprobada.',
+            'approved_message'      => 'A túa solicitude de inscrición na campaña ":campaign" foi aprobada. Mensaxe proporcionada: :reason',
+            'new'                   => 'Nova solicitude de inscrición en ":campaign".',
+            'rejected'              => 'A túa solicitude de inscrición na campaña ":campaign" foi rexeitada. Motivo: :reason',
+            'rejected_no_message'   => 'A túa solicitude de inscrición na campaña ":campaign" foi rexeitada.',
         ],
         'asset_export'          => 'Hai unha exportación de campaña dispoñible, A ligazón estará activa durante :time minutos.',
         'asset_export_error'    => 'Ocorreu un erro durante a exportación dos recursos da campaña. Isto pode pasar en campañas moi grandes.',
@@ -17,6 +19,7 @@ return [
         'deleted'               => 'A campaña ":campaign" foi eliminada.',
         'export'                => 'A exportación da campaña está dispoñible. A ligazón estará dispoñible durante :time minutos.',
         'export_error'          => 'Ocorreu un erro mentres se exportaba a túa campaña. Por favor, contacta connosco se o problema persiste.',
+        'hidden'                => 'A campaña ":campaign" está agora oculta. Non aparecerá na páxina de campañas públicas.',
         'join'                  => ':user uníuse á campaña ":campaign".',
         'leave'                 => ':user abandonou a campaña ":campaign".',
         'plugin'                => [
@@ -26,6 +29,7 @@ return [
             'add'       => 'Asignóuseche o rol ":role" na campaña ":campaign".',
             'remove'    => 'Retiróuseche o rol ":role" na campaña ":campaign".',
         ],
+        'shown'                 => 'A campaña ":campaign" é agora visible na páxina de campañas públicas.',
         'troubleshooting'       => [
             'joined'    => ':user (integrante do equipo de Kanka) uníuse á campaña ":campaign".',
         ],

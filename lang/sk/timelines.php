@@ -34,8 +34,13 @@ return [
         'name'  => 'Názov časovej osy',
         'type'  => 'Primárna, Kronika sveta, Osud kráľovstva',
     ],
+    'reorder'       => [
+        'success'   => 'Časová os úspešne usporiadaná.',
+        'title'     => 'Usporiadať časovú os',
+    ],
     'show'          => [
         'tabs'  => [
+            'reorder'   => 'Usporiadanie časovej osi',
             'timelines' => 'Časové osi',
         ],
     ],

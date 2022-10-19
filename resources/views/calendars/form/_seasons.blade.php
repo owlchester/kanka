@@ -28,7 +28,7 @@ if (!empty($seasonNames)) {
 } elseif (isset($source)) {
     $seasons = $source->seasons();
 }?>
-<div class="calendar-seasons sortable-elements">
+<div class="calendar-seasons sortable-elements" data-handle=".input-group-addon">
     @foreach ($seasons as $season)
         <div class="form-group parent-delete-row">
             <div class="row">

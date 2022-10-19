@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\MassPrunable;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -17,6 +19,8 @@ use Illuminate\Database\Eloquent\Model;
  */
 class UserLog extends Model
 {
+    use MassPrunable;
+
     public const TYPE_LOGIN = 1;
     public const TYPE_LOGOUT = 2;
     public const TYPE_AUTOLOGIN = 3;
@@ -64,5 +68,14 @@ class UserLog extends Model
     public function user()
     {
         return $this->belongsTo('App\User', 'user_id', 'id');
+    }
+
+    /**
+     * Automatically prune old elements from the db
+     * @return Builder
+     */
+    public function prunable(): Builder
+    {
+        return static::where('updated_at', '<=', now()->subMonths(6));
     }
 }

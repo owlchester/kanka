@@ -75,7 +75,7 @@ $specificTheme = null;
         <aside class="main-sidebar">
             <section class="sidebar" style="height: auto">
 
-                <div id="sidebar-content">
+                <div id="sidebar-content" class="">
                     <div id="sidebar-map">
                         <div class="marker-details">
                             <h3 class="marker-name">{{ $map->name }}</h3>
@@ -93,6 +93,9 @@ $specificTheme = null;
 
                         <div class="map-legend">
                             @include('maps.explore.legend')
+                        </div>
+                        <div class="sidebar-menu" style="display: none">
+                            <!-- used for the sidebar toggle plugin -->
                         </div>
 
                         <div class="map-legend text-center">

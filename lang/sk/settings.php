@@ -2,6 +2,32 @@
 
 return [
     'account'       => [
+        '2fa'               => [
+            'actions'               => [
+                'disable'   => 'Deaktivovať dvojstupňové overenie identity',
+                'finish'    => 'Dokončiť nastavenie a prihlásiť sa',
+            ],
+            'activation_helper'     => 'Na dokončenie nastavenia dvojstupňového overenia identity tvojho konta nasleduj tieto inštrukcie.',
+            'disable'               => [
+                'helper'    => 'Ak chceš deaktivovať dvojstupňové overenie identity, klikni na tlačidlo nižšie. Nezabudni, že toto ponechá tvoje konto zraniteľné v prípade, že niekto pozná tvoje prihlasovacie údaje.',
+                'title'     => 'Deaktivovať dvojstupňové overenie identity',
+            ],
+            'enable_instructions'   => 'Ak chceš spustiť aktivačný proces, vygeneruj tvoj autentifikačný QR kód a zoskenuj ho do aplikácie Google Authenticator (:ios, :android) alebo inej podobnej autentifikačnej aplikácie.',
+            'enabled'               => 'Dvojstupňové overenie identity je aktuálne pre tvoje konto aktivované.',
+            'error_enable'          => 'Nesprávny kód, skús znovu.',
+            'fields'                => [
+                'otp'       => 'Zadaj jednorazové heslo poskytnuté autentifikačnou aplikáciou.',
+                'qrcode'    => 'Zoskenuj nasledujúci QR kód tvojou autentifikačnou aplikáciou na vygenerovanie jednorazového hesla.',
+            ],
+            'generate_qr'           => 'Generovať QR kód',
+            'helper'                => 'Dvojstupňové overenie identity posilňuje bezpečnosť prístupu požadovaním dvoch metód (stupňov) na overenie identity pri každom prihlásení.',
+            'learn_more'            => 'Dozveď sa viac o dvojstupňovom overení identity.',
+            'social'                => 'Dvojstupňové overenie identity v Kanke je aktívne iba pre osoby, ktoré sa prihlasujú pomocou ich e-mailu a hesla. Zmeň si metódu prihlasovania v tvojom konte predtým, ako aktivuješ toto nastavenie.',
+            'success_disable'       => 'Dvojstupňové overenie identity úspešne deaktivované.',
+            'success_enable'        => 'Dvojstupňové overenie identity úspešne aktivované. Prosím prihlás sa opäť na dokončenie nastavení.',
+            'success_key'           => 'Tvoj QR kód bol úspešne vygenerovaný. Prosím dokonči nastavenie pre aktiváciu dvojstupňového overenia identity.',
+            'title'                 => 'Dvojstupňové overenie identity',
+        ],
         'actions'           => [
             'social'            => 'Prepnúť na prihlásenie do Kanky',
             'update_email'      => 'Aktualizovať e-mail',
@@ -138,6 +164,7 @@ return [
                 'missing_features'  => 'Chýbajú mi funkcionality',
                 'not_for'           => 'Predplatné nie je pre mňa',
                 'not_using'         => 'Aktuálne Kanku nevyužívam',
+                'other'             => 'Iné',
             ],
             'text'      => 'Ľutujeme, že odchádzaš! Zrušením tvojho predplatného ostáva toto aktívne do ďalšieho platobného obdobia, po ktorom stratíš tvoje boosty kampaní a ostatné výhody vďaka podpore Kanky. Vyplnením následného formulára nám pomôžeš zistiť, čo by sme mali robiť lepšie, alebo čo ťa viedlo k tomuto rozhodnutiu.',
         ],

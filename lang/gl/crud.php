@@ -9,6 +9,8 @@ return [
         'copy'              => 'Copiar',
         'copy_mention'      => 'Copiar mención [ ]',
         'copy_to_campaign'  => 'Copiar a campaña',
+        'disable'           => 'Deshabilitar',
+        'enable'            => 'Habilitar',
         'explore_view'      => 'Vista en árbore',
         'export'            => 'Exportar (PDF)',
         'find_out_more'     => 'Saber máis',

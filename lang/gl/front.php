@@ -143,8 +143,10 @@ return [
             'title'         => 'Cadernos',
         ],
         'patreon'           => [
+            '2fa'               => 'Acceso á autentificación en dous factores',
             'api_calls'         => 'Aumento de chamadas á API (90 por minuto)',
             'boosts'            => 'Potenciadores de campaña',
+            'click-me'          => 'Saber máis desta funcionalidade.',
             'curation'          => 'Colabora na decisión de que é incluido nas votacións da comunidade',
             'default_image'     => 'Imaxes por defecto personalizadas para entidades',
             'description'       => 'Apoiar a Kanka cunha subscripción dache acceso ás seguintes funcionalidades e melloras.',

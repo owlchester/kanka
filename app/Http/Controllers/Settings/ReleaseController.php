@@ -23,6 +23,7 @@ class ReleaseController extends Controller
     /**
      * Update the user's last viewed release
      * @param AppRelease $appRelease
+     * @return \Illuminate\Http\JsonResponse
      */
     public function read(AppRelease $appRelease)
     {
@@ -38,10 +39,14 @@ class ReleaseController extends Controller
         ]);
     }
 
+    /**
+     * @param ReadBanner $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function banner(ReadBanner $request)
     {
-        $user = $request->user();
-        $settings = $user->settings;
+        $user = auth()->user();
+        $settings = $user->settings();
         $code = $request->get('code');
 
         $code = Purify::clean($code);

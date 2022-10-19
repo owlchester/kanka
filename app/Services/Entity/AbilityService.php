@@ -120,24 +120,27 @@ class AbilityService
     {
         $ability = $entityAbility->ability;
         $parent = $ability->ability;
-        if (!empty($parent)) {
-            if (!isset($this->abilities['parents'][$parent->id])) {
-                $this->abilities['parents'][$parent->id] = [
-                    'id' => $parent->id,
-                    'name' => $parent->name,
-                    'type' => $parent->type,
-                    'image' => $parent->thumbnail(120),
-                    'has_image' => !empty($parent->image),
-                    'entry' => $parent->entry(),
-                    'parent' => true,
-                    'abilities' => [],
-                ];
-            }
 
-            $this->abilities['parents'][$parent->id]['abilities'][] = $this->format($entityAbility);
-        } else {
+        if (empty($parent)) {
             $this->abilities['abilities'][$ability->id] = $this->format($entityAbility);
+            return;
         }
+
+        if (!isset($this->abilities['parents'][$parent->id])) {
+            $this->abilities['parents'][$parent->id] = [
+                'id' => $parent->id,
+                'name' => $parent->name,
+                'type' => $parent->type,
+                'image' => $parent->thumbnail(120),
+                'has_image' => !empty($parent->image),
+                'entry' => $parent->entry(),
+                'parent' => true,
+                'abilities' => [],
+            ];
+        }
+
+        // Add to their parent's abilities
+        $this->abilities['parents'][$parent->id]['abilities'][] = $this->format($entityAbility);
     }
 
     /**
@@ -326,7 +329,6 @@ class AbilityService
                 $count++;
             }
         }
-
 
         return $count;
     }

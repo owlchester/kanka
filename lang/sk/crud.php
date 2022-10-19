@@ -9,6 +9,8 @@ return [
         'copy'              => 'Kopírovať',
         'copy_mention'      => 'Kopírovať [ ] referenciu',
         'copy_to_campaign'  => 'Kopírovať do kampane',
+        'disable'           => 'Deaktivovať',
+        'enable'            => 'Aktivovať',
         'explore_view'      => 'Vnorené zobrazenie',
         'export'            => 'Exportovať (PDF)',
         'find_out_more'     => 'Dozvedieť sa viac',

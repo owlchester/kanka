@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Facades\CampaignLocalization;
 use App\Facades\Dashboard;
+use App\Models\Concerns\Privatable;
 use App\Models\Concerns\Taggable;
 use App\Traits\CampaignTrait;
 use Illuminate\Database\Eloquent\Builder;
@@ -38,7 +39,7 @@ use Illuminate\Support\Str;
  */
 class MenuLink extends MiscModel
 {
-    use Taggable, CampaignTrait;
+    use Taggable, CampaignTrait, Privatable;
 
     /**
      * @var string

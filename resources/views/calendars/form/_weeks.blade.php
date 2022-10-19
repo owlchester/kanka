@@ -20,7 +20,7 @@
         } elseif (isset($source)) {
             $weekdays = $source->weekdays();
         } ?>
-        <div class="calendar-weekdays sortable-elements">
+        <div class="calendar-weekdays sortable-elements" data-handle=".input-group-addon">
             @foreach ($weekdays as $weekday)
                 <div class="form-group parent-delete-row">
                     <div class="input-group">
@@ -69,7 +69,7 @@
         } elseif (isset($source)) {
             $weeks = $source->weeks();
         } ?>
-        <div class="calendar-weeks sortable-elements">
+        <div class="calendar-weeks sortable-elements" data-handle=".input-group-addon">
             @foreach ($weeks as $week => $name)
                 <div class="form-group parent-delete-row">
                     <div class="row">
@@ -107,7 +107,7 @@
         <div class="form-group parent-delete-row">
             <div class="input-group">
                 <span class="input-group-addon">
-                    <span class="fa-solid fa-arrows-alt-v"></span>
+                    <span class="   fa-solid fa-arrows-alt-v"></span>
                 </span>
                 {!! Form::text('weekday[]', null, ['class' => 'form-control']) !!}
                 <span class="input-group-btn">

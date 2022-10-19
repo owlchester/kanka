@@ -118,6 +118,9 @@ class MapMarkerController extends Controller
     public function edit(Map $map, MapMarker $mapMarker)
     {
         $this->authorize('update', $map);
+        if ($mapMarker->map_id !== $map->id) {
+            abort(503);
+        }
 
         $ajax = request()->ajax();
         $model = $mapMarker;
@@ -140,6 +143,9 @@ class MapMarkerController extends Controller
     public function update(StoreMapMarker $request, Map $map, MapMarker $mapMarker)
     {
         $this->authorize('update', $map);
+        if ($mapMarker->map_id !== $map->id) {
+            abort(503);
+        }
 
         // For ajax requests, send back that the validation succeeded, so we can really send the form to be saved.
         if (request()->ajax()) {
@@ -176,6 +182,9 @@ class MapMarkerController extends Controller
     public function destroy(Map $map, MapMarker $mapMarker)
     {
         $this->authorize('update', $map);
+        if ($mapMarker->map_id !== $map->id) {
+            abort(503);
+        }
 
         $mapMarker->delete();
 

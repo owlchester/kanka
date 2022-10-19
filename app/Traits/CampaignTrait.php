@@ -3,7 +3,7 @@
 namespace App\Traits;
 
 use App\Models\Scopes\CampaignScope;
-use Illuminate\Database\Query\Builder;
+use Illuminate\Database\Eloquent\Builder;
 
 /**
  * Trait CampaignTrait

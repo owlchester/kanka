@@ -1,4 +1,4 @@
-<header class="masthead @if (\App\Facades\DataLayer::groupB()) masthead-img @endif">
+<header class="masthead @if (\App\Facades\DataLayer::groupB()) masthead-b @endif">
     <div class="container h-100">
         <div class="row h-100">
             <div class="col-lg-12 my-auto landing-heading">

@@ -20,8 +20,13 @@ TEXT
         'title'                 => 'Nova campaña',
     ],
     'destroy'                           => [
-        'action'    => 'Eliminar campaña',
-        'success'   => 'Campaña eliminada.',
+        'action'            => 'Eliminar campaña',
+        'confirm'           => 'Tes certeza de que queres eliminar a campaña ":campaign"? Esta acción é permanente e non pode ser desfeita.',
+        'confirm-button'    => 'Eliminar a campaña permanentemente',
+        'helper-v2'         => 'Esta campaña non pode ser eliminada mentres hai integrantes nela. Expúlsaes e inténtao de novo.',
+        'hint'              => 'Se é así, escribe ":code" na caixa de abaixo.',
+        'success'           => 'Campaña eliminada.',
+        'title'             => 'Eliminar campaña',
     ],
     'edit'                              => [
         'success'   => 'Campaña actualizada.',
@@ -128,6 +133,7 @@ TEXT
         'fields'                => [
             'created'   => 'Enviado',
             'role'      => 'Rol',
+            'token'     => 'Token',
             'type'      => 'Tipo',
             'usage'     => 'Número máximo de usos',
         ],
@@ -140,9 +146,13 @@ TEXT
         ],
     ],
     'leave'                             => [
-        'confirm'   => 'Seguro que queres abandonar a campaña ":name"? Non poderás volver acceder a ela, excepto se alguén da administración te convida de novo.',
-        'error'     => 'Non foi posible abandonar a campaña.',
-        'success'   => 'Abandonaches a campaña.',
+        'confirm'           => 'Seguro que queres abandonar a campaña ":name"? Non poderás volver acceder a ela, excepto se alguén da administración te convida de novo.',
+        'confirm-button'    => 'Si, abandonar a campaña',
+        'error'             => 'Non foi posible abandonar a campaña.',
+        'fix'               => 'Ir á lista de integrantes da campaña',
+        'no-admin-left'     => 'Abandonar a campaña non é posible xa que facelo deixaríaa sen administración. Engade alguén máis ao rol de administración para poder abandonala.',
+        'success'           => 'Abandonaches a campaña.',
+        'title'             => 'Abandonando a campaña',
     ],
     'members'                           => [
         'actions'               => [

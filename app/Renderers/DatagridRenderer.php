@@ -11,6 +11,7 @@ use App\Models\MiscModel;
 use App\Models\Relation;
 use App\Services\FilterService;
 use App\User;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Arr;
@@ -21,7 +22,7 @@ class DatagridRenderer
 {
     protected array $columns = [];
 
-    protected LengthAwarePaginator|array $data = [];
+    protected LengthAwarePaginator|Collection|array $data = [];
 
     protected array $options = [];
 

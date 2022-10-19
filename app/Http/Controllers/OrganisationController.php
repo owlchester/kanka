@@ -119,7 +119,8 @@ class OrganisationController extends CrudController
             ->with([
                 'organisation', 'organisation.entity',
                 'parent', 'parent.character',
-                'character', 'character.entity', 'character.entity.image'])
+                'character', 'character.entity', 'character.entity.image',
+                'character.location', 'character.location.entity'])
             ->has('character')
             ->has('character.entity')
             ->sort(request()->only(['o', 'k']))

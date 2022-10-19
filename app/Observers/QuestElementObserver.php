@@ -40,7 +40,7 @@ class QuestElementObserver
     /**
      * @param QuestElement $questElement
      */
-    public function saved()
+    public function saved(QuestElement $questElement)
     {
         QuestCache::clearSuggestion();
     }

@@ -28,6 +28,7 @@ return [
     ],
     'login'     => [
         'fields'                => [
+            '2fa'       => 'Jednorazové heslo',
             'email'     => 'E-mail',
             'password'  => 'Heslo',
         ],
@@ -68,6 +69,10 @@ return [
         'send'      => 'Zaslať link na obnovenie hesla',
         'submit'    => 'Obnoviť heslo',
         'title'     => 'Obnovenie hesla',
+    ],
+    'tfa'       => [
+        'helper'    => 'Dvojstupňové overenie identity je aktívne. Zadaj prosím jednorazové heslo z tvojej autentifikačnej aplikácie.',
+        'title'     => 'Dvojstupňové overenie identity',
     ],
     'throttle'  => 'Prekročený limit pokusov. Skús to znovu o :seconds sekúnd.',
 ];

@@ -4,13 +4,13 @@ $role = \App\Facades\CampaignCache::adminRole();
 <div class="row">
     <div class="col-md-6">
         <label>{{ __('characters.sections.appearance') }}</label>
-        <div class="character-appearance sortable-elements">
+        <div class="character-appearance sortable-elements" data-handle=".input-group-addon">
             @foreach ((isset($model) ? $model->characterTraits()->appearance()->orderBy('default_order', 'ASC')->get() : FormCopy::characterAppearance()) as $trait)
                 <div class="form-group parent-delete-row">
                     <div class="row">
                         <div class="col-md-4 col-xs-4">
                             <div class="input-group">
-                                <span class="input-group-addon hidden-xs hidden-sm">
+                                <span class="input-group-addon">
                                     <span class="fa-solid fa-arrows-alt-v"></span>
                                 </span>
                                 {!! Form::text('appearance_name[' . $trait->id . ']', $trait->name, [
@@ -59,12 +59,12 @@ $role = \App\Facades\CampaignCache::adminRole();
     <div class="col-md-6">
         <label>{{ __('characters.sections.personality') }}</label>
         @if (!isset($model) || auth()->user()->can('personality', $model))
-            <div class="character-personality sortable-elements">
+            <div class="character-personality sortable-elements" data-handle=".input-group-addon">
                 @foreach ((isset($model) ? $model->characterTraits()->personality()->orderBy('default_order', 'ASC')->get() : FormCopy::characterPersonality()) as $trait)
                     <div class="parent-delete-row mb-5">
                         <div class="form-group">
                             <div class="input-group">
-                            <span class="input-group-addon hidden-xs hidden-sm">
+                            <span class="input-group-addon">
                                 <span class="fa-solid fa-arrows-alt-v"></span>
                             </span>
                                 {!! Form::text('personality_name[' . $trait->id . ']', $trait->name, [
@@ -137,7 +137,7 @@ $role = \App\Facades\CampaignCache::adminRole();
                 <div class="row">
                     <div class="col-md-4 col-xs-4">
                         <div class="input-group">
-                                <span class="input-group-addon hidden-xs hidden-sm">
+                                <span class="input-group-addon">
                                     <span class="fa-solid fa-arrows-alt-v"></span>
                                 </span>
                             {!! Form::text('appearance_name[]', null, [
@@ -168,7 +168,7 @@ $role = \App\Facades\CampaignCache::adminRole();
             <div class="parent-delete-row mb-5">
                 <div class="form-group">
                     <div class="input-group">
-                                <span class="input-group-addon hidden-xs hidden-sm">
+                                <span class="input-group-addon">
                                     <span class="fa-solid fa-arrows-alt-v"></span>
                                 </span>
                         {!! Form::text('personality_name[]', null, [

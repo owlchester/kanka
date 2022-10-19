@@ -60,15 +60,21 @@
     <div class="container">
         <div class="section-body mt-5">
             <div class="row">
+                <div class="col-12 col-sm-6" style="display: none">
+                    <h1 class="display-4" id="maintenance">Server maintenance</h1>
+
+                    <p class="lead">Kanka is currently unavailable due to planned server maintenance.</p>
+                    <p class="lead">This maintenance is planned to last from <a href="https://everytimezone.com/s/fce7c091" target="_blank" style="text-decoration: underline"><i class="fa-solid fa-external-link"></i> 14:00 UTC</a> to 16:00 UTC.</p>
+
+                    <p class="lead">Join us over on our {!! link_to(config('social.discord'), 'Discord') !!} to be notified as soon as the maintenance is over.</p>
+                </div>
+
                 <div class="col-12 col-sm-6">
+
                     <h1 class="display-4" id="maintenance">{{ __('errors.503.title') }}</h1>
 
                     <p class="lead">{{ __('errors.503.body.1') }}</p>
                     <p class="lead">{{ __('errors.503.body.2') }}</p>
-
-                    <p class="lead">{!! __('errors.footer', [
-    'discord' => link_to(config('social.discord'), 'Discord'),
-     'email' => link_to('mailto:' . config('app.email'), config('app.email'))]) !!}</p>
                 </div>
                 <div class="col-12 col-sm-6">
                     <img src="/images/svgs/503.svg" alt="Error 503 image" />

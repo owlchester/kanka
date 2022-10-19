@@ -42,6 +42,7 @@ Route::post('/maps/{map}/layers/reorder', 'Maps\MapLayerController@reorder')->na
 Route::get('/characters/{character}/organisations', 'CharacterSubController@organisations')->name('characters.organisations');
 //Route::get('/characters/{character}/map-points', 'CharacterSubController@mapPoints')->name('characters.map-points');
 
+Route::get('/dice_rolls/{dice_roll}/roll', 'DiceRollController@roll')->name('dice_rolls.roll');
 Route::delete('/dice_rolls/{dice_roll}/roll/{dice_roll_result}/destroy', 'DiceRollController@destroyRoll')->name('dice_rolls.destroy_roll');
 //Route::get('/dice_rolls/{dice_roll}/map-points', 'DiceRollController@mapPoints')->name('dice_rolls.map-points');
 

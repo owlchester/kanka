@@ -20,8 +20,13 @@ TEXT
         'title'                 => 'Vytvoriť novú kampaň',
     ],
     'destroy'                           => [
-        'action'    => 'Odstrániť kampaň',
-        'success'   => 'Kampaň odstránená.',
+        'action'            => 'Odstrániť kampaň',
+        'confirm'           => 'Naozaj chceš zmazať :campaign? Táto akcia je natrvalo a nemôže byť vrátená späť.',
+        'confirm-button'    => 'Natrvalo zmazať kampaň',
+        'helper-v2'         => 'Táto kampaň nemôže byť zmazaná, ak sú v nej ešte iní členovia alebo členky. Odstráň ich najprv a skús to potom opäť.',
+        'hint'              => 'Ak je to tak, prepíš :code do políčka nižšie.',
+        'success'           => 'Kampaň odstránená.',
+        'title'             => 'Zmazať kampaň',
     ],
     'edit'                              => [
         'success'   => 'Kampaň upravená.',
@@ -128,6 +133,7 @@ TEXT
         'fields'                => [
             'created'   => 'Zaslať',
             'role'      => 'Rola',
+            'token'     => 'Žetón',
             'type'      => 'Typ',
             'usage'     => 'Max. počet použití',
         ],
@@ -140,9 +146,13 @@ TEXT
         ],
     ],
     'leave'                             => [
-        'confirm'   => 'Naozaj chceš opustiť kampaň :name? Už ku nej nebudeš mať prístup, ibaže by ťa do nej opäť pozval jej administrátor.',
-        'error'     => 'Nemôže opustiť kampaň.',
-        'success'   => 'Opustil/a si kampaň.',
+        'confirm'           => 'Naozaj chceš opustiť kampaň :name? Už ku nej nebudeš mať prístup, ibaže by ťa do nej opäť pozval jej administrátor.',
+        'confirm-button'    => 'Áno, opustiť kampaň',
+        'error'             => 'Nemôže opustiť kampaň.',
+        'fix'               => 'Prejsť na členstvo kampane',
+        'no-admin-left'     => 'Nie je možné opustiť kampaň, pretože by tak ostala bez adminov. Priraď najprv inému členovi alebo členke rolu admin.',
+        'success'           => 'Opustil/a si kampaň.',
+        'title'             => 'Opustenie kampane',
     ],
     'members'                           => [
         'actions'               => [

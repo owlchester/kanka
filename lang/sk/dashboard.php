@@ -78,6 +78,9 @@ return [
             'back_to_dashboard' => 'Naspäť na nástenku',
             'edit'              => 'Upraviť widget',
         ],
+        'reorder'   => [
+            'success'   => 'Widgety presunuté.',
+        ],
         'title'     => 'Nastavenie nástenky kampane',
         'tutorial'  => [
             'blog'  => 'náš návod',
@@ -122,6 +125,7 @@ return [
             'name'              => 'Vlastný názov widgetu',
             'optional-entity'   => 'Link k objektu',
             'order'             => 'Zoradenie',
+            'size'              => 'Veľkosť',
             'text'              => 'Text',
             'width'             => 'Šírka',
         ],

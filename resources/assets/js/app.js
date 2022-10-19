@@ -1,4 +1,4 @@
-require('./bootstrap');
+require('./vendor');
 
 import deleteConfirm from './components/delete-confirm.js';
 import dynamicMentions from "./mention";
@@ -14,6 +14,8 @@ $(document).ready(function() {
     if (!window.kankaIsMobile.matches) {
         initTooltips();
     }
+
+    initPageHeight();
 
     window.initForeignSelect();
     initSpectrum();
@@ -295,6 +297,48 @@ function initDialogs() {
     });
 }
 
+/**
+ * AdminLTE legacy. The CSS is a bit weird, for small pages we need to force a min-height
+ * So that the footer is at the bottom, and so that the sidebar can be fully scrolled
+ */
+function initPageHeight()
+{
+    let controlSidebar = 0;
+
+    const heights = {
+        window: $(window).height(),
+        header: $('.main-header').length > 0 ? $('.main-header').outerHeight() : 0,
+        footer: $('.main-footer').length > 0 ? $('.main-footer').outerHeight() : 0,
+        sidebar: $('.main-sidebar .sidebar').length > 0 ? $('.main-sidebar .sidebar').height() : 0,
+        controlSidebar
+    };
+
+    let max = heighestValue(heights);
+
+    let $contentSelector = $('.content-wrapper');
+    if (max === heights.controlSidebar) {
+        $contentSelector.css('min-height', max);
+    } else if (max === heights.window) {
+        $contentSelector.css('min-height', (max - heights.header - heights.footer));
+    } else {
+        $contentSelector.css('min-height', (max - heights.header));
+    }
+}
+
+function heighestValue(numbers)
+{
+    // Calculate the maximum number in a list
+    let max = 0;
+
+    Object.keys(numbers).forEach(key => {
+        if (numbers[key] > max) {
+            max = numbers[key]
+        }
+    })
+
+    return max;
+}
+
 
 // Splitting off the js files into logical blocks
 require('./helpers');
@@ -314,6 +358,5 @@ require('./toast');
 require('./sidebar');
 require('./banner');
 require('./timeline');
-require('./vendor');
-require('./utility/sortable')
+require('./utility/sortable');
 //require('./ads');
