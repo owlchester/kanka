@@ -6,6 +6,7 @@ namespace App\Observers;
 
 use App\Facades\Mentions;
 use App\Models\MapMarker;
+use App\Facades\MapMarkerCache;
 use enshrined\svgSanitize\Sanitizer;
 use Illuminate\Support\Str;
 
@@ -41,6 +42,7 @@ class MapMarkerObserver
     public function saved(MapMarker $mapMarker)
     {
         $mapMarker->map->touch();
+        MapMarkerCache::clearSuggestion();
     }
 
     /**
@@ -49,6 +51,7 @@ class MapMarkerObserver
     public function deleted(MapMarker $mapMarker)
     {
         $mapMarker->map->touch();
+        MapMarkerCache::clearSuggestion();
     }
 
     /**
