@@ -595,6 +595,21 @@ class Map extends MiscModel
     }
 
     /**
+     * Determine if a map can be explored
+     * @return bool
+     */
+    public function explorable(): bool
+    {
+        if (empty($this->image) && !$this->isReal()) {
+            return false;
+        }
+        if ($this->isChunked() && ($this->chunkingError() || $this->chunkingRunning())) {
+            return false;
+        }
+        return true;
+    }
+
+    /**
      * The explore link for a map, or the chunking process icon
      * @return string
      */
