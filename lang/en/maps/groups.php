@@ -23,7 +23,7 @@ return [
         'position'  => 'Position',
     ],
     'helper'        => [
-        'amount_v2' => 'Create marker groups and attach markers to them, enabling to quickly show or hide multiple markers with a single click.',
+        'amount_v3' => 'Markers can be grouped together using map groups. Each group can then be clicked when exploring a map to quickly show or hide all markers in it.',
     ],
     'hints'         => [
         'is_shown'  => 'If checked, the group markers will be shown on the map by default.',

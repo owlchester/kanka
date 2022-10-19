@@ -252,15 +252,15 @@ class Map extends MiscModel
             'count' => $this->maps()->count()
         ];
         if (auth()->check() && auth()->user()->can('update', $this)) {
-            $items['second']['groups'] = [
-                'name' => 'maps.panels.groups',
-                'route' => 'maps.map_groups.index',
-                'count' => $this->groups()->count()
-            ];
             $items['second']['layers'] = [
                 'name' => 'maps.panels.layers',
                 'route' => 'maps.map_layers.index',
-                'count' => $this->layers()->count()
+                'count' => $this->layers->count()
+            ];
+            $items['second']['groups'] = [
+                'name' => 'maps.panels.groups',
+                'route' => 'maps.map_groups.index',
+                'count' => $this->groups->count()
             ];
         }
         return parent::menuItems($items);

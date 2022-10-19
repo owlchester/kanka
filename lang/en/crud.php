@@ -240,6 +240,7 @@ return [
         'copy_options'  => 'Copy the following related elements from the source to the new entity.',
         'linking'       => 'Linking to other entities',
         'nested_parent' => 'Displaying the children of :parent.',
+        'learn_more'        => 'Learn more about this feature in our :documentation.',
     ],
     'hidden'                    => 'Hidden',
     'hints'                     => [

@@ -59,7 +59,7 @@ __('maps/layers.edit.title', ['name' => $model->name])
                                 </li>
                                 <li>
                                     <button type="submit" name="submit" value="explore" class="dropdown-item">
-                                        {{ __('maps/markers.actions.save_and_explore') }}  
+                                        {{ __('maps/markers.actions.save_and_explore') }}
                                     </button>
                                 </li>
                             </ul>

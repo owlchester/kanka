@@ -55,11 +55,9 @@ class MapGroupController extends Controller
                 ->with('max', Campaign::LAYER_COUNT_MAX);
         }
 
-        $ajax = request()->ajax();
-
         return view(
             'maps.groups.create',
-            compact('map', 'ajax')
+            compact('map')
         );
     }
 
@@ -112,13 +110,11 @@ class MapGroupController extends Controller
     public function edit(Map $map, MapGroup $mapGroup)
     {
         $this->authorize('update', $map);
-
-        $ajax = request()->ajax();
         $model = $mapGroup;
 
         return view(
             'maps.groups.edit',
-            compact('map', 'ajax', 'model')
+            compact('map', 'model')
         );
     }
 

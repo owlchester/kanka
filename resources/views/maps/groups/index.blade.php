@@ -10,11 +10,14 @@
 @section('entity-header-actions')
     @can('update', $model)
         <div class="header-buttons">
-            <a href="{{ route('maps.map_groups.create', ['map' => $model]) }}" class="btn btn-warning btn-sm"
+            <a href="https://docs.kanka.io/en/latest/entities/maps/groups.html" class="btn btn-default" target="_blank">
+                <i class="fa-solid fa-question-circle" aria-hidden="true"></i> {{ __('crud.actions.help') }}
+            </a>
+            <a href="{{ route('maps.map_groups.create', ['map' => $model]) }}" class="btn btn-warning"
                 data-toggle="ajax-modal" data-target="#entity-modal"
                 data-url="{{ route('maps.map_groups.create', ['map' => $model]) }}"
             >
-            <i class="fa-solid fa-plus"></i> {{ __('maps/groups.actions.add') }}
+                <i class="fa-solid fa-plus" aria-hidden="true"></i> {{ __('maps/groups.actions.add') }}
             </a>
         </div>
     @endcan

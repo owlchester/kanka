@@ -2,11 +2,13 @@ $(window).ready(function () {
     initBannerPromoDismiss();
 });
 
+
 function initBannerPromoDismiss()
 {
-    $('#banner-notification-dismiss').click(function (e) {
+    $('.banner-notification-dismiss').click(function (e) {
         e.preventDefault();
-        $('.banner-notification').fadeOut();
+        console.log('click');
+        //$('.banner-notification').fadeOut();
 
         $.post({
             url: $(this).data('url'),
