@@ -10,11 +10,10 @@
 @section('entity-header-actions')
     @can('update', $model)
         <div class="header-buttons">
-            <a href="{{ route('maps.map_groups.create', ['map' => $model]) }}" class="btn btn-warning btn-sm"
-                data-toggle="ajax-modal" data-target="#entity-modal"
-                data-url="{{ route('maps.map_groups.create', ['map' => $model]) }}"
+            <a href="{{ route('maps.map_layers.create', ['map' => $model]) }}" class="btn btn-warning btn-sm"
+                data-url="{{ route('maps.map_layers.create', ['map' => $model]) }}"
             >
-            <i class="fa-solid fa-plus"></i> {{ __('maps/groups.actions.add') }}
+            <i class="fa-solid fa-plus"></i> {{ __('maps/layers.actions.add') }}
             </a>
         </div>
     @endcan
@@ -29,10 +28,10 @@
                 null
             ]
         ])
-        @include('maps._menu', ['active' => 'groups'])
+        @include('maps._menu', ['active' => 'layers'])
         <div class="entity-main-block">
-            @include('maps.panels.groups')
-            @includeWhen($rows->count() > 1, 'maps.groups._reorder')
+            @include('maps.panels.layers')
+            @includeWhen($rows->count() > 1, 'maps.layers._reorder')
         </div>
     </div>
 @endsection

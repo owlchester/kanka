@@ -5,22 +5,44 @@ namespace App\Http\Controllers\Maps;
 
 
 use App\Facades\CampaignLocalization;
+use App\Facades\Datagrid;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Datagrid2\BulkControllerTrait;
+use App\Http\Requests\ReorderLayers;
 use App\Http\Requests\StoreMapLayer;
 use App\Models\Campaign;
 use App\Models\Map;
 use App\Models\MapLayer;
+use Illuminate\Http\Request;
 
 class MapLayerController extends Controller
 {
+    use BulkControllerTrait;
+
     /**
-     * No index for this, redirect to the map
      * @param Map $map
      * @return \Illuminate\Http\RedirectResponse
      */
     public function index(Map $map)
     {
-        return redirect()->route('maps.show', $map);
+        $this->authorize('update', $map);
+
+        $campaign = CampaignLocalization::getCampaign();
+        $options = ['map' => $map->id];
+        $model = $map;
+
+        Datagrid::layout(\App\Renderers\Layouts\Map\Layer::class)
+            ->route('maps.map_layers.index', $options);
+        $rows = $map
+            ->layers()
+            ->sort(request()->only(['o', 'k']), ['position' => 'asc'])
+            ->with(['map'])
+            ->paginate(15);
+        if (request()->ajax()) {
+            return $this->datagridAjax($rows);
+        }
+
+        return view('maps.layers.index', compact('campaign', 'rows', 'model'));
     }
 
     /**
@@ -71,11 +93,28 @@ class MapLayerController extends Controller
 
         $model = new MapLayer();
         $data = $request->only('name', 'position', 'entry', 'visibility_id', 'type_id');
+        if ($data['position']) {
+            $map->layers()->where('position', '>', $data['position'] - 1)->increment('position');
+        }
         $data['map_id'] = $map->id;
         $new = $model->create($data);
 
+        if ($request->submit === 'update') {
+            return redirect()
+            ->route('maps.map_layers.edit', ['map' => $map, $new])
+            ->withSuccess(__('maps/layers.create.success', ['name' => $new->name]));
+        } elseif ($request->submit === 'new') {
+            return redirect()
+            ->route('maps.map_layers.create', ['map' => $map])
+            ->withSuccess(__('maps/layers.create.success', ['name' => $new->name]));
+        } elseif ($request->submit === 'explore') {
+            return redirect()
+                ->route('maps.explore', [$map])
+                ->withSuccess(__('maps/layers.create.success', ['name' => $new->name]));
+        }
+
         return redirect()
-            ->route('maps.edit', [$map, '#tab_form-layers'])
+            ->route('maps.map_layers.index', $map)
             ->withSuccess(__('maps/layers.create.success', ['name' => $new->name]));
     }
 
@@ -116,10 +155,22 @@ class MapLayerController extends Controller
 
         $mapLayer->update($request->only('name', 'position', 'entry', 'visibility_id', 'type_id'));
 
-        return redirect()
-            ->route('maps.edit', [$map, '#tab_form-layers'])
+        if ($request->submit === 'update') {
+            return redirect()
+            ->route('maps.map_layers.edit', ['map' => $map, $mapLayer])
             ->withSuccess(__('maps/layers.edit.success', ['name' => $mapLayer->name]));
-
+        } elseif ($request->submit === 'new') {
+            return redirect()
+            ->route('maps.map_layers.create', ['map' => $map])
+            ->withSuccess(__('maps/layers.edit.success', ['name' => $mapLayer->name]));
+        } elseif ($request->submit === 'explore') {
+            return redirect()
+                ->route('maps.explore', [$map])
+                ->withSuccess(__('maps/layers.edit.success', ['name' => $mapLayer->name]));
+        }
+        return redirect()
+            ->route('maps.map_layers.index', $map)
+            ->withSuccess(__('maps/layers.edit.success', ['name' => $mapLayer->name]));
     }
 
     /**
@@ -135,7 +186,82 @@ class MapLayerController extends Controller
         $mapLayer->delete();
 
         return redirect()
-            ->route('maps.edit', [$map, '#tab_form-layers'])
+            ->route('maps.map_layers.index', [$map])
             ->withSuccess(__('maps/layers.delete.success', ['name' => $mapLayer->name]));
+    }
+
+    /**
+     * @return \Illuminate\Http\JsonResponse
+     */
+    protected function datagridAjax($rows)
+    {
+        $html = view('layouts.datagrid._table')
+            ->with('rows', $rows)
+            ->render();
+        $deletes = view('layouts.datagrid.delete-forms')
+            ->with('models', Datagrid::deleteForms())
+            ->with('params', Datagrid::getActionParams())
+            ->render();
+
+        $data = [
+            'success' => true,
+            'html' => $html,
+            'deletes' => $deletes,
+        ];
+
+        return response()->json($data);
+    }
+
+    /**
+     * @param Request $request
+     * @param Map $map
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\RedirectResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    public function bulk(Request $request, Map $map)
+    {
+        $this->authorize('update', $map);
+        $action = $request->get('action');
+        $models = $request->get('model');
+        if (!in_array($action, $this->validBulkActions()) || empty($models)) {
+            return redirect()->back();
+        }
+
+        if ($action === 'edit') {
+            return $this->bulkBatch(route('maps.layers.bulk', ['map' => $map]), '_map-layer', $models);
+        }
+
+        $count = $this->bulkProcess($request, MapLayer::class);
+
+        return redirect()
+            ->route('maps.map_layers.index', ['map' => $map])
+            ->with('success', trans_choice('maps/layers.bulks.' . $action, $count, ['count' => $count]))
+        ;
+    }
+
+    /**
+     * Controls drag and drop reordering of map layers
+     * @param Request $request
+     * @param Map $map
+     */
+    public function reorder(ReorderLayers $request, Map $map)
+    {
+        $this->authorize('update', $map);
+
+        $order = 1;
+        $ids = $request->get('layer');
+        foreach ($ids as $id) {
+            $layer = MapLayer::where('id', $id)->where('map_id', $map->id)->first();
+            if (empty($layer)) {
+                continue;
+            }
+            $layer->position = $order;
+            $layer->update();
+            $order++;
+        }
+        $order--;
+        return redirect()
+            ->route('maps.map_layers.index', ['map' => $map])
+            ->with('success', trans_choice('maps/layers.reorder.success', $order, ['count' => $order]));
     }
 }
