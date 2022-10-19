@@ -31,7 +31,7 @@
         @include('maps._menu', ['active' => 'layers'])
         <div class="entity-main-block">
             @include('maps.panels.layers')
-            @includeWhen(!$rows->isEmpty(), 'maps.layers._reorder')
+            @includeWhen($rows->count() > 1, 'maps.layers._reorder')
         </div>
     </div>
 @endsection

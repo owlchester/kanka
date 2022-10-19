@@ -32,7 +32,7 @@
         @include('maps._menu', ['active' => 'groups'])
         <div class="entity-main-block">
             @include('maps.panels.groups')
-            @includeWhen(!$rows->isEmpty(), 'maps.groups._reorder')
+            @includeWhen($rows->count() > 1, 'maps.groups._reorder')
         </div>
     </div>
 @endsection

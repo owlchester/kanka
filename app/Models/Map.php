@@ -259,7 +259,7 @@ class Map extends MiscModel
             ];
             $items['second']['layers'] = [
                 'name' => 'maps.panels.layers',
-                'route' => 'maps.layers',
+                'route' => 'maps.map_layers.index',
                 'count' => $this->layers()->count()
             ];
         }

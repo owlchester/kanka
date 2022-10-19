@@ -98,10 +98,6 @@ class MapLayer extends Model
      * Functions for the datagrid2
      * @return string
      */
-    public function deleteName(): string
-    {
-        return (string) $this->name;
-    }
     public function url(string $where): string
     {
         return 'maps.map_layers.' . $where;

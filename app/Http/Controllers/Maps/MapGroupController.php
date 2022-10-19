@@ -218,13 +218,17 @@ class MapGroupController extends Controller
 
     /**
      * Controls drag and drop reordering of map groups
+     * @param Request $request
+     * @param Map $map
      */
-    public function reorder(ReorderGroups $request)
+    public function reorder(ReorderGroups $request, Map $map)
     {
+        $this->authorize('update', $map);
+
         $order = 1;
         $ids = $request->get('group');
         foreach ($ids as $id) {
-            $group = MapGroup::find($id);
+            $group = MapGroup::where('id', $id)->where('map_id', $map->id)->first();
             if (empty($group)) {
                 continue;
             }
@@ -232,7 +236,6 @@ class MapGroupController extends Controller
             $group->update();
             $order++;
         }
-        $map = $group->map()->first();
         $order--;
         return redirect()
             ->route('maps.map_groups.index', ['map' => $map])

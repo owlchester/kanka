@@ -20,19 +20,10 @@ class MapLayerController extends Controller
     use BulkControllerTrait;
 
     /**
-     * No index for this, redirect to the map
      * @param Map $map
      * @return \Illuminate\Http\RedirectResponse
      */
     public function index(Map $map)
-    {
-        return redirect()->route('maps.show', $map);
-    }
-
-    /**
-     * Index
-     */
-    public function layers(Map $map)
     {
         $this->authorize('update', $map);
 
@@ -41,7 +32,7 @@ class MapLayerController extends Controller
         $model = $map;
 
         Datagrid::layout(\App\Renderers\Layouts\Map\Layer::class)
-            ->route('maps.layers', $options);
+            ->route('maps.map_layers.index', $options);
         $rows = $map
             ->layers()
             ->sort(request()->only(['o', 'k']), ['position' => 'asc'])
@@ -123,7 +114,7 @@ class MapLayerController extends Controller
         }
 
         return redirect()
-            ->route('maps.layers', $map)
+            ->route('maps.map_layers.index', $map)
             ->withSuccess(__('maps/layers.create.success', ['name' => $new->name]));
     }
 
@@ -178,7 +169,7 @@ class MapLayerController extends Controller
                 ->withSuccess(__('maps/layers.edit.success', ['name' => $mapLayer->name]));
         }
         return redirect()
-            ->route('maps.layers', $map)
+            ->route('maps.map_layers.index', $map)
             ->withSuccess(__('maps/layers.edit.success', ['name' => $mapLayer->name]));
     }
 
@@ -195,7 +186,7 @@ class MapLayerController extends Controller
         $mapLayer->delete();
 
         return redirect()
-            ->route('maps.layers', [$map])
+            ->route('maps.map_layers.index', [$map])
             ->withSuccess(__('maps/layers.delete.success', ['name' => $mapLayer->name]));
     }
 
@@ -243,20 +234,24 @@ class MapLayerController extends Controller
         $count = $this->bulkProcess($request, MapLayer::class);
 
         return redirect()
-            ->route('maps.layers', ['map' => $map])
+            ->route('maps.map_layers.index', ['map' => $map])
             ->with('success', trans_choice('maps/layers.bulks.' . $action, $count, ['count' => $count]))
         ;
     }
 
     /**
      * Controls drag and drop reordering of map layers
+     * @param Request $request
+     * @param Map $map
      */
-    public function reorder(ReorderLayers $request)
+    public function reorder(ReorderLayers $request, Map $map)
     {
+        $this->authorize('update', $map);
+
         $order = 1;
         $ids = $request->get('layer');
         foreach ($ids as $id) {
-            $layer = MapLayer::find($id);
+            $layer = MapLayer::where('id', $id)->where('map_id', $map->id)->first();
             if (empty($layer)) {
                 continue;
             }
@@ -264,10 +259,9 @@ class MapLayerController extends Controller
             $layer->update();
             $order++;
         }
-        $map = $layer->map()->first();
         $order--;
         return redirect()
-            ->route('maps.layers', ['map' => $map])
+            ->route('maps.map_layers.index', ['map' => $map])
             ->with('success', trans_choice('maps/layers.reorder.success', $order, ['count' => $order]));
     }
 }
