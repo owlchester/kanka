@@ -23,7 +23,7 @@ $typeOptions = [
     {{ Form::select('type_id', $typeOptions, null, ['class' => 'form-control', 'id' => 'type_id']) }}
 </div>
 
-@php 
+@php
     $options = $map->layerPositionOptions();
     $last = array_key_last($options);
 @endphp
@@ -42,20 +42,3 @@ $typeOptions = [
 </div>
 
 @include('editors.editor')
-
-@if ($ajax)
-    <script type="text/javascript">
-        $(document).ready(function () {
-            @if(auth()->user()->editor != 'legacy')
-                window.initSummernote();
-            @else
-                var editorId = 'layer-entry';
-                // First we remove in case it was already loaded
-                tinyMCE.EditorManager.execCommand('mceFocus', false, editorId);
-                tinyMCE.EditorManager.execCommand('mceRemoveEditor', true, editorId);
-                // And add again
-                tinymce.EditorManager.execCommand('mceAddEditor', false, editorId);
-            @endif
-        });
-    </script>
-@endif

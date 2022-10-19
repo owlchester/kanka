@@ -58,13 +58,13 @@ class MapLayerController extends Controller
         if ($map->layers->count() >= $campaign->maxMapLayers()) {
             return view('maps.form._layers_max')
                 ->with('campaign', $campaign)
+                ->with('map', $map)
                 ->with('max', Campaign::LAYER_COUNT_MAX);
         }
-        $ajax = request()->ajax();
 
         return view(
             'maps.layers.create',
-            compact('map', 'ajax')
+            compact('map')
         );
     }
 
@@ -88,6 +88,7 @@ class MapLayerController extends Controller
         if ($map->layers->count() >= $campaign->maxMapLayers()) {
             return view('maps.form._groups_max')
                 ->with('campaign', $campaign)
+                ->with('map', $map)
                 ->with('max', Campaign::LAYER_COUNT_MAX);
         }
 
@@ -128,12 +129,11 @@ class MapLayerController extends Controller
     {
         $this->authorize('update', $map);
 
-        $ajax = request()->ajax();
         $model = $mapLayer;
 
         return view(
             'maps.layers.edit',
-            compact('map', 'ajax', 'model')
+            compact('map', 'model')
         );
     }
 

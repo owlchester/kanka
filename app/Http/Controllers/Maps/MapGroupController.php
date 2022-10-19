@@ -52,6 +52,7 @@ class MapGroupController extends Controller
         if ($map->groups->count() >= $campaign->maxMapLayers()) {
             return view('maps.form._groups_max')
                 ->with('campaign', $campaign)
+                ->with('map', $map)
                 ->with('max', Campaign::LAYER_COUNT_MAX);
         }
 
@@ -76,6 +77,7 @@ class MapGroupController extends Controller
         if ($map->groups->count() >= $campaign->maxMapLayers()) {
             return view('maps.form._groups_max')
                 ->with('campaign', $campaign)
+                ->with('map', $map)
                 ->with('max', Campaign::LAYER_COUNT_MAX);
         }
         $model = new MapGroup();

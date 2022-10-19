@@ -10,7 +10,10 @@
 @section('entity-header-actions')
     @can('update', $model)
         <div class="header-buttons">
-            <a href="{{ route('maps.map_layers.create', ['map' => $model]) }}" class="btn btn-warning btn-sm"
+            <a href="https://docs.kanka.io/en/latest/entities/maps/layers.html" class="btn btn-default" target="_blank">
+                <i class="fa-solid fa-question-circle" aria-hidden="true"></i> {{ __('crud.actions.help') }}
+            </a>
+            <a href="{{ route('maps.map_layers.create', ['map' => $model]) }}" class="btn btn-warning"
                 data-url="{{ route('maps.map_layers.create', ['map' => $model]) }}"
             >
             <i class="fa-solid fa-plus"></i> {{ __('maps/layers.actions.add') }}
