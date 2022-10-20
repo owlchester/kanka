@@ -24,7 +24,7 @@ class Item extends Layout
             ],
             'type' => [
                 'key' => 'type',
-                'label' => 'items.fields.type',
+                'label' => 'crud.fields.type',
             ],
             'price' => [
                 'key' => 'price',

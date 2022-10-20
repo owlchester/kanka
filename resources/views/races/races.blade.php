@@ -1,6 +1,5 @@
 @extends('layouts.app', [
     'title' => __('races.races.title', ['name' => $model->name]),
-    'description' => __('races.races.description'),
     'breadcrumbs' => false,
     'mainTitle' => false,
     'miscModel' => $model,

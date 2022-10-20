@@ -19,12 +19,12 @@ class Family extends Layout
             ],
             'family_id' => [
                 'key' => 'name',
-                'label' => 'families.fields.name',
+                'label' => 'entities.family',
                 'render' => Standard::ENTITYLINK,
             ],
             'type' => [
                 'key' => 'type',
-                'label' => 'families.fields.type',
+                'label' => 'crud.fields.type',
             ],
             'location' => [
                 'key' => 'location.name',
