@@ -225,24 +225,42 @@ function initMapForms() {
       $('.map-marker-circle-radius').hide();
       $('.map-marker-circle-helper').show();
     }
+  });
+  /**
+   * Strip HTML from fontAwesome or RPGAwesome and just keep the class to make people's lives
+   * easier.
+   */
+
+  $('input[name="custom_icon"]').on('paste', function (e) {
+    e.preventDefault();
+    var text;
+
+    if (e.clipboardData || e.originalEvent.clipboardData) {
+      text = (e.originalEvent || e).clipboardData.getData('text/plain');
+    } else if (window.clipboardData) {
+      text = window.clipboardData.getData('Text');
+    }
+
+    if (text.startsWith('<i class="fa') || text.startsWith('<i class="ra')) {
+      var className = $(text).attr('class');
+
+      if (className) {
+        $(this).val(className);
+        return;
+      }
+    }
+
+    $(this).val(text);
   }); //console.info('mapsv3', 'initMapForms');
 
-  var layerForm = $('#map-layer-form');
   var markerForm = $('#map-marker-form');
-  var groupForm = $('#map-group-form');
 
   if ($('#entity-form').length === 0 && $('.map-marker-edit-form').length === 0) {
     //console.info('initMapForms empty');
     return;
   }
 
-  layerForm.unbind('submit').on('submit', function () {
-    window.entityFormHasUnsavedChanges = false;
-  });
   markerForm.unbind('submit').on('submit', function () {
-    window.entityFormHasUnsavedChanges = false;
-  });
-  groupForm.unbind('submit').on('submit', function () {
     window.entityFormHasUnsavedChanges = false;
   });
   initLegend();
