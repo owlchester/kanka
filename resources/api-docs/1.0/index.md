@@ -21,6 +21,7 @@
     - [Events](/api-docs/{{version}}/events)
     - [Calendars](/api-docs/{{version}}/calendars)
     - [Timelines](/api-docs/{{version}}/timelines)
+    - [Creatures](/api-docs/{{version}}/creatures)
     - [Races](/api-docs/{{version}}/races)
     - [Quests](/api-docs/{{version}}/quests)
     - [Maps](/api-docs/{{version}}/maps)

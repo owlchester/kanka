@@ -29,6 +29,8 @@ return [
         'title'             => 'New Entity',
         'tooltip'           => 'Create a new entity without leaving the current page.',
     ],
+    'creature'              => 'Creature',
+    'creatures'             => 'Creatures',
     'dice_roll'             => 'Dice Roll',
     'dice_rolls'            => 'Dice Rolls',
     'event'                 => 'Event',

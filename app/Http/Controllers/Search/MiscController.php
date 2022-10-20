@@ -208,6 +208,17 @@ class MiscController extends Controller
      * @param Request $request
      * @return mixed
      */
+    public function creatures(Request $request)
+    {
+        $term = trim($request->q);
+        $exclude = $request->has('exclude') ? [$request->get('exclude')] : [];
+        return $this->buildSearchResults($term, \App\Models\Creature::class, $exclude);
+    }
+
+    /**
+     * @param Request $request
+     * @return mixed
+     */
     public function maps(Request $request)
     {
         $term = trim($request->q);

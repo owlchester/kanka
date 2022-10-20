@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Api\v1;
 
 use App\Models\Campaign;
-use App\Models\Race;
-use App\Http\Requests\StoreRace as Request;
-use App\Http\Resources\RaceResource as Resource;
+use App\Models\Creature;
+use App\Http\Requests\StoreCreature as Request;
+use App\Http\Resources\CreatureResource as Resource;
 
-class RaceApiController extends ApiController
+class CreatureApiController extends ApiController
 {
     /**
      * @param Campaign $campaign
@@ -18,7 +18,7 @@ class RaceApiController extends ApiController
     {
         $this->authorize('access', $campaign);
         return Resource::collection($campaign
-            ->races()
+            ->creatures()
             ->filter(request()->all())
             ->withApi()
             ->has('entity')
@@ -28,14 +28,14 @@ class RaceApiController extends ApiController
 
     /**
      * @param Campaign $campaign
-     * @param Race $race
+     * @param Creature $creature
      * @return Resource
      */
-    public function show(Campaign $campaign, Race $race)
+    public function show(Campaign $campaign, Creature $creature)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('view', $race);
-        return new Resource($race);
+        $this->authorize('view', $creature);
+        return new Resource($creature);
     }
 
     /**
@@ -47,9 +47,9 @@ class RaceApiController extends ApiController
     public function store(Request $request, Campaign $campaign)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('create', Race::class);
+        $this->authorize('create', Creature::class);
 
-        $model = Race::create($request->all());
+        $model = Creature::create($request->all());
         $this->crudSave($model);
         return new Resource($model);
     }
@@ -57,31 +57,31 @@ class RaceApiController extends ApiController
     /**
      * @param Request $request
      * @param Campaign $campaign
-     * @param Race $race
+     * @param Creature $creature
      * @return Resource
      */
-    public function update(Request $request, Campaign $campaign, Race $race)
+    public function update(Request $request, Campaign $campaign, Creature $creature)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('update', $race);
-        $race->update($request->all());
-        $this->crudSave($race);
+        $this->authorize('update', $creature);
+        $creature->update($request->all());
+        $this->crudSave($creature);
 
-        return new Resource($race);
+        return new Resource($creature);
     }
 
     /**
      * @param Request $request
      * @param Campaign $campaign
-     * @param Race $race
+     * @param Creature $creature
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function destroy(\Illuminate\Http\Request $request, Campaign $campaign, Race $race)
+    public function destroy(\Illuminate\Http\Request $request, Campaign $campaign, Creature $creature)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('delete', $race);
-        $race->delete();
+        $this->authorize('delete', $creature);
+        $creature->delete();
 
         return response()->json(null, 204);
     }

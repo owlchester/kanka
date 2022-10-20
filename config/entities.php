@@ -25,5 +25,6 @@ return [
         'map' => 17,
         'timeline' => 18,
         'menu_link' => 19,
+        'creature' => 20,
     ],
 ];

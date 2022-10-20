@@ -46,10 +46,16 @@
     .md\:col-span-#{$i} {
       grid-column: span $i / span $i;
     }
+
+    $rem: ($i * 0.25) ;
+    .md\:gap-#{$i} {
+      gap: $rem + rem;
+    }
   }
   .md\:col-auto {
     grid-column: auto;
   }
+
 }
 
 @media (min-width: 1024px) {
@@ -59,6 +65,11 @@
     }
     .lg\:col-span-#{$i} {
       grid-column: span $i / span $i;
+    }
+
+    $rem: ($i * 0.25) ;
+    .lg\:gap-#{$i} {
+        gap: $rem + rem;
     }
   }
   .lg\:col-auto {
@@ -73,6 +84,10 @@
     }
     .xl\:col-span-#{$i} {
       grid-column: span $i / span $i;
+    }
+    $rem: ($i * 0.25) ;
+    .xl\:gap-#{$i} {
+      gap: $rem + rem;
     }
   }
   .xl\:col-auto {

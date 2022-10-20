@@ -20,6 +20,7 @@ Route::apiResources([
     'campaigns.calendars' => 'CalendarApiController',
     'campaigns.calendars.calendar_weather' => 'CalendarWeatherApiController',
     'campaigns.characters' => 'CharacterApiController',
+    'campaigns.creatures' => 'CreatureApiController',
     'campaigns.dice_rolls' => 'DiceRollApiController',
     'campaigns.events' => 'EventApiController',
     'campaigns.families' => 'FamilyApiController',

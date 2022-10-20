@@ -100,6 +100,9 @@ class SidebarService
         'races' => [
             'races',
         ],
+        'creatures' => [
+            'creatures',
+        ],
         'abilities' => [
             'abilities',
         ],
@@ -130,11 +133,11 @@ class SidebarService
         ],
         'characters' => [
             'icon' => 'fa-solid fa-user',
-            'label' => 'sidebar.characters',
+            'label' => 'entities.characters',
         ],
         'locations' => [
             'icon' => 'ra ra-tower',
-            'label' => 'sidebar.locations',
+            'label' => 'entities.locations',
             'tree' => true,
         ],
         'maps' => [
@@ -144,27 +147,32 @@ class SidebarService
         ],
         'organisations' => [
             'icon' => 'ra ra-hood',
-            'label' => 'sidebar.organisations',
+            'label' => 'entities.organisations',
             'tree' => true,
         ],
         'families' => [
             'icon' => 'ra ra-double-team',
-            'label' => 'sidebar.families',
+            'label' => 'entities.families',
             'tree' => true,
         ],
         'calendars' => [
             'icon' => 'fa-solid fa-calendar',
-            'label' => 'sidebar.calendars',
+            'label' => 'entities.calendars',
             'tree' => true,
         ],
         'timelines' => [
             'icon' => 'fa-solid fa-hourglass-half',
-            'label' => 'sidebar.timelines',
+            'label' => 'entities.timelines',
             'tree' => true,
         ],
         'races' => [
             'icon' => 'ra ra-wyvern',
-            'label' => 'sidebar.races',
+            'label' => 'entities.races',
+            'tree' => true,
+        ],
+        'creatures' => [
+            'icon' => 'ra ra-raven',
+            'label' => 'entities.creatures',
             'tree' => true,
         ],
         'campaign' => [
@@ -175,31 +183,31 @@ class SidebarService
         ],
         'quests' => [
             'icon' => 'ra ra-wooden-sign',
-            'label' => 'sidebar.quests',
+            'label' => 'entities.quests',
             'tree' => true,
         ],
         'journals' => [
             'icon' => 'ra ra-quill-ink',
-            'label' => 'sidebar.journals',
+            'label' => 'entities.journals',
             'tree' => true,
         ],
         'items' => [
             'icon' => 'ra ra-gem-pendant',
-            'label' => 'sidebar.items',
+            'label' => 'entities.items',
             'tree' => true,
         ],
         'events' => [
             'icon' => 'fa-solid fa-bolt',
-            'label' => 'sidebar.events',
+            'label' => 'entities.events',
         ],
         'abilities' => [
             'icon' => 'ra ra-fire-symbol',
-            'label' => 'sidebar.abilities',
+            'label' => 'entities.abilities',
             'tree' => true,
         ],
         'notes' => [
             'icon' => 'fa-solid fa-book-open',
-            'label' => 'sidebar.notes',
+            'label' => 'entities.notes',
             'tree' => true,
         ],
         'other' => [
@@ -211,16 +219,16 @@ class SidebarService
         ],
         'tags' => [
             'icon' => 'fa-solid fa-tags',
-            'label' => 'sidebar.tags',
+            'label' => 'entities.tags',
             'tree' => true,
         ],
         'conversations' => [
             'icon' => 'fa-solid fa-comment',
-            'label' => 'sidebar.conversations',
+            'label' => 'entities.conversations',
         ],
         'dice_rolls' => [
             'icon' => 'ra ra-dice-five',
-            'label' => 'sidebar.dice_rolls',
+            'label' => 'entities.dice_rolls',
         ],
         'relations' => [
             'icon' => 'fa-solid fa-people-arrows',
@@ -237,7 +245,7 @@ class SidebarService
         ],
         'attribute_templates' => [
             'icon' => 'fa-solid fa-copy',
-            'label' => 'sidebar.attribute_templates',
+            'label' => 'entities.attribute_templates',
             'module' => false,
         ],
         /*'search' => [
@@ -259,6 +267,7 @@ class SidebarService
             'families',
             'calendars',
             'timelines',
+            'creatures',
             'races',
         ],
         'campaign' => [
