@@ -10,10 +10,8 @@ return [
     'fields'        => [
         'is_closed'     => 'Closed',
         'messages'      => 'Messages',
-        'name'          => 'Name',
         'participants'  => 'Participants',
         'target'        => 'Target',
-        'type'          => 'Type',
     ],
     'hints'         => [
         'participants'  => 'Please add participants to your conversation by pressing on the :icon icon on the upper-right.',

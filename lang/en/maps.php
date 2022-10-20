@@ -40,12 +40,10 @@ return [
         'maps'              => 'Maps',
         'max_zoom'          => 'Maximal zoom',
         'min_zoom'          => 'Minimal zoom',
-        'name'              => 'Name',
         'tabs'              => [
             'coordinates'   => 'Coordinates',
             'marker'        => 'Marker',
         ],
-        'type'              => 'Type',
     ],
     'helpers'       => [
         'center'                => 'Changing the following values will control which area of the map is focused on. Leaving these values empty will result in the center of the map being focued on.',

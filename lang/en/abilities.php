@@ -25,8 +25,6 @@ return [
         'abilities' => 'Sub abilities',
         'ability'   => 'Parent ability',
         'charges'   => 'Charges',
-        'name'      => 'Name',
-        'type'      => 'Type',
     ],
     'helpers'       => [
         'descendants'       => 'This list contains all abilities which are descendants of this ability, and not only those directly under it.',

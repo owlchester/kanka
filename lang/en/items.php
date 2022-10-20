@@ -6,14 +6,10 @@ return [
     ],
     'fields'        => [
         'character' => 'Creator',
-        'image'     => 'Image',
         'item'      => 'Parent Item',
         'items'     => 'Sub Items',
-        'location'  => 'Location',
-        'name'      => 'Name',
         'price'     => 'Price',
         'size'      => 'Size',
-        'type'      => 'Type',
     ],
     'helpers'       => [
         'nested_without'    => 'Displaying all items that don\'t have a parent item. Click on a row to see the children items.',

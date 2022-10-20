@@ -9,7 +9,6 @@ return [
     ],
     'fields'        => [
         'created_at'    => 'Rolled At',
-        'name'          => 'Name',
         'parameters'    => 'Parameters',
         'results'       => 'Results',
         'rolls'         => 'Rolls',

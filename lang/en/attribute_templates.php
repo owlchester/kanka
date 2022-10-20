@@ -10,7 +10,6 @@ return [
     'fields'                => [
         'attribute_template'    => 'Parent Attribute Template',
         'attributes'            => 'Attributes',
-        'name'                  => 'Name',
     ],
     'hints'                 => [
         'automatic'                 => 'Attributes automatically applied from the :link Attribute Template.',

@@ -7,11 +7,8 @@ return [
     'fields'        => [
         'author'    => 'Author',
         'date'      => 'Date',
-        'image'     => 'Image',
         'journal'   => 'Parent Journal',
         'journals'  => 'Sub Journals',
-        'name'      => 'Name',
-        'type'      => 'Type',
     ],
     'helpers'       => [
         'journals'          => 'Display all or only the direct sub journals of this journal.',
