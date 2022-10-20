@@ -24,7 +24,7 @@ class Map extends Layout
             ],
             'type' => [
                 'key' => 'type',
-                'label' => 'maps.fields.type',
+                'label' => 'crud.fields.type',
             ],
             'map' => [
                 'key' => 'map.name',

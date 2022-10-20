@@ -11,7 +11,7 @@
         </h4>
     </div>
     <div class="form-group required">
-        <label>{{ __($type . '.fields.name') }}</label>
+        <label>{{ __('crud.fields.name') }}</label>
 
         <div class="input-group">
             {!! Form::text('names[]', null, [

@@ -20,7 +20,7 @@ class Member extends Layout
             ],
             'character' => [
                 'key' => 'character.name',
-                'label' => 'characters.fields.name',
+                'label' => 'entities.character',
                 'render' => Standard::CHARACTER,
             ],
             'role' => [
@@ -48,7 +48,7 @@ class Member extends Layout
                 }
             ],
             'location' => [
-                'label' => 'characters.fields.location',
+                'label' => 'crud.fields.location',
                 'class' => self::ONLY_DESKTOP,
                 'render' => function ($model) {
                     if (!$model->character->location) {

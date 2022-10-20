@@ -20,7 +20,7 @@ class Organisation extends Layout
             ],
             'organisation' => [
                 'key' => 'name',
-                'label' => 'organisations.fields.name',
+                'label' => 'entities.organisation',
                 'render' => function ($model) {
                     return $model->organisation->tooltipedLink() . '<br />' . $model->organisation->type;
                 },

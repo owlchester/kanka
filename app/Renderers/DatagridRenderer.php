@@ -425,6 +425,10 @@ class DatagridRenderer
      */
     private function trans(string $field = '')
     {
+        $crudFields = ['name', 'type'];
+        if (in_array($field, $crudFields)) {
+            return __('crud.fields.' . $field);
+        }
         $trans = $this->getOption('trans');
         if (!empty($trans)) {
             return  __(rtrim($trans, '.') . '.' . $field);

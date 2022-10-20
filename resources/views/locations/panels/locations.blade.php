@@ -1,12 +1,4 @@
-<?php
-/**
- * @var \App\Models\Location[] $locations
- */
-$filters = [];
-if (request()->has('parent_location_id')) {
-    $filters['parent_location_id'] = request()->get('parent_location_id');
-}
-?><div class="box box-solid" id="location-locations">
+<div class="box box-solid" id="location-locations">
     <div class="box-header">
         <h3 class="box-title">
             {{ __('locations.show.tabs.locations') }}

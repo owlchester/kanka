@@ -19,16 +19,16 @@ class Location extends Layout
             ],
             'location_id' => [
                 'key' => 'name',
-                'label' => 'locations.fields.name',
+                'label' => 'entities.location',
                 'render' => Standard::ENTITYLINK,
             ],
             'type' => [
                 'key' => 'type',
-                'label' => 'characters.fields.type',
+                'label' => 'crud.fields.type',
             ],
             'location' => [
                 'key' => 'location.name',
-                'label' => 'locations.fields.location',
+                'label' => 'location.fields.location',
                 'render' => function ($model) {
                     if (!$model->location) {
                         return null;

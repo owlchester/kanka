@@ -19,12 +19,12 @@ class Race extends Layout
             ],
             'race_id' => [
                 'key' => 'name',
-                'label' => 'races.fields.name',
+                'label' => 'entities.race',
                 'render' => Standard::ENTITYLINK,
             ],
             'type' => [
                 'key' => 'type',
-                'label' => 'races.fields.type',
+                'label' => 'crud.fields.type',
             ],
             'race' => [
                 'key' => 'race.name',
