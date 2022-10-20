@@ -5,14 +5,10 @@ return [
         'title' => 'New Organisation',
     ],
     'fields'        => [
-        'image'         => 'Image',
         'is_defunct'    => 'Defunct',
-        'location'      => 'Location',
         'members'       => 'Members',
-        'name'          => 'Name',
         'organisation'  => 'Parent Organisation',
         'organisations' => 'Sub Organisations',
-        'type'          => 'Type',
     ],
     'helpers'       => [
         'descendants'       => 'This list contains all organisations which are descendants of this organisation, and not only those directly under it.',

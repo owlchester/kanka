@@ -14,11 +14,9 @@ return [
         'copy_elements' => 'Copy Elements',
         'copy_eras'     => 'Copy Eras',
         'eras'          => 'Eras',
-        'name'          => 'Name',
         'reverse_order' => 'Reverse era order',
         'timeline'      => 'Parent Timeline',
         'timelines'     => 'Timelines',
-        'type'          => 'Type',
     ],
     'helpers'       => [
         'nested_without'    => 'Displaying all timelines that don\'t have a parent timeline. Click on a row to see the children timelines.',

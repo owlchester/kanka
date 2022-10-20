@@ -17,10 +17,8 @@ return [
     'fields'        => [
         'children'          => 'Children',
         'is_auto_applied'   => 'Automatically apply to new entities',
-        'name'              => 'Name',
         'tag'               => 'Parent Tag',
         'tags'              => 'Subtags',
-        'type'              => 'Type',
     ],
     'helpers'       => [
         'nested_without'    => 'Displaying all tags that don\'t have a parent tag. Click on a row to see the children tags.',

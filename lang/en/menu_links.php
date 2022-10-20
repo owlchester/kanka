@@ -14,7 +14,6 @@ return [
         'filters'           => 'Filters',
         'is_nested'         => 'Nested',
         'menu'              => 'Subpage',
-        'name'              => 'Name',
         'position'          => 'Position',
         'random'            => 'Random',
         'random_type'       => 'Random Entity Type',
