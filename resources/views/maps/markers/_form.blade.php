@@ -58,7 +58,15 @@ $sizeOptions = [
                 <div class="col-xs-6">
                     <div class="form-group">
                         <label>{{ __('maps/markers.fields.custom_icon') }}</label>
-                            {!! Form::text('custom_icon', \App\Facades\FormCopy::field('custom_icon')->string(), ['class' => 'form-control', 'placeholder' => __('maps/markers.placeholders.custom_icon', ['example1' => '"fa-solid fa-gem"', 'example2' => '"ra ra-sword"']), ($campaignService->campaign()->boosted() ? null : 'disabled')]) !!}
+                            {!! Form::text(
+                                'custom_icon', 
+                                \App\Facades\FormCopy::field('custom_icon')->string(),
+                                ['class' => 'form-control', 
+                                'placeholder' => __('maps/markers.placeholders.custom_icon', ['example1' => '"fa-solid fa-gem"', 'example2' => '"ra ra-sword"']),
+                                'list' => 'map-marker-icon-list',
+                                'autocomplete' => 'off', 
+                                ($campaignService->campaign()->boosted() ? null : 'disabled')]) 
+                            !!}
                             <p class="help-block">{!! __('maps/markers.helpers.custom_icon', ['rpgawesome' => '<a href="https://nagoshiashumari.github.io/Rpg-Awesome/" target="_blank">RPG Awesome</a>', 'fontawesome' => '<a href="https://fontawesome.com/search?m=free&s=solid" target="_blank">Font Awesome</a>']) !!}</p>
                         @if (!$campaignService->campaign()->boosted())
                             @subscriber()
@@ -72,6 +80,14 @@ $sizeOptions = [
                             @endsubscriber
                         @endif
                     </div>
+                    <div class="hidden">
+                        <datalist id="map-marker-icon-list">
+                            @foreach (\App\Facades\MapMarkerCache::iconSuggestion() as $icon)
+                                <option value="{{ $icon }}">{{ $icon }}</option>
+                            @endforeach
+                        </datalist>
+                    </div>
+
                 </div>
             </div>
             <div class="row">
