@@ -8,7 +8,7 @@
 'title' => __('maps/markers.edit.title', ['name' => $model->name]),
 'description' => '',
 'breadcrumbs' => [
-['url' => route('maps.index'), 'label' => __('maps.index.title')],
+['url' => route('maps.index'), 'label' => __('entities.maps')],
 ['url' => $map->entity->url('show'), 'label' => $map->name],
 __('maps/markers.edit.title', ['name' => $model->name])
 ]

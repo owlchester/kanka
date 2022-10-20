@@ -2,7 +2,7 @@
     'title' => trans('characters.dice_rolls.title', ['name' => $model->name]),
     'description' => '',
     'breadcrumbs' => [
-        ['url' => route('characters.index'), 'label' => __('characters.index.title')],
+        ['url' => route('characters.index'), 'label' => __('entities.characters')],
         ['url' => route('characters.show', $model), 'label' => $model->name],
         trans('characters.show.tabs.dice_rolls')
     ],

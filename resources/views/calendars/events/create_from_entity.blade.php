@@ -2,7 +2,7 @@
     'title' => __('calendars.event.create.title', ['name' => $entity->name]),
     'description' => '',
     'breadcrumbs' => [
-        ['url' => route('calendars.index'), 'label' => __('calendars.index.title')],
+        ['url' => route('calendars.index'), 'label' => __('entities.calendars')],
         ['url' => $entity->url(), 'label' => $entity->name],
         ['url' => $entity->url() . '#calendars', 'label' => __('crud.tabs.events')],
         __('crud.tabs.reminders'),

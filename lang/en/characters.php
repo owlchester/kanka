@@ -42,9 +42,6 @@ return [
         'personality_not_visible'   => 'Personality traits of this character are currently only visible to Admin users.',
         'personality_visible'       => 'Personality traits of this character are visible to all.',
     ],
-    'index'         => [
-        'title' => 'Characters',
-    ],
     'items'         => [
         'hint'  => 'Items can be assigned to characters and will be displayed here.',
         'title' => 'Character :name Items',

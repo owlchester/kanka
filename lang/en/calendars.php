@@ -114,9 +114,6 @@ return [
         'weeks'             => 'Define some names for the more important weeks of your calendar.',
         'years'             => 'Some years are so important that they have their own name.',
     ],
-    'index'         => [
-        'title' => 'Calendars',
-    ],
     'layouts'       => [
         'month'     => 'Month',
         'monthly'   => 'Monthly by default',

@@ -14,9 +14,6 @@ return [
         'journals'          => 'Display all or only the direct sub journals of this journal.',
         'nested_without'    => 'Displaying all journals that don\'t have a parent journal. Click on a row to see the children journals.',
     ],
-    'index'         => [
-        'title' => 'Journals',
-    ],
     'journals'      => [
         'title' => 'Journal :name sub journals',
     ],

@@ -17,9 +17,6 @@ return [
     'hints'         => [
         'items' => 'Organise items by using the parent item field.',
     ],
-    'index'         => [
-        'title' => 'Items',
-    ],
     'inventories'   => [
         'title' => 'Item :name Inventories',
     ],

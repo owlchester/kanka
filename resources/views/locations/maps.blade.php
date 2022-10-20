@@ -2,7 +2,7 @@
     'title' => __('locations.maps.title', ['name' => $model->name]),
     'description' => __('locations.maps.description'),
     'breadcrumbs' => [
-        ['url' => Breadcrumb::index('locations'), 'label' => __('locations.index.title')],
+        ['url' => Breadcrumb::index('locations'), 'label' => __('entities.locations')],
         ['url' => route('locations.show', $model), 'label' => $model->name],
         __('locations.show.tabs.maps')
     ],

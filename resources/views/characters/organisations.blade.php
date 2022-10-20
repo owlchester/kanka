@@ -28,7 +28,7 @@
         @include('entities.components.header', [
             'model' => $model,
             'breadcrumb' => [
-                ['url' => Breadcrumb::index('characters'), 'label' => __('characters.index.title')],
+                ['url' => Breadcrumb::index('characters'), 'label' => __('entities.characters')],
                 null
             ]
         ])

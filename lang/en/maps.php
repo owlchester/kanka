@@ -61,9 +61,6 @@ return [
         'missing_image'         => 'Save the map with an image before being able to add layers and markers.',
         'nested_without'        => 'Displaying all maps that don\'t have a parent map. Click on a row to see the children maps.',
     ],
-    'index'         => [
-        'title' => 'Maps',
-    ],
     'maps'          => [
         'title' => 'Maps of :name',
     ],

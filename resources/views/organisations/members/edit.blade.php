@@ -2,7 +2,7 @@
     'title' => __('organisations.members.edit.title', ['name' => $model->name]),
     'description' => '',
     'breadcrumbs' => [
-        ['url' => Breadcrumb::index('organisations'), 'label' => __('organisations.index.title')],
+        ['url' => Breadcrumb::index('organisations'), 'label' => __('entities.organisations')],
         ['url' => route('organisations.show', $model->id), 'label' => $model->name]
     ]
 ])

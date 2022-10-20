@@ -15,9 +15,6 @@ return [
     'hints'         => [
         'is_pinned' => 'Up to 3 notes can be pinned to be displayed on the dashboard.',
     ],
-    'index'         => [
-        'title' => 'Notes',
-    ],
     'placeholders'  => [
         'name'  => 'Name of the note',
         'note'  => 'Choose a parent note',

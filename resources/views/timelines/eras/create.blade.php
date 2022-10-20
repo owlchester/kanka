@@ -8,7 +8,7 @@
 'title' => __('timelines/eras.create.title', ['name' => $timeline->name]),
 'description' => '',
 'breadcrumbs' => [
-['url' => route('timelines.index'), 'label' => __('timelines.index.title')],
+['url' => route('timelines.index'), 'label' => __('entities.timelines')],
 ['url' => $timeline->entity->url('show'), 'label' => $timeline->name],
 __('timelines/eras.create.title')
 ]

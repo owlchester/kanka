@@ -1,7 +1,7 @@
 @extends('layouts.' . (request()->ajax() ? 'ajax' : 'app'), [
     'title' => __($langKey . '.update.title', ['name' => $relation->relation]),
     'breadcrumbs' => [
-        ['url' => Breadcrumb::index($name), 'label' => __($langKey . '.index.title')],
+        ['url' => Breadcrumb::index($name), 'label' => __('entities.' . $langKey)],
         __('crud.update'),
     ]
 ])

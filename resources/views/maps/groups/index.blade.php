@@ -34,7 +34,7 @@
         @include('entities.components.header', [
             'model' => $model,
             'breadcrumb' => [
-                ['url' => Breadcrumb::index('maps'), 'label' => __('maps.index.title')],
+                ['url' => Breadcrumb::index('maps'), 'label' => __('entities.maps')],
                 null
             ]
         ])

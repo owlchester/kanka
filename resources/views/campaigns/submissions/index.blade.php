@@ -4,7 +4,7 @@
 @extends('layouts.app', [
     'title' => __('campaigns.show.tabs.applications') . ' - ' . $campaign->name,
     'breadcrumbs' => [
-        ['url' => route('campaign'), 'label' => __('campaigns.index.title')],
+        ['url' => route('campaign'), 'label' => __('entities.campaign')],
         __('campaigns.show.tabs.applications')
     ],
     'mainTitle' => false,

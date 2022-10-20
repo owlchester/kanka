@@ -29,9 +29,6 @@ return [
         'is_auto_applied'   => 'Check this option to automatically apply this tag to newly created entities.',
         'tag'               => 'This list contains all the tags are children of this tag or its children tags.',
     ],
-    'index'         => [
-        'title' => 'Tags',
-    ],
     'new_tag'       => 'New Tag',
     'placeholders'  => [
         'name'  => 'Name of the tag',

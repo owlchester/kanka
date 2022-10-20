@@ -14,7 +14,7 @@
         @include('entities.components.header', [
             'model' => $model,
             'breadcrumb' => [
-                ['url' => Breadcrumb::index('events'), 'label' => __('events.index.title')],
+                ['url' => Breadcrumb::index('events'), 'label' => __('entities.events')],
                 __('events.show.tabs.events')
             ]
         ])

@@ -4,7 +4,7 @@
     'title' => trans('entities/mentions.show.title', ['name' => $entity->name]),
     'description' => '',
     'breadcrumbs' => [
-        ['url' => $entity->url('index'), 'label' => trans($entity->pluralType() . '.index.title')],
+        ['url' => $entity->url('index'), 'label' => __('entities.' . $entity->pluralType())],
         ['url' => $entity->url('show'), 'label' => $entity->name]
     ]
 ])

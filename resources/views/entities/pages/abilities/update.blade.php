@@ -2,7 +2,7 @@
     'title' => trans('entities/abilities.update.title', ['name' => $entity->name]),
     'description' => '',
     'breadcrumbs' => [
-        ['url' => Breadcrumb::index($entity->pluralType()), 'label' => trans($entity->pluralType() . '.index.title')],
+        ['url' => Breadcrumb::index($entity->pluralType()), 'label' => __('entities.' . $entity->pluralType())],
         ['url' => $entity->url('show'), 'label' => $entity->name],
         ['url' => route('entities.entity_abilities.index', $entity->id), 'label' => trans('crud.tabs.abilities')],
     ]
