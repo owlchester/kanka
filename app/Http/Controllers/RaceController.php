@@ -3,12 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Datagrids\Filters\RaceFilter;
-use App\Datagrids\Sorters\RaceCharacterSorter;
-use App\Datagrids\Sorters\RaceRaceSorter;
 use App\Facades\Datagrid;
 use App\Http\Requests\StoreRace;
 use App\Models\Race;
-use App\Models\Tag;
 use App\Traits\TreeControllerTrait;
 
 class RaceController extends CrudController
@@ -110,7 +107,7 @@ class RaceController extends CrudController
     {
         $this->authCheck($race);
 
-        Datagrid::layout(\App\Renderers\Layouts\Race\Race::class)
+        Datagrid::layout(\App\Renderers\Layouts\Race\Creature::class)
             ->route('races.races', [$race]);
 
         // @phpstan-ignore-next-line

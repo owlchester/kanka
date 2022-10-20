@@ -170,6 +170,13 @@ class Location extends MiscModel
     }
 
     /**
+     */
+    public function creatures()
+    {
+        return $this->belongsToMany('App\Models\Creature', 'creature_location');
+    }
+
+    /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function locationAttributes()

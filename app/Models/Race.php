@@ -22,7 +22,7 @@ use Illuminate\Database\Eloquent\Builder;
  * @property Race|null $race
  * @property Race[] $races
  * @property Location|null $location
- * @property Location[] $locations
+ * @property Collection|Location[] $locations
  */
 class Race extends MiscModel
 {
