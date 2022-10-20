@@ -1,22 +1,3 @@
-<?php
-/**
- * @var \App\Models\Location $model
- * @var \App\Models\Character[] $characters
- */
-$filters = [];
-$allMembers = true;
-if (request()->has('location_id')) {
-    $filters['location_id'] = request()->get('location_id');
-    $allMembers = false;
-}
-
-/*$characters = $model
-        ->allCharacters()
-        ->filter($filters)
-        ->simpleSort($datagridSorter)
-        ->with(['location', 'location.entity', 'families', 'families.entity', 'entity', 'entity.tags'])
-        ->paginate();*/
-?>
 <div class="box box-solid" id="location-characters">
     <div class="box-header">
         <h3 class="box-title">
@@ -27,12 +8,12 @@ if (request()->has('location_id')) {
             <a href="#" class="btn btn-box-tool" data-toggle="modal" data-target="#help-modal">
                 <i class="fa-solid fa-question-circle"></i> {{ __('crud.actions.help') }}
             </a>
-            @if (request()->has('location_id'))
+            @if (request()->has('parent_id'))
                 <a href="{{ route('locations.characters', $model) }}" class="btn btn-box-tool">
                     <i class="fa-solid fa-filter"></i> {{ __('crud.filters.all') }} ({{ $model->allCharacters()->count() }})
                 </a>
             @else
-                <a href="{{ route('locations.characters', [$model, 'location_id' => $model->id]) }}" class="btn btn-box-tool">
+                <a href="{{ route('locations.characters', [$model, 'parent_id' => $model->id]) }}" class="btn btn-box-tool">
                     <i class="fa-solid fa-filter"></i> {{ __('crud.filters.direct') }} ({{ $model->characters()->count() }})
                 </a>
             @endif

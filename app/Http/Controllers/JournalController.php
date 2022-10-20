@@ -80,8 +80,8 @@ class JournalController extends CrudController
 
         $options = ['journal' => $journal];
         $filters = [];
-        if (request()->has('journal_id')) {
-            $options['journal_id'] = $journal->id;
+        if (request()->has('parent_id')) {
+            $options['parent_id'] = $journal->id;
             $filters['journal_id'] = $journal->id;
         }
 

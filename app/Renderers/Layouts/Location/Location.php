@@ -28,7 +28,7 @@ class Location extends Layout
             ],
             'location' => [
                 'key' => 'location.name',
-                'label' => 'location.fields.location',
+                'label' => 'locations.fields.location',
                 'render' => function ($model) {
                     if (!$model->location) {
                         return null;

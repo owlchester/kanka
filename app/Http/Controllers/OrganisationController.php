@@ -76,8 +76,15 @@ class OrganisationController extends CrudController
     {
         $this->authCheck($organisation);
 
+        $options = ['organisation' => $organisation];
+        $filters = [];
+        if (request()->has('parent_id')) {
+            $options['organisation_id'] = $organisation->id;
+            $filters['organisation_id'] = $organisation->id;
+        }
+
         Datagrid::layout(\App\Renderers\Layouts\Organisation\Organisation::class)
-            ->route('organisations.organisations', [$organisation]);
+            ->route('organisations.organisations', $options);
 
         // @phpstan-ignore-next-line
         $this->rows = $organisation
@@ -87,6 +94,7 @@ class OrganisationController extends CrudController
                 'entity', 'entity.image', 'entity.tags',
                 'organisation', 'organisation.entity'
             ])
+            ->filter($filters)
             ->paginate();
 
         if (request()->ajax()) {

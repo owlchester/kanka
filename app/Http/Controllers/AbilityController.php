@@ -82,8 +82,15 @@ class AbilityController extends CrudController
     {
         $this->authCheck($ability);
 
+        $options = ['ability' => $ability];
+        $filters = [];
+        if (request()->has('parent_id')) {
+            $options['parent_id'] = $ability->id;
+            $filters['ability_id'] = $ability->id;
+        }
+
         Datagrid::layout(\App\Renderers\Layouts\Ability\Ability::class)
-            ->route('abilities.abilities', [$ability]);
+            ->route('abilities.abilities', $options);
 
         // @phpstan-ignore-next-line
         $this->rows = $ability
@@ -91,6 +98,7 @@ class AbilityController extends CrudController
             ->sort(request()->only(['o', 'k']))
             ->with(['entity', 'entity.image', 'ability', 'ability.entity'])
             ->has('entity')
+            ->filter($filters)
             ->paginate();
 
         // Ajax Datagrid

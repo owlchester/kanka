@@ -76,14 +76,22 @@ class TimelineController extends CrudController
     {
         $this->authCheck($timeline);
 
+        $options = ['timeline' => $timeline];
+        $filters = [];
+        if (request()->has('parent_id')) {
+            $options['parent_id'] = $timeline->id;
+            $filters['timeline_id'] = $timeline->id;
+        }
+
         Datagrid::layout(\App\Renderers\Layouts\Timeline\Timeline::class)
-            ->route('timelines.timelines', [$timeline]);
+            ->route('timelines.timelines', $options);
 
         // @phpstan-ignore-next-line
         $this->rows = $timeline
             ->descendants()
             ->sort(request()->only(['o', 'k']))
             ->with(['entity', 'timeline', 'timeline.entity'])
+            ->filter($filters)
             ->paginate();
 
         if (request()->ajax()) {

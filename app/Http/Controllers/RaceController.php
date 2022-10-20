@@ -107,14 +107,22 @@ class RaceController extends CrudController
     {
         $this->authCheck($race);
 
-        Datagrid::layout(\App\Renderers\Layouts\Race\Creature::class)
-            ->route('races.races', [$race]);
+        $options = ['race' => $race];
+        $filters = [];
+        if (request()->has('parent_id')) {
+            $options['parent_id'] = $race->id;
+            $filters['race_id'] = $race->id;
+        }
+
+        Datagrid::layout(\App\Renderers\Layouts\Race\Race::class)
+            ->route('races.races', $options);
 
         // @phpstan-ignore-next-line
         $this->rows = $race
             ->descendants()
             ->sort(request()->only(['o', 'k']))
             ->with(['entity', 'characters'])
+            ->filter($filters)
             ->paginate(15);
 
         // Ajax Datagrid
