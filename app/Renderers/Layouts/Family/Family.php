@@ -28,7 +28,7 @@ class Family extends Layout
             ],
             'location' => [
                 'key' => 'location.name',
-                'label' => 'families.fields.location',
+                'label' => 'entities.location',
                 'render' => function ($model) {
                     if (!$model->location) {
                         return null;

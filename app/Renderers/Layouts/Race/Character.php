@@ -19,7 +19,7 @@ class Character extends Layout
             ],
             'character_id' => [
                 'key' => 'name',
-                'label' => 'character.name',
+                'label' => 'entities.character',
                 'render' => Standard::CHARACTER,
             ],
             'type' => [

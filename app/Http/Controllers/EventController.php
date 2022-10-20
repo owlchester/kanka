@@ -63,8 +63,15 @@ class EventController extends CrudController
     {
         $this->authCheck($event);
 
+        $options = ['event' => $event];
+        $filters = [];
+        if (request()->has('parent_id')) {
+            $options['parent_id'] = $event->id;
+            $filters['event_id'] = $event->id;
+        }
+
         Datagrid::layout(\App\Renderers\Layouts\Event\Event::class)
-            ->route('events.events', [$event]);
+            ->route('events.events', $options);
 
         // @phpstan-ignore-next-line
         $this->rows = $event
@@ -72,6 +79,7 @@ class EventController extends CrudController
             ->sort(request()->only(['o', 'k']))
             ->with(['entity', 'entity.image', 'event', 'event.entity'])
             ->has('entity')
+            ->filter($filters)
             ->paginate();
 
         if (request()->ajax()) {

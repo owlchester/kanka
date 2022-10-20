@@ -71,6 +71,10 @@ class FamilyController extends CrudController
 
         $options = ['family' => $family];
         $filters = [];
+        if (request()->has('parent_id')) {
+            $options['parent_id'] = $family->id;
+            $filters['family_id'] = $family->id;
+        }
 
         Datagrid::layout(\App\Renderers\Layouts\Family\Family::class)
             ->route('families.families', $options);
