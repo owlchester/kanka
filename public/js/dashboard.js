@@ -3992,7 +3992,8 @@ function initDashboardAdminUI() {
     modalContentButtons.show();
   });
   var el = document.getElementById('widgets');
-  var list = new sortablejs__WEBPACK_IMPORTED_MODULE_1__["default"](el, {
+  new sortablejs__WEBPACK_IMPORTED_MODULE_1__["default"](el, {
+    handle: '.handle',
     onEnd: function onEnd(
     /**Event*/
     evt) {
