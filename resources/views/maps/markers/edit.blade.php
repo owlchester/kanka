@@ -35,35 +35,6 @@ __('maps/markers.edit.title', ['name' => $model->name])
 
             <div class="form-group">
                 <div class="submit-group">
-                    <input id="submit-mode" type="hidden" value="true"/>
-                    <div class="pull-right">
-                        @include('partials.footer_cancel')
-                        <div class="btn-group">
-                            <button class="btn btn-success" id="form-submit-main"
-                                data-target="{{ isset($target) ? $target : null }}">{{ __('crud.save') }}</button>
-                            <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown"
-                                aria-expanded="false">
-                                <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu dropdown-menu-right" role="menu">
-                                <li>
-                                    <a href="#" class="dropdown-item form-submit-actions">
-                                        {{ __('crud.save') }}
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="dropdown-item form-submit-actions" data-action="submit-update">
-                                        {{ __('crud.save_and_update') }}
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="dropdown-item form-submit-actions" data-action="submit-explore">
-                                        {{ __('maps/markers.actions.save_and_explore') }}
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
                     <div class="pull-left">
                         <div class="btn-group">
                             <a role="button" tabindex="-1" class="btn btn-dynamic-delete btn-danger" data-toggle="popover"
@@ -73,6 +44,13 @@ __('maps/markers.edit.title', ['name' => $model->name])
                                 <i class="fa-solid fa-trash" aria-hidden="true"></i> {{ __('maps/markers.actions.remove') }}
                             </a>
                         </div>
+                    </div>
+                    <input id="submit-mode" type="hidden" value="true"/>
+                    <div class="pull-right">
+                        @include('maps.markers._actions')
+                    </div>
+                    <div class="pull-right mr-2">
+                        @include('partials.footer_cancel', ['ajax' => null])
                     </div>
                 </div>
                 <div class="submit-animation" style="display: none;">

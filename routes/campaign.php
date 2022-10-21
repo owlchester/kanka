@@ -38,6 +38,8 @@ Route::post('/maps/{map}/groups/reorder', 'Maps\MapGroupController@reorder')->na
 Route::post('/maps/{map}/layers/bulk', 'Maps\MapLayerController@bulk')->name('maps.layers.bulk');
 Route::post('/maps/{map}/layers/reorder', 'Maps\MapLayerController@reorder')->name('maps.layers.reorder-save');
 
+Route::post('/maps/{map}/markers/bulk', 'Maps\MapMarkerController@bulk')->name('maps.markers.bulk');
+
 // Character
 Route::get('/characters/{character}/organisations', 'CharacterSubController@organisations')->name('characters.organisations');
 //Route::get('/characters/{character}/map-points', 'CharacterSubController@mapPoints')->name('characters.map-points');

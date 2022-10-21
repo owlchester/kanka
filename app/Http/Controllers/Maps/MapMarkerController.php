@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Maps;
 
 use App\Facades\CampaignLocalization;
 use App\Facades\FormCopy;
+use App\Facades\Datagrid;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Datagrid2\BulkControllerTrait;
 use App\Http\Requests\StoreMapMarker;
 use App\Models\Map;
 use App\Models\MapMarker;
@@ -17,7 +19,8 @@ class MapMarkerController extends Controller
     /**
      * Auth for guests with model
      */
-    use GuestAuthTrait;
+    use GuestAuthTrait, BulkControllerTrait;
+
     protected $model = Map::class;
 
     /**
@@ -36,7 +39,24 @@ class MapMarkerController extends Controller
 
     public function index(Map $map)
     {
-        return redirect()->route('maps.show', $map);
+        $this->authorize('update', $map);
+
+        $campaign = CampaignLocalization::getCampaign();
+        $options = ['map' => $map->id];
+        $model = $map;
+
+        Datagrid::layout(\App\Renderers\Layouts\Map\Marker::class)
+            ->route('maps.map_markers.index', $options);
+        $rows = $map
+            ->markers()
+            ->sort(request()->only(['o', 'k']), ['id' => 'desc'])
+            ->with(['map'])
+            ->paginate(15);
+        if (request()->ajax()) {
+            return $this->datagridAjax($rows);
+        }
+
+        return view('maps.markers.index', compact('campaign', 'rows', 'model'));
     }
 
     public function show(Map $map)
@@ -105,7 +125,7 @@ class MapMarkerController extends Controller
         }
 
         return redirect()
-            ->route('maps.edit', [$map, '#tab_form-markers', 'focus' => $new->id])
+            ->route('maps.map_markers.index', [$map, 'focus' => $new->id])
             ->withSuccess(__('maps/markers.create.success', ['name' => $new->name]));
     }
 
@@ -167,9 +187,8 @@ class MapMarkerController extends Controller
                 ->route('maps.map_markers.edit', [$map, $mapMarker])
                 ->withSuccess(__('maps/markers.edit.success', ['name' => $mapMarker->name]));
         }
-
         return redirect()
-            ->route('maps.edit', [$map, '#tab_form-markers'])
+            ->route('maps.map_markers.index', [$map, '#tab_form-markers'])
             ->withSuccess(__('maps/markers.edit.success', ['name' => $mapMarker->name]));
     }
 
@@ -194,7 +213,7 @@ class MapMarkerController extends Controller
         }
 
         return redirect()
-            ->route('maps.edit', [$map, '#tab_form-markers'])
+            ->route('maps.map_markers.index', [$map])
             ->withSuccess(__('maps/markers.delete.success', ['name' => $mapMarker->name]));
     }
 
@@ -262,5 +281,54 @@ class MapMarkerController extends Controller
             'success' => true,
             'marker_id' => $mapMarker->id
         ]);
+    }
+
+    /**
+     * @return \Illuminate\Http\JsonResponse
+     */
+    protected function datagridAjax($rows)
+    {
+        $html = view('layouts.datagrid._table')
+            ->with('rows', $rows)
+            ->render();
+        $deletes = view('layouts.datagrid.delete-forms')
+            ->with('models', Datagrid::deleteForms())
+            ->with('params', Datagrid::getActionParams())
+            ->render();
+
+        $data = [
+            'success' => true,
+            'html' => $html,
+            'deletes' => $deletes,
+        ];
+
+        return response()->json($data);
+    }
+
+    /**
+     * @param Request $request
+     * @param Map $map
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\RedirectResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    public function bulk(Request $request, Map $map)
+    {
+        $this->authorize('update', $map);
+        $action = $request->get('action');
+        $models = $request->get('model');
+        if (!in_array($action, $this->validBulkActions()) || empty($models)) {
+            return redirect()->back();
+        }
+
+        if ($action === 'edit') {
+            return $this->bulkBatch(route('maps.markers.bulk', ['map' => $map]), '_map-marker', $models);
+        }
+
+        $count = $this->bulkProcess($request, MapMarker::class);
+
+        return redirect()
+            ->route('maps.map_markers.index', ['map' => $map])
+            ->with('success', trans_choice('maps/markers.bulks.' . $action, $count, ['count' => $count]))
+        ;
     }
 }
