@@ -21,7 +21,6 @@ return [
             'dice'      => 'Dice Rolls',
             'results'   => 'Results',
         ],
-        'title'     => 'Dice Rolls',
     ],
     'placeholders'  => [
         'dice_roll' => 'Dice Roll',

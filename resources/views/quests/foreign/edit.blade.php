@@ -2,7 +2,7 @@
     'title' => trans($name . '.edit.title', ['name' => $parent->name]),
     'description' => trans($name . '.edit.description'),
     'breadcrumbs' => [
-        ['url' => Breadcrumb::index('quests'), 'label' => trans('quests.index.title')],
+        ['url' => Breadcrumb::index('quests'), 'label' => __('entities.quests')],
         ['url' => route('quests.show', $parent->id), 'label' => $parent->name],
         ['url' => route('quests.' . $menu, $parent->id), 'label' => trans('quests.show.tabs.' . $menu)],
         trans('crud.update'),

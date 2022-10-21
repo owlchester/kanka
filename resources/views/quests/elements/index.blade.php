@@ -29,7 +29,7 @@
         @include('entities.components.header', [
             'model' => $model,
             'breadcrumb' => [
-                ['url' => Breadcrumb::index('quests'), 'label' => __('quests.index.title')],
+                ['url' => Breadcrumb::index('quests'), 'label' => __('entities.quests')],
                 __('quests.show.tabs.elements')
             ]
         ])

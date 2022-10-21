@@ -6,7 +6,6 @@ use App\Models\Campaign;
 use App\Models\Race;
 use App\Http\Requests\StoreRace as Request;
 use App\Http\Resources\RaceResource as Resource;
-use App\Http\Resources\RaceCollection as Collection;
 
 class RaceApiController extends ApiController
 {

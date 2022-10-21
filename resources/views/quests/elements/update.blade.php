@@ -1,7 +1,7 @@
 @extends('layouts.app', [
     'title' => trans('quests.elements.create.title', ['name' => $quest->name]),
     'breadcrumbs' => [
-        ['url' => Breadcrumb::index('quests'), 'label' => trans('quests.index.title')],
+        ['url' => Breadcrumb::index('quests'), 'label' => __('entities.quests')],
         ['url' => route('quests.show', $quest->id), 'label' => $quest->name],
         ['url' => route('quests.quest_elements.index', $quest->id), 'label' => __('quests.show.tabs.elements')],
         trans('crud.update'),

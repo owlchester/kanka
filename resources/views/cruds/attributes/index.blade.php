@@ -9,7 +9,7 @@ $isAdmin = Auth::user()->isAdmin();
     'title' => trans('entities/attributes.index.title', ['name' => $entity->name]),
     'description' => '',
     'breadcrumbs' => [
-        ['url' => route($parentRoute . '.index'), 'label' => trans($parentRoute . '.index.title')],
+        ['url' => route($parentRoute . '.index'), 'label' => __('entities.' . $parentRoute)],
         ['url' => route($parentRoute . '.show', $entity->child->id), 'label' => $entity->name],
         trans('crud.tabs.attributes'),
     ]

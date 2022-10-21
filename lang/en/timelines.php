@@ -23,9 +23,6 @@ return [
         'no_era'            => 'This timeline currently doesn\'t have any eras. Eras can be added in the timeline\'s edit screen, after which you can add elements here.',
         'reverse_order'     => 'Enable to display eras in reverse chronological order (older era first)',
     ],
-    'index'         => [
-        'title' => 'Timelines',
-    ],
     'placeholders'  => [
         'name'  => 'Name of the timeline',
         'type'  => 'Primary, World chronicle, Kingdom legacy',

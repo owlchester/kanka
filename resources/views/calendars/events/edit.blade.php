@@ -1,12 +1,12 @@
 @extends('layouts.' . ($ajax ? 'ajax' : 'app'), [
     'title' => trans('calendars.event.edit.title', ['name' => $entity->name]),
     'breadcrumbs' => isset($next) && $next == 'entity.events' ? [
-        trans($entity->pluralType() . '.index.title'),
+        __('entities.' . $entity->pluralType()),
         ['url' => $entity->url(), 'label' => $entity->name],
         trans('crud.tabs.reminders'),
         trans('crud.update'),
     ] : [
-        ['url' => route('calendars.index'), 'label' => trans('calendars.index.title')],
+        ['url' => route('calendars.index'), 'label' => __('entities.calendars')],
         ['url' => $entityEvent->calendar->getLink(), 'label' => $entityEvent->calendar->name],
         trans('crud.tabs.reminders'),
         trans('crud.update'),

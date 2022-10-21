@@ -30,9 +30,6 @@ return [
         'descendants'       => 'This list contains all abilities which are descendants of this ability, and not only those directly under it.',
         'nested_without'    => 'Displaying all abilities that don\'t have a parent ability. Click on a row to see the children abilities.',
     ],
-    'index'         => [
-        'title' => 'Abilities',
-    ],
     'placeholders'  => [
         'charges'   => 'Amount of charges. Reference attributes with {Level}*{CHA}',
         'name'      => 'Fireball, Alert, Cunning Strike',

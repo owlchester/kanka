@@ -56,7 +56,7 @@ TEXT
         'featured'                          => 'Featured campaign',
         'followers'                         => 'Followers',
         'header_image'                      => 'Campaign dashboard background image',
-        'image'                             => 'Image',
+        'image'                             => 'Sidebar image',
         'locale'                            => 'Locale',
         'name'                              => 'Name',
         'nested'                            => 'Default entity lists to nested when available',
@@ -105,7 +105,6 @@ TEXT
                 'title' => 'New Campaign',
             ],
         ],
-        'title'     => 'Campaign',
     ],
     'invites'                           => [
         'actions'               => [

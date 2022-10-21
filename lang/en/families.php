@@ -19,9 +19,6 @@ return [
     'hints'         => [
         'members'   => 'Members of a family are listed here. A character can be added to a family by editing the desired character and using the "Family" dropdown.',
     ],
-    'index'         => [
-        'title' => 'Families',
-    ],
     'members'       => [
         'helpers'   => [
             'all_members'       => 'The following list are all characters that are in this family and all of the family\'s descendant families.',

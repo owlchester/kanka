@@ -33,6 +33,7 @@ use Illuminate\Database\Eloquent\Collection;
  * @package App\Models\Relations
  *
  * @property Conversation $conversation
+ * @property Creature $creature
  * @property Tag[]|Collection $tags
  * @property EntityTag[]|Collection $entityTags
  * @property EntityNote[]|Collection $notes
@@ -47,6 +48,7 @@ use Illuminate\Database\Eloquent\Collection;
  * @property User $updater
  * @property Campaign $campaign
  * @property Map $map
+ * @property Race $race
  * @property Timeline $timeline
  * @property Quest $quest
  * @property Attribute[]|Collection $allAttributes
@@ -301,6 +303,14 @@ trait EntityRelations
     public function race()
     {
         return $this->hasOne('App\Models\Race', 'id', 'entity_id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function creature()
+    {
+        return $this->hasOne('App\Models\Creature', 'id', 'entity_id');
     }
 
     /**

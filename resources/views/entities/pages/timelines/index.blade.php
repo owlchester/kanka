@@ -6,7 +6,7 @@
 @extends('layouts.' . ($ajax ? 'ajax' : 'app'), [
     'title' => __('entities/timelines.show.title', ['name' => $entity->name]),
     'breadcrumbs' => [
-        ['url' => Breadcrumb::index($entity->pluralType()), 'label' => __($entity->pluralType() . '.index.title')],
+        ['url' => Breadcrumb::index($entity->pluralType()), 'label' => __('entities.' . $entity->pluralType())],
         ['url' => $entity->url('show'), 'label' => $entity->name],
         __('crud.tabs.timelines')
     ],
@@ -26,7 +26,7 @@
             'model' => $entity->child,
             'entity' => $entity,
             'breadcrumb' => [
-                ['url' => Breadcrumb::index($entity->pluralType()), 'label' => __($entity->pluralType() . '.index.title')],
+                ['url' => Breadcrumb::index($entity->pluralType()), 'label' => __('entities.' . $entity->pluralType())],
                 __('crud.tabs.timelines')
             ]
         ])

@@ -17,9 +17,6 @@ return [
     'hints'         => [
         'is_defunct'    => 'This organisation is defunct.',
     ],
-    'index'         => [
-        'title' => 'Organisations',
-    ],
     'members'       => [
         'actions'       => [
             'add'   => 'Add a member',

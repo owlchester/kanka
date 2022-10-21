@@ -4,7 +4,7 @@
 @extends('layouts.' . (request()->ajax() ? 'ajax' : 'app'), [
     'title' => __('crud.titles.editing', ['name' => $model->name])  . ' - ' . __('entities.' . $name),
     'breadcrumbs' => [
-        ['url' => Breadcrumb::index($name), 'label' => __($name . '.index.title')],
+        ['url' => Breadcrumb::index($name), 'label' => __('entities.' . $name)],
         ['url' => route($name . '.show', $model->id), 'label' => $model->name],
         __('crud.edit'),
     ],

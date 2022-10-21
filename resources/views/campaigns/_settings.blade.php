@@ -11,7 +11,7 @@
     </a>
 </div>
 
-<div class="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 md:gap-4">
     <div class="cell col-span-1 flex">
         @include('campaigns.settings.box', ['icon' => 'fa-solid fa-user', 'module' => 'characters'])
     </div>
@@ -19,7 +19,10 @@
         @include('campaigns.settings.box', ['icon' => 'ra ra-tower', 'module' => 'locations'])
     </div>
     <div class="cell col-span-1 flex">
-        @include('campaigns.settings.box', ['icon' => 'ra ra-dragon', 'module' => 'races'])
+        @include('campaigns.settings.box', ['icon' => 'ra ra-wyvern', 'module' => 'races'])
+    </div>
+    <div class="cell col-span-1 flex">
+        @include('campaigns.settings.box', ['icon' => 'ra ra-raven', 'module' => 'creatures'])
     </div>
     <div class="cell col-span-1 flex">
         @include('campaigns.settings.box', ['icon' => 'ra ra-double-team', 'module' => 'families'])
@@ -58,10 +61,10 @@
         @include('campaigns.settings.box', ['icon' => 'fa-solid fa-clock', 'module' => 'timelines'])
     </div>
     <div class="cell col-span-1 flex">
-        @include('campaigns.settings.box', ['icon' => 'ra ra-dice-five', 'module' => 'dice_rolls'])
+        @include('campaigns.settings.box', ['icon' => 'ra ra-dice-five', 'module' => 'dice_rolls', 'deprecated' => true])
     </div>
     <div class="cell col-span-1 flex">
-        @include('campaigns.settings.box', ['icon' => 'ra ra-speech-bubbles', 'module' => 'conversations'])
+        @include('campaigns.settings.box', ['icon' => 'ra ra-speech-bubbles', 'module' => 'conversations', 'deprecated' => true])
     </div>
     <div class="cell col-span-1 flex">
         @include('campaigns.settings.box', ['icon' => 'fa-solid fa-link', 'module' => 'menu_links'])

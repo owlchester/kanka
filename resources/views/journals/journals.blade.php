@@ -12,7 +12,7 @@
         @include('entities.components.header', [
             'model' => $model,
             'breadcrumb' => [
-                ['url' => Breadcrumb::index('journals'), 'label' => __('journals.index.title')],
+                ['url' => Breadcrumb::index('journals'), 'label' => __('entities.journals')],
                 __('journals.show.tabs.journals')
             ]
         ])
