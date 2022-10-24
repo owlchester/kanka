@@ -41,7 +41,9 @@ class CouponService
             // expects a stripe_id
             $promos = PromotionCode::all(['code' => $this->code]);
             if (auth()->user()->id === 1) {
-                dd(PromotionCode::all());
+                dump($this->code);
+                dump(PromotionCode::all());
+                dd(PromotionCode::all(['code' => $this->code]));
             }
             if ($promos->count() !== 1) {
                 return [
