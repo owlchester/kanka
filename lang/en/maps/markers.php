@@ -6,6 +6,8 @@ return [
         'remove'            => 'Remove marker',
         'save_and_explore'  => 'Save and Explore',
         'update'            => 'Edit marker',
+        'start-drawing'     => 'Start drawing',
+        'reset-polygon'     => 'Reset positions',
     ],
     'create'        => [
         'success'   => 'Marker :name created.',
@@ -46,7 +48,6 @@ return [
         'label'                     => 'A label is displayed as a block of text on the map. The content will be the marker\'s name or the entity\'s name.',
         'polygon'                   => [
             'edit'  => 'Click on the map to add that position to the polygon\'s coordinates.',
-            'new'   => 'Move the marker around on the map to save the position to the polygone.',
         ],
     ],
     'icons'         => [

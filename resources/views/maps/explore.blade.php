@@ -18,10 +18,13 @@
     @can('update', $map)
         <div class="map-mode">
             <a role="button" href="#" class="btn btn-warning btn-mode-enable">
-                <i class="fa-solid fa-plus" aria-hidden="true"></i> Enter edit mode
+                <i class="fa-solid fa-plus" aria-hidden="true"></i> {{ __('maps/explore.actions.enter-edit-mode') }}
             </a>
             <a role="button" href="#" class="btn btn-default btn-mode-disable">
-                <i class="fa-solid fa-ban" aria-hidden="true"></i> Exit edit mode
+                <i class="fa-solid fa-ban" aria-hidden="true"></i> {{ __('maps/explore.actions.exit-edit-mode') }}
+            </a>
+            <a role="button" href="#" class="btn btn-warning btn-mode-drawing">
+                <i class="fa-solid fa-pencil" aria-hidden="true"></i> {{ __('maps/explore.actions.finish-drawing') }}
             </a>
         </div>
     @endif
@@ -53,7 +56,8 @@
     @include('maps._setup')
 
     <script type="text/javascript">
-        window.explodeEditMode = false;
+        window.exploreEditMode = false;
+        window.drawingPolygon = false;
         window.map = map{{ $map->id }};
         /** Add markers outside of a group directly to the page **/
         @foreach ($map->markers as $marker)
@@ -97,17 +101,7 @@
 
         @can('update', $map)
             map{{ $map->id }}.on('click', function(ev) {
-                if (!window.explodeEditMode) {
-                    return;
-                }
-                // return false;
-                let position = ev.latlng;
-                //console.log('Click', 'lat', position.lat, 'lng', position.lng);
-                // AJAX request
-                //console.log('do', "$('#marker-latitude').val(" + position.lat.toFixed(3) + ");");
-                $('#marker-latitude').val(position.lat.toFixed(3));
-                $('#marker-longitude').val(position.lng.toFixed(3));
-                $('#marker-modal').modal('show');
+                window.handleExploreMapClick(ev);
             });
         @endcan
 
