@@ -577,31 +577,6 @@ abstract class MiscModel extends Model
                 </a>
             </li>';
             }
-
-            if ($campaign->enabled('abilities') && $this->entityTypeId() != config('entities.ids.ability')) {
-                $actions[] = '<li>
-                <a href="' . route('entities.entity_abilities.index', $this->entity) . '" class="dropdown-item datagrid-dropdown-item" data-name="abilities">
-                    <i class="ra ra-fire-symbol" aria-hidden="true"></i> ' . __('crud.tabs.abilities') . '
-                </a>
-            </li>';
-            }
-            if ($campaign->enabled('maps') && $this->entityTypeId() == config('entities.ids.map')) {
-                $actions[] = '<li>
-                <a href="' . route('maps.map_layers.index', $this->id) . '" class="dropdown-item datagrid-dropdown-item" data-name="layers">
-                    <i class="fa-solid fa-layer-group" aria-hidden="true"></i> ' . __('maps.panels.layers') . '
-                </a>
-            </li>';
-                $actions[] = '<li>
-                <a href="' . route('maps.map_groups.index', $this->id) . '" class="dropdown-item datagrid-dropdown-item" data-name="groups">
-                    <i class="fa-solid fa-map-signs" aria-hidden="true"></i> ' . __('maps.panels.groups') . '
-                </a>
-            </li>';
-                $actions[] = '<li>
-                <a href="' . route('maps.map_markers.index', $this->id) . '" class="dropdown-item datagrid-dropdown-item" data-name="markers">
-                    <i class="fa-solid fa-map-pin" aria-hidden="true"></i> ' . __('maps.panels.markers') . '
-                </a>
-            </li>';
-            }
         }
 
 

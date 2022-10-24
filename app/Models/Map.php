@@ -720,4 +720,69 @@ class Map extends MiscModel
         //return false;
         return !empty($this->config['distance_measure']);
     }
+    /**
+     * Available datagrid actions
+     * @param Campaign $campaign
+     * @return string[]
+     * @throws Exception
+     */
+    public function datagridActions(Campaign $campaign): array
+    {
+        $actions = [];
+
+        // Relations & Inventory
+        if (!isset($this->hasRelations)) {
+            $actions[] = '<li>
+                <a href="' . route('entities.relations.index', $this->entity) . '" class="dropdown-item datagrid-dropdown-item" data-name="relations">
+                    <i class="fa-solid fa-users" aria-hidden="true"></i> ' . __('crud.tabs.connections') . '
+                </a>
+            </li>';
+
+            if ($campaign->enabled('inventories')) {
+                $actions[] = '<li>
+                <a href="' . route('entities.inventory', $this->entity) . '" class="dropdown-item datagrid-dropdown-item" data-name="inventory">
+                    <i class="ra ra-round-bottom-flask" aria-hidden="true"></i> ' . __('crud.tabs.inventory') . '
+                </a>
+            </li>';
+            }
+
+            if ($campaign->enabled('abilities') && $this->entityTypeId() != config('entities.ids.ability')) {
+                $actions[] = '<li>
+                <a href="' . route('entities.entity_abilities.index', $this->entity) . '" class="dropdown-item datagrid-dropdown-item" data-name="abilities">
+                    <i class="ra ra-fire-symbol" aria-hidden="true"></i> ' . __('crud.tabs.abilities') . '
+                </a>
+            </li>';
+            }
+            if ($campaign->enabled('maps') && $this->entityTypeId() == config('entities.ids.map')) {
+                $actions[] = '<li>
+                <a href="' . route('maps.map_layers.index', $this->id) . '" class="dropdown-item datagrid-dropdown-item" data-name="layers">
+                    <i class="fa-solid fa-layer-group" aria-hidden="true"></i> ' . __('maps.panels.layers') . '
+                </a>
+            </li>';
+                $actions[] = '<li>
+                <a href="' . route('maps.map_groups.index', $this->id) . '" class="dropdown-item datagrid-dropdown-item" data-name="groups">
+                    <i class="fa-solid fa-map-signs" aria-hidden="true"></i> ' . __('maps.panels.groups') . '
+                </a>
+            </li>';
+                $actions[] = '<li>
+                <a href="' . route('maps.map_markers.index', $this->id) . '" class="dropdown-item datagrid-dropdown-item" data-name="markers">
+                    <i class="fa-solid fa-map-pin" aria-hidden="true"></i> ' . __('maps.panels.markers') . '
+                </a>
+            </li>';
+            }
+        }
+
+        if (auth()->check() && auth()->user()->can('update', $this)) {
+            if (!empty($actions)) {
+                $actions[] = '<li class="divider"></li>';
+            }
+            $actions[] = '<li>
+                <a href="' . $this->getLink('edit') . '" class="dropdown-item datagrid-dropdown-item" data-name="edit">
+                    <i class="fa-solid fa-edit" aria-hidden="true"></i> ' . __('crud.edit') . '
+                </a>
+            </li>';
+        }
+
+        return $actions;
+    }
 }
