@@ -17,7 +17,7 @@
 
     @include('entities.pages.entity-notes._form')
 
-    <div class="pull-right">
+    <div class="mt-5 text-right">
         <a role="button" tabindex="0" class="btn btn-danger btn-dynamic-delete" data-toggle="popover"
            title="{{ __('crud.delete_modal.title') }}"
            data-content="<p>{{ __('crud.delete_modal.permanent') }}</p>
@@ -25,7 +25,6 @@
             <i class="fa-solid fa-trash" aria-hidden="true"></i> {{ __('crud.remove') }}
         </a>
     </div>
-    @include('entities.pages.entity-notes._save-options')
 @endsection
 
 @include('editors.editor')
@@ -38,8 +37,7 @@
 @endsection
 
 @section('modals')
-
-
+    @parent
     {!! Form::open(['method' => 'DELETE', 'route' => ['entities.entity_notes.destroy', 'entity' => $entity, 'entity_note' => $model], 'style' => 'display:inline', 'id' => 'delete-form-note-' . $model->id]) !!}
     {!! Form::close() !!}
 @endsection

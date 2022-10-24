@@ -114,7 +114,7 @@ class EntityNoteObserver
      */
     public function savePermissions(EntityNote $entityNote): bool
     {
-        if (!request()->has('permissions') || !auth()->user()->isAdmin()) {
+        if (!request()->has('permissions') || !auth()->user()->can('permission', $entityNote->entity->child)) {
             return false;
         }
 

@@ -13,21 +13,23 @@ if (!isset($model) && !empty($currentCampaign->ui_settings['post_collapsed'])) {
     $defaultCollapsed = 1;
 }
 ?>
-
 <div class="nav-tabs-custom">
+    <div class="pull-right">
+        @include('entities.pages.entity-notes._save-options')
+    </div>
     <ul class="nav nav-tabs">
         <li class="active">
             <a href="#form-entry" title="{{ __('crud.panels.entry') }}">
                 {{ __('crud.panels.entry') }}
             </a>
         </li>
-       @if(auth()->user()->isAdmin())
+       @can('permission', $entity->child)
         <li class="">
             <a href="#form-permissions" title="{{ __('entities/notes.show.advanced') }}">
                 {{ __('entities/notes.show.advanced') }}
             </a>
         </li>
-       @endif
+       @endcan
     </ul>
 
     <div class="tab-content">
@@ -70,7 +72,7 @@ if (!isset($model) && !empty($currentCampaign->ui_settings['post_collapsed'])) {
             </div>
         </div>
 
-        @includeWhen(auth()->user()->isAdmin(), 'entities.pages.entity-notes._permissions')
+        @includeWhen(auth()->user()->can('permission', $entity->child), 'entities.pages.entity-notes._permissions')
     </div>
 </div>
 

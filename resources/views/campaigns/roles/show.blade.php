@@ -44,11 +44,12 @@
                         @include('campaigns.roles._pretty')
                     @endif
                 </div>
-                <div class="box-footer">
+                <div class="box-footer text-right">
                     @can('permission', $role)
-                        <div class="form-group">
-                            <button class="btn btn-success pull-right">{{ __('crud.save') }}</button>
-                        </div>
+                        <button class="btn btn-success">
+                            <i class="fa-solid fa-save" aria-hidden="true"></i>
+                            {{ __('crud.save') }}
+                        </button>
                         {{ Form::close() }}
                     @else
                         <p>{{ __('campaigns.roles.permissions.hint') }}</p>

@@ -17,7 +17,6 @@
 @section('content')
     @include('entities.pages.entity-notes._form')
 
-    @include('entities.pages.entity-notes._save-options')
 
 @endsection
 
