@@ -40,6 +40,9 @@ class CouponService
             // We have to look at all codes with this coupon this way, because the retrieve method
             // expects a stripe_id
             $promos = PromotionCode::all(['code' => $this->code]);
+            if (auth()->user()->id === 1) {
+                dd(PromotionCode::all());
+            }
             if ($promos->count() !== 1) {
                 return [
                     'valid' => false,
