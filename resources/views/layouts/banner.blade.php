@@ -1,4 +1,4 @@
-@if (auth()->check() && auth()->user()->id === 1 && !auth()->user()->settings()->get('banner_5yearpromo') && \Carbon\Carbon::create(2022, 10, 31)->isFuture())
+@if (auth()->check() && !auth()->user()->settings()->get('banner_5yearpromo') && \Carbon\Carbon::create(2022, 10, 31)->isFuture())
     <div class="bg-primary banner-notification">
         <span>
             <a href="{{ route('settings.subscription') }}">
