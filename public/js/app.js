@@ -3013,9 +3013,24 @@ $(document).ready(function () {
       placeholder: $(this).data('placeholder'),
       language: $(this).data('language'),
       allowClear: true
+    }); // Select2 with colour box
+
+    $('select.select2-colour').select2({
+      allowClear: false,
+      templateResult: select2ColourState,
+      templateSelection: select2ColourState
     });
   };
 });
+
+function select2ColourState(state) {
+  if (state.id === 'none') {
+    return state.text;
+  }
+
+  var $state = $('<span><div class="badge label bg-' + state.id + '"> </div>' + state.text + '</span>');
+  return $state;
+}
 
 /***/ }),
 

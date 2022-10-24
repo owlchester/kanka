@@ -1076,6 +1076,14 @@ See http://bgrins.github.io/spectrum/themes/ for instructions.
   mix-blend-mode: difference;
 }
 
+.select2-container--default .badge {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  margin-right: 6px;
+  border-radius: 2px;
+}
+
 .select2-container--open {
   z-index: 9961;
 }
