@@ -18,25 +18,19 @@ class Marker extends Layout
                 'key' => 'name',
                 'label' => 'crud.fields.name',
                 'render' => function ($model) {
-                    return $model->tooltipedLink($model->markerTitle());
+                    return $model->markerLink();
                 },
             ],
             'entity_id' => [
                 'label' => 'crud.fields.entity',
                 'render' => function ($model) {
-                    if ($model->entity_id) {
-                        return $model->tooltipedLink($model->entity->name);
-                    }
-                    return '';
+                    return $model->entity?->tooltipedLink();
                 }
             ],
             'groups' => [
                 'label' => 'maps/markers.fields.group',
                 'render' => function ($model) {
-                    if ($model->group) {
-                        return $model->group->name;
-                    }
-                    return '';
+                    return $model->group?->name;
                 }
             ],
             'type' => [

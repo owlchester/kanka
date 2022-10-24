@@ -35,7 +35,7 @@
             'model' => $model,
             'breadcrumb' => [
                 ['url' => Breadcrumb::index('maps'), 'label' => __('maps.index.title')],
-                null
+                __('maps.panels.layers')
             ]
         ])
         @include('maps._menu', ['active' => 'layers'])

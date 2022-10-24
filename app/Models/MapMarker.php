@@ -78,6 +78,10 @@ class MapMarker extends Model
     protected $sortable = [
         'name',
         'entity_id',
+        'type',
+        'icon',
+        'group.name',
+        'visibility',
     ];
 
     public $casts = [
@@ -173,12 +177,12 @@ class MapMarker extends Model
     }
 
     /**
-     * Determine the icon of the marker
+     * Determine the icon of the marker for the datagrid.
      * @return string
      */
     public function datagridMarkerIcon(): string
     {
-        if ($this->icon == 5 || $this->icon == 4) {
+        if ($this->shape_id == 5 || $this->shape_id == 3 || $this->shape_id == 2) {
             return '';
         }
 
@@ -191,7 +195,7 @@ class MapMarker extends Model
             } elseif (Str::startsWith($this->custom_icon, ['fa-', 'ra '])) {
                 $icon = ' <i class="' . $this->custom_icon . '" aria-hidden="true"></i>';
             } elseif (Str::startsWith($this->custom_icon, '<?xml')) {
-                $icon = 'L.Util.template(<div class="custom-icon">' . $this->resizedCustomIcon() . '</div>)';
+                $icon = '<div class="custom-icon">' . $this->resizedCustomIcon() . '</div>';
             }
         } elseif ($this->icon == 2) {
             $icon = '<i class="fa-solid fa-question"></i>';
@@ -663,11 +667,11 @@ class MapMarker extends Model
     }
 
     /**
-     * Override the tooltiped link for the datagrid
+     * Generate link for the datagrid
      * @param string|null $displayName
      * @return string
      */
-    public function tooltipedLink(string $displayName = null): string
+    public function markerLink(string $displayName = null): string
     {
         return '<a href="' . $this->getLink() . '">' .
             (!empty($displayName) ? $displayName : e($this->name)) .

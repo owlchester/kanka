@@ -12,7 +12,7 @@
     @if (auth()->check() && !auth()->user()->settings()->get('tutorial_map_markers'))
         <div class="alert alert-info tutorial">
         <span>
-            <button type="button" class="close banner-notification-dismiss" data-dismiss="alert" aria-hidden="true" data-url="{{ route('settings.banner', ['code' => 'map_layers', 'type' => 'tutorial']) }}">×</button>
+            <button type="button" class="close banner-notification-dismiss" data-dismiss="alert" aria-hidden="true" data-url="{{ route('settings.banner', ['code' => 'map_markers', 'type' => 'tutorial']) }}">×</button>
 
             <p>{{ __('maps/markers.helpers.base') }}</p>
 
@@ -150,37 +150,33 @@
     <div class="modal fade" id="marker-modal" role="dialog" aria-labelledby="deleteConfirmLabel">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <button type="button" class="close" data-dismiss="modal"
-                            aria-label="{{ __('crud.delete_modal.close') }}"><span
-                                aria-hidden="true">&times;</span></button>
-                        <h4>
-                            {{ __('maps/markers.create.title', ['name' => $model->name]) }}
-                        </h4>
-                    </div>
-                    <div class="panel-body">
+                <div class="panel-heading">
+                    <button type="button" class="close" data-dismiss="modal"
+                        aria-label="{{ __('crud.delete_modal.close') }}"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4>
+                        {{ __('maps/markers.create.title', ['name' => $model->name]) }}
+                    </h4>
+                </div>
+                <div class="panel-body">
+                    {!! Form::open([
+                        'route' => ['maps.map_markers.store', $model],
+                        'method' => 'POST',
+                        //'enctype' => 'multipart/form-data',
+                        //'id' => 'map-marker-new-form'
+                        'class' => 'ajax-subform',
+                    ]) !!}
+                    @include('maps.markers._form', ['model' => null, 'map' => $model, 'activeTab' => 1, 'dropdownParent' => '#marker-modal'])
 
-                        {!! Form::open([
-    'route' => ['maps.map_markers.store', $model],
-    'method' => 'POST',
-    //'enctype' => 'multipart/form-data',
-    //'id' => 'map-marker-new-form'
-    'class' => 'ajax-subform',
-]) !!}
-                        @include('maps.markers._form', ['model' => null, 'map' => $model, 'activeTab' => 1, 'dropdownParent' => '#marker-modal'])
-
-                        <div class="form-group">
-                            <div class="pull-left">
-                                @include('partials.footer_cancel', ['ajax' => 1])
-                            </div>
-                            <div class="pull-right">
-                                @include('maps.markers._actions')
-                            </div>
+                    <div class="form-group">
+                        <div class="pull-left">
+                            @include('partials.footer_cancel', ['ajax' => 1])
                         </div>
-
-                        {!! Form::close() !!}
+                        <div class="pull-right">
+                            @include('maps.markers._actions')
+                        </div>
                     </div>
+                    {!! Form::close() !!}
                 </div>
             </div>
         </div>
