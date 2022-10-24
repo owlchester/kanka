@@ -45,7 +45,7 @@
     <div class="col-md-6">
         <div class="form-group">
             <label>{{ __('calendars.fields.colour') }}</label>
-            {!! Form::select('colour', FormCopy::colours(), null, ['class' => 'form-control']) !!}
+            {!! Form::select('colour', FormCopy::colours(), null, ['class' => 'form-control select2-colour']) !!}
         </div>
     </div>
     <div class="col-md-6">
