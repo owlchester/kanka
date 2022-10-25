@@ -27,6 +27,9 @@ return [
         'amount_v2' => 'Upload layers to a map to switch the background image displayed below the markers.',
         'is_real'   => 'Layers aren\'t available when using OpenStreetMaps.',
     ],
+    'index'         => [
+        'title' => 'Layers of :name',
+    ],
     'pitch'         => [
         'error' => 'Max number of layers reached.',
         'until' => 'Upload up to :max layers to each map.',

@@ -1,6 +1,6 @@
 <?php /** @var \App\Models\Map $model */?>
 @extends('layouts.app', [
-    'title' => __('maps.maps.title', ['name' => $model->name]),
+    'title' => __('maps/markers.index.title', ['name' => $model->name]),
     'description' => '',
     'breadcrumbs' => false,
     'mainTitle' => false,
@@ -29,7 +29,7 @@
         @include('entities.components.header', [
             'model' => $model,
             'breadcrumb' => [
-                ['url' => Breadcrumb::index('maps'), 'label' => __('maps.index.title')],
+                ['url' => Breadcrumb::index('maps'), 'label' => __('entities.maps')],
                 __('maps.panels.markers')
             ]
         ])

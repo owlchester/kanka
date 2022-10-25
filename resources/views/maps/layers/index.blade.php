@@ -1,6 +1,6 @@
 <?php /** @var \App\Models\Map $model */?>
 @extends('layouts.app', [
-    'title' => __('maps.maps.title', ['name' => $model->name]),
+    'title' => __('maps/layers.index.title', ['name' => $model->name]),
     'description' => '',
     'breadcrumbs' => false,
     'mainTitle' => false,

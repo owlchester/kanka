@@ -1,5 +1,5 @@
 @extends('layouts.app', [
-    'title' => __('maps.maps.title', ['name' => $model->name]),
+    'title' => __('maps/groups.index.title', ['name' => $model->name]),
     'description' => '',
     'breadcrumbs' => false,
     'mainTitle' => false,

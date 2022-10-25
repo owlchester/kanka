@@ -26,7 +26,7 @@ return [
     'fields'        => [
         'circle_radius' => 'Circle radius',
         'copy_elements' => 'Copy elements',
-        'custom_icon'   => 'Custom Icon',        
+        'custom_icon'   => 'Custom Icon',
         'custom_shape'  => 'Custom Shape',
         'font_colour'   => 'Icon Colour',
         'group'         => 'Marker Group',
@@ -60,6 +60,9 @@ return [
         'exclamation'   => 'Exclamation icon',
         'marker'        => 'Marker icon',
         'question'      => 'Question icon',
+    ],
+    'index'         => [
+        'title' => 'Markers of :name',
     ],
     'pitches'       => [
         'poly'  => 'Draw custom polyong shapes to represent borders and other uneven shapes.',

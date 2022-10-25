@@ -28,6 +28,9 @@ return [
     'hints'         => [
         'is_shown'  => 'If checked, the group markers will be shown on the map by default.',
     ],
+    'index'         => [
+        'title' => 'Groups of :name',
+    ],
     'pitch'         => [
         'error' => 'Max number of groups reached.',
         'until' => 'Create up to :max groups to each map.',
