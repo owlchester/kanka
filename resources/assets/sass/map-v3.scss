@@ -124,6 +124,11 @@ $mapSidebarWidth: 380px;
         }
     }
 
+    .toast-container {
+        bottom: 60px;
+        z-index: 910;
+    }
+
   .main-sidebar {
     //background-color: #dedede;
     color: #efefef;
@@ -203,7 +208,7 @@ $mapSidebarWidth: 380px;
     .btn-mode-enable {
       display: inline-block;
     }
-    .btn-mode-disable {
+    .btn-mode-disable, .btn-mode-drawing {
       display: none;
     }
   }
@@ -226,6 +231,16 @@ $mapSidebarWidth: 380px;
       display: inline-block;
     }
   }
+}
+#map-body.map-drawing-mode {
+    .map-mode {
+        .btn-mode-enable, .btn-mode-disable {
+            display: none;
+        }
+        .btn-mode-drawing {
+            display: inline-block;
+        }
+    }
 }
 
 

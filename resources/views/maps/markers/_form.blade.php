@@ -59,13 +59,13 @@ $sizeOptions = [
                     <div class="form-group">
                         <label>{{ __('maps/markers.fields.custom_icon') }}</label>
                             {!! Form::text(
-                                'custom_icon', 
+                                'custom_icon',
                                 \App\Facades\FormCopy::field('custom_icon')->string(),
-                                ['class' => 'form-control', 
+                                ['class' => 'form-control',
                                 'placeholder' => __('maps/markers.placeholders.custom_icon', ['example1' => '"fa-solid fa-gem"', 'example2' => '"ra ra-sword"']),
                                 'list' => 'map-marker-icon-list',
-                                'autocomplete' => 'off', 
-                                ($campaignService->campaign()->boosted() ? null : 'disabled')]) 
+                                'autocomplete' => 'off',
+                                ($campaignService->campaign()->boosted() ? null : 'disabled')])
                             !!}
                             <p class="help-block">{!! __('maps/markers.helpers.custom_icon', ['rpgawesome' => '<a href="https://nagoshiashumari.github.io/Rpg-Awesome/" target="_blank">RPG Awesome</a>', 'fontawesome' => '<a href="https://fontawesome.com/search?m=free&s=solid" target="_blank">Font Awesome</a>']) !!}</p>
                         @if (!$campaignService->campaign()->boosted())
@@ -140,8 +140,27 @@ $sizeOptions = [
                 <label>{{ __('maps/markers.fields.custom_shape') }}</label>
                 @if ($campaignService->campaign()->boosted())
                     @if(isset($model))
-                        <p class="help-block">{{ __('maps/markers.helpers.polygon.' . ($activeTab == 5 ? 'edit' : 'new')) }}</p>
+                        <p class="help-block">
+                            {{ __('maps/markers.helpers.polygon.' . ($activeTab == 5 ? 'edit' : 'new')) }}
+
+                            <a href="#" id="reset-polygon" class="btn btn-danger pull-right btn-sm mb-1" style="">
+                                <i class="fa-solid fa-eraser" aria-hidden="true"></i>
+                                {{ __('maps/markers.actions.reset-polygon') }}
+                            </a>
+                        </p>
+                    @else
+                        <div>
+                            <a href="#" id="start-drawing-polygon" class="btn btn-info" data-toast="{{ __('maps/explore.notifications.start-drawing') }}">
+                                <i class="fa-solid fa-pencil" aria-hidden="true"></i>
+                                {{ __('maps/markers.actions.start-drawing') }}
+                            </a>
+                            <a href="#" id="reset-polygon" class="btn btn-danger pull-right" style="display: none">
+                                <i class="fa-solid fa-eraser" aria-hidden="true"></i>
+                                {{ __('maps/markers.actions.reset-polygon') }}
+                            </a>
+                        </div>
                     @endif
+                    </p>
                     {!! Form::textarea('custom_shape', \App\Facades\FormCopy::field('custom_shape')->string(), ['class' => 'form-control', 'rows' => 2, 'placeholder' => __('maps/markers.placeholders.custom_shape')]) !!}
                 @else
                     @include('layouts.callouts.boost', ['texts' => [__('maps/markers.pitches.poly')], 'campaign' => $campaignService->campaign()])

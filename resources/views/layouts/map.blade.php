@@ -116,6 +116,8 @@ $specificTheme = null;
         </div>
     </div>
 
+    <div class="toast-container"></div>
+
     <!-- Modal -->
     @includeWhen(auth()->check(), 'layouts.modals.delete')
 

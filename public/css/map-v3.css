@@ -179,6 +179,10 @@
 #map-body .sidebar .entity-content a {
   color: var(--link-text);
 }
+#map-body .toast-container {
+  bottom: 60px;
+  z-index: 910;
+}
 #map-body .main-sidebar {
   color: #efefef;
   overflow: hidden;
@@ -247,7 +251,7 @@
 #map-body .map-mode .btn-mode-enable {
   display: inline-block;
 }
-#map-body .map-mode .btn-mode-disable {
+#map-body .map-mode .btn-mode-disable, #map-body .map-mode .btn-mode-drawing {
   display: none;
 }
 #map-body .modal-body .content .marker-entry {
@@ -262,6 +266,13 @@
   display: none;
 }
 #map-body.map-edit-mode .map-mode .btn-mode-disable {
+  display: inline-block;
+}
+
+#map-body.map-drawing-mode .map-mode .btn-mode-enable, #map-body.map-drawing-mode .map-mode .btn-mode-disable {
+  display: none;
+}
+#map-body.map-drawing-mode .map-mode .btn-mode-drawing {
   display: inline-block;
 }
 

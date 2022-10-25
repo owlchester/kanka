@@ -7,6 +7,10 @@ var mapPageBody;
 var sidebarMap, sidebarMarker;
 var markerModal, markerModalContent, markerModalTitle;
 
+// Polygon layout style
+var eraseTempPolygonBtn;
+var polygonStrokeWeight, polygonStrokeColour, polygonStrokeOpacity, polygonColour, polygonOpacity;
+
 $(document).ready(function() {
 
     window.map.invalidateSize();
@@ -41,6 +45,7 @@ $(document).ready(function() {
     initMapExplore();
     initMapForms();
     initMapEntryClick();
+    initPolygonDrawing();
 });
 
 /**
@@ -181,7 +186,6 @@ function initLegend()
 
     $('a.sidebar-toggle').click(function () {
         invalidateMapOnSidebar();
-        //console.log('wat');
     });
 }
 function invalidateMapOnSidebar() {
@@ -204,12 +208,111 @@ function initMapEntryClick() {
 function registerModes() {
     $('.btn-mode-enable').click(function (e) {
         e.preventDefault();
-        window.explodeEditMode = true;
+        window.exploreEditMode = true;
         $('body').addClass('map-edit-mode');
     });
     $('.btn-mode-disable').click(function (e) {
         e.preventDefault();
-        window.explodeEditMode = false;
+        window.exploreEditMode = false;
         $('body').removeClass('map-edit-mode');
     });
+    $('.btn-mode-drawing').click(function (e) {
+        e.preventDefault();
+        window.drawingPolygon = false;
+        $('body').removeClass('map-drawing-mode');
+        $('#marker-modal').modal('show');
+    });
+
+
+}
+
+function initPolygonDrawing() {
+
+    $('#start-drawing-polygon').on('click', function (e) {
+        e.preventDefault();
+        window.drawingPolygon = true;
+        window.showToast($(this).data('toast'));
+        $('body').addClass('map-drawing-mode');
+        $('#marker-modal').modal('hide');
+    });
+
+    eraseTempPolygonBtn = $('#reset-polygon');
+    eraseTempPolygonBtn.click(function (e) {
+        e.preventDefault();
+        if (window.polygon) {
+            window.map.removeLayer(window.polygon);
+        }
+        $('textarea[name="custom_shape"]').val('');
+        eraseTempPolygonBtn.hide();
+    });
+}
+
+window.addPolygonPosition = function(lat, lng) {
+    let shape = $('textarea[name="custom_shape"]');
+    let current = shape.val();
+    if (current.length > 0) {
+        current += ' ';
+    }
+    shape.val(current + lat + ',' + lng);
+
+    // Redraw the polygon
+    let coords = shape.val();
+    let blocks = coords.trim(" ").split(" ");
+    let coordsData = [];
+
+    blocks.forEach((block) => {
+        let segments = block.split(',');
+        coordsData.push([segments[0], segments[1]]);
+    }, coordsData);
+
+    // Remove previous polygon if it was already drawn
+    if (window.polygon) {
+        window.map.removeLayer(window.polygon);
+    }
+
+    // Background colour as defined by the user if they are so far?
+    getPolygonStyle();
+
+    window.polygon = L.polygon(coordsData, {
+        weight: polygonStrokeWeight,
+        color: polygonStrokeColour,
+        opacity: polygonStrokeOpacity,
+        fillColor: polygonColour,
+        fillOpacity: polygonOpacity,
+        linecap: 'round',
+        linejoin: 'round',
+    });
+    window.polygon.addTo(window.map);
+    eraseTempPolygonBtn.show();
+}
+
+function getPolygonStyle() {
+    polygonStrokeColour = $('input[name="polygon_style[stroke]"]').val();
+    if (!polygonStrokeColour || polygonStrokeColour.length < 7) {
+        polygonStrokeColour = 'red';
+    }
+
+    polygonStrokeOpacity = $('input[name="polygon_style[stroke-opacity]"]').val();
+    if (isNaN(polygonStrokeOpacity) || !polygonStrokeOpacity) {
+        polygonStrokeOpacity = 1;
+    } else {
+        polygonStrokeOpacity = polygonStrokeOpacity / 100;
+    }
+
+    polygonColour = $('input[name="colour"]').val();
+    if (!polygonColour || polygonColour.length < 7) {
+        polygonColour = 'red';
+    }
+
+    polygonOpacity = $('input[name="opacity"]').val();
+    if (isNaN(polygonOpacity)) {
+        polygonOpacity = 0.5;
+    } else {
+        polygonOpacity = polygonOpacity / 100;
+    }
+
+    polygonStrokeWeight = $('input[name="polygon_style[stroke-width]"]').val();
+    if (isNaN(polygonStrokeWeight) || !polygonStrokeWeight) {
+        polygonStrokeWeight = 1;
+    }
 }
