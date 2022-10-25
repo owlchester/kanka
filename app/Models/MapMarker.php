@@ -182,7 +182,7 @@ class MapMarker extends Model
      */
     public function datagridMarkerIcon(): string
     {
-        if ($this->shape_id == 5 || $this->shape_id == 3 || $this->shape_id == 2) {
+        if (in_array($this->shape_id, [2,3,5])) {
             return '';
         }
 
