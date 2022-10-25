@@ -53,7 +53,8 @@ use Illuminate\Database\Eloquent\Collection;
  * @property Quest $quest
  * @property Attribute[]|Collection $allAttributes
  * @property Attribute[]|Collection $starredAttributes
- * @property Relation[]|Collection $starredRelations
+ * @property Relation[]|Collection $pinnedRelations
+ * @property EntityAsset[]|Collection $pinnedFiles
  * @property Relation[]|Collection $relations
  * @property EntityEvent[]|Collection $elapsedEvents
  * @property EntityEvent[]|Collection $calendarDateEvents
@@ -376,6 +377,14 @@ trait EntityRelations
         return $this->hasMany('App\Models\EntityFile', 'entity_id', 'id');
     }
 
+    public function pinnedFiles()
+    {
+        return $this->assets()
+            ->where('is_pinned', 1)
+            ->where('type_id', 1)
+        ;
+    }
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
@@ -508,7 +517,7 @@ trait EntityRelations
     /**
      * @return mixed
      */
-    public function starredRelations()
+    public function pinnedRelations()
     {
         return $this->relationships()
             ->stared()

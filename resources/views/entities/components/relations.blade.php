@@ -3,7 +3,7 @@
  * @var \App\Models\MiscModel $model
  * @var \App\Models\Relation $relation
  */
-$models = isset($entity) ? $entity->starredRelations : $model->entity->starredRelations;
+$models = isset($entity) ? $entity->pinnedRelations : $model->entity->pinnedRelations;
 $previousRelation = null;
 
 if (count($models) === 0) {
