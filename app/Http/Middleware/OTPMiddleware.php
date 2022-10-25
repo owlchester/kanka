@@ -29,7 +29,7 @@ class OTPMiddleware
         if ($request->user() && Identity::isImpersonating()) {
             return $next($request);
         }
-        // Send requested loggin User to Google2FA Authentication Support
+        // Send requested logging User to Google2FA Authentication Support
         /** @var Google2FAAuthentication $authentication */
         $authentication = app(Google2FAAuthentication::class)->boot($request);
 
