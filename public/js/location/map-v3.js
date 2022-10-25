@@ -301,7 +301,7 @@ function initLegend() {
     window[$(this).data('id')].openPopup();
   });
   $('a.sidebar-toggle').click(function () {
-    invalidateMapOnSidebar(); //console.log('wat');
+    invalidateMapOnSidebar();
   });
 }
 
