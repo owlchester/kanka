@@ -40,12 +40,10 @@ return [
         'maps'              => 'Maps',
         'max_zoom'          => 'Maximal zoom',
         'min_zoom'          => 'Minimal zoom',
-        'name'              => 'Name',
         'tabs'              => [
             'coordinates'   => 'Coordinates',
             'marker'        => 'Marker',
         ],
-        'type'              => 'Type',
     ],
     'helpers'       => [
         'center'                => 'Changing the following values will control which area of the map is focused on. Leaving these values empty will result in the center of the map being focued on.',
@@ -62,9 +60,6 @@ return [
         'min_zoom'              => 'The most a map can be zoomed out of. The default value is :default, while the lowest allowed value is :min.',
         'missing_image'         => 'Save the map with an image before being able to add layers and markers.',
         'nested_without'        => 'Displaying all maps that don\'t have a parent map. Click on a row to see the children maps.',
-    ],
-    'index'         => [
-        'title' => 'Maps',
     ],
     'maps'          => [
         'title' => 'Maps of :name',

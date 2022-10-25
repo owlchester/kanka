@@ -1,7 +1,7 @@
 @extends('layouts.' . (request()->ajax() ? 'ajax' : 'app'), [
     'title' => __('campaigns.invites.create.title', ['campaign' => $campaign->name]),
     'breadcrumbs' => [
-        ['url' => route('campaign'), 'label' => __('campaigns.index.title')],
+        ['url' => route('campaign'), 'label' => __('entities.campaign')],
         ['url' => route('campaign_users.index'), 'label' => __('campaigns.show.tabs.members')]
     ]
 ])

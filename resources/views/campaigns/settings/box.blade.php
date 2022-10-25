@@ -13,7 +13,7 @@
         </div>
     </div>
 @else
-    <div class="box box-module box-solid flex flex-wrap flex-col select-none {{ $campaign->enabled($module) ? 'box-success' : 'box-default' }}" id="{{ $module }}" data-url="{{ route('campaign.modules.toggle', ['module' => $module]) }}">
+    <div class="box box-module box-solid flex flex-wrap flex-col select-none {{ $campaign->enabled($module) ? 'box-success' : 'box-default' }} {{ isset($deprecated) ? 'box-deprecated' : null }}" id="{{ $module }}" data-url="{{ route('campaign.modules.toggle', ['module' => $module]) }}">
         <div class="box-header with-border">
             <h3 class="box-title">
                 <i class="{{ $icon }}"></i> {{ __('entities.' . $module) }}
@@ -25,5 +25,13 @@
             <i class="fa-solid fa-spin fa-spinner fa-2x"></i>
             </div>
         </div>
+        @if (isset($deprecated))
+            <div class="box-footer text-center text-sm">
+                <span data-toggle="tooltip" title="{{ __('campaigns.settings.deprecated.help') }}"><i class="fa-solid fa-exclamation-triangle"></i>
+                    {{ __('campaigns.settings.deprecated.title') }}
+                </span>
+                <span class="visible-xs visible-sm">{{ __('campaigns.settings.deprecated.help') }}</span>
+            </div>
+        @endif
     </div>
 @endif

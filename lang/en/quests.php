@@ -28,15 +28,11 @@ return [
         'character'     => 'Instigator',
         'copy_elements' => 'Copy elements attached to the quest',
         'date'          => 'Date',
-        'description'   => 'Description',
         'element_role'  => 'Role',
-        'image'         => 'Image',
         'is_completed'  => 'Completed',
-        'name'          => 'Name',
         'quest'         => 'Parent Quest',
         'quests'        => 'Sub Quests',
         'role'          => 'Role',
-        'type'          => 'Type',
     ],
     'helpers'       => [
         'is_completed'      => 'Select if the quest is considered as completed.',
@@ -44,9 +40,6 @@ return [
     ],
     'hints'         => [
         'quests'    => 'A web of interlocking quests can be built using the Parent Quest field.',
-    ],
-    'index'         => [
-        'title' => 'Quests',
     ],
     'placeholders'  => [
         'date'      => 'Real world date for the quest',

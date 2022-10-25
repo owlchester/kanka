@@ -5,6 +5,9 @@
 
 @section('content')
     <p>
+        <strong>Subscription issue</strong>
+    </p>
+    <p>
         {{ __('emails/subscriptions/upcoming.dear', ['name' => $user->name]) }},
     </p>
     <p>

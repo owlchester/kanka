@@ -444,10 +444,13 @@ class Entity extends Model
      */
     public function hasPins(): bool
     {
-        if ($this->starredRelations->isNotEmpty()) {
+        if ($this->pinnedRelations->isNotEmpty()) {
             return true;
         }
         if ($this->accessAttributes() && $this->starredAttributes()->isNotEmpty()) {
+            return true;
+        }
+        if ($this->pinnedFiles->isNotEmpty()) {
             return true;
         }
         return false;

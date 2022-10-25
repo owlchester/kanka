@@ -3,7 +3,7 @@
     @include('entities.components.menu_link_header', [
         'model' => $model,
         'breadcrumb' => [
-            ['url' => Breadcrumb::index($name), 'label' => __($name . '.index.title')],
+            ['url' => Breadcrumb::index($name), 'label' => __('entities.' . $name)],
             null
         ]
     ])

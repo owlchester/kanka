@@ -9,7 +9,7 @@
     'title' => __('maps/markers.create.title', ['name' => $map->name]),
     'description' => '',
     'breadcrumbs' => [
-        ['url' => route('maps.index'), 'label' => __('maps.index.title')],
+        ['url' => route('maps.index'), 'label' => __('entities.maps')],
         ['url' => $map->entity->url('show'), 'label' => $map->name],
         __('maps/markers.create.title')
     ]

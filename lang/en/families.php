@@ -10,11 +10,7 @@ return [
     'fields'        => [
         'families'  => 'Sub Families',
         'family'    => 'Parent Family',
-        'image'     => 'Image',
-        'location'  => 'Location',
         'members'   => 'Members',
-        'name'      => 'Name',
-        'type'      => 'Type',
     ],
     'helpers'       => [
         'descendants'       => 'This list contains all families which are descendants of this family, and not only those directly under it.',
@@ -22,9 +18,6 @@ return [
     ],
     'hints'         => [
         'members'   => 'Members of a family are listed here. A character can be added to a family by editing the desired character and using the "Family" dropdown.',
-    ],
-    'index'         => [
-        'title' => 'Families',
     ],
     'members'       => [
         'helpers'   => [

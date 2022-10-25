@@ -1,15 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+@extends('emails.base', [
+    'utmSource' => 'subscription',
+    'utmCampaign' => 'expiring-card'
+])
 
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
-</head>
-<body>
+@section('content')
     <p>
-        Dear {{ $user->name }},
+        <strong>Subscription issue</strong>
     </p>
-    <p>We couldn't charge your card 3 times in a row, and subsequently your subscription has been automatically cancelled. We hope to see you back soon!
+    <p>
+        {{ __('emails/subscriptions/upcoming.dear', ['name' => $user->name]) }},
     </p>
-    <p>The Kanka Team</p>
-</body>
-</html>
+    <p>
+        This is an automatic notification. We tried and failed to charge your card three times, and subsequently your subscription has been automatically cancelled. We hope to see you back soon!
+    </p>
+
+    <p>
+        {{ __('emails/subscriptions/upcoming.closing') }}<br />
+        The Kanka Team
+    </p>
+@endsection

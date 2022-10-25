@@ -24,7 +24,7 @@ class Ability extends Layout
             ],
             'type' => [
                 'key' => 'type',
-                'label' => 'timelines.fields.type',
+                'label' => 'crud.fields.type',
             ],
             'ability' => [
                 'key' => 'ability.name',

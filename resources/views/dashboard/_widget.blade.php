@@ -12,7 +12,7 @@ if ($widget->entity) {
 ?>
 
 
-<div class="col-md-{{ $widget->colSize() }} widget-draggable">
+<div class="col-md-{{ $widget->colSize() }}">
     <div class="widget widget-{{ $widget->widget }} cover-background"
          data-toggle="ajax-modal"
     @if($widget->widget == \App\Models\CampaignDashboardWidget::WIDGET_CAMPAIGN)
@@ -29,6 +29,9 @@ if ($widget->entity) {
     @endif
     >
         <div class="widget-overlay">
+            <div class="handle">
+                <i class="fa-solid fa-arrows-v" aria-hidden="true"></i>
+            </div>
             @if ($widget->widget != \App\Models\CampaignDashboardWidget::WIDGET_HEADER)
                 <span class="widget-type">
                      {!! $widget->widgetIcon() !!}

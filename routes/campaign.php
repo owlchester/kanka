@@ -69,10 +69,8 @@ Route::get('/organisations/tree', 'OrganisationController@tree')->name('organisa
 Route::get('/families/{family}/members', 'FamilyController@members')->name('families.members');
 Route::get('/families/{family}/families', 'FamilyController@families')->name('families.families');
 Route::get('/families/tree', 'FamilyController@tree')->name('families.tree');
-//Route::get('/families/{family}/map-points', 'FamilyController@mapPoints')->name('families.map-points');
 
 // Items menu
-//Route::get('/items/{item}/map-points', 'ItemController@mapPoints')->name('items.map-points');
 Route::get('/items/{item}/inventories', 'ItemController@inventories')->name('items.inventories');
 Route::get('/items/tree', 'ItemController@tree')->name('items.tree');
 Route::get('/items/{item}/items', 'ItemController@items')->name('items.items');
@@ -80,16 +78,17 @@ Route::get('/items/{item}/items', 'ItemController@items')->name('items.items');
 // Quest menus
 Route::get('/quests/tree', 'QuestController@tree')->name('quests.tree');
 Route::get('/quests/{quest}/quests', 'QuestController@quests')->name('quests.quests');
-//Route::get('/quests/{quest}/map-points', 'QuestController@mapPoints')->name('quests.map-points');
 
 // Races
 Route::get('/races/{race}/characters', 'RaceController@characters')->name('races.characters');
 Route::get('/races/{race}/races', 'RaceController@races')->name('races.races');
 Route::get('/races/tree', 'RaceController@tree')->name('races.tree');
-//Route::get('/races/{race}/map-points', 'RaceController@mapPoints')->name('races.map-points');
+
+// Creatures
+Route::get('/creatures/{creature}/creatures', 'CreatureController@creatures')->name('creatures.creatures');
+Route::get('/creatures/tree', 'CreatureController@tree')->name('creatures.tree');
 
 // Journal
-//Route::get('/journals/{journal}/map-points', 'JournalController@mapPoints')->name('journals.map-points');
 Route::get('/journals/{journal}/journals', 'JournalController@journals')->name('journals.journals');
 
 Route::get('/events/tree', 'EventController@tree')->name('events.tree');
@@ -277,6 +276,7 @@ Route::resources([
     'timelines.timeline_elements' => 'Timelines\TimelineElementController',
     'campaign_invites' => 'CampaignInviteController',
     'races' => 'RaceController',
+    'creatures' => 'CreatureController',
     'relations' => 'RelationController',
 
     // Entities
@@ -351,6 +351,7 @@ Route::get('/search/dice-rolls', 'Search\MiscController@diceRolls')->name('dice_
 Route::get('/search/quests', 'Search\MiscController@quests')->name('quests.find');
 Route::get('/search/conversations', 'Search\MiscController@conversations')->name('conversations.find');
 Route::get('/search/races', 'Search\MiscController@races')->name('races.find');
+Route::get('/search/creatures', 'Search\MiscController@creatures')->name('creatures.find');
 Route::get('/search/abilities', 'Search\MiscController@abilities')->name('abilities.find');
 Route::get('/search/maps', 'Search\MiscController@maps')->name('maps.find');
 Route::get('/search/markers', 'Search\MiscController@markers')->name('markers.find');

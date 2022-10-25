@@ -1,7 +1,7 @@
 @extends('layouts.app', [
     'title' => trans($name . '.create.title', ['name' => $parent->name]),
     'breadcrumbs' => [
-        ['url' => Breadcrumb::index('quests'), 'label' => trans('quests.index.title')],
+        ['url' => Breadcrumb::index('quests'), 'label' => __('entities.quests')],
         ['url' => route('quests.show', $parent->id), 'label' => $parent->name],
         ['url' => route('quests.' . $menu, $parent->id), 'label' => trans('quests.show.tabs.' . $menu)],
         trans('crud.create'),

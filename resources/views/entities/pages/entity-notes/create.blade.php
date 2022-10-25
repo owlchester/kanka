@@ -2,7 +2,7 @@
     'title' => __('entities/notes.create.title', ['name' => $entity->name]),
     'description' => '',
     'breadcrumbs' => [
-        ['url' => route($parentRoute . '.index'), 'label' => trans($parentRoute . '.index.title')],
+        ['url' => route($parentRoute . '.index'), 'label' => __('entities.' . $parentRoute)],
         ['url' => route($parentRoute . '.show', $entity->child->id), 'label' => $entity->name],
         __('entities/notes.actions.add')
     ]
@@ -17,7 +17,6 @@
 @section('content')
     @include('entities.pages.entity-notes._form')
 
-    @include('entities.pages.entity-notes._save-options')
 
 @endsection
 

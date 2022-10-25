@@ -24,7 +24,7 @@ class Timeline extends Layout
             ],
             'type' => [
                 'key' => 'type',
-                'label' => 'timelines.fields.type',
+                'label' => 'crud.fields.type',
             ],
             'timeline' => [
                 'key' => 'timeline.name',

@@ -19,7 +19,7 @@ class Journal extends Layout
             ],
             'journal' => [
                 'key' => 'name',
-                'label' => 'journals.fields.name',
+                'label' => 'entities.journal',
                 'render' => Standard::ENTITYLINK,
             ],
             'author' => [

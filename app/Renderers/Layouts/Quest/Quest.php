@@ -24,7 +24,7 @@ class Quest extends Layout
             ],
             'type' => [
                 'key' => 'type',
-                'label' => 'quests.fields.type',
+                'label' => 'crud.fields.type',
             ],
             'date' => [
                 'key' => 'date',

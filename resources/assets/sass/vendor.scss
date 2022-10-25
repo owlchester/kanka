@@ -102,6 +102,13 @@
   color: white;
   mix-blend-mode: difference;
 }
+.select2-container--default .badge {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    margin-right: 6px;
+    border-radius: 2px;
+}
 
 // Need the select2 container above popovers and tooltips
 .select2-container--open {

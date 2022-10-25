@@ -2,7 +2,7 @@
 @extends('layouts.' . ($ajax ? 'ajax' : 'app'), [
     'title' => __('campaigns/submissions.edit.title', ['name' => $submission->user->name]),
     'breadcrumbs' => [
-        ['url' => route('campaign'), 'label' => __('campaigns.index.title')],
+        ['url' => route('campaign'), 'label' => __('entities.campaign')],
         ['url' => route('campaign_submissions.index'), 'label' => __('campaigns.show.tabs.applications')],
         $submission->user->name,
     ],

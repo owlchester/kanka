@@ -17,7 +17,7 @@
         @include('entities.components.header', [
             'model' => $timeline,
             'breadcrumb' => [
-        ['url' => Breadcrumb::index('timelines'), 'label' => __('timelines.index.title')],
+        ['url' => Breadcrumb::index('timelines'), 'label' => __('entities.timelines')],
         ['url' => route('timelines.show', $timeline->id), 'label' => $timeline->name],
         __('timelines.reorder.title')
             ]

@@ -1,6 +1,5 @@
 @extends('layouts.app', [
     'title' => __('races.races.title', ['name' => $model->name]),
-    'description' => __('races.races.description'),
     'breadcrumbs' => false,
     'mainTitle' => false,
     'miscModel' => $model,
@@ -15,7 +14,7 @@
         @include('entities.components.header', [
             'model' => $model,
             'breadcrumb' => [
-                ['url' => Breadcrumb::index($name), 'label' => __($name . '.index.title')],
+                ['url' => Breadcrumb::index($name), 'label' => __('entities.' . $name)],
                 null
             ]
         ])

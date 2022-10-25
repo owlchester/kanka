@@ -34,6 +34,7 @@ class CampaignSetting extends Model
         'maps',
         'timelines',
         'inventories',
+        'creatures',
     ];
 
     /**

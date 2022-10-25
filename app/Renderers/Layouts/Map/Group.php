@@ -8,7 +8,7 @@ use App\Renderers\Layouts\Layout;
 class Group extends Layout
 {
     /**
-     * Available columns
+     * Available columnsname
      * @return array[]
      */
     public function columns(): array

@@ -3,7 +3,7 @@
     'title' => trans('entities/image.replace.title', ['name' => $entity->name]),
     'description' => '',
     'breadcrumbs' => [
-        ['url' => $entity->url('index'), 'label' => __($entity->pluralType() . '.index.title')],
+        ['url' => $entity->url('index'), 'label' => __('entities.' . $entity->pluralType())],
         ['url' => $entity->url('show'), 'label' => $entity->name],
         __('entities/image.replace.breadcrumb')
     ],

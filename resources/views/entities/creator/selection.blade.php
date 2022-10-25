@@ -67,6 +67,12 @@
                 </a>
         @endif
 
+        @if (isset($entities['creatures']))
+            <a href="#" class="rounded-lg quick-creator-selection" data-toggle="entity-creator" data-url="{{ route('entity-creator.form', ['type' => 'creatures']) }}" data-entity-type="creature">
+                <i class="ra ra-raven ra-2x"></i>
+                {{ __('entities.creature') }}
+            </a>
+        @endif
         @if (isset($entities['races']))
                 <a href="#" class="rounded-lg quick-creator-selection" data-toggle="entity-creator" data-url="{{ route('entity-creator.form', ['type' => 'races']) }}" data-entity-type="race">
                     <i class="ra ra-wyvern ra-2x"></i>

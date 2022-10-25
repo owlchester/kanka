@@ -332,6 +332,7 @@ return [
         'ability'       => 'Choose an ability',
         'calendar'      => 'Choose a calendar',
         'character'     => 'Choose a character',
+        'creature'      => 'Choose a creature',
         'entity'        => 'Entity',
         'event'         => 'Choose an event',
         'family'        => 'Choose a family',

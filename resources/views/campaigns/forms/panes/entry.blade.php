@@ -13,5 +13,5 @@
         {!! Form::textarea('entryForEdition', null, ['class' => 'form-control html-editor', 'id' => 'entry', 'name' => 'entry']) !!}
     </div>
 
-    @include('cruds.fields.image')
+    @include('cruds.fields.image', ['campaignImage' => true, 'imageLabel' => 'campaigns.fields.image'])
 </div>

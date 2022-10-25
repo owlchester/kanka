@@ -24,7 +24,7 @@ class Organisation extends Layout
             ],
             'type' => [
                 'key' => 'type',
-                'label' => 'organisations.fields.type',
+                'label' => 'crud.fields.type',
             ],
             'organisation' => [
                 'key' => 'organisation.name',

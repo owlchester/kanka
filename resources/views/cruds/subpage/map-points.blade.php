@@ -6,7 +6,7 @@
     'title' => __('entities/map-points.title', ['name' => $model->name]),
     'description' => '',
     'breadcrumbs' => [
-        ['url' => route($name . '.index'), 'label' => __($name . '.index.title')],
+        ['url' => route($name . '.index'), 'label' => __('entities.' . $name)],
         ['url' => route($name . '.show', $model), 'label' => $model->name],
         __('crud.tabs.map-points')
     ],

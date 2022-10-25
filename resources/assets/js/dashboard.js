@@ -93,7 +93,8 @@ function initDashboardAdminUI() {
     });
 
     let el = document.getElementById('widgets');
-    let list = new Sortable(el, {
+    new Sortable(el, {
+        handle: '.handle',
         onEnd: function (/**Event*/evt) {
             // Allow ajax requests to use the X_CSRF_TOKEN for deletes
             $.post({

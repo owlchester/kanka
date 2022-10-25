@@ -24,7 +24,7 @@ class Event extends Layout
             ],
             'type' => [
                 'key' => 'type',
-                'label' => 'events.fields.type',
+                'label' => 'crud.fields.type',
             ],
             'date' => [
                 'key' => 'date',

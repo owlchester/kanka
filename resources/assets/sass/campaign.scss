@@ -59,6 +59,19 @@ ul.sidebar-sortable, ul.sidebar-sortable ul {
   }
 }
 
+.campaign-settings {
+    .box {
+        margin-bottom: 0;
+    }
+    .box-success {
+        border: 1px solid #00a65a;
+        .box-header {
+            color: #fff;
+            background-color: #00a65a;
+        }
+    }
+}
+
 @media(max-width: 767px) {
   .form-mobile-inline {
     .form-control {
