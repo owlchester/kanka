@@ -7,6 +7,9 @@ return [
         'save_and_explore'  => 'Save and Explore',
         'update'            => 'Edit marker',
     ],
+    'bulks'         => [
+        'delete'    => '{1} Removed :count marker.|[2,*] Removed :count markers.',
+    ],
     'create'        => [
         'success'   => 'Marker :name created.',
         'title'     => 'New Marker',
@@ -21,11 +24,12 @@ return [
     'fields'        => [
         'circle_radius' => 'Circle radius',
         'copy_elements' => 'Copy elements',
-        'custom_icon'   => 'Custom Icon',
+        'custom_icon'   => 'Custom Icon',        
         'custom_shape'  => 'Custom Shape',
         'font_colour'   => 'Icon Colour',
         'group'         => 'Marker Group',
         'is_draggable'  => 'Draggable',
+        'icon'          => 'Icon',
         'latitude'      => 'Latitude',
         'longitude'     => 'Longitude',
         'opacity'       => 'Opacity',

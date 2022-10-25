@@ -9,18 +9,21 @@
         <p>{{ __('maps.helpers.missing_image') }}</p>
     </div>
 @else
-    <p class="help-block">
-        {{ __('maps/markers.helpers.base') }}
-    </p>
+    @if (auth()->check() && !auth()->user()->settings()->get('tutorial_map_markers'))
+        <div class="alert alert-info tutorial">
+        <span>
+            <button type="button" class="close banner-notification-dismiss" data-dismiss="alert" aria-hidden="true" data-url="{{ route('settings.banner', ['code' => 'map_markers', 'type' => 'tutorial']) }}">×</button>
+
+            <p>{{ __('maps/markers.helpers.base') }}</p>
+
+            <p>{!!  __('crud.helpers.learn_more', ['documentation' => link_to('https://docs.kanka.io/en/latest/entities/maps/markers.html', '<i class="fa-solid fa-external-link" aria-hidden="true"></i> ' . __('front.menu.documentation'), ['target' => '_blank'], null, false)])!!}</p>
+        </span>
+        </div>
+    @endif
 
     <div class="map" id="map{{ $model->id }}" style="width: 100%; height: 100%;">
         <a href="{{ route('maps.explore', $model) }}" target="_blank" class="btn btn-primary btn-map-explore"><i
                 class="fa-solid fa-map"></i> {{ __('maps.actions.explore') }}</a>
-    </div>
-
-
-    <div class="map-legend">
-        @include('maps.explore.legend', ['map' => $model])
     </div>
 
     @section('scripts')
@@ -53,30 +56,30 @@
         <script type="text/javascript">
             window.map = map{{ $model->id }};
             /** Add markers outside of a group directly to the page **/
-@foreach ($model->markers as $marker)
-    @if ($marker->visible() && empty($marker->group_id))
-        @if ($model->isClustered())
-            clusterMarkers{{ $model->id }}.addLayer(marker{{ $marker->id }});
-        @else
-            marker{{ $marker->id }}.addTo(map{{ $model->id }});
-        @endif
-    @elseif (!empty($marker->group_id))
-        marker{{ $marker->id }}.addTo(group{{ $marker->group_id }})
-    @endif
-@endforeach
-
-@if ($model->isClustered())
-            map{{ $model->id }}.addLayer(clusterMarkers{{ $model->id }});
-
-            /** Add the groups to the cluster **/
-            clusterMarkers{{ $model->id }}.checkIn({{ $model->checkinGroups() }});
-
-            /** Add the groups to the map **/
-            @foreach ($model->groups as $group)
-                @if (!$group->is_shown) @continue @endif
-                group{{ $group->id }}.addTo(map{{ $model->id }});
+            @foreach ($model->markers as $marker)
+                @if ($marker->visible() && empty($marker->group_id))
+                    @if ($model->isClustered())
+                        clusterMarkers{{ $model->id }}.addLayer(marker{{ $marker->id }});
+                    @else
+                        marker{{ $marker->id }}.addTo(map{{ $model->id }});
+                    @endif
+                @elseif (!empty($marker->group_id))
+                    marker{{ $marker->id }}.addTo(group{{ $marker->group_id }})
+                @endif
             @endforeach
-@endif
+
+            @if ($model->isClustered())
+                map{{ $model->id }}.addLayer(clusterMarkers{{ $model->id }});
+
+                /** Add the groups to the cluster **/
+                clusterMarkers{{ $model->id }}.checkIn({{ $model->checkinGroups() }});
+
+                /** Add the groups to the map **/
+                @foreach ($model->groups as $group)
+                    @if (!$group->is_shown) @continue @endif
+                    group{{ $group->id }}.addTo(map{{ $model->id }});
+                @endforeach
+            @endif
 
             map{{ $model->id }}.on('click', function(ev) {
                 let position = ev.latlng;
@@ -147,37 +150,33 @@
     <div class="modal fade" id="marker-modal" role="dialog" aria-labelledby="deleteConfirmLabel">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <button type="button" class="close" data-dismiss="modal"
-                            aria-label="{{ __('crud.delete_modal.close') }}"><span
-                                aria-hidden="true">&times;</span></button>
-                        <h4>
-                            {{ __('maps/markers.create.title', ['name' => $model->name]) }}
-                        </h4>
-                    </div>
-                    <div class="panel-body">
+                <div class="panel-heading">
+                    <button type="button" class="close" data-dismiss="modal"
+                        aria-label="{{ __('crud.delete_modal.close') }}"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4>
+                        {{ __('maps/markers.create.title', ['name' => $model->name]) }}
+                    </h4>
+                </div>
+                <div class="panel-body">
+                    {!! Form::open([
+                        'route' => ['maps.map_markers.store', $model],
+                        'method' => 'POST',
+                        //'enctype' => 'multipart/form-data',
+                        //'id' => 'map-marker-new-form'
+                        'class' => 'ajax-subform',
+                    ]) !!}
+                    @include('maps.markers._form', ['model' => null, 'map' => $model, 'activeTab' => 1, 'dropdownParent' => '#marker-modal'])
 
-                        {!! Form::open([
-    'route' => ['maps.map_markers.store', $model],
-    'method' => 'POST',
-    //'enctype' => 'multipart/form-data',
-    //'id' => 'map-marker-new-form'
-    'class' => 'ajax-subform',
-]) !!}
-                        @include('maps.markers._form', ['model' => null, 'map' => $model, 'activeTab' => 1, 'dropdownParent' => '#marker-modal'])
-
-                        <div class="form-group">
-                            <div class="submit-group">
-                                <button class="btn btn-success">{{ __('crud.save') }}</button>
-                            </div>
-                            <div class="submit-animation" style="display: none;">
-                                <button class="btn btn-success" disabled><i class="fa-solid fa-spinner fa-spin"></i></button>
-                            </div>
+                    <div class="form-group">
+                        <div class="pull-left">
+                            @include('partials.footer_cancel', ['ajax' => 1])
                         </div>
-
-                        {!! Form::close() !!}
+                        <div class="pull-right">
+                            @include('maps.markers._actions')
+                        </div>
                     </div>
+                    {!! Form::close() !!}
                 </div>
             </div>
         </div>

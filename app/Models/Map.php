@@ -262,6 +262,11 @@ class Map extends MiscModel
                 'route' => 'maps.map_groups.index',
                 'count' => $this->groups->count()
             ];
+            $items['second']['markers'] = [
+                'name' => 'maps.panels.markers',
+                'route' => 'maps.map_markers.index',
+                'count' => $this->markers->count()
+            ];
         }
         return parent::menuItems($items);
     }

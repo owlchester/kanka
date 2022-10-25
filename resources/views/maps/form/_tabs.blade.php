@@ -4,8 +4,3 @@
         {{ __('maps.panels.settings') }}
     </a>
 </li>
-<li class="{{ (request()->get('tab') == 'form-markers' ? ' active' : '') }}">
-    <a href="#form-markers" title="{{ __('maps.panels.markers') }}" data-toggle="tooltip">
-        {{ __('maps.panels.markers') }}
-    </a>
-</li>

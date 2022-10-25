@@ -8,6 +8,7 @@ use App\Models\Concerns\Blameable;
 use App\Models\Concerns\Paginatable;
 use App\Traits\SourceCopiable;
 use App\Traits\VisibilityIDTrait;
+use App\Models\Concerns\SortableTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
@@ -42,7 +43,7 @@ use Illuminate\Support\Str;
  */
 class MapMarker extends Model
 {
-    use Blameable, VisibilityIDTrait, Paginatable, SourceCopiable;
+    use Blameable, VisibilityIDTrait, Paginatable, SourceCopiable, SortableTrait;
 
     public const SHAPE_MARKER = 1;
     public const SHAPE_LABEL = 2;
@@ -72,6 +73,15 @@ class MapMarker extends Model
         'pin_size',
         'circle_radius',
         'polygon_style',
+    ];
+
+    protected $sortable = [
+        'name',
+        'entity_id',
+        'type',
+        'icon',
+        'group.name',
+        'visibility',
     ];
 
     public $casts = [
@@ -133,12 +143,67 @@ class MapMarker extends Model
     }
 
     /**
+     * Determine if the marker is of the circle type
+     * @return bool
+     */
+    public function isCircle(): bool
+    {
+        return $this->shape_id == self::SHAPE_CIRCLE;
+    }
+
+    /**
      * Determine if the marker is of the polygon type and has a custom shape
      * @return bool
      */
     public function isPolygon(): bool
     {
         return $this->shape_id == MapMarker::SHAPE_POLY && !empty($this->custom_shape);
+    }
+
+    /**
+     * Determine the type of the marker
+     * @return string
+     */
+    public function typeLabel(): string
+    {
+        if ($this->isPolygon()) {
+            return __('maps/markers.tabs.polygon');
+        } elseif ($this->isLabel()) {
+            return __('maps/markers.tabs.label');
+        } elseif ($this->isCircle()) {
+            return __('maps/markers.tabs.circle');
+        }
+        return __('maps/markers.tabs.marker');
+    }
+
+    /**
+     * Determine the icon of the marker for the datagrid.
+     * @return string
+     */
+    public function datagridMarkerIcon(): string
+    {
+        if (in_array($this->shape_id, [2,3,5])) {
+            return '';
+        }
+
+        $icon = '<i class="fa-solid fa-map-pin"></i>';
+
+        $campaign = CampaignLocalization::getCampaign();
+        if (!empty($this->custom_icon) && $campaign->boosted()) {
+            if (Str::startsWith($this->custom_icon, '<i ')) {
+                $icon = $this->custom_icon ;
+            } elseif (Str::startsWith($this->custom_icon, ['fa-', 'ra '])) {
+                $icon = ' <i class="' . $this->custom_icon . '" aria-hidden="true"></i>';
+            } elseif (Str::startsWith($this->custom_icon, '<?xml')) {
+                $icon = '<div class="custom-icon">' . $this->resizedCustomIcon() . '</div>';
+            }
+        } elseif ($this->icon == 2) {
+            $icon = '<i class="fa-solid fa-question"></i>';
+        } elseif ($this->icon == 3) {
+            $icon = '<i class="fa-solid fa-exclamation"></i>';
+        }
+
+        return $icon;
     }
 
     /**
@@ -564,5 +629,52 @@ class MapMarker extends Model
     public function hasEntity(): bool
     {
         return false;
+    }
+
+    /**
+     * Functions for the datagrid2
+     * @return string
+     */
+    public function url(string $where): string
+    {
+        return 'maps.map_markers.' . $where;
+    }
+    public function routeParams(array $options = []): array
+    {
+        return [$this->map_id, $this->id];
+    }
+    public function routeCopyParams(array $options = []): array
+    {
+        return [$this->map_id, 'source' => $this->id];
+    }
+    /**
+     * Patch an entity from the datagrid2 batch editing
+     * @param array $data
+     * @return bool
+     */
+    public function patch(array $data): bool
+    {
+        return $this->update($data);
+    }
+
+    /**
+     * Override the get link
+     * @return string
+     */
+    public function getLink(): string
+    {
+        return route('maps.map_markers.edit', ['map' => $this->map_id, $this->id]);
+    }
+
+    /**
+     * Generate link for the datagrid
+     * @param string|null $displayName
+     * @return string
+     */
+    public function markerLink(string $displayName = null): string
+    {
+        return '<a href="' . $this->getLink() . '">' .
+            (!empty($displayName) ? $displayName : e($this->name)) .
+        '</a>';
     }
 }

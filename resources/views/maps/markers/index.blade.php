@@ -20,11 +20,6 @@
                     {{ __('maps.actions.explore') }}
                 </a>
             @endif
-            <a href="{{ route('maps.map_layers.create', ['map' => $model]) }}" class="btn btn-warning btn-sm"
-                data-url="{{ route('maps.map_layers.create', ['map' => $model]) }}"
-            >
-            <i class="fa-solid fa-plus"></i> {{ __('maps/layers.actions.add') }}
-            </a>
         </div>
     @endcan
 @endsection
@@ -34,14 +29,16 @@
         @include('entities.components.header', [
             'model' => $model,
             'breadcrumb' => [
-                ['url' => Breadcrumb::index('maps'), 'label' => __('entities.maps')],
-                __('maps.panels.layers')
+                ['url' => Breadcrumb::index('maps'), 'label' => __('maps.index.title')],
+                __('maps.panels.markers')
             ]
         ])
-        @include('maps._menu', ['active' => 'layers'])
+        @include('maps._menu', ['active' => 'markers'])
         <div class="entity-main-block">
-            @include('maps.panels.layers')
-            @includeWhen($rows->count() > 1, 'maps.layers._reorder')
+            <div class="tab-pane" id="form-markers">
+                @include('maps.form._markers', ['source' => null])
+            </div>
+            @include('maps.panels.markers')
         </div>
     </div>
 @endsection
