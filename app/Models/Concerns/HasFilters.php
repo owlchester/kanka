@@ -111,7 +111,13 @@ trait HasFilters
 
                 // Explicit filters (numbers typically, foreign ids)
                 if (in_array($key, $this->explicitFilters)) {
-                    $query->where($this->getTable() . '.' . $key, $this->filterOperator, $this->filterValue);
+
+                    if ($this->filterOperator == 'IS NULL') {
+                        $query->whereNull($this->getTable() . '.' . $key);
+                    } else {
+                        $query->where($this->getTable() . '.' . $key, $this->filterOperator, $this->filterValue);
+                    }
+
                     continue;
                 }
 
