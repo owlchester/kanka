@@ -71,6 +71,7 @@ use App\Observers\UserObserver;
 use App\Models\Organisation;
 use App\Models\OrganisationMember;
 use App\User;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\ServiceProvider;
@@ -182,6 +183,17 @@ class AppServiceProvider extends ServiceProvider
 
         // Tell laravel that we are using bootstrap 3 to style the paginators
         Paginator::useBootstrapThree();
+
+        if (request()->has('_debug_perm')) {
+            // Add in boot function
+            DB::listen(function($query) {
+                dump(
+                    $query->sql,
+                    $query->bindings,
+                    $query->time
+                );
+            });
+        }
 
     }
 
