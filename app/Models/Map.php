@@ -725,4 +725,37 @@ class Map extends MiscModel
         //return false;
         return !empty($this->config['distance_measure']);
     }
+    /**
+     * Available datagrid actions
+     * @param Campaign $campaign
+     * @return string[]
+     * @throws Exception
+     */
+    public function datagridActions(Campaign $campaign): array
+    {
+        $newActions = [];
+        $actions = parent::datagridActions($campaign);
+
+        if (auth()->check() && auth()->user()->can('update', $this)) {
+            $newActions[] = '<li class="divider"></li>';
+            $newActions[] = '<li>
+                <a href="' . route('maps.map_layers.index', $this->id) . '" class="dropdown-item datagrid-dropdown-item" data-name="layers">
+                    <i class="fa-solid fa-layer-group" aria-hidden="true"></i> ' . __('maps.panels.layers') . '
+                </a>
+            </li>';
+            $newActions[] = '<li>
+                <a href="' . route('maps.map_groups.index', $this->id) . '" class="dropdown-item datagrid-dropdown-item" data-name="groups">
+                    <i class="fa-solid fa-map-signs" aria-hidden="true"></i> ' . __('maps.panels.groups') . '
+                </a>
+            </li>';
+            $newActions[] = '<li>
+                <a href="' . route('maps.map_markers.index', $this->id) . '" class="dropdown-item datagrid-dropdown-item" data-name="markers">
+                    <i class="fa-solid fa-map-pin" aria-hidden="true"></i> ' . __('maps.panels.markers') . '
+                </a>
+            </li>';
+        }
+        array_splice($actions, 2, 0, $newActions);
+
+        return $actions;
+    }
 }
