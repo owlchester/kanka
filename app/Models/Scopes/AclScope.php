@@ -149,7 +149,6 @@ class AclScope implements Scope
         return $query
             ->whereIn($table . '.' . $primaryKey, Permissions::allowedModels())
             ->whereNotIn($table . '.' . $primaryKey, Permissions::deniedModels())
-            ->where('type', 'adasdasdasd')
         ;
     }
 
