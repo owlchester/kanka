@@ -731,7 +731,7 @@ class Map extends MiscModel
         $newActions = [];
         $actions = parent::datagridActions($campaign);
 
-        if ($campaign->enabled('maps') && $this->entityTypeId() == config('entities.ids.map') && auth()->check() && auth()->user()->can('update', $this)) {
+        if (auth()->check() && auth()->user()->can('update', $this)) {
             $newActions[] = '<li class="divider"></li>';
             $newActions[] = '<li>
                 <a href="' . route('maps.map_layers.index', $this->id) . '" class="dropdown-item datagrid-dropdown-item" data-name="layers">
