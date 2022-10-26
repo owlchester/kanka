@@ -41,6 +41,9 @@ class NoteController extends CrudController
      */
     public function show(Note $note)
     {
+        if (request()->has('_debug_perm')) {
+            dd($note);
+        }
         return $this->crudShow($note);
     }
 

@@ -141,10 +141,6 @@ class AclScope implements Scope
             ;
         }
 
-        if (request()->has('_debug_perm')) {
-            $query = $query->where('faker', 1122);
-        }
-
         return $query
             ->whereIn($table . '.' . $primaryKey, Permissions::allowedModels())
             ->whereNotIn($table . '.' . $primaryKey, Permissions::deniedModels())
