@@ -53,11 +53,12 @@ trait BulkControllerTrait
         return $count;
     }
 
-    public function bulkBatch(string $route, string $view, array $models)
+    public function bulkBatch(string $route, string $view, array $models, mixed $model = null)
     {
         return view('layouts.datagrid.bulks.update')
             ->with('route', $route)
             ->with('view', $view)
-            ->with('models', $models);
+            ->with('models', $models)
+            ->with('model', $model);
     }
 }
