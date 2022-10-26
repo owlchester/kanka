@@ -7,6 +7,7 @@ return [
     'base'          => 'Base Layer',
     'bulks'         => [
         'delete'    => '{1} Removed :count layer.|[2,*] Removed :count layers.',
+        'patch'      => '{1} Updated :count layer.|[2,*] Updated :count layers.',
     ],
     'create'        => [
         'success'   => 'Layer :name created.',
