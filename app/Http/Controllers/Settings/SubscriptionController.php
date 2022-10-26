@@ -88,6 +88,7 @@ class SubscriptionController extends Controller
         $cancel = $tier == Pledge::KOBOLD;
         $user = $request->user();
         $isDowngrading = $this->subscription->downgrading();
+        $hasPromo = $period == 'yearly' && \Carbon\Carbon::create(2022, 10, 31)->isFuture();
 
         return view('settings.subscription.change', compact(
             'tier',
@@ -97,7 +98,8 @@ class SubscriptionController extends Controller
             'intent',
             'cancel',
             'user',
-            'isDowngrading'
+            'isDowngrading',
+            'hasPromo',
         ));
     }
 

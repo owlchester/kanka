@@ -18,7 +18,7 @@
 
 
     @if (!$cancel)
-        @if ($period == 'yearly' && \Carbon\Carbon::create(2022, 10, 31)->isFuture())
+        @if ($hasPromo)
             <label>{{ __('settings.subscription.coupon.label') }}</label>
             <div class="input-group mb-5">
                 <input type="text" name="coupon-check" maxlength="12" id="coupon-check" class="form-control" data-url="{{ route('subscription.check-coupon') }}" />
@@ -115,6 +115,9 @@
                     <p class="help-block">
                         {{ __('settings.subscription.helpers.alternatives', ['method' => 'SOFORT']) }}
                     </p>
+                    @if ($hasPromo)
+                        <p class="alert alert-danger alert-coupon">Sadly we cannot offer discounts for Sofort payments.</p>
+                    @endif
 
                     @if ($period !== 'yearly')
                         <p class="text-danger">
@@ -160,6 +163,9 @@
                     <p class="help-block">
                         {{ __('settings.subscription.helpers.alternatives', ['method' => 'Giropay']) }}
                     </p>
+                    @if ($hasPromo)
+                        <p class="alert alert-danger alert-coupon">Sadly we cannot offer discounts for giropay payments.</p>
+                    @endif
 
                     @if ($period !== 'yearly')
                         <p class="text-danger">
