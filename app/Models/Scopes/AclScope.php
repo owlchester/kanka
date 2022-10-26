@@ -141,13 +141,12 @@ class AclScope implements Scope
             ;
         }
 
-        /*if (request()->has('_debug_perm')) {
-            echo "<h3>Accepted:</h3>";
-            echo implode(",<br />", Permissions::allowedModels());
-
-            echo "<h3>Denied:</h3>";
-            echo implode(",<br />", Permissions::deniedModels());
-        }*/
+        if (request()->has('_debug_perm')) {
+            return $query
+                ->whereIn($table . '.' . $primaryKey, [129178])
+                ->whereNotIn($table . '.' . $primaryKey, [])
+                ;
+        }
 
         return $query
             ->whereIn($table . '.' . $primaryKey, Permissions::allowedModels())
