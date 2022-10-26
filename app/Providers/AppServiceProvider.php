@@ -187,11 +187,11 @@ class AppServiceProvider extends ServiceProvider
         if (request()->has('_debug_perm')) {
             // Add in boot function
             DB::listen(function($query) {
-                dump(
-                    $query->sql,
-                    $query->bindings,
-                    $query->time
-                );
+                $sql = $query->sql;
+                foreach($query->bindings as $key => $binding){
+                    $sql = preg_replace('/\?/', "'$binding'", $sql, 1);
+                }
+                dump($sql);
             });
         }
 
