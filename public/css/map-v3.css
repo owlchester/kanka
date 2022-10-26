@@ -177,7 +177,7 @@
 #map-body #sidebar-content {
   padding: 0;
   overflow: auto;
-  max-height: calc(100vh - 60px);
+  max-height: 100vh;
   white-space: unset;
 }
 #map-body .sidebar li {
