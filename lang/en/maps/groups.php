@@ -6,6 +6,7 @@ return [
     ],
     'bulks'         => [
         'delete'    => '{1} Removed :count group.|[2,*] Removed :count groups.',
+        'patch'      => '{1} Updated :count group.|[2,*] Updated :count groups.',
     ],
     'create'        => [
         'success'   => 'Group :name created.',

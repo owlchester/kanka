@@ -27,7 +27,7 @@ trait BulkControllerTrait
         if ($action === 'patch') {
             // Clean up the request. Skip nulls
             foreach ($patch as $field => $value) {
-                if (!empty($value)) {
+                if (!is_null($value)) {
                     continue;
                 }
                 unset($patch[$field]);
