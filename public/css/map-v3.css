@@ -119,6 +119,16 @@
   transform: rotate(45deg);
 }
 
+.marker-details {
+  padding: 0.85rem;
+}
+.marker-details h3 {
+  margin: 11px 0;
+}
+.marker-details .marker-entry {
+  padding: 0.85rem 0;
+}
+
 .btn-map-explore {
   position: absolute;
   bottom: 10px;
@@ -196,6 +206,9 @@
   font-size: 1.4rem;
   padding: 0.825rem;
 }
+#map-body .map-legend {
+  padding: 0.85rem;
+}
 #map-body .marker-header.with-image {
   background-size: cover;
   background-repeat: no-repeat;
@@ -220,10 +233,13 @@
   width: 100%;
 }
 #map-body .marker-entry {
-  padding: 0.825rem;
+  padding: 0 0.825rem;
 }
 #map-body .marker-actions {
   margin: 20px 0;
+}
+#map-body .marker-actions .dropdown-menu li > a {
+  color: var(--dropdown-link);
 }
 #map-body .entity-title {
   min-height: 40px;
