@@ -126,8 +126,7 @@ class AttributeTemplate extends MiscModel
     public function scopePreparedSelect(Builder $query): Builder
     {
         return $query
-            ->select(['id', 'name', 'is_private', 'attribute_template_id', 'entity_type_id'])
-            ;
+            ->select([$this->getTable() . '.id', $this->getTable() . '.name', $this->getTable() . '.is_private', 'attribute_template_id', 'entity_type_id']);
     }
 
 

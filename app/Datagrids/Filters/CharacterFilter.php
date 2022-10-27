@@ -51,6 +51,7 @@ class CharacterFilter extends DatagridFilter
             ->add('pronouns')
             ->add('is_dead')
             ->isPrivate()
+            ->template()
             ->hasImage()
             ->hasEntityNotes()
             ->hasEntityFiles()

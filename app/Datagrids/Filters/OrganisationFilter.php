@@ -34,6 +34,7 @@ class OrganisationFilter extends DatagridFilter
             ])
             ->add('is_defunct')
             ->isPrivate()
+            ->template()
             ->hasImage()
             ->hasEntityNotes()
             ->hasEntityFiles()

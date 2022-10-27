@@ -23,6 +23,7 @@ class TimelineFilter extends DatagridFilter
                 'model' => Timeline::class,
             ])
             ->isPrivate()
+            ->template()
             ->hasImage()
             ->hasEntityNotes()
             ->hasEntityFiles()

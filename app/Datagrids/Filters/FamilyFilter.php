@@ -33,6 +33,7 @@ class FamilyFilter extends DatagridFilter
                 'model' => Character::class,
             ])
             ->isPrivate()
+            ->template()
             ->hasImage()
             ->hasEntityNotes()
             ->hasEntityFiles()

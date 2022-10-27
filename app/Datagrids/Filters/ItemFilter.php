@@ -27,6 +27,7 @@ class ItemFilter extends DatagridFilter
             ->location()
             ->character()
             ->isPrivate()
+            ->template()
             ->hasImage()
             ->hasEntityNotes()
             ->hasEntityFiles()
