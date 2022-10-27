@@ -149,7 +149,7 @@ function checkCoupon() {
 
     if (!result.valid) {
       couponSuccess.hide();
-      couponError.show();
+      couponError.html(result.error).show();
       couponId.val('');
       subscribeModal.removeClass('valid-coupon');
       return;
@@ -159,6 +159,12 @@ function checkCoupon() {
     couponSuccess.html(result.discount).show();
     couponId.val(result.coupon);
     subscribeModal.addClass('valid-coupon');
+  }).fail(function (result) {
+    couponBtn.prop('disabled', false).find('.check').show().parent().find('.spinner').hide();
+
+    if (result.responseJSON) {
+      couponError.html(result.responseJSON.message).show();
+    }
   });
 }
 
