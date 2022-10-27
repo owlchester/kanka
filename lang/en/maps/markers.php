@@ -11,6 +11,7 @@ return [
     ],
     'bulks'         => [
         'delete'    => '{1} Removed :count marker.|[2,*] Removed :count markers.',
+        'patch'     => '{1} Updated :count marker.|[2,*] Updated :count markers.',
     ],
     'create'        => [
         'success'   => 'Marker :name created.',

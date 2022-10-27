@@ -654,6 +654,9 @@ class MapMarker extends Model
      */
     public function patch(array $data): bool
     {
+        if (isset($data['group_id']) && $data['group_id'] == -1) {
+            $data['group_id'] = null;
+        }
         return $this->update($data);
     }
 
