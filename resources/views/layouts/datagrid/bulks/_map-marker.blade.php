@@ -31,18 +31,19 @@ $groups[-1] = __('crud.filters.options.none');
 ?>
 <div class="form-group">
     <label for="icon">{{ __('locations.map.points.fields.icon') }}</label>
-    {!! Form::select('icon', $iconOptions, \App\Facades\FormCopy::field('icon')->string(), ['class' => 'form-control', 'id' => 'icon']) !!}
+    {!! Form::select('icon', $iconOptions, null, ['class' => 'form-control', 'id' => 'icon']) !!}
 </div>
 @if ($campaign->boosted())
 <div class="form-group">
     <label>{{ __('maps/markers.fields.custom_icon') }}</label>
         {!! Form::text(
             'custom_icon',
-            \App\Facades\FormCopy::field('custom_icon')->string(),
-            ['class' => 'form-control',
-            'placeholder' => __('maps/markers.placeholders.custom_icon', ['example1' => '"fa-solid fa-gem"', 'example2' => '"ra ra-sword"']),
-            'list' => 'map-marker-icon-list',
-            'autocomplete' => 'off'
+            null,
+            [
+                'class' => 'form-control',
+                'placeholder' => __('maps/markers.placeholders.custom_icon', ['example1' => '"fa-solid fa-gem"', 'example2' => '"ra ra-sword"']),
+                'list' => 'map-marker-icon-list',
+                'autocomplete' => 'off'
             ])
         !!}
 </div>
@@ -56,7 +57,7 @@ $groups[-1] = __('crud.filters.options.none');
 @endif
 <div class="form-group">
     <label>{{ __('maps/markers.fields.font_colour') }}</label><br />
-    {!! Form::text('font_colour', \App\Facades\FormCopy::field('font_colour')->string(), ['class' => 'form-control spectrum', 'maxlength' => 6] ) !!}
+    {!! Form::text('font_colour', null, ['class' => 'form-control spectrum', 'maxlength' => 6] ) !!}
 </div>
 <div class="form-group">
     <label>
@@ -70,13 +71,13 @@ $groups[-1] = __('crud.filters.options.none');
 </div>
 <div class="form-group">
     <label>{{ __('locations.map.points.fields.colour') }}</label><br />
-    {!! Form::text('colour', \App\Facades\FormCopy::field('colour')->string(), ['class' => 'form-control spectrum', 'maxlength' => 6] ) !!}
+    {!! Form::text('colour', null, ['class' => 'form-control spectrum', 'maxlength' => 6] ) !!}
 </div>
 <div class="form-group">
     <label for="group_id">
         {{ __('maps/markers.fields.group') }}
     </label>
-    {{ Form::select('group_id', $groups, \App\Facades\FormCopy::field('group_id')->string(), ['class' => 'form-control', 'id' => 'group_id']) }}
+    {{ Form::select('group_id', $groups, null, ['class' => 'form-control', 'id' => 'group_id']) }}
 </div>
 <div class="form-group">
     @include('cruds.fields.visibility_id', ['bulk' => true])
