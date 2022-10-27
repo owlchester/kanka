@@ -1512,6 +1512,12 @@ button.dropdown-item:hover {
   padding: 10px;
   font-size: 12px;
 }
+.timeline > li .timeline-item .box-header {
+  display: flex;
+}
+.timeline > li .timeline-item .box-header > h3.box-title {
+  flex-grow: 5;
+}
 .timeline > li > .ra, .timeline > li > .fab, .timeline > li > .far, .timeline > li > .fas, .timeline > li > .fa-solid, .timeline > li > .fa-brands, .timeline > li > .fa-light, .timeline > li > .fa-thin, .timeline > li > .fa-duotone {
   width: 30px;
   height: 30px;
