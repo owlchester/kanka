@@ -1,11 +1,11 @@
-@if (false && auth()->check() && !auth()->user()->settings()->get('banner_4yearpromo') && \Carbon\Carbon::create(2021, 11, 1)->isFuture())
+@if (auth()->check() && !auth()->user()->settings()->get('banner_5yearpromo') && \Carbon\Carbon::create(2022, 10, 31)->isFuture())
     <div class="bg-primary banner-notification">
         <span>
             <a href="{{ route('settings.subscription') }}">
-                {!! __('banners.kanka4years', ['code' => '<code>KANKA4YEAR</code>']) !!}
+                {!! __('banners.kanka4years', ['code' => '<code>KANKA5YEAR</code>']) !!}
             </a>
 
-            <button type="button" class="close banner-notification-dismiss" data-dismiss="alert" aria-hidden="true" data-url="{{ route('settings.banner', ['code' => '4yearpromo']) }}">×</button>
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true" id="banner-notification-dismiss" data-url="{{ route('settings.banner', ['code' => '5yearpromo']) }}">×</button>
         </span>
     </div>
 @endif

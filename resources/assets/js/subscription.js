@@ -8,10 +8,13 @@ var formSubmitBtn;
 // Coupon stuff
 var couponBtn, couponField, couponSuccess, couponError, couponId;
 
+var subscribeModal;
+
 $(document).ready(function() {
     initStripe();
     initPeriodToggle();
-    $('#subscribe-confirm').on('shown.bs.modal', () => {
+    subscribeModal = $('#subscribe-confirm');
+    subscribeModal.on('shown.bs.modal', () => {
         initConfirmListener();
     });
 });
@@ -164,12 +167,15 @@ function checkCoupon() {
             couponSuccess.hide();
             couponError.show();
             couponId.val('');
+            subscribeModal.removeClass('valid-coupon');
+
             return;
         }
 
         couponError.hide();
         couponSuccess.html(result.discount).show();
         couponId.val(result.coupon);
+        subscribeModal.addClass('valid-coupon');
     });
 }
 

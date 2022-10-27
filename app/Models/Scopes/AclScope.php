@@ -141,11 +141,33 @@ class AclScope implements Scope
             ;
         }
 
+        /*if (request()->has('_debug_perm')) {
+            return $query
+                ->whereIn($table . '.' . $primaryKey, Permissions::allowedModels())
+                ->whereNotIn($table . '.' . $primaryKey, [])
+                ;
+        }*/
 
-        return $query
-            ->whereIn($table . '.' . $primaryKey, Permissions::allowedModels())
-            ->whereNotIn($table . '.' . $primaryKey, Permissions::deniedModels())
-        ;
+        $allowed = Permissions::allowedModels();
+        if (count($allowed) > 0) {
+            $query->where(function ($sub) use ($table, $primaryKey, $allowed) {
+                // Defined by mariadb's `in_predicate_conversion_threshold`
+                // See https://bugs.launchpad.net/ubuntu/+source/mariadb-10.3/+bug/1964622
+                $max = 999;
+                $loops = floor(count($allowed) / $max);
+                for ($i = 0; $i <= $loops; $i++) {
+                    $slice = array_slice($allowed, $i * $max, $max);
+                    $sub->orWhereIn($table . '.' . $primaryKey, $slice);
+                }
+            });
+        }
+
+        $denied = Permissions::deniedModels();
+        if (!empty($denied)) {
+            $query->whereNotIn($table . '.' . $primaryKey, $denied);
+        }
+
+        return $query;
     }
 
     /**

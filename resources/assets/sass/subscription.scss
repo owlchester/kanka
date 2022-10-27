@@ -163,3 +163,11 @@ body.ab-testing-second {
   bottom: 25px;
   transform: rotate(-225deg);
 }
+
+/** Promo code **/
+.alert-coupon {
+    display: none;
+}
+.valid-coupon .alert-coupon {
+    display: block;
+}
