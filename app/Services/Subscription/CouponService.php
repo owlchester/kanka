@@ -53,16 +53,13 @@ class CouponService
             // expects a stripe_id
             $promos = PromotionCode::all(['code' => $this->code, 'active' => true]);
             if ($promos->count() !== 1) {
-                return [
-                    'valid' => false,
-                    'error' => 'Invalid code',
-                ];
+                return $this->error(__('subscriptions/promos.errors.invalid'));
             }
 
             /** @var PromotionCode $promo */
             $promo = $promos->first();
             if (!$promo->active) {
-                return $this->error('This promotion is no active.');
+                return $this->error(__('subscriptions/promos.errors.inactive'));
             }
 
             // Check restrictions
@@ -70,7 +67,7 @@ class CouponService
                 // Some promos are only for first time subscribers
                 if ($promo->restrictions->first_time_transaction) {
                     if ($this->user->subscriptions->count()) {
-                        return $this->error('This promotion is only available for first time subscribers.');
+                        return $this->error(__('subscriptions/promos.errors.only-new'));
                     }
                 }
             }
