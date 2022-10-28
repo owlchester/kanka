@@ -320,9 +320,7 @@ class MapMarker extends Model
             <div class="marker-popup-entry">
                 ' . $body . '
             </div>`)
-            .on(`mouseover`, function (ev) {
                 ' . $this->tooltipPopup . '
-            })
             .on(`click`, function (ev) {
                 window.markerDetails(`' . route('maps.markers.details', [$this->map_id, $this->id]) . '`)
             })';
@@ -500,13 +498,14 @@ class MapMarker extends Model
 
     /**
      * Set the current mode to exploring the map
+     * @param bool $popup = true
      * @return $this
      */
-    public function exploring($popup = true): self
+    public function exploring(bool $popup = true): self
     {
         $this->exploring = true;
         if ($popup == true) {
-            $this->tooltipPopup = 'this.openPopup();';
+            $this->tooltipPopup = '.on(`mouseover`, function (ev) {this.openPopup();})';
         }
         return $this;
     }
