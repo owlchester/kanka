@@ -218,6 +218,9 @@ class AttributeTemplate extends MiscModel
      */
     public function hasVisibleAttributes($names = []): bool
     {
+        if (!$this->entity) {
+            return false;
+        }
         $visible = false;
         foreach ($this->entity->attributes()->get() as $attribute) {
             if (!in_array($attribute->name, $names)) {
