@@ -33,6 +33,7 @@ class CreatureFilter extends DatagridFilter
                 'withChildren' => true,
             ])
             ->isPrivate()
+            ->template()
             ->hasImage()
             ->hasEntityNotes()
             ->hasEntityFiles()

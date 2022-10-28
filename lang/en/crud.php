@@ -174,6 +174,7 @@ return [
         'tooltip'               => 'Tooltip',
         'type'                  => 'Type',
         'visibility'            => 'Visibility',
+        'template'              => 'Template',
     ],
     'files'                     => [
         'actions'   => [
@@ -220,6 +221,8 @@ return [
             'exclude'   => 'Exclude',
             'include'   => 'Include',
             'none'      => 'None',
+            'hide'      => 'Hide',
+            'show'      => 'Show',
         ],
         'show'                      => 'Show Filters',
         'sorting'                   => [

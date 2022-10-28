@@ -36,6 +36,7 @@ class QuestFilter extends DatagridFilter
             ])
             ->add('element_role')
             ->isPrivate()
+            ->template()
             ->hasImage()
             ->hasEntityNotes()
             ->hasEntityFiles()

@@ -190,4 +190,14 @@ abstract class DatagridFilter
         $this->filters[] = 'date_range';
         return $this;
     }
+
+    /**
+     * Add the is template filter
+     * @return $this
+     */
+    protected function template(): self
+    {
+        $this->filters[] = 'template';
+        return $this;
+    }
 }

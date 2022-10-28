@@ -23,6 +23,7 @@ class NoteFilter extends DatagridFilter
                 'model' => Note::class,
             ])
             ->isPrivate()
+            ->template()
             ->hasImage()
             ->hasEntityNotes()
             ->hasEntityFiles()

@@ -33,6 +33,7 @@ class RaceFilter extends DatagridFilter
                 'withChildren' => true,
             ])
             ->isPrivate()
+            ->template()
             ->hasImage()
             ->hasEntityNotes()
             ->hasEntityFiles()

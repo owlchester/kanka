@@ -69,6 +69,7 @@ trait HasFilters
             'name',
             'type',
             'is_private',
+            'template',
             'tag_id',
             'tags',
             'has_image',
@@ -148,6 +149,8 @@ trait HasFilters
                     $query->elementRole($value, $this->filterOperator);
                 } elseif ($key == 'has_image') {
                     $this->filterHasImage($query, $value);
+                } elseif ($key == 'template') {
+                    $this->filterTemplate($query, $value);
                 } elseif ($key == 'has_entity_notes') {
                     $this->filterHasPosts($query, $value);
                 } elseif ($key == 'has_attributes') {
@@ -364,6 +367,26 @@ trait HasFilters
             $query->whereNotNull($this->getTable() . '.image');
         } else {
             $query->whereNull($this->getTable() . '.image');
+        }
+    }
+
+    /**
+     * Filter on entities that are or aren't templates
+     * @param Builder $query
+     * @param string|null $value
+     * @return void
+     */
+    protected function filterTemplate(Builder $query, string $value = null): void
+    {
+        $query = $this->joinEntity($query);
+
+        if ($value) {
+            $query->where('e.is_template', 1);
+        } else {
+            $query->where(function ($sub) {
+                $sub->whereNull('e.is_template')
+                    ->orWhere('e.is_template', '<>', 1);
+            });
         }
     }
 
