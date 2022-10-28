@@ -239,6 +239,7 @@ return [
     ],
     'helpers'                   => [
         'copy_options'  => 'Copier les éléments liés suivant de la source à la nouvelle entité.',
+        'learn_more'    => 'En savoir plus sur cette fonctionnalité dans notre :documentation.',
         'linking'       => 'Lier d\'autres entités',
         'nested_parent' => 'Affichage des enfants de :parent.',
     ],
@@ -332,6 +333,7 @@ return [
         'ability'       => 'Choix d\'un pouvoir',
         'calendar'      => 'Choix du calendrier',
         'character'     => 'Choix du personnage',
+        'creature'      => 'Choix d\'une créature',
         'entity'        => 'Entité',
         'event'         => 'Choix de l\'événement',
         'family'        => 'Choix de la famille',

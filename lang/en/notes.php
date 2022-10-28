@@ -5,9 +5,9 @@ return [
         'title' => 'New Note',
     ],
     'fields'        => [
-        'is_pinned'     => 'Pinned',
-        'note'          => 'Parent Note',
-        'notes'         => 'Sub Notes',
+        'is_pinned' => 'Pinned',
+        'note'      => 'Parent Note',
+        'notes'     => 'Sub Notes',
     ],
     'helpers'       => [
         'nested_without'    => 'Displaying all notes that don\'t have a parent note. Click on a row to see the children notes.',

@@ -4,8 +4,14 @@ return [
     'actions'       => [
         'entry'             => 'Écrire une entrée personnalisés pour ce marqueur.',
         'remove'            => 'Supprimer le marqueur',
+        'reset-polygon'     => 'Réinitialiser les positions',
         'save_and_explore'  => 'Sauvegarder et explorer',
+        'start-drawing'     => 'Commencer à dessiner',
         'update'            => 'Modifier le marqueur',
+    ],
+    'bulks'         => [
+        'delete'    => '{1} Retiré :count marqueur.|[2,*] Retiré :count marqueurs.',
+        'patch'     => '{1} Modifié :count marqueur.|[2,*] Modifié :count marqueurs.',
     ],
     'create'        => [
         'success'   => 'Marqueur :name créé.',
@@ -25,6 +31,7 @@ return [
         'custom_shape'  => 'Forme personnalisée',
         'font_colour'   => 'Couleur d\'icône',
         'group'         => 'Groupe de marqueur',
+        'icon'          => 'Icône',
         'is_draggable'  => 'Déplaçable',
         'latitude'      => 'Latitude',
         'longitude'     => 'Longitude',
@@ -55,6 +62,9 @@ return [
         'exclamation'   => 'Point d\'exclamation',
         'marker'        => 'Marqueur',
         'question'      => 'Point d\'interrogation',
+    ],
+    'index'         => [
+        'title' => 'Marqueurs de :name',
     ],
     'pitches'       => [
         'poly'  => 'Dessines des formes polygonales personnalisées pour représenter les bordures et autres formes inégales.',

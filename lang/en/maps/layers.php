@@ -7,7 +7,7 @@ return [
     'base'          => 'Base Layer',
     'bulks'         => [
         'delete'    => '{1} Removed :count layer.|[2,*] Removed :count layers.',
-        'patch'      => '{1} Updated :count layer.|[2,*] Updated :count layers.',
+        'patch'     => '{1} Updated :count layer.|[2,*] Updated :count layers.',
     ],
     'create'        => [
         'success'   => 'Layer :name created.',
@@ -36,11 +36,11 @@ return [
         'until' => 'Upload up to :max layers to each map.',
     ],
     'placeholders'  => [
-        'name'      => 'Underground, Level 2, Shipwreck',
-        'position'  => 'First',
-        'position_list'  => 'After :name',
+        'name'          => 'Underground, Level 2, Shipwreck',
+        'position'      => 'First',
+        'position_list' => 'After :name',
     ],
-    'reorder'   => [
+    'reorder'       => [
         'save'      => 'Save new order',
         'success'   => '{1} Reordered :count layer.|[2,*] Reordered :count layers.',
         'title'     => 'Reorder layers',

@@ -6,7 +6,7 @@ return [
     ],
     'bulks'         => [
         'delete'    => '{1} Removed :count group.|[2,*] Removed :count groups.',
-        'patch'      => '{1} Updated :count group.|[2,*] Updated :count groups.',
+        'patch'     => '{1} Updated :count group.|[2,*] Updated :count groups.',
     ],
     'create'        => [
         'success'   => 'Group :name created.',
@@ -37,11 +37,11 @@ return [
         'until' => 'Create up to :max groups to each map.',
     ],
     'placeholders'  => [
-        'name'           => 'Shops, Treasure, NPCs',
-        'position'       => 'First',
-        'position_list'  => 'After :name',
+        'name'          => 'Shops, Treasure, NPCs',
+        'position'      => 'First',
+        'position_list' => 'After :name',
     ],
-    'reorder'   => [
+    'reorder'       => [
         'save'      => 'Save new order',
         'success'   => '{1} Reordered :count group.|[2,*] Reordered :count groups.',
         'title'     => 'Reorder groups',

@@ -4,10 +4,10 @@ return [
     'actions'       => [
         'entry'             => 'Write a custom entry field for this marker.',
         'remove'            => 'Remove marker',
-        'save_and_explore'  => 'Save and Explore',
-        'update'            => 'Edit marker',
-        'start-drawing'     => 'Start drawing',
         'reset-polygon'     => 'Reset positions',
+        'save_and_explore'  => 'Save and Explore',
+        'start-drawing'     => 'Start drawing',
+        'update'            => 'Edit marker',
     ],
     'bulks'         => [
         'delete'    => '{1} Removed :count marker.|[2,*] Removed :count markers.',
@@ -31,8 +31,8 @@ return [
         'custom_shape'  => 'Custom Shape',
         'font_colour'   => 'Icon Colour',
         'group'         => 'Marker Group',
-        'is_draggable'  => 'Draggable',
         'icon'          => 'Icon',
+        'is_draggable'  => 'Draggable',
         'latitude'      => 'Latitude',
         'longitude'     => 'Longitude',
         'opacity'       => 'Opacity',

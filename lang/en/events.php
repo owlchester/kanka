@@ -18,9 +18,9 @@ return [
         'nested_without'    => 'Displaying all events that don\'t have a parent event. Click on a row to see the children events.',
     ],
     'placeholders'  => [
-        'date'      => 'A date for your event',
-        'name'      => 'Name of the event',
-        'type'      => 'Ceremony, Festival, Disaster, Battle, Birth',
+        'date'  => 'A date for your event',
+        'name'  => 'Name of the event',
+        'type'  => 'Ceremony, Festival, Disaster, Battle, Birth',
     ],
     'show'          => [
         'tabs'  => [
