@@ -695,12 +695,6 @@ class MentionsService
             return "[$type:" . $this->newEntityMentions[$key] . ']';
         }
 
-        // Check that the campaign can still accommodate more entities
-        /*$campaign = \App\Facades\CampaignLocalization::getCampaign();
-        if (!$campaign->canHaveMoreEntities()) {
-            return $name;
-        }*/
-
         // Create the new misc  model
         /** @var MiscModel $newMisc */
         $newMisc = new $types[$type]();

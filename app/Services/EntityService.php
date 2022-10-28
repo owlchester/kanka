@@ -229,11 +229,6 @@ class EntityService
             throw new TranslatableException('entities/move.errors.permission_update');
         }
 
-        // Make sure the target campaign still has space for this entity
-        /*if (!$campaign->canHaveMoreEntities()) {
-            throw new TranslatableException('entities/move.errors.campaign_full');
-        }*/
-
         if ($copy) {
             $this->copied = true;
             return $this->copyToCampaign($entity, $campaign);

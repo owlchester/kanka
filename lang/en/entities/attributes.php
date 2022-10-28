@@ -52,6 +52,7 @@ return [
             'value' => '1-100 or list of values separated by a comma',
         ],
         'section'   => 'Section name',
+        'template'  => 'Select a template',
         'value'     => 'Value of the attribute',
     ],
     'show'          => [
