@@ -30,15 +30,11 @@ return [
         'character'     => 'Auteur',
         'copy_elements' => 'Copier les éléments de la quête',
         'date'          => 'Date',
-        'description'   => 'Description',
         'element_role'  => 'Rôle',
-        'image'         => 'Image',
         'is_completed'  => 'Completée',
-        'name'          => 'Nom',
         'quest'         => 'Quête Parentale',
         'quests'        => 'Sous-quêtes',
         'role'          => 'Rôle',
-        'type'          => 'Type',
     ],
     'helpers'       => [
         'is_completed'      => 'Sélectionner si la quête est considérée comme completée.',
@@ -47,9 +43,7 @@ return [
     'hints'         => [
         'quests'    => 'Un réseau de quêtes liées peut être créé à l\'aide du champ Quête Parentale.',
     ],
-    'index'         => [
-        'title' => 'Quêtes',
-    ],
+    'index'         => [],
     'placeholders'  => [
         'date'      => 'Date réelle de la quête',
         'entity'    => 'Nom d\'un élément dans la quête',

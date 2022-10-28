@@ -27,16 +27,12 @@ return [
         'abilities' => 'Förmågor',
         'ability'   => 'Huvudförmåga',
         'charges'   => 'Laddningar',
-        'name'      => 'Namn',
-        'type'      => 'Typ',
     ],
     'helpers'       => [
         'descendants'       => 'Denna lista innehåller alla förmågor som har härletts från denna förmåga, och inte bara de direkt under denna.',
         'nested_without'    => 'Visar alla förmågor som inte har en huvudförmåga. Klicka på en rad för att se underförmågor.',
     ],
-    'index'         => [
-        'title' => 'Förmågor',
-    ],
+    'index'         => [],
     'placeholders'  => [
         'charges'   => 'Antal laddningar. Referera till egenskaper med {Level}*{CHA}',
         'name'      => 'Eldklot, Alert, Listigt Angrepp',

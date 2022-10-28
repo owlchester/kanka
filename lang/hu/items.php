@@ -8,16 +8,10 @@ return [
     'edit'          => [],
     'fields'        => [
         'character' => 'Karakter',
-        'image'     => 'Kép',
-        'location'  => 'Helyszín',
-        'name'      => 'Név',
         'price'     => 'Ár',
         'size'      => 'Méret',
-        'type'      => 'Típus',
     ],
-    'index'         => [
-        'title' => 'Tárgyak',
-    ],
+    'index'         => [],
     'inventories'   => [
         'title' => ':name tárgy Felszerelései',
     ],

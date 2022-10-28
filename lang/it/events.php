@@ -7,20 +7,13 @@ return [
     'destroy'       => [],
     'edit'          => [],
     'fields'        => [
-        'date'      => 'Data',
-        'image'     => 'Immagine',
-        'location'  => 'Luogo',
-        'name'      => 'Nome',
-        'type'      => 'Tipo',
+        'date'  => 'Data',
     ],
-    'index'         => [
-        'title' => 'Eventi',
-    ],
+    'index'         => [],
     'placeholders'  => [
-        'date'      => 'Una data per il tuo evento',
-        'location'  => 'Scegli il luogo',
-        'name'      => 'Nome dell\'evento',
-        'type'      => 'Cerimonia, Festival, Disastro, Battaglia, Nascita',
+        'date'  => 'Una data per il tuo evento',
+        'name'  => 'Nome dell\'evento',
+        'type'  => 'Cerimonia, Festival, Disastro, Battaglia, Nascita',
     ],
     'show'          => [
         'tabs'  => [

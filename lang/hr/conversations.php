@@ -11,17 +11,13 @@ return [
     'fields'        => [
         'is_closed'     => 'Zatvoreno',
         'messages'      => 'Poruke',
-        'name'          => 'Naziv',
         'participants'  => 'Sudionici',
         'target'        => 'Otvaranje poveznice',
-        'type'          => 'Tip',
     ],
     'hints'         => [
         'participants'  => 'Dodaj sudionike u razgovor pritiskom na ikonu :icon u gornjem desnom kutu.',
     ],
-    'index'         => [
-        'title' => 'Razgovori',
-    ],
+    'index'         => [],
     'messages'      => [
         'destroy'       => [
             'success'   => 'Poruka uklonjena.',

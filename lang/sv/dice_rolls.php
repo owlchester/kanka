@@ -10,7 +10,6 @@ return [
     'edit'          => [],
     'fields'        => [
         'created_at'    => 'Kastat vid',
-        'name'          => 'Namn',
         'parameters'    => 'Parametrar',
         'results'       => 'Resultat',
         'rolls'         => 'Kast',
@@ -23,7 +22,6 @@ return [
             'dice'      => 'Tärningskast',
             'results'   => 'Resultat',
         ],
-        'title'     => 'Tärningskast',
     ],
     'placeholders'  => [
         'dice_roll' => 'Tärningskast',

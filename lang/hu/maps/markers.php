@@ -46,7 +46,6 @@ return [
         'label'                     => 'Egy címke szövegblokként jelenik meg a térképen. A tartalma az entitás és a jelölő neve lesz.',
         'polygon'                   => [
             'edit'  => 'Klikkelj a térképre, hogy hozzáadd ezt a pozíciót a poligon koordinátáihoz.',
-            'new'   => 'Mozgasd a jelölőt a térképen, hogy kijelöld a poligon pozícióját.',
         ],
     ],
     'icons'         => [

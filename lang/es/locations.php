@@ -17,13 +17,10 @@ return [
     ],
     'fields'        => [
         'characters'        => 'Personajes',
-        'image'             => 'Imagen',
         'is_map_private'    => 'Mapa privado',
         'location'          => 'Localización superior',
         'locations'         => 'Lugares',
         'map'               => 'Mapa',
-        'name'              => 'Nombre',
-        'type'              => 'Tipo',
     ],
     'helpers'       => [
         'characters'        => 'Muestra todos los personajes en este lugar y sus lugares anidados, o solo los que están aquí.',
@@ -37,9 +34,7 @@ return [
     'hints'         => [
         'is_map_private'    => 'Un mapa privado solo será visible para los miembros con el rol "Admin".',
     ],
-    'index'         => [
-        'title' => 'Lugares',
-    ],
+    'index'         => [],
     'items'         => [],
     'journals'      => [],
     'locations'     => [

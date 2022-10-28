@@ -85,7 +85,6 @@ TEXT
                 'title' => 'Nova kampanja',
             ],
         ],
-        'title'     => 'Kampanja',
     ],
     'invites'                           => [
         'actions'               => [

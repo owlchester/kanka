@@ -12,11 +12,7 @@ return [
     'fields'        => [
         'families'  => 'Subfamilias',
         'family'    => 'Familia antecesora',
-        'image'     => 'Imagen',
-        'location'  => 'Lugar',
         'members'   => 'Miembros',
-        'name'      => 'Nombre',
-        'type'      => 'Tipo',
     ],
     'helpers'       => [
         'descendants'       => 'Aquí se muestran todas las familias que descienden de esta, no solo las inmediatamente inferiores.',
@@ -25,9 +21,7 @@ return [
     'hints'         => [
         'members'   => 'Aquí se muestran los miembros de la familia. Se puede añadir un personaje a una familia en el menú de edición de dicho personaje, usando el desplegable "Familia".',
     ],
-    'index'         => [
-        'title' => 'Familias',
-    ],
+    'index'         => [],
     'members'       => [
         'helpers'   => [
             'all_members'       => 'Aquí se muestran todos los personajes de esta familia y de todas sus subfamilias.',

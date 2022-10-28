@@ -79,7 +79,6 @@ TEXT
                 'title' => 'Ny Kampanj',
             ],
         ],
-        'title'     => 'Kampanj',
     ],
     'invites'                           => [
         'actions'               => [

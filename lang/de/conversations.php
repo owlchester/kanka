@@ -11,17 +11,13 @@ return [
     'fields'        => [
         'is_closed'     => 'geschlossen',
         'messages'      => 'Nachrichten',
-        'name'          => 'Name',
         'participants'  => 'Teilnehmer',
         'target'        => 'Ziel',
-        'type'          => 'Typ',
     ],
     'hints'         => [
         'participants'  => 'Bitte füge Teilnehmer zu deiner Unterhaltung hinzu, indem du das :icon Symbol oben rechts drückst.',
     ],
-    'index'         => [
-        'title' => 'Unterhaltungen',
-    ],
+    'index'         => [],
     'messages'      => [
         'destroy'       => [
             'success'   => 'Nachricht gelöscht.',

@@ -7,21 +7,15 @@ return [
     'destroy'       => [],
     'edit'          => [],
     'fields'        => [
-        'image'         => 'Imatge',
-        'location'      => 'Indret',
         'members'       => 'Membres',
-        'name'          => 'Nom',
         'organisation'  => 'Organització superior',
         'organisations' => 'Suborganitzacions',
-        'type'          => 'Tipus',
     ],
     'helpers'       => [
         'descendants'       => 'Aquí es mostren totes les organitzacions que descendeixen d\'aquesta organització, no només les directament inferiors.',
         'nested_without'    => 'S\'estan mostrant les organitzacions sense pare. Feu clic a la fila d\'una organització per a mostrar-ne les descendents.',
     ],
-    'index'         => [
-        'title' => 'Organitzacions',
-    ],
+    'index'         => [],
     'members'       => [
         'actions'       => [
             'add'   => 'Afegeix un membre',

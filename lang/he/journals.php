@@ -9,13 +9,8 @@ return [
     'fields'        => [
         'author'    => 'כותב',
         'date'      => 'תאריך',
-        'image'     => 'תמונה',
-        'name'      => 'שם',
-        'type'      => 'סוג',
     ],
-    'index'         => [
-        'title' => 'יומנים',
-    ],
+    'index'         => [],
     'placeholders'  => [
         'author'    => 'מי כתב את היומן',
         'date'      => 'התאריך של היומן',

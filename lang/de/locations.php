@@ -17,13 +17,10 @@ return [
     ],
     'fields'        => [
         'characters'        => 'Charaktere',
-        'image'             => 'Bild',
         'is_map_private'    => 'Private Karte',
         'location'          => 'Übergeordneter Ort',
         'locations'         => 'Orte',
         'map'               => 'Karte',
-        'name'              => 'Name',
-        'type'              => 'Typ',
     ],
     'helpers'       => [
         'characters'        => 'Sieh alle Charaktere in diesem Ort und den Unterorten an oder nur die direkt im Ort.',
@@ -37,9 +34,7 @@ return [
     'hints'         => [
         'is_map_private'    => 'Eine private Karte ist nur für Mitglieder der "Admin" -Rolle der Kampagne sichtbar.',
     ],
-    'index'         => [
-        'title' => 'Orte',
-    ],
+    'index'         => [],
     'items'         => [],
     'journals'      => [],
     'locations'     => [

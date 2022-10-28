@@ -17,13 +17,10 @@ return [
     ],
     'fields'        => [
         'characters'        => 'Postaci',
-        'image'             => 'Obraz',
         'is_map_private'    => 'Mapa tajna',
         'location'          => 'Miejsce źródłowe',
         'locations'         => 'Miejsca pochodne',
         'map'               => 'Mapa',
-        'name'              => 'Nazwa',
-        'type'              => 'Rodzaj',
     ],
     'helpers'       => [
         'characters'        => 'Wyświetla postaci znajdujące się w tym miejscu i wszystkich miejscach pochodnych, albo wyłącznie tutaj.',
@@ -37,9 +34,7 @@ return [
     'hints'         => [
         'is_map_private'    => 'Tajna mapa widoczna jest wyłącznie dla uczestników kampanii posiadających rolę "administrator".',
     ],
-    'index'         => [
-        'title' => 'Miejsca',
-    ],
+    'index'         => [],
     'items'         => [],
     'journals'      => [],
     'locations'     => [

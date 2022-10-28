@@ -7,13 +7,9 @@ return [
     'destroy'       => [],
     'edit'          => [],
     'fields'        => [
-        'description'   => 'Opis',
-        'image'         => 'Slika',
-        'is_pinned'     => 'Pričvršćena',
-        'name'          => 'Naslov',
-        'note'          => 'Bilješka roditelj',
-        'notes'         => 'Bilješka dijete',
-        'type'          => 'Tip',
+        'is_pinned' => 'Pričvršćena',
+        'note'      => 'Bilješka roditelj',
+        'notes'     => 'Bilješka dijete',
     ],
     'helpers'       => [
         'nested_without'    => 'Prikazuju se sve bilješke koje nemaju bilješku roditelj. Klikni redak da bi vidio/la bilješke djecu.',
@@ -21,9 +17,7 @@ return [
     'hints'         => [
         'is_pinned' => 'Do 3 bilješke mogu biti prikazane na naslovnoj ploči tako što su pričvršćene.',
     ],
-    'index'         => [
-        'title' => 'Bilješke',
-    ],
+    'index'         => [],
     'placeholders'  => [
         'name'  => 'Naslov bilješke',
         'note'  => 'Odaberite bilješku roditelja',

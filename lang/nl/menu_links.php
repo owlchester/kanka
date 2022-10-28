@@ -13,7 +13,6 @@ return [
         'entity'        => 'Entiteit',
         'filters'       => 'Filters',
         'menu'          => 'Menu',
-        'name'          => 'Naam',
         'position'      => 'Positie',
         'random'        => 'Willekeurig',
         'random_type'   => 'Willekeurig Entiteit Type',
@@ -28,10 +27,7 @@ return [
         'selector'  => 'Configureer waar deze snelle link naartoe gaat wanneer een gebruiker erop klikt in de zijbalk.',
         'type'      => 'Stel deze snelle link in om rechtstreeks naar een lijst met entiteiten te gaan. Om de resultaten te filteren, kopieer je delen van de url in de gefilterde entiteitenlijst na het :? teken op het :filter veld.',
     ],
-    'index'         => [
-        'add'   => 'Nieuwe Snelle Link',
-        'title' => 'Snelle Links',
-    ],
+    'index'         => [],
     'placeholders'  => [
         'entity'    => 'Kies een entiteit',
         'filters'   => 'location_id=15&type=city',

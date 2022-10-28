@@ -13,23 +13,16 @@ return [
         'date'      => 'Kalendářní datum',
         'event'     => 'Nadřazená událost',
         'events'    => 'Události',
-        'image'     => 'Obrázek',
-        'location'  => 'Místo',
-        'name'      => 'Název',
-        'type'      => 'Typ',
     ],
     'helpers'       => [
         'date'              => 'Toto pole může může obsahovat cokoli a není propojené s kalendářem tažení. Pokud chceš tuto událost připojit k některému kalendáři, přidej ji ke kalendáři nebo do karty připomínky této události.',
         'nested_without'    => 'Zobrazit všechny události, které nemají nadřazenou událost. Klepnutím na danou událost zobrazíš podřízené události.',
     ],
-    'index'         => [
-        'title' => 'Události',
-    ],
+    'index'         => [],
     'placeholders'  => [
-        'date'      => 'Kalendářní datum události',
-        'location'  => 'Vyber si místo',
-        'name'      => 'Název události',
-        'type'      => 'Oslava, Festival, Pohroma, Bitva, Narozeniny',
+        'date'  => 'Kalendářní datum události',
+        'name'  => 'Název události',
+        'type'  => 'Oslava, Festival, Pohroma, Bitva, Narozeniny',
     ],
     'show'          => [
         'tabs'  => [

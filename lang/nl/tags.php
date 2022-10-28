@@ -17,19 +17,15 @@ return [
     'edit'          => [],
     'fields'        => [
         'children'  => 'Gerelateerden',
-        'name'      => 'Naam',
         'tag'       => 'Bovenliggende Tag',
         'tags'      => 'Subtags',
-        'type'      => 'Type',
     ],
     'helpers'       => [],
     'hints'         => [
         'children'  => 'Deze lijst bevat alle entiteiten rechtstreeks in deze tag en in alle geneste tags.',
         'tag'       => 'Hieronder worden alle tags weergegeven die direct onder deze tag staan.',
     ],
-    'index'         => [
-        'title' => 'Tags',
-    ],
+    'index'         => [],
     'new_tag'       => 'Nieuwe Tag',
     'placeholders'  => [
         'name'  => 'Naam van de tag',

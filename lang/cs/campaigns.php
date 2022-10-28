@@ -91,7 +91,6 @@ TEXT
                 'title' => 'Nové tažení',
             ],
         ],
-        'title'     => 'Tažení',
     ],
     'invites'                           => [
         'actions'               => [

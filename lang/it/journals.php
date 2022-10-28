@@ -9,13 +9,8 @@ return [
     'fields'        => [
         'author'    => 'Autore',
         'date'      => 'Data',
-        'image'     => 'Immagine',
-        'name'      => 'Nome',
-        'type'      => 'Tipo',
     ],
-    'index'         => [
-        'title' => 'Diari',
-    ],
+    'index'         => [],
     'placeholders'  => [
         'author'    => 'Chi ha scritto il diario',
         'date'      => 'Data del diario',

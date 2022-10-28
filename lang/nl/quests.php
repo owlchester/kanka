@@ -10,22 +10,16 @@ return [
         'character'     => 'Aanstichter',
         'copy_elements' => 'Kopieer elementen die aan de quest zijn gekoppeld',
         'date'          => 'Datum',
-        'description'   => 'Beschrijving',
-        'image'         => 'Afbeelding',
         'is_completed'  => 'Voltooid',
-        'name'          => 'Naam',
         'quest'         => 'Bovenliggende Quest',
         'quests'        => 'Sub Quest',
         'role'          => 'Rol',
-        'type'          => 'Type',
     ],
     'helpers'       => [],
     'hints'         => [
         'quests'    => 'Met het veld Bovenliggende Quest kan een web van in elkaar grijpende quests worden gebouwd.',
     ],
-    'index'         => [
-        'title' => 'Quests',
-    ],
+    'index'         => [],
     'placeholders'  => [
         'date'  => 'Echte werelddatum voor de quest',
         'name'  => 'Naam van de quest',

@@ -10,7 +10,6 @@ return [
     'edit'          => [],
     'fields'        => [
         'created_at'    => 'Dobott',
-        'name'          => 'Megnevezés',
         'parameters'    => 'Paraméterek',
         'results'       => 'Eredmények',
         'rolls'         => 'Dobások',
@@ -23,7 +22,6 @@ return [
             'dice'      => 'Dobások',
             'results'   => 'Eredmények',
         ],
-        'title'     => 'Dobások',
     ],
     'placeholders'  => [
         'dice_roll' => 'Dobás',

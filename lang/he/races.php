@@ -11,15 +11,11 @@ return [
     'edit'          => [],
     'fields'        => [
         'characters'    => 'דמויות',
-        'name'          => 'שם',
         'race'          => 'גזע אב',
         'races'         => 'תתי-גזע',
-        'type'          => 'סוג',
     ],
     'helpers'       => [],
-    'index'         => [
-        'title' => 'גזעים',
-    ],
+    'index'         => [],
     'placeholders'  => [
         'name'  => 'שם הגזע',
         'type'  => 'בן אנוש, פיה, סייבורג',

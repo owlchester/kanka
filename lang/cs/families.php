@@ -12,11 +12,7 @@ return [
     'fields'        => [
         'families'  => 'Podřazené rody',
         'family'    => 'Nadřazený rod',
-        'image'     => 'Obrázek',
-        'location'  => 'Místo',
         'members'   => 'Členové',
-        'name'      => 'Název',
-        'type'      => 'Typ',
     ],
     'helpers'       => [
         'descendants'       => 'Seznam zobrazuje všechny rody, podřazené tomuto rodu, nejen přímo podléhající.',
@@ -25,9 +21,7 @@ return [
     'hints'         => [
         'members'   => 'Zde se zobrazují členové rodu. Postavu lze přičlenit některému rodu na její kartě "Rod".',
     ],
-    'index'         => [
-        'title' => 'Rody',
-    ],
+    'index'         => [],
     'members'       => [
         'helpers'   => [
             'all_members'       => 'Tento seznam obsahuje všechny členy tohoto rodu a jeho podřazených rodů.',

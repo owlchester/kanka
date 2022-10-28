@@ -15,17 +15,13 @@ return [
     'edit'          => [],
     'fields'        => [
         'characters'    => 'Charaktere',
-        'name'          => 'Name',
         'race'          => 'Übergeordnete Spezies',
         'races'         => 'Unterspezies',
-        'type'          => 'Typ',
     ],
     'helpers'       => [
         'nested_without'    => 'Anzeige aller Spezies, die keine übergeordnete Spezies haben. Klicken Sie auf eine Zeile, um die untergeordneten Spezies anzuzeigen.',
     ],
-    'index'         => [
-        'title' => 'Spezies',
-    ],
+    'index'         => [],
     'placeholders'  => [
         'name'  => 'Name der Spezies',
         'type'  => 'Mensch, Fee, Borg',

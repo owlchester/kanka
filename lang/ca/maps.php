@@ -31,12 +31,10 @@ return [
         'maps'          => 'Mapes',
         'max_zoom'      => 'Zoom màxim',
         'min_zoom'      => 'Zoom mínim',
-        'name'          => 'Nom',
         'tabs'          => [
             'coordinates'   => 'Coordenades',
             'marker'        => 'Marcador',
         ],
-        'type'          => 'Tipus',
     ],
     'helpers'       => [
         'center'            => 'Mitjançant aquests valors, es pot controlar quina àrea del mapa es focalitza en carregar-lo. Si es deixen en blanc, el mapa es carregarà focalitzat al centre.',
@@ -51,9 +49,7 @@ return [
         'missing_image'     => 'Cal guardar el mapa amb una imatge abans d\'afegir-hi capes i marcadors.',
         'nested_without'    => 'S\'estan mostrant els mapes sense pare. Feu clic a la fila d\'un mapa per a mostrar-ne els descendents.',
     ],
-    'index'         => [
-        'title' => 'Mapes',
-    ],
+    'index'         => [],
     'maps'          => [
         'title' => 'Mapes de :name',
     ],

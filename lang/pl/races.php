@@ -16,17 +16,13 @@ return [
     'fields'        => [
         'characters'    => 'Postaci',
         'locations'     => 'Umiejscowienie',
-        'name'          => 'Nazwa',
         'race'          => 'Rasa źródłowa',
         'races'         => 'Rasy pochodne',
-        'type'          => 'Rodzaj',
     ],
     'helpers'       => [
         'nested_without'    => 'Wyświetlono wszystkie rasy nie posiadające źródła. Kliknij na rząd, by wyświetlić rasy pochodne.',
     ],
-    'index'         => [
-        'title' => 'Rasy',
-    ],
+    'index'         => [],
     'placeholders'  => [
         'name'  => 'Nazwa rasy',
         'type'  => 'Człowiek, sidhe, borg',

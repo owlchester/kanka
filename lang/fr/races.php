@@ -16,17 +16,13 @@ return [
     'fields'        => [
         'characters'    => 'Personnages',
         'locations'     => 'Lieux',
-        'name'          => 'Nom',
         'race'          => 'Race Parentale',
         'races'         => 'Sous-races',
-        'type'          => 'Type',
     ],
     'helpers'       => [
         'nested_without'    => 'Affichage des races sans parent. Cliquer sur une rangée pour afficher les races enfants.',
     ],
-    'index'         => [
-        'title' => 'Races',
-    ],
+    'index'         => [],
     'placeholders'  => [
         'name'  => 'Nom de la race',
         'type'  => 'Humain, Fée, Borg',

@@ -10,7 +10,6 @@ return [
     'edit'          => [],
     'fields'        => [
         'created_at'    => 'Atıldığı An',
-        'name'          => 'Ad',
         'parameters'    => 'Parametreler',
         'results'       => 'Sonuçlar',
         'rolls'         => 'Atışlar',
@@ -23,7 +22,6 @@ return [
             'dice'      => 'Zarlar',
             'results'   => 'Sonuçlar',
         ],
-        'title'     => ':Zarlar',
     ],
     'placeholders'  => [
         'dice_roll' => 'Zar atışı',

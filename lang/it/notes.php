@@ -7,13 +7,9 @@ return [
     'destroy'       => [],
     'edit'          => [],
     'fields'        => [
-        'description'   => 'Descrizione',
-        'image'         => 'Immagine',
-        'is_pinned'     => 'Fissata',
-        'name'          => 'Nome',
-        'note'          => 'Nota sovraordinata',
-        'notes'         => 'Sottonote',
-        'type'          => 'Tipo',
+        'is_pinned' => 'Fissata',
+        'note'      => 'Nota sovraordinata',
+        'notes'     => 'Sottonote',
     ],
     'helpers'       => [
         'nested_without'    => 'Visualizzazione delle note che non hanno una nota sovraordinata. Clicca su una fila per vedere le sottonote.',
@@ -21,9 +17,7 @@ return [
     'hints'         => [
         'is_pinned' => 'Fino a 3 note possono essere fissate per essere visualizzate nella dashboard.',
     ],
-    'index'         => [
-        'title' => 'Note',
-    ],
+    'index'         => [],
     'placeholders'  => [
         'name'  => 'Nome della nota',
         'note'  => 'Scegli una nota sovraordinata',

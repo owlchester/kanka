@@ -9,18 +9,13 @@ return [
     'fields'        => [
         'author'    => 'Auteur',
         'date'      => 'Datum',
-        'image'     => 'Afbeelding',
         'journal'   => 'Bovenliggend Logboek',
         'journals'  => 'Sub Logboek',
-        'name'      => 'Naam',
-        'type'      => 'Type',
     ],
     'helpers'       => [
         'journals'  => 'Geef alle of alleen de directe sub logboeken van dit logboek weer.',
     ],
-    'index'         => [
-        'title' => 'Logboeken',
-    ],
+    'index'         => [],
     'journals'      => [
         'title' => 'Logboek :name sub logboeken',
     ],

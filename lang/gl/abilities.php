@@ -27,16 +27,12 @@ return [
         'abilities' => 'Habilidades',
         'ability'   => 'Habilidade nai',
         'charges'   => 'Cargas',
-        'name'      => 'Nome',
-        'type'      => 'Tipo',
     ],
     'helpers'       => [
         'descendants'       => 'Esta lista contén todas as habilidades descendentes desta habilidade, non só as que están no nivel directamente inferior.',
         'nested_without'    => 'Mostrando todas as habilidades que non teñen unha habilidade nai. Fai clic nunha fila para ver as súas descendentes.',
     ],
-    'index'         => [
-        'title' => 'Habilidades',
-    ],
+    'index'         => [],
     'placeholders'  => [
         'charges'   => 'Número de cargas. Podes referenciar atributos desta forma: {Level}*{CHA}',
         'name'      => 'Bóla de lume, Alerta, Ataque astuto...',

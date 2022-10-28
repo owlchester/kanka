@@ -12,16 +12,13 @@ return [
     'fields'                => [
         'attribute_template'    => 'Nadradená šablóna atribútov',
         'attributes'            => 'Atribúty',
-        'name'                  => 'Názov',
     ],
     'hints'                 => [
         'automatic'                 => 'Atribúty boli automaticky aplikované zo šablóny atribútov :link.',
         'entity_type'               => 'Po aktivovaní bude v novom objekte tohto typu automaticky aplikovaná táto šablóna atribútov.',
         'parent_attribute_template' => 'Táto šablóna atribútov môže byť podradená inej šablóne atribútov. Ak bude aplikovaná táto šablóna atribútov, aplikujú sa zároveň s ňou aj všetky jej nadradené šablóny atribútov.',
     ],
-    'index'                 => [
-        'title' => 'Šablóny atribútov',
-    ],
+    'index'                 => [],
     'placeholders'          => [
         'attribute_template'    => 'Vyber jednu zo šablón atribútov',
         'name'                  => 'Názov šablóny atribútov',

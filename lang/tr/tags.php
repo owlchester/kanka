@@ -17,19 +17,15 @@ return [
     'edit'          => [],
     'fields'        => [
         'children'  => 'Bağlı not',
-        'name'      => 'Ad',
         'tag'       => 'Ana Etiket',
         'tags'      => 'Alt Etiket',
-        'type'      => 'Tür',
     ],
     'helpers'       => [],
     'hints'         => [
         'children'  => 'Bu liste bu etiketteki ve tüm iç içe etiketlerdeki varlıkları içerir.',
         'tag'       => 'Aşağıda bu etiketin doğrudan altında olan tüm etiketler görüntülenir.',
     ],
-    'index'         => [
-        'title' => 'Etiketler',
-    ],
+    'index'         => [],
     'new_tag'       => 'Yeni Etiket',
     'placeholders'  => [
         'name'  => 'Etiketin adı',

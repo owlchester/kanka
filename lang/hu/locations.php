@@ -17,13 +17,10 @@ return [
     ],
     'fields'        => [
         'characters'        => 'Karakterek',
-        'image'             => 'Kép',
         'is_map_private'    => 'Privát Térkép',
         'location'          => 'Szülő Helyszín',
         'locations'         => 'Helyszínek',
         'map'               => 'Térkép',
-        'name'              => 'Név',
-        'type'              => 'Típus',
     ],
     'helpers'       => [
         'characters'        => 'Minden, a helyszínen és annak alhelyszínein, vagy közvetlenül csak a helyszínen tartózkodó karakter listázása.',
@@ -37,9 +34,7 @@ return [
     'hints'         => [
         'is_map_private'    => 'Egy privát térkép csak a kampány "Admin" szerepű tagjai számára láthatóak.',
     ],
-    'index'         => [
-        'title' => 'Helyszínek',
-    ],
+    'index'         => [],
     'items'         => [],
     'journals'      => [],
     'locations'     => [

@@ -14,7 +14,6 @@ return [
         'filters'       => 'Filtres',
         'is_nested'     => 'Niuat',
         'menu'          => 'Menú',
-        'name'          => 'Nom',
         'position'      => 'Posició',
         'random'        => 'Aleatori',
         'random_type'   => 'Tipus aleatori d\'entitat',
@@ -29,10 +28,7 @@ return [
         'selector'  => 'Configureu on envia aquest enllaç quan un usuari el clica des de la barra lateral.',
         'type'      => 'Configureu aquest enllaç directe per a anar directament a una llista d\'entitats. Per a filtrar els resultats, copieu les parts de la URL de la llista filtrada a partir del símbol :? al camp de :filter.',
     ],
-    'index'             => [
-        'add'   => 'Nou enllaç directe',
-        'title' => 'Accés directe',
-    ],
+    'index'             => [],
     'placeholders'      => [
         'entity'    => 'Trieu una entitat',
         'filters'   => 'location_id=15&type=ciutat',

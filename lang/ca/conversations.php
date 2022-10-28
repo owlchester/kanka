@@ -11,17 +11,13 @@ return [
     'fields'        => [
         'is_closed'     => 'Tancada',
         'messages'      => 'Missatges',
-        'name'          => 'Nom',
         'participants'  => 'Participants',
         'target'        => 'Objectiu',
-        'type'          => 'Tipus',
     ],
     'hints'         => [
         'participants'  => 'Afegiu participants a la conversa clicant a la icona :icon adalt a la dreta.',
     ],
-    'index'         => [
-        'title' => 'Converses',
-    ],
+    'index'         => [],
     'messages'      => [
         'destroy'       => [
             'success'   => 'S\'ha eliminat el missatge.',

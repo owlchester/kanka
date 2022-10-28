@@ -8,14 +8,10 @@ return [
     'edit'          => [],
     'fields'        => [
         'character' => 'Postava',
-        'image'     => 'Obrázok',
         'item'      => 'Nadradený predmet',
         'items'     => 'Podradený predmet',
-        'location'  => 'Miesto',
-        'name'      => 'Názov',
         'price'     => 'Cena',
         'size'      => 'Veľkosť',
-        'type'      => 'Typ',
     ],
     'helpers'       => [
         'nested_without'    => 'Zobrazujú sa všetky predmety bez nadradeného predmetu. Kliknutím na riadok sa zobrazia podradené predmety.',
@@ -23,9 +19,7 @@ return [
     'hints'         => [
         'items' => 'Organizuj predmety pomocou nadradených predmetov.',
     ],
-    'index'         => [
-        'title' => 'Predmety',
-    ],
+    'index'         => [],
     'inventories'   => [
         'title' => 'Objekty s predmetom :name',
     ],

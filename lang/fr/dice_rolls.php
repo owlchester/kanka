@@ -10,7 +10,6 @@ return [
     'edit'          => [],
     'fields'        => [
         'created_at'    => 'Jeté à',
-        'name'          => 'Nom',
         'parameters'    => 'Paramètres',
         'results'       => 'Résultats',
         'rolls'         => 'Jets',
@@ -23,7 +22,6 @@ return [
             'dice'      => 'Jets de dés',
             'results'   => 'Résultats',
         ],
-        'title'     => 'Jets de dés',
     ],
     'placeholders'  => [
         'dice_roll' => 'Jet de dés',

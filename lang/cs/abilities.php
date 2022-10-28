@@ -27,16 +27,12 @@ return [
         'abilities' => 'Schopnosti',
         'ability'   => 'Nadřazená schopnost',
         'charges'   => 'Počet použití',
-        'name'      => 'Název',
-        'type'      => 'Typ',
     ],
     'helpers'       => [
         'descendants'       => 'Seznam všech objektů, které jsou podřazeny tomuto objektu v libovolné hloubce. Nejen těch, které spadají přímo pod tento objekt.',
         'nested_without'    => 'Seznam všech schopností bez nadřazené schopnosti (jsou na vrcholu stromu schopností). Klepnutím na řádek se zobrazí podřazené schopnosti.',
     ],
-    'index'         => [
-        'title' => 'Schopnosti',
-    ],
+    'index'         => [],
     'placeholders'  => [
         'charges'   => 'Počet použití. Odkaz na atributy pomocí {Úroveň}*{CHA}',
         'name'      => 'Ohnivá koule, Ve střehu, Zákeřný úder',

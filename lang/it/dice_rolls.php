@@ -10,7 +10,6 @@ return [
     'edit'          => [],
     'fields'        => [
         'created_at'    => 'Tirato il',
-        'name'          => 'Nome',
         'parameters'    => 'Parametri',
         'results'       => 'Risultati',
         'rolls'         => 'Tiri',
@@ -23,7 +22,6 @@ return [
             'dice'      => 'Titi di Dado',
             'results'   => 'Risultati',
         ],
-        'title'     => 'Tiri di Dado',
     ],
     'placeholders'  => [
         'dice_roll' => 'Tiro di Dado',

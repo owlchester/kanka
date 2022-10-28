@@ -15,17 +15,13 @@ return [
     'edit'          => [],
     'fields'        => [
         'characters'    => 'Personajes',
-        'name'          => 'Nombre',
         'race'          => 'Raza superior',
         'races'         => 'Subrazas',
-        'type'          => 'Tipo',
     ],
     'helpers'       => [
         'nested_without'    => 'Mostrando todas las razas sin ningún superior. Haz clic sobre una fila para mostrar sus descendientes.',
     ],
-    'index'         => [
-        'title' => 'Razas',
-    ],
+    'index'         => [],
     'placeholders'  => [
         'name'  => 'Nombre de la raza',
         'type'  => 'Humano, Elfo, Troll...',

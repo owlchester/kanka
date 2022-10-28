@@ -42,12 +42,10 @@ return [
         'maps'              => 'Mapas',
         'max_zoom'          => 'Zoom máximo',
         'min_zoom'          => 'Zoom mínimo',
-        'name'              => 'Nome',
         'tabs'              => [
             'coordinates'   => 'Coordenadas',
             'marker'        => 'Marcador',
         ],
-        'type'              => 'Tipo',
     ],
     'helpers'       => [
         'center'            => 'Os seguintes valores controlan en que área do mapa está o foco. Deixar estes valores baleiros fará que o foco esté no centro.',
@@ -64,9 +62,7 @@ return [
         'missing_image'     => 'Garda o mapa cunha imaxe antes de engadir capas e marcadores.',
         'nested_without'    => 'Mostrando todos os mapas que non teñen un mapa superior. Fai clic nunha fila para ver os seus descendentes.',
     ],
-    'index'         => [
-        'title' => 'Mapas',
-    ],
+    'index'         => [],
     'maps'          => [
         'title' => 'Mapas de ":name"',
     ],

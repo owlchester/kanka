@@ -12,16 +12,13 @@ return [
     'fields'                => [
         'attribute_template'    => 'Padrón de atributos pai',
         'attributes'            => 'Atributos',
-        'name'                  => 'Nome',
     ],
     'hints'                 => [
         'automatic'                 => 'Atributos aplicados automaticamente a partir do padrón de atributos :link.',
         'entity_type'               => 'Se está activado, as entidades deste tipo terán este padrón de atributos aplicado automaticamente ao ser creadas.',
         'parent_attribute_template' => 'Este padrón de atributos pode ser descendente doutro padrón. Ao aplicar este padrón de atributos, todos os seus padróns pai serán tamén aplicados.',
     ],
-    'index'                 => [
-        'title' => 'Padróns de atributos',
-    ],
+    'index'                 => [],
     'placeholders'          => [
         'attribute_template'    => 'Elixe un padrón de atributos',
         'name'                  => 'Nome do padrón de atributos',

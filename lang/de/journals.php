@@ -9,19 +9,14 @@ return [
     'fields'        => [
         'author'    => 'Autor',
         'date'      => 'Datum',
-        'image'     => 'Bild',
         'journal'   => 'Übergeordnetes Logbuch',
         'journals'  => 'Untergeordnetes Logbuch',
-        'name'      => 'Name',
-        'type'      => 'Typ',
     ],
     'helpers'       => [
         'journals'          => 'Zeigen Sie alle oder nur die direkt Untergeordneten Logbücher dieses Logbuchs an.',
         'nested_without'    => 'Anzeigen aller Journale ohne übergeordnetes Journal. Klicken Sie auf eine Zeile, um die Kinderjournale anzuzeigen.',
     ],
-    'index'         => [
-        'title' => 'Logbücher',
-    ],
+    'index'         => [],
     'journals'      => [
         'title' => 'Logbuch :name Untergeordnetes Logbuch',
     ],

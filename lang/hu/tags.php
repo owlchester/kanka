@@ -18,10 +18,8 @@ return [
     'edit'          => [],
     'fields'        => [
         'children'  => 'Almezők',
-        'name'      => 'Megnevezés',
         'tag'       => 'Szülő Címke',
         'tags'      => 'Alcímkék',
-        'type'      => 'Típus',
     ],
     'helpers'       => [
         'nested_without'    => 'Minden céldulát megmutat, aminek nincs szülője. Klikkelj egy sorra, hogy lásd a gyermekcéduláit.',
@@ -30,9 +28,7 @@ return [
         'children'  => 'Ez a lista felsorol minden, a címkében és annak alcímkéiben közvetlenül szereplő entitást.',
         'tag'       => 'Minden címke, mely közvetlenül ezen címke alatt van.',
     ],
-    'index'         => [
-        'title' => 'Címkék',
-    ],
+    'index'         => [],
     'new_tag'       => 'Új címke',
     'placeholders'  => [
         'name'  => 'A címke neve',

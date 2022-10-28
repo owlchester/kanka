@@ -74,7 +74,6 @@ return [
         'length_days'           => ':count day|:count days',
         'months'                => 'Kalendarski mjeseci',
         'moons'                 => 'Mjeseci (nebeska tijela)',
-        'name'                  => 'Naziv',
         'parameters'            => 'Parametri',
         'recurring_periodicity' => 'Periodički ponavljajući',
         'recurring_until'       => 'Ponavlja se do godine',
@@ -82,7 +81,6 @@ return [
         'seasons'               => 'Sezone',
         'start_offset'          => 'Početni odmak',
         'suffix'                => 'Dometak',
-        'type'                  => 'Tip',
         'week_names'            => 'Nazivi tjedana',
         'weekdays'              => 'Nazivi dana',
     ],
@@ -105,9 +103,7 @@ return [
         'weeks'             => 'Definiraj neke nazive za bitnije tjedne u svom kalendaru.',
         'years'             => 'Neke godine su toliko važne da imaju svoj naziv.',
     ],
-    'index'         => [
-        'title' => 'Kalendari',
-    ],
+    'index'         => [],
     'layouts'       => [
         'month' => 'Mjesec',
         'year'  => 'Godina',

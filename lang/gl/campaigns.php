@@ -107,7 +107,6 @@ TEXT
                 'title' => 'Nova campaña',
             ],
         ],
-        'title'     => 'Campañas',
     ],
     'invites'                           => [
         'actions'               => [

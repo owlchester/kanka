@@ -11,17 +11,13 @@ return [
     'fields'        => [
         'is_closed'     => 'Uzavřený',
         'messages'      => 'Zprávy',
-        'name'          => 'Název',
         'participants'  => 'Účastníci',
         'target'        => 'Cíl',
-        'type'          => 'Typ',
     ],
     'hints'         => [
         'participants'  => 'Účastníky rozhovoru přidáš klepnutím na ikonu :icon vpravo nahoře.',
     ],
-    'index'         => [
-        'title' => 'Rozhovory',
-    ],
+    'index'         => [],
     'messages'      => [
         'destroy'       => [
             'success'   => 'Zpráva odstraněna',

@@ -30,14 +30,10 @@ return [
         'character'     => 'Auslöser',
         'copy_elements' => 'Kopiere Elemente, die an die Queste angehängt sind',
         'date'          => 'Datum',
-        'description'   => 'Beschreibung',
-        'image'         => 'Bild',
         'is_completed'  => 'Abgeschlossen',
-        'name'          => 'Name',
         'quest'         => 'Übergeordnete Queste',
         'quests'        => 'Untergeornete Queste',
         'role'          => 'Rolle',
-        'type'          => 'Typ',
     ],
     'helpers'       => [
         'is_completed'      => 'Wählen Sie aus, ob die Quest als abgeschlossen gilt.',
@@ -46,9 +42,7 @@ return [
     'hints'         => [
         'quests'    => 'Ein Netz aus verknüpften Quests kann mit dem Elternquest-Feld erstellt werden.',
     ],
-    'index'         => [
-        'title' => 'Quests',
-    ],
+    'index'         => [],
     'items'         => [],
     'locations'     => [],
     'organisations' => [],

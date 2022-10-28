@@ -12,11 +12,7 @@ return [
     'fields'        => [
         'families'  => 'Alt Aileler',
         'family'    => 'Ana Aile',
-        'image'     => 'Görsel',
-        'location'  => 'Konum',
         'members'   => 'Üyeler',
-        'name'      => 'Ad',
-        'type'      => 'Tür',
     ],
     'helpers'       => [
         'descendants'   => 'Bu liste bu aileden gelen tüm aileleri içerir, yalnızca doğrudan altında olanları değil.',
@@ -24,9 +20,7 @@ return [
     'hints'         => [
         'members'   => 'Aile üyeleri burada listelenir. Bir karakter bir aileye istenen karakteri düzenlerken "Aile" açılır listesi kullanılarak eklenebilir.',
     ],
-    'index'         => [
-        'title' => 'Aileler',
-    ],
+    'index'         => [],
     'members'       => [
         'helpers'   => [
             'all_members'       => 'Aşağıdaki liste bu ailede ve bu aileden gelen ailelerde bulunan karakterlerin listesidir.',

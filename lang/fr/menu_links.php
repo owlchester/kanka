@@ -15,7 +15,6 @@ return [
         'filters'           => 'Filtres',
         'is_nested'         => 'Vue imbriquée',
         'menu'              => 'Menu',
-        'name'              => 'Nom',
         'position'          => 'Position',
         'random'            => 'Aléatoire',
         'random_type'       => 'Type d\'entité aléatoire',
@@ -31,10 +30,7 @@ return [
         'selector'          => 'Configurer vers quel type d\'entité l\'utilisateur ira en cliquant sur le lien dans le menu de navigation.',
         'type'              => 'Définir ce lien de menu pour aller directement sur une liste d\'entité. Pour filtrer les résultats, il faut copier l\'url de la page filtrée après le :? de l\'url dans le champs :filter.',
     ],
-    'index'             => [
-        'add'   => 'Nouveau lien de menu',
-        'title' => 'Liens de menu',
-    ],
+    'index'             => [],
     'placeholders'      => [
         'entity'    => 'Choix d\'une entité',
         'filters'   => 'location_id=15&type=city',

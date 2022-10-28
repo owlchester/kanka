@@ -11,17 +11,13 @@ return [
     'fields'        => [
         'is_closed'     => 'Lezárva',
         'messages'      => 'Üzenetek',
-        'name'          => 'Megnevezés',
         'participants'  => 'Résztvevők',
         'target'        => 'Célpont',
-        'type'          => 'Típus',
     ],
     'hints'         => [
         'participants'  => 'Kérjük, adj résztvevőket a beszélgetésedhez az :icon ikonra kattintva a jobb felső részen.',
     ],
-    'index'         => [
-        'title' => 'Beszélgetés',
-    ],
+    'index'         => [],
     'messages'      => [
         'destroy'       => [
             'success'   => 'Üzenet eltávolítva.',

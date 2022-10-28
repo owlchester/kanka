@@ -30,14 +30,10 @@ return [
         'character'     => 'Donator',
         'copy_elements' => 'Kopiuj elementy związane z misją',
         'date'          => 'Data',
-        'description'   => 'Opis',
-        'image'         => 'Obraz',
         'is_completed'  => 'Ukończona',
-        'name'          => 'Nazwa',
         'quest'         => 'Misja źródłowa',
         'quests'        => 'Misje pochodne',
         'role'          => 'Rola',
-        'type'          => 'Rodzaj',
     ],
     'helpers'       => [
         'is_completed'      => 'Wybierz, jeżeli misję można uznać za ukończoną.',
@@ -46,9 +42,7 @@ return [
     'hints'         => [
         'quests'    => 'Przy użyciu pola Misji źródłowej można stworzyć sieć zazębiających się misji.',
     ],
-    'index'         => [
-        'title' => 'Misje',
-    ],
+    'index'         => [],
     'placeholders'  => [
         'date'  => 'Data misji w prawdziwym świecie',
         'name'  => 'Nazwa misji',

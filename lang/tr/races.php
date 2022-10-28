@@ -11,15 +11,11 @@ return [
     'edit'          => [],
     'fields'        => [
         'characters'    => 'Karakterler',
-        'name'          => 'Ad',
         'race'          => 'Ana Irk',
         'races'         => 'Alt Irklar',
-        'type'          => 'Tür',
     ],
     'helpers'       => [],
-    'index'         => [
-        'title' => 'Irklar',
-    ],
+    'index'         => [],
     'placeholders'  => [
         'name'  => 'Irkın Adı',
         'type'  => 'İnsan, Fey, Borg',

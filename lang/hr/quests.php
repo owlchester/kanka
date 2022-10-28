@@ -28,14 +28,10 @@ return [
         'character'     => 'Inicijator',
         'copy_elements' => 'Kopirajte elemente pridružene zadatku',
         'date'          => 'Datum',
-        'description'   => 'Opis',
-        'image'         => 'Slika',
         'is_completed'  => 'Izvršen',
-        'name'          => 'Naziv',
         'quest'         => 'Zadatak roditelj',
         'quests'        => 'Podzadatak',
         'role'          => 'Uloga',
-        'type'          => 'Tip',
     ],
     'helpers'       => [
         'nested_without'    => 'Prikazuju se svi zadaci koji nemaju zadatak roditelj. Klikni redak da bi vidio/la zadatke djecu.',
@@ -43,9 +39,7 @@ return [
     'hints'         => [
         'quests'    => 'Mreža isprepletenih zadataka se može napraviti korištenjem Zadatak roditelj polja.',
     ],
-    'index'         => [
-        'title' => 'Zadaci',
-    ],
+    'index'         => [],
     'placeholders'  => [
         'date'  => 'Stvarni datum zadatka',
         'name'  => 'Naziv zadatka',

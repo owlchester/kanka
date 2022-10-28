@@ -15,7 +15,6 @@ return [
         'filters'           => 'Filtre',
         'is_nested'         => 'Vnorené',
         'menu'              => 'Menu',
-        'name'              => 'Názov',
         'position'          => 'Pozícia',
         'random'            => 'Náhodný',
         'random_type'       => 'Náhodný typ objektu',
@@ -31,10 +30,7 @@ return [
         'selector'          => 'Nastav, kam tento rýchly link bude smerovať, ak na neho užívateľ klikne v bočnej lište.',
         'type'              => 'Nastav tento menu link, aby sa po kliknutí naň zobrazil zoznam objektov. Skopíruj časť URL na filtrovanom zozname objektov, ktorá sa nachádza po :? a vlož ju do poľa :filter.',
     ],
-    'index'             => [
-        'add'   => 'Nový menu link',
-        'title' => 'Menu linky',
-    ],
+    'index'             => [],
     'placeholders'      => [
         'entity'    => 'Vyber objekt',
         'filters'   => 'location_id=15&type=city',

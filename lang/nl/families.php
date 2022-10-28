@@ -12,11 +12,7 @@ return [
     'fields'        => [
         'families'  => 'Sub Families',
         'family'    => 'Bovenliggende Familie',
-        'image'     => 'Afbeelding',
-        'location'  => 'Locatie',
         'members'   => 'Leden',
-        'name'      => 'Naam',
-        'type'      => 'Type',
     ],
     'helpers'       => [
         'descendants'   => 'Deze lijst bevat alle families die afstammen van deze familie, en niet alleen de families er direct onder.',
@@ -24,9 +20,7 @@ return [
     'hints'         => [
         'members'   => 'Leden van een familie worden hier vermeld. Een personage kan aan een familie worden toegevoegd door het gewenste personage te bewerken en de vervolgkeuzelijst "Familie" te gebruiken.',
     ],
-    'index'         => [
-        'title' => 'Families',
-    ],
+    'index'         => [],
     'members'       => [
         'helpers'   => [
             'all_members'       => 'De volgende lijst bevat alle personages die in deze familie voorkomen en alle afstammelingen van de familie.',

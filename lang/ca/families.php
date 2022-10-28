@@ -12,11 +12,7 @@ return [
     'fields'        => [
         'families'  => 'Subfamílies',
         'family'    => 'Família antecessora',
-        'image'     => 'Imatge',
-        'location'  => 'Procedència',
         'members'   => 'Membres',
-        'name'      => 'Nom',
-        'type'      => 'Tipus',
     ],
     'helpers'       => [
         'descendants'       => 'Aquí es mostren totes les famílies que són descendents d\'aquesta família, no només les immediatament inferiors.',
@@ -25,9 +21,7 @@ return [
     'hints'         => [
         'members'   => 'Aquí es mostren els membres d\'una família. Es pot afegir un personatge a una família des del menú d\'edició d\'aquest, mitjançant el desplegable «Família».',
     ],
-    'index'         => [
-        'title' => 'Famílies',
-    ],
+    'index'         => [],
     'members'       => [
         'helpers'   => [
             'all_members'       => 'Aquí es mostren tots els personatges d\'aquesta família i de totes les subfamílies.',

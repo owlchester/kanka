@@ -42,12 +42,10 @@ return [
         'maps'              => 'Mapas',
         'max_zoom'          => 'Zoom máximo',
         'min_zoom'          => 'Zoom mínimo',
-        'name'              => 'Nome',
         'tabs'              => [
             'coordinates'   => 'Coordenadas',
             'marker'        => 'Marcador',
         ],
-        'type'              => 'Tipo',
     ],
     'helpers'       => [
         'center'            => 'Alterar os valores a seguir controlará em qual área do mapa está o foco. Deixar esses valores vazios resultará no centro do mapa ser considerado o foco.',
@@ -64,9 +62,7 @@ return [
         'missing_image'     => 'Você precisa salvar o mapa com uma imagem antes de poder adicionar camadas e marcadores.',
         'nested_without'    => 'Mostrando todos os mapas que não tem um mapa-pai. Clique em uma linha para ver os mapas-filhos.',
     ],
-    'index'         => [
-        'title' => 'Mapas',
-    ],
+    'index'         => [],
     'maps'          => [
         'title' => 'Mapas de :name',
     ],

@@ -84,7 +84,6 @@ return [
         'month'                 => 'Miesiąc',
         'months'                => 'Miesiące',
         'moons'                 => 'Księżyce',
-        'name'                  => 'Nazwa',
         'parameters'            => 'Paramtery',
         'recurring_periodicity' => 'Powtarzaj co',
         'recurring_until'       => 'Powtarzaj do roku',
@@ -92,7 +91,6 @@ return [
         'seasons'               => 'Pory roku',
         'start_offset'          => 'Przesunięcie rozpoczęcia',
         'suffix'                => 'Oznaczenie',
-        'type'                  => 'Rodzaj',
         'week_names'            => 'Tygodnie specjalne',
         'weekdays'              => 'Dni tygodnia',
         'year'                  => 'Rok',
@@ -118,9 +116,7 @@ return [
         'weeks'             => 'Nadaj nazwy szczególnie ważnym tygodniom tego kalendarza.',
         'years'             => 'Niektóre lata są tak ważne, że posiadają własne nazwy.',
     ],
-    'index'         => [
-        'title' => 'Kalendarze',
-    ],
+    'index'         => [],
     'layouts'       => [
         'month'     => 'Miesiąc',
         'monthly'   => 'Miesięczny',

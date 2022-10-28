@@ -24,7 +24,6 @@ return [
         'position'  => 'Position',
     ],
     'helper'        => [
-        'amount_v2' => 'Crées des groupes de marqueurs et attaches leur des marqueurs, permettant d\'afficher ou de masquer rapidement plusieurs marqueurs en un seul clic.',
         'amount_v3' => 'Les marqueurs peuvent être groupé ensemble dans des groupes. Chaque groupe peut être activé pour rapidement afficher ou cacher les marqueurs de celui-ci.',
     ],
     'hints'         => [

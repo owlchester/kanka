@@ -15,17 +15,13 @@ return [
     'edit'          => [],
     'fields'        => [
         'characters'    => 'Personatges',
-        'name'          => 'Nom',
         'race'          => 'Raça superior',
         'races'         => 'Sub-races',
-        'type'          => 'Tipus',
     ],
     'helpers'       => [
         'nested_without'    => 'S\'estan mostrant les races sense pare. Feu clic a la fila d\'una raça per a mostrar-ne les descendents.',
     ],
-    'index'         => [
-        'title' => 'Races',
-    ],
+    'index'         => [],
     'placeholders'  => [
         'name'  => 'Nom de la raça',
         'type'  => 'Humà, elf, follet...',

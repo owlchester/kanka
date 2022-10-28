@@ -27,16 +27,12 @@ return [
         'abilities' => 'Képességek',
         'ability'   => 'Szülő Képesség',
         'charges'   => 'Aktiválások száma',
-        'name'      => 'Megnevezés',
-        'type'      => 'Típus',
     ],
     'helpers'       => [
         'descendants'       => 'Ez a lista minden olyan képességet tartalmaz, amelyek ennek a képességnek a leszármazottai, és nem csak azok, amelyek közvetlenül alá tartoznak.',
         'nested_without'    => 'Minden olyan képesség kijelzése, amelynek nincs szülő képessége. Klikkelj egy sorra, hogy lásd a gyermekképességeit.',
     ],
-    'index'         => [
-        'title' => 'Képességek',
-    ],
+    'index'         => [],
     'placeholders'  => [
         'charges'   => 'Aktiválások száma. Az attribútumokra az alábbi módon hivatkozhatsz: {Szint}*{Karizma}',
         'name'      => 'Tűzgolyó, riasztás, ravasz csapás',

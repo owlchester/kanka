@@ -11,17 +11,13 @@ return [
     'fields'        => [
         'is_closed'     => 'Закрыт',
         'messages'      => 'Сообщения',
-        'name'          => 'Название',
         'participants'  => 'Участники',
         'target'        => 'Участники',
-        'type'          => 'Тип',
     ],
     'hints'         => [
         'participants'  => 'Добавьте в разговор участников, нажав на иконку :icon справа вверху.',
     ],
-    'index'         => [
-        'title' => 'Разговоры',
-    ],
+    'index'         => [],
     'messages'      => [
         'destroy'       => [
             'success'   => 'Сообщение удалено.',

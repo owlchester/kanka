@@ -19,9 +19,7 @@ return [
         'is_shown'  => 'Zobraziť značky skupiny',
         'position'  => 'Pozícia',
     ],
-    'helper'        => [
-        'amount_v2' => 'Vytvor skupiny značiek a pridaj im značky, čím budeš môcť jedným kliknutím tieto zobraziť alebo skryť.',
-    ],
+    'helper'        => [],
     'hints'         => [
         'is_shown'  => 'Aktivovaním sa značky skupiny zobrazia na mape automaticky.',
     ],

@@ -15,7 +15,6 @@ return [
         'filters'           => 'Filtry',
         'is_nested'         => 'Hierarchia',
         'menu'              => 'Menu',
-        'name'              => 'Nazwa',
         'position'          => 'Kolejność',
         'random'            => 'Losowy',
         'random_type'       => 'Losowy typ elementu',
@@ -31,10 +30,7 @@ return [
         'selector'          => 'Ustal dokąd skrót przeniesie użytkownika, który na niego kliknie',
         'type'              => 'Stwórz skrót prowadzący do listy elementów. By filtrować rezultaty, skopuj część adresu filtrowanej listy elementów po znaku :? w pole :filter.',
     ],
-    'index'             => [
-        'add'   => 'Nowy skrót',
-        'title' => 'Skróty',
-    ],
+    'index'             => [],
     'placeholders'      => [
         'entity'    => 'Wybierz element',
         'filters'   => 'location_id=15&type=city',

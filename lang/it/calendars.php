@@ -76,7 +76,6 @@ return [
         'month'                 => 'Mese',
         'months'                => 'Mesi',
         'moons'                 => 'Lune',
-        'name'                  => 'Nome',
         'parameters'            => 'Parametri',
         'recurring_periodicity' => 'Periodicità Ricorrente',
         'recurring_until'       => 'Ricorrente fino all\'Anno',
@@ -84,7 +83,6 @@ return [
         'seasons'               => 'Stagioni',
         'start_offset'          => 'Inizio ritardo',
         'suffix'                => 'Suffisso',
-        'type'                  => 'Tipo',
         'week_names'            => 'Nomi della Settimana',
         'weekdays'              => 'Giorni della Settimana',
         'year'                  => 'Anno',
@@ -109,9 +107,7 @@ return [
         'weeks'             => 'Definisci alcuni nomi per le settimane più importanti del tuo calendario.',
         'years'             => 'Alcuni anni sono così importanti che hanno un nome specifico.',
     ],
-    'index'         => [
-        'title' => 'Calendari',
-    ],
+    'index'         => [],
     'layouts'       => [
         'month' => 'Mese',
         'year'  => 'Anno',

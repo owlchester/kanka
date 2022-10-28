@@ -9,19 +9,14 @@ return [
     'fields'        => [
         'author'    => 'Autor',
         'date'      => 'Data',
-        'image'     => 'Imagem',
         'journal'   => 'Jornal Principal',
         'journals'  => 'Jornais secundários',
-        'name'      => 'Nome',
-        'type'      => 'Tipo',
     ],
     'helpers'       => [
         'journals'          => 'Mostrar todos ou somente os jornais secundários deste Jornal',
         'nested_without'    => 'Mostrando todos os jornais que não tem um jornal-pai. Clique em uma linha para ver os jornais-filhos.',
     ],
-    'index'         => [
-        'title' => 'Jornais',
-    ],
+    'index'         => [],
     'journals'      => [
         'title' => 'Jornais secundários do Jornal :name',
     ],

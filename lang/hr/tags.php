@@ -18,10 +18,8 @@ return [
     'edit'          => [],
     'fields'        => [
         'children'  => 'Djeca',
-        'name'      => 'Naziv',
         'tag'       => 'Oznaka roditelj',
         'tags'      => 'Pod-oznake',
-        'type'      => 'Tip',
     ],
     'helpers'       => [
         'nested_without'    => 'Prikazuju se sve oznake koje nemaju oznaku roditelj. Klikni redak da bi vidio/la oznake djecu.',
@@ -30,9 +28,7 @@ return [
         'children'  => 'Popis sadrži sve oznake koje su unutar trenutne oznake, a ne samo one koje su direktno ispod nje.',
         'tag'       => 'Ispod su prikazane sve oznake koje su izravno pod ovom oznakom.',
     ],
-    'index'         => [
-        'title' => 'Oznake',
-    ],
+    'index'         => [],
     'new_tag'       => 'Nova oznaka',
     'placeholders'  => [
         'name'  => 'Naziv oznake',

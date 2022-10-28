@@ -46,7 +46,6 @@ return [
         'label'                     => '"Podpis" wyświetla na mapie nazwę tego znacznika albo elementu z którym jest związany.',
         'polygon'                   => [
             'edit'  => 'Kliknij na mapę, by dodać to miejsce do współrzędnych wielokąta.',
-            'new'   => 'Przesuwaj znacznik po mapie, by ustalić współrzędne wielokąta.',
         ],
     ],
     'icons'         => [

@@ -12,11 +12,7 @@ return [
     'fields'        => [
         'families'  => 'Sub famílias',
         'family'    => 'Família Principal',
-        'image'     => 'Imagem',
-        'location'  => 'Local',
         'members'   => 'Membros',
-        'name'      => 'Nome',
-        'type'      => 'Tipo',
     ],
     'helpers'       => [
         'descendants'       => 'Esta lista contém todas as famílias que são descendentes desta família, e não apenas aquelas diretamente relacionadas a ela.',
@@ -25,9 +21,7 @@ return [
     'hints'         => [
         'members'   => 'Os membros de uma família estão listados aqui. Um personagem pode ser adicionado a uma família editando o personagem desejado e usando a lista suspensa "Família".',
     ],
-    'index'         => [
-        'title' => 'Famílias',
-    ],
+    'index'         => [],
     'members'       => [
         'helpers'   => [
             'all_members'       => 'A lista a seguir são todos os personagens que estão nesta família e todas as subfamílias dela.',

@@ -12,11 +12,7 @@ return [
     'fields'        => [
         'families'  => 'Obitelji unutar veće obitelji',
         'family'    => 'Obitelj s manjim obiteljima',
-        'image'     => 'Slika',
-        'location'  => 'Lokacija',
         'members'   => 'Članovi',
-        'name'      => 'Naziv',
-        'type'      => 'Tip',
     ],
     'helpers'       => [
         'descendants'       => 'Ovaj popis sadrži sve obitelji koje su potomci ove obitelji, a ne samo one koje su neposredno pod trenutnom obitelji.',
@@ -25,9 +21,7 @@ return [
     'hints'         => [
         'members'   => 'Ovdje su navedeni članovi obitelji. Lik se može dodati u obitelj uređivanjem željenog lika, upotrebom padajućeg izbornika "Obitelj".',
     ],
-    'index'         => [
-        'title' => 'Obitelji',
-    ],
+    'index'         => [],
     'members'       => [
         'helpers'   => [
             'all_members'       => 'Na sljedećem popisu su svi likovi koji se nalaze u ovoj obitelji i sve manjim obiteljima unutar ove obitelji.',

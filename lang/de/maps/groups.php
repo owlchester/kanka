@@ -19,9 +19,7 @@ return [
         'is_shown'  => 'Zeige Gruppenmarker',
         'position'  => 'Position',
     ],
-    'helper'        => [
-        'amount_v2' => 'Erstelle Markierungsgruppen und füge ihnen Markierungen hinzu, sodass man mit einem einzigen Klick schnell mehrere Markierungen ein- oder ausblenden kann.',
-    ],
+    'helper'        => [],
     'hints'         => [
         'is_shown'  => 'Wenn diese Option aktiviert ist, werden die Gruppenmarker standardmäßig auf der Karte angezeigt.',
     ],

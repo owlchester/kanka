@@ -84,7 +84,6 @@ return [
         'month'                 => 'Mesiac',
         'months'                => 'Mesiace',
         'moons'                 => 'Družice',
-        'name'                  => 'Názov',
         'parameters'            => 'Parametre',
         'recurring_periodicity' => 'Periodicita opakovania',
         'recurring_until'       => 'Opakujúce sa do roku',
@@ -92,7 +91,6 @@ return [
         'seasons'               => 'Ročné obdobia',
         'start_offset'          => 'Posun prvého dňa',
         'suffix'                => 'Prípona',
-        'type'                  => 'Typ',
         'week_names'            => 'Názvy týždňov',
         'weekdays'              => 'Dni v týždni',
         'year'                  => 'Rok',
@@ -118,9 +116,7 @@ return [
         'weeks'             => 'Definuj názvy pre najdôležitejšie týždne v tvojom kalendári.',
         'years'             => 'Niektoré roky sú tak dôležité, že dostali vlastné pomenovanie.',
     ],
-    'index'         => [
-        'title' => 'Kalendáre',
-    ],
+    'index'         => [],
     'layouts'       => [
         'month'     => 'Mesiac',
         'monthly'   => 'Štandardne mesačné',

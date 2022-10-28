@@ -14,7 +14,6 @@ return [
         'filters'       => 'Szűrők',
         'is_nested'     => 'Beágyazott',
         'menu'          => 'Menü',
-        'name'          => 'Név',
         'position'      => 'Elhelyezés',
         'random'        => 'Véletlenszerű',
         'random_type'   => 'Véletlen entitástípus',
@@ -29,10 +28,7 @@ return [
         'selector'  => 'Állítsd be, hogy hová mutasson ez a link, amikor a felhasználók ráklikkelnek az oldalsávon.',
         'type'      => 'Hozz létre egy menü hivatkozást entitások listájának közvetlen eléréséhez. A találatok szűréséhez másold a szűrt entitás lista url-jének azon részét a :filter mezőbe, amely a :? karakter után következik.',
     ],
-    'index'         => [
-        'add'   => 'Új menühivatkozás',
-        'title' => 'Menühivatkozások',
-    ],
+    'index'         => [],
     'placeholders'  => [
         'entity'    => 'Válassz ki egy entitást',
         'filters'   => 'location_id=15&type=város',

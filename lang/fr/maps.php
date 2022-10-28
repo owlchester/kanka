@@ -42,12 +42,10 @@ return [
         'maps'              => 'Cartes',
         'max_zoom'          => 'Zoom maximal',
         'min_zoom'          => 'Zoom minimal',
-        'name'              => 'Nom',
         'tabs'              => [
             'coordinates'   => 'Coordinnées',
             'marker'        => 'Marqueur',
         ],
-        'type'              => 'Type',
     ],
     'helpers'       => [
         'center'                => 'Modifier les valeurs par défaut défini le centre de la carte lors de l\'affichage de celle-ci. Ci les champs sont vides, le centre de la carte sera utilisé.',
@@ -65,9 +63,7 @@ return [
         'missing_image'         => 'Enregister la carte avec une image avant de pouvoir ajouter des couches et des marqueurs.',
         'nested_without'        => 'Affichage des cartes sans parent. Cliquer sur une rangée pour afficher les cartes enfants.',
     ],
-    'index'         => [
-        'title' => 'Cartes',
-    ],
+    'index'         => [],
     'maps'          => [
         'title' => 'Cartes de :name',
     ],

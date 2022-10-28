@@ -19,10 +19,8 @@ return [
     'fields'        => [
         'children'          => 'Pochodne',
         'is_auto_applied'   => 'Dodawaj automatycznie',
-        'name'              => 'Nazwa',
         'tag'               => 'Etykieta źródłowa',
         'tags'              => 'Etykiety pochodne',
-        'type'              => 'Rodzaj',
     ],
     'helpers'       => [
         'nested_without'    => 'Wyświetlono wszystkie etykiety nie posiadające źródła. Kliknij na rząd, by wyświetlić etykiety pochodne.',
@@ -33,9 +31,7 @@ return [
         'is_auto_applied'   => 'Zaznacz by dodawać tę etykietę automatycznie do nowych elementów.',
         'tag'               => 'Na liście znajdują się wszystkie elementy posiadające tę etykietę.',
     ],
-    'index'         => [
-        'title' => 'Etykiety',
-    ],
+    'index'         => [],
     'new_tag'       => 'Nowa etykieta',
     'placeholders'  => [
         'name'  => 'Nazwa etykiety',

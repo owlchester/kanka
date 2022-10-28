@@ -7,20 +7,14 @@ return [
     'destroy'       => [],
     'edit'          => [],
     'fields'        => [
-        'image'         => 'Immagine',
-        'location'      => 'Luogo',
         'members'       => 'Membri',
-        'name'          => 'Nome',
         'organisation'  => 'Organizzazione Padre',
         'organisations' => 'Sotto-Organizzazioni',
-        'type'          => 'Tipo',
     ],
     'helpers'       => [
         'descendants'   => 'Questa lista contiene tutte le organizzazione che sono discendenti di questa organizzazione, non solo quelle direttamente sotto di essa.',
     ],
-    'index'         => [
-        'title' => 'Organizzazioni',
-    ],
+    'index'         => [],
     'members'       => [
         'actions'       => [
             'add'   => 'Aggiungi un membro',

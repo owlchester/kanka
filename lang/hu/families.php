@@ -12,11 +12,7 @@ return [
     'fields'        => [
         'families'  => 'Alcsaládok',
         'family'    => 'Főcsalád',
-        'image'     => 'Kép',
-        'location'  => 'Helyszín',
         'members'   => 'Tagok',
-        'name'      => 'Név',
-        'type'      => 'Típus',
     ],
     'helpers'       => [
         'descendants'       => 'Ez a lista a család minden leszármazott családját tartalmazza, nem csak a közvetlenül alatta levőket.',
@@ -25,9 +21,7 @@ return [
     'hints'         => [
         'members'   => 'Ez a lista a család tagjait tartalmazza. Ha hozzá akarsz adni egy karaktert, nyisd meg a kívánt karaktert szerkesztésre, és használd a "Család" legördülő menüt.',
     ],
-    'index'         => [
-        'title' => 'Családok',
-    ],
+    'index'         => [],
     'members'       => [
         'helpers'   => [
             'all_members'       => 'Az alábbi lista minden karaktert tartalmaz, amely ennek a családnak vagy bármely leszármazott családjának tagja.',

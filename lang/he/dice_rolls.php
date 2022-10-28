@@ -10,7 +10,6 @@ return [
     'edit'          => [],
     'fields'        => [
         'created_at'    => 'גולגל ב',
-        'name'          => 'שם',
         'parameters'    => 'פרמטרים',
         'results'       => 'תוצאות',
         'rolls'         => 'הטלות',
@@ -23,7 +22,6 @@ return [
             'dice'      => 'גלגולים',
             'results'   => 'תוצאות',
         ],
-        'title'     => 'גלגולי קוביות',
     ],
     'placeholders'  => [
         'dice_roll' => 'גלגול',

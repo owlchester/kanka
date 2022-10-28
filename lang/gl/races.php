@@ -16,17 +16,13 @@ return [
     'fields'        => [
         'characters'    => 'Personaxes',
         'locations'     => 'Localizacións',
-        'name'          => 'Nome',
         'race'          => 'Raza nai',
         'races'         => 'Subrazas',
-        'type'          => 'Tipo',
     ],
     'helpers'       => [
         'nested_without'    => 'Mostrando todas as razas que non teñen unha raza nai. Fai clic nunha fila para ver as súas subrazas.',
     ],
-    'index'         => [
-        'title' => 'Razas',
-    ],
+    'index'         => [],
     'placeholders'  => [
         'name'  => 'Nome da raza',
         'type'  => 'Humana, fada, borg...',

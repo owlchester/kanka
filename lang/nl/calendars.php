@@ -72,7 +72,6 @@ return [
         'length_days'           => ':count dag|:count dagen',
         'months'                => 'Maanden',
         'moons'                 => 'Manen',
-        'name'                  => 'Naam',
         'parameters'            => 'Parameters',
         'recurring_periodicity' => 'Terugkerende periodiciteit',
         'recurring_until'       => 'Terugkerend tot jaar',
@@ -80,7 +79,6 @@ return [
         'seasons'               => 'Seizoenen',
         'start_offset'          => 'Begin offset',
         'suffix'                => 'Suffix',
-        'type'                  => 'Type',
         'week_names'            => 'Week Namen',
         'weekdays'              => 'Week Dagen',
     ],
@@ -101,9 +99,7 @@ return [
         'weeks'             => 'Definieer een aantal namen voor de belangrijkste weken van je kalender.',
         'years'             => 'Sommige jaren zijn zo belangrijk dat ze hun eigen naam hebben.',
     ],
-    'index'         => [
-        'title' => 'Kalenders',
-    ],
+    'index'         => [],
     'layouts'       => [
         'month' => 'Maand',
         'year'  => 'Jaar',

@@ -75,7 +75,6 @@ return [
         'length_days'           => ':count nap|:count napok',
         'months'                => 'Hónapok',
         'moons'                 => 'Holdak',
-        'name'                  => 'Név',
         'parameters'            => 'Paraméterek',
         'recurring_periodicity' => 'Ismétlődés gyakorisága',
         'recurring_until'       => 'Ismétlődik az év végéig',
@@ -83,7 +82,6 @@ return [
         'seasons'               => 'Évszakok',
         'start_offset'          => 'Kezdő offszet',
         'suffix'                => 'Előtag',
-        'type'                  => 'Típus',
         'week_names'            => 'Elnevezett hetek',
         'weekdays'              => 'Hétköznapok',
     ],
@@ -106,9 +104,7 @@ return [
         'weeks'             => 'Meghatározhatsz speciálisan elnevezett heteket a naptáradban.',
         'years'             => 'Némelyik év olyan fontos, hogy saját neve van.',
     ],
-    'index'         => [
-        'title' => 'Naptárak',
-    ],
+    'index'         => [],
     'layouts'       => [
         'month' => 'Hónap',
         'year'  => 'Év',

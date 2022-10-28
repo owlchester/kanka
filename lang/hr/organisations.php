@@ -7,21 +7,15 @@ return [
     'destroy'       => [],
     'edit'          => [],
     'fields'        => [
-        'image'         => 'Slika',
-        'location'      => 'Lokacija',
         'members'       => 'Članovi',
-        'name'          => 'Naziv',
         'organisation'  => 'Organizacija roditelj',
         'organisations' => 'Podorganizacije',
-        'type'          => 'Tip',
     ],
     'helpers'       => [
         'descendants'       => 'Popis sadrži sve organizacije koje su unutar trenutne organizacije, a ne samo one koje su direktno ispod nje.',
         'nested_without'    => 'Prikazuju se sve organizacije koje nemaju organizaciju roditelj. Klikni redak da bi vidio/la organizacije djecu.',
     ],
-    'index'         => [
-        'title' => 'Organizacije',
-    ],
+    'index'         => [],
     'members'       => [
         'actions'       => [
             'add'   => 'Dodaj člana',

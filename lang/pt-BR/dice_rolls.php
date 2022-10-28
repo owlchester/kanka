@@ -10,7 +10,6 @@ return [
     'edit'          => [],
     'fields'        => [
         'created_at'    => 'Rolado em',
-        'name'          => 'Nome',
         'parameters'    => 'Parâmetros',
         'results'       => 'Resultados',
         'rolls'         => 'Rolagens',
@@ -23,7 +22,6 @@ return [
             'dice'      => 'Rolagem de dados',
             'results'   => 'Resultados',
         ],
-        'title'     => 'Rolagens de dado',
     ],
     'placeholders'  => [
         'dice_roll' => 'Rolagem de dados',

@@ -7,21 +7,15 @@ return [
     'destroy'       => [],
     'edit'          => [],
     'fields'        => [
-        'image'         => 'Imagen',
-        'location'      => 'Lugar',
         'members'       => 'Miembros',
-        'name'          => 'Nombre',
         'organisation'  => 'Organización superior',
         'organisations' => 'Suborganizaciones',
-        'type'          => 'Tipo',
     ],
     'helpers'       => [
         'descendants'       => 'Esta lista contiene todas las organizaciones que descienden de esta organización, no solo las que están directamente por debajo.',
         'nested_without'    => 'Mostrando todas las organizaciones sin ningún superior. Haz clic sobre una fila para mostrar sus descendientes.',
     ],
-    'index'         => [
-        'title' => 'Organizaciones',
-    ],
+    'index'         => [],
     'members'       => [
         'actions'       => [
             'add'   => 'Añadir miembro',

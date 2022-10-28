@@ -42,12 +42,10 @@ return [
         'maps'              => 'Mapy pochodne',
         'max_zoom'          => 'Maksymalne powiększenie',
         'min_zoom'          => 'Maksymalne oddalenie',
-        'name'              => 'Nazwa',
         'tabs'              => [
             'coordinates'   => 'Współrzędne',
             'marker'        => 'Znacznik',
         ],
-        'type'              => 'Rodzaj',
     ],
     'helpers'       => [
         'center'            => 'Zmiana tych wartości wpłynie na obszar, na którym domyślnie skupia się mapa. Jeżeli zostawisz je puste, mapa skoncentruje się na środku.',
@@ -64,9 +62,7 @@ return [
         'missing_image'     => 'Zapisz obraz mapy zanim dodasz do niego znaczniki i warstwy.',
         'nested_without'    => 'Wyświetlono wszystkie mapy nie posiadające źródła. Kliknij na rząd, by wyświetlić mapy pochodne.',
     ],
-    'index'         => [
-        'title' => 'Mapy',
-    ],
+    'index'         => [],
     'maps'          => [
         'title' => 'Mapy elementu :name',
     ],

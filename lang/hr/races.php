@@ -15,17 +15,13 @@ return [
     'edit'          => [],
     'fields'        => [
         'characters'    => 'Likovi',
-        'name'          => 'Naziv',
         'race'          => 'Rasa roditelj',
         'races'         => 'Podrase',
-        'type'          => 'Tip',
     ],
     'helpers'       => [
         'nested_without'    => 'Prikazuju se sve rase koje nemaju rasu roditelj. Klikni redak da bi vidio/la rase djecu.',
     ],
-    'index'         => [
-        'title' => 'Rase',
-    ],
+    'index'         => [],
     'placeholders'  => [
         'name'  => 'Naziv rase',
         'type'  => 'Čovjek, Vila, Borg',

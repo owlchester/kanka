@@ -12,7 +12,6 @@ return [
         'entity'        => 'Entitet',
         'filters'       => 'Filter',
         'menu'          => 'Meny',
-        'name'          => 'Namn',
         'position'      => 'Position',
         'random'        => 'Slumpmässig',
         'random_type'   => 'Slumpmässig Entitetstyp',
@@ -24,10 +23,7 @@ return [
         'random'    => 'Använd detta fältet för att få snabblänken att peka på en slumpmässig entitet. Du kan filtrera länken att bara leda till en specifik entitetstyp.',
         'type'      => 'Ställ in denna snabblänk att gå direkt till en lista över entiteter. För att filtrera resultaten, kopiera delarna efter :? i url:en för en filtrerad entitets lista till :filter fältet.',
     ],
-    'index'         => [
-        'add'   => 'Ny Snabblänk',
-        'title' => 'Snabblänkar',
-    ],
+    'index'         => [],
     'placeholders'  => [
         'entity'    => 'Välj en entitet',
         'filters'   => 'location_id=15&type=stad',

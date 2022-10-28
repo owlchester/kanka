@@ -15,7 +15,6 @@ return [
         'filters'           => 'Filtros',
         'is_nested'         => 'En árbore',
         'menu'              => 'Menú',
-        'name'              => 'Nome',
         'position'          => 'Posición',
         'random'            => 'Aleatorio',
         'random_type'       => 'Tipo de entidade aleatorio',
@@ -31,10 +30,7 @@ return [
         'selector'          => 'Configura a onde liga este acceso directo cando alguén fai clic nel.',
         'type'              => 'Configura este acceso directo para ir directamente a unha lista de entidades. Para filtrar os resultados, copia as partes da URL da lista filtrada a partir do signo :? no campo :filter.',
     ],
-    'index'             => [
-        'add'   => 'Novo acceso directo',
-        'title' => 'Accesos directos',
-    ],
+    'index'             => [],
     'placeholders'      => [
         'entity'    => 'Elixe unha entidade',
         'filters'   => 'location_id=15&type=cidade',

@@ -95,7 +95,6 @@ TEXT
                 'title' => 'Nova campanya',
             ],
         ],
-        'title'     => 'Campanyes',
     ],
     'invites'                           => [
         'actions'               => [

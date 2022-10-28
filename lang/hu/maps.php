@@ -30,12 +30,10 @@ return [
         'maps'          => 'Térképek',
         'max_zoom'      => 'Maximális zoom',
         'min_zoom'      => 'Minimális zoom',
-        'name'          => 'Név',
         'tabs'          => [
             'coordinates'   => 'Koordináták',
             'marker'        => 'Jelölő',
         ],
-        'type'          => 'Típus',
     ],
     'helpers'       => [
         'center'            => 'A következő értékek megváltoztatása befolyásolja, hogy milyen területre fókuszálsz a térképen. Ha üresen hagyod, a térkép közepére fogsz fókuszálni.',
@@ -49,9 +47,7 @@ return [
         'missing_image'     => 'Tölts fel egy képet a térképhez mielőtt nekikezdenél újabb rétegeket, és térképjelzőket elhelyezni rajta!',
         'nested_without'    => 'Minden olyan térkép mutatása, aminek nincs szülője. Klikkelj egy sorra, hogy lásd a gyermektérképeit.',
     ],
-    'index'         => [
-        'title' => 'Térképek',
-    ],
+    'index'         => [],
     'maps'          => [
         'title' => ':name térképei',
     ],

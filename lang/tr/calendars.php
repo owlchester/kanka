@@ -72,7 +72,6 @@ return [
         'length_days'           => ':count gün|:count gün',
         'months'                => 'Aylar',
         'moons'                 => 'Aylar (Uydu)',
-        'name'                  => 'Ad',
         'parameters'            => 'Parametreler',
         'recurring_periodicity' => 'Tekrar Periyodlikliği',
         'recurring_until'       => 'Yılına Kadar Tekrarlı',
@@ -80,7 +79,6 @@ return [
         'seasons'               => 'Mevsimler',
         'start_offset'          => 'Başlangıç Telafisi',
         'suffix'                => 'Son ek',
-        'type'                  => 'Tür',
         'week_names'            => 'Hafta Adları',
         'weekdays'              => 'Hafta Günleri',
     ],
@@ -101,9 +99,7 @@ return [
         'weeks'             => 'Tavkiminizin daha öneöli haftaları için bazı isimler tanımlayın.',
         'years'             => 'Bazi yıllar o kadar önemlidir ki kendi adları vardır.',
     ],
-    'index'         => [
-        'title' => 'Takvimler',
-    ],
+    'index'         => [],
     'layouts'       => [
         'month' => 'Ay',
         'year'  => 'Yıl',

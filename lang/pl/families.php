@@ -12,11 +12,7 @@ return [
     'fields'        => [
         'families'  => 'Rodziny pochodne',
         'family'    => 'Rodzina źródłowa',
-        'image'     => 'Obraz',
-        'location'  => 'Miejsce',
         'members'   => 'Członkowie',
-        'name'      => 'Nazwa',
-        'type'      => 'Rodzaj',
     ],
     'helpers'       => [
         'descendants'       => 'Na liście znajdują się wszystkie rodziny wywodzące się od tej rodziny, nie tylko bezpośrednio.',
@@ -25,9 +21,7 @@ return [
     'hints'         => [
         'members'   => 'Lista członków rodziny. Aby dodać postać do rodziny, wybierz ją z listy w pozycji "Rodzina" podczas edycji tej postaci.',
     ],
-    'index'         => [
-        'title' => 'Rodziny',
-    ],
+    'index'         => [],
     'members'       => [
         'helpers'   => [
             'all_members'       => 'Na liście znajdują się postaci należące do tej rodziny i wszystkich jej rodzin pochodnych.',

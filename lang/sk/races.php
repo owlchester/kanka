@@ -16,17 +16,13 @@ return [
     'fields'        => [
         'characters'    => 'Postavy',
         'locations'     => 'Miesta',
-        'name'          => 'Názov',
         'race'          => 'Nadradená rasa',
         'races'         => 'Podrasy',
-        'type'          => 'Typ',
     ],
     'helpers'       => [
         'nested_without'    => 'Zobrazujú sa všetky rasy, ktoré nemajú nadradenú rasu. Kliknutím na riadok zobrazíš podradené rasy.',
     ],
-    'index'         => [
-        'title' => 'Rasy',
-    ],
+    'index'         => [],
     'placeholders'  => [
         'name'  => 'Názov rasy',
         'type'  => 'Človek, Fey, Borg',

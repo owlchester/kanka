@@ -16,20 +16,16 @@ return [
         'copy_elements' => 'Copia elementi',
         'copy_eras'     => 'Copia ere',
         'eras'          => 'Ere',
-        'name'          => 'Nome',
         'reverse_order' => 'Inverti l\'ordine delle ere',
         'timeline'      => 'Linea temporale principale',
         'timelines'     => 'Linee temporali',
-        'type'          => 'Tipo',
     ],
     'helpers'       => [
         'nested_without'    => 'Tutte le linee temporali che non hanno una linea temporale principale. Clicca su una riga per vedere le linee temporali figlie',
         'no_era'            => 'Attualmente questa linea temporale non ha ere. Le ere possono essere aggiunte nella schermata di modifica delle linee temporali, dove è possibile aggiungere elementi.',
         'reverse_order'     => 'Abilita per visualizzare le ere in ordine cronologico inverso (prima l\'era più antica)',
     ],
-    'index'         => [
-        'title' => 'Linee temporali',
-    ],
+    'index'         => [],
     'placeholders'  => [
         'name'  => 'Nome della linea temporale',
         'type'  => 'Principale, Cronache del mondo, Storia del Regno',

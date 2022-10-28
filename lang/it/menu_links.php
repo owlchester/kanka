@@ -12,7 +12,6 @@ return [
         'entity'    => 'Entità',
         'filters'   => 'Filtri',
         'menu'      => 'Menù',
-        'name'      => 'Nome',
         'position'  => 'Posizione',
         'type'      => 'Tipo di entità',
     ],
@@ -21,10 +20,7 @@ return [
         'position'  => 'Utilizza questo campo per controllare in che ordine crescente i link appariranno nel menù.',
         'type'      => 'Configura questo collegamento nel menù per poter accedere direttamente ad una lista di entità. Per filtrare i risultati, copia parti dell\'URL sulla lista filtrata delle entità dopo il segno :? nel campo :filter.',
     ],
-    'index'         => [
-        'add'   => 'Nuovo Elemento del Menù',
-        'title' => 'Elementi del Menù',
-    ],
+    'index'         => [],
     'placeholders'  => [
         'entity'    => 'Seleziona un\'entità',
         'filters'   => 'Esempio: location_id=15&type=city',

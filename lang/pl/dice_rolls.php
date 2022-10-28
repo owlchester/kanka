@@ -10,7 +10,6 @@ return [
     'edit'          => [],
     'fields'        => [
         'created_at'    => 'Rzucono w',
-        'name'          => 'Nazwa',
         'parameters'    => 'Parametry',
         'results'       => 'Wyniki',
         'rolls'         => 'Rzuty',
@@ -23,7 +22,6 @@ return [
             'dice'      => 'Rzuty kości',
             'results'   => 'Wyniki',
         ],
-        'title'     => 'Rzuty kośćmi',
     ],
     'placeholders'  => [
         'dice_roll' => 'Rzut kośćmi',

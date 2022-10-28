@@ -10,17 +10,13 @@ return [
     ],
     'fields'        => [
         'messages'      => 'Berichten',
-        'name'          => 'Naam',
         'participants'  => 'Deelnemers',
         'target'        => 'Doel',
-        'type'          => 'Type',
     ],
     'hints'         => [
         'participants'  => 'Voeg deelnemers aan je conversatie toe door op het :icon pictogram in de rechterbovenhoek te drukken.',
     ],
-    'index'         => [
-        'title' => 'Conversaties',
-    ],
+    'index'         => [],
     'messages'      => [
         'destroy'       => [
             'success'   => 'Bericht verwijderd.',

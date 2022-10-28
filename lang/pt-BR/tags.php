@@ -19,10 +19,8 @@ return [
     'fields'        => [
         'children'          => 'Filhos',
         'is_auto_applied'   => 'Aplicar automaticamente a novas entidades',
-        'name'              => 'Nome',
         'tag'               => 'Tag Principal',
         'tags'              => 'Subtags',
-        'type'              => 'Tipo',
     ],
     'helpers'       => [
         'nested_without'    => 'Mostrando todas as tags que não tem uma tag-pai. Clique em uma linha para ver as tags-filhos.',
@@ -33,9 +31,7 @@ return [
         'is_auto_applied'   => 'Marque esta opção para aplicar automaticamente esta tag a entidades recém-criadas.',
         'tag'               => 'Exibidas abaixo estão todas as tags diretamente relacionadas a ela.',
     ],
-    'index'         => [
-        'title' => 'Tags',
-    ],
+    'index'         => [],
     'new_tag'       => 'Nova tag',
     'placeholders'  => [
         'name'  => 'Nome da tag',

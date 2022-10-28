@@ -107,7 +107,6 @@ TEXT
                 'title' => 'Nová kampaň',
             ],
         ],
-        'title'     => 'Kampane',
     ],
     'invites'                           => [
         'actions'               => [

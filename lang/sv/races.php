@@ -15,15 +15,11 @@ return [
     'edit'          => [],
     'fields'        => [
         'characters'    => 'Karaktärer',
-        'name'          => 'Namn',
         'race'          => 'Huvudras',
         'races'         => 'Underras',
-        'type'          => 'Typ',
     ],
     'helpers'       => [],
-    'index'         => [
-        'title' => 'Raser',
-    ],
+    'index'         => [],
     'placeholders'  => [
         'name'  => 'Namn på rasen',
         'type'  => 'Människa, Väsen, Borg',

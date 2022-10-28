@@ -83,7 +83,6 @@ return [
         'month'                 => 'Mois',
         'months'                => 'Mois',
         'moons'                 => 'Lunes',
-        'name'                  => 'Nom',
         'parameters'            => 'Paramètres',
         'recurring_periodicity' => 'Périodicity de récurrence',
         'recurring_until'       => 'Récurrent jusqu\'à l\'année',
@@ -91,7 +90,6 @@ return [
         'seasons'               => 'Saisons',
         'start_offset'          => 'Décalage de début',
         'suffix'                => 'Suffix',
-        'type'                  => 'Type',
         'week_names'            => 'Nom de semaine',
         'weekdays'              => 'Jours de la semaine',
         'year'                  => 'Année',
@@ -117,9 +115,7 @@ return [
         'weeks'             => 'Les semaines importantes du calendrier peuvent avoir un nom.',
         'years'             => 'Certaines années sont tellement importantes qu\'elles ont leur propre nom.',
     ],
-    'index'         => [
-        'title' => 'Calendrier',
-    ],
+    'index'         => [],
     'layouts'       => [
         'month'     => 'Mois',
         'monthly'   => 'Mensuel par défaut',

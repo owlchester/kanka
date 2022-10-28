@@ -17,13 +17,10 @@ return [
     ],
     'fields'        => [
         'characters'        => 'Postavy',
-        'image'             => 'Obrázok',
         'is_map_private'    => 'Súkromná mapa',
         'location'          => 'Nadradené miesto',
         'locations'         => 'Miesta',
         'map'               => 'Mapa',
-        'name'              => 'Názov',
-        'type'              => 'Typ',
     ],
     'helpers'       => [
         'characters'        => 'Zobraz všetky postavy na tomto mieste a jemu podradených miestach, alebo len tie priamo na tomto mieste.',
@@ -37,9 +34,7 @@ return [
     'hints'         => [
         'is_map_private'    => 'Súkromná mapa je viditeľná len pre členov kampane s rolou Admin.',
     ],
-    'index'         => [
-        'title' => 'Miesta',
-    ],
+    'index'         => [],
     'items'         => [],
     'journals'      => [],
     'locations'     => [

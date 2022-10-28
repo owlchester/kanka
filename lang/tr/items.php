@@ -8,16 +8,10 @@ return [
     'edit'          => [],
     'fields'        => [
         'character' => 'Karakter',
-        'image'     => 'Görsel',
-        'location'  => 'Konum',
-        'name'      => 'Ad',
         'price'     => 'Fiyat',
         'size'      => 'Boyut',
-        'type'      => 'Tür',
     ],
-    'index'         => [
-        'title' => 'Eşyalar',
-    ],
+    'index'         => [],
     'inventories'   => [
         'title' => ':name Eşyası Envanterleri',
     ],

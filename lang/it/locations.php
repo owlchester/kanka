@@ -17,13 +17,10 @@ return [
     ],
     'fields'        => [
         'characters'        => 'Personaggi',
-        'image'             => 'Immagine',
         'is_map_private'    => 'Mappa Privata',
         'location'          => 'Luogo',
         'locations'         => 'Luoghi',
         'map'               => 'Mappa',
-        'name'              => 'Nome',
-        'type'              => 'Tipo',
     ],
     'helpers'       => [
         'characters'    => 'Visualizza tutti i personaggi in questo luogo e nei luoghi discendenti, o semplicemente quelli che si trovano qui.',
@@ -35,9 +32,7 @@ return [
     'hints'         => [
         'is_map_private'    => 'Una mappa privata sarà visibile solamente ai membri del ruolo "Proprietario" della campagna.',
     ],
-    'index'         => [
-        'title' => 'Luoghi',
-    ],
+    'index'         => [],
     'items'         => [],
     'journals'      => [],
     'locations'     => [

@@ -53,7 +53,6 @@ return [
         'label'                     => 'Un label est affiché comme bloque de texte sur la carte. Le text affiché sera le nom du marqueur ou le nom de l\'entité liée.',
         'polygon'                   => [
             'edit'  => 'Cliquer sur le carte pour ajouter des coordonnées au polygone.',
-            'new'   => 'Déplacer le marqueur sur la carte pour ajouter les coordonnées au polygone.',
         ],
     ],
     'icons'         => [

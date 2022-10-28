@@ -27,16 +27,12 @@ return [
         'abilities' => 'Sposobnosti',
         'ability'   => 'Sposobnost roditelj',
         'charges'   => 'Punjenja',
-        'name'      => 'Naziv',
-        'type'      => 'Tip',
     ],
     'helpers'       => [
         'descendants'       => 'Popis sadrži sve sposobnosti koje su djeca trenutne sposobnosti, a ne samo one koje su direktno ispod nje.',
         'nested_without'    => 'Prikaz svih sposobnosti koje nemaju roditeljske sposobnosti. Klikni red da bi vidio/vidjela sposobnosti djecu.',
     ],
-    'index'         => [
-        'title' => 'Sposobnosti',
-    ],
+    'index'         => [],
     'placeholders'  => [
         'charges'   => 'Broj punjenja. Referenciraj se na atribute s {Level}*{CHA}',
         'name'      => 'Vatrena kugla, Upozorenje, Lukavi udarac',

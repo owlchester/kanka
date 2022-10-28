@@ -13,15 +13,11 @@ return [
         'abilities' => 'Egenskaper',
         'ability'   => 'Forelder Egenskap',
         'charges'   => 'Ladninger',
-        'name'      => 'Navn',
-        'type'      => 'Type',
     ],
     'helpers'       => [
         'descendants'   => 'Denne listen inneholder alle egenskaper som er etterkommere av denne egenskapen, ikke bare de som stammer direkte fra den.',
     ],
-    'index'         => [
-        'title' => 'Egenskaper',
-    ],
+    'index'         => [],
     'placeholders'  => [
         'charges'   => 'Antall ladninger. Referer atributt med {Level}*{CHA}',
         'name'      => 'Fireball, Alert, Cunning Strike eller andre Spells',
