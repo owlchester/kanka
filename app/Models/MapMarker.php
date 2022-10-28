@@ -97,6 +97,9 @@ class MapMarker extends Model
     /** @var bool Exploring the map */
     protected $exploring = false;
 
+    /** @var string Marker MouseOver Popup on explore */
+    protected $tooltipPopup = '';
+
     /** @var int size multiplier for circles */
     protected $sizeMultiplier = 1;
 
@@ -317,9 +320,7 @@ class MapMarker extends Model
             <div class="marker-popup-entry">
                 ' . $body . '
             </div>`)
-            .on(`mouseover`, function (ev) {
-                this.openPopup();
-            })
+                ' . $this->tooltipPopup . '
             .on(`click`, function (ev) {
                 window.markerDetails(`' . route('maps.markers.details', [$this->map_id, $this->id]) . '`)
             })';
@@ -497,11 +498,15 @@ class MapMarker extends Model
 
     /**
      * Set the current mode to exploring the map
+     * @param bool $popup = true
      * @return $this
      */
-    public function exploring(): self
+    public function exploring(bool $popup = true): self
     {
         $this->exploring = true;
+        if ($popup == true) {
+            $this->tooltipPopup = '.on(`mouseover`, function (ev) {this.openPopup();})';
+        }
         return $this;
     }
 
