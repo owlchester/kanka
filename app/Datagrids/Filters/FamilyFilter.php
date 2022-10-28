@@ -25,7 +25,7 @@ class FamilyFilter extends DatagridFilter
             ])
             ->location()
             ->add([
-                'field' => 'character_family',
+                'field' => 'member_id',
                 'label' => __('crud.fields.character'),
                 'type' => 'select2',
                 'route' => route('characters.find'),

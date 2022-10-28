@@ -247,7 +247,7 @@ class Family extends MiscModel
         return [
             'location_id',
             'family_id',
-            'character_family',
+            'member_id',
         ];
     }
 }

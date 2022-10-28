@@ -146,10 +146,8 @@ trait HasFilters
                     $this->filterRace($query, $value);
                 } elseif ($key == 'family') {
                     $this->filterFamily($query, $value);
-                } elseif ($key == 'character_organisation') {
-                    $this->filterCharacterOrganisation($query, $value);
-                } elseif ($key == 'character_family') {
-                    $this->filterCharacterFamily($query, $value);
+                } elseif ($key == 'member_id') {
+                    $this->filterMember($query, $value);
                 } elseif ($key == 'quest_elements') {
                     $this->filterQuestElements($query, $value);
                 } elseif ($key == 'element_role') {
@@ -710,49 +708,32 @@ trait HasFilters
     }
 
     /**
-     * Filter characters belonging to specific organisations
+     * Filter for elements with a specific member (character) in them
      * @param Builder $query
      * @param string|null $value
      * @return void
      */
-    protected function filterCharacterOrganisation(Builder $query, string $value = null): void
+    protected function filterMember(Builder $query, string $value = null): void
     {
         $ids = [$value];
+        $table = 'character_family';
+        $key = 'family_id';
+        if ($this instanceof Organisation) {
+            $table = 'organisation_member';
+            $key = 'organisation_id';
+        }
         if ($this->filterOption('exclude')) {
             $query
-                ->whereRaw('(select count(*) from organisation_member as om where om.organisation_id = ' .
-                    $this->getTable() . '.id and om.character_id in (' . (int) $value . ')) = 0');
+                ->whereRaw('(select count(*) from ' . $table . ' as fmem where fmem.' . $key . ' = ' .
+                    $this->getTable() . '.id and fmem.character_id in (' . (int) $value . ')) = 0');
             return;
         }
 
         $query
         ->select($this->getTable() . '.*')
-        ->leftJoin('organisation_member as om', function ($join) {
-            $join->on('om.organisation_id', '=', $this->getTable() . '.id');
-        })->whereIn('om.character_id', $ids)->distinct();
-    }
-
-    /**
-     * Filter characters belonging to specific families
-     * @param Builder $query
-     * @param string|null $value
-     * @return void
-     */
-    protected function filterCharacterFamily(Builder $query, string $value = null): void
-    {
-        $ids = [$value];
-        if ($this->filterOption('exclude')) {
-            $query
-                ->whereRaw('(select count(*) from character_family as cf where cf.family_id = ' .
-                    $this->getTable() . '.id and cf.character_id in (' . (int) $value . ')) = 0');
-            return;
-        }
-
-        $query
-        ->select($this->getTable() . '.*')
-        ->leftJoin('character_family as cf', function ($join) {
-            $join->on('cf.family_id', '=', $this->getTable() . '.id');
-        })->whereIn('cf.character_id', $ids)->distinct();
+        ->leftJoin($table . ' as cmem', function ($join) use ($key) {
+            $join->on('cmem.' . $key, '=', $this->getTable() . '.id');
+        })->whereIn('cmem.character_id', $ids)->distinct();
     }
 
     /**
@@ -770,7 +751,7 @@ trait HasFilters
             return;
         }
         // Left join shenanigans
-        if (!in_array($key, ['organisation_member', 'race', 'family', 'tags', 'quest_elements', 'character_organisation', 'character_family'])) {
+        if (!in_array($key, ['organisation_member', 'race', 'family', 'tags', 'quest_elements', 'member_id'])) {
             $query->whereNull($this->getTable() . '.' . $key);
         } elseif ($key === 'tags') {
             $query = $this->joinEntity($query);
@@ -812,11 +793,13 @@ trait HasFilters
                     $join->on('om2.organisation_id', '=', $this->getTable() . '.id');
                 })
                 ->where('om2.character_id', null);
-        } elseif ($key === 'character_family') {
+        } elseif ($key === 'member_id') {
+            $table = $this instanceof Family ? 'character_family' : 'organisation_member';
+            $key = $this instanceof Family ? 'family_id' : 'organisation_id';
             $query
                 ->select($this->getTable() . '.*')
-                ->leftJoin('character_family as cf2', function ($join) {
-                    $join->on('cf2.family_id', '=', $this->getTable() . '.id');
+                ->leftJoin($table . ' as cf2', function ($join) use ($key) {
+                    $join->on('cf2.' . $key, '=', $this->getTable() . '.id');
                 })
                 ->where('cf2.character_id', null);
         }

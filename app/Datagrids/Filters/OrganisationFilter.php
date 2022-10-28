@@ -25,7 +25,7 @@ class OrganisationFilter extends DatagridFilter
                 'model' => Organisation::class,
             ])
             ->add([
-                'field' => 'character_organisation',
+                'field' => 'member_id',
                 'label' => __('crud.fields.character'),
                 'type' => 'select2',
                 'route' => route('characters.find'),
