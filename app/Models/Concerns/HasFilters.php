@@ -389,9 +389,9 @@ trait HasFilters
         $query = $this->joinEntity($query);
 
         if ($value) {
-            $query->whereNotNull('e.is_template');
+            $query->where('e.is_template', 1);
         } else {
-            $query->whereNull('e.is_template');
+            $query->whereNull('e.is_template')->orWhere('e.is_template', '<>', 1);
         }
     }
 
