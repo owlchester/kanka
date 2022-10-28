@@ -11,135 +11,142 @@
 @else
     @if (auth()->check() && !auth()->user()->settings()->get('tutorial_map_markers'))
         <div class="alert alert-info tutorial">
-        <span>
             <button type="button" class="close banner-notification-dismiss" data-dismiss="alert" aria-hidden="true" data-url="{{ route('settings.banner', ['code' => 'map_markers', 'type' => 'tutorial']) }}">×</button>
 
             <p>{{ __('maps/markers.helpers.base') }}</p>
 
             <p>{!!  __('crud.helpers.learn_more', ['documentation' => link_to('https://docs.kanka.io/en/latest/entities/maps/markers.html', '<i class="fa-solid fa-external-link" aria-hidden="true"></i> ' . __('front.menu.documentation'), ['target' => '_blank'], null, false)])!!}</p>
-        </span>
         </div>
     @endif
 
-    <div class="map" id="map{{ $model->id }}" style="width: 100%; height: 100%;">
-        <a href="{{ route('maps.explore', $model) }}" target="_blank" class="btn btn-primary btn-map-explore"><i
-                class="fa-solid fa-map"></i> {{ __('maps.actions.explore') }}</a>
+    <div class="map" id="map{{ $model->id }}" style="width: 100%; height: 50%;">
+        <div class="map-actions">
+            <button class="btn btn-warning btn-mode-drawing">
+                <i class="fa-solid fa-pencil" aria-hidden="true"></i>
+                {{ __('maps/explore.actions.finish-drawing') }}
+            </button>
+        </div>
     </div>
 
-    @section('scripts')
-        @parent
-        <!-- Make sure you put this AFTER Leaflet's CSS -->
-        <script src="https://unpkg.com/leaflet@1.9.2/dist/leaflet.js" integrity="sha256-o9N1jGDZrf5tS+Ft4gbIK7mYMipq9lqpVJ91xHSyKhg=" crossorigin=""></script>
-        <script src="/js/vendor/leaflet/leaflet.markercluster.js"></script>
-        <script src="/js/vendor/leaflet/leaflet.markercluster.layersupport.js"></script>
-        <script src="{{ mix('js/ajax-subforms.js') }}" defer></script>
-        <script src="{{ mix('js/location/map-v3.js') }}" defer></script>
+@section('scripts')
+    @parent
+    <!-- Make sure you put this AFTER Leaflet's CSS -->
+    <script src="https://unpkg.com/leaflet@1.9.2/dist/leaflet.js" integrity="sha256-o9N1jGDZrf5tS+Ft4gbIK7mYMipq9lqpVJ91xHSyKhg=" crossorigin=""></script>
+    <script src="/js/vendor/leaflet/leaflet.markercluster.js"></script>
+    <script src="/js/vendor/leaflet/leaflet.markercluster.layersupport.js"></script>
+    <script src="{{ mix('js/ajax-subforms.js') }}" defer></script>
+    <script src="{{ mix('js/location/map-v3.js') }}" defer></script>
 
-        <script type="text/javascript">
-            var labelShapeIcon = new L.Icon({
-                iconUrl: '/images/transparent.png',
-                iconSize: [150, 35],
-                iconAnchor: [75, 15],
-                popupAnchor: [0, -20],
-            });
+    <script type="text/javascript">
+        var labelShapeIcon = new L.Icon({
+            iconUrl: '/images/transparent.png',
+            iconSize: [150, 35],
+            iconAnchor: [75, 15],
+            popupAnchor: [0, -20],
+        });
 
-            var markers = {};
-            @foreach ($model->markers as $marker)
-                var marker{{ $marker->id }} = {!! $marker->multiplier($model->is_real)->marker() !!};
-            @endforeach
-
-        </script>
-        @include('maps._setup', ['map' => $model])
-
-        <script type="text/javascript">
-            window.map = map{{ $model->id }};
-            /** Add markers outside of a group directly to the page **/
-            @foreach ($model->markers as $marker)
-                @if ($marker->visible() && empty($marker->group_id))
-                    @if ($model->isClustered())
-                        clusterMarkers{{ $model->id }}.addLayer(marker{{ $marker->id }});
-                    @else
-                        marker{{ $marker->id }}.addTo(map{{ $model->id }});
-                    @endif
-                @elseif (!empty($marker->group_id))
-                    marker{{ $marker->id }}.addTo(group{{ $marker->group_id }})
-                @endif
-            @endforeach
-
-            @if ($model->isClustered())
-                map{{ $model->id }}.addLayer(clusterMarkers{{ $model->id }});
-
-                /** Add the groups to the cluster **/
-                clusterMarkers{{ $model->id }}.checkIn({{ $model->checkinGroups() }});
-
-                /** Add the groups to the map **/
-                @foreach ($model->groups as $group)
-                    @if (!$group->is_shown) @continue @endif
-                    group{{ $group->id }}.addTo(map{{ $model->id }});
-                @endforeach
-            @endif
-
-            map{{ $model->id }}.on('click', function(ev) {
-                let position = ev.latlng;
-                //console.log('Click', 'lat', position.lat, 'lng', position.lng);
-                // AJAX request
-                //console.log('do', "$('#marker-latitude').val(" + position.lat.toFixed(3) + ");");
-                $('#marker-latitude').val(position.lat.toFixed(3));
-                $('#marker-longitude').val(position.lng.toFixed(3));
-                $('#marker-modal').modal('show');
-            });
-
-            window.map = map{{ $model->id }};
-
-        </script>
-    @endsection
-
-    @section('modals')
-        @parent
-        <!-- Deletion forms -->
+        var markers = {};
         @foreach ($model->markers as $marker)
-            {!! Form::open(['method' => 'DELETE', 'route' => ['maps.map_markers.destroy', $model, $marker], 'style ' => 'display:inline', 'id' => 'delete-form-marker-' . $marker->id]) !!}
-            {!! Form::close() !!}
+            var marker{{ $marker->id }} = {!! $marker->multiplier($model->is_real)->marker() !!};
         @endforeach
-    @endsection
 
-    @section('styles')
-        @parent
-        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.2/dist/leaflet.css" integrity="sha256-sA+zWATbFveLLNqWO2gtiw3HL/lh1giY/Inf1BJ0z14=" crossorigin="" />
-        <link href="{{ mix('css/map-v3.css') }}" rel="stylesheet">
+    </script>
+    @include('maps._setup', ['map' => $model])
 
-        <style>
-            @foreach ($model->markers as $marker)
-            .marker-{{ $marker->id }} {
-                @if (!empty($marker->font_colour))color: {{ $marker->font_colour }};
+    <script type="text/javascript">
+        window.map = map{{ $model->id }};
+        window.exploreEditMode = true;
+        /** Add markers outside of a group directly to the page **/
+        @foreach ($model->markers as $marker)
+            @if ($marker->visible() && empty($marker->group_id))
+                @if ($model->isClustered())
+                    clusterMarkers{{ $model->id }}.addLayer(marker{{ $marker->id }});
+                @else
+                    marker{{ $marker->id }}.addTo(map{{ $model->id }});
                 @endif
-            }
-
-            @if ($marker->entity && $marker->icon == 4).marker-{{ $marker->id }} .marker-pin::after {
-                background-image: url('{{ $marker->entity->child->thumbnail(400) }}');
-                @if (!empty($marker->pin_size))width: {{ $marker->pinSize(false) - 4 }}px;
-                height: {{ $marker->pinSize(false) - 4 }}px;
-                margin: 2px 0 0 -{{ ceil(($marker->pinSize(false) - 4) / 2) }}px;
-                @endif
-            }
-
+            @elseif (!empty($marker->group_id))
+                marker{{ $marker->id }}.addTo(group{{ $marker->group_id }})
             @endif
-            @if (!empty($marker->pin_size)).marker-{{ $marker->id }} .marker-pin {
-                width: {{ $marker->pinSize() }};
-                height: {{ $marker->pinSize() }};
-                margin: -{{ $marker->pinSize(false) / 2 }}px 0 0 -{{ $marker->pinSize(false) / 2 }}px;
-            }
+        @endforeach
 
-            .marker-{{ $marker->id }} i {
-                font-size: {{ $marker->pinSize(false) / 2 }}px;
-            }
+        @if ($model->isClustered())
+            map{{ $model->id }}.addLayer(clusterMarkers{{ $model->id }});
 
-            @endif
+            /** Add the groups to the cluster **/
+            clusterMarkers{{ $model->id }}.checkIn({{ $model->checkinGroups() }});
 
+            /** Add the groups to the map **/
+            @foreach ($model->groups as $group)
+                @if (!$group->is_shown) @continue @endif
+                group{{ $group->id }}.addTo(map{{ $model->id }});
             @endforeach
+        @endif
 
-        </style>
-    @endsection
+        map{{ $model->id }}.on('click', function(ev) {
+            window.handleExploreMapClick(ev);
+        });
+
+        /*map{{ $model->id }}.on('click', function(ev) {
+            let position = ev.latlng;
+            //console.log('Click', 'lat', position.lat, 'lng', position.lng);
+            // AJAX request
+            //console.log('do', "$('#marker-latitude').val(" + position.lat.toFixed(3) + ");");
+            $('#marker-latitude').val(position.lat.toFixed(3));
+            $('#marker-longitude').val(position.lng.toFixed(3));
+            $('#marker-modal').modal('show');
+        });*/
+
+        window.map = map{{ $model->id }};
+
+    </script>
+@endsection
+
+@section('modals')
+    @parent
+    <!-- Deletion forms -->
+    @foreach ($model->markers as $marker)
+        {!! Form::open(['method' => 'DELETE', 'route' => ['maps.map_markers.destroy', $model, $marker], 'style ' => 'display:inline', 'id' => 'delete-form-marker-' . $marker->id]) !!}
+        {!! Form::close() !!}
+    @endforeach
+@endsection
+
+@section('styles')
+    @parent
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.2/dist/leaflet.css" integrity="sha256-sA+zWATbFveLLNqWO2gtiw3HL/lh1giY/Inf1BJ0z14=" crossorigin="" />
+    <link href="{{ mix('css/map-v3.css') }}" rel="stylesheet">
+
+    <style>
+        @foreach ($model->markers as $marker)
+        .marker-{{ $marker->id }} {
+            @if (!empty($marker->font_colour))color: {{ $marker->font_colour }};
+            @endif
+        }
+
+        @if ($marker->entity && $marker->icon == 4).marker-{{ $marker->id }} .marker-pin::after {
+            background-image: url('{{ $marker->entity->child->thumbnail(400) }}');
+            @if (!empty($marker->pin_size))width: {{ $marker->pinSize(false) - 4 }}px;
+            height: {{ $marker->pinSize(false) - 4 }}px;
+            margin: 2px 0 0 -{{ ceil(($marker->pinSize(false) - 4) / 2) }}px;
+            @endif
+        }
+
+        @endif
+        @if (!empty($marker->pin_size)).marker-{{ $marker->id }} .marker-pin {
+            width: {{ $marker->pinSize() }};
+            height: {{ $marker->pinSize() }};
+            margin: -{{ $marker->pinSize(false) / 2 }}px 0 0 -{{ $marker->pinSize(false) / 2 }}px;
+        }
+
+        .marker-{{ $marker->id }} i {
+            font-size: {{ $marker->pinSize(false) / 2 }}px;
+        }
+
+        @endif
+
+        @endforeach
+
+    </style>
+@endsection
 
 @section('modals')
     @parent

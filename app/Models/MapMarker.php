@@ -195,7 +195,7 @@ class MapMarker extends Model
             } elseif (Str::startsWith($this->custom_icon, ['fa-', 'ra '])) {
                 $icon = ' <i class="' . $this->custom_icon . '" aria-hidden="true"></i>';
             } elseif (Str::startsWith($this->custom_icon, '<?xml')) {
-                $icon = '<div class="custom-icon">' . $this->resizedCustomIcon() . '</div>';
+                $icon = '<div class="custom-icon"><img src="' . $this->resizedCustomIcon() . '" /></div>';
             }
         } elseif ($this->icon == 2) {
             $icon = '<i class="fa-solid fa-question"></i>';

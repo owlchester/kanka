@@ -162,6 +162,7 @@ $(document).ready(function () {
   initMapForms();
   initMapEntryClick();
   initPolygonDrawing();
+  registerModes();
 });
 /**
  *
@@ -212,7 +213,6 @@ function initMapExplore() {
   };
 
   initLegend();
-  registerModes();
 }
 /**
  * When submitting the layer or marker form from the map modal, disable the map form unsaved changed

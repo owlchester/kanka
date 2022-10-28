@@ -122,6 +122,27 @@ $mapSidebarWidth: 380px;
 }
 
 
+
+.toast-container {
+    bottom: 60px;
+    z-index: 910;
+}
+
+.map-actions, .map-mode {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin: 1rem;
+    z-index: 500;
+
+    .btn-mode-enable {
+        display: inline-block;
+    }
+
+    .btn-mode-disable, .btn-mode-drawing {
+        display: none;
+    }
+}
 #map-body {
     #sidebar-content {
         padding: 0;
@@ -144,11 +165,6 @@ $mapSidebarWidth: 380px;
                 color: var(--link-text);
             }
         }
-    }
-
-    .toast-container {
-        bottom: 60px;
-        z-index: 910;
     }
 
     .main-sidebar {
@@ -229,22 +245,6 @@ $mapSidebarWidth: 380px;
         }
     }
 
-    .map-mode {
-        position: absolute;
-        bottom: 0;
-        right: 0;
-        margin: 1rem;
-        z-index: 500;
-
-        .btn-mode-enable {
-            display: inline-block;
-        }
-
-        .btn-mode-disable, .btn-mode-drawing {
-            display: none;
-        }
-    }
-
     // In the modal modal, no extra padding
     .modal-body .content .marker-entry {
         padding: 0;
@@ -255,8 +255,8 @@ $mapSidebarWidth: 380px;
     padding: 0;
 }
 
-#map-body.map-edit-mode {
-    .map-mode {
+body.map-edit-mode {
+    .map-actions {
         .btn-mode-enable {
             display: none;
         }
@@ -267,8 +267,8 @@ $mapSidebarWidth: 380px;
     }
 }
 
-#map-body.map-drawing-mode {
-    .map-mode {
+body.map-drawing-mode {
+    .map-actions {
         .btn-mode-enable, .btn-mode-disable {
             display: none;
         }

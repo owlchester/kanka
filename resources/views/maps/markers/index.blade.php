@@ -35,9 +35,7 @@
         ])
         @include('maps._menu', ['active' => 'markers'])
         <div class="entity-main-block">
-            <div class="tab-pane" id="form-markers">
-                @include('maps.form._markers', ['source' => null])
-            </div>
+            @include('maps.form._markers', ['source' => null])
             @include('maps.panels.markers')
         </div>
     </div>

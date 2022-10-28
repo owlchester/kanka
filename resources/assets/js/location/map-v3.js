@@ -46,6 +46,7 @@ $(document).ready(function() {
     initMapForms();
     initMapEntryClick();
     initPolygonDrawing();
+    registerModes();
 });
 
 /**
@@ -94,7 +95,6 @@ function initMapExplore()
     };
 
     initLegend();
-    registerModes();
 }
 
 /**

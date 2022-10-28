@@ -1,4 +1,4 @@
-<div class="box box-solid" id="map-markers">
+<div class="box box-solid mt-5" id="map-markers">
     @if(Datagrid::hasBulks()) {!! Form::open(['route' => ['maps.markers.bulk', 'map' => $model]]) !!} @endif
     <div class="box-header with-border">
         <h3 class="box-title">
