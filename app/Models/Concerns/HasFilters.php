@@ -391,7 +391,10 @@ trait HasFilters
         if ($value) {
             $query->where('e.is_template', 1);
         } else {
-            $query->whereNull('e.is_template')->orWhere('e.is_template', '<>', 1);
+            $query->where(function ($sub) {
+                $sub->whereNull('e.is_template')
+                    ->orWhere('e.is_template', '<>', 1);
+            });
         }
     }
 
