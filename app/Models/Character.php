@@ -419,8 +419,8 @@ class Character extends MiscModel
             'location_id',
             'is_dead',
             'organisation_member',
-            'race',
-            'family',
+            'race_id',
+            'family_id',
             'races',
         ];
     }

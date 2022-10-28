@@ -2,6 +2,7 @@
 
 namespace App\Models\Concerns;
 
+use App\Enums\FilterOption;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
@@ -142,9 +143,9 @@ trait HasFilters
                     $this->filterOrganisationMember($query, $value);
                 } elseif (in_array($key, ['attribute_value', 'attribute_name'])) {
                     $this->filterAttributes($query, $key);
-                } elseif ($key == 'race') {
+                } elseif ($key == 'race_id') {
                     $this->filterRace($query, $value);
-                } elseif ($key == 'family') {
+                } elseif ($key == 'family_id') {
                     $this->filterFamily($query, $value);
                 } elseif ($key == 'member_id') {
                     $this->filterMember($query, $value);
@@ -715,6 +716,10 @@ trait HasFilters
      */
     protected function filterMember(Builder $query, string $value = null): void
     {
+        $filter = $this->getFilterOption();
+        $query->member($value, $filter);
+        return;
+
         $ids = [$value];
         $table = 'character_family';
         $key = 'family_id';
@@ -751,7 +756,7 @@ trait HasFilters
             return;
         }
         // Left join shenanigans
-        if (!in_array($key, ['organisation_member', 'race', 'family', 'tags', 'quest_elements', 'member_id'])) {
+        if (!in_array($key, ['organisation_member', 'race_id', 'family_id', 'tags', 'quest_elements', 'member_id'])) {
             $query->whereNull($this->getTable() . '.' . $key);
         } elseif ($key === 'tags') {
             $query = $this->joinEntity($query);
@@ -765,14 +770,14 @@ trait HasFilters
                     $join->on('om2.character_id', '=', $this->getTable() . '.id');
                 })
                 ->where('om2.organisation_id', null);
-        } elseif ($key === 'race') {
+        } elseif ($key === 'race_id') {
             $query
                 ->select($this->getTable() . '.*')
                 ->leftJoin('character_race as cr2', function ($join) {
                     $join->on('cr2.character_id', '=', $this->getTable() . '.id');
                 })
                 ->where('cr2.race_id', null);
-        } elseif ($key === 'family') {
+        } elseif ($key === 'family_id') {
             $query
                 ->select($this->getTable() . '.*')
                 ->leftJoin('character_family as cf2', function ($join) {
@@ -786,22 +791,23 @@ trait HasFilters
                     $join->on('qe2.quest_id', '=', $this->getTable() . '.id');
                 })
                 ->where('qe2.entity_id', null);
-        } elseif ($key === 'character_organisation') {
-            $query
-                ->select($this->getTable() . '.*')
-                ->leftJoin('organisation_member as om2', function ($join) {
-                    $join->on('om2.organisation_id', '=', $this->getTable() . '.id');
-                })
-                ->where('om2.character_id', null);
         } elseif ($key === 'member_id') {
-            $table = $this instanceof Family ? 'character_family' : 'organisation_member';
-            $key = $this instanceof Family ? 'family_id' : 'organisation_id';
-            $query
-                ->select($this->getTable() . '.*')
-                ->leftJoin($table . ' as cf2', function ($join) use ($key) {
-                    $join->on('cf2.' . $key, '=', $this->getTable() . '.id');
-                })
-                ->where('cf2.character_id', null);
+            $query->member(null, FilterOption::NONE);
         }
+    }
+
+    /**
+     * Get the filter option enum
+     * @return FilterOption
+     */
+    protected function getFilterOption(): FilterOption
+    {
+        if ($this->filterOption('exclude')) {
+            return FilterOption::EXCLUDE;
+        }
+        if ($this->filterOption('none')) {
+            return FilterOption::NONE;
+        }
+        return FilterOption::INCLUDE;
     }
 }
