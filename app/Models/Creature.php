@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\FilterOption;
 use App\Models\Concerns\Acl;
 use App\Models\Concerns\Nested;
 use App\Models\Concerns\SortableTrait;
@@ -110,6 +111,44 @@ class Creature extends MiscModel
             },
             'descendants'
         ]);
+    }
+
+    /**
+     * Filter on creatures in specific locations
+     * @param Builder $query
+     * @param int|null $location
+     * @param FilterOption $filter
+     * @return Builder
+     */
+    public function scopeLocation(Builder $query, int|null $location, FilterOption $filter): Builder
+    {
+        if ($filter === FilterOption::NONE) {
+            if (!empty($location)) {
+                return $query;
+            }
+            return $query
+                ->whereRaw('(select count(*) from creature_location as cl where cl.creature_id = ' .
+                    $this->getTable() . '.id and cl.location_id = ' . ((int) $location) . ') = 0');
+        } elseif ($filter === FilterOption::EXCLUDE) {
+            return $query
+                ->whereRaw('(select count(*) from creature_location as cl where cl.creature_id = ' .
+                    $this->getTable() . '.id and cl.location_id = ' . ((int) $location) . ') = 0');
+        }
+
+        $ids = [$location];
+        if ($filter === FilterOption::CHILDREN) {
+            /** @var Location|null $race */
+            $model = Location::find($location);
+            if (!empty($model)) {
+                $ids = [...$model->descendants->pluck('id')->toArray(), $model->id];
+            }
+        }
+        return $query
+            ->select($this->getTable() . '.*')
+            ->leftJoin('creature_location as cl', function ($join) {
+                $join->on('cl.creature_id', '=', $this->getTable() . '.id');
+            })
+            ->whereIn('cl.location_id', $ids)->distinct();
     }
 
     /**

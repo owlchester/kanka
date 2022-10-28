@@ -36,7 +36,7 @@ class CharacterFilter extends DatagridFilter
                 'withChildren' => true,
             ])
             ->add([
-                'field' => 'organisation_member',
+                'field' => 'member_id',
                 'label' => __('crud.fields.organisation'),
                 'type' => 'select2',
                 'route' => route('organisations.find'),

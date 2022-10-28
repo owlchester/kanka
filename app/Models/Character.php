@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\FilterOption;
 use App\Facades\CampaignLocalization;
 use App\Models\Concerns\Acl;
 use App\Models\Concerns\SortableTrait;
@@ -156,6 +157,47 @@ class Character extends MiscModel
                 $sub->select('races.id', 'races.name');
             },
         ]);
+    }
+    /**
+     * Filter for characters in a specific list of organisations
+     * @param Builder $query
+     * @param string|null $value
+     * @param FilterOption $filter
+     * @return Builder
+     */
+    public function scopeMember(Builder $query, string|null $value, FilterOption $filter): Builder
+    {
+        if ($filter === FilterOption::NONE) {
+            // If called with a param, it's being called too early and will be called later in the process
+            if (!empty($value)) {
+                return $query;
+            }
+            return $query
+                ->select($this->getTable() . '.*')
+                ->leftJoin('organisation_member as memb', function ($join) {
+                    $join->on('memb.character_id', '=', $this->getTable() . '.id');
+                })
+                ->where('memb.organisation_id', null);
+        } elseif ($filter === FilterOption::EXCLUDE) {
+            return $query
+                ->whereRaw('(select count(*) from organisation_member as memb where memb.character_id = ' .
+                    $this->getTable() . '.id and memb.organisation_id in (' . (int) $value . ')) = 0');
+        }
+
+        $ids = [$value];
+        if ($filter === FilterOption::CHILDREN) {
+            /** @var Organisation|null $model */
+            $model = Organisation::find($value);
+            if (!empty($model)) {
+                $ids = [...$model->descendants->pluck('id')->toArray(), $model->id];
+            }
+        }
+        return $query
+            ->select($this->getTable() . '.*')
+            ->leftJoin('organisation_member as memb', function ($join) {
+                $join->on('memb.character_id', '=', $this->getTable() . '.id');
+            })
+            ->whereIn('memb.organisation_id', $ids)->distinct();
     }
 
     /**
@@ -418,7 +460,7 @@ class Character extends MiscModel
             'pronouns',
             'location_id',
             'is_dead',
-            'organisation_member',
+            'member_id',
             'race_id',
             'family_id',
             'races',
