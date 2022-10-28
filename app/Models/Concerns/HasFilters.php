@@ -662,7 +662,7 @@ trait HasFilters
      */
     protected function getFilterOption(): FilterOption
     {
-        match($this->filterOption) {
+        match ($this->filterOption) {
             'exclude' => $filter = FilterOption::EXCLUDE,
             'none' => $filter = FilterOption::NONE,
             'children' => $filter = FilterOption::CHILDREN,
