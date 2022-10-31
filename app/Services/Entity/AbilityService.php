@@ -56,7 +56,7 @@ class AbilityService
         /** @var EntityAbility $ability */
         foreach ($abilities as $ability) {
             // Can't read the ability? skip
-            if (empty($ability->ability)) {
+            if (empty($ability->ability) || empty($ability->ability->entity)) {
                 continue;
             }
             // If this ability has a parent ability, save it there
