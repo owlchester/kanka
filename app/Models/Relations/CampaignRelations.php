@@ -15,6 +15,7 @@ use App\Models\CampaignSubmission;
 use App\Models\CampaignUser;
 use App\Models\Character;
 use App\Models\Conversation;
+use App\Models\Creature;
 use App\Models\DiceRoll;
 use App\Models\Entity;
 use App\Models\EntityMention;
@@ -258,6 +259,14 @@ trait CampaignRelations
     public function races()
     {
         return $this->hasMany(Race::class);
+    }
+
+    /**
+     * @return Creature|\Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function creatures()
+    {
+        return $this->hasMany(Creature::class);
     }
 
     /**
