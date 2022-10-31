@@ -259,6 +259,21 @@ class SearchService
                 'alias_id' => $model->alias_id, // @phpstan-ignore-line
                 'advanced_mention' => Mentions::advancedMentionHelper($model->name),
             ];
+
+            //If the result is a map, also add its explore page as a result.
+            if ($model->type() == 'map' && $model->child->explorable()) {
+                $searchResults[] = [
+                    'id' => $model->id,
+                    'fullname' => $parsedName,
+                    'image' => $img,
+                    'name' => $parsedName,
+                    'type' => __('maps.actions.explore'),
+                    'model_type' => $model->type(),
+                    'url' => $model->url('explore'),
+                    'alias_id' => $model->alias_id, // @phpstan-ignore-line
+                    'advanced_mention' => Mentions::advancedMentionHelper($model->name),
+                ];
+            }
         }
         if (!$this->new) {
             return $searchResults;
