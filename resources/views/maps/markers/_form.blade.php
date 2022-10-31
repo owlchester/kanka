@@ -141,7 +141,7 @@ $sizeOptions = [
                 @if ($campaignService->campaign()->boosted())
                     @if(isset($model))
                         <p class="help-block">
-                            {{ __('maps/markers.helpers.polygon.' . ($activeTab == 5 ? 'edit' : 'new')) }}
+                            {{ __('maps/markers.helpers.polygon.edit') }}
 
                             <a href="#" id="reset-polygon" class="btn btn-danger pull-right btn-sm mb-1" style="">
                                 <i class="fa-solid fa-eraser" aria-hidden="true"></i>
