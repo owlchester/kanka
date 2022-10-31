@@ -47,7 +47,7 @@ __('maps/markers.edit.title', ['name' => $model->name])
                     </div>
                     <input id="submit-mode" type="hidden" value="true"/>
                     <div class="pull-right">
-                        @include('maps.markers._actions')
+                        @include('maps.markers._actions', ['explore' => isset($explore)])
                     </div>
                     <div class="pull-right mr-2">
                         @include('partials.footer_cancel', ['ajax' => null])
