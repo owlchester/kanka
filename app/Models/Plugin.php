@@ -38,6 +38,7 @@ class Plugin extends Model
         'name',
         'type_id',
         'pivot_is_active',
+        'has_update'
     ];
 
     /**
@@ -81,13 +82,34 @@ class Plugin extends Model
         return $this->hasMany(PluginVersion::class);
     }
 
-
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function user()
     {
         return $this->belongsTo(User::class, 'created_by');
+    }
+
+    public function scopePreparedSelect(Builder $builder): Builder
+    {
+        $update = 'null';
+        if (auth()->check()) {
+            $update = 'CASE WHEN (
+                    SELECT upd.id
+                    FROM plugin_versions AS upd
+                    WHERE upd.plugin_id = ' . $this->getTable() . '.id AND
+                    (upd.status_id = 3 OR (upd.status_id in (1,3) AND ' . $this->getTable() . '.created_by = ' . auth()->user()->id . ')) AND
+                    upd.id > campaign_plugins.plugin_version_id
+                ) IS NOT NULL THEN 1 ELSE 0 END AS has_update';
+        }
+
+        return $builder
+            ->distinct()
+            ->select([
+                $this->getTable() . '.*',
+                DB::raw($update)
+            ])
+        ;
     }
 
     /**

@@ -18,21 +18,32 @@ class Plugin extends Layout
                 'key' => 'name',
                 'label' => 'campaigns/plugins.fields.name',
                 'render' => function ($model) {
-                    $html = '<a href="' . config('marketplace.url') . '/plugins/' . $model->uuid . '" target="_blank">'
+                    return '<a href="' . config('marketplace.url') . '/plugins/' . $model->uuid . '" target="_blank">'
                              . $model->name
-                            . '</a><br />';
+                            . '</a>';
+                },
+            ],
+            'update' => [
+                'key' => 'has_update',
+                'label' => 'Has update',
+                'render' => function ($model) {
+                    if (!$model->has_update) {
+                        return '';
+                    }
 
                     $campaign = CampaignLocalization::getCampaign();
-                    if (auth()->check() && auth()->user()->can('recover', $campaign) && $model->hasUpdate()) {
-                        $html .= '<a href="' . route('campaign_plugins.update-info', $model)
+                    if (!auth()->check() || !auth()->user()->can('recover', $campaign)) {
+                        return '';
+                    }
+
+                    return '<a href="' . route('campaign_plugins.update-info', $model)
                             . '" class="btn btn-xs btn-info" data-toggle="ajax-modal" '
                             . 'data-target="#entity-modal" data-url="'
                             . route('campaign_plugins.update-info', $model) . '">'
                             . __('campaigns/plugins.actions.update_available')
-                            . '</a>';
-                    }
-                    return $html;
-                },
+                            . '</a>'
+                    ;
+                }
             ],
             'type' => [
                 'key' => 'type_id',
