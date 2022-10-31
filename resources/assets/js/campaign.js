@@ -119,6 +119,7 @@ function registerSidebarSetup() {
     for (let i = 0; i < nestedSortables.length; i++) {
         new Sortable(nestedSortables[i], {
             group: 'nested',
+            handle: '.dnd-handle',
             animation: 150,
             fallbackOnBody: true,
             swapThreshold: 0.65,

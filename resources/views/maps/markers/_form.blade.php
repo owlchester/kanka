@@ -61,11 +61,14 @@ $sizeOptions = [
                             {!! Form::text(
                                 'custom_icon',
                                 \App\Facades\FormCopy::field('custom_icon')->string(),
-                                ['class' => 'form-control',
-                                'placeholder' => __('maps/markers.placeholders.custom_icon', ['example1' => '"fa-solid fa-gem"', 'example2' => '"ra ra-sword"']),
-                                'list' => 'map-marker-icon-list',
-                                'autocomplete' => 'off',
-                                ($campaignService->campaign()->boosted() ? null : 'disabled')])
+                                [
+                                    'class' => 'form-control',
+                                    'placeholder' => __('maps/markers.placeholders.custom_icon', ['example1' => '"fa-solid fa-gem"', 'example2' => '"ra ra-sword"']),
+                                    'list' => 'map-marker-icon-list',
+                                    'autocomplete' => 'off',
+                                    'data-paste' => 'fontawesome',
+                                    ($campaignService->campaign()->boosted() ? null : 'disabled')
+                                ])
                             !!}
                             <p class="help-block">{!! __('maps/markers.helpers.custom_icon', ['rpgawesome' => '<a href="https://nagoshiashumari.github.io/Rpg-Awesome/" target="_blank">RPG Awesome</a>', 'fontawesome' => '<a href="https://fontawesome.com/search?m=free&s=solid" target="_blank">Font Awesome</a>']) !!}</p>
                         @if (!$campaignService->campaign()->boosted())
