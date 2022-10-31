@@ -5,13 +5,13 @@
 */
 ?>
 @extends('layouts.' . ($ajax ? 'ajax' : 'app'), [
-'title' => __('maps/markers.edit.title', ['name' => $model->name]),
-'description' => '',
-'breadcrumbs' => [
-['url' => route('maps.index'), 'label' => __('entities.maps')],
-['url' => $map->entity->url('show'), 'label' => $map->name],
-__('maps/markers.edit.title', ['name' => $model->name])
-]
+    'title' => __('maps/markers.edit.title', ['name' => $model->name]),
+    'description' => '',
+    'breadcrumbs' => [
+        ['url' => route('maps.index'), 'label' => __('entities.maps')],
+        ['url' => $map->entity->url('show'), 'label' => $map->name],
+        __('maps/markers.edit.title', ['name' => $model->name])
+    ]
 ])
 
 @inject('campaignService', 'App\Services\CampaignService')
@@ -89,7 +89,8 @@ __('maps/markers.edit.title', ['name' => $model->name])
             popupAnchor: [0, -20],
         });
 
-        window.polygon = {!! $model->editing()->multiplier($map->is_real)->marker() !!}.addTo(map{{ $map->id }});
+        var marker{{ $model->id }} = {!! $model->editing()->multiplier($map->is_real)->marker() !!}.addTo(map{{ $map->id }});
+        window.polygon = marker{{ $model->id }};
 
         @if ($model->shape_id == 5)
             map{{ $map->id }}.on('click', function(ev) {

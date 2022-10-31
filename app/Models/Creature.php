@@ -137,7 +137,7 @@ class Creature extends MiscModel
 
         $ids = [$location];
         if ($filter === FilterOption::CHILDREN) {
-            /** @var Location|null $race */
+            /** @var Location|null $model */
             $model = Location::find($location);
             if (!empty($model)) {
                 $ids = [...$model->descendants->pluck('id')->toArray(), $model->id];
@@ -161,7 +161,7 @@ class Creature extends MiscModel
     }
 
     /**
-     * Parent Race
+     * Parent creature
      */
     public function creature()
     {
@@ -169,7 +169,7 @@ class Creature extends MiscModel
     }
 
     /**
-     * Children Races
+     * Children creatures
      */
     public function creatures()
     {
@@ -213,7 +213,7 @@ class Creature extends MiscModel
     }
 
     /**
-     * Races have multiple locations
+     * Creatures have multiple locations
      */
     public function locations()
     {
