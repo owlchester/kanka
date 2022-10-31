@@ -30,8 +30,13 @@ return [
         'name'  => 'Nazwa historii',
         'type'  => 'Główna, kronika dziejów świata, historia królestwa',
     ],
+    'reorder'       => [
+        'success'   => 'Zmieniono kolejność historii',
+        'title'     => 'Zmień kolejność historii',
+    ],
     'show'          => [
         'tabs'  => [
+            'reorder'   => 'Kolejność historii',
             'timelines' => 'Historie',
         ],
     ],

@@ -113,7 +113,7 @@ return [
         'dashboards'        => [
             'title' => 'Pulpity',
         ],
-        'description'       => 'Dzięki @wzmiankom, etykietom i złożonemu systemowi uprawnień, Kanka pozwala z łatwością zarządzać światem albo kampanią. Możesz tworzyć postacie i relacje między nimi, miejsca wraz z ich historią, zadania i cele misji, historie podzielone na ery oraz kalendarze, w których znajdują się bieżące wydarzenia i aktualna pogoda. A najlepsze jest to, że użytkownicy Kanki sami decydują, które funkcje będą rozwijane, podczas głosowań społeczności.',
+        'description'       => 'Dzięki @wzmiankom, etykietom i złożonemu systemowi uprawnień, Kanka pozwala z łatwością zarządzać światem albo kampanią. Możesz tworzyć postacie i relacje między nimi, miejsca wraz z ich historią, przyczyny i cele zadań, historie podzielone na ery oraz kalendarze, w których znajdują się bieżące wydarzenia i aktualna pogoda. A najlepsze jest to, że użytkownicy Kanki sami decydują, które funkcje będą rozwijane, podczas głosowań społeczności.',
         'description_full'  => 'Kanka jest przez cały czas rozbudowywana i otrzymuje nowe funkcje. Tu wymieniamy najważniejsze, które na pewno ci się spodobają.',
         'flora'             => [
             'description'   => 'Twórz skomplikowany świat istot żywych dzięki modułowi ras i złożone ekosystemy przy pomocy ułożonych hierarchicznie notatek.',
@@ -143,8 +143,10 @@ return [
             'title'         => 'Dzienniki',
         ],
         'patreon'           => [
+            '2fa'               => 'Dostęp do autoryzacji dwuetapowej',
             'api_calls'         => 'Więcej wywołań API (90 na minutę)',
             'boosts'            => 'Doładowania kampanii',
+            'click-me'          => 'Dowiedz się więcej',
             'curation'          => 'Udział w wyborze przedmiotu głosowania społeczności',
             'default_image'     => 'Własne domyślne ikony elementów kampanii',
             'description'       => 'Wsparcie Kanki za pomocą subskrypcji daje dostęp do następujących funkcji i udogodnień.',
@@ -168,14 +170,14 @@ return [
         ],
         'quests'            => [
             'description'   => 'Przygotuj następną sesję i rób notatki za pomocą zaawansowanego systemu dzienników!',
-            'title'         => 'Misje i dzienniki',
+            'title'         => 'Zadania i dzienniki',
         ],
         'relations'         => [
             'description'   => 'Każdy element kampanii można powiązać z innymi skomplikowaną siecią relacji, z których część może być tajna i niewidoczna dla graczy.',
             'title'         => 'Relacje',
         ],
         'rpg'               => [
-            'description'   => 'Dzięki złożonemu systemowi uprawnień, misjom, dziennikom, postaciom i ich zdolnościom wyposażonym we własne audio i wideo z łatwością wymordujesz postaci graczy podczas najbliższej kampanii.',
+            'description'   => 'Dzięki złożonemu systemowi uprawnień, zadaniom, dziennikom, postaciom i ich zdolnościom wyposażonym we własne audio i wideo z łatwością wymordujesz postaci graczy podczas najbliższej kampanii.',
             'title'         => 'Zarządzanie kampanią RPG',
         ],
         'secrets'           => [

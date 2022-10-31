@@ -20,6 +20,7 @@ return [
         ],
     ],
     'subscribe' => [
+        'pitch-2fa'     => 'Zasubskrybuj, by zyskać dostęp do bezpiecznej autoryzacji dwuetapowej i :more.',
         'pitch-image'   => 'Subskrybuj, by zwiększyć rozmiar dołączanych plików do :max MB.',
         'share-booster' => 'Doładowanie zwiększa maksymalny rozmiar dołączanych plików dla wszystkich uczestników kampanii.',
     ],

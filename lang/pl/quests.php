@@ -2,53 +2,55 @@
 
 return [
     'create'        => [
-        'title' => 'Nowa misja',
+        'title' => 'Nowe zadanie',
     ],
     'destroy'       => [],
     'edit'          => [],
     'elements'      => [
         'create'    => [
-            'success'   => 'Nowy element misji :name',
-            'title'     => 'Nowy element misji :name',
+            'success'   => 'Nowy element zadania :name',
+            'title'     => 'Nowy element zadania :name',
         ],
         'destroy'   => [
-            'success'   => 'Usunięto element misji :entity.',
+            'success'   => 'Usunięto element zadania :entity.',
         ],
         'edit'      => [
-            'success'   => 'Zmieniono element misji :entity.',
-            'title'     => 'Zmień element misji :name',
+            'success'   => 'Zmieniono element zadania :entity.',
+            'title'     => 'Zmień element zadania :name',
         ],
         'fields'    => [
             'description'       => 'Szczegóły',
             'entity_or_name'    => 'Wybierz inny element kampanii albo nadaj nazwę temu elementowi.',
             'name'              => 'Nazwa',
-            'quest'             => 'Misja',
+            'quest'             => 'zadanie',
         ],
-        'title'     => 'Elementy misji :name',
+        'title'     => 'Elementy zadania :name',
     ],
     'fields'        => [
         'character'     => 'Donator',
-        'copy_elements' => 'Kopiuj elementy związane z misją',
+        'copy_elements' => 'Kopiuj elementy związane z zadaniem',
         'date'          => 'Data',
+        'element_role'  => 'Rola',
         'is_completed'  => 'Ukończona',
-        'quest'         => 'Misja źródłowa',
-        'quests'        => 'Misje pochodne',
+        'quest'         => 'Zadanie źródłowe',
+        'quests'        => 'Zadania pochodne',
         'role'          => 'Rola',
     ],
     'helpers'       => [
-        'is_completed'      => 'Wybierz, jeżeli misję można uznać za ukończoną.',
-        'nested_without'    => 'Wyświetlono wszystkie misje nie posiadające źródła. Kliknij na rząd, by wyświetlić misje pochodne.',
+        'is_completed'      => 'Wybierz, jeżeli zadanie można uznać za ukończone.',
+        'nested_without'    => 'Wyświetlono wszystkie zadnia nieposiadające źródła. Kliknij na rząd, by wyświetlić zadania pochodne.',
     ],
     'hints'         => [
-        'quests'    => 'Przy użyciu pola Misji źródłowej można stworzyć sieć zazębiających się misji.',
+        'quests'    => 'Przy użyciu pola Zadania źródłowego można stworzyć sieć zazębiających się zadań.',
     ],
     'index'         => [],
     'placeholders'  => [
-        'date'  => 'Data misji w prawdziwym świecie',
-        'name'  => 'Nazwa misji',
-        'quest' => 'Misja źródłowa',
-        'role'  => 'Rola elementu w tej misji',
-        'type'  => 'Wątek osobisty, misja poboczna, misja główna',
+        'date'      => 'Data zadania w prawdziwym świecie',
+        'entity'    => 'Nazwa elementu z tego zadania',
+        'name'      => 'Nazwa zadania',
+        'quest'     => 'Zadanie źródłowe',
+        'role'      => 'Rola elementu w tym zadaniu',
+        'type'      => 'Wątek osobisty, misja poboczna, zadanie główne',
     ],
     'show'          => [
         'actions'   => [

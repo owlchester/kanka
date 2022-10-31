@@ -12,13 +12,14 @@ return [
             'editing'           => '{1} Zmienono :count relację.|[2,3,4] Zmienono :count relacje.|[5,*] Zmienono :count relacji.',
             'editing_partial'   => '{1} Zmienono :count/:total relację.|[2,3,4] Zmienono :count/:total relacje.|[5,*] Zmienono :count/:total relacji.',
         ],
+        'unmirror'          => 'Rozłącz relację dwustronną',
         'update_mirrored'   => 'Zmień również drugą stronę relacji.',
     ],
     'call-to-action'    => 'Zobacz rozkład rozmaitych relacji, łączących elementy kampanii.',
     'connections'       => [
         'map_point'         => 'Punkt na mapie',
         'mention'           => 'Wzmianka',
-        'quest_element'     => 'Część misji',
+        'quest_element'     => 'Część zadania',
         'timeline_element'  => 'Część historii',
     ],
     'create'            => [

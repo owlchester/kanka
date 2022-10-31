@@ -170,11 +170,11 @@ return [
         'replace_mentions'      => 'Replace attribute mentions in the entry with those of the new entity',
         'tag'                   => 'Tag',
         'tags'                  => 'Tags',
+        'template'              => 'Template',
         'timeline'              => 'Timeline',
         'tooltip'               => 'Tooltip',
         'type'                  => 'Type',
         'visibility'            => 'Visibility',
-        'template'              => 'Template',
     ],
     'files'                     => [
         'actions'   => [
@@ -219,9 +219,9 @@ return [
         'options'                   => [
             'children'  => 'With children',
             'exclude'   => 'Exclude',
+            'hide'      => 'Hide',
             'include'   => 'Include',
             'none'      => 'None',
-            'hide'      => 'Hide',
             'show'      => 'Show',
         ],
         'show'                      => 'Show Filters',

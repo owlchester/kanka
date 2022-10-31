@@ -95,8 +95,8 @@ return [
     ],
     'quests'        => [
         'helpers'   => [
-            'quest_giver'   => 'Misje, które postać zleciła.',
-            'quest_member'  => 'Misje, w których postać się pojawia.',
+            'quest_giver'   => 'Zadania, które postać zleciła.',
+            'quest_member'  => 'Zadania, w których postać się pojawia.',
         ],
     ],
     'sections'      => [

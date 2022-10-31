@@ -78,6 +78,9 @@ return [
             'back_to_dashboard' => 'Powrót do pulpitu',
             'edit'              => 'Edytuj widżet',
         ],
+        'reorder'   => [
+            'success'   => 'Zmieniono kolejność widżetów',
+        ],
         'title'     => 'Konfiguracja pulpitu kampanii',
         'tutorial'  => [
             'blog'  => 'ten wpis',
@@ -122,6 +125,7 @@ return [
             'name'              => 'Własna nazwa widżetu',
             'optional-entity'   => 'Odnośnik do elementu',
             'order'             => 'Kolejność',
+            'size'              => 'Rozmiar',
             'text'              => 'Tekst',
             'width'             => 'Szerokość',
         ],

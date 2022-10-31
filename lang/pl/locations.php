@@ -136,7 +136,7 @@ return [
                 'tower'         => 'Wieża',
                 'vase'          => 'Waza',
                 'water-drop'    => 'Woda',
-                'wooden-sign'   => 'Misja',
+                'wooden-sign'   => 'Zadanie',
                 'wrench'        => 'Klucz francuski',
             ],
             'modal'         => 'Stwórz lub edytuj punkt na mapie',
