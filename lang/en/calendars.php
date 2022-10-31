@@ -82,7 +82,6 @@ return [
         'month'                 => 'Month',
         'months'                => 'Months',
         'moons'                 => 'Moons',
-        'name'                  => 'Name',
         'parameters'            => 'Parameters',
         'recurring_periodicity' => 'Recurring Periodicity',
         'recurring_until'       => 'Recurring Until Year',
@@ -90,7 +89,6 @@ return [
         'seasons'               => 'Seasons',
         'start_offset'          => 'Start Offset',
         'suffix'                => 'Suffix',
-        'type'                  => 'Type',
         'week_names'            => 'Week Names',
         'weekdays'              => 'Week Days',
         'year'                  => 'Year',
@@ -115,9 +113,6 @@ return [
         'weekdays'          => 'Set your weekday names. At least 2 weekdays are required.',
         'weeks'             => 'Define some names for the more important weeks of your calendar.',
         'years'             => 'Some years are so important that they have their own name.',
-    ],
-    'index'         => [
-        'title' => 'Calendars',
     ],
     'layouts'       => [
         'month'     => 'Month',

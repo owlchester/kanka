@@ -11,7 +11,7 @@
         </h4>
     </div>
     <div class="form-group required">
-        <label>{{ __($type . '.fields.name') }}</label>
+        <label>{{ __('crud.fields.name') }}</label>
 
         <div class="input-group">
             {!! Form::text('names[]', null, [
@@ -80,6 +80,9 @@
     <input type="hidden" name="entity" value="{{ $type }}" />
 @if (!empty($target))
     <input type="hidden" name="_target" value="{{ $target }}" />
+@endif
+@if (!empty($multi))
+    <input type="hidden" name="_multi" value="1" />
 @endif
 </form>
 

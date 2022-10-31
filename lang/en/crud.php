@@ -170,6 +170,7 @@ return [
         'replace_mentions'      => 'Replace attribute mentions in the entry with those of the new entity',
         'tag'                   => 'Tag',
         'tags'                  => 'Tags',
+        'template'              => 'Template',
         'timeline'              => 'Timeline',
         'tooltip'               => 'Tooltip',
         'type'                  => 'Type',
@@ -218,8 +219,10 @@ return [
         'options'                   => [
             'children'  => 'With children',
             'exclude'   => 'Exclude',
+            'hide'      => 'Hide',
             'include'   => 'Include',
             'none'      => 'None',
+            'show'      => 'Show',
         ],
         'show'                      => 'Show Filters',
         'sorting'                   => [
@@ -238,6 +241,7 @@ return [
     ],
     'helpers'                   => [
         'copy_options'  => 'Copy the following related elements from the source to the new entity.',
+        'learn_more'    => 'Learn more about this feature in our :documentation.',
         'linking'       => 'Linking to other entities',
         'nested_parent' => 'Displaying the children of :parent.',
     ],
@@ -331,6 +335,7 @@ return [
         'ability'       => 'Choose an ability',
         'calendar'      => 'Choose a calendar',
         'character'     => 'Choose a character',
+        'creature'      => 'Choose a creature',
         'entity'        => 'Entity',
         'event'         => 'Choose an event',
         'family'        => 'Choose a family',

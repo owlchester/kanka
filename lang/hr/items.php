@@ -8,16 +8,10 @@ return [
     'edit'          => [],
     'fields'        => [
         'character' => 'Lik',
-        'image'     => 'Slika',
-        'location'  => 'Lokacija',
-        'name'      => 'Naziv',
         'price'     => 'Cijena',
         'size'      => 'Veličina',
-        'type'      => 'Tip',
     ],
-    'index'         => [
-        'title' => 'Predmeti',
-    ],
+    'index'         => [],
     'inventories'   => [
         'title' => 'Inventar predmeta :name',
     ],

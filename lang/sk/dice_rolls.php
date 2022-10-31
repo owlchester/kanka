@@ -10,7 +10,6 @@ return [
     'edit'          => [],
     'fields'        => [
         'created_at'    => 'Hodený',
-        'name'          => 'Názov',
         'parameters'    => 'Parametre',
         'results'       => 'Výsledky',
         'rolls'         => 'Hody',
@@ -23,7 +22,6 @@ return [
             'dice'      => 'Hody kockami',
             'results'   => 'Výsledky',
         ],
-        'title'     => 'Hody kockami',
     ],
     'placeholders'  => [
         'dice_roll' => 'Hod kockami',

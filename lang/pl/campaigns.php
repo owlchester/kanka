@@ -20,8 +20,13 @@ TEXT
         'title'                 => 'Nowa kampania',
     ],
     'destroy'                           => [
-        'action'    => 'Usuń kampanię',
-        'success'   => 'Kampania usunięta.',
+        'action'            => 'Usuń kampanię',
+        'confirm'           => 'Czy na pewno chcesz usunąć :campaign? Tego działania nie można będzie cofnąć',
+        'confirm-button'    => 'Usuń kampanię na dobre',
+        'helper-v2'         => 'Kampanii nie można usunąć, ponieważ posiada uczestników. Usuń wszystkich uczestników i spróbuj ponownie',
+        'hint'              => 'W takim razie wpisz :code w oknie poniżej',
+        'success'           => 'Kampania usunięta.',
+        'title'             => 'Usuwanie kampanii',
     ],
     'edit'                              => [
         'success'   => 'Zmieniono kampanię.',
@@ -102,7 +107,6 @@ TEXT
                 'title' => 'Nowa kampania',
             ],
         ],
-        'title'     => 'Kampania',
     ],
     'invites'                           => [
         'actions'               => [
@@ -128,6 +132,7 @@ TEXT
         'fields'                => [
             'created'   => 'Wysłano',
             'role'      => 'Rola',
+            'token'     => 'Kod',
             'type'      => 'Rodzaj',
             'usage'     => 'Maksymalna liczba użyć',
         ],
@@ -140,9 +145,13 @@ TEXT
         ],
     ],
     'leave'                             => [
-        'confirm'   => 'Czy na pewno chcesz opuścić kampanię :name? Utracisz do niej dostęp do czasu, gdy administrator kampanii zaprosi cię ponownie.',
-        'error'     => 'Nie możesz opuścić kampanii.',
-        'success'   => 'Opuszczasz kampanię.',
+        'confirm'           => 'Czy na pewno chcesz opuścić kampanię :name? Utracisz do niej dostęp do czasu, gdy administrator kampanii zaprosi cię ponownie.',
+        'confirm-button'    => 'Tak, opuść kampanię',
+        'error'             => 'Nie możesz opuścić kampanii.',
+        'fix'               => 'Przejdź do uczestników kampanii',
+        'no-admin-left'     => 'Nie możesz opuścić kampanii, ponieważ pozostanie wówczas bez administratorów. Nadaj najpierw innemu uczestnikowi rolę administratora',
+        'success'           => 'Opuszczasz kampanię.',
+        'title'             => 'Opuszczanie kampanii',
     ],
     'members'                           => [
         'actions'               => [

@@ -30,12 +30,10 @@ return [
         'maps'          => 'Karte',
         'max_zoom'      => 'Maksimalno povećanje',
         'min_zoom'      => 'Minimalno povećanje',
-        'name'          => 'Ime',
         'tabs'          => [
             'coordinates'   => 'Koordinate',
             'marker'        => 'Marker',
         ],
-        'type'          => 'Tip',
     ],
     'helpers'       => [
         'center'            => 'Promjena sljedećih vrijednosti kontrolira na koje područje je karta fokusirana. Ostavljanje ovih vrijednosti praznima rezultirat će se fokusom na središte karte.',
@@ -49,9 +47,7 @@ return [
         'missing_image'     => 'Spremi kartu sa slikom prije nego što možeš dodavati slojeve i markere.',
         'nested_without'    => 'Prikazuju se sve mape koje nemaju mapu roditelj. Klikni redak da bi vidio/la mapu djecu.',
     ],
-    'index'         => [
-        'title' => 'Karte',
-    ],
+    'index'         => [],
     'maps'          => [
         'title' => 'Karte od :name',
     ],

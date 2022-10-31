@@ -8,6 +8,7 @@ use App\Models\CampaignPermission;
 use App\Models\Character;
 use App\Models\CharacterTrait;
 use App\Models\Conversation;
+use App\Models\Creature;
 use App\Models\Entity;
 use App\Models\EntityNote;
 use App\Models\Event;
@@ -59,6 +60,7 @@ class EntityService
             'characters' => 'App\Models\Character',
             'calendars' => 'App\Models\Calendar',
             'conversations' => 'App\Models\Conversation',
+            'creatures' => 'App\Models\Creature',
             'events' => 'App\Models\Event',
             'families' => 'App\Models\Family',
             'items' => 'App\Models\Item',
@@ -226,11 +228,6 @@ class EntityService
         if (!$copy && !auth()->user()->can('update', $entity->child)) {
             throw new TranslatableException('entities/move.errors.permission_update');
         }
-
-        // Make sure the target campaign still has space for this entity
-        /*if (!$campaign->canHaveMoreEntities()) {
-            throw new TranslatableException('entities/move.errors.campaign_full');
-        }*/
 
         if ($copy) {
             $this->copied = true;
@@ -479,6 +476,8 @@ class EntityService
             }
         }
 
+        $this->moveLocations($old, $new);
+
         // Update entity to its new type. We don't use a new entity to keep all mentions, attributes and
         // other related elements attached.
         $entity->type_id = $new->entityTypeID();
@@ -633,6 +632,7 @@ class EntityService
         $newTypes = [
             'character' => Character::class,
             'location' => Location::class,
+            'creature' => Creature::class,
             'race' => Race::class,
             'item' => Item::class,
             'note' => Note::class,
@@ -695,5 +695,33 @@ class EntityService
             $model->entity->tags()->attach($allTags);
         }
         return $model;
+    }
+
+    /**
+     * For entities with multiple locations, they can sometimes be moved around
+     * @param MiscModel $old
+     * @param MiscModel $new
+     * @return void
+     */
+    protected function moveLocations(MiscModel $old, MiscModel $new)
+    {
+        /** @var Race|Creature $old */
+        /** @var Creature|Race $new */
+        $raceID = config('entities.ids.race');
+        $creatureID = config('entities.ids.creature');
+        if (
+            !in_array($old->entityTypeId(), [$raceID, $creatureID]) ||
+            !in_array($new->entityTypeId(), [$raceID, $creatureID])
+        ) {
+            if (property_exists($old, 'locations')) {
+                $old->locations()->sync([]);
+            }
+            return false;
+        }
+
+        foreach ($old->locations as $loc) {
+            $new->locations()->attach($loc->id);
+        }
+        $old->locations()->sync([]);
     }
 }

@@ -2,28 +2,15 @@
 
 namespace App\Models\Concerns;
 
-use App\Models\Entity;
-
 trait CampaignLimit
 {
-    /**
-     * Determine if a campaign is grandfathered, aka has access to features before feature changes in
-     * the summer of 2022.
-     * @return bool
-     */
-    public function isGrandfathered(): bool
-    {
-        $grandfathered = config('limits.campaigns.grandfathered');
-        return $this->id <= $grandfathered;
-    }
-
     /**
      * Get the member limit for the campaign
      * @return int|null
      */
     public function memberLimit(): null|int
     {
-        if ($this->isGrandfathered() || $this->boosted()) {
+        if ($this->boosted()) {
             return null;
         }
         return config('limits.campaigns.members');
@@ -35,7 +22,7 @@ trait CampaignLimit
      */
     public function roleLimit(): null|int
     {
-        if ($this->isGrandfathered() || $this->boosted()) {
+        if ($this->boosted()) {
             return null;
         }
         return config('limits.campaigns.roles');
@@ -47,22 +34,10 @@ trait CampaignLimit
      */
     public function quickLinkLimit(): null|int
     {
-        if ($this->isGrandfathered() || $this->boosted()) {
+        if ($this->boosted()) {
             return null;
         }
         return config('limits.campaigns.quick-links');
-    }
-
-    /**
-     * Get the limit of entities a campaign can have
-     * @return int|null
-     */
-    public function entityLimit(): null|int
-    {
-        if ($this->isGrandfathered() || $this->boosted()) {
-            return null;
-        }
-        return config('limits.campaigns.entities');
     }
 
     /**
@@ -103,33 +78,4 @@ trait CampaignLimit
         }
         return $this->menuLinks()->count() < $limit;
     }
-
-    /**
-     * Determine if the campaign can have more entities added to it
-     * @return bool
-     */
-    public function canHaveMoreEntities(): bool
-    {
-        return false;
-        /*$limit = $this->entityLimit();
-        if (empty($limit)) {
-            return true;
-        }
-        // We don't use $this->entities, because we need to know a campaign's total entities when copying entities
-        // from one campaign to another.
-        return Entity::allCampaigns()
-            ->where('campaign_id', $this->id)
-            ->whereNotIn('type_id', [config('entities.ids.tag')])
-            ->count() <= $limit;*/
-    }
-
-    /**
-     * Get the remaining entities a campaign can add
-     * @return int
-     */
-    /*public function remainingAvailableEntities(): int
-    {
-        $limit = $this->entityLimit();
-        return $limit - $this->entities()->whereNotIn('type_id', [config('entities.ids.tag')])->count();
-    }*/
 }

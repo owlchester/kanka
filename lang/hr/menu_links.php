@@ -13,7 +13,6 @@ return [
         'entity'        => 'Entitet',
         'filters'       => 'Filteri',
         'menu'          => 'Izbornik',
-        'name'          => 'Naziv',
         'position'      => 'Pozicija',
         'random'        => 'Nasumično',
         'random_type'   => 'Nasumičan tip entiteta',
@@ -28,10 +27,7 @@ return [
         'selector'  => 'Konfiguriraj kamo vodi ova brza poveznica kada je korisnik klikne na bočnoj traci.',
         'type'      => 'Postavi ovu poveznicu izbornika tako da vodi direktno na listu entiteta. Za filtriranje rezultata, kopiraj dijelove URL s filtrirane liste entiteta nakon znaka :? u polje :filter',
     ],
-    'index'         => [
-        'add'   => 'Nova poveznica izbornika',
-        'title' => 'Poveznice izbornika',
-    ],
+    'index'         => [],
     'placeholders'  => [
         'entity'    => 'Odaberite entitet',
         'filters'   => 'location_id=15&type=grad',

@@ -42,12 +42,10 @@ return [
         'maps'              => 'Mapy',
         'max_zoom'          => 'Maximálne priblíženie',
         'min_zoom'          => 'Minimálne priblíženie',
-        'name'              => 'Názov',
         'tabs'              => [
             'coordinates'   => 'Koordináty',
             'marker'        => 'Značka',
         ],
-        'type'              => 'Typ',
     ],
     'helpers'       => [
         'center'            => 'Zmenou týchto hodnôt vieš kontrolovať, na ktorú oblasť mapy bude zameraný náhľad. Ak hodnoty ponecháš prázdne, bude zameranie na stred mapy.',
@@ -64,9 +62,7 @@ return [
         'missing_image'     => 'Na použitie vrstiev a značiek budeš musieť najprv pridať obrázok mapy.',
         'nested_without'    => 'Zobraziť všetky mapy, ktoré nemajú nadradenú mapu. Kliknutím na riadok zobrazíš podradené mapy.',
     ],
-    'index'         => [
-        'title' => 'Mapy',
-    ],
+    'index'         => [],
     'maps'          => [
         'title' => 'Mapy objektu :name',
     ],

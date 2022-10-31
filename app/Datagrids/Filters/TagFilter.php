@@ -24,6 +24,7 @@ class TagFilter extends DatagridFilter
             ])
             ->add('is_auto_applied')
             ->isPrivate()
+            ->template()
             ->hasImage()
             ->hasEntityNotes()
             ->hasEntityFiles()

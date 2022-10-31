@@ -14,7 +14,6 @@ return [
         'filters'           => 'Filters',
         'is_nested'         => 'Nested',
         'menu'              => 'Subpage',
-        'name'              => 'Name',
         'position'          => 'Position',
         'random'            => 'Random',
         'random_type'       => 'Random Entity Type',
@@ -29,10 +28,6 @@ return [
         'random'            => 'Use this field to have a quick link pointing to a random entity. You can filter the link to only go to a specific entity type.',
         'selector'          => 'Configure where this quick link goes when a user clicks on it in the sidebar.',
         'type'              => 'Set up this quick link to go directly to a list of entities. To filter the results, copy parts of the url on the filtered entity list after the :? sign into the :filter field.',
-    ],
-    'index'             => [
-        'add'   => 'New Quick Link',
-        'title' => 'Quick Links',
     ],
     'placeholders'      => [
         'entity'    => 'Choose an entity',

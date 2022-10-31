@@ -74,7 +74,6 @@ return [
         'length_days'           => '{1} :count dia|[2,*] :count dies',
         'months'                => 'Mesos',
         'moons'                 => 'Llunes',
-        'name'                  => 'Nom',
         'parameters'            => 'Paràmetres',
         'recurring_periodicity' => 'Periodicitat recurrent',
         'recurring_until'       => 'Recurrent fins l\'any',
@@ -82,7 +81,6 @@ return [
         'seasons'               => 'Estacions',
         'start_offset'          => 'Retardament inicial',
         'suffix'                => 'Sufix',
-        'type'                  => 'Tipus',
         'week_names'            => 'Noms de les setmanes',
         'weekdays'              => 'Dies de la setmana',
     ],
@@ -105,9 +103,7 @@ return [
         'weeks'             => 'Definiu els noms de les setmanes més importants del calendari.',
         'years'             => 'Alguns anys són tan importants que tenen el seu propi nom.',
     ],
-    'index'         => [
-        'title' => 'Calendaris',
-    ],
+    'index'         => [],
     'layouts'       => [
         'month' => 'Mes',
         'year'  => 'Any',

@@ -11,15 +11,11 @@ return [
     'edit'          => [],
     'fields'        => [
         'characters'    => 'Personaggi',
-        'name'          => 'Nome',
         'race'          => 'Razza Genitore',
         'races'         => 'Sotto-Razze',
-        'type'          => 'Tipo',
     ],
     'helpers'       => [],
-    'index'         => [
-        'title' => 'Razze',
-    ],
+    'index'         => [],
     'placeholders'  => [
         'name'  => 'Nome della razza',
         'type'  => 'Umano, Fata, Borg',

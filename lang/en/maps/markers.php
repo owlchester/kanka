@@ -4,8 +4,14 @@ return [
     'actions'       => [
         'entry'             => 'Write a custom entry field for this marker.',
         'remove'            => 'Remove marker',
+        'reset-polygon'     => 'Reset positions',
         'save_and_explore'  => 'Save and Explore',
+        'start-drawing'     => 'Start drawing',
         'update'            => 'Edit marker',
+    ],
+    'bulks'         => [
+        'delete'    => '{1} Removed :count marker.|[2,*] Removed :count markers.',
+        'patch'     => '{1} Updated :count marker.|[2,*] Updated :count markers.',
     ],
     'create'        => [
         'success'   => 'Marker :name created.',
@@ -25,6 +31,7 @@ return [
         'custom_shape'  => 'Custom Shape',
         'font_colour'   => 'Icon Colour',
         'group'         => 'Marker Group',
+        'icon'          => 'Icon',
         'is_draggable'  => 'Draggable',
         'latitude'      => 'Latitude',
         'longitude'     => 'Longitude',
@@ -46,7 +53,6 @@ return [
         'label'                     => 'A label is displayed as a block of text on the map. The content will be the marker\'s name or the entity\'s name.',
         'polygon'                   => [
             'edit'  => 'Click on the map to add that position to the polygon\'s coordinates.',
-            'new'   => 'Move the marker around on the map to save the position to the polygone.',
         ],
     ],
     'icons'         => [
@@ -55,6 +61,9 @@ return [
         'exclamation'   => 'Exclamation icon',
         'marker'        => 'Marker icon',
         'question'      => 'Question icon',
+    ],
+    'index'         => [
+        'title' => 'Markers of :name',
     ],
     'pitches'       => [
         'poly'  => 'Draw custom polyong shapes to represent borders and other uneven shapes.',

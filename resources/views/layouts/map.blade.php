@@ -36,9 +36,7 @@ $specificTheme = null;
     <link href="{{ mix('css/freyja.css') }}" rel="stylesheet">
     <link href="{{ mix('css/map-v3.css') }}" rel="stylesheet">
     @if (!config('fontawesome.kit'))<link href="/vendor/fontawesome/6.0.0/css/all.min.css" rel="stylesheet">@endif
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
-          integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
-          crossorigin=""/>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.2/dist/leaflet.css" integrity="sha256-sA+zWATbFveLLNqWO2gtiw3HL/lh1giY/Inf1BJ0z14=" crossorigin="" />
 
 
 @if (!empty($themeOverride) && in_array($themeOverride, ['dark', 'midnight', 'base']))
@@ -76,17 +74,47 @@ $specificTheme = null;
             <section class="sidebar" style="height: auto">
 
                 <div id="sidebar-content" class="">
+                    <!-- The legend / overview default sidebar of the map -->
                     <div id="sidebar-map">
-                        <div class="marker-details">
-                            <h3 class="marker-name">{{ $map->name }}</h3>
-                            <div class="marker-entry">{!! \App\Facades\Mentions::map($map) !!}</div>
+                        <div class="marker-header">
+                            <div class="marker-header-lower">
+                                <div class="marker-name">
+                                    {{ $map->name }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="marker-entry entity-content">
+                            {!! \App\Facades\Mentions::map($map) !!}
                         </div>
 
                         <div class="marker-actions text-center">
                             @can('update', $map)
-                                <a href="{{ route('maps.edit', [$map]) }}" class="btn btn-primary">
-                                    <i class="fa-solid fa-map" aria-hidden="true"></i> {{ __('maps.actions.edit') }}
-                                </a>
+                                <div class="btn-group">
+                                    <a href="{{ route('maps.edit', [$map]) }}" class="btn btn-primary">
+                                        <i class="fa-solid fa-map" aria-hidden="true"></i> {{ __('maps.actions.edit') }}
+                                    </a>
+                                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                        <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li>
+                                            <a href="{{ route('maps.map_layers.index', [$map]) }}" class="dropdown-item">
+                                                <i class="fa-solid fa-layer-group" aria-hidden="true"></i> {{ __('maps.panels.layers') }}
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ route('maps.map_groups.index', [$map]) }}" class="dropdown-item">
+                                                <i class="fa-solid fa-map-signs" aria-hidden="true"></i> {{ __('maps.panels.groups') }}
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ route('maps.map_markers.index', [$map]) }}" class="dropdown-item">
+                                                <i class="fa-solid fa-map-pin" aria-hidden="true"></i> {{ __('maps.panels.markers') }}
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
                             @endcan
                         </div>
 
@@ -102,6 +130,8 @@ $specificTheme = null;
                             <a href="{{ $map->getLink() }}" class="btn btn-primary">{{ __('maps.actions.back', ['name' => $map->name]) }}</a>
                         </div>
                     </div>
+
+                    <!-- When clicking on a marker, this menu pops up -->
                     <div id="sidebar-marker"></div>
                     <div class="spinner text-center" style="display: none; margin-top: 10px;">
                         <i class="fa-solid fa-spinner fa-spin fa-2x"></i>
@@ -116,6 +146,8 @@ $specificTheme = null;
         </div>
     </div>
 
+    <div class="toast-container"></div>
+
     <!-- Modal -->
     @includeWhen(auth()->check(), 'layouts.modals.delete')
 
@@ -124,9 +156,7 @@ $specificTheme = null;
     <script src="https://kit.fontawesome.com/{{ config('fontawesome.kit') }}.js" crossorigin="anonymous"></script>
 @endif
 <!-- Make sure you put this AFTER Leaflet's CSS -->
-<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
-        integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
-        crossorigin=""></script>
+<script src="https://unpkg.com/leaflet@1.9.2/dist/leaflet.js" integrity="sha256-o9N1jGDZrf5tS+Ft4gbIK7mYMipq9lqpVJ91xHSyKhg=" crossorigin=""></script>
 <script src="/js/vendor/leaflet/leaflet.markercluster.js"></script>
 <script src="/js/vendor/leaflet/leaflet.markercluster.layersupport.js"></script>
 <script src="/js/vendor/leaflet/leaflet.zoomcss.js"></script>

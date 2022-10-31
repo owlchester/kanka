@@ -17,13 +17,10 @@ return [
     ],
     'fields'        => [
         'characters'        => 'Likovi',
-        'image'             => 'Slika',
         'is_map_private'    => 'Privatna karta',
         'location'          => 'Lokacija roditelj',
         'locations'         => 'Lokacije',
         'map'               => 'Karta',
-        'name'              => 'Naziv',
-        'type'              => 'Tip',
     ],
     'helpers'       => [
         'characters'        => 'Pregledaj sve likove na ovoj lokaciji i njenim podlokacijama ili samo one neposredno na toj lokaciji.',
@@ -37,9 +34,7 @@ return [
     'hints'         => [
         'is_map_private'    => 'Privatna karta je vidljiva samo članovima "Administrator" uloge u kampanji.',
     ],
-    'index'         => [
-        'title' => 'Lokacije',
-    ],
+    'index'         => [],
     'items'         => [],
     'journals'      => [],
     'locations'     => [

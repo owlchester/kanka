@@ -15,17 +15,13 @@ return [
     'edit'          => [],
     'fields'        => [
         'characters'    => 'Karakterek',
-        'name'          => 'Név',
         'race'          => 'Szülő Faj',
         'races'         => 'Alfajok',
-        'type'          => 'Típus',
     ],
     'helpers'       => [
         'nested_without'    => 'Megmutat minden fajt, aminek nincs szülője. Klikkelj egy sorra, hogy megnézd a gyermekfajait.',
     ],
-    'index'         => [
-        'title' => 'Fajok',
-    ],
+    'index'         => [],
     'placeholders'  => [
         'name'  => 'A faj neve',
         'type'  => 'Ember, tündér, Borg',

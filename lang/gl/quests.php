@@ -30,15 +30,11 @@ return [
         'character'     => 'Quen deu a misión',
         'copy_elements' => 'Copiar elementos ligados á misión',
         'date'          => 'Data',
-        'description'   => 'Descrición',
         'element_role'  => 'Rol',
-        'image'         => 'Imaxe',
         'is_completed'  => 'Completada',
-        'name'          => 'Nome',
         'quest'         => 'Misión superior',
         'quests'        => 'Submisións',
         'role'          => 'Rol',
-        'type'          => 'Tipo',
     ],
     'helpers'       => [
         'is_completed'      => 'Selecciona se a misión é considerada completa.',
@@ -47,9 +43,7 @@ return [
     'hints'         => [
         'quests'    => 'Podes crear unha rede de misións entrelazadas usando o campo "Misión superior".',
     ],
-    'index'         => [
-        'title' => 'Misións',
-    ],
+    'index'         => [],
     'placeholders'  => [
         'date'      => 'Data do mundo real para a misión',
         'entity'    => 'Nome dun elemento da misión',

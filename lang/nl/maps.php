@@ -28,8 +28,6 @@ return [
         'maps'          => 'Kaarten',
         'max_zoom'      => 'Maximale zoom',
         'min_zoom'      => 'Minimale zoom',
-        'name'          => 'Naam',
-        'type'          => 'Type',
     ],
     'helpers'       => [
         'center'            => 'Als je de volgende waarden wijzigt, wordt er bepaald op welk gebied van de kaart de focus is gericht. Als je deze waarden leeg laat, wordt er op het midden van de kaart gefocust.',
@@ -41,9 +39,7 @@ return [
         'min_zoom'          => 'Op een kaart kan maximaal worden uitgezoomd. De standaardwaarde is :default, terwijl de laagst toegestane waarde :min is.',
         'missing_image'     => 'Sla de kaart met een afbeelding op voordat je lagen en markeringen kunt toevoegen.',
     ],
-    'index'         => [
-        'title' => 'Kaarten',
-    ],
+    'index'         => [],
     'maps'          => [
         'title' => 'Kaarten van :name',
     ],

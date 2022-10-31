@@ -15,13 +15,10 @@ return [
     ],
     'fields'        => [
         'characters'        => 'Characters',
-        'image'             => 'Image',
         'is_map_private'    => 'Private Map',
         'location'          => 'Parent Location',
         'locations'         => 'Locations',
         'map'               => 'Map',
-        'name'              => 'Name',
-        'type'              => 'Type',
     ],
     'helpers'       => [
         'characters'        => 'View all characters in this location and its children locations, or just those directly located here.',
@@ -34,9 +31,6 @@ return [
     ],
     'hints'         => [
         'is_map_private'    => 'A private map will only be visible to members of the campaign\'s "Admin" role.',
-    ],
-    'index'         => [
-        'title' => 'Locations',
     ],
     'locations'     => [
         'title' => 'Location :name Locations',

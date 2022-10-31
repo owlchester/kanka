@@ -121,10 +121,10 @@ class MentionsService
             return Attributes::parse($attribute);
         }
 
-        $this->text = (string) $attribute->value;
-        $attribute->value = $this->extractAndReplace();
+        //Called in this order to avoid a bug that would render an attribute mention inside an attribute wrong.
+        $this->text = Attributes::parse($attribute);
 
-        return Attributes::parse($attribute);
+        return $this->extractAndReplace();
     }
 
     /**
@@ -411,7 +411,6 @@ class MentionsService
 
                     $cssClasses[] = 'mention-field-' . Str::slug($field);
                 }
-
                 $replace = '<a href="' . $url . '"'
                     . ' class="' . implode(' ', $cssClasses) . '"'
                     . ' data-entity-tags="' . implode(' ', $tagClasses) . '"'
@@ -695,12 +694,6 @@ class MentionsService
         if (isset($this->newEntityMentions[$key])) {
             return "[$type:" . $this->newEntityMentions[$key] . ']';
         }
-
-        // Check that the campaign can still accommodate more entities
-        /*$campaign = \App\Facades\CampaignLocalization::getCampaign();
-        if (!$campaign->canHaveMoreEntities()) {
-            return $name;
-        }*/
 
         // Create the new misc  model
         /** @var MiscModel $newMisc */

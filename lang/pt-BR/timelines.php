@@ -16,20 +16,16 @@ return [
         'copy_elements' => 'Copiar elementos',
         'copy_eras'     => 'Copiar eras',
         'eras'          => 'Eras',
-        'name'          => 'Nome',
         'reverse_order' => 'Era em ordem reversa',
         'timeline'      => 'Linha do Tempo primária',
         'timelines'     => 'Linhas do Tempo',
-        'type'          => 'Tipo',
     ],
     'helpers'       => [
         'nested_without'    => 'Mostrando todas as linhas do tempo que não tem uma linha do tempo pai. Clique em uma linha para ver as linhas do tempo filhos.',
         'no_era'            => 'Esta linha do tempo atualmente não tem nenhuma era. As eras podem ser adicionadas na tela de edição da linha do tempo, após o qual você pode adicionar elementos nela.',
         'reverse_order'     => 'Habilite para mostrar linhas do tempo em ordem cronológica reversa (eras antigas primeiro)',
     ],
-    'index'         => [
-        'title' => 'Linhas do Tempo',
-    ],
+    'index'         => [],
     'placeholders'  => [
         'name'  => 'Nome da linha do tempo',
         'type'  => 'Primária, crônica Mundial, legado de um Reino',

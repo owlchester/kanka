@@ -27,16 +27,12 @@ return [
         'abilities' => 'Fähigkeiten',
         'ability'   => 'Übergeordnete Fähigkeit',
         'charges'   => 'Ladungen',
-        'name'      => 'Name',
-        'type'      => 'Typ',
     ],
     'helpers'       => [
         'descendants'       => 'Diese Liste enthält alle Fähigkeiten, die vererbt werden, und nicht nur diejenigen, die sich auf der nächstniedrigeren Ebene befinden.',
         'nested_without'    => 'Anzeigen aller Fähigkeiten, die keine übergeordnete Fähigkeit haben. Klicken Sie auf eine Zeile, um die Fähigkeiten untergeordneten Objekte anzuzeigen.',
     ],
-    'index'         => [
-        'title' => 'Fähigkeiten',
-    ],
+    'index'         => [],
     'placeholders'  => [
         'charges'   => 'Anzahl der Verwendungen. Attribute können mit mit {Level} * {CHA} referenziert werden.',
         'name'      => 'Feuerball, Alarm, listiger Schlag',

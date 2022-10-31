@@ -14,23 +14,16 @@ return [
         'date'      => 'Date',
         'event'     => 'Événement parent',
         'events'    => 'Événements',
-        'image'     => 'Image',
-        'location'  => 'Lieu',
-        'name'      => 'Nom',
-        'type'      => 'Type',
     ],
     'helpers'       => [
         'date'              => 'Ce champ peut contenir n\'importe quelle valeur et n\'est pas lié aux calendriers de la campagne. Pour lier cet événement à un calendrier, il faut se rendre sur l\'onglet rappels de cet événement.',
         'nested_without'    => 'Affichage des événements sans parent. Cliquer sur une rangée pour afficher les événements enfants.',
     ],
-    'index'         => [
-        'title' => 'Événements',
-    ],
+    'index'         => [],
     'placeholders'  => [
-        'date'      => 'La date de l\'événement',
-        'location'  => 'Choix d\'un lieu',
-        'name'      => 'Nom de l\'événement',
-        'type'      => 'Cérémonie, Festival, Désastre, Bataille, Naissance',
+        'date'  => 'La date de l\'événement',
+        'name'  => 'Nom de l\'événement',
+        'type'  => 'Cérémonie, Festival, Désastre, Bataille, Naissance',
     ],
     'show'          => [
         'tabs'  => [

@@ -31,12 +31,10 @@ return [
         'maps'          => 'Mapas',
         'max_zoom'      => 'Zoom máximo',
         'min_zoom'      => 'Zoom mínimo',
-        'name'          => 'Nombre',
         'tabs'          => [
             'coordinates'   => 'Coordenadas',
             'marker'        => 'Marcador',
         ],
-        'type'          => 'Tipo',
     ],
     'helpers'       => [
         'center'            => 'Cambia estos valores para controlar en qué área está focalizado el mapa. Si lo dejas en blanco, se mostrará el centro del mapa por defecto.',
@@ -51,9 +49,7 @@ return [
         'missing_image'     => 'Guarda el mapa con una imagen antes de añadir capas y marcadores.',
         'nested_without'    => 'Mostrando todos los mapas sin ningún superior. Haz clic sobre una fila para mostrar sus descendientes.',
     ],
-    'index'         => [
-        'title' => 'Mapas',
-    ],
+    'index'         => [],
     'maps'          => [
         'title' => 'Mapas de :name',
     ],

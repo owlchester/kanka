@@ -9,19 +9,14 @@ return [
     'fields'        => [
         'author'    => 'Autor',
         'date'      => 'Data',
-        'image'     => 'Imatge',
         'journal'   => 'Crònica superior',
         'journals'  => 'Subcròniques',
-        'name'      => 'Nom',
-        'type'      => 'Tipus',
     ],
     'helpers'       => [
         'journals'          => 'Mostra totes o només les descendents directes d\'aquesta crònica.',
         'nested_without'    => 'S\'estan mostrant les cròniques sense pare. Feu clic a la fila d\'una família per a mostrar-ne les subcròniques.',
     ],
-    'index'         => [
-        'title' => 'Cròniques',
-    ],
+    'index'         => [],
     'journals'      => [
         'title' => 'Subcròniques de la crònica :name',
     ],

@@ -16,17 +16,13 @@ return [
     'fields'        => [
         'characters'    => 'Personagens',
         'locations'     => 'Localizações',
-        'name'          => 'Nome',
         'race'          => 'Raça Ancestral',
         'races'         => 'Sub-raças',
-        'type'          => 'Tipo',
     ],
     'helpers'       => [
         'nested_without'    => 'Mostrando todas as raças que não tem uma raça-pai. Clique em uma linha para ver as raças-filhos.',
     ],
-    'index'         => [
-        'title' => 'Raças',
-    ],
+    'index'         => [],
     'placeholders'  => [
         'name'  => 'Nome da raça',
         'type'  => 'Humano, Fada, Ciborgue',

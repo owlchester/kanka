@@ -10,7 +10,7 @@
     'title' => __('crud.permissions.title', ['name' => $entity->name]),
     'description' => '',
     'breadcrumbs' => [
-        ['url' => Breadcrumb::index($entity->pluralType()), 'label' => __($entity->pluralType() . '.index.title')],
+        ['url' => Breadcrumb::index($entity->pluralType()), 'label' => __('entities.' . $entity->pluralType())],
         ['url' => route($entity->pluralType() . '.show', $entity->child->id), 'label' => $entity->name],
         __('crud.edit'),
     ]

@@ -11,17 +11,13 @@ return [
     'fields'        => [
         'is_closed'     => 'Zamknięta',
         'messages'      => 'Wiadomości',
-        'name'          => 'Nazwa',
         'participants'  => 'Uczestnicy',
         'target'        => 'Rozmówcy',
-        'type'          => 'Rodzaj',
     ],
     'hints'         => [
         'participants'  => 'Dodawaj uczestników konwersacji naciskając ikonę :icon w prawym górnym rogu.',
     ],
-    'index'         => [
-        'title' => 'Konwersacje',
-    ],
+    'index'         => [],
     'messages'      => [
         'destroy'       => [
             'success'   => 'Usunięto wiadomość.',

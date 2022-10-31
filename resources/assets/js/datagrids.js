@@ -1,6 +1,3 @@
-// id="datagrids-bulk-actions-permissions"
-// id="datagrids-bulk-actions-edit
-
 import ajaxModal from "./components/ajax-modal";
 
 var datagrid2DeleteConfirm = false;
@@ -19,29 +16,7 @@ var datagrid2Observer = new IntersectionObserver(function(entries) {
 
 
 $(document).ready(function () {
-    // Multi-delete
-    var crudDelete = $('#datagrid-select-all');
-    if (crudDelete.length > 0) {
-        crudDelete.click(function () {
-            if ($(this).prop('checked')) {
-                $.each($("input[name='model[]']"), function () {
-                    $(this).prop('checked', true);
-                });
-            } else {
-                $.each($("input[name='model[]']"), function () {
-                    $(this).prop('checked', false);
-                });
-            }
-            toggleCrudMultiDelete();
-        });
-    }
-    $.each($("input[name='model[]']"), function () {
-        $(this).change(function (e) {
-            toggleCrudMultiDelete();
-            e.preventDefault();
-        });
-    });
-
+    registerBulkDelete();
     registerBulkActions();
     toggleCrudMultiDelete();
     registerDatagrids2();
@@ -59,6 +34,33 @@ function registerBulkActions() {
         let form = $(this).closest('form');
         form.find();
         form.submit();
+    });
+}
+
+/**
+ * Register the handler for checking the bulk-delete checkboxes
+ */
+function registerBulkDelete() {
+    var crudDelete = $('#datagrid-select-all');
+    if (crudDelete.length > 0) {
+        crudDelete.unbind('click').click(function () {
+            if ($(this).prop('checked')) {
+                $.each($("input[name='model[]']"), function () {
+                    $(this).prop('checked', true);
+                });
+            } else {
+                $.each($("input[name='model[]']"), function () {
+                    $(this).prop('checked', false);
+                });
+            }
+            toggleCrudMultiDelete();
+        });
+    }
+    $.each($("input[name='model[]']"), function () {
+        $(this).change(function (e) {
+            toggleCrudMultiDelete();
+            e.preventDefault();
+        });
     });
 }
 
@@ -102,6 +104,29 @@ function toggleCrudMultiDelete()
  *
  */
 function registerDatagrids2() {
+    $('.datagrid-bulk').click(function (e) {
+        e.preventDefault();
+
+        datagrid2Form = $(this).closest('form');
+
+
+        let models = [];
+        $.each($("input[name='model[]']"), function () {
+            if ($(this).prop('checked')) {
+                models.push($(this).val());
+            }
+        });
+        console.log('models', models);
+        $.ajax({
+            url: datagrid2Form.attr('action') + '?action=edit',
+            method: 'POST',
+            data: {model: models}
+        }).done(function (response) {
+            $('#entity-modal').find('.modal-content').html(response);
+            $('#entity-modal').modal();
+        });
+    });
+
     $('.datagrid-submit').click(function (e) {
         e.preventDefault();
 
@@ -110,9 +135,6 @@ function registerDatagrids2() {
 
         let action = datagrid2Form.find('input[name="action"]');
         action.val($(this).data('action'));
-
-        //console.log('action', action);
-        //console.log('me', $(this).data('action'));
 
         if ($(this).data('action') === 'delete') {
             if (datagrid2DeleteConfirm === false) {
@@ -151,6 +173,8 @@ function initDatagrid2Ajax() {
             datagrid2Reorder($(this));
         });
     });
+    registerBulkDelete();
+
 }
 
 /**

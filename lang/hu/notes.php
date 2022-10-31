@@ -7,13 +7,9 @@ return [
     'destroy'       => [],
     'edit'          => [],
     'fields'        => [
-        'description'   => 'Leírás',
-        'image'         => 'Kép',
-        'is_pinned'     => 'Kiemelt',
-        'name'          => 'Név',
-        'note'          => 'Szülőjegyzet',
-        'notes'         => 'Aljegyzet',
-        'type'          => 'Típus',
+        'is_pinned' => 'Kiemelt',
+        'note'      => 'Szülőjegyzet',
+        'notes'     => 'Aljegyzet',
     ],
     'helpers'       => [
         'nested_without'    => 'Minden jegyeztet megmutat, aminek nincs szülője. Klikkelj egy sorra, hogy lásd a gyermekjegyzeteket.',
@@ -21,9 +17,7 @@ return [
     'hints'         => [
         'is_pinned' => 'A vezérlőpultra legfeljebb három jegyzetet emelhetsz ki.',
     ],
-    'index'         => [
-        'title' => 'Jegyzetek',
-    ],
+    'index'         => [],
     'placeholders'  => [
         'name'  => 'A jegyzet neve',
         'note'  => 'Válassz egy szülőjegyzetet',

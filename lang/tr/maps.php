@@ -28,8 +28,6 @@ return [
         'maps'          => 'Haritalar',
         'max_zoom'      => 'Azami yakınlaştırma',
         'min_zoom'      => 'Asgari yakınlaştırma',
-        'name'          => 'Ad',
-        'type'          => 'Tür',
     ],
     'helpers'       => [
         'center'            => 'Aşağıdaki değerleri değiştirmek haritanın hangi alanına odaklanıldığını kontrol eder. Bu değerleri boş bırakmak haritanın merkezine odaklanılmasına sebep olur.',
@@ -41,9 +39,7 @@ return [
         'min_zoom'          => 'Bir haritanın en fazla ne kadar uzaklaştırılabileceği. Varsayılan değer :default, izin verilen en yüksek değer ise :max',
         'missing_image'     => 'Katmanlar ve işaretler ekleyebilmek için önce haritayı bir görsel ile birlikte kaydedin.',
     ],
-    'index'         => [
-        'title' => 'Haritalar',
-    ],
+    'index'         => [],
     'maps'          => [
         'title' => ':name Haritaları',
     ],

@@ -27,16 +27,12 @@ return [
         'abilities' => '能力',
         'ability'   => '父能力',
         'charges'   => '充能',
-        'name'      => '名称',
-        'type'      => '种类',
     ],
     'helpers'       => [
         'descendants'       => '这个列表包含了所有派生自此能力的子能力。包括子能力的子能力...',
         'nested_without'    => '展示所有没有父能力的能力。点击某行来查看子能力。',
     ],
-    'index'         => [
-        'title' => '能力',
-    ],
+    'index'         => [],
     'placeholders'  => [
         'charges'   => '充能次数。参考{等级}*{魅力}',
         'name'      => '火球，警觉，精巧一击',

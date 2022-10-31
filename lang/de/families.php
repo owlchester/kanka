@@ -12,11 +12,7 @@ return [
     'fields'        => [
         'families'  => 'Unterfamilien',
         'family'    => 'Übergeordnete Familie',
-        'image'     => 'Bild',
-        'location'  => 'Ort',
         'members'   => 'Mitglieder',
-        'name'      => 'Name',
-        'type'      => 'Typ',
     ],
     'helpers'       => [
         'descendants'       => 'Diese Liste enthält alle Familien, die der Familie untergeordnet sind, nicht nur die direkt unter ihr.',
@@ -25,9 +21,7 @@ return [
     'hints'         => [
         'members'   => 'Mitglieder einer Familie werden hier gelistet. Ein Charakter kann einer Familie hinzugefügt werden, in dem bei dem gewünschten Charakter das Familiendropdown genutzt wird.',
     ],
-    'index'         => [
-        'title' => 'Familien',
-    ],
+    'index'         => [],
     'members'       => [
         'helpers'   => [
             'all_members'       => 'Die folgende Liste zeigt alle Charaktere an, die Teil dieser Familie oder einer Unterfamilie sind.',

@@ -7,13 +7,9 @@ return [
     'destroy'       => [],
     'edit'          => [],
     'fields'        => [
-        'description'   => 'Opis',
-        'image'         => 'Obraz',
-        'is_pinned'     => 'Przypięta',
-        'name'          => 'Nazwa',
-        'note'          => 'Notatka źródłowa',
-        'notes'         => 'Notatki pochodne',
-        'type'          => 'Rodzaj',
+        'is_pinned' => 'Przypięta',
+        'note'      => 'Notatka źródłowa',
+        'notes'     => 'Notatki pochodne',
     ],
     'helpers'       => [
         'nested_without'    => 'Wyświetlono wszystkie notatki nie posiadające źródła. Kliknij na rząd, by wyświetlić notatki pochodne.',
@@ -21,9 +17,7 @@ return [
     'hints'         => [
         'is_pinned' => 'Na pulpicie można przypiąć do 3 notatek.',
     ],
-    'index'         => [
-        'title' => 'Notatki',
-    ],
+    'index'         => [],
     'placeholders'  => [
         'name'  => 'Nazwa notatki',
         'note'  => 'Wybierz notatkę źródłową',

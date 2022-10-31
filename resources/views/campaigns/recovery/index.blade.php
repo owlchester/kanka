@@ -1,7 +1,7 @@
 @extends('layouts.app', [
     'title' => __('campaigns/recovery.title', ['campaign' => $campaign->name]),
     'breadcrumbs' => [
-        ['url' => route('campaign'), 'label' => trans('campaigns.index.title')],
+        ['url' => route('campaign'), 'label' => __('entities.campaign')],
         __('campaigns.show.tabs.recovery')
     ],
     'mainTitle' => false,

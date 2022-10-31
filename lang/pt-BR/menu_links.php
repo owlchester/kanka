@@ -15,7 +15,6 @@ return [
         'filters'           => 'Filtros',
         'is_nested'         => 'Aninhado',
         'menu'              => 'Menu',
-        'name'              => 'Nome',
         'position'          => 'Posição',
         'random'            => 'Aleatório',
         'random_type'       => 'Tipo aleatório de entidade',
@@ -31,10 +30,7 @@ return [
         'selector'          => 'Configure para onde este link rápido vai quando um usuário clica nele na barra lateral.',
         'type'              => 'Configure este link rápido para ir diretamente para uma lista de entidades. Para filtrar os resultados, copie partes da url na lista de entidades filtradas após o sinal :? no campo de filtro :filter.',
     ],
-    'index'             => [
-        'add'   => 'Novo link rápido',
-        'title' => 'Links rápidos',
-    ],
+    'index'             => [],
     'placeholders'      => [
         'entity'    => 'Escolha uma entidade',
         'filters'   => 'location_id=15&type=city',

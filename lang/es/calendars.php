@@ -74,7 +74,6 @@ return [
         'length_days'           => ':count day|:count days',
         'months'                => 'Meses',
         'moons'                 => 'Lunas',
-        'name'                  => 'Nombre',
         'parameters'            => 'Parámetros',
         'recurring_periodicity' => 'Periodicidad recurrente',
         'recurring_until'       => 'Recurrente hasta el año',
@@ -82,7 +81,6 @@ return [
         'seasons'               => 'Estaciones',
         'start_offset'          => 'Retraso inicial',
         'suffix'                => 'Sufijo',
-        'type'                  => 'Tipo',
         'week_names'            => 'Nombres de las semanas',
         'weekdays'              => 'Días de la semana',
     ],
@@ -105,9 +103,7 @@ return [
         'weeks'             => 'Define los nombres para las semanas más importantes de tu calendario.',
         'years'             => 'Algunos años son tan importantes que tienen su propio nombre.',
     ],
-    'index'         => [
-        'title' => 'Calendarios',
-    ],
+    'index'         => [],
     'layouts'       => [
         'month' => 'Mes',
         'year'  => 'Año',

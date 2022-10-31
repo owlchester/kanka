@@ -22,6 +22,7 @@ use App\Models\CharacterTrait;
 use App\Models\CommunityEventEntry;
 use App\Models\Conversation;
 use App\Models\ConversationMessage;
+use App\Models\Creature;
 use App\Models\DiceRoll;
 use App\Models\DiceRollResult;
 use App\Models\Entity;
@@ -145,6 +146,7 @@ class AppServiceProvider extends ServiceProvider
         CommunityEventEntry::observe('App\Observers\CommunityEventEntryObserver');
         Conversation::observe('App\Observers\ConversationObserver');
         ConversationMessage::observe('App\Observers\ConversationMessageObserver');
+        Creature::observe('App\Observers\CreatureObserver');
         DiceRoll::observe('App\Observers\DiceRollObserver');
         DiceRollResult::observe('App\Observers\DiceRollResultObserver');
         Event::observe(EventObserver::class);

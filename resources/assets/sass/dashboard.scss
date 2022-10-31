@@ -131,59 +131,72 @@
 }
 
 .campaign-dashboard-widgets {
-  .widget {
-    border-radius: 3px;
-    font-size: 24px;
-    cursor: pointer;
-    text-align: center;
-    border: 1px solid var(--dashboard-widget-admin-border);
-    margin-bottom: 20px;
-    height: 160px;
-    overflow: hidden;
+    .widget {
+        border-radius: 3px;
+        font-size: 24px;
+        text-align: center;
+        border: 1px solid var(--dashboard-widget-admin-border);
+        margin-bottom: 20px;
+        height: 160px;
+        overflow: hidden;
 
-    &:hover {
-      background-color: var(--dashboard-setup-widget-hover);
-    }
-
-    .widget-overlay {
-      background-color: var(--dashboard-setup-widget-background);
-      padding: 40px 20px;
-      height: 160px;
-
-      .tags {
-        span {
-          font-size: 8pt;
+        .handle {
+            border: 1px solid var(--input-border-color);
+            padding: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+            position: absolute;
+            width: 36px;
+            text-align: center;
+            top: 10px;
+            left: 25px;
         }
-      }
+
+        &:hover {
+            background-color: var(--dashboard-setup-widget-hover);
+        }
+
+        .widget-overlay {
+            background-color: var(--dashboard-setup-widget-background);
+            padding: 40px 20px;
+            height: 160px;
+
+            .tags {
+                span {
+                    font-size: 8pt;
+                }
+            }
+        }
+
+        .widget-type {
+            display: block;
+        }
+
+        .widget-entity {
+            margin-top: 8px;
+        }
+
+        .custom-name {
+            font-size: 10pt;
+        }
     }
 
-    .widget-type {
-      display: block;
+    .add {
+        border: 2px dashed #ccc;
     }
 
-    .widget-entity {
-      margin-top: 8px;
-    }
+    .widget-header, .widget-campaign {
+        height: auto;
 
-    .custom-name {
-      font-size: 10pt;
-    }
-  }
-  .add {
-    border: 2px dashed #ccc;
-  }
+        .widget-overlay {
+            height: auto;
+            padding: 10px 20px;
 
-  .widget-header, .widget-campaign {
-    height: auto;
-    .widget-overlay {
-      height: auto;
-      padding: 10px 20px;
-
-      h3, .widget-type {
-        margin: 10px 0;
-      }
+            h3, .widget-type {
+                margin: 10px 0;
+            }
+        }
     }
-  }
 }
 
 .widget-calendar {

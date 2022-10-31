@@ -17,19 +17,15 @@ return [
     'edit'          => [],
     'fields'        => [
         'children'  => 'Undertaggar',
-        'name'      => 'Namn',
         'tag'       => 'Huvudtagg',
         'tags'      => 'Undertaggar',
-        'type'      => 'Typ',
     ],
     'helpers'       => [],
     'hints'         => [
         'children'  => 'Denna lista innehåller alla entiteter som har denna tag eller någon av dess undertaggar.',
         'tag'       => 'Visad nedan är alla taggar direkt under denna tagg.',
     ],
-    'index'         => [
-        'title' => 'Taggar',
-    ],
+    'index'         => [],
     'new_tag'       => 'Ny Tagg',
     'placeholders'  => [
         'name'  => 'Namn på taggen',

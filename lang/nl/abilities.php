@@ -13,15 +13,11 @@ return [
         'abilities' => 'Vaardigheden',
         'ability'   => 'Bovenliggende Vaardigheid',
         'charges'   => 'Ladingen',
-        'name'      => 'Naam',
-        'type'      => 'Type',
     ],
     'helpers'       => [
         'descendants'   => 'Deze lijst bevat alle vaardigheden die afstammen van deze vaardigheid, en niet alleen die er direct onder hangen.',
     ],
-    'index'         => [
-        'title' => 'Vaardigheden',
-    ],
+    'index'         => [],
     'placeholders'  => [
         'charges'   => 'Hoeveelheid ladingen. Referentie kenmerken met {Level}*{CHA}',
         'name'      => 'Vuurbal, Waarschuwing, Sluwe Aanval',

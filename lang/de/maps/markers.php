@@ -46,7 +46,6 @@ return [
         'label'                     => 'Eine Beschriftung wird als Textblock auf der Karte angezeigt. Der Inhalt ist der Markername des Objektnamens.',
         'polygon'                   => [
             'edit'  => 'Klicken Sie auf die Karte, um diese Position zu den Koordinaten des Polygons hinzuzufügen.',
-            'new'   => 'Bewegen Sie die Markierung auf der Karte, um die Position im Polygon zu speichern.',
         ],
     ],
     'icons'         => [

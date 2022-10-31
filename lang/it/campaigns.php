@@ -74,7 +74,6 @@ TEXT
                 'title' => 'Nuova Campagna',
             ],
         ],
-        'title'     => 'Campagna',
     ],
     'invites'                           => [
         'actions'               => [

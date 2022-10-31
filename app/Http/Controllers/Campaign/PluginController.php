@@ -289,5 +289,4 @@ class PluginController extends Controller
             ->with('success', trans_choice('campaigns/plugins.bulks.' . $action, $count, ['count' => $count]))
             ;
     }
-
 }

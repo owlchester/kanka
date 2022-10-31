@@ -19,10 +19,8 @@ return [
     'fields'        => [
         'children'          => 'Kinder',
         'is_auto_applied'   => 'Automatisch auf neue Objekte anwenden',
-        'name'              => 'Name',
         'tag'               => 'Übergeordnete Kategorie',
         'tags'              => 'Unterkategorien',
-        'type'              => 'Typ',
     ],
     'helpers'       => [
         'nested_without'    => 'Anzeigen aller Tags, die kein übergeordnetes Tag haben. Klicken Sie auf eine Zeile, um die untergeordneten Tags anzuzeigen.',
@@ -33,9 +31,7 @@ return [
         'is_auto_applied'   => 'Aktiviere diese Option, um dieses Tag automatisch auf neu erstellte Objekte anzuwenden.',
         'tag'               => 'Unten dargestellt sind alle Kategorien, die direkt unter dieser eingeordnet sind.',
     ],
-    'index'         => [
-        'title' => 'Kategorien',
-    ],
+    'index'         => [],
     'new_tag'       => 'Neue Kategorie',
     'placeholders'  => [
         'name'  => 'Name der Kategorie',

@@ -27,16 +27,12 @@ return [
         'abilities' => 'Abilità',
         'ability'   => 'Abilità Genitore',
         'charges'   => 'Cariche',
-        'name'      => 'Nome',
-        'type'      => 'Tipo',
     ],
     'helpers'       => [
         'descendants'       => 'Questa lista contiene tutte le abilità che sono discendenti di questa abilità e non solamente quelle direttamente sotto di essa.',
         'nested_without'    => 'Visualizzazione di tutte le abilità che non hanno un\'abilità genitore. Clicca su una riga per vedere le abilità figlie.',
     ],
-    'index'         => [
-        'title' => 'Abilità',
-    ],
+    'index'         => [],
     'placeholders'  => [
         'charges'   => 'Quantità di cariche. Fai riferimento agli attributi con {Level}*{CHA}',
         'name'      => 'Palla di Fuoco, Allerta, Colpo Scaltro',

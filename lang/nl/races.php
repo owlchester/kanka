@@ -15,15 +15,11 @@ return [
     'edit'          => [],
     'fields'        => [
         'characters'    => 'Personages',
-        'name'          => 'Naam',
         'race'          => 'Bovenliggend Ras',
         'races'         => 'Sub Rassen',
-        'type'          => 'Type',
     ],
     'helpers'       => [],
-    'index'         => [
-        'title' => 'Rassen',
-    ],
+    'index'         => [],
     'placeholders'  => [
         'name'  => 'Naam van het ras',
         'type'  => 'Mens, Fey, Borg',

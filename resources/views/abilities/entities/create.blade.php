@@ -2,7 +2,7 @@
 @extends('layouts.' . ($ajax ? 'ajax' : 'app'), [
     'title' => __('abilities.children.create.title', ['name' => $model->name]),
     'breadcrumbs' => [
-        ['url' => Breadcrumb::index('abilities'), 'label' => __('abilities.index.title')],
+        ['url' => Breadcrumb::index('abilities'), 'label' => __('entities.abilities')],
         ['url' => route('abilities.show', $model->id), 'label' => $model->name]
     ]
 ])

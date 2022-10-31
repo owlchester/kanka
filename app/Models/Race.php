@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\FilterOption;
 use App\Facades\CampaignLocalization;
 use App\Models\Concerns\Acl;
 use App\Models\Concerns\Nested;
@@ -22,7 +23,7 @@ use Illuminate\Database\Eloquent\Builder;
  * @property Race|null $race
  * @property Race[] $races
  * @property Location|null $location
- * @property Location[] $locations
+ * @property Collection|Location[] $locations
  */
 class Race extends MiscModel
 {
@@ -112,6 +113,43 @@ class Race extends MiscModel
             'characters',
             'descendants'
         ]);
+    }
+    /**
+     * Filter on races in specific locations
+     * @param Builder $query
+     * @param int|null $race
+     * @param FilterOption $filter
+     * @return Builder
+     */
+    public function scopeLocation(Builder $query, int|null $race, FilterOption $filter): Builder
+    {
+        if ($filter === FilterOption::NONE) {
+            if (!empty($location)) {
+                return $query;
+            }
+            return $query
+                ->whereRaw('(select count(*) from race_location as cl where cl.race_id = ' .
+                    $this->getTable() . '.id and cl.location_id = ' . ((int) $race) . ') = 0');
+        } elseif ($filter === FilterOption::EXCLUDE) {
+            return $query
+                ->whereRaw('(select count(*) from race_location as cl where cl.race_id = ' .
+                    $this->getTable() . '.id and cl.location_id = ' . ((int) $race) . ') = 0');
+        }
+
+        $ids = [$race];
+        if ($filter === FilterOption::CHILDREN) {
+            /** @var Location|null $model */
+            $model = Location::find($race);
+            if (!empty($model)) {
+                $ids = [...$model->descendants->pluck('id')->toArray(), $model->id];
+            }
+        }
+        return $query
+            ->select($this->getTable() . '.*')
+            ->leftJoin('race_location as cl', function ($join) {
+                $join->on('cl.race_id', '=', $this->getTable() . '.id');
+            })
+            ->whereIn('cl.location_id', $ids)->distinct();
     }
 
     /**

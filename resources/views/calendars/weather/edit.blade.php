@@ -2,7 +2,7 @@
 @extends('layouts.' . ($ajax ? 'ajax' : 'app'), [
     'title' => __('calendars/weather.edit.title'),
     'breadcrumbs' => [
-        ['url' => route('calendars.index'), 'label' => __('calendars.index.title')],
+        ['url' => route('calendars.index'), 'label' => __('entities.calendars')],
         ['url' => route('calendars.show', $weather->calendar->id), 'label' => $weather->calendar->name],
         __('calendars.show.tabs.weather'),
         __('crud.update'),

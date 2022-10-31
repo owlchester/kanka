@@ -8,16 +8,10 @@ return [
     'edit'          => [],
     'fields'        => [
         'character' => 'Personaje',
-        'image'     => 'Imagen',
-        'location'  => 'Localización',
-        'name'      => 'Nombre',
         'price'     => 'Precio',
         'size'      => 'Tamaño',
-        'type'      => 'Tipo',
     ],
-    'index'         => [
-        'title' => 'Objetos',
-    ],
+    'index'         => [],
     'inventories'   => [
         'title' => 'Inventarios del objeto :name',
     ],

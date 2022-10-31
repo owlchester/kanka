@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\FilterOption;
 use App\Models\Concerns\Acl;
 use App\Models\Concerns\SortableTrait;
 use App\Traits\CalendarDateTrait;
@@ -117,6 +118,62 @@ class Quest extends MiscModel
     }
 
     /**
+     * Filter quests on specific elements (entities)
+     * @param Builder $query
+     * @param string|null $value
+     * @param FilterOption $filter
+     * @return Builder
+     */
+    public function scopeElement(Builder $query, string|null $value, FilterOption $filter): Builder
+    {
+        // "none" filter keys is handled later
+        if ($filter === FilterOption::NONE) {
+            if (!empty($value)) {
+                return $query;
+            }
+            return $query
+                ->select($this->getTable() . '.*')
+                ->leftJoin('quest_elements as qe2', function ($join) {
+                    $join->on('qe2.quest_id', '=', $this->getTable() . '.id');
+                })
+                ->where('qe2.entity_id', null);
+        } elseif ($filter === FilterOption::EXCLUDE) {
+            return $query
+                ->whereRaw('(select count(*) from quest_elements as qe where qe.quest_id = ' .
+                    $this->getTable() . '.id and qe.entity_id = ' . ((int) $value) . ') = 0');
+        }
+        $ids = [$value];
+        return $query
+            ->select($this->getTable() . '.*')
+            ->leftJoin('quest_elements as qe', function ($join) {
+                $join->on('qe.quest_id', '=', $this->getTable() . '.id');
+            })->whereIn('qe.entity_id', $ids)->distinct();
+    }
+
+    /**
+     * Filter quests on specific element roles
+     * @param Builder $query
+     * @param string $value
+     * @param string $operator
+     * @return Builder
+     */
+    public function scopeElementRole(Builder $query, string $value, string $operator): Builder
+    {
+        // No attribute with this name
+        if ($operator === 'not like') {
+            return $query
+                ->whereRaw('(select count(*) from quest_elements as qe where qe.quest_id =' . $this->getTable() . '.id and qe.role = \''
+                    . ltrim($value, '!') . '\') = 0');
+        }
+        return $query
+            ->select($this->getTable() . '.*')
+            ->leftJoin('quest_elements as qe', function ($join) {
+                $join->on('qe.quest_id', '=', $this->getTable() . '.id');
+            })
+            ->where('qe.role', $value);
+    }
+
+    /**
      * Only select used fields in datagrids
      * @return array
      */
@@ -227,7 +284,7 @@ class Quest extends MiscModel
             'is_completed',
             'date_start',
             'date_end',
-            'quest_elements',
+            'quest_element_id',
             'element_role',
         ];
     }

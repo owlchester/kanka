@@ -46,7 +46,6 @@ return [
         'label'                     => 'Popis sa zobrazuje ako odsek textu na mape. Jeho obsah bude názov značky daného objektu.',
         'polygon'                   => [
             'edit'  => 'Klikni na mapu, ak chceš pridať danú pozíciu medzi koordináty viacuholníka.',
-            'new'   => 'Presuň značku na mape, ak chceš uložiť pozíciu viacuholníka.',
         ],
     ],
     'icons'         => [

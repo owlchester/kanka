@@ -30,14 +30,10 @@ return [
         'character'     => 'Instigador',
         'copy_elements' => 'Copia els elements vinculats a la missió',
         'date'          => 'Data',
-        'description'   => 'Descripció',
-        'image'         => 'Imatge',
         'is_completed'  => 'Completada',
-        'name'          => 'Nom',
         'quest'         => 'Missió superior',
         'quests'        => 'Sub-missions',
         'role'          => 'Rol',
-        'type'          => 'Tipus',
     ],
     'helpers'       => [
         'is_completed'      => 'Marqueu això si la missió es considera completada.',
@@ -46,9 +42,7 @@ return [
     'hints'         => [
         'quests'    => 'Es pot crear una xarxa de missions entrellaçades usant el camp de missió superior.',
     ],
-    'index'         => [
-        'title' => 'Missions',
-    ],
+    'index'         => [],
     'items'         => [],
     'locations'     => [],
     'organisations' => [],

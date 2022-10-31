@@ -3,7 +3,7 @@
 $entityTypeListModel = new $base;
 ?>
 <div class="{{ isset($floating) ? 'form-floating mb-3' : 'form-group' }}">
-    @if (!isset($floating))<label>{{ __($trans . '.fields.type') }}</label>@endif
+    @if (!isset($floating))<label>{{ __('crud.fields.type') }}</label>@endif
     {!! Form::text(
         'type',
         FormCopy::field('type')->string(),

@@ -5,8 +5,6 @@ return [
         'updated'   => 'Upraveno',
     ],
     'campaigns'         => 'Kampaně',
-    'races'             => 'Rasy',
     'relations'         => 'Vztahy',
     'search'            => 'Vyhledat...',
-    'tags'              => 'Tagy',
 ];

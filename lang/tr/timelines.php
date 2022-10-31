@@ -15,16 +15,12 @@ return [
     'fields'        => [
         'copy_eras'     => 'Çağları kopyala',
         'eras'          => 'Çağlar',
-        'name'          => 'Ad',
         'reverse_order' => 'Çağ sırasını ters çevir',
-        'type'          => 'Tür',
     ],
     'helpers'       => [
         'reverse_order' => 'Çağlarını ters kronolojik sırada (eski çağ önce) sıralamak için etkinleştirin.',
     ],
-    'index'         => [
-        'title' => 'Zaman Çizgileri',
-    ],
+    'index'         => [],
     'placeholders'  => [
         'name'  => 'Zaman çizgisinin adı',
         'type'  => 'Ana, Dünya tarihçesi, Krallık mirası',

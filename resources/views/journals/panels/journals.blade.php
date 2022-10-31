@@ -13,12 +13,12 @@
             <a href="#" class="btn btn-box-tool" data-toggle="modal" data-target="#help-modal">
                 <i class="fa-solid fa-question-circle"></i> {{ __('crud.actions.help') }}
             </a>
-            @if (request()->has('journal_id'))
+            @if (request()->has('parent_id'))
                 <a href="{{ route('journals.journals', [$model]) }}" class="btn btn-box-tool">
                     <i class="fa-solid fa-filter"></i> {{ __('crud.filters.all') }} ({{ $model->allJournals()->count() }})
                 </a>
             @else
-                <a href="{{ route('journals.journals', [$model, 'journal_id' => $model->id]) }}" class="btn btn-box-tool">
+                <a href="{{ route('journals.journals', [$model, 'parent_id' => $model->id]) }}" class="btn btn-box-tool">
                     <i class="fa-solid fa-filter"></i> {{ __('crud.filters.direct') }} ({{ $model->journals()->count() }})
                 </a>
             @endif

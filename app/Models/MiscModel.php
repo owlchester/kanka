@@ -577,14 +577,6 @@ abstract class MiscModel extends Model
                 </a>
             </li>';
             }
-
-            if ($campaign->enabled('abilities') && $this->entityTypeId() != config('entities.ids.ability')) {
-                $actions[] = '<li>
-                <a href="' . route('entities.entity_abilities.index', $this->entity) . '" class="dropdown-item datagrid-dropdown-item" data-name="abilities">
-                    <i class="ra ra-fire-symbol" aria-hidden="true"></i> ' . __('crud.tabs.abilities') . '
-                </a>
-            </li>';
-            }
         }
 
 

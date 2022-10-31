@@ -17,13 +17,10 @@ return [
     ],
     'fields'        => [
         'characters'        => 'Personagens',
-        'image'             => 'Imagem',
         'is_map_private'    => 'Mapa privado',
         'location'          => 'Local',
         'locations'         => 'Locais',
         'map'               => 'Mapa',
-        'name'              => 'Nome',
-        'type'              => 'Tipo',
     ],
     'helpers'       => [
         'characters'        => 'Ver todos personagens nesta localização e locais relacionados a ela, ou apenas aqueles localizados  diretamente nela.',
@@ -37,9 +34,7 @@ return [
     'hints'         => [
         'is_map_private'    => 'Um mapa Privado é visível apenas para membros com o cargo de "Admnistrador".',
     ],
-    'index'         => [
-        'title' => 'Locais',
-    ],
+    'index'         => [],
     'items'         => [],
     'journals'      => [],
     'locations'     => [

@@ -11,17 +11,13 @@ return [
     'fields'        => [
         'is_closed'     => 'Chiusa',
         'messages'      => 'Messaggi',
-        'name'          => 'Nome',
         'participants'  => 'Partecipanti',
         'target'        => 'Bersaglio',
-        'type'          => 'Tipo',
     ],
     'hints'         => [
         'participants'  => 'Per favore aggiungi partecipanti alla tua conversazione premendo l\'icona :icon in altro a destra.',
     ],
-    'index'         => [
-        'title' => 'Conversazioni',
-    ],
+    'index'         => [],
     'messages'      => [
         'destroy'       => [
             'success'   => 'Messaggio rimosso.',

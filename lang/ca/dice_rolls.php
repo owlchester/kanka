@@ -10,7 +10,6 @@ return [
     'edit'          => [],
     'fields'        => [
         'created_at'    => 'Tirada a',
-        'name'          => 'Nom',
         'parameters'    => 'Paràmetres',
         'results'       => 'Resultats',
         'rolls'         => 'Tirades',
@@ -23,7 +22,6 @@ return [
             'dice'      => 'Tirades de daus',
             'results'   => 'Resultats',
         ],
-        'title'     => 'Tirades de daus',
     ],
     'placeholders'  => [
         'dice_roll' => 'Tirada de daus',

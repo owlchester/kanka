@@ -7,13 +7,9 @@ return [
     'destroy'       => [],
     'edit'          => [],
     'fields'        => [
-        'description'   => 'Popis',
-        'image'         => 'Obrázok',
-        'is_pinned'     => 'Pripnutá',
-        'name'          => 'Názov',
-        'note'          => 'Nadradená poznámka',
-        'notes'         => 'Podradená poznámka',
-        'type'          => 'Typ',
+        'is_pinned' => 'Pripnutá',
+        'note'      => 'Nadradená poznámka',
+        'notes'     => 'Podradená poznámka',
     ],
     'helpers'       => [
         'nested_without'    => 'Zobraziť všetky poznámky, ktoré nemajú nadradenú poznámku. Kliknutím na riadok zobrazíš podradené poznámky.',
@@ -21,9 +17,7 @@ return [
     'hints'         => [
         'is_pinned' => 'Na nástenku môžete pripnúť max. 3 poznámky.',
     ],
-    'index'         => [
-        'title' => 'Poznámky',
-    ],
+    'index'         => [],
     'placeholders'  => [
         'name'  => 'Názov poznámky',
         'note'  => 'Vybrať nadradenú poznámku',

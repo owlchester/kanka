@@ -9,14 +9,15 @@ if (isset($size) && $size == 'map') {
     $formats = 'PNG, JPG, SVG, WebP';
     $max = 50;
 }
+$label = $imageLabel ?? 'crud.fields.image';
 ?>
 <div class="@if (!empty($imageRequired) && $imageRequired) required @endif">
-<label>{{ __('crud.fields.image') }}</label>
+<label>{{ __($label) }}</label>
 {!! Form::hidden('remove-image') !!}
 </div>
 
 <div class="row">
-    <div class="{{ empty($model->image) ? 'col-md-12' : 'col-md-10' }}">
+    <div class="{{ empty($model->image) && !isset($campaignImage) ? 'col-md-12' : 'col-md-10' }}">
         <div class="form-group">
             {!! Form::file('image', array('class' => 'image form-control')) !!}
         </div>
@@ -43,7 +44,7 @@ if (isset($size) && $size == 'map') {
     @if (!empty($model->image))
     <div class="col-md-2">
         <div class="preview-v2">
-            <div class="image" style="background-image: url('{{ $model->thumbnail(120) }}')" title="{{ $model->name }}">
+            <div class="image" style="background-image: url('{{ $model->thumbnail(120) }}')">
                 @if (empty($imageRequired) || !$imageRequired)
                 <a href="#" class="img-delete" data-target="remove-image" title="{{ __('crud.remove') }}">
                     <i class="fa-solid fa-trash"></i> {{ __('crud.remove') }}
@@ -52,5 +53,12 @@ if (isset($size) && $size == 'map') {
             </div>
         </div>
     </div>
+    @elseif (isset($campaignImage) && $campaignImage)
+        <div class="col-md-2">
+            <div class="preview-v2">
+                <div class="image" style="background-image: url('https://images.kanka.io/app/L5nSYCLgwtxR3wlUGk16fMZ0zAU=/280x210/src/images%2Fbackgrounds%2Fmountain-background-medium.jpg')">
+                </div>
+            </div>
+        </div>
     @endif
 </div>

@@ -17,7 +17,7 @@ class CharacterFilter extends DatagridFilter
             ->add('name')
             ->add('title')
             ->add([
-                'field' => 'family',
+                'field' => 'family_id',
                 'label' => __('crud.fields.family'),
                 'type' => 'select2',
                 'route' => route('families.find'),
@@ -27,7 +27,7 @@ class CharacterFilter extends DatagridFilter
             ])
             ->location()
             ->add([
-                'field' => 'race',
+                'field' => 'race_id',
                 'label' => __('crud.fields.race'),
                 'type' => 'select2',
                 'route' => route('races.find'),
@@ -36,7 +36,7 @@ class CharacterFilter extends DatagridFilter
                 'withChildren' => true,
             ])
             ->add([
-                'field' => 'organisation_member',
+                'field' => 'member_id',
                 'label' => __('crud.fields.organisation'),
                 'type' => 'select2',
                 'route' => route('organisations.find'),
@@ -51,6 +51,7 @@ class CharacterFilter extends DatagridFilter
             ->add('pronouns')
             ->add('is_dead')
             ->isPrivate()
+            ->template()
             ->hasImage()
             ->hasEntityNotes()
             ->hasEntityFiles()

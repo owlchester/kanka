@@ -7,14 +7,10 @@ return [
     'destroy'       => [],
     'edit'          => [],
     'fields'        => [
-        'image'         => 'Obrázok',
         'is_defunct'    => 'Nečinná',
-        'location'      => 'Miesto',
         'members'       => 'Členovia',
-        'name'          => 'Názov',
         'organisation'  => 'Nadradená organizácia',
         'organisations' => 'Podradená organizácia',
-        'type'          => 'Typ',
     ],
     'helpers'       => [
         'descendants'       => 'Tento zoznam obsahuje všetky organizácie, ktoré sú podradené tejto a všetkým podradeným organizáciám.',
@@ -23,9 +19,7 @@ return [
     'hints'         => [
         'is_defunct'    => 'Táto organizácia už ukončila činnosť.',
     ],
-    'index'         => [
-        'title' => 'Organizácie',
-    ],
+    'index'         => [],
     'members'       => [
         'actions'       => [
             'add'   => 'Pridať člena',

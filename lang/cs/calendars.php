@@ -74,7 +74,6 @@ return [
         'length_days'           => '{1} :count den|[2,4] :count dny|[5,*] :count dní',
         'months'                => 'Kalendářní měsíce',
         'moons'                 => 'Planetární měsíce',
-        'name'                  => 'Název',
         'parameters'            => 'Parametry',
         'recurring_periodicity' => 'Opakování',
         'recurring_until'       => 'Opakování do roku',
@@ -82,7 +81,6 @@ return [
         'seasons'               => 'Roční období',
         'start_offset'          => 'Posun prvního dne týdne',
         'suffix'                => 'Přípona',
-        'type'                  => 'Typ',
         'week_names'            => 'Názvy týdnů',
         'weekdays'              => 'Názvy dnů v týdnu',
     ],
@@ -105,9 +103,7 @@ return [
         'weeks'             => 'Názvy důležitých týdnů kalendáře.',
         'years'             => 'Názvy důležitých roků kalendáře.',
     ],
-    'index'         => [
-        'title' => 'Kalendáře',
-    ],
+    'index'         => [],
     'layouts'       => [
         'month' => 'Kalendářní měsíc',
         'year'  => 'Rok',

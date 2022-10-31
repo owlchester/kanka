@@ -46,7 +46,6 @@ return [
         'label'                     => 'Una etiqueta es mostra com un bloc de text al mapa. El seu contingut serà el nom del marcador.',
         'polygon'                   => [
             'edit'  => 'Cliqueu al mapa per a afegir-ne la posició a les coordenades del polígon.',
-            'new'   => 'Moveu el marcador pel mapa per a guardar-ne la posició al polígon.',
         ],
     ],
     'icons'         => [

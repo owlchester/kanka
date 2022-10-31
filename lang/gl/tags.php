@@ -19,10 +19,8 @@ return [
     'fields'        => [
         'children'          => 'Subetiquetas',
         'is_auto_applied'   => 'Aplicar automaticamente a novas entidades',
-        'name'              => 'Nome',
         'tag'               => 'Etiqueta nai',
         'tags'              => 'Subetiquetas',
-        'type'              => 'Tipo',
     ],
     'helpers'       => [
         'nested_without'    => 'Mostrando todas as etiquetas que non teñen nai. Fai clic nunha liña para ver as súas subetiquetas.',
@@ -33,9 +31,7 @@ return [
         'is_auto_applied'   => 'Marca esta opción para aplicar automaticamente esta etiqueta a todas as novas entidades que cres.',
         'tag'               => 'Abaixo están mostradas todas as etiquetas directamente baixo esta etiqueta.',
     ],
-    'index'         => [
-        'title' => 'Etiquetas',
-    ],
+    'index'         => [],
     'new_tag'       => 'Nova etiqueta',
     'placeholders'  => [
         'name'  => 'Nome da etiqueta',

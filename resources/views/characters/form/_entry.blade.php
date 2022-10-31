@@ -78,9 +78,6 @@
     </div>
 </div>
 
-@includeWhen(auth()->user()->isAdmin(), 'cruds.fields.privacy_callout')
-
-
 @section('scripts')
     @parent
     <script src="{{ mix('js/forms/character.js') }}" defer></script>

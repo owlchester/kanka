@@ -8,7 +8,7 @@
 'title' => __('maps/markers.edit.title', ['name' => $model->name]),
 'description' => '',
 'breadcrumbs' => [
-['url' => route('maps.index'), 'label' => __('maps.index.title')],
+['url' => route('maps.index'), 'label' => __('entities.maps')],
 ['url' => $map->entity->url('show'), 'label' => $map->name],
 __('maps/markers.edit.title', ['name' => $model->name])
 ]
@@ -35,35 +35,6 @@ __('maps/markers.edit.title', ['name' => $model->name])
 
             <div class="form-group">
                 <div class="submit-group">
-                    <input id="submit-mode" type="hidden" value="true"/>
-                    <div class="pull-right">
-                        @include('partials.footer_cancel')
-                        <div class="btn-group">
-                            <button class="btn btn-success" id="form-submit-main"
-                                data-target="{{ isset($target) ? $target : null }}">{{ __('crud.save') }}</button>
-                            <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown"
-                                aria-expanded="false">
-                                <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu dropdown-menu-right" role="menu">
-                                <li>
-                                    <a href="#" class="dropdown-item form-submit-actions">
-                                        {{ __('crud.save') }}
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="dropdown-item form-submit-actions" data-action="submit-update">
-                                        {{ __('crud.save_and_update') }}
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="dropdown-item form-submit-actions" data-action="submit-explore">
-                                        {{ __('maps/markers.actions.save_and_explore') }}
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
                     <div class="pull-left">
                         <div class="btn-group">
                             <a role="button" tabindex="-1" class="btn btn-dynamic-delete btn-danger" data-toggle="popover"
@@ -73,6 +44,13 @@ __('maps/markers.edit.title', ['name' => $model->name])
                                 <i class="fa-solid fa-trash" aria-hidden="true"></i> {{ __('maps/markers.actions.remove') }}
                             </a>
                         </div>
+                    </div>
+                    <input id="submit-mode" type="hidden" value="true"/>
+                    <div class="pull-right">
+                        @include('maps.markers._actions')
+                    </div>
+                    <div class="pull-right mr-2">
+                        @include('partials.footer_cancel', ['ajax' => null])
                     </div>
                 </div>
                 <div class="submit-animation" style="display: none;">
@@ -96,9 +74,7 @@ __('maps/markers.edit.title', ['name' => $model->name])
 @section('scripts')
     @parent
     <!-- Make sure you put this AFTER Leaflet's CSS -->
-    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
-        integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
-        crossorigin=""></script>
+    <script src="https://unpkg.com/leaflet@1.9.2/dist/leaflet.js" integrity="sha256-o9N1jGDZrf5tS+Ft4gbIK7mYMipq9lqpVJ91xHSyKhg=" crossorigin=""></script>
     <script src="/js/vendor/leaflet/leaflet.markercluster.js"></script>
     <script src="/js/vendor/leaflet/leaflet.markercluster.layersupport.js"></script>
     <script src="{{ mix('js/ajax-subforms.js') }}" defer></script>
@@ -113,15 +89,15 @@ __('maps/markers.edit.title', ['name' => $model->name])
             popupAnchor: [0, -20],
         });
 
-        var marker{{ $model->id }} = {!! $model->editing()->multiplier($map->is_real)->marker() !!}.addTo(map{{ $map->id }});
+        window.polygon = {!! $model->editing()->multiplier($map->is_real)->marker() !!}.addTo(map{{ $map->id }});
 
         @if ($model->shape_id == 5)
             map{{ $map->id }}.on('click', function(ev) {
-            let position = ev.latlng;
-            //console.log('Click', 'lat', position.lat, 'lng', position.lng);
-            let polyCoords = $('textarea[name="custom_shape"]');
-            polyCoords.val(polyCoords.val() + ' ' + position.lat.toFixed(3) + ',' + position.lng.toFixed(3));
-
+                window.map.removeLayer(window.polygon);
+                let position = ev.latlng;
+                let lat = position.lat.toFixed(3);
+                let lng = position.lng.toFixed(3);
+                window.addPolygonPosition(lat, lng);
             });
         @endif
 

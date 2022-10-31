@@ -30,14 +30,10 @@ return [
         'character'     => 'Instigador',
         'copy_elements' => 'Copiar elementos vinculados a la misión',
         'date'          => 'Fecha',
-        'description'   => 'Descripción',
-        'image'         => 'Imagen',
         'is_completed'  => 'Completada',
-        'name'          => 'Nombre',
         'quest'         => 'Misión superior',
         'quests'        => 'Submisiones',
         'role'          => 'Rol',
-        'type'          => 'Tipo',
     ],
     'helpers'       => [
         'is_completed'      => 'Selecciona esto si la misión ya se ha completado.',
@@ -46,9 +42,7 @@ return [
     'hints'         => [
         'quests'    => 'Se puede crear una red de misiones entrelazadas usando el campo Misión Superior.',
     ],
-    'index'         => [
-        'title' => 'Misiones',
-    ],
+    'index'         => [],
     'placeholders'  => [
         'date'  => 'Fecha real de la misión',
         'name'  => 'Nombre de la misión',

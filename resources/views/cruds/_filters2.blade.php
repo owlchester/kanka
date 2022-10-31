@@ -44,15 +44,15 @@
                 ) !!}
                 @endif
             @else
-                    @if ($filterService->isCheckbox($field))
+                @if ($filterService->isCheckbox($field))
                     <select class="filter-select form-control" id="{{ $field }}" name="{{ $field }}">
                         <option value="">{{ trans(($field == 'is_private' ? 'crud.fields.' : $name) . $field) }}</option>
                         <option value="0" @if ($filterService->filterValue($field) === '0') selected="selected" @endif>{{ trans('general.no') }}</option>
                         <option value="1"  @if ($filterService->filterValue($field) === '1') selected="selected" @endif>{{ trans('general.yes') }}</option>
                     </select>
-                    @else
-                        <input type="text" class="form-control" name="{{ $field }}" value="{{ $filterService->single($field) }}" placeholder="{{ trans(($field == 'is_private' ? 'crud.fields' : $name) . $field) }}" />
-                    @endif
+                @else
+                    <input type="text" class="form-control" name="{{ $field }}" value="{{ $filterService->single($field) }}" placeholder="{{ trans(($field == 'is_private' ? 'crud.fields' : $name) . $field) }}" />
+                @endif
             @endif
             </div>
         </div>

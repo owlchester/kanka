@@ -14,23 +14,16 @@ return [
         'date'      => 'Data',
         'event'     => 'Evento pai',
         'events'    => 'Eventos',
-        'image'     => 'Imaxe',
-        'location'  => 'Localización',
-        'name'      => 'Nome',
-        'type'      => 'Tipo',
     ],
     'helpers'       => [
         'date'              => 'Este campo pode conter calquera cousa e non está ligado aos calendarios da campaña. Para ligar este evento a un calendario, faino dende o propio calendario ou na lapela "Lembretes" deste evento.',
         'nested_without'    => 'Mostrando todos os eventos que non teñen un evento pai. Fai clic nunha fila para ver os seus descendentes.',
     ],
-    'index'         => [
-        'title' => 'Eventos',
-    ],
+    'index'         => [],
     'placeholders'  => [
-        'date'      => 'Data do teu evento',
-        'location'  => 'Elixe un lugar',
-        'name'      => 'Nome do evento',
-        'type'      => 'Cerimonia, festival, desastre, batalla, nacemento...',
+        'date'  => 'Data do teu evento',
+        'name'  => 'Nome do evento',
+        'type'  => 'Cerimonia, festival, desastre, batalla, nacemento...',
     ],
     'show'          => [
         'tabs'  => [

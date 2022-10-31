@@ -2,6 +2,32 @@
 
 return [
     'account'       => [
+        '2fa'               => [
+            'actions'               => [
+                'disable'   => 'Wyłącz autoryzację dwueatpową',
+                'finish'    => 'Skończ konfigurację i się zaloguj',
+            ],
+            'activation_helper'     => 'Wykonuj poniższe polecenia by skonfigurować autoryzację dwuetapową.',
+            'disable'               => [
+                'helper'    => 'Jeżeli chcesz wyłączyć autoryzację dwuetapową, kliknij poniżej. Pamiętaj przy tym, że konto będzie od tej pory dostępne dla każdej osoby znającej hasło.',
+                'title'     => 'Wyłącz autoryzację dwuetapową',
+            ],
+            'enable_instructions'   => 'By zacząć aktywację, wygeneruj autoryzacyjny kod QR i zeskanuj go w Aplikacji Autoryzacyjnej Goole (:ios, :android) albo innym programie tego rodzaju',
+            'enabled'               => 'Twoje konto zabezpieczone jest obecnie autoryzacją dwuetapową',
+            'error_enable'          => 'Niewłaściwy kod, spróbuj ponownie',
+            'fields'                => [
+                'otp'       => 'Wpisz Hasło Jednorazowe (OTP) z aplikacji autoryzacyjnej',
+                'qrcode'    => 'Zeskanuj poniższy kod QR aplikacją autoryzacyjną, by uzyskać Hasło Jednorasowe (OTP)',
+            ],
+            'generate_qr'           => 'Wygeneruj kod QR',
+            'helper'                => 'Autoryzacja dwuetapowa zwiększa bezpieczeństwo, wymaga bowiem dwóch metod weryfikacji tożsamości podczas każdego logowania',
+            'learn_more'            => 'Więcej o autoryzacji dwuetapowej',
+            'social'                => 'Autoryzacja dwuetapowa Kanki dostępna jest dla użytkowników logujących się za pomocą emaila i hasła. Zmień metodę logowania zanim uzyskasz dostęp do tej opcji.',
+            'success_disable'       => 'Wyłączono autoryzację dwuetapową',
+            'success_enable'        => 'Włączono autoryzację dwuetapową. Zaloguj się ponownie by dokończyć konfigurację.',
+            'success_key'           => 'Wygenerowano kod QR. Zakończ konfigurację by aktywować autoryzację dwuetapową',
+            'title'                 => 'Autoryzacja dwuetapowa',
+        ],
         'actions'           => [
             'social'            => 'Przejdź na Logowanie Kanki',
             'update_email'      => 'Zmień email',
@@ -138,6 +164,7 @@ return [
                 'missing_features'  => 'Nie ma opcji, których potrzebuję',
                 'not_for'           => 'Subskrybuję dla kogoś innego',
                 'not_using'         => 'Nie używam ostatnio Kanki',
+                'other'             => 'Inne',
             ],
             'text'      => 'Szkoda, że rezygnujesz! Po zaniechaniu subskrypcji konto pozostanie aktywne do końca okresu rozliczeniowego. Potem stracisz doładowania i inne korzyści wynikające ze wspierania Kanki. Wypełniając poniższy formularz nasz nam znać, co możemy poprawić i dlaczego rezygnujesz.',
         ],

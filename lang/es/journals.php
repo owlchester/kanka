@@ -9,19 +9,14 @@ return [
     'fields'        => [
         'author'    => 'Autor',
         'date'      => 'Fecha',
-        'image'     => 'Imagen',
         'journal'   => 'Diario superior',
         'journals'  => 'Subdiarios',
-        'name'      => 'Nombre',
-        'type'      => 'Tipo',
     ],
     'helpers'       => [
         'journals'          => 'Muestra todos o solo los descendientes directos de este diario.',
         'nested_without'    => 'Mostrando todos los diarios sin ningún superior. Haz clic sobre una fila para mostrar sus descendientes.',
     ],
-    'index'         => [
-        'title' => 'Diarios',
-    ],
+    'index'         => [],
     'journals'      => [
         'title' => 'Subdiarios del diario :name',
     ],

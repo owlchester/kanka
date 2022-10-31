@@ -19,12 +19,12 @@ class Tag extends Layout
             ],
             'name' => [
                 'key' => 'name',
-                'label' => 'tags.fields.name',
+                'label' => 'entities.tag',
                 'render' => Standard::ENTITYLINK,
             ],
             'type' => [
                 'key' => 'type',
-                'label' => 'tags.fields.type',
+                'label' => 'crud.fields.type',
             ],
             'colour' => [
                 'key' => 'colour',

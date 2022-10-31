@@ -7,13 +7,9 @@ return [
     'destroy'       => [],
     'edit'          => [],
     'fields'        => [
-        'description'   => 'Descripción',
-        'image'         => 'Imagen',
-        'is_pinned'     => 'Fijada',
-        'name'          => 'Nombre',
-        'note'          => 'Nota superior',
-        'notes'         => 'Subnotas',
-        'type'          => 'Tipo',
+        'is_pinned' => 'Fijada',
+        'note'      => 'Nota superior',
+        'notes'     => 'Subnotas',
     ],
     'helpers'       => [
         'nested_without'    => 'Mostrando todas las notas sin ningún superior. Haz clic sobre una fila para mostrar sus descendientes.',
@@ -21,9 +17,7 @@ return [
     'hints'         => [
         'is_pinned' => 'Se pueden fijar hasta 3 notas para que se muestren en el tablero.',
     ],
-    'index'         => [
-        'title' => 'Notas',
-    ],
+    'index'         => [],
     'placeholders'  => [
         'name'  => 'Nombre de la nota',
         'note'  => 'Elige una nota superior',

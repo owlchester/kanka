@@ -6,7 +6,9 @@ return [
         'description'   => 'Os seguintes filtros están dispoñibles no punto API :name.',
         'title'         => 'Filtros API',
     ],
-    'attributes'        => [],
+    'attributes'        => [
+        'link'  => 'Opcións de atributos',
+    ],
     'calendar-widget'   => [
         'info'  => 'Por que aparecen estes lembretes?',
         'title' => 'Complemento de calendario',

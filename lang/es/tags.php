@@ -18,10 +18,8 @@ return [
     'edit'          => [],
     'fields'        => [
         'children'  => 'Entidades anidadas',
-        'name'      => 'Nombre',
         'tag'       => 'Etiqueta superior',
         'tags'      => 'Subetiquetas',
-        'type'      => 'Tipo',
     ],
     'helpers'       => [
         'nested_without'    => 'Mostrando todas las etiquetas sin ningún superior. Haz clic sobre una fila para mostrar sus descendientes.',
@@ -30,9 +28,7 @@ return [
         'children'  => 'Aquí se muestran todas las entidades que pertenecen directamente a esta etiqueta y a todas las etiquetas anidadas.',
         'tag'       => 'A continuación se muestran todas las etiquetas que están directamente bajo esta etiqueta.',
     ],
-    'index'         => [
-        'title' => 'Etiquetas',
-    ],
+    'index'         => [],
     'new_tag'       => 'Nueva etiqueta',
     'placeholders'  => [
         'name'  => 'Nombre de la etiqueta',

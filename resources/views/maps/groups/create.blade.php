@@ -4,44 +4,56 @@
 * @var \App\Models\MapGroup $model
 */
 ?>
-@extends('layouts.' . ($ajax ? 'ajax' : 'app'), [
-'title' => __('maps/groups.create.title', ['name' => $map->name]),
-'description' => '',
-'breadcrumbs' => [
-['url' => route('maps.index'), 'label' => __('maps.index.title')],
-['url' => $map->entity->url('show'), 'label' => $map->name],
-__('maps/groups.create.title')
-]
+@extends('layouts.' . (request()->ajax() ? 'ajax' : 'app'), [
+    'title' => __('maps/groups.create.title', ['name' => $map->name]),
+    'breadcrumbs' => [
+        ['url' => route('maps.index'), 'label' => __('entities.maps')],
+        ['url' => $map->entity->url('show'), 'label' => $map->name],
+        ['url' => route('maps.map_groups.index', [$map]), 'label' => __('maps.panels.groups')],
+        __('maps/groups.create.title')
+    ]
 ])
 
 @section('content')
-    <div class="panel panel-default">
-        @if ($ajax)
-            <div class="panel-heading">
-                <button type="button" class="close" data-dismiss="modal"
-                    aria-label="{{ __('crud.delete_modal.close') }}"><span aria-hidden="true">&times;</span></button>
-                <h4>
-                    {{ __('maps/groups.create.title', ['name' => $map->name]) }}
-                </h4>
-            </div>
-        @endif
-        <div class="panel-body">
-            @include('partials.errors')
 
-            {!! Form::open(['route' => ['maps.map_groups.store', $map], 'method' => 'POST', 'id' => 'map-group-form', 'enctype' => 'multipart/form-data', 'class' => 'ajax-subform']) !!}
-            @include('maps.groups._form', ['model' => null])
+    {!! Form::open(['route' => ['maps.map_groups.store', $map], 'method' => 'POST', 'data-shortcut' => 1]) !!}
 
-            <div class="form-group">
-                <div class="submit-group">
-                    <button class="btn btn-success">{{ __('crud.save') }}</button>
-                    @includeWhen(!request()->ajax(), 'partials.or_cancel')
-                </div>
-                <div class="submit-animation" style="display: none;">
-                    <button class="btn btn-success" disabled><i class="fa-solid fa-spinner fa-spin"></i></button>
-                </div>
-            </div>
-
-            {!! Form::close() !!}
+    @if (request()->ajax())
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('crud.delete_modal.close') }}">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <h4 class="modal-title">
+                {{ __('maps/groups.create.title', ['name' => $map->name]) }}
+            </h4>
         </div>
-    </div>
+        <div class="modal-body">
+    @else
+        <div class="panel panel-default">
+    @endif
+            <div class="@if(!request()->ajax()) panel-body @endif">
+                @include('partials.errors')
+
+                @include('maps.groups._form', ['model' => null, 'map' => $map])
+            </div>
+    @if (request()->ajax())
+        </div>
+        <div class="modal-footer">
+            @include('maps.groups._actions')
+
+            <div class="pull-left">
+                @include('partials.footer_cancel')
+            </div>
+        </div>
+        @else
+            <div class="panel-footer text-right">
+                @include('maps.groups._actions')
+                <div class="pull-left">
+                    @include('partials.footer_cancel')
+                </div>
+            </div>
+        </div>
+    @endif
+
+    {!! Form::close() !!}
 @endsection

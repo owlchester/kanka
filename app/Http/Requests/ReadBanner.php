@@ -24,7 +24,8 @@ class ReadBanner extends FormRequest
     public function rules()
     {
         return [
-            'code' => 'required|string|max:20'
+            'code' => 'required|string|max:20',
+            'type' => 'nullable|string|max:10'
         ];
     }
 }

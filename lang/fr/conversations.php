@@ -11,17 +11,13 @@ return [
     'fields'        => [
         'is_closed'     => 'Fermée',
         'messages'      => 'Messages',
-        'name'          => 'Nom',
         'participants'  => 'Participants',
         'target'        => 'Cible',
-        'type'          => 'Type',
     ],
     'hints'         => [
         'participants'  => 'Ajoute des participants à la conversation.',
     ],
-    'index'         => [
-        'title' => 'Conversations',
-    ],
+    'index'         => [],
     'messages'      => [
         'destroy'       => [
             'success'   => 'Message supprimé.',

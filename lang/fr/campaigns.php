@@ -107,7 +107,6 @@ TEXT
                 'title' => 'Nouvelle Campagne',
             ],
         ],
-        'title'     => 'Campagnes',
     ],
     'invites'                           => [
         'actions'               => [
@@ -343,20 +342,25 @@ TEXT
         ],
     ],
     'settings'                          => [
-        'actions'   => [
+        'actions'       => [
             'enable'    => 'Activer',
         ],
-        'boosted'   => 'Cette fonctionnalité est actuellement en beta et seulement accessible pour les :boosted.',
-        'disabled'  => 'Le module :module est désactivé.',
-        'enabled'   => 'Le module :module est activé.',
-        'errors'    => [
+        'boosted'       => 'Cette fonctionnalité est actuellement en beta et seulement accessible pour les :boosted.',
+        'deprecated'    => [
+            'help'  => 'Ce module est obsolète, ce qui signifie qu\'il n\'est plus maintenu, et plus testé avec chaque mise-à-jour. Utilise ce module en sachant qu\'il sera éventuellement retiré de Kanka.',
+            'title' => 'Obsolète',
+        ],
+        'disabled'      => 'Le module :module est désactivé.',
+        'enabled'       => 'Le module :module est activé.',
+        'errors'        => [
             'module-disabled'   => 'Le module demandé est actuellement désactivé dans la configuration de la campagne. :fix.',
         ],
-        'helpers'   => [
+        'helpers'       => [
             'abilities'     => 'Créer des pouvoirs, compétences, sorts, etc. qui peuvent être assignés aux entités.',
             'calendars'     => 'Un endroit pour définir les calendriers de ton monde.',
             'characters'    => 'Les personnages de ton monde.',
             'conversations' => 'Conversations fictives entre des personnages ou entre membres de la campagne.',
+            'creatures'     => 'Pour les créatures, animaux, et monstre qui habitent le monde.',
             'dice_rolls'    => 'Pour ceux qui utilisent Kanka pour une campagne JdR, un système pour des jets de dés.',
             'events'        => 'Jours fériés, festivals, désastres, anniversaires, guerres.',
             'families'      => 'Clans ou familles, leurs relations et leurs membres.',

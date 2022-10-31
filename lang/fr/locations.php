@@ -17,13 +17,10 @@ return [
     ],
     'fields'        => [
         'characters'        => 'Personnages',
-        'image'             => 'Image',
         'is_map_private'    => 'Carte Privée',
         'location'          => 'Lieu Parent',
         'locations'         => 'Lieux',
         'map'               => 'Carte',
-        'name'              => 'Nom',
-        'type'              => 'Type',
     ],
     'helpers'       => [
         'characters'        => 'Afficher tous les personnages dans ce lieu et sous-lieux, ou seulement ceux qui sont ici.',
@@ -37,9 +34,7 @@ return [
     'hints'         => [
         'is_map_private'    => 'Une carte privée est seulement visible aux membres du rôle Admin de la campagne.',
     ],
-    'index'         => [
-        'title' => 'Lieux',
-    ],
+    'index'         => [],
     'items'         => [],
     'journals'      => [],
     'locations'     => [

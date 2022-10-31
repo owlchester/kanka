@@ -24,6 +24,7 @@ class EventFilter extends DatagridFilter
                 'model' => Event::class,
             ])
             ->isPrivate()
+            ->template()
             ->hasImage()
             ->hasEntityNotes()
             ->hasEntityFiles()

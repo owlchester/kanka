@@ -15,14 +15,10 @@ return [
     'edit'          => [],
     'fields'        => [
         'characters'    => 'Postavy',
-        'name'          => 'Jméno',
         'race'          => 'Původní rasa',
         'races'         => 'Podrasa',
-        'type'          => 'Typ',
     ],
-    'index'         => [
-        'title' => 'Rasy',
-    ],
+    'index'         => [],
     'placeholders'  => [
         'name'  => 'Jméno rasy',
     ],

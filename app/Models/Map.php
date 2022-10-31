@@ -96,14 +96,6 @@ class Map extends MiscModel
     ];
 
     /**
-     * Fields that can be sorted on
-     * @var array
-     */
-    protected $sortableColumns = [
-        'map.name',
-    ];
-
-    /**
      * Nullable values (foreign keys)
      * @var string[]
      */
@@ -259,6 +251,23 @@ class Map extends MiscModel
             'route' => 'maps.maps',
             'count' => $this->maps()->count()
         ];
+        if (auth()->check() && auth()->user()->can('update', $this)) {
+            $items['second']['layers'] = [
+                'name' => 'maps.panels.layers',
+                'route' => 'maps.map_layers.index',
+                'count' => $this->layers->count()
+            ];
+            $items['second']['groups'] = [
+                'name' => 'maps.panels.groups',
+                'route' => 'maps.map_groups.index',
+                'count' => $this->groups->count()
+            ];
+            $items['second']['markers'] = [
+                'name' => 'maps.panels.markers',
+                'route' => 'maps.map_markers.index',
+                'count' => $this->markers->count()
+            ];
+        }
         return parent::menuItems($items);
     }
 
@@ -301,6 +310,32 @@ class Map extends MiscModel
         $groups = $this->groups->sortBy('name');
         foreach ($groups as $group) {
             $options[$group->id] = $group->name;
+        }
+        return $options;
+    }
+
+    /**
+     * @return array|string[]
+     */
+    public function groupPositionOptions(): array
+    {
+        $options = [1 => __('maps/groups.placeholders.position')];
+        $groups = $this->groups->sortBy('position');
+        foreach ($groups as $group) {
+            $options[$group->position + 1] = __('maps/groups.placeholders.position_list', ['name' => $group->name]);
+        }
+        return $options;
+    }
+
+    /**
+     * @return array|string[]
+     */
+    public function layerPositionOptions(): array
+    {
+        $options = [1 => __('maps/layers.placeholders.position')];
+        $layers = $this->layers->sortBy('position');
+        foreach ($layers as $layer) {
+            $options[$layer->position + 1] = __('maps/layers.placeholders.position_list', ['name' => $layer->name]);
         }
         return $options;
     }
@@ -565,6 +600,21 @@ class Map extends MiscModel
     }
 
     /**
+     * Determine if a map can be explored
+     * @return bool
+     */
+    public function explorable(): bool
+    {
+        if (empty($this->image) && !$this->isReal()) {
+            return false;
+        }
+        if ($this->isChunked() && ($this->chunkingError() || $this->chunkingRunning())) {
+            return false;
+        }
+        return true;
+    }
+
+    /**
      * The explore link for a map, or the chunking process icon
      * @return string
      */
@@ -674,5 +724,38 @@ class Map extends MiscModel
     {
         //return false;
         return !empty($this->config['distance_measure']);
+    }
+    /**
+     * Available datagrid actions
+     * @param Campaign $campaign
+     * @return string[]
+     * @throws Exception
+     */
+    public function datagridActions(Campaign $campaign): array
+    {
+        $newActions = [];
+        $actions = parent::datagridActions($campaign);
+
+        if (auth()->check() && auth()->user()->can('update', $this)) {
+            $newActions[] = '<li class="divider"></li>';
+            $newActions[] = '<li>
+                <a href="' . route('maps.map_layers.index', $this->id) . '" class="dropdown-item datagrid-dropdown-item" data-name="layers">
+                    <i class="fa-solid fa-layer-group" aria-hidden="true"></i> ' . __('maps.panels.layers') . '
+                </a>
+            </li>';
+            $newActions[] = '<li>
+                <a href="' . route('maps.map_groups.index', $this->id) . '" class="dropdown-item datagrid-dropdown-item" data-name="groups">
+                    <i class="fa-solid fa-map-signs" aria-hidden="true"></i> ' . __('maps.panels.groups') . '
+                </a>
+            </li>';
+            $newActions[] = '<li>
+                <a href="' . route('maps.map_markers.index', $this->id) . '" class="dropdown-item datagrid-dropdown-item" data-name="markers">
+                    <i class="fa-solid fa-map-pin" aria-hidden="true"></i> ' . __('maps.panels.markers') . '
+                </a>
+            </li>';
+        }
+        array_splice($actions, 2, 0, $newActions);
+
+        return $actions;
     }
 }

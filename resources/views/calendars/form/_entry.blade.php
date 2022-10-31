@@ -52,8 +52,6 @@
     </div>
 </div>
 
-@includeWhen(auth()->user()->isAdmin(), 'cruds.fields.privacy_callout')
-
 @if (request()->has('redirect'))
     {!! Form::hidden('redirect', request()->get('redirect')) !!}
 @endif

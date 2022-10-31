@@ -5,14 +5,10 @@ return [
         'title' => 'Nový předmět',
     ],
     'fields'        => [
-        'image' => 'Obrázek',
         'price' => 'Cena',
         'size'  => 'Velikost',
-        'type'  => 'Typ',
     ],
-    'index'         => [
-        'title' => 'Předměty',
-    ],
+    'index'         => [],
     'placeholders'  => [
         'name'  => 'Název předmětu',
         'price' => 'Cena předmětu',

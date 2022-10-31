@@ -27,16 +27,12 @@ return [
         'abilities' => 'Schopnosti',
         'ability'   => 'Schopnosť',
         'charges'   => 'Náboje',
-        'name'      => 'Názov',
-        'type'      => 'Typ',
     ],
     'helpers'       => [
         'descendants'       => 'Tento zoznam obsahuje všetky schopnosti, ktoré sú pod touto schopnosťou a nielen tie, ktoré sú priradené len priamo nej.',
         'nested_without'    => 'Zobrazujú sa všetky schopnosti, ktoré nemajú nadradenú schopnosť. Kliknutím na riadok zobrazíš podradené schopnosti.',
     ],
-    'index'         => [
-        'title' => 'Schopnosti',
-    ],
+    'index'         => [],
     'placeholders'  => [
         'charges'   => 'Počet nábojov. Prepoj atribúty cez {Úroveň}*{CHA}',
         'name'      => 'Ohnivá guľa, Stále v strehu, Zákerný výpad',

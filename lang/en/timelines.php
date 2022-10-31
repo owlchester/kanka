@@ -14,19 +14,14 @@ return [
         'copy_elements' => 'Copy Elements',
         'copy_eras'     => 'Copy Eras',
         'eras'          => 'Eras',
-        'name'          => 'Name',
         'reverse_order' => 'Reverse era order',
         'timeline'      => 'Parent Timeline',
         'timelines'     => 'Timelines',
-        'type'          => 'Type',
     ],
     'helpers'       => [
         'nested_without'    => 'Displaying all timelines that don\'t have a parent timeline. Click on a row to see the children timelines.',
         'no_era'            => 'This timeline currently doesn\'t have any eras. Eras can be added in the timeline\'s edit screen, after which you can add elements here.',
         'reverse_order'     => 'Enable to display eras in reverse chronological order (older era first)',
-    ],
-    'index'         => [
-        'title' => 'Timelines',
     ],
     'placeholders'  => [
         'name'  => 'Name of the timeline',

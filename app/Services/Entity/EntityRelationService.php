@@ -459,6 +459,7 @@ class EntityRelationService
                 ->addMaps()
                 ->addAuthorJournals()
                 ->addRaces()
+                ->addLocationCreatures()
             ;
         }
 
@@ -855,6 +856,10 @@ class EntityRelationService
         return $this;
     }
 
+    /**
+     * Race locations
+     * @return $this
+     */
     protected function addRaces(): self
     {
         /** @var Race $race */
@@ -871,6 +876,32 @@ class EntityRelationService
                 'colour' => '#ccc',
                 'attitude' => null,
                 'type' => 'sub-race',
+                'shape' => 'triangle',
+            ];
+        }
+        return $this;
+    }
+
+    /**
+     * Creature locations
+     * @return $this
+     */
+    protected function addLocationCreatures(): self
+    {
+        /** @var Location $location */
+        $location = $this->entity->child;
+
+        foreach ($location->creatures()->with('entity')->has('entity')->get() as $loc) {
+            $this->addEntity($loc->entity);
+            $this->addRelations($loc->entity);
+
+            $this->relations[] = [
+                'source' => $loc->entity->id,
+                'target' => $this->entity->id,
+                'text' => __('creatures.fields.location'),
+                'colour' => '#ccc',
+                'attitude' => null,
+                'type' => 'location-creature',
                 'shape' => 'triangle',
             ];
         }

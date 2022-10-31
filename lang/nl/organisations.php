@@ -7,20 +7,14 @@ return [
     'destroy'       => [],
     'edit'          => [],
     'fields'        => [
-        'image'         => 'Afbeelding',
-        'location'      => 'Locatie',
         'members'       => 'Leden',
-        'name'          => 'Naam',
         'organisation'  => 'Bovenliggende Organisatie',
         'organisations' => 'Sub Organisaties',
-        'type'          => 'Type',
     ],
     'helpers'       => [
         'descendants'   => 'Deze lijst bevat alle organisaties die afstammen van deze organisatie, en niet alleen de direct daaronder vallende organisaties.',
     ],
-    'index'         => [
-        'title' => 'Organisaties',
-    ],
+    'index'         => [],
     'members'       => [
         'actions'       => [
             'add'   => 'Voeg een lid toe',

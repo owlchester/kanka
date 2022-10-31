@@ -27,16 +27,12 @@ return [
         'abilities' => 'Zdolności pochodne',
         'ability'   => 'Zdolność źródłowa',
         'charges'   => 'Ładunki',
-        'name'      => 'Nazwa',
-        'type'      => 'Rodzaj',
     ],
     'helpers'       => [
         'descendants'       => 'Na liście znajdują się wszystkie zdolności pochodzące od tej zdolności, nie tylko bezpośrednio.',
         'nested_without'    => 'Wyświetlono wszystkie zdolności nie posiadające źródła. Kliknij na rząd, by wyświetlić zdolności pochodne.',
     ],
-    'index'         => [
-        'title' => 'Zdolności',
-    ],
+    'index'         => [],
     'placeholders'  => [
         'charges'   => 'Liczba ładunków zdolności. Możesz wpisać wartość cechy jako {Level}*{CHA}',
         'name'      => 'Kula ognia, alarm, podstępny atak',

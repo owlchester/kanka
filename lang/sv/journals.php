@@ -9,18 +9,13 @@ return [
     'fields'        => [
         'author'    => 'Författare',
         'date'      => 'Datum',
-        'image'     => 'Bild',
         'journal'   => 'Huvudjournal',
         'journals'  => 'Underjournal',
-        'name'      => 'Namn',
-        'type'      => 'Typ',
     ],
     'helpers'       => [
         'journals'  => 'Visa alla eller bara underjournalerna direkt under denna journal.',
     ],
-    'index'         => [
-        'title' => 'Journaler',
-    ],
+    'index'         => [],
     'journals'      => [
         'title' => 'Journal :name underjournaler',
     ],

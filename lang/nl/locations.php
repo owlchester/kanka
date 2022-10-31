@@ -17,13 +17,10 @@ return [
     ],
     'fields'        => [
         'characters'        => 'Personages',
-        'image'             => 'Afbeelding',
         'is_map_private'    => 'Privé Kaart',
         'location'          => 'Bovenliggende Locatie',
         'locations'         => 'Locaties',
         'map'               => 'Kaart',
-        'name'              => 'Naam',
-        'type'              => 'Type',
     ],
     'helpers'       => [
         'characters'        => 'Bekijk alle personages op deze locatie en de gerelateerde locaties, of alleen degenen die zich hier direct bevinden.',
@@ -36,9 +33,7 @@ return [
     'hints'         => [
         'is_map_private'    => 'Een privékaart is alleen zichtbaar voor leden van de campaign\'s \'Beheerder\'.',
     ],
-    'index'         => [
-        'title' => 'Locaties',
-    ],
+    'index'         => [],
     'items'         => [],
     'journals'      => [],
     'locations'     => [

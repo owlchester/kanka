@@ -30,15 +30,11 @@ return [
         'character'     => 'Zadávateľ/ka',
         'copy_elements' => 'Kopírovať objekty priradené úlohám',
         'date'          => 'Dátum',
-        'description'   => 'Popis',
         'element_role'  => 'Rola',
-        'image'         => 'Obrázok',
         'is_completed'  => 'Splnená',
-        'name'          => 'Názov',
         'quest'         => 'Nadradená úloha',
         'quests'        => 'Podradená úloha',
         'role'          => 'Rola',
-        'type'          => 'Typ',
     ],
     'helpers'       => [
         'is_completed'      => 'Zaškrtni, ak je daná úloha považovaná za splnenú.',
@@ -47,9 +43,7 @@ return [
     'hints'         => [
         'quests'    => 'Sieť prepojených úloh je možné vytvoriť cez nadradenú úlohu.',
     ],
-    'index'         => [
-        'title' => 'Úlohy',
-    ],
+    'index'         => [],
     'placeholders'  => [
         'date'      => 'Reálny dátum zadania úlohy',
         'entity'    => 'Názov prvku v úlohe',

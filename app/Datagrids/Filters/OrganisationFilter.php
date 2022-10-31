@@ -3,6 +3,7 @@
 namespace App\Datagrids\Filters;
 
 use App\Models\Organisation;
+use App\Models\Character;
 
 class OrganisationFilter extends DatagridFilter
 {
@@ -23,8 +24,17 @@ class OrganisationFilter extends DatagridFilter
                 'placeholder' =>  __('crud.placeholders.organisation'),
                 'model' => Organisation::class,
             ])
+            ->add([
+                'field' => 'member_id',
+                'label' => __('crud.fields.character'),
+                'type' => 'select2',
+                'route' => route('characters.find'),
+                'placeholder' =>  __('crud.placeholders.character'),
+                'model' => Character::class,
+            ])
             ->add('is_defunct')
             ->isPrivate()
+            ->template()
             ->hasImage()
             ->hasEntityNotes()
             ->hasEntityFiles()

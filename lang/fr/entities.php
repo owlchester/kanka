@@ -29,6 +29,8 @@ return [
         'title'             => 'Nouvelle Entité',
         'tooltip'           => 'Créer une nouvelle entité sans quitter la page actuelle',
     ],
+    'creature'              => 'Créature',
+    'creatures'             => 'Créatures',
     'dice_roll'             => 'Jet de dés',
     'dice_rolls'            => 'Jets de dés',
     'event'                 => 'Événement',

@@ -7,20 +7,14 @@ return [
     'destroy'       => [],
     'edit'          => [],
     'fields'        => [
-        'image'         => 'Görsel',
-        'location'      => 'Konum',
         'members'       => 'Üyeler',
-        'name'          => 'Ad',
         'organisation'  => 'Ana Organizasyon',
         'organisations' => 'Alt Organizasyonlar',
-        'type'          => 'Tür',
     ],
     'helpers'       => [
         'descendants'   => 'Bu liste bu organizasyondan gelen tüm organizasyonları içerir, yalnızca doğrudan altında olanları değil.',
     ],
-    'index'         => [
-        'title' => 'Organizasyonlar',
-    ],
+    'index'         => [],
     'members'       => [
         'actions'       => [
             'add'   => 'Bir üye ekle',

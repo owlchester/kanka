@@ -17,7 +17,7 @@ class RaceFilter extends DatagridFilter
             ->add('type')
             ->add([
                 'field' => 'race_id',
-                'label' => __('characters.fields.race'),
+                'label' => __('races.fields.race'),
                 'type' => 'select2',
                 'route' => route('races.find'),
                 'placeholder' =>  __('crud.placeholders.race'),
@@ -33,6 +33,7 @@ class RaceFilter extends DatagridFilter
                 'withChildren' => true,
             ])
             ->isPrivate()
+            ->template()
             ->hasImage()
             ->hasEntityNotes()
             ->hasEntityFiles()

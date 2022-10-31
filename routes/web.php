@@ -61,3 +61,7 @@ Route::group([
         Route::get('/{version}/{page?}', '\BinaryTorch\LaRecipe\Http\Controllers\DocumentationController@show')->where('page', '(.*)')->name('show');
     });
 });
+
+if (app()->environment('local')) {
+    Route::get('email-test', 'Tests\EmailTestController@index');
+}

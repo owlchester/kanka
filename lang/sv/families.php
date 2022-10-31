@@ -12,11 +12,7 @@ return [
     'fields'        => [
         'families'  => 'Underfamiljer',
         'family'    => 'Huvudfamilj',
-        'image'     => 'Bild',
-        'location'  => 'Plats',
         'members'   => 'Medlemmar',
-        'name'      => 'Namn',
-        'type'      => 'Typ',
     ],
     'helpers'       => [
         'descendants'   => 'Denna lista innehåller alla familjer som härstammar från denna familj och inte bara dom direkt under den.',
@@ -24,9 +20,7 @@ return [
     'hints'         => [
         'members'   => 'Medlemmar av en familj är listade här. En karaktär kan läggas till i en familj genom att redigera karaktären och använda "Familj" nedrullningsmenyn.',
     ],
-    'index'         => [
-        'title' => 'Familjer',
-    ],
+    'index'         => [],
     'members'       => [
         'helpers'   => [
             'all_members'       => 'Följande lista är alla karaktärer som är i denna familj och alla i familjer som härstammar från denna familj.',

@@ -15,18 +15,14 @@ return [
     'fields'        => [
         'copy_eras'     => 'Kopieer tijdperken',
         'eras'          => 'Tijdperken',
-        'name'          => 'Naam',
         'reverse_order' => 'Keer tijdperk volgorde om',
         'timeline'      => 'Bovenliggende Tijdlijn',
         'timelines'     => 'Tijdlijnen',
-        'type'          => 'Type',
     ],
     'helpers'       => [
         'reverse_order' => 'Schakel in om tijdperken in omgekeerde chronologische volgorde weer te geven (eerst het oudere tijdperk)',
     ],
-    'index'         => [
-        'title' => 'Tijdlijnen',
-    ],
+    'index'         => [],
     'placeholders'  => [
         'name'  => 'Naam van de tijdlijn',
         'type'  => 'Primair, Wereldkroniek, Koninkrijk geschiedenis',

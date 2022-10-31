@@ -15,7 +15,6 @@ return [
         'filters'           => 'Filter',
         'is_nested'         => 'verschachtelt',
         'menu'              => 'Menü',
-        'name'              => 'Name',
         'position'          => 'Position',
         'random'            => 'zufällig',
         'random_type'       => 'zufälliger Objekttyp',
@@ -31,10 +30,7 @@ return [
         'selector'          => 'Konfigurieren Sie, wohin dieser Quicklink führt, wenn ein Benutzer in der Seitenleiste darauf klickt.',
         'type'              => 'Richten Sie diesen Menülink ein, um direkt zu einer Liste von Objekten zu gelangen. Kopieren Sie zum Filtern der Ergebnisse Teile der URL in die Liste der gefilterten Objekte nach :? Melden Sie sich im Feld :filter an',
     ],
-    'index'             => [
-        'add'   => 'Neuer Menü Link',
-        'title' => 'Menü Links',
-    ],
+    'index'             => [],
     'placeholders'      => [
         'entity'    => 'Wähle ein Objekt',
         'filters'   => 'location_id=15&type=city',

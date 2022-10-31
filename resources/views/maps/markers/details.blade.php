@@ -70,7 +70,7 @@ if ($marker->entity && $marker->entity->hasImage($boosted)) {
 @can('update', $marker->map)
     <div class="marker-actions text-center">
         <div class="btn-group">
-            <a href="{{ route('maps.map_markers.edit', [$marker->map, $marker]) }}" class="btn btn-primary" target="_blank">
+            <a href="{{ route('maps.map_markers.edit', [$marker->map, $marker]) }}" class="btn btn-primary">
                 <i class="fa-solid fa-map-pin"></i> {{ __('maps/markers.actions.update') }}
             </a>
             <button class="btn btn-danger delete-confirm" data-name="{{ $marker->markerTitle() }}" data-toggle="modal" data-target="#delete-confirm" data-delete-target="delete-marker-confirm-form-{{ $marker->id }}">

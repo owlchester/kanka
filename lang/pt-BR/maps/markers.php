@@ -46,7 +46,6 @@ return [
         'label'                     => 'Um rótulo é exibido como um bloco de texto no mapa. O conteúdo será o nome do marcador do nome da entidade.',
         'polygon'                   => [
             'edit'  => 'Clique no mapa para adicionar essa posição às coordenadas do polígono.',
-            'new'   => 'Mova o marcador no mapa para salvar a posição no polígono.',
         ],
     ],
     'icons'         => [

@@ -1,7 +1,11 @@
 <?php
 
 return [
-    'quick' => [
+    'privacy'   => [
+        'text'      => 'Cette entité est privée. Les permissions détaillées peuvent toujours être définies, mais tant que cette entité est privée, ceux-ci seront ignorés, et seulement les membres du rôle :admin pourront voir cette entité.',
+        'warning'   => 'Attention',
+    ],
+    'quick'     => [
         'empty-permissions' => 'Aucun rôle ou utilisateur hors des admins de la campagne n\'ont accès à cette entité.',
         'field'             => 'Modification rapide',
         'options'           => [

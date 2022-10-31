@@ -1,17 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
-</head>
-<body>
+@extends('emails.base', [
+    'utmSource' => 'subscription',
+    'utmCampaign' => 'cancellation'
+])
+
+@section('content')
 
     <p>
-        Dear {{ $user->name }},
+        <strong>Cancellation confirmation</strong>
     </p>
     <p>
-        Your subscription to Kanka has been cancelled. We're sorry to see you go, and hope to see you back soon!
+        We're sorry to see you go, {{ $user->name }}. You’re always welcome to rejoin our party and renew your subscription at any time to:
+    </p>
+    <ul>
+        <li>Regain access to all your changes, exactly the way you left them</li>
+        <li>Ad free experience</li>
+        <li>Increased upload size</li>
+        <li><a href="{{ route('front.pricing') }}">And way more</a></li>
+    </ul>
+
+    <p>This email serves as confirmation that you have cancelled the renewal of your <strong>{{ $user->pledge }}</strong> subscription on Kanka. You will continue to have access to your subscription bonuses until <strong>{{ $user->subscription('kanka')->ends_at->isoFormat('MMMM D, Y') }}</strong>.
     </p>
 
-    <p>The Kanka Team</p>
-</body>
-</html>
+    <p>
+        Thank you for being part of our community !
+    </p>
+
+    <p>Jay & Jon</p>
+
+@endsection

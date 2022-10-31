@@ -92,6 +92,13 @@
                 padding: 10px;
                 font-size: 12px;
             }
+
+            .box-header {
+                display: flex;
+                > h3.box-title {
+                    flex-grow: 5;
+                }
+            }
         }
         > .ra, > .fab, > .far,  > .fas, > .fa-solid, > .fa-brands, > .fa-light, > .fa-thin, > .fa-duotone {
             width: 30px;

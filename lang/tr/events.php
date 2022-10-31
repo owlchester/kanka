@@ -7,23 +7,16 @@ return [
     'destroy'       => [],
     'edit'          => [],
     'fields'        => [
-        'date'      => 'Tarih',
-        'image'     => 'Görsel',
-        'location'  => 'Konum',
-        'name'      => 'Ad',
-        'type'      => 'Tür',
+        'date'  => 'Tarih',
     ],
     'helpers'       => [
         'date'  => 'Bu alan her şeyi içinde bulundurabilir ve serüvenin takvimlerine bağlı değildir. Bu olayı bir takvime bağlamak için, olayı takvimde ya da bu olayın hatırlatıcılar sekmesinde ekleyin.',
     ],
-    'index'         => [
-        'title' => 'Olaylar',
-    ],
+    'index'         => [],
     'placeholders'  => [
-        'date'      => 'Olayınız için bir tarih',
-        'location'  => 'Bir konum seçin',
-        'name'      => 'Olayın adı',
-        'type'      => 'Seremoni, Festival, Felaket, Savaş, Doğum',
+        'date'  => 'Olayınız için bir tarih',
+        'name'  => 'Olayın adı',
+        'type'  => 'Seremoni, Festival, Felaket, Savaş, Doğum',
     ],
     'show'          => [],
     'tabs'          => [

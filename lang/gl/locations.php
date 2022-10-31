@@ -17,13 +17,10 @@ return [
     ],
     'fields'        => [
         'characters'        => 'Personaxes',
-        'image'             => 'Imaxe',
         'is_map_private'    => 'Mapa privado',
         'location'          => 'Lugar superior',
         'locations'         => 'Lugares',
         'map'               => 'Mapa',
-        'name'              => 'Nome',
-        'type'              => 'Tipo',
     ],
     'helpers'       => [
         'characters'        => 'Mira todas as personaxes que hai neste lugar e nos seus descendentes, ou só as localizadas directamente aquí.',
@@ -37,9 +34,7 @@ return [
     'hints'         => [
         'is_map_private'    => 'Un mapa privado só será visible para a administración da campaña.',
     ],
-    'index'         => [
-        'title' => 'Lugares',
-    ],
+    'index'         => [],
     'items'         => [],
     'journals'      => [],
     'locations'     => [

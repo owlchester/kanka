@@ -87,7 +87,6 @@ TEXT
                 'title' => 'Új kampány',
             ],
         ],
-        'title'     => 'Kampányok',
     ],
     'invites'                           => [
         'actions'               => [

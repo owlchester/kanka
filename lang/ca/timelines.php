@@ -16,20 +16,16 @@ return [
         'copy_elements' => 'Copia\'n els elements',
         'copy_eras'     => 'Copia\'n les eres',
         'eras'          => 'Eres',
-        'name'          => 'Nom',
         'reverse_order' => 'Era en ordre invers',
         'timeline'      => 'Línia de temps pare',
         'timelines'     => 'Línies de temps',
-        'type'          => 'Tipus',
     ],
     'helpers'       => [
         'nested_without'    => 'S\'estan mostrant les línies de temps sense pare. Feu clic a la fila d\'un mapa per a mostrar-ne les descendents.',
         'no_era'            => 'Aquesta línia de temps no té cap era actualment. Se\'n poden afegir a la pantalla d\'edició de la línia de temps.',
         'reverse_order'     => 'Habiliteu-ho per a mostrar les eres en ordre cronològic invers (l\'era més antiga primer)',
     ],
-    'index'         => [
-        'title' => 'Línies de temps',
-    ],
+    'index'         => [],
     'placeholders'  => [
         'name'  => 'Nom de la línia de temps',
         'type'  => 'Primària, crònica del món, llegat del regne...',

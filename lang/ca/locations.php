@@ -17,13 +17,10 @@ return [
     ],
     'fields'        => [
         'characters'        => 'Personatges',
-        'image'             => 'Imatge',
         'is_map_private'    => 'Mapa privat',
         'location'          => 'Localizació superior',
         'locations'         => 'Indrets',
         'map'               => 'Mapa',
-        'name'              => 'Nom',
-        'type'              => 'Tipus',
     ],
     'helpers'       => [
         'characters'        => 'Mostra tots els personatges d\'aquest indret i els seus indrets niats, o només els que són aquí.',
@@ -37,9 +34,7 @@ return [
     'hints'         => [
         'is_map_private'    => 'Un mapa privat només és visible per als administradors.',
     ],
-    'index'         => [
-        'title' => 'Indrets',
-    ],
+    'index'         => [],
     'items'         => [],
     'journals'      => [],
     'locations'     => [

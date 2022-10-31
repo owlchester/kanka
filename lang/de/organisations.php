@@ -7,14 +7,10 @@ return [
     'destroy'       => [],
     'edit'          => [],
     'fields'        => [
-        'image'         => 'Bild',
         'is_defunct'    => 'stillgelegt',
-        'location'      => 'Ort',
         'members'       => 'Mitglieder',
-        'name'          => 'Name',
         'organisation'  => 'Übergeordnete Organisation',
         'organisations' => 'Unterorganisation',
-        'type'          => 'Typ',
     ],
     'helpers'       => [
         'descendants'       => 'Diese Liste enthält alle Organisationen, die direkt unter dieser Organisation und allen untergeordneten Organisationen sind.',
@@ -23,9 +19,7 @@ return [
     'hints'         => [
         'is_defunct'    => 'Diese Organisation ist aufgelöst.',
     ],
-    'index'         => [
-        'title' => 'Organisationen',
-    ],
+    'index'         => [],
     'members'       => [
         'actions'       => [
             'add'   => 'Füge ein Mitglied hinzu',

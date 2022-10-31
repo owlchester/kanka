@@ -69,7 +69,6 @@ return [
         'length_days'           => 'יום :count|:count ימים',
         'months'                => 'חודשים',
         'moons'                 => 'ירחים',
-        'name'                  => 'שם',
         'parameters'            => 'פרמטרים',
         'recurring_periodicity' => 'מחזורי',
         'recurring_until'       => 'חוזר עד השנה',
@@ -77,7 +76,6 @@ return [
         'seasons'               => 'עונות',
         'start_offset'          => 'הזזה בהתחלה',
         'suffix'                => 'סיומת',
-        'type'                  => 'סוג',
         'week_names'            => 'שמות השבועות',
         'weekdays'              => 'ימי השבוע',
     ],
@@ -97,9 +95,7 @@ return [
         'weeks'             => 'ניתן להגדיר שמות לשבועות חשובים בשנה.',
         'years'             => 'ישנן שנים משמעותיות מספיק שיהיה להן שמות יחודיים.',
     ],
-    'index'         => [
-        'title' => 'לוחות שנה',
-    ],
+    'index'         => [],
     'layouts'       => [
         'month' => 'חודש',
         'year'  => 'שנה',

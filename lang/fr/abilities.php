@@ -27,16 +27,12 @@ return [
         'abilities' => 'Pouvoirs',
         'ability'   => 'Pouvoir Parent',
         'charges'   => 'Charges',
-        'name'      => 'Nom',
-        'type'      => 'Type',
     ],
     'helpers'       => [
         'descendants'       => 'Cette liste contient tous les pouvoirs qui sont descendants de ce pouvoir, et pas seulement les descendants directs.',
         'nested_without'    => 'Affichage des pouvoirs sans parent. Cliquer sur une rangée pour afficher les pouvoirs enfants.',
     ],
-    'index'         => [
-        'title' => 'Pouvoirs',
-    ],
+    'index'         => [],
     'placeholders'  => [
         'charges'   => 'Nombre d\'utilisation. Les attributs peuvent être référencés avec {Level}*{CHA}',
         'name'      => 'Jet de feu, Alert, Résistance',

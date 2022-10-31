@@ -19,10 +19,8 @@ return [
     'fields'        => [
         'children'          => 'Enfants',
         'is_auto_applied'   => 'Appliquer automatiquement aux nouvelles entités',
-        'name'              => 'Nom',
         'tag'               => 'Étiquette Parentale',
         'tags'              => 'Étiquettes',
-        'type'              => 'Type',
     ],
     'helpers'       => [
         'nested_without'    => 'Affichage des étiquettes sans parent. Cliquer sur une rangée pour afficher les étiquettes enfants.',
@@ -33,9 +31,7 @@ return [
         'is_auto_applied'   => 'Si cette option est activée, les nouvelles entités auront automatiquement cette étiquette.',
         'tag'               => 'Affichées ci-dessous sont toutes les étiquettes enfants de cette étiquette.',
     ],
-    'index'         => [
-        'title' => 'Étiquettes',
-    ],
+    'index'         => [],
     'new_tag'       => 'Nouvelle étiquette',
     'placeholders'  => [
         'name'  => 'Nom de l\'étiquette',

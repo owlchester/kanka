@@ -12,11 +12,7 @@ return [
     'fields'        => [
         'families'  => 'Subfamilias',
         'family'    => 'Familia superior',
-        'image'     => 'Imaxe',
-        'location'  => 'Localización',
         'members'   => 'Integrantes',
-        'name'      => 'Nome',
-        'type'      => 'Tipo',
     ],
     'helpers'       => [
         'descendants'       => 'Esta lista contén todas as familias que son descendentes desta familia, non só as que están no nivel directamente inferior.',
@@ -25,9 +21,7 @@ return [
     'hints'         => [
         'members'   => 'As persoas integrantes dunha familia móstranse aquí. Unha personaxe pode ser engadida a unha familia editando esa personaxe e usando o campo "Familia".',
     ],
-    'index'         => [
-        'title' => 'Familias',
-    ],
+    'index'         => [],
     'members'       => [
         'helpers'   => [
             'all_members'       => 'A seguinte lista contén todas as personaxes que están nesta familia ou nalgunha das súas subfamilias.',

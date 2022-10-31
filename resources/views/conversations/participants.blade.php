@@ -2,7 +2,7 @@
     'title' => __('conversations.participants.title', ['name' => $model->name]),
     'description' => __('conversations.participants.description'),
     'breadcrumbs' => [
-        ['url' => route('conversations.index'), 'label' => __('conversations.index.title')],
+        ['url' => route('conversations.index'), 'label' => __('entities.conversations')],
         ['url' => route('conversations.show', $model->id), 'label' => $model->name],
         __('crud.update'),
     ]

@@ -10,7 +10,6 @@ return [
     'edit'          => [],
     'fields'        => [
         'created_at'    => 'Kockice bačene u',
-        'name'          => 'Naziv',
         'parameters'    => 'Parametri',
         'results'       => 'Rezultati',
         'rolls'         => 'Bacanja',
@@ -23,7 +22,6 @@ return [
             'dice'      => 'Bacanja kockica',
             'results'   => 'Rezultati',
         ],
-        'title'     => 'Bacanja kockica',
     ],
     'placeholders'  => [
         'dice_roll' => 'Bacanje kockica',

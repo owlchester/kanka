@@ -9,19 +9,14 @@ return [
     'fields'        => [
         'author'    => 'Szerző',
         'date'      => 'Dátum',
-        'image'     => 'Kép',
         'journal'   => 'Szülőnapló',
         'journals'  => 'Alnaplók',
-        'name'      => 'Megnevezés',
-        'type'      => 'Típus',
     ],
     'helpers'       => [
         'journals'          => 'Az összes vagy csak a közvetlen alnaplók mutatása',
         'nested_without'    => 'Minden olyan napló megmutatása, amelynek nincs szülőnaplója. Klikkelj egy sorra, hogy lásd a gyermeknaplókat.',
     ],
-    'index'         => [
-        'title' => 'Naplók',
-    ],
+    'index'         => [],
     'journals'      => [
         'title' => ':name napló alnaplói',
     ],

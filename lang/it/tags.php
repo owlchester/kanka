@@ -18,19 +18,15 @@ return [
     'edit'          => [],
     'fields'        => [
         'children'  => 'Figli',
-        'name'      => 'Nome',
         'tag'       => 'Tag',
         'tags'      => 'Sotto-Tag',
-        'type'      => 'Tipo',
     ],
     'helpers'       => [],
     'hints'         => [
         'children'  => 'Questa lista contiene tutte le entità direttamente assegnate a questo tag ed in tuuìtti i tad discendenti.',
         'tag'       => 'Visualizzati sotto vi sono tutti i tag che sono direttamente sotto a questo.',
     ],
-    'index'         => [
-        'title' => 'Tags',
-    ],
+    'index'         => [],
     'new_tag'       => 'Nuovo Tag',
     'placeholders'  => [
         'name'  => 'Nome del tag',

@@ -46,7 +46,6 @@ return [
         'label'                     => 'Un rótulo é mostrado como un bloque de texto no mapa. O contido será o nome do marcador.',
         'polygon'                   => [
             'edit'  => 'Fai clic no mapa para engadir esa posición ás coordenadas do polígono.',
-            'new'   => 'Move o marcador polo mapa para gardar a posición ao polígono.',
         ],
     ],
     'icons'         => [

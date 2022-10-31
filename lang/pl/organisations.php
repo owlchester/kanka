@@ -7,14 +7,10 @@ return [
     'destroy'       => [],
     'edit'          => [],
     'fields'        => [
-        'image'         => 'Obraz',
         'is_defunct'    => 'Nie funkcjonuje',
-        'location'      => 'Miejsce',
         'members'       => 'Członkowie',
-        'name'          => 'Nazwa',
         'organisation'  => 'Organizacja źródłowa',
         'organisations' => 'Organizacje pochodne',
-        'type'          => 'Rodzaj',
     ],
     'helpers'       => [
         'descendants'       => 'Na liście znajdują się wszystkie organizacje wywodzące się od tej, nie tylko bezpośrednio.',
@@ -23,9 +19,7 @@ return [
     'hints'         => [
         'is_defunct'    => 'Ta organizacja obecnie nie działa',
     ],
-    'index'         => [
-        'title' => 'Organizacje',
-    ],
+    'index'         => [],
     'members'       => [
         'actions'       => [
             'add'   => 'Dodaj członka',

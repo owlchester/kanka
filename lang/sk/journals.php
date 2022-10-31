@@ -9,19 +9,14 @@ return [
     'fields'        => [
         'author'    => 'Autor',
         'date'      => 'Dátum',
-        'image'     => 'Obrázok',
         'journal'   => 'Nadradený denník',
         'journals'  => 'Podradený denník',
-        'name'      => 'Názov',
-        'type'      => 'Typ',
     ],
     'helpers'       => [
         'journals'          => 'Zobrazí všetky alebo len priamo podradené denníky tohto denníka.',
         'nested_without'    => 'Zobraziť všetky denníky, ktoré nemajú nadradený denník. Kliknutím na riadok zobrazíš podradené denníky.',
     ],
-    'index'         => [
-        'title' => 'Záznamy v denníku',
-    ],
+    'index'         => [],
     'journals'      => [
         'title' => 'Podradené denníky denníka :name',
     ],

@@ -14,8 +14,6 @@ return [
         'grid'  => 'Griglia',
         'map'   => 'Mappa Genitore',
         'maps'  => 'Mappe',
-        'name'  => 'Nome',
-        'type'  => 'Tipo',
     ],
     'helpers'       => [
         'descendants'       => 'Questa lsita contiene tutte le mappe che sono discendenti di questa mappa, e non solo quelle direttamente sotto di essa.',
@@ -23,9 +21,7 @@ return [
         'grid'              => 'Definisci la dimensione della griglia che sarà mostrata nella modalità Esplora.',
         'missing_image'     => 'Devi salvare la mappa fornendo un\'immagine prima di poter essere in grado di aggiungere livelli e marcatori.',
     ],
-    'index'         => [
-        'title' => 'Mappe',
-    ],
+    'index'         => [],
     'maps'          => [
         'title' => 'Mappe di :name',
     ],

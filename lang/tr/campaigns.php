@@ -75,7 +75,6 @@ TEXT
                 'title' => 'Yeni Serüven',
             ],
         ],
-        'title'     => 'Serüven',
     ],
     'invites'                           => [
         'actions'               => [

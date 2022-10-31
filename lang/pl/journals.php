@@ -9,19 +9,14 @@ return [
     'fields'        => [
         'author'    => 'Autor',
         'date'      => 'Data',
-        'image'     => 'Obraz',
         'journal'   => 'Dziennik źródłowy',
         'journals'  => 'Dzienniki pochodne',
-        'name'      => 'Nazwa',
-        'type'      => 'Rodzaj',
     ],
     'helpers'       => [
         'journals'          => 'Wyświetla wszystkie dzienniki pochodne, albo tylko pochodzące bezpośrednio od tego.',
         'nested_without'    => 'Wyświetlono wszystkie dzienniki nie posiadające źródła. Kliknij na rząd, by wyświetlić dzienniki pochodne.',
     ],
-    'index'         => [
-        'title' => 'Dzienniki',
-    ],
+    'index'         => [],
     'journals'      => [
         'title' => 'Dzienniki pochodne dziennika :name',
     ],

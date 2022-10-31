@@ -7,21 +7,15 @@ return [
     'destroy'       => [],
     'edit'          => [],
     'fields'        => [
-        'image'         => 'Kép',
-        'location'      => 'Helyszín',
         'members'       => 'Tagok',
-        'name'          => 'Név',
         'organisation'  => 'Szülőszervezet',
         'organisations' => 'Alszervezet',
-        'type'          => 'Típus',
     ],
     'helpers'       => [
         'descendants'       => 'Ez a lista a szervezet összes leszármazott szervezetét tartalmazza, nem csak a közvetlen alszervezeit.',
         'nested_without'    => 'Mutass meg minden szervezetet, aminek nincs szülője. Klikkelj egy sorra, hogy lásd a gyermekszervezeteit.',
     ],
-    'index'         => [
-        'title' => 'Szervezetek',
-    ],
+    'index'         => [],
     'members'       => [
         'actions'       => [
             'add'   => 'Tag hozzáadása',

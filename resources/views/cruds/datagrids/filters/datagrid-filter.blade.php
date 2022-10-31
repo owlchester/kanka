@@ -64,7 +64,7 @@ $clipboardFilters = $filterService->clipboardFilters();
                                     @include('cruds.datagrids.filters._array')
                                 @endif
                             @else
-                                <label>{{ __((in_array($field, ['is_private', 'has_image', 'has_attributes', 'has_entity_files', 'has_entity_notes', 'date_range']) ? 'crud.fields.' : $langKey . '.fields.') . $field) }}</label>
+                                <label>{{ __((in_array($field, ['name', 'type', 'is_private', 'has_image', 'has_attributes', 'has_entity_files', 'has_entity_notes', 'date_range', 'template']) ? 'crud.fields.' : $langKey . '.fields.') . $field) }}</label>
                                 @if ($filterService->isCheckbox($field))
                                     @include('cruds.datagrids.filters._choice')
                                 @elseif ($field === 'type' && !empty($entityModel))
@@ -77,6 +77,8 @@ $clipboardFilters = $filterService->clipboardFilters();
                                     @include('cruds.datagrids.filters._element-role')
                                 @elseif ($field === 'date_range')
                                     @include('cruds.datagrids.filters._date-range')
+                                @elseif ($field === 'template')
+                                    @include('cruds.datagrids.filters._template')
                                 @else
                                     <input type="text" class="form-control entity-list-filter" name="{{ $field }}" value="{{ $filterService->single($field) }}" />
                                 @endif

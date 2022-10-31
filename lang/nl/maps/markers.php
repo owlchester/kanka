@@ -45,7 +45,6 @@ return [
         'label'                     => 'Een label wordt als een tekstblok op de kaart weergegeven. De inhoud is de naam van de markering van de entiteit.',
         'polygon'                   => [
             'edit'  => 'Klik op de kaart om die positie toe te voegen aan de coördinaten van de polygoon.',
-            'new'   => 'Verplaats de markering op de kaart om de positie op de veelhoek op te slaan.',
         ],
     ],
     'icons'         => [

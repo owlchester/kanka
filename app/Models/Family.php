@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\FilterOption;
 use App\Models\Concerns\Acl;
 use App\Models\Concerns\Nested;
 use App\Models\Concerns\SortableTrait;
@@ -115,6 +116,42 @@ class Family extends MiscModel
             'families',
             'members',
         ]);
+    }
+
+    /**
+     * Filter for family with specific member
+     * @param Builder $query
+     * @param string|null $value
+     * @param FilterOption $filter
+     * @return Builder
+     */
+    public function scopeMember(Builder $query, string|null $value, FilterOption $filter): Builder
+    {
+        if ($filter === FilterOption::NONE) {
+            // If called with a param, it's being called too early and will be called later in the process
+            if (!empty($value)) {
+                return $query;
+            }
+            return $query
+                ->select($this->getTable() . '.*')
+                ->leftJoin('character_family as memb', function ($join) {
+                    $join->on('memb.family_id', '=', $this->getTable() . '.id');
+                })
+                ->where('memb.character_id', null);
+        } elseif ($filter === FilterOption::EXCLUDE) {
+
+            return $query
+                ->whereRaw('(select count(*) from character_family as memb where memb.family_id = ' .
+                    $this->getTable() . '.id and memb.character_id in (' . (int) $value . ')) = 0');
+        }
+
+        $ids = [$value];
+        return $query
+            ->select($this->getTable() . '.*')
+            ->leftJoin('character_family as memb', function ($join) {
+                $join->on('memb.family_id', '=', $this->getTable() . '.id');
+            })
+            ->whereIn('memb.character_id', $ids)->distinct();
     }
 
     /**
@@ -247,6 +284,7 @@ class Family extends MiscModel
         return [
             'location_id',
             'family_id',
+            'member_id',
         ];
     }
 }

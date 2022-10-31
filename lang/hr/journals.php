@@ -9,19 +9,14 @@ return [
     'fields'        => [
         'author'    => 'Autor',
         'date'      => 'Datum',
-        'image'     => 'Slika',
         'journal'   => 'Dnevnik roditelj',
         'journals'  => 'Dnevnici djeca',
-        'name'      => 'Naslov',
-        'type'      => 'Tip',
     ],
     'helpers'       => [
         'journals'          => 'Prikaži sve ili samo izravnu djecu dnevnike ovog dnevnika.',
         'nested_without'    => 'Prikazuju se svi dnevnici koji nemaju dnevnik roditelj. Klikni redak da bi vidio/la dnevnike djecu.',
     ],
-    'index'         => [
-        'title' => 'Dnevnici',
-    ],
+    'index'         => [],
     'journals'      => [
         'title' => 'Djeca dnevnici dnevnika :name',
     ],

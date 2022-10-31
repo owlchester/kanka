@@ -7,21 +7,15 @@ return [
     'destroy'       => [],
     'edit'          => [],
     'fields'        => [
-        'description'   => 'Beschrijving',
-        'image'         => 'Afbeelding',
-        'is_pinned'     => 'Vastgemaakt',
-        'name'          => 'Naam',
-        'note'          => 'Bovenliggende Notitie',
-        'notes'         => 'Sub Notities',
-        'type'          => 'Type',
+        'is_pinned' => 'Vastgemaakt',
+        'note'      => 'Bovenliggende Notitie',
+        'notes'     => 'Sub Notities',
     ],
     'helpers'       => [],
     'hints'         => [
         'is_pinned' => 'Er kunnen maximaal 3 notities worden vastgemaakt om op het dashboard te worden weergegeven.',
     ],
-    'index'         => [
-        'title' => 'Notities',
-    ],
+    'index'         => [],
     'placeholders'  => [
         'name'  => 'Naam van de notitie',
         'note'  => 'Kies een bovenliggende notitie',

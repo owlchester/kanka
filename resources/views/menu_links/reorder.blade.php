@@ -4,7 +4,7 @@
     'title' => __('menu_links.reorder.title'),
     'description' => '',
     'breadcrumbs' => [
-        ['url' => Breadcrumb::index('menu_links'), 'label' => __('menu_links.index.title')],
+        ['url' => Breadcrumb::index('menu_links'), 'label' => __('entities.menu_links')],
         __('menu_links.reorder.title')
     ],
     'mainTitle' => false,

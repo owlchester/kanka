@@ -28,6 +28,7 @@ return [
     ],
     'login'     => [
         'fields'                => [
+            '2fa'       => 'Hasło jednorazowe',
             'email'     => 'Email',
             'password'  => 'Hasło',
         ],
@@ -68,6 +69,10 @@ return [
         'send'      => 'Prześlij link to resetowania hasła',
         'submit'    => 'Resetuj hasło',
         'title'     => 'Resetowanie hasła',
+    ],
+    'tfa'       => [
+        'helper'    => 'Włączono autoryzację dwuetapową. Wpisz hasło jednorazowe (OTP) ze swojej aplikacji autoryzującej',
+        'title'     => 'Autoryzacja dwuetapowa',
     ],
     'throttle'  => 'Za dużo nieudanych prób logowania. Proszę spróbować za :seconds sekund.',
 ];

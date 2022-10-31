@@ -3,12 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Datagrids\Filters\RaceFilter;
-use App\Datagrids\Sorters\RaceCharacterSorter;
-use App\Datagrids\Sorters\RaceRaceSorter;
 use App\Facades\Datagrid;
 use App\Http\Requests\StoreRace;
 use App\Models\Race;
-use App\Models\Tag;
 use App\Traits\TreeControllerTrait;
 
 class RaceController extends CrudController
@@ -110,14 +107,22 @@ class RaceController extends CrudController
     {
         $this->authCheck($race);
 
+        $options = ['race' => $race];
+        $filters = [];
+        if (request()->has('parent_id')) {
+            $options['parent_id'] = $race->id;
+            $filters['race_id'] = $race->id;
+        }
+
         Datagrid::layout(\App\Renderers\Layouts\Race\Race::class)
-            ->route('races.races', [$race]);
+            ->route('races.races', $options);
 
         // @phpstan-ignore-next-line
         $this->rows = $race
             ->descendants()
             ->sort(request()->only(['o', 'k']))
             ->with(['entity', 'characters'])
+            ->filter($filters)
             ->paginate(15);
 
         // Ajax Datagrid

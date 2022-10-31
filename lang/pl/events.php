@@ -14,23 +14,16 @@ return [
         'date'      => 'Data',
         'event'     => 'Wydarzenie źródłowe',
         'events'    => 'Wydarzenia pochodne',
-        'image'     => 'Obraz',
-        'location'  => 'Miejsce',
-        'name'      => 'Nazwa',
-        'type'      => 'Rodzaj',
     ],
     'helpers'       => [
         'date'              => 'W tym polu można umieścić wszystko - nie jest związane z kalendarzami kampanii. By umieścić je w kalendarzu, dodaj je ręcznie w menu kalendarza albo zakładce "Ważne daty" wydarzenia.',
         'nested_without'    => 'Wyświetlono wszystkie wydarzenia nie posiadające źródła. Kliknij na rząd, by wyświetlić wydarzenia pochodne.',
     ],
-    'index'         => [
-        'title' => 'Wydarzenia',
-    ],
+    'index'         => [],
     'placeholders'  => [
-        'date'      => 'Data tego wydarzenia',
-        'location'  => 'Wybierz miejsce',
-        'name'      => 'Nazwa wydarzenia',
-        'type'      => 'Uroczystość, festiwal, katastrofa, bitwa, narodziny',
+        'date'  => 'Data tego wydarzenia',
+        'name'  => 'Nazwa wydarzenia',
+        'type'  => 'Uroczystość, festiwal, katastrofa, bitwa, narodziny',
     ],
     'show'          => [
         'tabs'  => [

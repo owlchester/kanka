@@ -8,16 +8,10 @@ return [
     'edit'          => [],
     'fields'        => [
         'character' => 'דמות',
-        'image'     => 'תמונה',
-        'location'  => 'מיקום',
-        'name'      => 'שם',
         'price'     => 'מחיר',
         'size'      => 'גודל',
-        'type'      => 'סוג',
     ],
-    'index'         => [
-        'title' => 'חפצים',
-    ],
+    'index'         => [],
     'inventories'   => [
         'title' => 'רשימות חפצים של :name',
     ],

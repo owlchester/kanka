@@ -56,7 +56,7 @@ TEXT
         'featured'                          => 'Featured campaign',
         'followers'                         => 'Followers',
         'header_image'                      => 'Campaign dashboard background image',
-        'image'                             => 'Image',
+        'image'                             => 'Sidebar image',
         'locale'                            => 'Locale',
         'name'                              => 'Name',
         'nested'                            => 'Default entity lists to nested when available',
@@ -105,7 +105,6 @@ TEXT
                 'title' => 'New Campaign',
             ],
         ],
-        'title'     => 'Campaign',
     ],
     'invites'                           => [
         'actions'               => [
@@ -339,21 +338,26 @@ TEXT
         ],
     ],
     'settings'                          => [
-        'actions'   => [
+        'actions'       => [
             'enable'    => 'Enable',
         ],
-        'boosted'   => 'This feature is in early access and currently only available for :boosted.',
-        'disabled'  => 'The :module module is disabled.',
-        'enabled'   => 'The :module module is enabled.',
-        'errors'    => [
+        'boosted'       => 'This feature is in early access and currently only available for :boosted.',
+        'deprecated'    => [
+            'help'  => 'This module is deprecated, meaning it is no longer maintained, and that bugs aren\'t tested with each new update. Use this module with the knowledge that it will eventually get removed from Kanka.',
+            'title' => 'Deprecated',
+        ],
+        'disabled'      => 'The :module module is disabled.',
+        'enabled'       => 'The :module module is enabled.',
+        'errors'        => [
             'module-disabled'   => 'The requested module is currently disabled in the campaign settings. :fix.',
         ],
-        'helpers'   => [
+        'helpers'       => [
             'abilities'     => 'Create abilities, be it feats, spells, or powers that can be assigned to entities.',
             'calendars'     => 'A place to define the calendars of your world.',
-            'characters'    => 'The people who inhabit your world.',
-            'conversations' => 'Fictional conversations between characters or between campaign users. This module is deprecated.',
-            'dice_rolls'    => 'For those who use Kanka for RPG campaigns, a way to handle dice rolls. This module is deprecated.',
+            'characters'    => 'Create and keep track of the people inhabiting the world with characters.',
+            'conversations' => 'Fictional conversations between characters or between campaign users.',
+            'creatures'     => 'Build your world\'s creatures, animals, and monsters with the creatures module.',
+            'dice_rolls'    => 'For those who use Kanka for RPG campaigns, a way to handle dice rolls.',
             'events'        => 'Holidays, festivals, disasters, birthdays, wars.',
             'families'      => 'Clans or families, their relations and their members.',
             'inventories'   => 'Manage inventories on your entities.',
@@ -365,7 +369,7 @@ TEXT
             'notes'         => 'Lore, nature, history, magic, cultures.',
             'organisations' => 'Cults, religions, factions, guilds.',
             'quests'        => 'To keep track of various quests with characters and locations.',
-            'races'         => 'If your campaign has more than one race, this will make keeping track easy.',
+            'races'         => 'Track the origins, ethnicities, and racial traits of the world\'s characters with the race module.',
             'tags'          => 'Each entity can have several tags. Tags can belong to other tags, and entries can be filtered by tag.',
             'timelines'     => 'Represent the history of your world with timelines.',
         ],

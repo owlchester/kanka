@@ -74,7 +74,6 @@ TEXT
                 'title' => 'מערכה חדשה',
             ],
         ],
-        'title'     => 'מערכה',
     ],
     'invites'                           => [
         'actions'               => [

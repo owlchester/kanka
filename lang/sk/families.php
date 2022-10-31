@@ -12,11 +12,7 @@ return [
     'fields'        => [
         'families'  => 'Podradené rody',
         'family'    => 'Nadradený rod',
-        'image'     => 'Obrázok',
-        'location'  => 'Miesto',
         'members'   => 'Členovia',
-        'name'      => 'Názov',
-        'type'      => 'Typ',
     ],
     'helpers'       => [
         'descendants'       => 'Tento zoznam obsahuje všetky rody, ktoré sú potomkami tohto rodu a nielen tých, ktoré sp priamymi potomkami.',
@@ -25,9 +21,7 @@ return [
     'hints'         => [
         'members'   => 'Zoznam členov a členiek daného rodu sa zobrazuje na tomto mieste. Úpravou danej postavy je možné ju pridať do daného rodu v poli Rod.',
     ],
-    'index'         => [
-        'title' => 'Rody',
-    ],
+    'index'         => [],
     'members'       => [
         'helpers'   => [
             'all_members'       => 'Nasledujúci zoznam zobrazuje všetky postavy, ktoré sú súčasťou tohto alebo podradeného rodu.',

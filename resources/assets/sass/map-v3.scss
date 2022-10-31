@@ -6,194 +6,129 @@ $mapSidebarWidth: 380px;
 }
 
 .map {
-  width: 100%;
-  min-height: calc(50vh);
+    width: 100%;
+    min-height: calc(50vh);
 }
+
 .map-explore {
-  min-height: calc(100vh - 50px) !important;
+    min-height: calc(100vh - 50px) !important;
 }
+
 .map-dashboard {
-   min-height: calc(30vh);
+    min-height: calc(30vh);
 }
 
 .map-form {
-  margin-bottom: 15px;
+    margin-bottom: 15px;
 }
 
 .marker {
-  color: white;
-  background-color: unset;
-  text-align: center;
+    color: white;
+    background-color: unset;
+    text-align: center;
 }
 
 .marker-pin {
-  width: 40px;
-  height: 40px;
-  border-radius: 50% 50% 50% 0;
-  position: absolute;
-  transform: rotate(-45deg);
-  left: 50%;
-  top: 50%;
-  margin: -20px 0 0 -20px;
-  box-shadow: 0 6px 6px rgba(50, 50, 93, 0.31), 0 1px 3px rgba(0, 0, 0, 0.08);;
-
-  &:after {
-    content: '';
-    width: 36px;
-    height: 36px;
-    margin: 2px 0 0 -18px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50% 50% 50% 0;
     position: absolute;
-    border-radius: 50%;
-    background-position: 50% 50%;
-    background-size: cover;
-    background-repeat: no-repeat;
-    transform: rotate(45deg);
-  }
+    transform: rotate(-45deg);
+    left: 50%;
+    top: 50%;
+    margin: -20px 0 0 -20px;
+    box-shadow: 0 6px 6px rgba(50, 50, 93, 0.31), 0 1px 3px rgba(0, 0, 0, 0.08);;
+
+    &:after {
+        content: '';
+        width: 36px;
+        height: 36px;
+        margin: 2px 0 0 -18px;
+        position: absolute;
+        border-radius: 50%;
+        background-position: 50% 50%;
+        background-size: cover;
+        background-repeat: no-repeat;
+        transform: rotate(45deg);
+    }
 }
 
 .marker.custom {
 
 }
 
+.marker-details {
+    padding: 0.85rem;
+
+    h3 {
+        margin: 11px 0;
+    }
+
+    .marker-entry {
+        padding: 0.85rem 0
+    }
+}
+
 .btn-map-explore {
-  position: absolute;
-  bottom: 10px;
-  right: 10px;
-  color: #fff !important;
-  z-index: 999;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    color: #fff !important;
+    z-index: 999;
 }
 
 .marker.size-1 {
-  font-size: 0.5em;
-  //line-height: 20px;
+    font-size: 0.5em;
+    //line-height: 20px;
 }
+
 .marker.size-2 {
-  font-size: 1em;
-  //line-height: 40px;
+    font-size: 1em;
+    //line-height: 40px;
 }
+
 .marker.size-3 {
-  font-size: 2em;
-  //line-height: 40px;
+    font-size: 2em;
+    //line-height: 40px;
 }
+
 .marker.size-4 {
-  font-size: 3em;
+    font-size: 3em;
 }
+
 .marker.size-5 {
-  font-size: 4em;
+    font-size: 4em;
 }
+
 .marker {
-  i {
-    font-size: 20px;
-    margin: 0;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
-  }
+    i {
+        font-size: 20px;
+        margin: 0;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        -ms-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+    }
 }
 
 
 .marker-popup-actions a:not(.btn) {
-  color: var(--link-text);
+    color: var(--link-text);
 }
+
 .marker-popup-actions a.btn {
-  color: var(--label-default-text);
+    color: var(--label-default-text);
 }
 
 
 
-#map-body {
-    #sidebar-content {
-        padding: 0;
-        overflow: auto;
-        max-height: calc(100vh - 60px);
-        white-space: unset;
-    }
-    .sidebar {
-        li {
-            height: unset;
-        }
-        a {
-            color: var(--sidebar-link);
-        }
-        .entity-content {
-            a {
-                color: var(--link-text);
-            }
-        }
-    }
+.toast-container {
+    bottom: 60px;
+    z-index: 910;
+}
 
-  .main-sidebar {
-    //background-color: #dedede;
-    color: #efefef;
-    overflow: hidden;
-    padding-top: 0;
-    z-index: 1040;
-  }
-
-  .marker-header {
-    .marker-top {
-      float: right;
-    }
-    .marker-name {
-      font-size: 1.4rem;
-      padding: 0.825rem;
-    }
-  }
-  .marker-header.with-image {
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: 50% 50%;
-    aspect-ratio: var(--map-hero-ratio);
-    display: flex;
-    flex-flow: column wrap;
-    flex-direction: column;
-
-    .marker-header-lower {
-      align-self: end;
-      display: flex;
-      align-items: flex-end;
-      width: 100%;
-      flex-grow: 1;
-
-      .marker-name {
-        padding: 2.0rem 0.5rem 0.8rem 0.5rem;
-        font-weight: 700;
-        background: linear-gradient(180deg, rgba(51, 51, 51, 0) 0%, var(--sidebar-background) 100%);
-        overflow: hidden;
-        width: 100%;
-      }
-    }
-  }
-
-  .marker-entry {
-    padding: 0.825rem;
-  }
-  .marker-actions {
-    margin: 20px 0;
-  }
-
-  .entity-title {
-    min-height: 40px;
-    margin-bottom: 5px;
-
-    a {
-      display: flex;
-      align-items: center;
-    }
-
-    .entity-image {
-      display: inline-block;
-      margin-right: 5px;
-    }
-    .entity-name {
-      display: inline;
-      font-size: 12pt;
-    }
-  }
-
-  .map-mode {
+.map-actions, .map-mode {
     position: absolute;
     bottom: 0;
     right: 0;
@@ -201,70 +136,188 @@ $mapSidebarWidth: 380px;
     z-index: 500;
 
     .btn-mode-enable {
-      display: inline-block;
+        display: inline-block;
     }
-    .btn-mode-disable {
-      display: none;
+
+    .btn-mode-disable, .btn-mode-drawing {
+        display: none;
     }
-  }
-  // In the modal modal, no extra padding
-  .modal-body .content .marker-entry {
-    padding: 0;
-  }
+}
+#map-body {
+    #sidebar-content {
+        padding: 0;
+        overflow: auto;
+        max-height: calc(100vh);
+        white-space: unset;
+    }
+
+    .sidebar {
+        li {
+            height: unset;
+        }
+
+        a {
+            color: var(--sidebar-link);
+        }
+
+        .entity-content {
+            a {
+                color: var(--link-text);
+            }
+        }
+    }
+
+    .main-sidebar {
+        //background-color: #dedede;
+        color: #efefef;
+        overflow: hidden;
+        padding-top: 0;
+        z-index: 1040;
+    }
+
+    .marker-header {
+        .marker-top {
+            float: right;
+        }
+
+        .marker-name {
+            font-size: 1.4rem;
+            padding: 0.825rem;
+        }
+    }
+    .map-legend {
+        padding: 0.85rem;
+    }
+
+    .marker-header.with-image {
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: 50% 50%;
+        aspect-ratio: var(--map-hero-ratio);
+        display: flex;
+        flex-flow: column wrap;
+        flex-direction: column;
+
+        .marker-header-lower {
+            align-self: end;
+            display: flex;
+            align-items: flex-end;
+            width: 100%;
+            flex-grow: 1;
+
+            .marker-name {
+                padding: 2.0rem 0.5rem 0.8rem 0.5rem;
+                font-weight: 700;
+                background: linear-gradient(180deg, rgba(51, 51, 51, 0) 0%, var(--sidebar-background) 100%);
+                overflow: hidden;
+                width: 100%;
+            }
+        }
+    }
+
+    .marker-entry {
+        padding: 0 0.825rem;
+    }
+    .marker-actions {
+        margin: 20px 0;
+        .dropdown-menu li > a {
+            color: var(--dropdown-link);
+        }
+    }
+
+    .entity-title {
+        min-height: 40px;
+        margin-bottom: 5px;
+
+        a {
+            display: flex;
+            align-items: center;
+        }
+
+        .entity-image {
+            display: inline-block;
+            margin-right: 5px;
+        }
+
+        .entity-name {
+            display: inline;
+            font-size: 12pt;
+        }
+    }
+
+    // In the modal modal, no extra padding
+    .modal-body .content .marker-entry {
+        padding: 0;
+    }
 }
 
 #map-marker-modal-content .content {
-  padding: 0;
+    padding: 0;
 }
 
-#map-body.map-edit-mode {
-  .map-mode {
-    .btn-mode-enable {
-      display: none;
+body.map-edit-mode {
+    .map-actions {
+        .btn-mode-enable {
+            display: none;
+        }
+
+        .btn-mode-disable {
+            display: inline-block;
+        }
     }
-    .btn-mode-disable {
-      display: inline-block;
+}
+
+body.map-drawing-mode {
+    .map-actions {
+        .btn-mode-enable, .btn-mode-disable {
+            display: none;
+        }
+
+        .btn-mode-drawing {
+            display: inline-block;
+        }
     }
-  }
 }
 
 
 .marker-close {
-  font-size: 2rem;
-  margin: 0.325rem;
-  &:hover {
-    cursor: pointer;
-  }
+    font-size: 2rem;
+    margin: 0.325rem;
+
+    &:hover {
+        cursor: pointer;
+    }
 }
 
 .leaflet-top, .leaflet-bottom {
-  z-index: 800;
+    z-index: 800;
 }
+
 .leaflet-popup img, #sidebar-marker img {
-  max-width: 100%;
-  height: auto;
+    max-width: 100%;
+    height: auto;
 }
 
 @media (min-width: 768px) {
-  #map-body {
-    .main-sidebar {
-      width: $mapSidebarWidth;
-    }
+    #map-body {
+        .main-sidebar {
+            width: $mapSidebarWidth;
+        }
 
-    .content-wrapper, .main-footer {
-      margin-left: $mapSidebarWidth;
-    }
+        .content-wrapper, .main-footer {
+            margin-left: $mapSidebarWidth;
+        }
 
-    .navbar .sidebar-toggle {
-      margin-left: 0;
+        .navbar .sidebar-toggle {
+            margin-left: 0;
+        }
     }
-  }
-  #map-body .main-header .navbar-static-top {
-    margin-left: $mapSidebarWidth;
-  }
-  #map-body.sidebar-collapse .main-header .navbar-static-top {
-    margin-left: 0;
-  }
+    #map-body .main-header .navbar-static-top {
+        margin-left: $mapSidebarWidth;
+    }
+    #map-body.sidebar-collapse .main-header .navbar-static-top {
+        margin-left: 0;
+    }
 }
 
 //@media (max-width: 767px) {
@@ -274,8 +327,8 @@ $mapSidebarWidth: 380px;
 //}
 
 :root {
-  --leaflet-popup-background: #fff;
-  --leaflet-popup-text: inherit;
+    --leaflet-popup-background: #fff;
+    --leaflet-popup-text: inherit;
 }
 
 /** Theming of the leaflet stuff **/
@@ -284,53 +337,61 @@ $mapSidebarWidth: 380px;
 .leaflet-control-layers-expanded,
 .leaflet-control-layers,
 .leaflet-bar a {
-  background-color: var(--leaflet-popup-background) !important;
-  color: var(--leaflet-popup-text) !important;
+    background-color: var(--leaflet-popup-background) !important;
+    color: var(--leaflet-popup-text) !important;
 }
-.leaflet-bar a {
-  &:hover {
-    background: var(--leaflet-popup-background);
-  }
-}
-.leaflet-popup-content-wrapper, .leaflet-popup-tip {
-  background: var(--leaflet-popup-background) !important;
 
-  .leaflet-popup-content {
-    color: var(--leaflet-popup-text);
-  }
+.leaflet-bar a {
+    &:hover {
+        background: var(--leaflet-popup-background);
+    }
 }
+
+.leaflet-popup-content-wrapper, .leaflet-popup-tip {
+    background: var(--leaflet-popup-background) !important;
+
+    .leaflet-popup-content {
+        color: var(--leaflet-popup-text);
+    }
+}
+
 .leaflet-container {
-  background: transparent !important;
+    background: transparent !important;
 }
 
 /** Leaflet marker **/
-.leaflet-ruler{
+.leaflet-ruler {
     height: 48px;
     width: 48px;
     background-image: url("/images/vendor/leaflet/ruler/icon.png"); /* <div>Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div> */
     background-repeat: no-repeat;
     background-position: center;
 }
-.leaflet-ruler:hover{
+
+.leaflet-ruler:hover {
     background-image: url("/images/vendor/leaflet/ruler/icon-colored.png"); /* <div>Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div> */
 }
-.leaflet-ruler-clicked{
+
+.leaflet-ruler-clicked {
     height: 48px;
     width: 48px;
     background-repeat: no-repeat;
     background-position: center;
     background-image: url("/images/vendor/leaflet/ruler/icon-colored.png");
 }
-.leaflet-bar{
+
+.leaflet-bar {
     background-color: #ffffff;
 }
-.result-tooltip{
+
+.result-tooltip {
     background-color: white;
     border-width: medium;
     border-color: var(--map-ruler-color);
     font-size: smaller;
 }
-.moving-tooltip{
+
+.moving-tooltip {
     background-color: rgba(255, 255, 255, .7);
     background-clip: padding-box;
     opacity: 0.5;
@@ -338,7 +399,8 @@ $mapSidebarWidth: 380px;
     border-color: var(--map-ruler-color);;
     font-size: smaller;
 }
-.plus-length{
+
+.plus-length {
     padding-left: 45px;
 }
 

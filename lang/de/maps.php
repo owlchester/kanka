@@ -42,12 +42,10 @@ return [
         'maps'              => 'Karten',
         'max_zoom'          => 'Maximal Zoom',
         'min_zoom'          => 'Minimal Zoom',
-        'name'              => 'Name',
         'tabs'              => [
             'coordinates'   => 'Koordinaten',
             'marker'        => 'Marker',
         ],
-        'type'              => 'Typ',
     ],
     'helpers'       => [
         'center'            => 'Durch Ändern der folgenden Werte wird gesteuert, auf welchen Bereich der Karte der Fokus liegt. Wenn Sie diese Werte leer lassen, wird die Mitte der Karte fokussiert.',
@@ -64,9 +62,7 @@ return [
         'missing_image'     => 'Speichern Sie die Karte mit einem Bild, bevor Sie Ebenen und Markierungen hinzufügen können.',
         'nested_without'    => 'Anzeigen aller Karten ohne übergeordnete Karte. Klicken Sie auf eine Zeile, um die untergeordneten Karten anzuzeigen.',
     ],
-    'index'         => [
-        'title' => 'Karten',
-    ],
+    'index'         => [],
     'maps'          => [
         'title' => 'Karte von :name',
     ],

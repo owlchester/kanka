@@ -4,6 +4,10 @@ return [
     'actions'       => [
         'add'   => 'Add a new group',
     ],
+    'bulks'         => [
+        'delete'    => '{1} Removed :count group.|[2,*] Removed :count groups.',
+        'patch'     => '{1} Updated :count group.|[2,*] Updated :count groups.',
+    ],
     'create'        => [
         'success'   => 'Group :name created.',
         'title'     => 'New Group',
@@ -20,17 +24,26 @@ return [
         'position'  => 'Position',
     ],
     'helper'        => [
-        'amount_v2' => 'Create marker groups and attach markers to them, enabling to quickly show or hide multiple markers with a single click.',
+        'amount_v3' => 'Markers can be grouped together using map groups. Each group can then be clicked when exploring a map to quickly show or hide all markers in it.',
     ],
     'hints'         => [
         'is_shown'  => 'If checked, the group markers will be shown on the map by default.',
+    ],
+    'index'         => [
+        'title' => 'Groups of :name',
     ],
     'pitch'         => [
         'error' => 'Max number of groups reached.',
         'until' => 'Create up to :max groups to each map.',
     ],
     'placeholders'  => [
-        'name'      => 'Shops, Treasure, NPCs',
-        'position'  => 'Optional field to set the order in which the groups appear.',
+        'name'          => 'Shops, Treasure, NPCs',
+        'position'      => 'First',
+        'position_list' => 'After :name',
+    ],
+    'reorder'       => [
+        'save'      => 'Save new order',
+        'success'   => '{1} Reordered :count group.|[2,*] Reordered :count groups.',
+        'title'     => 'Reorder groups',
     ],
 ];

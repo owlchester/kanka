@@ -9,7 +9,7 @@
     'title' => __('maps/markers.create.title', ['name' => $map->name]),
     'description' => '',
     'breadcrumbs' => [
-        ['url' => route('maps.index'), 'label' => __('maps.index.title')],
+        ['url' => route('maps.index'), 'label' => __('entities.maps')],
         ['url' => $map->entity->url('show'), 'label' => $map->name],
         __('maps/markers.create.title')
     ]
@@ -42,39 +42,9 @@
         <div class="modal-footer">
 
             <div class="pull-left">
-                @include('partials.footer_cancel')
+                @include('partials.footer_cancel', ['ajax' => null])
             </div>
-            <div class="submit-group">
-                <input id="submit-mode" type="hidden" value="true"/>
-                <div class="btn-group">
-                    <button class="btn btn-success" id="form-submit-main"
-                        data-target="{{ isset($target) ? $target : null }}">{{ __('crud.save') }}</button>
-                    <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown"
-                        aria-expanded="false">
-                        <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu dropdown-menu-right" role="menu">
-                        <li>
-                            <a href="#" class="dropdown-item form-submit-actions">
-                                {{ __('crud.save') }}
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="dropdown-item form-submit-actions" data-action="submit-update">
-                                {{ __('crud.save_and_update') }}
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="dropdown-item form-submit-actions" data-action="submit-explore">
-                                {{ __('maps/markers.actions.save_and_explore') }}
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="submit-animation" style="display: none;">
-                <button class="btn btn-success" disabled><i class="fa-solid fa-spinner fa-spin"></i></button>
-            </div>
+            @include('maps.markers._actions')
         </div>
     </div>
     {!! Form::close() !!}
@@ -83,9 +53,7 @@
 @section('scripts')
     @parent
     <!-- Make sure you put this AFTER Leaflet's CSS -->
-    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
-        integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
-        crossorigin=""></script>
+    <script src="https://unpkg.com/leaflet@1.9.2/dist/leaflet.js" integrity="sha256-o9N1jGDZrf5tS+Ft4gbIK7mYMipq9lqpVJ91xHSyKhg=" crossorigin=""></script>
     <script src="{{ mix('js/ajax-subforms.js') }}" defer></script>
     <script src="{{ mix('js/location/map-v3.js') }}" defer></script>
 
@@ -109,8 +77,6 @@
 
 @section('styles')
     @parent
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
-        integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
-        crossorigin="" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.2/dist/leaflet.css" integrity="sha256-sA+zWATbFveLLNqWO2gtiw3HL/lh1giY/Inf1BJ0z14=" crossorigin="" />
     <link href="{{ mix('css/map-v3.css') }}" rel="stylesheet">
 @endsection

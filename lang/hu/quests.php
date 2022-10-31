@@ -28,14 +28,10 @@ return [
         'character'     => 'Küldetésadó',
         'copy_elements' => 'A küldetéshez tartozó elemek másolása',
         'date'          => 'Dátum',
-        'description'   => 'Leírás',
-        'image'         => 'Kép',
         'is_completed'  => 'Teljesítve',
-        'name'          => 'Megnevezés',
         'quest'         => 'Szülő Küldetés',
         'quests'        => 'Alküldetések',
         'role'          => 'Szerep',
-        'type'          => 'Típus',
     ],
     'helpers'       => [
         'nested_without'    => 'Minden küldetést megmutat, aminek nincs szülője. Klikkelj egy sorra, hogy lásd a gyermekküldetéseit.',
@@ -43,9 +39,7 @@ return [
     'hints'         => [
         'quests'    => 'A főküldetés és az alküldetések mezők használatával összefüggő küldetések hálóját építheted fel.',
     ],
-    'index'         => [
-        'title' => 'Küldetések',
-    ],
+    'index'         => [],
     'placeholders'  => [
         'date'  => 'A küldetés valós világbéli dátuma',
         'name'  => 'A küldetés neve',

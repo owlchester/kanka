@@ -72,7 +72,6 @@ return [
         'length_days'           => ':count dag|:count dagar',
         'months'                => 'Månader',
         'moons'                 => 'Månar',
-        'name'                  => 'Namn',
         'parameters'            => 'Parametrar',
         'recurring_periodicity' => 'Intervall',
         'recurring_until'       => 'Återkommande till År',
@@ -80,7 +79,6 @@ return [
         'seasons'               => 'Årstider',
         'start_offset'          => 'Start Förskjutning',
         'suffix'                => 'Ändelse',
-        'type'                  => 'Typ',
         'week_names'            => 'Veckonamn',
         'weekdays'              => 'Veckodagar',
     ],
@@ -101,9 +99,7 @@ return [
         'weeks'             => 'Definiera några namn för viktiga veckor i din kalender.',
         'years'             => 'Vissa år är så viktiga att dom har sitt eget namn.',
     ],
-    'index'         => [
-        'title' => 'Kalendrar',
-    ],
+    'index'         => [],
     'layouts'       => [
         'month' => 'Månad',
         'year'  => 'År',

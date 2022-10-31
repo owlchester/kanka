@@ -1,10 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+@extends('emails.base', [
+    'utmSource' => 'subscription',
+    'utmCampaign' => 'expiring-card'
+])
 
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
-</head>
-<body>
+@section('content')
+    <p>
+        <strong>Subscription issue</strong>
+    </p>
     <p>
         {{ __('emails/subscriptions/upcoming.dear', ['name' => $user->name]) }},
     </p>
@@ -18,9 +20,7 @@
 
     <p>
         {{ __('emails/subscriptions/upcoming.closing') }}<br />
-        The Kanka Team<br />
-        <a href="https://kanka.io/{{ $user->locale }}">https://kanka.io/{{ $user->locale }}</a>
+        The Kanka Team
     </p>
 
-</body>
-</html>
+@endsection

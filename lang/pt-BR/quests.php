@@ -30,14 +30,10 @@ return [
         'character'     => 'Quem deu a missão',
         'copy_elements' => 'Copiar elementos anexados na missão',
         'date'          => 'Data',
-        'description'   => 'Descrição',
-        'image'         => 'Imagem',
         'is_completed'  => 'Completa',
-        'name'          => 'Nome',
         'quest'         => 'Missão Primária',
         'quests'        => 'Missões Secundárias',
         'role'          => 'Função',
-        'type'          => 'Tipo',
     ],
     'helpers'       => [
         'is_completed'      => 'Selecione se a missão estiver considerada como completa.',
@@ -46,9 +42,7 @@ return [
     'hints'         => [
         'quests'    => 'Uma "teia" de missões interligadas pode ser construída usando o campo de Missão Principal',
     ],
-    'index'         => [
-        'title' => 'Missões',
-    ],
+    'index'         => [],
     'placeholders'  => [
         'date'  => 'Data (mundo real) para a missão',
         'name'  => 'Nome da missão',

@@ -10,7 +10,6 @@ return [
     'edit'          => [],
     'fields'        => [
         'created_at'    => 'Gewürfelt am',
-        'name'          => 'Name',
         'parameters'    => 'Parameter',
         'results'       => 'Ergebnisse',
         'rolls'         => 'Würfe',
@@ -23,7 +22,6 @@ return [
             'dice'      => 'Würfelwürfe',
             'results'   => 'Ergebnisse',
         ],
-        'title'     => 'Würfelwürfe',
     ],
     'placeholders'  => [
         'dice_roll' => 'Würfelwurf',

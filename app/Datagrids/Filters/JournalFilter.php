@@ -25,6 +25,7 @@ class JournalFilter extends DatagridFilter
             ])
             ->location()
             ->isPrivate()
+            ->template()
             ->hasImage()
             ->hasEntityNotes()
             ->hasEntityFiles()

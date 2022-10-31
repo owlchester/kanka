@@ -9,13 +9,8 @@ return [
     'fields'        => [
         'author'    => 'Yazar',
         'date'      => 'Tarih',
-        'image'     => 'Görsel',
-        'name'      => 'Ad',
-        'type'      => 'Tür',
     ],
-    'index'         => [
-        'title' => 'Günlükler',
-    ],
+    'index'         => [],
     'placeholders'  => [
         'author'    => 'Günlüğü kim yazdı',
         'date'      => 'Günlüğün gerçek dünyada tarihi',

@@ -45,7 +45,7 @@ trait TreeControllerTrait
 
         $this->addNavAction(
             route($this->route . '.index'),
-            '<i class="fa-solid fa-list"></i> ' . __($this->view . '.index.title')
+            '<i class="fa-solid fa-list"></i> ' . __('entities.' . $this->view)
         );
 
         $base = $model

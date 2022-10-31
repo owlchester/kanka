@@ -10,17 +10,13 @@ return [
     ],
     'fields'        => [
         'messages'      => 'Mesajlar',
-        'name'          => 'Ad',
         'participants'  => 'Katılımcılar',
         'target'        => 'Hedef',
-        'type'          => 'Tür',
     ],
     'hints'         => [
         'participants'  => 'Lütfen sağ-üstteki :icon ikonuna tıklayarak muhabbetinize katılımcılar ekleyin.',
     ],
-    'index'         => [
-        'title' => 'Muhabbetler',
-    ],
+    'index'         => [],
     'messages'      => [
         'destroy'       => [
             'success'   => 'Mesaj kaldırıldı.',

@@ -12,16 +12,13 @@ return [
     'fields'                => [
         'attribute_template'    => 'Ana Özellik Taslağı',
         'attributes'            => 'Özellikler',
-        'name'                  => 'Ad',
     ],
     'hints'                 => [
         'automatic'                 => 'Özellikler :link Özellik Taslağından otomatik olarak uygulanır.',
         'entity_type'               => 'Eğer seçilirse, bu türde yeni bir varlık yaratmak otomatik olarak bu taslağı ona uygular.',
         'parent_attribute_template' => 'Bu özellik taslağı başka bir özellik taslağının alt taslağı olabilir. Bu özellik taslağı uygulanırken, kendisi ve bütün üst taslakları uygulanacak.',
     ],
-    'index'                 => [
-        'title' => 'Özellik Taslakları',
-    ],
+    'index'                 => [],
     'placeholders'          => [
         'attribute_template'    => 'Bir özellik taslağı seçin',
         'name'                  => 'Özellik Taslağının adı',

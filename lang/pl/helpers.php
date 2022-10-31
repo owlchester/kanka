@@ -6,7 +6,9 @@ return [
         'description'   => 'W węźle końcowym API :name dostępne są następujące filtry',
         'title'         => 'Filtry API',
     ],
-    'attributes'        => [],
+    'attributes'        => [
+        'link'  => 'Opcje cech',
+    ],
     'calendar-widget'   => [
         'info'  => 'Czemu wciąż to widzę?',
         'title' => 'Widżet kalendarza',

@@ -43,7 +43,7 @@ $(document).ready(function() {
                 templateResult: function (item) {
                     var $span = '';
                     if (item.image) {
-                        $span = $("<span><img src='" + item.image + "' width='40' height='40'/> " + item.text + "</span>");
+                        $span = $("<span><img src='" + item.image + "' width='24' height='24' class='rounded-full'/> " + item.text + "</span>");
                     } else {
                         $span = $("<span>" + item.text + "</span>");
                     }
@@ -61,5 +61,23 @@ $(document).ready(function() {
             language: $(this).data('language'),
             allowClear: true
         });
+
+        // Select2 with colour box
+        $('select.select2-colour').select2({
+            allowClear: false,
+            templateResult: select2ColourState,
+            templateSelection: select2ColourState,
+        });
     }
 });
+
+function select2ColourState (state) {
+    if (state.id === 'none') {
+        return state.text;
+    }
+
+    var $state = $(
+        '<span><div class="badge label bg-' + state.id + '"> </div>' + state.text + '</span>'
+    );
+    return $state;
+}

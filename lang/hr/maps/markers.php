@@ -46,7 +46,6 @@ return [
         'label'                     => 'Oznaka se prikazuje kao blok teksta na karti. Sadržaj će biti ime markera imena entiteta.',
         'polygon'                   => [
             'edit'  => 'Kliknite na kartu da biste taj položaj dodali koordinatama poligona.',
-            'new'   => 'Pomiči marker okolo po mapi kako bi se spremila pozicija na poligon.',
         ],
     ],
     'icons'         => [

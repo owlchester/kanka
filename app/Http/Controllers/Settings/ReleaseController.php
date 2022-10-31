@@ -50,14 +50,18 @@ class ReleaseController extends Controller
         $code = $request->get('code');
 
         $code = Purify::clean($code);
-        $settings->put('banner_' . $code, true);
+
+        // Figure out if this is a banner, or tutorial we are hiding from the user
+        $section = 'banner_';
+        if ($request->get('type') === 'tutorial') {
+            $section = 'tutorial_';
+        }
+        $settings->put($section . $code, true);
         $user->settings = $settings;
         $user->save();
 
         return response()->json([
             'success' => true
         ]);
-
     }
-
 }

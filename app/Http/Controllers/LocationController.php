@@ -145,8 +145,8 @@ class LocationController extends CrudController
 
         $options = ['location' => $location];
         $filters = [];
-        if (request()->has('location_id')) {
-            $options['location_id'] = $location->id;
+        if (request()->has('parent_id')) {
+            $options['parent_id'] = $location->id;
             $filters['location_id'] = $location->id;
         }
         Datagrid::layout(\App\Renderers\Layouts\Location\Character::class)
@@ -188,9 +188,9 @@ class LocationController extends CrudController
 
         $options = ['location' => $location];
         $filters = [];
-        if (request()->has('parent_location_id')) {
-            $options['parent_location_id'] = $location->id;
-            $filters['parent_location_id'] = $options['parent_location_id'];
+        if (request()->has('parent_id')) {
+            $options['parent_id'] = $location->id;
+            $filters['parent_location_id'] = $location->id;
         }
         Datagrid::layout(\App\Renderers\Layouts\Location\Location::class)
             ->route('locations.locations', $options);

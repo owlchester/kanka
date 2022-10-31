@@ -9,19 +9,14 @@ return [
     'fields'        => [
         'author'    => 'Auteur',
         'date'      => 'Date',
-        'image'     => 'Image',
         'journal'   => 'Journal parent',
         'journals'  => 'Sous-journaux',
-        'name'      => 'Nom',
-        'type'      => 'Type',
     ],
     'helpers'       => [
         'journals'          => 'Afficher tous les sous-journaux de ce journal.',
         'nested_without'    => 'Affichage des journaux sans parent. Cliquer sur une rangée pour afficher les journaux enfants.',
     ],
-    'index'         => [
-        'title' => 'Journaux',
-    ],
+    'index'         => [],
     'journals'      => [
         'title' => 'Sous-journaux du journal :name',
     ],

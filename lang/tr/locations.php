@@ -17,13 +17,10 @@ return [
     ],
     'fields'        => [
         'characters'        => 'Karakterler',
-        'image'             => 'Görsel',
         'is_map_private'    => 'Özel Harita',
         'location'          => 'Ana Konum',
         'locations'         => 'Konumlar',
         'map'               => 'Harita',
-        'name'              => 'Ad',
-        'type'              => 'Tür',
     ],
     'helpers'       => [
         'characters'        => 'Bu konumdaki ve onun alt konumlarındaki tüm karakterleri, ya da sadece doğrudan burada olanları göster.',
@@ -36,9 +33,7 @@ return [
     'hints'         => [
         'is_map_private'    => 'Özel bir harita yalnızca serüvenin "Yönetici" rolüne sahip üyeleri tarafından görüntülenebilir.',
     ],
-    'index'         => [
-        'title' => 'Konumlar',
-    ],
+    'index'         => [],
     'items'         => [],
     'journals'      => [],
     'locations'     => [

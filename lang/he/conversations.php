@@ -10,17 +10,13 @@ return [
     ],
     'fields'        => [
         'messages'      => 'הודעות',
-        'name'          => 'שם',
         'participants'  => 'משתתפים',
         'target'        => 'קטגוריה',
-        'type'          => 'סוג',
     ],
     'hints'         => [
         'participants'  => 'הוסף משתתפים בלחיצה על האייקון :icon בצד שמאל למעלה.',
     ],
-    'index'         => [
-        'title' => 'שיחות',
-    ],
+    'index'         => [],
     'messages'      => [
         'destroy'       => [
             'success'   => 'ההודעה הוסרה.',

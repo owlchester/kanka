@@ -19,19 +19,19 @@ class Character extends Layout
             ],
             'character_id' => [
                 'key' => 'name',
-                'label' => 'characters.fields.name',
+                'label' => 'entities.character',
                 'render' => Standard::CHARACTER,
             ],
             'type' => [
                 'key' => 'type',
-                'label' => 'characters.fields.type',
+                'label' => 'crud.fields.type',
                 'render' => function ($model) {
                     return $model->type;
                 },
             ],
             'location' => [
                 'key' => 'location.name',
-                'label' => 'characters.fields.location',
+                'label' => 'crud.fields.location',
                 'render' => function ($model) {
                     if (!$model->location) {
                         return null;

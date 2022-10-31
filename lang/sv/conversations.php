@@ -10,17 +10,13 @@ return [
     ],
     'fields'        => [
         'messages'      => 'Meddelanden',
-        'name'          => 'Namn',
         'participants'  => 'Deltagare',
         'target'        => 'Mål',
-        'type'          => 'Typ',
     ],
     'hints'         => [
         'participants'  => 'Vänligen lägg till deltagare till din konversation genom att trycka på :icon ikonen uppe till höger.',
     ],
-    'index'         => [
-        'title' => 'Konversationer',
-    ],
+    'index'         => [],
     'messages'      => [
         'destroy'       => [
             'success'   => 'Meddelande borttaget.',

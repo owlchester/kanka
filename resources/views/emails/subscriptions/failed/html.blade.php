@@ -12,5 +12,10 @@
         <strong>Subscribed since:</strong><br />
         {{ $user->subscription('kanka')->created_at->isoFormat('MMMM D, Y') }}
     </p>
+    <p>
+        <a href="https://dashboard.stripe.com/customers/{{ $user->stripe_id }}">
+            View user on Stripe
+        </a>
+    </p>
 </body>
 </html>

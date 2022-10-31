@@ -11,17 +11,13 @@ return [
     'fields'        => [
         'is_closed'     => 'Uzavretá',
         'messages'      => 'Správy',
-        'name'          => 'Meno',
         'participants'  => 'Účastníci',
         'target'        => 'Cieľ',
-        'type'          => 'Typ',
     ],
     'hints'         => [
         'participants'  => 'Prosím, pridaj do diskusiu účastníkov tým, že klikneš na symbol :icon hore vpravo.',
     ],
-    'index'         => [
-        'title' => 'Diskusie',
-    ],
+    'index'         => [],
     'messages'      => [
         'destroy'       => [
             'success'   => 'Správa odstránená.',

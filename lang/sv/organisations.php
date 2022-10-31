@@ -7,20 +7,14 @@ return [
     'destroy'       => [],
     'edit'          => [],
     'fields'        => [
-        'image'         => 'Bild',
-        'location'      => 'Plats',
         'members'       => 'Medlemmar',
-        'name'          => 'Namn',
         'organisation'  => 'Huvudorganisation',
         'organisations' => 'Underorganisation',
-        'type'          => 'Typ',
     ],
     'helpers'       => [
         'descendants'   => 'Denna lista innehåller organisationer under denna organisation, och inte bara dem direkt under den.',
     ],
-    'index'         => [
-        'title' => 'Organisationer',
-    ],
+    'index'         => [],
     'members'       => [
         'actions'       => [
             'add'   => 'Lägg till en medlem',

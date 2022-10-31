@@ -2,7 +2,7 @@
     'title' => __('locations.map_points.create.title', ['name' => $location->name]),
     'description' => '',
     'breadcrumbs' => [
-        ['url' => Breadcrumb::index('locations'), 'label' => __('locations.index.title')],
+        ['url' => Breadcrumb::index('locations'), 'label' => __('entities.locations')],
         ['url' => route('locations.show', [$location, '#map']), 'label' => $location->name]
     ]
 ])

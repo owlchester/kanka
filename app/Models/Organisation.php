@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\FilterOption;
 use App\Facades\CampaignLocalization;
 use App\Models\Concerns\Acl;
 use App\Models\Concerns\Nested;
@@ -106,6 +107,41 @@ class Organisation extends MiscModel
                 'members',
                 'organisations'
             ]);
+    }
+
+    /**
+     * Filter for organisations with specific member
+     * @param Builder $query
+     * @param string|null $value
+     * @param FilterOption $filter
+     * @return Builder
+     */
+    public function scopeMember(Builder $query, string|null $value, FilterOption $filter): Builder
+    {
+        if ($filter === FilterOption::NONE) {
+            // If called with a param, it's being called too early and will be called later in the process
+            if (!empty($value)) {
+                return $query;
+            }
+            return $query
+                ->select($this->getTable() . '.*')
+                ->leftJoin('organisation_member as memb', function ($join) {
+                    $join->on('memb.organisation_id', '=', $this->getTable() . '.id');
+                })
+                ->where('memb.character_id', null);
+        } elseif ($filter === FilterOption::EXCLUDE) {
+            return $query
+                ->whereRaw('(select count(*) from organisation_member as memb where memb.organisation_id = ' .
+                    $this->getTable() . '.id and memb.character_id in (' . (int) $value . ')) = 0');
+        }
+        $ids = [$value];
+        return $query
+            ->select($this->getTable() . '.*')
+            ->leftJoin('organisation_member as memb', function ($join) {
+                $join->on('memb.organisation_id', '=', $this->getTable() . '.id');
+            })
+            ->whereIn('memb.character_id', $ids)->distinct();
+
     }
 
     /**
@@ -274,6 +310,7 @@ class Organisation extends MiscModel
             'location_id',
             'organisation_id',
             'is_defunct',
+            'member_id',
         ];
     }
 }

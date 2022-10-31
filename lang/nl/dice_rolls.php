@@ -10,7 +10,6 @@ return [
     'edit'          => [],
     'fields'        => [
         'created_at'    => 'Gerold Bij',
-        'name'          => 'Naam',
         'parameters'    => 'Parameters',
         'results'       => 'Resultaten',
         'rolls'         => 'Worpen',
@@ -23,7 +22,6 @@ return [
             'dice'      => 'Dobbelsteen Worpen',
             'results'   => 'Resultaten',
         ],
-        'title'     => 'Dobbelsteen Worpen van :name',
     ],
     'placeholders'  => [
         'dice_roll' => 'Dobbelsteen Worp',
