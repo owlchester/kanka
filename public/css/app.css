@@ -2483,6 +2483,7 @@ img.note-float-left {
   text-transform: uppercase;
   overflow: hidden;
   word-break: break-word;
+  text-align: center;
   display: flex;
   flex-flow: row wrap;
   flex-direction: column;

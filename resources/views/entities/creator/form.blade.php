@@ -50,7 +50,7 @@
         <div class="qq-more-fields" style="display: none">
         @include('entities.creator.forms.' . $singularType)
 
-        @if (!in_array($type, ['tags', 'posts']))
+        @if (!in_array($type, ['tags', 'posts', 'attribute_templates']))
             <div id="quick-creator-tags-field">
                 @include('cruds.fields.tags', ['dropdownParent' => '#quick-creator-tags-field'])
             </div>
@@ -122,4 +122,5 @@
     <input type="hidden" name="_multi" value="1" />
 @endif
     <input type="hidden" name="action" value="" />
+    <input type="hidden" name="quick-creator" value="1" />
 </form>

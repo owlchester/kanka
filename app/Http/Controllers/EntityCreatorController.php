@@ -9,7 +9,6 @@ use App\Models\MiscModel;
 use App\Models\EntityNote;
 use App\Models\Entity;
 use App\Services\EntityService;
-use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -82,7 +81,7 @@ class EntityCreatorController extends Controller
         }
 
         // Prepare the validator
-        $requestValidator = '\App\Http\Requests\Store' . ucfirst(Str::singular($type));
+        $requestValidator = '\App\Http\Requests\Store' . ucfirst(Str::camel(Str::singular($type)));
         /** @var StoreCharacter $validator */
         $validator = new $requestValidator();
 
@@ -175,7 +174,7 @@ class EntityCreatorController extends Controller
 
         // Loop through the entities, check those enabled in the campaign, and where the user has create access.
         $ignoredTypes = [
-            'calendars', 'conversations', 'tags', 'dice_rolls', 'menu_links', 'maps', 'attribute_templates'
+            'menu_links'
         ];
         foreach ($this->entityService->entities($ignoredTypes) as $name => $class) {
             if ($campaign->enabled($name)) {
@@ -248,8 +247,11 @@ class EntityCreatorController extends Controller
         $entityTypes = [
             'characters' => 'character',
             'locations' => 'location',
-            'families' => 'family',
+            'maps' => 'map',
             'organisations' => 'organisation',
+            'families' => 'family',
+            'calendars' => 'calendar',
+            'timelines' => 'timeline',
             'items' => 'item',
             'notes' => 'note',
             'events' => 'event',
@@ -260,6 +262,8 @@ class EntityCreatorController extends Controller
             'abilities' => 'ability',
             'tags' => 'tag',
             'posts' => 'post',
+            'dice_rolls' => 'dice_roll',
+            'conversations' => 'conversation',
         ];
 
         return view('entities.creator.' . $view, compact(

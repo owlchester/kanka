@@ -30,6 +30,7 @@ class StoreCalendar extends FormRequest
         $rules = [
             'name' => 'required|max:191',
             'type' => 'nullable|max:191',
+            'calendar_id' => 'nullable|integer|exists:calendars,id',
             'image' => 'mimes:jpeg,png,jpg,gif,webp|max:' . auth()->user()->maxUploadSize(),
             'image_url' => 'nullable|url|active_url',
             'month_name' => 'required|array|min:2',
@@ -45,6 +46,14 @@ class StoreCalendar extends FormRequest
                 '*' => new CalendarMoonOffset
             ]
         ];
+
+        if (request()->has('quick-creator')) {
+            $rules = [
+                'name' => 'required|max:191',
+                'type' => 'nullable|max:191',
+                'calendar_id' => 'nullable|integer|exists:calendars,id'
+            ];
+        }
 
         $leapYear = request()->post('has_leap_year');
         if (request()->post('has_leap_year') == true) {
