@@ -27,12 +27,17 @@ trait VisibilityIDTrait
 
     /**
      * Generate the html icon for visibility
+     * @param string|null $extra
+     * @param bool $skipAll
      * @return string
      */
-    public function visibilityIcon(string $extra = null): string
+    public function visibilityIcon(string $extra = null, bool $skipAll = false): string
     {
         $class = $title = '';
         if ($this->visibility_id == Visibility::VISIBILITY_ALL) {
+            if ($skipAll) {
+                return '';
+            }
             $class = 'fa-solid fa-eye';
             $title = __('crud.visibilities.all');
         } elseif ($this->visibility_id == Visibility::VISIBILITY_ADMIN) {

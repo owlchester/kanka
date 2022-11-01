@@ -51,8 +51,14 @@
                             @if($mention->entityNote->entity)
                             <tr>
                                 <td>
+                                    @if ($mention->entityNote->entity->is_private)
+                                        <i class="fa-solid fa-lock" data-toggle="tooltip" title="{{ __('crud.is_private') }}"></i>
+                                    @endif
+                                    <a href="{{ $mention->entityNote->entity->url() }}">{{ $mention->entityNote->entity->name }}</a>
+                                        -
+                                    {!! $mention->entityNote->visibilityIcon(null, true) !!}
                                     <a href="{{ $mention->entityNote->entity->url('show', ['#post-' . $mention->entityNote->id]) }}">
-                                        {{ $mention->entityNote->entity->name }}
+                                        {{ $mention->entityNote->name }}
                                     </a>
                                 </td>
                                 <td>
@@ -63,6 +69,9 @@
                         @elseif ($mention->entity)
                             <tr>
                                 <td>
+                                    @if ($mention->entity->is_private)
+                                        <i class="fa-solid fa-lock" data-toggle="tooltip" title="{{ __('crud.is_private') }}"></i>
+                                    @endif
                                     <a href="{{ $mention->entity->url() }}">{{ $mention->entity->name }}</a>
                                 </td>
                                 <td>
