@@ -5,7 +5,7 @@
             {{ $trans }}
         </a>
     @else
-    <a href="#" class="" data-toggle="entity-creator" data-url="{{ route('entity-creator.form', ['type' => $dropType]) }}" data-entity-type="character">
+    <a href="#" class="" data-toggle="entity-creator" data-url="{{ route('entity-creator.form', ['type' => $dropType, 'mode' => $mode ?? null]) }}" data-entity-type="character">
         <i class="fa-solid" aria-hidden="true"></i>
         {{ $trans }}
     </a>

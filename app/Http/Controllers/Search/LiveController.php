@@ -33,7 +33,11 @@ class LiveController extends Controller
         $term = trim($request->get('q'));
         $type = $request->get('type', null);
         if (!empty($type)) {
-            $type = (int) trim($type);
+            $type = trim($type);
+            if (!is_numeric($type)) {
+                $type = config('entities.ids.' . $type);
+            }
+            $type = (int) $type;
         }
         $exclude = trim($request->get('exclude'));
         $campaign = CampaignLocalization::getCampaign();

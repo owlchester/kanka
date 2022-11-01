@@ -27,6 +27,11 @@ return [
             'new'       => 'New name',
             'remove'    => 'Remove',
         ],
+        'modes' => [
+            'bulk'          => 'Bulk add',
+            'default'       => 'Quick add',
+            'templates'     => 'Template select',
+        ],
         'success_multiple'  => '{1} New entity :link created.|[2,*] New entities :link created.',
         'title'             => 'New Entity',
         'tooltip'           => 'Create a new entity without leaving the current page.',
