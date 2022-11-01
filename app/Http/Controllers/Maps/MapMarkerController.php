@@ -135,7 +135,7 @@ class MapMarkerController extends Controller
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function edit(Map $map, MapMarker $mapMarker)
+    public function edit(Map $map, MapMarker $mapMarker, string $from = '' )
     {
         $this->authorize('update', $map);
         if ($mapMarker->map_id !== $map->id) {
