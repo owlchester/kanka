@@ -437,7 +437,7 @@ trait EntityRelations
 
     /**
      * List of entities that mention this entity
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return EntityMention|\Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function targetMentions()
     {
