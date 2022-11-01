@@ -187,7 +187,7 @@ class SearchService
             if ($this->campaign->boosted()) {
                 $query
                     ->select(['entities.*', 'ea.id as alias_id', 'ea.name as alias_name'])
-                    ->distinct()
+                    ->groupBy('ea.entity_id')
                     ->leftJoin('entity_assets as ea', function ($join) use ($cleanTerm) {
                         $join->on('ea.entity_id', '=', 'entities.id');
                         if (Str::startsWith($this->term, '=')) {
