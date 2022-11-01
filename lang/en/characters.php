@@ -1,4 +1,4 @@
-<?php
+$<?php
 
 return [
     'actions'       => [
@@ -81,6 +81,7 @@ return [
         'age'               => 'Age',
         'appearance_entry'  => 'Description',
         'appearance_name'   => 'Hair, Eyes, Skin, Height',
+        'name'              => 'Name of the character',
         'personality_entry' => 'Details',
         'personality_name'  => 'Goals, Mannerisms, Fears, Bonds',
         'physical'          => 'Physical',
