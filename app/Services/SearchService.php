@@ -261,7 +261,7 @@ class SearchService
             ];
 
             //If the result is a map, also add its explore page as a result.
-            if ($model->type() == 'map' && $model->child->explorable()) {
+            if (!request()->new && $model->type() == 'map' && $model->child->explorable()) {
                 $searchResults[] = [
                     'id' => $model->id,
                     'fullname' => $parsedName,
