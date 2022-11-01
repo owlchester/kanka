@@ -340,42 +340,7 @@ tr.tr-hover {
   }
 }
 
-// Entity creator model buttons
-.entity-creator {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 1rem;
-  a {
-    padding: 20px 10px;
-    //text-align: center;
-    color: var(--quick-creator-button-text);
-    line-height: 0.9rem;
-    font-size: 0.85rem;
-    background-color: var(--quick-creator-button-background);
-    text-transform: uppercase;
-    overflow: hidden;
-    //height: 94px;
-    word-break: break-word;
 
-    display: flex;
-    flex-flow: row wrap;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-    &:hover {
-      background-color: var(--quick-creator-button-hover-background);
-      box-shadow: $box-shadow-hover;
-      transition: all 0.3s ease-in-out;
-      color: var(--quick-creator-button-hover-text);
-    }
-  }
-
-  i {
-    display: block;
-    margin-bottom: 0.85rem;
-  }
-}
 
 #new-entity-modal, #entity-modal {
   z-index: 9900;
@@ -872,6 +837,7 @@ button.dropdown-item {
 @import "box";
 @import "conversation";
 @import "quest";
+@import "quick-creator";
 @import "ads";
 @import "sortable";
 @import "campaign";

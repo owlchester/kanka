@@ -1,14 +1,19 @@
 @inject('campaignService', 'App\Services\CampaignService')
 
-<div class="modal-body text-center">
+<div class="modal-body">
     @include('partials.modals.close')
-
-    @if(isset($new))
-        <div class="alert alert-success alert-dismissable">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-            {!! $new !!}
+    <div class="quick-creator-header">
+        <div>
+            <div class="qq-entity-type">
+                {{ __('entities.creator.title') }}
+            </div>
         </div>
-    @endif
+    </div>
+
+    <div class="quick-creator-body">
+
+    @includeWhen(isset($new), 'entities.creator._created', ['success' => $new ?? null])
+
     <p class="help-block mb-5">{{ __('entities.creator.helper_v2') }}</p>
     <div class="entity-creator">
         @if (isset($entities['characters']))
@@ -18,17 +23,17 @@
                 </a>
         @endif
 
+        @if (isset($entities['locations']))
+            <a href="#" class="rounded-lg quick-creator-selection" data-toggle="entity-creator" data-url="{{ route('entity-creator.form', ['type' => 'locations']) }}" data-entity-type="location">
+                <i class="ra ra-tower ra-2x"></i>
+                {{ __('entities.location') }}
+            </a>
+        @endif
+
         @if (isset($entities['families']))
                 <a href="#" class="rounded-lg quick-creator-selection" data-toggle="entity-creator" data-url="{{ route('entity-creator.form', ['type' => 'families']) }}" data-entity-type="family">
                     <i class="ra ra-double-team ra-2x"></i>
                     {{ __('entities.family') }}
-                </a>
-        @endif
-
-        @if (isset($entities['locations']))
-                <a href="#" class="rounded-lg quick-creator-selection" data-toggle="entity-creator" data-url="{{ route('entity-creator.form', ['type' => 'locations']) }}" data-entity-type="location">
-                    <i class="ra ra-tower ra-2x"></i>
-                    {{ __('entities.location') }}
                 </a>
         @endif
 
@@ -115,12 +120,16 @@
             </a>
         @endcan
     </div>
+    </div>
 
-    <p class="help-block my-5">{{ __('entities.creator.missing') }}</p>
+    <div class="quick-creator-footer text-center">
 
-    <a href="//docs.kanka.io/en/latest/features/quick-creator.html" target="_blank">
-        <i class="fa-solid fa-external-link aria-hidden="true"></i>
-        {{ __('front/newsletter.actions.learn_more') }}
-    </a>
+        <p class="help-block my-5">{{ __('entities.creator.missing') }}</p>
+
+        <a href="//docs.kanka.io/en/latest/features/quick-creator.html" target="_blank">
+            <i class="fa-solid fa-external-link" aria-hidden="true"></i>
+            {{ __('front/newsletter.actions.learn_more') }}
+        </a>
+    </div>
 </div>
 

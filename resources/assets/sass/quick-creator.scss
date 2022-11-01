@@ -1,0 +1,107 @@
+// Entity creator model buttons
+.entity-creator {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1rem;
+    a {
+        padding: 20px 10px;
+        //text-align: center;
+        color: var(--quick-creator-button-text);
+        line-height: 0.9rem;
+        font-size: 0.85rem;
+        background-color: var(--quick-creator-button-background);
+        text-transform: uppercase;
+        overflow: hidden;
+        //height: 94px;
+        word-break: break-word;
+
+        display: flex;
+        flex-flow: row wrap;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        &:hover {
+            background-color: var(--quick-creator-button-hover-background);
+            box-shadow: $box-shadow-hover;
+            transition: all 0.3s ease-in-out;
+            color: var(--quick-creator-button-hover-text);
+        }
+    }
+
+    i {
+        display: block;
+        margin-bottom: 0.85rem;
+    }
+}
+
+.quick-creator-header {
+    margin-top: 2rem;
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid var(--input-border-color);
+    .qq-entity-type {
+        font-size: 1.5rem;
+    }
+    .qq-mode {
+        font-size: 0.9rem;
+        margin-bottom: 0.5rem;
+        text-transform: uppercase;
+    }
+    .qq-toggles {
+        display: flex;
+        justify-content: flex-end;
+        align-content: center;
+        align-items: center;
+
+        .qq-mode-toggle {
+            display: inline-block;
+            background-color: #eee;
+            cursor: pointer;
+            margin-left: 0.3rem;
+            width: 38px;
+            padding: 6px;
+            text-align: center;
+            border-radius: 5px;
+            border: 1px solid #eee;
+            align-self: flex-end;
+
+            i {
+                font-size: 1.0rem;
+                color: #333;
+            }
+
+            &:hover {
+                background-color: #ddd;
+            }
+        }
+
+        .qq-mode-toggle.active {
+            border-color: #0d95e8;
+            background-color: #e5e5e5;
+        }
+    }
+}
+
+.quick-creator-body {
+    .qq-action-more {
+        text-transform: uppercase;
+        color: #aaa;
+        font-size: 0.8rem;
+        cursor: pointer;
+
+        &:focus {
+            border-bottom: 1px dotted #aaa;
+        }
+    }
+}
+
+.quick-creator-loading {
+    text-align: center;
+    font-size: 3rem;
+    padding: 2rem;
+}
+
+.quick-creator-footer {
+    margin-top: 1rem;
+}

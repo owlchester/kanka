@@ -16,8 +16,10 @@ return [
     'creator'               => [
         'actions'           => [
             'create'    => 'Create :type',
+            'more'      => 'Add more details',
         ],
         'back'              => 'Back to selection',
+        'bulk_names'        => 'Add one name per line',
         'duplicate'         => 'Heads up! There are other entities of this type with a similar name.',
         'helper_v2'         => 'Quickly create the foundation of a new entity without interrupting your current flow.',
         'missing'           => 'Not seeing all entity types? It might be disabled, your permissions might not allow it, or it isn\'t supported for quick creation.',
