@@ -4546,7 +4546,7 @@ function quickCreatorSubformHandler() {
   });
   $('#entity-creator-form').submit(function (e) {
     e.preventDefault();
-    quickCreatorSubmitBtn.prop('disabled', true).find('span').hide().parent().find('i').show();
+    quickCreatorSubmitBtn.prop('disabled', true).find('span').hide().parent().find('i.fa-spin').show();
     $('div.text-danger').remove();
     $.post({
       url: $(this).attr('action'),
@@ -4614,7 +4614,7 @@ function quickCreatorSubformHandler() {
         }
       }
 
-      quickCreatorSubmitBtn.prop('disabled', false).find('i').hide().parent().find('span').show();
+      quickCreatorSubmitBtn.prop('disabled', false).find('i.fa-spin').hide().parent().find('span').show();
       $('#entity-creator-form [name="action"]').val('');
     });
   });

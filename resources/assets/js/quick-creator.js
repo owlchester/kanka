@@ -106,7 +106,7 @@ function quickCreatorSubformHandler() {
         quickCreatorSubmitBtn
             .prop('disabled', true)
             .find('span').hide()
-            .parent().find('i').show();
+            .parent().find('i.fa-spin').show();
 
         $('div.text-danger').remove();
 
@@ -177,7 +177,7 @@ function quickCreatorSubformHandler() {
             }
             quickCreatorSubmitBtn
                 .prop('disabled', false)
-                .find('i').hide()
+                .find('i.fa-spin').hide()
                 .parent().find('span').show();
 
             $('#entity-creator-form [name="action"]').val('');
