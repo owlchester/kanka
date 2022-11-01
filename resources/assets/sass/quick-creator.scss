@@ -96,7 +96,7 @@
         font-size: 0.8rem;
         cursor: pointer;
 
-        &:focus {
+        &:focus, &:hover {
             border-bottom: 1px dotted #aaa;
         }
     }

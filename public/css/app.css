@@ -2556,7 +2556,7 @@ img.note-float-left {
   font-size: 0.8rem;
   cursor: pointer;
 }
-.quick-creator-body .qq-action-more:focus {
+.quick-creator-body .qq-action-more:focus, .quick-creator-body .qq-action-more:hover {
   border-bottom: 1px dotted #aaa;
 }
 
