@@ -57,7 +57,7 @@
 
         .qq-mode-toggle {
             display: inline-block;
-            background-color: #eee;
+            background-color: var(--btn-default-background);
             cursor: pointer;
             margin-left: 0.3rem;
             width: 38px;
@@ -69,17 +69,22 @@
 
             i {
                 font-size: 1.0rem;
-                color: #333;
+                color: var(--btn-default-text);
             }
 
             &:hover {
-                background-color: #ddd;
+                border-color: var(--link-text);
+                i {
+                    color: var(--link-text);
+                }
             }
         }
 
         .qq-mode-toggle.active {
-            border-color: #0d95e8;
-            background-color: #e5e5e5;
+            border-color: var(--link-text);
+            i {
+                color: var(--link-text);
+            }
         }
     }
 }
