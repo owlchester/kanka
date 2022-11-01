@@ -147,13 +147,6 @@ class MapMarkerController extends Controller
         $includeMap = true;
         $activeTab = $mapMarker->shape_id;
 
-        if (request()->from == 'explore') {
-            $explore = true;
-            return view(
-                'maps.markers.edit',
-                compact('map', 'ajax', 'model', 'includeMap', 'activeTab', 'explore')
-            );
-        }
         return view(
             'maps.markers.edit',
             compact('map', 'ajax', 'model', 'includeMap', 'activeTab')
