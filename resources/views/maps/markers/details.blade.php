@@ -36,7 +36,7 @@ if ($marker->entity && $marker->entity->hasImage($boosted)) {
 @endif
 
 @if ($marker->entity)
-    @if($marker->entity->typeId() === config('entities.ids.map'))
+    @if($marker->entity->isMap())
         <div class="marker-map-link text-center m-3">
             <a href="{{ $marker->entity->url('explore') }}" target="_blank" class="btn btn-primary">
                 <i class="fa-solid fa-map" aria-hidden="true"></i> {{ __('maps.actions.explore') }}
@@ -44,7 +44,7 @@ if ($marker->entity && $marker->entity->hasImage($boosted)) {
         </div>
     @endif
 
-    @if($marker->entity->typeID() === config('entities.ids.location') && !$marker->entity->child->maps->isEmpty())
+    @if($marker->entity->isLocation() && !$marker->entity->child->maps->isEmpty())
         <div class="marker-explore-links text-center m-3">
             @foreach ($marker->entity->child->maps as $map)
                 <a href="{{ route('maps.explore', $map) }}" class="btn btn-block btn-primary" target="_blank">

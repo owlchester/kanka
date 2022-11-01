@@ -13,6 +13,7 @@ use App\Models\Concerns\Paginatable;
 use App\Models\Concerns\Picture;
 use App\Models\Concerns\Searchable;
 use App\Models\Concerns\SortableTrait;
+use App\Models\Concerns\EntityType;
 use App\Models\Relations\EntityRelations;
 use App\Models\Scopes\EntityScopes;
 use App\Traits\CampaignTrait;
@@ -59,6 +60,7 @@ class Entity extends Model
         EntityRelations,
         BlameableTrait,
         EntityScopes,
+        EntityType,
         Searchable,
         TooltipTrait,
         Picture,
@@ -121,9 +123,9 @@ class Entity extends Model
      */
     public function child()
     {
-        if ($this->type_id == config('entities.ids.attribute_template')) {
+        if ($this->isAttributeTemplate()) {
             return $this->attributeTemplate();
-        } elseif ($this->type_id == config('entities.ids.dice_roll')) {
+        } elseif ($this->isDiceRoll()) {
             return $this->diceRoll();
         }
         return $this->{$this->type()}();
@@ -143,9 +145,9 @@ class Entity extends Model
      */
     public function reloadChild()
     {
-        if ($this->type_id == config('entities.ids.attribute_template')) {
+        if ($this->isAttributeTemplate()) {
             return $this->load('attributeTemplate');
-        } elseif ($this->type_id == config('entities.ids.dice_roll')) {
+        } elseif ($this->isDiceRoll()) {
             return $this->load('diceRoll');
         }
 

@@ -75,7 +75,7 @@ if (isset($colourAppendTo) && request()->ajax()) {
 
 @include('cruds.fields.visibility_id', ['model' => $entityEvent ?? null])
 
-@if (!empty($entity) && $entity->typeId() == config('entities.ids.character'))
+@if (!empty($entity) && $entity->isCharacter())
     <div class="form-group">
         <label>{{ __('entities/events.fields.type') }}</label>
         {!! Form::select('type_id', [null => '', 2 => __('entities/events.types.birth'), 3 =>  __('entities/events.types.death')], (isset($entityEvent) ? $entityEvent->type_id : null), ['class' => 'form-control']) !!}

@@ -292,7 +292,7 @@ class AbilityService
      */
     public function import(): int
     {
-        if ($this->entity->typeId() !== config('entities.ids.character')) {
+        if (!$this->entity->isCharacter()) {
             throw new Exception('not_character');
         }
         /** @var Character $character */

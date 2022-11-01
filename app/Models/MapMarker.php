@@ -296,7 +296,7 @@ class MapMarker extends Model
         if (!empty($this->entity)) {
             if (!empty($this->name)) { // Name is set, include link to the entity
                 $url = $this->entity->url();
-                if ($this->entity->typeId() == config('entities.ids.map')) {
+                if ($this->entity->isMap()) {
                     $url = $this->entity->url('explore');
                 }
                 $body .= "<p><a href=\"$url\">" . str_replace('`', '\'', $this->entity->name) . "</a></p>";
@@ -476,7 +476,7 @@ class MapMarker extends Model
         if (empty($this->name) && !empty($this->entity)) {
             if ($link) {
                 $url = $this->entity->url();
-                if ($this->entity->typeId() == config('entities.ids.map')) {
+                if ($this->entity->isMap()) {
                     $url = $this->entity->url('explore');
                 }
                 return '<a href="' . $url . '">' . e($this->entity->name) . '</a>';

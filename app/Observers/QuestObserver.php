@@ -41,7 +41,7 @@ class QuestObserver extends MiscObserver
 
             /** @var Entity $source */
             $source = Entity::findOrFail($sourceId);
-            if ($source->typeId() == config('entities.ids.quest')) {
+            if ($source->isQuest()) {
 
                 foreach ($source->quest->elements as $sub) {
                     $newSub = $sub->replicate();
