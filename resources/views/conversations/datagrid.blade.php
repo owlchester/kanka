@@ -13,7 +13,7 @@
         'name',
         'type',
         [
-            'label' => __('conversations.fields.target'),
+            'label' => __('conversations.fields.participants'),
             'field' => 'target_id',
             'render' => function($model) {
                 return __('conversations.targets.' . ($model->forCharacters() ? 'characters' : 'members'));

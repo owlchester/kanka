@@ -33,6 +33,10 @@ class StoreDiceRoll extends FormRequest
             'image' => 'mimes:jpeg,png,jpg,gif,webp|max:' . auth()->user()->maxUploadSize(),
         ];
 
+        if (request()->has('quick-creator')) {
+            unset($rules['parameters']);
+        }
+
         return $this->clean($rules);
     }
 }
