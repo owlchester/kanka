@@ -4477,9 +4477,19 @@ $(document).ready(function () {
 function quickCreatorUI() {
   $('[data-toggle="entity-creator"]').unbind('click').click(function (e) {
     e.preventDefault();
-    quickCreatorLoadingModal();
+    var type = $(this).data('type');
+
+    if (type === 'inline') {
+      $('.quick-creator-body').hide();
+      $('.quick-creator-footer').hide();
+      $('.quick-creator-loading').show();
+    } else {
+      quickCreatorLoadingModal();
+    }
+
     $.ajax({
-      url: $(this).data('url')
+      url: $(this).data('url'),
+      context: this
     }).done(function (data) {
       $(quickCreatorModalID).find('.modal-content').show().html(data);
       $(quickCreatorModalID).find('.modal-spinner').hide();
