@@ -171,8 +171,25 @@ Route::patch('/entities/{entity}/entry', [\App\Http\Controllers\Entity\EntryCont
 Route::get('/entities/{entity}/relations_map', 'Entity\RelationController@map')->name('entities.relations_map');
 Route::get('/entities/{entity}/relations/table', 'Entity\RelationController@table')->name('entities.relations_table');
 
+// Entity
 Route::post('/entities/{entity}/confirm-editing', 'Entity\EditingController@confirm')->name('entities.confirm-editing');
 Route::post('/entities/{entity}/keep-alive', 'Entity\EditingController@keepAlive')->name('entities.keep-alive');
+
+// Campaign
+Route::post('/editing/campaigns/{campaign}/confirm-editing', 'Entity\EditingController@confirmCampaign')->name('campaigns.confirm-editing');
+Route::post('/editing/campaigns/{campaign}/keep-alive', 'Entity\EditingController@keepAliveCampaign')->name('campaigns.keep-alive');
+
+// Posts
+Route::post('/editing/posts/{entity}/{entity_note}/confirm-editing', 'Entity\EditingController@confirmPost')->name('posts.confirm-editing');
+Route::post('/editing/posts/{entity}/{entity_note}/keep-alive', 'Entity\EditingController@keepAlivePost')->name('posts.keep-alive');
+
+// Quest Elements
+Route::post('/editing/quest-elements/{quest_element}/confirm-editing', 'Entity\EditingController@confirmQuestElement')->name('quest-elements.confirm-editing');
+Route::post('/editing/quest-elements/{quest_element}/keep-alive', 'Entity\EditingController@keepAliveQuestElement')->name('quest-elements.keep-alive');
+
+// Timeline Elements
+Route::post('/editing/timeline-elements/{timeline_element}/confirm-editing', 'Entity\EditingController@confirmTimelineElement')->name('timeline-elements.confirm-editing');
+Route::post('/editing/timeline-elements/{timeline_element}/keep-alive', 'Entity\EditingController@keepAliveTimelineElement')->name('timeline-elements.keep-alive');
 
 // Permission save
 Route::post('/campaign_roles/{campaign_role}/savePermissions', 'CampaignRoleController@savePermissions')->name('campaign_roles.savePermissions');

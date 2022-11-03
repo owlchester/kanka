@@ -6,6 +6,8 @@ use App\Datagrids\Sorters\QuestElementSorter;
 use App\Models\Quest;
 use App\Models\QuestElement;
 use App\Http\Requests\StoreQuestElement;
+use App\Facades\CampaignLocalization;
+use App\Services\Entity\MultiEditingService;
 use App\Traits\GuestAuthTrait;
 use Illuminate\Support\Facades\Auth;
 
@@ -130,9 +132,24 @@ class QuestElementController extends Controller
         $this->authorize('update', $quest);
         $model = $questElement;
 
+        /** @var MiscModel $model */
+        $campaign = CampaignLocalization::getCampaign();
+        $editingUsers = null;
+
+        if ($campaign->hasEditingWarning()) {
+            /** @var MultiEditingService $editingService */
+            $editingService = app()->make(MultiEditingService::class);
+            $editingUsers = $editingService->model($questElement)->user(auth()->user())->users();
+            // If no one is editing the quest element, we are now editing it
+            if (empty($editingUsers)) {
+                $editingService->edit();
+            }
+        }
+
         return view('quests.elements.update', compact(
             'quest',
-            'model'
+            'model',
+            'editingUsers'
         ));
     }
 
@@ -151,6 +168,13 @@ class QuestElementController extends Controller
 
         $questElement->update($data);
         $questElement->refresh();
+
+        /** @var MultiEditingService $editingService */
+        $editingService = app()->make(MultiEditingService::class);
+        $editingService->model($questElement)
+            ->user($request->user())
+            ->finish();
+
 
         if ($request->has('submit-update')) {
             return redirect()

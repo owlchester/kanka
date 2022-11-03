@@ -6,6 +6,8 @@ namespace App\Models;
 use App\Facades\Mentions;
 use App\Models\Concerns\Blameable;
 use App\Traits\VisibilityIDTrait;
+use App\User;
+use App\Models\EntityUser;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Str;
@@ -166,5 +168,15 @@ class TimelineElement extends Model
     public function collapsed(): bool
     {
         return $this->is_collapsed;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'entity_user')
+            ->using(EntityUser::class)
+            ->withPivot('type_id');
     }
 }

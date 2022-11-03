@@ -451,4 +451,9 @@ TEXT
         'public'    => 'Public',
         'review'    => 'Awaiting Review',
     ],
+    'warning'   => [
+        'editing'   => [
+            'description'   => 'Looks like someone else is currently editing this campaign! Do you want to go back or ignore this warning, at the risk of losing data? Members currently editing this campaign:',
+        ],
+    ],
 ];

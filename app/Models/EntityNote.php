@@ -7,6 +7,8 @@ use App\Models\Concerns\Acl;
 use App\Models\Concerns\Blameable;
 use App\Models\Concerns\Paginatable;
 use App\Traits\VisibilityIDTrait;
+use App\User;
+use App\Models\EntityUser;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Arr;
@@ -166,5 +168,15 @@ class EntityNote extends Model
     public function collapsed(): bool
     {
         return Arr::get($this->settings, 'collapsed', false);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'entity_user', 'post_id')
+            ->using(EntityUser::class)
+            ->withPivot('type_id');
     }
 }

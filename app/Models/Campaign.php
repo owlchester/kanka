@@ -11,6 +11,7 @@ use App\Models\Concerns\LastSync;
 use App\Models\Relations\CampaignRelations;
 use App\Models\Scopes\CampaignScopes;
 use App\User;
+use App\Models\EntityUser;
 use Carbon\Carbon;
 use Illuminate\Notifications\Notification;
 use Illuminate\Support\Arr;
@@ -579,5 +580,15 @@ class Campaign extends MiscModel
     public function follower(): int
     {
         return (int) $this->follower;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'entity_user')
+            ->using(EntityUser::class)
+            ->withPivot('type_id');
     }
 }

@@ -23,6 +23,11 @@ return [
             'quest'             => 'Quest',
         ],
         'title'     => 'Quest :name Elements',
+        'warning'   => [
+            'editing'   => [
+                'description'   => 'Looks like someone else is currently editing this quest element! Do you want to go back or ignore this warning, at the risk of losing data? Members currently editing this quest element:',
+            ],
+        ],
     ],
     'fields'        => [
         'character'     => 'Instigator',

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreEntityNote;
+use App\Facades\CampaignLocalization;
+use App\Services\Entity\MultiEditingService;
 use App\Models\EntityNote;
 use App\Traits\GuestAuthTrait;
 use Illuminate\Support\Facades\Auth;
@@ -96,10 +98,24 @@ class EntityNoteController extends Controller
     {
         $this->authorize('entity-note', [$entity->child, 'edit', $entityNote]);
 
+        /** @var MiscModel $model */
+        $campaign = CampaignLocalization::getCampaign();
+        $editingUsers = null;
+        $model = $entityNote;
+
+        if ($campaign->hasEditingWarning()) {
+            /** @var MultiEditingService $editingService */
+            $editingService = app()->make(MultiEditingService::class);
+            $editingUsers = $editingService->model($model)->user(auth()->user())->users();
+            // If no one is editing the model, we are now editing it
+            if (empty($editingUsers)) {
+                $editingService->edit();
+            }
+        }
+
         $name = $entity->pluralType() . '.notes' . $this->view;
         $route = 'entities.' . $this->route;
         $parentRoute = $entity->pluralType();
-        $model = $entityNote;
         $from = request()->get('from');
 
         return view('entities.pages.entity-notes.edit', compact(
@@ -108,7 +124,8 @@ class EntityNoteController extends Controller
             'name',
             'route',
             'parentRoute',
-            'from'
+            'from',
+            'editingUsers'
         ));
     }
 
@@ -122,6 +139,13 @@ class EntityNoteController extends Controller
         }
 
         $entityNote->update($request->all());
+
+        /** @var MultiEditingService $editingService */
+        $editingService = app()->make(MultiEditingService::class);
+        $editingService->model($entityNote)
+            ->user($request->user())
+            ->finish();
+
 
         if ($request->has('submit-new')) {
             $route = route('entities.entity_notes.create', [$entity]);
