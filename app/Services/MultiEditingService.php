@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Services\Entity;
+namespace App\Services;
 
 
 use App\Models\Entity;
@@ -45,7 +45,7 @@ class MultiEditingService
     {
         $data = [];
         $users = $this->model
-            ->users()
+            ->editingUsers()
             ->where('type_id', EntityUser::TYPE_KEEPALIVE)
             ->where('entity_user.updated_at', '>=', Carbon::now()->subMinutes(10))
             ->where('user_id', '!=', $this->user->id)
@@ -65,7 +65,7 @@ class MultiEditingService
      */
     public function isEditing(): bool
     {
-        return $this->model->users()
+        return $this->model->editingUsers()
             ->where('type_id', EntityUser::TYPE_KEEPALIVE)
             ->where('user_id', $this->user->id)
             ->count() !== 0;
@@ -78,16 +78,16 @@ class MultiEditingService
     public function edit(): self
     {
         $model = new EntityUser();
-        if ($this->model->getTable() == 'entity_notes') {
+        if ($this->model instanceof EntityNote) {
             $model->post_id = $this->model->id;
-        } elseif ($this->model->getTable() == 'campaigns') {
+        } elseif ($this->model instanceof Campaign) {
             $model->campaign_id = $this->model->id;
-        } elseif ($this->model->getTable() == 'timeline_elements') {
+        } elseif ($this->model instanceof TimelineElement) {
             $model->timeline_element_id = $this->model->id;
-        } elseif ($this->model->getTable() == 'quest_elements') {
+        } elseif ($this->model instanceof QuestElement) {
             $model->quest_element_id = $this->model->id;
-        } elseif ($this->model->getTable() == 'entities') {
-            $model->model_id = $this->model->id;
+        } elseif ($this->model instanceof Entity) {
+            $model->entity_id = $this->model->id;
         }
         $model->user_id = $this->user->id;
         $model->type_id = EntityUser::TYPE_KEEPALIVE;
@@ -101,15 +101,15 @@ class MultiEditingService
      */
     public function finish(): self
     {
-        if ($this->model->getTable() == 'entity_notes') {
+        if ($this->model instanceof EntityNote) {
             $id = 'post_id';
-        } elseif ($this->model->getTable() == 'campaigns') {
+        } elseif ($this->model instanceof Campaign) {
             $id = 'campaign_id';
-        } elseif ($this->model->getTable() == 'timeline_elements') {
+        } elseif ($this->model instanceof TimelineElement) {
             $id = 'timeline_element_id';
-        } elseif ($this->model->getTable() == 'quest_elements') {
+        } elseif ($this->model instanceof QuestElement) {
             $id = 'quest_element_id';
-        } elseif ($this->model->getTable() == 'entities') {
+        } elseif ($this->model instanceof Entity) {
             $id = 'entity_id';
         }
 
@@ -130,7 +130,7 @@ class MultiEditingService
      */
     public function keepAlive(): self
     {
-        $pulse = $this->model->users()
+        $pulse = $this->model->editingUsers()
             ->where('type_id', EntityUser::TYPE_KEEPALIVE)
             ->where('user_id', $this->user->id)
             ->first();

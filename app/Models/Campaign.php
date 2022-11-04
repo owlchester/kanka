@@ -581,14 +581,4 @@ class Campaign extends MiscModel
     {
         return (int) $this->follower;
     }
-
-    /**
-     * @return mixed
-     */
-    public function users()
-    {
-        return $this->belongsToMany(User::class, 'entity_user')
-            ->using(EntityUser::class)
-            ->withPivot('type_id');
-    }
 }

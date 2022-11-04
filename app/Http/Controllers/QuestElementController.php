@@ -7,7 +7,7 @@ use App\Models\Quest;
 use App\Models\QuestElement;
 use App\Http\Requests\StoreQuestElement;
 use App\Facades\CampaignLocalization;
-use App\Services\Entity\MultiEditingService;
+use App\Services\MultiEditingService;
 use App\Traits\GuestAuthTrait;
 use Illuminate\Support\Facades\Auth;
 

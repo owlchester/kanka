@@ -8,7 +8,7 @@ use App\Models\Campaign;
 use App\Http\Requests\StoreCampaign;
 use App\Http\Requests\DeleteCampaign;
 use App\Models\UserLog;
-use App\Services\Entity\MultiEditingService;
+use App\Services\MultiEditingService;
 use App\Services\CampaignService;
 use App\Services\EntityService;
 use App\Services\StarterService;

@@ -59,37 +59,5 @@ __('timelines/elements.edit.title', ['name' => $model->name])
 
 @section('modals')
     @parent
-    @if(!empty($editingUsers) && !empty($model))
-        <div class="modal" id="entity-edit-warning" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmLabel">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title" id="myModalLabel">{{ __('entities/story.warning.editing.title') }}</h4>
-                    </div>
-                    <div class="modal-body modal-ajax-body">
-                        <p>
-                            {{ __('timelines/elements.warning.editing.description') }}
-
-                        </p>
-                        <ul>
-                            @foreach ($editingUsers as $user)
-                                <li class="user-id-{{ $user->id }}">{{ __('entities/story.warning.editing.user', ['user' => $user->name, 'since' => \Carbon\Carbon::createFromTimeString($user->pivot->created_at)->diffForHumans()]) }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                    <div class="modal-body modal-spinner-body text-center" style="display: none">
-                        <i class="fa-solid fa-spinner fa-spin fa-2x"></i>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default pull-left" id="entity-edit-warning-back" data-url="{{ url()->previous() }}">
-                            {{ __('entities/story.warning.editing.back') }}
-                        </button>
-                        <button type="button" class="btn btn-warning" id="entity-edit-warning-ignore" data-url="{{ route('timeline-elements.confirm-editing', $model) }}">
-                            {{ __('entities/story.warning.editing.ignore') }}
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    @endif
+    @includeWhen(!empty($editingUsers) && !empty($model), 'cruds.forms.edit_warning', ['model' => $model])
 @endsection

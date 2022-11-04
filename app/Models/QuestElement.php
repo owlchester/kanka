@@ -110,7 +110,7 @@ class QuestElement extends Model
     /**
      * @return mixed
      */
-    public function users()
+    public function editingUsers()
     {
         return $this->belongsToMany(User::class, 'entity_user')
             ->using(EntityUser::class)

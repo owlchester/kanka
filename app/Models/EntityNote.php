@@ -173,7 +173,7 @@ class EntityNote extends Model
     /**
      * @return mixed
      */
-    public function users()
+    public function editingUsers()
     {
         return $this->belongsToMany(User::class, 'entity_user', 'post_id')
             ->using(EntityUser::class)

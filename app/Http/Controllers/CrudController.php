@@ -13,7 +13,7 @@ use App\Models\Entity;
 use App\Models\AttributeTemplate;
 use App\Models\MenuLink;
 use App\Models\MiscModel;
-use App\Services\Entity\MultiEditingService;
+use App\Services\MultiEditingService;
 use App\Services\FilterService;
 use App\Traits\BulkControllerTrait;
 use App\Traits\GuestAuthTrait;

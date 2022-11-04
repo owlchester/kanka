@@ -7,7 +7,7 @@ namespace App\Http\Controllers\Timelines;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreTimelineElement;
 use App\Facades\CampaignLocalization;
-use App\Services\Entity\MultiEditingService;
+use App\Services\MultiEditingService;
 use App\Models\Timeline;
 use App\Models\TimelineElement;
 use App\Services\TimelineService;
