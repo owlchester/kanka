@@ -5,6 +5,7 @@ namespace App\Jobs\Emails;
 use App\Mail\Subscription\Admin\DeletedSubscriptionMail;
 use App\Notifications\Header;
 use App\User;
+use App\Models\UserLog;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -56,6 +57,6 @@ class SubscriptionDeletedEmailJob implements ShouldQueue
             ->send(
                 new DeletedSubscriptionMail($user)
             );
-
+            $user->log(UserLog::TYPE_SUB_CANCEL_AUTO);
     }
 }
