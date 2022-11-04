@@ -6,6 +6,7 @@ use App\Mail\Subscription\Admin\FailedSubscriptionMail;
 use App\Mail\Subscription\User\FailedUserSubscriptionMail;
 use App\Notifications\Header;
 use App\User;
+use App\Models\UserLog;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -64,5 +65,6 @@ class SubscriptionFailedEmailJob implements ShouldQueue
             ->send(
                 new FailedUserSubscriptionMail($user)
             );
+        $user->log(UserLog::TYPE_FAILED_CHARGE_EMAIL);
     }
 }

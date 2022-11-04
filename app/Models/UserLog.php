@@ -50,6 +50,11 @@ class UserLog extends Model
 
     public const NOTIFY_YEARLY_SUB = 70;
 
+    public const TYPE_FAILED_CHARGE_EMAIL = 80;
+    public const TYPE_YEARLY_RENEW_WARNING = 81;
+    public const TYPE_SUB_CANCEL_MANUAL = 82;
+    public const TYPE_SUB_CANCEL_AUTO = 83;
+
     /**
      * @var string
      */
