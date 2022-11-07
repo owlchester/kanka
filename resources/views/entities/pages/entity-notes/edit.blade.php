@@ -25,6 +25,10 @@
             <i class="fa-solid fa-trash" aria-hidden="true"></i> {{ __('crud.remove') }}
         </a>
     </div>
+
+    @if(!empty($model) && $campaignService->campaign()->hasEditingWarning())
+        <input type="hidden" id="editing-keep-alive" data-url="{{ route('posts.keep-alive', ['entity_note' => $model, 'entity' => $entity]) }}" />
+    @endif
 @endsection
 
 @include('editors.editor')
@@ -40,4 +44,7 @@
     @parent
     {!! Form::open(['method' => 'DELETE', 'route' => ['entities.entity_notes.destroy', 'entity' => $entity, 'entity_note' => $model], 'style' => 'display:inline', 'id' => 'delete-form-note-' . $model->id]) !!}
     {!! Form::close() !!}
+
+    @includeWhen(!empty($editingUsers) && !empty($model), 'cruds.forms.edit_warning', ['model' => $model, 'entity' => $entity])
+
 @endsection

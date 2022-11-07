@@ -7,6 +7,8 @@
     'canonical' => true,
 ])
 
+@inject('campaignService', 'App\Services\CampaignService')
+
 @section('fullpage-form')
     {!! Form::model($model, [
         'method' => 'PATCH',
@@ -20,6 +22,10 @@
 @section('content')
     @include('partials.errors')
     @include('campaigns.forms.' . ($start ? 'start' : 'standard'))
+
+    @if(!empty($model) && $campaignService->campaign()->hasEditingWarning())
+        <input type="hidden" id="editing-keep-alive" data-url="{{ route('campaigns.keep-alive', $model->id) }}" />
+    @endif
 @endsection
 
 
@@ -30,3 +36,7 @@
 @inject('campaignService', 'App\Services\CampaignService')
 @include('editors.editor')
 
+@section('modals')
+    @parent
+    @includeWhen(!empty($editingUsers) && !empty($model), 'cruds.forms.edit_warning', ['model' => $model])
+@endsection

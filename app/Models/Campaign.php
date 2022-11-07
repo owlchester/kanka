@@ -11,6 +11,7 @@ use App\Models\Concerns\LastSync;
 use App\Models\Relations\CampaignRelations;
 use App\Models\Scopes\CampaignScopes;
 use App\User;
+use App\Models\EntityUser;
 use Carbon\Carbon;
 use Illuminate\Notifications\Notification;
 use Illuminate\Support\Arr;

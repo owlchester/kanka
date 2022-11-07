@@ -14,6 +14,8 @@ __('timelines/elements.edit.title', ['name' => $model->name])
 ]
 ])
 
+@inject('campaignService', 'App\Services\CampaignService')
+
 @section('content')
     <div class="panel panel-default">
         @if ($ajax)
@@ -44,9 +46,18 @@ __('timelines/elements.edit.title', ['name' => $model->name])
             {!! Form::close() !!}
         </div>
     </div>
+
+    @if(!empty($model) && $campaignService->campaign()->hasEditingWarning())
+        <input type="hidden" id="editing-keep-alive" data-url="{{ route('timeline-elements.keep-alive', $model->id) }}" />
+    @endif
 @endsection
 
 @section('scripts')
     @parent
     <script src="{{ mix('js/ajax-subforms.js') }}" defer></script>
+@endsection
+
+@section('modals')
+    @parent
+    @includeWhen(!empty($editingUsers) && !empty($model), 'cruds.forms.edit_warning', ['model' => $model])
 @endsection
