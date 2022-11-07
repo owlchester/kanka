@@ -88,12 +88,18 @@ class LiveController extends Controller
     {
         $term = trim($request->q);
         $campaign = CampaignLocalization::getCampaign();
+        $exclude = [];
+
+        if ($request->has('exclude')) {
+            $exclude = $request['exclude'];
+        }
 
         return response()->json(
             $this->search
                 ->term($term)
                 ->campaign($campaign)
                 ->exclude([config('entities.ids.menu_link')])
+                ->excludeIds($exclude)
                 ->find()
         );
     }
@@ -194,7 +200,6 @@ class LiveController extends Controller
                 ];
             }
         }
-
 
         return response()->json(
             $data
