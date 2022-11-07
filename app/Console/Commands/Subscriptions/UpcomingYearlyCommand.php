@@ -54,13 +54,19 @@ class UpcomingYearlyCommand extends Command
         $now = Carbon::now()->addMonth();
         $log = "Looking for active yearly subscriptions created on month {$now->month} and day {$now->day}";
         $this->info($log);
-        //$this->info('Plans: ' . implode('\', \'', $plans));
+
+        /**
+         * We need to use updated_at and not created_at, because when a user switches from a monthly to a yearly
+         * plan, it simply updated the subscription's plan_id to the new one. This might cause issues down the
+         * line with other things that impact the updated_at field, so it might make more sense to track this
+         * some other way in the future.
+         */
 
         /** @var Subscription[] $subscriptions */
         $subscriptions = Subscription::whereIn('stripe_plan', $plans)
             ->where('stripe_status', 'active')
-            ->whereRaw('month(created_at) = ' . $now->month)
-            ->whereRaw('day(created_at) = ' . $now->day)
+            ->whereRaw('month(updated_at) = ' . $now->month)
+            ->whereRaw('day(updated_at) = ' . $now->day)
             //->whereRaw('year(created_at) <> ' . $now->year)
             ->whereNull('ends_at')
             ->with('user')
