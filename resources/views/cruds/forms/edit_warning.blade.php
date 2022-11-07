@@ -1,19 +1,19 @@
 <?php
     if ($model instanceof \App\Models\EntityNote) {
         $url = route('posts.confirm-editing', ['entity_note' => $model, 'entity' => $entity]);
-        $key = 'entities/story.warning.editing.user';
+        $key = 'entities/notes.warning.editing.description';
     } elseif ($model instanceof \App\Models\Campaign) {
         $url = route('campaigns.confirm-editing', $model);
-        $key = 'entities/story.warning.editing.user';
+        $key = 'campaigns.warning.editing.description';
     } elseif ($model instanceof \App\Models\TimelineElement) {
         $url = route('timeline-elements.confirm-editing', $model);
-        $key = 'entities/story.warning.editing.user';
+        $key = 'timelines/elements.warning.editing.description';
     } elseif ($model instanceof \App\Models\QuestElement) {
         $url = route('quest-elements.confirm-editing', $model);
-        $key = 'entities/story.warning.editing.user';
+        $key = 'quests.elements.warning.editing.description';
     } else {
         $url = route('entities.confirm-editing', $model->entity);
-        $key = 'entities/story.warning.editing.user';
+        $key = 'entities/story.warning.editing.description';
     }
 ?>
 <div class="modal" id="entity-edit-warning" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmLabel">
@@ -24,11 +24,11 @@
             </div>
             <div class="modal-body modal-ajax-body">
                 <p>
-                    {{ __('entities/notes.warning.editing.description') }}
+                    {{ __($key) }}
                 </p>
                 <ul>
                     @foreach ($editingUsers as $user)
-                        <li class="user-id-{{ $user->id }}">{{ __($key, ['user' => $user->name, 'since' => \Carbon\Carbon::createFromTimeString($user->pivot->created_at)->diffForHumans()]); }}</li>
+                        <li class="user-id-{{ $user->id }}">{{ __('entities/story.warning.editing.user', ['user' => $user->name, 'since' => \Carbon\Carbon::createFromTimeString($user->pivot->created_at)->diffForHumans()]); }}</li>
                     @endforeach
                 </ul>
             </div>
