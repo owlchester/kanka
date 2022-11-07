@@ -58,6 +58,7 @@ return [
     'new'                   => [
         'ability'       => 'New ability',
         'character'     => 'New character',
+        'creature'      => 'New creature',
         'event'         => 'New event',
         'family'        => 'New family',
         'item'          => 'New item',
