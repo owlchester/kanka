@@ -204,7 +204,13 @@ class RelationController extends Controller
     public function update(StoreRelation $request, Entity $entity, Relation $relation)
     {
         $this->authorize('update', $entity->child);
-        $data = $request->only(['target_id', 'attitude', 'relation', 'colour', 'is_star', 'two_way', 'visibility_id']);
+        $data = $request->only(['target_id', 'attitude', 'relation', 'colour', 'is_star', 'two_way', 'visibility_id', 'unmirror']);
+
+        if ($data['unmirror'] && $relation->mirror) {
+            $relation->mirror->update(['mirror_id' => null]);
+            $data['mirror_id'] = null;
+            unset($data['unmirror']);
+        }
 
         $relation->update($data);
         $relation->refresh();
