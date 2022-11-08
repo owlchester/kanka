@@ -14,6 +14,10 @@ use Illuminate\Database\Eloquent\Builder;
  * @property int $id
  * @property int $user_id
  * @property int $entity_id
+ * @property int $campaign_id
+ * @property int $post_id
+ * @property int $timeline_element_id
+ * @property int $quest_element_id
  * @property int $type_id
  *
  * @property User $user
@@ -37,6 +41,26 @@ class EntityUser extends Pivot
     public function entity()
     {
         return $this->belongsTo(Entity::class, 'entity_id');
+    }
+
+    public function campaign()
+    {
+        return $this->belongsTo(Campaign::class, 'campaign_id');
+    }
+
+    public function post()
+    {
+        return $this->belongsTo(EntityNote::class, 'post_id');
+    }
+
+    public function timelineElement()
+    {
+        return $this->belongsTo(TimelineElement::class, 'timeline_element_id');
+    }
+
+    public function questElement()
+    {
+        return $this->belongsTo(QuestElement::class, 'quest_element_id');
     }
 
     public function scopeKeepAlive(Builder $query)

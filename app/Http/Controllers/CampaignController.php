@@ -8,6 +8,7 @@ use App\Models\Campaign;
 use App\Http\Requests\StoreCampaign;
 use App\Http\Requests\DeleteCampaign;
 use App\Models\UserLog;
+use App\Services\MultiEditingService;
 use App\Services\CampaignService;
 use App\Services\EntityService;
 use App\Services\StarterService;
@@ -140,7 +141,19 @@ class CampaignController extends Controller
     {
         $this->authorize('update', $campaign);
 
-        return view($this->view . '.edit', ['model' => $campaign, 'start' => false]);
+        /** @var MiscModel $model */
+        $editingUsers = null;
+
+        if ($campaign->hasEditingWarning()) {
+            /** @var MultiEditingService $editingService */
+            $editingService = app()->make(MultiEditingService::class);
+            $editingUsers = $editingService->model($campaign)->user(auth()->user())->users();
+            // If no one is editing the model, we are now editing it
+            if (empty($editingUsers)) {
+                $editingService->edit();
+            }
+        }
+        return view($this->view . '.edit', ['model' => $campaign, 'start' => false, 'editingUsers' => $editingUsers]);
     }
 
     /**
@@ -166,6 +179,13 @@ class CampaignController extends Controller
         }
 
         $campaign->update($data);
+
+
+        /** @var MultiEditingService $editingService */
+        $editingService = app()->make(MultiEditingService::class);
+        $editingService->model($campaign)
+            ->user($request->user())
+            ->finish();
 
         if ($request->has('submit-update')) {
             return redirect()

@@ -7,7 +7,8 @@
         false,
         'entities/relations.fields.target',
         'search.entities-with-relations',
-        'entities/relations.placeholders.target'
+        'entities/relations.placeholders.target',
+        $entity
     ) !!}
 </div>
 <div class="form-group required">

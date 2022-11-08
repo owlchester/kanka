@@ -529,7 +529,7 @@ trait EntityRelations
     /**
      * @return mixed
      */
-    public function users()
+    public function editingUsers()
     {
         return $this->belongsToMany(User::class)
             ->using(EntityUser::class)

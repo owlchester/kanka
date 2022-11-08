@@ -33,6 +33,7 @@ use App\Models\Plugin;
 use App\Models\Quest;
 use App\Models\Race;
 use App\Models\RpgSystem;
+use App\Models\EntityUser;
 use App\Models\Tag;
 use App\Models\Theme;
 use App\Models\Timeline;
@@ -353,5 +354,15 @@ trait CampaignRelations
     public function styles()
     {
         return $this->hasMany(CampaignStyle::class);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function editingUsers()
+    {
+        return $this->belongsToMany(User::class, 'entity_user')
+            ->using(EntityUser::class)
+            ->withPivot('type_id');
     }
 }
