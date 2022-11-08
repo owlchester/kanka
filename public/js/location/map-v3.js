@@ -470,23 +470,26 @@ function handlePresetClick() {
   $('.preset-use').on('click', function (e) {
     e.preventDefault();
     var url = $(this).data('url');
-    console.log('url', url);
     $(this).find('.fa-spin').show();
     $.ajax({
       url: url,
       context: this
     }).done(function (result) {
       // Switch stuff around
-      console.log('result', result.preset);
       $(this).find('.fa-spin').hide();
       Object.keys(result.preset).forEach(function (key) {
         var val = result.preset[key];
-        console.log('config', key, val);
+        var field = $('[name="' + key + '"]');
+
+        if (field.length === 0) {
+          console.info('markerPreset', 'unknown field', key);
+          return;
+        }
 
         if (key.endsWith('colour')) {
-          $('[name="' + key + '"]').spectrum("set", val);
+          field.spectrum("set", val);
         } else {
-          $('[name="' + key + '"]').val(val);
+          field.val(val);
         }
       });
       $('a[href="#marker-pin"]').click();
