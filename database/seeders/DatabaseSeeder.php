@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(EntityEventTypeSeeder::class);
         $this->call(EntityTypesTableSeeder::class);
+        $this->call(PresetTypeTableSeeder::class);
         //$this->call(RpgSystemsTableSeeder::class);
         $this->call(ThemesTableSeeder::class);
         $this->call(RolesTableSeeder::class);

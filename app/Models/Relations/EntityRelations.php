@@ -315,14 +315,6 @@ trait EntityRelations
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function campaign()
-    {
-        return $this->belongsTo('App\Models\Campaign', 'campaign_id');
-    }
-
-    /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function widgets()

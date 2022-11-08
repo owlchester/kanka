@@ -30,8 +30,6 @@ class DatagridRenderer
 
     protected FilterService|null $filterService = null;
 
-    protected $filters = null;
-
     protected DateRenderer $dateRenderer;
 
     /** @var Campaign|bool */
@@ -488,9 +486,8 @@ class DatagridRenderer
     /**
      * Set the filters
      */
-    public function filters($filters)
+    public function filters($filters = null)
     {
-        $this->filters = $filters;
         return $this;
     }
 

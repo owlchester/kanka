@@ -309,6 +309,7 @@ Route::resources([
     'entities.relations' => 'Entity\RelationController',
 
     'attribute_templates' => 'AttributeTemplateController',
+    //'presets' => 'PresetController',
 
     // Permission manager
     'campaign_roles' => 'CampaignRoleController',
@@ -318,6 +319,8 @@ Route::resources([
 
     'campaign_dashboards' => 'Campaign\DashboardController',
     'campaign_dashboard_widgets' => 'Campaign\DashboardWidgetController',
+
+    'preset_types.presets' => 'PresetController',
 
     'images' => 'Campaign\GalleryController',
 ]);
@@ -465,6 +468,12 @@ Route::get('/sidebar-setup', 'Campaign\SidebarController@index')->name('campaign
 Route::post('/sidebar-setup', 'Campaign\SidebarController@save')->name('campaign-sidebar-save');
 Route::delete('/sidebar-setup/reset', 'Campaign\SidebarController@reset')->name('campaign-sidebar-reset');
 
+Route::get('/presets/type/{preset_type}/list', [\App\Http\Controllers\PresetController::class, 'presets'])->name('presets.list');
+Route::get('/presets/type/{preset_type}/create', [\App\Http\Controllers\PresetController::class, 'create'])->name('presets.create');
+Route::post('/presets/type/{preset_type}/store', [\App\Http\Controllers\PresetController::class, 'store'])->name('presets.store');
+Route::post('/presets/{preset}/load', [\App\Http\Controllers\PresetController::class, 'load'])->name('presets.show');
+
+Route::model('preset_type', \App\Models\PresetType::class);
 
 // Entity quick creator
 Route::get('/entity-creator', [\App\Http\Controllers\EntityCreatorController::class, 'selection'])->name('entity-creator.selection');

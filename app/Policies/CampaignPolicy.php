@@ -270,6 +270,17 @@ class CampaignPolicy
         return $user && UserCache::user($user)->admin();
     }
 
+
+    /**
+     * @param User|null $user
+     * @param Campaign $campaign
+     * @return bool
+     */
+    public function mapPresets(?User $user, Campaign $campaign): bool
+    {
+        return $user && UserCache::user($user)->admin();
+    }
+
     /**
      * Check if a user can unboost a campaign
      * @param User|null $user

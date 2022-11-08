@@ -1,13 +1,6 @@
 <?php
 /** @var \App\Models\MapMarker $model */
 
-$iconOptions = [
-    1 => __('maps/markers.icons.marker'),
-    2 => __('maps/markers.icons.question'),
-    3 => __('maps/markers.icons.exclamation'),
-    4 => __('maps/markers.icons.entity'),
-];
-
 $sizeOptions = [
     1 => __('locations.map.points.sizes.tiny'),
     2 => __('locations.map.points.sizes.small'),
@@ -44,62 +37,32 @@ $sizeOptions = [
                 {{ __('maps/markers.tabs.polygon') }}
             </a>
         </li>
+        <li role="presentation">
+            <a href="#presets" data-nohash="true" class="text-center" data-presets="{{ route('preset_types.presets.index', ['preset_type' => \App\Models\PresetType::MARKER, 'from' => $from]) }}">
+                <i class="fa-solid fa-2x fa-wand-magic-sparkles"></i><br />
+                {{ __('maps/markers.tabs.preset') }}
+            </a>
+        </li>
     </ul>
 
     <div class="tab-content">
         <div class="tab-pane @if($activeTab == 1) active @endif" id="marker-pin">
             <div class="row">
                 <div class="col-xs-6">
-                    <div class="form-group">
-                        <label for="icon">{{ __('locations.map.points.fields.icon') }}</label>
-                        {!! Form::select('icon', $iconOptions, \App\Facades\FormCopy::field('icon')->string(), ['class' => 'form-control', 'id' => 'icon']) !!}
-                    </div>
+                    @include('maps.markers.fields.icon')
                 </div>
                 <div class="col-xs-6">
-                    <div class="form-group">
-                        <label>{{ __('maps/markers.fields.custom_icon') }}</label>
-                            {!! Form::text(
-                                'custom_icon',
-                                \App\Facades\FormCopy::field('custom_icon')->string(),
-                                ['class' => 'form-control',
-                                'placeholder' => __('maps/markers.placeholders.custom_icon', ['example1' => '"fa-solid fa-gem"', 'example2' => '"ra ra-sword"']),
-                                'list' => 'map-marker-icon-list',
-                                'autocomplete' => 'off',
-                                ($campaignService->campaign()->boosted() ? null : 'disabled')])
-                            !!}
-                            <p class="help-block">{!! __('maps/markers.helpers.custom_icon', ['rpgawesome' => '<a href="https://nagoshiashumari.github.io/Rpg-Awesome/" target="_blank">RPG Awesome</a>', 'fontawesome' => '<a href="https://fontawesome.com/search?m=free&s=solid" target="_blank">Font Awesome</a>']) !!}</p>
-                        @if (!$campaignService->campaign()->boosted())
-                            @subscriber()
-                            <p class="help-block">
-                                <i class="fa-solid fa-rocket" aria-hidden="true"></i> {!! __('crud.errors.boosted_campaigns', ['boosted' => link_to_route('settings.boost', __('concept.boosted-campaign'), ['campaign' => $campaignService->campaign()])]) !!}
-                            </p>
-                            @else
-                            <p class="help-block">
-                                <i class="fa-solid fa-rocket" aria-hidden="true"></i> {!! __('crud.errors.boosted_campaigns', ['boosted' => link_to_route('front.boosters', __('concept.boosted-campaign'))]) !!}
-                            </p>
-                            @endsubscriber
-                        @endif
-                    </div>
-                    <div class="hidden">
-                        <datalist id="map-marker-icon-list">
-                            @foreach (\App\Facades\MapMarkerCache::iconSuggestion() as $icon)
-                                <option value="{{ $icon }}">{{ $icon }}</option>
-                            @endforeach
-                        </datalist>
-                    </div>
-
+                    @include('maps.markers.fields.custom_icon')
                 </div>
             </div>
             <div class="row">
                 <div class="col-xs-6">
-                    <label for="pin_size">{{ __('maps/markers.fields.pin_size') }}</label><br />
-                    {!! Form::number('pin_size', \App\Facades\FormCopy::field('pin_size')->string(), ['class' => 'form-control', 'maxlength' => 3, 'step' => 2, 'max' => 100, 'min' => 10, 'placeholder' => 40, 'id' => 'pin_size'] ) !!}
+                    @include('maps.markers.fields.pin_size')
                 </div>
 
                 <div class="col-xs-6">
                     <div class="form-group">
-                        <label>{{ __('maps/markers.fields.font_colour') }}</label><br />
-                        {!! Form::text('font_colour', \App\Facades\FormCopy::field('font_colour')->string(), ['class' => 'form-control spectrum', 'maxlength' => 6] ) !!}
+                        @include('maps.markers.fields.font_colour')
                     </div>
                 </div>
             </div>
@@ -181,95 +144,117 @@ $sizeOptions = [
                     </div>
                 </div>
                 <div class="col-xs-6 col-md-4">
-                    <div class="form-group">
+                    <div class="form-group mb-0">
                         <label for="stroke-opacity">{{ __('maps/markers.fields.polygon_style.stroke-opacity') }}</label>
-                        {!! Form::number('polygon_style[stroke-opacity]', \App\Facades\FormCopy::field('polygon_style[stroke-opacity]')->string(), ['class' => 'form-control', 'maxlength' => 3, 'step' => 10, 'max' => 100, 'min' => 0, 'id' => 'stroke-opacity']) !!}
+                        {!! Form::number('polygon_style[stroke-opacity]', \App\Facades\FormCopy::field('polygon_style[stroke-opacity]')->string(), [
+                        'class' => 'form-control',
+                        'maxlength' => 3,
+                        'step' => 10,
+                        'max' => 100,
+                        'min' => 0,
+                        'id' => 'stroke-opacity'
+                    ]) !!}
                     </div>
+
                 </div>
             </div>
         </div>
-    </div>
-</div>
 
-<div class="row">
-    <div class="col-sm-6">
-        <div class="form-group">
-            <label for="name">{{ __('crud.fields.name') }}</label>
-            {!! Form::text('name', \App\Facades\FormCopy::field('name')->string(), ['placeholder' => __('maps/markers.placeholders.name'), 'class' => 'form-control', 'maxlength' => 191, 'id' => 'name']) !!}
-        </div>
-    </div>
-    <div class="col-sm-6">
-        <div class="form-group">
-            {!! Form::foreignSelect(
-                'entity_id',
-                [
-                    'preset' => (isset($model) && $model->entity ? $model->entity : \App\Facades\FormCopy::field('entity')->select()),
-                    'class' => App\Models\Entity::class,
-                    'labelKey' => 'crud.fields.entity',
-                    'from' => null,
-                    'searchRouteName' => 'search.entities-with-relations',
-                    'placeholderKey' => 'crud.placeholders.entity',
-                    'dropdownParent' => (isset($dropdownParent) ? $dropdownParent : null)
-                ]
-            ) !!}
+        <div class="tab-pane" id="presets">
+            <p class="help-block">
+                {!! __('maps/markers.presets.helper') !!}
+            </p>
+
+            <div class="marker-preset-list">
+                <div class="text-center">
+                    <i class="fa-solid fa-spin fa-spinner"></i>
+                </div>
+            </div>
+
+            @can('mapPresets', $campaignService->campaign())
+                <a href="{{ route('preset_types.presets.create', ['preset_type' => \App\Models\PresetType::MARKER, 'from' => $from]) }}" class="btn btn-success">
+                    {{ __('presets.actions.create') }}
+                </a>
+            @endcan
         </div>
     </div>
 </div>
 
-<div class="row">
-    <div class="col-sm-12 mb-5" style="{{ (isset($model) && $model->hasEntry() ? 'display: none' : '') }}">
-        <a href="#" class="map-marker-entry-click">{{ __('maps/markers.actions.entry') }}</a>
-    </div>
-    <div class="col-sm-12 map-marker-entry-entry" style="{{ (!isset($model) || !$model->hasEntry() ? 'display: none' : '') }}">
-        <div class="form-group">
-            <label>{{ __('crud.fields.entry') }}</label>
-            {!! Form::textarea('entry', \App\Facades\FormCopy::field('entry')->string(), ['class' => 'form-control html-editor', 'id' => 'marker-entry', 'name' => 'entry']) !!}
+<div id="marker-main-fields">
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="form-group">
+                <label for="name">{{ __('crud.fields.name') }}</label>
+                {!! Form::text('name', \App\Facades\FormCopy::field('name')->string(), ['placeholder' => __('maps/markers.placeholders.name'), 'class' => 'form-control', 'maxlength' => 191, 'id' => 'name']) !!}
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="form-group">
+                {!! Form::foreignSelect(
+                    'entity_id',
+                    [
+                        'preset' => (isset($model) && $model->entity ? $model->entity : \App\Facades\FormCopy::field('entity')->select()),
+                        'class' => App\Models\Entity::class,
+                        'labelKey' => 'crud.fields.entity',
+                        'from' => null,
+                        'searchRouteName' => 'search.entities-with-relations',
+                        'placeholderKey' => 'crud.placeholders.entity',
+                        'dropdownParent' => (isset($dropdownParent) ? $dropdownParent : null)
+                    ]
+                ) !!}
+            </div>
         </div>
     </div>
-</div>
 
-<div class="row">
-    <div class="col-sm-6">
-        <div class="form-group">
-            <label for="opacity">{{ __('maps/markers.fields.opacity') }}</label><br />
-            {!! Form::number('opacity', (!empty($source) ? $source->opacity : (isset($model) ? $model->opacity : 100)), ['class' => 'form-control', 'maxlength' => 3, 'step' => 10, 'max' => 100, 'min' => 0, 'id' => 'opacity'] ) !!}
+    <div class="row">
+        <div class="col-sm-12 mb-5" style="{{ (isset($model) && $model->hasEntry() ? 'display: none' : '') }}">
+            <a href="#" class="map-marker-entry-click">{{ __('maps/markers.actions.entry') }}</a>
+        </div>
+        <div class="col-sm-12 map-marker-entry-entry" style="{{ (!isset($model) || !$model->hasEntry() ? 'display: none' : '') }}">
+            <div class="form-group">
+                <label>{{ __('crud.fields.entry') }}</label>
+                {!! Form::textarea('entry', \App\Facades\FormCopy::field('entry')->string(), ['class' => 'form-control html-editor', 'id' => 'marker-entry', 'name' => 'entry']) !!}
+            </div>
         </div>
     </div>
-    <div class="col-sm-6" id="map-marker-bg-colour" @if((isset($model) && $model->isLabel()) || (isset($source) && $source->isLabel())) style="display: none;"@endif>
-        <div class="form-group">
-            <label>{{ __('locations.map.points.fields.colour') }}</label><br />
-            {!! Form::text('colour', \App\Facades\FormCopy::field('colour')->string(), ['class' => 'form-control spectrum', 'maxlength' => 6] ) !!}
-        </div>
-    </div>
-</div>
 
-<div class="row">
-    <div class="col-sm-6">
-        <div class="form-group">
-            <label for="group_id">
-                {{ __('maps/markers.fields.group') }}
-            </label>
-            {{ Form::select('group_id', $map->groupOptions(), \App\Facades\FormCopy::field('group_id')->string(), ['class' => 'form-control', 'id' => 'group_id']) }}
+    <div class="row">
+        <div class="col-sm-6">
+            @include('maps.markers.fields.opacity')
+        </div>
+        <div class="col-sm-6" id="map-marker-bg-colour" @if((isset($model) && $model->isLabel()) || (isset($source) && $source->isLabel())) style="display: none;"@endif>
+            @include('maps.markers.fields.background_colour')
         </div>
     </div>
-    <div class="col-sm-6">
-        <div class="form-group">
-            @include('cruds.fields.visibility_id')
-        </div>
-    </div>
-</div>
 
-<div class="row @if (!$model && empty($source)) hidden @endif">
-    <div class="col-xs-6">
-        <div class="form-group">
-            <label>{{ __('maps/markers.fields.latitude') }}</label>
-            {!! Form::number('latitude', \App\Facades\FormCopy::field('latitude')->string(), ['class' => 'form-control', 'id' => 'marker-latitude', 'step' => 0.001]) !!}
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="form-group">
+                <label for="group_id">
+                    {{ __('maps/markers.fields.group') }}
+                </label>
+                {{ Form::select('group_id', $map->groupOptions(), \App\Facades\FormCopy::field('group_id')->string(), ['class' => 'form-control', 'id' => 'group_id']) }}
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="form-group">
+                @include('cruds.fields.visibility_id')
+            </div>
         </div>
     </div>
-    <div class="col-xs-6">
-        <div class="form-group">
-            <label>{{ __('maps/markers.fields.longitude') }}</label>
-            {!! Form::number('longitude', \App\Facades\FormCopy::field('longitude')->string(), ['class' => 'form-control', 'id' => 'marker-longitude', 'step' => 0.001]) !!}
+
+    <div class="row @if (!$model && empty($source)) hidden @endif">
+        <div class="col-xs-6">
+            <div class="form-group">
+                <label>{{ __('maps/markers.fields.latitude') }}</label>
+                {!! Form::number('latitude', \App\Facades\FormCopy::field('latitude')->string(), ['class' => 'form-control', 'id' => 'marker-latitude', 'step' => 0.001]) !!}
+            </div>
+        </div>
+        <div class="col-xs-6">
+            <div class="form-group">
+                <label>{{ __('maps/markers.fields.longitude') }}</label>
+                {!! Form::number('longitude', \App\Facades\FormCopy::field('longitude')->string(), ['class' => 'form-control', 'id' => 'marker-longitude', 'step' => 0.001]) !!}
+            </div>
         </div>
     </div>
 </div>

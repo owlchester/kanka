@@ -403,4 +403,20 @@ body.map-drawing-mode .map-actions .btn-mode-drawing {
   padding-left: 45px;
 }
 
+.marker-preset-list .preset {
+  padding: 0.8rem;
+  border: 1px solid #eee;
+  background-color: #eee;
+  border-radius: 5px;
+}
+.marker-preset-list .preset:hover {
+  border: 1px solid #aaa;
+}
+.marker-preset-list .preset .preset-use {
+  cursor: pointer;
+}
+.marker-preset-list .preset .preset-use:hover {
+  text-decoration: underline;
+}
+
 /*# sourceMappingURL=map-v3.css.map*/

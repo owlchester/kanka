@@ -169,9 +169,9 @@
                         //'id' => 'map-marker-new-form'
                         'class' => 'ajax-subform',
                     ]) !!}
-                    @include('maps.markers._form', ['model' => null, 'map' => $model, 'activeTab' => 1, 'dropdownParent' => '#marker-modal'])
+                    @include('maps.markers._form', ['model' => null, 'map' => $model, 'activeTab' => 1, 'dropdownParent' => '#marker-modal', 'from' => base64_encode('maps.map_markers.index:' . $model->id)])
 
-                    <div class="form-group">
+                    <div class="form-group" id="marker-footer">
                         <div class="pull-left">
                             @include('partials.footer_cancel', ['ajax' => 1])
                         </div>

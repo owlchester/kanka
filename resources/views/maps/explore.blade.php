@@ -231,11 +231,10 @@
                         </h4>
                     </div>
                     <div class="modal-body">
-
                         @include('partials.errors')
-                        @include('maps.markers._form', ['model' => null, 'map' => $map, 'activeTab' => 1, 'dropdownParent' => '#marker-modal'])
+                        @include('maps.markers._form', ['model' => null, 'map' => $map, 'activeTab' => 1, 'dropdownParent' => '#marker-modal', 'from' => base64_encode('maps.explore:' . $map->id)])
                     </div>
-                    <div class="modal-footer">
+                    <div class="modal-footer" id="marker-footer">
                         <div class="pull-left">
                             @include('partials.footer_cancel', ['ajax' => true])
                         </div>
