@@ -77,6 +77,7 @@ return [
     'post'                  => 'Post',
     'quest'                 => 'Quest',
     'quests'                => 'Quests',
+    'quest_element'         => 'Quest element',
     'race'                  => 'Race',
     'races'                 => 'Races',
     'relation'              => 'Relation',
@@ -85,4 +86,5 @@ return [
     'tags'                  => 'Tags',
     'timeline'              => 'Timeline',
     'timelines'             => 'Timelines',
+    'timeline_element'             => 'Timeline element',
 ];

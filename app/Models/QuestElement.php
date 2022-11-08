@@ -104,4 +104,13 @@ class QuestElement extends Model
     {
         return false;
     }
+
+    /**
+     * List of entities that mention this entity
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function mentions()
+    {
+        return $this->hasMany('App\Models\EntityMention', 'quest_element_id', 'id');
+    }
 }

@@ -167,4 +167,13 @@ class TimelineElement extends Model
     {
         return $this->is_collapsed;
     }
+
+    /**
+     * List of entities that mention this entity
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function mentions()
+    {
+        return $this->hasMany('App\Models\EntityMention', 'timeline_element_id', 'id');
+    }
 }

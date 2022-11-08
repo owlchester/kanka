@@ -6,6 +6,8 @@ use App\Models\Campaign;
 use App\Models\Entity;
 use App\Models\EntityMention;
 use App\Models\EntityNote;
+use App\Models\QuestElement;
+use App\Models\TimelineElement;
 use App\Models\MiscModel;
 
 use App\Traits\MentionTrait;
@@ -61,6 +63,24 @@ class EntityMappingService
         return $this->map($entityNote);
     }
 
+    /**
+     * @param QuestElement $questElement
+     * @throws Exception
+     */
+    public function mapQuestElement(QuestElement $questElement)
+    {
+        return $this->map($questElement);
+    }
+
+    /**
+     * @param TimelineElement $timelineElement
+     * @throws Exception
+     */
+    public function mapTimelineElement(TimelineElement $timelineElement)
+    {
+        return $this->map($timelineElement);
+    }
+
     public function mapCampaign(Campaign $campaign)
     {
         return $this->map($campaign);
@@ -80,7 +100,13 @@ class EntityMappingService
         $createdMappings = 0;
         $existingMappings = 0;
 
-        $mentions = $this->extract($model instanceof Entity ? $model->child->entry : $model->entry);
+        if ($model instanceof Entity) {
+            $mentions = $this->extract($model->child->entry);
+        } elseif ($model instanceof QuestElement) {
+            $mentions = $this->extract($model->description);
+        } else {
+            $mentions = $this->extract($model->entry);
+        }
 
         foreach ($mentions as $data) {
             $type = $data['type'];
@@ -107,6 +133,10 @@ class EntityMappingService
                 $campaignId = $model->id;
             } elseif ($model instanceof EntityNote) {
                 $campaignId = $model->entity->campaign_id;
+            } elseif ($model instanceof TimelineElement) {
+                $campaignId = $model->timeline->campaign_id;
+            } elseif ($model instanceof QuestElement) {
+                $campaignId = $model->quest->campaign_id;
             }
 
             /** @var Entity|null $target */
@@ -139,7 +169,7 @@ class EntityMappingService
     }
 
     /**
-     * @param MiscModel|EntityNote|Campaign $model
+     * @param MiscModel|EntityNote|TimelineElement|QuestElement|Campaign $model
      * @param int $target
      */
     protected function createNewMention($model, int $target)
@@ -154,6 +184,20 @@ class EntityMappingService
 
             // If we are making a reference to ourselves, no need to save it
             if ($model->entity_id == $target) {
+                return;
+            }
+        } elseif ($model instanceof TimelineElement) {
+            $mention->timeline_element_id = $model->id;
+
+            // If we are making a reference to ourselves, no need to save it
+            if ($model->timeline_id == $target) {
+                return;
+            }
+        } elseif ($model instanceof QuestElement) {
+            $mention->quest_element_id = $model->id;
+
+            // If we are making a reference to ourselves, no need to save it
+            if ($model->quest_id == $target) {
                 return;
             }
         } else {
