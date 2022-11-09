@@ -54,7 +54,7 @@ class Character extends Layout
                 }
             ],
             'races' => [
-                'label' => 'characters.fields.races',
+                'label' => 'entities.races',
                 'class' => self::ONLY_DESKTOP,
                 'render' => function ($model) {
                     $models = [];

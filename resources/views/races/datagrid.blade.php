@@ -12,7 +12,7 @@
         'name',
         'type',
         [
-            'label' => __('characters.fields.race'),
+            'label' => __('entities.race'),
             'field' => 'race.name',
             'visible' => $campaignService->enabled('races'),
             'render' => function($model) {
