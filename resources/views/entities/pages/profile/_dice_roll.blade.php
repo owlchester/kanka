@@ -13,7 +13,7 @@
                 @endif
                 @if ($campaignService->enabled('characters') && $model->character)
                     <p class="entity-character">
-                        <b>{{ __('entities.character'') }}</b><br />
+                        <b>{{ __('entities.character') }}</b><br />
                         {!! $model->character->tooltipedLink() !!}
                     </p>
                 @endif

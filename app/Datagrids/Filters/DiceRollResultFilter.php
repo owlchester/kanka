@@ -23,7 +23,7 @@ class DiceRollResultFilter extends DatagridFilter
             ])
             ->add([
                 'field' => 'diceRoll-character_id',
-                'label' => __('entities.character''),
+                'label' => __('entities.character'),
                 'type' => 'select2',
                 'route' => route('characters.find'),
                 'placeholder' =>  __('crud.placeholders.character'),

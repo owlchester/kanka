@@ -140,7 +140,7 @@ class DatagridRenderer
                 $class .= '  hidden-xs hidden-sm';
                 $html = $this->route(
                     'character.name',
-                    !empty($column['label']) ? $column['label'] :  __('entities.character'')
+                    !empty($column['label']) ? $column['label'] :  __('entities.character')
                 );
             } elseif ($type == 'entity') {
                 $class .= '  hidden-xs hidden-sm';

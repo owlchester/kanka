@@ -13,7 +13,7 @@
                 <th class="avatar"><br /></th>
                 <th>{{ __('items.fields.name') }}</th>
                 <th>{{ __('items.fields.type') }}</th>
-                @if ($campaignService->enabled('characters'))<th>{{ __('entities.character'') }}</th>@endif
+                @if ($campaignService->enabled('characters'))<th>{{ __('entities.character') }}</th>@endif
             </tr>
             @foreach ($r as $item)
                 <tr>

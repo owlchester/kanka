@@ -20,7 +20,7 @@
         @endif
         @if ($model->character)
             <div class="element profile-parameters">
-                <div class="title">{{ __('entities.character'') }}</div>
+                <div class="title">{{ __('entities.character') }}</div>
                 {!! $model->character->tooltipedLink() !!}
             </div>
         @endif

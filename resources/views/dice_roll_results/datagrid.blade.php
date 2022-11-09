@@ -19,7 +19,7 @@
             }
         ],
         [
-            'label' => __('entities.character''),
+            'label' => __('entities.character'),
             'field' => 'diceRoll.character.name',
             'visible' => $campaignService->enabled('characters'),
             'render' => function($model) {
