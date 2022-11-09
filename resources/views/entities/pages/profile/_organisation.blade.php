@@ -13,7 +13,7 @@
                 @endif
                 @if ($model->location)
                     <p class="entity-location" data-foreign="{{ $model->location_id }}">
-                        <b>{{ __('organisations.fields.location') }}</b><br />
+                        <b>{{ __('entities.location') }}</b><br />
                         {!! $model->location->tooltipedLink() !!}
                     </p>
                 @endif

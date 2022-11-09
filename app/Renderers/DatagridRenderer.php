@@ -132,7 +132,7 @@ class DatagridRenderer
                 //$html = null;
             } elseif ($type == 'location') {
                 $class .= '  hidden-xs hidden-sm';
-                $html = $this->route('location.name', __('crud.fields.location'));
+                $html = $this->route('location.name', __('entities.location'));
             } elseif ($type == 'organisation') {
                 $class .= '  hidden-xs hidden-sm';
                 $html = $this->route('organisation.name', __('crud.fields.organisation'));

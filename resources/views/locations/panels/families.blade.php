@@ -46,9 +46,9 @@ if (request()->has('location_id')) {
                 <th class="avatar"><br /></th>
                 <th>{{ __('families.fields.name') }}</th>
                 @if ($campaignService->enabled('locations'))
-                    <th>{{ __('crud.fields.location') }}</th>
+                    <th>{{ __('entities.location') }}</th>
                 @endif
-                <th>{{ __('crud.fields.family') }}</th>
+                <th>{{ __('entities.family') }}</th>
                 <th>{{ __('crud.fields.type') }}</th>
                 <th>&nbsp;</th>
             </tr>

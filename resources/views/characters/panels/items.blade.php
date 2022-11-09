@@ -13,10 +13,10 @@
         <table id="character-items-table" class="table table-hover ">
             <tbody><tr>
                 <th class="avatar"><br /></th>
-                <th>{{ trans('items.fields.name') }}</th>
-                <th class="hidden-xs">{{ trans('items.fields.type') }}</th>
+                <th>{{ __('items.fields.name') }}</th>
+                <th class="hidden-xs">{{ __('items.fields.type') }}</th>
                 @if ($campaignService->enabled('locations'))
-                    <th class="hidden-xs">{{ trans('crud.fields.location') }}</th>
+                    <th class="hidden-xs">{{ __('entities.location') }}</th>
                 @endif
                 <th>&nbsp;</th>
             </tr>

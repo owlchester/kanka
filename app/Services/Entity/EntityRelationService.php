@@ -670,7 +670,7 @@ class EntityRelationService
         $this->relations[] = [
             'source' => $this->entity->id,
             'target' => $this->entity->child->location->entity->id,
-            'text' => __('crud.fields.location'),
+            'text' => __('entities.location'),
             'colour' => '#ccc',
             'attitude' => null,
             'type' => 'entity-location',

@@ -13,7 +13,7 @@
         @endif
 
         @if ($model->location)
-            <i class="ra ra-tower" title="{{ __('crud.fields.location') }}"></i>
+            <i class="ra ra-tower" title="{{ __('entities.location') }}"></i>
             {!! $model->location->tooltipedLink() !!}
         @endif
     </div>

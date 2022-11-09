@@ -14,7 +14,7 @@
             {{ __('crud.relations.fields.name') }}
         </th>
         <th class="hidden-xs hidden-sm">
-            {{ __('crud.fields.location') }}
+            {{ __('entities.location') }}
         </th>
         <th class="hidden-xs hidden-sm">
             {{ __('entities/relations.fields.attitude') }}
