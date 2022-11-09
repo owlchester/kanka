@@ -55,7 +55,7 @@
                     @endif
                     @if ($model->type)
                         <li class="list-group-item">
-                            <b>{{ trans('menu_links.fields.type') }}</b>
+                            <b>{{ trans('crud.fields.type') }}</b>
                             <span  class="pull-right">
                             {{ __('entities.' . \Illuminate\Support\Str::plural($model->type)) }}
                         </span>

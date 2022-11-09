@@ -32,8 +32,8 @@ if (request()->has('location_id')) {
         <table id="items" class="table table-hover ">
             <tbody><tr>
                 <th class="avatar"><br /></th>
-                <th>{{ __('organisations.fields.name') }}</th>
-                <th>{{ __('organisations.fields.type') }}</th>
+                <th>{{ __('entities.organisation') }}</th>
+                <th>{{ __('crud.fields.type') }}</th>
                 @if ($campaignService->enabled('characters'))<th>{{ __('organisations.fields.members') }}</th>@endif
                 <th>&nbsp;</th>
             </tr>

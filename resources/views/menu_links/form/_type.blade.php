@@ -13,7 +13,7 @@ $entityTypes[$entity] = __('entities.' . \Illuminate\Support\Str::plural($entity
 <div class="row">
     <div class="col-md-6">
         <div class="form-group">
-            <label>{{ __('menu_links.fields.type') }}</label>
+            <label>{{ __('crud.fields.type') }}</label>
             {!! Form::select('type', $entityTypes, FormCopy::field('type')->string(), ['class' => 'form-control']) !!}
         </div>
     </div>
