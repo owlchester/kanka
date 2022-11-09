@@ -15,7 +15,7 @@ class DiceRollResultFilter extends DatagridFilter
         $this
             ->add([
                 'field' => 'dice_roll_id',
-                'label' => __('crud.fields.dice_roll'),
+                'label' => __('entities.dice_roll'),
                 'type' => 'select2',
                 'route' => route('dice_rolls.find'),
                 'placeholder' =>  __('dice_rolls.placeholders.dice_roll'),
@@ -23,7 +23,7 @@ class DiceRollResultFilter extends DatagridFilter
             ])
             ->add([
                 'field' => 'diceRoll-character_id',
-                'label' => __('crud.fields.character'),
+                'label' => __('entities.character''),
                 'type' => 'select2',
                 'route' => route('characters.find'),
                 'placeholder' =>  __('crud.placeholders.character'),

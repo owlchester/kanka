@@ -4,7 +4,7 @@
 <table class="table table-striped table-entity-inventory">
     <thead>
     <tr>
-        <th colspan="2">{{ __('crud.fields.item') }}</th>
+        <th colspan="2">{{ __('entities.item') }}</th>
         <th>{{ __('entities/inventories.fields.qty') }}</th>
         @if (auth()->check())
             <th><i class="fa-solid fa-user-lock" title="{{ __('crud.fields.visibility') }}" data-toggle="tooltip"></i></th>

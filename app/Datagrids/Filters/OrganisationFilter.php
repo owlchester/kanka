@@ -18,7 +18,7 @@ class OrganisationFilter extends DatagridFilter
             ->location()
             ->add([
                 'field' => 'organisation_id',
-                'label' => __('crud.fields.organisation'),
+                'label' => __('entities.organisation'),
                 'type' => 'select2',
                 'route' => route('organisations.find'),
                 'placeholder' =>  __('crud.placeholders.organisation'),
@@ -26,7 +26,7 @@ class OrganisationFilter extends DatagridFilter
             ])
             ->add([
                 'field' => 'member_id',
-                'label' => __('crud.fields.character'),
+                'label' => __('entities.character''),
                 'type' => 'select2',
                 'route' => route('characters.find'),
                 'placeholder' =>  __('crud.placeholders.character'),
