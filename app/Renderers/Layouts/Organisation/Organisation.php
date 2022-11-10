@@ -33,7 +33,11 @@ class Organisation extends Layout
                     if (!$model->organisation) {
                         return null;
                     }
-                    return $model->organisation->tooltipedLink();
+                    $defunctIcon = null;
+                    if ($model->organisation->is_defunct) {
+                        $defunctIcon = ' <i class="fa-solid fa-shop-slash" title="' . __('organisations.fields.is_defunct') . '"></i>';
+                    }
+                    return $model->organisation->tooltipedLink() . $defunctIcon;
                 },
             ],
         ];
