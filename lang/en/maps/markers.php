@@ -73,6 +73,9 @@ return [
         'custom_shape'  => '100,100 200,240 340,110',
         'name'          => 'Required if no entity selected',
     ],
+    'presets'       => [
+        'helper'   => 'Click on a preset to load it, or create a new one.',
+    ],
     'shapes'        => [
         '0' => 'Circle',
         '1' => 'Square',
@@ -91,5 +94,6 @@ return [
         'label'     => 'Label',
         'marker'    => 'Marker',
         'polygon'   => 'Polygon',
+        'preset'    => 'Preset',
     ],
 ];

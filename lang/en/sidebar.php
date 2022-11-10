@@ -16,6 +16,7 @@ return [
     'manage_links'      => 'Manage Links',
     'new-entity'        => 'New entity',
     'other'             => 'Other',
+    'presets'           => 'Presets',
     'relations'         => 'Relations',
     'search'            => 'Search...',
     'world'             => 'World',
