@@ -21,6 +21,7 @@ return [
     ],
     'errors'    => [
         'max_reached'   => 'Max number of styles (:max) reached.',
+        'max_content' => 'The CSS rule can\'t be longer than :amount characters.',
     ],
     'fields'    => [
         'content'       => 'CSS rule',

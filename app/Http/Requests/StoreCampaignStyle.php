@@ -7,6 +7,7 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class StoreCampaignStyle extends FormRequest
 {
+    public const MAX = 60000;
     use ApiRequest;
 
     /**
@@ -28,7 +29,7 @@ class StoreCampaignStyle extends FormRequest
     {
         return $this->clean([
             'name' => 'required|string|max:45',
-            'content' => 'required|string|max:64000',
+            'content' => ['required', 'max:' . self::MAX],
             'is_enabled' => 'nullable'
         ]);
     }
