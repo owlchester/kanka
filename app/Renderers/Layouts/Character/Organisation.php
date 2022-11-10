@@ -42,7 +42,7 @@ class Organisation extends Layout
             ],
             'location' => [
                 'key' => 'location.name',
-                'label' => 'organisations.fields.location',
+                'label' => 'entities.location',
                 'render' => function ($model) {
                     if (!$model->location) {
                         return null;

@@ -27,7 +27,7 @@ if ($quickCreator) {
     $quickCreator = auth()->user()->can('create', new \App\Models\Race());
 }
 ?>
-<label>{{ __('characters.fields.races') }}</label>
+<label>{{ __('entities.races') }}</label>
 
 @if ($quickCreator)<div class="input-group input-group-sm">@endif
 

@@ -206,6 +206,11 @@ class RelationController extends Controller
         $this->authorize('update', $entity->child);
         $data = $request->only(['target_id', 'attitude', 'relation', 'colour', 'is_star', 'two_way', 'visibility_id']);
 
+        if ($request->has('unmirror') && $relation->mirror) {
+            $relation->mirror->update(['mirror_id' => null]);
+            $data['mirror_id'] = null;
+        }
+
         $relation->update($data);
         $relation->refresh();
         $mode = $this->getModeOption();

@@ -603,7 +603,7 @@ class EntityRelationService
             $this->relations[] = [
                 'source' => $this->entity->id,
                 'target' => $item->entity->id,
-                'text' => __('crud.fields.item'),
+                'text' => __('entities.item'),
                 'colour' => '#ccc',
                 'attitude' => null,
                 'type' => 'entity-item',
@@ -626,7 +626,7 @@ class EntityRelationService
             $this->relations[] = [
                 'source' => $this->entity->id,
                 'target' => $journal->entity->id,
-                'text' => __('crud.fields.journal'),
+                'text' => __('entities.journal'),
                 'colour' => '#ccc',
                 'attitude' => null,
                 'type' => 'journal-location',
@@ -670,7 +670,7 @@ class EntityRelationService
         $this->relations[] = [
             'source' => $this->entity->id,
             'target' => $this->entity->child->location->entity->id,
-            'text' => __('crud.fields.location'),
+            'text' => __('entities.location'),
             'colour' => '#ccc',
             'attitude' => null,
             'type' => 'entity-location',

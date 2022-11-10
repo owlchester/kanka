@@ -48,7 +48,7 @@ class Member extends Layout
                 }
             ],
             'location' => [
-                'label' => 'crud.fields.location',
+                'label' => 'entities.location',
                 'class' => self::ONLY_DESKTOP,
                 'render' => function ($model) {
                     if (!$model->character->location) {

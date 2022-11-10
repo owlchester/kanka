@@ -13,7 +13,7 @@
         'name',
         'parameters',
         [
-            'label' => __('crud.fields.character'),
+            'label' => __('entities.character'),
             'field' => 'character.name',
             'render' => function($model) {
                 if ($model->character) {

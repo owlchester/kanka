@@ -13,7 +13,7 @@
         'name',
         'type',
         [
-            'label' => __('crud.fields.ability'),
+            'label' => __('entities.ability'),
             'field' => 'ability.name',
             'render' => function($model) {
                 if ($model->ability) {

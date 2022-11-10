@@ -78,6 +78,44 @@
                                     {{ __('entities.' . $mention->entity->type()) }}
                                 </td>
                             </tr>
+                        @elseif ($mention->isQuestElement() && $mention->questElement)
+                            @if($mention->questElement->quest->entity)
+                                <tr>
+                                    <td>
+                                        @if ($mention->questElement->quest->entity->is_private)
+                                            <i class="fa-solid fa-lock" data-toggle="tooltip" title="{{ __('crud.is_private') }}"></i>
+                                        @endif
+                                        <a href="{{ $mention->questElement->entity->url() }}">{{ $mention->questElement->quest->entity->name }}</a>
+                                            -
+                                        {!! $mention->questElement->visibilityIcon(null, true) !!}
+                                        <a href="{{ $mention->questElement->quest->entity->url('quest_elements.index', ['/#quest-element-' . $mention->questElement->id]) }}">
+                                            {{ $mention->questElement->name }}
+                                        </a>
+                                    </td> 
+                                    <td>
+                                        {{ __('entities.quest_element') }}
+                                    </td>
+                                </tr>
+                            @endif
+                        @elseif ($mention->TimelineElement() && $mention->timelineElement)
+                            @if($mention->timelineElement->timeline->entity)
+                                <tr>
+                                    <td>
+                                        @if ($mention->timelineElement->timeline->entity->is_private)
+                                            <i class="fa-solid fa-lock" data-toggle="tooltip" title="{{ __('crud.is_private') }}"></i>
+                                        @endif
+                                        <a href="{{ $mention->timelineElement->timeline->entity->url() }}">{{ $mention->timelineElement->timeline->entity->name }}</a>
+                                            -
+                                        {!! $mention->timelineElement->visibilityIcon(null, true) !!}
+                                        <a href="{{ $mention->timelineElement->timeline->entity->url('show', ['timeline-element-' . $mention->timelineElement->id]) }}">
+                                            {{ $mention->timelineElement->name }}
+                                        </a>
+                                    </td> 
+                                    <td>
+                                        {{ __('entities.timeline_element') }}
+                                    </td>
+                                </tr>
+                            @endif
                         @endif
                     @endforeach
                     </tbody>

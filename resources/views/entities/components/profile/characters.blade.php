@@ -33,7 +33,7 @@
         @if (!$model->races->isEmpty() || $model->hasAge())
             @if (!$model->races->isEmpty() && !$model->hasAge())
             <div class="element profile-race">
-                <div class="title">{{ __('characters.fields.races') }}</div>
+                <div class="title">{{ __('entities.races') }}</div>
                 @php $existingRaces = []; @endphp
                 @foreach ($model->races as $race)
                     @if(!empty($existingRaces[$race->id]))
@@ -50,7 +50,7 @@
             </div>
             @else
             <div class="element profile-race-age">
-                <div class="title">{{ __('characters.fields.races') }}, {{ __('characters.fields.age') }}</div>
+                <div class="title">{{ __('entities.races') }}, {{ __('characters.fields.age') }}</div>
                 @php $existingRaces = []; @endphp
                 @foreach ($model->races as $race)
                     @if(!empty($existingRaces[$race->id]))

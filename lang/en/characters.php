@@ -26,7 +26,6 @@ return [
         'life'                      => 'Life',
         'physical'                  => 'Physical',
         'pronouns'                  => 'Pronouns',
-        'races'                     => 'Races',
         'sex'                       => 'Gender',
         'title'                     => 'Title',
         'traits'                    => 'Traits',

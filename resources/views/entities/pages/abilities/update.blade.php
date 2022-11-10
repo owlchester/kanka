@@ -29,7 +29,7 @@
             @include('partials.errors')
 
             <div class="form-group">
-                <label>{{ __('crud.fields.ability') }}</label><br />
+                <label>{{ __('entities.ability') }}</label><br />
                 {!! $ability->ability->tooltipedLink() !!}
                 {!! Form::hidden('ability_id', $ability->ability_id) !!}
             </div>

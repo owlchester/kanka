@@ -130,15 +130,15 @@ class DatagridRenderer
                 //$html = null;
             } elseif ($type == 'location') {
                 $class .= '  hidden-xs hidden-sm';
-                $html = $this->route('location.name', __('crud.fields.location'));
+                $html = $this->route('location.name', __('entities.location'));
             } elseif ($type == 'organisation') {
                 $class .= '  hidden-xs hidden-sm';
-                $html = $this->route('organisation.name', __('crud.fields.organisation'));
+                $html = $this->route('organisation.name', __('entities.organisation'));
             } elseif ($type == 'character') {
                 $class .= '  hidden-xs hidden-sm';
                 $html = $this->route(
                     'character.name',
-                    !empty($column['label']) ? $column['label'] :  __('crud.fields.character')
+                    !empty($column['label']) ? $column['label'] :  __('entities.character')
                 );
             } elseif ($type == 'entity') {
                 $class .= '  hidden-xs hidden-sm';
@@ -158,7 +158,7 @@ class DatagridRenderer
                 $class = 'icon';
             } elseif ($type == 'calendar_date') {
                 $class .= ' hidden-xs hidden-sm';
-                $html = $this->route('calendar_date', __('crud.fields.calendar_date'));
+                $html = $this->route('calendar_date', __('entities.calendar_date'));
             } else {
                 // No idea what is expected
                 $html = null;

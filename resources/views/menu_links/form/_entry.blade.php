@@ -127,7 +127,7 @@ if (isset($model)) {
             </a>
             <a class="btn btn-app @if($isList) btn-active @endif" data-type="list">
                 <i class="fa-solid fa-th-list"></i>
-                {{ __('menu_links.fields.type') }}
+                {{ __('crud.fields.type') }}
                 <span class="badge bg-blue">
                     <i class="fa-solid fa-check"></i>
                 </span>

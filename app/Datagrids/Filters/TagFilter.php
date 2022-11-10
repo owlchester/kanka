@@ -16,7 +16,7 @@ class TagFilter extends DatagridFilter
             ->add('type')
             ->add([
                 'field' => 'tag_id',
-                'label' => __('crud.fields.tag'),
+                'label' => __('entities.tag'),
                 'type' => 'select2',
                 'route' => route('tags.find'),
                 'placeholder' =>  __('crud.placeholders.tag'),

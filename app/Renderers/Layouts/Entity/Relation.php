@@ -38,7 +38,7 @@ class Relation extends Layout
                 }
             ],
             'location' => [
-                'label' => 'crud.fields.location',
+                'label' => 'entities.location',
                 'render' => function ($model) {
                     if (!$model->target->location) {
                         return null;

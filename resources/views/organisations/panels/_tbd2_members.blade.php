@@ -48,7 +48,7 @@ $hasOrg = request()->has('organisation_id');
                 @if (!$hasOrg)<th>{{ __('organisations.members.fields.organisation') }}</th>@endif
                 <th>{{ __('organisations.members.fields.role') }}</th>
                 @if ($campaignService->enabled('races'))
-                <th class="hidden-sm hidden-xs">{{ __('characters.fields.race') }}</th>
+                <th class="hidden-sm hidden-xs">{{ __('entities.race') }}</th>
                 @endif
                 <th>{{ __('characters.fields.is_dead') }}</th>
                 <th></th>

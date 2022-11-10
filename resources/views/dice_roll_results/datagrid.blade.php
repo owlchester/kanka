@@ -12,14 +12,14 @@
             'parent_route' => 'dice_rolls',
         ],
         [
-            'label' => __('crud.fields.dice_roll'),
+            'label' => __('entities.dice_roll'),
             'field' => 'diceRoll.name',
             'render' => function($model) {
                 return '<a href="' . route('dice_rolls.show', $model->dice_roll_id) . '">' . e($model->diceRoll->name) . '</a>';
             }
         ],
         [
-            'label' => __('crud.fields.character'),
+            'label' => __('entities.character'),
             'field' => 'diceRoll.character.name',
             'visible' => $campaignService->enabled('characters'),
             'render' => function($model) {
