@@ -124,7 +124,7 @@ if($campaignService->campaign()->boosted() && $entity->hasHeaderImage($superboos
                         <i role="button" tabindex="0" class="fa-solid fa-check-circle entity-icons btn-popover" title="{{ __('quests.fields.is_completed') }}"></i>
                     @endif
                     @if ($model instanceof \App\Models\Organisation && $model->is_defunct)
-                        <i role="button" tabindex="0" class="fa-solid fa-shop-slash entity-icons btn-popover" title="{{ __('organisations.fields.is_defunct') }}"></i>
+                        <i role="button" tabindex="0" class="fa-solid fa-shop-slash entity-icons btn-popover" title="{{ __('organisations.hints.is_defunct') }}"></i>
                     @endif
 
                     @if (auth()->check() && auth()->user()->isAdmin())
