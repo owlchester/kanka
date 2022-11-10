@@ -292,7 +292,6 @@ class AttributeService
             $type = $this->mapAttributeTypeToID($type);
             $value = Arr::get($attribute, 'value', '');
 
-
             list ($type, $value) = $this->randomAttribute($type, $value);
 
             $order++;
@@ -489,7 +488,7 @@ class AttributeService
         } elseif ($type === Attribute::TYPE_LIST) {
             return Attribute::TYPE_LIST_ID;
         } elseif ($type === 'block') {
-            return Attribute::TYPE_TEXT_ID;
+            return Attribute::TYPE_SECTION_ID;
         }
         dd('missing mapping for ' . $type);
     }
