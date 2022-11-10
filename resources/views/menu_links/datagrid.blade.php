@@ -1,11 +1,10 @@
 <?php /** @var \App\Models\MenuLink $model */?>
 @inject ('datagrid', 'App\Renderers\DatagridRenderer')
 
-{!! $datagrid->filters($filters)
-    ->render(
-    $filterService,
-    // Columns
-    [
+{!! $datagrid
+    ->service($filterService)
+    ->models($models)
+    ->columns([
         // Name
         'name',
         'position',
@@ -48,11 +47,8 @@
         [
             'type' => 'is_private',
         ]
-    ],
-    // Data
-    $models,
-    // Options
-    [
+    ])
+    ->options(    [
         'route' => 'menu_links.index',
         'baseRoute' => 'menu_links',
         'trans' => 'menu_links.fields.',

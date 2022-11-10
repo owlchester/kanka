@@ -1,10 +1,9 @@
 @inject ('datagrid', 'App\Renderers\DatagridRenderer')
 
-{!! $datagrid->filters($filters)
-    ->render(
-    $filterService,
-    // Columns
-    [
+{!! $datagrid
+    ->service($filterService)
+    ->models($models)
+    ->columns([
         // Avatar
         [
             'type' => 'avatar',
@@ -45,11 +44,8 @@
                 return $model->updated_at->diffForHumans();
             }
         ],
-    ],
-    // Data
-    $models,
-    // Options
-    [
+    ])
+    ->options([
         'route' => 'dice_roll_results.index',
         'baseRoute' => 'dice_roll_results',
         'trans' => 'dice_rolls.fields.',

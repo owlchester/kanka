@@ -12,7 +12,6 @@ use App\Models\Relation;
 use App\Services\FilterService;
 use App\User;
 use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Arr;
 use Collective\Html\FormFacade as Form;
@@ -25,7 +24,7 @@ class DatagridRenderer
     protected LengthAwarePaginator|Collection|array $data = [];
 
     protected array $options = [];
-
+    protected Collection|LengthAwarePaginator $models;
     protected User|null $user;
 
     protected FilterService|null $filterService = null;
@@ -33,7 +32,7 @@ class DatagridRenderer
     protected DateRenderer $dateRenderer;
 
     /** @var Campaign|bool */
-    protected $campaign = false;
+    protected $campaign;
 
     /**
      * @var null|string
@@ -49,6 +48,31 @@ class DatagridRenderer
         $this->dateRenderer = $dateRenderer;
     }
 
+
+    public function columns(array $columns): self
+    {
+        $this->columns = $columns;
+        return $this;
+    }
+
+    public function options(array $options): self
+    {
+        $this->options = $options;
+        return $this;
+    }
+
+    public function models(Collection|LengthAwarePaginator $models): self
+    {
+        $this->models = $models;
+        return $this;
+    }
+
+    public function service($service): self
+    {
+        $this->filterService = $service;
+        return $this;
+    }
+
     /**
      * @param FilterService $filterService
      * @param array $columns
@@ -61,14 +85,20 @@ class DatagridRenderer
         $columns = [],
         $data = [],
         $options = []
-    ) {
+    ): self {
         $this->columns = $columns;
-        $this->data = $data;
+        $this->models = $data;
         $this->options = $options;
 
         $this->filterService = $filterService;
 
-        $html = '<table id="' . $this->getOption('baseRoute') . '" class="table table-striped' . ($this->nestedFilter ? ' table-nested' : null). '">';
+        return $this;
+    }
+
+    public function __toString(): string
+    {
+        $html = '<table id="' . $this->getOption('baseRoute') . '" class="table table-striped' .
+            ($this->nestedFilter ? ' table-nested' : null). '">';
         $html .= '<thead><tr>';
         $html .= $this->renderColumns();
         $html .=  '</tr></thead>';
@@ -240,7 +270,7 @@ class DatagridRenderer
     {
         $html = '';
         $rows = 0;
-        foreach ($this->data as $model) {
+        foreach ($this->models as $model) {
             $rows++;
             $html .= $this->renderRow($model);
         }
@@ -484,14 +514,6 @@ class DatagridRenderer
     }
 
     /**
-     * Set the filters
-     */
-    public function filters($filters = null)
-    {
-        return $this;
-    }
-
-    /**
      * Render the filter
      * @return string
      */
@@ -526,7 +548,7 @@ class DatagridRenderer
      */
     protected function getCampaign(): Campaign
     {
-        if ($this->campaign === false) {
+        if ($this->campaign === null) {
             $this->campaign = CampaignLocalization::getCampaign();
         }
         return $this->campaign;

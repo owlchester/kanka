@@ -2,11 +2,9 @@
 @inject ('datagrid', 'App\Renderers\DatagridRenderer')
 
 {!! $datagrid
-    ->filters($filters)
-    ->render(
-    $filterService,
-    // Columns
-    [
+    ->service($filterService)
+    ->models($models)
+    ->columns([
         [
             'field' => 'owner_id',
             'label' => __('entities/relations.fields.owner'),
@@ -61,11 +59,8 @@
                 return $model->visibilityIcon();
             }
         ],
-    ],
-    // Data
-    $models,
-    // Options
-    [
+    ])
+    ->options(    [
         'route' => 'relations.index',
         'baseRoute' => 'relations',
         'trans' => 'relations.fields.',
