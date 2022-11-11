@@ -8,10 +8,10 @@ use Illuminate\Auth\Access\HandlesAuthorization;
 
 class DiceRollPolicy extends MiscPolicy
 {
-    /**
-     * @var string
-     */
-    protected $model = 'dice_roll';
+    public function entityTypeID(): int
+    {
+        return config('entities.ids.dice_roll');
+    }
 
     public function roll(User $user, $entity)
     {

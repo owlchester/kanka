@@ -7,15 +7,11 @@ use App\User;
 
 class EventPolicy extends MiscPolicy
 {
-    protected $model = 'event';
+    public function entityTypeID(): int
+    {
+        return config('entities.ids.event');
+    }
 
-
-    /**
-     * Determine whether the user can create entitys.
-     *
-     * @param  \App\User $user
-     * @return mixed
-     */
     public function calendar(User $user)
     {
         return $this->checkPermission(CampaignPermission::ACTION_ADD, $user);

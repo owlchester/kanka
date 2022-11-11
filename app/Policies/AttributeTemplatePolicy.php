@@ -4,5 +4,8 @@ namespace App\Policies;
 
 class AttributeTemplatePolicy extends MiscPolicy
 {
-    protected $model = 'attribute_template';
+    public function entityTypeID(): int
+    {
+        return config('entities.ids.attribute_template');
+    }
 }

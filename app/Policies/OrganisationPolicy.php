@@ -8,7 +8,10 @@ use Illuminate\Auth\Access\HandlesAuthorization;
 
 class OrganisationPolicy extends MiscPolicy
 {
-    protected $model = 'organisation';
+    public function entityTypeID(): int
+    {
+        return config('entities.ids.organisation');
+    }
 
     public function member(User $user, Organisation $organisation)
     {

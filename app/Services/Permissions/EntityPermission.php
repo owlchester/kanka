@@ -152,8 +152,13 @@ class EntityPermission
      * @param Campaign|null $campaign
      * @return bool
      */
-    public function hasPermission(int $entityType, int $action, User $user = null, $entity = null, Campaign $campaign = null)
-    {
+    public function hasPermission(
+        int $entityType,
+        int $action,
+        User $user = null,
+        $entity = null,
+        Campaign $campaign = null
+    ): bool {
         $this->loadAllPermissions($user, $campaign);
 
         if ($this->userIsAdmin) {

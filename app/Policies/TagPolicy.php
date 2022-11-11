@@ -8,5 +8,8 @@ use Illuminate\Auth\Access\HandlesAuthorization;
 
 class TagPolicy extends MiscPolicy
 {
-    protected $model = 'tag';
+    public function entityTypeID(): int
+    {
+        return config('entities.ids.tag');
+    }
 }

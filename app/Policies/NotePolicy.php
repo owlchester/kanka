@@ -8,5 +8,8 @@ use Illuminate\Auth\Access\HandlesAuthorization;
 
 class NotePolicy extends MiscPolicy
 {
-    protected $model = 'note';
+    public function entityTypeID(): int
+    {
+        return config('entities.ids.note');
+    }
 }

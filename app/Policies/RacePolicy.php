@@ -4,5 +4,8 @@ namespace App\Policies;
 
 class RacePolicy extends MiscPolicy
 {
-    protected $model = 'race';
+    public function entityTypeID(): int
+    {
+        return config('entities.ids.race');
+    }
 }

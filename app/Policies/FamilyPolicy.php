@@ -8,5 +8,8 @@ use Illuminate\Auth\Access\HandlesAuthorization;
 
 class FamilyPolicy extends MiscPolicy
 {
-    protected $model = 'family';
+    public function entityTypeID(): int
+    {
+        return config('entities.ids.family');
+    }
 }

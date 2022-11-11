@@ -4,5 +4,8 @@ namespace App\Policies;
 
 class TimelinePolicy extends MiscPolicy
 {
-    protected $model = 'timeline';
+    public function entityTypeID(): int
+    {
+        return config('entities.ids.timeline');
+    }
 }

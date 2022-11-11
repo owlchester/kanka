@@ -8,5 +8,8 @@ use Illuminate\Auth\Access\HandlesAuthorization;
 
 class ConversationPolicy extends MiscPolicy
 {
-    protected $model = 'conversation';
+    public function entityTypeID(): int
+    {
+        return config('entities.ids.conversation');
+    }
 }
