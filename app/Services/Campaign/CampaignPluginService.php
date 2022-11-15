@@ -228,7 +228,9 @@ class CampaignPluginService
         // Updating?
         /** @var Entity $model */
         $model = null;
-        $entity = $this->importedEntities->where('marketplace_uuid', $pluginEntity->uuid)->first();
+        $entity = $this->importedEntities->where('marketplace_uuid', $pluginEntity->uuid)->where('type_id', $pluginEntity->type_id)->first();
+        $modifiedEntity = $this->importedEntities->where('marketplace_uuid', $pluginEntity->uuid)->first();
+
         if ($entity) {
             $this->entityIds[$pluginEntity->id] = $entity->id;
             $this->miscIds[$pluginEntity->id] = $entity->entity_id;
@@ -242,6 +244,10 @@ class CampaignPluginService
                 $this->skippedEntities[] = $pluginEntity->id;
             }
         } else {
+            if ($modifiedEntity) {
+                $modifiedEntity->marketplace_uuid = null;
+                $modifiedEntity->save();
+            }
             $className = '\App\Models\\' . Str::studly($pluginEntity->type->code);
             //dump('new ' . $className);
 
