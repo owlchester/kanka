@@ -64,13 +64,6 @@ class CampaignRoleUserPolicy
             return false;
         }
 
-        // Only allow removing yourself from the non-admin role
-        if ($user->id === $campaignRoleUser->user_id) {
-            return !$campaignRole->isAdmin() ;
-        }
-
-        // User is an admin, only allow deleting if the role is the admin role and the user
-        // was added less than 15 minutes ago (aka by accident)
-        return !$campaignRole->isAdmin() || $campaignRoleUser->created_at->diffInMinutes() <= 15;
+        return true;
     }
 }

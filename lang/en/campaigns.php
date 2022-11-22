@@ -268,7 +268,8 @@ TEXT
         'hints'         => [
             'campaign_not_public'   => 'The public role has permissions but the campaign is private. You can change this setting on the Sharing tab when editing the campaign.',
             'empty_role'            => 'The role doesn\'t have any members in it yet.',
-            'role_permissions'      => 'Enable the \':name\' role to do the following actions on all entities.',
+            'role_admin' => 'The :name role automatically grants access to everything in the campaign to its members.',
+            'role_permissions'      => 'Enable the :name role to do the following actions on all entities',
         ],
         'members'       => 'Members',
         'modals'        => [
@@ -331,6 +332,10 @@ TEXT
             ],
             'destroy'   => [
                 'success'   => ':user removed from the role :role.',
+            ],
+            'errors'    => [
+                'needs_more_roles' => 'You need to add yourself to another role in the campaign before being able to remove yourself from the :admin role.',
+                'cant_kick_admins' => 'To avoid abuse, you cannot remove other members from the campaign\'s :admin role. In case of issues, contact us on :discord or at :email.'
             ],
             'fields'    => [
                 'name'  => 'Name',

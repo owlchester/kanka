@@ -190,7 +190,7 @@
                     label: "Embed script",
                     placeholder: "<iframe src=''></iframe>",
                     button: "Insert Embed",
-                    help: "Copy-Past a Spotify, Youtube or Google Docs embed code in the above field.",
+                    help: "Copy-Paste a Spotify, Youtube or Google Docs embed code in the above field.",
                 }
             },
         },
