@@ -143,13 +143,14 @@ class MapMarkerController extends Controller
         }
 
         $ajax = request()->ajax();
+        $from = request()->get('from');
         $model = $mapMarker;
         $includeMap = true;
         $activeTab = $mapMarker->shape_id;
 
         return view(
             'maps.markers.edit',
-            compact('map', 'ajax', 'model', 'includeMap', 'activeTab')
+            compact('map', 'ajax', 'model', 'includeMap', 'activeTab', 'from')
         );
     }
 
