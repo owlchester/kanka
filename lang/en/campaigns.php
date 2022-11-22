@@ -306,7 +306,6 @@ TEXT
                 'permission'    => 'Allow setting permissions on entities of this type they can edit.',
                 'read'          => 'Allow viewing all entities of this type that aren\'t private.',
             ],
-            'hint'      => 'This role automatically has access to everything.',
         ],
         'placeholders'  => [
             'name'  => 'Name of the role',
