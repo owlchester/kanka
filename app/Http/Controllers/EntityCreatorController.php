@@ -262,6 +262,7 @@ class EntityCreatorController extends Controller
             'abilities' => 'ability',
             'tags' => 'tag',
             'posts' => 'post',
+            'attribute_templates' => 'attribute_template',
             'dice_rolls' => 'dice_roll',
             'conversations' => 'conversation',
         ];
