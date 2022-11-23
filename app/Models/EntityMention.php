@@ -17,6 +17,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property integer $target_id
  * @property Entity $entity
  * @property EntityNote $entityNote
+ * @property QuestElement $questElement
+ * @property TimelineElement $timelineElement
  * @property Entity $target
  * @property Campaign $campaign
  *

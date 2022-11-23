@@ -2074,6 +2074,7 @@ footer {
 }
 footer .grid {
   max-width: 1140px;
+  margin: 0 auto;
 }
 footer .grid .cell {
   overflow: hidden;
