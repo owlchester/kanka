@@ -6,6 +6,8 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Translation\Translator;
+use Illuminate\Contracts\Translation\Loader;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Str;
@@ -60,6 +62,15 @@ class PluginVersion extends Model
     public function getCssAttribute(): string
     {
         return Arr::get($this->json, 'css', '');
+    }
+
+    /**
+     * Get the translations (stored in the json)
+     * @return array
+     */
+    public function getTranslationsAttribute(): array
+    {
+        return Arr::get($this->json, 'translations', []);
     }
 
     /**
@@ -143,13 +154,31 @@ class PluginVersion extends Model
 
         $html = str_replace([
             '@php', '@dd', '@inject', '@yield', '@section', '@auth', '@guest', '@env', '@once', '@push', '@csrf',
-            '@include', '\Illuminate\\',
+            '@include', '\Illuminate\\', "@i18n('"
         ], [
-            '', '', '', '', '', '', '', '', '', '', ''
+            '', '', '', '', '', '', '', '', '', '', '', '', '', "trans('*."
         ], $html);
         $html = preg_replace('`dd\((.*?)\)`i', '', $html);
         $html = preg_replace('`config\((.*?)\)`i', '', $html);
+        $locale = auth()->user()->locale;
+        $lines = [];
 
+        //Replace translation keys of existing translations
+        foreach ($this->getTranslationsAttribute() as $translation) {
+            if ($translation['locale'] === $locale) {
+                $lines['*.' . $translation['base']] = $translation['translation'];
+                $html = str_replace("trans('*." . $translation['base'] . "')", "{{ trans('*." . $translation['base'] . "') }}", $html);
+            }
+        }
+
+        //Deleting translation syntax from keys with no translation
+        foreach ($this->getTranslationsAttribute() as $translation) {
+            if (!array_key_exists('*.' . $translation['base'], $lines)) {
+                $html = str_replace("trans('*." . $translation['base'] . "')", $translation['base'], $html);
+            }
+        }
+
+        app('translator')->addLines($lines, $locale);
 
         $html = Blade::compileString($html);
 
