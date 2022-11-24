@@ -184,6 +184,26 @@ class MentionsService
             $text
         );
 
+        // Parse all mention links and transform them into advanced mentions []
+        $links = '`<a\s[^>]*>(.*)<\/a>`';
+        $text = preg_replace_callback($links, function ($matches) {
+            $mentionName = $matches[1];
+            $attributes = $this->linkAttributes($matches[0]);
+            $advancedMention = Arr::get($attributes, 'data-mention');
+            if (empty($advancedMention)) {
+                // It's not a mention, we don't care
+                return $matches[0];
+            }
+
+            // If the name isn't the target name, transform it into an advanced mention
+            $originalName = Arr::get($attributes, 'data-name', null);
+            if (!empty($originalName) && $originalName != $mentionName) {
+                return str_replace(']', '|' . $mentionName . ']', $advancedMention);
+            }
+
+            return $advancedMention;
+        }, $text);
+
         // TinyMCE mentions
         $text = preg_replace(
             '`<a class="mention" href="#" data-name="(.*?)" data-mention="([^"]*)">(.*?)</a>`',
@@ -198,10 +218,11 @@ class MentionsService
 
         // Summernote will inject the link differently.
         //dump($text);
-        $text = preg_replace_callback(
+        /*$text = preg_replace_callback(
             '`<a href="([^"]*)" class="mention" data-name="(.*?)" data-mention="([^"]*)">(.*?)</a>`',
             function ($data) {
                 //dump($data);
+                dd($data);
                 if (count($data) !== 5) {
                     return $data[0];
                 }
@@ -212,8 +233,8 @@ class MentionsService
                 return $data[3];
             },
             $text
-        );
-        //dd($text);
+        );*/
+        dd($text);
 
         // Attributes
         $text = preg_replace(
@@ -722,5 +743,25 @@ class MentionsService
     protected function unlockEntryRendering(): void
     {
         $this->enableEntryField = true;
+    }
+
+    protected function linkAttributes(string $html): array
+    {
+        $attributes = [];
+        $dom = new \DOMDocument();
+        $dom->loadHTML($html);
+
+        $links = $dom->getElementsByTagName('a');
+        $link = $links[0];
+
+        $validAttributes = ['class', 'data-name', 'data-mention'];
+        foreach ($validAttributes as $attribute) {
+            if (!$link->hasAttribute($attribute)) {
+                continue;
+            }
+            $attributes[$attribute] = $link->getAttribute($attribute);
+        }
+
+        return $attributes;
     }
 }
