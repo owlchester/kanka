@@ -152,82 +152,28 @@ class PluginVersion extends Model
             return '{{ $' . $name . ' }}';
         }, $html);
 
-        //Blacklisted commands
+        // Blacklisted commands
         $html = str_replace([
             '@php', '@dd', '@inject', '@yield', '@section', '@auth', '@guest', '@env', '@once', '@push', '@csrf',
-            '@include', '\Illuminate\\', "@i18n('"
+            '@include', '\Illuminate\\'
         ], [
-            '', '', '', '', '', '', '', '', '', '', '', '', '', "trans('*."
+            '', '', '', '', '', '', '', '', '', '', '', '', ''
         ], $html);
 
-        //Check for translation command
-        $html = str_replace(["@i18n('"], [ "trans('*."], $html);
-
+        // Remove more blacklisted stuff than can go unnoticed
         $html = preg_replace('`dd\((.*?)\)`i', '', $html);
         $html = preg_replace('`config\((.*?)\)`i', '', $html);
-        $locale = auth()->user()->locale;
-        $lines = [];
 
-        //$html = preg_replace_callback('`\@i18n\(\'(.*?[^\')|^\")])\'\)`i', function ($matches) {
-        //    return '{{ trans(' . $matches[1] . ') }}';
-        //}, $html);
+        // Replace translation calls with blade echoes
+        $html = preg_replace_callback('`\@i18n\(\'(.*?[^)])\'\)`i', function ($matches) {
+            return '{{ trans("' . $matches[1] . '") }}';
+        }, $html);
 
-        //Replace translation keys of existing translations
-        foreach ($this->getTranslationsAttribute() as $translation) {
-            if ($translation['locale'] === $locale) {
-                $lines['*.' . $translation['base']] = $translation['translation'];
-                $html = str_replace("trans('*." . $translation['base'] . "')", "{{ trans('*." . $translation['base'] . "') }}", $html);
-            }
-        }
-
-        //Deleting translation syntax from keys with no translation
-        foreach ($this->getTranslationsAttribute() as $translation) {
-            if (!array_key_exists('*.' . $translation['base'], $lines)) {
-                $html = str_replace("trans('*." . $translation['base'] . "')", $translation['base'], $html);
-            }
-        }
-
-        app('translator')->addLines($lines, $locale);
+        $this->loadTranslations();
 
         $html = Blade::compileString($html);
 
-        // Prepare attributes
-        $data = [];
-        $ids = [];
-        $checkboxes = [];
-        $this->entityAttributes = $entity->allAttributes;
-        $allAttributes = [];
-        foreach ($this->entityAttributes as $attr) {
-            $name = str_replace(' ', '', $attr->name);
-            if (Str::contains($name, '[range:')) {
-                $name = Str::before($name, '[range:');
-            }
-            $data[$name] = $attr->mappedValue();
-            $ids[$name] = $attr->id;
-            if ($attr->isText()) {
-                $data[$name] = nl2br($data[$name]);
-            } elseif ($attr->isCheckbox()) {
-                $checkboxes[] = $name;
-            }
-            //dump('mapping ' . $name . ' to ' . $attr->mappedValue());
-
-            // Cleanup the name for ranged values
-            $allAttributes[$name] = $data[$name];
-            unset($this->templateAttributes[$name]);
-        }
-
-        // We need this for some blade directives like foreach
-        $data['__env'] = app(\Illuminate\View\Factory::class);
-        $data['attributes'] = $allAttributes;
-
-        //dump($data);
-        ///dump($this->templateAttributes);
-
-        // Add any variables missing
-        //dd($this->templateAttributes);
-        foreach ($this->templateAttributes as $name) {
-            $data[$name] = null;
-        }
+        list($data, $ids, $checkboxes) = $this->prepareBladeData($entity);
 
         $html = preg_replace_callback('`\@liveAttribute\(\'(.*?[^)])\'\)`i', function ($matches) use ($data, $ids, $checkboxes) {
             $attr = trim((string) $matches[1]);
@@ -388,6 +334,69 @@ class PluginVersion extends Model
             return false;
         }
         return true;
+    }
+
+    /**
+     * Add the plugin's translations to memory
+     * @return void
+     */
+    protected function loadTranslations(): void
+    {
+        // Always add the user's locale + en as a fallback
+        $userLocale = auth()->user()->locale;
+        $locales = [$userLocale, 'en'];
+
+        foreach ($this->getTranslationsAttribute() as $translation) {
+            if (!in_array($translation['locale'], $locales)) {
+                continue;
+            }
+            $lines['*.' . $translation['base']] = $translation['translation'];
+
+            app('translator')->addLines($lines, $userLocale);
+        }
+    }
+
+    /**
+     * Prepare all the attributes of the entity to be accessible in blade
+     * @param Entity $entity
+     * @return array
+     */
+    protected function prepareBladeData(Entity $entity): array
+    {
+        $data = [];
+        $ids = [];
+        $checkboxes = [];
+        $this->entityAttributes = $entity->allAttributes;
+        $allAttributes = [];
+        foreach ($this->entityAttributes as $attr) {
+            $name = str_replace(' ', '', $attr->name);
+            if (Str::contains($name, '[range:')) {
+                $name = Str::before($name, '[range:');
+            }
+            $data[$name] = $attr->mappedValue();
+            $ids[$name] = $attr->id;
+            if ($attr->isText()) {
+                $data[$name] = nl2br($data[$name]);
+            } elseif ($attr->isCheckbox()) {
+                $checkboxes[] = $name;
+            }
+            //dump('mapping ' . $name . ' to ' . $attr->mappedValue());
+
+            // Cleanup the name for ranged values
+            $allAttributes[$name] = $data[$name];
+            unset($this->templateAttributes[$name]);
+        }
+
+        // We need this for some blade directives like foreach
+        $data['__env'] = app(\Illuminate\View\Factory::class);
+        $data['attributes'] = $allAttributes;
+
+        // Add any missing attributes to be accessible in blade
+        foreach ($this->templateAttributes as $name) {
+            $data[$name] = null;
+        }
+
+        return [$data, $ids, $checkboxes];
     }
 
     /**

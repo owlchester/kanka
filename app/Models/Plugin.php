@@ -100,6 +100,7 @@ class Plugin extends Model
                     WHERE upd.plugin_id = ' . $this->getTable() . '.id AND
                     (upd.status_id = 3 OR (upd.status_id in (1,3) AND ' . $this->getTable() . '.created_by = ' . auth()->user()->id . ')) AND
                     upd.id > campaign_plugins.plugin_version_id
+                    LIMIT 1
                 ) IS NOT NULL THEN 1 ELSE 0 END AS has_update';
         }
 
