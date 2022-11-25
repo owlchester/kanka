@@ -1,27 +1,27 @@
 <?php
 
 return [
-    'actions' => [
-        'create' => 'Create a new preset',
+    'actions'       => [
+        'create'    => 'Create a new preset',
     ],
-    'create' => [
-        'title' => 'New preset',
-        'success' => 'Preset :name created.',
+    'create'        => [
+        'success'   => 'Preset :name created.',
+        'title'     => 'New preset',
     ],
-    'destroy' => [
-        'success' => 'Preset :name destroyed.',
+    'destroy'       => [
+        'success'   => 'Preset :name destroyed.',
     ],
-    'fields' => [
-        'name' => 'Preset name',
+    'edit'          => [
+        'success'   => 'Preset :name modified.',
+        'title'     => 'Edit :name preset',
     ],
-    'placeholders' => [
-        'name' => 'The preset\'s name',
+    'fields'        => [
+        'name'  => 'Preset name',
     ],
-    'lists' => [
+    'lists'         => [
         'empty' => 'There are currently no available presets in the campaign.',
     ],
-    'edit' => [
-        'title' => 'Edit :name preset',
-        'success' => 'Preset :name modified.',
+    'placeholders'  => [
+        'name'  => 'The preset\'s name',
     ],
 ];

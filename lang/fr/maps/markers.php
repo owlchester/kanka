@@ -47,7 +47,7 @@ return [
         'base'                      => 'Ajouter des marqueurs en cliquant sur la carte.',
         'copy_elements'             => 'Copier les groupes, couches, et marqueurs.',
         'copy_elements_to_campaign' => 'Copier les groupes, couches, et marqueurs de la carte. Les marqueurs liés à des entités seront transformés en marqueurs standards.',
-        'custom_icon'               => 'Copier le HTML d\'une icône depuis :fontawesome ou :rpgawesome, ou ajouter une icône SVG personnalisée.',
+        'custom_icon_v2'            => 'Utilises des icônes de :fontawesome, :rpgawesome, ou avec un SVG personalisé. Découvres comment dans notre :docs.',
         'custom_radius'             => 'Sélectionner l\'option personnalisée pour définir une taille.',
         'draggable'                 => 'Cocher pour permettre au marqueur d\'être déplacé en mode exploration.',
         'label'                     => 'Un label est affiché comme bloque de texte sur la carte. Le text affiché sera le nom du marqueur ou le nom de l\'entité liée.',
@@ -73,6 +73,9 @@ return [
         'custom_shape'  => '100,100, 200,240, 340,110',
         'name'          => 'Nom du marqueur',
     ],
+    'presets'       => [
+        'helper'    => 'Cliques sur un préréglage pour le charger, ou crées-en un nouveau.',
+    ],
     'shapes'        => [
         '0' => 'Cercle',
         '1' => 'Carré',
@@ -91,5 +94,6 @@ return [
         'label'     => 'Label',
         'marker'    => 'Marqueur',
         'polygon'   => 'Polygone',
+        'preset'    => 'Préréglage',
     ],
 ];

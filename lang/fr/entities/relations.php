@@ -44,6 +44,7 @@ return [
         'target'            => 'Cible',
         'target_relation'   => 'Relation de la cible',
         'two_way'           => 'Créer une relation miroir',
+        'unmirror'          => 'Délier cette relation de la relation miroir.',
     ],
     'helper'            => 'Définir des relations entre entités avec leurs description, attitude et visibilité. Les relations peuvent aussi être épinglées sur le menu de l\'entité.',
     'helpers'           => [

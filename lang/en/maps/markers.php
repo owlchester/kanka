@@ -74,7 +74,7 @@ return [
         'name'          => 'Required if no entity selected',
     ],
     'presets'       => [
-        'helper'   => 'Click on a preset to load it, or create a new one.',
+        'helper'    => 'Click on a preset to load it, or create a new one.',
     ],
     'shapes'        => [
         '0' => 'Circle',

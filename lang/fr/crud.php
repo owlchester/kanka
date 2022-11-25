@@ -171,6 +171,7 @@ return [
         'replace_mentions'      => 'Remplace les mentions d\'attributs avec ceux de la nouvelle entité.',
         'tag'                   => 'Etiquette',
         'tags'                  => 'Etiquettes',
+        'template'              => 'Modèle',
         'timeline'              => 'Chronologie',
         'tooltip'               => 'Infobulle',
         'type'                  => 'Type',
@@ -217,10 +218,12 @@ return [
             'copy'  => 'Presse-papier',
         ],
         'options'                   => [
-            'children'  => 'Avec enfants',
+            'children'  => 'Avec les descendants',
             'exclude'   => 'Exclure',
-            'include'   => 'Inclure',
+            'hide'      => 'Cacher',
+            'include'   => 'Correspond à',
             'none'      => 'Aucun(e)',
+            'show'      => 'Afficher',
         ],
         'show'                      => 'Afficher les filtres',
         'sorting'                   => [

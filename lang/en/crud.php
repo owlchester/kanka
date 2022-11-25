@@ -217,10 +217,10 @@ return [
             'copy'  => 'Clipboard',
         ],
         'options'                   => [
-            'children'  => 'With children',
+            'children'  => 'Include descendants',
             'exclude'   => 'Exclude',
             'hide'      => 'Hide',
-            'include'   => 'Include',
+            'include'   => 'Matches',
             'none'      => 'None',
             'show'      => 'Show',
         ],

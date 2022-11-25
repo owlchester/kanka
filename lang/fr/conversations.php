@@ -12,7 +12,6 @@ return [
         'is_closed'     => 'Fermée',
         'messages'      => 'Messages',
         'participants'  => 'Participants',
-        'target'        => 'Cible',
     ],
     'hints'         => [
         'participants'  => 'Ajoute des participants à la conversation.',

@@ -20,6 +20,7 @@ return [
         'success'   => 'Style style :name supprimé.',
     ],
     'errors'    => [
+        'max_content'   => 'La règle CSS ne peut pas dépasser :amount charactères.',
         'max_reached'   => 'Nombre maximal (:max) de styles atteint.',
     ],
     'fields'    => [

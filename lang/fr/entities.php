@@ -16,11 +16,18 @@ return [
     'creator'               => [
         'actions'           => [
             'create'    => 'Créer :type',
+            'more'      => 'Ajouter plus de détails',
         ],
         'back'              => 'Retour à la sélection',
+        'bulk_names'        => 'Ajouter un nom par ligne',
         'duplicate'         => 'Il y a d\'autres entités de ce type avec le même nom.',
         'helper_v2'         => 'Créés rapidement les fondations d\'une nouvelle entité sans interrompre ton flow.',
         'missing'           => 'Tu ne vois pas tous les types d\'entités ? Il est peut-être désactivé, tes autorisations ne le permettent peut-être pas, ou il n\'est pas disponible pour la création rapide.',
+        'modes'             => [
+            'bulk'      => 'Ajout en bloc',
+            'default'   => 'Ajout rapide',
+            'templates' => 'Choix de modèle',
+        ],
         'name'              => [
             'new'       => 'Nouveau nom',
             'remove'    => 'Retirer',
@@ -51,6 +58,7 @@ return [
     'new'                   => [
         'ability'       => 'Nouveau pouvoir',
         'character'     => 'Nouveau personnage',
+        'creature'      => 'Nouvelle créature',
         'event'         => 'Nouvel événement',
         'family'        => 'Nouvelle famille',
         'item'          => 'Nouvel objet',
@@ -68,6 +76,7 @@ return [
     'organisations'         => 'Organisations',
     'post'                  => 'Post',
     'quest'                 => 'Quête',
+    'quest_element'         => 'Elément de quête',
     'quests'                => 'Quêtes',
     'race'                  => 'Race',
     'races'                 => 'Races',
@@ -76,5 +85,6 @@ return [
     'tag'                   => 'Etiquette',
     'tags'                  => 'Etiquettes',
     'timeline'              => 'Chronologie',
+    'timeline_element'      => 'Elément de chronologie',
     'timelines'             => 'Chronologies',
 ];

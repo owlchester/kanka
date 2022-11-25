@@ -32,4 +32,9 @@ return [
         'name'      => 'Requis si pas d\'entité sélectionnée.',
         'position'  => 'Position dans la liste des éléments de l\'ère. Laisser vide pour ajouter à la fin.',
     ],
+    'warning'       => [
+        'editing'   => [
+            'description'   => 'On dirait que quelqu\'un d\'autre est en train de modifier cet élément de chronologie! Souhaites-tu revenir en arrière ou ignorer cet avertissement, au risque de perdre des données? Les membres éditant actuellement cet élément sont:',
+        ],
+    ],
 ];
