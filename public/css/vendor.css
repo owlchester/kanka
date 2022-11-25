@@ -1103,6 +1103,14 @@ See http://bgrins.github.io/spectrum/themes/ for instructions.
   outline: none;
 }
 
+.select2-container .select2-selection--single, .select2-container--default .select2-selection--single .select2-selection__arrow {
+  height: 36px;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+  line-height: 36px;
+}
+
 @media (max-width: 767px) {
   .note-popover {
     left: 0 !important;

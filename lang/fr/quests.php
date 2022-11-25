@@ -27,7 +27,7 @@ return [
         'title'     => 'Éléments de quêtes pour :name',
         'warning'   => [
             'editing'   => [
-                'description'   => 'On dirait que quelqu\'un d\\'autre est en train de modifier cet élément de quête! Souhaites-tu revenir en arrière ou ignorer cet avertissement, au risque de perdre des données? Les membres éditant actuellement cet élément entité sont:',
+                'description'   => 'On dirait que quelqu\'un d\'autre est en train de modifier cet élément de quête! Souhaites-tu revenir en arrière ou ignorer cet avertissement, au risque de perdre des données? Les membres éditant actuellement cet élément entité sont:',
             ],
         ],
     ],

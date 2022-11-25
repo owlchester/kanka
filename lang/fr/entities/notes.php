@@ -63,7 +63,7 @@ return [
     ],
     'warning'       => [
         'editing'   => [
-            'description'   => 'On dirait que quelqu\'un d\\'autre est en train de modifier cette note! Souhaites-tu revenir en arrière ou ignorer cet avertissement, au risque de perdre des données? Les membres éditant actuellement cette note sont:',
+            'description'   => 'On dirait que quelqu\'un d\'autre est en train de modifier cette note! Souhaites-tu revenir en arrière ou ignorer cet avertissement, au risque de perdre des données? Les membres éditant actuellement cette note sont:',
         ],
     ],
 ];

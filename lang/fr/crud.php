@@ -218,8 +218,8 @@ return [
             'copy'  => 'Presse-papier',
         ],
         'options'                   => [
-            'children'  => 'Avec les descendants',
-            'exclude'   => 'Exclure',
+            'children'  => 'Correspond à ceci ou ses descendants',
+            'exclude'   => 'Ne correspond pas à',
             'hide'      => 'Cacher',
             'include'   => 'Correspond à',
             'none'      => 'Aucun(e)',
