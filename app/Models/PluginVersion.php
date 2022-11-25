@@ -152,16 +152,25 @@ class PluginVersion extends Model
             return '{{ $' . $name . ' }}';
         }, $html);
 
+        //Blacklisted commands
         $html = str_replace([
             '@php', '@dd', '@inject', '@yield', '@section', '@auth', '@guest', '@env', '@once', '@push', '@csrf',
             '@include', '\Illuminate\\', "@i18n('"
         ], [
             '', '', '', '', '', '', '', '', '', '', '', '', '', "trans('*."
         ], $html);
+
+        //Check for translation command
+        $html = str_replace(["@i18n('"], [ "trans('*."], $html);
+
         $html = preg_replace('`dd\((.*?)\)`i', '', $html);
         $html = preg_replace('`config\((.*?)\)`i', '', $html);
         $locale = auth()->user()->locale;
         $lines = [];
+
+        //$html = preg_replace_callback('`\@i18n\(\'(.*?[^\')|^\")])\'\)`i', function ($matches) {
+        //    return '{{ trans(' . $matches[1] . ') }}';
+        //}, $html);
 
         //Replace translation keys of existing translations
         foreach ($this->getTranslationsAttribute() as $translation) {
