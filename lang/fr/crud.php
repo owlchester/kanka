@@ -371,7 +371,7 @@ return [
     'superboosted_campaigns'    => 'Campagnes Superboostées',
     'tabs'                      => [
         'abilities'     => 'Pouvoirs',
-        'assets'        => 'Biens',
+        'assets'        => 'Ressources',
         'attributes'    => 'Attributs',
         'boost'         => 'Boost',
         'calendars'     => 'Calendriers',
