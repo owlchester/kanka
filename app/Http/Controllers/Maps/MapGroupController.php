@@ -42,6 +42,11 @@ class MapGroupController extends Controller
         return view('maps.groups.index', compact('campaign', 'rows', 'model'));
     }
 
+    public function show(Map $map)
+    {
+        return redirect()->route('maps.show', $map);
+    }
+
     /**
      */
     public function create(Map $map)
