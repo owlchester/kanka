@@ -27,6 +27,9 @@ class AbilityService
         'meta' => []
     ];
 
+    /** @var array A list of abilities that have already been loaded */
+    protected array $abilityIds = [];
+
     /**
      * @param Entity $entity
      * @return $this
@@ -122,7 +125,13 @@ class AbilityService
         $parent = $ability->ability;
 
         if (empty($parent)) {
-            $this->abilities['abilities'][$ability->id] = $this->format($entityAbility);
+            if (in_array($ability->id, $this->abilityIds)) {
+                return;
+            }
+            // Abilities need to be added to the array in the order they get loaded, but we also want to avoid abilities
+            // appearing multiple times somehow.
+            $this->abilities['abilities'][] = $this->format($entityAbility);
+            $this->abilityIds[] = $ability->id;
             return;
         }
 
