@@ -141,6 +141,9 @@ class ConnectionService
         $elements = $this->entity->quests()->with(['quest', 'quest.entity'])->has('quest')->get();
         foreach ($elements as $sub) {
             $entity = $sub->quest->entity;
+            if (empty($entity)) {
+                continue;
+            }
             $this->ids[] = $entity->id;
             $this->reasons[$entity->id][] = __('entities/relations.connections.quest_element');
         }
@@ -152,6 +155,9 @@ class ConnectionService
         $elements = $this->entity->timelines()->with(['timeline', 'timeline.entity'])->has('timeline')->get();
         foreach ($elements as $sub) {
             $entity = $sub->timeline->entity;
+            if (empty($entity)) {
+                continue;
+            }
             $this->ids[] = $entity->id;
             $this->reasons[$entity->id][] = __('entities/relations.connections.timeline_element');
         }
@@ -163,6 +169,9 @@ class ConnectionService
         $elements = $this->entity->mapMarkers()->with(['map', 'map.entity'])->has('map')->get();
         foreach ($elements as $sub) {
             $entity = $sub->map->entity;
+            if (empty($entity)) {
+                continue;
+            }
             $this->ids[] = $entity->id;
             $this->reasons[$entity->id][] = __('entities/relations.connections.map_point');
         }
