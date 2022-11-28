@@ -75,7 +75,12 @@ class AttributeService
     {
         // First, let's get all the stuff for this entity
         $existing = [];
-        foreach ($entity->attributes()->get() as $att) {
+        //Dont load hidden attributes for deletion, unless deleting all.
+        $existingAttributes = $entity->attributes()->where('is_hidden', '0')->get();
+        if (empty($request)) {
+            $existingAttributes = $entity->attributes()->get();
+        }
+        foreach ($existingAttributes as $att) {
             $existing[$att->id] = $att;
         }
 
@@ -287,7 +292,6 @@ class AttributeService
             if (in_array($name, $existing)) {
                 continue;
             }
-
             $type = Arr::get($attribute, 'type', '');
             $type = $this->mapAttributeTypeToID($type);
             $value = Arr::get($attribute, 'value', '');
@@ -303,7 +307,8 @@ class AttributeService
                 'default_order' => $order,
                 'is_private' => false,
                 'type_id' => $type,
-                'is_star' => false
+                'is_star' => false,
+                'is_hidden' => $attribute['is_hidden']
             ]);
         }
 
