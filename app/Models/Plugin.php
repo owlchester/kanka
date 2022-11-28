@@ -21,6 +21,7 @@ use Illuminate\Support\Str;
  * @property int $status_id
  * @property int $created_by
  * @property string $name
+ * @property bool $is_obsolete
  *
  * @property PluginVersion[]|Collection $versions
  * @property PluginVersion $version
@@ -174,5 +175,14 @@ class Plugin extends Model
     public function url(string $sub): string
     {
         return 'campaign_plugins.' . $sub;
+    }
+
+    /**
+     * Determine if the plugin is obsolete
+     * @return bool
+     */
+    public function obsolete(): bool
+    {
+        return $this->is_obsolete;
     }
 }
