@@ -40,14 +40,14 @@
         </div>
         @if (empty($target))
             <div class="qq-toggles text-right">
-                <div class="qq-mode-toggle @if (empty($mode)) active @endif" data-mode="single" data-url="{{ route('entity-creator.form', ['type' => $type]) }}">
+                <div class="qq-mode-toggle @if (empty($mode)) active @endif" data-mode="single" data-url="{{ route('entity-creator.form', ['type' => $type]) }}" aria-label="{{ __('entities.creator.modes.default') }}" title="{{ __('entities.creator.modes.default') }}" data-toggle="tooltip">
                     <i class="fa-regular fa-user" aria-hidden="true"></i>
                 </div>
                 @if ($type !== 'posts')
-                    <div class="qq-mode-toggle @if ($mode == 'bulk') active @endif" data-mode="bulk" data-url="{{ route('entity-creator.form', ['type' => $type, 'mode' => 'bulk']) }}">
+                    <div class="qq-mode-toggle @if ($mode == 'bulk') active @endif" data-mode="bulk" data-url="{{ route('entity-creator.form', ['type' => $type, 'mode' => 'bulk']) }}" aria-label="{{ __('entities.creator.modes.bulk') }}" title="{{ __('entities.creator.modes.bulk') }}" data-toggle="tooltip">
                         <i class="fa-solid fa-users" aria-hidden="true"></i>
                     </div>
-                    <div class="qq-mode-toggle @if ($mode == 'templates') active @endif" data-mode="templates" data-url="{{ route('entity-creator.form', ['type' => $type, 'mode' => 'templates']) }}">
+                    <div class="qq-mode-toggle @if ($mode == 'templates') active @endif" data-mode="templates" data-url="{{ route('entity-creator.form', ['type' => $type, 'mode' => 'templates']) }}" aria-label="{{ __('entities.creator.modes.templates') }}" title="{{ __('entities.creator.modes.templates') }}" data-toggle="tooltip">
                         <i class="fa-solid fa-address-book" aria-hidden="true"></i>
                     </div>
                 @endif
