@@ -15,6 +15,7 @@ return [
     'fields'            => [
         'icon'      => 'Symbol',
         'name'      => 'Name',
+        'parent'    => 'übergeordnetes Element',
         'position'  => 'Position',
         'url'       => 'URL',
     ],
@@ -27,7 +28,8 @@ return [
         'title'         => 'verlasse Kanka',
     ],
     'helpers'           => [
-        'icon'  => 'Sie können das für den Link angezeigte Symbol anpassen. Verwenden Sie eines der kostenlosen Symbole von :fontawesome oder lassen Sie dieses Feld für die Standardeinstellung leer.',
+        'icon'      => 'Sie können das für den Link angezeigte Symbol anpassen. Verwenden Sie eines der kostenlosen Symbole von :fontawesome oder lassen Sie dieses Feld für die Standardeinstellung leer.',
+        'parent'    => 'Zeige diesen Quick-Link nach einem Element der Seitenleiste an, anstatt im Quick-Links-Bereich der Seitenleiste.',
     ],
     'placeholders'      => [
         'name'  => 'DNDBeyond',

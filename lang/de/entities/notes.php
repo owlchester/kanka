@@ -40,6 +40,16 @@ return [
     'index'         => [
         'title' => 'Notizen für :name',
     ],
+    'move'          => [
+        'copy'          => 'Erstelle eine Kopie auf Grundlage des Zielobjektes',
+        'copy_success'  => 'Beitrag :name erfolgreich nach :entity kopiert.',
+        'description'   => 'Wähle ein Objekt aus, das du verschieben möchtest, oder erstelle eine Kopie dieses Beitrags.',
+        'entity'        => 'Zielobjekt',
+        'move'          => 'Verschiebe oder kopiere in eine anderes Objekt',
+        'move_success'  => 'Beitrag :name erfolgreich nach :entity verschoben.',
+        'select_one'    => 'Objekt auswählen',
+        'title'         => 'Verschiebe oder kopiere einen Beitrag in ein anderes Objekt',
+    ],
     'placeholders'  => [
         'name'  => 'Name der Notiz, Beobachtung oder Anmerkung',
     ],

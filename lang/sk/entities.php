@@ -29,6 +29,8 @@ return [
         'title'             => 'Nový objekt',
         'tooltip'           => 'Vytvoriť nový objekt bez opustenia aktuálnej stránky',
     ],
+    'creature'              => 'Bytosť',
+    'creatures'             => 'Bytosti',
     'dice_roll'             => 'Hod kockou',
     'dice_rolls'            => 'Hody kockou',
     'event'                 => 'Udalosť',

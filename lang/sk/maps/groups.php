@@ -4,6 +4,10 @@ return [
     'actions'       => [
         'add'   => 'Pridať novú skupinu',
     ],
+    'bulks'         => [
+        'delete'    => '{1} Odstránená :count skupina.|[2,4] Odstránené :count skupiny.|[5,*] Odstránených :count skupín.',
+        'patch'     => '{1} Aktualizovaná :count skupina.|[2,4] Aktualizované :count skupiny.|[5,*] Aktualizovaných :count skupín.',
+    ],
     'create'        => [
         'success'   => 'Skupina :name vytvorená.',
         'title'     => 'Nová skupina',
@@ -19,16 +23,27 @@ return [
         'is_shown'  => 'Zobraziť značky skupiny',
         'position'  => 'Pozícia',
     ],
-    'helper'        => [],
+    'helper'        => [
+        'amount_v3' => 'Značky môžu byť zoskupené pomocou mapových skupín. Kliknutím na skupinu je možné pri objavovaní na mape zobraziť alebo skryť všetky jej značky.',
+    ],
     'hints'         => [
         'is_shown'  => 'Aktivovaním sa značky skupiny zobrazia na mape automaticky.',
+    ],
+    'index'         => [
+        'title' => 'Skupiny :name',
     ],
     'pitch'         => [
         'error' => 'Dosiahnutý max. počet skupín.',
         'until' => 'Vytvor na každej mape až :max skupín.',
     ],
     'placeholders'  => [
-        'name'      => 'Obchody, Poklady, NPC',
-        'position'  => 'Nepovinné pole na nastavenie poradia zobrazenia skupín.',
+        'name'          => 'Obchody, Poklady, NPC',
+        'position'      => 'Nepovinné pole na nastavenie poradia zobrazenia skupín.',
+        'position_list' => 'Po :name',
+    ],
+    'reorder'       => [
+        'save'      => 'Uložiť nové poradie',
+        'success'   => '{1} Preusporiadaná :count skupina.|[2,4] Preusporiadané :count skupiny.|[5,*] Preusporiadaných :count skupín.',
+        'title'     => 'Usporiadať skupiny',
     ],
 ];

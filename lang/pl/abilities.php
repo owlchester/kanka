@@ -30,7 +30,7 @@ return [
     ],
     'helpers'       => [
         'descendants'       => 'Na liście znajdują się wszystkie zdolności pochodzące od tej zdolności, nie tylko bezpośrednio.',
-        'nested_without'    => 'Wyświetlono wszystkie zdolności nie posiadające źródła. Kliknij na rząd, by wyświetlić zdolności pochodne.',
+        'nested_without'    => 'Wyświetlono wszystkie zdolności nieposiadające źródła. Kliknij na rząd, by wyświetlić zdolności pochodne.',
     ],
     'index'         => [],
     'placeholders'  => [

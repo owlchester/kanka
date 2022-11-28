@@ -29,6 +29,8 @@ return [
         'title'             => 'Nova entidade',
         'tooltip'           => 'Crie uma nova entidade sem deixar a página atual',
     ],
+    'creature'              => 'Criatura',
+    'creatures'             => 'Criaturas',
     'dice_roll'             => 'Rolagem de dado',
     'dice_rolls'            => 'Rolagem de dados',
     'event'                 => 'Evento',

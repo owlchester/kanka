@@ -28,7 +28,7 @@ return [
         'families'          => 'Miejsce może być siedzibą potężnego rodu.',
         'map'               => 'Po dodaniu mapy do miejsca, będziesz mógł umieszczać na niej "Punkty", łącząc je z innymi elementami kampanii.',
         'map_deprecated_2'  => 'Mapy mają teraz własny moduł! Wciąż możesz aktualizować stare mapy, ale nowe umieszczaj w dedykowanym module.',
-        'nested_without'    => 'Wyświetlono wszystkie miejsca nie posiadające źródła. Kliknij na rząd, by wyświetlić miejsca pochodne.',
+        'nested_without'    => 'Wyświetlono wszystkie miejsca nieposiadające źródła. Kliknij na rząd, by wyświetlić miejsca pochodne.',
         'organisations'     => 'Wyświetla organizacje rezydujące w tym miejscu i wszystkich miejscach pochodnych, albo wyłącznie tutaj.',
     ],
     'hints'         => [

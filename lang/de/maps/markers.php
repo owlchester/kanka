@@ -4,8 +4,14 @@ return [
     'actions'       => [
         'entry'             => 'Schreibe ein benutzerdefiniertes Eingabefeld für diesen Marker.',
         'remove'            => 'Marker entfernen',
+        'reset-polygon'     => 'Position zurücksetzen',
         'save_and_explore'  => 'Speichern und Erkunden',
+        'start-drawing'     => 'Zeichnen starten',
         'update'            => 'Marker editieren',
+    ],
+    'bulks'         => [
+        'delete'    => '{1} entferne :count marker.|[2,*] entferne :count markers.',
+        'patch'     => '{1} aktualisiere :count marker.|[2,*] aktualisiere :count markers.',
     ],
     'create'        => [
         'success'   => 'Marker :name erstellt',
@@ -25,6 +31,7 @@ return [
         'custom_shape'  => 'Benutzerdefinierte Form',
         'font_colour'   => 'Icon Farbe',
         'group'         => 'Markergruppe',
+        'icon'          => 'Icon',
         'is_draggable'  => 'Verschiebbar',
         'latitude'      => 'Breitengrad',
         'longitude'     => 'Längengrad',
@@ -54,6 +61,9 @@ return [
         'exclamation'   => 'Ausruf',
         'marker'        => 'Marker',
         'question'      => 'Frage',
+    ],
+    'index'         => [
+        'title' => 'Marker von :name',
     ],
     'pitches'       => [
         'poly'  => 'Zeichne benutzerdefinierte Polyong-Formen, um Ränder und andere ungleichmäßige Formen darzustellen.',

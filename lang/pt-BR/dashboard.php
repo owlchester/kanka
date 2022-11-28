@@ -78,6 +78,9 @@ return [
             'back_to_dashboard' => 'Voltar para o dashboard',
             'edit'              => 'Editar um widget',
         ],
+        'reorder'   => [
+            'success'   => 'Widgets reordenados.',
+        ],
         'title'     => 'Configuração do dashboard da campanha',
         'tutorial'  => [
             'blog'  => 'nosso tutorial',
@@ -122,6 +125,7 @@ return [
             'name'              => 'Nome do widget personalizado',
             'optional-entity'   => 'Link para entidade',
             'order'             => 'Ordenação',
+            'size'              => 'Tamanho',
             'text'              => 'Texto',
             'width'             => 'Largura',
         ],

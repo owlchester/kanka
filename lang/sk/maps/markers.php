@@ -4,8 +4,14 @@ return [
     'actions'       => [
         'entry'             => 'Pre túto značku zapíš vlastné vstupné políčko.',
         'remove'            => 'Odstrániť značku',
+        'reset-polygon'     => 'Resetovať umiestnenie',
         'save_and_explore'  => 'Uložiť a otvoriť',
+        'start-drawing'     => 'Zapnúť kreslenie',
         'update'            => 'Upraviť značku',
+    ],
+    'bulks'         => [
+        'delete'    => '{1} Odstránená :count značka.|[2,4] Odstránené :count značky.|[5,*] Odstránených :count značiek.',
+        'patch'     => '{1} Aktualizovaná :count značka.|[2,4] Aktualizované :count značky.|[5,*] Aktualizovaných :count značiek.',
     ],
     'create'        => [
         'success'   => 'Značka :name vytvorená.',
@@ -25,6 +31,7 @@ return [
         'custom_shape'  => 'Vlastný tvar',
         'font_colour'   => 'Farba symbolu',
         'group'         => 'Skupina značky',
+        'icon'          => 'Symbol',
         'is_draggable'  => 'Premiestniteľná',
         'latitude'      => 'Zemepisná šírka',
         'longitude'     => 'Zemepisná dĺžka',
@@ -54,6 +61,9 @@ return [
         'exclamation'   => 'Výkričník',
         'marker'        => 'Značka',
         'question'      => 'Otáznik',
+    ],
+    'index'         => [
+        'title' => 'Značky :name',
     ],
     'pitches'       => [
         'poly'  => 'Nakresli vlastné mnohouholníkové tvary, ktoré stvárňujú hranice alebo nepravidelné objekty.',

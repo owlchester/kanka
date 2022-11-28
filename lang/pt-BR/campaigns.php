@@ -20,8 +20,13 @@ TEXT
         'title'                 => 'Criar uma nova campanha',
     ],
     'destroy'                           => [
-        'action'    => 'Deletar Campanha',
-        'success'   => 'Campanha removida',
+        'action'            => 'Deletar Campanha',
+        'confirm'           => 'Tem certeza de que deseja excluir :campaign? Esta ação é permanente e não pode ser recuperada.',
+        'confirm-button'    => 'Excluir permanentemente a campanha',
+        'helper-v2'         => 'Esta campanha não pode ser excluída enquanto houver outros membros nela. Remova os outros membros primeiro e tente novamente.',
+        'hint'              => 'Em caso afirmativo, escreva :code na caixa abaixo.',
+        'success'           => 'Campanha removida',
+        'title'             => 'Excluir uma campanha',
     ],
     'edit'                              => [
         'success'   => 'Campanha atualizada',
@@ -127,6 +132,7 @@ TEXT
         'fields'                => [
             'created'   => 'Enviado',
             'role'      => 'Cargo',
+            'token'     => 'Token',
             'type'      => 'Tipo',
             'usage'     => 'Número máximo de usos',
         ],
@@ -139,9 +145,13 @@ TEXT
         ],
     ],
     'leave'                             => [
-        'confirm'   => 'Você tem certeza que deseja sair de :name campaign? Você não poderá acessar novamente, a não ser que o dono da campanha te convide novamente.',
-        'error'     => 'Não foi possível sair da campanha.',
-        'success'   => 'Você saiu da campanha.',
+        'confirm'           => 'Você tem certeza que deseja sair de :name campaign? Você não poderá acessar novamente, a não ser que o dono da campanha te convide novamente.',
+        'confirm-button'    => 'Sim, saia da campanha',
+        'error'             => 'Não foi possível sair da campanha.',
+        'fix'               => 'Acesse os membros da campanha',
+        'no-admin-left'     => 'Não é possível sair da campanha porque isso a deixaria sem nenhum administrador. Adicione primeiro outro membro à função de administrador.',
+        'success'           => 'Você saiu da campanha.',
+        'title'             => 'Saindo da campanha',
     ],
     'members'                           => [
         'actions'               => [
@@ -332,20 +342,25 @@ TEXT
         ],
     ],
     'settings'                          => [
-        'actions'   => [
+        'actions'       => [
             'enable'    => 'Habilitar',
         ],
-        'boosted'   => 'Este recurso está em acesso antecipado e atualmente disponível apenas para :boosted.',
-        'disabled'  => 'O módulo :module está desabilitado.',
-        'enabled'   => 'O módulo :module está habilitado.',
-        'errors'    => [
+        'boosted'       => 'Este recurso está em acesso antecipado e atualmente disponível apenas para :boosted.',
+        'deprecated'    => [
+            'help'  => 'Este módulo está obsoleto, o que significa que não é mais mantido e que os bugs não são testados a cada nova atualização. Use este módulo com o conhecimento de que ele será removido do Kanka.',
+            'title' => 'Descontinuado',
+        ],
+        'disabled'      => 'O módulo :module está desabilitado.',
+        'enabled'       => 'O módulo :module está habilitado.',
+        'errors'        => [
             'module-disabled'   => 'O módulo solicitado está atualmente desabilitado nas configurações da campanha. :fix.',
         ],
-        'helpers'   => [
+        'helpers'       => [
             'abilities'     => 'Crie habilidades, sejam talentos, feitiços ou poderes que podem ser atribuídos a entidades.',
             'calendars'     => 'Um lugar para definir todos os calendários do seu mundo.',
             'characters'    => 'O povo que habita seu mundo.',
             'conversations' => 'Conversas fictícias entre personagens ou entre usuários da campanha. Este módulo está obsoleto.',
+            'creatures'     => 'Construa as criaturas, animais e monstros do seu mundo com o módulo de criaturas.',
             'dice_rolls'    => 'Para aqueles que usam Kanka para campanhas de RPG, uma maneira de cuidar das rolagens de dados.',
             'events'        => 'Feriados, festivais, desastres, aniversários, guerras.',
             'families'      => 'Clãs ou famílias, suas relações e seus membros.',

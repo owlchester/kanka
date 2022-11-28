@@ -20,8 +20,13 @@ TEXT
         'title'                 => 'Neue Kampagne erstellen',
     ],
     'destroy'                           => [
-        'action'    => 'Kampagne löschen',
-        'success'   => 'Kampagne gelöscht',
+        'action'            => 'Kampagne löschen',
+        'confirm'           => 'Möchtest du :campaign wirklich löschen? Diese Aktion ist dauerhaft und kann nicht wiederhergestellt werden.',
+        'confirm-button'    => 'Lösche die Kampagne endgültig',
+        'helper-v2'         => 'Diese Kampagne kann nicht gelöscht werden, solange andere Mitglieder darin sind. Entferne zuerst die anderen Mitglieder und versuche es erneut.',
+        'hint'              => 'Wenn ja, schreibe bitte :code in das Feld unten.',
+        'success'           => 'Kampagne gelöscht',
+        'title'             => 'Lösche Kampagne',
     ],
     'edit'                              => [
         'success'   => 'Kampagne aktualisiert',
@@ -127,6 +132,7 @@ TEXT
         'fields'                => [
             'created'   => 'Senden',
             'role'      => 'Rolle',
+            'token'     => 'Token',
             'type'      => 'Typ',
             'usage'     => 'Maximale Anzahl von Verwendungen',
         ],
@@ -139,9 +145,13 @@ TEXT
         ],
     ],
     'leave'                             => [
-        'confirm'   => 'Bist du sicher, dass du die Kampagne :name verlassen möchtest? Du hast danach keinen Zugang mehr, außer ein Besitzer der Kampagne lädt dich erneut ein.',
-        'error'     => 'Kann die Kampagne nicht verlassen.',
-        'success'   => 'Du hast die Kampagne verlassen.',
+        'confirm'           => 'Bist du sicher, dass du die Kampagne :name verlassen möchtest? Du hast danach keinen Zugang mehr, außer ein Besitzer der Kampagne lädt dich erneut ein.',
+        'confirm-button'    => 'Ja, Kampagne verlassen',
+        'error'             => 'Kann die Kampagne nicht verlassen.',
+        'fix'               => 'Gehe zu den Kampagnenmitgliedern',
+        'no-admin-left'     => 'Das Verlassen der Kampagne ist nicht möglich, da du sonst ohne Administratoren wärst. Füge zuerst ein anderes Mitglied zur Administratorrolle hinzu.',
+        'success'           => 'Du hast die Kampagne verlassen.',
+        'title'             => 'Kampagne verlassen',
     ],
     'members'                           => [
         'actions'               => [
@@ -236,6 +246,10 @@ TEXT
             'save'          => 'Rolle speichern',
         ],
         'admin_role'    => 'Administratorenrolle',
+        'bulks'         => [
+            'delete'    => '{1} entfernt :count role.|[2,*] entfernt :count roles.',
+            'edit'      => '{1} aktualisiert :count role.|[2,*] aktualisiert :count roles.',
+        ],
         'create'        => [
             'success'   => 'Rolle erstellt.',
             'title'     => 'Erstelle eine neue Rolle für :name',
@@ -332,20 +346,25 @@ TEXT
         ],
     ],
     'settings'                          => [
-        'actions'   => [
+        'actions'       => [
             'enable'    => 'aktivieren',
         ],
-        'boosted'   => 'Diese Funktion befindet sich in der Beta-Phase und ist derzeit nur verfügbar für :boosted.',
-        'disabled'  => 'Das Modul :module ist deaktiviert.',
-        'enabled'   => 'Das Modul :module ist aktiviert.',
-        'errors'    => [
+        'boosted'       => 'Diese Funktion befindet sich in der Beta-Phase und ist derzeit nur verfügbar für :boosted.',
+        'deprecated'    => [
+            'help'  => 'Dieses Modul ist veraltet, was bedeutet, dass es nicht mehr gepflegt wird und dass Fehler nicht bei jedem neuen Update getestet werden. Verwende dieses Modul mit dem Wissen, dass es irgendwann aus Kanka entfernt wird.',
+            'title' => 'Veraltet',
+        ],
+        'disabled'      => 'Das Modul :module ist deaktiviert.',
+        'enabled'       => 'Das Modul :module ist aktiviert.',
+        'errors'        => [
             'module-disabled'   => 'Das angeforderte Modul ist derzeit in den Kampagneneinstellungen deaktiviert. :fix.',
         ],
-        'helpers'   => [
+        'helpers'       => [
             'abilities'     => 'Erstellen Sie Fähigkeiten, seien es Talente, Zauber oder Kräfte, die Objekten zugewiesen werden können.',
             'calendars'     => 'Der Ort, um die Kalender deiner Welt zu erstellen.',
             'characters'    => 'Die Leute, die deine Welt bevölkern.',
             'conversations' => 'Fiktive Gespräche zwischen Charakteren oder zwischen Kampagnennutzern.',
+            'creatures'     => 'Erschaffe mit dem Kreaturenmodul die Kreaturen, Tiere und Monster deiner Welt.',
             'dice_rolls'    => 'Für die, die Kanka für RPG Kampagnen benutzen, eine Möglichkeit Würfelwürfe zu verwalten.',
             'events'        => 'Feiertage, Festlichkeiten, Katastrophen, Geburtstage, Kriege.',
             'families'      => 'Klans oder Familien, deren Beziehungen und deren Mitglieder.',
@@ -411,6 +430,7 @@ TEXT
         ],
         'fields'            => [
             'connections'       => 'Verbindungsschnittstelle des Standardobjekts',
+            'connections_mode'  => 'Standard Beziehung-Explorer für Beobachter',
             'entity_history'    => 'Verlaufsprotokolle des Objekts',
             'entity_image'      => 'Objekt Portrait',
             'family_toolip'     => 'Die Familie des Charakters',
@@ -420,6 +440,7 @@ TEXT
         ],
         'helpers'           => [
             'connections'       => 'Wenn Sie auf die Unterseite „Verbindungen“ eines Objekts klicken, wählen Sie die angezeigte Standardwerte aus.',
+            'connections_mode'  => 'Definiere beim Anzeigen des Beziehungs-Explorers eines Objekts den ausgewählten Standardmodus.',
             'other'             => 'Andere visuelle Optionen für die Kampagne.',
             'post_collapsed'    => 'Wählen Sie beim Erstellen eines neuen Beitrags für ein Objekt den Standardwert des minimierten Felds aus.',
             'tooltip'           => 'Kontrollieren Sie, welche Informationen sichtbar sind, wenn Sie den Namen eines Objekts in ihrer QuickInfo bewegen.',

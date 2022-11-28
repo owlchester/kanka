@@ -17,6 +17,7 @@ return [
     ],
     'login'     => [
         'fields'                => [
+            '2fa'       => 'Einmaliges Passwort',
             'email'     => 'Email',
             'password'  => 'Passwort',
         ],
@@ -57,6 +58,10 @@ return [
         'send'      => 'Link zum zurücksetzen des Passwords verschickt',
         'submit'    => 'Passwort zurücksetzen',
         'title'     => 'Passwort zurücksetzen',
+    ],
+    'tfa'       => [
+        'helper'    => 'Die Zwei-Faktor-Authentifizierung ist aktiviert. Bitte gib das von dir Authentifizierungs-App bereitgestellte One Time Password (OTP) an.',
+        'title'     => 'Zwei-Faktor-Authentifizierung',
     ],
     'throttle'  => 'Zu viele Anmeldeversuche. Bitte versuche es in :seconds Sekunden noch einmal.',
 ];

@@ -17,6 +17,7 @@ return [
     ],
     'login'     => [
         'fields'                => [
+            '2fa'       => 'Senha de uso único',
             'email'     => 'Email',
             'password'  => 'Senha',
         ],
@@ -57,6 +58,10 @@ return [
         'send'      => 'Enviar Link de Redefinição de Senha',
         'submit'    => 'Redefinir senha',
         'title'     => 'Redefinir senha',
+    ],
+    'tfa'       => [
+        'helper'    => 'A autenticação de dois fatores está habilitada. Forneça a senha de uso único (OTP) fornecida pelo seu aplicativo autenticador.',
+        'title'     => 'Autenticação de Dois-Fatores',
     ],
     'throttle'  => 'Muitas tentativas de login. Por favor tente novamente em :seconds segundos.',
 ];

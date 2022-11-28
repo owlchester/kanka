@@ -1,7 +1,11 @@
 <?php
 
 return [
-    'quick' => [
+    'privacy'   => [
+        'text'      => 'Ten element jest tajny. Wprawdzie można ustawiać dla niego indywidualne uprawnienia, ale póki nie zostanie ujawniony, będą ignorowane, a element będzie widoczny tylko dla administratorów kampanii.',
+        'warning'   => 'Uwaga',
+    ],
+    'quick'     => [
         'empty-permissions' => 'Ten element mogą zobaczyć tylko administratorzy kampanii, i nikt inny.',
         'field'             => 'Szybka edycja',
         'options'           => [

@@ -7,6 +7,11 @@ return [
         'enable'    => 'Habilitar',
         'new'       => 'Novo estilo',
     ],
+    'bulks'     => [
+        'delete'    => '{1} Removido :count estilo.|[2,*] Removidos :count estilos.',
+        'disable'   => '{1} Desabilitado :count estilo.|[2,*] Desabilitados :count estilos.',
+        'enable'    => '{1} Habilitado :count estilo.|[2,*] Habilitados :count estilos.',
+    ],
     'create'    => [
         'success'   => 'Novo estilo criado.',
         'title'     => 'Nova estilo',
@@ -30,9 +35,11 @@ return [
         'here'      => 'no nosso blog',
         'main'      => 'Você pode criar um estilo CSS personalizado para sua campanha impulsionada. Esses estilos são carregados após quaisquer temas do mercado que estiverem habilitados para a campanha. Você pode aprender mais sobre como estilizar sua campanha :here.',
     ],
+    'pitch'     => 'Crie um estilo CSS personalizado para personalizar totalmente a aparência da campanha.',
     'reorder'   => [
-        'save'  => 'Salvar nova ordem',
-        'title' => 'Reordenar estilos',
+        'save'      => 'Salvar nova ordem',
+        'success'   => '{1} Reordenado :count estilo.|[2,*] Reordenados :count estilos',
+        'title'     => 'Reordenar estilos',
     ],
     'theme'     => [
         'success'   => 'Tema da campanha atualizado.',

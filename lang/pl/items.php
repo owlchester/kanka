@@ -14,7 +14,7 @@ return [
         'size'      => 'Rozmiar',
     ],
     'helpers'       => [
-        'nested_without'    => 'Wyświetla przedmioty nie posiadające źródła. Kliknij na rząd by zobaczyć przedmioty pochodne.',
+        'nested_without'    => 'Wyświetlono przedmioty nieposiadające źródła. Kliknij na rząd by zobaczyć przedmioty pochodne.',
     ],
     'hints'         => [
         'items' => 'Porządkuj przedmioty według źródeł',

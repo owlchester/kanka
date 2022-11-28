@@ -6,7 +6,9 @@ return [
         'description'   => 'Die folgenden Filter sind für den API-Endpunkt :name verfügbar.',
         'title'         => 'API Filters',
     ],
-    'attributes'        => [],
+    'attributes'        => [
+        'link'  => 'Attributoptionen',
+    ],
     'calendar-widget'   => [
         'info'  => 'Warum werden diese Erinnerungen angezeigt?',
         'title' => 'Kalender-Widget',
