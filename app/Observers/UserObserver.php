@@ -33,7 +33,13 @@ class UserObserver
         if (!empty($user->profile['bio'])) {
             $profile = $user->profile;
             $profile['bio'] = substr(strip_tags($profile['bio']), 0, 301);
-            $user->profile = $profile;
+            try {
+                $user->profile = $profile;
+            } catch (\Exception $e) {
+                // An invalid profile, like emojis in text
+                $profile['bio'] = '';
+                $user->profile = $profile;
+            }
         }
 
         // Handle image. Let's use a service for this.
