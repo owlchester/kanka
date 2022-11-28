@@ -17,8 +17,8 @@
                         <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
                     </div>
                     <ul class="dropdown-menu" role="menu">
-                        @foreach ($entityTypes as $module => $name)
-                            @includeWhen(isset($entities[$module]), 'entities.creator.header._dropdown', ['dropType' => $module, 'trans' => __('entities.' . $name)])
+                        @foreach ($orderedEntityTypes as $module => $name)
+                            @includeWhen(isset($entities[$module]), 'entities.creator.header._dropdown', ['dropType' => $module, 'trans' => $name])
                         @endforeach
 
                         <li class="divider"></li>

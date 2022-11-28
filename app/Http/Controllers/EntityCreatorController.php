@@ -267,13 +267,32 @@ class EntityCreatorController extends Controller
             'conversations' => 'conversation',
         ];
 
+        $orderedEntityTypes = $this->orderedEntityTypes($entityTypes);
+
         return view('entities.creator.' . $view, compact(
             'type', 'singularType',
             'entityType', 'origin', 'target',
             'multi', 'mode', 'source', 'templates',
             'entities',
-            'entityTypes',
+            //'entityTypes',
+            'orderedEntityTypes',
             'success',
         ));
+    }
+
+    /**
+     * Ordered entity types alphabetically to the user's local
+     * @param array $types
+     * @return array
+     */
+    protected function orderedEntityTypes(array $types): array
+    {
+        $orderedTypes = [];
+        foreach ($types as $plural => $singular) {
+            $orderedTypes[$plural] = __('entities.' . $singular);
+        }
+
+        asort($orderedTypes);
+        return $orderedTypes;
     }
 }
