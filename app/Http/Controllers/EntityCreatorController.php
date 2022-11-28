@@ -292,7 +292,9 @@ class EntityCreatorController extends Controller
             $orderedTypes[$plural] = __('entities.' . $singular);
         }
 
-        asort($orderedTypes);
+        $collator = new \Collator(app()->getLocale());
+        $collator->asort($orderedTypes);
+
         return $orderedTypes;
     }
 }
