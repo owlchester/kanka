@@ -11,7 +11,7 @@
 @section('entity-header-actions')
     @can('update', $model)
         <div class="header-buttons">
-            <a href="https://docs.kanka.io/en/latest/entities/maps/layers.html" class="btn btn-default btn-sm" target="_blank">
+            <a href="https://docs.kanka.io/en/latest/entities/maps/markers.html" class="btn btn-default btn-sm" target="_blank">
                 <i class="fa-solid fa-question-circle" aria-hidden="true"></i> {{ __('crud.actions.help') }}
             </a>
             @if ($model->explorable())

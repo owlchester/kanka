@@ -20,6 +20,7 @@ class OrganisationMemberResource extends ModelResource
         return $this->entity([
             'role' => $model->role,
             'organisation_id' => $model->organisation_id,
+            'character_id' => $model->character_id,
             'pin_id' => $model->pin_id,
             'status_id' => $model->status_id,
             'parent_id' => $model->parent_id,
