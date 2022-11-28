@@ -25,6 +25,7 @@ class Handler extends ExceptionHandler
         \League\OAuth2\Server\Exception\OAuthServerException::class,
         \Symfony\Component\Console\Exception\NamespaceNotFoundException::class,
         \Symfony\Component\Console\Exception\CommandNotFoundException::class,
+        \Symfony\Component\Mailer\Exception\HttpTransportException::class,
         NotFoundHttpException::class,
     ];
 
